@@ -1940,7 +1940,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   blocks[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
   (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), blocks.data(), nBlocks);
-  ASSERT((*m_ParseCookies)[nLineIndex] != -1);
+  ASSERT((*m_ParseCookies)[nLineIndex] != -1 && nBlocks < static_cast<int>(blocks.size()));
   blocks.resize(nBlocks);
 
   std::vector<TEXTBLOCK> additionalBlocks = GetAdditionalTextBlocks(nLineIndex);

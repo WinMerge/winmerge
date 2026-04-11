@@ -162,7 +162,9 @@ msgid "&Scripts"
 msgstr "E&skriptak"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:123 Merge.rc:338 Merge.rc:447 Merge.rc:654 Merge.rc:659 Merge.rc:865 Merge.rc:877 Merge.rc:884 Merge.rc:940 Merge.rc:1183 Merge.rc:5028
+#: Merge.rc:123 Merge.rc:338 Merge.rc:447 Merge.rc:654 Merge.rc:659
+#: Merge.rc:865 Merge.rc:877 Merge.rc:884 Merge.rc:940 Merge.rc:1183
+#: Merge.rc:5028
 #, c-format
 msgid "< Empty >"
 msgstr "< Hutsik >"
@@ -247,7 +249,8 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr ""
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:358 Merge.rc:507 Merge.rc:751
+#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:358 Merge.rc:507
+#: Merge.rc:751
 #, c-format
 msgid "&None"
 msgstr "&Ezer ez"
@@ -514,30 +517,36 @@ msgid "&New"
 msgstr "&Berria"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TEXT
-#: Merge.rc:314 Merge.rc:322 Merge.rc:415 Merge.rc:423 Merge.rc:590 Merge.rc:598 Merge.rc:649 Merge.rc:935 Merge.rc:1159 Merge.rc:1171
+#: Merge.rc:314 Merge.rc:322 Merge.rc:415 Merge.rc:423 Merge.rc:590
+#: Merge.rc:598 Merge.rc:649 Merge.rc:935 Merge.rc:1159 Merge.rc:1171
 #, c-format
 msgid "&Text"
 msgstr ""
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:315 Merge.rc:323 Merge.rc:416 Merge.rc:424 Merge.rc:591 Merge.rc:599 Merge.rc:650 Merge.rc:936 Merge.rc:1160 Merge.rc:1172
+#: Merge.rc:315 Merge.rc:323 Merge.rc:416 Merge.rc:424 Merge.rc:591
+#: Merge.rc:599 Merge.rc:650 Merge.rc:936 Merge.rc:1160 Merge.rc:1172
 msgid "T&able"
 msgstr ""
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:316 Merge.rc:324 Merge.rc:417 Merge.rc:425 Merge.rc:592 Merge.rc:600 Merge.rc:651 Merge.rc:937 Merge.rc:1161 Merge.rc:1173
+#: Merge.rc:316 Merge.rc:324 Merge.rc:417 Merge.rc:425 Merge.rc:592
+#: Merge.rc:600 Merge.rc:651 Merge.rc:937 Merge.rc:1161 Merge.rc:1173
 #, c-format
 msgid "&Binary"
 msgstr "&Binarioa"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:317 Merge.rc:325 Merge.rc:418 Merge.rc:426 Merge.rc:593 Merge.rc:601 Merge.rc:652 Merge.rc:938 Merge.rc:1162 Merge.rc:1174 Merge.rc:5123
+#: Merge.rc:317 Merge.rc:325 Merge.rc:418 Merge.rc:426 Merge.rc:593
+#: Merge.rc:601 Merge.rc:652 Merge.rc:938 Merge.rc:1162 Merge.rc:1174
+#: Merge.rc:5123
 #, c-format
 msgid "&Image"
 msgstr ""
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:318 Merge.rc:326 Merge.rc:419 Merge.rc:427 Merge.rc:594 Merge.rc:602 Merge.rc:653 Merge.rc:939 Merge.rc:1163 Merge.rc:1175
+#: Merge.rc:318 Merge.rc:326 Merge.rc:419 Merge.rc:427 Merge.rc:594
+#: Merge.rc:602 Merge.rc:653 Merge.rc:939 Merge.rc:1163 Merge.rc:1175
 msgid "&Webpage"
 msgstr ""
 
@@ -1520,13 +1529,15 @@ msgid "Copy from &Left to"
 msgstr ""
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:799 Merge.rc:810 Merge.rc:815 Merge.rc:826 Merge.rc:970 Merge.rc:2545 Merge.rc:2817
+#: Merge.rc:799 Merge.rc:810 Merge.rc:815 Merge.rc:826 Merge.rc:970
+#: Merge.rc:2545 Merge.rc:2817
 #, c-format
 msgid "&Middle"
 msgstr ""
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:800 Merge.rc:805 Merge.rc:816 Merge.rc:821 Merge.rc:971 Merge.rc:2546 Merge.rc:2819
+#: Merge.rc:800 Merge.rc:805 Merge.rc:816 Merge.rc:821 Merge.rc:971
+#: Merge.rc:2546 Merge.rc:2819
 #, c-format
 msgid "&Right"
 msgstr "&E&skuina"
@@ -1537,7 +1548,8 @@ msgid "Copy from &Middle to"
 msgstr ""
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:804 Merge.rc:809 Merge.rc:820 Merge.rc:825 Merge.rc:969 Merge.rc:2544 Merge.rc:2815
+#: Merge.rc:804 Merge.rc:809 Merge.rc:820 Merge.rc:825 Merge.rc:969
+#: Merge.rc:2544 Merge.rc:2815
 #, c-format
 msgid "&Left"
 msgstr "Ezker&ra"
@@ -2407,7 +2419,8 @@ msgid "1GB or more"
 msgstr ""
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_RANGE
-#: Merge.rc:1388 Merge.rc:1465 Merge.rc:1517 Merge.rc:1523 Merge.rc:1540 Merge.rc:1566 Merge.rc:1587 Merge.rc:1643 Merge.rc:1709 Merge.rc:1734
+#: Merge.rc:1388 Merge.rc:1465 Merge.rc:1517 Merge.rc:1523 Merge.rc:1540
+#: Merge.rc:1566 Merge.rc:1587 Merge.rc:1643 Merge.rc:1709 Merge.rc:1734
 msgid "Custom Range..."
 msgstr ""
 
@@ -2777,12 +2790,14 @@ msgid "Add &Difference Condition"
 msgstr ""
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_EQUAL
-#: Merge.rc:1553 Merge.rc:1570 Merge.rc:1591 Merge.rc:1696 Merge.rc:1717 Merge.rc:1742
+#: Merge.rc:1553 Merge.rc:1570 Merge.rc:1591 Merge.rc:1696 Merge.rc:1717
+#: Merge.rc:1742
 msgid "Equal"
 msgstr ""
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
-#: Merge.rc:1554 Merge.rc:1571 Merge.rc:1592 Merge.rc:1697 Merge.rc:1718 Merge.rc:1743
+#: Merge.rc:1554 Merge.rc:1571 Merge.rc:1592 Merge.rc:1697 Merge.rc:1718
+#: Merge.rc:1743
 msgid "Not Equal"
 msgstr ""
 
@@ -3089,7 +3104,10 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "Ikusi WinMerge Webgunea!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:1938 Merge.rc:2080 Merge.rc:2431 Merge.rc:2455 Merge.rc:2469 Merge.rc:2497 Merge.rc:2588 Merge.rc:2613 Merge.rc:2674 Merge.rc:2691 Merge.rc:2703 Merge.rc:2867 Merge.rc:2927 Merge.rc:3062 Merge.rc:3104 Merge.rc:3147 Merge.rc:3197
+#: Merge.rc:1938 Merge.rc:2080 Merge.rc:2431 Merge.rc:2455 Merge.rc:2469
+#: Merge.rc:2497 Merge.rc:2588 Merge.rc:2613 Merge.rc:2674 Merge.rc:2691
+#: Merge.rc:2703 Merge.rc:2867 Merge.rc:2927 Merge.rc:3062 Merge.rc:3104
+#: Merge.rc:3147 Merge.rc:3197
 #, c-format
 msgid "OK"
 msgstr "Ongi"
@@ -3207,7 +3225,11 @@ msgid "Se&lect..."
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:1981 Merge.rc:2001 Merge.rc:2025 Merge.rc:2046 Merge.rc:2081 Merge.rc:2432 Merge.rc:2456 Merge.rc:2470 Merge.rc:2498 Merge.rc:2551 Merge.rc:2589 Merge.rc:2614 Merge.rc:2675 Merge.rc:2692 Merge.rc:2704 Merge.rc:2868 Merge.rc:2928 Merge.rc:3087 Merge.rc:3105 Merge.rc:3148 Merge.rc:3198
+#: Merge.rc:1981 Merge.rc:2001 Merge.rc:2025 Merge.rc:2046 Merge.rc:2081
+#: Merge.rc:2432 Merge.rc:2456 Merge.rc:2470 Merge.rc:2498 Merge.rc:2551
+#: Merge.rc:2589 Merge.rc:2614 Merge.rc:2675 Merge.rc:2692 Merge.rc:2704
+#: Merge.rc:2868 Merge.rc:2928 Merge.rc:3087 Merge.rc:3105 Merge.rc:3148
+#: Merge.rc:3198
 #, c-format
 msgid "Cancel"
 msgstr "Ezeztatu"
@@ -3506,7 +3528,10 @@ msgid "Language:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2119 Merge.rc:2299 Merge.rc:2321 Merge.rc:2352 Merge.rc:2369 Merge.rc:2386 Merge.rc:2394 Merge.rc:2430 Merge.rc:2454 Merge.rc:2633 Merge.rc:2644 Merge.rc:2653 Merge.rc:2887 Merge.rc:2922 Merge.rc:2985 Merge.rc:3010 Merge.rc:3024 Merge.rc:3038 Merge.rc:3054
+#: Merge.rc:2119 Merge.rc:2299 Merge.rc:2321 Merge.rc:2352 Merge.rc:2369
+#: Merge.rc:2386 Merge.rc:2394 Merge.rc:2430 Merge.rc:2454 Merge.rc:2633
+#: Merge.rc:2644 Merge.rc:2653 Merge.rc:2887 Merge.rc:2922 Merge.rc:2985
+#: Merge.rc:3010 Merge.rc:3024 Merge.rc:3038 Merge.rc:3054
 #, c-format
 msgid "Defaults"
 msgstr "Berezkoak"
@@ -3680,7 +3705,8 @@ msgid "User 2:"
 msgstr "2 Erabiltzailea:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2209 Merge.rc:2211 Merge.rc:2213 Merge.rc:2215 Merge.rc:2217 Merge.rc:2219 Merge.rc:2221 Merge.rc:2223 Merge.rc:2225
+#: Merge.rc:2209 Merge.rc:2211 Merge.rc:2213 Merge.rc:2215 Merge.rc:2217
+#: Merge.rc:2219 Merge.rc:2221 Merge.rc:2223 Merge.rc:2225
 #, c-format
 msgid "Bold"
 msgstr "Lodia"

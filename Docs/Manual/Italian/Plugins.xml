@@ -146,67 +146,67 @@ file</title>
 
       <itemizedlist>
         <listitem>
-          <para><function>Rendi maiuscolo</function></para>
+          <para><function>Make Uppercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Rendi minuscolo</function></para>
+          <para><function>Make Lowercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Rimuovi righe duplicate</function></para>
+          <para><function>Remove Duplicate Lines</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Conta righe duplicate</function></para>
+          <para><function>Count Duplicate Lines</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Ordina le righe in ordine crescente</function></para>
+          <para><function>Sort Lines Ascending</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Ordina le righe discendente</function></para>
+          <para><function>Sort Lines Descending</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Inverti colonne</function></para>
+          <para><function>Reverse Columns</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Linee inverse</function></para>
+          <para><function>Reverse Lines</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Seleziona colonne...</function></para>
+          <para><function>Select Columns...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Seleziona righe...</function></para>
+          <para><function>Select Lines...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Sostituisci...</function></para>
+          <para><function>Replace...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Applica comando filtro...</function></para>
+          <para><function>Apply Filter Command...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Tokenizza...</function></para>
+          <para><function>Tokenize...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Taglia spazi</function></para>
+          <para><function>Trim Spaces</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Inserisci data</function></para>
+          <para><function>Insert Date</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Inserisci ora</function></para>
+          <para><function>Insert Time</function></para>
         </listitem>
       </itemizedlist>
 

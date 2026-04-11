@@ -18,14 +18,14 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-02-03 07:46+0000\n"
-"PO-Revision-Date: 2026-03-03 16:05-0500\n"
-"Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
+"PO-Revision-Date: 2026-04-09 20:34+0200\n"
+"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 
@@ -160,7 +160,9 @@ msgid "&Scripts"
 msgstr "Appli&quer un script"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:123 Merge.rc:338 Merge.rc:447 Merge.rc:654 Merge.rc:659 Merge.rc:865 Merge.rc:877 Merge.rc:884 Merge.rc:940 Merge.rc:1183 Merge.rc:5028
+#: Merge.rc:123 Merge.rc:338 Merge.rc:447 Merge.rc:654 Merge.rc:659
+#: Merge.rc:865 Merge.rc:877 Merge.rc:884 Merge.rc:940 Merge.rc:1183
+#: Merge.rc:5028
 msgid "< Empty >"
 msgstr "< Vide >"
 
@@ -240,19 +242,20 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "Détection d'ins&ertion/suppression"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:358 Merge.rc:507 Merge.rc:751
+#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:358 Merge.rc:507
+#: Merge.rc:751
 msgid "&None"
 msgstr "&Aucune"
 
 #. IDR_POPUP_IMGMERGEVIEW, ID_IMG_INSERTIONDELETIONDETECTION_VERTICAL
 #: Merge.rc:177
 msgid "&Vertical"
-msgstr ""
+msgstr "&Vertical"
 
 #. IDR_POPUP_IMGMERGEVIEW, ID_IMG_INSERTIONDELETIONDETECTION_HORIZONTAL
 #: Merge.rc:178
 msgid "&Horizontal"
-msgstr ""
+msgstr "&Horizontal"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_PREVPAGE
 #: Merge.rc:181 Merge.rc:189 Merge.rc:1230
@@ -292,7 +295,7 @@ msgstr "Retournement h&orizontal"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:193 Merge.rc:699
 msgid "&Zoom"
-msgstr ""
+msgstr "&Zoom"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_ZOOMIN
 #: Merge.rc:202 Merge.rc:701
@@ -402,7 +405,7 @@ msgstr "Captures d'écran en taille &réelle"
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_HTMLS
 #: Merge.rc:276 Merge.rc:1249
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTMLs"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_TEXTS
 #: Merge.rc:277 Merge.rc:1250
@@ -467,7 +470,7 @@ msgstr "Cache du &disque"
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_CLEAR_COOKIES
 #: Merge.rc:301
 msgid "&Cookies"
-msgstr ""
+msgstr "&Cookies"
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_CLEAR_BROWSING_HISTORY
 #: Merge.rc:302
@@ -490,27 +493,33 @@ msgid "&New"
 msgstr "&Nouveau"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TEXT
-#: Merge.rc:314 Merge.rc:322 Merge.rc:415 Merge.rc:423 Merge.rc:590 Merge.rc:598 Merge.rc:649 Merge.rc:935 Merge.rc:1159 Merge.rc:1171
+#: Merge.rc:314 Merge.rc:322 Merge.rc:415 Merge.rc:423 Merge.rc:590
+#: Merge.rc:598 Merge.rc:649 Merge.rc:935 Merge.rc:1159 Merge.rc:1171
 msgid "&Text"
 msgstr "&Texte"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:315 Merge.rc:323 Merge.rc:416 Merge.rc:424 Merge.rc:591 Merge.rc:599 Merge.rc:650 Merge.rc:936 Merge.rc:1160 Merge.rc:1172
+#: Merge.rc:315 Merge.rc:323 Merge.rc:416 Merge.rc:424 Merge.rc:591
+#: Merge.rc:599 Merge.rc:650 Merge.rc:936 Merge.rc:1160 Merge.rc:1172
 msgid "T&able"
 msgstr "T&ableau"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:316 Merge.rc:324 Merge.rc:417 Merge.rc:425 Merge.rc:592 Merge.rc:600 Merge.rc:651 Merge.rc:937 Merge.rc:1161 Merge.rc:1173
+#: Merge.rc:316 Merge.rc:324 Merge.rc:417 Merge.rc:425 Merge.rc:592
+#: Merge.rc:600 Merge.rc:651 Merge.rc:937 Merge.rc:1161 Merge.rc:1173
 msgid "&Binary"
 msgstr "&Binaire"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:317 Merge.rc:325 Merge.rc:418 Merge.rc:426 Merge.rc:593 Merge.rc:601 Merge.rc:652 Merge.rc:938 Merge.rc:1162 Merge.rc:1174 Merge.rc:5123
+#: Merge.rc:317 Merge.rc:325 Merge.rc:418 Merge.rc:426 Merge.rc:593
+#: Merge.rc:601 Merge.rc:652 Merge.rc:938 Merge.rc:1162 Merge.rc:1174
+#: Merge.rc:5123
 msgid "&Image"
-msgstr ""
+msgstr "&Image"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:318 Merge.rc:326 Merge.rc:419 Merge.rc:427 Merge.rc:594 Merge.rc:602 Merge.rc:653 Merge.rc:939 Merge.rc:1163 Merge.rc:1175
+#: Merge.rc:318 Merge.rc:326 Merge.rc:419 Merge.rc:427 Merge.rc:594
+#: Merge.rc:602 Merge.rc:653 Merge.rc:939 Merge.rc:1163 Merge.rc:1175
 msgid "&Webpage"
 msgstr "Page &Web"
 
@@ -742,7 +751,7 @@ msgstr "&Traductions"
 #. IDR_MERGEDOCTYPE, ID_HELP_GETCONFIG
 #: Merge.rc:402 Merge.rc:577 Merge.rc:910
 msgid "C&onfiguration"
-msgstr ""
+msgstr "C&onfiguration"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_GNULICENSE
 #: Merge.rc:404 Merge.rc:579 Merge.rc:912
@@ -892,7 +901,7 @@ msgstr "Réduire l'arbores&cense"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:488
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "Afficher les dossiers &vides"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:490 Merge.rc:697
@@ -1355,12 +1364,14 @@ msgid "Copy from &Left to"
 msgstr "Copier de la &Gauche vers le(la)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:799 Merge.rc:810 Merge.rc:815 Merge.rc:826 Merge.rc:970 Merge.rc:2545 Merge.rc:2817
+#: Merge.rc:799 Merge.rc:810 Merge.rc:815 Merge.rc:826 Merge.rc:970
+#: Merge.rc:2545 Merge.rc:2817
 msgid "&Middle"
 msgstr "&Milieu"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:800 Merge.rc:805 Merge.rc:816 Merge.rc:821 Merge.rc:971 Merge.rc:2546 Merge.rc:2819
+#: Merge.rc:800 Merge.rc:805 Merge.rc:816 Merge.rc:821 Merge.rc:971
+#: Merge.rc:2546 Merge.rc:2819
 msgid "&Right"
 msgstr "D&roite"
 
@@ -1370,7 +1381,8 @@ msgid "Copy from &Middle to"
 msgstr "Copier du &Milieu vers la"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:804 Merge.rc:809 Merge.rc:820 Merge.rc:825 Merge.rc:969 Merge.rc:2544 Merge.rc:2815
+#: Merge.rc:804 Merge.rc:809 Merge.rc:820 Merge.rc:825 Merge.rc:969
+#: Merge.rc:2544 Merge.rc:2815
 msgid "&Left"
 msgstr "&Gauche"
 
@@ -1899,7 +1911,7 @@ msgstr "Taille"
 #. IDS_COMPMETHOD_EXISTENCE
 #: Merge.rc:1118 Merge.rc:1150 Merge.rc:1334 Merge.rc:4288
 msgid "Existence"
-msgstr ""
+msgstr "Existence"
 
 #. IDR_POPUP_PROJECT, ID_LOAD_PROJECT
 #: Merge.rc:1192
@@ -2099,7 +2111,7 @@ msgstr "&Créer des artefacts"
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_IDE
 #: Merge.rc:1367
 msgid "&IDE"
-msgstr ""
+msgstr "&IDE"
 
 #. IDR_POPUP_FILTERMENU
 #: Merge.rc:1370
@@ -2182,7 +2194,8 @@ msgid "1GB or more"
 msgstr "1 Go ou plus"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_RANGE
-#: Merge.rc:1388 Merge.rc:1465 Merge.rc:1517 Merge.rc:1523 Merge.rc:1540 Merge.rc:1566 Merge.rc:1587 Merge.rc:1643 Merge.rc:1709 Merge.rc:1734
+#: Merge.rc:1388 Merge.rc:1465 Merge.rc:1517 Merge.rc:1523 Merge.rc:1540
+#: Merge.rc:1566 Merge.rc:1587 Merge.rc:1643 Merge.rc:1709 Merge.rc:1734
 msgid "Custom Range..."
 msgstr "Plage personnalisée..."
 
@@ -2552,12 +2565,14 @@ msgid "Add &Difference Condition"
 msgstr "Ajouter une condition de &différence"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_EQUAL
-#: Merge.rc:1553 Merge.rc:1570 Merge.rc:1591 Merge.rc:1696 Merge.rc:1717 Merge.rc:1742
+#: Merge.rc:1553 Merge.rc:1570 Merge.rc:1591 Merge.rc:1696 Merge.rc:1717
+#: Merge.rc:1742
 msgid "Equal"
 msgstr "Égal"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
-#: Merge.rc:1554 Merge.rc:1571 Merge.rc:1592 Merge.rc:1697 Merge.rc:1718 Merge.rc:1743
+#: Merge.rc:1554 Merge.rc:1571 Merge.rc:1592 Merge.rc:1697 Merge.rc:1718
+#: Merge.rc:1743
 msgid "Not Equal"
 msgstr "Différent"
 
@@ -2674,12 +2689,12 @@ msgstr "Cible : &Tous"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1620
 msgid "Binary files only"
-msgstr ""
+msgstr "Fichiers binaires uniquement"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1621
 msgid "Text files only"
-msgstr ""
+msgstr "Fichiers texte uniquement"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CLEAR
 #: Merge.rc:1755
@@ -2734,7 +2749,7 @@ msgstr "Chemin &relatif"
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_DATE
 #: Merge.rc:1776
 msgid "&Date"
-msgstr ""
+msgstr "&Date"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_HASH_MD5
 #: Merge.rc:1777
@@ -2839,12 +2854,12 @@ msgstr "Conversion &japonaise"
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOHIRAGANA
 #: Merge.rc:1814
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOKATAKANA
 #: Merge.rc:1815
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_NORMALIZEUNICODE
 #: Merge.rc:1817
@@ -2862,9 +2877,12 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "Visiter la page d'accueil de WinMerge !"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:1938 Merge.rc:2080 Merge.rc:2431 Merge.rc:2455 Merge.rc:2469 Merge.rc:2497 Merge.rc:2588 Merge.rc:2613 Merge.rc:2674 Merge.rc:2691 Merge.rc:2703 Merge.rc:2867 Merge.rc:2927 Merge.rc:3062 Merge.rc:3104 Merge.rc:3147 Merge.rc:3197
+#: Merge.rc:1938 Merge.rc:2080 Merge.rc:2431 Merge.rc:2455 Merge.rc:2469
+#: Merge.rc:2497 Merge.rc:2588 Merge.rc:2613 Merge.rc:2674 Merge.rc:2691
+#: Merge.rc:2703 Merge.rc:2867 Merge.rc:2927 Merge.rc:3062 Merge.rc:3104
+#: Merge.rc:3147 Merge.rc:3197
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. IDD_ABOUTBOX, IDC_OPEN_CONTRIBUTORS
 #: Merge.rc:1939
@@ -2962,7 +2980,11 @@ msgid "Se&lect..."
 msgstr "Sé&lectionner..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:1981 Merge.rc:2001 Merge.rc:2025 Merge.rc:2046 Merge.rc:2081 Merge.rc:2432 Merge.rc:2456 Merge.rc:2470 Merge.rc:2498 Merge.rc:2551 Merge.rc:2589 Merge.rc:2614 Merge.rc:2675 Merge.rc:2692 Merge.rc:2704 Merge.rc:2868 Merge.rc:2928 Merge.rc:3087 Merge.rc:3105 Merge.rc:3148 Merge.rc:3198
+#: Merge.rc:1981 Merge.rc:2001 Merge.rc:2025 Merge.rc:2046 Merge.rc:2081
+#: Merge.rc:2432 Merge.rc:2456 Merge.rc:2470 Merge.rc:2498 Merge.rc:2551
+#: Merge.rc:2589 Merge.rc:2614 Merge.rc:2675 Merge.rc:2692 Merge.rc:2704
+#: Merge.rc:2868 Merge.rc:2928 Merge.rc:3087 Merge.rc:3105 Merge.rc:3148
+#: Merge.rc:3198
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -2979,7 +3001,7 @@ msgstr "Aide"
 #. IDD_OPEN, IDC_OPTIONS
 #: Merge.rc:1984
 msgid "&Options..."
-msgstr ""
+msgstr "&Options..."
 
 #. IDD_EDIT_FIND
 #: Merge.rc:1989
@@ -3084,7 +3106,7 @@ msgstr "&Couleur du fond :"
 #. IDS_MESSAGEBOX_OK
 #: Merge.rc:2044 Merge.rc:2829 Merge.rc:3086 Merge.rc:4171
 msgid "&Ok"
-msgstr ""
+msgstr "&OK"
 
 #. IDD_PLUGINS_EDITPLUGIN
 #: Merge.rc:2045 Merge.rc:2525 Merge.rc:3199
@@ -3222,7 +3244,10 @@ msgid "Language:"
 msgstr "Langue :"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2119 Merge.rc:2299 Merge.rc:2321 Merge.rc:2352 Merge.rc:2369 Merge.rc:2386 Merge.rc:2394 Merge.rc:2430 Merge.rc:2454 Merge.rc:2633 Merge.rc:2644 Merge.rc:2653 Merge.rc:2887 Merge.rc:2922 Merge.rc:2985 Merge.rc:3010 Merge.rc:3024 Merge.rc:3038 Merge.rc:3054
+#: Merge.rc:2119 Merge.rc:2299 Merge.rc:2321 Merge.rc:2352 Merge.rc:2369
+#: Merge.rc:2386 Merge.rc:2394 Merge.rc:2430 Merge.rc:2454 Merge.rc:2633
+#: Merge.rc:2644 Merge.rc:2653 Merge.rc:2887 Merge.rc:2922 Merge.rc:2985
+#: Merge.rc:3010 Merge.rc:3024 Merge.rc:3038 Merge.rc:3054
 msgid "Defaults"
 msgstr "Par défaut"
 
@@ -3374,7 +3399,8 @@ msgid "User 2:"
 msgstr "Utilisateur 2 :"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2209 Merge.rc:2211 Merge.rc:2213 Merge.rc:2215 Merge.rc:2217 Merge.rc:2219 Merge.rc:2221 Merge.rc:2223 Merge.rc:2225
+#: Merge.rc:2209 Merge.rc:2211 Merge.rc:2213 Merge.rc:2215 Merge.rc:2217
+#: Merge.rc:2219 Merge.rc:2221 Merge.rc:2223 Merge.rc:2225
 msgid "Bold"
 msgstr "Gras"
 
@@ -3716,7 +3742,7 @@ msgstr "&Parcourir..."
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2423
 msgid "&Format"
-msgstr ""
+msgstr "&Format"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2424
@@ -3811,7 +3837,7 @@ msgstr "&Pipeline du plug-in :"
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALIAS
 #: Merge.rc:2495
 msgid "&Alias..."
-msgstr ""
+msgstr "&Alias..."
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_STOP
 #: Merge.rc:2505
@@ -3946,27 +3972,27 @@ msgstr "Côté &droit :"
 #. IDD_FILTERS_CONDITION, IDC_STATIC
 #: Merge.rc:2586
 msgid "Expression:"
-msgstr ""
+msgstr "Expression :"
 
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2595
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Filtrer par résultat de comparaison"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2598
 msgid "&Include"
-msgstr ""
+msgstr "&Inclure"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2599
 msgid "&Exclude"
-msgstr ""
+msgstr "&Exclure"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2600
 msgid "Comparison Results"
-msgstr ""
+msgstr "Résultats de la comparaison"
 
 #. IDS_IDENTICAL
 #: Merge.rc:2601 Merge.rc:2733 Merge.rc:2794 Merge.rc:4698
@@ -3981,52 +4007,52 @@ msgstr "Différent"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2603
 msgid "Left only"
-msgstr ""
+msgstr "Gauche seulement"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2604
 msgid "Right only"
-msgstr ""
+msgstr "Droite seulement"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2605
 msgid "Skipped"
-msgstr ""
+msgstr "Ignoré"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2606
 msgid "Middle only"
-msgstr ""
+msgstr "Milieu seulement"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2607
 msgid "Left only (different)"
-msgstr ""
+msgstr "Gauche seulement (différent)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2608
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Milieu seulement (différent)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2609
 msgid "Right only (different)"
-msgstr ""
+msgstr "Droite seulement (différent)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2610
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Gauche seulement (manquant)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2611
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Milieu seulement (manquant)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2612
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Droite seulement (manquant)"
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2619 Merge.rc:2811 Merge.rc:4213
@@ -4214,7 +4240,7 @@ msgstr "Binaire :"
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
 #: Merge.rc:2722 Merge.rc:2763
 msgid "Unique"
-msgstr ""
+msgstr "Unique"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
 #: Merge.rc:2723 Merge.rc:2764
@@ -4334,12 +4360,12 @@ msgstr "Type de fichier"
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_CSV
 #: Merge.rc:2855
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_TSV
 #: Merge.rc:2856
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_DSV
 #: Merge.rc:2857
@@ -4651,7 +4677,7 @@ msgstr "En&codage..."
 #. IDS_PRPCAT_IMAGE
 #: Merge.rc:3029 Merge.rc:4226 Merge.rc:4665
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3032
@@ -4796,7 +4822,7 @@ msgstr "Exemple"
 #. IDD_PLUGINS_EDITPLUGIN
 #: Merge.rc:3185
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 #. IDD_PLUGINS_EDITPLUGIN
 #: Merge.rc:3189
@@ -4811,7 +4837,7 @@ msgstr "<A>Afficher plus de polices</A>"
 #. ID_INDICATOR_EXT
 #: Merge.rc:4118
 msgid "EXT"
-msgstr ""
+msgstr "EXT"
 
 #. ID_INDICATOR_CAPS
 #: Merge.rc:4119
@@ -4821,22 +4847,22 @@ msgstr "MAJ"
 #. ID_INDICATOR_NUM
 #: Merge.rc:4120
 msgid "NUM"
-msgstr ""
+msgstr "NUM"
 
 #. ID_INDICATOR_SCRL
 #: Merge.rc:4121
 msgid "SCRL"
-msgstr ""
+msgstr "SCRL"
 
 #. ID_INDICATOR_OVR
 #: Merge.rc:4122
 msgid "OVR"
-msgstr ""
+msgstr "OVR"
 
 #. ID_INDICATOR_REC
 #: Merge.rc:4123
 msgid "REC"
-msgstr ""
+msgstr "REC"
 
 #. ID_FILE_NEW
 #: Merge.rc:4129
@@ -5084,7 +5110,7 @@ msgstr "Vers Milieu :"
 #: Merge.rc:4247
 #, c-format
 msgid "Version %1"
-msgstr ""
+msgstr "Version %1"
 
 #. IDS_OPTIONS_TITLE
 #: Merge.rc:4253
@@ -5175,12 +5201,12 @@ msgstr "Type de fichier"
 #. IDS_COLHDR_EXTENSION
 #: Merge.rc:4304 Merge.rc:4597
 msgid "Extension"
-msgstr ""
+msgstr "Extension"
 
 #. IDS_PRPCAT_MESSAGE
 #: Merge.rc:4310 Merge.rc:4669
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #. IDS_MESSAGEBOX_ANSWER
 #: Merge.rc:4311
@@ -5235,12 +5261,12 @@ msgstr "Filtres"
 #. IDS_FILTER_PREFIX
 #: Merge.rc:4334
 msgid "[F] "
-msgstr ""
+msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
 #: Merge.rc:4335 Merge.rc:4958
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #. IDS_FILEFILTER_SAVENEW
 #: Merge.rc:4336
@@ -5386,7 +5412,7 @@ msgstr "Fichier original"
 #: Merge.rc:4381
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 
 #. IDS_EMPTY_LINE_STATUS_INFO
 #: Merge.rc:4382
@@ -5398,7 +5424,7 @@ msgstr "Ligne: %s"
 #: Merge.rc:4383
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
 
 #. IDS_LINE_STATUS_INFO_SEL
 #: Merge.rc:4384
@@ -6235,7 +6261,7 @@ msgstr "Déplacer"
 #. IDS_PRPCAT_AUDIO
 #: Merge.rc:4658
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #. IDS_PRPCAT_CALENDAR
 #: Merge.rc:4659
@@ -6245,12 +6271,12 @@ msgstr "Calendrier"
 #. IDS_PRPCAT_COMMUNICATION
 #: Merge.rc:4660
 msgid "Communication"
-msgstr ""
+msgstr "Communication"
 
 #. IDS_PRPCAT_CONTACT
 #: Merge.rc:4661
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. IDS_PRPCAT_DEVICES
 #: Merge.rc:4662
@@ -6260,7 +6286,7 @@ msgstr "Appareils"
 #. IDS_PRPCAT_DOCUMENT
 #: Merge.rc:4663
 msgid "Document"
-msgstr ""
+msgstr "Document"
 
 #. IDS_PRPCAT_HOME
 #: Merge.rc:4664
@@ -6270,7 +6296,7 @@ msgstr "Accueil"
 #. IDS_PRPCAT_JOURNAL
 #: Merge.rc:4666
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. IDS_PRPCAT_LINK
 #: Merge.rc:4667
@@ -6290,12 +6316,12 @@ msgstr "Musique"
 #. IDS_PRPCAT_NOTE
 #: Merge.rc:4671
 msgid "Note"
-msgstr ""
+msgstr "Note"
 
 #. IDS_PRPCAT_PHOTO
 #: Merge.rc:4672
 msgid "Photo"
-msgstr ""
+msgstr "Photo"
 
 #. IDS_PRPCAT_RECORDEDTV
 #: Merge.rc:4673
@@ -7042,7 +7068,7 @@ msgstr "[%1 fichiers sélectionnés]"
 #. IDS_DIFF_NORMAL
 #: Merge.rc:4913
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. IDS_DIFF_CONTEXT
 #: Merge.rc:4914
@@ -7170,7 +7196,7 @@ msgstr "Nouveau modèle"
 #. IDS_PLUGINSLIST_TYPE
 #: Merge.rc:4957
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. IDS_PLUGINS_TYPE_EDITSCRIPT
 #: Merge.rc:4961
@@ -7476,7 +7502,7 @@ msgstr "Ressources"
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5098
 msgid "Shell"
-msgstr ""
+msgstr "Shell"
 
 #. IDS_CLOSE_LEFT_TABS
 #: Merge.rc:5115
@@ -7544,12 +7570,12 @@ msgstr "par défaut"
 #. IDS_DIFF_ALGORITHM_MINIMAL
 #: Merge.rc:5155
 msgid "minimal"
-msgstr ""
+msgstr "minimal"
 
 #. IDS_DIFF_ALGORITHM_PATIENCE
 #: Merge.rc:5156
 msgid "patience"
-msgstr ""
+msgstr "patience"
 
 #. IDS_DIFF_ALGORITHM_HISTOGRAM
 #: Merge.rc:5157
@@ -7564,7 +7590,7 @@ msgstr "aucun"
 #. IDS_RENDERING_MODE_GDI
 #: Merge.rc:5163
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_DEFAULT
 #: Merge.rc:5164
@@ -7669,13 +7695,13 @@ msgstr "Aucun"
 #: Merge.rc:5190
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_HORIZONTAL
 #: Merge.rc:5191
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 #. IDS_OVERLAY_GROUP
 #: Merge.rc:5192
@@ -7687,13 +7713,13 @@ msgstr "Recouvrir"
 #: Merge.rc:5193
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 #. IDS_OVERLAY_MODE_XOR
 #: Merge.rc:5195
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 #. IDS_OVERLAY_MODE_ALPHA
 #: Merge.rc:5196
@@ -7711,7 +7737,7 @@ msgstr "Animation alpha"
 #: Merge.rc:5198
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #. IDS_PAGE
 #: Merge.rc:5199
@@ -8002,12 +8028,12 @@ msgstr "Comparer %1"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:5290
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "&Filtrer par cette colonne"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
 #: Merge.rc:5291
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "&Filtrer par cette colonne..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
 #: Merge.rc:5296
@@ -8350,7 +8376,7 @@ msgstr "Nom de propriété invalide"
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
 #: Merge.rc:5393
 msgid "Invalid directive"
-msgstr ""
+msgstr "Directive invalide"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5398
@@ -8415,22 +8441,22 @@ msgstr "Ne contient pas (regex)"
 #. IDS_FILTER_OP_LIKE
 #: Merge.rc:5410
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Correspond (caractère générique)"
 
 #. IDS_FILTER_OP_NOT_LIKE
 #: Merge.rc:5411
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Ne correspond pas (caractère générique)"
 
 #. IDS_FILTER_OP_MATCHES
 #: Merge.rc:5412
 msgid "Match (regex)"
-msgstr ""
+msgstr "Correspond (regex)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
 #: Merge.rc:5413
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Ne correspond pas (regex)"
 
 #. IDS_COLORMODE_LIGHT
 #: Merge.rc:5418
@@ -8514,7 +8540,7 @@ msgstr "Requête de données"
 #. IDS_PLUGIN_PROCESS_TYPE6
 #: Strings.rc:48
 msgid "Validation"
-msgstr ""
+msgstr "Validation"
 
 #. IDS_PLUGIN_PROCESS_TYPE7
 #: Strings.rc:53
@@ -8744,7 +8770,7 @@ msgstr "Annuler l'échappement des fichiers de propriétés Java"
 #. IDS_PLUGIN_MENU_CAPTION43
 #: Strings.rc:106
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Décompiler Java (CFR)"
 
 #. IDS_PLUGIN_DESCRIPTION1
 #: Strings.rc:111
@@ -9112,8 +9138,14 @@ msgstr "Annuler l'échappement et afficher les fichiers de propriétés Java éc
 
 #. IDS_PLUGIN_DESCRIPTION58
 #: Strings.rc:204
-msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgid ""
+"Java decompiler (CFR).\r\n"
+"Decompiles .class files into readable Java source code.\r\n"
+"Arguments: CFR command line options."
 msgstr ""
+"Décompilateur Java (CFR).\r\n"
+"Décompile les fichiers .class en code source Java lisible.\r\n"
+"Arguments : options de ligne de commande CFR."
 
 #: Strings.rc:210
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"

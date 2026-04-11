@@ -290,7 +290,23 @@ function CreateMasterPotFile(sPotPath, oStrings) {
     }
     if (bInsertLineNumbers) {
       var aReferences = oString.References.split("\t");
-      oPotFile.Write("#: " + aReferences.join(" ") + "\n");
+      var sCurrentLine = "";
+      var nMaxLineLength = 78;
+
+      for (var i = 0; i < aReferences.length; i++) {
+        var sRef = aReferences[i];
+        if (sCurrentLine === "") {
+          sCurrentLine = "#: " + sRef;
+        } else if ((sCurrentLine + " " + sRef).length <= nMaxLineLength) {
+          sCurrentLine += " " + sRef;
+        } else {
+          oPotFile.Write(sCurrentLine + "\n");
+          sCurrentLine = "#: " + sRef;
+        }
+      }
+      if (sCurrentLine !== "") {
+        oPotFile.Write(sCurrentLine + "\n");
+      }
     }
     if (oString.Id.indexOf("%") >= 0) { //If c-format...
       oPotFile.Write("#, c-format\n");

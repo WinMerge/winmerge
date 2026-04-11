@@ -690,6 +690,30 @@
               </listitem>
             </varlistentry>
 
+            <varlistentry>
+              <term><varname>Codepage</varname></term>
+              <listitem>
+                <para>
+                  Returns the file's codepage (character encoding) as an integer value.
+                  This attribute supports side-specific prefixes (e.g., <literal>LeftCodepage</literal>, <literal>RightCodepage</literal>).
+                  Example: <literal>Codepage = 65001</literal> to show UTF-8 files,
+                  or <literal>allof(Codepage = 65001)</literal> to show files that are UTF-8 on all sides.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>HasBOM</varname></term>
+              <listitem>
+                <para>
+                  Returns <literal>true</literal> if the file has a Byte Order Mark (BOM), <literal>false</literal> otherwise.
+                  This attribute supports side-specific prefixes (e.g., <literal>LeftHasBOM</literal>, <literal>RightHasBOM</literal>).
+                  Example: <literal>HasBOM</literal> to show files with BOM,
+                  or <literal>not HasBOM</literal> to show files without BOM.
+                </para>
+              </listitem>
+            </varlistentry>
+
           </variablelist>
         </section>
 

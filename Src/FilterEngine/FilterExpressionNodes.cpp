@@ -911,6 +911,13 @@ static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITE
 	return ucr::toUTF8(di.diffFileInfo[index].encoding.GetName());
 }
 
+static auto HasBOMField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return di.diffFileInfo[index].encoding.m_bom;
+}
+
 static auto BinaryField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
 	if (!di.diffcode.exists(index))
@@ -1064,6 +1071,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = CodepageField;
 	else if (strcmp(p, "encoding") == 0)
 		functmp = EncodingField;
+	else if (strcmp(p, "hasbom") == 0)
+		functmp = HasBOMField;
 	else if (strcmp(p, "diffcode") == 0)
 	{
 		functmp = DiffCodeField;

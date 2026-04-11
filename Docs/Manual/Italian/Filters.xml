@@ -408,7 +408,7 @@ restituisce "documento".</para></listitem>
             </varlistentry>
             <varlistentry>
               <term><varname>Extension</varname></term>
-              <listitem><para>Estensione del file</para></listitem>
+              <listitem><para>Estensione file</para></listitem>
             </varlistentry>
             <varlistentry>
               <term><varname>IsFolder</varname></term>
@@ -586,24 +586,25 @@ Valore della proprietà del file sul lato sinistro.Esempio:
         <section>
           <title>Display Filters Only Attributes</title>
           <para>
-The following attributes are designed for use in <emphasis
-role="bold">Display filters only</emphasis> (specified via
-<guilabel>e:</guilabel>, <guilabel>e!:</guilabel>, <guilabel>fe:</guilabel>,
-<guilabel>fe!:</guilabel>, <guilabel>de:</guilabel>, or
-<guilabel>de!:</guilabel> prefixes in the Filter field).  They should not be
-used in file filter (<filename>.flt</filename>) include/exclude rules, as
-they require the comparison to be completed first and may lead to unexpected
-behavior.</para>
+I seguenti attributi sono progettati per essere usati solo nei filtri
+<emphasis role="bold">Display fileters only</emphasis> (specificati tramite
+i prefissi <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>,
+<guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>,
+<guilabel>de:</guilabel> o <guilabel>de!:</guilabel> in il campo
+Filtro). Non devono essere usati nelle regole di inclusione/esclusione del
+filtro file (<nomefile>.flt</nomefile>), poiché richiedono che il confronto
+venga prima completato e potrebbero causare comportamenti imprevisti.</para>
 
           <variablelist>
             <varlistentry>
               <term><varname>Identical</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison result indicates the items
-are identical, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Identical</literal> to show only identical files.</para>
+Restituisce <literal>true</literal> se il risultato del confronto indica che
+gli elementi sono identici, <literal>false</literal> se non sono
+identici. Questo è un attributo globale (non supporta prefissi specifici del
+lato).  Esempio: <literal>Identical</literal> visualizzare solo file
+identici.</para>
               </listitem>
             </varlistentry>
 
@@ -611,10 +612,11 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Different</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison result indicates the items
-are different, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Different</literal> to show only different files.</para>
+Restituisce <literal>true</literal> se il risultato del confronto indica che
+gli elementi sono diversi, <literal>false</literal>se non sono
+diversi. Questo è un attributo globale (non supporta prefissi specifici del
+lato). Esempio: <literal>Different</literal> per visualizzare solo file
+diversi.</para>
               </listitem>
             </varlistentry>
 
@@ -622,10 +624,11 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Skipped</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison was skipped due to an
-error or filter rule, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Skipped</literal> to show only skipped items.</para>
+Restituisce <literal>true</literal> se il confronto è stato saltato a causa
+di un errore o di una regola di filtro, <literal>false</literal> se non è
+stato saltato. Questo è un attributo globale (non supporta prefissi
+specifici del lato).  Esempio: <literal>Skipped</literal> per visualizzare
+solo gli elementi saltati.</para>
               </listitem>
             </varlistentry>
 
@@ -633,12 +636,12 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Binary</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the file is detected as binary,
-<literal>false</literal> if it's text, or <literal>undefined</literal> if
-the file doesn't exist.  This attribute supports side-specific prefixes
-(e.g., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).
-Example: <literal>allof(Binary)</literal> to show files that are binary on
-all sides.</para>
+Restituisce <literal>true</literal> se il file viene rilevato come binario,
+<literal>false</literal> se è testo o <literal>unfine</literal> se il file
+non esiste. Questo attributo supporta prefissi specifici del lato (ad
+esempio, <literal>LeftBinary</literal>,
+<literal>RightBinary</literal>). Esempio: <literal>allof(Binary)</literal>
+per visualizzare i file binari su tutti i lati.</para>
               </listitem>
             </varlistentry>
 
@@ -646,12 +649,13 @@ all sides.</para>
               <term><varname>DifferentLeftMiddle</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the left and middle files are different
-in a 3-way comparison, <literal>false</literal> otherwise.  Returns
-<literal>undefined</literal> in 2-way comparisons.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> to find
-files where only left differs from middle.</para>
+Restituisce <literal>true</literal> se in un confronto a 3 vie i file di
+sinistra e centrale sono diversi, <literal>false</literal> se non sono
+diversi. Nei confronti a due vie restituisce
+<literal>undefined</literal>. Questo è un attributo globale (non supporta
+prefissi specifici del lato). Esempio: <literal>DifferentLeftMiddle e non
+DifferentMiddleRight</literal> per trovare file in cui solo la sinistra
+differisce da quello al centro.</para>
               </listitem>
             </varlistentry>
 
@@ -659,12 +663,13 @@ files where only left differs from middle.</para>
               <term><varname>DifferentMiddleRight</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the middle and right files are different
-in a 3-way comparison, <literal>false</literal> otherwise.  Returns
-<literal>undefined</literal> in 2-way comparisons.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>DifferentMiddleRight</literal> to show files where middle and right
-differ.</para>
+Restituisce <literal>true</literal> se in un confronto a 3 vie i file
+centrale e destro sono diversi, <literal>false</literal> o se non sono
+diversi. Nei confronti a due vie restituisce
+<literal>undefined</literal>. Questo è un attributo globale (non supporta
+prefissi specifici del lato). Esempio:
+<literal>DifferentMiddleRight</literal> per visualizzare i file in cui
+iquello centrale e quello a destra sono diversi.</para>
               </listitem>
             </varlistentry>
 
@@ -672,12 +677,13 @@ differ.</para>
               <term><varname>DifferentLeftRight</varname></term>
               <listitem>
                 <para>
-In 3-way comparisons, returns <literal>true</literal> if the left and right
-files are different, <literal>false</literal> otherwise.  In 2-way
-comparisons, returns <literal>true</literal> if both files exist and are
-different.  This is a global attribute (does not support side-specific
-prefixes).  Example: <literal>DifferentLeftRight</literal> to show files
-where left and right differ.</para>
+Nei confronti a 3 vie restituisce <literal>true</literal> se i file sinistro
+e destro sono diversi, <literal>false</literal> se non sono diversi. Nei
+confronti a due vie restituisce <literal>true</literal> se entrambi i file
+esistono e sono diversi. Questo è un attributo globale (non supporta
+prefissi specifici del lato).  Esempio:
+<literal>DifferentLeftRight</literal> per visualizzare i file in cui la
+sinistra e la destra differiscono.</para>
               </listitem>
             </varlistentry>
 
@@ -685,12 +691,12 @@ where left and right differ.</para>
               <term><varname>Differences</varname></term>
               <listitem>
                 <para>
-Returns the number of text differences in the file comparison.  This
-attribute is only meaningful for text files that have been compared.  This
-is a global attribute (does not support side-specific prefixes).  Example:
-<literal>Differences &gt; 0</literal> to show files with differences, or
-<literal>Differences &gt; 10</literal> to show files with more than 10
-differences.</para>
+Restituisce il numero di differenze di testo nel confronto dei file. Questo
+attributo è significativo solo per i file di testo che sono stati
+confrontati. Questo è un attributo globale (non supporta prefissi specifici
+del lato). Esempio: <literal>Differences > 0</literal> per visualizzare file
+con differenze, o <literal>Differences > 10</literal> per visualizzare file
+con più di 10 differenze.</para>
               </listitem>
             </varlistentry>
 
@@ -698,13 +704,14 @@ differences.</para>
               <term><varname>IgnoredDiffs</varname></term>
               <listitem>
                 <para>
-Returns the number of ignored differences in the file comparison
-(differences filtered by line filters or whitespace settings).  This
-attribute is only meaningful for text files that have been compared.  This
-is a global attribute (does not support side-specific prefixes).  Example:
-<literal>IgnoredDiffs &gt; 0</literal> to show files with ignored
-differences, or <literal>Differences = 0 and IgnoredDiffs &gt; 0</literal>
-to show files that are identical except for ignored differences.</para>
+Restituisce il numero di differenze ignorate nel confronto dei file
+(differenze filtrate dai filtri di linea o dalle impostazioni degli spazi
+bianchi). Questo attributo è significativo solo per i file di testo che sono
+stati confrontati. Questo è un attributo globale (non supporta prefissi
+specifici del lato). Esempio: <literal>IgnoredDiffs > 0</literal> per
+visualizzare file con differenze ignorate, o <literal>Differences = 0 e
+IgnoredDiffs > 0</literal> per visualizzare file identici tranne che per le
+differenze ignorate.</para>
               </listitem>
             </varlistentry>
 
@@ -712,12 +719,13 @@ to show files that are identical except for ignored differences.</para>
               <term><varname>Unpacker</varname></term>
               <listitem>
                 <para>
-Returns the name of the unpacker plugin used for the file comparison, or an
-empty string if no unpacker was used.  This is a global attribute (does not
-support side-specific prefixes).  Example: <literal>Unpacker =
-"CompareMSExcelFiles"</literal> to show files compared using the Excel
-unpacker, or <literal>Unpacker != ""</literal> to show all files where an
-unpacker was used.</para>
+Restituisce il nome del plugin di decompressione usato per il confronto dei
+file o una stringa vuota se non è stato usato alcun programma di
+decompressione. Questo è un attributo globale (non supporta prefissi
+specifici del lato). Esempio: <literal>Unpacker =
+"CompareMSExcelFiles"</literal> per visualizzare i file confrontati usando
+il decompressore di Excel o <literal>Unpacker != ""</literal> per
+visualizzare tutti i file in cui è stato usato un decompressore.</para>
               </listitem>
             </varlistentry>
 
@@ -725,12 +733,37 @@ unpacker was used.</para>
               <term><varname>Prediffer</varname></term>
               <listitem>
                 <para>
-Returns the name of the prediffer plugin used for the file comparison, or an
-empty string if no prediffer was used.  This is a global attribute (does not
-support side-specific prefixes).  Example: <literal>Prediffer =
-"IgnoreColumns"</literal> to show files compared using the IgnoreColumns
-prediffer, or <literal>Prediffer != ""</literal> to show all files where a
-prediffer was used.</para>
+Restituisce il nome del plugin prediffer usato per il confronto dei file o
+una stringa vuota se non è stato utilizzato alcun prediffer. Questo è un
+attributo globale (non supporta prefissi specifici del lato). Esempio:
+<literal>Prediffer = "IgnoreColumns"</literal> per visualizzare i file
+confrontati usando il prediffer IgnoreColumns, o <literal>Prediffer !=
+""</literal> per visualizzare tutti i file in cui è stato usato prediffer.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Codepage</varname></term>
+              <listitem>
+                <para>
+Returns the file's codepage (character encoding) as an integer value.  This
+attribute supports side-specific prefixes (e.g.,
+<literal>LeftCodepage</literal>, <literal>RightCodepage</literal>).
+Example: <literal>Codepage = 65001</literal> to show UTF-8 files, or
+<literal>allof(Codepage = 65001)</literal> to show files that are UTF-8 on
+all sides.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>HasBOM</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the file has a Byte Order Mark (BOM),
+<literal>false</literal> otherwise.  This attribute supports side-specific
+prefixes (e.g., <literal>LeftHasBOM</literal>,
+<literal>RightHasBOM</literal>).  Example: <literal>HasBOM</literal> to show
+files with BOM, or <literal>not HasBOM</literal> to show files without BOM.</para>
               </listitem>
             </varlistentry>
 
@@ -899,15 +932,15 @@ esista alcuna corrispondenza.</para>
 
         <variablelist>
           <varlistentry>
-            <term><function>lineCount</function>(<replaceable>content</replaceable>)</term>
+            <term><function>lineCount<function>(<replaceable>contenuto</replaceable>)</term>
             <listitem><para>Restituisce il numero di righe nel contenuto del file o nell'array del
 contenuto del file come <literal>Intero</literal>.Se
 <replaceable>content</replaceable> è un array, il risultato è un array di
 numeri interi.Esempio: <literal>lineCount(Content)</literal></para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>sublines</function>(<replaceable>content</replaceable>,
-<replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+            <term><function>sublines</function>(<replaceable>contenuto</replaceable>,
+<replaceable>inizio</replaceable>, <replaceable>conteggio</replaceable>)</term>
             <listitem>
               <para>
 Estrae il numero specificato di righe a partire dall'indice di riga
@@ -918,21 +951,21 @@ stringhe.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>strlen</function>(<replaceable>source</replaceable>)</term>
+            <term><function>strlen</function>(<replaceable>fonte</replaceable>)</term>
             <listitem><para>Restituisce la lunghezza della stringa come <literal>Intero</literal>.Se
 <replaceable>source</replaceable> è un array di stringhe, il risultato è un
 array di numeri interi.Esempio: <literal>strlen(Nome)</literal></para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>substr</function>(<replaceable>source</replaceable>,
-<replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+            <term><function>substr</function>(<replaceable>sorgente</replaceable>,
+<replaceable>inizio</replaceable>, <replaceable>conteggio</replaceable>)</term>
             <listitem><para>Restituisce un intervallo specifico di testo dalla <emphasis>stringa o
 dall'array di stringhe</emphasis> come <literal>Stringa</literal>.Se
 <replaceable>source</replaceable> è un array di stringhe, il risultato è un
 array di stringhe.Esempio: <literal>substr(Nome, 0, 3)</literal></para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>replace</function>(str, from, to)</term>
+            <term><function>replace</function> (da, a, in)</term>
             <listitem>
               <para>
 Sostituisce tutte le occorrenze della stringa
@@ -943,7 +976,7 @@ stringhe a cui sono applicate le sostituzioni.Esempio:
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>regexReplace</function>(str, pattern, replacement)</term>
+            <term><function>regexReplace</function>(str, modello, sostituzione)</term>
             <listitem>
               <para>
 Sostituisce tutte le corrispondenze del modello di espressione regolare con
@@ -956,7 +989,7 @@ sottolineatura.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>replaceWithList</function>(str, filepath)</term>
+            <term><function>replaceWithList</function>(str, percorsofile)</term>
             <listitem>
               <para>
 Sostituisce più stringhe in <replaceable>str</replaceable> utilizzando le
@@ -980,7 +1013,7 @@ applica le sostituzioni dal file al nome del file</para></listitem>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>regexReplaceWithList</function>(str, filepath)</term>
+            <term><function>regexReplaceWithList</function>(str, percorsofile)</term>
             <listitem>
               <para>
 Sostituisce le stringhe in <replaceable>str</replaceable> utilizzando
@@ -1005,7 +1038,7 @@ al nome del file</para></listitem>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>normalizeUnicode</function>(str[, form])</term>
+            <term><function>normalizeUnicode</function>(str[, modulo])</term>
             <listitem>
               <para>
 Normalizza la stringa Unicode.Il parametro facoltativo del modulo specifica
@@ -1105,12 +1138,12 @@ stringhe convertite.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>now</function>()</term>
+            <term><function>now</function></term>
             <listitem><para>Restituisce la data e l'ora correnti come valore
 <literal>Timestamp</literal>.</para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>today</function>()</term>
+            <term><function>today</function></term>
             <listitem><para>Restituisce la data odierna come valore <literal>Timestamp</literal> che
 rappresenta <literal>00:00:00.000</literal> all'inizio della giornata.</para></listitem>
           </varlistentry>
@@ -1134,13 +1167,13 @@ indipendentemente dalle impostazioni locali.</para></listitem>
 array di timestamp, il risultato è un array di stringhe.</para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>abs</function>(<replaceable>value</replaceable>)</term>
+            <term><function>abs</function>(<replaceable>valore</replaceable>)</term>
             <listitem><para>Restituisce il valore assoluto dell'<emphasis>intero o dell'array di
 interi</emphasis>.Se <replaceable>value</replaceable> è un array di numeri
 interi, il risultato è un array di numeri interi.</para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>allof</function>(<replaceable>booleans</replaceable>)</term>
+            <term><function>allof</function>(<replaceable>booleani</replaceable>)</term>
             <listitem><para>Restituisce <literal>true</literal> se tutti gli elementi
 nell'<emphasis>array booleano</emphasis> soddisfano la condizione.</para></listitem>
           </varlistentry>
@@ -1150,7 +1183,7 @@ nell'<emphasis>array booleano</emphasis> soddisfano la condizione.</para></listi
 uguali.</para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>isWithin</function>(<replaceable>value</replaceable>,
+            <term><function>isWithin</function>(<replaceable>valore</replaceable>,
 <replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
             <listitem>
               <para>
@@ -1173,7 +1206,7 @@ dimensioni dei file sono comprese tra 1KB e 10MB</para></listitem>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>inRange</function>(<replaceable>value</replaceable>,
+            <term><function>inRange</function>(<replaceable>valore</replaceable>,
 <replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
             <listitem>
               <para>
@@ -1195,11 +1228,11 @@ controlla se qualche file è stato modificato questo mese (escluso oggi)</para><
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>logError</function>(<replaceable>value1</replaceable>,
+            <term><function>logError<function>(<replaceable>valore1</replaceable>,
 <replaceable>value2</replaceable>, ...),
-<function>logWarn</function>(<replaceable>value1</replaceable>,
+logWarn(<replaceable>value1</replaceable>,
 <replaceable>value2</replaceable>, ...),
-<function>logInfo</function>(<replaceable>value1</replaceable>,
+logInfo(<replaceable>value1</replaceable>,
 <replaceable>value2</replaceable>, ...)</term>
             <listitem>
               <para>
@@ -1221,7 +1254,7 @@ vera, quindi controlla il nome</para></listitem>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>if</function>(<replaceable>condition</replaceable>,
+            <term><function>if</function>(<replaceable>condizione</replaceable>,
 <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
             <listitem>
               <para>
@@ -1241,7 +1274,7 @@ o 0 se il file non esiste</para></listitem>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>ifEach</function>(<replaceable>conditionArray</replaceable>,
+            <term><function>ifEach<function>(<replaceable>conditionArray</replaceable>,
 <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
             <listitem>
               <para>
@@ -1264,8 +1297,8 @@ controlla se qualche file è compreso tra 100KB e 10MB</para></listitem>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>choose</function>(<replaceable>index</replaceable>,
-<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+            <term><function>choose</function>(<replaceable>indice</replaceable>,
+<replaceable>valore0</replaceable>, <replaceable>valore1</replaceable>, ...)</term>
             <listitem>
               <para>
 Seleziona un valore dagli argomenti in base a
@@ -1305,11 +1338,11 @@ restituisce <literal>array("terzo", "primo", "secondo")</literal></para></listit
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>andEach</function>(<replaceable>value1</replaceable>,
-<replaceable>value2</replaceable>),
-<function>orEach</function>(<replaceable>value1</replaceable>,
-<replaceable>value2</replaceable>),
-<function>notEach</function>(<replaceable>value</replaceable>)</term>
+            <term><function>andEach</function>(<replaceable>valore1</replaceable>,
+<replaceable>valore2</replaceable>),
+orEach(<replaceable>valore1</replaceable>,
+<replaceable>valore2</replaceable>),
+notEach(<replaceable>valore</replaceable>)</term>
             <listitem>
               <para>
 Operazioni logiche per elementi.Queste funzioni operano su booleani, array
@@ -1398,15 +1431,15 @@ File con estensioni da 'a' a 'm' e dimensioni inferiori a 1 MB</para></listitem>
 file senza distinzione tra maiuscole e minuscole</para></listitem>
           <listitem><para><literal>toHalfWidth(Name) come "*.txt"</literal> - Corrisponde dopo la
 conversione da larghezza intera a mezza larghezza</para></listitem>
-          <listitem><para><literal>Different</literal> - Show only files/folders that are different
-(Display filter only)</para></listitem>
-          <listitem><para><literal>Identical</literal> - Show only files/folders that are identical
-(Display filter only)</para></listitem>
-          <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all
-sides (Display filter only)</para></listitem>
-          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - In
-3-way comparison, show files where only left-middle pair differs (Display
-filter only)</para></listitem>
+          <listitem><para><literal>Different</literal>: visualizza solo file/cartelle differenti (solo
+filtro di visualizzazione)</para></listitem>
+          <listitem><para><literal>Identical</literal>: visualizza solo file/cartelle identici (solo
+filtro di visualizzazione)</para></listitem>
+          <listitem><para><literal>allof(Binary)</literal> - Visualizza solo i file binari su tutti i
+lati (solo filtro di visualizzazione)</para></listitem>
+          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - Nel
+confronto a 3 vie visualizza i file in cui differisce solo la coppia
+sinistra-centrale (solo filtro di visualizzazione)</para></listitem>
         </itemizedlist>
       </section>
     </section>

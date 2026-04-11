@@ -691,14 +691,14 @@ funzioni di fusione e navigazione delle differenze:</para>
         <itemizedlist>
           <listitem>
             <simpara>Tasti <keycap>Su</keycap> e <keycap>Giù</keycap> per le funzioni
-<function>Differenza precedente</function> e <function>Differenza
-successiva</function>.</simpara>
+<function>Previous Difference</function> e <function>Next
+Difference</function>.</simpara>
             <para></para>
           </listitem>
 
           <listitem>
             <simpara>Tasti <keycap>Sinistra</keycap> e <keycap>Destra</keycap> per le funzioni
-<function>Copia a sinistra</function> e <function>Copia a destra</function>.</simpara>
+<function>Copy Left</function> e <function>>Copy Right</function>.</simpara>
           </listitem>
         </itemizedlist>
 
