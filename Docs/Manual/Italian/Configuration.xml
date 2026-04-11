@@ -1004,8 +1004,8 @@ dei blocchi spostati.Questo è il metodo più completo e consigliato.</para>
             <para>
 Confronto ridotto dei file in base al contenuto.Questo metodo utilizza un
 codice di confronto file semplificato che ignora i plug-in e il rilevamento
-dei blocchi spostati.Questo metodo è più veloce del <guilabel >Contenuto
-completo </guilabel >, perché non carica i file.</para>
+dei blocchi spostati.Questo metodo è più veloce del <guilabel> Contenuto
+completo </guilabel>, perché non carica i file.</para>
 
             <para>
 Lo svantaggio è che durante il confronto non vengono applicati i filtri di
@@ -1283,7 +1283,7 @@ Passa al confronto rapido quando la dimensione supera (MB)<indexterm>
         <listitem>
           <para>
 <option >Disabilitato</option >: non è attivo a meno che il metodo di
-confronto non sia impostato su un metodo diverso da <guilabel >Contenuto
+confronto non sia impostato su un metodo diverso da <guilabel>Contenuto
 completo</guilabel >.</para>
         </listitem>
 

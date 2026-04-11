@@ -260,13 +260,13 @@ Path del sistema.</para>
       </listitem>
 
       <listitem>
-        <simpara>Nella pagina della procedura guidata di unione a 3 vie, registra WinMerge
+        <simpara>Nella pagina della procedura guidata di unione a 3 vie registra WinMerge
 come strumento di unione a 3 vie per TortoiseSVN/Git.</simpara>
 
         <variablelist>
           <varlistentry>
             <term>Registra WinMerge come strumento di unione a 3 vie<indexterm>
-                <primary>Strumento di unione a 3 vie</primary>
+                <primary>Strumento unione a 3 vie</primary>
               </indexterm></term>
 
             <listitem>
