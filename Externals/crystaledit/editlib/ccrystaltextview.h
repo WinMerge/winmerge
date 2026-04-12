@@ -696,7 +696,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    virtual unsigned ParseLine (unsigned dwCookie, const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    unsigned ParseLine (unsigned dwCookie, int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, void *pContext);
 
     // Attributes
 public :

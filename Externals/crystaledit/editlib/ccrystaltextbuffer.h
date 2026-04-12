@@ -155,6 +155,8 @@ public :
     };
     std::shared_ptr<SharedTableProperties> m_pSharedTableProps;
 
+	void* pParseContext; // context for incremental parsing, owned by the parser
+
     //  Helper methods
     void InsertLine (const tchar_t* pszLine, size_t nLength, int nPosition = -1, int nCount = 1);
     void AppendLine (int nLineIndex, const tchar_t* pszChars, size_t nLength, bool bDetectEol = true);
@@ -316,6 +318,9 @@ public :
     // More bookmarks
     int FindNextBookmarkLine (int nCurrentLine = 0) const;
     int FindPrevBookmarkLine (int nCurrentLine = 0) const;
+
+	void* GetParseContext() const { return pParseContext; }
+	void SetParseContext(void* pContext) { pParseContext = pContext; }
 
     // Overrides
     // ClassWizard generated virtual function overrides

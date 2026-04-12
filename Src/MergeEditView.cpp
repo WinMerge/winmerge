@@ -2425,8 +2425,9 @@ void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t
 	// We do NOT reparse here -- doing a full reparse on every keystroke
 	// causes catastrophic memory/CPU usage. Instead, ParseLine() will
 	// call EnsureParsed() lazily when the view is next painted.
-	if (m_treeSitterParser.HasLanguage())
-		m_treeSitterParser.NotifyEdit(m_pTextBuffer);
+	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
+	if (pParser && pParser->HasLanguage())
+		pParser->NotifyEdit(m_pTextBuffer);
 
 	// augment with additional operations
 
@@ -4095,8 +4096,7 @@ void CMergeEditView::DocumentsLoaded()
 	bool bInsertTabs = (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0);
 	SetInsertTabs(bInsertTabs);
 
-	// Initialize tree-sitter syntax highlighting (if grammar available)
-	InitializeTreeSitter();
+	// Note: TreeSitter initialization is now handled by CMergeDoc::OpenDocs
 
 	// Sometimes WinMerge doesn't update scrollbars correctly (they remain
 	// disabled) after docs are open in screen. So lets make sure they are
@@ -4586,129 +4586,5 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	default:
 		break;
-	}
-}
-
-/**
- * @brief Override ParseLine to use tree-sitter highlighting when available.
- *
- * If a tree-sitter grammar was loaded for the current file type, we serve
- * cached per-line color blocks from the tree-sitter AST. Otherwise, we fall
- * back to the default CrystalEdit keyword-based parser.
- *
- * If the cache is dirty (edit happened since last parse), we trigger a
- * lazy reparse here -- at most once per paint cycle.
- */
-unsigned CMergeEditView::ParseLine(unsigned dwCookie, const tchar_t *pszChars,
-                                    int nLength, CrystalLineParser::TEXTBLOCK *pBuf,
-                                    int &nActualItems)
-{
-	// Guard: tree-sitter requires the view to be fully initialized.
-	// ParseLine can be called during GetParseCookie forward-fill before
-	// the window handle exists (e.g. during AttachToBuffer). In that case,
-	// fall through to the default keyword parser.
-	if (m_treeSitterParser.HasLanguage() && ::IsWindow(m_hWnd))
-	{
-		// Lazy reparse: if cache is dirty, reparse now (once per paint cycle)
-		if (m_treeSitterParser.IsDirty())
-			m_treeSitterParser.EnsureParsed(this);
-
-		if (m_treeSitterParser.HasTree())
-		{
-			// Determine the line index from the cookie.
-			//
-			// The rendering system works as follows:
-			//   - GetParseCookie(-1) returns 0 for line 0
-			//   - GetParseCookie(N) returns the cookie stored from ParseLine(N)
-			//   - GetTextBlocks(N) calls: ParseLine(GetParseCookie(N-1), ...)
-			//   - GetParseCookie() forward-fills by calling ParseLine sequentially
-			//
-			// Our convention: cookie = lineIndex (i.e., cookie for line N-1 = N).
-			// So dwCookie directly gives us the current line index.
-			int nLineIndex = static_cast<int>(dwCookie);
-
-			// Bounds safety: use the parser's cached line count to avoid
-			// accessing stale data. We intentionally avoid calling
-			// LocateTextBuffer() here since ParseLine may be called
-			// before the window handle is fully set up.
-			if (nLineIndex >= 0 && nLineIndex < m_treeSitterParser.GetCachedLineCount())
-			{
-				// Buffer size: GetTextBlocks allocates (nLength+1)*3 TEXTBLOCK entries
-				int nMaxBlocks = (nLength + 1) * 3;
-
-				m_treeSitterParser.GetLineBlocks(nLineIndex, pBuf, nActualItems, nMaxBlocks);
-				return static_cast<unsigned>(nLineIndex + 1);
-			}
-		}
-	}
-
-	// Fallback to the default keyword-based parser
-	return CCrystalTextView::ParseLine(dwCookie, pszChars, nLength, pBuf, nActualItems);
-}
-
-/**
- * @brief Initialize tree-sitter syntax highlighting for this view.
- *
- * Looks up the file extension in the TreeSitterRegistry and, if a grammar
- * is available, parses the full document to prepare per-line highlighting.
- * Called from DocumentsLoaded() after the text buffer is fully populated.
- */
-void CMergeEditView::InitializeTreeSitter()
-{
-	// Clear any existing tree-sitter state so that re-used views do not
-	// retain stale highlighting or a stale status-bar indicator when the
-	// new file has no matching grammar.
-	m_treeSitterParser.SetLanguage(nullptr);
-	if (m_piMergeEditStatus)
-		m_piMergeEditStatus->SetSyntaxParser(L"");
-
-	// Make sure the registry is initialized
-	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
-	if (!registry.IsInitialized())
-		registry.Initialize();
-
-	// Get the file path for this pane to determine the extension
-	CMergeDoc* pDoc = GetDocument();
-	if (!pDoc)
-		return;
-
-	String sFilePath = pDoc->m_filePaths[m_nThisPane];
-	if (sFilePath.empty())
-		return;
-
-	// Extract extension (without dot)
-	String sExt;
-	size_t dotPos = sFilePath.rfind(_T('.'));
-	if (dotPos != String::npos)
-	{
-		sExt = sFilePath.substr(dotPos + 1);
-		// Convert to lowercase for matching
-		for (auto& ch : sExt)
-			ch = static_cast<tchar_t>(towlower(ch));
-	}
-
-	if (sExt.empty())
-		return;
-
-	// Look up the grammar
-	const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(sExt);
-	if (!pLang)
-		return;
-
-	// Set up the parser and parse the document
-	m_treeSitterParser.SetLanguage(pLang);
-	m_treeSitterParser.ParseFromView(this);
-
-	// After enabling tree-sitter, invalidate any existing CrystalEdit
-	// parse cookies so that subsequent GetParseCookie() calls recompute
-	// them using the tree-sitter-aware convention (cookie = line index).
-	InvalidateParseCookies();
-
-	// Update status bar to show tree-sitter is active
-	if (m_piMergeEditStatus)
-	{
-		// Convert the language name from wstring to tchar_t for display
-		const std::wstring& sLangName = pLang->GetName();
-		m_piMergeEditStatus->SetSyntaxParser(sLangName.c_str());
 	}
 }

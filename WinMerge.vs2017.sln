@@ -86,6 +86,7 @@ Global
 		Src\CrashLogger\CrashLogger.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\FilterEngine\FilterEngine.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\tree-sitter\tree-sitter.vcxitems*{a3e7e04f-5d2b-4f3a-b725-8f5c4b1e9d3c}*SharedItemsImports = 9
 		Externals\poco\Foundation\Foundation.vcxitems*{b30837c4-f99f-46f9-adfb-5faefb1d2fbb}*SharedItemsImports = 9
 		Src\CrashLogger\CrashLogger.vcxitems*{cdeddac4-79b9-4a34-a564-8019f60d241f}*SharedItemsImports = 9
 		Externals\poco\XML\XML.vcxitems*{dafd8d9e-6509-4482-a533-44c843c3bcc7}*SharedItemsImports = 9

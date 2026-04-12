@@ -1917,8 +1917,7 @@
     via Build\TreeSitterGrammars\build-grammars.ps1 into the Release directory.
     The copy is skipped silently when the source directory does not exist.
   -->
-  <Target Name="CopyTreeSitterGrammars" AfterTargets="Build"
-          Condition="'$(Configuration)' != 'Release' AND Exists('$(OutDir)..\Release\TreeSitterGrammars')">
+  <Target Name="CopyTreeSitterGrammars" AfterTargets="Build" Condition="'$(Configuration)' != 'Release' AND Exists('$(OutDir)..\Release\TreeSitterGrammars')">
     <ItemGroup>
       <TreeSitterDlls Include="$(OutDir)..\Release\TreeSitterGrammars\*.dll" />
       <TreeSitterQueries Include="$(OutDir)..\Release\TreeSitterGrammars\*.scm" />

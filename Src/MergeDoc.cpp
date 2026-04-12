@@ -52,6 +52,8 @@
 #include "markdown.h"
 #include "stringdiffs.h"
 #include "Logger.h"
+#include "../Externals/crystaledit/editlib/TreeSitterParser.h"
+#include "../Externals/crystaledit/editlib/TreeSitterWrapper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -581,6 +583,16 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		std::any_of(m_ptBuf, m_ptBuf + m_nBuffers,
 			[&](std::unique_ptr<CDiffTextBuffer>& buf) { return buf->getEncoding() != m_ptBuf[0]->getEncoding(); }))
 		identical = IDENTLEVEL::NONE;
+
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		// Parse the document
+		if (m_pTreeSitterParsers[nBuffer])
+		{
+			m_pTreeSitterParsers[nBuffer]->Invalidate();
+			m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
+		}
+	}
 
 	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
@@ -2441,13 +2453,63 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			UpdateHeaderPath(nBuffer);
 
 			ForEachView(nBuffer, [](auto& pView) { pView->DocumentsLoaded(); });
-			
+
 			if ((m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL) ||
-			    (m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
+				(m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
 			{
 				nNormalBuffer++;
 			}
-			
+
+		}
+
+		// Initialize TreeSitter parsers and TextDefinitions for each pane
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			// Get file extension from each pane
+			String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
+
+			// Initialize TreeSitterRegistry (if not already)
+			TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
+			if (!registry.IsInitialized())
+				registry.Initialize();
+
+			// Check if TreeSitter language is available
+			const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(sExt.c_str());
+			if (pLang != nullptr && pLang->GetLanguage() != nullptr)
+			{
+				// Create TreeSitter parser
+				m_pTreeSitterParsers[nBuffer].reset(new CTreeSitterParser());
+				m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
+
+				m_pTreeSitterParsers[nBuffer]->SetBuffer(m_ptBuf[nBuffer].get());
+
+				// Parse the document
+				m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
+
+				// Create TreeSitter TextDefinition
+				m_pTreeSitterTextDefs[nBuffer].reset(
+					CreateTreeSitterTextDefinition(sExt.c_str(), sExt.c_str(), nBuffer));
+
+				m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterParsers[nBuffer].get());
+			}
+		}
+
+		// Set TreeSitter TextDefinition from first pane to DiffWrapper (for comment filtering)
+		// Note: DiffWrapper can only hold one TextDefinition, so use the first pane
+		if (m_pTreeSitterTextDefs[0])
+		{
+			m_diffWrapper.SetFilterCommentsSourceDef(m_pTreeSitterTextDefs[0].get());
+		}
+
+		// Set TreeSitter TextDefinition as syntax highlighting for each view
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (m_pTreeSitterTextDefs[nBuffer])
+			{
+				ForEachView(nBuffer, [&](auto& pView) {
+					pView->SetTextType(m_pTreeSitterTextDefs[nBuffer].get());
+				});
+			}
 		}
 
 		CMergeFrameCommon::LogComparisonCompleted(*this);

@@ -24,6 +24,9 @@
 #include <memory>
 #include <optional>
 
+class CTreeSitterParser;
+namespace CrystalLineParser { struct TextDefinition; }
+
 /**
  * @brief Additional action codes for WinMerge.
  * @note Reserve first 100 for CrystalEditor
@@ -194,6 +197,8 @@ public:
 	void GetPrediffer(PrediffingInfo* infoPrediffer) const;
 	const PrediffingInfo* GetPrediffer() const override;
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
+	CTreeSitterParser* GetTreeSitterParser(int nBuffer) { return m_pTreeSitterParsers[nBuffer].get(); }
+	CrystalLineParser::TextDefinition* GetTreeSitterTextDefinition(int nBuffer) { return m_pTreeSitterTextDefs[nBuffer].get(); }
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView* pLocationView) { m_pLocationView = pLocationView; }
@@ -389,6 +394,8 @@ protected:
 	bool m_bAutoMerged;
 	std::optional<bool> m_bEnableTableEditing;
 	std::unique_ptr<TableProps> m_pTablePropsPrepared;
+	std::unique_ptr<CTreeSitterParser> m_pTreeSitterParsers[3]; /**< TreeSitter parsers for each pane */
+	std::unique_ptr<CrystalLineParser::TextDefinition> m_pTreeSitterTextDefs[3]; /**< TreeSitter TextDefinitions for each pane */
 	/**
 	 * Are automatic rescans enabled?
 	 * If automatic rescans are enabled then we rescan files after edit

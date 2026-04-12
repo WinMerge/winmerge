@@ -59,7 +59,6 @@ protected:
 	CMergeEditView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CMergeEditView)
 	CCrystalParser m_xParser; /**< Syntax parser used for syntax highlighting. */
-	CTreeSitterParser m_treeSitterParser; /**< Tree-sitter based syntax parser (optional). */
 
 // Attributes
 public:
@@ -98,8 +97,6 @@ public:
 	bool IsReadOnly(int pane) const;
 	void ShowDiff(bool bScroll, bool bSelectText);
 	virtual void OnEditOperation(int nAction, const tchar_t* pszText, size_t cchText) override;
-	virtual unsigned ParseLine(unsigned dwCookie, const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems) override;
-	void InitializeTreeSitter();
 	bool IsLineInCurrentDiff(int nLine) const;
 	void SelectNone();
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);

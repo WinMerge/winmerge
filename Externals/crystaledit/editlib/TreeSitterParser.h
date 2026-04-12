@@ -179,12 +179,6 @@ public:
     void ParseDocument(const tchar_t* const* ppszLines, const int* pnLineLengths, int nLineCount);
 
     /**
-     * @brief Convenience: parse document from a text buffer view.
-     * @param pView  The text view to read line data from.
-     */
-    void ParseFromView(class CCrystalTextView* pView);
-
-    /**
      * @brief Mark the parse cache as dirty (e.g. after an edit).
      *
      * The next call to EnsureParsed() (from ParseLine/GetLineBlocks)
@@ -212,7 +206,7 @@ public:
      *
      * Called lazily from ParseLine. Only reparses if marked dirty.
      */
-    void EnsureParsed(class CCrystalTextView* pView);
+    void EnsureParsed(class CCrystalTextBuffer* pBuf);
 
     /**
      * @brief Get the cached color blocks for a specific line.
@@ -243,6 +237,29 @@ public:
 
     /** @brief Invalidate cached results and free tree. */
     void Invalidate();
+
+    /** @brief Get the language object (for service layer). */
+    const CTreeSitterLanguage* GetLanguage() const { return m_pLang; }
+
+    /**
+     * @brief Get the node type name at a specific position.
+     * @param nLineIndex  Zero-based line index.
+     * @param nCharPos    Zero-based character position in line.
+     * @return Node type name (e.g. "comment", "string_literal"), or empty string.
+     * 
+     * This is used by TreeSitterHighlightService to determine if a position
+     * is within a comment or string for filtering purposes.
+     */
+    std::wstring GetNodeTypeAt(int nLineIndex, int nCharPos) const;
+
+    /**
+     * @brief Convenience: parse document from a text buffer.
+     * @param pBuffer  The text buffer to read line data from.
+     */
+    void ParseFromBuffer(class CCrystalTextBuffer* pBuffer);
+
+	void SetBuffer(class CCrystalTextBuffer* pBuffer) { m_pBuffer = pBuffer; }
+	CCrystalTextBuffer* GetBuffer() const { return m_pBuffer; }
 
 private:
     void EnsureParser();
@@ -315,6 +332,7 @@ private:
         uint32_t    scopeStartByte;
     };
     std::vector<PendingRef> m_pendingRefs;
+	CCrystalTextBuffer* m_pBuffer; // Needed to get line/char info for unresolved references
 };
 
 

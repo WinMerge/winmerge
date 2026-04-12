@@ -121,7 +121,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineMatlab (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineMatlab (unsigned dwCookie, int nLineIndex, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | 0xFF000000);

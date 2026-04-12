@@ -397,31 +397,6 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
     m_bDirty = false;
 }
 
-void CTreeSitterParser::ParseFromView(CCrystalTextView* pView)
-{
-    if (!pView)
-        return;
-
-    CCrystalTextBuffer* pBuf = pView->LocateTextBuffer();
-    if (!pBuf)
-        return;
-
-    int nLineCount = pBuf->GetLineCount();
-    if (nLineCount <= 0)
-        return;
-
-    // Collect line pointers and lengths
-    std::vector<const tchar_t*> lines(nLineCount);
-    std::vector<int> lengths(nLineCount);
-    for (int i = 0; i < nLineCount; i++)
-    {
-        lines[i] = pBuf->GetLineChars(i);
-        lengths[i] = pBuf->GetLineLength(i);
-    }
-
-    ParseDocument(lines.data(), lengths.data(), nLineCount);
-}
-
 /**
  * @brief Notify the parser of an edit for incremental reparsing.
  *
@@ -669,12 +644,12 @@ void CTreeSitterParser::NotifyEdit(CCrystalTextBuffer* pBuf)
  * Called lazily from ParseLine during the paint cycle. This means
  * we reparse at most once per paint, not once per keystroke.
  */
-void CTreeSitterParser::EnsureParsed(CCrystalTextView* pView)
+void CTreeSitterParser::EnsureParsed(CCrystalTextBuffer* pBuffer)
 {
     if (m_bDirty && m_pLang)
     {
-        ParseFromView(pView);
-        // ParseFromView sets m_bDirty = false via ParseDocument
+        ParseFromBuffer(pBuffer);
+        // ParseFromBuffer sets m_bDirty = false via ParseDocument
     }
 }
 
@@ -1630,3 +1605,109 @@ void TreeSitterRegistry::RegisterExtension(const std::wstring& sExt, const std::
 {
     m_extMap[sExt] = sLanguage;
 }
+
+// ============================================================================
+// CTreeSitterParser - Additional Methods
+// ============================================================================
+
+/**
+ * @brief Convenience: parse document from a text buffer.
+ */
+void CTreeSitterParser::ParseFromBuffer(CCrystalTextBuffer* pBuffer)
+{
+    if (!pBuffer)
+        return;
+
+    const int nLineCount = pBuffer->GetLineCount();
+    if (nLineCount == 0)
+        return;
+
+    // Collect line pointers and lengths
+    std::vector<const tchar_t*> ppszLines(nLineCount);
+    std::vector<int> pnLineLengths(nLineCount);
+
+    for (int i = 0; i < nLineCount; i++)
+    {
+        ppszLines[i] = pBuffer->GetLineChars(i);
+        pnLineLengths[i] = pBuffer->GetLineLength(i);
+    }
+
+    ParseDocument(ppszLines.data(), pnLineLengths.data(), nLineCount);
+}
+
+/**
+ * @brief Get the node type name at a specific position.
+ * 
+ * This is used for comment filtering and other syntax-aware operations.
+ */
+std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) const
+{
+    if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
+        return _T("");
+
+    // Convert line + character position to byte offset
+    if (nLineIndex >= static_cast<int>(m_lineUtf8.size()))
+        return _T("");
+
+    // Calculate byte offset
+    uint32_t byteOffset = 0;
+
+    // Add bytes from all previous lines
+    for (int i = 0; i < nLineIndex; i++)
+    {
+        if (i >= static_cast<int>(m_lineUtf8.size()))
+            return _T("");
+        byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size());
+        byteOffset++;  // newline character
+    }
+
+    // Add bytes from current line up to nCharPos
+    const std::string& lineUtf8 = m_lineUtf8[nLineIndex];
+    int charCount = 0;
+    for (size_t i = 0; i < lineUtf8.size() && charCount < nCharPos; )
+    {
+        unsigned char byte = lineUtf8[i];
+
+        // UTF-8 character length determination
+        int charLen = 1;
+        if ((byte & 0x80) == 0x00)
+            charLen = 1;  // ASCII
+        else if ((byte & 0xE0) == 0xC0)
+            charLen = 2;
+        else if ((byte & 0xF0) == 0xE0)
+            charLen = 3;
+        else if ((byte & 0xF8) == 0xF0)
+            charLen = 4;
+
+        i += charLen;
+        byteOffset += charLen;
+        charCount++;
+    }
+
+    // Get the tree-sitter node at this byte position
+    TSNode rootNode = ts_tree_root_node(m_pTree);
+    TSPoint point = { static_cast<uint32_t>(nLineIndex), byteOffset };
+    TSNode node = ts_node_descendant_for_point_range(rootNode, point, point);
+
+    if (ts_node_is_null(node))
+        return _T("");
+
+    // Get node type
+    const char* pszType = ts_node_type(node);
+    if (!pszType)
+        return _T("");
+
+    // Convert from UTF-8 to wstring/String
+#ifdef UNICODE
+    int nLen = MultiByteToWideChar(CP_UTF8, 0, pszType, -1, nullptr, 0);
+    if (nLen == 0)
+        return _T("");
+
+    std::vector<wchar_t> buffer(nLen);
+    MultiByteToWideChar(CP_UTF8, 0, pszType, -1, buffer.data(), nLen);
+    return std::wstring(buffer.data());
+#else
+    return String(pszType);
+#endif
+}
+
