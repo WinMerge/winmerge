@@ -514,6 +514,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 			{
 				m_bPathEditing = false;
 				String orgtext = m_sFilepath;
+				String windowText = m_sOriginalText;
 				if (!(text == orgtext.c_str() || text.IsEmpty()))
 				{
 					bool existing = paths::DoesPathExist((const tchar_t *)text);
@@ -527,8 +528,10 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 					}
 					if (existing)
 						GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
+					else
+						windowText = GetSysError();
 				}
-				SetWindowText(m_sOriginalText.c_str());
+				SetWindowText(windowText.c_str());
 			}
 			else
 			{
