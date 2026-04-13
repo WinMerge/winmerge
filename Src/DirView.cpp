@@ -250,9 +250,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_LEFT2_RIGHT1, OnUpdateMergeCompare2<SELECTIONTYPE_LEFT2RIGHT1>)
 	ON_COMMAND(ID_MERGE_COMPARE_NONHORIZONTALLY, OnMergeCompareNonHorizontally)
 	// Context menu -> Compare As
-	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnMergeCompareAs)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_FOLDER, OnMergeCompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnMergeCompareAs)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnUpdateMergeCompare)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_FOLDER, OnUpdateMergeCompare)
 	ON_UPDATE_COMMAND_UI(ID_NO_UNPACKER, OnUpdateNoUnpacker)
 	// Context menu -> Copy
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_RIGHT, (OnCtxtDirCopy<SIDE_LEFT, SIDE_RIGHT>))
@@ -726,8 +726,6 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 {
 	if (CMouseHook::IsRightWheelScrolling())
 		return;
-	if (GetListCtrl().GetItemCount() == 0)
-		return;
 	// Make sure window is active
 	GetParentFrame()->ActivateFrame();
 
@@ -768,6 +766,9 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 		if (i < 0)
 			return;
 	}
+
+	if (GetListCtrl().GetItemCount() == 0)
+		return;
 
 	ListContextMenu(point, i);
 }
@@ -4338,7 +4339,7 @@ void CDirView::OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI)
  */
 void CDirView::OnMergeCompare(UINT nID)
 {
-	bool openableForDir = !((nID >= ID_MERGE_COMPARE_TEXT && nID <= ID_MERGE_COMPARE_WEBPAGE) ||
+	bool openableForDir = !((nID >= ID_MERGE_COMPARE_TEXT && nID <= ID_MERGE_COMPARE_FOLDER) ||
 		(nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST));
 
 	if (AreItemsComparable(SELECTIONTYPE_NORMAL, openableForDir))
@@ -4483,7 +4484,7 @@ void CDirView::OnMergeCompareNonHorizontally()
  */
 void CDirView::OnMergeCompareAs(UINT nID)
 {
-	if (nID >= ID_MERGE_COMPARE_TEXT && nID <= ID_MERGE_COMPARE_WEBPAGE)
+	if (nID >= ID_MERGE_COMPARE_TEXT && nID <= ID_MERGE_COMPARE_FOLDER)
 	{
 		if (AreItemsComparable(SELECTIONTYPE_NORMAL, false))
 		{
@@ -4521,7 +4522,7 @@ void CDirView::OnMergeCompareAs(UINT nID)
  */
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 {
-	bool openableForDir = !((pCmdUI->m_nID >= ID_MERGE_COMPARE_TEXT && pCmdUI->m_nID <= ID_MERGE_COMPARE_WEBPAGE) ||
+	bool openableForDir = !((pCmdUI->m_nID >= ID_MERGE_COMPARE_TEXT && pCmdUI->m_nID <= ID_MERGE_COMPARE_FOLDER) ||
 		(pCmdUI->m_nID >= ID_UNPACKERS_FIRST && pCmdUI->m_nID <= ID_UNPACKERS_LAST));
 
 	bool bOn = AreItemsComparable(SELECTIONTYPE_NORMAL, openableForDir);

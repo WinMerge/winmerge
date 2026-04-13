@@ -214,6 +214,8 @@ std::vector<JumpList::Item> CMergeApp::CreateUserTasks(MergeCmdLineInfo::usertas
 		items.emplace_back(_(""), _T("/new /t image"), _("New Image Compare"), _T(""), _T(""), 0);
 	if (flags & MergeCmdLineInfo::NEW_WEBPAGE_COMPARE)
 		items.emplace_back(_(""), _T("/new /t webpage"), _("New Webpage Compare"), _T(""), _T(""), 0);
+	if (flags & MergeCmdLineInfo::NEW_FOLDER_COMPARE)
+		items.emplace_back(_(""), _T("/new /t folder"), _("New Folder Compare"), _T(""), _T(""), 0);
 	if (flags & MergeCmdLineInfo::CLIPBOARD_COMPARE)
 		items.emplace_back(_(""), _T("/clipboard-compare"), _("Clipboard Compare"), _T(""), _T(""), 0);
 	if (flags & MergeCmdLineInfo::SHOW_OPTIONS_DIALOG)

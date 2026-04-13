@@ -27,6 +27,7 @@
 #include <Poco/Channel.h>
 #include "DarkModeLib.h"
 #include "WindowsManager.h"
+#include "TempFile.h"
 
 class BCMenu;
 class CDirView;
@@ -209,6 +210,10 @@ public:
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
 		const OpenWebPageParams *pOpenParams = nullptr);
+	bool ShowDirDoc(IDirDoc* pDirDoc, int nFiles, const FileLocation fileloc[],
+		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo* infoPrediffer = nullptr,
+		const OpenFolderParams* pOpenParams = nullptr);
 
 	void UpdateTitleBarAndTabBar();
 	void UpdateResources();
@@ -373,6 +378,7 @@ protected:
 	std::unique_ptr<BCMenu> m_pImageMenu;
 	std::unique_ptr<BCMenu> m_pWebPageMenu;
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
+	std::vector<std::shared_ptr<TempFolder>> m_tempFolders; /**< Temp folders for "New Folder" comparisons. */
 	DropHandler *m_pDropHandler;
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
 	std::optional<bool> m_bTabsOnTitleBar;
