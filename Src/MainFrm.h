@@ -47,6 +47,7 @@ class CImgMergeFrame;
 class CWebPageDiffFrame;
 class DirWatcher;
 class COutputDoc;
+class CTempPathContext;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -213,7 +214,8 @@ public:
 	bool ShowDirDoc(IDirDoc* pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo* infoPrediffer = nullptr,
-		const OpenFolderParams* pOpenParams = nullptr);
+		const OpenFolderParams* pOpenParams = nullptr, CTempPathContext* pTempPathContext = nullptr,
+		std::optional<bool> bRecurse = false);
 
 	void UpdateTitleBarAndTabBar();
 	void UpdateResources();

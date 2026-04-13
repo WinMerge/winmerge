@@ -857,7 +857,7 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_FOLDER:
-		return ShowDirDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowDirDoc(nullptr, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenFolderParams*>(pOpenParams));
 	default:
 		return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
@@ -901,7 +901,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, IDirDoc* pDirDoc,
 			strDesc, sReportFile, infoUnpacker, infoPrediffer,
 			dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_FOLDER:
-		return ShowDirDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowDirDoc(nullptr, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, infoPrediffer,
 			dynamic_cast<const OpenFolderParams*>(pOpenParams));
 	default:
@@ -1184,8 +1184,86 @@ bool CMainFrame::ShowTextMergeDoc(IDirDoc* pDirDoc, int nBuffers, const String t
 bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
-	const OpenFolderParams* pOpenParams /*= nullptr*/)
+	const OpenFolderParams* pOpenParams /*= nullptr*/, CTempPathContext *pTempPathContext /*= nullptr*/,
+	std::optional<bool> bRecurse /*= false*/)
 {
+	// Convert FileLocation array to PathContext
+	PathContext paths;
+	for (int i = 0; i < nFiles; ++i)
+		paths.SetPath(i, fileloc[i].filepath);
+
+	// Get read-only flags
+	std::array<bool, 3> bRO = GetROFromFlags(nFiles, dwFlags);
+
+	// Determine recursion setting
+	bool bRecurse2 = pOpenParams && bRecurse.has_value() 
+		? *bRecurse 
+		: GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+
+	// Decompress archives if needed and pTempPathContext is not provided
+	CTempPathContext *pTempPathContext2 = pTempPathContext;
+	if (pTempPathContext2 == nullptr)
+	{
+		// Add trailing '\' for directories if missing
+		for (int i = 0; i < nFiles; ++i)
+		{
+			if (!paths::EndsWithSlash(paths[i]) && !IsArchiveFile(paths[i]))
+				paths.SetPath(i, paths::AddTrailingSlash(paths[i]));
+		}
+
+		DecompressResult res = DecompressArchive(m_hWnd, paths);
+		if (FAILED(res.hr))
+		{
+			int ans = AfxMessageBox(I18n::LoadString(IDS_FAILED_EXTRACT_ARCHIVE_FILES).c_str(), MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING, IDS_FAILED_EXTRACT_ARCHIVE_FILES);
+			if (ans != IDYES)
+			{
+				delete res.pTempPathContext;
+				return false;
+			}
+		}
+		if (res.pTempPathContext)
+		{
+			paths = res.files;
+			pTempPathContext2 = res.pTempPathContext;
+		}
+	}
+
+	// Create new DirDoc if not provided
+	CDirDoc* pDirDoc2 = static_cast<CDirDoc*>(pDirDoc);
+	if (pDirDoc2 == nullptr)
+	{
+		CMultiDocTemplate* pDirTemplate = theApp.GetDirTemplate();
+		CDirDoc::m_nDirsTemp = nFiles;
+		if (m_pMenus[MENU_DIRVIEW] == nullptr)
+			pDirTemplate->m_hMenuShared = NewDirViewMenu();
+		pDirDoc2 = static_cast<CDirDoc*>(pDirTemplate->OpenDocumentFile(nullptr));
+		if (pDirDoc2 == nullptr)
+		{
+			if (pTempPathContext == nullptr)
+				delete pTempPathContext2;
+			return false;
+		}
+	}
+
+	// Initialize the comparison
+	pDirDoc2->InitCompare(paths, bRecurse2, pTempPathContext2);
+
+	// Apply OpenFolderParams if provided
+	if (pOpenParams)
+		pDirDoc2->SetHiddenItems(pOpenParams->m_hiddenItems);
+
+	// Set report file, descriptions, and title
+	pDirDoc2->SetReportFile(sReportFile);
+	pDirDoc2->SetDescriptions(strDesc);
+	pDirDoc2->SetTitle(nullptr);
+
+	// Set read-only flags for each pane
+	for (int i = 0; i < nFiles; ++i)
+		pDirDoc2->SetReadOnly(i, bRO[i]);
+
+	// Start the comparison
+	pDirDoc2->Rescan();
+
 	return true;
 }
 
@@ -1287,6 +1365,7 @@ static void AppendComparisonCommandLineParams(
 	case ID_MERGE_COMPARE_HEX:     params += _T("/t binary "); break;
 	case ID_MERGE_COMPARE_IMAGE:   params += _T("/t image "); break;
 	case ID_MERGE_COMPARE_WEBPAGE: params += _T("/t webpage "); break;
+	case ID_MERGE_COMPARE_FOLDER:  params += _T("/t folder "); break;
 	}
 
 	// Add OpenParams
@@ -1560,20 +1639,12 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	{
 		if (pDirDoc != nullptr)
 		{
-			// Anything that can go wrong inside InitCompare() will yield an
-			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(tFiles, bRecurse2, pTempPathContext);
+			FileLocation fileloc[3];
+			for (int nPane = 0; nPane < tFiles.GetSize(); nPane++)
+				fileloc[nPane].setPath(tFiles[nPane]);
 
-			const auto* pOpenFolderParams = dynamic_cast<const OpenFolderParams*>(pOpenParams);
-			if (pOpenFolderParams)
-				pDirDoc->SetHiddenItems(pOpenFolderParams->m_hiddenItems);
-			pDirDoc->SetReportFile(sReportFile);
-			pDirDoc->SetDescriptions(strDesc);
-			pDirDoc->SetTitle(nullptr);
-			for (int nIndex = 0; nIndex < tFiles.GetSize(); nIndex++)
-				pDirDoc->SetReadOnly(nIndex, bRO[nIndex]);
-
-			pDirDoc->Rescan();
+			ShowDirDoc(pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
+					infoUnpacker, infoPrediffer, dynamic_cast<const OpenFolderParams*>(pOpenParams), pTempPathContext);
 		}
 	}
 	else
