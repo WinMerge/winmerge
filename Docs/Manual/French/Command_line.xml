@@ -195,8 +195,8 @@ masque de filtre ou d'un nom contenant des espaces.</para>
         <para>Spécifie le type de fenêtre dans laquelle afficher les fichiers. Cela peut
 être l'un des mots-clés <userinput>Text</userinput> (Texte),
 <userinput>Table</userinput> (Tableau), <userinput>Binary</userinput>
-(Binaire), <userinput>Image</userinput> ou <userinput>Webpage</userinput>
-(Page Web).</para>
+(Binaire), <userinput>Image</userinput>, <userinput>Webpage</userinput>
+(Page Web) ou <userinput>Folder</userinput>.</para>
       </listitem>
     </varlistentry>
 
