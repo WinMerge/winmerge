@@ -882,8 +882,27 @@ Merge7z::Format* Merge7z::GuessFormatBySignature(LPCTSTR path, LPCTSTR extension
  */
 Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 {
+	// If no signature provided, fall back to extension-only detection
 	if (!sig || cchSig <= 0)
+	{
+		if (!ext || ext[0] == '\0')
+			return nullptr;
+		Format7zDLL::Interface* pFormat = Format7zDLL::Interface::head;
+		while (pFormat)
+		{
+			static const char aBlank[] = " ";
+			LPCSTR pchExtension = pFormat->proxy.extension;
+			int cchExtension;
+			while ((cchExtension = StrCSpnA(pchExtension += StrSpnA(pchExtension, aBlank), aBlank)) != 0)
+			{
+				if (StrIsIntlEqualA(FALSE, pchExtension, ext, cchExtension) && ext[cchExtension] == '\0')
+					return pFormat;
+				pchExtension += cchExtension;
+			}
+			pFormat = pFormat->next;
+		}
 		return nullptr;
+	}
 
 	// Build list of candidate formats
 	Format7zDLL::Interface* candidates[100];
@@ -933,6 +952,7 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 	}
 
 	// Use 7-Zip's IsArc functions to check signatures
+	Format7zDLL::Interface* needMoreCandidate = nullptr;
 	for (int i = 0; i < candidateCount; i++)
 	{
 		pFormat = candidates[i];
@@ -948,6 +968,10 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 				UInt32 result = isArc((const Byte*)sig, (size_t)cchSig);
 				if (result == k_IsArc_Res_YES)
 					return pFormat;
+				// NEED_MORE means the header is ambiguous (e.g. SFX/stubbed archives);
+				// keep the first such candidate as a fallback.
+				if (result == k_IsArc_Res_NEED_MORE && needMoreCandidate == nullptr)
+					needMoreCandidate = pFormat;
 			}
 		}
 		catch (Complain*)
@@ -955,6 +979,10 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 			// Ignore unsupported/problematic formats while probing.
 		}
 	}
+
+	// No definitive match; use the NEED_MORE candidate (ambiguous header) if available.
+	if (needMoreCandidate)
+		return needMoreCandidate;
 
 	// No signature match found
 	return nullptr;
