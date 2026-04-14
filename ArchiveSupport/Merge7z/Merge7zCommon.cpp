@@ -789,91 +789,35 @@ TarHandler(CTarHandler)
 
 /**
  * @brief Figure out which archiver dll to use for a given archive.
- * Combines signature-based and extension-based detection according to g_dwFlags.
  */
 Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 {
-	if (PathIsDirectory(path))
-		return 0;
-
-	const bool useSignature = (g_dwFlags & Initialize::GuessFormatBySignature) != 0;
-	const bool useExtension = (g_dwFlags & Initialize::GuessFormatByExtension) != 0;
-
-	// If both methods are enabled, prefer signature but use extension as hint
-	if (useSignature)
-	{
-		Format *format = GuessFormatBySignature(path, useExtension ? path : nullptr);
-		if (format)
-			return format;
-		// If signature detection failed but extension is enabled, fall back to it
-		if (useExtension)
-			return GuessFormatByExtension(path);
-	}
-	else if (useExtension)
-	{
-		// Only extension-based detection
-		return GuessFormatByExtension(path);
-	}
-
-	// Neither method enabled
-	return nullptr;
+	if (g_dwFlags & Initialize::GuessFormatBySignature)
+		return GuessFormatBySignature(path, g_dwFlags & Initialize::GuessFormatByExtension ? path : 0);
+	return GuessFormatByExtension(path);
 }
 
 /**
- * @brief Figure out which archiver dll to use for a given archive by extension only.
+ * @brief Figure out which archiver dll to use for a given archive.
  */
 Merge7z::Format *Merge7z::GuessFormatByExtension(LPCTSTR path)
 {
 	SZ_EXTENSION ext;
 	if (PathIsDirectory(path))
 		return 0;
-
-	LPCSTR extension = GetExtension(path, ext);
-	if (!extension)
-		return nullptr;
-
-	// Search for format matching extension
-	Format7zDLL::Interface *pFormat = Format7zDLL::Interface::head;
-	while (pFormat)
-	{
-		static const char aBlank[] = " ";
-		LPCSTR pchExtension = pFormat->proxy.extension;
-		int cchExtension;
-		while ((cchExtension = StrCSpnA(pchExtension += StrSpnA(pchExtension, aBlank), aBlank)) != 0)
-		{
-			if (StrIsIntlEqualA(FALSE, pchExtension, extension, cchExtension) && extension[cchExtension] == '\0')
-			{
-				return pFormat;
-			}
-			pchExtension += cchExtension;
-		}
-		pFormat = pFormat->next;
-	}
-	return nullptr;
+	return GuessFormatEx(GetExtension(path, ext), 0, 0);
 }
 
 /**
- * @brief Figure out which archiver dll to use for a given archive by signature.
- * Always uses signature-based detection regardless of g_dwFlags settings.
+ * @brief Figure out which archiver dll to use for a given archive.
  */
-Merge7z::Format* Merge7z::GuessFormatBySignature(LPCTSTR path, LPCTSTR extension)
+Merge7z::Format *Merge7z::GuessFormatBySignature(LPCTSTR path, LPCTSTR extension)
 {
+	SZ_EXTENSION ext;
+	CH_SIGNATURE sig;
 	if (PathIsDirectory(path))
 		return 0;
-
-	// Read file signature
-	CH_SIGNATURE sig;
-	int cchSig = GetSignature(path, sig);
-
-	if (cchSig == 0)
-		return nullptr;
-
-	// Get extension
-	SZ_EXTENSION ext;
-	LPCSTR ext_str = GetExtension(extension ? extension : path, ext);
-
-	// Delegate to GuessFormatEx with pre-read signature
-	return GuessFormatEx(ext_str, sig, cchSig);
+	return GuessFormatEx(GetExtension(extension, ext), sig, GetSignature(path, sig));
 }
 
 /**
@@ -952,7 +896,6 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 	}
 
 	// Use 7-Zip's IsArc functions to check signatures
-	Format7zDLL::Interface* needMoreCandidate = nullptr;
 	for (int i = 0; i < candidateCount; i++)
 	{
 		pFormat = candidates[i];
@@ -968,10 +911,6 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 				UInt32 result = isArc((const Byte*)sig, (size_t)cchSig);
 				if (result == k_IsArc_Res_YES)
 					return pFormat;
-				// NEED_MORE means the header is ambiguous (e.g. SFX/stubbed archives);
-				// keep the first such candidate as a fallback.
-				if (result == k_IsArc_Res_NEED_MORE && needMoreCandidate == nullptr)
-					needMoreCandidate = pFormat;
 			}
 		}
 		catch (Complain*)
@@ -979,10 +918,6 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 			// Ignore unsupported/problematic formats while probing.
 		}
 	}
-
-	// No definitive match; use the NEED_MORE candidate (ambiguous header) if available.
-	if (needMoreCandidate)
-		return needMoreCandidate;
 
 	// No signature match found
 	return nullptr;
