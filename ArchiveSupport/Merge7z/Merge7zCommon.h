@@ -18,7 +18,13 @@
 #include "Merge7z.h"
 
 typedef char SZ_EXTENSION[8];
-typedef char CH_SIGNATURE[512]; //MAX(4 + IMAGE_SIZEOF_FILE_HEADER, 512)
+typedef char CH_SIGNATURE[1024];
+
+// IsArc function type and result codes
+typedef UInt32 (WINAPI *Func_IsArc)(const Byte *p, size_t size);
+#define k_IsArc_Res_NO   0
+#define k_IsArc_Res_YES  1
+#define k_IsArc_Res_NEED_MORE 2
 
 using namespace NWindows;
 
@@ -41,6 +47,7 @@ struct Format7zDLL::Proxy
 	const char *extension;
 	STDMETHODIMP CreateObject(const GUID *clsID, const GUID *interfaceID, void **outObject);
 	STDMETHODIMP GetHandlerProperty(PROPID propID, PROPVARIANT *value);
+	STDMETHODIMP GetIsArc(UINT32 formatIndex, Func_IsArc* isArc);
 	static struct Handle
 	{
 		const char *aModule;
@@ -58,6 +65,11 @@ struct Format7zDLL::Proxy
 		{
 			const char *aGetNumberOfFormats;
 			HRESULT(STDAPICALLTYPE*GetNumberOfFormats)(UINT32 *numFormats);
+		};
+		union
+		{
+			const char *aGetIsArc;
+			HRESULT(STDAPICALLTYPE*GetIsArc)(UINT32 formatIndex, Func_IsArc *isArc);
 		};
 		HMODULE handle;
 		operator HMODULE() { return handle; }
