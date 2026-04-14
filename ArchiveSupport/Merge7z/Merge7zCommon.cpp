@@ -939,12 +939,20 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 
 		// Get IsArc function for this format
 		Func_IsArc isArc = nullptr;
-		if (SUCCEEDED(pFormat->proxy->GetIsArc(pFormat->proxy.formatIndex, &isArc)) && isArc)
+		try
 		{
-			// Call IsArc with the file signature
-			UInt32 result = isArc((const Byte*)sig, (size_t)cchSig);
-			if (result == k_IsArc_Res_YES)
-				return pFormat;
+			Format7zDLL::Proxy* pr = pFormat->proxy.operator->();
+			if (SUCCEEDED(pr->GetIsArc(pr->formatIndex, &isArc)) && isArc)
+			{
+				// Call IsArc with the file signature
+				UInt32 result = isArc((const Byte*)sig, (size_t)cchSig);
+				if (result == k_IsArc_Res_YES)
+					return pFormat;
+			}
+		}
+		catch (Complain*)
+		{
+			// Ignore unsupported/problematic formats while probing.
 		}
 	}
 
