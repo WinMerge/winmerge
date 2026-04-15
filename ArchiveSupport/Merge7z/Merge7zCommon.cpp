@@ -733,11 +733,18 @@ DEFINE_FORMAT(CXzHandler,		0C, "xz");
 DEFINE_FORMAT(CPpmdHandler,		0D, "");
 DEFINE_FORMAT(CZstdHandler,		0E,  "zst tzst");
 
-DEFINE_FORMAT(CCOFFHandler	,	C6, "");
+DEFINE_FORMAT(CLvmHandler,		BF, "");
+DEFINE_FORMAT(CAvbHandler,		C0, "");
+DEFINE_FORMAT(CLpHandler,		C1, "");
+DEFINE_FORMAT(CSparseHandler,	C2, "");
+DEFINE_FORMAT(CApFsHandler,		C3, "");
+DEFINE_FORMAT(CVhdxHandler,		C4, "");
+DEFINE_FORMAT(CBase64Handler,	C5, "");
+DEFINE_FORMAT(CCOFFHandler,		C6, "");
 DEFINE_FORMAT(CExtHandler,		C7, "");
-DEFINE_FORMAT(CVMDKHandler	,	C8, "");
+DEFINE_FORMAT(CVMDKHandler,		C8, "");
 DEFINE_FORMAT(CVDIHandler,		C9, "");
-DEFINE_FORMAT(CQcowHandler	,	CA, "");
+DEFINE_FORMAT(CQcowHandler,		CA, "");
 DEFINE_FORMAT(CGPTHandler,		CB, "");
 DEFINE_FORMAT(CRar5Handler,		CC, "rar");
 DEFINE_FORMAT(CIHEXHandler,		CD, "");
@@ -759,7 +766,7 @@ DEFINE_FORMAT(CVhdHandler,		DC, "");
 DEFINE_FORMAT(CPeHandler,		DD, "");
 DEFINE_FORMAT(CElfHandler,		DE, "elf");
 DEFINE_FORMAT(CMachOHandler,	DF, "");
-DEFINE_FORMAT(CUdfHandler	,	E0, "udf");
+DEFINE_FORMAT(CUdfHandler,		E0, "udf");
 DEFINE_FORMAT(CXarHandler,		E1, "xar pkg");
 DEFINE_FORMAT(CMubHandler,		E2, "mub");
 DEFINE_FORMAT(CHfsHandler,		E3, "hfs");
@@ -818,6 +825,108 @@ Merge7z::Format *Merge7z::GuessFormatBySignature(LPCTSTR path, LPCTSTR extension
 	if (PathIsDirectory(path))
 		return 0;
 	return GuessFormatEx(GetExtension(extension, ext), sig, GetSignature(path, sig));
+}
+
+/**
+ * @brief Check signature manually using 7-Zip's signature properties when IsArc is not available.
+ */
+static bool CheckSignatureManually(Format7zDLL::Proxy* proxy, LPCH sig, int cchSig)
+{
+	if (!sig || cchSig <= 0)
+		return false;
+
+	// Get signature offset
+	UInt32 sigOffset = 0;
+	PROPVARIANT offsetValue;
+	PropVariantInit(&offsetValue);
+	if (SUCCEEDED(proxy->GetHandlerProperty(NArchive::NHandlerPropID::kSignatureOffset, &offsetValue)) &&
+		offsetValue.vt == VT_UI4)
+	{
+		sigOffset = offsetValue.ulVal;
+	}
+	VariantClear((VARIANT *)&offsetValue);
+
+	// Try kSignature first (single signature)
+	PROPVARIANT value;
+	PropVariantInit(&value);
+	proxy->GetHandlerProperty(NArchive::NHandlerPropID::kSignature, &value);
+
+	bool isMultiSignature = false;
+	// If kSignature is not available, try kMultiSignature
+	if (value.vt != VT_BSTR || !value.bstrVal)
+	{
+		VariantClear((VARIANT *)&value);
+		PropVariantInit(&value);
+		proxy->GetHandlerProperty(NArchive::NHandlerPropID::kMultiSignature, &value);
+		isMultiSignature = true;
+	}
+
+	bool matched = false;
+	if (value.vt == VT_BSTR && value.bstrVal)
+	{
+		UInt32 totalSize = SysStringByteLen(value.bstrVal);
+		const BYTE *pchSignature = (const BYTE *)value.bstrVal;
+
+		if (isMultiSignature)
+		{
+			// Multi-signature format: [length1][signature1][length2][signature2]...
+			// Each signature is prefixed with 1 byte indicating its length
+			UInt32 pos = 0;
+
+			while (pos < totalSize)
+			{
+				// Read signature length (1 byte)
+				UInt32 sigLen = pchSignature[pos++];
+
+				if (pos + sigLen > totalSize)
+					break; // Invalid format
+
+				// Check this signature
+				if (cchSig >= (int)(sigOffset + sigLen))
+				{
+					bool signatureMatch = true;
+					for (UInt32 j = 0; j < sigLen; j++)
+					{
+						if ((BYTE)sig[sigOffset + j] != pchSignature[pos + j])
+						{
+							signatureMatch = false;
+							break;
+						}
+					}
+
+					if (signatureMatch)
+					{
+						matched = true;
+						break;
+					}
+				}
+
+				pos += sigLen; // Move to next signature
+			}
+		}
+		else
+		{
+			// Single signature
+			if (cchSig >= (int)(sigOffset + totalSize))
+			{
+				bool signatureMatch = true;
+				for (UInt32 j = 0; j < totalSize; j++)
+				{
+					if ((BYTE)sig[sigOffset + j] != pchSignature[j])
+					{
+						signatureMatch = false;
+						break;
+					}
+				}
+
+				if (signatureMatch)
+					matched = true;
+			}
+		}
+	}
+
+	VariantClear((VARIANT *)&value);
+	return matched;
 }
 
 /**
@@ -909,7 +1018,17 @@ Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 			{
 				// Call IsArc with the file signature
 				UInt32 result = isArc((const Byte*)sig, (size_t)cchSig);
-				if (result == k_IsArc_Res_YES)
+				if (result == k_IsArc_Res_YES ||
+					(i < extensionMatches && cchSig == sizeof(CH_SIGNATURE) && result == k_IsArc_Res_NEED_MORE))
+					return pFormat;
+			}
+			else
+			{
+				// IsArc function not available, fall back to manual signature checking
+				if (CheckSignatureManually(pr, sig, cchSig))
+					return pFormat;
+				// If no signature or signature doesn't match, return format if extension matches
+				else if (i < extensionMatches)
 					return pFormat;
 			}
 		}
