@@ -196,7 +196,8 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 		if (pFormat == nullptr && !paths::IsURL(path2))
 		{
 			auto* infoUnpacker = Merge7zFormatMergePluginImpl::GetPackingInfo();
-			if (infoUnpacker != nullptr && (!infoUnpacker->GetPluginPipeline().empty() && infoUnpacker->GetPluginPipeline() != _T("<Automatic>")))
+			const auto& pluginPipeline = infoUnpacker->GetPluginPipeline();
+			if (!pluginPipeline.empty() && pluginPipeline != _T("<Automatic>"))
 				return nullptr;
 			pFormat = m_Merge7z->GuessFormat(path2.c_str());
 		}
