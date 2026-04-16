@@ -95,6 +95,7 @@ DATE:		BY:					DESCRIPTION:
 #include "paths.h"
 #include "Environment.h"
 #include "Merge7zFormatRegister.h"
+#include "Merge7zFormatMergePluginImpl.h"
 #include "Logger.h"
 
 #ifdef _DEBUG
@@ -191,18 +192,18 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 
 	try
 	{
-		Merge7z::Format* pFormat = nullptr;
-		if (!paths::IsURL(path2))
+		Merge7z::Format* pFormat = Merge7zFormatRegister::GuessFormat(path2);
+		if (pFormat == nullptr && !paths::IsURL(path2))
+		{
+			auto* infoUnpacker = Merge7zFormatMergePluginImpl::GetPackingInfo();
+			if (infoUnpacker != nullptr && (!infoUnpacker->GetPluginPipeline().empty() && infoUnpacker->GetPluginPipeline() != _T("<Automatic>")))
+				return nullptr;
 			pFormat = m_Merge7z->GuessFormat(path2.c_str());
-		if (pFormat == nullptr)
-			pFormat = Merge7zFormatRegister::GuessFormat(path2);
+		}
 		return pFormat;
 	}
 	catch (...)
 	{
-		Merge7z::Format *pFormat = Merge7zFormatRegister::GuessFormat(path2);
-		if (pFormat != nullptr)
-			return pFormat;
 		throw;
 	}
 }
