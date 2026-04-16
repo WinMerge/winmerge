@@ -190,23 +190,16 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 	}*/
 	// Default to Merge7z*.dll
 
-	try
+	Merge7z::Format* pFormat = Merge7zFormatRegister::GuessFormat(path2);
+	if (pFormat == nullptr && !paths::IsURL(path2))
 	{
-		Merge7z::Format* pFormat = Merge7zFormatRegister::GuessFormat(path2);
-		if (pFormat == nullptr && !paths::IsURL(path2))
-		{
-			auto* infoUnpacker = Merge7zFormatMergePluginImpl::GetPackingInfo();
-			const auto& pluginPipeline = infoUnpacker->GetPluginPipeline();
-			if (!pluginPipeline.empty() && pluginPipeline != _T("<Automatic>"))
-				return nullptr;
-			pFormat = m_Merge7z->GuessFormat(path2.c_str());
-		}
-		return pFormat;
+		auto* infoUnpacker = Merge7zFormatMergePluginImpl::GetPackingInfo();
+		const auto& pluginPipeline = infoUnpacker->GetPluginPipeline();
+		if (!pluginPipeline.empty() && pluginPipeline != _T("<Automatic>") && pluginPipeline != _("<Automatic>"))
+			return nullptr;
+		pFormat = m_Merge7z->GuessFormat(path2.c_str());
 	}
-	catch (...)
-	{
-		throw;
-	}
+	return pFormat;
 }
 
 /**
