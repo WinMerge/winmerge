@@ -718,18 +718,18 @@ STDMETHODIMP Format7zDLL::Proxy::GetIsArc(UINT32 formatIndex, Func_IsArc* isArc)
 		}; \
 		Format7zDLL::Interface name = PROXY_##name;
 
-DEFINE_FORMAT(CZipHandler,		01, "zip jar war ear xpi");
-DEFINE_FORMAT(CBZip2Handler,	02, "bz2 tbz2");
+DEFINE_FORMAT(CZipHandler,		01, "zip jar war ear xpi apk");
+DEFINE_FORMAT(CBZip2Handler,	02, "bz2 tbz2 tbz");
 DEFINE_FORMAT(CRarHandler,		03, "rar");
 DEFINE_FORMAT(CArjHandler,		04, "arj");
-DEFINE_FORMAT(CZHandler,		05, "z");
+DEFINE_FORMAT(CZHandler,		05, "z taz");
 DEFINE_FORMAT(CLzhHandler,		06, "lzh lha");//"@-l" doesn't work because signature starts at offset 2
 DEFINE_FORMAT(CFormat7z,		07, "7z");
 DEFINE_FORMAT(CCabHandler,		08, "cab");
 DEFINE_FORMAT(CNsisHandler,		09, "");
 DEFINE_FORMAT(CLzmaHandler,		0A, "lzma");
 DEFINE_FORMAT(CLzma86Handler,	0B, "lzma86");
-DEFINE_FORMAT(CXzHandler,		0C, "xz");
+DEFINE_FORMAT(CXzHandler,		0C, "xz txz");
 DEFINE_FORMAT(CPpmdHandler,		0D, "");
 DEFINE_FORMAT(CZstdHandler,		0E,  "zst tzst");
 
