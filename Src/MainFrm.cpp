@@ -806,7 +806,7 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
-	const OpenFileParams* pOpenParams /*= nullptr*/)
+	const OpenParams* pOpenParams /*= nullptr*/)
 {
 	if (sReportFile.empty() && CompareFilesIfFilesAreLarge(pDirDoc, nFiles, ifileloc))
 		return false;
@@ -877,7 +877,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, IDirDoc* pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
-	const OpenFileParams* pOpenParams /*= nullptr*/)
+	const OpenParams* pOpenParams /*= nullptr*/)
 {
 	switch (nID)
 	{
@@ -1185,8 +1185,7 @@ bool CMainFrame::ShowTextMergeDoc(IDirDoc* pDirDoc, int nBuffers, const String t
 bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
-	const OpenFolderParams* pOpenParams /*= nullptr*/, CTempPathContext *pTempPathContext /*= nullptr*/,
-	std::optional<bool> bRecurse /*= false*/)
+	const OpenFolderParams* pOpenParams /*= nullptr*/, CTempPathContext *pTempPathContext /*= nullptr*/)
 {
 	const bool bOldArchiveEnable = GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE);
 	const bool bOldArchiveProbeType = GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE);
@@ -1211,8 +1210,8 @@ bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fi
 	std::array<bool, 3> bRO = GetROFromFlags(nFiles, dwFlags);
 
 	// Determine recursion setting
-	bool bRecurse2 = pOpenParams && bRecurse.has_value() 
-		? *bRecurse 
+	bool bRecurse2 = (pOpenParams && pOpenParams->m_bRecurse.has_value())
+		? *pOpenParams->m_bRecurse 
 		: GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
 	// Decompress archives if needed and pTempPathContext is not provided
@@ -1368,7 +1367,7 @@ void CMainFrame::OnOptions()
 static void AppendComparisonCommandLineParams(
 	String& params,
 	UINT nID,
-	const CMainFrame::OpenFileParams* pOpenParams,
+	const CMainFrame::OpenParams* pOpenParams,
 	const PackingInfo* infoUnpacker,
 	const PrediffingInfo* infoPrediffer)
 {
@@ -1439,7 +1438,7 @@ static bool AddToRecentDocs(const PathContext& paths,
 	const unsigned flags[], const String desc[],
 	std::optional<bool> recurse, const String& filter,
 	const PackingInfo *infoUnpacker, const PrediffingInfo *infoPrediffer,
-	UINT nID, const CMainFrame::OpenFileParams *pOpenParams,
+	UINT nID, const CMainFrame::OpenParams *pOpenParams,
 	bool isSelfCompare = false)
 {
 	ASSERT(paths.GetSize() <= 3);
@@ -1532,17 +1531,17 @@ static bool AddToRecentDocs(const PathContext& paths,
  * @param [in] pszRight Right-side path.
  * @param [in] dwLeftFlags Left-side flags.
  * @param [in] dwRightFlags Right-side flags.
- * @param [in] bRecurse Do we run recursive (folder) compare?
  * @param [in] pDirDoc Dir compare document to use.
  * @param [in] infoUnpacker Unpacker plugin name.
  * @param [in] infoPrediffer Prediffer plugin name.
+ * @param [in] pOpenParams File/folder open parameters (bRecurse is in OpenFolderParams).
  * @return `true` if opening files and compare succeeded, `false` otherwise.
  */
 bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	const fileopenflags_t dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/,
-	std::optional<bool> bRecurse /*= false*/, IDirDoc* pDirDoc/*= nullptr*/,
+	IDirDoc* pDirDoc/*= nullptr*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	UINT nID /*= 0*/, const OpenFileParams *pOpenParams /*= nullptr*/)
+	UINT nID /*= 0*/, const OpenParams *pOpenParams /*= nullptr*/)
 {
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
@@ -1562,6 +1561,12 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		bRO[1] = (dwFlags[1] & FFILEOPEN_READONLY) != 0;
 		bRO[2] = (dwFlags[2] & FFILEOPEN_READONLY) != 0;
 	};
+
+	// Get bRecurse from OpenFolderParams if available, otherwise use default
+	std::optional<bool> bRecurse;
+	const auto* pOpenFolderParams = dynamic_cast<const OpenFolderParams*>(pOpenParams);
+	if (pOpenFolderParams)
+		bRecurse = pOpenFolderParams->m_bRecurse;
 
 	bool bRecurse2 = bRecurse.has_value() ? *bRecurse : GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
@@ -1687,7 +1692,7 @@ bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles,
 	const fileopenflags_t dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/,
 	const String& sReportFile /*= _T("")*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	const OpenFileParams *pOpenParams /*= nullptr*/)
+	const OpenParams *pOpenParams /*= nullptr*/)
 {
 	ASSERT(pFiles != nullptr);
 	FileLocation fileloc[3];
@@ -2076,7 +2081,8 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 		}
 	}
 
-	DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, _T(""), recurse);
+	CMainFrame::OpenFolderParams openFolderParams(recurse);
+	DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, _T(""), nullptr, nullptr, nullptr, 0, &openFolderParams);
 }
 
 void CMainFrame::OnPluginUnpackMode(UINT nID )
@@ -2231,7 +2237,7 @@ void CMainFrame::OnSaveConfigData()
 bool CMainFrame::DoFileNew(UINT nID, int nPanes,
 	const fileopenflags_t dwFlags[], const String strDesc[],
 	const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	const OpenFileParams *pOpenParams)
+	const OpenParams *pOpenParams)
 {
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
@@ -2277,7 +2283,7 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes,
 	for (auto& f : newFolders)
 		m_tempFolders.push_back(f);
 
-	return DoFileOrFolderOpen(&paths, dwFlags2, strDesc2, _T(""), GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS));
+	return DoFileOrFolderOpen(&paths, dwFlags2, strDesc2);
 }
 
 /**
@@ -3132,7 +3138,7 @@ void CMainFrame::OnFileOpenClipboard()
 
 bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const fileopenflags_t dwFlags[] /*= nullptr*/,
 	const String strDesc[] /*= nullptr*/, const PackingInfo* infoUnpacker /*= nullptr*/,
-	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
+	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenParams* pOpenParams /*= nullptr*/)
 {
 	auto historyItems = ClipboardHistory::GetItems(nBuffers);
 
@@ -3229,7 +3235,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			PathContext tmpPathContext(revFile, workFile);
-			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2, L"", false, nullptr, nullptr, nullptr, 0, &openParams);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
 		else
 		{
@@ -3239,7 +3245,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
 			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", false, nullptr, nullptr, nullptr, 0, &openParams);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
 	}
 	else
@@ -3251,7 +3257,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 
 bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDesc[] /*= nullptr*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	const OpenFileParams *pOpenParams /*= nullptr*/)
+	const OpenParams *pOpenParams /*= nullptr*/)
 {
 	String ext = paths::FindExtension(file);
 	auto wTemp = std::make_shared<TempFile>(TempFile());

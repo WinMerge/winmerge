@@ -975,20 +975,13 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			strDesc[2] = cmdInfo.m_sRightDesc;
 		}
 
-		std::unique_ptr<CMainFrame::OpenFileParams> pOpenParams;
-		if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TEXT)
-			pOpenParams.reset(new CMainFrame::OpenTextFileParams());
-		else if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TABLE)
-			pOpenParams.reset(new CMainFrame::OpenTableFileParams());
-		else
-			pOpenParams.reset(static_cast<CMainFrame::OpenTableFileParams *>(new CMainFrame::OpenAutoFileParams()));
+		std::unique_ptr<CMainFrame::OpenParams> pOpenParams(new CMainFrame::OpenAutoParams());
 		if (auto* pOpenTextFileParams = dynamic_cast<CMainFrame::OpenTextFileParams*>(pOpenParams.get()))
 		{
 			pOpenTextFileParams->m_line = cmdInfo.m_nLineIndex;
 			pOpenTextFileParams->m_char = cmdInfo.m_nCharIndex;
 			pOpenTextFileParams->m_fileExt = cmdInfo.m_sFileExt;
 			pOpenTextFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
-
 		}
 		if (auto* pOpenTableFileParams = dynamic_cast<CMainFrame::OpenTableFileParams*>(pOpenParams.get()))
 		{
@@ -1004,6 +997,10 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		{
 			pOpenImageFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
 		}
+		if (auto* pOpenFolderFileParams = dynamic_cast<CMainFrame::OpenFolderParams*>(pOpenParams.get()))
+		{
+			pOpenFolderFileParams->m_bRecurse = cmdInfo.m_bRecurse;
+		}
 		if (cmdInfo.m_Files.GetSize() > 2)
 		{
 			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
@@ -1011,14 +1008,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
-				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
+				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
 				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
-				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
+				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
 				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
@@ -1047,7 +1044,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
-					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
+					dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
 					infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 			}
 		}
@@ -1521,16 +1518,15 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		std::unique_ptr<CMainFrame::OpenFolderParams> pOpenFolderParams;
 		if ((Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::HiddenItems)) && projItem.HasHiddenItems())
-		{
-			pOpenFolderParams = std::make_unique<CMainFrame::OpenFolderParams>();
-			pOpenFolderParams->m_hiddenItems = projItem.GetHiddenItems();
-		}
+			pOpenFolderParams = std::make_unique<CMainFrame::OpenFolderParams>(bRecursive, projItem.GetHiddenItems());
+		else
+			pOpenFolderParams = std::make_unique<CMainFrame::OpenFolderParams>(bRecursive);
 
-		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, strDesc, sReportFile, bRecursive,
+		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, strDesc, sReportFile,
 			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), nID,
 			nID == ID_MERGE_COMPARE_TABLE ?
-				static_cast<CMainFrame::OpenFileParams*>(pOpenTableFileParams.get()) :
-				static_cast<CMainFrame::OpenFileParams*>(pOpenFolderParams.get()));
+				static_cast<CMainFrame::OpenParams*>(pOpenTableFileParams.get()) :
+				static_cast<CMainFrame::OpenParams*>(pOpenFolderParams.get()));
 	}
 
 	AddToRecentProjectsMRU(sProject.c_str());
