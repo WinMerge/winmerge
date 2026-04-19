@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-04-04 16:50-0300\n"
+"PO-Revision-Date: 2026-04-19 10:10-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -522,7 +522,7 @@ msgstr "Página da &Web"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1172
 msgid "&Folder"
-msgstr ""
+msgstr "Pasta"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1102,7 +1102,7 @@ msgstr "Reco&mparar Como"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1185
 msgid "A&rchive"
-msgstr ""
+msgstr "A&rquivo Compactado"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -7718,7 +7718,7 @@ msgstr "Nova Comparação de Páginas da Web"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5326
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Nova Comparação de Pastas"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5327
