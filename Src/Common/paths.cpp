@@ -400,8 +400,8 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveF
 	PATH_EXISTENCE p2 = DoesPathExist(paths[1], IsArchiveFile);
 	if (p1 != p2)
 	{
-		p1 = DoesPathExist(paths[0]);
-		p2 = DoesPathExist(paths[1]);
+		p1 = DoesPathExist(paths[0], IsArchiveFile);
+		p2 = DoesPathExist(paths[1], IsArchiveFile);
 		if (p1 != p2)
 			return DOES_NOT_EXIST;
 	}
@@ -409,9 +409,9 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveF
 	PATH_EXISTENCE p3 = DoesPathExist(paths[2], IsArchiveFile);
 	if (p2 != p3)
 	{
-		p1 = DoesPathExist(paths[0]);
-		p2 = DoesPathExist(paths[1]);
-		p3 = DoesPathExist(paths[2]);
+		p1 = DoesPathExist(paths[0], IsArchiveFile);
+		p2 = DoesPathExist(paths[1], IsArchiveFile);
+		p3 = DoesPathExist(paths[2], IsArchiveFile);
 		if (p1 != p2 || p2 != p3)
 			return DOES_NOT_EXIST;
 	}
