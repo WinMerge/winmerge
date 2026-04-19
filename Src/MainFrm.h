@@ -94,7 +94,7 @@ public:
 		OpenFolderParams() = default;
 		explicit OpenFolderParams(bool bRecurse) : m_bRecurse(bRecurse) {}
 		OpenFolderParams(bool bRecurse, const std::vector<String>& hiddenItems) 
-			: m_bRecurse(bRecurse), m_hiddenItems(hiddenItems) {}
+			: m_hiddenItems(hiddenItems), m_bRecurse(bRecurse) {}
 		virtual ~OpenFolderParams() {}
 		std::vector<String> m_hiddenItems;
 		std::optional<bool> m_bRecurse;
