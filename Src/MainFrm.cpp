@@ -1436,7 +1436,7 @@ static void AppendComparisonCommandLineParams(
 
 static bool AddToRecentDocs(const PathContext& paths,
 	const unsigned flags[], const String desc[],
-	std::optional<bool> recurse, const String& filter,
+	const String& filter,
 	const PackingInfo *infoUnpacker, const PrediffingInfo *infoPrediffer,
 	UINT nID, const CMainFrame::OpenParams *pOpenParams,
 	bool isSelfCompare = false)
@@ -1501,8 +1501,9 @@ static bool AddToRecentDocs(const PathContext& paths,
 			if (nIndex < paths.GetSize() - 1)
 				title += _T(" - ");
 		}
-		if (recurse.has_value())
-			params += *recurse ? _T("/r ") : _T("/r- ");
+		auto pOpenFolderParams = dynamic_cast<const CMainFrame::OpenFolderParams*>(pOpenParams);
+		if (pOpenFolderParams && pOpenFolderParams->m_bRecurse.has_value())
+			params += *pOpenFolderParams->m_bRecurse ? _T("/r ") : _T("/r- ");
 		if (!filter.empty())
 		{
 			String filter2 = filter;
@@ -1682,7 +1683,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	{
 		String filter = (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR) ?
 			theApp.GetGlobalFileFilter()->GetMaskOrExpression() : _T("");
-		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, bRecurse, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
+		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
 	}
 
 	return true;
@@ -1701,7 +1702,7 @@ bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles,
 	bool result = ShowMergeDoc(nID, nullptr, pFiles->GetSize(), fileloc,
 		dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, pOpenParams);
 	if (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU))
-		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, false, _T(""), infoUnpacker, infoPrediffer, nID, pOpenParams);
+		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer, nID, pOpenParams);
 	return result;
 }
 
@@ -3298,7 +3299,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 
 	// Register in MRU using AddToRecentDocs with single-file PathContext in self-compare mode
 	if (result)
-		AddToRecentDocs(PathContext(file), (unsigned *)dwFlags, strDesc, {}, _T(""), infoUnpacker, infoPrediffer, nID, pOpenParams, true);
+		AddToRecentDocs(PathContext(file), (unsigned *)dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer, nID, pOpenParams, true);
 
 	return result;
 }
