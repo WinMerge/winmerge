@@ -732,4 +732,13 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	return res;
 }
 
+void Merge7zInit()
+{
+	m_Merge7z = {
+		{ 0, 0, DllBuild_Merge7z, },
+		"Merge7z\\Merge7z.dll",
+		"Merge7z",
+		nullptr
+	};
+}
 

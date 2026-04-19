@@ -17,6 +17,7 @@
 #if !defined(__cppcheck__)
 #include <boost/range/mfc.hpp>
 #endif
+#include "ScopeExit.h"
 #include "Constants.h"
 #include "Merge.h"
 #include "FileFilterHelper.h"
@@ -1187,6 +1188,20 @@ bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fi
 	const OpenFolderParams* pOpenParams /*= nullptr*/, CTempPathContext *pTempPathContext /*= nullptr*/,
 	std::optional<bool> bRecurse /*= false*/)
 {
+	const bool bOldArchiveEnable = GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE);
+	const bool bOldArchiveProbeType = GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE);
+
+	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, true);
+	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, true);
+	Merge7zInit();
+
+	auto guard = make_scope_exit([&bOldArchiveEnable, &bOldArchiveProbeType]() {
+			GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, bOldArchiveEnable);
+			GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, bOldArchiveProbeType);
+		});
+
+	Merge7zFormatMergePluginScope scope(infoUnpacker);
+
 	// Convert FileLocation array to PathContext
 	PathContext paths;
 	for (int i = 0; i < nFiles; ++i)

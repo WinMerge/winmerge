@@ -987,6 +987,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClInclude Include="Common\ScopeExit.h" />
     <ClInclude Include="Common\ValidatingEdit.h" />
     <ClInclude Include="FileFilterHelperMenu.h" />
     <ClInclude Include="DirFilterBar.h" />
