@@ -545,9 +545,9 @@ msgstr ""
 msgid "&Webpage"
 msgstr ""
 
-#. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
+#. IDR_POPUP_NEW, ID_FILE_NEW_FOLDER
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
-#: Merge.rc:608 Merge.rc:660 Merge.rc:947 Merge.rc:1172 Merge.rc:1185
+#: Merge.rc:608 Merge.rc:1172
 msgid "&Folder"
 msgstr ""
 
@@ -1214,6 +1214,11 @@ msgstr ""
 #: Merge.rc:653
 #, c-format
 msgid "Reco&mpare As"
+msgstr ""
+
+#. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
+#: Merge.rc:660 Merge.rc:947 Merge.rc:1185
+msgid "A&rchive"
 msgstr ""
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO

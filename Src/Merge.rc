@@ -657,7 +657,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
             MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
-            MENUITEM "&Folder",                     ID_MERGE_COMPARE_FOLDER
+            MENUITEM "A&rchive",                    ID_MERGE_COMPARE_FOLDER
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -944,7 +944,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
             MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
-            MENUITEM "&Folder",                     ID_MERGE_COMPARE_FOLDER
+            MENUITEM "A&rchive",                    ID_MERGE_COMPARE_FOLDER
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -1182,7 +1182,7 @@ BEGIN
         MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
         MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
-        MENUITEM "&Folder",                     ID_MERGE_COMPARE_FOLDER
+        MENUITEM "A&rchive",                    ID_MERGE_COMPARE_FOLDER
     END
 END
 

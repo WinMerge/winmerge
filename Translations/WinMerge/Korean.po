@@ -556,9 +556,9 @@ msgstr "이미지(&I)"
 msgid "&Webpage"
 msgstr "웹페이지(&W)"
 
-#. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
+#. IDR_POPUP_NEW, ID_FILE_NEW_FOLDER
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
-#: Merge.rc:608 Merge.rc:660 Merge.rc:947 Merge.rc:1172 Merge.rc:1185
+#: Merge.rc:608 Merge.rc:1172
 msgid "&Folder"
 msgstr ""
 
@@ -1226,6 +1226,11 @@ msgstr "다시 불러오기(&D)\tCtrl+F5"
 #, c-format
 msgid "Reco&mpare As"
 msgstr "다시 비교(&M)"
+
+#. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
+#: Merge.rc:660 Merge.rc:947 Merge.rc:1185
+msgid "A&rchive"
+msgstr ""
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
