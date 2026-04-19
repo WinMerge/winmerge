@@ -2822,7 +2822,7 @@ void CMergeDoc::OnOpenWithUnpacker()
 	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -nID;
 
 	if (GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-		GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID))
+		nullptr, &infoUnpacker, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 
@@ -3079,7 +3079,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 
 	if (GetMainFrame()->DoFileOrFolderOpen(&m_filePaths, dwFlags, strDesc, _T(""),
-	    GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID))
+		nullptr, &infoUnpacker, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 

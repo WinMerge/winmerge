@@ -1489,10 +1489,13 @@ void CDirView::OpenParentDirectory(CDirDoc *pDocOpen)
 		pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
 		[[fallthrough]];
 	case AllowUpwardDirectory::ParentIsRegularPath: 
-		fileopenflags_t dwFlags[3];
-		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
-			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
-		GetMainFrame()->DoFileOrFolderOpen(&pathsParent, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDocOpen);
+		{
+			fileopenflags_t dwFlags[3];
+			for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
+				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
+			CMainFrame::OpenFolderParams openFolderParams(GetDiffContext().m_bRecursive);
+			GetMainFrame()->DoFileOrFolderOpen(&pathsParent, dwFlags, nullptr, _T(""), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDocOpen, nullptr, nullptr, 0, &openFolderParams);
+		}
 		[[fallthrough]];
 	case AllowUpwardDirectory::No:
 		break;
@@ -1585,13 +1588,15 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive,
-			((GetAsyncKeyState(VK_CONTROL) & 0x8000) || GetDiffContext().m_bRecursive) ? nullptr : pDoc);
+		CMainFrame::OpenFolderParams openFolderParams(GetDiffContext().m_bRecursive);
+		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, nullptr, _T(""),
+			((GetAsyncKeyState(VK_CONTROL) & 0x8000) || GetDiffContext().m_bRecursive) ? nullptr : pDoc, nullptr, nullptr, 0, &openFolderParams);
 	}
 	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, nullptr, infoUnpacker, nullptr);
+		CMainFrame::OpenFolderParams openFolderParams(GetDiffContext().m_bRecursive);
+		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, nullptr, _T(""), nullptr, infoUnpacker, nullptr, 0, &openFolderParams);
 	}
 	else
 	{
@@ -1859,8 +1864,9 @@ void CDirView::OpenSelectionAs(int sel1, int sel2, int sel3, UINT id)
 	{
 		PackingInfo infoUnpackerAlt(
 				CMainFrame::GetPluginPipelineByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		CMainFrame::OpenFolderParams openFolderParams(ctxt.m_bRecursive);
 		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-			ctxt.m_bRecursive, nullptr, &infoUnpackerAlt, infoPrediffer, 0);
+			nullptr, &infoUnpackerAlt, infoPrediffer, 0, &openFolderParams);
 	}
 	else
 	{

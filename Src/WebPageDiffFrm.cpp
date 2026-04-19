@@ -767,7 +767,7 @@ void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 
 	CloseNow();
 	GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-		GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID);
+		nullptr, &infoUnpacker, nullptr, nID);
 }
 
 void CWebPageDiffFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
@@ -1493,7 +1493,8 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 				fileopenflags_t dwFlags[3]{};
 				for (int pane = 0; pane < paths.GetSize(); ++pane)
 					dwFlags[pane] = FFILEOPEN_NOMRU;
-				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), true);
+				CMainFrame::OpenFolderParams openFolderParams(true);
+				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), nullptr, nullptr, nullptr, 0, &openFolderParams);
 				return S_OK;
 			}));
 }
