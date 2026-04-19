@@ -199,10 +199,10 @@ void CVersionInfo::GetVersionInfo()
 	DWORD dwVerInfoSize = ::GetFileVersionInfoSize(szFileName, &dwVerHnd);
 	if (dwVerInfoSize)
 	{
-		m_bVersionFound = true;
 		m_pVffInfo.reset(new BYTE[dwVerInfoSize]);
 		if (::GetFileVersionInfo(szFileName, 0, dwVerInfoSize, m_pVffInfo.get()))
 		{
+			m_bVersionFound = true;
 			GetFixedVersionInfo();
 			if (!m_bVersionOnly)
 				QueryStrings();
