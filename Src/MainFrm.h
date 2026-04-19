@@ -89,7 +89,7 @@ public:
 		virtual ~OpenParams() {}
 	};
 
-	struct OpenFolderParams : public OpenParams
+	struct OpenFolderParams : virtual public OpenParams
 	{
 		OpenFolderParams() = default;
 		explicit OpenFolderParams(bool bRecurse) : m_bRecurse(bRecurse) {}
@@ -100,7 +100,7 @@ public:
 		std::vector<String> m_hiddenItems;
 	};
 
-	struct OpenTextFileParams : public OpenParams
+	struct OpenTextFileParams : virtual public OpenParams
 	{
 		virtual ~OpenTextFileParams() {}
 		int m_line = -1;
@@ -117,14 +117,14 @@ public:
 		std::optional<bool> m_tableAllowNewlinesInQuotes;
 	};
 
-	struct OpenBinaryFileParams : public OpenParams
+	struct OpenBinaryFileParams : virtual public OpenParams
 	{
 		virtual ~OpenBinaryFileParams() {}
 		int m_address = -1;
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	};
 
-	struct OpenImageFileParams : public OpenParams
+	struct OpenImageFileParams : virtual public OpenParams
 	{
 		virtual ~OpenImageFileParams() {}
 		int m_x = -1;
@@ -132,13 +132,14 @@ public:
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	};
 
-	struct OpenWebPageParams : public OpenParams
+	struct OpenWebPageParams : virtual public OpenParams
 	{
 		virtual ~OpenWebPageParams() {}
 	};
 
 	struct OpenAutoParams : public OpenTableFileParams, public OpenBinaryFileParams, public OpenImageFileParams, public OpenWebPageParams, public OpenFolderParams
 	{
+		OpenAutoParams() = default;
 		virtual ~OpenAutoParams() {}
 	};
 

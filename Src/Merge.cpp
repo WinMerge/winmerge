@@ -973,20 +973,13 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			strDesc[2] = cmdInfo.m_sRightDesc;
 		}
 
-		std::unique_ptr<CMainFrame::OpenParams> pOpenParams;
-		if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TEXT)
-			pOpenParams.reset(new CMainFrame::OpenTextFileParams());
-		else if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TABLE)
-			pOpenParams.reset(new CMainFrame::OpenTableFileParams());
-		else
-			pOpenParams.reset(static_cast<CMainFrame::OpenTableFileParams *>(new CMainFrame::OpenAutoParams()));
+		std::unique_ptr<CMainFrame::OpenParams> pOpenParams(new CMainFrame::OpenAutoParams());
 		if (auto* pOpenTextFileParams = dynamic_cast<CMainFrame::OpenTextFileParams*>(pOpenParams.get()))
 		{
 			pOpenTextFileParams->m_line = cmdInfo.m_nLineIndex;
 			pOpenTextFileParams->m_char = cmdInfo.m_nCharIndex;
 			pOpenTextFileParams->m_fileExt = cmdInfo.m_sFileExt;
 			pOpenTextFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
-
 		}
 		if (auto* pOpenTableFileParams = dynamic_cast<CMainFrame::OpenTableFileParams*>(pOpenParams.get()))
 		{
