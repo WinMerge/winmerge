@@ -1192,7 +1192,7 @@ bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fi
 
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, true);
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, true);
-	Merge7zInit();
+	Merge7zInitFlags();
 
 	auto guard = make_scope_exit([&bOldArchiveEnable, &bOldArchiveProbeType]() {
 			GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, bOldArchiveEnable);

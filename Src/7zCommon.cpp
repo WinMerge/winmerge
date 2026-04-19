@@ -732,13 +732,16 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	return res;
 }
 
-void Merge7zInit()
+void Merge7zInitFlags()
 {
-	m_Merge7z = {
-		{ 0, 0, DllBuild_Merge7z, },
-		"Merge7z\\Merge7z.dll",
-		"Merge7z",
-		nullptr
-	};
+	if (m_Merge7z.Merge7z[0])
+		return;
+	LANGID wLangID = (LANGID)GetThreadLocale();
+	DWORD flags = Merge7z::Initialize::Default | Merge7z::Initialize::Local7z | (wLangID << 16);
+	if (GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE))
+	{
+		flags |= Merge7z::Initialize::GuessFormatBySignature | Merge7z::Initialize::GuessFormatByExtension;
+	}
+	((interface Merge7z*)m_Merge7z.Merge7z[1])->Initialize(flags);
 }
 
