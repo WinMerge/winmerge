@@ -1453,7 +1453,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	// Get bRecurse from OpenFolderParams if available, otherwise use default
 	std::optional<bool> bRecurse;
 	const auto* pOpenFolderParams = dynamic_cast<const OpenFolderParams*>(pOpenParams);
-	if (pOpenFolderParams && pOpenFolderParams->m_bRecurse.has_value())
+	if (pOpenFolderParams)
 		bRecurse = pOpenFolderParams->m_bRecurse;
 
 	bool bRecurse2 = bRecurse.has_value() ? *bRecurse : GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
