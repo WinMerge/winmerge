@@ -46,6 +46,9 @@ void OpenFileOrUrl(const tchar_t * szFile, const tchar_t * szUrl)
 void OpenParentFolder(const tchar_t * szFile)
 {
 	String param = _T("/select,\"") + String(szFile) + _T("\"");
+	// Add extra quotes if filename contains spaces
+	if (param.find(_T(' ')) != String::npos)
+		param = _T("\"") + param + _T("\"");
 	ShellExecute(nullptr, _T("open"), _T("explorer.exe"), param.c_str(), nullptr, SW_SHOWNORMAL);
 }
 
