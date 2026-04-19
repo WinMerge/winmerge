@@ -255,7 +255,7 @@ de l'option « N'autoriser qu'une seule instance à s'exécuter ».</para>
 
     <varlistentry>
       <indexterm>
-        <primary>liste MRU</primary>
+        <primary>Liste MRU</primary>
       </indexterm>
 
       <term><option>/ul</option></term>

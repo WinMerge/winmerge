@@ -66,8 +66,7 @@ gestion de versions (VCS). Cette section décrit cette intégration.</para>
 
       <para>Lorsque vous comparez des fichiers dans TortoiseCVS, TortoiseSVN ou
 TortoiseGit, vous pouvez demander au VCS de lancer WinMerge. Certaines
-intégrations peuvent être configurées lors de l'<link
-linkend="Installing_usinginstaller">installation de WinMerge</link>.</para>
+intégrations peuvent être configurées lors de l'installation de WinMerge.</para>
 
       <example>
         <title>Intégration TortoiseSVN</title>

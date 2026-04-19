@@ -370,11 +370,11 @@ souhaité.</para>
 fenêtre de comparaison de fichiers de WinMerge n'a pas de volet de résultat
 distinct, contrairement à certains outils de fusion. La stratégie la plus
 simple consiste donc à enregistrer vos modifications dans un, deux ou trois
-fichiers sources. Appuyez sur <keycombo> <keycap>Ctrl</keycap>
-<keycap>S</keycap> </keycombo> à tout moment pour enregistrer les
-modifications actuelles dans tous les fichiers ; alternativement, cliquez
-sur <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à
-gauche</guimenuitem> </menuchoice>, <menuchoice> <guimenu>Fichier</guimenu>
+fichiers sources. Appuyez sur <keycap>Ctrl</keycap> + <keycap>S</keycap> à
+tout moment pour enregistrer les modifications actuelles dans tous les
+fichiers ; alternativement, cliquez sur <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à gauche</guimenuitem>
+</menuchoice>, <menuchoice> <guimenu>Fichier</guimenu>
 <guimenuitem>Enregistrer au milieu</guimenuitem> </menuchoice> ou
 <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à
 droite</guimenuitem> </menuchoice> pour n'enregistrer qu'un seul fichier.</para>

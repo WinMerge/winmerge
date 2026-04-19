@@ -445,8 +445,8 @@ précédents utilisent les espaces pour séparer les mots et les caractères.</p
               <para>Dans certains cas, il est utile de couper à la ponctuation. Par exemple, la
 capture d'écran suivante compare une liste séparée par des virgules. Pour
 mettre en évidence les différences de lignes significatives, nous avons
-activé <option>Couper aux espaces ou à la ponctuation</option> dans la page
-Éditeur de la boîte de dialogue Options.</para>
+activé l'option <option>Couper aux espaces ou à la ponctuation</option> dans
+la page Éditeur de la boîte de dialogue Options.</para>
 
               <mediaobject>
 <imageobject> <imagedata contentwidth="494"
@@ -776,8 +776,8 @@ fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
 ligne de la différence actuelle par une paire de petits triangles de chaque
 côté des barres verticales. Si vous naviguez vers une autre différence, le
 pointeur se déplace vers le haut ou vers le bas avec l'emplacement. Le fait
-de faire défiler le volet Fichier ne modifie pas l'emplacement du pointeur
-de différence (ni aucune des lignes de différence) dans le volet
+que vous fassiez défiler le volet Fichier ne change pas l'emplacement du
+pointeur de différence (ni aucune des lignes de différence) dans le volet
 d'emplacement.</para>
           </listitem>
         </varlistentry>

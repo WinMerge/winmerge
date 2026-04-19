@@ -260,31 +260,31 @@ Réel, Horodatage, Chaîne, Contenu de fichier, Tableau (Array), ou
         <title>Directives</title>
 
         <para>
-Filter expressions support directives that control how the expression is
-evaluated.  Directives are specified at the beginning of the expression,
-prefixed with <literal>@</literal>, and separated from the expression by
-whitespace.</para>
+Les expressions de filtre prennent en charge des directives qui contrôlent
+la manière dont l'expression est évaluée. Les directives sont spécifiées au
+début de l'expression, préfixées par <literal>@</literal>, et séparées de
+l'expression par un espace.</para>
 
         <section id="FilterExpression_CaseSensitivity">
-          <title>Case Sensitivity Directives</title>
+          <title>Directives de sensibilité à la casse</title>
 
           <para>
-By default, all string comparison operators (<literal>=</literal>,
-<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
-<literal>&gt;</literal>, <literal>&gt;=</literal>,
+Par défaut, tous les opérateurs de comparaison de chaînes
+(<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>,
+<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
 <literal>contains</literal>, <literal>recontains</literal>,
-<literal>like</literal>, <literal>matches</literal>)  are
-case-insensitive. You can control this behavior using the following
-directives:</para>
+<literal>like</literal>, <literal>matches</literal>) sont insensibles à la
+casse. Vous pouvez contrôler ce comportement en utilisant les directives
+suivantes :</para>
 
           <variablelist>
             <varlistentry>
               <term><literal>@cs</literal>, <literal>@casesensitive</literal></term>
               <listitem>
                 <para>
-Enable case-sensitive comparison. With these directives,
-<literal>"ABC"</literal> and <literal>"abc"</literal> are considered
-different.</para>
+Active la comparaison sensible à la casse. Avec ces directives,
+<literal>"ABC"</literal> et <literal>"abc"</literal> sont considérés comme
+différents.</para>
               </listitem>
             </varlistentry>
 
@@ -292,35 +292,37 @@ different.</para>
               <term><literal>@ci</literal>, <literal>@caseinsensitive</literal></term>
               <listitem>
                 <para>
-Enable case-insensitive comparison (default behavior). With these
-directives, <literal>"ABC"</literal> and <literal>"abc"</literal> are
-considered identical.</para>
+Active la comparaison insensible à la casse (comportement par défaut). Avec
+ces directives, <literal>"ABC"</literal> et <literal>"abc"</literal> sont
+considérés comme identiques.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
           <example>
-            <title>Case Sensitivity Examples</title>
-<programlisting>@cs Name = "README.txt"           ## Case-sensitive: matches only "README.txt"
-@ci Name = "readme.txt"           ## Case-insensitive: matches "README.txt", "readme.txt", "ReadMe.TXT", etc.
-@casesensitive Extension = "TXT"  ## Case-sensitive: matches only files with ".TXT" extension
-@caseinsensitive Content contains "error"  ## Case-insensitive: matches "Error", "ERROR", "error", etc.</programlisting></example>
+            <title>Exemples de sensibilité à la casse</title>
+<programlisting>@cs Name = "README.txt"           ## Sensible à la casse : correspond uniquement à "README.txt"
+@ci Name = "readme.txt"           ## Insensible à la casse : correspond à "README.txt", "readme.txt", "ReadMe.TXT", etc.
+@casesensitive Extension = "TXT"  ## Sensible à la casse : correspond uniquement aux fichiers avec l'extension ".TXT"
+@caseinsensitive Content contains "error"  ## Insensible à la casse : correspond à "Error", "ERROR", "error", etc.</programlisting></example>
         </section>
 
         <section id="FilterExpression_Optimize">
-          <title>Optimization Directives</title>
+          <title>Directives d'optimisation</title>
 
           <para>
-By default, filter expressions are optimized to improve performance. You can
-control this behavior using the following directives:</para>
+Par défaut, les expressions de filtre sont optimisées pour améliorer les
+performances. Vous pouvez contrôler ce comportement en utilisant les
+directives suivantes :</para>
 
           <variablelist>
             <varlistentry>
               <term><literal>@optimize</literal>, <literal>@opt</literal></term>
               <listitem>
                 <para>
-Enable filter expression optimization (default behavior). This may improve
-performance for complex expressions.</para>
+Active l'optimisation des expressions de filtre (comportement par
+défaut). Cela peut améliorer les performances pour les expressions
+complexes.</para>
               </listitem>
             </varlistentry>
 
@@ -328,55 +330,56 @@ performance for complex expressions.</para>
               <term><literal>@nooptimize</literal>, <literal>@noopt</literal></term>
               <listitem>
                 <para>
-Disable filter expression optimization. This is useful for debugging or when
-optimization causes unexpected results.</para>
+Désactive l'optimisation des expressions de filtre. C'est utile pour le
+débogage ou lorsque l'optimisation provoque des résultats inattendus.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
           <example>
-            <title>Optimization Examples</title>
-<programlisting>@optimize Size &gt; 10MB and Extension = "log"     ## Enable optimization (default)
-@noopt Name matches "complex[0-9]+pattern"    ## Disable optimization for debugging
-@nooptimize Content contains "special-case"   ## Disable optimization</programlisting></example>
+            <title>Exemples d'optimisation</title>
+<programlisting>@optimize Size &gt; 10MB and Extension = "log"     ## Active l'optimisation (par défaut)
+@noopt Name matches "complex[0-9]+pattern"    ## Désactive l'optimisation pour le débogage
+@nooptimize Content contains "special-case"   ## Désactive l'optimisation</programlisting></example>
         </section>
 
         <section id="FilterExpression_Name">
-          <title>Name Directive</title>
+          <title>Directive Name</title>
 
           <para>
-The <literal>@name</literal> directive allows you to assign a descriptive
-name to a filter expression.  This name is intended for use in error
-messages and logs to help identify which filter expression caused an issue.</para>
+La directive <literal>@name</literal> vous permet d'attribuer un nom
+descriptif à une expression de filtre. Ce nom est destiné à être utilisé
+dans les messages d'erreur et les journaux pour aider à identifier
+l'expression de filtre qui a causé un problème.</para>
 
           <variablelist>
             <varlistentry>
               <term><literal>@name="Filter Name"</literal>, <literal>@name=FilterName</literal></term>
               <listitem>
                 <para>
-Assigns a name to the filter expression. If the name contains spaces or
-special characters, it must be enclosed in double quotes. Names without
-spaces can be specified without quotes.</para>
+Attribue un nom à l'expression de filtre. Si le nom contient des espaces ou
+des caractères spéciaux, il doit être entouré de guillemets doubles. Les
+noms sans espaces peuvent être spécifiés sans guillemets.</para>
                 <para>
-The specified name will be used in error messages and diagnostic output to
-identify the filter.  This is particularly useful when working with multiple
-complex filter expressions.</para>
+Le nom spécifié sera utilisé dans les messages d'erreur et les sorties de
+diagnostic pour identifier le filtre. C'est particulièrement utile lors de
+l'utilisation de multiples expressions de filtre complexes.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
           <example>
-            <title>Name Directive Examples</title>
-<programlisting>@name="Large Image Files" Size &gt; 10MB and Extension = "png"
-@name=SmallTextFiles Size &lt; 1KB and Extension = "txt"
-@name="Modified Today" Date &gt;= today()
-@name="Test Filter" @cs Name like "test_*.cpp"</programlisting></example>
+            <title>Exemples de la directive Name</title>
+<programlisting>@name="Gros fichiers images" Size &gt; 10MB and Extension = "png"
+@name=PetitsFichiersTexte Size &lt; 1KB and Extension = "txt"
+@name="Modifié aujourd'hui" Date &gt;= today()
+@name="Filtre de test" @cs Name like "test_*.cpp"</programlisting></example>
 
           <note>
             <para>
-The <literal>@name</literal> directive can be combined with other
-directives.  When multiple directives are used, they should all appear at
-the beginning of the expression, separated by whitespace.</para>
+La directive <literal>@name</literal> peut être combinée avec d'autres
+directives. Lorsque plusieurs directives sont utilisées, elles doivent
+toutes apparaître au début de l'expression, séparées par un espace.</para>
           </note>
         </section>
       </section>
@@ -426,8 +429,8 @@ base</para></listitem>
               <term><varname>RelPath</varname></term>
               <listitem><para>Renvoie le chemin relatif à partir du répertoire racine de comparaison,
 incluant le chemin du dossier et le nom du fichier. Par exemple, si la
-comparaison porte sur « C:\Project » et que le fichier se trouve dans
-« C:\Project\src\main.cpp », RelPath renvoie « src\main.cpp ».</para></listitem>
+comparaison porte sur « C:\Project » et que le fichier se trouve dans «
+C:\Project\src\main.cpp », RelPath renvoie « src\main.cpp ».</para></listitem>
             </varlistentry>
             <varlistentry>
               <term><varname>FullPath</varname></term>
@@ -587,26 +590,27 @@ Valeur de propriété du fichier du côté gauche. Exemple :
         </section>
 
         <section>
-          <title>Display Filters Only Attributes</title>
+          <title>Attributs pour les filtres d'affichage uniquement</title>
           <para>
-The following attributes are designed for use in <emphasis
-role="bold">Display filters only</emphasis> (specified via
-<guilabel>e:</guilabel>, <guilabel>e!:</guilabel>, <guilabel>fe:</guilabel>,
-<guilabel>fe!:</guilabel>, <guilabel>de:</guilabel>, or
-<guilabel>de!:</guilabel> prefixes in the Filter field).  They should not be
-used in file filter (<filename>.flt</filename>) include/exclude rules, as
-they require the comparison to be completed first and may lead to unexpected
-behavior.</para>
+Les attributs suivants sont conçus pour être utilisés dans les <emphasis
+role="bold">filtres d'affichage uniquement</emphasis> (spécifiés via les
+préfixes <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>,
+<guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>,
+<guilabel>de:</guilabel>, ou <guilabel>de!:</guilabel> dans le champ
+Filtre). Ils ne doivent pas être utilisés dans les règles
+d'inclusion/exclusion des filtres de fichiers (<filename>.flt</filename>),
+car ils nécessitent que la comparaison soit d'abord terminée et peuvent
+conduire à un comportement inattendu.</para>
 
           <variablelist>
             <varlistentry>
               <term><varname>Identical</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison result indicates the items
-are identical, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Identical</literal> to show only identical files.</para>
+Renvoie <literal>true</literal> si le résultat de la comparaison indique que
+les éléments sont identiques, <literal>false</literal> sinon. Il s'agit d'un
+attribut global (ne prend pas en charge les préfixes de côté). Exemple :
+<literal>Identical</literal> pour n'afficher que les fichiers identiques.</para>
               </listitem>
             </varlistentry>
 
@@ -614,10 +618,10 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Different</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison result indicates the items
-are different, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Different</literal> to show only different files.</para>
+Renvoie <literal>true</literal> si le résultat de la comparaison indique que
+les éléments sont différents, <literal>false</literal> sinon. Il s'agit d'un
+attribut global (ne prend pas en charge les préfixes de côté). Exemple :
+<literal>Different</literal> pour n'afficher que les fichiers différents.</para>
               </listitem>
             </varlistentry>
 
@@ -625,10 +629,11 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Skipped</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison was skipped due to an
-error or filter rule, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Skipped</literal> to show only skipped items.</para>
+Renvoie <literal>true</literal> si la comparaison a été ignorée en raison
+d'une erreur ou d'une règle de filtrage, <literal>false</literal> sinon. Il
+s'agit d'un attribut global (ne prend pas en charge les préfixes de
+côté). Exemple : <literal>Skipped</literal> pour n'afficher que les éléments
+ignorés.</para>
               </listitem>
             </varlistentry>
 
@@ -636,12 +641,13 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Binary</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the file is detected as binary,
-<literal>false</literal> if it's text, or <literal>undefined</literal> if
-the file doesn't exist.  This attribute supports side-specific prefixes
-(e.g., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).
-Example: <literal>allof(Binary)</literal> to show files that are binary on
-all sides.</para>
+Renvoie <literal>true</literal> si le fichier est détecté comme binaire,
+<literal>false</literal> s'il s'agit de texte, ou
+<literal>undefined</literal> si le fichier n'existe pas. Cet attribut prend
+en charge les préfixes spécifiques au côté
+(ex. <literal>LeftBinary</literal>, <literal>RightBinary</literal>). Exemple
+: <literal>allof(Binary)</literal> pour afficher les fichiers qui sont
+binaires de tous les côtés.</para>
               </listitem>
             </varlistentry>
 
@@ -649,12 +655,12 @@ all sides.</para>
               <term><varname>DifferentLeftMiddle</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the left and middle files are different
-in a 3-way comparison, <literal>false</literal> otherwise.  Returns
-<literal>undefined</literal> in 2-way comparisons.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> to find
-files where only left differs from middle.</para>
+Renvoie <literal>true</literal> si les fichiers de gauche et du milieu sont
+différents dans une comparaison à 3 voies, <literal>false</literal>
+sinon. Renvoie <literal>undefined</literal> dans les comparaisons à 2
+voies. Il s'agit d'un attribut global. Exemple :
+<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> pour
+trouver les fichiers où seul le côté gauche diffère du milieu.</para>
               </listitem>
             </varlistentry>
 
@@ -662,12 +668,12 @@ files where only left differs from middle.</para>
               <term><varname>DifferentMiddleRight</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the middle and right files are different
-in a 3-way comparison, <literal>false</literal> otherwise.  Returns
-<literal>undefined</literal> in 2-way comparisons.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>DifferentMiddleRight</literal> to show files where middle and right
-differ.</para>
+Renvoie <literal>true</literal> si les fichiers du milieu et de droite sont
+différents dans une comparaison à 3 voies, <literal>false</literal>
+sinon. Renvoie <literal>undefined</literal> dans les comparaisons à 2
+voies. Il s'agit d'un attribut global. Exemple :
+<literal>DifferentMiddleRight</literal> pour afficher les fichiers où le
+milieu et la droite diffèrent.</para>
               </listitem>
             </varlistentry>
 
@@ -675,12 +681,12 @@ differ.</para>
               <term><varname>DifferentLeftRight</varname></term>
               <listitem>
                 <para>
-In 3-way comparisons, returns <literal>true</literal> if the left and right
-files are different, <literal>false</literal> otherwise.  In 2-way
-comparisons, returns <literal>true</literal> if both files exist and are
-different.  This is a global attribute (does not support side-specific
-prefixes).  Example: <literal>DifferentLeftRight</literal> to show files
-where left and right differ.</para>
+Dans les comparaisons à 3 voies, renvoie <literal>true</literal> si les
+fichiers de gauche et de droite sont différents, <literal>false</literal>
+sinon. Dans les comparaisons à 2 voies, renvoie <literal>true</literal> si
+les deux fichiers existent et sont différents. Il s'agit d'un attribut
+global. Exemple : <literal>DifferentLeftRight</literal> pour afficher les
+fichiers où la gauche et la droite diffèrent.</para>
               </listitem>
             </varlistentry>
 
@@ -688,12 +694,12 @@ where left and right differ.</para>
               <term><varname>Differences</varname></term>
               <listitem>
                 <para>
-Returns the number of text differences in the file comparison.  This
-attribute is only meaningful for text files that have been compared.  This
-is a global attribute (does not support side-specific prefixes).  Example:
-<literal>Differences &gt; 0</literal> to show files with differences, or
-<literal>Differences &gt; 10</literal> to show files with more than 10
-differences.</para>
+Renvoie le nombre de différences de texte dans la comparaison de
+fichiers. Cet attribut n'est significatif que pour les fichiers texte qui
+ont été comparés. Il s'agit d'un attribut global. Exemple :
+<literal>Differences &gt; 0</literal> pour afficher les fichiers présentant
+des différences, ou <literal>Differences &gt; 10</literal> pour les fichiers
+avec plus de 10 différences.</para>
               </listitem>
             </varlistentry>
 
@@ -701,13 +707,14 @@ differences.</para>
               <term><varname>IgnoredDiffs</varname></term>
               <listitem>
                 <para>
-Returns the number of ignored differences in the file comparison
-(differences filtered by line filters or whitespace settings).  This
-attribute is only meaningful for text files that have been compared.  This
-is a global attribute (does not support side-specific prefixes).  Example:
-<literal>IgnoredDiffs &gt; 0</literal> to show files with ignored
-differences, or <literal>Differences = 0 and IgnoredDiffs &gt; 0</literal>
-to show files that are identical except for ignored differences.</para>
+Renvoie le nombre de différences ignorées lors de la comparaison de fichiers
+(différences filtrées par les filtres de ligne ou les paramètres
+d'espaces). Cet attribut n'est significatif que pour les fichiers texte qui
+ont été comparés. Il s'agit d'un attribut global (ne prend pas en charge les
+préfixes de côté). Exemple : <literal>IgnoredDiffs &gt; 0</literal> pour
+afficher les fichiers avec des différences ignorées, ou <literal>Differences
+= 0 and IgnoredDiffs &gt; 0</literal> pour afficher les fichiers identiques
+à l'exception des différences ignorées.</para>
               </listitem>
             </varlistentry>
 
@@ -715,12 +722,12 @@ to show files that are identical except for ignored differences.</para>
               <term><varname>Unpacker</varname></term>
               <listitem>
                 <para>
-Returns the name of the unpacker plugin used for the file comparison, or an
-empty string if no unpacker was used.  This is a global attribute (does not
-support side-specific prefixes).  Example: <literal>Unpacker =
-"CompareMSExcelFiles"</literal> to show files compared using the Excel
-unpacker, or <literal>Unpacker != ""</literal> to show all files where an
-unpacker was used.</para>
+Renvoie le nom du plug-in de décompression utilisé pour la comparaison de
+fichiers, ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un
+attribut global. Exemple : <literal>Unpacker =
+"CompareMSExcelFiles"</literal> pour afficher les fichiers comparés via le
+décompresseur Excel, ou <literal>Unpacker != ""</literal> pour afficher tous
+les fichiers où un décompresseur a été utilisé.</para>
               </listitem>
             </varlistentry>
 
@@ -728,12 +735,12 @@ unpacker was used.</para>
               <term><varname>Prediffer</varname></term>
               <listitem>
                 <para>
-Returns the name of the prediffer plugin used for the file comparison, or an
-empty string if no prediffer was used.  This is a global attribute (does not
-support side-specific prefixes).  Example: <literal>Prediffer =
-"IgnoreColumns"</literal> to show files compared using the IgnoreColumns
-prediffer, or <literal>Prediffer != ""</literal> to show all files where a
-prediffer was used.</para>
+Renvoie le nom du plug-in prediffer utilisé pour la comparaison de fichiers,
+ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un attribut
+global. Exemple : <literal>Prediffer = "IgnoreColumns"</literal> pour
+afficher les fichiers comparés avec le prediffer IgnoreColumns, ou
+<literal>Prediffer != ""</literal> pour afficher tous les fichiers où un
+prediffer a été utilisé.</para>
               </listitem>
             </varlistentry>
 
@@ -741,12 +748,13 @@ prediffer was used.</para>
               <term><varname>Codepage</varname></term>
               <listitem>
                 <para>
-Returns the file's codepage (character encoding) as an integer value.  This
-attribute supports side-specific prefixes (e.g.,
-<literal>LeftCodepage</literal>, <literal>RightCodepage</literal>).
-Example: <literal>Codepage = 65001</literal> to show UTF-8 files, or
-<literal>allof(Codepage = 65001)</literal> to show files that are UTF-8 on
-all sides.</para>
+Renvoie la page de code du fichier (encodage des caractères) sous forme
+d'entier. Cet attribut prend en charge les préfixes spécifiques au côté
+(ex. <literal>LeftCodepage</literal>,
+<literal>RightCodepage</literal>). Exemple : <literal>Codepage =
+65001</literal> pour afficher les fichiers UTF-8, ou <literal>allof(Codepage
+= 65001)</literal> pour afficher les fichiers qui sont en UTF-8 de tous les
+côtés.</para>
               </listitem>
             </varlistentry>
 
@@ -754,11 +762,11 @@ all sides.</para>
               <term><varname>HasBOM</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the file has a Byte Order Mark (BOM),
-<literal>false</literal> otherwise.  This attribute supports side-specific
-prefixes (e.g., <literal>LeftHasBOM</literal>,
-<literal>RightHasBOM</literal>).  Example: <literal>HasBOM</literal> to show
-files with BOM, or <literal>not HasBOM</literal> to show files without BOM.</para>
+Renvoie <literal>true</literal> si le fichier possède une marque d'ordre des
+octets (BOM), <literal>false</literal> sinon. Cet attribut prend en charge
+les préfixes spécifiques au côté. Exemple : <literal>HasBOM</literal> pour
+afficher les fichiers avec BOM, ou <literal>not HasBOM</literal> pour
+afficher les fichiers sans BOM.</para>
               </listitem>
             </varlistentry>
 
@@ -850,13 +858,13 @@ n'importe quel élément est <literal>true</literal>.</para>
         <title>Opérateurs</title>
 
         <para>
-By default, all string comparison operators (such as <literal>=</literal>,
-<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
-<literal>&gt;</literal>, <literal>&gt;=</literal>, <literal>like</literal>,
-<literal>matches</literal>, <literal>contains</literal>, and
-<literal>recontains</literal>)  are case-insensitive. You can control this
-behavior using directives (see <xref
-linkend="FilterExpression_CaseSensitivity" />).</para>
+Par défaut, tous les opérateurs de comparaison de chaînes (tels que
+<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>,
+<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
+<literal>like</literal>, <literal>matches</literal>,
+<literal>contains</literal> et <literal>recontains</literal>) sont
+insensibles à la casse. Vous pouvez contrôler ce comportement à l'aide de
+directives (voir <xref linkend="FilterExpression_CaseSensitivity" />).</para>
 
         <variablelist>
           <varlistentry>
@@ -890,7 +898,7 @@ division. <literal>%</literal> est l'opérateur modulo (reste).</para>
           <varlistentry>
             <term><literal>like</literal></term>
             <listitem>
-              <para>Correspondance de chaîne avec caractères génériques (wildcards)</para>
+              <para>Correspondance de chaîne avec caractères génériques</para>
               <para>Vous pouvez également utiliser <literal>not like</literal> pour effectuer la
 correspondance inverse.</para>
             </listitem>
@@ -986,17 +994,17 @@ appliqués. Exemple : <literal>regexReplace(name, "^(\\w+)_(\\w+)$",
             <term><function>replaceWithList</function>(str, filepath)</term>
             <listitem>
               <para>
-Remplace plusieurs chaînes de caractères dans
-`<replaceable>str</replaceable>` en utilisant des règles de remplacement
-chargées depuis un fichier séparé par des tabulations. Le format du fichier
-est le suivant : une règle de remplacement par ligne :
-`<literal>search_string&lt;TAB&gt;replacement_string</literal>`. Les lignes
-commençant par `<literal>#</literal>` sont considérées comme des
-commentaires et ignorées. Les lignes vides sont également ignorées. Si
-`<replaceable>str</replaceable>` est un tableau, le résultat est un tableau
-de chaînes de caractères avec les remplacements appliqués.</para>
-              <para>Exemple de format de fichier :</para>
-              <screen># Ligne de commentaires
+Remplace plusieurs chaînes de caractères dans <replaceable>str</replaceable>
+en utilisant des règles de remplacement chargées depuis un fichier séparé
+par des tabulations. Le format du fichier est le suivant : une règle de
+remplacement par ligne :
+<literal>search_string&lt;TAB&gt;replacement_string</literal>. Les lignes
+commençant par <literal>#</literal> sont considérées comme des commentaires
+et ignorées. Les lignes vides sont également ignorées. Si
+<replaceable>str</replaceable> est un tableau, le résultat est un tableau de
+chaînes avec les remplacements appliqués.</para>
+              <para>Exemple de format de fichier :</para>
+              <screen># Ligne de commentaire
 pomme	orange
 chat	chien
 ancien	nouveau</screen>
@@ -1011,18 +1019,17 @@ applique les remplacements du fichier au nom du fichier</para></listitem>
             <term><function>regexReplaceWithList</function>(str, filepath)</term>
             <listitem>
               <para>
-Remplace les chaînes de caractères dans `<replaceable>str</replaceable>` à
-l'aide d'expressions régulières chargées depuis un fichier texte séparé par
-des tabulations. Le format du fichier est le suivant : une expression
-régulière par ligne :
-`<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>`. La chaîne
-de remplacement peut inclure des références arrière ($1, $2, etc.) vers des
-groupes capturés. Les lignes commençant par `<literal>#</literal>` sont
+Remplace les chaînes de caractères dans <replaceable>str</replaceable> à
+l'aide d'expressions régulières chargées depuis un fichier séparé par des
+tabulations. Le format du fichier est le suivant : une expression régulière
+par ligne :
+<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>. La chaîne de
+remplacement peut inclure des références arrière ($1, $2, etc.) vers des
+groupes capturés. Les lignes commençant par <literal>#</literal> sont
 considérées comme des commentaires et ignorées. Les lignes vides sont
-également ignorées. Si `<replaceable>str</replaceable>` est un tableau, le
-résultat est un tableau de chaînes de caractères avec les remplacements
-appliqués.</para>
-              <para>Exemple de format de fichier :</para>
+également ignorées. Si <replaceable>str</replaceable> est un tableau, le
+résultat est un tableau de chaînes avec les remplacements appliqués.</para>
+              <para>Exemple de format de fichier :</para>
               <screen># Ligne de commentaire
 \d+	NOMBRE
 (\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen>
@@ -1075,7 +1082,7 @@ renvoie <literal>"HELLO WORLD"</literal></para>
               <para>
 Convertit les caractères de pleine chasse (full-width) en caractères de
 demi-chasse (half-width). Principalement utilisé pour convertir les
-caractères alphanumériques et katakana de pleine chasse. Si
+caractères alphanumériques et katakana de pleine chasse en demi-chasse. Si
 <replaceable>str</replaceable> est un tableau, le résultat est un tableau de
 chaînes converties.</para>
             </listitem>
@@ -1087,8 +1094,9 @@ chaînes converties.</para>
               <para>
 Convertit les caractères de demi-chasse en caractères de pleine
 chasse. Principalement utilisé pour convertir les caractères alphanumériques
-et katakana de demi-chasse. Si <replaceable>str</replaceable> est un
-tableau, le résultat est un tableau de chaînes converties.</para>
+et katakana de demi-chasse en pleine chasse. Si
+<replaceable>str</replaceable> est un tableau, le résultat est un tableau de
+chaînes converties.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -1164,14 +1172,14 @@ un tableau d'horodatages, le résultat est un tableau de chaînes.</para></listi
           </varlistentry>
           <varlistentry>
             <term><function>abs</function>(<replaceable>value</replaceable>)</term>
-            <listitem><para>Renvoie la valeur absolue de l'<emphasis>entier ou du tableau
-d'entiers</emphasis>. Si <replaceable>value</replaceable> est un tableau
-d'entiers, le résultat est un tableau d'entiers.</para></listitem>
+            <listitem><para>Renvoie la valeur absolue de l'entier ou du tableau d'entiers. Si
+<replaceable>value</replaceable> est un tableau d'entiers, le résultat est
+un tableau d'entiers.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>allof</function>(<replaceable>booleans</replaceable>)</term>
-            <listitem><para>Renvoie <literal>true</literal> si tous les éléments du <emphasis>tableau de
-booléens</emphasis> satisfont à la condition.</para></listitem>
+            <listitem><para>Renvoie <literal>true</literal> si tous les éléments du tableau de booléens
+satisfont à la condition.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>allequal</function>(<replaceable>array</replaceable>)</term>
@@ -1297,11 +1305,11 @@ vérifie si l'un des fichiers est compris entre 100 Ko et 10 Mo</para></listitem
 <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
             <listitem>
               <para>
-Sélectionne une valeur parmi les arguments en fonction de
-l'<replaceable>index</replaceable>. Si l'<replaceable>index</replaceable>
-est 0, renvoie <replaceable>value0</replaceable> ; s'il est 1, renvoie
-<replaceable>value1</replaceable>, etc. Les indices négatifs sont ramenés à
-0. Les indices au-delà de la dernière valeur renvoient la dernière valeur.</para>
+Sélectionne une valeur parmi les arguments en fonction de l'index. Si
+l'index est 0, renvoie <replaceable>value0</replaceable> ; s'il est 1,
+renvoie <replaceable>value1</replaceable>, etc. Les indices négatifs sont
+ramenés à 0. Les indices au-delà de la dernière valeur renvoient la dernière
+valeur.</para>
               <para>Exemples :</para>
               <itemizedlist>
                 <listitem><para><literal>choose(0, "first", "second", "third")</literal> - renvoie "first"</para></listitem>
@@ -1425,15 +1433,15 @@ Fichiers avec extensions de 'a' à 'm' et taille inférieure à 1 Mo</para></lis
 fichier insensible à la casse</para></listitem>
           <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - Correspondance après
 conversion pleine chasse en demi-chasse</para></listitem>
-          <listitem><para><literal>Different</literal> - Show only files/folders that are different
-(Display filter only)</para></listitem>
-          <listitem><para><literal>Identical</literal> - Show only files/folders that are identical
-(Display filter only)</para></listitem>
-          <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all
-sides (Display filter only)</para></listitem>
-          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - In
-3-way comparison, show files where only left-middle pair differs (Display
-filter only)</para></listitem>
+          <listitem><para><literal>Different</literal> - Afficher uniquement les fichiers/dossiers qui
+sont différents (filtre d'affichage uniquement)</para></listitem>
+          <listitem><para><literal>Identical</literal> - Afficher uniquement les fichiers/dossiers qui
+sont identiques (filtre d'affichage uniquement)</para></listitem>
+          <listitem><para><literal>allof(Binary)</literal> - Afficher uniquement les fichiers qui sont
+binaires de tous les côtés (filtre d'affichage uniquement)</para></listitem>
+          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - Dans
+une comparaison à 3 voies, afficher les fichiers où seule la paire
+gauche-milieu diffère (filtre d'affichage uniquement)</para></listitem>
         </itemizedlist>
       </section>
     </section>
@@ -1552,7 +1560,7 @@ déjà chargé dans le champ <guilabel>Filtre</guilabel>.</para>
             </listitem>
 
             <listitem>
-              <para>Procédez à l'opération de comparaison. Le fichier présent dans le champ
+              <para>Procédez à l'opération de comparaison. Le filtre présent dans le champ
 <guilabel>Filtre</guilabel> est appliqué au démarrage de l'opération.</para>
             </listitem>
           </orderedlist>
@@ -1595,901 +1603,4 @@ dossiers depuis la ligne de commande WinMerge, utilisez le drapeau
     </section>
 
     <section id="Filters_FileFilterSyntax">
-      <title>Syntaxe des filtres de fichiers<indexterm>
-          <primary>règles</primary>
-
-          <secondary>filtre de fichier</secondary>
-        </indexterm><indexterm>
-          <primary>filtres de fichiers</primary>
-
-          <secondary>syntaxe</secondary>
-        </indexterm></title>
-
-      <para>Cette section décrit la syntaxe des filtres de fichiers de WinMerge et
-fournit des directives pour les rédiger.</para>
-
-      <para>Le délimiteur de commentaire est <code>##</code>. Après un délimiteur de
-commentaire, tous les caractères d'une ligne sont ignorés. WinMerge ignore
-la plupart des caractères d'espacement dans les règles. Cependant, un
-commentaire doit toujours être précédé d'un ou plusieurs caractères
-d'espacement (espace ou tabulation). Pour utiliser <code>##</code> comme
-caractères dans une règle, omettez le préfixe d'espace.</para>
-
-      <para>Les deux premières lignes requises d'un filtre de fichier sont :</para>
-
-      <variablelist>
-        <varlistentry>
-          <term>name</term>
-
-          <listitem>
-            <para>Le nom du filtre tel qu'il apparaît dans la boîte de dialogue Fichiers</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>def</term>
-
-          <listitem>
-            <para>Le type de filtrage à appliquer. Spécifiez l'une de ces valeurs :</para>
-
-            <variablelist>
-              <varlistentry>
-                <term>include</term>
-
-                <listitem>
-                  <para>Inclut tout, sauf les éléments correspondant à la règle spécifiée.</para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>exclude</term>
-
-                <listitem>
-                  <para>Exclut tout, sauf les éléments correspondant à la règle spécifiée.</para>
-
-                  <para>Lorsque vous choisissez la méthode d'exclusion (exclude), vous devez
-également ajouter une règle <guilabel>d</guilabel> (répertoire) qui spécifie
-les sous-dossiers. C'est généralement une bonne idée de spécifier tous les
-sous-dossiers, comme ceci :</para>
-
-                  <screen>d: \\*$ ## Subfolders</screen>
-                </listitem>
-              </varlistentry>
-            </variablelist>
-
-            <tip>
-              <para>Ne confondez pas ces termes. Rappelez-vous que, dans les filtres de
-fichiers, une règle <guilabel>include</guilabel> ne spécifie pas ce qu'il
-faut inclure, elle spécifie ce qu'il ne faut <emphasis>pas</emphasis>
-inclure. De même, <guilabel>exclude</guilabel> ne spécifie pas ce qu'il faut
-exclure, elle spécifie ce qu'il ne faut pas exclure.</para>
-            </tip>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <para>Ensuite, votre fichier doit contenir une ou plusieurs règles de
-filtrage. Vous pouvez ajouter autant de règles que vous le souhaitez. Il
-doit y avoir une règle par ligne, et chaque règle doit tenir sur une seule
-ligne (aucun saut de ligne n'est autorisé dans une règle). Une règle
-commence par un indicateur de type, suivi soit d'une expression régulière,
-soit d'une expression de filtre. Les indicateurs de type pris en charge sont
-:</para>
-
-      <variablelist>
-        <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Faire correspondre les noms de fichiers à l'aide d'expressions régulières</para></listitem></varlistentry>
-        <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Exclure les fichiers correspondant à la regex (Disponible depuis la 2.16.19)</para></listitem></varlistentry>
-        <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Faire correspondre les noms de dossiers à l'aide d'une regex</para></listitem></varlistentry>
-        <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Exclure les dossiers correspondant à la regex (Disponible depuis la 2.16.19)</para></listitem></varlistentry>
-        <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les fichiers (ex: fe:Size &lt; 1KB) (disponible
-depuis 2.16.49)</para></listitem></varlistentry>
-        <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des fichiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
-        <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
-        <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
-        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre appliquée aux fichiers et aux dossiers (par exemple :
-e:Name like "Common*.*") (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
-        <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre permettant d'exclure à la fois les fichiers et les
-dossiers (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
-      </variablelist>
-
-      <para>Parmi les nombreux caractères spéciaux de regex, les suivants sont
-particulièrement importants dans les règles de filtrage de fichiers
-:<indexterm>
-          <primary>expressions régulières</primary>
-
-          <secondary>caractères spéciaux dans les filtres</secondary>
-        </indexterm><indexterm>
-          <primary>expressions régulières</primary>
-
-          <secondary>dans les filtres de fichiers</secondary>
-        </indexterm></para>
-
-      <variablelist>
-        <varlistentry>
-          <term>^ (début de ligne)</term>
-
-          <listitem>
-            <para>Fréquemment requis pour que les règles fonctionnent correctement.</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>$ (fin de ligne)</term>
-
-          <listitem>
-            <para>Fréquemment requis pour que les règles fonctionnent correctement. Par
-exemple :</para>
-
-            <screen>\.c$ ## ne correspond qu'aux noms de fichiers ayant l'extension <filename>c</filename>.
-\.c  ## correspond à toute extension commençant par <filename>c</filename>, comme <filename>cpp</filename> et <filename>com</filename>.</screen>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>\ (échappement)</term>
-
-          <listitem>
-            <para>Force les caractères spéciaux à correspondre à des caractères normaux. Par
-exemple, pour faire correspondre un nom de dossier, faites précéder le
-délimiteur barre oblique inversée du dossier d'une barre oblique inversée
-(<code>\\</code>). Pour faire correspondre le point dans un nom de fichier,
-spécifiez une barre oblique inversée suivie d'un point (<code>\.</code>).</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <para>Aucun caractère spécial ni caractère générique n'est utilisé pour faire
-correspondre les noms de fichiers. Pour faire correspondre tous les noms de
-fichiers d'un certain type, omettez simplement le nom du fichier.</para>
-
-      <para>Les règles sont insensibles à la casse. Par exemple, <code>f: \.bat$</code>
-correspond à <filename>winmerge.bat</filename> et à
-<filename>compare.BAT</filename>.</para>
-
-      <example>
-        <title>Exemples de règles de filtrage de fichiers</title>
-
-        <para>Quelques règles de filtrage de fichiers simples :</para>
-
-<screen>f: \.cpp$ ## Correspond aux fichiers <filename>*.cpp</filename>
-f: \.h$ ## Correspond aux fichiers <filename>*.h</filename>
-f: ^My ## Correspond aux fichiers <filename>My*.*</filename>
-f: Dlg\. ## Correspond aux fichiers <filename>*Dlg.*</filename>
-d: \\test$ ## Correspond aux dossiers <filename>test</filename>
-d: ^\\Build$ ## Correspond aux dossiers <filename>Build</filename>
-d: Temp$ ## Correspond aux dossiers <filename>*Temp</filename> (par exemple, <filename>FirstTemp</filename>)
-d: Src ## Correspond aux dossiers <filename>*Src*</filename></screen><para>Quelques règles avec des expressions régulières plus complexes :</para>
-
-<screen format="linespecific">f: ^\.#.*$ ## fichiers <filename>.#nom_fichier.version</filename>
-f: Dlg\.c(pp)?$ ## fichiers <filename>*Dlg.c</filename> et <filename>*Dlg.cpp</filename>
-f: ^I.*\.h$ ## fichiers <filename>I*.h</filename>
-f: Srv[1-9]\.def$ ## fichiers <filename>*Srv1.def</filename> à <filename>*Srv9.def</filename>
-f: ^[h,k,m] ## fichiers <filename>h*.*</filename>, <filename>k*.*</filename>, et <filename>m*.*</filename></screen></example>
-    </section>
-  </section>
-
-  <section id="Filters_LineFilter">
-    <title>Utilisation des filtres de lignes<indexterm>
-        <primary>filtres</primary>
-
-        <secondary>ligne</secondary>
-      </indexterm><indexterm>
-        <primary>filtres</primary>
-
-        <secondary>dans les comparaisons de fichiers</secondary>
-      </indexterm></title>
-
-    <para>Dans une comparaison de fichiers, vous pouvez utiliser des filtres de lignes
-pour ignorer des lignes individuelles. Par exemple, vous pourriez utiliser
-des filtres de lignes pour ignorer les commentaires ou certains types de
-code généré, comme les horodatages des systèmes de contrôle de
-version. Chaque filtre de ligne est une règle, et vous pouvez appliquer
-n'importe quel nombre de filtres de lignes à une comparaison de fichiers.</para>
-
-    <para>Pour apprendre à ajouter, modifier et gérer les filtres, voir <xref
-linkend="Filters_dlg" />.</para>
-
-    <section id="Filters_LineFilterApply">
-      <title>Application des filtres de lignes</title>
-
-      <para>Vous pouvez appliquer des filtres de lignes en utilisant l'une de ces
-méthodes :</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>Lorsque vous lancez une comparaison de fichiers à partir de la boîte de
-dialogue Sélectionner des fichiers ou des dossiers</para>
-
-          <orderedlist>
-            <listitem>
-              <para>Après avoir choisi le <guilabel>1er</guilabel> et le <guilabel>2e</guilabel>
-fichiers, cliquez sur <guibutton>Sélectionner</guibutton> à côté du champ
-<guilabel>Filtre</guilabel>.</para>
-            </listitem>
-
-            <listitem>
-              <para>Dans la boîte de dialogue Filtres, utilisez l'onglet Filtres de lignes pour
-activer les filtres que vous souhaitez utiliser (le cas échéant), ou pour
-voir quels filtres sont actuellement activés.</para>
-
-              <note>
-                <para>Le champ <guilabel>Filtre</guilabel> n'indique pas quels filtres de lignes
-sont activés.</para>
-              </note>
-              <para></para>
-            </listitem>
-
-            <listitem>
-              <para>Poursuivez l'opération de comparaison de fichiers. Les filtres de lignes
-activés sont appliqués au démarrage de l'opération.</para>
-            </listitem>
-          </orderedlist>
-        </listitem>
-
-        <listitem>
-          <para>Après avoir déjà lancé une opération de comparaison de fichiers (par
-exemple, pour appliquer des filtres différents ou désactiver le filtrage) :</para>
-
-          <orderedlist>
-            <listitem>
-              <para>Cliquez sur <menuchoice> <guimenu>Outils</guimenu>
-<guimenuitem>Filtres</guimenuitem> </menuchoice>.</para>
-            </listitem>
-
-            <listitem>
-              <para>Ouvrez l'onglet Filtres de fichiers.</para>
-            </listitem>
-
-            <listitem>
-              <para>Cochez les filtres de lignes individuels que vous souhaitez appliquer, et
-décochez ceux que vous ne souhaitez pas appliquer.</para>
-
-              <para>Vous pouvez également ajouter, modifier et supprimer des filtres de la liste
-en utilisant les boutons <guibutton>Nouveau</guibutton>,
-<guibutton>Modifier</guibutton> et <guibutton>Supprimer</guibutton>.</para>
-            </listitem>
-
-            <listitem>
-              <para>Pour activer le filtrage de lignes, cochez <guilabel>Activer les filtres de
-lignes</guilabel>. Pour le désactiver, décochez l'option.</para>
-            </listitem>
-
-            <listitem>
-              <para>Cliquez sur <guibutton>OK</guibutton> pour fermer la boîte de dialogue
-Filtres de fichiers.</para>
-            </listitem>
-
-            <listitem>
-              <para>Appuyez sur <keycap>F5</keycap> pour appliquer vos modifications et
-actualiser la fenêtre de comparaison de fichiers.</para>
-            </listitem>
-          </orderedlist>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section id="Filters_LineFilterSyntax">
-      <title>Syntaxe des filtres de lignes<indexterm>
-          <primary>règles</primary>
-
-          <secondary>filtre de ligne</secondary>
-        </indexterm><indexterm>
-          <primary>filtres</primary>
-
-          <secondary>ligne</secondary>
-        </indexterm><indexterm>
-          <primary>expressions régulières</primary>
-
-          <secondary>dans les filtres de lignes</secondary>
-        </indexterm></title>
-
-      <para>Un filtre de ligne est une règle qui est évaluée par rapport à chaque
-différence sur une seule ligne dans vos fichiers comparés, si les règles de
-filtrage de lignes sont activées. Lorsqu'une règle correspond à une
-différence sur une seule ligne, la différence est ignorée.</para>
-
-      <para>Les différences ignorées sont marquées dans la fenêtre de comparaison de
-fichiers avec la couleur <guilabel>Différence ignorée</guilabel> (telle que
-définie dans la page Couleurs des options de WinMerge). Cela vous permet de
-distinguer les différences ignorées des autres types. Cependant, vous ne
-pouvez pas sélectionner ni fusionner une différence ignorée.</para>
-
-      <para>La correspondance des filtres de lignes peut être décrite en deux points :</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>Lorsqu'une règle correspond à n'importe quelle partie de la ligne, la
-différence entière est ignorée. Par conséquent, vous ne pouvez pas filtrer
-seulement une partie d'une ligne. Par exemple, supposons que deux fichiers
-présentent la différence suivante sur une seule ligne :</para>
-
-          <formalpara>
-            <title>Fichier1 :</title>
-
-            <para><screen># Jean Sibelius</screen></para>
-          </formalpara>
-
-          <formalpara>
-            <title>Fichier2 :</title>
-
-            <para><screen># Janne Sibelius</screen></para>
-          </formalpara>
-
-          <para>Sans filtrage, la ligne est détectée comme une différence. Mais si nous
-appliquons une règle de filtrage de ligne avec l'expression <code>^#</code>,
-les lignes sont signalées comme identiques, car l'expression ne spécifie que
-le premier caractère, qui correspond dans les deux fichiers.</para>
-        </listitem>
-
-        <listitem>
-          <para>Une règle ne s'applique à une différence de plusieurs lignes que si toutes
-les lignes correspondent. Par exemple, considérons cette différence de deux
-lignes :</para>
-
-          <formalpara>
-            <title>Fichier1 :</title>
-
-            <para><screen># Jean Sibelius
-# Pekka Himanen</screen></para>
-          </formalpara>
-
-          <formalpara>
-            <title>Fichier2 :</title>
-
-            <para><screen># Janne Sibelius
-Pekka Himanen</screen></para>
-          </formalpara>
-
-          <para>La même règle <code>^#</code> correspond à la première ligne, mais pas à la
-seconde. Par conséquent, la différence n'est pas ignorée.</para>
-        </listitem>
-      </itemizedlist>
-
-      <tip>
-        <para>C'est généralement une bonne pratique d'utiliser les marqueurs de début de
-ligne ( <code>^</code> ) et de fin de ligne ( <code>$</code> ) pour
-contrôler vos motifs avec précision, car la règle est appliquée si n'importe
-quelle partie d'une ligne correspond à l'expression.</para>
-      </tip>
-
-      <example>
-        <title>Exemples de filtres de lignes</title>
-
-<screen format="linespecific">^MYTAG$</screen><para>Filtre les lignes qui correspondent exactement à <literal>MYTAG</literal></para>
-
-<screen format="linespecific">^::</screen><para>Filtre les lignes commençant par <literal>::</literal></para>
-
-<screen format="linespecific">^/\*.*\*/$</screen><para>Filtre les lignes commençant par <literal><constant>/*</constant></literal>
-et se terminant par <literal>*/</literal></para>
-
-<screen format="linespecific">^[1-5]00</screen><para>Filtre les lignes commençant par les nombres 100, 200, 300, 400 et 500</para>
-      </example>
-
-      <example>
-        <title>Règle de filtrage de ligne correspondant aux lignes d'ID CVS</title>
-
-        <para>Les lignes d'ID CVS ressemblent à ceci :</para>
-
-<screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen><para>... et peuvent être filtrées avec cette règle :</para>
-
-<screen>^// \WId: .*\$</screen></example>
-
-      <example>
-        <title>Filtrer les commentaires de numéro de ligne dans les fichiers po</title>
-
-        <para>les commentaires de numéro de ligne po ressemblent à ceci :</para>
-
-<screen>#: src/filename.c:766</screen><para>... et peuvent être filtrées avec cette règle :</para>
-
-<screen>^#</screen></example>
-    </section>
-  </section>
-
-  <section id="Filters_SubstitutionFilter">
-    <title>Utilisation des filtres de substitution<indexterm>
-        <primary>filtres</primary>
-
-        <secondary>substitution</secondary>
-      </indexterm><indexterm>
-        <primary>filtres</primary>
-
-        <secondary>dans les comparaisons de fichiers</secondary>
-      </indexterm></title>
-
-    <para>À déterminer</para>
-  </section>
-
-  <section id="Filters_dlg">
-    <title>Utilisation de la boîte de dialogue Filtres<indexterm>
-        <primary>Boîte de dialogue Filtres</primary>
-      </indexterm><indexterm>
-        <primary>filtres</primary>
-
-        <secondary>gérer et activer</secondary>
-      </indexterm></title>
-
-    <para>Cette section décrit la boîte de dialogue Filtres, qui fournit des fonctions
-pour créer et gérer les filtres de fichiers et les filtres de lignes.</para>
-
-    <para>Pour ouvrir la boîte de dialogue Filtres, utilisez l'une ou l'autre de ces
-méthodes :</para>
-
-    <itemizedlist>
-      <listitem>
-        <para>Dans la boîte de dialogue Sélectionner des fichiers ou des dossiers, cliquez
-sur <guibutton>Sélectionner</guibutton> à droite du champ
-<guilabel>Filtre</guilabel>. Vous utilisez cette méthode lorsque vous
-souhaitez appliquer un filtre de fichier à une opération de comparaison de
-dossiers.</para>
-      </listitem>
-
-      <listitem>
-        <para>Cliquez sur <menuchoice> <guimenu>Outils</guimenu>
-<guimenuitem>Filtres</guimenuitem> </menuchoice>. Cette méthode peut être
-utilisée à tout moment, sauf lorsque la boîte de dialogue Sélectionner des
-fichiers ou des dossiers est ouverte.</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>La boîte de dialogue Filtres possède un onglet pour chaque type de filtre
-WinMerge :</para>
-
-    <variablelist>
-      <varlistentry>
-        <term>Filtres de fichiers</term>
-
-        <listitem>
-          <para>Choisissez cet onglet pour travailler avec les filtres de fichiers pour les
-opérations de comparaison de dossiers.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Filtres de lignes</term>
-
-        <listitem>
-          <para>Choisissez cet onglet pour travailler avec les filtres de lignes pour les
-opérations de comparaison de fichiers.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Filtres de substitution</term>
-
-        <listitem>
-          <para>Choisissez cet onglet pour travailler avec les filtres de substitution pour
-les opérations de comparaison de fichiers.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-
-    <section id="Filters_FileFiltersTab">
-      <title>Utilisation de l'onglet Filtres de fichiers<indexterm>
-          <primary>filtres de fichiers</primary>
-
-          <secondary>activation</secondary>
-        </indexterm></title>
-
-      <para>La partie principale de cet onglet est une liste de filtres de fichiers
-disponibles pour les opérations de comparaison de dossiers. La liste
-comprend les filtres de fichiers partagés, privés et installés que WinMerge
-connaît, comme décrit dans <xref linkend="Filters_FileFilterLoc" />.</para>
-
-      <section id="Filters_FileFilterEnabling">
-        <title>Activation et désactivation des filtres de fichiers</title>
-
-        <para>Vous devez activer un filtre de fichier pour le rendre disponible dans une
-opération de comparaison de dossiers, ou désactiver un filtre actuel pour
-qu'il ne soit plus utilisé :</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Ouvrez la boîte de dialogue Filtres, si elle n'est pas déjà ouverte.</para>
-          </listitem>
-
-          <listitem>
-            <para>Sélectionnez un filtre de fichier ou
-<guimenuitem>&lt;Aucun&gt;</guimenuitem> dans la liste.</para>
-          </listitem>
-
-          <listitem>
-            <para>Cliquez sur <guibutton>OK</guibutton> pour fermer la boîte de dialogue
-Filtres.</para>
-          </listitem>
-        </orderedlist>
-
-        <para>Il existe plusieurs façons d'appliquer des filtres de fichiers après les
-avoir activés. Pour plus de détails, voir <xref
-linkend="Filters_FileFilterApply" />.</para>
-      </section>
-
-      <section id="Filters_FileFilterCfg">
-        <title>Configuration des filtres de fichiers</title>
-
-        <para>Utilisez ces boutons pour gérer votre liste de <guilabel>Filtres de
-fichiers</guilabel> et en créer de nouveaux :</para>
-
-        <variablelist>
-          <varlistentry>
-            <term>Tester</term>
-
-            <listitem>
-              <para>Sélectionnez un filtre de fichier dans la liste et cliquez sur
-<guibutton>Tester</guibutton> pour voir rapidement comment le filtre
-fonctionne. Voir <xref linkend="Filters_TestingDlg" /> pour plus de détails.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Installer</term>
-
-            <listitem>
-              <para>Permet de localiser un filtre de fichier et de l'ajouter à la liste des
-filtres. Les filtres qui ne se trouvent ni dans le dossier partagé ni dans
-le dossier privé par défaut ne sont pas détectés à moins que vous ne les
-installiez.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Nouveau</term>
-
-            <listitem>
-              <para>Crée une nouvelle copie d'un modèle de fichier dans le dossier de filtres
-partagés ou privés, et l'ouvre dans votre éditeur par défaut. Modifiez le
-modèle et ajoutez vos règles, comme décrit dans <xref
-linkend="Filters_CreatingFile" />.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Modifier</term>
-
-            <listitem>
-              <para>Sélectionnez un filtre de fichier dans la liste et cliquez sur
-<guibutton>Modifier</guibutton> pour ouvrir le fichier dans votre éditeur
-par défaut.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Supprimer</term>
-
-            <listitem>
-              <para>Sélectionnez un filtre de fichier dans la liste et cliquez sur
-<guibutton>Supprimer</guibutton> pour supprimer le fichier et le retirer de
-la liste. Oui, le fichier est réellement supprimé !</para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
-
-        <para>Vos modifications sont enregistrées lorsque vous cliquez sur
-<guibutton>OK</guibutton> pour fermer la boîte de dialogue Filtres. Les
-filtres de lignes sont stockés dans le registre Windows.</para>
-      </section>
-
-      <section id="Filters_CreatingFile">
-        <title>Créer un filtre de fichier</title>
-
-        <para>Si les filtres installés avec WinMerge ne fournissent pas le filtrage dont
-vous avez besoin, vous pouvez créer les vôtres :</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Cliquez sur <menuchoice> <guimenu>Outils</guimenu>
-<guimenuitem>Filtres</guimenuitem> </menuchoice>. Ou, depuis la boîte de
-dialogue Sélectionner des fichiers ou des dossiers, cliquez sur
-<guibutton>Sélectionner</guibutton> à droite du champ
-<guilabel>Filtre</guilabel>.</para>
-          </listitem>
-
-          <listitem id="Filters_New_step">
-            <para>Dans l'onglet Filtres de fichiers de la boîte de dialogue Filtres, cliquez
-sur <guibutton>Nouveau</guibutton>.</para>
-          </listitem>
-
-          <listitem>
-            <para>Dans la boîte de dialogue Filtre partagé ou privé, choisissez
-<guilabel>Filtre partagé</guilabel> ou <guilabel>Filtre privé</guilabel>
-(voir <xref linkend="Filters_FileFilterLoc" /> pour leurs usages) et cliquez
-sur <keycap>OK</keycap>.</para>
-
-            <para>La boîte de dialogue Sélectionner un nom de fichier pour le nouveau filtre
-s'ouvre dans le dossier des fichiers partagés ou privés de votre système (si
-le dossier privé n'existe pas, WinMerge le crée).</para>
-          </listitem>
-
-          <listitem>
-            <para>Dans la boîte de dialogue Sélectionner un nom de fichier pour le nouveau
-filtre, saisissez un nouveau nom de fichier et cliquez sur
-<guibutton>Enregistrer</guibutton>.</para>
-
-            <note>
-              <para>Ne choisissez pas un nom de fichier existant : pour modifier un fichier
-existant, revenez à l'étape <xref linkend="Filters_New_step" /> et cliquez
-sur Modifier au lieu de Nouveau.</para>
-            </note>
-
-            <para>WinMerge initialise le nouveau fichier avec le contenu du modèle
-<filename>FileFilter.tmpl</filename> et l'ouvre dans votre éditeur de texte
-par défaut.</para>
-          </listitem>
-
-          <listitem>
-            <para>Suivez les instructions du modèle pour l'éditer, en mettant à jour le nom et
-la description et en ajoutant des règles de filtrage comme décrit dans <xref
-linkend="Filters_FileFilterSyntax" />. Enregistrez le fichier dans votre
-éditeur de texte.</para>
-
-            <tip>
-              <para>Si vous souhaitez tester rapidement une règle que vous définissez, essayez
-de cliquer sur Tester dans la boîte de dialogue Filtres. Voir <xref
-linkend="Filters_TestingDlg" /> pour plus de détails.</para>
-            </tip>
-            <para></para>
-          </listitem>
-
-          <listitem>
-            <para>Si vous avez créé votre filtre dans l'un des dossiers
-<filename>Filters</filename> standards et que la boîte de dialogue Filtres
-n'affiche pas votre nouveau filtre, essayez de cliquer sur
-<guibutton>OK</guibutton> pour la fermer, puis sur <menuchoice>
-<guimenu>Outils</guimenu> <guimenuitem>Filtres</guimenuitem> </menuchoice>
-pour la rouvrir. La liste <guilabel>Filtres de fichiers</guilabel> devrait
-maintenant inclure le nouveau filtre.</para>
-
-            <para>Si vous avez enregistré le fichier dans un autre emplacement sur votre
-système, WinMerge ne pourra pas le détecter à moins que vous ne
-l'installiez. Pour rendre un filtre de fichier détectable n'importe où sur
-votre système :</para>
-
-            <orderedlist numeration="loweralpha">
-              <listitem>
-                <para>Cliquez sur <guibutton>Installer</guibutton> dans la boîte de dialogue
-Filtres.</para>
-              </listitem>
-
-              <listitem>
-                <para>Dans la boîte de dialogue Localiser le fichier de filtre à installer,
-naviguez jusqu'au fichier <filename>flt</filename> sur votre système et
-cliquez sur <guibutton>Ouvrir</guibutton>. La liste des filtres de fichiers
-devrait maintenant inclure le filtre installé.</para>
-              </listitem>
-            </orderedlist>
-          </listitem>
-        </orderedlist>
-      </section>
-
-      <section id="Filters_TestingDlg">
-        <title>Test des règles de filtrage de fichiers<indexterm>
-            <primary>filtres de fichiers</primary>
-
-            <secondary>test</secondary>
-          </indexterm><indexterm>
-            <primary>tester les filtres de fichiers</primary>
-          </indexterm></title>
-
-        <para>Utilisez la boîte de dialogue Tester le filtre pour tester rapidement un
-filtre par rapport à des données d'exemple, afin de vous aider à développer
-de nouvelles règles ou à comprendre le fonctionnement des règles
-existantes. Cela peut être plus facile que de lancer une opération de
-comparaison complète.</para>
-
-        <para>À partir de la boîte de dialogue Filtres :</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Dans l'onglet Filtres de fichiers, choisissez le filtre que vous souhaitez
-tester.</para>
-          </listitem>
-
-          <listitem>
-            <para>Si vous souhaitez voir les règles que vous allez tester, cliquez sur
-<guibutton>Modifier</guibutton> maintenant pour ouvrir le fichier afin de
-pouvoir le consulter pendant les étapes suivantes.</para>
-          </listitem>
-
-          <listitem>
-            <para>Cliquez sur <guibutton>Tester</guibutton>.</para>
-          </listitem>
-
-          <listitem>
-            <para>Dans la boîte de dialogue Tester le filtre, choisissez le type de règle à
-tester :</para>
-
-            <itemizedlist>
-              <listitem>
-                <para>Pour tester une règle de fichier <guilabel>f:</guilabel> dans votre filtre,
-décochez l'option <guilabel>Nom du dossier</guilabel>.</para>
-              </listitem>
-
-              <listitem>
-                <para>Pour tester une règle de dossier <guilabel>d:</guilabel>, cochez l'option
-<guilabel>Nom du dossier</guilabel>.</para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-
-          <listitem>
-            <para>Saisissez le texte à tester.</para>
-
-            <para>Le texte doit être approprié au type de règle que vous testez. Par exemple,
-si vous avez coché l'option <guilabel>Nom du dossier</guilabel>, vous
-voudrez probablement saisir un nom de dossier, tel que \temp.</para>
-
-            <para>La zone <guilabel>Résultat</guilabel> affiche votre saisie, suivie de son
-état : soit <computeroutput>réussi (passed)</computeroutput>, soit
-<computeroutput>échoué (failed)</computeroutput>.</para>
-          </listitem>
-        </orderedlist>
-      </section>
-    </section>
-
-    <section id="Filters_LineFiltersTab">
-      <title>Utilisation de l'onglet Filtres de lignes<indexterm>
-          <primary>filtres de lignes</primary>
-
-          <secondary>activation</secondary>
-        </indexterm></title>
-
-      <para>Utilisez cet onglet pour configurer et activer des filtres de lignes pour
-les opérations de comparaison de fichiers. L'onglet présente une liste de
-règles. Chaque règle contient une seule expression régulière. Vous pouvez
-appliquer n'importe quelle combinaison de règles de la liste à une
-comparaison de fichiers.</para>
-
-      <section id="Filters_LineFilterCfg">
-        <title>Configuration des filtres de lignes</title>
-
-        <para>Sous la liste <guilabel>Expressions régulières</guilabel> se trouvent une
-zone d'édition et des boutons que vous pouvez utiliser pour mettre à jour la
-liste à tout moment en ajoutant, modifiant et supprimant des règles.</para>
-
-        <para>Pour ajouter une nouvelle règle :</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Cliquez sur <guibutton>Nouveau</guibutton>. Votre curseur d'édition est
-automatiquement activé dans la zone d'édition.</para>
-          </listitem>
-
-          <listitem>
-            <para>Saisissez une expression dans la zone d'édition sous la liste
-<guilabel>Expressions régulières</guilabel>.</para>
-          </listitem>
-
-          <listitem>
-            <para>Cliquez sur <guibutton>Enregistrer</guibutton> pour charger l'expression
-dans une nouvelle ligne de la liste.</para>
-          </listitem>
-        </orderedlist>
-
-        <para>Pour modifier une règle existante :</para>
-
-        <orderedlist>
-          <listitem>
-            <para>Sélectionnez la ligne et cliquez sur <guibutton>Modifier</guibutton>.</para>
-          </listitem>
-
-          <listitem>
-            <para>Modifiez l'expression dans la zone d'édition.</para>
-          </listitem>
-
-          <listitem>
-            <para>Cliquez sur <guibutton>Enregistrer</guibutton> quand vous avez terminé.</para>
-          </listitem>
-        </orderedlist>
-
-        <para>Pour supprimer une règle existante, sélectionnez (cochez) la règle et
-cliquez sur <guibutton>Supprimer</guibutton>.</para>
-      </section>
-
-      <section id="Filters_LineFilterEnabling">
-        <title>Activation et désactivation des filtres de lignes<indexterm>
-            <primary>filtres de lignes</primary>
-
-            <secondary>liste des filtres disponibles</secondary>
-          </indexterm></title>
-
-        <orderedlist>
-          <listitem>
-            <para>Dans la liste <guilabel>Expressions régulières</guilabel>, cochez uniquement
-les filtres que vous souhaitez appliquer, et décochez tous les filtres que
-vous ne souhaitez pas appliquer.</para>
-          </listitem>
-
-          <listitem>
-            <para>Cochez ou décochez l'option <guilabel>Activer les filtres de
-lignes</guilabel>. Si vous activez le filtrage, toutes les règles
-actuellement cochées dans la liste <guilabel>Expressions
-régulières</guilabel> seront utilisées. Si le filtrage est désactivé, aucune
-règle n'est utilisée, même si elle est cochée.</para>
-          </listitem>
-
-          <listitem>
-            <para>Cliquez sur <guibutton>OK</guibutton> pour fermer la boîte de dialogue
-Filtres et enregistrer vos réglages.</para>
-          </listitem>
-        </orderedlist>
-
-        <para>Il existe plusieurs façons d'appliquer des filtres de fichiers après les
-avoir activés. Pour plus de détails, voir <xref
-linkend="Filters_LineFilterApply" />.</para>
-      </section>
-    </section>
-
-    <section id="Filters_SubstitutionFiltersTab">
-      <title>Utilisation de l'onglet Filtres de substitution<indexterm>
-          <primary>filtres de substitution</primary>
-
-          <secondary>activation</secondary>
-        </indexterm></title>
-
-        <para>À déterminer</para>
-
-      <section id="Filters_SubstitutionFilterCfg">
-        <title>Configuration des filtres de substitution</title>
-
-        <para>À déterminer</para>
-
-      </section>
-
-      <section id="Filters_SubstitutionFilterEnabling">
-        <title>Activation et désactivation des filtres de substitution<indexterm>
-            <primary>filtres de substitution</primary>
-
-            <secondary>liste des filtres disponibles</secondary>
-          </indexterm></title>
-
-        <para>À déterminer</para>
-      </section>
-    </section>
-  </section>
-
-  <section id="AboutFilters_regexp">
-    <title>Obtenir de l'aide sur les expressions régulières<indexterm>
-        <primary>expressions régulières</primary>
-
-        <secondary>obtenir de l'aide</secondary>
-      </indexterm></title>
-
-    <para>Les expressions régulières peuvent être très complexes. Heureusement, la
-plupart des filtres de fichiers dans WinMerge utilisent des expressions
-d'extension simples, comme le montrent les exemples de cette rubrique. Les
-fichiers de filtres installés avec WinMerge comprennent de nombreux autres
-exemples utiles.</para>
-
-    <para>Enfin, il existe de nombreuses ressources sur le Web pour vous aider avec
-les regex, notamment ces sites :</para>
-
-    <variablelist>
-      <varlistentry>
-        <term>Un bon site consacré aux regex :</term>
-
-        <listitem>
-          <simpara><ulink
-url="https://www.regular-expressions.info/">https://www.regular-expressions.info/</ulink></simpara>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Tutoriel :</term>
-
-        <listitem>
-          <simpara><ulink
-url="http://www.zvon.org/comp/r/tut-Regexp.html">http://www.zvon.org/comp/r/tut-Regexp.html</ulink></simpara>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Référence rapide PDF :</term>
-
-        <listitem>
-          <simpara><ulink
-url="https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf">
-https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</ulink></simpara>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </section>
-</article>
+      <title>
