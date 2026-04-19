@@ -53,7 +53,7 @@ String strip_hot_key(const String& str)
 	String str2 = str;
 	auto it = str2.find(_T("(&"));
 	if (it != String::npos)
-		str2.erase(it, it + 2);
+		str2.erase(it, it + 3);
 	strutils::replace(str2, _T("&"), _T(""));
 	return str2;
 }
