@@ -2051,12 +2051,17 @@ std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCoun
 {
 	std::vector<IHeaderBar::ClipboardItem> items;
 
-	auto clipItems = ClipboardHistory::GetItems(maxCount);
+	auto clipItems = ClipboardHistory::GetItems(0, maxCount);
 	for (const auto& clipItem : clipItems)
 	{
 		IHeaderBar::ClipboardItem item;
 		item.timestamp = clipItem.timestamp;
 		item.pTextTempFile = clipItem.pTextTempFile;
+
+		// Create description like "Clipboard at 2026-01-23 12:34:56"
+		int64_t t = clipItem.timestamp;
+		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
+		item.description = strutils::format(_("Clipboard at %s"), timestr);
 
 		if (clipItem.pTextTempFile)
 		{
@@ -3278,7 +3283,7 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const fileopenf
 	const String strDesc[] /*= nullptr*/, const PackingInfo* infoUnpacker /*= nullptr*/,
 	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenParams* pOpenParams /*= nullptr*/)
 {
-	auto historyItems = ClipboardHistory::GetItems(nBuffers);
+	auto historyItems = ClipboardHistory::GetItems(nBuffers, nBuffers);
 
 	String strDesc2[3];
 	fileopenflags_t dwFlags2[3];

@@ -71,7 +71,7 @@ namespace ClipboardHistory
 		}
 #endif
 
-		std::vector<Item> GetItems(unsigned num)
+		std::vector<Item> GetItems(unsigned minNum, unsigned maxNum)
 		{
 			std::vector<Item> result;
 #ifdef USE_WINRT
@@ -79,12 +79,12 @@ namespace ClipboardHistory
 			{
 				auto historyItems = Clipboard::GetHistoryItemsAsync().get();
 				auto items = historyItems.Items();
-				for (unsigned int i = 0; i < num; ++i)
+				for (unsigned int i = 0; i < maxNum; ++i)
 				{
-					result.emplace_back();
-					auto& item = result.back();
 					if (i < items.Size())
 					{
+						result.emplace_back();
+						auto& item = result.back();
 						try
 						{
 							auto dataPackageView = items.GetAt(i).Content();
@@ -107,19 +107,21 @@ namespace ClipboardHistory
 							item.pTextTempFile = CreateTempTextFile(e.message().c_str());
 						}
 					}
-					else
+					else if (i < minNum)
 					{
+						result.emplace_back();
+						auto& item = result.back();
 						if (i == 0)
 							time(&item.timestamp);
 						item.pTextTempFile = CreateTempTextFile(i == 0 ?
-								GetClipboardText() :
-								(!Clipboard::IsHistoryEnabled() ? _("Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on.") : _T("")));
+							GetClipboardText() :
+							(!Clipboard::IsHistoryEnabled() ? _("Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on.") : _T("")));
 					}
 				}
 			}
 			catch (const winrt::hresult_error&)
 			{
-				for (unsigned int i = 0; i < num; ++i)
+				for (unsigned int i = 0; i < minNum; ++i)
 				{
 					result.emplace_back();
 					auto& item = result.back();
@@ -130,7 +132,7 @@ namespace ClipboardHistory
 				}
 			}
 #else
-			for (unsigned int i = 0; i < num; ++i)
+			for (unsigned int i = 0; i < minNum; ++i)
 			{
 				result.emplace_back();
 				auto& item = result.back();
@@ -144,10 +146,10 @@ namespace ClipboardHistory
 		}
 	}
 
-	std::vector<Item> GetItems(unsigned num)
+	std::vector<Item> GetItems(unsigned minNum, unsigned maxNum)
 	{
-		auto task = Concurrent::CreateTask([num] {
-			return impl::GetItems(num);
+		auto task = Concurrent::CreateTask([minNum, maxNum] {
+			return impl::GetItems(minNum, maxNum);
 		});
 		return task.Get();
 	}

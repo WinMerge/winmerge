@@ -2517,7 +2517,7 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine, int nCharI
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane, true, nCharIndex);
 }
 
-void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
+void CMergeDoc::ChangeFile(int nBuffer, const String& path, const String& description, int nLineIndex)
 {
 	if (!PromptAndSaveIfNeeded(true))
 		return;
@@ -2534,7 +2534,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	}
 	std::copy_n(m_strDesc, m_nBuffers, strDesc);
 
-	strDesc[nBuffer].clear();
+	strDesc[nBuffer] = description;
 	fileloc[nBuffer].setPath(path);
 	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 

@@ -127,9 +127,9 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		m_pMergeDoc->UpdateHeaderPath(pane);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath) {
+	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const String& sDescription) {
 		const int nGroup = m_pMergeDoc->GetActiveMergeView()->m_nThisGroup;
-		m_pMergeDoc->ChangeFile(pane, sFilepath);
+		m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
 	});
 	m_wndFilePathBar.SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {

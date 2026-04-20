@@ -266,7 +266,7 @@ void CEditorFilePathBar::OnSelectEdit(UINT id)
 	InvalidateRect(nullptr, false);
 	String selectedPath = m_Edit[pane].GetSelectedPath();
 	if (m_fileSelectedCallbackfunc)
-		m_fileSelectedCallbackfunc(pane, selectedPath);
+		m_fileSelectedCallbackfunc(pane, selectedPath, _T(""));
 	else if (m_folderSelectedCallbackfunc)
 		m_folderSelectedCallbackfunc(pane, selectedPath);
 }
@@ -419,12 +419,12 @@ void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
 	}
 	else if (!isFolder && m_fileSelectedCallbackfunc)
 	{
-		m_fileSelectedCallbackfunc(pane, path);
+		m_fileSelectedCallbackfunc(pane, path, _T(""));
 	}
 	else if (m_fileSelectedCallbackfunc)
 	{
 		// Fallback to file callback if folder callback is not set
-		m_fileSelectedCallbackfunc(pane, path);
+		m_fileSelectedCallbackfunc(pane, path, _T(""));
 	}
 }
 
@@ -455,9 +455,10 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	m_tempFiles.push_back(clipItem.pTextTempFile);
 
 	// Use file callback to notify about the clipboard content (always treated as file)
+	// Pass the description so the caller can set the caption
 	if (m_fileSelectedCallbackfunc)
 	{
-		m_fileSelectedCallbackfunc(pane, clipboardPath);
+		m_fileSelectedCallbackfunc(pane, clipboardPath, clipItem.description);
 	}
 }
 
