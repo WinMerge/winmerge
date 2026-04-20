@@ -524,7 +524,7 @@ msgstr "网页(&W)"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1172
 msgid "&Folder"
-msgstr ""
+msgstr "文件夹(&F)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1104,7 +1104,7 @@ msgstr "重新比较(&M)"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1185
 msgid "A&rchive"
-msgstr ""
+msgstr "压缩文件(&R)"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -8109,7 +8109,7 @@ msgstr "新的网页比较"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5326
 msgid "New Folder Compare"
-msgstr ""
+msgstr "新建文件夹比较"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5327
