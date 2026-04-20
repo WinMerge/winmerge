@@ -1,6 +1,7 @@
-# WinMerge 2.16.55 Beta Release Notes
+# WinMerge 2.16.56 Release Notes
 
 * [About This Release](#about-this-release)
+* [What Is New in 2.16.56](#what-is-new-in-21656)
 * [What Is New in 2.16.55 beta?](#what-is-new-in-21655-beta)
 * [Known issues](#known-issues)
 
@@ -8,11 +9,48 @@ April 2026
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for production
-environments.
+This is a WinMerge 2.16.56 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.56
+
+### General
+
+* Show error message when entering invalid path in header bar (PR #3322)
+
+### Folder compare
+
+* Add Folder comparison mode with archive extraction support (PR #3320)
+
+* Refactor: unify open parameters and move recurse to OpenFolderParams (PR #3326)
+
+* Add codepage filter UI and hasbom field support (PR #3318)
+
+### Archive support
+
+* Use 7-Zip IsArc API for archive detection and refactor format guessing logic (PR #3323)
+
+* Prioritize explicitly selected plugins over archive detection (PR #3324)
+
+### Translations
+
+* Translation updates:
+  * Brazilian (PR #3328)
+  * Chinese Simplified (PR #3307,#3331)
+  * French (PR #3312)
+  * German (PR #3329)
+  * Korean (PR #3334)
+  * Lithuanian (PR #3308)
+  * Russian (PR #3309)
+  * Turkish (PR #3333)
+
+### Documentation
+
+* Update Italian documentation (PR #3319)
+
+* Update French manual (PR #3325)
 
 ## What Is New in 2.16.55 Beta
 

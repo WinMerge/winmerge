@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-04-04 12:07+0300\n"
+"PO-Revision-Date: 2026-04-20 16:38+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -521,7 +521,7 @@ msgstr "İnternet &sitesi"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1172
 msgid "&Folder"
-msgstr ""
+msgstr "&Klasör"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1101,7 +1101,7 @@ msgstr "&Farklı karşılaştır"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1185
 msgid "A&rchive"
-msgstr ""
+msgstr "A&rşiv"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -8117,7 +8117,7 @@ msgstr "Yeni site sayfası karşılaştırması"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5328
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Yeni klasör karşılaştırması"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5329

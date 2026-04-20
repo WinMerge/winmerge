@@ -51,9 +51,11 @@ String makeupper(const String &str)
 String strip_hot_key(const String& str)
 {
 	String str2 = str;
+	// In WinMerge resources, accelerator markers like "(&X)" are always placed at the end.
+  // So we safely strip everything from "(&" to the end.
 	auto it = str2.find(_T("(&"));
 	if (it != String::npos)
-		str2.erase(it, it + 2);
+		str2.erase(it);
 	strutils::replace(str2, _T("&"), _T(""));
 	return str2;
 }
