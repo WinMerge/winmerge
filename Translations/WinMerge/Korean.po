@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-04-04 20:08+0900\n"
+"PO-Revision-Date: 2026-04-21 00:14+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -560,7 +560,7 @@ msgstr "웹페이지(&W)"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1172
 msgid "&Folder"
-msgstr ""
+msgstr "폴더(&F)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1230,7 +1230,7 @@ msgstr "다시 비교(&M)"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1185
 msgid "A&rchive"
-msgstr ""
+msgstr "압축파일(&R)"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -8826,7 +8826,7 @@ msgstr "새 웹 페이지 비교"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5326
 msgid "New Folder Compare"
-msgstr ""
+msgstr "새 폴더 비교"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5327
