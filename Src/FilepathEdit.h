@@ -14,6 +14,8 @@
 #define EN_USER_CAPTION_CHANGED  0x0A01
 #define EN_USER_FILE_SELECTED 0x0A02
 
+class IHeaderBar;
+
 /** 
  * @brief Read-only control to display a filepath. 
  * The path is compacted (with ellipsis) to fill in the area. 
@@ -40,6 +42,11 @@ public :
 	void SetTextColor(COLORREF rgb);
 	void EnableFileSelection(bool enabled) { m_bEnabledFileSelection = enabled; }
 	void EnableFolderSelection(bool enabled) { m_bEnabledFolderSelection = enabled; }
+	bool IsFileSelectionEnabled() const { return m_bEnabledFileSelection; }
+	bool IsFolderSelectionEnabled() const { return m_bEnabledFolderSelection; }
+	void SetHeaderBar(IHeaderBar* pHeaderBar) { m_pHeaderBar = pHeaderBar; }
+	int GetPaneIndex() const { return m_nPaneIndex; }
+	void SetPaneIndex(int nPaneIndex) { m_nPaneIndex = nPaneIndex; }
 
 protected:
 	virtual BOOL PreTranslateMessage(MSG *pMsg);
@@ -77,6 +84,8 @@ private:
 	bool m_bPathEditing;
 	bool m_bEnabledFileSelection;
 	bool m_bEnabledFolderSelection;
+	IHeaderBar* m_pHeaderBar;
+	int m_nPaneIndex;
 };
 
 /**

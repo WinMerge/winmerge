@@ -16,6 +16,7 @@
 #include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
+#include "HeaderBarHelper.h"
 #include "BCMenu.h"
 #include "IDirDoc.h"
 #include "OptionsDef.h"
@@ -574,9 +575,20 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		}
 		m_pImgMergeWindow->SetActivePane(pane);
 	});
-	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath) {
+	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile) {
+		if (pTempFile)
+		{
+			if (CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetMainWnd()))
+				pMainFrame->AddTempFile(pTempFile);
+		}
 		ChangeFile(pane, sFilepath);
 		m_pImgMergeWindow->SetActivePane(pane);
+	});
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(maxCount, type);
+	});
+	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
+		return GetClipboardHistoryItems(maxCount);
 	});
 
 	// Merge frame also has a dockable bar at the very left

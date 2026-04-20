@@ -30,7 +30,7 @@ msgstr ""
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5464
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5466
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_KOREAN, SUBLANG_DEFAULT"
@@ -278,7 +278,7 @@ msgid "&Previous Page"
 msgstr "이전 페이지(&P)"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:182 Merge.rc:190 Merge.rc:1241 Merge.rc:5333
+#: Merge.rc:182 Merge.rc:190 Merge.rc:1241 Merge.rc:5335
 #, c-format
 msgid "&Next Page"
 msgstr "다음 페이지(&N)"
@@ -602,8 +602,8 @@ msgstr "프로젝트 저장(&V)..."
 msgid "Recent Projects"
 msgstr "최근 프로젝트"
 
-#. IDR_MERGEDOCTYPE
-#: Merge.rc:338 Merge.rc:449 Merge.rc:664
+#. IDS_RECENT_FILES
+#: Merge.rc:338 Merge.rc:449 Merge.rc:664 Merge.rc:5247
 #, c-format
 msgid "Recent F&iles or Folders"
 msgstr "최근 파일/폴더(&I)"
@@ -683,7 +683,7 @@ msgid "&Huge"
 msgstr "매우 크게(&H)"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5368
+#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5370
 msgid "Men&u Bar"
 msgstr "메뉴 표시줄(&U)"
 
@@ -4254,7 +4254,7 @@ msgid "Items compared:"
 msgstr "비교된 항목:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2536 Merge.rc:2856 Merge.rc:5339
+#: Merge.rc:2536 Merge.rc:2856 Merge.rc:5341
 #, c-format
 msgid "&Close"
 msgstr "닫기(&C)"
@@ -6826,7 +6826,7 @@ msgid "Unpacker"
 msgstr "압축 풀기"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4653 Merge.rc:4970 Merge.rc:5277
+#: Merge.rc:4653 Merge.rc:4970 Merge.rc:5279
 #, c-format
 msgid "Prediffer"
 msgstr "사전 차이"
@@ -8593,191 +8593,196 @@ msgstr "사용 안 함"
 msgid "Allow only one instance to run"
 msgstr "하나의 인스턴스만 실행 허용"
 
+#. IDS_CLIPBOARD_HISTORY
+#: Merge.rc:5248
+msgid "Clipboard &History"
+msgstr ""
+
 #. IDS_SINGLEINSTANCE_STR2
-#: Merge.rc:5247
+#: Merge.rc:5249
 msgid "Allow only one instance; wait for termination"
 msgstr "하나의 인스턴스만 실행하고 인스턴스가 종료될 때까지 대기"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED
-#: Merge.rc:5252
+#: Merge.rc:5254
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "사용 안 함"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
-#: Merge.rc:5253
+#: Merge.rc:5255
 msgid "Only on window activated"
 msgstr "창에서만 활성화됨"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
-#: Merge.rc:5254
+#: Merge.rc:5256
 msgid "Immediately"
 msgstr "즉시"
 
 #. IDS_PLUGIN_ALL
-#: Merge.rc:5259
+#: Merge.rc:5261
 msgid "Al&l"
 msgstr "모두(&L)"
 
 #. IDS_PLUGIN_OTHERS
-#: Merge.rc:5260
+#: Merge.rc:5262
 msgid "&Others"
 msgstr "기타(&O)"
 
-#: Merge.rc:5262
+#: Merge.rc:5264
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
 msgstr "플러그인 파이프라인에 누락된 플러그인 이름: %1"
 
-#: Merge.rc:5264
+#: Merge.rc:5266
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
 msgstr "플러그인 파이프라인에 따옴표가 없습니다: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
-#: Merge.rc:5265
+#: Merge.rc:5267
 #, c-format
 msgid "Plugin name '%1' already exists."
 msgstr "플러그인 이름 '%1'이(가) 이미 있습니다."
 
 #. IDS_PLUGIN_TITLE1
-#: Merge.rc:5266
+#: Merge.rc:5268
 msgid "Specify plugin arguments"
 msgstr "플러그인 인수 지정"
 
-#: Merge.rc:5268
+#: Merge.rc:5270
 #, c-format
 msgid "Plugin not found or invalid: %1"
 msgstr "플러그인을 찾을 수 없거나 잘못되었습니다: %1"
 
 #. IDS_PLUGIN_NOT_UNPACK
-#: Merge.rc:5269
+#: Merge.rc:5271
 #, c-format
 msgid "'%1' is not an unpacker plugin"
 msgstr "'%1'은(는) 압축 풀기 플러그인이 아닙니다"
 
 #. IDS_PLUGIN_NOT_PREDIFF
-#: Merge.rc:5270
+#: Merge.rc:5272
 #, c-format
 msgid "'%1' is not a prediffer plugin"
 msgstr "'%1'은(는) 사전 차이 플러그인이 아닙니다"
 
-#: Merge.rc:5272
+#: Merge.rc:5274
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr "'%1' 파일을 '%2' 플러그인과 미리 비교하는 동안 오류가 발생했습니다. 미리 비교은 더 이상 적용되지 않습니다."
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
-#: Merge.rc:5273
+#: Merge.rc:5275
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr "플러그인 파이프라인의 순환 참조: %1"
 
 #. IDS_PLUGIN_TYPE1
-#: Merge.rc:5274
+#: Merge.rc:5276
 msgid "URL Handler"
 msgstr "URL 처리기"
 
 #. IDS_PLUGIN_TYPE2
-#: Merge.rc:5275
+#: Merge.rc:5277
 msgid "File Unpacker"
 msgstr "파일 압축 풀기"
 
 #. IDS_PLUGIN_TYPE3
-#: Merge.rc:5276
+#: Merge.rc:5278
 msgid "File or Folder Unpacker"
 msgstr "파일 또는 폴더 압축 풀기"
 
 #. IDS_PLUGIN_TYPE5
-#: Merge.rc:5278
+#: Merge.rc:5280
 msgid "Alias for Unpacker"
 msgstr "압축 풀기의 별칭"
 
 #. IDS_PLUGIN_TYPE6
-#: Merge.rc:5279
+#: Merge.rc:5281
 msgid "Alias for Prediffer"
 msgstr "사전 차이의 별칭"
 
 #. IDS_PLUGIN_TYPE7
-#: Merge.rc:5280
+#: Merge.rc:5282
 msgid "Alias for Editor script"
 msgstr "편집기 스크립트의 별칭"
 
 #. IDS_PLUGIN_ALIAS_DESC
-#: Merge.rc:5281
+#: Merge.rc:5283
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
 msgstr "플러그인 파이프라인 '%1'의 별칭"
 
 #. IDS_PLUGIN_NEW_DESC
-#: Merge.rc:5282
+#: Merge.rc:5284
 msgid "New plugin description"
 msgstr "새 플러그인 설명"
 
 #. IDS_PLUGIN_TARGETS_ALL
-#: Merge.rc:5283
+#: Merge.rc:5285
 msgid "All"
 msgstr "모두"
 
 #. IDS_PLUGIN_TARGETS_1ST
-#: Merge.rc:5284
+#: Merge.rc:5286
 msgid "1st"
 msgstr "첫 번째"
 
 #. IDS_PLUGIN_TARGETS_2ND
-#: Merge.rc:5285
+#: Merge.rc:5287
 msgid "2nd"
 msgstr "두 번째"
 
 #. IDS_PLUGIN_TARGETS_3RD
-#: Merge.rc:5286
+#: Merge.rc:5288
 msgid "3rd"
 msgstr "세 번째"
 
 #. IDS_PLUGIN_TARGETS_1ST_2ND
-#: Merge.rc:5287
+#: Merge.rc:5289
 msgid "1st and 2nd"
 msgstr "첫 번째 및 두 번쩨"
 
 #. IDS_PLUGIN_TARGETS_1ST_3RD
-#: Merge.rc:5288
+#: Merge.rc:5290
 msgid "1st and 3rd"
 msgstr "척 번째 및 세번째"
 
 #. IDS_PLUGIN_TARGETS_2ND_3RD
-#: Merge.rc:5289
+#: Merge.rc:5291
 msgid "2nd and 3rd"
 msgstr "두 번째 및 세번째"
 
 #. IDS_FILTER_APPLIED
-#: Merge.rc:5294
+#: Merge.rc:5296
 msgid "Filter applied"
 msgstr "필터 적용됨"
 
 #. IDS_FILTERMENU_COMPARE
-#: Merge.rc:5299
+#: Merge.rc:5301
 #, c-format
 msgid "Compare %1"
 msgstr "비교 %1"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
-#: Merge.rc:5300
+#: Merge.rc:5302
 msgid "&Filter by This Column"
 msgstr "이 열로 필터링(&F)"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
-#: Merge.rc:5301
+#: Merge.rc:5303
 msgid "&Filter by This Column..."
 msgstr "이 열로 필터링(&F)..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
-#: Merge.rc:5306
+#: Merge.rc:5308
 #, c-format
 msgid "Clipboard at %s"
 msgstr "%s의 클립보드"
 
 #. IDS_CLIPBOARDHISTORY_DISABLED
-#: Merge.rc:5307
+#: Merge.rc:5309
 msgid ""
 "Clipboard history disabled.\r\n"
 "Enable: Windows logo key + V, then Turn on."
@@ -8785,115 +8790,115 @@ msgstr ""
 "클립보드 기록울 사용할 수 없습니다.\r\n"
 "사용함: Windows 로고 키 + V를 누른 다음 켭니다."
 
-#: Merge.rc:5309
+#: Merge.rc:5311
 msgid "This system does not support clipboard history."
 msgstr "이 시스템은 클립보드 기록을 지원하지 않습니다."
 
-#: Merge.rc:5311
+#: Merge.rc:5313
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32비트 버전의 WinMerge는 클립보드 비교를 지원하지 않습니다"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
-#: Merge.rc:5316
+#: Merge.rc:5318
 msgid "WebView2 runtime not installed. Download it?"
 msgstr "WebView2 런타임이 설치되지 않았습니다. 다운로드하시겠습니까?"
 
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
-#: Merge.rc:5321
+#: Merge.rc:5323
 msgid "New Text Compare"
 msgstr "새 텍스트 비교"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
-#: Merge.rc:5322
+#: Merge.rc:5324
 msgid "New Table Compare"
 msgstr "새 테이블 비교"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
-#: Merge.rc:5323
+#: Merge.rc:5325
 msgid "New Binary Compare"
 msgstr "새 바이너리 비교"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
-#: Merge.rc:5324
+#: Merge.rc:5326
 msgid "New Image Compare"
 msgstr "새 이미지 비교"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
-#: Merge.rc:5325
+#: Merge.rc:5327
 msgid "New Webpage Compare"
 msgstr "새 웹 페이지 비교"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
-#: Merge.rc:5326
+#: Merge.rc:5328
 msgid "New Folder Compare"
 msgstr ""
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
-#: Merge.rc:5327
+#: Merge.rc:5329
 msgid "Clipboard Compare"
 msgstr "클립보드 비교"
 
 #. IDS_PREVIEWBAR_PRINT
-#: Merge.rc:5332
+#: Merge.rc:5334
 msgid "&Print..."
 msgstr "인쇄(&P)..."
 
 #. IDS_PREVIEWBAR_PREVPAGE
-#: Merge.rc:5334
+#: Merge.rc:5336
 msgid "Pre&v Page"
 msgstr "이전 페이지(&V)"
 
 #. IDS_PREVIEWBAR_TWOPAGE
-#: Merge.rc:5335
+#: Merge.rc:5337
 msgid "&Two Page"
 msgstr "2 페이지(&T)"
 
 #. IDS_PREVIEWBAR_ONEPAGE
-#: Merge.rc:5336
+#: Merge.rc:5338
 msgid "&One Page"
 msgstr "1 페이지(&O)"
 
 #. IDS_PREVIEWBAR_ZOOMIN
-#: Merge.rc:5337
+#: Merge.rc:5339
 msgid "Zoom &In"
 msgstr "확대(&I)"
 
 #. IDS_PREVIEWBAR_ZOOMOUT
-#: Merge.rc:5338
+#: Merge.rc:5340
 msgid "Zoom &Out"
 msgstr "축소(&O)"
 
 #. IDS_WEBPAGE_COMPARING
-#: Merge.rc:5344
+#: Merge.rc:5346
 msgid "Comparing..."
 msgstr "비교 중..."
 
 #. IDS_WEBPAGE_ZOOM
-#: Merge.rc:5345
+#: Merge.rc:5347
 msgid "Zoom:"
 msgstr "확대/축소:"
 
 #. IDS_COPY_GRANULARITY_DIFFHUNK
-#: Merge.rc:5350
+#: Merge.rc:5352
 msgid "Diff hunk"
 msgstr "차이 덩어리"
 
 #. IDS_COPY_GRANULARITY_INLINE
-#: Merge.rc:5351
+#: Merge.rc:5353
 msgid "Inline diff"
 msgstr "인라인 차이"
 
 #. IDS_COPY_GRANULARITY_LINE
-#: Merge.rc:5352
+#: Merge.rc:5354
 msgid "Line"
 msgstr "줄"
 
-#: Merge.rc:5353
+#: Merge.rc:5355
 msgid "Character"
 msgstr "문자"
 
 #. ID_MICE_PREVDIFF
-#: Merge.rc:5358
+#: Merge.rc:5360
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)\n"
@@ -8906,7 +8911,7 @@ msgstr ""
 "(Alt+휠 ⭡)"
 
 #. ID_MICE_NEXTDIFF
-#: Merge.rc:5359
+#: Merge.rc:5361
 msgid ""
 "\n"
 "Next Difference (Alt+Down)\n"
@@ -8919,7 +8924,7 @@ msgstr ""
 "(Alt+휠 ⭣)"
 
 #. ID_MICE_L2R
-#: Merge.rc:5360
+#: Merge.rc:5362
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)\n"
@@ -8934,7 +8939,7 @@ msgstr ""
 "(Alt+Shift+휠 ⭣)"
 
 #. ID_MICE_R2L
-#: Merge.rc:5361
+#: Merge.rc:5363
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)\n"
@@ -8949,7 +8954,7 @@ msgstr ""
 "(Alt+Shift+휠 ⭡)"
 
 #. ID_MICE_L2RNEXT
-#: Merge.rc:5362
+#: Merge.rc:5364
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)\n"
@@ -8962,7 +8967,7 @@ msgstr ""
 "(Ctrl+Alt+Shift+휠 ⭣)"
 
 #. ID_MICE_R2LNEXT
-#: Merge.rc:5363
+#: Merge.rc:5365
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)\n"
@@ -8975,257 +8980,257 @@ msgstr ""
 "(Ctrl+Alt+Shift+휠 ⭡)"
 
 #. IDS_LOG_COMPARING_2
-#: Merge.rc:5373
+#: Merge.rc:5375
 #, c-format
 msgid "Comparing %1 with %2"
 msgstr "%1과 %2 비교"
 
 #. IDS_LOG_COMPARING_3
-#: Merge.rc:5374
+#: Merge.rc:5376
 #, c-format
 msgid "Comparing %1 with %2 and %3"
 msgstr "%1과 %2 및 %3 비교"
 
 #. IDS_LOG_COMPARE_COMPLETED
-#: Merge.rc:5375
+#: Merge.rc:5377
 msgid "Comparison completed"
 msgstr "비교 완료"
 
 #. IDS_LOG_COMPARE_ERROR_2
-#: Merge.rc:5376
+#: Merge.rc:5378
 #, c-format
 msgid "Failed to compare %1 with %2: "
 msgstr "%1과 %2를 비교하지 못했습니다: "
 
 #. IDS_LOG_COMPARE_ERROR_3
-#: Merge.rc:5377
+#: Merge.rc:5379
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
 msgstr "%1과 %2 및 %3을 비교하지 못했습니다: "
 
 #. IDS_LOG_FILE_SAVED
-#: Merge.rc:5378
+#: Merge.rc:5380
 msgid "File saved"
 msgstr "파일이 저장되었습니다"
 
 #. IDS_LOG_COPYING_FILES
-#: Merge.rc:5379
+#: Merge.rc:5381
 msgid "Copying files..."
 msgstr "파일 복사 중..."
 
 #. IDS_LOG_MOVING_FILES
-#: Merge.rc:5380
+#: Merge.rc:5382
 msgid "Moving files..."
 msgstr "파일 이동 중..."
 
 #. IDS_LOG_DELETING_FILES
-#: Merge.rc:5381
+#: Merge.rc:5383
 msgid "Deleting files..."
 msgstr "파일 삭제 중..."
 
 #. IDS_LOG_RECYCLEBIN
-#: Merge.rc:5382
+#: Merge.rc:5384
 msgid "Recycle Bin"
 msgstr "휴지통"
 
 #. IDS_LOG_PERMANENTLY_DELETED
-#: Merge.rc:5383
+#: Merge.rc:5385
 msgid "Permanently deleted"
 msgstr "영구 삭제"
 
 #. IDS_LOG_FILEOPERATION_COMPLETED
-#: Merge.rc:5384
+#: Merge.rc:5386
 msgid "File operation completed successfully"
 msgstr "파일 작업이 성공적으로 완료되었습니다"
 
 #. IDS_LOG_FILEOPERATION_CANCELED
-#: Merge.rc:5385
+#: Merge.rc:5387
 msgid "File operation canceled"
 msgstr "파일 작업이 취소되었습니다"
 
 #. IDS_FILTER_ERROR_NO_ERROR
-#: Merge.rc:5390
+#: Merge.rc:5392
 msgid "No error"
 msgstr "오류 없음"
 
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
-#: Merge.rc:5391
+#: Merge.rc:5393
 msgid "Filter expression is empty"
 msgstr "필터 표현식이 비어 있습니다"
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
-#: Merge.rc:5392
+#: Merge.rc:5394
 msgid "Unknown character in filter expression"
 msgstr "필터 표현식에서 알 수 없는 문자"
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
-#: Merge.rc:5393
+#: Merge.rc:5395
 msgid "Unterminated string literal"
 msgstr "종료되지 않은 문자열 리터럴"
 
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
-#: Merge.rc:5394
+#: Merge.rc:5396
 msgid "Syntax error in filter expression"
 msgstr "필터 표현식의 구문 오류"
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
-#: Merge.rc:5395
+#: Merge.rc:5397
 msgid "Failed to parse filter expression"
 msgstr "필터 표현식을 구문 분석하지 못했습니다"
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
-#: Merge.rc:5396
+#: Merge.rc:5398
 msgid "Invalid literal value"
 msgstr "잘못된 문자 그대로의 값"
 
 #. IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION
-#: Merge.rc:5397
+#: Merge.rc:5399
 msgid "Invalid regular expression"
 msgstr "잘못된 정규 표현식"
 
 #. IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER
-#: Merge.rc:5398
+#: Merge.rc:5400
 msgid "Undefined identifier"
 msgstr "정의되지 않은 식별자"
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
-#: Merge.rc:5399
+#: Merge.rc:5401
 msgid "Invalid number of arguments"
 msgstr "인수 수가 잘못되었습니다"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
-#: Merge.rc:5400
+#: Merge.rc:5402
 msgid "Filter name not found"
 msgstr "필터 이름을 찾을 수 없습니다"
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
-#: Merge.rc:5401
+#: Merge.rc:5403
 msgid "Division by zero in filter expression"
 msgstr "필터 표현식에서 0으로 나눕니다"
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
-#: Merge.rc:5402
+#: Merge.rc:5404
 msgid "Unknown error"
 msgstr "알 수 없는 오류"
 
 #. IDS_FILTER_ERROR_INVALID_PROPERTY_NAME
-#: Merge.rc:5403
+#: Merge.rc:5405
 msgid "Invalid property name"
 msgstr "잘못된 속성 이름"
 
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
-#: Merge.rc:5404
+#: Merge.rc:5406
 msgid "Invalid directive"
 msgstr "잘못된 지침"
 
 #. IDS_FILTER_OP_EQUALS
-#: Merge.rc:5409
+#: Merge.rc:5411
 msgid "Equals"
 msgstr "같음"
 
 #. IDS_FILTER_OP_NOT_EQUALS
-#: Merge.rc:5410
+#: Merge.rc:5412
 msgid "Does not equal"
 msgstr "같지 않음"
 
 #. IDS_FILTER_OP_LESS_THAN
-#: Merge.rc:5411
+#: Merge.rc:5413
 msgid "Less than"
 msgstr "보다 적은"
 
 #. IDS_FILTER_OP_LESS_EQUAL
-#: Merge.rc:5412
+#: Merge.rc:5414
 msgid "Less than or equal to"
 msgstr "작거나 같음"
 
 #. IDS_FILTER_OP_GREATER_EQUAL
-#: Merge.rc:5413
+#: Merge.rc:5415
 msgid "Greater than or equal to"
 msgstr "크거나 같음"
 
 #. IDS_FILTER_OP_GREATER_THAN
-#: Merge.rc:5414
+#: Merge.rc:5416
 msgid "Greater than"
 msgstr "보다 적은"
 
 #. IDS_FILTER_OP_BETWEEN
-#: Merge.rc:5415
+#: Merge.rc:5417
 msgid "Between"
 msgstr "사이에"
 
 #. IDS_FILTER_OP_NOT_BETWEEN
-#: Merge.rc:5416
+#: Merge.rc:5418
 msgid "Not Between"
 msgstr "사이가 아님"
 
 #. IDS_FILTER_OP_CONTAINS
-#: Merge.rc:5417
+#: Merge.rc:5419
 msgid "Contains"
 msgstr "포함"
 
 #. IDS_FILTER_OP_NOT_CONTAINS
-#: Merge.rc:5418
+#: Merge.rc:5420
 msgid "Not Contains"
 msgstr "포함하지 않음"
 
 #. IDS_FILTER_OP_RECONTAINS
-#: Merge.rc:5419
+#: Merge.rc:5421
 msgid "Contains (regex)"
 msgstr "포함 (정규식)"
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
-#: Merge.rc:5420
+#: Merge.rc:5422
 msgid "Not Contains (regex)"
 msgstr "포함하지 않음 (정규식)"
 
 #. IDS_FILTER_OP_LIKE
-#: Merge.rc:5421
+#: Merge.rc:5423
 msgid "Match (wildcard)"
 msgstr "일치 (와일드카드)"
 
 #. IDS_FILTER_OP_NOT_LIKE
-#: Merge.rc:5422
+#: Merge.rc:5424
 msgid "Not match (wildcard)"
 msgstr "일치하지 않음 (와일드카드)"
 
 #. IDS_FILTER_OP_MATCHES
-#: Merge.rc:5423
+#: Merge.rc:5425
 msgid "Match (regex)"
 msgstr "일치 (정규 표현식)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
-#: Merge.rc:5424
+#: Merge.rc:5426
 msgid "Not match (regex)"
 msgstr "일치하지 않음 (정규 표현식)"
 
 #. IDS_COLORMODE_LIGHT
-#: Merge.rc:5429
+#: Merge.rc:5431
 msgid "Light"
 msgstr "밝은"
 
 #. IDS_COLORMODE_DARK
-#: Merge.rc:5430
+#: Merge.rc:5432
 msgid "Dark"
 msgstr "어두운"
 
 #. IDS_COLORMODE_FOLLOWSYSTEM
-#: Merge.rc:5431
+#: Merge.rc:5433
 msgid "Follow system"
 msgstr "시스템을 따름"
 
 #. IDS_EXAMPLE
-#: Merge.rc:5436
+#: Merge.rc:5438
 #, c-format
 msgid "e.g. %1"
 msgstr "예: %1"
 
 #. IDS_DETECTED_PREVIOUS_CRASH
-#: Merge.rc:5441
+#: Merge.rc:5443
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge가 이전 충돌을 감지했습니다. 가능하다면 이를 보고해 주세요."
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5446
+#: Merge.rc:5448
 msgid ""
 "# Regex replacement list\r\n"
 "# Format: regex<TAB>replacement\r\n"
@@ -9240,7 +9245,7 @@ msgstr ""
 "(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5447
+#: Merge.rc:5449
 msgid ""
 "# Replacement list\r\n"
 "# Format: search<TAB>replacement\r\n"

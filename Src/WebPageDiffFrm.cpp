@@ -10,6 +10,7 @@
 #include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
+#include "HeaderBarHelper.h"
 #include "IDirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -578,8 +579,15 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		m_pWebDiffWindow->SetActivePane(pane);
 	});
 
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(maxCount, type);
+	});
+	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
+		return GetClipboardHistoryItems(maxCount);
+	});
+
 	// Merge frame also has a dockable bar at the very left
-	// created in OnCreateClient 
+	// created in OnCreateClient
 	m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
 		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_LEFT);
 	m_wndLocationBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);

@@ -15,6 +15,8 @@
 #include "RoundedRectWithShadow.h"
 #include "cecolor.h"
 #include "DarkModeLib.h"
+#include "ClipboardHistory.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -73,6 +75,8 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
 		m_Edit[pane].SetFont(&m_font);
 		m_Edit[pane].SetMargins(0, std::abs(ncm.lfStatusFont.lfHeight));
+		m_Edit[pane].SetHeaderBar(this);
+		m_Edit[pane].SetPaneIndex(pane);
 	}
 	return TRUE;
 };
@@ -259,8 +263,11 @@ void CEditorFilePathBar::OnSelectEdit(UINT id)
 	if (pane < 0 || pane >= m_nPanes)
 		return;
 	InvalidateRect(nullptr, false);
-	(m_fileSelectedCallbackfunc ? m_fileSelectedCallbackfunc : m_folderSelectedCallbackfunc)
-		(pane, m_Edit[pane].GetSelectedPath());
+	String selectedPath = m_Edit[pane].GetSelectedPath();
+	if (m_fileSelectedCallbackfunc)
+		m_fileSelectedCallbackfunc(pane, selectedPath, nullptr);
+	else if (m_folderSelectedCallbackfunc)
+		m_folderSelectedCallbackfunc(pane, selectedPath);
 }
 
 /** 
@@ -363,4 +370,90 @@ void CEditorFilePathBar::EditActivePanePath()
 	const int pane = GetActive();
 	if (pane >= 0)
 		m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
+}
+
+void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<RecentItem>(unsigned maxCount, RecentItemType type)> callbackfunc)
+{
+	m_getRecentItemsCallbackfunc = callbackfunc;
+}
+
+void CEditorFilePathBar::SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardItem>(unsigned maxCount)> callbackfunc)
+{
+	m_getClipboardHistoryCallbackfunc = callbackfunc;
+}
+
+std::vector<IHeaderBar::RecentItem> CEditorFilePathBar::GetRecentItems(unsigned maxCount, RecentItemType type) const
+{
+	if (m_getRecentItemsCallbackfunc)
+		return m_getRecentItemsCallbackfunc(maxCount, type);
+	return {};
+}
+
+std::vector<IHeaderBar::ClipboardItem> CEditorFilePathBar::GetClipboardHistory(unsigned maxCount) const
+{
+	if (m_getClipboardHistoryCallbackfunc)
+		return m_getClipboardHistoryCallbackfunc(maxCount);
+	return {};
+}
+
+void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
+{
+	// Check if the path exists
+	paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(path);
+
+	if (pathExists == paths::DOES_NOT_EXIST)
+	{
+		// Show error message in caption
+		String errorMsg = strutils::format_string1(_("File or folder '%1' does not exist"), path);
+		SetCaption(pane, errorMsg);
+		return;
+	}
+
+	// Use the appropriate callback to notify the parent
+	bool isFolder = paths::EndsWithSlash(path);
+
+	if (isFolder && m_folderSelectedCallbackfunc)
+	{
+		m_folderSelectedCallbackfunc(pane, path);
+	}
+	else if (!isFolder && m_fileSelectedCallbackfunc)
+	{
+		m_fileSelectedCallbackfunc(pane, path, nullptr);
+	}
+	else if (m_fileSelectedCallbackfunc)
+	{
+		// Fallback to file callback if folder callback is not set
+		m_fileSelectedCallbackfunc(pane, path, nullptr);
+	}
+}
+
+void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
+{
+	auto clipItems = ClipboardHistory::GetItems(50);
+	if (itemIndex < 0 || itemIndex >= static_cast<int>(clipItems.size()))
+		return;
+
+	const auto& clipItem = clipItems[itemIndex];
+	if (!clipItem.pTextTempFile)
+		return;
+
+	String clipboardPath = clipItem.pTextTempFile->GetPath();
+
+	// Check if the clipboard temp file exists
+	paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(clipboardPath);
+
+	if (pathExists == paths::DOES_NOT_EXIST)
+	{
+		// Show error message in caption
+		String errorMsg = strutils::format_string1(_("Clipboard content file '%1' does not exist"), clipboardPath);
+		SetCaption(pane, errorMsg);
+		return;
+	}
+
+	// Use file callback to notify about the clipboard content (always treated as file)
+	// Pass the TempFilePtr so the caller can save it to prevent deletion
+	if (m_fileSelectedCallbackfunc)
+	{
+		m_fileSelectedCallbackfunc(pane, clipboardPath, clipItem.pTextTempFile);
+	}
 }

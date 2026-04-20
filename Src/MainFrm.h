@@ -244,6 +244,8 @@ public:
 	CToolBar* GetToolbar() { return &m_wndToolBar; }
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
 	void OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show);
+	static std::vector<String> getMruList(const tchar_t* szRegSubKey, UINT nMaxItems = 20);
+	void AddTempFile(const TempFilePtr& pTempFile) { m_tempFiles.push_back(pTempFile); }
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;

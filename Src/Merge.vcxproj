@@ -996,6 +996,7 @@
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />
     <ClInclude Include="FrameWndHelper.h" />
+    <ClInclude Include="HeaderBarHelper.h" />
     <ClInclude Include="I18n.h" />
     <ClInclude Include="I18nGUI.h" />
     <ClInclude Include="Logger.h">

@@ -13,6 +13,9 @@
 
 #include "FilepathEdit.h"
 #include <functional>
+#include <memory>
+
+class TempFile;
 
 /**
  * Interface to update the header data.
@@ -30,9 +33,30 @@ public:
 	virtual void Resize() = 0;
 	virtual void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) = 0;
 	virtual void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) = 0;
-	virtual void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) = 0;
+	virtual void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile)> callbackfunc) = 0;
 	virtual void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) = 0;
 	virtual void EditActivePanePath() = 0;
+
+	// Recent files/folders and clipboard history
+	struct RecentItem
+	{
+		String title;
+		String path;
+		String description;
+	};
+	struct ClipboardItem
+	{
+		String text;
+		String imagePath;
+		time_t timestamp;
+	};
+	enum class RecentItemType { All, FilesOnly, FoldersOnly };
+	virtual void SetOnGetRecentItemsCallback(const std::function<std::vector<RecentItem>(unsigned maxCount, RecentItemType type)> callbackfunc) = 0;
+	virtual void SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardItem>(unsigned maxCount)> callbackfunc) = 0;
+	virtual std::vector<RecentItem> GetRecentItems(unsigned maxCount, RecentItemType type = RecentItemType::All) const { return {}; }
+	virtual std::vector<ClipboardItem> GetClipboardHistory(unsigned maxCount) const { return {}; }
+	virtual void OnRecentItemSelected(int pane, const String& path) {}
+	virtual void OnClipboardItemSelected(int pane, int itemIndex) {}
 };
 
 
@@ -68,9 +92,15 @@ public :
 	void Resize() override;
 	void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) override;
 	void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) override;
-	void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) override;
+	void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile)> callbackfunc) override;
 	void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) override;
 	void EditActivePanePath() override;
+	void SetOnGetRecentItemsCallback(const std::function<std::vector<RecentItem>(unsigned maxCount, RecentItemType type)> callbackfunc) override;
+	void SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardItem>(unsigned maxCount)> callbackfunc) override;
+	std::vector<RecentItem> GetRecentItems(unsigned maxCount, RecentItemType type = RecentItemType::All) const override;
+	std::vector<ClipboardItem> GetClipboardHistory(unsigned maxCount) const override;
+	void OnRecentItemSelected(int pane, const String& path) override;
+	void OnClipboardItemSelected(int pane, int itemIndex) override;
 
 protected:
 	//{{AFX_MSG(CEditorFilePathBar)
@@ -90,8 +120,10 @@ private:
 	int m_nPanes;
 	std::function<void(int)> m_setFocusCallbackfunc;
 	std::function<void(int, const String& sText)> m_captionChangedCallbackfunc;
-	std::function<void(int, const String& sFilepath)> m_fileSelectedCallbackfunc;
+	std::function<void(int, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile)> m_fileSelectedCallbackfunc;
 	std::function<void(int, const String& sFolderpath)> m_folderSelectedCallbackfunc;
+	std::function<std::vector<RecentItem>(unsigned maxCount, RecentItemType type)> m_getRecentItemsCallbackfunc;
+	std::function<std::vector<ClipboardItem>(unsigned maxCount)> m_getClipboardHistoryCallbackfunc;
 
 	void SetToolTipsFirstTime(HWND hTip);
 };
@@ -114,7 +146,7 @@ inline void CEditorFilePathBar::SetOnCaptionChangedCallback(const std::function<
 	m_captionChangedCallbackfunc = callbackfunc;
 }
 
-inline void CEditorFilePathBar::SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc)
+inline void CEditorFilePathBar::SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile)> callbackfunc)
 {
 	m_fileSelectedCallbackfunc = callbackfunc;
 	for (int pane = 0; pane < m_nPanes; ++pane)

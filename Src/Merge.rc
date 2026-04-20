@@ -5244,6 +5244,8 @@ STRINGTABLE
 BEGIN
     IDS_SINGLEINSTANCE_DISABLED NC_("Options dialog|General|Single instance mode","Disabled")
     IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
+    IDS_RECENT_FILES        "Recent F&iles or Folders"
+    IDS_CLIPBOARD_HISTORY   "Clipboard &History"
     IDS_SINGLEINSTANCE_STR2 "Allow only one instance; wait for termination"
 END
 

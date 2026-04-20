@@ -12,7 +12,9 @@
 
 #include "StdAfx.h"
 #include "MainFrm.h"
+#include "EditorFilepathBar.h"
 #include <vector>
+#include <unordered_set>
 #include <afxinet.h>
 #if !defined(__cppcheck__)
 #include <boost/range/mfc.hpp>
@@ -1946,6 +1948,142 @@ void CMainFrame::addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UIN
 		AfxGetApp()->WriteProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str(), list[i]);
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
+}
+
+/**
+ * @brief Get MRU list from registry
+ */
+std::vector<String> CMainFrame::getMruList(const tchar_t* szRegSubKey, UINT nMaxItems)
+{
+	std::vector<String> list;
+	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
+	for (UINT i = 0; i < cnt && i < nMaxItems; ++i)
+	{
+		String s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
+		if (!s.empty())
+			list.push_back(s);
+	}
+	return list;
+}
+
+/**
+ * @brief Get recent files list for HeaderBar
+ */
+std::vector<IHeaderBar::RecentItem> GetRecentFiles(unsigned maxCount, IHeaderBar::RecentItemType type)
+{
+	std::vector<IHeaderBar::RecentItem> items;
+
+	// Get MRU items from different sources
+	std::vector<String> allPaths;
+
+	if (type == IHeaderBar::RecentItemType::All || type == IHeaderBar::RecentItemType::FilesOnly)
+	{
+		auto leftFiles = CMainFrame::getMruList(_T("Files\\Left"), maxCount);
+		auto rightFiles = CMainFrame::getMruList(_T("Files\\Right"), maxCount);
+		auto optionFiles = CMainFrame::getMruList(_T("Files\\Option"), maxCount);
+
+		allPaths.insert(allPaths.end(), leftFiles.begin(), leftFiles.end());
+		allPaths.insert(allPaths.end(), rightFiles.begin(), rightFiles.end());
+		allPaths.insert(allPaths.end(), optionFiles.begin(), optionFiles.end());
+	}
+
+	// Remove duplicates while preserving order
+	std::vector<String> uniquePaths;
+	std::unordered_set<String> seenPaths;
+	for (const auto& path : allPaths)
+	{
+		if (seenPaths.find(path) == seenPaths.end())
+		{
+			bool isFolder = paths::EndsWithSlash(path);
+
+			// Filter based on type
+			if (type == IHeaderBar::RecentItemType::FilesOnly && isFolder)
+				continue;
+			if (type == IHeaderBar::RecentItemType::FoldersOnly && !isFolder)
+				continue;
+
+			seenPaths.insert(path);
+			uniquePaths.push_back(path);
+
+			if (uniquePaths.size() >= maxCount)
+				break;
+		}
+	}
+
+	// Create RecentItem list
+	for (const auto& path : uniquePaths)
+	{
+		IHeaderBar::RecentItem item;
+		item.path = path;
+
+		// Extract filename or folder name as title
+		if (paths::EndsWithSlash(path))
+		{
+			// For folders, get the last directory name
+			String pathWithoutSlash = path.substr(0, path.length() - 1);
+			size_t pos = pathWithoutSlash.find_last_of(_T("\\/"));
+			if (pos != String::npos)
+				item.title = pathWithoutSlash.substr(pos + 1);
+			else
+				item.title = pathWithoutSlash;
+		}
+		else
+		{
+			// For files, get the filename
+			size_t pos = path.find_last_of(_T("\\/"));
+			if (pos != String::npos)
+				item.title = path.substr(pos + 1);
+			else
+				item.title = path;
+		}
+
+		item.description = path;
+		items.push_back(item);
+	}
+
+	return items;
+}
+
+/**
+ * @brief Get clipboard history for HeaderBar
+ */
+std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCount)
+{
+	std::vector<IHeaderBar::ClipboardItem> items;
+
+	auto clipItems = ClipboardHistory::GetItems(maxCount);
+	for (const auto& clipItem : clipItems)
+	{
+		IHeaderBar::ClipboardItem item;
+		item.timestamp = clipItem.timestamp;
+
+		if (clipItem.pTextTempFile)
+		{
+			UniMemFile file;
+			if (file.OpenReadOnly(clipItem.pTextTempFile->GetPath()))
+			{
+				file.ReadBom();
+				String line;
+				String eol;
+				// Read first line as preview
+				if (file.ReadString(line, eol, nullptr))
+				{
+					// Take first 100 characters as preview
+					if (line.length() > 100)
+						item.text = line.substr(0, 100) + _T("...");
+					else
+						item.text = line;
+				}
+				file.Close();
+			}
+		}
+
+		if (clipItem.pBitmapTempFile)
+			item.imagePath = clipItem.pBitmapTempFile->GetPath();
+
+		items.push_back(item);
+	}
+	return items;
 }
 
 void CMainFrame::ApplyDiffOptions() 

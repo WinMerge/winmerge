@@ -13,7 +13,9 @@
 
 #include "stdafx.h"
 #include "MergeEditFrm.h"
+#include "HeaderBarHelper.h"
 #include "FrameWndHelper.h"
+#include "MainFrm.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
@@ -126,10 +128,21 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		m_pMergeDoc->UpdateHeaderPath(pane);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath) {
+	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile) {
+		if (pTempFile)
+		{
+			if (CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetMainWnd()))
+				pMainFrame->AddTempFile(pTempFile);
+		}
 		const int nGroup = m_pMergeDoc->GetActiveMergeView()->m_nThisGroup;
 		m_pMergeDoc->ChangeFile(pane, sFilepath);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
+	});
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(maxCount, type);
+	});
+	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
+		return GetClipboardHistoryItems(maxCount);
 	});
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	
@@ -280,7 +293,7 @@ void CMergeEditFrame::SaveActivePane()
 		auto& splitterWnd = static_cast<CMergeEditSplitterView*>(m_wndSplitter.GetPane(iRowParent, 0))->m_wndSplitter;
 		splitterWnd.GetActivePane(&iRow, &iCol);
 		if (iRow >= 0 || iCol >= 0)
-			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, max(iRow, iCol));
+			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, (std::max)(iRow, iCol));
 	}
 }
 

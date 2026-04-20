@@ -13,6 +13,8 @@
 
 #include "stdafx.h"
 #include "HexMergeFrm.h"
+#include "MainFrm.h"
+#include "HeaderBarHelper.h"
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "OptionsDef.h"
@@ -135,9 +137,20 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		m_pMergeDoc->UpdateHeaderPath(pane);
 		GetView(pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath) {
+	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile) {
+		if (pTempFile)
+		{
+			if (CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetMainWnd()))
+				pMainFrame->AddTempFile(pTempFile);
+		}
 		m_pMergeDoc->ChangeFile(pane, sFilepath);
 		GetView(pane)->SetFocus();
+	});
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(maxCount, type);
+	});
+	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
+		return GetClipboardHistoryItems(maxCount);
 	});
 
 	// Set filename bars inactive so colors get initialized
