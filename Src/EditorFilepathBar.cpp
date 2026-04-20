@@ -15,7 +15,7 @@
 #include "RoundedRectWithShadow.h"
 #include "cecolor.h"
 #include "DarkModeLib.h"
-#include "ClipboardHistory.h"
+#include "TempFile.h"
 #include "paths.h"
 #include "I18n.h"
 

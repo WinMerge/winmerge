@@ -22,7 +22,6 @@
 #include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
-#include "SubstitutionList.h"
 #include "DirView.h"
 #include "DirFrame.h"
 #include "MainFrm.h"
@@ -44,6 +43,7 @@
 #include "FolderCmp.h"
 #include "DirViewColItems.h"
 #include "RenameMoveDetection.h"
+#include "HeaderBarHelper.h"
 #include <Poco/Semaphore.h>
 #include <set>
 
@@ -119,6 +119,8 @@ void CDirDoc::OnCloseDocument()
 				pHeaderBar->SetOnSetFocusCallback(nullptr);
 				pHeaderBar->SetOnCaptionChangedCallback(nullptr);
 				pHeaderBar->SetOnFolderSelectedCallback(nullptr);
+				pHeaderBar->SetOnGetRecentItemsCallback(nullptr);
+				pHeaderBar->SetOnGetClipboardHistoryCallback(nullptr);
 			}
 		}
 	}
@@ -422,6 +424,12 @@ void CDirDoc::Rescan()
 		m_pDirView->SetFocus();
 		InitCompare(paths, m_pCtxt->m_bRecursive, nullptr);
 		Rescan();
+	});
+	pHeaderBar->SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(maxCount, type);
+	});
+	pHeaderBar->SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
+		return GetClipboardHistoryItems(maxCount);
 	});
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{

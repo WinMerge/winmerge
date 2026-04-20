@@ -12,7 +12,6 @@
 
 #include "StdAfx.h"
 #include "DirView.h"
-#include "HeaderBarHelper.h"
 #include "Constants.h"
 #include "Merge.h"
 #include "ClipBoard.h"
@@ -496,21 +495,6 @@ void CDirView::OnInitialUpdate()
 		DarkMode::setListViewCtrlSubclass(hList);
 		DarkMode::setDarkTooltips(hList, static_cast<int>(DarkMode::ToolTipsType::listview));
 		DarkMode::setDarkThemeExperimentalEx(hList, L"Explorer");
-	}
-
-	// Setup header bar callbacks
-	CDirFrame* pFrame = GetParentFrame();
-	if (pFrame != nullptr)
-	{
-		if (auto* pHeaderBar = pFrame->GetHeaderInterface())
-		{
-			pHeaderBar->SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
-				return GetRecentFiles(maxCount, type);
-			});
-			pHeaderBar->SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-				return GetClipboardHistoryItems(maxCount);
-			});
-		}
 	}
 }
 
