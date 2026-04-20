@@ -427,12 +427,16 @@ void CFilepathEdit::OnEditSelectAll()
 
 void CFilepathEdit::OnContextMenuSelected(UINT nID)
 {
-	// Forward Recent/Clipboard commands to parent
+	// Forward Recent/Clipboard commands to parent via notification
 	if ((nID >= ID_EDITOR_RECENT_FIRST && nID <= ID_EDITOR_RECENT_LAST) ||
 		(nID >= ID_EDITOR_CLIPBOARD_FIRST && nID <= ID_EDITOR_CLIPBOARD_LAST))
 	{
-		// Send command with pane index in LPARAM
-		GetParent()->SendMessage(WM_COMMAND, MAKEWPARAM(nID, 0), reinterpret_cast<LPARAM>(m_hWnd));
+		NMMENUITEMSELECTED nmhdr;
+		nmhdr.hdr.hwndFrom = m_hWnd;
+		nmhdr.hdr.idFrom = GetDlgCtrlID();
+		nmhdr.hdr.code = EN_USER_MENU_ITEM_SELECTED;
+		nmhdr.menuId = nID;
+		GetParent()->SendMessage(WM_NOTIFY, nmhdr.hdr.idFrom, reinterpret_cast<LPARAM>(&nmhdr));
 		return;
 	}
 

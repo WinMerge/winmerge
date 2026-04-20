@@ -2056,6 +2056,7 @@ std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCoun
 	{
 		IHeaderBar::ClipboardItem item;
 		item.timestamp = clipItem.timestamp;
+		item.pTextTempFile = clipItem.pTextTempFile;
 
 		if (clipItem.pTextTempFile)
 		{

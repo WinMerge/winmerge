@@ -34,8 +34,7 @@ BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
 	ON_CONTROL_RANGE (EN_USER_CAPTION_CHANGED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnChangeEdit)
 	ON_CONTROL_RANGE (EN_USER_FILE_SELECTED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSelectEdit)
 	ON_NOTIFY_RANGE (EN_USER_CUSTOMIZE_CONTEXT_MENU, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnCustomizeContextMenu)
-	ON_COMMAND_RANGE(ID_EDITOR_RECENT_FIRST, ID_EDITOR_RECENT_LAST, OnRecentItemCommand)
-	ON_COMMAND_RANGE(ID_EDITOR_CLIPBOARD_FIRST, ID_EDITOR_CLIPBOARD_LAST, OnClipboardItemCommand)
+	ON_NOTIFY_RANGE (EN_USER_MENU_ITEM_SELECTED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnMenuItemSelected)
 END_MESSAGE_MAP()
 
 
@@ -431,7 +430,7 @@ void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
 
 void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 {
-	auto clipItems = ClipboardHistory::GetItems(50);
+	auto clipItems = GetClipboardHistory(50);
 	if (itemIndex < 0 || itemIndex >= static_cast<int>(clipItems.size()))
 		return;
 
@@ -460,62 +459,45 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	}
 }
 
-void CEditorFilePathBar::OnRecentItemCommand(UINT menuId)
+void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 {
-	// Get the originating window handle from the current message
-	const MSG* pMsg = GetCurrentMessage();
-	HWND hWndFrom = reinterpret_cast<HWND>(pMsg->lParam);
-
-	int pane = -1;
-	for (int i = 0; i < m_nPanes; ++i)
-	{
-		if (hWndFrom == m_Edit[i].m_hWnd)
-		{
-			pane = i;
-			break;
-		}
-	}
+	NMMENUITEMSELECTED* pNM = reinterpret_cast<NMMENUITEMSELECTED*>(pNMHDR);
+	const int pane = id - IDC_STATIC_TITLE_PANE0;
 
 	if (pane < 0 || pane >= m_nPanes)
+	{
+		*pResult = 0;
 		return;
-
-	int index = menuId - ID_EDITOR_RECENT_FIRST;
-
-	// Get the actual path from the stored recent items
-	IHeaderBar::RecentItemType itemType = IHeaderBar::RecentItemType::All;
-	if (m_Edit[pane].IsFileSelectionEnabled() && !m_Edit[pane].IsFolderSelectionEnabled())
-		itemType = IHeaderBar::RecentItemType::FilesOnly;
-	else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
-		itemType = IHeaderBar::RecentItemType::FoldersOnly;
-
-	auto recentItems = GetRecentItems(20, itemType);
-	if (index >= 0 && index < static_cast<int>(recentItems.size()))
-	{
-		OnRecentItemSelected(pane, recentItems[index].path);
 	}
-}
 
-void CEditorFilePathBar::OnClipboardItemCommand(UINT menuId)
-{
-	// Get the originating window handle from the current message
-	const MSG* pMsg = GetCurrentMessage();
-	HWND hWndFrom = reinterpret_cast<HWND>(pMsg->lParam);
+	UINT menuId = pNM->menuId;
 
-	int pane = -1;
-	for (int i = 0; i < m_nPanes; ++i)
+	// Handle recent item selection
+	if (menuId >= ID_EDITOR_RECENT_FIRST && menuId <= ID_EDITOR_RECENT_LAST)
 	{
-		if (hWndFrom == m_Edit[i].m_hWnd)
+		int index = menuId - ID_EDITOR_RECENT_FIRST;
+
+		// Get the actual path from the stored recent items
+		IHeaderBar::RecentItemType itemType = IHeaderBar::RecentItemType::All;
+		if (m_Edit[pane].IsFileSelectionEnabled() && !m_Edit[pane].IsFolderSelectionEnabled())
+			itemType = IHeaderBar::RecentItemType::FilesOnly;
+		else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
+			itemType = IHeaderBar::RecentItemType::FoldersOnly;
+
+		auto recentItems = GetRecentItems(50, itemType);
+		if (index >= 0 && index < static_cast<int>(recentItems.size()))
 		{
-			pane = i;
-			break;
+			OnRecentItemSelected(pane, recentItems[index].path);
 		}
 	}
+	// Handle clipboard history selection
+	else if (menuId >= ID_EDITOR_CLIPBOARD_FIRST && menuId <= ID_EDITOR_CLIPBOARD_LAST)
+	{
+		int index = menuId - ID_EDITOR_CLIPBOARD_FIRST;
+		OnClipboardItemSelected(pane, index);
+	}
 
-	if (pane < 0 || pane >= m_nPanes)
-		return;
-
-	int index = menuId - ID_EDITOR_CLIPBOARD_FIRST;
-	OnClipboardItemSelected(pane, index);
+	*pResult = 0;
 }
 
 void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
@@ -565,6 +547,14 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 		int ID = ID_EDITOR_CLIPBOARD_FIRST;
 		for (size_t i = 0; i < clipboardItems.size() && ID <= ID_EDITOR_CLIPBOARD_LAST; ++i, ++ID)
 		{
+			String prefix;
+			if (!clipboardItems[i].imagePath.empty())
+				prefix = _T("[Image] ");
+			else if (!clipboardItems[i].text.empty() && paths::IsPathAbsolute(clipboardItems[i].text))
+				prefix = _T("[Path] ");
+			else
+				prefix = _T("[Text] ");
+
 			String preview = clipboardItems[i].text;
 			if (preview.length() > 60)
 				preview = preview.substr(0, 57) + _T("...");
@@ -572,8 +562,8 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 			std::replace(preview.begin(), preview.end(), '\n', ' ');
 			std::replace(preview.begin(), preview.end(), '\r', ' ');
 
-			String menuText = strutils::format(_T("&%d %s"),
-				static_cast<int>(i) + 1, preview.c_str());
+			String menuText = strutils::format(_T("&%d %s%s"),
+				static_cast<int>(i) + 1, prefix.c_str(), preview.c_str());
 			clipboardMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
 		}
 		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(clipboardMenu.m_hMenu), I18n::LoadString(IDS_CLIPBOARD_HISTORY).c_str());

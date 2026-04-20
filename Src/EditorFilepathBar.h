@@ -112,8 +112,7 @@ protected:
 	afx_msg void OnKillFocusEdit(UINT id);
 	afx_msg void OnChangeEdit(UINT id);
 	afx_msg void OnSelectEdit(UINT id);
-	afx_msg void OnRecentItemCommand(UINT menuId);
-	afx_msg void OnClipboardItemCommand(UINT menuId);
+	afx_msg void OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP();
