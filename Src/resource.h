@@ -792,9 +792,9 @@
 #define ID_EDITOR_RECENT_FILES          18188
 #define ID_EDITOR_CLIPBOARD_HISTORY     18189
 #define ID_EDITOR_RECENT_FIRST          18200
-#define ID_EDITOR_RECENT_LAST           18249
-#define ID_EDITOR_CLIPBOARD_FIRST       18250
-#define ID_EDITOR_CLIPBOARD_LAST        18299
+#define ID_EDITOR_RECENT_LAST           18219
+#define ID_EDITOR_CLIPBOARD_FIRST       18220
+#define ID_EDITOR_CLIPBOARD_LAST        18239
 #define ID_FILE_NEW3                    32767
 #define ID_FILE_SAVE_LEFT               32768
 #define ID_FILE_SAVE_MIDDLE             32769

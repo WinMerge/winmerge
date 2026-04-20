@@ -2066,14 +2066,12 @@ std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCoun
 				String line;
 				String eol;
 				// Read first line as preview
-				if (file.ReadString(line, eol, nullptr))
-				{
-					// Take first 100 characters as preview
-					if (line.length() > 100)
-						item.text = line.substr(0, 100) + _T("...");
-					else
-						item.text = line;
-				}
+				file.ReadString(line, eol, nullptr);
+				// Take first 100 characters as preview
+				if (line.length() > 100)
+					item.text = line.substr(0, 100) + _T("...");
+				else
+					item.text = line;
 				file.Close();
 			}
 		}

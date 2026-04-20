@@ -13,13 +13,10 @@
 #include "stdafx.h"
 #include <Shlwapi.h>
 #include "FilepathEdit.h"
-#include "EditorFilepathBar.h"
 #include "ClipBoard.h"
 #include "FileOrFolderSelect.h"
-#include "Win_VersionHelper.h"
 #include "paths.h"
 #include "cecolor.h"
-#include <ctime>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -119,8 +116,6 @@ CFilepathEdit::CFilepathEdit()
  , m_bPathEditing(false)
  , m_bEnabledFileSelection(false)
  , m_bEnabledFolderSelection(false)
- , m_pHeaderBar(nullptr)
- , m_nPaneIndex(-1)
 {
 }
 
@@ -254,7 +249,8 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (!m_bActive)
 			SetFocus();
 
-		if (point.x == -1 && point.y == -1){
+		if (point.x == -1 && point.y == -1)
+		{
 			//keystroke invocation
 			CRect rect;
 			GetClientRect(rect);
@@ -283,58 +279,13 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 			pPopup->EnableMenuItem(ID_EDITOR_EDIT_PATH, MF_GRAYED);
 		}
 
-		// Add Recent Files/Folders submenu
-		if (m_pHeaderBar)
-		{
-			// Determine which type of items to show based on enabled callbacks
-			IHeaderBar::RecentItemType itemType = IHeaderBar::RecentItemType::All;
-			if (m_bEnabledFileSelection && !m_bEnabledFolderSelection)
-				itemType = IHeaderBar::RecentItemType::FilesOnly;
-			else if (m_bEnabledFolderSelection && !m_bEnabledFileSelection)
-				itemType = IHeaderBar::RecentItemType::FoldersOnly;
-
-			auto recentItems = m_pHeaderBar->GetRecentItems(20, itemType);
-			if (!recentItems.empty())
-			{
-				CMenu recentMenu;
-				recentMenu.CreatePopupMenu();
-				int ID = ID_EDITOR_RECENT_FIRST;
-				for (size_t i = 0; i < recentItems.size() && ID <= ID_EDITOR_RECENT_LAST; ++i, ++ID)
-				{
-					String menuText = (i < 9) ?
-						strutils::format(_T("&%d %s"), static_cast<int>(i) + 1, recentItems[i].title.c_str()) :
-						strutils::format(_T("&%c %s"), 'a' + static_cast<int>(i) - 9, recentItems[i].title.c_str());
-					recentMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
-				}
-				pPopup->AppendMenu(MF_SEPARATOR);
-				pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(recentMenu.m_hMenu), I18n::LoadString(IDS_RECENT_FILES).c_str());
-				recentMenu.Detach();
-			}
-
-			// Add Clipboard History submenu
-			auto clipboardItems = m_pHeaderBar->GetClipboardHistory(10);
-			if (!clipboardItems.empty())
-			{
-				CMenu clipboardMenu;
-				clipboardMenu.CreatePopupMenu();
-				int ID = ID_EDITOR_CLIPBOARD_FIRST;
-				for (size_t i = 0; i < clipboardItems.size() && ID <= ID_EDITOR_CLIPBOARD_LAST; ++i, ++ID)
-				{
-					String preview = clipboardItems[i].text;
-					if (preview.length() > 60)
-						preview = preview.substr(0, 57) + _T("...");
-					// Replace newlines with spaces for menu display
-					std::replace(preview.begin(), preview.end(), '\n', ' ');
-					std::replace(preview.begin(), preview.end(), '\r', ' ');
-
-					String menuText = strutils::format(_T("&%d %s"),
-						static_cast<int>(i) + 1, preview.c_str());
-					clipboardMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
-				}
-				pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(clipboardMenu.m_hMenu), I18n::LoadString(IDS_CLIPBOARD_HISTORY).c_str());
-				clipboardMenu.Detach();
-			}
-		}
+		// Allow parent to customize the context menu
+		NMCONTEXTMENU nmctx;
+		nmctx.hdr.hwndFrom = m_hWnd;
+		nmctx.hdr.idFrom = GetDlgCtrlID();
+		nmctx.hdr.code = EN_USER_CUSTOMIZE_CONTEXT_MENU;
+		nmctx.pMenu = pPopup;
+		GetParent()->SendMessage(WM_NOTIFY, nmctx.hdr.idFrom, reinterpret_cast<LPARAM>(&nmctx));
 
 		// invoke context menu
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
@@ -476,36 +427,12 @@ void CFilepathEdit::OnEditSelectAll()
 
 void CFilepathEdit::OnContextMenuSelected(UINT nID)
 {
-	// Handle recent file selection
-	if (nID >= ID_EDITOR_RECENT_FIRST && nID <= ID_EDITOR_RECENT_LAST)
+	// Forward Recent/Clipboard commands to parent
+	if ((nID >= ID_EDITOR_RECENT_FIRST && nID <= ID_EDITOR_RECENT_LAST) ||
+		(nID >= ID_EDITOR_CLIPBOARD_FIRST && nID <= ID_EDITOR_CLIPBOARD_LAST))
 	{
-		if (m_pHeaderBar)
-		{
-			// Use the same filter as in the context menu
-			IHeaderBar::RecentItemType itemType = IHeaderBar::RecentItemType::All;
-			if (m_bEnabledFileSelection && !m_bEnabledFolderSelection)
-				itemType = IHeaderBar::RecentItemType::FilesOnly;
-			else if (m_bEnabledFolderSelection && !m_bEnabledFileSelection)
-				itemType = IHeaderBar::RecentItemType::FoldersOnly;
-
-			auto recentItems = m_pHeaderBar->GetRecentItems(50, itemType);
-			int index = nID - ID_EDITOR_RECENT_FIRST;
-			if (index >= 0 && index < static_cast<int>(recentItems.size()))
-			{
-				m_pHeaderBar->OnRecentItemSelected(m_nPaneIndex, recentItems[index].path);
-			}
-		}
-		return;
-	}
-
-	// Handle clipboard history selection
-	if (nID >= ID_EDITOR_CLIPBOARD_FIRST && nID <= ID_EDITOR_CLIPBOARD_LAST)
-	{
-		if (m_pHeaderBar)
-		{
-			int index = nID - ID_EDITOR_CLIPBOARD_FIRST;
-			m_pHeaderBar->OnClipboardItemSelected(m_nPaneIndex, index);
-		}
+		// Send command with pane index in LPARAM
+		GetParent()->SendMessage(WM_COMMAND, MAKEWPARAM(nID, 0), reinterpret_cast<LPARAM>(m_hWnd));
 		return;
 	}
 

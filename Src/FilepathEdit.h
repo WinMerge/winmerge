@@ -13,11 +13,16 @@
 
 #define EN_USER_CAPTION_CHANGED  0x0A01
 #define EN_USER_FILE_SELECTED 0x0A02
+#define EN_USER_CUSTOMIZE_CONTEXT_MENU 0x0A03
 
-class IHeaderBar;
+struct NMCONTEXTMENU
+{
+	NMHDR hdr;
+	CMenu* pMenu;
+};
 
-/** 
- * @brief Read-only control to display a filepath. 
+/**
+ * @brief Read-only control to display a filepath.
  * The path is compacted (with ellipsis) to fill in the area. 
  * The tooltip displays the entire path. 
  * ContextMenu offers two copy functions : copy path, copy filename
@@ -44,9 +49,6 @@ public :
 	void EnableFolderSelection(bool enabled) { m_bEnabledFolderSelection = enabled; }
 	bool IsFileSelectionEnabled() const { return m_bEnabledFileSelection; }
 	bool IsFolderSelectionEnabled() const { return m_bEnabledFolderSelection; }
-	void SetHeaderBar(IHeaderBar* pHeaderBar) { m_pHeaderBar = pHeaderBar; }
-	int GetPaneIndex() const { return m_nPaneIndex; }
-	void SetPaneIndex(int nPaneIndex) { m_nPaneIndex = nPaneIndex; }
 
 protected:
 	virtual BOOL PreTranslateMessage(MSG *pMsg);
@@ -62,7 +64,7 @@ protected:
 	afx_msg void OnEditUndo();
 	afx_msg void OnEditSelectAll();
 	afx_msg void OnContextMenuSelected(UINT nID);
-    afx_msg void OnSysColorChange();
+	afx_msg void OnSysColorChange();
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 
@@ -84,8 +86,6 @@ private:
 	bool m_bPathEditing;
 	bool m_bEnabledFileSelection;
 	bool m_bEnabledFolderSelection;
-	IHeaderBar* m_pHeaderBar;
-	int m_nPaneIndex;
 };
 
 /**
