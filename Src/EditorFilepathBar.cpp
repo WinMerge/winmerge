@@ -266,7 +266,7 @@ void CEditorFilePathBar::OnSelectEdit(UINT id)
 	InvalidateRect(nullptr, false);
 	String selectedPath = m_Edit[pane].GetSelectedPath();
 	if (m_fileSelectedCallbackfunc)
-		m_fileSelectedCallbackfunc(pane, selectedPath, nullptr);
+		m_fileSelectedCallbackfunc(pane, selectedPath);
 	else if (m_folderSelectedCallbackfunc)
 		m_folderSelectedCallbackfunc(pane, selectedPath);
 }
@@ -419,12 +419,12 @@ void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
 	}
 	else if (!isFolder && m_fileSelectedCallbackfunc)
 	{
-		m_fileSelectedCallbackfunc(pane, path, nullptr);
+		m_fileSelectedCallbackfunc(pane, path);
 	}
 	else if (m_fileSelectedCallbackfunc)
 	{
 		// Fallback to file callback if folder callback is not set
-		m_fileSelectedCallbackfunc(pane, path, nullptr);
+		m_fileSelectedCallbackfunc(pane, path);
 	}
 }
 
@@ -451,11 +451,13 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 		return;
 	}
 
+	// Save the temp file to prevent deletion
+	m_tempFiles.push_back(clipItem.pTextTempFile);
+
 	// Use file callback to notify about the clipboard content (always treated as file)
-	// Pass the TempFilePtr so the caller can save it to prevent deletion
 	if (m_fileSelectedCallbackfunc)
 	{
-		m_fileSelectedCallbackfunc(pane, clipboardPath, clipItem.pTextTempFile);
+		m_fileSelectedCallbackfunc(pane, clipboardPath);
 	}
 }
 

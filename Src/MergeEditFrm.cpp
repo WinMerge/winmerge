@@ -15,7 +15,6 @@
 #include "MergeEditFrm.h"
 #include "HeaderBarHelper.h"
 #include "FrameWndHelper.h"
-#include "MainFrm.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
@@ -128,12 +127,7 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		m_pMergeDoc->UpdateHeaderPath(pane);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const std::shared_ptr<TempFile>& pTempFile) {
-		if (pTempFile)
-		{
-			if (CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetMainWnd()))
-				pMainFrame->AddTempFile(pTempFile);
-		}
+	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath) {
 		const int nGroup = m_pMergeDoc->GetActiveMergeView()->m_nThisGroup;
 		m_pMergeDoc->ChangeFile(pane, sFilepath);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
