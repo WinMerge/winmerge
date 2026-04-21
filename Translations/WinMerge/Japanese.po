@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5466
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5464
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_JAPANESE, SUBLANG_DEFAULT"
 
@@ -255,7 +255,7 @@ msgid "&Previous Page"
 msgstr "前ページ(&P)"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:182 Merge.rc:190 Merge.rc:1241 Merge.rc:5335
+#: Merge.rc:182 Merge.rc:190 Merge.rc:1241 Merge.rc:5333
 msgid "&Next Page"
 msgstr "次ページ(&N)"
 
@@ -556,8 +556,8 @@ msgstr "プロジェクトを保存(&V)..."
 msgid "Recent Projects"
 msgstr "最近使用したプロジェクト"
 
-#. IDS_RECENT_FILES
-#: Merge.rc:338 Merge.rc:449 Merge.rc:664 Merge.rc:5247
+#. IDR_MERGEDOCTYPE
+#: Merge.rc:338 Merge.rc:449 Merge.rc:664
 msgid "Recent F&iles or Folders"
 msgstr "最近使用したファイルまたはフォルダー(&I)"
 
@@ -627,7 +627,7 @@ msgid "&Huge"
 msgstr "特大(&H)"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5370
+#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5368
 msgid "Men&u Bar"
 msgstr "メニューバー(&U)"
 
@@ -3875,7 +3875,7 @@ msgid "Items compared:"
 msgstr "比較した項目:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2536 Merge.rc:2856 Merge.rc:5341
+#: Merge.rc:2536 Merge.rc:2856 Merge.rc:5339
 msgid "&Close"
 msgstr "閉じる(&C)"
 
@@ -6226,7 +6226,7 @@ msgid "Unpacker"
 msgstr "展開プラグイン"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4653 Merge.rc:4970 Merge.rc:5279
+#: Merge.rc:4653 Merge.rc:4970 Merge.rc:5277
 msgid "Prediffer"
 msgstr "比較前処理プラグイン"
 
@@ -7877,196 +7877,191 @@ msgstr "無効"
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"
 
-#. IDS_CLIPBOARD_HISTORY
-#: Merge.rc:5248
-msgid "Clipboard &History"
-msgstr ""
-
 #. IDS_SINGLEINSTANCE_STR2
-#: Merge.rc:5249
+#: Merge.rc:5247
 msgid "Allow only one instance; wait for termination"
 msgstr "1 つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED
-#: Merge.rc:5254
+#: Merge.rc:5252
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "無効"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
-#: Merge.rc:5255
+#: Merge.rc:5253
 msgid "Only on window activated"
 msgstr "ウインドウがアクティブになった時のみ"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
-#: Merge.rc:5256
+#: Merge.rc:5254
 msgid "Immediately"
 msgstr "即時"
 
 #. IDS_PLUGIN_ALL
-#: Merge.rc:5261
+#: Merge.rc:5259
 msgid "Al&l"
 msgstr "すべて(&L)"
 
 #. IDS_PLUGIN_OTHERS
-#: Merge.rc:5262
+#: Merge.rc:5260
 msgid "&Others"
 msgstr "その他(&O)"
 
-#: Merge.rc:5264
+#: Merge.rc:5262
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
 msgstr "プラグイン パイプラインにプラグイン名が指定されていません: %1"
 
-#: Merge.rc:5266
+#: Merge.rc:5264
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
 msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
-#: Merge.rc:5267
+#: Merge.rc:5265
 #, c-format
 msgid "Plugin name '%1' already exists."
 msgstr "プラグイン名 '%1' は既に存在しています。"
 
 #. IDS_PLUGIN_TITLE1
-#: Merge.rc:5268
+#: Merge.rc:5266
 msgid "Specify plugin arguments"
 msgstr "プラグイン引数を指定してください"
 
-#: Merge.rc:5270
+#: Merge.rc:5268
 #, c-format
 msgid "Plugin not found or invalid: %1"
 msgstr "プラグインが見つからないまたは無効です: %1"
 
 #. IDS_PLUGIN_NOT_UNPACK
-#: Merge.rc:5271
+#: Merge.rc:5269
 #, c-format
 msgid "'%1' is not an unpacker plugin"
 msgstr "'%1'は展開プラグインではありません"
 
 #. IDS_PLUGIN_NOT_PREDIFF
-#: Merge.rc:5272
+#: Merge.rc:5270
 #, c-format
 msgid "'%1' is not a prediffer plugin"
 msgstr "'%1'は比較前処理プラグインではありません"
 
-#: Merge.rc:5274
+#: Merge.rc:5272
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr "プラグイン'%2'でファイル'%1'の比較前処理を実行中にエラーが発生しました。比較前処理は適用されませんでした。"
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
-#: Merge.rc:5275
+#: Merge.rc:5273
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr "プラグインパイプラインに循環参照があります: %1"
 
 #. IDS_PLUGIN_TYPE1
-#: Merge.rc:5276
+#: Merge.rc:5274
 msgid "URL Handler"
 msgstr "URL処理プラグイン"
 
 #. IDS_PLUGIN_TYPE2
-#: Merge.rc:5277
+#: Merge.rc:5275
 msgid "File Unpacker"
 msgstr "ファイル展開プラグイン"
 
 #. IDS_PLUGIN_TYPE3
-#: Merge.rc:5278
+#: Merge.rc:5276
 msgid "File or Folder Unpacker"
 msgstr "ファイルまたはフォルダー展開プラグイン"
 
 #. IDS_PLUGIN_TYPE5
-#: Merge.rc:5280
+#: Merge.rc:5278
 msgid "Alias for Unpacker"
 msgstr "展開プラグインのエイリアス"
 
 #. IDS_PLUGIN_TYPE6
-#: Merge.rc:5281
+#: Merge.rc:5279
 msgid "Alias for Prediffer"
 msgstr "比較前処理プラグインのエイリアス"
 
 #. IDS_PLUGIN_TYPE7
-#: Merge.rc:5282
+#: Merge.rc:5280
 msgid "Alias for Editor script"
 msgstr "エディタースクリプトのエイリアス"
 
 #. IDS_PLUGIN_ALIAS_DESC
-#: Merge.rc:5283
+#: Merge.rc:5281
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
 msgstr "プラグインパイプライン '%1' のエイリアス"
 
 #. IDS_PLUGIN_NEW_DESC
-#: Merge.rc:5284
+#: Merge.rc:5282
 msgid "New plugin description"
 msgstr "新しいプラグインの説明"
 
 #. IDS_PLUGIN_TARGETS_ALL
-#: Merge.rc:5285
+#: Merge.rc:5283
 msgid "All"
 msgstr "すべて"
 
 #. IDS_PLUGIN_TARGETS_1ST
-#: Merge.rc:5286
+#: Merge.rc:5284
 msgid "1st"
 msgstr "1番目"
 
 #. IDS_PLUGIN_TARGETS_2ND
-#: Merge.rc:5287
+#: Merge.rc:5285
 msgid "2nd"
 msgstr "2番目"
 
 #. IDS_PLUGIN_TARGETS_3RD
-#: Merge.rc:5288
+#: Merge.rc:5286
 msgid "3rd"
 msgstr "3番目"
 
 #. IDS_PLUGIN_TARGETS_1ST_2ND
-#: Merge.rc:5289
+#: Merge.rc:5287
 msgid "1st and 2nd"
 msgstr "1番目と2番目"
 
 #. IDS_PLUGIN_TARGETS_1ST_3RD
-#: Merge.rc:5290
+#: Merge.rc:5288
 msgid "1st and 3rd"
 msgstr "1番目と3番目"
 
 #. IDS_PLUGIN_TARGETS_2ND_3RD
-#: Merge.rc:5291
+#: Merge.rc:5289
 msgid "2nd and 3rd"
 msgstr "2番目と3番目"
 
 #. IDS_FILTER_APPLIED
-#: Merge.rc:5296
+#: Merge.rc:5294
 msgid "Filter applied"
 msgstr "フィルター適用"
 
 #. IDS_FILTERMENU_COMPARE
-#: Merge.rc:5301
+#: Merge.rc:5299
 #, c-format
 msgid "Compare %1"
 msgstr "%1 を比較"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
-#: Merge.rc:5302
+#: Merge.rc:5300
 msgid "&Filter by This Column"
 msgstr "この列でフィルター(&F)"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
-#: Merge.rc:5303
+#: Merge.rc:5301
 msgid "&Filter by This Column..."
 msgstr "この列でフィルター(&F)..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
-#: Merge.rc:5308
+#: Merge.rc:5306
 #, c-format
 msgid "Clipboard at %s"
 msgstr "クリップボード %s"
 
 #. IDS_CLIPBOARDHISTORY_DISABLED
-#: Merge.rc:5309
+#: Merge.rc:5307
 msgid ""
 "Clipboard history disabled.\r\n"
 "Enable: Windows logo key + V, then Turn on."
@@ -8074,115 +8069,115 @@ msgstr ""
 "クリップボード履歴が無効になっています。\r\n"
 "クリップボード履歴を有効にするには、Windows キー + V を押下後、[有効にする] ボタンをクリックしてください。"
 
-#: Merge.rc:5311
+#: Merge.rc:5309
 msgid "This system does not support clipboard history."
 msgstr "このシステムではクリップボード履歴はサポートされていません。"
 
-#: Merge.rc:5313
+#: Merge.rc:5311
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
-#: Merge.rc:5318
+#: Merge.rc:5316
 msgid "WebView2 runtime not installed. Download it?"
 msgstr "WebView2 ランタイムがインストールされていません。ダウンロードしますか?"
 
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
-#: Merge.rc:5323
+#: Merge.rc:5321
 msgid "New Text Compare"
 msgstr "新規テキスト比較"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
-#: Merge.rc:5324
+#: Merge.rc:5322
 msgid "New Table Compare"
 msgstr "新規テーブル比較"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
-#: Merge.rc:5325
+#: Merge.rc:5323
 msgid "New Binary Compare"
 msgstr "新規バイナリ比較"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
-#: Merge.rc:5326
+#: Merge.rc:5324
 msgid "New Image Compare"
 msgstr "新規画像比較"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
-#: Merge.rc:5327
+#: Merge.rc:5325
 msgid "New Webpage Compare"
 msgstr "新規Webページ比較"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
-#: Merge.rc:5328
+#: Merge.rc:5326
 msgid "New Folder Compare"
 msgstr "新規フォルダー比較"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
-#: Merge.rc:5329
+#: Merge.rc:5327
 msgid "Clipboard Compare"
 msgstr "クリップボード比較"
 
 #. IDS_PREVIEWBAR_PRINT
-#: Merge.rc:5334
+#: Merge.rc:5332
 msgid "&Print..."
 msgstr "印刷(&P)..."
 
 #. IDS_PREVIEWBAR_PREVPAGE
-#: Merge.rc:5336
+#: Merge.rc:5334
 msgid "Pre&v Page"
 msgstr "前ページ(&V)"
 
 #. IDS_PREVIEWBAR_TWOPAGE
-#: Merge.rc:5337
+#: Merge.rc:5335
 msgid "&Two Page"
 msgstr "2ページ(&T)"
 
 #. IDS_PREVIEWBAR_ONEPAGE
-#: Merge.rc:5338
+#: Merge.rc:5336
 msgid "&One Page"
 msgstr "1ページ(&O)"
 
 #. IDS_PREVIEWBAR_ZOOMIN
-#: Merge.rc:5339
+#: Merge.rc:5337
 msgid "Zoom &In"
 msgstr "拡大(&I)"
 
 #. IDS_PREVIEWBAR_ZOOMOUT
-#: Merge.rc:5340
+#: Merge.rc:5338
 msgid "Zoom &Out"
 msgstr "縮小(&O)"
 
 #. IDS_WEBPAGE_COMPARING
-#: Merge.rc:5346
+#: Merge.rc:5344
 msgid "Comparing..."
 msgstr "比較しています..."
 
 #. IDS_WEBPAGE_ZOOM
-#: Merge.rc:5347
+#: Merge.rc:5345
 msgid "Zoom:"
 msgstr "拡大率:"
 
 #. IDS_COPY_GRANULARITY_DIFFHUNK
-#: Merge.rc:5352
+#: Merge.rc:5350
 msgid "Diff hunk"
 msgstr "差異ブロック"
 
 #. IDS_COPY_GRANULARITY_INLINE
-#: Merge.rc:5353
+#: Merge.rc:5351
 msgid "Inline diff"
 msgstr "行内差異"
 
 #. IDS_COPY_GRANULARITY_LINE
-#: Merge.rc:5354
+#: Merge.rc:5352
 msgid "Line"
 msgstr "行"
 
-#: Merge.rc:5355
+#: Merge.rc:5353
 msgid "Character"
 msgstr "文字"
 
 #. ID_MICE_PREVDIFF
-#: Merge.rc:5360
+#: Merge.rc:5358
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)\n"
@@ -8195,7 +8190,7 @@ msgstr ""
 "(Alt+Wheel Up)"
 
 #. ID_MICE_NEXTDIFF
-#: Merge.rc:5361
+#: Merge.rc:5359
 msgid ""
 "\n"
 "Next Difference (Alt+Down)\n"
@@ -8208,7 +8203,7 @@ msgstr ""
 "(Alt+Wheel Down)"
 
 #. ID_MICE_L2R
-#: Merge.rc:5362
+#: Merge.rc:5360
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)\n"
@@ -8223,7 +8218,7 @@ msgstr ""
 "(Alt+Shift+Wheel Down)"
 
 #. ID_MICE_R2L
-#: Merge.rc:5363
+#: Merge.rc:5361
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)\n"
@@ -8238,7 +8233,7 @@ msgstr ""
 "(Alt+Shift+Wheel Up)"
 
 #. ID_MICE_L2RNEXT
-#: Merge.rc:5364
+#: Merge.rc:5362
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)\n"
@@ -8251,7 +8246,7 @@ msgstr ""
 "(Ctrl+Alt+Shift+Wheel Down)"
 
 #. ID_MICE_R2LNEXT
-#: Merge.rc:5365
+#: Merge.rc:5363
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)\n"
@@ -8264,257 +8259,257 @@ msgstr ""
 "(Ctrl+Alt+Shift+Wheel Up)"
 
 #. IDS_LOG_COMPARING_2
-#: Merge.rc:5375
+#: Merge.rc:5373
 #, c-format
 msgid "Comparing %1 with %2"
 msgstr "%1 と %2 を比較しています"
 
 #. IDS_LOG_COMPARING_3
-#: Merge.rc:5376
+#: Merge.rc:5374
 #, c-format
 msgid "Comparing %1 with %2 and %3"
 msgstr "%1 と %2 と %3 を比較しています"
 
 #. IDS_LOG_COMPARE_COMPLETED
-#: Merge.rc:5377
+#: Merge.rc:5375
 msgid "Comparison completed"
 msgstr "比較が完了しました"
 
 #. IDS_LOG_COMPARE_ERROR_2
-#: Merge.rc:5378
+#: Merge.rc:5376
 #, c-format
 msgid "Failed to compare %1 with %2: "
 msgstr "%1 と %2 の比較に失敗しました: "
 
 #. IDS_LOG_COMPARE_ERROR_3
-#: Merge.rc:5379
+#: Merge.rc:5377
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
 msgstr "%1 と %2 と %3 の比較に失敗しました: "
 
 #. IDS_LOG_FILE_SAVED
-#: Merge.rc:5380
+#: Merge.rc:5378
 msgid "File saved"
 msgstr "ファイルが保存されました"
 
 #. IDS_LOG_COPYING_FILES
-#: Merge.rc:5381
+#: Merge.rc:5379
 msgid "Copying files..."
 msgstr "ファイルをコピーしています..."
 
 #. IDS_LOG_MOVING_FILES
-#: Merge.rc:5382
+#: Merge.rc:5380
 msgid "Moving files..."
 msgstr "ファイルを移動しています..."
 
 #. IDS_LOG_DELETING_FILES
-#: Merge.rc:5383
+#: Merge.rc:5381
 msgid "Deleting files..."
 msgstr "ファイルを削除しています..."
 
 #. IDS_LOG_RECYCLEBIN
-#: Merge.rc:5384
+#: Merge.rc:5382
 msgid "Recycle Bin"
 msgstr "ゴミ箱"
 
 #. IDS_LOG_PERMANENTLY_DELETED
-#: Merge.rc:5385
+#: Merge.rc:5383
 msgid "Permanently deleted"
 msgstr "完全に削除"
 
 #. IDS_LOG_FILEOPERATION_COMPLETED
-#: Merge.rc:5386
+#: Merge.rc:5384
 msgid "File operation completed successfully"
 msgstr "ファイル操作が正常に完了しました"
 
 #. IDS_LOG_FILEOPERATION_CANCELED
-#: Merge.rc:5387
+#: Merge.rc:5385
 msgid "File operation canceled"
 msgstr "ファイル操作がキャンセルされました"
 
 #. IDS_FILTER_ERROR_NO_ERROR
-#: Merge.rc:5392
+#: Merge.rc:5390
 msgid "No error"
 msgstr "エラーはありません"
 
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
-#: Merge.rc:5393
+#: Merge.rc:5391
 msgid "Filter expression is empty"
 msgstr "フィルター式が空です"
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
-#: Merge.rc:5394
+#: Merge.rc:5392
 msgid "Unknown character in filter expression"
 msgstr "フィルター式に不明な文字があります"
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
-#: Merge.rc:5395
+#: Merge.rc:5393
 msgid "Unterminated string literal"
 msgstr "文字列リテラルが閉じられていません"
 
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
-#: Merge.rc:5396
+#: Merge.rc:5394
 msgid "Syntax error in filter expression"
 msgstr "フィルター式の構文エラーです"
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
-#: Merge.rc:5397
+#: Merge.rc:5395
 msgid "Failed to parse filter expression"
 msgstr "フィルター式の解析に失敗しました"
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
-#: Merge.rc:5398
+#: Merge.rc:5396
 msgid "Invalid literal value"
 msgstr "無効なリテラル値です"
 
 #. IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION
-#: Merge.rc:5399
+#: Merge.rc:5397
 msgid "Invalid regular expression"
 msgstr "無効な正規表現です"
 
 #. IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER
-#: Merge.rc:5400
+#: Merge.rc:5398
 msgid "Undefined identifier"
 msgstr "未定義の識別子です"
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
-#: Merge.rc:5401
+#: Merge.rc:5399
 msgid "Invalid number of arguments"
 msgstr "引数の数が正しくありません"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
-#: Merge.rc:5402
+#: Merge.rc:5400
 msgid "Filter name not found"
 msgstr "フィルター名が見つかりません"
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
-#: Merge.rc:5403
+#: Merge.rc:5401
 msgid "Division by zero in filter expression"
 msgstr "フィルター式で0による除算が行われました"
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
-#: Merge.rc:5404
+#: Merge.rc:5402
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
 #. IDS_FILTER_ERROR_INVALID_PROPERTY_NAME
-#: Merge.rc:5405
+#: Merge.rc:5403
 msgid "Invalid property name"
 msgstr "無効なプロパティ名です"
 
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
-#: Merge.rc:5406
+#: Merge.rc:5404
 msgid "Invalid directive"
 msgstr "無効なディレクティブです"
 
 #. IDS_FILTER_OP_EQUALS
-#: Merge.rc:5411
+#: Merge.rc:5409
 msgid "Equals"
 msgstr "等しい"
 
 #. IDS_FILTER_OP_NOT_EQUALS
-#: Merge.rc:5412
+#: Merge.rc:5410
 msgid "Does not equal"
 msgstr "等しくない"
 
 #. IDS_FILTER_OP_LESS_THAN
-#: Merge.rc:5413
+#: Merge.rc:5411
 msgid "Less than"
 msgstr "より小さい"
 
 #. IDS_FILTER_OP_LESS_EQUAL
-#: Merge.rc:5414
+#: Merge.rc:5412
 msgid "Less than or equal to"
 msgstr "以下"
 
 #. IDS_FILTER_OP_GREATER_EQUAL
-#: Merge.rc:5415
+#: Merge.rc:5413
 msgid "Greater than or equal to"
 msgstr "以上"
 
 #. IDS_FILTER_OP_GREATER_THAN
-#: Merge.rc:5416
+#: Merge.rc:5414
 msgid "Greater than"
 msgstr "より大きい"
 
 #. IDS_FILTER_OP_BETWEEN
-#: Merge.rc:5417
+#: Merge.rc:5415
 msgid "Between"
 msgstr "範囲内"
 
 #. IDS_FILTER_OP_NOT_BETWEEN
-#: Merge.rc:5418
+#: Merge.rc:5416
 msgid "Not Between"
 msgstr "範囲外"
 
 #. IDS_FILTER_OP_CONTAINS
-#: Merge.rc:5419
+#: Merge.rc:5417
 msgid "Contains"
 msgstr "含む"
 
 #. IDS_FILTER_OP_NOT_CONTAINS
-#: Merge.rc:5420
+#: Merge.rc:5418
 msgid "Not Contains"
 msgstr "含まない"
 
 #. IDS_FILTER_OP_RECONTAINS
-#: Merge.rc:5421
+#: Merge.rc:5419
 msgid "Contains (regex)"
 msgstr "含む(正規表現)"
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
-#: Merge.rc:5422
+#: Merge.rc:5420
 msgid "Not Contains (regex)"
 msgstr "含まない(正規表現)"
 
 #. IDS_FILTER_OP_LIKE
-#: Merge.rc:5423
+#: Merge.rc:5421
 msgid "Match (wildcard)"
 msgstr "一致(ワイルドカード)"
 
 #. IDS_FILTER_OP_NOT_LIKE
-#: Merge.rc:5424
+#: Merge.rc:5422
 msgid "Not match (wildcard)"
 msgstr "不一致(ワイルドカード)"
 
 #. IDS_FILTER_OP_MATCHES
-#: Merge.rc:5425
+#: Merge.rc:5423
 msgid "Match (regex)"
 msgstr "一致(正規表現)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
-#: Merge.rc:5426
+#: Merge.rc:5424
 msgid "Not match (regex)"
 msgstr "不一致(正規表現)"
 
 #. IDS_COLORMODE_LIGHT
-#: Merge.rc:5431
+#: Merge.rc:5429
 msgid "Light"
 msgstr "ライト"
 
 #. IDS_COLORMODE_DARK
-#: Merge.rc:5432
+#: Merge.rc:5430
 msgid "Dark"
 msgstr "ダーク"
 
 #. IDS_COLORMODE_FOLLOWSYSTEM
-#: Merge.rc:5433
+#: Merge.rc:5431
 msgid "Follow system"
 msgstr "システムに従う"
 
 #. IDS_EXAMPLE
-#: Merge.rc:5438
+#: Merge.rc:5436
 #, c-format
 msgid "e.g. %1"
 msgstr "例: %1"
 
 #. IDS_DETECTED_PREVIOUS_CRASH
-#: Merge.rc:5443
+#: Merge.rc:5441
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "以前の WinMerge のクラッシュを検出しました。可能であればご報告ください。"
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5448
+#: Merge.rc:5446
 msgid ""
 "# Regex replacement list\r\n"
 "# Format: regex<TAB>replacement\r\n"
@@ -8529,7 +8524,7 @@ msgstr ""
 "(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5449
+#: Merge.rc:5447
 msgid ""
 "# Replacement list\r\n"
 "# Format: search<TAB>replacement\r\n"
