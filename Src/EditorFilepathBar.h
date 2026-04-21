@@ -12,8 +12,11 @@
 #pragma once
 
 #include "FilepathEdit.h"
+#include <ctime>
 #include <functional>
 #include <memory>
+#include <unordered_set>
+#include <vector>
 
 class TempFile;
 
