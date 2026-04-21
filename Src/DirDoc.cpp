@@ -425,8 +425,8 @@ void CDirDoc::Rescan()
 		InitCompare(paths, m_pCtxt->m_bRecursive, nullptr);
 		Rescan();
 	});
-	pHeaderBar->SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
-		return GetRecentFiles(maxCount, type);
+	pHeaderBar->SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(pane, maxCount, type);
 	});
 	pHeaderBar->SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
 		return GetClipboardHistoryItems(maxCount);

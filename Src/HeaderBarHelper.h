@@ -9,5 +9,6 @@
 #include <vector>
 
 // Helper functions for header bar
-std::vector<IHeaderBar::RecentItem> GetRecentFiles(unsigned maxCount, IHeaderBar::RecentItemType type);
+std::vector<IHeaderBar::RecentItem> GetRecentFiles(int pane, unsigned maxCount, IHeaderBar::RecentItemType type);
 std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCount);
+String FormatClipboardDescription(time_t timestamp);

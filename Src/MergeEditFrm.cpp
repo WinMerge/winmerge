@@ -132,8 +132,8 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
-		return GetRecentFiles(maxCount, type);
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(pane, maxCount, type);
 	});
 	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
 		return GetClipboardHistoryItems(maxCount);

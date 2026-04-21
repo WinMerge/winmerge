@@ -1969,55 +1969,49 @@ std::vector<String> CMainFrame::getMruList(const tchar_t* szRegSubKey, UINT nMax
 /**
  * @brief Get recent files list for HeaderBar
  */
-std::vector<IHeaderBar::RecentItem> GetRecentFiles(unsigned maxCount, IHeaderBar::RecentItemType type)
+std::vector<IHeaderBar::RecentItem> GetRecentFiles(int pane, unsigned maxCount, IHeaderBar::RecentItemType type)
 {
 	std::vector<IHeaderBar::RecentItem> items;
 
-	// Get MRU items from different sources
+	// Get MRU items from the specific pane
 	std::vector<String> allPaths;
 
-	if (type == IHeaderBar::RecentItemType::All || type == IHeaderBar::RecentItemType::FilesOnly)
+	// Map pane index to MRU list name
+	const TCHAR* mruListName = nullptr;
+	switch (pane)
 	{
-		auto leftFiles = CMainFrame::getMruList(_T("Files\\Left"), maxCount);
-		auto rightFiles = CMainFrame::getMruList(_T("Files\\Right"), maxCount);
-		auto optionFiles = CMainFrame::getMruList(_T("Files\\Option"), maxCount);
-
-		allPaths.insert(allPaths.end(), leftFiles.begin(), leftFiles.end());
-		allPaths.insert(allPaths.end(), rightFiles.begin(), rightFiles.end());
-		allPaths.insert(allPaths.end(), optionFiles.begin(), optionFiles.end());
+	case 0:
+		mruListName = _T("Files\\Left");
+		break;
+	case 1:
+		mruListName = _T("Files\\Right");
+		break;
+	case 2:
+		mruListName = _T("Files\\Option");
+		break;
+	default:
+		// For unknown panes, return empty list
+		return items;
 	}
 
-	// Remove duplicates while preserving order
-	std::vector<String> uniquePaths;
-	std::unordered_set<String> seenPaths;
+	allPaths = CMainFrame::getMruList(mruListName, maxCount);
+
+	// Filter and create items
 	for (const auto& path : allPaths)
 	{
-		if (seenPaths.find(path) == seenPaths.end())
-		{
-			bool isFolder = paths::EndsWithSlash(path);
+		bool isFolder = paths::EndsWithSlash(path);
 
-			// Filter based on type
-			if (type == IHeaderBar::RecentItemType::FilesOnly && isFolder)
-				continue;
-			if (type == IHeaderBar::RecentItemType::FoldersOnly && !isFolder)
-				continue;
+		// Filter based on type
+		if (type == IHeaderBar::RecentItemType::FilesOnly && isFolder)
+			continue;
+		if (type == IHeaderBar::RecentItemType::FoldersOnly && !isFolder)
+			continue;
 
-			seenPaths.insert(path);
-			uniquePaths.push_back(path);
-
-			if (uniquePaths.size() >= maxCount)
-				break;
-		}
-	}
-
-	// Create RecentItem list
-	for (const auto& path : uniquePaths)
-	{
 		IHeaderBar::RecentItem item;
 		item.path = path;
 
 		// Extract filename or folder name as title
-		if (paths::EndsWithSlash(path))
+		if (isFolder)
 		{
 			// For folders, get the last directory name
 			String pathWithoutSlash = path.substr(0, path.length() - 1);
@@ -2039,9 +2033,22 @@ std::vector<IHeaderBar::RecentItem> GetRecentFiles(unsigned maxCount, IHeaderBar
 
 		item.description = path;
 		items.push_back(item);
+
+		if (items.size() >= maxCount)
+			break;
 	}
 
 	return items;
+}
+
+/**
+ * @brief Format clipboard description with timestamp
+ */
+String FormatClipboardDescription(time_t timestamp)
+{
+	int64_t t = timestamp;
+	String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
+	return strutils::format(_("Clipboard at %s"), timestr);
 }
 
 /**
@@ -2051,41 +2058,37 @@ std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCoun
 {
 	std::vector<IHeaderBar::ClipboardItem> items;
 
-	auto clipItems = ClipboardHistory::GetItems(0, maxCount);
+	auto clipItems = ClipboardHistory::GetItems(1, maxCount);
 	for (const auto& clipItem : clipItems)
 	{
 		IHeaderBar::ClipboardItem item;
 		item.timestamp = clipItem.timestamp;
 		item.pTextTempFile = clipItem.pTextTempFile;
+		item.pBitmapTempFile = clipItem.pBitmapTempFile;
 
 		// Create description like "Clipboard at 2026-01-23 12:34:56"
-		int64_t t = clipItem.timestamp;
-		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
-		item.description = strutils::format(_("Clipboard at %s"), timestr);
+		item.description = FormatClipboardDescription(clipItem.timestamp);
 
-		if (clipItem.pTextTempFile)
-		{
-			UniMemFile file;
-			if (file.OpenReadOnly(clipItem.pTextTempFile->GetPath()))
+			if (clipItem.pTextTempFile)
 			{
-				file.ReadBom();
-				String line;
-				String eol;
-				// Read first line as preview
-				file.ReadString(line, eol, nullptr);
-				// Take first 100 characters as preview
-				if (line.length() > 100)
-					item.text = line.substr(0, 100) + _T("...");
-				else
-					item.text = line;
-				file.Close();
+				UniMemFile file;
+				if (file.OpenReadOnly(clipItem.pTextTempFile->GetPath()))
+				{
+					file.SetUnicoding(ucr::UTF8);
+					String line;
+					String eol;
+					// Read first line as preview
+					file.ReadString(line, eol, nullptr);
+					// Take first 100 characters as preview
+					if (line.length() > 100)
+						item.text = line.substr(0, 100) + _T("...");
+					else
+						item.text = line;
+					file.Close();
+				}
 			}
-		}
 
-		if (clipItem.pBitmapTempFile)
-			item.imagePath = clipItem.pBitmapTempFile->GetPath();
-
-		items.push_back(item);
+			items.push_back(item);
 	}
 	return items;
 }
@@ -3289,10 +3292,8 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const fileopenf
 	fileopenflags_t dwFlags2[3];
 	for (int i = 0; i < nBuffers; ++i)
 	{
-		int64_t t = historyItems[nBuffers - i - 1].timestamp;
-		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
-			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
+			strDesc[i] : FormatClipboardDescription(historyItems[nBuffers - i - 1].timestamp);
 		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
 	}
 	for (int i = 0; i < 2; ++i)

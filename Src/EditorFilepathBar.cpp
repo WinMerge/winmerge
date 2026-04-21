@@ -373,7 +373,7 @@ void CEditorFilePathBar::EditActivePanePath()
 		m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
 }
 
-void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<RecentItem>(unsigned maxCount, RecentItemType type)> callbackfunc)
+void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<RecentItem>(int pane, unsigned maxCount, RecentItemType type)> callbackfunc)
 {
 	m_getRecentItemsCallbackfunc = callbackfunc;
 }
@@ -383,10 +383,10 @@ void CEditorFilePathBar::SetOnGetClipboardHistoryCallback(const std::function<st
 	m_getClipboardHistoryCallbackfunc = callbackfunc;
 }
 
-std::vector<IHeaderBar::RecentItem> CEditorFilePathBar::GetRecentItems(unsigned maxCount, RecentItemType type) const
+std::vector<IHeaderBar::RecentItem> CEditorFilePathBar::GetRecentItems(int pane, unsigned maxCount, RecentItemType type) const
 {
 	if (m_getRecentItemsCallbackfunc)
-		return m_getRecentItemsCallbackfunc(maxCount, type);
+		return m_getRecentItemsCallbackfunc(pane, maxCount, type);
 	return {};
 }
 
@@ -430,17 +430,35 @@ void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
 
 void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 {
-	auto clipItems = GetClipboardHistory(50);
+	auto clipItems = GetClipboardHistory(15);
 	if (itemIndex < 0 || itemIndex >= static_cast<int>(clipItems.size()))
 		return;
 
 	const auto& clipItem = clipItems[itemIndex];
-	if (!clipItem.pTextTempFile)
+
+	// Determine which temp file to use - bitmap takes precedence over text
+	String clipboardPath;
+	std::shared_ptr<TempFile> tempFile;
+
+	if (clipItem.pBitmapTempFile)
+	{
+		// Use bitmap temp file
+		clipboardPath = clipItem.pBitmapTempFile->GetPath();
+		tempFile = clipItem.pBitmapTempFile;
+	}
+	else if (clipItem.pTextTempFile)
+	{
+		// Use text temp file
+		clipboardPath = clipItem.pTextTempFile->GetPath();
+		tempFile = clipItem.pTextTempFile;
+	}
+	else
+	{
+		// No valid content
 		return;
+	}
 
-	String clipboardPath = clipItem.pTextTempFile->GetPath();
-
-	// Check if the clipboard temp file exists
+	// Check if the clipboard content file exists
 	paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(clipboardPath);
 
 	if (pathExists == paths::DOES_NOT_EXIST)
@@ -452,7 +470,7 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	}
 
 	// Save the temp file to prevent deletion
-	m_tempFiles.push_back(clipItem.pTextTempFile);
+	m_tempFiles.push_back(tempFile);
 
 	// Use file callback to notify about the clipboard content (always treated as file)
 	// Pass the description so the caller can set the caption
@@ -487,7 +505,7 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 		else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
 			itemType = IHeaderBar::RecentItemType::FoldersOnly;
 
-		auto recentItems = GetRecentItems(50, itemType);
+		auto recentItems = GetRecentItems(pane, 15, itemType);
 		if (index >= 0 && index < static_cast<int>(recentItems.size()))
 		{
 			OnRecentItemSelected(pane, recentItems[index].path);
@@ -523,7 +541,7 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 		itemType = IHeaderBar::RecentItemType::FoldersOnly;
 
 	// Add Recent Files/Folders submenu
-	auto recentItems = GetRecentItems(20, itemType);
+	auto recentItems = GetRecentItems(pane, 15, itemType);
 	if (!recentItems.empty())
 	{
 		CMenu recentMenu;
@@ -542,7 +560,7 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 	}
 
 	// Add Clipboard History submenu
-	auto clipboardItems = GetClipboardHistory(10);
+	auto clipboardItems = GetClipboardHistory(15);
 	if (!clipboardItems.empty())
 	{
 		CMenu clipboardMenu;
@@ -551,13 +569,8 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 		for (size_t i = 0; i < clipboardItems.size() && ID <= ID_EDITOR_CLIPBOARD_LAST; ++i, ++ID)
 		{
 			String prefix;
-			if (!clipboardItems[i].imagePath.empty())
-				prefix = _T("[Image] ");
-			else if (!clipboardItems[i].text.empty() && paths::IsPathAbsolute(clipboardItems[i].text))
-				prefix = _T("[Path] ");
-			else
-				prefix = _T("[Text] ");
-
+			if (clipboardItems[i].pBitmapTempFile)
+				prefix = _T("[") + _("Image") + _T("] ");
 			String preview = clipboardItems[i].text;
 			if (preview.length() > 60)
 				preview = preview.substr(0, 57) + _T("...");

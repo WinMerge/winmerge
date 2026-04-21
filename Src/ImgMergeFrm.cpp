@@ -579,11 +579,19 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		ChangeFile(pane, sFilepath, sDescription);
 		m_pImgMergeWindow->SetActivePane(pane);
 	});
-	m_wndFilePathBar.SetOnGetRecentItemsCallback([](unsigned maxCount, IHeaderBar::RecentItemType type) {
-		return GetRecentFiles(maxCount, type);
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
+		return GetRecentFiles(pane, maxCount, type);
 	});
 	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		return GetClipboardHistoryItems(maxCount);
+		auto allItems = GetClipboardHistoryItems(maxCount);
+		std::vector<IHeaderBar::ClipboardItem> imageItems;
+		for (const auto& item : allItems)
+		{
+			// Filter to show only items with image data
+			if (item.pBitmapTempFile)
+				imageItems.push_back(item);
+		}
+		return imageItems;
 	});
 
 	// Merge frame also has a dockable bar at the very left
