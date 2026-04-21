@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 04.04.2026\n"
+"Project-Id-Version: WinMerge - Italian - 21.04.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-04-04 14:40+0100\n"
+"PO-Revision-Date: 2026-04-21 11:20+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -521,7 +521,7 @@ msgstr "Pagina &web"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1172
 msgid "&Folder"
-msgstr ""
+msgstr "&Cartella"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1101,7 +1101,7 @@ msgstr "Riconfronta come"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1185
 msgid "A&rchive"
-msgstr ""
+msgstr "A&rchivio"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -8166,7 +8166,7 @@ msgstr "Nuovo confronto pagina web"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5326
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Nuovo confronto cartella"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5327
