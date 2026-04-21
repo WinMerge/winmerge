@@ -478,6 +478,10 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	{
 		m_fileSelectedCallbackfunc(pane, clipboardPath, clipItem.description);
 	}
+	if (m_folderSelectedCallbackfunc)
+	{
+		m_folderSelectedCallbackfunc(pane, clipItem.text);
+	}
 }
 
 void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
