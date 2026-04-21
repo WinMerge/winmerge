@@ -73,6 +73,8 @@ namespace ClipboardHistory
 
 		std::vector<Item> GetItems(unsigned minNum, unsigned maxNum)
 		{
+			if (minNum > maxNum)
+				return {};
 			std::vector<Item> result;
 #ifdef USE_WINRT
 			try
