@@ -16,7 +16,7 @@
 #define EN_USER_CUSTOMIZE_CONTEXT_MENU 0x0A03
 #define EN_USER_MENU_ITEM_SELECTED 0x0A04
 
-struct NMCONTEXTMENU
+struct NMHEADERBARCONTEXTMENU
 {
 	NMHDR hdr;
 	CMenu* pMenu;
@@ -103,4 +103,3 @@ inline void CFilepathEdit::GetOriginalText(String& rString) const
 {		
 	rString = m_sOriginalText;
 }
-

@@ -280,7 +280,7 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 		}
 
 		// Allow parent to customize the context menu
-		NMCONTEXTMENU nmctx;
+		NMHEADERBARCONTEXTMENU nmctx;
 		nmctx.hdr.hwndFrom = m_hWnd;
 		nmctx.hdr.idFrom = GetDlgCtrlID();
 		nmctx.hdr.code = EN_USER_CUSTOMIZE_CONTEXT_MENU;

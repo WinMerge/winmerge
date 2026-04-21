@@ -527,7 +527,7 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 
 void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 {
-	NMCONTEXTMENU* pNM = reinterpret_cast<NMCONTEXTMENU*>(pNMHDR);
+	NMHEADERBARCONTEXTMENU* pNM = reinterpret_cast<NMHEADERBARCONTEXTMENU*>(pNMHDR);
 	CMenu* pPopup = pNM->pMenu;
 	const int pane = id - IDC_STATIC_TITLE_PANE0;
 
