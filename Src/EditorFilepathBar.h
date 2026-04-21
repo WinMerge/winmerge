@@ -141,6 +141,7 @@ private:
 	std::function<std::vector<RecentItem>(int pane, unsigned maxCount, RecentItemType type)> m_getRecentItemsCallbackfunc;
 	std::function<std::vector<ClipboardItem>(unsigned maxCount)> m_getClipboardHistoryCallbackfunc;
 	std::vector<std::shared_ptr<TempFile>> m_tempFiles; /**< Temp files from clipboard history */
+	std::vector<ClipboardItem> m_cachedClipboardItems; /**< Cached clipboard items for menu consistency */
 };
 
 inline void CEditorFilePathBar::SetPaneCount(int nPanes)

@@ -18,5 +18,5 @@ namespace ClipboardHistory
 		std::shared_ptr<TempFile> pTextTempFile;
 		std::shared_ptr<TempFile> pBitmapTempFile;
 	};
-	std::vector<Item> GetItems(unsigned minNum, unsigned maxNum);
+	std::vector<Item> GetItems(unsigned maxCount, unsigned ensureMinCount = 0);
 }

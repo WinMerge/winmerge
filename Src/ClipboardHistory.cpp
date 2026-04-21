@@ -71,9 +71,9 @@ namespace ClipboardHistory
 		}
 #endif
 
-		std::vector<Item> GetItems(unsigned minNum, unsigned maxNum)
+		std::vector<Item> GetItems(unsigned maxCount, unsigned ensureMinCount)
 		{
-			if (minNum > maxNum)
+			if (ensureMinCount > maxCount)
 				return {};
 			std::vector<Item> result;
 #ifdef USE_WINRT
@@ -81,7 +81,7 @@ namespace ClipboardHistory
 			{
 				auto historyItems = Clipboard::GetHistoryItemsAsync().get();
 				auto items = historyItems.Items();
-				for (unsigned int i = 0; i < maxNum; ++i)
+				for (unsigned int i = 0; i < maxCount; ++i)
 				{
 					if (i < items.Size())
 					{
@@ -109,7 +109,7 @@ namespace ClipboardHistory
 							item.pTextTempFile = CreateTempTextFile(e.message().c_str());
 						}
 					}
-					else if (i < minNum)
+					else if (i < ensureMinCount)
 					{
 						result.emplace_back();
 						auto& item = result.back();
@@ -123,7 +123,7 @@ namespace ClipboardHistory
 			}
 			catch (const winrt::hresult_error&)
 			{
-				for (unsigned int i = 0; i < minNum; ++i)
+				for (unsigned int i = 0; i < ensureMinCount; ++i)
 				{
 					result.emplace_back();
 					auto& item = result.back();
@@ -134,7 +134,7 @@ namespace ClipboardHistory
 				}
 			}
 #else
-			for (unsigned int i = 0; i < minNum; ++i)
+			for (unsigned int i = 0; i < ensureMinCount; ++i)
 			{
 				result.emplace_back();
 				auto& item = result.back();
@@ -148,10 +148,10 @@ namespace ClipboardHistory
 		}
 	}
 
-	std::vector<Item> GetItems(unsigned minNum, unsigned maxNum)
+	std::vector<Item> GetItems(unsigned maxCount, unsigned ensureMinCount)
 	{
-		auto task = Concurrent::CreateTask([minNum, maxNum] {
-			return impl::GetItems(minNum, maxNum);
+		auto task = Concurrent::CreateTask([maxCount, ensureMinCount] {
+			return impl::GetItems(maxCount, ensureMinCount);
 		});
 		return task.Get();
 	}

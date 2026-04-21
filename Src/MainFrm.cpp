@@ -2044,7 +2044,7 @@ std::vector<IHeaderBar::RecentItem> GetRecentFiles(int pane, unsigned maxCount, 
 /**
  * @brief Format clipboard description with timestamp
  */
-String FormatClipboardDescription(time_t timestamp)
+static String FormatClipboardDescription(time_t timestamp)
 {
 	int64_t t = timestamp;
 	String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
@@ -2058,7 +2058,7 @@ std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCoun
 {
 	std::vector<IHeaderBar::ClipboardItem> items;
 
-	auto clipItems = ClipboardHistory::GetItems(1, maxCount);
+	auto clipItems = ClipboardHistory::GetItems(maxCount, 1);
 	for (const auto& clipItem : clipItems)
 	{
 		IHeaderBar::ClipboardItem item;

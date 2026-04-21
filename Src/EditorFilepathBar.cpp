@@ -430,11 +430,11 @@ void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
 
 void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 {
-	auto clipItems = GetClipboardHistory(15);
-	if (itemIndex < 0 || itemIndex >= static_cast<int>(clipItems.size()))
+	// Use cached clipboard items to ensure consistency with displayed menu
+	if (itemIndex < 0 || itemIndex >= static_cast<int>(m_cachedClipboardItems.size()))
 		return;
 
-	const auto& clipItem = clipItems[itemIndex];
+	const auto& clipItem = m_cachedClipboardItems[itemIndex];
 
 	// Determine which temp file to use - bitmap takes precedence over text
 	String clipboardPath;
@@ -470,6 +470,13 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	}
 
 	// Save the temp file to prevent deletion
+	// Limit the number of cached temp files to prevent memory leak
+	constexpr size_t MAX_TEMP_FILES = 50;
+	if (m_tempFiles.size() >= MAX_TEMP_FILES)
+	{
+		// Remove oldest temp files
+		m_tempFiles.erase(m_tempFiles.begin(), m_tempFiles.begin() + (m_tempFiles.size() - MAX_TEMP_FILES + 1));
+	}
 	m_tempFiles.push_back(tempFile);
 
 	// Use file callback to notify about the clipboard content (always treated as file)
@@ -564,18 +571,19 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 	}
 
 	// Add Clipboard History submenu
-	auto clipboardItems = GetClipboardHistory(15);
-	if (!clipboardItems.empty())
+	// Cache clipboard items for consistency between menu display and selection
+	m_cachedClipboardItems = GetClipboardHistory(15);
+	if (!m_cachedClipboardItems.empty())
 	{
 		CMenu clipboardMenu;
 		clipboardMenu.CreatePopupMenu();
 		int ID = ID_EDITOR_CLIPBOARD_FIRST;
-		for (size_t i = 0; i < clipboardItems.size() && ID <= ID_EDITOR_CLIPBOARD_LAST; ++i, ++ID)
+		for (size_t i = 0; i < m_cachedClipboardItems.size() && ID <= ID_EDITOR_CLIPBOARD_LAST; ++i, ++ID)
 		{
 			String prefix;
-			if (clipboardItems[i].pBitmapTempFile)
+			if (m_cachedClipboardItems[i].pBitmapTempFile)
 				prefix = _T("[") + _("Image") + _T("] ");
-			String preview = clipboardItems[i].text;
+			String preview = m_cachedClipboardItems[i].text;
 			if (preview.length() > 60)
 				preview = preview.substr(0, 57) + _T("...");
 			// Replace newlines with spaces for menu display
