@@ -429,7 +429,8 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 {
 	// Forward Recent/Clipboard commands to parent via notification
 	if ((nID >= ID_EDITOR_RECENT_FIRST && nID <= ID_EDITOR_RECENT_LAST) ||
-		(nID >= ID_EDITOR_CLIPBOARD_FIRST && nID <= ID_EDITOR_CLIPBOARD_LAST))
+		(nID >= ID_EDITOR_CLIPBOARD_FIRST && nID <= ID_EDITOR_CLIPBOARD_LAST) ||
+		nID == ID_EDITOR_OPEN_CLIPBOARD)
 	{
 		NMMENUITEMSELECTED nmhdr;
 		nmhdr.hdr.hwndFrom = m_hWnd;

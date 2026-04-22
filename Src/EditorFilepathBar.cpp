@@ -18,6 +18,7 @@
 #include "TempFile.h"
 #include "paths.h"
 #include "I18n.h"
+#include <chrono>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -528,6 +529,12 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 		int index = menuId - ID_EDITOR_CLIPBOARD_FIRST;
 		OnClipboardItemSelected(pane, index);
 	}
+	// Handle "Open Clipboard" menu item - opens the current clipboard content
+	else if (menuId == ID_EDITOR_OPEN_CLIPBOARD)
+	{
+		// Open the most recent clipboard item (index 0)
+		OnClipboardItemSelected(pane, 0);
+	}
 
 	*pResult = 0;
 }
@@ -552,7 +559,12 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 		itemType = IHeaderBar::RecentItemType::FoldersOnly;
 
 	// Add Recent Files/Folders submenu
+	auto startRecent = std::chrono::high_resolution_clock::now();
 	auto recentItems = GetRecentItems(pane, 15, itemType);
+	auto endRecent = std::chrono::high_resolution_clock::now();
+	auto durationRecent = std::chrono::duration_cast<std::chrono::milliseconds>(endRecent - startRecent);
+	TRACE(_T("Recent items (%d items) took %lld ms\n"), static_cast<int>(recentItems.size()), durationRecent.count());
+
 	if (!recentItems.empty())
 	{
 		CMenu recentMenu;
@@ -572,7 +584,12 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 
 	// Add Clipboard History submenu
 	// Cache clipboard items for consistency between menu display and selection
+	auto startClipboard = std::chrono::high_resolution_clock::now();
 	m_cachedClipboardItems = GetClipboardHistory(15);
+	auto endClipboard = std::chrono::high_resolution_clock::now();
+	auto durationClipboard = std::chrono::duration_cast<std::chrono::milliseconds>(endClipboard - startClipboard);
+	TRACE(_T("Clipboard history (%d items) took %lld ms\n"), static_cast<int>(m_cachedClipboardItems.size()), durationClipboard.count());
+
 	if (!m_cachedClipboardItems.empty())
 	{
 		CMenu clipboardMenu;

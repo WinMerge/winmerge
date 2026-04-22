@@ -1061,6 +1061,7 @@ BEGIN
         MENUITEM "&Edit Caption\tF2",           ID_EDITOR_EDIT_CAPTION
         MENUITEM SEPARATOR
         MENUITEM "Edit &Path\tCtrl+L",          ID_EDITOR_EDIT_PATH
+        MENUITEM "Open C&lipboard",             ID_EDITOR_OPEN_CLIPBOARD
         MENUITEM "&Open...",                    ID_EDITOR_SELECT_FILE
     END
 END
