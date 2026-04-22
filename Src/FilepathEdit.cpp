@@ -276,6 +276,7 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (!m_bEnabledFileSelection && !m_bEnabledFolderSelection)
 		{
 			pPopup->EnableMenuItem(ID_EDITOR_SELECT_FILE, MF_GRAYED);
+			pPopup->EnableMenuItem(ID_EDITOR_OPEN_CLIPBOARD, MF_GRAYED);
 			pPopup->EnableMenuItem(ID_EDITOR_EDIT_PATH, MF_GRAYED);
 		}
 

@@ -18,7 +18,6 @@
 #include "TempFile.h"
 #include "paths.h"
 #include "I18n.h"
-#include <chrono>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

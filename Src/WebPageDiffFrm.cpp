@@ -579,13 +579,6 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		m_pWebDiffWindow->SetActivePane(pane);
 	});
 
-	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
-		return GetRecentFiles(pane, maxCount, type);
-	});
-	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		return GetClipboardHistoryItems(maxCount);
-	});
-
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient
 	m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
