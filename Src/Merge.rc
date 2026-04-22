@@ -4436,6 +4436,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
+    IDS_ERROR_FOLDER_NOT_FOUND "Folder not found: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
     IDS_ERROR_FILEOPEN      "Cannot open file\n%1\n\n%2"
     IDS_ERROR_CONF_RESOLVE  "Failed to parse conflict file."

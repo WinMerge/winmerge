@@ -553,7 +553,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 						if (m_bEnabledFolderSelection && !paths::IsDirectory((const tchar_t*)text))
 						{
 							existing = false;
-							windowText = _("Folder does not exist.");
+							windowText = strutils::format_string1(_("Folder not found: %1"), (const tchar_t*)text);
 						}
 					}
 					else

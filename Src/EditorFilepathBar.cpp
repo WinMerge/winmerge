@@ -406,7 +406,7 @@ void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
 	if (pathExists == paths::DOES_NOT_EXIST)
 	{
 		// Show error message in caption
-		String errorMsg = strutils::format_string1(_("File or folder '%1' does not exist"), path);
+		String errorMsg = strutils::format_string1(m_fileSelectedCallbackfunc ? _("File not found: %1") : _("Folder not found: %1"), path);
 		SetCaption(pane, errorMsg);
 		return;
 	}
@@ -461,14 +461,8 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 
 	// Check if the clipboard content file exists
 	paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(clipboardPath);
-
 	if (pathExists == paths::DOES_NOT_EXIST)
-	{
-		// Show error message in caption
-		String errorMsg = strutils::format_string1(_("Clipboard content file '%1' does not exist"), clipboardPath);
-		SetCaption(pane, errorMsg);
 		return;
-	}
 
 	// Save the temp file to prevent deletion
 	// Limit the number of cached temp files to prevent memory leak
@@ -488,7 +482,16 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	}
 	else if (m_folderSelectedCallbackfunc)
 	{
-		m_folderSelectedCallbackfunc(pane, clipItem.text);
+		const String path = clipItem.text;
+		paths::PATH_EXISTENCE pathExists2 = paths::DoesPathExist(path);
+		if (pathExists2 == paths::DOES_NOT_EXIST || pathExists2 == paths::IS_EXISTING_FILE)
+		{
+			// Show error message in caption
+			String errorMsg = strutils::format_string1(_("Folder not found: %1"), path);
+			SetCaption(pane, errorMsg);
+			return;
+		}
+		m_folderSelectedCallbackfunc(pane, path);
 	}
 }
 
@@ -518,7 +521,7 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 			itemType = IHeaderBar::RecentItemType::FoldersOnly;
 
 		auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
-		if (index >= 0 && index < static_cast<int>(recentItems.size()))
+		if (index < static_cast<int>(recentItems.size()))
 		{
 			OnRecentItemSelected(pane, recentItems[index].path);
 		}
