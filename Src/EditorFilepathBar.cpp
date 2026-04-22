@@ -27,6 +27,7 @@
 constexpr int RR_RADIUS = 3;
 constexpr int RR_PADDING = 3;
 constexpr int RR_SHADOWWIDTH = 3;
+constexpr unsigned MAX_HISTORY_ITEMS = 15;
 
 BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
@@ -486,7 +487,7 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	{
 		m_fileSelectedCallbackfunc(pane, clipboardPath, clipItem.description);
 	}
-	if (m_folderSelectedCallbackfunc)
+	else if (m_folderSelectedCallbackfunc)
 	{
 		m_folderSelectedCallbackfunc(pane, clipItem.text);
 	}
@@ -517,7 +518,7 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 		else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
 			itemType = IHeaderBar::RecentItemType::FoldersOnly;
 
-		auto recentItems = GetRecentItems(pane, 15, itemType);
+		auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
 		if (index >= 0 && index < static_cast<int>(recentItems.size()))
 		{
 			OnRecentItemSelected(pane, recentItems[index].path);
@@ -559,11 +560,7 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 		itemType = IHeaderBar::RecentItemType::FoldersOnly;
 
 	// Add Recent Files/Folders submenu
-	auto startRecent = std::chrono::high_resolution_clock::now();
-	auto recentItems = GetRecentItems(pane, 15, itemType);
-	auto endRecent = std::chrono::high_resolution_clock::now();
-	auto durationRecent = std::chrono::duration_cast<std::chrono::milliseconds>(endRecent - startRecent);
-	TRACE(_T("Recent items (%d items) took %lld ms\n"), static_cast<int>(recentItems.size()), durationRecent.count());
+	auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
 
 	if (!recentItems.empty())
 	{
@@ -584,11 +581,7 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 
 	// Add Clipboard History submenu
 	// Cache clipboard items for consistency between menu display and selection
-	auto startClipboard = std::chrono::high_resolution_clock::now();
-	m_cachedClipboardItems = GetClipboardHistory(15);
-	auto endClipboard = std::chrono::high_resolution_clock::now();
-	auto durationClipboard = std::chrono::duration_cast<std::chrono::milliseconds>(endClipboard - startClipboard);
-	TRACE(_T("Clipboard history (%d items) took %lld ms\n"), static_cast<int>(m_cachedClipboardItems.size()), durationClipboard.count());
+	m_cachedClipboardItems = GetClipboardHistory(MAX_HISTORY_ITEMS);
 
 	if (!m_cachedClipboardItems.empty())
 	{

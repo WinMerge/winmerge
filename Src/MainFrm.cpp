@@ -1436,6 +1436,44 @@ static void AppendComparisonCommandLineParams(
 	}
 }
 
+/**
+ * @brief Utility function to update CSuperComboBox format MRU
+ */
+static void addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UINT nMaxItems = 20)
+{
+	std::vector<CString> list;
+	CString s;
+	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
+	list.push_back(szItem);
+	for (UINT i=0 ; i<cnt; ++i)
+	{
+		s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
+		if (s != szItem)
+			list.push_back(s);
+	}
+	cnt = list.size() > nMaxItems ? nMaxItems : static_cast<UINT>(list.size());
+	for (UINT i=0 ; i<cnt; ++i)
+		AfxGetApp()->WriteProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str(), list[i]);
+	// update count
+	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
+}
+
+/**
+ * @brief Get MRU list from registry
+ */
+static std::vector<String> getMruList(const tchar_t* szRegSubKey, UINT nMaxItems)
+{
+	std::vector<String> list;
+	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
+	for (UINT i = 0; i < cnt && i < nMaxItems; ++i)
+	{
+		String s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
+		if (!s.empty())
+			list.push_back(s);
+	}
+	return list;
+}
+
 static bool AddToRecentDocs(const PathContext& paths,
 	const unsigned flags[], const String desc[],
 	const String& filter,
@@ -1929,44 +1967,6 @@ void CMainFrame::OnClose()
 }
 
 /**
- * @brief Utility function to update CSuperComboBox format MRU
- */
-void CMainFrame::addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UINT nMaxItems)
-{
-	std::vector<CString> list;
-	CString s;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	list.push_back(szItem);
-	for (UINT i=0 ; i<cnt; ++i)
-	{
-		s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
-		if (s != szItem)
-			list.push_back(s);
-	}
-	cnt = list.size() > nMaxItems ? nMaxItems : static_cast<UINT>(list.size());
-	for (UINT i=0 ; i<cnt; ++i)
-		AfxGetApp()->WriteProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str(), list[i]);
-	// update count
-	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
-}
-
-/**
- * @brief Get MRU list from registry
- */
-std::vector<String> CMainFrame::getMruList(const tchar_t* szRegSubKey, UINT nMaxItems)
-{
-	std::vector<String> list;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	for (UINT i = 0; i < cnt && i < nMaxItems; ++i)
-	{
-		String s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
-		if (!s.empty())
-			list.push_back(s);
-	}
-	return list;
-}
-
-/**
  * @brief Get recent files list for HeaderBar
  */
 std::vector<IHeaderBar::RecentItem> GetRecentFiles(int pane, unsigned maxCount, IHeaderBar::RecentItemType type)
@@ -1994,7 +1994,7 @@ std::vector<IHeaderBar::RecentItem> GetRecentFiles(int pane, unsigned maxCount, 
 		return items;
 	}
 
-	allPaths = CMainFrame::getMruList(mruListName, maxCount);
+	allPaths = getMruList(mruListName, maxCount);
 
 	// Filter and create items
 	for (const auto& path : allPaths)
@@ -2069,26 +2069,26 @@ std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCoun
 		// Create description like "Clipboard at 2026-01-23 12:34:56"
 		item.description = FormatClipboardDescription(clipItem.timestamp);
 
-			if (clipItem.pTextTempFile)
+		if (clipItem.pTextTempFile)
+		{
+			UniMemFile file;
+			if (file.OpenReadOnly(clipItem.pTextTempFile->GetPath()))
 			{
-				UniMemFile file;
-				if (file.OpenReadOnly(clipItem.pTextTempFile->GetPath()))
-				{
-					file.SetUnicoding(ucr::UTF8);
-					String line;
-					String eol;
-					// Read first line as preview
-					file.ReadString(line, eol, nullptr);
-					// Take first 100 characters as preview
-					if (line.length() > 100)
-						item.text = line.substr(0, 100) + _T("...");
-					else
-						item.text = line;
-					file.Close();
-				}
+				file.SetUnicoding(ucr::UTF8);
+				String line;
+				String eol;
+				// Read first line as preview
+				file.ReadString(line, eol, nullptr);
+				// Take first 100 characters as preview
+				if (line.length() > 100)
+					item.text = line.substr(0, 100) + _T("...");
+				else
+					item.text = line;
+				file.Close();
 			}
+		}
 
-			items.push_back(item);
+		items.push_back(item);
 	}
 	return items;
 }
