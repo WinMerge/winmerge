@@ -591,7 +591,7 @@ I seguenti attributi sono progettati per essere usati solo nei filtri
 i prefissi <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>,
 <guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>,
 <guilabel>de:</guilabel> o <guilabel>de!:</guilabel> in il campo
-Filtro). Non devono essere uszati nelle regole di inclusione/esclusione del
+Filtro). Non devono essere usati nelle regole di inclusione/esclusione del
 filtro file (<nomefile>.flt</nomefile>), poiché richiedono che il confronto
 venga prima completato e potrebbero causare comportamenti imprevisti.</para>
 
