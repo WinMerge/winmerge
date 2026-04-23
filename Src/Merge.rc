@@ -316,6 +316,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
             MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+            MENUITEM "&Folder",                     ID_FILE_NEW_FOLDER
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -324,6 +325,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
             MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
+            MENUITEM "&Folder",                     ID_FILE_NEW3_FOLDER
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -417,6 +419,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
             MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+            MENUITEM "&Folder",                     ID_FILE_NEW_FOLDER
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -425,6 +428,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
             MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
+            MENUITEM "&Folder",                     ID_FILE_NEW3_FOLDER
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -592,6 +596,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
             MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+            MENUITEM "&Folder",                     ID_FILE_NEW_FOLDER
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -600,6 +605,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
             MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
+            MENUITEM "&Folder",                     ID_FILE_NEW3_FOLDER
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -651,6 +657,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
             MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
+            MENUITEM "A&rchive",                    ID_MERGE_COMPARE_FOLDER
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -937,6 +944,7 @@ BEGIN
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
             MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
+            MENUITEM "A&rchive",                    ID_MERGE_COMPARE_FOLDER
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -1161,6 +1169,7 @@ BEGIN
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
         MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+        MENUITEM "&Folder",                     ID_FILE_NEW_FOLDER
     END
 END
 
@@ -1173,6 +1182,7 @@ BEGIN
         MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
         MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
+        MENUITEM "A&rchive",                    ID_MERGE_COMPARE_FOLDER
     END
 END
 
@@ -5313,6 +5323,7 @@ BEGIN
     IDS_JUMPLIST_NEW_BINARY_COMPARE "New Binary Compare"
     IDS_JUMPLIST_NEW_IMAGE_COMPARE "New Image Compare"
     IDS_JUMPLIST_NEW_WEBPAGE_COMPARE "New Webpage Compare"
+    IDS_JUMPLIST_NEW_FOLDER_COMPARE "New Folder Compare"
     IDS_JUMPLIST_CLIPBOARD_COMPARE "Clipboard Compare"
 END
 

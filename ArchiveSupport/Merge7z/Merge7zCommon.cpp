@@ -652,6 +652,7 @@ Format7zDLL::Proxy::Handle Format7zDLL::Proxy::handle =
 	"CreateObject",
 	"GetHandlerProperty2",
 	"GetNumberOfFormats",
+	"GetIsArc",
 	(HMODULE)0
 };
 
@@ -701,73 +702,85 @@ STDMETHODIMP Format7zDLL::Proxy::GetHandlerProperty(PROPID propID, PROPVARIANT *
 	return handle.GetHandlerProperty2(formatIndex, propID, value);
 }
 
-#define	DEFINE_FORMAT(name, id, extension, signature) \
+STDMETHODIMP Format7zDLL::Proxy::GetIsArc(UINT32 formatIndex, Func_IsArc* isArc)
+{
+	return handle.GetIsArc(formatIndex, isArc);
+}
+
+#define	DEFINE_FORMAT(name, id, extension) \
 		Format7zDLL::Proxy PROXY_##name = \
 		{ \
 			-0x##id, \
 			0, \
-			sizeof signature extension - sizeof extension, \
+			0, \
 			'@', \
-			signature extension + sizeof signature extension - sizeof extension \
+			extension \
 		}; \
 		Format7zDLL::Interface name = PROXY_##name;
 
-DEFINE_FORMAT(CZipHandler,		01, "zip jar war ear xpi", "PK\x03\x04");
-DEFINE_FORMAT(CBZip2Handler,	02, "bz2 tbz2", "BZh");
-DEFINE_FORMAT(CRarHandler,		03, "rar", "Rar!\x1a\x07\x00");
-DEFINE_FORMAT(CArjHandler,		04, "arj", "\x60\xEA");
-DEFINE_FORMAT(CZHandler,		05, "z", "\x1F\x9D");
-DEFINE_FORMAT(CLzhHandler,		06, "lzh lha", "@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
-DEFINE_FORMAT(CFormat7z,		07, "7z", "7z\xBC\xAF\x27\x1C");
-DEFINE_FORMAT(CCabHandler,		08, "cab", "MSCF");
-DEFINE_FORMAT(CNsisHandler,		09, "", "@@@@\xEF\xBE\xAD\xDENullsoftInst");
-DEFINE_FORMAT(CLzmaHandler,		0A, "lzma", "");
-DEFINE_FORMAT(CLzma86Handler,	0B, "lzma86", "");
-DEFINE_FORMAT(CXzHandler,		0C, "xz", "\xFD" "7zXZ" "\0");
-//DEFINE_FORMAT(CPpmdHandler,	0D, "ppmd", "");
-DEFINE_FORMAT(CZstdHandler,		0E,  "zst tzst", "\x28\xB5\x2F\xFD");
+DEFINE_FORMAT(CZipHandler,		01, "zip jar war ear xpi apk");
+DEFINE_FORMAT(CBZip2Handler,	02, "bz2 tbz2 tbz");
+DEFINE_FORMAT(CRarHandler,		03, "rar");
+DEFINE_FORMAT(CArjHandler,		04, "arj");
+DEFINE_FORMAT(CZHandler,		05, "z taz");
+DEFINE_FORMAT(CLzhHandler,		06, "lzh lha");//"@-l" doesn't work because signature starts at offset 2
+DEFINE_FORMAT(CFormat7z,		07, "7z");
+DEFINE_FORMAT(CCabHandler,		08, "cab");
+DEFINE_FORMAT(CNsisHandler,		09, "");
+DEFINE_FORMAT(CLzmaHandler,		0A, "lzma");
+DEFINE_FORMAT(CLzma86Handler,	0B, "lzma86");
+DEFINE_FORMAT(CXzHandler,		0C, "xz txz");
+DEFINE_FORMAT(CPpmdHandler,		0D, "");
+DEFINE_FORMAT(CZstdHandler,		0E,  "zst tzst");
 
-//DEFINE_FORMAT(CCOFFHandler,	C6, "obj", "L\x01");
-//DEFINE_FORMAT(CExtHandler,	C7, "ext ext2 ext3 ext4", "");
-//DEFINE_FORMAT(CVMDKHandler,	C8, "vmdk", "KDMV");
-//DEFINE_FORMAT(CVDIHandler,	C9, "vdi", "<<< Oracle VM VirtualBox Disk Image >>>");
-//DEFINE_FORMAT(CQcowHandler,	CA, "qcow qcow2 qcow2c", "");
-//DEFINE_FORMAT(CGPTHandler,	CB, "gpt", "EFI PART\0\0\x01\0");
-DEFINE_FORMAT(CRar5Handler,		CC, "rar", "Rar!\x1a\x07\x01\x00");
-//DEFINE_FORMAT(CIHEXHandler,	CD, "ihex", "");
-//DEFINE_FORMAT(CHxsHandler,	CE, "hxs hxi hxr hxq hxw lit", "");
-//DEFINE_FORMAT(CTEHandler,		CF, "te", "");
-//DEFINE_FORMAT(CUEFIcHandler,	D0, "scap", "");
-//DEFINE_FORMAT(CUEFIsHandler,	D1, "uefif", "");
-//DEFINE_FORMAT(CSquashFSHandler,	D2, "squashfs", "");
-//DEFINE_FORMAT(CCramFSHandler,	D3, "cramfs", "Compressed ROMFS");
-//DEFINE_FORMAT(CApmHandler,	D4, "apm", "");
-//DEFINE_FORMAT(CMslzHandler,	D5, "mslz", "");
-//DEFINE_FORMAT(CFlvHandler,	D6, "flv", "FLV\x01");
-//DEFINE_FORMAT(CSwfHandler,	D7, "swf", "");
-//DEFINE_FORMAT(CSwfcHandler,	D8, "swfc", "");
-//DEFINE_FORMAT(CNtfsHandler,	D9, "ntfs", "NTFS    \0");
-//DEFINE_FORMAT(CFatHandler,	DA, "fat", "\x55\xAA");
-//DEFINE_FORMAT(CMbrHandler,	DB, "mbr", "");
-//DEFINE_FORMAT(CVhdHandler,	DC, "vhd", "conectix");
-//DEFINE_FORMAT(CPeHandler,		DD, "exe dll msi cpl", "MZ");
-DEFINE_FORMAT(CElfHandler,		DE, "elf", "");
-//DEFINE_FORMAT(CMachOHandler,	DF, "macho", "");
-//DEFINE_FORMAT(CUdfHandler,	E0, "udf", "");
-DEFINE_FORMAT(CXarHandler,		E1, "xar pkg", "xar!\x00\x1C");
-DEFINE_FORMAT(CMubHandler,		E2, "mub", "");
-DEFINE_FORMAT(CHfsHandler,		E3, "hfs", "");
-DEFINE_FORMAT(CDmgHandler,		E4, "dmg", "");
-DEFINE_FORMAT(CComHandler,		E5, "", "\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1");
-DEFINE_FORMAT(CWimHandler,		E6, "wim swm", "MSWIM\x00\x00\x00");
-DEFINE_FORMAT(CIsoHandler,		E7, "iso", "");
-//DEFINE_FORMAT(CSplitHandler,	EA, "001 002 003 004 005 006 007 008 009", "");
-DEFINE_FORMAT(CChmHandler,		E9, "chm chi chq chw hxs hxi hxr hxq hxw lit", "ITSF");
-DEFINE_FORMAT(CRpmHandler,		EB, "rpm", "");
-DEFINE_FORMAT(CDebHandler,		EC, "deb", "!<arch>\n");
-DEFINE_FORMAT(CCpioHandler,		ED, "cpio", "");
-DEFINE_FORMAT(CTarHandler,		EE, "tar", "");
-DEFINE_FORMAT(CGZipHandler,		EF, "gz tgz", "\x1F\x8B");
+DEFINE_FORMAT(CLvmHandler,		BF, "");
+DEFINE_FORMAT(CAvbHandler,		C0, "");
+DEFINE_FORMAT(CLpHandler,		C1, "");
+DEFINE_FORMAT(CSparseHandler,	C2, "");
+DEFINE_FORMAT(CApFsHandler,		C3, "");
+DEFINE_FORMAT(CVhdxHandler,		C4, "");
+DEFINE_FORMAT(CBase64Handler,	C5, "");
+DEFINE_FORMAT(CCOFFHandler,		C6, "");
+DEFINE_FORMAT(CExtHandler,		C7, "");
+DEFINE_FORMAT(CVMDKHandler,		C8, "");
+DEFINE_FORMAT(CVDIHandler,		C9, "");
+DEFINE_FORMAT(CQcowHandler,		CA, "");
+DEFINE_FORMAT(CGPTHandler,		CB, "");
+DEFINE_FORMAT(CRar5Handler,		CC, "rar");
+DEFINE_FORMAT(CIHEXHandler,		CD, "");
+DEFINE_FORMAT(CHxsHandler,		CE, "");
+DEFINE_FORMAT(CTEHandler,		CF, "");
+DEFINE_FORMAT(CUEFIcHandler,	D0, "");
+DEFINE_FORMAT(CUEFIsHandler,	D1, "");
+DEFINE_FORMAT(CSquashFSHandler,	D2, "");
+DEFINE_FORMAT(CCramFSHandler,	D3, "");
+DEFINE_FORMAT(CApmHandler,		D4, "");
+DEFINE_FORMAT(CMslzHandler,		D5, "");
+DEFINE_FORMAT(CFlvHandler,		D6, "");
+DEFINE_FORMAT(CSwfHandler,		D7, "");
+DEFINE_FORMAT(CSwfcHandler,		D8, "");
+DEFINE_FORMAT(CNtfsHandler,		D9, "");
+DEFINE_FORMAT(CFatHandler,		DA, "");
+DEFINE_FORMAT(CMbrHandler,		DB, "");
+DEFINE_FORMAT(CVhdHandler,		DC, "");
+DEFINE_FORMAT(CPeHandler,		DD, "");
+DEFINE_FORMAT(CElfHandler,		DE, "elf");
+DEFINE_FORMAT(CMachOHandler,	DF, "");
+DEFINE_FORMAT(CUdfHandler,		E0, "udf");
+DEFINE_FORMAT(CXarHandler,		E1, "xar pkg");
+DEFINE_FORMAT(CMubHandler,		E2, "mub");
+DEFINE_FORMAT(CHfsHandler,		E3, "hfs");
+DEFINE_FORMAT(CDmgHandler,		E4, "dmg");
+DEFINE_FORMAT(CComHandler,		E5, "");
+DEFINE_FORMAT(CWimHandler,		E6, "wim swm");
+DEFINE_FORMAT(CIsoHandler,		E7, "iso");
+DEFINE_FORMAT(CSplitHandler,	EA, "");
+DEFINE_FORMAT(CChmHandler,		E9, "chm chi chq chw hxs hxi hxr hxq hxw lit");
+DEFINE_FORMAT(CRpmHandler,		EB, "rpm");
+DEFINE_FORMAT(CDebHandler,		EC, "deb");
+DEFINE_FORMAT(CCpioHandler,		ED, "cpio");
+DEFINE_FORMAT(CTarHandler,		EE, "tar");
+DEFINE_FORMAT(CGZipHandler,		EF, "gz tgz");
 
 /**
  * @brief Construct Merge7z interface.
@@ -815,50 +828,218 @@ Merge7z::Format *Merge7z::GuessFormatBySignature(LPCTSTR path, LPCTSTR extension
 }
 
 /**
- * @brief Figure out which archiver dll to use for a given archive.
+ * @brief Check signature manually using 7-Zip's signature properties when IsArc is not available.
  */
-Merge7z::Format *Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
+static bool CheckSignatureManually(Format7zDLL::Proxy* proxy, LPCH sig, int cchSig)
 {
-	Format7zDLL::Interface *pFormat = Format7zDLL::Interface::head;
-	Format7zDLL::Interface *pFormatByExtension = 0;
-	while (pFormat)
+	if (!sig || cchSig <= 0)
+		return false;
+
+	// Get signature offset
+	UInt32 sigOffset = 0;
+	PROPVARIANT offsetValue;
+	PropVariantInit(&offsetValue);
+	if (SUCCEEDED(proxy->GetHandlerProperty(NArchive::NHandlerPropID::kSignatureOffset, &offsetValue)) &&
+		offsetValue.vt == VT_UI4)
 	{
-		static const char aBlank[] = " ";
-		LPCSTR pchExtension = pFormat->proxy.extension;
-		int cchExtension = pFormat->proxy.sig_count;
-		if (cchSig > 0 && cchExtension)
+		sigOffset = offsetValue.ulVal;
+	}
+	VariantClear((VARIANT *)&offsetValue);
+
+	// Try kSignature first (single signature)
+	PROPVARIANT value;
+	PropVariantInit(&value);
+	proxy->GetHandlerProperty(NArchive::NHandlerPropID::kSignature, &value);
+
+	bool isMultiSignature = false;
+	// If kSignature is not available, try kMultiSignature
+	if (value.vt != VT_BSTR || !value.bstrVal)
+	{
+		VariantClear((VARIANT *)&value);
+		PropVariantInit(&value);
+		proxy->GetHandlerProperty(NArchive::NHandlerPropID::kMultiSignature, &value);
+		isMultiSignature = true;
+	}
+
+	bool matched = false;
+	if (value.vt == VT_BSTR && value.bstrVal)
+	{
+		UInt32 totalSize = SysStringByteLen(value.bstrVal);
+		const BYTE *pchSignature = (const BYTE *)value.bstrVal;
+
+		if (isMultiSignature)
 		{
-			LPCSTR pchSignature = pchExtension - cchExtension;
-			char joker = pFormat->proxy.sig_joker;
-			size_t begin = pFormat->proxy.sig_begin;
-			if (cchSig >= cchExtension)
+			// Multi-signature format: [length1][signature1][length2][signature2]...
+			// Each signature is prefixed with 1 byte indicating its length
+			UInt32 pos = 0;
+
+			while (pos < totalSize)
 			{
-				while (cchExtension--)
+				// Read signature length (1 byte)
+				UInt32 sigLen = pchSignature[pos++];
+
+				if (pos + sigLen > totalSize)
+					break; // Invalid format
+
+				// Check this signature
+				if (cchSig >= (int)(sigOffset + sigLen))
 				{
-					char expected = pchSignature[cchExtension];
-					if (expected != joker && sig[begin + cchExtension] != expected)
+					bool signatureMatch = true;
+					for (UInt32 j = 0; j < sigLen; j++)
+					{
+						if ((BYTE)sig[sigOffset + j] != pchSignature[pos + j])
+						{
+							signatureMatch = false;
+							break;
+						}
+					}
+
+					if (signatureMatch)
+					{
+						matched = true;
 						break;
+					}
 				}
-				if (cchExtension == -1)
+
+				pos += sigLen; // Move to next signature
+			}
+		}
+		else
+		{
+			// Single signature
+			if (cchSig >= (int)(sigOffset + totalSize))
+			{
+				bool signatureMatch = true;
+				for (UInt32 j = 0; j < totalSize; j++)
+				{
+					if ((BYTE)sig[sigOffset + j] != pchSignature[j])
+					{
+						signatureMatch = false;
+						break;
+					}
+				}
+
+				if (signatureMatch)
+					matched = true;
+			}
+		}
+	}
+
+	VariantClear((VARIANT *)&value);
+	return matched;
+}
+
+/**
+ * @brief Figure out which archiver dll to use for a given archive using pre-read signature.
+ * This function receives an already-read signature buffer, unlike GuessFormatBySignature which reads the file itself.
+ */
+Merge7z::Format* Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
+{
+	// If no signature provided, fall back to extension-only detection
+	if (!sig || cchSig <= 0)
+	{
+		if (!ext || ext[0] == '\0')
+			return nullptr;
+		Format7zDLL::Interface* pFormat = Format7zDLL::Interface::head;
+		while (pFormat)
+		{
+			static const char aBlank[] = " ";
+			LPCSTR pchExtension = pFormat->proxy.extension;
+			int cchExtension;
+			while ((cchExtension = StrCSpnA(pchExtension += StrSpnA(pchExtension, aBlank), aBlank)) != 0)
+			{
+				if (StrIsIntlEqualA(FALSE, pchExtension, ext, cchExtension) && ext[cchExtension] == '\0')
+					return pFormat;
+				pchExtension += cchExtension;
+			}
+			pFormat = pFormat->next;
+		}
+		return nullptr;
+	}
+
+	// Build list of candidate formats
+	Format7zDLL::Interface* candidates[100];
+	int candidateCount = 0;
+	int extensionMatches = 0;
+
+	// First pass: collect formats matching extension if provided
+	Format7zDLL::Interface* pFormat = Format7zDLL::Interface::head;
+	bool useExtension = (ext != nullptr && ext[0] != '\0');
+
+	while (pFormat && candidateCount < 100)
+	{
+		bool matchesExtension = false;
+
+		if (useExtension)
+		{
+			static const char aBlank[] = " ";
+			LPCSTR pchExtension = pFormat->proxy.extension;
+			int cchExtension;
+			while ((cchExtension = StrCSpnA(pchExtension += StrSpnA(pchExtension, aBlank), aBlank)) != 0)
+			{
+				if (StrIsIntlEqualA(FALSE, pchExtension, ext, cchExtension) && ext[cchExtension] == '\0')
+				{
+					matchesExtension = true;
+					break;
+				}
+				pchExtension += cchExtension;
+			}
+		}
+
+		if (matchesExtension)
+		{
+			// Insert at beginning (priority for extension matches)
+			for (int i = candidateCount; i > extensionMatches; i--)
+				candidates[i] = candidates[i - 1];
+			candidates[extensionMatches] = pFormat;
+			extensionMatches++;
+			candidateCount++;
+		}
+		else
+		{
+			// Add at end (for signature checking)
+			candidates[candidateCount++] = pFormat;
+		}
+
+		pFormat = pFormat->next;
+	}
+
+	// Use 7-Zip's IsArc functions to check signatures
+	for (int i = 0; i < candidateCount; i++)
+	{
+		pFormat = candidates[i];
+
+		// Get IsArc function for this format
+		Func_IsArc isArc = nullptr;
+		try
+		{
+			Format7zDLL::Proxy* pr = pFormat->proxy.operator->();
+			if (SUCCEEDED(pr->GetIsArc(pr->formatIndex, &isArc)) && isArc)
+			{
+				// Call IsArc with the file signature
+				UInt32 result = isArc((const Byte*)sig, (size_t)cchSig);
+				if (result == k_IsArc_Res_YES ||
+					(i < extensionMatches && cchSig == sizeof(CH_SIGNATURE) && result == k_IsArc_Res_NEED_MORE))
+					return pFormat;
+			}
+			else
+			{
+				// IsArc function not available, fall back to manual signature checking
+				if (CheckSignatureManually(pr, sig, cchSig))
+					return pFormat;
+				// If no signature or signature doesn't match, return format if extension matches
+				else if (i < extensionMatches)
 					return pFormat;
 			}
 		}
-		else while
-		(
-			ext
-		&&	pFormatByExtension == 0
-		&&	(cchExtension = StrCSpnA(pchExtension += StrSpnA(pchExtension, aBlank), aBlank)) != 0
-		)
+		catch (Complain*)
 		{
-			if (StrIsIntlEqualA(FALSE, pchExtension, ext, cchExtension) && ext[cchExtension] == '\0')
-			{
-				pFormatByExtension = pFormat;
-			}
-			pchExtension += cchExtension;
+			// Ignore unsupported/problematic formats while probing.
 		}
-		pFormat = pFormat->next;
 	}
-	return pFormat ? pFormat : pFormatByExtension;
+
+	// No signature match found
+	return nullptr;
 }
 
 /**
@@ -880,60 +1061,19 @@ LPCSTR Merge7z::GetExtension(LPCTSTR path, SZ_EXTENSION ext)
 
 /**
  * @brief Read start signature from given file.
+ * Just reads the file header; 7-Zip handlers will handle self-extracting archives themselves.
  */
 DWORD Merge7z::GetSignature(LPCTSTR path, CH_SIGNATURE sig)
 {
 	if (sig == NULL)
 		return sizeof(CH_SIGNATURE);
+
 	DWORD cchSig = 0;
-	HANDLE h = CreateFile(path, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+	HANDLE h = CreateFile(path, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, 
+						  0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		ReadFile(h, sig, sizeof(CH_SIGNATURE), &cchSig, 0);
-		if (cchSig >= 64 && MAKEWORD(sig[0],sig[1]) == IMAGE_DOS_SIGNATURE)
-		{
-			DWORD offset = 
-			(
-				LPDWORD(sig)[5]	//DOS CS:IP
-			?	512UL * (LPWORD(sig)[1] ? LPWORD(sig)[2] - 1 : LPWORD(sig)[2]) + LPWORD(sig)[1]
-			:	LPDWORD(sig)[15]
-			);
-			if (SetFilePointer(h, offset, 0, FILE_BEGIN) == offset)
-			{
-				ReadFile(h, sig, sizeof(CH_SIGNATURE), &cchSig, 0);
-				if (cchSig >= 4 + sizeof(IMAGE_FILE_HEADER) && MAKELONG(MAKEWORD(sig[0],sig[1]), MAKEWORD(sig[2],sig[3])) == MAKELONG(MAKEWORD('P','E'), 0))
-				{
-					cchSig = 0;
-					IMAGE_FILE_HEADER *pImageFileHeader = (IMAGE_FILE_HEADER *) (sig + 4);
-					offset += 4 + sizeof(IMAGE_FILE_HEADER) + pImageFileHeader->SizeOfOptionalHeader;
-					if (SetFilePointer(h, offset, 0, FILE_BEGIN) == offset)
-					{
-						int iSection = pImageFileHeader->NumberOfSections;
-						while (iSection--)
-						{
-							IMAGE_SECTION_HEADER ImageSectionHeader;
-							DWORD cbImageSectionHeader = 0;
-							ReadFile(h, &ImageSectionHeader, sizeof ImageSectionHeader, &cbImageSectionHeader, 0);
-							if (cbImageSectionHeader != sizeof ImageSectionHeader)
-								break;
-							if (memcmp(ImageSectionHeader.Name, "_winzip_", 8) == 0)
-							{
-								// looks like WinZip Self-Extractor
-								memcpy(sig, "PK\x03\x04", cchSig = 4);
-								break;
-							}
-							DWORD ahead = ImageSectionHeader.PointerToRawData + ImageSectionHeader.SizeOfRawData;
-							if (offset < ahead)
-								offset = ahead;
-						}
-						if (iSection == -1 && SetFilePointer(h, offset, 0, FILE_BEGIN) == offset)
-						{
-							ReadFile(h, sig, sizeof(CH_SIGNATURE), &cchSig, 0);
-						}
-					}
-				}
-			}
-		}
 		CloseHandle(h);
 	}
 	return cchSig;

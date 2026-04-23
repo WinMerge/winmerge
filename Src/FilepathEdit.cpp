@@ -514,21 +514,32 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 			{
 				m_bPathEditing = false;
 				String orgtext = m_sFilepath;
+				String windowText = m_sOriginalText;
 				if (!(text == orgtext.c_str() || text.IsEmpty()))
 				{
 					bool existing = paths::DoesPathExist((const tchar_t *)text);
 					if (existing)
 					{
-						if (m_bEnabledFileSelection && !paths::IsDirectory((const tchar_t *)text) ||
-							m_bEnabledFolderSelection && paths::IsDirectory((const tchar_t *)text))
-							m_sFilepath = static_cast<const tchar_t*>(text);
-						else
+						if (m_bEnabledFileSelection && paths::IsDirectory((const tchar_t*)text))
+						{
 							existing = false;
+							windowText = strutils::format_string1(_("File not found: %1"), (const tchar_t*)text);
+						}
+						if (m_bEnabledFolderSelection && !paths::IsDirectory((const tchar_t*)text))
+						{
+							existing = false;
+							windowText = _("Folder does not exist.");
+						}
 					}
+					else
+						windowText = GetSysError();
 					if (existing)
+					{
+						m_sFilepath = static_cast<const tchar_t*>(text);
 						GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
+					}
 				}
-				SetWindowText(m_sOriginalText.c_str());
+				SetWindowText(windowText.c_str());
 			}
 			else
 			{

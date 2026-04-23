@@ -182,8 +182,9 @@ bool CVersionInfo::GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS)
  */
 void CVersionInfo::GetVersionInfo()
 {
-	ZeroMemory(&m_FixedFileInfo, sizeof(m_FixedFileInfo));
-	ZeroMemory(&m_dvi, sizeof(m_dvi));
+	m_bVersionFound = false;
+	m_FixedFileInfo = {};
+	m_dvi = {};
 
 	DWORD dwVerHnd = 0;			// An 'ignored' parameter, always '0'
 	tchar_t szFileName[MAX_PATH];
@@ -199,10 +200,10 @@ void CVersionInfo::GetVersionInfo()
 	DWORD dwVerInfoSize = ::GetFileVersionInfoSize(szFileName, &dwVerHnd);
 	if (dwVerInfoSize)
 	{
-		m_bVersionFound = true;
 		m_pVffInfo.reset(new BYTE[dwVerInfoSize]);
 		if (::GetFileVersionInfo(szFileName, 0, dwVerInfoSize, m_pVffInfo.get()))
 		{
+			m_bVersionFound = true;
 			GetFixedVersionInfo();
 			if (!m_bVersionOnly)
 				QueryStrings();

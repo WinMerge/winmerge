@@ -125,7 +125,7 @@ liste du plug-in, le plug-in est considéré comme un <firstterm>plug-in
 suggéré</firstterm></para>
 
     <para>Il existe des options WinMerge distinctes pour les types de décompactage et
-de prediffer, décrites plus loin dans cette rubrique, qui vous permettent
+de de prediffer, décrites plus loin dans cette rubrique, qui vous permettent
 d'appliquer les plug-ins soit manuellement, soit automatiquement. Il n'y a
 pas de mode automatique pour les plug-ins de complément d'éditeur.</para>
 
@@ -149,7 +149,7 @@ varient également selon que vous comparez des dossiers ou des fichiers.</para>
 comparaison de fichiers</title>
 
       <para>Le curseur étant placé dans l'un des volets de la fenêtre de comparaison de
-fichiers, cliquez sur <menuchoice> <guimenu>plug-ins</guimenu>
+fichiers, cliquez sur <menuchoice> <guimenu>Plug-ins</guimenu>
 <guisubmenu>Scripts</guisubmenu> </menuchoice> et choisissez l'une de ces
 fonctions :</para>
 
@@ -1404,11 +1404,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_DecompileJVM">
       <title><filename>DecompileJVM<indexterm>
-          <primary>DecompileJVM plugin file</primary>
+          <primary>Fichier du plug-in DecompileJVM</primary>
         </indexterm></filename></title>
 
-      <para>Java decompiler with CFR - decompiles .class files into readable Java source
-code</para>
+      <para>Décompilateur Java avec CFR - décompile les fichiers .class en code source
+Java lisible</para>
 
       <cmdsynopsis sepchar=" ">
 <command>DecompileJVM</command> <arg choice="opt"
@@ -1418,7 +1418,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the CFR decompiler</para>
+            <para>Options de ligne de commande passées au décompilateur CFR</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1566,7 +1566,7 @@ class="extension">*.dll</filename></seg>
 
       <cmdsynopsis sepchar=" ">
 <command>ExecFilterCommand</command> <arg choice="opt"
-rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
+rep="norepeat"><replaceable>commande</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -1903,23 +1903,23 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg choice="opt"
-rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
+rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>patterns</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>motifs</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>ranges</replaceable></option></term>
+          <term><option><replaceable>plages</replaceable></option></term>
           <listitem>
             <para>liste des plages de colonnes à sélectionner (ex. -3,5-10,30-)</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term><option><replaceable>patterns</replaceable></option></term>
+          <term><option><replaceable>motifs</replaceable></option></term>
           <listitem>
             <para>expression régulière</para>
           </listitem>
@@ -2002,14 +2002,14 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>ranges</replaceable></option></term>
+          <term><option><replaceable>plages</replaceable></option></term>
           <listitem>
             <para>liste des plages de lignes à sélectionner (ex: -3,5-10,30-)</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term><option><replaceable>patterns</replaceable></option></term>
+          <term><option><replaceable>motifs</replaceable></option></term>
           <listitem>
             <para>expression régulière</para>
           </listitem>
@@ -2154,7 +2154,7 @@ rep="norepeat"><replaceable>motifs</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>patterns</replaceable></option></term>
+          <term><option><replaceable>motifs</replaceable></option></term>
           <listitem>
             <para>expression régulière pour la segmentation (ex: [^\w]+)</para>
           </listitem>

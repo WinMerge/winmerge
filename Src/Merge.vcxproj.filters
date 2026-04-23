@@ -1562,6 +1562,9 @@
     <ClInclude Include="PropertySystemMenu.h">
       <Filter>MFCGui\Menu\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Common\ScopeExit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

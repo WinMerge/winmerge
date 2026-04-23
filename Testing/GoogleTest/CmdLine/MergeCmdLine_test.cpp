@@ -2250,6 +2250,10 @@ namespace
 			EXPECT_EQ(MergeCmdLineInfo::WindowType::IMAGE, cmdInfo.m_nWindowType);
 		}
 		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t folder"));
+			EXPECT_EQ(MergeCmdLineInfo::WindowType::FOLDER, cmdInfo.m_nWindowType);
+		}
+		{
 			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t unknown"));
 			EXPECT_EQ(MergeCmdLineInfo::WindowType::AUTOMATIC, cmdInfo.m_nWindowType);
 			EXPECT_EQ(1, cmdInfo.m_sErrorMessages.size());

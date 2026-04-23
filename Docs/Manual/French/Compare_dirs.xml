@@ -127,7 +127,7 @@ les éléments comparés.</para>
       <note>
         <para>Étant donné que les fichiers comparés sont généralement de tailles
 différentes, les données d'état n'indiquent pas le temps utilisé ou
-restant. Par exemple, un ratio de 50/100 ne signifie pas nécessairement que
+restant. Pour exemple, un ratio de 50/100 ne signifie pas nécessairement que
 la moitié du temps de l'opération de comparaison est écoulée.</para>
       </note>
 
@@ -644,7 +644,7 @@ vous pouvez spécifier une application pour ouvrir votre fichier.</para>
 chemin</guimenuitem> et <guimenuitem>Copier les noms de
 fichiers</guimenuitem> copient le chemin ou le nom du fichier des éléments
 sélectionnés dans le presse-papiers de Windows. Vous pouvez ensuite coller
-les informations copiées dans un fichier ou une application, par exemple
+les informations courantes dans un fichier ou une application, par exemple
 pour créer une liste de fichiers modifiés ou un journal des modifications.</para>
 
       <itemizedlist>

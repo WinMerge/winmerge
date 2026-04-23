@@ -186,10 +186,11 @@ delle parole chiave <userinput>Full</userinput>,
 
       <term><option>/t <replaceable>tipo di finestra</replaceable></option></term>
       <listitem>
-        <para>Specifica il tipo di finestra in cui visualizzare i file.Può essere una
-delle parole chiave <userinput>Testo</userinput>,
-<userinput>Tabella</userinput>, <userinput>Binario</userinput>,
-<userinput>Immagine</userinput> o <userinput>Pagina Web</userinput>.</para>
+        <para>Specifica il tipo di finestra in cui visualizzare i file. Può essere una
+delle parole chiave <userinput>Text</userinput>,
+<userinput>Table</userinput>, <userinput>Binary</userinput>,
+<userinput>Image</userinput>, <userinput>Webpage</userinput> o
+<userinput>Folder</userinput>.</para>
       </listitem>
     </varlistentry>
 

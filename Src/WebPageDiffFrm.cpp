@@ -76,8 +76,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	// [File] menu
 	ON_COMMAND(ID_FILE_CLOSE, OnFileClose)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
-	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnFileRecompareAs)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnUpdateFileRecompareAs)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_FOLDER, OnFileRecompareAs)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_FOLDER, OnUpdateFileRecompareAs)
 	// [Edit] menu
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
@@ -767,7 +767,7 @@ void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 
 	CloseNow();
 	GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-		GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID);
+		nullptr, &infoUnpacker, nullptr, nID);
 }
 
 void CWebPageDiffFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
@@ -1493,7 +1493,8 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 				fileopenflags_t dwFlags[3]{};
 				for (int pane = 0; pane < paths.GetSize(); ++pane)
 					dwFlags[pane] = FFILEOPEN_NOMRU;
-				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), true);
+				CMainFrame::OpenFolderParams openFolderParams(true);
+				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), nullptr, nullptr, nullptr, 0, &openFolderParams);
 				return S_OK;
 			}));
 }

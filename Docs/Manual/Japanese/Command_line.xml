@@ -173,7 +173,8 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
       <listitem>
         <para>ファイルを表示するウィンドウの種類を指定します。次のキーワードが指定できます。 <userinput>Text</userinput>,
 <userinput>Table</userinput>, <userinput>Binary</userinput>,
-<userinput>Image</userinput>, <userinput>Webpage</userinput></para>
+<userinput>Image</userinput>, <userinput>Webpage</userinput>,
+<userinput>Folder</userinput></para>
       </listitem>
     </varlistentry>
 
