@@ -16,7 +16,7 @@
 #include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
-#include "HeaderBarHelper.h"
+#include "HistoryItemsHelper.h"
 #include "BCMenu.h"
 #include "IDirDoc.h"
 #include "OptionsDef.h"
@@ -581,12 +581,12 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		if (ChangeFile(pane, sFilepath, sDescription))
 			m_pImgMergeWindow->SetActivePane(pane);
 	});
-	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
-		return GetRecentFiles(pane, maxCount, type);
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, HistoryItemsHelper::RecentItemType type) {
+		return HistoryItemsHelper::GetRecentFiles(pane, maxCount, type);
 	});
 	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		auto allItems = GetClipboardHistoryItems(maxCount);
-		std::vector<IHeaderBar::ClipboardItem> imageItems;
+		auto allItems = HistoryItemsHelper::GetClipboardHistoryItems(maxCount);
+		std::vector<HistoryItemsHelper::ClipboardItem> imageItems;
 		for (const auto& item : allItems)
 		{
 			// Filter to show only items with image data

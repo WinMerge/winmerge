@@ -1436,44 +1436,6 @@ static void AppendComparisonCommandLineParams(
 	}
 }
 
-/**
- * @brief Utility function to update CSuperComboBox format MRU
- */
-static void addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UINT nMaxItems = 20)
-{
-	std::vector<CString> list;
-	CString s;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	list.push_back(szItem);
-	for (UINT i=0 ; i<cnt; ++i)
-	{
-		s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
-		if (s != szItem)
-			list.push_back(s);
-	}
-	cnt = list.size() > nMaxItems ? nMaxItems : static_cast<UINT>(list.size());
-	for (UINT i=0 ; i<cnt; ++i)
-		AfxGetApp()->WriteProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str(), list[i]);
-	// update count
-	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
-}
-
-/**
- * @brief Get MRU list from registry
- */
-static std::vector<String> getMruList(const tchar_t* szRegSubKey, UINT nMaxItems)
-{
-	std::vector<String> list;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	for (UINT i = 0; i < cnt && i < nMaxItems; ++i)
-	{
-		String s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
-		if (!s.empty())
-			list.push_back(s);
-	}
-	return list;
-}
-
 static bool AddToRecentDocs(const PathContext& paths,
 	const unsigned flags[], const String desc[],
 	const String& filter,
@@ -1652,11 +1614,11 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	if (dwFlags)
 	{
 		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-			addToMru(tFiles[0].c_str(), _T("Files\\Left"));
+			HistoryItemsHelper::addToMru(tFiles[0].c_str(), _T("Files\\Left"));
 		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-			addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+			HistoryItemsHelper::addToMru(tFiles[1].c_str(), _T("Files\\Right"));
 		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-			addToMru(tFiles[2].c_str(), _T("Files\\Option"));
+			HistoryItemsHelper::addToMru(tFiles[2].c_str(), _T("Files\\Option"));
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
@@ -1964,134 +1926,6 @@ void CMainFrame::OnClose()
 	}
 
 	__super::OnClose();
-}
-
-/**
- * @brief Get recent files list for HeaderBar
- */
-std::vector<IHeaderBar::RecentItem> GetRecentFiles(int pane, unsigned maxCount, IHeaderBar::RecentItemType type)
-{
-	std::vector<IHeaderBar::RecentItem> items;
-
-	// Get MRU items from the specific pane
-	std::vector<String> allPaths;
-
-	// Map pane index to MRU list name
-	const TCHAR* mruListName = nullptr;
-	switch (pane)
-	{
-	case 0:
-		mruListName = _T("Files\\Left");
-		break;
-	case 1:
-		mruListName = _T("Files\\Right");
-		break;
-	case 2:
-		mruListName = _T("Files\\Option");
-		break;
-	default:
-		// For unknown panes, return empty list
-		return items;
-	}
-
-	allPaths = getMruList(mruListName, maxCount);
-
-	// Filter and create items
-	for (const auto& path : allPaths)
-	{
-		bool isFolder = paths::EndsWithSlash(path);
-
-		// Filter based on type
-		if (type == IHeaderBar::RecentItemType::FilesOnly && isFolder)
-			continue;
-		if (type == IHeaderBar::RecentItemType::FoldersOnly && !isFolder)
-			continue;
-
-		IHeaderBar::RecentItem item;
-		item.path = path;
-
-		// Extract filename or folder name as title
-		if (isFolder)
-		{
-			// For folders, get the last directory name
-			String pathWithoutSlash = path.substr(0, path.length() - 1);
-			size_t pos = pathWithoutSlash.find_last_of(_T("\\/"));
-			if (pos != String::npos)
-				item.title = pathWithoutSlash.substr(pos + 1);
-			else
-				item.title = pathWithoutSlash;
-		}
-		else
-		{
-			// For files, get the filename
-			size_t pos = path.find_last_of(_T("\\/"));
-			if (pos != String::npos)
-				item.title = path.substr(pos + 1);
-			else
-				item.title = path;
-		}
-
-		item.description = path;
-		items.push_back(item);
-
-		if (items.size() >= maxCount)
-			break;
-	}
-
-	return items;
-}
-
-/**
- * @brief Format clipboard description with timestamp
- */
-static String FormatClipboardDescription(time_t timestamp)
-{
-	int64_t t = timestamp;
-	String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
-	return strutils::format(_("Clipboard at %s"), timestr);
-}
-
-/**
- * @brief Get clipboard history for HeaderBar
- */
-std::vector<IHeaderBar::ClipboardItem> GetClipboardHistoryItems(unsigned maxCount)
-{
-	std::vector<IHeaderBar::ClipboardItem> items;
-
-	auto clipItems = ClipboardHistory::GetItems(maxCount, 1);
-	for (const auto& clipItem : clipItems)
-	{
-		IHeaderBar::ClipboardItem item;
-		item.timestamp = clipItem.timestamp;
-		item.pTextTempFile = clipItem.pTextTempFile;
-		item.pBitmapTempFile = clipItem.pBitmapTempFile;
-
-		// Create description like "Clipboard at 2026-01-23 12:34:56"
-		item.description = FormatClipboardDescription(clipItem.timestamp);
-
-		if (clipItem.pTextTempFile)
-		{
-			UniMemFile file;
-			if (file.OpenReadOnly(clipItem.pTextTempFile->GetPath()))
-			{
-				file.SetUnicoding(ucr::UTF8);
-				String line;
-				String eol;
-				// Read first line as preview
-				file.ReadString(line, eol, nullptr);
-				// Take first 260 characters as preview
-				strutils::replace_chars(line, _T("\t"), _T(" "));
-				if (line.length() > MAX_PATH)
-					item.previewText = line.substr(0, MAX_PATH) + _T("...");
-				else
-					item.previewText = line;
-				file.Close();
-			}
-		}
-
-		items.push_back(item);
-	}
-	return items;
 }
 
 void CMainFrame::ApplyDiffOptions() 
@@ -3294,7 +3128,7 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const fileopenf
 	for (int i = 0; i < nBuffers; ++i)
 	{
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
-			strDesc[i] : FormatClipboardDescription(historyItems[nBuffers - i - 1].timestamp);
+			strDesc[i] : HistoryItemsHelper::FormatClipboardDescription(historyItems[nBuffers - i - 1].timestamp);
 		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
 	}
 	for (int i = 0; i < 2; ++i)

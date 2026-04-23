@@ -13,7 +13,7 @@
 
 #include "stdafx.h"
 #include "HexMergeFrm.h"
-#include "HeaderBarHelper.h"
+#include "HistoryItemsHelper.h"
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "OptionsDef.h"
@@ -140,11 +140,11 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		if (m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription))
 			GetView(pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
-		return GetRecentFiles(pane, maxCount, type);
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, HistoryItemsHelper::RecentItemType type) {
+		return HistoryItemsHelper::GetRecentFiles(pane, maxCount, type);
 	});
 	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		return GetClipboardHistoryItems(maxCount);
+		return HistoryItemsHelper::GetClipboardHistoryItems(maxCount);
 	});
 
 	// Set filename bars inactive so colors get initialized

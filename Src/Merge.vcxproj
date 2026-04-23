@@ -974,6 +974,7 @@
     </ClCompile>
     <ClCompile Include="FiltersPropertySheet.cpp" />
     <ClCompile Include="FrameWndHelper.cpp" />
+    <ClCompile Include="HistoryItemsHelper.cpp" />
     <ClCompile Include="I18nGUI.cpp" />
     <ClCompile Include="InternalPlugins.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -996,7 +997,7 @@
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />
     <ClInclude Include="FrameWndHelper.h" />
-    <ClInclude Include="HeaderBarHelper.h" />
+    <ClInclude Include="HistoryItemsHelper.h" />
     <ClInclude Include="I18n.h" />
     <ClInclude Include="I18nGUI.h" />
     <ClInclude Include="Logger.h">
