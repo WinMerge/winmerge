@@ -29,9 +29,10 @@ namespace HistoryItemsHelper
 	};
 	enum class RecentItemType { All, FilesOnly, FoldersOnly };
 
-	// Helper functions for header bar
-	void addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UINT nMaxItems = 20);
-	String FormatClipboardDescription(time_t timestamp);
+	// Helper functions for history items
+	void addToMru(int pane, const String& sItem, unsigned nMaxItems = 20);
+	std::vector<String> getMruList(int pane, unsigned nMaxItems);
 	std::vector<RecentItem> GetRecentFiles(int pane, unsigned maxCount, RecentItemType type);
+	String FormatClipboardDescription(time_t timestamp);
 	std::vector<ClipboardItem> GetClipboardHistoryItems(unsigned maxCount);
 }

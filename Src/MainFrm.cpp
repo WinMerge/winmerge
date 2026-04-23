@@ -1614,11 +1614,11 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	if (dwFlags)
 	{
 		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-			HistoryItemsHelper::addToMru(tFiles[0].c_str(), _T("Files\\Left"));
+			HistoryItemsHelper::addToMru(0, tFiles[0]);
 		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-			HistoryItemsHelper::addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+			HistoryItemsHelper::addToMru(1, tFiles[1]);
 		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-			HistoryItemsHelper::addToMru(tFiles[2].c_str(), _T("Files\\Option"));
+			HistoryItemsHelper::addToMru(2, tFiles[2]);
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;

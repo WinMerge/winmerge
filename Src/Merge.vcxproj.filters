@@ -1565,7 +1565,7 @@
     <ClInclude Include="Common\ScopeExit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HeaderBarHelper.h">
+    <ClInclude Include="HistoryItemsHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
