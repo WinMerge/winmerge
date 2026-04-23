@@ -342,6 +342,7 @@ void CTreeSitterParser::Invalidate()
     m_localScopes.clear();
     m_localRefHighlights.clear();
     m_nLineCount = 0;
+    m_nextBlockOrder = 0;
     m_bDirty = false;
 }
 
@@ -411,6 +412,7 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
 
     if (m_pTree)
     {
+        m_nextBlockOrder = 0;
         // 1. Run locals query first to build scope/def/ref information
         RunLocalsQuery();
         // 2. Run highlight query (uses locals info for scope-aware coloring)
@@ -954,7 +956,6 @@ void CTreeSitterParser::RunHighlightQuery()
     // nodes with identical byte ranges should share the same highlight.
     std::unordered_map<uint64_t, int> nodeHighlightMap;
 
-    uint32_t blockOrder = 0;
     TSQueryMatch match;
     while (ts_query_cursor_next_match(pCursor, &match))
     {
@@ -984,7 +985,7 @@ void CTreeSitterParser::RunHighlightQuery()
             entry.endByte = nodeEndByte;
             entry.colorIndex = colorIndex;
             entry.priority = MakeCapturePriority(sName, nodeStartByte, nodeEndByte);
-            entry.order = blockOrder++;
+            entry.order = NextBlockOrder();
 
             highlights.push_back(entry);
 
@@ -1164,7 +1165,6 @@ void CTreeSitterParser::RunInjectionQuery()
     };
     std::vector<InjectionRegion> injections;
 
-    uint32_t blockOrder = 0;
     TSQueryMatch match;
     while (ts_query_cursor_next_match(pCursor, &match))
     {
@@ -1325,7 +1325,7 @@ void CTreeSitterParser::RunInjectionQuery()
                             block.nColorIndex = colorIndex;
                             block.nPriority = MakeCapturePriority(sCapName,
                                 ts_node_start_byte(capNode), ts_node_end_byte(capNode));
-                            block.nOrder = blockOrder++;
+                            block.nOrder = NextBlockOrder();
                             m_lineBlocks[row].push_back(block);
                         }
                     }
