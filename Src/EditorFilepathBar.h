@@ -30,7 +30,7 @@ namespace HeaderBarTypes
 	};
 	struct ClipboardItem
 	{
-		String text;
+		String previewText;
 		String description;  // Display caption like "Clipboard at 12:34:56"
 		time_t timestamp;
 		std::shared_ptr<TempFile> pTextTempFile;

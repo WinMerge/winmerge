@@ -400,19 +400,21 @@ std::vector<IHeaderBar::ClipboardItem> CEditorFilePathBar::GetClipboardHistory(u
 
 void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
 {
-	// Check if the path exists
-	paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(path);
-
-	if (pathExists == paths::DOES_NOT_EXIST)
+	bool isFolder = false;
+	if (!paths::IsURLorCLSID(path))
 	{
-		// Show error message in caption
-		String errorMsg = strutils::format_string1(m_fileSelectedCallbackfunc ? _("File not found: %1") : _("Folder not found: %1"), path);
-		SetCaption(pane, errorMsg);
-		return;
-	}
+		// Check if the path exists
+		paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(path);
 
-	// Use the appropriate callback to notify the parent
-	bool isFolder = paths::EndsWithSlash(path);
+		if (pathExists == paths::DOES_NOT_EXIST)
+		{
+			// Show error message in caption
+			String errorMsg = strutils::format_string1(m_fileSelectedCallbackfunc ? _("File not found: %1") : _("Folder not found: %1"), path);
+			SetCaption(pane, errorMsg);
+			return;
+		}
+		 isFolder = paths::EndsWithSlash(path);
+	}
 
 	if (isFolder && m_folderSelectedCallbackfunc)
 	{
@@ -482,7 +484,7 @@ void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
 	}
 	else if (m_folderSelectedCallbackfunc)
 	{
-		const String path = clipItem.text;
+		const String path = clipItem.previewText;
 		paths::PATH_EXISTENCE pathExists2 = paths::DoesPathExist(path);
 		if (pathExists2 == paths::DOES_NOT_EXIST || pathExists2 == paths::IS_EXISTING_FILE)
 		{
@@ -595,7 +597,7 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 			String prefix;
 			if (m_cachedClipboardItems[i].pBitmapTempFile)
 				prefix = _T("[") + _("Image") + _T("] ");
-			String preview = m_cachedClipboardItems[i].text;
+			String preview = m_cachedClipboardItems[i].previewText;
 			if (preview.length() > 60)
 				preview = preview.substr(0, 57) + _T("...");
 			// Replace newlines with spaces for menu display

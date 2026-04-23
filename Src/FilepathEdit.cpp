@@ -542,25 +542,30 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 				String windowText = m_sOriginalText;
 				if (!(text == orgtext.c_str() || text.IsEmpty()))
 				{
-					bool existing = paths::DoesPathExist((const tchar_t *)text);
-					if (existing)
+					String path = text;
+					bool existing = true;
+					if (!paths::IsURLorCLSID(path))
 					{
-						if (m_bEnabledFileSelection && paths::IsDirectory((const tchar_t*)text))
+						existing = paths::DoesPathExist(path);
+						if (existing)
 						{
-							existing = false;
-							windowText = strutils::format_string1(_("File not found: %1"), (const tchar_t*)text);
+							if (m_bEnabledFileSelection && paths::IsDirectory(path))
+							{
+								existing = false;
+								windowText = strutils::format_string1(_("File not found: %1"), path);
+							}
+							if (m_bEnabledFolderSelection && !paths::IsDirectory(path))
+							{
+								existing = false;
+								windowText = strutils::format_string1(_("Folder not found: %1"), path);
+							}
 						}
-						if (m_bEnabledFolderSelection && !paths::IsDirectory((const tchar_t*)text))
-						{
-							existing = false;
-							windowText = strutils::format_string1(_("Folder not found: %1"), (const tchar_t*)text);
-						}
+						else
+							windowText = GetSysError();
 					}
-					else
-						windowText = GetSysError();
 					if (existing)
 					{
-						m_sFilepath = static_cast<const tchar_t*>(text);
+						m_sFilepath = path;
 						GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
 					}
 				}
