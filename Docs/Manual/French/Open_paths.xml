@@ -40,10 +40,9 @@ dossiers</secondary>
         <primary>Boîte de dialogue Sélectionner des fichiers ou des dossiers</primary>
       </indexterm></title>
 
-    <para>La section <xref linkend="Quick_start" /> décrit la boîte de dialogue
-Sélectionner des fichiers ou des dossiers. Cette section fournit plus de
-détails et quelques conseils pour utiliser cette boîte de dialogue plus
-efficacement.</para>
+    <para><xref linkend="Quick_start" /> décrit la boîte de dialogue Sélectionner des
+fichiers ou des dossiers. Cette section fournit plus de détails et quelques
+conseils pour utiliser cette boîte de dialogue plus efficacement.</para>
 
     <section>
       <title>Utiliser des variables d'environnement<indexterm>
@@ -201,8 +200,8 @@ format="PNG" /> </imageobject><textobject>
         </textobject>
       </mediaobject>
 
-      <para>WinMerge ouvre les chemins directement dans la fenêtre de comparaison de
-fichiers ou de dossiers.</para>
+      <para>WinMerge s'ouvre directement dans la fenêtre de comparaison de fichiers ou
+de dossiers.</para>
 
       <para>Les côtés gauche et droit sont déterminés par l'ordre de tri dans
 l'Explorateur Windows. Dans la capture d'écran précédente, la liste des
@@ -273,7 +272,7 @@ chargeant respectivement les premier et second chemins du 1er et du 2e côté.</
       <note>
         <para>Si vous cliquez sur <guimenuitem>Comparer</guimenuitem> avant d'avoir
 désigné le premier chemin, la boîte de dialogue Sélectionner des fichiers ou
-des dossiers s'ouvre, avec votre sélection en tant que premier
+des dossiers s'ouvre, avec votre sélection en tant premier
 (<guilabel>1er</guilabel>) chemin. Spécifiez le second chemin dans le champ
 <guilabel>2e</guilabel> pour poursuivre la comparaison.</para>
       </note>

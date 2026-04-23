@@ -1,5 +1,43 @@
 # Change log
 
+## What Is New in 2.16.56
+
+### General
+
+* Show error message when entering invalid path in header bar (PR #3322)
+
+### Folder compare
+
+* Add Folder comparison mode with archive extraction support (PR #3320)
+
+* Refactor: unify open parameters and move recurse to OpenFolderParams (PR #3326)
+
+* Add codepage filter UI and hasbom field support (PR #3318)
+
+### Archive support
+
+* Use 7-Zip IsArc API for archive detection and refactor format guessing logic (PR #3323)
+
+* Prioritize explicitly selected plugins over archive detection (PR #3324)
+
+### Translations
+
+* Translation updates:
+  * Brazilian (PR #3328)
+  * Chinese Simplified (PR #3307,#3331)
+  * French (PR #3312)
+  * German (PR #3329)
+  * Korean (PR #3334)
+  * Lithuanian (PR #3308)
+  * Russian (PR #3309)
+  * Turkish (PR #3333)
+
+### Documentation
+
+* Update Italian documentation (PR #3319)
+
+* Update French manual (PR #3325)
+
 ## WinMerge 2.16.55 - 2026-04-05
 
 ### General

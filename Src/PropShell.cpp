@@ -171,13 +171,14 @@ static void LoadListView(CListCtrl& list)
 	int i = 0;
 	for (auto [mask, text] : std::vector<std::pair<MergeCmdLineInfo::usertasksflags_t, String>>(
 		{
-			{ MergeCmdLineInfo::NEW_TEXT_COMPARE,   _("New Text Compare") },
-			{ MergeCmdLineInfo::NEW_TABLE_COMPARE,  _("New Table Compare") },
-			{ MergeCmdLineInfo::NEW_BINARY_COMPARE, _("New Binary Compare") },
-			{ MergeCmdLineInfo::NEW_IMAGE_COMPARE,  _("New Image Compare") },
-			{ MergeCmdLineInfo::NEW_WEBPAGE_COMPARE,  _("New Webpage Compare") },
-			{ MergeCmdLineInfo::CLIPBOARD_COMPARE,  _("Clipboard Compare") },
-			{ MergeCmdLineInfo::SHOW_OPTIONS_DIALOG,  _("Options") },
+			{ MergeCmdLineInfo::NEW_TEXT_COMPARE,    _("New Text Compare") },
+			{ MergeCmdLineInfo::NEW_TABLE_COMPARE,   _("New Table Compare") },
+			{ MergeCmdLineInfo::NEW_BINARY_COMPARE,  _("New Binary Compare") },
+			{ MergeCmdLineInfo::NEW_IMAGE_COMPARE,   _("New Image Compare") },
+			{ MergeCmdLineInfo::NEW_WEBPAGE_COMPARE, _("New Webpage Compare") },
+			{ MergeCmdLineInfo::NEW_FOLDER_COMPARE,  _("New Folder Compare") },
+			{ MergeCmdLineInfo::CLIPBOARD_COMPARE,   _("Clipboard Compare") },
+			{ MergeCmdLineInfo::SHOW_OPTIONS_DIALOG, _("Options") },
 		}))
 	{
 		list.InsertItem(LVIF_TEXT | LVIF_PARAM, i, text.c_str(), 0, 0, 0, mask);

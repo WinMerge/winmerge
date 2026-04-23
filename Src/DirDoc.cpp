@@ -887,7 +887,8 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 		{
 			String strPath = m_pCtxt->GetPath(index);
 			ApplyDisplayRoot(index, strPath);
-			sDirName[index] = paths::FindFileName(strPath);
+			const String& desc = m_strDesc[index];
+			sDirName[index] = desc.empty() ? paths::FindFileName(strPath) : desc;
 		}
 		if (std::count(&sDirName[0], &sDirName[0] + m_nDirs, sDirName[0]) == m_nDirs)
 			sTitle = sDirName[0] + strutils::format(_T(" x %d"), m_nDirs);

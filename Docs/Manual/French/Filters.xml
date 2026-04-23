@@ -260,31 +260,31 @@ Réel, Horodatage, Chaîne, Contenu de fichier, Tableau (Array), ou
         <title>Directives</title>
 
         <para>
-Filter expressions support directives that control how the expression is
-evaluated.  Directives are specified at the beginning of the expression,
-prefixed with <literal>@</literal>, and separated from the expression by
-whitespace.</para>
+Les expressions de filtre prennent en charge des directives qui contrôlent
+la manière dont l'expression est évaluée. Les directives sont spécifiées au
+début de l'expression, préfixées par <literal>@</literal>, et séparées de
+l'expression par un espace.</para>
 
         <section id="FilterExpression_CaseSensitivity">
-          <title>Case Sensitivity Directives</title>
+          <title>Directives de sensibilité à la casse</title>
 
           <para>
-By default, all string comparison operators (<literal>=</literal>,
-<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
-<literal>&gt;</literal>, <literal>&gt;=</literal>,
+Par défaut, tous les opérateurs de comparaison de chaînes
+(<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>,
+<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
 <literal>contains</literal>, <literal>recontains</literal>,
-<literal>like</literal>, <literal>matches</literal>)  are
-case-insensitive. You can control this behavior using the following
-directives:</para>
+<literal>like</literal>, <literal>matches</literal>) sont insensibles à la
+casse. Vous pouvez contrôler ce comportement en utilisant les directives
+suivantes :</para>
 
           <variablelist>
             <varlistentry>
               <term><literal>@cs</literal>, <literal>@casesensitive</literal></term>
               <listitem>
                 <para>
-Enable case-sensitive comparison. With these directives,
-<literal>"ABC"</literal> and <literal>"abc"</literal> are considered
-different.</para>
+Active la comparaison sensible à la casse. Avec ces directives,
+<literal>"ABC"</literal> et <literal>"abc"</literal> sont considérés comme
+différents.</para>
               </listitem>
             </varlistentry>
 
@@ -292,35 +292,37 @@ different.</para>
               <term><literal>@ci</literal>, <literal>@caseinsensitive</literal></term>
               <listitem>
                 <para>
-Enable case-insensitive comparison (default behavior). With these
-directives, <literal>"ABC"</literal> and <literal>"abc"</literal> are
-considered identical.</para>
+Active la comparaison insensible à la casse (comportement par défaut). Avec
+ces directives, <literal>"ABC"</literal> et <literal>"abc"</literal> sont
+considérés comme identiques.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
           <example>
-            <title>Case Sensitivity Examples</title>
-<programlisting>@cs Name = "README.txt"           ## Case-sensitive: matches only "README.txt"
-@ci Name = "readme.txt"           ## Case-insensitive: matches "README.txt", "readme.txt", "ReadMe.TXT", etc.
-@casesensitive Extension = "TXT"  ## Case-sensitive: matches only files with ".TXT" extension
-@caseinsensitive Content contains "error"  ## Case-insensitive: matches "Error", "ERROR", "error", etc.</programlisting></example>
+            <title>Exemples de sensibilité à la casse</title>
+<programlisting>@cs Name = "README.txt"           ## Sensible à la casse : correspond uniquement à "README.txt"
+@ci Name = "readme.txt"           ## Insensible à la casse : correspond à "README.txt", "readme.txt", "ReadMe.TXT", etc.
+@casesensitive Extension = "TXT"  ## Sensible à la casse : correspond uniquement aux fichiers avec l'extension ".TXT"
+@caseinsensitive Content contains "error"  ## Insensible à la casse : correspond à "Error", "ERROR", "error", etc.</programlisting></example>
         </section>
 
         <section id="FilterExpression_Optimize">
-          <title>Optimization Directives</title>
+          <title>Directives d'optimisation</title>
 
           <para>
-By default, filter expressions are optimized to improve performance. You can
-control this behavior using the following directives:</para>
+Par défaut, les expressions de filtre sont optimisées pour améliorer les
+performances. Vous pouvez contrôler ce comportement en utilisant les
+directives suivantes :</para>
 
           <variablelist>
             <varlistentry>
               <term><literal>@optimize</literal>, <literal>@opt</literal></term>
               <listitem>
                 <para>
-Enable filter expression optimization (default behavior). This may improve
-performance for complex expressions.</para>
+Active l'optimisation des expressions de filtre (comportement par
+défaut). Cela peut améliorer les performances pour les expressions
+complexes.</para>
               </listitem>
             </varlistentry>
 
@@ -328,55 +330,56 @@ performance for complex expressions.</para>
               <term><literal>@nooptimize</literal>, <literal>@noopt</literal></term>
               <listitem>
                 <para>
-Disable filter expression optimization. This is useful for debugging or when
-optimization causes unexpected results.</para>
+Désactive l'optimisation des expressions de filtre. C'est utile pour le
+débogage ou lorsque l'optimisation provoque des résultats inattendus.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
           <example>
-            <title>Optimization Examples</title>
-<programlisting>@optimize Size &gt; 10MB and Extension = "log"     ## Enable optimization (default)
-@noopt Name matches "complex[0-9]+pattern"    ## Disable optimization for debugging
-@nooptimize Content contains "special-case"   ## Disable optimization</programlisting></example>
+            <title>Exemples d'optimisation</title>
+<programlisting>@optimize Size &gt; 10MB and Extension = "log"     ## Active l'optimisation (par défaut)
+@noopt Name matches "complex[0-9]+pattern"    ## Désactive l'optimisation pour le débogage
+@nooptimize Content contains "special-case"   ## Désactive l'optimisation</programlisting></example>
         </section>
 
         <section id="FilterExpression_Name">
-          <title>Name Directive</title>
+          <title>Directive Name</title>
 
           <para>
-The <literal>@name</literal> directive allows you to assign a descriptive
-name to a filter expression.  This name is intended for use in error
-messages and logs to help identify which filter expression caused an issue.</para>
+La directive <literal>@name</literal> vous permet d'attribuer un nom
+descriptif à une expression de filtre. Ce nom est destiné à être utilisé
+dans les messages d'erreur et les journaux pour aider à identifier
+l'expression de filtre qui a causé un problème.</para>
 
           <variablelist>
             <varlistentry>
               <term><literal>@name="Filter Name"</literal>, <literal>@name=FilterName</literal></term>
               <listitem>
                 <para>
-Assigns a name to the filter expression. If the name contains spaces or
-special characters, it must be enclosed in double quotes. Names without
-spaces can be specified without quotes.</para>
+Attribue un nom à l'expression de filtre. Si le nom contient des espaces ou
+des caractères spéciaux, il doit être entouré de guillemets doubles. Les
+noms sans espaces peuvent être spécifiés sans guillemets.</para>
                 <para>
-The specified name will be used in error messages and diagnostic output to
-identify the filter.  This is particularly useful when working with multiple
-complex filter expressions.</para>
+Le nom spécifié sera utilisé dans les messages d'erreur et les sorties de
+diagnostic pour identifier le filtre. C'est particulièrement utile lors de
+l'utilisation de multiples expressions de filtre complexes.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
           <example>
-            <title>Name Directive Examples</title>
-<programlisting>@name="Large Image Files" Size &gt; 10MB and Extension = "png"
-@name=SmallTextFiles Size &lt; 1KB and Extension = "txt"
-@name="Modified Today" Date &gt;= today()
-@name="Test Filter" @cs Name like "test_*.cpp"</programlisting></example>
+            <title>Exemples de la directive Name</title>
+<programlisting>@name="Gros fichiers images" Size &gt; 10MB and Extension = "png"
+@name=PetitsFichiersTexte Size &lt; 1KB and Extension = "txt"
+@name="Modifié aujourd'hui" Date &gt;= today()
+@name="Filtre de test" @cs Name like "test_*.cpp"</programlisting></example>
 
           <note>
             <para>
-The <literal>@name</literal> directive can be combined with other
-directives.  When multiple directives are used, they should all appear at
-the beginning of the expression, separated by whitespace.</para>
+La directive <literal>@name</literal> peut être combinée avec d'autres
+directives. Lorsque plusieurs directives sont utilisées, elles doivent
+toutes apparaître au début de l'expression, séparées par un espace.</para>
           </note>
         </section>
       </section>
@@ -426,8 +429,8 @@ base</para></listitem>
               <term><varname>RelPath</varname></term>
               <listitem><para>Renvoie le chemin relatif à partir du répertoire racine de comparaison,
 incluant le chemin du dossier et le nom du fichier. Par exemple, si la
-comparaison porte sur « C:\Project » et que le fichier se trouve dans
-« C:\Project\src\main.cpp », RelPath renvoie « src\main.cpp ».</para></listitem>
+comparaison porte sur « C:\Project » et que le fichier se trouve dans «
+C:\Project\src\main.cpp », RelPath renvoie « src\main.cpp ».</para></listitem>
             </varlistentry>
             <varlistentry>
               <term><varname>FullPath</varname></term>
@@ -587,26 +590,27 @@ Valeur de propriété du fichier du côté gauche. Exemple :
         </section>
 
         <section>
-          <title>Display Filters Only Attributes</title>
+          <title>Attributs pour les filtres d'affichage uniquement</title>
           <para>
-The following attributes are designed for use in <emphasis
-role="bold">Display filters only</emphasis> (specified via
-<guilabel>e:</guilabel>, <guilabel>e!:</guilabel>, <guilabel>fe:</guilabel>,
-<guilabel>fe!:</guilabel>, <guilabel>de:</guilabel>, or
-<guilabel>de!:</guilabel> prefixes in the Filter field).  They should not be
-used in file filter (<filename>.flt</filename>) include/exclude rules, as
-they require the comparison to be completed first and may lead to unexpected
-behavior.</para>
+Les attributs suivants sont conçus pour être utilisés dans les <emphasis
+role="bold">filtres d'affichage uniquement</emphasis> (spécifiés via les
+préfixes <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>,
+<guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>,
+<guilabel>de:</guilabel>, ou <guilabel>de!:</guilabel> dans le champ
+Filtre). Ils ne doivent pas être utilisés dans les règles
+d'inclusion/exclusion des filtres de fichiers (<filename>.flt</filename>),
+car ils nécessitent que la comparaison soit d'abord terminée et peuvent
+conduire à un comportement inattendu.</para>
 
           <variablelist>
             <varlistentry>
               <term><varname>Identical</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison result indicates the items
-are identical, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Identical</literal> to show only identical files.</para>
+Renvoie <literal>true</literal> si le résultat de la comparaison indique que
+les éléments sont identiques, <literal>false</literal> sinon. Il s'agit d'un
+attribut global (ne prend pas en charge les préfixes de côté). Exemple :
+<literal>Identical</literal> pour n'afficher que les fichiers identiques.</para>
               </listitem>
             </varlistentry>
 
@@ -614,10 +618,10 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Different</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison result indicates the items
-are different, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Different</literal> to show only different files.</para>
+Renvoie <literal>true</literal> si le résultat de la comparaison indique que
+les éléments sont différents, <literal>false</literal> sinon. Il s'agit d'un
+attribut global (ne prend pas en charge les préfixes de côté). Exemple :
+<literal>Different</literal> pour n'afficher que les fichiers différents.</para>
               </listitem>
             </varlistentry>
 
@@ -625,10 +629,11 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Skipped</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the comparison was skipped due to an
-error or filter rule, <literal>false</literal> otherwise.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>Skipped</literal> to show only skipped items.</para>
+Renvoie <literal>true</literal> si la comparaison a été ignorée en raison
+d'une erreur ou d'une règle de filtrage, <literal>false</literal> sinon. Il
+s'agit d'un attribut global (ne prend pas en charge les préfixes de
+côté). Exemple : <literal>Skipped</literal> pour n'afficher que les éléments
+ignorés.</para>
               </listitem>
             </varlistentry>
 
@@ -636,12 +641,13 @@ attribute (does not support side-specific prefixes).  Example:
               <term><varname>Binary</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the file is detected as binary,
-<literal>false</literal> if it's text, or <literal>undefined</literal> if
-the file doesn't exist.  This attribute supports side-specific prefixes
-(e.g., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).
-Example: <literal>allof(Binary)</literal> to show files that are binary on
-all sides.</para>
+Renvoie <literal>true</literal> si le fichier est détecté comme binaire,
+<literal>false</literal> s'il s'agit de texte, ou
+<literal>undefined</literal> si le fichier n'existe pas. Cet attribut prend
+en charge les préfixes spécifiques au côté
+(ex. <literal>LeftBinary</literal>, <literal>RightBinary</literal>). Exemple
+: <literal>allof(Binary)</literal> pour afficher les fichiers qui sont
+binaires de tous les côtés.</para>
               </listitem>
             </varlistentry>
 
@@ -649,12 +655,12 @@ all sides.</para>
               <term><varname>DifferentLeftMiddle</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the left and middle files are different
-in a 3-way comparison, <literal>false</literal> otherwise.  Returns
-<literal>undefined</literal> in 2-way comparisons.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> to find
-files where only left differs from middle.</para>
+Renvoie <literal>true</literal> si les fichiers de gauche et du milieu sont
+différents dans une comparaison à 3 voies, <literal>false</literal>
+sinon. Renvoie <literal>undefined</literal> dans les comparaisons à 2
+voies. Il s'agit d'un attribut global. Exemple :
+<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> pour
+trouver les fichiers où seul le côté gauche diffère du milieu.</para>
               </listitem>
             </varlistentry>
 
@@ -662,12 +668,12 @@ files where only left differs from middle.</para>
               <term><varname>DifferentMiddleRight</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the middle and right files are different
-in a 3-way comparison, <literal>false</literal> otherwise.  Returns
-<literal>undefined</literal> in 2-way comparisons.  This is a global
-attribute (does not support side-specific prefixes).  Example:
-<literal>DifferentMiddleRight</literal> to show files where middle and right
-differ.</para>
+Renvoie <literal>true</literal> si les fichiers du milieu et de droite sont
+différents dans une comparaison à 3 voies, <literal>false</literal>
+sinon. Renvoie <literal>undefined</literal> dans les comparaisons à 2
+voies. Il s'agit d'un attribut global. Exemple :
+<literal>DifferentMiddleRight</literal> pour afficher les fichiers où le
+milieu et la droite diffèrent.</para>
               </listitem>
             </varlistentry>
 
@@ -675,12 +681,12 @@ differ.</para>
               <term><varname>DifferentLeftRight</varname></term>
               <listitem>
                 <para>
-In 3-way comparisons, returns <literal>true</literal> if the left and right
-files are different, <literal>false</literal> otherwise.  In 2-way
-comparisons, returns <literal>true</literal> if both files exist and are
-different.  This is a global attribute (does not support side-specific
-prefixes).  Example: <literal>DifferentLeftRight</literal> to show files
-where left and right differ.</para>
+Dans les comparaisons à 3 voies, renvoie <literal>true</literal> si les
+fichiers de gauche et de droite sont différents, <literal>false</literal>
+sinon. Dans les comparaisons à 2 voies, renvoie <literal>true</literal> si
+les deux fichiers existent et sont différents. Il s'agit d'un attribut
+global. Exemple : <literal>DifferentLeftRight</literal> pour afficher les
+fichiers où la gauche et la droite diffèrent.</para>
               </listitem>
             </varlistentry>
 
@@ -688,12 +694,12 @@ where left and right differ.</para>
               <term><varname>Differences</varname></term>
               <listitem>
                 <para>
-Returns the number of text differences in the file comparison.  This
-attribute is only meaningful for text files that have been compared.  This
-is a global attribute (does not support side-specific prefixes).  Example:
-<literal>Differences &gt; 0</literal> to show files with differences, or
-<literal>Differences &gt; 10</literal> to show files with more than 10
-differences.</para>
+Renvoie le nombre de différences de texte dans la comparaison de
+fichiers. Cet attribut n'est significatif que pour les fichiers texte qui
+ont été comparés. Il s'agit d'un attribut global. Exemple :
+<literal>Differences &gt; 0</literal> pour afficher les fichiers présentant
+des différences, ou <literal>Differences &gt; 10</literal> pour les fichiers
+avec plus de 10 différences.</para>
               </listitem>
             </varlistentry>
 
@@ -701,13 +707,14 @@ differences.</para>
               <term><varname>IgnoredDiffs</varname></term>
               <listitem>
                 <para>
-Returns the number of ignored differences in the file comparison
-(differences filtered by line filters or whitespace settings).  This
-attribute is only meaningful for text files that have been compared.  This
-is a global attribute (does not support side-specific prefixes).  Example:
-<literal>IgnoredDiffs &gt; 0</literal> to show files with ignored
-differences, or <literal>Differences = 0 and IgnoredDiffs &gt; 0</literal>
-to show files that are identical except for ignored differences.</para>
+Renvoie le nombre de différences ignorées lors de la comparaison de fichiers
+(différences filtrées par les filtres de ligne ou les paramètres
+d'espaces). Cet attribut n'est significatif que pour les fichiers texte qui
+ont été comparés. Il s'agit d'un attribut global (ne prend pas en charge les
+préfixes de côté). Exemple : <literal>IgnoredDiffs &gt; 0</literal> pour
+afficher les fichiers avec des différences ignorées, ou <literal>Differences
+= 0 and IgnoredDiffs &gt; 0</literal> pour afficher les fichiers identiques
+à l'exception des différences ignorées.</para>
               </listitem>
             </varlistentry>
 
@@ -715,12 +722,12 @@ to show files that are identical except for ignored differences.</para>
               <term><varname>Unpacker</varname></term>
               <listitem>
                 <para>
-Returns the name of the unpacker plugin used for the file comparison, or an
-empty string if no unpacker was used.  This is a global attribute (does not
-support side-specific prefixes).  Example: <literal>Unpacker =
-"CompareMSExcelFiles"</literal> to show files compared using the Excel
-unpacker, or <literal>Unpacker != ""</literal> to show all files where an
-unpacker was used.</para>
+Renvoie le nom du plug-in de décompression utilisé pour la comparaison de
+fichiers, ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un
+attribut global. Exemple : <literal>Unpacker =
+"CompareMSExcelFiles"</literal> pour afficher les fichiers comparés via le
+décompresseur Excel, ou <literal>Unpacker != ""</literal> pour afficher tous
+les fichiers où un décompresseur a été utilisé.</para>
               </listitem>
             </varlistentry>
 
@@ -728,12 +735,12 @@ unpacker was used.</para>
               <term><varname>Prediffer</varname></term>
               <listitem>
                 <para>
-Returns the name of the prediffer plugin used for the file comparison, or an
-empty string if no prediffer was used.  This is a global attribute (does not
-support side-specific prefixes).  Example: <literal>Prediffer =
-"IgnoreColumns"</literal> to show files compared using the IgnoreColumns
-prediffer, or <literal>Prediffer != ""</literal> to show all files where a
-prediffer was used.</para>
+Renvoie le nom du plug-in prediffer utilisé pour la comparaison de fichiers,
+ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un attribut
+global. Exemple : <literal>Prediffer = "IgnoreColumns"</literal> pour
+afficher les fichiers comparés avec le prediffer IgnoreColumns, ou
+<literal>Prediffer != ""</literal> pour afficher tous les fichiers où un
+prediffer a été utilisé.</para>
               </listitem>
             </varlistentry>
 
@@ -741,12 +748,13 @@ prediffer was used.</para>
               <term><varname>Codepage</varname></term>
               <listitem>
                 <para>
-Returns the file's codepage (character encoding) as an integer value.  This
-attribute supports side-specific prefixes (e.g.,
-<literal>LeftCodepage</literal>, <literal>RightCodepage</literal>).
-Example: <literal>Codepage = 65001</literal> to show UTF-8 files, or
-<literal>allof(Codepage = 65001)</literal> to show files that are UTF-8 on
-all sides.</para>
+Renvoie la page de code du fichier (encodage des caractères) sous forme
+d'entier. Cet attribut prend en charge les préfixes spécifiques au côté
+(ex. <literal>LeftCodepage</literal>,
+<literal>RightCodepage</literal>). Exemple : <literal>Codepage =
+65001</literal> pour afficher les fichiers UTF-8, ou <literal>allof(Codepage
+= 65001)</literal> pour afficher les fichiers qui sont en UTF-8 de tous les
+côtés.</para>
               </listitem>
             </varlistentry>
 
@@ -754,11 +762,11 @@ all sides.</para>
               <term><varname>HasBOM</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the file has a Byte Order Mark (BOM),
-<literal>false</literal> otherwise.  This attribute supports side-specific
-prefixes (e.g., <literal>LeftHasBOM</literal>,
-<literal>RightHasBOM</literal>).  Example: <literal>HasBOM</literal> to show
-files with BOM, or <literal>not HasBOM</literal> to show files without BOM.</para>
+Renvoie <literal>true</literal> si le fichier possède une marque d'ordre des
+octets (BOM), <literal>false</literal> sinon. Cet attribut prend en charge
+les préfixes spécifiques au côté. Exemple : <literal>HasBOM</literal> pour
+afficher les fichiers avec BOM, ou <literal>not HasBOM</literal> pour
+afficher les fichiers sans BOM.</para>
               </listitem>
             </varlistentry>
 
@@ -850,13 +858,13 @@ n'importe quel élément est <literal>true</literal>.</para>
         <title>Opérateurs</title>
 
         <para>
-By default, all string comparison operators (such as <literal>=</literal>,
-<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
-<literal>&gt;</literal>, <literal>&gt;=</literal>, <literal>like</literal>,
-<literal>matches</literal>, <literal>contains</literal>, and
-<literal>recontains</literal>)  are case-insensitive. You can control this
-behavior using directives (see <xref
-linkend="FilterExpression_CaseSensitivity" />).</para>
+Par défaut, tous les opérateurs de comparaison de chaînes (tels que
+<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>,
+<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
+<literal>like</literal>, <literal>matches</literal>,
+<literal>contains</literal> et <literal>recontains</literal>) sont
+insensibles à la casse. Vous pouvez contrôler ce comportement à l'aide de
+directives (voir <xref linkend="FilterExpression_CaseSensitivity" />).</para>
 
         <variablelist>
           <varlistentry>
@@ -890,7 +898,7 @@ division. <literal>%</literal> est l'opérateur modulo (reste).</para>
           <varlistentry>
             <term><literal>like</literal></term>
             <listitem>
-              <para>Correspondance de chaîne avec caractères génériques (wildcards)</para>
+              <para>Correspondance de chaîne avec caractères génériques</para>
               <para>Vous pouvez également utiliser <literal>not like</literal> pour effectuer la
 correspondance inverse.</para>
             </listitem>
@@ -986,17 +994,17 @@ appliqués. Exemple : <literal>regexReplace(name, "^(\\w+)_(\\w+)$",
             <term><function>replaceWithList</function>(str, filepath)</term>
             <listitem>
               <para>
-Remplace plusieurs chaînes de caractères dans
-`<replaceable>str</replaceable>` en utilisant des règles de remplacement
-chargées depuis un fichier séparé par des tabulations. Le format du fichier
-est le suivant : une règle de remplacement par ligne :
-`<literal>search_string&lt;TAB&gt;replacement_string</literal>`. Les lignes
-commençant par `<literal>#</literal>` sont considérées comme des
-commentaires et ignorées. Les lignes vides sont également ignorées. Si
-`<replaceable>str</replaceable>` est un tableau, le résultat est un tableau
-de chaînes de caractères avec les remplacements appliqués.</para>
-              <para>Exemple de format de fichier :</para>
-              <screen># Ligne de commentaires
+Remplace plusieurs chaînes de caractères dans <replaceable>str</replaceable>
+en utilisant des règles de remplacement chargées depuis un fichier séparé
+par des tabulations. Le format du fichier est le suivant : une règle de
+remplacement par ligne :
+<literal>search_string&lt;TAB&gt;replacement_string</literal>. Les lignes
+commençant par <literal>#</literal> sont considérées comme des commentaires
+et ignorées. Les lignes vides sont également ignorées. Si
+<replaceable>str</replaceable> est un tableau, le résultat est un tableau de
+chaînes avec les remplacements appliqués.</para>
+              <para>Exemple de format de fichier :</para>
+              <screen># Ligne de commentaire
 pomme	orange
 chat	chien
 ancien	nouveau</screen>
@@ -1011,18 +1019,17 @@ applique les remplacements du fichier au nom du fichier</para></listitem>
             <term><function>regexReplaceWithList</function>(str, filepath)</term>
             <listitem>
               <para>
-Remplace les chaînes de caractères dans `<replaceable>str</replaceable>` à
-l'aide d'expressions régulières chargées depuis un fichier texte séparé par
-des tabulations. Le format du fichier est le suivant : une expression
-régulière par ligne :
-`<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>`. La chaîne
-de remplacement peut inclure des références arrière ($1, $2, etc.) vers des
-groupes capturés. Les lignes commençant par `<literal>#</literal>` sont
+Remplace les chaînes de caractères dans <replaceable>str</replaceable> à
+l'aide d'expressions régulières chargées depuis un fichier séparé par des
+tabulations. Le format du fichier est le suivant : une expression régulière
+par ligne :
+<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>. La chaîne de
+remplacement peut inclure des références arrière ($1, $2, etc.) vers des
+groupes capturés. Les lignes commençant par <literal>#</literal> sont
 considérées comme des commentaires et ignorées. Les lignes vides sont
-également ignorées. Si `<replaceable>str</replaceable>` est un tableau, le
-résultat est un tableau de chaînes de caractères avec les remplacements
-appliqués.</para>
-              <para>Exemple de format de fichier :</para>
+également ignorées. Si <replaceable>str</replaceable> est un tableau, le
+résultat est un tableau de chaînes avec les remplacements appliqués.</para>
+              <para>Exemple de format de fichier :</para>
               <screen># Ligne de commentaire
 \d+	NOMBRE
 (\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen>
@@ -1075,7 +1082,7 @@ renvoie <literal>"HELLO WORLD"</literal></para>
               <para>
 Convertit les caractères de pleine chasse (full-width) en caractères de
 demi-chasse (half-width). Principalement utilisé pour convertir les
-caractères alphanumériques et katakana de pleine chasse. Si
+caractères alphanumériques et katakana de pleine chasse en demi-chasse. Si
 <replaceable>str</replaceable> est un tableau, le résultat est un tableau de
 chaînes converties.</para>
             </listitem>
@@ -1087,8 +1094,9 @@ chaînes converties.</para>
               <para>
 Convertit les caractères de demi-chasse en caractères de pleine
 chasse. Principalement utilisé pour convertir les caractères alphanumériques
-et katakana de demi-chasse. Si <replaceable>str</replaceable> est un
-tableau, le résultat est un tableau de chaînes converties.</para>
+et katakana de demi-chasse en pleine chasse. Si
+<replaceable>str</replaceable> est un tableau, le résultat est un tableau de
+chaînes converties.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -1164,14 +1172,14 @@ un tableau d'horodatages, le résultat est un tableau de chaînes.</para></listi
           </varlistentry>
           <varlistentry>
             <term><function>abs</function>(<replaceable>value</replaceable>)</term>
-            <listitem><para>Renvoie la valeur absolue de l'<emphasis>entier ou du tableau
-d'entiers</emphasis>. Si <replaceable>value</replaceable> est un tableau
-d'entiers, le résultat est un tableau d'entiers.</para></listitem>
+            <listitem><para>Renvoie la valeur absolue de l'entier ou du tableau d'entiers. Si
+<replaceable>value</replaceable> est un tableau d'entiers, le résultat est
+un tableau d'entiers.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>allof</function>(<replaceable>booleans</replaceable>)</term>
-            <listitem><para>Renvoie <literal>true</literal> si tous les éléments du <emphasis>tableau de
-booléens</emphasis> satisfont à la condition.</para></listitem>
+            <listitem><para>Renvoie <literal>true</literal> si tous les éléments du tableau de booléens
+satisfont à la condition.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>allequal</function>(<replaceable>array</replaceable>)</term>
@@ -1297,11 +1305,11 @@ vérifie si l'un des fichiers est compris entre 100 Ko et 10 Mo</para></listitem
 <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
             <listitem>
               <para>
-Sélectionne une valeur parmi les arguments en fonction de
-l'<replaceable>index</replaceable>. Si l'<replaceable>index</replaceable>
-est 0, renvoie <replaceable>value0</replaceable> ; s'il est 1, renvoie
-<replaceable>value1</replaceable>, etc. Les indices négatifs sont ramenés à
-0. Les indices au-delà de la dernière valeur renvoient la dernière valeur.</para>
+Sélectionne une valeur parmi les arguments en fonction de l'index. Si
+l'index est 0, renvoie <replaceable>value0</replaceable> ; s'il est 1,
+renvoie <replaceable>value1</replaceable>, etc. Les indices négatifs sont
+ramenés à 0. Les indices au-delà de la dernière valeur renvoient la dernière
+valeur.</para>
               <para>Exemples :</para>
               <itemizedlist>
                 <listitem><para><literal>choose(0, "first", "second", "third")</literal> - renvoie "first"</para></listitem>
@@ -1425,15 +1433,15 @@ Fichiers avec extensions de 'a' à 'm' et taille inférieure à 1 Mo</para></lis
 fichier insensible à la casse</para></listitem>
           <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - Correspondance après
 conversion pleine chasse en demi-chasse</para></listitem>
-          <listitem><para><literal>Different</literal> - Show only files/folders that are different
-(Display filter only)</para></listitem>
-          <listitem><para><literal>Identical</literal> - Show only files/folders that are identical
-(Display filter only)</para></listitem>
-          <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all
-sides (Display filter only)</para></listitem>
-          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - In
-3-way comparison, show files where only left-middle pair differs (Display
-filter only)</para></listitem>
+          <listitem><para><literal>Different</literal> - Afficher uniquement les fichiers/dossiers qui
+sont différents (filtre d'affichage uniquement)</para></listitem>
+          <listitem><para><literal>Identical</literal> - Afficher uniquement les fichiers/dossiers qui
+sont identiques (filtre d'affichage uniquement)</para></listitem>
+          <listitem><para><literal>allof(Binary)</literal> - Afficher uniquement les fichiers qui sont
+binaires de tous les côtés (filtre d'affichage uniquement)</para></listitem>
+          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - Dans
+une comparaison à 3 voies, afficher les fichiers où seule la paire
+gauche-milieu diffère (filtre d'affichage uniquement)</para></listitem>
         </itemizedlist>
       </section>
     </section>
@@ -1552,7 +1560,7 @@ déjà chargé dans le champ <guilabel>Filtre</guilabel>.</para>
             </listitem>
 
             <listitem>
-              <para>Procédez à l'opération de comparaison. Le fichier présent dans le champ
+              <para>Procédez à l'opération de comparaison. Le filtre présent dans le champ
 <guilabel>Filtre</guilabel> est appliqué au démarrage de l'opération.</para>
             </listitem>
           </orderedlist>
@@ -1652,7 +1660,7 @@ caractères dans une règle, omettez le préfixe d'espace.</para>
 les sous-dossiers. C'est généralement une bonne idée de spécifier tous les
 sous-dossiers, comme ceci :</para>
 
-                  <screen>d: \\*$ ## Subfolders</screen>
+                  <screen>d: \\*$ ## Sous-dossiers</screen>
                 </listitem>
               </varlistentry>
             </variablelist>

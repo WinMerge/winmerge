@@ -398,7 +398,7 @@ fichiers ou des dossiers.</para>
     <section>
       <title>
 Saisie automatique de la boîte de dialogue Ouvrir<indexterm>
-          <primary>liste MRU</primary>
+          <primary>Liste MRU</primary>
         </indexterm></title>
 
       <para>Choisissez l'une de ces options :</para>
@@ -1430,10 +1430,10 @@ détecter les déplacements).</para>
       <para>
 Lorsque vous cliquez sur le bouton <guilabel>=</guilabel> à droite du champ
 de saisie, un menu d'aide apparaît avec des expressions clés de détection
-courantes :</para>
+courantes :</para>
 
       <section>
-        <title>Clés de détection de renommage</title>
+        <title>Clés de détection de base</title>
         <variablelist>
           <varlistentry>
             <term>Nom</term>
@@ -1458,7 +1458,7 @@ fichier.txt » et « fichier.doc » correspondraient.</para>
             <term>Nom Unicode normalisé</term>
             <listitem>
               <para>
-Insère `<literal>normalizeUnicode(Name, "NFC")</literal>` qui recherche les
+Insère <literal>normalizeUnicode(Name, "NFC")</literal> qui recherche les
 fichiers par leur nom de fichier Unicode normalisé. Utile pour détecter les
 fichiers ayant des noms équivalents mais des représentations Unicode
 différentes (p. ex. des caractères composés vs. caractères décomposés).</para>
@@ -1493,10 +1493,10 @@ Fait correspondre les fichiers par leur date/heure de modification.</para>
           </varlistentry>
 
           <varlistentry>
-            <term>Hash (MD5)</term>
+            <term>Hachage (MD5)</term>
             <listitem>
               <para>
-Insère `<literal>if(IsFolder, Name, prop("Hash.MD5"))</literal>`. Pour les
+Insère <literal>if(IsFolder, Name, prop("Hash.MD5"))</literal>. Pour les
 dossiers, la correspondance se fait par nom. Pour les fichiers, elle se fait
 par le hachage MD5 de leur contenu. C'est la méthode la plus précise pour
 détecter les fichiers renommés, mais elle nécessite le calcul des hachages
@@ -1524,19 +1524,19 @@ insérée sera <literal>if(IsFolder, Name, prop("PropertyName"))</literal>.</par
 Le menu comprend des fonctions de transformation de chaînes qui peuvent être
 appliquées aux clés de détection. Lorsqu'elles sont sélectionnées, ces
 fonctions encapsulent l'expression courante (ou <literal>Name</literal> si
-vide) :</para>
+vide) :</para>
 
         <variablelist>
           <varlistentry>
             <term>Insérer la fonction replace()</term>
             <listitem>
               <para>
-Insère `<literal>replace(expression, "from", "to")</literal>` pour remplacer
+Insère <literal>replace(expression, "from", "to")</literal> pour remplacer
 des chaînes de caractères littérales dans la clé. Vous devez modifier les
-chaînes de caractères « from » et « to » pour spécifier le texte à
-rechercher et celui par lequel le remplacer. Exemple :
-`<literal>replace(Name, ".backup", "")</literal>` supprime l'extension
-« .backup » des noms de fichiers.</para>
+chaînes de caractères « from » et « to » pour spécifier le texte à
+rechercher et celui par lequel le remplacer. Exemple :
+<literal>replace(Name, ".backup", "")</literal> supprime l'extension «
+.backup » des noms de fichiers.</para>
             </listitem>
           </varlistentry>
 
@@ -1544,12 +1544,12 @@ rechercher et celui par lequel le remplacer. Exemple :
             <term>Insérer la fonction regexReplace()</term>
             <listitem>
               <para>
-Insère `<literal>regexReplace(expression, "pattern",
-"replacement")</literal>` pour remplacer du texte à l'aide d'expressions
-régulières. Prend en charge les références arrière ($1, $2, etc.) dans la
-chaîne de remplacement. Exemple : `<literal>regexReplace(Name,
-"^(\\d+)_(.+)$", "$2")</literal>` supprime le chiffre et le trait de
-soulignement en début de nom de fichier.</para>
+Insère <literal>regexReplace(expression, "pattern", "replacement")</literal>
+pour remplacer du texte à l'aide d'expressions régulières. Prend en charge
+les références arrière ($1, $2, etc.) dans la chaîne de
+remplacement. Exemple : <literal>regexReplace(Name, "^(\\d+)_(.+)$",
+"$2")</literal> supprime le chiffre et le trait de soulignement en début de
+nom de fichier.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1558,8 +1558,8 @@ soulignement en début de nom de fichier.</para>
       <section>
         <title>Listes de remplacement</title>
         <para>
-Le sous-menu « Listes de remplacement » permet d’accéder à la fonctionnalité
-de remplacement de chaînes par lots à l’aide de fichiers externes :</para>
+Le sous-menu « Listes de remplacement » permet d’accéder à la fonctionnalité
+de remplacement de chaînes par lots à l’aide de fichiers externes :</para>
 
         <variablelist>
           <varlistentry>
@@ -1573,13 +1573,13 @@ vos paramètres). Une fois créé, le fichier s'ouvre dans votre éditeur de
 texte par défaut et la fonction replaceWithList(expression, "filepath") y
 est insérée.</para>
               <para>
-Le format du fichier est un remplacement par ligne :
+Le format du fichier est un remplacement par ligne :
 <literal>search_string&lt;TAB&gt;replacement_string</literal>. Les lignes
 commençant par <literal>#</literal> sont des commentaires.</para>
               <para>
-Exemple de contenu de fichier : <screen># Remplacer les numéros de version dans les noms de fichiers
+Exemple de contenu de fichier : <screen># Remplacer les numéros de version dans les noms de fichiers
 v1.0	v2.0
-version	bêta</screen></para>
+beta	release</screen></para>
             </listitem>
           </varlistentry>
 
@@ -1587,18 +1587,18 @@ version	bêta</screen></para>
             <term>Créer une liste de remplacement par expression régulière et insérer...</term>
             <listitem>
               <para>
-Similaire à « Créer une liste de remplacement de chaînes », mais pour les
+Similaire à « Créer une liste de remplacement de chaînes », mais pour les
 remplacements par expressions régulières. Crée un fichier modèle dans
 <filename>%APPDATA%\WinMerge\RegexReplaceLists</filename> (ou
 <filename>Documents\WinMerge\RegexReplaceLists</filename>). Insère
 <literal>regexReplaceWithList(expression, "filepath")</literal>.</para>
               <para>
-Le format du fichier est :
+Le format du fichier est :
 <literal>regex_pattern&lt;TAB&gt;replacement</literal> avec prise en charge
 des références arrière.</para>
               <para>
-Exemple de contenu de fichier : <screen># Normaliser les formats de date
-(\d{4})-(\d{2})-(\d{2}) $1_$2_$3
+Exemple de contenu de fichier : <screen># Normaliser les formats de date
+(\d{4})-(\d{2})-(\d{2})	$1_$2_$3
 \d+	NOMBRE</screen></para>
             </listitem>
           </varlistentry>
@@ -1634,7 +1634,7 @@ organiser) directement vos fichiers de listes de remplacement.</para>
         <title>Normalisation du texte</title>
         <para>
 Le sous-menu Normalisation du texte propose des fonctions permettant de
-normaliser le texte pour une correspondance plus flexible :</para>
+normaliser le texte pour une correspondance plus flexible :</para>
 
         <variablelist>
           <varlistentry>
@@ -1644,8 +1644,8 @@ normaliser le texte pour une correspondance plus flexible :</para>
 Insère <literal>toLower(expression)</literal> ou
 <literal>toUpper(expression)</literal> pour convertir tous les caractères en
 minuscules ou en majuscules. Utile pour une correspondance insensible à la
-casse. Exemple : <literal>toLower(Name)</literal> considère « File.txt »,
-« FILE.TXT » et « file.txt » comme identiques.</para>
+casse. Exemple : <literal>toLower(Name)</literal> considère « File.txt », «
+FILE.TXT » et « file.txt » comme identiques.</para>
             </listitem>
           </varlistentry>
 
@@ -1691,7 +1691,7 @@ Insère la fonction <literal>normalizeUnicode(expression)</literal> qui
 normalise le texte Unicode au format NFC (Normalization Form Canonical
 Composition). Ceci est utile pour la correspondance de fichiers dont les
 noms peuvent utiliser différents encodages Unicode pour les mêmes caractères
-(par exemple, un seul caractère « é » ou « e » suivi d’un accent aigu).</para>
+(par exemple, un seul caractère « é » ou « e » suivi d’un accent aigu).</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -1738,7 +1738,7 @@ mais le fichier/dossier de chaque côté est affiché séparément.</para>
  
         <listitem>
           <para>
-<option>Fusionner les renommages</option> : Les éléments renommés mais
+<option>Fusionner les renommages</option> : Les éléments renommés mais
 situés dans le même répertoire sont fusionnés en une seule entrée. Cela
 simplifie l’arbre de comparaison en affichant un seul élément présent à
 plusieurs endroits avec des noms différents. Les éléments situés dans des
@@ -1747,7 +1747,7 @@ répertoires différents (éléments déplacés) ne sont pas fusionnés.</para>
 
         <listitem>
           <para>
-<option>Fusionner les renommages et les déplacements</option> : Les éléments
+<option>Fusionner les renommages et les déplacements</option> : Les éléments
 renommés (même répertoire, noms différents) et les éléments déplacés
 (répertoires différents) sont fusionnés en une seule entrée lorsqu'ils sont
 détectés. Cela permet d'obtenir une vue plus compacte des fichiers et

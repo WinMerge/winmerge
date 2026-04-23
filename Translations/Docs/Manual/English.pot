@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-04-11 18:10+0900\n"
+"POT-Creation-Date: 2026-04-13 19:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -603,7 +603,7 @@ msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: ./English/Command_line.xml:264
-msgid "Specifies the type of window in which to display files.  This can be one of the keywords <userinput>Text</userinput>, <userinput>Table</userinput>, <userinput>Binary</userinput>, <userinput>Image</userinput> or <userinput>Webpage</userinput>."
+msgid "Specifies the type of window in which to display files.  This can be one of the keywords <userinput>Text</userinput>, <userinput>Table</userinput>, <userinput>Binary</userinput>, <userinput>Image</userinput>, <userinput>Webpage</userinput> or <userinput>Folder</userinput>."
 msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><term>

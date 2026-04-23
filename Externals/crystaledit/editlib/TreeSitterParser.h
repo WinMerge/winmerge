@@ -127,6 +127,8 @@ struct TreeSitterLineBlock
 {
     int nCharPos;
     int nColorIndex;
+    int nPriority;
+    uint32_t nOrder;
 };
 
 
@@ -268,6 +270,7 @@ private:
     void RunInjectionQuery();
     void BuildLineCache(int nLineCount);
     int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
+    uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
     /**
      * @brief Extract #set! predicate properties from a query pattern.
@@ -296,6 +299,7 @@ private:
     // or a custom read callback)
     std::string m_documentText;
     int         m_nLineCount;
+    uint32_t    m_nextBlockOrder;
 
     // --- Locals support ---
     // Maps (startByte, endByte) of definition nodes to their highlight color.

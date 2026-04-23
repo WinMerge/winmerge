@@ -27,6 +27,7 @@
 #include <Poco/Channel.h>
 #include "DarkModeLib.h"
 #include "WindowsManager.h"
+#include "TempFile.h"
 
 class BCMenu;
 class CDirView;
@@ -46,6 +47,7 @@ class CImgMergeFrame;
 class CWebPageDiffFrame;
 class DirWatcher;
 class COutputDoc;
+class CTempPathContext;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -83,12 +85,23 @@ public:
 		FRAME_OTHER, /**< No frame? */
 	};
 
-	struct OpenFileParams
+	struct OpenParams
 	{
-		virtual ~OpenFileParams() {}
+		virtual ~OpenParams() {}
 	};
 
-	struct OpenTextFileParams : public OpenFileParams
+	struct OpenFolderParams : virtual public OpenParams
+	{
+		OpenFolderParams() = default;
+		explicit OpenFolderParams(bool bRecurse) : m_bRecurse(bRecurse) {}
+		OpenFolderParams(bool bRecurse, const std::vector<String>& hiddenItems) 
+			: m_bRecurse(bRecurse), m_hiddenItems(hiddenItems) {}
+		virtual ~OpenFolderParams() {}
+		std::optional<bool> m_bRecurse;
+		std::vector<String> m_hiddenItems;
+	};
+
+	struct OpenTextFileParams : virtual public OpenParams
 	{
 		virtual ~OpenTextFileParams() {}
 		int m_line = -1;
@@ -105,14 +118,14 @@ public:
 		std::optional<bool> m_tableAllowNewlinesInQuotes;
 	};
 
-	struct OpenBinaryFileParams : public OpenFileParams
+	struct OpenBinaryFileParams : virtual public OpenParams
 	{
 		virtual ~OpenBinaryFileParams() {}
 		int m_address = -1;
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	};
 
-	struct OpenImageFileParams : public OpenFileParams
+	struct OpenImageFileParams : virtual public OpenParams
 	{
 		virtual ~OpenImageFileParams() {}
 		int m_x = -1;
@@ -120,20 +133,15 @@ public:
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	};
 
-	struct OpenWebPageParams : public OpenFileParams
+	struct OpenWebPageParams : virtual public OpenParams
 	{
 		virtual ~OpenWebPageParams() {}
 	};
 
-	struct OpenAutoFileParams : public OpenTableFileParams, public OpenBinaryFileParams, public OpenImageFileParams
+	struct OpenAutoParams : public OpenTableFileParams, public OpenBinaryFileParams, public OpenImageFileParams, public OpenWebPageParams, public OpenFolderParams
 	{
-		virtual ~OpenAutoFileParams() {}
-	};
-
-	struct OpenFolderParams : public OpenFileParams
-	{
-		virtual ~OpenFolderParams() {}
-		std::vector<String> m_hiddenItems;
+		OpenAutoParams() = default;
+		virtual ~OpenAutoParams() {}
 	};
 
 	CMainFrame();
@@ -156,33 +164,33 @@ public:
 
 	bool DoFileOrFolderOpen(const PathContext *pFiles = nullptr,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
-		const String& sReportFile = _T(""), std::optional<bool> bRecurse = false, IDirDoc *pDirDoc = nullptr,
+		const String& sReportFile = _T(""), IDirDoc *pDirDoc = nullptr,
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		UINT nID = 0, const OpenFileParams *pOpenParams = nullptr);
+		UINT nID = 0, const OpenParams *pOpenParams = nullptr);
 	bool DoFileOpen(UINT nID, const PathContext* pFiles,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""),
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenFileParams *pOpenParams = nullptr);
+		const OpenParams *pOpenParams = nullptr);
 	bool DoFileNew(UINT nID, int nPanes,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenFileParams *pOpenParams = nullptr);
+		const OpenParams *pOpenParams = nullptr);
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	bool DoOpenClipboard(UINT nID = 0, int nBuffers = 2, const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenFileParams* pOpenParams = nullptr);
+		const OpenParams* pOpenParams = nullptr);
 	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr,
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenFileParams* pOpenParams = nullptr);
+		const OpenParams* pOpenParams = nullptr);
 	bool ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenFileParams *pOpenParams = nullptr);
+		const OpenParams *pOpenParams = nullptr);
 	bool ShowMergeDoc(UINT nID, IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenFileParams *pOpenParams = nullptr);
+		const OpenParams *pOpenParams = nullptr);
 	bool ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
@@ -209,6 +217,10 @@ public:
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
 		const OpenWebPageParams *pOpenParams = nullptr);
+	bool ShowDirDoc(IDirDoc* pDirDoc, int nFiles, const FileLocation fileloc[],
+		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo* infoPrediffer = nullptr,
+		const OpenFolderParams* pOpenParams = nullptr, CTempPathContext* pTempPathContext = nullptr);
 
 	void UpdateTitleBarAndTabBar();
 	void UpdateResources();
@@ -373,6 +385,7 @@ protected:
 	std::unique_ptr<BCMenu> m_pImageMenu;
 	std::unique_ptr<BCMenu> m_pWebPageMenu;
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
+	std::vector<std::shared_ptr<TempFolder>> m_tempFolders; /**< Temp folders for "New Folder" comparisons. */
 	DropHandler *m_pDropHandler;
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
 	std::optional<bool> m_bTabsOnTitleBar;

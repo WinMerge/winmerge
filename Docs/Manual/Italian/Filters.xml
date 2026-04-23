@@ -591,7 +591,7 @@ I seguenti attributi sono progettati per essere usati solo nei filtri
 i prefissi <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>,
 <guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>,
 <guilabel>de:</guilabel> o <guilabel>de!:</guilabel> in il campo
-Filtro). Non devono essere usati nelle regole di inclusione/esclusione del
+Filtro). Non devono essere uszati nelle regole di inclusione/esclusione del
 filtro file (<nomefile>.flt</nomefile>), poiché richiedono che il confronto
 venga prima completato e potrebbero causare comportamenti imprevisti.</para>
 
@@ -746,12 +746,12 @@ confrontati usando il prediffer IgnoreColumns, o <literal>Prediffer !=
               <term><varname>Codepage</varname></term>
               <listitem>
                 <para>
-Returns the file's codepage (character encoding) as an integer value.  This
-attribute supports side-specific prefixes (e.g.,
-<literal>LeftCodepage</literal>, <literal>RightCodepage</literal>).
-Example: <literal>Codepage = 65001</literal> to show UTF-8 files, or
-<literal>allof(Codepage = 65001)</literal> to show files that are UTF-8 on
-all sides.</para>
+Restituisce la pagina codici del file (codifica dei caratteri) come valore
+intero. Questo attributo supporta prefissi specifici del lato (ad esempio,
+<literal>LeftCodepage</literal>, <literal>RightCodepage</literal>). Esempio:
+<literal>Codepage = 65001</literal> per visualizzare file UTF-8 o
+<literal>allof(Codepage = 65001)</literal> per visualizzare file UTF-8 in
+tutti i lati.</para>
               </listitem>
             </varlistentry>
 
@@ -759,11 +759,12 @@ all sides.</para>
               <term><varname>HasBOM</varname></term>
               <listitem>
                 <para>
-Returns <literal>true</literal> if the file has a Byte Order Mark (BOM),
-<literal>false</literal> otherwise.  This attribute supports side-specific
-prefixes (e.g., <literal>LeftHasBOM</literal>,
-<literal>RightHasBOM</literal>).  Example: <literal>HasBOM</literal> to show
-files with BOM, or <literal>not HasBOM</literal> to show files without BOM.</para>
+Restituisce <literal>true</literal> se il file ha un Byte Order Mark (BOM),
+<literal>false</literal> altrimenti. Questo attributo supporta prefissi
+specifici del lato (ad esempio, <literal>LeftHasBOM</literal>,
+<literal>RightHasBOM</literal>). Esempio: <literal>HasBOM</literal> per
+visualizzare file con BOM, o <literal>not HasBOM</literal> per visualizzare
+file senza BOM.</para>
               </listitem>
             </varlistentry>
 

@@ -106,3 +106,5 @@ struct DecompressResult
 	HRESULT hr;
 };
 DecompressResult DecompressArchive(HWND hWnd, const PathContext& infiles);
+void Merge7zInitFlags();
+

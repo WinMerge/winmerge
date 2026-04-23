@@ -6,16 +6,17 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-04-11 18:10+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2026-04-13 19:02+0900\n"
+"PO-Revision-Date: 2026-04-19 13:13+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
 
 #. type: Content of: <article><title>
 #: English/About_Doc.xml:3
@@ -934,13 +935,13 @@ msgstr "<option>/t <replaceable>tipo di finestra</replaceable></option>"
 msgid ""
 "Specifies the type of window in which to display files.  This can be one of "
 "the keywords <userinput>Text</userinput>, <userinput>Table</userinput>, "
-"<userinput>Binary</userinput>, <userinput>Image</userinput> or "
-"<userinput>Webpage</userinput>."
+"<userinput>Binary</userinput>, <userinput>Image</userinput>, "
+"<userinput>Webpage</userinput> or <userinput>Folder</userinput>."
 msgstr ""
-"Specifica il tipo di finestra in cui visualizzare i file.Può essere una "
-"delle parole chiave <userinput>Testo</userinput>, <userinput>Tabella</"
-"userinput>, <userinput>Binario</userinput>, <userinput>Immagine</userinput> "
-"o <userinput>Pagina Web</userinput>."
+"Specifica il tipo di finestra in cui visualizzare i file. Può essere una "
+"delle parole chiave <userinput>Text</userinput>, <userinput>Table</"
+"userinput>, <userinput>Binary</userinput>, <userinput>Image</userinput>, "
+"<userinput>Webpage</userinput> o <userinput>Folder</userinput>."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:272
@@ -15180,8 +15181,8 @@ msgstr ""
 "tramite i prefissi <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>, "
 "<guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>, <guilabel>de:</"
 "guilabel> o <guilabel>de!:</guilabel> in il campo Filtro). Non devono essere "
-"usati nelle regole di inclusione/esclusione del filtro file (<nomefile>.flt</"
-"nomefile>), poiché richiedono che il confronto venga prima completato e "
+"uszati nelle regole di inclusione/esclusione del filtro file (<nomefile>."
+"flt</nomefile>), poiché richiedono che il confronto venga prima completato e "
 "potrebbero causare comportamenti imprevisti."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -15421,21 +15422,11 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:694
-#, fuzzy
-#| msgid "<varname>Folder</varname>"
 msgid "<varname>Codepage</varname>"
-msgstr "<varname>Folder</varname>"
+msgstr "<varname>Codepage</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:697
-#, fuzzy
-#| msgid ""
-#| "Returns <literal>true</literal> if the file is detected as binary, "
-#| "<literal>false</literal> if it's text, or <literal>undefined</literal> if "
-#| "the file doesn't exist.  This attribute supports side-specific prefixes "
-#| "(e.g., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).  "
-#| "Example: <literal>allof(Binary)</literal> to show files that are binary "
-#| "on all sides."
 msgid ""
 "Returns the file's codepage (character encoding) as an integer value.  This "
 "attribute supports side-specific prefixes (e.g., <literal>LeftCodepage</"
@@ -15443,30 +15434,20 @@ msgid ""
 "65001</literal> to show UTF-8 files, or <literal>allof(Codepage = 65001)</"
 "literal> to show files that are UTF-8 on all sides."
 msgstr ""
-"Restituisce <literal>true</literal> se il file viene rilevato come binario, "
-"<literal>false</literal> se è testo o <literal>unfine</literal> se il file "
-"non esiste. Questo attributo supporta prefissi specifici del lato (ad "
-"esempio, <literal>LeftBinary</literal>, <literal>RightBinary</literal>). "
-"Esempio: <literal>allof(Binary)</literal> per visualizzare i file binari su "
+"Restituisce la pagina codici del file (codifica dei caratteri) come valore "
+"intero. Questo attributo supporta prefissi specifici del lato (ad esempio, "
+"<literal>LeftCodepage</literal>, <literal>RightCodepage</literal>). Esempio: "
+"<literal>Codepage = 65001</literal> per visualizzare file UTF-8 o "
+"<literal>allof(Codepage = 65001)</literal> per visualizzare file UTF-8 in "
 "tutti i lati."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:706
-#, fuzzy
-#| msgid "<varname>Name</varname>"
 msgid "<varname>HasBOM</varname>"
-msgstr "<varname>Name</varname>"
+msgstr "<varname>HasBOM</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:709
-#, fuzzy
-#| msgid ""
-#| "Returns <literal>true</literal> if the file is detected as binary, "
-#| "<literal>false</literal> if it's text, or <literal>undefined</literal> if "
-#| "the file doesn't exist.  This attribute supports side-specific prefixes "
-#| "(e.g., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).  "
-#| "Example: <literal>allof(Binary)</literal> to show files that are binary "
-#| "on all sides."
 msgid ""
 "Returns <literal>true</literal> if the file has a Byte Order Mark (BOM), "
 "<literal>false</literal> otherwise.  This attribute supports side-specific "
@@ -15474,12 +15455,12 @@ msgid ""
 "literal>).  Example: <literal>HasBOM</literal> to show files with BOM, or "
 "<literal>not HasBOM</literal> to show files without BOM."
 msgstr ""
-"Restituisce <literal>true</literal> se il file viene rilevato come binario, "
-"<literal>false</literal> se è testo o <literal>unfine</literal> se il file "
-"non esiste. Questo attributo supporta prefissi specifici del lato (ad "
-"esempio, <literal>LeftBinary</literal>, <literal>RightBinary</literal>). "
-"Esempio: <literal>allof(Binary)</literal> per visualizzare i file binari su "
-"tutti i lati."
+"Restituisce <literal>true</literal> se il file ha un Byte Order Mark (BOM), "
+"<literal>false</literal> altrimenti. Questo attributo supporta prefissi "
+"specifici del lato (ad esempio, <literal>LeftHasBOM</literal>, "
+"<literal>RightHasBOM</literal>). Esempio: <literal>HasBOM</literal> per "
+"visualizzare file con BOM, o <literal>not HasBOM</literal> per visualizzare "
+"file senza BOM."
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:721

@@ -198,6 +198,7 @@ IDB_FILE_NEW3_TABLE     BITMAP                  "res\\new3_table.bmp"
 IDB_FILE_NEW3_HEX       BITMAP                  "res\\new3_hex.bmp"
 IDB_FILE_NEW3_IMAGE     BITMAP                  "res\\new3_image.bmp"
 IDB_FILE_NEW3_WEBPAGE   BITMAP                  "res\\new3_webpage.bmp"
+IDB_FILE_NEW_FOLDER     BITMAP                  "res\\new_folder.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

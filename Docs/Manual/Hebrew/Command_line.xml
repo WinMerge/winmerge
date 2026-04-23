@@ -184,8 +184,8 @@ keywords <userinput>Full</userinput>, <userinput>Quick</userinput>,
       <listitem>
         <para>מציין את סוג החלון בו יוצגו קבצים. זה יכול להיות אחד ממילות המפתח
 <userinput>Text</userinput>, <userinput>Table</userinput>,
-<userinput>Binary</userinput>, <userinput>Image</userinput> או
-<userinput>Webpage</userinput>.</para>
+<userinput>Binary</userinput>, <userinput>Image</userinput>,
+<userinput>Webpage</userinput> או <userinput>Folder</userinput>.</para>
       </listitem>
     </varlistentry>
 

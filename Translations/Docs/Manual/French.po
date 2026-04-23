@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge\n"
+"Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-04-11 18:10+0900\n"
+"POT-Creation-Date: 2026-04-13 19:02+0900\n"
 "PO-Revision-Date: 2026-03-15 08:05+0900\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 
@@ -946,14 +946,14 @@ msgstr "<option>/t <replaceable>type-fenêtre</replaceable></option>"
 msgid ""
 "Specifies the type of window in which to display files.  This can be one of "
 "the keywords <userinput>Text</userinput>, <userinput>Table</userinput>, "
-"<userinput>Binary</userinput>, <userinput>Image</userinput> or "
-"<userinput>Webpage</userinput>."
+"<userinput>Binary</userinput>, <userinput>Image</userinput>, "
+"<userinput>Webpage</userinput> or <userinput>Folder</userinput>."
 msgstr ""
 "Spécifie le type de fenêtre dans laquelle afficher les fichiers. Cela peut "
 "être l'un des mots-clés <userinput>Text</userinput> (Texte), "
 "<userinput>Table</userinput> (Tableau), <userinput>Binary</userinput> "
-"(Binaire), <userinput>Image</userinput> ou <userinput>Webpage</userinput> "
-"(Page Web)."
+"(Binaire), <userinput>Image</userinput>, <userinput>Webpage</userinput> "
+"(Page Web) ou <userinput>Folder</userinput>."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:272
@@ -1048,7 +1048,7 @@ msgstr ""
 #: English/Command_line.xml:327 English/Configuration.xml:430
 #: English/Faq.xml:114
 msgid "MRU list"
-msgstr "liste MRU"
+msgstr "Liste MRU"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:330
@@ -2294,8 +2294,8 @@ msgid ""
 msgstr ""
 "Étant donné que les fichiers comparés sont généralement de tailles "
 "différentes, les données d'état n'indiquent pas le temps utilisé ou restant. "
-"Par exemple, un ratio de 50/100 ne signifie pas nécessairement que la moitié "
-"du temps de l'opération de comparaison est écoulée."
+"Pour exemple, un ratio de 50/100 ne signifie pas nécessairement que la "
+"moitié du temps de l'opération de comparaison est écoulée."
 
 #. I'm not able to reproduce the behavior documented in the earlier version of this topic: 
 #. I get the partial list, but no Abort indicator.
@@ -3390,8 +3390,8 @@ msgstr ""
 "guimenuitem> et <guimenuitem>Copier les noms de fichiers</guimenuitem> "
 "copient le chemin ou le nom du fichier des éléments sélectionnés dans le "
 "presse-papiers de Windows. Vous pouvez ensuite coller les informations "
-"copiées dans un fichier ou une application, par exemple pour créer une liste "
-"de fichiers modifiés ou un journal des modifications."
+"courantes dans un fichier ou une application, par exemple pour créer une "
+"liste de fichiers modifiés ou un journal des modifications."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:722
@@ -5403,8 +5403,8 @@ msgstr ""
 "Dans certains cas, il est utile de couper à la ponctuation. Par exemple, la "
 "capture d'écran suivante compare une liste séparée par des virgules. Pour "
 "mettre en évidence les différences de lignes significatives, nous avons "
-"activé <option>Couper aux espaces ou à la ponctuation</option> dans la page "
-"Éditeur de la boîte de dialogue Options."
+"activé l'option <option>Couper aux espaces ou à la ponctuation</option> dans "
+"la page Éditeur de la boîte de dialogue Options."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><mediaobject>
 #: English/Compare_files.xml:502
@@ -5996,8 +5996,8 @@ msgstr ""
 "ligne de la différence actuelle par une paire de petits triangles de chaque "
 "côté des barres verticales. Si vous naviguez vers une autre différence, le "
 "pointeur se déplace vers le haut ou vers le bas avec l'emplacement. Le fait "
-"de faire défiler le volet Fichier ne modifie pas l'emplacement du pointeur "
-"de différence (ni aucune des lignes de différence) dans le volet "
+"que vous fassiez défiler le volet Fichier ne change pas l'emplacement du "
+"pointeur de différence (ni aucune des lignes de différence) dans le volet "
 "d'emplacement."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject>
@@ -10598,12 +10598,12 @@ msgid ""
 msgstr ""
 "Lorsque vous cliquez sur le bouton <guilabel>=</guilabel> à droite du champ "
 "de saisie, un menu d'aide apparaît avec des expressions clés de détection "
-"courantes :"
+"courantes :"
 
 #. type: Content of: <article><section><section><section><title>
 #: English/Configuration.xml:1546
 msgid "Basic Detection Keys"
-msgstr "Clés de détection de renommage"
+msgstr "Clés de détection de base"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1549
@@ -10647,9 +10647,9 @@ msgid ""
 "equivalent names but different Unicode representations (e.g., composed vs. "
 "decomposed characters)."
 msgstr ""
-"Insère `<literal>normalizeUnicode(Name, \"NFC\")</literal>` qui recherche "
-"les fichiers par leur nom de fichier Unicode normalisé. Utile pour détecter "
-"les fichiers ayant des noms équivalents mais des représentations Unicode "
+"Insère <literal>normalizeUnicode(Name, \"NFC\")</literal> qui recherche les "
+"fichiers par leur nom de fichier Unicode normalisé. Utile pour détecter les "
+"fichiers ayant des noms équivalents mais des représentations Unicode "
 "différentes (p. ex. des caractères composés vs. caractères décomposés)."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -10695,7 +10695,7 @@ msgstr "Fait correspondre les fichiers par leur date/heure de modification."
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1604
 msgid "Hash (MD5)"
-msgstr "Hash (MD5)"
+msgstr "Hachage (MD5)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:1607
@@ -10705,7 +10705,7 @@ msgid ""
 "is the most accurate method for detecting renamed files, but requires "
 "computing MD5 hashes which can be slow for large files."
 msgstr ""
-"Insère `<literal>if(IsFolder, Name, prop(\"Hash.MD5\"))</literal>`. Pour les "
+"Insère <literal>if(IsFolder, Name, prop(\"Hash.MD5\"))</literal>. Pour les "
 "dossiers, la correspondance se fait par nom. Pour les fichiers, elle se fait "
 "par le hachage MD5 de leur contenu. C'est la méthode la plus précise pour "
 "détecter les fichiers renommés, mais elle nécessite le calcul des hachages "
@@ -10746,7 +10746,7 @@ msgstr ""
 "Le menu comprend des fonctions de transformation de chaînes qui peuvent être "
 "appliquées aux clés de détection. Lorsqu'elles sont sélectionnées, ces "
 "fonctions encapsulent l'expression courante (ou <literal>Name</literal> si "
-"vide) :"
+"vide) :"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1637
@@ -10762,12 +10762,12 @@ msgid ""
 "it with.  Example: <literal>replace(Name, \".backup\", \"\")</literal> "
 "removes \".backup\" from filenames."
 msgstr ""
-"Insère `<literal>replace(expression, \"from\", \"to\")</literal>` pour "
+"Insère <literal>replace(expression, \"from\", \"to\")</literal> pour "
 "remplacer des chaînes de caractères littérales dans la clé. Vous devez "
-"modifier les chaînes de caractères « from » et « to » pour spécifier le "
-"texte à rechercher et celui par lequel le remplacer. Exemple : "
-"`<literal>replace(Name, \".backup\", \"\")</literal>` supprime l'extension "
-"« .backup » des noms de fichiers."
+"modifier les chaînes de caractères « from » et « to » pour spécifier le "
+"texte à rechercher et celui par lequel le remplacer. Exemple : "
+"<literal>replace(Name, \".backup\", \"\")</literal> supprime l'extension « ."
+"backup » des noms de fichiers."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1648
@@ -10783,12 +10783,11 @@ msgid ""
 "<literal>regexReplace(Name, \"^(\\\\d+)_(.+)$\", \"$2\")</literal> removes a "
 "leading number and underscore from filenames."
 msgstr ""
-"Insère `<literal>regexReplace(expression, \"pattern\", \"replacement\")</"
-"literal>` pour remplacer du texte à l'aide d'expressions régulières. Prend "
-"en charge les références arrière ($1, $2, etc.) dans la chaîne de "
-"remplacement. Exemple : `<literal>regexReplace(Name, \"^(\\\\d+)_(.+)$\", "
-"\"$2\")</literal>` supprime le chiffre et le trait de soulignement en début "
-"de nom de fichier."
+"Insère <literal>regexReplace(expression, \"pattern\", \"replacement\")</"
+"literal> pour remplacer du texte à l'aide d'expressions régulières. Prend en "
+"charge les références arrière ($1, $2, etc.) dans la chaîne de remplacement. "
+"Exemple : <literal>regexReplace(Name, \"^(\\\\d+)_(.+)$\", \"$2\")</literal> "
+"supprime le chiffre et le trait de soulignement en début de nom de fichier."
 
 #. type: Content of: <article><section><section><section><title>
 #: English/Configuration.xml:1661
@@ -10801,8 +10800,8 @@ msgid ""
 "The Replace Lists submenu provides access to batch string replacement "
 "functionality using external files:"
 msgstr ""
-"Le sous-menu « Listes de remplacement » permet d’accéder à la fonctionnalité "
-"de remplacement de chaînes par lots à l’aide de fichiers externes :"
+"Le sous-menu « Listes de remplacement » permet d’accéder à la fonctionnalité "
+"de remplacement de chaînes par lots à l’aide de fichiers externes :"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1668
@@ -10834,7 +10833,7 @@ msgid ""
 "TAB&gt;replacement_string</literal>.  Lines starting with <literal>#</"
 "literal> are comments."
 msgstr ""
-"Le format du fichier est un remplacement par ligne : "
+"Le format du fichier est un remplacement par ligne : "
 "<literal>search_string&lt;TAB&gt;replacement_string</literal>. Les lignes "
 "commençant par <literal>#</literal> sont des commentaires."
 
@@ -10848,13 +10847,13 @@ msgid ""
 msgstr ""
 "# Remplacer les numéros de version dans les noms de fichiers\n"
 "v1.0\tv2.0\n"
-"version\tbêta"
+"beta\trelease"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:1680 English/Configuration.xml:1700
 msgid "Example file content: <placeholder type=\"screen\" id=\"0\"/>"
 msgstr ""
-"Exemple de contenu de fichier : <placeholder type=\"screen\" id=\"0\"/>"
+"Exemple de contenu de fichier : <placeholder type=\"screen\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1689
@@ -10870,7 +10869,7 @@ msgid ""
 "<filename>Documents\\WinMerge\\RegexReplaceLists</filename>).  Inserts "
 "<literal>regexReplaceWithList(expression, \"filepath\")</literal>."
 msgstr ""
-"Similaire à « Créer une liste de remplacement de chaînes », mais pour les "
+"Similaire à « Créer une liste de remplacement de chaînes », mais pour les "
 "remplacements par expressions régulières. Crée un fichier modèle dans "
 "<filename>%APPDATA%\\WinMerge\\RegexReplaceLists</filename> (ou "
 "<filename>Documents\\WinMerge\\RegexReplaceLists</filename>). Insère "
@@ -10882,7 +10881,7 @@ msgid ""
 "The file format is: <literal>regex_pattern&lt;TAB&gt;replacement</literal> "
 "with support for backreferences."
 msgstr ""
-"Le format du fichier est : <literal>regex_pattern&lt;TAB&gt;replacement</"
+"Le format du fichier est : <literal>regex_pattern&lt;TAB&gt;replacement</"
 "literal> avec prise en charge des références arrière."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para><screen>
@@ -10894,7 +10893,7 @@ msgid ""
 "\\d+\tNUMBER"
 msgstr ""
 "# Normaliser les formats de date\n"
-"(\\d{4})-(\\d{2})-(\\d{2}) $1_$2_$3\n"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\n"
 "\\d+\tNOMBRE"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -10951,7 +10950,7 @@ msgid ""
 "flexible matching:"
 msgstr ""
 "Le sous-menu Normalisation du texte propose des fonctions permettant de "
-"normaliser le texte pour une correspondance plus flexible :"
+"normaliser le texte pour une correspondance plus flexible :"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1740
@@ -10970,8 +10969,8 @@ msgstr ""
 "Insère <literal>toLower(expression)</literal> ou "
 "<literal>toUpper(expression)</literal> pour convertir tous les caractères en "
 "minuscules ou en majuscules. Utile pour une correspondance insensible à la "
-"casse. Exemple : <literal>toLower(Name)</literal> considère « File.txt », "
-"« FILE.TXT » et « file.txt » comme identiques."
+"casse. Exemple : <literal>toLower(Name)</literal> considère « File.txt », « "
+"FILE.TXT » et « file.txt » comme identiques."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1751
@@ -11046,7 +11045,7 @@ msgstr ""
 "normalise le texte Unicode au format NFC (Normalization Form Canonical "
 "Composition). Ceci est utile pour la correspondance de fichiers dont les "
 "noms peuvent utiliser différents encodages Unicode pour les mêmes caractères "
-"(par exemple, un seul caractère « é » ou « e » suivi d’un accent aigu)."
+"(par exemple, un seul caractère « é » ou « e » suivi d’un accent aigu)."
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:1796
@@ -11126,7 +11125,7 @@ msgid ""
 "with different names.  Items in different directories (moved items) are not "
 "merged."
 msgstr ""
-"<option>Fusionner les renommages</option> : Les éléments renommés mais "
+"<option>Fusionner les renommages</option> : Les éléments renommés mais "
 "situés dans le même répertoire sont fusionnés en une seule entrée. Cela "
 "simplifie l’arbre de comparaison en affichant un seul élément présent à "
 "plusieurs endroits avec des noms différents. Les éléments situés dans des "
@@ -11140,7 +11139,7 @@ msgid ""
 "merged into single entries when detected.  This provides the most compact "
 "view of renamed and relocated files/folders."
 msgstr ""
-"<option>Fusionner les renommages et les déplacements</option> : Les éléments "
+"<option>Fusionner les renommages et les déplacements</option> : Les éléments "
 "renommés (même répertoire, noms différents) et les éléments déplacés "
 "(répertoires différents) sont fusionnés en une seule entrée lorsqu'ils sont "
 "détectés. Cela permet d'obtenir une vue plus compacte des fichiers et "
@@ -14638,7 +14637,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><title>
 #: English/Filters.xml:238
 msgid "Directives"
-msgstr ""
+msgstr "Directives"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Filters.xml:241
@@ -14648,20 +14647,18 @@ msgid ""
 "prefixed with <literal>@</literal>, and separated from the expression by "
 "whitespace."
 msgstr ""
+"Les expressions de filtre prennent en charge des directives qui contrôlent "
+"la manière dont l'expression est évaluée. Les directives sont spécifiées au "
+"début de l'expression, préfixées par <literal>@</literal>, et séparées de "
+"l'expression par un espace."
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:247
 msgid "Case Sensitivity Directives"
-msgstr ""
+msgstr "Directives de sensibilité à la casse"
 
 #. type: Content of: <article><section><section><section><section><para>
 #: English/Filters.xml:250
-#, fuzzy
-#| msgid ""
-#| "All string comparison operators (such as <literal>=</literal>, <literal>!"
-#| "=</literal>, <literal>like</literal>, <literal>matches</literal>, "
-#| "<literal>contains</literal>, and <literal>recontains</literal>) are "
-#| "currently case-insensitive."
 msgid ""
 "By default, all string comparison operators (<literal>=</literal>, <literal>!"
 "=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>, <literal>&gt;"
@@ -14670,18 +14667,17 @@ msgid ""
 "literal>)  are case-insensitive. You can control this behavior using the "
 "following directives:"
 msgstr ""
-"Tous les opérateurs de comparaison de chaînes (tels que <literal>=</"
-"literal>, <literal>!=</literal>, <literal>like</literal>, <literal>matches</"
-"literal>, <literal>contains</literal> et <literal>recontains</literal>) sont "
-"actuellement insensibles à la casse."
+"Par défaut, tous les opérateurs de comparaison de chaînes (<literal>=</"
+"literal>, <literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</"
+"literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>, "
+"<literal>contains</literal>, <literal>recontains</literal>, <literal>like</"
+"literal>, <literal>matches</literal>) sont insensibles à la casse. Vous "
+"pouvez contrôler ce comportement en utilisant les directives suivantes :"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:258
-#, fuzzy
-#| msgid ""
-#| "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
 msgid "<literal>@cs</literal>, <literal>@casesensitive</literal>"
-msgstr "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
+msgstr "<literal>@cs</literal>, <literal>@casesensitive</literal>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:261
@@ -14689,14 +14685,14 @@ msgid ""
 "Enable case-sensitive comparison. With these directives, <literal>\"ABC\"</"
 "literal> and <literal>\"abc\"</literal> are considered different."
 msgstr ""
+"Active la comparaison sensible à la casse. Avec ces directives, "
+"<literal>\"ABC\"</literal> et <literal>\"abc\"</literal> sont considérés "
+"comme différents."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:267
-#, fuzzy
-#| msgid ""
-#| "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
 msgid "<literal>@ci</literal>, <literal>@caseinsensitive</literal>"
-msgstr "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
+msgstr "<literal>@ci</literal>, <literal>@caseinsensitive</literal>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:270
@@ -14705,11 +14701,14 @@ msgid ""
 "directives, <literal>\"ABC\"</literal> and <literal>\"abc\"</literal> are "
 "considered identical."
 msgstr ""
+"Active la comparaison insensible à la casse (comportement par défaut). Avec "
+"ces directives, <literal>\"ABC\"</literal> et <literal>\"abc\"</literal> "
+"sont considérés comme identiques."
 
 #. type: Content of: <article><section><section><section><section><example><title>
 #: English/Filters.xml:277
 msgid "Case Sensitivity Examples"
-msgstr ""
+msgstr "Exemples de sensibilité à la casse"
 
 #. type: Content of: <article><section><section><section><section><example><programlisting>
 #: English/Filters.xml:278
@@ -14720,6 +14719,10 @@ msgid ""
 "@casesensitive Extension = \"TXT\"  ## Case-sensitive: matches only files with \".TXT\" extension\n"
 "@caseinsensitive Content contains \"error\"  ## Case-insensitive: matches \"Error\", \"ERROR\", \"error\", etc."
 msgstr ""
+"@cs Name = \"README.txt\"           ## Sensible à la casse : correspond uniquement à \"README.txt\"\n"
+"@ci Name = \"readme.txt\"           ## Insensible à la casse : correspond à \"README.txt\", \"readme.txt\", \"ReadMe.TXT\", etc.\n"
+"@casesensitive Extension = \"TXT\"  ## Sensible à la casse : correspond uniquement aux fichiers avec l'extension \".TXT\"\n"
+"@caseinsensitive Content contains \"error\"  ## Insensible à la casse : correspond à \"Error\", \"ERROR\", \"error\", etc."
 
 #. type: Content of: <article><section><section><section><section><section><example>
 #: English/Filters.xml:278 English/Filters.xml:315 English/Filters.xml:347
@@ -14730,7 +14733,7 @@ msgstr "<placeholder type=\"programlisting\" id=\"0\"/>"
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:286
 msgid "Optimization Directives"
-msgstr ""
+msgstr "Directives d'optimisation"
 
 #. type: Content of: <article><section><section><section><section><para>
 #: English/Filters.xml:289
@@ -14738,14 +14741,14 @@ msgid ""
 "By default, filter expressions are optimized to improve performance. You can "
 "control this behavior using the following directives:"
 msgstr ""
+"Par défaut, les expressions de filtre sont optimisées pour améliorer les "
+"performances. Vous pouvez contrôler ce comportement en utilisant les "
+"directives suivantes :"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:295
-#, fuzzy
-#| msgid ""
-#| "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
 msgid "<literal>@optimize</literal>, <literal>@opt</literal>"
-msgstr "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
+msgstr "<literal>@optimize</literal>, <literal>@opt</literal>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:298
@@ -14753,14 +14756,13 @@ msgid ""
 "Enable filter expression optimization (default behavior). This may improve "
 "performance for complex expressions."
 msgstr ""
+"Active l'optimisation des expressions de filtre (comportement par défaut). "
+"Cela peut améliorer les performances pour les expressions complexes."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:304
-#, fuzzy
-#| msgid ""
-#| "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
 msgid "<literal>@nooptimize</literal>, <literal>@noopt</literal>"
-msgstr "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
+msgstr "<literal>@nooptimize</literal>, <literal>@noopt</literal>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:307
@@ -14768,11 +14770,13 @@ msgid ""
 "Disable filter expression optimization. This is useful for debugging or when "
 "optimization causes unexpected results."
 msgstr ""
+"Désactive l'optimisation des expressions de filtre. C'est utile pour le "
+"débogage ou lorsque l'optimisation provoque des résultats inattendus."
 
 #. type: Content of: <article><section><section><section><section><example><title>
 #: English/Filters.xml:314
 msgid "Optimization Examples"
-msgstr ""
+msgstr "Exemples d'optimisation"
 
 #. type: Content of: <article><section><section><section><section><example><programlisting>
 #: English/Filters.xml:315
@@ -14782,11 +14786,14 @@ msgid ""
 "@noopt Name matches \"complex[0-9]+pattern\"    ## Disable optimization for debugging\n"
 "@nooptimize Content contains \"special-case\"   ## Disable optimization"
 msgstr ""
+"@optimize Size &gt; 10MB and Extension = \"log\"     ## Active l'optimisation (par défaut)\n"
+"@noopt Name matches \"complex[0-9]+pattern\"    ## Désactive l'optimisation pour le débogage\n"
+"@nooptimize Content contains \"special-case\"   ## Désactive l'optimisation"
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:322
 msgid "Name Directive"
-msgstr ""
+msgstr "Directive Name"
 
 #. type: Content of: <article><section><section><section><section><para>
 #: English/Filters.xml:325
@@ -14795,15 +14802,17 @@ msgid ""
 "name to a filter expression.  This name is intended for use in error "
 "messages and logs to help identify which filter expression caused an issue."
 msgstr ""
+"La directive <literal>@name</literal> vous permet d'attribuer un nom "
+"descriptif à une expression de filtre. Ce nom est destiné à être utilisé "
+"dans les messages d'erreur et les journaux pour aider à identifier "
+"l'expression de filtre qui a causé un problème."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:331
-#, fuzzy
-#| msgid ""
-#| "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
 msgid ""
 "<literal>@name=\"Filter Name\"</literal>, <literal>@name=FilterName</literal>"
-msgstr "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
+msgstr ""
+"<literal>@name=\"Filter Name\"</literal>, <literal>@name=FilterName</literal>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:334
@@ -14812,6 +14821,9 @@ msgid ""
 "special characters, it must be enclosed in double quotes. Names without "
 "spaces can be specified without quotes."
 msgstr ""
+"Attribue un nom à l'expression de filtre. Si le nom contient des espaces ou "
+"des caractères spéciaux, il doit être entouré de guillemets doubles. Les "
+"noms sans espaces peuvent être spécifiés sans guillemets."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:338
@@ -14820,11 +14832,14 @@ msgid ""
 "identify the filter.  This is particularly useful when working with multiple "
 "complex filter expressions."
 msgstr ""
+"Le nom spécifié sera utilisé dans les messages d'erreur et les sorties de "
+"diagnostic pour identifier le filtre. C'est particulièrement utile lors de "
+"l'utilisation de multiples expressions de filtre complexes."
 
 #. type: Content of: <article><section><section><section><section><example><title>
 #: English/Filters.xml:346
 msgid "Name Directive Examples"
-msgstr ""
+msgstr "Exemples de la directive Name"
 
 #. type: Content of: <article><section><section><section><section><example><programlisting>
 #: English/Filters.xml:347
@@ -14835,6 +14850,10 @@ msgid ""
 "@name=\"Modified Today\" Date &gt;= today()\n"
 "@name=\"Test Filter\" @cs Name like \"test_*.cpp\""
 msgstr ""
+"@name=\"Gros fichiers images\" Size &gt; 10MB and Extension = \"png\"\n"
+"@name=PetitsFichiersTexte Size &lt; 1KB and Extension = \"txt\"\n"
+"@name=\"Modifié aujourd'hui\" Date &gt;= today()\n"
+"@name=\"Filtre de test\" @cs Name like \"test_*.cpp\""
 
 #. type: Content of: <article><section><section><section><section><note><para>
 #: English/Filters.xml:355
@@ -14843,6 +14862,9 @@ msgid ""
 "directives.  When multiple directives are used, they should all appear at "
 "the beginning of the expression, separated by whitespace."
 msgstr ""
+"La directive <literal>@name</literal> peut être combinée avec d'autres "
+"directives. Lorsque plusieurs directives sont utilisées, elles doivent "
+"toutes apparaître au début de l'expression, séparées par un espace."
 
 #. type: Content of: <article><section><section><section><title>
 #: English/Filters.xml:364
@@ -14871,7 +14893,7 @@ msgstr "Attributs principaux"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:376
 msgid "<varname>Exists</varname>"
-msgstr ""
+msgstr "<varname>Exists</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:377
@@ -14885,7 +14907,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:380
 msgid "<varname>Name</varname>"
-msgstr ""
+msgstr "<varname>Name</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:381
@@ -14895,7 +14917,7 @@ msgstr "Nom du fichier"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:384
 msgid "<varname>BaseName</varname>"
-msgstr ""
+msgstr "<varname>BaseName</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:385
@@ -14909,7 +14931,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:388
 msgid "<varname>Extension</varname>"
-msgstr ""
+msgstr "<varname>Extension</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:389
@@ -14919,7 +14941,7 @@ msgstr "Extension du fichier"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:392
 msgid "<varname>IsFolder</varname>"
-msgstr ""
+msgstr "<varname>IsFolder</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:393
@@ -14931,7 +14953,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:396
 msgid "<varname>Folder</varname>"
-msgstr ""
+msgstr "<varname>Folder</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:397
@@ -14943,7 +14965,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:400
 msgid "<varname>RelPath</varname>"
-msgstr ""
+msgstr "<varname>RelPath</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:401
@@ -14954,13 +14976,13 @@ msgid ""
 msgstr ""
 "Renvoie le chemin relatif à partir du répertoire racine de comparaison, "
 "incluant le chemin du dossier et le nom du fichier. Par exemple, si la "
-"comparaison porte sur « C:\\Project » et que le fichier se trouve dans « C:"
-"\\Project\\src\\main.cpp », RelPath renvoie « src\\main.cpp »."
+"comparaison porte sur « C:\\Project » et que le fichier se trouve dans « C:"
+"\\Project\\src\\main.cpp », RelPath renvoie « src\\main.cpp »."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:404
 msgid "<varname>FullPath</varname>"
-msgstr ""
+msgstr "<varname>FullPath</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:405
@@ -14970,7 +14992,7 @@ msgstr "Retourne le chemin complet du fichier"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:408
 msgid "<varname>Size</varname>"
-msgstr ""
+msgstr "<varname>Size</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:409
@@ -14980,7 +15002,7 @@ msgstr "Taille du fichier"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:412
 msgid "<varname>Date</varname>"
-msgstr ""
+msgstr "<varname>Date</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:413
@@ -14990,7 +15012,7 @@ msgstr "Horodatage de dernière modification"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:416
 msgid "<varname>DateStr</varname>"
-msgstr ""
+msgstr "<varname>DateStr</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:417
@@ -15002,7 +15024,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:420
 msgid "<varname>CreationTime</varname>"
-msgstr ""
+msgstr "<varname>CreationTime</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:421
@@ -15012,7 +15034,7 @@ msgstr "Horodatage de la date de création"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:424
 msgid "<varname>Attributes</varname>"
-msgstr ""
+msgstr "<varname>Attributes</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:425
@@ -15022,7 +15044,7 @@ msgstr "Retourne les attributs de fichier sous forme d'entier"
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:428
 msgid "<varname>AttrStr</varname>"
-msgstr ""
+msgstr "<varname>AttrStr</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:430
@@ -15054,7 +15076,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:450
 msgid "<varname>Content</varname>"
-msgstr ""
+msgstr "<varname>Content</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:451
@@ -15085,7 +15107,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:465
 msgid "<varname>Files</varname>"
-msgstr ""
+msgstr "<varname>Files</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:466
@@ -15095,7 +15117,7 @@ msgstr "Nombre de fichiers directement contenus dans le dossier."
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:469
 msgid "<varname>RecursiveFiles</varname>"
-msgstr ""
+msgstr "<varname>RecursiveFiles</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:470
@@ -15106,7 +15128,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:473
 msgid "<varname>Items</varname>"
-msgstr ""
+msgstr "<varname>Items</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:474
@@ -15119,7 +15141,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:477
 msgid "<varname>RecursiveItems</varname>"
-msgstr ""
+msgstr "<varname>RecursiveItems</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:478
@@ -15133,7 +15155,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:481
 msgid "<varname>TotalSize</varname>"
-msgstr ""
+msgstr "<varname>TotalSize</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:482
@@ -15144,10 +15166,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:485
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>RecursiveTotalSize</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>RecursiveTotalSize</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:486
@@ -15226,7 +15246,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:518
 msgid "<varname>Prop</varname>"
-msgstr ""
+msgstr "<varname>Prop</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:521
@@ -15241,7 +15261,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:528
 msgid "<varname>LeftProp</varname>"
-msgstr ""
+msgstr "<varname>LeftProp</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:531
@@ -15255,7 +15275,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:537
 msgid "<varname>MiddleProp</varname>"
-msgstr ""
+msgstr "<varname>MiddleProp</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:539
@@ -15266,7 +15286,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:544
 msgid "<varname>RightProp</varname>"
-msgstr ""
+msgstr "<varname>RightProp</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:546
@@ -15275,10 +15295,8 @@ msgstr "Valeur de propriété du fichier du côté droit."
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:553
-#, fuzzy
-#| msgid "File-only Attributes"
 msgid "Display Filters Only Attributes"
-msgstr "Attributs spécifiques aux fichiers"
+msgstr "Attributs pour les filtres d'affichage uniquement"
 
 #. type: Content of: <article><section><section><section><section><para>
 #: English/Filters.xml:555
@@ -15291,13 +15309,19 @@ msgid ""
 "flt</filename>) include/exclude rules, as they require the comparison to be "
 "completed first and may lead to unexpected behavior."
 msgstr ""
+"Les attributs suivants sont conçus pour être utilisés dans les <emphasis "
+"role=\"bold\">filtres d'affichage uniquement</emphasis> (spécifiés via les "
+"préfixes <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>, <guilabel>fe:</"
+"guilabel>, <guilabel>fe!:</guilabel>, <guilabel>de:</guilabel>, ou "
+"<guilabel>de!:</guilabel> dans le champ Filtre). Ils ne doivent pas être "
+"utilisés dans les règles d'inclusion/exclusion des filtres de fichiers "
+"(<filename>.flt</filename>), car ils nécessitent que la comparaison soit "
+"d'abord terminée et peuvent conduire à un comportement inattendu."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:564
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Identical</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Identical</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:567
@@ -15307,13 +15331,15 @@ msgid ""
 "attribute (does not support side-specific prefixes).  Example: "
 "<literal>Identical</literal> to show only identical files."
 msgstr ""
+"Renvoie <literal>true</literal> si le résultat de la comparaison indique que "
+"les éléments sont identiques, <literal>false</literal> sinon. Il s'agit d'un "
+"attribut global (ne prend pas en charge les préfixes de côté). Exemple : "
+"<literal>Identical</literal> pour n'afficher que les fichiers identiques."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:575
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Different</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Different</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:578
@@ -15323,13 +15349,15 @@ msgid ""
 "attribute (does not support side-specific prefixes).  Example: "
 "<literal>Different</literal> to show only different files."
 msgstr ""
+"Renvoie <literal>true</literal> si le résultat de la comparaison indique que "
+"les éléments sont différents, <literal>false</literal> sinon. Il s'agit d'un "
+"attribut global (ne prend pas en charge les préfixes de côté). Exemple : "
+"<literal>Different</literal> pour n'afficher que les fichiers différents."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:586
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Skipped</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Skipped</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:589
@@ -15339,13 +15367,16 @@ msgid ""
 "attribute (does not support side-specific prefixes).  Example: "
 "<literal>Skipped</literal> to show only skipped items."
 msgstr ""
+"Renvoie <literal>true</literal> si la comparaison a été ignorée en raison "
+"d'une erreur ou d'une règle de filtrage, <literal>false</literal> sinon. Il "
+"s'agit d'un attribut global (ne prend pas en charge les préfixes de côté). "
+"Exemple : <literal>Skipped</literal> pour n'afficher que les éléments "
+"ignorés."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:597
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Binary</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Binary</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:600
@@ -15357,13 +15388,17 @@ msgid ""
 "Example: <literal>allof(Binary)</literal> to show files that are binary on "
 "all sides."
 msgstr ""
+"Renvoie <literal>true</literal> si le fichier est détecté comme binaire, "
+"<literal>false</literal> s'il s'agit de texte, ou <literal>undefined</"
+"literal> si le fichier n'existe pas. Cet attribut prend en charge les "
+"préfixes spécifiques au côté (ex. <literal>LeftBinary</literal>, "
+"<literal>RightBinary</literal>). Exemple : <literal>allof(Binary)</literal> "
+"pour afficher les fichiers qui sont binaires de tous les côtés."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:608
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>DifferentLeftMiddle</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>DifferentLeftMiddle</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:611
@@ -15375,13 +15410,17 @@ msgid ""
 "<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> to find "
 "files where only left differs from middle."
 msgstr ""
+"Renvoie <literal>true</literal> si les fichiers de gauche et du milieu sont "
+"différents dans une comparaison à 3 voies, <literal>false</literal> sinon. "
+"Renvoie <literal>undefined</literal> dans les comparaisons à 2 voies. Il "
+"s'agit d'un attribut global. Exemple : <literal>DifferentLeftMiddle and not "
+"DifferentMiddleRight</literal> pour trouver les fichiers où seul le côté "
+"gauche diffère du milieu."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:620
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>DifferentMiddleRight</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>DifferentMiddleRight</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:623
@@ -15393,13 +15432,16 @@ msgid ""
 "<literal>DifferentMiddleRight</literal> to show files where middle and right "
 "differ."
 msgstr ""
+"Renvoie <literal>true</literal> si les fichiers du milieu et de droite sont "
+"différents dans une comparaison à 3 voies, <literal>false</literal> sinon. "
+"Renvoie <literal>undefined</literal> dans les comparaisons à 2 voies. Il "
+"s'agit d'un attribut global. Exemple : <literal>DifferentMiddleRight</"
+"literal> pour afficher les fichiers où le milieu et la droite diffèrent."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:632
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>DifferentLeftRight</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>DifferentLeftRight</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:635
@@ -15411,13 +15453,17 @@ msgid ""
 "prefixes).  Example: <literal>DifferentLeftRight</literal> to show files "
 "where left and right differ."
 msgstr ""
+"Dans les comparaisons à 3 voies, renvoie <literal>true</literal> si les "
+"fichiers de gauche et de droite sont différents, <literal>false</literal> "
+"sinon. Dans les comparaisons à 2 voies, renvoie <literal>true</literal> si "
+"les deux fichiers existent et sont différents. Il s'agit d'un attribut "
+"global. Exemple : <literal>DifferentLeftRight</literal> pour afficher les "
+"fichiers où la gauche et la droite diffèrent."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:644
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Differences</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Differences</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:647
@@ -15429,13 +15475,17 @@ msgid ""
 "<literal>Differences &gt; 10</literal> to show files with more than 10 "
 "differences."
 msgstr ""
+"Renvoie le nombre de différences de texte dans la comparaison de fichiers. "
+"Cet attribut n'est significatif que pour les fichiers texte qui ont été "
+"comparés. Il s'agit d'un attribut global. Exemple : <literal>Differences "
+"&gt; 0</literal> pour afficher les fichiers présentant des différences, ou "
+"<literal>Differences &gt; 10</literal> pour les fichiers avec plus de 10 "
+"différences."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:657
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>IgnoredDiffs</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>IgnoredDiffs</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:660
@@ -15448,13 +15498,19 @@ msgid ""
 "differences, or <literal>Differences = 0 and IgnoredDiffs &gt; 0</literal> "
 "to show files that are identical except for ignored differences."
 msgstr ""
+"Renvoie le nombre de différences ignorées lors de la comparaison de fichiers "
+"(différences filtrées par les filtres de ligne ou les paramètres d'espaces). "
+"Cet attribut n'est significatif que pour les fichiers texte qui ont été "
+"comparés. Il s'agit d'un attribut global (ne prend pas en charge les "
+"préfixes de côté). Exemple : <literal>IgnoredDiffs &gt; 0</literal> pour "
+"afficher les fichiers avec des différences ignorées, ou <literal>Differences "
+"= 0 and IgnoredDiffs &gt; 0</literal> pour afficher les fichiers identiques "
+"à l'exception des différences ignorées."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:670
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Unpacker</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Unpacker</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:673
@@ -15466,13 +15522,17 @@ msgid ""
 "unpacker, or <literal>Unpacker != \"\"</literal> to show all files where an "
 "unpacker was used."
 msgstr ""
+"Renvoie le nom du plug-in de décompression utilisé pour la comparaison de "
+"fichiers, ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un "
+"attribut global. Exemple : <literal>Unpacker = \"CompareMSExcelFiles\"</"
+"literal> pour afficher les fichiers comparés via le décompresseur Excel, ou "
+"<literal>Unpacker != \"\"</literal> pour afficher tous les fichiers où un "
+"décompresseur a été utilisé."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:682
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Prediffer</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Prediffer</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:685
@@ -15484,13 +15544,16 @@ msgid ""
 "prediffer, or <literal>Prediffer != \"\"</literal> to show all files where a "
 "prediffer was used."
 msgstr ""
+"Renvoie le nom du plug-in prediffer utilisé pour la comparaison de fichiers, "
+"ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un attribut global. "
+"Exemple : <literal>Prediffer = \"IgnoreColumns\"</literal> pour afficher les "
+"fichiers comparés avec le prediffer IgnoreColumns, ou <literal>Prediffer != "
+"\"\"</literal> pour afficher tous les fichiers où un prediffer a été utilisé."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:694
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>Codepage</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>Codepage</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:697
@@ -15501,13 +15564,17 @@ msgid ""
 "65001</literal> to show UTF-8 files, or <literal>allof(Codepage = 65001)</"
 "literal> to show files that are UTF-8 on all sides."
 msgstr ""
+"Renvoie la page de code du fichier (encodage des caractères) sous forme "
+"d'entier. Cet attribut prend en charge les préfixes spécifiques au côté (ex. "
+"<literal>LeftCodepage</literal>, <literal>RightCodepage</literal>). "
+"Exemple : <literal>Codepage = 65001</literal> pour afficher les fichiers "
+"UTF-8, ou <literal>allof(Codepage = 65001)</literal> pour afficher les "
+"fichiers qui sont en UTF-8 de tous les côtés."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:706
-#, fuzzy
-#| msgid "RecursiveTotalSize"
 msgid "<varname>HasBOM</varname>"
-msgstr "RecursiveTotalSize"
+msgstr "<varname>HasBOM</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:709
@@ -15518,6 +15585,11 @@ msgid ""
 "literal>).  Example: <literal>HasBOM</literal> to show files with BOM, or "
 "<literal>not HasBOM</literal> to show files without BOM."
 msgstr ""
+"Renvoie <literal>true</literal> si le fichier possède une marque d'ordre des "
+"octets (BOM), <literal>false</literal> sinon. Cet attribut prend en charge "
+"les préfixes spécifiques au côté. Exemple : <literal>HasBOM</literal> pour "
+"afficher les fichiers avec BOM, ou <literal>not HasBOM</literal> pour "
+"afficher les fichiers sans BOM."
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:721
@@ -15691,12 +15763,6 @@ msgstr "Opérateurs"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Filters.xml:807
-#, fuzzy
-#| msgid ""
-#| "All string comparison operators (such as <literal>=</literal>, <literal>!"
-#| "=</literal>, <literal>like</literal>, <literal>matches</literal>, "
-#| "<literal>contains</literal>, and <literal>recontains</literal>) are "
-#| "currently case-insensitive."
 msgid ""
 "By default, all string comparison operators (such as <literal>=</literal>, "
 "<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>, "
@@ -15706,10 +15772,13 @@ msgid ""
 "behavior using directives (see <xref "
 "linkend=\"FilterExpression_CaseSensitivity\" />)."
 msgstr ""
-"Tous les opérateurs de comparaison de chaînes (tels que <literal>=</"
-"literal>, <literal>!=</literal>, <literal>like</literal>, <literal>matches</"
-"literal>, <literal>contains</literal> et <literal>recontains</literal>) sont "
-"actuellement insensibles à la casse."
+"Par défaut, tous les opérateurs de comparaison de chaînes (tels que "
+"<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>, "
+"<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>, "
+"<literal>like</literal>, <literal>matches</literal>, <literal>contains</"
+"literal> et <literal>recontains</literal>) sont insensibles à la casse. Vous "
+"pouvez contrôler ce comportement à l'aide de directives (voir <xref "
+"linkend=\"FilterExpression_CaseSensitivity\" />)."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:815
@@ -15785,7 +15854,7 @@ msgstr "<literal>like</literal>"
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:841
 msgid "Wildcard string match"
-msgstr "Correspondance de chaîne avec caractères génériques (wildcards)"
+msgstr "Correspondance de chaîne avec caractères génériques"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:842
@@ -15857,10 +15926,8 @@ msgstr "Fonctions"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:874
-#, fuzzy
-#| msgid "lineCount(<replaceable>content</replaceable>)"
 msgid "<function>lineCount</function>(<replaceable>content</replaceable>)"
-msgstr "lineCount(<replaceable>content</replaceable>)"
+msgstr "<function>lineCount</function>(<replaceable>content</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:875
@@ -15877,16 +15944,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:878
-#, fuzzy
-#| msgid ""
-#| "sublines(<replaceable>content</replaceable>, <replaceable>start</"
-#| "replaceable>, <replaceable>count</replaceable>)"
 msgid ""
 "<function>sublines</function>(<replaceable>content</replaceable>, "
 "<replaceable>start</replaceable>, <replaceable>count</replaceable>)"
 msgstr ""
-"sublines(<replaceable>content</replaceable>, <replaceable>start</"
-"replaceable>, <replaceable>count</replaceable>)"
+"<function>sublines</function>(<replaceable>content</replaceable>, "
+"<replaceable>start</replaceable>, <replaceable>count</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:881
@@ -15904,10 +15967,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:887
-#, fuzzy
-#| msgid "strlen(<replaceable>source</replaceable>)"
 msgid "<function>strlen</function>(<replaceable>source</replaceable>)"
-msgstr "strlen(<replaceable>source</replaceable>)"
+msgstr "<function>strlen</function>(<replaceable>source</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:888
@@ -15922,16 +15983,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:891
-#, fuzzy
-#| msgid ""
-#| "substr(<replaceable>source</replaceable>, <replaceable>start</"
-#| "replaceable>, <replaceable>count</replaceable>)"
 msgid ""
 "<function>substr</function>(<replaceable>source</replaceable>, "
 "<replaceable>start</replaceable>, <replaceable>count</replaceable>)"
 msgstr ""
-"substr(<replaceable>source</replaceable>, <replaceable>start</replaceable>, "
-"<replaceable>count</replaceable>)"
+"<function>substr</function>(<replaceable>source</replaceable>, "
+"<replaceable>start</replaceable>, <replaceable>count</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:892
@@ -15948,10 +16005,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:895
-#, fuzzy
-#| msgid "<function>Replace...</function>"
 msgid "<function>replace</function>(str, from, to)"
-msgstr "<function>Remplacer...</function>"
+msgstr "<function>replace</function>(str, from, to)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:898
@@ -15968,10 +16023,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:905
-#, fuzzy
-#| msgid "regexReplace(str, pattern, replacement)"
 msgid "<function>regexReplace</function>(str, pattern, replacement)"
-msgstr "regexReplace(str, pattern, replacement)"
+msgstr "<function>regexReplace</function>(str, pattern, replacement)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:908
@@ -15992,10 +16045,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:916
-#, fuzzy
-#| msgid "replaceWithList(str, filepath)"
 msgid "<function>replaceWithList</function>(str, filepath)"
-msgstr "replaceWithList(str, chemin_fichier)"
+msgstr "<function>replaceWithList</function>(str, filepath)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:919
@@ -16008,20 +16059,19 @@ msgid ""
 "<replaceable>str</replaceable> is an array, the result is an array of "
 "strings with replacements applied."
 msgstr ""
-"Remplace plusieurs chaînes de caractères dans `<replaceable>str</"
-"replaceable>` en utilisant des règles de remplacement chargées depuis un "
-"fichier séparé par des tabulations. Le format du fichier est le suivant : "
-"une règle de remplacement par ligne : `<literal>search_string&lt;TAB&gt;"
-"replacement_string</literal>`. Les lignes commençant par `<literal>#</"
-"literal>` sont considérées comme des commentaires et ignorées. Les lignes "
-"vides sont également ignorées. Si `<replaceable>str</replaceable>` est un "
-"tableau, le résultat est un tableau de chaînes de caractères avec les "
-"remplacements appliqués."
+"Remplace plusieurs chaînes de caractères dans <replaceable>str</replaceable> "
+"en utilisant des règles de remplacement chargées depuis un fichier séparé "
+"par des tabulations. Le format du fichier est le suivant : une règle de "
+"remplacement par ligne : <literal>search_string&lt;TAB&gt;"
+"replacement_string</literal>. Les lignes commençant par <literal>#</literal> "
+"sont considérées comme des commentaires et ignorées. Les lignes vides sont "
+"également ignorées. Si <replaceable>str</replaceable> est un tableau, le "
+"résultat est un tableau de chaînes avec les remplacements appliqués."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:925 English/Filters.xml:947
 msgid "File format example:"
-msgstr "Exemple de format de fichier :"
+msgstr "Exemple de format de fichier :"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><screen>
 #: English/Filters.xml:926
@@ -16032,7 +16082,7 @@ msgid ""
 "cat\tdog\n"
 "old\tnew"
 msgstr ""
-"# Ligne de commentaires\n"
+"# Ligne de commentaire\n"
 "pomme\torange\n"
 "chat\tchien\n"
 "ancien\tnouveau"
@@ -16055,10 +16105,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:937
-#, fuzzy
-#| msgid "regexReplaceWithList(str, filepath)"
 msgid "<function>regexReplaceWithList</function>(str, filepath)"
-msgstr "regexReplaceWithList(str, chemin_fichier)"
+msgstr "<function>regexReplaceWithList</function>(str, filepath)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:940
@@ -16072,16 +16120,15 @@ msgid ""
 "replaceable> is an array, the result is an array of strings with "
 "replacements applied."
 msgstr ""
-"Remplace les chaînes de caractères dans `<replaceable>str</replaceable>` à "
-"l'aide d'expressions régulières chargées depuis un fichier texte séparé par "
-"des tabulations. Le format du fichier est le suivant : une expression "
-"régulière par ligne : `<literal>regex_pattern&lt;TAB&gt;replacement_string</"
-"literal>`. La chaîne de remplacement peut inclure des références arrière "
-"($1, $2, etc.) vers des groupes capturés. Les lignes commençant par "
-"`<literal>#</literal>` sont considérées comme des commentaires et ignorées. "
-"Les lignes vides sont également ignorées. Si `<replaceable>str</"
-"replaceable>` est un tableau, le résultat est un tableau de chaînes de "
-"caractères avec les remplacements appliqués."
+"Remplace les chaînes de caractères dans <replaceable>str</replaceable> à "
+"l'aide d'expressions régulières chargées depuis un fichier séparé par des "
+"tabulations. Le format du fichier est le suivant : une expression régulière "
+"par ligne : <literal>regex_pattern&lt;TAB&gt;replacement_string</literal>. "
+"La chaîne de remplacement peut inclure des références arrière ($1, $2, etc.) "
+"vers des groupes capturés. Les lignes commençant par <literal>#</literal> "
+"sont considérées comme des commentaires et ignorées. Les lignes vides sont "
+"également ignorées. Si <replaceable>str</replaceable> est un tableau, le "
+"résultat est un tableau de chaînes avec les remplacements appliqués."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><screen>
 #: English/Filters.xml:948
@@ -16107,10 +16154,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:958
-#, fuzzy
-#| msgid "normalizeUnicode(str[, form])"
 msgid "<function>normalizeUnicode</function>(str[, form])"
-msgstr "normalizeUnicode(str[, form])"
+msgstr "<function>normalizeUnicode</function>(str[, form])"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:961
@@ -16131,10 +16176,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:971
-#, fuzzy
-#| msgid "toLower(<replaceable>str</replaceable>)"
 msgid "<function>toLower</function>(<replaceable>str</replaceable>)"
-msgstr "toLower(<replaceable>str</replaceable>)"
+msgstr "<function>toLower</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:975
@@ -16151,10 +16194,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:983
-#, fuzzy
-#| msgid "toUpper(<replaceable>str</replaceable>)"
 msgid "<function>toUpper</function>(<replaceable>str</replaceable>)"
-msgstr "toUpper(<replaceable>str</replaceable>)"
+msgstr "<function>toUpper</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:987
@@ -16171,10 +16212,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:995
-#, fuzzy
-#| msgid "toHalfWidth(<replaceable>str</replaceable>)"
 msgid "<function>toHalfWidth</function>(<replaceable>str</replaceable>)"
-msgstr "toHalfWidth(<replaceable>str</replaceable>)"
+msgstr "<function>toHalfWidth</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:999
@@ -16186,16 +16225,14 @@ msgid ""
 msgstr ""
 "Convertit les caractères de pleine chasse (full-width) en caractères de demi-"
 "chasse (half-width). Principalement utilisé pour convertir les caractères "
-"alphanumériques et katakana de pleine chasse. Si <replaceable>str</"
-"replaceable> est un tableau, le résultat est un tableau de chaînes "
-"converties."
+"alphanumériques et katakana de pleine chasse en demi-chasse. Si "
+"<replaceable>str</replaceable> est un tableau, le résultat est un tableau de "
+"chaînes converties."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1007
-#, fuzzy
-#| msgid "toFullWidth(<replaceable>str</replaceable>)"
 msgid "<function>toFullWidth</function>(<replaceable>str</replaceable>)"
-msgstr "toFullWidth(<replaceable>str</replaceable>)"
+msgstr "<function>toFullWidth</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1011
@@ -16207,15 +16244,13 @@ msgid ""
 msgstr ""
 "Convertit les caractères de demi-chasse en caractères de pleine chasse. "
 "Principalement utilisé pour convertir les caractères alphanumériques et "
-"katakana de demi-chasse. Si <replaceable>str</replaceable> est un tableau, "
-"le résultat est un tableau de chaînes converties."
+"katakana de demi-chasse en pleine chasse. Si <replaceable>str</replaceable> "
+"est un tableau, le résultat est un tableau de chaînes converties."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1019
-#, fuzzy
-#| msgid "toKatakana(<replaceable>str</replaceable>)"
 msgid "<function>toKatakana</function>(<replaceable>str</replaceable>)"
-msgstr "toKatakana(<replaceable>str</replaceable>)"
+msgstr "<function>toKatakana</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1023
@@ -16230,10 +16265,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1031
-#, fuzzy
-#| msgid "toHiragana(<replaceable>str</replaceable>)"
 msgid "<function>toHiragana</function>(<replaceable>str</replaceable>)"
-msgstr "toHiragana(<replaceable>str</replaceable>)"
+msgstr "<function>toHiragana</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1035
@@ -16248,11 +16281,10 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1043
-#, fuzzy
-#| msgid "toSimplifiedChinese(<replaceable>str</replaceable>)"
 msgid ""
 "<function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)"
-msgstr "toSimplifiedChinese(<replaceable>str</replaceable>)"
+msgstr ""
+"<function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1047
@@ -16269,11 +16301,10 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1055
-#, fuzzy
-#| msgid "toTraditionalChinese(<replaceable>str</replaceable>)"
 msgid ""
 "<function>toTraditionalChinese</function>(<replaceable>str</replaceable>)"
-msgstr "toTraditionalChinese(<replaceable>str</replaceable>)"
+msgstr ""
+"<function>toTraditionalChinese</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1059
@@ -16290,10 +16321,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1066
-#, fuzzy
-#| msgid "<function>Tokenize...</function>"
 msgid "<function>now</function>()"
-msgstr "<function>Découper en jetons...</function>"
+msgstr "<function>now</function>()"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1067
@@ -16305,10 +16334,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1070
-#, fuzzy
-#| msgid "<function>Insert Date</function>"
 msgid "<function>today</function>()"
-msgstr "<function>Insérer la date</function>"
+msgstr "<function>today</function>()"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1071
@@ -16321,10 +16348,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1074
-#, fuzzy
-#| msgid "startOfWeek(<replaceable>timestamp</replaceable>)"
 msgid "<function>startOfWeek</function>(<replaceable>timestamp</replaceable>)"
-msgstr "startOfWeek(<replaceable>timestamp</replaceable>)"
+msgstr "<function>startOfWeek</function>(<replaceable>timestamp</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1075
@@ -16337,10 +16362,9 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1078
-#, fuzzy
-#| msgid "startOfMonth(<replaceable>timestamp</replaceable>)"
 msgid "<function>startOfMonth</function>(<replaceable>timestamp</replaceable>)"
-msgstr "startOfMonth(<replaceable>timestamp</replaceable>)"
+msgstr ""
+"<function>startOfMonth</function>(<replaceable>timestamp</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1079
@@ -16349,10 +16373,8 @@ msgstr "Renvoie le premier jour du mois."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1082
-#, fuzzy
-#| msgid "startOfYear(<replaceable>timestamp</replaceable>)"
 msgid "<function>startOfYear</function>(<replaceable>timestamp</replaceable>)"
-msgstr "startOfYear(<replaceable>timestamp</replaceable>)"
+msgstr "<function>startOfYear</function>(<replaceable>timestamp</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1083
@@ -16361,10 +16383,8 @@ msgstr "Renvoie le premier jour de l'année."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1086
-#, fuzzy
-#| msgid "toDateStr(<replaceable>timestamp</replaceable>)"
 msgid "<function>toDateStr</function>(<replaceable>timestamp</replaceable>)"
-msgstr "toDateStr(<replaceable>timestamp</replaceable>)"
+msgstr "<function>toDateStr</function>(<replaceable>timestamp</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1087
@@ -16379,10 +16399,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1090
-#, fuzzy
-#| msgid "abs(<replaceable>value</replaceable>)"
 msgid "<function>abs</function>(<replaceable>value</replaceable>)"
-msgstr "abs(<replaceable>value</replaceable>)"
+msgstr "<function>abs</function>(<replaceable>value</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1091
@@ -16391,16 +16409,14 @@ msgid ""
 "emphasis>. If <replaceable>value</replaceable> is an integer array, the "
 "result is an integer array."
 msgstr ""
-"Renvoie la valeur absolue de l'<emphasis>entier ou du tableau d'entiers</"
-"emphasis>. Si <replaceable>value</replaceable> est un tableau d'entiers, le "
-"résultat est un tableau d'entiers."
+"Renvoie la valeur absolue de l'entier ou du tableau d'entiers. Si "
+"<replaceable>value</replaceable> est un tableau d'entiers, le résultat est "
+"un tableau d'entiers."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1094
-#, fuzzy
-#| msgid "allof(<replaceable>booleans</replaceable>)"
 msgid "<function>allof</function>(<replaceable>booleans</replaceable>)"
-msgstr "allof(<replaceable>booleans</replaceable>)"
+msgstr "<function>allof</function>(<replaceable>booleans</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1095
@@ -16408,15 +16424,13 @@ msgid ""
 "Returns <literal>true</literal> if all elements in the <emphasis>boolean "
 "array</emphasis> satisfy the condition."
 msgstr ""
-"Renvoie <literal>true</literal> si tous les éléments du <emphasis>tableau de "
-"booléens</emphasis> satisfont à la condition."
+"Renvoie <literal>true</literal> si tous les éléments du tableau de booléens "
+"satisfont à la condition."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1098
-#, fuzzy
-#| msgid "allequal(<replaceable>array</replaceable>)"
 msgid "<function>allequal</function>(<replaceable>array</replaceable>)"
-msgstr "allequal(<replaceable>array</replaceable>)"
+msgstr "<function>allequal</function>(<replaceable>array</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1099
@@ -16426,16 +16440,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1102
-#, fuzzy
-#| msgid ""
-#| "isWithin(<replaceable>value</replaceable>, <replaceable>min</"
-#| "replaceable>, <replaceable>max</replaceable>)"
 msgid ""
 "<function>isWithin</function>(<replaceable>value</replaceable>, "
 "<replaceable>min</replaceable>, <replaceable>max</replaceable>)"
 msgstr ""
-"isWithin(<replaceable>value</replaceable>, <replaceable>min</replaceable>, "
-"<replaceable>max</replaceable>)"
+"<function>isWithin</function>(<replaceable>value</replaceable>, "
+"<replaceable>min</replaceable>, <replaceable>max</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1105
@@ -16487,16 +16497,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1119
-#, fuzzy
-#| msgid ""
-#| "inRange(<replaceable>value</replaceable>, <replaceable>min</replaceable>, "
-#| "<replaceable>max</replaceable>)"
 msgid ""
 "<function>inRange</function>(<replaceable>value</replaceable>, "
 "<replaceable>min</replaceable>, <replaceable>max</replaceable>)"
 msgstr ""
-"inRange(<replaceable>value</replaceable>, <replaceable>min</replaceable>, "
-"<replaceable>max</replaceable>)"
+"<function>inRange</function>(<replaceable>value</replaceable>, "
+"<replaceable>min</replaceable>, <replaceable>max</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1122
@@ -16545,12 +16551,6 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1136
-#, fuzzy
-#| msgid ""
-#| "logError(<replaceable>value1</replaceable>, <replaceable>value2</"
-#| "replaceable>, ...), logWarn(<replaceable>value1</replaceable>, "
-#| "<replaceable>value2</replaceable>, ...), logInfo(<replaceable>value1</"
-#| "replaceable>, <replaceable>value2</replaceable>, ...)"
 msgid ""
 "<function>logError</function>(<replaceable>value1</replaceable>, "
 "<replaceable>value2</replaceable>, ...), <function>logWarn</"
@@ -16558,9 +16558,10 @@ msgid ""
 "replaceable>, ...), <function>logInfo</function>(<replaceable>value1</"
 "replaceable>, <replaceable>value2</replaceable>, ...)"
 msgstr ""
-"logError(<replaceable>value1</replaceable>, <replaceable>value2</"
-"replaceable>, ...), logWarn(<replaceable>value1</replaceable>, "
-"<replaceable>value2</replaceable>, ...), logInfo(<replaceable>value1</"
+"<function>logError</function>(<replaceable>value1</replaceable>, "
+"<replaceable>value2</replaceable>, ...), <function>logWarn</"
+"function>(<replaceable>value1</replaceable>, <replaceable>value2</"
+"replaceable>, ...), <function>logInfo</function>(<replaceable>value1</"
 "replaceable>, <replaceable>value2</replaceable>, ...)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
@@ -16611,16 +16612,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1152
-#, fuzzy
-#| msgid ""
-#| "if(<replaceable>condition</replaceable>, <replaceable>trueValue</"
-#| "replaceable>, <replaceable>falseValue</replaceable>)"
 msgid ""
 "<function>if</function>(<replaceable>condition</replaceable>, "
 "<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)"
 msgstr ""
-"if(<replaceable>condition</replaceable>, <replaceable>trueValue</"
-"replaceable>, <replaceable>falseValue</replaceable>)"
+"<function>if</function>(<replaceable>condition</replaceable>, "
+"<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1155
@@ -16664,16 +16661,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1167
-#, fuzzy
-#| msgid ""
-#| "ifEach(<replaceable>conditionArray</replaceable>, <replaceable>trueValue</"
-#| "replaceable>, <replaceable>falseValue</replaceable>)"
 msgid ""
 "<function>ifEach</function>(<replaceable>conditionArray</replaceable>, "
 "<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)"
 msgstr ""
-"ifEach(<replaceable>conditionArray</replaceable>, <replaceable>trueValue</"
-"replaceable>, <replaceable>falseValue</replaceable>)"
+"<function>ifEach</function>(<replaceable>conditionArray</replaceable>, "
+"<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1170
@@ -16724,16 +16717,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1185
-#, fuzzy
-#| msgid ""
-#| "choose(<replaceable>index</replaceable>, <replaceable>value0</"
-#| "replaceable>, <replaceable>value1</replaceable>, ...)"
 msgid ""
 "<function>choose</function>(<replaceable>index</replaceable>, "
 "<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)"
 msgstr ""
-"choose(<replaceable>index</replaceable>, <replaceable>value0</replaceable>, "
-"<replaceable>value1</replaceable>, ...)"
+"<function>choose</function>(<replaceable>index</replaceable>, "
+"<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1188
@@ -16744,11 +16733,11 @@ msgid ""
 "replaceable>, etc.  Negative indices are clamped to 0. Indices beyond the "
 "last value return the last value."
 msgstr ""
-"Sélectionne une valeur parmi les arguments en fonction de "
-"l'<replaceable>index</replaceable>. Si l'<replaceable>index</replaceable> "
-"est 0, renvoie <replaceable>value0</replaceable> ; s'il est 1, renvoie "
-"<replaceable>value1</replaceable>, etc. Les indices négatifs sont ramenés à "
-"0. Les indices au-delà de la dernière valeur renvoient la dernière valeur."
+"Sélectionne une valeur parmi les arguments en fonction de l'index. Si "
+"l'index est 0, renvoie <replaceable>value0</replaceable> ; s'il est 1, "
+"renvoie <replaceable>value1</replaceable>, etc. Les indices négatifs sont "
+"ramenés à 0. Les indices au-delà de la dernière valeur renvoient la dernière "
+"valeur."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Filters.xml:1194
@@ -16779,16 +16768,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1201
-#, fuzzy
-#| msgid ""
-#| "chooseEach(<replaceable>indexArray</replaceable>, <replaceable>value0</"
-#| "replaceable>, <replaceable>value1</replaceable>, ...)"
 msgid ""
 "<function>chooseEach</function>(<replaceable>indexArray</replaceable>, "
 "<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)"
 msgstr ""
-"chooseEach(<replaceable>indexArray</replaceable>, <replaceable>value0</"
-"replaceable>, <replaceable>value1</replaceable>, ...)"
+"<function>chooseEach</function>(<replaceable>indexArray</replaceable>, "
+"<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1204
@@ -16832,21 +16817,16 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1217
-#, fuzzy
-#| msgid ""
-#| "andEach(<replaceable>value1</replaceable>, <replaceable>value2</"
-#| "replaceable>), orEach(<replaceable>value1</replaceable>, "
-#| "<replaceable>value2</replaceable>), notEach(<replaceable>value</"
-#| "replaceable>)"
 msgid ""
 "<function>andEach</function>(<replaceable>value1</replaceable>, "
 "<replaceable>value2</replaceable>), <function>orEach</"
 "function>(<replaceable>value1</replaceable>, <replaceable>value2</"
 "replaceable>), <function>notEach</function>(<replaceable>value</replaceable>)"
 msgstr ""
-"andEach(<replaceable>value1</replaceable>, <replaceable>value2</"
-"replaceable>), orEach(<replaceable>value1</replaceable>, "
-"<replaceable>value2</replaceable>), notEach(<replaceable>value</replaceable>)"
+"<function>andEach</function>(<replaceable>value1</replaceable>, "
+"<replaceable>value2</replaceable>), <function>orEach</"
+"function>(<replaceable>value1</replaceable>, <replaceable>value2</"
+"replaceable>), <function>notEach</function>(<replaceable>value</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1220
@@ -17223,6 +17203,8 @@ msgid ""
 "<literal>Different</literal> - Show only files/folders that are different "
 "(Display filter only)"
 msgstr ""
+"<literal>Different</literal> - Afficher uniquement les fichiers/dossiers qui "
+"sont différents (filtre d'affichage uniquement)"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Filters.xml:1287
@@ -17230,6 +17212,8 @@ msgid ""
 "<literal>Identical</literal> - Show only files/folders that are identical "
 "(Display filter only)"
 msgstr ""
+"<literal>Identical</literal> - Afficher uniquement les fichiers/dossiers qui "
+"sont identiques (filtre d'affichage uniquement)"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Filters.xml:1288
@@ -17237,6 +17221,8 @@ msgid ""
 "<literal>allof(Binary)</literal> - Show only files that are binary on all "
 "sides (Display filter only)"
 msgstr ""
+"<literal>allof(Binary)</literal> - Afficher uniquement les fichiers qui sont "
+"binaires de tous les côtés (filtre d'affichage uniquement)"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Filters.xml:1289
@@ -17245,6 +17231,9 @@ msgid ""
 "way comparison, show files where only left-middle pair differs (Display "
 "filter only)"
 msgstr ""
+"<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - Dans "
+"une comparaison à 3 voies, afficher les fichiers où seule la paire gauche-"
+"milieu diffère (filtre d'affichage uniquement)"
 
 #. type: Content of: <article><section><title>
 #: English/Filters.xml:1296
@@ -17436,7 +17425,7 @@ msgid ""
 "Proceed with the compare operation. The file in the <guilabel>Filter</"
 "guilabel> field is applied when you start the operation."
 msgstr ""
-"Procédez à l'opération de comparaison. Le fichier présent dans le champ "
+"Procédez à l'opération de comparaison. Le filtre présent dans le champ "
 "<guilabel>Filtre</guilabel> est appliqué au démarrage de l'opération."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -17599,7 +17588,7 @@ msgstr ""
 #: English/Filters.xml:1513
 #, no-wrap
 msgid "d: \\\\*$ ## Subfolders"
-msgstr "d: \\\\*$ ## Subfolders"
+msgstr "d: \\\\*$ ## Sous-dossiers"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
 #: English/Filters.xml:1519
@@ -20431,14 +20420,14 @@ msgstr ""
 "fenêtre de comparaison de fichiers de WinMerge n'a pas de volet de résultat "
 "distinct, contrairement à certains outils de fusion. La stratégie la plus "
 "simple consiste donc à enregistrer vos modifications dans un, deux ou trois "
-"fichiers sources. Appuyez sur <keycombo> <keycap>Ctrl</keycap> <keycap>S</"
-"keycap> </keycombo> à tout moment pour enregistrer les modifications "
-"actuelles dans tous les fichiers ; alternativement, cliquez sur <menuchoice> "
-"<guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à gauche</guimenuitem> </"
-"menuchoice>, <menuchoice> <guimenu>Fichier</guimenu> "
-"<guimenuitem>Enregistrer au milieu</guimenuitem> </menuchoice> ou "
-"<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à droite</"
-"guimenuitem> </menuchoice> pour n'enregistrer qu'un seul fichier."
+"fichiers sources. Appuyez sur <keycap>Ctrl</keycap> + <keycap>S</keycap> à "
+"tout moment pour enregistrer les modifications actuelles dans tous les "
+"fichiers ; alternativement, cliquez sur <menuchoice> <guimenu>Fichier</"
+"guimenu> <guimenuitem>Enregistrer à gauche</guimenuitem> </menuchoice>, "
+"<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer au milieu</"
+"guimenuitem> </menuchoice> ou <menuchoice> <guimenu>Fichier</guimenu> "
+"<guimenuitem>Enregistrer à droite</guimenuitem> </menuchoice> pour "
+"n'enregistrer qu'un seul fichier."
 
 #. type: Content of: <article><section><section><para>
 #: English/Intro_diffs.xml:436
@@ -21173,10 +21162,8 @@ msgstr "Ukrainien"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: English/Locales.xml:270
-#, fuzzy
-#| msgid "file names"
 msgid "Vietnamese"
-msgstr "noms de fichiers"
+msgstr "Vietnamien"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Locales.xml:277
@@ -21299,10 +21286,9 @@ msgid ""
 "dialog. This section provides more details, and some tips for using the "
 "Select Files or Folders dialog more efficiently."
 msgstr ""
-"La section <xref linkend=\"Quick_start\" /> décrit la boîte de dialogue "
-"Sélectionner des fichiers ou des dossiers. Cette section fournit plus de "
-"détails et quelques conseils pour utiliser cette boîte de dialogue plus "
-"efficacement."
+"<xref linkend=\"Quick_start\" /> décrit la boîte de dialogue Sélectionner "
+"des fichiers ou des dossiers. Cette section fournit plus de détails et "
+"quelques conseils pour utiliser cette boîte de dialogue plus efficacement."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Open_paths.xml:47
@@ -21626,8 +21612,8 @@ msgid ""
 "WinMerge opens the paths directly in the File Compare or Folder Compare "
 "window."
 msgstr ""
-"WinMerge ouvre les chemins directement dans la fenêtre de comparaison de "
-"fichiers ou de dossiers."
+"WinMerge s'ouvre directement dans la fenêtre de comparaison de fichiers ou "
+"de dossiers."
 
 #. type: Content of: <article><section><section><para>
 #: English/Open_paths.xml:196
@@ -21771,9 +21757,9 @@ msgid ""
 msgstr ""
 "Si vous cliquez sur <guimenuitem>Comparer</guimenuitem> avant d'avoir "
 "désigné le premier chemin, la boîte de dialogue Sélectionner des fichiers ou "
-"des dossiers s'ouvre, avec votre sélection en tant que premier "
-"(<guilabel>1er</guilabel>) chemin. Spécifiez le second chemin dans le champ "
-"<guilabel>2e</guilabel> pour poursuivre la comparaison."
+"des dossiers s'ouvre, avec votre sélection en tant premier (<guilabel>1er</"
+"guilabel>) chemin. Spécifiez le second chemin dans le champ <guilabel>2e</"
+"guilabel> pour poursuivre la comparaison."
 
 #. type: Content of: <article><section><section><para>
 #: English/Open_paths.xml:276
@@ -22731,7 +22717,7 @@ msgid ""
 "plugins."
 msgstr ""
 "Il existe des options WinMerge distinctes pour les types de décompactage et "
-"de prediffer, décrites plus loin dans cette rubrique, qui vous permettent "
+"de de prediffer, décrites plus loin dans cette rubrique, qui vous permettent "
 "d'appliquer les plug-ins soit manuellement, soit automatiquement. Il n'y a "
 "pas de mode automatique pour les plug-ins de complément d'éditeur."
 
@@ -22782,7 +22768,7 @@ msgid ""
 "menuchoice> and choose one of these functions:"
 msgstr ""
 "Le curseur étant placé dans l'un des volets de la fenêtre de comparaison de "
-"fichiers, cliquez sur <menuchoice> <guimenu>plug-ins</guimenu> "
+"fichiers, cliquez sur <menuchoice> <guimenu>Plug-ins</guimenu> "
 "<guisubmenu>Scripts</guisubmenu> </menuchoice> et choisissez l'une de ces "
 "fonctions :"
 
@@ -24215,21 +24201,15 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
 #: English/Plugins.xml:1482
-#, fuzzy
-#| msgid "DisassembleJVM plugin file"
 msgid "DecompileJVM plugin file"
-msgstr "Fichier du plug-in DisassembleJVM"
+msgstr "Fichier du plug-in DecompileJVM"
 
 #. type: Content of: <article><section><section><title>
 #: English/Plugins.xml:1481
-#, fuzzy
-#| msgid ""
-#| "<filename>DisassembleJVM<placeholder type=\"indexterm\" id=\"0\"/></"
-#| "filename>"
 msgid ""
 "<filename>DecompileJVM<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
-"<filename>DisassembleJVM<placeholder type=\"indexterm\" id=\"0\"/></filename>"
+"<filename>DecompileJVM<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:1485
@@ -24237,39 +24217,31 @@ msgid ""
 "Java decompiler with CFR - decompiles .class files into readable Java source "
 "code"
 msgstr ""
+"Décompilateur Java avec CFR - décompile les fichiers .class en code source "
+"Java lisible"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
 #: English/Plugins.xml:1488
-#, fuzzy
-#| msgid ""
-#| "<command>DisassembleJVM</command> <arg choice=\"opt\" "
-#| "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgid ""
 "<command>DecompileJVM</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
-"<command>DisassembleJVM</command> <arg choice=\"opt\" "
+"<command>DecompileJVM</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Plugins.xml:1498
-#, fuzzy
-#| msgid "Command line options passed to the dot command"
 msgid "Command line options passed to the CFR decompiler"
-msgstr "Options de ligne de commande passées à la commande dot"
+msgstr "Options de ligne de commande passées au décompilateur CFR"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
 #: English/Plugins.xml:1528
-#, fuzzy
-#| msgid ""
-#| "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</"
-#| "ulink>, <ulink url=\"https://tika.apache.org/\">Apache Tika</ulink>"
 msgid ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>, "
 "<ulink url=\"https://github.com/leibnitz27/cfr\">CFR</ulink>"
 msgstr ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>, "
-"<ulink url=\"https://tika.apache.org/\">Apache Tika</ulink>"
+"<ulink url=\"https://github.com/leibnitz27/cfr\">CFR</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
 #: English/Plugins.xml:1535
@@ -24379,7 +24351,7 @@ msgid ""
 "rep=\"norepeat\"><replaceable>command</replaceable></arg>"
 msgstr ""
 "<command>ExecFilterCommand</command> <arg choice=\"opt\" "
-"rep=\"norepeat\"><replaceable>command</replaceable></arg>"
+"rep=\"norepeat\"><replaceable>commande</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Plugins.xml:1661
@@ -24574,7 +24546,7 @@ msgid ""
 "rep=\"norepeat\"><replaceable>ranges</replaceable></arg>"
 msgstr ""
 "<command>SelectColumns</command> <arg choice=\"opt\" "
-"rep=\"norepeat\"><replaceable>ranges</replaceable></arg>"
+"rep=\"norepeat\"><replaceable>plages</replaceable></arg>"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
 #: English/Plugins.xml:2009
@@ -24585,12 +24557,12 @@ msgid ""
 msgstr ""
 "<command>SelectColumns</command> <arg><option>-v</option></arg> "
 "<arg><option>-i</option></arg> <arg><option>-g</option></arg> <arg><option>-"
-"e</option> <replaceable>patterns</replaceable></arg>"
+"e</option> <replaceable>motifs</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Plugins.xml:2023 English/Plugins.xml:2123
 msgid "<option><replaceable>ranges</replaceable></option>"
-msgstr "<option><replaceable>ranges</replaceable></option>"
+msgstr "<option><replaceable>plages</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Plugins.xml:2025
@@ -24600,7 +24572,7 @@ msgstr "liste des plages de colonnes à sélectionner (ex. -3,5-10,30-)"
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Plugins.xml:2030 English/Plugins.xml:2130 English/Plugins.xml:2287
 msgid "<option><replaceable>patterns</replaceable></option>"
-msgstr "<option><replaceable>patterns</replaceable></option>"
+msgstr "<option><replaceable>motifs</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Plugins.xml:2032 English/Plugins.xml:2132
@@ -25800,7 +25772,7 @@ msgstr ""
 "Si vous comparez un sous-dossier, son contenu remplace la vue actuelle. Pour "
 "revenir au dossier parent, double-cliquez sur la flèche vers le haut "
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> en haut de la colonne Nom "
-"du fichier."
+"de fichier."
 
 #. type: Content of: <article><section><para>
 #: English/Quick_start.xml:317
@@ -26741,8 +26713,7 @@ msgid ""
 msgstr ""
 "Lorsque vous comparez des fichiers dans TortoiseCVS, TortoiseSVN ou "
 "TortoiseGit, vous pouvez demander au VCS de lancer WinMerge. Certaines "
-"intégrations peuvent être configurées lors de l'<link "
-"linkend=\"Installing_usinginstaller\">installation de WinMerge</link>."
+"intégrations peuvent être configurées lors de l'installation de WinMerge."
 
 #. type: Content of: <article><section><section><example><para>
 #: English/Version_control.xml:76
@@ -27006,94 +26977,3 @@ msgstr ""
 msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "Cliquez sur <guibutton>OK</guibutton> pour fermer la boîte de dialogue."
-
-#~ msgid "replace(str, from, to)"
-#~ msgstr "replace(str, from, to)"
-
-#~ msgid "now()"
-#~ msgstr "now()"
-
-#~ msgid "today()"
-#~ msgstr "today()"
-
-#~ msgid "Exists"
-#~ msgstr "Exists"
-
-#~ msgid "BaseName"
-#~ msgstr "Nom de base (BaseName)"
-
-#~ msgid "Extension"
-#~ msgstr "Extension"
-
-#~ msgid "IsFolder"
-#~ msgstr "IsFolder"
-
-#~ msgid "RelPath"
-#~ msgstr "RelPath"
-
-#~ msgid "FullPath"
-#~ msgstr "FullPath"
-
-#~ msgid "DateStr"
-#~ msgstr "DateStr"
-
-#~ msgid "CreationTime"
-#~ msgstr "CreationTime"
-
-#~ msgid "AttrStr"
-#~ msgstr "AttrStr"
-
-#~ msgid "Content"
-#~ msgstr "Content"
-
-#~ msgid "Files"
-#~ msgstr "Files"
-
-#~ msgid "RecursiveFiles"
-#~ msgstr "RecursiveFiles"
-
-#~ msgid "Items"
-#~ msgstr "Éléments"
-
-#~ msgid "RecursiveItems"
-#~ msgstr "RecursiveItems"
-
-#~ msgid "TotalSize"
-#~ msgstr "TotalSize"
-
-#~ msgid "Prop"
-#~ msgstr "Prop"
-
-#~ msgid "LeftProp"
-#~ msgstr "LeftProp"
-
-#~ msgid "MiddleProp"
-#~ msgstr "MiddleProp"
-
-#~ msgid "RightProp"
-#~ msgstr "RightProp"
-
-#, fuzzy
-#~| msgid ""
-#~| "<literal>+</literal>, <literal>-</literal>, <literal>*</literal>, "
-#~| "<literal>/</literal>, <literal>%</literal>"
-#~ msgid ""
-#~ "<literal>@cs</literal>, <literal>@casesensitive</literal>, "
-#~ "<literal>@cs=true</literal>, <literal>@casesensitive=true</literal>, "
-#~ "<literal>@ci=false</literal>"
-#~ msgstr ""
-#~ "<literal>+</literal>, <literal>-</literal>, <literal>*</literal>, "
-#~ "<literal>/</literal>, <literal>%</literal>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<literal>+</literal>, <literal>-</literal>, <literal>*</literal>, "
-#~| "<literal>/</literal>, <literal>%</literal>"
-#~ msgid ""
-#~ "<literal>@ci</literal>, <literal>@caseinsensitive</literal>, "
-#~ "<literal>@ci=true</literal>, <literal>@cs=false</literal>, "
-#~ "<literal>@casesensitive=false</literal>, <literal>@caseinsensitive=false</"
-#~ "literal>"
-#~ msgstr ""
-#~ "<literal>+</literal>, <literal>-</literal>, <literal>*</literal>, "
-#~ "<literal>/</literal>, <literal>%</literal>"

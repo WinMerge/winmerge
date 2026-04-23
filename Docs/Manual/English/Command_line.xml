@@ -264,7 +264,7 @@
         <para>Specifies the type of window in which to display files.
         This can be one of the keywords <userinput>Text</userinput>,
         <userinput>Table</userinput>, <userinput>Binary</userinput>,
-        <userinput>Image</userinput> or <userinput>Webpage</userinput>.</para>
+        <userinput>Image</userinput>, <userinput>Webpage</userinput> or <userinput>Folder</userinput>.</para>
       </listitem>
     </varlistentry>
 
