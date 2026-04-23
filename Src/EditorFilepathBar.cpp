@@ -565,7 +565,6 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 
 	// Add Recent Files/Folders submenu
 	auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
-
 	if (!recentItems.empty())
 	{
 		CMenu recentMenu;
@@ -586,8 +585,7 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 	// Add Clipboard History submenu
 	// Cache clipboard items for consistency between menu display and selection
 	m_cachedClipboardItems = GetClipboardHistory(MAX_HISTORY_ITEMS);
-
-	if (!m_cachedClipboardItems.empty())
+	if (m_cachedClipboardItems.size() > 1)
 	{
 		CMenu clipboardMenu;
 		clipboardMenu.CreatePopupMenu();
