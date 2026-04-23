@@ -127,6 +127,8 @@ struct TreeSitterLineBlock
 {
     int nCharPos;
     int nColorIndex;
+    int nPriority;
+    uint32_t nOrder;
 };
 
 

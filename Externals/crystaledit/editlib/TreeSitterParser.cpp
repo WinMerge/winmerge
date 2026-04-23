@@ -19,10 +19,37 @@
 #include <sstream>
 #include <cassert>
 #include <algorithm>
+#include <climits>
+#include <cstring>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+namespace
+{
+bool HasCapturePrefix(const std::string& captureName, const char* prefix)
+{
+    const size_t prefixLen = strlen(prefix);
+    return captureName == prefix ||
+        (captureName.size() > prefixLen &&
+         captureName.compare(0, prefixLen, prefix) == 0 &&
+         captureName[prefixLen] == '.');
+}
+
+int CountCaptureSegments(const std::string& captureName)
+{
+    return static_cast<int>(std::count(captureName.begin(), captureName.end(), '.')) + 1;
+}
+
+int MakeCapturePriority(const std::string& captureName, uint32_t startByte, uint32_t endByte)
+{
+    const uint32_t span = (endByte > startByte) ? (endByte - startByte) : 0;
+    const int specificityScore = CountCaptureSegments(captureName) * 200000;
+    const int spanScore = 100000 - static_cast<int>(std::min<uint32_t>(span, 100000));
+    return specificityScore + spanScore;
+}
+}
 
 // ============================================================================
 // CTreeSitterColorMap
@@ -798,7 +825,7 @@ void CTreeSitterParser::RunLocalsQuery()
             uint32_t nodeStart = ts_node_start_byte(node);
             uint32_t nodeEnd = ts_node_end_byte(node);
 
-            if (sCapture == "local.scope")
+            if (HasCapturePrefix(sCapture, "local.scope"))
             {
                 // Check for #set! local.scope-inherits predicate
                 bool inherits = true;
@@ -812,7 +839,7 @@ void CTreeSitterParser::RunLocalsQuery()
                 scope.inherits = inherits;
                 m_localScopes.push_back(scope);
             }
-            else if (sCapture == "local.definition")
+            else if (HasCapturePrefix(sCapture, "local.definition"))
             {
                 // Extract the text of the definition node as the symbol name
                 if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
@@ -843,7 +870,7 @@ void CTreeSitterParser::RunLocalsQuery()
                     }
                 }
             }
-            else if (sCapture == "local.reference")
+            else if (HasCapturePrefix(sCapture, "local.reference"))
             {
                 if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
                 {
@@ -917,6 +944,8 @@ void CTreeSitterParser::RunHighlightQuery()
         uint32_t startByte;
         uint32_t endByte;
         int colorIndex;
+        int priority;
+        uint32_t order;
     };
     std::vector<HighlightEntry> highlights;
 
@@ -925,6 +954,7 @@ void CTreeSitterParser::RunHighlightQuery()
     // nodes with identical byte ranges should share the same highlight.
     std::unordered_map<uint64_t, int> nodeHighlightMap;
 
+    uint32_t blockOrder = 0;
     TSQueryMatch match;
     while (ts_query_cursor_next_match(pCursor, &match))
     {
@@ -953,6 +983,8 @@ void CTreeSitterParser::RunHighlightQuery()
             entry.startByte = nodeStartByte;
             entry.endByte = nodeEndByte;
             entry.colorIndex = colorIndex;
+            entry.priority = MakeCapturePriority(sName, nodeStartByte, nodeEndByte);
+            entry.order = blockOrder++;
 
             highlights.push_back(entry);
 
@@ -1071,6 +1103,8 @@ void CTreeSitterParser::RunHighlightQuery()
             TreeSitterLineBlock block;
             block.nCharPos = charPos;
             block.nColorIndex = h.colorIndex;
+            block.nPriority = h.priority;
+            block.nOrder = h.order;
             m_lineBlocks[row].push_back(block);
         }
 
@@ -1086,6 +1120,8 @@ void CTreeSitterParser::RunHighlightQuery()
             TreeSitterLineBlock endBlock;
             endBlock.nCharPos = endCharPos;
             endBlock.nColorIndex = COLORINDEX_NORMALTEXT;
+            endBlock.nPriority = INT_MIN;
+            endBlock.nOrder = h.order;
             m_lineBlocks[h.endRow].push_back(endBlock);
         }
     }
@@ -1128,6 +1164,7 @@ void CTreeSitterParser::RunInjectionQuery()
     };
     std::vector<InjectionRegion> injections;
 
+    uint32_t blockOrder = 0;
     TSQueryMatch match;
     while (ts_query_cursor_next_match(pCursor, &match))
     {
@@ -1286,6 +1323,9 @@ void CTreeSitterParser::RunInjectionQuery()
                             TreeSitterLineBlock block;
                             block.nCharPos = charPos;
                             block.nColorIndex = colorIndex;
+                            block.nPriority = MakeCapturePriority(sCapName,
+                                ts_node_start_byte(capNode), ts_node_end_byte(capNode));
+                            block.nOrder = blockOrder++;
                             m_lineBlocks[row].push_back(block);
                         }
                     }
@@ -1303,14 +1343,19 @@ void CTreeSitterParser::RunInjectionQuery()
 
 void CTreeSitterParser::BuildLineCache(int nLineCount)
 {
-    // Sort each line's blocks by character position and remove duplicates
+    // Sort each line's blocks by character position and deterministic precedence.
+    // For identical start positions, keep the most specific / shortest capture.
     for (int i = 0; i < nLineCount && i < static_cast<int>(m_lineBlocks.size()); i++)
     {
         auto& blocks = m_lineBlocks[i];
         std::sort(blocks.begin(), blocks.end(),
             [](const TreeSitterLineBlock& a, const TreeSitterLineBlock& b)
             {
-                return a.nCharPos < b.nCharPos;
+                if (a.nCharPos != b.nCharPos)
+                    return a.nCharPos < b.nCharPos;
+                if (a.nPriority != b.nPriority)
+                    return a.nPriority < b.nPriority;
+                return a.nOrder < b.nOrder;
             });
 
         // Remove consecutive entries at the same position (keep the last one,
@@ -1710,4 +1755,3 @@ std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) cons
     return String(pszType);
 #endif
 }
-
