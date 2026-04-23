@@ -5,10 +5,14 @@
  */
 #pragma once
 
+#include <tchar.h>
+#include <string>
+#include <vector>
 #include "parsers/crystallineparser.h"
-#include "TreeSitterParser.h"
 #include <map>
 #include <memory>
+
+using String = std::basic_string<TCHAR>;
 
 /**
  * @brief TreeSitter-based ParseLineX implementation
@@ -46,3 +50,7 @@ CrystalLineParser::TextDefinition* CreateTreeSitterTextDefinition(
  * @param pDef TextDefinition to free
  */
 void FreeTreeSitterTextDefinition(CrystalLineParser::TextDefinition* pDef);
+
+void* CreateTreeSitterParseContextForDiff(const String& filePath, const std::vector<String>& lines);
+void DestroyTreeSitterParseContextForDiff(void* parseContext);
+bool IsTreeSitterCommentPositionForDiff(void* parseContext, int nLineIndex, int nCharPos);

@@ -199,6 +199,8 @@ public:
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
 	CTreeSitterParser* GetTreeSitterParser(int nBuffer) { return m_pTreeSitterParsers[nBuffer].get(); }
 	CrystalLineParser::TextDefinition* GetTreeSitterTextDefinition(int nBuffer) { return m_pTreeSitterTextDefs[nBuffer].get(); }
+	bool IsTreeSitterEnabled() const;
+	void UpdateTreeSitterSupport();
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView* pLocationView) { m_pLocationView = pLocationView; }
@@ -490,4 +492,3 @@ inline bool CMergeDoc::HasSyncPoints()
 {
 	return m_bHasSyncPoints;
 }
-

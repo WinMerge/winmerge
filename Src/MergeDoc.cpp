@@ -65,6 +65,53 @@ int CMergeDoc::m_nBuffersTemp = 2;
 
 static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
 
+bool CMergeDoc::IsTreeSitterEnabled() const
+{
+	return GetOptionsMgr()->GetBool(OPT_TREE_SITTER);
+}
+
+void CMergeDoc::UpdateTreeSitterSupport()
+{
+	m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
+	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 0);
+	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 1);
+	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 2);
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_pTreeSitterTextDefs[nBuffer].reset();
+		m_pTreeSitterParsers[nBuffer].reset();
+		m_ptBuf[nBuffer]->SetParseContext(nullptr);
+	}
+
+	if (!IsTreeSitterEnabled())
+		return;
+
+	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
+	if (!registry.IsInitialized())
+		registry.Initialize();
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
+		const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(sExt.c_str());
+		if (pLang == nullptr || pLang->GetLanguage() == nullptr)
+			continue;
+
+		m_pTreeSitterParsers[nBuffer] = std::make_unique<CTreeSitterParser>();
+		m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
+		m_pTreeSitterParsers[nBuffer]->SetBuffer(m_ptBuf[nBuffer].get());
+		m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
+
+		m_pTreeSitterTextDefs[nBuffer].reset(CreateTreeSitterTextDefinition(sExt.c_str(), sExt.c_str(), nBuffer));
+		m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterParsers[nBuffer].get());
+		m_diffWrapper.SetFilterCommentsParseContext(m_pTreeSitterParsers[nBuffer].get(), nBuffer);
+	}
+
+	if (m_pTreeSitterTextDefs[0])
+		m_diffWrapper.SetFilterCommentsSourceDef(m_pTreeSitterTextDefs[0].get());
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
 
@@ -2462,44 +2509,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		}
 
-		// Initialize TreeSitter parsers and TextDefinitions for each pane
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		{
-			// Get file extension from each pane
-			String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-
-			// Initialize TreeSitterRegistry (if not already)
-			TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
-			if (!registry.IsInitialized())
-				registry.Initialize();
-
-			// Check if TreeSitter language is available
-			const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(sExt.c_str());
-			if (pLang != nullptr && pLang->GetLanguage() != nullptr)
-			{
-				// Create TreeSitter parser
-				m_pTreeSitterParsers[nBuffer].reset(new CTreeSitterParser());
-				m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
-
-				m_pTreeSitterParsers[nBuffer]->SetBuffer(m_ptBuf[nBuffer].get());
-
-				// Parse the document
-				m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
-
-				// Create TreeSitter TextDefinition
-				m_pTreeSitterTextDefs[nBuffer].reset(
-					CreateTreeSitterTextDefinition(sExt.c_str(), sExt.c_str(), nBuffer));
-
-				m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterParsers[nBuffer].get());
-			}
-		}
-
-		// Set TreeSitter TextDefinition from first pane to DiffWrapper (for comment filtering)
-		// Note: DiffWrapper can only hold one TextDefinition, so use the first pane
-		if (m_pTreeSitterTextDefs[0])
-		{
-			m_diffWrapper.SetFilterCommentsSourceDef(m_pTreeSitterTextDefs[0].get());
-		}
+		UpdateTreeSitterSupport();
 
 		// Set TreeSitter TextDefinition as syntax highlighting for each view
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -2632,6 +2642,7 @@ void CMergeDoc::RefreshOptions()
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
+	UpdateTreeSitterSupport();
 
 	// Refresh view options
 	ForEachView([](auto& pView) { pView->RefreshOptions(); });
@@ -3626,4 +3637,3 @@ std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
 	}
 	return list;
 }
-

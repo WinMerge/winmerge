@@ -106,6 +106,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_EDIT_GOTO_DEFINITION, OnGotoDefinition)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_GOTO_DEFINITION, OnUpdateGotoDefinition)
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
 	// [View] menu
@@ -3282,6 +3284,48 @@ void CMergeEditView::OnWMGoto()
 	}
 }
 
+void CMergeEditView::GotoTreeSitterDefinition()
+{
+	CMergeDoc* pDoc = GetDocument();
+	if (!pDoc->IsTreeSitterEnabled())
+		return;
+
+	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
+	if (!pParser || !pParser->HasLanguage())
+		return;
+
+	pParser->EnsureParsed(pDoc->m_ptBuf[m_nThisPane].get());
+
+	const CEPoint pos = GetCursorPos();
+	int nDefLine = 0;
+	int nDefChar = 0;
+	if (pParser->FindDefinition(pos.y, pos.x, nDefLine, nDefChar))
+		GotoLine(nDefLine, false, m_nThisPane, true, nDefChar);
+}
+
+void CMergeEditView::OnGotoDefinition()
+{
+	GotoTreeSitterDefinition();
+}
+
+void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pDoc = GetDocument();
+	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
+	if (!pDoc->IsTreeSitterEnabled() || !pParser || !pParser->HasLanguage())
+	{
+		pCmdUI->Enable(FALSE);
+		return;
+	}
+
+	pParser->EnsureParsed(pDoc->m_ptBuf[m_nThisPane].get());
+
+	const CEPoint pos = GetCursorPos();
+	int nDefLine = 0;
+	int nDefChar = 0;
+	pCmdUI->Enable(pParser->FindDefinition(pos.y, pos.x, nDefLine, nDefChar));
+}
+
 /**
 * @brief Called when "Go to Moved Line Between Left and Middle" item is selected.
 * Go to moved line between the left and right panes when in 2-way file comparison.
@@ -3446,6 +3490,8 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
+	else if (!GetDocument()->GetChangedSchemeManually() && GetDocument()->IsTreeSitterEnabled() && GetDocument()->GetTreeSitterTextDefinition(m_nThisPane) != nullptr)
+		SetTextType(GetDocument()->GetTreeSitterTextDefinition(m_nThisPane));
 	else if (!GetDocument()->GetChangedSchemeManually())
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.

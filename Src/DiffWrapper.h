@@ -9,6 +9,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "diff.h"
 #include "FileLocation.h"
 #include "PathContext.h"
@@ -291,4 +292,3 @@ inline void CDiffWrapper::SetAlternativePaths(const PathContext &altPaths)
 {
 	m_alternativePaths = altPaths;
 }
-

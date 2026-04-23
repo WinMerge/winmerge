@@ -16,6 +16,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DefineConstants>Debug;</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup>
+    <TreeSitterBuildDir Condition=" '$(Platform)' == 'x64' ">$(MSBuildProjectDirectory)\..\..\Build\x64\$(Configuration)\TreeSitterGrammars</TreeSitterBuildDir>
+    <TreeSitterBuildDir Condition=" '$(Platform)' == 'x86' ">$(MSBuildProjectDirectory)\..\..\Build\x86\$(Configuration)\TreeSitterGrammars</TreeSitterBuildDir>
+    <TreeSitterBuildDir Condition=" '$(Platform)' == 'ARM64' ">$(MSBuildProjectDirectory)\..\..\Build\ARM64\$(Configuration)\TreeSitterGrammars</TreeSitterBuildDir>
+  </PropertyGroup>
   <ItemGroup>
     <WixExtension Include="WixUIExtension">
       <HintPath>C:\Program Files (x86)\WiX Toolset v3.10\bin\WixUIExtension.dll</HintPath>
@@ -32,6 +37,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fragments\" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(TreeSitterBuildDir)')">
+    <HarvestDirectory Include="$(TreeSitterBuildDir)">
+      <ComponentGroupName>TreeSitterGrammarsFiles</ComponentGroupName>
+      <DirectoryRefId>TREESITTERGRAMMARSDIR</DirectoryRefId>
+      <SuppressCom>true</SuppressCom>
+      <SuppressRegistry>true</SuppressRegistry>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+      <AutogenerateGuids>true</AutogenerateGuids>
+    </HarvestDirectory>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
 </Project>

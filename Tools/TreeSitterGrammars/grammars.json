@@ -1,6 +1,6 @@
 {
   "grammars": [
-    { "repo": "ionide/tree-sitter-fsharp",           "tag": "0.2.2"   },
+    { "repo": "ionide/tree-sitter-fsharp",           "tag": "0.3.0"   },
     { "repo": "tree-sitter/tree-sitter-c",            "tag": "v0.24.1" },
     { "repo": "tree-sitter/tree-sitter-cpp",           "tag": "v0.23.4" },
     { "repo": "tree-sitter/tree-sitter-c-sharp",       "tag": "v0.23.1" },
