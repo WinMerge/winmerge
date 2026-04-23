@@ -296,10 +296,10 @@ void CImgMergeFrame::MoveOnLoad(int nPane, int)
 	m_pImgMergeWindow->SetActivePane(nPane);
 }
 
-void CImgMergeFrame::ChangeFile(int nBuffer, const String& path, const String& description)
+bool CImgMergeFrame::ChangeFile(int nBuffer, const String& path, const String& description)
 {
 	if (!PromptAndSaveIfNeeded(true))
-		return;
+		return false;
 
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
@@ -322,6 +322,8 @@ void CImgMergeFrame::ChangeFile(int nBuffer, const String& path, const String& d
 
 	UpdateHeaderPath(nBuffer);
 	UpdateLastCompareResult();
+
+	return true;
 }
 
 bool CImgMergeFrame::IsModified() const
@@ -576,8 +578,8 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		m_pImgMergeWindow->SetActivePane(pane);
 	});
 	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const String& sDescription) {
-		ChangeFile(pane, sFilepath, sDescription);
-		m_pImgMergeWindow->SetActivePane(pane);
+		if (ChangeFile(pane, sFilepath, sDescription))
+			m_pImgMergeWindow->SetActivePane(pane);
 	});
 	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
 		return GetRecentFiles(pane, maxCount, type);

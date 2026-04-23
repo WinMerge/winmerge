@@ -137,8 +137,8 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		GetView(pane)->SetFocus();
 	});
 	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const String& sDescription) {
-		m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription);
-		GetView(pane)->SetFocus();
+		if (m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription))
+			GetView(pane)->SetFocus();
 	});
 	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, IHeaderBar::RecentItemType type) {
 		return GetRecentFiles(pane, maxCount, type);
