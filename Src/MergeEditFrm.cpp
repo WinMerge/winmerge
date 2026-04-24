@@ -131,14 +131,14 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const String& sDescription) {
 		const int nGroup = m_pMergeDoc->GetActiveMergeView()->m_nThisGroup;
 		if (m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription))
+		{
 			m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
+			// Only add to MRU if description is empty (i.e., not from clipboard history)
+			if (sDescription.empty())
+				MruHelper::addToMru(pane, sFilepath);
+		}
 	});
-	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
-		return MruHelper::GetRecentFiles(pane, maxCount, type);
-	});
-	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		return ClipboardHistory::GetItems(maxCount, 1);
-	});
+	m_wndFilePathBar.SetDefaultHistoryCallbacks();
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	
 	// Set frame window handles so we can post stage changes back

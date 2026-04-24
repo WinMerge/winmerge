@@ -34,24 +34,15 @@ namespace MruHelper
 	void addToMru(int pane, const String& sItem, unsigned nMaxItems)
 	{
 		const TCHAR* szRegSubKey = GetRegSubKeyFromPane(pane);
-		if (szRegSubKey == nullptr)
+		if (!szRegSubKey)
 			return;
-
-		std::vector<String> list;
-		unsigned cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-		list.reserve(cnt);
-		for (unsigned i = 0; i < cnt; ++i)
-		{
-			const String s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
-			if (s != sItem)
-				list.push_back(s);
-		}
+		auto list = getMruList(pane, nMaxItems);
+		list.erase(std::remove(list.begin(), list.end(), sItem), list.end());
 		list.insert(list.begin(), sItem);
-		cnt = static_cast<unsigned>(list.size());
-		if (cnt > nMaxItems)
-			cnt = nMaxItems;
-		AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
-		for (unsigned i = 0; i < cnt; ++i)
+		if (list.size() > nMaxItems)
+			list.resize(nMaxItems);
+		AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), static_cast<unsigned>(list.size()));
+		for (unsigned i = 0; i < list.size(); ++i)
 			AfxGetApp()->WriteProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str(), list[i].c_str());
 	}
 

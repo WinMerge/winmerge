@@ -426,12 +426,7 @@ void CDirDoc::Rescan()
 		InitCompare(paths, m_pCtxt->m_bRecursive, nullptr);
 		Rescan();
 	});
-	pHeaderBar->SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
-		return MruHelper::GetRecentFiles(pane, maxCount, type);
-	});
-	pHeaderBar->SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		return ClipboardHistory::GetItems(maxCount, 1);
-	});
+	pHeaderBar->SetDefaultHistoryCallbacks();
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{
 		UpdateHeaderPath(nIndex);

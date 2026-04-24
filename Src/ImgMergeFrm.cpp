@@ -580,7 +580,12 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	});
 	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const String& sDescription) {
 		if (ChangeFile(pane, sFilepath, sDescription))
+		{
 			m_pImgMergeWindow->SetActivePane(pane);
+			// Only add to MRU if description is empty (i.e., not from clipboard history)
+			if (sDescription.empty())
+				MruHelper::addToMru(pane, sFilepath);
+		}
 	});
 	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
 		return MruHelper::GetRecentFiles(pane, maxCount, type);

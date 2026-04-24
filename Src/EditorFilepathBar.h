@@ -48,6 +48,7 @@ public:
 	virtual void EditActivePanePath() = 0;
 	virtual void SetOnGetRecentItemsCallback(const std::function<std::vector<RecentItem>(int pane, unsigned maxCount, RecentItemType type)> callbackfunc) = 0;
 	virtual void SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardItem>(unsigned maxCount)> callbackfunc) = 0;
+	virtual void SetDefaultHistoryCallbacks() = 0;
 };
 
 
@@ -88,6 +89,15 @@ public :
 	void SetOnGetRecentItemsCallback(const std::function<std::vector<MruHelper::RecentItem>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> callbackfunc) override;
 	void SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardHistory::Item>(unsigned maxCount)> callbackfunc) override;
 	void EditActivePanePath() override;
+	void SetDefaultHistoryCallbacks() override
+	{
+		SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
+			return MruHelper::GetRecentFiles(pane, maxCount, type);
+			});
+		SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
+			return ClipboardHistory::GetItems(maxCount, 1);
+			});
+	}
 
 protected:
 	//{{AFX_MSG(CEditorFilePathBar)
