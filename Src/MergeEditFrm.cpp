@@ -13,7 +13,8 @@
 
 #include "stdafx.h"
 #include "MergeEditFrm.h"
-#include "HistoryItemsHelper.h"
+#include "MruHelper.h"
+#include "ClipboardHistory.h"
 #include "FrameWndHelper.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
@@ -132,11 +133,11 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		if (m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription))
 			m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, HistoryItemsHelper::RecentItemType type) {
-		return HistoryItemsHelper::GetRecentFiles(pane, maxCount, type);
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
+		return MruHelper::GetRecentFiles(pane, maxCount, type);
 	});
 	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		return HistoryItemsHelper::GetClipboardHistoryItems(maxCount);
+		return ClipboardHistory::GetItems(maxCount, 1);
 	});
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	

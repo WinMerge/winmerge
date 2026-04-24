@@ -374,24 +374,24 @@ void CEditorFilePathBar::EditActivePanePath()
 		m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
 }
 
-void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<HistoryItemsHelper::RecentItem>(int pane, unsigned maxCount, HistoryItemsHelper::RecentItemType type)> callbackfunc)
+void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<MruHelper::RecentItem>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> callbackfunc)
 {
 	m_getRecentItemsCallbackfunc = callbackfunc;
 }
 
-void CEditorFilePathBar::SetOnGetClipboardHistoryCallback(const std::function<std::vector<HistoryItemsHelper::ClipboardItem>(unsigned maxCount)> callbackfunc)
+void CEditorFilePathBar::SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardHistory::Item>(unsigned maxCount)> callbackfunc)
 {
 	m_getClipboardHistoryCallbackfunc = callbackfunc;
 }
 
-std::vector<HistoryItemsHelper::RecentItem> CEditorFilePathBar::GetRecentItems(int pane, unsigned maxCount, HistoryItemsHelper::RecentItemType type) const
+std::vector<MruHelper::RecentItem> CEditorFilePathBar::GetRecentItems(int pane, unsigned maxCount, MruHelper::RecentItemType type) const
 {
 	if (m_getRecentItemsCallbackfunc)
 		return m_getRecentItemsCallbackfunc(pane, maxCount, type);
 	return {};
 }
 
-std::vector<HistoryItemsHelper::ClipboardItem> CEditorFilePathBar::GetClipboardHistory(unsigned maxCount) const
+std::vector<ClipboardHistory::Item> CEditorFilePathBar::GetClipboardHistory(unsigned maxCount) const
 {
 	if (m_getClipboardHistoryCallbackfunc)
 		return m_getClipboardHistoryCallbackfunc(maxCount);
@@ -516,11 +516,11 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 		int index = menuId - ID_EDITOR_RECENT_FIRST;
 
 		// Get the actual path from the stored recent items
-		HistoryItemsHelper::RecentItemType itemType = HistoryItemsHelper::RecentItemType::All;
+		MruHelper::RecentItemType itemType = MruHelper::RecentItemType::All;
 		if (m_Edit[pane].IsFileSelectionEnabled() && !m_Edit[pane].IsFolderSelectionEnabled())
-			itemType = HistoryItemsHelper::RecentItemType::FilesOnly;
+			itemType = MruHelper::RecentItemType::FilesOnly;
 		else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
-			itemType = HistoryItemsHelper::RecentItemType::FoldersOnly;
+			itemType = MruHelper::RecentItemType::FoldersOnly;
 
 		auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
 		if (index < static_cast<int>(recentItems.size()))
@@ -557,11 +557,11 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 	}
 
 	// Determine which type of items to show based on enabled callbacks
-	HistoryItemsHelper::RecentItemType itemType = HistoryItemsHelper::RecentItemType::All;
+	MruHelper::RecentItemType itemType = MruHelper::RecentItemType::All;
 	if (m_Edit[pane].IsFileSelectionEnabled() && !m_Edit[pane].IsFolderSelectionEnabled())
-		itemType = HistoryItemsHelper::RecentItemType::FilesOnly;
+		itemType = MruHelper::RecentItemType::FilesOnly;
 	else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
-		itemType = HistoryItemsHelper::RecentItemType::FoldersOnly;
+		itemType = MruHelper::RecentItemType::FoldersOnly;
 	// Add Recent Files/Folders submenu
 	auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
 	if (!recentItems.empty())

@@ -1,18 +1,14 @@
 /** 
- * @file  HistoryItemsHelper.cpp
+ * @file  MruHelper.cpp
  *
- * @brief Implementation of helper functions for recent items and clipboard history
+ * @brief Implementation of MRU (Most Recently Used) helper functions
  */
 #include "StdAfx.h"
-#include "HistoryItemsHelper.h"
-#include "ClipboardHistory.h"
-#include "locality.h"
-#include "unicoder.h"
-#include "UniFile.h"
+#include "MruHelper.h"
 #include "paths.h"
 #include <afxwin.h>
 
-namespace HistoryItemsHelper
+namespace MruHelper
 {
 	/**
 	 * @brief Convert pane index to registry subkey
@@ -125,66 +121,12 @@ namespace HistoryItemsHelper
 					item.title = path;
 			}
 
-			item.description = path;
 			items.push_back(item);
 
 			if (items.size() >= maxCount)
 				break;
 		}
 
-		return items;
-	}
-
-	/**
-	 * @brief Format clipboard description with timestamp
-	 */
-	String FormatClipboardDescription(time_t timestamp)
-	{
-		int64_t t = timestamp;
-		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
-		return strutils::format(_("Clipboard at %s"), timestr);
-	}
-
-	/**
-	 * @brief Get clipboard history for HeaderBar
-	 */
-	std::vector<ClipboardItem> GetClipboardHistoryItems(unsigned maxCount)
-	{
-		std::vector<ClipboardItem> items;
-
-		auto clipItems = ClipboardHistory::GetItems(maxCount, 1);
-		for (const auto& clipItem : clipItems)
-		{
-			ClipboardItem item;
-			item.timestamp = clipItem.timestamp;
-			item.pTextTempFile = clipItem.pTextTempFile;
-			item.pBitmapTempFile = clipItem.pBitmapTempFile;
-
-			// Create description like "Clipboard at 2026-01-23 12:34:56"
-			item.description = FormatClipboardDescription(clipItem.timestamp);
-
-			if (clipItem.pTextTempFile)
-			{
-				UniMemFile file;
-				if (file.OpenReadOnly(clipItem.pTextTempFile->GetPath()))
-				{
-					file.SetUnicoding(ucr::UTF8);
-					String line;
-					String eol;
-					// Read first line as preview
-					file.ReadString(line, eol, nullptr);
-					// Take first 260 characters as preview
-					strutils::replace_chars(line, _T("\t"), _T(" "));
-					if (line.length() > MAX_PATH)
-						item.previewText = line.substr(0, MAX_PATH) + _T("...");
-					else
-						item.previewText = line;
-					file.Close();
-				}
-			}
-
-			items.push_back(item);
-		}
 		return items;
 	}
 }

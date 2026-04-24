@@ -43,7 +43,8 @@
 #include "FolderCmp.h"
 #include "DirViewColItems.h"
 #include "RenameMoveDetection.h"
-#include "HistoryItemsHelper.h"
+#include "MruHelper.h"
+#include "ClipboardHistory.h"
 #include <Poco/Semaphore.h>
 #include <set>
 
@@ -425,11 +426,11 @@ void CDirDoc::Rescan()
 		InitCompare(paths, m_pCtxt->m_bRecursive, nullptr);
 		Rescan();
 	});
-	pHeaderBar->SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, HistoryItemsHelper::RecentItemType type) {
-		return HistoryItemsHelper::GetRecentFiles(pane, maxCount, type);
+	pHeaderBar->SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
+		return MruHelper::GetRecentFiles(pane, maxCount, type);
 	});
 	pHeaderBar->SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
-		return HistoryItemsHelper::GetClipboardHistoryItems(maxCount);
+		return ClipboardHistory::GetItems(maxCount, 1);
 	});
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{

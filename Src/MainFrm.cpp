@@ -77,6 +77,7 @@
 #include "TFile.h"
 #include "Shell.h"
 #include "ClipboardHistory.h"
+#include "MruHelper.h"
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
@@ -1614,11 +1615,11 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	if (dwFlags)
 	{
 		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-			HistoryItemsHelper::addToMru(0, tFiles[0]);
+			MruHelper::addToMru(0, tFiles[0]);
 		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-			HistoryItemsHelper::addToMru(1, tFiles[1]);
+			MruHelper::addToMru(1, tFiles[1]);
 		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-			HistoryItemsHelper::addToMru(2, tFiles[2]);
+			MruHelper::addToMru(2, tFiles[2]);
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
@@ -3128,7 +3129,7 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const fileopenf
 	for (int i = 0; i < nBuffers; ++i)
 	{
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
-			strDesc[i] : HistoryItemsHelper::FormatClipboardDescription(historyItems[nBuffers - i - 1].timestamp);
+			strDesc[i] : historyItems[nBuffers - i - 1].description;
 		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
 	}
 	for (int i = 0; i < 2; ++i)

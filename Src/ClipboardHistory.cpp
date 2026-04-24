@@ -9,6 +9,8 @@
 #include "ClipBoard.h"
 #include "Concurrent.h"
 #include "UniFile.h"
+#include "locality.h"
+#include "unicoder.h"
 
 #if __has_include(<winrt/windows.applicationmodel.datatransfer.h>) && _MSC_VER >= 1930
 
@@ -48,6 +50,13 @@ namespace ClipboardHistory
 			String text;
 			GetFromClipboard(text);
 			return text;
+		}
+
+		String FormatDescription(time_t timestamp)
+		{
+			int64_t t = timestamp;
+			String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
+			return strutils::format(_("Clipboard at %s"), timestr);
 		}
 
 #ifdef USE_WINRT
@@ -91,9 +100,23 @@ namespace ClipboardHistory
 						{
 							auto dataPackageView = items.GetAt(i).Content();
 							item.timestamp = winrt::clock::to_time_t(items.GetAt(i).Timestamp());
+							item.description = FormatDescription(item.timestamp);
+
 							if (dataPackageView.Contains(StandardDataFormats::Text()))
 							{
-								item.pTextTempFile = CreateTempTextFile(dataPackageView.GetTextAsync().get().c_str());
+								String text = dataPackageView.GetTextAsync().get().c_str();
+								item.pTextTempFile = CreateTempTextFile(text);
+
+								// Extract first line as preview text
+								String line = text;
+								size_t newlinePos = line.find_first_of(_T("\r\n"));
+								if (newlinePos != String::npos)
+									line = line.substr(0, newlinePos);
+								strutils::replace_chars(line, _T("\t"), _T(" "));
+								if (line.length() > MAX_PATH)
+									item.previewText = line.substr(0, MAX_PATH) + _T("...");
+								else
+									item.previewText = line;
 							}
 							if (dataPackageView.Contains(StandardDataFormats::Bitmap()))
 							{
@@ -106,7 +129,9 @@ namespace ClipboardHistory
 						}
 						catch (const winrt::hresult_error& e)
 						{
-							item.pTextTempFile = CreateTempTextFile(e.message().c_str());
+							String errorMsg = e.message().c_str();
+							item.pTextTempFile = CreateTempTextFile(errorMsg);
+							item.previewText = errorMsg;
 						}
 					}
 					else if (i < ensureMinCount)
@@ -115,9 +140,13 @@ namespace ClipboardHistory
 						auto& item = result.back();
 						if (i == 0)
 							time(&item.timestamp);
-						item.pTextTempFile = CreateTempTextFile(i == 0 ?
+						item.description = FormatDescription(item.timestamp);
+
+						String text = i == 0 ?
 							GetClipboardText() :
-							(!Clipboard::IsHistoryEnabled() ? _("Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on.") : _T("")));
+							(!Clipboard::IsHistoryEnabled() ? _("Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on.") : _T(""));
+						item.pTextTempFile = CreateTempTextFile(text);
+						item.previewText = text;
 					}
 				}
 			}
@@ -129,8 +158,11 @@ namespace ClipboardHistory
 					auto& item = result.back();
 					if (i == 0)
 						time(&item.timestamp);
-					item.pTextTempFile = CreateTempTextFile(
-						i == 0 ? GetClipboardText() : _("This system does not support clipboard history."));
+					item.description = FormatDescription(item.timestamp);
+
+					String text = i == 0 ? GetClipboardText() : _("This system does not support clipboard history.");
+					item.pTextTempFile = CreateTempTextFile(text);
+					item.previewText = text;
 				}
 			}
 #else
@@ -140,8 +172,11 @@ namespace ClipboardHistory
 				auto& item = result.back();
 				if (i == 0)
 					time(&item.timestamp);
-				item.pTextTempFile = CreateTempTextFile(
-					i == 0 ? GetClipboardText() : _("32-bit WinMerge does not support Clipboard Compare"));
+				item.description = FormatDescription(item.timestamp);
+
+				String text = i == 0 ? GetClipboardText() : _("32-bit WinMerge does not support Clipboard Compare");
+				item.pTextTempFile = CreateTempTextFile(text);
+				item.previewText = text;
 			}
 #endif
 			return result;
