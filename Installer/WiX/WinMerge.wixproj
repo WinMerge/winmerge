@@ -20,6 +20,7 @@
     <TreeSitterBuildDir Condition=" '$(Platform)' == 'x64' ">$(MSBuildProjectDirectory)\..\..\Build\x64\$(Configuration)\TreeSitterGrammars</TreeSitterBuildDir>
     <TreeSitterBuildDir Condition=" '$(Platform)' == 'x86' ">$(MSBuildProjectDirectory)\..\..\Build\x86\$(Configuration)\TreeSitterGrammars</TreeSitterBuildDir>
     <TreeSitterBuildDir Condition=" '$(Platform)' == 'ARM64' ">$(MSBuildProjectDirectory)\..\..\Build\ARM64\$(Configuration)\TreeSitterGrammars</TreeSitterBuildDir>
+    <DefineConstants Condition="Exists('$(TreeSitterBuildDir)')">$(DefineConstants)TreeSitterGrammarsFiles=1;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <WixExtension Include="WixUIExtension">

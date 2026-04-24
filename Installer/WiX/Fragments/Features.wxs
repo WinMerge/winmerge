@@ -16,7 +16,9 @@
       <ComponentRef Id="WinMergeU" />
       <ComponentRef Id="StartMenuShortcuts" />
       <ComponentRef Id="DesktopShortcut" />
+      <?ifdef TreeSitterGrammarsFiles ?>
       <ComponentGroupRef Id="TreeSitterGrammarsFiles" />
+      <?endif?>
       <Feature Id="ShellExtension" 
         AllowAdvertise="no" 
         Description="Explorer context menu integration" 

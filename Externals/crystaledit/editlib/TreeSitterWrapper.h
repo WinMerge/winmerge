@@ -5,14 +5,12 @@
  */
 #pragma once
 
-#include <tchar.h>
 #include <string>
 #include <vector>
 #include "parsers/crystallineparser.h"
+#include "../../Src/Common/UnicodeString.h"
 #include <map>
 #include <memory>
-
-using String = std::basic_string<TCHAR>;
 
 /**
  * @brief TreeSitter-based ParseLineX implementation
