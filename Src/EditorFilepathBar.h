@@ -29,7 +29,6 @@ class IHeaderBar
 public:
 
 	// Type aliases for convenience
-	using RecentItem = MruHelper::RecentItem;
 	using RecentItemType = MruHelper::RecentItemType;
 	using ClipboardItem = ClipboardHistory::Item;
 
@@ -46,7 +45,7 @@ public:
 	virtual void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath, const String& sDescription)> callbackfunc) = 0;
 	virtual void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) = 0;
 	virtual void EditActivePanePath() = 0;
-	virtual void SetOnGetRecentItemsCallback(const std::function<std::vector<RecentItem>(int pane, unsigned maxCount, RecentItemType type)> callbackfunc) = 0;
+	virtual void SetOnGetRecentItemsCallback(const std::function<std::vector<String>(int pane, unsigned maxCount, RecentItemType type)> callbackfunc) = 0;
 	virtual void SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardItem>(unsigned maxCount)> callbackfunc) = 0;
 	virtual void SetDefaultHistoryCallbacks() = 0;
 };
@@ -86,7 +85,7 @@ public :
 	void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) override;
 	void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath, const String& sDescription)> callbackfunc) override;
 	void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) override;
-	void SetOnGetRecentItemsCallback(const std::function<std::vector<MruHelper::RecentItem>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> callbackfunc) override;
+	void SetOnGetRecentItemsCallback(const std::function<std::vector<String>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> callbackfunc) override;
 	void SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardHistory::Item>(unsigned maxCount)> callbackfunc) override;
 	void EditActivePanePath() override;
 	void SetDefaultHistoryCallbacks() override
@@ -113,7 +112,7 @@ protected:
 
 private:
 	// Internal helper methods
-	std::vector<MruHelper::RecentItem> GetRecentItems(int pane, unsigned maxCount, MruHelper::RecentItemType type = MruHelper::RecentItemType::All) const;
+	std::vector<String> GetRecentItems(int pane, unsigned maxCount, MruHelper::RecentItemType type = MruHelper::RecentItemType::All) const;
 	std::vector<ClipboardHistory::Item> GetClipboardHistory(unsigned maxCount) const;
 	void OnRecentItemSelected(int pane, const String& path);
 	void OnClipboardItemSelected(int pane, int itemIndex);
@@ -128,7 +127,7 @@ private:
 	std::function<void(int, const String& sText)> m_captionChangedCallbackfunc;
 	std::function<void(int, const String& sFilepath, const String& sDescription)> m_fileSelectedCallbackfunc;
 	std::function<void(int, const String& sFolderpath)> m_folderSelectedCallbackfunc;
-	std::function<std::vector<MruHelper::RecentItem>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> m_getRecentItemsCallbackfunc;
+	std::function<std::vector<String>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> m_getRecentItemsCallbackfunc;
 	std::function<std::vector<ClipboardHistory::Item>(unsigned maxCount)> m_getClipboardHistoryCallbackfunc;
 	std::vector<std::shared_ptr<TempFile>> m_tempFiles; /**< Temp files from clipboard history */
 	std::vector<ClipboardHistory::Item> m_cachedClipboardItems; /**< Cached clipboard items for menu consistency */

@@ -25,7 +25,7 @@ msgstr ""
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5468
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5467
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 
@@ -258,7 +258,7 @@ msgid "&Previous Page"
 msgstr "Предыдущая страница"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:182 Merge.rc:190 Merge.rc:1242 Merge.rc:5337
+#: Merge.rc:182 Merge.rc:190 Merge.rc:1242 Merge.rc:5336
 msgid "&Next Page"
 msgstr "Следующая страница"
 
@@ -559,8 +559,8 @@ msgstr "Сохранить проект..."
 msgid "Recent Projects"
 msgstr "Недавние проекты"
 
-#. IDS_RECENT_FILES
-#: Merge.rc:338 Merge.rc:449 Merge.rc:664 Merge.rc:5249
+#. IDR_MERGEDOCTYPE
+#: Merge.rc:338 Merge.rc:449 Merge.rc:664
 msgid "Recent F&iles or Folders"
 msgstr "Недавние файлы и папки"
 
@@ -630,7 +630,7 @@ msgid "&Huge"
 msgstr "&Огромные значки"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5372
+#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5371
 msgid "Men&u Bar"
 msgstr "Панель меню"
 
@@ -3874,7 +3874,7 @@ msgid "Items compared:"
 msgstr "Обработано:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2537 Merge.rc:2857 Merge.rc:5343
+#: Merge.rc:2537 Merge.rc:2857 Merge.rc:5342
 msgid "&Close"
 msgstr "&Закрыть"
 
@@ -6008,7 +6008,7 @@ msgid "Unpacker"
 msgstr "Распаковщик"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4655 Merge.rc:4972 Merge.rc:5281
+#: Merge.rc:4655 Merge.rc:4972 Merge.rc:5280
 msgid "Prediffer"
 msgstr "Предсравнение"
 
@@ -7495,592 +7495,592 @@ msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
 
 #. IDS_CLIPBOARD_HISTORY
-#: Merge.rc:5250
+#: Merge.rc:5249
 msgid "Clipboard &History"
 msgstr ""
 
 #. IDS_SINGLEINSTANCE_STR2
-#: Merge.rc:5251
+#: Merge.rc:5250
 msgid "Allow only one instance; wait for termination"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED
-#: Merge.rc:5256
+#: Merge.rc:5255
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "Отключено"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
-#: Merge.rc:5257
+#: Merge.rc:5256
 msgid "Only on window activated"
 msgstr "Активно только в окне"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
-#: Merge.rc:5258
+#: Merge.rc:5257
 msgid "Immediately"
 msgstr "Незамедлительно"
 
 #. IDS_PLUGIN_ALL
-#: Merge.rc:5263
+#: Merge.rc:5262
 msgid "Al&l"
 msgstr "Все"
 
 #. IDS_PLUGIN_OTHERS
-#: Merge.rc:5264
+#: Merge.rc:5263
 msgid "&Others"
 msgstr "Другое"
 
-#: Merge.rc:5266
+#: Merge.rc:5265
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
 msgstr "Отсутствует имя плагина в конвейере: %1"
 
-#: Merge.rc:5268
+#: Merge.rc:5267
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
 msgstr "Отсутствует кавычка в конвейере плагинов: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
-#: Merge.rc:5269
+#: Merge.rc:5268
 #, c-format
 msgid "Plugin name '%1' already exists."
 msgstr "Имя плагина '%1' уже существует."
 
 #. IDS_PLUGIN_TITLE1
-#: Merge.rc:5270
+#: Merge.rc:5269
 msgid "Specify plugin arguments"
 msgstr "Укажите аргументы плагина"
 
-#: Merge.rc:5272
+#: Merge.rc:5271
 #, c-format
 msgid "Plugin not found or invalid: %1"
 msgstr "Плагин не найден или недействителен: %1"
 
 #. IDS_PLUGIN_NOT_UNPACK
-#: Merge.rc:5273
+#: Merge.rc:5272
 #, c-format
 msgid "'%1' is not an unpacker plugin"
 msgstr "'%1' не является плагином распаковщика"
 
 #. IDS_PLUGIN_NOT_PREDIFF
-#: Merge.rc:5274
+#: Merge.rc:5273
 #, c-format
 msgid "'%1' is not a prediffer plugin"
 msgstr "'%1' не является плагином предсравнения"
 
-#: Merge.rc:5276
+#: Merge.rc:5275
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr "Ошибка предсравнения '%1' с '%2'. Предсравнение отключено."
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
-#: Merge.rc:5277
+#: Merge.rc:5276
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr "Циклическая ссылка в конвейере плагина: %1"
 
 #. IDS_PLUGIN_TYPE1
-#: Merge.rc:5278
+#: Merge.rc:5277
 msgid "URL Handler"
 msgstr "Обработчик URL"
 
 #. IDS_PLUGIN_TYPE2
-#: Merge.rc:5279
+#: Merge.rc:5278
 msgid "File Unpacker"
 msgstr "Распаковщик файлов"
 
 #. IDS_PLUGIN_TYPE3
-#: Merge.rc:5280
+#: Merge.rc:5279
 msgid "File or Folder Unpacker"
 msgstr "Распаковщик файлов или папок"
 
 #. IDS_PLUGIN_TYPE5
-#: Merge.rc:5282
+#: Merge.rc:5281
 msgid "Alias for Unpacker"
 msgstr "Псевдоним для распаковщика"
 
 #. IDS_PLUGIN_TYPE6
-#: Merge.rc:5283
+#: Merge.rc:5282
 msgid "Alias for Prediffer"
 msgstr "Псевдоним для предсравнения"
 
 #. IDS_PLUGIN_TYPE7
-#: Merge.rc:5284
+#: Merge.rc:5283
 msgid "Alias for Editor script"
 msgstr "Псевдоним для редактора скриптов"
 
 #. IDS_PLUGIN_ALIAS_DESC
-#: Merge.rc:5285
+#: Merge.rc:5284
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
 msgstr "Псевдоним для конвейера плагина '%1'"
 
 #. IDS_PLUGIN_NEW_DESC
-#: Merge.rc:5286
+#: Merge.rc:5285
 msgid "New plugin description"
 msgstr "Создать описание плагина"
 
 #. IDS_PLUGIN_TARGETS_ALL
-#: Merge.rc:5287
+#: Merge.rc:5286
 msgid "All"
 msgstr "Все"
 
 #. IDS_PLUGIN_TARGETS_1ST
-#: Merge.rc:5288
+#: Merge.rc:5287
 msgid "1st"
 msgstr "1-й"
 
 #. IDS_PLUGIN_TARGETS_2ND
-#: Merge.rc:5289
+#: Merge.rc:5288
 msgid "2nd"
 msgstr "2-й"
 
 #. IDS_PLUGIN_TARGETS_3RD
-#: Merge.rc:5290
+#: Merge.rc:5289
 msgid "3rd"
 msgstr "3-й"
 
 #. IDS_PLUGIN_TARGETS_1ST_2ND
-#: Merge.rc:5291
+#: Merge.rc:5290
 msgid "1st and 2nd"
 msgstr "1-й и 2-й"
 
 #. IDS_PLUGIN_TARGETS_1ST_3RD
-#: Merge.rc:5292
+#: Merge.rc:5291
 msgid "1st and 3rd"
 msgstr "1-й и 3-й"
 
 #. IDS_PLUGIN_TARGETS_2ND_3RD
-#: Merge.rc:5293
+#: Merge.rc:5292
 msgid "2nd and 3rd"
 msgstr "2-й и 3-й"
 
 #. IDS_FILTER_APPLIED
-#: Merge.rc:5298
+#: Merge.rc:5297
 msgid "Filter applied"
 msgstr "Фильтр применен"
 
 #. IDS_FILTERMENU_COMPARE
-#: Merge.rc:5303
+#: Merge.rc:5302
 #, c-format
 msgid "Compare %1"
 msgstr "Сравнить %1"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
-#: Merge.rc:5304
+#: Merge.rc:5303
 msgid "&Filter by This Column"
 msgstr "Фильтр по этому столбцу"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
-#: Merge.rc:5305
+#: Merge.rc:5304
 msgid "&Filter by This Column..."
 msgstr "Фильтр по этому столбцу..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
-#: Merge.rc:5310
+#: Merge.rc:5309
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Буфер обмена в %s"
 
 #. IDS_CLIPBOARDHISTORY_DISABLED
-#: Merge.rc:5311
+#: Merge.rc:5310
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr "История буфера обмена отключена.\r\nЧтобы включить историю буфера обмена, нажмите Win+V, а затем кнопку 'включить'."
 
-#: Merge.rc:5313
+#: Merge.rc:5312
 msgid "This system does not support clipboard history."
 msgstr "Эта система не поддерживает историю буфера обмена."
 
-#: Merge.rc:5315
+#: Merge.rc:5314
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32-битная версия WinMerge не поддерживает Сравнение буфера обмена"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
-#: Merge.rc:5320
+#: Merge.rc:5319
 msgid "WebView2 runtime not installed. Download it?"
 msgstr "Не установлена среда выполнения WebView2. Загрузить?"
 
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
-#: Merge.rc:5325
+#: Merge.rc:5324
 msgid "New Text Compare"
 msgstr "Создать сравнение текста"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
-#: Merge.rc:5326
+#: Merge.rc:5325
 msgid "New Table Compare"
 msgstr "Создать сравнение таблиц"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
-#: Merge.rc:5327
+#: Merge.rc:5326
 msgid "New Binary Compare"
 msgstr "Создать двоичное сравнение"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
-#: Merge.rc:5328
+#: Merge.rc:5327
 msgid "New Image Compare"
 msgstr "Создать сравнение изображений"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
-#: Merge.rc:5329
+#: Merge.rc:5328
 msgid "New Webpage Compare"
 msgstr "Создать сравнение веб-страниц"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
-#: Merge.rc:5330
+#: Merge.rc:5329
 msgid "New Folder Compare"
 msgstr ""
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
-#: Merge.rc:5331
+#: Merge.rc:5330
 msgid "Clipboard Compare"
 msgstr "Сравнение буфера обмена"
 
 #. IDS_PREVIEWBAR_PRINT
-#: Merge.rc:5336
+#: Merge.rc:5335
 msgid "&Print..."
 msgstr "Печать..."
 
 #. IDS_PREVIEWBAR_PREVPAGE
-#: Merge.rc:5338
+#: Merge.rc:5337
 msgid "Pre&v Page"
 msgstr "Предыдущая страница"
 
 #. IDS_PREVIEWBAR_TWOPAGE
-#: Merge.rc:5339
+#: Merge.rc:5338
 msgid "&Two Page"
 msgstr "Две страницы"
 
 #. IDS_PREVIEWBAR_ONEPAGE
-#: Merge.rc:5340
+#: Merge.rc:5339
 msgid "&One Page"
 msgstr "Одна страница"
 
 #. IDS_PREVIEWBAR_ZOOMIN
-#: Merge.rc:5341
+#: Merge.rc:5340
 msgid "Zoom &In"
 msgstr "Увеличить"
 
 #. IDS_PREVIEWBAR_ZOOMOUT
-#: Merge.rc:5342
+#: Merge.rc:5341
 msgid "Zoom &Out"
 msgstr "Уменьшить"
 
 #. IDS_WEBPAGE_COMPARING
-#: Merge.rc:5348
+#: Merge.rc:5347
 msgid "Comparing..."
 msgstr "Сравнение..."
 
 #. IDS_WEBPAGE_ZOOM
-#: Merge.rc:5349
+#: Merge.rc:5348
 msgid "Zoom:"
 msgstr "Масштаб:"
 
 #. IDS_COPY_GRANULARITY_DIFFHUNK
-#: Merge.rc:5354
+#: Merge.rc:5353
 msgid "Diff hunk"
 msgstr "Отличающийся кусок"
 
 #. IDS_COPY_GRANULARITY_INLINE
-#: Merge.rc:5355
+#: Merge.rc:5354
 msgid "Inline diff"
 msgstr "Встроенное отличие"
 
 #. IDS_COPY_GRANULARITY_LINE
-#: Merge.rc:5356
+#: Merge.rc:5355
 msgid "Line"
 msgstr "Строка"
 
-#: Merge.rc:5357
+#: Merge.rc:5356
 msgid "Character"
 msgstr "Символ"
 
 #. ID_MICE_PREVDIFF
-#: Merge.rc:5362
+#: Merge.rc:5361
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr "\nПредыдущее отличие (Alt+Up)\n(Правая кнопка+Колесо вверх)\n(Alt+Колесо вверх)"
 
 #. ID_MICE_NEXTDIFF
-#: Merge.rc:5363
+#: Merge.rc:5362
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
 msgstr "\nСледующее отличие (Alt+Down)\n(Правая кнопка+Колесо вниз)\n(Alt+Колесо вниз)"
 
 #. ID_MICE_L2R
-#: Merge.rc:5364
+#: Merge.rc:5363
 msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
 msgstr "\nКопировать направо (Alt+Right)\n(Правая кнопка+Колесо вправо)\n(Alt+Колесо вправо)\n(Alt+Shift+Колесо вниз)"
 
 #. ID_MICE_R2L
-#: Merge.rc:5365
+#: Merge.rc:5364
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
 msgstr "\nКопировать налево (Alt+Left)\n(Правая кнопка+Колесо влево)\n(Alt+Колесо влево)\n(Alt+Shift+Колесо вверх)"
 
 #. ID_MICE_L2RNEXT
-#: Merge.rc:5366
+#: Merge.rc:5365
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
 msgstr "\nКопировать направо и перейти (Ctrl+Alt+Right)\n(Ctrl+Alt+Колесо вправо)\n(Ctrl+Alt+Shift+Колесо вниз)"
 
 #. ID_MICE_R2LNEXT
-#: Merge.rc:5367
+#: Merge.rc:5366
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)\n(Ctrl+Alt+Колесо влево)\n(Ctrl+Alt+Shift+Колесо вверх)"
 
 #. IDS_LOG_COMPARING_2
-#: Merge.rc:5377
+#: Merge.rc:5376
 #, c-format
 msgid "Comparing %1 with %2"
 msgstr "Сравнение %1 с %2"
 
 #. IDS_LOG_COMPARING_3
-#: Merge.rc:5378
+#: Merge.rc:5377
 #, c-format
 msgid "Comparing %1 with %2 and %3"
 msgstr "Сравнение %1 с %2 и %3"
 
 #. IDS_LOG_COMPARE_COMPLETED
-#: Merge.rc:5379
+#: Merge.rc:5378
 msgid "Comparison completed"
 msgstr "Сравнение завершено"
 
 #. IDS_LOG_COMPARE_ERROR_2
-#: Merge.rc:5380
+#: Merge.rc:5379
 #, c-format
 msgid "Failed to compare %1 with %2: "
 msgstr "Не удалось сравнить %1 с %2: "
 
 #. IDS_LOG_COMPARE_ERROR_3
-#: Merge.rc:5381
+#: Merge.rc:5380
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
 msgstr "Не удалось сравнить %1 с %2 и %3: "
 
 #. IDS_LOG_FILE_SAVED
-#: Merge.rc:5382
+#: Merge.rc:5381
 msgid "File saved"
 msgstr "Файл сохранен"
 
 #. IDS_LOG_COPYING_FILES
-#: Merge.rc:5383
+#: Merge.rc:5382
 msgid "Copying files..."
 msgstr "Копирование файлов..."
 
 #. IDS_LOG_MOVING_FILES
-#: Merge.rc:5384
+#: Merge.rc:5383
 msgid "Moving files..."
 msgstr "Перемещение файлов..."
 
 #. IDS_LOG_DELETING_FILES
-#: Merge.rc:5385
+#: Merge.rc:5384
 msgid "Deleting files..."
 msgstr "Удаление файлов..."
 
 #. IDS_LOG_RECYCLEBIN
-#: Merge.rc:5386
+#: Merge.rc:5385
 msgid "Recycle Bin"
 msgstr "Корзина"
 
 #. IDS_LOG_PERMANENTLY_DELETED
-#: Merge.rc:5387
+#: Merge.rc:5386
 msgid "Permanently deleted"
 msgstr "Удалено без возможности восстановления"
 
 #. IDS_LOG_FILEOPERATION_COMPLETED
-#: Merge.rc:5388
+#: Merge.rc:5387
 msgid "File operation completed successfully"
 msgstr "Файловая операция успешно завершена"
 
 #. IDS_LOG_FILEOPERATION_CANCELED
-#: Merge.rc:5389
+#: Merge.rc:5388
 msgid "File operation canceled"
 msgstr "Файловая операция отменена"
 
 #. IDS_FILTER_ERROR_NO_ERROR
-#: Merge.rc:5394
+#: Merge.rc:5393
 msgid "No error"
 msgstr "Ошибок нет"
 
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
-#: Merge.rc:5395
+#: Merge.rc:5394
 msgid "Filter expression is empty"
 msgstr "Пустое выражение фильтра"
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
-#: Merge.rc:5396
+#: Merge.rc:5395
 msgid "Unknown character in filter expression"
 msgstr "Неизвестный символ в выражении фильтра"
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
-#: Merge.rc:5397
+#: Merge.rc:5396
 msgid "Unterminated string literal"
 msgstr "Незаконченный литерал"
 
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
-#: Merge.rc:5398
+#: Merge.rc:5397
 msgid "Syntax error in filter expression"
 msgstr "Синтаксическая ошибка в выражении фильтра"
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
-#: Merge.rc:5399
+#: Merge.rc:5398
 msgid "Failed to parse filter expression"
 msgstr "Не удалось разобрать выражение фильтра"
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
-#: Merge.rc:5400
+#: Merge.rc:5399
 msgid "Invalid literal value"
 msgstr "Неверное значение литерала"
 
 #. IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION
-#: Merge.rc:5401
+#: Merge.rc:5400
 msgid "Invalid regular expression"
 msgstr "Неверное регулярное выражение"
 
 #. IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER
-#: Merge.rc:5402
+#: Merge.rc:5401
 msgid "Undefined identifier"
 msgstr "Неопределенный идентификатор"
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
-#: Merge.rc:5403
+#: Merge.rc:5402
 msgid "Invalid number of arguments"
 msgstr "Неверное количество аргументов"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
-#: Merge.rc:5404
+#: Merge.rc:5403
 msgid "Filter name not found"
 msgstr "Не найдено имя фильтра "
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
-#: Merge.rc:5405
+#: Merge.rc:5404
 msgid "Division by zero in filter expression"
 msgstr "Деление на ноль в выражении фильтра"
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
-#: Merge.rc:5406
+#: Merge.rc:5405
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
 #. IDS_FILTER_ERROR_INVALID_PROPERTY_NAME
-#: Merge.rc:5407
+#: Merge.rc:5406
 msgid "Invalid property name"
 msgstr "Неверное имя свойства"
 
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
-#: Merge.rc:5408
+#: Merge.rc:5407
 msgid "Invalid directive"
 msgstr "Неверная директива"
 
 #. IDS_FILTER_OP_EQUALS
-#: Merge.rc:5413
+#: Merge.rc:5412
 msgid "Equals"
 msgstr "Равно"
 
 #. IDS_FILTER_OP_NOT_EQUALS
-#: Merge.rc:5414
+#: Merge.rc:5413
 msgid "Does not equal"
 msgstr "Не равно"
 
 #. IDS_FILTER_OP_LESS_THAN
-#: Merge.rc:5415
+#: Merge.rc:5414
 msgid "Less than"
 msgstr "Меньше чем"
 
 #. IDS_FILTER_OP_LESS_EQUAL
-#: Merge.rc:5416
+#: Merge.rc:5415
 msgid "Less than or equal to"
 msgstr "Меньше или равно"
 
 #. IDS_FILTER_OP_GREATER_EQUAL
-#: Merge.rc:5417
+#: Merge.rc:5416
 msgid "Greater than or equal to"
 msgstr "Больше или равно"
 
 #. IDS_FILTER_OP_GREATER_THAN
-#: Merge.rc:5418
+#: Merge.rc:5417
 msgid "Greater than"
 msgstr "Больше чем"
 
 #. IDS_FILTER_OP_BETWEEN
-#: Merge.rc:5419
+#: Merge.rc:5418
 msgid "Between"
 msgstr "Между"
 
 #. IDS_FILTER_OP_NOT_BETWEEN
-#: Merge.rc:5420
+#: Merge.rc:5419
 msgid "Not Between"
 msgstr "Не между"
 
 #. IDS_FILTER_OP_CONTAINS
-#: Merge.rc:5421
+#: Merge.rc:5420
 msgid "Contains"
 msgstr "Содержит"
 
 #. IDS_FILTER_OP_NOT_CONTAINS
-#: Merge.rc:5422
+#: Merge.rc:5421
 msgid "Not Contains"
 msgstr "Не содержит"
 
 #. IDS_FILTER_OP_RECONTAINS
-#: Merge.rc:5423
+#: Merge.rc:5422
 msgid "Contains (regex)"
 msgstr "Содержит (regex)"
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
-#: Merge.rc:5424
+#: Merge.rc:5423
 msgid "Not Contains (regex)"
 msgstr "Не содержит (regex)"
 
 #. IDS_FILTER_OP_LIKE
-#: Merge.rc:5425
+#: Merge.rc:5424
 msgid "Match (wildcard)"
 msgstr "Совпадение (маска)"
 
 #. IDS_FILTER_OP_NOT_LIKE
-#: Merge.rc:5426
+#: Merge.rc:5425
 msgid "Not match (wildcard)"
 msgstr "Несовпадение (маска)"
 
 #. IDS_FILTER_OP_MATCHES
-#: Merge.rc:5427
+#: Merge.rc:5426
 msgid "Match (regex)"
 msgstr "Совпадение (regex)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
-#: Merge.rc:5428
+#: Merge.rc:5427
 msgid "Not match (regex)"
 msgstr "Несовпадение (regex)"
 
 #. IDS_COLORMODE_LIGHT
-#: Merge.rc:5433
+#: Merge.rc:5432
 msgid "Light"
 msgstr "Светлый"
 
 #. IDS_COLORMODE_DARK
-#: Merge.rc:5434
+#: Merge.rc:5433
 msgid "Dark"
 msgstr "Тёмный"
 
 #. IDS_COLORMODE_FOLLOWSYSTEM
-#: Merge.rc:5435
+#: Merge.rc:5434
 msgid "Follow system"
 msgstr "Системный"
 
 #. IDS_EXAMPLE
-#: Merge.rc:5440
+#: Merge.rc:5439
 #, c-format
 msgid "e.g. %1"
 msgstr "например, %1"
 
 #. IDS_DETECTED_PREVIOUS_CRASH
-#: Merge.rc:5445
+#: Merge.rc:5444
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge обнаружил предыдущий сбой. Пожалуйста, сообщите о нём, если это возможно."
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5450
+#: Merge.rc:5449
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 msgstr "# Список замены регулярных выражений\r\n# Формат: регулярное выражение<TAB>замена\r\n# Поддерживаются обратные ссылки типа $1, $2\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5451
+#: Merge.rc:5450
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr "# Список замены\r\n# Формат: поиск<TAB>замена\r\n# Строки, начинающиеся с #, игнорируются\r\n\r\nот1\tдо1\r\nот2\tдо2\r\n"
 

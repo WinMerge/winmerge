@@ -70,14 +70,14 @@ namespace MruHelper
 	/**
 	 * @brief Get recent files list for HeaderBar
 	 */
-	std::vector<RecentItem> GetRecentFiles(int pane, unsigned maxCount, RecentItemType type)
+	std::vector<String> GetRecentFiles(int pane, unsigned maxCount, RecentItemType type)
 	{
-		std::vector<RecentItem> items;
+		std::vector<String> items;
 
 		// Get MRU items from the specific pane
 		std::vector<String> allPaths = getMruList(pane, maxCount);
 
-		// Filter and create items
+		// Filter paths based on type
 		for (const auto& path : allPaths)
 		{
 			bool isFolder = paths::EndsWithSlash(path);
@@ -88,31 +88,7 @@ namespace MruHelper
 			if (type == RecentItemType::FoldersOnly && !isFolder)
 				continue;
 
-			RecentItem item;
-			item.path = path;
-
-			// Extract filename or folder name as title
-			if (isFolder)
-			{
-				// For folders, get the last directory name
-				String pathWithoutSlash = path.substr(0, path.length() - 1);
-				size_t pos = pathWithoutSlash.find_last_of(_T("\\/"));
-				if (pos != String::npos)
-					item.title = pathWithoutSlash.substr(pos + 1);
-				else
-					item.title = pathWithoutSlash;
-			}
-			else
-			{
-				// For files, get the filename
-				size_t pos = path.find_last_of(_T("\\/"));
-				if (pos != String::npos)
-					item.title = path.substr(pos + 1);
-				else
-					item.title = path;
-			}
-
-			items.push_back(item);
+			items.push_back(path);
 
 			if (items.size() >= maxCount)
 				break;

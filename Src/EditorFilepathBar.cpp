@@ -374,7 +374,7 @@ void CEditorFilePathBar::EditActivePanePath()
 		m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
 }
 
-void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<MruHelper::RecentItem>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> callbackfunc)
+void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<String>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> callbackfunc)
 {
 	m_getRecentItemsCallbackfunc = callbackfunc;
 }
@@ -384,7 +384,7 @@ void CEditorFilePathBar::SetOnGetClipboardHistoryCallback(const std::function<st
 	m_getClipboardHistoryCallbackfunc = callbackfunc;
 }
 
-std::vector<MruHelper::RecentItem> CEditorFilePathBar::GetRecentItems(int pane, unsigned maxCount, MruHelper::RecentItemType type) const
+std::vector<String> CEditorFilePathBar::GetRecentItems(int pane, unsigned maxCount, MruHelper::RecentItemType type) const
 {
 	if (m_getRecentItemsCallbackfunc)
 		return m_getRecentItemsCallbackfunc(pane, maxCount, type);
@@ -522,10 +522,10 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 		else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
 			itemType = MruHelper::RecentItemType::FoldersOnly;
 
-		auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
-		if (index < static_cast<int>(recentItems.size()))
+		auto recentPaths = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
+		if (index < static_cast<int>(recentPaths.size()))
 		{
-			OnRecentItemSelected(pane, recentItems[index].path);
+			OnRecentItemSelected(pane, recentPaths[index]);
 		}
 	}
 	// Handle clipboard history selection
@@ -563,21 +563,34 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 	else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
 		itemType = MruHelper::RecentItemType::FoldersOnly;
 	// Add Recent Files/Folders submenu
-	auto recentItems = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
-	if (!recentItems.empty())
+	auto recentPaths = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
+	if (!recentPaths.empty())
 	{
+		pPopup->AppendMenu(MF_SEPARATOR);
+
 		CMenu recentMenu;
 		recentMenu.CreatePopupMenu();
 		int ID = ID_EDITOR_RECENT_FIRST;
-		for (size_t i = 0; i < recentItems.size() && ID <= ID_EDITOR_RECENT_LAST; ++i, ++ID)
+		for (size_t i = 0; i < recentPaths.size() && ID <= ID_EDITOR_RECENT_LAST; ++i, ++ID)
 		{
-			String menuText = (i < 9) ?
-				strutils::format(_T("&%d %s"), static_cast<int>(i) + 1, recentItems[i].title.c_str()) :
-				strutils::format(_T("&%c %s"), 'a' + static_cast<int>(i) - 9, recentItems[i].title.c_str());
+			// Extract filename or folder name for display
+			String displayName;
+			if (paths::EndsWithSlash(recentPaths[i]))
+			{
+				// For folders, get the last directory name
+				String pathWithoutSlash = recentPaths[i].substr(0, recentPaths[i].length() - 1);
+				displayName = paths::FindFileName(pathWithoutSlash);
+			}
+			else
+			{
+				// For files, get the filename
+				displayName = paths::FindFileName(recentPaths[i]);
+			}
+
+			String menuText = strutils::format(_T("&%c %s"), "123456789abcdef"[i], displayName.c_str());
 			recentMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
 		}
-		pPopup->AppendMenu(MF_SEPARATOR);
-		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(recentMenu.m_hMenu), I18n::LoadString(IDS_RECENT_FILES).c_str());
+		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(recentMenu.m_hMenu), _("Recent F&iles or Folders").c_str());
 		recentMenu.Detach();
 	}
 
@@ -594,18 +607,17 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 			String prefix;
 			if (m_cachedClipboardItems[i].pBitmapTempFile)
 				prefix = _T("[") + _("Image") + _T("] ");
-			String preview = m_cachedClipboardItems[i].previewText;
-			if (preview.length() > 60)
-				preview = preview.substr(0, 57) + _T("...");
+			String displayName = m_cachedClipboardItems[i].previewText;
+			if (displayName.length() > 60)
+				displayName = displayName.substr(0, 57) + _T("...");
 			// Replace newlines with spaces for menu display
-			std::replace(preview.begin(), preview.end(), '\n', ' ');
-			std::replace(preview.begin(), preview.end(), '\r', ' ');
+			std::replace(displayName.begin(), displayName.end(), '\n', ' ');
+			std::replace(displayName.begin(), displayName.end(), '\r', ' ');
 
-			String menuText = strutils::format(_T("&%d %s%s"),
-				static_cast<int>(i) + 1, prefix.c_str(), preview.c_str());
+			String menuText = strutils::format(_T("&%c %s"), "123456789abcdef"[i], displayName.c_str());
 			clipboardMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
 		}
-		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(clipboardMenu.m_hMenu), I18n::LoadString(IDS_CLIPBOARD_HISTORY).c_str());
+		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(clipboardMenu.m_hMenu), _("Clipboard &History").c_str());
 		clipboardMenu.Detach();
 	}
 
