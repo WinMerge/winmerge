@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-04-19 15:03+0200\n"
+"PO-Revision-Date: 2026-04-25 18:35+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -6139,7 +6139,7 @@ msgstr "Datei nicht gefunden: %1"
 #: Merge.rc:4439
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "Ordner nicht gefunden: %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4440
@@ -8611,7 +8611,7 @@ msgstr "Nur eine Instanz zulassen"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5249
 msgid "Clipboard &History"
-msgstr ""
+msgstr "Zwisc&henablageverlauf"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5250
