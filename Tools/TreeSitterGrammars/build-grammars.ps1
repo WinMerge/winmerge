@@ -252,6 +252,7 @@ function Build-GrammarDll {
         [string]$RepoDir,
         [string[]]$HighlightsScm,
         [string[]]$LocalsScm,
+        [string[]]$TagsScm,
         [string[]]$InjectionsScm,
         [string]$DllName
     )
@@ -313,6 +314,9 @@ function Build-GrammarDll {
     }
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-locals.scm") -SourcePaths $LocalsScm) {
         Write-Host "  Bundled locals -> $GrammarName-locals.scm"
+    }
+    if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-tags.scm") -SourcePaths $TagsScm) {
+        Write-Host "  Bundled tags -> $GrammarName-tags.scm"
     }
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-injections.scm") -SourcePaths $InjectionsScm) {
         Write-Host "  Bundled injections -> $GrammarName-injections.scm"
@@ -378,10 +382,11 @@ foreach ($entry in $config.grammars) {
         # matching files are bundled in order so inherited queries are kept.
         $hlScm = Resolve-QueryFiles -QuerySpec $g.highlights -SourceDir $sourceDir -RepoDir $repoDir -CacheBaseDir $TempBase -FallbackRelativePath "queries\highlights.scm"
         $lcScm = Resolve-QueryFiles -QuerySpec $g.locals -SourceDir $sourceDir -RepoDir $repoDir -CacheBaseDir $TempBase -FallbackRelativePath "queries\locals.scm"
+        $tgScm = Resolve-QueryFiles -QuerySpec $g.tags -SourceDir $sourceDir -RepoDir $repoDir -CacheBaseDir $TempBase -FallbackRelativePath "queries\tags.scm"
         $ijScm = Resolve-QueryFiles -QuerySpec $g.injections -SourceDir $sourceDir -RepoDir $repoDir -CacheBaseDir $TempBase -FallbackRelativePath "queries\injections.scm"
 
         Write-Host "  Grammar: $gName (path: $gPath)"
-        $ok = Build-GrammarDll -GrammarName $gName -SourceDir $sourceDir -RepoDir $repoDir -HighlightsScm $hlScm -LocalsScm $lcScm -InjectionsScm $ijScm -DllName $dllName
+        $ok = Build-GrammarDll -GrammarName $gName -SourceDir $sourceDir -RepoDir $repoDir -HighlightsScm $hlScm -LocalsScm $lcScm -TagsScm $tgScm -InjectionsScm $ijScm -DllName $dllName
         if ($ok) { $succeeded++ } else { $failed++ }
     }
     Write-Host ""

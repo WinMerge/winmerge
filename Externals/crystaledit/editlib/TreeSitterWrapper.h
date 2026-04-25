@@ -5,8 +5,10 @@
  */
 #pragma once
 
+#include <string>
+#include <vector>
 #include "parsers/crystallineparser.h"
-#include "TreeSitterParser.h"
+#include "../../Src/Common/UnicodeString.h"
 #include <map>
 #include <memory>
 
@@ -46,3 +48,7 @@ CrystalLineParser::TextDefinition* CreateTreeSitterTextDefinition(
  * @param pDef TextDefinition to free
  */
 void FreeTreeSitterTextDefinition(CrystalLineParser::TextDefinition* pDef);
+
+void* CreateTreeSitterParseContextForDiff(const String& filePath, const std::vector<String>& lines);
+void DestroyTreeSitterParseContextForDiff(void* parseContext);
+bool IsTreeSitterCommentPositionForDiff(void* parseContext, int nLineIndex, int nCharPos);

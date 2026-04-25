@@ -180,6 +180,7 @@ CTreeSitterLanguage::CTreeSitterLanguage()
     , m_pLanguage(nullptr)
     , m_pHighlightQuery(nullptr)
     , m_pLocalsQuery(nullptr)
+    , m_pTagsQuery(nullptr)
     , m_pInjectionQuery(nullptr)
 {
 }
@@ -190,6 +191,8 @@ CTreeSitterLanguage::~CTreeSitterLanguage()
         ts_query_delete(m_pHighlightQuery);
     if (m_pLocalsQuery)
         ts_query_delete(m_pLocalsQuery);
+    if (m_pTagsQuery)
+        ts_query_delete(m_pTagsQuery);
     if (m_pInjectionQuery)
         ts_query_delete(m_pInjectionQuery);
     if (m_hDll)
@@ -275,6 +278,11 @@ bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstri
     std::wstring sLocalsPath = sGrammarDir + L"\\" + sLanguage + L"-locals.scm";
     m_pLocalsQuery = LoadQuery(sLocalsPath);
 
+    // Load tags query (.scm file) - optional
+    // Expected name: <language>-tags.scm (e.g. python-tags.scm)
+    std::wstring sTagsPath = sGrammarDir + L"\\" + sLanguage + L"-tags.scm";
+    m_pTagsQuery = LoadQuery(sTagsPath);
+
     // Load injection query (.scm file) - optional
     // Expected name: <language>-injections.scm (e.g. html-injections.scm)
     std::wstring sInjectionPath = sGrammarDir + L"\\" + sLanguage + L"-injections.scm";
@@ -341,6 +349,9 @@ void CTreeSitterParser::Invalidate()
     m_documentText.clear();
     m_localScopes.clear();
     m_localRefHighlights.clear();
+    m_pendingRefs.clear();
+    m_tagDefs.clear();
+    m_tagRefs.clear();
     m_nLineCount = 0;
     m_nextBlockOrder = 0;
     m_bDirty = false;
@@ -415,9 +426,11 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
         m_nextBlockOrder = 0;
         // 1. Run locals query first to build scope/def/ref information
         RunLocalsQuery();
-        // 2. Run highlight query (uses locals info for scope-aware coloring)
+        // 2. Run tags query for same-file symbol definitions/references
+        RunTagsQuery();
+        // 3. Run highlight query (uses locals info for scope-aware coloring)
         RunHighlightQuery();
-        // 3. Run injection query to handle embedded languages
+        // 4. Run injection query to handle embedded languages
         RunInjectionQuery();
         BuildLineCache(nLineCount);
     }
@@ -780,6 +793,104 @@ std::string CTreeSitterParser::GetSetProperty(const TSQuery* pQuery,
     return std::string();
 }
 
+void CTreeSitterParser::RunTagsQuery()
+{
+    m_tagDefs.clear();
+    m_tagRefs.clear();
+
+    if (!m_pTree || !m_pLang || !m_pLang->GetTagsQuery())
+        return;
+
+    const TSQuery* pQuery = m_pLang->GetTagsQuery();
+    TSNode rootNode = ts_tree_root_node(m_pTree);
+
+    TSQueryCursor* pCursor = ts_query_cursor_new();
+    if (!pCursor)
+        return;
+
+    ts_query_cursor_exec(pCursor, pQuery, rootNode);
+
+    TSQueryMatch match;
+    while (ts_query_cursor_next_match(pCursor, &match))
+    {
+        std::string name;
+        uint32_t nameStart = 0;
+        uint32_t nameEnd = 0;
+        bool hasName = false;
+
+        struct Range
+        {
+            uint32_t startByte;
+            uint32_t endByte;
+        };
+        std::vector<Range> defs;
+        std::vector<Range> refs;
+
+        for (uint16_t i = 0; i < match.capture_count; ++i)
+        {
+            TSQueryCapture capture = match.captures[i];
+            TSNode node = capture.node;
+
+            uint32_t captureNameLen = 0;
+            const char* captureName = ts_query_capture_name_for_id(
+                pQuery, capture.index, &captureNameLen);
+            std::string sCapture(captureName, captureNameLen);
+
+            const uint32_t nodeStart = ts_node_start_byte(node);
+            const uint32_t nodeEnd = ts_node_end_byte(node);
+
+            if (sCapture == "name")
+            {
+                if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
+                {
+                    name = m_documentText.substr(nodeStart, nodeEnd - nodeStart);
+                    nameStart = nodeStart;
+                    nameEnd = nodeEnd;
+                    hasName = true;
+                }
+            }
+            else if (HasCapturePrefix(sCapture, "definition"))
+            {
+                defs.push_back({ nodeStart, nodeEnd });
+            }
+            else if (HasCapturePrefix(sCapture, "reference"))
+            {
+                refs.push_back({ nodeStart, nodeEnd });
+            }
+        }
+
+        if (!hasName)
+            continue;
+
+        if (defs.empty() && !refs.empty())
+        {
+            for (const auto& ref : refs)
+            {
+                const bool useNameRange =
+                    nameStart >= ref.startByte && nameEnd <= ref.endByte;
+                m_tagRefs.push_back({
+                    name,
+                    useNameRange ? nameStart : ref.startByte,
+                    useNameRange ? nameEnd : ref.endByte,
+                });
+            }
+        }
+
+        for (const auto& def : defs)
+        {
+            const bool useNameRange =
+                nameStart >= def.startByte && nameEnd <= def.endByte;
+            m_tagDefs.push_back({
+                name,
+                useNameRange ? nameStart : def.startByte,
+                useNameRange ? nameEnd : def.endByte,
+            });
+        }
+    }
+
+    ts_query_cursor_delete(pCursor);
+}
+
 /**
  * @brief Run the locals query to build scope/definition/reference information.
  *
@@ -1074,9 +1185,6 @@ void CTreeSitterParser::RunHighlightQuery()
                 h.colorIndex = it->second;
         }
     }
-
-    // Clear pending refs (no longer needed)
-    m_pendingRefs.clear();
 
     // Sort by start position (row, then column)
     std::sort(highlights.begin(), highlights.end(),
@@ -1731,8 +1839,7 @@ std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) cons
 
     // Get the tree-sitter node at this byte position
     TSNode rootNode = ts_tree_root_node(m_pTree);
-    TSPoint point = { static_cast<uint32_t>(nLineIndex), byteOffset };
-    TSNode node = ts_node_descendant_for_point_range(rootNode, point, point);
+    TSNode node = ts_node_descendant_for_byte_range(rootNode, byteOffset, byteOffset);
 
     if (ts_node_is_null(node))
         return _T("");
@@ -1754,4 +1861,224 @@ std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) cons
 #else
     return String(pszType);
 #endif
+}
+
+bool CTreeSitterParser::IsCommentPosition(int nLineIndex, int nCharPos) const
+{
+    const std::wstring sNodeType = GetNodeTypeAt(nLineIndex, nCharPos);
+    return sNodeType.find(L"comment") != std::wstring::npos;
+}
+
+bool CTreeSitterParser::TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const
+{
+    for (const auto& scope : m_localScopes)
+    {
+        for (const auto& def : scope.defs)
+        {
+            if (byteOffset >= def.startByte && byteOffset < def.endByte)
+            {
+                defStartByte = def.startByte;
+                defEndByte = def.endByte;
+                return true;
+            }
+        }
+    }
+
+    for (const auto& ref : m_pendingRefs)
+    {
+        if (byteOffset < ref.startByte || byteOffset >= ref.endByte)
+            continue;
+
+        std::vector<const LocalScope*> enclosingScopes;
+        for (const auto& scope : m_localScopes)
+        {
+            if (ref.startByte >= scope.startByte && ref.endByte <= scope.endByte)
+                enclosingScopes.push_back(&scope);
+        }
+
+        std::sort(enclosingScopes.begin(), enclosingScopes.end(),
+            [](const LocalScope* a, const LocalScope* b)
+            {
+                return (a->endByte - a->startByte) < (b->endByte - b->startByte);
+            });
+
+        for (const auto* pScope : enclosingScopes)
+        {
+            for (const auto& def : pScope->defs)
+            {
+                if (def.name == ref.name && def.startByte <= ref.startByte)
+                {
+                    defStartByte = def.startByte;
+                    defEndByte = def.endByte;
+                    return true;
+                }
+            }
+            if (!pScope->inherits)
+                break;
+        }
+
+        return false;
+    }
+
+    for (const auto& def : m_tagDefs)
+    {
+        if (byteOffset >= def.startByte && byteOffset < def.endByte)
+        {
+            defStartByte = def.startByte;
+            defEndByte = def.endByte;
+            return true;
+        }
+    }
+
+    for (const auto& ref : m_tagRefs)
+    {
+        if (byteOffset < ref.startByte || byteOffset >= ref.endByte)
+            continue;
+
+        const TagDef* pBestDef = nullptr;
+        for (const auto& def : m_tagDefs)
+        {
+            if (def.name != ref.name)
+                continue;
+            if (!pBestDef || def.startByte < pBestDef->startByte)
+                pBestDef = &def;
+        }
+
+        if (pBestDef)
+        {
+            defStartByte = pBestDef->startByte;
+            defEndByte = pBestDef->endByte;
+            return true;
+        }
+
+        return false;
+    }
+
+    return false;
+}
+
+bool CTreeSitterParser::ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const
+{
+    uint32_t currentOffset = 0;
+    for (int i = 0; i < static_cast<int>(m_lineUtf8.size()); ++i)
+    {
+        const std::string& utf8Line = m_lineUtf8[i];
+        const uint32_t lineStart = currentOffset;
+        const uint32_t lineEnd = lineStart + static_cast<uint32_t>(utf8Line.size());
+        if (byteOffset <= lineEnd)
+        {
+            nLineIndex = i;
+            nCharPos = Utf8ByteOffsetToCharPos(i, byteOffset - lineStart);
+            return true;
+        }
+        currentOffset = lineEnd + 1;
+    }
+
+    if (!m_lineUtf8.empty() && byteOffset == currentOffset - 1)
+    {
+        nLineIndex = static_cast<int>(m_lineUtf8.size()) - 1;
+        nCharPos = static_cast<int>(m_lineUtf8.back().size());
+        return true;
+    }
+
+    return false;
+}
+
+bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const
+{
+    if (!m_pBuffer || nLineIndex < 0 || nLineIndex >= m_pBuffer->GetLineCount())
+        return false;
+
+    const tchar_t* pszLine = m_pBuffer->GetLineChars(nLineIndex);
+    const int nLineLength = m_pBuffer->GetLineLength(nLineIndex);
+    if (!pszLine || nLineLength <= 0)
+        return false;
+
+    auto IsIdentChar = [](tchar_t ch)
+    {
+        return _istalnum(ch) || ch == _T('_') || ch == _T('`') || ch == _T('\'');
+    };
+
+    int nIndex = nCharPos;
+    if (nIndex >= nLineLength)
+        nIndex = nLineLength - 1;
+    if (nIndex < 0)
+        return false;
+
+    if (!IsIdentChar(pszLine[nIndex]) && nIndex > 0 && IsIdentChar(pszLine[nIndex - 1]))
+        --nIndex;
+    if (!IsIdentChar(pszLine[nIndex]))
+        return false;
+
+    int nStart = nIndex;
+    while (nStart > 0 && IsIdentChar(pszLine[nStart - 1]))
+        --nStart;
+
+    int nEnd = nIndex + 1;
+    while (nEnd < nLineLength && IsIdentChar(pszLine[nEnd]))
+        ++nEnd;
+
+    std::wstring symbolW(pszLine + nStart, nEnd - nStart);
+#ifdef _UNICODE
+    int nUtf8Len = WideCharToMultiByte(CP_UTF8, 0, symbolW.c_str(), static_cast<int>(symbolW.size()), nullptr, 0, nullptr, nullptr);
+    if (nUtf8Len <= 0)
+        return false;
+    std::string symbol(nUtf8Len, '\0');
+    WideCharToMultiByte(CP_UTF8, 0, symbolW.c_str(), static_cast<int>(symbolW.size()), symbol.data(), nUtf8Len, nullptr, nullptr);
+#else
+    std::string symbol(symbolW.begin(), symbolW.end());
+#endif
+
+    const TagDef* pBestDef = nullptr;
+    for (const auto& def : m_tagDefs)
+    {
+        if (def.name != symbol)
+            continue;
+        if (!pBestDef || def.startByte < pBestDef->startByte)
+            pBestDef = &def;
+    }
+
+    if (!pBestDef)
+        return false;
+
+    defStartByte = pBestDef->startByte;
+    defEndByte = pBestDef->endByte;
+    return true;
+}
+
+bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const
+{
+    if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
+        return false;
+
+    uint32_t byteOffset = 0;
+    for (int i = 0; i < nLineIndex; ++i)
+        byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size()) + 1;
+
+    const std::string& lineUtf8 = m_lineUtf8[nLineIndex];
+    int charCount = 0;
+    for (size_t i = 0; i < lineUtf8.size() && charCount < nCharPos; )
+    {
+        const unsigned char byte = static_cast<unsigned char>(lineUtf8[i]);
+        int charLen = 1;
+        if ((byte & 0x80) == 0x00)
+            charLen = 1;
+        else if ((byte & 0xE0) == 0xC0)
+            charLen = 2;
+        else if ((byte & 0xF0) == 0xE0)
+            charLen = 3;
+        else if ((byte & 0xF8) == 0xF0)
+            charLen = 4;
+        i += charLen;
+        byteOffset += charLen;
+        charCount++;
+    }
+
+    uint32_t defStartByte = 0;
+    uint32_t defEndByte = 0;
+    if (!TryGetDefinitionByteRangeAt(byteOffset, defStartByte, defEndByte) &&
+        !TryGetTagDefinitionByNameAt(nLineIndex, nCharPos, defStartByte, defEndByte))
+        return false;
+
+    return ByteOffsetToLineChar(defStartByte, nDefLine, nDefChar);
 }

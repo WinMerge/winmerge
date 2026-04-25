@@ -43,7 +43,7 @@ class CCrystalTextBuffer;
  * @brief Manages a tree-sitter grammar loaded from a DLL.
  *
  * Each instance holds a loaded grammar DLL, the TSLanguage pointer,
- * and the compiled highlight, locals, and injection queries for that language.
+ * and the compiled highlight, locals, tags, and injection queries for that language.
  */
 class CTreeSitterLanguage
 {
@@ -60,8 +60,8 @@ public:
      * @param sLanguage    Language name (e.g. "fsharp", "python", "cpp").
      * @return true if both the DLL and highlight query loaded successfully.
      *
-     * Also attempts to load locals.scm and injections.scm if present.
-     * Failure to load locals or injections is not fatal.
+     * Also attempts to load locals.scm, tags.scm, and injections.scm if present.
+     * Failure to load optional queries is not fatal.
      */
     bool Load(const std::wstring& sGrammarDir, const std::wstring& sLanguage);
 
@@ -73,6 +73,9 @@ public:
 
     /** @brief Get the compiled locals TSQuery (or nullptr). */
     const TSQuery* GetLocalsQuery() const { return m_pLocalsQuery; }
+
+    /** @brief Get the compiled tags TSQuery (or nullptr). */
+    const TSQuery* GetTagsQuery() const { return m_pTagsQuery; }
 
     /** @brief Get the compiled injection TSQuery (or nullptr). */
     const TSQuery* GetInjectionQuery() const { return m_pInjectionQuery; }
@@ -88,6 +91,7 @@ private:
     const TSLanguage* m_pLanguage;
     TSQuery*          m_pHighlightQuery;
     TSQuery*          m_pLocalsQuery;
+    TSQuery*          m_pTagsQuery;
     TSQuery*          m_pInjectionQuery;
     std::wstring      m_sName;
 };
@@ -254,6 +258,10 @@ public:
      */
     std::wstring GetNodeTypeAt(int nLineIndex, int nCharPos) const;
 
+    bool IsCommentPosition(int nLineIndex, int nCharPos) const;
+
+    bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
+
     /**
      * @brief Convenience: parse document from a text buffer.
      * @param pBuffer  The text buffer to read line data from.
@@ -267,9 +275,13 @@ private:
     void EnsureParser();
     void RunHighlightQuery();
     void RunLocalsQuery();
+    void RunTagsQuery();
     void RunInjectionQuery();
     void BuildLineCache(int nLineCount);
     int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
+    bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
+    bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
+    bool TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
     uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
     /**
@@ -336,6 +348,23 @@ private:
         uint32_t    scopeStartByte;
     };
     std::vector<PendingRef> m_pendingRefs;
+
+    struct TagDef
+    {
+        std::string name;
+        uint32_t    startByte;
+        uint32_t    endByte;
+    };
+
+    struct TagRef
+    {
+        std::string name;
+        uint32_t    startByte;
+        uint32_t    endByte;
+    };
+
+    std::vector<TagDef> m_tagDefs;
+    std::vector<TagRef> m_tagRefs;
 	CCrystalTextBuffer* m_pBuffer; // Needed to get line/char info for unresolved references
 };
 

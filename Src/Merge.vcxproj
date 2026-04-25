@@ -1913,11 +1913,14 @@
     <Copy SourceFiles="@(LogoImages)" DestinationFolder="$(OutDir)\LogoImages" ContinueOnError="true" />
   </Target>
   <!--
-    Copy tree-sitter grammar DLLs and highlight queries from the Release output
-    to the current build output (Debug, Test, etc.).  Grammars are compiled once
-    via Build\TreeSitterGrammars\build-grammars.ps1 into the Release directory.
-    The copy is skipped silently when the source directory does not exist.
+    Build tree-sitter grammar DLLs and query bundles into the Release output.
+    Non-Release builds copy from the Release grammar directory after the app
+    binary has been built.
   -->
+  <Target Name="BuildTreeSitterGrammars" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Building tree-sitter grammars into $(OutDir)TreeSitterGrammars\" Importance="high" />
+    <Exec Command="powershell -ExecutionPolicy Bypass -File &quot;$(ProjectDir)..\Tools\TreeSitterGrammars\build-grammars.ps1&quot; -OutDir &quot;$(OutDir)TreeSitterGrammars&quot; -Platform $(Platform) -Configuration $(Configuration)" />
+  </Target>
   <Target Name="CopyTreeSitterGrammars" AfterTargets="Build" Condition="'$(Configuration)' != 'Release' AND Exists('$(OutDir)..\Release\TreeSitterGrammars')">
     <ItemGroup>
       <TreeSitterDlls Include="$(OutDir)..\Release\TreeSitterGrammars\*.dll" />

@@ -153,3 +153,48 @@ void FreeTreeSitterTextDefinition(CrystalLineParser::TextDefinition* pDef)
     // Free TextDefinition itself
     delete pDef;
 }
+
+void* CreateTreeSitterParseContextForDiff(const String& filePath, const std::vector<String>& lines)
+{
+    String ext = filePath;
+    size_t posOfDot = ext.rfind('.');
+    if (posOfDot != String::npos)
+        ext.erase(0, posOfDot + 1);
+
+    TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
+    if (!registry.IsInitialized())
+        registry.Initialize();
+
+    const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(ext.c_str());
+    if (pLang == nullptr || pLang->GetLanguage() == nullptr)
+        return nullptr;
+
+    auto* pParser = new CTreeSitterParser();
+    pParser->SetLanguage(pLang);
+
+    std::vector<const tchar_t*> linePtrs;
+    std::vector<int> lineLens;
+    linePtrs.reserve(lines.size());
+    lineLens.reserve(lines.size());
+    for (const auto& line : lines)
+    {
+        linePtrs.push_back(line.c_str());
+        lineLens.push_back(static_cast<int>(line.size()));
+    }
+    pParser->ParseDocument(linePtrs.data(), lineLens.data(), static_cast<int>(linePtrs.size()));
+    return pParser;
+}
+
+void DestroyTreeSitterParseContextForDiff(void* parseContext)
+{
+    delete reinterpret_cast<CTreeSitterParser*>(parseContext);
+}
+
+bool IsTreeSitterCommentPositionForDiff(void* parseContext, int nLineIndex, int nCharPos)
+{
+    auto* pParser = reinterpret_cast<CTreeSitterParser*>(parseContext);
+    if (pParser == nullptr)
+        return false;
+
+    return pParser->IsCommentPosition(nLineIndex, nCharPos);
+}
