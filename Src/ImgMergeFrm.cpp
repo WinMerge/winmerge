@@ -16,8 +16,6 @@
 #include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
-#include "MruHelper.h"
-#include "ClipboardHistory.h"
 #include "BCMenu.h"
 #include "IDirDoc.h"
 #include "OptionsDef.h"

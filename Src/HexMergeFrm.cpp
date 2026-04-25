@@ -13,8 +13,6 @@
 
 #include "stdafx.h"
 #include "HexMergeFrm.h"
-#include "MruHelper.h"
-#include "ClipboardHistory.h"
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "OptionsDef.h"

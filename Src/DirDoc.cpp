@@ -43,8 +43,6 @@
 #include "FolderCmp.h"
 #include "DirViewColItems.h"
 #include "RenameMoveDetection.h"
-#include "MruHelper.h"
-#include "ClipboardHistory.h"
 #include <Poco/Semaphore.h>
 #include <set>
 

@@ -13,8 +13,6 @@
 
 #include "stdafx.h"
 #include "MergeEditFrm.h"
-#include "MruHelper.h"
-#include "ClipboardHistory.h"
 #include "FrameWndHelper.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
