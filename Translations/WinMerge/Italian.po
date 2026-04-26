@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 21.04.2026\n"
+"Project-Id-Version: WinMerge - Italian - 25.04.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-04-21 11:20+0100\n"
+"PO-Revision-Date: 2026-04-25 09:19+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -5610,7 +5610,7 @@ msgstr "File non trovato: %1"
 #: Merge.rc:4439
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "Cartella non trovata"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4440
@@ -7937,7 +7937,7 @@ msgstr "Permetti l'esecuzione di un'unica istanza del programma"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5249
 msgid "Clipboard &History"
-msgstr ""
+msgstr "&Cronologia aappunti"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5250
