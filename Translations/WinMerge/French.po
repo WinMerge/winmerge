@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-02-03 07:46+0000\n"
-"PO-Revision-Date: 2026-04-09 20:34+0200\n"
-"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
+"PO-Revision-Date: 2026-04-27 17:20-0400\n"
+"Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -527,7 +527,7 @@ msgstr "Page &Web"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1173
 msgid "&Folder"
-msgstr ""
+msgstr "&Dossier"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1107,7 +1107,7 @@ msgstr "Reco&mparer comme un(e)"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1186
 msgid "A&rchive"
-msgstr ""
+msgstr "A&rchive"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -5582,7 +5582,7 @@ msgstr "Fichier non trouvé : %1"
 #: Merge.rc:4439
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "Dossier non trouvé : %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4440
@@ -7878,7 +7878,7 @@ msgstr "Permettre une seule instance en exécution"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5249
 msgid "Clipboard &History"
-msgstr ""
+msgstr "&Historique du presse-papiers"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5250
@@ -8113,7 +8113,7 @@ msgstr "Nouvelle comparaison de page Web"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5329
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Comparer le nouveau dossier"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5330
