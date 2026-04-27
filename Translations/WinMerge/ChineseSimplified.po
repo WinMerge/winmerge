@@ -5579,7 +5579,7 @@ msgstr "找不到文件：%1"
 #: Merge.rc:4439
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "找不到文件夹：%1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4440
@@ -7885,7 +7885,7 @@ msgstr "只允许运行一个实例"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5249
 msgid "Clipboard &History"
-msgstr ""
+msgstr "剪贴板历史(&H)"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5250
