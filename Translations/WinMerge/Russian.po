@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-04-07 00:00+0000\n"
+"PO-Revision-Date: 2026-04-28 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -522,7 +522,7 @@ msgstr "&Веб-страница"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1173
 msgid "&Folder"
-msgstr ""
+msgstr "Папка"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1102,7 +1102,7 @@ msgstr "Пересравнить как"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1186
 msgid "A&rchive"
-msgstr ""
+msgstr "Архив"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -5477,7 +5477,7 @@ msgstr "Файл не найден: %1"
 #: Merge.rc:4439
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "Папка не найдена: %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4440
@@ -7497,7 +7497,7 @@ msgstr "Разрешить запуск только одной копии"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5249
 msgid "Clipboard &History"
-msgstr ""
+msgstr "История буфера обмена"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5250
@@ -7728,7 +7728,7 @@ msgstr "Создать сравнение веб-страниц"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5329
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Создать сравнение папок"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5330
