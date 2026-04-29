@@ -2075,9 +2075,34 @@ bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLi
 
     uint32_t defStartByte = 0;
     uint32_t defEndByte = 0;
-    if (!TryGetDefinitionByteRangeAt(byteOffset, defStartByte, defEndByte) &&
-        !TryGetTagDefinitionByNameAt(nLineIndex, nCharPos, defStartByte, defEndByte))
+    const bool foundAtPosition = TryGetDefinitionByteRangeAt(byteOffset, defStartByte, defEndByte);
+
+    uint32_t tagDefStartByte = 0;
+    uint32_t tagDefEndByte = 0;
+    const bool foundTagByName = TryGetTagDefinitionByNameAt(
+        nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte);
+
+    if (!foundAtPosition && !foundTagByName)
         return false;
+
+    if (foundTagByName)
+    {
+        int posDefLine = 0;
+        int posDefChar = 0;
+        const bool positionResolved = foundAtPosition &&
+            ByteOffsetToLineChar(defStartByte, posDefLine, posDefChar);
+
+        // If the position-based lookup resolves to the current line, prefer the
+        // tag-definition target when it points somewhere else. This avoids
+        // getting stuck on the clicked type reference after the context-menu
+        // click has moved the caret onto the symbol.
+        if (!positionResolved ||
+            (posDefLine == nLineIndex && tagDefStartByte != defStartByte))
+        {
+            defStartByte = tagDefStartByte;
+            defEndByte = tagDefEndByte;
+        }
+    }
 
     return ByteOffsetToLineChar(defStartByte, nDefLine, nDefChar);
 }

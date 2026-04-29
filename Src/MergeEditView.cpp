@@ -3003,6 +3003,23 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		point = rect.TopLeft();
 		point.Offset(5, 5);
 	}
+	else
+	{
+		CPoint clientPoint = point;
+		ScreenToClient(&clientPoint);
+		if (clientPoint.y >= GetTopMarginHeight())
+		{
+			CEPoint textPoint = ClientToText(clientPoint);
+			if (IsValidTextPosY(textPoint))
+			{
+				if (!IsValidTextPosX(textPoint))
+					textPoint.x = GetLineLength(textPoint.y);
+				SetCursorPos(textPoint);
+				SetAnchor(textPoint);
+				SetSelection(textPoint, textPoint);
+			}
+		}
+	}
 
 	pSub->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 		point.x, point.y, AfxGetMainWnd());
