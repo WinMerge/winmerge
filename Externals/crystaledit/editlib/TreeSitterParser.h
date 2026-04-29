@@ -20,7 +20,6 @@
 
 #pragma once
 
-#include "crystalparser.h"
 #include "SyntaxColors.h"
 #include "parsers/crystallineparser.h"
 

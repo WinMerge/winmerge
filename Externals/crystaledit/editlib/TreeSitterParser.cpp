@@ -10,7 +10,6 @@
 
 #include "StdAfx.h"
 #include "TreeSitterParser.h"
-#include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
 
 #include <tree_sitter/api.h>

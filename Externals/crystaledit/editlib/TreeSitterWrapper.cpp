@@ -4,7 +4,8 @@
  * @brief TreeSitter wrapper implementation for integration with TextDefinition::ParseLineX
  */
 
-#include "stdafx.h"
+#include "pch.h"
+#include <Windows.h>
 #include "TreeSitterWrapper.h"
 #include "TreeSitterParser.h"
 #include "utils/ctchar.h"
@@ -154,11 +155,11 @@ void FreeTreeSitterTextDefinition(CrystalLineParser::TextDefinition* pDef)
     delete pDef;
 }
 
-void* CreateTreeSitterParseContextForDiff(const String& filePath, const std::vector<String>& lines)
+void* CreateTreeSitterParseContextForDiff(const std::wstring& filePath, const std::vector<std::wstring>& lines)
 {
-    String ext = filePath;
+    std::wstring ext = filePath;
     size_t posOfDot = ext.rfind('.');
-    if (posOfDot != String::npos)
+    if (posOfDot != std::wstring::npos)
         ext.erase(0, posOfDot + 1);
 
     TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
