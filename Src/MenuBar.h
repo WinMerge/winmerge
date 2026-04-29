@@ -56,6 +56,7 @@ protected:
 	bool m_bMouseTracking;
 	bool m_bShowKeyboardCues;
 	bool m_bAltUsedWithMouse;
+	bool m_bAltKeyDown;
 	int m_nMDIButtonDown;
 	int m_nMDIButtonHot;
 	HWND m_hwndOldFocus;

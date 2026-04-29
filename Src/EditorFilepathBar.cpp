@@ -15,6 +15,9 @@
 #include "RoundedRectWithShadow.h"
 #include "cecolor.h"
 #include "DarkModeLib.h"
+#include "TempFile.h"
+#include "paths.h"
+#include "I18n.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,6 +26,7 @@
 constexpr int RR_RADIUS = 3;
 constexpr int RR_PADDING = 3;
 constexpr int RR_SHADOWWIDTH = 3;
+constexpr unsigned MAX_HISTORY_ITEMS = 15;
 
 BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
@@ -30,6 +34,8 @@ BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
 	ON_CONTROL_RANGE (EN_KILLFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnKillFocusEdit)
 	ON_CONTROL_RANGE (EN_USER_CAPTION_CHANGED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnChangeEdit)
 	ON_CONTROL_RANGE (EN_USER_FILE_SELECTED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSelectEdit)
+	ON_NOTIFY_RANGE (EN_USER_CUSTOMIZE_CONTEXT_MENU, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnCustomizeContextMenu)
+	ON_NOTIFY_RANGE (EN_USER_MENU_ITEM_SELECTED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnMenuItemSelected)
 END_MESSAGE_MAP()
 
 
@@ -259,8 +265,11 @@ void CEditorFilePathBar::OnSelectEdit(UINT id)
 	if (pane < 0 || pane >= m_nPanes)
 		return;
 	InvalidateRect(nullptr, false);
-	(m_fileSelectedCallbackfunc ? m_fileSelectedCallbackfunc : m_folderSelectedCallbackfunc)
-		(pane, m_Edit[pane].GetSelectedPath());
+	String selectedPath = m_Edit[pane].GetSelectedPath();
+	if (m_fileSelectedCallbackfunc)
+		m_fileSelectedCallbackfunc(pane, selectedPath, _T(""));
+	else if (m_folderSelectedCallbackfunc)
+		m_folderSelectedCallbackfunc(pane, selectedPath);
 }
 
 /** 
@@ -363,4 +372,259 @@ void CEditorFilePathBar::EditActivePanePath()
 	const int pane = GetActive();
 	if (pane >= 0)
 		m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
+}
+
+void CEditorFilePathBar::SetOnGetRecentItemsCallback(const std::function<std::vector<String>(int pane, unsigned maxCount, MruHelper::RecentItemType type)> callbackfunc)
+{
+	m_getRecentItemsCallbackfunc = callbackfunc;
+}
+
+void CEditorFilePathBar::SetOnGetClipboardHistoryCallback(const std::function<std::vector<ClipboardHistory::Item>(unsigned maxCount)> callbackfunc)
+{
+	m_getClipboardHistoryCallbackfunc = callbackfunc;
+}
+
+std::vector<String> CEditorFilePathBar::GetRecentItems(int pane, unsigned maxCount, MruHelper::RecentItemType type) const
+{
+	if (m_getRecentItemsCallbackfunc)
+		return m_getRecentItemsCallbackfunc(pane, maxCount, type);
+	return {};
+}
+
+std::vector<ClipboardHistory::Item> CEditorFilePathBar::GetClipboardHistory(unsigned maxCount) const
+{
+	if (m_getClipboardHistoryCallbackfunc)
+		return m_getClipboardHistoryCallbackfunc(maxCount);
+	return {};
+}
+
+void CEditorFilePathBar::OnRecentItemSelected(int pane, const String& path)
+{
+	bool isFolder = false;
+	if (!paths::IsURLorCLSID(path))
+	{
+		// Check if the path exists
+		paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(path);
+
+		if (pathExists == paths::DOES_NOT_EXIST)
+		{
+			// Show error message in caption
+			String errorMsg = strutils::format_string1(m_fileSelectedCallbackfunc ? _("File not found: %1") : _("Folder not found: %1"), path);
+			SetCaption(pane, errorMsg);
+			return;
+		}
+		 isFolder = paths::EndsWithSlash(path);
+	}
+
+	if (isFolder && m_folderSelectedCallbackfunc)
+	{
+		m_folderSelectedCallbackfunc(pane, path);
+	}
+	else if (!isFolder && m_fileSelectedCallbackfunc)
+	{
+		m_fileSelectedCallbackfunc(pane, path, _T(""));
+	}
+	else if (m_fileSelectedCallbackfunc)
+	{
+		// Fallback to file callback if folder callback is not set
+		m_fileSelectedCallbackfunc(pane, path, _T(""));
+	}
+}
+
+void CEditorFilePathBar::OnClipboardItemSelected(int pane, int itemIndex)
+{
+	// Use cached clipboard items to ensure consistency with displayed menu
+	if (itemIndex < 0 || itemIndex >= static_cast<int>(m_cachedClipboardItems.size()))
+		return;
+
+	const auto& clipItem = m_cachedClipboardItems[itemIndex];
+
+	// Determine which temp file to use - bitmap takes precedence over text
+	String clipboardPath;
+	std::shared_ptr<TempFile> tempFile;
+
+	if (clipItem.pBitmapTempFile)
+	{
+		// Use bitmap temp file
+		clipboardPath = clipItem.pBitmapTempFile->GetPath();
+		tempFile = clipItem.pBitmapTempFile;
+	}
+	else if (clipItem.pTextTempFile)
+	{
+		// Use text temp file
+		clipboardPath = clipItem.pTextTempFile->GetPath();
+		tempFile = clipItem.pTextTempFile;
+	}
+	else
+	{
+		// No valid content
+		return;
+	}
+
+	// Check if the clipboard content file exists
+	paths::PATH_EXISTENCE pathExists = paths::DoesPathExist(clipboardPath);
+	if (pathExists == paths::DOES_NOT_EXIST)
+		return;
+
+	// Save the temp file to prevent deletion
+	// Limit the number of cached temp files to prevent memory leak
+	constexpr size_t MAX_TEMP_FILES = 50;
+	if (m_tempFiles.size() >= MAX_TEMP_FILES)
+	{
+		// Remove oldest temp files
+		m_tempFiles.erase(m_tempFiles.begin(), m_tempFiles.begin() + (m_tempFiles.size() - MAX_TEMP_FILES + 1));
+	}
+	m_tempFiles.push_back(tempFile);
+
+	// Use file callback to notify about the clipboard content (always treated as file)
+	// Pass the description so the caller can set the caption
+	if (m_fileSelectedCallbackfunc)
+	{
+		m_fileSelectedCallbackfunc(pane, clipboardPath, clipItem.description);
+	}
+	else if (m_folderSelectedCallbackfunc)
+	{
+		String path = strutils::trim_ws(clipItem.previewText);
+		if (!path.empty() && path[0] == '"')
+		{
+			// Remove surrounding quotes if present
+			path = path.substr(1, path.length() - 2);
+		}
+		paths::PATH_EXISTENCE pathExists2 = paths::DoesPathExist(path);
+		if (pathExists2 == paths::DOES_NOT_EXIST || pathExists2 == paths::IS_EXISTING_FILE)
+		{
+			// Show error message in caption
+			String errorMsg = strutils::format_string1(_("Folder not found: %1"), path);
+			SetCaption(pane, errorMsg);
+			return;
+		}
+		m_folderSelectedCallbackfunc(pane, path);
+	}
+}
+
+void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NMMENUITEMSELECTED* pNM = reinterpret_cast<NMMENUITEMSELECTED*>(pNMHDR);
+	const int pane = id - IDC_STATIC_TITLE_PANE0;
+
+	if (pane < 0 || pane >= m_nPanes)
+	{
+		*pResult = 0;
+		return;
+	}
+
+	UINT menuId = pNM->menuId;
+
+	// Handle recent item selection
+	if (menuId >= ID_EDITOR_RECENT_FIRST && menuId <= ID_EDITOR_RECENT_LAST)
+	{
+		int index = menuId - ID_EDITOR_RECENT_FIRST;
+
+		// Get the actual path from the stored recent items
+		MruHelper::RecentItemType itemType = MruHelper::RecentItemType::All;
+		if (m_Edit[pane].IsFileSelectionEnabled() && !m_Edit[pane].IsFolderSelectionEnabled())
+			itemType = MruHelper::RecentItemType::FilesOnly;
+		else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
+			itemType = MruHelper::RecentItemType::FoldersOnly;
+
+		auto recentPaths = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
+		if (index < static_cast<int>(recentPaths.size()))
+		{
+			OnRecentItemSelected(pane, recentPaths[index]);
+		}
+	}
+	// Handle clipboard history selection
+	else if (menuId >= ID_EDITOR_CLIPBOARD_FIRST && menuId <= ID_EDITOR_CLIPBOARD_LAST)
+	{
+		int index = menuId - ID_EDITOR_CLIPBOARD_FIRST;
+		OnClipboardItemSelected(pane, index);
+	}
+	// Handle "Open Clipboard" menu item - opens the current clipboard content
+	else if (menuId == ID_EDITOR_OPEN_CLIPBOARD)
+	{
+		// Open the most recent clipboard item (index 0)
+		OnClipboardItemSelected(pane, 0);
+	}
+
+	*pResult = 0;
+}
+
+void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NMHEADERBARCONTEXTMENU* pNM = reinterpret_cast<NMHEADERBARCONTEXTMENU*>(pNMHDR);
+	CMenu* pPopup = pNM->pMenu;
+	const int pane = id - IDC_STATIC_TITLE_PANE0;
+
+	if (pane < 0 || pane >= m_nPanes)
+	{
+		*pResult = 0;
+		return;
+	}
+
+	// Determine which type of items to show based on enabled callbacks
+	MruHelper::RecentItemType itemType = MruHelper::RecentItemType::All;
+	if (m_Edit[pane].IsFileSelectionEnabled() && !m_Edit[pane].IsFolderSelectionEnabled())
+		itemType = MruHelper::RecentItemType::FilesOnly;
+	else if (m_Edit[pane].IsFolderSelectionEnabled() && !m_Edit[pane].IsFileSelectionEnabled())
+		itemType = MruHelper::RecentItemType::FoldersOnly;
+	// Add Recent Files/Folders submenu
+	auto recentPaths = GetRecentItems(pane, MAX_HISTORY_ITEMS, itemType);
+	if (!recentPaths.empty())
+	{
+		pPopup->AppendMenu(MF_SEPARATOR);
+
+		CMenu recentMenu;
+		recentMenu.CreatePopupMenu();
+		int ID = ID_EDITOR_RECENT_FIRST;
+		for (size_t i = 0; i < recentPaths.size() && ID <= ID_EDITOR_RECENT_LAST; ++i, ++ID)
+		{
+			// Extract filename or folder name for display
+			String displayName;
+			if (paths::EndsWithSlash(recentPaths[i]))
+			{
+				// For folders, get the last directory name
+				String pathWithoutSlash = recentPaths[i].substr(0, recentPaths[i].length() - 1);
+				displayName = paths::FindFileName(pathWithoutSlash);
+			}
+			else
+			{
+				// For files, get the filename
+				displayName = paths::FindFileName(recentPaths[i]);
+			}
+
+			String menuText = strutils::format(_T("&%c %s"), "123456789abcdef"[i], displayName.c_str());
+			recentMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
+		}
+		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(recentMenu.m_hMenu), _("Recent F&iles or Folders").c_str());
+		recentMenu.Detach();
+	}
+
+	// Add Clipboard History submenu
+	// Cache clipboard items for consistency between menu display and selection
+	m_cachedClipboardItems = GetClipboardHistory(MAX_HISTORY_ITEMS);
+	if (m_cachedClipboardItems.size() > 1)
+	{
+		CMenu clipboardMenu;
+		clipboardMenu.CreatePopupMenu();
+		int ID = ID_EDITOR_CLIPBOARD_FIRST;
+		for (size_t i = 0; i < m_cachedClipboardItems.size() && ID <= ID_EDITOR_CLIPBOARD_LAST; ++i, ++ID)
+		{
+			String prefix;
+			if (m_cachedClipboardItems[i].pBitmapTempFile)
+				prefix = _T("[") + _("Image") + _T("] ");
+			String displayName = m_cachedClipboardItems[i].previewText;
+			if (displayName.length() > 60)
+				displayName = displayName.substr(0, 57) + _T("...");
+			// Replace newlines with spaces for menu display
+			std::replace(displayName.begin(), displayName.end(), '\n', ' ');
+			std::replace(displayName.begin(), displayName.end(), '\r', ' ');
+
+			String menuText = strutils::format(_T("&%c %s"), "123456789abcdef"[i], displayName.c_str());
+			clipboardMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
+		}
+		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(clipboardMenu.m_hMenu), _("Clipboard &History").c_str());
+		clipboardMenu.Detach();
+	}
+
+	*pResult = 0;
 }

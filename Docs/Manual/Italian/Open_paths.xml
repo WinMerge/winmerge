@@ -151,7 +151,7 @@ decompressione quando si avvia un'operazione di confronto cartelle.</para>
   <section id="OpenPaths_shell-integ">
     <title><indexterm>
         <primary>Integrazione della shell di Windows</primary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>menu contestuale, scorciatoie WinMerge in Esplora risorse</primary>
       </indexterm>Avvio delle operazioni WinMerge in Esplora risorse</title>
 
@@ -291,7 +291,7 @@ risorse<indexterm>
           <primary>confronto ricorsivo di cartelle</primary>
 
           <secondary>specificando nella finestra di dialogo Seleziona file o cartelle</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>sottocartelle</primary>
 
           <seealso>confronto ricorsivo di cartelle</seealso>
@@ -370,7 +370,7 @@ percorsi</para>
   <section id="OpenPaths_project">
     <title><indexterm>
         <primary>file di progetto</primary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>riga di comando</primary>
 
         <secondary>specificando i file di progetto</secondary>

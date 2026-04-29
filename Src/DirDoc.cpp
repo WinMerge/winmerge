@@ -22,7 +22,6 @@
 #include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
-#include "SubstitutionList.h"
 #include "DirView.h"
 #include "DirFrame.h"
 #include "MainFrm.h"
@@ -119,6 +118,8 @@ void CDirDoc::OnCloseDocument()
 				pHeaderBar->SetOnSetFocusCallback(nullptr);
 				pHeaderBar->SetOnCaptionChangedCallback(nullptr);
 				pHeaderBar->SetOnFolderSelectedCallback(nullptr);
+				pHeaderBar->SetOnGetRecentItemsCallback(nullptr);
+				pHeaderBar->SetOnGetClipboardHistoryCallback(nullptr);
 			}
 		}
 	}
@@ -419,10 +420,16 @@ void CDirDoc::Rescan()
 		PathContext paths = m_pCtxt->GetNormalizedPaths();
 		paths.SetPath(pane, sFolderpath);
 		m_strDesc[pane].clear();
+		if (m_pTempPathContext != nullptr)
+		{
+			m_pTempPathContext->m_strDisplayRoot[pane].clear();
+			m_pTempPathContext->m_strRoot[pane].clear();
+		}
 		m_pDirView->SetFocus();
 		InitCompare(paths, m_pCtxt->m_bRecursive, nullptr);
 		Rescan();
 	});
+	pHeaderBar->SetDefaultHistoryCallbacks();
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{
 		UpdateHeaderPath(nIndex);

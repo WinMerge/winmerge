@@ -43,6 +43,7 @@ CMenuBar::CMenuBar()
 	, m_hCurrentPopupMenu(nullptr)
 	, m_bShowKeyboardCues(false)
 	, m_bAltUsedWithMouse(false)
+	, m_bAltKeyDown(false)
 {
 	m_pThis = this;
 }
@@ -381,6 +382,13 @@ BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 {
 	if (!m_hWnd)
 		return FALSE;
+
+	if (m_bAltKeyDown)
+	{
+		if (pMsg->message == WM_MOUSEMOVE || pMsg->message == WM_LBUTTONDOWN || pMsg->message == WM_LBUTTONUP)
+			m_bAltUsedWithMouse = true;
+	}
+
 	if (pMsg->message == WM_SYSKEYDOWN || pMsg->message == WM_SYSKEYUP)
 	{
 		const BOOL bShift = ::GetAsyncKeyState(VK_SHIFT) & 0x8000;
@@ -390,14 +398,14 @@ BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 			{
 				if (pMsg->wParam == VK_MENU)
 				{
-					DWORD buttons = ::GetAsyncKeyState(VK_LBUTTON) | ::GetAsyncKeyState(VK_RBUTTON) | ::GetAsyncKeyState(VK_MBUTTON);
-					if (!m_bAltUsedWithMouse && (buttons & 0x8000))
-						m_bAltUsedWithMouse = true;
+					m_bAltKeyDown = true;
+					m_bAltUsedWithMouse = false;
 				}
 				ShowKeyboardCues(true);
 			}
 			else if (pMsg->message == WM_SYSKEYUP && m_bShowKeyboardCues)
 			{
+				m_bAltKeyDown = false;
 				if (m_bAltUsedWithMouse)
 				{
 					m_bAltUsedWithMouse = false;

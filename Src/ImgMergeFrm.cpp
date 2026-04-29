@@ -295,17 +295,17 @@ void CImgMergeFrame::MoveOnLoad(int nPane, int)
 	m_pImgMergeWindow->SetActivePane(nPane);
 }
 
-void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
+bool CImgMergeFrame::ChangeFile(int nBuffer, const String& path, const String& description)
 {
 	if (!PromptAndSaveIfNeeded(true))
-		return;
+		return false;
 
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 
 	m_filePaths[nBuffer] = path;
-	m_nBufferType[nBuffer] = BUFFERTYPE::NORMAL;
-	m_strDesc[nBuffer].clear();
+	m_nBufferType[nBuffer] = description.empty() ? BUFFERTYPE::NORMAL : BUFFERTYPE::NORMAL_NAMED;
+	m_strDesc[nBuffer] = description;
 	int nActivePane = m_pImgMergeWindow->GetActivePane();
 
 	OpenImages();
@@ -321,6 +321,8 @@ void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
 
 	UpdateHeaderPath(nBuffer);
 	UpdateLastCompareResult();
+
+	return true;
 }
 
 bool CImgMergeFrame::IsModified() const
@@ -574,9 +576,28 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		}
 		m_pImgMergeWindow->SetActivePane(pane);
 	});
-	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath) {
-		ChangeFile(pane, sFilepath);
-		m_pImgMergeWindow->SetActivePane(pane);
+	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const String& sDescription) {
+		if (ChangeFile(pane, sFilepath, sDescription))
+		{
+			m_pImgMergeWindow->SetActivePane(pane);
+			// Only add to MRU if description is empty (i.e., not from clipboard history)
+			if (sDescription.empty())
+				MruHelper::addToMru(pane, sFilepath);
+		}
+	});
+	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
+		return MruHelper::GetRecentFiles(pane, maxCount, type);
+	});
+	m_wndFilePathBar.SetOnGetClipboardHistoryCallback([](unsigned maxCount) {
+		auto allItems = ClipboardHistory::GetItems(maxCount, 1);
+		std::vector<ClipboardHistory::Item> imageItems;
+		for (const auto& item : allItems)
+		{
+			// Filter to show only items with image data
+			if (item.pBitmapTempFile)
+				imageItems.push_back(item);
+		}
+		return imageItems;
 	});
 
 	// Merge frame also has a dockable bar at the very left

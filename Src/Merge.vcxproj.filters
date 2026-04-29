@@ -1565,6 +1565,9 @@
     <ClInclude Include="Common\ScopeExit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MruHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

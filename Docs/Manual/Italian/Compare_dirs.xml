@@ -237,7 +237,7 @@ l'ordinamento in due modi:</para>
           <primary>confronto ricorsivo di cartelle</primary>
 
           <secondary>visualizzazione dei risultati</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>confronto cartelle non ricorsivo</primary>
 
           <secondary>visualizzazione dei risultati</secondary>
@@ -413,7 +413,7 @@ contenuti copiando, spostando o eliminando uno o più file o sottocartelle.</par
         <primary>operazioni sui file</primary>
 
         <secondary>nella finestra Confronto cartelle</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>Finestra Confronta cartelle</primary>
 
         <secondary>operazioni sui file</secondary>
@@ -647,9 +647,9 @@ senza percorsi.</para>
           <primary>Finestra Confronta cartelle</primary>
 
           <secondary>proteggere i file in</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>proteggere i file</primary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>file di sola lettura</primary>
 
           <see>proteggere i file</see>

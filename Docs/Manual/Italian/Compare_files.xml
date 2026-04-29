@@ -306,7 +306,7 @@ differenza.</para>
             <primary>differenze di linea</primary>
 
             <secondary>rilevamento</secondary>
-          </indexterm>><indexterm>
+          </indexterm><indexterm>
             <primary>spazi bianchi</primary>
 
             <secondary>nelle differenze di linea</secondary>
@@ -839,7 +839,7 @@ scorciatoie:<indexterm>
           <primary>menu contestuale</primary>
 
           <secondary>Riquadro Posizione</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>Funzioni Blocchi spostati</primary>
         </indexterm></para>
 
@@ -896,7 +896,7 @@ sinistra</guimenuitem >.</para>
           <primary>barre di stato</primary>
 
           <secondary>per la finestra Confronta file</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>schede</primary>
 
           <secondary>codifica dei caratteri</secondary>
@@ -1036,7 +1036,7 @@ le relative scorciatoie nella barra degli strumenti e nei menu:</para>
         <varlistentry>
           <term>Differenza nella riga corrente/Differenza riga selezionata<indexterm>
               <primary>Differenza nella funzione Linea corrente</primary>
-            </indexterm>><indexterm>
+            </indexterm><indexterm>
               <primary>Selezionare la funzione Differenza di linea</primary>
             </indexterm></term>
 

@@ -579,7 +579,7 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	});
 
 	// Merge frame also has a dockable bar at the very left
-	// created in OnCreateClient 
+	// created in OnCreateClient
 	m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
 		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_LEFT);
 	m_wndLocationBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);

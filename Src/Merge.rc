@@ -1063,6 +1063,7 @@ BEGIN
         MENUITEM "&Edit Caption\tF2",           ID_EDITOR_EDIT_CAPTION
         MENUITEM SEPARATOR
         MENUITEM "Edit &Path\tCtrl+L",          ID_EDITOR_EDIT_PATH
+        MENUITEM "Open C&lipboard",             ID_EDITOR_OPEN_CLIPBOARD
         MENUITEM "&Open...",                    ID_EDITOR_SELECT_FILE
     END
 END
@@ -4440,6 +4441,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
+    IDS_ERROR_FOLDER_NOT_FOUND "Folder not found: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
     IDS_ERROR_FILEOPEN      "Cannot open file\n%1\n\n%2"
     IDS_ERROR_CONF_RESOLVE  "Failed to parse conflict file."
@@ -5249,6 +5251,7 @@ STRINGTABLE
 BEGIN
     IDS_SINGLEINSTANCE_DISABLED NC_("Options dialog|General|Single instance mode","Disabled")
     IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
+    IDS_CLIPBOARD_HISTORY   "Clipboard &History"
     IDS_SINGLEINSTANCE_STR2 "Allow only one instance; wait for termination"
 END
 

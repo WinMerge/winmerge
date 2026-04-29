@@ -50,7 +50,7 @@ public:
 public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
-	void ChangeFile(int pane, const String& path);
+	bool ChangeFile(int pane, const String& path, const String& description = _T(""));
 	IDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(IDirDoc * pDirDoc) override;
 	void UpdateResources();

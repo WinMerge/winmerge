@@ -62,7 +62,7 @@ pagina nella finestra di dialogo Opzioni.</para>
     <title>
 Opzioni di importazione ed esportazione<indexterm>
         <primary>importare file di opzioni</primary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>esportare file di opzioni</primary>
       </indexterm></title>
 
@@ -1401,7 +1401,7 @@ cartella) sia gli elementi spostati (cartella diverse).</para>
       <title>
 Rinomina/sposta le chiavi di rilevamento<indexterm>
           <primary>rinominare le chiavi di rilevamento</primary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>tasti di rilevamento movimento</primary>
         </indexterm></title>
 

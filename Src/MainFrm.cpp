@@ -12,7 +12,9 @@
 
 #include "StdAfx.h"
 #include "MainFrm.h"
+#include "EditorFilepathBar.h"
 #include <vector>
+#include <unordered_set>
 #include <afxinet.h>
 #if !defined(__cppcheck__)
 #include <boost/range/mfc.hpp>
@@ -75,6 +77,7 @@
 #include "TFile.h"
 #include "Shell.h"
 #include "ClipboardHistory.h"
+#include "MruHelper.h"
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
@@ -1612,11 +1615,11 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	if (dwFlags)
 	{
 		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-			addToMru(tFiles[0].c_str(), _T("Files\\Left"));
+			MruHelper::addToMru(0, tFiles[0]);
 		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-			addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+			MruHelper::addToMru(1, tFiles[1]);
 		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-			addToMru(tFiles[2].c_str(), _T("Files\\Option"));
+			MruHelper::addToMru(2, tFiles[2]);
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
@@ -1924,28 +1927,6 @@ void CMainFrame::OnClose()
 	}
 
 	__super::OnClose();
-}
-
-/**
- * @brief Utility function to update CSuperComboBox format MRU
- */
-void CMainFrame::addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UINT nMaxItems)
-{
-	std::vector<CString> list;
-	CString s;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	list.push_back(szItem);
-	for (UINT i=0 ; i<cnt; ++i)
-	{
-		s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
-		if (s != szItem)
-			list.push_back(s);
-	}
-	cnt = list.size() > nMaxItems ? nMaxItems : static_cast<UINT>(list.size());
-	for (UINT i=0 ; i<cnt; ++i)
-		AfxGetApp()->WriteProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str(), list[i]);
-	// update count
-	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
 }
 
 void CMainFrame::ApplyDiffOptions() 
@@ -3141,16 +3122,14 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const fileopenf
 	const String strDesc[] /*= nullptr*/, const PackingInfo* infoUnpacker /*= nullptr*/,
 	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenParams* pOpenParams /*= nullptr*/)
 {
-	auto historyItems = ClipboardHistory::GetItems(nBuffers);
+	auto historyItems = ClipboardHistory::GetItems(nBuffers, nBuffers);
 
 	String strDesc2[3];
 	fileopenflags_t dwFlags2[3];
 	for (int i = 0; i < nBuffers; ++i)
 	{
-		int64_t t = historyItems[nBuffers - i - 1].timestamp;
-		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
-			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
+			strDesc[i] : historyItems[nBuffers - i - 1].description;
 		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
 	}
 	for (int i = 0; i < 2; ++i)

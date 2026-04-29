@@ -126,11 +126,17 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		m_pMergeDoc->UpdateHeaderPath(pane);
 		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
 	});
-	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath) {
+	m_wndFilePathBar.SetOnFileSelectedCallback([this](int pane, const String& sFilepath, const String& sDescription) {
 		const int nGroup = m_pMergeDoc->GetActiveMergeView()->m_nThisGroup;
-		m_pMergeDoc->ChangeFile(pane, sFilepath);
-		m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
+		if (m_pMergeDoc->ChangeFile(pane, sFilepath, sDescription))
+		{
+			m_pMergeDoc->GetView(nGroup, pane)->SetFocus();
+			// Only add to MRU if description is empty (i.e., not from clipboard history)
+			if (sDescription.empty())
+				MruHelper::addToMru(pane, sFilepath);
+		}
 	});
+	m_wndFilePathBar.SetDefaultHistoryCallbacks();
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	
 	// Set frame window handles so we can post stage changes back
@@ -280,7 +286,7 @@ void CMergeEditFrame::SaveActivePane()
 		auto& splitterWnd = static_cast<CMergeEditSplitterView*>(m_wndSplitter.GetPane(iRowParent, 0))->m_wndSplitter;
 		splitterWnd.GetActivePane(&iRow, &iCol);
 		if (iRow >= 0 || iCol >= 0)
-			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, max(iRow, iCol));
+			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, (std::max)(iRow, iCol));
 	}
 }
 

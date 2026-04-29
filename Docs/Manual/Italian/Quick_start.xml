@@ -5,7 +5,7 @@
   <section>
     <title><indexterm>
         <primary>iniziare con WinMerge</primary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>scelta di file e cartelle</primary>
 
         <secondary>iniziare</secondary>
@@ -194,7 +194,7 @@ contenuto), in modo da poterle sfogliare.</para>
     <section>
       <title>Altri modi per aprire file e cartelle<indexterm>
           <primary>file di progetto</primary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>riga di comando</primary>
 
           <secondary>apertura di file e cartelle</secondary>
@@ -233,7 +233,7 @@ sul collegamento sul desktop di WinMerge.</simpara>
         <primary>confronto delle cartelle</primary>
 
         <secondary>iniziare</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>Finestra Confronta cartelle</primary>
 
         <secondary>iniziare</secondary>
@@ -309,7 +309,7 @@ vengono aggiornati lì.</para>
         <primary>confronto dei file</primary>
 
         <secondary>iniziare</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>Finestra Confronta file</primary>
 
         <secondary>iniziare</secondary>

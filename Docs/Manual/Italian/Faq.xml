@@ -92,7 +92,7 @@ Linux.</para>
               <primary>sistemi di controllo della versione</primary>
 
               <secondary>integrazione con</secondary>
-            </indexterm>><indexterm>
+            </indexterm><indexterm>
               <primary>integrazione</primary>
 
               <secondary>con sistemi di controllo della versione</secondary>
@@ -449,7 +449,7 @@ UCS-2BE.</para>
         <primary>file di patch</primary>
 
         <secondary>creare con diffutils</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>difficile</primary>
 
         <secondary>Patch WinMerge compatibili con</secondary>

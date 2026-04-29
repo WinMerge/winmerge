@@ -13,9 +13,23 @@
 
 #define EN_USER_CAPTION_CHANGED  0x0A01
 #define EN_USER_FILE_SELECTED 0x0A02
+#define EN_USER_CUSTOMIZE_CONTEXT_MENU 0x0A03
+#define EN_USER_MENU_ITEM_SELECTED 0x0A04
 
-/** 
- * @brief Read-only control to display a filepath. 
+struct NMHEADERBARCONTEXTMENU
+{
+	NMHDR hdr;
+	CMenu* pMenu;
+};
+
+struct NMMENUITEMSELECTED
+{
+	NMHDR hdr;
+	UINT menuId;
+};
+
+/**
+ * @brief Read-only control to display a filepath.
  * The path is compacted (with ellipsis) to fill in the area. 
  * The tooltip displays the entire path. 
  * ContextMenu offers two copy functions : copy path, copy filename
@@ -40,6 +54,8 @@ public :
 	void SetTextColor(COLORREF rgb);
 	void EnableFileSelection(bool enabled) { m_bEnabledFileSelection = enabled; }
 	void EnableFolderSelection(bool enabled) { m_bEnabledFolderSelection = enabled; }
+	bool IsFileSelectionEnabled() const { return m_bEnabledFileSelection; }
+	bool IsFolderSelectionEnabled() const { return m_bEnabledFolderSelection; }
 
 protected:
 	virtual BOOL PreTranslateMessage(MSG *pMsg);
@@ -55,7 +71,7 @@ protected:
 	afx_msg void OnEditUndo();
 	afx_msg void OnEditSelectAll();
 	afx_msg void OnContextMenuSelected(UINT nID);
-    afx_msg void OnSysColorChange();
+	afx_msg void OnSysColorChange();
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 
@@ -87,4 +103,3 @@ inline void CFilepathEdit::GetOriginalText(String& rString) const
 {		
 	rString = m_sOriginalText;
 }
-

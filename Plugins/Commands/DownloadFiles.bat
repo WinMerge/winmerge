@@ -1,5 +1,5 @@
 @echo off
-for %%i in (Apache-Tika Java PlantUML q yq) do (
+for %%i in (Apache-Tika CFR Java PlantUML q yq) do (
   for /F "tokens=1,2" %%j in ('type %%i\URL.txt') do (
     echo Downloading %%j
     mkdir "%APPDATA%\WinMerge\Commands\%%i" 2> NUL

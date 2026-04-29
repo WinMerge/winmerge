@@ -590,7 +590,7 @@ msgid ""
 "Command line<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
-"Riga di comando<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
+"Riga di comando<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><para>
@@ -2487,7 +2487,7 @@ msgid ""
 "id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Risultati di confronto ricorsivo e non ricorsivo<placeholder "
-"type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:263
@@ -2950,7 +2950,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Operazioni sui file nel confronto delle cartelle<placeholder "
-"type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_dirs.xml:490
@@ -3383,8 +3383,8 @@ msgid ""
 "Protecting files<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 msgstr ""
-"Protezione dei file<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
-"type=\"indexterm\" id=\"1\"/>><placeholder type=\"indexterm\" id=\"2\"/>"
+"Protezione dei file<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+"type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:748
@@ -5090,7 +5090,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Evidenziazione della differenza di linea<placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:347
@@ -6063,7 +6063,7 @@ msgid ""
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Il menu contestuale del riquadro Posizione contiene queste scorciatoie:"
-"<placeholder type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" "
+"<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -6181,7 +6181,7 @@ msgid ""
 "Status bars<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
-"Barre di stato<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
+"Barre di stato<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -6423,7 +6423,7 @@ msgid ""
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Differenza nella riga corrente/Differenza riga selezionata<placeholder "
-"type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1155
@@ -8507,7 +8507,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Opzioni di importazione ed esportazione<placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:85
@@ -10481,7 +10481,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Rinomina/sposta le chiavi di rilevamento<placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:1534
@@ -13311,7 +13311,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Perché non è disponibile alcuna integrazione CVS?<placeholder "
-"type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:102
@@ -13832,7 +13832,7 @@ msgid ""
 "Patch files<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
-"File di patch<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
+"File di patch<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
@@ -14051,7 +14051,7 @@ msgid ""
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 msgstr ""
 "Utilizzo delle maschere dei file<placeholder type=\"indexterm\" id=\"0\"/"
-">><placeholder type=\"indexterm\" id=\"1\"/>><placeholder type=\"indexterm\" "
+"><placeholder type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" "
 "id=\"2\"/>"
 
 #. type: Content of: <article><section><para>
@@ -14129,7 +14129,7 @@ msgid ""
 "id=\"2\"/>"
 msgstr ""
 "Sintassi ed esempio della maschera file<placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>><placeholder "
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/><placeholder "
 "type=\"indexterm\" id=\"2\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -15798,7 +15798,7 @@ msgstr "Funzioni"
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:874
 msgid "<function>lineCount</function>(<replaceable>content</replaceable>)"
-msgstr "<function>lineCount<function>(<replaceable>contenuto</replaceable>)"
+msgstr "<function>lineCount</function>(<replaceable>contenuto</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:875
@@ -16430,7 +16430,7 @@ msgid ""
 "replaceable>, ...), <function>logInfo</function>(<replaceable>value1</"
 "replaceable>, <replaceable>value2</replaceable>, ...)"
 msgstr ""
-"<function>logError<function>(<replaceable>valore1</replaceable>, "
+"<function>logError</function>(<replaceable>valore1</replaceable>, "
 "<replaceable>value2</replaceable>, ...), logWarn(<replaceable>value1</"
 "replaceable>, <replaceable>value2</replaceable>, ...), "
 "logInfo(<replaceable>value1</replaceable>, <replaceable>value2</"
@@ -16538,7 +16538,7 @@ msgid ""
 "<function>ifEach</function>(<replaceable>conditionArray</replaceable>, "
 "<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)"
 msgstr ""
-"<function>ifEach<function>(<replaceable>conditionArray</replaceable>, "
+"<function>ifEach</function>(<replaceable>conditionArray</replaceable>, "
 "<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
@@ -17116,7 +17116,7 @@ msgid ""
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Utilizzo dei filtri file<placeholder type=\"indexterm\" id=\"0\"/"
-">><placeholder type=\"indexterm\" id=\"1\"/>"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Filters.xml:1306
@@ -17167,7 +17167,7 @@ msgid ""
 "File filter locations<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
-"Posizioni filtro file<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
+"Posizioni filtro file<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -17368,7 +17368,7 @@ msgid ""
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Sintassi del filtro file<placeholder type=\"indexterm\" id=\"0\"/"
-">><placeholder type=\"indexterm\" id=\"1\"/>"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Filters.xml:1464
@@ -17555,7 +17555,7 @@ msgid ""
 msgstr ""
 "Tra i tanti caratteri speciali regexp, i seguenti sono particolarmente "
 "importanti nelle regole di filtro dei file:<placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1562
@@ -17697,7 +17697,7 @@ msgid ""
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Utilizzo dei filtri di linea<placeholder type=\"indexterm\" id=\"0\"/"
-">><placeholder type=\"indexterm\" id=\"1\"/>"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Filters.xml:1637
@@ -17856,7 +17856,7 @@ msgid ""
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 msgstr ""
 "Sintassi del filtro di linea<placeholder type=\"indexterm\" id=\"0\"/"
-"><placeholder type=\"indexterm\" id=\"1\"/>><placeholder type=\"indexterm\" "
+"><placeholder type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" "
 "id=\"2\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -18105,7 +18105,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Utilizzo dei filtri di sostituzione<placeholder type=\"indexterm\" id=\"0\"/"
-">><placeholder type=\"indexterm\" id=\"1\"/>"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Filters.xml:1876
@@ -18124,7 +18124,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Utilizzo della finestra di dialogo Filtri<placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Filters.xml:1883
@@ -18560,7 +18560,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Test delle regole di filtro dei file<placeholder type=\"indexterm\" id=\"0\"/"
-">><placeholder type=\"indexterm\" id=\"1\"/>"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Filters.xml:2145
@@ -19336,7 +19336,7 @@ msgid ""
 "id=\"1\"/>"
 msgstr ""
 "Nella pagina Seleziona attività aggiuntive, specifica eventuali attività "
-"aggiuntive:<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
+"aggiuntive:<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
@@ -20229,7 +20229,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Scelta di un file dei risultati dell'unione <placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Intro_diffs.xml:414
@@ -21337,7 +21337,7 @@ msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Launching WinMerge operations in Windows Explorer"
 msgstr ""
-"<placeholder type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" "
+"<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Avvio delle operazioni WinMerge in Esplora risorse"
 
 #. type: Content of: <article><section><para>
@@ -21603,7 +21603,7 @@ msgid ""
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Inclusione delle sottocartelle quando si utilizza l'integrazione di Esplora "
-"risorse<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
+"risorse<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -21737,7 +21737,7 @@ msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Project files"
 msgstr ""
-"<placeholder type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" "
+"<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>File di progetto"
 
 #. type: Content of: <article><section><para>
@@ -22941,7 +22941,7 @@ msgid ""
 "Available plugins<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
-"Plug-in disponibili<placeholder type=\"indexterm\" id=\"0\"/>><placeholder "
+"Plug-in disponibili<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
@@ -25070,7 +25070,7 @@ msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Selecting files and folders to compare"
 msgstr ""
-"<placeholder type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" "
+"<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Selezione di file e cartelle da confrontare"
 
 #. type: Content of: <article><section><para>
@@ -25424,7 +25424,7 @@ msgid ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "Altri modi per aprire file e cartelle<placeholder type=\"indexterm\" "
-"id=\"0\"/>><placeholder type=\"indexterm\" id=\"1\"/>"
+"id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Quick_start.xml:210
@@ -25476,7 +25476,7 @@ msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Comparing folders"
 msgstr ""
-"<placeholder type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" "
+"<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Confronto di cartelle"
 
 #. type: Content of: <article><section><para>
@@ -25606,7 +25606,7 @@ msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Comparing files"
 msgstr ""
-"<placeholder type=\"indexterm\" id=\"0\"/>><placeholder type=\"indexterm\" "
+"<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/>Confronto di file"
 
 #. type: Content of: <article><section><para>

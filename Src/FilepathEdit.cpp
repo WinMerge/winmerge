@@ -15,7 +15,6 @@
 #include "FilepathEdit.h"
 #include "ClipBoard.h"
 #include "FileOrFolderSelect.h"
-#include "Win_VersionHelper.h"
 #include "paths.h"
 #include "cecolor.h"
 
@@ -41,6 +40,8 @@ BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
 	ON_COMMAND_RANGE(ID_DIR_ITEM_RENAME, ID_DIR_ITEM_RENAME, OnContextMenuSelected)
 	ON_COMMAND_RANGE(ID_EDITOR_COPY_PATH, ID_EDITOR_SELECT_FILE, OnContextMenuSelected)
+	ON_COMMAND_RANGE(ID_EDITOR_RECENT_FIRST, ID_EDITOR_RECENT_LAST, OnContextMenuSelected)
+	ON_COMMAND_RANGE(ID_EDITOR_CLIPBOARD_FIRST, ID_EDITOR_CLIPBOARD_LAST, OnContextMenuSelected)
 END_MESSAGE_MAP()
 
 
@@ -248,7 +249,8 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (!m_bActive)
 			SetFocus();
 
-		if (point.x == -1 && point.y == -1){
+		if (point.x == -1 && point.y == -1)
+		{
 			//keystroke invocation
 			CRect rect;
 			GetClientRect(rect);
@@ -274,8 +276,17 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (!m_bEnabledFileSelection && !m_bEnabledFolderSelection)
 		{
 			pPopup->EnableMenuItem(ID_EDITOR_SELECT_FILE, MF_GRAYED);
+			pPopup->EnableMenuItem(ID_EDITOR_OPEN_CLIPBOARD, MF_GRAYED);
 			pPopup->EnableMenuItem(ID_EDITOR_EDIT_PATH, MF_GRAYED);
 		}
+
+		// Allow parent to customize the context menu
+		NMHEADERBARCONTEXTMENU nmctx;
+		nmctx.hdr.hwndFrom = m_hWnd;
+		nmctx.hdr.idFrom = GetDlgCtrlID();
+		nmctx.hdr.code = EN_USER_CUSTOMIZE_CONTEXT_MENU;
+		nmctx.pMenu = pPopup;
+		GetParent()->SendMessage(WM_NOTIFY, nmctx.hdr.idFrom, reinterpret_cast<LPARAM>(&nmctx));
 
 		// invoke context menu
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
@@ -316,18 +327,37 @@ void CFilepathEdit::OnPaint()
 	if (!m_bInEditing)
 	{
 		CClientDC dc(this);
-		Gdiplus::Graphics graphics(dc);
-		graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 		CRect rc = GetMenuCharRect(&dc);
+
+		// Use memory DC for double buffering to reduce flicker
+		CDC memDC;
+		memDC.CreateCompatibleDC(&dc);
+		CBitmap memBitmap;
+		memBitmap.CreateCompatibleBitmap(&dc, rc.Width(), rc.Height());
+		CBitmap* pOldBitmap = memDC.SelectObject(&memBitmap);
+
+		// Fill background
+		memDC.FillSolidRect(0, 0, rc.Width(), rc.Height(), m_crBackGnd);
+
+		// Draw hamburger menu
+		Gdiplus::Graphics graphics(memDC.GetSafeHdc());
+		graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+
 		Gdiplus::Pen pen(Gdiplus::Color(255, GetRValue(m_crText), GetGValue(m_crText), GetBValue(m_crText)), PointToPixel(dc, 0.75f));
 		const int lineCount = 3;
 		const float spacing = PointToPixel(dc, 2.25f);
 		const int padding = static_cast<int>(PointToPixel(dc, 0.75f));
+
 		for (int i = 0; i < lineCount; ++i)
 		{
-			float y = rc.top + (rc.Height() - (lineCount - 1) * spacing) / 2 + i * spacing;
-			graphics.DrawLine(&pen, static_cast<float>(rc.left + padding), y, static_cast<float>(rc.right - padding), y);
+			float y = (rc.Height() - (lineCount - 1) * spacing) / 2 + i * spacing;
+			graphics.DrawLine(&pen, static_cast<float>(padding), y, static_cast<float>(rc.Width() - padding), y);
 		}
+
+		// Copy to screen
+		dc.BitBlt(rc.left, rc.top, rc.Width(), rc.Height(), &memDC, 0, 0, SRCCOPY);
+
+		memDC.SelectObject(pOldBitmap);
 	}
 }
 
@@ -417,6 +447,20 @@ void CFilepathEdit::OnEditSelectAll()
 
 void CFilepathEdit::OnContextMenuSelected(UINT nID)
 {
+	// Forward Recent/Clipboard commands to parent via notification
+	if ((nID >= ID_EDITOR_RECENT_FIRST && nID <= ID_EDITOR_RECENT_LAST) ||
+		(nID >= ID_EDITOR_CLIPBOARD_FIRST && nID <= ID_EDITOR_CLIPBOARD_LAST) ||
+		nID == ID_EDITOR_OPEN_CLIPBOARD)
+	{
+		NMMENUITEMSELECTED nmhdr;
+		nmhdr.hdr.hwndFrom = m_hWnd;
+		nmhdr.hdr.idFrom = GetDlgCtrlID();
+		nmhdr.hdr.code = EN_USER_MENU_ITEM_SELECTED;
+		nmhdr.menuId = nID;
+		GetParent()->SendMessage(WM_NOTIFY, nmhdr.hdr.idFrom, reinterpret_cast<LPARAM>(&nmhdr));
+		return;
+	}
+
 	// compute the beginning of the text to copy (in OriginalText)
 	size_t iBegin = 0;
 	switch (nID)
@@ -487,7 +531,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 	default:
 		return;
 	}
-	
+
 	CustomCopy(iBegin);
 }
 
@@ -517,25 +561,30 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 				String windowText = m_sOriginalText;
 				if (!(text == orgtext.c_str() || text.IsEmpty()))
 				{
-					bool existing = paths::DoesPathExist((const tchar_t *)text);
-					if (existing)
+					String path = text;
+					bool existing = true;
+					if (!paths::IsURLorCLSID(path))
 					{
-						if (m_bEnabledFileSelection && paths::IsDirectory((const tchar_t*)text))
+						existing = paths::DoesPathExist(path);
+						if (existing)
 						{
-							existing = false;
-							windowText = strutils::format_string1(_("File not found: %1"), (const tchar_t*)text);
+							if (m_bEnabledFileSelection && paths::IsDirectory(path))
+							{
+								existing = false;
+								windowText = strutils::format_string1(_("File not found: %1"), path);
+							}
+							if (m_bEnabledFolderSelection && !paths::IsDirectory(path))
+							{
+								existing = false;
+								windowText = strutils::format_string1(_("Folder not found: %1"), path);
+							}
 						}
-						if (m_bEnabledFolderSelection && !paths::IsDirectory((const tchar_t*)text))
-						{
-							existing = false;
-							windowText = _("Folder does not exist.");
-						}
+						else
+							windowText = GetSysError();
 					}
-					else
-						windowText = GetSysError();
 					if (existing)
 					{
-						m_sFilepath = static_cast<const tchar_t*>(text);
+						m_sFilepath = path;
 						GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
 					}
 				}
@@ -638,6 +687,9 @@ void CFilepathEdit::SetBackColor(COLORREF rgb)
 	
 	//redraw
 	Invalidate(TRUE);
+
+	if (GetParent())
+		GetParent()->InvalidateRect(nullptr, false);
 }
 
 /**

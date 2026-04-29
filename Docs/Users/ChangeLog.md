@@ -1,10 +1,12 @@
 # Change log
 
-## What Is New in 2.16.56
+## WinMerge 2.16.56 - 2026-04-27
 
 ### General
 
 * Show error message when entering invalid path in header bar (PR #3322)
+
+* Add recent items and clipboard history to header bar menu (PR #3330)
 
 ### Folder compare
 
@@ -23,10 +25,11 @@
 ### Translations
 
 * Translation updates:
-  * Brazilian (PR #3328)
-  * Chinese Simplified (PR #3307,#3331)
+  * Brazilian (PR #3328,#3341)
+  * Chinese Simplified (PR #3307,#3331,#3344)
   * French (PR #3312)
   * German (PR #3329)
+  * Italian (PR #3335,#3342)
   * Korean (PR #3334)
   * Lithuanian (PR #3308)
   * Russian (PR #3309)
@@ -52,7 +55,7 @@
 
 * BugFix: Register self-compare in MRU and refactor command line parameter
     buil… (PR #3266)
-    
+
 * Refactor save confirmation logic using SaveClosingDlg::ShowAndSave
     (PR #3256)
 
@@ -125,12 +128,14 @@
   * Polish (PR #3233,#3273)
   * Russian (PR #3226,#3281)
   * Turkish (PR #3204,#3221,#3227,#3250,#3271,#3286,#3298)
-  * Ukrainian (PR #)
+
 
 ### Documentation
 
 * Added: Community standard files (like issue templates, pr template).
     (PR #3225)
+
+* Add context IDs to PO files \& strip comments for releases (PR #3296)
 
 ## WinMerge 2.16.54 - 2026-01-27
 

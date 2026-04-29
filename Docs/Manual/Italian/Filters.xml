@@ -83,11 +83,11 @@ modifiche poco interessanti.</para>
   <section id="Filters_Mask">
     <title>Utilizzo delle maschere dei file<indexterm>
         <primary>maschere di file</primary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>filtri</primary>
 
         <secondary>maschere di file</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>filtri</primary>
 
         <secondary>nei confronti delle cartelle</secondary>
@@ -129,11 +129,11 @@ nella prossima sezione).</para>
           <primary>regole</primary>
 
           <secondary>maschere di file</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>filtri</primary>
 
           <secondary>maschere di file</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>espressioni regolari</primary>
 
           <secondary>nelle maschere dei file</secondary>
@@ -933,7 +933,7 @@ esista alcuna corrispondenza.</para>
 
         <variablelist>
           <varlistentry>
-            <term><function>lineCount<function>(<replaceable>contenuto</replaceable>)</term>
+            <term><function>lineCount</function>(<replaceable>contenuto</replaceable>)</term>
             <listitem><para>Restituisce il numero di righe nel contenuto del file o nell'array del
 contenuto del file come <literal>Intero</literal>.Se
 <replaceable>content</replaceable> è un array, il risultato è un array di
@@ -1229,7 +1229,7 @@ controlla se qualche file è stato modificato questo mese (escluso oggi)</para><
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>logError<function>(<replaceable>valore1</replaceable>,
+            <term><function>logError</function>(<replaceable>valore1</replaceable>,
 <replaceable>value2</replaceable>, ...),
 logWarn(<replaceable>value1</replaceable>,
 <replaceable>value2</replaceable>, ...),
@@ -1275,7 +1275,7 @@ o 0 se il file non esiste</para></listitem>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>ifEach<function>(<replaceable>conditionArray</replaceable>,
+            <term><function>ifEach</function>(<replaceable>conditionArray</replaceable>,
 <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
             <listitem>
               <para>
@@ -1451,7 +1451,7 @@ sinistra-centrale (solo filtro di visualizzazione)</para></listitem>
         <primary>filtri</primary>
 
         <secondary>filtri di file</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>filtri</primary>
 
         <secondary>nei confronti delle cartelle</secondary>
@@ -1480,7 +1480,7 @@ gestire i filtri.</para>
           <primary>Filtra le cartelle</primary>
 
           <secondary>posizioni</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>filtri di file</primary>
 
           <secondary>posizioni</secondary>
@@ -1602,7 +1602,7 @@ specificare un filtro file.</para>
           <primary>regole</primary>
 
           <secondary>filtro file</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>filtri di file</primary>
 
           <secondary>sintassi</secondary>
@@ -1700,7 +1700,7 @@ importanti nelle regole di filtro dei file:<indexterm>
           <primary>espressioni regolari</primary>
 
           <secondary>caratteri speciali nei filtri</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>espressioni regolari</primary>
 
           <secondary>nei filtri dei file</secondary>
@@ -1774,7 +1774,7 @@ f: ^[h,k,m] ## File <filename>h*.*</filename>, <filename>k*.*</filename> e <file
         <primary>filtri</primary>
 
         <secondary>linea</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>filtri</primary>
 
         <secondary>nei confronti dei file</secondary>
@@ -1877,7 +1877,7 @@ finestra Confronta file.</para>
           <primary>filtri</primary>
 
           <secondary>linea</secondary>
-        </indexterm>><indexterm>
+        </indexterm><indexterm>
           <primary>espressioni regolari</primary>
 
           <secondary>filtri in linea</secondary>
@@ -1990,7 +1990,7 @@ e finiscono con <literal>*/</literal></para>
         <primary>filtri</primary>
 
         <secondary>sostituzione</secondary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>filtri</primary>
 
         <secondary>nei confronti dei file</secondary>
@@ -2002,7 +2002,7 @@ e finiscono con <literal>*/</literal></para>
   <section id="Filters_dlg">
     <title>Utilizzo della finestra di dialogo Filtri<indexterm>
         <primary>Finestra di dialogo Filtri</primary>
-      </indexterm>><indexterm>
+      </indexterm><indexterm>
         <primary>filtri</primary>
 
         <secondary>gestire e abilitare</secondary>
@@ -2257,7 +2257,7 @@ file installato.</para>
             <primary>filtri di file</primary>
 
             <secondary>test</secondary>
-          </indexterm>><indexterm>
+          </indexterm><indexterm>
             <primary>testare i filtri dei file</primary>
           </indexterm></title>
 
