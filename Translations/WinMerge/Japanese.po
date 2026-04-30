@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5467
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5475
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_JAPANESE, SUBLANG_DEFAULT"
 
@@ -154,7 +154,7 @@ msgstr "スクリプト(&S)"
 #. IDS_NO_EDIT_SCRIPTS
 #: Merge.rc:123 Merge.rc:340 Merge.rc:451 Merge.rc:661 Merge.rc:666
 #: Merge.rc:872 Merge.rc:884 Merge.rc:891 Merge.rc:948 Merge.rc:1194
-#: Merge.rc:5040
+#: Merge.rc:5048
 msgid "< Empty >"
 msgstr "< なし >"
 
@@ -199,7 +199,7 @@ msgid "Open &Parent Folder..."
 msgstr "親フォルダーを開く(&P)..."
 
 #. IDR_POPUP_IMG_CTXT, ID_FILE_SHELLMENU
-#: Merge.rc:137 Merge.rc:1250
+#: Merge.rc:137 Merge.rc:1258
 msgid "S&hell Menu"
 msgstr "シェル メニュー(&H)"
 
@@ -250,12 +250,12 @@ msgid "&Horizontal"
 msgstr "水平方向(&H)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_PREVPAGE
-#: Merge.rc:181 Merge.rc:189 Merge.rc:1241
+#: Merge.rc:181 Merge.rc:189 Merge.rc:1249
 msgid "&Previous Page"
 msgstr "前ページ(&P)"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:182 Merge.rc:190 Merge.rc:1242 Merge.rc:5336
+#: Merge.rc:182 Merge.rc:190 Merge.rc:1250 Merge.rc:5344
 msgid "&Next Page"
 msgstr "次ページ(&N)"
 
@@ -265,22 +265,22 @@ msgid "&Active Pane"
 msgstr "選択ペイン(&A)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_RIGHT_90
-#: Merge.rc:185 Merge.rc:1236
+#: Merge.rc:185 Merge.rc:1244
 msgid "Rotate &Right 90deg"
 msgstr "右へ90度回転(&R)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_LEFT_90
-#: Merge.rc:186 Merge.rc:1237
+#: Merge.rc:186 Merge.rc:1245
 msgid "Rotate &Left 90deg"
 msgstr "左へ90度回転(&L)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_FLIP_VERTICALLY
-#: Merge.rc:187 Merge.rc:1238
+#: Merge.rc:187 Merge.rc:1246
 msgid "Flip V&ertically"
 msgstr "上下反転(&E)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_FLIP_HORIZONTALLY
-#: Merge.rc:188 Merge.rc:1239
+#: Merge.rc:188 Merge.rc:1247
 msgid "Flip H&orizontally"
 msgstr "左右反転(&O)"
 
@@ -325,27 +325,27 @@ msgid "Dragging &Mode"
 msgstr "ドラッグモード(&M)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_MOVE
-#: Merge.rc:217 Merge.rc:963 Merge.rc:1244
+#: Merge.rc:217 Merge.rc:963 Merge.rc:1252
 msgid "&Move"
 msgstr "移動(&M)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
-#: Merge.rc:218 Merge.rc:1245
+#: Merge.rc:218 Merge.rc:1253
 msgid "&Adjust Offset"
 msgstr "オフセット調整(&A)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
-#: Merge.rc:219 Merge.rc:1246
+#: Merge.rc:219 Merge.rc:1254
 msgid "&Vertical Wipe"
 msgstr "垂直ワイプ(&V)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
-#: Merge.rc:220 Merge.rc:1247
+#: Merge.rc:220 Merge.rc:1255
 msgid "&Horizontal Wipe"
 msgstr "水平ワイプ(&H)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
-#: Merge.rc:221 Merge.rc:1248
+#: Merge.rc:221 Merge.rc:1256
 msgid "Rectangle &Select"
 msgstr "矩形選択(&S)"
 
@@ -380,37 +380,37 @@ msgid "Compare Extracted &Text from Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 
 #. IDD_OPEN, IDOK
-#: Merge.rc:272 Merge.rc:1991
+#: Merge.rc:272 Merge.rc:1999
 msgid "Co&mpare"
 msgstr "比較(&M)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_SCREENSHOTS
-#: Merge.rc:274 Merge.rc:1258
+#: Merge.rc:274 Merge.rc:1266
 msgid "&Screenshots"
 msgstr "スクリーンショット(&S)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
-#: Merge.rc:275 Merge.rc:1259
+#: Merge.rc:275 Merge.rc:1267
 msgid "&Full Size Screenshots"
 msgstr "フルサイズ スクリーンショット(&F)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_HTMLS
-#: Merge.rc:276 Merge.rc:1260
+#: Merge.rc:276 Merge.rc:1268
 msgid "&HTMLs"
 msgstr "&HTML"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_TEXTS
-#: Merge.rc:277 Merge.rc:1261
+#: Merge.rc:277 Merge.rc:1269
 msgid "&Texts"
 msgstr "テキスト(&T)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_RESOURCETREES
-#: Merge.rc:278 Merge.rc:1262
+#: Merge.rc:278 Merge.rc:1270
 msgid "&Resource Trees"
 msgstr "リソース ツリー(&R)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_SIZE
-#: Merge.rc:280 Merge.rc:1786
+#: Merge.rc:280 Merge.rc:1794
 msgid "&Size"
 msgstr "サイズ(&S)"
 
@@ -425,27 +425,27 @@ msgid "&Event Sync"
 msgstr "イベント同期(&E)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_ENABLED
-#: Merge.rc:291 Merge.rc:1270
+#: Merge.rc:291 Merge.rc:1278
 msgid "&Enabled"
 msgstr "有効(&E)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_SCROLL
-#: Merge.rc:293 Merge.rc:1272
+#: Merge.rc:293 Merge.rc:1280
 msgid "&Scroll"
 msgstr "スクロール(&S)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_CLICK
-#: Merge.rc:294 Merge.rc:1273
+#: Merge.rc:294 Merge.rc:1281
 msgid "&Click"
 msgstr "クリック(&C)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_INPUT
-#: Merge.rc:295 Merge.rc:1274
+#: Merge.rc:295 Merge.rc:1282
 msgid "&Input"
 msgstr "入力(&I)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_GOBACKFORWARD
-#: Merge.rc:296 Merge.rc:1275
+#: Merge.rc:296 Merge.rc:1283
 msgid "&Go Back/Forward"
 msgstr "戻る/進む(&G)"
 
@@ -505,7 +505,7 @@ msgstr "バイナリ(&B)"
 #. IDS_IMAGE_MENU
 #: Merge.rc:317 Merge.rc:326 Merge.rc:420 Merge.rc:429 Merge.rc:597
 #: Merge.rc:606 Merge.rc:658 Merge.rc:945 Merge.rc:1171 Merge.rc:1184
-#: Merge.rc:5135
+#: Merge.rc:5143
 msgid "&Image"
 msgstr "画像(&I)"
 
@@ -542,12 +542,12 @@ msgid "Open C&lipboard"
 msgstr "クリップボードを開く(&L)"
 
 #. IDR_POPUP_PROJECT, ID_FILE_OPENPROJECT
-#: Merge.rc:334 Merge.rc:437 Merge.rc:614 Merge.rc:1202
+#: Merge.rc:334 Merge.rc:437 Merge.rc:614 Merge.rc:1210
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "プロジェクトを開く(&J)...\tCtrl+J"
 
 #. IDD_OPEN, ID_SAVE_PROJECT
-#: Merge.rc:335 Merge.rc:438 Merge.rc:615 Merge.rc:1204 Merge.rc:1990
+#: Merge.rc:335 Merge.rc:438 Merge.rc:615 Merge.rc:1212 Merge.rc:1998
 msgid "Sa&ve Project..."
 msgstr "プロジェクトを保存(&V)..."
 
@@ -627,7 +627,7 @@ msgid "&Huge"
 msgstr "特大(&H)"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5371
+#: Merge.rc:366 Merge.rc:517 Merge.rc:764 Merge.rc:5379
 msgid "Men&u Bar"
 msgstr "メニューバー(&U)"
 
@@ -662,7 +662,7 @@ msgid "&Plugins"
 msgstr "プラグイン(&P)"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_SETTINGS
-#: Merge.rc:377 Merge.rc:552 Merge.rc:862 Merge.rc:2505 Merge.rc:2937
+#: Merge.rc:377 Merge.rc:552 Merge.rc:862 Merge.rc:2513 Merge.rc:2945
 msgid "P&lugin Settings..."
 msgstr "プラグインの設定(&L)..."
 
@@ -727,7 +727,7 @@ msgid "&Cascade"
 msgstr "重ねて表示(&C)"
 
 #. IDS_MESSAGEBOX_HELP
-#: Merge.rc:398 Merge.rc:575 Merge.rc:911 Merge.rc:3211 Merge.rc:4200
+#: Merge.rc:398 Merge.rc:575 Merge.rc:911 Merge.rc:3219 Merge.rc:4208
 msgid "&Help"
 msgstr "ヘルプ(&H)"
 
@@ -782,12 +782,12 @@ msgid "Ri&ght Read-Only"
 msgstr "右側を読み取り専用(&G)"
 
 #. IDD_ENCODINGERROR, IDC_FILEENCODING
-#: Merge.rc:447 Merge.rc:652 Merge.rc:1046 Merge.rc:3074
+#: Merge.rc:447 Merge.rc:652 Merge.rc:1046 Merge.rc:3082
 msgid "&File Encoding..."
 msgstr "ファイル エンコーディング(&F)..."
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_SELECT_ALL
-#: Merge.rc:458 Merge.rc:681 Merge.rc:1354
+#: Merge.rc:458 Merge.rc:681 Merge.rc:1362
 msgid "Select &All\tCtrl+A"
 msgstr "すべて選択(&A)\tCtrl+A"
 
@@ -1012,7 +1012,7 @@ msgid "Generate &Report..."
 msgstr "レポートの生成(&R)..."
 
 #. IDD_ENCODINGERROR, IDC_PLUGIN
-#: Merge.rc:560 Merge.rc:874 Merge.rc:3075
+#: Merge.rc:560 Merge.rc:874 Merge.rc:3083
 msgid "&Edit with Unpacker..."
 msgstr "展開プラグインで開く(&E)..."
 
@@ -1027,17 +1027,17 @@ msgid "Sav&e"
 msgstr "保存(&E)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_LEFT
-#: Merge.rc:620 Merge.rc:1212
+#: Merge.rc:620 Merge.rc:1220
 msgid "Save &Left"
 msgstr "左側のファイルを保存(&L)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MIDDLE
-#: Merge.rc:621 Merge.rc:1213
+#: Merge.rc:621 Merge.rc:1221
 msgid "Save &Middle"
 msgstr "中央のファイルを保存(&M)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_RIGHT
-#: Merge.rc:622 Merge.rc:1214
+#: Merge.rc:622 Merge.rc:1222
 msgid "Save &Right"
 msgstr "右側のファイルを保存(&R)"
 
@@ -1047,17 +1047,17 @@ msgid "Save &As"
 msgstr "名前を付けて保存(&A)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_LEFT
-#: Merge.rc:626 Merge.rc:1216
+#: Merge.rc:626 Merge.rc:1224
 msgid "Save &Left As..."
 msgstr "名前を付けて左側のファイルを保存(&L)..."
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MIDDLE
-#: Merge.rc:627 Merge.rc:1217
+#: Merge.rc:627 Merge.rc:1225
 msgid "Save &Middle As..."
 msgstr "名前を付けて中央のファイルを保存(&M)..."
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_RIGHT
-#: Merge.rc:628 Merge.rc:1218
+#: Merge.rc:628 Merge.rc:1226
 msgid "Save &Right As..."
 msgstr "名前を付けて右側のファイルを保存(&R)..."
 
@@ -1117,7 +1117,7 @@ msgid "Cu&t\tCtrl+X"
 msgstr "切り取り(&T)\tCtrl+X"
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_COPY
-#: Merge.rc:677 Merge.rc:1353
+#: Merge.rc:677 Merge.rc:1361
 msgid "&Copy\tCtrl+C"
 msgstr "コピー(&C)\tCtrl+C"
 
@@ -1282,7 +1282,7 @@ msgid "Lo&cation Pane"
 msgstr "ロケーション ペイン(&C)"
 
 #. IDS_OUTPUTBAR_CAPTION
-#: Merge.rc:768 Merge.rc:4914
+#: Merge.rc:768 Merge.rc:4922
 msgid "Output Pane"
 msgstr "出力 ペイン"
 
@@ -1368,13 +1368,13 @@ msgstr "左側からコピー(&L)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
 #: Merge.rc:806 Merge.rc:817 Merge.rc:822 Merge.rc:833 Merge.rc:978
-#: Merge.rc:2556 Merge.rc:2828
+#: Merge.rc:2564 Merge.rc:2836
 msgid "&Middle"
 msgstr "中央(&M)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
 #: Merge.rc:807 Merge.rc:812 Merge.rc:823 Merge.rc:828 Merge.rc:979
-#: Merge.rc:2557 Merge.rc:2830
+#: Merge.rc:2565 Merge.rc:2838
 msgid "&Right"
 msgstr "右側(&R)"
 
@@ -1385,7 +1385,7 @@ msgstr "中央からコピー(&M)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
 #: Merge.rc:811 Merge.rc:816 Merge.rc:827 Merge.rc:832 Merge.rc:977
-#: Merge.rc:2555 Merge.rc:2826
+#: Merge.rc:2563 Merge.rc:2834
 msgid "&Left"
 msgstr "左側(&L)"
 
@@ -1540,61 +1540,61 @@ msgid "Co&mpare As"
 msgstr "形式を指定して比較(&M)"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
-#: Merge.rc:953 Merge.rc:965 Merge.rc:4514
+#: Merge.rc:953 Merge.rc:965 Merge.rc:4522
 #, c-format
 msgid "Left to Middle (%1 of %2)"
 msgstr "左側から中央 (%1 / %2)"
 
 #. IDS_COPY_LEFT_TO_RIGHT2
-#: Merge.rc:954 Merge.rc:966 Merge.rc:4513
+#: Merge.rc:954 Merge.rc:966 Merge.rc:4521
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "左側を右側に (%1 / %2)"
 
 #. IDS_MOVE_LEFT_TO2
-#: Merge.rc:955 Merge.rc:967 Merge.rc:1030 Merge.rc:4525 Merge.rc:4554
+#: Merge.rc:955 Merge.rc:967 Merge.rc:1030 Merge.rc:4533 Merge.rc:4562
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "左側を... (%1 / %2)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT2
-#: Merge.rc:956 Merge.rc:968 Merge.rc:4511
+#: Merge.rc:956 Merge.rc:968 Merge.rc:4519
 #, c-format
 msgid "Middle to Left (%1 of %2)"
 msgstr "中央から左側 (%1 / %2)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT2
-#: Merge.rc:957 Merge.rc:969 Merge.rc:4512
+#: Merge.rc:957 Merge.rc:969 Merge.rc:4520
 #, c-format
 msgid "Middle to Right (%1 of %2)"
 msgstr "中央から右側 (%1 / %2)"
 
 #. IDS_MOVE_MIDDLE_TO2
-#: Merge.rc:958 Merge.rc:970 Merge.rc:1031 Merge.rc:4526 Merge.rc:4555
+#: Merge.rc:958 Merge.rc:970 Merge.rc:1031 Merge.rc:4534 Merge.rc:4563
 #, c-format
 msgid "Middle to... (%1 of %2)"
 msgstr "中央を... (%1 / %2)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE2
-#: Merge.rc:959 Merge.rc:971 Merge.rc:4510
+#: Merge.rc:959 Merge.rc:971 Merge.rc:4518
 #, c-format
 msgid "Right to Middle (%1 of %2)"
 msgstr "右側から中央 (%1 / %2)"
 
 #. IDS_COPY_RIGHT_TO_LEFT2
-#: Merge.rc:960 Merge.rc:972 Merge.rc:4509
+#: Merge.rc:960 Merge.rc:972 Merge.rc:4517
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "右側を左側に (%1 / %2)"
 
 #. IDS_MOVE_RIGHT_TO2
-#: Merge.rc:961 Merge.rc:973 Merge.rc:1032 Merge.rc:4527 Merge.rc:4556
+#: Merge.rc:961 Merge.rc:973 Merge.rc:1032 Merge.rc:4535 Merge.rc:4564
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "右側を... (%1 / %2)"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_MARKER_DELETE
-#: Merge.rc:975 Merge.rc:2047
+#: Merge.rc:975 Merge.rc:2055
 msgid "&Delete"
 msgstr "削除(&D)"
 
@@ -1609,7 +1609,7 @@ msgid "&All"
 msgstr "すべて(&A)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_SELECTION
-#: Merge.rc:982 Merge.rc:2030
+#: Merge.rc:982 Merge.rc:2038
 msgid "&Selection"
 msgstr "選択範囲(&S)"
 
@@ -1644,31 +1644,31 @@ msgid "Cop&y Paths"
 msgstr "パス名をコピー(&Y)"
 
 #. IDS_DEL_LEFT_FMT2
-#: Merge.rc:1011 Merge.rc:1020 Merge.rc:4542
+#: Merge.rc:1011 Merge.rc:1020 Merge.rc:4550
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "左側 (%1 / %2)"
 
 #. IDS_DEL_MIDDLE_FMT2
-#: Merge.rc:1012 Merge.rc:1021 Merge.rc:4543
+#: Merge.rc:1012 Merge.rc:1021 Merge.rc:4551
 #, c-format
 msgid "Middle (%1 of %2)"
 msgstr "中央 (%1 / %2)"
 
 #. IDS_DEL_RIGHT_FMT2
-#: Merge.rc:1013 Merge.rc:1022 Merge.rc:4544
+#: Merge.rc:1013 Merge.rc:1022 Merge.rc:4552
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "右側 (%1 / %2)"
 
 #. IDS_DEL_BOTH_FMT2
-#: Merge.rc:1014 Merge.rc:1023 Merge.rc:4545
+#: Merge.rc:1014 Merge.rc:1023 Merge.rc:4553
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "両側 (%1 / %2)"
 
 #. IDS_DEL_ALL_FMT2
-#: Merge.rc:1015 Merge.rc:1024 Merge.rc:4550
+#: Merge.rc:1015 Merge.rc:1024 Merge.rc:4558
 #, c-format
 msgid "All (%1 of %2)"
 msgstr "すべて (%1 / %2)"
@@ -1694,19 +1694,19 @@ msgid "&Zip"
 msgstr "圧縮(&Z)"
 
 #. IDS_COPY_BOTH_TO2
-#: Merge.rc:1033 Merge.rc:4528
+#: Merge.rc:1033 Merge.rc:4536
 #, c-format
 msgid "Both to... (%1 of %2)"
 msgstr "両側を... (%1 / %2)"
 
 #. IDS_COPY_ALL_TO2
-#: Merge.rc:1034 Merge.rc:4529
+#: Merge.rc:1034 Merge.rc:4537
 #, c-format
 msgid "All to... (%1 of %2)"
 msgstr "すべてを... (%1 / %2)"
 
 #. IDS_COPY_DIFFERENCES_TO2
-#: Merge.rc:1035 Merge.rc:4530
+#: Merge.rc:1035 Merge.rc:4538
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "差異を... (%1 / %2)"
@@ -1772,17 +1772,17 @@ msgid "Unpacker Settings"
 msgstr "展開プラグイン設定"
 
 #. IDS_USERCHOICE_NONE
-#: Merge.rc:1073 Merge.rc:1079 Merge.rc:1800 Merge.rc:1804 Merge.rc:5042
+#: Merge.rc:1073 Merge.rc:1079 Merge.rc:1808 Merge.rc:1812 Merge.rc:5050
 msgid "<None>"
 msgstr "<なし>"
 
 #. IDS_USERCHOICE_AUTOMATIC
-#: Merge.rc:1074 Merge.rc:1080 Merge.rc:5043
+#: Merge.rc:1074 Merge.rc:1080 Merge.rc:5051
 msgid "<Automatic>"
 msgstr "<自動>"
 
 #. IDD_OPEN, IDC_SELECT_PREDIFFER
-#: Merge.rc:1075 Merge.rc:1081 Merge.rc:1981 Merge.rc:1985
+#: Merge.rc:1075 Merge.rc:1081 Merge.rc:1989 Merge.rc:1993
 msgid "&Select..."
 msgstr "選択(&S)..."
 
@@ -1872,7 +1872,7 @@ msgid "Ignore Line &Breaks (Treat as Spaces)"
 msgstr "改行を無視(空白として扱う)(&B)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_RECURS_CHECK
-#: Merge.rc:1118 Merge.rc:2974
+#: Merge.rc:1118 Merge.rc:2982
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
@@ -1882,2215 +1882,2215 @@ msgid "&Compare Method"
 msgstr "比較方法(&C)"
 
 #. IDS_COMPMETHOD_FULL_CONTENTS
-#: Merge.rc:1121 Merge.rc:1153 Merge.rc:1339 Merge.rc:4293
+#: Merge.rc:1121 Merge.rc:1153 Merge.rc:1347 Merge.rc:4301
 msgid "Full Contents"
 msgstr "フルコンテンツ"
 
 #. IDS_COMPMETHOD_QUICK_CONTENTS
-#: Merge.rc:1122 Merge.rc:1154 Merge.rc:1340 Merge.rc:4294
+#: Merge.rc:1122 Merge.rc:1154 Merge.rc:1348 Merge.rc:4302
 msgid "Quick Contents"
 msgstr "クイック コンテンツ"
 
 #. IDS_COMPMETHOD_BINARY_CONTENTS
-#: Merge.rc:1123 Merge.rc:1155 Merge.rc:1341 Merge.rc:4295
+#: Merge.rc:1123 Merge.rc:1155 Merge.rc:1349 Merge.rc:4303
 msgid "Binary Contents"
 msgstr "バイナリ コンテンツ"
 
 #. IDS_COMPMETHOD_MODDATE
-#: Merge.rc:1124 Merge.rc:1156 Merge.rc:1342 Merge.rc:4296
+#: Merge.rc:1124 Merge.rc:1156 Merge.rc:1350 Merge.rc:4304
 msgid "Modified Date"
 msgstr "更新日時のみ"
 
 #. IDS_COMPMETHOD_DATESIZE
-#: Merge.rc:1125 Merge.rc:1157 Merge.rc:1343 Merge.rc:4297
+#: Merge.rc:1125 Merge.rc:1157 Merge.rc:1351 Merge.rc:4305
 msgid "Modified Date and Size"
 msgstr "更新日時とサイズ"
 
 #. IDS_COMPMETHOD_SIZE
-#: Merge.rc:1126 Merge.rc:1158 Merge.rc:1344 Merge.rc:4298
+#: Merge.rc:1126 Merge.rc:1158 Merge.rc:1352 Merge.rc:4306
 msgid "Size"
 msgstr "サイズのみ"
 
 #. IDS_COMPMETHOD_EXISTENCE
-#: Merge.rc:1127 Merge.rc:1159 Merge.rc:1345 Merge.rc:4299
+#: Merge.rc:1127 Merge.rc:1159 Merge.rc:1353 Merge.rc:4307
 msgid "Existence"
 msgstr "存在のみ"
 
 #. IDR_POPUP_PROJECT, ID_LOAD_PROJECT
-#: Merge.rc:1203
+#: Merge.rc:1211
 msgid "&Load Project..."
 msgstr "プロジェクトを読み込み(&L)..."
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARGALL
-#: Merge.rc:1283 Merge.rc:1312
+#: Merge.rc:1291 Merge.rc:1320
 msgid "${*} - All Arguments"
 msgstr "${*} - すべての引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG1
-#: Merge.rc:1284 Merge.rc:1313
+#: Merge.rc:1292 Merge.rc:1321
 msgid "${1} - First Argument"
 msgstr "${1} - 最初の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG2
-#: Merge.rc:1285 Merge.rc:1314
+#: Merge.rc:1293 Merge.rc:1322
 msgid "${2} - Second Argument"
 msgstr "${2} - 2番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG3
-#: Merge.rc:1286 Merge.rc:1315
+#: Merge.rc:1294 Merge.rc:1323
 msgid "${3} - Third Argument"
 msgstr "${3} - 3番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG4
-#: Merge.rc:1287 Merge.rc:1316
+#: Merge.rc:1295 Merge.rc:1324
 msgid "${4} - Fourth Argument"
 msgstr "${4} - 4番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG5
-#: Merge.rc:1288 Merge.rc:1317
+#: Merge.rc:1296 Merge.rc:1325
 msgid "${5} - Fifth Argument"
 msgstr "${5} - 5番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG6
-#: Merge.rc:1289 Merge.rc:1318
+#: Merge.rc:1297 Merge.rc:1326
 msgid "${6} - Sixth Argument"
 msgstr "${6} - 6番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG7
-#: Merge.rc:1290 Merge.rc:1319
+#: Merge.rc:1298 Merge.rc:1327
 msgid "${7} - Seventh Argument"
 msgstr "${7} - 7番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG8
-#: Merge.rc:1291 Merge.rc:1320
+#: Merge.rc:1299 Merge.rc:1328
 msgid "${8} - Eighth Argument"
 msgstr "${8} - 8番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG9
-#: Merge.rc:1292 Merge.rc:1321
+#: Merge.rc:1300 Merge.rc:1329
 msgid "${9} - Ninth Argument"
 msgstr "${9} - 9番目の引数"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_SRC_FILE
-#: Merge.rc:1300
+#: Merge.rc:1308
 msgid "${SRC_FILE} - Source File"
 msgstr "${SRC_FILE} - ソースファイル"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_SRC_FOLDER
-#: Merge.rc:1301
+#: Merge.rc:1309
 msgid "${SRC_FOLDER} - Source Folder"
 msgstr "${SRC_FOLDER} - ソースフォルダー"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_SRC_URL
-#: Merge.rc:1302
+#: Merge.rc:1310
 msgid "${SRC_URL} - Source URL"
 msgstr "${SRC_URL} - ソースURL"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_SRC_URL_PROTOCOL
-#: Merge.rc:1303
+#: Merge.rc:1311
 msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
 msgstr "${SRC_URL_PROTOCOL} - ソースURLプロトコル"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_SRC_URL_SUFFIX
-#: Merge.rc:1304
+#: Merge.rc:1312
 msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
 msgstr "${SRC_URL_SUFFIX} - ソースURLサフィックス"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_DST_FILE
-#: Merge.rc:1305
+#: Merge.rc:1313
 msgid "${DST_FILE} - Destination File"
 msgstr "${DST_FILE} - 宛先ファイル"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_DST_FOLDER
-#: Merge.rc:1306
+#: Merge.rc:1314
 msgid "${DST_FOLDER} - Destination Folder"
 msgstr "${DST_FOLDER} - 宛先フォルダー"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_DST_URL
-#: Merge.rc:1307
+#: Merge.rc:1315
 msgid "${DST_URL} - Destination URL"
 msgstr "${DST_URL} - 宛先URL"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_DST_URL_PROTOCOL
-#: Merge.rc:1308
+#: Merge.rc:1316
 msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
 msgstr "${DST_URL_PROTOCOL} - 宛先URLプロトコル"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_DST_URL_SUFFIX
-#: Merge.rc:1309
+#: Merge.rc:1317
 msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
 msgstr "${DST_URL_SUFFIX} - 宛先URLサフィックス"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_WINMERGE_HOME
-#: Merge.rc:1310
+#: Merge.rc:1318
 msgid "${WINMERGE_HOME} - WinMerge Home Directory"
 msgstr "${WINMERGE_HOME} - WinMergeホームディレクトリ"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_SCRIPT_FILE
-#: Merge.rc:1311
+#: Merge.rc:1319
 msgid "${SCRIPT_FILE} - Script File"
 msgstr "${SCRIPT_FILE} - スクリプトファイル"
 
 #. IDR_POPUP_PLUGIN_ADD_MENU, ID_PLUGIN_ADD_UNPACKER
-#: Merge.rc:1329
+#: Merge.rc:1337
 msgid "Add &Unpacker Plugin..."
 msgstr "展開プラグインを追加(&U)..."
 
 #. IDR_POPUP_PLUGIN_ADD_MENU, ID_PLUGIN_ADD_PREDIFFER
-#: Merge.rc:1330
+#: Merge.rc:1338
 msgid "Add &Prediffer Plugin..."
 msgstr "比較前処理プラグインを追加(&P)..."
 
 #. IDR_POPUP_PLUGIN_ADD_MENU, ID_PLUGIN_DUPLICATE
-#: Merge.rc:1331
+#: Merge.rc:1339
 msgid "&Duplicate Plugin..."
 msgstr "プラグインを複製(&D)..."
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_CLEAR_ALL
-#: Merge.rc:1355
+#: Merge.rc:1363
 msgid "Clear &All"
 msgstr "すべてクリア(&A)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_MASK_CLEAR
-#: Merge.rc:1363
+#: Merge.rc:1371
 msgid "&Clear All"
 msgstr "すべてクリア(&C)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_MASK_REMOVE_LAST
-#: Merge.rc:1364
+#: Merge.rc:1372
 msgid "Remove Last Filter &Group"
 msgstr "最後のフィルターグループを削除(&G)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_MASK_ALL
-#: Merge.rc:1365
+#: Merge.rc:1373
 msgid "R&eset to Default (*.*)"
 msgstr "デフォルト (*.*) にリセット(&E)"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1366
+#: Merge.rc:1374
 msgid "Add E&xclude File"
 msgstr "除外ファイルを追加(&X)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_SYS
-#: Merge.rc:1368
+#: Merge.rc:1376
 msgid "&System Files"
 msgstr "システムファイル(&S)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_BACKUP
-#: Merge.rc:1369
+#: Merge.rc:1377
 msgid "&Editor Backup Files"
 msgstr "エディタのバックアップファイル(&E)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_BIN
-#: Merge.rc:1370
+#: Merge.rc:1378
 msgid "&Compiled Binary Files"
 msgstr "コンパイル済みバイナリファイル(&C)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_LOG
-#: Merge.rc:1371
+#: Merge.rc:1379
 msgid "&Log Files"
 msgstr "ログファイル(&L)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_TEMP
-#: Merge.rc:1372
+#: Merge.rc:1380
 msgid "&Temporary or Cache Files"
 msgstr "一時ファイル・キャッシュファイル(&T)"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1374
+#: Merge.rc:1382
 msgid "Add Excl&ude Folder"
 msgstr "除外フォルダーを追加(&U)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_VCS
-#: Merge.rc:1376
+#: Merge.rc:1384
 msgid "&Version Control"
 msgstr "バージョン管理(&V)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_BUILD
-#: Merge.rc:1377
+#: Merge.rc:1385
 msgid "&Build Artifacts"
 msgstr "ビルド生成物(&B)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_IDE
-#: Merge.rc:1378
+#: Merge.rc:1386
 msgid "&IDE"
 msgstr "IDE関連(&I)"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1381
+#: Merge.rc:1389
 msgid "Add &File Condition"
 msgstr "ファイル条件を追加(&F)"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1383 Merge.rc:1562
+#: Merge.rc:1391 Merge.rc:1570
 msgid "File &Size"
 msgstr "ファイルサイズ(&S)"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_1KB
-#: Merge.rc:1385 Merge.rc:1538 Merge.rc:1575 Merge.rc:1640 Merge.rc:1718
+#: Merge.rc:1393 Merge.rc:1546 Merge.rc:1583 Merge.rc:1648 Merge.rc:1726
 msgid "Less than 1KB"
 msgstr "1KB 未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_1KB
-#: Merge.rc:1386 Merge.rc:1539 Merge.rc:1576 Merge.rc:1641 Merge.rc:1719
+#: Merge.rc:1394 Merge.rc:1547 Merge.rc:1584 Merge.rc:1649 Merge.rc:1727
 msgid "1KB or more"
 msgstr "1KB 以上"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_10KB
-#: Merge.rc:1387 Merge.rc:1540 Merge.rc:1642
+#: Merge.rc:1395 Merge.rc:1548 Merge.rc:1650
 msgid "Less than 10KB"
 msgstr "10KB 未満"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_10KB
-#: Merge.rc:1388 Merge.rc:1541 Merge.rc:1643
+#: Merge.rc:1396 Merge.rc:1549 Merge.rc:1651
 msgid "10KB or more"
 msgstr "10KB 以上"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_100KB
-#: Merge.rc:1389 Merge.rc:1542 Merge.rc:1644
+#: Merge.rc:1397 Merge.rc:1550 Merge.rc:1652
 msgid "Less than 100KB"
 msgstr "100KB 未満"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_100KB
-#: Merge.rc:1390 Merge.rc:1543 Merge.rc:1645
+#: Merge.rc:1398 Merge.rc:1551 Merge.rc:1653
 msgid "100KB or more"
 msgstr "100KB 以上"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_1MB
-#: Merge.rc:1391 Merge.rc:1544 Merge.rc:1646
+#: Merge.rc:1399 Merge.rc:1552 Merge.rc:1654
 msgid "Less than 1MB"
 msgstr "1MB 未満"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_1MB
-#: Merge.rc:1392 Merge.rc:1545 Merge.rc:1647
+#: Merge.rc:1400 Merge.rc:1553 Merge.rc:1655
 msgid "1MB or more"
 msgstr "1MB 以上"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_10MB
-#: Merge.rc:1393 Merge.rc:1546 Merge.rc:1648
+#: Merge.rc:1401 Merge.rc:1554 Merge.rc:1656
 msgid "Less than 10MB"
 msgstr "10MB 未満"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_10MB
-#: Merge.rc:1394 Merge.rc:1547 Merge.rc:1649
+#: Merge.rc:1402 Merge.rc:1555 Merge.rc:1657
 msgid "10MB or more"
 msgstr "10MB 以上"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_100MB
-#: Merge.rc:1395 Merge.rc:1548 Merge.rc:1650
+#: Merge.rc:1403 Merge.rc:1556 Merge.rc:1658
 msgid "Less than 100MB"
 msgstr "100MB 未満"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_100MB
-#: Merge.rc:1396 Merge.rc:1549 Merge.rc:1651
+#: Merge.rc:1404 Merge.rc:1557 Merge.rc:1659
 msgid "100MB or more"
 msgstr "100MB 以上"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_1GB
-#: Merge.rc:1397 Merge.rc:1550 Merge.rc:1652
+#: Merge.rc:1405 Merge.rc:1558 Merge.rc:1660
 msgid "Less than 1GB"
 msgstr "1GB 未満"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_1GB
-#: Merge.rc:1398 Merge.rc:1653
+#: Merge.rc:1406 Merge.rc:1661
 msgid "1GB or more"
 msgstr "1GB 以上"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_RANGE
-#: Merge.rc:1399 Merge.rc:1476 Merge.rc:1528 Merge.rc:1534 Merge.rc:1551
-#: Merge.rc:1577 Merge.rc:1598 Merge.rc:1654 Merge.rc:1720 Merge.rc:1745
+#: Merge.rc:1407 Merge.rc:1484 Merge.rc:1536 Merge.rc:1542 Merge.rc:1559
+#: Merge.rc:1585 Merge.rc:1606 Merge.rc:1662 Merge.rc:1728 Merge.rc:1753
 msgid "Custom Range..."
 msgstr "カスタム範囲..."
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1401 Merge.rc:1482 Merge.rc:1579
+#: Merge.rc:1409 Merge.rc:1490 Merge.rc:1587
 msgid "&Last Modified"
 msgstr "最終更新日(&L)"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1403 Merge.rc:1484 Merge.rc:1662
+#: Merge.rc:1411 Merge.rc:1492 Merge.rc:1670
 msgid "&Hour"
 msgstr "時間単位(&H)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_HOUR_BEFORE_1
-#: Merge.rc:1405 Merge.rc:1486 Merge.rc:1664
+#: Merge.rc:1413 Merge.rc:1494 Merge.rc:1672
 msgid "More than 1 hour ago"
 msgstr "1時間以上前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_HOUR_WITHIN_1
-#: Merge.rc:1406 Merge.rc:1487 Merge.rc:1665
+#: Merge.rc:1414 Merge.rc:1495 Merge.rc:1673
 msgid "Within 1 hour"
 msgstr "1時間以内"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1408 Merge.rc:1489 Merge.rc:1667
+#: Merge.rc:1416 Merge.rc:1497 Merge.rc:1675
 msgid "&Day"
 msgstr "日単位(&D)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
-#: Merge.rc:1410 Merge.rc:1491 Merge.rc:1669
+#: Merge.rc:1418 Merge.rc:1499 Merge.rc:1677
 msgid "Before today"
 msgstr "今日より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_TODAY
-#: Merge.rc:1411 Merge.rc:1492 Merge.rc:1670
+#: Merge.rc:1419 Merge.rc:1500 Merge.rc:1678
 msgid "Today"
 msgstr "今日"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
-#: Merge.rc:1412 Merge.rc:1493 Merge.rc:1671
+#: Merge.rc:1420 Merge.rc:1501 Merge.rc:1679
 msgid "Before yesterday"
 msgstr "昨日より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_YESTERDAY
-#: Merge.rc:1413 Merge.rc:1494 Merge.rc:1672
+#: Merge.rc:1421 Merge.rc:1502 Merge.rc:1680
 msgid "Yesterday"
 msgstr "昨日"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_SINCE_YESTERDAY
-#: Merge.rc:1414 Merge.rc:1495 Merge.rc:1673
+#: Merge.rc:1422 Merge.rc:1503 Merge.rc:1681
 msgid "Since yesterday"
 msgstr "昨日以降"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1416 Merge.rc:1497 Merge.rc:1675
+#: Merge.rc:1424 Merge.rc:1505 Merge.rc:1683
 msgid "&Week"
 msgstr "週単位(&W)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_BEFORE_THIS
-#: Merge.rc:1418 Merge.rc:1499 Merge.rc:1677
+#: Merge.rc:1426 Merge.rc:1507 Merge.rc:1685
 msgid "Before this week"
 msgstr "今週より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_THIS
-#: Merge.rc:1419 Merge.rc:1500 Merge.rc:1678
+#: Merge.rc:1427 Merge.rc:1508 Merge.rc:1686
 msgid "This week"
 msgstr "今週"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_BEFORE_LAST
-#: Merge.rc:1420 Merge.rc:1501 Merge.rc:1679
+#: Merge.rc:1428 Merge.rc:1509 Merge.rc:1687
 msgid "Before last week"
 msgstr "先週より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_LAST
-#: Merge.rc:1421 Merge.rc:1502 Merge.rc:1680
+#: Merge.rc:1429 Merge.rc:1510 Merge.rc:1688
 msgid "Last week"
 msgstr "先週"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_SINCE_LAST
-#: Merge.rc:1422 Merge.rc:1503 Merge.rc:1681
+#: Merge.rc:1430 Merge.rc:1511 Merge.rc:1689
 msgid "Since last week"
 msgstr "先週以降"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1424 Merge.rc:1505 Merge.rc:1683
+#: Merge.rc:1432 Merge.rc:1513 Merge.rc:1691
 msgid "&Month"
 msgstr "月単位(&M)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_BEFORE_THIS
-#: Merge.rc:1426 Merge.rc:1507 Merge.rc:1685
+#: Merge.rc:1434 Merge.rc:1515 Merge.rc:1693
 msgid "Before this month"
 msgstr "今月より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_THIS
-#: Merge.rc:1427 Merge.rc:1508 Merge.rc:1686
+#: Merge.rc:1435 Merge.rc:1516 Merge.rc:1694
 msgid "This month"
 msgstr "今月"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_BEFORE_LAST
-#: Merge.rc:1428 Merge.rc:1509 Merge.rc:1687
+#: Merge.rc:1436 Merge.rc:1517 Merge.rc:1695
 msgid "Before last month"
 msgstr "先月より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_LAST
-#: Merge.rc:1429 Merge.rc:1510 Merge.rc:1688
+#: Merge.rc:1437 Merge.rc:1518 Merge.rc:1696
 msgid "Last month"
 msgstr "先月"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_SINCE_LAST
-#: Merge.rc:1430 Merge.rc:1511 Merge.rc:1689
+#: Merge.rc:1438 Merge.rc:1519 Merge.rc:1697
 msgid "Since last month"
 msgstr "先月以降"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1432 Merge.rc:1513 Merge.rc:1691
+#: Merge.rc:1440 Merge.rc:1521 Merge.rc:1699
 msgid "&Year"
 msgstr "年単位(&Y)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_BEFORE_THIS
-#: Merge.rc:1434 Merge.rc:1515 Merge.rc:1693
+#: Merge.rc:1442 Merge.rc:1523 Merge.rc:1701
 msgid "Before this year"
 msgstr "今年より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_THIS
-#: Merge.rc:1435 Merge.rc:1516 Merge.rc:1694
+#: Merge.rc:1443 Merge.rc:1524 Merge.rc:1702
 msgid "This year"
 msgstr "今年"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_BEFORE_LAST
-#: Merge.rc:1436 Merge.rc:1517 Merge.rc:1695
+#: Merge.rc:1444 Merge.rc:1525 Merge.rc:1703
 msgid "Before last year"
 msgstr "昨年より前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_LAST
-#: Merge.rc:1437 Merge.rc:1518 Merge.rc:1696
+#: Merge.rc:1445 Merge.rc:1526 Merge.rc:1704
 msgid "Last year"
 msgstr "昨年"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_SINCE_LAST
-#: Merge.rc:1438 Merge.rc:1519 Merge.rc:1697
+#: Merge.rc:1446 Merge.rc:1527 Merge.rc:1705
 msgid "Since last year"
 msgstr "昨年以降"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_RANGE
-#: Merge.rc:1440 Merge.rc:1521 Merge.rc:1699
+#: Merge.rc:1448 Merge.rc:1529 Merge.rc:1707
 msgid "&Custom Range..."
 msgstr "カスタム範囲(&C)..."
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1442 Merge.rc:1600
+#: Merge.rc:1450 Merge.rc:1608
 msgid "&Attributes"
 msgstr "属性(&A)"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_READONLY
-#: Merge.rc:1444 Merge.rc:1618
+#: Merge.rc:1452 Merge.rc:1626
 msgid "Read-only files"
 msgstr "読み取り専用ファイル"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_READONLY
-#: Merge.rc:1445 Merge.rc:1619
+#: Merge.rc:1453 Merge.rc:1627
 msgid "Not read-only files"
 msgstr "読み取り専用ではないファイル"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_HIDDEN
-#: Merge.rc:1446 Merge.rc:1620
+#: Merge.rc:1454 Merge.rc:1628
 msgid "Hidden files"
 msgstr "隠しファイル"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_HIDDEN
-#: Merge.rc:1447 Merge.rc:1621
+#: Merge.rc:1455 Merge.rc:1629
 msgid "Not hidden files"
 msgstr "隠しファイルではない"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_SYSTEM
-#: Merge.rc:1448 Merge.rc:1622
+#: Merge.rc:1456 Merge.rc:1630
 msgid "System files"
 msgstr "システムファイル"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_SYSTEM
-#: Merge.rc:1449 Merge.rc:1623
+#: Merge.rc:1457 Merge.rc:1631
 msgid "Not system files"
 msgstr "システムファイルではない"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1451
+#: Merge.rc:1459
 msgid "File &Content"
 msgstr "ファイル内容(&C)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_CONTAINS
-#: Merge.rc:1453
+#: Merge.rc:1461
 msgid "Contains string..."
 msgstr "指定文字列を含む..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_NOT_CONTAINS
-#: Merge.rc:1454
+#: Merge.rc:1462
 msgid "Does not contain string..."
 msgstr "指定文字列を含まない..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_FIRST_LINE_CONTAINS
-#: Merge.rc:1455
+#: Merge.rc:1463
 msgid "First line contains string..."
 msgstr "先頭行に文字列を含む..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_FIRST_LINE_NOT_CONTAINS
-#: Merge.rc:1456
+#: Merge.rc:1464
 msgid "First line does not contain string..."
 msgstr "先頭行に文字列を含まない..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_FIRST_10_CONTAINS
-#: Merge.rc:1457
+#: Merge.rc:1465
 msgid "First 10 lines contain string..."
 msgstr "先頭10行に文字列を含む..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_FIRST_10_NOT_CONTAINS
-#: Merge.rc:1458
+#: Merge.rc:1466
 msgid "First 10 lines do not contain string..."
 msgstr "先頭10行に文字列を含まない..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_LAST_10_CONTAINS
-#: Merge.rc:1459
+#: Merge.rc:1467
 msgid "Last 10 lines contain string..."
 msgstr "末尾10行に文字列を含む..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_LAST_10_NOT_CONTAINS
-#: Merge.rc:1460
+#: Merge.rc:1468
 msgid "Last 10 lines do not contain string..."
 msgstr "末尾10行に文字列を含まない..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_LAST_LINE_CONTAINS
-#: Merge.rc:1461
+#: Merge.rc:1469
 msgid "Last line contains string..."
 msgstr "末尾行に文字列を含む..."
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONTENT_LAST_LINE_NOT_CONTAINS
-#: Merge.rc:1462
+#: Merge.rc:1470
 msgid "Last line does not contain string..."
 msgstr "末尾行に文字列を含まない..."
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1464
+#: Merge.rc:1472
 msgid "&Line Count"
 msgstr "行数(&L)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_LT_10
-#: Merge.rc:1466
+#: Merge.rc:1474
 msgid "Less than 10"
 msgstr "10未満"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_GE_10
-#: Merge.rc:1467
+#: Merge.rc:1475
 msgid "10 or more"
 msgstr "10以上"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_LT_100
-#: Merge.rc:1468
+#: Merge.rc:1476
 msgid "Less than 100"
 msgstr "100未満"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_GE_100
-#: Merge.rc:1469
+#: Merge.rc:1477
 msgid "100 or more"
 msgstr "100以上"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_LT_1000
-#: Merge.rc:1470
+#: Merge.rc:1478
 msgid "Less than 1000"
 msgstr "1000未満"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_GE_1000
-#: Merge.rc:1471
+#: Merge.rc:1479
 msgid "1000 or more"
 msgstr "1000以上"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_LT_10000
-#: Merge.rc:1472
+#: Merge.rc:1480
 msgid "Less than 10000"
 msgstr "10000未満"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_GE_10000
-#: Merge.rc:1473
+#: Merge.rc:1481
 msgid "10000 or more"
 msgstr "10000以上"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_LT_100000
-#: Merge.rc:1474
+#: Merge.rc:1482
 msgid "Less than 100000"
 msgstr "100000未満"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_LINES_GE_100000
-#: Merge.rc:1475
+#: Merge.rc:1483
 msgid "100000 or more"
 msgstr "100000以上"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_PROPS
-#: Merge.rc:1478 Merge.rc:1605 Merge.rc:1772 Merge.rc:1789
+#: Merge.rc:1486 Merge.rc:1613 Merge.rc:1780 Merge.rc:1797
 msgid "Additional &Properties..."
 msgstr "追加プロパティ(&P)..."
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1480
+#: Merge.rc:1488
 msgid "Add F&older Condition"
 msgstr "フォルダー条件を追加(&O)"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1524
+#: Merge.rc:1532
 msgid "&Files"
 msgstr "ファイル数(&F)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_FILES_EQ_0
-#: Merge.rc:1526
+#: Merge.rc:1534
 msgid "0 files"
 msgstr "0 ファイル"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_FILES_GE_1
-#: Merge.rc:1527
+#: Merge.rc:1535
 msgid "1 file or more"
 msgstr "1 ファイル以上"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1530
+#: Merge.rc:1538
 msgid "&Items"
 msgstr "項目数(&I)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_ITEMS_EQ_0
-#: Merge.rc:1532
+#: Merge.rc:1540
 msgid "0 items"
 msgstr "0 項目"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_ITEMS_GE_1
-#: Merge.rc:1533
+#: Merge.rc:1541
 msgid "1 item or more"
 msgstr "1 項目以上"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1536
+#: Merge.rc:1544
 msgid "&Total Size"
 msgstr "合計サイズ(&T)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_STATS_RECURSIVE
-#: Merge.rc:1553
+#: Merge.rc:1561
 msgid "&Recursive"
 msgstr "再帰的(&R)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONDITION_ANY
-#: Merge.rc:1555
+#: Merge.rc:1563
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "対象: いずれか (左/中央/右)(&A)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONDITION_LEFT
-#: Merge.rc:1556
+#: Merge.rc:1564
 msgid "Target: &Left"
 msgstr "対象: 左(&L)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONDITION_MIDDLE
-#: Merge.rc:1557
+#: Merge.rc:1565
 msgid "Target: &Middle"
 msgstr "対象: 中央(&M)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_CONDITION_RIGHT
-#: Merge.rc:1558
+#: Merge.rc:1566
 msgid "Target: &Right"
 msgstr "対象: 右(&R)"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1560
+#: Merge.rc:1568
 msgid "Add &Difference Condition"
 msgstr "差異条件を追加(&D)"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_EQUAL
-#: Merge.rc:1564 Merge.rc:1581 Merge.rc:1602 Merge.rc:1707 Merge.rc:1728
-#: Merge.rc:1753
+#: Merge.rc:1572 Merge.rc:1589 Merge.rc:1610 Merge.rc:1715 Merge.rc:1736
+#: Merge.rc:1761
 msgid "Equal"
 msgstr "一致"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
-#: Merge.rc:1565 Merge.rc:1582 Merge.rc:1603 Merge.rc:1708 Merge.rc:1729
-#: Merge.rc:1754
+#: Merge.rc:1573 Merge.rc:1590 Merge.rc:1611 Merge.rc:1716 Merge.rc:1737
+#: Merge.rc:1762
 msgid "Not Equal"
 msgstr "不一致"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_LESS
-#: Merge.rc:1566 Merge.rc:1583 Merge.rc:1709 Merge.rc:1730 Merge.rc:1755
+#: Merge.rc:1574 Merge.rc:1591 Merge.rc:1717 Merge.rc:1738 Merge.rc:1763
 msgid "Less Than"
 msgstr "<"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_LESS_EQUAL
-#: Merge.rc:1567 Merge.rc:1584 Merge.rc:1710 Merge.rc:1731 Merge.rc:1756
+#: Merge.rc:1575 Merge.rc:1592 Merge.rc:1718 Merge.rc:1739 Merge.rc:1764
 msgid "Less Than or Equal to"
 msgstr "<="
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_GREATER
-#: Merge.rc:1568 Merge.rc:1585 Merge.rc:1711 Merge.rc:1732 Merge.rc:1757
+#: Merge.rc:1576 Merge.rc:1593 Merge.rc:1719 Merge.rc:1740 Merge.rc:1765
 msgid "Greater Than"
 msgstr ">"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL
-#: Merge.rc:1569 Merge.rc:1586 Merge.rc:1712 Merge.rc:1733 Merge.rc:1758
+#: Merge.rc:1577 Merge.rc:1594 Merge.rc:1720 Merge.rc:1741 Merge.rc:1766
 msgid "Greater Than or Equal to"
 msgstr ">="
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_10B
-#: Merge.rc:1571 Merge.rc:1714
+#: Merge.rc:1579 Merge.rc:1722
 msgid "Less than 10B"
 msgstr "10B 未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_10B
-#: Merge.rc:1572 Merge.rc:1715
+#: Merge.rc:1580 Merge.rc:1723
 msgid "10B or more"
 msgstr "10B 以上"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_100B
-#: Merge.rc:1573 Merge.rc:1716
+#: Merge.rc:1581 Merge.rc:1724
 msgid "Less than 100B"
 msgstr "100B 未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_100B
-#: Merge.rc:1574 Merge.rc:1717
+#: Merge.rc:1582 Merge.rc:1725
 msgid "100B or more"
 msgstr "100B 以上"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1SECOND
-#: Merge.rc:1588 Merge.rc:1735
+#: Merge.rc:1596 Merge.rc:1743
 msgid "Less than 1 second"
 msgstr "一秒未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1SECOND
-#: Merge.rc:1589 Merge.rc:1736
+#: Merge.rc:1597 Merge.rc:1744
 msgid "1 second or more"
 msgstr "一秒以上"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
-#: Merge.rc:1590 Merge.rc:1737
+#: Merge.rc:1598 Merge.rc:1745
 msgid "Less than 1 minute"
 msgstr "一分未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1MINUTE
-#: Merge.rc:1591 Merge.rc:1738
+#: Merge.rc:1599 Merge.rc:1746
 msgid "1 minute or more"
 msgstr "一分以上"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1HOUR
-#: Merge.rc:1592 Merge.rc:1739
+#: Merge.rc:1600 Merge.rc:1747
 msgid "Less than 1 hour"
 msgstr "一時間未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1HOUR
-#: Merge.rc:1593 Merge.rc:1740
+#: Merge.rc:1601 Merge.rc:1748
 msgid "1 hour or more"
 msgstr "一時間以上"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1DAY
-#: Merge.rc:1594 Merge.rc:1741
+#: Merge.rc:1602 Merge.rc:1749
 msgid "Less than 1 day"
 msgstr "一日未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1DAY
-#: Merge.rc:1595 Merge.rc:1742
+#: Merge.rc:1603 Merge.rc:1750
 msgid "1 day or more"
 msgstr "一日以上"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1WEEK
-#: Merge.rc:1596 Merge.rc:1743
+#: Merge.rc:1604 Merge.rc:1751
 msgid "Less than 1 week"
 msgstr "一週間未満"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1WEEK
-#: Merge.rc:1597 Merge.rc:1744
+#: Merge.rc:1605 Merge.rc:1752
 msgid "1 week or more"
 msgstr "一週間以上"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
-#: Merge.rc:1607
+#: Merge.rc:1615
 msgid "Target: &Left and Right"
 msgstr "対象: 左と右(&L)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
-#: Merge.rc:1608
+#: Merge.rc:1616
 msgid "Target: Left and &Middle"
 msgstr "対象: 左と中央(&M)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
-#: Merge.rc:1609
+#: Merge.rc:1617
 msgid "Target: Middle and &Right"
 msgstr "対象: 中央と右(&R)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_CONDITION_DIFF_ALL
-#: Merge.rc:1610
+#: Merge.rc:1618
 msgid "Target: &All"
 msgstr "対象: すべて(&A)"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
-#: Merge.rc:1631
+#: Merge.rc:1639
 msgid "Binary files only"
 msgstr "バイナリファイルのみ"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
-#: Merge.rc:1632
+#: Merge.rc:1640
 msgid "Text files only"
 msgstr "テキストファイルのみ"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CLEAR
-#: Merge.rc:1766
+#: Merge.rc:1774
 msgid "&Clear conditions"
 msgstr "条件をクリア(&C)"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_SIZE
-#: Merge.rc:1768
+#: Merge.rc:1776
 msgid "Compare &Size"
 msgstr "サイズを比較(&S)"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_DATE
-#: Merge.rc:1769
+#: Merge.rc:1777
 msgid "Compare &Date"
 msgstr "更新日時を比較(&D)"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_ATTR
-#: Merge.rc:1770
+#: Merge.rc:1778
 msgid "Compare &Attributes"
 msgstr "属性を比較(&A)"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_CONTENTS
-#: Merge.rc:1771
+#: Merge.rc:1779
 msgid "Compare C&ontents"
 msgstr "内容を比較(&O)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_CLEAR
-#: Merge.rc:1780
+#: Merge.rc:1788
 msgid "&Clear Keys"
 msgstr "キーをクリア(&C)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_NAME
-#: Merge.rc:1782
+#: Merge.rc:1790
 msgid "&Name"
 msgstr "名前(&N)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_BASENAME
-#: Merge.rc:1783
+#: Merge.rc:1791
 msgid "&Base name (without extension)"
 msgstr "拡張子を除いた名前(&B)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_NORMALIZED_NAME
-#: Merge.rc:1784
+#: Merge.rc:1792
 msgid "Normalized &Unicode Name"
 msgstr "Unicode正規化した名前(&U)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_RELPATH
-#: Merge.rc:1785
+#: Merge.rc:1793
 msgid "&Relative Path"
 msgstr "相対パス(&R)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_DATE
-#: Merge.rc:1787
+#: Merge.rc:1795
 msgid "&Date"
 msgstr "更新日時(&D)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_HASH_MD5
-#: Merge.rc:1788
+#: Merge.rc:1796
 msgid "&Hash (MD5)"
 msgstr "ハッシュ (MD5)(&H)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_REPLACE
-#: Merge.rc:1791
+#: Merge.rc:1799
 msgid "Insert &replace() Function"
 msgstr "replace()関数を挿入(&R)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_REGEXREPLACE
-#: Merge.rc:1792
+#: Merge.rc:1800
 msgid "Insert rege&xReplace() Function"
 msgstr "regexReplace() 関数を挿入(&X)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU
-#: Merge.rc:1793
+#: Merge.rc:1801
 msgid "Replace &Lists"
 msgstr "置換リスト(&L)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_CREATE_REPLACELIST
-#: Merge.rc:1795
+#: Merge.rc:1803
 msgid "&Create String Replace List and Insert..."
 msgstr "文字列置換リストを作成して挿入(&C)..."
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_CREATE_REGEXREPLACELIST
-#: Merge.rc:1796
+#: Merge.rc:1804
 msgid "Create &Regex Replace List and Insert..."
 msgstr "正規表現置換リストを作成して挿入(&R)..."
 
 #. IDR_POPUP_RENAMEMOVE_MENU
-#: Merge.rc:1798
+#: Merge.rc:1806
 msgid "&String Replace Lists"
 msgstr "文字列置換リスト(&S)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU
-#: Merge.rc:1802
+#: Merge.rc:1810
 msgid "Re&gex Replace Lists"
 msgstr "正規表現置換リスト(&G)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FOLDER
-#: Merge.rc:1807
+#: Merge.rc:1815
 msgid "Open String Replace Lists Folder..."
 msgstr "文字列置換リストのフォルダーを開く..."
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FOLDER
-#: Merge.rc:1808
+#: Merge.rc:1816
 msgid "Open Regex Replace Lists Folder..."
 msgstr "正規表現置換リストのフォルダーを開く..."
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
-#: Merge.rc:1810 Merge.rc:2006 Merge.rc:2025 Merge.rc:2053 Merge.rc:2596
+#: Merge.rc:1818 Merge.rc:2014 Merge.rc:2033 Merge.rc:2061 Merge.rc:2604
 msgid "Match &case"
 msgstr "大文字と小文字を区別する(&C)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU
-#: Merge.rc:1812
+#: Merge.rc:1820
 msgid "Text &Normalization"
 msgstr "テキストの正規化(&N)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOLOWER
-#: Merge.rc:1814
+#: Merge.rc:1822
 msgid "&Lowercase"
 msgstr "小文字に変換(&N)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOUPPER
-#: Merge.rc:1815
+#: Merge.rc:1823
 msgid "&Uppercase"
 msgstr "大文字に変換(&U)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOHALFWIDTH
-#: Merge.rc:1816
+#: Merge.rc:1824
 msgid "&Half-width"
 msgstr "半角に変換(&H)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOFULLWIDTH
-#: Merge.rc:1817
+#: Merge.rc:1825
 msgid "&Full-width"
 msgstr "全角に変換(&F)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU
-#: Merge.rc:1818
+#: Merge.rc:1826
 msgid "&Chinese Conversion"
 msgstr "中国語変換(&C)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOSIMPLIFIEDCHINESE
-#: Merge.rc:1820
+#: Merge.rc:1828
 msgid "&Simplified Chinese"
 msgstr "繁体字中国語を簡体字中国語に変換(&S)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOTRADITIONALCHINESE
-#: Merge.rc:1821
+#: Merge.rc:1829
 msgid "&Traditional Chinese"
 msgstr "簡体字中国語を繁体字中国語に変換(&T)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU
-#: Merge.rc:1823
+#: Merge.rc:1831
 msgid "&Japanese Conversion"
 msgstr "日本語変換(&J)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOHIRAGANA
-#: Merge.rc:1825
+#: Merge.rc:1833
 msgid "&Hiragana"
 msgstr "カタカナをひらがなに変換(&H)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_TOKATAKANA
-#: Merge.rc:1826
+#: Merge.rc:1834
 msgid "&Katakana"
 msgstr "ひらがなをカタカナに変換(&K)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_FUNC_NORMALIZEUNICODE
-#: Merge.rc:1828
+#: Merge.rc:1836
 msgid "Normalize &Unicode"
 msgstr "Unicode正規化(&U)"
 
 #. IDD_ABOUTBOX
-#: Merge.rc:1943
+#: Merge.rc:1951
 msgid "About WinMerge"
 msgstr "WinMerge について"
 
 #. IDD_ABOUTBOX, IDC_WWW
-#: Merge.rc:1947
+#: Merge.rc:1955
 msgid "Visit the WinMerge Homepage!"
 msgstr "WinMerge のホームページに行く!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:1949 Merge.rc:2091 Merge.rc:2442 Merge.rc:2466 Merge.rc:2480
-#: Merge.rc:2508 Merge.rc:2599 Merge.rc:2624 Merge.rc:2685 Merge.rc:2702
-#: Merge.rc:2714 Merge.rc:2878 Merge.rc:2938 Merge.rc:3073 Merge.rc:3115
-#: Merge.rc:3158 Merge.rc:3208
+#: Merge.rc:1957 Merge.rc:2099 Merge.rc:2450 Merge.rc:2474 Merge.rc:2488
+#: Merge.rc:2516 Merge.rc:2607 Merge.rc:2632 Merge.rc:2693 Merge.rc:2710
+#: Merge.rc:2722 Merge.rc:2886 Merge.rc:2946 Merge.rc:3081 Merge.rc:3123
+#: Merge.rc:3166 Merge.rc:3216
 msgid "OK"
 msgstr "OK"
 
 #. IDD_ABOUTBOX, IDC_OPEN_CONTRIBUTORS
-#: Merge.rc:1950
+#: Merge.rc:1958
 msgid "Contributors"
 msgstr "貢献者"
 
 #. IDD_SELECT_FILES_OR_FOLDERS
-#: Merge.rc:1956 Merge.rc:3081
+#: Merge.rc:1964 Merge.rc:3089
 msgid "Select Files or Folders"
 msgstr "ファイルまたはフォルダーの選択"
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP0
-#: Merge.rc:1960
+#: Merge.rc:1968
 msgid "&1st File or Folder"
 msgstr "&1 番目のファイルまたはフォルダー"
 
 #. IDD_OPEN, IDC_PATH0_READONLY
-#: Merge.rc:1962
+#: Merge.rc:1970
 msgid "Re&ad-only"
 msgstr "読み取り専用(&A)"
 
 #. IDD_OPEN, IDC_SWAP01_STATIC
-#: Merge.rc:1964
+#: Merge.rc:1972
 msgid "Swap 1st | 2nd"
 msgstr "1 番目と 2 番目を交換"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE1
-#: Merge.rc:1965 Merge.rc:2321 Merge.rc:2424
+#: Merge.rc:1973 Merge.rc:2329 Merge.rc:2432
 msgid "&Browse..."
 msgstr "参照(&B)..."
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP1
-#: Merge.rc:1966
+#: Merge.rc:1974
 msgid "&2nd File or Folder"
 msgstr "&2 番目のファイルまたはフォルダー"
 
 #. IDD_OPEN, IDC_PATH1_READONLY
-#: Merge.rc:1968
+#: Merge.rc:1976
 msgid "Rea&d-only"
 msgstr "読み取り専用(&D)"
 
 #. IDD_OPEN, IDC_SWAP12_STATIC
-#: Merge.rc:1970
+#: Merge.rc:1978
 msgid "Swap 2nd | 3rd"
 msgstr "2 番目と 3 番目を交換"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_FILTER_USER_BROWSE
-#: Merge.rc:1971 Merge.rc:2326
+#: Merge.rc:1979 Merge.rc:2334
 msgid "B&rowse..."
 msgstr "参照(&R)..."
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP2
-#: Merge.rc:1972
+#: Merge.rc:1980
 msgid "&3rd File or Folder (Optional)"
 msgstr "&3 番目のファイルまたはフォルダー (オプション)"
 
 #. IDD_OPEN, IDC_PATH2_READONLY
-#: Merge.rc:1974
+#: Merge.rc:1982
 msgid "Read-o&nly"
 msgstr "読み取り専用(&N)"
 
 #. IDD_OPEN, IDC_SWAP02_STATIC
-#: Merge.rc:1976
+#: Merge.rc:1984
 msgid "Swap 1st | 3rd"
 msgstr "1 番目と 3 番目を交換"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_BROWSE
-#: Merge.rc:1977 Merge.rc:2696 Merge.rc:2894
+#: Merge.rc:1985 Merge.rc:2704 Merge.rc:2902
 msgid "Browse..."
 msgstr "参照..."
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP3
-#: Merge.rc:1979
+#: Merge.rc:1987
 msgid " Folder: Filter"
 msgstr " フォルダー: フィルター"
 
 #. IDD_OPEN, IDC_RECURS_CHECK
-#: Merge.rc:1982
+#: Merge.rc:1990
 msgid "&Include subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP5
-#: Merge.rc:1983
+#: Merge.rc:1991
 msgid " File: Prediffer Plugin"
 msgstr " ファイル: 比較前処理プラグイン"
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP4
-#: Merge.rc:1987
+#: Merge.rc:1995
 msgid " File: Unpacker Plugin"
 msgstr " ファイル: 展開プラグイン"
 
 #. IDD_OPEN, IDC_SELECT_UNPACKER
-#: Merge.rc:1989
+#: Merge.rc:1997
 msgid "Se&lect..."
 msgstr "選択(&L)..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:1992 Merge.rc:2012 Merge.rc:2036 Merge.rc:2057 Merge.rc:2092
-#: Merge.rc:2443 Merge.rc:2467 Merge.rc:2481 Merge.rc:2509 Merge.rc:2562
-#: Merge.rc:2600 Merge.rc:2625 Merge.rc:2686 Merge.rc:2703 Merge.rc:2715
-#: Merge.rc:2879 Merge.rc:2939 Merge.rc:3098 Merge.rc:3116 Merge.rc:3159
-#: Merge.rc:3209
+#: Merge.rc:2000 Merge.rc:2020 Merge.rc:2044 Merge.rc:2065 Merge.rc:2100
+#: Merge.rc:2451 Merge.rc:2475 Merge.rc:2489 Merge.rc:2517 Merge.rc:2570
+#: Merge.rc:2608 Merge.rc:2633 Merge.rc:2694 Merge.rc:2711 Merge.rc:2723
+#: Merge.rc:2887 Merge.rc:2947 Merge.rc:3106 Merge.rc:3124 Merge.rc:3167
+#: Merge.rc:3217
 msgid "Cancel"
 msgstr "キャンセル"
 
 #. IDD_OPEN, IDC_OPEN_STATUS
-#: Merge.rc:1993
+#: Merge.rc:2001
 msgid "Status:"
 msgstr "ステータス:"
 
 #. IDD_PLUGINS_LIST, ID_HELP
-#: Merge.rc:1994 Merge.rc:2093 Merge.rc:2940
+#: Merge.rc:2002 Merge.rc:2101 Merge.rc:2948
 msgid "Help"
 msgstr "ヘルプ"
 
 #. IDD_OPEN, IDC_OPTIONS
-#: Merge.rc:1995
+#: Merge.rc:2003
 msgid "&Options..."
 msgstr "設定(&O)..."
 
 #. IDD_EDIT_FIND
-#: Merge.rc:2000
+#: Merge.rc:2008
 msgid "Find"
 msgstr "検索"
 
 #. IDD_EDIT_MARKER, IDC_STATIC
-#: Merge.rc:2003 Merge.rc:2020 Merge.rc:2048
+#: Merge.rc:2011 Merge.rc:2028 Merge.rc:2056
 msgid "Fi&nd what:"
 msgstr "検索する文字列(&N):"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_WHOLE_WORD
-#: Merge.rc:2005 Merge.rc:2024 Merge.rc:2052
+#: Merge.rc:2013 Merge.rc:2032 Merge.rc:2060
 msgid "Match &whole word only"
 msgstr "単語単位で探す(&W)"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_REGEXP
-#: Merge.rc:2007 Merge.rc:2026 Merge.rc:2054
+#: Merge.rc:2015 Merge.rc:2034 Merge.rc:2062
 msgid "Regular &expression"
 msgstr "正規表現(&E)"
 
 #. IDD_EDIT_FIND, IDC_FINDDLG_DONTWRAP
-#: Merge.rc:2008
+#: Merge.rc:2016
 msgid "D&on't wrap end of file"
 msgstr "最後まで検索した後ループしない(&O)"
 
 #. IDD_EDIT_FIND, IDC_FINDDLG_DONTCLOSE
-#: Merge.rc:2009
+#: Merge.rc:2017
 msgid "&Don't close this dialog"
 msgstr "このダイアログ ボックスを閉じない(&D)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SKIP
-#: Merge.rc:2010 Merge.rc:2032
+#: Merge.rc:2018 Merge.rc:2040
 msgid "&Find Next"
 msgstr "次を検索(&F)"
 
 #. IDD_EDIT_FIND, IDC_EDIT_FINDPREV
-#: Merge.rc:2011
+#: Merge.rc:2019
 msgid "Find &Prev"
 msgstr "前を検索(&P)"
 
 #. IDD_EDIT_REPLACE
-#: Merge.rc:2017
+#: Merge.rc:2025
 msgid "Replace"
 msgstr "置換"
 
 #. IDD_EDIT_REPLACE, IDC_STATIC
-#: Merge.rc:2022
+#: Merge.rc:2030
 msgid "Re&place with:"
 msgstr "置換後の文字列(&P):"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_DONT_WRAP
-#: Merge.rc:2027
+#: Merge.rc:2035
 msgid "&Don't wrap at end of file"
 msgstr "ファイルの終端で折り返さない(&D)"
 
 #. IDD_EDIT_REPLACE, IDC_STATIC
-#: Merge.rc:2029
+#: Merge.rc:2037
 msgid "Replace in"
 msgstr "範囲"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_WHOLE_FILE
-#: Merge.rc:2031
+#: Merge.rc:2039
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_FINDPREV
-#: Merge.rc:2033
+#: Merge.rc:2041
 msgid "Find Pre&v"
 msgstr "前を検索(&V)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
-#: Merge.rc:2034
+#: Merge.rc:2042
 msgid "&Replace"
 msgstr "置換して次に(&R)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE_ALL
-#: Merge.rc:2035
+#: Merge.rc:2043
 msgid "Replace &All"
 msgstr "すべて置換(&A)"
 
 #. IDS_OPTIONSPG_MARKERCOLORS
-#: Merge.rc:2041 Merge.rc:4220
+#: Merge.rc:2049 Merge.rc:4228
 msgid "Markers"
 msgstr "マーカー"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_MARKERS_ENABLED
-#: Merge.rc:2044
+#: Merge.rc:2052
 msgid "Enable &markers"
 msgstr "マーカーを有効にする(&M)"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_LFILTER_ADDBTN
-#: Merge.rc:2046 Merge.rc:2068
+#: Merge.rc:2054 Merge.rc:2076
 msgid "New"
 msgstr "新規"
 
 #. IDD_EDIT_MARKER, IDC_STATIC
-#: Merge.rc:2050
+#: Merge.rc:2058
 msgid "&Background color:"
 msgstr "背景色(&B)"
 
 #. IDS_MESSAGEBOX_OK
-#: Merge.rc:2055 Merge.rc:2840 Merge.rc:3097 Merge.rc:4182
+#: Merge.rc:2063 Merge.rc:2848 Merge.rc:3105 Merge.rc:4190
 msgid "&Ok"
 msgstr "&OK"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:2056 Merge.rc:2536 Merge.rc:3210
+#: Merge.rc:2064 Merge.rc:2544 Merge.rc:3218
 msgid "&Apply"
 msgstr "適用(&A)"
 
 #. IDD_FILTERS_LINEFILTERS
-#: Merge.rc:2062
+#: Merge.rc:2070
 msgid "Line Filters"
 msgstr "行フィルター"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_IGNOREREGEXP
-#: Merge.rc:2065
+#: Merge.rc:2073
 msgid "Enable Line Filters"
 msgstr "行フィルターを有効にする"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_STATIC
-#: Merge.rc:2066
+#: Merge.rc:2074
 msgid "Regular Expressions (one per line):"
 msgstr "正規表現: (1 行につき 1 ルール)"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_EDIT
-#: Merge.rc:2069 Merge.rc:2935
+#: Merge.rc:2077 Merge.rc:2943
 msgid "Edit"
 msgstr "編集"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_REMOVE
-#: Merge.rc:2070 Merge.rc:2082 Merge.rc:2936
+#: Merge.rc:2078 Merge.rc:2090 Merge.rc:2944
 msgid "Remove"
 msgstr "削除"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS
-#: Merge.rc:2075
+#: Merge.rc:2083
 msgid "Substitution Filters"
 msgstr "置換フィルター"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_STATIC
-#: Merge.rc:2078
+#: Merge.rc:2086
 msgid "Changes to the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "以下の置換リストで両ファイルの差異ブロックの内容を置換します。置換した結果、内容が一致した場合、そのブロックの元々の差異は無視されます。生成するパッチには影響しません。"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_IGNORED_SUSBSTITUTIONS_ENABLED
-#: Merge.rc:2079
+#: Merge.rc:2087
 msgid "Enable"
 msgstr "有効にする"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_ADD
-#: Merge.rc:2081 Merge.rc:2934
+#: Merge.rc:2089 Merge.rc:2942
 msgid "Add"
 msgstr "追加"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_LFILTER_CLEARBTN
-#: Merge.rc:2083
+#: Merge.rc:2091
 msgid "Clear"
 msgstr "クリア"
 
 #. IDD_PREFERENCES
-#: Merge.rc:2088
+#: Merge.rc:2096
 msgid "Options"
 msgstr "オプション"
 
 #. IDD_PREFERENCES, IDC_TREEOPT_IMPORT
-#: Merge.rc:2097
+#: Merge.rc:2105
 msgid "Import..."
 msgstr "インポート..."
 
 #. IDD_PREFERENCES, IDC_TREEOPT_EXPORT
-#: Merge.rc:2098
+#: Merge.rc:2106
 msgid "Export..."
 msgstr "エクスポート..."
 
 #. IDS_OPTIONSPG_GENCOMPARE
-#: Merge.rc:2103 Merge.rc:4210 Merge.rc:4213 Merge.rc:4230
+#: Merge.rc:2111 Merge.rc:4218 Merge.rc:4221 Merge.rc:4238
 msgid "General"
 msgstr "一般"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
-#: Merge.rc:2106
+#: Merge.rc:2114
 msgid "Automatically &scroll to first difference"
 msgstr "自動的に最初の差異にスクロールする(&S)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
-#: Merge.rc:2108
+#: Merge.rc:2116
 msgid "Automatically s&croll to first inline difference"
 msgstr "自動的に最初の行内差異にスクロールする(&C)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2110
+#: Merge.rc:2118
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc' キーでウィンドウを閉じる(&O):"
 
 #. IDD_PROPPAGE_GENERAL, IDC_VERIFY_OPEN_PATHS
-#: Merge.rc:2112
+#: Merge.rc:2120
 msgid "&Automatically verify paths in Open dialog"
 msgstr "[開く] ダイアログで自動的にパスを検査する(&A)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2114
+#: Merge.rc:2122
 msgid "Single instance mode:"
 msgstr "単一インスタンスモード:"
 
 #. IDD_PROPPAGE_GENERAL, IDC_ASK_MULTIWINDOW_CLOSE
-#: Merge.rc:2116
+#: Merge.rc:2124
 msgid "As&k when closing multiple windows"
 msgstr "複数のウィンドウを閉じるときに尋ねる(&K)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_PRESERVE_FILETIME
-#: Merge.rc:2118
+#: Merge.rc:2126
 msgid "&Preserve file time in file compare"
 msgstr "ファイル比較時のファイル時刻を保つ(&P)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STARTUP_FOLDER_SELECT
-#: Merge.rc:2120
+#: Merge.rc:2128
 msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "起動時に [ファイルまたはフォルダーの選択] ダイアログを表示する"
 
 #. IDD_PROPPAGE_GENERAL, IDC_CLOSE_WITH_OK
-#: Merge.rc:2122
+#: Merge.rc:2130
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "[比較] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2124
+#: Merge.rc:2132
 msgid "Op&en dialog Auto completion:"
 msgstr "[開く] ダイアログのオートコンプリート(&E):"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2126
+#: Merge.rc:2134
 msgid "Auto-&reload modified files:"
 msgstr "変更されたファイルの自動再読み込み(&R):"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2128
+#: Merge.rc:2136
 msgid "Language:"
 msgstr "言語:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2130 Merge.rc:2310 Merge.rc:2332 Merge.rc:2363 Merge.rc:2380
-#: Merge.rc:2397 Merge.rc:2405 Merge.rc:2441 Merge.rc:2465 Merge.rc:2644
-#: Merge.rc:2655 Merge.rc:2664 Merge.rc:2898 Merge.rc:2933 Merge.rc:2996
-#: Merge.rc:3021 Merge.rc:3035 Merge.rc:3049 Merge.rc:3065
+#: Merge.rc:2138 Merge.rc:2318 Merge.rc:2340 Merge.rc:2371 Merge.rc:2388
+#: Merge.rc:2405 Merge.rc:2413 Merge.rc:2449 Merge.rc:2473 Merge.rc:2652
+#: Merge.rc:2663 Merge.rc:2672 Merge.rc:2906 Merge.rc:2941 Merge.rc:3004
+#: Merge.rc:3029 Merge.rc:3043 Merge.rc:3057 Merge.rc:3073
 msgid "Defaults"
 msgstr "デフォルト"
 
 #. IDS_OPTIONSPG_COLORS
-#: Merge.rc:2135 Merge.rc:2151 Merge.rc:2278 Merge.rc:2303 Merge.rc:4216
+#: Merge.rc:2143 Merge.rc:2159 Merge.rc:2286 Merge.rc:2311 Merge.rc:4224
 msgid "Colors"
 msgstr "色"
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2138
+#: Merge.rc:2146
 msgid "Color &mode:"
 msgstr "色モード(&M):"
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2140
+#: Merge.rc:2148
 msgid "&Light mode scheme:"
 msgstr "ライトモード用配色(&L):"
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2142
+#: Merge.rc:2150
 msgid "&Dark mode scheme:"
 msgstr "ダークモード用配色(&D):"
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2144
+#: Merge.rc:2152
 msgid "Your custom schemes"
 msgstr "ユーザ定義配色"
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_COLOR_SCHEME_SAVE
-#: Merge.rc:2145
+#: Merge.rc:2153
 msgid "&Save current scheme..."
 msgstr "現在の配色を保存(&S)..."
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_COLOR_SCHEME_DELETE
-#: Merge.rc:2146
+#: Merge.rc:2154
 msgid "Delete &current scheme..."
 msgstr "現在の配色を削除(&C)..."
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_BACKGROUND_COLUMN_LABEL
-#: Merge.rc:2154 Merge.rc:2249 Merge.rc:2269 Merge.rc:2283
+#: Merge.rc:2162 Merge.rc:2257 Merge.rc:2277 Merge.rc:2291
 msgid "Background"
 msgstr "背景"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2155
+#: Merge.rc:2163
 msgid "Deleted"
 msgstr "削除"
 
 #. IDS_OPTIONSPG_TEXTCOLORS
-#: Merge.rc:2156 Merge.rc:2218 Merge.rc:2250 Merge.rc:2284 Merge.rc:4218
+#: Merge.rc:2164 Merge.rc:2226 Merge.rc:2258 Merge.rc:2292 Merge.rc:4226
 msgid "Text"
 msgstr "テキスト"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2157
+#: Merge.rc:2165
 msgid "Difference:"
 msgstr "差異:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2162
+#: Merge.rc:2170
 msgid "Selected Difference:"
 msgstr "選択された差異:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2167
+#: Merge.rc:2175
 msgid "Ignored Difference:"
 msgstr "無視された差異:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2172
+#: Merge.rc:2180
 msgid "Moved:"
 msgstr "移動ブロック:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2177
+#: Merge.rc:2185
 msgid "Selected Moved:"
 msgstr "選択された移動ブロック:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2182
+#: Merge.rc:2190
 msgid "Same As Next (3 panes):"
 msgstr ""
 "差異:\n"
 "(ただし隣接ペインと同じ)"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2187
+#: Merge.rc:2195
 msgid "Same As Next (Selected):"
 msgstr ""
 "選択された差異:\n"
 "(ただし隣接ペインと同じ)"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2192
+#: Merge.rc:2200
 msgid "Word Difference:"
 msgstr "単語の差異:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2197
+#: Merge.rc:2205
 msgid "Selected Word Diff:"
 msgstr "選択された単語の差異:"
 
 #. IDD_INPUTBOX
-#: Merge.rc:2206 Merge.rc:2241 Merge.rc:2262 Merge.rc:3110
+#: Merge.rc:2214 Merge.rc:2249 Merge.rc:2270 Merge.rc:3118
 msgid "Dialog"
 msgstr "ダイアログ"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2209
+#: Merge.rc:2217
 msgid "Keywords:"
 msgstr "キーワード:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2210
+#: Merge.rc:2218
 msgid "Function names:"
 msgstr "関数名:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2211
+#: Merge.rc:2219
 msgid "Comments:"
 msgstr "コメント:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2212
+#: Merge.rc:2220
 msgid "Numbers:"
 msgstr "数値:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2213
+#: Merge.rc:2221
 msgid "Operators:"
 msgstr "オペレーター:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2214
+#: Merge.rc:2222
 msgid "Strings:"
 msgstr "文字列:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2215
+#: Merge.rc:2223
 msgid "Preprocessor:"
 msgstr "プリプロセッサ:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2216
+#: Merge.rc:2224
 msgid "User 1:"
 msgstr "ユーザー 1:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2217
+#: Merge.rc:2225
 msgid "User 2:"
 msgstr "ユーザー 2:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2220 Merge.rc:2222 Merge.rc:2224 Merge.rc:2226 Merge.rc:2228
-#: Merge.rc:2230 Merge.rc:2232 Merge.rc:2234 Merge.rc:2236
+#: Merge.rc:2228 Merge.rc:2230 Merge.rc:2232 Merge.rc:2234 Merge.rc:2236
+#: Merge.rc:2238 Merge.rc:2240 Merge.rc:2242 Merge.rc:2244
 msgid "Bold"
 msgstr "太字"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_DEFAULT_STANDARD_COLORS
-#: Merge.rc:2244
+#: Merge.rc:2252
 msgid "&Use customized text colors"
 msgstr "テキストの色をカスタマイズする(&U)"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_WHITESPACE_COLOR_LABEL
-#: Merge.rc:2246
+#: Merge.rc:2254
 msgid "Whitespace:"
 msgstr "空白:"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_TEXT_COLOR_LABEL
-#: Merge.rc:2247
+#: Merge.rc:2255
 msgid "Regular text:"
 msgstr "標準テキスト:"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_SELECTION_COLOR_LABEL
-#: Merge.rc:2248
+#: Merge.rc:2256
 msgid "Selection:"
 msgstr "選択:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2256 Merge.rc:2297
+#: Merge.rc:2264 Merge.rc:2305
 msgid "Margin:"
 msgstr "マージン:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER0_COLOR_LABEL
-#: Merge.rc:2265
+#: Merge.rc:2273
 msgid "Search Marker:"
 msgstr "検索マーカー:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER1_COLOR_LABEL
-#: Merge.rc:2266
+#: Merge.rc:2274
 msgid "User Defined Marker 1:"
 msgstr "ユーザー定義マーカー 1:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER2_COLOR_LABEL
-#: Merge.rc:2267
+#: Merge.rc:2275
 msgid "User Defined Marker 2:"
 msgstr "ユーザー定義マーカー 2:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER3_COLOR_LABEL
-#: Merge.rc:2268
+#: Merge.rc:2276
 msgid "User Defined Marker 3:"
 msgstr "ユーザー定義マーカー 3:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_USE_DIR_COMPARE_COLORS
-#: Merge.rc:2281
+#: Merge.rc:2289
 msgid "&Use folder compare colors"
 msgstr "フォルダー比較用の色を使用する(&U)"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2285
+#: Merge.rc:2293
 msgid "Items equal:"
 msgstr "同一項目:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2288
+#: Merge.rc:2296
 msgid "Items different:"
 msgstr "差異項目:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2291
+#: Merge.rc:2299
 msgid "Items missing:"
 msgstr "すべて存在しない項目:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2294
+#: Merge.rc:2302
 msgid "Items filtered:"
 msgstr "無視された項目:"
 
 #. IDD_PROPPAGE_COLORS_SYSTEM, IDC_SYSCOLOR_HOOK_ENABLED
-#: Merge.rc:2306
+#: Merge.rc:2314
 msgid "&Use custom system colors"
 msgstr "カスタムシステムカラーを使用する（一部のUI要素には適用されません）"
 
 #. IDS_PRPCAT_SYSTEM
-#: Merge.rc:2315 Merge.rc:4222 Merge.rc:4223 Merge.rc:4669
+#: Merge.rc:2323 Merge.rc:4230 Merge.rc:4231 Merge.rc:4677
 msgid "System"
 msgstr "システム"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_USE_RECYCLE_BIN
-#: Merge.rc:2318
+#: Merge.rc:2326
 msgid "&Use Recycle Bin"
 msgstr "削除されたファイルをごみ箱に移動する(&S)"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2319
+#: Merge.rc:2327
 msgid "&External editor:"
 msgstr "外部エディター(&E): (使用可能な置換文字列: $file, $linenum)"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2322
+#: Merge.rc:2330
 msgid "&Store user data in:"
 msgstr "ユーザーデータの保存先(&S):"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2324
+#: Merge.rc:2332
 msgid "&Filter folder:"
 msgstr "フィルター用フォルダー(&F):"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2327
+#: Merge.rc:2335
 msgid "Temporary files folder"
 msgstr "テンポラリ ファイル用フォルダー"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_TMPFOLDER_SYSTEM
-#: Merge.rc:2328
+#: Merge.rc:2336
 msgid "S&ystem temp folder"
 msgstr "システムのテンポラリ フォルダー(&Y)"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2329
+#: Merge.rc:2337
 msgid "C&ustom folder:"
 msgstr "指定したフォルダー(&U):"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE2
-#: Merge.rc:2331 Merge.rc:2427
+#: Merge.rc:2339 Merge.rc:2435
 msgid "Br&owse..."
 msgstr "参照(&O)..."
 
 #. IDS_OPTIONSPG_COMPARE
-#: Merge.rc:2337 Merge.rc:4211
+#: Merge.rc:2345 Merge.rc:4219
 msgid "Compare"
 msgstr "比較"
 
 #. IDD_PROPPAGE_COMPARE, IDC_STATIC
-#: Merge.rc:2340
+#: Merge.rc:2348
 msgid "Whitespaces"
 msgstr "空白"
 
 #. IDD_PROPPAGE_COMPARE, IDC_WHITESPACE
-#: Merge.rc:2341
+#: Merge.rc:2349
 msgid "&Compare"
 msgstr "比較する(&C)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_WHITE_CHANGE
-#: Merge.rc:2342
+#: Merge.rc:2350
 msgid "&Ignore change"
 msgstr "変更を無視(&I)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_ALL_WHITE
-#: Merge.rc:2343
+#: Merge.rc:2351
 msgid "I&gnore all"
 msgstr "すべて無視(&G)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNBLANKS_CHECK
-#: Merge.rc:2344
+#: Merge.rc:2352
 msgid "Ignore blan&k lines"
 msgstr "空行を無視する(&K)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNCASE_CHECK
-#: Merge.rc:2345
+#: Merge.rc:2353
 msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_EOL_SENSITIVE
-#: Merge.rc:2346
+#: Merge.rc:2354
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
 msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNORE_NUMBERS
-#: Merge.rc:2348
+#: Merge.rc:2356
 msgid "Ignore num&bers"
 msgstr "数字を無視する(&B)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_CP_SENSITIVE
-#: Merge.rc:2349
+#: Merge.rc:2357
 msgid "Ignore codepage &differences"
 msgstr "コードページの違いを無視する(&D)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_FILTERCOMMENTS_CHECK
-#: Merge.rc:2350
+#: Merge.rc:2358
 msgid "Ignore c&omment differences"
 msgstr "コメントの違いを無視する(&O)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNEOFEOL_CHECK
-#: Merge.rc:2352
+#: Merge.rc:2360
 msgid "Ignore &missing trailing EOL"
 msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNLBRKS_CHECK
-#: Merge.rc:2354
+#: Merge.rc:2362
 msgid "Ignore line &breaks (treat as spaces)"
 msgstr "改行を無視(空白として扱う)(&B)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_MOVED_BLOCKS
-#: Merge.rc:2356
+#: Merge.rc:2364
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_ALIGN_SIMILAR_LINES
-#: Merge.rc:2357
+#: Merge.rc:2365
 msgid "Align &similar lines"
 msgstr "類似行をマッチさせる(&S)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_STATIC
-#: Merge.rc:2358
+#: Merge.rc:2366
 msgid "Diff &algorithm:"
 msgstr "Diff アルゴリズム(&A):"
 
 #. IDD_PROPPAGE_COMPARE, IDC_INDENT_HEURISTIC
-#: Merge.rc:2360
+#: Merge.rc:2368
 msgid "Enable indent &heuristic"
 msgstr "Indent heuristic を有効にする(&H)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES
-#: Merge.rc:2361
+#: Merge.rc:2369
 msgid "Completely unhighlight the ignored differences"
 msgstr "無視された差異の行を同一行の色と同じにする"
 
 #. IDS_OPTIONSPG_EDITOR
-#: Merge.rc:2368 Merge.rc:4212
+#: Merge.rc:2376 Merge.rc:4220
 msgid "Editor"
 msgstr "エディター"
 
 #. IDD_PROPPAGE_EDITOR, IDC_HILITE_CHECK
-#: Merge.rc:2371
+#: Merge.rc:2379
 msgid "&Highlight syntax"
 msgstr "シンタックス ハイライトを有効にする(&H)"
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
-#: Merge.rc:2372
+#: Merge.rc:2380
 msgid "&Preserve original EOL"
 msgstr "元の EOL 文字を保存する(&P)"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
-#: Merge.rc:2373
+#: Merge.rc:2381
 msgid "Tabs"
 msgstr "タブ"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
-#: Merge.rc:2374
+#: Merge.rc:2382
 msgid "&Tab size:"
 msgstr "タブ幅(&T):"
 
 #. IDD_PROPPAGE_EDITOR, IDC_PROP_INSERT_TABS
-#: Merge.rc:2376
+#: Merge.rc:2384
 msgid "&Insert tabs"
 msgstr "タブを挿入(&I)"
 
 #. IDD_PROPPAGE_EDITOR, IDC_PROP_INSERT_SPACES
-#: Merge.rc:2377
+#: Merge.rc:2385
 msgid "Insert &spaces"
 msgstr "スペースを挿入(&S)"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
-#: Merge.rc:2378
+#: Merge.rc:2386
 msgid "&Rendering mode:"
 msgstr "レンダリングモード(&R):"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_AUTOMRESCAN_CHECK
-#: Merge.rc:2387
+#: Merge.rc:2395
 msgid "&Automatic rescan"
 msgstr "自動的に再スキャンする(&A)"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_STATIC
-#: Merge.rc:2388
+#: Merge.rc:2396
 msgid "Copy &granularity for selected differences:"
 msgstr "選択された差異のコピー粒度(&G)"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_LINE_COLORING_GROUP
-#: Merge.rc:2390
+#: Merge.rc:2398
 msgid "Line Difference Coloring"
 msgstr "行内差異の色付け"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_VIEW_LINE_DIFFERENCES
-#: Merge.rc:2391
+#: Merge.rc:2399
 msgid "View line differences"
 msgstr "行内差異を表示する"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_EDITOR_CHARLEVEL
-#: Merge.rc:2392
+#: Merge.rc:2400
 msgid "&Character-level"
 msgstr "文字単位(&C)"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_EDITOR_WORDLEVEL
-#: Merge.rc:2393
+#: Merge.rc:2401
 msgid "&Word-level:"
 msgstr "単語単位(&W):"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_STATIC
-#: Merge.rc:2395
+#: Merge.rc:2403
 msgid "W&ord break characters:"
 msgstr "単語区切り文字(&O)"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
-#: Merge.rc:2412
+#: Merge.rc:2420
 msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
 msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
 
 #. IDD_SELECT_FILES_OR_FOLDERS, IDC_RESET
-#: Merge.rc:2413 Merge.rc:3096
+#: Merge.rc:2421 Merge.rc:3104
 msgid "Reset"
 msgstr "リセット"
 
 #. IDD_GENERATE_PATCH
-#: Merge.rc:2419
+#: Merge.rc:2427
 msgid "Patch Generator"
 msgstr "パッチ生成"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2422
+#: Merge.rc:2430
 msgid "File&1:"
 msgstr "ファイル &1:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2425
+#: Merge.rc:2433
 msgid "File&2:"
 msgstr "ファイル &2:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_SWAPFILES
-#: Merge.rc:2428
+#: Merge.rc:2436
 msgid "&Swap"
 msgstr "交換(&S)"
 
 #. IDD_DIRCMP_REPORT, IDC_REPORT_COPYCLIPBOARD
-#: Merge.rc:2429 Merge.rc:2701
+#: Merge.rc:2437 Merge.rc:2709
 msgid "&Copy to clipboard"
 msgstr "クリップボードにコピー(&C)"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_APPENDFILE
-#: Merge.rc:2430
+#: Merge.rc:2438
 msgid "&Append to existing file"
 msgstr "既存のファイルに追加する(&A)"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2431
+#: Merge.rc:2439
 msgid "&Result:"
 msgstr "結果(&R):"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_RESULT
-#: Merge.rc:2433
+#: Merge.rc:2441
 msgid "Bro&wse..."
 msgstr "参照(&W)..."
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2434
+#: Merge.rc:2442
 msgid "&Format"
 msgstr "出力形式(&F)"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2435
+#: Merge.rc:2443
 msgid "St&yle:"
 msgstr "スタイル(&Y):"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2437
+#: Merge.rc:2445
 msgid "&Context:"
 msgstr "コンテキスト(&C):"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_INCLCMDLINE
-#: Merge.rc:2439
+#: Merge.rc:2447
 msgid "Inclu&de command line"
 msgstr "コマンド行を含める(&D)"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_OPENTOEDITOR
-#: Merge.rc:2440
+#: Merge.rc:2448
 msgid "Open in e&xternal editor"
 msgstr "外部エディターで開く(&X)"
 
 #. IDD_DIRCOLS
-#: Merge.rc:2457
+#: Merge.rc:2465
 msgid "Display Columns"
 msgstr "列の表示"
 
 #. IDD_DIRCOLS, IDC_UP
-#: Merge.rc:2461
+#: Merge.rc:2469
 msgid "Move &Up"
 msgstr "上へ(&U)"
 
 #. IDD_DIRCOLS, IDC_DOWN
-#: Merge.rc:2462
+#: Merge.rc:2470
 msgid "Move &Down"
 msgstr "下へ(&D)"
 
 #. IDD_DIRCOLS, IDC_COLDLG_ADDITIONAL_PROPERTIES
-#: Merge.rc:2464
+#: Merge.rc:2472
 msgid "&Additional Properties"
 msgstr "追加プロパティ(&A)"
 
 #. IDD_DIRADDITIONALPROPS
-#: Merge.rc:2472
+#: Merge.rc:2480
 msgid "Additional Properties"
 msgstr "追加プロパティ"
 
 #. IDD_PLUGINS_SELECTPLUGIN
-#: Merge.rc:2486
+#: Merge.rc:2494
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2489 Merge.rc:3126
+#: Merge.rc:2497 Merge.rc:3134
 msgid "Plugin &name:"
 msgstr "プラグイン名(&N):"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_STATIC
-#: Merge.rc:2491
+#: Merge.rc:2499
 msgid "&Target files:"
 msgstr "対象ファイル(&T)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2493 Merge.rc:3128
+#: Merge.rc:2501 Merge.rc:3136
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2495 Merge.rc:3130
+#: Merge.rc:2503 Merge.rc:3138
 msgid "Description:"
 msgstr "説明:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2497 Merge.rc:3132
+#: Merge.rc:2505 Merge.rc:3140
 msgid "Default arguments:"
 msgstr "デフォルト引数:"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALLOW_ALL
-#: Merge.rc:2499
+#: Merge.rc:2507
 msgid "Display all plugins (Ignore extension)"
 msgstr "拡張子を無視してすべてのプラグインを表示する"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE
-#: Merge.rc:2501
+#: Merge.rc:2509
 msgid "&Open files in same window type after unpacking"
 msgstr "展開プラグイン適用後、ファイルを同じウインドウ タイプで開く(&O)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
-#: Merge.rc:2503 Merge.rc:3140
+#: Merge.rc:2511 Merge.rc:3148
 msgid "&Plugin pipeline:"
 msgstr "プラグイン パイプライン(&P):"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALIAS
-#: Merge.rc:2506
+#: Merge.rc:2514
 msgid "&Alias..."
 msgstr "エイリアス(&A)..."
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_STOP
-#: Merge.rc:2516
+#: Merge.rc:2524
 msgid "Stop"
 msgstr "停止"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_PAUSE
-#: Merge.rc:2517
+#: Merge.rc:2525
 msgid "Pause"
 msgstr "一時停止"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_CONTINUE
-#: Merge.rc:2518
+#: Merge.rc:2526
 msgid "Continue"
 msgstr "再開"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2520 Merge.rc:2984
+#: Merge.rc:2528 Merge.rc:2992
 msgid "C&PU cores to use:"
 msgstr "使用するCPUコアの数(&N):"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_STATIC
-#: Merge.rc:2521
+#: Merge.rc:2529
 msgid "Items total:"
 msgstr "全項目数:"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_STATIC
-#: Merge.rc:2522
+#: Merge.rc:2530
 msgid "Items compared:"
 msgstr "比較した項目:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2537 Merge.rc:2857 Merge.rc:5342
+#: Merge.rc:2545 Merge.rc:2865 Merge.rc:5350
 msgid "&Close"
 msgstr "閉じる(&C)"
 
 #. IDD_WMGOTO
-#: Merge.rc:2548
+#: Merge.rc:2556
 msgid "Go to"
 msgstr "移動"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2551
+#: Merge.rc:2559
 msgid "G&o to:"
 msgstr "番号(&O):"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2554
+#: Merge.rc:2562
 msgid "File"
 msgstr "ファイル"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2558
+#: Merge.rc:2566
 msgid "Go to what"
 msgstr "移動種別"
 
 #. IDD_WMGOTO, IDC_WMGOTO_TOLINE
-#: Merge.rc:2559
+#: Merge.rc:2567
 msgid "Li&ne"
 msgstr "行(&N)"
 
 #. IDD_WMGOTO, IDC_WMGOTO_TODIFF
-#: Merge.rc:2560
+#: Merge.rc:2568
 msgid "&Difference"
 msgstr "差異(&D)"
 
 #. IDD_WMGOTO, IDOK
-#: Merge.rc:2561
+#: Merge.rc:2569
 msgid "&Go to"
 msgstr "移動(&G)"
 
 #. IDS_PROJECT_ITEM_FILE_FILTER
-#: Merge.rc:2567 Merge.rc:4332
+#: Merge.rc:2575 Merge.rc:4340
 msgid "File Filters"
 msgstr "ファイル フィルター"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
-#: Merge.rc:2570
+#: Merge.rc:2578
 msgid "&Mask / Filter Expression"
 msgstr "マスク / フィルター式(&M)"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
-#: Merge.rc:2573
+#: Merge.rc:2581
 msgid "Preset &Filters"
 msgstr "フィルターのプリセット(&F)"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_TEST_BTN
-#: Merge.rc:2575
+#: Merge.rc:2583
 msgid "Test..."
 msgstr "テスト..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_INSTALL
-#: Merge.rc:2576
+#: Merge.rc:2584
 msgid "Install..."
 msgstr "インストール..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_NEWBTN
-#: Merge.rc:2577
+#: Merge.rc:2585
 msgid "New..."
 msgstr "新規..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_EDITBTN
-#: Merge.rc:2578
+#: Merge.rc:2586
 msgid "Edit..."
 msgstr "編集..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_DELETEBTN
-#: Merge.rc:2579
+#: Merge.rc:2587
 msgid "Delete..."
 msgstr "削除..."
 
 #. IDD_FILTERS_CONDITION
-#: Merge.rc:2584
+#: Merge.rc:2592
 msgid "Filter Condition"
 msgstr "フィルター条件"
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2587
+#: Merge.rc:2595
 msgid "&Left-hand side:"
 msgstr "左辺(&L):"
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2589
+#: Merge.rc:2597
 msgid "&Operator:"
 msgstr "演算子(&O):"
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2591
+#: Merge.rc:2599
 msgid "&Right-hand side:"
 msgstr "右辺(&R):"
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2597
+#: Merge.rc:2605
 msgid "Expression:"
 msgstr "式:"
 
 #. IDD_COMPARISON_RESULT_FILTER
-#: Merge.rc:2606
+#: Merge.rc:2614
 msgid "Filter by Comparison Result"
 msgstr "比較結果でフィルター"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
-#: Merge.rc:2609
+#: Merge.rc:2617
 msgid "&Include"
 msgstr "含める(&I)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
-#: Merge.rc:2610
+#: Merge.rc:2618
 msgid "&Exclude"
 msgstr "除外(&E)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
-#: Merge.rc:2611
+#: Merge.rc:2619
 msgid "Comparison Results"
 msgstr "比較結果"
 
 #. IDS_IDENTICAL
-#: Merge.rc:2612 Merge.rc:2744 Merge.rc:2805 Merge.rc:4710
+#: Merge.rc:2620 Merge.rc:2752 Merge.rc:2813 Merge.rc:4718
 msgid "Identical"
 msgstr "同一"
 
 #. IDS_DIFFERENT
-#: Merge.rc:2613 Merge.rc:2725 Merge.rc:2766 Merge.rc:4720
+#: Merge.rc:2621 Merge.rc:2733 Merge.rc:2774 Merge.rc:4728
 msgid "Different"
 msgstr "差異あり"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
-#: Merge.rc:2614
+#: Merge.rc:2622
 msgid "Left only"
 msgstr "左側のみ"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
-#: Merge.rc:2615
+#: Merge.rc:2623
 msgid "Right only"
 msgstr "右側のみ"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
-#: Merge.rc:2616
+#: Merge.rc:2624
 msgid "Skipped"
 msgstr "スキップ"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
-#: Merge.rc:2617
+#: Merge.rc:2625
 msgid "Middle only"
 msgstr "中央のみ"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
-#: Merge.rc:2618
+#: Merge.rc:2626
 msgid "Left only (different)"
 msgstr "左側のみ（差異あり）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
-#: Merge.rc:2619
+#: Merge.rc:2627
 msgid "Middle only (different)"
 msgstr "中央のみ（差異あり）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
-#: Merge.rc:2620
+#: Merge.rc:2628
 msgid "Right only (different)"
 msgstr "右側のみ（差異あり）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
-#: Merge.rc:2621
+#: Merge.rc:2629
 msgid "Left only (missing)"
 msgstr "左側のみ（欠如）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
-#: Merge.rc:2622
+#: Merge.rc:2630
 msgid "Middle only (missing)"
 msgstr "中央のみ（欠如）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
-#: Merge.rc:2623
+#: Merge.rc:2631
 msgid "Right only (missing)"
 msgstr "右側のみ（欠如）"
 
 #. IDS_OPTIONSPG_CODEPAGE
-#: Merge.rc:2630 Merge.rc:2822 Merge.rc:4224
+#: Merge.rc:2638 Merge.rc:2830 Merge.rc:4232
 msgid "Codepage"
 msgstr "コードページ"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
-#: Merge.rc:2633
+#: Merge.rc:2641
 msgid "Default Codepage"
 msgstr "デフォルト コードページ"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
-#: Merge.rc:2634
+#: Merge.rc:2642
 msgid "Select the default codepage for non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_SYSTEM
-#: Merge.rc:2635
+#: Merge.rc:2643
 msgid "System codepage"
 msgstr "システム コードページ"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_UI
-#: Merge.rc:2636
+#: Merge.rc:2644
 msgid "According to WinMerge User Interface"
 msgstr "WinMerge ユーザー インターフェイス言語"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_CUSTOM
-#: Merge.rc:2637
+#: Merge.rc:2645
 msgid "Custom codepage:"
 msgstr "指定したコードページ:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE
-#: Merge.rc:2639
+#: Merge.rc:2647
 msgid ""
 "Detect codepage for: .html, .rc, .xml\n"
 "Restart required."
@@ -4099,7 +4099,7 @@ msgstr ""
 "セッションの再起動が必要です。"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE2
-#: Merge.rc:2641
+#: Merge.rc:2649
 msgid ""
 "Detect codepage for files with mlang.dll\n"
 "Restart required."
@@ -4108,769 +4108,769 @@ msgstr ""
 "この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
 
 #. IDS_OPTIONSPG_ARCHIVE
-#: Merge.rc:2649 Merge.rc:4225
+#: Merge.rc:2657 Merge.rc:4233
 msgid "Archive Support"
 msgstr "アーカイブ サポート"
 
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_ENABLE
-#: Merge.rc:2652
+#: Merge.rc:2660
 msgid "&Enable archive file support"
 msgstr "アーカイブ ファイル サポートを有効にする(&E)"
 
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_DETECTTYPE
-#: Merge.rc:2653
+#: Merge.rc:2661
 msgid "&Detect archive type from file signature"
 msgstr "ファイルのシグネチャからアーカイブ形式を検出する(&D)"
 
 #. IDD_PROPPAGE_PROJECT, IDC_STATIC
-#: Merge.rc:2662
+#: Merge.rc:2670
 msgid "Items saved to or restored from the project file:"
 msgstr "プロジェクト ファイルに保存またはプロジェクト ファイルから復元する項目:"
 
 #. IDD_SAVECLOSING
-#: Merge.rc:2669
+#: Merge.rc:2677
 msgid "Save Modified Files?"
 msgstr "変更されたファイルを保存しますか?"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_LEFTFRAME
-#: Merge.rc:2672
+#: Merge.rc:2680
 msgid "Left side file"
 msgstr "左側ファイル"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVELEFT
-#: Merge.rc:2674
+#: Merge.rc:2682
 msgid "&Save changes"
 msgstr "変更を保存する(&S)"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDLEFT
-#: Merge.rc:2675
+#: Merge.rc:2683
 msgid "&Discard changes"
 msgstr "変更を破棄する(&D)"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_MIDDLEFRAME
-#: Merge.rc:2676
+#: Merge.rc:2684
 msgid "Middle side file"
 msgstr "中央ファイル"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVEMIDDLE
-#: Merge.rc:2678
+#: Merge.rc:2686
 msgid "Sa&ve changes"
 msgstr "変更を保存する(&V)"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDMIDDLE
-#: Merge.rc:2679
+#: Merge.rc:2687
 msgid "Discard c&hanges"
 msgstr "変更を破棄する(&H)"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_RIGHTFRAME
-#: Merge.rc:2680
+#: Merge.rc:2688
 msgid "Right side file"
 msgstr "右側ファイル"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVERIGHT
-#: Merge.rc:2682
+#: Merge.rc:2690
 msgid "S&ave changes"
 msgstr "変更を保存する(&A)"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDRIGHT
-#: Merge.rc:2683
+#: Merge.rc:2691
 msgid "Dis&card changes"
 msgstr "変更を破棄する(&C)"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDALL
-#: Merge.rc:2684
+#: Merge.rc:2692
 msgid "Disca&rd All"
 msgstr "すべて破棄する(&R)"
 
 #. IDD_DIRCMP_REPORT
-#: Merge.rc:2691
+#: Merge.rc:2699
 msgid "Folder Compare Report"
 msgstr "フォルダー比較レポート"
 
 #. IDD_DIRCMP_REPORT, IDC_STATIC
-#: Merge.rc:2694
+#: Merge.rc:2702
 msgid "Report &file:"
 msgstr "レポート ファイル(&F):"
 
 #. IDD_DIRCMP_REPORT, IDC_STATIC
-#: Merge.rc:2697
+#: Merge.rc:2705
 msgid "&Style:"
 msgstr "スタイル(&S):"
 
 #. IDD_DIRCMP_REPORT, IDC_REPORT_INCLUDEFILECMPREPORT
-#: Merge.rc:2699
+#: Merge.rc:2707
 msgid "&Include file compare report"
 msgstr "ファイル比較レポートを含める(&I)"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
-#: Merge.rc:2708
+#: Merge.rc:2716
 msgid "Shared or Private Filter"
 msgstr "共有/プライベート フィルター"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_STATIC
-#: Merge.rc:2711
+#: Merge.rc:2719
 msgid "What type of filter do you want?"
 msgstr "どのタイプのフィルターを作成しますか?"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_SHARED
-#: Merge.rc:2712
+#: Merge.rc:2720
 msgid "Shared Filter (for all users)"
 msgstr "共有フィルター (このマシン上のすべてのユーザーに有効)"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_PRIVATE
-#: Merge.rc:2713
+#: Merge.rc:2721
 msgid "Private Filter (current user only)"
 msgstr "プライベート フィルター (現在のユーザーのみ)"
 
 #. IDD_COMPARE_STATISTICS3
-#: Merge.rc:2720 Merge.rc:2761
+#: Merge.rc:2728 Merge.rc:2769
 msgid "Compare Statistics"
 msgstr "比較統計"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2723 Merge.rc:2764
+#: Merge.rc:2731 Merge.rc:2772
 msgid "Folders:"
 msgstr "フォルダー:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2724 Merge.rc:2765
+#: Merge.rc:2732 Merge.rc:2773
 msgid "Files:"
 msgstr "ファイル:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2730 Merge.rc:2749 Merge.rc:2771 Merge.rc:2810
+#: Merge.rc:2738 Merge.rc:2757 Merge.rc:2779 Merge.rc:2818
 msgid "Binary:"
 msgstr "バイナリ:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2733 Merge.rc:2774
+#: Merge.rc:2741 Merge.rc:2782
 msgid "Unique"
 msgstr "片方のみ"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2734 Merge.rc:2775
+#: Merge.rc:2742 Merge.rc:2783
 msgid "Left:"
 msgstr "左側:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2739 Merge.rc:2785
+#: Merge.rc:2747 Merge.rc:2793
 msgid "Right:"
 msgstr "右側:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2753 Merge.rc:2814
+#: Merge.rc:2761 Merge.rc:2822
 msgid "Total:"
 msgstr "合計:"
 
 #. IDD_COMPARE_STATISTICS3, IDOK
-#: Merge.rc:2756 Merge.rc:2817
+#: Merge.rc:2764 Merge.rc:2825
 msgid "Close"
 msgstr "閉じる"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2780
+#: Merge.rc:2788
 msgid "Middle:"
 msgstr "中央:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2790
+#: Merge.rc:2798
 msgid "Missing Left:"
 msgstr "左側のみ無し:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2795
+#: Merge.rc:2803
 msgid "Missing Middle:"
 msgstr "中央のみ無し:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2800
+#: Merge.rc:2808
 msgid "Missing Right:"
 msgstr "右側のみ無し:"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_GROUP
-#: Merge.rc:2825
+#: Merge.rc:2833
 msgid "Affects"
 msgstr "反映先"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_RIGHT_FILES_LABEL
-#: Merge.rc:2827 Merge.rc:2829 Merge.rc:2831
+#: Merge.rc:2835 Merge.rc:2837 Merge.rc:2839
 msgid "(Affects)"
 msgstr "(反映先)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOADING_GROUP
-#: Merge.rc:2832
+#: Merge.rc:2840
 msgid "Select Codepage for"
 msgstr "コードページの選択"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_FILES_LABEL
-#: Merge.rc:2833
+#: Merge.rc:2841
 msgid "&File Loading:"
 msgstr "ファイルの読み込み(&F):"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_SAVE_FILES_LABEL
-#: Merge.rc:2835
+#: Merge.rc:2843
 msgid "File &Saving:"
 msgstr "ファイルの保存(&S)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_SAVE_SAME_CODEPAGE
-#: Merge.rc:2838
+#: Merge.rc:2846
 msgid "&Use same codepage for both"
 msgstr "読み込みと保存で同じコードページを使用する(&U)"
 
 #. IDS_MESSAGEBOX_CANCEL
-#: Merge.rc:2841 Merge.rc:4183
+#: Merge.rc:2849 Merge.rc:4191
 msgid "&Cancel"
 msgstr "キャンセル(&C)"
 
 #. IDD_FILTERS_FILEFILTERS_TEST
-#: Merge.rc:2846
+#: Merge.rc:2854
 msgid "Test Filter"
 msgstr "フィルターのテスト"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_HEADER
-#: Merge.rc:2849
+#: Merge.rc:2857
 msgid "Testing filter:"
 msgstr "テストするフィルター:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_PROMPT_LABEL
-#: Merge.rc:2851
+#: Merge.rc:2859
 msgid "&Enter text to test:"
 msgstr "テストするテキストの入力(&E):"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_IS_DIRECTORY
-#: Merge.rc:2853
+#: Merge.rc:2861
 msgid "&Folder Name"
 msgstr "フォルダー名(&F)"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_STATIC
-#: Merge.rc:2854
+#: Merge.rc:2862
 msgid "Result:"
 msgstr "結果:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_TEST_BTN
-#: Merge.rc:2856
+#: Merge.rc:2864
 msgid "&Test"
 msgstr "テスト(&T)"
 
 #. IDS_OPTIONSPG_TABLECOMPARE
-#: Merge.rc:2862 Merge.rc:3001 Merge.rc:4239
+#: Merge.rc:2870 Merge.rc:3009 Merge.rc:4247
 msgid "Table"
 msgstr "テーブル"
 
 #. IDD_OPEN_TABLE, IDC_STATIC
-#: Merge.rc:2865
+#: Merge.rc:2873
 msgid "File type"
 msgstr "ファイル タイプ"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_CSV
-#: Merge.rc:2866
+#: Merge.rc:2874
 msgid "&CSV"
 msgstr "&CSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_TSV
-#: Merge.rc:2867
+#: Merge.rc:2875
 msgid "&TSV"
 msgstr "&TSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_DSV
-#: Merge.rc:2868
+#: Merge.rc:2876
 msgid "Custom &Delimiter-Separated Values"
 msgstr "ユーザー指定文字区切り値(&D)"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2870 Merge.rc:2872 Merge.rc:3007 Merge.rc:3015
+#: Merge.rc:2878 Merge.rc:2880 Merge.rc:3015 Merge.rc:3023
 msgid "D&elimiter character:"
 msgstr "区切り文字(&E)"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_COMPARETABLE_ALLOWNEWLINE
-#: Merge.rc:2874 Merge.rc:3017
+#: Merge.rc:2882 Merge.rc:3025
 msgid "&Allow newlines in quotes"
 msgstr "引用符内の改行を値として扱う(&A)"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2876 Merge.rc:3019
+#: Merge.rc:2884 Merge.rc:3027
 msgid "&Quote character:"
 msgstr "引用符文字(&Q)"
 
 #. IDS_OPTIONSPG_BACKUPS
-#: Merge.rc:2884 Merge.rc:4227
+#: Merge.rc:2892 Merge.rc:4235
 msgid "Backup Files"
 msgstr "バックアップ ファイル"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:2887
+#: Merge.rc:2895
 msgid "Create backup files for:"
 msgstr "バックアップ ファイル作成:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FOLDERCMP
-#: Merge.rc:2888
+#: Merge.rc:2896
 msgid "&Folder compare"
 msgstr "フォルダー比較(&F)"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FILECMP
-#: Merge.rc:2889
+#: Merge.rc:2897
 msgid "Fil&e compare"
 msgstr "ファイル比較(&E)"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:2890
+#: Merge.rc:2898
 msgid "Create backup files in:"
 msgstr "バックアップ ファイル作成先:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_ORIGFOLD
-#: Merge.rc:2891
+#: Merge.rc:2899
 msgid "&Original file's folder"
 msgstr "元ファイルのフォルダー(&O)"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_GLOBALFOLD
-#: Merge.rc:2892
+#: Merge.rc:2900
 msgid "&Global backup folder:"
 msgstr "共通のバックアップ フォルダー(&G):"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:2895
+#: Merge.rc:2903
 msgid "Backup filename:"
 msgstr "バックアップ ファイル名:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_BAK
-#: Merge.rc:2896
+#: Merge.rc:2904
 msgid "&Append .bak extension"
 msgstr ".bak 拡張子を追加する(&A)"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_TIME
-#: Merge.rc:2897
+#: Merge.rc:2905
 msgid "A&ppend timestamp"
 msgstr "タイムスタンプを追加する(&P)"
 
 #. IDS_CONFIRM_COPY_CAPTION
-#: Merge.rc:2903 Merge.rc:4577
+#: Merge.rc:2911 Merge.rc:4585
 msgid "Confirm Copy"
 msgstr "コピーの確認"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_QUERY
-#: Merge.rc:2907
+#: Merge.rc:2915
 msgid "Are you sure you want to copy XXX items?"
 msgstr "本当に XXX 項目をコピーしますか?"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_FROM_TEXT
-#: Merge.rc:2908
+#: Merge.rc:2916
 msgid "From left"
 msgstr "左側から"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_TO_TEXT
-#: Merge.rc:2910
+#: Merge.rc:2918
 msgid "To right"
 msgstr "右側へ"
 
 #. IDS_MESSAGEBOX_DONT_ASK_AGAIN
-#: Merge.rc:2912 Merge.rc:4202
+#: Merge.rc:2920 Merge.rc:4210
 msgid "Don't ask this &question again."
 msgstr "再びこの質問をしない(&Q)"
 
 #. IDD_CONFIRM_COPY, IDYES
-#: Merge.rc:2914
+#: Merge.rc:2922
 msgid "Yes"
 msgstr "はい"
 
 #. IDD_CONFIRM_COPY, IDNO
-#: Merge.rc:2915
+#: Merge.rc:2923
 msgid "No"
 msgstr "いいえ"
 
 #. IDS_PROJECT_ITEM_PLUGIN
-#: Merge.rc:2920 Merge.rc:4334
+#: Merge.rc:2928 Merge.rc:4342
 msgid "Plugins"
 msgstr "プラグイン"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGINS_ENABLE
-#: Merge.rc:2923
+#: Merge.rc:2931
 msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2924 Merge.rc:3124
+#: Merge.rc:2932 Merge.rc:3132
 msgid "Plugin &type:"
 msgstr "プラグインの種類(&T):"
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
-#: Merge.rc:2927
+#: Merge.rc:2935
 msgid "File filters:"
 msgstr "ファイル フィルター:"
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
-#: Merge.rc:2929
+#: Merge.rc:2937
 msgid "&Plugin arguments:"
 msgstr "プラグイン引数(&P):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
-#: Merge.rc:2931 Merge.rc:3145
+#: Merge.rc:2939 Merge.rc:3153
 msgid "Enable &automatic unpacking/prediffing"
 msgstr "自動展開/自動比較前処理をこのプラグインで有効にする(&A)"
 
 #. IDS_OPTIONSPG_SHELL
-#: Merge.rc:2945 Merge.rc:4228
+#: Merge.rc:2953 Merge.rc:4236
 msgid "Shell Integration"
 msgstr "シェル統合"
 
 #. IDD_PROPPAGE_SHELL, IDC_STATIC
-#: Merge.rc:2948
+#: Merge.rc:2956
 msgid "Explorer"
 msgstr "エクスプローラー"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_CONTEXT
-#: Merge.rc:2949
+#: Merge.rc:2957
 msgid "&Add to context menu"
 msgstr "コンテキストメニューに追加する(&A)"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_ADVANCED
-#: Merge.rc:2950
+#: Merge.rc:2958
 msgid "E&nable advanced menu"
 msgstr "拡張メニューを有効にする(&N)"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_COMPARE_AS
-#: Merge.rc:2951
+#: Merge.rc:2959
 msgid "Enable &Compare As menu"
 msgstr "「形式を指定して比較」メニューを有効にする(&C)"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION
-#: Merge.rc:2952
+#: Merge.rc:2960
 msgid "&Register Shell Extension"
 msgstr "シェル拡張を登録(&R)"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION
-#: Merge.rc:2953
+#: Merge.rc:2961
 msgid "&Unregister Shell Extension"
 msgstr "シェル拡張の登録を解除(&U)"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION_PERUSER
-#: Merge.rc:2954
+#: Merge.rc:2962
 msgid "Register Shell Extension for Current User &Only"
 msgstr "現在のユーザーのみシェル拡張を登録(&O)"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION_PERUSER
-#: Merge.rc:2955
+#: Merge.rc:2963
 msgid "Unregister Shell Extension for Current User On&ly"
 msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_WINMERGECONTEXTMENU
-#: Merge.rc:2956
+#: Merge.rc:2964
 msgid "Register Shell Extension for &Windows 11"
 msgstr "Windows 11 以降用シェル拡張を登録(&W)"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_WINMERGECONTEXTMENU
-#: Merge.rc:2957
+#: Merge.rc:2965
 msgid "Unregister Shell Extension for W&indows 11"
 msgstr "Windows 11 以降用シェル拡張の登録を解除(&I)"
 
 #. IDD_PROPPAGE_SHELL, IDC_STATIC
-#: Merge.rc:2958
+#: Merge.rc:2966
 msgid "Jump List"
 msgstr "ジャンプリスト"
 
 #. IDD_PROPPAGE_SHELL, IDC_CLEAR_ALL_RECENT_ITEMS
-#: Merge.rc:2960
+#: Merge.rc:2968
 msgid "Clear all recent items"
 msgstr "すべての最近使ったものの履歴をクリアする"
 
 #. IDS_OPTIONSPG_FOLDERCOMPARE
-#: Merge.rc:2965 Merge.rc:4236
+#: Merge.rc:2973 Merge.rc:4244
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "フォルダー"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2968
+#: Merge.rc:2976
 msgid "&Compare method:"
 msgstr "比較方法(&C):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_STOPFIRST
-#: Merge.rc:2970
+#: Merge.rc:2978
 msgid "S&top after first difference"
 msgstr "最初の差異で比較を終了する(&T)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_IGNORE_SMALLTIMEDIFF
-#: Merge.rc:2972
+#: Merge.rc:2980
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2975
+#: Merge.rc:2983
 msgid "Expand subfolders &after comparison:"
 msgstr "比較後自動的にサブフォルダーを展開する(&A):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_WALKSUBDIRS
-#: Merge.rc:2977
+#: Merge.rc:2985
 msgid "Include &unique subfolders contents"
 msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_IGNORE_REPARSEPOINTS
-#: Merge.rc:2979
+#: Merge.rc:2987
 msgid "Ignore &reparse points"
 msgstr "再解析ポイントを無視する(&R)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2980
+#: Merge.rc:2988
 msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr "クイック比較切替閾値 (MB)(&Q):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2982
+#: Merge.rc:2990
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2986
+#: Merge.rc:2994
 msgid "Additional comparison condi&tions:"
 msgstr "追加比較条件(&T):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2989
+#: Merge.rc:2997
 msgid "&Rename/move detection:"
 msgstr "名前変更/移動検出(&R)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2991
+#: Merge.rc:2999
 msgid "Rename/move detection &keys:"
 msgstr "名前変更/移動検出用キー生成式(&K)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2994
+#: Merge.rc:3002
 msgid "M&erge renames and moves:"
 msgstr "名前変更/移動項目のマージ(&E):"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3005 Merge.rc:3010 Merge.rc:3013
+#: Merge.rc:3013 Merge.rc:3018 Merge.rc:3021
 msgid "File patterns:"
 msgstr "ファイル パターン:"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3012
+#: Merge.rc:3020
 msgid "Custom Delimiter-Separated Values"
 msgstr "ユーザー指定文字区切り値"
 
 #. IDS_OPTIONSPG_BINARYCOMPARE
-#: Merge.rc:3026 Merge.rc:4238
+#: Merge.rc:3034 Merge.rc:4246
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "バイナリ"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
-#: Merge.rc:3029
+#: Merge.rc:3037
 msgid "Binary file &patterns:"
 msgstr "バイナリ ファイルとして扱うパターン(&P):"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
-#: Merge.rc:3031
+#: Merge.rc:3039
 msgid "Frhed settings"
 msgstr "Frhed 設定"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_VIEWSETTINGS
-#: Merge.rc:3032
+#: Merge.rc:3040
 msgid "View &Settings..."
 msgstr "表示設定(&S)..."
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_BINARYMODE
-#: Merge.rc:3033
+#: Merge.rc:3041
 msgid "&Binary Mode..."
 msgstr "バイナリモード(&B)..."
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_CHARACTERSET
-#: Merge.rc:3034
+#: Merge.rc:3042
 msgid "&Character Set..."
 msgstr "文字セット(&C)..."
 
 #. IDS_PRPCAT_IMAGE
-#: Merge.rc:3040 Merge.rc:4237 Merge.rc:4677
+#: Merge.rc:3048 Merge.rc:4245 Merge.rc:4685
 msgid "Image"
 msgstr "画像"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
-#: Merge.rc:3043
+#: Merge.rc:3051
 msgid "Image file &patterns:"
 msgstr "画像ファイルとして扱うパターン(&P):"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_ENABLE_IMGCMP_IN_DIRCMP
-#: Merge.rc:3045
+#: Merge.rc:3053
 msgid "&Enable image compare in folder compare"
 msgstr "フォルダー比較で画像比較を有効にする(&E)"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
-#: Merge.rc:3047
+#: Merge.rc:3055
 msgid "OCR result:"
 msgstr "OCRの結果:"
 
 #. IDS_OPTIONSPG_WEBPAGECOMPARE
-#: Merge.rc:3054 Merge.rc:4240
+#: Merge.rc:3062 Merge.rc:4248
 msgid "Webpage"
 msgstr "Webページ"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3057
+#: Merge.rc:3065
 msgid "URL pattern to &include (Regular expression):"
 msgstr "URL パターン (正規表現)(&I):"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3059
+#: Merge.rc:3067
 msgid "URL pattern to &exclude (Regular expression):"
 msgstr "除外 URL パターン (正規表現)(&E):"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3061
+#: Merge.rc:3069
 msgid "&User data folder location:"
 msgstr "ユーザー データ フォルダーの場所(&U):"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE
-#: Merge.rc:3063
+#: Merge.rc:3071
 msgid "&Separate user data folders for each pane"
 msgstr "ユーザー データ フォルダーをペイン毎に分離する(&S)"
 
 #. IDD_ENCODINGERROR, IDC_HEXVIEW
-#: Merge.rc:3076
+#: Merge.rc:3084
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3121
+#: Merge.rc:3129
 msgid "Edit Plugin"
 msgstr "プラグインの編集"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:3134
+#: Merge.rc:3142
 msgid "&Category:"
 msgstr "カテゴリー(&C)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_MENUCAPTION_STATIC
-#: Merge.rc:3136
+#: Merge.rc:3144
 msgid "&Menu caption:"
 msgstr "メニューキャプション(&M)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_WINDOWTYPE_STATIC
-#: Merge.rc:3138
+#: Merge.rc:3146
 msgid "&Window type:"
 msgstr "ウインドウ種別(&W)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC
-#: Merge.rc:3143
+#: Merge.rc:3151
 msgid "&Unpacked file extension:"
 msgstr "展開後のファイルの拡張子(&U):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_ARGUMENTSREQUIRED
-#: Merge.rc:3147
+#: Merge.rc:3155
 msgid "&Require arguments"
 msgstr "引数を要求する(&R)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_GENERATESCRIPT
-#: Merge.rc:3148
+#: Merge.rc:3156
 msgid "&Generate editor script"
 msgstr "エディタースクリプトを生成する(&G)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_COMMAND_LINE_STATIC
-#: Merge.rc:3151
+#: Merge.rc:3159
 msgid "Command &line:"
 msgstr "コマンドライン(&L):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC
-#: Merge.rc:3154
+#: Merge.rc:3162
 msgid "&Script file extension:"
 msgstr "スクリプトファイル拡張子(&S):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_BODY_STATIC
-#: Merge.rc:3156
+#: Merge.rc:3164
 msgid "Script &body:"
 msgstr "スクリプト本体(&B):"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3165
+#: Merge.rc:3173
 msgid "Font"
 msgstr "フォント"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3168
+#: Merge.rc:3176
 msgid "&Font:"
 msgstr "フォント名(&F):"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3174
+#: Merge.rc:3182
 msgid "Font st&yle:"
 msgstr "スタイル(&Y):"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3180
+#: Merge.rc:3188
 msgid "&Size:"
 msgstr "サイズ(&S):"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3186
+#: Merge.rc:3194
 msgid "Effects"
 msgstr "効果"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3187
+#: Merge.rc:3195
 msgid "Stri&keout"
 msgstr "取り消し線(&K)"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3188
+#: Merge.rc:3196
 msgid "&Underline"
 msgstr "下線(&U)"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3190
+#: Merge.rc:3198
 msgid "&Color:"
 msgstr "色(&C):"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3195
+#: Merge.rc:3203
 msgid "Sample"
 msgstr "サンプル"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3196
+#: Merge.rc:3204
 msgid "AaBbYyZz"
 msgstr "AaBbYyZz"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3200
+#: Merge.rc:3208
 msgid "Sc&ript:"
 msgstr "文字セット(&R):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_MANAGE_LINK
-#: Merge.rc:3205
+#: Merge.rc:3213
 msgid "<A>Show more fonts</A>"
 msgstr "<A>他のフォントを表示</A>"
 
 #. ID_INDICATOR_EXT
-#: Merge.rc:4129
+#: Merge.rc:4137
 msgid "EXT"
 msgstr "EXT"
 
 #. ID_INDICATOR_CAPS
-#: Merge.rc:4130
+#: Merge.rc:4138
 msgid "CAP"
 msgstr "CAP"
 
 #. ID_INDICATOR_NUM
-#: Merge.rc:4131
+#: Merge.rc:4139
 msgid "NUM"
 msgstr "NUM"
 
 #. ID_INDICATOR_SCRL
-#: Merge.rc:4132
+#: Merge.rc:4140
 msgid "SCRL"
 msgstr "SCRL"
 
 #. ID_INDICATOR_OVR
-#: Merge.rc:4133
+#: Merge.rc:4141
 msgid "OVR"
 msgstr "上書"
 
 #. ID_INDICATOR_REC
-#: Merge.rc:4134
+#: Merge.rc:4142
 msgid "REC"
 msgstr "記録"
 
 #. ID_FILE_NEW
-#: Merge.rc:4140
+#: Merge.rc:4148
 msgid ""
 "\n"
 "New Documents (Ctrl+N)"
@@ -4879,7 +4879,7 @@ msgstr ""
 "新しいドキュメント (Ctrl+N)"
 
 #. ID_FILE_OPEN
-#: Merge.rc:4141
+#: Merge.rc:4149
 msgid ""
 "\n"
 "Open (Ctrl+O)"
@@ -4888,7 +4888,7 @@ msgstr ""
 "開く (Ctrl+O)"
 
 #. ID_FILE_SAVE
-#: Merge.rc:4142
+#: Merge.rc:4150
 msgid ""
 "\n"
 "Save (Ctrl+S)"
@@ -4897,27 +4897,27 @@ msgstr ""
 "保存 (Ctrl+S)"
 
 #. IDS_UNK_ERROR_READING_PROJECT
-#: Merge.rc:4148
+#: Merge.rc:4156
 msgid "Unknown error opening project file."
 msgstr "未知のエラー: プロジェクト ファイルが開けません。"
 
 #. IDS_UNK_ERROR_SAVING_PROJECT
-#: Merge.rc:4149
+#: Merge.rc:4157
 msgid "Unknown error saving project file."
 msgstr "未知のエラー: プロジェクト ファイルが保存できません。"
 
 #. IDS_PROJFILE_LOAD_SUCCESS
-#: Merge.rc:4154
+#: Merge.rc:4162
 msgid "Project file loaded."
 msgstr "プロジェクト ファイルが読み込まれました。"
 
 #. IDS_PROJFILE_SAVE_SUCCESS
-#: Merge.rc:4155
+#: Merge.rc:4163
 msgid "Project file saved."
 msgstr "プロジェクト ファイルが保存されました。"
 
 #. ID_EDIT_UNDO
-#: Merge.rc:4161
+#: Merge.rc:4169
 msgid ""
 "\n"
 "Undo (Ctrl+Z)"
@@ -4926,7 +4926,7 @@ msgstr ""
 "元に戻す (Ctrl+Z)"
 
 #. ID_EDIT_REDO
-#: Merge.rc:4162
+#: Merge.rc:4170
 msgid ""
 "\n"
 "Redo (Ctrl+Y)"
@@ -4935,7 +4935,7 @@ msgstr ""
 "やり直し (Ctrl+Y)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:4169
+#: Merge.rc:4177
 msgid ""
 "\n"
 "FileCompare\n"
@@ -4954,7 +4954,7 @@ msgstr ""
 "WinMerge File Compare"
 
 #. IDR_DIRDOCTYPE
-#: Merge.rc:4170
+#: Merge.rc:4178
 msgid ""
 "\n"
 "FolderCompare\n"
@@ -4973,162 +4973,162 @@ msgstr ""
 "WinMerge Folder Compare"
 
 #. IDS_SPLASH_GPLTEXT
-#: Merge.rc:4176
+#: Merge.rc:4184
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 
 #. IDS_MESSAGEBOX_ABORT
-#: Merge.rc:4184
+#: Merge.rc:4192
 msgid "&Abort"
 msgstr "中止(&A)"
 
 #. IDS_MESSAGEBOX_RETRY
-#: Merge.rc:4185
+#: Merge.rc:4193
 msgid "&Retry"
 msgstr "再試行(&R)"
 
 #. IDS_MESSAGEBOX_IGNORE
-#: Merge.rc:4186
+#: Merge.rc:4194
 msgid "&Ignore"
 msgstr "無視(&I)"
 
 #. IDS_MESSAGEBOX_IGNOREALL
-#: Merge.rc:4187
+#: Merge.rc:4195
 msgid "Ignore &all"
 msgstr "すべて無視(&A)"
 
 #. IDS_MESSAGEBOX_YES
-#: Merge.rc:4188
+#: Merge.rc:4196
 msgid "&Yes"
 msgstr "はい(&Y)"
 
 #. IDS_MESSAGEBOX_YES_TO_ALL
-#: Merge.rc:4194
+#: Merge.rc:4202
 msgid "Yes to &all"
 msgstr "すべてはい(&A)"
 
 #. IDS_MESSAGEBOX_NO
-#: Merge.rc:4195
+#: Merge.rc:4203
 msgid "&No"
 msgstr "いいえ(&N)"
 
 #. IDS_MESSAGEBOX_NO_TO_ALL
-#: Merge.rc:4196
+#: Merge.rc:4204
 msgid "No to a&ll"
 msgstr "すべていいえ(&L)"
 
 #. IDS_MESSAGEBOX_CONTINUE
-#: Merge.rc:4197
+#: Merge.rc:4205
 msgid "&Continue"
 msgstr "続行(&C)"
 
 #. IDS_MESSAGEBOX_SKIP
-#: Merge.rc:4198
+#: Merge.rc:4206
 msgid "&Skip"
 msgstr "スキップ(&S)"
 
 #. IDS_MESSAGEBOX_SKIPALL
-#: Merge.rc:4199
+#: Merge.rc:4207
 msgid "Skip &all"
 msgstr "すべてスキップ(&A)"
 
 #. IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN
-#: Merge.rc:4201
+#: Merge.rc:4209
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-#: Merge.rc:4204
+#: Merge.rc:4212
 msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックス ページで [リセット] ボタンを押してください。"
 
 #. IDS_OPTIONSPG_EDITOR_COMPAREMERGE
-#: Merge.rc:4214
+#: Merge.rc:4222
 msgid "Compare/Merge"
 msgstr "比較/マージ"
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
-#: Merge.rc:4215 Merge.rc:4219
+#: Merge.rc:4223 Merge.rc:4227
 msgid "Syntax"
 msgstr "シンタックス"
 
 #. IDS_OPTIONSPG_COLOR_SCHEMES
-#: Merge.rc:4217
+#: Merge.rc:4225
 msgid "Color Schemes"
 msgstr "配色"
 
 #. IDS_OPTIONSPG_DIRCOLORS
-#: Merge.rc:4221
+#: Merge.rc:4229
 msgid "Folder Compare"
 msgstr "フォルダー比較"
 
 #. IDS_OPTIONSPG_PROJECT
-#: Merge.rc:4226
+#: Merge.rc:4234
 msgid "Project"
 msgstr "プロジェクト"
 
 #. IDS_COLHDR_NSDIFFS
-#: Merge.rc:4229 Merge.rc:4652
+#: Merge.rc:4237 Merge.rc:4660
 msgid "Differences"
 msgstr "差異"
 
 #. IDS_OPTIONSPG_MESSAGEBOXES
-#: Merge.rc:4231
+#: Merge.rc:4239
 msgid "Message Boxes"
 msgstr "メッセージボックス"
 
 #. IDS_TO
-#: Merge.rc:4246
+#: Merge.rc:4254
 msgid "To:"
 msgstr "To:"
 
 #. IDS_FROM_LEFT
-#: Merge.rc:4247
+#: Merge.rc:4255
 msgid "From left:"
 msgstr "左側から:"
 
 #. IDS_TO_LEFT
-#: Merge.rc:4248
+#: Merge.rc:4256
 msgid "To left:"
 msgstr "左側へ:"
 
 #. IDS_FROM_RIGHT
-#: Merge.rc:4249
+#: Merge.rc:4257
 msgid "From right:"
 msgstr "右側から:"
 
 #. IDS_TO_RIGHT
-#: Merge.rc:4250
+#: Merge.rc:4258
 msgid "To right:"
 msgstr "右側へ:"
 
 #. IDS_FROM_MIDDLE
-#: Merge.rc:4251
+#: Merge.rc:4259
 msgid "From middle:"
 msgstr "中央から:"
 
 #. IDS_TO_MIDDLE
-#: Merge.rc:4252
+#: Merge.rc:4260
 msgid "To middle:"
 msgstr "中央へ:"
 
 #. IDS_VERSION_FMT
-#: Merge.rc:4258
+#: Merge.rc:4266
 #, c-format
 msgid "Version %1"
 msgstr "Version %1"
 
 #. IDS_OPTIONS_TITLE
-#: Merge.rc:4264
+#: Merge.rc:4272
 #, c-format
 msgid "Options (%1)"
 msgstr "オプション (%1)"
 
 #. IDS_MESSAGE_BOX_ARE_RESET
-#: Merge.rc:4265
+#: Merge.rc:4273
 msgid "All message boxes are now displayed again."
 msgstr "すべてのメッセージボックスが、再び表示されます。"
 
-#: Merge.rc:4267
+#: Merge.rc:4275
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr ""
@@ -5137,156 +5137,156 @@ msgstr ""
 "1 から %1 までの値を指定してください。"
 
 #. IDS_PROJECT_OPEN
-#: Merge.rc:4273 Merge.rc:4329
+#: Merge.rc:4281 Merge.rc:4337
 msgid "Open"
 msgstr "開く"
 
 #. IDS_PROGRAMFILES
-#: Merge.rc:4274
+#: Merge.rc:4282
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "プログラム|*.exe;*.bat;*.cmd|すべてのファイル (*.*)|*.*||"
 
 #. IDS_ALLFILES
-#: Merge.rc:4275
+#: Merge.rc:4283
 msgid "All Files (*.*)|*.*||"
 msgstr "すべてのファイル (*.*)|*.*||"
 
 #. IDS_PROJECTFILES
-#: Merge.rc:4276
+#: Merge.rc:4284
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge プロジェクト ファイル (*.WinMerge)|*.WinMerge||"
 
 #. IDS_INIFILES
-#: Merge.rc:4278
+#: Merge.rc:4286
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "設定ファイル (*.ini)|*.ini|すべてのファイル (*.*)|*.*||"
 
 #. IDS_REPLACELIST_FILES
-#: Merge.rc:4279
+#: Merge.rc:4287
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 msgstr "タブ区切り値 (*.tsv;*.txt)|*.tsv;*.txt|すべてのファイル (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
-#: Merge.rc:4285
+#: Merge.rc:4293
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "テキスト ファイル (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|すべてのファイル (*.*)|*.*||"
 
 #. IDS_HTML_REPORT_FILES
-#: Merge.rc:4286
+#: Merge.rc:4294
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML ファイル (*.htm,*.html)|*.htm;*.html|すべてのファイル (*.*)|*.*||"
 
 #. IDS_XML_REPORT_FILES
-#: Merge.rc:4287
+#: Merge.rc:4295
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*||"
 
 #. IDS_EXPANDSUBDIRS_DONOTEXPAND
-#: Merge.rc:4305
+#: Merge.rc:4313
 msgid "Do not expand"
 msgstr "展開しない"
 
 #. IDS_EXPANDSUBDIRS_ALL
-#: Merge.rc:4306
+#: Merge.rc:4314
 msgid "Expand all subfolders"
 msgstr "すべてのサブフォルダーを展開"
 
 #. IDS_EXPANDSUBDIRS_DIFFERENT
-#: Merge.rc:4307
+#: Merge.rc:4315
 msgid "Expand different subfolders"
 msgstr "差異のあるサブフォルダーを展開"
 
 #. IDS_EXPANDSUBDIRS_IDENTICAL
-#: Merge.rc:4308
+#: Merge.rc:4316
 msgid "Expand identical subfolders"
 msgstr "同一のサブフォルダーを展開"
 
 #. IDS_SYNTAXTABLE_FILETYPE
-#: Merge.rc:4314
+#: Merge.rc:4322
 msgid "File Type"
 msgstr "ファイル タイプ"
 
 #. IDS_COLHDR_EXTENSION
-#: Merge.rc:4315 Merge.rc:4609
+#: Merge.rc:4323 Merge.rc:4617
 msgid "Extension"
 msgstr "拡張子"
 
 #. IDS_PRPCAT_MESSAGE
-#: Merge.rc:4321 Merge.rc:4681
+#: Merge.rc:4329 Merge.rc:4689
 msgid "Message"
 msgstr "メッセージ"
 
 #. IDS_MESSAGEBOX_ANSWER
-#: Merge.rc:4322
+#: Merge.rc:4330
 msgid "Answer"
 msgstr "回答"
 
 #. IDS_PROJECT_ITEM
-#: Merge.rc:4328
+#: Merge.rc:4336
 msgid "Item"
 msgstr "項目"
 
 #. IDS_PROJECT_LOAD
-#: Merge.rc:4330
+#: Merge.rc:4338
 msgid "Load"
 msgstr "読み込み"
 
 #. IDS_PROJECT_SAVE
-#: Merge.rc:4331
+#: Merge.rc:4339
 msgid "Save"
 msgstr "保存"
 
 #. IDS_PROJECT_ITEM_INCLUDE_SUBFOLDERS
-#: Merge.rc:4333
+#: Merge.rc:4341
 msgid "Include Subfolders"
 msgstr "サブフォルダーを含める"
 
 #. IDS_PROJECT_ITEM_COMPARE_OPTIONS
-#: Merge.rc:4335
+#: Merge.rc:4343
 msgid "Compare Options"
 msgstr "比較オプション"
 
 #. IDS_PROJECT_ITEM_HIDDEN_ITEMS
-#: Merge.rc:4336
+#: Merge.rc:4344
 msgid "Hidden Items"
 msgstr "非表示の項目"
 
 #. IDS_PLUGINSLIST_NAME
-#: Merge.rc:4342 Merge.rc:4968
+#: Merge.rc:4350 Merge.rc:4976
 msgid "Name"
 msgstr "名前"
 
 #. IDS_FILTERFILE_PATHTITLE
-#: Merge.rc:4343
+#: Merge.rc:4351
 msgid "Location"
 msgstr "場所"
 
 #. IDS_FILTER_TITLE
-#: Merge.rc:4344
+#: Merge.rc:4352
 msgid "Filters"
 msgstr "フィルター"
 
 #. IDS_FILTER_PREFIX
-#: Merge.rc:4345
+#: Merge.rc:4353
 msgid "[F] "
 msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
-#: Merge.rc:4346 Merge.rc:4970
+#: Merge.rc:4354 Merge.rc:4978
 msgid "Description"
 msgstr "説明"
 
 #. IDS_FILEFILTER_SAVENEW
-#: Merge.rc:4347
+#: Merge.rc:4355
 msgid "Select Filename for New Filter"
 msgstr "新しいフィルターのファイル名を指定してください"
 
 #. IDS_FILEFILTER_FILEMASK
-#: Merge.rc:4348
+#: Merge.rc:4356
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "ファイル フィルター (*.flt)|*.flt|すべてのファイル (*.*)|*.*||"
 
-#: Merge.rc:4350
+#: Merge.rc:4358
 #, c-format
 msgid ""
 "Cannot find filter template!\n"
@@ -5299,7 +5299,7 @@ msgstr ""
 "ファイル %1 を以下の WinMerge/Filters フォルダーにコピーしてください:\n"
 "%2"
 
-#: Merge.rc:4352
+#: Merge.rc:4360
 #, c-format
 msgid ""
 "Cannot copy filter template:\n"
@@ -5311,7 +5311,7 @@ msgstr ""
 "\n"
 "フォルダーの存在または書き込み可能であるか確認してください。"
 
-#: Merge.rc:4354
+#: Merge.rc:4362
 msgid ""
 "User's filter folder is not defined!\n"
 "\n"
@@ -5321,7 +5321,7 @@ msgstr ""
 "\n"
 "[オプション/システム] でフィルター用フォルダーを指定してください。"
 
-#: Merge.rc:4356
+#: Merge.rc:4364
 #, c-format
 msgid ""
 "Failed to delete filter:\n"
@@ -5334,11 +5334,11 @@ msgstr ""
 "そのファイルは読み取り専用ではありませんか?"
 
 #. IDS_FILEFILTER_INSTALL
-#: Merge.rc:4357
+#: Merge.rc:4365
 msgid "Locate Filter File to Install"
 msgstr "インストールするフィルター ファイルを選択"
 
-#: Merge.rc:4359
+#: Merge.rc:4367
 msgid ""
 "Installing filter file failed.\n"
 "\n"
@@ -5349,17 +5349,17 @@ msgstr ""
 "新しいフィルター ファイルをフィルター フォルダーにコピーできません。"
 
 #. IDS_FILEFILTER_OVERWRITE
-#: Merge.rc:4360
+#: Merge.rc:4368
 msgid "Filter file exists. Overwrite?"
 msgstr "フィルター ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 #. IDS_FILTERLINE_REGEXP
-#: Merge.rc:4366
+#: Merge.rc:4374
 msgid "Regular expression"
 msgstr "正規表現"
 
 #. IDS_FILTERCHANGED
-#: Merge.rc:4372
+#: Merge.rc:4380
 msgid ""
 "Filters updated. Refresh all open folder compares?\n"
 "\n"
@@ -5370,223 +5370,223 @@ msgstr ""
 "もし、いまはすべての比較ウィンドウを更新したくない場合、「いいえ」を選択し、後で比較ウィンドウを更新してください。"
 
 #. IDS_DIRECTORY_WINDOW_TITLE
-#: Merge.rc:4378
+#: Merge.rc:4386
 msgid "Folder Comparison Results"
 msgstr "フォルダー比較結果"
 
 #. IDS_FILE_COMPARISON_TITLE
-#: Merge.rc:4379
+#: Merge.rc:4387
 msgid "File Comparison"
 msgstr "ファイル比較"
 
 #. IDS_EMPTY_LEFT_FILE
-#: Merge.rc:4380
+#: Merge.rc:4388
 msgid "Untitled Left"
 msgstr "左無題"
 
 #. IDS_EMPTY_MIDDLE_FILE
-#: Merge.rc:4381
+#: Merge.rc:4389
 msgid "Untitled Middle"
 msgstr "中無題"
 
 #. IDS_EMPTY_RIGHT_FILE
-#: Merge.rc:4382
+#: Merge.rc:4390
 msgid "Untitled Right"
 msgstr "右無題"
 
 #. IDS_CONFLICT_BASE_FILE
-#: Merge.rc:4383
+#: Merge.rc:4391
 msgid "Base File"
 msgstr "Base File"
 
 #. IDS_CONFLICT_THEIRS_FILE
-#: Merge.rc:4384
+#: Merge.rc:4392
 msgid "Theirs File"
 msgstr "Theirs File"
 
 #. IDS_CONFLICT_MINE_FILE
-#: Merge.rc:4385
+#: Merge.rc:4393
 msgid "Mine File"
 msgstr "Mine File"
 
 #. IDS_SELFCOMPARE_ORIGINAL_FILE
-#: Merge.rc:4386
+#: Merge.rc:4394
 msgid "Original File"
 msgstr "元のファイル"
 
 #. IDS_LINE_STATUS_INFO_EOL
-#: Merge.rc:4392
+#: Merge.rc:4400
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "行: %s  列: %d/%d  文字: %d/%d  EOL: %s"
 
 #. IDS_EMPTY_LINE_STATUS_INFO
-#: Merge.rc:4393
+#: Merge.rc:4401
 #, c-format
 msgid "Line: %s"
 msgstr "行: %s"
 
 #. IDS_LINE_STATUS_INFO
-#: Merge.rc:4394
+#: Merge.rc:4402
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "行: %s  列: %d/%d  文字: %d/%d"
 
 #. IDS_LINE_STATUS_INFO_SEL
-#: Merge.rc:4395
+#: Merge.rc:4403
 #, c-format
 msgid "  Sel: %d | %d"
 msgstr "  選択: %d | %d"
 
 #. IDS_MERGEMODE_MERGING
-#: Merge.rc:4396
+#: Merge.rc:4404
 msgid "Merge"
 msgstr "マージ"
 
 #. IDS_DIFF_NUMBER_STATUS_FMT
-#: Merge.rc:4397
+#: Merge.rc:4405
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "差異 %1 / %2"
 
 #. IDS_NO_DIFF_SEL_FMT
-#: Merge.rc:4398
+#: Merge.rc:4406
 #, c-format
 msgid "%1 Differences Found"
 msgstr "%1 件の差異が見つかりました"
 
 #. IDS_1_DIFF_FOUND
-#: Merge.rc:4399
+#: Merge.rc:4407
 msgid "1 Difference Found"
 msgstr "1 件の差異が見つかりました"
 
 #. IDS_NO_ERR_SEL_FMT
-#: Merge.rc:4400
+#: Merge.rc:4408
 #, c-format
 msgid "%1 Errors Found"
 msgstr "%1 件のエラーが発生しました"
 
 #. IDS_1_ERR_FOUND
-#: Merge.rc:4401
+#: Merge.rc:4409
 msgid "1 Error Found"
 msgstr "1 件のエラーが発生しました"
 
 #. IDS_STATUSBAR_READONLY, Abbreviation from "Read Only"
-#: Merge.rc:4402
+#: Merge.rc:4410
 msgid "RO"
 msgstr "RO"
 
 #. IDS_DIRVIEW_STATUS_FMT_FOCUS
-#: Merge.rc:4408
+#: Merge.rc:4416
 #, c-format
 msgid "Item %1 of %2"
 msgstr "項目 %1 / %2"
 
 #. IDS_DIRVIEW_STATUS_FMT_NOFOCUS
-#: Merge.rc:4409
+#: Merge.rc:4417
 #, c-format
 msgid "Items: %1"
 msgstr "項目: %1"
 
 #. IDS_DIRVIEW_STATUS_COMPARING
-#: Merge.rc:4410
+#: Merge.rc:4418
 msgid "Comparing items..."
 msgstr "項目を比較しています..."
 
 #. IDS_ITEMS_PER_SEC
-#: Merge.rc:4411
+#: Merge.rc:4419
 #, c-format
 msgid "%.1f[items/sec]"
 msgstr "%.1f[項目/秒]"
 
 #. IDS_ERROR_INCOMPARABLE
-#: Merge.rc:4417
+#: Merge.rc:4425
 msgid "Select two existing folders/files to compare."
 msgstr "存在するフォルダーまたはファイルを選択してください。"
 
 #. IDS_DIRSEL_TAG
-#: Merge.rc:4418
+#: Merge.rc:4426
 msgid "Folder Selection"
 msgstr "Folder Selection"
 
 #. IDS_OPEN_FILESDIRS
-#: Merge.rc:4419
+#: Merge.rc:4427
 msgid "Select two (or three) folders/files to compare."
 msgstr "比較するフォルダーまたはファイルを 2 つ (または 3 つ) 選択してください。"
 
 #. IDS_OPEN_LEFTINVALID
-#: Merge.rc:4420
+#: Merge.rc:4428
 msgid "Left (1st) path is invalid!"
 msgstr "左側 (1 番目) のパスが無効です!"
 
 #. IDS_OPEN_MIDDLEINVALID
-#: Merge.rc:4421
+#: Merge.rc:4429
 msgid "Middle (2nd) path is invalid!"
 msgstr "中央 (2 番目) のパスが無効です!"
 
 #. IDS_OPEN_RIGHTINVALID2
-#: Merge.rc:4422
+#: Merge.rc:4430
 msgid "Right (2nd) path is invalid!"
 msgstr "右側 (2 番目) のパスが無効です!"
 
 #. IDS_OPEN_RIGHTINVALID3
-#: Merge.rc:4423
+#: Merge.rc:4431
 msgid "Right (3rd) path is invalid!"
 msgstr "右側 (3 番目) のパスが無効です!"
 
 #. IDS_OPEN_BOTHINVALID
-#: Merge.rc:4424
+#: Merge.rc:4432
 msgid "Both paths are invalid!"
 msgstr "両側 (1 番目と 2 番目) のパスが無効です!"
 
-#: Merge.rc:4426
+#: Merge.rc:4434
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr "左側 (1 番目) と中央 (2 番目) のパスが無効です!"
 
 #. IDS_OPEN_LEFTRIGHTINVALID
-#: Merge.rc:4427
+#: Merge.rc:4435
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "左側 (1 番目) と右側 (3 番目) のパスが無効です!"
 
-#: Merge.rc:4429
+#: Merge.rc:4437
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr "中央 (2 番目) と右側 (3 番目) のパスが無効です!"
 
 #. IDS_OPEN_ALLINVALID
-#: Merge.rc:4430
+#: Merge.rc:4438
 msgid "All paths are invalid!"
 msgstr "すべてのパスが無効です!"
 
 #. IDS_OPEN_UNPACKERDISABLED
-#: Merge.rc:4431
+#: Merge.rc:4439
 msgid "Only enabled for file comparisons"
 msgstr "ファイル比較のみ有効"
 
 #. IDS_OPEN_MISMATCH
-#: Merge.rc:4432
+#: Merge.rc:4440
 msgid "Cannot compare file and folder!"
 msgstr "ファイルとフォルダーは比較できません!"
 
 #. IDS_ERROR_FILE_NOT_FOUND
-#: Merge.rc:4438
+#: Merge.rc:4446
 #, c-format
 msgid "File not found: %1"
 msgstr "ファイルが見つかりません: %1"
 
 #. IDS_ERROR_FOLDER_NOT_FOUND
-#: Merge.rc:4439
+#: Merge.rc:4447
 #, c-format
 msgid "Folder not found: %1"
 msgstr "フォルダーが見つかりません: %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
-#: Merge.rc:4440
+#: Merge.rc:4448
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "ファイルが展開されていません: %1"
 
 #. IDS_ERROR_FILEOPEN
-#: Merge.rc:4441
+#: Merge.rc:4449
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -5600,12 +5600,12 @@ msgstr ""
 "%2"
 
 #. IDS_ERROR_CONF_RESOLVE
-#: Merge.rc:4442
+#: Merge.rc:4450
 msgid "Failed to parse conflict file."
 msgstr "コンフリクト ファイルの解析に失敗しました。"
 
 #. IDS_NOT_CONFLICT_FILE
-#: Merge.rc:4443
+#: Merge.rc:4451
 #, c-format
 msgid ""
 "The file\n"
@@ -5617,7 +5617,7 @@ msgstr ""
 "はコンフリクト ファイルではありません。"
 
 #. IDS_COMPARE_LARGE_FILES
-#: Merge.rc:4444
+#: Merge.rc:4452
 msgid ""
 "Comparing large files requires significant memory.\n"
 "Show only comparison results (not file contents)?"
@@ -5627,12 +5627,12 @@ msgstr ""
 "内容の表示はせずに、比較結果のみ表示しますか?"
 
 #. IDS_SAVE_AS_TITLE
-#: Merge.rc:4450
+#: Merge.rc:4458
 msgid "Save As"
 msgstr "名前を付けて保存"
 
 #. IDS_SAVE_FMT
-#: Merge.rc:4451
+#: Merge.rc:4459
 #, c-format
 msgid "Save changes to %1?"
 msgstr ""
@@ -5640,17 +5640,17 @@ msgstr ""
 "変更を保存しますか?"
 
 #. IDS_SAVEREADONLY_FMT
-#: Merge.rc:4452
+#: Merge.rc:4460
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr "%1 は読み取り専用ファイルです。読み取り専用ファイルを上書きしますか? (新しいファイル名では保存しません。)"
 
 #. IDS_ERROR_BACKUP
-#: Merge.rc:4453
+#: Merge.rc:4461
 msgid "Error backing up file"
 msgstr "ファイル バックアップ エラー"
 
-#: Merge.rc:4455
+#: Merge.rc:4463
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -5664,7 +5664,7 @@ msgstr ""
 "無視して続けますか?"
 
 #. IDS_FILESAVE_FAILED
-#: Merge.rc:4456
+#: Merge.rc:4464
 #, c-format
 msgid ""
 "Saving file failed.\n"
@@ -5679,7 +5679,7 @@ msgstr ""
 "- 別名で保存する場合は [OK] を、\n"
 "- 中止する場合は [キャンセル] を押してください。"
 
-#: Merge.rc:4458
+#: Merge.rc:4466
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack changes to left file into '%1'.\n"
@@ -5692,7 +5692,7 @@ msgstr ""
 "\n"
 "展開されたものを別ファイルに保存しますか?"
 
-#: Merge.rc:4460
+#: Merge.rc:4468
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack changes to middle file into '%1'.\n"
@@ -5705,7 +5705,7 @@ msgstr ""
 "\n"
 "展開されたものを別ファイルに保存しますか?"
 
-#: Merge.rc:4462
+#: Merge.rc:4470
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack changes to right file into '%1'.\n"
@@ -5719,7 +5719,7 @@ msgstr ""
 "展開されたものを別ファイルに保存しますか?"
 
 #. IDS_FILECHANGED_ONDISK
-#: Merge.rc:4463
+#: Merge.rc:4471
 #, c-format
 msgid ""
 "Another application updated\n"
@@ -5732,7 +5732,7 @@ msgstr ""
 "このファイルは WinMerge 以外のアプリケーションで修正されています。修正されたファイルに上書きしますか?"
 
 #. IDS_SAVEREADONLY_MULTI
-#: Merge.rc:4464
+#: Merge.rc:4472
 #, c-format
 msgid ""
 "%1\n"
@@ -5742,7 +5742,7 @@ msgstr ""
 "は、読み取り専用です。読み取り専用の項目を上書きしますか?"
 
 #. IDS_FILECHANGED_RESCAN
-#: Merge.rc:4465
+#: Merge.rc:4473
 #, c-format
 msgid ""
 "Another application updated\n"
@@ -5757,22 +5757,22 @@ msgstr ""
 "ファイルを開きなおしますか?"
 
 #. IDS_SAVE_LEFT_AS
-#: Merge.rc:4466
+#: Merge.rc:4474
 msgid "Save Left File As"
 msgstr "左側のファイルを名前を付けて保存"
 
 #. IDS_SAVE_MIDDLE_AS
-#: Merge.rc:4467
+#: Merge.rc:4475
 msgid "Save Middle File As"
 msgstr "中央のファイルを名前を付けて保存"
 
 #. IDS_SAVE_RIGHT_AS
-#: Merge.rc:4468
+#: Merge.rc:4476
 msgid "Save Right File As"
 msgstr "右側のファイルを名前を付けて保存"
 
 #. IDS_FILE_DISAPPEARED
-#: Merge.rc:4473
+#: Merge.rc:4481
 #, c-format
 msgid ""
 "File\n"
@@ -5784,7 +5784,7 @@ msgstr ""
 "は消滅しました。続行するためにファイルのコピーを保存してください。"
 
 #. IDS_VIEWS_OUTOFSYNC
-#: Merge.rc:4479
+#: Merge.rc:4487
 msgid ""
 "Cannot merge unsynched documents.\n"
 "\n"
@@ -5795,124 +5795,124 @@ msgstr ""
 "続行する前にドキュメントを F5 キーで最新にしてください。"
 
 #. IDS_BREAK_ON_WHITESPACE
-#: Merge.rc:4484
+#: Merge.rc:4492
 msgid "Break at whitespace"
 msgstr "空白で区切る"
 
 #. IDS_BREAK_ON_PUNCTUATION
-#: Merge.rc:4485
+#: Merge.rc:4493
 msgid "Break at whitespace or punctuation"
 msgstr "空白か句読点で区切る"
 
 #. IDS_L2M
-#: Merge.rc:4491
+#: Merge.rc:4499
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "中央にコピー(&M)\tAlt+Right"
 
 #. IDS_R2M
-#: Merge.rc:4492
+#: Merge.rc:4500
 msgid "Copy to &Middle\tAlt+Left"
 msgstr "中央にコピー(&M)\tAlt+Left"
 
 #. IDS_COPY_FROM_MIDDLE_R
-#: Merge.rc:4493
+#: Merge.rc:4501
 msgid "Copy from Middle\tAlt+Shift+Right"
 msgstr "中央からコピー\tAlt+Shift+Right"
 
 #. IDS_COPY_FROM_MIDDLE_L
-#: Merge.rc:4494
+#: Merge.rc:4502
 msgid "Copy from Middle\tAlt+Shift+Left"
 msgstr "中央からコピー\tAlt+Shift+Left"
 
 #. IDS_L2MNEXT
-#: Merge.rc:4495
+#: Merge.rc:4503
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr "中央にコピーして次に進む\tCtrl+Alt+Right"
 
 #. IDS_R2MNEXT
-#: Merge.rc:4496
+#: Merge.rc:4504
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr "中央にコピーして次に進む\tCtrl+Alt+Left"
 
 #. IDS_ALL_MIDDLE
-#: Merge.rc:4497
+#: Merge.rc:4505
 msgid "Copy All to Middle"
 msgstr "すべてを中央にコピー"
 
 #. IDS_COPY_RIGHT_TO_LEFT
-#: Merge.rc:4503
+#: Merge.rc:4511
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "右側から左側 (%1)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE
-#: Merge.rc:4504
+#: Merge.rc:4512
 #, c-format
 msgid "Right to Middle (%1)"
 msgstr "右側から中央 (%1)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT
-#: Merge.rc:4505
+#: Merge.rc:4513
 #, c-format
 msgid "Middle to Left (%1)"
 msgstr "中央から左側 (%1)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT
-#: Merge.rc:4506
+#: Merge.rc:4514
 #, c-format
 msgid "Middle to Right (%1)"
 msgstr "中央から右側 (%1)"
 
 #. IDS_COPY_LEFT_TO_RIGHT
-#: Merge.rc:4507
+#: Merge.rc:4515
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "左側から右側 (%1)"
 
 #. IDS_COPY_LEFT_TO_MIDDLE
-#: Merge.rc:4508
+#: Merge.rc:4516
 #, c-format
 msgid "Left to Middle (%1)"
 msgstr "左側から中央 (%1)"
 
 #. IDS_MOVE_LEFT_TO
-#: Merge.rc:4519 Merge.rc:4551
+#: Merge.rc:4527 Merge.rc:4559
 #, c-format
 msgid "Left to... (%1)"
 msgstr "左側を... (%1)"
 
 #. IDS_MOVE_MIDDLE_TO
-#: Merge.rc:4520 Merge.rc:4552
+#: Merge.rc:4528 Merge.rc:4560
 #, c-format
 msgid "Middle to... (%1)"
 msgstr "中央を... (%1)"
 
 #. IDS_MOVE_RIGHT_TO
-#: Merge.rc:4521 Merge.rc:4553
+#: Merge.rc:4529 Merge.rc:4561
 #, c-format
 msgid "Right to... (%1)"
 msgstr "右側を... (%1)"
 
 #. IDS_COPY_BOTH_TO
-#: Merge.rc:4522
+#: Merge.rc:4530
 #, c-format
 msgid "Both to... (%1)"
 msgstr "両側を... (%1)"
 
 #. IDS_COPY_ALL_TO
-#: Merge.rc:4523
+#: Merge.rc:4531
 #, c-format
 msgid "All to... (%1)"
 msgstr "すべてを... (%1)"
 
 #. IDS_COPY_DIFFERENCES_TO
-#: Merge.rc:4524
+#: Merge.rc:4532
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "差異を... (%1)"
 
 #. IDS_COPY_ONLYDIFFITEMS
-#: Merge.rc:4531
+#: Merge.rc:4539
 msgid ""
 "Some selected items are identical or skipped.\n"
 "Copy only items with differences?"
@@ -5921,64 +5921,64 @@ msgstr ""
 "差異のある項目だけをコピーしますか？"
 
 #. IDS_DEL_LEFT_FMT
-#: Merge.rc:4537
+#: Merge.rc:4545
 #, c-format
 msgid "Left (%1)"
 msgstr "左側 (%1)"
 
 #. IDS_DEL_MIDDLE_FMT
-#: Merge.rc:4538
+#: Merge.rc:4546
 #, c-format
 msgid "Middle (%1)"
 msgstr "中央 (%1)"
 
 #. IDS_DEL_RIGHT_FMT
-#: Merge.rc:4539
+#: Merge.rc:4547
 #, c-format
 msgid "Right (%1)"
 msgstr "右側 (%1)"
 
 #. IDS_DEL_BOTH_FMT
-#: Merge.rc:4540
+#: Merge.rc:4548
 #, c-format
 msgid "Both (%1)"
 msgstr "両側 (%1)"
 
 #. IDS_DEL_ALL_FMT
-#: Merge.rc:4541
+#: Merge.rc:4549
 #, c-format
 msgid "All (%1)"
 msgstr "すべて (%1)"
 
 #. IDS_SELECT_DEST_LEFT
-#: Merge.rc:4557
+#: Merge.rc:4565
 msgid "Left Side - Select Destination Folder:"
 msgstr "左側 - コピー/移動先フォルダーの指定:"
 
 #. IDS_SELECT_DEST_MIDDLE
-#: Merge.rc:4558
+#: Merge.rc:4566
 msgid "Middle Side - Select Destination Folder:"
 msgstr "中央 - コピー/移動先フォルダーの指定:"
 
 #. IDS_SELECT_DEST_RIGHT
-#: Merge.rc:4559
+#: Merge.rc:4567
 msgid "Right Side - Select Destination Folder:"
 msgstr "右側 - コピー/移動先フォルダーの指定:"
 
 #. IDS_FILES_AFFECTED_FMT
-#: Merge.rc:4560
+#: Merge.rc:4568
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(%1 個のファイルに作用)"
 
 #. IDS_FILES_AFFECTED_FMT2
-#: Merge.rc:4561
+#: Merge.rc:4569
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 / %2 個のファイルに作用)"
 
 #. IDS_CONFIRM_DELETE_SINGLE
-#: Merge.rc:4567
+#: Merge.rc:4575
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -5991,18 +5991,18 @@ msgstr ""
 "を削除しますか?"
 
 #. IDS_CONFIRM_SINGLE_COPY
-#: Merge.rc:4568
+#: Merge.rc:4576
 msgid "Are you sure you want to copy?"
 msgstr "本当にコピーしますか?"
 
 #. IDS_CONFIRM_MULTIPLE_COPY
-#: Merge.rc:4569
+#: Merge.rc:4577
 #, c-format
 msgid "Are you sure you want to copy %d items?"
 msgstr "本当に %d 項目をコピーしますか?"
 
 #. IDS_DIRCMP_NOTSYNC
-#: Merge.rc:4570
+#: Merge.rc:4578
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -6022,46 +6022,46 @@ msgstr ""
 "再度比較してください。"
 
 #. IDS_CONFIRM_SINGLE_MOVE
-#: Merge.rc:4575
+#: Merge.rc:4583
 msgid "Are you sure you want to move?"
 msgstr "項目を移動しますか?"
 
 #. IDS_CONFIRM_MULTIPLE_MOVE
-#: Merge.rc:4576
+#: Merge.rc:4584
 #, c-format
 msgid "Are you sure you want to move %d items?"
 msgstr "%d 個の項目を移動しますか?"
 
 #. IDS_CONFIRM_MOVE_CAPTION
-#: Merge.rc:4578
+#: Merge.rc:4586
 msgid "Confirm Move"
 msgstr "移動の確認"
 
-#: Merge.rc:4580
+#: Merge.rc:4588
 msgid "Close the folder comparison window?"
 msgstr "フォルダー比較中のウィンドウを閉じようとしています。本当にウィンドウを閉じますか?"
 
-#: Merge.rc:4582
+#: Merge.rc:4590
 msgid "Close the folder comparison window, which took a long time?"
 msgstr "比較にかなりの時間を要したウィンドウを閉じようとしています。本当にウィンドウを閉じますか?"
 
 #. IDS_ERROR_INVALID_DIR_FILE_NAME
-#: Merge.rc:4583
+#: Merge.rc:4591
 msgid "The file or folder name is invalid."
 msgstr "ファイル名またはフォルダー名が無効です。"
 
 #. IDS_ERROR_EXECUTE_FILE
-#: Merge.rc:4589
+#: Merge.rc:4597
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "外部エディターの実行に失敗しました: %1"
 
 #. IDS_UNKNOWN_ARCHIVE_FORMAT
-#: Merge.rc:4595
+#: Merge.rc:4603
 msgid "Unknown archive format"
 msgstr "未知のアーカイブ形式です"
 
-#: Merge.rc:4597
+#: Merge.rc:4605
 msgid ""
 "Failed to extract archive.\n"
 "Compare as text file?"
@@ -6070,518 +6070,518 @@ msgstr ""
 "アーカイブファイルをテキストファイルとして比較しますか?"
 
 #. IDS_COLHDR_FILENAME
-#: Merge.rc:4603
+#: Merge.rc:4611
 msgid "Filename"
 msgstr "名前"
 
 #. IDS_COLHDR_DIR
-#: Merge.rc:4604
+#: Merge.rc:4612
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "フォルダー"
 
 #. IDS_COLHDR_RESULT
-#: Merge.rc:4605
+#: Merge.rc:4613
 msgid "Comparison Result"
 msgstr "比較結果"
 
 #. IDS_COLHDR_LTIMEM
-#: Merge.rc:4606
+#: Merge.rc:4614
 msgid "Left Date"
 msgstr "左更新日時"
 
 #. IDS_COLHDR_RTIMEM
-#: Merge.rc:4607
+#: Merge.rc:4615
 msgid "Right Date"
 msgstr "右更新日時"
 
 #. IDS_COLHDR_MTIMEM
-#: Merge.rc:4608
+#: Merge.rc:4616
 msgid "Middle Date"
 msgstr "中更新日時"
 
 #. IDS_COLHDR_LSIZE
-#: Merge.rc:4610
+#: Merge.rc:4618
 msgid "Left Size"
 msgstr "左サイズ"
 
 #. IDS_COLHDR_RSIZE
-#: Merge.rc:4611
+#: Merge.rc:4619
 msgid "Right Size"
 msgstr "右サイズ"
 
 #. IDS_COLHDR_MSIZE
-#: Merge.rc:4616
+#: Merge.rc:4624
 msgid "Middle Size"
 msgstr "中サイズ"
 
 #. IDS_COLHDR_RSIZE_SHORT
-#: Merge.rc:4617
+#: Merge.rc:4625
 msgid "Right Size (Short)"
 msgstr "右サイズ(短縮)"
 
 #. IDS_COLHDR_LSIZE_SHORT
-#: Merge.rc:4618
+#: Merge.rc:4626
 msgid "Left Size (Short)"
 msgstr "左サイズ(短縮)"
 
 #. IDS_COLHDR_MSIZE_SHORT
-#: Merge.rc:4619
+#: Merge.rc:4627
 msgid "Middle Size (Short)"
 msgstr "中サイズ(短縮)"
 
 #. IDS_COLHDR_LTIMEC
-#: Merge.rc:4625
+#: Merge.rc:4633
 msgid "Left Creation Time"
 msgstr "左作成日時"
 
 #. IDS_COLHDR_RTIMEC
-#: Merge.rc:4626
+#: Merge.rc:4634
 msgid "Right Creation Time"
 msgstr "右作成日時"
 
 #. IDS_COLHDR_MTIMEC
-#: Merge.rc:4627
+#: Merge.rc:4635
 msgid "Middle Creation Time"
 msgstr "中作成日時"
 
 #. IDS_COLHDR_NEWER
-#: Merge.rc:4628
+#: Merge.rc:4636
 msgid "Newer File"
 msgstr "日時比較"
 
 #. IDS_COLHDR_LVERSION
-#: Merge.rc:4629
+#: Merge.rc:4637
 msgid "Left File Version"
 msgstr "左バージョン"
 
 #. IDS_COLHDR_RVERSION
-#: Merge.rc:4630
+#: Merge.rc:4638
 msgid "Right File Version"
 msgstr "右バージョン"
 
 #. IDS_COLHDR_MVERSION
-#: Merge.rc:4631
+#: Merge.rc:4639
 msgid "Middle File Version"
 msgstr "中バージョン"
 
 #. IDS_COLHDR_RESULT_ABBR
-#: Merge.rc:4632
+#: Merge.rc:4640
 msgid "Short Result"
 msgstr "比較結果(簡易)"
 
 #. IDS_COLHDR_LATTRIBUTES
-#: Merge.rc:4633
+#: Merge.rc:4641
 msgid "Left Attributes"
 msgstr "左属性"
 
 #. IDS_COLHDR_RATTRIBUTES
-#: Merge.rc:4634
+#: Merge.rc:4642
 msgid "Right Attributes"
 msgstr "右属性"
 
 #. IDS_COLHDR_MATTRIBUTES
-#: Merge.rc:4635
+#: Merge.rc:4643
 msgid "Middle Attributes"
 msgstr "中属性"
 
 #. IDS_COLHDR_LEOL_TYPE
-#: Merge.rc:4640
+#: Merge.rc:4648
 msgid "Left EOL"
 msgstr "左EOL"
 
 #. IDS_COLHDR_MEOL_TYPE
-#: Merge.rc:4641
+#: Merge.rc:4649
 msgid "Middle EOL"
 msgstr "中EOL"
 
 #. IDS_COLHDR_REOL_TYPE
-#: Merge.rc:4642
+#: Merge.rc:4650
 msgid "Right EOL"
 msgstr "右EOL"
 
 #. IDS_COLHDR_LENCODING
-#: Merge.rc:4648
+#: Merge.rc:4656
 msgid "Left Encoding"
 msgstr "左文字コード"
 
 #. IDS_COLHDR_RENCODING
-#: Merge.rc:4649
+#: Merge.rc:4657
 msgid "Right Encoding"
 msgstr "右文字コード"
 
 #. IDS_COLHDR_MENCODING
-#: Merge.rc:4650
+#: Merge.rc:4658
 msgid "Middle Encoding"
 msgstr "中文字コード"
 
 #. IDS_COLHDR_NIDIFFS
-#: Merge.rc:4651
+#: Merge.rc:4659
 msgid "Ignored Diff"
 msgstr "無視した差異数"
 
 #. IDS_COLHDR_BINARY
-#: Merge.rc:4653
+#: Merge.rc:4661
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "バイナリ"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
-#: Merge.rc:4654 Merge.rc:4971
+#: Merge.rc:4662 Merge.rc:4979
 msgid "Unpacker"
 msgstr "展開プラグイン"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4655 Merge.rc:4972 Merge.rc:5280
+#: Merge.rc:4663 Merge.rc:4980 Merge.rc:5288
 msgid "Prediffer"
 msgstr "比較前処理プラグイン"
 
 #. IDS_COLHDR_LEFT
-#: Merge.rc:4656
+#: Merge.rc:4664
 msgid "Left"
 msgstr "左側"
 
 #. IDS_COLHDR_MIDDLE
-#: Merge.rc:4657
+#: Merge.rc:4665
 msgid "Middle"
 msgstr "中央"
 
 #. IDS_COLHDR_RIGHT
-#: Merge.rc:4658
+#: Merge.rc:4666
 msgid "Right"
 msgstr "右側"
 
 #. IDS_COLHDR_DIFF
-#: Merge.rc:4659
+#: Merge.rc:4667
 msgid "Diff"
 msgstr "差異"
 
 #. IDS_COLHDR_LEFT_DUPLICATE
-#: Merge.rc:4660
+#: Merge.rc:4668
 msgid "Left Duplicate Count"
 msgstr "左側重複数"
 
 #. IDS_COLHDR_RIGHT_DUPLICATE
-#: Merge.rc:4661
+#: Merge.rc:4669
 msgid "Right Duplicate Count"
 msgstr "右側重複数"
 
 #. IDS_COLHDR_MIDDLE_DUPLICATE
-#: Merge.rc:4662
+#: Merge.rc:4670
 msgid "Middle Duplicate Count"
 msgstr "中央重複数"
 
 #. IDS_COLHDR_MOVE
-#: Merge.rc:4663
+#: Merge.rc:4671
 msgid "Move"
 msgstr "移動"
 
 #. IDS_PRPCAT_AUDIO
-#: Merge.rc:4670
+#: Merge.rc:4678
 msgid "Audio"
 msgstr "音声"
 
 #. IDS_PRPCAT_CALENDAR
-#: Merge.rc:4671
+#: Merge.rc:4679
 msgid "Calendar"
 msgstr "予定表"
 
 #. IDS_PRPCAT_COMMUNICATION
-#: Merge.rc:4672
+#: Merge.rc:4680
 msgid "Communication"
 msgstr "コミュニケーション"
 
 #. IDS_PRPCAT_CONTACT
-#: Merge.rc:4673
+#: Merge.rc:4681
 msgid "Contact"
 msgstr "連絡先"
 
 #. IDS_PRPCAT_DEVICES
-#: Merge.rc:4674
+#: Merge.rc:4682
 msgid "Devices"
 msgstr "デバイス"
 
 #. IDS_PRPCAT_DOCUMENT
-#: Merge.rc:4675
+#: Merge.rc:4683
 msgid "Document"
 msgstr "ドキュメント"
 
 #. IDS_PRPCAT_HOME
-#: Merge.rc:4676
+#: Merge.rc:4684
 msgid "Home"
 msgstr "ホーム"
 
 #. IDS_PRPCAT_JOURNAL
-#: Merge.rc:4678
+#: Merge.rc:4686
 msgid "Journal"
 msgstr "ジャーナル"
 
 #. IDS_PRPCAT_LINK
-#: Merge.rc:4679
+#: Merge.rc:4687
 msgid "Link"
 msgstr "リンク"
 
 #. IDS_PRPCAT_MEDIA
-#: Merge.rc:4680
+#: Merge.rc:4688
 msgid "Media"
 msgstr "メディア"
 
 #. IDS_PRPCAT_MUSIC
-#: Merge.rc:4682
+#: Merge.rc:4690
 msgid "Music"
 msgstr "音楽"
 
 #. IDS_PRPCAT_NOTE
-#: Merge.rc:4683
+#: Merge.rc:4691
 msgid "Note"
 msgstr "ノート"
 
 #. IDS_PRPCAT_PHOTO
-#: Merge.rc:4684
+#: Merge.rc:4692
 msgid "Photo"
 msgstr "写真"
 
 #. IDS_PRPCAT_RECORDEDTV
-#: Merge.rc:4685
+#: Merge.rc:4693
 msgid "RecordedTV"
 msgstr "TV録画"
 
 #. IDS_PRPCAT_SEARCH
-#: Merge.rc:4686
+#: Merge.rc:4694
 msgid "Search"
 msgstr "検索"
 
 #. IDS_PRPCAT_SECURITY
-#: Merge.rc:4687
+#: Merge.rc:4695
 msgid "Security"
 msgstr "セキュリティ"
 
 #. IDS_PRPCAT_SOFTWARE
-#: Merge.rc:4688
+#: Merge.rc:4696
 msgid "Software"
 msgstr "ソフトウェア"
 
 #. IDS_PRPCAT_TASK
-#: Merge.rc:4689
+#: Merge.rc:4697
 msgid "Task"
 msgstr "タスク"
 
 #. IDS_PRPCAT_VIDEO
-#: Merge.rc:4690
+#: Merge.rc:4698
 msgid "Video"
 msgstr "ビデオ"
 
 #. IDS_PRPCAT_HASH
-#: Merge.rc:4691
+#: Merge.rc:4699
 msgid "Hash"
 msgstr "ハッシュ"
 
 #. IDS_CANT_COMPARE_FILES
-#: Merge.rc:4697
+#: Merge.rc:4705
 msgid "Unable to compare files"
 msgstr "ファイルを比較できません"
 
 #. IDS_ABORTED_ITEM
-#: Merge.rc:4698
+#: Merge.rc:4706
 msgid "Item aborted"
 msgstr "中断された項目"
 
 #. IDS_FILE_SKIPPED
-#: Merge.rc:4699
+#: Merge.rc:4707
 msgid "File skipped"
 msgstr "スキップされたファイル"
 
 #. IDS_DIR_SKIPPED
-#: Merge.rc:4700
+#: Merge.rc:4708
 msgid "Folder skipped"
 msgstr "スキップされたフォルダー"
 
 #. IDS_LEFT_ONLY_IN_FMT
-#: Merge.rc:4701
+#: Merge.rc:4709
 #, c-format
 msgid "Left only: %1"
 msgstr "左側のみ: %1"
 
 #. IDS_MIDDLE_ONLY_IN_FMT
-#: Merge.rc:4702
+#: Merge.rc:4710
 #, c-format
 msgid "Middle only: %1"
 msgstr "中央のみ: %1"
 
 #. IDS_RIGHT_ONLY_IN_FMT
-#: Merge.rc:4703
+#: Merge.rc:4711
 #, c-format
 msgid "Right only: %1"
 msgstr "右側のみ: %1"
 
 #. IDS_DOES_NOT_EXIST_IN_FMT
-#: Merge.rc:4704
+#: Merge.rc:4712
 #, c-format
 msgid "Does not exist in %1"
 msgstr "%1 内のみ存在しません"
 
 #. IDS_BIN_FILES_SAME
-#: Merge.rc:4705
+#: Merge.rc:4713
 msgid "Binary files are identical"
 msgstr "バイナリ ファイルは同一です"
 
 #. IDS_BIN_FILES_DIFF
-#: Merge.rc:4711
+#: Merge.rc:4719
 msgid "Binary files are different"
 msgstr "バイナリ ファイルは異なっています"
 
 #. IDS_FILES_ARE_DIFFERENT
-#: Merge.rc:4712
+#: Merge.rc:4720
 msgid "Files are different"
 msgstr "ファイルは異なっています"
 
 #. IDS_FOLDERS_ARE_DIFFERENT
-#: Merge.rc:4713
+#: Merge.rc:4721
 msgid "Folders are different"
 msgstr "フォルダーは異なっています"
 
 #. IDS_LEFTONLY
-#: Merge.rc:4714
+#: Merge.rc:4722
 msgid "Left Only"
 msgstr "左側のみ"
 
 #. IDS_RIGHTONLY
-#: Merge.rc:4715
+#: Merge.rc:4723
 msgid "Right Only"
 msgstr "右側のみ"
 
 #. IDS_MIDDLEONLY
-#: Merge.rc:4716
+#: Merge.rc:4724
 msgid "Middle Only"
 msgstr "中央のみ"
 
 #. IDS_NOITEMLEFT
-#: Merge.rc:4717
+#: Merge.rc:4725
 msgid "No item in left"
 msgstr "左側にない"
 
 #. IDS_NOITEMRIGHT
-#: Merge.rc:4718
+#: Merge.rc:4726
 msgid "No item in right"
 msgstr "右側にない"
 
 #. IDS_NOITEMMIDDLE
-#: Merge.rc:4719
+#: Merge.rc:4727
 msgid "No item in middle"
 msgstr "中央にない"
 
 #. IDS_CMPRES_ERROR
-#: Merge.rc:4721
+#: Merge.rc:4729
 msgid "Error"
 msgstr "エラー"
 
 #. IDS_TEXT_FILES_SAME
-#: Merge.rc:4722
+#: Merge.rc:4730
 msgid "Text files are identical"
 msgstr "テキスト ファイルは同一です"
 
 #. IDS_LEFTONLY_DIFF
-#: Merge.rc:4723
+#: Merge.rc:4731
 msgid " (Middle and right are identical)"
 msgstr " (中央と右側は同一です)"
 
 #. IDS_MIDDLEONLY_DIFF
-#: Merge.rc:4724
+#: Merge.rc:4732
 msgid " (Left and right are identical)"
 msgstr " (左側と右側は同一です)"
 
 #. IDS_RIGHTONLY_DIFF
-#: Merge.rc:4725
+#: Merge.rc:4733
 msgid " (Left and middle are identical)"
 msgstr " (左側と中央は同一です)"
 
 #. IDS_PATH_MISMATCH
-#: Merge.rc:4726
+#: Merge.rc:4734
 msgid " (paths differ)"
 msgstr "(パス不一致)"
 
 #. IDS_TEXT_FILES_DIFF
-#: Merge.rc:4727
+#: Merge.rc:4735
 msgid "Text files are different"
 msgstr "テキスト ファイルは異なります"
 
 #. IDS_IMAGE_FILES_SAME
-#: Merge.rc:4728
+#: Merge.rc:4736
 msgid "Image files are identical"
 msgstr "画像ファイルは同一です"
 
 #. IDS_IMAGE_FILES_DIFF
-#: Merge.rc:4729
+#: Merge.rc:4737
 msgid "Image files are different"
 msgstr "画像ファイルは異なります"
 
 #. IDS_EXPR_DIFF
-#: Merge.rc:4730
+#: Merge.rc:4738
 #, c-format
 msgid "Files are different (expr: %1)"
 msgstr "ファイルは異なります (式: %1)"
 
 #. IDS_HASH_GROUP
-#: Merge.rc:4731
+#: Merge.rc:4739
 #, c-format
 msgid "Group%d"
 msgstr "グループ%d"
 
 #. IDS_RENAME_MOVE_DETECTION_DISALBED
-#: Merge.rc:4732
+#: Merge.rc:4740
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
 msgstr "無効"
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME
-#: Merge.rc:4733
+#: Merge.rc:4741
 msgid "Detect renames"
 msgstr "名前変更を検出"
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME_MOVE
-#: Merge.rc:4734
+#: Merge.rc:4742
 msgid "Detect renames and moves"
 msgstr "名前変更と移動を検出"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
-#: Merge.rc:4735
+#: Merge.rc:4743
 msgid "Merge renames"
 msgstr "名前変更項目をマージ"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
-#: Merge.rc:4736
+#: Merge.rc:4744
 msgid "Merge renames and moves"
 msgstr "名前変更と移動項目をマージ"
 
 #. IDS_RENAMED
-#: Merge.rc:4737
+#: Merge.rc:4745
 msgid "Renamed"
 msgstr "名前変更"
 
 #. IDS_MOVED
-#: Merge.rc:4738
+#: Merge.rc:4746
 msgid "Moved"
 msgstr "移動"
 
 #. IDS_RENAMED_MOVED
-#: Merge.rc:4739
+#: Merge.rc:4747
 msgid "Renamed/Moved"
 msgstr "名前変更/移動"
 
 #. IDS_RENAMED_MOVED_ITEMS
-#: Merge.rc:4740
+#: Merge.rc:4748
 #, c-format
 msgid "(%1 items)"
 msgstr "(%1 項目)"
 
 #. IDS_RENAMED_MOVED_RESULT
-#: Merge.rc:4741
+#: Merge.rc:4749
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (グループ %2): "
 
 #. IDS_SWITCH_FLAT_MODE
-#: Merge.rc:4742
+#: Merge.rc:4750
 msgid ""
 "Some moved items have been merged.\n"
 "In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
@@ -6592,235 +6592,235 @@ msgstr ""
 "フラット表示に切り替えますか?"
 
 #. IDS_ELAPSED_TIME
-#: Merge.rc:4748
+#: Merge.rc:4756
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "経過時間: %ld ms"
 
 #. IDS_STATUS_SELITEM1
-#: Merge.rc:4749
+#: Merge.rc:4757
 msgid "1 item selected"
 msgstr "1 個の項目を選択"
 
 #. IDS_STATUS_SELITEMS
-#: Merge.rc:4750
+#: Merge.rc:4758
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 個の項目を選択"
 
 #. IDS_COLDESC_FILENAME
-#: Merge.rc:4756
+#: Merge.rc:4764
 msgid "Filename or folder name."
 msgstr "ファイル名またはフォルダー名です。"
 
 #. IDS_COLDESC_DIR
-#: Merge.rc:4757
+#: Merge.rc:4765
 msgid "Subfolder name when subfolders are included."
 msgstr "サブフォルダー名です。[サブフォルダーを含める] が有効な場合に表示されます。"
 
 #. IDS_COLDESC_RESULT
-#: Merge.rc:4758
+#: Merge.rc:4766
 msgid "Comparison result, long form."
 msgstr "長い形式の比較結果を表示します。"
 
 #. IDS_COLDESC_LTIMEM
-#: Merge.rc:4763
+#: Merge.rc:4771
 msgid "Left side modification date."
 msgstr "左側の更新日時です。"
 
 #. IDS_COLDESC_RTIMEM
-#: Merge.rc:4764
+#: Merge.rc:4772
 msgid "Right side modification date."
 msgstr "右側の更新日時です。"
 
 #. IDS_COLDESC_MTIMEM
-#: Merge.rc:4765
+#: Merge.rc:4773
 msgid "Middle side modification date."
 msgstr "中央の更新日時です。"
 
 #. IDS_COLDESC_EXTENSION
-#: Merge.rc:4766
+#: Merge.rc:4774
 msgid "File's extension."
 msgstr "ファイルの拡張子です。"
 
 #. IDS_COLDESC_LSIZE
-#: Merge.rc:4767
+#: Merge.rc:4775
 msgid "Left file size in bytes."
 msgstr "左側ファイルのバイト数です。"
 
 #. IDS_COLDESC_RSIZE
-#: Merge.rc:4768
+#: Merge.rc:4776
 msgid "Right file size in bytes."
 msgstr "右側ファイルのバイト数です。"
 
 #. IDS_COLDESC_MSIZE
-#: Merge.rc:4769
+#: Merge.rc:4777
 msgid "Middle file size in bytes."
 msgstr "中央ファイルのバイト数です。"
 
 #. IDS_COLDESC_LSIZE_SHORT
-#: Merge.rc:4770
+#: Merge.rc:4778
 msgid "Left file size abbreviated."
 msgstr "左側ファイルのバイト数(短縮形)です。"
 
 #. IDS_COLDESC_RSIZE_SHORT
-#: Merge.rc:4771
+#: Merge.rc:4779
 msgid "Right file size abbreviated."
 msgstr "右側ファイルのバイト数(短縮形)です。"
 
 #. IDS_COLDESC_MSIZE_SHORT
-#: Merge.rc:4772
+#: Merge.rc:4780
 msgid "Middle file size abbreviated."
 msgstr "中央ファイルのバイト数(短縮形)です。"
 
 #. IDS_COLDESC_LTIMEC
-#: Merge.rc:4778
+#: Merge.rc:4786
 msgid "Left side creation time."
 msgstr "左側の作成日時です。"
 
 #. IDS_COLDESC_RTIMEC
-#: Merge.rc:4779
+#: Merge.rc:4787
 msgid "Right side creation time."
 msgstr "右側の作成日時です。"
 
 #. IDS_COLDESC_MTIMEC
-#: Merge.rc:4780
+#: Merge.rc:4788
 msgid "Middle side creation time."
 msgstr "中央の作成日時です。"
 
 #. IDS_COLDESC_NEWER
-#: Merge.rc:4781
+#: Merge.rc:4789
 msgid "Tells which side has newer modification date."
 msgstr "どちらが最新の更新日時かを表示します。"
 
 #. IDS_COLDESC_LVERSION
-#: Merge.rc:4782
+#: Merge.rc:4790
 msgid "Left side file version, only for some file types."
 msgstr "左側ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
 #. IDS_COLDESC_RVERSION
-#: Merge.rc:4783
+#: Merge.rc:4791
 msgid "Right side file version, only for some file types."
 msgstr "右側ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
 #. IDS_COLDESC_MVERSION
-#: Merge.rc:4788
+#: Merge.rc:4796
 msgid "Middle side file version, only for some file types."
 msgstr "中央ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
 #. IDS_COLDESC_RESULT_ABBR
-#: Merge.rc:4789
+#: Merge.rc:4797
 msgid "Short comparison result."
 msgstr "短い形式の比較結果を表示します。"
 
 #. IDS_COLDESC_LATTRIBUTES
-#: Merge.rc:4790
+#: Merge.rc:4798
 msgid "Left side attributes."
 msgstr "左側の属性です。"
 
 #. IDS_COLDESC_RATTRIBUTES
-#: Merge.rc:4791
+#: Merge.rc:4799
 msgid "Right side attributes."
 msgstr "右側の属性です。"
 
 #. IDS_COLDESC_MATTRIBUTES
-#: Merge.rc:4792
+#: Merge.rc:4800
 msgid "Middle side attributes."
 msgstr "中央の属性です。"
 
 #. IDS_COLDESC_LEOL_TYPE
-#: Merge.rc:4793
+#: Merge.rc:4801
 msgid "Left side file EOL type."
 msgstr "左側の EOL タイプです。"
 
 #. IDS_COLDESC_REOL_TYPE
-#: Merge.rc:4794
+#: Merge.rc:4802
 msgid "Right side file EOL type."
 msgstr "右側の EOL タイプです。"
 
 #. IDS_COLDESC_MEOL_TYPE
-#: Merge.rc:4795
+#: Merge.rc:4803
 msgid "Middle side file EOL type."
 msgstr "中央の EOL タイプです。"
 
 #. IDS_COLDESC_LENCODING
-#: Merge.rc:4801
+#: Merge.rc:4809
 msgid "Left side encoding."
 msgstr "左側の文字コードです。"
 
 #. IDS_COLDESC_RENCODING
-#: Merge.rc:4802
+#: Merge.rc:4810
 msgid "Right side encoding."
 msgstr "右側の文字コードです。"
 
 #. IDS_COLDESC_MENCODING
-#: Merge.rc:4803
+#: Merge.rc:4811
 msgid "Middle side encoding."
 msgstr "中央の文字コードです。"
 
 #. IDS_COLDESC_NIDIFFS
-#: Merge.rc:4804
+#: Merge.rc:4812
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr "ファイル内で無視した差異の数です。この差異は WinMerge によって無視され、マージされません。"
 
 #. IDS_COLDESC_NSDIFFS
-#: Merge.rc:4805
+#: Merge.rc:4813
 msgid "Number of differences in file (excluding ignored)."
 msgstr "ファイル内の差異の数です。この数値は無視した差異数を含みません。"
 
 #. IDS_COLDESC_BINARY
-#: Merge.rc:4806
+#: Merge.rc:4814
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "バイナリ ファイルの場合にアスタリスク (*) を表示します。"
 
 #. IDS_COLDESC_UNPACKER
-#: Merge.rc:4807
+#: Merge.rc:4815
 msgid "Unpacker plugin name or pipeline."
 msgstr "展開プラグイン名またはパイプラインを表示します。"
 
 #. IDS_COLDESC_PREDIFFER
-#: Merge.rc:4808
+#: Merge.rc:4816
 msgid "Prediffer plugin name or pipeline."
 msgstr "比較前処理プラグイン名またはパイプラインを表示します。"
 
 #. IDS_DIRECTORY_REPORT_TITLE
-#: Merge.rc:4814
+#: Merge.rc:4822
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1 と %2 の比較"
 
 #. IDS_DIRECTORY_REPORT_TITLE3
-#: Merge.rc:4815
+#: Merge.rc:4823
 #, c-format
 msgid "Compare %1 with %2 and %3"
 msgstr "%1 と %2 および %3 の比較"
 
 #. IDS_REPORT_COMMALIST
-#: Merge.rc:4816
+#: Merge.rc:4824
 msgid "Comma-separated list"
 msgstr "CSV 形式"
 
 #. IDS_REPORT_TABLIST
-#: Merge.rc:4817
+#: Merge.rc:4825
 msgid "Tab-separated list"
 msgstr "TAB 区切り形式"
 
 #. IDS_REPORT_SIMPLEHTML
-#: Merge.rc:4818
+#: Merge.rc:4826
 msgid "Simple HTML"
 msgstr "シンプルな HTML 形式"
 
 #. IDS_REPORT_SIMPLEXML
-#: Merge.rc:4819
+#: Merge.rc:4827
 msgid "Simple XML"
 msgstr "シンプルな XML 形式"
 
-#: Merge.rc:4821
+#: Merge.rc:4829
 msgid "Report file already exists. Overwrite?"
 msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 #. IDS_REPORT_ERROR
-#: Merge.rc:4826
+#: Merge.rc:4834
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -6830,27 +6830,27 @@ msgstr ""
 "%1"
 
 #. IDS_REPORT_SUCCESS
-#: Merge.rc:4827
+#: Merge.rc:4835
 msgid "Report created successfully."
 msgstr "レポートの生成に成功しました。"
 
 #. IDS_SYNCPOINT_LASTBLOCK
-#: Merge.rc:4833
+#: Merge.rc:4841
 msgid "Cannot add a synchronization point at this line."
 msgstr "この行には同期ポイントを追加できません。"
 
 #. IDS_FILE_TO_ITSELF
-#: Merge.rc:4839
+#: Merge.rc:4847
 msgid "Same file is opened in both panes."
 msgstr "同じファイルが両側のパネルで開かれています。"
 
 #. IDS_FILESSAME
-#: Merge.rc:4840
+#: Merge.rc:4848
 msgid "Selected files are identical."
 msgstr "選択されたファイルは同一です。"
 
 #. IDS_FILESSAME_CURCFG
-#: Merge.rc:4841
+#: Merge.rc:4849
 msgid ""
 "Selected files are identical (with current settings).\r\n"
 "Checking binary identity..."
@@ -6859,7 +6859,7 @@ msgstr ""
 "バイナリ一致を確認しています..."
 
 #. IDS_FILESSAME_BINERROR
-#: Merge.rc:4842
+#: Merge.rc:4850
 msgid ""
 "Selected files are identical (with current settings).\r\n"
 "But binary comparison failed."
@@ -6868,12 +6868,12 @@ msgstr ""
 "しかし、バイナリ比較でエラーが発生しました。"
 
 #. IDS_FILESSAME_BINSAME
-#: Merge.rc:4843
+#: Merge.rc:4851
 msgid "Selected files are identical (binary match)."
 msgstr "選択されたファイルは一致しています(バイナリ一致)。"
 
 #. IDS_FILESSAME_BINDIFF
-#: Merge.rc:4844
+#: Merge.rc:4852
 msgid ""
 "Selected files are identical (with current settings).\r\n"
 "But differ at the binary level."
@@ -6882,17 +6882,17 @@ msgstr ""
 "しかし、バイナリレベルでは異なります。"
 
 #. IDS_FILEERROR
-#: Merge.rc:4845
+#: Merge.rc:4853
 msgid "An error occurred while comparing files."
 msgstr "ファイルの比較時にエラーが発生しました。"
 
 #. IDS_TEMP_FILEERROR
-#: Merge.rc:4846
+#: Merge.rc:4854
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "テンポラリ ファイルが作成できません。テンポラリ パス設定を確認してください。"
 
 #. IDS_SUGGEST_IGNOREEOL
-#: Merge.rc:4847
+#: Merge.rc:4855
 msgid ""
 "Files use different EOL.\n"
 "\n"
@@ -6909,17 +6909,17 @@ msgstr ""
 "有効にしてください。"
 
 #. IDS_INVALID_DIRECTORY
-#: Merge.rc:4848
+#: Merge.rc:4856
 msgid "Selected folder is invalid."
 msgstr "選択されたフォルダーは無効です。"
 
 #. IDS_CANNOT_OPEN_BINARYFILE
-#: Merge.rc:4849
+#: Merge.rc:4857
 msgid "Cannot open a binary file in Editor."
 msgstr "バイナリ ファイルをエディターで開くことはできません。"
 
 #. IDS_CREATE_PAIR_FOLDER
-#: Merge.rc:4850
+#: Merge.rc:4858
 #, c-format
 msgid ""
 "Create matching folder:\n"
@@ -6932,41 +6932,41 @@ msgstr ""
 "%1"
 
 #. IDS_CONFIRM_COPY_ALL_DIFFS
-#: Merge.rc:4851
+#: Merge.rc:4859
 msgid "Copy all differences to other file?"
 msgstr "本当にすべての差異を他のファイルにコピーしますか?"
 
 #. IDS_MOVE_TO_NEXTFILE
-#: Merge.rc:4856
+#: Merge.rc:4864
 msgid "Move to next file?"
 msgstr "次のファイルに移動しますか?"
 
 #. IDS_MOVE_TO_PREVFILE
-#: Merge.rc:4857
+#: Merge.rc:4865
 msgid "Move to previous file?"
 msgstr "前のファイルに移動しますか?"
 
 #. IDS_MOVE_TO_NEXTPAGE
-#: Merge.rc:4858
+#: Merge.rc:4866
 msgid "Move to next page?"
 msgstr "次のページに移動しますか?"
 
 #. IDS_MOVE_TO_PREVPAGE
-#: Merge.rc:4859
+#: Merge.rc:4867
 msgid "Move to previous page?"
 msgstr "前のページに移動しますか?"
 
 #. IDS_MOVE_TO_FIRSTFILE
-#: Merge.rc:4860
+#: Merge.rc:4868
 msgid "Move to first file?"
 msgstr "最初のファイルに移動しますか?"
 
 #. IDS_MOVE_TO_LASTFILE
-#: Merge.rc:4861
+#: Merge.rc:4869
 msgid "Move to last file?"
 msgstr "最後のファイルに移動しますか?"
 
-#: Merge.rc:4868
+#: Merge.rc:4876
 #, c-format
 msgid ""
 "Different codepages: left (cp%d), right (cp%d).\n"
@@ -6977,53 +6977,53 @@ msgstr ""
 "各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\n"
 "コードページをデフォルト コードページとして扱いますが、よろしいですか(推奨)?"
 
-#: Merge.rc:4870
+#: Merge.rc:4878
 msgid "Information lost due to encoding errors: both files"
 msgstr "エンコーディング エラーにより情報が失われています。(両側のファイル)"
 
-#: Merge.rc:4872
+#: Merge.rc:4880
 msgid "Information lost due to encoding errors: first file"
 msgstr "エンコーディング エラーにより情報が失われています。(1 番目のファイル)"
 
-#: Merge.rc:4874
+#: Merge.rc:4882
 msgid "Information lost due to encoding errors: second file"
 msgstr "エンコーディング エラーにより情報が失われています。(2 番目のファイル)"
 
-#: Merge.rc:4876
+#: Merge.rc:4884
 msgid "Information lost due to encoding errors: third file"
 msgstr "エンコーディング エラーにより情報が失われています。(3 番目のファイル)"
 
 #. IDS_LINEDIFF_NODIFF
-#: Merge.rc:4882
+#: Merge.rc:4890
 msgid "No difference"
 msgstr "差異はありません"
 
 #. IDS_LINEDIFF_NODIFF_CAPTION
-#: Merge.rc:4883
+#: Merge.rc:4891
 msgid "Line difference"
 msgstr "行内差異"
 
 #. IDS_NUM_REPLACED
-#: Merge.rc:4889
+#: Merge.rc:4897
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "%1 個の文字列を置換しました。"
 
 #. IDS_EDIT_TEXT_NOT_FOUND
-#: Merge.rc:4890
+#: Merge.rc:4898
 #, c-format
 msgid "Cannot find string \"%s\"."
 msgstr "文字列 \"%s\" が見つかりません。"
 
 #. IDS_MERGE_MODE
-#: Merge.rc:4896
+#: Merge.rc:4904
 msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr ""
 "マージモードに切り替えます。マージモードはカーソル キーのみでマージしたり、次や前の差異に移動できるモードです。\n"
 "マージモードをオフにしたい場合は、F9 キーを押してください。"
 
 #. IDS_AUTO_MERGE
-#: Merge.rc:4902
+#: Merge.rc:4910
 #, c-format
 msgid ""
 "Automatic merges: %1\n"
@@ -7033,99 +7033,99 @@ msgstr ""
 "解決されていないコンフリクトの数: %2"
 
 #. IDS_CODEPAGE_MERGED
-#: Merge.rc:4903
+#: Merge.rc:4911
 msgid "Codepage change merged."
 msgstr "コードページの変更がマージされました。"
 
 #. IDS_CODEPAGE_CONFLICT
-#: Merge.rc:4904
+#: Merge.rc:4912
 msgid "Codepage changes are conflicting."
 msgstr "コードページの変更がコンフリクトしています。"
 
 #. IDS_EOL_MERGED
-#: Merge.rc:4905
+#: Merge.rc:4913
 msgid "EOL change merged."
 msgstr "改行コードの変更がマージされました。"
 
 #. IDS_EOL_CONFLICT
-#: Merge.rc:4906
+#: Merge.rc:4914
 msgid "EOL changes are conflicting."
 msgstr "改行コードの変更がコンフリクトしています。"
 
 #. IDS_LOCBAR_CAPTION
-#: Merge.rc:4912
+#: Merge.rc:4920
 msgid "Location Pane"
 msgstr "ロケーション ペイン"
 
 #. IDS_DIFFBAR_CAPTION
-#: Merge.rc:4913
+#: Merge.rc:4921
 msgid "Diff Pane"
 msgstr "Diff ペイン"
 
 #. IDS_DIFF_SUCCEEDED
-#: Merge.rc:4920
+#: Merge.rc:4928
 msgid "Patch file written."
 msgstr "パッチ ファイルの書き込みに成功しました。"
 
 #. IDS_DIFF_ITEM1NOTFOUND
-#: Merge.rc:4921
+#: Merge.rc:4929
 msgid "First item not found!"
 msgstr "1. 項目が見つかりません!"
 
 #. IDS_DIFF_ITEM2NOTFOUND
-#: Merge.rc:4922
+#: Merge.rc:4930
 msgid "Second item not found!"
 msgstr "2. 項目が見つかりません!"
 
 #. IDS_DIFF_FILEOVERWRITE
-#: Merge.rc:4923
+#: Merge.rc:4931
 msgid "Patch file already exists. Overwrite?"
 msgstr "出力結果ファイルは既に存在しています。上書きしますか?"
 
 #. IDS_DIFF_SELECTEDFILES
-#: Merge.rc:4924
+#: Merge.rc:4932
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 個のファイルが選択されています]"
 
 #. IDS_DIFF_NORMAL
-#: Merge.rc:4925
+#: Merge.rc:4933
 msgid "Normal"
 msgstr "ノーマル"
 
 #. IDS_DIFF_CONTEXT
-#: Merge.rc:4926
+#: Merge.rc:4934
 msgid "Context"
 msgstr "コンテキスト"
 
 #. IDS_DIFF_UNIFIED
-#: Merge.rc:4927
+#: Merge.rc:4935
 msgid "Unified"
 msgstr "ユニファイド"
 
 #. IDS_FILEWRITE_ERROR
-#: Merge.rc:4929
+#: Merge.rc:4937
 #, c-format
 msgid "Could not write to file %1."
 msgstr "ファイル %1 に書き込めません。"
 
 #. IDS_PATH_NOT_ABSOLUTE
-#: Merge.rc:4930
+#: Merge.rc:4938
 #, c-format
 msgid "Output path is not absolute: %1"
 msgstr "指定した出力パスは、絶対パスではありません: %1"
 
 #. IDS_MUST_SPECIFY_OUTPUT
-#: Merge.rc:4931
+#: Merge.rc:4939
 msgid "Specify an output file."
 msgstr "出力パスを指定してください。"
 
-#: Merge.rc:4933
+#: Merge.rc:4941
 msgid "Cannot create patch from binary files."
 msgstr "バイナリ ファイルからパッチ ファイルは生成できません。"
 
 #. IDS_SAVEFILES_FORPATCH
-#: Merge.rc:4934
+#: Merge.rc:4942
 msgid ""
 "Save all files first.\n"
 "\n"
@@ -7136,12 +7136,12 @@ msgstr ""
 "パッチの生成には、変更がすべて保存されている必要があります。"
 
 #. IDS_FOLDER_NOTEXIST
-#: Merge.rc:4935
+#: Merge.rc:4943
 msgid "Folder does not exist."
 msgstr "フォルダーは存在しません。"
 
 #. IDS_NO_ZIP_SUPPORT
-#: Merge.rc:4940
+#: Merge.rc:4948
 msgid ""
 "Archive support not enabled.\n"
 "7-Zip and/or Merge7z*.dll not found.\n"
@@ -7152,37 +7152,37 @@ msgstr ""
 "アーカイブ サポートを有効にする方法については、マニュアルを参照してください。"
 
 #. IDS_OPT_EXPORT_CAPTION
-#: Merge.rc:4941
+#: Merge.rc:4949
 msgid "Select file for export"
 msgstr "エクスポートするファイルを指定してください"
 
 #. IDS_OPT_IMPORT_CAPTION
-#: Merge.rc:4942
+#: Merge.rc:4950
 msgid "Select file for import"
 msgstr "インポートするファイルを選択してください"
 
 #. IDS_OPT_IMPORT_DONE
-#: Merge.rc:4943
+#: Merge.rc:4951
 msgid "Options imported from file."
 msgstr "設定情報をファイルからインポートしました。"
 
 #. IDS_OPT_EXPORT_DONE
-#: Merge.rc:4944
+#: Merge.rc:4952
 msgid "Options exported to file."
 msgstr "設定情報をファイルにエクスポートしました。"
 
 #. IDS_OPT_IMPORT_ERR
-#: Merge.rc:4945
+#: Merge.rc:4953
 msgid "Failed to import options from file."
 msgstr "ファイルから設定情報のインポートに失敗しました。"
 
 #. IDS_OPT_EXPORT_ERR
-#: Merge.rc:4946
+#: Merge.rc:4954
 msgid "Failed to write options to file."
 msgstr "ファイルへの設定情報の書き込みに失敗しました。"
 
 #. IDS_CLOSEALL_WINDOWS
-#: Merge.rc:4947
+#: Merge.rc:4955
 msgid ""
 "Close multiple compare windows?\n"
 "\n"
@@ -7193,44 +7193,44 @@ msgstr ""
 "続行しますか?"
 
 #. IDS_EOL_MIXED
-#: Merge.rc:4956
+#: Merge.rc:4964
 msgid "Mixed"
 msgstr "Mixed"
 
 #. IDS_EOL_BIN
-#: Merge.rc:4957
+#: Merge.rc:4965
 msgctxt "EOL Type"
 msgid "Binary"
 msgstr "バイナリ"
 
 #. IDS_EOL_NONE
-#: Merge.rc:4961
+#: Merge.rc:4969
 msgid "None"
 msgstr "なし"
 
 #. IDS_MARKER_COLOR_FMT
-#: Merge.rc:4962
+#: Merge.rc:4970
 #, c-format
 msgid "Marker Color %d"
 msgstr "マーカー色 %d"
 
 #. IDS_MARKER_NEW_PATTERN
-#: Merge.rc:4963
+#: Merge.rc:4971
 msgid "New Pattern"
 msgstr "新しいパターン"
 
 #. IDS_PLUGINSLIST_TYPE
-#: Merge.rc:4969
+#: Merge.rc:4977
 msgid "Type"
 msgstr "タイプ"
 
 #. IDS_PLUGINS_TYPE_EDITSCRIPT
-#: Merge.rc:4973
+#: Merge.rc:4981
 msgid "Editor script"
 msgstr "エディター スクリプト"
 
 #. ID_SELECTLINEDIFF
-#: Merge.rc:4979
+#: Merge.rc:4987
 msgid ""
 "\n"
 "Difference in Current Line (F4)"
@@ -7239,7 +7239,7 @@ msgstr ""
 "現在の行内差異 (F4)"
 
 #. ID_OPTIONS
-#: Merge.rc:4980
+#: Merge.rc:4988
 msgid ""
 "\n"
 "Options"
@@ -7248,7 +7248,7 @@ msgstr ""
 "設定"
 
 #. ID_REFRESH
-#: Merge.rc:4981
+#: Merge.rc:4989
 msgid ""
 "\n"
 "Refresh (F5)"
@@ -7257,7 +7257,7 @@ msgstr ""
 "表示更新 (F5)"
 
 #. ID_PREVDIFF
-#: Merge.rc:4987
+#: Merge.rc:4995
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)"
@@ -7266,7 +7266,7 @@ msgstr ""
 "前の差異 (Alt+Up)"
 
 #. ID_NEXTDIFF
-#: Merge.rc:4988
+#: Merge.rc:4996
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
@@ -7275,7 +7275,7 @@ msgstr ""
 "次の差異 (Alt+Down)"
 
 #. ID_PREVCONFLICT
-#: Merge.rc:4989
+#: Merge.rc:4997
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
@@ -7284,7 +7284,7 @@ msgstr ""
 "前のコンフリクト (Alt+Shift+Up)"
 
 #. ID_NEXTCONFLICT
-#: Merge.rc:4990
+#: Merge.rc:4998
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
@@ -7293,7 +7293,7 @@ msgstr ""
 "次のコンフリクト (Alt+Shift+Down)"
 
 #. ID_FIRSTDIFF
-#: Merge.rc:4995
+#: Merge.rc:5003
 msgid ""
 "\n"
 "First Difference (Alt+Home)"
@@ -7302,7 +7302,7 @@ msgstr ""
 "最初の差異 (Alt+Home)"
 
 #. ID_CURDIFF
-#: Merge.rc:4996
+#: Merge.rc:5004
 msgid ""
 "\n"
 "Current Difference (Alt+Enter)"
@@ -7311,7 +7311,7 @@ msgstr ""
 "現在の差異 (Alt+Enter)"
 
 #. ID_LASTDIFF
-#: Merge.rc:4997
+#: Merge.rc:5005
 msgid ""
 "\n"
 "Last Difference (Alt+End)"
@@ -7320,7 +7320,7 @@ msgstr ""
 "最後の差異 (Alt+End)"
 
 #. ID_L2R
-#: Merge.rc:4998
+#: Merge.rc:5006
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)"
@@ -7329,7 +7329,7 @@ msgstr ""
 "右側へコピー (Alt+Right)"
 
 #. ID_R2L
-#: Merge.rc:4999
+#: Merge.rc:5007
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)"
@@ -7338,7 +7338,7 @@ msgstr ""
 "左側へコピー (Alt+Left)"
 
 #. ID_L2RNEXT
-#: Merge.rc:5000
+#: Merge.rc:5008
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)"
@@ -7347,7 +7347,7 @@ msgstr ""
 "右側へコピーし次へ (Ctrl+Alt+Right)"
 
 #. ID_R2LNEXT
-#: Merge.rc:5001
+#: Merge.rc:5009
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)"
@@ -7356,7 +7356,7 @@ msgstr ""
 "左側へコピーし次へ (Ctrl+Alt+Left)"
 
 #. ID_ALL_RIGHT
-#: Merge.rc:5002
+#: Merge.rc:5010
 msgid ""
 "\n"
 "Copy All to Right"
@@ -7365,7 +7365,7 @@ msgstr ""
 "すべてを右側にコピー"
 
 #. ID_ALL_LEFT
-#: Merge.rc:5003
+#: Merge.rc:5011
 msgid ""
 "\n"
 "Copy All to Left"
@@ -7374,7 +7374,7 @@ msgstr ""
 "すべてを左側にコピー"
 
 #. ID_AUTO_MERGE
-#: Merge.rc:5004
+#: Merge.rc:5012
 msgid ""
 "\n"
 "Auto Merge (Ctrl+Alt+M)"
@@ -7383,7 +7383,7 @@ msgstr ""
 "自動マージ (Ctrl+Alt+M)"
 
 #. ID_FIRSTFILE
-#: Merge.rc:5005
+#: Merge.rc:5013
 msgid ""
 "\n"
 "First File"
@@ -7392,7 +7392,7 @@ msgstr ""
 "最初のファイル"
 
 #. ID_NEXTFILE
-#: Merge.rc:5006
+#: Merge.rc:5014
 msgid ""
 "\n"
 "Next File (Ctrl+F8)"
@@ -7401,7 +7401,7 @@ msgstr ""
 "次のファイル (Ctrl+F8)"
 
 #. ID_LASTFILE
-#: Merge.rc:5007
+#: Merge.rc:5015
 msgid ""
 "\n"
 "Last File"
@@ -7410,7 +7410,7 @@ msgstr ""
 "最後のファイル"
 
 #. ID_PREVFILE
-#: Merge.rc:5008
+#: Merge.rc:5016
 msgid ""
 "\n"
 "Previous File (Ctrl+F7)"
@@ -7419,37 +7419,37 @@ msgstr ""
 "前のファイル (Ctrl+F7)"
 
 #. IDS_UNPACK_AUTO
-#: Merge.rc:5015
+#: Merge.rc:5023
 msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルに拡張子が必要です)"
 
 #. IDS_NO_PREDIFFER
-#: Merge.rc:5016
+#: Merge.rc:5024
 msgid "No Prediffer (Normal)"
 msgstr "比較前処理プラグインを使用しない (標準)"
 
 #. IDS_SUGGESTED_PLUGINS
-#: Merge.rc:5017
+#: Merge.rc:5025
 msgid "Suggested Plugins"
 msgstr "関連するプラグイン"
 
 #. IDS_NOT_SUGGESTED_PLUGINS
-#: Merge.rc:5018
+#: Merge.rc:5026
 msgid "All Plugins"
 msgstr "すべてのプラグイン"
 
 #. IDS_PRIVATEBUILD_FMT
-#: Merge.rc:5024
+#: Merge.rc:5032
 #, c-format
 msgid "Private Build: %1"
 msgstr "Private Build: %1"
 
 #. IDS_CHECKFORUPDATES_UPTODATE
-#: Merge.rc:5025
+#: Merge.rc:5033
 msgid "Your software is up to date."
 msgstr "お使いのソフトウェアは最新版です。"
 
-#: Merge.rc:5027
+#: Merge.rc:5035
 #, c-format
 msgid ""
 "WinMerge update available.\n"
@@ -7459,125 +7459,125 @@ msgstr ""
 "%1 をダウンロードしますか? (現在 %2 を使用中)"
 
 #. IDS_ALLRIGHTS_RESERVED
-#: Merge.rc:5028
+#: Merge.rc:5036
 msgid " - All rights reserved."
 msgstr " - All rights reserved."
 
 #. IDS_CHECKFORUPDATES_FAILED
-#: Merge.rc:5033
+#: Merge.rc:5041
 msgid "Failed to download latest version information"
 msgstr "最新版情報のダウンロードに失敗しました"
 
 #. IDS_TITLE_PLUGINS_SETTINGS
-#: Merge.rc:5039
+#: Merge.rc:5047
 msgid "Plugin Settings"
 msgstr "プラグイン設定"
 
 #. IDS_NO_SCT_SCRIPTS
-#: Merge.rc:5041
+#: Merge.rc:5049
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH が見つかりません - .sct スクリプトは無効化されました"
 
 #. IDS_LOCBAR_GOTOLINE_FMT
-#: Merge.rc:5049
+#: Merge.rc:5057
 #, c-format
 msgid "G&o to Line %1"
 msgstr "行 %1 に移動(&O)"
 
 #. IDS_GOTO_MOVED_LINE
-#: Merge.rc:5055
+#: Merge.rc:5063
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "移動行に移動\tCtrl+Shift+G"
 
 #. IDS_AUTOCOMPLETE_DISABLED
-#: Merge.rc:5061
+#: Merge.rc:5069
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
 msgstr "無効"
 
 #. IDS_AUTOCOMPLETE_FILE_SYS
-#: Merge.rc:5062
+#: Merge.rc:5070
 msgid "From file system"
 msgstr "ファイル システム"
 
 #. IDS_AUTOCOMPLETE_MRU
-#: Merge.rc:5063
+#: Merge.rc:5071
 msgid "From Most Recently Used list"
 msgstr "最近使ったリスト"
 
 #. IDS_COLORSCHEME_PLAIN
-#: Merge.rc:5069
+#: Merge.rc:5077
 msgid "No Highlighting"
 msgstr "ハイライトなし"
 
 #. IDS_COLORSCHEME_BATCH
-#: Merge.rc:5075
+#: Merge.rc:5083
 msgid "Batch"
 msgstr "Batch"
 
 #. IDS_COLORSCHEME_PO
-#: Merge.rc:5102
+#: Merge.rc:5110
 msgid "Portable Object"
 msgstr "Portable Object(.po)"
 
 #. IDS_COLORSCHEME_RSRC
-#: Merge.rc:5106
+#: Merge.rc:5114
 msgid "Resources"
 msgstr "Resources"
 
 #. IDS_COLORSCHEME_SH
-#: Merge.rc:5110
+#: Merge.rc:5118
 msgid "Shell"
 msgstr "Shell"
 
 #. IDS_CLOSE_LEFT_TABS
-#: Merge.rc:5127
+#: Merge.rc:5135
 msgid "Close &Left Tabs"
 msgstr "左側のタブをすべて閉じる(&L)"
 
 #. IDS_CLOSE_RIGHT_TABS
-#: Merge.rc:5128
+#: Merge.rc:5136
 msgid "Close R&ight Tabs"
 msgstr "右側のタブをすべて閉じる(&I)"
 
 #. IDS_CLOSE_OTHER_TABS
-#: Merge.rc:5129
+#: Merge.rc:5137
 msgid "Close &Other Tabs"
 msgstr "他のタブをすべて閉じる(&O)"
 
 #. IDS_TABBAR_AUTO_MAXWIDTH
-#: Merge.rc:5130
+#: Merge.rc:5138
 msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
 
 #. IDS_WEBPAGE_MENU
-#: Merge.rc:5140
+#: Merge.rc:5148
 msgid "We&bpage"
 msgstr "Webページ(&B)"
 
 #. IDS_VIEW_WRAP_TEXT
-#: Merge.rc:5145
+#: Merge.rc:5153
 msgid "W&rap Text"
 msgstr "折り返して全体を表示(&R)"
 
 #. IDS_NOTINSTALLED
-#: Merge.rc:5150
+#: Merge.rc:5158
 msgid "%1 is not installed."
 msgstr "%1 がインストールされていません。"
 
 #. IDS_CREATE_FOLDER
-#: Merge.rc:5155
+#: Merge.rc:5163
 #, c-format
 msgid "%1 does not exist. Create it?"
 msgstr "%1 は存在しません。作成しますか?"
 
 #. IDS_CREATE_FOLDER_ERROR
-#: Merge.rc:5156
+#: Merge.rc:5164
 msgid "Failed to create folder."
 msgstr "フォルダーの作成に失敗しました。"
 
 #. IDC_EXT_EDITOR_PATH
-#: Merge.rc:5161
+#: Merge.rc:5169
 msgid ""
 "Parameters:\n"
 "$file: Current file path\n"
@@ -7588,491 +7588,491 @@ msgstr ""
 "$linenum: 現在のカーソル位置の行番号"
 
 #. IDS_DIFF_ALGORITHM_DEFAULT
-#: Merge.rc:5166
+#: Merge.rc:5174
 msgid "default"
 msgstr "default"
 
 #. IDS_DIFF_ALGORITHM_MINIMAL
-#: Merge.rc:5167
+#: Merge.rc:5175
 msgid "minimal"
 msgstr "minimal"
 
 #. IDS_DIFF_ALGORITHM_PATIENCE
-#: Merge.rc:5168
+#: Merge.rc:5176
 msgid "patience"
 msgstr "patience"
 
 #. IDS_DIFF_ALGORITHM_HISTOGRAM
-#: Merge.rc:5169
+#: Merge.rc:5177
 msgid "histogram"
 msgstr "histogram"
 
 #. IDS_DIFF_ALGORITHM_NONE
-#: Merge.rc:5170
+#: Merge.rc:5178
 msgid "none"
 msgstr "none"
 
 #. IDS_RENDERING_MODE_GDI
-#: Merge.rc:5175
+#: Merge.rc:5183
 msgid "GDI"
 msgstr "GDI"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_DEFAULT
-#: Merge.rc:5176
+#: Merge.rc:5184
 msgid "DirectWrite Default"
 msgstr "DirectWrite Default"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_ALIASED
-#: Merge.rc:5177
+#: Merge.rc:5185
 msgid "DirectWrite Aliased"
 msgstr "DirectWrite Aliased"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_CLASSIC
-#: Merge.rc:5178
+#: Merge.rc:5186
 msgid "DirectWrite GDI Classic"
 msgstr "DirectWrite GDI Classic"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_NATURAL
-#: Merge.rc:5179
+#: Merge.rc:5187
 msgid "DirectWrite GDI Natural"
 msgstr "DirectWrite GDI Natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL
-#: Merge.rc:5180
+#: Merge.rc:5188
 msgid "DirectWrite Natural"
 msgstr "DirectWrite Natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL_SYMMETRIC
-#: Merge.rc:5181
+#: Merge.rc:5189
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_DISABLED
-#: Merge.rc:5186
+#: Merge.rc:5194
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
 msgstr "無効"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_1
-#: Merge.rc:5187
+#: Merge.rc:5195
 msgid "MDI child window or main window"
 msgstr "MDI 子ウインドウまたはメインウインドウ"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_2
-#: Merge.rc:5188
+#: Merge.rc:5196
 msgid "MDI child window only"
 msgstr "MDI 子ウインドウのみ"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_3
-#: Merge.rc:5189
+#: Merge.rc:5197
 msgid "Close main window if only one MDI child window"
 msgstr "MDI 子ウィンドウが 1 つしかない場合、メインウィンドウを閉じる"
 
 #. IDS_DIFF_GROUP
-#: Merge.rc:5194
+#: Merge.rc:5202
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "差異"
 
 #. IDS_DIFF_HIGHLIGHT
-#: Merge.rc:5195
+#: Merge.rc:5203
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
 msgstr "差異表示"
 
 #. IDS_DIFF_BLINK
-#: Merge.rc:5196
+#: Merge.rc:5204
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
 msgstr "点滅"
 
 #. IDS_DIFF_BLOCKSIZE
-#: Merge.rc:5197
+#: Merge.rc:5205
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
 msgstr "ブロック サイズ"
 
 #. IDS_DIFF_BLOCKALPHA
-#: Merge.rc:5198
+#: Merge.rc:5206
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
 msgstr "ブロック透明度"
 
 #. IDS_DIFF_CDTHRESHOLD
-#: Merge.rc:5199
+#: Merge.rc:5207
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
 msgstr "色距離閾値"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION
-#: Merge.rc:5200
+#: Merge.rc:5208
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
 msgstr "挿入/削除検出"
 
 #. IDS_OVERLAY_MODE_NONE
-#: Merge.rc:5201 Merge.rc:5206
+#: Merge.rc:5209 Merge.rc:5214
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
 msgstr "なし"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_VERTICAL
-#: Merge.rc:5202
+#: Merge.rc:5210
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
 msgstr "垂直方向"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_HORIZONTAL
-#: Merge.rc:5203
+#: Merge.rc:5211
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
 msgstr "水平方向"
 
 #. IDS_OVERLAY_GROUP
-#: Merge.rc:5204
+#: Merge.rc:5212
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
 msgstr "重ね合わせ"
 
 #. IDS_OVERLAY_ALPHA
-#: Merge.rc:5205
+#: Merge.rc:5213
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
 msgstr "透明度"
 
 #. IDS_OVERLAY_MODE_XOR
-#: Merge.rc:5207
+#: Merge.rc:5215
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
 msgstr "XOR"
 
 #. IDS_OVERLAY_MODE_ALPHA
-#: Merge.rc:5208
+#: Merge.rc:5216
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
 msgstr "アルファブレンド"
 
 #. IDS_OVERLAY_MODE_ALPHA_ANIMATION
-#: Merge.rc:5209
+#: Merge.rc:5217
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
 msgstr "アニメ表示"
 
 #. IDS_ZOOM
-#: Merge.rc:5210
+#: Merge.rc:5218
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
 msgstr "拡大"
 
 #. IDS_PAGE
-#: Merge.rc:5211
+#: Merge.rc:5219
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
 msgstr "ページ:"
 
 #. IDS_IMGCMP_STATUS_PT_RGBA_FMT
-#: Merge.rc:5212
+#: Merge.rc:5220
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #. IDS_IMGCMP_STATUS_DIST1_FMT
-#: Merge.rc:5213
+#: Merge.rc:5221
 #, c-format
 msgid "Dist: %g  "
 msgstr "色距離: %g  "
 
 #. IDS_IMGCMP_STATUS_DIST2_FMT
-#: Merge.rc:5214
+#: Merge.rc:5222
 #, c-format
 msgid "Dist: %g, %g  "
 msgstr "色距離: %g, %g  "
 
 #. IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT
-#: Merge.rc:5215
+#: Merge.rc:5223
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp  "
 
 #. IDS_IMGCMP_STATUS_RC_FMT
-#: Merge.rc:5216
+#: Merge.rc:5224
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "範囲: (%d, %d)  "
 
 #. IDS_IMGCMP_STATUS_FLIPPED_FMT
-#: Merge.rc:5217
+#: Merge.rc:5225
 #, c-format
 msgid "Flipped: %s  "
 msgstr "反転: %s  "
 
 #. IDS_IMGCMP_STATUS_ROTATED_FMT
-#: Merge.rc:5218
+#: Merge.rc:5226
 #, c-format
 msgid "Rotated: %d  "
 msgstr "回転: %d°  "
 
 #. IDS_IMGCMP_REPORT_ALLPAGES
-#: Merge.rc:5219
+#: Merge.rc:5227
 msgid "All pages"
 msgstr "全ページ"
 
 #. IDS_IGNSUB_STR1
-#: Merge.rc:5224
+#: Merge.rc:5232
 msgid "<Edit here>"
 msgstr "<ここを編集>"
 
 #. IDS_IGNSUB_STR2
-#: Merge.rc:5225
+#: Merge.rc:5233
 msgid "No differences found to select"
 msgstr "選択する差異がありません"
 
 #. IDS_IGNSUB_STR3
-#: Merge.rc:5226
+#: Merge.rc:5234
 msgid "No differences found to add as substitution filter"
 msgstr "置換フィルターに追加する差異がありません"
 
 #. IDS_IGNSUB_STR4
-#: Merge.rc:5227
+#: Merge.rc:5235
 msgid "The pair is already in the Substitution Filters list"
 msgstr "このペアは、既に置換フィルターのリストに存在しています"
 
 #. IDS_IGNSUB_STR5
-#: Merge.rc:5228
+#: Merge.rc:5236
 msgid "Add this change to Substitution Filters?"
 msgstr "この差異を置換フィルターに追加しますか?"
 
 #. IDS_OCRRESULT_TEXTONLY
-#: Merge.rc:5233
+#: Merge.rc:5241
 msgid "Text only"
 msgstr "テキストのみ"
 
 #. IDS_OCRRESULT_POS_LINE
-#: Merge.rc:5234
+#: Merge.rc:5242
 msgid "Line-by-line position and text"
 msgstr "行毎の位置情報とテキスト"
 
 #. IDS_OCRRESULT_POS_WORD
-#: Merge.rc:5235
+#: Merge.rc:5243
 msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
 
 #. IDS_USERDATAFOLDER_APPDATA
-#: Merge.rc:5240
+#: Merge.rc:5248
 msgid "AppData (Roaming) folder"
 msgstr "AppData (Roaming) フォルダー"
 
 #. IDS_USERDATAFOLDER_INSTALL
-#: Merge.rc:5241
+#: Merge.rc:5249
 msgid "Install folder"
 msgstr "インストール フォルダー"
 
 #. IDS_USERDATAFOLDER_DOCUMENTS
-#: Merge.rc:5242
+#: Merge.rc:5250
 msgid "Documents folder"
 msgstr "ドキュメントフォルダー"
 
 #. IDS_SINGLEINSTANCE_DISABLED
-#: Merge.rc:5247
+#: Merge.rc:5255
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
 msgstr "無効"
 
 #. IDS_SINGLEINSTANCE_STR1
-#: Merge.rc:5248
+#: Merge.rc:5256
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"
 
 #. IDS_CLIPBOARD_HISTORY
-#: Merge.rc:5249
+#: Merge.rc:5257
 msgid "Clipboard &History"
 msgstr "クリップボード履歴(&H)"
 
 #. IDS_SINGLEINSTANCE_STR2
-#: Merge.rc:5250
+#: Merge.rc:5258
 msgid "Allow only one instance; wait for termination"
 msgstr "1 つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED
-#: Merge.rc:5255
+#: Merge.rc:5263
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "無効"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
-#: Merge.rc:5256
+#: Merge.rc:5264
 msgid "Only on window activated"
 msgstr "ウインドウがアクティブになった時のみ"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
-#: Merge.rc:5257
+#: Merge.rc:5265
 msgid "Immediately"
 msgstr "即時"
 
 #. IDS_PLUGIN_ALL
-#: Merge.rc:5262
+#: Merge.rc:5270
 msgid "Al&l"
 msgstr "すべて(&L)"
 
 #. IDS_PLUGIN_OTHERS
-#: Merge.rc:5263
+#: Merge.rc:5271
 msgid "&Others"
 msgstr "その他(&O)"
 
-#: Merge.rc:5265
+#: Merge.rc:5273
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
 msgstr "プラグイン パイプラインにプラグイン名が指定されていません: %1"
 
-#: Merge.rc:5267
+#: Merge.rc:5275
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
 msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
-#: Merge.rc:5268
+#: Merge.rc:5276
 #, c-format
 msgid "Plugin name '%1' already exists."
 msgstr "プラグイン名 '%1' は既に存在しています。"
 
 #. IDS_PLUGIN_TITLE1
-#: Merge.rc:5269
+#: Merge.rc:5277
 msgid "Specify plugin arguments"
 msgstr "プラグイン引数を指定してください"
 
-#: Merge.rc:5271
+#: Merge.rc:5279
 #, c-format
 msgid "Plugin not found or invalid: %1"
 msgstr "プラグインが見つからないまたは無効です: %1"
 
 #. IDS_PLUGIN_NOT_UNPACK
-#: Merge.rc:5272
+#: Merge.rc:5280
 #, c-format
 msgid "'%1' is not an unpacker plugin"
 msgstr "'%1'は展開プラグインではありません"
 
 #. IDS_PLUGIN_NOT_PREDIFF
-#: Merge.rc:5273
+#: Merge.rc:5281
 #, c-format
 msgid "'%1' is not a prediffer plugin"
 msgstr "'%1'は比較前処理プラグインではありません"
 
-#: Merge.rc:5275
+#: Merge.rc:5283
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr "プラグイン'%2'でファイル'%1'の比較前処理を実行中にエラーが発生しました。比較前処理は適用されませんでした。"
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
-#: Merge.rc:5276
+#: Merge.rc:5284
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr "プラグインパイプラインに循環参照があります: %1"
 
 #. IDS_PLUGIN_TYPE1
-#: Merge.rc:5277
+#: Merge.rc:5285
 msgid "URL Handler"
 msgstr "URL処理プラグイン"
 
 #. IDS_PLUGIN_TYPE2
-#: Merge.rc:5278
+#: Merge.rc:5286
 msgid "File Unpacker"
 msgstr "ファイル展開プラグイン"
 
 #. IDS_PLUGIN_TYPE3
-#: Merge.rc:5279
+#: Merge.rc:5287
 msgid "File or Folder Unpacker"
 msgstr "ファイルまたはフォルダー展開プラグイン"
 
 #. IDS_PLUGIN_TYPE5
-#: Merge.rc:5281
+#: Merge.rc:5289
 msgid "Alias for Unpacker"
 msgstr "展開プラグインのエイリアス"
 
 #. IDS_PLUGIN_TYPE6
-#: Merge.rc:5282
+#: Merge.rc:5290
 msgid "Alias for Prediffer"
 msgstr "比較前処理プラグインのエイリアス"
 
 #. IDS_PLUGIN_TYPE7
-#: Merge.rc:5283
+#: Merge.rc:5291
 msgid "Alias for Editor script"
 msgstr "エディタースクリプトのエイリアス"
 
 #. IDS_PLUGIN_ALIAS_DESC
-#: Merge.rc:5284
+#: Merge.rc:5292
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
 msgstr "プラグインパイプライン '%1' のエイリアス"
 
 #. IDS_PLUGIN_NEW_DESC
-#: Merge.rc:5285
+#: Merge.rc:5293
 msgid "New plugin description"
 msgstr "新しいプラグインの説明"
 
 #. IDS_PLUGIN_TARGETS_ALL
-#: Merge.rc:5286
+#: Merge.rc:5294
 msgid "All"
 msgstr "すべて"
 
 #. IDS_PLUGIN_TARGETS_1ST
-#: Merge.rc:5287
+#: Merge.rc:5295
 msgid "1st"
 msgstr "1番目"
 
 #. IDS_PLUGIN_TARGETS_2ND
-#: Merge.rc:5288
+#: Merge.rc:5296
 msgid "2nd"
 msgstr "2番目"
 
 #. IDS_PLUGIN_TARGETS_3RD
-#: Merge.rc:5289
+#: Merge.rc:5297
 msgid "3rd"
 msgstr "3番目"
 
 #. IDS_PLUGIN_TARGETS_1ST_2ND
-#: Merge.rc:5290
+#: Merge.rc:5298
 msgid "1st and 2nd"
 msgstr "1番目と2番目"
 
 #. IDS_PLUGIN_TARGETS_1ST_3RD
-#: Merge.rc:5291
+#: Merge.rc:5299
 msgid "1st and 3rd"
 msgstr "1番目と3番目"
 
 #. IDS_PLUGIN_TARGETS_2ND_3RD
-#: Merge.rc:5292
+#: Merge.rc:5300
 msgid "2nd and 3rd"
 msgstr "2番目と3番目"
 
 #. IDS_FILTER_APPLIED
-#: Merge.rc:5297
+#: Merge.rc:5305
 msgid "Filter applied"
 msgstr "フィルター適用"
 
 #. IDS_FILTERMENU_COMPARE
-#: Merge.rc:5302
+#: Merge.rc:5310
 #, c-format
 msgid "Compare %1"
 msgstr "%1 を比較"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
-#: Merge.rc:5303
+#: Merge.rc:5311
 msgid "&Filter by This Column"
 msgstr "この列でフィルター(&F)"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
-#: Merge.rc:5304
+#: Merge.rc:5312
 msgid "&Filter by This Column..."
 msgstr "この列でフィルター(&F)..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
-#: Merge.rc:5309
+#: Merge.rc:5317
 #, c-format
 msgid "Clipboard at %s"
 msgstr "クリップボード %s"
 
 #. IDS_CLIPBOARDHISTORY_DISABLED
-#: Merge.rc:5310
+#: Merge.rc:5318
 msgid ""
 "Clipboard history disabled.\r\n"
 "Enable: Windows logo key + V, then Turn on."
@@ -8080,115 +8080,115 @@ msgstr ""
 "クリップボード履歴が無効になっています。\r\n"
 "クリップボード履歴を有効にするには、Windows キー + V を押下後、[有効にする] ボタンをクリックしてください。"
 
-#: Merge.rc:5312
+#: Merge.rc:5320
 msgid "This system does not support clipboard history."
 msgstr "このシステムではクリップボード履歴はサポートされていません。"
 
-#: Merge.rc:5314
+#: Merge.rc:5322
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
-#: Merge.rc:5319
+#: Merge.rc:5327
 msgid "WebView2 runtime not installed. Download it?"
 msgstr "WebView2 ランタイムがインストールされていません。ダウンロードしますか?"
 
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
-#: Merge.rc:5324
+#: Merge.rc:5332
 msgid "New Text Compare"
 msgstr "新規テキスト比較"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
-#: Merge.rc:5325
+#: Merge.rc:5333
 msgid "New Table Compare"
 msgstr "新規テーブル比較"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
-#: Merge.rc:5326
+#: Merge.rc:5334
 msgid "New Binary Compare"
 msgstr "新規バイナリ比較"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
-#: Merge.rc:5327
+#: Merge.rc:5335
 msgid "New Image Compare"
 msgstr "新規画像比較"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
-#: Merge.rc:5328
+#: Merge.rc:5336
 msgid "New Webpage Compare"
 msgstr "新規Webページ比較"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
-#: Merge.rc:5329
+#: Merge.rc:5337
 msgid "New Folder Compare"
 msgstr "新規フォルダー比較"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
-#: Merge.rc:5330
+#: Merge.rc:5338
 msgid "Clipboard Compare"
 msgstr "クリップボード比較"
 
 #. IDS_PREVIEWBAR_PRINT
-#: Merge.rc:5335
+#: Merge.rc:5343
 msgid "&Print..."
 msgstr "印刷(&P)..."
 
 #. IDS_PREVIEWBAR_PREVPAGE
-#: Merge.rc:5337
+#: Merge.rc:5345
 msgid "Pre&v Page"
 msgstr "前ページ(&V)"
 
 #. IDS_PREVIEWBAR_TWOPAGE
-#: Merge.rc:5338
+#: Merge.rc:5346
 msgid "&Two Page"
 msgstr "2ページ(&T)"
 
 #. IDS_PREVIEWBAR_ONEPAGE
-#: Merge.rc:5339
+#: Merge.rc:5347
 msgid "&One Page"
 msgstr "1ページ(&O)"
 
 #. IDS_PREVIEWBAR_ZOOMIN
-#: Merge.rc:5340
+#: Merge.rc:5348
 msgid "Zoom &In"
 msgstr "拡大(&I)"
 
 #. IDS_PREVIEWBAR_ZOOMOUT
-#: Merge.rc:5341
+#: Merge.rc:5349
 msgid "Zoom &Out"
 msgstr "縮小(&O)"
 
 #. IDS_WEBPAGE_COMPARING
-#: Merge.rc:5347
+#: Merge.rc:5355
 msgid "Comparing..."
 msgstr "比較しています..."
 
 #. IDS_WEBPAGE_ZOOM
-#: Merge.rc:5348
+#: Merge.rc:5356
 msgid "Zoom:"
 msgstr "拡大率:"
 
 #. IDS_COPY_GRANULARITY_DIFFHUNK
-#: Merge.rc:5353
+#: Merge.rc:5361
 msgid "Diff hunk"
 msgstr "差異ブロック"
 
 #. IDS_COPY_GRANULARITY_INLINE
-#: Merge.rc:5354
+#: Merge.rc:5362
 msgid "Inline diff"
 msgstr "行内差異"
 
 #. IDS_COPY_GRANULARITY_LINE
-#: Merge.rc:5355
+#: Merge.rc:5363
 msgid "Line"
 msgstr "行"
 
-#: Merge.rc:5356
+#: Merge.rc:5364
 msgid "Character"
 msgstr "文字"
 
 #. ID_MICE_PREVDIFF
-#: Merge.rc:5361
+#: Merge.rc:5369
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)\n"
@@ -8201,7 +8201,7 @@ msgstr ""
 "(Alt+Wheel Up)"
 
 #. ID_MICE_NEXTDIFF
-#: Merge.rc:5362
+#: Merge.rc:5370
 msgid ""
 "\n"
 "Next Difference (Alt+Down)\n"
@@ -8214,7 +8214,7 @@ msgstr ""
 "(Alt+Wheel Down)"
 
 #. ID_MICE_L2R
-#: Merge.rc:5363
+#: Merge.rc:5371
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)\n"
@@ -8229,7 +8229,7 @@ msgstr ""
 "(Alt+Shift+Wheel Down)"
 
 #. ID_MICE_R2L
-#: Merge.rc:5364
+#: Merge.rc:5372
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)\n"
@@ -8244,7 +8244,7 @@ msgstr ""
 "(Alt+Shift+Wheel Up)"
 
 #. ID_MICE_L2RNEXT
-#: Merge.rc:5365
+#: Merge.rc:5373
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)\n"
@@ -8257,7 +8257,7 @@ msgstr ""
 "(Ctrl+Alt+Shift+Wheel Down)"
 
 #. ID_MICE_R2LNEXT
-#: Merge.rc:5366
+#: Merge.rc:5374
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)\n"
@@ -8270,257 +8270,257 @@ msgstr ""
 "(Ctrl+Alt+Shift+Wheel Up)"
 
 #. IDS_LOG_COMPARING_2
-#: Merge.rc:5376
+#: Merge.rc:5384
 #, c-format
 msgid "Comparing %1 with %2"
 msgstr "%1 と %2 を比較しています"
 
 #. IDS_LOG_COMPARING_3
-#: Merge.rc:5377
+#: Merge.rc:5385
 #, c-format
 msgid "Comparing %1 with %2 and %3"
 msgstr "%1 と %2 と %3 を比較しています"
 
 #. IDS_LOG_COMPARE_COMPLETED
-#: Merge.rc:5378
+#: Merge.rc:5386
 msgid "Comparison completed"
 msgstr "比較が完了しました"
 
 #. IDS_LOG_COMPARE_ERROR_2
-#: Merge.rc:5379
+#: Merge.rc:5387
 #, c-format
 msgid "Failed to compare %1 with %2: "
 msgstr "%1 と %2 の比較に失敗しました: "
 
 #. IDS_LOG_COMPARE_ERROR_3
-#: Merge.rc:5380
+#: Merge.rc:5388
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
 msgstr "%1 と %2 と %3 の比較に失敗しました: "
 
 #. IDS_LOG_FILE_SAVED
-#: Merge.rc:5381
+#: Merge.rc:5389
 msgid "File saved"
 msgstr "ファイルが保存されました"
 
 #. IDS_LOG_COPYING_FILES
-#: Merge.rc:5382
+#: Merge.rc:5390
 msgid "Copying files..."
 msgstr "ファイルをコピーしています..."
 
 #. IDS_LOG_MOVING_FILES
-#: Merge.rc:5383
+#: Merge.rc:5391
 msgid "Moving files..."
 msgstr "ファイルを移動しています..."
 
 #. IDS_LOG_DELETING_FILES
-#: Merge.rc:5384
+#: Merge.rc:5392
 msgid "Deleting files..."
 msgstr "ファイルを削除しています..."
 
 #. IDS_LOG_RECYCLEBIN
-#: Merge.rc:5385
+#: Merge.rc:5393
 msgid "Recycle Bin"
 msgstr "ゴミ箱"
 
 #. IDS_LOG_PERMANENTLY_DELETED
-#: Merge.rc:5386
+#: Merge.rc:5394
 msgid "Permanently deleted"
 msgstr "完全に削除"
 
 #. IDS_LOG_FILEOPERATION_COMPLETED
-#: Merge.rc:5387
+#: Merge.rc:5395
 msgid "File operation completed successfully"
 msgstr "ファイル操作が正常に完了しました"
 
 #. IDS_LOG_FILEOPERATION_CANCELED
-#: Merge.rc:5388
+#: Merge.rc:5396
 msgid "File operation canceled"
 msgstr "ファイル操作がキャンセルされました"
 
 #. IDS_FILTER_ERROR_NO_ERROR
-#: Merge.rc:5393
+#: Merge.rc:5401
 msgid "No error"
 msgstr "エラーはありません"
 
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
-#: Merge.rc:5394
+#: Merge.rc:5402
 msgid "Filter expression is empty"
 msgstr "フィルター式が空です"
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
-#: Merge.rc:5395
+#: Merge.rc:5403
 msgid "Unknown character in filter expression"
 msgstr "フィルター式に不明な文字があります"
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
-#: Merge.rc:5396
+#: Merge.rc:5404
 msgid "Unterminated string literal"
 msgstr "文字列リテラルが閉じられていません"
 
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
-#: Merge.rc:5397
+#: Merge.rc:5405
 msgid "Syntax error in filter expression"
 msgstr "フィルター式の構文エラーです"
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
-#: Merge.rc:5398
+#: Merge.rc:5406
 msgid "Failed to parse filter expression"
 msgstr "フィルター式の解析に失敗しました"
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
-#: Merge.rc:5399
+#: Merge.rc:5407
 msgid "Invalid literal value"
 msgstr "無効なリテラル値です"
 
 #. IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION
-#: Merge.rc:5400
+#: Merge.rc:5408
 msgid "Invalid regular expression"
 msgstr "無効な正規表現です"
 
 #. IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER
-#: Merge.rc:5401
+#: Merge.rc:5409
 msgid "Undefined identifier"
 msgstr "未定義の識別子です"
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
-#: Merge.rc:5402
+#: Merge.rc:5410
 msgid "Invalid number of arguments"
 msgstr "引数の数が正しくありません"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
-#: Merge.rc:5403
+#: Merge.rc:5411
 msgid "Filter name not found"
 msgstr "フィルター名が見つかりません"
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
-#: Merge.rc:5404
+#: Merge.rc:5412
 msgid "Division by zero in filter expression"
 msgstr "フィルター式で0による除算が行われました"
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
-#: Merge.rc:5405
+#: Merge.rc:5413
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
 #. IDS_FILTER_ERROR_INVALID_PROPERTY_NAME
-#: Merge.rc:5406
+#: Merge.rc:5414
 msgid "Invalid property name"
 msgstr "無効なプロパティ名です"
 
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
-#: Merge.rc:5407
+#: Merge.rc:5415
 msgid "Invalid directive"
 msgstr "無効なディレクティブです"
 
 #. IDS_FILTER_OP_EQUALS
-#: Merge.rc:5412
+#: Merge.rc:5420
 msgid "Equals"
 msgstr "等しい"
 
 #. IDS_FILTER_OP_NOT_EQUALS
-#: Merge.rc:5413
+#: Merge.rc:5421
 msgid "Does not equal"
 msgstr "等しくない"
 
 #. IDS_FILTER_OP_LESS_THAN
-#: Merge.rc:5414
+#: Merge.rc:5422
 msgid "Less than"
 msgstr "より小さい"
 
 #. IDS_FILTER_OP_LESS_EQUAL
-#: Merge.rc:5415
+#: Merge.rc:5423
 msgid "Less than or equal to"
 msgstr "以下"
 
 #. IDS_FILTER_OP_GREATER_EQUAL
-#: Merge.rc:5416
+#: Merge.rc:5424
 msgid "Greater than or equal to"
 msgstr "以上"
 
 #. IDS_FILTER_OP_GREATER_THAN
-#: Merge.rc:5417
+#: Merge.rc:5425
 msgid "Greater than"
 msgstr "より大きい"
 
 #. IDS_FILTER_OP_BETWEEN
-#: Merge.rc:5418
+#: Merge.rc:5426
 msgid "Between"
 msgstr "範囲内"
 
 #. IDS_FILTER_OP_NOT_BETWEEN
-#: Merge.rc:5419
+#: Merge.rc:5427
 msgid "Not Between"
 msgstr "範囲外"
 
 #. IDS_FILTER_OP_CONTAINS
-#: Merge.rc:5420
+#: Merge.rc:5428
 msgid "Contains"
 msgstr "含む"
 
 #. IDS_FILTER_OP_NOT_CONTAINS
-#: Merge.rc:5421
+#: Merge.rc:5429
 msgid "Not Contains"
 msgstr "含まない"
 
 #. IDS_FILTER_OP_RECONTAINS
-#: Merge.rc:5422
+#: Merge.rc:5430
 msgid "Contains (regex)"
 msgstr "含む(正規表現)"
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
-#: Merge.rc:5423
+#: Merge.rc:5431
 msgid "Not Contains (regex)"
 msgstr "含まない(正規表現)"
 
 #. IDS_FILTER_OP_LIKE
-#: Merge.rc:5424
+#: Merge.rc:5432
 msgid "Match (wildcard)"
 msgstr "一致(ワイルドカード)"
 
 #. IDS_FILTER_OP_NOT_LIKE
-#: Merge.rc:5425
+#: Merge.rc:5433
 msgid "Not match (wildcard)"
 msgstr "不一致(ワイルドカード)"
 
 #. IDS_FILTER_OP_MATCHES
-#: Merge.rc:5426
+#: Merge.rc:5434
 msgid "Match (regex)"
 msgstr "一致(正規表現)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
-#: Merge.rc:5427
+#: Merge.rc:5435
 msgid "Not match (regex)"
 msgstr "不一致(正規表現)"
 
 #. IDS_COLORMODE_LIGHT
-#: Merge.rc:5432
+#: Merge.rc:5440
 msgid "Light"
 msgstr "ライト"
 
 #. IDS_COLORMODE_DARK
-#: Merge.rc:5433
+#: Merge.rc:5441
 msgid "Dark"
 msgstr "ダーク"
 
 #. IDS_COLORMODE_FOLLOWSYSTEM
-#: Merge.rc:5434
+#: Merge.rc:5442
 msgid "Follow system"
 msgstr "システムに従う"
 
 #. IDS_EXAMPLE
-#: Merge.rc:5439
+#: Merge.rc:5447
 #, c-format
 msgid "e.g. %1"
 msgstr "例: %1"
 
 #. IDS_DETECTED_PREVIOUS_CRASH
-#: Merge.rc:5444
+#: Merge.rc:5452
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "以前の WinMerge のクラッシュを検出しました。可能であればご報告ください。"
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5449
+#: Merge.rc:5457
 msgid ""
 "# Regex replacement list\r\n"
 "# Format: regex<TAB>replacement\r\n"
@@ -8535,7 +8535,7 @@ msgstr ""
 "(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5450
+#: Merge.rc:5458
 msgid ""
 "# Replacement list\r\n"
 "# Format: search<TAB>replacement\r\n"
@@ -9181,64 +9181,70 @@ msgstr ""
 ".class ファイルを読みやすい Java ソースコードにデコンパイルします。\r\n"
 "引数: CFR のコマンドラインオプション"
 
-#: Strings.rc:210
+#: Strings.rc:206
+msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+msgstr ""
+"cliphcat を使用して クリップボード URL スキーマを処理します。\r\n"
+"引数: cliphcat コマンドに渡すコマンドライン オプション"
+
+#: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge プラグインオプション"
 
-#: Strings.rc:212
+#: Strings.rc:214
 msgid "Extract workbook data to multiple files"
 msgstr "ワークブックの情報を複数ファイルに展開する"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR3
-#: Strings.rc:213
+#: Strings.rc:215
 msgid "Update external references (links)"
 msgstr "比較時、外部参照(リンク)を更新する"
 
 #. IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3
-#: Strings.rc:214 Strings.rc:237 Strings.rc:254
+#: Strings.rc:216 Strings.rc:239 Strings.rc:256
 msgid "Compare document properties"
 msgstr "ドキュメントプロパティを比較する"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR5
-#: Strings.rc:215
+#: Strings.rc:217
 msgid "Compare names"
 msgstr "名前の定義を比較する"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR6
-#: Strings.rc:216
+#: Strings.rc:218
 msgid "Compare cell values"
 msgstr "各セルの値を比較する"
 
-#: Strings.rc:218
+#: Strings.rc:220
 msgid "Compare worksheets as image (very slow)"
 msgstr "ワークシートを画像化して比較する (処理時間増大)"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR8
-#: Strings.rc:219
+#: Strings.rc:221
 msgid " - Image split size: "
 msgstr " - 画像分割サイズ: "
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR9
-#: Strings.rc:220
+#: Strings.rc:222
 msgid "Compare worksheets as HTML"
 msgstr "ワークシートをHTMLとして保存して比較する"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR10
-#: Strings.rc:221
+#: Strings.rc:223
 msgid "Compare formulas"
 msgstr "数式を比較する"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR4
-#: Strings.rc:222 Strings.rc:242 Strings.rc:261 Strings.rc:274
+#: Strings.rc:224 Strings.rc:244 Strings.rc:263 Strings.rc:276
 msgid "Compare texts in shapes"
 msgstr "図形内のテキストを比較する"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR12
-#: Strings.rc:223
+#: Strings.rc:225
 msgid "Compare headers and footers"
 msgstr "ヘッダーとフッターを比較する"
 
-#: Strings.rc:225 Strings.rc:245 Strings.rc:265 Strings.rc:277
+#: Strings.rc:227 Strings.rc:247 Strings.rc:267 Strings.rc:279
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
@@ -9248,114 +9254,114 @@ msgstr ""
 "WinMergeでこの機能を使用するには、「VBA プロジェクトへのアクセスを信頼する」をオンにする必要があります。"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR14
-#: Strings.rc:226
+#: Strings.rc:228
 msgid "Replace line breaks in formulas with spaces"
 msgstr "数式内の改行を空白に置換する"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR15
-#: Strings.rc:227
+#: Strings.rc:229
 msgid "Include sheet order number in filename"
 msgstr "ファイル名にシート番号を含める"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR5
-#: Strings.rc:232 Strings.rc:243 Strings.rc:263 Strings.rc:275
+#: Strings.rc:234 Strings.rc:245 Strings.rc:265 Strings.rc:277
 msgid "Compare VBA macros"
 msgstr "VBA マクロを比較する"
 
-#: Strings.rc:234
+#: Strings.rc:236
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSWordFiles.sct WinMerge プラグインオプション"
 
-#: Strings.rc:236
+#: Strings.rc:238
 msgid "Extract document data to multiple files"
 msgstr "ドキュメントの情報を複数ファイルに展開する"
 
 #. IDS_PLUGIN_COMPAREMSWORDFILES_STR4
-#: Strings.rc:238
+#: Strings.rc:240
 msgid "Compare bookmarks"
 msgstr "ブックマークの定義を比較する"
 
 #. IDS_PLUGIN_COMPAREMSWORDFILES_STR5
-#: Strings.rc:239
+#: Strings.rc:241
 msgid "Compare text contents of documents"
 msgstr "ドキュメント内のテキスト部を比較する"
 
-#: Strings.rc:241
+#: Strings.rc:243
 msgid "Compare documents as HTML file (very slow)"
 msgstr "ドキュメントをHTMLファイル化して比較する (処理時間増大)"
 
-#: Strings.rc:251
+#: Strings.rc:253
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSPowerPointFiles.sct WinMerge プラグインオプション"
 
-#: Strings.rc:253
+#: Strings.rc:255
 msgid "Extract slide data to multiple files"
 msgstr "スライドの情報を複数ファイルに展開する"
 
-#: Strings.rc:256
+#: Strings.rc:258
 msgid "Compare slides as image (very slow)"
 msgstr "スライドを画像化して比較する (処理時間増大)"
 
 #. IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6
-#: Strings.rc:262
+#: Strings.rc:264
 msgid "Compare texts in notes page"
 msgstr "ノート内のテキストを比較する"
 
-#: Strings.rc:271
+#: Strings.rc:273
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSVisioFiles.sct WinMerge プラグインオプション"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR2
-#: Strings.rc:272
+#: Strings.rc:274
 msgid "Extract page data to multiple files"
 msgstr "ページの情報を複数ファイルに展開する"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR3
-#: Strings.rc:273
+#: Strings.rc:275
 msgid "Compare pages as image (very slow)"
 msgstr "ページを画像化して比較する (処理時間増大)"
 
-#: Strings.rc:283
+#: Strings.rc:285
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
 msgstr "PrediffLineFilter.sct WinMerge プラグインオプション"
 
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR3
-#: Strings.rc:285
+#: Strings.rc:287
 msgid "Delete"
 msgstr "削除"
 
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR4
-#: Strings.rc:286
+#: Strings.rc:288
 msgid "Enabled"
 msgstr "有効"
 
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR5
-#: Strings.rc:287
+#: Strings.rc:289
 msgid "Ignore Case"
 msgstr "大文字小文字の違いを無視"
 
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR6
-#: Strings.rc:288
+#: Strings.rc:290
 msgid "Use RegExp"
 msgstr "正規表現を使用"
 
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR7
-#: Strings.rc:289
+#: Strings.rc:291
 msgid "Find what"
 msgstr "検索文字列"
 
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR8
-#: Strings.rc:290
+#: Strings.rc:292
 msgid "Replace with"
 msgstr "置換後の文字列"
 
 #. IDS_PLUGIN_IGNORE_STR1
-#: Strings.rc:295
+#: Strings.rc:297
 msgid "Settings"
 msgstr "設定"
 
 #. IDS_PLUGIN_IGNORE_STR2
-#: Strings.rc:296
+#: Strings.rc:298
 msgid ""
 "Column Ranges to Ignore:\n"
 "e.g.) 3,10-20,32-33\n"
@@ -9363,7 +9369,7 @@ msgstr ""
 "無視する列番号\n"
 "例)  3,10-20,32-33\n"
 
-#: Strings.rc:302
+#: Strings.rc:304
 #, c-format
 msgid "Enter filename for patch '%1'"
 msgstr ""
@@ -9371,16 +9377,16 @@ msgstr ""
 "(※ 指定したファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
 
 #. IDS_PLUGIN_APPLYPATCH_STR2
-#: Strings.rc:303
+#: Strings.rc:305
 #, c-format
 msgid "File '%1' does not exist"
 msgstr "ファイル '%1' は存在しません"
 
-#: Strings.rc:305
+#: Strings.rc:307
 msgid "Enter command line arguments for patch"
 msgstr "patch コマンドへ渡す引数を指定してください"
 
-#: Strings.rc:307
+#: Strings.rc:309
 #, c-format
 msgid "Enter folder name for patch '%1'"
 msgstr ""
@@ -9388,25 +9394,25 @@ msgstr ""
 "(※ 指定したフォルダ内のファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
 
 #. IDS_PLUGIN_APPLYPATCH_STR5
-#: Strings.rc:312
+#: Strings.rc:314
 #, c-format
 msgid "Folder '%1' does not exist"
 msgstr "フォルダー'%1' は存在しません"
 
-#: Strings.rc:314
+#: Strings.rc:316
 msgid "Do not use '-p0' for patch files with absolute paths"
 msgstr ""
 "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
 
-#: Strings.rc:320
+#: Strings.rc:322
 msgid "AI.sct WinMerge Plugin Options"
 msgstr "AI.sct WinMerge プラグイン オプション"
 
-#: Strings.rc:322
+#: Strings.rc:324
 msgid "Enter prompt"
 msgstr "プロンプトを入力してください"
 
-#: Strings.rc:324
+#: Strings.rc:326
 #, c-format
 msgid ""
 "Enter OpenAI API key.\r\n"
@@ -9417,26 +9423,26 @@ msgstr ""
 " ※ このプラグインを利用するには、OpenAIへの登録が必要であり、料金がかかります。\r\n"
 " ※ API キーは環境変数 %1 に保存されます。"
 
-#: Strings.rc:326
+#: Strings.rc:328
 msgid "Environment variable name for OpenAI API key"
 msgstr "OpenAI API キーを格納する環境変数名"
 
-#: Strings.rc:328
+#: Strings.rc:330
 msgid "OpenAI API key"
 msgstr "OpenAI API キー"
 
-#: Strings.rc:330
+#: Strings.rc:332
 msgid "Temperature"
 msgstr "Temperature"
 
-#: Strings.rc:332
+#: Strings.rc:334
 msgid "Maximum length"
 msgstr "Maximum length"
 
-#: Strings.rc:334
+#: Strings.rc:336
 msgid "Model"
 msgstr "モデル"
 
-#: Strings.rc:336
+#: Strings.rc:338
 msgid "OpenAI API key changed. Restart to apply."
 msgstr "OpenAI APIキーが変更されました。 変更を適用するには、WinMerge を再起動してください。"
