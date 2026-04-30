@@ -638,6 +638,9 @@ Source: ..\..\Build\msys2\*.*; DestDir: {app}\Commands\msys2; Flags: recursesubd
 ; HTML Tidy
 Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
 Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
+; cliphcat
+Source: ..\..\Build\cliphcat\cliphcat.exe; DestDir: {app}\Commands\cliphcat; DestName: cliphcat.exe; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\cliphcat\LICENSE; DestDir: {app}\Commands\cliphcat; Flags: recursesubdirs; Components: Plugins
 ; jq
 Source: ..\..\Build\jq\jq-windows-i386.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Plugins
 Source: ..\..\Build\jq\jq-jq-1.8.1\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins

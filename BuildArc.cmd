@@ -73,7 +73,7 @@ if "%1" == "x64" (
 )
 
 rem Create folder structure
-for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff darkmodelib Merge7z\Lang Commands\Apache-Tika Commands\tidy-html5 Commands\jq Commands\q Commands\msys2 Commands\md4c Resources) do (
+for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff darkmodelib Merge7z\Lang Commands\Apache-Tika Commands\cliphcat CCommands\tidy-html5 Commands\jq Commands\q Commands\msys2 Commands\md4c Resources) do (
   mkdir "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\%%i" 2> NUL
 )
 
@@ -188,6 +188,11 @@ copy Plugins\Commands\DownloadFiles.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMer
 rem Patch
 echo Copy Patch...
 robocopy Build\msys2 "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\msys2" /E /XF lemon*.* re2c*.* /XD lemon*.* re2c*.* > NUL
+
+rem Copy cliphcat...
+echo Copy cliphcat...
+copy Build\cliphcat\cliphcat.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\cliphcat\cliphcat.exe" > NUL
+copy Build\cliphcat\LICENSE "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\cliphcat\" > NUL
 
 rem Copy jq...
 echo Copy jq...
