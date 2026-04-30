@@ -3009,14 +3009,19 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		ScreenToClient(&clientPoint);
 		if (clientPoint.y >= GetTopMarginHeight())
 		{
-			CEPoint textPoint = ClientToText(clientPoint);
+			CPoint adjustedPoint = clientPoint;
+			AdjustTextPoint(adjustedPoint);
+			CEPoint textPoint = ClientToText(adjustedPoint);
 			if (IsValidTextPosY(textPoint))
 			{
 				if (!IsValidTextPosX(textPoint))
 					textPoint.x = GetLineLength(textPoint.y);
 				SetCursorPos(textPoint);
-				SetAnchor(textPoint);
-				SetSelection(textPoint, textPoint);
+				if (!IsSelection() || !IsInsideSelBlock(textPoint))
+				{
+					SetAnchor(textPoint);
+					SetSelection(textPoint, textPoint);
+				}
 			}
 		}
 	}
