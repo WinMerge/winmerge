@@ -921,6 +921,7 @@
   <ItemGroup>
     <ClCompile Include="7zCommon.cpp" />
     <ClCompile Include="AboutDlg.cpp" />
+    <ClCompile Include="ClipboardHistoryMenu.cpp" />
     <ClCompile Include="FileSaveHelper.cpp" />
     <ClCompile Include="BasicFlatStatusBar.cpp" />
     <ClCompile Include="ClipboardHistory.cpp" />
@@ -988,6 +989,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClInclude Include="ClipboardHistoryMenu.h" />
     <ClInclude Include="Common\ScopeExit.h" />
     <ClInclude Include="Common\ValidatingEdit.h" />
     <ClInclude Include="FileFilterHelperMenu.h" />

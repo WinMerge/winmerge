@@ -822,6 +822,12 @@
     <ClCompile Include="FileFilterHelperMenu.cpp">
       <Filter>MFCGui\Menu\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MruHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipboardHistoryMenu.cpp">
+      <Filter>MFCGui\Menu\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1567,6 +1573,9 @@
     </ClInclude>
     <ClInclude Include="MruHelper.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipboardHistoryMenu.h">
+      <Filter>MFCGui\Menu\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

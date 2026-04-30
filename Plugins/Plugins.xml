@@ -23,6 +23,17 @@
       <command>reg.exe export "${SRC_URL_SUFFIX}" "${DST_FILE}" /y ${*}</command>
     </unpack-file>
   </plugin>
+  <plugin name="HandleSchemeClipboard">
+    <event value="URL_PACK_UNPACK" />
+    <description value="Clipboard URL Scheme Handler (cliphcat).&#xD;&#xA;Arguments: cliphcat command line options." />
+    <file-filters value="^clip://.*$;^clipboard://.*$" />
+    <extended-properties value="ProcessType=URL Handling" />
+    <is-automatic value="true" />
+    <arguments value="" />
+    <unpack-file>
+      <command>"${WINMERGE_HOME}\Commands\cliphcat\cliphcat.exe" "${SRC_FILE}" -o "${DST_FILE}" ${*}</command>
+    </unpack-file>
+  </plugin>
   <plugin name="PrettifyHTML">
     <event value="FILE_PACK_UNPACK" />
     <description value="HTML Prettier (tidy-html5).&#xD;&#xA;Arguments: tidy command line options." />

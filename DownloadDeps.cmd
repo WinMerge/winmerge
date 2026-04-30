@@ -34,6 +34,7 @@ https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
 https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-windows-i386.exe!Build\jq ^
 https://github.com/jqlang/jq/archive/refs/tags/jq-1.8.1.zip!Build\jq ^
+https://github.com/sdottaka/cliphcat/releases/download/v0.2.0/cliphcat-0.2.0-exe.zip!Build\ ^
 https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
 https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.5.2-1-any.pkg.tar.zst!Build\md4c ^
 https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
@@ -96,6 +97,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\ColorSchemes 2> NUL
     mkdir Build\%%i\%%j\MergePlugins 2> NUL
     mkdir Build\%%i\%%j\Commands\jq 2> NUL
+    mkdir Build\%%i\%%j\Commands\cliphcat 2> NUL
     mkdir Build\%%i\%%j\Commands\tidy-html5 2> NUL
     mkdir Build\%%i\%%j\Commands\msys2\usr\bin 2> NUL
     mkdir Build\%%i\%%j\Commands\md4c 2> NUL
@@ -124,6 +126,9 @@ for %%i in (x86 x64 ARM ARM64) do (
     copy Build\msys2\usr\bin\patch.exe Build\%%i\%%j\Commands\msys2\usr\bin\
     copy Build\msys2\usr\bin\msys-2.0.dll Build\%%i\%%j\Commands\msys2\usr\bin\
     copy Build\msys2\usr\bin\msys-gcc_s-1.dll Build\%%i\%%j\Commands\msys2\usr\bin\
+    echo ** cliphcat
+    copy Build\cliphcat\cliphcat.exe Build\%%i\%%j\Commands\cliphcat\cliphcat.exe
+    copy Build\cliphcat\cliphcat\LICENSE Build\%%i\%%j\Commands\cliphcat\
     echo ** Commands
     xcopy /s/y Plugins\Commands Build\%%i\%%j\Commands
     echo ** Filters
