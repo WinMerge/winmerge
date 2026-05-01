@@ -69,16 +69,16 @@ static auto prop(int index, const String& name, const EvalContext& ectxt) -> Val
 		if (ectxt.di->diffcode.exists(index))
 		{
 			const String relpath = paths::ConcatPath(ectxt.di->diffFileInfo[index].path, ectxt.di->diffFileInfo[index].filename);
-			const String path = paths::ConcatPath(ectxt.ctxt->ctxt->GetPath(index), relpath);
-			ectxt.ctxt->ctxt->m_pPropertySystem->GetPropertyValues(path, *properties);
+			const String path = paths::ConcatPath(ectxt.expr->ctxt->GetPath(index), relpath);
+			ectxt.expr->ctxt->m_pPropertySystem->GetPropertyValues(path, *properties);
 		}
 		else
 		{
-			size_t numprops = ectxt.ctxt->ctxt->m_pPropertySystem->GetCanonicalNames().size();
+			size_t numprops = ectxt.expr->ctxt->m_pPropertySystem->GetCanonicalNames().size();
 			properties->Resize(numprops);
 		}
 	}
-	const int propindex = ectxt.ctxt->ctxt->m_pPropertySystem->GetPropertyIndex(name);
+	const int propindex = ectxt.expr->ctxt->m_pPropertySystem->GetPropertyIndex(name);
 	if (propindex < 0)
 		return std::monostate{};
 	return ConvertPROPVARIANTToValueType((*properties)[propindex]);
@@ -87,7 +87,7 @@ static auto prop(int index, const String& name, const EvalContext& ectxt) -> Val
 static auto propary(const String& name, const EvalContext& ectxt) -> ValueType
 {
 	std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
-	const int dirs = ectxt.ctxt->ctxt->GetCompareDirs();
+	const int dirs = ectxt.expr->ctxt->GetCompareDirs();
 	for (int i = 0; i < dirs; ++i)
 		values->emplace_back(ValueType2{ prop(i, name, ectxt) });
 	return values;
@@ -105,7 +105,7 @@ void FunctionNode::SetPropFunc()
 	const int propindex = propSys.GetPropertyIndex(propName);
 	if (propindex < 0)
 		throw InvalidPropertyNameError(strLit->value);
-	func = [propName](const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+	func = [propName](const EvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
 		{ return propary(propName, ectxt); };
 }
 
@@ -128,6 +128,6 @@ void FunctionNode::SetLeftMiddleRightPropFunc()
 		side = 1;
 	else if (functionName == "rightprop")
 		side = -1;
-	func = [propName, side](const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
-		{ return prop((side < 0) ? (ectxt.ctxt->ctxt->GetCompareDirs() - 1) : side, propName, ectxt); };
+	func = [propName, side](const EvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
+		{ return prop((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, propName, ectxt); };
 }

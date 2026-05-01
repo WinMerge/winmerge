@@ -32,7 +32,7 @@ public:
 
 struct EvalContext
 {
-	const FilterExpression* ctxt;
+	const FilterExpression* expr;
 	const DIFFITEM* di;
 };
 

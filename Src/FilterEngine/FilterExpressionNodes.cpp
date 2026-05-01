@@ -753,7 +753,7 @@ static auto FolderStatField(int index, const EvalContext& ectxt, Func func, bool
 		return std::monostate{};
 
 	const String relpath = paths::ConcatPath(ectxt.di->diffFileInfo[index].path, ectxt.di->diffFileInfo[index].filename);
-	const String fullPath = paths::ConcatPath(ectxt.ctxt->ctxt->GetPath(index), relpath);
+	const String fullPath = paths::ConcatPath(ectxt.expr->ctxt->GetPath(index), relpath);
 	FolderStats::FolderStatsResult stats = FolderStats::ScanFolder(fullPath, recursive);
 	return func(stats);
 }
@@ -848,7 +848,7 @@ static auto FileVersionField(int index, const EvalContext& ectxt) -> ValueType
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	if (ectxt.di->diffFileInfo[index].version.IsCleared())
-		ectxt.ctxt->ctxt->UpdateVersion(const_cast<DIFFITEM&>(*ectxt.di), index);
+		ectxt.expr->ctxt->UpdateVersion(const_cast<DIFFITEM&>(*ectxt.di), index);
 	return static_cast<int64_t>(ectxt.di->diffFileInfo[index].version.GetFileVersionQWORD());
 }
 
@@ -928,21 +928,21 @@ static auto BinaryField(int index, const EvalContext& ectxt) -> ValueType
 
 static auto DifferentLeftMiddleField(int index, const EvalContext& ectxt) -> ValueType
 {
-	if (ectxt.ctxt->ctxt->GetCompareDirs() < 3)
+	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF1STONLY) != 0;
 }
 
 static auto DifferentMiddleRightField(int index, const EvalContext& ectxt) -> ValueType
 {
-	if (ectxt.ctxt->ctxt->GetCompareDirs() < 3)
+	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF2NDONLY) != 0;
 }
 
 static auto DifferentLeftRightField(int index, const EvalContext& ectxt) -> ValueType
 {
-	if (ectxt.ctxt->ctxt->GetCompareDirs() >= 3)
+	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
 		return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF3RDONLY) != 0;
 	else
 		return ectxt.di->diffcode.existAll() && ectxt.di->diffcode.isResultDiff();
@@ -961,7 +961,7 @@ static auto FullPathField(int index, const EvalContext& ectxt) -> ValueType
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	const String relpath = paths::ConcatPath(ectxt.di->diffFileInfo[index].path, ectxt.di->diffFileInfo[index].filename);
-	return ucr::toUTF8(paths::ConcatPath(ectxt.ctxt->ctxt->GetPath(index), relpath));
+	return ucr::toUTF8(paths::ConcatPath(ectxt.expr->ctxt->GetPath(index), relpath));
 }
 
 static auto ContentField(int index, const EvalContext& ectxt) -> ValueType
@@ -970,7 +970,7 @@ static auto ContentField(int index, const EvalContext& ectxt) -> ValueType
 		return std::monostate{};
 	const String relpath = paths::ConcatPath(ectxt.di->diffFileInfo[index].path, ectxt.di->diffFileInfo[index].filename);
 	std::shared_ptr<FileContentRef> content{ new FileContentRef };
-	content->path = paths::ConcatPath(ectxt.ctxt->ctxt->GetPath(index), relpath);
+	content->path = paths::ConcatPath(ectxt.expr->ctxt->GetPath(index), relpath);
 	content->item.size = ectxt.di->diffFileInfo[index].size;
 	content->item.flags = ectxt.di->diffFileInfo[index].flags;
 	content->item.mtime = ectxt.di->diffFileInfo[index].mtime;
@@ -986,8 +986,8 @@ static auto UnpackerField(int index, const EvalContext& ectxt) -> ValueType
 		return std::monostate{};
 	PackingInfo* pInfoUnpacker = nullptr;
 	PrediffingInfo* pInfoPrediffer = nullptr;
-	String filteredFilenames = ectxt.ctxt->ctxt->GetFilteredFilenames(*ectxt.di);
-	const_cast<CDiffContext*>(ectxt.ctxt->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
+	String filteredFilenames = ectxt.expr->ctxt->GetFilteredFilenames(*ectxt.di);
+	const_cast<CDiffContext*>(ectxt.expr->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
 	return pInfoUnpacker ? ucr::toUTF8(pInfoUnpacker->GetPluginPipeline()) : std::string("");
 }
 
@@ -997,8 +997,8 @@ static auto PredifferField(int index, const EvalContext& ectxt) -> ValueType
 		return std::monostate{};
 	PackingInfo* pInfoUnpacker = nullptr;
 	PrediffingInfo* pInfoPrediffer = nullptr;
-	String filteredFilenames = ectxt.ctxt->ctxt->GetFilteredFilenames(*ectxt.di);
-	const_cast<CDiffContext*>(ectxt.ctxt->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
+	String filteredFilenames = ectxt.expr->ctxt->GetFilteredFilenames(*ectxt.di);
+	const_cast<CDiffContext*>(ectxt.expr->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
 	return pInfoPrediffer ? ucr::toUTF8(pInfoPrediffer->GetPluginPipeline()) : std::string("");
 }
 
@@ -1134,7 +1134,7 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
 	if (prefixlen > 0)
-		func = [side, functmp](const EvalContext& ectxt)-> ValueType { return functmp(side < 0 ? ectxt.ctxt->ctxt->GetCompareDirs() + side: side, ectxt); };
+		func = [side, functmp](const EvalContext& ectxt)-> ValueType { return functmp(side < 0 ? ectxt.expr->ctxt->GetCompareDirs() + side: side, ectxt); };
 	else
 	{
 		if (side == -2)
@@ -1144,7 +1144,7 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		else
 		{
 			func = [functmp](const EvalContext& ectxt)-> ValueType {
-				const int dirs = ectxt.ctxt->ctxt->GetCompareDirs();
+				const int dirs = ectxt.expr->ctxt->GetCompareDirs();
 				std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
 				for (int i = 0; i < dirs; ++i)
 					values->emplace_back(ValueType2{ functmp(i, ectxt) });
@@ -1446,7 +1446,7 @@ static auto ReplaceFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) 
 		try
 		{
 			std::string pattern = escapeRegex(*from);
-			const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.ctxt->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+			const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
 			auto regex = std::make_shared<Poco::RegularExpression>(pattern, flags);
 
 			auto replaceFn = [regex, to](const ValueType& val) -> ValueType
@@ -1484,7 +1484,7 @@ static auto RegexReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprN
 	std::shared_ptr<std::vector<ValueType2>> list2;
 	if (path)
 	{
-		list2 = ReplaceList::LoadRegexList(*ectxt.ctxt, ucr::toTString(*path));
+		list2 = ReplaceList::LoadRegexList(*ectxt.expr, ucr::toTString(*path));
 		list = &list2;
 	}
 
@@ -1511,7 +1511,7 @@ static auto RegexReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprN
 						}
 						else if (auto strPattern = std::get_if<std::string>(&(*arrayVal)->at(0).value))
 						{
-							const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.ctxt->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+							const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
 							Poco::RegularExpression regex(*strPattern, flags);
 							regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
 						}
@@ -1542,7 +1542,7 @@ static auto ReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprNode*>
 	std::shared_ptr<std::vector<ValueType2>> list2;
 	if (path)
 	{
-		list2 = ReplaceList::LoadList(*ectxt.ctxt, ucr::toTString(*path));
+		list2 = ReplaceList::LoadList(*ectxt.expr, ucr::toTString(*path));
 		list = &list2;
 	}
 
@@ -1577,12 +1577,12 @@ static auto ReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprNode*>
 
 static auto TodayFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
-	return *ectxt.ctxt->today;
+	return *ectxt.expr->today;
 }
 
 static auto NowFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
-	return *ectxt.ctxt->now;
+	return *ectxt.expr->now;
 }
 
 static auto StartOfWeekFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
@@ -1697,7 +1697,7 @@ static auto IsWithinFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args)
 					if (auto maxString = std::get_if<std::string>(&arg3))
 					{
 						int cmpMin, cmpMax;
-						if (!ectxt.ctxt->caseSensitive)
+						if (!ectxt.expr->caseSensitive)
 						{
 							cmpMin = Poco::icompare(*valString, *minString);
 							cmpMax = Poco::icompare(*valString, *maxString);
@@ -1776,7 +1776,7 @@ static auto InRangeFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) 
 					if (auto maxString = std::get_if<std::string>(&arg3))
 					{
 						int cmpMin, cmpMax;
-						if (!ectxt.ctxt->caseSensitive)
+						if (!ectxt.expr->caseSensitive)
 						{
 							cmpMin = Poco::icompare(*valString, *minString);
 							cmpMax = Poco::icompare(*valString, *maxString);
@@ -1863,7 +1863,7 @@ static auto RegexReplaceFunc(const EvalContext& ectxt, std::vector<ExprNode*>* a
 					(*rePattern)->subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
 					return result;
 				}
-				const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.ctxt->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+				const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
 				Poco::RegularExpression regex(*strPattern, flags);
 				std::string result = *strOpt;
 				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
@@ -1884,8 +1884,8 @@ static auto LogFunc(int level, const EvalContext& ectxt, std::vector<ExprNode*>*
 	std::string msg;
 
 	// Add filter name prefix if available
-	if (!ectxt.ctxt->name.empty())
-		msg = "[" + ectxt.ctxt->name + "] ";
+	if (!ectxt.expr->name.empty())
+		msg = "[" + ectxt.expr->name + "] ";
 
 	for (size_t i = 0; i < args->size(); ++i)
 	{
@@ -1894,7 +1894,7 @@ static auto LogFunc(int level, const EvalContext& ectxt, std::vector<ExprNode*>*
 			msg += " ";
 		msg += ToStringValue(val);
 	}
-	ectxt.ctxt->logger(level, msg);
+	ectxt.expr->logger(level, msg);
 	return val;
 }
 
@@ -2321,7 +2321,8 @@ FunctionNode::~FunctionNode()
 
 ExprNode* FunctionNode::Optimize()
 {
-	EvalContext ectxt{ ctxt, nullptr };
+	DIFFITEM di;
+	EvalContext ectxt{ ctxt, &di };
 	if (args)
 	{
 		for (auto& arg : *args)
