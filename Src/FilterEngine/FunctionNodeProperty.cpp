@@ -58,38 +58,38 @@ static ValueType ConvertPROPVARIANTToValueType(const PROPVARIANT& propvalue)
 	}
 }
 
-static auto prop(int index, const String& name, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+static auto prop(int index, const String& name, const EvalContext& ectxt) -> ValueType
 {
-	if (!di.diffcode.exists(index))
+	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
-	auto& properties = const_cast<DIFFITEM&>(di).diffFileInfo[index].m_pAdditionalProperties;
-	if (!di.diffFileInfo[index].m_pAdditionalProperties)
+	auto& properties = const_cast<DIFFITEM&>(*ectxt.di).diffFileInfo[index].m_pAdditionalProperties;
+	if (!ectxt.di->diffFileInfo[index].m_pAdditionalProperties)
 	{
 		properties.reset(new PropertyValues());
-		if (di.diffcode.exists(index))
+		if (ectxt.di->diffcode.exists(index))
 		{
-			const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
-			const String path = paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath);
-			ctxt->ctxt->m_pPropertySystem->GetPropertyValues(path, *properties);
+			const String relpath = paths::ConcatPath(ectxt.di->diffFileInfo[index].path, ectxt.di->diffFileInfo[index].filename);
+			const String path = paths::ConcatPath(ectxt.ctxt->ctxt->GetPath(index), relpath);
+			ectxt.ctxt->ctxt->m_pPropertySystem->GetPropertyValues(path, *properties);
 		}
 		else
 		{
-			size_t numprops = ctxt->ctxt->m_pPropertySystem->GetCanonicalNames().size();
+			size_t numprops = ectxt.ctxt->ctxt->m_pPropertySystem->GetCanonicalNames().size();
 			properties->Resize(numprops);
 		}
 	}
-	const int propindex = ctxt->ctxt->m_pPropertySystem->GetPropertyIndex(name);
+	const int propindex = ectxt.ctxt->ctxt->m_pPropertySystem->GetPropertyIndex(name);
 	if (propindex < 0)
 		return std::monostate{};
 	return ConvertPROPVARIANTToValueType((*properties)[propindex]);
 }
 
-static auto propary(const String& name, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+static auto propary(const String& name, const EvalContext& ectxt) -> ValueType
 {
 	std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
-	const int dirs = ctxt->ctxt->GetCompareDirs();
+	const int dirs = ectxt.ctxt->ctxt->GetCompareDirs();
 	for (int i = 0; i < dirs; ++i)
-		values->emplace_back(ValueType2{ prop(i, name, ctxt, di) });
+		values->emplace_back(ValueType2{ prop(i, name, ectxt) });
 	return values;
 }
 
@@ -105,8 +105,8 @@ void FunctionNode::SetPropFunc()
 	const int propindex = propSys.GetPropertyIndex(propName);
 	if (propindex < 0)
 		throw InvalidPropertyNameError(strLit->value);
-	func = [propName](const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
-		{ return propary(propName, ctxt, di); };
+	func = [propName](const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+		{ return propary(propName, ectxt); };
 }
 
 void FunctionNode::SetLeftMiddleRightPropFunc()
@@ -128,6 +128,6 @@ void FunctionNode::SetLeftMiddleRightPropFunc()
 		side = 1;
 	else if (functionName == "rightprop")
 		side = -1;
-	func = [propName, side](const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
-		{ return prop((side < 0) ? (ctxt->ctxt->GetCompareDirs() - 1) : side, propName, ctxt, di); };
+	func = [propName, side](const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+		{ return prop((side < 0) ? (ectxt.ctxt->ctxt->GetCompareDirs() - 1) : side, propName, ectxt); };
 }

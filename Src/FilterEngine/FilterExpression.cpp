@@ -352,7 +352,8 @@ bool FilterExpression::Evaluate(const DIFFITEM& di)
 {
 	try
 	{
-		const auto result = rootNode->Evaluate(di);
+		EvalContext ectxt{ this, &di };
+		const auto result = rootNode->Evaluate(ectxt);
 		return ContainsTrue(result);
 	}
 	catch (const Poco::RegularExpressionException& e)
@@ -394,7 +395,8 @@ std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
 {
 	try
 	{
-		const auto result = rootNode->Evaluate(di);
+		EvalContext ectxt{ this, &di };
+		const auto result = rootNode->Evaluate(ectxt);
 		return ConvertStringArray(result);
 	}
 	catch (const Poco::RegularExpressionException& e)
