@@ -685,16 +685,19 @@ void COpenView::OnSelectClipboardItem(UINT nId)
 {
 	const int itemIndex = nId - ID_EDITOR_CLIPBOARD_FIRST;
 	const int pathIndex = m_nLastDropDownButton - IDC_PATH0_BUTTON;
-
-	// Get clipboard history items
-	constexpr unsigned MAX_HISTORY_ITEMS = 15;
-	if (itemIndex < 0 || static_cast<size_t>(itemIndex) >= m_cachedClipboardItems.size())
+	if (itemIndex < 0 || static_cast<size_t>(itemIndex) >= m_cachedClipboardItems.size() || pathIndex < 0 || pathIndex >= std::size(m_strPath))
 		return;
 
 	const auto& item = m_cachedClipboardItems[itemIndex];
 
 	// Generate clipboard URL (1-based index for user-facing URL)
-	String url = strutils::format(_T("clip://%d"), itemIndex + 1);
+	String url = _T("clipboard://");
+	if (itemIndex == 0)
+		url += _T("latest");
+	else if (itemIndex == 1)
+		url += _T("previous");
+	else
+		url += strutils::to_str(itemIndex + 1);
 
 	// Add format parameter for images
 	if (item.pBitmapTempFile)
