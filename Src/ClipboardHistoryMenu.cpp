@@ -32,7 +32,6 @@ namespace ClipboardHistoryMenu
 		{
 			const auto& item = items[i];
 
-			// Prepare display text with image prefix if applicable
 			String displayName = item.previewText;
 
 			// Truncate long text

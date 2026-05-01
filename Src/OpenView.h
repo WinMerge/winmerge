@@ -15,12 +15,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // COpenView window
 #include "SuperComboBox.h"
-#include "FileTransform.h"
 #include "PathContext.h"
 #include "CMoveConstraint.h"
 #include "TrDialogs.h"
 #include "ValidatingEdit.h"
 #include "FileFilterHelperMenu.h"
+#include "ClipboardHistory.h"
 #include <array>
 
 class ProjectFile;
@@ -99,6 +99,7 @@ private:
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
 	UINT m_nLastDropDownButton; /**< ID of last browse button that showed dropdown */
 	HTHEME m_hTheme; /**< Theme used for size grip on Vista and greater */
+	std::vector<ClipboardHistory::Item> m_cachedClipboardItems; /**< Cached clipboard items for menu consistency */
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

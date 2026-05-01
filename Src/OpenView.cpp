@@ -688,11 +688,10 @@ void COpenView::OnSelectClipboardItem(UINT nId)
 
 	// Get clipboard history items
 	constexpr unsigned MAX_HISTORY_ITEMS = 15;
-	auto clipboardItems = ClipboardHistory::GetItems(MAX_HISTORY_ITEMS);
-	if (itemIndex < 0 || static_cast<size_t>(itemIndex) >= clipboardItems.size())
+	if (itemIndex < 0 || static_cast<size_t>(itemIndex) >= m_cachedClipboardItems.size())
 		return;
 
-	const auto& item = clipboardItems[itemIndex];
+	const auto& item = m_cachedClipboardItems[itemIndex];
 
 	// Generate clipboard URL (1-based index for user-facing URL)
 	String url = strutils::format(_T("clip://%d"), itemIndex + 1);
@@ -1153,8 +1152,8 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 
 			// Get clipboard history items
 			constexpr unsigned MAX_HISTORY_ITEMS = 15;
-			auto clipboardItems = ClipboardHistory::GetItems(MAX_HISTORY_ITEMS);
-			ClipboardHistoryMenu::PopulateMenu(pPopup, clipboardItems, ID_EDITOR_CLIPBOARD_FIRST, ID_EDITOR_CLIPBOARD_LAST);
+			m_cachedClipboardItems = ClipboardHistory::GetItems(MAX_HISTORY_ITEMS);
+			ClipboardHistoryMenu::PopulateMenu(pPopup, m_cachedClipboardItems, ID_EDITOR_CLIPBOARD_FIRST, ID_EDITOR_CLIPBOARD_LAST);
 		}
 		else if (nID == IDOK && GetDlgItem(IDC_UNPACKER_COMBO)->IsWindowEnabled())
 		{
