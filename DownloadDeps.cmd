@@ -128,7 +128,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     copy Build\msys2\usr\bin\msys-gcc_s-1.dll Build\%%i\%%j\Commands\msys2\usr\bin\
     echo ** cliphcat
     copy Build\cliphcat\cliphcat.exe Build\%%i\%%j\Commands\cliphcat\cliphcat.exe
-    copy Build\cliphcat\cliphcat\LICENSE Build\%%i\%%j\Commands\cliphcat\
+    copy Build\cliphcat\LICENSE Build\%%i\%%j\Commands\cliphcat\
     echo ** Commands
     xcopy /s/y Plugins\Commands Build\%%i\%%j\Commands
     echo ** Filters
