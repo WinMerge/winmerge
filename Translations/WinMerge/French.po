@@ -1619,7 +1619,7 @@ msgstr "&Tous"
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_SELECTION
 #: Merge.rc:982 Merge.rc:2038
 msgid "&Selection"
-msgstr "&sélection"
+msgstr "&Sélection"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_ITEM_RENAME
 #: Merge.rc:984
