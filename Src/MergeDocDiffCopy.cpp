@@ -863,14 +863,14 @@ static int FindWordDiffIndex(const std::vector<WordDiff>& worddiffs, const CEPoi
 		{
 			// Check if pt is within this worddiff
 			if ((pt.y < worddiffs[i].endline[pane]) ||
-				(pt.y == worddiffs[i].endline[pane] && pt.x <= worddiffs[i].end[pane]))
+				(pt.y == worddiffs[i].endline[pane] && pt.x < worddiffs[i].end[pane]))
 			{
 				// pt is within this worddiff
 				wordDiffIndex = i;
 				inDiff = true;
 				break;
 			}
-			else if ((pt.y == worddiffs[i].endline[pane] && pt.x > worddiffs[i].end[pane]) ||
+			else if ((pt.y == worddiffs[i].endline[pane] && pt.x >= worddiffs[i].end[pane]) ||
 					 (pt.y > worddiffs[i].endline[pane]))
 			{
 				// pt is after this worddiff, continue searching
@@ -894,7 +894,7 @@ static bool IsPointInWordDiff(const WordDiff& wdiff, const CEPoint& pt, int pane
 		(pt.y == wdiff.beginline[pane] && pt.x >= wdiff.begin[pane]))
 	{
 		if ((pt.y < wdiff.endline[pane]) ||
-			(pt.y == wdiff.endline[pane] && pt.x <= wdiff.end[pane]))
+			(pt.y == wdiff.endline[pane] && pt.x < wdiff.end[pane]))
 		{
 			return true;
 		}
