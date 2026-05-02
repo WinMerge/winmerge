@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 25.04.2026\n"
+"Project-Id-Version: WinMerge - Italian - 02.05.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-04-25 09:19+0100\n"
+"PO-Revision-Date: 2026-05-02 10:30+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -9213,7 +9213,7 @@ msgstr "Decompilatore Java (CFR).\r\nDecompila i file .class in codice sorgente 
 
 #: Strings.rc:206
 msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
-msgstr ""
+msgstr "Gestore schema URL Appunti (cliphcat).\r\nArgomenti: opzioni riga di comando cliphcat."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
