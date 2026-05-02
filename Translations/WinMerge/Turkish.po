@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-04-25 13:23+0300\n"
+"PO-Revision-Date: 2026-05-02 14:22+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -154,9 +154,7 @@ msgid "&Scripts"
 msgstr "&Betikler"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:123 Merge.rc:340 Merge.rc:451 Merge.rc:661 Merge.rc:666
-#: Merge.rc:872 Merge.rc:884 Merge.rc:891 Merge.rc:948 Merge.rc:1194
-#: Merge.rc:5048
+#: Merge.rc:123 Merge.rc:340 Merge.rc:451 Merge.rc:661 Merge.rc:666 Merge.rc:872 Merge.rc:884 Merge.rc:891 Merge.rc:948 Merge.rc:1194 Merge.rc:5048
 msgid "< Empty >"
 msgstr "< Boş >"
 
@@ -236,8 +234,7 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "&Ekleme/silme algılansın"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:360 Merge.rc:511
-#: Merge.rc:758
+#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:360 Merge.rc:511 Merge.rc:758
 msgid "&None"
 msgstr "&Yok"
 
@@ -487,39 +484,32 @@ msgid "&New"
 msgstr "&Yeni"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TEXT
-#: Merge.rc:314 Merge.rc:323 Merge.rc:417 Merge.rc:426 Merge.rc:594
-#: Merge.rc:603 Merge.rc:655 Merge.rc:942 Merge.rc:1168 Merge.rc:1181
+#: Merge.rc:314 Merge.rc:323 Merge.rc:417 Merge.rc:426 Merge.rc:594 Merge.rc:603 Merge.rc:655 Merge.rc:942 Merge.rc:1168 Merge.rc:1181
 msgid "&Text"
 msgstr "Me&tin"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:315 Merge.rc:324 Merge.rc:418 Merge.rc:427 Merge.rc:595
-#: Merge.rc:604 Merge.rc:656 Merge.rc:943 Merge.rc:1169 Merge.rc:1182
+#: Merge.rc:315 Merge.rc:324 Merge.rc:418 Merge.rc:427 Merge.rc:595 Merge.rc:604 Merge.rc:656 Merge.rc:943 Merge.rc:1169 Merge.rc:1182
 msgid "T&able"
 msgstr "T&ablo"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:316 Merge.rc:325 Merge.rc:419 Merge.rc:428 Merge.rc:596
-#: Merge.rc:605 Merge.rc:657 Merge.rc:944 Merge.rc:1170 Merge.rc:1183
+#: Merge.rc:316 Merge.rc:325 Merge.rc:419 Merge.rc:428 Merge.rc:596 Merge.rc:605 Merge.rc:657 Merge.rc:944 Merge.rc:1170 Merge.rc:1183
 msgid "&Binary"
 msgstr "&Binary"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:317 Merge.rc:326 Merge.rc:420 Merge.rc:429 Merge.rc:597
-#: Merge.rc:606 Merge.rc:658 Merge.rc:945 Merge.rc:1171 Merge.rc:1184
-#: Merge.rc:5143
+#: Merge.rc:317 Merge.rc:326 Merge.rc:420 Merge.rc:429 Merge.rc:597 Merge.rc:606 Merge.rc:658 Merge.rc:945 Merge.rc:1171 Merge.rc:1184 Merge.rc:5143
 msgid "&Image"
 msgstr "&Görsel"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:318 Merge.rc:327 Merge.rc:421 Merge.rc:430 Merge.rc:598
-#: Merge.rc:607 Merge.rc:659 Merge.rc:946 Merge.rc:1172 Merge.rc:1185
+#: Merge.rc:318 Merge.rc:327 Merge.rc:421 Merge.rc:430 Merge.rc:598 Merge.rc:607 Merge.rc:659 Merge.rc:946 Merge.rc:1172 Merge.rc:1185
 msgid "&Webpage"
 msgstr "İnternet &sitesi"
 
 #. IDR_POPUP_NEW, ID_FILE_NEW_FOLDER
-#: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
-#: Merge.rc:608 Merge.rc:1173
+#: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599 Merge.rc:608 Merge.rc:1173
 msgid "&Folder"
 msgstr "&Klasör"
 
@@ -1369,14 +1359,12 @@ msgid "Copy from &Left to"
 msgstr "So&ldan şuraya kopyala"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:806 Merge.rc:817 Merge.rc:822 Merge.rc:833 Merge.rc:978
-#: Merge.rc:2564 Merge.rc:2836
+#: Merge.rc:806 Merge.rc:817 Merge.rc:822 Merge.rc:833 Merge.rc:978 Merge.rc:2564 Merge.rc:2836
 msgid "&Middle"
 msgstr "&Ortaya"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:807 Merge.rc:812 Merge.rc:823 Merge.rc:828 Merge.rc:979
-#: Merge.rc:2565 Merge.rc:2838
+#: Merge.rc:807 Merge.rc:812 Merge.rc:823 Merge.rc:828 Merge.rc:979 Merge.rc:2565 Merge.rc:2838
 msgid "&Right"
 msgstr "&Sağa"
 
@@ -1386,8 +1374,7 @@ msgid "Copy from &Middle to"
 msgstr "Or&tadan şuraya kopyala"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:811 Merge.rc:816 Merge.rc:827 Merge.rc:832 Merge.rc:977
-#: Merge.rc:2563 Merge.rc:2834
+#: Merge.rc:811 Merge.rc:816 Merge.rc:827 Merge.rc:832 Merge.rc:977 Merge.rc:2563 Merge.rc:2834
 msgid "&Left"
 msgstr "So&la"
 
@@ -2199,8 +2186,7 @@ msgid "1GB or more"
 msgstr "1 GB veya daha fazla"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_RANGE
-#: Merge.rc:1407 Merge.rc:1484 Merge.rc:1536 Merge.rc:1542 Merge.rc:1559
-#: Merge.rc:1585 Merge.rc:1606 Merge.rc:1662 Merge.rc:1728 Merge.rc:1753
+#: Merge.rc:1407 Merge.rc:1484 Merge.rc:1536 Merge.rc:1542 Merge.rc:1559 Merge.rc:1585 Merge.rc:1606 Merge.rc:1662 Merge.rc:1728 Merge.rc:1753
 msgid "Custom Range..."
 msgstr "Özel aralık..."
 
@@ -2570,14 +2556,12 @@ msgid "Add &Difference Condition"
 msgstr "&Fark Koşulu Ekle"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_EQUAL
-#: Merge.rc:1572 Merge.rc:1589 Merge.rc:1610 Merge.rc:1715 Merge.rc:1736
-#: Merge.rc:1761
+#: Merge.rc:1572 Merge.rc:1589 Merge.rc:1610 Merge.rc:1715 Merge.rc:1736 Merge.rc:1761
 msgid "Equal"
 msgstr "Eşit"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
-#: Merge.rc:1573 Merge.rc:1590 Merge.rc:1611 Merge.rc:1716 Merge.rc:1737
-#: Merge.rc:1762
+#: Merge.rc:1573 Merge.rc:1590 Merge.rc:1611 Merge.rc:1716 Merge.rc:1737 Merge.rc:1762
 msgid "Not Equal"
 msgstr "Eşit Değil"
 
@@ -2882,10 +2866,8 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "WinMerge sitesini ziyaret edin!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:1957 Merge.rc:2099 Merge.rc:2450 Merge.rc:2474 Merge.rc:2488
-#: Merge.rc:2516 Merge.rc:2607 Merge.rc:2632 Merge.rc:2693 Merge.rc:2710
-#: Merge.rc:2722 Merge.rc:2886 Merge.rc:2946 Merge.rc:3081 Merge.rc:3123
-#: Merge.rc:3166 Merge.rc:3216
+#: Merge.rc:1957 Merge.rc:2099 Merge.rc:2450 Merge.rc:2474 Merge.rc:2488 Merge.rc:2516 Merge.rc:2607 Merge.rc:2632 Merge.rc:2693 Merge.rc:2710 Merge.rc:2722 Merge.rc:2886 Merge.rc:2946
+#: Merge.rc:3081 Merge.rc:3123 Merge.rc:3166 Merge.rc:3216
 msgid "OK"
 msgstr "Tamam"
 
@@ -2985,11 +2967,8 @@ msgid "Se&lect..."
 msgstr "&Seç..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:2000 Merge.rc:2020 Merge.rc:2044 Merge.rc:2065 Merge.rc:2100
-#: Merge.rc:2451 Merge.rc:2475 Merge.rc:2489 Merge.rc:2517 Merge.rc:2570
-#: Merge.rc:2608 Merge.rc:2633 Merge.rc:2694 Merge.rc:2711 Merge.rc:2723
-#: Merge.rc:2887 Merge.rc:2947 Merge.rc:3106 Merge.rc:3124 Merge.rc:3167
-#: Merge.rc:3217
+#: Merge.rc:2000 Merge.rc:2020 Merge.rc:2044 Merge.rc:2065 Merge.rc:2100 Merge.rc:2451 Merge.rc:2475 Merge.rc:2489 Merge.rc:2517 Merge.rc:2570 Merge.rc:2608 Merge.rc:2633 Merge.rc:2694
+#: Merge.rc:2711 Merge.rc:2723 Merge.rc:2887 Merge.rc:2947 Merge.rc:3106 Merge.rc:3124 Merge.rc:3167 Merge.rc:3217
 msgid "Cancel"
 msgstr "İptal"
 
@@ -3249,10 +3228,8 @@ msgid "Language:"
 msgstr "Dil:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2138 Merge.rc:2318 Merge.rc:2340 Merge.rc:2371 Merge.rc:2388
-#: Merge.rc:2405 Merge.rc:2413 Merge.rc:2449 Merge.rc:2473 Merge.rc:2652
-#: Merge.rc:2663 Merge.rc:2672 Merge.rc:2906 Merge.rc:2941 Merge.rc:3004
-#: Merge.rc:3029 Merge.rc:3043 Merge.rc:3057 Merge.rc:3073
+#: Merge.rc:2138 Merge.rc:2318 Merge.rc:2340 Merge.rc:2371 Merge.rc:2388 Merge.rc:2405 Merge.rc:2413 Merge.rc:2449 Merge.rc:2473 Merge.rc:2652 Merge.rc:2663 Merge.rc:2672 Merge.rc:2906
+#: Merge.rc:2941 Merge.rc:3004 Merge.rc:3029 Merge.rc:3043 Merge.rc:3057 Merge.rc:3073
 msgid "Defaults"
 msgstr "Varsayılanlar"
 
@@ -3402,8 +3379,7 @@ msgid "User 2:"
 msgstr "2. kullanıcı:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2228 Merge.rc:2230 Merge.rc:2232 Merge.rc:2234 Merge.rc:2236
-#: Merge.rc:2238 Merge.rc:2240 Merge.rc:2242 Merge.rc:2244
+#: Merge.rc:2228 Merge.rc:2230 Merge.rc:2232 Merge.rc:2234 Merge.rc:2236 Merge.rc:2238 Merge.rc:2240 Merge.rc:2242 Merge.rc:2244
 msgid "Bold"
 msgstr "Koyu"
 
@@ -9184,8 +9160,12 @@ msgstr ""
 "Parametreler: CFR komut satırı seçenekleri."
 
 #: Strings.rc:206
-msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+msgid ""
+"Clipboard URL Scheme Handler (cliphcat).\r\n"
+"Arguments: cliphcat command line options."
 msgstr ""
+"Pano URL şeması işleyicisi (cliphcat).\r\n"
+"Parametreler: cliphcat komut satırı seçenekleri."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
