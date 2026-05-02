@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:26 Merge.rc:59 Merge.rc:5475
@@ -270,7 +270,7 @@ msgstr "P&ainel Ativo"
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_RIGHT_90
 #: Merge.rc:185 Merge.rc:1244
 msgid "Rotate &Right 90deg"
-msgstr "&Rotacionar 90 graus para a direita"
+msgstr "Rotacionar 90 graus para a &direita"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_LEFT_90
 #: Merge.rc:186 Merge.rc:1245
@@ -902,7 +902,7 @@ msgstr "&Retrair Todas as Subpastas"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:492
 msgid "Show &Empty Folders"
-msgstr "Mostrar Pastas Vazias"
+msgstr "Mostrar Pastas &Vazias"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:494 Merge.rc:704
@@ -2700,7 +2700,7 @@ msgstr "Apenas arquivos binários"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1640
 msgid "Text files only"
-msgstr "Apenas arquivos texto"
+msgstr "Apenas arquivos de texto"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CLEAR
 #: Merge.rc:1774
@@ -2775,17 +2775,17 @@ msgstr "Inserir Função rege&xReplace()"
 #. IDR_POPUP_RENAMEMOVE_MENU
 #: Merge.rc:1801
 msgid "Replace &Lists"
-msgstr "Substituir &Listas"
+msgstr "&Listas de Substituição"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_CREATE_REPLACELIST
 #: Merge.rc:1803
 msgid "&Create String Replace List and Insert..."
-msgstr "&Criar Lista de Substituição de String e Adicionar..."
+msgstr "&Criar Lista de Substituição de String e Inserir..."
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_CREATE_REGEXREPLACELIST
 #: Merge.rc:1804
 msgid "Create &Regex Replace List and Insert..."
-msgstr "Criar Lista de Substituição &Regex e Adicionar..."
+msgstr "Criar Lista de Substituição de &Regex e Inserir..."
 
 #. IDR_POPUP_RENAMEMOVE_MENU
 #: Merge.rc:1806
@@ -4627,7 +4627,7 @@ msgstr "C&haves de detecção de renomear/mover:"
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3002
 msgid "M&erge renames and moves:"
-msgstr "Unir renom&eados e movidos:"
+msgstr "Unir renom&eações e movimentações:"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
 #: Merge.rc:3013 Merge.rc:3018 Merge.rc:3021
@@ -5104,7 +5104,7 @@ msgstr "Arquivos de Opções (*.ini)|*.ini|Todos os Arquivos (*.*)|*.*||"
 #. IDS_REPLACELIST_FILES
 #: Merge.rc:4287
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr "Valores Separados por Tab (*.tsv;*.txt)|*.tsv;*.txt|Todos os Arquivos (*.*)|*.*||"
+msgstr "Valores Separados por Tabulação (*.tsv;*.txt)|*.tsv;*.txt|Todos os Arquivos (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4293
@@ -6274,7 +6274,7 @@ msgstr " (O da esquerda e o do meio são idênticos)"
 #. IDS_PATH_MISMATCH
 #: Merge.rc:4734
 msgid " (paths differ)"
-msgstr " (diferenças nos caminhos)"
+msgstr " (os caminhos diferem)"
 
 #. IDS_TEXT_FILES_DIFF
 #: Merge.rc:4735
@@ -6322,12 +6322,12 @@ msgstr "Detectar renomeações e movimentações"
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
 #: Merge.rc:4743
 msgid "Merge renames"
-msgstr "Unir renomeados"
+msgstr "Unir renomeações"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
 #: Merge.rc:4744
 msgid "Merge renames and moves"
-msgstr "Unir renomeados e movidos"
+msgstr "Unir renomeações e movimentações"
 
 #. IDS_RENAMED
 #: Merge.rc:4745
@@ -6359,7 +6359,7 @@ msgstr "%1 (conjunto %2): "
 #. IDS_SWITCH_FLAT_MODE
 #: Merge.rc:4750
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr "Alguns itens movidos foram unidos.\nNo Modo Árvore, estes itens podem aparecer em posições que não refletem a estrutura real da pasta, o que pode ser confuso.\nAlternar para Modo Normal?"
+msgstr "Alguns itens movidos foram unidos.\nNo Modo Árvore, esses itens podem aparecer em posições que não refletem a estrutura real da pasta, o que pode causar confusão.\nAlternar para o Modo Nivelado?"
 
 #. IDS_ELAPSED_TIME
 #: Merge.rc:4756
@@ -7498,7 +7498,7 @@ msgstr "Permitir que apenas uma instância seja executada"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5257
 msgid "Clipboard &History"
-msgstr "&Histórico de Área de Transferência"
+msgstr "&Histórico da Área de Transferência"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5258
@@ -8032,22 +8032,22 @@ msgstr "Não Contém (regex)"
 #. IDS_FILTER_OP_LIKE
 #: Merge.rc:5432
 msgid "Match (wildcard)"
-msgstr "Corresponde (coringa)"
+msgstr "Correspondência (curinga)"
 
 #. IDS_FILTER_OP_NOT_LIKE
 #: Merge.rc:5433
 msgid "Not match (wildcard)"
-msgstr "Não corresponde (coringa)"
+msgstr "Sem correspondência (curinga)"
 
 #. IDS_FILTER_OP_MATCHES
 #: Merge.rc:5434
 msgid "Match (regex)"
-msgstr "Corresponde (regex)"
+msgstr "Correspondência (regex)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
 #: Merge.rc:5435
 msgid "Not match (regex)"
-msgstr "Não corresponde (regex)"
+msgstr "Sem correspondência (regex)"
 
 #. IDS_COLORMODE_LIGHT
 #: Merge.rc:5440
@@ -8073,17 +8073,17 @@ msgstr "p.ex. %1"
 #. IDS_DETECTED_PREVIOUS_CRASH
 #: Merge.rc:5452
 msgid "WinMerge detected a previous crash. Please report this if possible."
-msgstr "O WinMerge detectou um travamento ocorrido. Por favor, relate-o, se possível."
+msgstr "O WinMerge detectou uma falha anterior. Por favor, relate isso se possível."
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
 #: Merge.rc:5457
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr "# Lista de substituição Regex\r\n# Formato: regex<TAB>substituto\r\n# Referências anteriores como $1, $2 são suportadas\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr "# Lista de substituição de regex\r\n# Formato: regex<TAB>substituição\r\n# Referências anteriores como $1, $2 são suportadas\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
 #: Merge.rc:5458
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
-msgstr "# Lista de substuição\r\n# Formato: busca<TAB>substituto\r\n# Linhas começando com # são ignoradas\r\n\r\nde1\tpara1\r\nde2\tpara2\r\n"
+msgstr "# Lista de substituição\r\n# Formato: busca<TAB>substituição\r\n# Linhas começando com # são ignoradas\r\n\r\nde1\tpara1\r\nde2\tpara2\r\n"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
@@ -8383,7 +8383,7 @@ msgstr "Inverter linhas"
 #. IDS_PLUGIN_DESCRIPTION9
 #: Strings.rc:123
 msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
-msgstr "Substituir texto.\r\nUso: Replace [-i] [-e] FIND REPLACE\r\n ou: Replace -s\r\n FIND - texto a encontrar\r\n REPLACE - texto para substituir\r\n  -i - ignorar maiúsculas/minúsculas (apenas para -e)\r\n -e - expressão regular\r\n -s - usar Filtros de Substituição"
+msgstr "Substituir texto.\r\nUso: Replace [-i] [-e] FIND REPLACE\r\n ou: Replace -s\r\n FIND - texto a encontrar\r\n REPLACE - texto para substituir\r\n  -i - ignorar maiúsculas/minúsculas (apenas para -e)\r\n -e - regex\r\n -s - usar Filtros de Substituição"
 
 #: Strings.rc:125
 #, c-format
@@ -8392,7 +8392,7 @@ msgstr "Aplicar filtro. \r\nUso: ExecFilterCommand COMMAND\r\n COMMAND - comando
 
 #: Strings.rc:127
 msgid "Tokenize. \r\nUsage: Tokenize PATTERNS\r\n PATTERNS - regex (e.g. [^\\w]+)"
-msgstr "Simbolizar. \r\nUso: Tokenize PATTERNS\r\n  PATTERNS - expressão regular (por ex., [^\\w]+)"
+msgstr "Simbolizar. \r\nUso: Tokenize PATTERNS\r\n  PATTERNS - regex (por ex., [^\\w]+)"
 
 #. IDS_PLUGIN_DESCRIPTION12
 #: Strings.rc:128
@@ -8401,11 +8401,11 @@ msgstr "Aparar espaços"
 
 #: Strings.rc:130
 msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
-msgstr "Selecionar colunas.\r\nUso: SelectColumns RANGES\r\n ou: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - intervalos de colunas (-3,5-10,30-)\r\n PATTERNS - expressão regular\r\n -v - selecionar não correspondentes\r\n -i - ignorar maiúsculas/minúsculas\r\n -g - habilitar sinalizador global\r\n -e - usar PATTERNS"
+msgstr "Selecionar colunas.\r\nUso: SelectColumns RANGES\r\n ou: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - intervalos de colunas (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - selecionar não correspondentes\r\n -i - ignorar maiúsculas/minúsculas\r\n -g - habilitar sinalizador global\r\n -e - usar PATTERNS"
 
 #: Strings.rc:132
 msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
-msgstr "Selecionar linhas.\r\nUso: SelectLines RANGES\r\n ou: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - intervalos de linhas (-3,5-10,30-)\r\n PATTERNS - expressão regular\r\n -v - selecionar não correspondentes\r\n -i - ignorar maiúsculas/minúsculas\r\n -e - usar PATTERNS"
+msgstr "Selecionar linhas.\r\nUso: SelectLines RANGES\r\n ou: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - intervalos de linhas (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - selecionar não correspondentes\r\n -i - ignorar maiúsculas/minúsculas\r\n -e - usar PATTERNS"
 
 #: Strings.rc:138
 msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
@@ -8636,7 +8636,7 @@ msgstr "Substituir quebras de linha em fórmulas com espaços"
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR15
 #: Strings.rc:229
 msgid "Include sheet order number in filename"
-msgstr "Incluir número de sequência de aba de planilha no nome do arquivo"
+msgstr "Incluir o número de ordem da planilha no nome do arquivo"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR5
 #: Strings.rc:234 Strings.rc:245 Strings.rc:265 Strings.rc:277
