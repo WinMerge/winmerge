@@ -809,6 +809,7 @@ static int GetDistance(const CDiffTextBuffer& buf, const CEPoint& pt1, const CEP
 		if (y == pt2.y)
 			distance -= buf.GetFullLineLength(y) - pt2.x;
 	}
+	assert(distance >= 0);
 	return distance;
 };
 
@@ -842,6 +843,106 @@ static CEPoint Advance(const CDiffTextBuffer& buf, const CEPoint& pt, int distan
 	return ptMoved;
 }
 
+/**
+ * @brief Find the word diff index that contains or precedes the given point
+ * @param [in] worddiffs Array of word diffs
+ * @param [in] pt Point to check
+ * @param [in] pane Pane index
+ * @param [out] inDiff True if the point is within a word diff, false otherwise
+ * @return Index of the word diff, or -1 if not found
+ */
+static int FindWordDiffIndex(const std::vector<WordDiff>& worddiffs, const CEPoint& pt, int pane, bool& inDiff)
+{
+	int wordDiffIndex = -1;
+	inDiff = false;
+	for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
+	{
+		// Check if pt is at or after the beginning of this worddiff
+		if ((pt.y > worddiffs[i].beginline[pane]) ||
+			(pt.y == worddiffs[i].beginline[pane] && pt.x >= worddiffs[i].begin[pane]))
+		{
+			// Check if pt is within this worddiff
+			if ((pt.y < worddiffs[i].endline[pane]) ||
+				(pt.y == worddiffs[i].endline[pane] && pt.x < worddiffs[i].end[pane]))
+			{
+				// pt is within this worddiff
+				wordDiffIndex = i;
+				inDiff = true;
+				break;
+			}
+			else if ((pt.y == worddiffs[i].endline[pane] && pt.x >= worddiffs[i].end[pane]) ||
+					 (pt.y > worddiffs[i].endline[pane]))
+			{
+				// pt is after this worddiff, continue searching
+				wordDiffIndex = i;
+			}
+		}
+	}
+	return wordDiffIndex;
+}
+
+/**
+ * @brief Check if a point is within a word diff
+ * @param [in] wdiff Word diff to check against
+ * @param [in] pt Point to check
+ * @param [in] pane Pane index
+ * @return True if the point is within the word diff, false otherwise
+ */
+static bool IsPointInWordDiff(const WordDiff& wdiff, const CEPoint& pt, int pane)
+{
+	if ((pt.y > wdiff.beginline[pane]) ||
+		(pt.y == wdiff.beginline[pane] && pt.x >= wdiff.begin[pane]))
+	{
+		if ((pt.y < wdiff.endline[pane]) ||
+			(pt.y == wdiff.endline[pane] && pt.x < wdiff.end[pane]))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * @brief Calculate the corresponding point in the target pane for a point in the active pane
+ * @param [in] wdiff Word diff containing the point
+ * @param [in] pt Point in the active pane
+ * @param [in] activePane Active pane index
+ * @param [in] targetPane Target pane index
+ * @param [in] ptInDiff True if pt is within the word diff
+ * @param [in] bufActive Active pane buffer
+ * @param [in] bufTarget Target pane buffer
+ * @return Corresponding point in the target pane
+ */
+static CEPoint CalculateCorrespondingPoint(const WordDiff& wdiff, const CEPoint& pt, int activePane, int targetPane,
+	bool ptInDiff, const CDiffTextBuffer& bufActive, const CDiffTextBuffer& bufTarget)
+{
+	if (ptInDiff)
+	{
+		// Point is within the word diff - calculate relative position
+		const int distanceFromBegin = GetDistance(bufActive, 
+			CEPoint{ wdiff.begin[activePane], wdiff.beginline[activePane] }, pt);
+		const int targetWordDiffLength = GetDistance(bufTarget, 
+			CEPoint{ wdiff.begin[targetPane], wdiff.beginline[targetPane] }, 
+			CEPoint{ wdiff.end[targetPane], wdiff.endline[targetPane] });
+		// Cap at the word diff length to avoid going beyond it
+		const int adjustedDistance = (std::min)(distanceFromBegin, targetWordDiffLength);
+		CEPoint ptTarget = Advance(bufTarget, 
+			CEPoint{ wdiff.begin[targetPane], wdiff.beginline[targetPane] }, adjustedDistance);
+		// Double-check the result is within the word diff
+		if (!IsPointInWordDiff(wdiff, ptTarget, targetPane))
+			ptTarget = CEPoint{ wdiff.end[targetPane], wdiff.endline[targetPane] };
+		return ptTarget;
+	}
+	else
+	{
+		// Point is after the word diff - calculate distance from the end
+		const int distanceFromEnd = GetDistance(bufActive, 
+			CEPoint{ wdiff.end[activePane], wdiff.endline[activePane] }, pt);
+		return Advance(bufTarget, 
+			CEPoint{ wdiff.end[targetPane], wdiff.endline[targetPane] }, distanceFromEnd);
+	}
+}
+
 std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int srcPane, int dstPane, int activePane, int nDiff,
 	const CEPoint& ptStart, const CEPoint& ptEnd)
 {
@@ -853,27 +954,15 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 	std::vector<WordDiff> worddiffs = GetWordDiffArrayInDiffBlock(nDiff, true);
 
 	int firstWordDiff = -1;
-	const int nBeginLineFlag = m_ptBuf[activePane]->GetLineFlags(ptEnd.y);
+	bool firstWordDiffIn = false;
+	const int nBeginLineFlag = m_ptBuf[activePane]->GetLineFlags(ptStart.y);
 	if ((nBeginLineFlag & LF_GHOST) == 0 && (nBeginLineFlag & LF_DIFF) != 0)
-	{
-		for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
-		{
-			if ((ptStart.y == worddiffs[i].endline[activePane] && ptStart.x >= worddiffs[i].end[activePane]) ||
-				(ptStart.y > worddiffs[i].endline[activePane]))
-				firstWordDiff = i;
-		}
-	}
+		firstWordDiff = FindWordDiffIndex(worddiffs, ptStart, activePane, firstWordDiffIn);
 	int lastWordDiff = -1;
+	bool lastWordDiffIn = false;
 	const int nEndLineFlag = m_ptBuf[activePane]->GetLineFlags(ptEnd.y);
 	if ((nEndLineFlag & LF_GHOST) == 0 && (nEndLineFlag & LF_DIFF) != 0)
-	{
-		for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
-		{
-			if ((ptEnd.y == worddiffs[i].endline[activePane] && ptEnd.x >= worddiffs[i].end[activePane]) ||
-				(ptEnd.y > worddiffs[i].endline[activePane]))
-				lastWordDiff = i;
-		}
-	}
+		lastWordDiff = FindWordDiffIndex(worddiffs, ptEnd, activePane, lastWordDiffIn);
 
 	CEPoint ptDstStart, ptDstEnd;
 	CEPoint ptSrcStart, ptSrcEnd;
@@ -896,30 +985,22 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 			}
 			else
 			{
-				if (ptSrcStart.x > m_ptBuf[dstPane]->GetLineLength(ptSrcStart.y))
-					ptSrcStart.x = m_ptBuf[dstPane]->GetLineLength(ptSrcStart.y);
+				if (ptSrcStart.x > m_ptBuf[srcPane]->GetLineLength(ptSrcStart.y))
+					ptSrcStart.x = m_ptBuf[srcPane]->GetLineLength(ptSrcStart.y);
 			}
 		}
 	}
 	else
 	{
 		const auto& wdiffFirst = worddiffs[firstWordDiff];
-		const int distanceBegin = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffFirst.begin[activePane], wdiffFirst.beginline[activePane] }, ptStart);
-		const int distanceEnd = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffFirst.end[activePane], wdiffFirst.endline[activePane] }, ptStart);
 		if (srcPane == activePane)
 		{
-			if (distanceBegin <= 0)
-				ptDstStart = { wdiffFirst.begin[dstPane], wdiffFirst.beginline[dstPane] };
-			else
-				ptDstStart = Advance(*m_ptBuf[dstPane], CEPoint{ wdiffFirst.end[dstPane], wdiffFirst.endline[dstPane] }, distanceEnd);
+			ptDstStart = CalculateCorrespondingPoint(wdiffFirst, ptStart, activePane, dstPane, firstWordDiffIn, *m_ptBuf[activePane], *m_ptBuf[dstPane]);
 			ptSrcStart = ptStart;
 		}
 		else
 		{
-			if (distanceBegin <= 0)
-				ptSrcStart = { wdiffFirst.begin[srcPane], wdiffFirst.beginline[srcPane] };
-			else
-				ptSrcStart = Advance(*m_ptBuf[srcPane], CEPoint{ wdiffFirst.end[srcPane], wdiffFirst.endline[srcPane] }, distanceEnd);
+			ptSrcStart = CalculateCorrespondingPoint(wdiffFirst, ptStart, activePane, srcPane, firstWordDiffIn, *m_ptBuf[activePane], *m_ptBuf[srcPane]);
 			ptDstStart = ptStart;
 		}
 	}
@@ -941,30 +1022,22 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 			}
 			else
 			{
-				if (ptDstEnd.x > m_ptBuf[dstPane]->GetLineLength(ptDstEnd.y))
-					ptDstEnd.x = m_ptBuf[dstPane]->GetLineLength(ptDstEnd.y);
+				if (ptSrcEnd.x > m_ptBuf[srcPane]->GetLineLength(ptSrcEnd.y))
+					ptSrcEnd.x = m_ptBuf[srcPane]->GetLineLength(ptSrcEnd.y);
 			}
 		}
 	}
 	else
 	{
 		const auto& wdiffLast = worddiffs[lastWordDiff];
-		const int distanceBegin = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffLast.begin[activePane], wdiffLast.beginline[activePane] }, ptEnd);
-		const int distanceEnd = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffLast.end[activePane], wdiffLast.endline[activePane] }, ptEnd);
 		if (srcPane == activePane)
 		{
-			if (distanceBegin <= 0)
-				ptDstEnd = { wdiffLast.begin[dstPane], wdiffLast.beginline[dstPane] };
-			else
-				ptDstEnd = Advance(*m_ptBuf[dstPane], CEPoint{ wdiffLast.end[dstPane], wdiffLast.endline[dstPane] }, distanceEnd);
+			ptDstEnd = CalculateCorrespondingPoint(wdiffLast, ptEnd, activePane, dstPane, lastWordDiffIn, *m_ptBuf[activePane], *m_ptBuf[dstPane]);
 			ptSrcEnd = ptEnd;
 		}
 		else
 		{
-			if (distanceBegin <= 0)
-				ptSrcEnd = { wdiffLast.begin[srcPane], wdiffLast.beginline[srcPane] };
-			else
-				ptSrcEnd = Advance(*m_ptBuf[srcPane], CEPoint{ wdiffLast.end[srcPane], wdiffLast.endline[srcPane] }, distanceEnd);
+			ptSrcEnd = CalculateCorrespondingPoint(wdiffLast, ptEnd, activePane, srcPane, lastWordDiffIn, *m_ptBuf[activePane], *m_ptBuf[srcPane]);
 			ptDstEnd = ptEnd;
 		}
 	}
