@@ -521,7 +521,7 @@ msgstr "Strona internetowa"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1173
 msgid "&Folder"
-msgstr ""
+msgstr "Folder"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -901,7 +901,7 @@ msgstr "Zwiń wszystkie podfoldery"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:492
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "Pokaż puste foldery"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:494 Merge.rc:704
@@ -1101,7 +1101,7 @@ msgstr "Porównaj ponownie jako"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1186
 msgid "A&rchive"
-msgstr ""
+msgstr "Archiwum"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -2694,12 +2694,12 @@ msgstr "Miejsce docelowe: wszystkie"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1639
 msgid "Binary files only"
-msgstr ""
+msgstr "Tylko pliki binarne"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1640
 msgid "Text files only"
-msgstr ""
+msgstr "Tylko pliki tekstowe"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CLEAR
 #: Merge.rc:1774
@@ -3980,22 +3980,22 @@ msgstr "Wyrażenie:"
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2614
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Filtruj według wyniku porównania"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2617
 msgid "&Include"
-msgstr ""
+msgstr "Uwzględnij"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2618
 msgid "&Exclude"
-msgstr ""
+msgstr "Wyklucz"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2619
 msgid "Comparison Results"
-msgstr ""
+msgstr "Wyniki porównania"
 
 #. IDS_IDENTICAL
 #: Merge.rc:2620 Merge.rc:2752 Merge.rc:2813 Merge.rc:4718
@@ -4010,52 +4010,52 @@ msgstr "Różne"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2622
 msgid "Left only"
-msgstr ""
+msgstr "Tylko lewy"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2623
 msgid "Right only"
-msgstr ""
+msgstr "Tylko prawy"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2624
 msgid "Skipped"
-msgstr ""
+msgstr "Pominięto"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2625
 msgid "Middle only"
-msgstr ""
+msgstr "Tylko środkowy"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2626
 msgid "Left only (different)"
-msgstr ""
+msgstr "Tylko lewy (różniący się)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2627
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Tylko środkowy (różniący się)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2628
 msgid "Right only (different)"
-msgstr ""
+msgstr "Tylko prawy (różniący się)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2629
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Tylko lewy (brakujący)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2630
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Tylko środkowy (brakujący)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2631
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Tylko prawy (brakujący)"
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2638 Merge.rc:2830 Merge.rc:4232
@@ -5476,7 +5476,7 @@ msgstr "Nie znaleziono pliku: %1"
 #: Merge.rc:4447
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "Nie znaleziono folderu: %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4448
@@ -7496,7 +7496,7 @@ msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5257
 msgid "Clipboard &History"
-msgstr ""
+msgstr "Historia schowka"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5258
@@ -7727,7 +7727,7 @@ msgstr "Porównaj nową stronę internetową"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5337
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Porównaj nowy folder"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5338
