@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-04-25 18:35+0200\n"
+"PO-Revision-Date: 2026-05-03 09:05+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -9907,8 +9907,12 @@ msgstr ""
 "Argumente: Befehlszeilenoptionen für CFR."
 
 #: Strings.rc:206
-msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+msgid ""
+"Clipboard URL Scheme Handler (cliphcat).\r\n"
+"Arguments: cliphcat command line options."
 msgstr ""
+"Zwischenablage-URL-Scheme-Handler mit cliphcat. \r\n"
+"Argumente: Befehlszeilenoptionen, die an den Befehl cliphcat übergeben werden."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
