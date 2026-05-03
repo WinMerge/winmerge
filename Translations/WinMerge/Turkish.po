@@ -671,12 +671,12 @@ msgstr "&Otomatik ön farklılaştırma"
 #. IDR_MERGEDOCTYPE, ID_UNPACK_MANUAL
 #: Merge.rc:382 Merge.rc:557 Merge.rc:867
 msgid "&Manual Unpacking"
-msgstr "El ile ayıkla&ma"
+msgstr "El ile çıkar&ma"
 
 #. IDR_MERGEDOCTYPE, ID_UNPACK_AUTO
 #: Merge.rc:383 Merge.rc:558 Merge.rc:868
 msgid "&Automatic Unpacking"
-msgstr "Otomatik &ayıklama"
+msgstr "Otomatik çık&arma"
 
 #. IDR_MERGEDOCTYPE, ID_RELOAD_PLUGINS
 #: Merge.rc:385 Merge.rc:562 Merge.rc:896
@@ -1006,7 +1006,7 @@ msgstr "&Rapor hazırla..."
 #. IDD_ENCODINGERROR, IDC_PLUGIN
 #: Merge.rc:560 Merge.rc:874 Merge.rc:3083
 msgid "&Edit with Unpacker..."
-msgstr "Ayıklayıcı ile düz&enle..."
+msgstr "Çıkarıcı ile düz&enle..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_SAVE
 #: Merge.rc:617
@@ -1758,7 +1758,7 @@ msgstr "&Aç..."
 #. IDR_POPUP_PLUGINS_SETTINGS
 #: Merge.rc:1071
 msgid "Unpacker Settings"
-msgstr "Ayıklayıcı ayarları"
+msgstr "Çıkarıcı ayarları"
 
 #. IDS_USERCHOICE_NONE
 #: Merge.rc:1073 Merge.rc:1079 Merge.rc:1808 Merge.rc:1812 Merge.rc:5050
@@ -2023,7 +2023,7 @@ msgstr "${SCRIPT_FILE} - Betik dosyası"
 #. IDR_POPUP_PLUGIN_ADD_MENU, ID_PLUGIN_ADD_UNPACKER
 #: Merge.rc:1337
 msgid "Add &Unpacker Plugin..."
-msgstr "Ayıklama &eklentisi ekle..."
+msgstr "Çıkarıcı &eklentisi ekle..."
 
 #. IDR_POPUP_PLUGIN_ADD_MENU, ID_PLUGIN_ADD_PREDIFFER
 #: Merge.rc:1338
@@ -2959,7 +2959,7 @@ msgstr " Dosya: Ön farklılaştırıcı eklentisi"
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP4
 #: Merge.rc:1995
 msgid " File: Unpacker Plugin"
-msgstr " Dosya: Ayıklayıcı eklentisi"
+msgstr " Dosya: Çıkarıcı eklentisi"
 
 #. IDD_OPEN, IDC_SELECT_UNPACKER
 #: Merge.rc:1997
@@ -3801,12 +3801,12 @@ msgstr "Varsayılan değişkenler:"
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALLOW_ALL
 #: Merge.rc:2507
 msgid "Display all plugins (Ignore extension)"
-msgstr "Uzantıya bakılmadan tüm eklentiler görüntülensin"
+msgstr "Tüm eklentileri göster (uzantıyı yok say)"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE
 #: Merge.rc:2509
 msgid "&Open files in same window type after unpacking"
-msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın"
+msgstr "Çıkardıktan sonra dosyaları aynı pencere türünde &aç"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
 #: Merge.rc:2511 Merge.rc:3148
@@ -4046,7 +4046,7 @@ msgstr "Varsayılan kod sayfası"
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
 #: Merge.rc:2642
 msgid "Select the default codepage for non-Unicode files:"
-msgstr "Unikod olmayan dosyalar için kullanılacak kod sayfası:"
+msgstr "Unicode olmayan dosyalar için kullanılacak kod sayfası:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_SYSTEM
 #: Merge.rc:2643
@@ -4479,7 +4479,7 @@ msgstr "&Eklenti değişkenleri:"
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
 #: Merge.rc:2939 Merge.rc:3153
 msgid "Enable &automatic unpacking/prediffing"
-msgstr "Eklenti için &otomatik ayıklayıcı/ön farklılaştırıcı etkinleştirilsin"
+msgstr "&Otomatik çıkarma/ön farklılaştırıcıyı etkinleştir"
 
 #. IDS_OPTIONSPG_SHELL
 #: Merge.rc:2953 Merge.rc:4236
@@ -6208,7 +6208,7 @@ msgstr "Binary"
 #. IDS_PLUGINS_TYPE_UNPACKER
 #: Merge.rc:4662 Merge.rc:4979
 msgid "Unpacker"
-msgstr "Ayıklayıcı"
+msgstr "Çıkarıcı"
 
 #. IDS_PLUGIN_TYPE4
 #: Merge.rc:4663 Merge.rc:4980 Merge.rc:5288
@@ -6755,7 +6755,7 @@ msgstr "Dosya binary ise yıldız (*) ile görüntülensin."
 #. IDS_COLDESC_UNPACKER
 #: Merge.rc:4815
 msgid "Unpacker plugin name or pipeline."
-msgstr "Ayıklayıcı eklentisi adı ya da bağlantı yolu."
+msgstr "Çıkarıcı eklentisi adı ya da bağlantı yolu."
 
 #. IDS_COLDESC_PREDIFFER
 #: Merge.rc:4816
@@ -7398,7 +7398,7 @@ msgstr ""
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5023
 msgid "Adapted unpacker applied to both files (one needs extension)."
-msgstr "Uyarlanan ayıklayıcı iki dosyaya da uygulandı (yalnızca bir dosya bu eklentiye gerek duyuyor)."
+msgstr "Uyarlanan çıkarıcı iki dosyaya da uygulandı (yalnızca bir dosya bu eklentiye gerek duyuyor)."
 
 #. IDS_NO_PREDIFFER
 #: Merge.rc:5024
@@ -7927,7 +7927,7 @@ msgstr "%1 eklentisi bulunamadı ya da geçersiz"
 #: Merge.rc:5280
 #, c-format
 msgid "'%1' is not an unpacker plugin"
-msgstr "'%1' bir ayıklayıcı eklentisi değil"
+msgstr "'%1' bir çıkarıcı eklentisi değil"
 
 #. IDS_PLUGIN_NOT_PREDIFF
 #: Merge.rc:5281
@@ -7954,17 +7954,17 @@ msgstr "Adres işleyici"
 #. IDS_PLUGIN_TYPE2
 #: Merge.rc:5286
 msgid "File Unpacker"
-msgstr "Dosya ayıklayıcı"
+msgstr "Dosya çıkarıcı"
 
 #. IDS_PLUGIN_TYPE3
 #: Merge.rc:5287
 msgid "File or Folder Unpacker"
-msgstr "Dosya ya da klasör ayıklayıcı"
+msgstr "Dosya ya da klasör çıkarıcı"
 
 #. IDS_PLUGIN_TYPE5
 #: Merge.rc:5289
 msgid "Alias for Unpacker"
-msgstr "Ayıklayıcı kısaltması"
+msgstr "Çıkarıcı kısaltması"
 
 #. IDS_PLUGIN_TYPE6
 #: Merge.rc:5290
