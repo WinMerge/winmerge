@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-04-05 09:33+0000\n"
-"PO-Revision-Date: 2026-04-07 06:30+0200\n"
+"POT-Creation-Date: 2026-04-30 10:57+0000\n"
+"PO-Revision-Date: 2026-05-04 07:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -520,7 +520,7 @@ msgstr "Ti&nklapis"
 #: Merge.rc:319 Merge.rc:328 Merge.rc:422 Merge.rc:431 Merge.rc:599
 #: Merge.rc:608 Merge.rc:1173
 msgid "&Folder"
-msgstr ""
+msgstr "&Katalogas"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:321 Merge.rc:424 Merge.rc:601
@@ -1100,7 +1100,7 @@ msgstr "Paly&ginti iš naujo kaip"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:660 Merge.rc:947 Merge.rc:1186
 msgid "A&rchive"
-msgstr ""
+msgstr "A&rchyvuoti"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:673
@@ -5475,7 +5475,7 @@ msgstr "Nerastas failas: %1"
 #: Merge.rc:4447
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "Nerastas katalogas: %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4448
@@ -7495,7 +7495,7 @@ msgstr "Leisti vykdyti tik vieną egzempliorių"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5257
 msgid "Clipboard &History"
-msgstr ""
+msgstr "Mainų srities &istorija"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5258
@@ -7726,7 +7726,7 @@ msgstr "Naujas tinklapių palyginimas"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5337
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Naujas katalogų oalyginimas"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5338
@@ -8562,7 +8562,7 @@ msgstr "Java dekompiliatorius (CFR).\r\nDekompiliuoja .class failus į skaitomą
 
 #: Strings.rc:206
 msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
-msgstr ""
+msgstr "Mainų srities URL schemos apdorotojas (cliphcat).\r\nArgumentai: cliphcat command line options."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
