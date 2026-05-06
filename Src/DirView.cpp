@@ -2656,9 +2656,12 @@ DirViewUIState* CDirView::SaveUIState()
 	DirViewUIState *pUIState = new DirViewUIState();
 	pUIState->topIndex = m_pList->GetTopIndex();
 	pUIState->focusedIndex = GetFocusedItem();
-	const auto* pdi = GetItemKey(pUIState->focusedIndex);
-	if (pdi && pdi != (const DIFFITEM *)SPECIAL_ITEM_POS)
-		pUIState->focusedItemPath = paths::ConcatPath(pdi->diffFileInfo[0].path, pdi->diffFileInfo[0].filename);
+	if (pUIState->focusedIndex >= 0)
+	{
+		const auto* pdi = GetItemKey(pUIState->focusedIndex);
+		if (pdi && pdi != (const DIFFITEM *)SPECIAL_ITEM_POS)
+			pUIState->focusedItemPath = paths::ConcatPath(pdi->diffFileInfo[0].path, pdi->diffFileInfo[0].filename);
+	}
 	return pUIState;
 }
 
