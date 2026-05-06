@@ -246,6 +246,7 @@ inline const String OPT_CMP_RENAME_MOVE_MERGE_MODE {_T("Settings/RenameMoveMerge
 // Image Compare options
 inline const String OPT_CMP_IMG_FILEPATTERNS {_T("Settings/ImageFilePatterns"s)};
 inline const String OPT_CMP_IMG_SHOWDIFFERENCES {_T("Settings/ImageShowDifferences"s)};
+inline const String OPT_CMP_IMG_BLINKDIFFERENCES {_T("Settings/ImageBlinkDifferences"s)};
 inline const String OPT_CMP_IMG_OVERLAYMODE {_T("Settings/ImageOverlayMode"s)};
 inline const String OPT_CMP_IMG_OVERLAYALPHA {_T("Settings/ImageOverlayAlpha"s)};
 inline const String OPT_CMP_IMG_DRAGGING_MODE {_T("Settings/ImageDraggingMode"s)};
