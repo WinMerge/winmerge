@@ -131,7 +131,7 @@ typedef std::map<String, bool> DirViewTreeState;
 struct DirViewUIState
 {
 	String focusedItemPath;
-	int focusedIndex = 0;
+	int focusedIndex = -1;
 	int topIndex = 0;
 };
 
