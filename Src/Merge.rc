@@ -108,8 +108,12 @@ BEGIN
         MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+&3", ID_SEL_DIFF_COPY_3RD
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
-        MENUITEM "Add to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
-        MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
+        POPUP "Add to &Filters"
+        BEGIN
+            MENUITEM "Add to &Display Filters",     ID_ADD_TO_DISPLAY_FILTERS
+            MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
+            MENUITEM "Add to Substitution &Filters", ID_ADD_TO_SUBSTITUTION_FILTERS
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -762,6 +766,7 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
+        MENUITEM "Displa&y Filter Bar\tCtrl+Shift+L", ID_VIEW_DISPLAY_FILTER_BAR_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
@@ -1835,6 +1840,51 @@ BEGIN
             END
             MENUITEM "Normalize &Unicode",          ID_RENAME_MOVE_KEY_MENU_FUNC_NORMALIZEUNICODE
         END
+    END
+END
+
+IDR_POPUP_LINEFILTERMENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
+        MENUITEM "Remove Last Filter &Group",   ID_FILTERMENU_MASK_REMOVE_LAST
+        MENUITEM SEPARATOR
+        MENUITEM "Line Con&tent...",            ID_FILTERMENU_LINE_RANGE
+        POPUP "&Line Number"
+        BEGIN
+            MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES
+            MENUITEM "&Even Lines",                 ID_FILTERMENU_LINE_EVEN_LINES
+        END
+        POPUP "Line &Status"
+        BEGIN
+            MENUITEM "Different",                   ID_FILTERMENU_LINE_DIFFERENT
+            MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
+            MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
+            MENUITEM "Exists",                      ID_FILTERMENU_LINE_EXISTS
+            MENUITEM "Missing",                     ID_FILTERMENU_LINE_MISSING
+        END
+        POPUP "&Diff Context"
+        BEGIN
+            MENUITEM "&0 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_0
+            MENUITEM "&1 Line",                     ID_FILTERMENU_LINE_DIFFCONTEXT_1
+            MENUITEM "&3 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_3
+            MENUITEM "&5 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_5
+            MENUITEM "&7 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_7
+            MENUITEM "&9 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_9
+        END
+        POPUP "&Search Context"
+        BEGIN
+            MENUITEM "Search",                      ID_FILTERMENU_LINE_SEARCH
+            MENUITEM "RegexSearch",                 ID_FILTERMENU_LINE_REGEXSEARCH
+        END
+        MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
+        MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
+        MENUITEM "Target: &Middle",             ID_FILTERMENU_CONDITION_MIDDLE
+        MENUITEM "Target: &Right",              ID_FILTERMENU_CONDITION_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "Combine: &OR",                ID_FILTERMENU_OPERATOR_OR
+        MENUITEM "Combine: A&ND",               ID_FILTERMENU_OPERATOR_AND
     END
 END
 

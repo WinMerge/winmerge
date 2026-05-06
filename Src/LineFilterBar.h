@@ -1,37 +1,39 @@
 /** 
- * @file  DirFilterBar.h
+ * @file  LineFilterBar.h
  *
- * @brief Declaration file for CDirFilterBar dialog bar
+ * @brief Declaration file for CLineFilterBar dialog bar
  */
 #pragma once
 
 #include "TrDialogs.h"
 #include "SuperComboBox.h"
 #include "ValidatingEdit.h"
-#include "FileFilterHelperMenu.h"
+#include "LineFilterHelperMenu.h"
+
+class LineFilterHelper;
 
 /////////////////////////////////////////////////////////////////////////////
-// CDirFilterBar dialog
+// CLineFilterBar dialog
 
-class CDirFilterBar : public CTrDialogBar
+class CLineFilterBar : public CTrDialogBar
 {
 // Construction
 public:
-	CDirFilterBar();   // standard constructor
-	~CDirFilterBar();
+	CLineFilterBar();   // standard constructor
+	~CLineFilterBar();
 	BOOL Create(CWnd* pParentWnd);
-	String GetFilterText() { return m_sMask; }
+	String GetFilterText() { return m_sFilter; }
 	void SaveFilterText();
 	void ShowFilterMenu();
 
 // Dialog Data
-	//{{AFX_DATA(CDirFilterBar)
+	//{{AFX_DATA(CLineFilterBar)
 	enum { IDD = IDD_DISPLAY_FILTER_BAR };
-	CSuperComboBox m_ctlMask;
-	CValidatingEdit m_ctlMaskEdit;
-	CFileFilterHelperMenu m_menu;
-	std::unique_ptr<FileFilterHelper> m_pFileFilterHelper;
-	String m_sMask;
+	CSuperComboBox m_ctlFilter;
+	CValidatingEdit m_ctlFilterEdit;
+	CLineFilterHelperMenu m_menu;
+	std::unique_ptr<LineFilterHelper> m_pLineFilterHelper;
+	String m_sFilter;
 	//}}AFX_DATA
 
 // Implementation
@@ -39,7 +41,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	// Generated message map functions
-	//{{AFX_MSG(CDirFilterBar)
+	//{{AFX_MSG(CLineFilterBar)
 	afx_msg void OnKillFocusFilter();
 	afx_msg void OnEditChangeFilter();
 	//}}AFX_MSG

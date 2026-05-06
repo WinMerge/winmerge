@@ -14,7 +14,29 @@ class CDiffContext;
 class DIFFITEM;
 struct ExprNode;
 struct YYSTYPE;
+struct ILineDataProvider;
 namespace Poco { class Timestamp; }
+struct FilterExpression;
+struct FilterSharedContext;
+
+struct FilterEvalContext
+{
+	const FilterExpression* expr;
+	const DIFFITEM* di;
+	const ILineDataProvider* provider = nullptr;
+	const FilterSharedContext* sharedContext;
+	int lineIndex = -1;
+};
+
+struct FilterSharedContext
+{
+	FilterSharedContext() = default;
+	FilterSharedContext(const FilterSharedContext&) = delete;
+	FilterSharedContext& operator=(const FilterSharedContext&) = delete;
+
+	mutable std::map<ExprNode*, std::vector<std::pair<int, int>>> matchRanges;
+	mutable std::unique_ptr<std::vector<std::pair<int, int>>> pDiffRanges;
+};
 
 struct FilterExpression
 {
@@ -25,7 +47,8 @@ struct FilterExpression
 	bool Parse(const std::string& expression);
 	bool Parse();
 	void SetDiffContext(const CDiffContext* pCtxt) { ctxt = pCtxt; }
-	bool Evaluate(const DIFFITEM& di);
+	bool Evaluate(const DIFFITEM& di) { FilterEvalContext ectxt{ this, &di }; return Evaluate(ectxt); }
+	bool Evaluate(const FilterEvalContext& ectxt);
 	std::vector<String> EvaluateKeys(const DIFFITEM& di);
 	void UpdateTimestamp();
 	void Clear();
@@ -38,6 +61,7 @@ struct FilterExpression
 	static String RemoveAllDirectives(const String& expression);
 	bool optimize = true;
 	bool caseSensitive = false;
+	bool diritem = true;
 	std::string name;
 	const CDiffContext* ctxt = nullptr;
 	std::unique_ptr<Poco::Timestamp> now;

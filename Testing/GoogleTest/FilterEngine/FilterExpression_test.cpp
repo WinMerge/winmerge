@@ -3,6 +3,7 @@
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
+#include "ILineDataProvider.h"
 #include "PathContext.h"
 #include "UniFile.h"
 #include "Poco/DateTimeParser.h"
@@ -848,6 +849,100 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("Not MiddleExists"));
 	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, LineAttributes)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	int tzd;
+	di.diffFileInfo[0].path = L"abc";
+	di.diffFileInfo[0].filename = L"Alice.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[0].flags.attributes = FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE;
+	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:56", tzd);
+	dt0.makeUTC(Poco::Timezone::tzd());
+	di.diffFileInfo[0].mtime = dt0.timestamp();
+	di.diffFileInfo[0].ctime = dt0.timestamp();
+	di.diffFileInfo[0].encoding.SetCodepage(65001);
+	di.diffFileInfo[0].version.SetFileVersion(0x00020010, 0x00300002);
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[2].path = L"abc";
+	di.diffFileInfo[2].filename = L"Alice.txt";
+	di.diffFileInfo[2].size = 1100;
+	di.diffFileInfo[2].flags.attributes = FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE;
+	Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tzd);
+	dt1.makeUTC(Poco::Timezone::tzd());
+	di.diffFileInfo[2].mtime = dt1.timestamp();
+	di.diffFileInfo[2].ctime = dt1.timestamp();
+	di.diffFileInfo[2].encoding.SetCodepage(65001);
+	di.diffFileInfo[2].version.SetFileVersion(0x00020010, 0x00300002);
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(2);
+	di.nsdiffs = 3;
+	di.nidiffs = 2;
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.diritem = false;
+
+	struct Provider : public ILineDataProvider
+	{
+
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			std::string line;
+			if (pane == 0)
+				line = (lineIndex == 0) ? "// abc" : "// 012345";
+			else
+				line = (lineIndex == 0) ? "// defghij" : "// 6789";
+			return line;
+		}
+
+		int GetLineCount() const override
+		{
+			return 2;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return {};
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex + 1;
+		}
+
+		int GetRealLineCount(int pane) const override
+		{
+			return 2;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+	} provider;
+
+
+	EXPECT_TRUE(fe.Parse("Line contains \"abc\""));
+
+	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
+	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
+
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_FALSE(fe.Evaluate(ectxt));
 }
 
 TEST_P(FilterExpressionTest, Content1)

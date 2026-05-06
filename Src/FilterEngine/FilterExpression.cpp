@@ -348,11 +348,10 @@ static bool ContainsTrue(const ValueType& value)
 	return false;
 }
 
-bool FilterExpression::Evaluate(const DIFFITEM& di)
+bool FilterExpression::Evaluate(const FilterEvalContext& ectxt)
 {
 	try
 	{
-		EvalContext ectxt{ this, &di };
 		const auto result = rootNode->Evaluate(ectxt);
 		return ContainsTrue(result);
 	}
@@ -395,7 +394,7 @@ std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
 {
 	try
 	{
-		EvalContext ectxt{ this, &di };
+		FilterEvalContext ectxt{ this, &di };
 		const auto result = rootNode->Evaluate(ectxt);
 		return ConvertStringArray(result);
 	}

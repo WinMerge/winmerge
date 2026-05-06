@@ -223,10 +223,12 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Context menu
-	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
-	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
+	ON_COMMAND(ID_ADD_TO_SUBSTITUTION_FILTERS, OnAddToSubstitutionFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_SUBSTITUTION_FILTERS, OnUpdateAddToSubstitutionFilters)
 	ON_COMMAND(ID_ADD_TO_LINE_FILTERS, OnAddToLineFilters)
 	ON_UPDATE_COMMAND_UI(ID_ADD_TO_LINE_FILTERS, OnUpdateAddToLineFilters)
+	ON_COMMAND(ID_ADD_TO_DISPLAY_FILTERS, OnAddToDisplayFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_DISPLAY_FILTERS, OnUpdateAddToDisplayFilters)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_LM, OnGotoMovedLineLM)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_LM, OnUpdateGotoMovedLineLM)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_MR, OnGotoMovedLineMR)
@@ -2850,14 +2852,39 @@ void CMergeEditView::OnAddToLineFilters()
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
-	CMergeDoc* pd = GetDocument();
-	pd->AddToLineFilters(text.GetString());
-	pd->FlushAndRescan(true);
+	pDoc->AddToLineFilters(text.GetString());
+	pDoc->FlushAndRescan(true);
 }
 
 void CMergeEditView::OnUpdateAddToLineFilters(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(IsSelection() && GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
+}
+
+void CMergeEditView::OnAddToDisplayFilters()
+{
+	CString sText;
+	if (IsSelection())
+	{
+		auto [ptSelStart, ptSelEnd] = GetSelection();
+		if (ptSelStart.y == ptSelEnd.y)
+			GetText(ptSelStart, ptSelEnd, sText);
+	}
+	if (sText.IsEmpty())
+	{
+		CEPoint ptCursorPos = GetCursorPos();
+		CEPoint ptStart = WordToLeft(ptCursorPos);
+		CEPoint ptEnd = WordToRight(ptCursorPos);
+		if (IsValidTextPos(ptStart) && IsValidTextPos(ptEnd) && ptStart != ptEnd)
+			GetText(ptStart, ptEnd, sText);
+	}
+	if (!sText.IsEmpty())
+		GetDocument()->AddToDisplayFilters((const tchar_t *)sText);
+}
+
+void CMergeEditView::OnUpdateAddToDisplayFilters(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
 }
 
 /**

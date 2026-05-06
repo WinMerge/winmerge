@@ -11,6 +11,7 @@
 #include "FolderStats.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
+#include "ILineDataProvider.h"
 #include "paths.h"
 #include "unicoder.h"
 #include "FileTransform.h"
@@ -86,7 +87,7 @@ ExprNode* OrNode::Optimize()
 	return this;
 }
 
-ValueType OrNode::Evaluate(const EvalContext& ectxt) const
+ValueType OrNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	auto lval = left->Evaluate(ectxt);
 	auto lbool = evalAsBool(lval);
@@ -117,7 +118,7 @@ ExprNode* AndNode::Optimize()
 	return this;
 }
 
-ValueType AndNode::Evaluate(const EvalContext& ectxt) const
+ValueType AndNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	auto lval = left->Evaluate(ectxt);
 	auto lbool = evalAsBool(lval);
@@ -146,7 +147,7 @@ ExprNode* NotNode::Optimize()
 	return this;
 }
 
-ValueType NotNode::Evaluate(const EvalContext& ectxt) const
+ValueType NotNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	auto val = right->Evaluate(ectxt);
 	auto boolVal = evalAsBool(val);
@@ -698,7 +699,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 	}
 }
 
-ValueType BinaryOpNode::Evaluate(const EvalContext& ectxt) const
+ValueType BinaryOpNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	auto lval = left->Evaluate(ectxt);
 	auto rval = right->Evaluate(ectxt);
@@ -726,7 +727,7 @@ ExprNode* NegateNode::Optimize()
 	return this;
 }
 
-ValueType NegateNode::Evaluate(const EvalContext& ectxt) const
+ValueType NegateNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	auto rval = right->Evaluate(ectxt);
 	if (auto rvalInt = std::get_if<int64_t>(&rval))
@@ -736,18 +737,23 @@ ValueType NegateNode::Evaluate(const EvalContext& ectxt) const
 	return std::monostate{};
 }
 
-static auto ExistsField(int index, const EvalContext& ectxt)-> ValueType
+static auto ExistsField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	return ectxt.di->diffcode.exists(index);
 }
 
-static auto IsFolderField(int index, const EvalContext& ectxt)-> ValueType
+static auto MissingField(int index, const FilterEvalContext& ectxt)-> ValueType
+{
+	return !ectxt.di->diffcode.exists(index);
+}
+
+static auto IsFolderField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	return ectxt.di->diffcode.isDirectory();
 }
 
 template<typename Func>
-static auto FolderStatField(int index, const EvalContext& ectxt, Func func, bool recursive) -> ValueType
+static auto FolderStatField(int index, const FilterEvalContext& ectxt, Func func, bool recursive) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -758,50 +764,50 @@ static auto FolderStatField(int index, const EvalContext& ectxt, Func func, bool
 	return func(stats);
 }
 
-static auto FilesField(int index, const EvalContext& ectxt) -> ValueType
+static auto FilesField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	return FolderStatField(index, ectxt, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.fileCount); }, false);
 }
 
-static auto RecursiveFilesField(int index, const EvalContext& ectxt) -> ValueType
+static auto RecursiveFilesField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	return FolderStatField(index, ectxt, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.fileCount); }, true);
 }
 
-static auto ItemsField(int index, const EvalContext& ectxt) -> ValueType {
+static auto ItemsField(int index, const FilterEvalContext& ectxt) -> ValueType {
 	return FolderStatField(index, ectxt, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.itemCount); }, false);
 }
 
-static auto RecursiveItemsField(int index, const EvalContext& ectxt) -> ValueType
+static auto RecursiveItemsField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	return FolderStatField(index, ectxt, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.itemCount); }, true);
 }
 
-static auto TotalSizeField(int index, const EvalContext& ectxt) -> ValueType
+static auto TotalSizeField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	return FolderStatField(index, ectxt, [](const FolderStats::FolderStatsResult& s) { return s.totalSize; }, false);
 }
 
-static auto RecursiveTotalSizeField(int index, const EvalContext& ectxt) -> ValueType
+static auto RecursiveTotalSizeField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	return FolderStatField(index, ectxt, [](const FolderStats::FolderStatsResult& s) { return s.totalSize; }, true);
 }
 
-static auto NameField(int index, const EvalContext& ectxt)-> ValueType
+static auto NameField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return ucr::toUTF8(ectxt.di->diffFileInfo[index].filename.get());
 }
 
-static auto BaseNameField(int index, const EvalContext& ectxt)-> ValueType
+static auto BaseNameField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return ucr::toUTF8(paths::RemoveExtension(ectxt.di->diffFileInfo[index].filename.get()));
 }
 
-static auto ExtensionField(int index, const EvalContext& ectxt)-> ValueType
+static auto ExtensionField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -809,26 +815,26 @@ static auto ExtensionField(int index, const EvalContext& ectxt)-> ValueType
 	return std::string(ext.c_str() + strspn(ext.c_str(), "."));
 }
 
-static auto FolderField(int index, const EvalContext& ectxt)-> ValueType
+static auto FolderField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	return ucr::toUTF8(ectxt.di->diffFileInfo[index].path.get());
 }
 
-static auto SizeField(int index, const EvalContext& ectxt) -> ValueType
+static auto SizeField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return static_cast<int64_t>(ectxt.di->diffFileInfo[index].size);
 }
 
-static auto DateField(int index, const EvalContext& ectxt) -> ValueType
+static auto DateField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return ectxt.di->diffFileInfo[index].mtime;
 }
 
-static auto DateStrField(int index, const EvalContext& ectxt) -> ValueType
+static auto DateStrField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -836,14 +842,14 @@ static auto DateStrField(int index, const EvalContext& ectxt) -> ValueType
 	return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d");
 }
 
-static auto CreationTimeField(int index, const EvalContext& ectxt) -> ValueType
+static auto CreationTimeField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return ectxt.di->diffFileInfo[index].ctime;
 }
 
-static auto FileVersionField(int index, const EvalContext& ectxt) -> ValueType
+static auto FileVersionField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -852,72 +858,77 @@ static auto FileVersionField(int index, const EvalContext& ectxt) -> ValueType
 	return static_cast<int64_t>(ectxt.di->diffFileInfo[index].version.GetFileVersionQWORD());
 }
 
-static auto AttributesField(int index, const EvalContext& ectxt) -> ValueType
+static auto AttributesField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return static_cast<int64_t>(ectxt.di->diffFileInfo[index].flags.attributes);
 }
 
-static auto AttrStrField(int index, const EvalContext& ectxt) -> ValueType
+static auto AttrStrField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return ucr::toUTF8(ectxt.di->diffFileInfo[index].flags.ToString());
 }
 
-static auto CodepageField(int index, const EvalContext& ectxt) -> ValueType
+static auto CodepageField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return static_cast<int64_t>(ectxt.di->diffFileInfo[index].encoding.m_codepage);
 }
 
-static auto DiffCodeField(int index, const EvalContext& ectxt) -> ValueType
+static auto DiffCodeField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return static_cast<int64_t>(ectxt.di->diffcode.diffcode);
 }
 
-static auto DifferencesField(int index, const EvalContext& ectxt) -> ValueType
+static auto DifferencesField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return static_cast<int64_t>(ectxt.di->nsdiffs);
 }
 
-static auto IgnoredDiffsField(int index, const EvalContext& ectxt) -> ValueType
+static auto IgnoredDiffsField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return static_cast<int64_t>(ectxt.di->nidiffs);
 }
 
-static auto IdenticalField(int index, const EvalContext& ectxt) -> ValueType
+static auto IdenticalField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return ectxt.di->diffcode.isResultSame();
 }
 
-static auto DifferentField(int index, const EvalContext& ectxt) -> ValueType
+static auto DifferentField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return ectxt.di->diffcode.isResultDiff();
 }
 
-static auto SkippedField(int index, const EvalContext& ectxt) -> ValueType
+static auto SkippedField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return ectxt.di->diffcode.isResultFiltered();
 }
 
-static auto EncodingField(int index, const EvalContext& ectxt) -> ValueType
+static auto MovedField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	return ectxt.di->renameMoveGroupId != -1;
+}
+
+static auto EncodingField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return ucr::toUTF8(ectxt.di->diffFileInfo[index].encoding.GetName());
 }
 
-static auto HasBOMField(int index, const EvalContext& ectxt) -> ValueType
+static auto HasBOMField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
 	return ectxt.di->diffFileInfo[index].encoding.m_bom;
 }
 
-static auto BinaryField(int index, const EvalContext& ectxt) -> ValueType
+static auto BinaryField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -926,21 +937,21 @@ static auto BinaryField(int index, const EvalContext& ectxt) -> ValueType
 	return (diffcode & binarySide) != 0;
 }
 
-static auto DifferentLeftMiddleField(int index, const EvalContext& ectxt) -> ValueType
+static auto DifferentLeftMiddleField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF1STONLY) != 0;
 }
 
-static auto DifferentMiddleRightField(int index, const EvalContext& ectxt) -> ValueType
+static auto DifferentMiddleRightField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF2NDONLY) != 0;
 }
 
-static auto DifferentLeftRightField(int index, const EvalContext& ectxt) -> ValueType
+static auto DifferentLeftRightField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
 		return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF3RDONLY) != 0;
@@ -948,7 +959,7 @@ static auto DifferentLeftRightField(int index, const EvalContext& ectxt) -> Valu
 		return ectxt.di->diffcode.existAll() && ectxt.di->diffcode.isResultDiff();
 }
 
-static auto RelPathField(int index, const EvalContext& ectxt) -> ValueType
+static auto RelPathField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -956,7 +967,7 @@ static auto RelPathField(int index, const EvalContext& ectxt) -> ValueType
 	return ucr::toUTF8(relpath);
 }
 
-static auto FullPathField(int index, const EvalContext& ectxt) -> ValueType
+static auto FullPathField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -964,7 +975,7 @@ static auto FullPathField(int index, const EvalContext& ectxt) -> ValueType
 	return ucr::toUTF8(paths::ConcatPath(ectxt.expr->ctxt->GetPath(index), relpath));
 }
 
-static auto ContentField(int index, const EvalContext& ectxt) -> ValueType
+static auto ContentField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -980,7 +991,7 @@ static auto ContentField(int index, const EvalContext& ectxt) -> ValueType
 	return content;
 }
 
-static auto UnpackerField(int index, const EvalContext& ectxt) -> ValueType
+static auto UnpackerField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.di->diffcode.isDirectory())
 		return std::monostate{};
@@ -991,7 +1002,7 @@ static auto UnpackerField(int index, const EvalContext& ectxt) -> ValueType
 	return pInfoUnpacker ? ucr::toUTF8(pInfoUnpacker->GetPluginPipeline()) : std::string("");
 }
 
-static auto PredifferField(int index, const EvalContext& ectxt) -> ValueType
+static auto PredifferField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.di->diffcode.isDirectory())
 		return std::monostate{};
@@ -1002,30 +1013,212 @@ static auto PredifferField(int index, const EvalContext& ectxt) -> ValueType
 	return pInfoPrediffer ? ucr::toUTF8(pInfoPrediffer->GetPluginPipeline()) : std::string("");
 }
 
+static auto LineField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto line = ectxt.provider->GetLine(index, ectxt.lineIndex);
+	return std::string(line.data(), line.length());
+}
+
+static auto LineLengthField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto line = ectxt.provider->GetLine(index, ectxt.lineIndex);
+	return ucr::stringlen_of_utf8(line.data(), line.length());
+}
+
+static auto LineNumberField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return ectxt.provider->GetRealLineNumber(index, ectxt.lineIndex);
+}
+
+static auto ViewLineNumberField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	return ectxt.lineIndex;
+}
+
+static auto LineExistsField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return (ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_GHOST) == 0;
+}
+
+static auto LineMissingField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return (ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_GHOST) != 0;
+}
+
+static auto LineMovedField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return (ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_MOVED) != 0;
+}
+
+static auto LineBookmarkedField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return (ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_BOOKMARKS) != 0;
+}
+
+static auto LineIdenticalField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & ILineDataProvider::LF_DIFF) == 0;
+}
+
+static auto LineDifferentField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & ILineDataProvider::LF_DIFF) != 0;
+}
+
+static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
+		return std::monostate{};
+	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
+	return ((leftflags & ILineDataProvider::LF_SNP) != 0) && ((leftflags & ILineDataProvider::LF_DIFF) != 0);
+}
+
+static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
+		return std::monostate{};
+	unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
+	return (middleflags & ILineDataProvider::LF_SNP) != 0 && (middleflags & ILineDataProvider::LF_DIFF) != 0;
+}
+
+static auto LineDifferentLeftRightField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
+	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
+	{
+		unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
+		return (leftflags & ILineDataProvider::LF_DIFF) != 0 && (middleflags & ILineDataProvider::LF_SNP) != 0;
+	}
+	return (leftflags & ILineDataProvider::LF_DIFF) != 0;
+}
+
+static auto LineTrivialField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & ILineDataProvider::LF_TRIVIAL) != 0;
+}
+
+static std::pair<int, int> GetDistancesToRanges(int line, const std::vector<std::pair<int, int>>& ranges)
+{
+	int prevEnd = -1;
+
+	for (const auto& range : ranges)
+	{
+		if (range.first <= line && line <= range.second)
+			return { 0, 0 };
+
+		if (line < range.first)
+		{
+			int before = range.first - line;
+			if (prevEnd == -1)
+				return { before, -1 };
+			int after = line - prevEnd;
+			return { before, after };
+		}
+
+		prevEnd = range.second;
+	}
+
+	if (prevEnd != -1)
+		return { -1, line - prevEnd };
+
+	return { -1, -1 };
+}
+
+template <typename Predicate>
+std::vector<std::pair<int, int>> ExtractRanges(int count, Predicate pred)
+{
+	std::vector<std::pair<int, int>> ranges;
+
+	int start = -1;
+
+	for (int i = 0; i < count; ++i)
+	{
+		if (pred(i))
+		{
+			if (start == -1)
+				start = i;
+		}
+		else
+		{
+			if (start != -1)
+			{
+				ranges.emplace_back(start, i - 1);
+				start = -1;
+			}
+		}
+	}
+
+	if (start != -1)
+		ranges.emplace_back(start, count);
+
+	return ranges;
+}
+
+static auto LineDiffDistanceField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
+	if (!pDiffRanges)
+	{
+		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
+			{ return (ectxt.provider->GetLineFlags(0, i) & ILineDataProvider::LF_DIFF) != 0; });
+		ectxt.sharedContext->pDiffRanges = std::make_unique<std::vector<std::pair<int, int>>>(std::move(ranges));
+		pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
+	}
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, *pDiffRanges);
+	if (distances.first < 0 && distances.second < 0)
+		return std::monostate{};
+	if (distances.first >= 0 && distances.second < 0)
+		return distances.first;
+	if (distances.first < 0 && distances.second >= 0)
+		return distances.second;
+	return (std::min)(distances.first, distances.second);
+}
+
+struct AttrParseResult { int side; int prefixLen; };
+
+AttrParseResult ParseAttributeName(std::string_view name)
+{
+	if (name.compare(0, 4, "left") == 0)
+		return { 0, 4 };
+	else if (name.compare(0, 6, "middle") == 0)
+		return { 1, 6 };
+	else if (name.compare(0, 5, "right") == 0)
+		return { -1, 5 };
+	return { 0, 0 };
+}
+
 FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(ctxt), field(v)
 {
-	int prefixlen = 0;
-	int side = 0;
 	std::string vl = Poco::toLower(v);
-	if (vl.compare(0, 4, "left") == 0)
-	{
-		side = 0;
-		prefixlen = 4;
-	}
-	else if (vl.compare(0, 6, "middle") == 0)
-	{
-		side = 1;
-		prefixlen = 6;
-	}
-	else if (vl.compare(0, 5, "right") == 0)
-	{
-		side = -1;
-		prefixlen = 5;
-	}
-	ValueType (*functmp)(int, const EvalContext&) = nullptr;
+	auto [side, prefixlen] = ParseAttributeName(vl);
+	ValueType (*functmp)(int, const FilterEvalContext&) = nullptr;
 	const char* p = vl.c_str() + prefixlen;
 	if (strcmp(p, "exists") == 0)
-		functmp = ExistsField;
+		functmp = ctxt->diritem ? ExistsField : LineExistsField;
+	else if (strcmp(p, "missing") == 0)
+		functmp = ctxt->diritem ? MissingField : LineMissingField;
 	else if (strcmp(p, "isfolder") == 0)
 		functmp = IsFolderField;
 	else if (strcmp(p, "files") == 0)
@@ -1072,78 +1265,141 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = EncodingField;
 	else if (strcmp(p, "hasbom") == 0)
 		functmp = HasBOMField;
-	else if (strcmp(p, "diffcode") == 0)
+	else if (strcmp(vl.c_str(), "diffcode") == 0)
 	{
 		functmp = DiffCodeField;
 		side = -2;
 	}
-	else if (strcmp(p, "differences") == 0)
+	else if (strcmp(vl.c_str(), "differences") == 0)
 	{
 		functmp = DifferencesField;
 		side = -2;
 	}
-	else if (strcmp(p, "ignoreddiffs") == 0)
+	else if (strcmp(vl.c_str(), "ignoreddiffs") == 0)
 	{
 		functmp = IgnoredDiffsField;
 		side = -2;
 	}
-	else if (strcmp(p, "identical") == 0)
+	else if (strcmp(vl.c_str(), "identical") == 0)
 	{
-		functmp = IdenticalField;
+		functmp = ctxt->diritem ? IdenticalField : LineIdenticalField;
 		side = -2;
 	}
-	else if (strcmp(p, "different") == 0)
+	else if (strcmp(vl.c_str(), "different") == 0)
 	{
-		functmp = DifferentField;
+		functmp = ctxt->diritem ? DifferentField : LineDifferentField;
 		side = -2;
 	}
-	else if (strcmp(p, "skipped") == 0)
+	else if (strcmp(vl.c_str(), "skipped") == 0)
 	{
-		functmp = SkippedField;
+		functmp = ctxt->diritem ? SkippedField : LineTrivialField;
 		side = -2;
 	}
+	else if (strcmp(vl.c_str(), "trivial") == 0)
+	{
+		functmp = LineTrivialField;
+		side = -2;
+	}
+	else if (strcmp(p, "moved") == 0)
+		functmp = ctxt->diritem ? MovedField : LineMovedField;
+	else if (strcmp(p, "bookmarked") == 0)
+		functmp = LineBookmarkedField;
 	else if (strcmp(p, "binary") == 0)
 		functmp = BinaryField;
-	else if (strcmp(p, "differentleftmiddle") == 0)
+	else if (strcmp(vl.c_str(), "differentleftmiddle") == 0)
 	{
-		functmp = DifferentLeftMiddleField;
+		functmp = ctxt->diritem ? DifferentLeftMiddleField : LineDifferentLeftMiddleField;
 		side = -2;
 	}
-	else if (strcmp(p, "differentmiddleright") == 0)
+	else if (strcmp(vl.c_str(), "differentmiddleright") == 0)
 	{
-		functmp = DifferentMiddleRightField;
+		functmp = ctxt->diritem ? DifferentMiddleRightField : LineDifferentMiddleRightField;
 		side = -2;
 	}
-	else if (strcmp(p, "differentleftright") == 0)
+	else if (strcmp(vl.c_str(), "differentleftright") == 0)
 	{
-		functmp = DifferentLeftRightField;
+		functmp = ctxt->diritem ? DifferentLeftRightField : LineDifferentLeftRightField;
 		side = -2;
 	}
 	else if (strcmp(p, "content") == 0)
 		functmp = ContentField;
-	else if (strcmp(p, "unpacker") == 0)
+	else if (strcmp(vl.c_str(), "unpacker") == 0)
 	{
 		functmp = UnpackerField;
 		side = -2;
 	}
-	else if (strcmp(p, "prediffer") == 0)
+	else if (strcmp(vl.c_str(), "prediffer") == 0)
 	{
 		functmp = PredifferField;
 		side = -2;
 	}
+	else if (strcmp(p, "line") == 0)
+		functmp = LineField;
+	else if (strcmp(p, "linelength") == 0)
+		functmp = LineLengthField;
+	else if (strcmp(p, "linenumber") == 0)
+		functmp = LineNumberField;
+	else if (strcmp(p, "lineexists") == 0)
+		functmp = LineExistsField;
+	else if (strcmp(p, "linemissing") == 0)
+		functmp = LineMissingField;
+	else if (strcmp(p, "linemoved") == 0)
+		functmp = LineMovedField;
+	else if (strcmp(p, "linebookmarked") == 0)
+		functmp = LineBookmarkedField;
+	else if (strcmp(vl.c_str(), "viewlinenumber") == 0)
+	{
+		side = -2;
+		functmp = ViewLineNumberField;
+	}
+	else if (strcmp(vl.c_str(), "lineidentical") == 0)
+	{
+		side = -2;
+		functmp = LineIdenticalField;
+	}
+	else if (strcmp(vl.c_str(), "linedifferent") == 0)
+	{
+		side = -2;
+		functmp = LineDifferentField;
+	}
+	else if (strcmp(vl.c_str(), "linedifferentleftmiddle") == 0)
+	{
+		side = -2;
+		functmp = LineDifferentLeftMiddleField;
+	}
+	else if (strcmp(vl.c_str(), "linedifferentmiddleright") == 0)
+	{
+		side = -2;
+		functmp = LineDifferentMiddleRightField;
+	}
+	else if (strcmp(vl.c_str(), "linedifferentleftright") == 0)
+	{
+		side = -2;
+		functmp = LineDifferentLeftRightField;
+	}
+	else if (strcmp(vl.c_str(), "linetrivial") == 0)
+	{
+		side = -2;
+		functmp = LineTrivialField;
+	}
+	else if (strcmp(vl.c_str(), "linediffdistance") == 0 || strcmp(vl.c_str(), "diffdistance") == 0)
+	{
+		side = -2;
+		functmp = LineDiffDistanceField;
+	}
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
 	if (prefixlen > 0)
-		func = [side, functmp](const EvalContext& ectxt)-> ValueType { return functmp(side < 0 ? ectxt.expr->ctxt->GetCompareDirs() + side: side, ectxt); };
+		func = [side, functmp](const FilterEvalContext& ectxt)-> ValueType { return functmp(side < 0 ? ectxt.expr->ctxt->GetCompareDirs() + side: side, ectxt); };
 	else
 	{
 		if (side == -2)
 		{
-			func = [functmp](const EvalContext& ectxt)-> ValueType { return functmp(-2, ectxt); };
+			func = [functmp](const FilterEvalContext& ectxt)-> ValueType { return functmp(-2, ectxt); };
 		}
 		else
 		{
-			func = [functmp](const EvalContext& ectxt)-> ValueType {
+			func = [functmp](const FilterEvalContext& ectxt)-> ValueType {
 				const int dirs = ectxt.expr->ctxt->GetCompareDirs();
 				std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
 				for (int i = 0; i < dirs; ++i)
@@ -1154,7 +1410,7 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	}
 }
 
-ValueType FieldNode::Evaluate(const EvalContext& ectxt) const
+ValueType FieldNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	return func(ectxt);
 }
@@ -1181,7 +1437,7 @@ inline static ValueType applyToScalarOrArray(const ValueType& arg, Func func)
 	return func(arg);
 }
 
-static auto AbsFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto AbsFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto absFn = [](const ValueType& val)->ValueType
 		{
@@ -1195,7 +1451,7 @@ static auto AbsFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> V
 	return applyToScalarOrArray(arg, absFn);
 }
 
-static auto AnyOfFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto AnyOfFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(ectxt);
 	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
@@ -1211,7 +1467,7 @@ static auto AnyOfFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) ->
 	return std::monostate{};
 }
 
-static auto AllOfFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto AllOfFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(ectxt);
 	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
@@ -1250,7 +1506,7 @@ static bool valueEquals(const ValueType& a, const ValueType& b)
 	return a == b;
 }
 
-static auto AllEqualFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto AllEqualFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType first = args->at(0)->Evaluate(ectxt);
 	if (auto pArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&first); pArray && *pArray)
@@ -1278,7 +1534,7 @@ static auto AllEqualFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args)
 	}
 }
 
-static auto ArrayFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ArrayFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto result = std::make_shared<std::vector<ValueType2>>();
 	if (args)
@@ -1292,7 +1548,7 @@ static auto ArrayFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) ->
 	return result;
 }
 
-static auto AtFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto AtFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg1 = args->at(0)->Evaluate(ectxt);
 	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
@@ -1311,7 +1567,7 @@ static auto AtFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> Va
 	return std::monostate{};
 }
 
-static auto StrlenFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto StrlenFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto strlenFn = [](const ValueType& val)->ValueType
 		{
@@ -1326,7 +1582,7 @@ static auto StrlenFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -
 	return applyToScalarOrArray(arg, strlenFn);
 }
 
-static auto SubstrFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto SubstrFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (args->size() < 2 || args->size() > 3)
 		return std::monostate{};
@@ -1368,7 +1624,7 @@ static auto SubstrFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -
 	return applyToScalarOrArray(argStr, substrFn);
 }
 
-static auto LineCountFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LineCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto lineCountFn = [](const ValueType& val) -> ValueType
 		{
@@ -1380,7 +1636,7 @@ static auto LineCountFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args
 	return applyToScalarOrArray(arg, lineCountFn);
 }
 
-static auto SublinesFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto SublinesFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (args->size() < 2 || args->size() > 3)
 		return std::monostate{};
@@ -1407,7 +1663,7 @@ static auto SublinesFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args)
 	return applyToScalarOrArray(argContentRef, sublinesFn);
 }
 
-static auto ReplaceFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ReplaceFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!args || args->size() != 3)
 		return std::monostate{};
@@ -1470,7 +1726,7 @@ static auto ReplaceFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) 
 	return std::monostate{};
 }
 
-static auto RegexReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto RegexReplaceWithListFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!args || args->size() != 2)
 		return std::monostate{};
@@ -1528,7 +1784,7 @@ static auto RegexReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprN
 	return applyToScalarOrArray(argStr, regexReplaceWithListFn);
 }
 
-static auto ReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ReplaceWithListFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!args || args->size() != 2)
 		return std::monostate{};
@@ -1575,17 +1831,17 @@ static auto ReplaceWithListFunc(const EvalContext& ectxt, std::vector<ExprNode*>
 	return applyToScalarOrArray(argStr, replaceWithListFn);
 }
 
-static auto TodayFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto TodayFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return *ectxt.expr->today;
 }
 
-static auto NowFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto NowFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return *ectxt.expr->now;
 }
 
-static auto StartOfWeekFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto StartOfWeekFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto startOfWeek = [](const ValueType& val) -> ValueType
 		{
@@ -1601,7 +1857,7 @@ static auto StartOfWeekFunc(const EvalContext& ectxt, std::vector<ExprNode*>* ar
 	return applyToScalarOrArray(arg, startOfWeek);
 }
 
-static auto StartOfMonthFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto StartOfMonthFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto startOfMonth = [](const ValueType& val) -> ValueType
 		{
@@ -1614,7 +1870,7 @@ static auto StartOfMonthFunc(const EvalContext& ectxt, std::vector<ExprNode*>* a
 	return applyToScalarOrArray(arg, startOfMonth);
 }
 
-static auto StartOfYearFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto StartOfYearFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto startOfYear = [](const ValueType& val) -> ValueType
 		{
@@ -1627,7 +1883,7 @@ static auto StartOfYearFunc(const EvalContext& ectxt, std::vector<ExprNode*>* ar
 	return applyToScalarOrArray(arg, startOfYear);
 }
 
-static auto ToDateStrFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToDateStrFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto toDateStr = [](const ValueType& val) -> ValueType
 		{
@@ -1639,7 +1895,7 @@ static auto ToDateStrFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args
 	return applyToScalarOrArray(arg, toDateStr);
 }
 
-static auto IsWithinFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto IsWithinFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg2 = args->at(1)->Evaluate(ectxt);
 	ValueType arg3 = args->at(2)->Evaluate(ectxt);
@@ -1718,7 +1974,7 @@ static auto IsWithinFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args)
 	return applyToScalarOrArray(arg1, isWithinFn);
 }
 
-static auto InRangeFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto InRangeFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg2 = args->at(1)->Evaluate(ectxt);
 	ValueType arg3 = args->at(2)->Evaluate(ectxt);
@@ -1834,7 +2090,7 @@ std::string ToStringValue(const ValueType& val)
 	return "<unknown>";
 }
 
-static auto RegexReplaceFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto RegexReplaceFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!args || args->size() != 3)
 		return std::monostate{};
@@ -1878,7 +2134,7 @@ static auto RegexReplaceFunc(const EvalContext& ectxt, std::vector<ExprNode*>* a
 	return applyToScalarOrArray(argStr, regexReplaceFn);
 }
 
-static auto LogFunc(int level, const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LogFunc(int level, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType val;
 	std::string msg;
@@ -1898,22 +2154,22 @@ static auto LogFunc(int level, const EvalContext& ectxt, std::vector<ExprNode*>*
 	return val;
 }
 
-static auto LogErrorFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LogErrorFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return LogFunc(0, ectxt, args);
 }
 
-static auto LogWarnFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LogWarnFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return LogFunc(1, ectxt, args);
 }
 
-static auto LogInfoFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LogInfoFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return LogFunc(2, ectxt, args);
 }
 
-static auto IfFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto IfFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType condition = args->at(0)->Evaluate(ectxt);
 	auto condBool = evalAsBool(condition);
@@ -1923,7 +2179,7 @@ static auto IfFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> Va
 		return args->at(2)->Evaluate(ectxt);
 }
 
-static auto IfEachFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto IfEachFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType argCond = args->at(0)->Evaluate(ectxt);
 	ValueType argTrue = args->at(1)->Evaluate(ectxt);
@@ -1951,7 +2207,7 @@ static auto IfEachFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -
 	return applyToScalarOrArray(argCond, selectValue);
 }
 
-static auto ChooseFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ChooseFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (args->size() < 2)
 		return std::monostate{};
@@ -1973,7 +2229,7 @@ static auto ChooseFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -
 	return args->at(choiceIdx)->Evaluate(ectxt);
 }
 
-static auto ChooseEachFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ChooseEachFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (args->size() < 2)
 		return std::monostate{};
@@ -2062,21 +2318,21 @@ static auto BinaryLogicalEachFunc(const ValueType& arg1, const ValueType& arg2, 
 	return result;
 }
 
-static auto AndEachFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto AndEachFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg1 = args->at(0)->Evaluate(ectxt);
 	ValueType arg2 = args->at(1)->Evaluate(ectxt);
 	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a && b; });
 }
 
-static auto OrEachFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto OrEachFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg1 = args->at(0)->Evaluate(ectxt);
 	ValueType arg2 = args->at(1)->Evaluate(ectxt);
 	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a || b; });
 }
 
-static auto NotEachFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto NotEachFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg = args->at(0)->Evaluate(ectxt);
 	
@@ -2091,7 +2347,7 @@ static auto NotEachFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) 
 	return applyToScalarOrArray(arg, notFunc);
 }
 
-static auto NormalizeUnicodeFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto NormalizeUnicodeFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	// Default normalization form: NFC (Normalization Form C)
 	ucr::NORMFORM normForm = ucr::NormC;
@@ -2146,7 +2402,7 @@ static auto NormalizeUnicodeFunc(const EvalContext& ectxt, std::vector<ExprNode*
 	return applyToScalarOrArray(arg, normalizeUnicodeFunc);
 }
 
-static auto ToXFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args, String (*func)(const String&)) -> ValueType
+static auto ToXFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args, String (*func)(const String&)) -> ValueType
 {
 	ValueType arg = args->at(0)->Evaluate(ectxt);
 	auto toXFunc = [func](const ValueType& val) -> ValueType
@@ -2160,49 +2416,74 @@ static auto ToXFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args, Stri
 	return applyToScalarOrArray(arg, toXFunc);
 }
 
-static auto ToLowerFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToLowerFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toLower);
 }
 
-static auto ToUpperFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToUpperFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toUpper);
 }
 
-static auto ToHalfWidthFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToHalfWidthFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toHalfWidth);
 }
 
-static auto ToFullWidthFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToFullWidthFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toFullWidth);
 }
 
-static auto ToHiraganaFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToHiraganaFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toHiragana);
 }
 
-static auto ToKatakanaFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToKatakanaFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toKatakana);
 }
 
-static auto ToSimplifiedChineseFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToSimplifiedChineseFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toSimplifiedChinese);
 }
 
-static auto ToTraditionalChineseFunc(const EvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto ToTraditionalChineseFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	return ToXFunc(ectxt, args, ucr::toTraditionalChinese);
 }
 
+static auto LineDiffContextFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto argBefore = (*args)[0]->Evaluate(ectxt);
+	auto argAfter = (*args)[1]->Evaluate(ectxt);
+	auto argBeforeInt = std::get_if<int64_t>(&argBefore);
+	auto argAfterInt = std::get_if<int64_t>(&argAfter);
+	if (!argBeforeInt || !argAfterInt)
+		return std::monostate{};
+	auto pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
+	if (!pDiffRanges)
+	{
+		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
+			{ return (ectxt.provider->GetLineFlags(0, i) & ILineDataProvider::LF_DIFF) != 0; });
+		ectxt.sharedContext->pDiffRanges = std::make_unique<std::vector<std::pair<int, int>>>(std::move(ranges));
+		pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
+	}
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, *pDiffRanges);
+	if ((distances.first >= 0 && distances.first <= *argBeforeInt) ||
+		(distances.second >= 0 && distances.second <= *argAfterInt))
+		return true;
+	return false;
+}
+
 struct FunctionInfo
 {
-	using FuncPtr = auto (*)(const EvalContext&, std::vector<ExprNode*>*) -> ValueType;
+	using FuncPtr = auto (*)(const FilterEvalContext&, std::vector<ExprNode*>*) -> ValueType;
 	const char* name;
 	FuncPtr func;
 	int minArgs;
@@ -2220,6 +2501,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"at", AtFunc, 2, 2},
 	{"choose", ChooseFunc, 2, -1},
 	{"chooseeach", ChooseEachFunc, 2, -1},
+	{"diffcontext", LineDiffContextFunc, 2, 2},
 	{"if", IfFunc, 3, 3},
 	{"ifeach", IfEachFunc, 3, 3},
 	{"inrange", InRangeFunc, 3, 3},
@@ -2274,15 +2556,22 @@ static const FunctionInfo* findFunction(const std::string& name)
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
+	auto [side, prefixlen] = ParseAttributeName(functionName);
+
 	// Special handling for prop functions
-	if (functionName == "prop")
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "prop") == 0)
 	{
-		SetPropFunc();
+		if (prefixlen == 0)
+			SetPropFunc();
+		else
+			SetLeftMiddleRightPropFunc(side);
 		return;
 	}
-	if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
+	const char* p = functionName.c_str() + prefixlen;
+	if (strcmp(p, "searchdistance") == 0 || strcmp(p, "searchcontext") == 0 ||
+	    strcmp(p, "regexsearchdistance") == 0 || strcmp(p, "regexsearchcontext") == 0)
 	{
-		SetLeftMiddleRightPropFunc();
+		SetSearchFunc(side, prefixlen);
 		return;
 	}
 
@@ -2322,7 +2611,7 @@ FunctionNode::~FunctionNode()
 ExprNode* FunctionNode::Optimize()
 {
 	DIFFITEM di;
-	EvalContext ectxt{ ctxt, &di };
+	FilterEvalContext ectxt{ ctxt, &di };
 	if (args)
 	{
 		for (auto& arg : *args)
@@ -2537,6 +2826,24 @@ ExprNode* FunctionNode::Optimize()
 			(*args)[1] = new ArrayLiteral(list);
 		}
 	}
+	else if (functionName == "regexsearchcontext" || functionName == "leftregexsearchcontext" || functionName == "middleregexsearchcontext" || functionName == "rightregexsearchcontext" ||
+	         functionName == "regexsearchdistance" || functionName == "leftregexsearchdistance" || functionName == "middleregexsearchdistance" || functionName == "rightregexsearchdistance")
+	{
+		if (args && args->size() >= 1 && dynamic_cast<StringLiteral*>((*args)[0]))
+		{
+			try
+			{
+				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[0])->value, ctxt->caseSensitive);
+				delete (*args)[0];
+				(*args)[0] = re;
+			}
+			catch (const Poco::RegularExpressionException&)
+			{
+				// Invalid regex pattern, cannot optimize
+				return this;
+			}
+		}
+	}
 	else if (functionName == "startofweek" || functionName == "startofmonth" || functionName == "startofyear")
 	{
 		if (auto dtLit = args ? dynamic_cast<DateTimeLiteral*>((*args)[0]) : nullptr)
@@ -2549,9 +2856,234 @@ ExprNode* FunctionNode::Optimize()
 	return this;
 }
 
-ValueType FunctionNode::Evaluate(const EvalContext& ectxt) const
+ValueType FunctionNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	return func(ectxt, args);
+}
+
+static auto SearchContextFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto argPattern = (*args)[0]->Evaluate(ectxt);
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	if (!strPattern)
+		return std::monostate{};
+	auto argBefore = (*args)[1]->Evaluate(ectxt);
+	auto argAfter = (*args)[2]->Evaluate(ectxt);
+	auto argBeforeInt = std::get_if<int64_t>(&argBefore);
+	auto argAfterInt = std::get_if<int64_t>(&argAfter);
+	if (!argBeforeInt || !argAfterInt)
+		return std::monostate{};
+
+	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	if (it == ectxt.sharedContext->matchRanges.end())
+	{
+		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
+			{
+				const auto& text = ectxt.provider->GetLine(side, i);
+				if (!ectxt.expr->caseSensitive)
+				{
+					auto searcher = std::boyer_moore_horspool_searcher(
+						strPattern->cbegin(), strPattern->cend(), std::hash<char>(),
+						[](char a, char b) {
+							return std::tolower(static_cast<unsigned char>(a)) ==
+								std::tolower(static_cast<unsigned char>(b));
+						}
+					);
+					using iterator = std::string::const_iterator;
+					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
+					return (result.first != result.second);
+				}
+				else
+				{
+					auto searcher = std::boyer_moore_horspool_searcher(
+						strPattern->cbegin(), strPattern->cend());
+					using iterator = std::string::const_iterator;
+					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
+					return (result.first != result.second);
+				}
+			});
+		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
+		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	}
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
+	if ((distances.first >= 0 && distances.first <= *argBeforeInt) ||
+		(distances.second >= 0 && distances.second <= *argAfterInt))
+		return true;
+	return false;
+}
+
+static auto RegexSearchContextFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto argPattern = (*args)[0]->Evaluate(ectxt);
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
+	if (!strPattern && !rePattern)
+		return std::monostate{};
+	auto argBefore = (*args)[1]->Evaluate(ectxt);
+	auto argAfter = (*args)[2]->Evaluate(ectxt);
+	auto argBeforeInt = std::get_if<int64_t>(&argBefore);
+	auto argAfterInt = std::get_if<int64_t>(&argAfter);
+	if (!argBeforeInt || !argAfterInt)
+		return std::monostate{};
+
+	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	if (it == ectxt.sharedContext->matchRanges.end())
+	{
+		std::shared_ptr<Poco::RegularExpression> rePatternTmp;
+		if (strPattern)
+		{
+			const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+			rePatternTmp = std::make_shared<Poco::RegularExpression>(*strPattern, flags);
+			rePattern = &rePatternTmp;
+		}
+		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
+			{
+				try
+				{
+					Poco::RegularExpression::Match match;
+					return (*rePattern)->match(ectxt.provider->GetLine(side, i), match) > 0;
+				}
+				catch (const Poco::RegularExpressionException&)
+				{
+					return false;
+				}
+			});
+		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
+		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	}
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
+	if ((distances.first >= 0 && distances.first <= *argBeforeInt) ||
+		(distances.second >= 0 && distances.second <= *argAfterInt))
+		return true;
+	return false;
+}
+
+static auto SearchDistanceFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto argPattern = (*args)[0]->Evaluate(ectxt);
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	if (!strPattern)
+		return std::monostate{};
+	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	if (it == ectxt.sharedContext->matchRanges.end())
+	{
+		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
+			{
+				const auto& text = ectxt.provider->GetLine(side, i);
+				if (!ectxt.expr->caseSensitive)
+				{
+					auto searcher = std::boyer_moore_horspool_searcher(
+						strPattern->cbegin(), strPattern->cend(), std::hash<char>(),
+						[](char a, char b) {
+							return std::tolower(static_cast<unsigned char>(a)) ==
+								std::tolower(static_cast<unsigned char>(b));
+						}
+					);
+					using iterator = std::string::const_iterator;
+					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
+					return (result.first != result.second);
+				}
+				else
+				{
+					auto searcher = std::boyer_moore_horspool_searcher(
+						strPattern->cbegin(), strPattern->cend());
+					using iterator = std::string::const_iterator;
+					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
+					return (result.first != result.second);
+				}
+			});
+		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
+		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	}
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
+	if (distances.first < 0 && distances.second < 0)
+		return std::monostate{};
+	if (distances.first >= 0 && distances.second < 0)
+		return distances.first;
+	if (distances.first < 0 && distances.second >= 0)
+		return distances.second;
+	return (std::min)(distances.first, distances.second);
+}
+
+static auto RegexSearchDistanceFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto argPattern = (*args)[0]->Evaluate(ectxt);
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
+	if (!strPattern && !rePattern)
+		return std::monostate{};
+	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	if (it == ectxt.sharedContext->matchRanges.end())
+	{
+		std::shared_ptr<Poco::RegularExpression> rePatternTmp;
+		if (strPattern)
+		{
+			const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+			rePatternTmp = std::make_shared<Poco::RegularExpression>(*strPattern, flags);
+			rePattern = &rePatternTmp;
+		}
+		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
+			{
+				try
+				{
+					Poco::RegularExpression::Match match;
+					return (*rePattern)->match(ectxt.provider->GetLine(side, i), match) > 0;
+				}
+				catch (const Poco::RegularExpressionException&)
+				{
+					return false;
+				}
+			});
+		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
+		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	}
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
+	if (distances.first < 0 && distances.second < 0)
+		return std::monostate{};
+	if (distances.first >= 0 && distances.second < 0)
+		return distances.first;
+	if (distances.first < 0 && distances.second >= 0)
+		return distances.second;
+	return (std::min)(distances.first, distances.second);
+}
+
+void FunctionNode::SetSearchFunc(int side, int prefixlen)
+{
+	const char* p = functionName.c_str() + prefixlen;
+	const bool isSearchContextFunc = strstr(p, "context") != nullptr;
+	const bool isRegexSearchFunc = strstr(p, "regex") != nullptr;
+
+	ValueType(*functmp)(int, const FilterEvalContext&, std::vector<ExprNode*>*) = nullptr;
+	if (isSearchContextFunc)
+	{
+		functmp = (!isRegexSearchFunc) ? SearchContextFunc : RegexSearchContextFunc;
+		if (!args || args->size() != 3)
+			throw std::invalid_argument(functionName + " function requires 3 arguments");
+	}
+	else
+	{
+		functmp = (!isRegexSearchFunc) ? SearchDistanceFunc : RegexSearchDistanceFunc;
+		if (!args || args->size() != 1)
+			throw std::invalid_argument(functionName + " function requires 1 arguments");
+	}
+	if (prefixlen > 0)
+		func = [side, functmp](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args)-> ValueType { return functmp(side < 0 ? ectxt.expr->ctxt->GetCompareDirs() + side: side, ectxt, args); };
+	else
+		func = [functmp](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args)-> ValueType {
+			const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+			for (int i = 0; i < dirs; ++i)
+				values->emplace_back(ValueType2{ functmp(i, ectxt, args) });
+			return values;
+			};
 }
 
 SizeLiteral::SizeLiteral(const std::string& v)

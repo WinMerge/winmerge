@@ -8,7 +8,6 @@
 #include "DirFilterBar.h"
 #include "FileFilterHelper.h"
 #include "FilterErrorMessages.h"
-#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -35,9 +34,9 @@ void CDirFilterBar::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CDirFilterBar, CTrDialogBar)
-	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
-	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
-	ON_CBN_SELCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
+	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilter)
+	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilter)
+	ON_CBN_SELCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilter)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -78,12 +77,12 @@ BOOL CDirFilterBar::Create(CWnd* pParentWnd)
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CDirFilterBar::OnKillFocusFilterfileMask()
+void CDirFilterBar::OnKillFocusFilter()
 {
 	UpdateData(TRUE);
 }
 
-void CDirFilterBar::OnEditChangeFilterfileMask()
+void CDirFilterBar::OnEditChangeFilter()
 {
 	m_ctlMaskEdit.OnEnChange();
 }
@@ -97,7 +96,7 @@ void CDirFilterBar::SaveFilterText()
 	m_ctlMask.LoadState(_T("Files\\DisplayExt"));
 }
 
-void CDirFilterBar::ShowFilterMaskMenu()
+void CDirFilterBar::ShowFilterMenu()
 {
 	UpdateData(TRUE);
 	CRect rc;

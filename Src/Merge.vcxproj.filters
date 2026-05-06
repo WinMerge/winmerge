@@ -828,6 +828,18 @@
     <ClCompile Include="ClipboardHistoryMenu.cpp">
       <Filter>MFCGui\Menu\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SharedFilterContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFilterBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFilterHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFilterHelperMenu.cpp">
+      <Filter>MFCGui\Menu\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1575,6 +1587,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ClipboardHistoryMenu.h">
+      <Filter>MFCGui\Menu\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ILineItemProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedFilterContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFilterBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFilterHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFilterHelperMenu.h">
       <Filter>MFCGui\Menu\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

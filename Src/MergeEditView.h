@@ -286,6 +286,8 @@ protected:
 	afx_msg void OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI);
 	afx_msg void OnAddToLineFilters();
 	afx_msg void OnUpdateAddToLineFilters(CCmdUI* pCmdUI);
+	afx_msg void OnAddToDisplayFilters();
+	afx_msg void OnUpdateAddToDisplayFilters(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
 	afx_msg void OnConvertEolTo(UINT nID );

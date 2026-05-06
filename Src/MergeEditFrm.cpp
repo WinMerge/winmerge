@@ -48,6 +48,11 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
+	// Display filter bar
+	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnViewDisplayFilterBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnUpdateDisplayViewFilterBar)
+	ON_COMMAND(IDCANCEL, OnDisplayFilterBarClose)
+	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnDisplayFilterBarMenu)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -480,3 +485,52 @@ void CMergeEditFrame::OnSize(UINT nType, int cx, int cy)
 	
 	UpdateHeaderSizes();
 }
+
+void CMergeEditFrame::OnViewDisplayFilterBar()
+{
+	if (!m_pFilterBar)
+		ShowFilterBar();
+	else
+		HideFilterBar();
+}
+
+void CMergeEditFrame::OnUpdateDisplayViewFilterBar(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(m_pFilterBar != nullptr);
+}
+
+void CMergeEditFrame::OnDisplayFilterBarClose()
+{
+	HideFilterBar();
+	GetActiveView()->SetFocus();
+}
+
+void CMergeEditFrame::OnDisplayFilterBarMenu()
+{
+	m_pFilterBar->ShowFilterMenu();
+}
+
+void CMergeEditFrame::ShowFilterBar()
+{
+	if (!m_pFilterBar)
+		m_pFilterBar.reset(new CLineFilterBar());
+	if (!::IsWindow(m_pFilterBar->GetSafeHwnd()) && !m_pFilterBar->Create(this))
+	{
+		TRACE0("Failed to create filter bar\n");
+		m_pFilterBar.reset();
+		return;
+	}
+	ShowControlBar(m_pFilterBar.get(), TRUE, FALSE);
+}
+
+void CMergeEditFrame::HideFilterBar()
+{
+	if (m_pFilterBar != nullptr && ::IsWindow(m_pFilterBar->GetSafeHwnd()))
+	{
+		ShowControlBar(m_pFilterBar.get(), FALSE, FALSE);
+		m_pFilterBar->DestroyWindow();
+	}
+	m_pFilterBar.reset();
+}
+

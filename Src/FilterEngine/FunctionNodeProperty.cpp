@@ -58,7 +58,7 @@ static ValueType ConvertPROPVARIANTToValueType(const PROPVARIANT& propvalue)
 	}
 }
 
-static auto prop(int index, const String& name, const EvalContext& ectxt) -> ValueType
+static auto prop(int index, const String& name, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
@@ -84,7 +84,7 @@ static auto prop(int index, const String& name, const EvalContext& ectxt) -> Val
 	return ConvertPROPVARIANTToValueType((*properties)[propindex]);
 }
 
-static auto propary(const String& name, const EvalContext& ectxt) -> ValueType
+static auto propary(const String& name, const FilterEvalContext& ectxt) -> ValueType
 {
 	std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
 	const int dirs = ectxt.expr->ctxt->GetCompareDirs();
@@ -105,11 +105,11 @@ void FunctionNode::SetPropFunc()
 	const int propindex = propSys.GetPropertyIndex(propName);
 	if (propindex < 0)
 		throw InvalidPropertyNameError(strLit->value);
-	func = [propName](const EvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
+	func = [propName](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
 		{ return propary(propName, ectxt); };
 }
 
-void FunctionNode::SetLeftMiddleRightPropFunc()
+void FunctionNode::SetLeftMiddleRightPropFunc(int side)
 {
 	if (!args || args->size() != 1)
 		throw std::invalid_argument(functionName + " function requires 1 arguments");
@@ -121,13 +121,6 @@ void FunctionNode::SetLeftMiddleRightPropFunc()
 	const int propindex = propSys.GetPropertyIndex(propName);
 	if (propindex < 0)
 		throw InvalidPropertyNameError(strLit->value);
-	int side = 0;
-	if (functionName == "leftprop")
-		side = 0;
-	else if (functionName == "middleprop")
-		side = 1;
-	else if (functionName == "rightprop")
-		side = -1;
-	func = [propName, side](const EvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
+	func = [propName, side](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
 		{ return prop((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, propName, ectxt); };
 }

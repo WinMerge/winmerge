@@ -120,6 +120,7 @@ inline std::wstring toUTF16(const String& tstr)
 }
 
 void toUTF8(const String& tstr, std::string& u8str);
+std::string toUTF8(const tchar_t* tstr, size_t len);
 std::string toUTF8(const String& tstr);
 std::string toSystemCP(const std::string& str);
 std::string toSystemCP(const std::wstring& str);
