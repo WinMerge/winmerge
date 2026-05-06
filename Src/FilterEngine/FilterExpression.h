@@ -7,6 +7,7 @@
 
 #include <string>
 #include <memory>
+#include <map>
 #include "FilterError.h"
 #include "UnicodeString.h"
 
@@ -25,7 +26,7 @@ struct FilterEvalContext
 	const DIFFITEM* di;
 	const ILineDataProvider* provider = nullptr;
 	const FilterSharedContext* sharedContext;
-	int lineIndex = -1;
+	mutable int lineIndex = -1;
 };
 
 struct FilterSharedContext
@@ -35,7 +36,6 @@ struct FilterSharedContext
 	FilterSharedContext& operator=(const FilterSharedContext&) = delete;
 
 	mutable std::map<ExprNode*, std::vector<std::pair<int, int>>> matchRanges;
-	mutable std::unique_ptr<std::vector<std::pair<int, int>>> pDiffRanges;
 };
 
 struct FilterExpression

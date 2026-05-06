@@ -921,11 +921,6 @@ TEST_P(FilterExpressionTest, LineAttributes)
 			return lineIndex + 1;
 		}
 
-		int GetRealLineCount(int pane) const override
-		{
-			return 2;
-		}
-
 		unsigned GetLineFlags(int pane, int lineIndex) const override
 		{
 			return 0;

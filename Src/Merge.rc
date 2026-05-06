@@ -1850,7 +1850,7 @@ BEGIN
         MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
         MENUITEM "Remove Last Filter &Group",   ID_FILTERMENU_MASK_REMOVE_LAST
         MENUITEM SEPARATOR
-        MENUITEM "Line Con&tent...",            ID_FILTERMENU_LINE_RANGE
+        MENUITEM "&Line Filter...",             ID_FILTERMENU_LINE_RANGE
         POPUP "&Line Number"
         BEGIN
             MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES
@@ -1861,22 +1861,11 @@ BEGIN
             MENUITEM "Different",                   ID_FILTERMENU_LINE_DIFFERENT
             MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
             MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
+            MENUITEM SEPARATOR
             MENUITEM "Exists",                      ID_FILTERMENU_LINE_EXISTS
             MENUITEM "Missing",                     ID_FILTERMENU_LINE_MISSING
-        END
-        POPUP "&Diff Context"
-        BEGIN
-            MENUITEM "&0 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_0
-            MENUITEM "&1 Line",                     ID_FILTERMENU_LINE_DIFFCONTEXT_1
-            MENUITEM "&3 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_3
-            MENUITEM "&5 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_5
-            MENUITEM "&7 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_7
-            MENUITEM "&9 Lines",                    ID_FILTERMENU_LINE_DIFFCONTEXT_9
-        END
-        POPUP "&Search Context"
-        BEGIN
-            MENUITEM "Search",                      ID_FILTERMENU_LINE_SEARCH
-            MENUITEM "RegexSearch",                 ID_FILTERMENU_LINE_REGEXSEARCH
+            MENUITEM "Moved",                       ID_FILTERMENU_LINE_MOVED
+            MENUITEM "Bookmarked",                  ID_FILTERMENU_LINE_BOOKMARKED
         END
         MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
         MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
@@ -1885,6 +1874,12 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Combine: &OR",                ID_FILTERMENU_OPERATOR_OR
         MENUITEM "Combine: A&ND",               ID_FILTERMENU_OPERATOR_AND
+        MENUITEM SEPARATOR
+        MENUITEM "Context: &0Lines",            ID_FILTERMENU_LINE_CONTEXT_0
+        MENUITEM "Context: &1Line",             ID_FILTERMENU_LINE_CONTEXT_1
+        MENUITEM "Context: &3Lines",            ID_FILTERMENU_LINE_CONTEXT_3
+        MENUITEM "Context: &5Lines",            ID_FILTERMENU_LINE_CONTEXT_5
+        MENUITEM "Context: &7Lines",            ID_FILTERMENU_LINE_CONTEXT_7
     END
 END
 

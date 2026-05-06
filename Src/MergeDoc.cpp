@@ -1856,6 +1856,14 @@ void CMergeDoc::HideLines()
 	if (!m_displayFilterHelper.GetStringOrExpression().empty())
 	{
 		FilterExpression& fe = m_displayFilterHelper.GetFilterExpression();
+		FilterExpression::SetLogger([](int level, const std::string& msg) {
+			if (level == 0)
+				RootLogger::Error(msg);
+			else if (level == 1)
+				RootLogger::Warn(msg);
+			else
+				RootLogger::Info(msg);
+		});
 		if (fe.errorCode == 0)
 		{
 			auto sharedContext = std::make_unique<FilterSharedContext>();
@@ -3684,11 +3692,6 @@ std::string CMergeDoc::GetColumn(int pane, int lineIndex, int columnIndex) const
 int CMergeDoc::GetRealLineNumber(int pane, int lineIndex) const
 {
 	return m_ptBuf[pane]->ComputeRealLine(lineIndex);
-}
-
-int CMergeDoc::GetRealLineCount(int pane) const
-{
-	return 0;
 }
 
 unsigned CMergeDoc::GetLineFlags(int pane, int lineIndex) const

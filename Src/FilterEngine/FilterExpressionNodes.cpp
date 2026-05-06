@@ -1033,12 +1033,12 @@ static auto LineNumberField(int index, const FilterEvalContext& ectxt) -> ValueT
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return ectxt.provider->GetRealLineNumber(index, ectxt.lineIndex);
+	return ectxt.provider->GetRealLineNumber(index, ectxt.lineIndex) + 1;
 }
 
 static auto ViewLineNumberField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
-	return ectxt.lineIndex;
+	return ectxt.lineIndex + 1;
 }
 
 static auto LineExistsField(int index, const FilterEvalContext& ectxt) -> ValueType
@@ -1073,14 +1073,14 @@ static auto LineIdenticalField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & ILineDataProvider::LF_DIFF) == 0;
+	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) == 0;
 }
 
 static auto LineDifferentField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & ILineDataProvider::LF_DIFF) != 0;
+	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
 }
 
 static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1088,7 +1088,7 @@ static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) ->
 	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
-	return ((leftflags & ILineDataProvider::LF_SNP) != 0) && ((leftflags & ILineDataProvider::LF_DIFF) != 0);
+	return ((leftflags & ILineDataProvider::LF_SNP) != 0) && ((leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
 }
 
 static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1096,7 +1096,7 @@ static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -
 	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
-	return (middleflags & ILineDataProvider::LF_SNP) != 0 && (middleflags & ILineDataProvider::LF_DIFF) != 0;
+	return (middleflags & ILineDataProvider::LF_SNP) != 0 && (middleflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
 }
 
 static auto LineDifferentLeftRightField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1105,9 +1105,9 @@ static auto LineDifferentLeftRightField(int, const FilterEvalContext& ectxt) -> 
 	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
 	{
 		unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
-		return (leftflags & ILineDataProvider::LF_DIFF) != 0 && (middleflags & ILineDataProvider::LF_SNP) != 0;
+		return (leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0 && (middleflags & ILineDataProvider::LF_SNP) != 0;
 	}
-	return (leftflags & ILineDataProvider::LF_DIFF) != 0;
+	return (leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
 }
 
 static auto LineTrivialField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1172,28 +1172,6 @@ std::vector<std::pair<int, int>> ExtractRanges(int count, Predicate pred)
 		ranges.emplace_back(start, count);
 
 	return ranges;
-}
-
-static auto LineDiffDistanceField(int, const FilterEvalContext& ectxt) -> ValueType
-{
-	if (!ectxt.provider)
-		return std::monostate{};
-	auto pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
-	if (!pDiffRanges)
-	{
-		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{ return (ectxt.provider->GetLineFlags(0, i) & ILineDataProvider::LF_DIFF) != 0; });
-		ectxt.sharedContext->pDiffRanges = std::make_unique<std::vector<std::pair<int, int>>>(std::move(ranges));
-		pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
-	}
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, *pDiffRanges);
-	if (distances.first < 0 && distances.second < 0)
-		return std::monostate{};
-	if (distances.first >= 0 && distances.second < 0)
-		return distances.first;
-	if (distances.first < 0 && distances.second >= 0)
-		return distances.second;
-	return (std::min)(distances.first, distances.second);
 }
 
 struct AttrParseResult { int side; int prefixLen; };
@@ -1381,11 +1359,6 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	{
 		side = -2;
 		functmp = LineTrivialField;
-	}
-	else if (strcmp(vl.c_str(), "linediffdistance") == 0 || strcmp(vl.c_str(), "diffdistance") == 0)
-	{
-		side = -2;
-		functmp = LineDiffDistanceField;
 	}
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
@@ -2456,29 +2429,71 @@ static auto ToTraditionalChineseFunc(const FilterEvalContext& ectxt, std::vector
 	return ToXFunc(ectxt, args, ucr::toTraditionalChinese);
 }
 
-static auto LineDiffContextFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LineMatchContextFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	auto argBefore = (*args)[0]->Evaluate(ectxt);
-	auto argAfter = (*args)[1]->Evaluate(ectxt);
+	auto argBefore = (*args)[1]->Evaluate(ectxt);
+	auto argAfter = (*args)[2]->Evaluate(ectxt);
 	auto argBeforeInt = std::get_if<int64_t>(&argBefore);
 	auto argAfterInt = std::get_if<int64_t>(&argAfter);
 	if (!argBeforeInt || !argAfterInt)
 		return std::monostate{};
-	auto pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
-	if (!pDiffRanges)
+
+	const int savedLineIndex = ectxt.lineIndex;
+
+	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	if (it == ectxt.sharedContext->matchRanges.end())
 	{
 		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{ return (ectxt.provider->GetLineFlags(0, i) & ILineDataProvider::LF_DIFF) != 0; });
-		ectxt.sharedContext->pDiffRanges = std::make_unique<std::vector<std::pair<int, int>>>(std::move(ranges));
-		pDiffRanges = ectxt.sharedContext->pDiffRanges.get();
+			{
+				ectxt.lineIndex = i;
+				auto result = (*args)[0]->Evaluate(ectxt);
+				return evalAsBool(result).value_or(false);
+			});
+		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
+		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
 	}
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, *pDiffRanges);
+
+	ectxt.lineIndex = savedLineIndex;
+
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
 	if ((distances.first >= 0 && distances.first <= *argBeforeInt) ||
 		(distances.second >= 0 && distances.second <= *argAfterInt))
 		return true;
 	return false;
+}
+
+static auto LineMatchDistanceFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const int savedLineIndex = ectxt.lineIndex;
+
+	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	if (it == ectxt.sharedContext->matchRanges.end())
+	{
+		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
+			{
+				ectxt.lineIndex = i;
+				auto result = (*args)[0]->Evaluate(ectxt);
+				return evalAsBool(result).value_or(false);
+			});
+		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
+		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+	}
+
+	ectxt.lineIndex = savedLineIndex;
+
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
+	if (distances.first < 0 && distances.second < 0)
+		return std::monostate{};
+	if (distances.first >= 0 && distances.second < 0)
+		return distances.first;
+	if (distances.first < 0 && distances.second >= 0)
+		return distances.second;
+	return (std::min)(distances.first, distances.second);
 }
 
 struct FunctionInfo
@@ -2501,15 +2516,18 @@ static constexpr FunctionInfo functionTable[] = {
 	{"at", AtFunc, 2, 2},
 	{"choose", ChooseFunc, 2, -1},
 	{"chooseeach", ChooseEachFunc, 2, -1},
-	{"diffcontext", LineDiffContextFunc, 2, 2},
 	{"if", IfFunc, 3, 3},
 	{"ifeach", IfEachFunc, 3, 3},
 	{"inrange", InRangeFunc, 3, 3},
 	{"iswithin", IsWithinFunc, 3, 3},
 	{"linecount", LineCountFunc, 1, 1},
+	{"linematchcontext", LineMatchContextFunc, 3, 3},
+	{"linematchdistance", LineMatchDistanceFunc, 1, 1},
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
 	{"logwarn", LogWarnFunc, 1, -1},
+	{"matchcontext", LineMatchContextFunc, 3, 3},
+	{"matchdistance", LineMatchDistanceFunc, 1, 1},
 	{"normalizeunicode", NormalizeUnicodeFunc, 1, 2},
 	{"noteach", NotEachFunc, 1, 1},
 	{"now", NowFunc, 0, 0},
@@ -2565,13 +2583,6 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 			SetPropFunc();
 		else
 			SetLeftMiddleRightPropFunc(side);
-		return;
-	}
-	const char* p = functionName.c_str() + prefixlen;
-	if (strcmp(p, "searchdistance") == 0 || strcmp(p, "searchcontext") == 0 ||
-	    strcmp(p, "regexsearchdistance") == 0 || strcmp(p, "regexsearchcontext") == 0)
-	{
-		SetSearchFunc(side, prefixlen);
 		return;
 	}
 
@@ -2859,231 +2870,6 @@ ExprNode* FunctionNode::Optimize()
 ValueType FunctionNode::Evaluate(const FilterEvalContext& ectxt) const
 {
 	return func(ectxt, args);
-}
-
-static auto SearchContextFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
-{
-	if (!ectxt.provider)
-		return std::monostate{};
-	auto argPattern = (*args)[0]->Evaluate(ectxt);
-	const std::string* strPattern = std::get_if<std::string>(&argPattern);
-	if (!strPattern)
-		return std::monostate{};
-	auto argBefore = (*args)[1]->Evaluate(ectxt);
-	auto argAfter = (*args)[2]->Evaluate(ectxt);
-	auto argBeforeInt = std::get_if<int64_t>(&argBefore);
-	auto argAfterInt = std::get_if<int64_t>(&argAfter);
-	if (!argBeforeInt || !argAfterInt)
-		return std::monostate{};
-
-	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	if (it == ectxt.sharedContext->matchRanges.end())
-	{
-		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{
-				const auto& text = ectxt.provider->GetLine(side, i);
-				if (!ectxt.expr->caseSensitive)
-				{
-					auto searcher = std::boyer_moore_horspool_searcher(
-						strPattern->cbegin(), strPattern->cend(), std::hash<char>(),
-						[](char a, char b) {
-							return std::tolower(static_cast<unsigned char>(a)) ==
-								std::tolower(static_cast<unsigned char>(b));
-						}
-					);
-					using iterator = std::string::const_iterator;
-					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
-					return (result.first != result.second);
-				}
-				else
-				{
-					auto searcher = std::boyer_moore_horspool_searcher(
-						strPattern->cbegin(), strPattern->cend());
-					using iterator = std::string::const_iterator;
-					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
-					return (result.first != result.second);
-				}
-			});
-		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
-		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	}
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
-	if ((distances.first >= 0 && distances.first <= *argBeforeInt) ||
-		(distances.second >= 0 && distances.second <= *argAfterInt))
-		return true;
-	return false;
-}
-
-static auto RegexSearchContextFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
-{
-	if (!ectxt.provider)
-		return std::monostate{};
-	auto argPattern = (*args)[0]->Evaluate(ectxt);
-	const std::string* strPattern = std::get_if<std::string>(&argPattern);
-	auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
-	if (!strPattern && !rePattern)
-		return std::monostate{};
-	auto argBefore = (*args)[1]->Evaluate(ectxt);
-	auto argAfter = (*args)[2]->Evaluate(ectxt);
-	auto argBeforeInt = std::get_if<int64_t>(&argBefore);
-	auto argAfterInt = std::get_if<int64_t>(&argAfter);
-	if (!argBeforeInt || !argAfterInt)
-		return std::monostate{};
-
-	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	if (it == ectxt.sharedContext->matchRanges.end())
-	{
-		std::shared_ptr<Poco::RegularExpression> rePatternTmp;
-		if (strPattern)
-		{
-			const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-			rePatternTmp = std::make_shared<Poco::RegularExpression>(*strPattern, flags);
-			rePattern = &rePatternTmp;
-		}
-		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{
-				try
-				{
-					Poco::RegularExpression::Match match;
-					return (*rePattern)->match(ectxt.provider->GetLine(side, i), match) > 0;
-				}
-				catch (const Poco::RegularExpressionException&)
-				{
-					return false;
-				}
-			});
-		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
-		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	}
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
-	if ((distances.first >= 0 && distances.first <= *argBeforeInt) ||
-		(distances.second >= 0 && distances.second <= *argAfterInt))
-		return true;
-	return false;
-}
-
-static auto SearchDistanceFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
-{
-	if (!ectxt.provider)
-		return std::monostate{};
-	auto argPattern = (*args)[0]->Evaluate(ectxt);
-	const std::string* strPattern = std::get_if<std::string>(&argPattern);
-	if (!strPattern)
-		return std::monostate{};
-	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	if (it == ectxt.sharedContext->matchRanges.end())
-	{
-		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{
-				const auto& text = ectxt.provider->GetLine(side, i);
-				if (!ectxt.expr->caseSensitive)
-				{
-					auto searcher = std::boyer_moore_horspool_searcher(
-						strPattern->cbegin(), strPattern->cend(), std::hash<char>(),
-						[](char a, char b) {
-							return std::tolower(static_cast<unsigned char>(a)) ==
-								std::tolower(static_cast<unsigned char>(b));
-						}
-					);
-					using iterator = std::string::const_iterator;
-					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
-					return (result.first != result.second);
-				}
-				else
-				{
-					auto searcher = std::boyer_moore_horspool_searcher(
-						strPattern->cbegin(), strPattern->cend());
-					using iterator = std::string::const_iterator;
-					std::pair<iterator, iterator> result = searcher(text.begin(), text.end());
-					return (result.first != result.second);
-				}
-			});
-		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
-		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	}
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
-	if (distances.first < 0 && distances.second < 0)
-		return std::monostate{};
-	if (distances.first >= 0 && distances.second < 0)
-		return distances.first;
-	if (distances.first < 0 && distances.second >= 0)
-		return distances.second;
-	return (std::min)(distances.first, distances.second);
-}
-
-static auto RegexSearchDistanceFunc(int side, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
-{
-	if (!ectxt.provider)
-		return std::monostate{};
-	auto argPattern = (*args)[0]->Evaluate(ectxt);
-	const std::string* strPattern = std::get_if<std::string>(&argPattern);
-	auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
-	if (!strPattern && !rePattern)
-		return std::monostate{};
-	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	if (it == ectxt.sharedContext->matchRanges.end())
-	{
-		std::shared_ptr<Poco::RegularExpression> rePatternTmp;
-		if (strPattern)
-		{
-			const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-			rePatternTmp = std::make_shared<Poco::RegularExpression>(*strPattern, flags);
-			rePattern = &rePatternTmp;
-		}
-		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{
-				try
-				{
-					Poco::RegularExpression::Match match;
-					return (*rePattern)->match(ectxt.provider->GetLine(side, i), match) > 0;
-				}
-				catch (const Poco::RegularExpressionException&)
-				{
-					return false;
-				}
-			});
-		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
-		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	}
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
-	if (distances.first < 0 && distances.second < 0)
-		return std::monostate{};
-	if (distances.first >= 0 && distances.second < 0)
-		return distances.first;
-	if (distances.first < 0 && distances.second >= 0)
-		return distances.second;
-	return (std::min)(distances.first, distances.second);
-}
-
-void FunctionNode::SetSearchFunc(int side, int prefixlen)
-{
-	const char* p = functionName.c_str() + prefixlen;
-	const bool isSearchContextFunc = strstr(p, "context") != nullptr;
-	const bool isRegexSearchFunc = strstr(p, "regex") != nullptr;
-
-	ValueType(*functmp)(int, const FilterEvalContext&, std::vector<ExprNode*>*) = nullptr;
-	if (isSearchContextFunc)
-	{
-		functmp = (!isRegexSearchFunc) ? SearchContextFunc : RegexSearchContextFunc;
-		if (!args || args->size() != 3)
-			throw std::invalid_argument(functionName + " function requires 3 arguments");
-	}
-	else
-	{
-		functmp = (!isRegexSearchFunc) ? SearchDistanceFunc : RegexSearchDistanceFunc;
-		if (!args || args->size() != 1)
-			throw std::invalid_argument(functionName + " function requires 1 arguments");
-	}
-	if (prefixlen > 0)
-		func = [side, functmp](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args)-> ValueType { return functmp(side < 0 ? ectxt.expr->ctxt->GetCompareDirs() + side: side, ectxt, args); };
-	else
-		func = [functmp](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args)-> ValueType {
-			const int dirs = ectxt.expr->ctxt->GetCompareDirs();
-			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
-			for (int i = 0; i < dirs; ++i)
-				values->emplace_back(ValueType2{ functmp(i, ectxt, args) });
-			return values;
-			};
 }
 
 SizeLiteral::SizeLiteral(const std::string& v)

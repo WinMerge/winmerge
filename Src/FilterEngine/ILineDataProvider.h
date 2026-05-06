@@ -25,6 +25,5 @@ struct ILineDataProvider
 	virtual int GetColumnCount(int pane, int lineIndex) const = 0;
 	virtual std::string GetColumn(int pane, int lineIndex, int columnIndex) const = 0;
 	virtual int GetRealLineNumber(int pane, int lineIndex) const = 0;
-	virtual int GetRealLineCount(int pane) const = 0;
 	virtual unsigned GetLineFlags(int pane, int lineIndex) const = 0;
 };

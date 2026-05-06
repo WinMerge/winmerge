@@ -9,16 +9,10 @@
 #include "UnicodeString.h"
 #include "DiffItem.h"
 
-/** 
- * @brief Constructor, creates new filtermanager.
- */
 LineFilterHelper::LineFilterHelper()
 {
 }
 
-/** 
- * @brief Destructor, deletes filtermanager.
- */
 LineFilterHelper::~LineFilterHelper() = default;
 
 
@@ -36,16 +30,24 @@ bool LineFilterHelper::SetStringOrExpression(const String& filter)
 
 void LineFilterHelper::AddToExpression(const String& expr, const String& op)
 {
-	String filter = m_filter;
-	if (filter.find(_T("le:")) == String::npos)
-	{
-		if (filter.empty())
-			filter = _T("le:");
-		else
-			filter = _T("le:Line contains ") + Quote(filter);
-	}
-	filter += (filter.length() == 3 ? _T("") : _T(" ") + op + _T(" ")) + expr;
-	SetStringOrExpression(filter);
+	SetStringOrExpression(AddToExpression(m_filter, expr, op));
+}
+
+String LineFilterHelper::RemovePrefix(const String& filter)
+{
+	if (filter.find(_T("le:")) != String::npos)
+		return filter.substr(3);
+	return filter;
+}
+
+String LineFilterHelper::AddToExpression(const String& filter, const String& expr, const String& op)
+{
+	String directives = FilterExpression::ExtractDirectivesPrefix(expr);
+	String result = FilterExpression::RemoveAllDirectives(RemovePrefix(filter));
+	if (filter.find(_T("le:")) == String::npos && !result.empty())
+		result = _T("Line contains ") + Quote(result);
+	result += (result.empty() ? _T("") : _T(" ") + op + _T(" ")) + FilterExpression::RemoveAllDirectives(expr);
+	return _T("le:") + (directives.empty() ? _T("") : directives + _T(" ")) + result;
 }
 
 String LineFilterHelper::Quote(const String& text)

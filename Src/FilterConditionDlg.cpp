@@ -124,7 +124,7 @@ bool CFilterConditionDlg::IsStringField(bool includeContent /* = true */) const
 		return true;
 	return m_sField == _T("Name") || m_sField == _T("Folder") || 
 		   m_sField == _T("Extension") || m_sField == _T("Unpacker") || 
-		   m_sField == _T("Prediffer") ||
+		   m_sField == _T("Prediffer") || m_sField == _T("Line") ||
 		   m_vt == VT_LPWSTR || m_vt == (VT_VECTOR | VT_LPWSTR);
 }
 

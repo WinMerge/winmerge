@@ -18,6 +18,8 @@ public:
 	bool SetStringOrExpression(const String& filter);
 	FilterExpression& GetFilterExpression() { return m_expr; }
 	void AddToExpression(const String& expr, const String& op);
+	static String AddToExpression(const String& filter, const String& expr, const String& op);
+	static String RemovePrefix(const String& filter);
 	static String Quote(const String& text);
 private:
 	FilterExpression m_expr;
