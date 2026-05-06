@@ -2648,8 +2648,81 @@ CDirFrame * CDirView::GetParentFrame()
 	return static_cast<CDirFrame *>(__super::GetParentFrame());
 }
 
+/**
+ * @brief Save focus and scroll position to UI state.
+ */
+DirViewUIState* CDirView::SaveUIState()
+{
+	DirViewUIState *pUIState = new DirViewUIState();
+	pUIState->topIndex = m_pList->GetTopIndex();
+	pUIState->focusedIndex = GetFocusedItem();
+	if (pUIState->focusedIndex >= 0)
+	{
+		const auto* pdi = GetItemKey(pUIState->focusedIndex);
+		if (pdi && pdi != (const DIFFITEM *)SPECIAL_ITEM_POS)
+			pUIState->focusedItemPath = paths::ConcatPath(pdi->diffFileInfo[0].path, pdi->diffFileInfo[0].filename);
+	}
+	return pUIState;
+}
+
+/**
+ * @brief Restore focus and scroll position from saved UI state.
+ * @param [in] pUIState Saved tree state containing focus and scroll information.
+ */
+void CDirView::RestoreUIState(const DirViewUIState* pUIState)
+{
+	if (pUIState == nullptr)
+		return;
+
+	int focusedIndex = -1;
+
+	// Restore focused item
+	if (!pUIState->focusedItemPath.empty())
+	{
+		const CDiffContext& ctxt = GetDiffContext();
+		DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
+		while (diffpos != nullptr)
+		{
+			const DIFFITEM &di = ctxt.GetNextDiffPosition(diffpos);
+			String relpath = paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
+			if (relpath == pUIState->focusedItemPath)
+			{
+				// Find this item in the list view
+				for (size_t i = 0; i < m_listViewItems.size(); ++i)
+				{
+					if (m_listViewItems[i].lParam == reinterpret_cast<LPARAM>(&di))
+					{
+						focusedIndex = (int)i;
+						m_pList->SetItemState(static_cast<int>(i), LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
+						m_pList->SetSelectionMark(static_cast<int>(i));
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+
+	if (focusedIndex == -1 && pUIState->focusedIndex >= 0 && pUIState->focusedIndex < m_pList->GetItemCount())
+	{
+		focusedIndex = pUIState->focusedIndex;
+		m_pList->SetItemState(static_cast<int>(focusedIndex), LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
+		m_pList->SetSelectionMark(static_cast<int>(focusedIndex));
+	}
+
+	// Restore scroll position
+	if (pUIState->topIndex > 0 && pUIState->topIndex < m_pList->GetItemCount())
+	{
+		CRect rc;
+		m_pList->GetItemRect(0, &rc, LVIR_BOUNDS);
+		int offsetY = pUIState->topIndex * rc.Height();
+		m_pList->Scroll(CSize(0, offsetY));
+	}
+}
+
 void CDirView::OnRefresh()
 {
+	m_pSavedUIState.reset(SaveUIState());
 	m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
 	GetDocument()->Rescan();
 }
@@ -2795,6 +2868,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			if (m_nExpandSubdirs == EXPAND_IDENTICAL)
 				OnViewExpandIdenticalSubdirs();
 		}
+		m_pSavedTreeState.reset();
 
 		auto& ctxt = pDoc->GetDiffContext();
 
@@ -2812,10 +2886,18 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			pDoc->SetReportFile(_T(""));
 		}
 
-		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-			OnFirstdiff();
+		if (!m_pSavedUIState)
+		{
+			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+				OnFirstdiff();
+			else
+				MoveFocus(0, 0, 0);
+		}
 		else
-			MoveFocus(0, 0, 0);
+		{
+			RestoreUIState(m_pSavedUIState.get());
+			m_pSavedUIState.reset();
+		}
 
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		m_elapsed = pDoc->GetElapsedTime();
@@ -2845,7 +2927,6 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		if (m_pSavedTreeState != nullptr)
 		{
 			RestoreTreeState(GetDiffContext(), m_pSavedTreeState.get());
-			m_pSavedTreeState.reset();
 			Redisplay();
 		}
 		else
@@ -3904,6 +3985,7 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 						}
 						// Rescan the item.
 						MarkForRescan(di);
+						m_pSavedUIState.reset(SaveUIState());
 						m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
 						GetDocument()->SetMarkedRescan();
 						GetDocument()->Rescan();
@@ -3961,6 +4043,7 @@ void CDirView::OnMarkedRescan()
 	std::for_each(SelBegin(), SelEnd(), MarkForRescan);
 	if (std::distance(SelBegin(), SelEnd()) > 0)
 	{
+		m_pSavedUIState.reset(SaveUIState());
 		m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
 		GetDocument()->SetMarkedRescan();
 		GetDocument()->Rescan();
@@ -4880,6 +4963,7 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		if (nID != 0)
 		{
 			GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS);
+			m_pSavedUIState.reset(SaveUIState());
 			m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
 			GetDocument()->Rescan();
 		}

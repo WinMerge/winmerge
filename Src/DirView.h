@@ -88,6 +88,8 @@ public:
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
 	int RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &alldiffs);
+	DirViewUIState* SaveUIState();
+	void RestoreUIState(const DirViewUIState* pUIState);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	DIFFITEM *GetItemKey(int idx) const;
@@ -227,6 +229,7 @@ protected:
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuBoth; /**< Shell context menu for group of both files */
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
 	std::unique_ptr<DirViewTreeState> m_pSavedTreeState;
+	std::unique_ptr<DirViewUIState> m_pSavedUIState;
 	std::unique_ptr<DirViewColItems> m_pColItems;
 	std::unique_ptr<CFileFilterHelperMenu> m_pFilterMenu;
 	int m_nActivePane;
