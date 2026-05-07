@@ -9135,7 +9135,7 @@ msgid ""
 "Arguments: curl command line options."
 msgstr ""
 "使用 curl 的 HTTP URL 方案处理程序。\r\n"
-"参数：传递给 curl 的命令行选项。"
+"参数：curl 的命令行选项。"
 
 #: Strings.rc:199
 msgid ""
@@ -9143,7 +9143,7 @@ msgid ""
 "Arguments: reg.exe command line options."
 msgstr ""
 "Windows 注册表 URL 方案处理程序。\r\n"
-"参数：传递给 reg.exe 的命令行选项。"
+"参数：reg.exe 的命令行选项。"
 
 #. IDS_PLUGIN_DESCRIPTION54
 #: Strings.rc:200
@@ -9181,8 +9181,12 @@ msgstr ""
 "参数：CFR 命令行选项。"
 
 #: Strings.rc:206
-msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+msgid ""
+"Clipboard URL Scheme Handler (cliphcat).\r\n"
+"Arguments: cliphcat command line options."
 msgstr ""
+"使用 cliphcat 的剪贴板 URL 方案处理程序。\r\n"
+"参数：cliphcat 的命令行选项。"
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
