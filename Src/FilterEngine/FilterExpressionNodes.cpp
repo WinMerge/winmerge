@@ -1085,7 +1085,7 @@ static auto LineDifferentField(int, const FilterEvalContext& ectxt) -> ValueType
 
 static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) -> ValueType
 {
-	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
+	if (!ectxt.provider || ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
 	return ((leftflags & ILineDataProvider::LF_SNP) != 0) && ((leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
@@ -1093,7 +1093,7 @@ static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) ->
 
 static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -> ValueType
 {
-	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
+	if (!ectxt.provider || ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
 	return (middleflags & ILineDataProvider::LF_SNP) != 0 && (middleflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
@@ -1101,6 +1101,8 @@ static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -
 
 static auto LineDifferentLeftRightField(int, const FilterEvalContext& ectxt) -> ValueType
 {
+	if (!ectxt.provider)
+		return std::monostate{};
 	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
 	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
 	{
@@ -1128,10 +1130,10 @@ static std::pair<int, int> GetDistancesToRanges(int line, const std::vector<std:
 
 		if (line < range.first)
 		{
-			int before = range.first - line;
+			int after = range.first - line;
 			if (prevEnd == -1)
-				return { before, -1 };
-			int after = line - prevEnd;
+				return { -1, after };
+			int before = line - prevEnd;
 			return { before, after };
 		}
 
@@ -1139,7 +1141,7 @@ static std::pair<int, int> GetDistancesToRanges(int line, const std::vector<std:
 	}
 
 	if (prevEnd != -1)
-		return { -1, line - prevEnd };
+		return { line - prevEnd, -1 };
 
 	return { -1, -1 };
 }
@@ -1169,7 +1171,7 @@ std::vector<std::pair<int, int>> ExtractRanges(int count, Predicate pred)
 	}
 
 	if (start != -1)
-		ranges.emplace_back(start, count);
+		ranges.emplace_back(start, count - 1);
 
 	return ranges;
 }
@@ -1270,7 +1272,7 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	}
 	else if (strcmp(vl.c_str(), "skipped") == 0)
 	{
-		functmp = ctxt->diritem ? SkippedField : LineTrivialField;
+		functmp = SkippedField;
 		side = -2;
 	}
 	else if (strcmp(vl.c_str(), "trivial") == 0)
@@ -2429,6 +2431,83 @@ static auto ToTraditionalChineseFunc(const FilterEvalContext& ectxt, std::vector
 	return ToXFunc(ectxt, args, ucr::toTraditionalChinese);
 }
 
+static const auto& GetOrCreateMatchRanges(const FilterEvalContext& ectxt, ExprNode* expr)
+{
+	auto& matchRanges = ectxt.sharedContext->matchRanges;
+
+	auto it = matchRanges.find(expr);
+	if (it == matchRanges.end())
+	{
+		auto ranges = ExtractRanges(
+			ectxt.provider->GetLineCount(),
+			[&](int i)
+			{
+				FilterEvalContext lectxt = ectxt;
+				lectxt.lineIndex = i;
+				auto result = expr->Evaluate(lectxt);
+				return evalAsBool(result).value_or(false);
+			});
+
+		it = matchRanges.insert_or_assign(expr, std::move(ranges)).first;
+	}
+
+	return it->second;
+}
+
+static const auto& GetOrCreateBetweenRanges(const FilterEvalContext& ectxt, ExprNode* beginExpr, ExprNode* endExpr)
+{
+	auto& cache = ectxt.sharedContext->betweenRanges;
+
+	BetweenKey key{ beginExpr, endExpr };
+
+	auto it = cache.find(key);
+	if (it != cache.end())
+		return it->second;
+
+	std::vector<Range> ranges;
+
+	bool inside = false;
+	int start = -1;
+
+	const int lineCount =
+		ectxt.provider->GetLineCount();
+
+	for (int i = 0; i < lineCount; ++i)
+	{
+		auto local = ectxt;
+		local.lineIndex = i;
+
+		bool isBegin =
+			evalAsBool(beginExpr->Evaluate(local))
+			.value_or(false);
+
+		bool isEnd =
+			evalAsBool(endExpr->Evaluate(local))
+			.value_or(false);
+
+		if (!inside && isBegin)
+		{
+			inside = true;
+			start = i;
+		}
+
+		if (inside && isEnd)
+		{
+			ranges.emplace_back(start, i);
+			inside = false;
+		}
+	}
+
+	if (inside)
+		ranges.emplace_back(start, lineCount - 1);
+
+	it = cache.insert_or_assign(
+		key,
+		std::move(ranges)).first;
+
+	return it->second;
+}
+
 static auto LineMatchContextFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
@@ -2440,53 +2519,67 @@ static auto LineMatchContextFunc(const FilterEvalContext& ectxt, std::vector<Exp
 	if (!argBeforeInt || !argAfterInt)
 		return std::monostate{};
 
-	const int savedLineIndex = ectxt.lineIndex;
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
 
-	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	if (it == ectxt.sharedContext->matchRanges.end())
-	{
-		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{
-				ectxt.lineIndex = i;
-				auto result = (*args)[0]->Evaluate(ectxt);
-				return evalAsBool(result).value_or(false);
-			});
-		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
-		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	}
-
-	ectxt.lineIndex = savedLineIndex;
-
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
-	if ((distances.first >= 0 && distances.first <= *argBeforeInt) ||
-		(distances.second >= 0 && distances.second <= *argAfterInt))
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, ranges);
+	if ((distances.first >= 0 && distances.first <= *argAfterInt) ||
+		(distances.second >= 0 && distances.second <= *argBeforeInt))
 		return true;
 	return false;
 }
 
-static auto LineMatchDistanceFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LineMatchCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
 
-	const int savedLineIndex = ectxt.lineIndex;
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
 
-	auto it = ectxt.sharedContext->matchRanges.find((*args)[0]);
-	if (it == ectxt.sharedContext->matchRanges.end())
+	int64_t matchCount = 0;
+	for (const auto& range : ranges)
+		matchCount += range.second - range.first + 1;
+
+	return matchCount;
+}
+
+static auto LineMatchIndexFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
+
+	int64_t matchIndex = 0;
+	for (const auto& range : ranges)
 	{
-		auto ranges = ExtractRanges(ectxt.provider->GetLineCount(), [&](int i)
-			{
-				ectxt.lineIndex = i;
-				auto result = (*args)[0]->Evaluate(ectxt);
-				return evalAsBool(result).value_or(false);
-			});
-		ectxt.sharedContext->matchRanges.insert_or_assign((*args)[0], std::move(ranges));
-		it = ectxt.sharedContext->matchRanges.find((*args)[0]);
+		if (range.first <= ectxt.lineIndex && ectxt.lineIndex <= range.second)
+			return matchIndex + (ectxt.lineIndex - range.first) + 1;
+		matchIndex += range.second - range.first + 1;
 	}
 
-	ectxt.lineIndex = savedLineIndex;
+	return std::monostate{};
+}
 
-	auto distances = GetDistancesToRanges(ectxt.lineIndex, it->second);
+static auto LineMatchDistanceExFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args, int direction) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
+
+	auto distances = GetDistancesToRanges(ectxt.lineIndex, ranges);
+	if (direction == -1)
+	{
+		if (distances.first < 0)
+			return std::monostate{};
+		return distances.first;
+	}
+	else if (direction == 1)
+	{
+		if (distances.second < 0)
+			return std::monostate{};
+		return distances.second;
+	}
 	if (distances.first < 0 && distances.second < 0)
 		return std::monostate{};
 	if (distances.first >= 0 && distances.second < 0)
@@ -2494,6 +2587,37 @@ static auto LineMatchDistanceFunc(const FilterEvalContext& ectxt, std::vector<Ex
 	if (distances.first < 0 && distances.second >= 0)
 		return distances.second;
 	return (std::min)(distances.first, distances.second);
+}
+
+static auto LineMatchDistanceFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LineMatchDistanceExFunc(ectxt, args, 0);
+}
+
+static auto LineMatchDistanceBeforeFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LineMatchDistanceExFunc(ectxt, args, -1);
+}
+
+static auto LineMatchDistanceAfterFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LineMatchDistanceExFunc(ectxt, args, 1);
+}
+
+static auto LineMatchBetweenFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const auto& ranges = GetOrCreateBetweenRanges(ectxt, (*args)[0], (*args)[1]);
+
+	for (const auto& range : ranges)
+	{
+		if (range.first <= ectxt.lineIndex && ectxt.lineIndex <= range.second)
+			return true;
+	}
+
+	return false;
 }
 
 struct FunctionInfo
@@ -2521,13 +2645,16 @@ static constexpr FunctionInfo functionTable[] = {
 	{"inrange", InRangeFunc, 3, 3},
 	{"iswithin", IsWithinFunc, 3, 3},
 	{"linecount", LineCountFunc, 1, 1},
-	{"linematchcontext", LineMatchContextFunc, 3, 3},
-	{"linematchdistance", LineMatchDistanceFunc, 1, 1},
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
 	{"logwarn", LogWarnFunc, 1, -1},
+	{"matchbetween", LineMatchBetweenFunc, 2, 2},
 	{"matchcontext", LineMatchContextFunc, 3, 3},
+	{"matchcount", LineMatchCountFunc, 1, 1},
 	{"matchdistance", LineMatchDistanceFunc, 1, 1},
+	{"matchdistanceafter", LineMatchDistanceAfterFunc, 1, 1},
+	{"matchdistancebefore", LineMatchDistanceBeforeFunc, 1, 1},
+	{"matchindex", LineMatchIndexFunc, 1, 1},
 	{"normalizeunicode", NormalizeUnicodeFunc, 1, 2},
 	{"noteach", NotEachFunc, 1, 1},
 	{"now", NowFunc, 0, 0},
@@ -2835,24 +2962,6 @@ ExprNode* FunctionNode::Optimize()
 			auto list = ReplaceList::LoadRegexList(*ctxt, ucr::toTString(dynamic_cast<StringLiteral*>((*args)[1])->value));
 			delete (*args)[1];
 			(*args)[1] = new ArrayLiteral(list);
-		}
-	}
-	else if (functionName == "regexsearchcontext" || functionName == "leftregexsearchcontext" || functionName == "middleregexsearchcontext" || functionName == "rightregexsearchcontext" ||
-	         functionName == "regexsearchdistance" || functionName == "leftregexsearchdistance" || functionName == "middleregexsearchdistance" || functionName == "rightregexsearchdistance")
-	{
-		if (args && args->size() >= 1 && dynamic_cast<StringLiteral*>((*args)[0]))
-		{
-			try
-			{
-				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[0])->value, ctxt->caseSensitive);
-				delete (*args)[0];
-				(*args)[0] = re;
-			}
-			catch (const Poco::RegularExpressionException&)
-			{
-				// Invalid regex pattern, cannot optimize
-				return this;
-			}
 		}
 	}
 	else if (functionName == "startofweek" || functionName == "startofmonth" || functionName == "startofyear")

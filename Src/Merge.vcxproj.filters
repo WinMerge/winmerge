@@ -1589,12 +1589,6 @@
     <ClInclude Include="ClipboardHistoryMenu.h">
       <Filter>MFCGui\Menu\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ILineItemProvider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SharedFilterContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LineFilterBar.h">
       <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
     </ClInclude>

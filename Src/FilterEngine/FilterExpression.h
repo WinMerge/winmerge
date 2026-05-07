@@ -22,12 +22,15 @@ struct FilterSharedContext;
 
 struct FilterEvalContext
 {
-	const FilterExpression* expr;
-	const DIFFITEM* di;
+	const FilterExpression* expr = nullptr;
+	const DIFFITEM* di = nullptr;
 	const ILineDataProvider* provider = nullptr;
-	const FilterSharedContext* sharedContext;
-	mutable int lineIndex = -1;
+	const FilterSharedContext* sharedContext = nullptr;
+	int lineIndex = -1;
 };
+
+using Range = std::pair<int, int>;
+using BetweenKey = std::pair<ExprNode*, ExprNode*>;
 
 struct FilterSharedContext
 {
@@ -36,6 +39,7 @@ struct FilterSharedContext
 	FilterSharedContext& operator=(const FilterSharedContext&) = delete;
 
 	mutable std::map<ExprNode*, std::vector<std::pair<int, int>>> matchRanges;
+	mutable std::map<BetweenKey, std::vector<Range>> betweenRanges;
 };
 
 struct FilterExpression

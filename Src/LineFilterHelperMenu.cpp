@@ -87,9 +87,6 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& masks, int 
 	{
 		result = _T("");
 	}
-	else if (command == ID_FILTERMENU_MASK_REMOVE_LAST)
-	{
-	}
 	else if (command == ID_FILTERMENU_LINE_RANGE)
 	{
 		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 contains %2"), _T("%1"));

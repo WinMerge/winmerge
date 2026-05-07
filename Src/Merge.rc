@@ -1848,7 +1848,6 @@ BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
-        MENUITEM "Remove Last Filter &Group",   ID_FILTERMENU_MASK_REMOVE_LAST
         MENUITEM SEPARATOR
         MENUITEM "&Line Filter...",             ID_FILTERMENU_LINE_RANGE
         POPUP "&Line Number"
@@ -1867,6 +1866,7 @@ BEGIN
             MENUITEM "Moved",                       ID_FILTERMENU_LINE_MOVED
             MENUITEM "Bookmarked",                  ID_FILTERMENU_LINE_BOOKMARKED
         END
+        MENUITEM SEPARATOR
         MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
         MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
         MENUITEM "Target: &Middle",             ID_FILTERMENU_CONDITION_MIDDLE
@@ -1875,11 +1875,11 @@ BEGIN
         MENUITEM "Combine: &OR",                ID_FILTERMENU_OPERATOR_OR
         MENUITEM "Combine: A&ND",               ID_FILTERMENU_OPERATOR_AND
         MENUITEM SEPARATOR
-        MENUITEM "Context: &0Lines",            ID_FILTERMENU_LINE_CONTEXT_0
-        MENUITEM "Context: &1Line",             ID_FILTERMENU_LINE_CONTEXT_1
-        MENUITEM "Context: &3Lines",            ID_FILTERMENU_LINE_CONTEXT_3
-        MENUITEM "Context: &5Lines",            ID_FILTERMENU_LINE_CONTEXT_5
-        MENUITEM "Context: &7Lines",            ID_FILTERMENU_LINE_CONTEXT_7
+        MENUITEM "Context Lines: &0",           ID_FILTERMENU_LINE_CONTEXT_0
+        MENUITEM "Context Lines: &1",           ID_FILTERMENU_LINE_CONTEXT_1
+        MENUITEM "Context Lines: &3",           ID_FILTERMENU_LINE_CONTEXT_3
+        MENUITEM "Context Lines: &5",           ID_FILTERMENU_LINE_CONTEXT_5
+        MENUITEM "Context Lines: &7",           ID_FILTERMENU_LINE_CONTEXT_7
     END
 END
 
