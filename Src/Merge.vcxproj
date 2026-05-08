@@ -975,6 +975,7 @@
     <ClCompile Include="FileFilterHelperMenu.cpp" />
     <ClCompile Include="ComparisonResultFilterDlg.cpp" />
     <ClCompile Include="FilterConditionDlg.cpp" />
+    <ClCompile Include="MatchInsideDlg.cpp" />
     <ClCompile Include="FilterErrorMessages.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1002,6 +1003,7 @@
     <ClInclude Include="DirFilterBar.h" />
     <ClInclude Include="ComparisonResultFilterDlg.h" />
     <ClInclude Include="FilterConditionDlg.h" />
+    <ClInclude Include="MatchInsideDlg.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />
     <ClInclude Include="FrameWndHelper.h" />

@@ -21,6 +21,11 @@ public:
 	static String AddToExpression(const String& filter, const String& expr, const String& op);
 	static String RemovePrefix(const String& filter);
 	static String Quote(const String& text);
+	static String ConvertToLineContainsExpression(const String& text);
+	// Helper: Build "le:" prefixed result with optional directives
+	static String BuildFilter(const String& directives, const String& expr) {
+		return _T("le:") + (directives.empty() ? _T("") : directives + _T(" ")) + expr;
+	}
 private:
 	FilterExpression m_expr;
 	String m_filter;

@@ -45,11 +45,9 @@ String LineFilterHelper::AddToExpression(const String& filter, const String& exp
 	auto [filterDirectives, filterExpr] = FilterExpression::SplitDirectivesAndExpr(RemovePrefix(filter));
 	auto [exprDirectives, exprBody] = FilterExpression::SplitDirectivesAndExpr(expr);
 	String mergedDirectives = FilterExpression::MergeDirectives(filterDirectives, exprDirectives);
-	String result = filterExpr;
-	if (filter.find(_T("le:")) == String::npos && !result.empty())
-		result = _T("Line contains ") + Quote(result);
+	String result = ConvertToLineContainsExpression(filterExpr);
 	result += (result.empty() ? _T("") : _T(" ") + op + _T(" ")) + exprBody;
-	return _T("le:") + (mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")) + result;
+	return BuildFilter((mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")), result);
 }
 
 String LineFilterHelper::Quote(const String& text)
@@ -57,4 +55,11 @@ String LineFilterHelper::Quote(const String& text)
 	String tmp = text;
 	strutils::replace(tmp, _T("\""), _T("\"\""));
 	return _T("\"") + tmp + _T("\"");
+}
+
+String LineFilterHelper::ConvertToLineContainsExpression(const String& text)
+{
+	if (text.empty() || text.find(_T("le:")) == 0)
+		return text;
+	return _T("le:Line contains ") + Quote(text);
 }

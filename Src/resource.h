@@ -105,6 +105,7 @@
 #define IDD_PLUGINS_EDITPLUGIN          288
 #define IDD_DARK_FONT_DIALOG            289
 #define IDD_COMPARISON_RESULT_FILTER    290
+#define IDD_FILTERS_MATCHINSIDE         291
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_MARGIN_ICONS_PNG            310
@@ -712,6 +713,10 @@
 #define IDC_CHECK_LEFT_ONLY_MISSING     1711
 #define IDC_CHECK_MIDDLE_ONLY_MISSING   1712
 #define IDC_CHECK_RIGHT_ONLY_MISSING    1713
+#define IDC_MATCHINSIDE_EXPR1           1714
+#define IDC_MATCHINSIDE_EXPR2           1715
+#define IDC_MATCHINSIDE_EXPR1_BUTTON    1716
+#define IDC_MATCHINSIDE_EXPR2_BUTTON    1717
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
