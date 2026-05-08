@@ -1854,6 +1854,7 @@ BEGIN
         BEGIN
             MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES
             MENUITEM "&Even Lines",                 ID_FILTERMENU_LINE_EVEN_LINES
+            MENUITEM "&Custom...",                  ID_FILTERMENU_LINE_NUMBER_RANGE
         END
         POPUP "Line &Status"
         BEGIN
@@ -1875,11 +1876,35 @@ BEGIN
         MENUITEM "Combine: &OR",                ID_FILTERMENU_OPERATOR_OR
         MENUITEM "Combine: A&ND",               ID_FILTERMENU_OPERATOR_AND
         MENUITEM SEPARATOR
-        MENUITEM "Context Lines: &0",           ID_FILTERMENU_LINE_CONTEXT_0
-        MENUITEM "Context Lines: &1",           ID_FILTERMENU_LINE_CONTEXT_1
-        MENUITEM "Context Lines: &3",           ID_FILTERMENU_LINE_CONTEXT_3
-        MENUITEM "Context Lines: &5",           ID_FILTERMENU_LINE_CONTEXT_5
-        MENUITEM "Context Lines: &7",           ID_FILTERMENU_LINE_CONTEXT_7
+        POPUP "&Wrap Current Filter"
+        BEGIN
+            POPUP "Add Con&text"
+            BEGIN
+                MENUITEM "&0 Lines",                   ID_FILTERMENU_LINE_CONTEXT_0
+                MENUITEM "&1 Line",                    ID_FILTERMENU_LINE_CONTEXT_1
+                MENUITEM "&3 Lines",                   ID_FILTERMENU_LINE_CONTEXT_3
+                MENUITEM "&5 Lines",                   ID_FILTERMENU_LINE_CONTEXT_5
+                MENUITEM "&7 Lines",                   ID_FILTERMENU_LINE_CONTEXT_7
+            END
+            POPUP "&Occurrence"
+            BEGIN
+                MENUITEM "&First",                     ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
+                MENUITEM "&Last",                      ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
+                MENUITEM "First &5 Matches",           ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
+                MENUITEM "After First &5",             ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
+                MENUITEM "&Custom...",                 ID_FILTERMENU_LINE_MATCHNUMBER_RANGE
+            END
+            POPUP "&Range"
+            BEGIN
+                MENUITEM "&Inside...",                 ID_FILTERMENU_LINE_MATCHINSIDE_WRAP
+                MENUITEM "&Outside...",                ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP
+            END
+        END
+        POPUP "Create &Range"
+        BEGIN
+            MENUITEM "&Inside...",                     ID_FILTERMENU_LINE_MATCHINSIDE
+            MENUITEM "&Outside...",                    ID_FILTERMENU_LINE_MATCHOUTSIDE
+        END
     END
 END
 

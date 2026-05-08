@@ -7,7 +7,25 @@
 #include "FilterConditionDlg.h"
 #include "resource.h"
 
-std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& masks, int x, int y, CWnd* pParentWnd)
+namespace
+{
+	// Helper: Build "le:" prefixed result with optional directives
+	String BuildLeResult(const String& directives, const String& expr)
+	{
+		return _T("le:") + (directives.empty() ? _T("") : directives + _T(" ")) + expr;
+	}
+
+	// Helper: Wrap expression with directives extracted from current filter
+	String WrapWithFilterDirectives(const String& filterExpr, const String& wrapperFormat)
+	{
+		String withoutPrefix = LineFilterHelper::RemovePrefix(filterExpr);
+		auto [directives, expr] = FilterExpression::SplitDirectivesAndExpr(withoutPrefix);
+		String wrapped = strutils::format_string1(wrapperFormat, expr);
+		return BuildLeResult(directives, wrapped);
+	}
+}
+
+std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, int x, int y, CWnd* pParentWnd)
 {
 	std::optional<String> result;
 	VERIFY(LoadMenu(IDR_POPUP_LINEFILTERMENU));
@@ -23,9 +41,6 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& masks, int x
 			for (int i = ID_FILTERMENU_OPERATOR_OR; i <= ID_FILTERMENU_OPERATOR_AND; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_OPERATOR_OR + m_operator) == i ? MF_CHECKED : 0));
-			for (int i = ID_FILTERMENU_LINE_CONTEXT_0; i <= ID_FILTERMENU_LINE_CONTEXT_7; i++)
-				pPopup->CheckMenuItem(i,
-					MF_BYCOMMAND | ((ID_FILTERMENU_LINE_CONTEXT_0 + m_context) == i ? MF_CHECKED : 0));
 
 			const int command = pPopup->TrackPopupMenu(
 				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, x, y, pParentWnd);
@@ -43,14 +58,9 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& masks, int x
 				m_operator = command - ID_FILTERMENU_OPERATOR_OR;
 				continue;
 			}
-			else if (command >= ID_FILTERMENU_LINE_CONTEXT_0 && command <= ID_FILTERMENU_LINE_CONTEXT_7)
-			{
-				m_context = command - ID_FILTERMENU_LINE_CONTEXT_0;
-				continue;
-			}
 			else
 			{
-				result = OnCommand(masks, command, pParentWnd);
+				result = OnCommand(filterExpr, command, pParentWnd);
 			}
 		}
 		break;
@@ -72,15 +82,7 @@ String CLineFilterHelperMenu::defaultProp(const String& name) const
 	return Sides[m_targetSide] + name;
 }
 
-String CLineFilterHelperMenu::matchContext(const String& expr) const
-{
-	if (m_context == 0)
-		return expr;
-	static const String Contexts[] = {_T("0"), _T("1"), _T("3"), _T("5"), _T("7") };
-	return _T("MatchContext(") + expr + _T(", ") + Contexts[m_context] + _T(", ") + Contexts[m_context] + _T(")");
-}
-
-std::optional<String> CLineFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* pParentWnd)
+std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr, int command, CWnd* pParentWnd)
 {
 	std::optional<String> result;
 	if (command == ID_FILTERMENU_MASK_CLEAR)
@@ -91,39 +93,90 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& masks, int 
 	{
 		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
-		{
-			String directives = FilterExpression::ExtractDirectivesPrefix(dlg.m_sExpression);
-			String exprWithoutDirective = FilterExpression::RemoveAllDirectives(dlg.m_sExpression);
-			String expr = matchContext(exprWithoutDirective);
-			if (!directives.empty())
-				expr = directives + _T(" ") + expr;
-			result = LineFilterHelper::AddToExpression(masks, expr, op());
-		}
+			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
 	else if (command >= ID_FILTERMENU_LINE_ODD_LINES && command <= ID_FILTERMENU_LINE_EVEN_LINES)
 	{
 		static const String LineNumberConditions[] = { _T("(%1 %% 2) = 1"), _T("(%1 %% 2) = 0"), };
-		String expr = matchContext(
-			strutils::format_string1(LineNumberConditions[command - ID_FILTERMENU_LINE_ODD_LINES],
-			defaultProp(_T("LineNumber"))));
-		result = LineFilterHelper::AddToExpression(masks, expr, op());
+		String expr = strutils::format_string1(LineNumberConditions[command - ID_FILTERMENU_LINE_ODD_LINES], defaultProp(_T("LineNumber")));
+		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
+	}
+	else if (command == ID_FILTERMENU_LINE_NUMBER_RANGE)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("LineNumber"), _T(""), _("%1 > %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
 	else if (command >= ID_FILTERMENU_LINE_DIFFERENT && command <= ID_FILTERMENU_LINE_TRIVIAL)
 	{
 		static const String Identifiers[] = { _T("Different"), _T("Identical"), _T("Trivial") };
-		String expr = matchContext(Identifiers[command - ID_FILTERMENU_LINE_DIFFERENT]);
-		result = LineFilterHelper::AddToExpression(masks, expr, op());
+		String expr = Identifiers[command - ID_FILTERMENU_LINE_DIFFERENT];
+		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 	}
 	else if (command >= ID_FILTERMENU_LINE_EXISTS && command <= ID_FILTERMENU_LINE_BOOKMARKED)
 	{
 		static const String Identifiers[] = { _T("Exists"), _T("Missing"), _T("Moved"), _T("Bookmarked") };
-		String expr = matchContext(defaultProp(Identifiers[command - ID_FILTERMENU_LINE_EXISTS]));
-		result = LineFilterHelper::AddToExpression(masks, expr, op());
+		String expr = defaultProp(Identifiers[command - ID_FILTERMENU_LINE_EXISTS]);
+		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
+	}
+	else if (command >= ID_FILTERMENU_LINE_CONTEXT_0 && command <= ID_FILTERMENU_LINE_CONTEXT_7)
+	{
+		static const String Contexts[] = { _T("0"), _T("1"), _T("3"), _T("5"), _T("7") };
+		const int contextIndex = command - ID_FILTERMENU_LINE_CONTEXT_0;
+		result = WrapWithFilterDirectives(filterExpr, _T("MatchContext(%1, ") + Contexts[contextIndex] + _T(", ") + Contexts[contextIndex] + _T(")"));
+	}
+	else if (command >= ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1 && command <= ID_FILTERMENU_LINE_MATCHNUMBER_GT_5)
+	{
+		static const String Exprs[] = {
+			_T("MatchNumber(%1) = 1"), _T("MatchNumber(%1) = MatchCount(%1)"),
+			_T("MatchNumber(%1) <= 5"), _T("MatchNumber(%1) > 5"),
+		};
+		result = WrapWithFilterDirectives(filterExpr, Exprs[command - ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1]);
+	}
+	else if (command == ID_FILTERMENU_LINE_MATCHNUMBER_RANGE)
+	{
+		auto [filterDirectives, filterBody] = FilterExpression::SplitDirectivesAndExpr(LineFilterHelper::RemovePrefix(filterExpr));
+		CFilterConditionDlg dlg(false, m_targetSide, filterBody, _T(""), _("%1 > %2"), _T("MatchNumber(") + filterBody + _T(")"));
+		if (dlg.DoModal() == IDOK)
+		{
+			auto [dlgDirectives, expr] = FilterExpression::SplitDirectivesAndExpr(dlg.m_sExpression);
+			String mergedDirectives = FilterExpression::MergeDirectives(filterDirectives, dlgDirectives);
+			result = BuildLeResult(mergedDirectives, expr);
+		}
+	}
+	else if (command == ID_FILTERMENU_LINE_MATCHINSIDE_WRAP || command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+		{
+			auto [directives1, expr1] = FilterExpression::SplitDirectivesAndExpr(LineFilterHelper::RemovePrefix(filterExpr));
+			auto [directives2, expr2] = FilterExpression::SplitDirectivesAndExpr(dlg.m_sExpression);
+			String mergedDirectives = FilterExpression::MergeDirectives(directives1, directives2);
+			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP) ? _T("not MatchInside(") : _T("MatchInside(");
+			result = BuildLeResult(mergedDirectives, funcName + expr1 + _T(", ") + expr2 + _T(")"));
+		}
+	}
+	else if (command == ID_FILTERMENU_LINE_MATCHINSIDE || command == ID_FILTERMENU_LINE_MATCHOUTSIDE)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+		{
+			auto [directives1, expr1] = FilterExpression::SplitDirectivesAndExpr(dlg.m_sExpression);
+			CFilterConditionDlg dlg2(false, m_targetSide, _T("Line"), _T(""), _("%1 contains %2"), _T("%1"));
+			if (dlg2.DoModal() == IDOK)
+			{
+				auto [directives2, expr2] = FilterExpression::SplitDirectivesAndExpr(dlg2.m_sExpression);
+				String mergedDirectives = FilterExpression::MergeDirectives(directives1, directives2);
+				String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE) ? _T("not MatchInside(") : _T("MatchInside(");
+				String expr = (mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")) + funcName + expr1 + _T(", ") + expr2 + _T(")");
+				result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
+			}
+		}
 	}
 	return result;
 }
 
-std::optional<String> CLineFilterHelperMenu::HandleMenuCommand(const String& masks, int command, CWnd* pParentWnd)
+std::optional<String> CLineFilterHelperMenu::HandleMenuCommand(const String& filterExpr, int command, CWnd* pParentWnd)
 {
-	return OnCommand(masks, command, pParentWnd);
+	return OnCommand(filterExpr, command, pParentWnd);
 }

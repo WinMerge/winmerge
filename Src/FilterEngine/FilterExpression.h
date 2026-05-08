@@ -30,7 +30,7 @@ struct FilterEvalContext
 };
 
 using Range = std::pair<int, int>;
-using BetweenKey = std::pair<ExprNode*, ExprNode*>;
+using InsideKey = std::pair<ExprNode*, ExprNode*>;
 
 struct FilterSharedContext
 {
@@ -39,7 +39,7 @@ struct FilterSharedContext
 	FilterSharedContext& operator=(const FilterSharedContext&) = delete;
 
 	mutable std::map<ExprNode*, std::vector<std::pair<int, int>>> matchRanges;
-	mutable std::map<BetweenKey, std::vector<Range>> betweenRanges;
+	mutable std::map<InsideKey, std::vector<Range>> insideRanges;
 };
 
 struct FilterExpression
@@ -58,11 +58,20 @@ struct FilterExpression
 	void Clear();
 	std::vector<std::string> GetPropertyNames() const;
 	static void SetLogger(std::function<void(int level, const std::string&)> func) { logger = func; };
+
+	struct DirectivesAndExpr
+	{
+		String directives;
+		String expr;
+	};
+
 	static bool HasCaseSensitiveDirective(const String& expression);
 	static String AddCaseSensitiveDirective(const String& expression);
 	static String RemoveCaseSensitiveDirective(const String& expression);
 	static String ExtractDirectivesPrefix(const String& expression);
 	static String RemoveAllDirectives(const String& expression);
+	static DirectivesAndExpr SplitDirectivesAndExpr(const String& expression);
+	static String MergeDirectives(const String& directives1, const String& directives2);
 	bool optimize = true;
 	bool caseSensitive = false;
 	bool diritem = true;

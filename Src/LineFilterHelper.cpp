@@ -42,12 +42,14 @@ String LineFilterHelper::RemovePrefix(const String& filter)
 
 String LineFilterHelper::AddToExpression(const String& filter, const String& expr, const String& op)
 {
-	String directives = FilterExpression::ExtractDirectivesPrefix(expr);
-	String result = FilterExpression::RemoveAllDirectives(RemovePrefix(filter));
+	auto [filterDirectives, filterExpr] = FilterExpression::SplitDirectivesAndExpr(RemovePrefix(filter));
+	auto [exprDirectives, exprBody] = FilterExpression::SplitDirectivesAndExpr(expr);
+	String mergedDirectives = FilterExpression::MergeDirectives(filterDirectives, exprDirectives);
+	String result = filterExpr;
 	if (filter.find(_T("le:")) == String::npos && !result.empty())
 		result = _T("Line contains ") + Quote(result);
-	result += (result.empty() ? _T("") : _T(" ") + op + _T(" ")) + FilterExpression::RemoveAllDirectives(expr);
-	return _T("le:") + (directives.empty() ? _T("") : directives + _T(" ")) + result;
+	result += (result.empty() ? _T("") : _T(" ") + op + _T(" ")) + exprBody;
+	return _T("le:") + (mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")) + result;
 }
 
 String LineFilterHelper::Quote(const String& text)

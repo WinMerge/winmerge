@@ -2454,11 +2454,11 @@ static const auto& GetOrCreateMatchRanges(const FilterEvalContext& ectxt, ExprNo
 	return it->second;
 }
 
-static const auto& GetOrCreateBetweenRanges(const FilterEvalContext& ectxt, ExprNode* beginExpr, ExprNode* endExpr)
+static const auto& GetOrCreateInsideRanges(const FilterEvalContext& ectxt, ExprNode* beginExpr, ExprNode* endExpr)
 {
-	auto& cache = ectxt.sharedContext->betweenRanges;
+	auto& cache = ectxt.sharedContext->insideRanges;
 
-	BetweenKey key{ beginExpr, endExpr };
+	InsideKey key{ beginExpr, endExpr };
 
 	auto it = cache.find(key);
 	if (it != cache.end())
@@ -2542,7 +2542,7 @@ static auto LineMatchCountFunc(const FilterEvalContext& ectxt, std::vector<ExprN
 	return matchCount;
 }
 
-static auto LineMatchIndexFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LineMatchNumberFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
@@ -2604,12 +2604,12 @@ static auto LineMatchDistanceAfterFunc(const FilterEvalContext& ectxt, std::vect
 	return LineMatchDistanceExFunc(ectxt, args, 1);
 }
 
-static auto LineMatchBetweenFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto LineMatchInsideFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
 
-	const auto& ranges = GetOrCreateBetweenRanges(ectxt, (*args)[0], (*args)[1]);
+	const auto& ranges = GetOrCreateInsideRanges(ectxt, (*args)[0], (*args)[1]);
 
 	for (const auto& range : ranges)
 	{
@@ -2648,13 +2648,13 @@ static constexpr FunctionInfo functionTable[] = {
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
 	{"logwarn", LogWarnFunc, 1, -1},
-	{"matchbetween", LineMatchBetweenFunc, 2, 2},
 	{"matchcontext", LineMatchContextFunc, 3, 3},
 	{"matchcount", LineMatchCountFunc, 1, 1},
 	{"matchdistance", LineMatchDistanceFunc, 1, 1},
 	{"matchdistanceafter", LineMatchDistanceAfterFunc, 1, 1},
 	{"matchdistancebefore", LineMatchDistanceBeforeFunc, 1, 1},
-	{"matchindex", LineMatchIndexFunc, 1, 1},
+	{"matchinside", LineMatchInsideFunc, 2, 2},
+	{"matchnumber", LineMatchNumberFunc, 1, 1},
 	{"normalizeunicode", NormalizeUnicodeFunc, 1, 2},
 	{"noteach", NotEachFunc, 1, 1},
 	{"now", NowFunc, 0, 0},
