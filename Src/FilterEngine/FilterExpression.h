@@ -10,13 +10,13 @@
 #include <map>
 #include "FilterError.h"
 #include "UnicodeString.h"
+#include <Poco/Timestamp.h>
 
 class CDiffContext;
 class DIFFITEM;
 struct ExprNode;
 struct YYSTYPE;
 struct ILineDataProvider;
-namespace Poco { class Timestamp; }
 struct FilterExpression;
 struct FilterSharedContext;
 
@@ -32,6 +32,19 @@ struct FilterEvalContext
 using Range = std::pair<int, int>;
 using InsideKey = std::pair<ExprNode*, ExprNode*>;
 
+struct StatisticsResult
+{
+	double average = 0.0;
+	double maxNumber = 0.0;
+	double minNumber = 0.0;
+	std::string maxString;
+	std::string minString;
+	Poco::Timestamp maxTimestamp;
+	Poco::Timestamp minTimestamp;
+	int64_t count = 0;
+	int valueType = 0; // 0=none, 1=number, 2=string, 3=timestamp
+};
+
 struct FilterSharedContext
 {
 	FilterSharedContext() = default;
@@ -40,6 +53,7 @@ struct FilterSharedContext
 
 	mutable std::map<ExprNode*, std::vector<std::pair<int, int>>> matchRanges;
 	mutable std::map<InsideKey, std::vector<Range>> insideRanges;
+	mutable std::map<ExprNode*, StatisticsResult> statistics;
 };
 
 struct FilterExpression

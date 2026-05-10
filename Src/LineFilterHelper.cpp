@@ -42,10 +42,10 @@ String LineFilterHelper::RemovePrefix(const String& filter)
 
 String LineFilterHelper::AddToExpression(const String& filter, const String& expr, const String& op)
 {
-	auto [filterDirectives, filterExpr] = FilterExpression::SplitDirectivesAndExpr(RemovePrefix(filter));
+	String result = RemovePrefix(ConvertToLineContainsExpression(filter));
+	auto [filterDirectives, filterExpr] = FilterExpression::SplitDirectivesAndExpr(result);
 	auto [exprDirectives, exprBody] = FilterExpression::SplitDirectivesAndExpr(expr);
 	String mergedDirectives = FilterExpression::MergeDirectives(filterDirectives, exprDirectives);
-	String result = ConvertToLineContainsExpression(filterExpr);
 	result += (result.empty() ? _T("") : _T(" ") + op + _T(" ")) + exprBody;
 	return BuildFilter((mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")), result);
 }

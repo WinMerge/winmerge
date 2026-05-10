@@ -243,6 +243,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_USE_FIRST_LINE_AS_HEADERS, OnUseFirstLineAsHeaders)
 	ON_UPDATE_COMMAND_UI(ID_USE_FIRST_LINE_AS_HEADERS, OnUpdateUseFirstLineAsHeaders)
 	ON_COMMAND(ID_AUTO_FIT_ALL_COLUMNS, OnAutoFitAllColumns)
+	ON_COMMAND_RANGE(ID_FILTERMENU_COLUMN_TEXT, ID_FILTERMENU_COLUMN_DATETIME, OnFilterMenuColumn)
 	// Status bar
 	ON_NOTIFY(NM_CLICK, AFX_IDW_CONTROLBAR_FIRST+28, OnStatusBarClick)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_EOL, OnUpdateStatusEOL)
@@ -4217,6 +4218,12 @@ void CMergeEditView::OnUpdateUseFirstLineAsHeaders(CCmdUI* pCmdUI)
 void CMergeEditView::OnAutoFitAllColumns()
 {
 	AutoFitColumn();
+}
+
+void CMergeEditView::OnFilterMenuColumn(UINT nID)
+{
+//	int column = 1;
+//	GetDocument()->AddColumnToDisplayFilters(column);
 }
 
 /**

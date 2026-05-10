@@ -18,5 +18,5 @@ private:
 	String matchContext(const String& expr, int context) const;
 	std::optional<String> OnCommand(const String& filterExpr, int command, CWnd* pParentWnd);
 	int m_targetSide = 0; // 0 = any, 1 = left, 2 = middle, 3 = right
-	int m_operator = 0; // 0 = or, 1 = and
+	int m_operator = 0; // 0 = and, 1 = or
 };

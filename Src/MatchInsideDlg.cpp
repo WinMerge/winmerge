@@ -71,7 +71,6 @@ void CMatchInsideDlg::SetupFilterValidation(CValidatingEdit& edit, CSuperComboBo
 											std::unique_ptr<LineFilterHelper>& helper)
 {
 	combo.LoadState(_T("Files\\DisplayLine"));
-	combo.SetCurSel(-1);
 
 	COMBOBOXINFO cbi{ sizeof(COMBOBOXINFO) };
 	GetComboBoxInfo(combo.m_hWnd, &cbi);
@@ -84,7 +83,7 @@ void CMatchInsideDlg::SetupFilterValidation(CValidatingEdit& edit, CSuperComboBo
 		};
 	edit.Validate();
 	edit.SetCueBanner(
-		strutils::format_string1(_("Filter text or expression (e.g. %1)"), _T("Hello or le:Line contains \"Hello\"")).c_str());
+		strutils::format_string1(_("e.g. %1"), _T("ERROR / le:Line contains \"ERROR\"")).c_str());
 }
 
 /**
@@ -96,6 +95,19 @@ BOOL CMatchInsideDlg::OnInitDialog()
 
 	SetupFilterValidation(m_ctlFilterEdit1, m_ctlFilter1, m_pLineFilterHelper1);
 	SetupFilterValidation(m_ctlFilterEdit2, m_ctlFilter2, m_pLineFilterHelper2);
+
+	// If initial values were provided in constructor, restore them
+	// (LoadState() may have overwritten them with history)
+	if (!m_sFilter1.empty())
+	{
+		m_ctlFilter1.SetWindowText(m_sFilter1.c_str());
+		m_ctlFilterEdit1.Validate();
+	}
+	if (!m_sFilter2.empty())
+	{
+		m_ctlFilter2.SetWindowText(m_sFilter2.c_str());
+		m_ctlFilterEdit2.Validate();
+	}
 
 	return TRUE;
 }

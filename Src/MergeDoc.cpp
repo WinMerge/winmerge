@@ -3681,12 +3681,16 @@ std::string CMergeDoc::GetLine(int pane, int lineIndex) const
 
 int CMergeDoc::GetColumnCount(int pane, int lineIndex) const
 {
-	return 0;
+	if (!m_ptBuf[pane]->GetTableEditing())
+		return 1;
+	return m_ptBuf[pane]->GetColumnCount(lineIndex);
 }
 
 std::string CMergeDoc::GetColumn(int pane, int lineIndex, int columnIndex) const
 {
-	return {};
+	if (!m_ptBuf[pane]->GetTableEditing())
+		return GetLine(pane, lineIndex);
+	return ucr::toUTF8(m_ptBuf[pane]->GetCellText(lineIndex, columnIndex));
 }
 
 int CMergeDoc::GetRealLineNumber(int pane, int lineIndex) const

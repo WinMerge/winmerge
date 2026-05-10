@@ -124,7 +124,7 @@ bool CFilterConditionDlg::IsStringField(bool includeContent /* = true */) const
 		return true;
 	return m_sField == _T("Name") || m_sField == _T("Folder") || 
 		   m_sField == _T("Extension") || m_sField == _T("Unpacker") || 
-		   m_sField == _T("Prediffer") || m_sField == _T("Line") ||
+		   m_sField == _T("Prediffer") || m_sField == _T("Line") || m_sField.compare(0, 6, _T("Column")) == 0 ||
 		   m_vt == VT_LPWSTR || m_vt == (VT_VECTOR | VT_LPWSTR);
 }
 
@@ -141,6 +141,7 @@ String CFilterConditionDlg::GetExpression()
 	    m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
 		m_sField == _T("LineNumber") || m_sField == _T("Codepage") ||
 		m_sLHS == _T("lineCount(%1)") || m_sLHS.compare(0, 12, _T("MatchNumber(")) == 0 ||
+		m_sLHS == _T("ToInt(%1)") ||
 	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_UI8 || m_vt == VT_I8)
 	{
 		result = strutils::format_string3(expression, lhs, m_sValue1, m_sValue2);

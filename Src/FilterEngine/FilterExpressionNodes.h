@@ -121,9 +121,10 @@ struct FunctionNode : public ExprNode
 	virtual ~FunctionNode();
 	ExprNode* Optimize() override;
 	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
-	void SetPropFunc();
-	void SetLeftMiddleRightPropFunc(int side);
-	void SetSearchFunc(int side, int prefixlen);
+	void SetPropFunc(int side, int prefixlen);
+	void SetLineAtFunc(int side, int prefixlen, ValueType(*func)(int, const FilterEvalContext&, std::vector<ExprNode*>*));
+	void SetColumnFunc(int side, int prefixlen);
+	void SetColumnAtFunc(int side, int prefixlen, ValueType(*func)(int, const FilterEvalContext&, std::vector<ExprNode*>*));
 	const FilterExpression* ctxt;
 	std::string functionName;
 	std::vector<ExprNode*>* args;

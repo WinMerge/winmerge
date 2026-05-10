@@ -67,7 +67,7 @@ BOOL CLineFilterBar::Create(CWnd* pParentWnd)
 		};
 	m_ctlFilterEdit.Validate();
 	m_ctlFilterEdit.SetCueBanner(
-		strutils::format_string1(_("Filter text or expression (e.g. %1)"), _T("Hello or le:Line contains \"Hello\"")).c_str());
+		strutils::format_string1(_("e.g. %1"), _T("ERROR / le:Line contains \"ERROR\"")).c_str());
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

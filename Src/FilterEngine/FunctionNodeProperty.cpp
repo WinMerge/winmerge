@@ -93,23 +93,7 @@ static auto propary(const String& name, const FilterEvalContext& ectxt) -> Value
 	return values;
 }
 
-void FunctionNode::SetPropFunc()
-{
-	if (!args || args->size() != 1)
-		throw std::invalid_argument("prop function requires 1 arguments");
-	auto strLit = dynamic_cast<StringLiteral*>((*args)[0]);
-	if (!strLit)
-		throw std::invalid_argument("prop function requires a string literal as argument");
-	String propName = ucr::toTString(strLit->value);
-	PropertySystem propSys({ propName });
-	const int propindex = propSys.GetPropertyIndex(propName);
-	if (propindex < 0)
-		throw InvalidPropertyNameError(strLit->value);
-	func = [propName](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
-		{ return propary(propName, ectxt); };
-}
-
-void FunctionNode::SetLeftMiddleRightPropFunc(int side)
+void FunctionNode::SetPropFunc(int side, int prefixlen)
 {
 	if (!args || args->size() != 1)
 		throw std::invalid_argument(functionName + " function requires 1 arguments");
@@ -121,6 +105,10 @@ void FunctionNode::SetLeftMiddleRightPropFunc(int side)
 	const int propindex = propSys.GetPropertyIndex(propName);
 	if (propindex < 0)
 		throw InvalidPropertyNameError(strLit->value);
-	func = [propName, side](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
-		{ return prop((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, propName, ectxt); };
+	if (prefixlen == 0)
+		func = [propName](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
+			{ return propary(propName, ectxt); };
+	else 
+		func = [propName, side](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
+			{ return prop((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, propName, ectxt); };
 }

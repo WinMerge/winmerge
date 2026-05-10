@@ -39,9 +39,9 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 			for (int i = ID_FILTERMENU_CONDITION_ANY; i <= ID_FILTERMENU_CONDITION_RIGHT; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_ANY + m_targetSide) == i ? MF_CHECKED : 0));
-			for (int i = ID_FILTERMENU_OPERATOR_OR; i <= ID_FILTERMENU_OPERATOR_AND; i++)
+			for (int i = ID_FILTERMENU_OPERATOR_AND; i <= ID_FILTERMENU_OPERATOR_OR; i++)
 				pPopup->CheckMenuItem(i,
-					MF_BYCOMMAND | ((ID_FILTERMENU_OPERATOR_OR + m_operator) == i ? MF_CHECKED : 0));
+					MF_BYCOMMAND | ((ID_FILTERMENU_OPERATOR_AND + m_operator) == i ? MF_CHECKED : 0));
 
 			const int command = pPopup->TrackPopupMenu(
 				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, x, y, pParentWnd);
@@ -54,9 +54,9 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 				m_targetSide = command - ID_FILTERMENU_CONDITION_ANY;
 				continue;
 			}
-			else if (command >= ID_FILTERMENU_OPERATOR_OR && command <= ID_FILTERMENU_OPERATOR_AND)
+			else if (command >= ID_FILTERMENU_OPERATOR_AND && command <= ID_FILTERMENU_OPERATOR_OR)
 			{
-				m_operator = command - ID_FILTERMENU_OPERATOR_OR;
+				m_operator = command - ID_FILTERMENU_OPERATOR_AND;
 				continue;
 			}
 			else
@@ -73,7 +73,7 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 
 String CLineFilterHelperMenu::op() const
 {
-	const String Operators[] = { _T("OR"), _T("AND") };
+	const String Operators[] = { _T("AND"), _T("OR") };
 	return Operators[m_operator];
 }
 
@@ -93,6 +93,15 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	else if (command == ID_FILTERMENU_LINE_RANGE)
 	{
 		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
+	}
+	else if (command >= ID_FILTERMENU_LINE_COLUMN_FIRST && command <= ID_FILTERMENU_LINE_COLUMN_LAST)
+	{
+		const String Conversions[] = { _T("%1"), _T("ToNumber(%1)"), _T("ToDateTime(%1)") };
+		CFilterConditionDlg dlg(false, m_targetSide, 
+			_T("Column") + strutils::to_str((command - ID_FILTERMENU_LINE_COLUMN_FIRST) / std::size(Conversions) + 1), _T(""), _("%1 contains %2"), 
+			Conversions[(command - ID_FILTERMENU_LINE_COLUMN_FIRST) % std::size(Conversions)]);
 		if (dlg.DoModal() == IDOK)
 			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
@@ -147,7 +156,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command == ID_FILTERMENU_LINE_MATCHINSIDE_WRAP || command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP)
 	{
-		CMatchInsideDlg dlg(LineFilterHelper::RemovePrefix(filterExpr), _T(""));
+		CMatchInsideDlg dlg(filterExpr, filterExpr);
 		if (dlg.DoModal() == IDOK)
 		{
 			auto [directives1, expr1] = NormalizeAndSplit(dlg.GetFilter1());

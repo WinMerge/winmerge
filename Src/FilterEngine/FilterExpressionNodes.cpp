@@ -815,6 +815,38 @@ static auto ExtensionField(int index, const FilterEvalContext& ectxt)-> ValueTyp
 	return std::string(ext.c_str() + strspn(ext.c_str(), "."));
 }
 
+// Helper function to parse date/time strings with multiple format support
+static std::optional<Poco::Timestamp> ParseDateTime(const std::string& str)
+{
+	static const std::vector<std::string> formats = {
+		Poco::DateTimeFormat::ISO8601_FORMAT,
+		Poco::DateTimeFormat::ISO8601_FRAC_FORMAT,
+		"%Y/%m/%d %H:%M:%S",
+		"%Y.%m.%d %H:%M:%S",
+		"%d-%b-%Y %H:%M:%S",
+		"%Y-%m-%d",
+		"%Y/%m/%d",
+		"%Y.%m.%d",
+	};
+
+	Poco::DateTime dt;
+	for (const auto& fmt : formats)
+	{
+		try
+		{
+			int tz = 0;
+			Poco::DateTimeParser::parse(fmt, str, dt, tz);
+			dt.makeUTC((str.find_first_of("zZ+") != std::string::npos) ? tz : Poco::Timezone::tzd());
+			return dt.timestamp();
+		}
+		catch (Poco::SyntaxException&)
+		{
+			// Try next format
+		}
+	}
+	return std::nullopt;
+}
+
 static auto FolderField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	return ucr::toUTF8(ectxt.di->diffFileInfo[index].path.get());
@@ -1017,8 +1049,7 @@ static auto LineField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	auto line = ectxt.provider->GetLine(index, ectxt.lineIndex);
-	return std::string(line.data(), line.length());
+	return ectxt.provider->GetLine(index, ectxt.lineIndex);
 }
 
 static auto LineLengthField(int index, const FilterEvalContext& ectxt) -> ValueType
@@ -1088,7 +1119,7 @@ static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) ->
 	if (!ectxt.provider || ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
-	return ((leftflags & ILineDataProvider::LF_SNP) != 0) && ((leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
+	return ((leftflags & ILineDataProvider::LF_SNP) == 0) && ((leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
 }
 
 static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1096,7 +1127,7 @@ static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -
 	if (!ectxt.provider || ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
-	return (middleflags & ILineDataProvider::LF_SNP) != 0 && (middleflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
+	return (middleflags & ILineDataProvider::LF_SNP) == 0 && (middleflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
 }
 
 static auto LineDifferentLeftRightField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1107,7 +1138,7 @@ static auto LineDifferentLeftRightField(int, const FilterEvalContext& ectxt) -> 
 	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
 	{
 		unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
-		return (leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0 && (middleflags & ILineDataProvider::LF_SNP) != 0;
+		return (leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0 && (middleflags & ILineDataProvider::LF_SNP) == 0;
 	}
 	return (leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
 }
@@ -1117,6 +1148,48 @@ static auto LineTrivialField(int, const FilterEvalContext& ectxt) -> ValueType
 	if (!ectxt.provider)
 		return std::monostate{};
 	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & ILineDataProvider::LF_TRIVIAL) != 0;
+}
+
+static int GetColumnIndexByName(int index, const std::string& columnName, const FilterEvalContext& ectxt)
+{
+	if (!ectxt.provider || ectxt.provider->GetLineCount() == 0)
+		return -1;
+
+	int colCount = ectxt.provider->GetColumnCount(index, 0);
+	for (int i = 0; i < colCount; ++i)
+	{
+		std::string headerName = ectxt.provider->GetColumn(index, 0, i);
+		bool match = ectxt.expr->caseSensitive ? 
+			(headerName == columnName) : 
+			(Poco::icompare(headerName, columnName) == 0);
+		if (match)
+			return i;
+	}
+	return -1;
+}
+
+static auto ColumnField(int index, int columnIndex, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	if (columnIndex < 0 || columnIndex >= ectxt.provider->GetColumnCount(index, ectxt.lineIndex))
+		return std::monostate{};
+	return ectxt.provider->GetColumn(index, ectxt.lineIndex, columnIndex);
+}
+
+static auto ColumnFieldByName(int index, const std::string& columnName, const FilterEvalContext& ectxt) -> ValueType
+{
+	int columnIndex = GetColumnIndexByName(index, columnName, ectxt);
+	if (columnIndex < 0)
+		return std::monostate{};
+	return ColumnField(index, columnIndex, ectxt);
+}
+
+static auto ColumnCountField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	return static_cast<int64_t>(ectxt.provider->GetColumnCount(index, ectxt.lineIndex));
 }
 
 static std::pair<int, int> GetDistancesToRanges(int line, const std::vector<std::pair<int, int>>& ranges)
@@ -1319,14 +1392,6 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = LineLengthField;
 	else if (strcmp(p, "linenumber") == 0)
 		functmp = LineNumberField;
-	else if (strcmp(p, "lineexists") == 0)
-		functmp = LineExistsField;
-	else if (strcmp(p, "linemissing") == 0)
-		functmp = LineMissingField;
-	else if (strcmp(p, "linemoved") == 0)
-		functmp = LineMovedField;
-	else if (strcmp(p, "linebookmarked") == 0)
-		functmp = LineBookmarkedField;
 	else if (strcmp(vl.c_str(), "viewlinenumber") == 0)
 	{
 		side = -2;
@@ -1361,6 +1426,31 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	{
 		side = -2;
 		functmp = LineTrivialField;
+	}
+	else if (strcmp(p, "columncount") == 0)
+		functmp = ColumnCountField;
+	else if (strncmp(p, "column", 6) == 0 && isdigit(p[6]))
+	{
+		// Parse column number (Column1, Column2, etc.)
+		int columnIndex = atoi(p + 6) - 1;
+		if (prefixlen == 0)
+		{
+			func = [columnIndex](const FilterEvalContext& ectxt) -> ValueType {
+				const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+				std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+					values->emplace_back(ValueType2{ ColumnField(i, columnIndex, ectxt) });
+				return values;
+				};
+			return;
+		}
+		else
+		{
+			func = [side, columnIndex](const FilterEvalContext& ectxt) -> ValueType {
+				return ColumnField((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() + side) : side, columnIndex, ectxt);
+				};
+			return;
+		}
 	}
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
@@ -2208,27 +2298,169 @@ static auto ChooseEachFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*
 {
 	if (args->size() < 2)
 		return std::monostate{};
-	
+
 	ValueType indexVal = args->at(0)->Evaluate(ectxt);
-	
+
 	auto selectFromIndex = [&](const ValueType& val) -> ValueType
 		{
 			auto indexInt = std::get_if<int64_t>(&val);
 			if (!indexInt)
 				return std::monostate{};
-			
+
 			int64_t idx = *indexInt;
 			if (idx < 0)
 				idx = 0;
-			
+
 			size_t choiceIdx = static_cast<size_t>(idx) + 1;
 			if (choiceIdx >= args->size())
 				choiceIdx = args->size() - 1;
-			
+
 			return args->at(choiceIdx)->Evaluate(ectxt);
 		};
-	
+
 	return applyToScalarOrArray(indexVal, selectFromIndex);
+}
+
+static std::string removeCommas(const std::string& str)
+{
+	std::string result;
+	result.reserve(str.size());
+	for (char c : str)
+	{
+		if (c != ',')
+			result += c;
+	}
+	return result;
+}
+
+static auto ToNumberFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 1)
+		return std::monostate{};
+
+	ValueType argVal = args->at(0)->Evaluate(ectxt);
+
+	auto convertToNumber = [](const ValueType& val) -> ValueType
+		{
+			auto strPtr = std::get_if<std::string>(&val);
+			if (!strPtr)
+				return std::monostate{};
+
+			std::string cleaned = removeCommas(*strPtr);
+			if (cleaned.empty())
+				return std::monostate{};
+
+			try
+			{
+				size_t pos = 0;
+				if (cleaned.find('.') != std::string::npos || 
+					cleaned.find('e') != std::string::npos || 
+					cleaned.find('E') != std::string::npos)
+				{
+					double d = std::stod(cleaned, &pos);
+					if (pos == cleaned.size())
+						return d;
+				}
+				else
+				{
+					int64_t i = std::stoll(cleaned, &pos);
+					if (pos == cleaned.size())
+						return i;
+				}
+			}
+			catch (...)
+			{
+			}
+			return std::monostate{};
+		};
+
+	return applyToScalarOrArray(argVal, convertToNumber);
+}
+
+static auto ToIntFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 1)
+		return std::monostate{};
+
+	ValueType argVal = args->at(0)->Evaluate(ectxt);
+
+	auto convertToInt = [](const ValueType& val) -> ValueType
+		{
+			auto strPtr = std::get_if<std::string>(&val);
+			if (!strPtr)
+				return std::monostate{};
+
+			std::string cleaned = removeCommas(*strPtr);
+			if (cleaned.empty())
+				return std::monostate{};
+
+			try
+			{
+				size_t pos = 0;
+				int64_t i = std::stoll(cleaned, &pos);
+				if (pos == cleaned.size())
+					return i;
+			}
+			catch (...)
+			{
+			}
+			return std::monostate{};
+		};
+
+	return applyToScalarOrArray(argVal, convertToInt);
+}
+
+static auto ToDoubleFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 1)
+		return std::monostate{};
+
+	ValueType argVal = args->at(0)->Evaluate(ectxt);
+
+	auto convertToDouble = [](const ValueType& val) -> ValueType
+		{
+			auto strPtr = std::get_if<std::string>(&val);
+			if (!strPtr)
+				return std::monostate{};
+
+			std::string cleaned = removeCommas(*strPtr);
+			if (cleaned.empty())
+				return std::monostate{};
+
+			try
+			{
+				size_t pos = 0;
+				double d = std::stod(cleaned, &pos);
+				if (pos == cleaned.size())
+					return d;
+			}
+			catch (...)
+			{
+			}
+			return std::monostate{};
+		};
+
+	return applyToScalarOrArray(argVal, convertToDouble);
+}
+
+static auto ToDateTimeFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 1)
+		return std::monostate{};
+
+	ValueType argVal = args->at(0)->Evaluate(ectxt);
+
+	auto convertToDate = [](const ValueType& val) -> ValueType
+		{
+			auto strPtr = std::get_if<std::string>(&val);
+			if (!strPtr || strPtr->empty())
+				return std::monostate{};
+
+			auto timestamp = ParseDateTime(*strPtr);
+			return timestamp ? *timestamp : ValueType(std::monostate{});
+		};
+
+	return applyToScalarOrArray(argVal, convertToDate);
 }
 
 template<typename BinaryOp>
@@ -2620,6 +2852,250 @@ static auto LineMatchInsideFunc(const FilterEvalContext& ectxt, std::vector<Expr
 	return false;
 }
 
+// Helper lambda to process a single value and update statistics
+static auto ProcessValueForStatistics = [](
+	const ValueType& result,
+	const FilterEvalContext& ectxt,
+	double& sum,
+	int64_t& count,
+	std::optional<double>& maxNumber,
+	std::optional<double>& minNumber,
+	std::optional<std::string>& maxString,
+	std::optional<std::string>& minString,
+	std::optional<Poco::Timestamp>& maxTimestamp,
+	std::optional<Poco::Timestamp>& minTimestamp,
+	int& valueType)
+{
+	// Handle numeric values
+	if (auto intVal = std::get_if<int64_t>(&result))
+	{
+		double value = static_cast<double>(*intVal);
+		sum += value;
+		++count;
+		if (!maxNumber.has_value() || value > *maxNumber)
+			maxNumber = value;
+		if (!minNumber.has_value() || value < *minNumber)
+			minNumber = value;
+		if (valueType == 0) valueType = 1;
+	}
+	else if (auto doubleVal = std::get_if<double>(&result))
+	{
+		sum += *doubleVal;
+		++count;
+		if (!maxNumber.has_value() || *doubleVal > *maxNumber)
+			maxNumber = *doubleVal;
+		if (!minNumber.has_value() || *doubleVal < *minNumber)
+			minNumber = *doubleVal;
+		if (valueType == 0) valueType = 1;
+	}
+	// Handle string values
+	else if (auto strVal = std::get_if<std::string>(&result))
+	{
+		++count;
+		if (!maxString.has_value())
+		{
+			maxString = *strVal;
+			minString = *strVal;
+		}
+		else
+		{
+			int cmpMax = ectxt.expr->caseSensitive ? 
+				strVal->compare(*maxString) : Poco::icompare(*strVal, *maxString);
+			int cmpMin = ectxt.expr->caseSensitive ? 
+				strVal->compare(*minString) : Poco::icompare(*strVal, *minString);
+			if (cmpMax > 0) maxString = *strVal;
+			if (cmpMin < 0) minString = *strVal;
+		}
+		if (valueType == 0) valueType = 2;
+	}
+	// Handle timestamp values
+	else if (auto tsVal = std::get_if<Poco::Timestamp>(&result))
+	{
+		++count;
+		if (!maxTimestamp.has_value() || *tsVal > *maxTimestamp)
+			maxTimestamp = *tsVal;
+		if (!minTimestamp.has_value() || *tsVal < *minTimestamp)
+			minTimestamp = *tsVal;
+		if (valueType == 0) valueType = 3;
+	}
+};
+
+static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ectxt, ExprNode* expr, ExprNode* conditionExpr = nullptr)
+{
+	auto& statsCache = ectxt.sharedContext->statistics;
+
+	// Create cache key that includes condition expression (if any)
+	auto cacheKey = reinterpret_cast<uintptr_t>(expr) ^ (conditionExpr ? reinterpret_cast<uintptr_t>(conditionExpr) : 0);
+	auto it = statsCache.find(reinterpret_cast<ExprNode*>(cacheKey));
+	if (it != statsCache.end())
+		return it->second;
+
+	if (!ectxt.provider)
+	{
+		static StatisticsResult emptyResult;
+		return emptyResult;
+	}
+
+	const int lineCount = ectxt.provider->GetLineCount();
+	double sum = 0.0;
+	int64_t count = 0;
+	std::optional<double> maxNumber;
+	std::optional<double> minNumber;
+	std::optional<std::string> maxString;
+	std::optional<std::string> minString;
+	std::optional<Poco::Timestamp> maxTimestamp;
+	std::optional<Poco::Timestamp> minTimestamp;
+	int valueType = 0;
+
+	for (int i = 0; i < lineCount; ++i)
+	{
+		FilterEvalContext lectxt = ectxt;
+		lectxt.lineIndex = i;
+
+		// Check condition if provided
+		if (conditionExpr)
+		{
+			ValueType condResult = conditionExpr->Evaluate(lectxt);
+			auto condBool = evalAsBool(condResult);
+			if (!condBool || !*condBool)
+				continue;
+		}
+
+		ValueType result = expr->Evaluate(lectxt);
+
+		// Handle array values - process each element
+		if (auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&result))
+		{
+			for (const auto& item : **arrayVal)
+			{
+				ProcessValueForStatistics(
+					item.value, lectxt, sum, count,
+					maxNumber, minNumber, maxString, minString,
+					maxTimestamp, minTimestamp, valueType);
+			}
+		}
+		else
+		{
+			// Handle single value
+			ProcessValueForStatistics(
+				result, lectxt, sum, count,
+				maxNumber, minNumber, maxString, minString,
+				maxTimestamp, minTimestamp, valueType);
+		}
+	}
+
+	StatisticsResult stats;
+	stats.count = count;
+	stats.valueType = valueType;
+	if (count > 0)
+	{
+		if (valueType == 1 && maxNumber.has_value())
+		{
+			stats.average = sum / static_cast<double>(count);
+			stats.maxNumber = *maxNumber;
+			stats.minNumber = *minNumber;
+		}
+		else if (valueType == 2 && maxString.has_value())
+		{
+			stats.maxString = *maxString;
+			stats.minString = *minString;
+		}
+		else if (valueType == 3 && maxTimestamp.has_value())
+		{
+			stats.maxTimestamp = *maxTimestamp;
+			stats.minTimestamp = *minTimestamp;
+		}
+	}
+
+	it = statsCache.insert_or_assign(reinterpret_cast<ExprNode*>(cacheKey), std::move(stats)).first;
+	return it->second;
+}
+
+static auto AverageFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
+	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
+
+	if (stats.count == 0 || stats.valueType != 1)
+		return std::monostate{};
+
+	return stats.average;
+}
+
+static auto MaximumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
+	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
+
+	if (stats.count == 0)
+		return std::monostate{};
+
+	if (stats.valueType == 1)
+	{
+		// Return as int64_t if the result is an integer value
+		if (stats.maxNumber == std::floor(stats.maxNumber))
+			return static_cast<int64_t>(stats.maxNumber);
+		return stats.maxNumber;
+	}
+	else if (stats.valueType == 2)
+	{
+		return stats.maxString;
+	}
+	else if (stats.valueType == 3)
+	{
+		return stats.maxTimestamp;
+	}
+
+	return std::monostate{};
+}
+
+static auto MinimumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
+	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
+
+	if (stats.count == 0)
+		return std::monostate{};
+
+	if (stats.valueType == 1)
+	{
+		// Return as int64_t if the result is an integer value
+		if (stats.minNumber == std::floor(stats.minNumber))
+			return static_cast<int64_t>(stats.minNumber);
+		return stats.minNumber;
+	}
+	else if (stats.valueType == 2)
+	{
+		return stats.minString;
+	}
+	else if (stats.valueType == 3)
+	{
+		return stats.minTimestamp;
+	}
+
+	return std::monostate{};
+}
+
+static auto CountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
+	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
+
+	return stats.count;
+}
+
 struct FunctionInfo
 {
 	using FuncPtr = auto (*)(const FilterEvalContext&, std::vector<ExprNode*>*) -> ValueType;
@@ -2638,8 +3114,10 @@ static constexpr FunctionInfo functionTable[] = {
 	{"anyof", AnyOfFunc, 1, 1},
 	{"array", ArrayFunc, 0, -1},
 	{"at", AtFunc, 2, 2},
+	{"average", AverageFunc, 1, 2},
 	{"choose", ChooseFunc, 2, -1},
 	{"chooseeach", ChooseEachFunc, 2, -1},
+	{"count", CountFunc, 1, 2},
 	{"if", IfFunc, 3, 3},
 	{"ifeach", IfEachFunc, 3, 3},
 	{"inrange", InRangeFunc, 3, 3},
@@ -2655,6 +3133,8 @@ static constexpr FunctionInfo functionTable[] = {
 	{"matchdistancebefore", LineMatchDistanceBeforeFunc, 1, 1},
 	{"matchinside", LineMatchInsideFunc, 2, 2},
 	{"matchnumber", LineMatchNumberFunc, 1, 1},
+	{"maximum", MaximumFunc, 1, 2},
+	{"minimum", MinimumFunc, 1, 2},
 	{"normalizeunicode", NormalizeUnicodeFunc, 1, 2},
 	{"noteach", NotEachFunc, 1, 1},
 	{"now", NowFunc, 0, 0},
@@ -2670,12 +3150,16 @@ static constexpr FunctionInfo functionTable[] = {
 	{"sublines", SublinesFunc, 2, 3},
 	{"substr", SubstrFunc, 2, 3},
 	{"todatestr", ToDateStrFunc, 1, 1},
+	{"todatetime", ToDateTimeFunc, 1, 1},
 	{"today", TodayFunc, 0, 0},
+	{"todouble", ToDoubleFunc, 1, 1},
 	{"tofullwidth", ToFullWidthFunc, 1, 1},
 	{"tohalfwidth", ToHalfWidthFunc, 1, 1},
 	{"tohiragana", ToHiraganaFunc, 1, 1},
+	{"toint", ToIntFunc, 1, 1},
 	{"tokatakana", ToKatakanaFunc, 1, 1},
 	{"tolower", ToLowerFunc, 1, 1},
+	{"tonumber", ToNumberFunc, 1, 1},
 	{"tosimplifiedchinese", ToSimplifiedChineseFunc, 1, 1},
 	{"totraditionalchinese", ToTraditionalChineseFunc, 1, 1},
 	{"toupper", ToUpperFunc, 1, 1},
@@ -2698,18 +3182,221 @@ static const FunctionInfo* findFunction(const std::string& name)
 	return nullptr;
 }
 
+static auto lineAt(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto arg = (*args)[0]->Evaluate(ectxt);
+	auto argInt = std::get_if<int64_t>(&arg);
+	if (!argInt)
+		return std::monostate{};
+	int lineNumber = static_cast<int>(*argInt + 1);
+	if (lineNumber < 1 || lineNumber > ectxt.provider->GetLineCount())
+		return std::monostate{};
+	return ectxt.provider->GetLine(index, lineNumber - 1);
+}
+
+static auto lineOffsetAt(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	auto arg = (*args)[0]->Evaluate(ectxt);
+	auto argInt = std::get_if<int64_t>(&arg);
+	if (!argInt)
+		return std::monostate{};
+	int lineNumber = static_cast<int>(ectxt.lineIndex + 1 + *argInt);
+	if (lineNumber < 1 || lineNumber > ectxt.provider->GetLineCount())
+		return std::monostate{};
+	return ectxt.provider->GetLine(index, lineNumber - 1);
+}
+
+static auto columnFunc(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto argColumnSpec = (*args)[0]->Evaluate(ectxt);
+
+	// Integer: treat as column index (1-based)
+	if (auto argInt = std::get_if<int64_t>(&argColumnSpec))
+	{
+		int columnIndex = static_cast<int>(*argInt) - 1;
+		return ColumnField(index, columnIndex, ectxt);
+	}
+	// String: treat as column name (case-sensitivity respects @cs directive)
+	else if (auto argStr = std::get_if<std::string>(&argColumnSpec))
+	{
+		return ColumnFieldByName(index, *argStr, ectxt);
+	}
+
+	return std::monostate{};
+}
+
+static auto columnAt(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	// First argument: line number (1-based)
+	auto argLine = (*args)[0]->Evaluate(ectxt);
+	auto argLineInt = std::get_if<int64_t>(&argLine);
+	if (!argLineInt)
+		return std::monostate{};
+	int lineNumber = static_cast<int>(*argLineInt);
+	if (lineNumber < 1 || lineNumber > ectxt.provider->GetLineCount())
+		return std::monostate{};
+	int lineIndex = lineNumber - 1;
+
+	// Second argument: column index (1-based) or column name (string)
+	auto argColumnSpec = (*args)[1]->Evaluate(ectxt);
+
+	// Integer: treat as column index (1-based)
+	if (auto argInt = std::get_if<int64_t>(&argColumnSpec))
+	{
+		int columnIndex = static_cast<int>(*argInt) - 1;
+		if (columnIndex < 0 || columnIndex >= ectxt.provider->GetColumnCount(index, lineIndex))
+			return std::monostate{};
+		return ectxt.provider->GetColumn(index, lineIndex, columnIndex);
+	}
+	// String: treat as column name (case-sensitivity respects @cs directive)
+	else if (auto argStr = std::get_if<std::string>(&argColumnSpec))
+	{
+		int columnIndex = GetColumnIndexByName(index, *argStr, ectxt);
+		if (columnIndex < 0)
+			return std::monostate{};
+		if (columnIndex >= ectxt.provider->GetColumnCount(index, lineIndex))
+			return std::monostate{};
+		return ectxt.provider->GetColumn(index, lineIndex, columnIndex);
+	}
+
+	return std::monostate{};
+}
+
+static auto columnOffsetAt(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	// First argument: line offset
+	auto argOffset = (*args)[0]->Evaluate(ectxt);
+	auto argOffsetInt = std::get_if<int64_t>(&argOffset);
+	if (!argOffsetInt)
+		return std::monostate{};
+	int lineNumber = static_cast<int>(ectxt.lineIndex + 1 + *argOffsetInt);
+	if (lineNumber < 1 || lineNumber > ectxt.provider->GetLineCount())
+		return std::monostate{};
+	int lineIndex = lineNumber - 1;
+
+	// Second argument: column index (1-based) or column name (string)
+	auto argColumnSpec = (*args)[1]->Evaluate(ectxt);
+
+	// Integer: treat as column index (1-based)
+	if (auto argInt = std::get_if<int64_t>(&argColumnSpec))
+	{
+		int columnIndex = static_cast<int>(*argInt) - 1;
+		if (columnIndex < 0 || columnIndex >= ectxt.provider->GetColumnCount(index, lineIndex))
+			return std::monostate{};
+		return ectxt.provider->GetColumn(index, lineIndex, columnIndex);
+	}
+	// String: treat as column name (case-sensitivity respects @cs directive)
+	else if (auto argStr = std::get_if<std::string>(&argColumnSpec))
+	{
+		int columnIndex = GetColumnIndexByName(index, *argStr, ectxt);
+		if (columnIndex < 0)
+			return std::monostate{};
+		if (columnIndex >= ectxt.provider->GetColumnCount(index, lineIndex))
+			return std::monostate{};
+		return ectxt.provider->GetColumn(index, lineIndex, columnIndex);
+	}
+
+	return std::monostate{};
+}
+
+void FunctionNode::SetLineAtFunc(int side, int prefixlen, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
+{
+	if (!args || args->size() != 1)
+		throw std::invalid_argument(functionName + " function requires 1 arguments");
+	if (prefixlen == 0)
+		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+		{
+			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+			const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+			for (int i = 0; i < dirs; ++i)
+				values->emplace_back(ValueType2{ proc(i, ectxt, args) });
+			return values;
+		};
+	else 
+		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+			{ return proc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, args); };
+}
+
+void FunctionNode::SetColumnFunc(int side, int prefixlen)
+{
+	if (!args || args->size() != 1)
+		throw std::invalid_argument(functionName + " function requires 1 argument");
+	if (prefixlen == 0)
+		func = [](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+		{
+			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+			const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+			for (int i = 0; i < dirs; ++i)
+				values->emplace_back(ValueType2{ columnFunc(i, ectxt, args) });
+			return values;
+		};
+	else 
+		func = [side](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+			{ return columnFunc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, args); };
+}
+
+void FunctionNode::SetColumnAtFunc(int side, int prefixlen, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
+{
+	if (!args || args->size() != 2)
+		throw std::invalid_argument(functionName + " function requires 2 arguments");
+	if (prefixlen == 0)
+		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+		{
+			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+			const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+			for (int i = 0; i < dirs; ++i)
+				values->emplace_back(ValueType2{ proc(i, ectxt, args) });
+			return values;
+		};
+	else 
+		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+			{ return proc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, args); };
+}
+
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
 	auto [side, prefixlen] = ParseAttributeName(functionName);
 
-	// Special handling for prop functions
+	// Special handling for prop, lineat, lineoffsetat functions
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "prop") == 0)
 	{
-		if (prefixlen == 0)
-			SetPropFunc();
-		else
-			SetLeftMiddleRightPropFunc(side);
+		SetPropFunc(side, prefixlen);
+		return;
+	}
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "lineat") == 0)
+	{
+		SetLineAtFunc(side, prefixlen, lineAt);
+		return;
+	}
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "lineoffsetat") == 0)
+	{
+		SetLineAtFunc(side, prefixlen, lineOffsetAt);
+		return;
+	}
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "columnat") == 0)
+	{
+		SetColumnAtFunc(side, prefixlen, columnAt);
+		return;
+	}
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "columnoffsetat") == 0)
+	{
+		SetColumnAtFunc(side, prefixlen, columnOffsetAt);
+		return;
+	}
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "column") == 0)
+	{
+		SetColumnFunc(side, prefixlen);
 		return;
 	}
 
@@ -3012,36 +3699,10 @@ SizeLiteral::SizeLiteral(const std::string& v)
 
 DateTimeLiteral::DateTimeLiteral(const std::string& v)
 {
-	static const std::vector<std::string> formats = {
-		Poco::DateTimeFormat::ISO8601_FORMAT,
-		Poco::DateTimeFormat::ISO8601_FRAC_FORMAT,
-		"%Y/%m/%d %H:%M:%S",
-		"%Y.%m.%d %H:%M:%S",
-		"%d-%b-%Y %H:%M:%S",
-	};
-
-	Poco::DateTime dt;
-	bool parsed = false;
-	for (const auto& fmt : formats)
-	{
-		try
-		{
-			int tz = 0;
-			Poco::DateTimeParser::parse(fmt, v, dt, tz);
-			dt.makeUTC((v.find_first_of("zZ+") != std::string::npos) ? tz : Poco::Timezone::tzd());
-			value = dt.timestamp();
-			parsed = true;
-			break;
-		}
-		catch (Poco::SyntaxException&)
-		{
-			// Try next format
-		}
-	}
-	if (!parsed)
-	{
+	auto timestamp = ParseDateTime(v);
+	if (!timestamp)
 		throw std::invalid_argument("Unrecognized date/time format: " + v);
-	}
+	value = *timestamp;
 }
 
 DurationLiteral::DurationLiteral(const std::string& v)
