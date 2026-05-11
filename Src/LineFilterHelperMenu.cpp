@@ -14,7 +14,7 @@ namespace
 	FilterExpression::DirectivesAndExpr NormalizeAndSplit(const String& expr)
 	{
 		return FilterExpression::SplitDirectivesAndExpr(
-			LineFilterHelper::RemovePrefix(LineFilterHelper::ConvertToLineContainsExpression(expr)));
+			LineFilterHelper::RemoveLePrefix(LineFilterHelper::ConvertToLineContainsExpression(expr)));
 	}
 
 	// Helper: Wrap expression with directives extracted from current filter
@@ -22,7 +22,7 @@ namespace
 	{
 		auto [directives, expr] = NormalizeAndSplit(filterExpr);
 		String wrapped = strutils::format_string1(wrapperFormat, expr);
-		return LineFilterHelper::BuildFilter(directives, wrapped);
+		return LineFilterHelper::BuildLeFilter(directives, wrapped);
 	}
 }
 
@@ -153,7 +153,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		{
 			auto [dlgDirectives, expr] = FilterExpression::SplitDirectivesAndExpr(dlg.m_sExpression);
 			String mergedDirectives = FilterExpression::MergeDirectives(filterDirectives, dlgDirectives);
-			result = LineFilterHelper::BuildFilter(mergedDirectives, expr);
+			result = LineFilterHelper::BuildLeFilter(mergedDirectives, expr);
 		}
 	}
 	else if (command == ID_FILTERMENU_LINE_MATCHINSIDE_WRAP || command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP)
@@ -165,7 +165,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 			auto [directives2, expr2] = NormalizeAndSplit(dlg.GetFilter2());
 			String mergedDirectives = FilterExpression::MergeDirectives(directives1, directives2);
 			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP) ? _T("not MatchInside(") : _T("MatchInside(");
-			result = LineFilterHelper::BuildFilter(mergedDirectives, funcName + expr1 + _T(", ") + expr2 + _T(")"));
+			result = LineFilterHelper::BuildLeFilter(mergedDirectives, funcName + expr1 + _T(", ") + expr2 + _T(")"));
 		}
 	}
 	else if (command == ID_FILTERMENU_LINE_MATCHINSIDE || command == ID_FILTERMENU_LINE_MATCHOUTSIDE)

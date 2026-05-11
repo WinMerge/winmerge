@@ -53,7 +53,7 @@ struct FilterSharedContext
 
 	mutable std::map<ExprNode*, std::vector<std::pair<int, int>>> matchRanges;
 	mutable std::map<InsideKey, std::vector<Range>> insideRanges;
-	mutable std::map<ExprNode*, StatisticsResult> statistics;
+	mutable std::map<std::pair<ExprNode*, ExprNode*>, StatisticsResult> statistics;
 };
 
 struct FilterExpression

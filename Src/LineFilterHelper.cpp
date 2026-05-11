@@ -20,7 +20,7 @@ bool LineFilterHelper::SetStringOrExpression(const String& filter)
 {
 	m_filter = filter;
 	std::string expr;
-	if (filter.find(_T("le:")) != String::npos)
+	if (filter.find(_T("le:")) == 0)
 		expr = ucr::toUTF8(filter.substr(3));
 	else
 		expr = "Line contains " + ucr::toUTF8(Quote(filter));
@@ -33,21 +33,21 @@ void LineFilterHelper::AddToExpression(const String& expr, const String& op)
 	SetStringOrExpression(AddToExpression(m_filter, expr, op));
 }
 
-String LineFilterHelper::RemovePrefix(const String& filter)
+String LineFilterHelper::RemoveLePrefix(const String& filter)
 {
-	if (filter.find(_T("le:")) != String::npos)
+	if (filter.find(_T("le:")) == 0)
 		return filter.substr(3);
 	return filter;
 }
 
 String LineFilterHelper::AddToExpression(const String& filter, const String& expr, const String& op)
 {
-	String result = RemovePrefix(ConvertToLineContainsExpression(filter));
+	String result = RemoveLePrefix(ConvertToLineContainsExpression(filter));
 	auto [filterDirectives, filterExpr] = FilterExpression::SplitDirectivesAndExpr(result);
 	auto [exprDirectives, exprBody] = FilterExpression::SplitDirectivesAndExpr(expr);
 	String mergedDirectives = FilterExpression::MergeDirectives(filterDirectives, exprDirectives);
 	result += (result.empty() ? _T("") : _T(" ") + op + _T(" ")) + exprBody;
-	return BuildFilter((mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")), result);
+	return BuildLeFilter((mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")), result);
 }
 
 String LineFilterHelper::Quote(const String& text)

@@ -1872,13 +1872,12 @@ void CMergeDoc::HideLines()
 			FilterEvalContext ectxt{ &fe, pdi.get(), this, sharedContext.get()};
 			for (nLine = 0; nLine < nLineCount; ++nLine)
 			{
-				if (m_nDiffContext < 0 || (m_nDiffContext >= 0 && (m_ptBuf[file]->GetLineFlags(nLine) & LF_INVISIBLE) != 0))
-				{
-					ectxt.lineIndex = nLine;
-					bool result = fe.Evaluate(ectxt);
-					for (file = 0; file < m_nBuffers; file++)
-						m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, !result, false, false);
-				}
+				if (m_nDiffContext >= 0 && (m_ptBuf[0]->GetLineFlags(nLine) & LF_INVISIBLE))
+					continue;
+				ectxt.lineIndex = nLine;
+				bool result = fe.Evaluate(ectxt);
+				for (file = 0; file < m_nBuffers; file++)
+					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, !result, false, false);
 			}
 		}
 	}
@@ -1898,6 +1897,8 @@ void CMergeDoc::AddToDisplayFilters(const String& text)
 	CMergeEditFrame* pFrame = GetParentFrame();
 	pFrame->ShowFilterBar();
 	auto* pFilterBar = pFrame->GetFilterBar();
+	if (!pFilterBar)
+		return;
 	pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
 	OnViewDisplayFilterBarApply();
 }
@@ -1911,6 +1912,8 @@ void CMergeDoc::AddColumnToDisplayFilters(int pane, int column, int dataType)
 		return;
 	pFrame->ShowFilterBar();
 	auto* pFilterBar = pFrame->GetFilterBar();
+	if (!pFilterBar)
+		return;
 	m_displayFilterHelper.SetStringOrExpression(*result);
 	pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
 	OnViewDisplayFilterBarApply();
@@ -3668,6 +3671,8 @@ void CMergeDoc::OnViewDisplayFilterBarApply()
 {
 	CWaitCursor waitstatus;
 	auto* pFilterBar = GetParentFrame()->GetFilterBar();
+	if (!pFilterBar)
+		return;
 	pFilterBar->SaveFilterText();
 	m_displayFilterHelper.SetStringOrExpression(pFilterBar->GetFilterText());
 	FlushAndRescan(true);

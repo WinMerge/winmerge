@@ -2853,7 +2853,7 @@ static auto LineMatchInsideFunc(const FilterEvalContext& ectxt, std::vector<Expr
 }
 
 // Helper lambda to process a single value and update statistics
-static auto ProcessValueForStatistics = [](
+static auto ProcessValueForStatistics(
 	const ValueType& result,
 	const FilterEvalContext& ectxt,
 	double& sum,
@@ -2925,8 +2925,8 @@ static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ec
 	auto& statsCache = ectxt.sharedContext->statistics;
 
 	// Create cache key that includes condition expression (if any)
-	auto cacheKey = reinterpret_cast<uintptr_t>(expr) ^ (conditionExpr ? reinterpret_cast<uintptr_t>(conditionExpr) : 0);
-	auto it = statsCache.find(reinterpret_cast<ExprNode*>(cacheKey));
+	std::pair<ExprNode*, ExprNode*> cacheKey{ expr, conditionExpr };
+	auto it = statsCache.find(cacheKey);
 	if (it != statsCache.end())
 		return it->second;
 
@@ -3007,7 +3007,7 @@ static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ec
 		}
 	}
 
-	it = statsCache.insert_or_assign(reinterpret_cast<ExprNode*>(cacheKey), std::move(stats)).first;
+	it = statsCache.insert_or_assign(cacheKey, std::move(stats)).first;
 	return it->second;
 }
 

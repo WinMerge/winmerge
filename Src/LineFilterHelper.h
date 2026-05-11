@@ -19,11 +19,11 @@ public:
 	FilterExpression& GetFilterExpression() { return m_expr; }
 	void AddToExpression(const String& expr, const String& op);
 	static String AddToExpression(const String& filter, const String& expr, const String& op);
-	static String RemovePrefix(const String& filter);
+	static String RemoveLePrefix(const String& filter);
 	static String Quote(const String& text);
 	static String ConvertToLineContainsExpression(const String& text);
 	// Helper: Build "le:" prefixed result with optional directives
-	static String BuildFilter(const String& directives, const String& expr) {
+	static String BuildLeFilter(const String& directives, const String& expr) {
 		return _T("le:") + (directives.empty() ? _T("") : directives + _T(" ")) + expr;
 	}
 private:
