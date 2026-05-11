@@ -302,6 +302,7 @@ public:
 	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	void AddToLineFilters(const String& text);
 	void AddToDisplayFilters(const String& text);
+	void AddColumnToDisplayFilters(int pane, int column, int dataType);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff, bool ignoreDiffOptions = false);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex, bool ignoreDiffOptions = false);
 	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ignoreDiffOptions = false, int pane1 = -1, int pane2 = -1);

@@ -86,6 +86,7 @@ private:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
+	int m_nClickedColumn;
 
 // Attributes
 public:

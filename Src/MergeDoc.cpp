@@ -1896,7 +1896,21 @@ void CMergeDoc::AddToDisplayFilters(const String& text)
 	pFrame->ShowFilterBar();
 	auto* pFilterBar = pFrame->GetFilterBar();
 	pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
-	pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK)->SetFocus();
+	OnViewDisplayFilterBarApply();
+}
+
+void CMergeDoc::AddColumnToDisplayFilters(int pane, int column, int dataType)
+{
+	CMergeEditFrame* pFrame = GetParentFrame();
+	CLineFilterHelperMenu menu(pane == m_nBuffers - 1 ? 3 : pane + 1, 0);
+	std::optional<String> result = menu.HandleMenuCommand(m_displayFilterHelper.GetStringOrExpression(), ID_FILTERMENU_LINE_COLUMN_FIRST + column * 3 + dataType, pFrame);
+	if (!result.has_value())
+		return;
+	pFrame->ShowFilterBar();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	m_displayFilterHelper.SetStringOrExpression(*result);
+	pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
+	OnViewDisplayFilterBarApply();
 }
 
 /**

@@ -10,6 +10,8 @@
 class CLineFilterHelperMenu : public CMenu
 {
 public:
+	CLineFilterHelperMenu() = default;
+	CLineFilterHelperMenu(int targetSide, int op) : m_targetSide(targetSide), m_operator(op) {}
 	std::optional<String> ShowMenu(const String& filterExpr, int x, int y, CWnd* pParentWnd);
 	std::optional<String> HandleMenuCommand(const String& filterExpr, int command, CWnd* pParentWnd);
 private:

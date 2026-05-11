@@ -66,6 +66,7 @@ CMergeEditView::CMergeEditView()
 , fTimerWaitingForIdle(0)
 , m_lineBegin(0)
 , m_lineEnd(-1)
+, m_nClickedColumn(-1)
 {
 	SetParser(&m_xParser);
 	
@@ -2915,6 +2916,9 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	{
 		if (rect.top <= point.y && point.y < rect.top + GetTopMarginHeight())
 		{
+			CPoint pt2 = point;
+			ScreenToClient(&pt2);
+			m_nClickedColumn = ClientToColumn(pt2.x);
 			BCMenu menu;
 			VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEWHEADER));
 			I18n::TranslateMenu(menu.m_hMenu);
@@ -4222,8 +4226,10 @@ void CMergeEditView::OnAutoFitAllColumns()
 
 void CMergeEditView::OnFilterMenuColumn(UINT nID)
 {
-//	int column = 1;
-//	GetDocument()->AddColumnToDisplayFilters(column);
+	if (m_nClickedColumn == -1)
+		return;
+	int dataType = nID - ID_FILTERMENU_COLUMN_TEXT;
+	GetDocument()->AddColumnToDisplayFilters(m_nThisPane, m_nClickedColumn, dataType);
 }
 
 /**
