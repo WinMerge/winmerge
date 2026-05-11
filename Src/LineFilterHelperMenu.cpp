@@ -99,7 +99,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	else if (command >= ID_FILTERMENU_LINE_COLUMN_FIRST && command <= ID_FILTERMENU_LINE_COLUMN_LAST)
 	{
 		const String Conversions[] = { _T("%1"), _T("ToNumber(%1)"), _T("ToDateTime(%1)") };
-		const String Operators[] = { _T("%1 contains %2"), _T("%1 = %2"), _T("%1 = %2") };
+		const String Operators[] = { _T("%1 contains %2"), _T("%1 = %2"), _T("%1 < %2") };
 		int dataType = (command - ID_FILTERMENU_LINE_COLUMN_FIRST) % std::size(Conversions);
 		CFilterConditionDlg dlg(false, m_targetSide, 
 			_T("Column") + strutils::to_str((command - ID_FILTERMENU_LINE_COLUMN_FIRST) / std::size(Conversions) + 1),

@@ -155,6 +155,11 @@ String CFilterConditionDlg::GetExpression()
 			value1 = m_tmValue1.Format(_T("%Y-%m-%d"));
 			value2 = m_tmValue2.Format(_T("%Y-%m-%d"));
 		}
+		else if (m_sLHS == _T("ToDateTime(%1)"))
+		{
+			value1 = m_tmValue1.Format(_T("%Y-%m-%d %H:%M:%S"));
+			value2 = m_tmValue2.Format(_T("%Y-%m-%d %H:%M:%S"));
+		}
 		else
 		{
 			value1 = m_sValue1;
@@ -164,6 +169,11 @@ String CFilterConditionDlg::GetExpression()
 		strutils::replace(value2, _T("\""), _T("\"\""));
 		value1 = _T("\"") + value1 + _T("\"");
 		value2 = _T("\"") + value2 + _T("\"");
+		if (m_sLHS == _T("ToDateTime(%1)"))
+		{
+			value1 = _T("d") + value1;
+			value2 = _T("d") + value2;
+		}
 		result = strutils::format_string3(expression, lhs, value1, value2);
 	}
 
@@ -226,12 +236,12 @@ BOOL CFilterConditionDlg::OnInitDialog()
 
 	// Initialize the operator combo box
 	if (m_sField == _T("Size") || m_sField == _T("TotalSize") ||
-	    m_sField == _T("Files") || m_sField == _T("Items") ||
-	    m_sField == _T("Codepage") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
-	    m_sField == _T("DateStr") || m_sField == _T("LineNumber") ||
-	    m_sLHS == _T("toDateStr(%1)") || m_sLHS == _T("lineCount(%1)") ||
+		m_sField == _T("Files") || m_sField == _T("Items") ||
+		m_sField == _T("Codepage") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
+		m_sField == _T("DateStr") || m_sField == _T("LineNumber") ||
+		m_sLHS == _T("toDateStr(%1)") || m_sLHS == _T("ToDateTime(%1)") || m_sLHS == _T("lineCount(%1)") ||
 		m_sLHS.compare(0, 12, _T("MatchNumber(")) == 0 || m_sLHS == _T("ToNumber(%1)") ||
-	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8)
+		m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8)
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
 			{
@@ -302,9 +312,9 @@ BOOL CFilterConditionDlg::OnInitDialog()
 		m_sValue1 = _T("0second");
 		m_sValue2 = _T("0second");
 	}
-	else if (m_sField == _T("DateStr") || m_sLHS == _T("toDateStr(%1)"))
+	else if (m_sField == _T("DateStr") || m_sLHS == _T("toDateStr(%1)") || m_sLHS == _T("ToDateTime(%1)"))
 	{
-		// No initialization required for "DateStr" field
+		// No initialization required for date/datetime fields
 	}
 	else if (m_sField == _T("Content"))
 	{
@@ -338,10 +348,24 @@ void CFilterConditionDlg::OnCbnSelchangeOperator()
 	String expression = (const wchar_t*)expressionptr;
 	const bool showValue2 = expression.find(_T("%3")) != String::npos;
 	const bool showDatePicker = (m_sField == _T("DateStr") || m_sLHS == _T("toDateStr(%1)"));
-	ShowDlgItem(IDC_CONDITION_VALUE1, !showDatePicker);
-	ShowDlgItem(IDC_CONDITION_VALUE2, !showDatePicker && showValue2);
-	ShowDlgItem(IDC_CONDITION_VALUEDTP1, showDatePicker);
-	ShowDlgItem(IDC_CONDITION_VALUEDTP2, showDatePicker && showValue2);
+	const bool showDateTimePicker = (m_sLHS == _T("ToDateTime(%1)"));
+	ShowDlgItem(IDC_CONDITION_VALUE1, !showDatePicker && !showDateTimePicker);
+	ShowDlgItem(IDC_CONDITION_VALUE2, !showDatePicker && !showDateTimePicker && showValue2);
+	ShowDlgItem(IDC_CONDITION_VALUEDTP1, showDatePicker || showDateTimePicker);
+	ShowDlgItem(IDC_CONDITION_VALUEDTP2, (showDatePicker || showDateTimePicker) && showValue2);
+
+	// Set DateTimePicker format
+	if (showDateTimePicker)
+	{
+		::SendMessage(GetDlgItem(IDC_CONDITION_VALUEDTP1)->GetSafeHwnd(), DTM_SETFORMAT, 0, (LPARAM)_T("yyyy-MM-dd HH:mm:ss"));
+		::SendMessage(GetDlgItem(IDC_CONDITION_VALUEDTP2)->GetSafeHwnd(), DTM_SETFORMAT, 0, (LPARAM)_T("yyyy-MM-dd HH:mm:ss"));
+	}
+	else if (showDatePicker)
+	{
+		::SendMessage(GetDlgItem(IDC_CONDITION_VALUEDTP1)->GetSafeHwnd(), DTM_SETFORMAT, 0, (LPARAM)_T("yyyy-MM-dd"));
+		::SendMessage(GetDlgItem(IDC_CONDITION_VALUEDTP2)->GetSafeHwnd(), DTM_SETFORMAT, 0, (LPARAM)_T("yyyy-MM-dd"));
+	}
+
 	SetDlgItemText(IDC_CONDITION_EXPRESSION, GetExpression());
 }
 

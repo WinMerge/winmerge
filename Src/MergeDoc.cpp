@@ -1872,10 +1872,13 @@ void CMergeDoc::HideLines()
 			FilterEvalContext ectxt{ &fe, pdi.get(), this, sharedContext.get()};
 			for (nLine = 0; nLine < nLineCount; ++nLine)
 			{
-				ectxt.lineIndex = nLine;
-				bool result = fe.Evaluate(ectxt);
-				for (file = 0; file < m_nBuffers; file++)
-					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, !result, false, false);
+				if (m_nDiffContext < 0 || (m_nDiffContext >= 0 && (m_ptBuf[file]->GetLineFlags(nLine) & LF_INVISIBLE) != 0))
+				{
+					ectxt.lineIndex = nLine;
+					bool result = fe.Evaluate(ectxt);
+					for (file = 0; file < m_nBuffers; file++)
+						m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, !result, false, false);
+				}
 			}
 		}
 	}
