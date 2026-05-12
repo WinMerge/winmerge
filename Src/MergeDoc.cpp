@@ -3684,6 +3684,8 @@ void CMergeDoc::OnViewDisplayFilterBar()
 	CMergeEditFrame* pFrame = GetParentFrame();
 	pFrame->ShowFilterBar();
 	auto* pFilterBar = pFrame->GetFilterBar();
+	if (!pFilterBar)
+		return;
 	if (!m_displayFilterHelper.GetStringOrExpression().empty())
 		pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
 	pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK)->SetFocus();
