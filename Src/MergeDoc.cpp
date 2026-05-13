@@ -1775,19 +1775,24 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(const tchar_t* szPath, Diff
 		return FileChange::NoChange;
 }
 
-static std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffContext(CMergeDoc& doc)
+std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CMergeDoc::CreateDiffItem() const
 {
-	PathContext paths = doc.m_filePaths;
+	PathContext paths = m_filePaths;
 	auto pdi = std::make_unique<DIFFITEM>();
+	pdi->diffcode.diffcode = (m_diffList.HasSignificantDiffs() ? DIFFCODE::DIFF : DIFFCODE::SAME) | DIFFCODE::TEXT | DIFFCODE::FILE | ((m_nBuffers > 2) ? DIFFCODE::THREEWAY : 0);
+	pdi->nsdiffs = m_diffList.GetSignificantDiffs();
+	pdi->nidiffs = m_nTrivialDiffs;
 	for (int i = 0; i < paths.GetSize(); ++i)
 	{
+		if (m_nBufferType[i] != BUFFERTYPE::UNNAMED)
+			pdi->diffcode.setSideFlag(i);
 		paths[i] = paths::GetParentPath(paths[i]);
-		pdi->diffFileInfo[i].SetFile(paths::FindFileName(doc.m_filePaths[i]));
-		pdi->diffFileInfo[i].mtime = doc.m_pSaveFileInfo[i]->mtime;
-		pdi->diffFileInfo[i].ctime = doc.m_pSaveFileInfo[i]->ctime;
-		pdi->diffFileInfo[i].flags = doc.m_pSaveFileInfo[i]->flags;
-		pdi->diffFileInfo[i].size = doc.m_pSaveFileInfo[i]->size;
-		pdi->diffFileInfo[i].encoding = doc.m_pSaveFileInfo[i]->encoding;
+		pdi->diffFileInfo[i].SetFile(paths::FindFileName(m_filePaths[i]));
+		pdi->diffFileInfo[i].mtime = m_pSaveFileInfo[i]->mtime;
+		pdi->diffFileInfo[i].ctime = m_pSaveFileInfo[i]->ctime;
+		pdi->diffFileInfo[i].flags = m_pSaveFileInfo[i]->flags;
+		pdi->diffFileInfo[i].size = m_pSaveFileInfo[i]->size;
+		pdi->diffFileInfo[i].encoding = m_pSaveFileInfo[i]->encoding;
 	}
 	auto result = std::make_pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>>(std::make_unique<CDiffContext>(paths, CMP_CONTENT), std::move(pdi));
 	return result;
@@ -1867,7 +1872,7 @@ void CMergeDoc::HideLines()
 		if (fe.errorCode == 0)
 		{
 			auto sharedContext = std::make_unique<FilterSharedContext>();
-			auto [pctxt, pdi] = CreateDiffContext(*this);
+			auto [pctxt, pdi] = CreateDiffItem();
 			fe.SetDiffContext(pctxt.get());
 			FilterEvalContext ectxt{ &fe, pdi.get(), this, sharedContext.get()};
 			for (nLine = 0; nLine < nLineCount; ++nLine)
@@ -3676,7 +3681,7 @@ void CMergeDoc::OnViewDisplayFilterBarApply()
 	pFilterBar->SaveFilterText();
 	m_displayFilterHelper.SetStringOrExpression(pFilterBar->GetFilterText());
 	FlushAndRescan(true);
-	//SetFocus();
+	GetActiveMergeView()->SetFocus();
 }
 
 void CMergeDoc::OnViewDisplayFilterBar()

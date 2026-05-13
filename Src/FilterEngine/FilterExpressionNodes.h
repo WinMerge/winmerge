@@ -138,6 +138,12 @@ struct BoolLiteral : public ExprNode
 	bool value;
 };
 
+struct NoneLiteral : public ExprNode
+{
+	NoneLiteral() { }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return std::monostate{}; }
+};
+
 struct DoubleLiteral : public ExprNode
 {
 	DoubleLiteral(double v) : value(v) { }

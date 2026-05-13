@@ -82,7 +82,7 @@ struct FilterExpression
 	static bool HasCaseSensitiveDirective(const String& expression);
 	static String AddCaseSensitiveDirective(const String& expression);
 	static String RemoveCaseSensitiveDirective(const String& expression);
-	static String ExtractDirectivesPrefix(const String& expression);
+	static String ExtractDirectives(const String& expression);
 	static String RemoveAllDirectives(const String& expression);
 	static DirectivesAndExpr SplitDirectivesAndExpr(const String& expression);
 	static String MergeDirectives(const String& directives1, const String& directives2);

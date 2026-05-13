@@ -130,7 +130,7 @@ private:
 	static String TransformExpressionPreservingDirectives(const String& expr, std::function<String(const String&)> transform)
 	{
 		String baseExpr = expr.empty() ? _T("Name") : expr;
-		String directives = FilterExpression::ExtractDirectivesPrefix(baseExpr);
+		String directives = FilterExpression::ExtractDirectives(baseExpr);
 		String exprWithoutDirective = FilterExpression::RemoveAllDirectives(baseExpr);
 
 		String newExpr = transform(exprWithoutDirective);

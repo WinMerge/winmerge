@@ -20,18 +20,18 @@ public:
 	CDirFilterBar();   // standard constructor
 	~CDirFilterBar();
 	BOOL Create(CWnd* pParentWnd);
-	String GetFilterText() { return m_sMask; }
+	String GetFilterText() { return m_sFilter; }
 	void SaveFilterText();
 	void ShowFilterMenu();
 
 // Dialog Data
 	//{{AFX_DATA(CDirFilterBar)
 	enum { IDD = IDD_DISPLAY_FILTER_BAR };
-	CSuperComboBox m_ctlMask;
-	CValidatingEdit m_ctlMaskEdit;
+	CSuperComboBox m_ctlFilter;
+	CValidatingEdit m_ctlFilterEdit;
 	CFileFilterHelperMenu m_menu;
 	std::unique_ptr<FileFilterHelper> m_pFileFilterHelper;
-	String m_sMask;
+	String m_sFilter;
 	//}}AFX_DATA
 
 // Implementation

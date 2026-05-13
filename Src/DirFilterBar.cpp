@@ -29,8 +29,8 @@ CDirFilterBar::~CDirFilterBar()
 void CDirFilterBar::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogBar::DoDataExchange(pDX);
-	DDX_CBStringExact(pDX, IDC_FILTERFILE_MASK, m_sMask);
-	DDX_Control(pDX, IDC_FILTERFILE_MASK, m_ctlMask);
+	DDX_CBStringExact(pDX, IDC_FILTERFILE_MASK, m_sFilter);
+	DDX_Control(pDX, IDC_FILTERFILE_MASK, m_ctlFilter);
 }
 
 BEGIN_MESSAGE_MAP(CDirFilterBar, CTrDialogBar)
@@ -54,12 +54,12 @@ BOOL CDirFilterBar::Create(CWnd* pParentWnd)
 
 	UpdateData(FALSE);
 
-	m_ctlMask.LoadState(_T("Files\\DisplayExt"));
+	m_ctlFilter.LoadState(_T("Files\\DisplayExt"));
 
 	COMBOBOXINFO cbi{ sizeof(COMBOBOXINFO) };
-	GetComboBoxInfo(m_ctlMask.m_hWnd, &cbi);
-	m_ctlMaskEdit.SubclassWindow(cbi.hwndItem);
-	m_ctlMaskEdit.m_validator = [this](const CString& text, CString& error) -> bool
+	GetComboBoxInfo(m_ctlFilter.m_hWnd, &cbi);
+	m_ctlFilterEdit.SubclassWindow(cbi.hwndItem);
+	m_ctlFilterEdit.m_validator = [this](const CString& text, CString& error) -> bool
 		{
 			m_pFileFilterHelper->SetMaskOrExpression((const tchar_t*)text);
 			const bool bError = !m_pFileFilterHelper->GetErrorList().empty();
@@ -70,8 +70,9 @@ BOOL CDirFilterBar::Create(CWnd* pParentWnd)
 			}
 			return !bError;
 		};
-	m_ctlMaskEdit.Validate();
-	m_ctlMaskEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("*.txt|fe:Size > 100KB")).c_str());
+	m_ctlFilterEdit.Validate();
+	m_ctlFilterEdit.SetCueBanner(
+		strutils::format_string1(_("e.g. %1"), _T("*.txt|fe:Size > 100KB")).c_str());
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -84,16 +85,16 @@ void CDirFilterBar::OnKillFocusFilter()
 
 void CDirFilterBar::OnEditChangeFilter()
 {
-	m_ctlMaskEdit.OnEnChange();
+	m_ctlFilterEdit.OnEnChange();
 }
 
 void CDirFilterBar::SaveFilterText()
 {
 	UpdateData(TRUE);
-	if (m_sMask.empty())
+	if (m_sFilter.empty())
 		return;
-	m_ctlMask.SaveState(_T("Files\\DisplayExt"));
-	m_ctlMask.LoadState(_T("Files\\DisplayExt"));
+	m_ctlFilter.SaveState(_T("Files\\DisplayExt"));
+	m_ctlFilter.LoadState(_T("Files\\DisplayExt"));
 }
 
 void CDirFilterBar::ShowFilterMenu()
@@ -101,11 +102,11 @@ void CDirFilterBar::ShowFilterMenu()
 	UpdateData(TRUE);
 	CRect rc;
 	GetDlgItem(IDC_FILTERFILE_MASK_MENU)->GetWindowRect(&rc);
-	const std::optional<String> filter = m_menu.ShowMenu(m_sMask, rc.left, rc.bottom, this);
+	const std::optional<String> filter = m_menu.ShowMenu(m_sFilter, rc.left, rc.bottom, this);
 	if (filter.has_value())
 	{
-		m_sMask = *filter;
+		m_sFilter = *filter;
 		UpdateData(FALSE);
-		m_ctlMaskEdit.OnEnChange();
+		m_ctlFilterEdit.OnEnChange();
 	}
 }

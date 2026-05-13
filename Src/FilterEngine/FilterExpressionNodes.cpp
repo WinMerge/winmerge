@@ -737,12 +737,12 @@ ValueType NegateNode::Evaluate(const FilterEvalContext& ectxt) const
 	return std::monostate{};
 }
 
-static auto ExistsField(int index, const FilterEvalContext& ectxt)-> ValueType
+static auto FileExistsField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	return ectxt.di->diffcode.exists(index);
 }
 
-static auto MissingField(int index, const FilterEvalContext& ectxt)-> ValueType
+static auto FileMissingField(int index, const FilterEvalContext& ectxt)-> ValueType
 {
 	return !ectxt.di->diffcode.exists(index);
 }
@@ -926,12 +926,12 @@ static auto IgnoredDiffsField(int, const FilterEvalContext& ectxt) -> ValueType
 	return static_cast<int64_t>(ectxt.di->nidiffs);
 }
 
-static auto IdenticalField(int, const FilterEvalContext& ectxt) -> ValueType
+static auto FileIdenticalField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return ectxt.di->diffcode.isResultSame();
 }
 
-static auto DifferentField(int, const FilterEvalContext& ectxt) -> ValueType
+static auto FileDifferentField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return ectxt.di->diffcode.isResultDiff();
 }
@@ -941,7 +941,7 @@ static auto SkippedField(int, const FilterEvalContext& ectxt) -> ValueType
 	return ectxt.di->diffcode.isResultFiltered();
 }
 
-static auto MovedField(int, const FilterEvalContext& ectxt) -> ValueType
+static auto FileMovedField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	return ectxt.di->renameMoveGroupId != -1;
 }
@@ -969,21 +969,21 @@ static auto BinaryField(int index, const FilterEvalContext& ectxt) -> ValueType
 	return (diffcode & binarySide) != 0;
 }
 
-static auto DifferentLeftMiddleField(int index, const FilterEvalContext& ectxt) -> ValueType
+static auto FileDifferentLeftMiddleField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF1STONLY) != 0;
 }
 
-static auto DifferentMiddleRightField(int index, const FilterEvalContext& ectxt) -> ValueType
+static auto FileDifferentMiddleRightField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF2NDONLY) != 0;
 }
 
-static auto DifferentLeftRightField(int index, const FilterEvalContext& ectxt) -> ValueType
+static auto FileDifferentLeftRightField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
 		return (ectxt.di->diffcode.diffcode & DIFFCODE::DIFF3RDONLY) != 0;
@@ -1057,19 +1057,19 @@ static auto LineLengthField(int index, const FilterEvalContext& ectxt) -> ValueT
 	if (!ectxt.provider)
 		return std::monostate{};
 	auto line = ectxt.provider->GetLine(index, ectxt.lineIndex);
-	return ucr::stringlen_of_utf8(line.data(), line.length());
+	return static_cast<int64_t>(ucr::stringlen_of_utf8(line.data(), line.length()));
 }
 
 static auto LineNumberField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return ectxt.provider->GetRealLineNumber(index, ectxt.lineIndex) + 1;
+	return static_cast<int64_t>(ectxt.provider->GetRealLineNumber(index, ectxt.lineIndex));
 }
 
 static auto ViewLineNumberField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
-	return ectxt.lineIndex + 1;
+	return static_cast<int>(ectxt.lineIndex + 1);
 }
 
 static auto LineExistsField(int index, const FilterEvalContext& ectxt) -> ValueType
@@ -1262,174 +1262,101 @@ AttrParseResult ParseAttributeName(std::string_view name)
 	return { 0, 0 };
 }
 
+struct FieldInfo
+{
+	using FieldFunc = ValueType (*)(int, const FilterEvalContext&);
+	const char* name;
+	FieldFunc funcForDir;      // Function when diritem == true (or always if funcForLine == nullptr)
+	FieldFunc funcForLine;     // Function when diritem == false (nullptr if same as funcForDir)
+	bool allowPrefix;          // Whether left/middle/right prefix is allowed
+	bool forceGlobalSide;      // Whether to force side = -2 (no side differentiation)
+};
+
+// Compile-time constant array - zero runtime initialization cost
+static constexpr FieldInfo fieldTable[] = {
+	// name, funcForDir, funcForLine, allowPrefix, forceGlobalSide
+	{"attributes", AttributesField, nullptr, true, false},
+	{"attrstr", AttrStrField, nullptr, true, false},
+	{"basename", BaseNameField, nullptr, true, false},
+	{"binary", BinaryField, nullptr, true, false},
+	{"bookmarked", LineBookmarkedField, nullptr, true, false},
+	{"codepage", CodepageField, nullptr, true, false},
+	{"columncount", ColumnCountField, nullptr, true, false},
+	{"content", ContentField, nullptr, true, false},
+	{"creationtime", CreationTimeField, nullptr, true, false},
+	{"date", DateField, nullptr, true, false},
+	{"datestr", DateStrField, nullptr, true, false},
+	{"diffcode", DiffCodeField, nullptr, false, true},
+	{"differences", DifferencesField, nullptr, false, true},
+	{"different", FileDifferentField, LineDifferentField, false, true},
+	{"differentleftmiddle", FileDifferentLeftMiddleField, LineDifferentLeftMiddleField, false, true},
+	{"differentleftright", FileDifferentLeftRightField, LineDifferentLeftRightField, false, true},
+	{"differentmiddleright", FileDifferentMiddleRightField, LineDifferentMiddleRightField, false, true},
+	{"encoding", EncodingField, nullptr, true, false},
+	{"exists", FileExistsField, LineExistsField, true, false},
+	{"extension", ExtensionField, nullptr, true, false},
+	{"filedifferent", FileDifferentField, nullptr, false, true},
+	{"filedifferentleftmiddle", FileDifferentLeftMiddleField, nullptr, false, true},
+	{"filedifferentleftright", FileDifferentLeftRightField, nullptr, false, true},
+	{"filedifferentmiddleright", FileDifferentMiddleRightField, nullptr, false, true},
+	{"fileexists", FileExistsField, nullptr, true, false},
+	{"fileidentical", FileIdenticalField, nullptr, false, true},
+	{"filemissing", FileMissingField, nullptr, true, false},
+	{"filemoved", FileMovedField, nullptr, true, false},
+	{"files", FilesField, nullptr, true, false},
+	{"folder", FolderField, nullptr, true, false},
+	{"fullpath", FullPathField, nullptr, true, false},
+	{"hasbom", HasBOMField, nullptr, true, false},
+	{"identical", FileIdenticalField, LineIdenticalField, false, true},
+	{"ignoreddiffs", IgnoredDiffsField, nullptr, false, true},
+	{"isfolder", IsFolderField, nullptr, true, false},
+	{"items", ItemsField, nullptr, true, false},
+	{"line", LineField, nullptr, true, false},
+	{"linelength", LineLengthField, nullptr, true, false},
+	{"linenumber", LineNumberField, nullptr, true, false},
+	{"missing", FileMissingField, LineMissingField, true, false},
+	{"moved", FileMovedField, LineMovedField, true, false},
+	{"name", NameField, nullptr, true, false},
+	{"prediffer", PredifferField, nullptr, false, true},
+	{"recursivefiles", RecursiveFilesField, nullptr, true, false},
+	{"recursiveitems", RecursiveItemsField, nullptr, true, false},
+	{"recursivetotalsize", RecursiveTotalSizeField, nullptr, true, false},
+	{"relpath", RelPathField, nullptr, true, false},
+	{"size", SizeField, nullptr, true, false},
+	{"skipped", SkippedField, nullptr, false, true},
+	{"totalsize", TotalSizeField, nullptr, true, false},
+	{"trivial", LineTrivialField, nullptr, false, true},
+	{"unpacker", UnpackerField, nullptr, false, true},
+	{"version", FileVersionField, nullptr, true, false},
+	{"viewlinenumber", ViewLineNumberField, nullptr, false, true},
+};
+
+static constexpr size_t fieldTableSize = sizeof(fieldTable) / sizeof(fieldTable[0]);
+
+// Binary search in sorted array - O(log n)
+static const FieldInfo* findField(const char* name)
+{
+	auto it = std::lower_bound(std::begin(fieldTable), std::end(fieldTable), name,
+		[](const FieldInfo& info, const char* n) {
+			return strcmp(info.name, n) < 0;
+		}
+	);
+
+	if (it != std::end(fieldTable) && strcmp(it->name, name) == 0)
+		return it;
+
+	return nullptr;
+}
+
 FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(ctxt), field(v)
 {
 	std::string vl = Poco::toLower(v);
 	auto [side, prefixlen] = ParseAttributeName(vl);
 	ValueType (*functmp)(int, const FilterEvalContext&) = nullptr;
 	const char* p = vl.c_str() + prefixlen;
-	if (strcmp(p, "exists") == 0)
-		functmp = ctxt->diritem ? ExistsField : LineExistsField;
-	else if (strcmp(p, "missing") == 0)
-		functmp = ctxt->diritem ? MissingField : LineMissingField;
-	else if (strcmp(p, "isfolder") == 0)
-		functmp = IsFolderField;
-	else if (strcmp(p, "files") == 0)
-		functmp = FilesField;
-	else if (strcmp(p, "items") == 0)
-		functmp = ItemsField;
-	else if (strcmp(p, "totalsize") == 0)
-		functmp = TotalSizeField;
-	else if (strcmp(p, "recursivefiles") == 0)
-		functmp = RecursiveFilesField;
-	else if (strcmp(p, "recursiveitems") == 0)
-		functmp = RecursiveItemsField;
-	else if (strcmp(p, "recursivetotalsize") == 0)
-		functmp = RecursiveTotalSizeField;
-	else if (strcmp(p, "name") == 0)
-		functmp = NameField;
-	else if (strcmp(p, "basename") == 0)
-		functmp = BaseNameField;
-	else if (strcmp(p, "extension") == 0)
-		functmp = ExtensionField;
-	else if (strcmp(p, "relpath") == 0)
-		functmp = RelPathField;
-	else if (strcmp(p, "fullpath") == 0)
-		functmp = FullPathField;
-	else if (strcmp(p, "folder") == 0)
-		functmp = FolderField;
-	else if (strcmp(p, "size") == 0)
-		functmp = SizeField;
-	else if (strcmp(p, "datestr") == 0)
-		functmp = DateStrField;
-	else if (strcmp(p, "date") == 0)
-		functmp = DateField;
-	else if (strcmp(p, "attributes") == 0)
-		functmp = AttributesField;
-	else if (strcmp(p, "attrstr") == 0)
-		functmp = AttrStrField;
-	else if (strcmp(p, "creationtime") == 0)
-		functmp = CreationTimeField;
-	else if (strcmp(p, "version") == 0)
-		functmp = FileVersionField;
-	else if (strcmp(p, "codepage") == 0)
-		functmp = CodepageField;
-	else if (strcmp(p, "encoding") == 0)
-		functmp = EncodingField;
-	else if (strcmp(p, "hasbom") == 0)
-		functmp = HasBOMField;
-	else if (strcmp(vl.c_str(), "diffcode") == 0)
-	{
-		functmp = DiffCodeField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "differences") == 0)
-	{
-		functmp = DifferencesField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "ignoreddiffs") == 0)
-	{
-		functmp = IgnoredDiffsField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "identical") == 0)
-	{
-		functmp = ctxt->diritem ? IdenticalField : LineIdenticalField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "different") == 0)
-	{
-		functmp = ctxt->diritem ? DifferentField : LineDifferentField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "skipped") == 0)
-	{
-		functmp = SkippedField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "trivial") == 0)
-	{
-		functmp = LineTrivialField;
-		side = -2;
-	}
-	else if (strcmp(p, "moved") == 0)
-		functmp = ctxt->diritem ? MovedField : LineMovedField;
-	else if (strcmp(p, "bookmarked") == 0)
-		functmp = LineBookmarkedField;
-	else if (strcmp(p, "binary") == 0)
-		functmp = BinaryField;
-	else if (strcmp(vl.c_str(), "differentleftmiddle") == 0)
-	{
-		functmp = ctxt->diritem ? DifferentLeftMiddleField : LineDifferentLeftMiddleField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "differentmiddleright") == 0)
-	{
-		functmp = ctxt->diritem ? DifferentMiddleRightField : LineDifferentMiddleRightField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "differentleftright") == 0)
-	{
-		functmp = ctxt->diritem ? DifferentLeftRightField : LineDifferentLeftRightField;
-		side = -2;
-	}
-	else if (strcmp(p, "content") == 0)
-		functmp = ContentField;
-	else if (strcmp(vl.c_str(), "unpacker") == 0)
-	{
-		functmp = UnpackerField;
-		side = -2;
-	}
-	else if (strcmp(vl.c_str(), "prediffer") == 0)
-	{
-		functmp = PredifferField;
-		side = -2;
-	}
-	else if (strcmp(p, "line") == 0)
-		functmp = LineField;
-	else if (strcmp(p, "linelength") == 0)
-		functmp = LineLengthField;
-	else if (strcmp(p, "linenumber") == 0)
-		functmp = LineNumberField;
-	else if (strcmp(vl.c_str(), "viewlinenumber") == 0)
-	{
-		side = -2;
-		functmp = ViewLineNumberField;
-	}
-	else if (strcmp(vl.c_str(), "lineidentical") == 0)
-	{
-		side = -2;
-		functmp = LineIdenticalField;
-	}
-	else if (strcmp(vl.c_str(), "linedifferent") == 0)
-	{
-		side = -2;
-		functmp = LineDifferentField;
-	}
-	else if (strcmp(vl.c_str(), "linedifferentleftmiddle") == 0)
-	{
-		side = -2;
-		functmp = LineDifferentLeftMiddleField;
-	}
-	else if (strcmp(vl.c_str(), "linedifferentmiddleright") == 0)
-	{
-		side = -2;
-		functmp = LineDifferentMiddleRightField;
-	}
-	else if (strcmp(vl.c_str(), "linedifferentleftright") == 0)
-	{
-		side = -2;
-		functmp = LineDifferentLeftRightField;
-	}
-	else if (strcmp(vl.c_str(), "linetrivial") == 0)
-	{
-		side = -2;
-		functmp = LineTrivialField;
-	}
-	else if (strcmp(p, "columncount") == 0)
-		functmp = ColumnCountField;
-	else if (strncmp(p, "column", 6) == 0 && isdigit(p[6]))
+
+	// Handle dynamic column fields (column1, column2, etc.)
+	if (strncmp(p, "column", 6) == 0 && isdigit(p[6]))
 	{
 		// Parse column number (Column1, Column2, etc.)
 		int columnIndex = atoi(p + 6) - 1;
@@ -1452,8 +1379,24 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 			return;
 		}
 	}
+	// Lookup in field table
+	else if (const FieldInfo* info = findField(p))
+	{
+		// Check if prefix is allowed for this field
+		if (prefixlen > 0 && !info->allowPrefix)
+			throw std::runtime_error("Field does not support left/middle/right prefix: " + std::string(v.begin(), v.end()));
+
+		// Select appropriate function based on diritem context
+		functmp = (info->funcForLine && !ctxt->diritem) ? info->funcForLine : info->funcForDir;
+
+		// Override side if this is a global field
+		if (info->forceGlobalSide)
+			side = -2;
+	}
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
+
+	// Set up the wrapper function based on side/prefix
 	if (prefixlen > 0)
 		func = [side, functmp](const FilterEvalContext& ectxt)-> ValueType { return functmp(side < 0 ? ectxt.expr->ctxt->GetCompareDirs() + side: side, ectxt); };
 	else
@@ -3190,7 +3133,7 @@ static auto lineAt(int index, const FilterEvalContext& ectxt, std::vector<ExprNo
 	auto argInt = std::get_if<int64_t>(&arg);
 	if (!argInt)
 		return std::monostate{};
-	int lineNumber = static_cast<int>(*argInt + 1);
+	int lineNumber = static_cast<int>(*argInt);
 	if (lineNumber < 1 || lineNumber > ectxt.provider->GetLineCount())
 		return std::monostate{};
 	return ectxt.provider->GetLine(index, lineNumber - 1);

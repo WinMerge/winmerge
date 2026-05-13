@@ -479,6 +479,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	void PrimeTextBuffers();
+	std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffItem() const;
 	void HideLines();
 	void AdjustDiffBlocks();
 	void AdjustDiffBlocks3way();

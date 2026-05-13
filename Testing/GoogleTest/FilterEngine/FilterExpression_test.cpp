@@ -663,6 +663,38 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Parse("FALSE OR FALSE"));
 	EXPECT_FALSE(fe.Evaluate(di));
 
+	// None and undefined literal tests
+	EXPECT_TRUE(fe.Parse("none == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("undefined == undefined"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none == undefined"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("undefined == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != 123"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("undefined != \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("undefined != false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != d\"2025-05-27\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none == 123"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("undefined == \"abc\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none == true"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(none, 123, undefined), 0) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(none, 123, undefined), 1) == 123"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(none, 123, undefined), 2) == undefined"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
 	EXPECT_TRUE(fe.Parse("array() = array()"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("array(1) = array(1)"));
@@ -896,8 +928,10 @@ TEST_P(FilterExpressionTest, LineAttributes)
 			std::string line;
 			if (pane == 0)
 				line = (lineIndex == 0) ? "// abc" : "// 012345";
-			else
+			else if (pane == 1)
 				line = (lineIndex == 0) ? "// defghij" : "// 6789";
+			else
+				line = (lineIndex == 0) ? "// xyz" : "// []{}-+/*";
 			return line;
 		}
 
@@ -908,36 +942,450 @@ TEST_P(FilterExpressionTest, LineAttributes)
 
 		int GetColumnCount(int pane, int lineIndex) const override
 		{
-			return 0;
+			// Return 12 columns for testing Column1 through Column10 and beyond
+			return 12;
 		}
 
 		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
 		{
-			return {};
+			// Generate column data based on pane, lineIndex, and columnIndex
+			if (pane == 0)
+			{
+				if (lineIndex == 0)
+					return "Left0_Col" + std::to_string(columnIndex + 1);
+				else
+					return "Left1_Col" + std::to_string(columnIndex + 1);
+			}
+			else if (pane == 1)
+			{
+				if (lineIndex == 0)
+					return "Middle0_Col" + std::to_string(columnIndex + 1);
+				else
+					return "Middle1_Col" + std::to_string(columnIndex + 1);
+			}
+			else
+			{
+				if (lineIndex == 0)
+					return "Right0_Col" + std::to_string(columnIndex + 1);
+				else
+					return "Right1_Col" + std::to_string(columnIndex + 1);
+			}
 		}
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
-			return lineIndex + 1;
+			return (pane == 0) ? (lineIndex + 1) : (lineIndex + 10);
 		}
 
 		unsigned GetLineFlags(int pane, int lineIndex) const override
 		{
-			return 0;
+			unsigned flags = 0;
+			if (pane == 0 && lineIndex == 0)
+				flags |= ILineDataProvider::LF_DIFF | ILineDataProvider::LF_MOVED;
+			if (pane == 0 && lineIndex == 1)
+				flags |= ILineDataProvider::LF_BOOKMARKS;
+			if (pane == 1 && lineIndex == 0)
+				flags |= ILineDataProvider::LF_GHOST;
+			if (lineIndex == 2)
+				flags |= ILineDataProvider::LF_TRIVIAL;
+			return flags;
 		}
 
 	} provider;
 
 
-	EXPECT_TRUE(fe.Parse("Line contains \"abc\""));
-
 	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
 	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
 
+	// Basic Line field tests
+	EXPECT_TRUE(fe.Parse("Line contains \"abc\""));
 	ectxt.lineIndex = 0;
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 1;
 	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// Left/Middle/Right Line field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLine = \"// abc\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLine = \"// defghij\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLine = \"// xyz\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftLine = \"// 012345\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLine = \"// 6789\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLine = \"// []{}-+/*\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineLength field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLineLength = 6"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineLength = 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineLength = 6"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineNumber field tests (real line numbers)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLineNumber = 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineNumber = 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineNumber = 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftLineNumber = 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineNumber = 11"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// ViewLineNumber field tests (view index + 1)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("ViewLineNumber = 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("ViewLineNumber = 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineExists field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftExists"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleExists"));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Middle line 0 has LF_GHOST flag
+	EXPECT_TRUE(fe.Parse("RightExists"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineMissing field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftMissing"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleMissing"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Middle line 0 has LF_GHOST flag
+	EXPECT_TRUE(fe.Parse("RightMissing"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// LineMovedField tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftMoved"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 0 has LF_MOVED flag
+	EXPECT_TRUE(fe.Parse("MiddleMoved"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftMoved"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// LineBookmarked field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftBookmarked"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftBookmarked"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 1 has LF_BOOKMARKS flag
+
+	// LineIdentical field tests (no side prefix)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Identical"));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Left line 0 has LF_DIFF flag
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Identical"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 1 has no LF_DIFF or LF_GHOST
+
+	// LineDifferent field tests (no side prefix)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Different"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 0 has LF_DIFF flag
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Different"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// LineTrivial field tests (no side prefix)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Trivial"));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Left line 0 does not have LF_TRIVIAL flag
+
+	// ColumnCount field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumnCount = 12"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnCount = 12"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnCount = 12"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column1 field tests (no side prefix - returns array)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Column1 = array(\"Left0_Col1\", \"Middle0_Col1\", \"Right0_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Column1 = array(\"Left1_Col1\", \"Middle1_Col1\", \"Right1_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LeftColumn1, MiddleColumn1, RightColumn1 field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn1 = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn1 = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn1 = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftColumn1 = \"Left1_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn1 = \"Middle1_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn1 = \"Right1_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column10 field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Column10 = array(\"Left0_Col10\", \"Middle0_Col10\", \"Right0_Col10\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LeftColumn10, MiddleColumn10, RightColumn10 field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn10 = \"Left0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn10 = \"Middle0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn10 = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftColumn10 = \"Left1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn10 = \"Middle1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn10 = \"Right1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column index out of range tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn13 = \"\""));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Column13 does not exist (only 12 columns)
+
+	// Test Column with contains operator
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn1 contains \"Left0\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn5 contains \"Col5\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn10 contains \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LineAt(1) = array(\"// abc\", \"// defghij\", \"// xyz\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(2) = array(\"// 012345\", \"// 6789\", \"// []{}-+/*\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(0) = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(-1) = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(3) = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range returns undefined
+
+	// LeftLineAt, MiddleLineAt, RightLineAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLineAt(1) = \"// abc\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineAt(1) = \"// defghij\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineAt(1) = \"// xyz\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftLineAt(2) = \"// 012345\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineAt(2) = \"// 6789\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineAt(2) = \"// []{}-+/*\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftLineAt(0) = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineAt(0) = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineAt(0) = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineOffsetAt function tests (relative to current line)
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(0) = array(\"// abc\", \"// defghij\", \"// xyz\")"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(1) = array(\"// 012345\", \"// 6789\", \"// []{}-+/*\")"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(-1) = array(none, none, none)"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Negative offset from line 0 is out of range
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(2) = array(none, none, none)"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(0) = array(\"// 012345\", \"// 6789\", \"// []{}-+/*\")"));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(-1) = array(\"// abc\", \"// defghij\", \"// xyz\")"));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(1) = array(none, none, none)"));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	// LeftLineOffsetAt, MiddleLineOffsetAt, RightLineOffsetAt function tests
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(0) = \"// abc\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineOffsetAt(0) = \"// defghij\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineOffsetAt(0) = \"// xyz\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(1) = \"// 012345\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineOffsetAt(1) = \"// 6789\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineOffsetAt(1) = \"// []{}-+/*\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(-1) = \"// abc\""));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineOffsetAt(-1) = \"// defghij\""));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineOffsetAt(-1) = \"// xyz\""));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column function tests (by column name, returns array of all panes)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Column(\"Left0_Col1\") = array(\"Left0_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Column(\"Middle0_Col10\") = array(none, \"Middle0_Col10\", none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Column(\"Right0_Col1\") = array(none, none, \"Right1_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Column(\"Left0_Col5\") = array(\"Left1_Col5\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LeftColumn, MiddleColumn, RightColumn function tests (by column name)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn(\"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn(\"Middle0_Col1\") = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn(\"Right0_Col1\") = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumn(\"Left0_Col10\") = \"Left0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn(\"Middle0_Col10\") = \"Middle0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn(\"Right0_Col10\") = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// ColumnAt function tests (by row index and column name, returns array of all panes)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("ColumnAt(1, \"Left0_Col1\") = array(\"Left0_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(2, \"Middle0_Col1\") = array(none, \"Middle1_Col1\", none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(0, \"Left0_Col10\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(-1, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(3, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	// LeftColumnAt, MiddleColumnAt, RightColumnAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumnAt(1, \"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnAt(1, \"Middle0_Col1\") = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnAt(1, \"Right0_Col1\") = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumnAt(2, \"Left0_Col10\") = \"Left1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnAt(2, \"Middle0_Col10\") = \"Middle1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnAt(2, \"Right0_Col10\") = \"Right1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumnAt(0, \"Left0_Col1\") = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnAt(0, \"Middle0_Col1\") = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnAt(0, \"Right0_Col1\") = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// ColumnOffsetAt function tests (relative to current line, by column name)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(0, \"Left0_Col1\") = array(\"Left0_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(1, \"Left0_Col1\") = array(\"Left1_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(-1, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Negative offset from line 0 is out of range
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(2, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(0, \"Left0_Col10\") = array(\"Left1_Col10\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(-1, \"Left0_Col10\") = array(\"Left0_Col10\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(1, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	// LeftColumnOffsetAt, MiddleColumnOffsetAt, RightColumnOffsetAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumnOffsetAt(0, \"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnOffsetAt(0, \"Middle0_Col1\") = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(0, \"Right0_Col1\") = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumnOffsetAt(1, \"Left0_Col10\") = \"Left1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnOffsetAt(1, \"Middle0_Col10\") = \"Middle1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(1, \"Right0_Col10\") = \"Right1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftColumnOffsetAt(-1, \"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnOffsetAt(-1, \"Middle0_Col5\") = \"Middle0_Col5\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(-1, \"Right0_Col10\") = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Combined tests: Column functions with operators
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn(\"Left0_Col1\") contains \"Left0\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(2, \"Left0_Col1\") = array(\"Left1_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("anyof(ColumnAt(1, \"Left0_Col1\") contains \"Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(-1) contains \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(-1, \"Right0_Col10\") = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
 }
 
 TEST_P(FilterExpressionTest, Content1)
@@ -2807,6 +3255,253 @@ TEST_P(FilterExpressionTest, DirectiveOptimize)
 	EXPECT_TRUE(fe.optimize);
 	EXPECT_EQ("Test", fe.name);
 	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, StatisticsAndMatchFunctions)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].path = L"abc";
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[2].path = L"abc";
+	di.diffFileInfo[2].filename = L"Test.txt";
+	di.diffFileInfo[2].size = 1100;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(2);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.diritem = false;
+
+	// Create a test provider with varying line data
+	// Pane 0: lines contain "1", "2", "3", ..., "10"
+	// Pane 1: lines contain "5", "6", "7", ..., "14"
+	// Pane 2: lines contain "10", "11", "12", ..., "19"
+	struct Provider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			if (pane == 0)
+				return std::to_string(lineIndex + 1);
+			else if (pane == 1)
+				return std::to_string(lineIndex + 5);
+			else
+				return std::to_string(lineIndex + 10);
+		}
+
+		int GetLineCount() const override
+		{
+			return 10;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 3;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			if (pane == 0)
+				return "Col" + std::to_string(columnIndex + 1) + "_" + std::to_string(lineIndex * 10 + columnIndex);
+			else if (pane == 1)
+				return "Col" + std::to_string(columnIndex + 1) + "_" + std::to_string(lineIndex * 20 + columnIndex);
+			else
+				return "Col" + std::to_string(columnIndex + 1) + "_" + std::to_string(lineIndex * 30 + columnIndex);
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex + 1;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+	} provider;
+
+	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
+	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
+
+	// Maximum function tests - finds maximum value across all lines in the document
+	// Provider returns lineIndex+1 for pane 0, so lines are: "1","2","3",...,"10"
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Maximum(ToNumber(LeftLine)) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Maximum(MiddleLineNumber) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Maximum(RightLineNumber) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Maximum with condition - only consider lines where condition is true
+	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber, LeftLineNumber <= 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber, LeftLineNumber > 7) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Maximum(ToNumber(LeftLine), ToNumber(LeftLine) >= 6) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// When no lines match condition, returns none
+	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber, LeftLineNumber > 20) == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Minimum function tests - finds minimum value across all lines in the document
+	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Minimum(ToNumber(LeftLine)) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Minimum(MiddleLineNumber) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Minimum with condition
+	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber, LeftLineNumber >= 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber, LeftLineNumber < 4) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Minimum(ToNumber(LeftLine), ToNumber(LeftLine) > 5) == 6"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber, LeftLineNumber > 20) == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Average function tests - calculates average across all lines in the document
+	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber) == 5.5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Average(ToNumber(LeftLine)) == 5.5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Average with condition - average of lines matching condition
+	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber, LeftLineNumber <= 5) == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber, LeftLineNumber > 5) == 7.5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Average(ToNumber(LeftLine), ToNumber(LeftLine) >= 6) == 8"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber, LeftLineNumber > 20) == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Count function tests - counts lines (optionally matching condition)
+	EXPECT_TRUE(fe.Parse("Count(LeftLine) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber <= 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber > 7) == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Count(ToNumber(LeftLine), ToNumber(LeftLine) < 5) == 4"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber > 20) == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchNumber function tests - returns index of current match within all matches
+	// Line 0 contains "1", which matches "1"
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"1\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// Line 9 contains "10", which also contains "1", so this is the 2nd match (index 1)
+	ectxt.lineIndex = 9;
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"1\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// Line 4 contains "5"
+	ectxt.lineIndex = 4;
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"5\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// Line 3 doesn't contain "5"
+	ectxt.lineIndex = 3;
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"5\") == -1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchCount function tests - counts total matches across all lines
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("MatchCount(LeftLine contains \"5\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MatchCount(LeftLine contains \"1\") == 2")); // Matches "1" and "10"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MatchCount(LeftLine contains \"99\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MatchCount(ToNumber(LeftLine) > 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchDistance function tests - distance to nearest match from current line
+	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"5\") == 2")); // Line 4 has "5"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"5\") == 2")); // Line 4 has "5", distance is 2
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"5\") == 0")); // Current line matches
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"99\") == -1")); // No match found
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchDistanceBefore function tests - distance to nearest match before current line
+	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	EXPECT_TRUE(fe.Parse("MatchDistanceBefore(LeftLine contains \"5\") == 2")); // Line 4 has "5"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	EXPECT_TRUE(fe.Parse("MatchDistanceBefore(LeftLine contains \"5\") == 0")); // Current line matches
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	EXPECT_TRUE(fe.Parse("MatchDistanceBefore(LeftLine contains \"5\") == -1")); // No match before
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchDistanceAfter function tests - distance to nearest match after current line
+	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	EXPECT_TRUE(fe.Parse("MatchDistanceAfter(LeftLine contains \"5\") == 2")); // Line 4 has "5"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	EXPECT_TRUE(fe.Parse("MatchDistanceAfter(LeftLine contains \"5\") == 0")); // Current line matches
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	EXPECT_TRUE(fe.Parse("MatchDistanceAfter(LeftLine contains \"5\") == -1")); // No match after
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchInside function tests - check if current line is between two matches
+	ectxt.lineIndex = 3;  // Line 3 (value "4")
+	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // Between line 1 ("2") and line 5 ("6")
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;  // Line 1 (value "2")
+	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // At start boundary
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 5;  // Line 5 (value "6")
+	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // At end boundary
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 0;  // Line 0 (value "1")
+	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == false")); // Before start
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 7;  // Line 7 (value "8")
+	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == false")); // After end
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchContext function tests - returns lines around a match
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"5\", 1, 1) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"5\", 2, 2) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 0;  // Line 0 (value "1")
+	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"1\", 1, 1) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 9;  // Line 9 (value "10")
+	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"10\", 1, 1) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;
+	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"99\", 1, 1) == false"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Combined tests with statistics functions
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber) > Average(LeftLineNumber)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber) < Average(LeftLineNumber)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber > 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
 }
 
 INSTANTIATE_TEST_SUITE_P(

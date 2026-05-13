@@ -420,7 +420,7 @@ std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
 
 bool FilterExpression::HasCaseSensitiveDirective(const String& expression)
 {
-	String directives = ExtractDirectivesPrefix(expression);
+	String directives = ExtractDirectives(expression);
 	if (directives.empty())
 		return false;
 
@@ -560,7 +560,7 @@ static size_t FindDirectivesEnd(const String& expression)
 	return pos;
 }
 
-String FilterExpression::ExtractDirectivesPrefix(const String& expression)
+String FilterExpression::ExtractDirectives(const String& expression)
 {
 	String expr = strutils::trim_ws(expression);
 	size_t endPos = FindDirectivesEnd(expr);
@@ -587,7 +587,7 @@ String FilterExpression::RemoveAllDirectives(const String& expression)
 FilterExpression::DirectivesAndExpr FilterExpression::SplitDirectivesAndExpr(const String& expression)
 {
 	DirectivesAndExpr result;
-	result.directives = ExtractDirectivesPrefix(expression);
+	result.directives = ExtractDirectives(expression);
 	result.expr = RemoveAllDirectives(expression);
 	return result;
 }
