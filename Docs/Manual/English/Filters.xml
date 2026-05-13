@@ -58,6 +58,11 @@
           </menuchoice> to unhide filtered items, but the Folder Compare window
         shows only minimal information about them. For example, you cannot tell
         whether a skipped file is a text file or binary.</para>
+
+        <para>The display folder filter is also available for folder compare
+        operations. Unlike file filters, it does not affect the comparison result;
+        it only controls which items are visible in the Folder Compare window.
+        See <xref linkend="Filters_DisplayFolderFilter"/>.</para>
       </listitem>
     </varlistentry>
 
@@ -1870,46 +1875,6 @@ Pekka Himanen</screen></para>
     File Compare window. Lines that do not match the filter are hidden, but
     the comparison result itself is not affected.</para>
 
-    <important>
-      <para>The display line filter is different from
-      <link linkend="Filters_LineFilter">line filters</link>.
-      The following table summarizes the key differences:</para>
-
-      <informaltable>
-        <tgroup cols="3">
-          <thead>
-            <row>
-              <entry></entry>
-              <entry>Line filters</entry>
-              <entry>Display line filter</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>Purpose</entry>
-              <entry>Ignore differences during comparison</entry>
-              <entry>Hide/show lines in the view after comparison</entry>
-            </row>
-            <row>
-              <entry>Affects comparison result</entry>
-              <entry>Yes</entry>
-              <entry>No</entry>
-            </row>
-            <row>
-              <entry>Expression type</entry>
-              <entry>Regular expression (PCRE)</entry>
-              <entry>Plain string or filter expression</entry>
-            </row>
-            <row>
-              <entry>Where configured</entry>
-              <entry>Tools &gt; Filters &gt; Line Filters tab</entry>
-              <entry>View &gt; Display Filter Bar</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </informaltable>
-    </important>
-
     <section id="Filters_DisplayLineFilterApply">
       <title>Opening the display filter bar</title>
 
@@ -2165,13 +2130,69 @@ Pekka Himanen</screen></para>
           </varlistentry>
           <varlistentry>
             <term><function>Average</function>(<replaceable>expr</replaceable>),
-            <function>Maximum</function>(<replaceable>expr</replaceable>),
-            <function>Minimum</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>Evaluate <replaceable>expr</replaceable> for all lines
-            in the file and return the average, maximum, or minimum numeric value.
+            <function>Average</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <listitem><para>Calculates the average (arithmetic mean) of numeric values
+            produced by evaluating <replaceable>expr</replaceable> for all lines in the file.
+            If <replaceable>condition</replaceable> is provided, only lines where
+            <replaceable>condition</replaceable> evaluates to true are included in the calculation.
             Non-numeric results are ignored. Returns undefined if no numeric values are found.
             Example: <literal>le:ToInt(Column("Price")) &gt; Average(ToInt(Column("Price")))</literal>
             shows rows where the price exceeds the average price.
+            Example with condition: <literal>le:Average(ToInt(Column("Score")), Column("Status") = "PASS")</literal>
+            calculates the average score for rows with status "PASS".
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>Maximum</function>(<replaceable>expr</replaceable>),
+            <function>Maximum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <listitem><para>Returns the maximum value among all results produced by evaluating
+            <replaceable>expr</replaceable> for all lines in the file.
+            If <replaceable>condition</replaceable> is provided, only lines where
+            <replaceable>condition</replaceable> evaluates to true are considered.
+            Works with numeric values, strings (alphabetical comparison), and timestamps.
+            Returns undefined if no values are found.
+            Example: <literal>le:ToInt(Column("Quantity")) = Maximum(ToInt(Column("Quantity")))</literal>
+            shows rows with the highest quantity.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>Minimum</function>(<replaceable>expr</replaceable>),
+            <function>Minimum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <listitem><para>Returns the minimum value among all results produced by evaluating
+            <replaceable>expr</replaceable> for all lines in the file.
+            If <replaceable>condition</replaceable> is provided, only lines where
+            <replaceable>condition</replaceable> evaluates to true are considered.
+            Works with numeric values, strings (alphabetical comparison), and timestamps.
+            Returns undefined if no values are found.
+            Example: <literal>le:Column("Status") = Minimum(Column("Status"))</literal>
+            shows rows with the alphabetically first status value.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>Count</function>(<replaceable>expr</replaceable>),
+            <function>Count</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <listitem><para>Counts the number of lines in the file where <replaceable>expr</replaceable>
+            evaluates to a defined (non-undefined) value.
+            If <replaceable>condition</replaceable> is provided, only lines where
+            <replaceable>condition</replaceable> evaluates to true are counted.
+            Example: <literal>le:Count(Column("Result")) &lt; 100</literal>
+            displays lines when fewer than 100 rows have a defined "Result" value.
+            Example with condition: <literal>le:Count(Column("Score"), Column("Score") &gt; 50)</literal>
+            counts how many rows have a score greater than 50.
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>Sum</function>(<replaceable>expr</replaceable>),
+            <function>Sum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <listitem><para>Calculates the sum of all numeric values produced by evaluating
+            <replaceable>expr</replaceable> for all lines in the file.
+            If <replaceable>condition</replaceable> is provided, only lines where
+            <replaceable>condition</replaceable> evaluates to true are included in the calculation.
+            Non-numeric results are ignored. Returns undefined if no numeric values are found.
+            Example: <literal>le:ToInt(Column("Quantity")) / Sum(ToInt(Column("Quantity"))) * 100</literal>
+            calculates each row's percentage of the total quantity.
+            Example with condition: <literal>le:Sum(ToInt(Column("Sales")), Column("Region") = "East")</literal>
+            calculates total sales for the "East" region.
             </para></listitem>
           </varlistentry>
         </variablelist>
@@ -2230,6 +2251,36 @@ Pekka Himanen</screen></para>
         </informaltable>
       </section>
     </section>
+  </section>
+
+  <section id="Filters_DisplayFolderFilter">
+    <title>Using the display folder filter<indexterm>
+        <primary>display folder filter</primary>
+      </indexterm></title>
+
+    <para>The display folder filter in the Folder Compare window works the same way as
+    the display line filter in the File Compare window, but operates on files and folders
+    instead of lines. It controls which items are visible without affecting the comparison result.</para>
+
+    <para>To open the display filter bar, click <menuchoice>
+        <guimenu>View</guimenu>
+        <guimenuitem>Display Filter Bar</guimenuitem>
+      </menuchoice>, or press
+      <keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap>
+      <keycap>L</keycap></keycombo>.</para>
+
+    <para>The filter bar accepts the same syntax as the <guilabel>Filter</guilabel> field
+    in the Select Files or Folders dialog. See <xref linkend="Filters_MaskSyntax"/> and
+    <xref linkend="FilterExpression_Syntax"/> for details.</para>
+
+    <para>Examples:</para>
+    <itemizedlist>
+      <listitem><para><userinput>*.cpp;*.h</userinput> - shows C++ source and header files</para></listitem>
+      <listitem><para><userinput>!.git\;!.vs\</userinput> - excludes .git and .vs folders</para></listitem>
+      <listitem><para><userinput>fe:Different</userinput> - shows only different files</para></listitem>
+      <listitem><para><userinput>de:Items &gt; 10</userinput> - shows folders with more than 10 items</para></listitem>
+      <listitem><para><userinput>e:Date &gt; today() - 7days</userinput> - shows items modified within the last week</para></listitem>
+    </itemizedlist>
   </section>
 
   <section id="Filters_SubstitutionFilter">

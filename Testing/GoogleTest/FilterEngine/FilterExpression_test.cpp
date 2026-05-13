@@ -18,6 +18,20 @@
 
 struct FilterTestParam { bool optimize; };
 
+// Helper function to create a simple DIFFITEM for testing
+static void CreateSimpleDiffItem(DIFFITEM& di)
+{
+	di.diffFileInfo[0].path = L"abc";
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[2].path = L"abc";
+	di.diffFileInfo[2].filename = L"Test.txt";
+	di.diffFileInfo[2].size = 1100;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(2);
+}
+
 // The fixture for testing paths functions.
 class FilterExpressionTest : public ::testing::TestWithParam<FilterTestParam> {};
 
@@ -3262,15 +3276,7 @@ TEST_P(FilterExpressionTest, StatisticsAndMatchFunctions)
 	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
 	CDiffContext ctxt(paths, 0);
 	DIFFITEM di;
-	di.diffFileInfo[0].path = L"abc";
-	di.diffFileInfo[0].filename = L"Test.txt";
-	di.diffFileInfo[0].size = 1000;
-	di.diffFileInfo[1].path = L"abc";
-	di.diffFileInfo[2].path = L"abc";
-	di.diffFileInfo[2].filename = L"Test.txt";
-	di.diffFileInfo[2].size = 1100;
-	di.diffcode.setSideFlag(0);
-	di.diffcode.setSideFlag(2);
+	CreateSimpleDiffItem(di);
 
 	FilterExpression fe;
 	fe.SetDiffContext(&ctxt);
@@ -3331,177 +3337,593 @@ TEST_P(FilterExpressionTest, StatisticsAndMatchFunctions)
 	// Maximum function tests - finds maximum value across all lines in the document
 	// Provider returns lineIndex+1 for pane 0, so lines are: "1","2","3",...,"10"
 	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber) == 10"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(ToNumber(LeftLine)) == 10"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(MiddleLineNumber) == 10"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(RightLineNumber) == 10"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// Maximum with condition - only consider lines where condition is true
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber, LeftLineNumber <= 5) == 5"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber, LeftLineNumber > 7) == 10"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(ToNumber(LeftLine), ToNumber(LeftLine) >= 6) == 10"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	// When no lines match condition, returns none
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber, LeftLineNumber > 20) == none"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// Minimum function tests - finds minimum value across all lines in the document
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber) == 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(ToNumber(LeftLine)) == 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(MiddleLineNumber) == 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// Minimum with condition
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber, LeftLineNumber >= 5) == 5"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber, LeftLineNumber < 4) == 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(ToNumber(LeftLine), ToNumber(LeftLine) > 5) == 6"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber, LeftLineNumber > 20) == none"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// Average function tests - calculates average across all lines in the document
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber) == 5.5"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Average(ToNumber(LeftLine)) == 5.5"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// Average with condition - average of lines matching condition
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber, LeftLineNumber <= 5) == 3"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
-	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber, LeftLineNumber > 5) == 7.5"));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber, LeftLineNumber > 5) == 8"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Average(ToNumber(LeftLine), ToNumber(LeftLine) >= 6) == 8"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Average(LeftLineNumber, LeftLineNumber > 20) == none"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// Count function tests - counts lines (optionally matching condition)
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Count(LeftLine) == 10"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber <= 5) == 5"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber > 7) == 3"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Count(ToNumber(LeftLine), ToNumber(LeftLine) < 5) == 4"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber > 20) == 0"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// MatchNumber function tests - returns index of current match within all matches
 	// Line 0 contains "1", which matches "1"
 	ectxt.lineIndex = 0;
-	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"1\") == 0"));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"1\") == 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	// Line 9 contains "10", which also contains "1", so this is the 2nd match (index 1)
 	ectxt.lineIndex = 9;
-	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"1\") == 1"));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"1\") == 2"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	// Line 4 contains "5"
 	ectxt.lineIndex = 4;
-	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"5\") == 0"));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"5\") == 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	// Line 3 doesn't contain "5"
 	ectxt.lineIndex = 3;
-	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"5\") == -1"));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchNumber(LeftLine contains \"5\") != 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// MatchCount function tests - counts total matches across all lines
 	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchCount(LeftLine contains \"5\") == 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchCount(LeftLine contains \"1\") == 2")); // Matches "1" and "10"
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchCount(LeftLine contains \"99\") == 0"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchCount(ToNumber(LeftLine) > 5) == 5"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// MatchDistance function tests - distance to nearest match from current line
 	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"5\") == 2")); // Line 4 has "5"
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"5\") == 2")); // Line 4 has "5", distance is 2
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"5\") == 0")); // Current line matches
 	EXPECT_TRUE(fe.Evaluate(ectxt));
-	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"99\") == -1")); // No match found
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchDistance(LeftLine contains \"99\") == none")); // No match found
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// MatchDistanceBefore function tests - distance to nearest match before current line
 	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchDistanceBefore(LeftLine contains \"5\") == 2")); // Line 4 has "5"
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchDistanceBefore(LeftLine contains \"5\") == 0")); // Current line matches
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 2;  // Line 2 (value "3")
-	EXPECT_TRUE(fe.Parse("MatchDistanceBefore(LeftLine contains \"5\") == -1")); // No match before
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchDistanceBefore(LeftLine contains \"5\") == none")); // No match before
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// MatchDistanceAfter function tests - distance to nearest match after current line
 	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchDistanceAfter(LeftLine contains \"5\") == 2")); // Line 4 has "5"
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchDistanceAfter(LeftLine contains \"5\") == 0")); // Current line matches
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 6;  // Line 6 (value "7")
-	EXPECT_TRUE(fe.Parse("MatchDistanceAfter(LeftLine contains \"5\") == -1")); // No match after
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchDistanceAfter(LeftLine contains \"5\") == none")); // No match after
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// MatchInside function tests - check if current line is between two matches
 	ectxt.lineIndex = 3;  // Line 3 (value "4")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // Between line 1 ("2") and line 5 ("6")
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 1;  // Line 1 (value "2")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // At start boundary
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 5;  // Line 5 (value "6")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // At end boundary
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 0;  // Line 0 (value "1")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == false")); // Before start
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 7;  // Line 7 (value "8")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchInside(LeftLine contains \"2\", LeftLine contains \"6\") == false")); // After end
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// MatchContext function tests - returns lines around a match
 	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"5\", 1, 1) == true"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"5\", 2, 2) == true"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 0;  // Line 0 (value "1")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"1\", 1, 1) == true"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 9;  // Line 9 (value "10")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"10\", 1, 1) == true"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	ectxt.lineIndex = 4;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("MatchContext(LeftLine contains \"99\", 1, 1) == false"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// Combined tests with statistics functions
 	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Maximum(LeftLineNumber) > Average(LeftLineNumber)"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Minimum(LeftLineNumber) < Average(LeftLineNumber)"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("Count(LeftLineNumber, LeftLineNumber > 5) == 5"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
+}
+
+TEST_P(FilterExpressionTest, BlockFunctions)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	CreateSimpleDiffItem(di);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.diritem = false;
+
+	// Create a test provider with specific line patterns:
+	// Lines 0-2: contain "match" (block 1: 3 lines)
+	// Lines 3-4: don't match
+	// Lines 5-7: contain "match" (block 2: 3 lines)
+	// Lines 8-9: don't match
+	struct Provider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			if (pane == 0)
+			{
+				if (lineIndex <= 2 || (lineIndex >= 5 && lineIndex <= 7))
+					return "match line " + std::to_string(lineIndex);
+				else
+					return "other line " + std::to_string(lineIndex);
+			}
+			else if (pane == 1)
+			{
+				return "middle " + std::to_string(lineIndex);
+			}
+			else
+			{
+				if (lineIndex <= 2 || (lineIndex >= 5 && lineIndex <= 7))
+					return "match line " + std::to_string(lineIndex);
+				else
+					return "other line " + std::to_string(lineIndex);
+			}
+		}
+
+		int GetLineCount() const override
+		{
+			return 10;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return "";
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex + 1;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+	} provider;
+
+	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
+	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
+
+	// MatchBlockCount tests - total number of blocks in the file
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockCount(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockCount(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Test with no matches
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockCount(LeftLine contains \"nomatch\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchBlockNumber tests - block index for the current line (1-based)
+	// Block 1: lines 0-2
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Non-matching line should return undefined
+	ectxt.lineIndex = 3;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 4;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Block 2: lines 5-7
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 6;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 7;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchBlockSize tests - size of the block containing current line
+	// Block 1 size: 3 lines (0-2)
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Non-matching line should return undefined
+	ectxt.lineIndex = 3;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Block 2 size: 3 lines (5-7)
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 6;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchBlockOffset tests - offset within the block (1-based)
+	// Block 1: lines 0-2
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Non-matching line should return undefined
+	ectxt.lineIndex = 3;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Block 2: lines 5-7
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 6;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 7;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Combined tests - filtering by block properties
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 1 and MatchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 1 and MatchBlockOffset(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Filter to show only first line of each block
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Filter to show only last line of each block
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == MatchBlockSize(LeftLine contains \"match\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == MatchBlockSize(LeftLine contains \"match\")"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 7;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == MatchBlockSize(LeftLine contains \"match\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Test with all lines matching (entire file is one block)
+	struct SingleBlockProvider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			return "match " + std::to_string(lineIndex);
+		}
+
+		int GetLineCount() const override
+		{
+			return 5;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return "";
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex + 1;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+	} singleBlockProvider;
+
+	FilterEvalContext ectxt2{ &fe, &di, &singleBlockProvider, pFilterSharedContext.get() };
+
+	ectxt2.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockCount(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	ectxt2.lineIndex = 4;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	// Test with no lines matching (no blocks)
+	struct NoBlockProvider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			return "other " + std::to_string(lineIndex);
+		}
+
+		int GetLineCount() const override
+		{
+			return 5;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return "";
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex + 1;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+	} noBlockProvider;
+
+	FilterEvalContext ectxt3{ &fe, &di, &noBlockProvider, pFilterSharedContext.get() };
+
+	ectxt3.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockCount(LeftLine contains \"match\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockNumber(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockSize(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("MatchBlockOffset(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
 }
 
 INSTANTIATE_TEST_SUITE_P(
@@ -3512,7 +3934,4 @@ INSTANTIATE_TEST_SUITE_P(
 		FilterTestParam{ false }
 	)
 );
-
-
-
 

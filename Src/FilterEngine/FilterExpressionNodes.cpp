@@ -1192,25 +1192,25 @@ static auto ColumnCountField(int index, const FilterEvalContext& ectxt) -> Value
 	return static_cast<int64_t>(ectxt.provider->GetColumnCount(index, ectxt.lineIndex));
 }
 
-static std::pair<int, int> GetDistancesToRanges(int line, const std::vector<std::pair<int, int>>& ranges)
+static std::pair<int, int> GetDistancesToRanges(int line, const std::vector<RangeInfo>& ranges)
 {
 	int prevEnd = -1;
 
 	for (const auto& range : ranges)
 	{
-		if (range.first <= line && line <= range.second)
+		if (range.start <= line && line <= range.end)
 			return { 0, 0 };
 
-		if (line < range.first)
+		if (line < range.start)
 		{
-			int after = range.first - line;
+			int after = range.start - line;
 			if (prevEnd == -1)
 				return { -1, after };
 			int before = line - prevEnd;
 			return { before, after };
 		}
 
-		prevEnd = range.second;
+		prevEnd = range.end;
 	}
 
 	if (prevEnd != -1)
@@ -2613,7 +2613,7 @@ static const auto& GetOrCreateMatchRanges(const FilterEvalContext& ectxt, ExprNo
 	auto it = matchRanges.find(expr);
 	if (it == matchRanges.end())
 	{
-		auto ranges = ExtractRanges(
+		auto rawRanges = ExtractRanges(
 			ectxt.provider->GetLineCount(),
 			[&](int i)
 			{
@@ -2622,6 +2622,18 @@ static const auto& GetOrCreateMatchRanges(const FilterEvalContext& ectxt, ExprNo
 				auto result = expr->Evaluate(lectxt);
 				return evalAsBool(result).value_or(false);
 			});
+
+		// Convert to RangeInfo with block indices
+		std::vector<RangeInfo> ranges;
+		ranges.reserve(rawRanges.size());
+		for (size_t i = 0; i < rawRanges.size(); ++i)
+		{
+			RangeInfo info;
+			info.start = rawRanges[i].first;
+			info.end = rawRanges[i].second;
+			info.blockIndex = static_cast<int>(i + 1); // 1-based
+			ranges.push_back(info);
+		}
 
 		it = matchRanges.insert_or_assign(expr, std::move(ranges)).first;
 	}
@@ -2712,7 +2724,7 @@ static auto LineMatchCountFunc(const FilterEvalContext& ectxt, std::vector<ExprN
 
 	int64_t matchCount = 0;
 	for (const auto& range : ranges)
-		matchCount += range.second - range.first + 1;
+		matchCount += range.end - range.start + 1;
 
 	return matchCount;
 }
@@ -2727,9 +2739,9 @@ static auto LineMatchNumberFunc(const FilterEvalContext& ectxt, std::vector<Expr
 	int64_t matchIndex = 0;
 	for (const auto& range : ranges)
 	{
-		if (range.first <= ectxt.lineIndex && ectxt.lineIndex <= range.second)
-			return matchIndex + (ectxt.lineIndex - range.first) + 1;
-		matchIndex += range.second - range.first + 1;
+		if (range.start <= ectxt.lineIndex && ectxt.lineIndex <= range.end)
+			return matchIndex + (ectxt.lineIndex - range.start) + 1;
+		matchIndex += range.end - range.start + 1;
 	}
 
 	return std::monostate{};
@@ -2934,6 +2946,7 @@ static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ec
 	{
 		if (valueType == 1 && maxNumber.has_value())
 		{
+			stats.sum = sum;
 			stats.average = sum / static_cast<double>(count);
 			stats.maxNumber = *maxNumber;
 			stats.minNumber = *minNumber;
@@ -3039,6 +3052,83 @@ static auto CountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* ar
 	return stats.count;
 }
 
+static auto SumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
+	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
+
+	if (stats.count == 0 || stats.valueType != 1)
+		return std::monostate{};
+
+	// Return as int64_t if the result is an integer value
+	if (stats.sum == std::floor(stats.sum))
+		return static_cast<int64_t>(stats.sum);
+	return stats.sum;
+}
+
+static auto MatchBlockNumberFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
+
+	// Find which block contains the current line
+	for (const auto& range : ranges)
+	{
+		if (range.start <= ectxt.lineIndex && ectxt.lineIndex <= range.end)
+			return static_cast<int64_t>(range.blockIndex);
+	}
+
+	return std::monostate{}; // Line is not in any block
+}
+
+static auto MatchBlockCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
+	return static_cast<int64_t>(ranges.size());
+}
+
+static auto MatchBlockSizeFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
+
+	// Find which block contains the current line and calculate its size
+	for (const auto& range : ranges)
+	{
+		if (range.start <= ectxt.lineIndex && ectxt.lineIndex <= range.end)
+			return static_cast<int64_t>(range.end - range.start + 1);
+	}
+
+	return std::monostate{}; // Line is not in any block
+}
+
+static auto MatchBlockOffsetFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+
+	const auto& ranges = GetOrCreateMatchRanges(ectxt, (*args)[0]);
+
+	// Find which block contains the current line and calculate offset
+	for (const auto& range : ranges)
+	{
+		if (range.start <= ectxt.lineIndex && ectxt.lineIndex <= range.end)
+			return static_cast<int64_t>(ectxt.lineIndex - range.start + 1); // 1-based
+	}
+
+	return std::monostate{}; // Line is not in any block
+}
+
 struct FunctionInfo
 {
 	using FuncPtr = auto (*)(const FilterEvalContext&, std::vector<ExprNode*>*) -> ValueType;
@@ -3069,6 +3159,10 @@ static constexpr FunctionInfo functionTable[] = {
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
 	{"logwarn", LogWarnFunc, 1, -1},
+	{"matchblockcount", MatchBlockCountFunc, 1, 1},
+	{"matchblocknumber", MatchBlockNumberFunc, 1, 1},
+	{"matchblockoffset", MatchBlockOffsetFunc, 1, 1},
+	{"matchblocksize", MatchBlockSizeFunc, 1, 1},
 	{"matchcontext", LineMatchContextFunc, 3, 3},
 	{"matchcount", LineMatchCountFunc, 1, 1},
 	{"matchdistance", LineMatchDistanceFunc, 1, 1},
@@ -3092,6 +3186,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"strlen", StrlenFunc, 1, 1},
 	{"sublines", SublinesFunc, 2, 3},
 	{"substr", SubstrFunc, 2, 3},
+	{"sum", SumFunc, 1, 2},
 	{"todatestr", ToDateStrFunc, 1, 1},
 	{"todatetime", ToDateTimeFunc, 1, 1},
 	{"today", TodayFunc, 0, 0},

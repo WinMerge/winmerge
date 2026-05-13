@@ -34,6 +34,7 @@ using InsideKey = std::pair<ExprNode*, ExprNode*>;
 
 struct StatisticsResult
 {
+	double sum = 0.0;
 	double average = 0.0;
 	double maxNumber = 0.0;
 	double minNumber = 0.0;
@@ -45,13 +46,20 @@ struct StatisticsResult
 	int valueType = 0; // 0=none, 1=number, 2=string, 3=timestamp
 };
 
+struct RangeInfo
+{
+	int start;
+	int end;
+	int blockIndex; // 1-based block index
+};
+
 struct FilterSharedContext
 {
 	FilterSharedContext() = default;
 	FilterSharedContext(const FilterSharedContext&) = delete;
 	FilterSharedContext& operator=(const FilterSharedContext&) = delete;
 
-	mutable std::map<ExprNode*, std::vector<std::pair<int, int>>> matchRanges;
+	mutable std::map<ExprNode*, std::vector<RangeInfo>> matchRanges;
 	mutable std::map<InsideKey, std::vector<Range>> insideRanges;
 	mutable std::map<std::pair<ExprNode*, ExprNode*>, StatisticsResult> statistics;
 };
