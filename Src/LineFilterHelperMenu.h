@@ -17,8 +17,8 @@ public:
 private:
 	String defaultProp(const String& name) const;
 	String op() const;
-	String matchContext(const String& expr, int context) const;
 	std::optional<String> OnCommand(const String& filterExpr, int command, CWnd* pParentWnd);
 	int m_targetSide = 0; // 0 = any, 1 = left, 2 = middle, 3 = right
+	int m_targetDiffSide = 0; // 0 = left&right 1 = left&middle, 2 = middle&right, 3 = all
 	int m_operator = 0; // 0 = and, 1 = or
 };

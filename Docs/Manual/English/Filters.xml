@@ -1072,6 +1072,18 @@ old	new</screen>
             </listitem>
           </varlistentry>
           <varlistentry>
+            <term><function>toNumber</function>(<replaceable>str</replaceable>),
+            <function>toInt</function>(<replaceable>str</replaceable>),
+            <function>ToDouble</function>(<replaceable>str</replaceable>)</term>
+            <listitem><para>Convert a string to a number. <function>ToNumber</function>
+            returns an integer or floating-point number depending on the input format;
+            <function>toInt</function> returns only integers;
+            <function>ToDouble</function> returns only floating-point numbers.
+            Commas in the input are ignored. Returns undefined on parse failure.
+            Example: <literal>le:toInt(Column("Count")) &gt; 100</literal>
+            </para></listitem>
+          </varlistentry>
+          <varlistentry>
             <term><function>now</function>()</term>
             <listitem><para>Returns the current date and time as a <literal>Timestamp</literal> value.</para></listitem>
           </varlistentry>
@@ -2049,61 +2061,13 @@ Pekka Himanen</screen></para>
             Support side-specific prefixes.
             Example: <literal>Column("Status") = "FAIL"</literal></para></listitem>
           </varlistentry>
-        </variablelist>
-      </section>
-
-      <section id="Filters_DisplayLineFilter_Funcs">
-        <title>Line functions</title>
-
-        <variablelist>
-          <varlistentry>
-            <term><function>MatchContext</function>(<replaceable>expr</replaceable>,
-            <replaceable>linesBefore</replaceable>,
-            <replaceable>linesAfter</replaceable>)</term>
-            <listitem><para>True if the current line is within
-            <replaceable>linesBefore</replaceable> lines before or
-            <replaceable>linesAfter</replaceable> lines after any line
-            matching <replaceable>expr</replaceable>.
-            Example: <literal>le:MatchContext(Different, 3, 3)</literal></para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>MatchNumber</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>1-based index of the current line within all
-            matching ranges. Returns undefined if the line does not match.
-            Example: <literal>le:MatchNumber(Different) = 1</literal>
-            shows only the first difference block.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>MatchCount</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>Total number of lines matching
-            <replaceable>expr</replaceable> across the whole file.
-            Example: <literal>le:MatchNumber(Different) = MatchCount(Different)</literal>
-            shows only the last difference block.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>MatchDistance</function>(<replaceable>expr</replaceable>),
-            <function>MatchDistanceBefore</function>(<replaceable>expr</replaceable>),
-            <function>MatchDistanceAfter</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>Distance in lines to the nearest matching range
-            (both directions, before only, or after only).
-            Example: <literal>le:MatchDistance(Different) &lt;= 5</literal></para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>MatchInside</function>(<replaceable>beginExpr</replaceable>,
-            <replaceable>endExpr</replaceable>)</term>
-            <listitem><para>True if the current line falls between a line
-            matching <replaceable>beginExpr</replaceable> and the next line
-            matching <replaceable>endExpr</replaceable> (inclusive).
-            Example: <literal>le:MatchInside(Line matches "^#ifdef", Line matches "^#endif")</literal>
-            </para></listitem>
-          </varlistentry>
           <varlistentry>
             <term><function>LineAt</function>(<replaceable>lineNumber</replaceable>),
             <function>LineOffsetAt</function>(<replaceable>offset</replaceable>)</term>
             <listitem><para>Text of the line at an absolute line number or
             at a relative offset from the current line.
             Supports side-specific prefix functions.
-            Example: <literal>le:Different and LineOffsetAt(-1) matches "^//"</literal>
+            Example: <literal>le:Different and RightLineOffsetAt(-1) matches "^//"</literal>
             </para></listitem>
           </varlistentry>
           <varlistentry>
@@ -2113,85 +2077,108 @@ Pekka Himanen</screen></para>
             (table mode only)</term>
             <listitem><para>Cell content by index or name, at the current,
             absolute, or relative line.
-            Example: <literal>le:Column("Category") != ColumnOffsetAt(-1, "Category")</literal>
+            Example: <literal>le:RightColumn("Category") != ColumnOffsetAt(-1, "Category")</literal>
+            </para></listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="Filters_DisplayLineFilter_Funcs">
+        <title>Line functions</title>
+
+        <variablelist>
+          <varlistentry>
+            <term><function>matchContext</function>(<replaceable>expr</replaceable>,
+            <replaceable>linesBefore</replaceable>,
+            <replaceable>linesAfter</replaceable>)</term>
+            <listitem><para>True if the current line is within
+            <replaceable>linesBefore</replaceable> lines before or
+            <replaceable>linesAfter</replaceable> lines after any line
+            matching <replaceable>expr</replaceable>.
+            Example: <literal>le:matchContext(Different, 3, 3)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchNumber</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>1-based index of the current line within all
+            matching ranges. Returns undefined if the line does not match.
+            Example: <literal>le:matchNumber(Different) = 1</literal>
+            shows only the first difference block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>count</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Total number of lines matching
+            <replaceable>expr</replaceable> across the whole file.
+            Example: <literal>le:matchNumber(Different) = Count(Different)</literal>
+            shows only the last difference block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchDistance</function>(<replaceable>expr</replaceable>),
+            <function>matchDistanceBefore</function>(<replaceable>expr</replaceable>),
+            <function>matchDistanceAfter</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Distance in lines to the nearest matching range
+            (both directions, before only, or after only).
+            Example: <literal>le:matchDistance(Different) &lt;= 5</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchInside</function>(<replaceable>beginExpr</replaceable>,
+            <replaceable>endExpr</replaceable>)</term>
+            <listitem><para>True if the current line falls between a line
+            matching <replaceable>beginExpr</replaceable> and the next line
+            matching <replaceable>endExpr</replaceable> (inclusive).
+            Example: <literal>le:matchInside(Line matches "^#ifdef", Line matches "^#endif")</literal>
             </para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>ToNumber</function>(<replaceable>str</replaceable>),
-            <function>ToInt</function>(<replaceable>str</replaceable>),
-            <function>ToDouble</function>(<replaceable>str</replaceable>)</term>
-            <listitem><para>Convert a string to a number. <function>ToNumber</function>
-            returns an integer or floating-point number depending on the input format;
-            <function>ToInt</function> returns only integers;
-            <function>ToDouble</function> returns only floating-point numbers.
-            Commas in the input are ignored. Returns undefined on parse failure.
-            Example: <literal>le:ToInt(Column("Count")) &gt; 100</literal>
-            </para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>Average</function>(<replaceable>expr</replaceable>),
-            <function>Average</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <term><function>average</function>(<replaceable>expr</replaceable>),
+            <function>average</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
             <listitem><para>Calculates the average (arithmetic mean) of numeric values
             produced by evaluating <replaceable>expr</replaceable> for all lines in the file.
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are included in the calculation.
             Non-numeric results are ignored. Returns undefined if no numeric values are found.
-            Example: <literal>le:ToInt(Column("Price")) &gt; Average(ToInt(Column("Price")))</literal>
+            Example: <literal>le:toInt(Column("Price")) &gt; average(toInt(Column("Price")))</literal>
             shows rows where the price exceeds the average price.
-            Example with condition: <literal>le:Average(ToInt(Column("Score")), Column("Status") = "PASS")</literal>
+            Example with condition: <literal>le:average(toInt(Column("Score")), Column("Status") = "PASS")</literal>
             calculates the average score for rows with status "PASS".
             </para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>Maximum</function>(<replaceable>expr</replaceable>),
-            <function>Maximum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <term><function>maximum</function>(<replaceable>expr</replaceable>),
+            <function>maximum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
             <listitem><para>Returns the maximum value among all results produced by evaluating
             <replaceable>expr</replaceable> for all lines in the file.
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are considered.
             Works with numeric values, strings (alphabetical comparison), and timestamps.
             Returns undefined if no values are found.
-            Example: <literal>le:ToInt(Column("Quantity")) = Maximum(ToInt(Column("Quantity")))</literal>
+            Example: <literal>le:toInt(Column("Quantity")) = maximum(toInt(Column("Quantity")))</literal>
             shows rows with the highest quantity.
             </para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>Minimum</function>(<replaceable>expr</replaceable>),
-            <function>Minimum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <term><function>minimum</function>(<replaceable>expr</replaceable>),
+            <function>minimum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
             <listitem><para>Returns the minimum value among all results produced by evaluating
             <replaceable>expr</replaceable> for all lines in the file.
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are considered.
             Works with numeric values, strings (alphabetical comparison), and timestamps.
             Returns undefined if no values are found.
-            Example: <literal>le:Column("Status") = Minimum(Column("Status"))</literal>
+            Example: <literal>le:Column("Status") = minimum(Column("Status"))</literal>
             shows rows with the alphabetically first status value.
             </para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>Count</function>(<replaceable>expr</replaceable>),
-            <function>Count</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
-            <listitem><para>Counts the number of lines in the file where <replaceable>expr</replaceable>
-            evaluates to a defined (non-undefined) value.
-            If <replaceable>condition</replaceable> is provided, only lines where
-            <replaceable>condition</replaceable> evaluates to true are counted.
-            Example: <literal>le:Count(Column("Result")) &lt; 100</literal>
-            displays lines when fewer than 100 rows have a defined "Result" value.
-            Example with condition: <literal>le:Count(Column("Score"), Column("Score") &gt; 50)</literal>
-            counts how many rows have a score greater than 50.
-            </para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>Sum</function>(<replaceable>expr</replaceable>),
-            <function>Sum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
+            <term><function>sum</function>(<replaceable>expr</replaceable>),
+            <function>sum</function>(<replaceable>expr</replaceable>, <replaceable>condition</replaceable>)</term>
             <listitem><para>Calculates the sum of all numeric values produced by evaluating
             <replaceable>expr</replaceable> for all lines in the file.
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are included in the calculation.
             Non-numeric results are ignored. Returns undefined if no numeric values are found.
-            Example: <literal>le:ToInt(Column("Quantity")) / Sum(ToInt(Column("Quantity"))) * 100</literal>
+            Example: <literal>le:toInt(Column("Quantity")) / sum(toInt(Column("Quantity"))) * 100</literal>
             calculates each row's percentage of the total quantity.
-            Example with condition: <literal>le:Sum(ToInt(Column("Sales")), Column("Region") = "East")</literal>
+            Example with condition: <literal>le:sum(toInt(Column("Sales")), Column("Region") = "East")</literal>
             calculates total sales for the "East" region.
             </para></listitem>
           </varlistentry>
@@ -2223,11 +2210,11 @@ Pekka Himanen</screen></para>
                 <entry>Shows differences, excluding whitespace-only changes</entry>
               </row>
               <row>
-                <entry><userinput>le:MatchContext(Different, 3, 3)</userinput></entry>
+                <entry><userinput>le:matchContext(Different, 3, 3)</userinput></entry>
                 <entry>Shows difference blocks with 3 lines of context on each side</entry>
               </row>
               <row>
-                <entry><userinput>le:MatchNumber(Different) = 1</userinput></entry>
+                <entry><userinput>le:matchNumber(Different) = 1</userinput></entry>
                 <entry>Shows only the first difference block</entry>
               </row>
               <row>
@@ -2235,7 +2222,7 @@ Pekka Himanen</screen></para>
                 <entry>Shows lines that are both different and contain "ERROR"</entry>
               </row>
               <row>
-                <entry><userinput>le:MatchContext(Bookmarked, 2, 2)</userinput></entry>
+                <entry><userinput>le:matchContext(Bookmarked, 2, 2)</userinput></entry>
                 <entry>Shows bookmarked lines with 2 lines of context</entry>
               </row>
               <row>
@@ -2243,7 +2230,7 @@ Pekka Himanen</screen></para>
                 <entry>Shows only the first 50 lines</entry>
               </row>
               <row>
-                <entry><userinput>le:ToInt(Column("Count")) &gt; 100</userinput></entry>
+                <entry><userinput>le:toInt(Column("Count")) &gt; 100</userinput></entry>
                 <entry>Shows rows where the "Count" column value exceeds 100 (table mode)</entry>
               </row>
             </tbody>

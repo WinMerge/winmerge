@@ -2715,7 +2715,7 @@ static auto LineMatchContextFunc(const FilterEvalContext& ectxt, std::vector<Exp
 	return false;
 }
 
-static auto LineMatchCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto CountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
@@ -3041,17 +3041,6 @@ static auto MinimumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* 
 	return std::monostate{};
 }
 
-static auto CountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
-{
-	if (!ectxt.provider)
-		return std::monostate{};
-
-	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
-	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
-
-	return stats.count;
-}
-
 static auto SumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
@@ -3086,7 +3075,7 @@ static auto MatchBlockNumberFunc(const FilterEvalContext& ectxt, std::vector<Exp
 	return std::monostate{}; // Line is not in any block
 }
 
-static auto MatchBlockCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+static auto BlockCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
@@ -3148,9 +3137,10 @@ static constexpr FunctionInfo functionTable[] = {
 	{"array", ArrayFunc, 0, -1},
 	{"at", AtFunc, 2, 2},
 	{"average", AverageFunc, 1, 2},
+	{"blockcount", BlockCountFunc, 1, 1},
 	{"choose", ChooseFunc, 2, -1},
 	{"chooseeach", ChooseEachFunc, 2, -1},
-	{"count", CountFunc, 1, 2},
+	{"count", CountFunc, 1, 1},
 	{"if", IfFunc, 3, 3},
 	{"ifeach", IfEachFunc, 3, 3},
 	{"inrange", InRangeFunc, 3, 3},
@@ -3159,12 +3149,10 @@ static constexpr FunctionInfo functionTable[] = {
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
 	{"logwarn", LogWarnFunc, 1, -1},
-	{"matchblockcount", MatchBlockCountFunc, 1, 1},
 	{"matchblocknumber", MatchBlockNumberFunc, 1, 1},
 	{"matchblockoffset", MatchBlockOffsetFunc, 1, 1},
 	{"matchblocksize", MatchBlockSizeFunc, 1, 1},
 	{"matchcontext", LineMatchContextFunc, 3, 3},
-	{"matchcount", LineMatchCountFunc, 1, 1},
 	{"matchdistance", LineMatchDistanceFunc, 1, 1},
 	{"matchdistanceafter", LineMatchDistanceAfterFunc, 1, 1},
 	{"matchdistancebefore", LineMatchDistanceBeforeFunc, 1, 1},

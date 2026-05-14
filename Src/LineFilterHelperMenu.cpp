@@ -39,6 +39,9 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 			for (int i = ID_FILTERMENU_CONDITION_ANY; i <= ID_FILTERMENU_CONDITION_RIGHT; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_ANY + m_targetSide) == i ? MF_CHECKED : 0));
+			for (int i = ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_CONDITION_DIFF_ALL; i++)
+				pPopup->CheckMenuItem(i,
+					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
 			for (int i = ID_FILTERMENU_OPERATOR_AND; i <= ID_FILTERMENU_OPERATOR_OR; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_OPERATOR_AND + m_operator) == i ? MF_CHECKED : 0));
@@ -52,6 +55,11 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 			else if (command >= ID_FILTERMENU_CONDITION_ANY && command <= ID_FILTERMENU_CONDITION_RIGHT)
 			{
 				m_targetSide = command - ID_FILTERMENU_CONDITION_ANY;
+				continue;
+			}
+			else if (command >= ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT && command <= ID_FILTERMENU_CONDITION_DIFF_ALL)
+			{
+				m_targetDiffSide = command - ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT;
 				continue;
 			}
 			else if (command >= ID_FILTERMENU_OPERATOR_AND && command <= ID_FILTERMENU_OPERATOR_OR)
@@ -98,7 +106,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command >= ID_FILTERMENU_LINE_COLUMN_FIRST && command <= ID_FILTERMENU_LINE_COLUMN_LAST)
 	{
-		const String Conversions[] = { _T("%1"), _T("ToNumber(%1)"), _T("ToDateTime(%1)") };
+		const String Conversions[] = { _T("%1"), _T("toNumber(%1)"), _T("toDateTime(%1)") };
 		const String Operators[] = { _T("%1 contains %2"), _T("%1 = %2"), _T("%1 < %2") };
 		int dataType = (command - ID_FILTERMENU_LINE_COLUMN_FIRST) % std::size(Conversions);
 		CFilterConditionDlg dlg(false, m_targetSide, 
@@ -135,20 +143,20 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	{
 		static const String Contexts[] = { _T("0"), _T("1"), _T("3"), _T("5"), _T("7") };
 		const int contextIndex = command - ID_FILTERMENU_LINE_CONTEXT_0;
-		result = WrapWithFilterDirectives(filterExpr, _T("MatchContext(%1, ") + Contexts[contextIndex] + _T(", ") + Contexts[contextIndex] + _T(")"));
+		result = WrapWithFilterDirectives(filterExpr, _T("matchContext(%1, ") + Contexts[contextIndex] + _T(", ") + Contexts[contextIndex] + _T(")"));
 	}
 	else if (command >= ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1 && command <= ID_FILTERMENU_LINE_MATCHNUMBER_GT_5)
 	{
 		static const String Exprs[] = {
-			_T("MatchNumber(%1) = 1"), _T("MatchNumber(%1) = MatchCount(%1)"),
-			_T("MatchNumber(%1) <= 5"), _T("MatchNumber(%1) > 5"),
+			_T("matchNumber(%1) = 1"), _T("matchNumber(%1) = count(%1)"),
+			_T("matchNumber(%1) <= 5"), _T("matchNumber(%1) > 5"),
 		};
 		result = WrapWithFilterDirectives(filterExpr, Exprs[command - ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1]);
 	}
 	else if (command == ID_FILTERMENU_LINE_MATCHNUMBER_RANGE)
 	{
 		auto [filterDirectives, filterBody] = NormalizeAndSplit(filterExpr);
-		CFilterConditionDlg dlg(false, m_targetSide, filterBody, _T(""), _("%1 > %2"), _T("MatchNumber(") + filterBody + _T(")"));
+		CFilterConditionDlg dlg(false, m_targetSide, filterBody, _T(""), _("%1 > %2"), _T("matchNumber(") + filterBody + _T(")"));
 		if (dlg.DoModal() == IDOK)
 		{
 			auto [dlgDirectives, expr] = FilterExpression::SplitDirectivesAndExpr(dlg.m_sExpression);
@@ -164,7 +172,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 			auto [directives1, expr1] = NormalizeAndSplit(dlg.GetFilter1());
 			auto [directives2, expr2] = NormalizeAndSplit(dlg.GetFilter2());
 			String mergedDirectives = FilterExpression::MergeDirectives(directives1, directives2);
-			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP) ? _T("not MatchInside(") : _T("MatchInside(");
+			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP) ? _T("not matchInside(") : _T("matchInside(");
 			result = LineFilterHelper::BuildLeFilter(mergedDirectives, funcName + expr1 + _T(", ") + expr2 + _T(")"));
 		}
 	}
@@ -176,7 +184,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 			auto [directives1, expr1] = NormalizeAndSplit(dlg.GetFilter1());
 			auto [directives2, expr2] = NormalizeAndSplit(dlg.GetFilter2());
 			String mergedDirectives = FilterExpression::MergeDirectives(directives1, directives2);
-			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE) ? _T("not MatchInside(") : _T("MatchInside(");
+			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE) ? _T("not matchInside(") : _T("matchInside(");
 			String expr = (mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")) + funcName + expr1 + _T(", ") + expr2 + _T(")");
 			result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 		}

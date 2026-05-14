@@ -1624,10 +1624,10 @@ BEGIN
             END
             MENUITEM "Additional &Properties...",   ID_FILTERMENU_DIFF_ADDITIONAL_PROPS
         END
-        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
-        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
-        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
-        MENUITEM "Target: &All",                ID_FILTERMENU_FILE_CONDITION_DIFF_ALL
+        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT
+        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_CONDITION_DIFF_LEFT_MIDDLE
+        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_CONDITION_DIFF_MIDDLE_RIGHT
+        MENUITEM "Target: &All",                ID_FILTERMENU_CONDITION_DIFF_ALL
     END
 END
 
@@ -1856,62 +1856,78 @@ BEGIN
     BEGIN
         MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "&Line Filter...",             ID_FILTERMENU_LINE_RANGE
-        POPUP "&Column Filter"
+        POPUP "Add &Line Condition"
         BEGIN
-            POPUP "Column &1"
+            MENUITEM "&Line Filter...",             ID_FILTERMENU_LINE_RANGE
+            MENUITEM "Line L&ength...",             ID_FILTERMENU_LINE_LENGTH_RANGE
+            POPUP "&Column Filter"
             BEGIN
-                MENUITEM "&Text...",                   36050  // ID_FILTERMENU_LINE_COLUMN_FIRST + 0
-                MENUITEM "&Number...",                 36051
-                MENUITEM "D&ateTime...",               36052
+                POPUP "Column &1"
+                BEGIN
+                    MENUITEM "&Text...",                   36060  // ID_FILTERMENU_LINE_COLUMN_FIRST + 0
+                    MENUITEM "&Number...",                 36061
+                    MENUITEM "D&ateTime...",               36062
+                END
+                POPUP "Column &2"
+                BEGIN
+                    MENUITEM "&Text...",                   36063
+                    MENUITEM "&Number...",                 36064
+                    MENUITEM "D&ateTime...",               36065
+                END
+                POPUP "Column &3"
+                BEGIN
+                    MENUITEM "&Text...",                   36066
+                    MENUITEM "&Number...",                 36067
+                    MENUITEM "D&ateTime...",               36068
+                END
+                POPUP "Column &4"
+                BEGIN
+                    MENUITEM "&Text...",                   36069
+                    MENUITEM "&Number...",                 36070
+                    MENUITEM "D&ateTime...",               36071
+                END
+                POPUP "Column &5"
+                BEGIN
+                    MENUITEM "&Text...",                   36072
+                    MENUITEM "&Number...",                 36073
+                    MENUITEM "D&ateTime...",               36074  // ID_FILTERMENU_LINE_COLUMN_FIRST + 19
+                END
             END
-            POPUP "Column &2"
+            POPUP "&Line Number"
             BEGIN
-                MENUITEM "&Text...",                   36053
-                MENUITEM "&Number...",                 36054
-                MENUITEM "D&ateTime...",               36055
+                MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES
+                MENUITEM "&Even Lines",                 ID_FILTERMENU_LINE_EVEN_LINES
+                MENUITEM "&Custom Range...",            ID_FILTERMENU_LINE_NUMBER_RANGE
             END
-            POPUP "Column &3"
+            POPUP "Line &Status"
             BEGIN
-                MENUITEM "&Text...",                   36056
-                MENUITEM "&Number...",                 36057
-                MENUITEM "D&ateTime...",               36068
-            END
-            POPUP "Column &4"
-            BEGIN
-                MENUITEM "&Text...",                   36069
-                MENUITEM "&Number...",                 36070
-                MENUITEM "D&ateTime...",               36071
-            END
-            POPUP "Column &5"
-            BEGIN
-                MENUITEM "&Text...",                   36072
-                MENUITEM "&Number...",                 36073
-                MENUITEM "D&ateTime...",               36074  // ID_FILTERMENU_LINE_COLUMN_FIRST + 19
+                MENUITEM "Different",                   ID_FILTERMENU_LINE_DIFFERENT
+                MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
+                MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
+                MENUITEM SEPARATOR
+                MENUITEM "Exists",                      ID_FILTERMENU_LINE_EXISTS
+                MENUITEM "Missing",                     ID_FILTERMENU_LINE_MISSING
+                MENUITEM "Moved",                       ID_FILTERMENU_LINE_MOVED
+                MENUITEM "Bookmarked",                  ID_FILTERMENU_LINE_BOOKMARKED
             END
         END
-        POPUP "&Line Number"
-        BEGIN
-            MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES
-            MENUITEM "&Even Lines",                 ID_FILTERMENU_LINE_EVEN_LINES
-            MENUITEM "&Custom Range...",            ID_FILTERMENU_LINE_NUMBER_RANGE
-        END
-        POPUP "Line &Status"
-        BEGIN
-            MENUITEM "Different",                   ID_FILTERMENU_LINE_DIFFERENT
-            MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
-            MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
-            MENUITEM SEPARATOR
-            MENUITEM "Exists",                      ID_FILTERMENU_LINE_EXISTS
-            MENUITEM "Missing",                     ID_FILTERMENU_LINE_MISSING
-            MENUITEM "Moved",                       ID_FILTERMENU_LINE_MOVED
-            MENUITEM "Bookmarked",                  ID_FILTERMENU_LINE_BOOKMARKED
-        END
-        MENUITEM SEPARATOR
         MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
         MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
         MENUITEM "Target: &Middle",             ID_FILTERMENU_CONDITION_MIDDLE
         MENUITEM "Target: &Right",              ID_FILTERMENU_CONDITION_RIGHT
+        MENUITEM SEPARATOR
+        POPUP "Add &Difference Condition"
+        BEGIN
+            POPUP "Line &Status"
+            BEGIN
+                MENUITEM "Different",                   ID_FILTERMENU_LINE_DIFFERENT
+                MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
+                MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
+            END
+        END
+        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT
+        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_CONDITION_DIFF_LEFT_MIDDLE
+        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_CONDITION_DIFF_MIDDLE_RIGHT
         MENUITEM SEPARATOR
         MENUITEM "Combine: A&ND",               ID_FILTERMENU_OPERATOR_AND
         MENUITEM "Combine: &OR",                ID_FILTERMENU_OPERATOR_OR

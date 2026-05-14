@@ -92,9 +92,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			for (int i = ID_FILTERMENU_CONDITION_ANY; i <= ID_FILTERMENU_CONDITION_RIGHT; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_ANY + m_targetSide) == i ? MF_CHECKED : 0));
-			for (int i = ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_FILE_CONDITION_DIFF_ALL; i++)
+			for (int i = ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_CONDITION_DIFF_ALL; i++)
 				pPopup->CheckMenuItem(i,
-					MF_BYCOMMAND | ((ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
+					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
 			CheckMenuItemRecursive(pPopup, ID_FILTERMENU_FOLDER_STATS_RECURSIVE, m_recursive);
 
 			if (m_targetDiffSide == 3)
@@ -115,9 +115,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				m_targetSide = command - ID_FILTERMENU_CONDITION_ANY;
 				continue;
 			}
-			else if (command >= ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT && command <= ID_FILTERMENU_FILE_CONDITION_DIFF_ALL)
+			else if (command >= ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT && command <= ID_FILTERMENU_CONDITION_DIFF_ALL)
 			{
-				m_targetDiffSide = command - ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT;
+				m_targetDiffSide = command - ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT;
 				continue;
 			}
 			else if (command == ID_FILTERMENU_FOLDER_STATS_RECURSIVE)
