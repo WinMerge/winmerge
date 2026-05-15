@@ -1559,10 +1559,10 @@ class="extension">*.dll</filename></seg>
 
     <section id="Plugins_HandleSchemeHTTP">
       <title><filename>HandleSchemeHTTP<indexterm>
-          <primary>HandleSchemeHTTP plugin file</primary>
+          <primary>Fichier du plugin HandleSchemeHTTP</primary>
         </indexterm></filename></title>
 
-      <para>HTTP/HTTPS URL Scheme Handler using curl</para>
+      <para>Gestionnaire de schémas d'URL HTTP/HTTPS utilisant curl</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeHTTP</command> <arg choice="opt"
@@ -1572,7 +1572,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the curl command</para>
+            <para>Options de ligne de commande passées à la commande curl</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1591,7 +1591,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dépendance</segtitle>
 
           <seglistitem>
-            <seg>URL Handler</seg>
+            <seg>Gestionnaire de protocoles d’URL</seg>
 
             <seg>^http://.*$, ^https://.*$</seg>
 
@@ -1608,10 +1608,10 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_HandleSchemeReg">
       <title><filename>HandleSchemeReg<indexterm>
-          <primary>HandleSchemeReg plugin file</primary>
+          <primary>Fichier du plugin HandleSchemeReg</primary>
         </indexterm></filename></title>
 
-      <para>Windows Registry URL Scheme Handler using reg.exe</para>
+      <para>Gestionnaire de schéma d’URL dans le Registre Windows utilisant reg.exe</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeReg</command> <arg choice="opt"
@@ -1621,7 +1621,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the reg.exe command</para>
+            <para>Options de ligne de commande passées à la commande reg.exe</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1640,7 +1640,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dépendance</segtitle>
 
           <seglistitem>
-            <seg>URL Handler</seg>
+            <seg>Gestionnaire de protocoles d’URL</seg>
 
             <seg>^reg:.*$</seg>
 
@@ -1657,10 +1657,10 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_HandleSchemeClipboard">
       <title><filename>HandleSchemeClipboard<indexterm>
-          <primary>HandleSchemeClipboard plugin file</primary>
+          <primary>Fichier du plug-in HandleSchemeClipboard</primary>
         </indexterm></filename></title>
 
-      <para>Clipboard URL Scheme Handler using cliphcat</para>
+      <para>Gestionnaire de schéma d’URL pour le presse‑papiers utilisant cliphcat</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeClipboard</command> <arg choice="opt"
@@ -1670,7 +1670,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the cliphcat command</para>
+            <para>Options de ligne de commande transmises à la commande msgcat</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1689,7 +1689,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dépendance</segtitle>
 
           <seglistitem>
-            <seg>URL Handler</seg>
+            <seg>Gestionnaire de protocoles d’URL</seg>
 
             <seg>^clip://.*$, ^clipboard://.*$</seg>
 
