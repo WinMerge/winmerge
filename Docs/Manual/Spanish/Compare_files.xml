@@ -1524,7 +1524,8 @@ fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
               </inlinemediaobject> botón,
 <menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al
 derecho</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
-<keycap>Derecho</keycap></para>
+<keycap>Derecho</keycap> </keycombo>, menú contextual del panel de archivos
+en una comparación.</para>
           </listitem>
         </varlistentry>
 
@@ -1546,7 +1547,8 @@ fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
               </inlinemediaobject> botón,
 <menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al
 derecho</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
-<keycap>Derecho</keycap></para>
+<keycap>Derecho</keycap> </keycombo>, menú contextual del panel de archivos
+en una comparación.</para>
           </listitem>
         </varlistentry>
 
