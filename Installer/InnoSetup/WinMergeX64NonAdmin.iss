@@ -546,6 +546,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Slovenian.txt; DestDir: {app}\Docs
 Source: {#TranslationsDir}\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Spanish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
+Source: ..\..\Build\Manual\htmlhelp\WinMergeSpanish.chm; DestDir: {app}\Docs; Components: Languages\Spanish
 Source: {#TranslationsDir}\WinMerge\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Swedish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt; DestDir: {app}\Docs; Components: Languages\Swedish

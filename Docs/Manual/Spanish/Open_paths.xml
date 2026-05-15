@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Open_paths">
+  <title>Abrir archivos y carpetas<indexterm>
+      <primary>abrir archivos y carpetas</primary>
+    </indexterm></title>
+
+  <para>WinMerge ofrece varias formas de especificar rutas y abrir archivos o
+carpetas:<indexterm>
+      <primary>carpetas</primary>
+
+      <secondary>seleccionar en el cuadro de diálogo "Seleccione archivos o carpetas"</secondary>
+    </indexterm><indexterm>
+      <primary>archivos</primary>
+
+      <secondary>seleccionar en el cuadro de diálogo "Seleccione archivos o carpetas"</secondary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para><xref linkend="OpenPaths_opendialog" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_shell-integ" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_dragndrop" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_project" /></para>
+    </listitem>
+  </itemizedlist>
+
+  <section id="OpenPaths_opendialog">
+    <title>Cuadro de diálogo "Seleccionar archivos o carpetas"<indexterm>
+        <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
+      </indexterm></title>
+
+    <para><xref linkend="Quick_start" /> describe el cuadro de diálogo "Seleccionar
+archivos o carpetas". En esta sección se ofrecen más detalles y algunos
+consejos para utilizar el cuadro de diálogo "Seleccionar archivos o
+carpetas" de forma más eficaz.</para>
+
+    <section>
+      <title>Uso de variables de entorno<indexterm>
+          <primary>variables de entorno, al comparar rutas de destino</primary>
+        </indexterm></title>
+
+      <para>Puede utilizar variables de entorno en sus rutas. Windows expande el nombre
+de la variable entre los delimitadores % (por ciento). Por ejemplo, si una
+variable de entorno llamada <envar>WORKDIR</envar> tiene el valor <filename
+class="directory">c:\workfiles</filename>, la ruta
+<envar>%WORKDIR%\project1</envar> se expande a <filename
+class="directory">c:\workfiles\project1</filename> .</para>
+    </section>
+
+    <section id="OpeningArchives">
+      <title>Abrir archivos comprimidos<indexterm>
+          <primary>archivos 7-Zip</primary>
+
+          <secondary>abrir</secondary>
+        </indexterm></title>
+
+      <para>El complemento 7-Zip ofrece compatibilidad con archivos de
+WinMerge. Consulte la sección <xref linkend="Install" /> para instalar este
+complemento.</para>
+
+      <para>Abrir dos archivos comprimidos es similar a abrir archivos normales:
+especifique dos archivos comprimidos en los campos <guilabel>1º</guilabel> y
+<guilabel>2º</guilabel> del cuadro de diálogo "Abrir". Si WinMerge reconoce
+el formato del archivo comprimido, abrirá el contenido de los archivos
+comprimidos en la ventana de comparación de carpetas.</para>
+
+      <para>El tema <xref linkend="Compare_dirs" /> describe cómo trabajar con archivos
+comprimidos.  Por ejemplo, si un archivo comprimido contiene dos subcarpetas
+llamadas <filename class="directory">Original/</filename> y <filename
+class="directory">Modificado/</filename>, puede comparar el contenido de
+ambas subcarpetas especificando el mismo archivo comprimido en ambos lados
+en el cuadro de diálogo "Seleccione archivos o carpetas" o en la línea de
+comandos de WinMerge.</para>
+
+      <tip>
+        <para>Cuando arrastre un archivo comprimido a la ventana de WinMerge, mantenga
+pulsada la tecla <keycap>Mayús</keycap> al soltarlo: WinMerge copiará
+automáticamente el mismo nombre de archivo en ambos lados y abrirá el
+archivo comprimido.</para>
+      </tip>
+    </section>
+
+    <section id="Open_paths_filters">
+      <title>Aplicación de filtros<indexterm>
+          <primary>filtros</primary>
+
+          <secondary>aplicar en el cuadro de diálogo "Seleccione archivos o carpetas"</secondary>
+        </indexterm></title>
+
+      <para>El campo de edición <guilabel>Filtro</guilabel> le permite restringir los
+archivos que se incluirán en la comparación de carpetas. Puede especificar
+una o varias máscaras de archivo o un único filtro de archivos (no ambos).</para>
+
+      <para>Una máscara es una expresión sencilla basada en las extensiones de
+archivo. Por ejemplo, esta lista de máscaras de archivo incluye únicamente
+los archivos con las extensiones especificadas. Todos los demás quedan
+excluidos de la selección cuando se inicia la operación de comparación:</para>
+
+      <screen>*.h;*.cpp;*.txt,*.ini</screen>
+
+      <para>Las máscaras de archivo son útiles para realizar filtrados sencillos. Para
+selecciones más avanzadas, utilice archivos de filtro. Los archivos de
+filtro son conjuntos de expresiones regulares que pueden incluir o excluir
+archivos.  WinMerge instala varios archivos de filtro predefinidos en su
+carpeta <filename>Filtros</filename> y usted también puede crear los suyos
+propios.</para>
+
+      <para>Para especificar un filtro, haga clic en el botón
+<guibutton>Seleccionar</guibutton> situado junto al campo
+<guilabel>Filtros</guilabel> para elegir uno de la lista de filtros
+disponibles. También puede hacer clic en la lista desplegable "Filtros" y
+seleccionar un archivo de filtro utilizado recientemente.</para>
+
+      <para>Para obtener información completa sobre las máscaras de filtro y los
+archivos de filtro, consulte <xref linkend="Filters" />.</para>
+    </section>
+
+    <section id="Open_paths_unpacker">
+      <title>Selección de un descomprensor para comparaciones de archivos<indexterm>
+          <primary>complementos para descompresión</primary>
+        </indexterm></title>
+
+      <para>Los descompresores son complementos que se instalan junto con WinMerge para
+proporcionar funcionalidades que no están disponibles de forma
+predeterminada.  Son complementos que permiten preprocesar determinados
+tipos de archivos antes de compararlos. Por ejemplo, WinMerge no suele poder
+comparar archivos doc de MS Word, pero al descomprimirlos se puede comparar
+únicamente el contenido de texto.  Consulte la sección <xref
+linkend="Plugins" /> para obtener más información.</para>
+
+      <para>Para aplicar un complemento a la comparación de archivos, haga clic en el
+botón <guibutton>Seleccionar</guibutton> de la opción
+<guilabel>Descompresor</guilabel> En el cuadro de diálogo "Seleccionar
+descompresor":</para>
+
+      <xi:include href="select_unpacker.xml"
+                  xmlns:xi="http://www.w3.org/2001/XInclude"
+                  xpointer="element(select-unpacker-proc)" />
+
+      <para>Su elección aparecerá en el campo <guilabel>Descompresor</guilabel>.  Tenga
+en cuenta que no puede seleccionar un descompresor al iniciar una operación
+de comparación de carpetas.</para>
+    </section>
+  </section>
+
+  <section id="OpenPaths_shell-integ">
+    <title><indexterm>
+        <primary>Integración con el intérprete de órdenes de Windows.</primary>
+      </indexterm><indexterm>
+        <primary>menú contextual, atajos de WinMerge en el Explorador de Windows</primary>
+      </indexterm>Iniciar operaciones de WinMerge en el Explorador de Windows</title>
+
+    <para>La integración opcional con el intérprete de órdenes de Windows le permite
+ejecutar operaciones de comparación de WinMerge directamente desde el
+Explorador de Windows, utilizando los accesos directos de WinMerge en el
+menú contextual.</para>
+
+<!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
+    
+
+    <section>
+      <title>Habilitar la integración con el Explorador de Windows</title>
+
+      <para>La integración con el Explorador de Windows solo está disponible si se ha
+activado. Puede activarla <link linkend="Installing_usinginstaller">durante
+la instalación de WinMerge</link> o más adelante, a través de la <xref
+linkend="Configuration_shell-integ" /> en la ventana "Opciones". En dicha
+ventana configure la opción <option>Añadir al menú contextual</option>,
+incluyendo sus subopciones si lo desea.</para>
+    </section>
+
+    <section>
+      <title>Uso del atajo de WinMerge</title>
+
+      <para>Si activa la opción <option>Añadir al menú contextual</option> sin la
+subopción de menú avanzado, el acceso directo de
+<guimenuitem>WinMerge</guimenuitem> se añadirá al menú contextual del
+Explorador. Por ejemplo:</para>
+
+      <para>Para utilizar la integración básica con el intérprete de órdenes, empiece
+por seleccionar dos rutas en el Explorador de Windows. A continuación, haga
+clic con el botón derecho del ratón y seleccione WinMerge en el menú
+contextual. Por ejemplo:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_simple.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Comando WinMerge en el menú contextual del Explorador de Windows</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>WinMerge abre las rutas directamente en la ventana de comparación de
+archivos o de carpetas.</para>
+
+      <para>Los lados izquierdo y derecho vienen determinados por el orden de
+clasificación del Explorador de Windows. En la captura de pantalla anterior,
+la lista de archivos del Explorador de Windows está ordenada de forma
+ascendente, por lo que WinMerge semabre con el archivo
+<filename>Archivo2</filename> en el primer lado y el archivo
+<filename>Archivo1</filename> en el segundo.</para>
+
+      <note>
+        <para>Si por cualquier motivo no se puede abrir ninguna de las dos rutas, WinMerge
+abre el cuadro de diálogo «Seleccionar archivos o carpetas», donde puede
+especificar nuevas rutas. Del mismo modo, si selecciona una sola ruta, el
+cuadro de diálogo "Seleccionar archivos o carpetas" se abre con el archivo o
+la carpeta seleccionados en el <guilabel>1º</guilabel> campo, dejando el
+<guilabel>2º</guilabel> campo libre para que usted especifique la ruta.</para>
+      </note>
+
+      <para>El atajo de <guimenuitem>WinMerge</guimenuitem> es rápido y fácil de usar,
+pero solo permite comparar archivos o carpetas que se puedan seleccionar
+simultáneamente en el Explorador de Windows. Para realizar selecciones más
+flexibles, le recomendamos que active el menú avanzado, tal y como se
+describe en la siguiente sección.</para>
+    </section>
+
+    <section>
+      <title>Uso del menú avanzado</title>
+
+      <para>Si selecciona la opción <option>Activar menú avanzado</option>, el acceso
+directo de <guimenuitem>WinMerge</guimenuitem> se sustituye por dos accesos
+directos de <guimenuitem>Comparar</guimenuitem>:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_advanced.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Menú contextual avanzado de WinMerge</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>Utilice los accesos directos de <guimenuitem>Comparar</guimenuitem> en este
+orden:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Haga clic con el botón derecho del ratón en la primera ruta y seleccione
+<guimenuitem>Comparar con</guimenuitem>. WinMerge guarda la ruta en la
+memoria hasta que seleccione la segunda ruta.</para>
+        </listitem>
+
+        <listitem>
+          <para>Si decide que ha elegido mal la primera opción, puede cambiarla antes de
+elegir la segunda:</para>
+
+          <para>Haga clic con el botón derecho del ratón en la nueva ruta y seleccione el
+acceso directo <guimenuitem>Volver a seleccionar primero</guimenuitem>. La
+nueva selección sustituye a la ruta anterior y ya puede pasar al siguiente
+paso.</para>
+        </listitem>
+
+        <listitem>
+          <para>Vaya al segundo archivo o carpeta que desee comparar. La segunda ruta puede
+estar en cualquier carpeta o incluso en una ventana del Explorador de
+Windows distinta a la de la primera ruta. Haga clic con el botón derecho del
+ratón en la segunda ruta y seleccione <guimenuitem>Comparar</guimenuitem>.</para>
+
+          <para>WinMerge abre la ventana "Comparación de archivos" o "Comparación de
+carpetas" cargando la primera y la segunda ruta en el primer y segundo
+panel, respectivamente.</para>
+        </listitem>
+      </orderedlist>
+
+      <note>
+        <para>Si hace clic en <guimenuitem>Comparar</guimenuitem> antes de indicar la
+primera ruta, se abrirá el cuadro de diálogo "Seleccione archivos o
+carpetas" con su selección como primera ruta (<guilabel>1ª</guilabel>).
+Indique la segunda ruta <guilabel>2ª</guilabel> en el segundo campo para
+continuar con la comparación.</para>
+      </note>
+
+<!--              <tip>
+<para>When you use this method, take advantage 
+of the Select Files or Folders dialog's MRU list. This is very handy when you need 
+to compare one file/folder against several files/folders.</para> </tip> -->
+      
+
+      <para>Las rutas de <guimenuitem>Comparar con</guimenuitem> se guardan en la
+memoria hasta que se abre WinMerge. Por lo tanto, no es necesario
+seleccionar ambos archivos al mismo tiempo ni siquiera utilizar la misma
+vista del Explorador de Windows: puede seleccionar una, abrir otro
+directorio y seleccionar la otra. Ambas rutas se eliminan de la memoria tras
+la operación de comparación. Esto significa que no puede seleccionar una
+ruta de <guimenuitem>Comparar con</guimenuitem> y compararla con varias
+rutas.</para>
+    </section>
+
+    <section>
+      <title>Incluir subcarpetas al utilizar la integración con el Explorador de
+Windows<indexterm>
+          <primary>comparación recursiva de carpetas</primary>
+
+          <secondary>especificando en el cuadro de diálogo "Seleccione archivos o carpetas"</secondary>
+        </indexterm><indexterm>
+          <primary>subcarpetas</primary>
+
+          <seealso>comparación recursiva de carpetas</seealso>
+        </indexterm></title>
+
+      <para>De forma predeterminada, las comparaciones de carpetas que se realizan
+mediante el atajo de <guimenuitem>WinMerge</guimenuitem> o
+<guimenuitem>Comparar</guimenuitem> son recursivas. Existe una forma de
+iniciar comparaciones no recursivas mediante la integración con el
+Explorador de Windows:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Desactive la opción <guilabel>Incluir subcarpetas</guilabel> en la página
+"Carpeta" del cuadro de diálogo "Opciones" de WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+
+      <tip>
+        <para>Mantenga pulsada la tecla <keycap>Ctrl</keycap> mientras selecciona el
+acceso directo <guimenuitem>WinMerge</guimenuitem> o
+<guimenuitem>Comparar</guimenuitem> en el menú contextual del Explorador de
+Windows para forzar una comparación inversa con la configuración actual de
+"Incluir subcarpetas".</para>
+      </tip>
+    </section>
+  </section>
+
+  <section id="OpenPaths_dragndrop">
+    <title><indexterm>
+        <primary>arrastrar y soltar, en la ventana de WinMerge</primary>
+      </indexterm>Usar la función de arrastrar y soltar</title>
+
+    <para>Desde cualquier entorno de Windows que permita arrastrar objetos, como el
+Explorador de Windows o el Escritorio, puede arrastrar y soltar una o dos
+rutas en la ventana de WinMerge. Si solo suelta una ruta en WinMerge, se
+abrirá el cuadro de diálogo "Seleccione archivos o carpetas" para que
+seleccione la segunda ruta. Si la única ruta especifica un archivo de
+proyecto, este se abrirá.</para>
+
+    <para>Por defecto, WinMerge incluye las subcarpetas en las operaciones de
+comparación. Para no incluirlas, mantenga pulsada la tecla
+<keycap>Ctrl</keycap> mientras arrastra las rutas. Otra tecla útil al
+arrastrar rutas es la tecla <keycap>Mayús</keycap>: para abrir la misma ruta
+en ambos lados de una ventana de comparación, mantenga pulsada la tecla
+<keycap>Mayús</keycap> mientras arrastra solo una ruta. Esta es una forma
+práctica de abrir archivos comprimidos <xref linkend="OpeningArchives" />).</para>
+
+    <para>Puede soltar rutas en el cuadro de diálogo "Seleccione archivos o
+carpetas". Un procedimiento habitual consiste en arrastrar y soltar la
+primera ruta en la ventana de WinMerge y, a continuación, arrastrar y soltar
+la segunda ruta en el cuadro de diálogo "Seleccione archivos o
+carpetas". Cuando se suelta una ruta en dicho cuadro de diálogo se carga en
+el campo de la primera o la segunda ruta:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>1º</term>
+
+        <listitem>
+          <para>Si el primer campo está vacío o si ambos campos de ruta ya contienen rutas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>2º</term>
+
+        <listitem>
+          <para>Si la primera ruta no está vacía y la segunda ruta está vacía</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="OpenPaths_project">
+    <title><indexterm>
+        <primary>archivos de proyecto</primary>
+      </indexterm><indexterm>
+        <primary>línea de comandos</primary>
+
+        <secondary>especificando archivos de proyecto</secondary>
+      </indexterm>Archivos de proyecto</title>
+
+    <para>Puede guardar las rutas y los filtros que tiene abiertos actualmente en un
+archivo de proyecto.  Así, podrá abrir fácilmente el proyecto más adelante
+para comparar los mismos archivos. Los archivos de proyecto resultan muy
+útiles si compara los mismos archivos repetidamente.</para>
+
+    <section>
+      <title>Uso de archivos de proyecto</title>
+
+      <para>Para utilizar un archivo de proyecto, en la ventana de WinMerge, haga clic
+en<menuchoice> <guimenu>Archivo</guimenu> <guimenuitem>Abrir
+proyecto...</guimenuitem> </menuchoice>. WinMerge lee las rutas del archivo
+de proyecto. Si el archivo de proyecto contiene dos o tres rutas, se abrirán
+dos o tres rutas. Si solo se indica una ruta o si alguna de las rutas no es
+válida, WinMerge abrirá el cuadro de diálogo "Seleccione archivos o
+carpetas" donde podrá añadir o corregir la información de las rutas. A
+continuación se indican algunos aspectos que debe tener en cuenta:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Si se especifican dos archivos de proyecto, se comparan los propios archivos
+de proyecto.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Si se especifica un archivo de proyecto como archivo izquierdo, pero no se
+especifica ningún archivo en el panel derecho, ese único archivo de proyecto
+se abre como si se hubiera utilizado el comando <menuchoice>
+<guimenu>Archivo</guimenu> <guimenuitem>Abrir
+proyecto...</guimenuitem></menuchoice>.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Si se especifica un archivo de proyecto como archivo izquierdo y cualquier
+otro archivo en el panel derecho, se comparan los contenidos del archivo de
+proyecto y del otro archivo.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para>Para especificar un archivo de proyecto en la línea de comandos, basta con
+introducir la ruta completa del archivo.</para>
+    </section>
+
+    <section>
+      <title>Edición y guardado de archivos de proyecto</title>
+
+      <para>Para guardar un archivo de proyecto, haga clic en<menuchoice>
+<guimenu>Archivo</guimenu> <guimenuitem>Guardar proyecto...</guimenuitem>
+</menuchoice>. El cuadro de diálogo <guilabel>Archivo de proyecto</guilabel>
+ofrece campos y opciones que puede editar fácilmente para crear un archivo
+de proyecto. Si hay una ventana de comparación abierta en ese momento, el
+cuadro de diálogo <guilabel>Archivo de proyecto</guilabel> se rellena con
+los valores de la comparación actual. De lo contrario, debe introducir los
+valores usted mismo. Para utilizar un proyecto existente, haga clic en
+<guibutton>Abrir</guibutton> y seleccione un proyecto para cargar sus
+valores (los valores existentes se sobrescribirán en el cuadro de diálogo).</para>
+
+      <para>Cuando haya terminado de editar, haga clic en <guibutton>Guardar</guibutton>
+para guardar el archivo.</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/projfile_save.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Cuadro de diálogo "Archivo de proyecto"</phrase>
+        </textobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>Formato del archivo de proyecto</title>
+
+      <para>Los archivos de proyecto son simples archivos XML con la extensión <filename
+class="extension">a .WinMerge</filename>. Por ejemplo:</para>
+
+      <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;project&gt;
+   &lt;paths&gt;
+      &lt;left&gt;c:\work\project1&lt;/left&gt;
+      &lt;left-readonly&gt;1&lt;/left-readonly&gt;
+      &lt;middle&gt;c:\work\project2&lt;/middle&gt;
+      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;
+      &lt;right&gt;c:\work\project3&lt;/right&gt;
+      &lt;right-readonly&gt;0&lt;/right-readonly&gt;
+      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
+      &lt;subfolders&gt;0&lt;/subfolders&gt;
+   &lt;/paths&gt;
+&lt;/project&gt;</screen>
+
+      <para>Un archivo de proyecto contiene un elemento <sgmltag>paths</sgmltag> que
+puede incluir uno de cada de estos elementos:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><sgmltag>left</sgmltag></term>
+
+          <listitem>
+            <para>Ruta para abrir el izquierdo</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>left-desc</sgmltag></term>
+
+          <listitem>
+            <para>Descripción del izquierdo</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>left-readonly</sgmltag></term>
+
+          <listitem>
+            <para>1 = Abrir en modo de solo lectura</para>
+
+            <para>0 = Abrir normalmente</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>middle</sgmltag></term>
+
+          <listitem>
+            <para>Ruta para abrir el central</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>middle-desc</sgmltag></term>
+
+          <listitem>
+            <para>Descripción del central</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>middle-readonly</sgmltag></term>
+
+          <listitem>
+            <para>1 = Abrir en modo de solo lectura</para>
+
+            <para>0 = Abrir normalmente</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right</sgmltag></term>
+
+          <listitem>
+            <para>Ruta para abrir el derecho</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right-desc</sgmltag></term>
+
+          <listitem>
+            <para>Descripción del derecho</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right-readonly</sgmltag></term>
+
+          <listitem>
+            <para>1 = Abrir en modo de solo lectura</para>
+
+            <para>0 = Abrir normalmente</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>filter</sgmltag></term>
+
+          <listitem>
+            <para>Nombre del filtro de archivos o lista de extensiones</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>subfolders</sgmltag></term>
+
+          <listitem>
+            <para>0 = Subcarpetas no incluidas</para>
+
+            <para>1 = Subcarpetas incluidas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>unpacker</sgmltag></term>
+
+          <listitem>
+            <para>Nombre del complemento descompresor o conjunto de procesos</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>prediffer</sgmltag></term>
+
+          <listitem>
+            <para>Nombre del complemento de prediferenciación o conjunto de procesos</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>window-type</sgmltag></term>
+
+          <listitem>
+            <para>1 = Ventana de comparación de textos</para>
+
+            <para>2 = Ventana de comparación de tablas</para>
+
+            <para>3 = Ventana de comparación binaria</para>
+
+            <para>4 = Ventana de comparación de imágenes</para>
+
+            <para>5 = Ventana de comparación de páginas web</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>table-delimiter</sgmltag></term>
+
+          <listitem>
+            <para>Delimitador para la edición de tablas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>white-spaces</sgmltag></term>
+
+          <listitem>
+            <para>0 = Comparar espacios en blanco</para>
+
+            <para>1 = Ignorar los cambios en los espacios en blanco</para>
+
+            <para>2 = Ignorar todos los espacios en blanco</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-blank-lines</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar líneas en blanco</para>
+
+            <para>1 = Ignorar líneas en blanco</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-case</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar mayúsculas</para>
+
+            <para>1 = Ignorar mayúsculas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-carriage-return-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar diferencias en los saltos de línea</para>
+
+            <para>1 = Ignorar diferencias en los saltos de línea</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-numbers</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar números</para>
+
+            <para>1 = Ignorar números</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-codepage-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar diferencias entre páginas de códigos</para>
+
+            <para>1 = Ignorar diferencias entre páginas de códigos</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-comment-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar diferencias en los comentarios</para>
+
+            <para>1 = Ignorar las diferencias en los comentarios</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-missing-trailing-eol</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar caracteres de fin de línea que falten al final</para>
+
+            <para>1 = Ignorar caracteres de fin de línea que falten al final</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-line-breaks</sgmltag></term>
+
+          <listitem>
+            <para>0 = No ignorar saltos de línea (tratarlos como espacios)</para>
+
+            <para>1 = Ignorar saltos de línea (tratarlos como espacios)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>compare-method</sgmltag></term>
+
+          <listitem>
+            <para>0 = Todo los contenidos</para>
+
+            <para>1 = Contenidos breves</para>
+
+            <para>2 = Contenidos binarios</para>
+
+            <para>3 = Fecha de modificación</para>
+
+            <para>4 = Fecha de modificación y tamaño</para>
+
+            <para>5 = Tamaño</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Ninguno de los campos es obligatorio y pueden dejarse en blanco
+(<literal>por ejemplo, &lt;left&gt;&lt;/left&gt; o &lt;left/&gt;</literal>).</para>
+    </section>
+  </section>
+</article>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_images">
+  <?target dbhh topicname="IDH_Compare_images" topicid ="003"?>
+
+  <title>Comparación de archivos de imagen</title>
+
+  <indexterm>
+    <primary>comparar archivos</primary>
+    <secondary>imágenes</secondary>
+  </indexterm>
+
+  <para>En este tema se explica cómo comparar imágenes mediante la ventana de
+comparación de imágenes.</para>
+
+  <section id="Compare_images_starting">
+    <title>Iniciar una operación de comparación de imágenes</title>
+
+    <para>Puede iniciar una operación de comparación de imágenes tanto desde la
+ventana de WinMerge como desde una ventana de la línea de comandos.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Desde la ventana de WinMerge</term>
+
+        <listitem>
+          <para>Haga clic en<menuchoice> <guimenu>Archivo</guimenu>
+<guimenuitem>Abrir</guimenuitem> </menuchoice>. Utilice el cuadro de diálogo
+"Seleccionar archivos o carpetas" para especificar las imágenes de origen
+para los paneles izquierdo y derecho que desea comparar. Para obtener más
+información sobre este cuadro de diálogo consulte la sección <xref
+linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Desde una ventana del símbolo del sistema</term>
+
+        <listitem>
+          <para>Ejecute <command>WinMergeU.exe</command>, que se encuentra en el directorio
+de instalación de WinMerge. En los argumentos del comando, incluya las
+imágenes de los paneles izquierdo y derecho que desee comparar. Para obtener
+más información sobre el uso de la línea de comandos, consulte <xref
+linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_images_window">
+    <title>Ventana de comparación de imágenes</title>
+
+    <para>WinMerge es compatible con muchos tipos de imágenes y puede resaltar las
+diferencias mediante bloques. También es posible superponer las imágenes.</para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>Ventana de comparación de imágenes</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>La mayoría de las opciones se pueden configurar en el <guilabel>panel de
+localización</guilabel>:</para>
+
+    <section>
+      <title>Diferencia<indexterm>
+        <primary>Diferencia</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Resaltado</term>
+          <listitem>
+            <para>Con la casilla de verificación <guilabel>Resaltado</guilabel> puede activar
+o desactivar el resaltado de las diferencias entre las imágenes.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Parpadeo</term>
+          <listitem>
+            <para>Si el resaltado está activado, puede hacer que parpadee marcando la casilla
+<guilabel>Parpadeo</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Tamaño del bloque</term>
+          <listitem>
+            <para>El control deslizante <guilabel>Tamaño del bloque</guilabel> define el
+tamaño de los bloques que resaltan las diferencias en la imagen.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Bloque Alpha</term>
+          <listitem>
+            <para>El control deslizante <guilabel>Bloque Alpha</guilabel> define la intensidad
+de la mezcla alpha de los bloques.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Umbral de distancia cromática</term>
+          <listitem>
+            <para>El control deslizante <guilabel>Límite CD</guilabel> permite ajustar el
+<emphasis>Umbral de distancia cromática</emphasis>, que ayuda a ignorar las
+diferencias de color.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Detectar Ins/Borrar</term>
+          <listitem>
+            <para>Por determinar</para>
+            <itemizedlist>
+              <listitem><guilabel>Ninguna</guilabel></listitem>
+              <listitem><guilabel>Vertical</guilabel></listitem>
+              <listitem><guilabel>Horizontal</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Superposición<indexterm>
+        <primary>Superposición</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Modo</term>
+          <listitem>
+            <para>Actualmente están disponibles los siguientes <emphasis>modos de
+superposición</emphasis>:</para>
+            <itemizedlist>
+              <listitem><guilabel>Ninguna</guilabel></listitem>
+              <listitem><guilabel>XOR</guilabel></listitem>
+              <listitem><guilabel>Mezcla Alpha</guilabel></listitem>
+              <listitem><guilabel>Animación con mezcla Alpha</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Alpha</term>
+          <listitem>
+            <para>El control deslizante <guilabel>Alpha</guilabel> define la intensidad de la
+mezcla alpha de los nodos de superposición <guilabel>Mezcla Alpha</guilabel>
+o <guilabel>Animación con mezcla Alpha</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Zoom<indexterm>
+        <primary>Zoom</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Zoom</term>
+          <listitem>
+            <para>Con el control deslizante <guilabel>Zoom</guilabel> puede ampliar o reducir
+las imágenes.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Página</term>
+          <listitem>
+            <para>Si el formato de imagen admite varias páginas, puede seleccionar la página
+actual mediante el cuadro <guilabel>Página</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+  </section>
+
+</article>

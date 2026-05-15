@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_bin">
+  <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
+
+  <title>Comparación en formato hexadecimal</title>
+
+  <indexterm>
+    <primary>comparar archivos</primary>
+
+    <secondary>binario</secondary>
+  </indexterm>
+
+  <para>WinMerge permite ver y editar sus archivos en formato hexadecimal.</para>
+  
+  <mediaobject>
+<imageobject> <imagedata fileref="screenshots/hexcmp1.png" format="PNG" />
+</imageobject><textobject>
+      <phrase>Ventana de comparación HEX</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <para>
+La apertura de los archivos en formato hexadecimal depende de si el nombre
+del archivo coincide con los patrones definidos. De forma predeterminada, si
+la extensión del archivo es .bin o .frx, se abrirá en formato
+hexadecimal. Si desea modificar los patrones, especifíquelos en la página
+"Comparar/Binario" del cuadro de diálogo "Opciones".</para>
+</article>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "../Tools/dtd/docbookx.dtd">
+<section id="select-unpacker">
+  <title>Uso del cuadro de diálogo "Seleccionar descompresor"</title>
+
+  <orderedlist id="select-unpacker-proc">
+    <listitem>
+      <para>Configure la selección automática de complementos o elija uno manualmente:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Para utilizar el modo automático (que aplica el primer complemento
+disponible), compruebe que <guilabel>&lt;Automático&gt;</guilabel> aparece
+en el control <guilabel>Descompresor de archivos</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Para seleccionar un complemento diferente (si está disponible), utilice el
+control <guilabel>Descompresor de archivos</guilabel> para elegir el
+complemento.</para>
+
+          <para>De forma predeterminada, este control solo muestra los complementos
+sugeridos para el tipo de archivo que ha seleccionado para comparar. Para
+ver todos los complementos disponibles, active la opción <guilabel>Mostrar
+todos los compresores sin comprobar la extensión</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Para iniciar la comparación sin utilizar ningún complemento, seleccione
+<guimenuitem>&lt;Ninguno&gt;</guimenuitem> en el control
+<guilabel>Descompresor de archivos</guilabel>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>Haga clic en <guibutton>Aceptar</guibutton> para cerrar el cuadro de diálogo
+"Seleccionar descompresor".</para>
+    </listitem>
+  </orderedlist>
+</section>

@@ -1,0 +1,3131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Configuration">
+  <title>
+Opciones y configuración<indexterm>
+      <primary>opciones</primary>
+    </indexterm></title>
+
+  <para>
+El cuadro de diálogo "Opciones" le permite personalizar muchas funciones de
+WinMerge.  Para configurar las opciones de WinMerge:</para>
+
+  <orderedlist>
+    <listitem>
+      <para>
+Clic en el menú<menuchoice> <guimenu>Editar</guimenu>
+<guimenuitem>Opciones</guimenuitem> </menuchoice>o en el<inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/options_btn.png" /> </imageobject><textobject>
+            <phrase>Botón "Opciones" de WinMerge</phrase>
+          </textobject>
+        </inlinemediaobject>botón <guibutton>Opciones</guibutton> de la
+barra de herramientas.</para>
+
+      <para>
+El cuadro de diálogo "Opciones" contiene varias páginas, cada una de las
+cuales incluye un grupo de opciones relacionadas. Puede abrir cualquier
+página haciendo clic en su título en la lista de
+<guilabel>categorías</guilabel>, situada en la parte izquierda del cuadro de
+diálogo.</para>
+    </listitem>
+
+    <listitem>
+      <para>
+Configure las opciones que desee modificar utilizando uno de estos métodos o
+ambos:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Directamente en las páginas de opciones.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+Importar un archivo <filename>.ini</filename> de opciones que haya exportado
+anteriormente (consulte <xref linkend="Configuration_importexport" /> para
+obtener más información).</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>
+Cuando haya configurado todas las opciones, haga clic en
+<guibutton>Aceptar</guibutton> para guardarlas y cerrar el cuadro de
+diálogo.</para>
+    </listitem>
+  </orderedlist>
+
+  <para>
+En este tema se describen las opciones con detalle. Hay una sección dedicada
+a cada página del cuadro de diálogo "Opciones".</para>
+
+  <section id="Configuration_importexport">
+    <title>
+Opciones de importación y exportación<indexterm>
+        <primary>importar archivos de opciones</primary>
+      </indexterm><indexterm>
+        <primary>exportar archivos de opciones</primary>
+      </indexterm></title>
+
+    <para>
+Si cambia las opciones con frecuencia para diferentes situaciones de
+comparación o combinación o si desea compartir su configuración con otros
+usuarios de WinMerge, considere la posibilidad de guardar su configuración
+exportándola a un archivo de opciones. De este modo, cada vez que desee
+utilizar esa configuración, solo tendrá que importar el archivo de opciones
+en lugar de configurar las opciones manualmente.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Para importar opciones</term>
+
+        <listitem>
+          <para>
+Cuando quiera volver a utilizar las opciones guardadas, haga clic en
+<guibutton>Importar</guibutton>. En el cuadro de diálogo "Seleccionar
+archivo para importar" busque el archivo <filename>ini</filename> guardado y
+haga clic en <guibutton>Abrir</guibutton>.</para>
+
+          <para>
+Los valores del archivo de opciones importado sustituyen a todos los ajustes
+existentes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Para exportar opciones</term>
+
+        <listitem>
+          <para>
+Cuando haya configurado las opciones a su gusto, haga clic en
+<guibutton>Exportar</guibutton>. En el cuadro de diálogo "Seleccionar
+archivo para exportar" especifique una ruta y un nombre para el archivo de
+opciones (el tipo <filename>ini</filename> se añade automáticamente)  y haga
+clic en <guibutton>Guardar</guibutton>.</para>
+
+          <para>
+En el archivo <filename>ini</filename> de texto generado, cada línea
+contiene un par nombre-valor que define una única opción.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Configuration_general">
+    <title>Página "General"</title>
+
+    <para>La página "General" incluye las siguientes opciones:</para>
+
+    <section>
+      <title>
+Desplazarse automáticamente a la primera diferencia<indexterm>
+          <primary>desplazamiento automático a la primera diferencia</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): la ventana de comparación se
+abre en la parte superior de la carpeta o el archivo, sin ninguna opción
+seleccionada.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: al abrirse por primera vez, la ventana "Comparar"
+selecciona la primera diferencia y se desplaza hasta esa ubicación si es
+necesario.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>
+En la comparación de carpetas, selecciona el primer archivo o carpeta
+diferente.</para>
+            </listitem>
+
+            <listitem>
+              <para>
+En una comparación de archivos, selecciona el primer bloque de diferencias
+entre los archivos.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Desplazarse automáticamente a la primera diferencia en línea<indexterm>
+          <primary>desplazamiento automático a la primera diferencia en línea</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): al pasar a un bloque de
+diferencias, no se desplaza automáticamente hasta la primera diferencia en
+línea dentro de las líneas de texto.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: al pasar a un bloque de diferencias, se desplaza
+automáticamente a la primera diferencia en línea dentro de las líneas de
+texto.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Cerrar ventanas con la tecla '<keycap>Esc</keycap>'<indexterm>
+          <primary>cerrar ventanas con la tecla Esc</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Ventana secundaria MDI o ventana principal </option>
+(predeterminado): le permite utilizar la tecla <keycap>Esc</keycap> para
+cerrar las ventanas de WinMerge. Al pulsar <keycap>Esc</keycap> una vez se
+cierra una ventana, por lo que, si hay una ventana de comparación de
+archivos abierta, se necesitan tres pulsaciones para cerrar WinMerge:
+primero la ventana de comparación de archivos, luego la ventana de
+comparación de carpetas y, por último, la ventana de WinMerge.</para>
+
+          <para>
+Tenga en cuenta que, en la línea de comandos de WinMerge, el parámetro
+<parameter>-e</parameter> le permite cerrar WinMerge pulsando la tecla
+<keycap>Esc</keycap>una sola vez.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Solo ventanas secundarias MDI</option>: al pulsar
+<keycap>Esc</keycap> se cierra una ventana secundaria, pero no la última
+ventana principal que quede abierta.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Cerrar ventana principal solo si hay una ventana MDI
+secundaria</option>: al pulsar <keycap>Esc</keycap> se cierra una ventana
+secundaria y, si solo hay una, también se cerrará la ventana principal.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Deshabilitado</option>: al pulsar <keycap>Esc</keycap> no se cierran
+las ventanas de WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Comprobar rutas automáticamente en el diálogo Abrir</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Activado </option> (predeterminado): el cuadro de diálogo
+"Seleccionar archivos o carpetas" comprueba las dos o las tres rutas a
+medida que se introducen. El botón <guibutton>Comparar</guibutton> permanece
+desactivado hasta que se hayan validado las dos o las tres rutas. Tenga en
+cuenta que esta comprobación puede provocar cierto retraso.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Desactivado</option>: el botón <guibutton>Comparar</guibutton> del
+cuadro de diálogo "Seleccionar archivos o carpetas" está siempre activo e
+intenta abrir cualquier ruta que se especifique. Dado que no hay ningún
+retraso durante la validación, esto puede agilizar la selección de rutas.
+Sin embargo, si no se puede abrir la ruta, aparece un mensaje de error.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Modo de instancia única<indexterm>
+          <primary>Ventana WinMerge</primary>
+
+          <secondary>limitación de instancias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Deshabilitado</option> (predeterminado): puede ejecutar varias
+instancias de WinMerge. Por ejemplo, si WinMerge ya se está ejecutando y
+hace clic en el acceso directo de WinMerge del escritorio, se abrirá una
+nueva ventana de WinMerge.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Permitir solo una instancia en ejecución</option>: limita el
+programa WinMerge a una sola instancia:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>
+Si WinMerge ya está en ejecución e intenta iniciar una nueva instancia, no
+se abrirá una nueva ventana de la aplicación. En su lugar, se utilizará la
+ventana actual de WinMerge.</para>
+            </listitem>
+
+            <listitem>
+              <para>
+Si inicia una nueva instancia con rutas (por ejemplo, desde la línea de
+comandos), se abre una nueva ventana de comparación dentro de la ventana
+existente de WinMerge.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Permitir únicamente una instancia en ejecución y esperar a que
+termine</option>: al igual que la opción "Permitir solo una instancia en
+ejecución" esta configuración limita WinMerge a una única ventana de la
+aplicación. Sin embargo, también garantiza que el proceso de WinMerge no
+finalice hasta que se cierre la ventana de la aplicación. Esto resulta útil
+en situaciones en las que aplicaciones externas, como SourceTree, necesitan
+esperar a que WinMerge termine antes de poder eliminar de forma segura los
+archivos temporales.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Preguntar antes de cerrar múltiples ventanas</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): si sale de WinMerge mientras
+hay varias ventanas de comparación abiertas, WinMerge le pedirá que confirme
+si desea cerrar todas las ventanas.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: si hace clic en <guibutton>Salir</guibutton> y no
+hay cambios pendientes en los archivos, WinMerge se cerrará inmediatamente.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Mantener la hora del archivo en la comparación de archivos<indexterm>
+          <primary>marcas de tiempo</primary>
+
+          <secondary>conservación</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): si guarda los cambios en un
+archivo en WinMerge, se actualiza la fecha y hora del archivo.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: si guarda los cambios en un archivo en WinMerge,
+la fecha y hora del archivo no se modifican en su sistema de archivos.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Mostrar "Seleccione archivos o carpetas" al iniciar el programa<indexterm>
+          <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
+
+          <secondary>apertura automática</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): la ventana de WinMerge se
+abre al iniciar WinMerge. A continuación, debe hacer clic en<menuchoice>
+<guimenu>Archivo</guimenu> <guimenuitem>Abrir</guimenuitem> </menuchoice>
+para abrir el cuadro de diálogo "Seleccione archivos o carpetas".</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: al iniciar WinMerge, se abre el cuadro de diálogo
+"Seleccione archivos o carpetas" junto con la ventana de WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Cerrar "Seleccione archivos o carpetas" al hacer clic en
+Comparar<indexterm>
+          <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): al hacer clic en el botón
+<guibutton>Comparar</guibutton>, el cuadro de diálogo "Seleccione archivo o
+carpetas" permanecerá abierto en lugar de cerrarse.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: al hacer clic en el botón
+<guibutton>Comparar</guibutton> se cierra el cuadro de diálogo "Seleccione
+archivos o carpetas".</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Autocompletar en el diálogo Abrir<indexterm>
+          <primary>Lista MRU</primary>
+        </indexterm></title>
+
+      <para>Elija una de estas opciones:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>Deshabilitado</guilabel>: no se realiza el autocompletado al
+introducir rutas en el cuadro de diálogo "Seleccionar archivos o carpetas".</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Desde el sistema de archivos</guilabel> (predeterminado):
+comprueba las rutas a medida que escribe. Intenta localizar en el sistema de
+archivos las rutas que coincidan con las letras que teclee y, si encuentra
+una ruta que coincida, completa la ruta.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Desde la lista de los usados más recientemente</guilabel>:
+comprueba únicamente las rutas de la lista de elementos usados más
+recientemente (MRU).  Esto resulta útil cuando hay un número limitado de
+rutas que comparar.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Recarga automática de archivos modificados<indexterm>
+          <primary>Recarga automática</primary>
+        </indexterm></title>
+
+      <para>Elija una de estas opciones:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>Deshabilitado</guilabel>: deshabilita la recarga automática.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Solo al activar la ventana</guilabel> (predeterminado): cuando se
+active la ventana de WinMerge, si el archivo ha sido modificado, este se
+volverá a cargar. Sin embargo, en ese momento aparecerá un cuadro de diálogo
+preguntándole si desea volver a cargar el archivo. Si no desea que aparezca
+este cuadro de diálogo, marque la casilla "No volver a preguntar" y pulse el
+botón "Sí".</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Inmediatamente</guilabel>: vuelve a cargar el archivo en cuanto se
+haya modificado. Sin embargo, en ese momento aparecerá un cuadro de diálogo
+preguntándole si desea volver a cargar el archivo. Si no desea que aparezca
+este cuadro de diálogo, marque la casilla "No volver a preguntar" y pulse el
+botón "Sí".</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Idioma<indexterm>
+          <primary>Idioma</primary>
+        </indexterm></title>
+
+      <para>
+Consulte <xref linkend="Locales_changing" />.</para>
+
+    </section>
+  </section>
+
+  <section id="Configuration_compare">
+    <title>Comparar &gt; General</title>
+
+    <para>
+Las opciones de esta página le permiten modificar algunas de las formas en
+que WinMerge detecta las diferencias, como comparar únicamente el tamaño de
+los archivos o ignorar ciertos tipos de diferencias, como las mayúsculas y
+minúsculas.</para>
+
+    <important>
+      <para>
+Personalizar la detección de diferencias puede resultar útil durante las
+comparaciones, cuando quizá no le interesen algunas diferencias. Sin
+embargo, estas opciones también afectan a la combinación. Por ejemplo, si
+ignora los cambios en los espacios en blanco, los cambios en la sangría de
+los archivos de código fuente no se conservarán al combinar.</para>
+
+      <para>
+Por este motivo, antes de combinar cualquier diferencia, le recomendamos
+encarecidamente que restablezca las opciones de esta página a su
+configuración predeterminada, especialmente las opciones de ignorar. Para
+restablecer todas las opciones de esta página, haga clic en el botón
+<guibutton>Predeterminados</guibutton>.</para>
+    </important>
+
+    <section>
+      <title>
+Acerca de las opciones de ignorar<indexterm>
+          <primary>diferencias ignoradas</primary>
+        </indexterm></title>
+
+      <para>
+Varias opciones de la página Comparar (que se describen más adelante en esta
+sección) le permiten ignorar ciertas diferencias. Las diferencias ignoradas
+se tratan de forma especial en WinMerge:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Aparecen resaltadas con el color "Diferencia ignorada".</para>
+        </listitem>
+
+        <listitem>
+          <para>Las diferencias ignoradas no se pueden combinar.</para>
+        </listitem>
+
+        <listitem>
+          <para>Las diferencias ignoradas no se incluyen en el recuento de diferencias.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+Los archivos que solo contienen diferencias ignoradas se marcan como
+idénticos en una comparación de carpetas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Espacios en blanco<indexterm>
+          <primary>espacios en blanco</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <para>
+Los espacios en blanco son los espacios que hay entre palabras y líneas. En
+los archivos de texto se representan mediante caracteres especiales no
+imprimibles, como espacios, tabulaciones y saltos de línea. La importancia
+del espacio en blanco depende de cómo se quieran leer o procesar las
+diferencias. Puede ser importante detectar todos los cambios en el espacio
+en blanco. Por el contrario, quizá prefiera tratar todo el espacio en blanco
+de la misma manera, ya sea un espacio, dos espacios, una sangría o una
+tabulación. Y en algunos documentos estructurados (como las listas separadas
+por comas), quizá quiera ignorar todo el espacio en blanco.</para>
+
+      <note>
+        <para>
+Los efectos de los espacios en blanco en los cambios dentro de las líneas
+solo son visibles cuando la opción <option>Mostrar diferencias entre
+líneas</option> está activada. Esto contrasta con los bloques de
+diferencias, que siempre aparecen resaltados.</para>
+      </note>
+
+      <example>
+        <title>Líneas con diferentes espacios en blanco</title>
+
+        <para>
+Un espacio entre las palabras:<screen format="linespecific">Dos palabras</screen></para>
+
+        <para>
+Dos espacios entre las palabras:<screen format="linespecific">Dos  espacios</screen></para>
+
+        <para>
+Tabulación entre palabras:<screen format="linespecific">Dos   palabras</screen></para>
+
+        <para>
+Sin espacios entre las palabras:<screen format="linespecific">TwoWords</screen></para>
+      </example>
+
+      <para>
+Puede controlar la detección de espacios en blanco seleccionando una de
+estas opciones:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Comparar</term>
+
+          <listitem>
+            <para>
+Se comparan todos los espacios en blanco (predeterminado). Si no está seguro
+de qué opción requiere su documento, esta es probablemente la opción más
+segura. En el ejemplo, todas las líneas se detectan como diferentes.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Ignorar cambios</term>
+
+          <listitem>
+            <para>
+Compara las diferencias en los espacios en blanco. En el ejemplo, las tres
+primeras líneas tienen espacios en blanco diferentes, pero se detectan como
+idénticas: las tabulaciones y los espacios múltiples se tratan como si
+fueran un solo espacio. La última línea no tiene espacios en blanco, por lo
+que la diferencia <emphasis>no</emphasis> se ignora (en realidad, las
+palabras de las dos últimas líneas son diferentes):</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Ignorar todos</term>
+
+          <listitem>
+            <para>
+Ignora todos los caracteres de espacio en blanco, excepto los saltos de
+línea (por lo que las líneas se detectan y se conservan en la combinación)
+. Todas las líneas del ejemplo se detectan como idénticas.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <note>
+        <title>Temas relacionados</title>
+
+        <para>
+Los efectos de la configuración de los espacios en blanco sobre las
+diferencias entre líneas se describen en <xref
+linkend="CompareFiles_linediff-highlight" />.</para>
+
+        <para>
+La página Edición del cuadro de diálogo Opciones contiene opciones
+relacionadas que controlan cómo se utilizan los espacios en blanco para
+detectar las separaciones entre palabras. Consulte <xref
+linkend="Configuration_viewlinediffs" /> para obtener más información.</para>
+      </note>
+    </section>
+
+    <section>
+      <title>
+Ignorar líneas en blanco<indexterm>
+          <primary>líneas en blanco</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): las líneas vacías de los
+archivos de origen se detectan y se muestran en la ventana de comparación de
+archivos como líneas en blanco con los colores de las diferencias
+eliminadas.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: las líneas vacías de los archivos de origen se
+ignoran.  En la ventana de comparación de archivos se muestran como líneas
+en blanco con los colores de las diferencias ignoradas. Sin embargo, estas
+diferencias no se pueden combinar.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar mayúsculas y minúsculas<indexterm>
+          <primary>mayúsculas y minúsculas (letras), detección e ignorancia de diferencias</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): las comparaciones distinguen
+entre mayúsculas y minúsculas. Por ejemplo <literal>Minúsculas</literal>,
+<literal>MINÚSCULAS</literal> y <literal>minúsculas</literal> son términos
+distintos.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: no se tienen en cuenta las diferencias entre
+mayúsculas y minúsculas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar diferencias en los caracteres de fin de línea
+(Windows/Unix/Mac)<indexterm>
+          <primary>EOL</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): se detectan las diferencias
+en el estilo de fin de línea (EOL). Por ejemplo, si se comparan dos líneas
+que tienen el mismo contenido pero diferentes finales de línea, se considera
+que las líneas son diferentes. Cuando esto ocurre, WinMerge muestra un
+cuadro de diálogo en el que se le pide que confirme si desea detectar o
+ignorar la diferencia.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: se ignoran las diferencias en el carácter de fin
+de línea.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar números<indexterm>
+          <primary>números</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): se detectan las diferencias
+numéricas.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: se ignoran las diferencias numéricas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar diferencias de codificación<indexterm>
+          <primary>codificación</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): se detectan las diferencias
+en la codificación de los archivos. Además, se detectan las diferencias
+entre la presencia y la ausencia de BOM.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: se ignoran las diferencias en la codificación de
+los archivos.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar diferencias en comentarios<indexterm>
+          <primary>filtros</primary>
+
+          <secondary>comentarios</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): WinMerge compara los
+comentarios del código junto con el resto del contenido.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: esta opción optimiza las comparaciones al
+detectar comentarios en determinados tipos de archivos de lenguajes de
+programación como C++ y Java) e ignorarlos. La detección se basa en el
+resaltado de sintaxis, por lo que no tiene ningún efecto en los tipos de
+archivo que no son compatibles con WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar caracteres de fin de línea que falten al final<indexterm>
+          <primary>filtros</primary>
+          <secondary>EOL</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): las diferencias en la
+presencia o ausencia de caracteres de fin de línea al final de las líneas se
+detectan como diferencias, incluso si el contenido de las líneas coincide.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: cuando un archivo termina con un carácter de fin
+de línea (por ejemplo, LF o CRLF) y el otro no, pero el contenido de la
+línea coincide, estas diferencias se ignoran.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar saltos de línea (tratarlos como espacios)<indexterm>
+          <primary>filtros</primary>
+          <secondary>saltos de línea</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> ( predeterminado): los saltos de línea
+(caracteres de fin de línea) no se consideran espacios.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: dentro de un fragmento de comparación, los saltos
+de línea se tratan como espacios. Por ejemplo, se ignora la siguiente
+diferencia: <screen>Izquierdo:
+abc def
+
+Derecho:
+abc
+def
+</screen> <note> Resulta útil cuando
+se combina con opciones de espacios en blanco como <option>Espacios en
+blanco → Ignorar cambios</option> o <option>Espacios en blanco → Ignorar
+todos</option>.  </note></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Habilitar detección de bloques desplazados<indexterm>
+          <primary>diferencias despalzadas</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): WinMerge no detecta cuándo
+las diferencias se deben a líneas que se han movido.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: WinMerge intenta detectar las líneas que se han
+desplazado (a ubicaciones diferentes en cada archivo). Los bloques
+desplazados se indican con los colores de diferencia
+<guilabel>Desplazado</guilabel> y <guilabel> Desplazado seleccionado
+</guilabel>. Si se muestra la barra de ubicación, las ubicaciones de
+diferencia correspondientes en las barras de ubicación izquierda y derecha
+se conectan con una línea. Mostrar los bloques desplazados puede facilitar
+la visualización de los cambios en los archivos, siempre que no sean
+demasiados.</para>
+
+          <para>
+Por ejemplo, consulte la descripción del panel de localización en <xref
+linkend="Compare_files" />.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Alinear líneas similares<indexterm>
+          <primary>líneas similares, alineación</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): las líneas de los bloques de
+diferencias se muestran tal y como aparecen en los archivos de origen.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: WinMerge intenta detectar líneas similares dentro
+de los bloques de diferencias y añade líneas en blanco en los paneles de
+archivos para alinearlas. Esta opción resulta más eficaz cuando las líneas
+son bastante similares; es menos eficaz si las líneas son demasiado
+diferentes.</para>
+
+          <para>
+Por ejemplo, consulte la descripción de <citetitle>Líneas
+similares</citetitle> en <xref linkend="CompareFiles_diffcolors" />.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Algoritmo de comparación<indexterm>
+          <primary>algoritmo</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>predeterminado</option> (predeterminado): el algoritmo básico de
+comparación codicioso (greedy).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>mínimo</option>: dedica un poco más de tiempo a asegurarle de que la
+diferencia sea la menor posible.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>paciencia</option>: utiliza el algoritmo "paciencia" al generar la
+diferencia.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>histograma</option>: este algoritmo amplía el algoritmo de paciencia
+para "dar cabida a elementos comunes de baja frecuencia".</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>ninguno</option>: este algoritmo no detecta inserciones ni
+eliminaciones de líneas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Habilitar la heurística de indentación<indexterm>
+          <primary>heurística de indentación</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Activado</option> (predeterminado): activa la heurística que
+desplaza los límites de los fragmentos de la comparación para facilitar la
+lectura de las comparaciones. No tiene ningún efecto si el algoritmo de
+comparación es el predeterminado.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Desactivado</option>: desactiva la heurística.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Desmarcar por completo las diferencias ignoradas<indexterm>
+          <primary>desmarcar las diferencias ignoradas</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): las líneas de diferencia que
+ignoran los filtros de línea y los filtros de sustitución se muestran con el
+color de "Diferencia ignorada".</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: hace que el color de las líneas que ignoran los
+filtros de línea y los filtros de sustitución sea el mismo que el de las
+líneas idénticas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_folder">
+    <title>Comparar &gt; Carpeta</title>
+
+    <section id="Configuration_compmethod">
+      <title>
+Método de comparación<indexterm>
+          <primary>comparar archivos</primary>
+
+          <secondary>opciones de detección</secondary>
+        </indexterm></title>
+
+      <para>
+Esta opción le permite determinar el nivel de detalle de las comparaciones
+de archivos. Elija una de estas siete opciones:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Todos los contenidos</term>
+
+          <listitem>
+            <para>
+Por defecto: comparación completa de los archivos por contenido, con todas
+las funciones disponibles. Este método utiliza complementos y el motor
+"diffutils" para realizar una comparación totalmente precisa y detectar
+bloques desplazados. Es el método más completo y el recomendado.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Contenidos breves</term>
+
+          <listitem>
+            <para>
+Comparación simplificada de archivos por contenido. Este método utiliza un
+código de comparación de archivos optimizado que omite los complementos y la
+detección de bloques desplazados. Este método es más rápido que la
+comparación de<guilabel> Todos los contenidos </guilabel>, ya que no carga
+los archivos.</para>
+
+            <para>
+Su inconveniente es que los filtros de línea no se aplican al comparar. Por
+ejemplo, este método considera que los archivos son diferentes incluso si
+los filtros de línea están configurados para ignorar todas las diferencias
+entre ellos.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Contenidos binarios</term>
+
+          <listitem>
+            <para>
+Este método es más rápido que el método de comparación rápida de
+contenidos. Sin embargo, no aplica ningún complemento, filtro de líneas,
+opción "Ignorar mayúsculas y minúsculas", etc. En primer lugar, compara los
+tamaños de los archivos y, si son diferentes, considera que el contenido de
+los archivos es distinto sin compararlos.  Si los tamaños de los archivos
+coinciden, simplemente compara el contenido de los archivos en bytes. No se
+realiza ninguna detección de codificación de archivos, detección de fin de
+línea ni detección de archivos binarios. Este método de comparación es
+adecuado para comparar archivos con copias de seguridad.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+Fecha de modificación<indexterm>
+              <primary>marcas de tiempo</primary>
+
+              <secondary>compararación</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>
+Solo compara las fechas de modificación de los archivos, por lo que es mucho
+más rápido que cualesquiera de los métodos que comprueban el
+contenido. Pero, obviamente, su precisión depende de la exactitud de las
+fechas de modificación.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Fecha de modificación y tamaño</term>
+
+          <listitem>
+            <para>
+Es similar a la opción <guilabel>Fecha de modificación</guilabel>, pero
+además comprueba el tamaño de los archivos cuando las fechas son idénticas.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+Tamaño<indexterm>
+              <primary>tamaño de los archivos</primary>
+
+              <secondary>compararación</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>
+Solo compara el tamaño de los archivos, por lo que es rápido, pero no tan
+preciso como los métodos que analizan el contenido.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Existencia</term>
+
+          <listitem>
+            <para>
+Solo comprueba si los archivos existen en ambos lados. Si un archivo existe
+tanto en el izquierdo como en el derecho, se consideran idénticos, sin
+comprobar el contenido, el tamaño ni las marcas de tiempo.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>
+Detener después de la primera diferencia<indexterm>
+          <primary>comparar archivos</primary>
+
+          <secondary>detenerse tras la primera diferencia</secondary>
+        </indexterm><indexterm>
+          <primary>comparación de carpetas</primary>
+
+          <secondary>detenerse tras la primera diferencia</secondary>
+        </indexterm></title>
+
+      <para>
+Esta opción solo está disponible cuando se selecciona el método de
+comparación<guilabel> Contenidos breves </guilabel>.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): WinMerge examina todas las
+diferencias entre los archivos.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: esta opción optimiza las comparaciones analizando
+los archivos solo hasta que se encuentra la primera diferencia, en lugar de
+analizar siempre los archivos completos.</para>
+
+          <para>
+El inconveniente es que WinMerge podría no reconocer los archivos binarios
+como tales. Esto suele ocurrir si la primera diferencia se encuentra cerca
+del principio del archivo. Si sabe qué tipo de archivos está comparando (por
+ejemplo, cuáles son archivos binarios), esta opción puede ser una buena
+forma de acelerar las comparaciones. Sin embargo, no active esta opción si
+no está seguro del tipo de archivos que está comparando.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar diferencias de tiempo inferiores a 3 segundos<indexterm>
+          <primary>marcas de tiempo</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): los archivos con marcas de
+tiempo diferentes se detectan como distintos.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: en ocasiones (por ejemplo, cuando se utilizan
+recursos compartidos de red), las pequeñas diferencias en las marcas de
+tiempo no son significativas. Para obtener resultados más precisos en estas
+situaciones, esta opción permite ignorar las diferencias de tiempo
+inferiores a tres segundos.</para>
+
+          <para>
+Esta opción solo funciona con los métodos de comparación<guimenuitem> Fecha
+de modificación </guimenuitem> y <guimenuitem> Fecha de modificación y
+tamaño </guimenuitem> (descritos en <xref linkend="Configuration_compmethod"
+/>). No tiene ningún efecto con los otros métodos.</para>
+
+          <warning>
+            <para>
+Esta opción solo debe activarse cuando se detecte una diferencia horaria.
+De lo contrario, puede dar lugar a resultados de comparación incorrectos.</para>
+          </warning>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Incluir subcarpetas<indexterm>
+          <primary>incluir subcarpetas</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Activado</option> (predeterminado): WinMerge realiza una comparación
+recursiva e incluye también las subcarpetas.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Desactivado</option>: WinMerge solo compara los archivos de la
+carpeta raíz.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Expandir subcarpetas después de la comparación<indexterm>
+          <primary>expandir subcarpetas</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>No expandir</option> (predeterminado): las subcarpetas permanecen
+ocultas tras la comparación.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Expandir todas las subcarpetas</option>: todas las subcarpetas se
+expanden tras la comparación.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Expandir las subcarpetas diferentes</option>: tras la comparación,
+solo se expanden las subcarpetas que presentan diferencias.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Expandir las subcarpetas idénticas</option>: tras la comparación,
+solo se expanden las subcarpetas que no presentan diferencias.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Incluir el contenido de las subcarpetas únicas<indexterm>
+          <primary>incluir subcarpetas únicas</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Activado</option> (predeterminado): WinMerge también muestra el
+contenido de las subcarpetas únicas.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Desactivado</option>: WinMerge ignora las subcarpetas únicas al
+comparar carpetas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignorar puntos de reanálisis<indexterm>
+          <primary>puntos de reanálisis</primary>
+
+          <secondary>detectar e ignorar las diferencias</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): compara el contenido de las
+carpetas de puntos de reanálisis como si fueran carpetas normales.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: ignora el contenido de las carpetas que son
+puntos de reanálisis. Por ejemplo, C:\Users\All Users es un enlace simbólico
+a C:\ProgramData y al activar esta opción se omitirá la comparación de la
+carpeta C:\Users\All Users</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Cambiar a comparación rápida cuando el tamaño supere (MB)<indexterm>
+          <primary>comparación rápida</primary>
+
+          <secondary>límite</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option>: no está activo a menos que el método de
+comparación esté configurado en una opción distinta a comparación de
+<guilabel>Todos los contenidos</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: se activa cuando el método de comparación está
+configurado como comparación de <guilabel>Todos los contenidos</guilabel>.</para>
+
+          <para>
+Tamaño mínimo para cambiar al método de comparación <guilabel>Contenidos
+breves</guilabel>.  Cuando se selecciona el método de comparación
+<guilabel>Todos los contenidos</guilabel> los archivos cuyo tamaño (en
+megabytes) superen este valor se comparan utilizando el método de
+comparación <guilabel>Contenidos breves</guilabel>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Cambiar a comparación binaria cuando el tamaño supere (MB)<indexterm>
+          <primary>Comparación binaria</primary>
+
+          <secondary>límite</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option>: no está activo a menos que el método de
+comparación esté configurado en una opción distinta de <guilabel>Todos los
+contenidos</guilabel> y <guilabel>Contenidos breves</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: se activa cuando el método de comparación está
+configurado como <guilabel>Todos los contenidos</guilabel> o
+<guilabel>Contenidos breves</guilabel>.</para>
+
+          <para>
+Límite para cambiar al método de comparación de contenido binario. Cuando se
+selecciona el método de comparación de <guilabel>Todos los
+contenidos</guilabel> o <guilabel>Contenidos breves</guilabel>, los archivos
+cuyo tamaño (en megabytes) superen este valor, se comparan utilizando el
+método de comparación de <guilabel>contenido binario</guilabel>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Núcleos de CPU que se van a utilizar<indexterm>
+          <primary>hilos para comparación</primary>
+        </indexterm></title>
+
+      <para>
+Número de hilos que se utilizan para la comparación. Si se introduce un
+valor negativo, WinMerge sumará el número de núcleos de CPU disponibles.</para>
+    </section>
+
+    <section>
+      <title>
+Condiciones de comparación adicionales<indexterm>
+          <primary>expresión de filtro</primary>
+        </indexterm></title>
+
+      <para>
+Permite especificar condiciones de comparación adicionales mediante
+expresiones de filtro al comparar carpetas.  Por ejemplo, aunque el método
+de comparación seleccionado (como Todos los contenidos) considere que los
+archivos son idénticos, puede añadir condiciones como <screen>allequal(Date)</screen> o <screen>LeftDate =
+        RightDate</screen> para exigir que
+las fechas de modificación de los archivos también coincidan.  Al hacer clic
+en el botón <guilabel>=</guilabel>, situado a la derecha del campo de
+entrada, aparece un menú con opciones como <guilabel>Comparar
+tamaño</guilabel> o <guilabel>Comparar fecha</guilabel>, etc.  Al
+seleccionar <guilabel>Comparar fecha</guilabel> se inserta automáticamente
+<literal>allequal(Date)</literal> en el campo.</para>
+    </section>
+
+    <section>
+      <title>
+Detección de renombrados o desplazamientos<indexterm>
+          <primary>detección de renombramientos</primary>
+        </indexterm><indexterm>
+          <primary>detección de desplazamientos</primary>
+        </indexterm></title>
+ 
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): WinMerge no detecta los
+archivos ni las carpetas que se hayan renombrado o movido.</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>Detección de renombramientos</option>: detecta archivos o carpetas
+con nombres diferentes pero con claves de detección coincidentes dentro del
+mismo directorio. Los archivos y carpetas se agrupan cuando comparten la
+misma clave de detección.</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>Detección de renombramientos y desplazamientos</option>: detecta
+archivos o carpetas con nombres diferentes o ubicados en directorios
+distintos, pero que coinciden en las claves de detección.  Este modo detecta
+tanto los elementos renombrados (en el mismo directorio) como los elementos
+movidos (a directorios diferentes).</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Claves de detección de renombrados/desplazamientos<indexterm>
+          <primary>Claves de detección de renombrados</primary>
+        </indexterm><indexterm>
+          <primary>Claves de detección de desplazamientos</primary>
+        </indexterm></title>
+
+      <para>
+Especifica la expresión de filtro utilizada para generar claves de detección
+que permitan comparar archivos y carpetas entre ambas partes.  Los elementos
+con claves coincidentes se agrupan como elementos que podrían haber sido
+renombrados o desplazados. Por ejemplo, si se establece la clave en
+<literal>Tamaño</literal>, se agruparán los archivos con el mismo tamaño,
+mientras que si se establece en <literal>Nombre</literal>, se agruparán los
+archivos con el mismo nombre (lo cual resulta útil para detectar
+desplazamientos).</para>
+
+      <para>
+Al hacer clic en el botón <guilabel>=</guilabel> situado a la derecha del
+campo de entrada, aparece un menú de ayuda con expresiones clave de
+detección habituales:</para>
+
+      <section>
+        <title>Claves básicas para la detección</title>
+        <variablelist>
+          <varlistentry>
+            <term>Nombre</term>
+            <listitem>
+              <para>
+Busca archivos y carpetas por nombre. Resulta útil para detectar archivos
+que se han movido a otros directorios, pero que conservan el mismo nombre.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Nombre base (sin extensión)</term>
+            <listitem>
+              <para>
+Busca archivos por nombre sin tener en cuenta la extensión. Por ejemplo,
+coincidirían "file.txt" y "file.doc".</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Nombre Unicode normalizado</term>
+            <listitem>
+              <para>
+Inserta la función <literal>normalizeUnicode(Name, "NFC")</literal> que
+busca archivos por su nombre de archivo Unicode normalizado.  Resulta útil
+para detectar archivos con nombres equivalentes, pero con representaciones
+Unicode diferentes (por ejemplo, caracteres compuestos frente a caracteres
+descompuestos).</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Ruta relativa</term>
+            <listitem>
+              <para>
+Busca archivos según su ruta relativa desde la raíz de comparación. Resulta
+útil para detectar archivos a los que se les ha cambiado el nombre, pero que
+conservan su estructura de directorios relativa.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Tamaño</term>
+            <listitem>
+              <para>
+Busca archivos por tamaño. Resulta útil para detectar archivos a los que se
+les ha cambiado el nombre, pero que tienen el mismo tamaño.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Fecha</term>
+            <listitem>
+              <para>
+Busca archivos según la fecha y la hora de modificación.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Suma de comprobación (MD5)</term>
+            <listitem>
+              <para>
+Inserta <literal>if(IsFolder, Name, prop("Hash.MD5"))</literal>.  En el caso
+de las carpetas, la coincidencia se basa en el nombre. En el caso de los
+archivos, la coincidencia se basa en el hash MD5 del contenido.  Este es el
+método más preciso para detectar archivos renombrados, pero requiere
+calcular los hashes MD5, lo que puede resultar lento con archivos de gran
+tamaño.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Propiedades adicionales...</term>
+            <listitem>
+              <para>
+Abre un submenú que permite acceder a las propiedades de los archivos de
+Windows, como <literal>System.Author</literal>,
+<literal>System.Title</literal>, <literal>System.Keywords</literal>,
+etc. Puede utilizarlas para buscar archivos en función de sus metadatos. La
+expresión que se insertará será <literal>if(IsFolder, Name,
+prop("PropertyName"))</literal>.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>Funciones de transformación de cadenas</title>
+        <para>
+El menú incluye funciones de transformación de cadenas que se pueden aplicar
+a las claves de detección.  Al seleccionarlas, estas funciones envuelven la
+expresión actual (o el <literal>Nombre</literal> si está vacío):</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Insertar función replace()</term>
+            <listitem>
+              <para>
+Inserta <literal>replace(expression, "from", "to")</literal> para sustituir
+cadenas de texto literales en la clave.  Debe editar las cadenas de marcador
+de posición "from" y "to" para especificar qué texto se va a buscar y por
+cuál se va a sustituir.  Ejemplo: <literal>replace(Name, ".backup",
+"")</literal> elimina ".backup" de los nombres de archivo.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Insertar función regexReplace()</term>
+            <listitem>
+              <para>
+Inserta <literal>regexReplace(expression, "pattern",
+"replacement")</literal> para sustituir texto mediante expresiones
+regulares.  Admite referencias retroactivas ($1, $2, etc.) en la cadena de
+sustitución.  Ejemplo: <literal>regexReplace(Name, "^(\\d+)_(.+)$",
+"$2")</literal> elimina el número inicial y el guion bajo de los nombres de
+archivo.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>Listas de sustitución</title>
+        <para>
+El submenú "Listas de sustitución" permite acceder a la función de
+sustitución masiva de cadenas mediante archivos externos:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Crear una lista de sustitución de cadenas e insertar...</term>
+            <listitem>
+              <para>
+Crea un nuevo archivo de valores separados por tabulaciones (TSV) con una
+plantilla para la sustitución de cadenas.  El archivo se guarda en
+<filename>%APPDATA%\WinMerge\ReplaceLists</filename> (o en
+<filename>Documents\WinMerge\ReplaceLists</filename> dependiendo de la
+configuración).  Una vez creado, el archivo se abre en el editor de texto
+predeterminado y se inserta la función <literal>replaceWithList(expression,
+"filepath")</literal>.</para>
+              <para>
+El formato del archivo es de una sustitución por línea:
+<literal>search_string&lt;TAB&gt;replacement_string</literal>.  Las líneas
+que comienzan por <literal>#</literal> son comentarios.</para>
+              <para>
+Ejemplo de contenido del archivo: <screen># Sustituir los números de versión en los nombres de los archivos
+v1.0  v2.0
+beta  versión</screen></para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Crear una lista de sustitución con expresiones regulares e insertar...</term>
+            <listitem>
+              <para>
+Similar a Crear una lista de sustitución de cadenas e insertar..., pero para
+sustituciones de expresiones regulares.  Crea un archivo de plantilla en
+<filename>%APPDATA%\WinMerge\RegexReplaceLists</filename> (o
+<filename>Documents\WinMerge\RegexReplaceLists</filename>).  Inserta
+<literal>regexReplaceWithList(expression, "filepath")</literal>.</para>
+              <para>
+El formato del archivo es:
+<literal>regex_pattern&lt;TAB&gt;replacement</literal> con soporte para
+referencias retroactivas.</para>
+              <para>
+Ejemplo de contenido del archivo: <screen># Normalizar los formatos de fecha
+(\d{4})-(\d{2})-(\d{2}) $1_$2_$3
+\d+   NUMBER</screen></para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Listas de sustitución de cadenas / Listas de sustitución con expresiones
+regulares</term>
+            <listitem>
+              <para>
+Estos submenús muestran todos los archivos TSV que se encuentran en las
+carpetas ReplaceLists correspondientes.  Al seleccionar un archivo de la
+lista, se inserta la función <literal>replaceWithList()</literal> o
+<literal>regexReplaceWithList()</literal> correspondiente con la ruta del
+archivo.  Esto le permite reutilizar rápidamente las listas de sustitución
+creadas anteriormente.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Abrir la carpeta de listas de sustitución de cadenas... / Abrir la carpeta
+de listas de sustitución de expresiones regulares...</term>
+            <listitem>
+              <para>
+Abre el Explorador de Windows en la carpeta donde se guardan los archivos de
+la lista de sustitución, lo que le permite gestionar (editar, eliminar,
+organizar) sus archivos de la lista de sustitución directamente.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>Normalización de texto</title>
+        <para>
+El submenú "Normalización de texto" ofrece funciones para normalizar el
+texto y facilitar así la búsqueda de coincidencias:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Minúsculas / Mayúsculas</term>
+            <listitem>
+              <para>
+Inserta <literal>toLower(expression)</literal> o
+<literal>toUpper(expression)</literal> para convertir todos los caracteres a
+minúsculas o mayúsculas. Resulta útil para realizar coincidencias que no
+distinguen entre mayúsculas y minúsculas.  Ejemplo:
+<literal>toLower(Name)</literal> considera que "File.txt", "FILE.TXT", y
+"file.txt" son idénticos.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Ancho medio / Ancho completo</term>
+            <listitem>
+              <para>
+Inserta <literal>toHalfWidth(expression)</literal> o
+<literal>toFullWidth(expression)</literal>.  Convierte caracteres de ancho
+medio a caracteres de ancho completo (principalmente para texto en
+japonés).  Ejemplo: <literal>toHalfWidth(Name)</literal> convierte "ファイル"
+(katakana de ancho completo) en "ﾌｧｲﾙ" (de ancho medio).</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Conversión al chino</term>
+            <listitem>
+              <para>
+Ofrece las funciones <literal>toSimplifiedChinese(expression)</literal> y
+<literal>toTraditionalChinese(expression)</literal>.  Convierte entre
+caracteres chinos simplificados y tradicionales. Resulta útil para buscar
+archivos con nombres escritos en diferentes conjuntos de caracteres chinos.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Conversión al japonés</term>
+            <listitem>
+              <para>
+Ofrece las funciones <literal>toHiragana(expression)</literal> y
+<literal>toKatakana(expression)</literal>.  Convierte entre los caracteres
+japoneses hiragana y katakana.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Normalizar Unicode</term>
+            <listitem>
+              <para>
+Inserta la función <literal>normalizeUnicode(expression)</literal> que
+normaliza el texto Unicode a la forma NFC (forma de normalización de
+composición canónica).  Esto resulta útil para comparar archivos cuyos
+nombres puedan utilizar diferentes codificaciones Unicode para los mismos
+caracteres (por ejemplo, un solo carácter 'é' frente a 'e' + acento agudo
+combinatorio).</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <para>
+Puede combinar varias claves utilizando el operador <literal>+</literal> con
+un separador.  Por ejemplo, <literal>Nombre + "|" + Tamaño</literal> creará
+una clave compuesta que combine tanto el nombre del archivo como el tamaño.</para>
+
+      <note>
+        <para>
+La expresión clave de detección se evalúa para cada lado de una comparación
+de archivos o carpetas con el fin de generar una clave.  Los elementos se
+agrupan cuando sus claves coinciden. Por ejemplo, con la clave
+<literal>Tamaño</literal>, un archivo de 1024 bytes a la izquierda y otro de
+1024 bytes a la derecha (aunque tengan nombres diferentes) se agruparán.</para>
+      </note>
+    </section>
+ 
+    <section>
+      <title>
+Combinar cambios de nombre y desplazamientos<indexterm>
+          <primary>combinar elementos renombrados</primary>
+        </indexterm><indexterm>
+          <primary>combinar elementos movidos</primary>
+        </indexterm></title>
+ 
+      <para>
+Especifica cómo deben combinarse los elementos renombrados y desplazados
+detectados por la función de detección de cambios de nombre y ubicación en
+entradas únicas dentro del árbol de comparación de carpetas.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): los elementos renombrados o
+movidos siguen apareciendo como entradas independientes en el árbol de
+comparación de carpetas. Los elementos se agrupan (indicado por un
+identificador de grupo común), pero los archivos y carpetas de cada lado se
+muestran por separado.</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>Combinar renombrados</option>: los elementos que se han detectado
+como renombrados, pero que se encuentran en el mismo directorio se combinan
+en una sola entrada. Esto simplifica el árbol de comparación, ya que muestra
+un único elemento que existe en varias partes con nombres diferentes. Los
+elementos que se encuentran en directorios distintos (elementos movidos) no
+se combinan.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Combinar renombrados y desplazados</option>: tanto los elementos
+renombrados (mismo directorio, nombres diferentes) como los desplazados
+(directorios diferentes) se combinan en entradas únicas cuando se
+detectan. Esto ofrece una vista más compacta de los archivos y carpetas
+renombrados y reubicados.</para>
+        </listitem>
+      </itemizedlist>
+ 
+      <note>
+        <para>
+La combinación solo se produce cuando cada lado tiene como máximo un
+elemento en el grupo y los elementos cumplen los criterios de combinación
+(el mismo directorio para los cambios de nombre o cualquier directorio para
+los desplazamientos). Si hay varios archivos que coinciden en un lado (caso
+ambiguo), no se combinan.</para>
+      </note>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_table">
+    <title>
+Comparar &gt; Tabla<indexterm>
+        <primary>archivos de tablas</primary>
+      </indexterm></title>
+    <section>
+      <title>Formatos de archivos CSV</title>
+      <para>
+Especifica el formato del nombre de archivo para los archivos de valores
+separados por comas que se abrirán en formato de tabla. Para especificar
+varios elementos, sepárelos con un punto y coma. De forma predeterminada, se
+especifica *.csv.  Si no desea abrir los archivos con la extensión .csv en
+formato de tabla, elimine *.csv.</para>
+    </section>
+
+    <section>
+      <title>Formatos de archivos TSV</title>
+      <para>
+Especifica el formato del nombre de archivo para los archivos de valores
+separados por tabulaciones que se abrirán en formato de tabla.  Para
+especificar varios elementos, sepárelos con un punto y coma. De forma
+predeterminada, se especifica *.tsv.  Si no desea abrir los archivos con la
+extensión .tsv en formato de tabla, elimine *.tsv.</para>
+    </section>
+
+    <section>
+      <title>Valores separados por delimitadores personalizados</title>
+      <para>
+Si desea abrir archivos de texto con valores separados por caracteres
+distintos de las comas o las tabulaciones, en formato tabular, especifique
+el formato del nombre del archivo y del delimitador.</para>
+    </section>
+
+    <section>
+      <title>Permitir saltos de línea entre comillas</title>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Activado</option> (predeterminado): si hay un carácter de salto de
+línea entre dos comillas consecutivas, dicho carácter se considera parte del
+valor. Active esta opción si desea procesar archivos CSV/TSV que contengan
+varias líneas en un mismo campo.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Desactivado</option>: Desactiva la opción anterior.  Desactiva esta
+opción al abrir archivos con comillas incorrectas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Carácter de comillas</title>
+      <para>
+Especifica el carácter que se considera como comillas.  Los delimitadores
+que se encuentren dentro del rango de texto delimitado por los caracteres
+aquí especificados se considerarán parte del valor.  Este campo puede
+dejarse vacío.  Para abrir archivos en los que las comillas sean meros
+valores, déjelo vacío o especifique un carácter que no exista en el archivo.</para>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_binary">
+    <title>Comparar &gt; Binario</title>
+    <section>
+      <title>
+Patrones de archivos binarios<indexterm>
+          <primary>archivos binarios</primary>
+        </indexterm></title>
+      <para>
+Especifica los patrones de nombre de los archivos binarios que se abrirán en
+la ventana de comparación binaria.  Para especificar varios elementos,
+sepárelos con un punto y coma. De forma predeterminada, se especifica
+*.bin.  Si no desea que los archivos con la extensión .bin se abran en la
+ventana de comparación binaria, elimine *.bin de la lista.</para>
+    </section>
+    <section>
+      <title>
+Configuración de Frhed<indexterm>
+          <primary>frhed</primary>
+        </indexterm></title>
+      <variablelist>
+        <varlistentry>
+          <term>Ver configuración...</term>
+
+          <listitem>
+            <para>Aquí puede elegir:</para>
+            <itemizedlist>
+              <listitem>
+                <para>El número de bytes que se mostrarán por línea en el volcado hexadecimal
+(solo se aplica si la opción &quot;Ajustar automáticamente el número de
+bytes por línea&quot; está desactivada)</para>
+              </listitem>
+              <listitem>
+                <para>Si el recuadro &quot;Ajustar automáticamente el número de bytes por
+línea&quot; está marcado, el número de bytes que se muestran por línea en el
+volcado hexadecimal se ajusta de tal manera que se aproveche en todo momento
+todo el ancho de la ventana.</para>
+              </listitem>
+              <listitem>
+                <para>El número de dígitos de la longitud del desplazamiento (solo se aplica si la
+opción &quot;Ajustar longitud del desplazamiento&quot; está desactivada)</para>
+              </listitem>
+              <listitem>
+                <para>Si la longitud del desplazamiento debe ajustarse automáticamente a la del
+desplazamiento máximo (activado) o rellenarse a la derecha con espacios
+(desactivado)</para>
+              </listitem>
+              <listitem>
+                <para>Cómo mostrar los valores en la posición del cursor, ya sea como números
+enteros con signo o sin signo</para>
+              </listitem>
+              <listitem>
+                <para>Si el modo de solo lectura debe activarse automáticamente al abrir los
+archivos.</para>
+              </listitem>
+              <listitem>
+                <para>El nombre del editor de texto que se abrirá al ejecutar el comando
+<menuchoice><guimenu>Editar</guimenu><guimenuitem> Abrir en editor de texto
+</guimenuitem></menuchoice></para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Modo binario...</term>
+
+          <listitem>
+            <para>¿Qué orden de bytes se debe utilizar? O bien Little-endian, como el que se
+utiliza en los ordenadores Intel, o bien Big-endian, utilizado, por ejemplo,
+en ordenadores con un procesador Motorola. La diferencia entre estos modos
+es la siguiente: pensemos en una palabra larga, que tiene una longitud de 4
+bytes (denominados de la A a la D).</para>
+
+            <screen>Palabra larga en el registro del procesador = ABCD.</screen>
+
+            <para>El bit menos significativo, que tiene el valor 1, se encuentra en el byte
+"D". En un registro del procesador, la palabra larga se ordena de esta
+manera. Si este valor se escribe en una posición de la memoria, según la
+convención de Intel, la palabra larga se escribe de esta forma, con los
+desplazamientos crecientes hacia la derecha:</para>
+
+            <screen>Palabra larga en la memoria = DCBA.</screen>
+
+            <para>Es decir, los bytes que componen la palabra larga se escriben en orden
+inverso al que tienen en un registro del procesador.</para>
+
+            <para>Esto significa que un archivo creado por un equipo Big-endian contendrá
+valores erróneos en los campos 'palabra larga' y 'palabra' si lo lee un
+equipo Little-endian sin realizar una conversión.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Juego de caracteres...</term>
+
+          <listitem>
+            <para>Aquí puede seleccionar el juego de caracteres para mostrar y escribir
+caracteres: ANSI (el juego de caracteres de Windows) u OEM (el juego de
+caracteres de DOS).  También puede seleccionar el tamaño de la fuente en
+puntos.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_image">
+    <title>
+Comparar &gt; Imagen<indexterm>
+        <primary>archivos de imagen</primary>
+      </indexterm></title>
+    <section>
+      <title>Formatos de archivos de imagen</title>
+      <para>
+Especifique los formatos de nombre de archivo para los archivos de imagen
+que se abrirán en la ventana de comparación de imágenes.  Para especificar
+varios elementos, sepárelos con un punto y coma.  De forma predeterminada,
+las extensiones .pdf, .svg, .wmf y .emf no figuran en la lista.  Añádalas si
+desea que los archivos con estas extensiones se muestren en la ventana de
+comparación de imágenes.</para>
+    </section>
+
+    <section>
+      <title>Activar la comparación de imágenes en la comparación de carpetas</title>
+      <para>
+Cuando esta opción está activada, las comparaciones de carpetas tratarán
+como imágenes los archivos que coincidan con los formatos especificados.  Se
+ignorarán las diferencias en los metadatos y se aplicará un límite de
+distancia cromática para determinar las diferencias visuales entre las
+imágenes.</para>
+    </section>
+
+    <section>
+      <title>Resultado de OCR</title>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Solo texto</option> (predeterminado): muestra únicamente el texto
+reconocido de la imagen.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Posición y texto línea por línea</option>: muestra el texto
+reconocido línea por línea junto con su posición en la imagen original.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Posición y texto palabra por palabra</option>: muestra el texto
+reconocido palabra por palabra junto con su posición en la imagen original.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_webpage">
+    <title>
+Comparar &gt; Página web<indexterm>
+        <primary>página web</primary>
+      </indexterm></title>
+
+    <section>
+      <title>
+Patrón de URL a incluir (expresión regular)<indexterm>
+        </indexterm></title>
+      <para>
+Introduzca una expresión regular en este campo para especificar las rutas de
+los archivos o las URL que deben abrirse en la ventana de comparación de
+páginas web.  Por ejemplo, si introduce la expresión regular
+<code>.*\.html?|https?://.*</code>, los archivos con la extensión .html o
+.htm y las URL que empiecen por http:// o https:// se abrirán en la ventana
+de comparación de páginas web.</para>
+    </section>
+
+    <section>
+      <title>
+Patrón de URL a excluir (expresión regular)<indexterm>
+        </indexterm></title>
+      <para>
+Introduce una expresión regular para excluir determinadas rutas de archivo o
+URL de la ventana "Comparación de páginas web".  Esto se aplica a los
+elementos que coincidan con el campo "Patrón de URL que se debe incluir".
+Utilice esta opción para excluir patrones específicos que no desee incluir.</para>
+    </section>
+
+    <section>
+      <title>
+Ubicación de la carpeta de datos de usuario<indexterm>
+        </indexterm></title>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Carpeta AppData</option> (predeterminado): guarda las cookies, el
+historial de navegación y los datos de la caché en la carpeta
+%APPDATA%\WinMerge\WinWebDiff.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Carpeta de instalación</option>: guarda los datos en el directorio
+de instalación de WinMerge, lo que normalmente requiere permisos de
+administrador para escribir. Por lo general, no se recomienda hacerlo.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Carpetas de datos de usuario independientes para cada panel<indexterm>
+        </indexterm></title>
+      <para>Crea carpetas de datos independientes para cada panel, lo que evita que los
+datos se mezclen entre ellos.</para>
+    </section>
+  </section>
+
+  <section id="Configuration_messageboxes">
+    <title>
+Página Cuadros de mensajes<indexterm>
+        <primary>cuadros de mensajes</primary>
+      </indexterm></title>
+
+    <section>
+      <title>Restablecer</title>
+
+      <para>
+WinMerge le permite ocultar algunos cuadros de diálogo habituales. Por
+ejemplo, cuando se abren dos archivos idénticos, normalmente aparece el
+cuadro de diálogo titulado <guilabel>Los archivos seleccionados son
+idénticos</guilabel>. Si no desea que este cuadro vuelva a aparecer, puede
+activar (marcar) la opción que aparece en ese cuadro de diálogo para que no
+se vuelva a mostrar el mensaje.</para>
+
+      <para>
+Más adelante, es posible que decida que quiere volver a ver esos mensajes.
+En ese caso, haga clic en el botón <guibutton>Restablecer</guibutton> para
+que vuelvan a aparecer los cuadros de mensajes.</para>
+
+      <note>
+        <para>
+Le recomendamos que no oculte los mensajes al actualizar WinMerge a una
+versión más reciente. El instalador activa su visualización automáticamente,
+pero si no utiliza el instalador, recuerde activar la visualización de
+mensajes mediante el botón <guibutton>Restablecer</guibutton>.</para>
+      </note>
+    </section>
+  </section>
+
+  <section id="Configuration_editor_general">
+    <title>
+Edición &gt; General<indexterm>
+        <primary>edición</primary>
+
+        <secondary>opciones de la ventana de comparación de archivos</secondary>
+      </indexterm></title>
+
+    <section id="Configuration_syntaxhighlight">
+      <title>
+Resaltar sintaxis<indexterm>
+          <primary>resaltado de sintaxis</primary>
+
+          <secondary>activar y desactivar</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Activado</option> (predeterminado): WinMerge puede resaltar la
+sintaxis de muchos lenguajes de programación y formatos web. Para ver los
+formatos compatibles de forma predeterminada, haga clic en <menuchoice>
+<guimenu>Ver</guimenu> <guimenuitem>Resaltar sintaxis</guimenuitem>
+</menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Desactivado</option>: el resaltado de sintaxis consume cierta
+capacidad de procesamiento, por lo que, si la actualización de la pantalla
+de WinMerge parece lenta, desactivar esta opción podría ayudar.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Conservar el fin de línea original<indexterm>
+          <primary>EOL</primary>
+
+          <secondary>conservación</secondary>
+        </indexterm><indexterm>
+          <primary>fin de línea</primary>
+
+          <see>EOL</see>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): da por hecho que los archivos
+son de Windows. Si un archivo no utiliza el formato de fin de línea estándar
+de Windows, WinMerge lo considera un error. Cambia silenciosamente los
+finales de línea al estilo de Windows, en lugar de detectarlos como
+diferencias. Por lo tanto, la barra de estado de la ventana de comparación
+de archivos muestra el estilo de fin de línea como <guilabel>Win</guilabel>.</para>
+
+          <para>
+En la mayoría de los casos, es recomendable dejar esta opción desactivada:
+el comportamiento predeterminado funciona incluso cuando se comparan dos
+archivos con diferentes formatos de fin de línea.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: impide que WinMerge cambie automáticamente los
+finales de línea, de modo que detecte los distintos estilos de fin de línea
+en cada línea. Esto puede resultar útil para trabajar con archivos
+procedentes de sistemas con diferentes estilos de fin de línea (por ejemplo,
+Windows y Unix).</para>
+
+          <important>
+            <para>
+Esta es una opción avanzada para usuarios que estén familiarizados con los
+bytes de fin de línea y que deseen comparar archivos con diferentes estilos
+de fin de línea dentro de <emphasis>un</emphasis> mismo archivo.  Le
+recomendamos que no active esta opción a menos que necesite esta
+funcionalidad avanzada. Recuerde que esta opción no es necesaria para
+comparar dos archivos con diferentes estilos de fin de línea.</para>
+          </important>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Tabulaciones<indexterm>
+          <primary>pestañas</primary>
+
+          <secondary>opciones de edición</secondary>
+        </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Tamaño de tabulación</term>
+
+          <listitem>
+            <para>
+Ancho de un espacio de tabulación. Especifica un valor
+<replaceable>n</replaceable>: el ancho resultante equivale al de
+<replaceable>n</replaceable> caracteres. Valor predeterminado: 4. El valor
+máximo es 64.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Opciones de inserción de tabulaciones</term>
+
+          <listitem>
+            <para>
+Determina qué tipo de carácter se utiliza al insertar una tabulación en el
+texto. Solo se puede activar una de estas opciones:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>
+<guilabel>Insertar tabulaciones</guilabel> (predeterminado): utiliza un solo
+carácter de tabulación.</para>
+              </listitem>
+
+              <listitem>
+                <para>
+<guilabel>Insertar espacios</guilabel>: utiliza uno o varios espacios (según
+el <option>tamaño de la tabulación</option>) en lugar del carácter de
+tabulación. Por ejemplo, con el tamaño de tabulación predeterminado, se
+insertan cuatro espacios.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>
+Modo de renderizado<indexterm>
+          <primary>renderizado</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>GDI</option> (predeterminado): muestra el texto mediante la interfaz
+de dispositivos gráficos (GDI).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Modos de DirectWrite</option>: muestra el texto utilizando diversos
+modos de representación de DirectWrite, incluida la compatibilidad con
+emojis en color en Windows 8.1 y versiones posteriores. Disponible
+únicamente en la versión de 64 bits de WinMerge. Consulte <ulink
+url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">DirectWrite
+Rendering Modes</ulink> para obtener más información.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_editor_comparemerge">
+    <title>
+Edición &gt; Comparar/Combinar<indexterm>
+        <primary>edición</primary>
+
+        <secondary>opciones de la ventana de comparación de archivos</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>
+Volver a comparar automáticamente<indexterm>
+          <primary>volver a comparar archivos</primary>
+
+          <secondary>activar y desactivar la comparación automática</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Desactivado</option> (predeterminado): WinMerge vuelve a comparar
+automáticamente cuando combina una diferencia o si se realiza una nueva
+comparación manualmente (por ejemplo, al hacer clic en el botón
+<guibutton>Volver a comparar</guibutton>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Activado</option>: obliga a WinMerge a volver a escanear tras cada
+evento de edición (un cambio en los archivos, como al escribir).</para>
+
+          <note>
+            <para>
+Para evitar ralentizar la edición, WinMerge retrasa ligeramente la nueva
+comparación automática: espera un segundo después de cada acción de
+edición. Dado que cada nueva acción de edición reinicia el temporizador, no
+se realizan nuevas comparaciones hasta que se pausa o se detiene la edición.</para>
+          </note>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Copiar granularidad para las diferencias seleccionadas<indexterm>
+          <primary>copiar granularidad</primary>
+        </indexterm></title>
+
+      <para>
+Especifica la granularidad al copiar a otro panel haciendo clic en la opción
+del menú <guimenuitem>Copiar al derecho</guimenuitem>, etc., con texto
+seleccionado.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Fragmentos de diferencias</option>: copia fragmentos de diferencias
+dentro del texto seleccionado.Copia las diferencias del texto seleccionado
+línea por línea.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Diferencias en línea</option>: copia las diferencias en línea del
+texto seleccionado.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Línea</option>: copia las diferencias del texto seleccionado línea
+por línea.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Carácter</option> (predeterminado): copia las diferencias del texto
+seleccionado carácter por carácter.</para>
+        </listitem>
+
+      </itemizedlist>
+    </section>
+
+    <section id="Configuration_viewlinediffs">
+      <title>
+Colorear según las diferencias de líneas<indexterm>
+          <primary>diferencia de líneas</primary>
+
+          <secondary>opciones de visualización</secondary>
+        </indexterm></title>
+
+      <para>
+Estos ajustes activan y configuran la detección de <glossterm> diferencias
+entre líneas </glossterm> (cambios dentro de las líneas de los bloques de
+diferencias):</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Ver diferencias entre líneas</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para>
+<option>Activado</option> (predeterminado): WinMerge resalta las diferencias
+dentro de las líneas. También activa la opción del menú <menuchoice>
+<guimenu>Ver</guimenu> <guimenuitem>Ver diferencias entre
+líneas</guimenuitem> </menuchoice>.</para>
+
+                <para>Elija una de estas subopciones:</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para>
+<guilabel>A nivel de carácter</guilabel>: resalta los caracteres
+individuales que son diferentes. Esta opción puede resultar útil si busca
+cambios dentro de las palabras o en formatos de archivo que no tienen
+separaciones claras entre palabras.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para>
+<guilabel>A nivel de palabra</guilabel> (predeterminado): resalta las
+palabras completas que son diferentes.</para>
+
+                    <itemizedlist>
+                      <listitem>
+                        <para>
+<guilabel>Separar por espacios en blanco</guilabel> (predeterminado): se da
+por hecho que las palabras están separadas por caracteres de espacio en
+blanco. Esto suele funcionar con los archivos de texto habituales.</para>
+                      </listitem>
+
+                      <listitem>
+                        <para>
+<guilabel>Separar en espacios en blanco o signos de puntuación</guilabel>:
+considera tanto los espacios en blanco como los signos de puntuación como
+separadores de palabras. Esto puede resultar útil para gestionar listas
+separadas por signos de puntuación (como las listas separadas por comas).</para>
+                      </listitem>
+                    </itemizedlist>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+
+              <listitem>
+                <para>
+<option>Desactivado</option>: WinMerge no resalta las diferencias entre
+líneas y se ignoran todos los ajustes relacionados con el nivel y los
+espacios en blanco.  También desactiva la opción de menú <menuchoice>
+<guimenu>Ver</guimenu> <guimenuitem>Ver diferencias entre
+líneas</guimenuitem> </menuchoice>.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Caracteres de separación de palabras</term>
+
+          <listitem>
+            <para>Especifica los símbolos que se consideran separadores de palabras distintos
+de los espacios en blanco cuando se selecciona la opción <guilabel>Separar
+en espacios en blanco o signos de puntuación</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <note>
+        <title>Tema relacionado</title>
+
+        <para>
+La sección <xref linkend="CompareFiles_linediff-highlight" /> explica con
+más detalle cómo WinMerge detecta y marca las diferencias entre líneas.</para>
+      </note>
+    </section>
+
+  </section>
+
+  <section id="Configuration_editor_syntax">
+    <title>
+Edición &gt; Sintaxis<indexterm>
+        <primary>edición</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>
+Por determinar</para>
+  </section>
+
+  <section id="Configuration_colors_colorschemes">
+    <title>
+Colores &gt; Combinaciones de colores<indexterm>
+        <primary>combinaciones de colores</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>
+La página de combinaciones de colores le permite personalizar el aspecto
+general de WinMerge, incluyendo la compatibilidad con los modos claro y
+oscuro. Puede seleccionar y gestionar combinaciones de colores para cada
+modo, así como guardar o eliminar sus propias combinaciones personalizadas.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Modo de color</term>
+        <listitem>
+          <para>
+Seleccione el modo de color de la aplicación. Elija entre:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+<option>Claro</option> (predeterminado): utiliza la combinación de colores
+especificada para el modo claro. Cuando se selecciona, el aspecto de los
+cuadros de diálogo, los menús y otros elementos de la interfaz de usuario se
+mostrará en un estilo claro.</para>
+            </listitem>
+            <listitem>
+              <para>
+<option>Oscuro</option>: utiliza la combinación de colores especificada para
+el modo oscuro. Cuando se selecciona, el aspecto de los cuadros de diálogo,
+los menús y otros elementos de la interfaz de usuario se mostrará en un
+estilo oscuro.</para>
+            </listitem>
+            <listitem>
+              <para>
+<option>Según el sistema</option>: cambia automáticamente entre el modo
+claro y el modo oscuro según la configuración de su sistema operativo.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Esquema del modo claro</term>
+        <listitem>
+          <para>
+Selecciona la combinación de colores que se utilizará cuando el
+<guilabel>Modo de color</guilabel> esté configurado en "Claro". Las
+combinaciones disponibles son <option>Predeterminado</option> (por defecto),
+<option>Moderna</option> y cualquier combinación definida por el usuario que
+haya guardado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Esquema del modo oscuro</term>
+        <listitem>
+          <para>
+Selecciona la combinación de colores que se utilizará cuando el
+<guilabel>Modo de color</guilabel> esté configurado en "Oscuro". Las
+combinaciones disponibles incluyen <option>VS Dark</option>
+(predeterminado), <option>Solarized Dark</option> y cualquier combinación
+definida por el usuario que haya guardado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Guardar el esquema actual</term>
+        <listitem>
+          <para>
+Guarda la configuración de color actual como un nuevo esquema. El esquema se
+guarda como un archivo INI. <emphasis> Solo los esquemas guardados en la
+carpeta <filename>Documents/WinMerge/ColorSchemes</filename> aparecerán en
+las listas de esquemas del <guilabel>Modo claro</guilabel> y del
+<guilabel>Modo oscuro</guilabel>.  </emphasis></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Eliminar el esquema actual</term>
+        <listitem>
+          <para>
+Elimina la combinación de colores seleccionada actualmente. Este botón solo
+está disponible para las combinaciones definidas por el usuario (no para las
+combinaciones predefinidas, como "Predeterminado" o "VS Dark").</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+Utilice estas opciones para adaptar la interfaz de WinMerge a sus
+preferencias o para que coincida con el tema de su sistema. Los esquemas de
+color personalizados facilitan compartir o reutilizar su configuración de
+colores preferida.</para>
+  </section>
+
+  <section id="Configuration_colors_differences">
+    <title>
+Colores &gt; Diferencias<indexterm>
+        <primary>colores de diferencias</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>
+Utilice esta página si desea cambiar cualesquiera de los colores que se
+utilizan en la ventana de comparación de archivos. Puede configurar el color
+de fondo, el de los elementos eliminados y el del texto.</para>
+
+    <para>
+Para cambiar un color, haga clic en su recuadro para abrir el cuadro de
+diálogo estándar de selección de colores. Elija uno de los colores
+predefinidos o defina su propio color personalizado y, a continuación, haga
+clic en <guibutton>Aceptar</guibutton> para aplicar el nuevo color al
+recuadro.</para>
+
+    <para>
+Para volver a los colores predeterminados de un esquema, seleccione otro
+esquema y vuelva al esquema modificado.</para>
+  </section>
+
+  <section id="Configuration_colors_syntax">
+    <title>
+Colores &gt; Sintaxis<indexterm>
+        <primary>resaltado de sintaxis</primary>
+
+        <secondary>opciones de color</secondary>
+      </indexterm></title>
+
+    <para>
+De forma predeterminada, la ventana de comparación de archivos de WinMerge
+resalta la sintaxis de ciertos tipos de código fuente, tal y como se
+describe en <xref linkend="Configuration_syntaxhighlight" />.  Esta página
+enumera los elementos de sintaxis que se reconocen y le permite cambiar el
+color y el grosor del texto.</para>
+
+    <para>
+Para volver a los colores predeterminados de un esquema, seleccione otro
+esquema y vuelva al esquema modificado.</para>
+  </section>
+
+  <section id="Configuration_colors_text">
+    <title>
+Colores &gt; Texto<indexterm>
+        <primary>colores para el texto</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>
+Utilice esta página para cambiar los colores del texto. En primer lugar,
+marque la opción <guilabel>Usar colores personalizados para el
+texto</guilabel>. Esto activa las opciones de texto. Hay una opción para
+tres tipos de texto: espacios en blanco, texto normal y texto
+seleccionado. Para cada tipo de texto, puede elegir un color para el fondo y
+para el texto.</para>
+  </section>
+
+  <section id="Configuration_colors_marker">
+    <title>
+Colores &gt; Marcadores<indexterm>
+        <primary>colores para marcadores</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>Por determinar</para>
+  </section>
+
+  <section id="Configuration_colors_foldercompare">
+    <title>
+Colores &gt; Comparación de carpetas<indexterm>
+        <primary>comparación de carpetas</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>
+De forma predeterminada, la ventana de comparación de carpetas de WinMerge
+utiliza colores de fondo para indicar el estado de un elemento (igual,
+diferente, inexistente o filtrado).</para>
+
+    <para>
+Para cambiar un color, haga clic en su recuadro para abrir el cuadro de
+diálogo estándar de selección de colores. Elija uno de los colores
+predefinidos o defina su propio color personalizado y, a continuación, haga
+clic en <guibutton>Aceptar</guibutton> para aplicar el nuevo color al
+recuadro.</para>
+
+    <para>
+Para volver a los colores predeterminados de un esquema, seleccione otro
+esquema y vuelva al esquema modificado.</para>
+  </section>
+
+  <section id="Configuration_archive">
+    <title>
+Soporte técnico para archivos<indexterm>
+        <primary>compresión de archivos</primary>
+
+        <secondary>configuración del soporte técnico tras la instalación</secondary>
+      </indexterm></title>
+
+    <para>
+Esta página contiene opciones para configurar la compatibilidad con archivos
+comprimidos mediante 7-Zip.</para>
+
+    <section>
+      <title>
+Enable archive file support<indexterm>
+          <primary>archivos 7-Zip</primary>
+
+          <secondary>enabling and disabling integration</secondary>
+        </indexterm></title>
+
+      <para>
+This option controls how WinMerge handles archive files (based on 7-Zip
+integration).</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (default): WinMerge recognizes 7-Zip archives.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: Turns off 7-Zip archive integration.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Detect archive type from file signature<indexterm>
+          <primary>detecting archive types</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (default): WinMerge recognizes only archives whose
+file extension is known on your system (for example, in the registry or
+through a file association).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: WinMerge can recognize archive files even if their
+file extension is not known. To recognize an archive, WinMerge searches the
+beginning of the file for the archive signature bytes.<tip>
+              <para>
+You can use this option to enable WinMerge to recognize Open Office files.</para>
+            </tip>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_Project">
+    <title>
+Project page<indexterm>
+        <primary>archivos de proyecto</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>
+Por determinar</para>
+  </section>
+
+  <section id="Configuration_system">
+    <title>System page</title>
+
+    <section>
+      <title>
+Send deleted files to Recycle Bin<indexterm>
+          <primary>eliminar ficheros</primary>
+
+          <secondary>opciones</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (default): Files and folders that you delete in a
+Folder Compare window are moved to the Recycle Bin, if it is available.</para>
+
+          <important>
+            <para>
+Remember: if the Recycle Bin on your system has been deactivated, this
+option does not work, and deleted files are lost!</para>
+          </important>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: Files and folders deleted in a directory compare
+actually deleted.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Configuration_external_editor">
+      <title>
+External editor<indexterm>
+          <primary>external editor</primary>
+
+          <secondary>configuring</secondary>
+        </indexterm></title>
+
+      <para>
+The WinMerge File Compare window provides common editing functions.  If you
+prefer using your favorite, full-featured editor, you can configure WinMerge
+to open an external editor from the Folder Compare context menu.</para>
+
+      <para>
+Installation configures Notepad as the default external editor, because it
+is found on all Windows systems. To configure a different external editor,
+enter the full path to its executable file.</para>
+
+      <tip>
+        <para>
+Along with the path, you can include any command line parameters supported
+by the external tool, in this format: <command> <replaceable>path to
+executable</replaceable> </command> <option>-option1</option>
+<option>-option2</option> <option> <replaceable>...</replaceable> </option></para>
+      </tip>
+
+      <para>
+To use the configured external editor, right-click a file in the Folder
+Compare window and choose <menuchoice> <guimenuitem>Open Left</guimenuitem>
+<guimenuitem>With External Editor</guimenuitem> </menuchoice> or
+<menuchoice> <guimenuitem>Open Right</guimenuitem> <guimenuitem>With
+External Editor</guimenuitem> </menuchoice>.</para>
+    </section>
+
+    <section>
+      <title>
+Store user data in<indexterm>
+          <primary>user data</primary>
+          <secondary>storage location</secondary>
+        </indexterm></title>
+    
+      <para>
+Specifies where WinMerge stores user data such as filters, plugins, color
+schemes, and configuration logs.</para>
+    
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>AppData (Roaming) folder</guilabel> (default): Stores user data in
+the roaming application data folder of your user profile.</para>
+        </listitem>
+    
+        <listitem>
+          <para>
+<guilabel>Documents folder</guilabel>: Stores user data in the
+<filename>WinMerge</filename> subfolder of your Documents directory.</para>
+        </listitem>
+      </itemizedlist>
+    
+      <para>
+This setting affects newly created user data only.</para>
+    </section>
+
+    <section>
+      <title>
+Filter folder<indexterm>
+          <primary>Carpetas de filtros</primary>
+
+          <secondary>specifying default private folder</secondary>
+        </indexterm></title>
+
+      <para>
+Use this field to specify your own private folder for file filters.  By
+default this folder is your user profile directory (for example,
+<filename>Documents</filename> on Windows 10). When you create a file
+filter, it is automatically added to this folder.</para>
+    </section>
+
+    <section>
+      <title>
+Temporary files folder<indexterm>
+          <primary>temporary files, folder used</primary>
+        </indexterm></title>
+
+      <para>
+Specify the folder where WinMerge stores temporary files. Either one of
+these options is available:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>System's temp folder</guilabel> (default): For example, this might
+be <filename>C:\Windows\Temp</filename> on your system.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Custom folder</guilabel>: Click <guibutton>Browse</guibutton> and
+select a different folder where you have write access.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_backup">
+    <title>
+Backup Files page<indexterm>
+        <primary>backup files, options</primary>
+      </indexterm></title>
+
+    <para>
+This page allows you to control how WinMerge creates backup files.</para>
+
+    <section>
+      <title>Create backup files for</title>
+
+      <para>
+Specify when WinMerge should create backup files. You can enable or disable
+each of these options independently:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>Folder compare</guilabel> (disabled by default): Backup files are
+create whenever files are overwritten (copied).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>File compare</guilabel> (enabled by default): Backup files are
+created whenever files are saved.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Create backup files in</title>
+
+      <para>
+Specify where backup files are created. Only one of these options can be
+enabled:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>Original file's folder</guilabel> (enabled by default): Backup
+files are created in the same folder as the source file. This is usually a
+good choice. The down side is that cleaning up backup files in big folders
+can take a lot of work.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Global backup folder</guilabel> (disabled by default): All backup
+files are created in one global folder. This makes them easy to clean
+up. But, if there are multiple source files with same file name, then the
+most recent backup file overwrites the previous one of the same name.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Backup filename</title>
+
+      <para>
+When WinMerge creates a backup file, it appends an extension to the source
+file name. You can choose either or both of these extension schemes:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>Append .bak extension</guilabel> (enabled by default): For
+example, the <filename>file.txt</filename> is backed up to
+<filename>file.txt.bak</filename>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Append timestamp</guilabel> (enabled by default): Timestamps are
+almost always unique, so this option usually avoids duplicating backup file
+names when the source files have the same names.</para>
+
+          <para>
+Also, storing a copy of a file each time you save it provides a way to track
+changes to the file. However, you should consider that this option can
+create a lot of files.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_codepage">
+    <title>
+Codepage page<indexterm>
+        <primary>codificación</primary>
+
+        <secondary>opciones</secondary>
+      </indexterm></title>
+
+    <para>
+WinMerge detects handles file encoding transparently, and in most cases you
+should not need to change the default settings.This page allows you to
+specify the codepages of certain file formats, should you need to.</para>
+
+    <note>
+      <para>
+A full explanation of text encoding and Windows codepages is beyond the
+scope of WinMerge documentation. Fortunately, there is lots of information
+about them on the Internet. For example, here are some places to start:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<ulink url="https://en.wikipedia.org/wiki/Code_pages"> Wikipedia: Code pages
+</ulink>, <ulink url="https://en.wikipedia.org/wiki/Character_encoding">
+Character encoding </ulink></para>
+        </listitem>
+
+        <listitem>
+          <para>
+<ulink
+url="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43">
+Microsoft: Code Pages Supported by Windows </ulink></para>
+        </listitem>
+      </itemizedlist>
+    </note>
+
+    <section>
+      <title>Default Codepage</title>
+
+      <para>
+Choose one of these radio buttons to set the default codepage that WinMerge
+uses when handling ANSI files:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>System codepage</guilabel> (default):The codepage used by your
+Windows system. This default is usually the best choice.  However if you
+know that you are comparing files that do not use the system codepage,
+consider one of the other options.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<!--This is just a guess - don't find any info on this option.-->
+<guilabel>According to WinMerge User Interface</guilabel>: The encoding used
+by your installation of WinMerge.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>Custom codepage</guilabel>: Enter the codepage number
+explicitly. For example, <userinput>UTF-8</userinput> or
+<userinput>ISO-8851-1</userinput>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Detect codepage info for these files: .html, .rc, .xml</title>
+
+      <important>
+        <para>
+<!--What option? The one in the Options page? If it should always be unchecked, 
+why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
+or is this understood?-->
+Uncheck this option in <filename>WinMerge.exe</filename>.  Characters
+conversions can result in lossy conversions and the risk is very
+high. <filename>WinMerge.exe</filename> can display files only with your
+current codepage.</para>
+      </important>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (default): WinMerge does not read codepage
+information from the source files. It uses the default codepage setting
+instead.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: WinMerge detects the codepage for these
+extensions: <filename class="extension">html</filename>, <filename
+class="extension">rc</filename> (resource files for VC++)  and <filename
+class="extension">xml</filename>. The detected codepage overrides the
+setting for the default codepage option.</para>
+
+          <para>
+This option is of interest when your documents use a codepage that is
+different from the codepage of your Windows configuration.</para>
+
+          <para>
+For example, you might merge two Slovak or two Japanese files in an English
+environment. With this option enabled (and with the required fonts), your
+Slovak, or Japanese, the files are displayed using Slovak, or Japanese,
+characters.</para>
+
+          <para>
+WinMerge also detects a codepage difference between the left/right files. To
+avoid lossy conversions when you merge, copy, or paste, we suggest that you
+ignore the codepage information.</para>
+
+          <caution>
+            <para>
+When you copy or paste text to an external application, the external
+application must use the same codepage as WinMerge does.  Refer to the
+documentation for your external editor. For copying to WinMerge, Internet
+Explorer offers codepage selection. If your external editor does not support
+custom codepages, disable this option.</para>
+          </caution>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Detect codepage for text files using mlang.dll</title>
+
+      <para>Por determinar</para>
+
+    </section>
+  </section>
+
+  <section id="Configuration_shell-integ">
+    <title>Shell Integration page</title>
+
+    <section id="Configuration_winexplorer-integ">
+      <title>
+Explorer<indexterm>
+          <primary>integración</primary>
+
+          <secondary>con el intérprete de órdenes de Windows</secondary>
+        </indexterm></title>
+
+      <para>
+The <option>Add to context menu</option> option enables you to launch
+WinMerge directly from Windows Explorer, comparing items that you have
+selected there. It is enabled or disabled by default during WinMerge
+installation. If enabled, you can also enable one or both of these options:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Enable advanced menu</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para>
+<option>Disabled</option> (default): Only the
+<guimenuitem>WinMerge</guimenuitem> shortcut is included in the Windows
+Explorer context menu.</para>
+              </listitem>
+
+              <listitem>
+                <para>
+<option>Enabled</option>: Replaces the <guimenuitem>WinMerge</guimenuitem>
+shortcut in the Explorer context menu with
+<guimenuitem>Compare</guimenuitem> shortcuts.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Enable Compare As menu</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para>
+<option>Disabled</option> (default): Removes <guimenuitem>Compare
+As</guimenuitem> menu item from Explorer context menu.</para>
+              </listitem>
+
+              <listitem>
+                <para>
+<option>Enabled</option>: Adds <guimenuitem>Compare As</guimenuitem> menu
+item to Explorer context menu.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+<xref linkend="OpenPaths_shell-integ" /> describes how to use the WinMerge
+and Compare shortcuts.</para>
+    </section>
+  </section>
+</article>
