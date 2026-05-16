@@ -12,6 +12,8 @@
 #include "locality.h"
 #include "unicoder.h"
 
+#define _SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS
+
 #if __has_include(<winrt/windows.applicationmodel.datatransfer.h>) && _MSC_VER >= 1930
 
 #include <winrt/windows.foundation.collections.h>
