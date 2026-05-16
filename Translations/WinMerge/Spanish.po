@@ -7409,9 +7409,7 @@ msgstr ""
 
 #. ID_PREVFILE
 #: Merge.rc:5016
-msgid ""
-"\n"
-"Previous File (Ctrl+F7)·"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 "\n"
 "Archivo anterior (Ctrl+F7)"
@@ -8802,7 +8800,7 @@ msgstr "Archivos de propiedades de Java sin caracteres de escape"
 
 #. IDS_PLUGIN_MENU_CAPTION43
 #: Strings.rc:106
-msgid "Descompilar Java (CFR)"
+msgid "Decompile Java (CFR)"
 msgstr "Descompilar Java (CFR)"
 
 #. IDS_PLUGIN_DESCRIPTION1
