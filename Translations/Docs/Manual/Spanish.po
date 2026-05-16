@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-04-30 15:39+0900\n"
-"PO-Revision-Date: 2026-05-15 21:55+0900\n"
+"PO-Revision-Date: 2026-05-16 15:28+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -12494,12 +12494,14 @@ msgstr "archivos 7-Zip"
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:2774
 msgid "enabling and disabling integration"
-msgstr ""
+msgstr "activar y desactivar la integración"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2771
 msgid "Enable archive file support<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"Habilitar la compatibilidad con archivos comprimidos<placeholder "
+"type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2779
@@ -12507,21 +12509,26 @@ msgid ""
 "This option controls how WinMerge handles archive files (based on 7-Zip "
 "integration)."
 msgstr ""
+"Esta opción controla cómo gestiona WinMerge los archivos comprimidos "
+"(gracias a la integración con 7-Zip)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2786
 msgid "<option>Enabled</option> (default): WinMerge recognizes 7-Zip archives."
 msgstr ""
+"<option>Activado</option>(predeterminado): WinMerge reconoce los archivos 7-"
+"Zip."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2793
 msgid "<option>Disabled</option>: Turns off 7-Zip archive integration."
 msgstr ""
+"<option>Desactivado</option>: desactiva la integración de archivos 7-Zip."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:2803
 msgid "detecting archive types"
-msgstr ""
+msgstr "detección de tipos de archivos"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2802
@@ -12529,6 +12536,8 @@ msgid ""
 "Detect archive type from file signature<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
+"Detectar tipo de archivo por su firma<placeholder type=\"indexterm\" "
+"id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2810
@@ -12537,6 +12546,9 @@ msgid ""
 "file extension is known on your system (for example, in the registry or "
 "through a file association)."
 msgstr ""
+"Desactivado</option>(predeterminado): WinMerge solo reconoce los archivos "
+"comprimidos cuya extensión sea conocida en su sistema (por ejemplo, en el "
+"Registro o mediante una asociación de archivos)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2818
@@ -12545,12 +12557,18 @@ msgid ""
 "file extension is not known. To recognize an archive, WinMerge searches the "
 "beginning of the file for the archive signature bytes."
 msgstr ""
+"<option>Activado</option>: WinMerge puede reconocer archivos comprimidos "
+"aunque se desconozca su extensión. Para reconocer un archivo comprimido, "
+"WinMerge busca al principio del archivo los bytes de la firma del archivo "
+"comprimido."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><tip><para>
 #: English/Configuration.xml:2823
 msgid ""
 "You can use this option to enable WinMerge to recognize Open Office files."
 msgstr ""
+"Puede utilizar esta opción para que WinMerge reconozca los archivos de "
+"OpenOffice."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:2836 English/Open_paths.xml:367
@@ -12561,18 +12579,20 @@ msgstr "archivos de proyecto"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2835
 msgid "Project page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "Proyecto<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2848
 msgid "System page"
-msgstr ""
+msgstr "Sistema"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2852
 msgid ""
 "Send deleted files to Recycle Bin<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"Enviar archivos eliminados a la Papelera de reciclaje<placeholder "
+"type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2862
@@ -12580,6 +12600,9 @@ msgid ""
 "<option>Enabled</option> (default): Files and folders that you delete in a "
 "Folder Compare window are moved to the Recycle Bin, if it is available."
 msgstr ""
+"<option>Activado</option>(predeterminado): los archivos y carpetas que "
+"elimine en una ventana de comparación de carpetas se moverán a la Papelera "
+"de reciclaje, si está disponible."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
 #: English/Configuration.xml:2869
@@ -12587,6 +12610,8 @@ msgid ""
 "Remember: if the Recycle Bin on your system has been deactivated, this "
 "option does not work, and deleted files are lost!"
 msgstr ""
+"Recuerde: si la Papelera de reciclaje de su sistema está desactivada, esta "
+"opción no funcionará y los archivos eliminados se perderán."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2879
@@ -12594,21 +12619,23 @@ msgid ""
 "<option>Disabled</option>: Files and folders deleted in a directory compare "
 "actually deleted."
 msgstr ""
+"option>Desactivado</option>: los archivos y carpetas eliminados en un "
+"directorio se comparan con los que se han eliminado realmente."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:2889
 msgid "external editor"
-msgstr ""
+msgstr "editor externo"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:2891
 msgid "configuring"
-msgstr ""
+msgstr "configuración"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2888
 msgid "External editor<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "Editor externo<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2896
@@ -12617,6 +12644,10 @@ msgid ""
 "prefer using your favorite, full-featured editor, you can configure WinMerge "
 "to open an external editor from the Folder Compare context menu."
 msgstr ""
+"La ventana de comparación de archivos de WinMerge ofrece funciones de "
+"edición básicas. Si prefiere utilizar su editor favorito, con todas sus "
+"funciones, puede configurar WinMerge para que abra un editor externo desde "
+"el menú contextual de comparación de carpetas."
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2903
@@ -12625,6 +12656,10 @@ msgid ""
 "is found on all Windows systems. To configure a different external editor, "
 "enter the full path to its executable file."
 msgstr ""
+"La instalación configura el Bloc de notas como editor externo "
+"predeterminado, ya que está presente en todos los sistemas Windows. Para "
+"configurar otro editor externo, introduzca la ruta completa al archivo "
+"ejecutable."
 
 #. type: Content of: <article><section><section><tip><para>
 #: English/Configuration.xml:2910
@@ -12634,6 +12669,11 @@ msgid ""
 "executable</replaceable> </command> <option>-option1</option> <option>-"
 "option2</option> <option> <replaceable>...</replaceable> </option>"
 msgstr ""
+"Junto con la ruta, puede incluir cualquier parámetro de línea de comandos "
+"que admita la herramienta externa, con este formato: "
+"<command><replaceable>ruta al ejecutable</replaceable></command><option>-"
+"opción1</option><option>-opción2</option><option><replaceable>...</"
+"replaceable></option>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2923
@@ -12644,21 +12684,27 @@ msgid ""
 "<menuchoice> <guimenuitem>Open Right</guimenuitem> <guimenuitem>With "
 "External Editor</guimenuitem> </menuchoice>."
 msgstr ""
+"Para utilizar el editor externo configurado, haga clic con el botón derecho "
+"del ratón en un archivo de la ventana de comparación de carpetas y "
+"seleccione <menuchoice><guimenuitem>Abrir izquierdo</"
+"guimenuitem><guimenuitem>Con editor externo</guimenuitem></menuchoice>o "
+"<menuchoice><guimenuitem>Abrir derecho</guimenuitem><guimenuitem>Con editor "
+"externo</guimenuitem></menuchoice>."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:2939
 msgid "user data"
-msgstr ""
+msgstr "datos de usuario"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:2940
 msgid "storage location"
-msgstr ""
+msgstr "ubicación para almacenamiento"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2938
 msgid "Store user data in<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "Guardar datos de usuario en<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2945
@@ -12666,6 +12712,8 @@ msgid ""
 "Specifies where WinMerge stores user data such as filters, plugins, color "
 "schemes, and configuration logs."
 msgstr ""
+"Especifica dónde guarda WinMerge los datos de usuario, como filtros, "
+"complementos, esquemas de color y registros de configuración."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2952
@@ -12673,6 +12721,9 @@ msgid ""
 "<guilabel>AppData (Roaming) folder</guilabel> (default): Stores user data in "
 "the roaming application data folder of your user profile."
 msgstr ""
+"<guilabel>AppData (Roaming) carpeta</guilabel>(predeterminada): guarda los "
+"datos del usuario en la carpeta de datos de aplicaciones itinerantes de tu "
+"perfil de usuario."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2959
@@ -12680,11 +12731,14 @@ msgid ""
 "<guilabel>Documents folder</guilabel>: Stores user data in the "
 "<filename>WinMerge</filename> subfolder of your Documents directory."
 msgstr ""
+"<guilabel>Carpeta Documentos</guilabel>: guarda los datos del usuario en la "
+"subcarpeta <filename>WinMerge</filename>del directorio Documentos."
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2966
 msgid "This setting affects newly created user data only."
 msgstr ""
+"Esta configuración solo afecta a los datos de los usuarios recién creados."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:2973 English/Filters.xml:1325
@@ -12694,12 +12748,12 @@ msgstr "Carpetas de filtros"
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:2975
 msgid "specifying default private folder"
-msgstr ""
+msgstr "especificar la carpeta privada predeterminada"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2972
 msgid "Filter folder<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "Carpeta de filtros<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2980
@@ -12709,16 +12763,22 @@ msgid ""
 "<filename>Documents</filename> on Windows 10). When you create a file "
 "filter, it is automatically added to this folder."
 msgstr ""
+"Utilice este campo para especificar su propia carpeta privada para los "
+"filtros de archivos. De forma predeterminada, esta carpeta es el directorio "
+"de su perfil de usuario (por ejemplo, <filename>Documentos</filename>en "
+"Windows 10). Cuando cree un filtro de archivos, este se añadirá "
+"automáticamente a esta carpeta."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:2990
 msgid "temporary files, folder used"
-msgstr ""
+msgstr "archivos temporales, carpeta usada"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2989
 msgid "Temporary files folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"Carpeta de archivos temporales<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:2995
@@ -12726,6 +12786,8 @@ msgid ""
 "Specify the folder where WinMerge stores temporary files. Either one of "
 "these options is available:"
 msgstr ""
+"Especifica la carpeta en la que WinMerge guarda los archivos temporales. "
+"Puede elegir cualesquiera de estas opciones:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3002
@@ -12733,6 +12795,8 @@ msgid ""
 "<guilabel>System's temp folder</guilabel> (default): For example, this might "
 "be <filename>C:\\Windows\\Temp</filename> on your system."
 msgstr ""
+"<guilabel>Carpeta temporal del sistema</guilabel>(predeterminada): por "
+"ejemplo, en su sistema podría ser <filename>C:\\Windows\\Temp</filename>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3009
@@ -12740,26 +12804,31 @@ msgid ""
 "<guilabel>Custom folder</guilabel>: Click <guibutton>Browse</guibutton> and "
 "select a different folder where you have write access."
 msgstr ""
+"<guilabel>Carpeta personalizada</guilabel>: haga clic en "
+"<guibutton>Examinar...</guibutton>y seleccione otra carpeta en la que tenga "
+"permisos de escritura."
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:3020
 msgid "backup files, options"
-msgstr ""
+msgstr "archivos de copias de seguridad, opciones"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3019
 msgid "Backup Files page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "Copias de seguridad<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:3025
 msgid "This page allows you to control how WinMerge creates backup files."
 msgstr ""
+"Esta página le permite configurar cómo WinMerge crea los archivos de copias "
+"de seguridad."
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3030
 msgid "Create backup files for"
-msgstr ""
+msgstr "Crear copias de"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:3033
@@ -12767,6 +12836,8 @@ msgid ""
 "Specify when WinMerge should create backup files. You can enable or disable "
 "each of these options independently:"
 msgstr ""
+"Especifica cuándo debe WinMerge crear archivos de copia de seguridad. Puede "
+"habilitar o deshabilitar cada una de estas opciones de forma independiente:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3040
@@ -12774,6 +12845,8 @@ msgid ""
 "<guilabel>Folder compare</guilabel> (disabled by default): Backup files are "
 "create whenever files are overwritten (copied)."
 msgstr ""
+"<guilabel>Comparación de carpetas</guilabel> (desactivada por defecto): se "
+"crean copias de seguridad cada vez que se sobrescriben (copian) los archivos."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3048
@@ -12781,11 +12854,13 @@ msgid ""
 "<guilabel>File compare</guilabel> (enabled by default): Backup files are "
 "created whenever files are saved."
 msgstr ""
+"<guilabel>Comparación de archivos</guilabel>(activada por defecto): se crean "
+"archivos de copia de seguridad cada vez que se guardan archivos.</para>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3056
 msgid "Create backup files in"
-msgstr ""
+msgstr "Crear copias en"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:3059
@@ -12793,6 +12868,8 @@ msgid ""
 "Specify where backup files are created. Only one of these options can be "
 "enabled:"
 msgstr ""
+"Especifica dónde se crean los archivos de copia de seguridad. Solo se puede "
+"activar una de estas opciones:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3066
@@ -12802,6 +12879,11 @@ msgid ""
 "good choice. The down side is that cleaning up backup files in big folders "
 "can take a lot of work."
 msgstr ""
+"<guilabel>Carpeta del archivo original</guilabel>(activada por defecto): los "
+"archivos de copias de seguridad se crean en la misma carpeta que el archivo "
+"de origen. Suele ser una buena opción. La desventaja es que eliminar los "
+"archivos de copias de seguridad de carpetas grandes puede suponer mucho "
+"trabajo."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3075
@@ -12811,11 +12893,16 @@ msgid ""
 "But, if there are multiple source files with same file name, then the most "
 "recent backup file overwrites the previous one of the same name."
 msgstr ""
+"<guilabel>Carpeta global para las copias de seguridad</guilabel>(desactivada "
+"por defecto): todos los archivos de copia de seguridad se guardan en una "
+"única carpeta global. Esto facilita su gestión. Sin embargo, si hay varios "
+"archivos de origen con el mismo nombre, el archivo de copia de seguridad más "
+"reciente sobrescribe al anterior con el mismo nombre."
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3086
 msgid "Backup filename"
-msgstr ""
+msgstr "Nombre del archivo de copia de la seguridad"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:3089
@@ -12823,6 +12910,9 @@ msgid ""
 "When WinMerge creates a backup file, it appends an extension to the source "
 "file name. You can choose either or both of these extension schemes:"
 msgstr ""
+"Cuando WinMerge crea un archivo de copia de seguridad, añade una extensión "
+"al nombre del archivo de origen. Puede elegir uno de estos dos esquemas de "
+"extensión o ambos:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3097
@@ -12831,6 +12921,9 @@ msgid ""
 "example, the <filename>file.txt</filename> is backed up to <filename>file."
 "txt.bak</filename>."
 msgstr ""
+"<guilabel>Añadir extensión .bak</guilabel>(activada por defecto): por "
+"ejemplo, el archivo <filename>file.txt</filename>se guarda como copia de "
+"seguridad con el nombre <filename>file.txt.bak</filename>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3105
@@ -12839,6 +12932,10 @@ msgid ""
 "almost always unique, so this option usually avoids duplicating backup file "
 "names when the source files have the same names."
 msgstr ""
+"<guilabel>Añadir marca de tiempo</guilabel>(activada por defecto): las "
+"marcas de tiempo suelen ser únicas, por lo que esta opción suele evitar que "
+"se dupliquen los nombres de los archivos de copia de seguridad cuando los "
+"archivos de origen tienen los mismos nombres."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3112
@@ -12847,11 +12944,15 @@ msgid ""
 "changes to the file. However, you should consider that this option can "
 "create a lot of files."
 msgstr ""
+"Además, guardar una copia del archivo cada vez que lo guarde le permite "
+"realizar un seguimiento de los cambios que se le hayan realizado. Sin "
+"embargo, debe tener en cuenta que esta opción puede generar una gran "
+"cantidad de archivos."
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3123
 msgid "Codepage page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "Codificación<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:3131
@@ -12860,6 +12961,10 @@ msgid ""
 "should not need to change the default settings.This page allows you to "
 "specify the codepages of certain file formats, should you need to."
 msgstr ""
+"WinMerge gestiona la codificación de los archivos de forma transparente y, "
+"en la mayoría de los casos, no es necesario modificar la configuración "
+"predeterminada. Esta página le permite especificar las codificaciones de "
+"determinados formatos de archivo, en caso de que sea necesario."
 
 #. type: Content of: <article><section><note><para>
 #: English/Configuration.xml:3138
@@ -12868,6 +12973,10 @@ msgid ""
 "scope of WinMerge documentation. Fortunately, there is lots of information "
 "about them on the Internet. For example, here are some places to start:"
 msgstr ""
+"Una explicación detallada sobre la codificación de texto y las "
+"codificaciones de Windows excede el alcance de la documentación de WinMerge. "
+"Afortunadamente, hay mucha información al respecto en Internet. Por ejemplo, "
+"aquí tiene algunos sitios donde puede empezar:"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
 #: English/Configuration.xml:3147
@@ -12876,6 +12985,9 @@ msgid ""
 "pages </ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
 "Character_encoding\"> Character encoding </ulink>"
 msgstr ""
+"<ulink url=\"https://en.wikipedia.org/wiki/Code_pages\">Wikipedia: "
+"Codificación</ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
+"Character_encoding\">Codificación de caracteres</ulink>"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
 #: English/Configuration.xml:3160
@@ -12884,11 +12996,14 @@ msgid ""
 "ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43\"> Microsoft: Code Pages "
 "Supported by Windows </ulink>"
 msgstr ""
+"<ulink url=\"https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-"
+"ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43\"> Microsoft: Code Pages "
+"Supported by Windows </ulink>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3170
 msgid "Default Codepage"
-msgstr ""
+msgstr "Codificación predeterminada"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:3173
@@ -12896,6 +13011,8 @@ msgid ""
 "Choose one of these radio buttons to set the default codepage that WinMerge "
 "uses when handling ANSI files:"
 msgstr ""
+"Seleccione uno de estos botones de opción para establecer la codificación "
+"predeterminada que utiliza WinMerge al trabajar con archivos ANSI:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3180
@@ -12905,6 +13022,11 @@ msgid ""
 "know that you are comparing files that do not use the system codepage, "
 "consider one of the other options."
 msgstr ""
+"<guilabel>Codificación del sistema</guilabel>(predeterminada): la "
+"codificación que utiliza su sistema Windows. Esta opción predeterminada "
+"suele ser la mejor elección. Sin embargo, si sabe que va a comparar archivos "
+"que no utilizan la codificación del sistema, considere alguna de las otras "
+"opciones."
 
 #. This is just a guess - don't find any info on this option.
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -12913,6 +13035,10 @@ msgid ""
 "<guilabel>According to WinMerge User Interface</guilabel>: The encoding used "
 "by your installation of WinMerge."
 msgstr ""
+"<guilabel>Según la interfaz de usuario de WinMerge</guilabel>: la "
+"codificación utilizada por su instalación de WinMerge.\n"
+"                    <!--This is just a guess - don't find any info on this "
+"option.-->"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3196
@@ -12921,11 +13047,14 @@ msgid ""
 "For example, <userinput>UTF-8</userinput> or <userinput>ISO-8851-1</"
 "userinput>."
 msgstr ""
+"<guilabel>Codificación personalizada</guilabel>: introduzca el número de "
+"codificación de forma explícita. Por ejemplo, \n"
+"<userinput>UTF-8</userinput>o <userinput>ISO-8851-1</userinput>."
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3205
 msgid "Detect codepage info for these files: .html, .rc, .xml"
-msgstr ""
+msgstr "Detectar codificación para estos tipos de archivos .html, .rc, .xml"
 
 #. What option? The one in the Options page? If it should always be unchecked, 
 #. why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
@@ -12938,6 +13067,12 @@ msgid ""
 "<filename>WinMerge.exe</filename> can display files only with your current "
 "codepage."
 msgstr ""
+"Desmarque esta opción en <filename>WinMerge.exe</filename>. Las conversiones "
+"de caracteres pueden provocar pérdidas de información y el riesgo es muy "
+"elevado. <filename>WinMerge.exe</filename>solo puede mostrar archivos con su "
+"codificación actual. <!--What option? The one in the Options page? If it "
+"should always be unchecked, why is the option there? Also, should we mention "
+"WinMergeU.exe when we mention WinMerge.exe, or is this understood?-->"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3221
@@ -12946,6 +13081,9 @@ msgid ""
 "information from the source files. It uses the default codepage setting "
 "instead."
 msgstr ""
+"<option>Desactivado</option>(predeterminado): WinMerge no lee la información "
+"de la codificación de caracteres de los archivos de origen. En su lugar, "
+"utiliza la configuración predeterminada de codificación de caracteres."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3229
@@ -12956,6 +13094,12 @@ msgid ""
 "class=\"extension\">xml</filename>. The detected codepage overrides the "
 "setting for the default codepage option."
 msgstr ""
+"<option>Activado</option>: WinMerge detecta la codificación de caracteres "
+"para estas extensiones: <filename class=\"extension\">html</filename>, "
+"<filename class=\"extension\">rc</filename>(archivos de recursos para VC++) "
+"y <filename class=\"extension\">xml</filename>. La codificación de "
+"caracteres detectada anula la configuración de la opción de codificación de "
+"caracteres predeterminada."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3237
@@ -12963,6 +13107,8 @@ msgid ""
 "This option is of interest when your documents use a codepage that is "
 "different from the codepage of your Windows configuration."
 msgstr ""
+"Esta opción resulta útil cuando sus documentos utilizan una codificación "
+"diferente a la de su configuración de Windows."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3243
@@ -12972,6 +13118,10 @@ msgid ""
 "Slovak, or Japanese, the files are displayed using Slovak, or Japanese, "
 "characters."
 msgstr ""
+"Por ejemplo, es posible que quiera combinar dos archivos en eslovaco o dos "
+"archivos en japonés en un entorno en inglés. Si se activa esta opción (y se "
+"dispone de las fuentes necesarias), los archivos en eslovaco o japonés se "
+"mostrarán utilizando caracteres eslovacos o japoneses."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3250
@@ -12980,6 +13130,9 @@ msgid ""
 "avoid lossy conversions when you merge, copy, or paste, we suggest that you "
 "ignore the codepage information."
 msgstr ""
+"WinMerge también detecta diferencias en la codificación entre los archivos "
+"izquierdo y derecho. Para evitar pérdidas de información al combinar, copiar "
+"o pegar, le recomendamos que ignore la información sobre la codificación."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><caution><para>
 #: English/Configuration.xml:3257
@@ -12990,16 +13143,21 @@ msgid ""
 "Explorer offers codepage selection. If your external editor does not support "
 "custom codepages, disable this option."
 msgstr ""
+"Cuando copie o pegue texto en una aplicación externa, esta debe utilizar la "
+"misma codificación que WinMerge. Consulte la documentación de su editor "
+"externo. Para copiar en WinMerge, Internet Explorer ofrece la posibilidad de "
+"seleccionar la codificación. Si su editor externo no admite codificaciones "
+"personalizadas, desactive esta opción."
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3270
 msgid "Detect codepage for text files using mlang.dll"
-msgstr ""
+msgstr "Detectar codificación para archivos de texto usando mlang.dll"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3278
 msgid "Shell Integration page"
-msgstr ""
+msgstr "Integración con Windows"
 
 #. type: Content of: <article><title><indexterm><primary>
 #: English/Configuration.xml:3283 English/Faq.xml:95 English/Install.xml:174
@@ -13017,7 +13175,7 @@ msgstr "con el intérprete de órdenes de Windows"
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3282
 msgid "Explorer<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "Explorador<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:3290
@@ -13027,11 +13185,16 @@ msgid ""
 "selected there. It is enabled or disabled by default during WinMerge "
 "installation. If enabled, you can also enable one or both of these options:"
 msgstr ""
+"La opción <option>Añadir al menú contextual</option>le permite iniciar "
+"WinMerge directamente desde el Explorador de Windows y comparar los "
+"elementos que haya seleccionado en él. Esta opción viene activada o "
+"desactivada de forma predeterminada durante la instalación de WinMerge. Si "
+"está activada, también puede activar una o ambas de estas opciones:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:3299
 msgid "Enable advanced menu"
-msgstr ""
+msgstr "Activar menú avanzado"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:3305
@@ -13039,6 +13202,9 @@ msgid ""
 "<option>Disabled</option> (default): Only the <guimenuitem>WinMerge</"
 "guimenuitem> shortcut is included in the Windows Explorer context menu."
 msgstr ""
+"<option>Desactivado</option>(predeterminado): solo se incluye el acceso "
+"directo a <guimenuitem>WinMerge</guimenuitem>en el menú contextual del "
+"Explorador de Windows."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:3313
@@ -13047,11 +13213,14 @@ msgid ""
 "shortcut in the Explorer context menu with <guimenuitem>Compare</"
 "guimenuitem> shortcuts."
 msgstr ""
+"<option>Activado</option>: sustituye el acceso directo a "
+"<guimenuitem>WinMerge</guimenuitem>del menú contextual del Explorador por "
+"accesos directos a la función <guimenuitem>Comparar</guimenuitem>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:3326
 msgid "Enable Compare As menu"
-msgstr ""
+msgstr "Activar menú 'Comparar como'"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:3332
@@ -13059,6 +13228,8 @@ msgid ""
 "<option>Disabled</option> (default): Removes <guimenuitem>Compare As</"
 "guimenuitem> menu item from Explorer context menu."
 msgstr ""
+"<option>Desactivado</option>(predeterminado): elimina la opción "
+"<guimenuitem>Comparar como</guimenuitem>del menú contextual del Explorador."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:3340
@@ -13066,6 +13237,8 @@ msgid ""
 "<option>Enabled</option>: Adds <guimenuitem>Compare As</guimenuitem> menu "
 "item to Explorer context menu."
 msgstr ""
+"<option>Activado</option>: añade la opción <guimenuitem>Comparar como</"
+"guimenuitem>al menú contextual del Explorador."
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:3351
@@ -13073,6 +13246,8 @@ msgid ""
 "<xref linkend=\"OpenPaths_shell-integ\" /> describes how to use the WinMerge "
 "and Compare shortcuts."
 msgstr ""
+"<xref linkend=\"OpenPaths_shell-integ\" />explica cómo utilizar los atajos "
+"de teclado de WinMerge y Comparar."
 
 #. type: Content of: <article><title>
 #: English/Faq.xml:3
