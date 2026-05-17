@@ -1003,6 +1003,7 @@
     <ClInclude Include="DirFilterBar.h" />
     <ClInclude Include="ComparisonResultFilterDlg.h" />
     <ClInclude Include="FilterConditionDlg.h" />
+    <ClInclude Include="FilterMenuHelpers.h" />
     <ClInclude Include="MatchInsideDlg.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />

@@ -1049,7 +1049,10 @@ static auto LineField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return ectxt.provider->GetLine(index, ectxt.lineIndex);
+	std::string line = ectxt.provider->GetLine(index, ectxt.lineIndex);
+	if (line.empty() && (ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_GHOST) != 0)
+		return std::monostate{};
+	return line;
 }
 
 static auto LineLengthField(int index, const FilterEvalContext& ectxt) -> ValueType
@@ -1057,6 +1060,8 @@ static auto LineLengthField(int index, const FilterEvalContext& ectxt) -> ValueT
 	if (!ectxt.provider)
 		return std::monostate{};
 	auto line = ectxt.provider->GetLine(index, ectxt.lineIndex);
+	if (line.empty() && (ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_GHOST) != 0)
+		return std::monostate{};
 	return static_cast<int64_t>(ucr::stringlen_of_utf8(line.data(), line.length()));
 }
 
@@ -1588,6 +1593,26 @@ static auto StrlenFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* a
 		};
 	auto arg = (*args)[0]->Evaluate(ectxt);
 	return applyToScalarOrArray(arg, strlenFn);
+}
+
+static auto LenFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg = (*args)[0]->Evaluate(ectxt);
+
+	// Handle array: return element count
+	if (auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg))
+		return static_cast<int64_t>((*arrayVal)->size());
+
+	// Handle string: return UTF-8 character count
+	if (auto strVal = std::get_if<std::string>(&arg))
+		return static_cast<int64_t>(ucr::stringlen_of_utf8(strVal->c_str(), strVal->length()));
+
+	// Handle monostate: return 0
+	if (std::holds_alternative<std::monostate>(arg))
+		return static_cast<int64_t>(0);
+
+	// Handle other scalar values: return 1
+	return static_cast<int64_t>(1);
 }
 
 static auto SubstrFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
@@ -2606,6 +2631,67 @@ static auto ToTraditionalChineseFunc(const FilterEvalContext& ectxt, std::vector
 	return ToXFunc(ectxt, args, ucr::toTraditionalChinese);
 }
 
+static auto TrimFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(ectxt);
+
+	auto trimFunc = [](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+
+			const std::string& str = *strOpt;
+			auto start = str.find_first_not_of(" \t\r\n");
+			if (start == std::string::npos)
+				return std::string{};
+			auto end = str.find_last_not_of(" \t\r\n");
+			return str.substr(start, end - start + 1);
+		};
+
+	return applyToScalarOrArray(arg, trimFunc);
+}
+
+static auto TrimLeftFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(ectxt);
+
+	auto trimLeftFunc = [](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+
+			const std::string& str = *strOpt;
+			auto start = str.find_first_not_of(" \t\r\n");
+			if (start == std::string::npos)
+				return std::string{};
+			return str.substr(start);
+		};
+
+	return applyToScalarOrArray(arg, trimLeftFunc);
+}
+
+static auto TrimRightFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(ectxt);
+
+	auto trimRightFunc = [](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+
+			const std::string& str = *strOpt;
+			auto end = str.find_last_not_of(" \t\r\n");
+			if (end == std::string::npos)
+				return std::string{};
+			return str.substr(0, end + 1);
+		};
+
+	return applyToScalarOrArray(arg, trimRightFunc);
+}
+
 static const auto& GetOrCreateMatchRanges(const FilterEvalContext& ectxt, ExprNode* expr)
 {
 	auto& matchRanges = ectxt.sharedContext->matchRanges;
@@ -3145,6 +3231,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"ifeach", IfEachFunc, 3, 3},
 	{"inrange", InRangeFunc, 3, 3},
 	{"iswithin", IsWithinFunc, 3, 3},
+	{"len", LenFunc, 1, 1},
 	{"linecount", LineCountFunc, 1, 1},
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
@@ -3189,6 +3276,9 @@ static constexpr FunctionInfo functionTable[] = {
 	{"tosimplifiedchinese", ToSimplifiedChineseFunc, 1, 1},
 	{"totraditionalchinese", ToTraditionalChineseFunc, 1, 1},
 	{"toupper", ToUpperFunc, 1, 1},
+	{"trim", TrimFunc, 1, 1},
+	{"trimleft", TrimLeftFunc, 1, 1},
+	{"trimright", TrimRightFunc, 1, 1},
 };
 
 static constexpr size_t functionTableSize = sizeof(functionTable) / sizeof(functionTable[0]);

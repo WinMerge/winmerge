@@ -2162,6 +2162,105 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, TrimFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// trim function tests - removes leading and trailing whitespace
+	EXPECT_TRUE(fe.Parse("trim(\"  hello  \") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"  hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"hello  \") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"   \") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"\\t\\nhello\\r\\n\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"  hello world  \") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trim with array
+	EXPECT_TRUE(fe.Parse("trim(array(\"  hello  \", \"  world  \")) == array(\"hello\", \"world\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(array(\"  test\", \"data  \")) == array(\"test\", \"data\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimLeft function tests - removes leading whitespace only
+	EXPECT_TRUE(fe.Parse("trimLeft(\"  hello  \") == \"hello  \""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"  hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"hello  \") == \"hello  \""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"   \") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"\\t\\nhello\\r\\n\") == \"hello\\r\\n\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimLeft with array
+	EXPECT_TRUE(fe.Parse("trimLeft(array(\"  hello  \", \"  world  \")) == array(\"hello  \", \"world  \")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimRight function tests - removes trailing whitespace only
+	EXPECT_TRUE(fe.Parse("trimRight(\"  hello  \") == \"  hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"  hello\") == \"  hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"hello  \") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"   \") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"\\t\\nhello\\r\\n\") == \"\\t\\nhello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimRight with array
+	EXPECT_TRUE(fe.Parse("trimRight(array(\"  hello  \", \"  world  \")) == array(\"  hello\", \"  world\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trim functions with non-string arguments
+	EXPECT_TRUE(fe.Parse("trim(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(456) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(789) == \"789\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined usage
+	EXPECT_TRUE(fe.Parse("trim(\"  hello  \") == trimLeft(trimRight(\"  hello  \"))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(trim(\"  hello  \")) == \"HELLO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(replace(\"  hello  world  \", \"world\", \"test\")) == \"hello  test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 TEST_P(FilterExpressionTest, ReplaceWithList)
 {
 	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");

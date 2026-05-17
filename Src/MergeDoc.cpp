@@ -1911,8 +1911,8 @@ void CMergeDoc::AddToDisplayFilters(const String& text)
 void CMergeDoc::AddColumnToDisplayFilters(int pane, int column, int dataType)
 {
 	CMergeEditFrame* pFrame = GetParentFrame();
-	CLineFilterHelperMenu menu(pane == m_nBuffers - 1 ? 3 : pane + 1, 0);
-	std::optional<String> result = menu.HandleMenuCommand(m_displayFilterHelper.GetStringOrExpression(), ID_FILTERMENU_LINE_COLUMN_FIRST + column * 3 + dataType, pFrame);
+	CLineFilterHelperMenu menu(pane == m_nBuffers - 1 ? 3 : pane + 1, 0, column);
+	std::optional<String> result = menu.HandleMenuCommand(m_displayFilterHelper.GetStringOrExpression(), ID_FILTERMENU_COLUMN_TEXT + dataType, pFrame);
 	if (!result.has_value())
 		return;
 	pFrame->ShowFilterBar();

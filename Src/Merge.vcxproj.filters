@@ -831,9 +831,6 @@
     <ClCompile Include="ClipboardHistoryMenu.cpp">
       <Filter>MFCGui\Menu\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SharedFilterContext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LineFilterBar.cpp">
       <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
     </ClCompile>
@@ -1603,6 +1600,9 @@
     </ClInclude>
     <ClInclude Include="LineFilterHelperMenu.h">
       <Filter>MFCGui\Menu\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterMenuHelpers.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

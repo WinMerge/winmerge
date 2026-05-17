@@ -5,75 +5,10 @@
 #include "ComparisonResultFilterDlg.h"
 #include "PropertySystem.h"
 #include "PropertySystemMenu.h"
+#include "FilterMenuHelpers.h"
 #include "resource.h"
 
-template <typename Func>
-static void TraverseMenuRecursive(CMenu* pMenu, Func func)
-{
-	if (!pMenu)
-		return;
-	int itemCount = pMenu->GetMenuItemCount();
-	for (int i = itemCount - 1; i >= 0; --i)
-	{
-		UINT id = pMenu->GetMenuItemID(i);
-		if (id == (UINT)-1)
-		{
-			CMenu* pSubMenu = pMenu->GetSubMenu(i);
-			if (pSubMenu)
-				TraverseMenuRecursive(pSubMenu, func);
-		}
-		func(pMenu, i, id);
-	}
-}
-
-static void DisableMenuItemRecursive(CMenu* pMenu, UINT idDisabled)
-{
-	TraverseMenuRecursive(pMenu, [idDisabled](CMenu* pMenu, int index, UINT id)
-		{
-			if (id == idDisabled)
-				pMenu->EnableMenuItem(index, MF_DISABLED | MF_BYPOSITION);
-		});
-}
-
-static void CheckMenuItemRecursive(CMenu* pMenu, UINT idChecked, bool checked)
-{
-	TraverseMenuRecursive(pMenu, [idChecked, checked](CMenu* pMenu, int index, UINT id)
-		{
-			if (id == idChecked)
-				pMenu->CheckMenuItem(index, (checked ? MF_CHECKED : 0) | MF_BYPOSITION);
-		});
-}
-
-static void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idEnd)
-{
-	TraverseMenuRecursive(pMenu, [idStart, idEnd](CMenu* pMenu, int index, UINT id)
-		{
-			if (id >= idStart && id <= idEnd)
-				pMenu->RemoveMenu(index, MF_BYPOSITION);
-		});
-}
-
-static void RemoveTrailingSeparator(CMenu* pMenu)
-{
-	if (!pMenu)
-		return;
-	int count = pMenu->GetMenuItemCount();
-	if (count > 0)
-	{
-		UINT state = pMenu->GetMenuState(count - 1, MF_BYPOSITION);
-		if (state & MF_SEPARATOR)
-			pMenu->RemoveMenu(count - 1, MF_BYPOSITION);
-	}
-	TraverseMenuRecursive(pMenu, [](CMenu* pMenu, int index, UINT id)
-		{
-			if (id == (UINT)-1)
-			{
-				CMenu* pSubMenu = pMenu->GetSubMenu(index);
-				if (pSubMenu)
-					RemoveTrailingSeparator(pSubMenu);
-			}
-		});
-}
+using namespace FilterMenuHelpers;
 
 std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x, int y, CWnd* pParentWnd)
 {

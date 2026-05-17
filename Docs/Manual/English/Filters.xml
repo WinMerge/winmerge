@@ -878,389 +878,538 @@
       <section id="FilterExpression_Functions">
         <title>Functions</title>
 
-        <variablelist>
-          <varlistentry>
-            <term><function>lineCount</function>(<replaceable>content</replaceable>)</term>
-            <listitem><para>Returns the number of lines in the file content or file content array as an <literal>Integer</literal>. If <replaceable>content</replaceable> is an array, the result is an integer array. Example: <literal>lineCount(Content)</literal></para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>sublines</function>(<replaceable>content</replaceable>, <replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
-            <listitem>
-              <para>
-                Extracts the specified number of lines starting from the given line index in the file content or file content array, and returns them as a single concatenated string.
-                If <replaceable>content</replaceable> is an array, the result is an array of strings.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>strlen</function>(<replaceable>source</replaceable>)</term>
-            <listitem><para>Returns the length of the string as an <literal>Integer</literal>. If <replaceable>source</replaceable> is a string array, the result is an integer array. Example: <literal>strlen(Name)</literal></para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>substr</function>(<replaceable>source</replaceable>, <replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
-            <listitem><para>Returns a specific range of text from the <emphasis>string or string array</emphasis> as a <literal>String</literal>. If <replaceable>source</replaceable> is a string array, the result is a string array. Example: <literal>substr(Name, 0, 3)</literal></para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>replace</function>(str, from, to)</term>
-            <listitem>
-              <para>
-                Replaces all occurrences of the string <replaceable>from</replaceable> with <replaceable>to</replaceable>.
-                If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
-                Example: <literal>replace(name, ".bak", ".txt")</literal>
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>regexReplace</function>(str, pattern, replacement)</term>
-            <listitem>
-              <para>
-                Replaces all matches of the regular expression pattern with the replacement string.
-                Supports backreferences ($1, $2, etc.) in the replacement string.
-                If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
-                Example: <literal>regexReplace(name, "^(\\w+)_(\\w+)$", "$2_$1")</literal> swaps words separated by underscore.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>replaceWithList</function>(str, filepath)</term>
-            <listitem>
-              <para>
-                Replaces multiple strings in <replaceable>str</replaceable> using replacement rules loaded from a tab-separated file.
-                The file format is one replacement rule per line: <literal>search_string&lt;TAB&gt;replacement_string</literal>.
-                Lines starting with <literal>#</literal> are treated as comments and ignored.
-                Empty lines are also ignored.
-                If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
-              </para>
-              <para>File format example:</para>
-              <screen># Comment line
+        <para>
+          Filter expressions support various functions for manipulating and analyzing data.
+          Functions are organized by category for easier reference.
+        </para>
+
+        <section id="FilterExpression_StringFunctions">
+          <title>String Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>strlen</function>(<replaceable>source</replaceable>)</term>
+              <listitem><para>Returns the length of the string as an <literal>Integer</literal>. If <replaceable>source</replaceable> is a string array, the result is an integer array. Example: <literal>strlen(Name)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>substr</function>(<replaceable>source</replaceable>, <replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+              <listitem><para>Returns a specific range of text from the <emphasis>string or string array</emphasis> as a <literal>String</literal>. If <replaceable>source</replaceable> is a string array, the result is a string array. Example: <literal>substr(Name, 0, 3)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>replace</function>(str, from, to)</term>
+              <listitem>
+                <para>
+                  Replaces all occurrences of the string <replaceable>from</replaceable> with <replaceable>to</replaceable>.
+                  If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
+                  Example: <literal>replace(name, ".bak", ".txt")</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexReplace</function>(str, pattern, replacement)</term>
+              <listitem>
+                <para>
+                  Replaces all matches of the regular expression pattern with the replacement string.
+                  Supports backreferences ($1, $2, etc.) in the replacement string.
+                  If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
+                  Example: <literal>regexReplace(name, "^(\\w+)_(\\w+)$", "$2_$1")</literal> swaps words separated by underscore.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>replaceWithList</function>(str, filepath)</term>
+              <listitem>
+                <para>
+                  Replaces multiple strings in <replaceable>str</replaceable> using replacement rules loaded from a tab-separated file.
+                  The file format is one replacement rule per line: <literal>search_string&lt;TAB&gt;replacement_string</literal>.
+                  Lines starting with <literal>#</literal> are treated as comments and ignored.
+                  Empty lines are also ignored.
+                  If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
+                </para>
+                <para>File format example:</para>
+                <screen># Comment line
 apple	orange
 cat	dog
 old	new</screen>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> - applies replacements from file to file name</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>regexReplaceWithList</function>(str, filepath)</term>
-            <listitem>
-              <para>
-                Replaces strings in <replaceable>str</replaceable> using regular expression patterns loaded from a tab-separated file.
-                The file format is one pattern per line: <literal>regex_pattern&lt;TAB&gt;replacement_string</literal>.
-                The replacement string can include backreferences ($1, $2, etc.) to captured groups.
-                Lines starting with <literal>#</literal> are treated as comments and ignored.
-                Empty lines are also ignored.
-                If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
-              </para>
-              <para>File format example:</para>
-              <screen># Comment line
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> - applies replacements from file to file name</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexReplaceWithList</function>(str, filepath)</term>
+              <listitem>
+                <para>
+                  Replaces strings in <replaceable>str</replaceable> using regular expression patterns loaded from a tab-separated file.
+                  The file format is one pattern per line: <literal>regex_pattern&lt;TAB&gt;replacement_string</literal>.
+                  The replacement string can include backreferences ($1, $2, etc.) to captured groups.
+                  Lines starting with <literal>#</literal> are treated as comments and ignored.
+                  Empty lines are also ignored.
+                  If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
+                </para>
+                <para>File format example:</para>
+                <screen># Comment line
 \d+	NUMBER
 (\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>regexReplaceWithList(Name, "C:\Filters\regex_replacements.txt")</literal> - applies regex replacements to file name</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>normalizeUnicode</function>(str[, form])</term>
-            <listitem>
-              <para>
-                Normalizes Unicode string. The optional form parameter specifies the normalization form:
-                "NFC" or "C" (default), "NFD" or "D", "NFKC" or "KC", "NFKD" or "KD".
-                Can also use numeric forms: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD.
-                If <replaceable>str</replaceable> is an array, the result is an array of normalized strings.
-                Example: <literal>normalizeUnicode(name, "NFC")</literal>
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toLower</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts all characters in the string to lowercase.
-                If <replaceable>str</replaceable> is an array, the result is an array of lowercase strings.
-                Example: <literal>toLower("Hello World")</literal> returns <literal>"hello world"</literal>
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toUpper</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts all characters in the string to uppercase.
-                If <replaceable>str</replaceable> is an array, the result is an array of uppercase strings.
-                Example: <literal>toUpper("Hello World")</literal> returns <literal>"HELLO WORLD"</literal>
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toHalfWidth</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts full-width characters to half-width characters.
-                Primarily used for converting full-width alphanumeric and katakana characters to half-width.
-                If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toFullWidth</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts half-width characters to full-width characters.
-                Primarily used for converting half-width alphanumeric and katakana characters to full-width.
-                If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toKatakana</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts hiragana characters to katakana.
-                Non-hiragana characters remain unchanged.
-                If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toHiragana</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts katakana characters to hiragana.
-                Non-katakana characters remain unchanged.
-                If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts traditional Chinese characters to simplified Chinese characters.
-                Characters that don't have a simplified form remain unchanged.
-                If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>
-              <function>toTraditionalChinese</function>(<replaceable>str</replaceable>)
-            </term>
-            <listitem>
-              <para>
-                Converts simplified Chinese characters to traditional Chinese characters.
-                Characters that don't have a traditional form remain unchanged.
-                If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
-              </para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>toNumber</function>(<replaceable>str</replaceable>),
-            <function>toInt</function>(<replaceable>str</replaceable>),
-            <function>ToDouble</function>(<replaceable>str</replaceable>)</term>
-            <listitem><para>Convert a string to a number. <function>ToNumber</function>
-            returns an integer or floating-point number depending on the input format;
-            <function>toInt</function> returns only integers;
-            <function>ToDouble</function> returns only floating-point numbers.
-            Commas in the input are ignored. Returns undefined on parse failure.
-            Example: <literal>le:toInt(Column("Count")) &gt; 100</literal>
-            </para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>now</function>()</term>
-            <listitem><para>Returns the current date and time as a <literal>Timestamp</literal> value.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>today</function>()</term>
-            <listitem><para>Returns today's date as a <literal>Timestamp</literal> value representing <literal>00:00:00.000</literal> at the start of the day.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>startOfWeek</function>(<replaceable>timestamp</replaceable>)</term>
-            <listitem><para>Returns the first day of the week, which is always Sunday regardless of locale.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>startOfMonth</function>(<replaceable>timestamp</replaceable>)</term>
-            <listitem><para>Returns the first day of the month.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>startOfYear</function>(<replaceable>timestamp</replaceable>)</term>
-            <listitem><para>Returns the first day of the year.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>toDateStr</function>(<replaceable>timestamp</replaceable>)</term>
-            <listitem><para>Converts the given timestamp to a date string in <literal>yyyy-MM-dd</literal> format. If <replaceable>timestamp</replaceable> is a timestamp array, the result is a string array.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>abs</function>(<replaceable>value</replaceable>)</term>
-            <listitem><para>Returns the absolute value of the <emphasis>integer or integer array</emphasis>. If <replaceable>value</replaceable> is an integer array, the result is an integer array.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>allof</function>(<replaceable>booleans</replaceable>)</term>
-            <listitem><para>Returns <literal>true</literal> if all elements in the <emphasis>boolean array</emphasis> satisfy the condition.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>allequal</function>(<replaceable>array</replaceable>)</term>
-            <listitem><para>Returns <literal>true</literal> if all values in the array are equal.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>isWithin</function>(<replaceable>value</replaceable>, <replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
-            <listitem>
-              <para>
-                Returns <literal>true</literal> if <replaceable>value</replaceable> is within the range <literal>[min, max]</literal> (inclusive on both ends).
-                Supports integers, floating-point numbers, timestamps, and strings (case-insensitive comparison).
-                If <replaceable>value</replaceable> is an array, the result is a boolean array with each element checked individually.
-              </para>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>isWithin(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
-                <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> checks if any file size is between 1KB and 10MB</para></listitem>
-                <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> checks if file was modified within the last week</para></listitem>
-                <listitem><para><literal>allof(isWithin(Size, 1KB, 10MB))</literal> checks if all file sizes are between 1KB and 10MB</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>inRange</function>(<replaceable>value</replaceable>, <replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
-            <listitem>
-              <para>
-                Returns <literal>true</literal> if <replaceable>value</replaceable> is within the range <literal>[min, max)</literal> (inclusive on the lower bound, exclusive on the upper bound).
-                Supports integers, floating-point numbers, timestamps, and strings (case-insensitive comparison).
-                If <replaceable>value</replaceable> is an array, the result is a boolean array with each element checked individually.
-              </para>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>inRange(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
-                <listitem><para><literal>inRange(10, 1, 10)</literal> returns <literal>false</literal></para></listitem>
-                <listitem><para><literal>inRange(Size, 0, 1MB)</literal> checks if any file size is less than 1MB</para></listitem>
-                <listitem><para><literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal> checks if any file was modified this month (excluding today)</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>logError</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), <function>logWarn</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), <function>logInfo</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...)</term>
-            <listitem>
-              <para>
-                Outputs the concatenated string representation of all arguments to the log (at error, warning, or information level respectively), 
-                separated by spaces, and returns the last argument value.
-                These functions are useful for debugging filter expressions.
-              </para>
-              <para>Examples (using return value):</para>
-              <itemizedlist>
-                <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - logs the file size(s) and checks if greater than 1MB</para></listitem>
-                <listitem><para><literal>logWarn("Processing:", Name) like "*.tmp"</literal> - logs the file name(s) and checks if it's a temporary file</para></listitem>
-                <listitem><para><literal>Size > 1KB and logInfo("Large file:", Name) contains "test"</literal> - logs only when size condition is true, then checks name</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>if</function>(<replaceable>condition</replaceable>, <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
-            <listitem>
-              <para>
-                Returns <replaceable>trueValue</replaceable> if <replaceable>condition</replaceable> evaluates to true, otherwise returns <replaceable>falseValue</replaceable>.
-                This function performs short-circuit evaluation (it only evaluates the branch that will be returned).
-              </para>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - returns "large" or "small" based on file size</para></listitem>
-                <listitem><para><literal>if(Extension = "txt", "text file", "other file")</literal> - classifies files by extension</para></listitem>
-                <listitem><para><literal>if(Exists, Size, 0)</literal> - returns file size or 0 if file doesn't exist</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>ifEach</function>(<replaceable>conditionArray</replaceable>, <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
-            <listitem>
-              <para>
-                Element-wise conditional selection. For each element in <replaceable>conditionArray</replaceable>,
-                returns the corresponding element from <replaceable>trueValue</replaceable> if the condition is true,
-                otherwise returns the corresponding element from <replaceable>falseValue</replaceable>.
-                If <replaceable>trueValue</replaceable> or <replaceable>falseValue</replaceable> is a scalar, 
-                it is broadcast to all elements.
-              </para>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - returns array of "large"/"small" labels for each file</para></listitem>
-                <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x", "y", "z"))</literal> - returns <literal>array("a", "y", "c")</literal></para></listitem>
-                <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> - checks if any file is between 100KB and 10MB</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>choose</function>(<replaceable>index</replaceable>, <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
-            <listitem>
-              <para>
-                Selects a value from the arguments based on <replaceable>index</replaceable>.
-                If <replaceable>index</replaceable> is 0, returns <replaceable>value0</replaceable>; if 1, returns <replaceable>value1</replaceable>, etc.
-                Negative indices are clamped to 0. Indices beyond the last value return the last value.
-              </para>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>choose(0, "first", "second", "third")</literal> - returns "first"</para></listitem>
-                <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> - maps diff codes to labels</para></listitem>
-                <listitem><para><literal>choose(5, "a", "b", "c")</literal> - returns "c" (out of bounds, returns last value)</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>chooseEach</function>(<replaceable>indexArray</replaceable>, <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
-            <listitem>
-              <para>
-                Element-wise value selection. For each index in <replaceable>indexArray</replaceable>,
-                selects the corresponding value from the remaining arguments.
-                If <replaceable>indexArray</replaceable> is a scalar, behaves like <literal>choose</literal>.
-              </para>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> - returns <literal>array("a", "b", "c")</literal></para></listitem>
-                <listitem><para><literal>chooseEach(array(0, 0, 1), "x", "y")</literal> - returns <literal>array("x", "x", "y")</literal></para></listitem>
-                <listitem><para><literal>chooseEach(array(2, 0, 1), "first", "second", "third")</literal> - returns <literal>array("third", "first", "second")</literal></para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><function>andEach</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>), <function>orEach</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>), <function>notEach</function>(<replaceable>value</replaceable>)</term>
-            <listitem>
-              <para>
-                Element-wise logical operations. These functions operate on booleans, boolean arrays, or a combination of both:
-              </para>
-              <itemizedlist>
-                <listitem><para><literal>andEach</literal> - Logical AND operation</para></listitem>
-                <listitem><para><literal>orEach</literal> - Logical OR operation</para></listitem>
-                <listitem><para><literal>notEach</literal> - Logical NOT operation (single argument)</para></listitem>
-              </itemizedlist>
-              <para>
-                When arguments are scalars, returns a scalar boolean result.
-                When one argument is an array and the other is a scalar, the scalar is broadcast to all elements.
-                When both arguments are arrays, performs element-wise operation.
-              </para>
-              <para>Examples:</para>
-              <itemizedlist>
-                <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - files between 1KB and 1MB</para></listitem>
-                <listitem><para><literal>orEach(Extension = "txt", Extension = "log")</literal> - txt or log files</para></listitem>
-                <listitem><para><literal>notEach(Exists)</literal> - files that don't exist</para></listitem>
-                <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - all files exist with non-zero size</para></listitem>
-                <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - any file 1MB or smaller</para></listitem>
-              </itemizedlist>
-            </listitem>
-          </varlistentry>
-        </variablelist>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>regexReplaceWithList(Name, "C:\Filters\regex_replacements.txt")</literal> - applies regex replacements to file name</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>normalizeUnicode</function>(str[, form])</term>
+              <listitem>
+                <para>
+                  Normalizes Unicode string. The optional form parameter specifies the normalization form:
+                  "NFC" or "C" (default), "NFD" or "D", "NFKC" or "KC", "NFKD" or "KD".
+                  Can also use numeric forms: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD.
+                  If <replaceable>str</replaceable> is an array, the result is an array of normalized strings.
+                  Example: <literal>normalizeUnicode(name, "NFC")</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toLower</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts all characters in the string to lowercase.
+                  If <replaceable>str</replaceable> is an array, the result is an array of lowercase strings.
+                  Example: <literal>toLower("Hello World")</literal> returns <literal>"hello world"</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toUpper</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts all characters in the string to uppercase.
+                  If <replaceable>str</replaceable> is an array, the result is an array of uppercase strings.
+                  Example: <literal>toUpper("Hello World")</literal> returns <literal>"HELLO WORLD"</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toHalfWidth</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts full-width characters to half-width characters.
+                  Primarily used for converting full-width alphanumeric and katakana characters to half-width.
+                  If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toFullWidth</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts half-width characters to full-width characters.
+                  Primarily used for converting half-width alphanumeric and katakana characters to full-width.
+                  If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toKatakana</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts hiragana characters to katakana.
+                  Non-hiragana characters remain unchanged.
+                  If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toHiragana</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts katakana characters to hiragana.
+                  Non-katakana characters remain unchanged.
+                  If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts traditional Chinese characters to simplified Chinese characters.
+                  Characters that don't have a simplified form remain unchanged.
+                  If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>toTraditionalChinese</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Converts simplified Chinese characters to traditional Chinese characters.
+                  Characters that don't have a traditional form remain unchanged.
+                  If <replaceable>str</replaceable> is an array, the result is an array of converted strings.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>trim</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Removes leading and trailing whitespace characters (space, tab, newline, carriage return) from the string.
+                  If <replaceable>str</replaceable> is an array, the result is an array of trimmed strings.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>trim("  hello  ")</literal> returns <literal>"hello"</literal></para></listitem>
+                  <listitem><para><literal>trim("\\t\\nhello\\r\\n")</literal> returns <literal>"hello"</literal></para></listitem>
+                  <listitem><para><literal>trim(array("  test  ", "  data  "))</literal> returns <literal>array("test", "data")</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>trimLeft</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Removes leading whitespace characters (space, tab, newline, carriage return) from the beginning of the string.
+                  Trailing whitespace is preserved.
+                  If <replaceable>str</replaceable> is an array, the result is an array of left-trimmed strings.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>trimLeft("  hello  ")</literal> returns <literal>"hello  "</literal></para></listitem>
+                  <listitem><para><literal>trimLeft("\\t\\nhello\\r\\n")</literal> returns <literal>"hello\\r\\n"</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+                <function>trimRight</function>(<replaceable>str</replaceable>)
+              </term>
+              <listitem>
+                <para>
+                  Removes trailing whitespace characters (space, tab, newline, carriage return) from the end of the string.
+                  Leading whitespace is preserved.
+                  If <replaceable>str</replaceable> is an array, the result is an array of right-trimmed strings.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>trimRight("  hello  ")</literal> returns <literal>"  hello"</literal></para></listitem>
+                  <listitem><para><literal>trimRight("\\t\\nhello\\r\\n")</literal> returns <literal>"\\t\\nhello"</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_FileContentFunctions">
+          <title>File Content Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>lineCount</function>(<replaceable>content</replaceable>)</term>
+              <listitem><para>Returns the number of lines in the file content or file content array as an <literal>Integer</literal>. If <replaceable>content</replaceable> is an array, the result is an integer array. Example: <literal>lineCount(Content)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>sublines</function>(<replaceable>content</replaceable>, <replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+              <listitem>
+                <para>
+                  Extracts the specified number of lines starting from the given line index in the file content or file content array, and returns them as a single concatenated string.
+                  If <replaceable>content</replaceable> is an array, the result is an array of strings.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_TypeConversionFunctions">
+          <title>Type Conversion Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>toNumber</function>(<replaceable>str</replaceable>),
+              <function>toInt</function>(<replaceable>str</replaceable>),
+              <function>ToDouble</function>(<replaceable>str</replaceable>)</term>
+              <listitem><para>Convert a string to a number. <function>ToNumber</function>
+              returns an integer or floating-point number depending on the input format;
+              <function>toInt</function> returns only integers;
+              <function>ToDouble</function> returns only floating-point numbers.
+              Commas in the input are ignored. Returns undefined on parse failure.
+              Example: <literal>le:toInt(Column("Count")) &gt; 100</literal>
+              </para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>toDateTime</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+                  Converts a string to a timestamp value. Supports multiple date/time formats.
+                  Returns undefined if the string cannot be parsed.
+                  Example: <literal>toDateTime("2025-01-15") &gt; today()</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_DateTimeFunctions">
+          <title>Date/Time Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>now</function>()</term>
+              <listitem><para>Returns the current date and time as a <literal>Timestamp</literal> value.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>today</function>()</term>
+              <listitem><para>Returns today's date as a <literal>Timestamp</literal> value representing <literal>00:00:00.000</literal> at the start of the day.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>startOfWeek</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Returns the first day of the week, which is always Sunday regardless of locale.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>startOfMonth</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Returns the first day of the month.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>startOfYear</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Returns the first day of the year.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>toDateStr</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Converts the given timestamp to a date string in <literal>yyyy-MM-dd</literal> format. If <replaceable>timestamp</replaceable> is a timestamp array, the result is a string array.</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_MathFunctions">
+          <title>Math and Comparison Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>abs</function>(<replaceable>value</replaceable>)</term>
+              <listitem><para>Returns the absolute value of the <emphasis>integer or integer array</emphasis>. If <replaceable>value</replaceable> is an integer array, the result is an integer array.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>isWithin</function>(<replaceable>value</replaceable>, <replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
+              <listitem>
+                <para>
+                  Returns <literal>true</literal> if <replaceable>value</replaceable> is within the range <literal>[min, max]</literal> (inclusive on both ends).
+                  Supports integers, floating-point numbers, timestamps, and strings (case-insensitive comparison).
+                  If <replaceable>value</replaceable> is an array, the result is a boolean array with each element checked individually.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>isWithin(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
+                  <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> checks if any file size is between 1KB and 10MB</para></listitem>
+                  <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> checks if file was modified within the last week</para></listitem>
+                  <listitem><para><literal>allof(isWithin(Size, 1KB, 10MB))</literal> checks if all file sizes are between 1KB and 10MB</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>inRange</function>(<replaceable>value</replaceable>, <replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
+              <listitem>
+                <para>
+                  Returns <literal>true</literal> if <replaceable>value</replaceable> is within the range <literal>[min, max)</literal> (inclusive on the lower bound, exclusive on the upper bound).
+                  Supports integers, floating-point numbers, timestamps, and strings (case-insensitive comparison).
+                  If <replaceable>value</replaceable> is an array, the result is a boolean array with each element checked individually.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>inRange(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
+                  <listitem><para><literal>inRange(10, 1, 10)</literal> returns <literal>false</literal></para></listitem>
+                  <listitem><para><literal>inRange(Size, 0, 1MB)</literal> checks if any file size is less than 1MB</para></listitem>
+                  <listitem><para><literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal> checks if any file was modified this month (excluding today)</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_ArrayFunctions">
+          <title>Array Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>array</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...)</term>
+              <listitem><para>Creates an array from the given values. Example: <literal>array(1, 2, 3)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>at</function>(<replaceable>array</replaceable>, <replaceable>index</replaceable>)</term>
+              <listitem><para>Returns the element at the specified index (0-based). Negative indices count from the end. Example: <literal>at(array(1, 2, 3), -1)</literal> returns 3</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>anyof</function>(<replaceable>booleans</replaceable>)</term>
+              <listitem><para>Returns <literal>true</literal> if any element in the <emphasis>boolean array</emphasis> satisfies the condition.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>allof</function>(<replaceable>booleans</replaceable>)</term>
+              <listitem><para>Returns <literal>true</literal> if all elements in the <emphasis>boolean array</emphasis> satisfy the condition.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>allequal</function>(<replaceable>array</replaceable>)</term>
+              <listitem><para>Returns <literal>true</literal> if all values in the array are equal.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>len</function>(<replaceable>value</replaceable>)</term>
+              <listitem>
+                <para>Returns the length of the value as an <literal>Integer</literal>.</para>
+                <para>Behavior:</para>
+                <itemizedlist>
+                  <listitem><para><emphasis>Array</emphasis>: Returns the number of elements in the array</para></listitem>
+                  <listitem><para><emphasis>String</emphasis>: Returns the UTF-8 character count</para></listitem>
+                  <listitem><para><emphasis>Undefined (monostate)</emphasis>: Returns 0</para></listitem>
+                  <listitem><para><emphasis>Other scalar values</emphasis> (Integer, Real, Boolean, Timestamp, etc.): Returns 1</para></listitem>
+                </itemizedlist>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>len(array(1, 2, 3))</literal> - returns 3</para></listitem>
+                  <listitem><para><literal>len("hello")</literal> - returns 5</para></listitem>
+                  <listitem><para><literal>len(123)</literal> - returns 1</para></listitem>
+                  <listitem><para><literal>len(Size)</literal> - returns the number of sides (2 or 3) in a folder comparison</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_ConditionalFunctions">
+          <title>Conditional Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>if</function>(<replaceable>condition</replaceable>, <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+              <listitem>
+                <para>
+                  Returns <replaceable>trueValue</replaceable> if <replaceable>condition</replaceable> evaluates to true, otherwise returns <replaceable>falseValue</replaceable>.
+                  This function performs short-circuit evaluation (it only evaluates the branch that will be returned).
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - returns "large" or "small" based on file size</para></listitem>
+                  <listitem><para><literal>if(Extension = "txt", "text file", "other file")</literal> - classifies files by extension</para></listitem>
+                  <listitem><para><literal>if(Exists, Size, 0)</literal> - returns file size or 0 if file doesn't exist</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>ifEach</function>(<replaceable>conditionArray</replaceable>, <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+              <listitem>
+                <para>
+                  Element-wise conditional selection. For each element in <replaceable>conditionArray</replaceable>,
+                  returns the corresponding element from <replaceable>trueValue</replaceable> if the condition is true,
+                  otherwise returns the corresponding element from <replaceable>falseValue</replaceable>.
+                  If <replaceable>trueValue</replaceable> or <replaceable>falseValue</replaceable> is a scalar, 
+                  it is broadcast to all elements.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - returns array of "large"/"small" labels for each file</para></listitem>
+                  <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x", "y", "z"))</literal> - returns <literal>array("a", "y", "c")</literal></para></listitem>
+                  <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> - checks if any file is between 100KB and 10MB</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>choose</function>(<replaceable>index</replaceable>, <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+              <listitem>
+                <para>
+                  Selects a value from the arguments based on <replaceable>index</replaceable>.
+                  If <replaceable>index</replaceable> is 0, returns <replaceable>value0</replaceable>; if 1, returns <replaceable>value1</replaceable>, etc.
+                  Negative indices are clamped to 0. Indices beyond the last value return the last value.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>choose(0, "first", "second", "third")</literal> - returns "first"</para></listitem>
+                  <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> - maps diff codes to labels</para></listitem>
+                  <listitem><para><literal>choose(5, "a", "b", "c")</literal> - returns "c" (out of bounds, returns last value)</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>chooseEach</function>(<replaceable>indexArray</replaceable>, <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+              <listitem>
+                <para>
+                  Element-wise value selection. For each index in <replaceable>indexArray</replaceable>,
+                  selects the corresponding value from the remaining arguments.
+                  If <replaceable>indexArray</replaceable> is a scalar, behaves like <literal>choose</literal>.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> - returns <literal>array("a", "b", "c")</literal></para></listitem>
+                  <listitem><para><literal>chooseEach(array(0, 0, 1), "x", "y")</literal> - returns <literal>array("x", "x", "y")</literal></para></listitem>
+                  <listitem><para><literal>chooseEach(array(2, 0, 1), "first", "second", "third")</literal> - returns <literal>array("third", "first", "second")</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_LogicalFunctions">
+          <title>Element-wise Logical Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>andEach</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>), <function>orEach</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>), <function>notEach</function>(<replaceable>value</replaceable>)</term>
+              <listitem>
+                <para>
+                  Element-wise logical operations. These functions operate on booleans, boolean arrays, or a combination of both:
+                </para>
+                <itemizedlist>
+                  <listitem><para><literal>andEach</literal> - Logical AND operation</para></listitem>
+                  <listitem><para><literal>orEach</literal> - Logical OR operation</para></listitem>
+                  <listitem><para><literal>notEach</literal> - Logical NOT operation (single argument)</para></listitem>
+                </itemizedlist>
+                <para>
+                  When arguments are scalars, returns a scalar boolean result.
+                  When one argument is an array and the other is a scalar, the scalar is broadcast to all elements.
+                  When both arguments are arrays, performs element-wise operation.
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - files between 1KB and 1MB</para></listitem>
+                  <listitem><para><literal>orEach(Extension = "txt", Extension = "log")</literal> - txt or log files</para></listitem>
+                  <listitem><para><literal>notEach(Exists)</literal> - files that don't exist</para></listitem>
+                  <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - all files exist with non-zero size</para></listitem>
+                  <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - any file 1MB or smaller</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_DiagnosticFunctions">
+          <title>Diagnostic and Logging Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>logError</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), <function>logWarn</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), <function>logInfo</function>(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...)</term>
+              <listitem>
+                <para>
+                  Outputs the concatenated string representation of all arguments to the log (at error, warning, or information level respectively), 
+                  separated by spaces, and returns the last argument value.
+                  These functions are useful for debugging filter expressions.
+                </para>
+                <para>Examples (using return value):</para>
+                <itemizedlist>
+                  <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - logs the file size(s) and checks if greater than 1MB</para></listitem>
+                  <listitem><para><literal>logWarn("Processing:", Name) like "*.tmp"</literal> - logs the file name(s) and checks if it's a temporary file</para></listitem>
+                  <listitem><para><literal>Size > 1KB and logInfo("Large file:", Name) contains "test"</literal> - logs only when size condition is true, then checks name</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
       </section>
 
       <section id="FilterExpression_Units">
@@ -1304,6 +1453,9 @@ old	new</screen>
           <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> - Files with extensions from 'a' to 'm' and size less than 1MB</para></listitem>
           <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - Case-insensitive filename matching</para></listitem>
           <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - Match after converting full-width to half-width</para></listitem>
+          <listitem><para><literal>trim(Name) = "readme.txt"</literal> - Match filename after removing leading/trailing whitespace</para></listitem>
+          <listitem><para><literal>trimLeft(Column("Value")) = "123"</literal> - Match column value after removing leading whitespace (table mode)</para></listitem>
+          <listitem><para><literal>trimRight(Line) contains "end"</literal> - Check if line (without trailing whitespace) contains "end"</para></listitem>
           <listitem><para><literal>Different</literal> - Show only files/folders that are different (Display filter only)</para></listitem>
           <listitem><para><literal>Identical</literal> - Show only files/folders that are identical (Display filter only)</para></listitem>
           <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all sides (Display filter only)</para></listitem>
@@ -2108,7 +2260,7 @@ Pekka Himanen</screen></para>
             <term><function>count</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Total number of lines matching
             <replaceable>expr</replaceable> across the whole file.
-            Example: <literal>le:matchNumber(Different) = Count(Different)</literal>
+            Example: <literal>le:matchNumber(Different) = count(Different)</literal>
             shows only the last difference block.</para></listitem>
           </varlistentry>
           <varlistentry>

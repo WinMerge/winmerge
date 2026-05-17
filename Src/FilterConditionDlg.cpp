@@ -139,7 +139,7 @@ String CFilterConditionDlg::GetExpression()
 	if (m_sField == _T("Size") || m_sField == _T("TotalSize") ||
 	    m_sField == _T("Files") || m_sField == _T("Items") ||
 	    m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
-		m_sField == _T("LineNumber") || m_sField == _T("Codepage") ||
+		m_sField == _T("LineLength") || m_sField == _T("LineNumber") || m_sField == _T("Codepage") ||
 		m_sLHS == _T("lineCount(%1)") || m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 ||
 		m_sLHS == _T("toNumber(%1)") ||
 	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_UI8 || m_vt == VT_I8)
@@ -238,7 +238,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	if (m_sField == _T("Size") || m_sField == _T("TotalSize") ||
 		m_sField == _T("Files") || m_sField == _T("Items") ||
 		m_sField == _T("Codepage") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
-		m_sField == _T("DateStr") || m_sField == _T("LineNumber") ||
+		m_sField == _T("DateStr") || m_sField == _T("LineLength") || m_sField == _T("LineNumber") ||
 		m_sLHS == _T("toDateStr(%1)") || m_sLHS == _T("toDateTime(%1)") || m_sLHS == _T("lineCount(%1)") ||
 		m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 || m_sLHS == _T("toNumber(%1)") ||
 		m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8)
@@ -291,7 +291,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 		m_sValue2 = _T("0B");
 	}
 	else if (m_sLHS == _T("lineCount(%1)") || m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 || m_sLHS == _T("toNumber(%1)") ||
-	         m_sField == _T("Files") || m_sField == _T("Items") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") || m_sField == _T("LineNumber"))
+	         m_sField == _T("Files") || m_sField == _T("Items") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
+	         m_sField == _T("LineLength") || m_sField == _T("LineNumber"))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
