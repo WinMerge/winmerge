@@ -380,6 +380,7 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PLUGIN_PROCESSTYPE, m_strProcessType);
 	DDX_Text(pDX, IDC_PLUGIN_MENUCAPTION, m_strMenuCaption);
 	DDX_CBIndex(pDX, IDC_PLUGIN_WINDOWTYPE, m_nWindowType);
+	DDX_Text(pDX, IDC_PLUGIN_UNPACKEDFILEEXTENSION, m_strUnpackedFileExtension);
 	DDX_Check(pDX, IDC_PLUGIN_AUTOMATIC, m_bIsAutomatic);
 	DDX_Check(pDX, IDC_PLUGIN_ARGUMENTSREQUIRED, m_bArgumentsRequired);
 	DDX_Check(pDX, IDC_PLUGIN_GENERATESCRIPT, m_bGenerateEditorScript);
