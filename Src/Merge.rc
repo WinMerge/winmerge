@@ -1856,9 +1856,9 @@ BEGIN
     BEGIN
         MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
         MENUITEM SEPARATOR
-        POPUP "Add &Line Condition"
+        POPUP "Add L&ine Condition"
         BEGIN
-            MENUITEM "&Line...",                    ID_FILTERMENU_LINE_RANGE
+            MENUITEM "L&ine...",                    ID_FILTERMENU_LINE_RANGE
             POPUP "&Column"
             BEGIN
                 POPUP "Column"
@@ -1867,19 +1867,19 @@ BEGIN
                     MENUITEM "&Number...",                 ID_FILTERMENU_COLUMN_NUMBER
                     MENUITEM "D&ateTime...",               ID_FILTERMENU_COLUMN_DATETIME
                 END
-                MENUITEM "Column: &1"                   ID_FILTERMENU_COLUMN_1
-                MENUITEM "Column: &2"                   ID_FILTERMENU_COLUMN_2
-                MENUITEM "Column: &3"                   ID_FILTERMENU_COLUMN_3
-                MENUITEM "Column: &4"                   ID_FILTERMENU_COLUMN_4
-                MENUITEM "Column: &5"                   ID_FILTERMENU_COLUMN_5
-                MENUITEM "Column: &6"                   ID_FILTERMENU_COLUMN_6
-                MENUITEM "Column: &7"                   ID_FILTERMENU_COLUMN_7
-                MENUITEM "Column: &8"                   ID_FILTERMENU_COLUMN_8
-                MENUITEM "Column: &9"                   ID_FILTERMENU_COLUMN_9
-                MENUITEM "Column: &10"                  ID_FILTERMENU_COLUMN_10
+                MENUITEM "Column: &1",                  ID_FILTERMENU_COLUMN_1
+                MENUITEM "Column: &2",                  ID_FILTERMENU_COLUMN_2
+                MENUITEM "Column: &3",                  ID_FILTERMENU_COLUMN_3
+                MENUITEM "Column: &4",                  ID_FILTERMENU_COLUMN_4
+                MENUITEM "Column: &5",                  ID_FILTERMENU_COLUMN_5
+                MENUITEM "Column: &6",                  ID_FILTERMENU_COLUMN_6
+                MENUITEM "Column: &7",                  ID_FILTERMENU_COLUMN_7
+                MENUITEM "Column: &8",                  ID_FILTERMENU_COLUMN_8
+                MENUITEM "Column: &9",                  ID_FILTERMENU_COLUMN_9
+                MENUITEM "Column: &10",                 ID_FILTERMENU_COLUMN_10
             END
             MENUITEM "Line L&ength...",             ID_FILTERMENU_LINE_LENGTH_RANGE
-            POPUP "&Line Number"
+            POPUP "Line &Number"
             BEGIN
                 MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES
                 MENUITEM "&Even Lines",                 ID_FILTERMENU_LINE_EVEN_LINES
@@ -1934,16 +1934,16 @@ BEGIN
                     MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_COLUMN_DATETIME_GREATER
                     MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_COLUMN_DATETIME_GREATER_EQUAL
                 END
-                MENUITEM "Column: &1"                   ID_FILTERMENU_COLUMN_1
-                MENUITEM "Column: &2"                   ID_FILTERMENU_COLUMN_2
-                MENUITEM "Column: &3"                   ID_FILTERMENU_COLUMN_3
-                MENUITEM "Column: &4"                   ID_FILTERMENU_COLUMN_4
-                MENUITEM "Column: &5"                   ID_FILTERMENU_COLUMN_5
-                MENUITEM "Column: &6"                   ID_FILTERMENU_COLUMN_6
-                MENUITEM "Column: &7"                   ID_FILTERMENU_COLUMN_7
-                MENUITEM "Column: &8"                   ID_FILTERMENU_COLUMN_8
-                MENUITEM "Column: &9"                   ID_FILTERMENU_COLUMN_9
-                MENUITEM "Column: &10"                  ID_FILTERMENU_COLUMN_10
+                MENUITEM "Column: &1",                  ID_FILTERMENU_COLUMN_1
+                MENUITEM "Column: &2",                  ID_FILTERMENU_COLUMN_2
+                MENUITEM "Column: &3",                  ID_FILTERMENU_COLUMN_3
+                MENUITEM "Column: &4",                  ID_FILTERMENU_COLUMN_4
+                MENUITEM "Column: &5",                  ID_FILTERMENU_COLUMN_5
+                MENUITEM "Column: &6",                  ID_FILTERMENU_COLUMN_6
+                MENUITEM "Column: &7",                  ID_FILTERMENU_COLUMN_7
+                MENUITEM "Column: &8",                  ID_FILTERMENU_COLUMN_8
+                MENUITEM "Column: &9",                  ID_FILTERMENU_COLUMN_9
+                MENUITEM "Column: &10",                 ID_FILTERMENU_COLUMN_10
             END
             POPUP "Lin&e Length"
             BEGIN

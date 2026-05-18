@@ -1144,11 +1144,11 @@ old	new</screen>
             <varlistentry>
               <term><function>toNumber</function>(<replaceable>str</replaceable>),
               <function>toInt</function>(<replaceable>str</replaceable>),
-              <function>ToDouble</function>(<replaceable>str</replaceable>)</term>
-              <listitem><para>Convert a string to a number. <function>ToNumber</function>
+              <function>toDouble</function>(<replaceable>str</replaceable>)</term>
+              <listitem><para>Convert a string to a number. <function>toNumber</function>
               returns an integer or floating-point number depending on the input format;
               <function>toInt</function> returns only integers;
-              <function>ToDouble</function> returns only floating-point numbers.
+              <function>toDouble</function> returns only floating-point numbers.
               Commas in the input are ignored. Returns undefined on parse failure.
               Example: <literal>le:toInt(Column("Count")) &gt; 100</literal>
               </para></listitem>

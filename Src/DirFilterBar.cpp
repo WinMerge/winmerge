@@ -8,6 +8,8 @@
 #include "DirFilterBar.h"
 #include "FileFilterHelper.h"
 #include "FilterErrorMessages.h"
+#include "Merge.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -34,6 +36,7 @@ void CDirFilterBar::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CDirFilterBar, CTrDialogBar)
+	ON_COMMAND(ID_HELP, OnHelp)
 	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilter)
 	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilter)
 	ON_CBN_SELCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilter)
@@ -78,6 +81,21 @@ BOOL CDirFilterBar::Create(CWnd* pParentWnd)
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
+BOOL CDirFilterBar::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_F1)
+	{
+		OnHelp();
+		return TRUE;
+	}
+	return __super::PreTranslateMessage(pMsg);
+}
+
+void CDirFilterBar::OnHelp()
+{
+	CMergeApp::ShowHelp(DisplayFolderFilterHelpLocation);
+}
+
 void CDirFilterBar::OnKillFocusFilter()
 {
 	UpdateData(TRUE);
@@ -85,6 +103,7 @@ void CDirFilterBar::OnKillFocusFilter()
 
 void CDirFilterBar::OnEditChangeFilter()
 {
+	m_ctlFilterEdit.SetApplied(false);
 	m_ctlFilterEdit.OnEnChange();
 }
 
@@ -107,6 +126,9 @@ void CDirFilterBar::ShowFilterMenu()
 	{
 		m_sFilter = *filter;
 		UpdateData(FALSE);
+		m_ctlFilterEdit.SetApplied(false);
 		m_ctlFilterEdit.OnEnChange();
+		m_ctlFilterEdit.SetFocus();
 	}
 }
+

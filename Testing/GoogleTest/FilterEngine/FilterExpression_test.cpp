@@ -1,9 +1,9 @@
 ﻿#include "pch.h"
 #include <gtest/gtest.h>
 #include "FilterEngine/FilterExpression.h"
+#include "FilterEngine/ILineDataProvider.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
-#include "ILineDataProvider.h"
 #include "PathContext.h"
 #include "UniFile.h"
 #include "Poco/DateTimeParser.h"

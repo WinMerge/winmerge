@@ -1069,7 +1069,9 @@ static auto LineNumberField(int index, const FilterEvalContext& ectxt) -> ValueT
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return static_cast<int64_t>(ectxt.provider->GetRealLineNumber(index, ectxt.lineIndex));
+	if ((ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_GHOST) != 0)
+		return std::monostate{};
+	return static_cast<int64_t>(ectxt.provider->GetRealLineNumber(index, ectxt.lineIndex) + 1);
 }
 
 static auto ViewLineNumberField(int index, const FilterEvalContext& ectxt) -> ValueType

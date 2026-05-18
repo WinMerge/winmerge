@@ -363,8 +363,8 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command >= ID_FILTERMENU_COLUMN_TEXT && command <= ID_FILTERMENU_COLUMN_DATETIME)
 	{
-		const String Conversions[] = { _T("%1"), _T("toNumber(%1)"), _T("toDateTime(%1)") };
-		const String Operators[] = { _T("%1 contains %2"), _T("%1 = %2"), _T("%1 < %2") };
+		static const tchar_t* Conversions[] = { _T("%1"), _T("toNumber(%1)"), _T("toDateTime(%1)") };
+		static const tchar_t* Operators[] = { _T("%1 contains %2"), _T("%1 = %2"), _T("%1 < %2") };
 		int dataType = (command - ID_FILTERMENU_COLUMN_TEXT) % std::size(Conversions);
 		CFilterConditionDlg dlg(false, m_targetSide, 
 			_T("Column") + strutils::to_str(m_columnIndex + 1),
@@ -374,7 +374,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command >= ID_FILTERMENU_LINE_ODD_LINES && command <= ID_FILTERMENU_LINE_EVEN_LINES)
 	{
-		static const String LineNumberConditions[] = { _T("(%1 %% 2) = 1"), _T("(%1 %% 2) = 0"), };
+		static const tchar_t* LineNumberConditions[] = { _T("(%1 %% 2) = 1"), _T("(%1 %% 2) = 0"), };
 		String expr = strutils::format_string1(LineNumberConditions[command - ID_FILTERMENU_LINE_ODD_LINES], defaultProp(_T("LineNumber")));
 		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 	}
@@ -386,13 +386,13 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command >= ID_FILTERMENU_LINE_DIFFERENT && command <= ID_FILTERMENU_LINE_TRIVIAL)
 	{
-		static const String Identifiers[] = { _T("Different"), _T("Identical"), _T("Trivial") };
+		static const tchar_t* Identifiers[] = { _T("Different"), _T("Identical"), _T("Trivial") };
 		String expr = Identifiers[command - ID_FILTERMENU_LINE_DIFFERENT];
 		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 	}
 	else if (command >= ID_FILTERMENU_LINE_EXISTS && command <= ID_FILTERMENU_LINE_BOOKMARKED)
 	{
-		static const String Identifiers[] = { _T("Exists"), _T("Missing"), _T("Moved"), _T("Bookmarked") };
+		static const tchar_t* Identifiers[] = { _T("Exists"), _T("Missing"), _T("Moved"), _T("Bookmarked") };
 		String expr = defaultProp(Identifiers[command - ID_FILTERMENU_LINE_EXISTS]);
 		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 	}
@@ -404,7 +404,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command >= ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1 && command <= ID_FILTERMENU_LINE_MATCHNUMBER_GT_5)
 	{
-		static const String Exprs[] = {
+		static const tchar_t* Exprs[] = {
 			_T("matchNumber(%1) = 1"), _T("matchNumber(%1) = count(%1)"),
 			_T("matchNumber(%1) <= 5"), _T("matchNumber(%1) > 5"),
 		};
@@ -428,6 +428,10 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		{
 			auto [directives1, expr1] = NormalizeAndSplit(dlg.GetFilter1());
 			auto [directives2, expr2] = NormalizeAndSplit(dlg.GetFilter2());
+			if (expr1.empty())
+				expr1 = _T("Line contains \"BEGIN\"");
+			if (expr2.empty())
+				expr2 = _T("Line contains \"END\"");
 			String mergedDirectives = FilterExpression::MergeDirectives(directives1, directives2);
 			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP) ? _T("not matchInside(") : _T("matchInside(");
 			result = LineFilterHelper::BuildLeFilter(mergedDirectives, funcName + expr1 + _T(", ") + expr2 + _T(")"));
@@ -440,6 +444,10 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		{
 			auto [directives1, expr1] = NormalizeAndSplit(dlg.GetFilter1());
 			auto [directives2, expr2] = NormalizeAndSplit(dlg.GetFilter2());
+			if (expr1.empty())
+				expr1 = _T("Line contains \"BEGIN\"");
+			if (expr2.empty())
+				expr2 = _T("Line contains \"END\"");
 			String mergedDirectives = FilterExpression::MergeDirectives(directives1, directives2);
 			String funcName = (command == ID_FILTERMENU_LINE_MATCHOUTSIDE) ? _T("not matchInside(") : _T("matchInside(");
 			String expr = (mergedDirectives.empty() ? _T("") : mergedDirectives + _T(" ")) + funcName + expr1 + _T(", ") + expr2 + _T(")");
@@ -448,7 +456,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command >= ID_FILTERMENU_FUNC_FIRST && command <= ID_FILTERMENU_FUNC_LAST)
 	{
-		static const String TransformFunctions[] = {
+		static const tchar_t* TransformFunctions[] = {
 			_T("trim(%1)"),
 			_T("regexReplace(%1, \"[ \\t]+\", \" \")"),
 			_T("replace(%1, \"from\", \"to\")"),
@@ -484,7 +492,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		}
 		else
 		{
-			static const String DiffLineLengthConditions[] = {
+			static const tchar_t* DiffLineLengthConditions[] = {
 				_T("%1 = %2"), _T("%1 != %2"),
 			};
 			const String identifier1 = defaultDiffProp(_T("Line"), 0);
@@ -503,7 +511,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		}
 		else
 		{
-			static const String DiffLineLengthConditions[] = {
+			static const tchar_t* DiffLineLengthConditions[] = {
 				_T("%1 = %2"), _T("%1 != %2"),
 				_T("%1 < %2"), _T("%1 <= %2"),
 				_T("%1 > %2"), _T("%1 >= %2"),
@@ -529,7 +537,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		const String columnName = _T("Column") + strutils::to_str(m_columnIndex + 1);
 		if (m_targetDiffSide == 3)
 		{
-			static const String DiffColumnConditions[] = {
+			static const tchar_t* DiffColumnConditions[] = {
 				_T("%1"), _T("%1"),
 				_T("toNumber(%1)"), _T("toNumber(%1)"), _T(""), _T(""), _T(""), _T(""),
 				_T("toDateTime(%1)"), _T("toDateTime(%1)"), _T(""), _T(""), _T(""), _T("")

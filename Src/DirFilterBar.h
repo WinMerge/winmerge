@@ -23,6 +23,7 @@ public:
 	String GetFilterText() { return m_sFilter; }
 	void SaveFilterText();
 	void ShowFilterMenu();
+	void SetFilterApplied(bool applied) { m_ctlFilterEdit.SetApplied(applied); }
 
 // Dialog Data
 	//{{AFX_DATA(CDirFilterBar)
@@ -36,10 +37,12 @@ public:
 
 // Implementation
 protected:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirFilterBar)
+	afx_msg void OnHelp();
 	afx_msg void OnKillFocusFilter();
 	afx_msg void OnEditChangeFilter();
 	//}}AFX_MSG

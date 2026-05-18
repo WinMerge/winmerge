@@ -3680,6 +3680,8 @@ void CMergeDoc::OnViewDisplayFilterBarApply()
 		return;
 	pFilterBar->SaveFilterText();
 	m_displayFilterHelper.SetStringOrExpression(pFilterBar->GetFilterText());
+	if (!m_displayFilterHelper.GetStringOrExpression().empty() && m_displayFilterHelper.GetFilterExpression().errorCode == 0)
+		pFilterBar->SetFilterApplied(true);
 	FlushAndRescan(true);
 	GetActiveMergeView()->SetFocus();
 }

@@ -8,6 +8,8 @@
 #include "LineFilterBar.h"
 #include "LineFilterHelper.h"
 #include "FilterErrorMessages.h"
+#include "Merge.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -73,6 +75,21 @@ BOOL CLineFilterBar::Create(CWnd* pParentWnd)
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
+BOOL CLineFilterBar::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_F1)
+	{
+		OnHelp();
+		return TRUE;
+	}
+	return __super::PreTranslateMessage(pMsg);
+}
+
+void CLineFilterBar::OnHelp()
+{
+	CMergeApp::ShowHelp(DisplayLineFilterHelpLocation);
+}
+
 void CLineFilterBar::OnKillFocusFilter()
 {
 	UpdateData(TRUE);
@@ -80,6 +97,7 @@ void CLineFilterBar::OnKillFocusFilter()
 
 void CLineFilterBar::OnEditChangeFilter()
 {
+	m_ctlFilterEdit.SetApplied(false);
 	m_ctlFilterEdit.OnEnChange();
 }
 
@@ -102,6 +120,8 @@ void CLineFilterBar::ShowFilterMenu()
 	{
 		m_sFilter = *filter;
 		UpdateData(FALSE);
+		m_ctlFilterEdit.SetApplied(false);
 		m_ctlFilterEdit.OnEnChange();
+		m_ctlFilterEdit.SetFocus();
 	}
 }

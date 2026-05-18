@@ -14,7 +14,7 @@ namespace FilterMenuHelpers
 	 * @param func Function to apply to each menu item (takes CMenu*, index, id)
 	 */
 	template <typename Func>
-	static void TraverseMenuRecursive(CMenu* pMenu, Func func)
+	inline void TraverseMenuRecursive(CMenu* pMenu, Func func)
 	{
 		if (!pMenu)
 			return;
@@ -35,7 +35,7 @@ namespace FilterMenuHelpers
 	/**
 	 * @brief Disable a menu item recursively in all submenus
 	 */
-	static void DisableMenuItemRecursive(CMenu* pMenu, UINT idDisabled)
+	inline void DisableMenuItemRecursive(CMenu* pMenu, UINT idDisabled)
 	{
 		TraverseMenuRecursive(pMenu, [idDisabled](CMenu* pMenu, int index, UINT id)
 			{
@@ -47,7 +47,7 @@ namespace FilterMenuHelpers
 	/**
 	 * @brief Check/uncheck a menu item recursively in all submenus
 	 */
-	static void CheckMenuItemRecursive(CMenu* pMenu, UINT idChecked, bool checked)
+	inline void CheckMenuItemRecursive(CMenu* pMenu, UINT idChecked, bool checked)
 	{
 		TraverseMenuRecursive(pMenu, [idChecked, checked](CMenu* pMenu, int index, UINT id)
 			{
@@ -59,7 +59,7 @@ namespace FilterMenuHelpers
 	/**
 	 * @brief Remove menu items in a range recursively
 	 */
-	static void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idEnd)
+	inline void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idEnd)
 	{
 		TraverseMenuRecursive(pMenu, [idStart, idEnd](CMenu* pMenu, int index, UINT id)
 			{
@@ -71,7 +71,7 @@ namespace FilterMenuHelpers
 	/**
 	 * @brief Remove trailing separator from menu and all submenus
 	 */
-	static void RemoveTrailingSeparator(CMenu* pMenu)
+	inline void RemoveTrailingSeparator(CMenu* pMenu)
 	{
 		if (!pMenu)
 			return;
