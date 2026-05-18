@@ -296,7 +296,7 @@ escrita.</para>
           <row>
             <entry>La ruta <envar>%WORKDIR%\project1</envar> se expande a <filename
 class="directory">C:\workfiles\project1</filename>.<para><screen
-            format="linespecific">TwoWords</screen></para></entry>
+            format="linespecific">Dospalabras</screen></para></entry>
 
             <entry>El texto monoespaciado puede indicar:<itemizedlist>
                 <listitem>

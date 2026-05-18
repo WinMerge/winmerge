@@ -203,7 +203,7 @@ adicional:<indexterm>
               </indexterm>
 
               <indexterm>
-                <primary>Integración con el intérprete de órdenes de Windows.</primary>
+                <primary>Integración con el intérprete de órdenes de Windows</primary>
               </indexterm>
 
               <para>Le permite <link linkend="OpenPaths_shell-integ">iniciar operaciones de
@@ -234,7 +234,7 @@ ruta del sistema.</para>
 
           <varlistentry>
             <term>Integración con TortoiseSVN<indexterm>
-                <primary>Integrar con TortoiseSVN</primary>
+                <primary>integración con TortoiseSVN</primary>
               </indexterm></term>
 
             <listitem>
@@ -365,7 +365,7 @@ Windows sin el instalador <indexterm>
 
         <secondary>con el intérprete de órdenes de Windows</secondary>
       </indexterm><indexterm>
-        <primary>Integración con el intérprete de órdenes de Windows.</primary>
+        <primary>Integración con el intérprete de órdenes de Windows</primary>
       </indexterm></title>
 
     <para>Si no utiliza el programa de instalación y desea habilitar la integración

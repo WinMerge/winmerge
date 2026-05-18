@@ -15,10 +15,10 @@
               <primary>Archivos ejecutables de WinMerge, Unicode y ANSI</primary>
             </indexterm><indexterm>
               <primary>Unicode</primary>
-              <secondary>Soporte de WinMerge</secondary>
+              <secondary>Compatibilidad con WinMerge</secondary>
             </indexterm><indexterm>
               <primary>ANSI</primary>
-              <secondary>Soporte de WinMerge</secondary>
+              <secondary>Compatibilidad con WinMerge</secondary>
             </indexterm>A partir de la versión 2.14,
 WinMerge dejó de ser compatible con los antiguos sistemas Windows de 32
 bits, incluidos Windows 9x, ME y NT4.  Además, la versión 2.16 de WinMerge

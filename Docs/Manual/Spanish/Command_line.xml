@@ -137,7 +137,7 @@ reducir el tiempo de comparación.</para>
 
     <varlistentry>
       <indexterm>
-        <primary>Ventana WinMerge</primary>
+        <primary>Ventana de WinMerge</primary>
         <secondary>cierre</secondary>
       </indexterm>
 
@@ -224,7 +224,7 @@ idénticos.</para>
 
     <varlistentry>
       <indexterm>
-        <primary>Ventana WinMerge</primary>
+        <primary>Ventana de WinMerge</primary>
         <secondary>limitación de instancias</secondary>
       </indexterm>
 
@@ -348,7 +348,7 @@ los elementos del panel derecho en la comparación.</para>
 
     <varlistentry>
       <indexterm>
-        <primary>Ventana WinMerge</primary>
+        <primary>Ventana de WinMerge</primary>
         <secondary>apertura minimizada o maximizada</secondary>
       </indexterm>
 
@@ -749,7 +749,7 @@ de comparación de archivos.</para></listitem>
 
     <varlistentry>
       <indexterm>
-        <primary>conflictos entre archivos</primary>
+        <primary>conflictos·entre·archivos</primary>
         <secondary>especificación en la línea de comandos</secondary>
       </indexterm>
 
@@ -766,7 +766,7 @@ conflicto.</para>
 
     <varlistentry>
       <indexterm>
-        <primary>ini file</primary>
+        <primary>fichero ini</primary>
         <secondary>especificación en la línea de comandos</secondary>
       </indexterm>
 

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-04-30 15:39+0900\n"
-"PO-Revision-Date: 2026-05-16 15:28+0900\n"
+"PO-Revision-Date: 2026-05-18 21:39+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -508,7 +508,7 @@ msgstr ""
 #: English/About_Doc.xml:314 English/Configuration.xml:619
 #, no-wrap
 msgid "TwoWords"
-msgstr "TwoWords"
+msgstr "Dospalabras"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><para>
 #: English/About_Doc.xml:313 English/Filters.xml:1606 English/Filters.xml:1617
@@ -832,7 +832,7 @@ msgstr ""
 #: English/Command_line.xml:417 English/Configuration.xml:277
 #: English/Quick_start.xml:22
 msgid "WinMerge window"
-msgstr "Ventana WinMerge"
+msgstr "Ventana de WinMerge"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:211
@@ -1946,7 +1946,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:789 English/Compare_files.xml:1805
 msgid "conflict files"
-msgstr "conflictos entre archivos"
+msgstr "conflictos·entre·archivos"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:790 English/Command_line.xml:806
@@ -1976,7 +1976,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
 #: English/Command_line.xml:805
 msgid "ini file"
-msgstr "ini file"
+msgstr "fichero ini"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:809
@@ -2003,7 +2003,7 @@ msgstr "Comparación en formato hexadecimal"
 #: English/Configuration.xml:1198 English/Filters.xml:66
 #: English/Intro_diffs.xml:12 English/Quick_start.xml:325
 msgid "comparing files"
-msgstr "comparar archivos"
+msgstr "comparación de archivos"
 
 #. type: Content of: <article><indexterm><secondary>
 #: English/Compare_bin.xml:10
@@ -2063,7 +2063,7 @@ msgid ""
 "Compare window."
 msgstr ""
 "En este tema se explica cómo comparar y combinar carpetas mediante la "
-"ventana \"Comparación de carpetas\"."
+"ventana de comparación de carpetas."
 
 #. type: Content of: <article><section><title>
 #: English/Compare_dirs.xml:11
@@ -2186,9 +2186,9 @@ msgstr ""
 "útil al comparar archivos binarios de gran tamaño; además, se utiliza "
 "automáticamente para comparar archivos de más de 4 MB. Las posibles "
 "desventajas son que los filtros de línea no funcionan y que no se muestra "
-"información sobre el recuento de diferencias en la ventana \"Comparación de "
-"carpetas\". Esto no debería suponer un problema en la mayoría de los casos, "
-"ya que los archivos de ese tamaño suelen ser binarios."
+"información sobre el recuento de diferencias en la ventana de comparación de "
+"carpetas. Esto no debería suponer un problema en la mayoría de los casos, ya "
+"que los archivos de ese tamaño suelen ser binarios."
 
 #. type: Content of: <article><section><tip><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:84
@@ -2299,9 +2299,9 @@ msgid ""
 "displayed with the results calculated at that time, omitting any uncompleted "
 "results."
 msgstr ""
-"Puede hacer clic en <guibutton>Parar</guibutton> para detener la operación "
-"en cualquier momento antes de que finalice la comparación. Se mostrará la "
-"ventana \"Comparación de carpetas\" con los resultados calculados hasta ese "
+"Puede hacer clic en <guibutton>Parar</guibutton>para detener la operación en "
+"cualquier momento antes de que finalice la comparación. Se mostrará la "
+"ventana de comparación de carpetas con los resultados calculados hasta ese "
 "momento omitiendo los resultados que no se hayan completado."
 
 #. type: Content of: <article><section><mediaobject><textobject><phrase>
@@ -2310,7 +2310,7 @@ msgstr ""
 #: English/Compare_dirs.xml:1118 English/Compare_dirs.xml:1131
 #: English/Quick_start.xml:243 English/Quick_start.xml:261
 msgid "Folder Compare window"
-msgstr "Ventana de comparación de carpetas"
+msgstr "Ventana·de·comparación·de·carpetas"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:149 English/Compare_dirs.xml:151
@@ -2911,7 +2911,7 @@ msgstr ""
 #: English/Compare_dirs.xml:457 English/Compare_files.xml:1213
 #: English/Intro_diffs.xml:231 English/Intro_diffs.xml:350
 msgid "Next Difference button"
-msgstr "Botón Diferencia siguiente"
+msgstr "Botón diferencia siguiente"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:448
@@ -2923,9 +2923,9 @@ msgid ""
 "guimenuitem> button finds the next different file or folder and selects it."
 msgstr ""
 "Puede utilizar el ratón, así como <link linkend=\"Shortcut_keys\">el "
-"teclado</link> y los atajos del menú contextual para navegar por la ventana "
-"\"Comparación de carpetas\".  También puede utilizar los botones de la barra "
-"de herramientas.  Por ejemplo, el botón <placeholder "
+"teclado</link>y los atajos del menú contextual para navegar por la ventana "
+"de comparación de carpetas. También puede utilizar los botones de la barra "
+"de herramientas. Por ejemplo, el botón <placeholder "
 "type=\"inlinemediaobject\" id=\"0\"/> El botón <guimenuitem>Diferencia "
 "siguiente</guimenuitem> busca el siguiente fichero o carpeta diferente y lo "
 "selecciona"
@@ -3193,7 +3193,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:614 English/Configuration.xml:2853
 msgid "deleting files"
-msgstr "eliminar ficheros"
+msgstr "eliminación de archivos"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:613
@@ -3917,7 +3917,7 @@ msgstr "carpetas específicas"
 #: English/Compare_dirs.xml:1050 English/Configuration.xml:1140
 #: English/Configuration.xml:1169
 msgid "comparing"
-msgstr "compararación"
+msgstr "comparación"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:1047
@@ -4769,7 +4769,7 @@ msgstr ""
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_files.xml:134 English/Configuration.xml:2649
 msgid "difference colors"
-msgstr "colores de diferencias"
+msgstr "colores para diferencias"
 
 #. type: Content of: <article><section><section><section><indexterm><secondary>
 #: English/Compare_files.xml:136 English/Compare_files.xml:592
@@ -4939,7 +4939,7 @@ msgstr "Difference block colors with ignored diff"
 #: English/Compare_files.xml:238 English/Compare_files.xml:917
 #: English/Configuration.xml:906
 msgid "moved differences"
-msgstr "diferencias despalzadas"
+msgstr "diferencias desplazadas"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:237
@@ -5113,7 +5113,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:338 English/Configuration.xml:2436
 msgid "line differences"
-msgstr "diferencia de líneas"
+msgstr "diferencias entre líneas"
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:340
@@ -5690,7 +5690,7 @@ msgstr ""
 #: English/Compare_files.xml:698
 msgid "File Compare window margin with bookmark and word wrap"
 msgstr ""
-"Margen de la ventana \"Comparación de archivos\" con marcador y ajuste de "
+"Margen de la ventana de comparación de archivos con marcador y ajuste de "
 "línea"
 
 #. type: Content of: <article><section><section><section><para>
@@ -6234,7 +6234,7 @@ msgstr "para la ventana de comparación de archivos"
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:1007 English/Configuration.xml:2269
 msgid "tabs"
-msgstr "pestañas"
+msgstr "tabulaciones"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:1009
@@ -6949,7 +6949,7 @@ msgstr "Puntos de sincronización<placeholder type=\"indexterm\" id=\"0\"/>"
 #: English/Filters.xml:1871 English/Filters.xml:2302 English/Filters.xml:2307
 #: English/Filters.xml:2318
 msgid "TBD"
-msgstr "Por determinar"
+msgstr "Por desarrollar"
 
 #. type: Content of: <article><section><title>
 #: English/Compare_files.xml:1480
@@ -7034,7 +7034,7 @@ msgstr ""
 #: English/Compare_files.xml:1523 English/Compare_files.xml:1712
 #: English/Compare_files.xml:1791 English/Quick_start.xml:374
 msgid "Refresh button"
-msgstr "Botón Actualizar"
+msgstr "Actualizar"
 
 #. type: Content of: <article><section><section><important><para>
 #: English/Compare_files.xml:1510
@@ -7355,10 +7355,10 @@ msgid ""
 "keycap> </keycombo>, context menu in File pane within a difference."
 msgstr ""
 "Accesos directos <placeholder type=\"inlinemediaobject\" id=\"0\"/> botón, "
-"<menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al derecho</"
-"guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>Derecho</"
-"keycap> </keycombo>, menú contextual del panel de archivos en una "
-"comparación."
+"<menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al izquierdo</"
+"guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap> "
+"<keycap>Izquierdo</keycap> </keycombo>, menú contextual del panel de "
+"archivos en una comparación."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
 #: English/Compare_files.xml:1743
@@ -7756,7 +7756,7 @@ msgstr "Detectar Ins/Borrar"
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><guilabel>
 #: English/Compare_images.xml:119 English/Compare_images.xml:141
 msgid "None"
-msgstr "Ninguna"
+msgstr "Ninguno"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><guilabel>
 #: English/Compare_images.xml:120
@@ -8994,7 +8994,7 @@ msgstr ""
 #: English/Configuration.xml:378 English/Configuration.xml:408
 #: English/Open_paths.xml:38 English/Quick_start.xml:75
 msgid "Select Files or Folders dialog"
-msgstr "Cuadro de diálogo \"Seleccionar archivos o carpetas\""
+msgstr "Cuadro de diálogo \"Seleccione archivos o carpetas\""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:380
@@ -9170,7 +9170,7 @@ msgstr "Consulte <xref linkend=\"Locales_changing\" />."
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:515
 msgid "Compare &gt; General page"
-msgstr "Comparar &gt; General"
+msgstr "Página \"Comparar &gt; General\""
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:518
@@ -9920,7 +9920,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:1067
 msgid "Compare &gt; Folder page"
-msgstr "Comparar &gt; Carpeta"
+msgstr "Página \"Comparar &gt; Carpeta\""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:1074
@@ -11185,7 +11185,8 @@ msgstr "archivos de tablas"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:1857
 msgid "Compare &gt; Table page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Comparar &gt; Tabla<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Comparar &gt; Tabla\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1862
@@ -11291,7 +11292,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:1922
 msgid "Compare &gt; Binary page"
-msgstr "Comparar &gt; Binario"
+msgstr "Página \"Comparar &gt; Binario\""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1926
@@ -11497,7 +11498,8 @@ msgstr "archivos de imagen"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2028
 msgid "Compare &gt; Image page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Comparar &gt; Imagen<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Comparar &gt; Imagen\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2033
@@ -11579,7 +11581,8 @@ msgstr "página web"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2079
 msgid "Compare &gt; Webpage page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Comparar &gt; Página web<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Comparar &gt; Página web\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2086
@@ -11682,7 +11685,8 @@ msgstr "cuadros de mensajes"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2139
 msgid "Message Boxes page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Página Cuadros de mensajes<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Cuadros de mensajes\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2145
@@ -11737,7 +11741,8 @@ msgstr "opciones de la ventana de comparación de archivos"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2174
 msgid "Editor &gt; General page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Edición &gt; General<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Edición &gt; General\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:2184 English/Configuration.xml:2677
@@ -11953,7 +11958,8 @@ msgstr ""
 msgid ""
 "Editor &gt; Compare/Merge page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Edición &gt; Comparar/Combinar<placeholder type=\"indexterm\" id=\"0\"/>"
+"Página \"Edición &gt; Comparar/Combinar\"<placeholder type=\"indexterm\" "
+"id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:2357
@@ -12192,7 +12198,8 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2550
 msgid "Editor &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Edición &gt; Sintaxis<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Edición &gt; Sintaxis\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:2565
@@ -12204,7 +12211,7 @@ msgstr "combinaciones de colores"
 msgid ""
 "Colors &gt; Color Schemes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Colores &gt; Combinaciones de colores<placeholder type=\"indexterm\" "
+"Página \"Colores &gt; Esquemas de colores\"<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
@@ -12349,7 +12356,8 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2648
 msgid "Colors &gt; Differences page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Colores &gt; Diferencias<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Colores &gt; Diferencias\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2656
@@ -12392,7 +12400,8 @@ msgstr "opciones de color"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2676
 msgid "Colors &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Colores &gt; Sintaxis<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Colores &gt; Sintaxis\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2684
@@ -12417,7 +12426,8 @@ msgstr "colores para el texto"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2699
 msgid "Colors &gt; Text page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Colores &gt; Texto<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Colores &gt; Texto\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2707
@@ -12442,7 +12452,8 @@ msgstr "colores para marcadores"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2717
 msgid "Colors &gt; Markers page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Colores &gt; Marcadores<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Colores &gt; Marcadores\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:2730
@@ -12454,8 +12465,8 @@ msgstr "comparación de carpetas"
 msgid ""
 "Colors &gt; Folder Compare page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Colores &gt; Comparación de carpetas<placeholder type=\"indexterm\" id=\"0\"/"
-">"
+"Página \"Colores &gt; Comparación de carpetas\"<placeholder "
+"type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2737
@@ -12471,13 +12482,14 @@ msgstr ""
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Configuration.xml:2760
 msgid "configuring support after installation"
-msgstr "configuración del soporte técnico tras la instalación"
+msgstr "configuración de la compatibilidad tras la instalación"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2757
 msgid "Archive Support page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Soporte técnico para archivos<placeholder type=\"indexterm\" id=\"0\"/>"
+"Página \"Compatibilidad con archivos<placeholder type=\"indexterm\" id=\"0\"/"
+">"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2765
@@ -12500,7 +12512,7 @@ msgstr "activar y desactivar la integración"
 #: English/Configuration.xml:2771
 msgid "Enable archive file support<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Habilitar la compatibilidad con archivos comprimidos<placeholder "
+"Habilitar compatibilidad con archivos comprimidos<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -12546,9 +12558,9 @@ msgid ""
 "file extension is known on your system (for example, in the registry or "
 "through a file association)."
 msgstr ""
-"Desactivado</option>(predeterminado): WinMerge solo reconoce los archivos "
-"comprimidos cuya extensión sea conocida en su sistema (por ejemplo, en el "
-"Registro o mediante una asociación de archivos)."
+"<option>Desactivado</option>(predeterminado): WinMerge solo reconoce los "
+"archivos comprimidos cuya extensión sea conocida en su sistema (por ejemplo, "
+"en el Registro o mediante una asociación de archivos)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2818
@@ -12579,12 +12591,12 @@ msgstr "archivos de proyecto"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2835
 msgid "Project page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Proyecto<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Página \"Proyecto\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2848
 msgid "System page"
-msgstr "Sistema"
+msgstr "Página \"Sistema\""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2852
@@ -12619,7 +12631,7 @@ msgid ""
 "<option>Disabled</option>: Files and folders deleted in a directory compare "
 "actually deleted."
 msgstr ""
-"option>Desactivado</option>: los archivos y carpetas eliminados en un "
+"<option>Desactivado</option>: los archivos y carpetas eliminados en un "
 "directorio se comparan con los que se han eliminado realmente."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -12816,7 +12828,8 @@ msgstr "archivos de copias de seguridad, opciones"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3019
 msgid "Backup Files page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Copias de seguridad<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Página \"Copias de seguridad\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:3025
@@ -12952,7 +12965,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3123
 msgid "Codepage page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Codificación<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Página \"Codificación\"<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:3131
@@ -12985,9 +12998,9 @@ msgid ""
 "pages </ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
 "Character_encoding\"> Character encoding </ulink>"
 msgstr ""
-"<ulink url=\"https://en.wikipedia.org/wiki/Code_pages\">Wikipedia: "
-"Codificación</ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
-"Character_encoding\">Codificación de caracteres</ulink>"
+"<ulink url=\"https://es.wikipedia.org/wiki/Página_de_códigos\">Wikipedia: "
+"Codificación</ulink>, <ulink url=\"https://es.wikipedia.org/wiki/"
+"Codificación_de_caracteres\">Codificación de caracteres</ulink>"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
 #: English/Configuration.xml:3160
@@ -13157,7 +13170,7 @@ msgstr "Detectar codificación para archivos de texto usando mlang.dll"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3278
 msgid "Shell Integration page"
-msgstr "Integración con Windows"
+msgstr "Página \"Integración con Windows\""
 
 #. type: Content of: <article><title><indexterm><primary>
 #: English/Configuration.xml:3283 English/Faq.xml:95 English/Install.xml:174
@@ -13277,7 +13290,7 @@ msgstr "Unicode"
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Faq.xml:18 English/Faq.xml:21 English/Introduction.xml:80
 msgid "WinMerge support"
-msgstr "Soporte de WinMerge"
+msgstr "Compatibilidad con WinMerge"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Faq.xml:20 English/Faq.xml:405
@@ -14460,8 +14473,8 @@ msgstr "fe: <replaceable>expr</replaceable>"
 msgid ""
 "Filter expression for files (e.g. fe:Size &lt; 1KB) (Available since 2.16.49)"
 msgstr ""
-"Filter expression for files (ej. fe:Size &lt; 1KB) (disponible desde la "
-"versión 2.16.49)"
+"Expresión de filtro para archivos (ej. fe:Size &lt; 1KB) (disponible desde "
+"la versión 2.16.49)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:169 English/Filters.xml:1542
@@ -17489,7 +17502,7 @@ msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>."
 msgstr ""
-"Haga clic en <menuchoice> <guimenu>Herraminetas</guimenu> "
+"Haga clic en <menuchoice> <guimenu>Herramientas</guimenu> "
 "<guimenuitem>Filtros</guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
@@ -17974,7 +17987,7 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
 #: English/Filters.xml:1697
 msgid "Open the File Filters tab."
-msgstr "Vaya a la pestaña \"Filtros de archivos\"."
+msgstr "Vaya a la pestaña \"Filtros de archivo\"."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
 #: English/Filters.xml:1701
@@ -18315,7 +18328,7 @@ msgid ""
 "create and manage file filters and line filters."
 msgstr ""
 "En esta sección se describe el cuadro de diálogo \"Filtros\", que ofrece "
-"funciones para crear y gestionar filtros de archivos y filtros de líneas."
+"funciones para crear y gestionar filtros de archivos y filtros de línea."
 
 #. type: Content of: <article><section><para>
 #: English/Filters.xml:1886
@@ -18357,7 +18370,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1910
 msgid "File Filters"
-msgstr "Filtros de archivos"
+msgstr "Filtros de archivo"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1913
@@ -18370,14 +18383,14 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1919
 msgid "Line Filters"
-msgstr "Filtros de líneas"
+msgstr "Filtros de línea"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1922
 msgid "Choose this tab to work with line filters for file compare operations."
 msgstr ""
-"Seleccione esta pestaña para utilizar filtros de líneas en las operaciones "
-"de comparación de archivos."
+"Seleccione esta pestaña para utilizar filtros de línea en las operaciones de "
+"comparación de archivos."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1928
@@ -18402,7 +18415,7 @@ msgstr "habilitar"
 #: English/Filters.xml:1938
 msgid "Using the File Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Uso de la pestaña \"Filtros de archivos\"<placeholder type=\"indexterm\" "
+"Uso de la pestaña \"Filtros de archivo\"<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -18603,8 +18616,8 @@ msgstr ""
 msgid ""
 "In the Filters dialog File Filters tab, click <guibutton>New</guibutton>."
 msgstr ""
-"En la pestaña \"Filtros de archivos\" del cuadro de diálogo \"Filtros\", "
-"haga clic en <guibutton>Nuevo</guibutton>."
+"En la pestaña \"Filtros de archivo\" del cuadro de diálogo \"Filtros\", haga "
+"clic en <guibutton>Nuevo</guibutton>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:2064
@@ -18702,8 +18715,7 @@ msgstr ""
 "guibutton> para cerrarlo y, a continuación, vuelva a hacer clic en "
 "<menuchoice> <guimenu>Herramientas</guimenu> <guimenuitem>Filtros</"
 "guimenuitem> </menuchoice> para volver a abrirlo. La lista de "
-"<guilabel>Filtros de archivos</guilabel> debería incluir ahora el nuevo "
-"filtro."
+"<guilabel>Filtros de archivo</guilabel>debería incluir ahora el nuevo filtro."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:2115
@@ -18732,7 +18744,7 @@ msgid ""
 msgstr ""
 "En el cuadro de diálogo \"Buscar archivo de filtro para instalar\", busque "
 "el archivo <filename>flt</filename> en su sistema y haga clic en "
-"<guibutton>Abrir</guibutton>. La lista \"Filtros de archivos\" debería "
+"<guibutton>Abrir</guibutton>. La lista \"Filtros de archivo\" debería "
 "incluir ahora el filtro de archivo instalado."
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
@@ -18775,7 +18787,7 @@ msgstr "Empezando desde el cuadro de diálogo \"Filtros\":"
 #: English/Filters.xml:2154
 msgid "In the File Filters tab, choose the file filter you want to test."
 msgstr ""
-"En la pestaña \"Filtros de archivos\" seleccione el filtro de archivos que "
+"En la pestaña \"Filtros de archivo\" seleccione el filtro de archivos que "
 "desee probar."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
@@ -18850,7 +18862,7 @@ msgstr ""
 #: English/Filters.xml:2204
 msgid "Using the Line Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Uso de la pestaña \"Filtros de líneas\"<placeholder type=\"indexterm\" "
+"Uso de la pestaña \"Filtros de línea\"<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -18861,7 +18873,7 @@ msgid ""
 "regular expression. You can apply any combination of rules from the list to "
 "a file comparison."
 msgstr ""
-"Utilice esta pestaña para configurar y activar filtros de líneas en las "
+"Utilice esta pestaña para configurar y activar filtros de línea en las "
 "operaciones de comparación de archivos. La pestaña incluye una lista de "
 "reglas. Cada regla contiene una única expresión regular. Puede aplicar "
 "cualquier combinación de reglas de la lista a una comparación de archivos."
@@ -18869,7 +18881,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><title>
 #: English/Filters.xml:2216
 msgid "Configuring line filters"
-msgstr "Configuración de filtros de líneas"
+msgstr "Configuración de filtros de línea"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Filters.xml:2218
@@ -18954,7 +18966,7 @@ msgstr "lista de disponibles"
 msgid ""
 "Enabling and disabling line filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Activación y desactivación de los filtros de líneas<placeholder "
+"Activación y desactivación de los filtros de línea<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
@@ -18974,7 +18986,7 @@ msgid ""
 "<guilabel>Regular Expression</guilabel> list are used. If filtering is off, "
 "no rules are used even if they are checked."
 msgstr ""
-"Marque o desmarque la opción <guilabel>Habilitar Filtros de líneas</"
+"Marque o desmarque la opción <guilabel>Habilitar Filtros de línea</"
 "guilabel>. Si activa el filtrado, se utilizarán todas las reglas que estén "
 "marcadas actualmente en la lista <guilabel>Expresión regular</guilabel>. Si "
 "el filtrado está desactivado, no se utilizará ninguna regla, aunque estén "
@@ -19547,7 +19559,7 @@ msgstr "Habilitar la integración con el menú contextual del Explorador"
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Install.xml:195 English/Install.xml:356 English/Open_paths.xml:150
 msgid "Windows shell integration"
-msgstr "Integración con el intérprete de órdenes de Windows."
+msgstr "Integración con el intérprete de órdenes de Windows"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
 #: English/Install.xml:198
@@ -19594,7 +19606,7 @@ msgstr "Configura WinMerge como la aplicación de comparación de TortoiseCVS."
 #: English/Install.xml:226 English/Version_control.xml:65
 #: English/Version_control.xml:74
 msgid "TortoiseSVN integration"
-msgstr "Integrar con TortoiseSVN"
+msgstr "integración con TortoiseSVN"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
 #: English/Install.xml:225
@@ -20011,8 +20023,8 @@ msgid ""
 "pane, like this:"
 msgstr ""
 "En el cuadro de diálogo \"Seleccione archivos y carpetas\" especifique "
-"<filename>Archivo1</filename> como <guilabel>1er</guilabel> archivo y "
-"<filename>Archivo2</filename> como <guilabel>2º</guilabel> archivo y haga "
+"<filename>Fichero1</filename> como <guilabel>1er</guilabel> archivo y "
+"<filename>Fichero2</filename>como <guilabel>2º</guilabel> archivo y haga "
 "clic en <guibutton>Comparar</guibutton>. La ventana de comparación de "
 "archivos muestra los dos archivos en los paneles izquierdo y derecho de la "
 "siguiente manera:"
@@ -20351,9 +20363,9 @@ msgid ""
 msgstr ""
 "Haga clic en el botón<placeholder type=\"inlinemediaobject\" id=\"0\"/> "
 "<guibutton>Copiar al derecho</guibutton> para combinar la Diferencia 1 del "
-"<filename>Archivo1</filename> con el <filename>Archivo2</filename>. En el "
-"<filename>Archivo2</filename> observe que la única línea de diferencia se ha "
-"sustituido por las dos líneas del <filename>Archivo1</filename>, y que la "
+"<filename>Fichero1</filename> con el <filename>Fichero2</filename>. En el "
+"<filename>Fichero2</filename> observe que la única línea de diferencia se ha "
+"sustituido por las dos líneas del <filename>Fichero1</filename>, y que la "
 "línea en blanco grisácea ya no aparece."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
@@ -20379,7 +20391,7 @@ msgid ""
 msgstr ""
 "Haga clic en el botón<placeholder type=\"inlinemediaobject\" id=\"0\"/> "
 "<guibutton>Copiar al izquierdo</guibutton> para combinar la Diferencia 2 del "
-"<filename>Archivo2</filename> con el <filename>Archivo1</filename>."
+"<filename>Fichero2</filename> con el <filename>Fichero1</filename>."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/Intro_diffs.xml:372
@@ -21311,7 +21323,7 @@ msgstr "<xref linkend=\"OpenPaths_project\" />"
 msgid ""
 "Select Files or Folders dialog<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Cuadro de diálogo \"Seleccionar archivos o carpetas\"<placeholder "
+"Cuadro de diálogo \"Seleccione archivos o carpetas\"<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>

@@ -19,7 +19,7 @@ terminado, puede continuar aprendiendo otros métodos y técnicas más
 avanzadas, que se tratan en otros temas de ayuda.</para>
 
     <section>
-      <title><indexterm><primary>Ventana WinMerge</primary></indexterm>Abrir la ventana de WinMerge</title>
+      <title><indexterm><primary>Ventana de WinMerge</primary></indexterm>Abrir la ventana de WinMerge</title>
 
       <para>Estos son algunos de los métodos que puede utilizar:</para>
 
@@ -72,7 +72,7 @@ barra de herramientas.</para>
     </section>
 
     <section>
-      <title><indexterm><primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary></indexterm> Cuadro de diálogo
+      <title><indexterm><primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary></indexterm> Cuadro de diálogo
 <guilabel>Seleccione archivos o carpetas</guilabel></title>
 
       <para>
@@ -238,7 +238,7 @@ o sobre el acceso directo de WinMerge en el Escritorio.</simpara>
 
         <secondary>primeros pasos</secondary>
       </indexterm><indexterm>
-        <primary>Ventana de comparación de carpetas</primary>
+        <primary>Ventana·de·comparación·de·carpetas</primary>
 
         <secondary>primeros pasos</secondary>
       </indexterm>Comparación de carpetas</title>
@@ -253,7 +253,7 @@ en las demás columnas:</para>
     <mediaobject>
 <imageobject> <imagedata contentwidth="600"
 fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject><textobject>
-        <phrase>Ventana de comparación de carpetas</phrase>
+        <phrase>Ventana·de·comparación·de·carpetas</phrase>
       </textobject>
     </mediaobject>
 
@@ -313,7 +313,7 @@ allí.</para>
 
   <section id="QuickStart_comparingfiles">
     <title><indexterm>
-        <primary>comparar archivos</primary>
+        <primary>comparación de archivos</primary>
 
         <secondary>primeros pasos</secondary>
       </indexterm><indexterm>
@@ -355,7 +355,7 @@ seleccionando <menuchoice> <guimenu>Editar</guimenu>
 botón <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
-          <phrase>Botón Actualizar</phrase>
+          <phrase>Actualizar</phrase>
         </textobject>
       </inlinemediaobject>de la barra de
 herramientas o pulsando la tecla <keycap>F5</keycap>.</para>

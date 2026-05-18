@@ -68,7 +68,7 @@ integración con los VCS y se ofrecen algunos ejemplos.</para>
 versiones</title>
 
       <indexterm>
-        <primary>Integrar con TortoiseSVN</primary>
+        <primary>integración con TortoiseSVN</primary>
       </indexterm>
 
       <para>Al comparar archivos en TortoiseCVS, TortoiseSVN o TortoiseGit, puede hacer
@@ -78,7 +78,7 @@ configurar durante la <link linkend="Installing_usinginstaller">instalación
 de WinMerge</link>.</para>
 
       <example>
-        <title>Integrar con TortoiseSVN</title>
+        <title>integración con TortoiseSVN</title>
 
         <para>A continuación se muestra un ejemplo de operación de comparación en
 TortoiseSVN que utiliza la integración con WinMerge. La integración con

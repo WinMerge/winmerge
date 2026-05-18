@@ -3,7 +3,7 @@
   <?target dbhh topicname="IDH_Compare_files" topicid ="001"?>
 
   <title>Comparación y combinación de archivos de texto<indexterm>
-      <primary>comparar archivos</primary>
+      <primary>comparación de archivos</primary>
     </indexterm></title>
 
   <para>En este tema se describe cómo utilizar la ventana de comparación de archivos
@@ -130,7 +130,7 @@ sistema.</para>
 
       <section id="CompareFiles_diffcolors">
         <title>Resaltado de diferencias<indexterm>
-            <primary>colores de diferencias</primary>
+            <primary>colores para diferencias</primary>
 
             <secondary>en los paneles de archivos</secondary>
           </indexterm></title>
@@ -225,7 +225,7 @@ fileref="screenshots/ignore-blank-lines.png" format="PNG" /> </imageobject><text
 
           <varlistentry>
             <term>Desplazamientos<indexterm>
-                <primary>diferencias despalzadas</primary>
+                <primary>diferencias desplazadas</primary>
               </indexterm></term>
 
             <listitem>
@@ -312,7 +312,7 @@ diferencias.</para>
 
       <section id="CompareFiles_linediff-highlight">
         <title>Resaltado de diferencias entre líneas<indexterm>
-            <primary>diferencia de líneas</primary>
+            <primary>diferencias entre líneas</primary>
 
             <secondary>detección</secondary>
           </indexterm><indexterm>
@@ -624,7 +624,7 @@ mínimo.</para>
         <mediaobject>
 <imageobject> <imagedata contentwidth="384"
 fileref="screenshots/filecomp_margin1.png" format="PNG" /> </imageobject><textobject>
-            <phrase>Margen de la ventana "Comparación de archivos" con marcador y ajuste de
+            <phrase>Margen de la ventana de comparación de archivos con marcador y ajuste de
 línea</phrase>
           </textobject>
         </mediaobject>
@@ -833,7 +833,7 @@ correspondiente en los paneles de archivos.</para>
 
         <varlistentry>
           <term>Diferencias desplazadas<indexterm>
-              <primary>diferencias despalzadas</primary>
+              <primary>diferencias desplazadas</primary>
             </indexterm></term>
 
           <listitem>
@@ -920,7 +920,7 @@ y seleccionando <guimenuitem>Copiar al derecho</guimenuitem> o
 
           <secondary>para la ventana de comparación de archivos</secondary>
         </indexterm><indexterm>
-          <primary>pestañas</primary>
+          <primary>tabulaciones</primary>
 
           <secondary>codificación de caracteres</secondary>
         </indexterm></title>
@@ -1113,7 +1113,7 @@ seleccionada.</para>
             <para>Accesos directos: <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
-                  <phrase>Botón Diferencia siguiente</phrase>
+                  <phrase>Botón diferencia siguiente</phrase>
                 </textobject>
               </inlinemediaobject> botón,
 <menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Diferencia
@@ -1320,7 +1320,7 @@ el panel de diferencias.</para>
     <title>Puntos de sincronización<indexterm>
         <primary>puntos de sincronización</primary>
       </indexterm></title>
-    <para>Por determinar</para>
+    <para>Por desarrollar</para>
   </section>
 
   <section id="Compare_files_merge">
@@ -1364,7 +1364,7 @@ haga clic en <menuchoice> <guimenu>Editar</guimenu>
 <guimenuitem>Actualizar</guimenuitem> </menuchoice> o en el <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
-              <phrase>Botón Actualizar</phrase>
+              <phrase>Actualizar</phrase>
             </textobject>
           </inlinemediaobject> de la barra de herramientas, o pulse
 <keycap>F5</keycap>.</para>
@@ -1511,7 +1511,7 @@ sincronizar dos archivos con un solo comando. Del mismo modo, puede deshacer
 toda la combinación haciendo clic en el botón<inlinemediaobject>
 <imageobject> <imagedata contentdepth="11"
 fileref="screenshots/undo_btn.png" /> </imageobject><textobject>
-                  <phrase>Botón Actualizar</phrase>
+                  <phrase>Actualizar</phrase>
                 </textobject>
               </inlinemediaobject>Deshacer o pulsando<keycombo>
 <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo>.</para>
@@ -1523,9 +1523,9 @@ fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
                 </textobject>
               </inlinemediaobject> botón,
 <menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al
-derecho</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
-<keycap>Derecho</keycap> </keycombo>, menú contextual del panel de archivos
-en una comparación.</para>
+izquierdo</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Izquierdo</keycap> </keycombo>, menú contextual del panel de
+archivos en una comparación.</para>
           </listitem>
         </varlistentry>
 
@@ -1546,9 +1546,9 @@ fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
                 </textobject>
               </inlinemediaobject> botón,
 <menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al
-derecho</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
-<keycap>Derecho</keycap> </keycombo>, menú contextual del panel de archivos
-en una comparación.</para>
+izquierdo</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Izquierdo</keycap> </keycombo>, menú contextual del panel de
+archivos en una comparación.</para>
           </listitem>
         </varlistentry>
 
@@ -1568,7 +1568,7 @@ obtener más información).</para>
             <para>Accesos directos <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
-                  <phrase>Botón Actualizar</phrase>
+                  <phrase>Actualizar</phrase>
                 </textobject>
               </inlinemediaobject> botón,
 <menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Actualizar</guimenuitem>
@@ -1580,7 +1580,7 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
 
     <section id="ResolveConflictFiles">
       <title>Resolución de conflictos entre archivos<indexterm>
-          <primary>conflictos entre archivos</primary>
+          <primary>conflictos·entre·archivos</primary>
         </indexterm></title>
 
       <para>Puede utilizar WinMerge para resolver los archivos de conflicto que algunos

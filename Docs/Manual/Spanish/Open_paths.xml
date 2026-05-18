@@ -34,8 +34,8 @@ carpetas:<indexterm>
   </itemizedlist>
 
   <section id="OpenPaths_opendialog">
-    <title>Cuadro de diálogo "Seleccionar archivos o carpetas"<indexterm>
-        <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
+    <title>Cuadro de diálogo "Seleccione archivos o carpetas"<indexterm>
+        <primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary>
       </indexterm></title>
 
     <para><xref linkend="Quick_start" /> describe el cuadro de diálogo "Seleccionar
@@ -154,7 +154,7 @@ de comparación de carpetas.</para>
 
   <section id="OpenPaths_shell-integ">
     <title><indexterm>
-        <primary>Integración con el intérprete de órdenes de Windows.</primary>
+        <primary>Integración con el intérprete de órdenes de Windows</primary>
       </indexterm><indexterm>
         <primary>menú contextual, atajos de WinMerge en el Explorador de Windows</primary>
       </indexterm>Iniciar operaciones de WinMerge en el Explorador de Windows</title>

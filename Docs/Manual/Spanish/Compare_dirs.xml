@@ -5,7 +5,7 @@
     </indexterm></title>
 
   <para>En este tema se explica cómo comparar y combinar carpetas mediante la
-ventana "Comparación de carpetas".</para>
+ventana de comparación de carpetas.</para>
 
   <section id="Compare_dirs_starting">
     <title>Iniciar una operación de comparación de carpetas</title>
@@ -77,9 +77,9 @@ archivos, descrito en <xref linkend="Configuration" />, puede resultar útil
 al comparar archivos binarios de gran tamaño; además, se utiliza
 automáticamente para comparar archivos de más de 4 MB. Las posibles
 desventajas son que los filtros de línea no funcionan y que no se muestra
-información sobre el recuento de diferencias en la ventana "Comparación de
-carpetas". Esto no debería suponer un problema en la mayoría de los casos,
-ya que los archivos de ese tamaño suelen ser binarios.</para>
+información sobre el recuento de diferencias en la ventana de comparación de
+carpetas. Esto no debería suponer un problema en la mayoría de los casos, ya
+que los archivos de ese tamaño suelen ser binarios.</para>
 
             <para>Para utilizar este método, configúrelo antes de realizar la comparación en
 la página "Comparar" de las opciones de WinMerge, haga clic en el menú
@@ -133,16 +133,16 @@ transcurrido la mitad del tiempo de la operación de comparación.</para>
 
       <para><!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
 I get the partial list, but no Abort indicator.-->
-Puede hacer clic en <guibutton>Parar</guibutton> para detener la operación
-en cualquier momento antes de que finalice la comparación. Se mostrará la
-ventana "Comparación de carpetas" con los resultados calculados hasta ese
+Puede hacer clic en <guibutton>Parar</guibutton>para detener la operación en
+cualquier momento antes de que finalice la comparación. Se mostrará la
+ventana de comparación de carpetas con los resultados calculados hasta ese
 momento omitiendo los resultados que no se hayan completado.</para>
     </section>
   </section>
 
   <section id="Compare_dirs_window">
     <title>Ventana de comparación de carpetas<indexterm>
-        <primary>Ventana de comparación de carpetas</primary>
+        <primary>Ventana·de·comparación·de·carpetas</primary>
 
         <seealso>Comparación de archivos</seealso>
       </indexterm><indexterm>
@@ -284,7 +284,7 @@ cualquier subcarpeta que desee comparar.</para>
       <title>Iconos de archivos y carpetas<indexterm>
           <primary>iconos</primary>
 
-          <secondary>Ventana de comparación de carpetas</secondary>
+          <secondary>Ventana·de·comparación·de·carpetas</secondary>
         </indexterm></title>
 
       <para>En la ventana de comparación de carpetas, los archivos y las carpetas se
@@ -383,16 +383,15 @@ desconoce el resultado.</member>
       </indexterm>
 
       <para>Puede utilizar el ratón, así como <link linkend="Shortcut_keys">el
-teclado</link> y los atajos del menú contextual para navegar por la ventana
-"Comparación de carpetas".  También puede utilizar los botones de la barra
-de herramientas.  Por ejemplo, el botón <inlinemediaobject>
+teclado</link>y los atajos del menú contextual para navegar por la ventana
+de comparación de carpetas. También puede utilizar los botones de la barra
+de herramientas. Por ejemplo, el botón <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
-            <phrase>Botón Diferencia siguiente</phrase>
+            <phrase>Botón diferencia siguiente</phrase>
           </textobject>
-        </inlinemediaobject> El botón <guimenuitem>Diferencia
-siguiente</guimenuitem> busca el siguiente fichero o carpeta diferente y lo
-selecciona</para>
+        </inlinemediaobject> El botón <guimenuitem>Diferencia siguiente</guimenuitem> busca el
+siguiente fichero o carpeta diferente y lo selecciona</para>
 
       <note>
         <para>Los ficheros y carpetas específicos se exploran de la misma manera que los
@@ -417,7 +416,7 @@ eliminando uno o varios ficheros o subcarpetas.</para>
 
         <secondary>en la ventana de comparación de carpetas</secondary>
       </indexterm><indexterm>
-        <primary>Ventana de comparación de carpetas</primary>
+        <primary>Ventana·de·comparación·de·carpetas</primary>
 
         <secondary>operaciones con ficheros</secondary>
       </indexterm></title>
@@ -530,7 +529,7 @@ herramientas.</para>
 
     <section>
       <title>Eliminar ficheros<indexterm>
-          <primary>eliminar ficheros</primary>
+          <primary>eliminación de archivos</primary>
 
           <secondary>en la ventana de comparación de carpetas</secondary>
         </indexterm></title>
@@ -657,7 +656,7 @@ de los archivos sin las rutas.</para>
 
     <section id="protectingfiles">
       <title>Protección de archivos<indexterm>
-          <primary>Ventana de comparación de carpetas</primary>
+          <primary>Ventana·de·comparación·de·carpetas</primary>
 
           <secondary>Protección de archivos en</secondary>
         </indexterm><indexterm>
@@ -954,7 +953,7 @@ ventana actual compara dos carpetas diferentes.</para>
       <title>Explorar carpetas específicas<indexterm>
           <primary>carpetas específicas</primary>
 
-          <secondary>compararación</secondary>
+          <secondary>comparación</secondary>
         </indexterm></title>
 
       <para>En WinMerge 2.6 y versiones anteriores, no era posible acceder a carpetas
@@ -1013,7 +1012,7 @@ derecho del ratón) de la carpeta específica a la carpeta creada.</para>
 
   <section id="Compare_dirs_customizing">
     <title>Personalización de la ventana de comparación de carpetas<indexterm>
-        <primary>Ventana de comparación de carpetas</primary>
+        <primary>Ventana·de·comparación·de·carpetas</primary>
 
         <secondary>personalización</secondary>
       </indexterm></title>
@@ -1026,7 +1025,7 @@ mostrando, ocultando y reordenando las columnas de la tabla.</para>
       <title>Mostrar y ocultar tipos de archivos<indexterm>
           <primary>Menú Ver</primary>
 
-          <secondary>Ventana de comparación de carpetas</secondary>
+          <secondary>Ventana·de·comparación·de·carpetas</secondary>
         </indexterm></title>
 
       <para>El menú <guimenu>Ver</guimenu> contiene estos accesos directos para mostrar

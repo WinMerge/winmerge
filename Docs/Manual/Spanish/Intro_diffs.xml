@@ -9,7 +9,7 @@ obtener información relacionada con los archivos hexadecimales.</para>
 
   <section id="Intro_diffs_comparing">
     <title>Comparación de archivos<indexterm>
-        <primary>comparar archivos</primary>
+        <primary>comparación de archivos</primary>
 
         <secondary>resumen</secondary>
       </indexterm></title>
@@ -91,8 +91,8 @@ escritorio.</para>
 
         <listitem>
           <para>En el cuadro de diálogo "Seleccione archivos y carpetas" especifique
-<filename>Archivo1</filename> como <guilabel>1er</guilabel> archivo y
-<filename>Archivo2</filename> como <guilabel>2º</guilabel> archivo y haga
+<filename>Fichero1</filename> como <guilabel>1er</guilabel> archivo y
+<filename>Fichero2</filename>como <guilabel>2º</guilabel> archivo y haga
 clic en <guibutton>Comparar</guibutton>. La ventana de comparación de
 archivos muestra los dos archivos en los paneles izquierdo y derecho de la
 siguiente manera:</para>
@@ -204,7 +204,7 @@ fileref="screenshots/filecomp_diffpane1.png" /> </imageobject><textobject>
           <para>Haga clic en el botón<inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
-                <phrase>Botón Diferencia siguiente</phrase>
+                <phrase>Botón diferencia siguiente</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Siguiente diferencia</guibutton> de la barra de herramientas (o
@@ -297,9 +297,9 @@ fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
               </textobject>
             </inlinemediaobject>
 <guibutton>Copiar al derecho</guibutton> para combinar la Diferencia 1 del
-<filename>Archivo1</filename> con el <filename>Archivo2</filename>. En el
-<filename>Archivo2</filename> observe que la única línea de diferencia se ha
-sustituido por las dos líneas del <filename>Archivo1</filename>, y que la
+<filename>Fichero1</filename> con el <filename>Fichero2</filename>. En el
+<filename>Fichero2</filename> observe que la única línea de diferencia se ha
+sustituido por las dos líneas del <filename>Fichero1</filename>, y que la
 línea en blanco grisácea ya no aparece.</para>
         </listitem>
 
@@ -307,7 +307,7 @@ línea en blanco grisácea ya no aparece.</para>
           <para>Haga clic en el botón<inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
-                <phrase>Botón Diferencia siguiente</phrase>
+                <phrase>Botón diferencia siguiente</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Siguiente diferencia</guibutton> para seleccionar la Diferencia
@@ -324,7 +324,7 @@ fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
               </textobject>
             </inlinemediaobject>
 <guibutton>Copiar al izquierdo</guibutton> para combinar la Diferencia 2 del
-<filename>Archivo2</filename> con el <filename>Archivo1</filename>.</para>
+<filename>Fichero2</filename> con el <filename>Fichero1</filename>.</para>
 
           <para>El mensaje que informa que los archivos son idénticos le indica que la
 combinación se ha completado:</para>
