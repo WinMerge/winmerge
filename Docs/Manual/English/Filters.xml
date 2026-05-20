@@ -232,9 +232,11 @@
         <para>Supported literal types include:</para>
         <itemizedlist>
           <listitem><para><emphasis>Boolean</emphasis>: <literal>true</literal>, <literal>false</literal></para></listitem>
+          <listitem><para><emphasis>Null/Undefined</emphasis>: <literal>none</literal>, <literal>undefined</literal> (both represent a null or undefined value)</para></listitem>
           <listitem><para><emphasis>Integer</emphasis>: 64-bit signed integers (e.g., <literal>1024</literal>, or with units like <literal>100KB</literal>, <literal>7days</literal>)</para></listitem>
           <listitem><para><emphasis>Real (Double)</emphasis>: Floating-point numbers with optional decimal or exponent (e.g., <literal>3.14</literal>, <literal>.5</literal>, <literal>1e6</literal>)</para></listitem>
           <listitem><para><emphasis>String</emphasis>: Enclosed in double quotes (e.g., <literal>"example"</literal>)</para></listitem>
+          <listitem><para><emphasis>Date/Time</emphasis>: Prefixed with <literal>d</literal> and enclosed in double quotes (e.g., <literal>d"2026-05-21 07:16:33"</literal>, <literal>d"2026-05-21"</literal>)</para></listitem>
         </itemizedlist>
 
         <para>
@@ -1471,6 +1473,8 @@ old	new</screen>
           <listitem><para><literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - Size difference is small</para></listitem>
           <listitem><para><literal>DateStr = "2025-07-20"</literal> - File was last modified on that date</para></listitem>
           <listitem><para><literal>Date &gt;= today()</literal> - Modified today or later</para></listitem>
+          <listitem><para><literal>Date &gt; d"2026-05-21 07:16:33"</literal> - Modified after a specific date and time</para></listitem>
+          <listitem><para><literal>isWithin(Date, d"2026-01-01", d"2026-12-31 23:59:59")</literal> - Modified during the year 2026</para></listitem>
           <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> - File modified within the last week</para></listitem>
           <listitem><para><literal>inRange(Size, 1KB, 10MB)</literal> - File size is between 1KB (inclusive) and 10MB (exclusive)</para></listitem>
           <listitem><para><literal>allof(isWithin(Size, 100KB, 1MB))</literal> - All file sizes are between 100KB and 1MB</para></listitem>
@@ -1489,6 +1493,9 @@ old	new</screen>
           <listitem><para><literal>EOL = 3</literal> - Files with CRLF (Windows) line endings</para></listitem>
           <listitem><para><literal>EOLStr = "LF"</literal> - Files with LF (Unix) line endings</para></listitem>
           <listitem><para><literal>allof(EOL = 1)</literal> - All files use LF line endings on all sides</para></listitem>
+          <listitem><para><literal>leftprop("System.Title") != none</literal> - Left file has a title property set</para></listitem>
+          <listitem><para><literal>prop("System.Author") = undefined</literal> - No author property is set on any side</para></listitem>
+          <listitem><para><literal>if(LeftExists, LeftSize, 0) > 1MB</literal> - Check size with null-safe handling</para></listitem>
           <listitem><para><literal>Different</literal> - Show only files/folders that are different (Display filter only)</para></listitem>
           <listitem><para><literal>Identical</literal> - Show only files/folders that are identical (Display filter only)</para></listitem>
           <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all sides (Display filter only)</para></listitem>
@@ -2234,7 +2241,7 @@ Pekka Himanen</screen></para>
             <term><varname>EOLStr</varname></term>
             <listitem><para>End-of-line style for the current line as a string.
             Supports side-specific prefixes.
-            Values: "None", "LF", "CR", "CRLF", "Mixed".
+            Values: "None", "LF", "CR", "CRLF"
             Example: <literal>le:EOLStr = "LF"</literal> shows only lines with LF endings</para></listitem>
           </varlistentry>
           <varlistentry>

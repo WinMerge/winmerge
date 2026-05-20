@@ -1,7 +1,7 @@
 /** 
  * @file  MatchInsideDlg.h
  *
- * @brief Declaration of CMatchInsideDlg class, which implements the dialog for entering two filter filteressions for MatchInside/MatchOutside functions.
+ * @brief Declaration of CMatchInsideDlg class, which implements the dialog for entering two filter filter expressions for MatchInside/MatchOutside functions.
  */
 #pragma once
 

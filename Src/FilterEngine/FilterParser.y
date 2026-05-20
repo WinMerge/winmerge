@@ -2,6 +2,16 @@
  * @file  FilterParser.y
  *
  * @brief Parser for filter expressions.
+ * 
+ * Supported literals:
+ *   - Boolean: true, false
+ *   - Null: none, undefined (both represent std::monostate)
+ *   - Numeric: integers, doubles
+ *   - String: "text"
+ *   - Size: 10KB, 5MB, 1.5GB
+ *   - DateTime: d"2024-01-15"
+ *   - Duration: 5days, 2hours, 30min
+ *   - Version: v"1.2.3"
  */
 %token AND OR NOT TRUE_LITERAL FALSE_LITERAL NONE_LITERAL INTEGER_LITERAL DOUBLE_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER EQ NE LT LE GT GE CONTAINS RECONTAINS LIKE MATCHES LPAREN RPAREN PLUS MINUS STAR SLASH MOD COMMA.
 

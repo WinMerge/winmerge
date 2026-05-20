@@ -138,6 +138,16 @@ struct BoolLiteral : public ExprNode
 	bool value;
 };
 
+/**
+ * @brief Represents a null/undefined value literal.
+ * 
+ * Supports both `none` and `undefined` keywords in filter expressions.
+ * Evaluates to std::monostate{} for null value handling.
+ * 
+ * Usage examples:
+ *   property == none
+ *   field != undefined
+ */
 struct NoneLiteral : public ExprNode
 {
 	NoneLiteral() { }

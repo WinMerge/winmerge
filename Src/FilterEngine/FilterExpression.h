@@ -68,6 +68,8 @@ struct FilterSharedContext
 
 struct FilterExpression
 {
+	struct DirectivesAndExpr { String directives; String expr; };
+
 	FilterExpression();
 	FilterExpression(const FilterExpression& other);
 	FilterExpression(const std::string& expression);
@@ -82,13 +84,6 @@ struct FilterExpression
 	void Clear();
 	std::vector<std::string> GetPropertyNames() const;
 	static void SetLogger(std::function<void(int level, const std::string&)> func) { logger = func; };
-
-	struct DirectivesAndExpr
-	{
-		String directives;
-		String expr;
-	};
-
 	static bool HasCaseSensitiveDirective(const String& expression);
 	static String AddCaseSensitiveDirective(const String& expression);
 	static String RemoveCaseSensitiveDirective(const String& expression);

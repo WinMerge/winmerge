@@ -26,4 +26,5 @@ private:
 	// Note: m_targetSide and m_targetDiffSide are now inherited from CFilterHelperMenuBase
 	int m_operator = 0; // 0 = and, 1 = or
 	int m_columnIndex = 0;
+	bool m_byBlock = false; // false = by line, true = by block
 };

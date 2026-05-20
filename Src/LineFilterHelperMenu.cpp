@@ -286,6 +286,9 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 			bool hasMatchCase = FilterExpression::HasCaseSensitiveDirective(LineFilterHelper::RemoveLePrefix(filterExpr));
 			pPopup->CheckMenuItem(ID_FILTERMENU_MATCHCASE, MF_BYCOMMAND | (hasMatchCase ? MF_CHECKED : MF_UNCHECKED));
 
+			// Check "By Block" if enabled
+			pPopup->CheckMenuItem(ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK, MF_BYCOMMAND | (m_byBlock ? MF_CHECKED : MF_UNCHECKED));
+
 			if (m_targetDiffSide == 3)
 			{
 				RemoveMenuItemsInRangeRecursive(pPopup, ID_FILTERMENU_DIFF_COLUMN_NUMBER_LESS, ID_FILTERMENU_DIFF_COLUMN_NUMBER_GREATER_EQUAL);
@@ -316,6 +319,11 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 			else if (command >= ID_FILTERMENU_COLUMN_1 && command <= ID_FILTERMENU_COLUMN_10)
 			{
 				m_columnIndex = command - ID_FILTERMENU_COLUMN_1;
+				continue;
+			}
+			else if (command == ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK)
+			{
+				m_byBlock = !m_byBlock;
 				continue;
 			}
 			else
@@ -419,16 +427,26 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command >= ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1 && command <= ID_FILTERMENU_LINE_MATCHNUMBER_GT_5)
 	{
-		static const tchar_t* Exprs[] = {
-			_T("matchNumber(%1) = 1"), _T("matchNumber(%1) = count(%1)"),
-			_T("matchNumber(%1) <= 5"), _T("matchNumber(%1) > 5"),
+		const tchar_t* matchFuncName = m_byBlock ? _T("matchBlockNumber") : _T("matchNumber");
+		const tchar_t* countFuncName = m_byBlock ? _T("blockCount") : _T("count");
+		const tchar_t* Exprs[] = {
+			_T("%s(%%1) = 1"), _T("%s(%%1) = %s(%%1)"),
+			_T("%s(%%1) <= 5"), _T("%s(%%1) > 5"),
 		};
-		result = WrapWithFilterDirectives(filterExpr, Exprs[command - ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1]);
+		int index = command - ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1;
+		String expr;
+		if (index == 1) // Last occurrence: matchNumber(%1) = count(%1)
+			expr = strutils::format(Exprs[index], matchFuncName, countFuncName);
+		else
+			expr = strutils::format(Exprs[index], matchFuncName);
+		result = WrapWithFilterDirectives(filterExpr, expr);
 	}
 	else if (command == ID_FILTERMENU_LINE_MATCHNUMBER_RANGE)
 	{
 		auto [filterDirectives, filterBody] = NormalizeAndSplit(filterExpr);
-		CFilterConditionDlg dlg(false, m_targetSide, filterBody, _T(""), _("%1 > %2"), _T("matchNumber(") + filterBody + _T(")"));
+		const tchar_t* funcName = m_byBlock ? _T("matchBlockNumber") : _T("matchNumber");
+		String propName = strutils::format(_T("%s(%s)"), funcName, filterBody.c_str());
+		CFilterConditionDlg dlg(false, m_targetSide, filterBody, _T(""), _("%1 > %2"), propName);
 		if (dlg.DoModal() == IDOK)
 		{
 			auto [dlgDirectives, expr] = FilterExpression::SplitDirectivesAndExpr(dlg.m_sExpression);

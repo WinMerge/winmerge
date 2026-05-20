@@ -2054,6 +2054,8 @@ BEGIN
                 MENUITEM "First &5 Matches",            ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
                 MENUITEM "After First &5",              ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
                 MENUITEM "&Custom Range...",            ID_FILTERMENU_LINE_MATCHNUMBER_RANGE
+                MENUITEM SEPARATOR
+                MENUITEM "By &Block",                   ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
             END
             POPUP "&Range"
             BEGIN

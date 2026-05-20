@@ -2828,16 +2828,20 @@ static const auto& GetOrCreateInsideRanges(const FilterEvalContext& ectxt, ExprN
 			evalAsBool(endExpr->Evaluate(local))
 			.value_or(false);
 
-		if (!inside && isBegin)
-		{
-			inside = true;
-			start = i;
-		}
-
 		if (inside && isEnd)
 		{
 			ranges.emplace_back(start, i);
 			inside = false;
+			if (isBegin)
+			{
+				inside = true;
+				start = i;
+			}
+		}
+		else if (!inside && isBegin)
+		{
+			inside = true;
+			start = i;
 		}
 	}
 
@@ -3539,7 +3543,7 @@ static auto columnOffsetAt(int index, const FilterEvalContext& ectxt, std::vecto
 void FunctionNode::SetLineAtFunc(int side, int prefixlen, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 arguments");
+		throw std::invalid_argument(functionName + " function requires 1 argument");
 	if (prefixlen == 0)
 		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{

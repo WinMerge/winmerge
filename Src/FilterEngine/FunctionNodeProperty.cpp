@@ -96,7 +96,7 @@ static auto propary(const String& name, const FilterEvalContext& ectxt) -> Value
 void FunctionNode::SetPropFunc(int side, int prefixlen)
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 arguments");
+		throw std::invalid_argument(functionName + " function requires 1 argument");
 	auto strLit = dynamic_cast<StringLiteral*>((*args)[0]);
 	if (!strLit)
 		throw std::invalid_argument(functionName + " function requires a string literal as argument");
