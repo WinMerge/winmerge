@@ -840,6 +840,12 @@
     <ClCompile Include="LineFilterHelperMenu.cpp">
       <Filter>MFCGui\Menu\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FilterHelperMenuBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReplaceListHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1602,6 +1608,12 @@
       <Filter>MFCGui\Menu\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FilterMenuHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterHelperMenuBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplaceListHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

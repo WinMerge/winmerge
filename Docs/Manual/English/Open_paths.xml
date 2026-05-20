@@ -608,11 +608,11 @@ to compare one file/folder against several files/folders.</para> </tip> -->
           <term><sgmltag>white-spaces</sgmltag></term>
 
           <listitem>
-            <para>0 = Compare whitespaces</para>
+            <para>0 = Compare whitespace</para>
 
             <para>1 = Ignore whitespace changes</para>
 
-            <para>2 = Ignore all whitespaces</para>
+            <para>2 = Ignore all whitespace</para>
           </listitem>
         </varlistentry>
 

@@ -895,6 +895,18 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("Not MiddleExists"));
 	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Additional file attributes tests
+	EXPECT_TRUE(fe.Parse("LeftBinary == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightBinary == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftIsFolder == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightIsFolder == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("Skipped == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, LineAttributes)
@@ -988,7 +1000,7 @@ TEST_P(FilterExpressionTest, LineAttributes)
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
-			return (pane == 0) ? (lineIndex + 1) : (lineIndex + 10);
+			return (pane == 0) ? (lineIndex) : (lineIndex + 10);
 		}
 
 		unsigned GetLineFlags(int pane, int lineIndex) const override
@@ -1005,6 +1017,16 @@ TEST_P(FilterExpressionTest, LineAttributes)
 			return flags;
 		}
 
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			if (pane == 0)
+				return 1;
+			else if (pane == 1)
+				return 3;
+			else if (pane == 2)
+				return 2;
+			return 0;
+		}
 	} provider;
 
 
@@ -1048,15 +1070,15 @@ TEST_P(FilterExpressionTest, LineAttributes)
 	ectxt.lineIndex = 0;
 	EXPECT_TRUE(fe.Parse("LeftLineNumber = 1"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
-	EXPECT_TRUE(fe.Parse("MiddleLineNumber = 10"));
+	EXPECT_TRUE(fe.Parse("MiddleLineNumber = none"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
-	EXPECT_TRUE(fe.Parse("RightLineNumber = 10"));
+	EXPECT_TRUE(fe.Parse("RightLineNumber = 11"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	ectxt.lineIndex = 1;
 	EXPECT_TRUE(fe.Parse("LeftLineNumber = 2"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
-	EXPECT_TRUE(fe.Parse("MiddleLineNumber = 11"));
+	EXPECT_TRUE(fe.Parse("MiddleLineNumber = 12"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// ViewLineNumber field tests (view index + 1)
@@ -1399,6 +1421,15 @@ TEST_P(FilterExpressionTest, LineAttributes)
 	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(-1) contains \"abc\""));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(-1, \"Right0_Col10\") = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Additional line attributes tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftEOL == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleEOL == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightEOL == 2"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 }
 
@@ -2189,7 +2220,7 @@ TEST_P(FilterExpressionTest, TrimFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("trim(\"\") == \"\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("trim(\"\\t\\nhello\\r\\n\") == \"hello\""));
+	EXPECT_TRUE(fe.Parse("trim(\"\t\nhello\r\n\") == \"hello\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("trim(\"  hello world  \") == \"hello world\""));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -2213,7 +2244,7 @@ TEST_P(FilterExpressionTest, TrimFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("trimLeft(\"\") == \"\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("trimLeft(\"\\t\\nhello\\r\\n\") == \"hello\\r\\n\""));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"\t\nhello\r\n\") == \"hello\r\n\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// trimLeft with array
@@ -2233,7 +2264,7 @@ TEST_P(FilterExpressionTest, TrimFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("trimRight(\"\") == \"\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("trimRight(\"\\t\\nhello\\r\\n\") == \"\\t\\nhello\""));
+	EXPECT_TRUE(fe.Parse("trimRight(\"\t\nhello\r\n\") == \"\t\nhello\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// trimRight with array
@@ -3420,7 +3451,7 @@ TEST_P(FilterExpressionTest, StatisticsAndMatchFunctions)
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
-			return lineIndex + 1;
+			return lineIndex;
 		}
 
 		unsigned GetLineFlags(int pane, int lineIndex) const override
@@ -3428,6 +3459,10 @@ TEST_P(FilterExpressionTest, StatisticsAndMatchFunctions)
 			return 0;
 		}
 
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
+		}
 	} provider;
 
 	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
@@ -3704,7 +3739,7 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
-			return lineIndex + 1;
+			return lineIndex;
 		}
 
 		unsigned GetLineFlags(int pane, int lineIndex) const override
@@ -3712,6 +3747,10 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 			return 0;
 		}
 
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
+		}
 	} provider;
 
 	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
@@ -3918,12 +3957,17 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
-			return lineIndex + 1;
+			return lineIndex;
 		}
 
 		unsigned GetLineFlags(int pane, int lineIndex) const override
 		{
 			return 0;
+		}
+
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
 		}
 	} singleBlockProvider;
 
@@ -3976,12 +4020,17 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
-			return lineIndex + 1;
+			return lineIndex;
 		}
 
 		unsigned GetLineFlags(int pane, int lineIndex) const override
 		{
 			return 0;
+		}
+		
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
 		}
 	} noBlockProvider;
 

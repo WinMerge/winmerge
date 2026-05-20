@@ -1112,7 +1112,7 @@ IDR_POPUP_DIFF_OPTIONS MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        POPUP "W&hitespaces"
+        POPUP "W&hitespace"
         BEGIN
             MENUITEM "Com&pare",                    ID_DIFF_OPTIONS_WHITESPACE_COMPARE
             MENUITEM "I&gnore Changes",             ID_DIFF_OPTIONS_WHITESPACE_IGNORE
@@ -1145,7 +1145,7 @@ IDR_POPUP_PROJECT_DIFF_OPTIONS MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        POPUP "W&hitespaces"
+        POPUP "W&hitespace"
         BEGIN
             MENUITEM "Com&pare",                    ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
             MENUITEM "I&gnore Changes",             ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
@@ -1653,6 +1653,18 @@ BEGIN
     END
 END
 
+IDR_POPUP_FILTERMENU_EOL MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Windows (CRLF)",             ID_FILTERMENU_EOL_CRLF
+        MENUITEM "&Unix (LF)",                  ID_FILTERMENU_EOL_LF
+        MENUITEM "&Mac (CR)",                   ID_FILTERMENU_EOL_CR
+        MENUITEM "None",                        ID_FILTERMENU_EOL_NONE
+        MENUITEM "Mixed",                       ID_FILTERMENU_EOL_MIXED
+    END
+END
+
 IDR_POPUP_FILTERMENU_SIZE MENU
 BEGIN
     POPUP "_POPUP_"
@@ -1858,7 +1870,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Add L&ine Condition"
         BEGIN
-            MENUITEM "L&ine...",                    ID_FILTERMENU_LINE_RANGE
+            MENUITEM "L&ine Text...",                   ID_FILTERMENU_LINE_RANGE
             POPUP "&Column"
             BEGIN
                 POPUP "Column"
@@ -1896,6 +1908,13 @@ BEGIN
                 MENUITEM "Moved",                       ID_FILTERMENU_LINE_MOVED
                 MENUITEM "Bookmarked",                  ID_FILTERMENU_LINE_BOOKMARKED
             END
+            POPUP "&EOL"
+            BEGIN
+                MENUITEM "&Windows (CRLF)",             ID_FILTERMENU_EOL_CRLF
+                MENUITEM "&Unix (LF)",                  ID_FILTERMENU_EOL_LF
+                MENUITEM "&Mac (CR)",                   ID_FILTERMENU_EOL_CR
+                MENUITEM "None",                        ID_FILTERMENU_EOL_NONE
+            END
         END
         MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
         MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
@@ -1904,7 +1923,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Add &Difference Condition"
         BEGIN
-            POPUP "&Line"
+            POPUP "L&ine Text"
             BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_LINE_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_LINE_NOT_EQUAL
@@ -1945,7 +1964,7 @@ BEGIN
                 MENUITEM "Column: &9",                  ID_FILTERMENU_COLUMN_9
                 MENUITEM "Column: &10",                 ID_FILTERMENU_COLUMN_10
             END
-            POPUP "Lin&e Length"
+            POPUP "Line L&ength"
             BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_LINE_LENGTH_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_LINE_LENGTH_NOT_EQUAL
@@ -1968,6 +1987,11 @@ BEGIN
                 MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
                 MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
             END
+            POPUP "&EOL"
+            BEGIN
+                MENUITEM "Equal",                       ID_FILTERMENU_DIFF_EOL_EQUAL
+                MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_EOL_NOT_EQUAL
+            END
         END
         MENUITEM "Target: &Left and Right",     ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT
         MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_CONDITION_DIFF_LEFT_MIDDLE
@@ -1977,7 +2001,7 @@ BEGIN
         POPUP "&Transform Line/Column"
         BEGIN
             MENUITEM "&Trim",                           ID_FILTERMENU_FUNC_TRIM
-            MENUITEM "Normalize &Whitespaces",          ID_FILTERMENU_FUNC_NORM_SPACE
+            MENUITEM "Normalize &Whitespace",           ID_FILTERMENU_FUNC_NORM_SPACE
             MENUITEM "&Replace",                        ID_FILTERMENU_FUNC_REPLACE
             MENUITEM "Reg&ex Replace",                  ID_FILTERMENU_FUNC_REGEXREPLACE
             MENUITEM "&Lowercase",                      ID_FILTERMENU_FUNC_TOLOWER
@@ -1994,6 +2018,23 @@ BEGIN
             BEGIN
                 MENUITEM "&Hiragana",                   ID_FILTERMENU_FUNC_TOHIRAGANA
                 MENUITEM "&Katakana",                   ID_FILTERMENU_FUNC_TOKATAKANA
+            END
+            POPUP "Replace &Lists"
+            BEGIN
+                MENUITEM "&Create String Replace List and Insert...", ID_FILTERMENU_CREATE_REPLACELIST
+                MENUITEM "Create &Regex Replace List and Insert...",  ID_FILTERMENU_CREATE_REGEXREPLACELIST
+                MENUITEM SEPARATOR
+                POPUP "&String Replace Lists"
+                BEGIN
+                    MENUITEM "<None>",                      ID_FILTERMENU_STRING_REPLACE_LISTS_FIRST
+                END
+                POPUP "Re&gex Replace Lists"
+                BEGIN
+                    MENUITEM "<None>",                      ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST
+                END
+                MENUITEM SEPARATOR
+                MENUITEM "Open String Replace Lists Folder...", ID_FILTERMENU_STRING_REPLACE_LISTS_FOLDER
+                MENUITEM "Open Regex Replace Lists Folder...", ID_FILTERMENU_REGEX_REPLACE_LISTS_FOLDER
             END
         END
         POPUP "&Refine Current Filter"
@@ -2025,6 +2066,8 @@ BEGIN
             MENUITEM "&Inside...",                      ID_FILTERMENU_LINE_MATCHINSIDE
             MENUITEM "&Outside...",                     ID_FILTERMENU_LINE_MATCHOUTSIDE
         END
+        MENUITEM SEPARATOR
+        MENUITEM "Match &case",                 ID_FILTERMENU_MATCHCASE
         MENUITEM SEPARATOR
         MENUITEM "Combine: A&ND",               ID_FILTERMENU_OPERATOR_AND
         MENUITEM "Combine: &OR",                ID_FILTERMENU_OPERATOR_OR
@@ -2538,7 +2581,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Compare"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,311,50
+    GROUPBOX        "Whitespace",IDC_STATIC,7,7,311,50
     CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,19,256,10
     CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON,14,30,256,10
     CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,14,41,256,10

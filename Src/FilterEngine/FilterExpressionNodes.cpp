@@ -815,6 +815,54 @@ static auto ExtensionField(int index, const FilterEvalContext& ectxt)-> ValueTyp
 	return std::string(ext.c_str() + strspn(ext.c_str(), "."));
 }
 
+// Helper function to determine EOL style from FileTextStats
+static unsigned GetEOLStyleFromStats(const FileTextStats& stats)
+{
+	// Check if file has more than one EOL type (mixed)
+	int eolCount = 0;
+	if (stats.ncrlfs > 0) ++eolCount;
+	if (stats.ncrs > 0) ++eolCount;
+	if (stats.nlfs > 0) ++eolCount;
+
+	if (eolCount > 1)
+		return ILineDataProvider::EOL_MIXED;
+
+	// Pure EOL style detection
+	if (stats.ncrlfs > 0)
+		return ILineDataProvider::EOL_CRLF;
+	if (stats.nlfs > 0)
+		return ILineDataProvider::EOL_LF;
+	if (stats.ncrs > 0)
+		return ILineDataProvider::EOL_CR;
+	return ILineDataProvider::EOL_NONE;
+}
+
+static auto FileEOLField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.di->diffcode.exists(index))
+		return std::monostate{};
+	return GetEOLStyleFromStats(ectxt.di->diffFileInfo[index].m_textStats);
+}
+
+static std::string EOLStr(unsigned eolFlags)
+{
+	switch (eolFlags)
+	{
+	case ILineDataProvider::EOL_LF: return "LF";
+	case ILineDataProvider::EOL_CR: return "CR";
+	case ILineDataProvider::EOL_CRLF: return "CRLF";
+	case ILineDataProvider::EOL_MIXED: return "Mixed";
+	default: return "None";
+	}
+}
+
+static auto FileEOLStrField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.di->diffcode.exists(index))
+		return std::monostate{};
+	return EOLStr(GetEOLStyleFromStats(ectxt.di->diffFileInfo[index].m_textStats));
+}
+
 // Helper function to parse date/time strings with multiple format support
 static std::optional<Poco::Timestamp> ParseDateTime(const std::string& str)
 {
@@ -1079,6 +1127,24 @@ static auto ViewLineNumberField(int index, const FilterEvalContext& ectxt) -> Va
 	return static_cast<int>(ectxt.lineIndex + 1);
 }
 
+static auto LineEOLField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	if ((ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_GHOST) != 0)
+		return std::monostate{};
+	return static_cast<int64_t>(ectxt.provider->GetLineEol(index, ectxt.lineIndex));
+}
+
+static auto LineEOLStrField(int index, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (!ectxt.provider)
+		return std::monostate{};
+	if ((ectxt.provider->GetLineFlags(index, ectxt.lineIndex) & ILineDataProvider::LF_GHOST) != 0)
+		return std::monostate{};
+	return EOLStr(ectxt.provider->GetLineEol(index, ectxt.lineIndex));
+}
+
 static auto LineExistsField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
@@ -1300,6 +1366,8 @@ static constexpr FieldInfo fieldTable[] = {
 	{"differentleftright", FileDifferentLeftRightField, LineDifferentLeftRightField, false, true},
 	{"differentmiddleright", FileDifferentMiddleRightField, LineDifferentMiddleRightField, false, true},
 	{"encoding", EncodingField, nullptr, true, false},
+	{"eol", FileEOLField, LineEOLField, true, false},
+	{"eolstr", FileEOLStrField, LineEOLStrField, true, false},
 	{"exists", FileExistsField, LineExistsField, true, false},
 	{"extension", ExtensionField, nullptr, true, false},
 	{"filedifferent", FileDifferentField, nullptr, false, true},
@@ -2907,10 +2975,22 @@ static auto ProcessValueForStatistics(
 	std::optional<std::string>& minString,
 	std::optional<Poco::Timestamp>& maxTimestamp,
 	std::optional<Poco::Timestamp>& minTimestamp,
+	int64_t& trueCount,
+	int64_t& falseCount,
 	int& valueType)
 {
+	// Handle boolean values
+	if (auto boolVal = std::get_if<bool>(&result))
+	{
+		++count;
+		if (*boolVal)
+			++trueCount;
+		else
+			++falseCount;
+		if (valueType == 0) valueType = 4;
+	}
 	// Handle numeric values
-	if (auto intVal = std::get_if<int64_t>(&result))
+	else if (auto intVal = std::get_if<int64_t>(&result))
 	{
 		double value = static_cast<double>(*intVal);
 		sum += value;
@@ -2988,6 +3068,8 @@ static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ec
 	std::optional<std::string> minString;
 	std::optional<Poco::Timestamp> maxTimestamp;
 	std::optional<Poco::Timestamp> minTimestamp;
+	int64_t trueCount = 0;
+	int64_t falseCount = 0;
 	int valueType = 0;
 
 	for (int i = 0; i < lineCount; ++i)
@@ -3014,7 +3096,7 @@ static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ec
 				ProcessValueForStatistics(
 					item.value, lectxt, sum, count,
 					maxNumber, minNumber, maxString, minString,
-					maxTimestamp, minTimestamp, valueType);
+					maxTimestamp, minTimestamp, trueCount, falseCount, valueType);
 			}
 		}
 		else
@@ -3023,7 +3105,7 @@ static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ec
 			ProcessValueForStatistics(
 				result, lectxt, sum, count,
 				maxNumber, minNumber, maxString, minString,
-				maxTimestamp, minTimestamp, valueType);
+				maxTimestamp, minTimestamp, trueCount, falseCount, valueType);
 		}
 	}
 
@@ -3049,6 +3131,11 @@ static const StatisticsResult& GetOrCreateStatistics(const FilterEvalContext& ec
 			stats.maxTimestamp = *maxTimestamp;
 			stats.minTimestamp = *minTimestamp;
 		}
+		else if (valueType == 4)
+		{
+			stats.trueCount = trueCount;
+			stats.falseCount = falseCount;
+		}
 	}
 
 	it = statsCache.insert_or_assign(cacheKey, std::move(stats)).first;
@@ -3063,10 +3150,15 @@ static auto AverageFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* 
 	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
 	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
 
-	if (stats.count == 0 || stats.valueType != 1)
+	if (stats.count == 0)
 		return std::monostate{};
 
-	return stats.average;
+	if (stats.valueType == 1)
+		return stats.average;
+	else if (stats.valueType == 4)
+		return static_cast<double>(stats.trueCount) / static_cast<double>(stats.count);
+
+	return std::monostate{};
 }
 
 static auto MaximumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
@@ -3094,6 +3186,10 @@ static auto MaximumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* 
 	else if (stats.valueType == 3)
 	{
 		return stats.maxTimestamp;
+	}
+	else if (stats.valueType == 4)
+	{
+		return stats.trueCount > 0 ? true : false;
 	}
 
 	return std::monostate{};
@@ -3125,6 +3221,10 @@ static auto MinimumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* 
 	{
 		return stats.minTimestamp;
 	}
+	else if (stats.valueType == 4)
+	{
+		return stats.falseCount > 0 ? false : true;
+	}
 
 	return std::monostate{};
 }
@@ -3137,13 +3237,22 @@ static auto SumFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args
 	ExprNode* conditionExpr = (args->size() > 1) ? (*args)[1] : nullptr;
 	const auto& stats = GetOrCreateStatistics(ectxt, (*args)[0], conditionExpr);
 
-	if (stats.count == 0 || stats.valueType != 1)
+	if (stats.count == 0)
 		return std::monostate{};
 
-	// Return as int64_t if the result is an integer value
-	if (stats.sum == std::floor(stats.sum))
-		return static_cast<int64_t>(stats.sum);
-	return stats.sum;
+	if (stats.valueType == 1)
+	{
+		// Return as int64_t if the result is an integer value
+		if (stats.sum == std::floor(stats.sum))
+			return static_cast<int64_t>(stats.sum);
+		return stats.sum;
+	}
+	else if (stats.valueType == 4)
+	{
+		return stats.trueCount;
+	}
+
+	return std::monostate{};
 }
 
 static auto MatchBlockNumberFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType

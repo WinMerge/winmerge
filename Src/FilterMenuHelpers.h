@@ -5,6 +5,7 @@
 #pragma once
 
 #include <afxwin.h>
+#include "UnicodeString.h"
 
 namespace FilterMenuHelpers
 {
@@ -92,4 +93,28 @@ namespace FilterMenuHelpers
 				}
 			});
 	}
+
+	/**
+	 * @brief Populate a replace list submenu with available list files
+	 * @param pMenu Submenu to populate
+	 * @param isRegex True for regex lists, false for string lists
+	 * @param firstID Base menu item ID
+	 */
+	void PopulateReplaceListMenu(CMenu* pMenu, bool isRegex, UINT firstID);
+
+	/**
+	 * @brief Populate "Replace Lists" submenus (both String and Regex)
+	 * @param pReplaceListsMenu The "Replace Lists" menu
+	 * @param stringListFirstID Base ID for string replace lists
+	 * @param regexListFirstID Base ID for regex replace lists
+	 */
+	void PopulateReplaceListsSubMenus(CMenu* pReplaceListsMenu, UINT stringListFirstID, UINT regexListFirstID);
+
+	/**
+	 * @brief Find and populate "Replace Lists" menu
+	 * @param pPopup Root popup menu
+	 * @param stringListFirstID Base ID for string replace lists
+	 * @param regexListFirstID Base ID for regex replace lists
+	 */
+	void PopulateReplaceLists(CMenu* pPopup, UINT stringListFirstID, UINT regexListFirstID);
 }

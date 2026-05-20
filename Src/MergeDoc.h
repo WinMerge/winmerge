@@ -283,6 +283,7 @@ public:
 	std::string GetColumn(int pane, int lineIndex, int columnIndex) const override;
 	int GetRealLineNumber(int pane, int lineIndex) const override;
 	unsigned GetLineFlags(int pane, int lineIndex) const override;
+	unsigned GetLineEol(int pane, int lineIndex) const override;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

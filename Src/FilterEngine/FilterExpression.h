@@ -42,8 +42,10 @@ struct StatisticsResult
 	std::string minString;
 	Poco::Timestamp maxTimestamp;
 	Poco::Timestamp minTimestamp;
+	int64_t trueCount = 0;
+	int64_t falseCount = 0;
 	int64_t count = 0;
-	int valueType = 0; // 0=none, 1=number, 2=string, 3=timestamp
+	int valueType = 0; // 0=none, 1=number, 2=string, 3=timestamp, 4=boolean
 };
 
 struct RangeInfo

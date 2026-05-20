@@ -398,6 +398,20 @@
               <listitem><para>File extension</para></listitem>
             </varlistentry>
             <varlistentry>
+              <term><varname>EOL</varname></term>
+              <listitem>
+                <para>Returns the end-of-line (EOL) style as an integer value. For files, returns the predominant EOL style; for lines, returns the EOL style of that specific line.</para>
+                <para>Values: 0 = None, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 = Mixed (multiple EOL styles in file)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>EOLStr</varname></term>
+              <listitem>
+                <para>Returns the end-of-line (EOL) style as a string. For files, returns the predominant EOL style; for lines, returns the EOL style of that specific line.</para>
+                <para>Values: "None", "LF", "CR", "CRLF", "Mixed"</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
               <term><varname>IsFolder</varname></term>
               <listitem><para>Returns true if the item is a folder/directory, false if it's a file.</para></listitem>
             </varlistentry>
@@ -458,6 +472,22 @@
             <varlistentry>
               <term><varname>Content</varname></term>
               <listitem><para>Content of the file. Returns a FileContent-type value. Only <literal>contains</literal> and <literal>recontains</literal> can be used with this type.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>EOL</varname> (file comparison)</term>
+              <listitem>
+                <para>Returns the predominant end-of-line (EOL) style in the file as an integer value. If the file contains multiple EOL styles, returns 4 (Mixed).</para>
+                <para>Values: 0 = None, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 = Mixed</para>
+                <para>This is a file-level attribute. For line-level EOL detection in file comparisons, use this attribute in line display filters.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>EOLStr</varname> (file comparison)</term>
+              <listitem>
+                <para>Returns the predominant end-of-line (EOL) style in the file as a string.</para>
+                <para>Values: "None", "LF", "CR", "CRLF", "Mixed"</para>
+                <para>This is a file-level attribute. For line-level EOL detection in file comparisons, use this attribute in line display filters.</para>
+              </listitem>
             </varlistentry>
           </variablelist>
         </section>
@@ -1456,6 +1486,9 @@ old	new</screen>
           <listitem><para><literal>trim(Name) = "readme.txt"</literal> - Match filename after removing leading/trailing whitespace</para></listitem>
           <listitem><para><literal>trimLeft(Column("Value")) = "123"</literal> - Match column value after removing leading whitespace (table mode)</para></listitem>
           <listitem><para><literal>trimRight(Line) contains "end"</literal> - Check if line (without trailing whitespace) contains "end"</para></listitem>
+          <listitem><para><literal>EOL = 3</literal> - Files with CRLF (Windows) line endings</para></listitem>
+          <listitem><para><literal>EOLStr = "LF"</literal> - Files with LF (Unix) line endings</para></listitem>
+          <listitem><para><literal>allof(EOL = 1)</literal> - All files use LF line endings on all sides</para></listitem>
           <listitem><para><literal>Different</literal> - Show only files/folders that are different (Display filter only)</para></listitem>
           <listitem><para><literal>Identical</literal> - Show only files/folders that are identical (Display filter only)</para></listitem>
           <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all sides (Display filter only)</para></listitem>
@@ -2191,6 +2224,20 @@ Pekka Himanen</screen></para>
             Supports side-specific prefixes.</para></listitem>
           </varlistentry>
           <varlistentry>
+            <term><varname>EOL</varname></term>
+            <listitem><para>End-of-line style for the current line as an integer value.
+            Supports side-specific prefixes.
+            Values: 0 = None, 1 = LF, 2 = CR, 3 = CRLF, 4 = Mixed.
+            Example: <literal>le:EOL = 3</literal> shows only lines with CRLF endings</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>EOLStr</varname></term>
+            <listitem><para>End-of-line style for the current line as a string.
+            Supports side-specific prefixes.
+            Values: "None", "LF", "CR", "CRLF", "Mixed".
+            Example: <literal>le:EOLStr = "LF"</literal> shows only lines with LF endings</para></listitem>
+          </varlistentry>
+          <varlistentry>
             <term><varname>Bookmarked</varname></term>
             <listitem><para>True if the line has a bookmark.
             Supports side-specific prefixes.</para></listitem>
@@ -2380,6 +2427,18 @@ Pekka Himanen</screen></para>
               <row>
                 <entry><userinput>le:LineNumber &lt;= 50</userinput></entry>
                 <entry>Shows only the first 50 lines</entry>
+              </row>
+              <row>
+                <entry><userinput>le:EOL = 3</userinput></entry>
+                <entry>Shows only lines with CRLF (Windows) line endings</entry>
+              </row>
+              <row>
+                <entry><userinput>le:EOLStr = "LF"</userinput></entry>
+                <entry>Shows only lines with LF (Unix) line endings</entry>
+              </row>
+              <row>
+                <entry><userinput>le:allof(EOL = 1)</userinput></entry>
+                <entry>Shows lines where all panes use LF line endings</entry>
               </row>
               <row>
                 <entry><userinput>le:toInt(Column("Count")) &gt; 100</userinput></entry>

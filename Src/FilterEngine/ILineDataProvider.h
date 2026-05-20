@@ -19,6 +19,15 @@ struct ILineDataProvider
 		LF_SNP = 0x02000000UL,
 	};
 
+	enum EOLFLAGS : unsigned
+	{
+		EOL_NONE = 0,
+		EOL_LF = 1,
+		EOL_CR = 2,
+		EOL_CRLF = 3,
+		EOL_MIXED = 4,
+	};
+
 	virtual ~ILineDataProvider() = default;
 	virtual int GetLineCount() const = 0;
 	virtual std::string GetLine(int pane, int lineIndex) const = 0;
@@ -26,4 +35,5 @@ struct ILineDataProvider
 	virtual std::string GetColumn(int pane, int lineIndex, int columnIndex) const = 0;
 	virtual int GetRealLineNumber(int pane, int lineIndex) const = 0;
 	virtual unsigned GetLineFlags(int pane, int lineIndex) const = 0;
+	virtual unsigned GetLineEol(int pane, int lineIndex) const = 0;
 };

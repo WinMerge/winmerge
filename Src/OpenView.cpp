@@ -1636,7 +1636,7 @@ void COpenView::OnOptions()
 }
 
 /**
- * @brief Set "Whitespaces" setting.
+ * @brief Set "Whitespace" setting.
  * @param [in] nID Menu ID of the selected item
  */
 void COpenView::OnDiffWhitespace(UINT nID)
@@ -1647,7 +1647,7 @@ void COpenView::OnDiffWhitespace(UINT nID)
 }
 
 /**
- * @brief Update "Whitespaces" state.
+ * @brief Update "Whitespace" state.
  * @param [in] pCmdUI UI component to update.
  */
 void COpenView::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)

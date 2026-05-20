@@ -24,12 +24,8 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			FilterMenuHelpers::DisableMenuItemRecursive(pPopup, ID_FILTERMENU_ADDITIONAL_PROPS);
 			FilterMenuHelpers::DisableMenuItemRecursive(pPopup, ID_FILTERMENU_DIFF_ADDITIONAL_PROPS);
 #endif
-			for (int i = ID_FILTERMENU_CONDITION_ANY; i <= ID_FILTERMENU_CONDITION_RIGHT; i++)
-				pPopup->CheckMenuItem(i,
-					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_ANY + m_targetSide) == i ? MF_CHECKED : 0));
-			for (int i = ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_CONDITION_DIFF_ALL; i++)
-				pPopup->CheckMenuItem(i,
-					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
+			CheckTargetSideMenuItems(pPopup, ID_FILTERMENU_CONDITION_ANY, ID_FILTERMENU_CONDITION_RIGHT);
+			CheckDiffSideMenuItems(pPopup, ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT, ID_FILTERMENU_CONDITION_DIFF_ALL);
 			FilterMenuHelpers::CheckMenuItemRecursive(pPopup, ID_FILTERMENU_FOLDER_STATS_RECURSIVE, m_recursive);
 
 			if (m_targetDiffSide == 3)
@@ -149,8 +145,7 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 
 String CFileFilterHelperMenu::defaultProp(const String& name) const
 {
-	static const tchar_t* Sides[] = { _T(""), _T("Left"), _T("Middle"), _T("Right") };
-	return Sides[m_targetSide] + (m_propName.empty() ? name : _T("Prop(\"") + m_propName + _T("\")"));
+	return GetSidePrefix(m_targetSide) + (m_propName.empty() ? name : _T("Prop(\"") + m_propName + _T("\")"));
 }
 
 String CFileFilterHelperMenu::folderPropName(const String& name) const
@@ -160,22 +155,17 @@ String CFileFilterHelperMenu::folderPropName(const String& name) const
 
 String CFileFilterHelperMenu::defaultDiffProp(const String& name, int i) const
 {
-	static const tchar_t* DiffSides1[] = { _T("Left"), _T("Left"), _T("Middle") };
-	static const tchar_t* DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
-	const String prop = ((i == 0) ? DiffSides1[m_targetDiffSide] : DiffSides2[m_targetDiffSide]);
+	const String prop = GetDiffSidePrefix(m_targetDiffSide, i);
 	return m_propName.empty() ? (prop + name) : (prop + _T("Prop(\"") + m_propName + _T("\")"));
 }
 
 String CFileFilterHelperMenu::defaultAllProp(const String& name, bool not) const
 {
-	return (not ? _T("not allequal(") : _T("allequal(")) + (m_propName.empty() ? name : _T("Prop(\"") + m_propName + _T("\")")) + _T(")");
+	return GenerateAllEqualCondition(m_propName.empty() ? name : _T("Prop(\"") + m_propName + _T("\")"), not);
 }
 
 std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* pParentWnd)
 {
-	static const tchar_t* Sides[] = { _T(""), _T("Left"), _T("Middle"), _T("Right") };
-	static const tchar_t* DiffSides1[] = { _T("Left"), _T("Left"), _T("Middle") };
-	static const tchar_t* DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
 	std::optional<String> result;
 	if (command == ID_FILTERMENU_MASK_CLEAR)
 	{
@@ -311,7 +301,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		};
 		const String identifier = defaultProp(_T("Size"));
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("fe:") + strutils::format_string1(SizeConditions[command - ID_FILTERMENU_SIZE_LT_1KB], identifier);
+		*result += _T("fe:") + FormatCondition(SizeConditions[command - ID_FILTERMENU_SIZE_LT_1KB], identifier);
 	}
 	else if (command == ID_FILTERMENU_SIZE_RANGE)
 	{
@@ -335,7 +325,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		bool isModifiedDate = m_colName.find(_T("ctime")) == String::npos;
 		const String identifier = defaultProp(m_propName.empty() ? (isModifiedDate ? _T("Date") : _T("CreationTime")) : m_propName);
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("fe:") + strutils::format_string1(DateConditions[command - ID_FILTERMENU_DATE_HOUR_BEFORE_1], identifier);
+		*result += _T("fe:") + FormatCondition(DateConditions[command - ID_FILTERMENU_DATE_HOUR_BEFORE_1], identifier);
 	}
 	else if (command == ID_FILTERMENU_DATE_RANGE)
 	{
@@ -351,21 +341,28 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 			_T("%1 contains \"H\""), _T("%1 not contains \"H\""),
 			_T("%1 contains \"S\""), _T("%1 not contains \"S\"")
 		};
-		const String identifier = String(Sides[m_targetSide]) + _T("AttrStr");
+		const String identifier = GetSidePrefix(m_targetSide) + _T("AttrStr");
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("fe:") + strutils::format_string1(AttrConditions[command - ID_FILTERMENU_ATTR_READONLY], identifier);
+		*result += _T("fe:") + FormatCondition(AttrConditions[command - ID_FILTERMENU_ATTR_READONLY], identifier);
 	}
 	else if (command == ID_FILTERMENU_BINARY_ONLY)
 	{
-		const String identifier = String(Sides[m_targetSide]) + _T("Binary");
+		const String identifier = GetSidePrefix(m_targetSide) + _T("Binary");
 		result = masks.empty() ? masks : masks + _T("|");
 		*result += _T("fe:") + identifier;
 	}
 	else if (command == ID_FILTERMENU_TEXT_ONLY)
 	{
-		const String identifier = _T("not ") + String(Sides[m_targetSide]) + _T("Binary");
+		const String identifier = _T("not ") + GetSidePrefix(m_targetSide) + _T("Binary");
 		result = masks.empty() ? masks : masks + _T("|");
 		*result += _T("fe:") + identifier;
+	}
+	else if (command >= ID_FILTERMENU_EOL_CRLF && command <= ID_FILTERMENU_EOL_MIXED)
+	{
+		static const tchar_t* EOLStrValues[] = { _T("\"CRLF\""), _T("\"LF\""), _T("\"CR\""), _T("\"None\""), _T("\"Mixed\"") };
+		const String identifier = GetSidePrefix(m_targetSide) + _T("EOLStr");
+		result = masks.empty() ? masks : masks + _T("|");
+		*result += _T("fe:") + identifier + _T(" = ") + EOLStrValues[command - ID_FILTERMENU_EOL_CRLF];
 	}
 	else if (command >= ID_FILTERMENU_CONTENT_CONTAINS && command <= ID_FILTERMENU_CONTENT_LAST_LINE_NOT_CONTAINS)
 	{
@@ -398,9 +395,9 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 			_T("lineCount(%1) < 10000"), _T("lineCount(%1) >= 10000"),
 			_T("lineCount(%1) < 100000"), _T("lineCount(%1) >= 100000")
 		};
-		const String identifier = String(Sides[m_targetSide]) + _T("Content");
+		const String identifier = GetSidePrefix(m_targetSide) + _T("Content");
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("fe:") + strutils::format_string1(LineCountConditions[command - ID_FILTERMENU_LINES_LT_10], identifier);
+		*result += _T("fe:") + FormatCondition(LineCountConditions[command - ID_FILTERMENU_LINES_LT_10], identifier);
 	}
 	else if (command == ID_FILTERMENU_LINES_RANGE)
 	{
@@ -423,7 +420,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		};
 		const String identifier = defaultProp(_T("Date"));
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("de:") + strutils::format_string1(DateConditions[command - ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1], identifier);
+		*result += _T("de:") + FormatCondition(DateConditions[command - ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1], identifier);
 	}
 	else if (command == ID_FILTERMENU_FOLDER_DATE_RANGE)
 	{
@@ -438,7 +435,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		};
 		const String identifier = defaultProp(folderPropName(_T("Files")));
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("de:") + strutils::format_string1(FilesConditions[command - ID_FILTERMENU_FOLDER_FILES_EQ_0], identifier);
+		*result += _T("de:") + FormatCondition(FilesConditions[command - ID_FILTERMENU_FOLDER_FILES_EQ_0], identifier);
 	}
 	else if (command == ID_FILTERMENU_FOLDER_FILES_RANGE)
 	{
@@ -453,7 +450,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		};
 		const String identifier = defaultProp(folderPropName(_T("Items")));
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("de:") + strutils::format_string1(ItemsConditions[command - ID_FILTERMENU_FOLDER_ITEMS_EQ_0], identifier);
+		*result += _T("de:") + FormatCondition(ItemsConditions[command - ID_FILTERMENU_FOLDER_ITEMS_EQ_0], identifier);
 	}
 	else if (command == ID_FILTERMENU_FOLDER_ITEMS_RANGE)
 	{
@@ -474,7 +471,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		};
 		const String identifier = defaultProp(folderPropName(_T("TotalSize")));
 		result = masks.empty() ? masks : masks + _T("|");
-		*result += _T("de:") + strutils::format_string1(SizeConditions[command - ID_FILTERMENU_FOLDER_TOTALSIZE_LT_1KB], identifier);
+		*result += _T("de:") + FormatCondition(SizeConditions[command - ID_FILTERMENU_FOLDER_TOTALSIZE_LT_1KB], identifier);
 	}
 	else if (command == ID_FILTERMENU_FOLDER_TOTALSIZE_RANGE)
 	{
@@ -502,7 +499,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 			const String identifier1 = defaultDiffProp(_T("Size"), 0);
 			const String identifier2 = defaultDiffProp(_T("Size"), 1);
 			result = masks.empty() ? masks : masks + _T("|");
-			*result += _T("fe:") + strutils::format_string2(DiffSizeConditions[command - ID_FILTERMENU_DIFF_SIZE_EQUAL],
+			*result += _T("fe:") + FormatCondition(DiffSizeConditions[command - ID_FILTERMENU_DIFF_SIZE_EQUAL],
 				identifier1, identifier2);
 		}
 	}
@@ -534,7 +531,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 			const String identifier1 = defaultDiffProp(_T("Date"), 0);
 			const String identifier2 = defaultDiffProp(_T("Date"), 1);
 			result = masks.empty() ? masks : masks + _T("|");
-			*result += _T("fe:") + strutils::format_string2(DiffDateConditions[command - ID_FILTERMENU_DIFF_DATE_EQUAL],
+			*result += _T("fe:") + FormatCondition(DiffDateConditions[command - ID_FILTERMENU_DIFF_DATE_EQUAL],
 				identifier1, identifier2);
 		}
 	}
@@ -556,10 +553,10 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 			static const tchar_t* DiffAttrConditions[] = {
 				_T("%1 = %2"), _T("%1 != %2")
 			};
-			const String identifier1 = String(DiffSides1[m_targetDiffSide]) + _T("AttrStr");
-			const String identifier2 = String(DiffSides2[m_targetDiffSide]) + _T("AttrStr");
+			const String identifier1 = GetDiffSidePrefix(m_targetDiffSide, 0) + _T("AttrStr");
+			const String identifier2 = GetDiffSidePrefix(m_targetDiffSide, 1) + _T("AttrStr");
 			result = masks.empty() ? masks : masks + _T("|");
-			*result += _T("fe:") + strutils::format_string2(DiffAttrConditions[command - ID_FILTERMENU_DIFF_ATTR_EQUAL],
+			*result += _T("fe:") + FormatCondition(DiffAttrConditions[command - ID_FILTERMENU_DIFF_ATTR_EQUAL],
 				identifier1, identifier2);
 		}
 	}
@@ -580,7 +577,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 			const String identifier1 = defaultDiffProp(_T(""), 0);
 			const String identifier2 = defaultDiffProp(_T(""), 1);
 			result = masks.empty() ? masks : masks + _T("|");
-			*result += _T("fe:") + strutils::format_string2(DiffPropConditions[command - ID_FILTERMENU_DIFF_PROP_EQUAL],
+			*result += _T("fe:") + FormatCondition(DiffPropConditions[command - ID_FILTERMENU_DIFF_PROP_EQUAL],
 				identifier1, identifier2);
 		}
 	}
@@ -655,6 +652,7 @@ std::unique_ptr<CFileFilterHelperMenu> CFileFilterHelperMenu::AppendColumnFilter
 		{ _T("sizeShort"), IDR_POPUP_FILTERMENU_SIZE, -1 },
 		{ _T("attr"), IDR_POPUP_FILTERMENU_ATTR, -1 },
 		{ _T("encoding"), -1, ID_FILTERMENU_CODEPAGE },
+		{ _T("eoltype"), IDR_POPUP_FILTERMENU_EOL, -1 },
 		{ _T("Unpacker"), -1, ID_FILTERMENU_UNPACKER },
 		{ _T("Prediffer"), -1, ID_FILTERMENU_PREDIFFER },
 	};

@@ -3734,3 +3734,15 @@ unsigned CMergeDoc::GetLineFlags(int pane, int lineIndex) const
 	return m_ptBuf[pane]->GetLineFlags(lineIndex);
 }
 
+unsigned CMergeDoc::GetLineEol(int pane, int lineIndex) const
+{
+	const tchar_t* eol = m_ptBuf[pane]->GetLineEol(lineIndex);
+	if (eol[0] == 0)
+		return EOL_NONE;
+	else if (eol[0] == '\n')
+		return EOL_LF;
+	else if (eol[0] == '\r')
+		return eol[1] == 0 ? EOL_CR : EOL_CRLF;
+	return EOL_NONE;
+}
+

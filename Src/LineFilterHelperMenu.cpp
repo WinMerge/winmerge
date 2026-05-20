@@ -7,6 +7,12 @@
 #include "FilterConditionDlg.h"
 #include "MatchInsideDlg.h"
 #include "FilterMenuHelpers.h"
+#include "ReplaceListHelper.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "Shell.h"
+#include "paths.h"
+#include "unicoder.h"
 #include "resource.h"
 
 using namespace FilterMenuHelpers;
@@ -261,17 +267,22 @@ std::optional<String> CLineFilterHelperMenu::ShowMenu(const String& filterExpr, 
 		CMenu* pPopup = GetSubMenu(0);
 		if (pPopup)
 		{
-			for (int i = ID_FILTERMENU_CONDITION_ANY; i <= ID_FILTERMENU_CONDITION_RIGHT; i++)
-				pPopup->CheckMenuItem(i,
-					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_ANY + m_targetSide) == i ? MF_CHECKED : 0));
-			for (int i = ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_CONDITION_DIFF_ALL; i++)
-				pPopup->CheckMenuItem(i,
-					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
+			// Populate replace lists dynamically
+			FilterMenuHelpers::PopulateReplaceLists(pPopup,
+				ID_FILTERMENU_STRING_REPLACE_LISTS_FIRST,
+				ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST);
+
+			CheckTargetSideMenuItems(pPopup, ID_FILTERMENU_CONDITION_ANY, ID_FILTERMENU_CONDITION_RIGHT);
+			CheckDiffSideMenuItems(pPopup, ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT, ID_FILTERMENU_CONDITION_DIFF_ALL);
 			for (int i = ID_FILTERMENU_OPERATOR_AND; i <= ID_FILTERMENU_OPERATOR_OR; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_OPERATOR_AND + m_operator) == i ? MF_CHECKED : 0));
 			for (int i = 0; i < 10; i++)
 				CheckMenuItemRecursive(pPopup, ID_FILTERMENU_COLUMN_1 + i, m_columnIndex == i);
+
+			// Check "Match case" if @cs directive is present
+			bool hasMatchCase = FilterExpression::HasCaseSensitiveDirective(LineFilterHelper::RemoveLePrefix(filterExpr));
+			pPopup->CheckMenuItem(ID_FILTERMENU_MATCHCASE, MF_BYCOMMAND | (hasMatchCase ? MF_CHECKED : MF_UNCHECKED));
 
 			if (m_targetDiffSide == 3)
 			{
@@ -325,21 +336,17 @@ String CLineFilterHelperMenu::op() const
 
 String CLineFilterHelperMenu::defaultProp(const String& name) const
 {
-	const String Sides[] = { _T(""), _T("Left"), _T("Middle"), _T("Right") };
-	return Sides[m_targetSide] + name;
+	return GetSidePrefix(m_targetSide) + name;
 }
 
 String CLineFilterHelperMenu::defaultDiffProp(const String& name, int i) const
 {
-	const String DiffSides1[] = { _T("Left"), _T("Left"), _T("Middle") };
-	const String DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
-	const String prop = ((i == 0) ? DiffSides1[m_targetDiffSide] : DiffSides2[m_targetDiffSide]);
-	return prop + name;
+	return GetDiffSidePrefix(m_targetDiffSide, i) + name;
 }
 
 String CLineFilterHelperMenu::defaultAllProp(const String& name, bool not) const
 {
-	return (not ? _T("not allequal(") : _T("allequal(")) + name + _T(")");
+	return GenerateAllEqualCondition(name, not);
 }
 
 std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr, int command, CWnd* pParentWnd)
@@ -375,7 +382,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	else if (command >= ID_FILTERMENU_LINE_ODD_LINES && command <= ID_FILTERMENU_LINE_EVEN_LINES)
 	{
 		static const tchar_t* LineNumberConditions[] = { _T("(%1 %% 2) = 1"), _T("(%1 %% 2) = 0"), };
-		String expr = strutils::format_string1(LineNumberConditions[command - ID_FILTERMENU_LINE_ODD_LINES], defaultProp(_T("LineNumber")));
+		String expr = FormatCondition(LineNumberConditions[command - ID_FILTERMENU_LINE_ODD_LINES], defaultProp(_T("LineNumber")));
 		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 	}
 	else if (command == ID_FILTERMENU_LINE_NUMBER_RANGE)
@@ -394,6 +401,12 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	{
 		static const tchar_t* Identifiers[] = { _T("Exists"), _T("Missing"), _T("Moved"), _T("Bookmarked") };
 		String expr = defaultProp(Identifiers[command - ID_FILTERMENU_LINE_EXISTS]);
+		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
+	}
+	else if (command >= ID_FILTERMENU_EOL_CRLF && command <= ID_FILTERMENU_EOL_MIXED)
+	{
+		static const tchar_t* EOLStrValues[] = { _T("\"CRLF\""), _T("\"LF\""), _T("\"CR\""), _T("\"None\""), _T("\"Mixed\"") };
+		String expr = defaultProp(_T("EOLStr")) + _T(" = ") + EOLStrValues[command - ID_FILTERMENU_EOL_CRLF];
 		result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 	}
 	else if (command >= ID_FILTERMENU_LINE_CONTEXT_0 && command <= ID_FILTERMENU_LINE_CONTEXT_7)
@@ -498,7 +511,26 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 			const String identifier1 = defaultDiffProp(_T("Line"), 0);
 			const String identifier2 = defaultDiffProp(_T("Line"), 1);
 			result = LineFilterHelper::AddToExpression(filterExpr,
-				strutils::format_string2(DiffLineLengthConditions[command - ID_FILTERMENU_DIFF_LINE_EQUAL],
+				FormatCondition(DiffLineLengthConditions[command - ID_FILTERMENU_DIFF_LINE_EQUAL],
+				identifier1, identifier2), op());
+		}
+	}
+	else if (command >= ID_FILTERMENU_DIFF_EOL_EQUAL && command <= ID_FILTERMENU_DIFF_EOL_NOT_EQUAL)
+	{
+		if (m_targetDiffSide == 3)
+		{
+			result = LineFilterHelper::AddToExpression(filterExpr,
+				defaultAllProp(_T("EOL"), command == ID_FILTERMENU_DIFF_EOL_NOT_EQUAL), op());
+		}
+		else
+		{
+			static const tchar_t* DiffEOLConditions[] = {
+				_T("%1 = %2"), _T("%1 != %2"),
+			};
+			const String identifier1 = defaultDiffProp(_T("EOL"), 0);
+			const String identifier2 = defaultDiffProp(_T("EOL"), 1);
+			result = LineFilterHelper::AddToExpression(filterExpr,
+				FormatCondition(DiffEOLConditions[command - ID_FILTERMENU_DIFF_EOL_EQUAL],
 				identifier1, identifier2), op());
 		}
 	}
@@ -522,7 +554,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 			const String identifier1 = defaultDiffProp(_T("LineLength"), 0);
 			const String identifier2 = defaultDiffProp(_T("LineLength"), 1);
 			result = LineFilterHelper::AddToExpression(filterExpr,
-				strutils::format_string2(DiffLineLengthConditions[command - ID_FILTERMENU_DIFF_LINE_LENGTH_EQUAL],
+				FormatCondition(DiffLineLengthConditions[command - ID_FILTERMENU_DIFF_LINE_LENGTH_EQUAL],
 				identifier1, identifier2), op());
 		}
 	}
@@ -547,7 +579,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 				false, true, false, false, false, false,
 				false, true, false, false, false, false,
 			};
-			const String func = strutils::format_string1(
+			const String func = FormatCondition(
 				DiffColumnConditions[command - ID_FILTERMENU_DIFF_COLUMN_TEXT_EQUAL],
 				columnName);
 			const String expr = defaultAllProp(func, NotConditions[command - ID_FILTERMENU_DIFF_COLUMN_TEXT_EQUAL]);
@@ -562,11 +594,72 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 			};
 			const String identifier1 = defaultDiffProp(columnName, 0);
 			const String identifier2 = defaultDiffProp(columnName, 1);
-			const String expr = strutils::format_string2(
+			const String expr = FormatCondition(
 				DiffColumnConditions[command - ID_FILTERMENU_DIFF_COLUMN_TEXT_EQUAL],
 				identifier1, identifier2);
 			result = LineFilterHelper::AddToExpression(filterExpr, expr, op());
 		}
+	}
+	else if (command == ID_FILTERMENU_CREATE_REPLACELIST)
+	{
+		auto filepath = ReplaceListHelper::CreateAndSelectReplaceListFile(pParentWnd, false);
+		if (filepath.has_value())
+		{
+			String filepath2 = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(*filepath);
+			result = WrapAttributesWithFunction(filterExpr, _T("replaceWithList(%1, \"") + filepath2 + _T("\")"));
+		}
+	}
+	else if (command == ID_FILTERMENU_CREATE_REGEXREPLACELIST)
+	{
+		auto filepath = ReplaceListHelper::CreateAndSelectReplaceListFile(pParentWnd, true);
+		if (filepath.has_value())
+		{
+			String filepath2 = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(*filepath);
+			result = WrapAttributesWithFunction(filterExpr, _T("regexReplaceWithList(%1, \"") + filepath2 + _T("\")"));
+		}
+	}
+	else if (command == ID_FILTERMENU_STRING_REPLACE_LISTS_FOLDER)
+	{
+		int locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION);
+		String folder = ReplaceListHelper::GetReplaceListFolder(locationType, false);
+		if (!folder.empty())
+			shell::Open(folder.c_str());
+	}
+	else if (command == ID_FILTERMENU_REGEX_REPLACE_LISTS_FOLDER)
+	{
+		int locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION);
+		String folder = ReplaceListHelper::GetReplaceListFolder(locationType, true);
+		if (!folder.empty())
+			shell::Open(folder.c_str());
+	}
+	else if (command >= ID_FILTERMENU_STRING_REPLACE_LISTS_FIRST && 
+			 command < ID_FILTERMENU_STRING_REPLACE_LISTS_FIRST + ReplaceListHelper::MaxReplaceListSize)
+	{
+		auto lists = ReplaceListHelper::GetReplaceLists(false);
+		int index = command - ID_FILTERMENU_STRING_REPLACE_LISTS_FIRST;
+		if (index < static_cast<int>(lists.size()))
+		{
+			String filepath = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
+			result = WrapAttributesWithFunction(filterExpr, _T("replaceWithList(%1, \"") + filepath + _T("\")"));
+		}
+	}
+	else if (command >= ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST && 
+			 command < ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST + ReplaceListHelper::MaxReplaceListSize)
+	{
+		auto lists = ReplaceListHelper::GetReplaceLists(true);
+		int index = command - ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST;
+		if (index < static_cast<int>(lists.size()))
+		{
+			String filepath = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
+			result = WrapAttributesWithFunction(filterExpr, _T("regexReplaceWithList(%1, \"") + filepath + _T("\")"));
+		}
+	}
+	else if (command == ID_FILTERMENU_MATCHCASE)
+	{
+		auto [directives, filterBody] = NormalizeAndSplit(filterExpr);
+		directives = FilterExpression::HasCaseSensitiveDirective(directives) ? 
+			FilterExpression::RemoveCaseSensitiveDirective(directives) : FilterExpression::AddCaseSensitiveDirective(directives);
+		result = LineFilterHelper::BuildLeFilter(directives, filterBody);
 	}
 	return result;
 }
