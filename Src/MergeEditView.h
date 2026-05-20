@@ -154,8 +154,10 @@ public:
 	bool IsCursorInDiff() const;
 	bool IsDiffVisible(int nDiff);
 	bool IsDiffFiltered(int nDiff);
-	int FirstNonFilteredDiff();
-	int LastNonFilteredDiff();
+	int FindFirstNonFilteredDiff();
+	int FindLastNonFilteredDiff();
+	int FindNextNonFilteredDiff(int startDiff = -1);
+	int FindPrevNonFilteredDiff(int startDiff = -1);
 	bool HasNextNonFilteredDiff();
 	bool HasPrevNonFilteredDiff();
 	void ZoomText(short amount);
