@@ -153,6 +153,11 @@ public:
 	bool IsInitialized() const;
 	bool IsCursorInDiff() const;
 	bool IsDiffVisible(int nDiff);
+	bool IsDiffFiltered(int nDiff);
+	int FirstNonFilteredDiff();
+	int LastNonFilteredDiff();
+	bool HasNextNonFilteredDiff();
+	bool HasPrevNonFilteredDiff();
 	void ZoomText(short amount);
 	virtual bool QueryEditable() override;
 	virtual void EnsureVisible(CEPoint pt) override;
@@ -183,6 +188,7 @@ protected:
 	virtual void OnUpdateCaret() override;
 	bool MergeModeKeyDown(MSG* pMsg);
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
+	bool IsDiffFiltered(const DIFFRANGE& diff);
 	void OnNext3wayDiff(int type);
 	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int type);
 	void OnPrev3wayDiff(int type);

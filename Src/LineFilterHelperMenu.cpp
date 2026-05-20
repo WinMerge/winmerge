@@ -252,6 +252,8 @@ namespace
 			LineFilterHelper::RemoveLePrefix(filterExpr));
 
 		String wrappedExpr = WrapExpressionRecursive(expr, funcTemplate);
+		if (expr == wrappedExpr)
+			wrappedExpr = strutils::format_string1(funcTemplate, !expr.empty() ? expr : _T("Line"));
 
 		return LineFilterHelper::BuildLeFilter(directives, wrappedExpr);
 	}
@@ -639,8 +641,9 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		int index = command - ID_FILTERMENU_STRING_REPLACE_LISTS_FIRST;
 		if (index < static_cast<int>(lists.size()))
 		{
-			String filepath = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
-			result = WrapAttributesWithFunction(filterExpr, _T("replaceWithList(%1, \"") + filepath + _T("\")"));
+			String filepathEscaped = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
+			strutils::replace(filepathEscaped, _T("%"), _T("%%"));
+			result = WrapAttributesWithFunction(filterExpr, _T("replaceWithList(%1, \"") + filepathEscaped + _T("\")"));
 		}
 	}
 	else if (command >= ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST && 
@@ -650,8 +653,9 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		int index = command - ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST;
 		if (index < static_cast<int>(lists.size()))
 		{
-			String filepath = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
-			result = WrapAttributesWithFunction(filterExpr, _T("regexReplaceWithList(%1, \"") + filepath + _T("\")"));
+			String filepathEscaped = ReplaceListHelper::ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
+			strutils::replace(filepathEscaped, _T("%"), _T("%%"));
+			result = WrapAttributesWithFunction(filterExpr, _T("regexReplaceWithList(%1, \"") + filepathEscaped + _T("\")"));
 		}
 	}
 	else if (command == ID_FILTERMENU_MATCHCASE)

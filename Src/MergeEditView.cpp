@@ -1342,8 +1342,9 @@ void CMergeEditView::OnFirstdiff()
 	CMergeDoc *pd = GetDocument();
 	if (pd->m_diffList.HasSignificantDiffs())
 	{
-		int nDiff = pd->m_diffList.FirstSignificantDiff();
-		SelectDiff(nDiff, true, false);
+		int nDiff = FirstNonFilteredDiff();
+		if (nDiff >= 0)
+			SelectDiff(nDiff, true, false);
 	}
 }
 
@@ -1352,7 +1353,8 @@ void CMergeEditView::OnFirstdiff()
  */
 void CMergeEditView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
+	CMergeDoc *pd = GetDocument();
+	pCmdUI->Enable(pd->m_diffList.HasSignificantDiffs() && FirstNonFilteredDiff() >= 0);
 }
 
 /**
@@ -1363,8 +1365,9 @@ void CMergeEditView::OnLastdiff()
 	CMergeDoc *pd = GetDocument();
 	if (pd->m_diffList.HasSignificantDiffs())
 	{
-		int nDiff = pd->m_diffList.LastSignificantDiff();
-		SelectDiff(nDiff, true, false);
+		int nDiff = LastNonFilteredDiff();
+		if (nDiff >= 0)
+			SelectDiff(nDiff, true, false);
 	}
 }
 
@@ -1373,7 +1376,8 @@ void CMergeEditView::OnLastdiff()
  */
 void CMergeEditView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
+	CMergeDoc *pd = GetDocument();
+	pCmdUI->Enable(pd->m_diffList.HasSignificantDiffs() && LastNonFilteredDiff() >= 0);
 }
 
 /**
@@ -1431,7 +1435,16 @@ void CMergeEditView::OnNextdiff()
 		nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
 	}
 
+	// Skip filtered (hidden) diffs
 	int lastDiff = pd->m_diffList.LastSignificantDiff();
+	while (nextDiff >= 0 && nextDiff <= lastDiff && IsDiffFiltered(nextDiff))
+	{
+		if (nextDiff < pd->m_diffList.GetSize() - 1)
+			nextDiff = pd->m_diffList.NextSignificantDiff(nextDiff);
+		else
+			nextDiff = -1;
+	}
+
 	if (nextDiff >= 0 && nextDiff <= lastDiff)
 		SelectDiff(nextDiff, true, false);
 	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
@@ -1447,20 +1460,7 @@ void CMergeEditView::OnNextdiff()
 void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	const DIFFRANGE * dfi = pd->m_diffList.LastSignificantDiffRange();
-	bool enabled;
-
-	if (dfi == nullptr)
-	{
-		// There aren't any significant differences
-		enabled = false;
-	}
-	else
-	{
-		// Enable if the beginning of the last significant difference is after caret
-		enabled = (pd->GetCurrentDiff() < 0 && GetCursorPos().y <= (long)dfi->dbegin)
-			|| (GetCursorPos().y < (long)dfi->dbegin);
-	}
+	bool enabled = HasNextNonFilteredDiff();
 
 	if (!enabled && pd->GetDirDoc())
 		enabled = pd->GetDirDoc()->MoveableToNextDiff();
@@ -1523,7 +1523,16 @@ void CMergeEditView::OnPrevdiff()
 		prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
 	}
 
+	// Skip filtered (hidden) diffs
 	int firstDiff = pd->m_diffList.FirstSignificantDiff();
+	while (prevDiff >= 0 && prevDiff >= firstDiff && IsDiffFiltered(prevDiff))
+	{
+		if (prevDiff > 0)
+			prevDiff = pd->m_diffList.PrevSignificantDiff(prevDiff);
+		else
+			prevDiff = -1;
+	}
+
 	if (prevDiff >= 0 && prevDiff >= firstDiff)
 		SelectDiff(prevDiff, true, false);
 	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
@@ -1539,20 +1548,7 @@ void CMergeEditView::OnPrevdiff()
 void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	const DIFFRANGE * dfi = pd->m_diffList.FirstSignificantDiffRange();
-	bool enabled;
-
-	if (dfi == nullptr)
-	{
-		// There aren't any significant differences
-		enabled = false;
-	}
-	else
-	{
-		// Enable if the end of the first significant difference is before caret
-		enabled = (pd->GetCurrentDiff() < 0 && GetCursorPos().y >= (long)dfi->dbegin)
-			|| (GetCursorPos().y > (long)dfi->dend);
-	}
+	bool enabled = HasPrevNonFilteredDiff();
 
 	if (!enabled && pd->GetDirDoc())
 		enabled = pd->GetDirDoc()->MoveableToPrevDiff();
@@ -1620,6 +1616,17 @@ void CMergeEditView::OnNext3wayDiff(int nDiffType)
 				nextDiff = pd->m_diffList.NextSignificant3wayDiff(curDiff, nDiffType);
 			}
 		}
+
+		// Skip filtered (hidden) diffs
+		int lastDiff = pd->m_diffList.LastSignificant3wayDiff(nDiffType);
+		while (nextDiff >= 0 && nextDiff <= lastDiff && IsDiffFiltered(nextDiff))
+		{
+			if (nextDiff < pd->m_diffList.GetSize() - 1)
+				nextDiff = pd->m_diffList.NextSignificant3wayDiff(nextDiff, nDiffType);
+			else
+				nextDiff = -1;
+		}
+
 		if (nextDiff == -1)
 			nextDiff = curDiff;
 
@@ -1634,6 +1641,17 @@ void CMergeEditView::OnNext3wayDiff(int nDiffType)
 		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
 		curDiff = pd->m_diffList.NextSignificant3wayDiffFromLine(line, nDiffType);
+
+		// Skip filtered (hidden) diffs
+		int lastDiff = pd->m_diffList.LastSignificant3wayDiff(nDiffType);
+		while (curDiff >= 0 && curDiff <= lastDiff && IsDiffFiltered(curDiff))
+		{
+			if (curDiff < pd->m_diffList.GetSize() - 1)
+				curDiff = pd->m_diffList.NextSignificant3wayDiff(curDiff, nDiffType);
+			else
+				curDiff = -1;
+		}
+
 		if (curDiff >= 0)
 			SelectDiff(curDiff, true, false);
 	}
@@ -1703,6 +1721,17 @@ void CMergeEditView::OnPrev3wayDiff(int nDiffType)
 				prevDiff = pd->m_diffList.PrevSignificant3wayDiff(curDiff, nDiffType);
 			}
 		}
+
+		// Skip filtered (hidden) diffs
+		int firstDiff = pd->m_diffList.FirstSignificant3wayDiff(nDiffType);
+		while (prevDiff >= 0 && prevDiff >= firstDiff && IsDiffFiltered(prevDiff))
+		{
+			if (prevDiff > 0)
+				prevDiff = pd->m_diffList.PrevSignificant3wayDiff(prevDiff, nDiffType);
+			else
+				prevDiff = -1;
+		}
+
 		if (prevDiff == -1)
 			prevDiff = curDiff;
 
@@ -1717,6 +1746,17 @@ void CMergeEditView::OnPrev3wayDiff(int nDiffType)
 		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
 		curDiff = pd->m_diffList.PrevSignificant3wayDiffFromLine(line, nDiffType);
+
+		// Skip filtered (hidden) diffs
+		int firstDiff = pd->m_diffList.FirstSignificant3wayDiff(nDiffType);
+		while (curDiff >= 0 && curDiff >= firstDiff && IsDiffFiltered(curDiff))
+		{
+			if (curDiff > 0)
+				curDiff = pd->m_diffList.PrevSignificant3wayDiff(curDiff, nDiffType);
+			else
+				curDiff = -1;
+		}
+
 		if (curDiff >= 0)
 			SelectDiff(curDiff, true, false);
 	}
@@ -4072,6 +4112,165 @@ bool CMergeEditView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/
 	else
 	{
 		return true;
+	}
+}
+
+/**
+ * @brief Check if difference is hidden by line filter.
+ * @param [in] nDiff Number of diff to check.
+ * @return true if all lines in the diff block are hidden by filter.
+ */
+bool CMergeEditView::IsDiffFiltered(int nDiff)
+{
+	DIFFRANGE diff;
+	GetDocument()->m_diffList.GetDiff(nDiff, diff);
+	return IsDiffFiltered(diff);
+}
+
+/**
+ * @brief Check if difference is hidden by line filter.
+ * @param [in] diff diff to check.
+ * @return true if all lines in the diff block are hidden by filter.
+ */
+bool CMergeEditView::IsDiffFiltered(const DIFFRANGE& diff)
+{
+	// Check if all lines in the diff range have the LF_INVISIBLE flag
+	for (int line = diff.dbegin; line <= diff.dend; ++line)
+	{
+		lineflags_t dwLineFlags = GetLineFlags(line);
+		if (!(dwLineFlags & LF_INVISIBLE))
+			return false;
+	}
+	return true;
+}
+
+/**
+ * @brief Find the first non-filtered significant diff.
+ * @return Index of first non-filtered diff, or -1 if none found.
+ */
+int CMergeEditView::FirstNonFilteredDiff()
+{
+	const CMergeDoc *pd = GetDocument();
+	int nDiff = pd->m_diffList.FirstSignificantDiff();
+	int lastDiff = pd->m_diffList.LastSignificantDiff();
+
+	while (nDiff >= 0 && nDiff <= lastDiff && IsDiffFiltered(nDiff))
+	{
+		if (nDiff < pd->m_diffList.GetSize() - 1)
+			nDiff = pd->m_diffList.NextSignificantDiff(nDiff);
+		else
+			return -1;
+	}
+
+	return nDiff;
+}
+
+/**
+ * @brief Find the last non-filtered significant diff.
+ * @return Index of last non-filtered diff, or -1 if none found.
+ */
+int CMergeEditView::LastNonFilteredDiff()
+{
+	const CMergeDoc *pd = GetDocument();
+	int nDiff = pd->m_diffList.LastSignificantDiff();
+	int firstDiff = pd->m_diffList.FirstSignificantDiff();
+
+	while (nDiff >= 0 && nDiff >= firstDiff && IsDiffFiltered(nDiff))
+	{
+		if (nDiff > 0)
+			nDiff = pd->m_diffList.PrevSignificantDiff(nDiff);
+		else
+			return -1;
+	}
+
+	return nDiff;
+}
+
+/**
+ * @brief Check if there is a next non-filtered diff.
+ * @return true if there is a next non-filtered diff available.
+ */
+bool CMergeEditView::HasNextNonFilteredDiff()
+{
+	const CMergeDoc *pd = GetDocument();
+	int curDiff = pd->GetCurrentDiff();
+	int lastDiff = pd->m_diffList.LastSignificantDiff();
+
+	if (curDiff == -1)
+	{
+		// No current diff, check if there's any non-filtered diff from cursor
+		int line = GetCursorPos().y;
+		if (!IsValidTextPosY(CEPoint(0, line)))
+			line = m_nTopLine;
+		int nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
+		while (nextDiff >= 0 && nextDiff <= lastDiff && IsDiffFiltered(nextDiff))
+		{
+			if (nextDiff < pd->m_diffList.GetSize() - 1)
+				nextDiff = pd->m_diffList.NextSignificantDiff(nextDiff);
+			else
+				return false;
+		}
+		return nextDiff >= 0 && nextDiff <= lastDiff;
+	}
+	else
+	{
+		// We're on a diff, check if there's a next non-filtered one
+		if (curDiff >= lastDiff)
+			return false;
+
+		int nextDiff = pd->m_diffList.NextSignificantDiff(curDiff);
+		while (nextDiff >= 0 && nextDiff <= lastDiff && IsDiffFiltered(nextDiff))
+		{
+			if (nextDiff < pd->m_diffList.GetSize() - 1)
+				nextDiff = pd->m_diffList.NextSignificantDiff(nextDiff);
+			else
+				return false;
+		}
+		return nextDiff >= 0 && nextDiff <= lastDiff;
+	}
+}
+
+/**
+ * @brief Check if there is a previous non-filtered diff.
+ * @return true if there is a previous non-filtered diff available.
+ */
+bool CMergeEditView::HasPrevNonFilteredDiff()
+{
+	const CMergeDoc *pd = GetDocument();
+	int curDiff = pd->GetCurrentDiff();
+	int firstDiff = pd->m_diffList.FirstSignificantDiff();
+
+	if (curDiff == -1)
+	{
+		// No current diff, check if there's any non-filtered diff before cursor
+		int line = GetCursorPos().y;
+		if (!IsValidTextPosY(CEPoint(0, line)))
+			line = m_nTopLine;
+		int prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
+		while (prevDiff >= 0 && prevDiff >= firstDiff && IsDiffFiltered(prevDiff))
+		{
+			if (prevDiff > 0)
+				prevDiff = pd->m_diffList.PrevSignificantDiff(prevDiff);
+			else
+				return false;
+		}
+		return prevDiff >= 0 && prevDiff >= firstDiff;
+	}
+	else
+	{
+		// We're on a diff, check if there's a previous non-filtered one
+		if (curDiff <= firstDiff)
+			return false;
+
+		int prevDiff = pd->m_diffList.PrevSignificantDiff(curDiff);
+		while (prevDiff >= 0 && prevDiff >= firstDiff && IsDiffFiltered(prevDiff))
+		{
+			if (prevDiff > 0)
+				prevDiff = pd->m_diffList.PrevSignificantDiff(prevDiff);
+			else
+				return false;
+		}
+		return prevDiff >= 0 && prevDiff >= firstDiff;
 	}
 }
 
