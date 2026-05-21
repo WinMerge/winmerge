@@ -1789,6 +1789,118 @@ TEST_P(FilterExpressionTest, IsWithinAndInRange)
 	EXPECT_FALSE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, StrCountAndRegexCount)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// strCount basic tests
+	EXPECT_TRUE(fe.Parse("strCount(\"hello world hello\", \"hello\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"test test test\", \"test\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"abc\", \"xyz\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"aaaa\", \"aa\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di)); // Overlapping match: "aa" appears at positions 0 and 2
+	EXPECT_TRUE(fe.Parse("strCount(\"\", \"test\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"test\", \"test\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strCount with arrays
+	EXPECT_TRUE(fe.Parse("strCount(array(\"hello hello\", \"world\"), \"hello\") == array(2, 0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(array(\"test test\", \"test\"), \"test\") == array(2, 1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strCount case-insensitive (default)
+	EXPECT_TRUE(fe.Parse("strCount(\"Hello HELLO hello\", \"hello\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"Test TEST TeSt\", \"test\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strCount case-sensitive with @cs directive
+	EXPECT_TRUE(fe.Parse("@cs strCount(\"Hello HELLO hello\", \"hello\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs strCount(\"Test TEST TeSt\", \"TEST\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs strCount(\"abc ABC\", \"abc\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	fe.caseSensitive = false;
+
+	// strCount with non-string arguments (should convert)
+	EXPECT_TRUE(fe.Parse("strCount(123123, \"123\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"count: 123, value: 123\", \"123\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount basic tests
+	EXPECT_TRUE(fe.Parse("regexCount(\"hello world hello\", \"hello\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"test123test456\", \"\\d+\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"abc\", \"xyz\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"AAA BBB CCC\", \"[A-Z]+\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"word1 word2 word3\", \"word\\d\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount with word boundaries
+	EXPECT_TRUE(fe.Parse("regexCount(\"test testing tested\", \"\\btest\\b\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"the them there\", \"\\bthe\\b\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount with arrays
+	EXPECT_TRUE(fe.Parse("regexCount(array(\"test123\", \"abc456\"), \"\\d+\") == array(1, 1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(array(\"AAA\", \"BBB CCC\"), \"[A-Z]+\") == array(1, 2)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount case-insensitive (default)
+	EXPECT_TRUE(fe.Parse("regexCount(\"Hello HELLO hello\", \"hello\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"Test TEST test\", \"test\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount case-sensitive with @cs directive
+	EXPECT_TRUE(fe.Parse("@cs regexCount(\"Hello HELLO hello\", \"hello\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexCount(\"Test TEST test\", \"TEST\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexCount(\"AAA aaa\", \"[A-Z]+\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount with zero-length matches (should handle gracefully)
+	EXPECT_TRUE(fe.Parse("regexCount(\"abc\", \"a*\") >= 0"));
+	EXPECT_TRUE(fe.Evaluate(di)); // Should not cause infinite loop
+
+	// regexCount with non-string arguments
+	EXPECT_TRUE(fe.Parse("regexCount(123456, \"\\d{3}\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined tests with other operators
+	EXPECT_TRUE(fe.Parse("strCount(\"test test test\", \"test\") > 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"a1 b2 c3\", \"[a-z]\\d\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("anyof(strCount(array(\"hello\", \"world\"), \"hello\") > 0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 TEST_P(FilterExpressionTest, Test1)
 {
 	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");

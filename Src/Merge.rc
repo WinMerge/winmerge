@@ -1870,7 +1870,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Add L&ine Condition"
         BEGIN
-            MENUITEM "L&ine Text...",                   ID_FILTERMENU_LINE_RANGE
+            MENUITEM "L&ine Text...",               ID_FILTERMENU_LINE_RANGE
             POPUP "&Column"
             BEGIN
                 POPUP "Column"
@@ -1891,6 +1891,7 @@ BEGIN
                 MENUITEM "Column: &10",                 ID_FILTERMENU_COLUMN_10
             END
             MENUITEM "Line L&ength...",             ID_FILTERMENU_LINE_LENGTH_RANGE
+            MENUITEM "&Word Count...",              ID_FILTERMENU_WORD_COUNT_RANGE
             POPUP "Line &Number"
             BEGIN
                 MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES

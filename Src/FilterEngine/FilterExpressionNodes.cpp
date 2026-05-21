@@ -2762,6 +2762,115 @@ static auto TrimRightFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>
 	return applyToScalarOrArray(arg, trimRightFunc);
 }
 
+static auto StrCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 2)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(ectxt);
+	auto argSubstr = (*args)[1]->Evaluate(ectxt);
+
+	const std::string* substr = std::get_if<std::string>(&argSubstr);
+	if (!substr || substr->empty())
+		return std::monostate{};
+
+	auto strCountFn = [&ectxt, substr](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			const std::string& str = *strOpt;
+			int64_t count = 0;
+			size_t pos = 0;
+
+			if (ectxt.expr->caseSensitive)
+			{
+				while ((pos = str.find(*substr, pos)) != std::string::npos)
+				{
+					++count;
+					pos += substr->length();
+				}
+			}
+			else
+			{
+				// Case-insensitive search
+				std::string lowerStr = Poco::toLower(str);
+				std::string lowerSubstr = Poco::toLower(*substr);
+				while ((pos = lowerStr.find(lowerSubstr, pos)) != std::string::npos)
+				{
+					++count;
+					pos += lowerSubstr.length();
+				}
+			}
+
+			return count;
+		};
+
+	return applyToScalarOrArray(argStr, strCountFn);
+}
+
+static auto RegexCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 2)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(ectxt);
+	auto argPattern = (*args)[1]->Evaluate(ectxt);
+
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	const auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
+
+	if (!strPattern && !rePattern)
+		return std::monostate{};
+
+	auto regexCountFn = [&ectxt, strPattern, rePattern](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+
+			try
+			{
+				std::shared_ptr<Poco::RegularExpression> regex;
+				if (rePattern)
+				{
+					regex = *rePattern;
+				}
+				else
+				{
+					const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+					regex = std::make_shared<Poco::RegularExpression>(*strPattern, flags);
+				}
+
+				int64_t count = 0;
+				Poco::RegularExpression::Match match;
+				size_t offset = 0;
+
+				while (regex->match(*strOpt, offset, match, 0))
+				{
+					++count;
+					// Advance past the match to avoid infinite loops on zero-length matches
+					if (match.length == 0)
+						offset = match.offset + 1;
+					else
+						offset = match.offset + match.length;
+
+					// Prevent infinite loop if we can't advance
+					if (offset > strOpt->length())
+						break;
+				}
+
+				return count;
+			}
+			catch (const Poco::RegularExpressionException&)
+			{
+				return std::monostate{};
+			}
+		};
+
+	return applyToScalarOrArray(argStr, regexCountFn);
+}
+
 static const auto& GetOrCreateMatchRanges(const FilterEvalContext& ectxt, ExprNode* expr)
 {
 	auto& matchRanges = ectxt.sharedContext->matchRanges;
@@ -3366,6 +3475,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"noteach", NotEachFunc, 1, 1},
 	{"now", NowFunc, 0, 0},
 	{"oreach", OrEachFunc, 2, 2},
+	{"regexcount", RegexCountFunc, 2, 2},
 	{"regexreplace", RegexReplaceFunc, 3, 3},
 	{"regexreplacewithlist", RegexReplaceWithListFunc, 2, 2},
 	{"replace", ReplaceFunc, 3, 3},
@@ -3373,6 +3483,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"startofmonth", StartOfMonthFunc, 1, 1},
 	{"startofweek", StartOfWeekFunc, 1, 1},
 	{"startofyear", StartOfYearFunc, 1, 1},
+	{"strcount", StrCountFunc, 2, 2},
 	{"strlen", StrlenFunc, 1, 1},
 	{"sublines", SublinesFunc, 2, 3},
 	{"substr", SubstrFunc, 2, 3},
@@ -3860,6 +3971,38 @@ ExprNode* FunctionNode::Optimize()
 		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
 		{
 			auto* result = new StringLiteral(std::get<std::string>(func(ectxt, args)));
+			delete this;
+			return result;
+		}
+	}
+	else if (functionName == "strcount")
+	{
+		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[1]))
+		{
+			auto* result = new IntLiteral(std::get<int64_t>(func(ectxt, args)));
+			delete this;
+			return result;
+		}
+	}
+	else if (functionName == "regexcount")
+	{
+		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
+		{
+			try
+			{
+				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[1])->value, ctxt->caseSensitive);
+				delete (*args)[1];
+				(*args)[1] = re;
+			}
+			catch (const Poco::RegularExpressionException&)
+			{
+				// Invalid regex pattern, cannot optimize
+				return this;
+			}
+		}
+		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]))
+		{
+			auto* result = new IntLiteral(std::get<int64_t>(func(ectxt, args)));
 			delete this;
 			return result;
 		}

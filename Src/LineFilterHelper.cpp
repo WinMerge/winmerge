@@ -25,6 +25,9 @@ bool LineFilterHelper::SetStringOrExpression(const String& filter)
 	else
 		expr = "Line contains " + ucr::toUTF8(Quote(filter));
 	m_expr.diritem = false;
+	m_expr.caseSensitive = false;
+	m_expr.optimize = true;
+	m_expr.name.clear();
 	return m_expr.Parse(expr);
 }
 

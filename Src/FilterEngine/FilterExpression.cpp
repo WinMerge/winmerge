@@ -322,9 +322,6 @@ bool FilterExpression::ParseAllDirectives(const std::string& expressionStr, std:
 bool FilterExpression::Parse(const std::string& expressionStr)
 {
 	expression = expressionStr;
-	caseSensitive = false;
-	optimize = true;
-	name.clear();
 
 	std::string actualExpression;
 	if (!ParseAllDirectives(expressionStr, actualExpression))

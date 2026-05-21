@@ -377,6 +377,12 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		if (dlg.DoModal() == IDOK)
 			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
+	else if (command == ID_FILTERMENU_WORD_COUNT_RANGE)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 = %2"), _T("regexCount(%1, \"\\S+\")"));
+		if (dlg.DoModal() == IDOK)
+			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
+	}
 	else if (command >= ID_FILTERMENU_COLUMN_TEXT && command <= ID_FILTERMENU_COLUMN_DATETIME)
 	{
 		static const tchar_t* Conversions[] = { _T("%1"), _T("toNumber(%1)"), _T("toDateTime(%1)") };
