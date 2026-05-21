@@ -24,7 +24,7 @@ public:
 	static String ConvertToLineContainsExpression(const String& text);
 	// Helper: Build "le:" prefixed result with optional directives
 	static String BuildLeFilter(const String& directives, const String& expr) {
-		return _T("le:") + (directives.empty() ? _T("") : directives + _T(" ")) + expr;
+		return _T("le:") + (directives.empty() ? _T("") : strutils::trim_ws(directives) + _T(" ")) + expr;
 	}
 private:
 	FilterExpression m_expr;

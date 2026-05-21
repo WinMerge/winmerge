@@ -841,7 +841,7 @@ static auto FileEOLField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.di->diffcode.exists(index))
 		return std::monostate{};
-	return GetEOLStyleFromStats(ectxt.di->diffFileInfo[index].m_textStats);
+	return static_cast<int64_t>(GetEOLStyleFromStats(ectxt.di->diffFileInfo[index].m_textStats));
 }
 
 static std::string EOLStr(unsigned eolFlags)
@@ -1124,7 +1124,7 @@ static auto LineNumberField(int index, const FilterEvalContext& ectxt) -> ValueT
 
 static auto ViewLineNumberField(int index, const FilterEvalContext& ectxt) -> ValueType
 {
-	return static_cast<int>(ectxt.lineIndex + 1);
+	return static_cast<int64_t>(ectxt.lineIndex + 1);
 }
 
 static auto LineEOLField(int index, const FilterEvalContext& ectxt) -> ValueType
@@ -2919,21 +2919,21 @@ static auto LineMatchDistanceExFunc(const FilterEvalContext& ectxt, std::vector<
 	{
 		if (distances.first < 0)
 			return std::monostate{};
-		return distances.first;
+		return static_cast<int64_t>(distances.first);
 	}
 	else if (direction == 1)
 	{
 		if (distances.second < 0)
 			return std::monostate{};
-		return distances.second;
+		return static_cast<int64_t>(distances.second);
 	}
 	if (distances.first < 0 && distances.second < 0)
 		return std::monostate{};
 	if (distances.first >= 0 && distances.second < 0)
-		return distances.first;
+		return static_cast<int64_t>(distances.first);
 	if (distances.first < 0 && distances.second >= 0)
-		return distances.second;
-	return (std::min)(distances.first, distances.second);
+		return static_cast<int64_t>(distances.second);
+	return static_cast<int64_t>((std::min)(distances.first, distances.second));
 }
 
 static auto LineMatchDistanceFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
