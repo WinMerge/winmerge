@@ -70,6 +70,102 @@ static std::string escapeRegex(const std::string& str)
 	return result;
 }
 
+// Helper template to replace FunctionNode with a literal result
+template<typename T>
+static ExprNode* ReplaceFunctionWithLiteral(FunctionNode* func, T&& value)
+{
+	using LiteralType = typename std::conditional<
+		std::is_same<std::decay_t<T>, int64_t>::value, IntLiteral,
+		typename std::conditional<
+			std::is_same<std::decay_t<T>, double>::value, DoubleLiteral,
+			typename std::conditional<
+				std::is_same<std::decay_t<T>, std::string>::value, StringLiteral,
+				typename std::conditional<
+					std::is_same<std::decay_t<T>, bool>::value, BoolLiteral,
+					typename std::conditional<
+						std::is_same<std::decay_t<T>, Poco::Timestamp>::value, DateTimeLiteral,
+						void
+					>::type
+				>::type
+			>::type
+		>::type
+	>::type;
+	auto* result = new LiteralType(std::forward<T>(value));
+	delete func;
+	return result;
+}
+
+// Helper to check if all arguments are constant literals
+static bool IsArrayConst(const std::vector<ExprNode*>* args)
+{
+	if (!args) return false;
+	for (auto& arg : *args)
+	{
+		if (!dynamic_cast<IntLiteral*>(arg) &&
+			!dynamic_cast<DoubleLiteral*>(arg) &&
+			!dynamic_cast<StringLiteral*>(arg) &&
+			!dynamic_cast<DateTimeLiteral*>(arg) &&
+			!dynamic_cast<BoolLiteral*>(arg))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+// Helper to convert ExprNode to ValueType2
+static ValueType2 ExprNodeToValueType2(ExprNode* arg)
+{
+	if (auto intLit = dynamic_cast<IntLiteral*>(arg))
+		return ValueType2{ intLit->value };
+	if (auto doubleLit = dynamic_cast<DoubleLiteral*>(arg))
+		return ValueType2{ doubleLit->value };
+	if (auto strLit = dynamic_cast<StringLiteral*>(arg))
+		return ValueType2{ strLit->value };
+	if (auto dateLit = dynamic_cast<DateTimeLiteral*>(arg))
+		return ValueType2{ dateLit->value };
+	if (auto boolLit = dynamic_cast<BoolLiteral*>(arg))
+		return ValueType2{ boolLit->value };
+	return ValueType2{ std::monostate{} };
+}
+
+// Helper to create literal from array element
+static ExprNode* CreateLiteralFromArrayElement(FunctionNode* func, const ValueType& val)
+{
+	if (auto strVal = std::get_if<std::string>(&val))
+		return ReplaceFunctionWithLiteral(func, *strVal);
+	if (auto doubleVal = std::get_if<double>(&val))
+		return ReplaceFunctionWithLiteral(func, *doubleVal);
+	if (auto intVal = std::get_if<int64_t>(&val))
+		return ReplaceFunctionWithLiteral(func, *intVal);
+	if (auto boolVal = std::get_if<bool>(&val))
+		return ReplaceFunctionWithLiteral(func, *boolVal);
+	if (auto dtVal = std::get_if<Poco::Timestamp>(&val))
+		return ReplaceFunctionWithLiteral(func, *dtVal);
+	return func;
+}
+
+// Helper to optimize regex pattern argument
+static bool OptimizeRegexArg(std::vector<ExprNode*>* args, size_t index, bool caseSensitive, bool useEscapedPattern = false)
+{
+	if (!args || args->size() <= index || !dynamic_cast<StringLiteral*>((*args)[index]))
+		return false;
+	try
+	{
+		std::string pattern = dynamic_cast<StringLiteral*>((*args)[index])->value;
+		if (useEscapedPattern)
+			pattern = escapeRegex(pattern);
+		auto* re = new RegularExpressionLiteral(pattern, caseSensitive);
+		delete (*args)[index];
+		(*args)[index] = re;
+		return true;
+	}
+	catch (const Poco::RegularExpressionException&)
+	{
+		return false;
+	}
+}
+
 ExprNode* OrNode::Optimize()
 {
 	if (!left || !right)
@@ -3787,253 +3883,105 @@ ExprNode* FunctionNode::Optimize()
 				arg = arg->Optimize();
 		}
 	}
+
+	// Constant-time functions
 	if (functionName == "now")
+		return ReplaceFunctionWithLiteral(this, *ctxt->now);
+	if (functionName == "today")
+		return ReplaceFunctionWithLiteral(this, *ctxt->today);
+
+	// Numeric functions with literal args
+	if (functionName == "abs" && args)
 	{
-		auto* result = new DateTimeLiteral(*ctxt->now);
+		if (dynamic_cast<IntLiteral*>((*args)[0]))
+			return ReplaceFunctionWithLiteral(this, std::get<int64_t>(func(ectxt, args)));
+		if (dynamic_cast<DoubleLiteral*>((*args)[0]))
+			return ReplaceFunctionWithLiteral(this, std::get<double>(func(ectxt, args)));
+	}
+
+	// Array construction
+	if (functionName == "array" && args && IsArrayConst(args))
+	{
+		auto result = std::make_shared<std::vector<ValueType2>>();
+		for (auto& arg : *args)
+			result->emplace_back(ExprNodeToValueType2(arg));
 		delete this;
-		return result;
+		return new ArrayLiteral(result);
 	}
-	else if (functionName == "today")
+
+	// Array element access
+	if (functionName == "at" && args && args->size() >= 2)
 	{
-		auto* result = new DateTimeLiteral(*ctxt->today);
-		delete this;
-		return result;
-	}
-	else if (functionName == "abs")
-	{
-		if (auto intLit = args ? dynamic_cast<IntLiteral*>((*args)[0]) : nullptr)
+		if (auto arrayLit = dynamic_cast<ArrayLiteral*>((*args)[0]))
 		{
-			auto* result = new IntLiteral(std::get<int64_t>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
-		if (auto doubleLit = args ? dynamic_cast<DoubleLiteral*>((*args)[0]) : nullptr)
-		{
-			auto* result = new DoubleLiteral(std::get<double>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
-	}
-	else if (functionName == "array")
-	{
-		if (args)
-		{
-			bool isArrayConst = true;
-			for (auto& arg : *args)
+			if (auto intLit = dynamic_cast<IntLiteral*>((*args)[1]))
 			{
-				bool isConst = false;
-				auto intValue = getConstIntValue(arg);
-				if (intValue.has_value())
-					isConst = true;
-				else if (auto doubleLit = args ? dynamic_cast<DoubleLiteral*>(arg) : nullptr)
-					isConst = true;
-				else if (auto strLit = args ? dynamic_cast<StringLiteral*>(arg) : nullptr)
-					isConst = true;
-				else if (auto dateLit = args ? dynamic_cast<DateTimeLiteral*>(arg) : nullptr)
-					isConst = true;
-				else if (auto boolLit = args ? dynamic_cast<BoolLiteral*>(arg) : nullptr)
-					isConst = true;
-				if (!isConst)
-				{
-					isArrayConst = false;
-					break;
-				}
-			}
-			if (isArrayConst)
-			{
-				auto result = std::make_shared<std::vector<ValueType2>>();
-				for (auto& arg : *args)
-				{
-					auto intValue = getConstIntValue(arg);
-					if (intValue.has_value())
-						result->emplace_back(ValueType2{ *intValue });
-					else if (auto doubleLit = dynamic_cast<DoubleLiteral*>(arg))
-						result->emplace_back(ValueType2{ doubleLit->value });
-					else if (auto strLit = dynamic_cast<StringLiteral*>(arg))
-						result->emplace_back(ValueType2{ strLit->value });
-					else if (auto dateLit = dynamic_cast<DateTimeLiteral*>(arg))
-						result->emplace_back(ValueType2{ dateLit->value });
-					else if (auto boolLit = dynamic_cast<BoolLiteral*>(arg))
-						result->emplace_back(ValueType2{ boolLit->value });
-					else
-						result->emplace_back(ValueType2{ std::monostate{} });
-				}
-				delete this;
-				return new ArrayLiteral(result);
+				int64_t index = intLit->value;
+				if (index < 0)
+					index += static_cast<int64_t>(arrayLit->value->size());
+				if (index >= 0 && index < static_cast<int64_t>(arrayLit->value->size()))
+					return CreateLiteralFromArrayElement(this, (*arrayLit->value)[static_cast<size_t>(index)].value);
 			}
 		}
 	}
-	else if (functionName == "at")
+
+	// String functions with literal args
+	if (functionName == "strlen" && args && dynamic_cast<StringLiteral*>((*args)[0]))
+		return ReplaceFunctionWithLiteral(this, std::get<int64_t>(func(ectxt, args)));
+
+	if (functionName == "substr" && args && args->size() >= 2 &&
+		dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<IntLiteral*>((*args)[1]) &&
+		(args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
+		return ReplaceFunctionWithLiteral(this, std::get<std::string>(func(ectxt, args)));
+
+	// String replace with regex optimization
+	if (functionName == "replace" && args && args->size() >= 3)
 	{
-		if (args)
-		{
-			if (auto arrayLit = dynamic_cast<ArrayLiteral*>((*args)[0]))
-			{
-				if (auto intLit = dynamic_cast<IntLiteral*>((*args)[1]))
-				{
-					int64_t index = intLit->value;
-					if (index < 0)
-						index += static_cast<int64_t>(arrayLit->value->size());
-					if (index >= 0 && index < static_cast<int64_t>(arrayLit->value->size()))
-					{
-						auto val = (*arrayLit->value)[static_cast<size_t>(index)].value;
-						if (auto strVal = std::get_if<std::string>(&val))
-						{
-							delete this;
-							return new StringLiteral(*strVal);
-						}
-						else if (auto doubleVal = std::get_if<double>(&val))
-						{
-							delete this;
-							return new DoubleLiteral(*doubleVal);
-						}
-						else if (auto intVal = std::get_if<int64_t>(&val))
-						{
-							delete this;
-							return new IntLiteral(*intVal);
-						}
-						else if (auto boolVal = std::get_if<bool>(&val))
-						{
-							delete this;
-							return new BoolLiteral(*boolVal);
-						}
-						else if (auto dtVal = std::get_if<Poco::Timestamp>(&val))
-						{
-							delete this;
-							return new DateTimeLiteral(*dtVal);
-						}
-					}
-				}
-			}
-		}
+		if (!OptimizeRegexArg(args, 1, ctxt->caseSensitive, true))
+			return this;
+		if (dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
+			return ReplaceFunctionWithLiteral(this, std::get<std::string>(func(ectxt, args)));
 	}
-	else if (functionName == "strlen")
+
+	if (functionName == "regexreplace" && args && args->size() >= 3)
 	{
-		if (args && dynamic_cast<StringLiteral*>((*args)[0]))
-		{
-			auto* result = new IntLiteral(std::get<int64_t>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
+		if (!OptimizeRegexArg(args, 1, ctxt->caseSensitive))
+			return this;
+		if (dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
+			return ReplaceFunctionWithLiteral(this, std::get<std::string>(func(ectxt, args)));
 	}
-	else if (functionName == "substr")
+
+	if (functionName == "strcount" && args && args->size() >= 2 &&
+		dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[1]))
+		return ReplaceFunctionWithLiteral(this, std::get<int64_t>(func(ectxt, args)));
+
+	if (functionName == "regexcount" && args && args->size() >= 2)
 	{
-		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<IntLiteral*>((*args)[1])
-			&& (args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
-		{
-			auto* result = new StringLiteral(std::get<std::string>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
+		OptimizeRegexArg(args, 1, ctxt->caseSensitive);
+		if (dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]))
+			return ReplaceFunctionWithLiteral(this, std::get<int64_t>(func(ectxt, args)));
 	}
-	else if (functionName == "replace")
+
+	// Replace with list
+	if (functionName == "replacewithlist" && args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
 	{
-		// Optimize: convert search string to pre-compiled regex for case-insensitive search
-		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[1]))
-		{
-			try
-			{
-				std::string pattern = escapeRegex(dynamic_cast<StringLiteral*>((*args)[1])->value);
-				auto* re = new RegularExpressionLiteral(pattern, ctxt->caseSensitive);
-				delete (*args)[1];
-				(*args)[1] = re;
-			}
-			catch (const Poco::RegularExpressionException&)
-			{
-				// Invalid pattern, cannot optimize (keep as string)
-				return this;
-			}
-		}
-		// If all arguments are literals, evaluate at compile time
-		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
-		{
-			auto* result = new StringLiteral(std::get<std::string>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
+		auto list = ReplaceList::LoadList(*ctxt, ucr::toTString(dynamic_cast<StringLiteral*>((*args)[1])->value));
+		delete (*args)[1];
+		(*args)[1] = new ArrayLiteral(list);
 	}
-	else if (functionName == "regexreplace")
+
+	if (functionName == "regexreplacewithlist" && args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
 	{
-		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[1]))
-		{
-			try
-			{
-				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[1])->value, ctxt->caseSensitive);
-				delete (*args)[1];
-				(*args)[1] = re;
-			}
-			catch (const Poco::RegularExpressionException&)
-			{
-				// Invalid regex pattern, cannot optimize
-				return this;
-			}
-		}
-		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
-		{
-			auto* result = new StringLiteral(std::get<std::string>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
+		auto list = ReplaceList::LoadRegexList(*ctxt, ucr::toTString(dynamic_cast<StringLiteral*>((*args)[1])->value));
+		delete (*args)[1];
+		(*args)[1] = new ArrayLiteral(list);
 	}
-	else if (functionName == "strcount")
-	{
-		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[1]))
-		{
-			auto* result = new IntLiteral(std::get<int64_t>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
-	}
-	else if (functionName == "regexcount")
-	{
-		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
-		{
-			try
-			{
-				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[1])->value, ctxt->caseSensitive);
-				delete (*args)[1];
-				(*args)[1] = re;
-			}
-			catch (const Poco::RegularExpressionException&)
-			{
-				// Invalid regex pattern, cannot optimize
-				return this;
-			}
-		}
-		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]))
-		{
-			auto* result = new IntLiteral(std::get<int64_t>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
-	}
-	else if (functionName == "replacewithlist")
-	{
-		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
-		{
-			auto list = ReplaceList::LoadList(*ctxt, ucr::toTString(dynamic_cast<StringLiteral*>((*args)[1])->value));
-			delete (*args)[1];
-			(*args)[1] = new ArrayLiteral(list);
-		}
-	}
-	else if (functionName == "regexreplacewithlist")
-	{
-		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
-		{
-			auto list = ReplaceList::LoadRegexList(*ctxt, ucr::toTString(dynamic_cast<StringLiteral*>((*args)[1])->value));
-			delete (*args)[1];
-			(*args)[1] = new ArrayLiteral(list);
-		}
-	}
-	else if (functionName == "startofweek" || functionName == "startofmonth" || functionName == "startofyear")
-	{
-		if (auto dtLit = args ? dynamic_cast<DateTimeLiteral*>((*args)[0]) : nullptr)
-		{
-			auto* result = new DateTimeLiteral(std::get<Poco::Timestamp>(func(ectxt, args)));
-			delete this;
-			return result;
-		}
-	}
+
+	// Date/time functions
+	if ((functionName == "startofweek" || functionName == "startofmonth" || functionName == "startofyear") &&
+		args && dynamic_cast<DateTimeLiteral*>((*args)[0]))
+		return ReplaceFunctionWithLiteral(this, std::get<Poco::Timestamp>(func(ectxt, args)));
+
 	return this;
 }
 
