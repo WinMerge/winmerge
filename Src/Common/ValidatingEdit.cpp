@@ -83,7 +83,6 @@ void CValidatingEdit::Validate()
 	GetWindowText(text);
 
 	const CString prevErrorMessage = m_errorMessage;
-	const bool prevIsApplied = m_isApplied;
 	m_hasError = false;
 	m_errorMessage.Empty();
 

@@ -244,7 +244,8 @@ void CDirFrame::OnDisplayFilterBarClose()
 
 void CDirFrame::OnDisplayFilterBarMenu()
 {
-	m_pFilterBar->ShowFilterMenu();
+	if (m_pFilterBar)
+		m_pFilterBar->ShowFilterMenu();
 }
 
 void CDirFrame::ShowFilterBar()

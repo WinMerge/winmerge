@@ -508,7 +508,8 @@ void CMergeEditFrame::OnDisplayFilterBarClose()
 
 void CMergeEditFrame::OnDisplayFilterBarMenu()
 {
-	m_pFilterBar->ShowFilterMenu();
+	if (m_pFilterBar)
+		m_pFilterBar->ShowFilterMenu();
 }
 
 void CMergeEditFrame::ShowFilterBar()

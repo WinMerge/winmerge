@@ -140,7 +140,8 @@ String CFilterConditionDlg::GetExpression()
 	    m_sField == _T("Files") || m_sField == _T("Items") ||
 	    m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
 		m_sField == _T("LineLength") || m_sField == _T("LineNumber") || m_sField == _T("Codepage") ||
-		m_sLHS == _T("lineCount(%1)") || m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 ||
+		m_sLHS == _T("lineCount(%1)") ||
+		m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 || m_sLHS.compare(0, 17, _T("matchBlockNumber(")) == 0 ||
 		m_sLHS == _T("toNumber(%1)") ||
 	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_UI8 || m_vt == VT_I8)
 	{
@@ -240,7 +241,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 		m_sField == _T("Codepage") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
 		m_sField == _T("DateStr") || m_sField == _T("LineLength") || m_sField == _T("LineNumber") ||
 		m_sLHS == _T("toDateStr(%1)") || m_sLHS == _T("toDateTime(%1)") || m_sLHS == _T("lineCount(%1)") ||
-		m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 || m_sLHS == _T("toNumber(%1)") ||
+		m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 || m_sLHS.compare(0, 17, _T("matchBlockNumber(")) == 0 ||
+		m_sLHS == _T("toNumber(%1)") ||
 		m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8)
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
@@ -290,7 +292,9 @@ BOOL CFilterConditionDlg::OnInitDialog()
 		m_sValue1 = _T("0B");
 		m_sValue2 = _T("0B");
 	}
-	else if (m_sLHS == _T("lineCount(%1)") || m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 || m_sLHS == _T("toNumber(%1)") ||
+	else if (m_sLHS == _T("lineCount(%1)") ||
+	         m_sLHS.compare(0, 12, _T("matchNumber(")) == 0 || m_sLHS.compare(0, 17, _T("matchBlockNumber(")) == 0 ||
+	         m_sLHS == _T("toNumber(%1)") ||
 	         m_sField == _T("Files") || m_sField == _T("Items") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
 	         m_sField == _T("LineLength") || m_sField == _T("LineNumber"))
 	{

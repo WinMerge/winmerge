@@ -205,7 +205,6 @@ namespace
 			else if (IsIdentifierChar(expr[pos]) && (pos == 0 || !IsIdentifierChar(expr[pos - 1])))
 			{
 				// Extract identifier or function
-				size_t startPos = pos;
 				String identOrFunc = ExtractIdentifierOrFunction(expr, pos);
 				size_t parenPos = identOrFunc.find(_T('('));
 
