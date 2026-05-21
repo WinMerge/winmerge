@@ -2305,6 +2305,192 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, RegexExtract)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Basic regex capture tests - capturing entire match (group 0, default)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"[a-z]+\\d+\") == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"[a-z]+-\\d+\") == \"test-456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"hello world\", \"\\w+\\s\\w+\") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Explicit group 0 (same as default)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"[a-z]+\\d+\", 0) == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"[a-z]+-\\d+\", 0) == \"test-456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Capture group 1
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1) == \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"([a-z]+)-(\\d+)\", 1) == \"test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"hello world\", \"(\\w+)\\s(\\w+)\", 1) == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Capture group 2
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 2) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"([a-z]+)-(\\d+)\", 2) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"hello world\", \"(\\w+)\\s(\\w+)\", 2) == \"world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Capture group 3
+	EXPECT_TRUE(fe.Parse("regexExtract(\"2025-05-16\", \"(\\d{4})-(\\d{2})-(\\d{2})\", 3) == \"16\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"2025-05-16\", \"(\\d{4})-(\\d{2})-(\\d{2})\", 2) == \"05\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"2025-05-16\", \"(\\d{4})-(\\d{2})-(\\d{2})\", 1) == \"2025\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// No match returns undefined
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"xyz\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test\", \"\\d+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"1234\", \"[A-Z]+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Out of range group returns undefined
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 3) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test\", \"([a-z]+)\", 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc\", \"([a-z])\", 5) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Negative group index (should fail or return undefined)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", -1) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Empty string
+	EXPECT_TRUE(fe.Parse("regexExtract(\"\", \"[a-z]+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings - default group 0
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"def456\"), \"[a-z]+\\d+\") == array(\"abc123\", \"def456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"test\", \"hello123\"), \"[a-z]+\\d+\") == array(none, \"hello123\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings - group 1
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"def456\"), \"([a-z]+)(\\d+)\", 1) == array(\"abc\", \"def\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"test-1\", \"hello-2\"), \"([a-z]+)-(\\d)\", 1) == array(\"test\", \"hello\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings - group 2
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"def456\"), \"([a-z]+)(\\d+)\", 2) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array with some non-matching strings
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"xyz\", \"def456\"), \"([a-z]+)(\\d+)\", 1) == array(\"abc\", none, \"def\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"test\", \"123\", \"hello456\"), \"([a-z]+)(\\d+)\", 2) == array(none, none, \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Empty array
+	EXPECT_TRUE(fe.Parse("regexExtract(array(), \"[a-z]+\") == array()"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-insensitive matching (default)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"ABC123\", \"([a-z]+)(\\d+)\", 1) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"Test\", \"([a-z]+)\", 1) == \"Test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-sensitive matching with @cs directive
+	EXPECT_TRUE(fe.Parse("@cs regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1) == \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexExtract(\"ABC123\", \"([a-z]+)(\\d+)\", 1) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexExtract(\"ABC123\", \"([A-Z]+)(\\d+)\", 1) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Real-world use cases
+	EXPECT_TRUE(fe.Parse("regexExtract(\"file-v1.2.3.txt\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 1) == \"1\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"file-v1.2.3.txt\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 2) == \"2\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"file-v1.2.3.txt\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 3) == \"3\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error: line 123\", \"line\\s+(\\d+)\", 1) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"user@example.com\", \"([^@]+)@([^@]+)\", 1) == \"user\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"user@example.com\", \"([^@]+)@([^@]+)\", 2) == \"example.com\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined with other functions
+	EXPECT_TRUE(fe.Parse("toUpper(regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1)) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(regexExtract(\"test-456\", \"([a-z]+)-(\\d+)\", 2)) == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1) + regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 2) == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Non-string arguments (should convert to string)
+	EXPECT_TRUE(fe.Parse("regexExtract(123456, \"(\\d{3})(\\d{3})\", 1) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(123456, \"(\\d{3})(\\d{3})\", 2) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(true, \"(\\w+)\", 1) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Offset parameter tests - capturing Nth occurrence
+	// String "value 123 and value 456": two occurrences of "value \\d+"
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 0, 0) == \"value 123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 0, 1) == \"value 456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 1, 0) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 1, 1) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 1, 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Multiple numbers in a line - capture second number
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 0, 0) == \"10\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 0, 1) == \"20\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 0, 2) == \"30\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 1, 1) == \"20\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Real-world: extract second version number from text
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 1, 0) == \"1\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 1, 1) == \"2\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 0, 0) == \"v1.0.0\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 0, 1) == \"v2.0.0\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array with offset
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"num 1 num 2\", \"num 3 num 4\"), \"num\\s+(\\d+)\", 1, 1) == array(\"2\", \"4\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"num 1 num 2\", \"num 3 num 4\"), \"num\\s+(\\d+)\", 1, 0) == array(\"1\", \"3\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 TEST_P(FilterExpressionTest, TrimFunctions)
 {
 	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");

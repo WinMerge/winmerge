@@ -70,6 +70,87 @@ static std::string escapeRegex(const std::string& str)
 	return result;
 }
 
+// Helper to create a regex with proper flags
+static inline int getRegexFlags(bool caseSensitive)
+{
+	return Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+}
+
+// Helper to create a regex object safely
+static std::shared_ptr<Poco::RegularExpression> createRegex(const std::string& pattern, bool caseSensitive)
+{
+	try
+	{
+		return std::make_shared<Poco::RegularExpression>(pattern, getRegexFlags(caseSensitive));
+	}
+	catch (const Poco::RegularExpressionException&)
+	{
+		return nullptr;
+	}
+}
+
+// Helper to perform regex match operations
+static bool regexMatch(const std::string& str, const std::string& pattern, bool caseSensitive, bool fullMatch = false)
+{
+	try
+	{
+		Poco::RegularExpression regex(pattern, getRegexFlags(caseSensitive));
+		if (fullMatch)
+			return regex.match(str);
+		Poco::RegularExpression::Match match;
+		return regex.match(str, match) > 0;
+	}
+	catch (const Poco::RegularExpressionException&)
+	{
+		return false;
+	}
+}
+
+// Helper to perform regex match with precompiled regex
+static bool regexMatch(const std::string& str, const Poco::RegularExpression& regex, bool fullMatch = false)
+{
+	try
+	{
+		if (fullMatch)
+			return regex.match(str);
+		Poco::RegularExpression::Match match;
+		return regex.match(str, match) > 0;
+	}
+	catch (const Poco::RegularExpressionException&)
+	{
+		return false;
+	}
+}
+
+// Helper to perform regex substitution
+static bool regexSubst(std::string& str, const std::string& pattern, const std::string& replacement, bool caseSensitive)
+{
+	try
+	{
+		Poco::RegularExpression regex(pattern, getRegexFlags(caseSensitive));
+		regex.subst(str, replacement, Poco::RegularExpression::RE_GLOBAL);
+		return true;
+	}
+	catch (const Poco::RegularExpressionException&)
+	{
+		return false;
+	}
+}
+
+// Helper to perform regex substitution with precompiled regex
+static bool regexSubst(std::string& str, const Poco::RegularExpression& regex, const std::string& replacement)
+{
+	try
+	{
+		regex.subst(str, replacement, Poco::RegularExpression::RE_GLOBAL);
+		return true;
+	}
+	catch (const Poco::RegularExpressionException&)
+	{
+		return false;
+	}
+}
+
 // Helper template to replace FunctionNode with a literal result
 template<typename T>
 static ExprNode* ReplaceFunctionWithLiteral(FunctionNode* func, T&& value)
@@ -643,19 +724,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 					}
 				}
 				if (op == TK_RECONTAINS)
-				{
-					try
-					{
-						const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-						Poco::RegularExpression regex(*rvalString, flags);
-						Poco::RegularExpression::Match match;
-						return (regex.match(*lvalString, match) > 0);
-					}
-					catch (const Poco::RegularExpressionException&)
-					{
-						return false;
-					}
-				}
+					return regexMatch(*lvalString, *rvalString, caseSensitive, false);
 				if (op == TK_LIKE)
 				{
 					const int flags = (!caseSensitive) ? Poco::Glob::GLOB_CASELESS : 0;
@@ -663,33 +732,12 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 					return glob.match(*lvalString);
 				}
 				if (op == TK_MATCHES)
-				{
-					try
-					{
-						const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-						Poco::RegularExpression regex(*rvalString, flags);
-						return regex.match(*lvalString);
-					}
-					catch (const Poco::RegularExpressionException&)
-					{
-						return false;
-					}
-				}
+					return regexMatch(*lvalString, *rvalString, caseSensitive, true);
 			}
 			if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
 			{
 				if (op == TK_RECONTAINS)
-				{
-					try
-					{
-						Poco::RegularExpression::Match match;
-						return ((*rvalRegexp)->match(*lvalString, match) > 0);
-					}
-					catch (const Poco::RegularExpressionException&)
-					{
-						return false;
-					}
-				}
+					return regexMatch(*lvalString, **rvalRegexp, false);
 				if (op == TK_MATCHES)
 					return (*rvalRegexp)->match(*lvalString);
 			}
@@ -706,16 +754,8 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 				if (op == TK_CONTAINS) return (*lvalContent)->Contains(*rvalString, caseSensitive);
 				if (op == TK_RECONTAINS)
 				{
-					try
-					{
-						const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-						Poco::RegularExpression regex(*rvalString, flags);
-						return (*lvalContent)->REContains(regex);
-					}
-					catch (const Poco::RegularExpressionException&)
-					{
-						return false;
-					}
+					auto regex = createRegex(*rvalString, caseSensitive);
+					return regex ? (*lvalContent)->REContains(*regex) : false;
 				}
 			}
 			if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
@@ -1878,51 +1918,32 @@ static auto ReplaceFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* 
 	if ((!from && !fromRegex) || !to)
 		return std::monostate{};
 
-	if (fromRegex)
-	{
-		// Use pre-compiled regex from Optimize()
-		auto replaceFn = [fromRegex, to](const ValueType& val) -> ValueType
+	auto replaceFn = [&](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			std::string result = *strOpt;
+
+			if (fromRegex)
 			{
-				auto strOpt = getAsString(val);
-				if (!strOpt)
+				if (!regexSubst(result, **fromRegex, *to))
 					return std::monostate{};
-				std::string result = *strOpt;
-				(*fromRegex)->subst(result, *to, Poco::RegularExpression::RE_GLOBAL);
-				return result;
-			};
-		return applyToScalarOrArray(argStr, replaceFn);
-	}
-	else if (from)
-	{
-		// Dynamic case: compile regex at runtime
-		if (from->empty())
-			return std::monostate{};
+			}
+			else if (from && !from->empty())
+			{
+				std::string pattern = escapeRegex(*from);
+				if (!regexSubst(result, pattern, *to, ectxt.expr->caseSensitive))
+					return std::monostate{};
+			}
+			else
+			{
+				return std::monostate{};
+			}
+			return result;
+		};
 
-		try
-		{
-			std::string pattern = escapeRegex(*from);
-			const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-			auto regex = std::make_shared<Poco::RegularExpression>(pattern, flags);
-
-			auto replaceFn = [regex, to](const ValueType& val) -> ValueType
-				{
-					auto strOpt = getAsString(val);
-					if (!strOpt)
-						return std::monostate{};
-					std::string result = *strOpt;
-					regex->subst(result, *to, Poco::RegularExpression::RE_GLOBAL);
-					return result;
-				};
-
-			return applyToScalarOrArray(argStr, replaceFn);
-		}
-		catch (const Poco::RegularExpressionException&)
-		{
-			return std::monostate{};
-		}
-	}
-
-	return std::monostate{};
+	return applyToScalarOrArray(argStr, replaceFn);
 }
 
 static auto RegexReplaceWithListFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
@@ -1958,22 +1979,14 @@ static auto RegexReplaceWithListFunc(const FilterEvalContext& ectxt, std::vector
 					auto replacement = std::get_if<std::string>(&(*arrayVal)->at(1).value);
 					if (!replacement)
 						continue;
-					try
+
+					if (auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&(*arrayVal)->at(0).value))
 					{
-						if (auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&(*arrayVal)->at(0).value))
-						{
-							(*rePattern)->subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
-						}
-						else if (auto strPattern = std::get_if<std::string>(&(*arrayVal)->at(0).value))
-						{
-							const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-							Poco::RegularExpression regex(*strPattern, flags);
-							regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
-						}
+						regexSubst(result, **rePattern, *replacement);
 					}
-					catch (const Poco::RegularExpressionException&)
+					else if (auto strPattern = std::get_if<std::string>(&(*arrayVal)->at(0).value))
 					{
-						continue;
+						regexSubst(result, *strPattern, *replacement, ectxt.expr->caseSensitive);
 					}
 				}
 			}
@@ -2305,29 +2318,24 @@ static auto RegexReplaceFunc(const FilterEvalContext& ectxt, std::vector<ExprNod
 	if ((!strPattern && !rePattern) || !replacement)
 		return std::monostate{};
 
-	auto regexReplaceFn = [&ectxt, strPattern, rePattern, replacement](const ValueType& val) -> ValueType
+	auto regexReplaceFn = [&](const ValueType& val) -> ValueType
 		{
 			auto strOpt = getAsString(val);
 			if (!strOpt)
 				return std::monostate{};
-			try
+			std::string result = *strOpt;
+
+			if (rePattern)
 			{
-				if (rePattern)
-				{
-					std::string result = *strOpt;
-					(*rePattern)->subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
-					return result;
-				}
-				const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-				Poco::RegularExpression regex(*strPattern, flags);
-				std::string result = *strOpt;
-				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
-				return result;
+				if (!regexSubst(result, **rePattern, *replacement))
+					return std::monostate{};
 			}
-			catch (const Poco::RegularExpressionException&)
+			else
 			{
-				return std::monostate{};
+				if (!regexSubst(result, *strPattern, *replacement, ectxt.expr->caseSensitive))
+					return std::monostate{};
 			}
+			return result;
 		};
 
 	return applyToScalarOrArray(argStr, regexReplaceFn);
@@ -2899,7 +2907,7 @@ static auto StrCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>*
 				}
 			}
 
-			return count;
+			return static_cast<int64_t>(count);
 		};
 
 	return applyToScalarOrArray(argStr, strCountFn);
@@ -2919,52 +2927,105 @@ static auto RegexCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*
 	if (!strPattern && !rePattern)
 		return std::monostate{};
 
-	auto regexCountFn = [&ectxt, strPattern, rePattern](const ValueType& val) -> ValueType
+	auto regexCountFn = [&](const ValueType& val) -> ValueType
 		{
 			auto strOpt = getAsString(val);
 			if (!strOpt)
 				return std::monostate{};
 
-			try
-			{
-				std::shared_ptr<Poco::RegularExpression> regex;
-				if (rePattern)
-				{
-					regex = *rePattern;
-				}
-				else
-				{
-					const int flags = Poco::RegularExpression::RE_UTF8 | (!ectxt.expr->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
-					regex = std::make_shared<Poco::RegularExpression>(*strPattern, flags);
-				}
-
-				int64_t count = 0;
-				Poco::RegularExpression::Match match;
-				size_t offset = 0;
-
-				while (regex->match(*strOpt, offset, match, 0))
-				{
-					++count;
-					// Advance past the match to avoid infinite loops on zero-length matches
-					if (match.length == 0)
-						offset = match.offset + 1;
-					else
-						offset = match.offset + match.length;
-
-					// Prevent infinite loop if we can't advance
-					if (offset > strOpt->length())
-						break;
-				}
-
-				return count;
-			}
-			catch (const Poco::RegularExpressionException&)
-			{
+			auto regex = rePattern ? *rePattern : createRegex(*strPattern, ectxt.expr->caseSensitive);
+			if (!regex)
 				return std::monostate{};
+
+			int64_t count = 0;
+			Poco::RegularExpression::Match match;
+			size_t offset = 0;
+
+			while (regex->match(*strOpt, offset, match, 0))
+			{
+				++count;
+				offset = (match.length == 0) ? match.offset + 1 : match.offset + match.length;
+				if (offset > strOpt->length())
+					break;
 			}
+
+			return static_cast<int64_t>(count);
 		};
 
 	return applyToScalarOrArray(argStr, regexCountFn);
+}
+
+static auto RegexExtractFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() < 2 || args->size() > 4)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(ectxt);
+	auto argPattern = (*args)[1]->Evaluate(ectxt);
+
+	int64_t groupNum = 0;
+	if (args->size() >= 3)
+	{
+		auto argGroup = (*args)[2]->Evaluate(ectxt);
+		if (auto groupInt = std::get_if<int64_t>(&argGroup))
+			groupNum = *groupInt;
+		else
+			return std::monostate{};
+	}
+
+	int64_t offset = 0;
+	if (args->size() == 4)
+	{
+		auto argOffset = (*args)[3]->Evaluate(ectxt);
+		if (auto offsetInt = std::get_if<int64_t>(&argOffset))
+			offset = *offsetInt;
+		else
+			return std::monostate{};
+	}
+
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	const auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
+
+	if (!strPattern && !rePattern)
+		return std::monostate{};
+
+	auto regexExtractFn = [&](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+
+			auto regex = rePattern ? *rePattern : createRegex(*strPattern, ectxt.expr->caseSensitive);
+			if (!regex)
+				return std::monostate{};
+
+			size_t searchPos = 0;
+			for (int64_t i = 0; i <= offset; ++i)
+			{
+				Poco::RegularExpression::MatchVec matches;
+				if (regex->match(*strOpt, searchPos, matches, 0) == 0)
+					return std::monostate{};
+
+				if (i == offset)
+				{
+					if (groupNum < 0 || groupNum >= static_cast<int64_t>(matches.size()))
+						return std::monostate{};
+
+					const auto& match = matches[static_cast<size_t>(groupNum)];
+					if (match.offset == std::string::npos)
+						return std::monostate{};
+
+					return strOpt->substr(match.offset, match.length);
+				}
+
+				searchPos = (matches[0].offset != std::string::npos && matches[0].length > 0) ?
+					matches[0].offset + matches[0].length : matches[0].offset + 1;
+			}
+
+			return std::monostate{};
+		};
+
+	return applyToScalarOrArray(argStr, regexExtractFn);
 }
 
 static const auto& GetOrCreateMatchRanges(const FilterEvalContext& ectxt, ExprNode* expr)
@@ -3572,6 +3633,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"now", NowFunc, 0, 0},
 	{"oreach", OrEachFunc, 2, 2},
 	{"regexcount", RegexCountFunc, 2, 2},
+	{"regexextract", RegexExtractFunc, 2, 4},
 	{"regexreplace", RegexReplaceFunc, 3, 3},
 	{"regexreplacewithlist", RegexReplaceWithListFunc, 2, 2},
 	{"replace", ReplaceFunc, 3, 3},
@@ -3960,6 +4022,18 @@ ExprNode* FunctionNode::Optimize()
 		OptimizeRegexArg(args, 1, ctxt->caseSensitive);
 		if (dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]))
 			return ReplaceFunctionWithLiteral(this, std::get<int64_t>(func(ectxt, args)));
+	}
+
+	if (functionName == "regexextract" && args && args->size() >= 2)
+	{
+		OptimizeRegexArg(args, 1, ctxt->caseSensitive);
+		if (dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) &&
+			(args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
+		{
+			ValueType result = func(ectxt, args);
+			if (auto strResult = std::get_if<std::string>(&result))
+				return ReplaceFunctionWithLiteral(this, *strResult);
+		}
 	}
 
 	// Replace with list
