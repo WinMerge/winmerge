@@ -87,7 +87,7 @@ private:
 	std::array<bool, 3> m_bAutoCompleteReady;
 	DropHandler *m_pDropHandler;
 	int m_retryCount;
-	int m_nIgnoreWhite; /**< The value of the "Whitespace" setting */
+	int m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
 	bool m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
 	bool m_bIgnoreCase; /**< The value of the "Ignore case" setting */
 	bool m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */

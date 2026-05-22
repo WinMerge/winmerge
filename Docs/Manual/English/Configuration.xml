@@ -574,8 +574,8 @@
 
     <section>
       <title>
-        Whitespace<indexterm>
-          <primary>whitespace</primary>
+        Whitespaces<indexterm>
+          <primary>whitespaces</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm>
@@ -892,8 +892,8 @@ def
 </screen>
             <note>
               Useful when combined with whitespace options such as
-              <option>Whitespace → Ignore change</option> or
-              <option>Whitespace → Ignore all</option>.
+              <option>Whitespaces → Ignore change</option> or
+              <option>Whitespaces → Ignore all</option>.
             </note>
           </para>
         </listitem>

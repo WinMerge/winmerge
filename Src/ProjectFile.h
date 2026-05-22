@@ -135,7 +135,7 @@ private:
 	std::optional<tchar_t> m_cTableDelimiter;
 	std::optional<tchar_t> m_cTableQuote;
 	std::optional<bool> m_bTableAllowNewLinesInQuotes;
-	std::optional<int> m_nIgnoreWhite; /**< The value of the "Whitespace" setting */
+	std::optional<int> m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
 	std::optional<bool> m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
 	std::optional<bool> m_bIgnoreCase; /**< The value of the "Ignore case" setting */
 	std::optional<bool> m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
@@ -150,7 +150,7 @@ private:
 	bool m_bSaveSubfolders; /**< Save subfolders? */
 	bool m_bSaveUnpacker; /**< Save unpacker? */
 	bool m_bSavePrediffer; /**< Save prediffer? */
-	bool m_bSaveIgnoreWhite; /**< Save "Whitespace" setting? */
+	bool m_bSaveIgnoreWhite; /**< Save "Whitespaces" setting? */
 	bool m_bSaveIgnoreBlankLines; /**< Save "Ignore blank lines" setting? */
 	bool m_bSaveIgnoreCase; /**< Save "Ignore case" setting? */
 	bool m_bSaveIgnoreEol; /**< Save "Ignore carriage return differences" setting? */
@@ -361,8 +361,8 @@ inline bool ProjectFileItem::HasTableAllowNewLinesInQuotes() const
 }
 
 /** 
- * @brief Returns if "Whitespace" setting is defined in projectfile.
- * @return true if project file has "Whitespace" setting definition.
+ * @brief Returns if "Whitespaces" setting is defined in projectfile.
+ * @return true if project file has "Whitespaces" setting definition.
  */
 inline bool ProjectFileItem::HasIgnoreWhite() const
 {
@@ -630,8 +630,8 @@ inline void ProjectFileItem::SetTableAllowNewLinesInQuotes(bool bTableAllowNewLi
 }
 
 /** 
- * @brief Returns the value of the "Whitespace" setting.
- * @return The value of the "Whitespace" setting
+ * @brief Returns the value of the "Whitespaces" setting.
+ * @return The value of the "Whitespaces" setting
  */
 inline int ProjectFileItem::GetIgnoreWhite() const
 {
@@ -639,8 +639,8 @@ inline int ProjectFileItem::GetIgnoreWhite() const
 }
 
 /** 
- * @brief Set the value of the "Whitespace" setting.
- * @param [in] nIgnoreWhite New value of the "Whitespace" setting to set.
+ * @brief Set the value of the "Whitespaces" setting.
+ * @param [in] nIgnoreWhite New value of the "Whitespaces" setting to set.
  */
 inline void ProjectFileItem::SetIgnoreWhite(int nIgnoreWhite)
 {
@@ -876,8 +876,8 @@ inline void ProjectFileItem::SetSavePrediffer(bool bSavePrediffer)
 }
 
 /** 
- * @brief Set whether to save "Whitespace" setting.
- * @param [in] bSaveIgnoreWhite Whether to save "Whitespace" setting.
+ * @brief Set whether to save "Whitespaces" setting.
+ * @param [in] bSaveIgnoreWhite Whether to save "Whitespaces" setting.
  */
 inline void ProjectFileItem::SetSaveIgnoreWhite(bool bSaveIgnoreWhite)
 {

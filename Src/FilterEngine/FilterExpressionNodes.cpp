@@ -2884,33 +2884,169 @@ static auto StrCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>*
 			if (!strOpt)
 				return std::monostate{};
 			const std::string& str = *strOpt;
+
+			// Prepare search strings (convert to lowercase if case-insensitive)
+			const std::string* searchStr = &str;
+			const std::string* searchSubstr = substr;
+			std::string lowerStr, lowerSubstr;
+
+			if (!ectxt.expr->caseSensitive)
+			{
+				lowerStr = Poco::toLower(str);
+				lowerSubstr = Poco::toLower(*substr);
+				searchStr = &lowerStr;
+				searchSubstr = &lowerSubstr;
+			}
+
+			// Count occurrences
 			int64_t count = 0;
 			size_t pos = 0;
-
-			if (ectxt.expr->caseSensitive)
+			while ((pos = searchStr->find(*searchSubstr, pos)) != std::string::npos)
 			{
-				while ((pos = str.find(*substr, pos)) != std::string::npos)
-				{
-					++count;
-					pos += substr->length();
-				}
-			}
-			else
-			{
-				// Case-insensitive search
-				std::string lowerStr = Poco::toLower(str);
-				std::string lowerSubstr = Poco::toLower(*substr);
-				while ((pos = lowerStr.find(lowerSubstr, pos)) != std::string::npos)
-				{
-					++count;
-					pos += lowerSubstr.length();
-				}
+				++count;
+				pos += searchSubstr->length();
 			}
 
 			return static_cast<int64_t>(count);
 		};
 
 	return applyToScalarOrArray(argStr, strCountFn);
+}
+
+static auto StrFindFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() < 2 || args->size() > 3)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(ectxt);
+	auto argSubstr = (*args)[1]->Evaluate(ectxt);
+
+	int64_t occurrence = 0;
+	if (args->size() == 3)
+	{
+		auto argOccurrence = (*args)[2]->Evaluate(ectxt);
+		if (auto occurrenceInt = std::get_if<int64_t>(&argOccurrence))
+			occurrence = *occurrenceInt;
+		else
+			return std::monostate{};
+	}
+
+	const std::string* substr = std::get_if<std::string>(&argSubstr);
+	if (!substr || substr->empty())
+		return std::monostate{};
+
+	auto strFindFn = [&ectxt, substr, occurrence](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			const std::string& str = *strOpt;
+
+			// Prepare search strings (convert to lowercase if case-insensitive)
+			const std::string* searchStr = &str;
+			const std::string* searchSubstr = substr;
+			std::string lowerStr, lowerSubstr;
+
+			if (!ectxt.expr->caseSensitive)
+			{
+				lowerStr = Poco::toLower(str);
+				lowerSubstr = Poco::toLower(*substr);
+				searchStr = &lowerStr;
+				searchSubstr = &lowerSubstr;
+			}
+
+			// Find the specified occurrence
+			size_t searchPos = 0;
+			for (int64_t i = 0; i <= occurrence; ++i)
+			{
+				size_t pos = searchStr->find(*searchSubstr, searchPos);
+
+				if (pos == std::string::npos)
+					return std::monostate{};
+
+				if (i == occurrence)
+					return static_cast<int64_t>(pos);
+
+				searchPos = pos + searchSubstr->length();
+			}
+
+			return std::monostate{};
+		};
+
+	return applyToScalarOrArray(argStr, strFindFn);
+}
+
+static auto RegexFindFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() < 2 || args->size() > 4)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(ectxt);
+	auto argPattern = (*args)[1]->Evaluate(ectxt);
+
+	int64_t groupNum = 0;
+	if (args->size() >= 3)
+	{
+		auto argGroup = (*args)[2]->Evaluate(ectxt);
+		if (auto groupInt = std::get_if<int64_t>(&argGroup))
+			groupNum = *groupInt;
+		else
+			return std::monostate{};
+	}
+
+	int64_t occurrence = 0;
+	if (args->size() == 4)
+	{
+		auto argOccurrence = (*args)[3]->Evaluate(ectxt);
+		if (auto occurrenceInt = std::get_if<int64_t>(&argOccurrence))
+			occurrence = *occurrenceInt;
+		else
+			return std::monostate{};
+	}
+
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	const auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
+
+	if (!strPattern && !rePattern)
+		return std::monostate{};
+
+	auto regexFindFn = [&](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+
+			auto regex = rePattern ? *rePattern : createRegex(*strPattern, ectxt.expr->caseSensitive);
+			if (!regex)
+				return std::monostate{};
+
+			size_t searchPos = 0;
+			for (int64_t i = 0; i <= occurrence; ++i)
+			{
+				Poco::RegularExpression::MatchVec matches;
+				if (regex->match(*strOpt, searchPos, matches, 0) == 0)
+					return std::monostate{};
+
+				if (i == occurrence)
+				{
+					if (groupNum < 0 || groupNum >= static_cast<int64_t>(matches.size()))
+						return std::monostate{};
+
+					const auto& match = matches[static_cast<size_t>(groupNum)];
+					if (match.offset == std::string::npos)
+						return std::monostate{};
+
+					return static_cast<int64_t>(match.offset);
+				}
+
+				searchPos = (matches[0].offset != std::string::npos && matches[0].length > 0) ?
+					matches[0].offset + matches[0].length : matches[0].offset + 1;
+			}
+
+			return std::monostate{};
+		};
+
+	return applyToScalarOrArray(argStr, regexFindFn);
 }
 
 static auto RegexCountFunc(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
@@ -3634,6 +3770,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"oreach", OrEachFunc, 2, 2},
 	{"regexcount", RegexCountFunc, 2, 2},
 	{"regexextract", RegexExtractFunc, 2, 4},
+	{"regexfind", RegexFindFunc, 2, 4},
 	{"regexreplace", RegexReplaceFunc, 3, 3},
 	{"regexreplacewithlist", RegexReplaceWithListFunc, 2, 2},
 	{"replace", ReplaceFunc, 3, 3},
@@ -3642,6 +3779,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"startofweek", StartOfWeekFunc, 1, 1},
 	{"startofyear", StartOfYearFunc, 1, 1},
 	{"strcount", StrCountFunc, 2, 2},
+	{"strfind", StrFindFunc, 2, 3},
 	{"strlen", StrlenFunc, 1, 1},
 	{"sublines", SublinesFunc, 2, 3},
 	{"substr", SubstrFunc, 2, 3},
@@ -4017,11 +4155,33 @@ ExprNode* FunctionNode::Optimize()
 		dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[1]))
 		return ReplaceFunctionWithLiteral(this, std::get<int64_t>(func(ectxt, args)));
 
+	if (functionName == "strfind" && args && args->size() >= 2 &&
+		dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[1]) &&
+		(args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
+	{
+		ValueType result = func(ectxt, args);
+		if (auto intResult = std::get_if<int64_t>(&result))
+			return ReplaceFunctionWithLiteral(this, *intResult);
+	}
+
 	if (functionName == "regexcount" && args && args->size() >= 2)
 	{
 		OptimizeRegexArg(args, 1, ctxt->caseSensitive);
 		if (dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]))
 			return ReplaceFunctionWithLiteral(this, std::get<int64_t>(func(ectxt, args)));
+	}
+
+	if (functionName == "regexfind" && args && args->size() >= 2)
+	{
+		OptimizeRegexArg(args, 1, ctxt->caseSensitive);
+		if (dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) &&
+			(args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])) &&
+			(args->size() <= 3 || dynamic_cast<IntLiteral*>((*args)[3])))
+		{
+			ValueType result = func(ectxt, args);
+			if (auto intResult = std::get_if<int64_t>(&result))
+				return ReplaceFunctionWithLiteral(this, *intResult);
+		}
 	}
 
 	if (functionName == "regexextract" && args && args->size() >= 2)

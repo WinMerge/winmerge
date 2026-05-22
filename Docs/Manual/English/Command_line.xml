@@ -554,7 +554,7 @@
     <varlistentry>
       <term><option>/ignorews</option></term>
       <listitem>
-        <para>Controls the "Whitespace" option (whitespace comparison settings) persistently:</para>
+        <para>Controls the "Whitespaces" option (whitespace comparison settings) persistently:</para>
         <itemizedlist>
           <listitem><para><option>/ignorews:0</option> - do not ignore whitespace differences.</para></listitem>
           <listitem><para><option>/ignorews</option> or <option>/ignorews:1</option> - ignore differences in the amount of whitespace.</para></listitem>

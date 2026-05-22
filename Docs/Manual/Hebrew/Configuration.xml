@@ -488,7 +488,7 @@ About ignore options<indexterm>
 
     <section>
       <title>
-Whitespace<indexterm>
+Whitespaces<indexterm>
           <primary>רווחים לבנים</primary>
 
           <secondary>זיהוי והתעלמות מהבדלים</secondary>
@@ -757,7 +757,7 @@ Right:
 abc
 def
 </screen> <note> Useful when combined with whitespace options
-such as <option>Whitespace → Ignore change</option> or <option>Whitespace
+such as <option>Whitespaces → Ignore change</option> or <option>Whitespaces
 → Ignore all</option>.  </note></para>
         </listitem>
       </itemizedlist>

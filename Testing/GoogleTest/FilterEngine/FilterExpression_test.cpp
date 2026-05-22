@@ -4352,6 +4352,115 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 	EXPECT_TRUE(fe.Evaluate(ectxt3));
 }
 
+TEST_P(FilterExpressionTest, StrFindAndRegexFindFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// strfind function tests - basic search
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"World\") == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"Hello\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"NotFound\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strfind with occurrence number (0-based: 0=first, 1=second, etc.)
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello\", \"Hello\", 0) == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello\", \"Hello\", 1) == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello Hello\", \"Hello\", 2) == 12"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello\", \"Hello\", 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strfind case sensitivity (when @ci directive is used)
+	fe.caseSensitive = false;
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"world\") == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"HELLO\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	fe.caseSensitive = true;
+
+	// strfind with arrays
+	EXPECT_TRUE(fe.Parse("strfind(array(\"Hello\", \"World\"), \"o\") == array(4, 1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(array(\"Hello\", \"World\"), \"o\", 1) == array(none, none)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind function tests - basic regex search
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello123World\", \"[0-9]+\") == 5"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello World\", \"^Hello\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello World\", \"[0-9]+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind with capture groups
+	EXPECT_TRUE(fe.Parse("regexfind(\"Price: $123.45\", \"\\$([0-9]+)\\.([0-9]+)\", 0) == 7"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Price: $123.45\", \"\\$([0-9]+)\\.([0-9]+)\", 1) == 8"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Price: $123.45\", \"\\$([0-9]+)\\.([0-9]+)\", 2) == 12"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind with occurrence number (0=first match, 1=second match, etc.)
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456ghi789\", \"[0-9]+\", 0, 0) == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456ghi789\", \"[0-9]+\", 0, 1) == 9"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456ghi789\", \"[0-9]+\", 0, 2) == 15"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456\", \"[0-9]+\", 0, 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind case sensitivity
+	fe.caseSensitive = false;
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello World\", \"WORLD\") == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	fe.caseSensitive = true;
+
+	// regexfind with arrays
+	EXPECT_TRUE(fe.Parse("regexfind(array(\"abc123\", \"def456\"), \"[0-9]+\") == array(3, 3)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(array(\"abc123xyz456\", \"def789\"), \"[0-9]+\", 0, 1) == array(9, none)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Practical use cases
+	EXPECT_TRUE(fe.Parse("strfind(LeftName, \".txt\") >= 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(LeftName, \"\\.(txt|cpp|h)$\") >= 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,

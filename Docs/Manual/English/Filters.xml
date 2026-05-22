@@ -959,6 +959,46 @@
               </listitem>
             </varlistentry>
             <varlistentry>
+              <term><function>strFind</function>(<replaceable>str</replaceable>, <replaceable>substr</replaceable>[, <replaceable>occurrence</replaceable>])</term>
+              <listitem>
+                <para>
+                  Finds the position (0-based) of the Nth occurrence of substring <replaceable>substr</replaceable> in <replaceable>str</replaceable>.
+                  The optional <replaceable>occurrence</replaceable> parameter specifies which occurrence to find (0-based, default is 0 for the first occurrence).
+                  The search is case-insensitive by default (respects <literal>@cs</literal>/<literal>@ci</literal> directives).
+                  Returns <literal>undefined</literal> if the substring is not found or if the occurrence index is out of range.
+                  If <replaceable>str</replaceable> is an array, the result is an array of positions (or undefined values).
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>strFind("hello world", "o")</literal> returns 4 (first 'o')</para></listitem>
+                  <listitem><para><literal>strFind("hello world", "o", 1)</literal> returns 7 (second 'o')</para></listitem>
+                  <listitem><para><literal>@cs strFind("Test TEST test", "test")</literal> returns 10 (case-sensitive)</para></listitem>
+                  <listitem><para><literal>strFind(array("abc", "def"), "b")</literal> returns <literal>array(1, undefined)</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexFind</function>(<replaceable>str</replaceable>, <replaceable>pattern</replaceable>[, <replaceable>group</replaceable>[, <replaceable>occurrence</replaceable>]])</term>
+              <listitem>
+                <para>
+                  Finds the position (0-based) of the Nth occurrence of a regular expression match in <replaceable>str</replaceable>.
+                  The optional <replaceable>group</replaceable> parameter specifies which capture group to locate (0-based, default is 0 for the entire match).
+                  The optional <replaceable>occurrence</replaceable> parameter specifies which occurrence of the pattern to find (0-based, default is 0 for the first occurrence).
+                  The search is case-insensitive by default (respects <literal>@cs</literal>/<literal>@ci</literal> directives).
+                  Returns <literal>undefined</literal> if the pattern doesn't match, the group index is out of range, or the occurrence index is out of range.
+                  If <replaceable>str</replaceable> is an array, the result is an array of positions (or undefined values).
+                </para>
+                <para>Examples:</para>
+                <itemizedlist>
+                  <listitem><para><literal>regexFind("test123abc456", "\\d+")</literal> returns 4 (position of "123")</para></listitem>
+                  <listitem><para><literal>regexFind("test123abc456", "\\d+", 0, 1)</literal> returns 10 (position of "456", second match)</para></listitem>
+                  <listitem><para><literal>regexFind("abc-def-ghi", "([a-z]+)-([a-z]+)", 1)</literal> returns 0 (position of first capture group "abc")</para></listitem>
+                  <listitem><para><literal>regexFind("v1.0 and v2.5", "v(\\d+)\\.(\\d+)", 1, 1)</literal> returns 9 (major version "2" in second occurrence)</para></listitem>
+                  <listitem><para><literal>regexFind(array("test123", "abc"), "\\d+")</literal> returns <literal>array(4, undefined)</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
               <term><function>substr</function>(<replaceable>source</replaceable>, <replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
               <listitem><para>Returns a specific range of text from the <emphasis>string or string array</emphasis> as a <literal>String</literal>. If <replaceable>source</replaceable> is a string array, the result is a string array. Example: <literal>substr(Name, 0, 3)</literal></para></listitem>
             </varlistentry>
@@ -1554,6 +1594,9 @@ old	new</screen>
           <listitem><para><literal>sublines(Content, 0, 1) contains "XML"</literal> - First line contains "XML"</para></listitem>
           <listitem><para><literal>strCount(Content, "TODO") &gt; 5</literal> - File contains more than 5 TODO comments</para></listitem>
           <listitem><para><literal>regexCount(Content, "\\bFIXME\\b") &gt; 0</literal> - File contains at least one FIXME marker</para></listitem>
+          <listitem><para><literal>strFind(Name, "_test") != none</literal> - Files containing "_test" in their name</para></listitem>
+          <listitem><para><literal>strFind(Name, ".", 1) &gt; 0</literal> - Files with multiple dots in their name (second dot exists)</para></listitem>
+          <listitem><para><literal>regexFind(Name, "\\d{4}") &lt; 5</literal> - Files where a 4-digit number appears within the first 5 characters</para></listitem>
           <listitem><para><literal>regexExtract(Name, "v(\\d+)\\.(\\d+)\\.(\\d+)", 1) = "2"</literal> - Files with major version 2 (e.g., "v2.16.48")</para></listitem>
           <listitem><para><literal>regexExtract(Name, "([^_]+)_([^_]+)\\.txt", 2) like "test*"</literal> - Files where second part of name starts with "test"</para></listitem>
           <listitem><para><literal>le:regexExtract(Line, "(\\d+)", 0, 1)</literal> - Extracts the second number in each line (offset=1)</para></listitem>
@@ -2506,6 +2549,14 @@ Pekka Himanen</screen></para>
               <row>
                 <entry><userinput>le:Different and Line contains "ERROR"</userinput></entry>
                 <entry>Shows lines that are both different and contain "ERROR"</entry>
+              </row>
+              <row>
+                <entry><userinput>le:strFind(Line, "TODO") &lt; 10</userinput></entry>
+                <entry>Shows lines where "TODO" appears within the first 10 characters</entry>
+              </row>
+              <row>
+                <entry><userinput>le:regexFind(Line, "\\d{4}") != none</userinput></entry>
+                <entry>Shows lines containing a 4-digit number</entry>
               </row>
               <row>
                 <entry><userinput>le:matchContext(Bookmarked, 2, 2)</userinput></entry>
