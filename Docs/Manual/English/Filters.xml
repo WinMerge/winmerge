@@ -59,10 +59,10 @@
         shows only minimal information about them. For example, you cannot tell
         whether a skipped file is a text file or binary.</para>
 
-        <para>The display folder filter is also available for folder compare
+        <para>The display file/folder filter is also available for folder compare
         operations. Unlike file filters, it does not affect the comparison result;
         it only controls which items are visible in the Folder Compare window.
-        See <xref linkend="Filters_DisplayFolderFilter"/>.</para>
+        See <xref linkend="Filters_DisplayFileFolderFilter"/>.</para>
       </listitem>
     </varlistentry>
 
@@ -2589,12 +2589,12 @@ Pekka Himanen</screen></para>
     </section>
   </section>
 
-  <section id="Filters_DisplayFolderFilter">
-    <title>Using the display folder filter<indexterm>
-        <primary>display folder filter</primary>
+  <section id="Filters_DisplayFileFolderFilter">
+    <title>Using the display file/folder filter<indexterm>
+        <primary>display file/folder filter</primary>
       </indexterm></title>
 
-    <para>The display folder filter in the Folder Compare window works the same way as
+    <para>The display file/folder filter in the Folder Compare window works the same way as
     the display line filter in the File Compare window, but operates on files and folders
     instead of lines. It controls which items are visible without affecting the comparison result.</para>
 
