@@ -433,14 +433,14 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	else if (command >= ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1 && command <= ID_FILTERMENU_LINE_MATCHNUMBER_GT_5)
 	{
 		const tchar_t* matchFuncName = m_byBlock ? _T("matchBlockNumber") : _T("matchNumber");
-		const tchar_t* countFuncName = m_byBlock ? _T("blockCount") : _T("count");
+		const tchar_t* countFuncName = m_byBlock ? _T("matchBlockCount") : _T("matchCount");
 		const tchar_t* Exprs[] = {
 			_T("%s(%%1) = 1"), _T("%s(%%1) = %s(%%1)"),
 			_T("%s(%%1) <= 5"), _T("%s(%%1) > 5"),
 		};
 		int index = command - ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1;
 		String expr;
-		if (index == 1) // Last occurrence: matchNumber(%1) = count(%1)
+		if (index == 1) // Last occurrence: matchNumber(%1) = matchCount(%1)
 			expr = strutils::format(Exprs[index], matchFuncName, countFuncName);
 		else
 			expr = strutils::format(Exprs[index], matchFuncName);

@@ -2434,11 +2434,41 @@ Pekka Himanen</screen></para>
             shows only the first difference block.</para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>count</function>(<replaceable>expr</replaceable>)</term>
+            <term><function>matchCount</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Total number of lines matching
             <replaceable>expr</replaceable> across the whole file.
-            Example: <literal>le:matchNumber(Different) = count(Different)</literal>
+            Example: <literal>le:matchNumber(Different) = matchCount(Different)</literal>
             shows only the last difference block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockNumber</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Returns the 1-based block number of the matching block
+            containing the current line. Returns <literal>undefined</literal> if the current
+            line is not in any matching block.
+            Example: <literal>le:matchBlockNumber(Different) = 1</literal>
+            shows only lines in the first difference block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockOffset</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Returns the 1-based offset of the current line within
+            the matching block. Returns <literal>undefined</literal> if the current
+            line is not in any matching block.
+            Example: <literal>le:matchBlockOffset(Different) = 1</literal>
+            shows only the first line of each difference block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockSize</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Returns the size (number of lines) of the matching block
+            containing the current line. Returns <literal>undefined</literal> if the current
+            line is not in any matching block.
+            Example: <literal>le:matchBlockSize(Different) &gt; 5</literal>
+            shows only lines in difference blocks larger than 5 lines.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockCount</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Total number of matching blocks in the file.
+            Example: <literal>le:matchBlockNumber(Different) = matchBlockCount(Different)</literal>
+            shows only lines in the last difference block.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchDistance</function>(<replaceable>expr</replaceable>),
@@ -2545,6 +2575,18 @@ Pekka Himanen</screen></para>
               <row>
                 <entry><userinput>le:matchNumber(Different) = 1</userinput></entry>
                 <entry>Shows only the first difference block</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchBlockNumber(Different) &lt;= 3</userinput></entry>
+                <entry>Shows only lines in the first 3 difference blocks</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchBlockOffset(Different) = 1</userinput></entry>
+                <entry>Shows only the first line of each difference block</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchBlockSize(Different) &gt; 10</userinput></entry>
+                <entry>Shows only lines in difference blocks larger than 10 lines</entry>
               </row>
               <row>
                 <entry><userinput>le:Different and Line contains "ERROR"</userinput></entry>
