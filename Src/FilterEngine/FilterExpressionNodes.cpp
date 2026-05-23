@@ -12,6 +12,7 @@
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "ILineDataProvider.h"
+#include "locality.h"
 #include "paths.h"
 #include "unicoder.h"
 #include "FileTransform.h"
@@ -26,6 +27,7 @@
 #include <Poco/DateTimeParser.h>
 #include <Poco/String.h>
 #include <Poco/Glob.h>
+
 
 static std::optional<bool> evalAsBool(const ValueType& val)
 {
@@ -1028,6 +1030,12 @@ static std::optional<Poco::Timestamp> ParseDateTime(const std::string& str)
 			// Try next format
 		}
 	}
+
+	// Try platform-specific parsing using Windows locale-aware VarDateFromStr
+	int64_t result;
+	if (locality::ParseDateTime(ucr::toTString(str), result))
+		return Poco::Timestamp(result);
+
 	return std::nullopt;
 }
 

@@ -955,7 +955,7 @@ msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: ./English/Command_line.xml:557
-msgid "Controls the \"Whitespace\" option (whitespace comparison settings) persistently:"
+msgid "Controls the \"Whitespaces\" option (whitespace comparison settings) persistently:"
 msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
@@ -5577,7 +5577,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: ./English/Configuration.xml:578
-msgid "Whitespace"
+msgid "whitespaces"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
@@ -5591,7 +5591,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:577
-msgid "Whitespace<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Whitespaces<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
@@ -5862,7 +5862,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:885
-msgid "<option>Enabled</option>: Within a diff hunk, line breaks are treated as spaces. For example, the following difference is ignored: <placeholder type=\"screen\" id=\"0\"/> <note> Useful when combined with whitespace options such as <option>Whitespace → Ignore change</option> or <option>Whitespace → Ignore all</option>.  </note>"
+msgid "<option>Enabled</option>: Within a diff hunk, line breaks are treated as spaces. For example, the following difference is ignored: <placeholder type=\"screen\" id=\"0\"/> <note> Useful when combined with whitespace options such as <option>Whitespaces → Ignore change</option> or <option>Whitespaces → Ignore all</option>.  </note>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
