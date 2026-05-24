@@ -792,7 +792,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor &
 	{
 		// Line with WinMerge flag, 
 		// Lines with only the LF_DIFF/LF_TRIVIAL flags are not colored with Winmerge colors
-		if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF & ~LF_TRIVIAL & ~LF_MOVED & ~LF_SNP))
+		if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF & ~LF_TRIVIAL & ~LF_MOVED & ~LF_SNP & ~LF_DIFF_1STONLY & ~LF_DIFF_2NDONLY & ~LF_DIFF_3RDONLY))
 		{
 			crText = m_cachedColors.clrDiffText;
 			bDrawWhitespace = true;
