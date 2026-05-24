@@ -5,7 +5,7 @@
   <title>Comparación de archivos de imagen</title>
 
   <indexterm>
-    <primary>comparación de archivos</primary>
+    <primary>comparar archivos</primary>
     <secondary>imágenes</secondary>
   </indexterm>
 
@@ -112,9 +112,9 @@ diferencias de color.</para>
         <varlistentry>
           <term>Detectar Ins/Borrar</term>
           <listitem>
-            <para>Por desarrollar</para>
+            <para>Por determinar</para>
             <itemizedlist>
-              <listitem><guilabel>Ninguno</guilabel></listitem>
+              <listitem><guilabel>Ninguna</guilabel></listitem>
               <listitem><guilabel>Vertical</guilabel></listitem>
               <listitem><guilabel>Horizontal</guilabel></listitem>
             </itemizedlist>
@@ -137,7 +137,7 @@ diferencias de color.</para>
             <para>Actualmente están disponibles los siguientes <emphasis>modos de
 superposición</emphasis>:</para>
             <itemizedlist>
-              <listitem><guilabel>Ninguno</guilabel></listitem>
+              <listitem><guilabel>Ninguna</guilabel></listitem>
               <listitem><guilabel>XOR</guilabel></listitem>
               <listitem><guilabel>Mezcla Alpha</guilabel></listitem>
               <listitem><guilabel>Animación con mezcla Alpha</guilabel></listitem>

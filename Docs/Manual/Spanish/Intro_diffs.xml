@@ -9,7 +9,7 @@ obtener información relacionada con los archivos hexadecimales.</para>
 
   <section id="Intro_diffs_comparing">
     <title>Comparación de archivos<indexterm>
-        <primary>comparación de archivos</primary>
+        <primary>comparar archivos</primary>
 
         <secondary>resumen</secondary>
       </indexterm></title>
@@ -35,7 +35,7 @@ diferencias entre varios archivos. Por este motivo, muchas herramientas de
 comparación de diferencias utilizan las líneas como unidad básica de
 comparación.</para>
 
-    <para>WinMerge también utiliza las líneas como unidad básica de comparación.  Las
+    <para>WinMerge también utiliza las líneas como unidad básica de comparación. Las
 palabras y los caracteres no se tratan de forma individual en las
 operaciones de comparación y combinación. A modo de ejemplo, imaginemos dos
 archivos que son idénticos salvo por una línea que difiere. Si las dos
@@ -91,8 +91,8 @@ escritorio.</para>
 
         <listitem>
           <para>En el cuadro de diálogo "Seleccione archivos y carpetas" especifique
-<filename>Fichero1</filename> como <guilabel>1er</guilabel> archivo y
-<filename>Fichero2</filename>como <guilabel>2º</guilabel> archivo y haga
+<filename>Archivo1</filename> como <guilabel>1er</guilabel> archivo y
+<filename>Archivo2</filename> como <guilabel>2º</guilabel> archivo y haga
 clic en <guibutton>Comparar</guibutton>. La ventana de comparación de
 archivos muestra los dos archivos en los paneles izquierdo y derecho de la
 siguiente manera:</para>
@@ -144,7 +144,7 @@ en el mismo lugar. Esta línea en blanco no existe en el archivo fuente
 <filename>File2</filename>, así que, ¿qué hace ahí en WinMerge?</para>
 
                 <para>WinMerge inserta una o varias líneas grises en blanco en una de las
-versiones de una comparación cuando la otra versión tiene más líneas.  Estas
+versiones de una comparación cuando la otra versión tiene más líneas. Estas
 líneas grises vacías no representan líneas en blanco en el archivo de
 origen; son solo marcadores de posición en la pantalla. El objetivo de las
 líneas de separación es mantener alineadas verticalmente las versiones
@@ -188,8 +188,8 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
 
           <para>Al seleccionar una diferencia, las dos versiones se cargan en el panel de
 diferencias. El panel de diferencias muestra qué líneas forman parte de la
-diferencia y le permite examinarlas de forma aislada del resto del archivo.
-En nuestro ejemplo, la Diferencia 1 tiene claramente dos líneas.</para>
+diferencia y le permite examinarlas de forma aislada del resto del
+archivo. En nuestro ejemplo, la Diferencia 1 tiene claramente dos líneas.</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="588"
@@ -204,7 +204,7 @@ fileref="screenshots/filecomp_diffpane1.png" /> </imageobject><textobject>
           <para>Haga clic en el botón<inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
-                <phrase>Botón diferencia siguiente</phrase>
+                <phrase>Botón Diferencia siguiente</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Siguiente diferencia</guibutton> de la barra de herramientas (o
@@ -214,7 +214,7 @@ se selecciona la última línea.</para>
 
           <para>Ha llegado al final del archivo y ha tenido la oportunidad de examinar todas
 las diferencias. Este ha sido un ejemplo sencillo, solo había dos
-diferencias y hay otras formas de comparar diferencias en WinMerge.  Sin
+diferencias y hay otras formas de comparar diferencias en WinMerge. Sin
 embargo, demuestra la eficacia de utilizar los controles de navegación de
 WinMerge.</para>
         </listitem>
@@ -230,7 +230,7 @@ WinMerge.</para>
       </indexterm></title>
 
     <para>El objetivo de la combinación es unir los cambios de dos archivos en uno
-solo.  La combinación amplía los conceptos y funciones utilizados en la
+solo. La combinación amplía los conceptos y funciones utilizados en la
 operación de comparación: le recomendamos que lea la sección anterior antes
 de comenzar esta sección. Además de detectar las diferencias entre dos
 versiones de un archivo, resolvemos dichas diferencias y guardamos el
@@ -240,7 +240,7 @@ resultado en una única versión <glossterm>objetivo</glossterm>.</para>
 habitual en entornos de trabajo en equipo. Por ejemplo, supongamos que usted
 y otra persona desean añadir código al mismo archivo de programa al mismo
 tiempo. Ambos comienzan con una copia idéntica del archivo, pero durante el
-desarrollo crean versiones distintas que ya no son idénticas.  En algún
+desarrollo crean versiones distintas que ya no son idénticas. En algún
 momento, las dos versiones deben combinarse en una sola que conserve los
 cambios de cada colaborador.</para>
 
@@ -257,10 +257,10 @@ diferencias y combinar archivos, pero quizá prefiera utilizar WinMerge.</para>
 
     <para>Al igual que al comparar, utilice los controles de la barra de herramientas
 de WinMerge (o los atajos de teclado) para recorrer sistemáticamente las
-diferencias.  Resuelva cada diferencia copiando el
+diferencias. Resuelva cada diferencia copiando el
 <glossterm>candidato</glossterm> izquierdo o del derecho al otro
 lado. Cuando haya resuelto todas las diferencias, WinMerge le indicará que
-todas las diferencias se han resuelto (las versiones son idénticas)  y habrá
+todas las diferencias se han resuelto (las versiones son idénticas) y habrá
 terminado la combinación.</para>
 
     <section>
@@ -293,13 +293,13 @@ diferencia</guibutton> en su lugar.</para>
           <para>Haga clic en el botón<inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
-                <phrase>botón Copiar al derecho</phrase>
+                <phrase>Botón Copiar al derecho</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Copiar al derecho</guibutton> para combinar la Diferencia 1 del
-<filename>Fichero1</filename> con el <filename>Fichero2</filename>. En el
-<filename>Fichero2</filename> observe que la única línea de diferencia se ha
-sustituido por las dos líneas del <filename>Fichero1</filename>, y que la
+<filename>Archivo1</filename> con el <filename>Archivo2</filename>. En el
+<filename>Archivo2</filename> observe que la única línea de diferencia se ha
+sustituido por las dos líneas del <filename>Archivo1</filename>, y que la
 línea en blanco grisácea ya no aparece.</para>
         </listitem>
 
@@ -307,7 +307,7 @@ línea en blanco grisácea ya no aparece.</para>
           <para>Haga clic en el botón<inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
-                <phrase>Botón diferencia siguiente</phrase>
+                <phrase>Botón Diferencia siguiente</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Siguiente diferencia</guibutton> para seleccionar la Diferencia
@@ -324,7 +324,7 @@ fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
               </textobject>
             </inlinemediaobject>
 <guibutton>Copiar al izquierdo</guibutton> para combinar la Diferencia 2 del
-<filename>Fichero2</filename> con el <filename>Fichero1</filename>.</para>
+<filename>Archivo2</filename> con el <filename>Archivo1</filename>.</para>
 
           <para>El mensaje que informa que los archivos son idénticos le indica que la
 combinación se ha completado:</para>
@@ -367,7 +367,7 @@ independiente, como ocurre con algunas herramientas de comparación. Por lo
 tanto, la estrategia más sencilla consiste en guardar los cambios en uno,
 dos o tres archivos de origen. Pulse<keycombo> <keycap>Ctrl</keycap>
 <keycap>S</keycap> </keycombo> en cualquier momento para guardar los cambios
-actuales en todos los archivos.  También puede hacer clic en<menuchoice>
+actuales en todos los archivos. También puede hacer clic en<menuchoice>
 <guimenu>Archivo</guimenu> <guimenuitem>Guardar izquierdo</guimenuitem>
 </menuchoice>, <menuchoice> <guimenu>Archivo</guimenu> <guimenuitem>Guardar
 central</guimenuitem> </menuchoice> o<menuchoice> <guimenu>Archivo</guimenu>

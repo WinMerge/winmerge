@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-04-30 15:39+0900\n"
-"PO-Revision-Date: 2026-05-18 21:39+0900\n"
+"PO-Revision-Date: 2026-05-23 23:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -114,7 +114,7 @@ msgid ""
 "Help opens at the beginning."
 msgstr ""
 "Utilice el modificador /? o -? al ejecutar WinMerge desde la línea de "
-"comandos.  Abrirá la ayuda HTML por el principio."
+"comandos. Abrirá la ayuda HTML por el principio."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:66
@@ -368,13 +368,13 @@ msgstr "La fuente en negrita en el texto descriptivo puede indicar:"
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:235
 msgid "A value or string that you are instructed to enter"
-msgstr "Un valor o cadena que se le indica que debe introducir."
+msgstr "Un valor o cadena que se le indica que debe introducir"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:240
 msgid "The name of a GUI button or keycap"
 msgstr ""
-"El nombre de un botón de la interfaz gráfica de usuario (GUI) o una tecla."
+"El nombre de un botón de la interfaz gráfica de usuario (GUI) o una tecla"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:246
@@ -388,7 +388,7 @@ msgid ""
 "example, press the <keycap>Ctrl</keycap> and <keycap>O</keycap> keys in "
 "combination."
 msgstr ""
-"<wordasword>Pulsar</wordasword> indica una acción del teclado.  En este "
+"<wordasword>Pulsar</wordasword> indica una acción del teclado. En este "
 "ejemplo, pulse la combinación de teclas <keycap>Ctrl</keycap> y <keycap>O</"
 "keycap> ."
 
@@ -448,7 +448,7 @@ msgstr ""
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:286
 msgid "Enter <replaceable>options file</replaceable>.ini"
-msgstr "Introduzca el <replaceable>archivo de opciones</replaceable>.ini."
+msgstr "Introduzca el <replaceable>archivo de opciones</replaceable>.ini"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><para>
 #: English/About_Doc.xml:286
@@ -508,7 +508,7 @@ msgstr ""
 #: English/About_Doc.xml:314 English/Configuration.xml:619
 #, no-wrap
 msgid "TwoWords"
-msgstr "Dospalabras"
+msgstr "TwoWords"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><para>
 #: English/About_Doc.xml:313 English/Filters.xml:1606 English/Filters.xml:1617
@@ -528,7 +528,7 @@ msgstr "El texto monoespaciado puede indicar:"
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:318
 msgid "A path or the name of a file or other system item"
-msgstr "Una ruta o el nombre de un archivo u otro elemento del sistema."
+msgstr "Una ruta o el nombre de un archivo u otro elemento del sistema"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:322
@@ -544,7 +544,7 @@ msgstr "Ejemplo de salida"
 #: English/About_Doc.xml:330
 msgid "Information that you enter in a form or on the command line"
 msgstr ""
-"Información que se introduce en un formulario o en la línea de comandos."
+"Información que se introduce en un formulario o en la línea de comandos"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><cmdsynopsis>
 #: English/About_Doc.xml:338
@@ -570,7 +570,7 @@ msgid ""
 "must enter an input path with the command; you can enter an output path, but "
 "the command is valid without it."
 msgstr ""
-"En las líneas de sintaxis, los corchetes indican elementos opcionales.  En "
+"En las líneas de sintaxis, los corchetes indican elementos opcionales. En "
 "este ejemplo, debe introducir una ruta de entrada con el comando; puede "
 "introducir una ruta de salida, pero el comando es válido sin ella."
 
@@ -799,10 +799,10 @@ msgid ""
 "subfolders at the top level of the two target folders. It does not compare "
 "the subfolders."
 msgstr ""
-"Compara todos los archivos de todas las subcarpetas (comparación "
-"recursiva).  Las carpetas únicas (que solo aparecen en un lado) se enumeran "
-"en el resultado de la comparación como elementos separados. Tenga en cuenta "
-"que incluir subcarpetas puede aumentar considerablemente el tiempo de "
+"Compara todos los archivos de todas las subcarpetas (comparación recursiva). "
+"Las carpetas únicas (que solo aparecen en un lado) se enumeran en el "
+"resultado de la comparación como elementos separados. Tenga en cuenta que "
+"incluir subcarpetas puede aumentar considerablemente el tiempo de "
 "comparación. Sin este parámetro, WinMerge solo enumera los archivos y "
 "subcarpetas del nivel superior de las dos carpetas de destino. No compara "
 "las subcarpetas."
@@ -832,7 +832,7 @@ msgstr ""
 #: English/Command_line.xml:417 English/Configuration.xml:277
 #: English/Quick_start.xml:22
 msgid "WinMerge window"
-msgstr "Ventana de WinMerge"
+msgstr "Ventana WinMerge"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:211
@@ -852,7 +852,7 @@ msgid ""
 "can close WinMerge quickly, like a dialog. Without this parameter, you might "
 "have to press <keycap>Esc</keycap> multiple times to close all its windows."
 msgstr ""
-"Le permite cerrar WinMerge con solo pulsar la tecla <keycap>Esc</keycap>.  "
+"Le permite cerrar WinMerge con solo pulsar la tecla <keycap>Esc</keycap>. "
 "Esto resulta útil cuando se utiliza WinMerge como aplicación externa de "
 "comparación: permite cerrar WinMerge rápidamente, como si fuera un cuadro de "
 "diálogo. Sin este parámetro es posible que tenga que pulsar <keycap>Esc</"
@@ -888,7 +888,7 @@ msgid ""
 "name of a file filter like <userinput>XML/HTML Devel</userinput>. Add "
 "quotation marks around a filter mask or name that contains spaces."
 msgstr ""
-"Aplica un filtro específico para restringir la comparación.  El filtro puede "
+"Aplica un filtro específico para restringir la comparación. El filtro puede "
 "ser una máscara de archivo como <filename><userinput>*.h *.cpp</userinput></"
 "filename>, o el nombre de un filtro de archivo como <userinput>XML/HTML "
 "Devel</userinput>. Encierre con comillas una máscara de filtro o un nombre "
@@ -913,11 +913,11 @@ msgid ""
 "<userinput>SizeDate</userinput>, <userinput>Size</userinput> or "
 "<userinput>Existence</userinput>."
 msgstr ""
-"Establece el método de comparación que se utilizará para comparar.  Estas "
+"Establece el método de comparación que se utilizará para comparar. Estas "
 "pueden ser unas de las palabras clave, <userinput>Full</userinput> "
 "(Completo), <userinput>Quick</userinput> (Rápido), <userinput>Binary</"
-"userinput>, (Binario)  <userinput>Date</userinput> (Fecha), "
-"<userinput>SizeDate</userinput>,(TamañoFecha)  <userinput>Size</userinput> "
+"userinput>, (Binario) <userinput>Date</userinput> (Fecha), "
+"<userinput>SizeDate</userinput>,(TamañoFecha) <userinput>Size</userinput> "
 "(Tamaño) o <userinput>Existence</userinput> (Existencia)."
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
@@ -938,7 +938,7 @@ msgid ""
 "<userinput>Binary</userinput>, <userinput>Image</userinput>, "
 "<userinput>Webpage</userinput> or <userinput>Folder</userinput>."
 msgstr ""
-"Especifica el tipo de ventana en la que se mostrarán los archivos.  Estas "
+"Especifica el tipo de ventana en la que se mostrarán los archivos. Estas "
 "pueden ser unas de las palabras clave, <userinput>Text</userinput> (Texto), "
 "<userinput>Table</userinput> (Tabla), <userinput>Binary</userinput> "
 "(Binario), <userinput>Image</userinput> (Imagen) o <userinput>Webpage</"
@@ -960,7 +960,7 @@ msgid ""
 "ignoring files that don't have any differences."
 msgstr ""
 "Cierra WinMerge (después de mostrar un cuadro de diálogo informativo) cuando "
-"se inicia una comparación de archivos idénticos.  El parámetro no tiene "
+"se inicia una comparación de archivos idénticos. El parámetro no tiene "
 "ningún efecto después de la comparación, por ejemplo, si los archivos se "
 "vuelven idénticos como resultado de una fusión o edición. Este parámetro es "
 "útil cuando se utiliza WinMerge como aplicación de comparación externa o "
@@ -1017,7 +1017,7 @@ msgid ""
 "However, it waits for the instance displaying the window to terminate."
 msgstr ""
 "Limita la ventana de WinMerge a una sola instancia, al igual que la opción /"
-"s.  Sin embargo, espera a que finalice la instancia actual que se muestra en "
+"s. Sin embargo, espera a que finalice la instancia actual que se muestra en "
 "la ventana."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
@@ -1102,7 +1102,7 @@ msgid ""
 "MRU list in the Select Files or Folders dialog."
 msgstr ""
 "Impide que WinMerge añada cualesquiera de las rutas (izquierda o derecha) a "
-"la lista de elementos utilizados más recientemente (MRU).  Las aplicaciones "
+"la lista de elementos utilizados más recientemente (MRU). Las aplicaciones "
 "externas no deben añadir rutas a la lista MRU en el cuadro de diálogo "
 "Seleccionar archivos o carpetas."
 
@@ -1297,7 +1297,7 @@ msgid ""
 "around descriptions that contain spaces."
 msgstr ""
 "Especifica una descripción en la barra del título del lado izquierdo, "
-"sustituyendo el texto predeterminado de la carpeta o el nombre del archivo.  "
+"sustituyendo el texto predeterminado de la carpeta o el nombre del archivo. "
 "Por ejemplo: <userinput>/dl \"Version 1.0</userinput>\" o <userinput>/dl "
 "WorkingCopy</userinput>. Utilice comillas alrededor de las descripciones que "
 "contengan espacios."
@@ -1373,7 +1373,7 @@ msgid ""
 "complete, making it suitable for batch or scripted execution."
 msgstr ""
 "Ejecuta WinMerge sin mostrar cuadros de mensaje durante la comparación o la "
-"generación de informes.  El proceso finaliza automáticamente cuando se "
+"generación de informes. El proceso finaliza automáticamente cuando se "
 "completa la operación, lo que lo hace adecuado para la ejecución por lotes o "
 "mediante guiones."
 
@@ -1388,7 +1388,7 @@ msgid ""
 "Runs WinMerge without loading or saving settings from the registry.  All "
 "comparisons use default preferences only."
 msgstr ""
-"Ejecuta WinMerge sin cargar ni guardar la configuración desde el registro.  "
+"Ejecuta WinMerge sin cargar ni guardar la configuración desde el registro. "
 "Todas las comparaciones utilizan únicamente las preferencias predeterminadas."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
@@ -1403,7 +1403,7 @@ msgid ""
 "different, 2: error"
 msgstr ""
 "Establece el resultado de la comparación en el código de salida del proceso. "
-"0: idéntico, 1: diferente, 2: error."
+"0: idéntico, 1: diferente, 2: error"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:555
@@ -1593,7 +1593,7 @@ msgid ""
 "Specifies the plugin pipeline for the Unpacker plugin.  Example: <option>/"
 "unpacker \"SortAscending|SelectLines 1-10\"</option>"
 msgstr ""
-"Especifica la secuencia del complemento para el complemento Unpacker.  "
+"Especifica la secuencia del complemento para el complemento Unpacker. "
 "Example: <option>/unpacker \"SortAscending|SelectLines 1-10\"</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
@@ -1609,7 +1609,7 @@ msgid ""
 "Specifies the plugin pipeline for the Prediffer plugin.  Example: <option>/"
 "prediffer \"IgnoreColumns 1-10\"</option>"
 msgstr ""
-"Especifica la secuencia del complemento para el complemento Prediffer.  "
+"Especifica la secuencia del complemento para el complemento Prediffer. "
 "Example: <option>/prediffer \"IgnoreColumns 1-10\"</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
@@ -1623,8 +1623,8 @@ msgid ""
 "Specifies the codepage to use for file comparison.  Example: <option>/cp "
 "65001</option>"
 msgstr ""
-"Especifica la codificación que se utilizará para comparar archivos.  "
-"Ejemplo: <option>/cp 65001</option>"
+"Especifica la codificación que se utilizará para comparar archivos. Ejemplo: "
+"<option>/cp 65001</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:652
@@ -1677,7 +1677,7 @@ msgid ""
 "in regedit."
 msgstr ""
 "Nota: esta entrada no explica qué nombres de configuración están "
-"disponibles.  Para obtener una lista de configuraciones, consulte "
+"disponibles. Para obtener una lista de configuraciones, consulte "
 "<filename>HKEY_CURRENT_USER\\Software\\Thingamahoochie\\WinMerge</filename> "
 "en el Registro (regedit)."
 
@@ -1774,7 +1774,7 @@ msgstr ""
 "Si <filename class=\"directory\">C:\\Carpeta2</filename> contiene un fichero "
 "llamado <filename>Fichero.txt</filename>: WinMerge resuelve implícitamente "
 "la segunda ruta como una especificación de archivo y compara los dos "
-"archivos.  Por supuesto, el comando no es válido si <filename "
+"archivos. Por supuesto, el comando no es válido si <filename "
 "class=\"directory\">C:\\Carpeta2</filename> <emphasis>no</emphasis> contiene "
 "un archivo llamado <filename>Fichero.txt</filename>."
 
@@ -1818,7 +1818,7 @@ msgstr ""
 "de versiones, en las que puede ser necesario especificar una ruta de salida "
 "para el archivo de <wordasword>resultados</wordasword>. Si especifica una "
 "ruta de salida, WinMerge seguirá mostrando solo dos o tres archivos en la "
-"ventana Comparación de archivos.  Sin embargo, si guarda cualesquiera de "
+"ventana Comparación de archivos. Sin embargo, si guarda cualesquiera de "
 "estos archivos, se escribirá en la ruta de salida, dejando intactos los dos "
 "o tres archivos de origen."
 
@@ -1849,7 +1849,7 @@ msgid ""
 "Outputs a comparison report for files or folders.  Example: "
 "<option>WinMergeU path1 path2 /or c:\\tmp\\report.html</option>"
 msgstr ""
-"Genera un informe comparativo de archivos o carpetas.  Ejemplo: "
+"Genera un informe comparativo de archivos o carpetas. Ejemplo: "
 "<option>WinMergeU ruta1 ruta2 /or c:\\tmp\\report.html</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
@@ -1877,7 +1877,7 @@ msgid ""
 "temporary and not saved."
 msgstr ""
 "<option>/noprefs</option> - ignora las preferencias actuales y utiliza la "
-"configuración predeterminada.  Cualquier cambio realizado con <option>/cfg</"
+"configuración predeterminada. Cualquier cambio realizado con <option>/cfg</"
 "option> será temporal y no se guardará."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
@@ -1946,7 +1946,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:789 English/Compare_files.xml:1805
 msgid "conflict files"
-msgstr "conflictos·entre·archivos"
+msgstr "conflictos entre archivos"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:790 English/Command_line.xml:806
@@ -1976,7 +1976,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
 #: English/Command_line.xml:805
 msgid "ini file"
-msgstr "fichero ini"
+msgstr "ini file"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:809
@@ -2003,7 +2003,7 @@ msgstr "Comparación en formato hexadecimal"
 #: English/Configuration.xml:1198 English/Filters.xml:66
 #: English/Intro_diffs.xml:12 English/Quick_start.xml:325
 msgid "comparing files"
-msgstr "comparación de archivos"
+msgstr "comparar archivos"
 
 #. type: Content of: <article><indexterm><secondary>
 #: English/Compare_bin.xml:10
@@ -2063,7 +2063,7 @@ msgid ""
 "Compare window."
 msgstr ""
 "En este tema se explica cómo comparar y combinar carpetas mediante la "
-"ventana de comparación de carpetas."
+"ventana \"Comparación de carpetas\"."
 
 #. type: Content of: <article><section><title>
 #: English/Compare_dirs.xml:11
@@ -2186,9 +2186,9 @@ msgstr ""
 "útil al comparar archivos binarios de gran tamaño; además, se utiliza "
 "automáticamente para comparar archivos de más de 4 MB. Las posibles "
 "desventajas son que los filtros de línea no funcionan y que no se muestra "
-"información sobre el recuento de diferencias en la ventana de comparación de "
-"carpetas. Esto no debería suponer un problema en la mayoría de los casos, ya "
-"que los archivos de ese tamaño suelen ser binarios."
+"información sobre el recuento de diferencias en la ventana \"Comparación de "
+"carpetas\". Esto no debería suponer un problema en la mayoría de los casos, "
+"ya que los archivos de ese tamaño suelen ser binarios."
 
 #. type: Content of: <article><section><tip><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:84
@@ -2227,7 +2227,7 @@ msgstr ""
 "<guilabel> Comparación rápida de contenidos</guilabel>, por ejemplo, si "
 "tiene muchos archivos de texto de gran tamaño. Para ello, ejecute el comando "
 "de Windows <command>regedit</command>, busque esta clave <placeholder "
-"type=\"screen\" id=\"0\"/> y modifique su valor.  ¡Como siempre, tenga mucho "
+"type=\"screen\" id=\"0\"/> y modifique su valor. ¡Como siempre, tenga mucho "
 "cuidado al modificar el Registro!"
 
 #. type: Content of: <article><section><section><mediaobject><textobject><phrase>
@@ -2299,9 +2299,9 @@ msgid ""
 "displayed with the results calculated at that time, omitting any uncompleted "
 "results."
 msgstr ""
-"Puede hacer clic en <guibutton>Parar</guibutton>para detener la operación en "
-"cualquier momento antes de que finalice la comparación. Se mostrará la "
-"ventana de comparación de carpetas con los resultados calculados hasta ese "
+"Puede hacer clic en <guibutton>Parar</guibutton> para detener la operación "
+"en cualquier momento antes de que finalice la comparación. Se mostrará la "
+"ventana \"Comparación de carpetas\" con los resultados calculados hasta ese "
 "momento omitiendo los resultados que no se hayan completado."
 
 #. type: Content of: <article><section><mediaobject><textobject><phrase>
@@ -2310,7 +2310,7 @@ msgstr ""
 #: English/Compare_dirs.xml:1118 English/Compare_dirs.xml:1131
 #: English/Quick_start.xml:243 English/Quick_start.xml:261
 msgid "Folder Compare window"
-msgstr "Ventana·de·comparación·de·carpetas"
+msgstr "Ventana de comparación de carpetas"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:149 English/Compare_dirs.xml:151
@@ -2442,7 +2442,7 @@ msgstr ""
 "<menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Expandir subcarpetas</"
 "guimenuitem> <guimenuitem>Todas las subcarpetas</guimenuitem> </menuchoice> "
 "o <menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Contraer todas las "
-"subcarpetas</guimenuitem> </menuchoice>del menú"
+"subcarpetas</guimenuitem> </menuchoice>del menú."
 
 #. type: Content of: <article><section><para>
 #: English/Compare_dirs.xml:226
@@ -2543,7 +2543,7 @@ msgstr ""
 "<guimenu>Ver</guimenu>, como <guimenuitem>Mostrar archivos específicos del "
 "izquierdo</guimenuitem>, <guimenuitem>Mostrar archivos específicos del "
 "central</guimenuitem> o <guimenuitem>Mostrar archivos específicos del "
-"derecho</guimenuitem>"
+"derecho.</guimenuitem>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:286
@@ -2911,7 +2911,7 @@ msgstr ""
 #: English/Compare_dirs.xml:457 English/Compare_files.xml:1213
 #: English/Intro_diffs.xml:231 English/Intro_diffs.xml:350
 msgid "Next Difference button"
-msgstr "Botón diferencia siguiente"
+msgstr "Botón Diferencia siguiente"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:448
@@ -2923,12 +2923,12 @@ msgid ""
 "guimenuitem> button finds the next different file or folder and selects it."
 msgstr ""
 "Puede utilizar el ratón, así como <link linkend=\"Shortcut_keys\">el "
-"teclado</link>y los atajos del menú contextual para navegar por la ventana "
-"de comparación de carpetas. También puede utilizar los botones de la barra "
+"teclado</link> y los atajos del menú contextual para navegar por la ventana "
+"\"Comparación de carpetas\". También puede utilizar los botones de la barra "
 "de herramientas. Por ejemplo, el botón <placeholder "
 "type=\"inlinemediaobject\" id=\"0\"/> El botón <guimenuitem>Diferencia "
 "siguiente</guimenuitem> busca el siguiente fichero o carpeta diferente y lo "
-"selecciona"
+"selecciona."
 
 #. type: Content of: <article><section><section><note><para>
 #: English/Compare_dirs.xml:463
@@ -2946,7 +2946,7 @@ msgid ""
 msgstr ""
 "Puede seleccionar varios ficheros y carpetas. Sin embargo, algunas "
 "operaciones (como <command>Renombrar</command>) no están disponibles con "
-"selecciones múltiples"
+"selecciones múltiples."
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:471
@@ -3134,7 +3134,7 @@ msgstr ""
 #: English/Compare_dirs.xml:580 English/Compare_files.xml:1582
 #: English/Intro_diffs.xml:332
 msgid "Copy Right button"
-msgstr "botón Copiar al derecho"
+msgstr "Botón Copiar al derecho"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
 #: English/Compare_dirs.xml:584 English/Compare_files.xml:1608
@@ -3193,7 +3193,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:614 English/Configuration.xml:2853
 msgid "deleting files"
-msgstr "eliminación de archivos"
+msgstr "eliminar ficheros"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:613
@@ -3230,12 +3230,12 @@ msgstr ""
 "Le recomendamos encarecidamente que mantenga activada la opción <guilabel> "
 "Enviar archivos eliminados a la Papelera de reciclaje</guilabel> (véase "
 "<xref linkend=\"Configuration\" />), para que pueda deshacer las "
-"eliminaciones en caso de errores.  Además, debe mantener activada la "
-"Papelera de reciclaje: la opción de WinMerge no funciona si desactiva la "
-"Papelera de reciclaje en Windows. Una vez más, no puede deshacer la "
-"eliminación de archivos o carpetas a menos que utilice tanto la opción de "
-"WinMerge <guilabel>Enviar archivos eliminados a la Papelera de reciclaje</"
-"guilabel> como la Papelera de reciclaje de Windows."
+"eliminaciones en caso de errores. Además, debe mantener activada la Papelera "
+"de reciclaje: la opción de WinMerge no funciona si desactiva la Papelera de "
+"reciclaje en Windows. Una vez más, no puede deshacer la eliminación de "
+"archivos o carpetas a menos que utilice tanto la opción de WinMerge "
+"<guilabel>Enviar archivos eliminados a la Papelera de reciclaje</guilabel> "
+"como la Papelera de reciclaje de Windows."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:640
@@ -3402,7 +3402,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_dirs.xml:739
 msgid "protecting files in"
-msgstr "Protección de archivos en"
+msgstr "protección de archivos en"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:743
@@ -3471,7 +3471,7 @@ msgid ""
 msgstr ""
 "La marca <guilabel>SL</guilabel> que aparece en el panel izquierdo, central "
 "o derecho de la barra de estado (cerca de la esquina inferior derecha de la "
-"ventana)  indica que ese panel está actualmente en modo de solo lectura."
+"ventana) indica que ese panel está actualmente en modo de solo lectura."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:782
@@ -3680,7 +3680,7 @@ msgstr ""
 "guimenuitem> para editar el archivo) se guardará en el archivo comprimido. "
 "Sin embargo, no es posible actualizar el contenido del archivo comprimido "
 "mediante las operaciones de WinMerge <guimenuitem>Copiar</guimenuitem>, "
-"<guimenuitem>Mover</guimenuitem> o <guimenuitem>Eliminar</guimenuitem>.  En "
+"<guimenuitem>Mover</guimenuitem> o <guimenuitem>Eliminar</guimenuitem>. En "
 "su lugar, cree un nuevo archivo comprimido utilizando uno de los accesos "
 "directos de <guimenuitem>Zip</guimenuitem>."
 
@@ -3733,7 +3733,7 @@ msgid ""
 msgstr ""
 "Aunque una comparación de carpetas no recursiva no incluye el contenido de "
 "las subcarpetas, estas aparecen en la lista de resultados como si fueran "
-"archivos.  Del mismo modo, la carpeta principal de la carpeta comparada "
+"archivos. Del mismo modo, la carpeta principal de la carpeta comparada "
 "aparece como un archivo en la parte superior de la tabla. Al abrir estas "
 "carpetas directamente en la ventana de comparación de carpetas, puede "
 "explorar de forma selectiva un árbol de directorios. Este enfoque - comparar "
@@ -3850,7 +3850,7 @@ msgid ""
 "result) can you compare two subfolders. First select the two folders in the "
 "Folder Compare window, as shown in the following figure:"
 msgstr ""
-"No es posible comparar dos subcarpetas (es decir, seleccionar dos filas)  "
+"No es posible comparar dos subcarpetas (es decir, seleccionar dos filas) "
 "cuando las subcarpetas de cada lado son diferentes. Solo se pueden comparar "
 "dos subcarpetas si previamente se han comparado carpetas idénticas (por "
 "ejemplo, navegando por una sola subcarpeta en el resultado de una "
@@ -3917,7 +3917,7 @@ msgstr "carpetas específicas"
 #: English/Compare_dirs.xml:1050 English/Configuration.xml:1140
 #: English/Configuration.xml:1169
 msgid "comparing"
-msgstr "comparación"
+msgstr "compararación"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:1047
@@ -3953,7 +3953,7 @@ msgstr ""
 "Sin embargo, es posible que prefiera no copiar toda la estructura de "
 "carpetas. A partir de la versión 2.8, WinMerge ofrece una forma alternativa "
 "de crear una nueva carpeta vacía. Esto le permite copiar solo los elementos "
-"que desee de la carpeta original específica a la carpeta vacía creada.  Este "
+"que desee de la carpeta original específica a la carpeta vacía creada. Este "
 "procedimiento muestra cómo hacerlo:"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
@@ -4277,7 +4277,7 @@ msgid ""
 "compare, it does not include folders: instead, folders are listed in the "
 "Folder column."
 msgstr ""
-"<guilabel>Nombre de archivo</guilabel>: nombre del elemento comparado.  En "
+"<guilabel>Nombre de archivo</guilabel>: nombre del elemento comparado. En "
 "una comparación no recursiva, esta columna incluye tanto archivos como "
 "carpetas. En una comparación recursiva, no incluye carpetas, en su lugar, "
 "las carpetas aparecen en la columna \"Carpeta\"."
@@ -4313,7 +4313,7 @@ msgid ""
 msgstr ""
 "<guilabel>Fecha del izquierdo</guilabel>, <guilabel>Fecha del central</"
 "guilabel>, <guilabel>Fecha del derecho</guilabel>: fechas de modificación de "
-"cada elemento.  La más reciente de las dos fechas (o la fecha de cualquier "
+"cada elemento. La más reciente de las dos fechas (o la fecha de cualquier "
 "elemento único) va precedida de un asterisco ( * )."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -4470,7 +4470,7 @@ msgid ""
 "guimenuitem> </menuchoice>."
 msgstr ""
 "Puede ocultar rápidamente uno o varios elementos seleccionados mediante el "
-"comando del menú contextual <guimenuitem>Ocultar elementos</guimenuitem>.  "
+"comando del menú contextual <guimenuitem>Ocultar elementos</guimenuitem>. "
 "Los elementos permanecerán ocultos hasta que actualice la vista (pulse "
 "<keycap>F5</keycap>) o haga clic en <menuchoice> <guimenu>Ver</guimenu> "
 "<guimenuitem>Mostrar elementos ocultos</guimenuitem> </menuchoice>."
@@ -4518,7 +4518,7 @@ msgid ""
 msgstr ""
 "Si la selección se produce en ambos lados, puede elegir entre el "
 "<guimenu>menú contextual del izquierdo</guimenu> o el <guimenu>menú "
-"contextual del derecho</guimenu>.  Si la selección se produce en todos los "
+"contextual del derecho</guimenu>. Si la selección se produce en todos los "
 "lados, puede elegir entre el <guimenu>menú contextual del izquierdo</"
 "guimenu>, el <guimenu>menú contextual del central</guimenu> o el "
 "<guimenu>menú contextual del derecho</guimenu>. Si el elemento solo aparece "
@@ -4591,7 +4591,7 @@ msgstr ""
 "Clic <menuchoice> <guimenu>Archivo</guimenu> <guimenuitem>Abrir</"
 "guimenuitem> </menuchoice>. Utilice el cuadro de diálogo \"Seleccionar "
 "archivos o carpetas\" para especificar los archivos de origen del izquierdo "
-"y del derecho que se van a comparar.  Para obtener más información sobre el "
+"y del derecho que se van a comparar. Para obtener más información sobre el "
 "cuadro de diálogo \"Seleccionar archivos o carpetas\", consulte la sección "
 "<xref linkend=\"Open_paths\" />."
 
@@ -4711,7 +4711,7 @@ msgid ""
 msgstr ""
 "Uno de los paneles de archivo está siempre activo (lo indica el fondo oscuro "
 "del encabezado). El otro está inactivo y tiene una barra de encabezado más "
-"clara.  Solo se puede editar en el panel activo (tal y como se describe en "
+"clara. Solo se puede editar en el panel activo (tal y como se describe en "
 "<xref linkend=\"CompareFiles_editing\" />). Haga clic en cualesquiera de los "
 "dos lados para activarlo y desactivar el otro."
 
@@ -4769,7 +4769,7 @@ msgstr ""
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_files.xml:134 English/Configuration.xml:2649
 msgid "difference colors"
-msgstr "colores para diferencias"
+msgstr "colores de diferencias"
 
 #. type: Content of: <article><section><section><section><indexterm><secondary>
 #: English/Compare_files.xml:136 English/Compare_files.xml:592
@@ -4857,9 +4857,9 @@ msgid ""
 "deleted difference, marked here with the default gray color."
 msgstr ""
 "La línea en blanco del <filename>archivo 2</filename> no tiene una línea en "
-"blanco equivalente en el <filename>archivo 1</filename>.  WinMerge "
-"interpreta la línea en blanco que falta como una diferencia eliminada, "
-"marcada aquí con el color gris predeterminado."
+"blanco equivalente en el <filename>archivo 1</filename>. WinMerge interpreta "
+"la línea en blanco que falta como una diferencia eliminada, marcada aquí con "
+"el color gris predeterminado."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><orderedlist><listitem><para>
 #: English/Compare_files.xml:186
@@ -4939,7 +4939,7 @@ msgstr "Difference block colors with ignored diff"
 #: English/Compare_files.xml:238 English/Compare_files.xml:917
 #: English/Configuration.xml:906
 msgid "moved differences"
-msgstr "diferencias desplazadas"
+msgstr "diferencias despalzadas"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:237
@@ -4957,7 +4957,7 @@ msgstr ""
 "Las diferencias por desplazamiento son líneas idénticas que se encuentran en "
 "ubicaciones diferentes en los archivos comparados, siempre que "
 "<option>Habilitar detección de bloques desplazados</option> esté activada en "
-"la página \"Comparar\" cuadro de diálogo \"Configuración\".  La siguiente "
+"la página \"Comparar\" cuadro de diálogo \"Configuración\". La siguiente "
 "captura de pantalla muestra la misma comparación que la anterior, pero esta "
 "vez con la detección de bloques desplazados activada."
 
@@ -5048,9 +5048,9 @@ msgstr ""
 "¿Qué significa <quote>similar</quote>? Por lo general, esta función funciona "
 "mejor en casos sencillos, por ejemplo, cuando las líneas presentan grandes "
 "similitudes. Cuando se detectan, las líneas similares se ajustan para "
-"alinearlas en el panel \"Archivo\".  La siguiente figura muestra "
+"alinearlas en el panel \"Archivo\". La siguiente figura muestra "
 "comparaciones de los mismos dos archivos, antes y después de activar la "
-"opción <option>Alinear líneas similares</option>"
+"opción <option>Alinear líneas similares.</option>"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><simplelist><member><inlinemediaobject>
 #: English/Compare_files.xml:304
@@ -5113,7 +5113,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:338 English/Configuration.xml:2436
 msgid "line differences"
-msgstr "diferencias entre líneas"
+msgstr "diferencia de líneas"
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:340
@@ -5330,7 +5330,7 @@ msgstr ""
 "Una diferencia de línea a nivel de carácter incluye el primer y el último "
 "carácter diferente de una palabra, así como todos los caracteres que hay "
 "entre ellos. Una sola diferencia a nivel de carácter puede abarcar palabras "
-"adyacentes.  El siguiente ejemplo lo ilustra:"
+"adyacentes. El siguiente ejemplo lo ilustra:"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><mediaobject>
 #: English/Compare_files.xml:459
@@ -5385,7 +5385,7 @@ msgid ""
 msgstr ""
 "Las palabras y los caracteres en las diferencias entre líneas pueden "
 "separarse mediante espacios en blanco o mediante una combinación de espacios "
-"en blanco y signos de puntuación.  Los espacios en blanco (la opción "
+"en blanco y signos de puntuación. Los espacios en blanco (la opción "
 "predeterminada) son la elección habitual para comparar la mayoría de los "
 "archivos de texto. Todos los ejemplos anteriores de diferencias entre líneas "
 "utilizan espacios en blanco para separar palabras y caracteres."
@@ -5448,8 +5448,8 @@ msgstr ""
 "<guilabel>Rehacer</guilabel>, <guilabel>Buscar</guilabel> y "
 "<guilabel>Reemplazar</guilabel> e <guilabel>Ir a...</guilabel>. Estas tareas "
 "básicas de edición suelen ser necesarias durante la combinación (por "
-"ejemplo, para modificar texto dentro de las diferencias).  Puede editar en "
-"el panel de archivo activo (recuerde: haga clic en un panel para activarlo). "
+"ejemplo, para modificar texto dentro de las diferencias). Puede editar en el "
+"panel de archivo activo (recuerde: haga clic en un panel para activarlo). "
 "Los cambios no se guardan en un archivo hasta que guarde un panel en un "
 "archivo de resultados."
 
@@ -5462,8 +5462,8 @@ msgid ""
 "the preceding screenshot shows."
 msgstr ""
 "Las funciones de edición de WinMerge también incluyen el resaltado de "
-"sintaxis.  Esta función opcional es compatible con varios formatos de "
-"archivo y permite configurar los colores utilizados. Tenga en cuenta que el "
+"sintaxis. Esta función opcional es compatible con varios formatos de archivo "
+"y permite configurar los colores utilizados. Tenga en cuenta que el "
 "resaltado de sintaxis no se aplica a las diferencias, tal y como muestra la "
 "captura de pantalla anterior."
 
@@ -5690,7 +5690,7 @@ msgstr ""
 #: English/Compare_files.xml:698
 msgid "File Compare window margin with bookmark and word wrap"
 msgstr ""
-"Margen de la ventana de comparación de archivos con marcador y ajuste de "
+"Margen de la ventana \"Comparación de archivos\" con marcador y ajuste de "
 "línea"
 
 #. type: Content of: <article><section><section><section><para>
@@ -6038,7 +6038,7 @@ msgstr ""
 "sobre el panel de localización. La altura y la posición de la barra de área "
 "se corresponden con la parte de los archivos que se ve en la zona de "
 "desplazamiento. Por ejemplo, es posible que vea cómo la barra se expande o "
-"se contrae si cambia la altura de los paneles de archivos.  Esta "
+"se contrae si cambia la altura de los paneles de archivos. Esta "
 "sincronización entre la barra de visualización del panel de localización y "
 "los paneles de archivos permite una navegación rápida y la realización de "
 "algunas acciones útiles:"
@@ -6061,7 +6061,7 @@ msgid ""
 msgstr ""
 "Por el contrario, puede arrastrar la barra del área de visualización del "
 "panel de localización hacia arriba o hacia abajo para desplazarse por los "
-"paneles de archivos.  Esta acción con el control deslizante resulta muy útil "
+"paneles de archivos. Esta acción con el control deslizante resulta muy útil "
 "para navegar por archivos largos."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
@@ -6234,7 +6234,7 @@ msgstr "para la ventana de comparación de archivos"
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:1007 English/Configuration.xml:2269
 msgid "tabs"
-msgstr "tabulaciones"
+msgstr "pestañas"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:1009
@@ -6257,10 +6257,9 @@ msgid ""
 "several panes with different types of information about the document and "
 "your location in it:"
 msgstr ""
-"Cada panel de archivos contiene una barra de estado en la parte inferior.  "
-"La barra de estado contiene varios paneles con distintos tipos de "
-"información sobre el documento y la posición en la que se encuentre dentro "
-"de él:"
+"Cada panel de archivos contiene una barra de estado en la parte inferior. La "
+"barra de estado contiene varios paneles con distintos tipos de información "
+"sobre el documento y la posición en la que se encuentre dentro de él:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:1018
@@ -6336,7 +6335,7 @@ msgid ""
 msgstr ""
 "En el panel aparecerá <guilabel>SL</guilabel> si el archivo está configurado "
 "como de solo lectura (tal y como se describe en <xref "
-"linkend=\"protectingfiles\" />).  De lo contrario, el panel estará vacío."
+"linkend=\"protectingfiles\" />). De lo contrario, el panel estará vacío."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:1067
@@ -6859,7 +6858,7 @@ msgstr ""
 "Accesos directos: <menuchoice> <guimenu>Editar</guimenu> <guimenuitem>Ir a</"
 "guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap> <keycap>G</"
 "keycap> </keycombo>, menú contextual en el panel de archivos y en el panel "
-"de localización.Ir a la línea desplazada"
+"de localización."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:1408
@@ -6949,7 +6948,7 @@ msgstr "Puntos de sincronización<placeholder type=\"indexterm\" id=\"0\"/>"
 #: English/Filters.xml:1871 English/Filters.xml:2302 English/Filters.xml:2307
 #: English/Filters.xml:2318
 msgid "TBD"
-msgstr "Por desarrollar"
+msgstr "Por determinar"
 
 #. type: Content of: <article><section><title>
 #: English/Compare_files.xml:1480
@@ -7034,7 +7033,7 @@ msgstr ""
 #: English/Compare_files.xml:1523 English/Compare_files.xml:1712
 #: English/Compare_files.xml:1791 English/Quick_start.xml:374
 msgid "Refresh button"
-msgstr "Actualizar"
+msgstr "Botón Actualizar"
 
 #. type: Content of: <article><section><section><important><para>
 #: English/Compare_files.xml:1510
@@ -7094,7 +7093,7 @@ msgstr ""
 "diferencias en función de la posición del cursor o de la selección de texto. "
 "Por ejemplo, si hace clic en cualquier punto de una diferencia y, a "
 "continuación, hace clic en el botón <guibutton>Copiar al derecho</guibutton> "
-"de la barra de herramientas, se combinará todo el bloque de la diferencia.  "
+"de la barra de herramientas, se combinará todo el bloque de la diferencia. "
 "Esto facilita la combinación de muchas diferencias pequeñas. Del mismo modo, "
 "si selecciona texto que abarca la totalidad o parte de varias diferencias, "
 "todas las diferencias incluidas se combinarán con un solo comando de "
@@ -7214,7 +7213,7 @@ msgid ""
 msgstr ""
 "Combina la diferencia actual del panel de archivos de la derecha con el de "
 "la izquierda y, a continuación, selecciona la siguiente diferencia (si hay "
-"alguna).  Equivale a <command>Copiar al derecho</command> y copiar "
+"alguna). Equivale a <command>Copiar al derecho</command> y copiar "
 "<command>Diferencia siguiente</command> en un solo paso."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
@@ -7355,10 +7354,10 @@ msgid ""
 "keycap> </keycombo>, context menu in File pane within a difference."
 msgstr ""
 "Accesos directos <placeholder type=\"inlinemediaobject\" id=\"0\"/> botón, "
-"<menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al izquierdo</"
-"guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap> "
-"<keycap>Izquierdo</keycap> </keycombo>, menú contextual del panel de "
-"archivos en una comparación."
+"<menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Copiar al derecho</"
+"guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>Derecho</"
+"keycap> </keycombo>, menú contextual del panel de archivos en una "
+"comparación."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
 #: English/Compare_files.xml:1743
@@ -7494,7 +7493,7 @@ msgid ""
 "is the result file."
 msgstr ""
 "El panel de archivos derecho se titula <guilabel>Mi archivo (Mine)</"
-"guilabel>. Esta parte es la copia de trabajo del archivo.  Todos los cambios "
+"guilabel>. Esta parte es la copia de trabajo del archivo. Todos los cambios "
 "deben realizarse en este archivo, que es el archivo de resultado."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><itemizedlist><listitem><para>
@@ -7535,7 +7534,7 @@ msgid ""
 msgstr ""
 "Cuando haya terminado, pulse <keycombo> <keycap>Ctrl</keycap> <keycap>S</"
 "keycap> </keycombo> para guardar el lado <guilabel>Mi archivo</guilabel> "
-"como archivo de resultado.  Por defecto, la nueva versión sobrescribe el "
+"como archivo de resultado. Por defecto, la nueva versión sobrescribe el "
 "archivo de conflicto original. También puede hacer clic en<menuchoice> "
 "<guimenu>Archivo</guimenu> <guimenuitem>Guardar derecho</guimenuitem> "
 "<guimenuitem>Guardar como</guimenuitem> </menuchoice>y elegir un nombre de "
@@ -7756,7 +7755,7 @@ msgstr "Detectar Ins/Borrar"
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><guilabel>
 #: English/Compare_images.xml:119 English/Compare_images.xml:141
 msgid "None"
-msgstr "Ninguno"
+msgstr "Ninguna"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><guilabel>
 #: English/Compare_images.xml:120
@@ -7876,10 +7875,9 @@ msgid ""
 msgstr ""
 "En la versión 2.16.7 o posteriores, es posible visualizar y editar archivos "
 "de valores separados por delimitadores, como CSV y TSV, en formato de tabla, "
-"al igual que en un programa de hojas de cálculo.  Las operaciones de "
-"edición, el desplazamiento a las diferencias y las operaciones de "
-"combinación en este formato son las mismas que en una ventana de archivo de "
-"texto normal."
+"al igual que en un programa de hojas de cálculo. Las operaciones de edición, "
+"el desplazamiento a las diferencias y las operaciones de combinación en este "
+"formato son las mismas que en una ventana de archivo de texto normal."
 
 #. type: Content of: <article><mediaobject>
 #: English/Compare_table.xml:18
@@ -7910,8 +7908,8 @@ msgid ""
 "specify it on the Compare/Table page in the Options dialog."
 msgstr ""
 "Que los archivos se abran en formato de tabla depende de si el nombre del "
-"archivo coincide con los patrones definidos.  De forma predeterminada, si la "
-"extensión del archivo es .csv o .tsv, se abrirá en formato de tabla.  Si "
+"archivo coincide con los patrones definidos. De forma predeterminada, si la "
+"extensión del archivo es .csv o .tsv, se abrirá en formato de tabla. Si "
 "desea cambiar los patrones, especifíquelos en la página \"Comparar/Tabla\" "
 "del cuadro de diálogo \"Configuración\"."
 
@@ -7926,7 +7924,7 @@ msgstr ""
 "Si quiere abrirlo temporalmente en formato de tabla después de abrirlo como "
 "texto sin formato, haga clic en <menuchoice> <guimenu>Archivo</guimenu> "
 "<guimenuitem>Volver a comparar como</guimenuitem> <guimenuitem>Tabla</"
-"guimenuitem> </menuchoice>.  Cuando aparezca el cuadro de diálogo Tabla, "
+"guimenuitem> </menuchoice>. Cuando aparezca el cuadro de diálogo Tabla, "
 "seleccione el tipo de archivo y haga clic en <guilabel>Aceptar</guilabel>."
 
 #. type: Content of: <article><section><para>
@@ -8003,7 +8001,7 @@ msgstr ""
 "\"Comparar/Tabla\" del cuadro de diálogo \"Configuración\" o en el cuadro de "
 "diálogo de tabla que aparece al hacer clic en <menuchoice> <guimenu>Archivo</"
 "guimenu> <guimenuitem>Volver a comparar como</guimenuitem> "
-"<guimenuitem>Tabla</guimenuitem> </menuchoice>.  Consulte <xref "
+"<guimenuitem>Tabla</guimenuitem> </menuchoice>. Consulte <xref "
 "linkend=\"Configuration_compare_table\" /> para obtener más información."
 
 #. type: Content of: <article><section><title><indexterm><primary>
@@ -8074,7 +8072,7 @@ msgid ""
 "window.  <note>"
 msgstr ""
 "En este tema se explica cómo comparar páginas web mediante la ventana de "
-"comparación de páginas web.  <note>"
+"comparación de páginas web. <note>"
 
 #. type: Content of: <article><para><note><para>
 #: English/Compare_webpages.xml:17
@@ -8129,7 +8127,7 @@ msgstr ""
 "guimenuitem> </menuchoice>. Indique las dos o tres direcciones URL que desea "
 "comparar en el cuadro de diálogo \"Seleccionar archivos o carpetas\" y "
 "seleccione la opción <guimenuitem>Página web</guimenuitem> en el menú "
-"desplegable del botón <guibutton>Comparar</guibutton>.  <placeholder "
+"desplegable del botón <guibutton>Comparar</guibutton>. <placeholder "
 "type=\"mediaobject\" id=\"0\"/>"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
@@ -8144,7 +8142,7 @@ msgstr ""
 "Ejecute <command>WinMergeU.exe</command>, que se encuentra en el directorio "
 "de instalación de WinMerge. En los argumentos del comando, incluya dos o "
 "tres direcciones URL de las páginas web que desee comparar y especifique la "
-"opción de línea de comandos <option>/t webpage</option>.  Para obtener más "
+"opción de línea de comandos <option>/t webpage</option>. Para obtener más "
 "información sobre el uso de la línea de comandos, consulte <xref "
 "linkend=\"Command_line\" />."
 
@@ -8495,7 +8493,7 @@ msgid ""
 "WinMerge options:"
 msgstr ""
 "El cuadro de diálogo \"Opciones\" le permite personalizar muchas funciones "
-"de WinMerge.  Para configurar las opciones de WinMerge:"
+"de WinMerge. Para configurar las opciones de WinMerge:"
 
 #. type: Content of: <article><orderedlist><listitem><para><inlinemediaobject>
 #: English/Configuration.xml:22
@@ -8651,7 +8649,7 @@ msgstr ""
 "Cuando haya configurado las opciones a su gusto, haga clic en "
 "<guibutton>Exportar</guibutton>. En el cuadro de diálogo \"Seleccionar "
 "archivo para exportar\" especifique una ruta y un nombre para el archivo de "
-"opciones (el tipo <filename>ini</filename> se añade automáticamente)  y haga "
+"opciones (el tipo <filename>ini</filename> se añade automáticamente) y haga "
 "clic en <guibutton>Guardar</guibutton>."
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
@@ -8859,7 +8857,7 @@ msgstr ""
 "<option>Desactivado</option>: el botón <guibutton>Comparar</guibutton> del "
 "cuadro de diálogo \"Seleccionar archivos o carpetas\" está siempre activo e "
 "intenta abrir cualquier ruta que se especifique. Dado que no hay ningún "
-"retraso durante la validación, esto puede agilizar la selección de rutas.  "
+"retraso durante la validación, esto puede agilizar la selección de rutas. "
 "Sin embargo, si no se puede abrir la ruta, aparece un mensaje de error."
 
 #. type: Content of: <article><section><section><title>
@@ -8994,7 +8992,7 @@ msgstr ""
 #: English/Configuration.xml:378 English/Configuration.xml:408
 #: English/Open_paths.xml:38 English/Quick_start.xml:75
 msgid "Select Files or Folders dialog"
-msgstr "Cuadro de diálogo \"Seleccione archivos o carpetas\""
+msgstr "Cuadro de diálogo \"Seleccionar archivos o carpetas\""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:380
@@ -9102,7 +9100,7 @@ msgid ""
 msgstr ""
 "<guilabel>Desde la lista de los usados más recientemente</guilabel>: "
 "comprueba únicamente las rutas de la lista de elementos usados más "
-"recientemente (MRU).  Esto resulta útil cuando hay un número limitado de "
+"recientemente (MRU). Esto resulta útil cuando hay un número limitado de "
 "rutas que comparar."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -9170,7 +9168,7 @@ msgstr "Consulte <xref linkend=\"Locales_changing\" />."
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:515
 msgid "Compare &gt; General page"
-msgstr "Página \"Comparar &gt; General\""
+msgstr "Comparar &gt; General"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:518
@@ -9326,7 +9324,7 @@ msgstr "Un espacio entre las palabras:<placeholder type=\"screen\" id=\"0\"/>"
 #: English/Configuration.xml:611
 #, no-wrap
 msgid "Two  Words"
-msgstr "Dos  espacios"
+msgstr "Dos espacios"
 
 #. type: Content of: <article><section><section><example><para>
 #: English/Configuration.xml:611
@@ -9338,7 +9336,7 @@ msgstr ""
 #: English/Configuration.xml:615
 #, no-wrap
 msgid "Two\tWords"
-msgstr "Dos   palabras"
+msgstr "Dos palabras"
 
 #. type: Content of: <article><section><section><example><para>
 #: English/Configuration.xml:615
@@ -9467,8 +9465,8 @@ msgid ""
 "Difference colors. However the difference cannot be merged."
 msgstr ""
 "<option>Activado</option>: las líneas vacías de los archivos de origen se "
-"ignoran.  En la ventana de comparación de archivos se muestran como líneas "
-"en blanco con los colores de las diferencias ignoradas. Sin embargo, estas "
+"ignoran. En la ventana de comparación de archivos se muestran como líneas en "
+"blanco con los colores de las diferencias ignoradas. Sin embargo, estas "
 "diferencias no se pueden combinar."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -9710,7 +9708,7 @@ msgstr ""
 "diferencia: <placeholder type=\"screen\" id=\"0\"/> <note> Resulta útil "
 "cuando se combina con opciones de espacios en blanco como <option>Espacios "
 "en blanco → Ignorar cambios</option> o <option>Espacios en blanco → Ignorar "
-"todos</option>.  </note>"
+"todos</option>. </note>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:905
@@ -9920,7 +9918,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:1067
 msgid "Compare &gt; Folder page"
-msgstr "Página \"Comparar &gt; Carpeta\""
+msgstr "Comparar &gt; Carpeta"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:1074
@@ -10010,7 +10008,7 @@ msgstr ""
 "Sin embargo, no aplica ningún complemento, filtro de líneas, opción "
 "\"Ignorar mayúsculas y minúsculas\", etc. En primer lugar, compara los "
 "tamaños de los archivos y, si son diferentes, considera que el contenido de "
-"los archivos es distinto sin compararlos.  Si los tamaños de los archivos "
+"los archivos es distinto sin compararlos. Si los tamaños de los archivos "
 "coinciden, simplemente compara el contenido de los archivos en bytes. No se "
 "realiza ninguna detección de codificación de archivos, detección de fin de "
 "línea ni detección de archivos binarios. Este método de comparación es "
@@ -10194,8 +10192,8 @@ msgid ""
 "This option should be enabled only when the time difference is detected. "
 "Otherwise, it can cause incorrect compare results."
 msgstr ""
-"Esta opción solo debe activarse cuando se detecte una diferencia horaria.  "
-"De lo contrario, puede dar lugar a resultados de comparación incorrectos."
+"Esta opción solo debe activarse cuando se detecte una diferencia horaria. De "
+"lo contrario, puede dar lugar a resultados de comparación incorrectos."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1292
@@ -10335,12 +10333,12 @@ msgstr ""
 "<option>Activado</option>: ignora el contenido de las carpetas que son "
 "puntos de reanálisis. Por ejemplo, C:\\Users\\All Users es un enlace "
 "simbólico a C:\\ProgramData y al activar esta opción se omitirá la "
-"comparación de la carpeta C:\\Users\\All Users"
+"comparación de la carpeta C:\\Users\\All Users."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1400
 msgid "Quick compare"
-msgstr "comparación rápida"
+msgstr "Comparación rápida"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:1402 English/Configuration.xml:1434
@@ -10384,7 +10382,7 @@ msgid ""
 "<guilabel>Quick Contents</guilabel> compare method."
 msgstr ""
 "Tamaño mínimo para cambiar al método de comparación <guilabel>Contenidos "
-"breves</guilabel>.  Cuando se selecciona el método de comparación "
+"breves</guilabel>. Cuando se selecciona el método de comparación "
 "<guilabel>Todos los contenidos</guilabel> los archivos cuyo tamaño (en "
 "megabytes) superen este valor se comparan utilizando el método de "
 "comparación <guilabel>Contenidos breves</guilabel>."
@@ -10485,7 +10483,7 @@ msgstr "allequal(Date)"
 msgid "LeftDate = RightDate"
 msgstr ""
 "LeftDate =\n"
-"        RightDate"
+" RightDate"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:1482
@@ -10502,15 +10500,15 @@ msgid ""
 "<literal>allequal(Date)</literal> into the field."
 msgstr ""
 "Permite especificar condiciones de comparación adicionales mediante "
-"expresiones de filtro al comparar carpetas.  Por ejemplo, aunque el método "
-"de comparación seleccionado (como Todos los contenidos) considere que los "
+"expresiones de filtro al comparar carpetas. Por ejemplo, aunque el método de "
+"comparación seleccionado (como Todos los contenidos) considere que los "
 "archivos son idénticos, puede añadir condiciones como <placeholder "
 "type=\"screen\" id=\"0\"/> o <placeholder type=\"screen\" id=\"1\"/> para "
-"exigir que las fechas de modificación de los archivos también coincidan.  Al "
+"exigir que las fechas de modificación de los archivos también coincidan. Al "
 "hacer clic en el botón <guilabel>=</guilabel>, situado a la derecha del "
 "campo de entrada, aparece un menú con opciones como <guilabel>Comparar "
-"tamaño</guilabel> o <guilabel>Comparar fecha</guilabel>, etc.  Al "
-"seleccionar <guilabel>Comparar fecha</guilabel> se inserta automáticamente "
+"tamaño</guilabel> o <guilabel>Comparar fecha</guilabel>, etc. Al seleccionar "
+"<guilabel>Comparar fecha</guilabel> se inserta automáticamente "
 "<literal>allequal(Date)</literal> en el campo."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -10563,19 +10561,19 @@ msgid ""
 msgstr ""
 "<option>Detección de renombramientos y desplazamientos</option>: detecta "
 "archivos o carpetas con nombres diferentes o ubicados en directorios "
-"distintos, pero que coinciden en las claves de detección.  Este modo detecta "
+"distintos, pero que coinciden en las claves de detección. Este modo detecta "
 "tanto los elementos renombrados (en el mismo directorio) como los elementos "
 "movidos (a directorios diferentes)."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1527
 msgid "rename detection keys"
-msgstr "Claves de detección de renombrados"
+msgstr "claves de detección de renombrados"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1529
 msgid "move detection keys"
-msgstr "Claves de detección de desplazamientos"
+msgstr "claves de detección de desplazamientos"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1526
@@ -10597,7 +10595,7 @@ msgid ""
 "detecting moves)."
 msgstr ""
 "Especifica la expresión de filtro utilizada para generar claves de detección "
-"que permitan comparar archivos y carpetas entre ambas partes.  Los elementos "
+"que permitan comparar archivos y carpetas entre ambas partes. Los elementos "
 "con claves coincidentes se agrupan como elementos que podrían haber sido "
 "renombrados o desplazados. Por ejemplo, si se establece la clave en "
 "<literal>Tamaño</literal>, se agruparán los archivos con el mismo tamaño, "
@@ -10662,7 +10660,7 @@ msgid ""
 "decomposed characters)."
 msgstr ""
 "Inserta la función <literal>normalizeUnicode(Name, \"NFC\")</literal> que "
-"busca archivos por su nombre de archivo Unicode normalizado.  Resulta útil "
+"busca archivos por su nombre de archivo Unicode normalizado. Resulta útil "
 "para detectar archivos con nombres equivalentes, pero con representaciones "
 "Unicode diferentes (por ejemplo, caracteres compuestos frente a caracteres "
 "descompuestos)."
@@ -10720,9 +10718,9 @@ msgid ""
 "is the most accurate method for detecting renamed files, but requires "
 "computing MD5 hashes which can be slow for large files."
 msgstr ""
-"Inserta <literal>if(IsFolder, Name, prop(\"Hash.MD5\"))</literal>.  En el "
+"Inserta <literal>if(IsFolder, Name, prop(\"Hash.MD5\"))</literal>. En el "
 "caso de las carpetas, la coincidencia se basa en el nombre. En el caso de "
-"los archivos, la coincidencia se basa en el hash MD5 del contenido.  Este es "
+"los archivos, la coincidencia se basa en el hash MD5 del contenido. Este es "
 "el método más preciso para detectar archivos renombrados, pero requiere "
 "calcular los hashes MD5, lo que puede resultar lento con archivos de gran "
 "tamaño."
@@ -10760,7 +10758,7 @@ msgid ""
 "(or <literal>Name</literal> if empty):"
 msgstr ""
 "El menú incluye funciones de transformación de cadenas que se pueden aplicar "
-"a las claves de detección.  Al seleccionarlas, estas funciones envuelven la "
+"a las claves de detección. Al seleccionarlas, estas funciones envuelven la "
 "expresión actual (o el <literal>Nombre</literal> si está vacío):"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -10778,9 +10776,9 @@ msgid ""
 "removes \".backup\" from filenames."
 msgstr ""
 "Inserta <literal>replace(expression, \"from\", \"to\")</literal> para "
-"sustituir cadenas de texto literales en la clave.  Debe editar las cadenas "
-"de marcador de posición \"from\" y \"to\" para especificar qué texto se va a "
-"buscar y por cuál se va a sustituir.  Ejemplo: <literal>replace(Name, \"."
+"sustituir cadenas de texto literales en la clave. Debe editar las cadenas de "
+"marcador de posición \"from\" y \"to\" para especificar qué texto se va a "
+"buscar y por cuál se va a sustituir. Ejemplo: <literal>replace(Name, \"."
 "backup\", \"\")</literal> elimina \".backup\" de los nombres de archivo."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -10798,8 +10796,8 @@ msgid ""
 "leading number and underscore from filenames."
 msgstr ""
 "Inserta <literal>regexReplace(expression, \"pattern\", \"replacement\")</"
-"literal> para sustituir texto mediante expresiones regulares.  Admite "
-"referencias retroactivas ($1, $2, etc.) en la cadena de sustitución.  "
+"literal> para sustituir texto mediante expresiones regulares. Admite "
+"referencias retroactivas ($1, $2, etc.) en la cadena de sustitución. "
 "Ejemplo: <literal>regexReplace(Name, \"^(\\\\d+)_(.+)$\", \"$2\")</literal> "
 "elimina el número inicial y el guion bajo de los nombres de archivo."
 
@@ -10834,10 +10832,10 @@ msgid ""
 "inserted."
 msgstr ""
 "Crea un nuevo archivo de valores separados por tabulaciones (TSV) con una "
-"plantilla para la sustitución de cadenas.  El archivo se guarda en "
+"plantilla para la sustitución de cadenas. El archivo se guarda en "
 "<filename>%APPDATA%\\WinMerge\\ReplaceLists</filename> (o en "
 "<filename>Documents\\WinMerge\\ReplaceLists</filename> dependiendo de la "
-"configuración).  Una vez creado, el archivo se abre en el editor de texto "
+"configuración). Una vez creado, el archivo se abre en el editor de texto "
 "predeterminado y se inserta la función <literal>replaceWithList(expression, "
 "\"filepath\")</literal>."
 
@@ -10849,7 +10847,7 @@ msgid ""
 "literal> are comments."
 msgstr ""
 "El formato del archivo es de una sustitución por línea: "
-"<literal>search_string&lt;TAB&gt;replacement_string</literal>.  Las líneas "
+"<literal>search_string&lt;TAB&gt;replacement_string</literal>. Las líneas "
 "que comienzan por <literal>#</literal> son comentarios."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para><screen>
@@ -10861,8 +10859,8 @@ msgid ""
 "beta\trelease"
 msgstr ""
 "# Sustituir los números de versión en los nombres de los archivos\n"
-"v1.0  v2.0\n"
-"beta  versión"
+"v1.0 v2.0\n"
+"beta versión"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:1680 English/Configuration.xml:1700
@@ -10885,9 +10883,9 @@ msgid ""
 "<literal>regexReplaceWithList(expression, \"filepath\")</literal>."
 msgstr ""
 "Similar a Crear una lista de sustitución de cadenas e insertar..., pero para "
-"sustituciones de expresiones regulares.  Crea un archivo de plantilla en "
+"sustituciones de expresiones regulares. Crea un archivo de plantilla en "
 "<filename>%APPDATA%\\WinMerge\\RegexReplaceLists</filename> (o "
-"<filename>Documents\\WinMerge\\RegexReplaceLists</filename>).  Inserta "
+"<filename>Documents\\WinMerge\\RegexReplaceLists</filename>). Inserta "
 "<literal>regexReplaceWithList(expression, \"filepath\")</literal>."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
@@ -10909,7 +10907,7 @@ msgid ""
 msgstr ""
 "# Normalizar los formatos de fecha\n"
 "(\\d{4})-(\\d{2})-(\\d{2}) $1_$2_$3\n"
-"\\d+   NUMBER"
+"\\d+ NUMBER"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1709
@@ -10928,10 +10926,10 @@ msgid ""
 "previously created replacement lists."
 msgstr ""
 "Estos submenús muestran todos los archivos TSV que se encuentran en las "
-"carpetas ReplaceLists correspondientes.  Al seleccionar un archivo de la "
+"carpetas ReplaceLists correspondientes. Al seleccionar un archivo de la "
 "lista, se inserta la función <literal>replaceWithList()</literal> o "
 "<literal>regexReplaceWithList()</literal> correspondiente con la ruta del "
-"archivo.  Esto le permite reutilizar rápidamente las listas de sustitución "
+"archivo. Esto le permite reutilizar rápidamente las listas de sustitución "
 "creadas anteriormente."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -10984,7 +10982,7 @@ msgstr ""
 "Inserta <literal>toLower(expression)</literal> o "
 "<literal>toUpper(expression)</literal> para convertir todos los caracteres a "
 "minúsculas o mayúsculas. Resulta útil para realizar coincidencias que no "
-"distinguen entre mayúsculas y minúsculas.  Ejemplo: <literal>toLower(Name)</"
+"distinguen entre mayúsculas y minúsculas. Ejemplo: <literal>toLower(Name)</"
 "literal> considera que \"File.txt\", \"FILE.TXT\", y \"file.txt\" son "
 "idénticos."
 
@@ -11003,9 +11001,9 @@ msgid ""
 "katakana) to \"ﾌｧｲﾙ\" (half-width)."
 msgstr ""
 "Inserta <literal>toHalfWidth(expression)</literal> o "
-"<literal>toFullWidth(expression)</literal>.  Convierte caracteres de ancho "
-"medio a caracteres de ancho completo (principalmente para texto en "
-"japonés).  Ejemplo: <literal>toHalfWidth(Name)</literal> convierte \"ファイル"
+"<literal>toFullWidth(expression)</literal>. Convierte caracteres de ancho "
+"medio a caracteres de ancho completo (principalmente para texto en japonés). "
+"Ejemplo: <literal>toHalfWidth(Name)</literal> convierte \"ファイル"
 "\" (katakana de ancho completo) en \"ﾌｧｲﾙ\" (de ancho medio)."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -11022,7 +11020,7 @@ msgid ""
 "files with names in different Chinese character sets."
 msgstr ""
 "Ofrece las funciones <literal>toSimplifiedChinese(expression)</literal> y "
-"<literal>toTraditionalChinese(expression)</literal>.  Convierte entre "
+"<literal>toTraditionalChinese(expression)</literal>. Convierte entre "
 "caracteres chinos simplificados y tradicionales. Resulta útil para buscar "
 "archivos con nombres escritos en diferentes conjuntos de caracteres chinos."
 
@@ -11039,7 +11037,7 @@ msgid ""
 "Hiragana and Katakana Japanese characters."
 msgstr ""
 "Ofrece las funciones <literal>toHiragana(expression)</literal> y "
-"<literal>toKatakana(expression)</literal>.  Convierte entre los caracteres "
+"<literal>toKatakana(expression)</literal>. Convierte entre los caracteres "
 "japoneses hiragana y katakana."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -11058,7 +11056,7 @@ msgid ""
 msgstr ""
 "Inserta la función <literal>normalizeUnicode(expression)</literal> que "
 "normaliza el texto Unicode a la forma NFC (forma de normalización de "
-"composición canónica).  Esto resulta útil para comparar archivos cuyos "
+"composición canónica). Esto resulta útil para comparar archivos cuyos "
 "nombres puedan utilizar diferentes codificaciones Unicode para los mismos "
 "caracteres (por ejemplo, un solo carácter 'é' frente a 'e' + acento agudo "
 "combinatorio)."
@@ -11071,9 +11069,8 @@ msgid ""
 "a composite key combining both filename and size."
 msgstr ""
 "Puede combinar varias claves utilizando el operador <literal>+</literal> con "
-"un separador.  Por ejemplo, <literal>Nombre + \"|\" + Tamaño</literal> "
-"creará una clave compuesta que combine tanto el nombre del archivo como el "
-"tamaño."
+"un separador. Por ejemplo, <literal>Nombre + \"|\" + Tamaño</literal> creará "
+"una clave compuesta que combine tanto el nombre del archivo como el tamaño."
 
 #. type: Content of: <article><section><section><note><para>
 #: English/Configuration.xml:1802
@@ -11085,7 +11082,7 @@ msgid ""
 "be grouped together."
 msgstr ""
 "La expresión clave de detección se evalúa para cada lado de una comparación "
-"de archivos o carpetas con el fin de generar una clave.  Los elementos se "
+"de archivos o carpetas con el fin de generar una clave. Los elementos se "
 "agrupan cuando sus claves coinciden. Por ejemplo, con la clave "
 "<literal>Tamaño</literal>, un archivo de 1024 bytes a la izquierda y otro de "
 "1024 bytes a la derecha (aunque tengan nombres diferentes) se agruparán."
@@ -11185,8 +11182,7 @@ msgstr "archivos de tablas"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:1857
 msgid "Compare &gt; Table page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Comparar &gt; Tabla\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Comparar &gt; Tabla<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1862
@@ -11204,7 +11200,7 @@ msgstr ""
 "Especifica el formato del nombre de archivo para los archivos de valores "
 "separados por comas que se abrirán en formato de tabla. Para especificar "
 "varios elementos, sepárelos con un punto y coma. De forma predeterminada, se "
-"especifica *.csv.  Si no desea abrir los archivos con la extensión .csv en "
+"especifica *.csv. Si no desea abrir los archivos con la extensión .csv en "
 "formato de tabla, elimine *.csv."
 
 #. type: Content of: <article><section><section><title>
@@ -11221,9 +11217,9 @@ msgid ""
 "extension .tsv in table format. Delete the *.tsv."
 msgstr ""
 "Especifica el formato del nombre de archivo para los archivos de valores "
-"separados por tabulaciones que se abrirán en formato de tabla.  Para "
+"separados por tabulaciones que se abrirán en formato de tabla. Para "
 "especificar varios elementos, sepárelos con un punto y coma. De forma "
-"predeterminada, se especifica *.tsv.  Si no desea abrir los archivos con la "
+"predeterminada, se especifica *.tsv. Si no desea abrir los archivos con la "
 "extensión .tsv en formato de tabla, elimine *.tsv."
 
 #. type: Content of: <article><section><section><title>
@@ -11266,7 +11262,7 @@ msgid ""
 "<option>Disabled</option>: Disable the above.  Disable this option when "
 "opening files with incorrect quotes."
 msgstr ""
-"<option>Desactivado</option>: Desactiva la opción anterior.  Desactiva esta "
+"<option>Desactivado</option>: Desactiva la opción anterior. Desactiva esta "
 "opción al abrir archivos con comillas incorrectas."
 
 #. type: Content of: <article><section><section><title>
@@ -11283,16 +11279,16 @@ msgid ""
 "quotation marks are mere values, leave it empty or specify a character that "
 "does not exist in the file."
 msgstr ""
-"Especifica el carácter que se considera como comillas.  Los delimitadores "
-"que se encuentren dentro del rango de texto delimitado por los caracteres "
-"aquí especificados se considerarán parte del valor.  Este campo puede "
-"dejarse vacío.  Para abrir archivos en los que las comillas sean meros "
-"valores, déjelo vacío o especifique un carácter que no exista en el archivo."
+"Especifica el carácter que se considera como comillas. Los delimitadores que "
+"se encuentren dentro del rango de texto delimitado por los caracteres aquí "
+"especificados se considerarán parte del valor. Este campo puede dejarse "
+"vacío. Para abrir archivos en los que las comillas sean meros valores, "
+"déjelo vacío o especifique un carácter que no exista en el archivo."
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:1922
 msgid "Compare &gt; Binary page"
-msgstr "Página \"Comparar &gt; Binario\""
+msgstr "Comparar &gt; Binario"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1926
@@ -11315,10 +11311,10 @@ msgid ""
 "list."
 msgstr ""
 "Especifica los patrones de nombre de los archivos binarios que se abrirán en "
-"la ventana de comparación binaria.  Para especificar varios elementos, "
-"sepárelos con un punto y coma. De forma predeterminada, se especifica *."
-"bin.  Si no desea que los archivos con la extensión .bin se abran en la "
-"ventana de comparación binaria, elimine *.bin de la lista."
+"la ventana de comparación binaria. Para especificar varios elementos, "
+"sepárelos con un punto y coma. De forma predeterminada, se especifica *.bin. "
+"Si no desea que los archivos con la extensión .bin se abran en la ventana de "
+"comparación binaria, elimine *.bin de la lista."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1938
@@ -11405,7 +11401,7 @@ msgid ""
 "guimenuitem></menuchoice> command."
 msgstr ""
 "El nombre del editor de texto que se abrirá al ejecutar el comando "
-"<menuchoice><guimenu>Editar</guimenu><guimenuitem> Abrir en editor de texto "
+"<menuchoice><guimenu>Editar</guimenu><guimenuitem> Abrir en editor de texto."
 "</guimenuitem></menuchoice>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -11487,7 +11483,7 @@ msgid ""
 msgstr ""
 "Aquí puede seleccionar el juego de caracteres para mostrar y escribir "
 "caracteres: ANSI (el juego de caracteres de Windows) u OEM (el juego de "
-"caracteres de DOS).  También puede seleccionar el tamaño de la fuente en "
+"caracteres de DOS). También puede seleccionar el tamaño de la fuente en "
 "puntos."
 
 #. type: Content of: <article><section><title><indexterm><primary>
@@ -11498,8 +11494,7 @@ msgstr "archivos de imagen"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2028
 msgid "Compare &gt; Image page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Comparar &gt; Imagen\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Comparar &gt; Imagen<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2033
@@ -11516,9 +11511,9 @@ msgid ""
 "image compare window."
 msgstr ""
 "Especifique los formatos de nombre de archivo para los archivos de imagen "
-"que se abrirán en la ventana de comparación de imágenes.  Para especificar "
-"varios elementos, sepárelos con un punto y coma.  De forma predeterminada, "
-"las extensiones .pdf, .svg, .wmf y .emf no figuran en la lista.  Añádalas si "
+"que se abrirán en la ventana de comparación de imágenes. Para especificar "
+"varios elementos, sepárelos con un punto y coma. De forma predeterminada, "
+"las extensiones .pdf, .svg, .wmf y .emf no figuran en la lista. Añádalas si "
 "desea que los archivos con estas extensiones se muestren en la ventana de "
 "comparación de imágenes."
 
@@ -11536,7 +11531,7 @@ msgid ""
 "differences between images."
 msgstr ""
 "Cuando esta opción está activada, las comparaciones de carpetas tratarán "
-"como imágenes los archivos que coincidan con los formatos especificados.  Se "
+"como imágenes los archivos que coincidan con los formatos especificados. Se "
 "ignorarán las diferencias en los metadatos y se aplicará un límite de "
 "distancia cromática para determinar las diferencias visuales entre las "
 "imágenes."
@@ -11581,8 +11576,7 @@ msgstr "página web"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2079
 msgid "Compare &gt; Webpage page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Comparar &gt; Página web\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Comparar &gt; Página web<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2086
@@ -11604,10 +11598,10 @@ msgid ""
 msgstr ""
 "Introduzca una expresión regular en este campo para especificar las rutas de "
 "los archivos o las URL que deben abrirse en la ventana de comparación de "
-"páginas web.  Por ejemplo, si introduce la expresión regular <code>.*\\."
-"html?|https?://.*</code>, los archivos con la extensión .html o .htm y las "
-"URL que empiecen por http:// o https:// se abrirán en la ventana de "
-"comparación de páginas web."
+"páginas web. Por ejemplo, si introduce la expresión regular <code>.*\\.html?|"
+"https?://.*</code>, los archivos con la extensión .html o .htm y las URL que "
+"empiecen por http:// o https:// se abrirán en la ventana de comparación de "
+"páginas web."
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2098
@@ -11627,8 +11621,8 @@ msgid ""
 "want to include."
 msgstr ""
 "Introduce una expresión regular para excluir determinadas rutas de archivo o "
-"URL de la ventana \"Comparación de páginas web\".  Esto se aplica a los "
-"elementos que coincidan con el campo \"Patrón de URL que se debe incluir\".  "
+"URL de la ventana \"Comparación de páginas web\". Esto se aplica a los "
+"elementos que coincidan con el campo \"Patrón de URL que se debe incluir\". "
 "Utilice esta opción para excluir patrones específicos que no desee incluir."
 
 #. type: Content of: <article><section><section><title>
@@ -11685,8 +11679,7 @@ msgstr "cuadros de mensajes"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2139
 msgid "Message Boxes page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Cuadros de mensajes\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Página Cuadros de mensajes<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2145
@@ -11716,7 +11709,7 @@ msgid ""
 "click the <guibutton>Reset</guibutton> button to make the message boxes "
 "display again."
 msgstr ""
-"Más adelante, es posible que decida que quiere volver a ver esos mensajes.  "
+"Más adelante, es posible que decida que quiere volver a ver esos mensajes. "
 "En ese caso, haga clic en el botón <guibutton>Restablecer</guibutton> para "
 "que vuelvan a aparecer los cuadros de mensajes."
 
@@ -11741,8 +11734,7 @@ msgstr "opciones de la ventana de comparación de archivos"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2174
 msgid "Editor &gt; General page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Edición &gt; General\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Edición &gt; General<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:2184 English/Configuration.xml:2677
@@ -11851,7 +11843,7 @@ msgid ""
 msgstr ""
 "Esta es una opción avanzada para usuarios que estén familiarizados con los "
 "bytes de fin de línea y que deseen comparar archivos con diferentes estilos "
-"de fin de línea dentro de <emphasis>un</emphasis> mismo archivo.  Le "
+"de fin de línea dentro de <emphasis>un</emphasis> mismo archivo. Le "
 "recomendamos que no active esta opción a menos que necesite esta "
 "funcionalidad avanzada. Recuerde que esta opción no es necesaria para "
 "comparar dos archivos con diferentes estilos de fin de línea."
@@ -11958,8 +11950,7 @@ msgstr ""
 msgid ""
 "Editor &gt; Compare/Merge page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Página \"Edición &gt; Comparar/Combinar\"<placeholder type=\"indexterm\" "
-"id=\"0\"/>"
+"Edición &gt; Comparar/Combinar<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:2357
@@ -12162,7 +12153,7 @@ msgid ""
 msgstr ""
 "<option>Desactivado</option>: WinMerge no resalta las diferencias entre "
 "líneas y se ignoran todos los ajustes relacionados con el nivel y los "
-"espacios en blanco.  También desactiva la opción de menú <menuchoice> "
+"espacios en blanco. También desactiva la opción de menú <menuchoice> "
 "<guimenu>Ver</guimenu> <guimenuitem>Ver diferencias entre líneas</"
 "guimenuitem> </menuchoice>."
 
@@ -12198,8 +12189,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2550
 msgid "Editor &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Edición &gt; Sintaxis\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Edición &gt; Sintaxis<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:2565
@@ -12211,7 +12201,7 @@ msgstr "combinaciones de colores"
 msgid ""
 "Colors &gt; Color Schemes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Página \"Colores &gt; Esquemas de colores\"<placeholder type=\"indexterm\" "
+"Colores &gt; Combinaciones de colores<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
@@ -12324,7 +12314,7 @@ msgstr ""
 "guarda como un archivo INI. <emphasis> Solo los esquemas guardados en la "
 "carpeta <filename>Documents/WinMerge/ColorSchemes</filename> aparecerán en "
 "las listas de esquemas del <guilabel>Modo claro</guilabel> y del "
-"<guilabel>Modo oscuro</guilabel>.  </emphasis>"
+"<guilabel>Modo oscuro</guilabel>. </emphasis>"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:2632
@@ -12356,8 +12346,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2648
 msgid "Colors &gt; Differences page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Colores &gt; Diferencias\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Colores &gt; Diferencias<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2656
@@ -12400,8 +12389,7 @@ msgstr "opciones de color"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2676
 msgid "Colors &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Colores &gt; Sintaxis\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Colores &gt; Sintaxis<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2684
@@ -12414,7 +12402,7 @@ msgid ""
 msgstr ""
 "De forma predeterminada, la ventana de comparación de archivos de WinMerge "
 "resalta la sintaxis de ciertos tipos de código fuente, tal y como se "
-"describe en <xref linkend=\"Configuration_syntaxhighlight\" />.  Esta página "
+"describe en <xref linkend=\"Configuration_syntaxhighlight\" />. Esta página "
 "enumera los elementos de sintaxis que se reconocen y le permite cambiar el "
 "color y el grosor del texto."
 
@@ -12426,8 +12414,7 @@ msgstr "colores para el texto"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2699
 msgid "Colors &gt; Text page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Colores &gt; Texto\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Colores &gt; Texto<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2707
@@ -12452,8 +12439,7 @@ msgstr "colores para marcadores"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2717
 msgid "Colors &gt; Markers page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Colores &gt; Marcadores\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Colores &gt; Marcadores<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:2730
@@ -12465,8 +12451,8 @@ msgstr "comparación de carpetas"
 msgid ""
 "Colors &gt; Folder Compare page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Página \"Colores &gt; Comparación de carpetas\"<placeholder "
-"type=\"indexterm\" id=\"0\"/>"
+"Colores &gt; Comparación de carpetas<placeholder type=\"indexterm\" id=\"0\"/"
+">"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2737
@@ -12482,14 +12468,13 @@ msgstr ""
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Configuration.xml:2760
 msgid "configuring support after installation"
-msgstr "configuración de la compatibilidad tras la instalación"
+msgstr "configuración del soporte técnico tras la instalación"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2757
 msgid "Archive Support page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Página \"Compatibilidad con archivos<placeholder type=\"indexterm\" id=\"0\"/"
-">"
+"Soporte técnico para archivos<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2765
@@ -12512,7 +12497,7 @@ msgstr "activar y desactivar la integración"
 #: English/Configuration.xml:2771
 msgid "Enable archive file support<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Habilitar compatibilidad con archivos comprimidos<placeholder "
+"Habilitar la compatibilidad con archivos comprimidos<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -12558,9 +12543,9 @@ msgid ""
 "file extension is known on your system (for example, in the registry or "
 "through a file association)."
 msgstr ""
-"<option>Desactivado</option>(predeterminado): WinMerge solo reconoce los "
-"archivos comprimidos cuya extensión sea conocida en su sistema (por ejemplo, "
-"en el Registro o mediante una asociación de archivos)."
+"Desactivado</option>(predeterminado): WinMerge solo reconoce los archivos "
+"comprimidos cuya extensión sea conocida en su sistema (por ejemplo, en el "
+"Registro o mediante una asociación de archivos)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2818
@@ -12591,12 +12576,12 @@ msgstr "archivos de proyecto"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2835
 msgid "Project page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Página \"Proyecto\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Proyecto<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2848
 msgid "System page"
-msgstr "Página \"Sistema\""
+msgstr "Sistema"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2852
@@ -12623,7 +12608,7 @@ msgid ""
 "option does not work, and deleted files are lost!"
 msgstr ""
 "Recuerde: si la Papelera de reciclaje de su sistema está desactivada, esta "
-"opción no funcionará y los archivos eliminados se perderán."
+"opción no funcionará ¡y los archivos eliminados se perderán!"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2879
@@ -12631,7 +12616,7 @@ msgid ""
 "<option>Disabled</option>: Files and folders deleted in a directory compare "
 "actually deleted."
 msgstr ""
-"<option>Desactivado</option>: los archivos y carpetas eliminados en un "
+"option>Desactivado</option>: los archivos y carpetas eliminados en un "
 "directorio se comparan con los que se han eliminado realmente."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -12828,8 +12813,7 @@ msgstr "archivos de copias de seguridad, opciones"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3019
 msgid "Backup Files page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"Página \"Copias de seguridad\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Copias de seguridad<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:3025
@@ -12868,7 +12852,7 @@ msgid ""
 "created whenever files are saved."
 msgstr ""
 "<guilabel>Comparación de archivos</guilabel>(activada por defecto): se crean "
-"archivos de copia de seguridad cada vez que se guardan archivos.</para>"
+"archivos de copia de seguridad cada vez que se guardan archivos."
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:3056
@@ -12965,7 +12949,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3123
 msgid "Codepage page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "Página \"Codificación\"<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Codificación<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:3131
@@ -12998,9 +12982,9 @@ msgid ""
 "pages </ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
 "Character_encoding\"> Character encoding </ulink>"
 msgstr ""
-"<ulink url=\"https://es.wikipedia.org/wiki/Página_de_códigos\">Wikipedia: "
-"Codificación</ulink>, <ulink url=\"https://es.wikipedia.org/wiki/"
-"Codificación_de_caracteres\">Codificación de caracteres</ulink>"
+"<ulink url=\"https://en.wikipedia.org/wiki/Code_pages\">Wikipedia: "
+"Codificación</ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
+"Character_encoding\">Codificación de caracteres</ulink>"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
 #: English/Configuration.xml:3160
@@ -13049,9 +13033,7 @@ msgid ""
 "by your installation of WinMerge."
 msgstr ""
 "<guilabel>Según la interfaz de usuario de WinMerge</guilabel>: la "
-"codificación utilizada por su instalación de WinMerge.\n"
-"                    <!--This is just a guess - don't find any info on this "
-"option.-->"
+"codificación utilizada por su instalación de WinMerge."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3196
@@ -13083,9 +13065,7 @@ msgstr ""
 "Desmarque esta opción en <filename>WinMerge.exe</filename>. Las conversiones "
 "de caracteres pueden provocar pérdidas de información y el riesgo es muy "
 "elevado. <filename>WinMerge.exe</filename>solo puede mostrar archivos con su "
-"codificación actual. <!--What option? The one in the Options page? If it "
-"should always be unchecked, why is the option there? Also, should we mention "
-"WinMergeU.exe when we mention WinMerge.exe, or is this understood?-->"
+"codificación actual."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:3221
@@ -13170,7 +13150,7 @@ msgstr "Detectar codificación para archivos de texto usando mlang.dll"
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:3278
 msgid "Shell Integration page"
-msgstr "Página \"Integración con Windows\""
+msgstr "Integración con Windows"
 
 #. type: Content of: <article><title><indexterm><primary>
 #: English/Configuration.xml:3283 English/Faq.xml:95 English/Install.xml:174
@@ -13290,7 +13270,7 @@ msgstr "Unicode"
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Faq.xml:18 English/Faq.xml:21 English/Introduction.xml:80
 msgid "WinMerge support"
-msgstr "Compatibilidad con WinMerge"
+msgstr "Soporte de WinMerge"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Faq.xml:20 English/Faq.xml:405
@@ -13309,8 +13289,8 @@ msgstr ""
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
 "id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>A partir de la versión "
 "2.14, WinMerge dejó de ser compatible con los antiguos sistemas Windows de "
-"32 bits, incluidos Windows 9x, ME y NT4.  Además, la versión 2.16 de "
-"WinMerge no es compatible con Windows 2000."
+"32 bits, incluidos Windows 9x, ME y NT4. Además, la versión 2.16 de WinMerge "
+"no es compatible con Windows 2000."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:25
@@ -13375,7 +13355,7 @@ msgid ""
 msgstr ""
 "<filename>WinMergeU.exe</filename> lleva ya algún tiempo instalado de forma "
 "predeterminada y, dado que quedan muy pocos sistemas Windows basados en "
-"ANSI, el interés de mantener <filename>WinMerge.exe</filename> es mínimo.  A "
+"ANSI, el interés de mantener <filename>WinMerge.exe</filename> es mínimo. A "
 "partir de la versión 2.14, WinMerge ya no incluye <filename>WinMerge.exe</"
 "filename> en el instalador."
 
@@ -13861,7 +13841,7 @@ msgstr ""
 "originales y modificados en diferentes directorios. WinMerge es compatible "
 "de forma nativa (¡sorpresa!) con estos archivos: solo tiene que iniciar una "
 "operación de comparación y seleccionar el archivo ZIP tanto para el lado "
-"izquierdo como para el derecho.  WinMerge abre el contenido del archivo ZIP "
+"izquierdo como para el derecho. WinMerge abre el contenido del archivo ZIP "
 "en una ventana de comparación de carpetas, donde compara los archivos "
 "originales y los modificados."
 
@@ -13923,7 +13903,7 @@ msgstr ""
 "guimenuitem> </menuchoice>). Haga clic en <menuchoice> <guimenu>Archivo</"
 "guimenu> <guimenuitem>Guardar como</guimenuitem> </menuchoice> y, en el "
 "cuadro de diálogo, busque la opción <guilabel>Codificación</guilabel> y usar "
-"la lista desplegable.  Los valores posibles son:"
+"la lista desplegable. Los valores posibles son:"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
 #: English/Faq.xml:436
@@ -14028,7 +14008,7 @@ msgid ""
 "extensions of patches supported by the plugin are .diff or .patch."
 msgstr ""
 "Puede aplicar correcciones utilizando el complemento experimental ApplyPatch."
-"sct.  Las extensiones de los archivos de corrección compatibles con el "
+"sct. Las extensiones de los archivos de corrección compatibles con el "
 "complemento son .diff o .patch."
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
@@ -14306,8 +14286,8 @@ msgid ""
 "        <replaceable>Filter1 of Group1</replaceable>;<replaceable>Filter2</replaceable> ...|<replaceable>Filter1 of Group2</replaceable>;<replaceable>Filter2</replaceable> ...|...\n"
 "      "
 msgstr ""
-"        <replaceable>Filtro1 del Grupo1</replaceable>;<replaceable>Filtro2</replaceable> ...|<replaceable>Filtro1 del Grupo2</replaceable>;<replaceable>Filtrop2</replaceable> ...|...\n"
-"      "
+" <replaceable>Filtro1 del Grupo1</replaceable>;<replaceable>Filtro2</replaceable> ...|<replaceable>Filtro1 del Grupo2</replaceable>;<replaceable>Filtrop2</replaceable> ...|...\n"
+" "
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Filters.xml:149
@@ -14473,8 +14453,8 @@ msgstr "fe: <replaceable>expr</replaceable>"
 msgid ""
 "Filter expression for files (e.g. fe:Size &lt; 1KB) (Available since 2.16.49)"
 msgstr ""
-"Expresión de filtro para archivos (ej. fe:Size &lt; 1KB) (disponible desde "
-"la versión 2.16.49)"
+"Filter expression for files (ej. fe:Size &lt; 1KB) (disponible desde la "
+"versión 2.16.49)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:169 English/Filters.xml:1542
@@ -14707,7 +14687,7 @@ msgstr ""
 "literal>, <literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</"
 "literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>, "
 "<literal>contains</literal>, <literal>recontains</literal>, <literal>like</"
-"literal>, <literal>matches</literal>)  no distinguen entre mayúsculas y "
+"literal>, <literal>matches</literal>) no distinguen entre mayúsculas y "
 "minúsculas. Puede controlar este comportamiento utilizando las siguientes "
 "directivas:"
 
@@ -14756,10 +14736,10 @@ msgid ""
 "@casesensitive Extension = \"TXT\"  ## Case-sensitive: matches only files with \".TXT\" extension\n"
 "@caseinsensitive Content contains \"error\"  ## Case-insensitive: matches \"Error\", \"ERROR\", \"error\", etc."
 msgstr ""
-"@cs Name = \"README.txt\"           ## Distingue entre mayúsculas y minúsculas: solo coincide con \"README.txt\"\n"
-"@ci Name = \"readme.txt\"           ## Sin distinción entre mayúsculas y minúsculas: coincide \"README.txt\", \"readme.txt\", \"ReadMe.TXT\", etc.\n"
-"@casesensitive Extension = \"TXT\"  ## Distingue entre mayúsculas y minúsculas: solo busca archivos con la extensión \".TXT\"\n"
-"@caseinsensitive Content contains \"error\"  ## Sin distinción entre mayúsculas y minúsculas: coincide con \"Error\", \"ERROR\", \"error\", etc."
+"@cs Name = \"README.txt\" ## Distingue entre mayúsculas y minúsculas: solo coincide con \"README.txt\"\n"
+"@ci Name = \"readme.txt\" ## Sin distinción entre mayúsculas y minúsculas: coincide \"README.txt\", \"readme.txt\", \"ReadMe.TXT\", etc.\n"
+"@casesensitive Extension = \"TXT\" ## Distingue entre mayúsculas y minúsculas: solo busca archivos con la extensión \".TXT\"\n"
+"@caseinsensitive Content contains \"error\" ## Sin distinción entre mayúsculas y minúsculas: coincide con \"Error\", \"ERROR\", \"error\", etc."
 
 #. type: Content of: <article><section><section><section><section><section><example>
 #: English/Filters.xml:278 English/Filters.xml:315 English/Filters.xml:347
@@ -14779,7 +14759,7 @@ msgid ""
 "control this behavior using the following directives:"
 msgstr ""
 "De forma predeterminada, las expresiones de filtro se optimizan para mejorar "
-"el rendimiento.  Puede controlar este comportamiento utilizando las "
+"el rendimiento. Puede controlar este comportamiento utilizando las "
 "siguientes directivas:"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -14824,9 +14804,9 @@ msgid ""
 "@noopt Name matches \"complex[0-9]+pattern\"    ## Disable optimization for debugging\n"
 "@nooptimize Content contains \"special-case\"   ## Disable optimization"
 msgstr ""
-"@optimize Size &gt; 10MB and Extension = \"log\"     ## Habilitar optimización (predeterminado)\n"
-"@noopt Name matches \"complex[0-9]+pattern\"    ## Desactivar la optimización para la depuración\n"
-"@nooptimize Content contains \"special-case\"   ## Desactivar la optimización"
+"@optimize Size &gt; 10MB and Extension = \"log\" ## Habilitar optimización (predeterminado)\n"
+"@noopt Name matches \"complex[0-9]+pattern\" ## Desactivar la optimización para la depuración\n"
+"@nooptimize Content contains \"special-case\" ## Desactivar la optimización"
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:322
@@ -14841,7 +14821,7 @@ msgid ""
 "messages and logs to help identify which filter expression caused an issue."
 msgstr ""
 "La directiva <literal>@name</literal> permite asignar un nombre descriptivo "
-"a una expresión de filtro.  Este nombre está pensado para utilizarse en "
+"a una expresión de filtro. Este nombre está pensado para utilizarse en "
 "mensajes de error y registros, con el fin de ayudar a identificar qué "
 "expresión de filtro ha provocado el problema."
 
@@ -14872,7 +14852,7 @@ msgid ""
 "complex filter expressions."
 msgstr ""
 "El nombre especificado se utilizará en los mensajes de error y en la "
-"información de diagnóstico para identificar el filtro.  Esto resulta "
+"información de diagnóstico para identificar el filtro. Esto resulta "
 "especialmente útil cuando se trabaja con varias expresiones de filtro "
 "complejas."
 
@@ -14903,7 +14883,7 @@ msgid ""
 "the beginning of the expression, separated by whitespace."
 msgstr ""
 "La directiva <literal>@name</literal> se puede combinar con otras "
-"directivas.  Cuando se utilizan varias directivas, todas deben aparecer al "
+"directivas. Cuando se utilizan varias directivas, todas deben aparecer al "
 "principio de la expresión, separadas por espacios en blanco."
 
 #. type: Content of: <article><section><section><section><title>
@@ -14920,7 +14900,7 @@ msgid ""
 "attribute applies to by using a prefix."
 msgstr ""
 "Las expresiones de filtro admiten diversos atributos relacionados con los "
-"metadatos y el contenido de los archivos.  Los nombres de los atributos no "
+"metadatos y el contenido de los archivos. Los nombres de los atributos no "
 "distinguen entre mayúsculas y minúsculas. Opcionalmente, se puede "
 "especificar a qué lado de la comparación (izquierdo, derecho o central) se "
 "aplica un atributo utilizando un prefijo."
@@ -15108,7 +15088,7 @@ msgid ""
 "used with folder items, the behavior is undefined."
 msgstr ""
 "Los siguientes atributos solo están disponibles para los elementos de "
-"comparación de archivos.  Si se utiliza con elementos de carpeta, el "
+"comparación de archivos. Si se utiliza con elementos de carpeta, el "
 "comportamiento es indefinido."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -15139,7 +15119,7 @@ msgid ""
 "When used with file items, the behavior is undefined."
 msgstr ""
 "Los siguientes atributos solo están disponibles para los elementos de "
-"comparación de carpetas.  Si se utiliza con elementos de archivo, el "
+"comparación de carpetas. Si se utiliza con elementos de archivo, el "
 "comportamiento es indefinido."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -15353,7 +15333,7 @@ msgstr ""
 "role=\"bold\">únicamente en filtros de visualización</emphasis> "
 "(especificados mediante los prefijos <guilabel>e:</guilabel>, <guilabel>e!:</"
 "guilabel>, <guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>, <guilabel>de:"
-"</guilabel>, o <guilabel>de!:</guilabel> en el campo Filtro).  No deben "
+"</guilabel>, o <guilabel>de!:</guilabel> en el campo Filtro). No deben "
 "utilizarse en reglas de inclusión/exclusión de filtros de archivos "
 "(<filename>.flt</filename>), ya que requieren que la comparación se complete "
 "primero y pueden provocar un comportamiento inesperado."
@@ -15373,8 +15353,8 @@ msgid ""
 msgstr ""
 "Devuelve <literal>true</literal> si el resultado de la comparación indica "
 "que los elementos son idénticos, en caso contrario, devuelve <literal>false</"
-"literal>.  Este es un atributo global (no admite prefijos específicos de "
-"ningún lado).  Ejemplo: <literal>Identical</literal> para mostrar solo los "
+"literal>. Este es un atributo global (no admite prefijos específicos de "
+"ningún lado). Ejemplo: <literal>Identical</literal> para mostrar solo los "
 "archivos idénticos."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -15392,8 +15372,8 @@ msgid ""
 msgstr ""
 "Devuelve <literal>true</literal> si el resultado de la comparación indica "
 "que los elementos son diferentes, en caso contrario, devuelve "
-"<literal>false</literal>.  Este es un atributo global (no admite prefijos "
-"específicos de ningún lado).  Ejemplo: <literal>Different</literal> para "
+"<literal>false</literal>. Este es un atributo global (no admite prefijos "
+"específicos de ningún lado). Ejemplo: <literal>Different</literal> para "
 "mostrar solo los archivos diferentes."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -15411,8 +15391,8 @@ msgid ""
 msgstr ""
 "Devuelve <literal>true</literal> si la comparación se omitió debido a un "
 "error o a una regla de filtrado, en caso contrario, devuelve <literal>false</"
-"literal>.  Este es un atributo global (no admite prefijos específicos de "
-"ningún lado).  Ejemplo: <literal>Skipped</literal> para mostrar solo los "
+"literal>. Este es un atributo global (no admite prefijos específicos de "
+"ningún lado). Ejemplo: <literal>Skipped</literal> para mostrar solo los "
 "elementos omitidos."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -15432,8 +15412,8 @@ msgid ""
 msgstr ""
 "Devuelve <literal>true</literal> si se detecta que el archivo es binario, "
 "<literal>false</literal> si es de texto, o <literal>undefined</literal> si "
-"el archivo no existe.  Este atributo admite prefijos específicos para cada "
-"lado (ej., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).  "
+"el archivo no existe. Este atributo admite prefijos específicos para cada "
+"lado (ej., <literal>LeftBinary</literal>, <literal>RightBinary</literal>). "
 "Ejemplo: <literal>allof(Binary)</literal> con el fin de mostrar los archivos "
 "que son binarios en todos los lados."
 
@@ -15454,11 +15434,11 @@ msgid ""
 msgstr ""
 "Devuelve <literal>true</literal> si los archivos izquierdo y central son "
 "diferentes en una comparación a tres bandas, <literal>false</literal> en "
-"caso contrario.  Devuelve <literal>undefined</literal> en comparaciones a "
-"dos bandas.  Este es un atributo global (no admite prefijos específicos de "
-"ningún lado).  Ejemplo: <literal>DifferentLeftMiddle y no "
-"DifferentMiddleRight</literal> para encontrar archivos en los que solo el "
-"izquierdo difiere del central."
+"caso contrario. Devuelve <literal>undefined</literal> en comparaciones a dos "
+"bandas. Este es un atributo global (no admite prefijos específicos de ningún "
+"lado). Ejemplo: <literal>DifferentLeftMiddle y no DifferentMiddleRight</"
+"literal> para encontrar archivos en los que solo el izquierdo difiere del "
+"central."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:620
@@ -15477,10 +15457,10 @@ msgid ""
 msgstr ""
 "Devuelve <literal>true</literal> si los archivos central y derecho son "
 "diferentes en una comparación a tres bandas, <literal>false</literal> en "
-"caso contrario.  Devuelve <literal>undefined</literal> en comparaciones a "
-"dos bandas.  Este es un atributo global (no admite prefijos específicos de "
-"ningún lado).  Ejemplo: <literal>DifferentMiddleRight</literal> para mostrar "
-"los archivos en los que hay diferencias entre el central y el derecho."
+"caso contrario. Devuelve <literal>undefined</literal> en comparaciones a dos "
+"bandas. Este es un atributo global (no admite prefijos específicos de ningún "
+"lado). Ejemplo: <literal>DifferentMiddleRight</literal> para mostrar los "
+"archivos en los que hay diferencias entre el central y el derecho."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:632
@@ -15499,9 +15479,9 @@ msgid ""
 msgstr ""
 "En comparaciones a tres bandas, devuelve <literal>true</literal> si los "
 "archivos izquierdo y derecho son diferentes, <literal>false</literal> en "
-"caso contrario.  En comparaciones a dos bandas, devuelve <literal>true</"
-"literal> si ambos archivos existen y son diferentes.  Este es un atributo "
-"global (no admite prefijos específicos de ningún lado).  Ejemplo: "
+"caso contrario. En comparaciones a dos bandas, devuelve <literal>true</"
+"literal> si ambos archivos existen y son diferentes. Este es un atributo "
+"global (no admite prefijos específicos de ningún lado). Ejemplo: "
 "<literal>DifferentLeftRight</literal> para mostrar los archivos en los que "
 "hay diferencias entre el izquierdo y el derecho."
 
@@ -15520,12 +15500,12 @@ msgid ""
 "<literal>Differences &gt; 10</literal> to show files with more than 10 "
 "differences."
 msgstr ""
-"Devuelve el número de diferencias de texto en la comparación de archivos.  "
+"Devuelve el número de diferencias de texto en la comparación de archivos. "
 "Este atributo solo tiene sentido en el caso de los archivos de texto que han "
-"sido comparados.  Este es un atributo global (no admite prefijos específicos "
-"de ningún lado).  Ejemplo: <literal>Differences &gt; 0</literal> para "
-"mostrar los archivos con diferencias, o <literal>Differences &gt; 10</"
-"literal> para mostrar los archivos con más de 10 diferencias."
+"sido comparados. Este es un atributo global (no admite prefijos específicos "
+"de ningún lado). Ejemplo: <literal>Differences &gt; 0</literal> para mostrar "
+"los archivos con diferencias, o <literal>Differences &gt; 10</literal> para "
+"mostrar los archivos con más de 10 diferencias."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:657
@@ -15545,10 +15525,10 @@ msgid ""
 msgstr ""
 "Devuelve el número de diferencias ignoradas en la comparación de archivos "
 "(diferencias filtradas por filtros de línea o ajustes de espacios en "
-"blanco).  Este atributo solo tiene sentido en el caso de los archivos de "
-"texto que han sido comparados.  Este es un atributo global (no admite "
-"prefijos específicos de ningún lado).  Ejemplo: <literal>IgnoredDiffs &gt; "
-"0</literal> para mostrar los archivos con diferencias ignoradas, o "
+"blanco). Este atributo solo tiene sentido en el caso de los archivos de "
+"texto que han sido comparados. Este es un atributo global (no admite "
+"prefijos específicos de ningún lado). Ejemplo: <literal>IgnoredDiffs &gt; 0</"
+"literal> para mostrar los archivos con diferencias ignoradas, o "
 "<literal>Differences = 0 and IgnoredDiffs &gt; 0</literal> para mostrar los "
 "archivos que son idénticos, salvo por las diferencias ignoradas."
 
@@ -15569,8 +15549,8 @@ msgid ""
 msgstr ""
 "Devuelve el nombre del complemento de descompresión utilizado para la "
 "comparación de archivos o una cadena vacía si no se ha utilizado ningún "
-"complemento de descompresión.  Este es un atributo global (no admite "
-"prefijos específicos de ningún lado).  Ejemplo: <literal>Unpacker = "
+"complemento de descompresión. Este es un atributo global (no admite prefijos "
+"específicos de ningún lado). Ejemplo: <literal>Unpacker = "
 "\"CompareMSExcelFiles\"</literal> para mostrar los archivos comparados con "
 "el descompresor de Excel, o <literal>Unpacker != \"\"</literal> para mostrar "
 "todos los archivos en los que se ha utilizado un descompresor."
@@ -15592,8 +15572,8 @@ msgid ""
 msgstr ""
 "Devuelve el nombre del complemento prediferenciador utilizado para la "
 "comparación de archivos, o una cadena vacía si no se ha utilizado ningún "
-"complemento prediferenciador.  Este es un atributo global (no admite "
-"prefijos específicos de ningún lado).  Ejemplo: <literal>Prediffer = "
+"complemento prediferenciador. Este es un atributo global (no admite prefijos "
+"específicos de ningún lado). Ejemplo: <literal>Prediffer = "
 "\"IgnoreColumns\"</literal> para mostrar los archivos comparados utilizando "
 "el prediferenciador IgnoreColumns, o <literal>Prediffer != \"\"</literal> "
 "para mostrar todos los archivos en los que se ha utilizado un "
@@ -15614,8 +15594,8 @@ msgid ""
 "literal> to show files that are UTF-8 on all sides."
 msgstr ""
 "Devuelve la página de códigos (codificación de caracteres) del archivo como "
-"un valor entero.  Este atributo admite prefijos específicos para cada lado "
-"(ej., <literal>LeftCodepage</literal>, <literal>RightCodepage</literal>).  "
+"un valor entero. Este atributo admite prefijos específicos para cada lado "
+"(ej., <literal>LeftCodepage</literal>, <literal>RightCodepage</literal>). "
 "Ejemplo: <literal>Codepage = 65001</literal> para mostrar archivos UTF-8, o "
 "<literal>allof(Codepage = 65001)</literal> para mostrar archivos que estén "
 "en UTF-8 en todos los lados."
@@ -15635,9 +15615,9 @@ msgid ""
 "<literal>not HasBOM</literal> to show files without BOM."
 msgstr ""
 "Devuelve <literal>true</literal> si el archivo tiene una marca de orden de "
-"bytes (BOM), <literal>false</literal> en caso contrario, devuelve.  Este "
+"bytes (BOM), <literal>false</literal> en caso contrario, devuelve. Este "
 "atributo admite prefijos específicos para cada lado (ej., "
-"<literal>LeftHasBOM</literal>, <literal>RightHasBOM</literal>).  Ejemplo: "
+"<literal>LeftHasBOM</literal>, <literal>RightHasBOM</literal>). Ejemplo: "
 "<literal>HasBOM</literal> para mostrar los archivos con BOM, o <literal>not "
 "HasBOM</literal> para mostrar los archivos sin BOM."
 
@@ -15675,7 +15655,7 @@ msgid ""
 "<literal>false</literal>."
 msgstr ""
 "Al comparar una matriz con un valor escalar, la operación se aplica a cada "
-"elemento de la matriz por separado.  El resultado es una matriz booleana. Si "
+"elemento de la matriz por separado. El resultado es una matriz booleana. Si "
 "algún elemento de esta matriz booleana es <literal>true</literal>, la "
 "expresión global se evalúa como <literal>true</literal>. De lo contrario, se "
 "evalúa como <literal>false</literal>."
@@ -15706,9 +15686,9 @@ msgid ""
 "element differs."
 msgstr ""
 "Para <literal>=</literal> y <literal>!=</literal>: Las matrices deben tener "
-"la misma longitud.  El resultado es un único valor booleano, no una matriz.  "
+"la misma longitud. El resultado es un único valor booleano, no una matriz. "
 "<literal>=</literal> devuelve <literal>true</literal> solo si todos los "
-"elementos son iguales.  <literal>!=</literal> devuelve <literal>true</"
+"elementos son iguales. <literal>!=</literal> devuelve <literal>true</"
 "literal> si hay algún elemento diferente."
 
 #. type: Content of: <article><section><section><section><section><section><itemizedlist><listitem><para>
@@ -15756,7 +15736,7 @@ msgstr ""
 "[3, 5, 8] &gt; [6, 4, 2]\n"
 " -> [false, true, true]\n"
 " -> true (porque al menos una de las comparaciones es cierta)\n"
-"              "
+" "
 
 #. type: Content of: <article><section><section><section><section><section><example>
 #: English/Filters.xml:769
@@ -15782,7 +15762,7 @@ msgid ""
 "literal>."
 msgstr ""
 "Las comparaciones entre matrices y valores escalares dan como resultado una "
-"matriz booleana.  La expresión en su conjunto es <literal>true</literal> si "
+"matriz booleana. La expresión en su conjunto es <literal>true</literal> si "
 "al menos un elemento es <literal>true</literal>."
 
 #. type: Content of: <article><section><section><section><section><section><itemizedlist><listitem><para>
@@ -15801,7 +15781,7 @@ msgid ""
 "result is <literal>true</literal> if any element is <literal>true</literal>."
 msgstr ""
 "La comparación de matrices con otros operadores da como resultado una matriz "
-"booleana.  El resultado final es <literal>true</literal> si al menos un "
+"booleana. El resultado final es <literal>true</literal> si al menos un "
 "elemento es <literal>true</literal>."
 
 #. type: Content of: <article><section><section><section><title>
@@ -15824,7 +15804,7 @@ msgstr ""
 "<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>, "
 "<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>, "
 "<literal>like</literal>, <literal>matches</literal>, <literal>contains</"
-"literal> y <literal>recontains</literal>)  no distinguen entre mayúsculas y "
+"literal> y <literal>recontains</literal>) no distinguen entre mayúsculas y "
 "minúsculas. Puede controlar este comportamiento mediante directivas "
 "(consulte <xref linkend=\"FilterExpression_CaseSensitivity\" />)."
 
@@ -16009,7 +15989,7 @@ msgid ""
 msgstr ""
 "Extrae el número de líneas especificado a partir del índice de línea "
 "indicado en el contenido del archivo o en la matriz de contenido del archivo "
-"y las devuelve como una única cadena concatenada.  Si <replaceable>content</"
+"y las devuelve como una única cadena concatenada. Si <replaceable>content</"
 "replaceable> es una matriz, el resultado es una matriz de cadenas."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16064,9 +16044,9 @@ msgid ""
 "Example: <literal>replace(name, \".bak\", \".txt\")</literal>"
 msgstr ""
 "Sustituye todas las coincidencias de la cadena <replaceable>from</"
-"replaceable> por <replaceable>to</replaceable>.  Si<replaceable>str</"
+"replaceable> por <replaceable>to</replaceable>. Si<replaceable>str</"
 "replaceable> es una matriz, el resultado es una matriz de cadenas con las "
-"sustituciones aplicadas.  Ejemplo: <literal>replace(name, \".bak\", \"."
+"sustituciones aplicadas. Ejemplo: <literal>replace(name, \".bak\", \"."
 "txt\")</literal>"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16086,10 +16066,10 @@ msgid ""
 msgstr ""
 "Sustituye todas las coincidencias del modelo de expresión regular por la "
 "cadena de sustitución Admite referencias hacia atrás ($1, $2, etc.) en la "
-"cadena de sustitución.  Si <replaceable>str</replaceable> es una matriz, el "
-"resultado es una matriz de cadenas con las sustituciones aplicadas.  "
-"Ejemplo: <literal>regexReplace(name, \"^(\\\\w+)_(\\\\w+)$\", \"$2_$1\")</"
-"literal> intercambia las palabras separadas por un guion bajo."
+"cadena de sustitución. Si <replaceable>str</replaceable> es una matriz, el "
+"resultado es una matriz de cadenas con las sustituciones aplicadas. Ejemplo: "
+"<literal>regexReplace(name, \"^(\\\\w+)_(\\\\w+)$\", \"$2_$1\")</literal> "
+"intercambia las palabras separadas por un guion bajo."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:916
@@ -16110,9 +16090,9 @@ msgstr ""
 "Sustituye varias cadenas en <replaceable>str</replaceable> utilizando reglas "
 "de sustitución cargadas desde un archivo separado por tabulaciones El "
 "formato del archivo es de una regla de sustitución por línea: "
-"<literal>search_string&lt;TAB&gt;replacement_string</literal>.  Las líneas "
+"<literal>search_string&lt;TAB&gt;replacement_string</literal>. Las líneas "
 "que comienzan por <literal>#</literal> se consideran comentarios y se "
-"ignoran.  Las líneas vacías también se ignoran.  Si <replaceable>str</"
+"ignoran. Las líneas vacías también se ignoran. Si <replaceable>str</"
 "replaceable> es una matriz, el resultado es una matriz de cadenas con las "
 "sustituciones aplicadas."
 
@@ -16132,8 +16112,8 @@ msgid ""
 msgstr ""
 "# Línea de comentarios\n"
 "manzana naranja\n"
-"gato   perro\n"
-"viejo   nuevo"
+"gato perro\n"
+"viejo nuevo"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:930 English/Filters.xml:951 English/Filters.xml:1109
@@ -16149,7 +16129,7 @@ msgid ""
 "- applies replacements from file to file name"
 msgstr ""
 "<literal>replaceWithList(Name, \"C:\\Filters\\replacements.txt\")</literal> "
-"- Aplica las sustituciones del archivo al nombre del archivo."
+"- Aplica las sustituciones del archivo al nombre del archivo"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:937
@@ -16170,11 +16150,11 @@ msgid ""
 msgstr ""
 "Reemplaza las cadenas de <replaceable>str</replaceable> utilizando patrones "
 "de expresiones regulares cargados desde un archivo separado por "
-"tabulaciones.  El formato del archivo es de un patrón por línea: "
-"<literal>patrón_regex&lt;TAB&gt;cadena_de_sustitución</literal>.  La cadena "
+"tabulaciones. El formato del archivo es de un patrón por línea: "
+"<literal>patrón_regex&lt;TAB&gt;cadena_de_sustitución</literal>. La cadena "
 "de sustitución puede incluir referencias hacia atrás ($1, $2, etc.) a los "
-"grupos capturados.  Las líneas que comienzan por <literal>#</literal> se "
-"consideran comentarios y se ignoran.  Las líneas vacías también se ignoran.  "
+"grupos capturados. Las líneas que comienzan por <literal>#</literal> se "
+"consideran comentarios y se ignoran. Las líneas vacías también se ignoran. "
 "Si <replaceable>str</replaceable> es una matriz, el resultado es una matriz "
 "de cadenas con las sustituciones aplicadas."
 
@@ -16187,7 +16167,7 @@ msgid ""
 "(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3"
 msgstr ""
 "# Línea de comentarios\n"
-"\\d+   NUMBER\n"
+"\\d+ NUMBER\n"
 "(\\d{4})-(\\d{2})-(\\d{2}) $1_$2_$3"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
@@ -16198,7 +16178,7 @@ msgid ""
 msgstr ""
 "<literal>regexReplaceWithList(Name, \"C:\\Filters\\regex_replacements."
 "txt\")</literal> - Aplica sustituciones con expresiones regulares al nombre "
-"del archivo."
+"del archivo"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:958
@@ -16217,9 +16197,9 @@ msgid ""
 msgstr ""
 "Normalizar una cadena Unicode. El parámetro opcional \"form\" especifica la "
 "forma de normalización: \"NFC\" o \"C\" (predeterminado), \"NFD\" o \"D\", "
-"\"NFKC\" o \"KC\", \"NFKD\" o \"KD\".  También se pueden utilizar formatos "
-"numéricos: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD.  Si <replaceable>str</replaceable> "
-"se trata de una matriz, el resultado es una matriz de cadenas normalizadas.  "
+"\"NFKC\" o \"KC\", \"NFKD\" o \"KD\". También se pueden utilizar formatos "
+"numéricos: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD. Si <replaceable>str</replaceable> "
+"se trata de una matriz, el resultado es una matriz de cadenas normalizadas. "
 "Ejemplo: <literal>normalizeUnicode(name, \"NFC\")</literal>"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16235,9 +16215,9 @@ msgid ""
 "Example: <literal>toLower(\"Hello World\")</literal> returns "
 "<literal>\"hello world\"</literal>"
 msgstr ""
-"Convierte todos los caracteres de la cadena a minúsculas.  Si "
+"Convierte todos los caracteres de la cadena a minúsculas. Si "
 "<replaceable>str</replaceable> es una matriz, el resultado es una matriz de "
-"cadenas en minúsculas.  Ejemplo: <literal>toLower(\"Hola Mundo\")</literal> "
+"cadenas en minúsculas. Ejemplo: <literal>toLower(\"Hola Mundo\")</literal> "
 "devuelve <literal>\"hola mundo\"</literal>"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16253,9 +16233,9 @@ msgid ""
 "Example: <literal>toUpper(\"Hello World\")</literal> returns "
 "<literal>\"HELLO WORLD\"</literal>"
 msgstr ""
-"Convierte todos los caracteres de la cadena a mayúsculas.  Si "
+"Convierte todos los caracteres de la cadena a mayúsculas. Si "
 "<replaceable>str</replaceable> es una matriz, el resultado es una matriz de "
-"cadenas en mayúsculas.  Ejemplo: <literal>toUpper(\"Hola Mundo\")</literal> "
+"cadenas en mayúsculas. Ejemplo: <literal>toUpper(\"Hola Mundo\")</literal> "
 "devuelve <literal>\"HOLA MUNDO\"</literal>"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16271,9 +16251,9 @@ msgid ""
 "If <replaceable>str</replaceable> is an array, the result is an array of "
 "converted strings."
 msgstr ""
-"Convierte los caracteres de ancho completo en caracteres de ancho medio.  Se "
+"Convierte los caracteres de ancho completo en caracteres de ancho medio. Se "
 "utiliza principalmente para convertir caracteres alfanuméricos y katakana de "
-"ancho completo a ancho medio.  Si <replaceable>str</replaceable> es una "
+"ancho completo a ancho medio. Si <replaceable>str</replaceable> es una "
 "matriz, el resultado es una matriz de cadenas convertidas."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16289,9 +16269,9 @@ msgid ""
 "If <replaceable>str</replaceable> is an array, the result is an array of "
 "converted strings."
 msgstr ""
-"Convierte los caracteres de ancho medio en caracteres de ancho completo.  Se "
+"Convierte los caracteres de ancho medio en caracteres de ancho completo. Se "
 "utiliza principalmente para convertir caracteres alfanuméricos y katakana de "
-"ancho medio a ancho completo.  Si <replaceable>str</replaceable> es una "
+"ancho medio a ancho completo. Si <replaceable>str</replaceable> es una "
 "matriz, el resultado es una matriz de cadenas convertidas."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16306,8 +16286,8 @@ msgid ""
 "unchanged.  If <replaceable>str</replaceable> is an array, the result is an "
 "array of converted strings."
 msgstr ""
-"Convierte los caracteres hiragana a katakana.  Los caracteres que no son "
-"hiragana no se modifican.  Si <replaceable>str</replaceable> es una matriz, "
+"Convierte los caracteres hiragana a katakana. Los caracteres que no son "
+"hiragana no se modifican. Si <replaceable>str</replaceable> es una matriz, "
 "el resultado es una matriz de cadenas convertidas."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16322,8 +16302,8 @@ msgid ""
 "unchanged.  If <replaceable>str</replaceable> is an array, the result is an "
 "array of converted strings."
 msgstr ""
-"Convierte los caracteres katakana a hiragana.  Los caracteres que no son "
-"katakana no se modifican.  Si <replaceable>str</replaceable> es una matriz, "
+"Convierte los caracteres katakana a hiragana. Los caracteres que no son "
+"katakana no se modifican. Si <replaceable>str</replaceable> es una matriz, "
 "el resultado es una matriz de cadenas convertidas."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16342,8 +16322,8 @@ msgid ""
 "converted strings."
 msgstr ""
 "Convierte los caracteres chinos tradicionales en caracteres chinos "
-"simplificados.  Los caracteres que no tienen una forma simplificada no se "
-"modifican.  Si <replaceable>str</replaceable> es una matriz, el resultado es "
+"simplificados. Los caracteres que no tienen una forma simplificada no se "
+"modifican. Si <replaceable>str</replaceable> es una matriz, el resultado es "
 "una matriz de cadenas convertidas."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16362,8 +16342,8 @@ msgid ""
 "converted strings."
 msgstr ""
 "Convierte los caracteres chinos simplificados en caracteres chinos "
-"tradicionales.  Los caracteres que no tienen una forma tradicional no se "
-"modifican.  Si <replaceable>str</replaceable> es una matriz, el resultado es "
+"tradicionales. Los caracteres que no tienen una forma tradicional no se "
+"modifican. Si <replaceable>str</replaceable> es una matriz, el resultado es "
 "una matriz de cadenas convertidas."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
@@ -16506,10 +16486,10 @@ msgid ""
 "the result is a boolean array with each element checked individually."
 msgstr ""
 "Devuelve <literal>true</literal> si <replaceable>value</replaceable> está "
-"dentro del intervalo <literal>[min, max]</literal> (ambos lados incluidos).  "
+"dentro del intervalo <literal>[min, max]</literal> (ambos lados incluidos). "
 "Admite números enteros, números de coma flotante, marcas de tiempo y cadenas "
-"de caracteres (comparación sin distinción entre mayúsculas y minúsculas).  "
-"Si <replaceable>value</replaceable> si es una matriz, el resultado es una "
+"de caracteres (comparación sin distinción entre mayúsculas y minúsculas). Si "
+"<replaceable>value</replaceable> si es una matriz, el resultado es una "
 "matriz booleana en la que cada elemento se comprueba por separado."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
@@ -16565,9 +16545,9 @@ msgid ""
 msgstr ""
 "Devuelve <literal>true</literal> isi <replaceable>value</replaceable> está "
 "comprendido en el intervalo <literal>[min, max)</literal> (incluido el "
-"límite inferior y excluido el límite superior).  Admite números enteros, "
+"límite inferior y excluido el límite superior). Admite números enteros, "
 "números de coma flotante, marcas de tiempo y cadenas de caracteres "
-"(comparación sin distinción entre mayúsculas y minúsculas)  Si "
+"(comparación sin distinción entre mayúsculas y minúsculas) Si "
 "<replaceable>value</replaceable> es una matriz, el resultado es una matriz "
 "booleana en la que cada elemento se comprueba por separado."
 
@@ -16682,10 +16662,9 @@ msgid ""
 msgstr ""
 "Devuelve <replaceable>trueValue</replaceable> si <replaceable>condition</"
 "replaceable> es verdadera, en caso contrario "
-"devuelve<replaceable>falseValue</replaceable>.  si la condición es "
-"verdadera, devuelve true; en caso contrario, devuelve falseValue. Esta "
-"función realiza una evaluación de cortocircuito (solo evalúa la rama que se "
-"va a devolver)."
+"devuelve<replaceable>falseValue</replaceable>. si la condición es verdadera, "
+"devuelve true; en caso contrario, devuelve falseValue. Esta función realiza "
+"una evaluación de cortocircuito (solo evalúa la rama que se va a devolver)."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Filters.xml:1160
@@ -16738,7 +16717,7 @@ msgstr ""
 "<replaceable>conditionArray</replaceable>, devuelve el elemento "
 "correspondiente de <replaceable>trueValue</replaceable> si la condición es "
 "verdadera, en caso contrario, devuelve el elemento correspondiente de "
-"<replaceable>falseValue</replaceable>.  Si <replaceable>trueValue</"
+"<replaceable>falseValue</replaceable>. Si <replaceable>trueValue</"
 "replaceable> o <replaceable>falseValue</replaceable> es un valor escalar, se "
 "aplica a todos los elementos."
 
@@ -16791,9 +16770,9 @@ msgid ""
 "last value return the last value."
 msgstr ""
 "Selecciona un valor de entre los argumentos en función de "
-"<replaceable>index</replaceable>.  Si <replaceable>index</replaceable> es 0, "
+"<replaceable>index</replaceable>. Si <replaceable>index</replaceable> es 0, "
 "devuelve <replaceable>value0</replaceable>; si es 1, devuelve "
-"<replaceable>value1</replaceable>, etc.  Los índices negativos se limitan a "
+"<replaceable>value1</replaceable>, etc. Los índices negativos se limitan a "
 "0. Los índices que superan el último valor devuelven el último valor."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
@@ -16842,7 +16821,7 @@ msgid ""
 msgstr ""
 "Selección de valores elemento por elemento. Para cada índice en "
 "<replaceable>indexArray</replaceable>, selecciona el valor correspondiente "
-"de entre los argumentos restantes.  Si <replaceable>indexArray</replaceable> "
+"de entre los argumentos restantes. Si <replaceable>indexArray</replaceable> "
 "es un valor escalar, se comporta como <literal>choose</literal>."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
@@ -16918,10 +16897,10 @@ msgid ""
 "all elements.  When both arguments are arrays, performs element-wise "
 "operation."
 msgstr ""
-"Cuando los argumentos son escalares, devuelve un resultado booleano "
-"escalar.  Cuando un argumento es una matriz y el otro es un escalar, el "
-"escalar se aplica a todos los elementos.  Cuando ambos argumentos son "
-"matrices, realiza una operación elemento por elemento."
+"Cuando los argumentos son escalares, devuelve un resultado booleano escalar. "
+"Cuando un argumento es una matriz y el otro es un escalar, el escalar se "
+"aplica a todos los elementos. Cuando ambos argumentos son matrices, realiza "
+"una operación elemento por elemento."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Filters.xml:1234
@@ -16953,7 +16932,7 @@ msgid ""
 "with non-zero size"
 msgstr ""
 "<literal>allof(andEach(Exists, Size &gt; 0))</literal> - todos los archivos "
-"tienen un tamaño distinto de cero."
+"tienen un tamaño distinto de cero"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Filters.xml:1238
@@ -17335,7 +17314,7 @@ msgid ""
 msgstr ""
 "<placeholder type=\"indexterm\" id=\"0\"/>WinMerge incluye varios filtros de "
 "archivos predefinidos. Si estos filtros no le ofrecen las opciones que "
-"necesita, puede crear los suyos propios.  Para facilitar esa tarea, WinMerge "
+"necesita, puede crear los suyos propios. Para facilitar esa tarea, WinMerge "
 "también incluye un archivo de plantilla llamado <filename>FileFilter.tmpl</"
 "filename>. En esta sección se describe cómo aplicar filtros de archivos a "
 "las comparaciones y se detalla la sintaxis de los filtros de archivos. En "
@@ -17377,7 +17356,7 @@ msgid ""
 "your system."
 msgstr ""
 "Aquí es donde se instalan los filtros de archivos predefinidos. Por ejemplo, "
-"<filename>C:\\Program Files\\WinMerge\\Filters</filename>.  Puede crear o "
+"<filename>C:\\Program Files\\WinMerge\\Filters</filename>. Puede crear o "
 "copiar filtros de archivos en esta ubicación para que estén disponibles para "
 "todos los usuarios del sistema."
 
@@ -17502,7 +17481,7 @@ msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>."
 msgstr ""
-"Haga clic en <menuchoice> <guimenu>Herramientas</guimenu> "
+"Haga clic en <menuchoice> <guimenu>Herraminetas</guimenu> "
 "<guimenuitem>Filtros</guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
@@ -17582,7 +17561,7 @@ msgstr ""
 "de comentarios, se ignoran todos los caracteres de la línea. WinMerge ignora "
 "la mayoría de los caracteres de espacio en blanco en las reglas. Sin "
 "embargo, un comentario siempre debe ir precedido de uno o varios caracteres "
-"de espacio en blanco (espacio o tabulación).  Para utilizar <code>##</code> "
+"de espacio en blanco (espacio o tabulación). Para utilizar <code>##</code> "
 "como caracteres en una regla, omita el prefijo de espacio en blanco."
 
 #. type: Content of: <article><section><section><para>
@@ -17639,7 +17618,7 @@ msgid ""
 "good idea to specify all subfolders, like this:"
 msgstr ""
 "Cuando elija el método de exclusión, también debe añadir una regla "
-"<guilabel>d</guilabel> (directorio) que especifique las subcarpetas.  Por lo "
+"<guilabel>d</guilabel> (directorio) que especifique las subcarpetas. Por lo "
 "general, es recomendable especificar todas las subcarpetas de esta manera:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><screen>
@@ -17674,7 +17653,7 @@ msgstr ""
 "A continuación, el archivo debe contener una o varias reglas de filtrado. "
 "Puede añadir tantas reglas como desee. Debe haber una regla por línea y cada "
 "regla debe estar completa en una sola línea (no se permiten saltos de línea "
-"dentro de una regla).  Una regla comienza con un designador de tipo, seguido "
+"dentro de una regla). Una regla comienza con un designador de tipo, seguido "
 "de una expresión regular o de una expresión de filtrado. Los designadores de "
 "tipo admitidos son:"
 
@@ -17770,7 +17749,7 @@ msgstr "$ (fin de línea)"
 #: English/Filters.xml:1573
 msgid "Frequently required for rules to work correctly. For example:"
 msgstr ""
-"A menudo es necesario para que las reglas funcionen correctamente.  Por "
+"A menudo es necesario para que las reglas funcionen correctamente. Por "
 "ejemplo:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
@@ -17781,7 +17760,7 @@ msgid ""
 "\\.c  ## matches any extension beginning with <filename>c</filename>, like <filename>cpp</filename> and <filename>com</filename>."
 msgstr ""
 "\\.c$ ## solo busca nombres de archivo con esa extensión, <filename>c</filename>.\n"
-"\\.c  ## coincide con cualquier extensión que empiece por <filename>c</filename>, como <filename>cpp</filename> y <filename>com</filename>."
+"\\.c ## coincide con cualquier extensión que empiece por <filename>c</filename>, como <filename>cpp</filename> y <filename>com</filename>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1582
@@ -17796,7 +17775,7 @@ msgid ""
 "(<code>\\\\</code>). To match the dot in a file name, specify a backslash "
 "followed by a dot (<code>\\.</code>)."
 msgstr ""
-"Obliga a que los caracteres especiales se traten como caracteres normales.  "
+"Obliga a que los caracteres especiales se traten como caracteres normales. "
 "Por ejemplo, para que coincida el nombre de una carpeta, antepone una barra "
 "invertida doble (<code>\\\\</code>) al delimitador de la carpeta. Para que "
 "coincida el punto de un nombre de archivo, especifica una barra invertida "
@@ -17987,7 +17966,7 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
 #: English/Filters.xml:1697
 msgid "Open the File Filters tab."
-msgstr "Vaya a la pestaña \"Filtros de archivo\"."
+msgstr "Vaya a la pestaña \"Filtros de archivos\"."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
 #: English/Filters.xml:1701
@@ -18328,7 +18307,7 @@ msgid ""
 "create and manage file filters and line filters."
 msgstr ""
 "En esta sección se describe el cuadro de diálogo \"Filtros\", que ofrece "
-"funciones para crear y gestionar filtros de archivos y filtros de línea."
+"funciones para crear y gestionar filtros de archivos y filtros de líneas."
 
 #. type: Content of: <article><section><para>
 #: English/Filters.xml:1886
@@ -18345,7 +18324,7 @@ msgid ""
 msgstr ""
 "En el cuadro de diálogo \"Seleccione archivos o carpetas\", haga clic en "
 "<guibutton>Seleccionar</guibutton> a la derecha del campo <guilabel>Filtro</"
-"guilabel>.  Este método se utiliza cuando se desea aplicar un filtro de "
+"guilabel>. Este método se utiliza cuando se desea aplicar un filtro de "
 "archivos a una operación de comparación de carpetas."
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
@@ -18370,7 +18349,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1910
 msgid "File Filters"
-msgstr "Filtros de archivo"
+msgstr "Filtros de archivos"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1913
@@ -18383,14 +18362,14 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1919
 msgid "Line Filters"
-msgstr "Filtros de línea"
+msgstr "Filtros de líneas"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1922
 msgid "Choose this tab to work with line filters for file compare operations."
 msgstr ""
-"Seleccione esta pestaña para utilizar filtros de línea en las operaciones de "
-"comparación de archivos."
+"Seleccione esta pestaña para utilizar filtros de líneas en las operaciones "
+"de comparación de archivos."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1928
@@ -18415,7 +18394,7 @@ msgstr "habilitar"
 #: English/Filters.xml:1938
 msgid "Using the File Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Uso de la pestaña \"Filtros de archivo\"<placeholder type=\"indexterm\" "
+"Uso de la pestaña \"Filtros de archivos\"<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -18539,7 +18518,7 @@ msgid ""
 "your rules, as described in <xref linkend=\"Filters_CreatingFile\" />."
 msgstr ""
 "Crea una nueva copia de una plantilla de archivo en las carpetas de filtros "
-"compartidas o privadas y la abre en su editor predeterminado.  Edite la "
+"compartidas o privadas y la abre en su editor predeterminado. Edite la "
 "plantilla y añada sus reglas, tal y como se describe en <xref "
 "linkend=\"Filters_CreatingFile\" />."
 
@@ -18556,7 +18535,7 @@ msgid ""
 msgstr ""
 "Seleccione un filtro de archivos de la lista y haga clic en "
 "<guibutton>Editar...</guibutton> para abrir el archivo en su editor "
-"predeterminado.  editor."
+"predeterminado. editor."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:2026
@@ -18616,8 +18595,8 @@ msgstr ""
 msgid ""
 "In the Filters dialog File Filters tab, click <guibutton>New</guibutton>."
 msgstr ""
-"En la pestaña \"Filtros de archivo\" del cuadro de diálogo \"Filtros\", haga "
-"clic en <guibutton>Nuevo</guibutton>."
+"En la pestaña \"Filtros de archivos\" del cuadro de diálogo \"Filtros\", "
+"haga clic en <guibutton>Nuevo</guibutton>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:2064
@@ -18630,7 +18609,7 @@ msgstr ""
 "En el cuadro de diálogo \"Filtro compartido o privado\" seleccione "
 "<guilabel>Filtro compartido</guilabel> o <guilabel>Filtro privado </"
 "guilabel> (consulte <xref linkend=\"Filters_FileFilterLoc\" /> para conocer "
-"sus usos)  y haga clic en <keycap>Aceptar</keycap>."
+"sus usos) y haga clic en <keycap>Aceptar</keycap>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:2069
@@ -18672,7 +18651,7 @@ msgid ""
 msgstr ""
 "WinMerge inicializa el nuevo archivo con el contenido de la plantilla "
 "<filename>FileFilter.tmpl</filename> y lo abre en su editor de texto "
-"predeterminado"
+"predeterminado."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:2090
@@ -18685,7 +18664,7 @@ msgstr ""
 "Siga las instrucciones de la plantilla para editarla, actualizando el nombre "
 "y la descripción del marcador de posición y añadiendo reglas de filtrado, "
 "tal y como se describe en la sección <xref "
-"linkend=\"Filters_FileFilterSyntax\" />.  Guarde el archivo en su editor de "
+"linkend=\"Filters_FileFilterSyntax\" />. Guarde el archivo en su editor de "
 "texto."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><tip><para>
@@ -18715,7 +18694,8 @@ msgstr ""
 "guibutton> para cerrarlo y, a continuación, vuelva a hacer clic en "
 "<menuchoice> <guimenu>Herramientas</guimenu> <guimenuitem>Filtros</"
 "guimenuitem> </menuchoice> para volver a abrirlo. La lista de "
-"<guilabel>Filtros de archivo</guilabel>debería incluir ahora el nuevo filtro."
+"<guilabel>Filtros de archivos</guilabel> debería incluir ahora el nuevo "
+"filtro."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:2115
@@ -18744,7 +18724,7 @@ msgid ""
 msgstr ""
 "En el cuadro de diálogo \"Buscar archivo de filtro para instalar\", busque "
 "el archivo <filename>flt</filename> en su sistema y haga clic en "
-"<guibutton>Abrir</guibutton>. La lista \"Filtros de archivo\" debería "
+"<guibutton>Abrir</guibutton>. La lista \"Filtros de archivos\" debería "
 "incluir ahora el filtro de archivo instalado."
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
@@ -18787,7 +18767,7 @@ msgstr "Empezando desde el cuadro de diálogo \"Filtros\":"
 #: English/Filters.xml:2154
 msgid "In the File Filters tab, choose the file filter you want to test."
 msgstr ""
-"En la pestaña \"Filtros de archivo\" seleccione el filtro de archivos que "
+"En la pestaña \"Filtros de archivos\" seleccione el filtro de archivos que "
 "desee probar."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
@@ -18862,7 +18842,7 @@ msgstr ""
 #: English/Filters.xml:2204
 msgid "Using the Line Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Uso de la pestaña \"Filtros de línea\"<placeholder type=\"indexterm\" "
+"Uso de la pestaña \"Filtros de líneas\"<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -18873,7 +18853,7 @@ msgid ""
 "regular expression. You can apply any combination of rules from the list to "
 "a file comparison."
 msgstr ""
-"Utilice esta pestaña para configurar y activar filtros de línea en las "
+"Utilice esta pestaña para configurar y activar filtros de líneas en las "
 "operaciones de comparación de archivos. La pestaña incluye una lista de "
 "reglas. Cada regla contiene una única expresión regular. Puede aplicar "
 "cualquier combinación de reglas de la lista a una comparación de archivos."
@@ -18881,7 +18861,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><title>
 #: English/Filters.xml:2216
 msgid "Configuring line filters"
-msgstr "Configuración de filtros de línea"
+msgstr "Configuración de filtros de líneas"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Filters.xml:2218
@@ -18953,7 +18933,7 @@ msgid ""
 "To delete an existing rule, select (check) the rule and click "
 "<guibutton>Remove</guibutton>."
 msgstr ""
-"Para eliminar una regla existente, selecciónela (marque la casilla)  y haga "
+"Para eliminar una regla existente, selecciónela (marque la casilla) y haga "
 "clic en <guibutton>Eliminar</guibutton>."
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
@@ -18966,7 +18946,7 @@ msgstr "lista de disponibles"
 msgid ""
 "Enabling and disabling line filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Activación y desactivación de los filtros de línea<placeholder "
+"Activación y desactivación de los filtros de líneas<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
@@ -18986,7 +18966,7 @@ msgid ""
 "<guilabel>Regular Expression</guilabel> list are used. If filtering is off, "
 "no rules are used even if they are checked."
 msgstr ""
-"Marque o desmarque la opción <guilabel>Habilitar Filtros de línea</"
+"Marque o desmarque la opción <guilabel>Habilitar Filtros de líneas</"
 "guilabel>. Si activa el filtrado, se utilizarán todas las reglas que estén "
 "marcadas actualmente en la lista <guilabel>Expresión regular</guilabel>. Si "
 "el filtrado está desactivado, no se utilizará ninguna regla, aunque estén "
@@ -19007,8 +18987,8 @@ msgid ""
 "There are several ways to apply file filters after enabling them.  For "
 "details, see <xref linkend=\"Filters_LineFilterApply\" />."
 msgstr ""
-"Hay varias formas de aplicar filtros de archivos una vez activados.  Para "
-"más información, consulte <xref linkend=\"Filters_LineFilterApply\" />."
+"Hay varias formas de aplicar filtros de archivos una vez activados. Para más "
+"información, consulte <xref linkend=\"Filters_LineFilterApply\" />."
 
 #. type: Content of: <article><section><section><title>
 #: English/Filters.xml:2296
@@ -19343,7 +19323,7 @@ msgid ""
 msgstr ""
 "El instalador requiere privilegios de administrador. Si no tiene privilegios "
 "de administrador, puede instalar WinMerge descomprimiendo el archivo "
-"comprimido. (consulte <xref linkend=\"InstallFromArchive\" />)  o utilizando "
+"comprimido. (consulte <xref linkend=\"InstallFromArchive\" />) o utilizando "
 "el instalador por usuario (WinMerge-x.x.x-x64-PerUser-Setup.exe)."
 
 #. type: Content of: <article><section><para>
@@ -19357,7 +19337,7 @@ msgstr ""
 "Se recomienda a la mayoría de los usuarios que utilicen el instalador. El "
 "instalador solicita la ubicación donde se instalará WinMerge. A "
 "continuación, instala los archivos, configura la integración con el "
-"intérprete de órdenes y añade WinMerge al menú Inicio.  Para instalar "
+"intérprete de órdenes y añade WinMerge al menú Inicio. Para instalar "
 "WinMerge:"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
@@ -19428,7 +19408,7 @@ msgstr ""
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
 #: English/Install.xml:106
 msgid "Shellextension"
-msgstr "intérprete de órdenes"
+msgstr "Intérprete de órdenes"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
 #: English/Install.xml:105
@@ -19494,7 +19474,7 @@ msgstr ""
 "una o varias de las traducciones disponibles. El instalador crea una "
 "subcarpeta llamada \"Languages\" dentro de la carpeta de WinMerge, que "
 "contiene un archivo de traducción *.po para cada una de las opciones "
-"seleccionadas.  Una vez instalado, puede abrir WinMerge y cambiar su "
+"seleccionadas. Una vez instalado, puede abrir WinMerge y cambiar su "
 "configuración de idioma a uno de los idiomas de los archivos de traducción. "
 "Consulte la sección <xref linkend=\"Locales\" /> para obtener más "
 "información."
@@ -19606,7 +19586,7 @@ msgstr "Configura WinMerge como la aplicación de comparación de TortoiseCVS."
 #: English/Install.xml:226 English/Version_control.xml:65
 #: English/Version_control.xml:74
 msgid "TortoiseSVN integration"
-msgstr "integración con TortoiseSVN"
+msgstr "Integrar con TortoiseSVN"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
 #: English/Install.xml:225
@@ -19725,7 +19705,7 @@ msgid ""
 "When you are sure that you are ready to proceed, click <guibutton>Install</"
 "guibutton>."
 msgstr ""
-"En la página \"Listo para instalar\" compruebe las opciones de instalación.  "
+"En la página \"Listo para instalar\" compruebe las opciones de instalación. "
 "Si fuera necesario, haga clic en <guibutton>Atrás</guibutton> para modificar "
 "cualquier dato en una página anterior. Cuando esté seguro de que está listo "
 "para continuar, haga clic en <guibutton>Instalar</guibutton>."
@@ -19758,8 +19738,8 @@ msgid ""
 "WinMerge is pretty much independent of other system components. It is not "
 "tightly integrated with Windows, and does not use many DLLs."
 msgstr ""
-"WinMerge es prácticamente independiente de otros componentes del sistema.  "
-"No está estrechamente integrado con Windows y no utiliza muchas DLL."
+"WinMerge es prácticamente independiente de otros componentes del sistema. No "
+"está estrechamente integrado con Windows y no utiliza muchas DLL."
 
 #. type: Content of: <article><section><para>
 #: English/Install.xml:335
@@ -19772,13 +19752,13 @@ msgid ""
 "class=\"directory\">WinMerge-2.6.0</filename>). You can rename this folder "
 "or copy its files to another folder (preserving the folder structure!)."
 msgstr ""
-"Los archivos comprimidos tienen la estructura de carpetas correcta.  "
-"WinMerge debe descomprimirse conservando esta estructura de carpetas en la "
-"carpeta de destino. Por ejemplo, la carpeta raíz creada en <filename "
+"Los archivos comprimidos tienen la estructura de carpetas correcta. WinMerge "
+"debe descomprimirse conservando esta estructura de carpetas en la carpeta de "
+"destino. Por ejemplo, la carpeta raíz creada en <filename "
 "class=\"directory\">C:\\Archivos de programa\\</filename> se llama, "
 "<filename class=\"directory\">WinMerge-<replaceable>versión</replaceable></"
 "filename> (por ejemplo, <filename class=\"directory\">WinMerge-2.6.0</"
-"filename>).  Puede cambiar el nombre de esta carpeta o copiar sus archivos a "
+"filename>). Puede cambiar el nombre de esta carpeta o copiar sus archivos a "
 "otra carpeta (¡sin alterar la estructura de carpetas!)."
 
 #. type: Content of: <article><section><para>
@@ -19917,7 +19897,7 @@ msgid ""
 "that are different and one version has an extra space, then we say that the "
 "file has one difference, not five."
 msgstr ""
-"WinMerge también utiliza las líneas como unidad básica de comparación.  Las "
+"WinMerge también utiliza las líneas como unidad básica de comparación. Las "
 "palabras y los caracteres no se tratan de forma individual en las "
 "operaciones de comparación y combinación. A modo de ejemplo, imaginemos dos "
 "archivos que son idénticos salvo por una línea que difiere. Si las dos "
@@ -20023,8 +20003,8 @@ msgid ""
 "pane, like this:"
 msgstr ""
 "En el cuadro de diálogo \"Seleccione archivos y carpetas\" especifique "
-"<filename>Fichero1</filename> como <guilabel>1er</guilabel> archivo y "
-"<filename>Fichero2</filename>como <guilabel>2º</guilabel> archivo y haga "
+"<filename>Archivo1</filename> como <guilabel>1er</guilabel> archivo y "
+"<filename>Archivo2</filename> como <guilabel>2º</guilabel> archivo y haga "
 "clic en <guibutton>Comparar</guibutton>. La ventana de comparación de "
 "archivos muestra los dos archivos en los paneles izquierdo y derecho de la "
 "siguiente manera:"
@@ -20133,7 +20113,7 @@ msgid ""
 "than in a conventional editor."
 msgstr ""
 "WinMerge inserta una o varias líneas grises en blanco en una de las "
-"versiones de una comparación cuando la otra versión tiene más líneas.  Estas "
+"versiones de una comparación cuando la otra versión tiene más líneas. Estas "
 "líneas grises vacías no representan líneas en blanco en el archivo de "
 "origen; son solo marcadores de posición en la pantalla. El objetivo de las "
 "líneas de separación es mantener alineadas verticalmente las versiones "
@@ -20192,7 +20172,7 @@ msgid ""
 msgstr ""
 "Al seleccionar una diferencia, las dos versiones se cargan en el panel de "
 "diferencias. El panel de diferencias muestra qué líneas forman parte de la "
-"diferencia y le permite examinarlas de forma aislada del resto del archivo.  "
+"diferencia y le permite examinarlas de forma aislada del resto del archivo. "
 "En nuestro ejemplo, la Diferencia 1 tiene claramente dos líneas."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><mediaobject>
@@ -20233,7 +20213,7 @@ msgid ""
 msgstr ""
 "Ha llegado al final del archivo y ha tenido la oportunidad de examinar todas "
 "las diferencias. Este ha sido un ejemplo sencillo, solo había dos "
-"diferencias y hay otras formas de comparar diferencias en WinMerge.  Sin "
+"diferencias y hay otras formas de comparar diferencias en WinMerge. Sin "
 "embargo, demuestra la eficacia de utilizar los controles de navegación de "
 "WinMerge."
 
@@ -20258,7 +20238,7 @@ msgid ""
 "version."
 msgstr ""
 "El objetivo de la combinación es unir los cambios de dos archivos en uno "
-"solo.  La combinación amplía los conceptos y funciones utilizados en la "
+"solo. La combinación amplía los conceptos y funciones utilizados en la "
 "operación de comparación: le recomendamos que lea la sección anterior antes "
 "de comenzar esta sección. Además de detectar las diferencias entre dos "
 "versiones de un archivo, resolvemos dichas diferencias y guardamos el "
@@ -20278,7 +20258,7 @@ msgstr ""
 "habitual en entornos de trabajo en equipo. Por ejemplo, supongamos que usted "
 "y otra persona desean añadir código al mismo archivo de programa al mismo "
 "tiempo. Ambos comienzan con una copia idéntica del archivo, pero durante el "
-"desarrollo crean versiones distintas que ya no son idénticas.  En algún "
+"desarrollo crean versiones distintas que ya no son idénticas. En algún "
 "momento, las dos versiones deben combinarse en una sola que conserve los "
 "cambios de cada colaborador."
 
@@ -20318,10 +20298,10 @@ msgid ""
 msgstr ""
 "Al igual que al comparar, utilice los controles de la barra de herramientas "
 "de WinMerge (o los atajos de teclado) para recorrer sistemáticamente las "
-"diferencias.  Resuelva cada diferencia copiando el <glossterm>candidato</"
+"diferencias. Resuelva cada diferencia copiando el <glossterm>candidato</"
 "glossterm> izquierdo o del derecho al otro lado. Cuando haya resuelto todas "
 "las diferencias, WinMerge le indicará que todas las diferencias se han "
-"resuelto (las versiones son idénticas)  y habrá terminado la combinación."
+"resuelto (las versiones son idénticas) y habrá terminado la combinación."
 
 #. type: Content of: <article><section><section><title>
 #: English/Intro_diffs.xml:292
@@ -20363,9 +20343,9 @@ msgid ""
 msgstr ""
 "Haga clic en el botón<placeholder type=\"inlinemediaobject\" id=\"0\"/> "
 "<guibutton>Copiar al derecho</guibutton> para combinar la Diferencia 1 del "
-"<filename>Fichero1</filename> con el <filename>Fichero2</filename>. En el "
-"<filename>Fichero2</filename> observe que la única línea de diferencia se ha "
-"sustituido por las dos líneas del <filename>Fichero1</filename>, y que la "
+"<filename>Archivo1</filename> con el <filename>Archivo2</filename>. En el "
+"<filename>Archivo2</filename> observe que la única línea de diferencia se ha "
+"sustituido por las dos líneas del <filename>Archivo1</filename>, y que la "
 "línea en blanco grisácea ya no aparece."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
@@ -20391,7 +20371,7 @@ msgid ""
 msgstr ""
 "Haga clic en el botón<placeholder type=\"inlinemediaobject\" id=\"0\"/> "
 "<guibutton>Copiar al izquierdo</guibutton> para combinar la Diferencia 2 del "
-"<filename>Fichero2</filename> con el <filename>Fichero1</filename>."
+"<filename>Archivo2</filename> con el <filename>Archivo1</filename>."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/Intro_diffs.xml:372
@@ -20475,7 +20455,7 @@ msgstr ""
 "tanto, la estrategia más sencilla consiste en guardar los cambios en uno, "
 "dos o tres archivos de origen. Pulse<keycombo> <keycap>Ctrl</keycap> "
 "<keycap>S</keycap> </keycombo> en cualquier momento para guardar los cambios "
-"actuales en todos los archivos.  También puede hacer clic en<menuchoice> "
+"actuales en todos los archivos. También puede hacer clic en<menuchoice> "
 "<guimenu>Archivo</guimenu> <guimenuitem>Guardar izquierdo</guimenuitem> </"
 "menuchoice>, <menuchoice> <guimenu>Archivo</guimenu> <guimenuitem>Guardar "
 "central</guimenuitem> </menuchoice> o<menuchoice> <guimenu>Archivo</guimenu> "
@@ -20781,8 +20761,8 @@ msgid ""
 msgstr ""
 "El código fuente de WinMerge está disponible en nuestro <ulink url=\"https://"
 "winmerge.org/source-code/\">sitio web</ulink> y en las páginas del proyecto "
-"en <ulink url=\"https://github.com/WinMerge/\">GitHub</ulink>.  Cualquiera "
-"puede descargar el código fuente, estudiarlo y modificarlo.  Si encuentra (y "
+"en <ulink url=\"https://github.com/WinMerge/\">GitHub</ulink>. Cualquiera "
+"puede descargar el código fuente, estudiarlo y modificarlo. Si encuentra (y "
 "corrige) errores, mejora algo, etc., le rogamos que nos envíe sus cambios en "
 "forma de parches o solicitudes de incorporación de cambios y nos ayude a "
 "mejorar este producto. Si publica su versión modificada, deberá publicar "
@@ -20799,7 +20779,7 @@ msgid ""
 "are absolutely no promises for new features. We always appreciate any help "
 "with WinMerge, be it testing, documenting, translating, or coding."
 msgstr ""
-"El desarrollo de WinMerge lo llevan a cabo personas en su tiempo libre.  "
+"El desarrollo de WinMerge lo llevan a cabo personas en su tiempo libre. "
 "Nadie cobra por mejorar WinMerge. Intentamos corregir los errores a medida "
 "que los encontramos o cuando alguien nos los comunica. Nos esforzamos de "
 "verdad. Nosotros también usamos WinMerge. Pero no podemos prometer nada en "
@@ -20931,8 +20911,8 @@ msgid ""
 "format)  for the current WinMerge version, and save it to your file system."
 msgstr ""
 "Vaya al sitio web de<ulink url=\"https://winmerge.org/downloads/\">descargas "
-"de WinMerge</ulink>.  Descargue uno de los archivos binarios comprimidos (en "
-"formato Zip o 7z)  de la versión actual de WinMerge y guárdelo en su sistema "
+"de WinMerge</ulink>. Descargue uno de los archivos binarios comprimidos (en "
+"formato Zip o 7z) de la versión actual de WinMerge y guárdelo en su sistema "
 "de archivos."
 
 #. type: Content of: <article><section><itemizedlist><listitem><orderedlist><listitem><simpara>
@@ -20946,7 +20926,7 @@ msgid ""
 msgstr ""
 "Abra el archivo comprimido descargado y busque los archivos <filename>*.po</"
 "filename>, donde * corresponde al idioma (por ejemplo, <filename>Swedish.po</"
-"filename> para la traducción al sueco).  Extraiga los archivos de idioma que "
+"filename> para la traducción al sueco). Extraiga los archivos de idioma que "
 "desee a la subcarpeta <filename>Languages</filename> del directorio de "
 "instalación de WinMerge."
 
@@ -21236,7 +21216,7 @@ msgid ""
 msgstr ""
 "Por favor, comunique cualquier error que encuentre en las traducciones como "
 "un fallo en nuestra <ulink url=\"https://github.com/WinMerge/winmerge/"
-"issues\">lista de errores</ulink>.  Sería estupendo que también nos "
+"issues\">lista de errores</ulink>. Sería estupendo que también nos "
 "facilitara una versión corregida del texto traducido."
 
 #. type: Content of: <article><section><title><indexterm><primary>
@@ -21266,9 +21246,9 @@ msgstr ""
 "url=\"https://winmerge.org/translations/\">documentación sobre traducción</"
 "ulink> disponible en el sitio web de WinMerge para saber cómo hacerlo. La "
 "mayoría de las traducciones están incompletas, por lo que agradeceríamos su "
-"ayuda para mejorarlas.  Para traducir (o mejorar una traducción) no es "
+"ayuda para mejorarlas. Para traducir (o mejorar una traducción) no es "
 "necesario disponer de todas las herramientas de compilación ni conocer el "
-"funcionamiento interno de WinMerge.  Solo tiene que seguir las instrucciones "
+"funcionamiento interno de WinMerge. Solo tiene que seguir las instrucciones "
 "del enlace anterior. Y si tiene algún problema, pídanos ayuda en uno de los "
 "<ulink url=\"https://forums.winmerge.org/\">foros de WinMerge</ulink>."
 
@@ -21323,7 +21303,7 @@ msgstr "<xref linkend=\"OpenPaths_project\" />"
 msgid ""
 "Select Files or Folders dialog<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"Cuadro de diálogo \"Seleccione archivos o carpetas\"<placeholder "
+"Cuadro de diálogo \"Seleccionar archivos o carpetas\"<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
@@ -21410,7 +21390,7 @@ msgid ""
 "Select Files or Folders dialog or WinMerge command line."
 msgstr ""
 "El tema <xref linkend=\"Compare_dirs\" /> describe cómo trabajar con "
-"archivos comprimidos.  Por ejemplo, si un archivo comprimido contiene dos "
+"archivos comprimidos. Por ejemplo, si un archivo comprimido contiene dos "
 "subcarpetas llamadas <filename class=\"directory\">Original/</filename> y "
 "<filename class=\"directory\">Modificado/</filename>, puede comparar el "
 "contenido de ambas subcarpetas especificando el mismo archivo comprimido en "
@@ -21480,7 +21460,7 @@ msgstr ""
 "Las máscaras de archivo son útiles para realizar filtrados sencillos. Para "
 "selecciones más avanzadas, utilice archivos de filtro. Los archivos de "
 "filtro son conjuntos de expresiones regulares que pueden incluir o excluir "
-"archivos.  WinMerge instala varios archivos de filtro predefinidos en su "
+"archivos. WinMerge instala varios archivos de filtro predefinidos en su "
 "carpeta <filename>Filtros</filename> y usted también puede crear los suyos "
 "propios."
 
@@ -21533,10 +21513,10 @@ msgid ""
 msgstr ""
 "Los descompresores son complementos que se instalan junto con WinMerge para "
 "proporcionar funcionalidades que no están disponibles de forma "
-"predeterminada.  Son complementos que permiten preprocesar determinados "
-"tipos de archivos antes de compararlos. Por ejemplo, WinMerge no suele poder "
+"predeterminada. Son complementos que permiten preprocesar determinados tipos "
+"de archivos antes de compararlos. Por ejemplo, WinMerge no suele poder "
 "comparar archivos doc de MS Word, pero al descomprimirlos se puede comparar "
-"únicamente el contenido de texto.  Consulte la sección <xref "
+"únicamente el contenido de texto. Consulte la sección <xref "
 "linkend=\"Plugins\" /> para obtener más información."
 
 #. type: Content of: <article><section><section><para>
@@ -21557,7 +21537,7 @@ msgid ""
 "Your choice is displayed in the <guilabel>Unpacker</guilabel> field.  Note "
 "that you cannot select an unpacker when launching a Folder Compare operation."
 msgstr ""
-"Su elección aparecerá en el campo <guilabel>Descompresor</guilabel>.  Tenga "
+"Su elección aparecerá en el campo <guilabel>Descompresor</guilabel>. Tenga "
 "en cuenta que no puede seleccionar un descompresor al iniciar una operación "
 "de comparación de carpetas."
 
@@ -21807,7 +21787,7 @@ msgid ""
 msgstr ""
 "Si hace clic en <guimenuitem>Comparar</guimenuitem> antes de indicar la "
 "primera ruta, se abrirá el cuadro de diálogo \"Seleccione archivos o "
-"carpetas\" con su selección como primera ruta (<guilabel>1ª</guilabel>).  "
+"carpetas\" con su selección como primera ruta (<guilabel>1ª</guilabel>). "
 "Indique la segunda ruta <guilabel>2ª</guilabel> en el segundo campo para "
 "continuar con la comparación."
 
@@ -21988,7 +21968,7 @@ msgid ""
 "files are handy if you compare the same files repeatedly."
 msgstr ""
 "Puede guardar las rutas y los filtros que tiene abiertos actualmente en un "
-"archivo de proyecto.  Así, podrá abrir fácilmente el proyecto más adelante "
+"archivo de proyecto. Así, podrá abrir fácilmente el proyecto más adelante "
 "para comparar los mismos archivos. Los archivos de proyecto resultan muy "
 "útiles si compara los mismos archivos repetidamente."
 
@@ -22143,16 +22123,16 @@ msgid ""
 msgstr ""
 "&lt;?xml version='1.0' encoding='UTF-8'?&gt;\n"
 "&lt;project&gt;\n"
-"   &lt;paths&gt;\n"
-"      &lt;left&gt;c:\\work\\project1&lt;/left&gt;\n"
-"      &lt;left-readonly&gt;1&lt;/left-readonly&gt;\n"
-"      &lt;middle&gt;c:\\work\\project2&lt;/middle&gt;\n"
-"      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;\n"
-"      &lt;right&gt;c:\\work\\project3&lt;/right&gt;\n"
-"      &lt;right-readonly&gt;0&lt;/right-readonly&gt;\n"
-"      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;\n"
-"      &lt;subfolders&gt;0&lt;/subfolders&gt;\n"
-"   &lt;/paths&gt;\n"
+" &lt;paths&gt;\n"
+" &lt;left&gt;c:\\work\\project1&lt;/left&gt;\n"
+" &lt;left-readonly&gt;1&lt;/left-readonly&gt;\n"
+" &lt;middle&gt;c:\\work\\project2&lt;/middle&gt;\n"
+" &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;\n"
+" &lt;right&gt;c:\\work\\project3&lt;/right&gt;\n"
+" &lt;right-readonly&gt;0&lt;/right-readonly&gt;\n"
+" &lt;filter&gt;Visual C++ loose&lt;/filter&gt;\n"
+" &lt;subfolders&gt;0&lt;/subfolders&gt;\n"
+" &lt;/paths&gt;\n"
 "&lt;/project&gt;"
 
 #. type: Content of: <article><section><section><para>
@@ -23011,7 +22991,7 @@ msgid ""
 "using no plugin."
 msgstr ""
 "El modo manual le permite elegir un complemento de descompresión distinto al "
-"que se selecciona automáticamente en el modo automático.  También puede "
+"que se selecciona automáticamente en el modo automático. También puede "
 "iniciar la comparación sin utilizar ningún complemento."
 
 #. type: Content of: <article><section><section><section><para>
@@ -23074,7 +23054,7 @@ msgid ""
 msgstr ""
 "Puede utilizar el cuadro de diálogo \"Seleccionar descompresor\" para "
 "aplicar un complemento al iniciar una comparación de archivos desde el "
-"cuadro de diálogo \"Seleccione archivos o carpetas\".  Consulte <xref "
+"cuadro de diálogo \"Seleccione archivos o carpetas\". Consulte <xref "
 "linkend=\"Open_paths_unpacker\" />para obtener más información."
 
 #. type: Content of: <article><section><section><title>
@@ -24981,7 +24961,7 @@ msgid ""
 "This plugin ignores characters at specified columns. The first column is "
 "number 1."
 msgstr ""
-"Este complemento ignora los caracteres de las columnas especificadas.  La "
+"Este complemento ignora los caracteres de las columnas especificadas. La "
 "primera columna es la número 1."
 
 #. type: Content of: <article><section><section><para>
@@ -25176,7 +25156,7 @@ msgstr ""
 "Este complemento está pensado para archivos que utilizan campos y "
 "tabulaciones como delimitadores (<application>por ejemplo, archivos de "
 "Excel</application> guardados en formato <filename class=\"extension\">*."
-"txt</filename>).  Ignora los caracteres delimitadores. El primer campo es el "
+"txt</filename>). Ignora los caracteres delimitadores. El primer campo es el "
 "número 1."
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
@@ -25644,8 +25624,8 @@ msgid ""
 "If you are comparing files, select the target file. The <literal>Folder "
 "Selection</literal> text is overwritten with your selection."
 msgstr ""
-"Si va a comparar archivos, seleccione el archivo de destino.  El texto "
-"<literal>Selección de carpeta</literal> se sobrescribirá con su selección"
+"Si va a comparar archivos, seleccione el archivo de destino. El texto "
+"<literal>Selección de carpeta</literal> se sobrescribirá con su selección."
 
 #. type: Content of: <article><section><section><section><para><itemizedlist><listitem><itemizedlist><listitem><para>
 #: English/Quick_start.xml:118
@@ -25687,7 +25667,7 @@ msgid ""
 msgstr ""
 "Para facilitar la selección de rutas de uso frecuente, le recomendamos que "
 "active la opción <guilabel>Autocompletar en el diálogo Opciones - General</"
-"guilabel>.  Con esta opción, WinMerge muestra una lista de rutas disponibles "
+"guilabel>. Con esta opción, WinMerge muestra una lista de rutas disponibles "
 "a medida que escribe en los campos. Consulte <xref "
 "linkend=\"Configuration\" /> para obtener más detalles."
 
@@ -25714,9 +25694,9 @@ msgid ""
 "dialog."
 msgstr ""
 "Solo puede seleccionar un par de archivos o un par de carpetas para "
-"comparar.  Si selecciona un archivo y una carpeta o si no se encuentra "
-"alguno de los archivos o carpetas, WinMerge desactiva el botón "
-"<guibutton>Comparar</guibutton> en el cuadro de diálogo."
+"comparar. Si selecciona un archivo y una carpeta o si no se encuentra alguno "
+"de los archivos o carpetas, WinMerge desactiva el botón <guibutton>Comparar</"
+"guibutton> en el cuadro de diálogo."
 
 #. type: Content of: <article><section><section><section><para><note><para>
 #: English/Quick_start.xml:157
@@ -25776,9 +25756,9 @@ msgstr ""
 "máscaras de archivo: haga clic en el botón <guibutton>Seleccionar</"
 "guibutton> situado junto al campo <guilabel>Filtros</guilabel> para elegir "
 "entre una lista de filtros disponibles. Los filtros de archivos contienen "
-"cualquier número de reglas para incluir o excluir archivos.  WinMerge "
-"instala un conjunto de archivos de filtro, que puede editar o ampliar con "
-"sus propios archivos."
+"cualquier número de reglas para incluir o excluir archivos. WinMerge instala "
+"un conjunto de archivos de filtro, que puede editar o ampliar con sus "
+"propios archivos."
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Quick_start.xml:183
@@ -25804,7 +25784,7 @@ msgstr ""
 "marca esta opción, WinMerge compara las subcarpetas de forma recursiva y "
 "muestra todos los archivos y carpetas que encuentra en una sola vista. Si "
 "desactiva la opción, solo se compara la carpeta actual y las subcarpetas se "
-"enumeran por nombre (sin su contenido)  para que pueda explorarlas."
+"enumeran por nombre (sin su contenido) para que pueda explorarlas."
 
 #. type: Content of: <article><section><section><section><title>
 #: English/Quick_start.xml:195
@@ -25892,7 +25872,7 @@ msgstr ""
 "Si ha seleccionado dos carpetas en el cuadro de diálogo \"Abrir...\" se "
 "abrirá la ventana de comparación de carpetas. La ventana de comparación de "
 "carpetas es una lista en forma de tabla con los elementos encontrados en las "
-"carpetas comparadas.  Cada fila muestra información sobre un archivo "
+"carpetas comparadas. Cada fila muestra información sobre un archivo "
 "encontrado con el nombre del archivo en la columna de la izquierda e "
 "información adicional en las demás columnas:"
 
@@ -25929,7 +25909,7 @@ msgstr ""
 "<guimenu>Combinar</guimenu>, los botones de la barra de herramientas o el "
 "menú contextual (clic con el botón derecho). La acción más importante "
 "consiste en hacer que los archivos o carpetas sean idénticos en ambos lados "
-"seleccionando una de las opciones de \"Copiar\".  Cuando se copia un archivo "
+"seleccionando una de las opciones de \"Copiar\". Cuando se copia un archivo "
 "o una carpeta al otro lado, el valor del \"Resultado de la comparación\" "
 "cambia a <literal>Idéntico</literal>."
 
@@ -25974,7 +25954,7 @@ msgstr ""
 #. type: Content of: <article><section><para><inlinemediaobject><textobject><phrase>
 #: English/Quick_start.xml:313
 msgid "Navigator up arrow button"
-msgstr "botón de flecha hacia arriba del Navegador"
+msgstr "Botón de flecha hacia arriba del Navegador"
 
 #. type: Content of: <article><section><para>
 #: English/Quick_start.xml:304
@@ -26026,13 +26006,13 @@ msgid ""
 "merge a difference, you copy all of its lines from one side to the other."
 msgstr ""
 "La ventana de comparación de archivos muestra los dos archivos seleccionados "
-"uno al lado del otro, en paneles de archivo independientes.  Las líneas "
+"uno al lado del otro, en paneles de archivo independientes. Las líneas "
 "diferentes se resaltan con un color de fondo. Una o más líneas diferentes "
-"consecutivas forman una diferencia (o <glossterm>diff</glossterm>).  En el "
+"consecutivas forman una diferencia (o <glossterm>diff</glossterm>). En el "
 "ejemplo anterior, se ha seleccionado una sola diferencia en los paneles de "
 "archivo y se muestra por sí sola en el panel de diferencias. WinMerge "
-"trabaja principalmente con estas diferencias, no con líneas individuales.  "
-"Al combinar una diferencia se copian todas sus líneas de un lado al otro."
+"trabaja principalmente con estas diferencias, no con líneas individuales. Al "
+"combinar una diferencia se copian todas sus líneas de un lado al otro."
 
 #. type: Content of: <article><section><para><important><para>
 #: English/Quick_start.xml:355
@@ -26838,7 +26818,7 @@ msgstr ""
 "La comparación y la combinación de archivos suelen ser subtareas dentro de "
 "un proceso más amplio de gestión de cambios. Por ese motivo, WinMerge no "
 "solo se utiliza de forma independiente, sino también junto con otras "
-"herramientas.  Además, las utilidades de comparación y combinación ofrecen "
+"herramientas. Además, las utilidades de comparación y combinación ofrecen "
 "diferentes funciones, por lo que a veces resulta útil combinar varias "
 "herramientas. En este tema se describen los principales métodos para "
 "utilizar WinMerge con otras herramientas."
@@ -26860,7 +26840,7 @@ msgstr ""
 "La interfaz de línea de comandos (CLI) de WinMerge, descrita en la sección "
 "<xref linkend=\"Command_line\" />, le permite ejecutar WinMerge desde una "
 "ventana del símbolo del sistema, desde secuencias de comandos o desde otra "
-"herramienta o programa.  Básicamente, cualquier programa que permita invocar "
+"herramienta o programa. Básicamente, cualquier programa que permita invocar "
 "un ejecutable externo con al menos una ruta de acceso puede utilizarse para "
 "iniciar una operación de WinMerge."
 
@@ -26935,7 +26915,7 @@ msgid ""
 "examples."
 msgstr ""
 "Puede configurar WinMerge para que interactúe con algunos sistemas de "
-"control de versiones (VCS)  compatibles. En esta sección se describe la "
+"control de versiones (VCS) compatibles. En esta sección se describe la "
 "integración con los VCS y se ofrecen algunos ejemplos."
 
 #. type: Content of: <article><section><section><title>
@@ -27025,7 +27005,7 @@ msgid ""
 "the target file versions loaded in the File Compare window."
 msgstr ""
 "Seleccione el acceso directo <guimenuitem>Comparar con la versión anterior</"
-"guimenuitem> o <guimenuitem>Comparar</guimenuitem>.  Se abrirá la ventana de "
+"guimenuitem> o <guimenuitem>Comparar</guimenuitem>. Se abrirá la ventana de "
 "WinMerge, con las versiones del archivo de destino cargadas en la ventana de "
 "comparación de archivos."
 

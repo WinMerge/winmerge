@@ -7,7 +7,7 @@ Opciones y configuración<indexterm>
 
   <para>
 El cuadro de diálogo "Opciones" le permite personalizar muchas funciones de
-WinMerge.  Para configurar las opciones de WinMerge:</para>
+WinMerge. Para configurar las opciones de WinMerge:</para>
 
   <orderedlist>
     <listitem>
@@ -101,7 +101,7 @@ existentes.</para>
 Cuando haya configurado las opciones a su gusto, haga clic en
 <guibutton>Exportar</guibutton>. En el cuadro de diálogo "Seleccionar
 archivo para exportar" especifique una ruta y un nombre para el archivo de
-opciones (el tipo <filename>ini</filename> se añade automáticamente)  y haga
+opciones (el tipo <filename>ini</filename> se añade automáticamente) y haga
 clic en <guibutton>Guardar</guibutton>.</para>
 
           <para>
@@ -240,8 +240,9 @@ cuenta que esta comprobación puede provocar cierto retraso.</para>
 <option>Desactivado</option>: el botón <guibutton>Comparar</guibutton> del
 cuadro de diálogo "Seleccionar archivos o carpetas" está siempre activo e
 intenta abrir cualquier ruta que se especifique. Dado que no hay ningún
-retraso durante la validación, esto puede agilizar la selección de rutas.
-Sin embargo, si no se puede abrir la ruta, aparece un mensaje de error.</para>
+retraso durante la validación, esto puede agilizar la selección de
+rutas. Sin embargo, si no se puede abrir la ruta, aparece un mensaje de
+error.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -249,7 +250,7 @@ Sin embargo, si no se puede abrir la ruta, aparece un mensaje de error.</para>
     <section>
       <title>
 Modo de instancia única<indexterm>
-          <primary>Ventana de WinMerge</primary>
+          <primary>Ventana WinMerge</primary>
 
           <secondary>limitación de instancias</secondary>
         </indexterm></title>
@@ -344,7 +345,7 @@ la fecha y hora del archivo no se modifican en su sistema de archivos.</para>
     <section>
       <title>
 Mostrar "Seleccione archivos o carpetas" al iniciar el programa<indexterm>
-          <primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary>
+          <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
 
           <secondary>apertura automática</secondary>
         </indexterm></title>
@@ -370,7 +371,7 @@ para abrir el cuadro de diálogo "Seleccione archivos o carpetas".</para>
       <title>
 Cerrar "Seleccione archivos o carpetas" al hacer clic en
 Comparar<indexterm>
-          <primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary>
+          <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
         </indexterm></title>
 
       <itemizedlist>
@@ -417,7 +418,7 @@ una ruta que coincida, completa la ruta.</para>
           <para>
 <guilabel>Desde la lista de los usados más recientemente</guilabel>:
 comprueba únicamente las rutas de la lista de elementos usados más
-recientemente (MRU).  Esto resulta útil cuando hay un número limitado de
+recientemente (MRU). Esto resulta útil cuando hay un número limitado de
 rutas que comparar.</para>
         </listitem>
       </itemizedlist>
@@ -471,7 +472,7 @@ Consulte <xref linkend="Locales_changing" />.</para>
   </section>
 
   <section id="Configuration_compare">
-    <title>Página "Comparar &gt; General"</title>
+    <title>Comparar &gt; General</title>
 
     <para>
 Las opciones de esta página le permiten modificar algunas de las formas en
@@ -561,13 +562,13 @@ diferencias, que siempre aparecen resaltados.</para>
 Un espacio entre las palabras:<screen format="linespecific">Dos palabras</screen></para>
 
         <para>
-Dos espacios entre las palabras:<screen format="linespecific">Dos  espacios</screen></para>
+Dos espacios entre las palabras:<screen format="linespecific">Dos espacios</screen></para>
 
         <para>
-Tabulación entre palabras:<screen format="linespecific">Dos   palabras</screen></para>
+Tabulación entre palabras:<screen format="linespecific">Dos palabras</screen></para>
 
         <para>
-Sin espacios entre las palabras:<screen format="linespecific">Dospalabras</screen></para>
+Sin espacios entre las palabras:<screen format="linespecific">TwoWords</screen></para>
       </example>
 
       <para>
@@ -648,8 +649,8 @@ eliminadas.</para>
         <listitem>
           <para>
 <option>Activado</option>: las líneas vacías de los archivos de origen se
-ignoran.  En la ventana de comparación de archivos se muestran como líneas
-en blanco con los colores de las diferencias ignoradas. Sin embargo, estas
+ignoran. En la ventana de comparación de archivos se muestran como líneas en
+blanco con los colores de las diferencias ignoradas. Sin embargo, estas
 diferencias no se pueden combinar.</para>
         </listitem>
       </itemizedlist>
@@ -829,7 +830,7 @@ def
 </screen> <note> Resulta útil cuando
 se combina con opciones de espacios en blanco como <option>Espacios en
 blanco → Ignorar cambios</option> o <option>Espacios en blanco → Ignorar
-todos</option>.  </note></para>
+todos</option>. </note></para>
         </listitem>
       </itemizedlist>
     </section>
@@ -837,7 +838,7 @@ todos</option>.  </note></para>
     <section>
       <title>
 Habilitar detección de bloques desplazados<indexterm>
-          <primary>diferencias desplazadas</primary>
+          <primary>diferencias despalzadas</primary>
         </indexterm></title>
 
       <itemizedlist>
@@ -980,12 +981,12 @@ líneas idénticas.</para>
   </section>
 
   <section id="Configuration_compare_folder">
-    <title>Página "Comparar &gt; Carpeta"</title>
+    <title>Comparar &gt; Carpeta</title>
 
     <section id="Configuration_compmethod">
       <title>
 Método de comparación<indexterm>
-          <primary>comparación de archivos</primary>
+          <primary>comparar archivos</primary>
 
           <secondary>opciones de detección</secondary>
         </indexterm></title>
@@ -1035,7 +1036,7 @@ Este método es más rápido que el método de comparación rápida de
 contenidos. Sin embargo, no aplica ningún complemento, filtro de líneas,
 opción "Ignorar mayúsculas y minúsculas", etc. En primer lugar, compara los
 tamaños de los archivos y, si son diferentes, considera que el contenido de
-los archivos es distinto sin compararlos.  Si los tamaños de los archivos
+los archivos es distinto sin compararlos. Si los tamaños de los archivos
 coinciden, simplemente compara el contenido de los archivos en bytes. No se
 realiza ninguna detección de codificación de archivos, detección de fin de
 línea ni detección de archivos binarios. Este método de comparación es
@@ -1048,7 +1049,7 @@ adecuado para comparar archivos con copias de seguridad.</para>
 Fecha de modificación<indexterm>
               <primary>marcas de tiempo</primary>
 
-              <secondary>comparación</secondary>
+              <secondary>compararación</secondary>
             </indexterm></term>
 
           <listitem>
@@ -1075,7 +1076,7 @@ además comprueba el tamaño de los archivos cuando las fechas son idénticas.</
 Tamaño<indexterm>
               <primary>tamaño de los archivos</primary>
 
-              <secondary>comparación</secondary>
+              <secondary>compararación</secondary>
             </indexterm></term>
 
           <listitem>
@@ -1101,7 +1102,7 @@ comprobar el contenido, el tamaño ni las marcas de tiempo.</para>
     <section>
       <title>
 Detener después de la primera diferencia<indexterm>
-          <primary>comparación de archivos</primary>
+          <primary>comparar archivos</primary>
 
           <secondary>detenerse tras la primera diferencia</secondary>
         </indexterm><indexterm>
@@ -1169,8 +1170,8 @@ tamaño </guimenuitem> (descritos en <xref linkend="Configuration_compmethod"
 
           <warning>
             <para>
-Esta opción solo debe activarse cuando se detecte una diferencia horaria.
-De lo contrario, puede dar lugar a resultados de comparación incorrectos.</para>
+Esta opción solo debe activarse cuando se detecte una diferencia horaria. De
+lo contrario, puede dar lugar a resultados de comparación incorrectos.</para>
           </warning>
         </listitem>
       </itemizedlist>
@@ -1277,7 +1278,7 @@ carpetas de puntos de reanálisis como si fueran carpetas normales.</para>
 <option>Activado</option>: ignora el contenido de las carpetas que son
 puntos de reanálisis. Por ejemplo, C:\Users\All Users es un enlace simbólico
 a C:\ProgramData y al activar esta opción se omitirá la comparación de la
-carpeta C:\Users\All Users</para>
+carpeta C:\Users\All Users.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1285,7 +1286,7 @@ carpeta C:\Users\All Users</para>
     <section>
       <title>
 Cambiar a comparación rápida cuando el tamaño supere (MB)<indexterm>
-          <primary>comparación rápida</primary>
+          <primary>Comparación rápida</primary>
 
           <secondary>límite</secondary>
         </indexterm></title>
@@ -1305,7 +1306,7 @@ configurado como comparación de <guilabel>Todos los contenidos</guilabel>.</par
 
           <para>
 Tamaño mínimo para cambiar al método de comparación <guilabel>Contenidos
-breves</guilabel>.  Cuando se selecciona el método de comparación
+breves</guilabel>. Cuando se selecciona el método de comparación
 <guilabel>Todos los contenidos</guilabel> los archivos cuyo tamaño (en
 megabytes) superen este valor se comparan utilizando el método de
 comparación <guilabel>Contenidos breves</guilabel>.</para>
@@ -1364,15 +1365,15 @@ Condiciones de comparación adicionales<indexterm>
 
       <para>
 Permite especificar condiciones de comparación adicionales mediante
-expresiones de filtro al comparar carpetas.  Por ejemplo, aunque el método
-de comparación seleccionado (como Todos los contenidos) considere que los
+expresiones de filtro al comparar carpetas. Por ejemplo, aunque el método de
+comparación seleccionado (como Todos los contenidos) considere que los
 archivos son idénticos, puede añadir condiciones como <screen>allequal(Date)</screen> o <screen>LeftDate =
-        RightDate</screen> para exigir que
-las fechas de modificación de los archivos también coincidan.  Al hacer clic
+ RightDate</screen> para exigir que
+las fechas de modificación de los archivos también coincidan. Al hacer clic
 en el botón <guilabel>=</guilabel>, situado a la derecha del campo de
 entrada, aparece un menú con opciones como <guilabel>Comparar
-tamaño</guilabel> o <guilabel>Comparar fecha</guilabel>, etc.  Al
-seleccionar <guilabel>Comparar fecha</guilabel> se inserta automáticamente
+tamaño</guilabel> o <guilabel>Comparar fecha</guilabel>, etc. Al seleccionar
+<guilabel>Comparar fecha</guilabel> se inserta automáticamente
 <literal>allequal(Date)</literal> en el campo.</para>
     </section>
 
@@ -1403,7 +1404,7 @@ misma clave de detección.</para>
           <para>
 <option>Detección de renombramientos y desplazamientos</option>: detecta
 archivos o carpetas con nombres diferentes o ubicados en directorios
-distintos, pero que coinciden en las claves de detección.  Este modo detecta
+distintos, pero que coinciden en las claves de detección. Este modo detecta
 tanto los elementos renombrados (en el mismo directorio) como los elementos
 movidos (a directorios diferentes).</para>
         </listitem>
@@ -1413,14 +1414,14 @@ movidos (a directorios diferentes).</para>
     <section>
       <title>
 Claves de detección de renombrados/desplazamientos<indexterm>
-          <primary>Claves de detección de renombrados</primary>
+          <primary>claves de detección de renombrados</primary>
         </indexterm><indexterm>
-          <primary>Claves de detección de desplazamientos</primary>
+          <primary>claves de detección de desplazamientos</primary>
         </indexterm></title>
 
       <para>
 Especifica la expresión de filtro utilizada para generar claves de detección
-que permitan comparar archivos y carpetas entre ambas partes.  Los elementos
+que permitan comparar archivos y carpetas entre ambas partes. Los elementos
 con claves coincidentes se agrupan como elementos que podrían haber sido
 renombrados o desplazados. Por ejemplo, si se establece la clave en
 <literal>Tamaño</literal>, se agruparán los archivos con el mismo tamaño,
@@ -1459,7 +1460,7 @@ coincidirían "file.txt" y "file.doc".</para>
             <listitem>
               <para>
 Inserta la función <literal>normalizeUnicode(Name, "NFC")</literal> que
-busca archivos por su nombre de archivo Unicode normalizado.  Resulta útil
+busca archivos por su nombre de archivo Unicode normalizado. Resulta útil
 para detectar archivos con nombres equivalentes, pero con representaciones
 Unicode diferentes (por ejemplo, caracteres compuestos frente a caracteres
 descompuestos).</para>
@@ -1497,9 +1498,9 @@ Busca archivos según la fecha y la hora de modificación.</para>
             <term>Suma de comprobación (MD5)</term>
             <listitem>
               <para>
-Inserta <literal>if(IsFolder, Name, prop("Hash.MD5"))</literal>.  En el caso
+Inserta <literal>if(IsFolder, Name, prop("Hash.MD5"))</literal>. En el caso
 de las carpetas, la coincidencia se basa en el nombre. En el caso de los
-archivos, la coincidencia se basa en el hash MD5 del contenido.  Este es el
+archivos, la coincidencia se basa en el hash MD5 del contenido. Este es el
 método más preciso para detectar archivos renombrados, pero requiere
 calcular los hashes MD5, lo que puede resultar lento con archivos de gran
 tamaño.</para>
@@ -1525,7 +1526,7 @@ prop("PropertyName"))</literal>.</para>
         <title>Funciones de transformación de cadenas</title>
         <para>
 El menú incluye funciones de transformación de cadenas que se pueden aplicar
-a las claves de detección.  Al seleccionarlas, estas funciones envuelven la
+a las claves de detección. Al seleccionarlas, estas funciones envuelven la
 expresión actual (o el <literal>Nombre</literal> si está vacío):</para>
 
         <variablelist>
@@ -1534,9 +1535,9 @@ expresión actual (o el <literal>Nombre</literal> si está vacío):</para>
             <listitem>
               <para>
 Inserta <literal>replace(expression, "from", "to")</literal> para sustituir
-cadenas de texto literales en la clave.  Debe editar las cadenas de marcador
+cadenas de texto literales en la clave. Debe editar las cadenas de marcador
 de posición "from" y "to" para especificar qué texto se va a buscar y por
-cuál se va a sustituir.  Ejemplo: <literal>replace(Name, ".backup",
+cuál se va a sustituir. Ejemplo: <literal>replace(Name, ".backup",
 "")</literal> elimina ".backup" de los nombres de archivo.</para>
             </listitem>
           </varlistentry>
@@ -1547,8 +1548,8 @@ cuál se va a sustituir.  Ejemplo: <literal>replace(Name, ".backup",
               <para>
 Inserta <literal>regexReplace(expression, "pattern",
 "replacement")</literal> para sustituir texto mediante expresiones
-regulares.  Admite referencias retroactivas ($1, $2, etc.) en la cadena de
-sustitución.  Ejemplo: <literal>regexReplace(Name, "^(\\d+)_(.+)$",
+regulares. Admite referencias retroactivas ($1, $2, etc.) en la cadena de
+sustitución. Ejemplo: <literal>regexReplace(Name, "^(\\d+)_(.+)$",
 "$2")</literal> elimina el número inicial y el guion bajo de los nombres de
 archivo.</para>
             </listitem>
@@ -1568,20 +1569,20 @@ sustitución masiva de cadenas mediante archivos externos:</para>
             <listitem>
               <para>
 Crea un nuevo archivo de valores separados por tabulaciones (TSV) con una
-plantilla para la sustitución de cadenas.  El archivo se guarda en
+plantilla para la sustitución de cadenas. El archivo se guarda en
 <filename>%APPDATA%\WinMerge\ReplaceLists</filename> (o en
 <filename>Documents\WinMerge\ReplaceLists</filename> dependiendo de la
-configuración).  Una vez creado, el archivo se abre en el editor de texto
+configuración). Una vez creado, el archivo se abre en el editor de texto
 predeterminado y se inserta la función <literal>replaceWithList(expression,
 "filepath")</literal>.</para>
               <para>
 El formato del archivo es de una sustitución por línea:
-<literal>search_string&lt;TAB&gt;replacement_string</literal>.  Las líneas
+<literal>search_string&lt;TAB&gt;replacement_string</literal>. Las líneas
 que comienzan por <literal>#</literal> son comentarios.</para>
               <para>
 Ejemplo de contenido del archivo: <screen># Sustituir los números de versión en los nombres de los archivos
-v1.0  v2.0
-beta  versión</screen></para>
+v1.0 v2.0
+beta versión</screen></para>
             </listitem>
           </varlistentry>
 
@@ -1590,9 +1591,9 @@ beta  versión</screen></para>
             <listitem>
               <para>
 Similar a Crear una lista de sustitución de cadenas e insertar..., pero para
-sustituciones de expresiones regulares.  Crea un archivo de plantilla en
+sustituciones de expresiones regulares. Crea un archivo de plantilla en
 <filename>%APPDATA%\WinMerge\RegexReplaceLists</filename> (o
-<filename>Documents\WinMerge\RegexReplaceLists</filename>).  Inserta
+<filename>Documents\WinMerge\RegexReplaceLists</filename>). Inserta
 <literal>regexReplaceWithList(expression, "filepath")</literal>.</para>
               <para>
 El formato del archivo es:
@@ -1601,7 +1602,7 @@ referencias retroactivas.</para>
               <para>
 Ejemplo de contenido del archivo: <screen># Normalizar los formatos de fecha
 (\d{4})-(\d{2})-(\d{2}) $1_$2_$3
-\d+   NUMBER</screen></para>
+\d+ NUMBER</screen></para>
             </listitem>
           </varlistentry>
 
@@ -1611,10 +1612,10 @@ regulares</term>
             <listitem>
               <para>
 Estos submenús muestran todos los archivos TSV que se encuentran en las
-carpetas ReplaceLists correspondientes.  Al seleccionar un archivo de la
+carpetas ReplaceLists correspondientes. Al seleccionar un archivo de la
 lista, se inserta la función <literal>replaceWithList()</literal> o
 <literal>regexReplaceWithList()</literal> correspondiente con la ruta del
-archivo.  Esto le permite reutilizar rápidamente las listas de sustitución
+archivo. Esto le permite reutilizar rápidamente las listas de sustitución
 creadas anteriormente.</para>
             </listitem>
           </varlistentry>
@@ -1646,7 +1647,7 @@ texto y facilitar así la búsqueda de coincidencias:</para>
 Inserta <literal>toLower(expression)</literal> o
 <literal>toUpper(expression)</literal> para convertir todos los caracteres a
 minúsculas o mayúsculas. Resulta útil para realizar coincidencias que no
-distinguen entre mayúsculas y minúsculas.  Ejemplo:
+distinguen entre mayúsculas y minúsculas. Ejemplo:
 <literal>toLower(Name)</literal> considera que "File.txt", "FILE.TXT", y
 "file.txt" son idénticos.</para>
             </listitem>
@@ -1657,9 +1658,9 @@ distinguen entre mayúsculas y minúsculas.  Ejemplo:
             <listitem>
               <para>
 Inserta <literal>toHalfWidth(expression)</literal> o
-<literal>toFullWidth(expression)</literal>.  Convierte caracteres de ancho
+<literal>toFullWidth(expression)</literal>. Convierte caracteres de ancho
 medio a caracteres de ancho completo (principalmente para texto en
-japonés).  Ejemplo: <literal>toHalfWidth(Name)</literal> convierte "ファイル"
+japonés). Ejemplo: <literal>toHalfWidth(Name)</literal> convierte "ファイル"
 (katakana de ancho completo) en "ﾌｧｲﾙ" (de ancho medio).</para>
             </listitem>
           </varlistentry>
@@ -1669,7 +1670,7 @@ japonés).  Ejemplo: <literal>toHalfWidth(Name)</literal> convierte "ファイ�
             <listitem>
               <para>
 Ofrece las funciones <literal>toSimplifiedChinese(expression)</literal> y
-<literal>toTraditionalChinese(expression)</literal>.  Convierte entre
+<literal>toTraditionalChinese(expression)</literal>. Convierte entre
 caracteres chinos simplificados y tradicionales. Resulta útil para buscar
 archivos con nombres escritos en diferentes conjuntos de caracteres chinos.</para>
             </listitem>
@@ -1680,7 +1681,7 @@ archivos con nombres escritos en diferentes conjuntos de caracteres chinos.</par
             <listitem>
               <para>
 Ofrece las funciones <literal>toHiragana(expression)</literal> y
-<literal>toKatakana(expression)</literal>.  Convierte entre los caracteres
+<literal>toKatakana(expression)</literal>. Convierte entre los caracteres
 japoneses hiragana y katakana.</para>
             </listitem>
           </varlistentry>
@@ -1691,7 +1692,7 @@ japoneses hiragana y katakana.</para>
               <para>
 Inserta la función <literal>normalizeUnicode(expression)</literal> que
 normaliza el texto Unicode a la forma NFC (forma de normalización de
-composición canónica).  Esto resulta útil para comparar archivos cuyos
+composición canónica). Esto resulta útil para comparar archivos cuyos
 nombres puedan utilizar diferentes codificaciones Unicode para los mismos
 caracteres (por ejemplo, un solo carácter 'é' frente a 'e' + acento agudo
 combinatorio).</para>
@@ -1702,13 +1703,13 @@ combinatorio).</para>
 
       <para>
 Puede combinar varias claves utilizando el operador <literal>+</literal> con
-un separador.  Por ejemplo, <literal>Nombre + "|" + Tamaño</literal> creará
+un separador. Por ejemplo, <literal>Nombre + "|" + Tamaño</literal> creará
 una clave compuesta que combine tanto el nombre del archivo como el tamaño.</para>
 
       <note>
         <para>
 La expresión clave de detección se evalúa para cada lado de una comparación
-de archivos o carpetas con el fin de generar una clave.  Los elementos se
+de archivos o carpetas con el fin de generar una clave. Los elementos se
 agrupan cuando sus claves coinciden. Por ejemplo, con la clave
 <literal>Tamaño</literal>, un archivo de 1024 bytes a la izquierda y otro de
 1024 bytes a la derecha (aunque tengan nombres diferentes) se agruparán.</para>
@@ -1771,7 +1772,7 @@ ambiguo), no se combinan.</para>
 
   <section id="Configuration_compare_table">
     <title>
-Página "Comparar &gt; Tabla"<indexterm>
+Comparar &gt; Tabla<indexterm>
         <primary>archivos de tablas</primary>
       </indexterm></title>
     <section>
@@ -1780,7 +1781,7 @@ Página "Comparar &gt; Tabla"<indexterm>
 Especifica el formato del nombre de archivo para los archivos de valores
 separados por comas que se abrirán en formato de tabla. Para especificar
 varios elementos, sepárelos con un punto y coma. De forma predeterminada, se
-especifica *.csv.  Si no desea abrir los archivos con la extensión .csv en
+especifica *.csv. Si no desea abrir los archivos con la extensión .csv en
 formato de tabla, elimine *.csv.</para>
     </section>
 
@@ -1788,9 +1789,9 @@ formato de tabla, elimine *.csv.</para>
       <title>Formatos de archivos TSV</title>
       <para>
 Especifica el formato del nombre de archivo para los archivos de valores
-separados por tabulaciones que se abrirán en formato de tabla.  Para
+separados por tabulaciones que se abrirán en formato de tabla. Para
 especificar varios elementos, sepárelos con un punto y coma. De forma
-predeterminada, se especifica *.tsv.  Si no desea abrir los archivos con la
+predeterminada, se especifica *.tsv. Si no desea abrir los archivos con la
 extensión .tsv en formato de tabla, elimine *.tsv.</para>
     </section>
 
@@ -1815,7 +1816,7 @@ varias líneas en un mismo campo.</para>
 
         <listitem>
           <para>
-<option>Desactivado</option>: Desactiva la opción anterior.  Desactiva esta
+<option>Desactivado</option>: Desactiva la opción anterior. Desactiva esta
 opción al abrir archivos con comillas incorrectas.</para>
         </listitem>
       </itemizedlist>
@@ -1824,16 +1825,16 @@ opción al abrir archivos con comillas incorrectas.</para>
     <section>
       <title>Carácter de comillas</title>
       <para>
-Especifica el carácter que se considera como comillas.  Los delimitadores
-que se encuentren dentro del rango de texto delimitado por los caracteres
-aquí especificados se considerarán parte del valor.  Este campo puede
-dejarse vacío.  Para abrir archivos en los que las comillas sean meros
-valores, déjelo vacío o especifique un carácter que no exista en el archivo.</para>
+Especifica el carácter que se considera como comillas. Los delimitadores que
+se encuentren dentro del rango de texto delimitado por los caracteres aquí
+especificados se considerarán parte del valor. Este campo puede dejarse
+vacío. Para abrir archivos en los que las comillas sean meros valores,
+déjelo vacío o especifique un carácter que no exista en el archivo.</para>
     </section>
   </section>
 
   <section id="Configuration_compare_binary">
-    <title>Página "Comparar &gt; Binario"</title>
+    <title>Comparar &gt; Binario</title>
     <section>
       <title>
 Patrones de archivos binarios<indexterm>
@@ -1841,9 +1842,9 @@ Patrones de archivos binarios<indexterm>
         </indexterm></title>
       <para>
 Especifica los patrones de nombre de los archivos binarios que se abrirán en
-la ventana de comparación binaria.  Para especificar varios elementos,
+la ventana de comparación binaria. Para especificar varios elementos,
 sepárelos con un punto y coma. De forma predeterminada, se especifica
-*.bin.  Si no desea que los archivos con la extensión .bin se abran en la
+*.bin. Si no desea que los archivos con la extensión .bin se abran en la
 ventana de comparación binaria, elimine *.bin de la lista.</para>
     </section>
     <section>
@@ -1888,8 +1889,8 @@ archivos.</para>
               </listitem>
               <listitem>
                 <para>El nombre del editor de texto que se abrirá al ejecutar el comando
-<menuchoice><guimenu>Editar</guimenu><guimenuitem> Abrir en editor de texto
-</guimenuitem></menuchoice></para>
+<menuchoice><guimenu>Editar</guimenu><guimenuitem> Abrir en editor de
+texto.</guimenuitem></menuchoice></para>
               </listitem>
             </itemizedlist>
           </listitem>
@@ -1930,7 +1931,7 @@ equipo Little-endian sin realizar una conversión.</para>
           <listitem>
             <para>Aquí puede seleccionar el juego de caracteres para mostrar y escribir
 caracteres: ANSI (el juego de caracteres de Windows) u OEM (el juego de
-caracteres de DOS).  También puede seleccionar el tamaño de la fuente en
+caracteres de DOS). También puede seleccionar el tamaño de la fuente en
 puntos.</para>
           </listitem>
         </varlistentry>
@@ -1940,16 +1941,16 @@ puntos.</para>
 
   <section id="Configuration_compare_image">
     <title>
-Página "Comparar &gt; Imagen"<indexterm>
+Comparar &gt; Imagen<indexterm>
         <primary>archivos de imagen</primary>
       </indexterm></title>
     <section>
       <title>Formatos de archivos de imagen</title>
       <para>
 Especifique los formatos de nombre de archivo para los archivos de imagen
-que se abrirán en la ventana de comparación de imágenes.  Para especificar
-varios elementos, sepárelos con un punto y coma.  De forma predeterminada,
-las extensiones .pdf, .svg, .wmf y .emf no figuran en la lista.  Añádalas si
+que se abrirán en la ventana de comparación de imágenes. Para especificar
+varios elementos, sepárelos con un punto y coma. De forma predeterminada,
+las extensiones .pdf, .svg, .wmf y .emf no figuran en la lista. Añádalas si
 desea que los archivos con estas extensiones se muestren en la ventana de
 comparación de imágenes.</para>
     </section>
@@ -1958,7 +1959,7 @@ comparación de imágenes.</para>
       <title>Activar la comparación de imágenes en la comparación de carpetas</title>
       <para>
 Cuando esta opción está activada, las comparaciones de carpetas tratarán
-como imágenes los archivos que coincidan con los formatos especificados.  Se
+como imágenes los archivos que coincidan con los formatos especificados. Se
 ignorarán las diferencias en los metadatos y se aplicará un límite de
 distancia cromática para determinar las diferencias visuales entre las
 imágenes.</para>
@@ -1990,7 +1991,7 @@ reconocido palabra por palabra junto con su posición en la imagen original.</pa
 
   <section id="Configuration_compare_webpage">
     <title>
-Página "Comparar &gt; Página web"<indexterm>
+Comparar &gt; Página web<indexterm>
         <primary>página web</primary>
       </indexterm></title>
 
@@ -2001,7 +2002,7 @@ Patrón de URL a incluir (expresión regular)<indexterm>
       <para>
 Introduzca una expresión regular en este campo para especificar las rutas de
 los archivos o las URL que deben abrirse en la ventana de comparación de
-páginas web.  Por ejemplo, si introduce la expresión regular
+páginas web. Por ejemplo, si introduce la expresión regular
 <code>.*\.html?|https?://.*</code>, los archivos con la extensión .html o
 .htm y las URL que empiecen por http:// o https:// se abrirán en la ventana
 de comparación de páginas web.</para>
@@ -2013,9 +2014,10 @@ Patrón de URL a excluir (expresión regular)<indexterm>
         </indexterm></title>
       <para>
 Introduce una expresión regular para excluir determinadas rutas de archivo o
-URL de la ventana "Comparación de páginas web".  Esto se aplica a los
-elementos que coincidan con el campo "Patrón de URL que se debe incluir".
-Utilice esta opción para excluir patrones específicos que no desee incluir.</para>
+URL de la ventana "Comparación de páginas web". Esto se aplica a los
+elementos que coincidan con el campo "Patrón de URL que se debe
+incluir". Utilice esta opción para excluir patrones específicos que no desee
+incluir.</para>
     </section>
 
     <section>
@@ -2050,7 +2052,7 @@ datos se mezclen entre ellos.</para>
 
   <section id="Configuration_messageboxes">
     <title>
-Página "Cuadros de mensajes"<indexterm>
+Página Cuadros de mensajes<indexterm>
         <primary>cuadros de mensajes</primary>
       </indexterm></title>
 
@@ -2066,9 +2068,10 @@ activar (marcar) la opción que aparece en ese cuadro de diálogo para que no
 se vuelva a mostrar el mensaje.</para>
 
       <para>
-Más adelante, es posible que decida que quiere volver a ver esos mensajes.
-En ese caso, haga clic en el botón <guibutton>Restablecer</guibutton> para
-que vuelvan a aparecer los cuadros de mensajes.</para>
+Más adelante, es posible que decida que quiere volver a ver esos
+mensajes. En ese caso, haga clic en el botón
+<guibutton>Restablecer</guibutton> para que vuelvan a aparecer los cuadros
+de mensajes.</para>
 
       <note>
         <para>
@@ -2082,7 +2085,7 @@ mensajes mediante el botón <guibutton>Restablecer</guibutton>.</para>
 
   <section id="Configuration_editor_general">
     <title>
-Página "Edición &gt; General"<indexterm>
+Edición &gt; General<indexterm>
         <primary>edición</primary>
 
         <secondary>opciones de la ventana de comparación de archivos</secondary>
@@ -2155,7 +2158,7 @@ Windows y Unix).</para>
             <para>
 Esta es una opción avanzada para usuarios que estén familiarizados con los
 bytes de fin de línea y que deseen comparar archivos con diferentes estilos
-de fin de línea dentro de <emphasis>un</emphasis> mismo archivo.  Le
+de fin de línea dentro de <emphasis>un</emphasis> mismo archivo. Le
 recomendamos que no active esta opción a menos que necesite esta
 funcionalidad avanzada. Recuerde que esta opción no es necesaria para
 comparar dos archivos con diferentes estilos de fin de línea.</para>
@@ -2167,7 +2170,7 @@ comparar dos archivos con diferentes estilos de fin de línea.</para>
     <section>
       <title>
 Tabulaciones<indexterm>
-          <primary>tabulaciones</primary>
+          <primary>pestañas</primary>
 
           <secondary>opciones de edición</secondary>
         </indexterm></title>
@@ -2241,7 +2244,7 @@ Rendering Modes</ulink> para obtener más información.</para>
 
   <section id="Configuration_editor_comparemerge">
     <title>
-Página "Edición &gt; Comparar/Combinar"<indexterm>
+Edición &gt; Comparar/Combinar<indexterm>
         <primary>edición</primary>
 
         <secondary>opciones de la ventana de comparación de archivos</secondary>
@@ -2323,7 +2326,7 @@ seleccionado carácter por carácter.</para>
     <section id="Configuration_viewlinediffs">
       <title>
 Colorear según las diferencias de líneas<indexterm>
-          <primary>diferencias entre líneas</primary>
+          <primary>diferencia de líneas</primary>
 
           <secondary>opciones de visualización</secondary>
         </indexterm></title>
@@ -2386,7 +2389,7 @@ separadas por signos de puntuación (como las listas separadas por comas).</para
                 <para>
 <option>Desactivado</option>: WinMerge no resalta las diferencias entre
 líneas y se ignoran todos los ajustes relacionados con el nivel y los
-espacios en blanco.  También desactiva la opción de menú <menuchoice>
+espacios en blanco. También desactiva la opción de menú <menuchoice>
 <guimenu>Ver</guimenu> <guimenuitem>Ver diferencias entre
 líneas</guimenuitem> </menuchoice>.</para>
               </listitem>
@@ -2420,19 +2423,19 @@ más detalle cómo WinMerge detecta y marca las diferencias entre líneas.</para
 
   <section id="Configuration_editor_syntax">
     <title>
-Página "Edición &gt; Sintaxis"<indexterm>
+Edición &gt; Sintaxis<indexterm>
         <primary>edición</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
 
     <para>
-Por desarrollar</para>
+Por determinar</para>
   </section>
 
   <section id="Configuration_colors_colorschemes">
     <title>
-Página "Colores &gt; Esquemas de colores"<indexterm>
+Colores &gt; Combinaciones de colores<indexterm>
         <primary>combinaciones de colores</primary>
 
         <secondary>opciones</secondary>
@@ -2506,7 +2509,7 @@ Guarda la configuración de color actual como un nuevo esquema. El esquema se
 guarda como un archivo INI. <emphasis> Solo los esquemas guardados en la
 carpeta <filename>Documents/WinMerge/ColorSchemes</filename> aparecerán en
 las listas de esquemas del <guilabel>Modo claro</guilabel> y del
-<guilabel>Modo oscuro</guilabel>.  </emphasis></para>
+<guilabel>Modo oscuro</guilabel>. </emphasis></para>
         </listitem>
       </varlistentry>
 
@@ -2530,8 +2533,8 @@ colores preferida.</para>
 
   <section id="Configuration_colors_differences">
     <title>
-Página "Colores &gt; Diferencias"<indexterm>
-        <primary>colores para diferencias</primary>
+Colores &gt; Diferencias<indexterm>
+        <primary>colores de diferencias</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
@@ -2555,7 +2558,7 @@ esquema y vuelva al esquema modificado.</para>
 
   <section id="Configuration_colors_syntax">
     <title>
-Página "Colores &gt; Sintaxis"<indexterm>
+Colores &gt; Sintaxis<indexterm>
         <primary>resaltado de sintaxis</primary>
 
         <secondary>opciones de color</secondary>
@@ -2564,7 +2567,7 @@ Página "Colores &gt; Sintaxis"<indexterm>
     <para>
 De forma predeterminada, la ventana de comparación de archivos de WinMerge
 resalta la sintaxis de ciertos tipos de código fuente, tal y como se
-describe en <xref linkend="Configuration_syntaxhighlight" />.  Esta página
+describe en <xref linkend="Configuration_syntaxhighlight" />. Esta página
 enumera los elementos de sintaxis que se reconocen y le permite cambiar el
 color y el grosor del texto.</para>
 
@@ -2575,7 +2578,7 @@ esquema y vuelva al esquema modificado.</para>
 
   <section id="Configuration_colors_text">
     <title>
-Página "Colores &gt; Texto"<indexterm>
+Colores &gt; Texto<indexterm>
         <primary>colores para el texto</primary>
 
         <secondary>opciones</secondary>
@@ -2592,18 +2595,18 @@ para el texto.</para>
 
   <section id="Configuration_colors_marker">
     <title>
-Página "Colores &gt; Marcadores"<indexterm>
+Colores &gt; Marcadores<indexterm>
         <primary>colores para marcadores</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
 
-    <para>Por desarrollar</para>
+    <para>Por determinar</para>
   </section>
 
   <section id="Configuration_colors_foldercompare">
     <title>
-Página "Colores &gt; Comparación de carpetas"<indexterm>
+Colores &gt; Comparación de carpetas<indexterm>
         <primary>comparación de carpetas</primary>
 
         <secondary>opciones</secondary>
@@ -2628,10 +2631,10 @@ esquema y vuelva al esquema modificado.</para>
 
   <section id="Configuration_archive">
     <title>
-Página "Compatibilidad con archivos<indexterm>
+Soporte técnico para archivos<indexterm>
         <primary>compresión de archivos</primary>
 
-        <secondary>configuración de la compatibilidad tras la instalación</secondary>
+        <secondary>configuración del soporte técnico tras la instalación</secondary>
       </indexterm></title>
 
     <para>
@@ -2640,7 +2643,7 @@ comprimidos mediante 7-Zip.</para>
 
     <section>
       <title>
-Habilitar compatibilidad con archivos comprimidos<indexterm>
+Habilitar la compatibilidad con archivos comprimidos<indexterm>
           <primary>archivos 7-Zip</primary>
 
           <secondary>activar y desactivar la integración</secondary>
@@ -2673,9 +2676,9 @@ Detectar tipo de archivo por su firma<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>Desactivado</option>(predeterminado): WinMerge solo reconoce los
-archivos comprimidos cuya extensión sea conocida en su sistema (por ejemplo,
-en el Registro o mediante una asociación de archivos).</para>
+Desactivado</option>(predeterminado): WinMerge solo reconoce los archivos
+comprimidos cuya extensión sea conocida en su sistema (por ejemplo, en el
+Registro o mediante una asociación de archivos).</para>
         </listitem>
 
         <listitem>
@@ -2696,23 +2699,23 @@ OpenOffice.</para>
 
   <section id="Configuration_Project">
     <title>
-Página "Proyecto"<indexterm>
+Proyecto<indexterm>
         <primary>archivos de proyecto</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
 
     <para>
-Por desarrollar</para>
+Por determinar</para>
   </section>
 
   <section id="Configuration_system">
-    <title>Página "Sistema"</title>
+    <title>Sistema</title>
 
     <section>
       <title>
 Enviar archivos eliminados a la Papelera de reciclaje<indexterm>
-          <primary>eliminación de archivos</primary>
+          <primary>eliminar ficheros</primary>
 
           <secondary>opciones</secondary>
         </indexterm></title>
@@ -2727,14 +2730,14 @@ de reciclaje, si está disponible.</para>
           <important>
             <para>
 Recuerde: si la Papelera de reciclaje de su sistema está desactivada, esta
-opción no funcionará y los archivos eliminados se perderán.</para>
+opción no funcionará ¡y los archivos eliminados se perderán!</para>
           </important>
           <para></para>
         </listitem>
 
         <listitem>
           <para>
-<option>Desactivado</option>: los archivos y carpetas eliminados en un
+option>Desactivado</option>: los archivos y carpetas eliminados en un
 directorio se comparan con los que se han eliminado realmente.</para>
         </listitem>
       </itemizedlist>
@@ -2853,7 +2856,7 @@ permisos de escritura.</para>
 
   <section id="Configuration_backup">
     <title>
-Página "Copias de seguridad"<indexterm>
+Copias de seguridad<indexterm>
         <primary>archivos de copias de seguridad, opciones</primary>
       </indexterm></title>
 
@@ -2879,7 +2882,7 @@ archivos.</para>
         <listitem>
           <para>
 <guilabel>Comparación de archivos</guilabel>(activada por defecto): se crean
-archivos de copia de seguridad cada vez que se guardan archivos.</para></para>
+archivos de copia de seguridad cada vez que se guardan archivos.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -2947,7 +2950,7 @@ cantidad de archivos.</para>
 
   <section id="Configuration_codepage">
     <title>
-Página "Codificación"<indexterm>
+Codificación<indexterm>
         <primary>codificación</primary>
 
         <secondary>opciones</secondary>
@@ -2969,10 +2972,10 @@ Internet. Por ejemplo, aquí tiene algunos sitios donde puede empezar:</para>
       <itemizedlist>
         <listitem>
           <para>
-<ulink url="https://es.wikipedia.org/wiki/Página_de_códigos">Wikipedia:
+<ulink url="https://en.wikipedia.org/wiki/Code_pages">Wikipedia:
 Codificación</ulink>, <ulink
-url="https://es.wikipedia.org/wiki/Codificación_de_caracteres">Codificación
-de caracteres</ulink></para>
+url="https://en.wikipedia.org/wiki/Character_encoding">Codificación de
+caracteres</ulink></para>
         </listitem>
 
         <listitem>
@@ -3005,9 +3008,7 @@ opciones.</para>
           <para>
 <!--This is just a guess - don't find any info on this option.-->
 <guilabel>Según la interfaz de usuario de WinMerge</guilabel>: la
-codificación utilizada por su instalación de WinMerge.
-                    <!--This is just a guess - don't find any info on this
-option.--></para>
+codificación utilizada por su instalación de WinMerge.</para>
         </listitem>
 
         <listitem>
@@ -3030,9 +3031,7 @@ or is this understood?-->
 Desmarque esta opción en <filename>WinMerge.exe</filename>. Las conversiones
 de caracteres pueden provocar pérdidas de información y el riesgo es muy
 elevado. <filename>WinMerge.exe</filename>solo puede mostrar archivos con su
-codificación actual. <!--What option? The one in the Options page? If it
-should always be unchecked, why is the option there? Also, should we mention
-WinMergeU.exe when we mention WinMerge.exe, or is this understood?--></para>
+codificación actual.</para>
       </important>
 
       <itemizedlist>
@@ -3082,13 +3081,13 @@ personalizadas, desactive esta opción.</para>
     <section>
       <title>Detectar codificación para archivos de texto usando mlang.dll</title>
 
-      <para>Por desarrollar</para>
+      <para>Por determinar</para>
 
     </section>
   </section>
 
   <section id="Configuration_shell-integ">
-    <title>Página "Integración con Windows"</title>
+    <title>Integración con Windows</title>
 
     <section id="Configuration_winexplorer-integ">
       <title>

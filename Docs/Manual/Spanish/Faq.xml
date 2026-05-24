@@ -15,14 +15,14 @@
               <primary>Archivos ejecutables de WinMerge, Unicode y ANSI</primary>
             </indexterm><indexterm>
               <primary>Unicode</primary>
-              <secondary>Compatibilidad con WinMerge</secondary>
+              <secondary>Soporte de WinMerge</secondary>
             </indexterm><indexterm>
               <primary>ANSI</primary>
-              <secondary>Compatibilidad con WinMerge</secondary>
+              <secondary>Soporte de WinMerge</secondary>
             </indexterm>A partir de la versión 2.14,
 WinMerge dejó de ser compatible con los antiguos sistemas Windows de 32
-bits, incluidos Windows 9x, ME y NT4.  Además, la versión 2.16 de WinMerge
-no es compatible con Windows 2000.</para>
+bits, incluidos Windows 9x, ME y NT4. Además, la versión 2.16 de WinMerge no
+es compatible con Windows 2000.</para>
           <para>Anteriormente, WinMerge ofrecía un ejecutable ANSI (8 bits),
 <filename>WinMerge.exe</filename>, diseñado en función de las antiguas
 páginas de códigos de Windows. <filename>WinMerge.exe</filename> solo
@@ -45,7 +45,7 @@ recientes basados en Unicode. <filename>WinMergeU.exe</filename> no presenta
 ninguna de la limitaciones del ejecutable ANSI.</para>
           <para><filename>WinMergeU.exe</filename> lleva ya algún tiempo instalado de forma
 predeterminada y, dado que quedan muy pocos sistemas Windows basados en
-ANSI, el interés de mantener <filename>WinMerge.exe</filename> es mínimo.  A
+ANSI, el interés de mantener <filename>WinMerge.exe</filename> es mínimo. A
 partir de la versión 2.14, WinMerge ya no incluye
 <filename>WinMerge.exe</filename> en el instalador.</para>
         </answer>
@@ -379,7 +379,7 @@ los desarrolladores de WinMerge al enviar correcciones?<indexterm>
 originales y modificados en diferentes directorios. WinMerge es compatible
 de forma nativa (¡sorpresa!) con estos archivos: solo tiene que iniciar una
 operación de comparación y seleccionar el archivo ZIP tanto para el lado
-izquierdo como para el derecho.  WinMerge abre el contenido del archivo ZIP
+izquierdo como para el derecho. WinMerge abre el contenido del archivo ZIP
 en una ventana de comparación de carpetas, donde compara los archivos
 originales y los modificados.</para>
         </answer>
@@ -422,7 +422,7 @@ Programas</guisubmenu> <guisubmenu>Accesorios</guisubmenu> <guimenuitem>Bloc
 de notas</guimenuitem> </menuchoice>). Haga clic en <menuchoice>
 <guimenu>Archivo</guimenu> <guimenuitem>Guardar como</guimenuitem>
 </menuchoice> y, en el cuadro de diálogo, busque la opción
-<guilabel>Codificación</guilabel> y usar la lista desplegable.  Los valores
+<guilabel>Codificación</guilabel> y usar la lista desplegable. Los valores
 posibles son:</para>
 
           <itemizedlist>
@@ -489,7 +489,7 @@ https://sourceforge.net/projects/gnuwin32</ulink>.</para>
 
         <answer>
           <para>Puede aplicar correcciones utilizando el complemento experimental
-ApplyPatch.sct.  Las extensiones de los archivos de corrección compatibles
+ApplyPatch.sct. Las extensiones de los archivos de corrección compatibles
 con el complemento son .diff o .patch.</para>
         </answer>
       </qandaentry>
