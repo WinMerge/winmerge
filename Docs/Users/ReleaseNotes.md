@@ -25,6 +25,8 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: Fix text misalignment and repaint artifacts when toggling line numbers in word wrap mode
 
+* BugFix: Fix crash in 3-pane diff when move block detection is enabled
+
 ### Folder compare
 
 * BugFix: Preserve tree expansion and UI state after refresh (#3366,PR #3369)
