@@ -140,6 +140,8 @@ AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
  */
 bool CDiffTextBuffer::FlagIsSet(int line, lineflags_t flag) const
 {
+	if (line < 0 || line >= static_cast<int>(m_aLines.size()))
+		return false;
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
 
