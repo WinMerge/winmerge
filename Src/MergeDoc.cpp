@@ -1601,6 +1601,20 @@ void CMergeDoc::PrimeTextBuffers()
 	UINT lcount[3] = {0, 0, 0};
 	UINT lcountnew[3] = {0, 0, 0};
 	UINT lcountmax = 0;
+
+	auto opTo3wayLineFlags = [](int file, int op)
+		{
+			int dflag = 0;
+			if ((file == 0 && op == OP_3RDONLY) || (file == 2 && op == OP_1STONLY))
+				dflag |= LF_SNP;
+			if (op == OP_1STONLY)
+				dflag |= LF_DIFF_1STONLY;
+			else if (op == OP_2NDONLY)
+				dflag |= LF_DIFF_2NDONLY;
+			else if (op == OP_3RDONLY)
+				dflag |= LF_DIFF_3RDONLY;
+			return dflag;
+		};
 	
 	for (file = 0; file < m_nBuffers; file++)
 	{
@@ -1644,9 +1658,7 @@ void CMergeDoc::PrimeTextBuffers()
 
 		for (file = 0; file < m_nBuffers; file++)
 		{
-			lineflags_t dflag = LF_GHOST;
-			if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
-				dflag |= LF_SNP;
+			lineflags_t dflag = LF_GHOST | opTo3wayLineFlags(file, curDiff.op);
 			m_ptBuf[file]->MoveLine(curDiff.begin[file], curDiff.end[file], lcountnew[file]-nmaxline);
 			int nextra = nmaxline - nline[file];
 			if (nextra > 0)
@@ -1698,8 +1710,7 @@ void CMergeDoc::PrimeTextBuffers()
 						{
 							// set diff or trivial flag
 							lineflags_t dflag = (curDiff.op == OP_TRIVIAL) ? LF_TRIVIAL : LF_DIFF;
-							if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
-								dflag |= LF_SNP;
+							dflag |= opTo3wayLineFlags(file, curDiff.op);
 							m_ptBuf[file]->SetLineFlag(i, dflag, true, false, false);
 							m_ptBuf[file]->SetLineFlag(i, LF_INVISIBLE, false, false, false);
 						}

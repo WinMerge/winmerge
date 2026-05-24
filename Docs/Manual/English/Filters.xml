@@ -232,7 +232,7 @@
         <para>Supported literal types include:</para>
         <itemizedlist>
           <listitem><para><emphasis>Boolean</emphasis>: <literal>true</literal>, <literal>false</literal></para></listitem>
-          <listitem><para><emphasis>Null/Undefined</emphasis>: <literal>none</literal>, <literal>undefined</literal> (both represent a null or undefined value)</para></listitem>
+          <listitem><para><emphasis>Null</emphasis>: <literal>none</literal> (represents a null or missing value)</para></listitem>
           <listitem><para><emphasis>Integer</emphasis>: 64-bit signed integers (e.g., <literal>1024</literal>, or with units like <literal>100KB</literal>, <literal>7days</literal>)</para></listitem>
           <listitem><para><emphasis>Real (Double)</emphasis>: Floating-point numbers with optional decimal or exponent (e.g., <literal>3.14</literal>, <literal>.5</literal>, <literal>1e6</literal>)</para></listitem>
           <listitem><para><emphasis>String</emphasis>: Enclosed in double quotes (e.g., <literal>"example"</literal>)</para></listitem>
@@ -241,7 +241,7 @@
 
         <para>
           Internally, values may be of the following types:
-          Boolean, Integer, Real, Timestamp, String, File Content, Array, or <literal>undefined</literal>.
+          Boolean, Integer, Real, Timestamp, String, File Content, Array, or <literal>none</literal>.
         </para>
       </section>
 
@@ -400,20 +400,6 @@
               <listitem><para>File extension</para></listitem>
             </varlistentry>
             <varlistentry>
-              <term><varname>EOL</varname></term>
-              <listitem>
-                <para>Returns the end-of-line (EOL) style as an integer value. For files, returns the predominant EOL style; for lines, returns the EOL style of that specific line.</para>
-                <para>Values: 0 = None, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 = Mixed (multiple EOL styles in file)</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term><varname>EOLStr</varname></term>
-              <listitem>
-                <para>Returns the end-of-line (EOL) style as a string. For files, returns the predominant EOL style; for lines, returns the EOL style of that specific line.</para>
-                <para>Values: "None", "LF", "CR", "CRLF", "Mixed"</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
               <term><varname>IsFolder</varname></term>
               <listitem><para>Returns true if the item is a folder/directory, false if it's a file.</para></listitem>
             </varlistentry>
@@ -474,22 +460,6 @@
             <varlistentry>
               <term><varname>Content</varname></term>
               <listitem><para>Content of the file. Returns a FileContent-type value. Only <literal>contains</literal> and <literal>recontains</literal> can be used with this type.</para></listitem>
-            </varlistentry>
-            <varlistentry>
-              <term><varname>EOL</varname> (file comparison)</term>
-              <listitem>
-                <para>Returns the predominant end-of-line (EOL) style in the file as an integer value. If the file contains multiple EOL styles, returns 4 (Mixed).</para>
-                <para>Values: 0 = None, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 = Mixed</para>
-                <para>This is a file-level attribute. For line-level EOL detection in file comparisons, use this attribute in line display filters.</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term><varname>EOLStr</varname> (file comparison)</term>
-              <listitem>
-                <para>Returns the predominant end-of-line (EOL) style in the file as a string.</para>
-                <para>Values: "None", "LF", "CR", "CRLF", "Mixed"</para>
-                <para>This is a file-level attribute. For line-level EOL detection in file comparisons, use this attribute in line display filters.</para>
-              </listitem>
             </varlistentry>
           </variablelist>
         </section>
@@ -638,7 +608,7 @@
               <term><varname>Binary</varname></term>
               <listitem>
                 <para>
-                  Returns <literal>true</literal> if the file is detected as binary, <literal>false</literal> if it's text, or <literal>undefined</literal> if the file doesn't exist.
+                  Returns <literal>true</literal> if the file is detected as binary, <literal>false</literal> if it's text, or <literal>none</literal> if the file doesn't exist.
                   This attribute supports side-specific prefixes (e.g., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).
                   Example: <literal>allof(Binary)</literal> to show files that are binary on all sides.
                 </para>
@@ -650,7 +620,7 @@
               <listitem>
                 <para>
                   Returns <literal>true</literal> if the left and middle files are different in a 3-way comparison, <literal>false</literal> otherwise.
-                  Returns <literal>undefined</literal> in 2-way comparisons.
+                  Returns <literal>none</literal> in 2-way comparisons.
                   This is a global attribute (does not support side-specific prefixes).
                   Example: <literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> to find files where only left differs from middle.
                 </para>
@@ -662,7 +632,7 @@
               <listitem>
                 <para>
                   Returns <literal>true</literal> if the middle and right files are different in a 3-way comparison, <literal>false</literal> otherwise.
-                  Returns <literal>undefined</literal> in 2-way comparisons.
+                  Returns <literal>none</literal> in 2-way comparisons.
                   This is a global attribute (does not support side-specific prefixes).
                   Example: <literal>DifferentMiddleRight</literal> to show files where middle and right differ.
                 </para>
@@ -731,6 +701,20 @@
               </listitem>
             </varlistentry>
 
+            <varlistentry>
+              <term><varname>EOL</varname></term>
+              <listitem>
+                <para>Returns the end-of-line (EOL) style as an integer value. For files, returns the predominant EOL style; for lines, returns the EOL style of that specific line.</para>
+                <para>Values: 0 = None, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 = Mixed (multiple EOL styles in file)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>EOLStr</varname></term>
+              <listitem>
+                <para>Returns the end-of-line (EOL) style as a string. For files, returns the predominant EOL style; for lines, returns the EOL style of that specific line.</para>
+                <para>Values: "None", "LF", "CR", "CRLF", "Mixed"</para>
+              </listitem>
+            </varlistentry>
             <varlistentry>
               <term><varname>Codepage</varname></term>
               <listitem>
@@ -951,10 +935,10 @@
                 </para>
                 <para>Examples:</para>
                 <itemizedlist>
-                  <listitem><para><literal>regexCount("test123abc456", "\\d+")</literal> returns 2</para></listitem>
+                  <listitem><para><literal>regexCount("test123abc456", "\d+")</literal> returns 2</para></listitem>
                   <listitem><para><literal>regexCount("AAA BBB CCC", "[A-Z]+")</literal> returns 3</para></listitem>
                   <listitem><para><literal>@cs regexCount("Test TEST", "TEST")</literal> returns 1</para></listitem>
-                  <listitem><para><literal>le:regexCount(Line, "\\b(error|warning)\\b") > 0</literal> shows lines with error or warning keywords</para></listitem>
+                  <listitem><para><literal>le:regexCount(Line, "\b(error|warning)\b") > 0</literal> shows lines with error or warning keywords</para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -965,15 +949,15 @@
                   Finds the position (0-based) of the Nth occurrence of substring <replaceable>substr</replaceable> in <replaceable>str</replaceable>.
                   The optional <replaceable>occurrence</replaceable> parameter specifies which occurrence to find (0-based, default is 0 for the first occurrence).
                   The search is case-insensitive by default (respects <literal>@cs</literal>/<literal>@ci</literal> directives).
-                  Returns <literal>undefined</literal> if the substring is not found or if the occurrence index is out of range.
-                  If <replaceable>str</replaceable> is an array, the result is an array of positions (or undefined values).
+                  Returns <literal>none</literal> if the substring is not found or if the occurrence index is out of range.
+                  If <replaceable>str</replaceable> is an array, the result is an array of positions (or none values).
                 </para>
                 <para>Examples:</para>
                 <itemizedlist>
                   <listitem><para><literal>strFind("hello world", "o")</literal> returns 4 (first 'o')</para></listitem>
                   <listitem><para><literal>strFind("hello world", "o", 1)</literal> returns 7 (second 'o')</para></listitem>
                   <listitem><para><literal>@cs strFind("Test TEST test", "test")</literal> returns 10 (case-sensitive)</para></listitem>
-                  <listitem><para><literal>strFind(array("abc", "def"), "b")</literal> returns <literal>array(1, undefined)</literal></para></listitem>
+                  <listitem><para><literal>strFind(array("abc", "def"), "b")</literal> returns <literal>array(1, none)</literal></para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -985,16 +969,16 @@
                   The optional <replaceable>group</replaceable> parameter specifies which capture group to locate (0-based, default is 0 for the entire match).
                   The optional <replaceable>occurrence</replaceable> parameter specifies which occurrence of the pattern to find (0-based, default is 0 for the first occurrence).
                   The search is case-insensitive by default (respects <literal>@cs</literal>/<literal>@ci</literal> directives).
-                  Returns <literal>undefined</literal> if the pattern doesn't match, the group index is out of range, or the occurrence index is out of range.
-                  If <replaceable>str</replaceable> is an array, the result is an array of positions (or undefined values).
+                  Returns <literal>none</literal> if the pattern doesn't match, the group index is out of range, or the occurrence index is out of range.
+                  If <replaceable>str</replaceable> is an array, the result is an array of positions (or none values).
                 </para>
                 <para>Examples:</para>
                 <itemizedlist>
-                  <listitem><para><literal>regexFind("test123abc456", "\\d+")</literal> returns 4 (position of "123")</para></listitem>
-                  <listitem><para><literal>regexFind("test123abc456", "\\d+", 0, 1)</literal> returns 10 (position of "456", second match)</para></listitem>
+                  <listitem><para><literal>regexFind("test123abc456", "\d+")</literal> returns 4 (position of "123")</para></listitem>
+                  <listitem><para><literal>regexFind("test123abc456", "\d+", 0, 1)</literal> returns 10 (position of "456", second match)</para></listitem>
                   <listitem><para><literal>regexFind("abc-def-ghi", "([a-z]+)-([a-z]+)", 1)</literal> returns 0 (position of first capture group "abc")</para></listitem>
-                  <listitem><para><literal>regexFind("v1.0 and v2.5", "v(\\d+)\\.(\\d+)", 1, 1)</literal> returns 9 (major version "2" in second occurrence)</para></listitem>
-                  <listitem><para><literal>regexFind(array("test123", "abc"), "\\d+")</literal> returns <literal>array(4, undefined)</literal></para></listitem>
+                  <listitem><para><literal>regexFind("v1.0 and v2.5", "v(\d+)\.(\d+)", 1, 1)</literal> returns 10 (major version "2" in second occurrence)</para></listitem>
+                  <listitem><para><literal>regexFind(array("test123", "abc"), "\d+")</literal> returns <literal>array(4, none)</literal></para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -1019,7 +1003,7 @@
                   Replaces all matches of the regular expression pattern with the replacement string.
                   Supports backreferences ($1, $2, etc.) in the replacement string.
                   If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
-                  Example: <literal>regexReplace(name, "^(\\w+)_(\\w+)$", "$2_$1")</literal> swaps words separated by underscore.
+                  Example: <literal>regexReplace(name, "^(\w+)_(\w+)$", "$2_$1")</literal> swaps words separated by underscore.
                 </para>
               </listitem>
             </varlistentry>
@@ -1075,27 +1059,27 @@ old	new</screen>
                   The optional <replaceable>offset</replaceable> parameter specifies which occurrence of the pattern to capture (0-based).
                   Offset 0 (default) returns the first match; offset 1 returns the second match, etc.
                   This is useful for capturing the Nth occurrence in a line, such as the second number in a string.
-                  Returns <literal>undefined</literal> if the pattern doesn't match, the group index is out of range, or the offset exceeds the number of matches.
+                  Returns <literal>none</literal> if the pattern doesn't match, the group index is out of range, or the offset exceeds the number of matches.
                   If <replaceable>str</replaceable> is an array, the result is an array with captures for each element.
                   The search is case-insensitive by default (respects <literal>@cs</literal>/<literal>@ci</literal> directives).
                 </para>
                 <para>Examples:</para>
                 <itemizedlist>
-                  <listitem><para><literal>regexExtract("abc123", "[a-z]+\\d+")</literal> returns <literal>"abc123"</literal> (entire match)</para></listitem>
-                  <listitem><para><literal>regexExtract("abc123", "([a-z]+)(\\d+)", 1)</literal> returns <literal>"abc"</literal> (first capture group)</para></listitem>
-                  <listitem><para><literal>regexExtract("abc123", "([a-z]+)(\\d+)", 2)</literal> returns <literal>"123"</literal> (second capture group)</para></listitem>
-                  <listitem><para><literal>regexExtract("2025-05-16", "(\\d{4})-(\\d{2})-(\\d{2})", 1)</literal> returns <literal>"2025"</literal></para></listitem>
+                  <listitem><para><literal>regexExtract("abc123", "[a-z]+\d+")</literal> returns <literal>"abc123"</literal> (entire match)</para></listitem>
+                  <listitem><para><literal>regexExtract("abc123", "([a-z]+)(\d+)", 1)</literal> returns <literal>"abc"</literal> (first capture group)</para></listitem>
+                  <listitem><para><literal>regexExtract("abc123", "([a-z]+)(\d+)", 2)</literal> returns <literal>"123"</literal> (second capture group)</para></listitem>
+                  <listitem><para><literal>regexExtract("2025-05-16", "(\d{4})-(\d{2})-(\d{2})", 1)</literal> returns <literal>"2025"</literal></para></listitem>
                   <listitem><para><literal>regexExtract("user@example.com", "([^@]+)@([^@]+)", 1)</literal> returns <literal>"user"</literal></para></listitem>
                   <listitem><para><literal>regexExtract("user@example.com", "([^@]+)@([^@]+)", 2)</literal> returns <literal>"example.com"</literal></para></listitem>
-                  <listitem><para><literal>regexExtract("value 123 and value 456", "(\\d+)", 0, 0)</literal> returns <literal>"123"</literal> (first number)</para></listitem>
-                  <listitem><para><literal>regexExtract("value 123 and value 456", "(\\d+)", 0, 1)</literal> returns <literal>"456"</literal> (second number)</para></listitem>
-                  <listitem><para><literal>regexExtract("v1.0.0 and v2.0.0", "v(\\d+)\\.(\\d+)\\.(\\d+)", 1, 1)</literal> returns <literal>"2"</literal> (major version of second occurrence)</para></listitem>
-                  <listitem><para><literal>regexExtract("test", "\\d+")</literal> returns <literal>undefined</literal> (no match)</para></listitem>
-                  <listitem><para><literal>regexExtract("abc", "([a-z])", 5)</literal> returns <literal>undefined</literal> (group out of range)</para></listitem>
-                  <listitem><para><literal>regexExtract(array("abc123", "def456"), "([a-z]+)(\\d+)", 1)</literal> returns <literal>array("abc", "def")</literal></para></listitem>
-                  <listitem><para><literal>@cs regexExtract("ABC123", "([a-z]+)", 1)</literal> returns <literal>undefined</literal> (case-sensitive, no match)</para></listitem>
-                  <listitem><para><literal>le:regexExtract(Line, "error:\\s+(\\w+)", 1)</literal> extracts error type from log lines</para></listitem>
-                  <listitem><para><literal>fe:regexExtract(Name, "v(\\d+)\\.(\\d+)\\.(\\d+)", 1) = "2"</literal> filters files with major version 2</para></listitem>
+                  <listitem><para><literal>regexExtract("value 123 and value 456", "(\d+)", 0, 0)</literal> returns <literal>"123"</literal> (first number)</para></listitem>
+                  <listitem><para><literal>regexExtract("value 123 and value 456", "(\d+)", 0, 1)</literal> returns <literal>"456"</literal> (second number)</para></listitem>
+                  <listitem><para><literal>regexExtract("v1.0.0 and v2.0.0", "v(\d+)\.(\d+)\.(\d+)", 1, 1)</literal> returns <literal>"2"</literal> (major version of second occurrence)</para></listitem>
+                  <listitem><para><literal>regexExtract("test", "\d+")</literal> returns <literal>none</literal> (no match)</para></listitem>
+                  <listitem><para><literal>regexExtract("abc", "([a-z])", 5)</literal> returns <literal>none</literal> (group out of range)</para></listitem>
+                  <listitem><para><literal>regexExtract(array("abc123", "def456"), "([a-z]+)(\d+)", 1)</literal> returns <literal>array("abc", "def")</literal></para></listitem>
+                  <listitem><para><literal>@cs regexExtract("ABC123", "([a-z]+)", 1)</literal> returns <literal>none</literal> (case-sensitive, no match)</para></listitem>
+                  <listitem><para><literal>le:regexExtract(Line, "error:\s+(\w+)", 1)</literal> extracts error type from log lines</para></listitem>
+                  <listitem><para><literal>fe:regexExtract(Name, "v(\d+)\.(\d+)\.(\d+)", 1) = "2"</literal> filters files with major version 2</para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -1219,7 +1203,6 @@ old	new</screen>
                 <para>Examples:</para>
                 <itemizedlist>
                   <listitem><para><literal>trim("  hello  ")</literal> returns <literal>"hello"</literal></para></listitem>
-                  <listitem><para><literal>trim("\\t\\nhello\\r\\n")</literal> returns <literal>"hello"</literal></para></listitem>
                   <listitem><para><literal>trim(array("  test  ", "  data  "))</literal> returns <literal>array("test", "data")</literal></para></listitem>
                 </itemizedlist>
               </listitem>
@@ -1237,7 +1220,6 @@ old	new</screen>
                 <para>Examples:</para>
                 <itemizedlist>
                   <listitem><para><literal>trimLeft("  hello  ")</literal> returns <literal>"hello  "</literal></para></listitem>
-                  <listitem><para><literal>trimLeft("\\t\\nhello\\r\\n")</literal> returns <literal>"hello\\r\\n"</literal></para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -1254,7 +1236,6 @@ old	new</screen>
                 <para>Examples:</para>
                 <itemizedlist>
                   <listitem><para><literal>trimRight("  hello  ")</literal> returns <literal>"  hello"</literal></para></listitem>
-                  <listitem><para><literal>trimRight("\\t\\nhello\\r\\n")</literal> returns <literal>"\\t\\nhello"</literal></para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -1291,7 +1272,7 @@ old	new</screen>
               returns an integer or floating-point number depending on the input format;
               <function>toInt</function> returns only integers;
               <function>toDouble</function> returns only floating-point numbers.
-              Commas in the input are ignored. Returns undefined on parse failure.
+              Commas in the input are ignored. Returns <literal>none</literal>on parse failure.
               Example: <literal>le:toInt(Column("Count")) &gt; 100</literal>
               </para></listitem>
             </varlistentry>
@@ -1300,7 +1281,7 @@ old	new</screen>
               <listitem>
                 <para>
                   Converts a string to a timestamp value. Supports multiple date/time formats.
-                  Returns undefined if the string cannot be parsed.
+                  Returns <literal>none</literal>if the string cannot be parsed.
                   Example: <literal>toDateTime("2025-01-15") &gt; today()</literal>
                 </para>
               </listitem>
@@ -1413,7 +1394,7 @@ old	new</screen>
                 <itemizedlist>
                   <listitem><para><emphasis>Array</emphasis>: Returns the number of elements in the array</para></listitem>
                   <listitem><para><emphasis>String</emphasis>: Returns the UTF-8 character count</para></listitem>
-                  <listitem><para><emphasis>Undefined (monostate)</emphasis>: Returns 0</para></listitem>
+                  <listitem><para><emphasis>None (monostate)</emphasis>: Returns 0</para></listitem>
                   <listitem><para><emphasis>Other scalar values</emphasis> (Integer, Real, Boolean, Timestamp, etc.): Returns 1</para></listitem>
                 </itemizedlist>
                 <para>Examples:</para>
@@ -1593,13 +1574,13 @@ old	new</screen>
           <listitem><para><literal>Content contains "Test"</literal> - File content includes keyword</para></listitem>
           <listitem><para><literal>sublines(Content, 0, 1) contains "XML"</literal> - First line contains "XML"</para></listitem>
           <listitem><para><literal>strCount(Content, "TODO") &gt; 5</literal> - File contains more than 5 TODO comments</para></listitem>
-          <listitem><para><literal>regexCount(Content, "\\bFIXME\\b") &gt; 0</literal> - File contains at least one FIXME marker</para></listitem>
+          <listitem><para><literal>regexCount(Content, "\bFIXME\b") &gt; 0</literal> - File contains at least one FIXME marker</para></listitem>
           <listitem><para><literal>strFind(Name, "_test") != none</literal> - Files containing "_test" in their name</para></listitem>
           <listitem><para><literal>strFind(Name, ".", 1) &gt; 0</literal> - Files with multiple dots in their name (second dot exists)</para></listitem>
-          <listitem><para><literal>regexFind(Name, "\\d{4}") &lt; 5</literal> - Files where a 4-digit number appears within the first 5 characters</para></listitem>
-          <listitem><para><literal>regexExtract(Name, "v(\\d+)\\.(\\d+)\\.(\\d+)", 1) = "2"</literal> - Files with major version 2 (e.g., "v2.16.48")</para></listitem>
-          <listitem><para><literal>regexExtract(Name, "([^_]+)_([^_]+)\\.txt", 2) like "test*"</literal> - Files where second part of name starts with "test"</para></listitem>
-          <listitem><para><literal>le:regexExtract(Line, "(\\d+)", 0, 1)</literal> - Extracts the second number in each line (offset=1)</para></listitem>
+          <listitem><para><literal>regexFind(Name, "\d{4}") &lt; 5</literal> - Files where a 4-digit number appears within the first 5 characters</para></listitem>
+          <listitem><para><literal>regexExtract(Name, "v(\d+)\.(\d+)\.(\d+)", 1) = "2"</literal> - Files with major version 2 (e.g., "v2.16.48")</para></listitem>
+          <listitem><para><literal>regexExtract(Name, "([^_]+)_([^_]+)\.txt", 2) like "test*"</literal> - Files where second part of name starts with "test"</para></listitem>
+          <listitem><para><literal>le:regexExtract(Line, "(\d+)", 0, 1)</literal> - Extracts the second number in each line (offset=1)</para></listitem>
           <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() - 7days)</literal> - Large log files or files older than a week</para></listitem>
           <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> - Non-hidden temporary files</para></listitem>
           <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> - Files with extensions from 'a' to 'm' and size less than 1MB</para></listitem>
@@ -1610,10 +1591,10 @@ old	new</screen>
           <listitem><para><literal>trimRight(Line) contains "end"</literal> - Check if line (without trailing whitespace) contains "end"</para></listitem>
           <listitem><para><literal>EOL = 3</literal> - Files with CRLF (Windows) line endings</para></listitem>
           <listitem><para><literal>EOLStr = "LF"</literal> - Files with LF (Unix) line endings</para></listitem>
-          <listitem><para><literal>allof(EOL = 1)</literal> - All files use LF line endings on all sides</para></listitem>
+          <listitem><para><literal>allof(EOL = 1)</literal> - Checks whether all compared files use LF line endings</para></listitem>
           <listitem><para><literal>leftprop("System.Title") != none</literal> - Left file has a title property set</para></listitem>
-          <listitem><para><literal>prop("System.Author") = undefined</literal> - No author property is set on any side</para></listitem>
-          <listitem><para><literal>if(LeftExists, LeftSize, 0) > 1MB</literal> - Check size with null-safe handling</para></listitem>
+          <listitem><para><literal>prop("System.Author") = none</literal> - No author property is set on any side</para></listitem>
+          <listitem><para><literal>if(LeftExists, LeftSize, 0) == 0</literal> - Checks whether the left file is missing or empty</para></listitem>
           <listitem><para><literal>Different</literal> - Show only files/folders that are different (Display filter only)</para></listitem>
           <listitem><para><literal>Identical</literal> - Show only files/folders that are identical (Display filter only)</para></listitem>
           <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all sides (Display filter only)</para></listitem>
@@ -2224,7 +2205,8 @@ Pekka Himanen</screen></para>
       </itemizedlist>
 
       <para>To remove the filter, clear the input field and press
-      <keycap>Enter</keycap>, or close the filter bar.</para>
+      <keycap>Enter</keycap>. To hide the filter bar while keeping the filter 
+      active, click the close button.</para>
     </section>
 
     <section id="Filters_DisplayLineFilterInput">
@@ -2329,7 +2311,7 @@ Pekka Himanen</screen></para>
             <term><varname>Trivial</varname></term>
             <listitem><para>True if the line differs only in whitespace or
             other ignored content. Global attribute.
-            Example: <literal>Different and not Trivial</literal></para></listitem>
+            Example: <literal>Different or Trivial</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Exists</varname></term>
@@ -2349,20 +2331,6 @@ Pekka Himanen</screen></para>
             Supports side-specific prefixes.</para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><varname>EOL</varname></term>
-            <listitem><para>End-of-line style for the current line as an integer value.
-            Supports side-specific prefixes.
-            Values: 0 = None, 1 = LF, 2 = CR, 3 = CRLF
-            Example: <literal>le:EOL = 3</literal> shows only lines with CRLF endings</para></listitem>
-          </varlistentry>
-          <varlistentry>
-            <term><varname>EOLStr</varname></term>
-            <listitem><para>End-of-line style for the current line as a string.
-            Supports side-specific prefixes.
-            Values: "None", "LF", "CR", "CRLF"
-            Example: <literal>le:EOLStr = "LF"</literal> shows only lines with LF endings</para></listitem>
-          </varlistentry>
-          <varlistentry>
             <term><varname>Bookmarked</varname></term>
             <listitem><para>True if the line has a bookmark.
             Supports side-specific prefixes.</para></listitem>
@@ -2377,6 +2345,20 @@ Pekka Himanen</screen></para>
             Global attributes.
             Example: <literal>DifferentLeftMiddle and not DifferentMiddleRight</literal>
             </para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>EOL</varname></term>
+            <listitem><para>End-of-line style for the current line as an integer value.
+            Supports side-specific prefixes.
+            Values: 0 = None, 1 = LF, 2 = CR, 3 = CRLF
+            Example: <literal>le:EOL = 3</literal> shows only lines with CRLF endings</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>EOLStr</varname></term>
+            <listitem><para>End-of-line style for the current line as a string.
+            Supports side-specific prefixes.
+            Values: "None", "LF", "CR", "CRLF"
+            Example: <literal>le:EOLStr = "LF"</literal> shows only lines with LF endings</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Column</varname>, <varname>ColumnCount</varname>
@@ -2429,21 +2411,21 @@ Pekka Himanen</screen></para>
           <varlistentry>
             <term><function>matchNumber</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>1-based index of the current line within all
-            matching ranges. Returns undefined if the line does not match.
+            matching lines. Returns <literal>none</literal>if the line does not match.
             Example: <literal>le:matchNumber(Different) = 1</literal>
-            shows only the first difference block.</para></listitem>
+            shows only the first line that matches (the first difference line).</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchCount</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Total number of lines matching
             <replaceable>expr</replaceable> across the whole file.
             Example: <literal>le:matchNumber(Different) = matchCount(Different)</literal>
-            shows only the last difference block.</para></listitem>
+            shows only the last line that matches (the last difference line).</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockNumber</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Returns the 1-based block number of the matching block
-            containing the current line. Returns <literal>undefined</literal> if the current
+            containing the current line. Returns <literal>none</literal> if the current
             line is not in any matching block.
             Example: <literal>le:matchBlockNumber(Different) = 1</literal>
             shows only lines in the first difference block.</para></listitem>
@@ -2451,7 +2433,7 @@ Pekka Himanen</screen></para>
           <varlistentry>
             <term><function>matchBlockOffset</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Returns the 1-based offset of the current line within
-            the matching block. Returns <literal>undefined</literal> if the current
+            the matching block. Returns <literal>none</literal> if the current
             line is not in any matching block.
             Example: <literal>le:matchBlockOffset(Different) = 1</literal>
             shows only the first line of each difference block.</para></listitem>
@@ -2459,7 +2441,7 @@ Pekka Himanen</screen></para>
           <varlistentry>
             <term><function>matchBlockSize</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Returns the size (number of lines) of the matching block
-            containing the current line. Returns <literal>undefined</literal> if the current
+            containing the current line. Returns <literal>none</literal> if the current
             line is not in any matching block.
             Example: <literal>le:matchBlockSize(Different) &gt; 5</literal>
             shows only lines in difference blocks larger than 5 lines.</para></listitem>
@@ -2494,7 +2476,7 @@ Pekka Himanen</screen></para>
             produced by evaluating <replaceable>expr</replaceable> for all lines in the file.
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are included in the calculation.
-            Non-numeric results are ignored. Returns undefined if no numeric values are found.
+            Non-numeric results are ignored. Returns <literal>none</literal>if no numeric values are found.
             Example: <literal>le:toInt(Column("Price")) &gt; average(toInt(Column("Price")))</literal>
             shows rows where the price exceeds the average price.
             Example with condition: <literal>le:average(toInt(Column("Score")), Column("Status") = "PASS")</literal>
@@ -2509,7 +2491,7 @@ Pekka Himanen</screen></para>
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are considered.
             Works with numeric values, strings (alphabetical comparison), and timestamps.
-            Returns undefined if no values are found.
+            Returns <literal>none</literal>if no values are found.
             Example: <literal>le:toInt(Column("Quantity")) = maximum(toInt(Column("Quantity")))</literal>
             shows rows with the highest quantity.
             </para></listitem>
@@ -2522,7 +2504,7 @@ Pekka Himanen</screen></para>
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are considered.
             Works with numeric values, strings (alphabetical comparison), and timestamps.
-            Returns undefined if no values are found.
+            Returns <literal>none</literal>if no values are found.
             Example: <literal>le:Column("Status") = minimum(Column("Status"))</literal>
             shows rows with the alphabetically first status value.
             </para></listitem>
@@ -2534,7 +2516,7 @@ Pekka Himanen</screen></para>
             <replaceable>expr</replaceable> for all lines in the file.
             If <replaceable>condition</replaceable> is provided, only lines where
             <replaceable>condition</replaceable> evaluates to true are included in the calculation.
-            Non-numeric results are ignored. Returns undefined if no numeric values are found.
+            Non-numeric results are ignored. Returns <literal>none</literal>if no numeric values are found.
             Example: <literal>le:toInt(Column("Quantity")) / sum(toInt(Column("Quantity"))) * 100</literal>
             calculates each row's percentage of the total quantity.
             Example with condition: <literal>le:sum(toInt(Column("Sales")), Column("Region") = "East")</literal>
@@ -2565,7 +2547,7 @@ Pekka Himanen</screen></para>
                 <entry>Shows only lines in difference blocks</entry>
               </row>
               <row>
-                <entry><userinput>le:Different and not Trivial</userinput></entry>
+                <entry><userinput>le:Different or Trivial</userinput></entry>
                 <entry>Shows differences, excluding whitespace-only changes</entry>
               </row>
               <row>
@@ -2574,7 +2556,7 @@ Pekka Himanen</screen></para>
               </row>
               <row>
                 <entry><userinput>le:matchNumber(Different) = 1</userinput></entry>
-                <entry>Shows only the first difference block</entry>
+                <entry>Shows only the first difference line</entry>
               </row>
               <row>
                 <entry><userinput>le:matchBlockNumber(Different) &lt;= 3</userinput></entry>
@@ -2597,7 +2579,7 @@ Pekka Himanen</screen></para>
                 <entry>Shows lines where "TODO" appears within the first 10 characters</entry>
               </row>
               <row>
-                <entry><userinput>le:regexFind(Line, "\\d{4}") != none</userinput></entry>
+                <entry><userinput>le:regexFind(Line, "\d{4}") != none</userinput></entry>
                 <entry>Shows lines containing a 4-digit number</entry>
               </row>
               <row>
@@ -2650,6 +2632,10 @@ Pekka Himanen</screen></para>
     <para>The filter bar accepts the same syntax as the <guilabel>Filter</guilabel> field
     in the Select Files or Folders dialog. See <xref linkend="Filters_MaskSyntax"/> and
     <xref linkend="FilterExpression_Syntax"/> for details.</para>
+
+    <para>To remove the filter, clear the input field and press
+    <keycap>Enter</keycap>. To hide the filter bar while keeping the filter 
+    active, click the close button.</para>
 
     <para>Examples:</para>
     <itemizedlist>

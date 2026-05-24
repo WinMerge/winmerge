@@ -1873,12 +1873,9 @@ BEGIN
             MENUITEM "L&ine Text...",               ID_FILTERMENU_LINE_RANGE
             POPUP "&Column"
             BEGIN
-                POPUP "Column"
-                BEGIN
-                    MENUITEM "&Text...",                    ID_FILTERMENU_COLUMN_TEXT
-                    MENUITEM "&Number...",                  ID_FILTERMENU_COLUMN_NUMBER
-                    MENUITEM "&DateTime...",                ID_FILTERMENU_COLUMN_DATETIME
-                END
+                MENUITEM "&Text...",                    ID_FILTERMENU_COLUMN_TEXT
+                MENUITEM "&Number...",                  ID_FILTERMENU_COLUMN_NUMBER
+                MENUITEM "&Date/Time...",                ID_FILTERMENU_COLUMN_DATETIME
                 MENUITEM "Column: &1",                  ID_FILTERMENU_COLUMN_1
                 MENUITEM "Column: &2",                  ID_FILTERMENU_COLUMN_2
                 MENUITEM "Column: &3",                  ID_FILTERMENU_COLUMN_3
@@ -1888,7 +1885,7 @@ BEGIN
                 MENUITEM "Column: &7",                  ID_FILTERMENU_COLUMN_7
                 MENUITEM "Column: &8",                  ID_FILTERMENU_COLUMN_8
                 MENUITEM "Column: &9",                  ID_FILTERMENU_COLUMN_9
-                MENUITEM "Column: &10",                 ID_FILTERMENU_COLUMN_10
+                MENUITEM "Column: 1&0",                 ID_FILTERMENU_COLUMN_10
             END
             MENUITEM "Line L&ength...",             ID_FILTERMENU_LINE_LENGTH_RANGE
             MENUITEM "&Word Count...",              ID_FILTERMENU_WORD_COUNT_RANGE
@@ -1945,7 +1942,7 @@ BEGIN
                     MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_COLUMN_NUMBER_GREATER
                     MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_COLUMN_NUMBER_GREATER_EQUAL
                 END
-                POPUP "&DateTime"
+                POPUP "&Date/Time"
                 BEGIN
                     MENUITEM "Equal",                       ID_FILTERMENU_DIFF_COLUMN_DATETIME_EQUAL
                     MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_COLUMN_DATETIME_NOT_EQUAL

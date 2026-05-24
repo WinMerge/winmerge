@@ -1328,7 +1328,15 @@ static auto LineDifferentField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
+	const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+	for (int i = 0; i < dirs; ++i)
+	{
+		unsigned flags = ectxt.provider->GetLineFlags(i, ectxt.lineIndex);
+		if ((flags & ILineDataProvider::LF_TRIVIAL) == 0 &&
+			(flags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0)
+			return true;
+	}
+	return false;
 }
 
 static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1336,7 +1344,12 @@ static auto LineDifferentLeftMiddleField(int, const FilterEvalContext& ectxt) ->
 	if (!ectxt.provider || ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
-	return ((leftflags & ILineDataProvider::LF_SNP) == 0) && ((leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
+	unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
+	return
+		((leftflags & ILineDataProvider::LF_DIFF_3RDONLY) == 0) && ((leftflags & ILineDataProvider::LF_TRIVIAL) == 0) &&
+		((leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0) &&
+		((middleflags & ILineDataProvider::LF_DIFF_3RDONLY) == 0) && ((middleflags & ILineDataProvider::LF_TRIVIAL) == 0) &&
+		((middleflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
 }
 
 static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -> ValueType
@@ -1344,27 +1357,45 @@ static auto LineDifferentMiddleRightField(int, const FilterEvalContext& ectxt) -
 	if (!ectxt.provider || ectxt.expr->ctxt->GetCompareDirs() < 3)
 		return std::monostate{};
 	unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
-	return (middleflags & ILineDataProvider::LF_SNP) == 0 && (middleflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
+	unsigned rightflags = ectxt.provider->GetLineFlags(2, ectxt.lineIndex);
+	return
+		((middleflags & ILineDataProvider::LF_DIFF_1STONLY) == 0) && ((middleflags & ILineDataProvider::LF_TRIVIAL) == 0) &&
+		((middleflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0) &&
+		((rightflags & ILineDataProvider::LF_DIFF_1STONLY) == 0) && ((rightflags & ILineDataProvider::LF_TRIVIAL) == 0) &&
+		((rightflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
 }
 
 static auto LineDifferentLeftRightField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
+	const int dirs = ectxt.expr->ctxt->GetCompareDirs();
 	unsigned leftflags = ectxt.provider->GetLineFlags(0, ectxt.lineIndex);
+	unsigned rightflags = ectxt.provider->GetLineFlags(dirs - 1, ectxt.lineIndex);
 	if (ectxt.expr->ctxt->GetCompareDirs() >= 3)
 	{
-		unsigned middleflags = ectxt.provider->GetLineFlags(1, ectxt.lineIndex);
-		return (leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0 && (middleflags & ILineDataProvider::LF_SNP) == 0;
+		return
+			((leftflags & ILineDataProvider::LF_DIFF_2NDONLY) == 0) && ((leftflags & ILineDataProvider::LF_TRIVIAL) == 0) &&
+			((leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0) &&
+			((rightflags & ILineDataProvider::LF_DIFF_2NDONLY) == 0) && ((rightflags & ILineDataProvider::LF_TRIVIAL) == 0) &&
+			((rightflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0);
 	}
-	return (leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0;
+	return
+		(leftflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0 && ((leftflags & ILineDataProvider::LF_TRIVIAL) == 0) &&
+		(rightflags & (ILineDataProvider::LF_DIFF | ILineDataProvider::LF_GHOST)) != 0 && ((rightflags & ILineDataProvider::LF_TRIVIAL) == 0);
 }
 
 static auto LineTrivialField(int, const FilterEvalContext& ectxt) -> ValueType
 {
 	if (!ectxt.provider)
 		return std::monostate{};
-	return (ectxt.provider->GetLineFlags(0, ectxt.lineIndex) & ILineDataProvider::LF_TRIVIAL) != 0;
+	const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+	for (int i = 0; i < dirs; ++i)
+	{
+		if ((ectxt.provider->GetLineFlags(i, ectxt.lineIndex) & ILineDataProvider::LF_TRIVIAL) != 0)
+			return true;
+	}
+	return false;
 }
 
 static int GetColumnIndexByName(int index, const std::string& columnName, const FilterEvalContext& ectxt)
@@ -2306,7 +2337,7 @@ std::string ToStringValue(const ValueType& val)
 	if (auto regexVal = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&val))
 		return "<Regex>";
 	if (std::holds_alternative<std::monostate>(val))
-		return "<undefined>";
+		return "none";
 	return "<unknown>";
 }
 

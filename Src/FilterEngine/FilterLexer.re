@@ -26,7 +26,6 @@ begin:
 	"TRUE"            { yylval.boolean = true; return TK_TRUE_LITERAL; }
 	"FALSE"           { yylval.boolean = false; return TK_FALSE_LITERAL; }
 	"NONE"            { return TK_NONE_LITERAL; }
-	"UNDEFINED"       { return TK_NONE_LITERAL; }
 	"CONTAINS"        { return TK_CONTAINS; }
 	"RECONTAINS"      { return TK_RECONTAINS; }
 	"LIKE"            { return TK_LIKE; }
