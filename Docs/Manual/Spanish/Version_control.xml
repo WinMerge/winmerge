@@ -7,7 +7,7 @@
   <para>La comparación y la combinación de archivos suelen ser subtareas dentro de
 un proceso más amplio de gestión de cambios. Por ese motivo, WinMerge no
 solo se utiliza de forma independiente, sino también junto con otras
-herramientas.  Además, las utilidades de comparación y combinación ofrecen
+herramientas. Además, las utilidades de comparación y combinación ofrecen
 diferentes funciones, por lo que a veces resulta útil combinar varias
 herramientas. En este tema se describen los principales métodos para
 utilizar WinMerge con otras herramientas.</para>
@@ -18,7 +18,7 @@ utilizar WinMerge con otras herramientas.</para>
     <para>La interfaz de línea de comandos (CLI) de WinMerge, descrita en la sección
 <xref linkend="Command_line" />, le permite ejecutar WinMerge desde una
 ventana del símbolo del sistema, desde secuencias de comandos o desde otra
-herramienta o programa.  Básicamente, cualquier programa que permita invocar
+herramienta o programa. Básicamente, cualquier programa que permita invocar
 un ejecutable externo con al menos una ruta de acceso puede utilizarse para
 iniciar una operación de WinMerge.</para>
 
@@ -60,7 +60,7 @@ detalles y ejemplos.</para>
       </indexterm></title>
 
     <para>Puede configurar WinMerge para que interactúe con algunos sistemas de
-control de versiones (VCS)  compatibles. En esta sección se describe la
+control de versiones (VCS) compatibles. En esta sección se describe la
 integración con los VCS y se ofrecen algunos ejemplos.</para>
 
     <section>
@@ -68,7 +68,7 @@ integración con los VCS y se ofrecen algunos ejemplos.</para>
 versiones</title>
 
       <indexterm>
-        <primary>integración con TortoiseSVN</primary>
+        <primary>Integrar con TortoiseSVN</primary>
       </indexterm>
 
       <para>Al comparar archivos en TortoiseCVS, TortoiseSVN o TortoiseGit, puede hacer
@@ -78,7 +78,7 @@ configurar durante la <link linkend="Installing_usinginstaller">instalación
 de WinMerge</link>.</para>
 
       <example>
-        <title>integración con TortoiseSVN</title>
+        <title>Integrar con TortoiseSVN</title>
 
         <para>A continuación se muestra un ejemplo de operación de comparación en
 TortoiseSVN que utiliza la integración con WinMerge. La integración con
@@ -115,7 +115,7 @@ los cambios que ha realizado.</para>
 
           <listitem>
             <para>Seleccione el acceso directo <guimenuitem>Comparar con la versión
-anterior</guimenuitem> o <guimenuitem>Comparar</guimenuitem>.  Se abrirá la
+anterior</guimenuitem> o <guimenuitem>Comparar</guimenuitem>. Se abrirá la
 ventana de WinMerge, con las versiones del archivo de destino cargadas en la
 ventana de comparación de archivos.</para>
           </listitem>

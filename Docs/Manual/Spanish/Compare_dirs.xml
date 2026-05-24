@@ -5,7 +5,7 @@
     </indexterm></title>
 
   <para>En este tema se explica cómo comparar y combinar carpetas mediante la
-ventana de comparación de carpetas.</para>
+ventana "Comparación de carpetas".</para>
 
   <section id="Compare_dirs_starting">
     <title>Iniciar una operación de comparación de carpetas</title>
@@ -77,9 +77,9 @@ archivos, descrito en <xref linkend="Configuration" />, puede resultar útil
 al comparar archivos binarios de gran tamaño; además, se utiliza
 automáticamente para comparar archivos de más de 4 MB. Las posibles
 desventajas son que los filtros de línea no funcionan y que no se muestra
-información sobre el recuento de diferencias en la ventana de comparación de
-carpetas. Esto no debería suponer un problema en la mayoría de los casos, ya
-que los archivos de ese tamaño suelen ser binarios.</para>
+información sobre el recuento de diferencias en la ventana "Comparación de
+carpetas". Esto no debería suponer un problema en la mayoría de los casos,
+ya que los archivos de ese tamaño suelen ser binarios.</para>
 
             <para>Para utilizar este método, configúrelo antes de realizar la comparación en
 la página "Comparar" de las opciones de WinMerge, haga clic en el menú
@@ -95,7 +95,7 @@ seleccione <guimenuitem>Contenido rápido</guimenuitem>.</para>
             <para>Puede modificar el límite de tamaño de archivo de 4 MB de la opción
 <guilabel> Comparación rápida de contenidos</guilabel>, por ejemplo, si
 tiene muchos archivos de texto de gran tamaño. Para ello, ejecute el comando
-de Windows <command>regedit</command>, busque esta clave <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen> y modifique su valor.  ¡Como siempre, tenga mucho
+de Windows <command>regedit</command>, busque esta clave <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen> y modifique su valor. ¡Como siempre, tenga mucho
 cuidado al modificar el Registro!</para>
           </listitem>
         </varlistentry>
@@ -133,16 +133,16 @@ transcurrido la mitad del tiempo de la operación de comparación.</para>
 
       <para><!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
 I get the partial list, but no Abort indicator.-->
-Puede hacer clic en <guibutton>Parar</guibutton>para detener la operación en
-cualquier momento antes de que finalice la comparación. Se mostrará la
-ventana de comparación de carpetas con los resultados calculados hasta ese
+Puede hacer clic en <guibutton>Parar</guibutton> para detener la operación
+en cualquier momento antes de que finalice la comparación. Se mostrará la
+ventana "Comparación de carpetas" con los resultados calculados hasta ese
 momento omitiendo los resultados que no se hayan completado.</para>
     </section>
   </section>
 
   <section id="Compare_dirs_window">
     <title>Ventana de comparación de carpetas<indexterm>
-        <primary>Ventana·de·comparación·de·carpetas</primary>
+        <primary>Ventana de comparación de carpetas</primary>
 
         <seealso>Comparación de archivos</seealso>
       </indexterm><indexterm>
@@ -203,7 +203,7 @@ la fila.</para>
 <menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Expandir
 subcarpetas</guimenuitem> <guimenuitem>Todas las subcarpetas</guimenuitem>
 </menuchoice> o <menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Contraer
-todas las subcarpetas</guimenuitem> </menuchoice>del menú</para>
+todas las subcarpetas</guimenuitem> </menuchoice>del menú.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -264,7 +264,7 @@ un lado se muestran si se activa alguna de las opciones del menú
 <guimenu>Ver</guimenu>, como <guimenuitem>Mostrar archivos específicos del
 izquierdo</guimenuitem>, <guimenuitem>Mostrar archivos específicos del
 central</guimenuitem> o <guimenuitem>Mostrar archivos específicos del
-derecho</guimenuitem></para>
+derecho.</guimenuitem></para>
           </listitem>
         </varlistentry>
 
@@ -284,7 +284,7 @@ cualquier subcarpeta que desee comparar.</para>
       <title>Iconos de archivos y carpetas<indexterm>
           <primary>iconos</primary>
 
-          <secondary>Ventana·de·comparación·de·carpetas</secondary>
+          <secondary>Ventana de comparación de carpetas</secondary>
         </indexterm></title>
 
       <para>En la ventana de comparación de carpetas, los archivos y las carpetas se
@@ -383,15 +383,15 @@ desconoce el resultado.</member>
       </indexterm>
 
       <para>Puede utilizar el ratón, así como <link linkend="Shortcut_keys">el
-teclado</link>y los atajos del menú contextual para navegar por la ventana
-de comparación de carpetas. También puede utilizar los botones de la barra
-de herramientas. Por ejemplo, el botón <inlinemediaobject>
+teclado</link> y los atajos del menú contextual para navegar por la ventana
+"Comparación de carpetas". También puede utilizar los botones de la barra de
+herramientas. Por ejemplo, el botón <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
-            <phrase>Botón diferencia siguiente</phrase>
+            <phrase>Botón Diferencia siguiente</phrase>
           </textobject>
         </inlinemediaobject> El botón <guimenuitem>Diferencia siguiente</guimenuitem> busca el
-siguiente fichero o carpeta diferente y lo selecciona</para>
+siguiente fichero o carpeta diferente y lo selecciona.</para>
 
       <note>
         <para>Los ficheros y carpetas específicos se exploran de la misma manera que los
@@ -400,7 +400,7 @@ que son diferentes.</para>
 
       <para>Puede seleccionar varios ficheros y carpetas. Sin embargo, algunas
 operaciones (como <command>Renombrar</command>) no están disponibles con
-selecciones múltiples</para>
+selecciones múltiples.</para>
 
       <para>Utilice los botones de navegación (<guibutton>Diferencia
 siguiente</guibutton>, <guibutton>Diferencia anterior</guibutton>, etc.)
@@ -416,7 +416,7 @@ eliminando uno o varios ficheros o subcarpetas.</para>
 
         <secondary>en la ventana de comparación de carpetas</secondary>
       </indexterm><indexterm>
-        <primary>Ventana·de·comparación·de·carpetas</primary>
+        <primary>Ventana de comparación de carpetas</primary>
 
         <secondary>operaciones con ficheros</secondary>
       </indexterm></title>
@@ -502,7 +502,7 @@ fileref="screenshots/ctx_menu_copy2.png" format="PNG" /> </imageobject><textobje
         <para>En la barra de herramientas de comparación de carpetas, <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
-              <phrase>botón Copiar al derecho</phrase>
+              <phrase>Botón Copiar al derecho</phrase>
             </textobject>
           </inlinemediaobject> <guibutton>Copiar al derecho</guibutton> y
 <inlinemediaobject>
@@ -529,7 +529,7 @@ herramientas.</para>
 
     <section>
       <title>Eliminar ficheros<indexterm>
-          <primary>eliminación de archivos</primary>
+          <primary>eliminar ficheros</primary>
 
           <secondary>en la ventana de comparación de carpetas</secondary>
         </indexterm></title>
@@ -546,12 +546,12 @@ accesos directos <guimenuitem>Izquierdo</guimenuitem>,
         <para>Le recomendamos encarecidamente que mantenga activada la opción <guilabel>
 Enviar archivos eliminados a la Papelera de reciclaje</guilabel> (véase
 <xref linkend="Configuration" />), para que pueda deshacer las eliminaciones
-en caso de errores.  Además, debe mantener activada la Papelera de
-reciclaje: la opción de WinMerge no funciona si desactiva la Papelera de
-reciclaje en Windows. Una vez más, no puede deshacer la eliminación de
-archivos o carpetas a menos que utilice tanto la opción de WinMerge
-<guilabel>Enviar archivos eliminados a la Papelera de reciclaje</guilabel>
-como la Papelera de reciclaje de Windows.</para>
+en caso de errores. Además, debe mantener activada la Papelera de reciclaje:
+la opción de WinMerge no funciona si desactiva la Papelera de reciclaje en
+Windows. Una vez más, no puede deshacer la eliminación de archivos o
+carpetas a menos que utilice tanto la opción de WinMerge <guilabel>Enviar
+archivos eliminados a la Papelera de reciclaje</guilabel> como la Papelera
+de reciclaje de Windows.</para>
       </warning>
     </section>
 
@@ -656,9 +656,9 @@ de los archivos sin las rutas.</para>
 
     <section id="protectingfiles">
       <title>Protección de archivos<indexterm>
-          <primary>Ventana·de·comparación·de·carpetas</primary>
+          <primary>Ventana de comparación de carpetas</primary>
 
-          <secondary>Protección de archivos en</secondary>
+          <secondary>protección de archivos en</secondary>
         </indexterm><indexterm>
           <primary>protección de archivos</primary>
         </indexterm><indexterm>
@@ -691,7 +691,7 @@ protegido al lado protegido.</para>
 
       <para>La marca <guilabel>SL</guilabel> que aparece en el panel izquierdo, central
 o derecho de la barra de estado (cerca de la esquina inferior derecha de la
-ventana)  indica que ese panel está actualmente en modo de solo lectura.</para>
+ventana) indica que ese panel está actualmente en modo de solo lectura.</para>
     </section>
 
     <section>
@@ -823,7 +823,7 @@ WinMerge (por ejemplo, al utilizar la operación
 archivo comprimido. Sin embargo, no es posible actualizar el contenido del
 archivo comprimido mediante las operaciones de WinMerge
 <guimenuitem>Copiar</guimenuitem>, <guimenuitem>Mover</guimenuitem> o
-<guimenuitem>Eliminar</guimenuitem>.  En su lugar, cree un nuevo archivo
+<guimenuitem>Eliminar</guimenuitem>. En su lugar, cree un nuevo archivo
 comprimido utilizando uno de los accesos directos de
 <guimenuitem>Zip</guimenuitem>.</para>
     </section>
@@ -846,7 +846,7 @@ esta operación sobrescribe el resultado actual que se muestra en la ventana.</p
 
       <para>Aunque una comparación de carpetas no recursiva no incluye el contenido de
 las subcarpetas, estas aparecen en la lista de resultados como si fueran
-archivos.  Del mismo modo, la carpeta principal de la carpeta comparada
+archivos. Del mismo modo, la carpeta principal de la carpeta comparada
 aparece como un archivo en la parte superior de la tabla. Al abrir estas
 carpetas directamente en la ventana de comparación de carpetas, puede
 explorar de forma selectiva un árbol de directorios. Este enfoque - comparar
@@ -953,7 +953,7 @@ ventana actual compara dos carpetas diferentes.</para>
       <title>Explorar carpetas específicas<indexterm>
           <primary>carpetas específicas</primary>
 
-          <secondary>comparación</secondary>
+          <secondary>compararación</secondary>
         </indexterm></title>
 
       <para>En WinMerge 2.6 y versiones anteriores, no era posible acceder a carpetas
@@ -966,7 +966,7 @@ carpetas.</para>
       <para>Sin embargo, es posible que prefiera no copiar toda la estructura de
 carpetas. A partir de la versión 2.8, WinMerge ofrece una forma alternativa
 de crear una nueva carpeta vacía. Esto le permite copiar solo los elementos
-que desee de la carpeta original específica a la carpeta vacía creada.  Este
+que desee de la carpeta original específica a la carpeta vacía creada. Este
 procedimiento muestra cómo hacerlo:</para>
 
       <orderedlist>
@@ -1012,7 +1012,7 @@ derecho del ratón) de la carpeta específica a la carpeta creada.</para>
 
   <section id="Compare_dirs_customizing">
     <title>Personalización de la ventana de comparación de carpetas<indexterm>
-        <primary>Ventana·de·comparación·de·carpetas</primary>
+        <primary>Ventana de comparación de carpetas</primary>
 
         <secondary>personalización</secondary>
       </indexterm></title>
@@ -1025,7 +1025,7 @@ mostrando, ocultando y reordenando las columnas de la tabla.</para>
       <title>Mostrar y ocultar tipos de archivos<indexterm>
           <primary>Menú Ver</primary>
 
-          <secondary>Ventana·de·comparación·de·carpetas</secondary>
+          <secondary>Ventana de comparación de carpetas</secondary>
         </indexterm></title>
 
       <para>El menú <guimenu>Ver</guimenu> contiene estos accesos directos para mostrar
@@ -1148,7 +1148,7 @@ de comparación de carpetas:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Nombre de archivo</guilabel>: nombre del elemento comparado.  En
+          <para><guilabel>Nombre de archivo</guilabel>: nombre del elemento comparado. En
 una comparación no recursiva, esta columna incluye tanto archivos como
 carpetas. En una comparación recursiva, no incluye carpetas, en su lugar,
 las carpetas aparecen en la columna "Carpeta".</para>
@@ -1169,8 +1169,8 @@ comparación (véase también <guilabel>Resultado abreviado</guilabel>).</para>
         <listitem>
           <para><guilabel>Fecha del izquierdo</guilabel>, <guilabel>Fecha del
 central</guilabel>, <guilabel>Fecha del derecho</guilabel>: fechas de
-modificación de cada elemento.  La más reciente de las dos fechas (o la
-fecha de cualquier elemento único) va precedida de un asterisco ( * ).</para>
+modificación de cada elemento. La más reciente de las dos fechas (o la fecha
+de cualquier elemento único) va precedida de un asterisco ( * ).</para>
         </listitem>
 
         <listitem>
@@ -1262,10 +1262,11 @@ el estilo de fin de línea (salto de línea) de los archivos.</para>
       <title>Ocultar elementos</title>
 
       <para>Puede ocultar rápidamente uno o varios elementos seleccionados mediante el
-comando del menú contextual <guimenuitem>Ocultar elementos</guimenuitem>.
-Los elementos permanecerán ocultos hasta que actualice la vista (pulse
-<keycap>F5</keycap>) o haga clic en <menuchoice> <guimenu>Ver</guimenu>
-<guimenuitem>Mostrar elementos ocultos</guimenuitem> </menuchoice>.</para>
+comando del menú contextual <guimenuitem>Ocultar
+elementos</guimenuitem>. Los elementos permanecerán ocultos hasta que
+actualice la vista (pulse <keycap>F5</keycap>) o haga clic en <menuchoice>
+<guimenu>Ver</guimenu> <guimenuitem>Mostrar elementos ocultos</guimenuitem>
+</menuchoice>.</para>
 
       <tip>
         <para>Descubra la función <guimenuitem>Ocultar elementos</guimenuitem>: esto le
@@ -1287,7 +1288,7 @@ comandos de Windows directamente desde el menú contextual.</para>
 
     <para>Si la selección se produce en ambos lados, puede elegir entre el
 <guimenu>menú contextual del izquierdo</guimenu> o el <guimenu>menú
-contextual del derecho</guimenu>.  Si la selección se produce en todos los
+contextual del derecho</guimenu>. Si la selección se produce en todos los
 lados, puede elegir entre el <guimenu>menú contextual del
 izquierdo</guimenu>, el <guimenu>menú contextual del central</guimenu> o el
 <guimenu>menú contextual del derecho</guimenu>. Si el elemento solo aparece

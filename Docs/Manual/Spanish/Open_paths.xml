@@ -34,8 +34,8 @@ carpetas:<indexterm>
   </itemizedlist>
 
   <section id="OpenPaths_opendialog">
-    <title>Cuadro de diálogo "Seleccione archivos o carpetas"<indexterm>
-        <primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary>
+    <title>Cuadro de diálogo "Seleccionar archivos o carpetas"<indexterm>
+        <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
       </indexterm></title>
 
     <para><xref linkend="Quick_start" /> describe el cuadro de diálogo "Seleccionar
@@ -74,7 +74,7 @@ el formato del archivo comprimido, abrirá el contenido de los archivos
 comprimidos en la ventana de comparación de carpetas.</para>
 
       <para>El tema <xref linkend="Compare_dirs" /> describe cómo trabajar con archivos
-comprimidos.  Por ejemplo, si un archivo comprimido contiene dos subcarpetas
+comprimidos. Por ejemplo, si un archivo comprimido contiene dos subcarpetas
 llamadas <filename class="directory">Original/</filename> y <filename
 class="directory">Modificado/</filename>, puede comparar el contenido de
 ambas subcarpetas especificando el mismo archivo comprimido en ambos lados
@@ -110,7 +110,7 @@ excluidos de la selección cuando se inicia la operación de comparación:</para
       <para>Las máscaras de archivo son útiles para realizar filtrados sencillos. Para
 selecciones más avanzadas, utilice archivos de filtro. Los archivos de
 filtro son conjuntos de expresiones regulares que pueden incluir o excluir
-archivos.  WinMerge instala varios archivos de filtro predefinidos en su
+archivos. WinMerge instala varios archivos de filtro predefinidos en su
 carpeta <filename>Filtros</filename> y usted también puede crear los suyos
 propios.</para>
 
@@ -131,10 +131,10 @@ archivos de filtro, consulte <xref linkend="Filters" />.</para>
 
       <para>Los descompresores son complementos que se instalan junto con WinMerge para
 proporcionar funcionalidades que no están disponibles de forma
-predeterminada.  Son complementos que permiten preprocesar determinados
-tipos de archivos antes de compararlos. Por ejemplo, WinMerge no suele poder
+predeterminada. Son complementos que permiten preprocesar determinados tipos
+de archivos antes de compararlos. Por ejemplo, WinMerge no suele poder
 comparar archivos doc de MS Word, pero al descomprimirlos se puede comparar
-únicamente el contenido de texto.  Consulte la sección <xref
+únicamente el contenido de texto. Consulte la sección <xref
 linkend="Plugins" /> para obtener más información.</para>
 
       <para>Para aplicar un complemento a la comparación de archivos, haga clic en el
@@ -146,7 +146,7 @@ descompresor":</para>
                   xmlns:xi="http://www.w3.org/2001/XInclude"
                   xpointer="element(select-unpacker-proc)" />
 
-      <para>Su elección aparecerá en el campo <guilabel>Descompresor</guilabel>.  Tenga
+      <para>Su elección aparecerá en el campo <guilabel>Descompresor</guilabel>. Tenga
 en cuenta que no puede seleccionar un descompresor al iniciar una operación
 de comparación de carpetas.</para>
     </section>
@@ -273,9 +273,9 @@ panel, respectivamente.</para>
       <note>
         <para>Si hace clic en <guimenuitem>Comparar</guimenuitem> antes de indicar la
 primera ruta, se abrirá el cuadro de diálogo "Seleccione archivos o
-carpetas" con su selección como primera ruta (<guilabel>1ª</guilabel>).
-Indique la segunda ruta <guilabel>2ª</guilabel> en el segundo campo para
-continuar con la comparación.</para>
+carpetas" con su selección como primera ruta
+(<guilabel>1ª</guilabel>). Indique la segunda ruta <guilabel>2ª</guilabel>
+en el segundo campo para continuar con la comparación.</para>
       </note>
 
 <!--              <tip>
@@ -385,7 +385,7 @@ el campo de la primera o la segunda ruta:</para>
       </indexterm>Archivos de proyecto</title>
 
     <para>Puede guardar las rutas y los filtros que tiene abiertos actualmente en un
-archivo de proyecto.  Así, podrá abrir fácilmente el proyecto más adelante
+archivo de proyecto. Así, podrá abrir fácilmente el proyecto más adelante
 para comparar los mismos archivos. Los archivos de proyecto resultan muy
 útiles si compara los mismos archivos repetidamente.</para>
 
@@ -459,16 +459,16 @@ class="extension">a .WinMerge</filename>. Por ejemplo:</para>
 
       <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;project&gt;
-   &lt;paths&gt;
-      &lt;left&gt;c:\work\project1&lt;/left&gt;
-      &lt;left-readonly&gt;1&lt;/left-readonly&gt;
-      &lt;middle&gt;c:\work\project2&lt;/middle&gt;
-      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;
-      &lt;right&gt;c:\work\project3&lt;/right&gt;
-      &lt;right-readonly&gt;0&lt;/right-readonly&gt;
-      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
-      &lt;subfolders&gt;0&lt;/subfolders&gt;
-   &lt;/paths&gt;
+ &lt;paths&gt;
+ &lt;left&gt;c:\work\project1&lt;/left&gt;
+ &lt;left-readonly&gt;1&lt;/left-readonly&gt;
+ &lt;middle&gt;c:\work\project2&lt;/middle&gt;
+ &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;
+ &lt;right&gt;c:\work\project3&lt;/right&gt;
+ &lt;right-readonly&gt;0&lt;/right-readonly&gt;
+ &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
+ &lt;subfolders&gt;0&lt;/subfolders&gt;
+ &lt;/paths&gt;
 &lt;/project&gt;</screen>
 
       <para>Un archivo de proyecto contiene un elemento <sgmltag>paths</sgmltag> que

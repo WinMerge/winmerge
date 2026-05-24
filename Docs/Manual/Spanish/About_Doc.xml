@@ -57,7 +57,7 @@ el principio.</para>
 
         <listitem>
           <para>Utilice el modificador /? o -? al ejecutar WinMerge desde la línea de
-comandos.  Abrirá la ayuda HTML por el principio.</para>
+comandos. Abrirá la ayuda HTML por el principio.</para>
         </listitem>
       </varlistentry>
 
@@ -228,11 +228,11 @@ ruta.</para><para>Pulse una vez la tecla <keycap>F5</keycap> para actualizar la 
 
             <entry>La fuente en negrita en el texto descriptivo puede indicar:<itemizedlist>
                 <listitem>
-                  <para>Un valor o cadena que se le indica que debe introducir.</para>
+                  <para>Un valor o cadena que se le indica que debe introducir</para>
                 </listitem>
 
                 <listitem>
-                  <para>El nombre de un botón de la interfaz gráfica de usuario (GUI) o una tecla.</para>
+                  <para>El nombre de un botón de la interfaz gráfica de usuario (GUI) o una tecla</para>
                 </listitem>
               </itemizedlist></entry>
           </row>
@@ -240,7 +240,7 @@ ruta.</para><para>Pulse una vez la tecla <keycap>F5</keycap> para actualizar la 
           <row>
             <entry>Pulsar <keycombo> <keycap>Ctrl</keycap> <keycap>O</keycap> </keycombo></entry>
 
-            <entry><wordasword>Pulsar</wordasword> indica una acción del teclado.  En este
+            <entry><wordasword>Pulsar</wordasword> indica una acción del teclado. En este
 ejemplo, pulse la combinación de teclas <keycap>Ctrl</keycap> y
 <keycap>O</keycap> .</entry>
           </row>
@@ -271,7 +271,7 @@ sobre el elemento indicado en el menú contextual.</entry>
           </row>
 
           <row>
-            <entry>Introduzca el <replaceable>archivo de opciones</replaceable>.ini.<para>Utilice el campo <guilabel>Filtro</guilabel> para eliminar archivos de la
+            <entry>Introduzca el <replaceable>archivo de opciones</replaceable>.ini<para>Utilice el campo <guilabel>Filtro</guilabel> para eliminar archivos de la
 operación.</para><para>Una o más líneas consecutivas diferentes forman una diferencia (o
 <glossterm>diff</glossterm>).</para></entry>
 
@@ -296,11 +296,11 @@ escrita.</para>
           <row>
             <entry>La ruta <envar>%WORKDIR%\project1</envar> se expande a <filename
 class="directory">C:\workfiles\project1</filename>.<para><screen
-            format="linespecific">Dospalabras</screen></para></entry>
+            format="linespecific">TwoWords</screen></para></entry>
 
             <entry>El texto monoespaciado puede indicar:<itemizedlist>
                 <listitem>
-                  <para>Una ruta o el nombre de un archivo u otro elemento del sistema.</para>
+                  <para>Una ruta o el nombre de un archivo u otro elemento del sistema</para>
                 </listitem>
 
                 <listitem>
@@ -312,7 +312,7 @@ class="directory">C:\workfiles\project1</filename>.<para><screen
                 </listitem>
 
                 <listitem>
-                  <para>Información que se introduce en un formulario o en la línea de comandos.</para>
+                  <para>Información que se introduce en un formulario o en la línea de comandos</para>
                 </listitem>
               </itemizedlist></entry>
           </row>
@@ -323,7 +323,7 @@ class="directory">C:\workfiles\project1</filename>.<para><screen
 rep="norepeat"><replaceable>inputpath</replaceable></arg> <arg choice="opt"
 rep="norepeat"><replaceable>outputpath</replaceable></arg></cmdsynopsis></entry>
 
-            <entry>En las líneas de sintaxis, los corchetes indican elementos opcionales.  En
+            <entry>En las líneas de sintaxis, los corchetes indican elementos opcionales. En
 este ejemplo, debe introducir una ruta de entrada con el comando; puede
 introducir una ruta de salida, pero el comando es válido sin ella.</entry>
           </row>

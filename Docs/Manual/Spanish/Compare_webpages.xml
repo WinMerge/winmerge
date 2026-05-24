@@ -5,13 +5,13 @@
   <title>Comparación de páginas web</title>
 
   <indexterm>
-    <primary>comparación de archivos</primary>
+    <primary>comparar archivos</primary>
     <secondary>Páginas web</secondary>
   </indexterm>
 
   <para>
 En este tema se explica cómo comparar páginas web mediante la ventana de
-comparación de páginas web.  <note><para>
+comparación de páginas web. <note><para>
 Esta función aún se encuentra en fase experimental y puede resultar
 inestable y muy lenta.</para>
 </note></para>
@@ -33,7 +33,7 @@ Haga clic en<menuchoice> <guimenu>Archivo</guimenu>
 direcciones URL que desea comparar en el cuadro de diálogo "Seleccionar
 archivos o carpetas" y seleccione la opción <guimenuitem>Página
 web</guimenuitem> en el menú desplegable del botón
-<guibutton>Comparar</guibutton>.  <mediaobject>
+<guibutton>Comparar</guibutton>. <mediaobject>
 <imageobject> <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
 </imageobject><textobject>
                 <phrase>Ventana "Seleccione archivos o carpetas"</phrase>
@@ -49,7 +49,7 @@ web</guimenuitem> en el menú desplegable del botón
           <para>Ejecute <command>WinMergeU.exe</command>, que se encuentra en el directorio
 de instalación de WinMerge. En los argumentos del comando, incluya dos o
 tres direcciones URL de las páginas web que desee comparar y especifique la
-opción de línea de comandos <option>/t webpage</option>.  Para obtener más
+opción de línea de comandos <option>/t webpage</option>. Para obtener más
 información sobre el uso de la línea de comandos, consulte <xref
 linkend="Command_line" />.</para>
 

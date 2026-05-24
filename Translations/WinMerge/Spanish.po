@@ -1885,7 +1885,7 @@ msgstr "Igno&rar diferencias en los saltos de línea (Windows/Unix/Mac)"
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
 #: Merge.rc:1124 Merge.rc:1157
 msgid "Ignore Codepage &Differences"
-msgstr "Ignorar &diferencias entre páginas de códigos"
+msgstr "Ignorar &diferencias de codificación"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
 #: Merge.rc:1125 Merge.rc:1158
@@ -3884,7 +3884,7 @@ msgstr "Ignorar nú&meros"
 #. IDD_PROPPAGE_COMPARE, IDC_CP_SENSITIVE
 #: Merge.rc:2594
 msgid "Ignore codepage &differences"
-msgstr "Ignorar &diferencias entre páginas de códigos"
+msgstr "Ignorar &diferencias de codificación"
 
 #. IDD_PROPPAGE_COMPARE, IDC_FILTERCOMMENTS_CHECK
 #: Merge.rc:2595
@@ -3929,7 +3929,7 @@ msgstr "Desmarcar por completo las diferencias ignoradas"
 #. IDS_OPTIONSPG_EDITOR
 #: Merge.rc:2613 Merge.rc:4492
 msgid "Editor"
-msgstr "Editor"
+msgstr "Edición"
 
 #. IDD_PROPPAGE_EDITOR, IDC_HILITE_CHECK
 #: Merge.rc:2616
@@ -4224,7 +4224,7 @@ msgstr "&Ir a"
 #. IDS_PROJECT_ITEM_FILE_FILTER
 #: Merge.rc:2812 Merge.rc:4612
 msgid "File Filters"
-msgstr "Filtros de archivo"
+msgstr "Archivos de filtros"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
 #: Merge.rc:2815
@@ -4379,22 +4379,22 @@ msgstr ""
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2895 Merge.rc:3087 Merge.rc:4504
 msgid "Codepage"
-msgstr "Página de códigos"
+msgstr "Codificación"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
 #: Merge.rc:2898
 msgid "Default Codepage"
-msgstr "Página de códigos predeterminada"
+msgstr "Codificación predeterminada"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
 #: Merge.rc:2899
 msgid "Select the default codepage for non-Unicode files:"
-msgstr "Seleccione la página de códigos predeterminada para archivos no Unicode:"
+msgstr "Seleccione la codificación predeterminada para archivos no Unicode:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_SYSTEM
 #: Merge.rc:2900
 msgid "System codepage"
-msgstr "Página de códigos del sistema"
+msgstr "Codificación del sistema"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_UI
 #: Merge.rc:2901
@@ -4404,7 +4404,7 @@ msgstr "Según la interfaz de usuario de WinMerge"
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_CUSTOM
 #: Merge.rc:2902
 msgid "Custom codepage:"
-msgstr "Página de códigos personalizada:"
+msgstr "Codificación personalizada:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE
 #: Merge.rc:2904
@@ -4412,7 +4412,7 @@ msgid ""
 "Detect codepage for: .html, .rc, .xml\n"
 "Restart required."
 msgstr ""
-"Detectar página de códigos para estos tipos de archivos: .html, .rc, .xml\n"
+"Detectar codificación para estos tipos de archivos: .html, .rc, .xml\n"
 "Necesita reiniciar sesión."
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE2
@@ -4421,7 +4421,7 @@ msgid ""
 "Detect codepage for files with mlang.dll\n"
 "Restart required."
 msgstr ""
-"Detectar página de códigos para archivos de texto usando mlang.dll\n"
+"Detectar codificación para archivos de texto usando mlang.dll\n"
 "Necesita reiniciar sesión."
 
 #. IDS_OPTIONSPG_ARCHIVE
@@ -4432,7 +4432,7 @@ msgstr "Compatibilidad con archivos"
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_ENABLE
 #: Merge.rc:2917
 msgid "&Enable archive file support"
-msgstr "Habilitar com&patibilidad con archivos"
+msgstr "Habilitar com&patibilidad con archivos comprimidos"
 
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_DETECTTYPE
 #: Merge.rc:2918
@@ -4617,7 +4617,7 @@ msgstr "(Afecta)"
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOADING_GROUP
 #: Merge.rc:3097
 msgid "Select Codepage for"
-msgstr "Seleccione página de códigos para"
+msgstr "Seleccione codificación para"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_FILES_LABEL
 #: Merge.rc:3098
@@ -4632,7 +4632,7 @@ msgstr "&guardar archivo:"
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_SAVE_SAME_CODEPAGE
 #: Merge.rc:3103
 msgid "&Use same codepage for both"
-msgstr "&Usar la misma página de códigos para ambos"
+msgstr "&Usar la misma codificación para ambos"
 
 #. IDS_MESSAGEBOX_CANCEL
 #: Merge.rc:3106 Merge.rc:4463
@@ -4717,7 +4717,7 @@ msgstr "Copias de seguridad"
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
 #: Merge.rc:3152
 msgid "Create backup files for:"
-msgstr "Crear copias de seguridad para:"
+msgstr "Crear copias de seguridad de:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FOLDERCMP
 #: Merge.rc:3153
@@ -4812,7 +4812,7 @@ msgstr "&Tipo de complemento:"
 #. IDD_PLUGINS_LIST, IDC_STATIC
 #: Merge.rc:3192
 msgid "File filters:"
-msgstr "Filtros de archivo:"
+msgstr "Archivos de filtros:"
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
 #: Merge.rc:3194
@@ -4847,37 +4847,37 @@ msgstr "Habilitar me&nú avanzado"
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_COMPARE_AS
 #: Merge.rc:3216
 msgid "Enable &Compare As menu"
-msgstr "Activar menú '&Comparar como'"
+msgstr "Habilitar menú '&Comparar como'"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION
 #: Merge.rc:3217
 msgid "&Register Shell Extension"
-msgstr "&Registrar extensión en el intérprete de órdenes"
+msgstr "&Registrar extensión en el Explorador"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION
 #: Merge.rc:3218
 msgid "&Unregister Shell Extension"
-msgstr "An&ular registro de la extensión en el intérprete de órdenes"
+msgstr "An&ular registro de la extensión en el Explorador"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION_PERUSER
 #: Merge.rc:3219
 msgid "Register Shell Extension for Current User &Only"
-msgstr "Registrar extensión en el intérprete de órdenes para el usuari&o actual"
+msgstr "Registrar extensión en el Explorador para el usuari&o actual"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION_PERUSER
 #: Merge.rc:3220
 msgid "Unregister Shell Extension for Current User On&ly"
-msgstr "Anu&lar registro de la extensión en el intérprete de órdenes para el usuario actual"
+msgstr "Anu&lar registro de la extensión en el Explorador para el usuario actual"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_WINMERGECONTEXTMENU
 #: Merge.rc:3221
 msgid "Register Shell Extension for &Windows 11"
-msgstr "Registrar extensión en el intérprete de órdenes para &Windows 11 o más reciente"
+msgstr "Registrar extensión en el Explorador para &Windows 11 o más reciente"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_WINMERGECONTEXTMENU
 #: Merge.rc:3222
 msgid "Unregister Shell Extension for W&indows 11"
-msgstr "Anular registro de extensión en el intérprete de órdenes para &Windows 11 o más reciente"
+msgstr "Anular registro de extensión en el Explorador para &Windows 11 o más reciente"
 
 #. IDD_PROPPAGE_SHELL, IDC_STATIC
 #: Merge.rc:3223
@@ -7285,9 +7285,9 @@ msgid ""
 "Display in codepage (better display) or default Windows codepage (safer merging)?\n"
 "(Recommended: default Windows codepage)"
 msgstr ""
-"Diferentes páginas de códigos: izquierdo (cp%d), derecho (cp%d).\n"
-"¿Mostrar en la página de códigos (mejor visualización) o en la página de códigos predeterminada de Windows (combinación más segura)?\n"
-"(Recomendado: página de códigos predeterminada de Windows)"
+"Diferente codificación: izquierdo (cp%d), derecho (cp%d).\n"
+"¿Mostrar en su codificación (mejor visualización) o en la codificación predeterminada de Windows (combinación más segura)?\n"
+"(Recomendado: codificación predeterminada de Windows)"
 
 #: Merge.rc:5150
 msgid "Information lost due to encoding errors: both files"
@@ -7345,17 +7345,17 @@ msgstr ""
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5183
 msgid "Codepage change merged."
-msgstr "Se ha combinado el cambio de página de códigos."
+msgstr "Se ha combinado el cambio de codificación."
 
 #. IDS_CODEPAGE_CONFLICT
 #: Merge.rc:5184
 msgid "Codepage changes are conflicting."
-msgstr "Los cambios en la página de códigos son conflictivos."
+msgstr "Los cambios en la codificación son conflictivos."
 
 #. IDS_EOL_MERGED
 #: Merge.rc:5185
 msgid "EOL change merged."
-msgstr "El cambio de fin de liínea se ha combinado."
+msgstr "El cambio de fin de línea se ha combinado."
 
 #. IDS_EOL_CONFLICT
 #: Merge.rc:5186
@@ -7713,8 +7713,6 @@ msgstr ""
 #: Merge.rc:5288
 msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
-"\n"
-"Archivo anterior (Ctrl+F7)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5295
@@ -9098,7 +9096,7 @@ msgstr "Archivos de propiedades de Java sin caracteres de escape"
 #. IDS_PLUGIN_MENU_CAPTION43
 #: Strings.rc:106
 msgid "Decompile Java (CFR)"
-msgstr "Descompilar Java (CFR)"
+msgstr ""
 
 #. IDS_PLUGIN_DESCRIPTION1
 #: Strings.rc:111
