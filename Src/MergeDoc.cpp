@@ -2574,6 +2574,10 @@ void CMergeDoc::RefreshOptions()
 
 	// Refresh view options
 	ForEachView([](auto& pView) { pView->RefreshOptions(); });
+	ForEachView(GetActiveMergeView()->m_nThisPane, [](auto& pView) {
+		pView->UpdateSiblingScrollPos(false);
+	});
+	UpdateAllViews(nullptr);
 }
 
 /**
