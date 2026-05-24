@@ -108,8 +108,12 @@ BEGIN
         MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+&3", ID_SEL_DIFF_COPY_3RD
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
-        MENUITEM "Add to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
-        MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
+        POPUP "Add to &Filters"
+        BEGIN
+            MENUITEM "Add to &Display Filter",      ID_ADD_TO_DISPLAY_FILTERS
+            MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
+            MENUITEM "Add to Substitution &Filters", ID_ADD_TO_SUBSTITUTION_FILTERS
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -144,6 +148,13 @@ BEGIN
     BEGIN
         MENUITEM "Use First Line as Headers",   ID_USE_FIRST_LINE_AS_HEADERS
         MENUITEM "Auto-Fit All Columns",        ID_AUTO_FIT_ALL_COLUMNS
+        MENUITEM SEPARATOR
+        POPUP "&Filter by This Column"
+        BEGIN
+            MENUITEM "&Text...",                    ID_FILTERMENU_COLUMN_TEXT
+            MENUITEM "&Number...",                  ID_FILTERMENU_COLUMN_NUMBER
+            MENUITEM "&DateTime...",                ID_FILTERMENU_COLUMN_DATETIME
+        END
     END
 END
 
@@ -762,6 +773,7 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
+        MENUITEM "Displa&y Filter Bar\tCtrl+Shift+L", ID_VIEW_DISPLAY_FILTER_BAR_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
@@ -1612,10 +1624,10 @@ BEGIN
             END
             MENUITEM "Additional &Properties...",   ID_FILTERMENU_DIFF_ADDITIONAL_PROPS
         END
-        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
-        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
-        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
-        MENUITEM "Target: &All",                ID_FILTERMENU_FILE_CONDITION_DIFF_ALL
+        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT
+        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_CONDITION_DIFF_LEFT_MIDDLE
+        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_CONDITION_DIFF_MIDDLE_RIGHT
+        MENUITEM "Target: &All",                ID_FILTERMENU_CONDITION_DIFF_ALL
     END
 END
 
@@ -1638,6 +1650,18 @@ BEGIN
     BEGIN
         MENUITEM "Binary files only",           ID_FILTERMENU_BINARY_ONLY
         MENUITEM "Text files only",             ID_FILTERMENU_TEXT_ONLY
+    END
+END
+
+IDR_POPUP_FILTERMENU_EOL MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Windows (CRLF)",             ID_FILTERMENU_EOL_CRLF
+        MENUITEM "&Unix (LF)",                  ID_FILTERMENU_EOL_LF
+        MENUITEM "&Mac (CR)",                   ID_FILTERMENU_EOL_CR
+        MENUITEM "None",                        ID_FILTERMENU_EOL_NONE
+        MENUITEM "Mixed",                       ID_FILTERMENU_EOL_MIXED
     END
 END
 
@@ -1796,12 +1820,12 @@ BEGIN
         MENUITEM "&Hash (MD5)",                 ID_RENAME_MOVE_KEY_MENU_HASH_MD5
         MENUITEM "Additional &Properties...",   ID_RENAME_MOVE_KEY_MENU_PROPS
         MENUITEM SEPARATOR
-        MENUITEM "Insert &replace() Function",    ID_RENAME_MOVE_KEY_MENU_FUNC_REPLACE
-        MENUITEM "Insert rege&xReplace() Function",ID_RENAME_MOVE_KEY_MENU_FUNC_REGEXREPLACE
+        MENUITEM "Insert &replace() Function",  ID_RENAME_MOVE_KEY_MENU_FUNC_REPLACE
+        MENUITEM "Insert rege&xReplace() Function", ID_RENAME_MOVE_KEY_MENU_FUNC_REGEXREPLACE
         POPUP "Replace &Lists"
         BEGIN
             MENUITEM "&Create String Replace List and Insert...", ID_RENAME_MOVE_KEY_MENU_CREATE_REPLACELIST
-            MENUITEM "Create &Regex Replace List and Insert...",  ID_RENAME_MOVE_KEY_MENU_CREATE_REGEXREPLACELIST
+            MENUITEM "Create &Regex Replace List and Insert...", ID_RENAME_MOVE_KEY_MENU_CREATE_REGEXREPLACELIST
             MENUITEM SEPARATOR
             POPUP "&String Replace Lists"
             BEGIN
@@ -1837,6 +1861,219 @@ BEGIN
         END
     END
 END
+
+IDR_POPUP_LINEFILTERMENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "Add L&ine Condition"
+        BEGIN
+            MENUITEM "L&ine Text...",               ID_FILTERMENU_LINE_RANGE
+            POPUP "&Column"
+            BEGIN
+                MENUITEM "&Text...",                    ID_FILTERMENU_COLUMN_TEXT
+                MENUITEM "&Number...",                  ID_FILTERMENU_COLUMN_NUMBER
+                MENUITEM "&Date/Time...",                ID_FILTERMENU_COLUMN_DATETIME
+                MENUITEM "Column: &1",                  ID_FILTERMENU_COLUMN_1
+                MENUITEM "Column: &2",                  ID_FILTERMENU_COLUMN_2
+                MENUITEM "Column: &3",                  ID_FILTERMENU_COLUMN_3
+                MENUITEM "Column: &4",                  ID_FILTERMENU_COLUMN_4
+                MENUITEM "Column: &5",                  ID_FILTERMENU_COLUMN_5
+                MENUITEM "Column: &6",                  ID_FILTERMENU_COLUMN_6
+                MENUITEM "Column: &7",                  ID_FILTERMENU_COLUMN_7
+                MENUITEM "Column: &8",                  ID_FILTERMENU_COLUMN_8
+                MENUITEM "Column: &9",                  ID_FILTERMENU_COLUMN_9
+                MENUITEM "Column: 1&0",                 ID_FILTERMENU_COLUMN_10
+            END
+            MENUITEM "Line L&ength...",             ID_FILTERMENU_LINE_LENGTH_RANGE
+            MENUITEM "&Word Count...",              ID_FILTERMENU_WORD_COUNT_RANGE
+            POPUP "Line &Number"
+            BEGIN
+                MENUITEM "&Odd Lines",                  ID_FILTERMENU_LINE_ODD_LINES
+                MENUITEM "&Even Lines",                 ID_FILTERMENU_LINE_EVEN_LINES
+                MENUITEM "&Custom Range...",            ID_FILTERMENU_LINE_NUMBER_RANGE
+            END
+            POPUP "Line &Status"
+            BEGIN
+                MENUITEM "Different",                   ID_FILTERMENU_LINE_DIFFERENT
+                MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
+                MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
+                MENUITEM SEPARATOR
+                MENUITEM "Exists",                      ID_FILTERMENU_LINE_EXISTS
+                MENUITEM "Missing",                     ID_FILTERMENU_LINE_MISSING
+                MENUITEM "Moved",                       ID_FILTERMENU_LINE_MOVED
+                MENUITEM "Bookmarked",                  ID_FILTERMENU_LINE_BOOKMARKED
+            END
+            POPUP "&EOL"
+            BEGIN
+                MENUITEM "&Windows (CRLF)",             ID_FILTERMENU_EOL_CRLF
+                MENUITEM "&Unix (LF)",                  ID_FILTERMENU_EOL_LF
+                MENUITEM "&Mac (CR)",                   ID_FILTERMENU_EOL_CR
+                MENUITEM "None",                        ID_FILTERMENU_EOL_NONE
+            END
+        END
+        MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
+        MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
+        MENUITEM "Target: &Middle",             ID_FILTERMENU_CONDITION_MIDDLE
+        MENUITEM "Target: &Right",              ID_FILTERMENU_CONDITION_RIGHT
+        MENUITEM SEPARATOR
+        POPUP "Add &Difference Condition"
+        BEGIN
+            POPUP "L&ine Text"
+            BEGIN
+                MENUITEM "Equal",                       ID_FILTERMENU_DIFF_LINE_EQUAL
+                MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_LINE_NOT_EQUAL
+            END
+            POPUP "&Column"
+            BEGIN
+                POPUP "&Text"
+                BEGIN
+                    MENUITEM "Equal",                       ID_FILTERMENU_DIFF_COLUMN_TEXT_EQUAL
+                    MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_COLUMN_TEXT_NOT_EQUAL
+                END
+                POPUP "&Number"
+                BEGIN
+                    MENUITEM "Equal",                       ID_FILTERMENU_DIFF_COLUMN_NUMBER_EQUAL
+                    MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_COLUMN_NUMBER_NOT_EQUAL
+                    MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_COLUMN_NUMBER_LESS
+                    MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_COLUMN_NUMBER_LESS_EQUAL
+                    MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_COLUMN_NUMBER_GREATER
+                    MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_COLUMN_NUMBER_GREATER_EQUAL
+                END
+                POPUP "&Date/Time"
+                BEGIN
+                    MENUITEM "Equal",                       ID_FILTERMENU_DIFF_COLUMN_DATETIME_EQUAL
+                    MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_COLUMN_DATETIME_NOT_EQUAL
+                    MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_COLUMN_DATETIME_LESS
+                    MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_COLUMN_DATETIME_LESS_EQUAL
+                    MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_COLUMN_DATETIME_GREATER
+                    MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_COLUMN_DATETIME_GREATER_EQUAL
+                END
+                MENUITEM "Column: &1",                  ID_FILTERMENU_COLUMN_1
+                MENUITEM "Column: &2",                  ID_FILTERMENU_COLUMN_2
+                MENUITEM "Column: &3",                  ID_FILTERMENU_COLUMN_3
+                MENUITEM "Column: &4",                  ID_FILTERMENU_COLUMN_4
+                MENUITEM "Column: &5",                  ID_FILTERMENU_COLUMN_5
+                MENUITEM "Column: &6",                  ID_FILTERMENU_COLUMN_6
+                MENUITEM "Column: &7",                  ID_FILTERMENU_COLUMN_7
+                MENUITEM "Column: &8",                  ID_FILTERMENU_COLUMN_8
+                MENUITEM "Column: &9",                  ID_FILTERMENU_COLUMN_9
+                MENUITEM "Column: &10",                 ID_FILTERMENU_COLUMN_10
+            END
+            POPUP "Line L&ength"
+            BEGIN
+                MENUITEM "Equal",                       ID_FILTERMENU_DIFF_LINE_LENGTH_EQUAL
+                MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_LINE_LENGTH_NOT_EQUAL
+                MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_LINE_LENGTH_LESS
+                MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_LINE_LENGTH_LESS_EQUAL
+                MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER
+                MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER_EQUAL
+                MENUITEM SEPARATOR
+                MENUITEM "Less than 10",                ID_FILTERMENU_DIFF_LINE_LENGTH_LT_10
+                MENUITEM "10 or more",                  ID_FILTERMENU_DIFF_LINE_LENGTH_GE_10
+                MENUITEM "Less than 100",               ID_FILTERMENU_DIFF_LINE_LENGTH_LT_100
+                MENUITEM "100 or more",                 ID_FILTERMENU_DIFF_LINE_LENGTH_GE_100
+                MENUITEM "Less than 1000",              ID_FILTERMENU_DIFF_LINE_LENGTH_LT_1000
+                MENUITEM "1000 or more",                ID_FILTERMENU_DIFF_LINE_LENGTH_GE_1000
+                MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_LINE_LENGTH_RANGE
+            END
+            POPUP "Line &Status"
+            BEGIN
+                MENUITEM "Different",                   ID_FILTERMENU_LINE_DIFFERENT
+                MENUITEM "Identical",                   ID_FILTERMENU_LINE_IDENTICAL
+                MENUITEM "Trivial",                     ID_FILTERMENU_LINE_TRIVIAL
+            END
+            POPUP "&EOL"
+            BEGIN
+                MENUITEM "Equal",                       ID_FILTERMENU_DIFF_EOL_EQUAL
+                MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_EOL_NOT_EQUAL
+            END
+        END
+        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_CONDITION_DIFF_LEFT_RIGHT
+        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_CONDITION_DIFF_LEFT_MIDDLE
+        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_CONDITION_DIFF_MIDDLE_RIGHT
+        MENUITEM "Target: &All",                ID_FILTERMENU_CONDITION_DIFF_ALL
+        MENUITEM SEPARATOR
+        POPUP "&Transform Line/Column"
+        BEGIN
+            MENUITEM "&Trim",                       ID_FILTERMENU_FUNC_TRIM
+            MENUITEM "Normalize &Whitespace",       ID_FILTERMENU_FUNC_NORM_SPACE
+            MENUITEM "&Replace",                    ID_FILTERMENU_FUNC_REPLACE
+            MENUITEM "Reg&ex Replace",              ID_FILTERMENU_FUNC_REGEXREPLACE
+            MENUITEM "&Lowercase",                  ID_FILTERMENU_FUNC_TOLOWER
+            MENUITEM "&Uppercase",                  ID_FILTERMENU_FUNC_TOUPPER
+            MENUITEM "&Half-width",                 ID_FILTERMENU_FUNC_TOHALFWIDTH
+            MENUITEM "&Full-width",                 ID_FILTERMENU_FUNC_TOFULLWIDTH
+            MENUITEM "Normalize &Unicode",          ID_FILTERMENU_FUNC_NORMALIZEUNICODE
+            POPUP "&Chinese Conversion"
+            BEGIN
+                MENUITEM "&Simplified Chinese",         ID_FILTERMENU_FUNC_TOSIMPLIFIEDCHINESE
+                MENUITEM "&Traditional Chinese",        ID_FILTERMENU_FUNC_TOTRADITIONALCHINESE
+            END
+            POPUP "&Japanese Conversion"
+            BEGIN
+                MENUITEM "&Hiragana",                   ID_FILTERMENU_FUNC_TOHIRAGANA
+                MENUITEM "&Katakana",                   ID_FILTERMENU_FUNC_TOKATAKANA
+            END
+            POPUP "Replace &Lists"
+            BEGIN
+                MENUITEM "&Create String Replace List and Insert...", ID_FILTERMENU_CREATE_REPLACELIST
+                MENUITEM "Create &Regex Replace List and Insert...", ID_FILTERMENU_CREATE_REGEXREPLACELIST
+                MENUITEM SEPARATOR
+                POPUP "&String Replace Lists"
+                BEGIN
+                    MENUITEM "<None>",                      ID_FILTERMENU_STRING_REPLACE_LISTS_FIRST
+                END
+                POPUP "Re&gex Replace Lists"
+                BEGIN
+                    MENUITEM "<None>",                      ID_FILTERMENU_REGEX_REPLACE_LISTS_FIRST
+                END
+                MENUITEM SEPARATOR
+                MENUITEM "Open String Replace Lists Folder...", ID_FILTERMENU_STRING_REPLACE_LISTS_FOLDER
+                MENUITEM "Open Regex Replace Lists Folder...", ID_FILTERMENU_REGEX_REPLACE_LISTS_FOLDER
+            END
+        END
+        POPUP "&Refine Current Filter"
+        BEGIN
+            POPUP "Add Con&text Lines"
+            BEGIN
+                MENUITEM "&0 Lines",                    ID_FILTERMENU_LINE_CONTEXT_0
+                MENUITEM "&1 Line",                     ID_FILTERMENU_LINE_CONTEXT_1
+                MENUITEM "&3 Lines",                    ID_FILTERMENU_LINE_CONTEXT_3
+                MENUITEM "&5 Lines",                    ID_FILTERMENU_LINE_CONTEXT_5
+                MENUITEM "&7 Lines",                    ID_FILTERMENU_LINE_CONTEXT_7
+            END
+            POPUP "Filter by &Occurrence"
+            BEGIN
+                MENUITEM "&First",                      ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
+                MENUITEM "&Last",                       ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
+                MENUITEM "First &5 Matches",            ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
+                MENUITEM "After First &5",              ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
+                MENUITEM "&Custom Range...",            ID_FILTERMENU_LINE_MATCHNUMBER_RANGE
+                MENUITEM SEPARATOR
+                MENUITEM "By &Block",                   ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
+            END
+            POPUP "&Range"
+            BEGIN
+                MENUITEM "&Inside...",                  ID_FILTERMENU_LINE_MATCHINSIDE_WRAP
+                MENUITEM "&Outside...",                 ID_FILTERMENU_LINE_MATCHOUTSIDE_WRAP
+            END
+        END
+        POPUP "Create &Range"
+        BEGIN
+            MENUITEM "&Inside...",                  ID_FILTERMENU_LINE_MATCHINSIDE
+            MENUITEM "&Outside...",                 ID_FILTERMENU_LINE_MATCHOUTSIDE
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Match &case",                 ID_FILTERMENU_MATCHCASE
+        MENUITEM SEPARATOR
+        MENUITEM "Combine: A&ND",               ID_FILTERMENU_OPERATOR_AND
+        MENUITEM "Combine: &OR",                ID_FILTERMENU_OPERATOR_OR
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2608,7 +2845,6 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,245,105,50,14
 END
 
-
 IDD_COMPARISON_RESULT_FILTER DIALOGEX 0, 0, 250, 280
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Filter by Comparison Result"
@@ -2623,14 +2859,35 @@ BEGIN
     CONTROL         "Right only",IDC_CHECK_RIGHT_ONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,85,220,10
     CONTROL         "Skipped",IDC_CHECK_SKIPPED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,100,220,10
     CONTROL         "Middle only",IDC_CHECK_MIDDLE_ONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,115,220,10
-    CONTROL         "Left only (different)",IDC_CHECK_LEFT_ONLY_DIFFERENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,145,220,10
-    CONTROL         "Middle only (different)",IDC_CHECK_MIDDLE_ONLY_DIFFERENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,160,220,10
-    CONTROL         "Right only (different)",IDC_CHECK_RIGHT_ONLY_DIFFERENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,175,220,10
+    CONTROL         "Left only (different)",IDC_CHECK_LEFT_ONLY_DIFFERENT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,145,220,10
+    CONTROL         "Middle only (different)",IDC_CHECK_MIDDLE_ONLY_DIFFERENT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,160,220,10
+    CONTROL         "Right only (different)",IDC_CHECK_RIGHT_ONLY_DIFFERENT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,175,220,10
     CONTROL         "Left only (missing)",IDC_CHECK_LEFT_ONLY_MISSING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,205,220,10
-    CONTROL         "Middle only (missing)",IDC_CHECK_MIDDLE_ONLY_MISSING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,220,220,10
-    CONTROL         "Right only (missing)",IDC_CHECK_RIGHT_ONLY_MISSING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,235,220,10
+    CONTROL         "Middle only (missing)",IDC_CHECK_MIDDLE_ONLY_MISSING,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,220,220,10
+    CONTROL         "Right only (missing)",IDC_CHECK_RIGHT_ONLY_MISSING,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,235,220,10
     DEFPUSHBUTTON   "OK",IDOK,135,260,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,193,260,50,14
+END
+
+IDD_FILTERS_MATCHINSIDE DIALOGEX 0, 0, 391, 95
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Match Inside/Outside Filter Expressions"
+FONT 8, FONTNAME, 0, 0, 0x1
+BEGIN
+    LTEXT           "&Start filter:",IDC_STATIC,6,6,60,12
+    COMBOBOX        IDC_MATCHINSIDE_EXPR1,86,6,260,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&=",IDC_MATCHINSIDE_EXPR1_BUTTON,346,6,14,14
+    LTEXT           "&End filter:",IDC_STATIC,6,26,60,12
+    COMBOBOX        IDC_MATCHINSIDE_EXPR2,86,26,260,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&=",IDC_MATCHINSIDE_EXPR2_BUTTON,346,26,14,14
+    LTEXT           "Lines between start and end filter matches will be included.",IDC_STATIC,6,46,290,18
+    DEFPUSHBUTTON   "OK",IDOK,265,75,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,325,75,50,14
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 325, 254
@@ -3235,15 +3492,19 @@ BEGIN
         BOTTOMMARGIN, 264
     END
 
-    IDD_PROPPAGE_GENERAL, DIALOG
-    BEGIN
-    END
-
     IDD_FILTERS_LINEFILTERS, DIALOG
     BEGIN
     END
 
     IDD_FILTERS_SUBSTITUTIONFILTERS, DIALOG
+    BEGIN
+    END
+
+    IDD_PREFERENCES, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_GENERAL, DIALOG
     BEGIN
     END
 
@@ -3279,22 +3540,6 @@ BEGIN
     BEGIN
     END
 
-    IDD_DIRCOLS, DIALOG
-    BEGIN
-    END
-
-    IDD_PLUGINS_SELECTPLUGIN, DIALOG
-    BEGIN
-    END
-
-    IDD_DIRCOMP_PROGRESS, DIALOG
-    BEGIN
-    END
-
-    IDD_DISPLAY_FILTER_BAR, DIALOG
-    BEGIN
-    END
-
     IDD_PROPPAGE_COMPARE, DIALOG
     BEGIN
     END
@@ -3311,8 +3556,30 @@ BEGIN
     BEGIN
     END
 
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+    END
+
+    IDD_PLUGINS_SELECTPLUGIN, DIALOG
+    BEGIN
+    END
+
+    IDD_DIRCOMP_PROGRESS, DIALOG
+    BEGIN
+    END
+
+    IDD_DISPLAY_FILTER_BAR, DIALOG
+    BEGIN
+    END
+
     IDD_FILTERS_FILEFILTERS, DIALOG
     BEGIN
+    END
+
+    IDD_FILTERS_CONDITION, DIALOG
+    BEGIN
+        RIGHTMARGIN, 250
+        BOTTOMMARGIN, 95
     END
 
     IDD_COMPARISON_RESULT_FILTER, DIALOG
@@ -3322,25 +3589,16 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 274
     END
-    IDD_FILTERS_CONDITION, DIALOG
-    BEGIN
-        RIGHTMARGIN, 250
-        BOTTOMMARGIN, 95
-    END
 
-    IDD_SAVECLOSING, DIALOG
+    IDD_FILTERS_MATCHINSIDE, DIALOG
     BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 296
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 89
     END
 
     IDD_PROPPAGE_CODEPAGE, DIALOG
-    BEGIN
-    END
-
-    IDD_PREFERENCES, DIALOG
-    BEGIN
-    END
-
-    IDD_DIRCMP_REPORT, DIALOG
     BEGIN
     END
 
@@ -3349,6 +3607,14 @@ BEGIN
     END
 
     IDD_PROPPAGE_PROJECT, DIALOG
+    BEGIN
+    END
+
+    IDD_SAVECLOSING, DIALOG
+    BEGIN
+    END
+
+    IDD_DIRCMP_REPORT, DIALOG
     BEGIN
     END
 
@@ -4099,7 +4365,13 @@ IDD_COMPARISON_RESULT_FILTER AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
+
 IDD_FILTERS_CONDITION AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_FILTERS_MATCHINSIDE AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -4747,7 +5019,7 @@ BEGIN
     IDS_RENAMED_MOVED       "Renamed/Moved"
     IDS_RENAMED_MOVED_ITEMS "(%1 items)"
     IDS_RENAMED_MOVED_RESULT "%1 (set %2): "
-    IDS_SWITCH_FLAT_MODE     "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+    IDS_SWITCH_FLAT_MODE    "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -5279,7 +5551,7 @@ BEGIN
                             "Plugin not found or invalid: %1"
     IDS_PLUGIN_NOT_UNPACK   "'%1' is not an unpacker plugin"
     IDS_PLUGIN_NOT_PREDIFF  "'%1' is not a prediffer plugin"
-    IDS_PLUGIN_PREDIFF_ERROR
+    IDS_PLUGIN_PREDIFF_ERROR 
                             "Error prediffing '%1' with '%2'. Prediffing disabled."
     IDS_PLUGIN_CIRCULAR_REFERENCE "Circular reference in plugin pipeline: %1"
     IDS_PLUGIN_TYPE1        "URL Handler"
@@ -5392,7 +5664,7 @@ BEGIN
     IDS_LOG_DELETING_FILES  "Deleting files..."
     IDS_LOG_RECYCLEBIN      "Recycle Bin"
     IDS_LOG_PERMANENTLY_DELETED "Permanently deleted"
-    IDS_LOG_FILEOPERATION_COMPLETED  "File operation completed successfully"
+    IDS_LOG_FILEOPERATION_COMPLETED "File operation completed successfully"
     IDS_LOG_FILEOPERATION_CANCELED "File operation canceled"
 END
 
@@ -5417,34 +5689,34 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FILTER_OP_EQUALS             "Equals"
-    IDS_FILTER_OP_NOT_EQUALS         "Does not equal"
-    IDS_FILTER_OP_LESS_THAN          "Less than"
-    IDS_FILTER_OP_LESS_EQUAL         "Less than or equal to"
-    IDS_FILTER_OP_GREATER_EQUAL      "Greater than or equal to"
-    IDS_FILTER_OP_GREATER_THAN       "Greater than"
-    IDS_FILTER_OP_BETWEEN            "Between"
-    IDS_FILTER_OP_NOT_BETWEEN        "Not Between"
-    IDS_FILTER_OP_CONTAINS           "Contains"
-    IDS_FILTER_OP_NOT_CONTAINS       "Not Contains"
-    IDS_FILTER_OP_RECONTAINS         "Contains (regex)"
-    IDS_FILTER_OP_NOT_RECONTAINS     "Not Contains (regex)"
-    IDS_FILTER_OP_LIKE               "Match (wildcard)"
-    IDS_FILTER_OP_NOT_LIKE           "Not match (wildcard)"
-    IDS_FILTER_OP_MATCHES            "Match (regex)"
-    IDS_FILTER_OP_NOT_MATCHES        "Not match (regex)"
+    IDS_FILTER_OP_EQUALS    "Equals"
+    IDS_FILTER_OP_NOT_EQUALS "Does not equal"
+    IDS_FILTER_OP_LESS_THAN "Less than"
+    IDS_FILTER_OP_LESS_EQUAL "Less than or equal to"
+    IDS_FILTER_OP_GREATER_EQUAL "Greater than or equal to"
+    IDS_FILTER_OP_GREATER_THAN "Greater than"
+    IDS_FILTER_OP_BETWEEN   "Between"
+    IDS_FILTER_OP_NOT_BETWEEN "Not Between"
+    IDS_FILTER_OP_CONTAINS  "Contains"
+    IDS_FILTER_OP_NOT_CONTAINS "Not Contains"
+    IDS_FILTER_OP_RECONTAINS "Contains (regex)"
+    IDS_FILTER_OP_NOT_RECONTAINS "Not Contains (regex)"
+    IDS_FILTER_OP_LIKE      "Match (wildcard)"
+    IDS_FILTER_OP_NOT_LIKE  "Not match (wildcard)"
+    IDS_FILTER_OP_MATCHES   "Match (regex)"
+    IDS_FILTER_OP_NOT_MATCHES "Not match (regex)"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_COLORMODE_LIGHT              "Light"
-    IDS_COLORMODE_DARK               "Dark"
-    IDS_COLORMODE_FOLLOWSYSTEM       "Follow system"
+    IDS_COLORMODE_LIGHT     "Light"
+    IDS_COLORMODE_DARK      "Dark"
+    IDS_COLORMODE_FOLLOWSYSTEM "Follow system"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_EXAMPLE                      "e.g. %1"
+    IDS_EXAMPLE             "e.g. %1"
 END
 
 STRINGTABLE

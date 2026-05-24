@@ -907,6 +907,22 @@ std::string toUTF8(const String& tstr)
 	return u8str;
 }
 
+std::string toUTF8(const tchar_t* tstr, size_t len)
+{
+#ifdef _UNICODE
+	int u8len = WideCharToMultiByte(CP_UTF8, 0, (const wchar_t*)tstr, static_cast<int>(len), nullptr, 0, nullptr, nullptr);
+	if (u8len <= 0)
+		return std::string();
+	std::string u8str(u8len, 0);
+	WideCharToMultiByte(CP_UTF8, 0, (const wchar_t*)tstr, static_cast<int>(len), &u8str[0], u8len, nullptr, nullptr);
+	return u8str;
+#else
+	std::string u8str;
+	toUTF8(String(tstr, len), u8str);
+	return u8str;
+#endif
+}
+
 void toUTF8(const String& tstr, std::string& u8str)
 {
 #ifdef _UNICODE

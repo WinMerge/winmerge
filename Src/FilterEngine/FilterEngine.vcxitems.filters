@@ -70,5 +70,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ReplaceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ILineDataProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

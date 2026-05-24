@@ -74,3 +74,8 @@ inline const tchar_t CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.ht
 /** @brief Location for filters specific help to open. */
 inline const tchar_t FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
+/** @brief Location for display line filter specific help to open. */
+inline const tchar_t DisplayLineFilterHelpLocation[] = _T("::/htmlhelp/Filters.html#Filters_DisplayLineFilter");
+
+/** @brief Location for display folder filter specific help to open. */
+inline const tchar_t DisplayFolderFilterHelpLocation[] = _T("::/htmlhelp/Filters.html#Filters_DisplayFolderFilter");

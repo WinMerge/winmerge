@@ -421,6 +421,7 @@
     <ClCompile Include="..\..\..\Src\Common\cio.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\locality.cpp" />
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -851,6 +852,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp" />
     <ClInclude Include="..\..\..\Src\Common\cio.h" />
+    <ClInclude Include="..\..\..\Src\Common\locality.h" />
     <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
     <ClInclude Include="..\..\..\Src\Common\charsets.h" />
     <ClInclude Include="..\..\..\Src\codepage_detect.h" />

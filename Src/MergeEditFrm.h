@@ -17,6 +17,7 @@
 #include "EditorFilepathBar.h"
 #include "DiffViewBar.h"
 #include "LocationBar.h"
+#include "LineFilterBar.h"
 #include "MergeFrameCommon.h"
 
 class CMergeDoc;
@@ -39,6 +40,9 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	CSplitterWndEx& GetSplitter() { return m_wndSplitter; };
+	void ShowFilterBar();
+	void HideFilterBar();
+	CLineFilterBar* GetFilterBar() { return m_pFilterBar.get(); }
 
 // Attributes
 protected:
@@ -48,6 +52,7 @@ protected:
 	CMergeEditSplitterView *m_pwndDetailMergeEditSplitterView;
 	CMergeStatusBar m_wndStatusBar;
 	CLocationBar m_wndLocationBar;
+	std::unique_ptr<CLineFilterBar> m_pFilterBar;
 	class CPreviewNumPageButton : public CButton
 	{
 		virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
@@ -89,6 +94,10 @@ private:
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
+	afx_msg void OnViewDisplayFilterBar();
+	afx_msg void OnUpdateDisplayViewFilterBar(CCmdUI* pCmdUI);
+	afx_msg void OnDisplayFilterBarClose();
+	afx_msg void OnDisplayFilterBarMenu();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

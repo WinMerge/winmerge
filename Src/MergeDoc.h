@@ -12,6 +12,7 @@
 
 #include "IMDITab.h"
 #include "IMergeDoc.h"
+#include "FilterEngine/ILineDataProvider.h"
 #include "DiffTextBuffer.h"
 #include "DiffWrapper.h"
 #include "DiffList.h"
@@ -19,10 +20,13 @@
 #include "PathContext.h"
 #include "FileLoadResult.h"
 #include "FileTransform.h"
+#include "LineFilterHelper.h"
 #include <vector>
 #include <map>
 #include <memory>
 #include <optional>
+
+class CLineFilterHelperMenu;
 
 /**
  * @brief Additional action codes for WinMerge.
@@ -121,7 +125,7 @@ class CMergeEditSplitterView;
 /**
  * @brief Document class for merging two files
  */
-class CMergeDoc : public CDocument, public IMergeDoc, public IMDITab
+class CMergeDoc : public CDocument, public IMergeDoc, public IMDITab, public ILineDataProvider
 {
 public:
 	struct TableProps { bool istable; tchar_t delimiter; tchar_t quote; bool allowNewlinesInQuotes; };
@@ -272,6 +276,15 @@ public:
 		}
 	}
 
+	// ILineDataProvider
+	int GetLineCount() const override;
+	std::string GetLine(int pane, int lineIndex) const override;
+	int GetColumnCount(int pane, int lineIndex) const override;
+	std::string GetColumn(int pane, int lineIndex, int columnIndex) const override;
+	int GetRealLineNumber(int pane, int lineIndex) const override;
+	unsigned GetLineFlags(int pane, int lineIndex) const override;
+	unsigned GetLineEol(int pane, int lineIndex) const override;
+
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeDoc)
@@ -289,6 +302,8 @@ public:
 	void Showlinediff(CMergeEditView *pView, bool bReversed = false);
 	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	void AddToLineFilters(const String& text);
+	void AddToDisplayFilters(const String& text);
+	void AddColumnToDisplayFilters(int pane, int column, int dataType);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff, bool ignoreDiffOptions = false);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex, bool ignoreDiffOptions = false);
 	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ignoreDiffOptions = false, int pane1 = -1, int pane2 = -1);
@@ -389,6 +404,7 @@ protected:
 	bool m_bAutoMerged;
 	std::optional<bool> m_bEnableTableEditing;
 	std::unique_ptr<TableProps> m_pTablePropsPrepared;
+	std::unique_ptr<CLineFilterHelperMenu> m_pFilterMenu;
 	/**
 	 * Are automatic rescans enabled?
 	 * If automatic rescans are enabled then we rescan files after edit
@@ -402,6 +418,7 @@ protected:
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 	String m_sCurrentHeaderTitle[3];
 	EditorScriptInfo m_editorScriptInfo;
+	LineFilterHelper m_displayFilterHelper;
 
 // friend access
 	friend class RescanSuppress;
@@ -456,10 +473,14 @@ protected:
 	afx_msg void OnScriptsForCopying(UINT nID);
 	afx_msg void OnUpdateScriptsForCopying(CCmdUI* pCmdUI);
 	afx_msg void OnSelectEditorScriptForCopying();
+	afx_msg void OnViewDisplayFilterBarApply();
+	afx_msg void OnViewDisplayFilterBar();
+	afx_msg void OnFilterMenuCommand(UINT nID);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
 	void PrimeTextBuffers();
+	std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffItem() const;
 	void HideLines();
 	void AdjustDiffBlocks();
 	void AdjustDiffBlocks3way();

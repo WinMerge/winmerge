@@ -4988,6 +4988,8 @@ void CDirView::OnViewDisplayFilterBarApply()
 	auto* pFilterBar = GetParentFrame()->GetFilterBar();
 	pFilterBar->SaveFilterText();
 	m_dirfilter.displayFilterHelper.SetMaskOrExpression(pFilterBar->GetFilterText());
+	if (!m_dirfilter.displayFilterHelper.GetMaskOrExpression().empty() && m_dirfilter.displayFilterHelper.GetErrorList().empty())
+		pFilterBar->SetFilterApplied(true);
 	Redisplay();
 	SetFocus();
 }

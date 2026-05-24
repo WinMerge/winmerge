@@ -1427,7 +1427,7 @@ with.  Example: <literal>replace(Name, ".backup", "")</literal> removes
 Inserts <literal>regexReplace(expression, "pattern",
 "replacement")</literal> to replace text using regular expressions.
 Supports backreferences ($1, $2, etc.) in the replacement string.  Example:
-<literal>regexReplace(Name, "^(\\d+)_(.+)$", "$2")</literal> removes a
+<literal>regexReplace(Name, "^(\d+)_(.+)$", "$2")</literal> removes a
 leading number and underscore from filenames.</para>
             </listitem>
           </varlistentry>

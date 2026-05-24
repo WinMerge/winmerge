@@ -954,6 +954,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DirFilterBar.cpp" />
+    <ClCompile Include="FilterHelperMenuBase.cpp" />
+    <ClCompile Include="FilterMenuHelpers.cpp" />
+    <ClCompile Include="LineFilterBar.cpp" />
+    <ClCompile Include="LineFilterHelper.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="LineFilterHelperMenu.cpp" />
     <ClCompile Include="RenameMoveDetection.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -969,6 +977,7 @@
     <ClCompile Include="FileFilterHelperMenu.cpp" />
     <ClCompile Include="ComparisonResultFilterDlg.cpp" />
     <ClCompile Include="FilterConditionDlg.cpp" />
+    <ClCompile Include="MatchInsideDlg.cpp" />
     <ClCompile Include="FilterErrorMessages.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -996,9 +1005,15 @@
     <ClInclude Include="DirFilterBar.h" />
     <ClInclude Include="ComparisonResultFilterDlg.h" />
     <ClInclude Include="FilterConditionDlg.h" />
+    <ClInclude Include="FilterHelperMenuBase.h" />
+    <ClInclude Include="FilterMenuHelpers.h" />
+    <ClInclude Include="MatchInsideDlg.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />
     <ClInclude Include="FrameWndHelper.h" />
+    <ClInclude Include="LineFilterBar.h" />
+    <ClInclude Include="LineFilterHelper.h" />
+    <ClInclude Include="LineFilterHelperMenu.h" />
     <ClInclude Include="MruHelper.h" />
     <ClInclude Include="I18n.h" />
     <ClInclude Include="I18nGUI.h" />
@@ -1022,6 +1037,7 @@
     </ClCompile>
     <ClCompile Include="PropMessageBoxes.cpp" />
     <ClCompile Include="PropSysColors.cpp" />
+    <ClCompile Include="ReplaceListHelper.cpp" />
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1549,6 +1565,7 @@
     <ClInclude Include="PropertySystemMenu.h" />
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="PropSysColors.h" />
+    <ClInclude Include="ReplaceListHelper.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />

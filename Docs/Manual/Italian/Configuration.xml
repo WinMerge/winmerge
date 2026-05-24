@@ -1531,7 +1531,7 @@ cercare e con cosa sostituirlo.Esempio: <literal>replace(Name, ".backup",
 Inserisce <literal>regexReplace(expression, "pattern",
 "replacement")</literal> per sostituire il testo utilizzando le espressioni
 regolari.Supporta i riferimenti all'indietro ($1, $2, ecc.) nella stringa di
-sostituzione.Esempio: <literal>regexReplace(Name, "^(\\d+)_(.+)$",
+sostituzione.Esempio: <literal>regexReplace(Name, "^(\d+)_(.+)$",
 "$2")</literal> rimuove un numero iniziale e un carattere di sottolineatura
 dai nomi dei file.</para>
             </listitem>

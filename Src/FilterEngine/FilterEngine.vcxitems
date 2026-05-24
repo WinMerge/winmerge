@@ -75,6 +75,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterLexer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterParser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FolderStats.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ILineDataProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReplaceList.h" />
   </ItemGroup>
 </Project>
