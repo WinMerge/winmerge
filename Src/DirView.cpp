@@ -1421,15 +1421,27 @@ void CDirView::CollapseSubdir(int sel)
 
 	dip.customFlags &= ~ViewCustomFlags::EXPANDED;
 
+	// Find the range to delete: all items after sel that are descendants of dip
+	int firstToDelete = sel + 1;
 	int count = m_pList->GetItemCount();
-	for (int i = sel + 1; i < count; i++)
+	int lastToDelete = firstToDelete;
+
+	for (int i = firstToDelete; i < count; i++)
 	{
 		const DIFFITEM& di = GetDiffItem(i);
 		if (!di.IsAncestor(&dip))
 			break;
-		m_listViewItems.erase(m_listViewItems.begin() + i);
-		m_pList->DeleteItem(i--);
-		count--;
+		lastToDelete = i + 1;  // exclusive end
+	}
+
+	// Bulk delete from vector and list view
+	if (lastToDelete > firstToDelete)
+	{
+		m_listViewItems.erase(m_listViewItems.begin() + firstToDelete, m_listViewItems.begin() + lastToDelete);
+
+		// Delete items from list view in reverse order to maintain indices
+		for (int i = lastToDelete - 1; i >= firstToDelete; i--)
+			m_pList->DeleteItem(i);
 	}
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
