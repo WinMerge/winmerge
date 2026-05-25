@@ -659,7 +659,7 @@ void CMergeDoc::FlagMovedLines(void)
 	MovedLines *pMovedLines;
 
 	pMovedLines = m_diffWrapper.GetMovedLines(0);
-	for (i = 0; i < m_ptBuf[0]->GetLineCount(); ++i)
+	for (i = 0; i < m_ptBuf[0]->GetLineCount(); ++i) // TODO: This must iterate using real line count, not logical line count.
 	{
 		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::RIGHT);
 		if (j != -1)
@@ -682,7 +682,7 @@ void CMergeDoc::FlagMovedLines(void)
 	}
 
 	pMovedLines = m_diffWrapper.GetMovedLines(1);
-	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
+	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i) // TODO: This must iterate using real line count, not logical line count.
 	{
 		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::LEFT);
 		if (j != -1)
@@ -708,7 +708,7 @@ void CMergeDoc::FlagMovedLines(void)
 		return;
 
 	pMovedLines = m_diffWrapper.GetMovedLines(1);
-	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
+	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i) // TODO: This must iterate using real line count, not logical line count.
 	{
 		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::RIGHT);
 		if (j != -1)
