@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-03-22 09:52+0000\n"
-"PO-Revision-Date: 2026-03-22 20:00+0000\n"
+"POT-Creation-Date: 2026-05-25 21:16+0000\n"
+"PO-Revision-Date: 2026-05-25 23:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "Zaznacz różniący się wiersz\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "Dodaj do filtrów"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
@@ -131,7 +131,7 @@ msgstr "Dodaj do filtrów wiersza"
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_SUBSTITUTION_FILTERS
 #: Merge.rc:115
 msgid "Add to Substitution &Filters"
-msgstr "Dodaj tę zmianę do filtrów zamiany"
+msgstr "Dodaj do filtrów zamiany"
 
 #. IDR_POPUP_MERGEVIEW, ID_EDIT_UNDO
 #: Merge.rc:118
@@ -233,12 +233,12 @@ msgstr "Filtruj według tej kolumny
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:154 Merge.rc:1876
 msgid "&Text..."
-msgstr ""
+msgstr "Tekst...""
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:155 Merge.rc:1877
 msgid "&Number..."
-msgstr ""
+msgstr "Numer..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156 Merge.rc:1878
@@ -2934,87 +2934,87 @@ msgstr ""
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874 Merge.rc:1929
 msgid "&Column"
-msgstr ""
+msgstr "Kolumna"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1879 Merge.rc:1954
 msgid "Column: &1"
-msgstr ""
+msgstr "Kolumna: 1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1880 Merge.rc:1955
 msgid "Column: &2"
-msgstr ""
+msgstr "Kolumna: 2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1881 Merge.rc:1956
 msgid "Column: &3"
-msgstr ""
+msgstr "Kolumna: 3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1882 Merge.rc:1957
 msgid "Column: &4"
-msgstr ""
+msgstr "Kolumna: 4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &5"
-msgstr ""
+msgstr "Kolumna: 5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &6"
-msgstr ""
+msgstr "Kolumna: 6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &7"
-msgstr ""
+msgstr "Kolumna: 7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &8"
-msgstr ""
+msgstr "Kolumna: 8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &9"
-msgstr ""
+msgstr "Kolumna: 9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1888 Merge.rc:1963
 msgid "Column: 1&0"
-msgstr ""
+msgstr "Kolumna: 10"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1890
 msgid "Line L&ength..."
-msgstr ""
+msgstr "Długość wiersza...""
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1891
 msgid "&Word Count..."
-msgstr ""
+msgstr "Liczba słów..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1892
 msgid "Line &Number"
-msgstr ""
+msgstr "Numer wiersza"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1894
 msgid "&Odd Lines"
-msgstr ""
+msgstr "Nieparzyste wiersze"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1895
 msgid "&Even Lines"
-msgstr ""
+msgstr "Parzyste wiersze"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1898 Merge.rc:1982
 msgid "Line &Status"
-msgstr ""
+msgstr "Status wiersza"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
@@ -3056,32 +3056,32 @@ msgstr ""
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1909 Merge.rc:1988
 msgid "&EOL"
-msgstr ""
+msgstr "Znaki końca linii"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1924
 msgid "L&ine Text"
-msgstr ""
+msgstr "Tekst wiersza"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1936
 msgid "&Number"
-msgstr ""
+msgstr "Numer"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
+msgstr "Data/czas"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965
 msgid "Line L&ength"
-msgstr ""
+msgstr "Długość wiersza"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1999
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "Przekształć wiersz/kolumnę"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
@@ -3091,7 +3091,7 @@ msgstr ""
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2002
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "Normalizuj białe znaki"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2003 Merge.rc:2279
@@ -3121,47 +3121,47 @@ msgstr ""
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2050
 msgid "&First"
-msgstr ""
+msgstr "Pierwszy"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2051
 msgid "&Last"
-msgstr ""
+msgstr "Ostatni"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2052
 msgid "First &5 Matches"
-msgstr ""
+msgstr "Pierwsze 5 dopasowań”"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2053
 msgid "After First &5"
-msgstr ""
+msgstr "Po pierwszych 5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2056
 msgid "By &Block"
-msgstr ""
+msgstr "Według bloku"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2058
 msgid "&Range"
-msgstr ""
+msgstr "Zakres"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2060 Merge.rc:2066
 msgid "&Inside..."
-msgstr ""
+msgstr "Wewnątrz..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2061 Merge.rc:2067
 msgid "&Outside..."
-msgstr ""
+msgstr "Na zewnątrz..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2064
 msgid "Create &Range"
-msgstr ""
+msgstr "Utwórz zakres"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2072
