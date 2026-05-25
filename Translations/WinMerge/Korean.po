@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-05-03 07:02+0900\n"
+"PO-Revision-Date: 2026-05-25 16:02+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -124,12 +124,12 @@ msgstr "다음 차이 선택(&D)\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "필터에 추가(&F)"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "표시 필터에 추가(&D)"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -249,17 +249,17 @@ msgstr "이 열로 필터링(&F)"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:154 Merge.rc:1876
 msgid "&Text..."
-msgstr ""
+msgstr "텍스트(&T)..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:155 Merge.rc:1877
 msgid "&Number..."
-msgstr ""
+msgstr "숫자(&N)..."
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156
 msgid "&DateTime..."
-msgstr ""
+msgstr "날짜 시간(&D)..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
@@ -3164,102 +3164,102 @@ msgstr "유니코드 정규화(&U)"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1871
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "줄 조건 추가(&I)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1873
 msgid "L&ine Text..."
-msgstr ""
+msgstr "줄 텍스트(&I)..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874 Merge.rc:1929
 msgid "&Column"
-msgstr ""
+msgstr "열(&C)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:1878
 msgid "&Date/Time..."
-msgstr ""
+msgstr "날짜/시간(&D)..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1879 Merge.rc:1954
 msgid "Column: &1"
-msgstr ""
+msgstr "열: &1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1880 Merge.rc:1955
 msgid "Column: &2"
-msgstr ""
+msgstr "열: &2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1881 Merge.rc:1956
 msgid "Column: &3"
-msgstr ""
+msgstr "열: &3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1882 Merge.rc:1957
 msgid "Column: &4"
-msgstr ""
+msgstr "열: &4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &5"
-msgstr ""
+msgstr "열: &5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &6"
-msgstr ""
+msgstr "열: &6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &7"
-msgstr ""
+msgstr "열: &7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &8"
-msgstr ""
+msgstr "열: &8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &9"
-msgstr ""
+msgstr "열: &9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1888
 msgid "Column: 1&0"
-msgstr ""
+msgstr "열: 1&0"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1890
 msgid "Line L&ength..."
-msgstr ""
+msgstr "줄 길이(&E)..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1891
 msgid "&Word Count..."
-msgstr ""
+msgstr "단어 수(&W)..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1892
 msgid "Line &Number"
-msgstr ""
+msgstr "줄 번호(&N)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1894
 msgid "&Odd Lines"
-msgstr ""
+msgstr "홀수 선(&O)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1895
 msgid "&Even Lines"
-msgstr ""
+msgstr "짝수 줄(&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1898 Merge.rc:1982
 msgid "Line &Status"
-msgstr ""
+msgstr "줄 상태(&S)"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
@@ -3278,17 +3278,17 @@ msgstr "동일"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_TRIVIAL
 #: Merge.rc:1902 Merge.rc:1986
 msgid "Trivial"
-msgstr ""
+msgstr "사소한"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EXISTS
 #: Merge.rc:1904
 msgid "Exists"
-msgstr ""
+msgstr "존재함"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1905
 msgid "Missing"
-msgstr ""
+msgstr "누락됨"
 
 #. IDS_MOVED
 #: Merge.rc:1906 Merge.rc:5018
@@ -3298,52 +3298,52 @@ msgstr "이동됨"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1907
 msgid "Bookmarked"
-msgstr ""
+msgstr "북마크됨"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1909 Merge.rc:1988
 msgid "&EOL"
-msgstr ""
+msgstr "EOL(&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1924
 msgid "L&ine Text"
-msgstr ""
+msgstr "줄 텍스트(&I)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1936
 msgid "&Number"
-msgstr ""
+msgstr "번호(N)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
+msgstr "날짜/시간(&D)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1963
 msgid "Column: &10"
-msgstr ""
+msgstr "열: &10"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965
 msgid "Line L&ength"
-msgstr ""
+msgstr "줄 길이(&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1999
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "줄/열 변환(&T)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
 msgid "&Trim"
-msgstr ""
+msgstr "자르기(&T)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2002
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "공백 정규화(&W)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2003 Merge.rc:2279
@@ -3354,77 +3354,77 @@ msgstr "바꾸기(&R)"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2004
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "정규식 바꾸기(&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2038
 msgid "&Refine Current Filter"
-msgstr ""
+msgstr "현재 필터 다듬기(&R)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2040
 msgid "Add Con&text Lines"
-msgstr ""
+msgstr "컨텍스트 줄 추가(&T)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2048
 msgid "Filter by &Occurrence"
-msgstr ""
+msgstr "발생 빈도로 필터링(&O)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2050
 msgid "&First"
-msgstr ""
+msgstr "첫 번째(&F)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2051
 msgid "&Last"
-msgstr ""
+msgstr "마지막(&L)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2052
 msgid "First &5 Matches"
-msgstr ""
+msgstr "처음 5개 일치(&5)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2053
 msgid "After First &5"
-msgstr ""
+msgstr "처음 5개 이후(&5)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2056
 msgid "By &Block"
-msgstr ""
+msgstr "블록별(&B)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2058
 msgid "&Range"
-msgstr ""
+msgstr "범위(&R)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2060 Merge.rc:2066
 msgid "&Inside..."
-msgstr ""
+msgstr "내부(&L)..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2061 Merge.rc:2067
 msgid "&Outside..."
-msgstr ""
+msgstr "외부(&O)..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2064
 msgid "Create &Range"
-msgstr ""
+msgstr "범위 생성(&R)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2072
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "결합: AND(&N)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2073
 msgid "Combine: &OR"
-msgstr ""
+msgstr "결합: OR(&O)"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2188
@@ -4750,22 +4750,22 @@ msgstr "오른쪽만 (누락)"
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2879
 msgid "Match Inside/Outside Filter Expressions"
-msgstr ""
+msgstr "필터 표현식 내부/외부 일치"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2882
 msgid "&Start filter:"
-msgstr ""
+msgstr "필터 시작(&S): "
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2885
 msgid "&End filter:"
-msgstr ""
+msgstr "필터 끝(&E):"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2888
 msgid "Lines between start and end filter matches will be included."
-msgstr ""
+msgstr "시작 및 끝 필터 일치 항목 사이의 행이 포함됩니다."
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2895 Merge.rc:3087 Merge.rc:4504
