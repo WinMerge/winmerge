@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2026-04-05 09:28+0900\n"
+"PO-Revision-Date: 2026-05-25 21:16+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:26 Merge.rc:59 Merge.rc:5747
@@ -237,11 +237,6 @@ msgstr "テキスト(&T)..."
 #: Merge.rc:155 Merge.rc:1877
 msgid "&Number..."
 msgstr "数値(&N)..."
-
-#. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
-#: Merge.rc:156
-msgid "&Date/Time..."
-msgstr ""
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
@@ -3076,11 +3071,6 @@ msgstr "数値(&N)"
 msgid "&Date/Time"
 msgstr "日時(&D)"
 
-#. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
-#: Merge.rc:1963
-msgid "Column: &10"
-msgstr ""
-
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965
 msgid "Line L&ength"
@@ -3089,7 +3079,7 @@ msgstr "行の長さ(&E)"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1999
 msgid "&Transform Line/Column"
-msgstr ""行/列を変換(&T)"
+msgstr "行/列を変換(&T)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
@@ -9479,7 +9469,9 @@ msgstr ""
 "引数: CFR のコマンドラインオプション"
 
 #: Strings.rc:206
-msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+msgid ""
+"Clipboard URL Scheme Handler (cliphcat).\r\n"
+"Arguments: cliphcat command line options."
 msgstr ""
 "cliphcat を使用して クリップボード URL スキーマを処理します。\r\n"
 "引数: cliphcat コマンドに渡すコマンドライン オプション"
@@ -9698,8 +9690,7 @@ msgstr "フォルダー'%1' は存在しません"
 
 #: Strings.rc:316
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr ""
-"絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
+msgstr "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
 
 #: Strings.rc:322
 msgid "AI.sct WinMerge Plugin Options"

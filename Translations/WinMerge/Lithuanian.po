@@ -239,11 +239,6 @@ msgstr "&Tekstas..."
 msgid "&Number..."
 msgstr "&Skaičius..."
 
-#. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
-#: Merge.rc:156
-msgid "&Date/Time..."
-msgstr "&Data ir laikas..."
-
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
 msgid "View &Differences"
@@ -3076,11 +3071,6 @@ msgstr "&Skaičius"
 #: Merge.rc:1945
 msgid "&Date/Time"
 msgstr "&Data ar laikas"
-
-#. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
-#: Merge.rc:1963
-msgid "Column: &10"
-msgstr "Stulpelis: &10"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965

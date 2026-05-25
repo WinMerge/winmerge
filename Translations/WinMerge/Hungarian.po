@@ -249,11 +249,6 @@ msgstr ""
 msgid "&Number..."
 msgstr ""
 
-#. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
-#: Merge.rc:156
-msgid "&Date/Time..."
-msgstr ""
-
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
 #, c-format
@@ -3311,11 +3306,6 @@ msgstr ""
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
-
-#. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
-#: Merge.rc:1963
-msgid "Column: &10"
 msgstr ""
 
 #. IDR_POPUP_LINEFILTERMENU

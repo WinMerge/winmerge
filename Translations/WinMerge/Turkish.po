@@ -238,11 +238,6 @@ msgstr "Me&tin..."
 msgid "&Number..."
 msgstr "&Sayı..."
 
-#. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
-#: Merge.rc:156
-msgid "&Date/Time..."
-msgstr "&Tarih/Saat..."
-
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
 msgid "View &Differences"
@@ -3049,11 +3044,6 @@ msgstr "&Sayı"
 #: Merge.rc:1945
 msgid "&Date/Time"
 msgstr "&Tarih/Saat"
-
-#. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
-#: Merge.rc:1963
-msgid "Column: &10"
-msgstr "Sütun: &10"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965

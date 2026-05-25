@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-05-25 18:58+0000\n"
+"POT-Creation-Date: 2026-05-25 21:16+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2975,7 +2975,7 @@ msgid "Column: &9"
 msgstr ""
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
-#: Merge.rc:1888
+#: Merge.rc:1888 Merge.rc:1963
 msgid "Column: 1&0"
 msgstr ""
 
@@ -3064,11 +3064,6 @@ msgstr ""
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
-
-#. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
-#: Merge.rc:1963
-msgid "Column: &10"
 msgstr ""
 
 #. IDR_POPUP_LINEFILTERMENU

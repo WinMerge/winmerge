@@ -1960,7 +1960,7 @@ BEGIN
                 MENUITEM "Column: &7",                  ID_FILTERMENU_COLUMN_7
                 MENUITEM "Column: &8",                  ID_FILTERMENU_COLUMN_8
                 MENUITEM "Column: &9",                  ID_FILTERMENU_COLUMN_9
-                MENUITEM "Column: &10",                 ID_FILTERMENU_COLUMN_10
+                MENUITEM "Column: 1&0",                 ID_FILTERMENU_COLUMN_10
             END
             POPUP "Line L&ength"
             BEGIN
