@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-05-25 10:22+0200\n"
+"PO-Revision-Date: 2026-05-25 10:30+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -3335,7 +3335,7 @@ msgstr "Zeile/Spalte &transformieren"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
 msgid "&Trim"
-msgstr "&Leerraum entfernen"
+msgstr "Leerraum en&tfernen"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2002
