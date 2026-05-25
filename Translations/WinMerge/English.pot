@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-05-24 06:19+0000\n"
+"POT-Creation-Date: 2026-05-25 18:58+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -233,9 +233,9 @@ msgstr ""
 msgid "&Number..."
 msgstr ""
 
-#. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
-#: Merge.rc:156
-msgid "&DateTime..."
+#. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
+#: Merge.rc:156 Merge.rc:1878
+msgid "&Date/Time..."
 msgstr ""
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
@@ -2927,11 +2927,6 @@ msgstr ""
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874 Merge.rc:1929
 msgid "&Column"
-msgstr ""
-
-#. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
-#: Merge.rc:1878
-msgid "&Date/Time..."
 msgstr ""
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1

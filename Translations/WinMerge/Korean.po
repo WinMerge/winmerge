@@ -258,7 +258,7 @@ msgstr "숫자(&N)..."
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156
-msgid "&DateTime..."
+msgid "&Date/Time..."
 msgstr "날짜 시간(&D)..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES

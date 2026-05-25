@@ -243,7 +243,7 @@ msgstr "&Número..."
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156
-msgid "&DateTime..."
+msgid "&Date/Time..."
 msgstr "&Data e Hora..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
