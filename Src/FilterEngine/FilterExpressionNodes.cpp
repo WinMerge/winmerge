@@ -2316,8 +2316,15 @@ std::string ToStringValue(const ValueType& val)
 		return *boolVal ? "true" : "false";
 	if (auto tsVal = std::get_if<Poco::Timestamp>(&val))
 	{
-		Poco::LocalDateTime ldt(*tsVal);
-		return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d %H:%M:%S");
+		try
+		{
+			Poco::LocalDateTime ldt(*tsVal);
+			return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d %H:%M:%S");
+		}
+		catch (Poco::Exception& e)
+		{
+			return e.what();
+		}
 	}
 	if (auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&val))
 	{
@@ -4254,6 +4261,37 @@ ExprNode* FunctionNode::Optimize()
 	if ((functionName == "startofweek" || functionName == "startofmonth" || functionName == "startofyear") &&
 		args && dynamic_cast<DateTimeLiteral*>((*args)[0]))
 		return ReplaceFunctionWithLiteral(this, std::get<Poco::Timestamp>(func(ectxt, args)));
+
+	// Type conversion functions with literal args
+	if (functionName == "tonumber" && args && dynamic_cast<StringLiteral*>((*args)[0]))
+	{
+		ValueType result = func(ectxt, args);
+		if (auto intResult = std::get_if<int64_t>(&result))
+			return ReplaceFunctionWithLiteral(this, *intResult);
+		if (auto doubleResult = std::get_if<double>(&result))
+			return ReplaceFunctionWithLiteral(this, *doubleResult);
+	}
+
+	if (functionName == "toint" && args && dynamic_cast<StringLiteral*>((*args)[0]))
+	{
+		ValueType result = func(ectxt, args);
+		if (auto intResult = std::get_if<int64_t>(&result))
+			return ReplaceFunctionWithLiteral(this, *intResult);
+	}
+
+	if (functionName == "todouble" && args && dynamic_cast<StringLiteral*>((*args)[0]))
+	{
+		ValueType result = func(ectxt, args);
+		if (auto doubleResult = std::get_if<double>(&result))
+			return ReplaceFunctionWithLiteral(this, *doubleResult);
+	}
+
+	if (functionName == "todatetime" && args && dynamic_cast<StringLiteral*>((*args)[0]))
+	{
+		ValueType result = func(ectxt, args);
+		if (auto tsResult = std::get_if<Poco::Timestamp>(&result))
+			return ReplaceFunctionWithLiteral(this, *tsResult);
+	}
 
 	return this;
 }
