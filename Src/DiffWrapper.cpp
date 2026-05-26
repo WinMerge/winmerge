@@ -1524,7 +1524,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					translate_range (&pinf[1], first1, last1, &trans_a1, &trans_b1);
 
 					// Store information about these blocks in moved line info
-					if (GetDetectMovedBlocks() && file != 2)
+					if (GetDetectMovedBlocks() && file != 2 /* diff02 */)
 					{
 						int index1 = 0;  // defaults for (file == 0 /* diff10 */)
 						int index2 = 1;
