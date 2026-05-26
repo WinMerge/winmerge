@@ -333,7 +333,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 
 	// Show Match Case checkbox only for string-based fields
-	const bool isStringField = IsStringField();
+	const bool isStringField = IsStringField() && !(m_sLHS == _T("toDateTime(%1)") || m_sLHS == _T("toNumber(%1)"));
 	ShowDlgItem(IDC_CONDITION_MATCHCASE, isStringField);
 
 	UpdateData(FALSE);
