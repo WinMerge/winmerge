@@ -43,6 +43,9 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: Fix missing "Unpacked file extension" value in Edit Plugin dialog
 
+### Archive support
+
+- Update 7-Zip to 26.01
 
 ### Translations
 
