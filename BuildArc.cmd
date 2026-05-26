@@ -79,7 +79,7 @@ for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhe
 
 rem Docs
 echo Copy Docs...
-for %%i in (Translations\Docs\Readme\ReadMe-*.txt Build\Manual\htmlhelp\WinMerge*.chm Docs\Users\ReleaseNotes.html Docs\Users\ChangeLog.html) do (
+for %%i in (Translations\Docs\Readme\ReadMe-*.txt Build\Manual\htmlhelp\WinMerge*.chm Docs\Users\ReleaseNotes*.html Docs\Users\ChangeLog*.html) do (
   copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Docs" > NUL
 )
 for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
