@@ -5302,15 +5302,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-    IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date."
-    IDS_CHECKFORUPDATES_NEWVERSION 
-                            "WinMerge update available.\n%1 available (you have %2). Download now?"
     IDS_ALLRIGHTS_RESERVED  " - All rights reserved."
-END
-
-STRINGTABLE
-BEGIN
-    IDS_CHECKFORUPDATES_FAILED "Failed to download latest version information"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
