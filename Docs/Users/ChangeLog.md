@@ -24,10 +24,19 @@
 
 * BugFix: Image compare does not remember the state of the "Blink" toggle between sessions (#3368)
 
+* BugFix: [FEATURE] override option for unrestricted Image Compare (#3382)
+
 ### Plugins
 
 * BugFix: Fix missing "Unpacked file extension" value in Edit Plugin dialog
 
+### Archive support
+
+* Update 7-Zip to 26.01
+
+### Installer
+
+* Fixed missing Vietnamese WinMerge translation in installer
 
 ### Translations
 
