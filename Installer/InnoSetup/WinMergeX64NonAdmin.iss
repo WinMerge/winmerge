@@ -559,6 +559,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt; DestDir: {app}\Docs; 
 Source: {#TranslationsDir}\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Ukrainian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
+Source: {#TranslationsDir}\WinMerge\Vietnamese.po; DestDir: {app}\Languages; Components: Languages\Vietnamese; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Vietnamese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Vietnamese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Vietnamese.txt; DestDir: {app}\Docs; Components: Languages\Vietnamese
 
