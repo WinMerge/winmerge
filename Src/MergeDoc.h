@@ -176,6 +176,7 @@ public:
 		int firstDiff, int lastDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bCharacter);
 	void DoAutoMerge(int dstPane);
 	bool SanityCheckDiff(const DIFFRANGE& dr) const;
+	bool HasInvisibleLines(int firstDiff, int lastDiff) const;
 	bool InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int nFirstWordDiff, int nLastWordDiff, const std::vector<int>* pWordDiffIndice, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool LineListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious = false, bool bUpdateView = true);

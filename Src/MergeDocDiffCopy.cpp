@@ -50,6 +50,15 @@ private:
 };
 
 /**
+ * @brief Show error message when trying to copy invisible lines
+ */
+static void ShowCannotCopyInvisibleLinesError()
+{
+	String strMessage = _("Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging.");
+	AfxMessageBox(strMessage.c_str(), MB_OK | MB_ICONERROR);
+}
+
+/**
  * @brief Copy all diffs from one side to side.
  * @param [in] srcPane Source side from which diff is copied
  * @param [in] dstPane Destination side
@@ -83,6 +92,13 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	firstDiff = (std::max)(0, firstDiff);
 	if (firstDiff > lastDiff)
 		return;
+
+	// Check if the range contains invisible lines
+	if (HasInvisibleLines(firstDiff, lastDiff))
+	{
+		ShowCannotCopyInvisibleLinesError();
+		return;
+	}
 
 	RescanSuppress suppressRescan(*this);
 
@@ -163,6 +179,13 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 		return;
 	const int firstLineDiff = ptStart.y;
 	const int lastLineDiff = ptEnd.x == 0 ? ptEnd.y - 1 : ptEnd.y;
+
+	// Check if the range contains invisible lines
+	if (HasInvisibleLines(firstDiff, lastDiff))
+	{
+		ShowCannotCopyInvisibleLinesError();
+		return;
+	}
 
 	RescanSuppress suppressRescan(*this);
 
@@ -421,6 +444,39 @@ bool CMergeDoc::SanityCheckDiff(const DIFFRANGE& dr) const
 		}
 	}
 	return true;
+}
+
+/**
+ * @brief Check if any lines in the given diff range are invisible.
+ *
+ * @param [in] firstDiff First diff to check (0-based index)
+ * @param [in] lastDiff Last diff to check (0-based index)
+ * @return true if any lines in the range have the LF_INVISIBLE flag set.
+ */
+bool CMergeDoc::HasInvisibleLines(int firstDiff, int lastDiff) const
+{
+	for (int i = firstDiff; i <= lastDiff; ++i)
+	{
+		if (!m_diffList.IsDiffSignificant(i))
+			continue;
+
+		DIFFRANGE cd;
+		if (!m_diffList.GetDiff(i, cd))
+			continue;
+
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			for (int line = cd.dbegin; line <= cd.dend; line++)
+			{
+				if (line >= m_ptBuf[nBuffer]->GetLineCount())
+					break;
+				lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(line);
+				if (dwFlags & LF_INVISIBLE)
+					return true;
+			}
+		}
+	}
+	return false;
 }
 
 bool CMergeDoc::TransformText(String& text)
