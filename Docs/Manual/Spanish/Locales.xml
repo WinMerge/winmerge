@@ -60,15 +60,15 @@ el directorio de instalación de WinMerge (donde se encuentra el archivo
 
           <listitem>
             <simpara>Vaya al sitio web de<ulink url="https://winmerge.org/downloads/">descargas
-de WinMerge</ulink>. Descargue uno de los archivos binarios comprimidos (en
-formato Zip o 7z) de la versión actual de WinMerge y guárdelo en su sistema
+de WinMerge</ulink>.  Descargue uno de los archivos binarios comprimidos (en
+formato Zip o 7z)  de la versión actual de WinMerge y guárdelo en su sistema
 de archivos.</simpara>
           </listitem>
 
           <listitem>
             <simpara>Abra el archivo comprimido descargado y busque los archivos
 <filename>*.po</filename>, donde * corresponde al idioma (por ejemplo,
-<filename>Swedish.po</filename> para la traducción al sueco). Extraiga los
+<filename>Swedish.po</filename> para la traducción al sueco).  Extraiga los
 archivos de idioma que desee a la subcarpeta <filename>Languages</filename>
 del directorio de instalación de WinMerge.</simpara>
           </listitem>
@@ -276,9 +276,9 @@ siguientes traducciones:</para>
 
     <para>Por favor, comunique cualquier error que encuentre en las traducciones como
 un fallo en nuestra <ulink
-url="https://github.com/WinMerge/winmerge/issues">lista de
-errores</ulink>. Sería estupendo que también nos facilitara una versión
-corregida del texto traducido.</para>
+url="https://github.com/WinMerge/winmerge/issues">lista de errores</ulink>.
+Sería estupendo que también nos facilitara una versión corregida del texto
+traducido.</para>
   </section>
 
   <section>
@@ -290,10 +290,10 @@ corregida del texto traducido.</para>
 url="https://winmerge.org/translations/">documentación sobre
 traducción</ulink> disponible en el sitio web de WinMerge para saber cómo
 hacerlo. La mayoría de las traducciones están incompletas, por lo que
-agradeceríamos su ayuda para mejorarlas. Para traducir (o mejorar una
+agradeceríamos su ayuda para mejorarlas.  Para traducir (o mejorar una
 traducción) no es necesario disponer de todas las herramientas de
-compilación ni conocer el funcionamiento interno de WinMerge. Solo tiene que
-seguir las instrucciones del enlace anterior. Y si tiene algún problema,
+compilación ni conocer el funcionamiento interno de WinMerge.  Solo tiene
+que seguir las instrucciones del enlace anterior. Y si tiene algún problema,
 pídanos ayuda en uno de los <ulink url="https://forums.winmerge.org/">foros
 de WinMerge</ulink>.</para>
   </section>

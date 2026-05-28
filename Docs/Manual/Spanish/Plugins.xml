@@ -273,7 +273,7 @@ formato y lo abre en la ventana de comparación de archivos.</para>
         <title>Uso del modo manual</title>
 
         <para>El modo manual le permite elegir un complemento de descompresión distinto al
-que se selecciona automáticamente en el modo automático. También puede
+que se selecciona automáticamente en el modo automático.  También puede
 iniciar la comparación sin utilizar ningún complemento.</para>
 
         <para>Para aplicar los complementos cuando se ha configurado la descompresión
@@ -314,7 +314,7 @@ es compatible con algún complemento de descompresión disponible.</para>
 
       <para>Puede utilizar el cuadro de diálogo "Seleccionar descompresor" para aplicar
 un complemento al iniciar una comparación de archivos desde el cuadro de
-diálogo "Seleccione archivos o carpetas". Consulte <xref
+diálogo "Seleccione archivos o carpetas".  Consulte <xref
 linkend="Open_paths_unpacker" />para obtener más información.</para>
     </section>
 
@@ -2384,7 +2384,7 @@ rep="norepeat"><replaceable>patrones</replaceable></arg></cmdsynopsis>
           <primary>Archivo del complemento IgnoreColumns</primary>
         </indexterm></filename></title>
 
-      <para>Este complemento ignora los caracteres de las columnas especificadas. La
+      <para>Este complemento ignora los caracteres de las columnas especificadas.  La
 primera columna es la número 1.</para>
 
       <para>Tenga en cuenta que este complemento no admite archivos con tabulaciones: el
@@ -2536,8 +2536,8 @@ utilizan para <xref linkend="IgnoreColumns" />.</para>
       <para>Este complemento está pensado para archivos que utilizan campos y
 tabulaciones como delimitadores (<application>por ejemplo, archivos de
 Excel</application> guardados en formato <filename
-class="extension">*.txt</filename>). Ignora los caracteres delimitadores. El
-primer campo es el número 1.</para>
+class="extension">*.txt</filename>).  Ignora los caracteres
+delimitadores. El primer campo es el número 1.</para>
 
       <para>Para especificar los delimitadores, utilice el cuadro de diálogo de
 configuración del complemento o cambie el nombre del archivo

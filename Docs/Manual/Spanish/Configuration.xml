@@ -249,7 +249,7 @@ Sin embargo, si no se puede abrir la ruta, aparece un mensaje de error.</para>
     <section>
       <title>
 Modo de instancia única<indexterm>
-          <primary>Ventana de WinMerge</primary>
+          <primary>Ventana WinMerge</primary>
 
           <secondary>limitación de instancias</secondary>
         </indexterm></title>
@@ -344,7 +344,7 @@ la fecha y hora del archivo no se modifican en su sistema de archivos.</para>
     <section>
       <title>
 Mostrar "Seleccione archivos o carpetas" al iniciar el programa<indexterm>
-          <primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary>
+          <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
 
           <secondary>apertura automática</secondary>
         </indexterm></title>
@@ -370,7 +370,7 @@ para abrir el cuadro de diálogo "Seleccione archivos o carpetas".</para>
       <title>
 Cerrar "Seleccione archivos o carpetas" al hacer clic en
 Comparar<indexterm>
-          <primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary>
+          <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
         </indexterm></title>
 
       <itemizedlist>
@@ -471,7 +471,7 @@ Consulte <xref linkend="Locales_changing" />.</para>
   </section>
 
   <section id="Configuration_compare">
-    <title>Página "Comparar &gt; General"</title>
+    <title>Comparar &gt; General</title>
 
     <para>
 Las opciones de esta página le permiten modificar algunas de las formas en
@@ -567,7 +567,7 @@ Dos espacios entre las palabras:<screen format="linespecific">Dos  espacios</scr
 Tabulación entre palabras:<screen format="linespecific">Dos   palabras</screen></para>
 
         <para>
-Sin espacios entre las palabras:<screen format="linespecific">Dospalabras</screen></para>
+Sin espacios entre las palabras:<screen format="linespecific">TwoWords</screen></para>
       </example>
 
       <para>
@@ -837,7 +837,7 @@ todos</option>.  </note></para>
     <section>
       <title>
 Habilitar detección de bloques desplazados<indexterm>
-          <primary>diferencias desplazadas</primary>
+          <primary>diferencias despalzadas</primary>
         </indexterm></title>
 
       <itemizedlist>
@@ -980,12 +980,12 @@ líneas idénticas.</para>
   </section>
 
   <section id="Configuration_compare_folder">
-    <title>Página "Comparar &gt; Carpeta"</title>
+    <title>Comparar &gt; Carpeta</title>
 
     <section id="Configuration_compmethod">
       <title>
 Método de comparación<indexterm>
-          <primary>comparación de archivos</primary>
+          <primary>comparar archivos</primary>
 
           <secondary>opciones de detección</secondary>
         </indexterm></title>
@@ -1048,7 +1048,7 @@ adecuado para comparar archivos con copias de seguridad.</para>
 Fecha de modificación<indexterm>
               <primary>marcas de tiempo</primary>
 
-              <secondary>comparación</secondary>
+              <secondary>compararación</secondary>
             </indexterm></term>
 
           <listitem>
@@ -1075,7 +1075,7 @@ además comprueba el tamaño de los archivos cuando las fechas son idénticas.</
 Tamaño<indexterm>
               <primary>tamaño de los archivos</primary>
 
-              <secondary>comparación</secondary>
+              <secondary>compararación</secondary>
             </indexterm></term>
 
           <listitem>
@@ -1101,7 +1101,7 @@ comprobar el contenido, el tamaño ni las marcas de tiempo.</para>
     <section>
       <title>
 Detener después de la primera diferencia<indexterm>
-          <primary>comparación de archivos</primary>
+          <primary>comparar archivos</primary>
 
           <secondary>detenerse tras la primera diferencia</secondary>
         </indexterm><indexterm>
@@ -1277,7 +1277,7 @@ carpetas de puntos de reanálisis como si fueran carpetas normales.</para>
 <option>Activado</option>: ignora el contenido de las carpetas que son
 puntos de reanálisis. Por ejemplo, C:\Users\All Users es un enlace simbólico
 a C:\ProgramData y al activar esta opción se omitirá la comparación de la
-carpeta C:\Users\All Users</para>
+carpeta C:\Users\All Users.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1285,7 +1285,7 @@ carpeta C:\Users\All Users</para>
     <section>
       <title>
 Cambiar a comparación rápida cuando el tamaño supere (MB)<indexterm>
-          <primary>comparación rápida</primary>
+          <primary>Comparación rápida</primary>
 
           <secondary>límite</secondary>
         </indexterm></title>
@@ -1413,9 +1413,9 @@ movidos (a directorios diferentes).</para>
     <section>
       <title>
 Claves de detección de renombrados/desplazamientos<indexterm>
-          <primary>Claves de detección de renombrados</primary>
+          <primary>claves de detección de renombrados</primary>
         </indexterm><indexterm>
-          <primary>Claves de detección de desplazamientos</primary>
+          <primary>claves de detección de desplazamientos</primary>
         </indexterm></title>
 
       <para>
@@ -1547,8 +1547,8 @@ cuál se va a sustituir.  Ejemplo: <literal>replace(Name, ".backup",
               <para>
 Inserta <literal>regexReplace(expression, "pattern",
 "replacement")</literal> para sustituir texto mediante expresiones
-regulares.  Admite referencias retroactivas ($1, $2, etc.) en la cadena de
-sustitución.  Ejemplo: <literal>regexReplace(Name, "^(\d+)_(.+)$",
+regulares. Admite referencias retroactivas ($1, $2, etc.) en la cadena de
+sustitución. Ejemplo: <literal>regexReplace(Name, "^(\\d+)_(.+)$",
 "$2")</literal> elimina el número inicial y el guion bajo de los nombres de
 archivo.</para>
             </listitem>
@@ -1771,7 +1771,7 @@ ambiguo), no se combinan.</para>
 
   <section id="Configuration_compare_table">
     <title>
-Página "Comparar &gt; Tabla"<indexterm>
+Comparar &gt; Tabla<indexterm>
         <primary>archivos de tablas</primary>
       </indexterm></title>
     <section>
@@ -1833,7 +1833,7 @@ valores, déjelo vacío o especifique un carácter que no exista en el archivo.<
   </section>
 
   <section id="Configuration_compare_binary">
-    <title>Página "Comparar &gt; Binario"</title>
+    <title>Comparar &gt; Binario</title>
     <section>
       <title>
 Patrones de archivos binarios<indexterm>
@@ -1888,8 +1888,8 @@ archivos.</para>
               </listitem>
               <listitem>
                 <para>El nombre del editor de texto que se abrirá al ejecutar el comando
-<menuchoice><guimenu>Editar</guimenu><guimenuitem> Abrir en editor de texto
-</guimenuitem></menuchoice></para>
+<menuchoice><guimenu>Editar</guimenu><guimenuitem> Abrir en editor de
+texto.</guimenuitem></menuchoice></para>
               </listitem>
             </itemizedlist>
           </listitem>
@@ -1940,7 +1940,7 @@ puntos.</para>
 
   <section id="Configuration_compare_image">
     <title>
-Página "Comparar &gt; Imagen"<indexterm>
+Comparar &gt; Imagen<indexterm>
         <primary>archivos de imagen</primary>
       </indexterm></title>
     <section>
@@ -1990,7 +1990,7 @@ reconocido palabra por palabra junto con su posición en la imagen original.</pa
 
   <section id="Configuration_compare_webpage">
     <title>
-Página "Comparar &gt; Página web"<indexterm>
+Comparar &gt; Página web<indexterm>
         <primary>página web</primary>
       </indexterm></title>
 
@@ -2050,7 +2050,7 @@ datos se mezclen entre ellos.</para>
 
   <section id="Configuration_messageboxes">
     <title>
-Página "Cuadros de mensajes"<indexterm>
+Página Cuadros de mensajes<indexterm>
         <primary>cuadros de mensajes</primary>
       </indexterm></title>
 
@@ -2082,7 +2082,7 @@ mensajes mediante el botón <guibutton>Restablecer</guibutton>.</para>
 
   <section id="Configuration_editor_general">
     <title>
-Página "Edición &gt; General"<indexterm>
+Edición &gt; General<indexterm>
         <primary>edición</primary>
 
         <secondary>opciones de la ventana de comparación de archivos</secondary>
@@ -2167,7 +2167,7 @@ comparar dos archivos con diferentes estilos de fin de línea.</para>
     <section>
       <title>
 Tabulaciones<indexterm>
-          <primary>tabulaciones</primary>
+          <primary>pestañas</primary>
 
           <secondary>opciones de edición</secondary>
         </indexterm></title>
@@ -2241,7 +2241,7 @@ Rendering Modes</ulink> para obtener más información.</para>
 
   <section id="Configuration_editor_comparemerge">
     <title>
-Página "Edición &gt; Comparar/Combinar"<indexterm>
+Edición &gt; Comparar/Combinar<indexterm>
         <primary>edición</primary>
 
         <secondary>opciones de la ventana de comparación de archivos</secondary>
@@ -2323,7 +2323,7 @@ seleccionado carácter por carácter.</para>
     <section id="Configuration_viewlinediffs">
       <title>
 Colorear según las diferencias de líneas<indexterm>
-          <primary>diferencias entre líneas</primary>
+          <primary>diferencia de líneas</primary>
 
           <secondary>opciones de visualización</secondary>
         </indexterm></title>
@@ -2420,19 +2420,19 @@ más detalle cómo WinMerge detecta y marca las diferencias entre líneas.</para
 
   <section id="Configuration_editor_syntax">
     <title>
-Página "Edición &gt; Sintaxis"<indexterm>
+Edición &gt; Sintaxis<indexterm>
         <primary>edición</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
 
     <para>
-Por desarrollar</para>
+Por determinar</para>
   </section>
 
   <section id="Configuration_colors_colorschemes">
     <title>
-Página "Colores &gt; Esquemas de colores"<indexterm>
+Colores &gt; Combinaciones de colores<indexterm>
         <primary>combinaciones de colores</primary>
 
         <secondary>opciones</secondary>
@@ -2530,8 +2530,8 @@ colores preferida.</para>
 
   <section id="Configuration_colors_differences">
     <title>
-Página "Colores &gt; Diferencias"<indexterm>
-        <primary>colores para diferencias</primary>
+Colores &gt; Diferencias<indexterm>
+        <primary>colores de diferencias</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
@@ -2555,7 +2555,7 @@ esquema y vuelva al esquema modificado.</para>
 
   <section id="Configuration_colors_syntax">
     <title>
-Página "Colores &gt; Sintaxis"<indexterm>
+Colores &gt; Sintaxis<indexterm>
         <primary>resaltado de sintaxis</primary>
 
         <secondary>opciones de color</secondary>
@@ -2575,7 +2575,7 @@ esquema y vuelva al esquema modificado.</para>
 
   <section id="Configuration_colors_text">
     <title>
-Página "Colores &gt; Texto"<indexterm>
+Colores &gt; Texto<indexterm>
         <primary>colores para el texto</primary>
 
         <secondary>opciones</secondary>
@@ -2592,18 +2592,18 @@ para el texto.</para>
 
   <section id="Configuration_colors_marker">
     <title>
-Página "Colores &gt; Marcadores"<indexterm>
+Colores &gt; Marcadores<indexterm>
         <primary>colores para marcadores</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
 
-    <para>Por desarrollar</para>
+    <para>Por determinar</para>
   </section>
 
   <section id="Configuration_colors_foldercompare">
     <title>
-Página "Colores &gt; Comparación de carpetas"<indexterm>
+Colores &gt; Comparación de carpetas<indexterm>
         <primary>comparación de carpetas</primary>
 
         <secondary>opciones</secondary>
@@ -2628,10 +2628,10 @@ esquema y vuelva al esquema modificado.</para>
 
   <section id="Configuration_archive">
     <title>
-Página "Compatibilidad con archivos<indexterm>
+Soporte técnico para archivos<indexterm>
         <primary>compresión de archivos</primary>
 
-        <secondary>configuración de la compatibilidad tras la instalación</secondary>
+        <secondary>configuración del soporte técnico tras la instalación</secondary>
       </indexterm></title>
 
     <para>
@@ -2640,7 +2640,7 @@ comprimidos mediante 7-Zip.</para>
 
     <section>
       <title>
-Habilitar compatibilidad con archivos comprimidos<indexterm>
+Habilitar la compatibilidad con archivos comprimidos<indexterm>
           <primary>archivos 7-Zip</primary>
 
           <secondary>activar y desactivar la integración</secondary>
@@ -2696,23 +2696,23 @@ OpenOffice.</para>
 
   <section id="Configuration_Project">
     <title>
-Página "Proyecto"<indexterm>
+Proyecto<indexterm>
         <primary>archivos de proyecto</primary>
 
         <secondary>opciones</secondary>
       </indexterm></title>
 
     <para>
-Por desarrollar</para>
+Por determinar</para>
   </section>
 
   <section id="Configuration_system">
-    <title>Página "Sistema"</title>
+    <title>Sistema</title>
 
     <section>
       <title>
 Enviar archivos eliminados a la Papelera de reciclaje<indexterm>
-          <primary>eliminación de archivos</primary>
+          <primary>eliminar ficheros</primary>
 
           <secondary>opciones</secondary>
         </indexterm></title>
@@ -2727,7 +2727,7 @@ de reciclaje, si está disponible.</para>
           <important>
             <para>
 Recuerde: si la Papelera de reciclaje de su sistema está desactivada, esta
-opción no funcionará y los archivos eliminados se perderán.</para>
+opción no funcionará ¡y los archivos eliminados se perderán!</para>
           </important>
           <para></para>
         </listitem>
@@ -2853,7 +2853,7 @@ permisos de escritura.</para>
 
   <section id="Configuration_backup">
     <title>
-Página "Copias de seguridad"<indexterm>
+Copias de seguridad<indexterm>
         <primary>archivos de copias de seguridad, opciones</primary>
       </indexterm></title>
 
@@ -2947,7 +2947,7 @@ cantidad de archivos.</para>
 
   <section id="Configuration_codepage">
     <title>
-Página "Codificación"<indexterm>
+Codificación<indexterm>
         <primary>codificación</primary>
 
         <secondary>opciones</secondary>
@@ -2969,10 +2969,10 @@ Internet. Por ejemplo, aquí tiene algunos sitios donde puede empezar:</para>
       <itemizedlist>
         <listitem>
           <para>
-<ulink url="https://es.wikipedia.org/wiki/Página_de_códigos">Wikipedia:
+<ulink url="https://en.wikipedia.org/wiki/Code_pages">Wikipedia:
 Codificación</ulink>, <ulink
-url="https://es.wikipedia.org/wiki/Codificación_de_caracteres">Codificación
-de caracteres</ulink></para>
+url="https://en.wikipedia.org/wiki/Character_encoding">Codificación de
+caracteres</ulink></para>
         </listitem>
 
         <listitem>
@@ -3005,9 +3005,7 @@ opciones.</para>
           <para>
 <!--This is just a guess - don't find any info on this option.-->
 <guilabel>Según la interfaz de usuario de WinMerge</guilabel>: la
-codificación utilizada por su instalación de WinMerge.
-                    <!--This is just a guess - don't find any info on this
-option.--></para>
+codificación utilizada por su instalación de WinMerge.</para>
         </listitem>
 
         <listitem>
@@ -3030,9 +3028,7 @@ or is this understood?-->
 Desmarque esta opción en <filename>WinMerge.exe</filename>. Las conversiones
 de caracteres pueden provocar pérdidas de información y el riesgo es muy
 elevado. <filename>WinMerge.exe</filename>solo puede mostrar archivos con su
-codificación actual. <!--What option? The one in the Options page? If it
-should always be unchecked, why is the option there? Also, should we mention
-WinMergeU.exe when we mention WinMerge.exe, or is this understood?--></para>
+codificación actual.</para>
       </important>
 
       <itemizedlist>
@@ -3082,13 +3078,13 @@ personalizadas, desactive esta opción.</para>
     <section>
       <title>Detectar codificación para archivos de texto usando mlang.dll</title>
 
-      <para>Por desarrollar</para>
+      <para>Por determinar</para>
 
     </section>
   </section>
 
   <section id="Configuration_shell-integ">
-    <title>Página "Integración con Windows"</title>
+    <title>Integración con Windows</title>
 
     <section id="Configuration_winexplorer-integ">
       <title>

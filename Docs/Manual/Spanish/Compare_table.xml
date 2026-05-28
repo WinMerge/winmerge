@@ -12,9 +12,10 @@
 
   <para>En la versión 2.16.7 o posteriores, es posible visualizar y editar archivos
 de valores separados por delimitadores, como CSV y TSV, en formato de tabla,
-al igual que en un programa de hojas de cálculo. Las operaciones de edición,
-el desplazamiento a las diferencias y las operaciones de combinación en este
-formato son las mismas que en una ventana de archivo de texto normal.</para>
+al igual que en un programa de hojas de cálculo.  Las operaciones de
+edición, el desplazamiento a las diferencias y las operaciones de
+combinación en este formato son las mismas que en una ventana de archivo de
+texto normal.</para>
 
   <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -29,16 +30,16 @@ fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
       </indexterm></title>
 
     <para>Que los archivos se abran en formato de tabla depende de si el nombre del
-archivo coincide con los patrones definidos. De forma predeterminada, si la
-extensión del archivo es .csv o .tsv, se abrirá en formato de tabla. Si
+archivo coincide con los patrones definidos.  De forma predeterminada, si la
+extensión del archivo es .csv o .tsv, se abrirá en formato de tabla.  Si
 desea cambiar los patrones, especifíquelos en la página "Comparar/Tabla" del
 cuadro de diálogo "Configuración".</para>
 
     <para>Si quiere abrirlo temporalmente en formato de tabla después de abrirlo como
 texto sin formato, haga clic en <menuchoice> <guimenu>Archivo</guimenu>
 <guimenuitem>Volver a comparar como</guimenuitem>
-<guimenuitem>Tabla</guimenuitem> </menuchoice>. Cuando aparezca el cuadro de
-diálogo Tabla, seleccione el tipo de archivo y haga clic en
+<guimenuitem>Tabla</guimenuitem> </menuchoice>.  Cuando aparezca el cuadro
+de diálogo Tabla, seleccione el tipo de archivo y haga clic en
 <guilabel>Aceptar</guilabel>.</para>
     
     <para>
@@ -76,7 +77,7 @@ Si desea modificar la configuración anterior, puede hacerlo en la página
 "Comparar/Tabla" del cuadro de diálogo "Configuración" o en el cuadro de
 diálogo de tabla que aparece al hacer clic en <menuchoice>
 <guimenu>Archivo</guimenu> <guimenuitem>Volver a comparar como</guimenuitem>
-<guimenuitem>Tabla</guimenuitem> </menuchoice>. Consulte <xref
+<guimenuitem>Tabla</guimenuitem> </menuchoice>.  Consulte <xref
 linkend="Configuration_compare_table" /> para obtener más información.</para>
 
   </section>

@@ -62,14 +62,14 @@ url="https://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge
     <note>
       <para>El instalador requiere privilegios de administrador. Si no tiene privilegios
 de administrador, puede instalar WinMerge descomprimiendo el archivo
-comprimido. (consulte <xref linkend="InstallFromArchive" />) o utilizando el
-instalador por usuario (WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
+comprimido. (consulte <xref linkend="InstallFromArchive" />)  o utilizando
+el instalador por usuario (WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
     </note>
 
     <para>Se recomienda a la mayoría de los usuarios que utilicen el instalador. El
 instalador solicita la ubicación donde se instalará WinMerge. A
 continuación, instala los archivos, configura la integración con el
-intérprete de órdenes y añade WinMerge al menú Inicio. Para instalar
+intérprete de órdenes y añade WinMerge al menú Inicio.  Para instalar
 WinMerge:</para>
 
     <orderedlist>
@@ -149,7 +149,7 @@ utilice un idioma distinto del inglés, despliegue esta opción y seleccione
 una o varias de las traducciones disponibles. El instalador crea una
 subcarpeta llamada "Languages" dentro de la carpeta de WinMerge, que
 contiene un archivo de traducción *.po para cada una de las opciones
-seleccionadas. Una vez instalado, puede abrir WinMerge y cambiar su
+seleccionadas.  Una vez instalado, puede abrir WinMerge y cambiar su
 configuración de idioma a uno de los idiomas de los archivos de
 traducción. Consulte la sección <xref linkend="Locales" /> para obtener más
 información.</para>
@@ -319,8 +319,8 @@ iniciar el programa</guilabel>.</para>
       </listitem>
 
       <listitem>
-        <simpara>En la página "Listo para instalar" compruebe las opciones de instalación. Si
-fuera necesario, haga clic en <guibutton>Atrás</guibutton> para modificar
+        <simpara>En la página "Listo para instalar" compruebe las opciones de instalación.
+Si fuera necesario, haga clic en <guibutton>Atrás</guibutton> para modificar
 cualquier dato en una página anterior. Cuando esté seguro de que está listo
 para continuar, haga clic en <guibutton>Instalar</guibutton>.</simpara>
       <para></para>
@@ -340,15 +340,15 @@ desea iniciar la aplicación WinMerge.</simpara>
         <primary>archivo, instalación de WinMerge desde</primary>
       </indexterm></title>
 
-    <para>WinMerge es prácticamente independiente de otros componentes del sistema. No
-está estrechamente integrado con Windows y no utiliza muchas DLL.</para>
+    <para>WinMerge es prácticamente independiente de otros componentes del sistema.
+No está estrechamente integrado con Windows y no utiliza muchas DLL.</para>
 
-    <para>Los archivos comprimidos tienen la estructura de carpetas correcta. WinMerge
-debe descomprimirse conservando esta estructura de carpetas en la carpeta de
-destino. Por ejemplo, la carpeta raíz creada en <filename
+    <para>Los archivos comprimidos tienen la estructura de carpetas correcta.
+WinMerge debe descomprimirse conservando esta estructura de carpetas en la
+carpeta de destino. Por ejemplo, la carpeta raíz creada en <filename
 class="directory">C:\Archivos de programa\</filename> se llama, <filename
 class="directory">WinMerge-<replaceable>versión</replaceable></filename>
-(por ejemplo, <filename class="directory">WinMerge-2.6.0</filename>). Puede
+(por ejemplo, <filename class="directory">WinMerge-2.6.0</filename>).  Puede
 cambiar el nombre de esta carpeta o copiar sus archivos a otra carpeta (¡sin
 alterar la estructura de carpetas!).</para>
 

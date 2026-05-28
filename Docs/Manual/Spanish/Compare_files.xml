@@ -27,7 +27,7 @@ ventana de WinMerge como desde una ventana del símbolo del sistema.</para>
           <para>Clic <menuchoice> <guimenu>Archivo</guimenu>
 <guimenuitem>Abrir</guimenuitem> </menuchoice>. Utilice el cuadro de diálogo
 "Seleccionar archivos o carpetas" para especificar los archivos de origen
-del izquierdo y del derecho que se van a comparar. Para obtener más
+del izquierdo y del derecho que se van a comparar.  Para obtener más
 información sobre el cuadro de diálogo "Seleccionar archivos o carpetas",
 consulte la sección <xref linkend="Open_paths" />.</para>
         </listitem>
@@ -94,7 +94,7 @@ la ventana de comparación, encima de los paneles de archivos.</para>
 
         <para>Uno de los paneles de archivo está siempre activo (lo indica el fondo oscuro
 del encabezado). El otro está inactivo y tiene una barra de encabezado más
-clara. Solo se puede editar en el panel activo (tal y como se describe en
+clara.  Solo se puede editar en el panel activo (tal y como se describe en
 <xref linkend="CompareFiles_editing" />). Haga clic en cualesquiera de los
 dos lados para activarlo y desactivar el otro.</para>
 
@@ -173,9 +173,9 @@ fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobje
 
                 <listitem>
                   <para>La línea en blanco del <filename>archivo 2</filename> no tiene una línea en
-blanco equivalente en el <filename>archivo 1</filename>. WinMerge interpreta
-la línea en blanco que falta como una diferencia eliminada, marcada aquí con
-el color gris predeterminado.</para>
+blanco equivalente en el <filename>archivo 1</filename>.  WinMerge
+interpreta la línea en blanco que falta como una diferencia eliminada,
+marcada aquí con el color gris predeterminado.</para>
                 </listitem>
 
                 <listitem>
@@ -232,9 +232,9 @@ fileref="screenshots/ignore-blank-lines.png" format="PNG" /> </imageobject><text
               <para>Las diferencias por desplazamiento son líneas idénticas que se encuentran en
 ubicaciones diferentes en los archivos comparados, siempre que
 <option>Habilitar detección de bloques desplazados</option> esté activada en
-la página "Comparar" cuadro de diálogo "Configuración". La siguiente captura
-de pantalla muestra la misma comparación que la anterior, pero esta vez con
-la detección de bloques desplazados activada.</para>
+la página "Comparar" cuadro de diálogo "Configuración".  La siguiente
+captura de pantalla muestra la misma comparación que la anterior, pero esta
+vez con la detección de bloques desplazados activada.</para>
 
               <mediaobject>
 <imageobject> <imagedata contentwidth="490"
@@ -412,7 +412,7 @@ blanco</phrase>
               <para>Una diferencia de línea a nivel de carácter incluye el primer y el último
 carácter diferente de una palabra, así como todos los caracteres que hay
 entre ellos. Una sola diferencia a nivel de carácter puede abarcar palabras
-adyacentes. El siguiente ejemplo lo ilustra:</para>
+adyacentes.  El siguiente ejemplo lo ilustra:</para>
 
               <mediaobject>
 <imageobject> <imagedata contentwidth="485"
@@ -444,7 +444,7 @@ blanco.</para>
             <listitem>
               <para>Las palabras y los caracteres en las diferencias entre líneas pueden
 separarse mediante espacios en blanco o mediante una combinación de espacios
-en blanco y signos de puntuación. Los espacios en blanco (la opción
+en blanco y signos de puntuación.  Los espacios en blanco (la opción
 predeterminada) son la elección habitual para comparar la mayoría de los
 archivos de texto. Todos los ejemplos anteriores de diferencias entre líneas
 utilizan espacios en blanco para separar palabras y caracteres.</para>
@@ -481,14 +481,14 @@ funciones básicas de edición, como <guilabel>Deshacer</guilabel> y
 <guilabel>Rehacer</guilabel>, <guilabel>Buscar</guilabel> y
 <guilabel>Reemplazar</guilabel> e <guilabel>Ir a...</guilabel>. Estas tareas
 básicas de edición suelen ser necesarias durante la combinación (por
-ejemplo, para modificar texto dentro de las diferencias). Puede editar en el
-panel de archivo activo (recuerde: haga clic en un panel para
+ejemplo, para modificar texto dentro de las diferencias).  Puede editar en
+el panel de archivo activo (recuerde: haga clic en un panel para
 activarlo). Los cambios no se guardan en un archivo hasta que guarde un
 panel en un archivo de resultados.</para>
 
         <para>Las funciones de edición de WinMerge también incluyen el resaltado de
-sintaxis. Esta función opcional es compatible con varios formatos de archivo
-y permite configurar los colores utilizados. Tenga en cuenta que el
+sintaxis.  Esta función opcional es compatible con varios formatos de
+archivo y permite configurar los colores utilizados. Tenga en cuenta que el
 resaltado de sintaxis no se aplica a las diferencias, tal y como muestra la
 captura de pantalla anterior.</para>
 
@@ -805,7 +805,7 @@ indica mediante una barra de visualización sombreada (translúcida) situada
 sobre el panel de localización. La altura y la posición de la barra de área
 se corresponden con la parte de los archivos que se ve en la zona de
 desplazamiento. Por ejemplo, es posible que vea cómo la barra se expande o
-se contrae si cambia la altura de los paneles de archivos. Esta
+se contrae si cambia la altura de los paneles de archivos.  Esta
 sincronización entre la barra de visualización del panel de localización y
 los paneles de archivos permite una navegación rápida y la realización de
 algunas acciones útiles:</para>
@@ -819,7 +819,7 @@ panel de localización se mueve con ellos.</para>
               <listitem>
                 <para>Por el contrario, puede arrastrar la barra del área de visualización del
 panel de localización hacia arriba o hacia abajo para desplazarse por los
-paneles de archivos. Esta acción con el control deslizante resulta muy útil
+paneles de archivos.  Esta acción con el control deslizante resulta muy útil
 para navegar por archivos largos.</para>
               </listitem>
 
@@ -925,9 +925,10 @@ y seleccionando <guimenuitem>Copiar al derecho</guimenuitem> o
           <secondary>codificación de caracteres</secondary>
         </indexterm></title>
 
-      <para>Cada panel de archivos contiene una barra de estado en la parte inferior. La
-barra de estado contiene varios paneles con distintos tipos de información
-sobre el documento y la posición en la que se encuentre dentro de él:</para>
+      <para>Cada panel de archivos contiene una barra de estado en la parte inferior.
+La barra de estado contiene varios paneles con distintos tipos de
+información sobre el documento y la posición en la que se encuentre dentro
+de él:</para>
 
       <variablelist>
         <varlistentry>
@@ -974,7 +975,7 @@ WinMerge).</para>
           <listitem>
             <para>En el panel aparecerá <guilabel>SL</guilabel> si el archivo está configurado
 como de solo lectura (tal y como se describe en <xref
-linkend="protectingfiles" />). De lo contrario, el panel estará vacío.</para>
+linkend="protectingfiles" />).  De lo contrario, el panel estará vacío.</para>
           </listitem>
         </varlistentry>
 
@@ -1387,11 +1388,11 @@ los archivos e intente volver a combinarlos.</para>
 diferencias en función de la posición del cursor o de la selección de
 texto. Por ejemplo, si hace clic en cualquier punto de una diferencia y, a
 continuación, hace clic en el botón <guibutton>Copiar al derecho</guibutton>
-de la barra de herramientas, se combinará todo el bloque de la
-diferencia. Esto facilita la combinación de muchas diferencias pequeñas. Del
-mismo modo, si selecciona texto que abarca la totalidad o parte de varias
-diferencias, todas las diferencias incluidas se combinarán con un solo
-comando de combinación.</para>
+de la barra de herramientas, se combinará todo el bloque de la diferencia.
+Esto facilita la combinación de muchas diferencias pequeñas. Del mismo modo,
+si selecciona texto que abarca la totalidad o parte de varias diferencias,
+todas las diferencias incluidas se combinarán con un solo comando de
+combinación.</para>
 
       <para>Si el resultado de una operación de combinación no es el esperado, puede
 hacer clic en <guibutton>Deshacer</guibutton> para revertir la operación.</para>
@@ -1459,7 +1460,7 @@ una diferencia y en el panel de diferencias.</para>
           <listitem>
             <para>Combina la diferencia actual del panel de archivos de la derecha con el de
 la izquierda y, a continuación, selecciona la siguiente diferencia (si hay
-alguna). Equivale a <command>Copiar al derecho</command> y copiar
+alguna).  Equivale a <command>Copiar al derecho</command> y copiar
 <command>Diferencia siguiente</command> en un solo paso.</para>
 
             <para>Accesos directos <inlinemediaobject>
@@ -1613,7 +1614,7 @@ solo se pueden combinar desde este archivo hacia el otro.</para>
 
             <listitem>
               <para>El panel de archivos derecho se titula <guilabel>Mi archivo
-(Mine)</guilabel>. Esta parte es la copia de trabajo del archivo. Todos los
+(Mine)</guilabel>. Esta parte es la copia de trabajo del archivo.  Todos los
 cambios deben realizarse en este archivo, que es el archivo de resultado.</para>
 
               <para>El lado <guilabel>Mi archivo</guilabel> se establece en modificado tras
@@ -1635,7 +1636,7 @@ panel Mi archivo.</para>
         <listitem>
           <para>Cuando haya terminado, pulse <keycombo> <keycap>Ctrl</keycap>
 <keycap>S</keycap> </keycombo> para guardar el lado <guilabel>Mi
-archivo</guilabel> como archivo de resultado. Por defecto, la nueva versión
+archivo</guilabel> como archivo de resultado.  Por defecto, la nueva versión
 sobrescribe el archivo de conflicto original. También puede hacer clic
 en<menuchoice> <guimenu>Archivo</guimenu> <guimenuitem>Guardar
 derecho</guimenuitem> <guimenuitem>Guardar como</guimenuitem> </menuchoice>y

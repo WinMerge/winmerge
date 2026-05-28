@@ -95,7 +95,7 @@ seleccione <guimenuitem>Contenido rápido</guimenuitem>.</para>
             <para>Puede modificar el límite de tamaño de archivo de 4 MB de la opción
 <guilabel> Comparación rápida de contenidos</guilabel>, por ejemplo, si
 tiene muchos archivos de texto de gran tamaño. Para ello, ejecute el comando
-de Windows <command>regedit</command>, busque esta clave <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen> y modifique su valor. ¡Como siempre, tenga mucho
+de Windows <command>regedit</command>, busque esta clave <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen> y modifique su valor.  ¡Como siempre, tenga mucho
 cuidado al modificar el Registro!</para>
           </listitem>
         </varlistentry>
@@ -546,12 +546,12 @@ accesos directos <guimenuitem>Izquierdo</guimenuitem>,
         <para>Le recomendamos encarecidamente que mantenga activada la opción <guilabel>
 Enviar archivos eliminados a la Papelera de reciclaje</guilabel> (véase
 <xref linkend="Configuration" />), para que pueda deshacer las eliminaciones
-en caso de errores. Además, debe mantener activada la Papelera de reciclaje:
-la opción de WinMerge no funciona si desactiva la Papelera de reciclaje en
-Windows. Una vez más, no puede deshacer la eliminación de archivos o
-carpetas a menos que utilice tanto la opción de WinMerge <guilabel>Enviar
-archivos eliminados a la Papelera de reciclaje</guilabel> como la Papelera
-de reciclaje de Windows.</para>
+en caso de errores.  Además, debe mantener activada la Papelera de
+reciclaje: la opción de WinMerge no funciona si desactiva la Papelera de
+reciclaje en Windows. Una vez más, no puede deshacer la eliminación de
+archivos o carpetas a menos que utilice tanto la opción de WinMerge
+<guilabel>Enviar archivos eliminados a la Papelera de reciclaje</guilabel>
+como la Papelera de reciclaje de Windows.</para>
       </warning>
     </section>
 
@@ -691,7 +691,7 @@ protegido al lado protegido.</para>
 
       <para>La marca <guilabel>SL</guilabel> que aparece en el panel izquierdo, central
 o derecho de la barra de estado (cerca de la esquina inferior derecha de la
-ventana) indica que ese panel está actualmente en modo de solo lectura.</para>
+ventana)  indica que ese panel está actualmente en modo de solo lectura.</para>
     </section>
 
     <section>
@@ -823,7 +823,7 @@ WinMerge (por ejemplo, al utilizar la operación
 archivo comprimido. Sin embargo, no es posible actualizar el contenido del
 archivo comprimido mediante las operaciones de WinMerge
 <guimenuitem>Copiar</guimenuitem>, <guimenuitem>Mover</guimenuitem> o
-<guimenuitem>Eliminar</guimenuitem>. En su lugar, cree un nuevo archivo
+<guimenuitem>Eliminar</guimenuitem>.  En su lugar, cree un nuevo archivo
 comprimido utilizando uno de los accesos directos de
 <guimenuitem>Zip</guimenuitem>.</para>
     </section>
@@ -846,7 +846,7 @@ esta operación sobrescribe el resultado actual que se muestra en la ventana.</p
 
       <para>Aunque una comparación de carpetas no recursiva no incluye el contenido de
 las subcarpetas, estas aparecen en la lista de resultados como si fueran
-archivos. Del mismo modo, la carpeta principal de la carpeta comparada
+archivos.  Del mismo modo, la carpeta principal de la carpeta comparada
 aparece como un archivo en la parte superior de la tabla. Al abrir estas
 carpetas directamente en la ventana de comparación de carpetas, puede
 explorar de forma selectiva un árbol de directorios. Este enfoque - comparar
@@ -966,7 +966,7 @@ carpetas.</para>
       <para>Sin embargo, es posible que prefiera no copiar toda la estructura de
 carpetas. A partir de la versión 2.8, WinMerge ofrece una forma alternativa
 de crear una nueva carpeta vacía. Esto le permite copiar solo los elementos
-que desee de la carpeta original específica a la carpeta vacía creada. Este
+que desee de la carpeta original específica a la carpeta vacía creada.  Este
 procedimiento muestra cómo hacerlo:</para>
 
       <orderedlist>
@@ -1148,7 +1148,7 @@ de comparación de carpetas:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Nombre de archivo</guilabel>: nombre del elemento comparado. En
+          <para><guilabel>Nombre de archivo</guilabel>: nombre del elemento comparado.  En
 una comparación no recursiva, esta columna incluye tanto archivos como
 carpetas. En una comparación recursiva, no incluye carpetas, en su lugar,
 las carpetas aparecen en la columna "Carpeta".</para>
@@ -1169,8 +1169,8 @@ comparación (véase también <guilabel>Resultado abreviado</guilabel>).</para>
         <listitem>
           <para><guilabel>Fecha del izquierdo</guilabel>, <guilabel>Fecha del
 central</guilabel>, <guilabel>Fecha del derecho</guilabel>: fechas de
-modificación de cada elemento. La más reciente de las dos fechas (o la fecha
-de cualquier elemento único) va precedida de un asterisco ( * ).</para>
+modificación de cada elemento.  La más reciente de las dos fechas (o la
+fecha de cualquier elemento único) va precedida de un asterisco ( * ).</para>
         </listitem>
 
         <listitem>
@@ -1262,11 +1262,10 @@ el estilo de fin de línea (salto de línea) de los archivos.</para>
       <title>Ocultar elementos</title>
 
       <para>Puede ocultar rápidamente uno o varios elementos seleccionados mediante el
-comando del menú contextual <guimenuitem>Ocultar
-elementos</guimenuitem>. Los elementos permanecerán ocultos hasta que
-actualice la vista (pulse <keycap>F5</keycap>) o haga clic en <menuchoice>
-<guimenu>Ver</guimenu> <guimenuitem>Mostrar elementos ocultos</guimenuitem>
-</menuchoice>.</para>
+comando del menú contextual <guimenuitem>Ocultar elementos</guimenuitem>.
+Los elementos permanecerán ocultos hasta que actualice la vista (pulse
+<keycap>F5</keycap>) o haga clic en <menuchoice> <guimenu>Ver</guimenu>
+<guimenuitem>Mostrar elementos ocultos</guimenuitem> </menuchoice>.</para>
 
       <tip>
         <para>Descubra la función <guimenuitem>Ocultar elementos</guimenuitem>: esto le
@@ -1288,7 +1287,7 @@ comandos de Windows directamente desde el menú contextual.</para>
 
     <para>Si la selección se produce en ambos lados, puede elegir entre el
 <guimenu>menú contextual del izquierdo</guimenu> o el <guimenu>menú
-contextual del derecho</guimenu>. Si la selección se produce en todos los
+contextual del derecho</guimenu>.  Si la selección se produce en todos los
 lados, puede elegir entre el <guimenu>menú contextual del
 izquierdo</guimenu>, el <guimenu>menú contextual del central</guimenu> o el
 <guimenu>menú contextual del derecho</guimenu>. Si el elemento solo aparece

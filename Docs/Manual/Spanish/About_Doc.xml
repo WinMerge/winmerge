@@ -57,7 +57,7 @@ el principio.</para>
 
         <listitem>
           <para>Utilice el modificador /? o -? al ejecutar WinMerge desde la línea de
-comandos. Abrirá la ayuda HTML por el principio.</para>
+comandos.  Abrirá la ayuda HTML por el principio.</para>
         </listitem>
       </varlistentry>
 
@@ -240,7 +240,7 @@ ruta.</para><para>Pulse una vez la tecla <keycap>F5</keycap> para actualizar la 
           <row>
             <entry>Pulsar <keycombo> <keycap>Ctrl</keycap> <keycap>O</keycap> </keycombo></entry>
 
-            <entry><wordasword>Pulsar</wordasword> indica una acción del teclado. En este
+            <entry><wordasword>Pulsar</wordasword> indica una acción del teclado.  En este
 ejemplo, pulse la combinación de teclas <keycap>Ctrl</keycap> y
 <keycap>O</keycap> .</entry>
           </row>
@@ -323,7 +323,7 @@ class="directory">C:\workfiles\project1</filename>.<para><screen
 rep="norepeat"><replaceable>inputpath</replaceable></arg> <arg choice="opt"
 rep="norepeat"><replaceable>outputpath</replaceable></arg></cmdsynopsis></entry>
 
-            <entry>En las líneas de sintaxis, los corchetes indican elementos opcionales. En
+            <entry>En las líneas de sintaxis, los corchetes indican elementos opcionales.  En
 este ejemplo, debe introducir una ruta de entrada con el comando; puede
 introducir una ruta de salida, pero el comando es válido sin ella.</entry>
           </row>

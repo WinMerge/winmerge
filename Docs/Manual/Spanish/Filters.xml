@@ -69,7 +69,7 @@ it only controls which items are visible in the Folder Compare window.  See
     <varlistentry>
       <term>Comparación de archivos: filtros de línea y filtros de
 sustitución<indexterm>
-          <primary>comparación de archivos</primary>
+          <primary>comparar archivos</primary>
 
           <secondary>filtrado</secondary>
         </indexterm></term>
@@ -189,8 +189,8 @@ desde la versión 2.16.49)</para></listitem></varlistentry>
 la versión 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Excluir carpetas que coincidan con la expresión regular (disponible desde la
 versión 2.16.49)</para></listitem></varlistentry>
-            <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para archivos (ej. fe:Size &lt; 1KB) (disponible desde
-la versión 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Filter expression for files (ej. fe:Size &lt; 1KB) (disponible desde la
+versión 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para excluir archivos (disponible desde la versión
 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para carpetas (disponible desde la versión 2.16.49)</para></listitem></varlistentry>
@@ -1112,10 +1112,10 @@ de cadenas con las sustituciones aplicadas.  Ejemplo: <literal>replace(name,
                 <para>
 Sustituye todas las coincidencias del modelo de expresión regular por la
 cadena de sustitución Admite referencias hacia atrás ($1, $2, etc.) en la
-cadena de sustitución.  Si <replaceable>str</replaceable> es una matriz, el
-resultado es una matriz de cadenas con las sustituciones aplicadas.
-Ejemplo: <literal>regexReplace(name, "^(\w+)_(\w+)$", "$2_$1")</literal>
-intercambia las palabras separadas por un guion bajo.</para>
+cadena de sustitución. Si <replaceable>str</replaceable> es una matriz, el
+resultado es una matriz de cadenas con las sustituciones aplicadas. Ejemplo:
+<literal>regexReplace(name, "^(\w+)_(\w+)$", "$2_$1")</literal> intercambia
+las palabras separadas por un guion bajo.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1138,7 +1138,7 @@ viejo   nuevo</screen>
                 <para>Ejemplos:</para>
                 <itemizedlist>
                   <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> -
-Aplica las sustituciones del archivo al nombre del archivo.</para></listitem>
+Aplica las sustituciones del archivo al nombre del archivo</para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -1163,7 +1163,7 @@ de cadenas con las sustituciones aplicadas.</para>
                 <itemizedlist>
                   <listitem><para><literal>regexReplaceWithList(Name,
 "C:\Filters\regex_replacements.txt")</literal> - Aplica sustituciones con
-expresiones regulares al nombre del archivo.</para></listitem>
+expresiones regulares al nombre del archivo</para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -1387,7 +1387,7 @@ de enteros. Ejemplo: <literal>lineCount(Content)</literal></para></listitem>
                 <para>
 Extrae el número de líneas especificado a partir del índice de línea
 indicado en el contenido del archivo o en la matriz de contenido del archivo
-y las devuelve como una única cadena concatenada.  Si
+y las devuelve como una única cadena concatenada. Si
 <replaceable>content</replaceable> es una matriz, el resultado es una matriz
 de cadenas.</para>
               </listitem>
@@ -1693,7 +1693,7 @@ matrices, realiza una operación elemento por elemento.</para>
 txt o de registro</para></listitem>
                   <listitem><para><literal>notEach(Exists)</literal> - archivos que no existen</para></listitem>
                   <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - todos los archivos
-tienen un tamaño distinto de cero.</para></listitem>
+tienen un tamaño distinto de cero</para></listitem>
                   <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - cualquier archivo de 1 MB
 o menos</para></listitem>
                 </itemizedlist>
@@ -1969,7 +1969,7 @@ desactivar el filtrado):</para>
 
           <orderedlist>
             <listitem>
-              <para>Haga clic en <menuchoice> <guimenu>Herramientas</guimenu>
+              <para>Haga clic en <menuchoice> <guimenu>Herraminetas</guimenu>
 <guimenuitem>Filtros</guimenuitem> </menuchoice>.</para>
             </listitem>
 
@@ -2085,8 +2085,8 @@ de la versión 2.16.19)</para></listitem></varlistentry>
         <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Buscar nombres de carpetas utilizando expresiones regulares</para></listitem></varlistentry>
         <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Excluir carpetas que coincidan con la expresión regular (disponible desde la
 versión 2.16.19)</para></listitem></varlistentry>
-        <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para archivos (ej. fe:Size &lt; 1KB) (disponible desde
-la versión 2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Filter expression for files (ej. fe:Size &lt; 1KB) (disponible desde la
+versión 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para excluir archivos (disponible desde la versión
 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para carpetas (disponible desde la versión 2.16.49)</para></listitem></varlistentry>
@@ -2238,12 +2238,12 @@ ejemplo, para aplicar filtros diferentes o desactivar el filtrado)</para>
 
           <orderedlist>
             <listitem>
-              <para>Haga clic en <menuchoice> <guimenu>Herramientas</guimenu>
+              <para>Haga clic en <menuchoice> <guimenu>Herraminetas</guimenu>
 <guimenuitem>Filtros</guimenuitem> </menuchoice>.</para>
             </listitem>
 
             <listitem>
-              <para>Vaya a la pestaña "Filtros de archivo".</para>
+              <para>Vaya a la pestaña "Filtros de archivos".</para>
             </listitem>
 
             <listitem>
@@ -2859,7 +2859,7 @@ within the last week</para></listitem>
         <secondary>en la comparación de archivos</secondary>
       </indexterm></title>
 
-    <para>Por desarrollar</para>
+    <para>Por determinar</para>
   </section>
 
   <section id="Filters_dlg">
@@ -2872,7 +2872,7 @@ within the last week</para></listitem>
       </indexterm></title>
 
     <para>En esta sección se describe el cuadro de diálogo "Filtros", que ofrece
-funciones para crear y gestionar filtros de archivos y filtros de línea.</para>
+funciones para crear y gestionar filtros de archivos y filtros de líneas.</para>
 
     <para>Para abrir el cuadro de diálogo «Filtros», use cualesquiera de estos
 métodos:</para>
@@ -2898,7 +2898,7 @@ WinMerge:</para>
 
     <variablelist>
       <varlistentry>
-        <term>Filtros de archivo</term>
+        <term>Filtros de archivos</term>
 
         <listitem>
           <para>Seleccione esta pestaña para utilizar filtros de archivos en las operaciones
@@ -2907,11 +2907,11 @@ de comparación de carpetas.</para>
       </varlistentry>
 
       <varlistentry>
-        <term>Filtros de línea</term>
+        <term>Filtros de líneas</term>
 
         <listitem>
-          <para>Seleccione esta pestaña para utilizar filtros de línea en las operaciones de
-comparación de archivos.</para>
+          <para>Seleccione esta pestaña para utilizar filtros de líneas en las operaciones
+de comparación de archivos.</para>
         </listitem>
       </varlistentry>
 
@@ -2937,7 +2937,7 @@ linkend="Filters_DisplayLineFilter"/>.</para>
     </variablelist>
 
     <section id="Filters_FileFiltersTab">
-      <title>Uso de la pestaña "Filtros de archivo"<indexterm>
+      <title>Uso de la pestaña "Filtros de archivos"<indexterm>
           <primary>filtros de archivos</primary>
 
           <secondary>habilitar</secondary>
@@ -3059,7 +3059,7 @@ diálogo "Seleccione archivos o carpetas", haga clic en
           </listitem>
 
           <listitem id="Filters_New_step">
-            <para>En la pestaña "Filtros de archivo" del cuadro de diálogo "Filtros", haga
+            <para>En la pestaña "Filtros de archivos" del cuadro de diálogo "Filtros", haga
 clic en <guibutton>Nuevo</guibutton>.</para>
           </listitem>
 
@@ -3087,7 +3087,7 @@ existente, vuelva al paso <xref linkend="Filters_New_step" /> y haga clic en
 
             <para>WinMerge inicializa el nuevo archivo con el contenido de la plantilla
 <filename>FileFilter.tmpl</filename> y lo abre en su editor de texto
-predeterminado</para>
+predeterminado.</para>
           </listitem>
 
           <listitem>
@@ -3112,7 +3112,7 @@ muestra el nuevo filtro, intente hacer clic en
 <guibutton>Aceptar</guibutton> para cerrarlo y, a continuación, vuelva a
 hacer clic en <menuchoice> <guimenu>Herramientas</guimenu>
 <guimenuitem>Filtros</guimenuitem> </menuchoice> para volver a abrirlo. La
-lista de <guilabel>Filtros de archivo</guilabel>debería incluir ahora el
+lista de <guilabel>Filtros de archivos</guilabel> debería incluir ahora el
 nuevo filtro.</para>
 
             <para>Si ha guardado el archivo en una ubicación diferente de su sistema de
@@ -3128,7 +3128,7 @@ Filtros.</para>
               <listitem>
                 <para>En el cuadro de diálogo "Buscar archivo de filtro para instalar", busque el
 archivo <filename>flt</filename> en su sistema y haga clic en
-<guibutton>Abrir</guibutton>. La lista "Filtros de archivo" debería incluir
+<guibutton>Abrir</guibutton>. La lista "Filtros de archivos" debería incluir
 ahora el filtro de archivo instalado.</para>
               </listitem>
             </orderedlist>
@@ -3154,7 +3154,7 @@ resultar más sencillo que ejecutar una operación de comparación completa.</pa
 
         <orderedlist>
           <listitem>
-            <para>En la pestaña "Filtros de archivo" seleccione el filtro de archivos que
+            <para>En la pestaña "Filtros de archivos" seleccione el filtro de archivos que
 desee probar.</para>
           </listitem>
 
@@ -3201,19 +3201,19 @@ su estado: <computeroutput>passed</computeroutput> o
     </section>
 
     <section id="Filters_LineFiltersTab">
-      <title>Uso de la pestaña "Filtros de línea"<indexterm>
+      <title>Uso de la pestaña "Filtros de líneas"<indexterm>
           <primary>filtros de línea</primary>
 
           <secondary>habilitar</secondary>
         </indexterm></title>
 
-      <para>Utilice esta pestaña para configurar y activar filtros de línea en las
+      <para>Utilice esta pestaña para configurar y activar filtros de líneas en las
 operaciones de comparación de archivos. La pestaña incluye una lista de
 reglas. Cada regla contiene una única expresión regular. Puede aplicar
 cualquier combinación de reglas de la lista a una comparación de archivos.</para>
 
       <section id="Filters_LineFilterCfg">
-        <title>Configuración de filtros de línea</title>
+        <title>Configuración de filtros de líneas</title>
 
         <para>Debajo de la lista <guilabel>Expresiones regulares</guilabel> hay un cuadro
 de edición y unos botones que puede utilizar para mantener la lista
@@ -3259,7 +3259,7 @@ clic en <guibutton>Eliminar</guibutton>.</para>
       </section>
 
       <section id="Filters_LineFilterEnabling">
-        <title>Activación y desactivación de los filtros de línea<indexterm>
+        <title>Activación y desactivación de los filtros de líneas<indexterm>
             <primary>filtros de línea</primary>
 
             <secondary>lista de disponibles</secondary>
@@ -3273,7 +3273,7 @@ filtros que desee aplicar y desmarque los que no desee aplicar.</para>
 
           <listitem>
             <para>Marque o desmarque la opción <guilabel>Habilitar Filtros de
-línea</guilabel>. Si activa el filtrado, se utilizarán todas las reglas que
+líneas</guilabel>. Si activa el filtrado, se utilizarán todas las reglas que
 estén marcadas actualmente en la lista <guilabel>Expresión
 regular</guilabel>. Si el filtrado está desactivado, no se utilizará ninguna
 regla, aunque estén marcadas.</para>
@@ -3297,12 +3297,12 @@ más información, consulte <xref linkend="Filters_LineFilterApply" />.</para>
           <secondary>habilitar</secondary>
         </indexterm></title>
 
-        <para>Por desarrollar</para>
+        <para>Por determinar</para>
 
       <section id="Filters_SubstitutionFilterCfg">
         <title>Configuración de Filtros de sustitución</title>
 
-        <para>Por desarrollar</para>
+        <para>Por determinar</para>
 
       </section>
 
@@ -3313,7 +3313,7 @@ más información, consulte <xref linkend="Filters_LineFilterApply" />.</para>
             <secondary>lista de disponibles</secondary>
           </indexterm></title>
 
-        <para>Por desarrollar</para>
+        <para>Por determinar</para>
       </section>
     </section>
   </section>

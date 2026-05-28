@@ -123,22 +123,20 @@ número de versión haciendo clic en <menuchoice> <guimenu>Ayuda</guimenu>
 
     <para>El código fuente de WinMerge está disponible en nuestro <ulink
 url="https://winmerge.org/source-code/">sitio web</ulink> y en las páginas
-del proyecto en <ulink
-url="https://github.com/WinMerge/">GitHub</ulink>. Cualquiera puede
-descargar el código fuente, estudiarlo y modificarlo. Si encuentra (y
-corrige) errores, mejora algo, etc., le rogamos que nos envíe sus cambios en
-forma de parches o solicitudes de incorporación de cambios y nos ayude a
-mejorar este producto. Si publica su versión modificada, deberá publicar
-también los cambios en el código fuente. De eso trata la licencia <ulink
-url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink>: por favor,
-respétela.</para>
+del proyecto en <ulink url="https://github.com/WinMerge/">GitHub</ulink>.
+Cualquiera puede descargar el código fuente, estudiarlo y modificarlo.  Si
+encuentra (y corrige) errores, mejora algo, etc., le rogamos que nos envíe
+sus cambios en forma de parches o solicitudes de incorporación de cambios y
+nos ayude a mejorar este producto. Si publica su versión modificada, deberá
+publicar también los cambios en el código fuente. De eso trata la licencia
+<ulink url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink>: por
+favor, respétela.</para>
 
-    <para>El desarrollo de WinMerge lo llevan a cabo personas en su tiempo
-libre. Nadie cobra por mejorar WinMerge. Intentamos corregir los errores a
-medida que los encontramos o cuando alguien nos los comunica. Nos esforzamos
-de verdad. Nosotros también usamos WinMerge. Pero no podemos prometer nada
-en cuanto a nuevas funciones. Siempre agradecemos cualquier ayuda con
-WinMerge, ya sea en forma de pruebas, documentación, traducción o
-programación.</para>
+    <para>El desarrollo de WinMerge lo llevan a cabo personas en su tiempo libre.
+Nadie cobra por mejorar WinMerge. Intentamos corregir los errores a medida
+que los encontramos o cuando alguien nos los comunica. Nos esforzamos de
+verdad. Nosotros también usamos WinMerge. Pero no podemos prometer nada en
+cuanto a nuevas funciones. Siempre agradecemos cualquier ayuda con WinMerge,
+ya sea en forma de pruebas, documentación, traducción o programación.</para>
   </section>
 </article>
