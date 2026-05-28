@@ -2362,6 +2362,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// Note : attach buffer again only if both loads succeed
 	m_strBothFilenames.erase();
 
+	m_bHasSyncPoints = false;
+
 	ForEachView([](auto& pView) { pView->DetachFromBuffer(); });
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
