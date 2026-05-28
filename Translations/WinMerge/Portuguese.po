@@ -4,14 +4,14 @@
 # Translators:
 # * Nelson Simão
 # * Lippe35
-# * Hugo Carvalho <hugokarvalho at hotmail dot com>, 2019-2025.
+# * Hugo Carvalho <hugokarvalho at hotmail dot com>, 2019-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2026-02-05 14:59+0000\n"
+"PO-Revision-Date: 2026-05-28 11:50+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:26 Merge.rc:59 Merge.rc:5739
@@ -116,12 +116,12 @@ msgstr "Selecionar diferenças da linha\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "Adicionar aos &Filtros"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "Adicionar ao filtro &de exibição"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -164,9 +164,7 @@ msgid "&Scripts"
 msgstr "Scripts"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:127 Merge.rc:351 Merge.rc:462 Merge.rc:672 Merge.rc:677
-#: Merge.rc:884 Merge.rc:896 Merge.rc:903 Merge.rc:960 Merge.rc:1206
-#: Merge.rc:5312
+#: Merge.rc:127 Merge.rc:351 Merge.rc:462 Merge.rc:672 Merge.rc:677 Merge.rc:884 Merge.rc:896 Merge.rc:903 Merge.rc:960 Merge.rc:1206 Merge.rc:5312
 msgid "< Empty >"
 msgstr "< Vazio >"
 
@@ -228,22 +226,22 @@ msgstr "Ajustar automaticamente todas as colunas"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:152 Merge.rc:5575
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "&Filtrar por esta coluna"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:154 Merge.rc:1876
 msgid "&Text..."
-msgstr ""
+msgstr "&Texto..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:155 Merge.rc:1877
 msgid "&Number..."
-msgstr ""
+msgstr "&Número..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156 Merge.rc:1878
 msgid "&Date/Time..."
-msgstr ""
+msgstr "&Data/Hora..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
@@ -266,8 +264,7 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "Deteção de Ins&erção/Eliminação"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:187 Merge.rc:220 Merge.rc:227 Merge.rc:371 Merge.rc:522
-#: Merge.rc:769
+#: Merge.rc:187 Merge.rc:220 Merge.rc:227 Merge.rc:371 Merge.rc:522 Merge.rc:769
 msgid "&None"
 msgstr "&Nenhum"
 
@@ -517,42 +514,34 @@ msgid "&New"
 msgstr "&Novo"
 
 #. IDR_POPUP_LINEFILTERMENU
-#: Merge.rc:325 Merge.rc:334 Merge.rc:428 Merge.rc:437 Merge.rc:605
-#: Merge.rc:614 Merge.rc:666 Merge.rc:954 Merge.rc:1180 Merge.rc:1193
-#: Merge.rc:1931
+#: Merge.rc:325 Merge.rc:334 Merge.rc:428 Merge.rc:437 Merge.rc:605 Merge.rc:614 Merge.rc:666 Merge.rc:954 Merge.rc:1180 Merge.rc:1193 Merge.rc:1931
 msgid "&Text"
 msgstr "&Texto"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:326 Merge.rc:335 Merge.rc:429 Merge.rc:438 Merge.rc:606
-#: Merge.rc:615 Merge.rc:667 Merge.rc:955 Merge.rc:1181 Merge.rc:1194
+#: Merge.rc:326 Merge.rc:335 Merge.rc:429 Merge.rc:438 Merge.rc:606 Merge.rc:615 Merge.rc:667 Merge.rc:955 Merge.rc:1181 Merge.rc:1194
 msgid "T&able"
 msgstr "T&abela"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:327 Merge.rc:336 Merge.rc:430 Merge.rc:439 Merge.rc:607
-#: Merge.rc:616 Merge.rc:668 Merge.rc:956 Merge.rc:1182 Merge.rc:1195
+#: Merge.rc:327 Merge.rc:336 Merge.rc:430 Merge.rc:439 Merge.rc:607 Merge.rc:616 Merge.rc:668 Merge.rc:956 Merge.rc:1182 Merge.rc:1195
 msgid "&Binary"
 msgstr "&Binário"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608
-#: Merge.rc:617 Merge.rc:669 Merge.rc:957 Merge.rc:1183 Merge.rc:1196
-#: Merge.rc:5407
+#: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608 Merge.rc:617 Merge.rc:669 Merge.rc:957 Merge.rc:1183 Merge.rc:1196 Merge.rc:5407
 msgid "&Image"
 msgstr "Imagem"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609
-#: Merge.rc:618 Merge.rc:670 Merge.rc:958 Merge.rc:1184 Merge.rc:1197
+#: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609 Merge.rc:618 Merge.rc:670 Merge.rc:958 Merge.rc:1184 Merge.rc:1197
 msgid "&Webpage"
 msgstr "&Página web"
 
 #. IDR_POPUP_NEW, ID_FILE_NEW_FOLDER
-#: Merge.rc:330 Merge.rc:339 Merge.rc:433 Merge.rc:442 Merge.rc:610
-#: Merge.rc:619 Merge.rc:1185
+#: Merge.rc:330 Merge.rc:339 Merge.rc:433 Merge.rc:442 Merge.rc:610 Merge.rc:619 Merge.rc:1185
 msgid "&Folder"
-msgstr ""
+msgstr "&Pasta"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:332 Merge.rc:435 Merge.rc:612
@@ -932,7 +921,7 @@ msgstr "&Fechar todas as subpastas"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:503
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "Mostrar pastas &vazias"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:505 Merge.rc:715
@@ -1132,7 +1121,7 @@ msgstr "Recomparar como"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:671 Merge.rc:959 Merge.rc:1198
 msgid "A&rchive"
-msgstr ""
+msgstr "A&rquivo"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:684
@@ -1400,14 +1389,12 @@ msgid "Copy from &Left to"
 msgstr "Copiar da &esquerda para"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:818 Merge.rc:829 Merge.rc:834 Merge.rc:845 Merge.rc:990
-#: Merge.rc:2801 Merge.rc:3093
+#: Merge.rc:818 Merge.rc:829 Merge.rc:834 Merge.rc:845 Merge.rc:990 Merge.rc:2801 Merge.rc:3093
 msgid "&Middle"
 msgstr "&Meio"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:819 Merge.rc:824 Merge.rc:835 Merge.rc:840 Merge.rc:991
-#: Merge.rc:2802 Merge.rc:3095
+#: Merge.rc:819 Merge.rc:824 Merge.rc:835 Merge.rc:840 Merge.rc:991 Merge.rc:2802 Merge.rc:3095
 msgid "&Right"
 msgstr "&Direita"
 
@@ -1417,8 +1404,7 @@ msgid "Copy from &Middle to"
 msgstr "Copiar do &meio para"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:823 Merge.rc:828 Merge.rc:839 Merge.rc:844 Merge.rc:989
-#: Merge.rc:2800 Merge.rc:3091
+#: Merge.rc:823 Merge.rc:828 Merge.rc:839 Merge.rc:844 Merge.rc:989 Merge.rc:2800 Merge.rc:3091
 msgid "&Left"
 msgstr "&Esquerda"
 
@@ -1805,8 +1791,7 @@ msgid "Unpacker Settings"
 msgstr "Definições do descompactador"
 
 #. IDS_USERCHOICE_NONE
-#: Merge.rc:1085 Merge.rc:1091 Merge.rc:1832 Merge.rc:1836 Merge.rc:2027
-#: Merge.rc:2031 Merge.rc:5314
+#: Merge.rc:1085 Merge.rc:1091 Merge.rc:1832 Merge.rc:1836 Merge.rc:2027 Merge.rc:2031 Merge.rc:5314
 msgid "<None>"
 msgstr "<None>"
 
@@ -2231,9 +2216,7 @@ msgid "1GB or more"
 msgstr "1GB ou mais"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_RANGE
-#: Merge.rc:1419 Merge.rc:1496 Merge.rc:1548 Merge.rc:1554 Merge.rc:1571
-#: Merge.rc:1597 Merge.rc:1618 Merge.rc:1686 Merge.rc:1752 Merge.rc:1777
-#: Merge.rc:1980
+#: Merge.rc:1419 Merge.rc:1496 Merge.rc:1548 Merge.rc:1554 Merge.rc:1571 Merge.rc:1597 Merge.rc:1618 Merge.rc:1686 Merge.rc:1752 Merge.rc:1777 Merge.rc:1980
 msgid "Custom Range..."
 msgstr "Valores personalizados..."
 
@@ -2603,40 +2586,32 @@ msgid "Add &Difference Condition"
 msgstr "Adicionar condição de &diferença"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_EOL_EQUAL
-#: Merge.rc:1584 Merge.rc:1601 Merge.rc:1622 Merge.rc:1739 Merge.rc:1760
-#: Merge.rc:1785 Merge.rc:1926 Merge.rc:1933 Merge.rc:1938 Merge.rc:1947
-#: Merge.rc:1967 Merge.rc:1990
+#: Merge.rc:1584 Merge.rc:1601 Merge.rc:1622 Merge.rc:1739 Merge.rc:1760 Merge.rc:1785 Merge.rc:1926 Merge.rc:1933 Merge.rc:1938 Merge.rc:1947 Merge.rc:1967 Merge.rc:1990
 msgid "Equal"
 msgstr "Igual"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_EOL_NOT_EQUAL
-#: Merge.rc:1585 Merge.rc:1602 Merge.rc:1623 Merge.rc:1740 Merge.rc:1761
-#: Merge.rc:1786 Merge.rc:1927 Merge.rc:1934 Merge.rc:1939 Merge.rc:1948
-#: Merge.rc:1968 Merge.rc:1991
+#: Merge.rc:1585 Merge.rc:1602 Merge.rc:1623 Merge.rc:1740 Merge.rc:1761 Merge.rc:1786 Merge.rc:1927 Merge.rc:1934 Merge.rc:1939 Merge.rc:1948 Merge.rc:1968 Merge.rc:1991
 msgid "Not Equal"
 msgstr "Não igual"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_LESS
-#: Merge.rc:1586 Merge.rc:1603 Merge.rc:1741 Merge.rc:1762 Merge.rc:1787
-#: Merge.rc:1940 Merge.rc:1949 Merge.rc:1969
+#: Merge.rc:1586 Merge.rc:1603 Merge.rc:1741 Merge.rc:1762 Merge.rc:1787 Merge.rc:1940 Merge.rc:1949 Merge.rc:1969
 msgid "Less Than"
 msgstr "Menor que"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_LESS_EQUAL
-#: Merge.rc:1587 Merge.rc:1604 Merge.rc:1742 Merge.rc:1763 Merge.rc:1788
-#: Merge.rc:1941 Merge.rc:1950 Merge.rc:1970
+#: Merge.rc:1587 Merge.rc:1604 Merge.rc:1742 Merge.rc:1763 Merge.rc:1788 Merge.rc:1941 Merge.rc:1950 Merge.rc:1970
 msgid "Less Than or Equal to"
 msgstr "Menor ou igual a"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER
-#: Merge.rc:1588 Merge.rc:1605 Merge.rc:1743 Merge.rc:1764 Merge.rc:1789
-#: Merge.rc:1942 Merge.rc:1951 Merge.rc:1971
+#: Merge.rc:1588 Merge.rc:1605 Merge.rc:1743 Merge.rc:1764 Merge.rc:1789 Merge.rc:1942 Merge.rc:1951 Merge.rc:1971
 msgid "Greater Than"
 msgstr "Maior que"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER_EQUAL
-#: Merge.rc:1589 Merge.rc:1606 Merge.rc:1744 Merge.rc:1765 Merge.rc:1790
-#: Merge.rc:1943 Merge.rc:1952 Merge.rc:1972
+#: Merge.rc:1589 Merge.rc:1606 Merge.rc:1744 Merge.rc:1765 Merge.rc:1790 Merge.rc:1943 Merge.rc:1952 Merge.rc:1972
 msgid "Greater Than or Equal to"
 msgstr "Maior ou igual a"
 
@@ -2733,12 +2708,12 @@ msgstr "Alvo: &Tudo"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1651
 msgid "Binary files only"
-msgstr ""
+msgstr "Apenas ficheiros binários"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1652
 msgid "Text files only"
-msgstr ""
+msgstr "Apenas ficheiros de texto"
 
 #. IDS_EOL_NONE
 #: Merge.rc:1663 Merge.rc:1914 Merge.rc:5241
@@ -2798,7 +2773,7 @@ msgstr "Nome &Unicode normalizado"
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_RELPATH
 #: Merge.rc:1817
 msgid "&Relative Path"
-msgstr ""
+msgstr "Caminho &Relativo"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_DATE
 #: Merge.rc:1819
@@ -2823,41 +2798,40 @@ msgstr "Inserir função regexReplace()"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1825 Merge.rc:2020
 msgid "Replace &Lists"
-msgstr ""
+msgstr "&Listas de substituição"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_CREATE_REPLACELIST
 #: Merge.rc:1827 Merge.rc:2022
 msgid "&Create String Replace List and Insert..."
-msgstr ""
+msgstr "&Criar lista de substituição de cadeia de caracteres e inserir..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_CREATE_REGEXREPLACELIST
 #: Merge.rc:1828 Merge.rc:2023
 msgid "Create &Regex Replace List and Insert..."
-msgstr ""
+msgstr "Criar lista de substituição de &Expressão regular e inserir..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1830 Merge.rc:2025
 msgid "&String Replace Lists"
-msgstr ""
+msgstr "Listas de Substituição de &cadeia de caracteres"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1834 Merge.rc:2029
 msgid "Re&gex Replace Lists"
-msgstr ""
+msgstr "Listas de substituição de expressão re&gular"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_STRING_REPLACE_LISTS_FOLDER
 #: Merge.rc:1839 Merge.rc:2034
 msgid "Open String Replace Lists Folder..."
-msgstr ""
+msgstr "Abrir pasta de listas de substituição de cadeia de caracteres..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_REGEX_REPLACE_LISTS_FOLDER
 #: Merge.rc:1840 Merge.rc:2035
 msgid "Open Regex Replace Lists Folder..."
-msgstr ""
+msgstr "Abrir pasta de listas de substituição de expressão regular..."
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
-#: Merge.rc:1842 Merge.rc:2070 Merge.rc:2251 Merge.rc:2270 Merge.rc:2298
-#: Merge.rc:2841
+#: Merge.rc:1842 Merge.rc:2070 Merge.rc:2251 Merge.rc:2270 Merge.rc:2298 Merge.rc:2841
 msgid "Match &case"
 msgstr "Reconhecer maiúsculas/minúsculas"
 
@@ -2919,129 +2893,127 @@ msgstr "&Katakana"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORMALIZEUNICODE
 #: Merge.rc:1860 Merge.rc:2009
 msgid "Normalize &Unicode"
-msgstr ""
+msgstr "Normalizar &Unicode"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1871
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "Adicionar condição de l&inha"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1873
 msgid "L&ine Text..."
-msgstr ""
+msgstr "Texto da l&inha..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874 Merge.rc:1929
 msgid "&Column"
-msgstr ""
+msgstr "&Coluna"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1879 Merge.rc:1954
 msgid "Column: &1"
-msgstr ""
+msgstr "Coluna: &1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1880 Merge.rc:1955
 msgid "Column: &2"
-msgstr ""
+msgstr "Coluna: &2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1881 Merge.rc:1956
 msgid "Column: &3"
-msgstr ""
+msgstr "Coluna: &3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1882 Merge.rc:1957
 msgid "Column: &4"
-msgstr ""
+msgstr "Coluna: &4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &5"
-msgstr ""
+msgstr "Coluna: &5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &6"
-msgstr ""
+msgstr "Coluna: &6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &7"
-msgstr ""
+msgstr "Coluna: &7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &8"
-msgstr ""
+msgstr "Coluna: &8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &9"
-msgstr ""
+msgstr "Coluna: &9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1888 Merge.rc:1963
 msgid "Column: 1&0"
-msgstr ""
+msgstr "Coluna: 1&0"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1890
 msgid "Line L&ength..."
-msgstr ""
+msgstr "Comprimento da linha..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1891
 msgid "&Word Count..."
-msgstr ""
+msgstr "Contagem de palavras..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1892
 msgid "Line &Number"
-msgstr ""
+msgstr "&Número da linha"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1894
 msgid "&Odd Lines"
-msgstr ""
+msgstr "Linhas ímpares"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1895
 msgid "&Even Lines"
-msgstr ""
+msgstr "Linhas &pares"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1898 Merge.rc:1982
 msgid "Line &Status"
-msgstr ""
+msgstr "&Estado da Linha"
 
 #. IDS_DIFFERENT
-#: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
-#: Merge.rc:5000
+#: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031 Merge.rc:5000
 msgid "Different"
 msgstr "Diferente"
 
 #. IDS_IDENTICAL
-#: Merge.rc:1901 Merge.rc:1985 Merge.rc:2856 Merge.rc:3009 Merge.rc:3070
-#: Merge.rc:4990
+#: Merge.rc:1901 Merge.rc:1985 Merge.rc:2856 Merge.rc:3009 Merge.rc:3070 Merge.rc:4990
 msgid "Identical"
 msgstr "Idêntico"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_TRIVIAL
 #: Merge.rc:1902 Merge.rc:1986
 msgid "Trivial"
-msgstr ""
+msgstr "Trivial"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EXISTS
 #: Merge.rc:1904
 msgid "Exists"
-msgstr ""
+msgstr "Existe"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1905
 msgid "Missing"
-msgstr ""
+msgstr "Em falta"
 
 #. IDS_MOVED
 #: Merge.rc:1906 Merge.rc:5018
@@ -3051,47 +3023,47 @@ msgstr "Movidos"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1907
 msgid "Bookmarked"
-msgstr ""
+msgstr "Marcado"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1909 Merge.rc:1988
 msgid "&EOL"
-msgstr ""
+msgstr "&Fim de Linha"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1924
 msgid "L&ine Text"
-msgstr ""
+msgstr "Texto da l&inha"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1936
 msgid "&Number"
-msgstr ""
+msgstr "&Número"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
+msgstr "&Data/Hora"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965
 msgid "Line L&ength"
-msgstr ""
+msgstr "Co&mprimento da linha"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1999
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "&Transformar Linha/Coluna"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
 msgid "&Trim"
-msgstr ""
+msgstr "Aparar"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2002
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "Normalizar espaços em branco"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2003 Merge.rc:2279
@@ -3101,77 +3073,77 @@ msgstr "Substituir"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2004
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "Substituir por &expressão regular"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2038
 msgid "&Refine Current Filter"
-msgstr ""
+msgstr "&Refinar filtro atual"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2040
 msgid "Add Con&text Lines"
-msgstr ""
+msgstr "Adicionar linhas de con&texto"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2048
 msgid "Filter by &Occurrence"
-msgstr ""
+msgstr "Filtrar por &ocorrência"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2050
 msgid "&First"
-msgstr ""
+msgstr "Primeiro"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2051
 msgid "&Last"
-msgstr ""
+msgstr "Último"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2052
 msgid "First &5 Matches"
-msgstr ""
+msgstr "&5 primeiras correspondências"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2053
 msgid "After First &5"
-msgstr ""
+msgstr "Depois das &5 primeiras"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2056
 msgid "By &Block"
-msgstr ""
+msgstr "Por &bloco"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2058
 msgid "&Range"
-msgstr ""
+msgstr "Inte&rvalo"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2060 Merge.rc:2066
 msgid "&Inside..."
-msgstr ""
+msgstr "Por dentro..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2061 Merge.rc:2067
 msgid "&Outside..."
-msgstr ""
+msgstr "P&or fora..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2064
 msgid "Create &Range"
-msgstr ""
+msgstr "Criar inte&rvalo"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2072
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "Combi&nar: E"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2073
 msgid "Combine: &OR"
-msgstr ""
+msgstr "Combinar: &Ou"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2188
@@ -3184,12 +3156,10 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "Visite a página inicial do WinMerge!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:2194 Merge.rc:2336 Merge.rc:2687 Merge.rc:2711 Merge.rc:2725
-#: Merge.rc:2753 Merge.rc:2844 Merge.rc:2873 Merge.rc:2889 Merge.rc:2950
-#: Merge.rc:2967 Merge.rc:2979 Merge.rc:3143 Merge.rc:3203 Merge.rc:3338
-#: Merge.rc:3380 Merge.rc:3423 Merge.rc:3473
+#: Merge.rc:2194 Merge.rc:2336 Merge.rc:2687 Merge.rc:2711 Merge.rc:2725 Merge.rc:2753 Merge.rc:2844 Merge.rc:2873 Merge.rc:2889 Merge.rc:2950 Merge.rc:2967 Merge.rc:2979 Merge.rc:3143
+#: Merge.rc:3203 Merge.rc:3338 Merge.rc:3380 Merge.rc:3423 Merge.rc:3473
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #. IDD_ABOUTBOX, IDC_OPEN_CONTRIBUTORS
 #: Merge.rc:2195
@@ -3287,11 +3257,8 @@ msgid "Se&lect..."
 msgstr "Se&lecionar..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:2237 Merge.rc:2257 Merge.rc:2281 Merge.rc:2302 Merge.rc:2337
-#: Merge.rc:2688 Merge.rc:2712 Merge.rc:2726 Merge.rc:2754 Merge.rc:2807
-#: Merge.rc:2845 Merge.rc:2874 Merge.rc:2890 Merge.rc:2951 Merge.rc:2968
-#: Merge.rc:2980 Merge.rc:3144 Merge.rc:3204 Merge.rc:3363 Merge.rc:3381
-#: Merge.rc:3424 Merge.rc:3474
+#: Merge.rc:2237 Merge.rc:2257 Merge.rc:2281 Merge.rc:2302 Merge.rc:2337 Merge.rc:2688 Merge.rc:2712 Merge.rc:2726 Merge.rc:2754 Merge.rc:2807 Merge.rc:2845 Merge.rc:2874 Merge.rc:2890
+#: Merge.rc:2951 Merge.rc:2968 Merge.rc:2980 Merge.rc:3144 Merge.rc:3204 Merge.rc:3363 Merge.rc:3381 Merge.rc:3424 Merge.rc:3474
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -3546,10 +3513,8 @@ msgid "Language:"
 msgstr "Idioma:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2375 Merge.rc:2555 Merge.rc:2577 Merge.rc:2608 Merge.rc:2625
-#: Merge.rc:2642 Merge.rc:2650 Merge.rc:2686 Merge.rc:2710 Merge.rc:2909
-#: Merge.rc:2920 Merge.rc:2929 Merge.rc:3163 Merge.rc:3198 Merge.rc:3261
-#: Merge.rc:3286 Merge.rc:3300 Merge.rc:3314 Merge.rc:3330
+#: Merge.rc:2375 Merge.rc:2555 Merge.rc:2577 Merge.rc:2608 Merge.rc:2625 Merge.rc:2642 Merge.rc:2650 Merge.rc:2686 Merge.rc:2710 Merge.rc:2909 Merge.rc:2920 Merge.rc:2929 Merge.rc:3163
+#: Merge.rc:3198 Merge.rc:3261 Merge.rc:3286 Merge.rc:3300 Merge.rc:3314 Merge.rc:3330
 msgid "Defaults"
 msgstr "Predefinições"
 
@@ -3699,8 +3664,7 @@ msgid "User 2:"
 msgstr "Utilizador 2:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2465 Merge.rc:2467 Merge.rc:2469 Merge.rc:2471 Merge.rc:2473
-#: Merge.rc:2475 Merge.rc:2477 Merge.rc:2479 Merge.rc:2481
+#: Merge.rc:2465 Merge.rc:2467 Merge.rc:2469 Merge.rc:2471 Merge.rc:2473 Merge.rc:2475 Merge.rc:2477 Merge.rc:2479 Merge.rc:2481
 msgid "Bold"
 msgstr "Negrito"
 
@@ -4277,92 +4241,92 @@ msgstr "Expressão:"
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2850
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Filtrar por resultado da comparação"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2853
 msgid "&Include"
-msgstr ""
+msgstr "&Incluir"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2854
 msgid "&Exclude"
-msgstr ""
+msgstr "&Excluir"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2855
 msgid "Comparison Results"
-msgstr ""
+msgstr "Resultados da comparação"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2858
 msgid "Left only"
-msgstr ""
+msgstr "Apenas à esquerda"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2859
 msgid "Right only"
-msgstr ""
+msgstr "Apenas à direita"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2860
 msgid "Skipped"
-msgstr ""
+msgstr "Ignorado"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2861
 msgid "Middle only"
-msgstr ""
+msgstr "Apenas no meio"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2862
 msgid "Left only (different)"
-msgstr ""
+msgstr "Apenas à esquerda (diferente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2864
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Apenas no meio (diferente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2866
 msgid "Right only (different)"
-msgstr ""
+msgstr "Apenas à direita (diferente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2868
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Apenas à esquerda (em falta)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2869
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Apenas no meio (em falta)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2871
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Apenas à direita (em falta)"
 
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2879
 msgid "Match Inside/Outside Filter Expressions"
-msgstr ""
+msgstr "Corresponder expressões de filtro por Dentro/Por fora"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2882
 msgid "&Start filter:"
-msgstr ""
+msgstr "Iniciar filtro:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2885
 msgid "&End filter:"
-msgstr ""
+msgstr "&Encerrar filtro:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2888
 msgid "Lines between start and end filter matches will be included."
-msgstr ""
+msgstr "Linhas encontradas entre início e final de filtro serão incluídas."
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2895 Merge.rc:3087 Merge.rc:4504
@@ -4941,7 +4905,7 @@ msgstr "&Teclas de deteção de renomear/movimentar:"
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3259
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Unir renom&eações e movimentações:"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
 #: Merge.rc:3270 Merge.rc:3275 Merge.rc:3278
@@ -5471,7 +5435,7 @@ msgstr "Opções de ficheiros (*.ini)|*.ini|Todos os ficheiros (*.*)|*.*||"
 #. IDS_REPLACELIST_FILES
 #: Merge.rc:4559
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Valores separados por tabulação (*.tsv;*.txt)|*.tsv;*.txt|Todos os ficheiros (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4565
@@ -5886,7 +5850,7 @@ msgstr "Ficheiro não encontrado: %1"
 #: Merge.rc:4719
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "Pasta não encontrada: %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4720
@@ -6808,7 +6772,7 @@ msgstr " (o da esquerda e o do meio são idênticos)"
 #. IDS_PATH_MISMATCH
 #: Merge.rc:5006
 msgid " (paths differ)"
-msgstr ""
+msgstr " (os caminhos diferem)"
 
 #. IDS_TEXT_FILES_DIFF
 #: Merge.rc:5007
@@ -6856,12 +6820,12 @@ msgstr "Detetar renomeações e movimentações"
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
 #: Merge.rc:5015
 msgid "Merge renames"
-msgstr ""
+msgstr "Unir renomeações"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
 #: Merge.rc:5016
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Unir renomeações e movimentações"
 
 #. IDS_RENAMED
 #: Merge.rc:5017
@@ -6887,8 +6851,14 @@ msgstr "%1 (conjunto %2): "
 
 #. IDS_SWITCH_FLAT_MODE
 #: Merge.rc:5022
-msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgid ""
+"Some moved items have been merged.\n"
+"In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
+"Switch to Flat Mode?"
 msgstr ""
+"Alguns itens movidos foram unidos.\n"
+"No Modo Árvore, esses itens podem aparecer em posições que não refletem a estrutura real da pasta, o que pode causar confusão.\n"
+"Alternar para o Modo Nivelado?"
 
 #. IDS_ELAPSED_TIME
 #: Merge.rc:5028
@@ -8154,7 +8124,7 @@ msgstr "Permitir apenas uma execução"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5521
 msgid "Clipboard &History"
-msgstr ""
+msgstr "&Histórico da área de transferência"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5522
@@ -8326,7 +8296,7 @@ msgstr "Comparar %1"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
 #: Merge.rc:5576
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "&Filtrar por esta coluna..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
 #: Merge.rc:5581
@@ -8384,7 +8354,7 @@ msgstr "Nova comparação de páginas web"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5601
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Nova comparação de pastas"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5602
@@ -8674,7 +8644,7 @@ msgstr "Nome de propriedade inválido"
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
 #: Merge.rc:5679
 msgid "Invalid directive"
-msgstr ""
+msgstr "Diretiva inválida"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5684
@@ -8739,22 +8709,22 @@ msgstr "Não contém (regex)"
 #. IDS_FILTER_OP_LIKE
 #: Merge.rc:5696
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Correspondência (caractere)"
 
 #. IDS_FILTER_OP_NOT_LIKE
 #: Merge.rc:5697
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Sem correspondência (caractere)"
 
 #. IDS_FILTER_OP_MATCHES
 #: Merge.rc:5698
 msgid "Match (regex)"
-msgstr ""
+msgstr "Correspondência (regex)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
 #: Merge.rc:5699
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Sem correspondência (regex)"
 
 #. IDS_COLORMODE_LIGHT
 #: Merge.rc:5704
@@ -8784,13 +8754,35 @@ msgstr "O WinMerge detetou uma falha anterior. Se possível, informe-nos sobre i
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
 #: Merge.rc:5721
-msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgid ""
+"# Regex replacement list\r\n"
+"# Format: regex<TAB>replacement\r\n"
+"# Backreferences like $1, $2 are supported\r\n"
+"\r\n"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 msgstr ""
+"# Lista de substituições de expressões regulares\r\n"
+"# Formato: expressão regular<TAB>substituição\r\n"
+"# São suportadas referências retroativas como $1, $2\r\n"
+"\r\n"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
 #: Merge.rc:5722
-msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgid ""
+"# Replacement list\r\n"
+"# Format: search<TAB>replacement\r\n"
+"# Lines starting with # are ignored\r\n"
+"\r\n"
+"from1\tto1\r\n"
+"from2\tto2\r\n"
 msgstr ""
+"# Lista de substituições\r\n"
+"# Formato: pesquisar<TAB>substituição\r\n"
+"# As linhas que começam com # são ignoradas\r\n"
+"\r\n"
+"de1\tpara1\r\n"
+"de2\tpara2\r\n"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
@@ -8970,7 +8962,7 @@ msgstr "Embelezar YAML"
 #. IDS_PLUGIN_MENU_CAPTION28
 #: Strings.rc:87
 msgid "Prettify PO"
-msgstr ""
+msgstr "Optimizar PO"
 
 #. IDS_PLUGIN_MENU_CAPTION29
 #: Strings.rc:88
@@ -9015,7 +9007,7 @@ msgstr "Validar HTML"
 #. IDS_PLUGIN_MENU_CAPTION37
 #: Strings.rc:100
 msgid "Validate PO"
-msgstr ""
+msgstr "Validar PO"
 
 #. IDS_PLUGIN_MENU_CAPTION38
 #: Strings.rc:101
@@ -9045,7 +9037,7 @@ msgstr "Remover escape de ficheiros de propriedades Java"
 #. IDS_PLUGIN_MENU_CAPTION43
 #: Strings.rc:106
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Descompilar Java (CFR)"
 
 #. IDS_PLUGIN_DESCRIPTION1
 #: Strings.rc:111
@@ -9209,8 +9201,12 @@ msgstr ""
 "Argumentos: as opções de filtro ou linha de comandos passadas para o comando yq."
 
 #: Strings.rc:146
-msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgid ""
+"PO Prettier (gettext msgcat).\r\n"
+"Arguments: msgcat command line options."
 msgstr ""
+"PO Optimizado (gettext msgcat).\r\n"
+"Argumentos: opções da linha de comandos do msgcat."
 
 #: Strings.rc:148
 msgid ""
@@ -9277,8 +9273,12 @@ msgstr ""
 "Argumentos: opções de linha de comandos passadas para o comando tidy."
 
 #: Strings.rc:168
-msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgid ""
+"PO Validator (gettext msgfmt).\r\n"
+"Arguments: msgfmt command line options."
 msgstr ""
+"Validador PO (gettext msgfmt).\r\n"
+"Argumentos: opções da linha de comandos do msgfmt."
 
 #: Strings.rc:170
 msgid ""
@@ -9368,7 +9368,7 @@ msgid ""
 "HTTP URL Scheme Handler (curl).\r\n"
 "Arguments: curl command line options."
 msgstr ""
-"Gestão do esquema HTTP URL com o curl. \n"
+"Gestão do esquema HTTP URL com o curl. \r\n"
 "Argumentos: opções de linha de comandos passadas para o comando curl."
 
 #: Strings.rc:199
@@ -9376,7 +9376,7 @@ msgid ""
 "Windows Registry URL Scheme Handler.\r\n"
 "Arguments: reg.exe command line options."
 msgstr ""
-"Gestão do esquema URL do registo do Windows.\n"
+"Gestão do esquema URL do registo do Windows.\r\n"
 "Argumentos: opções de linha de comandos passadas para o comando reg.exe."
 
 #. IDS_PLUGIN_DESCRIPTION54
@@ -9405,12 +9405,22 @@ msgstr "Remover e mostrar ficheiros de propriedades Java com escape."
 
 #. IDS_PLUGIN_DESCRIPTION58
 #: Strings.rc:204
-msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgid ""
+"Java decompiler (CFR).\r\n"
+"Decompiles .class files into readable Java source code.\r\n"
+"Arguments: CFR command line options."
 msgstr ""
+"Descompilador Java (CFR).\r\n"
+"Descompila ficheiros .class em código-fonte Java legível.\r\n"
+"Argumentos: opções de linha de comandos do CFR."
 
 #: Strings.rc:206
-msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+msgid ""
+"Clipboard URL Scheme Handler (cliphcat).\r\n"
+"Arguments: cliphcat command line options."
 msgstr ""
+"Gestor do esquema de URL da área de transferência (cliphcat).\r\n"
+"Argumentos: opções da linha de comandos do cliphcat."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
@@ -9485,7 +9495,7 @@ msgstr "Substituir as quebras de linha nas fórmulas por espaços"
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR15
 #: Strings.rc:229
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Incluir o número de ordem da folha no nome do ficheiro"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR5
 #: Strings.rc:234 Strings.rc:245 Strings.rc:265 Strings.rc:277
