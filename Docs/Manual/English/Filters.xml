@@ -2548,7 +2548,7 @@ Pekka Himanen</screen></para>
               </row>
               <row>
                 <entry><userinput>le:Different or Trivial</userinput></entry>
-                <entry>Shows differences, excluding whitespace-only changes</entry>
+                <entry>Shows all differences, including ignored differences</entry>
               </row>
               <row>
                 <entry><userinput>le:matchContext(Different, 3, 3)</userinput></entry>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-05-24 13:43+0900\n"
+"POT-Creation-Date: 2026-05-30 19:56+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18351,7 +18351,7 @@ msgstr "הזן <userinput>UTF-8</userinput> בשדה."
 #: English/Filters.xml:2551
 #, fuzzy
 #| msgid "Line differences with Whitespace: Ignore change"
-msgid "Shows differences, excluding whitespace-only changes"
+msgid "Shows all differences, including ignored differences"
 msgstr "הבדלי שורות עם רווח לבן: התעלם משינוי"
 
 #. type: Content of: <article><section><section><section><informaltable><tgroup><tbody><row><entry>
