@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-05-24 13:43+0900\n"
+"POT-Creation-Date: 2026-05-30 19:56+0900\n"
 "PO-Revision-Date: 2026-05-24 13:46+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -19227,8 +19227,8 @@ msgstr "<userinput>le:Different or Trivial</userinput>"
 
 #. type: Content of: <article><section><section><section><informaltable><tgroup><tbody><row><entry>
 #: English/Filters.xml:2551
-msgid "Shows differences, excluding whitespace-only changes"
-msgstr "空白のみの変更を除く差異を表示します"
+msgid "Shows all differences, including ignored differences"
+msgstr "無視された差異を含むすべての差異を表示します"
 
 #. type: Content of: <article><section><section><section><informaltable><tgroup><tbody><row><entry>
 #: English/Filters.xml:2554

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-05-24 13:43+0900\n"
+"POT-Creation-Date: 2026-05-30 19:56+0900\n"
 "PO-Revision-Date: 2026-05-02 14:40-0400\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
@@ -20069,7 +20069,7 @@ msgstr "Exemple : <userinput>f:(abc||def)\\.txt$</userinput>"
 #: English/Filters.xml:2551
 #, fuzzy
 #| msgid "Line differences with Whitespace: Ignore change"
-msgid "Shows differences, excluding whitespace-only changes"
+msgid "Shows all differences, including ignored differences"
 msgstr "Différences de lignes avec Espaces : Ignorer les modifications"
 
 #. type: Content of: <article><section><section><section><informaltable><tgroup><tbody><row><entry>
