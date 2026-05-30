@@ -22,7 +22,7 @@
 #include "xdiff_gnudiff_compat.h"
 #include "unicoder.h"
 #include "DiffFileData.h"
-#include "../../../Externals/crystaledit/editlib/TreeSitterWrapper.h"
+#include "../TreeSitterWrapper.h"
 
 namespace CompareEngines
 {

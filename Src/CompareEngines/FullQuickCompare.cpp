@@ -18,7 +18,7 @@
 #include "Logger.h"
 #include "TFile.h"
 #include "coretools.h"
-#include "../../../Externals/crystaledit/editlib/TreeSitterWrapper.h"
+#include "../TreeSitterWrapper.h"
 
 namespace CompareEngines
 {

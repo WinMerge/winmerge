@@ -39,7 +39,7 @@
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
 #include "cio.h"
-#include "../Externals/crystaledit/editlib/TreeSitterWrapper.h"
+#include "TreeSitterWrapper.h"
 
 using Poco::Exception;
 

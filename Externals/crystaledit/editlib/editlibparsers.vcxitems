@@ -202,14 +202,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TreeSitterParser.cpp">
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TreeSitterWrapper.cpp">
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\fpattern.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -221,8 +213,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)crystallineparser.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TreeSitterParser.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TreeSitterWrapper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\fpattern.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\string_util.h" />
   </ItemGroup>

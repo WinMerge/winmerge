@@ -54,8 +54,8 @@
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
 #include "Logger.h"
-#include "../Externals/crystaledit/editlib/TreeSitterParser.h"
-#include "../Externals/crystaledit/editlib/TreeSitterWrapper.h"
+#include "TreeSitterParser.h"
+#include "TreeSitterWrapper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
