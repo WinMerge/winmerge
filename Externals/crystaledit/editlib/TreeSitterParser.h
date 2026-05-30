@@ -36,7 +36,7 @@ typedef struct TSTree TSTree;
 typedef struct TSQuery TSQuery;
 typedef struct TSLanguage TSLanguage;
 
-class CCrystalTextBuffer;
+class ITextBuffer;
 
 /**
  * @brief Manages a tree-sitter grammar loaded from a DLL.
@@ -177,7 +177,7 @@ public:
 
     /**
      * @brief Parse (or re-parse) the full document.
-     * @param ppszLines  Array of line pointers (from CCrystalTextBuffer).
+     * @param ppszLines  Array of line pointers (from ITextBuffer).
      * @param pnLineLengths  Array of line lengths.
      * @param nLineCount  Number of lines in the document.
      */
@@ -203,15 +203,15 @@ public:
      *
      * @param pBuf  The text buffer that was edited.
      */
-    void NotifyEdit(class CCrystalTextBuffer* pBuf);
+    void NotifyEdit(ITextBuffer* pBuf);
 
     /**
      * @brief Ensure the document is parsed and cache is up-to-date.
-     * @param pView  The text view to read line data from (if reparse needed).
+     * @param pBuf  The text buffer to read line data from (if reparse needed).
      *
      * Called lazily from ParseLine. Only reparses if marked dirty.
      */
-    void EnsureParsed(class CCrystalTextBuffer* pBuf);
+    void EnsureParsed(ITextBuffer* pBuf);
 
     /**
      * @brief Get the cached color blocks for a specific line.
@@ -261,14 +261,14 @@ public:
 
     bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
 
-    /**
-     * @brief Convenience: parse document from a text buffer.
-     * @param pBuffer  The text buffer to read line data from.
-     */
-    void ParseFromBuffer(class CCrystalTextBuffer* pBuffer);
+	/**
+	 * @brief Convenience: parse document from a text buffer.
+	 * @param pBuffer  The text buffer to read line data from.
+	 */
+	void ParseFromBuffer(ITextBuffer* pBuffer);
 
-	void SetBuffer(class CCrystalTextBuffer* pBuffer) { m_pBuffer = pBuffer; }
-	CCrystalTextBuffer* GetBuffer() const { return m_pBuffer; }
+	void SetBuffer(ITextBuffer* pBuffer) { m_pBuffer = pBuffer; }
+	ITextBuffer* GetBuffer() const { return m_pBuffer; }
 
 private:
     void EnsureParser();
@@ -362,9 +362,9 @@ private:
         uint32_t    endByte;
     };
 
-    std::vector<TagDef> m_tagDefs;
-    std::vector<TagRef> m_tagRefs;
-	CCrystalTextBuffer* m_pBuffer; // Needed to get line/char info for unresolved references
+	std::vector<TagDef> m_tagDefs;
+	std::vector<TagRef> m_tagRefs;
+	ITextBuffer* m_pBuffer; // Needed to get line/char info for unresolved references
 };
 
 

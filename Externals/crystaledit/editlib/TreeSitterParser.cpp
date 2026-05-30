@@ -8,9 +8,11 @@
 //  SPDX-License-Identifier: GPL-2.0-or-later
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
+#include <Windows.h>
 #include "TreeSitterParser.h"
-#include "ccrystaltextbuffer.h"
+#include "ITextBuffer.h"
+#include "utils/ctchar.h"
 
 #include <tree_sitter/api.h>
 
@@ -448,7 +450,7 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
  *
  * Falls back to a simple MarkDirty() if the tree or undo info is unavailable.
  */
-void CTreeSitterParser::NotifyEdit(CCrystalTextBuffer* pBuf)
+void CTreeSitterParser::NotifyEdit(ITextBuffer* pBuf)
 {
     m_bDirty = true;
 
@@ -685,7 +687,7 @@ void CTreeSitterParser::NotifyEdit(CCrystalTextBuffer* pBuf)
  * Called lazily from ParseLine during the paint cycle. This means
  * we reparse at most once per paint, not once per keystroke.
  */
-void CTreeSitterParser::EnsureParsed(CCrystalTextBuffer* pBuffer)
+void CTreeSitterParser::EnsureParsed(ITextBuffer* pBuffer)
 {
     if (m_bDirty && m_pLang)
     {
@@ -1765,7 +1767,7 @@ void TreeSitterRegistry::RegisterExtension(const std::wstring& sExt, const std::
 /**
  * @brief Convenience: parse document from a text buffer.
  */
-void CTreeSitterParser::ParseFromBuffer(CCrystalTextBuffer* pBuffer)
+void CTreeSitterParser::ParseFromBuffer(ITextBuffer* pBuffer)
 {
     if (!pBuffer)
         return;
@@ -1995,7 +1997,7 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos
 
     auto IsIdentChar = [](tchar_t ch)
     {
-        return _istalnum(ch) || ch == _T('_') || ch == _T('`') || ch == _T('\'');
+        return tc::istalnum(ch) || ch == _T('_') || ch == _T('`') || ch == _T('\'');
     };
 
     int nIndex = nCharPos;
