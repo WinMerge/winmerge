@@ -450,20 +450,13 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
  *
  * Falls back to a simple MarkDirty() if the tree or undo info is unavailable.
  */
-void CTreeSitterParser::NotifyEdit(ITextBuffer* pBuf)
+void CTreeSitterParser::NotifyEdit(const TextEdit& textEdit)
 {
     m_bDirty = true;
 
     // If we don't have a tree, there's nothing to edit incrementally
-    if (!m_pTree || !pBuf || !pBuf->CanUndo())
+    if (!m_pTree)
         return;
-
-    int nUndoPos = pBuf->GetUndoPosition();
-    if (nUndoPos <= 0)
-        return;
-
-    UndoRecord ur = pBuf->GetUndoRecord(nUndoPos - 1);
-    bool bInsert = (ur.m_dwFlags & UNDO_INSERT) != 0;
 
     // Convert CEPoint (char-based, line/col) to UTF-8 byte offsets.
     // m_lineUtf8 holds the per-line UTF-8 from the previous parse.
@@ -588,26 +581,26 @@ void CTreeSitterParser::NotifyEdit(ITextBuffer* pBuf)
         return pt;
     };
 
-    TSInputEdit edit;
-    memset(&edit, 0, sizeof(edit));
+    TSInputEdit tsEdit;
+    memset(&tsEdit, 0, sizeof(tsEdit));
 
-    if (bInsert)
+    if (textEdit.bInsert)
     {
         // Insert: old range is empty (start == old_end), new range is the inserted text
-        edit.start_byte = charPosToByteOffset(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
-        edit.old_end_byte = edit.start_byte;
-        edit.start_point = charPosToTSPoint(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
-        edit.old_end_point = edit.start_point;
+        tsEdit.start_byte = charPosToByteOffset(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
+        tsEdit.old_end_byte = tsEdit.start_byte;
+        tsEdit.start_point = charPosToTSPoint(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
+        tsEdit.old_end_point = tsEdit.start_point;
 
         // For new_end, we need the end position after insert.
-        // The UndoRecord's m_ptEndPos gives us the end position in the *new* document.
+        // The TextEdit's ptEndPos gives us the end position in the *new* document.
         // But our m_lineUtf8 is from the *old* document, so we can't use
         // charPosToByteOffset for the end position directly.
         // Instead, compute new_end_byte = start_byte + utf8_length_of_inserted_text.
         // Normalize to LF-only: ParseDocument() concatenates lines with '\n' (no '\r'),
         // so '\r' bytes must be excluded from all byte-offset calculations.
-        const tchar_t* pInsText = ur.GetText();
-        size_t nInsLen = ur.GetTextLength();
+        const tchar_t* pInsText = textEdit.pszText;
+        size_t nInsLen = textEdit.nTextLength;
 #ifdef _UNICODE
         // Convert to UTF-8 and strip '\r' to match ParseDocument()'s representation.
         int nRawUtf8Len = WideCharToMultiByte(CP_UTF8, 0,
@@ -622,13 +615,13 @@ void CTreeSitterParser::NotifyEdit(ITextBuffer* pBuf)
             insUtf8.erase(std::remove(insUtf8.begin(), insUtf8.end(), '\r'), insUtf8.end());
         }
         int nUtf8Len = static_cast<int>(insUtf8.size());
-        edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(nUtf8Len);
+        tsEdit.new_end_byte = tsEdit.start_byte + static_cast<uint32_t>(nUtf8Len);
 #else
         // Exclude '\r' characters to match ParseDocument()'s LF-only representation.
         int nCrCount = static_cast<int>(std::count(pInsText, pInsText + nInsLen, static_cast<char>('\r')));
-        edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(nInsLen - nCrCount);
+        tsEdit.new_end_byte = tsEdit.start_byte + static_cast<uint32_t>(nInsLen - nCrCount);
 #endif
-        edit.new_end_point.row = static_cast<uint32_t>(ur.m_ptEndPos.y);
+        tsEdit.new_end_point.row = static_cast<uint32_t>(textEdit.ptEndPos.y);
         // For the column, we can compute it from the text: count bytes after last newline
         uint32_t lastNewlineBytes = 0;
         bool foundNewline = false;
@@ -654,31 +647,31 @@ void CTreeSitterParser::NotifyEdit(ITextBuffer* pBuf)
 #endif
         if (foundNewline)
         {
-            edit.new_end_point.column = lastNewlineBytes;
+            tsEdit.new_end_point.column = lastNewlineBytes;
         }
         else
         {
             // No newline in inserted text: column = start column + inserted byte length
-            edit.new_end_point.column = edit.start_point.column +
-                (edit.new_end_byte - edit.start_byte);
+            tsEdit.new_end_point.column = tsEdit.start_point.column +
+                (tsEdit.new_end_byte - tsEdit.start_byte);
         }
     }
     else
     {
         // Delete: old range is the deleted text, new range is empty (start == new_end)
-        edit.start_byte = charPosToByteOffset(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
-        edit.start_point = charPosToTSPoint(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
+        tsEdit.start_byte = charPosToByteOffset(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
+        tsEdit.start_point = charPosToTSPoint(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
 
         // For old_end, we use the old document positions
-        edit.old_end_byte = charPosToByteOffset(ur.m_ptEndPos.y, ur.m_ptEndPos.x);
-        edit.old_end_point = charPosToTSPoint(ur.m_ptEndPos.y, ur.m_ptEndPos.x);
+        tsEdit.old_end_byte = charPosToByteOffset(textEdit.ptEndPos.y, textEdit.ptEndPos.x);
+        tsEdit.old_end_point = charPosToTSPoint(textEdit.ptEndPos.y, textEdit.ptEndPos.x);
 
         // After deletion, the cursor is at start
-        edit.new_end_byte = edit.start_byte;
-        edit.new_end_point = edit.start_point;
+        tsEdit.new_end_byte = tsEdit.start_byte;
+        tsEdit.new_end_point = tsEdit.start_point;
     }
 
-    ts_tree_edit(m_pTree, &edit);
+    ts_tree_edit(m_pTree, &tsEdit);
 }
 
 /**

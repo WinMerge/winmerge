@@ -37,6 +37,7 @@ typedef struct TSQuery TSQuery;
 typedef struct TSLanguage TSLanguage;
 
 class ITextBuffer;
+struct TextEdit;
 
 /**
  * @brief Manages a tree-sitter grammar loaded from a DLL.
@@ -195,15 +196,15 @@ public:
     /**
      * @brief Notify the parser of an edit for incremental reparsing.
      *
-     * Extracts the last edit's position from the buffer's UndoRecord
-     * and calls ts_tree_edit() on the existing tree so tree-sitter
-     * can reuse unchanged subtrees during the next reparse.
+     * Uses the provided TextEdit information and calls ts_tree_edit()
+     * on the existing tree so tree-sitter can reuse unchanged subtrees
+     * during the next reparse.
      *
      * Also marks the cache dirty.
      *
-     * @param pBuf  The text buffer that was edited.
+     * @param textEdit  The edit information (position, type, text).
      */
-    void NotifyEdit(ITextBuffer* pBuf);
+    void NotifyEdit(const TextEdit& textEdit);
 
     /**
      * @brief Ensure the document is parsed and cache is up-to-date.

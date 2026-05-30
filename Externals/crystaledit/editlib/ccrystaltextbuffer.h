@@ -246,10 +246,10 @@ public :
     virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory = true);
 
     //  Undo/Redo
-    bool CanUndo () const override;
+    bool CanUndo () const;
     bool CanRedo () const;
-    int GetUndoPosition () const override { return m_nUndoPosition; }
-    virtual UndoRecord GetUndoRecord (int nUndoPos) const override { return m_aUndoBuf[nUndoPos]; }
+    int GetUndoPosition () const { return m_nUndoPosition; }
+    virtual UndoRecord GetUndoRecord (int nUndoPos) const { return m_aUndoBuf[nUndoPos]; }
     virtual bool Undo (CCrystalTextView * pSource, CEPoint & ptCursorPos);
     virtual bool UndoInsert (CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur);
     virtual bool Redo (CCrystalTextView * pSource, CEPoint & ptCursorPos);

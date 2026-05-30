@@ -21,6 +21,7 @@
 #include "FileTextEncoding.h"
 #include "codepage_detect.h"
 #include "TFile.h"
+#include "TreeSitterParser.h"
 #include <Poco/Exception.h>
 
 using Poco::Exception;
@@ -129,6 +130,20 @@ AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
 		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
 		m_pOwnerDoc->undoTgt.push_back(m_nThisPane);
 		m_pOwnerDoc->curUndo = m_pOwnerDoc->undoTgt.end();
+	}
+
+	// Notify TreeSitter parser of the edit
+	// Get the parser from the document
+	CTreeSitterParser* pTreeSitterParser = m_pOwnerDoc->GetTreeSitterParser(m_nThisPane);
+	if (pTreeSitterParser != nullptr && pTreeSitterParser->HasLanguage())
+	{
+		TextEdit edit;
+		edit.bInsert = bInsert;
+		edit.ptStartPos = ptStartPos;
+		edit.ptEndPos = ptEndPos;
+		edit.pszText = pszText;
+		edit.nTextLength = cchText;
+		pTreeSitterParser->NotifyEdit(edit);
 	}
 }
 

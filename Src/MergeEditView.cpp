@@ -2384,14 +2384,11 @@ void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t
 	CCrystalEditViewEx::OnEditOperation(nAction, pszText, cchText);
 
 	// Notify tree-sitter parser of the edit for incremental reparsing.
-	// This calls ts_tree_edit() on the existing tree so tree-sitter can
-	// reuse unchanged subtrees during the next reparse (deferred to paint).
+	// This is now handled in CDiffTextBuffer::AddUndoRecord() which
+	// calls NotifyEdit() with the TextEdit information directly.
 	// We do NOT reparse here -- doing a full reparse on every keystroke
 	// causes catastrophic memory/CPU usage. Instead, ParseLine() will
 	// call EnsureParsed() lazily when the view is next painted.
-	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
-	if (pParser && pParser->HasLanguage())
-		pParser->NotifyEdit(m_pTextBuffer);
 
 	// augment with additional operations
 
