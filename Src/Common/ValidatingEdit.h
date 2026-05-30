@@ -16,6 +16,8 @@ public:
 	std::function<bool(const CString&, CString&)> m_validator;
 
 	void SetBackColor(COLORREF color);
+	void SetAppliedColor(COLORREF color);
+	void SetApplied(bool applied);
 	void Validate();
 	void OnEnChange();
 
@@ -29,8 +31,11 @@ protected:
 
 	CToolTipCtrl m_toolTip;
 	bool m_hasError;
+	bool m_isApplied;
 	COLORREF m_errorColor;
+	COLORREF m_appliedColor;
 	CString m_errorMessage;
 	CBrush m_errorBrush;
+	CBrush m_appliedBrush;
 	TOOLINFO m_toolItem;
 };

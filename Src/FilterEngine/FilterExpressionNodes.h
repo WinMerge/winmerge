@@ -19,6 +19,7 @@ class DIFFITEM;
 struct ValueType2;
 using ValueType = std::variant<std::monostate, bool, double, int64_t, Poco::Timestamp, std::shared_ptr<Poco::RegularExpression>, std::string, std::shared_ptr<FileContentRef>, std::shared_ptr<std::vector<ValueType2>>>;
 struct ValueType2 { ValueType value; };
+struct FilterEvalContext;
 
 std::string ToStringValue(const ValueType& val);
 
@@ -34,7 +35,7 @@ struct ExprNode
 {
 	virtual ~ExprNode() { }
 	virtual ExprNode* Optimize() { return this; }
-	virtual ValueType Evaluate(const DIFFITEM& di) const = 0;
+	virtual ValueType Evaluate(const FilterEvalContext& ectxt) const = 0;
 };
 
 struct NotNode : public ExprNode
@@ -45,7 +46,7 @@ struct NotNode : public ExprNode
 		delete right;
 	}
 	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
+	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
 	ExprNode* right;
 };
 
@@ -58,7 +59,7 @@ struct OrNode : public ExprNode
 		delete right;
 	}
 	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
+	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
 	ExprNode* left;
 	ExprNode* right;
 };
@@ -72,7 +73,7 @@ struct AndNode : public ExprNode
 		delete right;
 	}
 	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
+	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
 	ExprNode* left;
 	ExprNode* right;
 };
@@ -86,7 +87,7 @@ struct BinaryOpNode : public ExprNode
 		delete right;
 	}
 	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
+	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
 	const FilterExpression* ctxt;
 	int op;
 	ExprNode* left;
@@ -101,17 +102,17 @@ struct NegateNode : public ExprNode
 		delete right;
 	}
 	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
+	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
 	ExprNode* right;
 };
 
 struct FieldNode : public ExprNode
 {
 	FieldNode(const FilterExpression* ctxt, const std::string& v);
-	ValueType Evaluate(const DIFFITEM& di) const override;
+	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
 	const FilterExpression* ctxt;
 	std::string field;
-	std::function<ValueType(const FilterExpression* ctxt, const DIFFITEM& di)> func;
+	std::function<ValueType(const FilterEvalContext& ectxt)> func;
 };
 
 struct FunctionNode : public ExprNode
@@ -119,47 +120,65 @@ struct FunctionNode : public ExprNode
 	FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args);
 	virtual ~FunctionNode();
 	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
-	void SetPropFunc();
-	void SetLeftMiddleRightPropFunc();
+	ValueType Evaluate(const FilterEvalContext& ectxt) const override;
+	void SetPropFunc(int side, int prefixlen);
+	void SetLineAtFunc(int side, int prefixlen, ValueType(*func)(int, const FilterEvalContext&, std::vector<ExprNode*>*));
+	void SetColumnFunc(int side, int prefixlen);
+	void SetColumnAtFunc(int side, int prefixlen, ValueType(*func)(int, const FilterEvalContext&, std::vector<ExprNode*>*));
 	const FilterExpression* ctxt;
 	std::string functionName;
 	std::vector<ExprNode*>* args;
-	std::function<ValueType(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args)> func;
+	std::function<ValueType(const FilterEvalContext& ectxt, std::vector<ExprNode*>* args)> func;
 };
 
 struct BoolLiteral : public ExprNode
 {
 	BoolLiteral(bool v) : value(v) { }
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	bool value;
+};
+
+/**
+ * @brief Represents a null/undefined value literal.
+ * 
+ * Supports both `none` and `undefined` keywords in filter expressions.
+ * Evaluates to std::monostate{} for null value handling.
+ * 
+ * Usage examples:
+ *   property == none
+ *   field != undefined
+ */
+struct NoneLiteral : public ExprNode
+{
+	NoneLiteral() { }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return std::monostate{}; }
 };
 
 struct DoubleLiteral : public ExprNode
 {
 	DoubleLiteral(double v) : value(v) { }
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	double value;
 };
 
 struct IntLiteral : public ExprNode
 {
 	IntLiteral(int64_t v) : value(v) { }
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	int64_t value;
 };
 
 struct StringLiteral : public ExprNode
 {
 	StringLiteral(const std::string& v) : value(v) { }
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	std::string value;
 };
 
 struct SizeLiteral : public ExprNode
 {
 	SizeLiteral(const std::string& v);
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	int64_t value;
 };
 
@@ -167,34 +186,34 @@ struct DateTimeLiteral : public ExprNode
 {
 	DateTimeLiteral(const std::string& v);
 	DateTimeLiteral(const Poco::Timestamp& v) : value(v) { }
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	Poco::Timestamp value;
 };
 
 struct DurationLiteral : public ExprNode
 {
 	DurationLiteral(const std::string& v);
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	int64_t value;
 };
 
 struct VersionLiteral : public ExprNode
 {
 	VersionLiteral(const std::string& v);
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	int64_t value;
 };
 
 struct RegularExpressionLiteral : public ExprNode
 {
 	RegularExpressionLiteral(const std::string& v, bool caseSensitive = false);
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	std::shared_ptr<Poco::RegularExpression> value;
 };
 
 struct ArrayLiteral : public ExprNode
 {
 	ArrayLiteral(std::shared_ptr<std::vector<ValueType2>> v) : value(v) {}
-	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	inline ValueType Evaluate(const FilterEvalContext& ectxt) const override { return value; }
 	std::shared_ptr<std::vector<ValueType2>> value;
 };

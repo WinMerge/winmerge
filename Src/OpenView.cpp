@@ -39,6 +39,8 @@
 #include "OptionsProject.h"
 #include "Merge7zFormatMergePluginImpl.h"
 #include "DarkModeLib.h"
+#include "ClipboardHistory.h"
+#include "ClipboardHistoryMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -61,6 +63,10 @@ IMPLEMENT_DYNCREATE(COpenView, CFormView)
 BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	//{{AFX_MSG_MAP(COpenView)
 	ON_CONTROL_RANGE(BN_CLICKED, IDC_PATH0_BUTTON, IDC_PATH2_BUTTON, OnPathButton)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_PATH0_BUTTON, (OnDropDown<IDC_PATH0_BUTTON, IDR_POPUP_BROWSE>))
+	ON_NOTIFY(BCN_DROPDOWN, IDC_PATH1_BUTTON, (OnDropDown<IDC_PATH1_BUTTON, IDR_POPUP_BROWSE>))
+	ON_NOTIFY(BCN_DROPDOWN, IDC_PATH2_BUTTON, (OnDropDown<IDC_PATH2_BUTTON, IDR_POPUP_BROWSE>))
+	ON_COMMAND_RANGE(ID_EDITOR_CLIPBOARD_FIRST, ID_EDITOR_CLIPBOARD_LAST, OnSelectClipboardItem)
 	ON_BN_CLICKED(IDC_SWAP01_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH1_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP12_BUTTON, (OnSwapButton<IDC_PATH1_COMBO, IDC_PATH2_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP02_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH2_COMBO>))
@@ -153,6 +159,7 @@ COpenView::COpenView()
 	, m_bIgnoreMissingTrailingEol(false)
 	, m_bIgnoreLineBreaks(false)
 	, m_nCompareMethod(0)
+	, m_nLastDropDownButton(0)
 	, m_hTheme(nullptr)
 {
 	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
@@ -202,10 +209,8 @@ void COpenView::OnInitialUpdate()
 	if (!IsVista_OrGreater())
 	{
 		// fallback for XP 
-		SendDlgItemMessage(IDC_OPTIONS, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
-		SendDlgItemMessage(ID_SAVE_PROJECT, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
-		SendDlgItemMessage(IDOK, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
-		SendDlgItemMessage(IDC_SELECT_FILTER, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+		for (int id : { IDC_OPTIONS, ID_SAVE_PROJECT, IDOK, IDC_SELECT_FILTER, IDC_PATH0_BUTTON, IDC_PATH1_BUTTON, IDC_PATH2_BUTTON })
+			SendDlgItemMessage(id, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 	}
 
 	m_sizeOrig = GetTotalSize();
@@ -673,6 +678,22 @@ void COpenView::OnPathButton(UINT nId)
 	}	
 }
 
+/**
+ * @brief Called when clipboard history item is selected from Browse dropdown.
+ */
+void COpenView::OnSelectClipboardItem(UINT nId)
+{
+	const int itemIndex = nId - ID_EDITOR_CLIPBOARD_FIRST;
+	const int pathIndex = m_nLastDropDownButton - IDC_PATH0_BUTTON;
+	if (itemIndex < 0 || static_cast<size_t>(itemIndex) >= m_cachedClipboardItems.size() || pathIndex < 0 || pathIndex >= std::size(m_strPath))
+		return;
+
+	// Set the URL to the path field
+	m_strPath[pathIndex] = ClipboardHistoryMenu::BuildClipboardItemUrl(m_cachedClipboardItems, itemIndex);
+	UpdateData(FALSE);
+	UpdateButtonStates();
+}
+
 void COpenView::OnSwapButton(int id1, int id2)
 {
 	String s1, s2;
@@ -1109,7 +1130,20 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
 	{
-		if (nID == IDOK && GetDlgItem(IDC_UNPACKER_COMBO)->IsWindowEnabled())
+		// For Browse buttons, populate with clipboard history
+		if (nPopupID == IDR_POPUP_BROWSE)
+		{
+			// Remember which button was clicked for OnSelectClipboardItem
+			m_nLastDropDownButton = nID;
+
+			pPopup->RemoveMenu(0, MF_BYPOSITION); // Remove dummy item from resource
+
+			// Get clipboard history items
+			constexpr unsigned MAX_HISTORY_ITEMS = 15;
+			m_cachedClipboardItems = ClipboardHistory::GetItems(MAX_HISTORY_ITEMS);
+			ClipboardHistoryMenu::PopulateMenu(pPopup, m_cachedClipboardItems, ID_EDITOR_CLIPBOARD_FIRST, ID_EDITOR_CLIPBOARD_LAST);
+		}
+		else if (nID == IDOK && GetDlgItem(IDC_UNPACKER_COMBO)->IsWindowEnabled())
 		{
 			UpdateData(TRUE);
 			String tmpPath[3];

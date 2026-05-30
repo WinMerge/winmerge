@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="Shortcut_keys">
+  <title>Teclas de acceso rápido<indexterm>
+      <primary>teclas de acceso rápido</primary>
+    </indexterm></title>
+
+  <para>WinMerge incluye la mayoría de las teclas de acceso rápido habituales que se
+utilizan en otras aplicaciones de Windows.</para>
+
+  <table>
+    <title>General</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Tab</keycap> </keycombo></entry>
+
+          <entry>Pasa a la pestaña siguiente</entry>
+
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Mayús</keycap> <keycap>Tab</keycap>
+</keycombo></entry>
+
+          <entry>Vuelve a la pestaña anterior</entry>
+
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Comparación de carpetas</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Intro</keycap></entry>
+
+          <entry>Abre el archivo o la carpeta seleccionados</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Retroceso</keycap></entry>
+
+          <entry>Abre la carpeta principal si es posible (opción disponible solo cuando no se
+incluyen subcarpetas en la comparación)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F5</keycap></entry>
+
+          <entry>Volver a comparar carpetas</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Inicio</keycap> </keycombo></entry>
+
+          <entry>Va al primer archivo o carpeta diferente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Fin</keycap> </keycombo></entry>
+
+          <entry>Va al último archivo o carpeta diferente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Intro</keycap> </keycombo></entry>
+
+          <entry>Va al elemento seleccionado actualmente (si se ha desplazado fuera de la
+pantalla)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha arriba</keycap> </keycombo></entry>
+
+          <entry>Va al archivo o carpeta anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha abajo</keycap> </keycombo></entry>
+
+          <entry>Va al siguiente archivo o carpeta</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha izquierda</keycap>
+</keycombo></entry>
+
+          <entry>Copy selected items from right to left</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha derecha</keycap> </keycombo></entry>
+
+          <entry>Copia los elementos seleccionados del derecho al izquierdo</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Comparación de archivos</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Esc</keycap></entry>
+
+          <entry>Cierra la ventana (si está activado en las opciones)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F4</keycap></entry>
+
+          <entry>Muestra la diferencia de la línea siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Mayús</keycap>+<keycap>F4</keycap></entry>
+
+          <entry>Muestra la diferencia de la línea anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F5</keycap></entry>
+
+          <entry>Actualizar</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F5</keycap></entry>
+
+          <entry>Recargar</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F6</keycap></entry>
+
+          <entry>Cambia al panel siguiente (archivo activo)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Mayús</keycap>+<keycap>F6</keycap></entry>
+
+          <entry>Cambia al panel anterior (archivo activo)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F7</keycap></entry>
+
+          <entry>Va a la diferencia anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Mayús</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>Va al conflicto anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>Va al archivo anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F8</keycap></entry>
+
+          <entry>Va a la diferencia siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Mayús</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>Va al conflicto siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>Va al archivo siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F9</keycap></entry>
+
+          <entry>Activa o desactiva el modo de combinación (alternar)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo></entry>
+
+          <entry>Inicia selección de columna</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo></entry>
+
+          <entry>Alterna modo de contexto de diferencias</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>E</keycap>
+</keycombo></entry>
+
+          <entry>Abre con un editor externo</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> </keycombo></entry>
+
+          <entry>Va a la diferencia o a la línea</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Mayús</keycap> <keycap>G</keycap>
+</keycombo></entry>
+
+          <entry>Va a la línea desplazada (2 paneles)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Mayús</keycap> <keycap>G</keycap>
+</keycombo></entry>
+
+          <entry>Va a la línea desplazada entre el lado izquierdo y el central (3 paneles)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>G</keycap>
+</keycombo></entry>
+
+          <entry>Va a la línea desplazada entre el lado derecho y el central (3 paneles)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Mayús</keycap> <keycap>M</keycap>
+</keycombo></entry>
+
+          <entry>Añade marcador</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>M</keycap>
+</keycombo></entry>
+
+          <entry>Combinar automáticamente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>S</keycap> </keycombo></entry>
+
+          <entry>Añade punto de sincronización</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>U</keycap> </keycombo></entry>
+
+          <entry>Convierte el texto seleccionado a minúsculas</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Mayús</keycap> <keycap>U</keycap>
+</keycombo></entry>
+
+          <entry>Convierte el texto seleccionado a mayúsculas</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Y</keycap> </keycombo></entry>
+
+          <entry>Repite una acción que se haya deshecho anteriormente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo></entry>
+
+          <entry>Deshace última acción</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Navegación por diferencias y combinación (modo normal)</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Inicio</keycap> </keycombo></entry>
+
+          <entry>Va a la primera diferencia</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Fin</keycap> </keycombo></entry>
+
+          <entry>Va a la última diferencia</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Intro</keycap> </keycombo></entry>
+
+          <entry>Va a la diferencia actual o selecciona la diferencia</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha arriba</keycap> </keycombo></entry>
+
+          <entry>Va a la diferencia anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha abajo</keycap> </keycombo></entry>
+
+          <entry>Va a la diferencia siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Mayús</keycap> <keycap>Flecha
+arriba</keycap> </keycombo></entry>
+
+          <entry>Va al conflicto anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Mayús</keycap> <keycap>Flecha
+abajo</keycap> </keycombo></entry>
+
+          <entry>Va al conflicto siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha izquierda</keycap>
+</keycombo></entry>
+
+          <entry>Copia la diferencia del lado derecho al lado izquierdo</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha derecha</keycap> </keycombo></entry>
+
+          <entry>Copia la diferencia del lado izquierdo al lado derecho</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flecha
+izquierda</keycap> </keycombo></entry>
+
+          <entry>Copia la diferencia del lado derecho al izquierdo y selecciona la diferencia
+siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flecha
+derecha</keycap> </keycombo></entry>
+
+          <entry>Copia la diferencia del lado izquierdo al derecho y selecciona la diferencia
+siguiente</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Navegación por diferencias y combinación (modo de combinación)</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Flecha arriba</keycap></entry>
+
+          <entry>Va a la diferencia anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Flecha abajo</keycap></entry>
+
+          <entry>Va a la diferencia siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Flecha izquierda</keycap></entry>
+
+          <entry>Copia la diferencia del lado derecho al lado izquierdo</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Flecha derecha</keycap></entry>
+
+          <entry>Copia la diferencia del lado izquierdo al lado derecho</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flecha
+izquierda</keycap> </keycombo></entry>
+
+          <entry>Copia la diferencia del lado derecho al izquierdo y selecciona la diferencia
+siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flecha
+derecha</keycap> </keycombo></entry>
+
+          <entry>Copia la diferencia del lado izquierdo al derecho y selecciona la diferencia
+siguiente</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Find and Replace</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F</keycap> </keycombo></entry>
+
+          <entry>Busca texto (abre el cuadro de diálogo "Buscar")</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>H</keycap> </keycombo></entry>
+
+          <entry>Sustituye texto (abre el cuadro de diálogo "Buscar")</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F3</keycap></entry>
+
+          <entry>Busca siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Mayús</keycap> <keycap>F3</keycap> </keycombo></entry>
+
+          <entry>Busca anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F3</keycap> </keycombo></entry>
+
+          <entry>Busca el texto seleccionado en el archivo</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Mayús</keycap> <keycap>F3</keycap>
+</keycombo></entry>
+
+          <entry>Busca el texto seleccionado hacia arriba en el archivo</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Marcadores</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>Marcador siguiente</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Mayús</keycap> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>Marcador anterior</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>Alterna marcadores</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Mayús</keycap> <keycap>F2</keycap>
+</keycombo></entry>
+
+          <entry>Borra todos los marcadores</entry>
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Zoom</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Teclas</entry>
+
+          <entry>Función</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>+</keycap> </keycombo></entry>
+
+          <entry>Aumenta el tamaño del texto</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>-</keycap> </keycombo></entry>
+
+          <entry>Reduce el tamaño del texto</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>*</keycap> </keycombo></entry>
+
+          <entry>Restablece el zoom del texto al tamaño predeterminado</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <mousebutton>Rueda del ratón hacia
+adelante</mousebutton> </keycombo></entry>
+
+          <entry>Aumenta el tamaño del texto</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <mousebutton>Rueda del ratón hacia
+atrás</mousebutton> </keycombo></entry>
+
+          <entry>Reduce el tamaño del texto</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</appendix>

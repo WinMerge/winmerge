@@ -31,3 +31,6 @@
 [submodule "Externals/darkmodelib"]
 	path = Externals/darkmodelib
 	url = https://github.com/winmerge/darkmodelib.git
+[submodule "Externals/cliphcat"]
+	path = Externals/cliphcat
+	url = https://github.com/WinMerge/cliphcat

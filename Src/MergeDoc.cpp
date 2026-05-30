@@ -51,6 +51,8 @@
 #include "charsets.h"
 #include "markdown.h"
 #include "stringdiffs.h"
+#include "FilterEngine/FilterExpression.h"
+#include "DiffContext.h"
 #include "Logger.h"
 #include "../Externals/crystaledit/editlib/TreeSitterParser.h"
 #include "../Externals/crystaledit/editlib/TreeSitterWrapper.h"
@@ -177,6 +179,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_RO, OnUpdateStatusRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_RO, OnUpdateStatusRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	// Display filter bar
+	ON_COMMAND_RANGE(ID_FILTERMENU_FIRST, ID_FILTERMENU_LAST, OnFilterMenuCommand)
+	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR, OnViewDisplayFilterBar)
+	ON_COMMAND(ID_APPLY_NOW, OnViewDisplayFilterBarApply)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -718,7 +724,7 @@ void CMergeDoc::FlagMovedLines(void)
 	MovedLines *pMovedLines;
 
 	pMovedLines = m_diffWrapper.GetMovedLines(0);
-	for (i = 0; i < m_ptBuf[0]->GetLineCount(); ++i)
+	for (i = 0; i < m_ptBuf[0]->GetLineCount(); ++i) // TODO: This must iterate using real line count, not logical line count.
 	{
 		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::RIGHT);
 		if (j != -1)
@@ -741,7 +747,7 @@ void CMergeDoc::FlagMovedLines(void)
 	}
 
 	pMovedLines = m_diffWrapper.GetMovedLines(1);
-	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
+	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i) // TODO: This must iterate using real line count, not logical line count.
 	{
 		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::LEFT);
 		if (j != -1)
@@ -767,7 +773,7 @@ void CMergeDoc::FlagMovedLines(void)
 		return;
 
 	pMovedLines = m_diffWrapper.GetMovedLines(1);
-	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
+	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i) // TODO: This must iterate using real line count, not logical line count.
 	{
 		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::RIGHT);
 		if (j != -1)
@@ -1654,6 +1660,20 @@ void CMergeDoc::PrimeTextBuffers()
 	UINT lcount[3] = {0, 0, 0};
 	UINT lcountnew[3] = {0, 0, 0};
 	UINT lcountmax = 0;
+
+	auto opTo3wayLineFlags = [](int file, int op)
+		{
+			int dflag = 0;
+			if ((file == 0 && op == OP_3RDONLY) || (file == 2 && op == OP_1STONLY))
+				dflag |= LF_SNP;
+			if (op == OP_1STONLY)
+				dflag |= LF_DIFF_1STONLY;
+			else if (op == OP_2NDONLY)
+				dflag |= LF_DIFF_2NDONLY;
+			else if (op == OP_3RDONLY)
+				dflag |= LF_DIFF_3RDONLY;
+			return dflag;
+		};
 	
 	for (file = 0; file < m_nBuffers; file++)
 	{
@@ -1697,9 +1717,7 @@ void CMergeDoc::PrimeTextBuffers()
 
 		for (file = 0; file < m_nBuffers; file++)
 		{
-			lineflags_t dflag = LF_GHOST;
-			if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
-				dflag |= LF_SNP;
+			lineflags_t dflag = LF_GHOST | opTo3wayLineFlags(file, curDiff.op);
 			m_ptBuf[file]->MoveLine(curDiff.begin[file], curDiff.end[file], lcountnew[file]-nmaxline);
 			int nextra = nmaxline - nline[file];
 			if (nextra > 0)
@@ -1751,8 +1769,7 @@ void CMergeDoc::PrimeTextBuffers()
 						{
 							// set diff or trivial flag
 							lineflags_t dflag = (curDiff.op == OP_TRIVIAL) ? LF_TRIVIAL : LF_DIFF;
-							if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
-								dflag |= LF_SNP;
+							dflag |= opTo3wayLineFlags(file, curDiff.op);
 							m_ptBuf[file]->SetLineFlag(i, dflag, true, false, false);
 							m_ptBuf[file]->SetLineFlag(i, LF_INVISIBLE, false, false, false);
 						}
@@ -1828,12 +1845,35 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(const tchar_t* szPath, Diff
 		return FileChange::NoChange;
 }
 
+std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CMergeDoc::CreateDiffItem() const
+{
+	PathContext paths = m_filePaths;
+	auto pdi = std::make_unique<DIFFITEM>();
+	pdi->diffcode.diffcode = (m_diffList.HasSignificantDiffs() ? DIFFCODE::DIFF : DIFFCODE::SAME) | DIFFCODE::TEXT | DIFFCODE::FILE | ((m_nBuffers > 2) ? DIFFCODE::THREEWAY : 0);
+	pdi->nsdiffs = m_diffList.GetSignificantDiffs();
+	pdi->nidiffs = m_nTrivialDiffs;
+	for (int i = 0; i < paths.GetSize(); ++i)
+	{
+		if (m_nBufferType[i] != BUFFERTYPE::UNNAMED)
+			pdi->diffcode.setSideFlag(i);
+		paths[i] = paths::GetParentPath(paths[i]);
+		pdi->diffFileInfo[i].SetFile(paths::FindFileName(m_filePaths[i]));
+		pdi->diffFileInfo[i].mtime = m_pSaveFileInfo[i]->mtime;
+		pdi->diffFileInfo[i].ctime = m_pSaveFileInfo[i]->ctime;
+		pdi->diffFileInfo[i].flags = m_pSaveFileInfo[i]->flags;
+		pdi->diffFileInfo[i].size = m_pSaveFileInfo[i]->size;
+		pdi->diffFileInfo[i].encoding = m_pSaveFileInfo[i]->encoding;
+	}
+	auto result = std::make_pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>>(std::make_unique<CDiffContext>(paths, CMP_CONTENT), std::move(pdi));
+	return result;
+}
+
 void CMergeDoc::HideLines()
 {
 	int nLine;
 	int file;
 
-	if (m_nDiffContext < 0)
+	if (m_nDiffContext < 0 && m_displayFilterHelper.GetStringOrExpression().empty())
 	{
 		ForEachView([](auto& pView) { pView->SetEnableHideLines(false); });
 		return;
@@ -1846,41 +1886,73 @@ void CMergeDoc::HideLines()
 			nLineCount = m_ptBuf[file]->GetLineCount();
 	}
 
-	for (nLine =  0; nLine < nLineCount;)
+	if (m_nDiffContext >= 0)
 	{
-		bool diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
-		if ((!m_bInvertDiffContext && !diff) || (m_bInvertDiffContext && diff))
+		for (nLine = 0; nLine < nLineCount;)
 		{
-			for (file = 0; file < m_nBuffers; file++)
-				m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, true, false, false);
-			nLine++;
-		}
-		else
-		{
-			int nLine2 = (nLine - m_nDiffContext < 0) ? 0 : (nLine - m_nDiffContext);
-			for (; nLine2 < nLine; nLine2++)
+			bool diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
+			if ((!m_bInvertDiffContext && !diff) || (m_bInvertDiffContext && diff))
 			{
 				for (file = 0; file < m_nBuffers; file++)
-					m_ptBuf[file]->SetLineFlag(nLine2, LF_INVISIBLE, false, false, false);
+					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, true, false, false);
+				nLine++;
 			}
-		
-			for (; nLine < nLineCount; nLine++)
+			else
 			{
-				diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
-				if ((!m_bInvertDiffContext && !diff) || (m_bInvertDiffContext && diff))
-					break;
-				for (file = 0; file < m_nBuffers; file++)
-					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
-			}
+				int nLine2 = (nLine - m_nDiffContext < 0) ? 0 : (nLine - m_nDiffContext);
+				for (; nLine2 < nLine; nLine2++)
+				{
+					for (file = 0; file < m_nBuffers; file++)
+						m_ptBuf[file]->SetLineFlag(nLine2, LF_INVISIBLE, false, false, false);
+				}
 
-			int nLineEnd2 = (nLine + m_nDiffContext >= nLineCount) ? nLineCount-1 : (nLine + m_nDiffContext);
-			for (; nLine < nLineEnd2; nLine++)
+				for (; nLine < nLineCount; nLine++)
+				{
+					diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
+					if ((!m_bInvertDiffContext && !diff) || (m_bInvertDiffContext && diff))
+						break;
+					for (file = 0; file < m_nBuffers; file++)
+						m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
+				}
+
+				int nLineEnd2 = (nLine + m_nDiffContext >= nLineCount) ? nLineCount - 1 : (nLine + m_nDiffContext);
+				for (; nLine < nLineEnd2; nLine++)
+				{
+					for (file = 0; file < m_nBuffers; file++)
+						m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
+					diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
+					if ((!m_bInvertDiffContext && diff) || (m_bInvertDiffContext && !diff))
+						nLineEnd2 = (nLine + 1 + m_nDiffContext >= nLineCount) ? nLineCount - 1 : (nLine + 1 + m_nDiffContext);
+				}
+			}
+		}
+	}
+
+	if (!m_displayFilterHelper.GetStringOrExpression().empty())
+	{
+		FilterExpression& fe = m_displayFilterHelper.GetFilterExpression();
+		FilterExpression::SetLogger([](int level, const std::string& msg) {
+			if (level == 0)
+				RootLogger::Error(msg);
+			else if (level == 1)
+				RootLogger::Warn(msg);
+			else
+				RootLogger::Info(msg);
+		});
+		if (fe.errorCode == 0)
+		{
+			auto sharedContext = std::make_unique<FilterSharedContext>();
+			auto [pctxt, pdi] = CreateDiffItem();
+			fe.SetDiffContext(pctxt.get());
+			FilterEvalContext ectxt{ &fe, pdi.get(), this, sharedContext.get()};
+			for (nLine = 0; nLine < nLineCount; ++nLine)
 			{
+				if (m_nDiffContext >= 0 && (m_ptBuf[0]->GetLineFlags(nLine) & LF_INVISIBLE))
+					continue;
+				ectxt.lineIndex = nLine;
+				bool result = fe.Evaluate(ectxt);
 				for (file = 0; file < m_nBuffers; file++)
-					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
-				diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
-				if ((!m_bInvertDiffContext && diff) || (m_bInvertDiffContext && !diff))
-					nLineEnd2 = (nLine + 1 + m_nDiffContext >= nLineCount) ? nLineCount-1 : (nLine + 1 + m_nDiffContext);
+					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, !result, false, false);
 			}
 		}
 	}
@@ -1892,6 +1964,34 @@ void CMergeDoc::AddToLineFilters(const String& text)
 {
 	theApp.m_pLineFilters->AddFilter(strutils::to_regex(text), true);
 	theApp.m_pLineFilters->SaveFilters();
+}
+
+void CMergeDoc::AddToDisplayFilters(const String& text)
+{
+	m_displayFilterHelper.AddToExpression(_T("Line contains ") + LineFilterHelper::Quote(text), _T("AND"));
+	CMergeEditFrame* pFrame = GetParentFrame();
+	pFrame->ShowFilterBar();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	if (!pFilterBar)
+		return;
+	pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
+	OnViewDisplayFilterBarApply();
+}
+
+void CMergeDoc::AddColumnToDisplayFilters(int pane, int column, int dataType)
+{
+	CMergeEditFrame* pFrame = GetParentFrame();
+	CLineFilterHelperMenu menu(pane == m_nBuffers - 1 ? 3 : pane + 1, 0, column);
+	std::optional<String> result = menu.HandleMenuCommand(m_displayFilterHelper.GetStringOrExpression(), ID_FILTERMENU_COLUMN_TEXT + dataType, pFrame);
+	if (!result.has_value())
+		return;
+	pFrame->ShowFilterBar();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	if (!pFilterBar)
+		return;
+	m_displayFilterHelper.SetStringOrExpression(*result);
+	pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
+	OnViewDisplayFilterBarApply();
 }
 
 /**
@@ -2321,6 +2421,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// Note : attach buffer again only if both loads succeed
 	m_strBothFilenames.erase();
 
+	m_bHasSyncPoints = false;
+
 	ForEachView([](auto& pView) { pView->DetachFromBuffer(); });
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -2647,6 +2749,10 @@ void CMergeDoc::RefreshOptions()
 
 	// Refresh view options
 	ForEachView([](auto& pView) { pView->RefreshOptions(); });
+	ForEachView(GetActiveMergeView()->m_nThisPane, [](auto& pView) {
+		pView->UpdateSiblingScrollPos(false);
+	});
+	UpdateAllViews(nullptr);
 }
 
 /**
@@ -3638,3 +3744,95 @@ std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
 	}
 	return list;
 }
+
+void CMergeDoc::OnFilterMenuCommand(UINT nID)
+{
+	if (!m_pFilterMenu)
+		return;
+	String masks = m_displayFilterHelper.GetStringOrExpression();
+	CMergeEditFrame* pFrame = GetParentFrame();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	if (pFilterBar)
+		pFilterBar->GetDlgItemText(IDC_FILTERFILE_MASK, masks);
+	auto newMasks = m_pFilterMenu->HandleMenuCommand(masks, nID, pFrame);
+	if (!newMasks.has_value())
+		return;
+	m_displayFilterHelper.SetStringOrExpression(*newMasks);
+	OnViewDisplayFilterBar();
+	OnViewDisplayFilterBarApply();
+}
+
+void CMergeDoc::OnViewDisplayFilterBarApply()
+{
+	CWaitCursor waitstatus;
+	auto* pFilterBar = GetParentFrame()->GetFilterBar();
+	if (!pFilterBar)
+		return;
+	pFilterBar->SaveFilterText();
+	m_displayFilterHelper.SetStringOrExpression(pFilterBar->GetFilterText());
+	if (!m_displayFilterHelper.GetStringOrExpression().empty() && m_displayFilterHelper.GetFilterExpression().errorCode == 0)
+		pFilterBar->SetFilterApplied(true);
+	FlushAndRescan(true);
+	GetActiveMergeView()->SetFocus();
+}
+
+void CMergeDoc::OnViewDisplayFilterBar()
+{
+	CMergeEditFrame* pFrame = GetParentFrame();
+	pFrame->ShowFilterBar();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	if (!pFilterBar)
+		return;
+	if (!m_displayFilterHelper.GetStringOrExpression().empty())
+		pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
+	pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK)->SetFocus();
+}
+
+// ILineDataProvider
+int CMergeDoc::GetLineCount() const
+{
+	return m_ptBuf[0]->GetLineCount();
+}
+
+std::string CMergeDoc::GetLine(int pane, int lineIndex) const
+{
+	const tchar_t* p = m_ptBuf[pane]->GetLineChars(lineIndex);
+	return ucr::toUTF8(p, m_ptBuf[pane]->GetLineLength(lineIndex));
+}
+
+int CMergeDoc::GetColumnCount(int pane, int lineIndex) const
+{
+	if (!m_ptBuf[pane]->GetTableEditing())
+		return 1;
+	return m_ptBuf[pane]->GetColumnCount(lineIndex);
+}
+
+std::string CMergeDoc::GetColumn(int pane, int lineIndex, int columnIndex) const
+{
+	if (!m_ptBuf[pane]->GetTableEditing())
+		return GetLine(pane, lineIndex);
+	return ucr::toUTF8(m_ptBuf[pane]->GetCellText(lineIndex, columnIndex));
+}
+
+int CMergeDoc::GetRealLineNumber(int pane, int lineIndex) const
+{
+	return m_ptBuf[pane]->ComputeRealLine(lineIndex);
+}
+
+unsigned CMergeDoc::GetLineFlags(int pane, int lineIndex) const
+{
+	return m_ptBuf[pane]->GetLineFlags(lineIndex);
+}
+
+unsigned CMergeDoc::GetLineEol(int pane, int lineIndex) const
+{
+	const tchar_t* eol = m_ptBuf[pane]->GetLineEol(lineIndex);
+	if (eol[0] == 0)
+		return EOL_NONE;
+	else if (eol[0] == '\n')
+		return EOL_LF;
+	else if (eol[0] == '\r')
+		return eol[1] == 0 ? EOL_CR : EOL_CRLF;
+	return EOL_NONE;
+}
+

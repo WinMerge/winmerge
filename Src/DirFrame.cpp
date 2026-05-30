@@ -79,7 +79,7 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnViewDisplayFilterBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnUpdateDisplayViewFilterBar)
 	ON_COMMAND(IDCANCEL, OnDisplayFilterBarClose)
-	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnDisplayFilterBarMaskMenu)
+	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnDisplayFilterBarMenu)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -224,7 +224,7 @@ void CDirFrame::HideProgressBar()
 
 void CDirFrame::OnViewDisplayFilterBar()
 {
-	if (!m_pDirFilterBar)
+	if (!m_pFilterBar)
 		ShowFilterBar();
 	else
 		HideFilterBar();
@@ -233,7 +233,7 @@ void CDirFrame::OnViewDisplayFilterBar()
 void CDirFrame::OnUpdateDisplayViewFilterBar(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
-	pCmdUI->SetCheck(m_pDirFilterBar != nullptr);
+	pCmdUI->SetCheck(m_pFilterBar != nullptr);
 }
 
 void CDirFrame::OnDisplayFilterBarClose()
@@ -242,31 +242,32 @@ void CDirFrame::OnDisplayFilterBarClose()
 	GetActiveView()->SetFocus();
 }
 
-void CDirFrame::OnDisplayFilterBarMaskMenu()
+void CDirFrame::OnDisplayFilterBarMenu()
 {
-	m_pDirFilterBar->ShowFilterMaskMenu();
+	if (m_pFilterBar)
+		m_pFilterBar->ShowFilterMenu();
 }
 
 void CDirFrame::ShowFilterBar()
 {
-	if (!m_pDirFilterBar)
-		m_pDirFilterBar.reset(new CDirFilterBar());
-	if (!::IsWindow(m_pDirFilterBar->GetSafeHwnd()) && !m_pDirFilterBar->Create(this))
+	if (!m_pFilterBar)
+		m_pFilterBar.reset(new CDirFilterBar());
+	if (!::IsWindow(m_pFilterBar->GetSafeHwnd()) && !m_pFilterBar->Create(this))
 	{
 		TRACE0("Failed to create filter bar\n");
-		m_pDirFilterBar.reset();
+		m_pFilterBar.reset();
 		return;
 	}
-	ShowControlBar(m_pDirFilterBar.get(), TRUE, FALSE);
+	ShowControlBar(m_pFilterBar.get(), TRUE, FALSE);
 }
 
 void CDirFrame::HideFilterBar()
 {
-	if (m_pDirFilterBar != nullptr && ::IsWindow(m_pDirFilterBar->GetSafeHwnd()))
+	if (m_pFilterBar != nullptr && ::IsWindow(m_pFilterBar->GetSafeHwnd()))
 	{
-		ShowControlBar(m_pDirFilterBar.get(), FALSE, FALSE);
-		m_pDirFilterBar->DestroyWindow();
+		ShowControlBar(m_pFilterBar.get(), FALSE, FALSE);
+		m_pFilterBar->DestroyWindow();
 	}
-	m_pDirFilterBar.reset();
+	m_pFilterBar.reset();
 }
 

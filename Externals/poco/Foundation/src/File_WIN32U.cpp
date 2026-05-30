@@ -597,7 +597,12 @@ void FileImpl::handleLastErrorImpl(const std::string& path)
 void FileImpl::convertPath(const std::string& utf8Path, std::wstring& utf16Path)
 {
 	UnicodeConverter::toUTF16(utf8Path, utf16Path);
-	if (utf16Path.length() > 0 && utf16Path.back() == L':')
+	// WinMerge patch:
+	// Preserve drive-relative paths like "C:".
+	// "C:" and "C:\" have different meanings on Windows.
+	const bool endsWithColon = !utf16Path.empty() && utf16Path.back() == L':';
+	const bool isDriveRelativePath = utf16Path.length() == 2 && iswalpha(utf16Path[0]) && endsWithColon;
+	if (endsWithColon && !isDriveRelativePath)
 	{
 		// If the path only has disk letter, we must make sure it ends with backslash!
 		// Or it will be failed to call Windows API ::GetFileAttributesW().

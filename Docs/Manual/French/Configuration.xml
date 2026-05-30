@@ -1547,7 +1547,7 @@ rechercher et celui par lequel le remplacer. Exemple :
 Insère <literal>regexReplace(expression, "pattern", "replacement")</literal>
 pour remplacer du texte à l'aide d'expressions régulières. Prend en charge
 les références arrière ($1, $2, etc.) dans la chaîne de
-remplacement. Exemple : <literal>regexReplace(Name, "^(\\d+)_(.+)$",
+remplacement. Exemple : <literal>regexReplace(Name, "^(\d+)_(.+)$",
 "$2")</literal> supprime le chiffre et le trait de soulignement en début de
 nom de fichier.</para>
             </listitem>

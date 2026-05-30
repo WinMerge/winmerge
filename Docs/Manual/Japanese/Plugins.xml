@@ -1493,6 +1493,153 @@ class="extension">*.dll</filename></seg>
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_HandleSchemeHTTP">
+      <title><filename>HandleSchemeHTTP<indexterm>
+          <primary>HandleSchemeHTTP プラグイン ファイル</primary>
+        </indexterm></filename></title>
+
+      <para>curl を使用した HTTP/HTTPS URL スキームハンドラ</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeHTTP</command> <arg choice="opt"
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>引数</replaceable></option></term>
+          <listitem>
+            <para>curl コマンドに渡されるコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルター</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>URL ハンドラ</seg>
+
+            <seg>^http://.*$, ^https://.*$</seg>
+
+            <seg>はい</seg>
+
+            <seg>いいえ</seg>
+
+            <seg>いいえ</seg>
+
+            <seg><ulink url="https://curl.se/">curl</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeReg">
+      <title><filename>HandleSchemeReg<indexterm>
+          <primary>HandleSchemeReg プラグイン ファイル</primary>
+        </indexterm></filename></title>
+
+      <para>reg.exe を使用した Windows レジストリ用 URL スキームハンドラ</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeReg</command> <arg choice="opt"
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>引数</replaceable></option></term>
+          <listitem>
+            <para>reg.exe コマンドに渡されるコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルター</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>URL ハンドラ</seg>
+
+            <seg>^reg:.*$</seg>
+
+            <seg>はい</seg>
+
+            <seg>いいえ</seg>
+
+            <seg>いいえ</seg>
+
+            <seg>Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeClipboard">
+      <title><filename>HandleSchemeClipboard<indexterm>
+          <primary>HandleSchemeClipboard プラグイン ファイル</primary>
+        </indexterm></filename></title>
+
+      <para>cliphcat を使用したクリップボード用 URL スキームハンドラ</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeClipboard</command> <arg choice="opt"
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>引数</replaceable></option></term>
+          <listitem>
+            <para>cliphcat コマンドに渡されるコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルター</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>URL ハンドラ</seg>
+
+            <seg>^clip://.*$, ^clipboard://.*$</seg>
+
+            <seg>はい</seg>
+
+            <seg>いいえ</seg>
+
+            <seg>いいえ</seg>
+
+            <seg>cliphcat</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_Unpacker_ExecFilterCommand">
       <title><filename>ExecFilterCommand<indexterm>
           <primary>ExecFilterCommand プラグインファイル</primary>

@@ -202,6 +202,8 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION56 "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
     IDS_PLUGIN_DESCRIPTION57 "Unescape and display escaped Java properties files."
     IDS_PLUGIN_DESCRIPTION58 "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+    IDS_PLUGIN_DESCRIPTION59 
+                            "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
 END
 
 STRINGTABLE

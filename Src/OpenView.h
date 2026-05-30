@@ -15,12 +15,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // COpenView window
 #include "SuperComboBox.h"
-#include "FileTransform.h"
 #include "PathContext.h"
 #include "CMoveConstraint.h"
 #include "TrDialogs.h"
 #include "ValidatingEdit.h"
 #include "FileFilterHelperMenu.h"
+#include "ClipboardHistory.h"
 #include <array>
 
 class ProjectFile;
@@ -97,7 +97,9 @@ private:
 	bool m_bIgnoreMissingTrailingEol; /**< The value of the "Ignore missing trailing EOL" setting */
 	bool m_bIgnoreLineBreaks; /**< The value of the "Ignore line breaks (treat as spaces)" setting */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
+	UINT m_nLastDropDownButton; /**< ID of last browse button that showed dropdown */
 	HTHEME m_hTheme; /**< Theme used for size grip on Vista and greater */
+	std::vector<ClipboardHistory::Item> m_cachedClipboardItems; /**< Cached clipboard items for menu consistency */
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -123,6 +125,7 @@ protected:
 protected:
 	//{{AFX_MSG(COpenView)
 	afx_msg void OnPathButton(UINT nID);
+	afx_msg void OnSelectClipboardItem(UINT nID);
 	afx_msg void OnOK();
 	afx_msg void OnCancel();
 	afx_msg void OnCompare(UINT nID);

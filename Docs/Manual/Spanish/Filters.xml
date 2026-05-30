@@ -1,0 +1,3367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Filters">
+  <title>Uso de filtros<indexterm>
+      <primary>filtros</primary>
+
+      <seealso>filtros de archivos</seealso>
+
+      <seealso>máscaras de archivo</seealso>
+
+      <seealso>filtros de línea</seealso>
+
+      <seealso>filtros de sustitución</seealso>
+    </indexterm></title>
+
+  <para>Al comparar archivos o carpetas, puede utilizar filtros para limitar el
+alcance de la comparación. Esto puede resultar útil cuando desee simplificar
+el resultado de la comparación eliminando las diferencias que no le
+interesan. Los filtros son reglas basadas en expresiones regulares. WinMerge
+utiliza el popular motor de expresiones regulares PCRE (Perl Compatible
+Regular Expressions).<indexterm>
+      <primary>expresiones regulares</primary>
+
+      <secondary>motor soportado</secondary>
+    </indexterm><indexterm>
+      <primary>PCRE motor de expresiones regulares</primary>
+    </indexterm><indexterm>
+      <primary>regexp</primary>
+
+      <see>expresiones regulares</see>
+    </indexterm></para>
+
+  <para>La función básica del filtrado es sencilla: evaluar cada elemento que
+normalmente se compararía (una carpeta, un archivo o una línea dentro de un
+archivo) y, si la expresión del filtro coincide con el elemento en cuestión,
+aplicar el filtro. Dependiendo del tipo de filtro, el elemento se incluye o
+se excluye de la comparación.</para>
+
+  <para>Existen diferentes filtros de WinMerge para las operaciones de comparación
+de carpetas y de archivos:</para>
+
+  <variablelist>
+    <varlistentry>
+      <term>Comparación de carpetas: máscaras y filtros de archivos<indexterm>
+          <primary>comparación de carpetas</primary>
+
+          <secondary>filtrado</secondary>
+        </indexterm></term>
+
+      <listitem>
+        <para>Puede especificar los archivos que desea incluir en una comparación de
+carpetas utilizando máscaras de archivo sencillas o, para un filtrado más
+complejo, aplicando varias reglas especificadas en un filtro de archivos.</para>
+
+        <para>Los archivos y carpetas que se han filtrado aparecen ocultos en los
+resultados de forma predeterminada, lo cual suele ser lo que se desea. Puede
+hacer clic en<menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Mostrar
+elementos ignorados</guimenuitem> </menuchoice> para mostrar los elementos
+filtrados, pero la ventana de comparación de carpetas solo muestra
+información mínima sobre ellos. Por ejemplo, no se puede saber si un archivo
+omitido es un archivo de texto o binario.</para>
+
+        <para>The display file/folder filter is also available for folder compare
+operations. Unlike file filters, it does not affect the comparison result;
+it only controls which items are visible in the Folder Compare window.  See
+<xref linkend="Filters_DisplayFileFolderFilter"/>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Comparación de archivos: filtros de línea y filtros de
+sustitución<indexterm>
+          <primary>comparar archivos</primary>
+
+          <secondary>filtrado</secondary>
+        </indexterm></term>
+
+      <listitem>
+        <para>Los filtros de línea solo se aplican a las operaciones de comparación de
+archivos. Permiten ignorar las diferencias de una sola línea.</para>
+        <para>Los filtros de sustitución solo se aplican a las operaciones de comparación
+de archivos. Sustituyen las cadenas del bloque de diferencias por las
+cadenas especificadas, las comparan e ignoran el bloque de diferencias si
+los resultados de la sustitución coinciden. Son útiles para ignorar un gran
+número de cambios irrelevantes.</para>
+        <para>The display line filter is also applied only to file compare
+operations. Unlike line filters, it does not affect the comparison result;
+it only controls which lines are visible in the File Compare window.  See
+<xref linkend="Filters_DisplayLineFilter"/>.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+  <section id="Filters_Mask">
+    <title>Uso de máscaras de archivo<indexterm>
+        <primary>máscaras de archivo</primary>
+      </indexterm><indexterm>
+        <primary>filtros</primary>
+
+        <secondary>máscaras de archivo</secondary>
+      </indexterm><indexterm>
+        <primary>filtros</primary>
+
+        <secondary>en la comparación de carpetas</secondary>
+      </indexterm></title>
+
+    <para>Puede utilizar una o varias <glossterm>máscaras de archivo</glossterm> que
+especifiquen las extensiones de archivo que desea incluir en una comparación
+de carpetas. El resto de archivos quedarán excluidos de la selección.</para>
+
+    <section id="Filters_MaskApply">
+      <title>Definición y aplicación de máscaras de archivo<indexterm>
+          <primary>línea de comandos</primary>
+
+          <secondary>aplicación de máscaras de archivo</secondary>
+        </indexterm></title>
+
+      <para>Define y aplica una máscara de archivos al iniciar la operación de
+comparación de carpetas:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Si utiliza el cuadro de diálogo "Seleccione archivos o carpetas", después de
+seleccionar la <guilabel>1ª</guilabel> y la <guilabel>2ª</guilabel> carpeta,
+introduzca una o varias máscaras de archivo en el campo
+<guilabel>Filtro</guilabel>. Las máscaras se aplicarán al iniciar la
+operación de comparación de carpetas.</para>
+        </listitem>
+
+        <listitem>
+          <para>Si utiliza la línea de comandos de WinMerge, utilice el modificador
+<option>-f</option> para especificar máscaras de archivo (consulte el
+ejemplo de la siguiente sección).</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Filters_MaskSyntax">
+      <title>Sintaxis y ejemplos de máscaras de archivo<indexterm>
+          <primary>reglas</primary>
+
+          <secondary>máscaras de archivo</secondary>
+        </indexterm><indexterm>
+          <primary>filtros</primary>
+
+          <secondary>máscaras de archivo</secondary>
+        </indexterm><indexterm>
+          <primary>expresiones regulares</primary>
+
+          <secondary>en máscaras de archivo</secondary>
+        </indexterm></title>
+
+      <para>Puede especificar máscaras de archivo y filtros ampliados utilizando este
+formato:</para>
+
+      <synopsis>
+        <replaceable>Filtro1 del Grupo1</replaceable>;<replaceable>Filtro2</replaceable> ...|<replaceable>Filtro1 del Grupo2</replaceable>;<replaceable>Filtrop2</replaceable> ...|...
+      </synopsis>
+
+      <itemizedlist>
+        <listitem><para>El carácter<filename>|</filename> separa los grupos de filtros y actúa como
+un AND lógico.</para></listitem>
+        <listitem><para>Los filtros de un mismo grupo se separan mediante un <filename>;</filename>
+y se interpretan como un OR lógico.</para></listitem>
+        <listitem><para>Un archivo solo se incluye si cumple al menos uno de los criterios de
+filtrado de cada grupo.</para></listitem>
+        <listitem>
+          <para>Para incluir el carácter literal <filename>|</filename> (barra vertical) en
+una expresión regular que no esté entre comillas dobles (como en los filtros
+<filename>f:</filename> o <filename>f!:</filename>), use
+<filename>||</filename> en su lugar.</para>
+          <para>Ejemplo: <userinput>f:(abc||def)\.txt$</userinput></para>
+        </listitem>
+        <listitem>
+          <para>Cada filtro (por ejemplo, Filtro1, Filtro2) puede ser de uno de los
+siguientes tipos:</para>
+          <variablelist>
+            <varlistentry><term><replaceable>*.ext</replaceable></term><listitem><para>Máscara de archivo por extensión (ej., *.txt)</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>*.</replaceable></term><listitem><para>Archivos sin extensión (ej., README)</para></listitem></varlistentry>
+            <varlistentry><term>!<replaceable>*.ext</replaceable></term><listitem><para>Excluir los archivos que tengan esa extensión (disponible desde la versión
+2.16.19)</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>carpeta</replaceable>\</term><listitem><para>Carpetas de destino (deben terminar con \) (disponible desde la versión
+2.16.19)</para></listitem></varlistentry>
+            <varlistentry><term>!<replaceable>carpeta</replaceable>\</term><listitem><para>Excluir las carpetas coincidentes (disponible desde la versión 2.16.19)</para></listitem></varlistentry>
+            <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Comparar nombres de archivos mediante expresiones regulares (disponible
+desde la versión 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Excluir los archivos que coincidan con la expresión regular (disponible
+desde la versión 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Buscar nombres de carpetas mediante expresiones regulares (disponible desde
+la versión 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Excluir carpetas que coincidan con la expresión regular (disponible desde la
+versión 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Filter expression for files (ej. fe:Size &lt; 1KB) (disponible desde la
+versión 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para excluir archivos (disponible desde la versión
+2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para carpetas (disponible desde la versión 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para excluir carpetas (disponible desde la versión
+2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>pf: <replaceable>nombre del filtro de archivos</replaceable></term><listitem><para>Aplicar un filtro de archivos por nombre (disponible desde la versión
+2.16.49)</para></listitem></varlistentry>
+          </variablelist>
+        </listitem>
+      </itemizedlist>
+
+      <example>
+        <title>Máscara de archivo</title>
+
+        <para>En este ejemplo de línea de comandos, la operación de comparación de
+carpetas incluye únicamente los archivos con extensiones
+<filename>xml</filename> o <filename>txt</filename>. Se omiten todos los
+demás archivos:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f *.xml;*.txt</userinput></para>
+      </example>
+
+      <example>
+        <title>Excluir carpetas (desde la versión 2.16.19)</title>
+
+        <para>En este ejemplo de línea de comandos, la operación de comparación de
+carpetas excluye las carpetas <filename>.git</filename> y
+<filename>.vs</filename>:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f !.git\;!.vs\</userinput></para>
+      </example>
+
+      <example>
+        <title>Expresión de filtro (desde la versión 2.16.49)</title>
+
+        <para>En este ejemplo de línea de comandos, la operación de comparación de
+carpetas incluye únicamente archivos con extensiones
+<filename>cpp</filename> o <filename>h</filename> y un tamaño inferior a 1
+KB:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f "*.cpp;*.h|fe:tamaño &lt;
+1KB"</userinput></para>
+      </example>
+    </section>
+
+    <section id="FilterExpression_Syntax">
+      <title>Sintaxis de expresiones de filtro</title>
+
+      <para>
+WinMerge permite aplicar potentes filtros mediante expresiones que operan
+sobre los metadatos de los archivos, su contenido y el contexto de
+comparación. En esta sección se describen los atributos, operadores,
+funciones, tipos de datos y reglas de evaluación compatibles.</para>
+
+      <section id="FilterExpression_Literals">
+        <title>Tipos y literales</title>
+
+        <para>Los tipos literales admitidos son:</para>
+        <itemizedlist>
+          <listitem><para><emphasis>Boolean</emphasis>: <literal>true</literal>,
+<literal>false</literal></para></listitem>
+          <listitem><para><emphasis>Null</emphasis>: <literal>none</literal> (represents a null or
+missing value)</para></listitem>
+          <listitem><para><emphasis>Integer</emphasis>: enteros con signo de 64 bits (ej.,
+<literal>1024</literal>, o con unidades como <literal>100 KB</literal>,
+<literal>7días</literal>)</para></listitem>
+          <listitem><para><emphasis>Real (Double)</emphasis>: números de coma flotante con decimal o
+exponente opcionales (ej., <literal>3.14</literal>, <literal>.5</literal>,
+<literal>1e6</literal>)</para></listitem>
+          <listitem><para><emphasis>String</emphasis>: entre comillas dobles (ej.,
+<literal>"ejemplo"</literal>)</para></listitem>
+          <listitem><para><emphasis>Date/Time</emphasis>: Prefixed with <literal>d</literal> and
+enclosed in double quotes (e.g., <literal>d"2026-05-21 07:16:33"</literal>,
+<literal>d"2026-05-21"</literal>)</para></listitem>
+        </itemizedlist>
+
+        <para>
+Internally, values may be of the following types: Boolean, Integer, Real,
+Timestamp, String, File Content, Array, or <literal>none</literal>.</para>
+      </section>
+
+      <section id="FilterExpression_Directives">
+        <title>Directivas</title>
+
+        <para>
+Las expresiones de filtro admiten directivas que controlan cómo se evalúa la
+expresión. Las directivas se especifican al principio de la expresión,
+precedidas por <literal>@</literal> y separadas de la expresión por un
+espacio en blanco.</para>
+
+        <section id="FilterExpression_CaseSensitivity">
+          <title>Directivas sobre el uso de mayúsculas y minúsculas</title>
+
+          <para>
+Por defecto, todos los operadores de comparación de cadenas
+(<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>,
+<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
+<literal>contains</literal>, <literal>recontains</literal>,
+<literal>like</literal>, <literal>matches</literal>)  no distinguen entre
+mayúsculas y minúsculas. Puede controlar este comportamiento utilizando las
+siguientes directivas:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@cs</literal>, <literal>@casesensitive</literal></term>
+              <listitem>
+                <para>
+Habilitar la comparación que distingue entre mayúsculas y minúsculas. Con
+estas directivas, <literal>"ABC"</literal> y <literal>"abc"</literal> se
+consideran diferentes.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal></term>
+              <listitem>
+                <para>
+Habilitar la comparación sin distinción entre mayúsculas y minúsculas
+(comportamiento predeterminado). Con estas directivas,
+<literal>"ABC"</literal> y <literal>"abc"</literal> se consideran idénticas.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Ejemplos de distinción entre mayúsculas y minúsculas</title>
+<programlisting>@cs Name = "README.txt"           ## Distingue entre mayúsculas y minúsculas: solo coincide con "README.txt"
+@ci Name = "readme.txt"           ## Sin distinción entre mayúsculas y minúsculas: coincide "README.txt", "readme.txt", "ReadMe.TXT", etc.
+@casesensitive Extension = "TXT"  ## Distingue entre mayúsculas y minúsculas: solo busca archivos con la extensión ".TXT"
+@caseinsensitive Content contains "error"  ## Sin distinción entre mayúsculas y minúsculas: coincide con "Error", "ERROR", "error", etc.</programlisting></example>
+        </section>
+
+        <section id="FilterExpression_Optimize">
+          <title>Directivas de optimización</title>
+
+          <para>
+De forma predeterminada, las expresiones de filtro se optimizan para mejorar
+el rendimiento.  Puede controlar este comportamiento utilizando las
+siguientes directivas:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@optimize</literal>, <literal>@opt</literal></term>
+              <listitem>
+                <para>
+Habilitar la optimización de expresiones de filtro (comportamiento
+predeterminado). Esto puede mejorar el rendimiento en el caso de expresiones
+complejas.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><literal>@nooptimize</literal>, <literal>@noopt</literal></term>
+              <listitem>
+                <para>
+Desactivar la optimización de expresiones de filtro. Esto resulta útil para
+la depuración o cuando la optimización da lugar a resultados inesperados.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Ejemplos de optimización</title>
+<programlisting>@optimize Size &gt; 10MB and Extension = "log"     ## Habilitar optimización (predeterminado)
+@noopt Name matches "complex[0-9]+pattern"    ## Desactivar la optimización para la depuración
+@nooptimize Content contains "special-case"   ## Desactivar la optimización</programlisting></example>
+        </section>
+
+        <section id="FilterExpression_Name">
+          <title>Directiva sobre nombres</title>
+
+          <para>
+La directiva <literal>@name</literal> permite asignar un nombre descriptivo
+a una expresión de filtro.  Este nombre está pensado para utilizarse en
+mensajes de error y registros, con el fin de ayudar a identificar qué
+expresión de filtro ha provocado el problema.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@name="Nombre del filtro"</literal>,
+<literal>@name=Nombredelfiltro</literal></term>
+              <listitem>
+                <para>
+Asigna un nombre a la expresión del filtro. Si el nombre contiene espacios o
+caracteres especiales, debe escribirse entre comillas dobles. Los nombres
+sin espacios pueden escribirse sin comillas.</para>
+                <para>
+El nombre especificado se utilizará en los mensajes de error y en la
+información de diagnóstico para identificar el filtro.  Esto resulta
+especialmente útil cuando se trabaja con varias expresiones de filtro
+complejas.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Ejemplos de directivas de nombres</title>
+<programlisting>@name="Large Image Files" Size &gt; 10MB and Extension = "png"
+@name=SmallTextFiles Size &lt; 1KB and Extension = "txt"
+@name="Modified Today" Date &gt;= today()
+@name="Test Filter" @cs Name like "test_*.cpp"</programlisting></example>
+
+          <note>
+            <para>
+La directiva <literal>@name</literal> se puede combinar con otras
+directivas.  Cuando se utilizan varias directivas, todas deben aparecer al
+principio de la expresión, separadas por espacios en blanco.</para>
+          </note>
+        </section>
+      </section>
+
+      <section id="FilterExpression_Attributes">
+        <title>Atributos</title>
+
+        <para>
+Las expresiones de filtro admiten diversos atributos relacionados con los
+metadatos y el contenido de los archivos.  Los nombres de los atributos no
+distinguen entre mayúsculas y minúsculas. Opcionalmente, se puede
+especificar a qué lado de la comparación (izquierdo, derecho o central) se
+aplica un atributo utilizando un prefijo.</para>
+
+        <section>
+          <title>Características fundamentales</title>
+          <variablelist>
+            <varlistentry>
+              <term><varname>Exists</varname></term>
+              <listitem><para>Devuelve <literal>true</literal> si el archivo existe, en caso contrario,
+devuelve <literal>false</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Name</varname></term>
+              <listitem><para>Nombre del archivo</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>BaseName</varname></term>
+              <listitem><para>Devuelve el nombre del archivo sin la extensión. Por ejemplo, "document.txt"
+devuelve "document".</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Extension</varname></term>
+              <listitem><para>Extensión de archivo</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>IsFolder</varname></term>
+              <listitem><para>Devuelve "true" si el elemento es una carpeta o un directorio y "false" si
+es un archivo.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Folder</varname></term>
+              <listitem><para>Devuelve la ruta relativa sin el nombre del archivo ni la carpeta base</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>RelPath</varname></term>
+              <listitem><para>Devuelve la ruta relativa desde el directorio raíz de la comparación,
+incluyendo tanto la ruta de la carpeta como el nombre del archivo. Por
+ejemplo, si se comparan "C:\Project" y el archivo está en
+"C:\Project\src\main.cpp", RelPath devuelve "src\main.cpp".</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>FullPath</varname></term>
+              <listitem><para>Devuelve la ruta completa del archivo</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Size</varname></term>
+              <listitem><para>Tamaño del archivo</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Date</varname></term>
+              <listitem><para>Fecha y hora de la última modificación</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>DateStr</varname></term>
+              <listitem><para>Cadena de fecha de última modificación en formato
+<literal>yyyy-MM-dd</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>CreationTime</varname></term>
+              <listitem><para>Fecha y hora de creación</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Attributes</varname></term>
+              <listitem><para>Devuelve los atributos del archivo como un valor entero</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>AttrStr</varname></term>
+              <listitem>
+                <para>Devuelve una cadena que describe el atributo del archivo. Ejemplos:
+<literal>"R"</literal> para solo lectura, <literal>"H"</literal> para
+oculto, <literal>"A"</literal> para archivo, <literal>"S"</literal> para
+archivos del sistema.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>Atributos exclusivos para archivos</title>
+          <para>
+Los siguientes atributos solo están disponibles para los elementos de
+comparación de archivos.  Si se utiliza con elementos de carpeta, el
+comportamiento es indefinido.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><varname>Content</varname></term>
+              <listitem><para>Contenido del archivo. Devuelve un valor de tipo "FileContent". Solo se
+pueden utilizar <literal>contains</literal> y <literal>recontains</literal>
+con este tipo.</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>Atributos exclusivos para carpetas</title>
+          <para>
+Los siguientes atributos solo están disponibles para los elementos de
+comparación de carpetas.  Si se utiliza con elementos de archivo, el
+comportamiento es indefinido.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><varname>Files</varname></term>
+              <listitem><para>Número de archivos que contiene directamente la carpeta.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>RecursiveFiles</varname></term>
+              <listitem><para>Número de archivos que contiene la carpeta, incluidas todas las subcarpetas.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Items</varname></term>
+              <listitem><para>Número de elementos (archivos y subcarpetas) que contiene directamente la
+carpeta.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>RecursiveItems</varname></term>
+              <listitem><para>Número de elementos (archivos y subcarpetas) que contiene la carpeta,
+incluidas todas las subcarpetas.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>TotalSize</varname></term>
+              <listitem><para>Tamaño total de todos los archivos que contiene directamente la carpeta, en
+bytes.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>RecursiveTotalSize</varname></term>
+              <listitem><para>Tamaño total en bytes de todos los archivos contenidos en la carpeta,
+incluidas todas las subcarpetas.</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>Prefijos específicos para cada lado</title>
+          <para>
+Se pueden añadir prefijos para especificar el lado de la comparación:</para>
+          <itemizedlist>
+            <listitem><para><emphasis>Left</emphasis>: se aplica al archivo izquierdo (ej.,
+<literal>LeftSize</literal>)</para></listitem>
+            <listitem><para><emphasis>Right</emphasis>: se aplica al archivo derecho (ej.,
+<literal>RightDate</literal>)</para></listitem>
+            <listitem><para><emphasis>Middle</emphasis>: se aplica al archivo central en la comparación
+a tres bandas (ej., <literal>MiddleName</literal>)</para></listitem>
+          </itemizedlist>
+
+          <para>
+Los atributos sin prefijo (ej., <literal>Size</literal>) devuelven una
+matriz con los valores de todos los lados disponibles (izquierdo, central,
+derecho).</para>
+        </section>
+
+        <section>
+          <title>Atributos de las propiedades de Windows</title>
+          <para>
+Estos atributos permiten acceder a los valores del sistema de propiedades de
+Windows, como los metadatos definidos por el esquema del sistema de
+propiedades de Windows (ej., <literal>System.Title</literal>,
+<literal>System.FileOwner</literal>,
+<literal>System.Image.HorizontalResolution</literal>).</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><varname>Prop</varname></term>
+              <listitem>
+                <para>
+Devuelve una matriz con los valores de las propiedades (izquierdo, central,
+derecho) correspondientes al nombre de propiedad canónica
+especificado. Ejemplo: <literal>prop("System.Title")</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>LeftProp</varname></term>
+              <listitem>
+                <para>
+Valor de la propiedad del archivo del izquierdo. Ejemplo:
+<literal>leftprop("System.FileOwner")</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>MiddleProp</varname></term>
+              <listitem>
+                <para>Valor de la propiedad del archivo del central (en una comparación a tres
+bandas).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>RightProp</varname></term>
+              <listitem>
+                <para>Valor de la propiedad del archivo del derecho.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>Mostrar solo los filtros de atributos</title>
+          <para>
+Los siguientes atributos están diseñados para utilizarse <emphasis
+role="bold">únicamente en filtros de visualización</emphasis> (especificados
+mediante los prefijos <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>,
+<guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>,
+<guilabel>de:</guilabel>, o <guilabel>de!:</guilabel> en el campo Filtro).
+No deben utilizarse en reglas de inclusión/exclusión de filtros de archivos
+(<filename>.flt</filename>), ya que requieren que la comparación se complete
+primero y pueden provocar un comportamiento inesperado.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><varname>Identical</varname></term>
+              <listitem>
+                <para>
+Devuelve <literal>true</literal> si el resultado de la comparación indica
+que los elementos son idénticos, en caso contrario, devuelve
+<literal>false</literal>.  Este es un atributo global (no admite prefijos
+específicos de ningún lado).  Ejemplo: <literal>Identical</literal> para
+mostrar solo los archivos idénticos.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Different</varname></term>
+              <listitem>
+                <para>
+Devuelve <literal>true</literal> si el resultado de la comparación indica
+que los elementos son diferentes, en caso contrario, devuelve
+<literal>false</literal>.  Este es un atributo global (no admite prefijos
+específicos de ningún lado).  Ejemplo: <literal>Different</literal> para
+mostrar solo los archivos diferentes.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Skipped</varname></term>
+              <listitem>
+                <para>
+Devuelve <literal>true</literal> si la comparación se omitió debido a un
+error o a una regla de filtrado, en caso contrario, devuelve
+<literal>false</literal>.  Este es un atributo global (no admite prefijos
+específicos de ningún lado).  Ejemplo: <literal>Skipped</literal> para
+mostrar solo los elementos omitidos.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Binary</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the file is detected as binary,
+<literal>false</literal> if it's text, or <literal>none</literal> if the
+file doesn't exist.  This attribute supports side-specific prefixes (e.g.,
+<literal>LeftBinary</literal>, <literal>RightBinary</literal>).  Example:
+<literal>allof(Binary)</literal> to show files that are binary on all sides.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentLeftMiddle</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the left and middle files are different
+in a 3-way comparison, <literal>false</literal> otherwise.  Returns
+<literal>none</literal> in 2-way comparisons.  This is a global attribute
+(does not support side-specific prefixes).  Example:
+<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> to find
+files where only left differs from middle.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentMiddleRight</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the middle and right files are different
+in a 3-way comparison, <literal>false</literal> otherwise.  Returns
+<literal>none</literal> in 2-way comparisons.  This is a global attribute
+(does not support side-specific prefixes).  Example:
+<literal>DifferentMiddleRight</literal> to show files where middle and right
+differ.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentLeftRight</varname></term>
+              <listitem>
+                <para>
+En comparaciones a tres bandas, devuelve <literal>true</literal> si los
+archivos izquierdo y derecho son diferentes, <literal>false</literal> en
+caso contrario.  En comparaciones a dos bandas, devuelve
+<literal>true</literal> si ambos archivos existen y son diferentes.  Este es
+un atributo global (no admite prefijos específicos de ningún lado).
+Ejemplo: <literal>DifferentLeftRight</literal> para mostrar los archivos en
+los que hay diferencias entre el izquierdo y el derecho.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Differences</varname></term>
+              <listitem>
+                <para>
+Devuelve el número de diferencias de texto en la comparación de archivos.
+Este atributo solo tiene sentido en el caso de los archivos de texto que han
+sido comparados.  Este es un atributo global (no admite prefijos específicos
+de ningún lado).  Ejemplo: <literal>Differences &gt; 0</literal> para
+mostrar los archivos con diferencias, o <literal>Differences &gt;
+10</literal> para mostrar los archivos con más de 10 diferencias.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>IgnoredDiffs</varname></term>
+              <listitem>
+                <para>
+Devuelve el número de diferencias ignoradas en la comparación de archivos
+(diferencias filtradas por filtros de línea o ajustes de espacios en
+blanco).  Este atributo solo tiene sentido en el caso de los archivos de
+texto que han sido comparados.  Este es un atributo global (no admite
+prefijos específicos de ningún lado).  Ejemplo: <literal>IgnoredDiffs &gt;
+0</literal> para mostrar los archivos con diferencias ignoradas, o
+<literal>Differences = 0 and IgnoredDiffs &gt; 0</literal> para mostrar los
+archivos que son idénticos, salvo por las diferencias ignoradas.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Unpacker</varname></term>
+              <listitem>
+                <para>
+Devuelve el nombre del complemento de descompresión utilizado para la
+comparación de archivos o una cadena vacía si no se ha utilizado ningún
+complemento de descompresión.  Este es un atributo global (no admite
+prefijos específicos de ningún lado).  Ejemplo: <literal>Unpacker =
+"CompareMSExcelFiles"</literal> para mostrar los archivos comparados con el
+descompresor de Excel, o <literal>Unpacker != ""</literal> para mostrar
+todos los archivos en los que se ha utilizado un descompresor.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Prediffer</varname></term>
+              <listitem>
+                <para>
+Devuelve el nombre del complemento prediferenciador utilizado para la
+comparación de archivos, o una cadena vacía si no se ha utilizado ningún
+complemento prediferenciador.  Este es un atributo global (no admite
+prefijos específicos de ningún lado).  Ejemplo: <literal>Prediffer =
+"IgnoreColumns"</literal> para mostrar los archivos comparados utilizando el
+prediferenciador IgnoreColumns, o <literal>Prediffer != ""</literal> para
+mostrar todos los archivos en los que se ha utilizado un prediferenciador.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>EOL</varname></term>
+              <listitem>
+                <para>Returns the end-of-line (EOL) style as an integer value. For files, returns
+the predominant EOL style; for lines, returns the EOL style of that specific
+line.</para>
+                <para>Values: 0 = None, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 = Mixed
+(multiple EOL styles in file)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>EOLStr</varname></term>
+              <listitem>
+                <para>Returns the end-of-line (EOL) style as a string. For files, returns the
+predominant EOL style; for lines, returns the EOL style of that specific
+line.</para>
+                <para>Values: "None", "LF", "CR", "CRLF", "Mixed"</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><varname>Codepage</varname></term>
+              <listitem>
+                <para>
+Devuelve la página de códigos (codificación de caracteres) del archivo como
+un valor entero.  Este atributo admite prefijos específicos para cada lado
+(ej., <literal>LeftCodepage</literal>, <literal>RightCodepage</literal>).
+Ejemplo: <literal>Codepage = 65001</literal> para mostrar archivos UTF-8, o
+<literal>allof(Codepage = 65001)</literal> para mostrar archivos que estén
+en UTF-8 en todos los lados.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>HasBOM</varname></term>
+              <listitem>
+                <para>
+Devuelve <literal>true</literal> si el archivo tiene una marca de orden de
+bytes (BOM), <literal>false</literal> en caso contrario, devuelve.  Este
+atributo admite prefijos específicos para cada lado (ej.,
+<literal>LeftHasBOM</literal>, <literal>RightHasBOM</literal>).  Ejemplo:
+<literal>HasBOM</literal> para mostrar los archivos con BOM, o <literal>not
+HasBOM</literal> para mostrar los archivos sin BOM.</para>
+              </listitem>
+            </varlistentry>
+
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_ArrayEvaluation">
+          <title>Evaluación de matrices</title>
+
+          <para>
+Los atributos sin prefijo de lado (ej., <literal>Size</literal>) devuelven
+una matriz con los valores de todos los lados disponibles (izquierdo,
+central, derecho). Al aplicar un operador a estas matrices, el
+comportamiento varía dependiendo de si la comparación se realiza con un
+valor escalar o con otra matriz.</para>
+
+          <section id="FilterExpression_ArrayVsScalar">
+            <title>Matriz contra valor escalar</title>
+            <para>
+Al comparar una matriz con un valor escalar, la operación se aplica a cada
+elemento de la matriz por separado.  El resultado es una matriz booleana. Si
+algún elemento de esta matriz booleana es <literal>true</literal>, la
+expresión global se evalúa como <literal>true</literal>. De lo contrario, se
+evalúa como <literal>false</literal>.</para>
+            <example>
+              <title>Ejemplo</title>
+<programlisting>[3, 5, 8] &gt; 6 -> [false, false, true] -> true</programlisting></example>
+          </section>
+
+          <section id="FilterExpression_ArrayVsArray">
+            <title>Matriz contra matriz</title>
+            <para>
+Al comparar dos matrices, el comportamiento depende del operador:</para>
+            <itemizedlist>
+              <listitem>
+                <para>
+Para <literal>=</literal> y <literal>!=</literal>: Las matrices deben tener
+la misma longitud.  El resultado es un único valor booleano, no una matriz.
+<literal>=</literal> devuelve <literal>true</literal> solo si todos los
+elementos son iguales.  <literal>!=</literal> devuelve
+<literal>true</literal> si hay algún elemento diferente.</para>
+              </listitem>
+              <listitem>
+                <para>
+Para el resto de operadores (ej., <literal>&gt;</literal>,
+<literal>&lt;</literal>): la operación se aplica elemento por elemento,
+generando una matriz booleana. El resultado final de la expresión es
+<literal>true</literal> si al menos un elemento de la matriz booleana es
+<literal>true</literal>, y <literal>false</literal> si todos los elementos
+son <literal>false</literal>.</para>
+              </listitem>
+            </itemizedlist>
+
+            <example>
+              <title>Ejemplos</title>
+<programlisting>[2, 4] = [2, 4] -> true</programlisting> <programlisting>[2, 4] != [2, 5] -> true (ya que 4 != 5)</programlisting> <programlisting>[3, 5, 8] &gt; [6, 4, 2]
+ -> [false, true, true]
+ -> true (porque al menos una de las comparaciones es cierta)
+              </programlisting></example>
+          </section>
+
+          <section id="FilterExpression_ArraySummary">
+            <title>Resumen</title>
+            <itemizedlist>
+              <listitem>
+                <para>
+Las comparaciones entre matrices y valores escalares dan como resultado una
+matriz booleana.  La expresión en su conjunto es <literal>true</literal> si
+al menos un elemento es <literal>true</literal>.</para>
+              </listitem>
+              <listitem>
+                <para>
+La comparación de matrices con <literal>=</literal> o <literal>!=</literal>
+devuelve un único valor booleano.</para>
+              </listitem>
+              <listitem>
+                <para>
+La comparación de matrices con otros operadores da como resultado una matriz
+booleana.  El resultado final es <literal>true</literal> si al menos un
+elemento es <literal>true</literal>.</para>
+              </listitem>
+            </itemizedlist>
+          </section>
+        </section>
+      </section>
+
+      <section id="FilterExpression_Operators">
+        <title>Operadores</title>
+
+        <para>
+Por defecto, todos los operadores de comparación de cadenas (como
+<literal>=</literal>, <literal>!=</literal>, <literal>&lt;</literal>,
+<literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
+<literal>like</literal>, <literal>matches</literal>,
+<literal>contains</literal> y <literal>recontains</literal>)  no distinguen
+entre mayúsculas y minúsculas. Puede controlar este comportamiento mediante
+directivas (consulte <xref linkend="FilterExpression_CaseSensitivity" />).</para>
+
+        <variablelist>
+          <varlistentry>
+            <term><literal>&lt;</literal>, <literal>&lt;=</literal>, <literal>&gt;</literal>,
+<literal>&gt;=</literal></term>
+            <listitem><para>Comparación de valores numéricos, marcas de tiempo o cadenas de caracteres</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>=</literal></term>
+            <listitem><para>Comparación de igualdad</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>!=</literal></term>
+            <listitem><para>Comparación de desigualdad</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>+</literal>, <literal>-</literal>, <literal>*</literal>,
+<literal>/</literal>, <literal>%</literal></term>
+            <listitem>
+              <para>
+Operadores aritméticos. <literal>+</literal> y <literal>-</literal> realizan
+la suma y la resta. <literal>*</literal> y <literal>/</literal>* realizan la
+multiplicación y la división. % es el operador módulo (resto).</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>and</literal>, <literal>or</literal>, <literal>not</literal></term>
+            <listitem><para>Operadores lógicos</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>like</literal></term>
+            <listitem>
+              <para>Coincidencia de cadenas con comodines</para>
+              <para>También puede utilizar <literal>not like</literal> para realizar la búsqueda
+inversa.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>matches</literal></term>
+            <listitem>
+              <para>Coincidencia de expresiones regulares</para>
+              <para>También puede utilizar <literal>not matches</literal> para realizar la
+búsqueda inversa.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>contains</literal></term>
+            <listitem>
+              <para>Comprueba si una cadena contiene una subcadena</para>
+              <para>También puede utilizar <literal>not contains</literal> para comprobar que no
+contiene la subcadena.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>recontains</literal></term>
+            <listitem>
+              <para>Comprueba si alguna subcadena coincide con una expresión regular</para>
+              <para>También puede utilizar <literal>not recontains</literal> para asegurarse de
+que no haya coincidencias.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="FilterExpression_Functions">
+        <title>Funciones</title>
+
+        <para>
+Filter expressions support various functions for manipulating and analyzing
+data.  Functions are organized by category for easier reference.</para>
+
+        <section id="FilterExpression_StringFunctions">
+          <title>String Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>strlen</function>(<replaceable>source</replaceable>)</term>
+              <listitem><para>Devuelve la longitud de la cadena como un <literal>Integer</literal>. Si
+<replaceable>source</replaceable> es una matriz de cadenas, el resultado es
+una matriz de enteros. Ejemplo: <literal>strlen(Name)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>strCount</function>(<replaceable>str</replaceable>,
+<replaceable>substr</replaceable>)</term>
+              <listitem>
+                <para>
+Counts how many times the substring <replaceable>substr</replaceable>
+appears in <replaceable>str</replaceable>.  The search is case-insensitive
+by default (respects <literal>@cs</literal>/<literal>@ci</literal>
+directives).  If <replaceable>str</replaceable> is an array, the result is
+an integer array with counts for each element.  Overlapping matches are
+counted separately (e.g., <literal>strCount("aaaa", "aa")</literal> returns
+2).</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>strCount("hello hello world", "hello")</literal> returns 2</para></listitem>
+                  <listitem><para><literal>strCount("Test TEST test", "test")</literal> returns 3
+(case-insensitive)</para></listitem>
+                  <listitem><para><literal>@cs strCount("Test TEST test", "test")</literal> returns 1
+(case-sensitive)</para></listitem>
+                  <listitem><para><literal>le:strCount(Line, "ERROR") > 2</literal> shows lines containing
+"ERROR" more than twice</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexCount</function>(<replaceable>str</replaceable>,
+<replaceable>pattern</replaceable>)</term>
+              <listitem>
+                <para>
+Counts how many times the regular expression
+<replaceable>pattern</replaceable> matches in
+<replaceable>str</replaceable>.  The search is case-insensitive by default
+(respects <literal>@cs</literal>/<literal>@ci</literal> directives).  If
+<replaceable>str</replaceable> is an array, the result is an integer array
+with counts for each element.  Zero-length matches are handled gracefully to
+avoid infinite loops.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>regexCount("test123abc456", "\d+")</literal> returns 2</para></listitem>
+                  <listitem><para><literal>regexCount("AAA BBB CCC", "[A-Z]+")</literal> returns 3</para></listitem>
+                  <listitem><para><literal>@cs regexCount("Test TEST", "TEST")</literal> returns 1</para></listitem>
+                  <listitem><para><literal>le:regexCount(Line, "\b(error|warning)\b") > 0</literal> shows
+lines with error or warning keywords</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>strFind</function>(<replaceable>str</replaceable>,
+<replaceable>substr</replaceable>[, <replaceable>occurrence</replaceable>])</term>
+              <listitem>
+                <para>
+Finds the position (0-based) of the Nth occurrence of substring
+<replaceable>substr</replaceable> in <replaceable>str</replaceable>.  The
+optional <replaceable>occurrence</replaceable> parameter specifies which
+occurrence to find (0-based, default is 0 for the first occurrence).  The
+search is case-insensitive by default (respects
+<literal>@cs</literal>/<literal>@ci</literal> directives).  Returns
+<literal>none</literal> if the substring is not found or if the occurrence
+index is out of range.  If <replaceable>str</replaceable> is an array, the
+result is an array of positions (or none values).</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>strFind("hello world", "o")</literal> returns 4 (first 'o')</para></listitem>
+                  <listitem><para><literal>strFind("hello world", "o", 1)</literal> returns 7 (second 'o')</para></listitem>
+                  <listitem><para><literal>@cs strFind("Test TEST test", "test")</literal> returns 10
+(case-sensitive)</para></listitem>
+                  <listitem><para><literal>strFind(array("abc", "def"), "b")</literal> returns
+<literal>array(1, none)</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexFind</function>(<replaceable>str</replaceable>,
+<replaceable>pattern</replaceable>[, <replaceable>group</replaceable>[,
+<replaceable>occurrence</replaceable>]])</term>
+              <listitem>
+                <para>
+Finds the position (0-based) of the Nth occurrence of a regular expression
+match in <replaceable>str</replaceable>.  The optional
+<replaceable>group</replaceable> parameter specifies which capture group to
+locate (0-based, default is 0 for the entire match).  The optional
+<replaceable>occurrence</replaceable> parameter specifies which occurrence
+of the pattern to find (0-based, default is 0 for the first occurrence).
+The search is case-insensitive by default (respects
+<literal>@cs</literal>/<literal>@ci</literal> directives).  Returns
+<literal>none</literal> if the pattern doesn't match, the group index is out
+of range, or the occurrence index is out of range.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+positions (or none values).</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>regexFind("test123abc456", "\d+")</literal> returns 4 (position of
+"123")</para></listitem>
+                  <listitem><para><literal>regexFind("test123abc456", "\d+", 0, 1)</literal> returns 10
+(position of "456", second match)</para></listitem>
+                  <listitem><para><literal>regexFind("abc-def-ghi", "([a-z]+)-([a-z]+)", 1)</literal> returns
+0 (position of first capture group "abc")</para></listitem>
+                  <listitem><para><literal>regexFind("v1.0 and v2.5", "v(\d+)\.(\d+)", 1, 1)</literal> returns
+10 (major version "2" in second occurrence)</para></listitem>
+                  <listitem><para><literal>regexFind(array("test123", "abc"), "\d+")</literal> returns
+<literal>array(4, none)</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>substr</function>(<replaceable>source</replaceable>,
+<replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+              <listitem><para>Devuelve un fragmento específico de texto de la <emphasis>cadena o de la
+matriz de cadenas</emphasis> como una <literal>cadena</literal>. Si
+<replaceable>source</replaceable> es una matriz de cadenas, el resultado es
+una matriz de cadenas. Ejemplo: <literal>substr(Name, 0, 3)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>replace</function>(str, from, to)</term>
+              <listitem>
+                <para>
+Sustituye todas las coincidencias de la cadena
+<replaceable>from</replaceable> por <replaceable>to</replaceable>.
+Si<replaceable>str</replaceable> es una matriz, el resultado es una matriz
+de cadenas con las sustituciones aplicadas.  Ejemplo: <literal>replace(name,
+".bak", ".txt")</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexReplace</function>(str, pattern, replacement)</term>
+              <listitem>
+                <para>
+Sustituye todas las coincidencias del modelo de expresión regular por la
+cadena de sustitución Admite referencias hacia atrás ($1, $2, etc.) en la
+cadena de sustitución. Si <replaceable>str</replaceable> es una matriz, el
+resultado es una matriz de cadenas con las sustituciones aplicadas. Ejemplo:
+<literal>regexReplace(name, "^(\w+)_(\w+)$", "$2_$1")</literal> intercambia
+las palabras separadas por un guion bajo.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>replaceWithList</function>(str, filepath)</term>
+              <listitem>
+                <para>
+Sustituye varias cadenas en <replaceable>str</replaceable> utilizando reglas
+de sustitución cargadas desde un archivo separado por tabulaciones El
+formato del archivo es de una regla de sustitución por línea:
+<literal>search_string&lt;TAB&gt;replacement_string</literal>.  Las líneas
+que comienzan por <literal>#</literal> se consideran comentarios y se
+ignoran.  Las líneas vacías también se ignoran.  Si
+<replaceable>str</replaceable> es una matriz, el resultado es una matriz de
+cadenas con las sustituciones aplicadas.</para>
+                <para>Ejemplo de formato de archivo:</para>
+                <screen># Línea de comentarios
+manzana naranja
+gato   perro
+viejo   nuevo</screen>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> -
+Aplica las sustituciones del archivo al nombre del archivo</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexReplaceWithList</function>(str, filepath)</term>
+              <listitem>
+                <para>
+Reemplaza las cadenas de <replaceable>str</replaceable> utilizando patrones
+de expresiones regulares cargados desde un archivo separado por
+tabulaciones.  El formato del archivo es de un patrón por línea:
+<literal>patrón_regex&lt;TAB&gt;cadena_de_sustitución</literal>.  La cadena
+de sustitución puede incluir referencias hacia atrás ($1, $2, etc.) a los
+grupos capturados.  Las líneas que comienzan por <literal>#</literal> se
+consideran comentarios y se ignoran.  Las líneas vacías también se ignoran.
+Si <replaceable>str</replaceable> es una matriz, el resultado es una matriz
+de cadenas con las sustituciones aplicadas.</para>
+                <para>Ejemplo de formato de archivo:</para>
+                <screen># Línea de comentarios
+\d+   NUMBER
+(\d{4})-(\d{2})-(\d{2}) $1_$2_$3</screen>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>regexReplaceWithList(Name,
+"C:\Filters\regex_replacements.txt")</literal> - Aplica sustituciones con
+expresiones regulares al nombre del archivo</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>regexExtract</function>(<replaceable>str</replaceable>,
+<replaceable>pattern</replaceable>[, <replaceable>group</replaceable>[,
+<replaceable>offset</replaceable>]])</term>
+              <listitem>
+                <para>
+Captures text matching a regular expression pattern from the string.  The
+optional <replaceable>group</replaceable> parameter specifies which capture
+group to extract (0-based).  Group 0 (default) returns the entire match;
+groups 1, 2, etc. return the corresponding capture groups defined by
+parentheses in the pattern.  The optional <replaceable>offset</replaceable>
+parameter specifies which occurrence of the pattern to capture (0-based).
+Offset 0 (default) returns the first match; offset 1 returns the second
+match, etc.  This is useful for capturing the Nth occurrence in a line, such
+as the second number in a string.  Returns <literal>none</literal> if the
+pattern doesn't match, the group index is out of range, or the offset
+exceeds the number of matches.  If <replaceable>str</replaceable> is an
+array, the result is an array with captures for each element.  The search is
+case-insensitive by default (respects
+<literal>@cs</literal>/<literal>@ci</literal> directives).</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>regexExtract("abc123", "[a-z]+\d+")</literal> returns
+<literal>"abc123"</literal> (entire match)</para></listitem>
+                  <listitem><para><literal>regexExtract("abc123", "([a-z]+)(\d+)", 1)</literal> returns
+<literal>"abc"</literal> (first capture group)</para></listitem>
+                  <listitem><para><literal>regexExtract("abc123", "([a-z]+)(\d+)", 2)</literal> returns
+<literal>"123"</literal> (second capture group)</para></listitem>
+                  <listitem><para><literal>regexExtract("2025-05-16", "(\d{4})-(\d{2})-(\d{2})", 1)</literal>
+returns <literal>"2025"</literal></para></listitem>
+                  <listitem><para><literal>regexExtract("user@example.com", "([^@]+)@([^@]+)", 1)</literal>
+returns <literal>"user"</literal></para></listitem>
+                  <listitem><para><literal>regexExtract("user@example.com", "([^@]+)@([^@]+)", 2)</literal>
+returns <literal>"example.com"</literal></para></listitem>
+                  <listitem><para><literal>regexExtract("value 123 and value 456", "(\d+)", 0, 0)</literal>
+returns <literal>"123"</literal> (first number)</para></listitem>
+                  <listitem><para><literal>regexExtract("value 123 and value 456", "(\d+)", 0, 1)</literal>
+returns <literal>"456"</literal> (second number)</para></listitem>
+                  <listitem><para><literal>regexExtract("v1.0.0 and v2.0.0", "v(\d+)\.(\d+)\.(\d+)", 1,
+1)</literal> returns <literal>"2"</literal> (major version of second
+occurrence)</para></listitem>
+                  <listitem><para><literal>regexExtract("test", "\d+")</literal> returns
+<literal>none</literal> (no match)</para></listitem>
+                  <listitem><para><literal>regexExtract("abc", "([a-z])", 5)</literal> returns
+<literal>none</literal> (group out of range)</para></listitem>
+                  <listitem><para><literal>regexExtract(array("abc123", "def456"), "([a-z]+)(\d+)",
+1)</literal> returns <literal>array("abc", "def")</literal></para></listitem>
+                  <listitem><para><literal>@cs regexExtract("ABC123", "([a-z]+)", 1)</literal> returns
+<literal>none</literal> (case-sensitive, no match)</para></listitem>
+                  <listitem><para><literal>le:regexExtract(Line, "error:\s+(\w+)", 1)</literal> extracts error
+type from log lines</para></listitem>
+                  <listitem><para><literal>fe:regexExtract(Name, "v(\d+)\.(\d+)\.(\d+)", 1) = "2"</literal>
+filters files with major version 2</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>normalizeUnicode</function>(str[, form])</term>
+              <listitem>
+                <para>
+Normalizar una cadena Unicode. El parámetro opcional "form" especifica la
+forma de normalización: "NFC" o "C" (predeterminado), "NFD" o "D", "NFKC" o
+"KC", "NFKD" o "KD".  También se pueden utilizar formatos numéricos: 1=NFC,
+2=NFD, 5=NFKC, 6=NFKD.  Si <replaceable>str</replaceable> se trata de una
+matriz, el resultado es una matriz de cadenas normalizadas.  Ejemplo:
+<literal>normalizeUnicode(name, "NFC")</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toLower</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte todos los caracteres de la cadena a minúsculas.  Si
+<replaceable>str</replaceable> es una matriz, el resultado es una matriz de
+cadenas en minúsculas.  Ejemplo: <literal>toLower("Hola Mundo")</literal>
+devuelve <literal>"hola mundo"</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toUpper</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte todos los caracteres de la cadena a mayúsculas.  Si
+<replaceable>str</replaceable> es una matriz, el resultado es una matriz de
+cadenas en mayúsculas.  Ejemplo: <literal>toUpper("Hola Mundo")</literal>
+devuelve <literal>"HOLA MUNDO"</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toHalfWidth</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte los caracteres de ancho completo en caracteres de ancho medio.  Se
+utiliza principalmente para convertir caracteres alfanuméricos y katakana de
+ancho completo a ancho medio.  Si <replaceable>str</replaceable> es una
+matriz, el resultado es una matriz de cadenas convertidas.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toFullWidth</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte los caracteres de ancho medio en caracteres de ancho completo.  Se
+utiliza principalmente para convertir caracteres alfanuméricos y katakana de
+ancho medio a ancho completo.  Si <replaceable>str</replaceable> es una
+matriz, el resultado es una matriz de cadenas convertidas.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toKatakana</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte los caracteres hiragana a katakana.  Los caracteres que no son
+hiragana no se modifican.  Si <replaceable>str</replaceable> es una matriz,
+el resultado es una matriz de cadenas convertidas.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toHiragana</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte los caracteres katakana a hiragana.  Los caracteres que no son
+katakana no se modifican.  Si <replaceable>str</replaceable> es una matriz,
+el resultado es una matriz de cadenas convertidas.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte los caracteres chinos tradicionales en caracteres chinos
+simplificados.  Los caracteres que no tienen una forma simplificada no se
+modifican.  Si <replaceable>str</replaceable> es una matriz, el resultado es
+una matriz de cadenas convertidas.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>toTraditionalChinese</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Convierte los caracteres chinos simplificados en caracteres chinos
+tradicionales.  Los caracteres que no tienen una forma tradicional no se
+modifican.  Si <replaceable>str</replaceable> es una matriz, el resultado es
+una matriz de cadenas convertidas.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>trim</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Removes leading and trailing whitespace characters (space, tab, newline,
+carriage return) from the string.  If <replaceable>str</replaceable> is an
+array, the result is an array of trimmed strings.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>trim(" hello ")</literal> returns <literal>"hello"</literal></para></listitem>
+                  <listitem><para><literal>trim(array(" test ", " data "))</literal> returns
+<literal>array("test", "data")</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>trimLeft</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Removes leading whitespace characters (space, tab, newline, carriage return)
+from the beginning of the string.  Trailing whitespace is preserved.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+left-trimmed strings.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>trimLeft(" hello ")</literal> returns <literal>"hello "</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>
+<function>trimRight</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Removes trailing whitespace characters (space, tab, newline, carriage
+return) from the end of the string.  Leading whitespace is preserved.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+right-trimmed strings.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>trimRight(" hello ")</literal> returns <literal>" hello"</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_FileContentFunctions">
+          <title>File Content Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>lineCount</function>(<replaceable>content</replaceable>)</term>
+              <listitem><para>Devuelve el número de líneas del contenido del archivo o de la matriz de
+contenido del archivo como un <literal>Integer</literal>. Si
+<replaceable>content</replaceable> es una matriz, el resultado es una matriz
+de enteros. Ejemplo: <literal>lineCount(Content)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>sublines</function>(<replaceable>content</replaceable>,
+<replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+              <listitem>
+                <para>
+Extrae el número de líneas especificado a partir del índice de línea
+indicado en el contenido del archivo o en la matriz de contenido del archivo
+y las devuelve como una única cadena concatenada. Si
+<replaceable>content</replaceable> es una matriz, el resultado es una matriz
+de cadenas.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_TypeConversionFunctions">
+          <title>Type Conversion Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>toNumber</function>(<replaceable>str</replaceable>),
+<function>toInt</function>(<replaceable>str</replaceable>),
+<function>toDouble</function>(<replaceable>str</replaceable>)</term>
+              <listitem><para>Convert a string to a number. <function>toNumber</function> returns an
+integer or floating-point number depending on the input format;
+<function>toInt</function> returns only integers;
+<function>toDouble</function> returns only floating-point numbers.  Commas
+in the input are ignored. Returns <literal>none</literal>on parse failure.
+Example: <literal>le:toInt(Column("Count")) &gt; 100</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>toDateTime</function>(<replaceable>str</replaceable>)</term>
+              <listitem>
+                <para>
+Converts a string to a timestamp value. Supports multiple date/time
+formats.  Returns <literal>none</literal>if the string cannot be parsed.
+Example: <literal>toDateTime("2025-01-15") &gt; today()</literal></para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_DateTimeFunctions">
+          <title>Date/Time Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>now</function>()</term>
+              <listitem><para>Devuelve la fecha y la hora actuales como un valor de
+<literal>Timestamp</literal>.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>today</function>()</term>
+              <listitem><para>Devuelve la fecha de hoy como un valor de <literal>Timestamp</literal> que
+representa las <literal>00:00:00.000</literal> al comienzo del día.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>startOfWeek</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Devuelve el primer día de la semana, que siempre es el domingo,
+independientemente de la configuración regional.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>startOfMonth</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Devuelve el primer día del mes.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>startOfYear</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Devuelve el primer día del año.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>toDateStr</function>(<replaceable>timestamp</replaceable>)</term>
+              <listitem><para>Convierte la marca de tiempo indicada en una cadena de fecha en
+<literal>yyyy-MM-dd</literal> format. Si
+<replaceable>timestamp</replaceable> es una matriz de marcas de tiempo, el
+resultado es una matriz de cadenas.</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_MathFunctions">
+          <title>Math and Comparison Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>abs</function>(<replaceable>value</replaceable>)</term>
+              <listitem><para>Devuelve el valor absoluto del <emphasis>número entero o de la matriz de
+números enteros</emphasis>. Si <replaceable>value</replaceable> es una
+matriz de números enteros, el resultado es una matriz de números enteros.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>isWithin</function>(<replaceable>value</replaceable>,
+<replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
+              <listitem>
+                <para>
+Devuelve <literal>true</literal> si <replaceable>value</replaceable> está
+dentro del intervalo <literal>[min, max]</literal> (ambos lados incluidos).
+Admite números enteros, números de coma flotante, marcas de tiempo y cadenas
+de caracteres (comparación sin distinción entre mayúsculas y minúsculas).
+Si <replaceable>value</replaceable> si es una matriz, el resultado es una
+matriz booleana en la que cada elemento se comprueba por separado.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>isWithin(5, 1, 10)</literal> devuelve <literal>true</literal></para></listitem>
+                  <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> comprueba si hay algún archivo
+cuyo tamaño esté comprendido entre 1 KB y 10 MB</para></listitem>
+                  <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> comprueba si el
+archivo fue modificado en la última semana</para></listitem>
+                  <listitem><para><literal>allof(isWithin(Size, 1KB, 10MB))</literal> comprueba si todos los
+tamaños de los archivos están comprendidos entre 1 KB y 10 MB</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>inRange</function>(<replaceable>value</replaceable>,
+<replaceable>min</replaceable>, <replaceable>max</replaceable>)</term>
+              <listitem>
+                <para>
+Devuelve <literal>true</literal> isi <replaceable>value</replaceable> está
+comprendido en el intervalo <literal>[min, max)</literal> (incluido el
+límite inferior y excluido el límite superior).  Admite números enteros,
+números de coma flotante, marcas de tiempo y cadenas de caracteres
+(comparación sin distinción entre mayúsculas y minúsculas)  Si
+<replaceable>value</replaceable> es una matriz, el resultado es una matriz
+booleana en la que cada elemento se comprueba por separado.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>inRange(5, 1, 10)</literal> devuelve <literal>true</literal></para></listitem>
+                  <listitem><para><literal>inRange(10, 1, 10)</literal> devuelve <literal>false</literal></para></listitem>
+                  <listitem><para><literal>inRange(Size, 0, 1MB)</literal> comprueba si hay algún archivo cuyo
+tamaño sea inferior a 1 MB</para></listitem>
+                  <listitem><para><literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal>
+comprueba si fue modificado algún archivo este mes (excluyendo hoy)</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_ArrayFunctions">
+          <title>Array Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>array</function>(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>, ...)</term>
+              <listitem><para>Creates an array from the given values. Example: <literal>array(1, 2,
+3)</literal></para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>at</function>(<replaceable>array</replaceable>,
+<replaceable>index</replaceable>)</term>
+              <listitem><para>Returns the element at the specified index (0-based). Negative indices count
+from the end. Example: <literal>at(array(1, 2, 3), -1)</literal> returns 3</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>anyof</function>(<replaceable>booleans</replaceable>)</term>
+              <listitem><para>Returns <literal>true</literal> if any element in the <emphasis>boolean
+array</emphasis> satisfies the condition.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>allof</function>(<replaceable>booleans</replaceable>)</term>
+              <listitem><para>Devuelve <literal>true</literal> si todos los elementos de la matriz
+booleana cumplen la condición.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>allequal</function>(<replaceable>array</replaceable>)</term>
+              <listitem><para>Devuelve <literal>true</literal> si todos los valores de la matriz son
+iguales.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>len</function>(<replaceable>value</replaceable>)</term>
+              <listitem>
+                <para>Returns the length of the value as an <literal>Integer</literal>.</para>
+                <para>Behavior:</para>
+                <itemizedlist>
+                  <listitem><para><emphasis>Array</emphasis>: Returns the number of elements in the array</para></listitem>
+                  <listitem><para><emphasis>String</emphasis>: Returns the UTF-8 character count</para></listitem>
+                  <listitem><para><emphasis>None (monostate)</emphasis>: Returns 0</para></listitem>
+                  <listitem><para><emphasis>Other scalar values</emphasis> (Integer, Real, Boolean, Timestamp,
+etc.): Returns 1</para></listitem>
+                </itemizedlist>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>len(array(1, 2, 3))</literal> - returns 3</para></listitem>
+                  <listitem><para><literal>len("hello")</literal> - returns 5</para></listitem>
+                  <listitem><para><literal>len(123)</literal> - returns 1</para></listitem>
+                  <listitem><para><literal>len(Size)</literal> - returns the number of sides (2 or 3) in a
+folder comparison</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_ConditionalFunctions">
+          <title>Conditional Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>if</function>(<replaceable>condition</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+              <listitem>
+                <para>
+Devuelve <replaceable>trueValue</replaceable> si
+<replaceable>condition</replaceable> es verdadera, en caso contrario
+devuelve<replaceable>falseValue</replaceable>.  si la condición es
+verdadera, devuelve true; en caso contrario, devuelve falseValue. Esta
+función realiza una evaluación de cortocircuito (solo evalúa la rama que se
+va a devolver).</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - devuelve "large" o
+"small" en función del tamaño del archivo</para></listitem>
+                  <listitem><para><literal>if(Extension = "txt", "text file", "other file")</literal> -
+clasifica los archivos por extensión</para></listitem>
+                  <listitem><para><literal>if(Exists, Size, 0)</literal> - devuelve tamaño del archivo o 0 si
+el archivo no existe</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>ifEach</function>(<replaceable>conditionArray</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+              <listitem>
+                <para>
+Selección condicional elemento por elemento. Para cada elemento en
+<replaceable>conditionArray</replaceable>, devuelve el elemento
+correspondiente de <replaceable>trueValue</replaceable> si la condición es
+verdadera, en caso contrario, devuelve el elemento correspondiente de
+<replaceable>falseValue</replaceable>.  Si
+<replaceable>trueValue</replaceable> o <replaceable>falseValue</replaceable>
+es un valor escalar, se aplica a todos los elementos.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - devuelve una
+matriz con etiquetas "large"/"small" labels para cada archivo</para></listitem>
+                  <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x",
+"y", "z"))</literal> - devuelve <literal>array("a", "y", "c")</literal></para></listitem>
+                  <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> -
+comprueba si hay algún archivo que tenga un tamaño comprendido entre 100 KB
+y 10 MB</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>choose</function>(<replaceable>index</replaceable>,
+<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+              <listitem>
+                <para>
+Selecciona un valor de entre los argumentos en función de
+<replaceable>index</replaceable>.  Si <replaceable>index</replaceable> es 0,
+devuelve <replaceable>value0</replaceable>; si es 1, devuelve
+<replaceable>value1</replaceable>, etc.  Los índices negativos se limitan a
+0. Los índices que superan el último valor devuelven el último valor.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>choose(0, "first", "second", "third")</literal> - devuelve "first"</para></listitem>
+                  <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> -
+asigna códigos de diferencia a las etiquetas</para></listitem>
+                  <listitem><para><literal>choose(5, "a", "b", "c")</literal> - devuelve "c" (fuera de
+límites, devuelve el último valor)</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term><function>chooseEach</function>(<replaceable>indexArray</replaceable>,
+<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+              <listitem>
+                <para>
+Selección de valores elemento por elemento. Para cada índice en
+<replaceable>indexArray</replaceable>, selecciona el valor correspondiente
+de entre los argumentos restantes.  Si <replaceable>indexArray</replaceable>
+es un valor escalar, se comporta como <literal>choose</literal>.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> - devuelve
+<literal>array("a", "b", "c")</literal></para></listitem>
+                  <listitem><para><literal>chooseEach(array(0, 0, 1), "x", "y")</literal> - devuelve
+<literal>array("x", "x", "y")</literal></para></listitem>
+                  <listitem><para><literal>chooseEach(array(2, 0, 1), "first", "second", "third")</literal> -
+devuelve <literal>array("third", "first", "second")</literal></para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_LogicalFunctions">
+          <title>Element-wise Logical Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>andEach</function>(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+<function>orEach</function>(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+<function>notEach</function>(<replaceable>value</replaceable>)</term>
+              <listitem>
+                <para>
+Operaciones lógicas elemento por elemento. Estas funciones actúan sobre
+valores booleanos, matrices booleanas o una combinación de ambos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>andEach</literal> - Operación lógica AND</para></listitem>
+                  <listitem><para><literal>orEach</literal> - Operación lógica OR</para></listitem>
+                  <listitem><para><literal>notEach</literal> - Operación lógica NOT (un solo argumento)</para></listitem>
+                </itemizedlist>
+                <para>
+Cuando los argumentos son escalares, devuelve un resultado booleano
+escalar.  Cuando un argumento es una matriz y el otro es un escalar, el
+escalar se aplica a todos los elementos.  Cuando ambos argumentos son
+matrices, realiza una operación elemento por elemento.</para>
+                <para>Ejemplos:</para>
+                <itemizedlist>
+                  <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - archivos de entre
+1 KB y 1 MB</para></listitem>
+                  <listitem><para><literal>orEach(Extension = "txt", Extension = "log")</literal> - archivos
+txt o de registro</para></listitem>
+                  <listitem><para><literal>notEach(Exists)</literal> - archivos que no existen</para></listitem>
+                  <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - todos los archivos
+tienen un tamaño distinto de cero</para></listitem>
+                  <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - cualquier archivo de 1 MB
+o menos</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section id="FilterExpression_DiagnosticFunctions">
+          <title>Diagnostic and Logging Functions</title>
+          <variablelist>
+            <varlistentry>
+              <term><function>logError</function>(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>, ...),
+<function>logWarn</function>(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>, ...),
+<function>logInfo</function>(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>, ...)</term>
+              <listitem>
+                <para>
+Muestra en el registro la representación como cadena concatenada de todos
+los argumentos (a nivel de error, advertencia o información,
+respectivamente), separados por espacios y devuelve el valor del último
+argumento. Estas funciones resultan útiles para depurar expresiones de
+filtro.</para>
+                <para>Ejemplos (utilizando el valor devuelto):</para>
+                <itemizedlist>
+                  <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - registra el tamaño de
+los archivos y comprueba si superan 1 MB</para></listitem>
+                  <listitem><para><literal>logWarn("Processing:", Name) like "*.tmp"</literal> - registra el
+nombre o nombres de los archivos y comprueba si se trata de un archivo
+temporal</para></listitem>
+                  <listitem><para><literal>Size > 1KB and logInfo("Large file:", Name) contains
+"test"</literal> - registra solo cuando se cumple la condición de tamaño y,
+a continuación, comprueba el nombre</para></listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+      </section>
+
+      <section id="FilterExpression_Units">
+        <title>Unidades</title>
+        <para>Los tamaños de archivo admiten estos sufijos:</para>
+        <simplelist type="inline">
+          <member>KB</member>
+          <member>MB</member>
+          <member>GB</member>
+          <member>TB</member>
+        </simplelist>
+        <para>Las unidades de tiempo admiten estos sufijos:</para>
+        <simplelist type="inline">
+          <member>semanas</member><member>semana</member><member>s</member>
+          <member>días</member><member>día</member><member>d</member>
+          <member>horas</member><member>hora</member><member>hr</member><member>h</member>
+          <member>minutos</member><member>minuto</member><member>min</member><member>m</member>
+          <member>segundos</member><member>segundo</member><member>seg</member><member>s</member>
+          <member>milisegundos</member><member>milisegundo</member><member>mseg</member><member>ms</member>
+        </simplelist>
+      </section>
+
+      <section id="FilterExpression_Examples">
+        <title>Ejemplos</title>
+        <itemizedlist>
+          <listitem><para><literal>Size &lt; 10KB</literal> - El tamaño de cualquier archivo es
+inferior a 10 KB</para></listitem>
+          <listitem><para><literal>LeftSize &gt;= 10MB</literal> - El archivo izquierdo ocupa al menos
+10 MB</para></listitem>
+          <listitem><para><literal>allof(Size &lt; 1MB)</literal> - Todos los lados tienen menos de 1
+MB</para></listitem>
+          <listitem><para><literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - La diferencia de
+tamaño es mínima</para></listitem>
+          <listitem><para><literal>DateStr = "2025-07-20"</literal> - El archivo se modificó por
+última vez en esa fecha</para></listitem>
+          <listitem><para><literal>Date &gt;= today()</literal> - Modificado hoy o más adelante</para></listitem>
+          <listitem><para><literal>Date &gt; d"2026-05-21 07:16:33"</literal> - Modified after a
+specific date and time</para></listitem>
+          <listitem><para><literal>isWithin(Date, d"2026-01-01", d"2026-12-31 23:59:59")</literal> -
+Modified during the year 2026</para></listitem>
+          <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> - Archivo
+modificado en la última semana</para></listitem>
+          <listitem><para><literal>inRange(Size, 1KB, 10MB)</literal> - El tamaño del archivo debe
+estar comprendido entre 1 KB (incluido) y 10 MB (no incluido)</para></listitem>
+          <listitem><para><literal>allof(isWithin(Size, 100KB, 1MB))</literal> - Todos los archivos
+tienen un tamaño comprendido entre 100 KB y 1 MB</para></listitem>
+          <listitem><para><literal>AttrStr contains "R"</literal> - El archivo es de solo lectura</para></listitem>
+          <listitem><para><literal>Name matches "file[0-9]\.txt"</literal> - Expresión regular en el
+nombre del archivo</para></listitem>
+          <listitem><para><literal>Content contains "Test"</literal> - El contenido del archivo
+incluye la palabra clave</para></listitem>
+          <listitem><para><literal>sublines(Content, 0, 1) contains "XML"</literal> - La primera línea
+contiene "XML"</para></listitem>
+          <listitem><para><literal>strCount(Content, "TODO") &gt; 5</literal> - File contains more
+than 5 TODO comments</para></listitem>
+          <listitem><para><literal>regexCount(Content, "\bFIXME\b") &gt; 0</literal> - File contains
+at least one FIXME marker</para></listitem>
+          <listitem><para><literal>strFind(Name, "_test") != none</literal> - Files containing "_test"
+in their name</para></listitem>
+          <listitem><para><literal>strFind(Name, ".", 1) &gt; 0</literal> - Files with multiple dots
+in their name (second dot exists)</para></listitem>
+          <listitem><para><literal>regexFind(Name, "\d{4}") &lt; 5</literal> - Files where a 4-digit
+number appears within the first 5 characters</para></listitem>
+          <listitem><para><literal>regexExtract(Name, "v(\d+)\.(\d+)\.(\d+)", 1) = "2"</literal> -
+Files with major version 2 (e.g., "v2.16.48")</para></listitem>
+          <listitem><para><literal>regexExtract(Name, "([^_]+)_([^_]+)\.txt", 2) like
+"test*"</literal> - Files where second part of name starts with "test"</para></listitem>
+          <listitem><para><literal>le:regexExtract(Line, "(\d+)", 0, 1)</literal> - Extracts the
+second number in each line (offset=1)</para></listitem>
+          <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
+7days)</literal> - Archivos de registro de gran tamaño o archivos con más de
+una semana de antigüedad</para></listitem>
+          <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> - Archivos
+temporales no ocultos</para></listitem>
+          <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
+Archivos con extensiones de la 'a' a la 'm' y un tamaño inferior a 1 MB</para></listitem>
+          <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - Coincidencia de nombres de
+archivo sin distinción entre mayúsculas y minúsculas</para></listitem>
+          <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - Coincidir tras convertir
+los caracteres de ancho completo a caracteres de ancho medio</para></listitem>
+          <listitem><para><literal>trim(Name) = "readme.txt"</literal> - Match filename after removing
+leading/trailing whitespace</para></listitem>
+          <listitem><para><literal>trimLeft(Column("Value")) = "123"</literal> - Match column value
+after removing leading whitespace (table mode)</para></listitem>
+          <listitem><para><literal>trimRight(Line) contains "end"</literal> - Check if line (without
+trailing whitespace) contains "end"</para></listitem>
+          <listitem><para><literal>EOL = 3</literal> - Files with CRLF (Windows) line endings</para></listitem>
+          <listitem><para><literal>EOLStr = "LF"</literal> - Files with LF (Unix) line endings</para></listitem>
+          <listitem><para><literal>allof(EOL = 1)</literal> - Checks whether all compared files use LF
+line endings</para></listitem>
+          <listitem><para><literal>leftprop("System.Title") != none</literal> - Left file has a title
+property set</para></listitem>
+          <listitem><para><literal>prop("System.Author") = none</literal> - No author property is set
+on any side</para></listitem>
+          <listitem><para><literal>if(LeftExists, LeftSize, 0) == 0</literal> - Checks whether the
+left file is missing or empty</para></listitem>
+          <listitem><para><literal>Different</literal> - Mostrar solo los archivos y carpetas que han
+cambiado (solo filtro de visualización)</para></listitem>
+          <listitem><para><literal>Identical</literal> - Mostrar solo los archivos y carpetas que sean
+idénticos (solo filtro de visualización)</para></listitem>
+          <listitem><para><literal>allof(Binary)</literal> - Mostrar solo los archivos que sean
+binarios en todos los lados (solo filtro de visualización)</para></listitem>
+          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - En una
+comparación a tres bandas, mostrar los archivos en los que solo difiere el
+par izquierdo-central (solo filtro de visualización)</para></listitem>
+        </itemizedlist>
+      </section>
+    </section>
+  </section>
+
+  <section id="Filters_FileFilter">
+    <title>Uso de filtros de archivos<indexterm>
+        <primary>filtros</primary>
+
+        <secondary>filtros de archivos</secondary>
+      </indexterm><indexterm>
+        <primary>filtros</primary>
+
+        <secondary>en la comparación de carpetas</secondary>
+      </indexterm></title>
+
+    <para><glossterm>Los filtros de archivos</glossterm> son archivos de texto con la
+extensión <filename>flt</filename>. Permiten aplicar varias reglas de
+filtrado a una comparación de carpetas. A diferencia de las máscaras de
+archivos, los filtros de archivos pueden incluir o excluir coincidencias.</para>
+
+    <para><indexterm>
+        <primary>filtros de archivos</primary>
+
+        <secondary>plantilla</secondary>
+      </indexterm>WinMerge incluye varios filtros de
+archivos predefinidos. Si estos filtros no le ofrecen las opciones que
+necesita, puede crear los suyos propios.  Para facilitar esa tarea, WinMerge
+también incluye un archivo de plantilla llamado
+<filename>FileFilter.tmpl</filename>. En esta sección se describe cómo
+aplicar filtros de archivos a las comparaciones y se detalla la sintaxis de
+los filtros de archivos. En <xref linkend="Filters_dlg" /> se explica cómo
+añadir, editar y gestionar filtros.</para>
+
+    <section id="Filters_FileFilterLoc">
+      <title>Ubicaciones de los filtros de archivos<indexterm>
+          <primary>Carpetas de filtros</primary>
+
+          <secondary>ubicaciones</secondary>
+        </indexterm><indexterm>
+          <primary>filtros de archivos</primary>
+
+          <secondary>ubicaciones</secondary>
+        </indexterm></title>
+
+      <para>WinMerge detecta automáticamente los filtros de archivos en estas
+ubicaciones:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Subcarpeta de filtros en la carpeta de instalación de WinMerge</term>
+
+          <listitem>
+            <para>Aquí es donde se instalan los filtros de archivos predefinidos. Por ejemplo,
+<filename>C:\Program Files\WinMerge\Filters</filename>.  Puede crear o
+copiar filtros de archivos en esta ubicación para que estén disponibles para
+todos los usuarios del sistema.</para>
+
+            <para>Antes de crear un nuevo filtro de archivos, compruebe si los predefinidos ya
+contienen lo que necesita. Si no es así, es posible que encuentre ejemplos
+de reglas útiles en los archivos existentes.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Carpeta de filtros privada predeterminada</term>
+
+          <listitem>
+            <para>La ubicación de esta carpeta se define en la página "Sistema" de las
+opciones de WinMerge. De forma predeterminada, se especifica como una
+subcarpeta dentro de la carpeta de su perfil de usuario (por ejemplo,
+<filename>Documentos</filename> en Windows 10). Los filtros que se crean o
+se copian aquí normalmente solo son visibles para usted. Si crea nuevos
+filtros de archivos, puede copiarlos aquí para mantenerlos privados.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Antes de poder aplicar los filtros de archivos que se encuentran en
+cualquier otra carpeta, debe instalarlos primero.</para>
+    </section>
+
+    <section id="Filters_FileFilterApply">
+      <title>Aplicación de filtros de archivos<indexterm>
+          <primary>filtros de archivos</primary>
+
+          <secondary>aplicación</secondary>
+        </indexterm></title>
+
+      <para>Puede aplicar un filtro de archivos mediante cualesquiera de estos métodos:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Cuando inicie una comparación de carpetas desde el cuadro de diálogo
+"Seleccione archivos o carpetas":</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Después de seleccionar la <guilabel>1ª</guilabel> y la
+<guilabel>2ª</guilabel> carpeta, haga clic en
+<guibutton>Seleccionar</guibutton> junto al campo
+<guilabel>Filtro</guilabel>.</para>
+            </listitem>
+
+            <listitem>
+              <para>En el cuadro de diálogo "Filtros", utilice la pestaña "Filtros de archivos"
+para seleccionar un filtro de archivos y cargarlo en el campo
+<guilabel>Filtros</guilabel>.</para>
+
+              <note>
+                <para>Si hay algún filtro de archivos activado, el filtro seleccionado ya aparece
+en el campo <guilabel>Filtro</guilabel>.</para>
+              </note>
+              <para></para>
+            </listitem>
+
+            <listitem>
+              <para>Continúe con la operación de comparación. El archivo indicado en el campo
+<guilabel>Filtro</guilabel> se aplica al iniciar la operación.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para>Para modificar el filtrado de archivos una vez iniciada una operación de
+comparación de carpetas (por ejemplo, para aplicar un filtro diferente o
+desactivar el filtrado):</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Haga clic en <menuchoice> <guimenu>Herraminetas</guimenu>
+<guimenuitem>Filtros</guimenuitem> </menuchoice>.</para>
+            </listitem>
+
+            <listitem>
+              <para>En el cuadro de diálogo "Filtros" configure los nuevos ajustes del filtro de
+archivos y haga clic en «Aceptar».<guibutton>Aceptar</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>El nuevo filtro no se aplica automáticamente al cerrar el cuadro de diálogo
+"Filtros": pulse <keycap>F5</keycap> para ver los nuevos resultados en la
+ventana de comparación de carpetas.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para><indexterm>
+              <primary>línea de comandos</primary>
+
+              <secondary>aplicar filtros de archivos</secondary>
+            </indexterm>Cuando inicie una comparación de
+carpetas desde la línea de comandos de WinMerge, utilice el parámetro
+<option>-f</option> para especificar un filtro de archivos.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Filters_FileFilterSyntax">
+      <title>Sintaxis del filtro de archivos<indexterm>
+          <primary>reglas</primary>
+
+          <secondary>filtro de archivos</secondary>
+        </indexterm><indexterm>
+          <primary>filtros de archivos</primary>
+
+          <secondary>sintaxis</secondary>
+        </indexterm></title>
+
+      <para>En esta sección se describe la sintaxis de los filtros de archivos de
+WinMerge y se ofrecen pautas para su creación.</para>
+
+      <para>El delimitador de comentarios es <code>##</code>. Después de un delimitador
+de comentarios, se ignoran todos los caracteres de la línea. WinMerge ignora
+la mayoría de los caracteres de espacio en blanco en las reglas. Sin
+embargo, un comentario siempre debe ir precedido de uno o varios caracteres
+de espacio en blanco (espacio o tabulación).  Para utilizar <code>##</code>
+como caracteres en una regla, omita el prefijo de espacio en blanco.</para>
+
+      <para>Las dos primeras líneas obligatorias de un filtro de archivo son:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>nombre</term>
+
+          <listitem>
+            <para>El nombre del filtro que aparece en el cuadro de diálogo "Archivo"</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>def</term>
+
+          <listitem>
+            <para>El tipo de filtrado que se va a aplicar. Especifique uno de estos valores:</para>
+
+            <variablelist>
+              <varlistentry>
+                <term>include</term>
+
+                <listitem>
+                  <para>Incluye todo excepto los elementos que cumplan la regla especificada.</para>
+                </listitem>
+              </varlistentry>
+
+              <varlistentry>
+                <term>exclude</term>
+
+                <listitem>
+                  <para>Excluye todo excepto los elementos que cumplan la regla especificada.</para>
+
+                  <para>Cuando elija el método de exclusión, también debe añadir una regla
+<guilabel>d</guilabel> (directorio) que especifique las subcarpetas.  Por lo
+general, es recomendable especificar todas las subcarpetas de esta manera:</para>
+
+                  <screen>d: \\*$ ## Subfolders</screen>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+
+            <tip>
+              <para>No confunda estos términos. Recuerde que, en los filtros de archivos, una
+regla <guilabel>include</guilabel> no especifica qué se debe incluir, sino
+qué <emphasis>no</emphasis> se debe incluir. Del mismo modo, una regla
+<guilabel>exclude</guilabel> no especifica qué se debe excluir, sino qué no
+se debe excluir.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>A continuación, el archivo debe contener una o varias reglas de
+filtrado. Puede añadir tantas reglas como desee. Debe haber una regla por
+línea y cada regla debe estar completa en una sola línea (no se permiten
+saltos de línea dentro de una regla).  Una regla comienza con un designador
+de tipo, seguido de una expresión regular o de una expresión de
+filtrado. Los designadores de tipo admitidos son:</para>
+
+      <variablelist>
+        <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Comparar nombres de archivos mediante expresiones regulares</para></listitem></varlistentry>
+        <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Excluir archivos que coincidan con la expresión regular (disponible a partir
+de la versión 2.16.19)</para></listitem></varlistentry>
+        <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Buscar nombres de carpetas utilizando expresiones regulares</para></listitem></varlistentry>
+        <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Excluir carpetas que coincidan con la expresión regular (disponible desde la
+versión 2.16.19)</para></listitem></varlistentry>
+        <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Filter expression for files (ej. fe:Size &lt; 1KB) (disponible desde la
+versión 2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para excluir archivos (disponible desde la versión
+2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para carpetas (disponible desde la versión 2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para excluir carpetas (disponible desde la versión
+2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro aplicada tanto a archivos como a carpetas (ej. e:Name
+like "Common*.*") (disponible desde la versión 2.16.56)</para></listitem></varlistentry>
+        <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Expresión de filtro para excluir tanto archivos como carpetas (disponible
+desde la versión 2.16.56)</para></listitem></varlistentry>
+      </variablelist>
+
+      <para>Entre los numerosos caracteres especiales de las expresiones regulares, los
+siguientes son especialmente importantes en las reglas de filtrado de
+archivos:<indexterm>
+          <primary>expresiones regulares</primary>
+
+          <secondary>caracteres especiales en los filtros</secondary>
+        </indexterm><indexterm>
+          <primary>expresiones regulares</primary>
+
+          <secondary>en los filtros de archivos</secondary>
+        </indexterm></para>
+
+      <variablelist>
+        <varlistentry>
+          <term>^ (principio de línea)</term>
+
+          <listitem>
+            <para>A menudo es necesario para que las reglas funcionen correctamente.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>$ (fin de línea)</term>
+
+          <listitem>
+            <para>A menudo es necesario para que las reglas funcionen correctamente.  Por
+ejemplo:</para>
+
+            <screen>\.c$ ## solo busca nombres de archivo con esa extensión, <filename>c</filename>.
+\.c  ## coincide con cualquier extensión que empiece por <filename>c</filename>, como <filename>cpp</filename> y <filename>com</filename>.</screen>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>\ (escape)</term>
+
+          <listitem>
+            <para>Obliga a que los caracteres especiales se traten como caracteres normales.
+Por ejemplo, para que coincida el nombre de una carpeta, antepone una barra
+invertida doble (<code>\\</code>) al delimitador de la carpeta. Para que
+coincida el punto de un nombre de archivo, especifica una barra invertida
+seguida de un punto (<code>\.</code>).</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>No se utilizan caracteres especiales ni comodines para buscar nombres de
+archivo. Para buscar todos los nombres de archivo de un tipo determinado,
+basta con omitir el nombre del archivo.</para>
+
+      <para>Las reglas no distinguen entre mayúsculas y minúsculas. Por ejemplo,
+<code>f: \.bat$</code> coincide con <filename>winmerge.bat</filename> y
+<filename>compare.BAT</filename>.</para>
+
+      <example>
+        <title>Ejemplos de reglas de filtrado de archivos</title>
+
+        <para>Algunas reglas sencillas de filtrado de archivos:</para>
+
+<screen>f: \.cpp$ ## Coincide con archivos <filename>*.cpp</filename>
+f: \.h$ ## Coincide con archivos <filename>*.h</filename>
+f: ^My ## Coincide con archivos <filename>My*.*</filename>
+f: Dlg\. ## Coincide con archivos <filename>*Dlg.*</filename>
+d: \\test$ ## Coincide con carpetas <filename>test</filename>
+d: ^\\Build$ ## Coincide con carpetas <filename>Build</filename>
+d: Temp$ ## Coincide con carpetas <filename>*Temp</filename> (por ejemplo, <filename>FirstTemp</filename>)
+d: Src ## Coincide con carpetas <filename>*Src*</filename></screen><para>Algunas reglas con expresiones regulares más complejas:</para>
+
+<screen format="linespecific">f: ^\.#.*$ ## archivo <filename>.#nombre_archivo.version</filename>
+f: Dlg\.c(pp)?$ ## archivos <filename>*Dlg.c</filename> y <filename>*Dlg.cpp</filename>
+f: ^I.*\.h$ ## archivos <filename>I*.h</filename>
+f: Srv[1-9]\.def$ ## archivos <filename>*Srv1.def</filename> a <filename>*Srv9.def</filename>
+f: ^[h,k,m] ## archivos <filename>h*.*</filename>, <filename>k*.*</filename> y <filename>m*.*</filename></screen></example>
+    </section>
+  </section>
+
+  <section id="Filters_LineFilter">
+    <title>Uso de filtros de línea<indexterm>
+        <primary>filtros</primary>
+
+        <secondary>línea</secondary>
+      </indexterm><indexterm>
+        <primary>filtros</primary>
+
+        <secondary>en la comparación de archivos</secondary>
+      </indexterm></title>
+
+    <para>En una comparación de archivos, puede utilizar filtros de línea para ignorar
+líneas concretas. Por ejemplo, puede utilizar filtros de línea para ignorar
+comentarios o determinados tipos de código generado, como las marcas de
+tiempo de los sistemas de control de versiones. Cada filtro de línea es una
+regla y puede aplicar tantos filtros de línea como desee a una comparación
+de archivos.</para>
+
+    <para>Para saber cómo añadir, editar y gestionar filtros, consulte <xref
+linkend="Filters_dlg" />.</para>
+
+    <section id="Filters_LineFilterApply">
+      <title>Aplicación de filtros de línea</title>
+
+      <para>Puede aplicar filtros de línea utilizando cualesquiera de estos métodos:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Al iniciar una comparación de archivos desde el cuadro de diálogo
+"Seleccione archivos o carpetas"</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Después de seleccionar el <guilabel>1º</guilabel> y el
+<guilabel>2º</guilabel> archivo, haga clic en
+<guibutton>Seleccionar</guibutton> junto al campo
+<guilabel>Filtro</guilabel>.</para>
+            </listitem>
+
+            <listitem>
+              <para>En el cuadro de diálogo "Filtros", utilice la pestaña "Filtros de línea"
+para activar los filtros de línea que desee utilizar (si los hay) o para ver
+qué filtros de línea están activados actualmente.</para>
+
+              <note>
+                <para>El campo <guilabel>Filtro</guilabel> no indica qué filtros de línea están
+activados.</para>
+              </note>
+              <para></para>
+            </listitem>
+
+            <listitem>
+              <para>Continúe con la operación de comparación de archivos. Los filtros de línea
+activados se aplican al iniciar la operación.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para>Una vez que haya iniciado una operación de comparación de archivos (por
+ejemplo, para aplicar filtros diferentes o desactivar el filtrado)</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Haga clic en <menuchoice> <guimenu>Herraminetas</guimenu>
+<guimenuitem>Filtros</guimenuitem> </menuchoice>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Vaya a la pestaña "Filtros de archivos".</para>
+            </listitem>
+
+            <listitem>
+              <para>Marque los filtros de línea que desee aplicar y desmarque los que no desee
+aplicar.</para>
+
+              <para>También puede añadir, editar y eliminar filtros de la lista mediante los
+botones <guibutton>Nuevo</guibutton>, <guibutton>Editar</guibutton> y
+<guibutton>Eliminar</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Para activar el filtrado de líneas, marque la casilla <guilabel>Habilitar
+Filtros de líneas</guilabel>. Para desactivar el filtrado de líneas,
+desmarque la casilla.</para>
+            </listitem>
+
+            <listitem>
+              <para>Haga clic en <guibutton>Aceptar</guibutton> para cerrar el cuadro de diálogo
+"Filtros de archivos".</para>
+            </listitem>
+
+            <listitem>
+              <para>Haga clic en <keycap>F5</keycap> para aplicar los cambios y actualizar la
+ventana de comparación de archivos.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Filters_LineFilterSyntax">
+      <title>Sintaxis del filtro de línea<indexterm>
+          <primary>reglas</primary>
+
+          <secondary>filtro de línea</secondary>
+        </indexterm><indexterm>
+          <primary>filtros</primary>
+
+          <secondary>línea</secondary>
+        </indexterm><indexterm>
+          <primary>expresiones regulares</primary>
+
+          <secondary>en filtros de línea</secondary>
+        </indexterm></title>
+
+      <para>Un filtro de línea es una regla que se aplica a cada diferencia de una sola
+línea en los archivos comparados, siempre que las reglas de filtro de línea
+estén activadas. Cuando una regla coincide con una diferencia de una sola
+línea, dicha diferencia se ignora.</para>
+
+      <para>Las diferencias ignoradas se marcan en la ventana de comparación de archivos
+con el color de <guilabel>Diferencia ignorada</guilabel> (tal y como se
+define en la página "Colores" de las opciones de WinMerge). Esto le permite
+distinguir las diferencias ignoradas de otros tipos. Sin embargo, no puede
+seleccionar ni fusionar las diferencias ignoradas.</para>
+
+      <para>La adaptación de filtros de línea puede describirse a partir de dos
+conceptos:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Cuando una regla coincide con cualquier parte de la línea, se ignora toda la
+diferencia. Por lo tanto, no es posible filtrar solo una parte de una
+línea. Por ejemplo, supongamos que dos archivos presentan la siguiente
+diferencia de una sola línea:</para>
+
+          <formalpara>
+            <title>Fichero1:</title>
+
+            <para><screen># Jean Sibelius</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>Fichero2:</title>
+
+            <para><screen># Janne Sibelius</screen></para>
+          </formalpara>
+
+          <para>Sin filtrado, la línea se detecta como una diferencia. Pero si aplicamos una
+regla de filtrado de líneas con la expresión <code>^#</code>, las líneas se
+consideran idénticas, ya que la expresión solo especifica el primer
+carácter, que coincide en ambos archivos.</para>
+        </listitem>
+
+        <listitem>
+          <para>Una regla solo se aplica a una diferencia de varias líneas si todas las
+líneas coinciden. Por ejemplo, consideremos esta diferencia de dos líneas:</para>
+
+          <formalpara>
+            <title>Fichero1:</title>
+
+            <para><screen># Jean Sibelius
+# Pekka Himanen</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>Fichero2:</title>
+
+            <para><screen># Janne Sibelius
+Pekka Himanen</screen></para>
+          </formalpara>
+
+          <para>La misma regla <code>^#</code> coincide con la primera línea, pero no con la
+segunda. Por lo tanto, la diferencia no se ignora.</para>
+        </listitem>
+      </itemizedlist>
+
+      <tip>
+        <para>Por lo general, es recomendable utilizar los marcadores de inicio de línea
+(<code>^</code>) y de fin de línea (<code>$</code>) para controlar los
+patrones con precisión, ya que la regla se aplica si cualquier parte de una
+línea coincide con la expresión.</para>
+      </tip>
+
+      <example>
+        <title>Ejemplos de filtros de línea</title>
+
+<screen format="linespecific">^MYTAG$</screen><para>Filtra las líneas que coinciden exactamente <literal>MYTAG</literal></para>
+
+<screen format="linespecific">^::</screen><para>Filtra las líneas que comienzan por <literal>::</literal></para>
+
+<screen format="linespecific">^/\*.*\*/$</screen><para>Filtra las líneas que empiezan por
+<literal><constant>/*</constant></literal> y terminan por
+<literal>*/</literal></para>
+
+<screen format="linespecific">^[1-5]00</screen><para>Filtra las líneas que empiezan por números 100, 200, 300, 400 y 500</para>
+      </example>
+
+      <example>
+        <title>Regla de filtrado de líneas que coincidan con las líneas de CVS Id</title>
+
+        <para>Las líneas de CVS Id tienen este aspecto:</para>
+
+<screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen><para>... y se pueden filtrar con esta regla:</para>
+
+<screen>^// \WId: .*\$</screen></example>
+
+      <example>
+        <title>Filtrar los comentarios de los números de línea en los archivos po</title>
+
+        <para>Los comentarios de los números de línea de po tienen este aspecto:</para>
+
+<screen>#: src/filename.c:766</screen><para>... y se pueden filtrar con esta regla:</para>
+
+<screen>^#</screen></example>
+    </section>
+  </section>
+
+  <section id="Filters_DisplayLineFilter">
+    <title>Using the display line filter<indexterm>
+        <primary>display line filter</primary>
+      </indexterm></title>
+
+    <para>The display line filter controls which lines are visible in the File Compare
+window. Lines that do not match the filter are hidden, but the comparison
+result itself is not affected.</para>
+
+    <section id="Filters_DisplayLineFilterApply">
+      <title>Opening the display filter bar</title>
+
+      <para>Use any of the following methods to open the display filter bar:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Click <menuchoice> <guimenu>View</guimenu> <guimenuitem>Display Filter
+Bar</guimenuitem> </menuchoice>, or press
+<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap>
+<keycap>L</keycap></keycombo>.</para>
+        </listitem>
+        <listitem>
+          <para>Right-click selected text in the File Compare window and choose <menuchoice>
+<guimenu>Add to Filters</guimenu> <guimenuitem>Add to Display
+Filters</guimenuitem> </menuchoice>. WinMerge automatically builds a
+<literal>Line contains "..."</literal> expression from the selected text and
+opens the filter bar.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>To remove the filter, clear the input field and press
+<keycap>Enter</keycap>. To hide the filter bar while keeping the filter
+active, click the close button.</para>
+    </section>
+
+    <section id="Filters_DisplayLineFilterInput">
+      <title>Entering a filter</title>
+
+      <para>The display filter bar accepts input in two forms, determined by whether the
+input starts with the <literal>le:</literal> prefix:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Plain string (no prefix)</term>
+          <listitem>
+            <para>Input without the <literal>le:</literal> prefix is treated as a literal
+string. WinMerge shows only lines that contain that string. Internally, the
+input is equivalent to <literal>le:Line contains
+"<replaceable>input</replaceable>"</literal>.</para>
+            <para>Example: entering <userinput>TODO</userinput> shows all lines that contain
+the text <literal>TODO</literal>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><literal>le:</literal> prefix (filter expression)</term>
+          <listitem>
+            <para>If the input starts with <literal>le:</literal>, the remainder is
+interpreted as a filter expression. The full expression syntax described in
+<xref linkend="Filters_DisplayLineFilter_Syntax"/> is available.</para>
+            <para>Example: <userinput>le:Different and Line contains "ERROR"</userinput></para>
+
+            <important>
+              <para>The <literal>le:</literal> prefix must appear at the very beginning of the
+input. If it appears anywhere else, the entire input is treated as a plain
+string.</para>
+              <para>For example, <userinput>Hello or le:Line contains "Hello"</userinput> does
+<emphasis>not</emphasis> contain a filter expression.  The whole input is
+treated as a literal string search for the text <literal>Hello or le:Line
+contains "Hello"</literal>.</para>
+            </important>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="Filters_DisplayLineFilter_Syntax">
+      <title>Filter expression syntax</title>
+
+      <para>Display line filter expressions use the same engine as folder compare filter
+expressions (see <xref linkend="FilterExpression_Syntax"/>), with the
+following additional attributes and functions that operate on individual
+lines.</para>
+
+      <section id="Filters_DisplayLineFilter_Attrs">
+        <title>Line attributes</title>
+
+        <para>Attributes marked as supporting side-specific prefixes accept
+<literal>Left</literal>, <literal>Middle</literal>, and
+<literal>Right</literal> prefixes (e.g., <literal>LeftLine</literal>,
+<literal>RightLineLength</literal>).  Attributes without a prefix evaluate
+across all panes.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term><varname>Line</varname></term>
+            <listitem><para>Text content of the current line.  Supports side-specific prefixes.
+Example: <literal>Line contains "TODO"</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>LineLength</varname></term>
+            <listitem><para>Length of the current line in characters.  Supports side-specific prefixes.
+Example: <literal>LineLength &gt; 120</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>LineNumber</varname></term>
+            <listitem><para>Real line number in the file (1-based), not counting ghost lines.  Supports
+side-specific prefixes.  Example: <literal>LineNumber &lt;= 50</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>ViewLineNumber</varname></term>
+            <listitem><para>Display line number including ghost lines (1-based). Global attribute (no
+side prefix).  Example: <literal>ViewLineNumber &lt;= 100</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Different</varname></term>
+            <listitem><para>True if the line is part of a difference block.  Global attribute.  Example:
+<literal>Different</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Identical</varname></term>
+            <listitem><para>True if the line is identical across all panes.  Global attribute.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Trivial</varname></term>
+            <listitem><para>True if the line differs only in whitespace or other ignored content. Global
+attribute.  Example: <literal>Different or Trivial</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Exists</varname></term>
+            <listitem><para>True if the line exists in the pane (not a ghost line). Supports
+side-specific prefixes.  Example: <literal>LeftExists and not
+RightExists</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Missing</varname></term>
+            <listitem><para>True if the line is a ghost line in the pane.  The opposite of
+<varname>Exists</varname>.  Supports side-specific prefixes.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Moved</varname></term>
+            <listitem><para>True if the line is detected as a moved line.  Supports side-specific
+prefixes.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Bookmarked</varname></term>
+            <listitem><para>True if the line has a bookmark.  Supports side-specific prefixes.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>DifferentLeftMiddle</varname>,
+<varname>DifferentMiddleRight</varname>,
+<varname>DifferentLeftRight</varname></term>
+            <listitem><para>True if the indicated pair of panes differs on this line. 3-way comparisons
+only (except <varname>DifferentLeftRight</varname> which also works in
+2-way).  Global attributes.  Example: <literal>DifferentLeftMiddle and not
+DifferentMiddleRight</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>EOL</varname></term>
+            <listitem><para>End-of-line style for the current line as an integer value.  Supports
+side-specific prefixes.  Values: 0 = None, 1 = LF, 2 = CR, 3 = CRLF Example:
+<literal>le:EOL = 3</literal> shows only lines with CRLF endings</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>EOLStr</varname></term>
+            <listitem><para>End-of-line style for the current line as a string.  Supports side-specific
+prefixes.  Values: "None", "LF", "CR", "CRLF" Example: <literal>le:EOLStr =
+"LF"</literal> shows only lines with LF endings</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><varname>Column</varname>, <varname>ColumnCount</varname> (table mode only)</term>
+            <listitem><para>Cell content and column count in CSV/table mode.  Support side-specific
+prefixes.  Example: <literal>Column("Status") = "FAIL"</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>LineAt</function>(<replaceable>lineNumber</replaceable>),
+<function>LineOffsetAt</function>(<replaceable>offset</replaceable>)</term>
+            <listitem><para>Text of the line at an absolute line number or at a relative offset from the
+current line.  Supports side-specific prefix functions.  Example:
+<literal>le:Different and RightLineOffsetAt(-1) matches "^//"</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>Column</function>(<replaceable>indexOrName</replaceable>),
+<function>ColumnAt</function>(<replaceable>line</replaceable>,
+<replaceable>indexOrName</replaceable>),
+<function>ColumnOffsetAt</function>(<replaceable>offset</replaceable>,
+<replaceable>indexOrName</replaceable>)  (table mode only)</term>
+            <listitem><para>Cell content by index or name, at the current, absolute, or relative line.
+Example: <literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
+"Category")</literal></para></listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="Filters_DisplayLineFilter_Funcs">
+        <title>Line functions</title>
+
+        <para>
+Display line filter expressions can also use functions described in <xref
+linkend="FilterExpression_Functions"/>.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term><function>matchContext</function>(<replaceable>expr</replaceable>,
+<replaceable>linesBefore</replaceable>,
+<replaceable>linesAfter</replaceable>)</term>
+            <listitem><para>True if the current line is within <replaceable>linesBefore</replaceable>
+lines before or <replaceable>linesAfter</replaceable> lines after any line
+matching <replaceable>expr</replaceable>.  Example:
+<literal>le:matchContext(Different, 3, 3)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchNumber</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>1-based index of the current line within all matching lines. Returns
+<literal>none</literal>if the line does not match.  Example:
+<literal>le:matchNumber(Different) = 1</literal> shows only the first line
+that matches (the first difference line).</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchCount</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Total number of lines matching <replaceable>expr</replaceable> across the
+whole file.  Example: <literal>le:matchNumber(Different) =
+matchCount(Different)</literal> shows only the last line that matches (the
+last difference line).</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockNumber</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Returns the 1-based block number of the matching block containing the
+current line. Returns <literal>none</literal> if the current line is not in
+any matching block.  Example: <literal>le:matchBlockNumber(Different) =
+1</literal> shows only lines in the first difference block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockOffset</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Returns the 1-based offset of the current line within the matching
+block. Returns <literal>none</literal> if the current line is not in any
+matching block.  Example: <literal>le:matchBlockOffset(Different) =
+1</literal> shows only the first line of each difference block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockSize</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Returns the size (number of lines) of the matching block containing the
+current line. Returns <literal>none</literal> if the current line is not in
+any matching block.  Example: <literal>le:matchBlockSize(Different) &gt;
+5</literal> shows only lines in difference blocks larger than 5 lines.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchBlockCount</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Total number of matching blocks in the file.  Example:
+<literal>le:matchBlockNumber(Different) =
+matchBlockCount(Different)</literal> shows only lines in the last difference
+block.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchDistance</function>(<replaceable>expr</replaceable>),
+<function>matchDistanceBefore</function>(<replaceable>expr</replaceable>),
+<function>matchDistanceAfter</function>(<replaceable>expr</replaceable>)</term>
+            <listitem><para>Distance in lines to the nearest matching range (both directions, before
+only, or after only).  Example: <literal>le:matchDistance(Different) &lt;=
+5</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>matchInside</function>(<replaceable>beginExpr</replaceable>,
+<replaceable>endExpr</replaceable>)</term>
+            <listitem><para>True if the current line falls between a line matching
+<replaceable>beginExpr</replaceable> and the next line matching
+<replaceable>endExpr</replaceable> (inclusive).  Example:
+<literal>le:matchInside(Line matches "^#ifdef", Line matches
+"^#endif")</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>average</function>(<replaceable>expr</replaceable>),
+<function>average</function>(<replaceable>expr</replaceable>,
+<replaceable>condition</replaceable>)</term>
+            <listitem><para>Calculates the average (arithmetic mean) of numeric values produced by
+evaluating <replaceable>expr</replaceable> for all lines in the file.  If
+<replaceable>condition</replaceable> is provided, only lines where
+<replaceable>condition</replaceable> evaluates to true are included in the
+calculation.  Non-numeric results are ignored. Returns
+<literal>none</literal>if no numeric values are found.  Example:
+<literal>le:toInt(Column("Price")) &gt;
+average(toInt(Column("Price")))</literal> shows rows where the price exceeds
+the average price.  Example with condition:
+<literal>le:average(toInt(Column("Score")), Column("Status") =
+"PASS")</literal> calculates the average score for rows with status "PASS".</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>maximum</function>(<replaceable>expr</replaceable>),
+<function>maximum</function>(<replaceable>expr</replaceable>,
+<replaceable>condition</replaceable>)</term>
+            <listitem><para>Returns the maximum value among all results produced by evaluating
+<replaceable>expr</replaceable> for all lines in the file.  If
+<replaceable>condition</replaceable> is provided, only lines where
+<replaceable>condition</replaceable> evaluates to true are considered.
+Works with numeric values, strings (alphabetical comparison), and
+timestamps.  Returns <literal>none</literal>if no values are found.
+Example: <literal>le:toInt(Column("Quantity")) =
+maximum(toInt(Column("Quantity")))</literal> shows rows with the highest
+quantity.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>minimum</function>(<replaceable>expr</replaceable>),
+<function>minimum</function>(<replaceable>expr</replaceable>,
+<replaceable>condition</replaceable>)</term>
+            <listitem><para>Returns the minimum value among all results produced by evaluating
+<replaceable>expr</replaceable> for all lines in the file.  If
+<replaceable>condition</replaceable> is provided, only lines where
+<replaceable>condition</replaceable> evaluates to true are considered.
+Works with numeric values, strings (alphabetical comparison), and
+timestamps.  Returns <literal>none</literal>if no values are found.
+Example: <literal>le:Column("Status") = minimum(Column("Status"))</literal>
+shows rows with the alphabetically first status value.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><function>sum</function>(<replaceable>expr</replaceable>),
+<function>sum</function>(<replaceable>expr</replaceable>,
+<replaceable>condition</replaceable>)</term>
+            <listitem><para>Calculates the sum of all numeric values produced by evaluating
+<replaceable>expr</replaceable> for all lines in the file.  If
+<replaceable>condition</replaceable> is provided, only lines where
+<replaceable>condition</replaceable> evaluates to true are included in the
+calculation.  Non-numeric results are ignored. Returns
+<literal>none</literal>if no numeric values are found.  Example:
+<literal>le:toInt(Column("Quantity")) / sum(toInt(Column("Quantity"))) *
+100</literal> calculates each row's percentage of the total quantity.
+Example with condition: <literal>le:sum(toInt(Column("Sales")),
+Column("Region") = "East")</literal> calculates total sales for the "East"
+region.</para></listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="Filters_DisplayLineFilter_Examples">
+        <title>Ejemplos</title>
+
+        <informaltable>
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry>Entrada</entry>
+                <entry>Effect</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry><userinput>TODO</userinput></entry>
+                <entry>Shows lines containing the text "TODO" (plain string)</entry>
+              </row>
+              <row>
+                <entry><userinput>le:Different</userinput></entry>
+                <entry>Shows only lines in difference blocks</entry>
+              </row>
+              <row>
+                <entry><userinput>le:Different or Trivial</userinput></entry>
+                <entry>Shows differences, excluding whitespace-only changes</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchContext(Different, 3, 3)</userinput></entry>
+                <entry>Shows difference blocks with 3 lines of context on each side</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchNumber(Different) = 1</userinput></entry>
+                <entry>Shows only the first difference line</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchBlockNumber(Different) &lt;= 3</userinput></entry>
+                <entry>Shows only lines in the first 3 difference blocks</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchBlockOffset(Different) = 1</userinput></entry>
+                <entry>Shows only the first line of each difference block</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchBlockSize(Different) &gt; 10</userinput></entry>
+                <entry>Shows only lines in difference blocks larger than 10 lines</entry>
+              </row>
+              <row>
+                <entry><userinput>le:Different and Line contains "ERROR"</userinput></entry>
+                <entry>Shows lines that are both different and contain "ERROR"</entry>
+              </row>
+              <row>
+                <entry><userinput>le:strFind(Line, "TODO") &lt; 10</userinput></entry>
+                <entry>Shows lines where "TODO" appears within the first 10 characters</entry>
+              </row>
+              <row>
+                <entry><userinput>le:regexFind(Line, "\d{4}") != none</userinput></entry>
+                <entry>Shows lines containing a 4-digit number</entry>
+              </row>
+              <row>
+                <entry><userinput>le:matchContext(Bookmarked, 2, 2)</userinput></entry>
+                <entry>Shows bookmarked lines with 2 lines of context</entry>
+              </row>
+              <row>
+                <entry><userinput>le:LineNumber &lt;= 50</userinput></entry>
+                <entry>Shows only the first 50 lines</entry>
+              </row>
+              <row>
+                <entry><userinput>le:EOL = 3</userinput></entry>
+                <entry>Shows only lines with CRLF (Windows) line endings</entry>
+              </row>
+              <row>
+                <entry><userinput>le:EOLStr = "LF"</userinput></entry>
+                <entry>Shows only lines with LF (Unix) line endings</entry>
+              </row>
+              <row>
+                <entry><userinput>le:allof(EOL = 1)</userinput></entry>
+                <entry>Shows lines where all panes use LF line endings</entry>
+              </row>
+              <row>
+                <entry><userinput>le:toInt(Column("Count")) &gt; 100</userinput></entry>
+                <entry>Shows rows where the "Count" column value exceeds 100 (table mode)</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </section>
+    </section>
+  </section>
+
+  <section id="Filters_DisplayFileFolderFilter">
+    <title>Using the display file/folder filter<indexterm>
+        <primary>display file/folder filter</primary>
+      </indexterm></title>
+
+    <para>The display file/folder filter in the Folder Compare window works the same
+way as the display line filter in the File Compare window, but operates on
+files and folders instead of lines. It controls which items are visible
+without affecting the comparison result.</para>
+
+    <para>To open the display filter bar, click <menuchoice> <guimenu>View</guimenu>
+<guimenuitem>Display Filter Bar</guimenuitem> </menuchoice>, or press
+<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap>
+<keycap>L</keycap></keycombo>.</para>
+
+    <para>The filter bar accepts the same syntax as the <guilabel>Filter</guilabel>
+field in the Select Files or Folders dialog. See <xref
+linkend="Filters_MaskSyntax"/> and <xref linkend="FilterExpression_Syntax"/>
+for details.</para>
+
+    <para>To remove the filter, clear the input field and press
+<keycap>Enter</keycap>. To hide the filter bar while keeping the filter
+active, click the close button.</para>
+
+    <para>Ejemplos:</para>
+    <itemizedlist>
+      <listitem><para><userinput>*.cpp;*.h</userinput> - shows C++ source and header files</para></listitem>
+      <listitem><para><userinput>!.git\;!.vs\</userinput> - excludes .git and .vs folders</para></listitem>
+      <listitem><para><userinput>fe:Different</userinput> - shows only different files</para></listitem>
+      <listitem><para><userinput>de:Items &gt; 10</userinput> - shows folders with more than 10
+items</para></listitem>
+      <listitem><para><userinput>e:Date &gt; today() - 7days</userinput> - shows items modified
+within the last week</para></listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="Filters_SubstitutionFilter">
+    <title>Uso de filtros de sustitución<indexterm>
+        <primary>filtros</primary>
+
+        <secondary>sustitución</secondary>
+      </indexterm><indexterm>
+        <primary>filtros</primary>
+
+        <secondary>en la comparación de archivos</secondary>
+      </indexterm></title>
+
+    <para>Por determinar</para>
+  </section>
+
+  <section id="Filters_dlg">
+    <title>Uso del cuadro de diálogo "Filtros"<indexterm>
+        <primary>Diálogo Filtros</primary>
+      </indexterm><indexterm>
+        <primary>filtros</primary>
+
+        <secondary>gestionar y habilitar</secondary>
+      </indexterm></title>
+
+    <para>En esta sección se describe el cuadro de diálogo "Filtros", que ofrece
+funciones para crear y gestionar filtros de archivos y filtros de líneas.</para>
+
+    <para>Para abrir el cuadro de diálogo «Filtros», use cualesquiera de estos
+métodos:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>En el cuadro de diálogo "Seleccione archivos o carpetas", haga clic en
+<guibutton>Seleccionar</guibutton> a la derecha del campo
+<guilabel>Filtro</guilabel>.  Este método se utiliza cuando se desea aplicar
+un filtro de archivos a una operación de comparación de carpetas.</para>
+      </listitem>
+
+      <listitem>
+        <para>Haga clic en<menuchoice> <guimenu>Herramientas</guimenu>
+<guimenuitem>Filtros</guimenuitem> </menuchoice>. Este método se puede
+utilizar en cualquier momento, excepto cuando está abierto el cuadro de
+diálogo "Seleccione archivos o carpetas".</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>El cuadro de diálogo "Filtros" tiene una pestaña para cada tipo de filtro de
+WinMerge:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Filtros de archivos</term>
+
+        <listitem>
+          <para>Seleccione esta pestaña para utilizar filtros de archivos en las operaciones
+de comparación de carpetas.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Filtros de líneas</term>
+
+        <listitem>
+          <para>Seleccione esta pestaña para utilizar filtros de líneas en las operaciones
+de comparación de archivos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Filtros de sustitución</term>
+
+        <listitem>
+          <para>Seleccione esta pestaña para trabajar con filtros de sustitución en las
+operaciones de comparación de archivos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Display Line Filter</term>
+
+        <listitem>
+          <para>The display line filter is not configured through this dialog.  Open it via
+<menuchoice><guimenu>View</guimenu> <guimenuitem>Display Filter
+Bar</guimenuitem></menuchoice>.  See <xref
+linkend="Filters_DisplayLineFilter"/>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <section id="Filters_FileFiltersTab">
+      <title>Uso de la pestaña "Filtros de archivos"<indexterm>
+          <primary>filtros de archivos</primary>
+
+          <secondary>habilitar</secondary>
+        </indexterm></title>
+
+      <para>La parte principal de esta pestaña es una lista de filtros de archivos
+disponibles para las operaciones de comparación de carpetas. La lista
+incluye filtros de archivos compartidos, privados e instalados que WinMerge
+reconoce, tal y como se describe en <xref linkend="Filters_FileFilterLoc"
+/>.</para>
+
+      <section id="Filters_FileFilterEnabling">
+        <title>Activar y desactivar los filtros de archivos</title>
+
+        <para>Debe habilitar un filtro de archivos para que esté disponible en una
+operación de comparación de carpetas o deshabilitar un filtro actual para
+que deje de utilizarse:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Abra el cuadro de diálogo "Filtros", si aún no está abierto.</para>
+          </listitem>
+
+          <listitem>
+            <para>Selecciona un filtro de archivos o
+<guimenuitem>&lt;Ninguno&gt;</guimenuitem> de la lista.</para>
+          </listitem>
+
+          <listitem>
+            <para>Haga clic en <guibutton>Aceptar</guibutton> para cerrar el cuadro de diálogo
+"Filtros".</para>
+          </listitem>
+        </orderedlist>
+
+        <para>Hay varias formas de aplicar filtros de archivos una vez habilitados. Para
+obtener más información, consulte <xref linkend="Filters_FileFilterApply"
+/>.</para>
+      </section>
+
+      <section id="Filters_FileFilterCfg">
+        <title>Configuración de filtros de archivos</title>
+
+        <para>Utilice estos botones para gestionar su lista de <guilabel>filtros de
+archivos</guilabel> y crear nuevos filtros:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Probar...</term>
+
+            <listitem>
+              <para>Seleccione un filtro de archivos de la lista y haga clic en
+<guibutton>Probar...</guibutton> para ver rápidamente cómo funciona el
+filtro. Consulte <xref linkend="Filters_TestingDlg" /> para obtener más
+información.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Instalar...</term>
+
+            <listitem>
+              <para>Le permite buscar un filtro de archivos y añadirlo a la lista de
+filtros. Los filtros de archivos que no se encuentren ni en la carpeta
+compartida ni en la carpeta privada predeterminada no se detectarán a menos
+que los instale.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Nuevo...</term>
+
+            <listitem>
+              <para>Crea una nueva copia de una plantilla de archivo en las carpetas de filtros
+compartidas o privadas y la abre en su editor predeterminado.  Edite la
+plantilla y añada sus reglas, tal y como se describe en <xref
+linkend="Filters_CreatingFile" />.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Editar...</term>
+
+            <listitem>
+              <para>Seleccione un filtro de archivos de la lista y haga clic en
+<guibutton>Editar...</guibutton> para abrir el archivo en su editor
+predeterminado.  editor.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Eliminar...</term>
+
+            <listitem>
+              <para>Seleccione un filtro de archivos de la lista y haga clic en
+<guibutton>Eliminar...</guibutton> para borrar el archivo y eliminarlo de la
+lista. ¡Sí, el archivo es borrado de verdad!</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Los cambios se guardan al hacer clic en <guibutton>Aceptar</guibutton> para
+cerrar el cuadro de diálogo «Filtros». Los filtros de línea se guardan en el
+Registro de Windows.</para>
+      </section>
+
+      <section id="Filters_CreatingFile">
+        <title>Creación de un filtro de archivos</title>
+
+        <para>Si los filtros de archivos que se instalan con WinMerge no le proporcionan
+el filtrado que necesita, puede crear los suyos propios:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Haga clic en<menuchoice> <guimenu>Herramientas</guimenu>
+<guimenuitem>Filtros</guimenuitem> </menuchoice>. O bien, en el cuadro de
+diálogo "Seleccione archivos o carpetas", haga clic en
+<guibutton>Seleccionar</guibutton> a la derecha del campo
+<guilabel>Filtro</guilabel>.</para>
+          </listitem>
+
+          <listitem id="Filters_New_step">
+            <para>En la pestaña "Filtros de archivos" del cuadro de diálogo "Filtros", haga
+clic en <guibutton>Nuevo</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>En el cuadro de diálogo "Filtro compartido o privado" seleccione
+<guilabel>Filtro compartido</guilabel> o <guilabel>Filtro privado
+</guilabel> (consulte <xref linkend="Filters_FileFilterLoc" /> para conocer
+sus usos)  y haga clic en <keycap>Aceptar</keycap>.</para>
+
+            <para>Se abre el cuadro de diálogo "Seleccione un nombre de archivo para el nuevo
+filtro" en la carpeta de archivos compartidos o privados de su sistema (si
+la carpeta privada no existe, WinMerge la creará).</para>
+          </listitem>
+
+          <listitem>
+            <para>En el cuadro de diálogo "Seleccione un nombre de archivo para el nuevo
+filtro", introduzca un nuevo nombre de archivo y haga clic en
+<guibutton>Guardar</guibutton>.</para>
+
+            <note>
+              <para>No elija un nombre de archivo que ya exista: para editar un archivo
+existente, vuelva al paso <xref linkend="Filters_New_step" /> y haga clic en
+"Editar..." en lugar de "Nuevo...".</para>
+            </note>
+
+            <para>WinMerge inicializa el nuevo archivo con el contenido de la plantilla
+<filename>FileFilter.tmpl</filename> y lo abre en su editor de texto
+predeterminado.</para>
+          </listitem>
+
+          <listitem>
+            <para>Siga las instrucciones de la plantilla para editarla, actualizando el nombre
+y la descripción del marcador de posición y añadiendo reglas de filtrado,
+tal y como se describe en la sección <xref
+linkend="Filters_FileFilterSyntax" />.  Guarde el archivo en su editor de
+texto.</para>
+
+            <tip>
+              <para>Si quiere probar rápidamente una regla que está definiendo, haga clic en
+"Probar..." en el cuadro de diálogo "Filtros". Consulte <xref
+linkend="Filters_TestingDlg" /> para obtener más información.</para>
+            </tip>
+            <para></para>
+          </listitem>
+
+          <listitem>
+            <para>Si ha creado el filtro de archivos en una de las carpetas de filtros
+predeterminadas y el cuadro de diálogo <filename>Filtros</filename> no
+muestra el nuevo filtro, intente hacer clic en
+<guibutton>Aceptar</guibutton> para cerrarlo y, a continuación, vuelva a
+hacer clic en <menuchoice> <guimenu>Herramientas</guimenu>
+<guimenuitem>Filtros</guimenuitem> </menuchoice> para volver a abrirlo. La
+lista de <guilabel>Filtros de archivos</guilabel> debería incluir ahora el
+nuevo filtro.</para>
+
+            <para>Si ha guardado el archivo en una ubicación diferente de su sistema de
+archivos, WinMerge no podrá detectarlo a menos que lo instale. Para que un
+filtro de archivos sea detectable en cualquier lugar del sistema:</para>
+
+            <orderedlist numeration="loweralpha">
+              <listitem>
+                <para>Haga clic en <guibutton>Instalar...</guibutton> en el cuadro de diálogo
+Filtros.</para>
+              </listitem>
+
+              <listitem>
+                <para>En el cuadro de diálogo "Buscar archivo de filtro para instalar", busque el
+archivo <filename>flt</filename> en su sistema y haga clic en
+<guibutton>Abrir</guibutton>. La lista "Filtros de archivos" debería incluir
+ahora el filtro de archivo instalado.</para>
+              </listitem>
+            </orderedlist>
+          </listitem>
+        </orderedlist>
+      </section>
+
+      <section id="Filters_TestingDlg">
+        <title>Comprobación de las reglas de filtrado de archivos<indexterm>
+            <primary>filtros de archivos</primary>
+
+            <secondary>probando</secondary>
+          </indexterm><indexterm>
+            <primary>prueba de filtros de archivos</primary>
+          </indexterm></title>
+
+        <para>Utilice el cuadro de diálogo "Probar filtro" para comprobar rápidamente un
+filtro de archivos con datos de ejemplo, lo que le ayudará a desarrollar
+nuevas reglas o a comprender cómo funcionan las reglas existentes. Puede
+resultar más sencillo que ejecutar una operación de comparación completa.</para>
+
+        <para>Empezando desde el cuadro de diálogo "Filtros":</para>
+
+        <orderedlist>
+          <listitem>
+            <para>En la pestaña "Filtros de archivos" seleccione el filtro de archivos que
+desee probar.</para>
+          </listitem>
+
+          <listitem>
+            <para>Si quiere ver las reglas que va a probar, haga clic en
+<guibutton>Editar...</guibutton> para abrir el archivo y poder consultarlo
+durante los siguientes pasos.</para>
+          </listitem>
+
+          <listitem>
+            <para>Haga clic en<guibutton>Probar...</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>En el cuadro de diálogo "Probar filtro" seleccione el tipo de regla que
+desea probar:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>Para probar una regla de archivos <guilabel>f:</guilabel> en su filtro de
+archivos, desmarque la opción <guilabel>Nombre de carpeta</guilabel>.</para>
+              </listitem>
+
+              <listitem>
+                <para>Para probar una regla de la carpeta <guilabel>d:</guilabel> marque la opción
+<guilabel>Nombre de carpeta</guilabel>.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Texto para probar.</para>
+
+            <para>El texto debe ser adecuado para el tipo de regla que esté probando. Por
+ejemplo, si ha marcado la opción <guilabel>Nombre de carpeta</guilabel>,
+probablemente querrá introducir un nombre de carpeta, como \temp.</para>
+
+            <para>En el cuadro <guilabel>Resultado</guilabel> aparece su entrada, seguida de
+su estado: <computeroutput>passed</computeroutput> o
+<computeroutput>failed</computeroutput>.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section id="Filters_LineFiltersTab">
+      <title>Uso de la pestaña "Filtros de líneas"<indexterm>
+          <primary>filtros de línea</primary>
+
+          <secondary>habilitar</secondary>
+        </indexterm></title>
+
+      <para>Utilice esta pestaña para configurar y activar filtros de líneas en las
+operaciones de comparación de archivos. La pestaña incluye una lista de
+reglas. Cada regla contiene una única expresión regular. Puede aplicar
+cualquier combinación de reglas de la lista a una comparación de archivos.</para>
+
+      <section id="Filters_LineFilterCfg">
+        <title>Configuración de filtros de líneas</title>
+
+        <para>Debajo de la lista <guilabel>Expresiones regulares</guilabel> hay un cuadro
+de edición y unos botones que puede utilizar para mantener la lista
+actualizada en cualquier momento añadiendo, editando y eliminando reglas.</para>
+
+        <para>Para añadir una nueva regla:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Haga clic en <guibutton>Nuevo</guibutton>. El cursor de edición se activa
+automáticamente en el cuadro de edición.</para>
+          </listitem>
+
+          <listitem>
+            <para>Introduzca una expresión en el cuadro de edición situado debajo de la lista
+<guilabel>Expresiones regulares</guilabel>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Haga clic en <guibutton>Guardar</guibutton> para cargar la expresión en una
+nueva línea de la lista.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>Para editar una regla existente:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Seleccione la línea y haga clic en <guibutton>Editar</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Edite la expresión en el cuadro de edición.</para>
+          </listitem>
+
+          <listitem>
+            <para>Haga clic en <guibutton>Guardar</guibutton> cuando haya terminado.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>Para eliminar una regla existente, selecciónela (marque la casilla)  y haga
+clic en <guibutton>Eliminar</guibutton>.</para>
+      </section>
+
+      <section id="Filters_LineFilterEnabling">
+        <title>Activación y desactivación de los filtros de líneas<indexterm>
+            <primary>filtros de línea</primary>
+
+            <secondary>lista de disponibles</secondary>
+          </indexterm></title>
+
+        <orderedlist>
+          <listitem>
+            <para>En la lista de <guilabel>Expresiones regulares</guilabel> marque solo los
+filtros que desee aplicar y desmarque los que no desee aplicar.</para>
+          </listitem>
+
+          <listitem>
+            <para>Marque o desmarque la opción <guilabel>Habilitar Filtros de
+líneas</guilabel>. Si activa el filtrado, se utilizarán todas las reglas que
+estén marcadas actualmente en la lista <guilabel>Expresión
+regular</guilabel>. Si el filtrado está desactivado, no se utilizará ninguna
+regla, aunque estén marcadas.</para>
+          </listitem>
+
+          <listitem>
+            <para>Haga clic en <guibutton>Aceptar</guibutton> para cerrar el cuadro de diálogo
+"Filtros" y guardar la configuración.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>Hay varias formas de aplicar filtros de archivos una vez activados.  Para
+más información, consulte <xref linkend="Filters_LineFilterApply" />.</para>
+      </section>
+    </section>
+
+    <section id="Filters_SubstitutionFiltersTab">
+      <title>Uso de la pestaña "Filtros de sustitución"<indexterm>
+          <primary>filtros de sustitución</primary>
+
+          <secondary>habilitar</secondary>
+        </indexterm></title>
+
+        <para>Por determinar</para>
+
+      <section id="Filters_SubstitutionFilterCfg">
+        <title>Configuración de Filtros de sustitución</title>
+
+        <para>Por determinar</para>
+
+      </section>
+
+      <section id="Filters_SubstitutionFilterEnabling">
+        <title>Activación y desactivación de los filtros de sustitución<indexterm>
+            <primary>filtros de sustitución</primary>
+
+            <secondary>lista de disponibles</secondary>
+          </indexterm></title>
+
+        <para>Por determinar</para>
+      </section>
+    </section>
+  </section>
+
+  <section id="AboutFilters_regexp">
+    <title>Obtener ayuda sobre expresiones regulares<indexterm>
+        <primary>expresiones regulares</primary>
+
+        <secondary>obtener ayuda</secondary>
+      </indexterm></title>
+
+    <para>Las expresiones regulares pueden ser muy complejas. Afortunadamente, la
+mayoría de los filtros de archivos de WinMerge utilizan expresiones de
+extensión sencillas, tal y como se muestra en los ejemplos de este tema. Los
+archivos de filtro que se instalan con WinMerge incluyen muchos otros
+ejemplos útiles.</para>
+
+    <para>Por último, hay muchos recursos en Internet que pueden servir de ayuda con
+las expresiones regulares, entre ellos estos sitios web:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Una buena página web dedicada a las expresiones regulares:</term>
+
+        <listitem>
+          <simpara><ulink
+url="https://www.regular-expressions.info/">https://www.regular-expressions.info/</ulink></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Tutorial:</term>
+
+        <listitem>
+          <simpara><ulink
+url="http://www.zvon.org/comp/r/tut-Regexp.html">http://www.zvon.org/comp/r/tut-Regexp.html</ulink></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Guía rápida en PDF:</term>
+
+        <listitem>
+          <simpara><ulink
+url="https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf">
+https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</ulink></simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+</article>

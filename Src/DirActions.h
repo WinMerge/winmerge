@@ -128,6 +128,13 @@ struct DirViewFilterSettings
 
 typedef std::map<String, bool> DirViewTreeState;
 
+struct DirViewUIState
+{
+	String focusedItemPath;
+	int focusedIndex = -1;
+	int topIndex = 0;
+};
+
 String NumToStr(int n);
 String FormatFilesAffectedString(int nFilesAffected, int nFilesTotal);
 String FormatMenuItemString(SIDE_TYPE src, int count, int total);

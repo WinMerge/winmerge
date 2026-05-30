@@ -805,6 +805,26 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 	fileloc.encoding = codepage_detect::Guess(fileloc.filepath, iGuessEncoding);
 }
 
+static int DetectWindowTypeFromURL(const String& url)
+{
+	const auto ary = strutils::split(url, _T('#'));
+	StringView fragment = ary.empty() ? _T("") : ary[ary.size() - 1];
+	if (fragment == _T("type=text"))
+		return ID_MERGE_COMPARE_TEXT;
+	else if (fragment == _T("type=table"))
+		return ID_MERGE_COMPARE_TABLE;
+	else if (fragment == _T("type=binary"))
+		return ID_MERGE_COMPARE_HEX;
+	else if (fragment == _T("type=image"))
+		return ID_MERGE_COMPARE_IMAGE;
+	else if (fragment == _T("type=webpage"))
+		return ID_MERGE_COMPARE_WEBPAGE;
+	else if (fragment == _T("type=archive") || fragment == _T("type=folder"))
+		return ID_MERGE_COMPARE_FOLDER;
+	else
+		return -1;
+}
+
 bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
@@ -827,6 +847,18 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 			->GetUnpackedFileExtension(-1, filteredFilenames, preferredWindowType);
 		if (static_cast<int>(nID) <= 0 && preferredWindowType >= 0)
 			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
+	}
+	if (nID <= 0)
+	{
+		for (int pane = 0; pane < nFiles; ++pane)
+		{
+			if (paths::IsURL(ifileloc[pane].filepath))
+			{
+				int nID2 = DetectWindowTypeFromURL(ifileloc[pane].filepath);
+				if (nID2 > 0)
+					nID = nID2;
+			}
+		}
 	}
 	FileFilterHelper filterImg, filterBin;
 	const String& imgPatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);

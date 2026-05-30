@@ -1557,6 +1557,153 @@ class="extension">*.dll</filename></seg>
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_HandleSchemeHTTP">
+      <title><filename>HandleSchemeHTTP<indexterm>
+          <primary>Fichier du plugin HandleSchemeHTTP</primary>
+        </indexterm></filename></title>
+
+      <para>Gestionnaire de schémas d'URL HTTP/HTTPS utilisant curl</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeHTTP</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande curl</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Gestionnaire de protocoles d’URL</seg>
+
+            <seg>^http://.*$, ^https://.*$</seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://curl.se/">curl</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeReg">
+      <title><filename>HandleSchemeReg<indexterm>
+          <primary>Fichier du plugin HandleSchemeReg</primary>
+        </indexterm></filename></title>
+
+      <para>Gestionnaire de schéma d’URL dans le Registre Windows utilisant reg.exe</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeReg</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande reg.exe</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Gestionnaire de protocoles d’URL</seg>
+
+            <seg>^reg:.*$</seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeClipboard">
+      <title><filename>HandleSchemeClipboard<indexterm>
+          <primary>Fichier du plug-in HandleSchemeClipboard</primary>
+        </indexterm></filename></title>
+
+      <para>Gestionnaire de schéma d’URL pour le presse‑papiers utilisant cliphcat</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeClipboard</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande transmises à la commande msgcat</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Gestionnaire de protocoles d’URL</seg>
+
+            <seg>^clip://.*$, ^clipboard://.*$</seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>cliphcat</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_Unpacker_ExecFilterCommand">
       <title><filename>ExecFilterCommand<indexterm>
           <primary>Fichier du plug-in ExecFilterCommand</primary>

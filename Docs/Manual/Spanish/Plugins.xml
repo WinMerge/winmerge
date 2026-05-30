@@ -1,0 +1,2750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Plugins">
+  <title>Complementos<indexterm>
+      <primary>complementos</primary>
+    </indexterm></title>
+
+  <para>Los complementos de WinMerge son archivos DLL o secuencias de comandos
+personalizados, escritos en la API COM, que preprocesan los datos antes de
+una comparación. Por ejemplo, puede utilizar un complemento para extraer
+datos de texto de archivos de MS Word y que WinMerge los compare.</para>
+  
+  <para>Cada complemento es:<indexterm>
+      <primary>instalar complementos</primary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para>Un único archivo DLL o un archivo SCT (<filename
+class="extension">sct</filename>)</para>
+    </listitem>
+
+    <listitem>
+      <para>Instalado en la subcarpeta <filename
+class="directory">MergePlugins</filename> WinMerge puede instalar varios
+complementos automáticamente.</para>
+    </listitem>
+
+    <listitem>
+      <para>Fácil de instalar: para instalar un complemento que no esté incluido en la
+instalación de WinMerge, solo tiene que copiar el archivo del complemento en
+la carpeta <filename class="directory">MergePlugins</filename>. El
+complemento estará disponible la próxima vez que abra WinMerge. En Internet
+encontrará más complementos creados por otros desarrolladores.</para>
+    </listitem>
+  </itemizedlist>
+
+  <section>
+    <title>Tipos de complementos</title>
+
+    <para>Los complementos se agrupan en tres categorías principales:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Complemento del editor<indexterm>
+            <primary>complementos para el editor</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Este tipo de complemento realiza operaciones personalizadas sobre el texto
+seleccionado en el editor activo (panel de archivos) de la ventana de
+comparación de archivos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Descompresor: convierte un archivo a formato de texto<indexterm>
+            <primary>complementos para descompresión</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Este tipo de complemento transforma un archivo comprimido a un formato
+visible descomprimiéndolo. El archivo original no se modifica: se crea un
+archivo transformado temporal y se carga en WinMerge.</para>
+
+          <para>Los complementos de descompresión actúan sobre archivos completos, no sobre
+texto seleccionado ni sobre diferencias dentro de los archivos. Por lo
+tanto, solo están disponibles cuando se inician comparaciones de archivos,
+ya sea desde la ventana de comparación de carpetas o desde el cuadro de
+diálogo "Seleccione archivos o carpetas". Los complementos de descompresión
+no están disponibles en la ventana de comparación de archivos.</para>
+
+          <para>En ocasiones, el archivo descomprimido se puede volver a comprimir (consulte
+los detalles en <xref linkend="Plugins_available" /> para comprobar si un
+complemento admite la recompresión). A continuación, puede combinar y
+guardar el archivo transformado. En este caso, la compresión se realiza
+automáticamente. Por seguridad, le recomendamos que cambie el nombre del
+archivo transformado al guardarlo.</para>
+
+          <note>
+            <para>Al comparar carpetas, WinMerge puede mostrar resultados diferentes para los
+archivos comprimidos y los no comprimidos. Por ejemplo, unos archivos que
+son idénticos cuando están descomprimidos pueden resultar diferentes si se
+tiene en cuenta la fecha de creación. WinMerge aplica el descompresor en
+todos los casos, por lo que tendrá el mismo resultado tanto si compara una
+carpeta como si combina dos versiones de un archivo.</para>
+          </note>
+
+          <para>Ejemplo de complemento: <xref linkend="CompareMSExcelFiles" /> muestra el
+contenido de texto de un archivo de <trademark
+class="registered">Microsoft</trademark> <application>Excel</application>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Prediferenciador: preprocesa los archivos para ocultar algunas
+diferencias<indexterm>
+            <primary>complementos prediferenciadores</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Este tipo de complemento no actúa sobre los archivos originales que se
+muestran en la ventana "Comparar". En su lugar, actúa sobre copias
+temporales de los archivos, que luego se analizan para generar la lista de
+diferencias.</para>
+
+          <para>Ejemplo de complemento: <xref linkend="IgnoreColumns" /> ignora las
+diferencias dentro de las columnas especificadas, al tiempo que muestra los
+caracteres de dichas columnas.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Complementos recomendados y modos automáticos</title>
+
+    <para>¿Cómo consigue WinMerge aplicar el complemento adecuado a un archivo
+determinado? Cada complemento especifica una lista de extensiones de archivo
+(que también aparece en la sección <xref linkend="Plugins_available" /> de
+cada complemento en <citetitle>Filtro de archivos</citetitle>). Las
+extensiones se utilizan para asociar uno o varios tipos de archivo al
+complemento: cuando la extensión de un archivo comparado coincide con una
+extensión de la lista del complemento, este se considera un
+<firstterm>complemento sugerido.</firstterm></para>
+
+    <para>Existen opciones independientes de WinMerge para los tipos de descompresión
+y prediferencia que se describen más adelante en este tema y que permiten
+aplicar los complementos de forma manual o automática. No hay modo
+automático para los complementos de complementación del editor.</para>
+
+    <para>Cuando se aplican complementos a un archivo seleccionado mediante el modo
+automático, WinMerge busca en su lista de complementos sugeridos para ese
+tipo de archivo y aplica el primer complemento cuyo nombre coincida. La
+búsqueda se realiza por orden alfabético, por lo que si hay varios
+complementos sugeridos para un tipo de archivo, solo se aplica el primero
+que se encuentre.</para>
+  </section>
+
+  <section>
+    <title>Aplicación de complementos</title>
+
+    <para>En los siguientes apartados se describe cómo aplicar cada tipo de
+complemento. Los métodos varían según el tipo de complemento y también
+dependen de si se comparan carpetas o archivos.</para>
+
+    <section>
+      <title>Aplicación de complementos del editor en la ventana de comparación de
+archivos</title>
+
+      <para>Con el cursor situado en cualesquiera de los paneles de archivos de la
+ventana de comparación de archivos, haga clic en <menuchoice>
+<guimenu>Complementos</guimenu> <guisubmenu>Conjunto de
+comandos</guisubmenu> </menuchoice>y seleccione una de estas funciones:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><function>Convertir a mayúsculas</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Convertir a minúsculas</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Eliminar líneas duplicadas</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Contar líneas duplicadas</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Ordenar líneas en orden ascendente</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Ordenar líneas en orden descendente</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Invertir columnas</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Invertir líneas</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Seleccionar columnas...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Seleccionar líneas...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Sustituir...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Aplicar comando de filtro...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Tokenizar...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Eliminar espacios</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insertar fecha</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insertar hora</function></para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Las funciones se añaden al menú <guisubmenu>Guiones</guisubmenu> mediante el
+<xref linkend="EditorAddin" /> y los complementos <xref
+linkend="Plugins_datetime" />.</para>
+
+      <note>
+        <para>Los complementos del editor no están disponibles en la ventana de
+comparación de carpetas.</para>
+      </note>
+    </section>
+
+    <section>
+      <title>Aplicación de complementos de descompresión en la ventana de comparación de
+carpetas</title>
+
+      <para>Antes de aplicar los complementos de descompresión, puede configurar su modo
+en automático o manual.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Para configurar el modo automático para este tipo de complemento, haga clic
+en<menuchoice> <guimenu>Complementos</guimenu> <guimenuitem>Descompresión
+automática</guimenuitem> </menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Para activar el modo manual, haga clic en<menuchoice>
+<guimenu>Complementos</guimenu> <guimenuitem>Descompresión
+manual</guimenuitem> </menuchoice>.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>No olvide pulsar <keycap>F5</keycap> para actualizar la ventana de
+comparación de carpetas con la nueva configuración.</para>
+
+      <section>
+        <title>Uso del modo automático</title>
+
+        <para>Para aplicar complementos cuando la descompresión automática está activada,
+basta con iniciar una operación de comparación con un archivo en la ventana
+de comparación de carpetas. Si el complemento de descompresión sugerido para
+el tipo de archivo (en caso de que exista) lo preprocesa, WinMerge lo abrirá
+en la ventana de comparación de archivos.</para>
+
+        <para>Por ejemplo, supongamos que hace clic con el botón derecho del ratón en un
+archivo <filename>doc</filename> y selecciona
+<guimenuitem>Comparar</guimenuitem> (supongamos también que el complemento
+<xref linkend="Plugins_msword" /> está disponible). WinMerge convierte el
+archivo doc (o, mejor dicho, una copia del mismo) en un archivo de texto sin
+formato y lo abre en la ventana de comparación de archivos.</para>
+      </section>
+
+      <section>
+        <title>Uso del modo manual</title>
+
+        <para>El modo manual le permite elegir un complemento de descompresión distinto al
+que se selecciona automáticamente en el modo automático.  También puede
+iniciar la comparación sin utilizar ningún complemento.</para>
+
+        <para>Para aplicar los complementos cuando se ha configurado la descompresión
+manual:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Seleccione el archivo que desea comparar.</para>
+          </listitem>
+
+          <listitem>
+            <para>Haga clic en<menuchoice> <guimenu>Complementos</guimenu> <guimenuitem>Editar
+con descompresor...</guimenuitem> </menuchoice>.</para>
+
+            <para>Esta opción del menú solo está disponible si el tipo de archivo seleccionado
+es compatible con algún complemento de descompresión disponible.</para>
+          </listitem>
+
+          <listitem>
+            <para>En el cuadro de diálogo "Seleccionar descompresor":</para>
+
+            <xi:include href="select_unpacker.xml"
+                        xmlns:xi="http://www.w3.org/2001/XInclude"
+                        xpointer="element(select-unpacker-proc)" />
+          </listitem>
+
+          <listitem>
+            <para>Haga clic en<guibutton>Aceptar</guibutton> para cerrar el cuadro de diálogo
+"Seleccionar descompresor" e iniciar la comparación de archivos.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section>
+      <title>Aplicación de complementos de descompresión en el cuadro de diálogo
+"Seleccionar archivos o carpetas"</title>
+
+      <para>Puede utilizar el cuadro de diálogo "Seleccionar descompresor" para aplicar
+un complemento al iniciar una comparación de archivos desde el cuadro de
+diálogo "Seleccione archivos o carpetas".  Consulte <xref
+linkend="Open_paths_unpacker" />para obtener más información.</para>
+    </section>
+
+    <section>
+      <title>Aplicar los complementos de prediferenciación en la ventana de comparación
+de carpetas</title>
+
+      <para>Con los complementos de prediferenciación se configura el modo
+(<firstterm>&lt;Automático&gt;</firstterm> o
+<firstterm>&lt;Ninguno&gt;</firstterm>) o el nombre del complemento para
+cada archivo individual. (A diferencia de los complementos de descompresión,
+en los que se configura el modo para todos los archivos). Es decir, algunos
+archivos de la misma carpeta pueden tener modos de prediferenciación
+diferentes.</para>
+
+      <para>Para configurar el modo de uno o varios archivos en la ventana de
+comparación de carpetas, haga clic con el botón derecho del ratón sobre los
+archivos y seleccione <menuchoice> <guimenu>Configuración de
+complementos</guimenu> <guisubmenu>Config. prediferenciador</guisubmenu>
+</menuchoice> y seleccione una de las opciones del submenú:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guisubmenu>&lt;Automático&gt;</guisubmenu> selecciona el primer complemento
+prediferenciador disponible para ese tipo de archivo.</para>
+        </listitem>
+
+        <listitem>
+          <para><guisubmenu>&lt;Ninguno&gt;</guisubmenu> significa que no se utiliza ningún
+complemento prediferenciador.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Pulse la tecla <keycap>F5</keycap> para actualizar la ventana.</para>
+
+      <note>
+        <para>Cuando se abre una subcarpeta durante una comparación no recursiva, el modo
+siempre se restablece a <guimenuitem>&lt;Ninguno&gt;</guimenuitem>.</para>
+      </note>
+
+      <para>Cuando abre un archivo desde la ventana de comparación de carpetas, se
+aplica la configuración predeterminada para ese archivo antes de que se abra
+la ventana de comparación de archivos.</para>
+    </section>
+
+    <section>
+      <title>Aplicación de los complementos de prediferenciación en la ventana de
+comparación de archivos</title>
+
+      <para>En la ventana de comparación de archivos, puede aplicar un complemento
+prediferenciador haciendo clic en <menuchoice>
+<guimenu>Complementos</guimenu> <guisubmenu>Prediferenciador</guisubmenu>
+</menuchoice>y seleccionando uno de los complementos de la lista. Los
+complementos recomendados aparecen en la parte superior de la lista. Los
+archivos se vuelven a comparar una vez aplicado el complemento, por lo que
+no es necesario volver a analizarlos.</para>
+    </section>
+  </section>
+
+  <section id="Plugins_available">
+    <title>Complementos disponibles<indexterm>
+        <primary>Archivos dll de Visual Basic para complementos</primary>
+      </indexterm><indexterm>
+        <primary>complementos</primary>
+
+        <secondary>dll's Visual Basic</secondary>
+      </indexterm></title>
+
+    <section id="CompareEscapedJavaPropertiesFiles">
+      <title><filename>CompareEscapedJavaPropertiesFiles<indexterm>
+          <primary>archivo del complemento CompareEscapedJavaPropertiesFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Este complemento elimina los caracteres de escape de los archivos
+.properties de Java para facilitar su visualización y, a continuación,
+vuelve a aplicarle los caracteres de escape al guardarlos.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.properties</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="CompareMSExcelFiles">
+      <title><filename>CompareMSExcelFiles<indexterm>
+          <primary>archivo del complemento CompareMSExcelFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Muestra el contenido de texto de un archivo de<trademark
+class="registered">Microsoft</trademark> <application>Excel</application>
+eliminando todo el formato y los objetos incrustados.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.xls</filename>, <filename
+class="extension">*.xlsx</filename>, <filename
+class="extension">*.xlsm</filename>, <filename
+class="extension">*.xlsb</filename>, <filename
+class="extension">*.xla</filename>, <filename
+class="extension">*.xlax</filename>, <filename
+class="extension">*.xltx</filename>, <filename
+class="extension">*.xltm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Sí</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Excel</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_powerpnt">
+      <title><filename>CompareMSPowerPointFiles<indexterm>
+          <primary>archivo del complemento CompareMSPowerPointFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Muestra el contenido de texto de un archivo de<trademark
+class="registered">Microsoft</trademark>
+<application>PowerPoint</application> eliminando todo el formato y los
+objetos incrustados.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.ppt</filename>, <filename
+class="extension">*.pptx</filename>, <filename
+class="extension">*.pptm</filename>, <filename
+class="extension">*.ppa</filename>, <filename
+class="extension">*.ppam</filename>, <filename
+class="extension">*.pot</filename>, <filename
+class="extension">*.potx</filename>, <filename
+class="extension">*.potm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Sí</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>PowerPoint</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_visio">
+      <title><filename>CompareMSVisioFiles<indexterm>
+          <primary>archivo del complemento CompareMSVisioFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Muestra el contenido de texto de un archivo de<trademark
+class="registered">Microsoft</trademark> <application>Visio</application>
+eliminando todo el formato y los objetos incrustados.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.vsd</filename>, <filename
+class="extension">*.vsdx</filename>, <filename
+class="extension">*.vsdm</filename>, <filename
+class="extension">*.vss</filename>, <filename
+class="extension">*.vssx</filename>, <filename
+class="extension">*.vssm</filename>, <filename
+class="extension">*.vst</filename>, <filename
+class="extension">*.vstx</filename>, <filename
+class="extension">*.vstm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Sí</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Visio</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles<indexterm>
+          <primary>archivo del complemento CompareMSWordFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Muestra el contenido de texto de un archivo de<trademark
+class="registered">Microsoft</trademark> <application>Word</application>
+eliminando todo el formato y los objetos incrustados.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+class="extension">*.docx</filename>, <filename
+class="extension">*.docm</filename>, <filename
+class="extension">*.dot</filename>, <filename
+class="extension">*.dotx</filename>, <filename
+class="extension">*.dotm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Sí</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Word</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyHTML">
+      <title><filename>PrettifyHTML<indexterm>
+          <primary>archivo del complemento PrettifyHTML</primary>
+        </indexterm></filename></title>
+
+      <para>Mejorar HTML con tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyXML">
+      <title><filename>PrettifyXML<indexterm>
+          <primary>Archivo del complemento PrettifyXML</primary>
+        </indexterm></filename></title>
+
+      <para>Mejorar XML con tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyXML</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.xml</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyJSON">
+      <title><filename>PrettifyJSON<indexterm>
+          <primary>Archivo del complemento PrettifyJSON</primary>
+        </indexterm></filename></title>
+
+      <para>Mejorar JSON con el comando jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de filtro o de línea de comandos pasadas al comando jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>Archivo del complemento PrettifyYAML</primary>
+        </indexterm></filename></title>
+
+      <para>Mejorar YAML Prettier con el comando yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de filtro o de línea de comandos pasadas al comando yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyPO">
+      <title>
+<filename>PrettifyPO<indexterm>
+            <primary>Archivo del complemento PrettifyPO</primary></indexterm></filename></title>
+
+      <para>Mejorar PO Prettier con gettext msgcat</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyPO</command> <arg choice="opt" rep="repeat">
+<replaceable>argumentos</replaceable> </arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+<option> <replaceable>argumentos</replaceable> </option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando msgcat</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg>
+<filename class="extension">*.po</filename> <filename
+class="extension">*.pot</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>
+<ulink url="https://www.gnu.org/software/gettext/">gettext</ulink></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </section>
+
+    <section id="Plugins_QueryCSV">
+      <title><filename>QueryCSV<indexterm>
+          <primary>Archivo del complemento QueryCSV</primary>
+        </indexterm></filename></title>
+
+      <para>Consultor de archivos CSV con el comando q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryCSV</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Sentencia SQL u opciones de línea de comandos pasadas al comando q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryTSV">
+      <title><filename>QueryTSV<indexterm>
+          <primary>Archivo del complemento QueryTSV</primary>
+        </indexterm></filename></title>
+
+      <para>Consultor de archivos TSV con el comando q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryTSV</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Sentencia SQL u opciones de línea de comandos pasadas al comando q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.tsv</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryJSON">
+      <title><filename>QueryJSON<indexterm>
+          <primary>Archivo del complemento QueryJSON</primary>
+        </indexterm></filename></title>
+
+      <para>Consultor de archivos JSON con el comando jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de filtro o de línea de comandos pasadas al comando jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>Archivo del complemento QueryYAML</primary>
+        </indexterm></filename></title>
+
+      <para>Consultor YAML con el comando yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de filtro o de línea de comandos pasadas al comando yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidateHTML">
+      <title><filename>ValidateHTML<indexterm>
+          <primary>Archivo del complemento ValidateHTML</primary>
+        </indexterm></filename></title>
+
+      <para>Validador HTML con tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ValidateHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidatePO">
+      <title>
+<filename>ValidatePO<indexterm>
+            <primary>Archivo del complemento ValidatePO</primary></indexterm></filename></title>
+
+      <para>Validador de PO con gettext msgfmt</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ValidatePO</command> <arg choice="opt" rep="repeat">
+<replaceable>argumentos</replaceable> </arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+<option> <replaceable>argumentos</replaceable> </option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando msgfmt</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg>
+<filename class="extension">*.po</filename> <filename
+class="extension">*.pot</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>
+<ulink url="https://www.gnu.org/software/gettext/">gettext</ulink></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </section>
+
+    <section id="Plugins_PreviewGraphviz">
+      <title><filename>PreviewGraphviz<indexterm>
+          <primary>Archivo del complemento PreviewGraphviz</primary>
+        </indexterm></filename></title>
+
+      <para>Graphviz Previewer</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewGraphviz</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando dot</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.gv</filename>, <filename
+class="extension">,*.dot</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewMarkdown">
+      <title><filename>PreviewMarkdown<indexterm>
+          <primary>Archivo del complemento PreviewMarkdown</primary>
+        </indexterm></filename></title>
+
+      <para>Previsualizador Markdown</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewMarkdown</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando md2html</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.md</filename>, <filename
+class="extension">,*.markdown</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://github.com/mity/md4c">md4c</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewPlantUML">
+      <title><filename>PreviewPlantUML<indexterm>
+          <primary>Archivo del complemento PreviewPlantUML</primary>
+        </indexterm></filename></title>
+
+      <para>Previsualizador PlantUML</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewPlantUML</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando plantuml.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.pu</filename>, <filename
+class="extension">,*.puml</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://plantuml.com/">PlantUML</ulink>, <ulink
+url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ApacheTika">
+      <title><filename>ApacheTika<indexterm>
+          <primary>Archivo del complemento ApacheTika</primary>
+        </indexterm></filename></title>
+
+      <para>Extractor de contenido general con Apache Tika</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ApacheTika</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al archivo tika-app.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.*</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleJVM">
+      <title><filename>DisassembleJVM<indexterm>
+          <primary>Archivo del complemento DisassembleJVM</primary>
+        </indexterm></filename></title>
+
+      <para>Desensamblador de JVM bytecode con javap</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando javap</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DecompileJVM">
+      <title><filename>DecompileJVM<indexterm>
+          <primary>Archivo del complemento DecompileJVM</primary>
+        </indexterm></filename></title>
+
+      <para>Descompilador de Java con CFR: descompila archivos .class en código fuente
+Java legible</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DecompileJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al descompilador CFR</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://github.com/leibnitz27/cfr">CFR</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleIL">
+      <title><filename>DisassembleIL<indexterm>
+          <primary>Archivo del complemento DisassembleIL</primary>
+        </indexterm></filename></title>
+
+      <para>Desensamblador de código IL con ildasm</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleIL</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando ildasm</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleNative">
+      <title><filename>DisassembleNative<indexterm>
+          <primary>Archivo del complemento DisassembleNative</primary>
+        </indexterm></filename></title>
+
+      <para>Desensamblador de código nativo con dumpbin</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleNative</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando dumpbin</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeHTTP">
+      <title><filename>HandleSchemeHTTP<indexterm>
+          <primary>Archivo del complemento HandleSchemeHTTP</primary>
+        </indexterm></filename></title>
+
+      <para>Gestor de esquemas de HTTP/HTTPS URL utilizado con curl</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeHTTP</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando curl</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Gestor URL</seg>
+
+            <seg>^http://.*$, ^https://.*$</seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://curl.se/">curl</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeReg">
+      <title><filename>HandleSchemeReg<indexterm>
+          <primary>Archivo del complemento HandleSchemeReg</primary>
+        </indexterm></filename></title>
+
+      <para>Gestor de esquemas de URL del Registro de Windows utilizando reg.exe</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeReg</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando reg.exe</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Gestor URL</seg>
+
+            <seg>^reg:.*$</seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeClipboard">
+      <title><filename>HandleSchemeClipboard<indexterm>
+          <primary>Archivo del complemento HandleSchemeClipboard</primary>
+        </indexterm></filename></title>
+
+      <para>Gestor de esquemas de Clipboard URL Scheme utilizado con cliphcat</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeClipboard</command> <arg choice="opt"
+rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>argumentos</replaceable></option></term>
+          <listitem>
+            <para>Opciones de línea de comandos pasadas al comando cliphcat</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Gestor URL</seg>
+
+            <seg>^clip://.*$, ^clipboard://.*$</seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>cliphcat</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ExecFilterCommand">
+      <title><filename>ExecFilterCommand<indexterm>
+          <primary>Archivo del complemento ExecFilterCommand</primary>
+        </indexterm></filename></title>
+
+      <para>Aplica el comando de filtro</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ExecFilterCommand</command> <arg choice="opt"
+rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>comando</replaceable></option></term>
+          <listitem>
+            <para>comando a ejecutar. %1 en el comando se sustituye por el nombre del archivo</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeUpper">
+      <title><filename>MakeUpper<indexterm>
+          <primary>Archivo del complemento MakeUpper</primary>
+        </indexterm></filename></title>
+
+      <para>Convertir a mayúsculas</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeLower">
+      <title><filename>MakeLower<indexterm>
+          <primary>Archivo del complemento MakeLower</primary>
+        </indexterm></filename></title>
+
+      <para>Convertir a minúsculas</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_RemoveDuplicates">
+      <title><filename>RemoveDuplicates<indexterm>
+          <primary>Archivo del complemento RemoveDuplicates</primary>
+        </indexterm></filename></title>
+
+      <para>Eliminar líneas duplicadas</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_CountDuplicates">
+      <title><filename>CountDuplicates<indexterm>
+          <primary>Archivo del complemento CountDuplicates</primary>
+        </indexterm></filename></title>
+
+      <para>Contar líneas duplicadas</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortAscending">
+      <title><filename>SortAscending<indexterm>
+          <primary>Archivo del complemento SortAscending</primary>
+        </indexterm></filename></title>
+
+      <para>Ordenar líneas en orden ascendente</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortDescending">
+      <title><filename>SortDescending<indexterm>
+          <primary>Archivo del complemento SortDescending</primary>
+        </indexterm></filename></title>
+
+      <para>Ordenar líneas en orden descendente</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseColumns">
+      <title><filename>ReverseColumns<indexterm>
+          <primary>Archivo del complemento ReverseColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Invertir columnas</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseLines">
+      <title><filename>ReverseLines<indexterm>
+          <primary>Archivo del complemento ReverseLines</primary>
+        </indexterm></filename></title>
+
+      <para>Invertir líneas</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectColumns">
+      <title><filename>SelectColumns<indexterm>
+          <primary>Archivo del complemento SelectColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Seleccionar columnas</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg choice="opt"
+rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-g</option></arg>
+<arg><option>-e</option> <replaceable>patrones</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>rangos</replaceable></option></term>
+          <listitem>
+            <para>lista de rangos de columnas a seleccionar (ej. -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patrones</replaceable></option></term>
+          <listitem>
+            <para>expresión regular</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>selecciona columnas no coincidentes</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignora mayúsculas y minúsculas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-g</option></term>
+          <listitem>
+            <para>habilita opción global</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>usa <replaceable>patrones</replaceable> para combinar</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectLines">
+      <title><filename>SelectLines<indexterm>
+          <primary>Archivo del complemento SelectLines</primary>
+        </indexterm></filename></title>
+
+      <para>Seleccionar líneas</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg choice="opt"
+rep="norepeat"><replaceable>rangos</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-e</option>
+<replaceable>patrones</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>rangos</replaceable></option></term>
+          <listitem>
+            <para>lista de rangos de líneas a seleccionar (ej. -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patrones</replaceable></option></term>
+          <listitem>
+            <para>expresión regular</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>selecciona líneas no coincidentes</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignora mayúsculas y minúsculas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>usa <replaceable>patrones</replaceable> para combinar</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Replace">
+      <title><filename>Replace<indexterm>
+          <primary>Archivo del complemento Replace</primary>
+        </indexterm></filename></title>
+
+      <para>Sustituir un texto por otro</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Replace</command> <arg><option>-i</option></arg>
+<arg><option>-e</option></arg> <arg
+rep="norepeat"><replaceable>texto_a_buscar</replaceable></arg> <arg
+rep="norepeat"><replaceable>texto_a_sustituir</replaceable></arg></cmdsynopsis>
+
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>texto_a_buscar</replaceable></option></term>
+          <listitem>
+            <para>texto a buscar</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>texto_a_sustituir</replaceable></option></term>
+          <listitem>
+            <para>texto a sustituir</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignora mayúsculas y minúsculas (solo para -e)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>trata el texto especificado como una expresión regular</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Tokenize">
+      <title><filename>Tokenize<indexterm>
+          <primary>Archivo del complemento Tokenize</primary>
+        </indexterm></filename></title>
+
+      <para>Selección de tokens</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Tokenizar</command> <arg
+rep="norepeat"><replaceable>patrones</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>patrones</replaceable></option></term>
+          <listitem>
+            <para>expresión regular para la tokenización (ej. [^\w]+)</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Trim">
+      <title><filename>Trim<indexterm>
+          <primary>Archivo del complemento Trim</primary>
+        </indexterm></filename></title>
+
+      <para>Eliminar espacios</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Comprimiendo</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Dependencia</segtitle>
+
+          <seglistitem>
+            <seg>Descompresor</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="IgnoreColumns">
+      <title><filename>IgnoreColumns<indexterm>
+          <primary>Archivo del complemento IgnoreColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Este complemento ignora los caracteres de las columnas especificadas.  La
+primera columna es la número 1.</para>
+
+      <para>Tenga en cuenta que este complemento no admite archivos con tabulaciones: el
+complemento no da error, pero todas las tabulaciones se tratan como
+caracteres normales.</para>
+
+      <para>Para especificar las columnas, utilice el cuadro de diálogo de configuración
+del complemento o cambie el nombre del archivo <filename>dll</filename>
+utilizando los siguientes campos como parámetros:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Delimitadores entre rangos: _ o ,</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Delimitadores entre el mínimo y el máximo: <emphasis>cualquier otro
+carácter</emphasis></simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Se incluyen los valores mínimo y máximo.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Cuando máx = mín, se puede omitir máx.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <example>
+        <title><filename>IgnoreColumns</filename> ejemplos</title>
+
+<variablelist>
+          <varlistentry>
+            <term><filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename></term>
+
+            <listitem>
+              <simpara>Ignora todos los caracteres de la columna 3, así como de las columnas 10 a
+20 y de la 32 a la 33.</simpara>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
+
+            <listitem>
+              <simpara>Ignora todos los caracteres de la columna 1 y de las columnas 30 a 40.</simpara>
+            </listitem>
+          </varlistentry>
+        </variablelist></example>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <seglistitem>
+            <seg>Prediferenciación</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Sí</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreCommentsC<indexterm>
+          <primary>Archivo del complemento IgnoreCommentsC</primary>
+        </indexterm></filename></title>
+
+      <para>El complemento ignora los comentarios entre los delimitadores<constant>
+//</constant>... y <constant>/*</constant> ... <constant>*/</constant> en
+archivos de C, C++, PHP y JavaScript.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <seglistitem>
+            <seg>Prediferenciación</seg>
+
+            <seg><filename class="extension">*.cpp</filename>, <filename
+class="extension">*.cxx</filename>, <filename
+class="extension">*.h</filename>, <filename
+class="extension">*.hxx</filename>, <filename
+class="extension">*.c</filename>, <filename
+class="extension">*.php</filename>, <filename
+class="extension">*.js</filename>, <filename
+class="extension">*.cs</filename>, <filename
+class="extension">*.ts</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsComma<indexterm>
+          <primary>Archivo del complemento IgnoreFieldsComma</primary>
+        </indexterm></filename></title>
+
+      <para>Este complemento está pensado para archivos que utilizan campos y comas como
+delimitadores (por ejemplo, archivos CSV). Ignora los caracteres
+delimitadores. El primer campo es el número 1.</para>
+
+      <para>Para especificar los delimitadores, utilice el cuadro de diálogo de
+configuración del complemento o cambie el nombre del archivo
+<filename>dll</filename> utilizando los mismos campos de parámetros que se
+utilizan para <xref linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <seglistitem>
+            <seg>Prediferenciación</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>Sí</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsTab<indexterm>
+          <primary>Archivo del complemento IgnoreFieldsTab</primary>
+        </indexterm></filename></title>
+
+      <para>Este complemento está pensado para archivos que utilizan campos y
+tabulaciones como delimitadores (<application>por ejemplo, archivos de
+Excel</application> guardados en formato <filename
+class="extension">*.txt</filename>).  Ignora los caracteres
+delimitadores. El primer campo es el número 1.</para>
+
+      <para>Para especificar los delimitadores, utilice el cuadro de diálogo de
+configuración del complemento o cambie el nombre del archivo
+<filename>dll</filename> utilizando los mismos campos de parámetros que se
+utilizan para <xref linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <seglistitem>
+            <seg>Prediferenciación</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Sí</seg>
+
+            <seg>Sí</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreLeadingLineNumbers<indexterm>
+          <primary>Archivo del complemento IgnoreLeadingLineNumbers</primary>
+        </indexterm></filename></title>
+
+      <para>Este complemento ignora los números de línea iniciales en los archivos de
+texto (por ejemplo, archivos NC y BASIC).</para>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Argumentos del complemento</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <segtitle>Requisito</segtitle>
+
+          <seglistitem>
+            <seg>Prediferenciación</seg>
+
+            <seg><filename class="extension">*.nc</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="EditorAddin">
+      <title><filename>editor addin<indexterm>
+          <primary>Archivo del complemento editor addin</primary>
+        </indexterm></filename></title>
+
+      <para>Añade algunas funciones al menú<menuchoice> <guimenu>Complementos</guimenu>
+<guisubmenu>Guiones</guisubmenu> </menuchoice>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>Convertir a mayúsculas</guimenuitem> convierte el texto
+seleccionado a mayúsculas.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Convertir a minúsculas</guimenuitem> convierte el texto
+seleccionado a minúsculas.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Eliminar líneas duplicadas</guimenuitem> elimina las líneas
+duplicadas de la selección.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Contar líneas duplicadas</guimenuitem> elimina las líneas
+duplicadas de la selección e inserta el número de líneas duplicadas al
+derecho.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Ordenar líneas en orden ascendente</guimenuitem> ordena la
+selección en orden ascendente.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Ordenar líneas en orden descendente</guimenuitem> ordena la
+selección en orden descendente.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Invertir columnas</guimenuitem> invierte las columnas de la
+selección.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Invertir líneas</guimenuitem> invierte las líneas de la
+selección.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Seleccionar columnas...</guimenuitem> selecciona algunas
+columnas de la lista.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Seleccionar líneas...</guimenuitem> selecciona algunas líneas
+de la selección.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Sustituir...</guimenuitem> sustituye el texto seleccionado por
+otro texto.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Aplicar comando de filtro...</guimenuitem> sustituye la
+selección por el resultado del comando de filtro especificado. Si se
+especifica %1 en el argumento del comando de filtro, este se sustituye por
+el nombre del archivo del panel activo.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Tokenizar...</guimenuitem> sustituye el delimitador de tokens
+por un salto de línea en la selección.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Eliminar espacios</guimenuitem> elimina los espacios al
+principio y al final de las líneas de la selección.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+          <segtitle>Filtro de archivos</segtitle>
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <seglistitem>
+            <seg>Complemento del editor</seg>
+            <seg>*</seg>
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_datetime">
+      <title><filename>insert datetime<indexterm>
+          <primary>Archivo del complemento insert datetime</primary>
+        </indexterm></filename></title>
+
+      <para>Añade dos opciones al menú<menuchoice> <guimenu>Complementos</guimenu>
+<guisubmenu>Guiones</guisubmenu> </menuchoice>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>Introducir fecha</guimenuitem> inserta la fecha en el formato
+local actual.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Introducir hora</guimenuitem> inserta la hora en el formato
+local actual.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>Categoría</segtitle>
+
+          <segtitle>Filtro de archivos</segtitle>
+
+          <segtitle>Soporte para el diálogo Configuración</segtitle>
+
+          <seglistitem>
+            <seg>Complemento del editor</seg>
+
+            <seg>*</seg>
+
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+  </section>
+
+  <section>
+    <title>Requisitos<indexterm>
+        <primary>complementos</primary>
+
+        <secondary>Requisito de Windows Script Host</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>Windows Script Host</title>
+
+      <para>Algunos complementos de edición requieren este componente opcional de
+<trademark class="registered">Microsoft</trademark>.</para>
+
+      <para>Ya debería estar incluido en su versión de Windows, a menos que utilice una
+versión muy antigua, anterior a Windows XP.</para>
+    </section>
+  </section>
+</article>

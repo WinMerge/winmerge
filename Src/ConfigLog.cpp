@@ -90,7 +90,9 @@ static const String prefixes[] = {
 	_T("Editor/ReplaceText"),
 	_T("Files\\Left/Item_"),
 	_T("Files\\Right/Item_"),
-	_T("Files\\Option/Item_")
+	_T("Files\\Option/Item_"),
+	_T("Files\\DiffFile"),
+	_T("Files\\Display"),
 };
 
 static bool startsWithPrefix(const String& str)

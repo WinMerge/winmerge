@@ -1306,7 +1306,7 @@ Unicode 正規化されたファイル名で一致判定を行う <literal>norma
               <para>
 正規表現を使用して文字列を置換する <literal>regexReplace(expression, "pattern",
 "replacement")</literal> を挿入します。置換文字列では後方参照（$1、$2 など）が使用できます。例:
-<literal>regexReplace(Name, "^(\\d+)_(.+)$", "$2")</literal>
+<literal>regexReplace(Name, "^(\d+)_(.+)$", "$2")</literal>
 はファイル名の先頭にある番号とアンダースコアを削除します。</para>
             </listitem>
           </varlistentry>

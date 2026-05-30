@@ -13,6 +13,7 @@
 #include "stdafx.h"
 #include "EditorFilepathBar.h"
 #include "RoundedRectWithShadow.h"
+#include "ClipboardHistoryMenu.h"
 #include "cecolor.h"
 #include "DarkModeLib.h"
 #include "TempFile.h"
@@ -603,28 +604,7 @@ void CEditorFilePathBar::OnCustomizeContextMenu(UINT id, NMHDR* pNMHDR, LRESULT*
 	// Cache clipboard items for consistency between menu display and selection
 	m_cachedClipboardItems = GetClipboardHistory(MAX_HISTORY_ITEMS);
 	if (m_cachedClipboardItems.size() > 1)
-	{
-		CMenu clipboardMenu;
-		clipboardMenu.CreatePopupMenu();
-		int ID = ID_EDITOR_CLIPBOARD_FIRST;
-		for (size_t i = 0; i < m_cachedClipboardItems.size() && ID <= ID_EDITOR_CLIPBOARD_LAST; ++i, ++ID)
-		{
-			String prefix;
-			if (m_cachedClipboardItems[i].pBitmapTempFile)
-				prefix = _T("[") + _("Image") + _T("] ");
-			String displayName = m_cachedClipboardItems[i].previewText;
-			if (displayName.length() > 60)
-				displayName = displayName.substr(0, 57) + _T("...");
-			// Replace newlines with spaces for menu display
-			std::replace(displayName.begin(), displayName.end(), '\n', ' ');
-			std::replace(displayName.begin(), displayName.end(), '\r', ' ');
-
-			String menuText = strutils::format(_T("&%c %s"), "123456789abcdef"[i], displayName.c_str());
-			clipboardMenu.AppendMenu(MF_STRING, ID, menuText.c_str());
-		}
-		pPopup->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(clipboardMenu.m_hMenu), _("Clipboard &History").c_str());
-		clipboardMenu.Detach();
-	}
+		ClipboardHistoryMenu::PopulateMenu(pPopup, m_cachedClipboardItems, ID_EDITOR_CLIPBOARD_FIRST, ID_EDITOR_CLIPBOARD_LAST);
 
 	*pResult = 0;
 }

@@ -87,6 +87,7 @@ private:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
+	int m_nClickedColumn;
 
 // Attributes
 public:
@@ -154,6 +155,13 @@ public:
 	bool IsInitialized() const;
 	bool IsCursorInDiff() const;
 	bool IsDiffVisible(int nDiff);
+	bool IsDiffFiltered(int nDiff);
+	int FindFirstNonFilteredDiff();
+	int FindLastNonFilteredDiff();
+	int FindNextNonFilteredDiff(int startDiff = -1);
+	int FindPrevNonFilteredDiff(int startDiff = -1);
+	bool HasNextNonFilteredDiff();
+	bool HasPrevNonFilteredDiff();
 	void ZoomText(short amount);
 	virtual bool QueryEditable() override;
 	virtual void EnsureVisible(CEPoint pt) override;
@@ -184,6 +192,7 @@ protected:
 	virtual void OnUpdateCaret() override;
 	bool MergeModeKeyDown(MSG* pMsg);
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
+	bool IsDiffFiltered(const DIFFRANGE& diff);
 	void OnNext3wayDiff(int type);
 	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int type);
 	void OnPrev3wayDiff(int type);
@@ -290,6 +299,8 @@ protected:
 	afx_msg void OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI);
 	afx_msg void OnAddToLineFilters();
 	afx_msg void OnUpdateAddToLineFilters(CCmdUI* pCmdUI);
+	afx_msg void OnAddToDisplayFilters();
+	afx_msg void OnUpdateAddToDisplayFilters(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
 	afx_msg void OnConvertEolTo(UINT nID );
@@ -337,6 +348,7 @@ protected:
 	afx_msg void OnUseFirstLineAsHeaders();
 	afx_msg void OnUpdateUseFirstLineAsHeaders(CCmdUI* pCmdUI);
 	afx_msg void OnAutoFitAllColumns();
+	afx_msg void OnFilterMenuColumn(UINT nID);
 	afx_msg void OnUpdateViewChangeScheme(CCmdUI *pCmdUI);
 	afx_msg void OnChangeScheme(UINT nID);
 	afx_msg void OnUpdateChangeScheme(CCmdUI* pCmdUI);

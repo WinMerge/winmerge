@@ -789,6 +789,9 @@
     <ClCompile Include="FilterConditionDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MatchInsideDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="MyColorDialog.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
@@ -821,6 +824,27 @@
     </ClCompile>
     <ClCompile Include="FileFilterHelperMenu.cpp">
       <Filter>MFCGui\Menu\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MruHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipboardHistoryMenu.cpp">
+      <Filter>MFCGui\Menu\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFilterBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFilterHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFilterHelperMenu.cpp">
+      <Filter>MFCGui\Menu\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterHelperMenuBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReplaceListHelper.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1529,6 +1553,9 @@
     <ClInclude Include="FilterConditionDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MatchInsideDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="MyColorDialog.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
@@ -1566,6 +1593,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MruHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipboardHistoryMenu.h">
+      <Filter>MFCGui\Menu\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFilterBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFilterHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFilterHelperMenu.h">
+      <Filter>MFCGui\Menu\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterMenuHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterHelperMenuBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplaceListHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

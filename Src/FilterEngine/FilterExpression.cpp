@@ -37,6 +37,7 @@ FilterExpression::FilterExpression()
 FilterExpression::FilterExpression(const FilterExpression& other)
 	: optimize(other.optimize)
 	, caseSensitive(other.caseSensitive)
+	, diritem(other.diritem)
 	, name(other.name)
 	, ctxt(other.ctxt)
 	, now(other.now ? new Poco::Timestamp(*other.now) : nullptr)
@@ -348,11 +349,11 @@ static bool ContainsTrue(const ValueType& value)
 	return false;
 }
 
-bool FilterExpression::Evaluate(const DIFFITEM& di)
+bool FilterExpression::Evaluate(const FilterEvalContext& ectxt)
 {
 	try
 	{
-		const auto result = rootNode->Evaluate(di);
+		const auto result = rootNode->Evaluate(ectxt);
 		return ContainsTrue(result);
 	}
 	catch (const Poco::RegularExpressionException& e)
@@ -394,7 +395,8 @@ std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
 {
 	try
 	{
-		const auto result = rootNode->Evaluate(di);
+		FilterEvalContext ectxt{ this, &di };
+		const auto result = rootNode->Evaluate(ectxt);
 		return ConvertStringArray(result);
 	}
 	catch (const Poco::RegularExpressionException& e)
@@ -419,7 +421,7 @@ std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
 
 bool FilterExpression::HasCaseSensitiveDirective(const String& expression)
 {
-	String directives = ExtractDirectivesPrefix(expression);
+	String directives = ExtractDirectives(expression);
 	if (directives.empty())
 		return false;
 
@@ -434,8 +436,7 @@ String FilterExpression::AddCaseSensitiveDirective(const String& expression)
 	if (HasCaseSensitiveDirective(expression))
 		return expression;
 
-	String directives = ExtractDirectivesPrefix(expression);
-	String body = RemoveAllDirectives(expression);
+	auto [directives, body] = SplitDirectivesAndExpr(expression);
 
 	if (body.empty())
 		return _T("@cs ");
@@ -448,8 +449,7 @@ String FilterExpression::AddCaseSensitiveDirective(const String& expression)
 
 String FilterExpression::RemoveCaseSensitiveDirective(const String& expression)
 {
-	String directives = ExtractDirectivesPrefix(expression);
-	String body = RemoveAllDirectives(expression);
+	auto [directives, body] = SplitDirectivesAndExpr(expression);
 
 	if (directives.empty())
 		return body;
@@ -477,6 +477,49 @@ String FilterExpression::RemoveCaseSensitiveDirective(const String& expression)
 		return body;
 	else
 		return directives + _T(" ") + body;
+}
+
+static std::vector<String> SplitDirectives(const String& expression)
+{
+	std::vector<String> directives;
+	String expr = strutils::trim_ws(expression);
+	size_t pos = 0;
+
+	while (true)
+	{
+		// Skip leading whitespace
+		while (pos < expr.size() && tc::istspace(expr[pos]))
+			++pos;
+
+		// Check if this is a directive
+		if (pos >= expr.size() || expr[pos] != _T('@'))
+			break;
+
+		size_t startPos = pos;
+		++pos; // Skip '@'
+
+		// Find the end of the directive (whitespace or end of string)
+		// Handle quoted strings within directive (e.g., @name="abc def")
+		size_t endPos = pos;
+		bool inQuote = false;
+		while (endPos < expr.size())
+		{
+			tchar_t ch = expr[endPos];
+			if (ch == _T('"'))
+				inQuote = !inQuote;
+			else if (!inQuote && tc::istspace(ch))
+				break;
+			++endPos;
+		}
+
+		// Add directive to vector
+		directives.push_back(expr.substr(startPos, endPos - startPos));
+
+		// Move to the end of this directive
+		pos = endPos;
+	}
+
+	return directives;
 }
 
 static size_t FindDirectivesEnd(const String& expression)
@@ -518,7 +561,7 @@ static size_t FindDirectivesEnd(const String& expression)
 	return pos;
 }
 
-String FilterExpression::ExtractDirectivesPrefix(const String& expression)
+String FilterExpression::ExtractDirectives(const String& expression)
 {
 	String expr = strutils::trim_ws(expression);
 	size_t endPos = FindDirectivesEnd(expr);
@@ -542,3 +585,73 @@ String FilterExpression::RemoveAllDirectives(const String& expression)
 	return pos < expr.size() ? expr.substr(pos) : _T("");
 }
 
+FilterExpression::DirectivesAndExpr FilterExpression::SplitDirectivesAndExpr(const String& expression)
+{
+	DirectivesAndExpr result;
+	result.directives = ExtractDirectives(expression);
+	result.expr = RemoveAllDirectives(expression);
+	return result;
+}
+
+String FilterExpression::MergeDirectives(const String& directives1, const String& directives2)
+{
+	String d1 = strutils::trim_ws(directives1);
+	String d2 = strutils::trim_ws(directives2);
+
+	if (d1.empty())
+		return d2;
+	if (d2.empty())
+		return d1;
+
+	// Split directives into arrays
+	std::vector<String> dirs1 = SplitDirectives(d1);
+	std::vector<String> dirs2 = SplitDirectives(d2);
+
+	// Extract directive key (e.g., "@cs" -> "cs", "@name" -> "name")
+	auto getDirectiveKey = [](const String& directive) -> String
+	{
+		if (directive.empty() || directive[0] != _T('@'))
+			return _T("");
+
+		size_t pos = 1;
+		// Find '=' or whitespace
+		while (pos < directive.size() && directive[pos] != _T('=') && !tc::istspace(directive[pos]))
+			++pos;
+
+		String key = directive.substr(1, pos - 1);
+
+		// Convert to lowercase for case-insensitive comparison
+		std::transform(key.begin(), key.end(), key.begin(),
+			[](tchar_t c) { return static_cast<tchar_t>(tc::totlower(c)); });
+
+		return key;
+	};
+
+	// Use map to store unique directives, later values override earlier
+	std::map<String, String> directiveMap;
+
+	for (const auto& d : dirs1)
+	{
+		String key = getDirectiveKey(d);
+		if (!key.empty())
+			directiveMap[key] = d;
+	}
+
+	for (const auto& d : dirs2)
+	{
+		String key = getDirectiveKey(d);
+		if (!key.empty())
+			directiveMap[key] = d;
+	}
+
+	// Build result string
+	String result;
+	for (const auto& pair : directiveMap)
+	{
+		if (!result.empty())
+			result += _T(" ");
+		result += pair.second;
+	}
+
+	return result;
+}

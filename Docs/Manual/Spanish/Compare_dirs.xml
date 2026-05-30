@@ -1,0 +1,1308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_dirs">
+  <title>Comparación y combinación de carpetas<indexterm>
+      <primary>comparación de carpetas</primary>
+    </indexterm></title>
+
+  <para>En este tema se explica cómo comparar y combinar carpetas mediante la
+ventana "Comparación de carpetas".</para>
+
+  <section id="Compare_dirs_starting">
+    <title>Iniciar una operación de comparación de carpetas</title>
+
+    <para>Puede iniciar una operación de comparación de carpetas desde la ventana de
+WinMerge o desde una ventana del símbolo del sistema.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Desde la ventana de WinMerge</term>
+
+        <listitem>
+          <para>Clic <menuchoice> <guimenu>Archivo</guimenu>
+<guimenuitem>Abrir</guimenuitem> </menuchoice>. Utilice el cuadro de diálogo
+"Seleccionar archivos o carpetas" para especificar las carpetas del
+izquierdo y del derecho que se van a comparar. De forma predeterminada, la
+comparación incluye todos los archivos de las carpetas y es recursiva (es
+decir, incluye las subcarpetas). Para cambiar cualesquiera de estas opciones
+y obtener más información sobre el cuadro de diálogo "Seleccionar archivos o
+carpetas", consulte <xref linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Desde una ventana del símbolo del sistema</term>
+
+        <listitem>
+          <para>Ejecute <command>WinMergeU.exe</command>, que se encuentra en el directorio
+de instalación de WinMerge. En los argumentos del comando, incluya las
+carpetas del izquierdo y del derecho que desea comparar. De forma
+predeterminada, la comparación incluye todos los archivos de las carpetas y
+no es recursiva. Para cambiar cualesquiera de estas opciones y obtener
+información sobre otras opciones de comando, consulte <xref
+linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <tip>
+      <title>Consejos</title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Modo recursivo<indexterm>
+              <primary>comparación recursiva de carpetas</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>El modo recursivo resulta útil para detectar y manipular distintos archivos
+en toda una estructura de carpetas. Sin embargo, puede resultar lento si hay
+muchas subcarpetas y archivos. En el caso de estructuras de directorios muy
+anidadas, le recomendamos que active la opción <xref
+linkend="Compare_dirs_treeview" /> para facilitar la navegación por la
+ventana de comparación.</para>
+
+            <para>El modo no recursivo ofrece la ventaja de ser más rápido cuando hay muchas
+subcarpetas que no es necesario examinar. Además, la visualización puede
+resultar más fácil de gestionar, ya que solo muestra los elementos de las
+carpetas seleccionadas.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Comparación rápida de contenidos</term>
+
+          <listitem>
+            <para>El método <guilabel>Contenido rápido</guilabel> para la comparación de
+archivos, descrito en <xref linkend="Configuration" />, puede resultar útil
+al comparar archivos binarios de gran tamaño; además, se utiliza
+automáticamente para comparar archivos de más de 4 MB. Las posibles
+desventajas son que los filtros de línea no funcionan y que no se muestra
+información sobre el recuento de diferencias en la ventana "Comparación de
+carpetas". Esto no debería suponer un problema en la mayoría de los casos,
+ya que los archivos de ese tamaño suelen ser binarios.</para>
+
+            <para>Para utilizar este método, configúrelo antes de realizar la comparación en
+la página "Comparar" de las opciones de WinMerge, haga clic en el menú
+desplegable <guilabel>Método de comparación de archivos</guilabel> y
+seleccione <guimenuitem>Contenido rápido</guimenuitem>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Para usuarios avanzados</term>
+
+          <listitem>
+            <para>Puede modificar el límite de tamaño de archivo de 4 MB de la opción
+<guilabel> Comparación rápida de contenidos</guilabel>, por ejemplo, si
+tiene muchos archivos de texto de gran tamaño. Para ello, ejecute el comando
+de Windows <command>regedit</command>, busque esta clave <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen> y modifique su valor.  ¡Como siempre, tenga mucho
+cuidado al modificar el Registro!</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </tip>
+
+    <section>
+      <title>Ventana de progreso de la comparación de carpetas<indexterm>
+          <primary>Ventana de progreso de la comparación de carpetas</primary>
+        </indexterm></title>
+
+      <para>Al iniciar una operación de comparación de carpetas, WinMerge muestra esta
+ventana de estado:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/foldercmp_progress.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Ventana de progreso de la comparación de carpetas</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>Si la operación de comparación es rápida, es posible que ni siquiera se dé
+cuenta de que la ventana de progreso se cierra tan pronto como WinMerge
+muestra el resultado de la comparación de carpetas. La ventana de progreso
+muestra el número de archivos y carpetas que se incluirán en a operación,
+así como el número de elementos comparados hasta ese momento. La barra de
+progreso representa gráficamente los elementos comparados.</para>
+
+      <note>
+        <para>Dado que los archivos que se comparan suelen tener tamaños diferentes, los
+datos de estado no indican el tiempo empleado ni el tiempo restante. Por
+ejemplo, una proporción de 50/100 no significa necesariamente que haya
+transcurrido la mitad del tiempo de la operación de comparación.</para>
+      </note>
+
+      <para><!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
+I get the partial list, but no Abort indicator.-->
+Puede hacer clic en <guibutton>Parar</guibutton> para detener la operación
+en cualquier momento antes de que finalice la comparación. Se mostrará la
+ventana "Comparación de carpetas" con los resultados calculados hasta ese
+momento omitiendo los resultados que no se hayan completado.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_window">
+    <title>Ventana de comparación de carpetas<indexterm>
+        <primary>Ventana de comparación de carpetas</primary>
+
+        <seealso>Comparación de archivos</seealso>
+      </indexterm><indexterm>
+        <primary>Comparación de archivos</primary>
+
+        <secondary>Carpeta</secondary>
+      </indexterm><indexterm>
+        <primary>subcarpetas</primary>
+
+        <secondary>en la ventana de comparación de carpetas</secondary>
+      </indexterm></title>
+
+    <para>La ventana de comparación de carpetas muestra el resultado de una
+comparación. Hay dos vistas disponibles:</para>
+
+    <variablelist>
+      <varlistentry id="Compare_dirs_tabview">
+        <term>Vista en forma de tabla<indexterm>
+            <primary>vista en forma de tabla, ventana de comparación</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>En la vista en forma de tabla, cada archivo o carpeta del resultado aparece
+en una fila. Esta es la vista predeterminada. A continuación se muestra un
+ejemplo:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="Compare_dirs_treeview">
+        <term remap="" xreflabel="tree view">Vista en árbol<indexterm>
+            <primary>vista en árbol, ventana de comparación</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>En la vista de árbol, las carpetas se pueden expandir y contraer y contienen
+archivos y subcarpetas. La vista de árbol solo está disponible en las
+comparaciones recursivas. Por ejemplo:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="599"
+fileref="screenshots/treeview-01.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Para expandir o contraer una carpeta, haz clic en el signo más o menos
+situado junto al icono de la carpeta, o haz doble clic en cualquier punto de
+la fila.</para>
+            </listitem>
+
+            <listitem>
+              <para>Para expandir o contraer todas las carpetas de la vista, haz clic en
+<menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Expandir
+subcarpetas</guimenuitem> <guimenuitem>Todas las subcarpetas</guimenuitem>
+</menuchoice> o <menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Contraer
+todas las subcarpetas</guimenuitem> </menuchoice>del menú.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Durante una comparación recursiva (es decir, si ha activado la opción
+<option>Incluir subcarpetas</option> en el cuadro de diálogo "Seleccionar
+archivos o carpetas" al iniciar la comparación), puede hacer clic en el
+comando <menuchoice><guimenu>Ver</guimenu> <guimenuitem>Modo
+árbol</guimenuitem> </menuchoice> para alternar entre las dos vistas. El
+comando <menuchoice> <guimenu>Ver</guimenu> <guimenuitem>Modo
+árbol</guimenuitem> </menuchoice> está desactivado para las comparaciones no
+recursivas.</para>
+
+    <para>En ambas vistas, las columnas muestran diferentes tipos de datos para cada
+elemento de los resultados. Puede controlar el orden de los elementos en la
+vista haciendo clic en el encabezado de una columna. Esto modifica el orden
+de dos maneras:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Cambia (invierte) el orden de clasificación de la columna.</para>
+      </listitem>
+
+      <listitem>
+        <para>Vuelve a ordenar todas las filas de la vista según esta columna.</para>
+      </listitem>
+    </itemizedlist>
+
+    <section>
+      <title>Resultados de la comparación recursiva y no recursiva<indexterm>
+          <primary>comparación recursiva de carpetas</primary>
+
+          <secondary>vista de resultados</secondary>
+        </indexterm><indexterm>
+          <primary>comparación de carpetas no recursiva</primary>
+
+          <secondary>vista de resultados</secondary>
+        </indexterm></title>
+
+      <para>La ventana de comparación de carpetas tiene un aspecto y un funcionamiento
+ligeramente diferentes en las comparaciones recursivas y no recursivas:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Comparación recursiva de carpetas</term>
+
+          <listitem>
+            <para>El resultado de la comparación incluye todas las subcarpetas. Puede
+controlar los tipos de elementos que se muestran dentro de las carpetas
+seleccionando las opciones del menú <guimenu>Ver</guimenu> (por ejemplo,
+<guimenuitem>Mostrar elementos idénticos</guimenuitem>). La columna
+"Carpeta" siempre está vacía: solo se muestran los archivos que hay dentro
+de las carpetas. Para ver la subcarpeta de un elemento, consulte su ruta en
+la columna "Resultado de la comparación". Las carpetas que solo existen en
+un lado se muestran si se activa alguna de las opciones del menú
+<guimenu>Ver</guimenu>, como <guimenuitem>Mostrar archivos específicos del
+izquierdo</guimenuitem>, <guimenuitem>Mostrar archivos específicos del
+central</guimenuitem> o <guimenuitem>Mostrar archivos específicos del
+derecho.</guimenuitem></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Comparación no recursiva de carpetas</term>
+
+          <listitem>
+            <para>El resultado incluye únicamente los archivos y subcarpetas del nivel
+superior de las carpetas seleccionadas. No obstante, puede acceder a
+cualquier subcarpeta que desee comparar.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Iconos de archivos y carpetas<indexterm>
+          <primary>iconos</primary>
+
+          <secondary>Ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>En la ventana de comparación de carpetas, los archivos y las carpetas se
+comparan y se clasifican en varias categorías. En cada fila, la categoría se
+identifica claramente en la columna de la izquierda con uno de estos iconos:</para>
+
+      <simplelist>
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/equaltextfile.png" format="PNG" /> </imageobject></inlinemediaobject>Ficheros de texto idénticos</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/binary.png"
+format="PNG" /> </imageobject></inlinemediaobject> Ficheros binarios idénticos</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/equal.png"
+format="PNG" /> </imageobject></inlinemediaobject>Ficheros idénticos (tipo
+indeterminado)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/notequaltextfile.png" format="PNG" /> </imageobject></inlinemediaobject>Ficheros de texto diferentes</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/binarydiff.png" format="PNG" /> </imageobject></inlinemediaobject>Ficheros binarios diferentes</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/notequal.png" format="PNG" /> </imageobject></inlinemediaobject>Ficheros diferentes (tipo
+indeterminado)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/foldersame.png" format="PNG" /> </imageobject></inlinemediaobject>Carpetas idénticas (solo en la
+vista de árbol)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/folderdiff.png" format="PNG" /> </imageobject></inlinemediaobject>Carpetas diferentes (solo en
+la vista de árbol)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/lfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject>Solo carpetas al izquierdo</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/mfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject>Solo carpetas centrales</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/rfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject>Solo carpetas al derecho</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/lfile.png"
+format="PNG" /> </imageobject></inlinemediaobject>Solo ficheros al izquierdo</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/mfile.png"
+format="PNG" /> </imageobject></inlinemediaobject>Solo ficheros centrales</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/rfile.png"
+format="PNG" /> </imageobject></inlinemediaobject>Solo ficheros al derecho</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/folderskip.png" format="PNG" /> </imageobject></inlinemediaobject>Rutas omitidas (filtradas)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/fileskip.png" format="PNG" /> </imageobject></inlinemediaobject>Ficheros omitidos (filtrados)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/error.png"
+format="PNG" /> </imageobject></inlinemediaobject>Elementos que no se pueden
+comparar; por ejemplo, cuando otro programa ha bloqueado el fichero.</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/aborted.png"
+format="PNG" /> </imageobject></inlinemediaobject>Elemento descartado. WinMerge
+no terminó de comparar este elemento al detenerse la comparación. Se
+desconoce el resultado.</member>
+      </simplelist>
+    </section>
+
+    <section>
+      <title>Cómo navegar por la ventana de comparación de carpetas</title>
+
+      <indexterm>
+        <primary>funciones de exploración</primary>
+
+        <secondary>comparación de carpetas</secondary>
+      </indexterm>
+
+      <para>Puede utilizar el ratón, así como <link linkend="Shortcut_keys">el
+teclado</link> y los atajos del menú contextual para navegar por la ventana
+"Comparación de carpetas". También puede utilizar los botones de la barra de
+herramientas. Por ejemplo, el botón <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+            <phrase>Botón Diferencia siguiente</phrase>
+          </textobject>
+        </inlinemediaobject> El botón <guimenuitem>Diferencia siguiente</guimenuitem> busca el
+siguiente fichero o carpeta diferente y lo selecciona.</para>
+
+      <note>
+        <para>Los ficheros y carpetas específicos se exploran de la misma manera que los
+que son diferentes.</para>
+      </note>
+
+      <para>Puede seleccionar varios ficheros y carpetas. Sin embargo, algunas
+operaciones (como <command>Renombrar</command>) no están disponibles con
+selecciones múltiples.</para>
+
+      <para>Utilice los botones de navegación (<guibutton>Diferencia
+siguiente</guibutton>, <guibutton>Diferencia anterior</guibutton>, etc.)
+para desplazarse por las diferencias entre los ficheros comparados. Utilice
+las funciones de WinMerge para combinar los contenidos copiando, moviendo o
+eliminando uno o varios ficheros o subcarpetas.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_fileops">
+    <title>Operaciones con ficheros en la comparación de carpetas<indexterm>
+        <primary>operaciones con ficheros</primary>
+
+        <secondary>en la ventana de comparación de carpetas</secondary>
+      </indexterm><indexterm>
+        <primary>Ventana de comparación de carpetas</primary>
+
+        <secondary>operaciones con ficheros</secondary>
+      </indexterm></title>
+
+    <para>La ventana de comparación de carpetas admite operaciones habituales con
+ficheros, como editar, copiar, eliminar, mover y renombrar (mover equivale a
+una operación de copia seguida de una eliminación). Puede utilizar estas
+operaciones con ficheros y algunas funciones especiales de WinMerge para
+combinar el contenido de las carpetas. También puede abrir ficheros
+utilizando programas asociados o editores externos.</para>
+
+    <para>La forma más cómoda de realizar la mayoría de estas tareas es hacer clic con
+el botón derecho del ratón en uno o varios elementos y utilizar el menú
+contextual, donde se encuentran disponibles todas las operaciones con
+ficheros.</para>
+
+    <section>
+      <title>Copiar archivos<indexterm>
+          <primary>copiar archivos</primary>
+
+          <secondary>en la ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>La operación más habitual con los archivos en la ventana de comparación de
+carpetas es copiar archivos de una parte a otra. Existen varias modalidades
+de la función de copia de WinMerge: todas ellas copian únicamente los
+archivos que presentan diferencias, ya que copiar archivos idénticos no
+sirve de nada a la hora de combinar. Las funciones de copia están
+disponibles en el menú contextual, en el menú de WinMerge y en la barra de
+herramientas:</para>
+
+      <section>
+        <title>Atajos de copia del menú contextual</title>
+
+        <para>En el menú contextual de la ventana de comparación de carpetas, la opción
+<guimenuitem>Copiar</guimenuitem> tiene un submenú con cuatro accesos
+directos:</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="526"
+fileref="screenshots/ctx_menu_copy1.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Ventana de comparación de carpetas: menú contextual de copiar</phrase>
+          </textobject>
+        </mediaobject>
+
+        <itemizedlist>
+          <listitem>
+            <para><guimenuitem>Del izquierdo al derecho</guimenuitem> y <guimenuitem> Del
+derecho al izquierdo</guimenuitem> copian la selección (o solo los elementos
+de la selección que se pueden copiar) de un lado al otro. En el ejemplo, el
+sufijo <guilabel>(2 de 4)</guilabel> indica que solo se copiarán los dos
+ficheros que son diferentes; los ficheros idénticos no se copiarán. Estos
+atajos solo están disponibles si alguno de los ficheros que seleccione es
+diferente: si solo selecciona ficheros idénticos, los atajos no estarán
+disponibles.</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenuitem>Hacia el izquierdo...</guimenuitem> y <guimenuitem> Hacia el
+derecho...</guimenuitem> le permite especificar una ruta de destino para la
+copia en sistema, en lugar de una carpeta de comparación. Cuando se abra el
+cuadro de diálogo Buscar carpeta, navegue hasta la ruta de destino en su
+sistema (o cree una nueva carpeta de destino) y haga clic en
+<guibutton>Aceptar</guibutton>.</para>
+          </listitem>
+        </itemizedlist>
+        <para>En la ventana de comparación de carpetas con tres carpetas, el elemento
+<guimenuitem>Copiar</guimenuitem> tiene un submenú con nueve accesos
+directos:</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="410"
+fileref="screenshots/ctx_menu_copy2.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Ventana de comparación de carpetas: menú contextual de copiar</phrase>
+          </textobject>
+        </mediaobject>
+
+      </section>
+
+      <section>
+        <title>Comandos de copiar de la barra de herramientas y del menú</title>
+
+        <para>En la barra de herramientas de comparación de carpetas, <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+              <phrase>Botón Copiar al derecho</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>Copiar al derecho</guibutton> y
+<inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+              <phrase>Botón Copiar al izquierdo</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>Copiar al
+izquierdo</guibutton> realizan la misma tarea que los atajos del menú
+contextual <guimenuitem>Del izquierdo al derecho</guimenuitem> y
+<guimenuitem>Del derecho al izquierdo</guimenuitem>: solo copian de un lado
+a otro los ficheros que se pueden copiar. Sin embargo, estos comandos no
+muestran directamente el número de ficheros que se van a copiar; en su
+lugar, muestran un cuadro de diálogo de confirmación en el que se puede
+consultar una lista de rutas de los ficheros de origen y destino.</para>
+
+        <para>En el menú WinMerge, <menuchoice> <guimenu>Combinar</guimenu>
+<guimenuitem>Copiar al derecho</guimenuitem> </menuchoice> y <menuchoice>
+<guimenu>Combinar</guimenu> <guimenuitem>Copiar al izquierdo</guimenuitem>
+</menuchoice>funcionan igual que los comandos de copiar de la barra de
+herramientas.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Eliminar ficheros<indexterm>
+          <primary>eliminar ficheros</primary>
+
+          <secondary>en la ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>Puede utilizar la opción del menú contextual
+<guimenuitem>Eliminar</guimenuitem> para eliminar los elementos
+seleccionados de uno o de todos los lados. Al igual que otras operaciones
+con ficheros, <guimenuitem>Eliminar</guimenuitem> tiene un submenú con los
+accesos directos <guimenuitem>Izquierdo</guimenuitem>,
+<guimenuitem>Central</guimenuitem>,.<guimenuitem>Derecho</guimenuitem> y
+<guimenuitem>Todo</guimenuitem>.</para>
+
+      <warning>
+        <para>Le recomendamos encarecidamente que mantenga activada la opción <guilabel>
+Enviar archivos eliminados a la Papelera de reciclaje</guilabel> (véase
+<xref linkend="Configuration" />), para que pueda deshacer las eliminaciones
+en caso de errores.  Además, debe mantener activada la Papelera de
+reciclaje: la opción de WinMerge no funciona si desactiva la Papelera de
+reciclaje en Windows. Una vez más, no puede deshacer la eliminación de
+archivos o carpetas a menos que utilice tanto la opción de WinMerge
+<guilabel>Enviar archivos eliminados a la Papelera de reciclaje</guilabel>
+como la Papelera de reciclaje de Windows.</para>
+      </warning>
+    </section>
+
+    <section>
+      <title>Renombrar ficheros<indexterm>
+          <primary>renombrar ficheros</primary>
+
+          <secondary>en la ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>Para renombrar un archivo o una carpeta, seleccione
+<guimenuitem>Renombrar</guimenuitem> en su menú contextual o pulse
+<keycap>F2</keycap>. A continuación, cambie el nombre en el cuadro de
+edición y pulse <keycap>Intro</keycap>, o pulse <keycap>Esc</keycap> para
+cancelar. Solo puede renombrar un único archivo o carpeta. Tenga en cuenta
+que al cambiar el nombre se modifican los elementos de los dos o los tres
+lados. Actualmente no es posible cambiar el nombre de un elemento solo en un
+lado.</para>
+    </section>
+
+    <section>
+      <title>Abrir archivos<indexterm>
+          <primary>abrir archivos</primary>
+
+          <secondary>en la ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>En el menú contextual, puede utilizar <guimenuitem>Abrir
+izquierdo</guimenuitem>, <guimenuitem>Abrir central</guimenuitem> o
+<guimenuitem>Abrir derecho</guimenuitem>, dependiendo del lado en el que
+quiera realizar la operación. Cada opción de menú
+<guimenuitem>Abrir</guimenuitem> tiene un submenú con estos atajos:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Con una aplicación registrada</term>
+
+          <listitem>
+            <para>Abre el archivo con la aplicación (si la hay) que está registrada en Windows
+para ese tipo de archivo.</para>
+
+            <tip>
+              <para>Este acceso directo suele abrir una carpeta en una nueva ventana del
+Explorador de Windows.</para>
+            </tip>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Con un editor externo</term>
+
+          <listitem>
+            <para>Abre el archivo con un editor externo. El editor predeterminado es el Bloc
+de notas, pero puede configurar otro en las opciones de WinMerge.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Con...</term>
+
+          <listitem>
+            <para>Abre el cuadro de diálogo <guilabel>Abrir con</guilabel>, en el que puede
+especificar una aplicación con la que abrir el archivo.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Copiar rutas o nombres de archivo<indexterm>
+          <primary>rutas</primary>
+
+          <secondary>copiar desde la ventana de comparación de carpetas</secondary>
+        </indexterm><indexterm>
+          <primary>nombres de archivos</primary>
+
+          <secondary>copiar desde la ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>Los atajos del menú contextual <guimenuitem>Copiar ruta</guimenuitem> y
+<guimenuitem>Copiar nombres de archivos</guimenuitem> copian la ruta o el
+nombre de archivo de los elementos seleccionados al portapapeles de
+Windows. A continuación, puede pegar la información copiada en un archivo o
+una aplicación, por ejemplo, para crear una lista de archivos modificados o
+un registro de cambios.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Copiar rutas</guimenuitem> cuenta con un menú con tres accesos
+directos, similar al de otras operaciones con archivos. Copia las rutas
+completas de uno o varios elementos seleccionados al portapapeles, uno por
+línea.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Copiar nombres de archivos</guimenuitem> copia solo los nombres
+de los archivos sin las rutas.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="protectingfiles">
+      <title>Protección de archivos<indexterm>
+          <primary>Ventana de comparación de carpetas</primary>
+
+          <secondary>protección de archivos en</secondary>
+        </indexterm><indexterm>
+          <primary>protección de archivos</primary>
+        </indexterm><indexterm>
+          <primary>ficheros de solo lectura</primary>
+
+          <see>protección de archivos</see>
+        </indexterm></title>
+
+      <para>Para proteger de cambios los archivos y carpetas en cualquiera de los lados
+de la comparación, use <menuchoice> <guimenu>Archivo</guimenu> <guimenu>Solo
+lectura</guimenu> <guimenuitem>Izquierdo solo lectura</guimenuitem>
+</menuchoice>, <menuchoice> <guimenu>Archivo</guimenu> <guimenu>Solo
+lectura</guimenu> <guimenuitem>Central solo lectura</guimenuitem>
+</menuchoice> o <menuchoice> <guimenu>Archivo</guimenu> <guimenu>Solo
+lectura</guimenu> <guimenuitem>Derecho solo lectura</guimenuitem>
+</menuchoice>.</para>
+
+      <important>
+        <para>Al activar la opción de solo lectura, los archivos y carpetas solo quedan
+protegidos en la vista de comparación actual. Esto no afecta a sus atributos
+de archivo de Windows.</para>
+      </important>
+
+      <para>Este estado de protección se aplica a los archivos que se abran en la
+comparación de carpetas. Por ejemplo, si se comparan dos carpetas, se
+configura un lado como de solo lectura y se abren dos archivos para
+compararlos, el archivo abierto en el lado protegido estará protegido contra
+escritura. Del mismo modo, no se puede copiar un archivo del lado no
+protegido al lado protegido.</para>
+
+      <para>La marca <guilabel>SL</guilabel> que aparece en el panel izquierdo, central
+o derecho de la barra de estado (cerca de la esquina inferior derecha de la
+ventana)  indica que ese panel está actualmente en modo de solo lectura.</para>
+    </section>
+
+    <section>
+      <title>Actualizar los elementos seleccionados en la vista<indexterm>
+          <primary>actualizando vista</primary>
+        </indexterm></title>
+
+      <para>Actualizar por completo carpetas grandes puede llevar mucho tiempo. En
+WinMerge 2.2 y versiones anteriores, siempre había que realizar una
+actualización completa para actualizar los archivos después de editarlos
+fuera de WinMerge. A partir de la versión 2.4, WinMerge puede actualizar
+solo los elementos seleccionados: use <guimenuitem>Actualizar</guimenuitem>
+en el menú contextual o <guimenu>Ver</guimenu> <menuchoice>
+<guimenuitem>Actualizar selección</guimenuitem> </menuchoice> en el menú
+principal.</para>
+    </section>
+
+    <section>
+      <title>Compresión de archivos<indexterm>
+          <primary>compresión de archivos</primary>
+
+          <secondary>en la ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>Use la opción <guimenu>Zip</guimenu> del menú contextual para crear un nuevo
+archivo comprimido que contenga los elementos que seleccione.</para>
+
+      <note>
+        <para>Para poder utilizar esta función, es necesario que tenga instalado el
+complemento 7-Zip de WinMerge.</para>
+      </note>
+
+      <para>La opción del menú <guimenu>Zip</guimenu> tiene un submenú con cinco accesos
+directos:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Izquierdo</term>
+
+          <listitem>
+            <para>Añade de forma recursiva los archivos y carpetas del lado izquierdo al
+archivo comprimido</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Central</term>
+
+          <listitem>
+            <para>Añade de forma recursiva los archivos y carpetas del central al archivo
+comprimido</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Right</term>
+
+          <listitem>
+            <para>Añade de forma recursiva los archivos y carpetas del lado derecho al archivo
+comprimido</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Ambos</term>
+
+          <listitem>
+            <para>Añade archivos y carpetas de forma recursiva de ambos lados al archivo
+comprimido. Dado que los nombres de los archivos son idénticos, se añaden a
+dos subcarpetas diferentes dentro del archivo comprimido, denominadas
+<filename class="directory">Original</filename> y <filename
+class="directory">Alterada</filename>: los archivos del lado izquierdo se
+guardan en <filename class="directory">Original</filename> y los del lado
+derecho en <filename class="directory">Alterada</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Todo</term>
+
+          <listitem>
+            <para>Añade archivos y carpetas de forma recursiva de todos los lados al archivo
+comprimido. Dado que los nombres de los archivos son idénticos, se añaden a
+diferentes subcarpetas, denominadas <filename
+class="directory">Original</filename> y <filename class="directory">Alterada
+</filename>, dentro del archivo comprimido: los archivos del lado izquierdo
+se guardan en <filename class="directory">Original</filename> y los del lado
+derecho en <filename class="directory">Alterada</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Diferencias</term>
+
+          <listitem>
+            <para>Igual que <guimenuitem>Ambos</guimenuitem>, pero añade solo los archivos
+diferentes (incluidos los archivos específicos) de ambas partes.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Al seleccionar uno de los accesos directos de <guimenu>Zip</guimenu>, el
+cuadro de diálogo "Guardar como" le pedirá que introduzca el nombre y el
+tipo de archivo. WinMerge no puede añadir ficheros a archivos ya existentes:
+siempre crea un nuevo archivo.</para>
+
+<!--Original:
+WinMerge looks for subfolders Original/ and Altered/ in archive files. If archive file contains these 
+subfolders and same filename is given to both sides WinMerge compares contents of those two folders.
+ 
+If directory compare shows contents of archive files WinMerge updates changes done to files in file 
+compare into original archive file. But WinMerge does not update archive contents for files 
+added/deleted/copied. User can create a new archive file using above menuitems instead. 
+-->
+      
+
+      <tip>
+        <para>WinMerge puede comparar el contenido de archivos comprimidos que tengan el
+mismo nombre en ambos lados: WinMerge busca las subcarpetas <filename
+class="directory">Original</filename> y <filename
+class="directory">Alterada</filename> y compara el contenido de esas dos
+carpetas.</para>
+      </tip>
+
+      <para>Si una comparación de carpetas incluye el contenido de un archivo
+comprimido, cualquier cambio que se realice en los archivos incluidos en
+WinMerge (por ejemplo, al utilizar la operación
+<guimenuitem>Abrir</guimenuitem> para editar el archivo) se guardará en el
+archivo comprimido. Sin embargo, no es posible actualizar el contenido del
+archivo comprimido mediante las operaciones de WinMerge
+<guimenuitem>Copiar</guimenuitem>, <guimenuitem>Mover</guimenuitem> o
+<guimenuitem>Eliminar</guimenuitem>.  En su lugar, cree un nuevo archivo
+comprimido utilizando uno de los accesos directos de
+<guimenuitem>Zip</guimenuitem>.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_browsing">
+    <title>Exploración de carpetas en la ventana de comparación de carpetas<indexterm>
+        <primary>carpetas</primary>
+
+        <secondary>exploración en la ventana de comparación de carpetas</secondary>
+      </indexterm></title>
+
+    <para>En esta sección se explican las formas de explorar las carpetas que aparecen
+en una ventana de comparación de carpetas. Al explorar una carpeta, se lleva
+a cabo una operación de comparación completamente nueva. El resultado de
+esta operación sobrescribe el resultado actual que se muestra en la ventana.</para>
+
+    <section>
+      <title>Exploración de carpetas en una comparación no recursiva</title>
+
+      <para>Aunque una comparación de carpetas no recursiva no incluye el contenido de
+las subcarpetas, estas aparecen en la lista de resultados como si fueran
+archivos.  Del mismo modo, la carpeta principal de la carpeta comparada
+aparece como un archivo en la parte superior de la tabla. Al abrir estas
+carpetas directamente en la ventana de comparación de carpetas, puede
+explorar de forma selectiva un árbol de directorios. Este enfoque - comparar
+solo los subdirectorios que le interesan - puede resultar más eficiente que
+realizar una comparación recursiva de todo el árbol de directorios.</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Explorar la carpeta principal</term>
+
+          <listitem>
+            <para>Para comparar la <inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup.png" format="PNG" />
+</imageobject></inlinemediaobject> carpeta
+principal (la ruta <guilabel>..</guilabel> situada en la parte superior),
+haga doble clic en su fila o selecciónale y pulse <keycap>Enter</keycap>.</para>
+
+            <para>A veces no es posible abrir la carpeta principal (por ejemplo, si no tiene
+permisos para acceder a ella). Estos dos iconos indican si se puede abrir la
+carpeta principal:</para>
+
+            <simplelist type="vert">
+              <member><inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup.png" format="PNG" />
+</imageobject></inlinemediaobject>Se puede abrir la carpeta
+principal.</member>
+
+              <member><inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup_disable.png"
+format="PNG" /> </imageobject></inlinemediaobject>No se puede abrir la carpeta
+principal.</member>
+            </simplelist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Explorar una sola subcarpeta que se encuentra en dos o en las tres partes</term>
+
+          <listitem>
+            <para>Para comparar una sola subcarpeta que se encuentra en dos o en las tres
+partes, haga doble clic en la carpeta en la ventana de comparación de
+carpetas.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Explorar solo una subcarpeta que existe solo en un lado</term>
+
+          <listitem>
+            <para>Si navega hasta una subcarpeta que solo existe en uno de los lados, WinMerge
+puede crear una nueva carpeta equivalente en el otro lado, de forma que
+ambos lados coincidan. Consulte <xref linkend="CompareDirs_browse_unique" />
+para obtener más información.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Explorar dos subcarpetas diferentes</term>
+
+          <listitem>
+            <para>No es posible comparar dos subcarpetas (es decir, seleccionar dos filas)
+cuando las subcarpetas de cada lado son diferentes. Solo se pueden comparar
+dos subcarpetas si previamente se han comparado carpetas idénticas (por
+ejemplo, navegando por una sola subcarpeta en el resultado de una
+comparación). En primer lugar, seleccione las dos carpetas en la ventana de
+comparación de carpetas, tal y como se muestra en la siguiente figura:</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="572"
+fileref="screenshots/foldercomp_2same.png" format="PNG" /> </imageobject><textobject>
+                <phrase>Ventana de comparación de carpetas con dos carpetas seleccionadas</phrase>
+              </textobject>
+            </mediaobject>
+            <para></para>
+
+            <para>El orden de selección es importante: la carpeta que seleccione primero será
+la carpeta de la izquierda en el resultado; la segunda carpeta seleccionada
+se convertirá en la carpeta de la derecha en el resultado.</para>
+
+            <para>Con las dos carpetas seleccionadas, haga clic con el botón derecho del ratón
+y seleccione <guimenuitem>Comparar</guimenuitem> (o haga clic en
+<menuchoice> <guimenu>Combinar</guimenu> <guimenuitem>Comparar</guimenuitem>
+</menuchoice> en el menú).</para>
+
+            <tip>
+              <para>Una vez más, la operación <guimenuitem>Comparar</guimenuitem> solo está
+disponible cuando las rutas de las carpetas de la izquierda y la derecha son
+idénticas en la ventana de comparación de carpetas, tal y como se muestra en
+la captura de pantalla anterior. Por ejemplo, no está disponible si la
+ventana actual compara dos carpetas diferentes.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="CompareDirs_browse_unique">
+      <title>Explorar carpetas específicas<indexterm>
+          <primary>carpetas específicas</primary>
+
+          <secondary>compararación</secondary>
+        </indexterm></title>
+
+      <para>En WinMerge 2.6 y versiones anteriores, no era posible acceder a carpetas
+específicas (carpetas que solo existen en uno de los lados del resultado de
+la comparación), ya que WinMerge no puede comparar una carpeta existente con
+una que no existe. Para copiar cualquier elemento de una carpeta específica
+en WinMerge, primero había que crear una copia de toda la estructura de
+carpetas.</para>
+
+      <para>Sin embargo, es posible que prefiera no copiar toda la estructura de
+carpetas. A partir de la versión 2.8, WinMerge ofrece una forma alternativa
+de crear una nueva carpeta vacía. Esto le permite copiar solo los elementos
+que desee de la carpeta original específica a la carpeta vacía creada.  Este
+procedimiento muestra cómo hacerlo:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Vaya a la carpeta específica (seleccione la carpeta y pulse
+<keycap>Enter</keycap>, haga doble clic en ella o haga clic con el botón
+derecho y seleccione <guimenuitem>Comparar</guimenuitem>). Por ejemplo:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="590"
+fileref="screenshots/foldercmp_unique1.png" format="PNG" /> </imageobject><textobject>
+              <phrase>Ventana de comparación de carpetas, comparando carpetas específicas</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>Un mensaje de WinMerge le informa de que la carpeta solo existe en uno de
+los lados y no se puede abrir. A continuación, el mensaje le pide que
+confirme si desea crear una carpeta con el mismo nombre y abrirla como el
+otro lado del resultado de la comparación.</para>
+        </listitem>
+
+        <listitem>
+          <para>Haga clic en <guibutton>Sí</guibutton> para confirmar (si hace clic en
+(<guibutton>No</guibutton> se cancela la comparación). En el nuevo resultado
+de la comparación, la carpeta original se abre a la izquierda y la nueva
+carpeta vacía creada aparece a la derecha:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="590"
+fileref="screenshots/foldercmp_unique2.png" format="PNG" /> </imageobject><textobject>
+              <phrase>Ventana de comparación de carpetas después de explorar carpetas específicas
+y creadas</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>En los resultados de la comparación, puede copiar o mover elementos (por
+ejemplo, mediante el menú contextual que aparece al hacer clic con el botón
+derecho del ratón) de la carpeta específica a la carpeta creada.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_customizing">
+    <title>Personalización de la ventana de comparación de carpetas<indexterm>
+        <primary>Ventana de comparación de carpetas</primary>
+
+        <secondary>personalización</secondary>
+      </indexterm></title>
+
+    <para>En esta sección se explica cómo configurar la forma en que la ventana de
+comparación de carpetas muestra los resultados. Puede personalizar la vista
+mostrando, ocultando y reordenando las columnas de la tabla.</para>
+
+    <section>
+      <title>Mostrar y ocultar tipos de archivos<indexterm>
+          <primary>Menú Ver</primary>
+
+          <secondary>Ventana de comparación de carpetas</secondary>
+        </indexterm></title>
+
+      <para>El menú <guimenu>Ver</guimenu> contiene estos accesos directos para mostrar
+u ocultar distintos tipos de elementos. Marque una opción del menú para
+mostrar el elemento o desmárquela para ocultarlo.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Mostrar elementos idénticos</guimenuitem>: archivos detectados
+como idénticos</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Mostrar elementos diferentes</guimenuitem>: archivos detectados
+como diferentes</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Mostrar elementos únicos en el izquierdo</guimenuitem>:
+archivos y directorios que solo aparecen en el lado izquierdo</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Mostrar elementos únicos en el central</guimenuitem>: archivos
+y directorios que solo aparecen en el central</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Mostrar elementos únicos en el derecho</guimenuitem>: archivos
+y directorios que solo aparecen en el lado derecho</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Mostrar elementos ignorados</guimenuitem>: archivos y
+directorios omitidos por los filtros de archivos</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Mostrar archivos binarios</guimenuitem>: archivos detectados
+como binarios</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Cambiar el orden de las columnas</title>
+
+      <para>Las filas de la ventana de comparación de carpetas se ordenan según el orden
+de clasificación de una columna concreta. Esta columna de clasificación se
+indica mediante una pequeña flecha en su encabezado. La flecha apunta hacia
+arriba si la columna está ordenada en orden ascendente y hacia abajo si lo
+está en orden descendente. El ejemplo de comparación de carpetas que aparece
+al principio de este tema está ordenado por la columna "Nombre de archivo",
+en orden ascendente.</para>
+
+      <para>Para seleccionar otra columna de ordenación, basta con hacer clic en el
+encabezado de dicha columna. La columna seleccionada se establece en su
+orden de clasificación predeterminado y todas las filas se reordenan según
+dicho orden.</para>
+
+      <para>Para cambiar el orden de clasificación de una columna que ya está ordenada,
+vuelva a hacer clic en su encabezado. Es decir, al hacer clic en el
+encabezado de una columna ordenada, se invierte el orden (alternando entre
+orden ascendente y descendente).</para>
+    </section>
+
+    <section>
+      <title>Añadir, eliminar y reordenar columnas</title>
+
+      <para>Para modificar las columnas que se muestran en la ventana de comparación de
+carpetas:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Haga clic con el botón derecho del ratón en el encabezado de cualquier
+columna y seleccione <guimenuitem>Personalizar columnas</guimenuitem>. O
+bien, haga clic en <menuchoice> <guimenu>Herramientas</guimenu>
+<guimenuitem>Personalizar columnas</guimenuitem> </menuchoice></para>
+        </listitem>
+
+        <listitem>
+          <para>El cuadro de diálogo "Mostrar columnas" contiene una lista de todos los
+nombres de columnas disponibles, cada uno con una casilla de
+selección. Configure las columnas utilizando cualquier combinación de estas
+acciones:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Marque las columnas que quiera mostrar (tenga en cuenta que no basta con
+seleccionar el elemento en la lista).</para>
+            </listitem>
+
+            <listitem>
+              <para>Desmarque las columnas que desee ocultar.</para>
+            </listitem>
+
+            <listitem>
+              <para>Para cambiar el orden de las columnas, seleccione uno o varios elementos y
+haga clic en <guibutton>Subir</guibutton> o <guibutton>Bajar</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Haga clic en <guibutton>Predeterminados</guibutton> si desea restablecer la
+configuración predeterminada de las columnas de WinMerge, sustituyendo así
+su configuración personalizada.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Haga clic en <guibutton>Aceptar</guibutton>.</para>
+        </listitem>
+      </orderedlist>
+
+      <para><indexterm>
+          <primary>Cuadro de diálogo "Mostrar columnas"</primary>
+        </indexterm>Las siguientes columnas del cuadro de
+diálogo "Mostrar columnas" se muestran de forma predeterminada en la ventana
+de comparación de carpetas:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Nombre de archivo</guilabel>: nombre del elemento comparado.  En
+una comparación no recursiva, esta columna incluye tanto archivos como
+carpetas. En una comparación recursiva, no incluye carpetas, en su lugar,
+las carpetas aparecen en la columna "Carpeta".</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Carpeta</guilabel>: ruta de la subcarpeta comparada, en relación
+con la carpeta de referencia. En una comparación no recursiva, esta columna
+siempre está vacía. Las carpetas se muestran en la columna <guilabel>Nombre
+de archivo</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Resultado de la comparación</guilabel>: resultado detallado de la
+comparación (véase también <guilabel>Resultado abreviado</guilabel>).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Fecha del izquierdo</guilabel>, <guilabel>Fecha del
+central</guilabel>, <guilabel>Fecha del derecho</guilabel>: fechas de
+modificación de cada elemento.  La más reciente de las dos fechas (o la
+fecha de cualquier elemento único) va precedida de un asterisco ( * ).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Extensión</guilabel>: extensión de archivo, útil para ordenar.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>En el cuadro de diálogo "Mostrar columnas" están disponibles las siguientes
+columnas adicionales:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Resultado abreviado</guilabel>: muestra la columna
+<guilabel>Resultado de la comparación</guilabel> en un formato resumido
+(solo a la derecha).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Binario</guilabel>: la columna contiene un asterisco ( * ) cuando
+el archivo es binario. Esto resulta útil para ordenar los datos y para
+utilizarla junto con la columna <guilabel>Resultado abreviado</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Atributos del izquierdo</guilabel>, <guilabel>Atributos del
+central</guilabel>, <guilabel>Atributos del derecho</guilabel>: muestra los
+atributos del archivo.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Fecha de creación del izquierdo</guilabel>, <guilabel>Fecha de
+creación del central</guilabel>, <guilabel>Fecha de creación del
+derecho</guilabel>: Fecha de creación del elemento.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Codificación del izquierdo</guilabel>, <guilabel>Codificación del
+central </guilabel>, <guilabel>Codificación del derecho</guilabel>:
+codificación del archivo. Muestra el número de página de códigos para los
+archivos ANSI y la codificación Unicode para los archivos Unicode.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Versión del archivo izquierdo</guilabel>, <guilabel>Versión del
+archivo central</guilabel>, <guilabel>Versión del archivo
+derecho</guilabel>: número de versión del archivo, si existe. Tenga en
+cuenta que la versión es de solo lectura en el caso de algunos tipos de
+archivos binarios que suelen contener un recurso de versión.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tamaño del izquierdo</guilabel>, <guilabel>Tamaño del
+central</guilabel>, <guilabel>Tamaño del derecho</guilabel>: tamaño del
+archivo en bytes.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tamaño del izquierdo (corto)</guilabel>, <guilabel>Tamaño del
+central (corto)</guilabel>, <guilabel>Tamaño del derecho (corto)</guilabel>:
+versiones más abreviadas del tamaño de los archivos, redondeadas a KB, MB o
+GB.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Archivo más reciente</guilabel>: indica qué lado tiene la fecha de
+modificación más reciente.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Diferencias</guilabel>: Número de diferencias encontradas entre
+los archivos, sin contar las diferencias que se hayan podido ignorar.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Diferencias ignoradas</guilabel>: número de diferencias ignoradas
+dentro de los archivos. Se trata de diferencias que han sido ignoradas por
+los filtros de línea.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Fin de línea del izquierdo</guilabel>, <guilabel>Fin de línea del
+central</guilabel>, <guilabel>Fin de línea del derecho</guilabel>: muestra
+el estilo de fin de línea (salto de línea) de los archivos.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Ocultar elementos</title>
+
+      <para>Puede ocultar rápidamente uno o varios elementos seleccionados mediante el
+comando del menú contextual <guimenuitem>Ocultar elementos</guimenuitem>.
+Los elementos permanecerán ocultos hasta que actualice la vista (pulse
+<keycap>F5</keycap>) o haga clic en <menuchoice> <guimenu>Ver</guimenu>
+<guimenuitem>Mostrar elementos ocultos</guimenuitem> </menuchoice>.</para>
+
+      <tip>
+        <para>Descubra la función <guimenuitem>Ocultar elementos</guimenuitem>: esto le
+puede ahorrar mucho tiempo al eliminar de la vista los elementos que ya haya
+gestionado o que no le interesan en este momento. Por ejemplo, puede ocultar
+los archivos después de combinarlos, lo que facilita ver qué elementos
+quedan por combinar.</para>
+      </tip>
+    </section>
+  </section>
+
+  <section id="CompareDirs_winshell">
+    <title>Uso de comandos del intérprete de comandos de Windows desde la ventana de
+comparación de carpetas</title>
+
+    <para>Puede hacer clic con el botón derecho del ratón sobre una selección en la
+ventana de comparación de carpetas y ejecutar comandos del intérprete de
+comandos de Windows directamente desde el menú contextual.</para>
+
+    <para>Si la selección se produce en ambos lados, puede elegir entre el
+<guimenu>menú contextual del izquierdo</guimenu> o el <guimenu>menú
+contextual del derecho</guimenu>.  Si la selección se produce en todos los
+lados, puede elegir entre el <guimenu>menú contextual del
+izquierdo</guimenu>, el <guimenu>menú contextual del central</guimenu> o el
+<guimenu>menú contextual del derecho</guimenu>. Si el elemento solo aparece
+en un lado, solo estará disponible el menú contextual de ese lado.</para>
+
+    <caution>
+      <para>Tenga en cuenta que los comandos del menú del intérprete de comandos se
+ejecutan completamente fuera de WinMerge. Por lo tanto, es posible que
+WinMerge no responda a algunas operaciones de la misma manera que a las que
+se realizan dentro del programa. Por ejemplo, si elimina un archivo a través
+de esta integración en lugar de utilizar el comando
+<command>Eliminar</command> de WinMerge, el cambio no se muestra
+automáticamente en la ventana de comparación de carpetas (debe actualizar la
+ventana manualmente para ver el cambio).</para>
+    </caution>
+  </section>
+  <para></para>
+</article>

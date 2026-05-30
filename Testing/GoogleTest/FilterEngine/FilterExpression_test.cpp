@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include <gtest/gtest.h>
 #include "FilterEngine/FilterExpression.h"
+#include "FilterEngine/ILineDataProvider.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "PathContext.h"
@@ -16,6 +17,20 @@
 #pragma execution_character_set("utf-8")
 
 struct FilterTestParam { bool optimize; };
+
+// Helper function to create a simple DIFFITEM for testing
+static void CreateSimpleDiffItem(DIFFITEM& di)
+{
+	di.diffFileInfo[0].path = L"abc";
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[2].path = L"abc";
+	di.diffFileInfo[2].filename = L"Test.txt";
+	di.diffFileInfo[2].size = 1100;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(2);
+}
 
 // The fixture for testing paths functions.
 class FilterExpressionTest : public ::testing::TestWithParam<FilterTestParam> {};
@@ -662,6 +677,32 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Parse("FALSE OR FALSE"));
 	EXPECT_FALSE(fe.Evaluate(di));
 
+	// None and undefined literal tests
+	EXPECT_TRUE(fe.Parse("none == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != 123"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none != d\"2025-05-27\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none == 123"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none == \"abc\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("none == true"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(none, 123, none), 0) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(none, 123, none), 1) == 123"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(none, 123, none), 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
 	EXPECT_TRUE(fe.Parse("array() = array()"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("array(1) = array(1)"));
@@ -848,6 +889,542 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("Not MiddleExists"));
 	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Additional file attributes tests
+	EXPECT_TRUE(fe.Parse("LeftBinary == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightBinary == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftIsFolder == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightIsFolder == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("Skipped == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, LineAttributes)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	int tzd;
+	di.diffFileInfo[0].path = L"abc";
+	di.diffFileInfo[0].filename = L"Alice.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[0].flags.attributes = FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE;
+	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:56", tzd);
+	dt0.makeUTC(Poco::Timezone::tzd());
+	di.diffFileInfo[0].mtime = dt0.timestamp();
+	di.diffFileInfo[0].ctime = dt0.timestamp();
+	di.diffFileInfo[0].encoding.SetCodepage(65001);
+	di.diffFileInfo[0].version.SetFileVersion(0x00020010, 0x00300002);
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[2].path = L"abc";
+	di.diffFileInfo[2].filename = L"Alice.txt";
+	di.diffFileInfo[2].size = 1100;
+	di.diffFileInfo[2].flags.attributes = FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE;
+	Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tzd);
+	dt1.makeUTC(Poco::Timezone::tzd());
+	di.diffFileInfo[2].mtime = dt1.timestamp();
+	di.diffFileInfo[2].ctime = dt1.timestamp();
+	di.diffFileInfo[2].encoding.SetCodepage(65001);
+	di.diffFileInfo[2].version.SetFileVersion(0x00020010, 0x00300002);
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(2);
+	di.nsdiffs = 3;
+	di.nidiffs = 2;
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.diritem = false;
+
+	struct Provider : public ILineDataProvider
+	{
+
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			std::string line;
+			if (pane == 0)
+				line = (lineIndex == 0) ? "// abc" : "// 012345";
+			else if (pane == 1)
+				line = (lineIndex == 0) ? "// defghij" : "// 6789";
+			else
+				line = (lineIndex == 0) ? "// xyz" : "// []{}-+/*";
+			return line;
+		}
+
+		int GetLineCount() const override
+		{
+			return 2;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			// Return 12 columns for testing Column1 through Column10 and beyond
+			return 12;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			// Generate column data based on pane, lineIndex, and columnIndex
+			if (pane == 0)
+			{
+				if (lineIndex == 0)
+					return "Left0_Col" + std::to_string(columnIndex + 1);
+				else
+					return "Left1_Col" + std::to_string(columnIndex + 1);
+			}
+			else if (pane == 1)
+			{
+				if (lineIndex == 0)
+					return "Middle0_Col" + std::to_string(columnIndex + 1);
+				else
+					return "Middle1_Col" + std::to_string(columnIndex + 1);
+			}
+			else
+			{
+				if (lineIndex == 0)
+					return "Right0_Col" + std::to_string(columnIndex + 1);
+				else
+					return "Right1_Col" + std::to_string(columnIndex + 1);
+			}
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return (pane == 0) ? (lineIndex) : (lineIndex + 10);
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			unsigned flags = 0;
+			if (pane == 0 && lineIndex == 0)
+				flags |= ILineDataProvider::LF_DIFF | ILineDataProvider::LF_MOVED;
+			if (pane == 0 && lineIndex == 1)
+				flags |= ILineDataProvider::LF_BOOKMARKS;
+			if (pane == 1 && lineIndex == 0)
+				flags |= ILineDataProvider::LF_GHOST;
+			if (lineIndex == 2)
+				flags |= ILineDataProvider::LF_TRIVIAL;
+			return flags;
+		}
+
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			if (pane == 0)
+				return 1;
+			else if (pane == 1)
+				return 3;
+			else if (pane == 2)
+				return 2;
+			return 0;
+		}
+	} provider;
+
+
+	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
+	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
+
+	// Basic Line field tests
+	EXPECT_TRUE(fe.Parse("Line contains \"abc\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// Left/Middle/Right Line field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLine = \"// abc\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLine = \"// defghij\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLine = \"// xyz\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftLine = \"// 012345\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLine = \"// 6789\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLine = \"// []{}-+/*\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineLength field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLineLength = 6"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineLength = 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineLength = 6"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineNumber field tests (real line numbers)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLineNumber = 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineNumber = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineNumber = 11"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftLineNumber = 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineNumber = 12"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// ViewLineNumber field tests (view index + 1)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("ViewLineNumber = 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("ViewLineNumber = 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineExists field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftExists"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleExists"));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Middle line 0 has LF_GHOST flag
+	EXPECT_TRUE(fe.Parse("RightExists"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineMissing field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftMissing"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleMissing"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Middle line 0 has LF_GHOST flag
+	EXPECT_TRUE(fe.Parse("RightMissing"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// LineMovedField tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftMoved"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 0 has LF_MOVED flag
+	EXPECT_TRUE(fe.Parse("MiddleMoved"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftMoved"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// LineBookmarked field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftBookmarked"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftBookmarked"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 1 has LF_BOOKMARKS flag
+
+	// LineIdentical field tests (no side prefix)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Identical"));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Left line 0 has LF_DIFF flag
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Identical"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 1 has no LF_DIFF or LF_GHOST
+
+	// LineDifferent field tests (no side prefix)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Different"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Left line 0 has LF_DIFF flag
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Different"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	// LineTrivial field tests (no side prefix)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Trivial"));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Left line 0 does not have LF_TRIVIAL flag
+
+	// ColumnCount field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumnCount = 12"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnCount = 12"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnCount = 12"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column1 field tests (no side prefix - returns array)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Column1 = array(\"Left0_Col1\", \"Middle0_Col1\", \"Right0_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Column1 = array(\"Left1_Col1\", \"Middle1_Col1\", \"Right1_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LeftColumn1, MiddleColumn1, RightColumn1 field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn1 = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn1 = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn1 = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftColumn1 = \"Left1_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn1 = \"Middle1_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn1 = \"Right1_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column10 field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Column10 = array(\"Left0_Col10\", \"Middle0_Col10\", \"Right0_Col10\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LeftColumn10, MiddleColumn10, RightColumn10 field tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn10 = \"Left0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn10 = \"Middle0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn10 = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftColumn10 = \"Left1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn10 = \"Middle1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn10 = \"Right1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column index out of range tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn13 = \"\""));
+	EXPECT_FALSE(fe.Evaluate(ectxt)); // Column13 does not exist (only 12 columns)
+
+	// Test Column with contains operator
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn1 contains \"Left0\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn5 contains \"Col5\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn10 contains \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LineAt(1) = array(\"// abc\", \"// defghij\", \"// xyz\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(2) = array(\"// 012345\", \"// 6789\", \"// []{}-+/*\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(0) = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(-1) = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineAt(3) = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range returns undefined
+
+	// LeftLineAt, MiddleLineAt, RightLineAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftLineAt(1) = \"// abc\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineAt(1) = \"// defghij\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineAt(1) = \"// xyz\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftLineAt(2) = \"// 012345\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineAt(2) = \"// 6789\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineAt(2) = \"// []{}-+/*\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftLineAt(0) = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineAt(0) = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineAt(0) = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LineOffsetAt function tests (relative to current line)
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(0) = array(\"// abc\", \"// defghij\", \"// xyz\")"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(1) = array(\"// 012345\", \"// 6789\", \"// []{}-+/*\")"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(-1) = array(none, none, none)"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Negative offset from line 0 is out of range
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(2) = array(none, none, none)"));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(0) = array(\"// 012345\", \"// 6789\", \"// []{}-+/*\")"));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(-1) = array(\"// abc\", \"// defghij\", \"// xyz\")"));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LineOffsetAt(1) = array(none, none, none)"));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	// LeftLineOffsetAt, MiddleLineOffsetAt, RightLineOffsetAt function tests
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(0) = \"// abc\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineOffsetAt(0) = \"// defghij\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineOffsetAt(0) = \"// xyz\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(1) = \"// 012345\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineOffsetAt(1) = \"// 6789\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineOffsetAt(1) = \"// []{}-+/*\""));
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(-1) = \"// abc\""));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleLineOffsetAt(-1) = \"// defghij\""));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightLineOffsetAt(-1) = \"// xyz\""));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column function tests (by column name, returns array of all panes)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Column(\"Left0_Col1\") = array(\"Left0_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Column(\"Middle0_Col10\") = array(none, \"Middle0_Col10\", none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("Column(\"Right0_Col1\") = array(none, none, \"Right1_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Column(\"Left0_Col5\") = array(\"Left1_Col5\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// LeftColumn, MiddleColumn, RightColumn function tests (by column name)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn(\"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn(\"Middle0_Col1\") = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn(\"Right0_Col1\") = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumn(\"Left0_Col10\") = \"Left0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumn(\"Middle0_Col10\") = \"Middle0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumn(\"Right0_Col10\") = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// ColumnAt function tests (by row index and column name, returns array of all panes)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("ColumnAt(1, \"Left0_Col1\") = array(\"Left0_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(2, \"Middle0_Col1\") = array(none, \"Middle1_Col1\", none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(0, \"Left0_Col10\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(-1, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(3, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	// LeftColumnAt, MiddleColumnAt, RightColumnAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumnAt(1, \"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnAt(1, \"Middle0_Col1\") = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnAt(1, \"Right0_Col1\") = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumnAt(2, \"Left0_Col10\") = \"Left1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnAt(2, \"Middle0_Col10\") = \"Middle1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnAt(2, \"Right0_Col10\") = \"Right1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumnAt(0, \"Left0_Col1\") = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnAt(0, \"Middle0_Col1\") = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnAt(0, \"Right0_Col1\") = none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// ColumnOffsetAt function tests (relative to current line, by column name)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(0, \"Left0_Col1\") = array(\"Left0_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(1, \"Left0_Col1\") = array(\"Left1_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(-1, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Negative offset from line 0 is out of range
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(2, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(0, \"Left0_Col10\") = array(\"Left1_Col10\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(-1, \"Left0_Col10\") = array(\"Left0_Col10\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnOffsetAt(1, \"Left0_Col1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt)); // Out of range
+
+	// LeftColumnOffsetAt, MiddleColumnOffsetAt, RightColumnOffsetAt function tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumnOffsetAt(0, \"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnOffsetAt(0, \"Middle0_Col1\") = \"Middle0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(0, \"Right0_Col1\") = \"Right0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("LeftColumnOffsetAt(1, \"Left0_Col10\") = \"Left1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnOffsetAt(1, \"Middle0_Col10\") = \"Middle1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(1, \"Right0_Col10\") = \"Right1_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftColumnOffsetAt(-1, \"Left0_Col1\") = \"Left0_Col1\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleColumnOffsetAt(-1, \"Middle0_Col5\") = \"Middle0_Col5\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(-1, \"Right0_Col10\") = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Combined tests: Column functions with operators
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftColumn(\"Left0_Col1\") contains \"Left0\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnAt(2, \"Left0_Col1\") = array(\"Left1_Col1\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("anyof(ColumnAt(1, \"Left0_Col1\") contains \"Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	EXPECT_TRUE(fe.Parse("LeftLineOffsetAt(-1) contains \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightColumnOffsetAt(-1, \"Right0_Col10\") = \"Right0_Col10\""));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Additional line attributes tests
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("LeftEOL == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("MiddleEOL == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("RightEOL == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
 }
 
 TEST_P(FilterExpressionTest, Content1)
@@ -1204,6 +1781,118 @@ TEST_P(FilterExpressionTest, IsWithinAndInRange)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("allof(inRange(array(0, 5, 11), 1, 10))"));
 	EXPECT_FALSE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, StrCountAndRegexCount)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// strCount basic tests
+	EXPECT_TRUE(fe.Parse("strCount(\"hello world hello\", \"hello\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"test test test\", \"test\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"abc\", \"xyz\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"aaaa\", \"aa\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di)); // Overlapping match: "aa" appears at positions 0 and 2
+	EXPECT_TRUE(fe.Parse("strCount(\"\", \"test\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"test\", \"test\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strCount with arrays
+	EXPECT_TRUE(fe.Parse("strCount(array(\"hello hello\", \"world\"), \"hello\") == array(2, 0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(array(\"test test\", \"test\"), \"test\") == array(2, 1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strCount case-insensitive (default)
+	EXPECT_TRUE(fe.Parse("strCount(\"Hello HELLO hello\", \"hello\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"Test TEST TeSt\", \"test\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strCount case-sensitive with @cs directive
+	EXPECT_TRUE(fe.Parse("@cs strCount(\"Hello HELLO hello\", \"hello\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs strCount(\"Test TEST TeSt\", \"TEST\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs strCount(\"abc ABC\", \"abc\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	fe.caseSensitive = false;
+
+	// strCount with non-string arguments (should convert)
+	EXPECT_TRUE(fe.Parse("strCount(123123, \"123\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strCount(\"count: 123, value: 123\", \"123\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount basic tests
+	EXPECT_TRUE(fe.Parse("regexCount(\"hello world hello\", \"hello\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"test123test456\", \"\\d+\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"abc\", \"xyz\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"AAA BBB CCC\", \"[A-Z]+\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"word1 word2 word3\", \"word\\d\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount with word boundaries
+	EXPECT_TRUE(fe.Parse("regexCount(\"test testing tested\", \"\\btest\\b\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"the them there\", \"\\bthe\\b\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount with arrays
+	EXPECT_TRUE(fe.Parse("regexCount(array(\"test123\", \"abc456\"), \"\\d+\") == array(1, 1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(array(\"AAA\", \"BBB CCC\"), \"[A-Z]+\") == array(1, 2)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount case-insensitive (default)
+	EXPECT_TRUE(fe.Parse("regexCount(\"Hello HELLO hello\", \"hello\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"Test TEST test\", \"test\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount case-sensitive with @cs directive
+	EXPECT_TRUE(fe.Parse("@cs regexCount(\"Hello HELLO hello\", \"hello\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexCount(\"Test TEST test\", \"TEST\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexCount(\"AAA aaa\", \"[A-Z]+\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexCount with zero-length matches (should handle gracefully)
+	EXPECT_TRUE(fe.Parse("regexCount(\"abc\", \"a*\") >= 0"));
+	EXPECT_TRUE(fe.Evaluate(di)); // Should not cause infinite loop
+
+	// regexCount with non-string arguments
+	EXPECT_TRUE(fe.Parse("regexCount(123456, \"\\d{3}\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined tests with other operators
+	EXPECT_TRUE(fe.Parse("strCount(\"test test test\", \"test\") > 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexCount(\"a1 b2 c3\", \"[a-z]\\d\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("anyof(strCount(array(\"hello\", \"world\"), \"hello\") > 0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, Test1)
@@ -1607,6 +2296,291 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	EXPECT_TRUE(fe.Parse("normalizeUnicode(true) == \"true\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("normalizeUnicode(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, RegexExtract)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Basic regex capture tests - capturing entire match (group 0, default)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"[a-z]+\\d+\") == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"[a-z]+-\\d+\") == \"test-456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"hello world\", \"\\w+\\s\\w+\") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Explicit group 0 (same as default)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"[a-z]+\\d+\", 0) == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"[a-z]+-\\d+\", 0) == \"test-456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Capture group 1
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1) == \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"([a-z]+)-(\\d+)\", 1) == \"test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"hello world\", \"(\\w+)\\s(\\w+)\", 1) == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Capture group 2
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 2) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test-456\", \"([a-z]+)-(\\d+)\", 2) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"hello world\", \"(\\w+)\\s(\\w+)\", 2) == \"world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Capture group 3
+	EXPECT_TRUE(fe.Parse("regexExtract(\"2025-05-16\", \"(\\d{4})-(\\d{2})-(\\d{2})\", 3) == \"16\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"2025-05-16\", \"(\\d{4})-(\\d{2})-(\\d{2})\", 2) == \"05\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"2025-05-16\", \"(\\d{4})-(\\d{2})-(\\d{2})\", 1) == \"2025\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// No match returns undefined
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"xyz\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test\", \"\\d+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"1234\", \"[A-Z]+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Out of range group returns undefined
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 3) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"test\", \"([a-z]+)\", 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc\", \"([a-z])\", 5) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Negative group index (should fail or return undefined)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", -1) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Empty string
+	EXPECT_TRUE(fe.Parse("regexExtract(\"\", \"[a-z]+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings - default group 0
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"def456\"), \"[a-z]+\\d+\") == array(\"abc123\", \"def456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"test\", \"hello123\"), \"[a-z]+\\d+\") == array(none, \"hello123\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings - group 1
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"def456\"), \"([a-z]+)(\\d+)\", 1) == array(\"abc\", \"def\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"test-1\", \"hello-2\"), \"([a-z]+)-(\\d)\", 1) == array(\"test\", \"hello\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings - group 2
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"def456\"), \"([a-z]+)(\\d+)\", 2) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array with some non-matching strings
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"abc123\", \"xyz\", \"def456\"), \"([a-z]+)(\\d+)\", 1) == array(\"abc\", none, \"def\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"test\", \"123\", \"hello456\"), \"([a-z]+)(\\d+)\", 2) == array(none, none, \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Empty array
+	EXPECT_TRUE(fe.Parse("regexExtract(array(), \"[a-z]+\") == array()"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-insensitive matching (default)
+	EXPECT_TRUE(fe.Parse("regexExtract(\"ABC123\", \"([a-z]+)(\\d+)\", 1) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"Test\", \"([a-z]+)\", 1) == \"Test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-sensitive matching with @cs directive
+	EXPECT_TRUE(fe.Parse("@cs regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1) == \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexExtract(\"ABC123\", \"([a-z]+)(\\d+)\", 1) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("@cs regexExtract(\"ABC123\", \"([A-Z]+)(\\d+)\", 1) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Real-world use cases
+	EXPECT_TRUE(fe.Parse("regexExtract(\"file-v1.2.3.txt\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 1) == \"1\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"file-v1.2.3.txt\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 2) == \"2\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"file-v1.2.3.txt\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 3) == \"3\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error: line 123\", \"line\\s+(\\d+)\", 1) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"user@example.com\", \"([^@]+)@([^@]+)\", 1) == \"user\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"user@example.com\", \"([^@]+)@([^@]+)\", 2) == \"example.com\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined with other functions
+	EXPECT_TRUE(fe.Parse("toUpper(regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1)) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(regexExtract(\"test-456\", \"([a-z]+)-(\\d+)\", 2)) == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 1) + regexExtract(\"abc123\", \"([a-z]+)(\\d+)\", 2) == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Non-string arguments (should convert to string)
+	EXPECT_TRUE(fe.Parse("regexExtract(123456, \"(\\d{3})(\\d{3})\", 1) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(123456, \"(\\d{3})(\\d{3})\", 2) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(true, \"(\\w+)\", 1) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Offset parameter tests - capturing Nth occurrence
+	// String "value 123 and value 456": two occurrences of "value \\d+"
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 0, 0) == \"value 123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 0, 1) == \"value 456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 1, 0) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 1, 1) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"value 123 and value 456\", \"value\\s+(\\d+)\", 1, 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Multiple numbers in a line - capture second number
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 0, 0) == \"10\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 0, 1) == \"20\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 0, 2) == \"30\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"error 10 warning 20 error 30\", \"(\\d+)\", 1, 1) == \"20\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Real-world: extract second version number from text
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 1, 0) == \"1\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 1, 1) == \"2\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 0, 0) == \"v1.0.0\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(\"v1.0.0 and v2.0.0\", \"v(\\d+)\\.(\\d+)\\.(\\d+)\", 0, 1) == \"v2.0.0\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array with offset
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"num 1 num 2\", \"num 3 num 4\"), \"num\\s+(\\d+)\", 1, 1) == array(\"2\", \"4\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexExtract(array(\"num 1 num 2\", \"num 3 num 4\"), \"num\\s+(\\d+)\", 1, 0) == array(\"1\", \"3\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, TrimFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// trim function tests - removes leading and trailing whitespace
+	EXPECT_TRUE(fe.Parse("trim(\"  hello  \") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"  hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"hello  \") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"   \") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"\t\nhello\r\n\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(\"  hello world  \") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trim with array
+	EXPECT_TRUE(fe.Parse("trim(array(\"  hello  \", \"  world  \")) == array(\"hello\", \"world\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(array(\"  test\", \"data  \")) == array(\"test\", \"data\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimLeft function tests - removes leading whitespace only
+	EXPECT_TRUE(fe.Parse("trimLeft(\"  hello  \") == \"hello  \""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"  hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"hello  \") == \"hello  \""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"   \") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(\"\t\nhello\r\n\") == \"hello\r\n\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimLeft with array
+	EXPECT_TRUE(fe.Parse("trimLeft(array(\"  hello  \", \"  world  \")) == array(\"hello  \", \"world  \")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimRight function tests - removes trailing whitespace only
+	EXPECT_TRUE(fe.Parse("trimRight(\"  hello  \") == \"  hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"hello\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"  hello\") == \"  hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"hello  \") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"   \") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(\"\t\nhello\r\n\") == \"\t\nhello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trimRight with array
+	EXPECT_TRUE(fe.Parse("trimRight(array(\"  hello  \", \"  world  \")) == array(\"  hello\", \"  world\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// trim functions with non-string arguments
+	EXPECT_TRUE(fe.Parse("trim(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimLeft(456) == \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trimRight(789) == \"789\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined usage
+	EXPECT_TRUE(fe.Parse("trim(\"  hello  \") == trimLeft(trimRight(\"  hello  \"))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(trim(\"  hello  \")) == \"HELLO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("trim(replace(\"  hello  world  \", \"world\", \"test\")) == \"hello  test\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
@@ -2719,6 +3693,768 @@ TEST_P(FilterExpressionTest, DirectiveOptimize)
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, StatisticsAndMatchFunctions)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	CreateSimpleDiffItem(di);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.diritem = false;
+
+	// Create a test provider with varying line data
+	// Pane 0: lines contain "1", "2", "3", ..., "10"
+	// Pane 1: lines contain "5", "6", "7", ..., "14"
+	// Pane 2: lines contain "10", "11", "12", ..., "19"
+	struct Provider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			if (pane == 0)
+				return std::to_string(lineIndex + 1);
+			else if (pane == 1)
+				return std::to_string(lineIndex + 5);
+			else
+				return std::to_string(lineIndex + 10);
+		}
+
+		int GetLineCount() const override
+		{
+			return 10;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 3;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			if (pane == 0)
+				return "Col" + std::to_string(columnIndex + 1) + "_" + std::to_string(lineIndex * 10 + columnIndex);
+			else if (pane == 1)
+				return "Col" + std::to_string(columnIndex + 1) + "_" + std::to_string(lineIndex * 20 + columnIndex);
+			else
+				return "Col" + std::to_string(columnIndex + 1) + "_" + std::to_string(lineIndex * 30 + columnIndex);
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
+		}
+	} provider;
+
+	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
+	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
+
+	// maximum function tests - finds maximum value across all lines in the document
+	// Provider returns lineIndex+1 for pane 0, so lines are: "1","2","3",...,"10"
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(LeftLineNumber) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(toNumber(LeftLine)) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(MiddleLineNumber) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(RightLineNumber) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// maximum with condition - only consider lines where condition is true
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(LeftLineNumber, LeftLineNumber <= 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(LeftLineNumber, LeftLineNumber > 7) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(toNumber(LeftLine), toNumber(LeftLine) >= 6) == 10"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// When no lines match condition, returns none
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(LeftLineNumber, LeftLineNumber > 20) == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// minimum function tests - finds minimum value across all lines in the document
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(LeftLineNumber) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(toNumber(LeftLine)) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(MiddleLineNumber) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// minimum with condition
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(LeftLineNumber, LeftLineNumber >= 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(LeftLineNumber, LeftLineNumber < 4) == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(toNumber(LeftLine), toNumber(LeftLine) > 5) == 6"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(LeftLineNumber, LeftLineNumber > 20) == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// average function tests - calculates average across all lines in the document
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("average(LeftLineNumber) == 5.5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("average(toNumber(LeftLine)) == 5.5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// average with condition - average of lines matching condition
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("average(LeftLineNumber, LeftLineNumber <= 5) == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("average(LeftLineNumber, LeftLineNumber > 5) == 8"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("average(toNumber(LeftLine), toNumber(LeftLine) >= 6) == 8"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("average(LeftLineNumber, LeftLineNumber > 20) == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// matchNumber function tests - returns index of current match within all matches
+	// Line 0 contains "1", which matches "1"
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchNumber(LeftLine contains \"1\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// Line 9 contains "10", which also contains "1", so this is the 2nd match (index 1)
+	ectxt.lineIndex = 9;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchNumber(LeftLine contains \"1\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// Line 4 contains "5"
+	ectxt.lineIndex = 4;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchNumber(LeftLine contains \"5\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	// Line 3 doesn't contain "5"
+	ectxt.lineIndex = 3;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchNumber(LeftLine contains \"5\") != 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// matchCount function tests - counts total matches across all lines
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchCount(LeftLine contains \"5\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchCount(LeftLine contains \"1\") == 2")); // Matches "1" and "10"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchCount(LeftLine contains \"99\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchCount(toNumber(LeftLine) > 5) == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchDistance function tests - distance to nearest match from current line
+	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistance(LeftLine contains \"5\") == 2")); // Line 4 has "5"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistance(LeftLine contains \"5\") == 2")); // Line 4 has "5", distance is 2
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistance(LeftLine contains \"5\") == 0")); // Current line matches
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistance(LeftLine contains \"99\") == none")); // No match found
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchDistanceBefore function tests - distance to nearest match before current line
+	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistanceBefore(LeftLine contains \"5\") == 2")); // Line 4 has "5"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistanceBefore(LeftLine contains \"5\") == 0")); // Current line matches
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistanceBefore(LeftLine contains \"5\") == none")); // No match before
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchDistanceAfter function tests - distance to nearest match after current line
+	ectxt.lineIndex = 2;  // Line 2 (value "3")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistanceAfter(LeftLine contains \"5\") == 2")); // Line 4 has "5"
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistanceAfter(LeftLine contains \"5\") == 0")); // Current line matches
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 6;  // Line 6 (value "7")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchDistanceAfter(LeftLine contains \"5\") == none")); // No match after
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchInside function tests - check if current line is between two matches
+	ectxt.lineIndex = 3;  // Line 3 (value "4")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // Between line 1 ("2") and line 5 ("6")
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 1;  // Line 1 (value "2")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // At start boundary
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 5;  // Line 5 (value "6")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchInside(LeftLine contains \"2\", LeftLine contains \"6\") == true")); // At end boundary
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 0;  // Line 0 (value "1")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchInside(LeftLine contains \"2\", LeftLine contains \"6\") == false")); // Before start
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 7;  // Line 7 (value "8")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchInside(LeftLine contains \"2\", LeftLine contains \"6\") == false")); // After end
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// MatchContext function tests - returns lines around a match
+	ectxt.lineIndex = 4;  // Line 4 (value "5")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchContext(LeftLine contains \"5\", 1, 1) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchContext(LeftLine contains \"5\", 2, 2) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 0;  // Line 0 (value "1")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchContext(LeftLine contains \"1\", 1, 1) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 9;  // Line 9 (value "10")
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchContext(LeftLine contains \"10\", 1, 1) == true"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	ectxt.lineIndex = 4;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchContext(LeftLine contains \"99\", 1, 1) == false"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Combined tests with statistics functions
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("maximum(LeftLineNumber) > average(LeftLineNumber)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("minimum(LeftLineNumber) < average(LeftLineNumber)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+}
+
+TEST_P(FilterExpressionTest, BlockFunctions)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	CreateSimpleDiffItem(di);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.diritem = false;
+
+	// Create a test provider with specific line patterns:
+	// Lines 0-2: contain "match" (block 1: 3 lines)
+	// Lines 3-4: don't match
+	// Lines 5-7: contain "match" (block 2: 3 lines)
+	// Lines 8-9: don't match
+	struct Provider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			if (pane == 0)
+			{
+				if (lineIndex <= 2 || (lineIndex >= 5 && lineIndex <= 7))
+					return "match line " + std::to_string(lineIndex);
+				else
+					return "other line " + std::to_string(lineIndex);
+			}
+			else if (pane == 1)
+			{
+				return "middle " + std::to_string(lineIndex);
+			}
+			else
+			{
+				if (lineIndex <= 2 || (lineIndex >= 5 && lineIndex <= 7))
+					return "match line " + std::to_string(lineIndex);
+				else
+					return "other line " + std::to_string(lineIndex);
+			}
+		}
+
+		int GetLineCount() const override
+		{
+			return 10;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return "";
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
+		}
+	} provider;
+
+	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
+	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
+
+	// matchBlockCount tests - total number of blocks in the file
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockCount(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockCount(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Test with no matches
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockCount(LeftLine contains \"nomatch\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// matchBlockNumber tests - block index for the current line (1-based)
+	// Block 1: lines 0-2
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Non-matching line should return undefined
+	ectxt.lineIndex = 3;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 4;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Block 2: lines 5-7
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 6;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 7;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// matchBlockSize tests - size of the block containing current line
+	// Block 1 size: 3 lines (0-2)
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Non-matching line should return undefined
+	ectxt.lineIndex = 3;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Block 2 size: 3 lines (5-7)
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 6;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// matchBlockOffset tests - offset within the block (1-based)
+	// Block 1: lines 0-2
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Non-matching line should return undefined
+	ectxt.lineIndex = 3;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Block 2: lines 5-7
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 6;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 7;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 3"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Combined tests - filtering by block properties
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 1 and matchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 1 and matchBlockOffset(LeftLine contains \"match\") == 2"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Filter to show only first line of each block
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 5;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Filter to show only last line of each block
+	ectxt.lineIndex = 2;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == matchBlockSize(LeftLine contains \"match\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 1;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == matchBlockSize(LeftLine contains \"match\")"));
+	EXPECT_FALSE(fe.Evaluate(ectxt));
+
+	ectxt.lineIndex = 7;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == matchBlockSize(LeftLine contains \"match\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Test with all lines matching (entire file is one block)
+	struct SingleBlockProvider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			return "match " + std::to_string(lineIndex);
+		}
+
+		int GetLineCount() const override
+		{
+			return 5;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return "";
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
+		}
+	} singleBlockProvider;
+
+	FilterEvalContext ectxt2{ &fe, &di, &singleBlockProvider, pFilterSharedContext.get() };
+
+	ectxt2.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockCount(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 1"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	ectxt2.lineIndex = 4;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt2.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == 5"));
+	EXPECT_TRUE(fe.Evaluate(ectxt2));
+
+	// Test with no lines matching (no blocks)
+	struct NoBlockProvider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			return "other " + std::to_string(lineIndex);
+		}
+
+		int GetLineCount() const override
+		{
+			return 5;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return "";
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+		
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
+		}
+	} noBlockProvider;
+
+	FilterEvalContext ectxt3{ &fe, &di, &noBlockProvider, pFilterSharedContext.get() };
+
+	ectxt3.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockCount(LeftLine contains \"match\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockNumber(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockSize(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
+
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt3.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("matchBlockOffset(LeftLine contains \"match\") == none"));
+	EXPECT_TRUE(fe.Evaluate(ectxt3));
+}
+
+TEST_P(FilterExpressionTest, StrFindAndRegexFindFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// strfind function tests - basic search
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"World\") == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"Hello\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"NotFound\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strfind with occurrence number (0-based: 0=first, 1=second, etc.)
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello\", \"Hello\", 0) == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello\", \"Hello\", 1) == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello Hello\", \"Hello\", 2) == 12"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello Hello\", \"Hello\", 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// strfind case sensitivity (when @ci directive is used)
+	fe.caseSensitive = false;
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"world\") == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(\"Hello World\", \"HELLO\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	fe.caseSensitive = true;
+
+	// strfind with arrays
+	EXPECT_TRUE(fe.Parse("strfind(array(\"Hello\", \"World\"), \"o\") == array(4, 1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("strfind(array(\"Hello\", \"World\"), \"o\", 1) == array(none, none)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind function tests - basic regex search
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello123World\", \"[0-9]+\") == 5"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello World\", \"^Hello\") == 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello World\", \"[0-9]+\") == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind with capture groups
+	EXPECT_TRUE(fe.Parse("regexfind(\"Price: $123.45\", \"\\$([0-9]+)\\.([0-9]+)\", 0) == 7"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Price: $123.45\", \"\\$([0-9]+)\\.([0-9]+)\", 1) == 8"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"Price: $123.45\", \"\\$([0-9]+)\\.([0-9]+)\", 2) == 12"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind with occurrence number (0=first match, 1=second match, etc.)
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456ghi789\", \"[0-9]+\", 0, 0) == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456ghi789\", \"[0-9]+\", 0, 1) == 9"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456ghi789\", \"[0-9]+\", 0, 2) == 15"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(\"abc123def456\", \"[0-9]+\", 0, 2) == none"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexfind case sensitivity
+	fe.caseSensitive = false;
+	EXPECT_TRUE(fe.Parse("regexfind(\"Hello World\", \"WORLD\") == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	fe.caseSensitive = true;
+
+	// regexfind with arrays
+	EXPECT_TRUE(fe.Parse("regexfind(array(\"abc123\", \"def456\"), \"[0-9]+\") == array(3, 3)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(array(\"abc123xyz456\", \"def789\"), \"[0-9]+\", 0, 1) == array(9, none)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Practical use cases
+	EXPECT_TRUE(fe.Parse("strfind(LeftName, \".txt\") >= 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexfind(LeftName, \"\\.(txt|cpp|h)$\") >= 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,
@@ -2727,7 +4463,4 @@ INSTANTIATE_TEST_SUITE_P(
 		FilterTestParam{ false }
 	)
 );
-
-
-
 

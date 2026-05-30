@@ -23,10 +23,21 @@ static COLORREF getDefaultErrorColor()
 	return RGB(255, 200, 200);
 }
 
+static COLORREF getDefaultAppliedColor()
+{
+	const COLORREF sysBk = GetSysColor(COLOR_WINDOW);
+	if ((GetRValue(sysBk) + GetGValue(sysBk) + GetBValue(sysBk)) / 3 < 128)
+		return RGB(60, 60, 40);
+	return RGB(255, 255, 220);
+}
+
 CValidatingEdit::CValidatingEdit()
 	: m_hasError(false)
+	, m_isApplied(false)
 	, m_errorColor(getDefaultErrorColor())
+	, m_appliedColor(getDefaultAppliedColor())
 	, m_errorBrush(m_errorColor)
+	, m_appliedBrush(m_appliedColor)
 	, m_toolItem{}
 {
 }
@@ -34,6 +45,7 @@ CValidatingEdit::CValidatingEdit()
 CValidatingEdit::~CValidatingEdit()
 {
 	m_errorBrush.DeleteObject();
+	m_appliedBrush.DeleteObject();
 }
 
 BEGIN_MESSAGE_MAP(CValidatingEdit, CEdit)
@@ -47,6 +59,22 @@ void CValidatingEdit::SetBackColor(COLORREF color)
 	m_errorColor = color;
 	m_errorBrush.DeleteObject();
 	m_errorBrush.CreateSolidBrush(m_errorColor);
+}
+
+void CValidatingEdit::SetAppliedColor(COLORREF color)
+{
+	m_appliedColor = color;
+	m_appliedBrush.DeleteObject();
+	m_appliedBrush.CreateSolidBrush(m_appliedColor);
+}
+
+void CValidatingEdit::SetApplied(bool applied)
+{
+	if (m_isApplied != applied)
+	{
+		m_isApplied = applied;
+		Invalidate();
+	}
 }
 
 void CValidatingEdit::Validate()
@@ -67,6 +95,7 @@ void CValidatingEdit::Validate()
 			m_errorMessage = msg;
 		}
 	}
+
 	if (prevErrorMessage != m_errorMessage)
 	{
 		KillTimer(ID_UPDATE_TIMER);
@@ -83,6 +112,12 @@ HBRUSH CValidatingEdit::CtlColor(CDC* pDC, UINT /*nCtlColor*/)
 		pDC->SetTextColor(GetSysColor(COLOR_WINDOWTEXT));
 		pDC->SetBkColor(m_errorColor);
 		return (HBRUSH)m_errorBrush.GetSafeHandle();
+	}
+	if (m_isApplied)
+	{
+		pDC->SetTextColor(GetSysColor(COLOR_WINDOWTEXT));
+		pDC->SetBkColor(m_appliedColor);
+		return (HBRUSH)m_appliedBrush.GetSafeHandle();
 	}
 	return nullptr;
 }

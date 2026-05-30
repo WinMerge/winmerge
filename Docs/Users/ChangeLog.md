@@ -1,5 +1,51 @@
 # Change log
 
+## WinMerge 2.16.56.2 - 2026-05-27
+
+### File compare
+
+* BugFix: Fix incorrect copy when selection ends inside a word diff (PR #3358)
+
+* BugFix: Skip invisible lines in search/replace
+
+* BugFix: Fix text misalignment and repaint artifacts when toggling line numbers in word wrap mode
+
+* BugFix: Fix crash in 3-pane diff when move block detection is enabled
+
+### Folder compare
+
+* BugFix: Preserve tree expansion and UI state after refresh (#3366,PR #3369)
+
+* BugFix: Do not convert drive-relative paths like `C:` to `C:\` (PR #3373)
+
+* BugFix: "Right only files" missing when showing left/right only (#3378)
+
+### Image compare
+
+* BugFix: Image compare does not remember the state of the "Blink" toggle between sessions (#3368)
+
+* BugFix: [FEATURE] override option for unrestricted Image Compare (#3382)
+
+### Plugins
+
+* BugFix: Fix missing "Unpacked file extension" value in Edit Plugin dialog
+
+### Archive support
+
+* Update 7-Zip to 26.01
+
+### Installer
+
+* Fixed missing Vietnamese WinMerge translation in installer
+
+### Translations
+
+* Translation updates:
+
+  * French (PR #3347)
+  * Korean (PR #3349)
+  * Russian (PR #3348)
+
 ## WinMerge 2.16.56 - 2026-04-27
 
 ### General

@@ -6,7 +6,7 @@ This file lists versions of the external components we are using.
 - POCO: 1.15.1
 - boost: 1.88.0
 - frhed: 0.10904.2017.22
-- WinIMerge: 1.0.51.0
+- WinIMerge: 1.0.52.0
   - freeimage: 3.19.10 (https://github.com/danoli3/FreeImage)
   - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
 - WinWebDiff: 1.0.20.0
@@ -21,6 +21,7 @@ This file lists versions of the external components we are using.
 - jq: 1.8.1
 - wil: 209ff9c7e30e71bf6d1405557bf78544920f8157 on Sep 9, 2021
 - md4c: 0.5.2
+- cliphcat: 0.3.0
 - darkmodelib: 0.21.2.0
 - StackWalker: 7af4024 on Aug 4, 2025 (https://github.com/JochenKalmbach/StackWalker)
 - tree-sitter: 0.25.10 (https://github.com/tree-sitter/tree-sitter)

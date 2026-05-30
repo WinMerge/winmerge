@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_table">
+  <?target dbhh topicname="IDH_Compare_table" topicid ="004"?>
+
+  <title>Comparación en formato de tabla</title>
+
+  <indexterm>
+    <primary>comparar archivos</primary>
+
+    <secondary>tabla</secondary>
+  </indexterm>
+
+  <para>En la versión 2.16.7 o posteriores, es posible visualizar y editar archivos
+de valores separados por delimitadores, como CSV y TSV, en formato de tabla,
+al igual que en un programa de hojas de cálculo.  Las operaciones de
+edición, el desplazamiento a las diferencias y las operaciones de
+combinación en este formato son las mismas que en una ventana de archivo de
+texto normal.</para>
+
+  <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
+      <phrase>Comparación en formato de tabla</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <section id="Compare_files_in_table_format">
+    <title>Comparación en formato de tabla<indexterm>
+        <primary>comparación en formato de tabla</primary>
+      </indexterm></title>
+
+    <para>Que los archivos se abran en formato de tabla depende de si el nombre del
+archivo coincide con los patrones definidos.  De forma predeterminada, si la
+extensión del archivo es .csv o .tsv, se abrirá en formato de tabla.  Si
+desea cambiar los patrones, especifíquelos en la página "Comparar/Tabla" del
+cuadro de diálogo "Configuración".</para>
+
+    <para>Si quiere abrirlo temporalmente en formato de tabla después de abrirlo como
+texto sin formato, haga clic en <menuchoice> <guimenu>Archivo</guimenu>
+<guimenuitem>Volver a comparar como</guimenuitem>
+<guimenuitem>Tabla</guimenuitem> </menuchoice>.  Cuando aparezca el cuadro
+de diálogo Tabla, seleccione el tipo de archivo y haga clic en
+<guilabel>Aceptar</guilabel>.</para>
+    
+    <para>
+Si quiere abrir temporalmente los archivos que se han abierto en formato de
+tabla como archivos de texto normales, haga clic en <menuchoice>
+<guimenu>Archivo</guimenu> <guimenuitem>Volver a comparar como</guimenuitem>
+<guimenuitem>Texto</guimenuitem> </menuchoice>.</para>
+  </section>
+
+  <section id="Table_settings">
+    <title>Configuración del formato de las tablas<indexterm>
+        <primary>configuración del formato de las tablas</primary>
+      </indexterm></title>
+
+    <para>
+De forma predeterminada, los datos de los archivos de texto con valores
+separados por delimitadores se tratan de la siguiente manera:<itemizedlist>
+        <listitem>
+          <para>Los archivos CSV están separados por comas, los archivos TSV por
+tabulaciones y los valores se muestran en columnas.</para>
+        </listitem>
+        <listitem>
+          <para>Sin embargo, los caracteres delimitadores que se encuentren dentro del rango
+entre comillas (comillas dobles) se tratan como valores.</para>
+        </listitem>
+        <listitem>
+          <para>Además, los caracteres de fin de línea (CR o LF) que se encuentren dentro
+del rango indicado se tratan como valores.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <para>
+Si desea modificar la configuración anterior, puede hacerlo en la página
+"Comparar/Tabla" del cuadro de diálogo "Configuración" o en el cuadro de
+diálogo de tabla que aparece al hacer clic en <menuchoice>
+<guimenu>Archivo</guimenu> <guimenuitem>Volver a comparar como</guimenuitem>
+<guimenuitem>Tabla</guimenuitem> </menuchoice>.  Consulte <xref
+linkend="Configuration_compare_table" /> para obtener más información.</para>
+
+  </section>
+
+  <section id="Table_operations">
+    <title>Operaciones específicas del formato de tabla<indexterm>
+        <primary>operaciones específicas del formato de tabla</primary>
+      </indexterm></title>
+
+    <para>
+      <itemizedlist>
+        <listitem>
+          <para>Puede cambiar el ancho de una columna arrastrando el borde de la cabecera de
+la columna.</para>
+        </listitem>
+        <listitem>
+          <para>Al hacer doble clic en el borde de una columna, en el encabezado de la
+misma, el ancho de la columna se ajusta automáticamente en función de su
+contenido.</para>
+        </listitem>
+        <listitem>
+          <para>Para seleccionar texto verticalmente, arrastre una columna por el encabezado
+de la misma.</para>
+        </listitem>
+        <listitem>
+          <para>
+Cuando la opción de menú <menuchoice> <guimenu>Ver</guimenu>
+<guimenuitem>Ajustar líneas</guimenuitem> </menuchoice> esté marcada, el
+texto se ajustará a cada columna. Marque esta opción si desea ver los
+valores de los campos en varias líneas.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+  </section>
+
+</article>

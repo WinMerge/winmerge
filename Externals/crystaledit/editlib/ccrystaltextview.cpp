@@ -5629,6 +5629,15 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
         {
           while (ptCurrentPos.y >= 0)
             {
+              // Skip invisible lines
+              if (GetLineFlags(ptCurrentPos.y) & LF_INVISIBLE)
+                {
+                  ptCurrentPos.y--;
+                  if (ptCurrentPos.y >= 0)
+                    ptCurrentPos.x = GetLineLength(ptCurrentPos.y);
+                  continue;
+                }
+
               int nLineLength;
               CString line;
               if (dwFlags & FIND_REGEXP)
@@ -5714,6 +5723,14 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
         {
           while (ptCurrentPos.y <= ptBlockEnd.y)
             {
+              // Skip invisible lines
+              if (GetLineFlags(ptCurrentPos.y) & LF_INVISIBLE)
+                {
+                  ptCurrentPos.x = 0;
+                  ptCurrentPos.y++;
+                  continue;
+                }
+
               int nLineLength;
               CString line;
               if (dwFlags & FIND_REGEXP)

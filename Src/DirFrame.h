@@ -48,7 +48,7 @@ public:
 	void ShowFilterBar();
 	void HideFilterBar();
 	DirCompProgressBar* GetCompProgressBar() { return m_pCmpProgressBar.get(); }
-	CDirFilterBar* GetFilterBar() { return m_pDirFilterBar.get(); }
+	CDirFilterBar* GetFilterBar() { return m_pFilterBar.get(); }
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -61,7 +61,7 @@ public:
 protected:
 	CEditorFilePathBar m_wndFilePathBar;
 	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
-	std::unique_ptr<CDirFilterBar> m_pDirFilterBar;
+	std::unique_ptr<CDirFilterBar> m_pFilterBar;
 	virtual ~CDirFrame();
 
 	// Generated message map functions
@@ -72,7 +72,7 @@ protected:
 	afx_msg void OnViewDisplayFilterBar();
 	afx_msg void OnUpdateDisplayViewFilterBar(CCmdUI* pCmdUI);
 	afx_msg void OnDisplayFilterBarClose();
-	afx_msg void OnDisplayFilterBarMaskMenu();
+	afx_msg void OnDisplayFilterBarMenu();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

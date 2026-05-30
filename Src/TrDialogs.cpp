@@ -78,7 +78,15 @@ BOOL CTrDialogBar::Create(CWnd* pParentWnd, LPCTSTR lpszTemplateName,
 {
 	BOOL bSucceeded = __super::Create(pParentWnd, lpszTemplateName, nStyle, nID);
 	if (bSucceeded)
+	{
 		I18n::TranslateDialog(m_hWnd);
+		if (HWND hSelf = GetSafeHwnd())
+		{
+			SetBarStyle(GetBarStyle() & ~CBRS_BORDER_ANY);
+			DarkMode::setWindowCtlColorSubclass(hSelf);
+			DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
+		}
+	}
 	return bSucceeded;
 }
 
@@ -87,6 +95,15 @@ BOOL CTrDialogBar::Create(CWnd* pParentWnd, UINT nIDTemplate,
 {
 	BOOL bSucceeded = __super::Create(pParentWnd, nIDTemplate, nStyle, nID);
 	if (bSucceeded)
+	{
 		I18n::TranslateDialog(m_hWnd);
+		if (HWND hSelf = GetSafeHwnd())
+		{
+			SetBarStyle(GetBarStyle() & ~CBRS_BORDER_ANY);
+			DarkMode::setWindowCtlColorSubclass(hSelf);
+			DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
+		}
+	}
+
 	return bSucceeded;
 }

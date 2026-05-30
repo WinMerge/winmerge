@@ -547,6 +547,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Slovenian.txt; DestDir: {app}\Docs
 Source: {#TranslationsDir}\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Spanish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
+Source: ..\..\Build\Manual\htmlhelp\WinMergeSpanish.chm; DestDir: {app}\Docs; Components: Languages\Spanish
 Source: {#TranslationsDir}\WinMerge\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Swedish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt; DestDir: {app}\Docs; Components: Languages\Swedish
@@ -559,6 +560,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt; DestDir: {app}\Docs; 
 Source: {#TranslationsDir}\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Ukrainian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
+Source: {#TranslationsDir}\WinMerge\Vietnamese.po; DestDir: {app}\Languages; Components: Languages\Vietnamese; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Vietnamese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Vietnamese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Vietnamese.txt; DestDir: {app}\Docs; Components: Languages\Vietnamese
 
@@ -638,6 +640,9 @@ Source: ..\..\Build\msys2\*.*; DestDir: {app}\Commands\msys2; Flags: recursesubd
 ; HTML Tidy
 Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
 Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
+; cliphcat
+Source: ..\..\Build\cliphcat\cliphcat.exe; DestDir: {app}\Commands\cliphcat; DestName: cliphcat.exe; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\cliphcat\LICENSE; DestDir: {app}\Commands\cliphcat; Flags: recursesubdirs; Components: Plugins
 ; jq
 Source: ..\..\Build\jq\jq-windows-i386.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Plugins
 Source: ..\..\Build\jq\jq-jq-1.8.1\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins
