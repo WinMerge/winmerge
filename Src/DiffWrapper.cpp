@@ -410,11 +410,11 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	{
 		const bool bUseTreeSitter = m_pParseContext[0] != nullptr && m_pParseContext[1] != nullptr;
 
-		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
-
 		if (bUseTreeSitter)
 		{
+			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
+			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
+
 			auto resultLeft = GetTreeSitterCommentsFilteredText(
 				lineNumberLeft, ctxt.nParsedLineEndLeft,
 				file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pParseContext[0]);
@@ -433,6 +433,9 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 				ctxt.nParsedLineEndLeft + 1, lineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
 			ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
 				ctxt.nParsedLineEndRight + 1, lineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef, m_pParseContext[1]);
+
+			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
+			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
 
 			auto resultLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
 				lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
