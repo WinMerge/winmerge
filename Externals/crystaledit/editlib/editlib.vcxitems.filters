@@ -100,6 +100,7 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FindTextHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrystalLineParserAdapter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h">
@@ -206,5 +207,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ITextBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ISyntaxParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrystalLineParserAdapter.h" />
   </ItemGroup>
 </Project>

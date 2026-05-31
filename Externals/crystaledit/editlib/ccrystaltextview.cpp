@@ -93,6 +93,7 @@
 #include "ccrystaltextmarkers.h"
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
+#include "ISyntaxParser.h"
 #include "renderers/ccrystalrendererdirectwrite.h"
 #include "renderers/ccrystalrenderergdi.h"
 #include "dialogs/cfindtextdlg.h"
@@ -1435,6 +1436,11 @@ GetLineColors (int nLineIndex, CEColor & crBkgnd,
 DWORD CCrystalTextView::
 GetParseCookie (int nLineIndex)
 {
+  // If using new parser interface, cookies are not needed
+  if (m_pSyntaxParser)
+    return 0;
+
+  // Legacy cookie-based parsing
   const int nLineCount = GetLineCount ();
   if (m_ParseCookies->size() == 0)
     {
@@ -1931,7 +1937,6 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   int nLength = GetViewableLineLength (nLineIndex);
 
   //  Parse the line
-  unsigned dwCookie = GetParseCookie(nLineIndex - 1);
   std::vector<TEXTBLOCK> blocks((nLength + 1) * 3); // be aware of nLength == 0
   int nBlocks = 0;
   // insert at least one textblock of normal color at the beginning
@@ -1939,8 +1944,21 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   blocks[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
   blocks[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
-  (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, nLineIndex, blocks.data(), nBlocks, m_pTextBuffer->GetParseContext());
-  ASSERT((*m_ParseCookies)[nLineIndex] != -1 && nBlocks < static_cast<int>(blocks.size()));
+
+  if (m_pSyntaxParser)
+  {
+    // Use new parser interface - no cookie management needed
+    ParseLine(0, nLineIndex, blocks.data(), nBlocks, nullptr);
+  }
+  else
+  {
+    // Legacy cookie-based parsing
+    unsigned dwCookie = GetParseCookie(nLineIndex - 1);
+    (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, nLineIndex, blocks.data(), nBlocks, m_pTextBuffer->GetParseContext());
+    ASSERT((*m_ParseCookies)[nLineIndex] != -1);
+  }
+
+  ASSERT(nBlocks < static_cast<int>(blocks.size()));
   blocks.resize(nBlocks);
 
   std::vector<TEXTBLOCK> additionalBlocks = GetAdditionalTextBlocks(nLineIndex);
@@ -4777,6 +4795,14 @@ OnSetFocus (CWnd * pOldWnd)
 unsigned CCrystalTextView::
 ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
 {
+  // Use new parser interface if available
+  if (m_pSyntaxParser)
+  {
+    // Note: ISyntaxParser doesn't use dwCookie or pContext; it manages state internally
+    return m_pSyntaxParser->ParseLine(nLineIndex, pBuf, nActualItems);
+  }
+
+  // Fall back to legacy parser
   return m_CurSourceDef->ParseLineX (dwCookie, nLineIndex, GetLineChars(nLineIndex), GetLineLength(nLineIndex), pBuf, nActualItems, pContext);
 }
 
@@ -6731,6 +6757,23 @@ CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
     pParser->m_pTextView = this;
 
   return pOldParser;
+}
+
+/**
+ * @brief Set syntax parser using the new interface.
+ */
+void CCrystalTextView::SetSyntaxParser(std::unique_ptr<ISyntaxParser> pParser)
+{
+  m_pSyntaxParser = std::move(pParser);
+
+  if (m_pSyntaxParser)
+  {
+    // Connect the parser to the text buffer
+    if (m_pTextBuffer != nullptr)
+    {
+      m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
+    }
+  }
 }
 //END SW
 

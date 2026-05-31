@@ -40,6 +40,7 @@
 #include "codepage_detect.h"
 #include "cio.h"
 #include "TreeSitterWrapper.h"
+#include "SyntaxParserHelper.h"
 
 using Poco::Exception;
 
@@ -75,6 +76,14 @@ CDiffWrapper::CDiffWrapper()
 {
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
+
+	// Initialize new parser members
+	for (int i = 0; i < 3; i++)
+	{
+		m_pParseContext[i] = nullptr;
+		m_pSyntaxParser[i] = nullptr;
+		m_pTextBuffer[i] = nullptr;
+	}
 }
 
 /**
@@ -231,100 +240,6 @@ static String convertToTString(const char* start, const char* end)
 	}
 }
 
-static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType, void* parseContext)
-{
-	if (!enuType)
-		return dwCookie;
-	for (int i = startLine; i <= endLine; ++i)
-	{
-		String text = convertToTString(linbuf[i], linbuf[i + 1]);
-		int nActualItems = 0;
-		std::vector<CrystalLineParser::TEXTBLOCK> blocks(text.length());
-		dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), static_cast<int>(text.length()), blocks.data(), nActualItems, parseContext);
-	}
-	return dwCookie;
-}
-
-static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType, void* parseContext)
-{
-	String filteredT;
-	std::vector<bool> allTextIsComment(endLine - startLine + 1);
-	for (int i = startLine; i <= endLine; ++i)
-	{
-		String text = convertToTString(linbuf[i], linbuf[i + 1]);
-		unsigned textlen = static_cast<unsigned>(text.size());
-		if (!enuType)
-		{
-			filteredT += text;
-		}
-		else
-		{
-			int nActualItems = 0;
-			std::vector<CrystalLineParser::TEXTBLOCK> blocks(textlen);
-			dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), textlen, blocks.data(), nActualItems, parseContext);
-
-			if (nActualItems == 0)
-			{
-				filteredT += text;
-			}
-			else
-			{
-				allTextIsComment[i - startLine] =
-					(nActualItems > 0 && blocks[0].m_nColorIndex == COLORINDEX_COMMENT);
-				for (int j = 0; j < nActualItems; ++j)
-				{
-					CrystalLineParser::TEXTBLOCK& block = blocks[j];
-					if (block.m_nColorIndex != COLORINDEX_COMMENT)
-					{
-						unsigned blocklen = (j < nActualItems - 1) ? (blocks[j + 1].m_nCharPos - block.m_nCharPos) : textlen - block.m_nCharPos;
-						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
-						tchar_t c = (blocklen == 0) ? 0 : *(text.c_str() + block.m_nCharPos);
-						if (c != '\r' && c != '\n')
-							allTextIsComment[i - startLine] = false;
-					}
-				}
-
-				if (blocks[nActualItems - 1].m_nColorIndex == COLORINDEX_COMMENT)
-				{
-					// If there is an inline comment, the EOL for that line will be deleted, so add the EOL.
-					size_t fullLen = linbuf[i + 1] - linbuf[i];
-					size_t len = linelen(linbuf[i], fullLen);
-					for (size_t j = len; j < fullLen; ++j)
-						filteredT += linbuf[i][j];
-				}
-			}
-		}
-	}
-
-	return { ucr::toUTF8(filteredT), dwCookie, allTextIsComment };
-}
-
-static std::tuple<std::string, std::vector<bool>> GetTreeSitterCommentsFilteredText(int startLine, int endLine, const char **linbuf, void* parseContext)
-{
-	String filteredT;
-	std::vector<bool> allTextIsComment(endLine - startLine + 1, true);
-	for (int i = startLine; i <= endLine; ++i)
-	{
-		String text = convertToTString(linbuf[i], linbuf[i + 1]);
-		for (int j = 0; j < static_cast<int>(text.size()); ++j)
-		{
-			const tchar_t ch = text[j];
-			const bool isComment = IsTreeSitterCommentPositionForDiff(parseContext, i, j);
-			if (!isComment)
-			{
-				filteredT += ch;
-				if (ch != '\r' && ch != '\n')
-					allTextIsComment[i - startLine] = false;
-			}
-		}
-
-		if (text.empty())
-			allTextIsComment[i - startLine] = false;
-	}
-
-	return { ucr::toUTF8(filteredT), allTextIsComment };
-}
-
 /**
  * @brief Replace a string inside a string with another string.
  * This function searches for a string inside another string an if found,
@@ -408,46 +323,33 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 
 	if (m_options.m_filterCommentsLines)
 	{
-		const bool bUseTreeSitter = m_pParseContext[0] != nullptr && m_pParseContext[1] != nullptr;
-
-		if (bUseTreeSitter)
+		// Use new unified parser interface
+		if (m_pSyntaxParser[0] != nullptr && m_pTextBuffer[0] != nullptr &&
+			m_pSyntaxParser[1] != nullptr && m_pTextBuffer[1] != nullptr)
 		{
 			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
+			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
 
-			auto resultLeft = GetTreeSitterCommentsFilteredText(
+			// Use SyntaxParserHelper for unified comment filtering
+			lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
+				m_pSyntaxParser[0], m_pTextBuffer[0],
 				lineNumberLeft, ctxt.nParsedLineEndLeft,
-				file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pParseContext[0]);
-			lineDataLeft = std::move(std::get<0>(resultLeft));
-			allTextIsCommentLeft = std::move(std::get<1>(resultLeft));
+				allTextIsCommentLeft);
 
-			auto resultRight = GetTreeSitterCommentsFilteredText(
+			lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
+				m_pSyntaxParser[1], m_pTextBuffer[1],
 				lineNumberRight, ctxt.nParsedLineEndRight,
-				file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pParseContext[1]);
-			lineDataRight = std::move(std::get<0>(resultRight));
-			allTextIsCommentRight = std::move(std::get<1>(resultRight));
+				allTextIsCommentRight);
 		}
 		else
 		{
-			ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
-				ctxt.nParsedLineEndLeft + 1, lineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
-			ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
-				ctxt.nParsedLineEndRight + 1, lineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef, m_pParseContext[1]);
-
-			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
-
-			auto resultLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
-				lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
-			lineDataLeft = std::move(std::get<0>(resultLeft));
-			ctxt.dwCookieLeft = std::get<1>(resultLeft);
-			allTextIsCommentLeft = std::move(std::get<2>(resultLeft));
-
-			auto resultRight = GetCommentsFilteredText(ctxt.dwCookieRight,
-				lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef, m_pParseContext[1]);
-			lineDataRight = std::move(std::get<0>(resultRight));
-			ctxt.dwCookieRight = std::get<1>(resultRight);
-			allTextIsCommentRight = std::move(std::get<2>(resultRight));
+			// No parser available - treat entire text as non-comment
+			lineDataLeft.assign(file_data_ary[0].linbuf[lineNumberLeft + file_data_ary[0].linbuf_base],
+				file_data_ary[0].linbuf[lineNumberLeft + qtyLinesLeft + file_data_ary[0].linbuf_base]
+				- file_data_ary[0].linbuf[lineNumberLeft + file_data_ary[0].linbuf_base]);
+			lineDataRight.assign(file_data_ary[1].linbuf[lineNumberRight + file_data_ary[1].linbuf_base],
+				file_data_ary[1].linbuf[lineNumberRight + qtyLinesRight + file_data_ary[1].linbuf_base]
+				- file_data_ary[1].linbuf[lineNumberRight + file_data_ary[1].linbuf_base]);
 		}
 	}
 	else

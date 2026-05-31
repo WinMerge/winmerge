@@ -26,6 +26,8 @@ struct file_data;
 class MovedLines;
 class FilterList;
 class SubstitutionList;
+class ISyntaxParser;
+class ITextBuffer;
 namespace CrystalLineParser { struct TextDefinition; };
 
 /** @enum COMPARE_TYPE
@@ -151,8 +153,6 @@ struct PostFilterContext
 {
 	int nParsedLineEndLeft = -1;
 	int nParsedLineEndRight = -1;
-	unsigned dwCookieLeft = 0;
-	unsigned dwCookieRight = 0;
 };
 
 /**
@@ -198,6 +198,8 @@ public:
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
 	void SetFilterCommentsParseContext(void* parseContext, int index) { m_pParseContext[index] = parseContext; }
+	void SetSyntaxParser(ISyntaxParser* pParser, int index) { m_pSyntaxParser[index] = pParser; }
+	void SetTextBuffer(ITextBuffer* pTextBuffer, int index) { m_pTextBuffer[index] = pTextBuffer; }
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
 	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
@@ -243,6 +245,8 @@ private:
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
 	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	void* m_pParseContext[3]; /**< Context for incremental parsing, owned by the parser */
+	ISyntaxParser* m_pSyntaxParser[3]; /**< New unified parser interface (nullptr = use legacy) */
+	ITextBuffer* m_pTextBuffer[3]; /**< Text buffer for parser access (nullptr = use legacy) */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	int m_codepage; /**< Codepage used in line filter */
 };

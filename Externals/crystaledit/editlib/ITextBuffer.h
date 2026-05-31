@@ -11,11 +11,11 @@
  */
 struct TextEdit
 {
-	bool bInsert;               // true for insert, false for delete
-	CEPoint ptStartPos;         // Starting position of the edit
-	CEPoint ptEndPos;           // Ending position of the edit
-	const tchar_t* pszText;     // Text that was inserted or deleted
-	size_t nTextLength;         // Length of pszText
+	bool bInsert;                ///< true for insert, false for delete
+	CEPoint ptStartPos;          ///< Starting position of the edit
+	CEPoint ptEndPos;            ///< Ending position of the edit
+	const tchar_t* pszText;      ///< Text that was inserted or deleted
+	size_t nTextLength;          ///< Length of pszText
 
 	TextEdit()
 		: bInsert(false)

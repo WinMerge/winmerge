@@ -30,6 +30,7 @@ class CLineFilterHelperMenu;
 class CTreeSitterParser;
 struct TreeSitterParseContext;
 namespace CrystalLineParser { struct TextDefinition; }
+class ISyntaxParser;
 
 /**
  * @brief Additional action codes for WinMerge.
@@ -416,6 +417,7 @@ protected:
 	std::unique_ptr<CTreeSitterParser> m_pTreeSitterParsers[3]; /**< TreeSitter parsers for each pane */
 	std::unique_ptr<CrystalLineParser::TextDefinition> m_pTreeSitterTextDefs[3]; /**< TreeSitter TextDefinitions for each pane */
 	std::unique_ptr<TreeSitterParseContext> m_pTreeSitterContexts[3]; /**< TreeSitter parse contexts for each pane */
+	std::unique_ptr<ISyntaxParser> m_pSyntaxParsers[3]; /**< Unified syntax parsers for each pane */
 	/**
 	 * Are automatic rescans enabled?
 	 * If automatic rescans are enabled then we rescan files after edit

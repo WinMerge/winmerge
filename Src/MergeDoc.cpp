@@ -56,6 +56,7 @@
 #include "Logger.h"
 #include "TreeSitterParser.h"
 #include "TreeSitterWrapper.h"
+#include "SyntaxParserFactory.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -79,20 +80,60 @@ void CMergeDoc::UpdateTreeSitterSupport()
 	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 1);
 	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 2);
 
+	// Reset syntax parsers for DiffWrapper
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
+		m_diffWrapper.SetSyntaxParser(nullptr, nBuffer);
+		m_diffWrapper.SetTextBuffer(nullptr, nBuffer);
+	}
+
+	// Clean up old parser state
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_pSyntaxParsers[nBuffer].reset();
 		m_pTreeSitterTextDefs[nBuffer].reset();
 		m_pTreeSitterParsers[nBuffer].reset();
 		m_ptBuf[nBuffer]->SetParseContext(nullptr);
 	}
 
+	// If Tree-sitter is disabled, create legacy line-based parsers
 	if (!IsTreeSitterEnabled())
+	{
+		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		{
+			String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
+
+			// Create legacy line-based parser
+			m_pSyntaxParsers[nBuffer] = SyntaxParserFactory::CreateParser(sExt, false); // use legacy parser
+			if (m_pSyntaxParsers[nBuffer])
+			{
+				m_pSyntaxParsers[nBuffer]->SetTextBuffer(m_ptBuf[nBuffer].get());
+
+				// Set syntax parser on view
+				if (m_pView[0][nBuffer] != nullptr)
+				{
+					auto viewParser = SyntaxParserFactory::CreateParser(sExt, false);
+					if (viewParser)
+					{
+						viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
+						// Call base class method directly to avoid ambiguity with legacy SetSyntaxParser
+						static_cast<CCrystalTextView*>(m_pView[0][nBuffer])->SetSyntaxParser(std::move(viewParser));
+					}
+				}
+
+				// Configure DiffWrapper to use unified parser interface
+				m_diffWrapper.SetSyntaxParser(m_pSyntaxParsers[nBuffer].get(), nBuffer);
+				m_diffWrapper.SetTextBuffer(m_ptBuf[nBuffer].get(), nBuffer);
+			}
+		}
 		return;
+	}
 
 	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
 	if (!registry.IsInitialized())
 		registry.Initialize();
 
+	// Create unified syntax parsers for each buffer
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
@@ -100,19 +141,45 @@ void CMergeDoc::UpdateTreeSitterSupport()
 		if (pLang == nullptr || pLang->GetLanguage() == nullptr)
 			continue;
 
+		// Create Tree-sitter parser instance (keep legacy member for compatibility)
 		m_pTreeSitterParsers[nBuffer] = std::make_unique<CTreeSitterParser>();
 		m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
 		m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
 
 		m_pTreeSitterTextDefs[nBuffer].reset(CreateTreeSitterTextDefinition(sExt.c_str(), sExt.c_str(), nBuffer));
 
-		// Create parse context for lazy reparse during rendering
+		// Create parse context for lazy reparse during rendering (legacy path)
 		m_pTreeSitterContexts[nBuffer] = std::make_unique<TreeSitterParseContext>();
 		m_pTreeSitterContexts[nBuffer]->pParser = m_pTreeSitterParsers[nBuffer].get();
 		m_pTreeSitterContexts[nBuffer]->pBuffer = m_ptBuf[nBuffer].get();
 
 		m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterContexts[nBuffer].get());
 		m_diffWrapper.SetFilterCommentsParseContext(m_pTreeSitterParsers[nBuffer].get(), nBuffer);
+
+		// Create unified syntax parser using factory
+		m_pSyntaxParsers[nBuffer] = SyntaxParserFactory::CreateParser(sExt, true); // prefer Tree-sitter
+		if (m_pSyntaxParsers[nBuffer])
+		{
+			// Configure parser with text buffer
+			m_pSyntaxParsers[nBuffer]->SetTextBuffer(m_ptBuf[nBuffer].get());
+
+			// Set syntax parser on view
+			if (m_pView[0][nBuffer] != nullptr)
+			{
+				// Clone parser for view (factory returns unique_ptr, need separate instance for view)
+				auto viewParser = SyntaxParserFactory::CreateParser(sExt, true);
+				if (viewParser)
+				{
+					viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
+					// Call base class method directly to avoid ambiguity with legacy SetSyntaxParser
+					static_cast<CCrystalTextView*>(m_pView[0][nBuffer])->SetSyntaxParser(std::move(viewParser));
+				}
+			}
+
+			// Configure DiffWrapper to use unified parser interface
+			m_diffWrapper.SetSyntaxParser(m_pSyntaxParsers[nBuffer].get(), nBuffer);
+			m_diffWrapper.SetTextBuffer(m_ptBuf[nBuffer].get(), nBuffer);
+		}
 	}
 
 	if (m_pTreeSitterTextDefs[0])

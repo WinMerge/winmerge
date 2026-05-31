@@ -41,6 +41,7 @@
 #include "utils/cregexp.h"
 #include "utils/icu.hpp"
 #include <vector>
+#include <memory>
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
@@ -54,6 +55,7 @@ struct LastSearchInfos;
 class CCrystalTextMarkers;
 class CEditReplaceDlg;
 struct tagRECONVERTSTRING;
+class ISyntaxParser;
 
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView class declaration
@@ -82,9 +84,9 @@ class EDITPADC_CLASS CCrystalTextView : public CView
   {
     DECLARE_DYNCREATE (CCrystalTextView)
 
-    friend CCrystalParser;
-    friend CCrystalTextBuffer;
-    friend CEditReplaceDlg;
+    friend class CCrystalParser;
+    friend class CCrystalTextBuffer;
+    friend class CEditReplaceDlg;
 
 protected:
     //  Search parameters
@@ -143,6 +145,9 @@ private:
     LOGFONT m_lfSavedBaseFont;
 
     //  Parsing stuff
+
+    // New parser abstraction interface (optional, for gradual migration)
+    std::unique_ptr<ISyntaxParser> m_pSyntaxParser;
 
     /**  
     This array must be initialized to (DWORD) - 1, code for invalid values (not yet computed).
@@ -747,6 +752,21 @@ public :
     @return Pointer to parser used before or `nullptr`, if no parser has been used before.
     */
     CCrystalParser *SetParser( CCrystalParser *pParser );
+
+    /**
+     * @brief Set syntax parser using the new interface.
+     * @param pParser Unique pointer to ISyntaxParser implementation.
+     * 
+     * This method enables use of the new parser abstraction while maintaining
+     * backward compatibility with the legacy parser system.
+     */
+    void SetSyntaxParser(std::unique_ptr<ISyntaxParser> pParser);
+
+    /**
+     * @brief Get the current syntax parser.
+     * @return Pointer to ISyntaxParser, or nullptr if using legacy parser.
+     */
+    ISyntaxParser* GetSyntaxParser() const { return m_pSyntaxParser.get(); }
     //END SW
 
     bool GetEnableHideLines () const { return m_bHideLines; }
