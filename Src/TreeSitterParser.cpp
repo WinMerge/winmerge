@@ -1180,14 +1180,37 @@ void CTreeSitterParser::RunHighlightQuery()
         }
     }
 
-    // Sort by start position (row, then column)
+    // Sort by start position (row, then column), then by priority (descending)
     std::sort(highlights.begin(), highlights.end(),
         [](const HighlightEntry& a, const HighlightEntry& b)
         {
             if (a.startRow != b.startRow)
                 return a.startRow < b.startRow;
-            return a.startCol < b.startCol;
+            if (a.startCol != b.startCol)
+                return a.startCol < b.startCol;
+            // Same position: higher priority first
+            return a.priority > b.priority;
         });
+
+    // Remove duplicate highlights for the same range, keeping only the highest priority one
+    auto it = highlights.begin();
+    while (it != highlights.end())
+    {
+        auto next = it + 1;
+        // Skip all subsequent entries with the same byte range
+        while (next != highlights.end() && 
+               next->startByte == it->startByte && 
+               next->endByte == it->endByte)
+        {
+            ++next;
+        }
+        // Erase duplicates (lower priority entries for same range)
+        if (next != it + 1)
+        {
+            highlights.erase(it + 1, next);
+        }
+        ++it;
+    }
 
     // Build per-line block arrays
     m_lineBlocks.clear();
