@@ -11,6 +11,18 @@
 #include <map>
 #include <memory>
 
+class CTreeSitterParser;
+class ITextBuffer;
+
+/**
+ * @brief Context structure for TreeSitter ParseLine callback
+ */
+struct TreeSitterParseContext
+{
+    CTreeSitterParser* pParser;
+    ITextBuffer* pBuffer;
+};
+
 /**
  * @brief TreeSitter-based ParseLineX implementation
  * 

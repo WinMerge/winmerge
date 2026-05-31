@@ -102,11 +102,16 @@ void CMergeDoc::UpdateTreeSitterSupport()
 
 		m_pTreeSitterParsers[nBuffer] = std::make_unique<CTreeSitterParser>();
 		m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
-		m_pTreeSitterParsers[nBuffer]->SetBuffer(m_ptBuf[nBuffer].get());
 		m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
 
 		m_pTreeSitterTextDefs[nBuffer].reset(CreateTreeSitterTextDefinition(sExt.c_str(), sExt.c_str(), nBuffer));
-		m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterParsers[nBuffer].get());
+
+		// Create parse context for lazy reparse during rendering
+		m_pTreeSitterContexts[nBuffer] = std::make_unique<TreeSitterParseContext>();
+		m_pTreeSitterContexts[nBuffer]->pParser = m_pTreeSitterParsers[nBuffer].get();
+		m_pTreeSitterContexts[nBuffer]->pBuffer = m_ptBuf[nBuffer].get();
+
+		m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterContexts[nBuffer].get());
 		m_diffWrapper.SetFilterCommentsParseContext(m_pTreeSitterParsers[nBuffer].get(), nBuffer);
 	}
 

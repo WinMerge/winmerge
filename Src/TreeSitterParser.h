@@ -260,16 +260,13 @@ public:
 
     bool IsCommentPosition(int nLineIndex, int nCharPos) const;
 
-    bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
+    bool FindDefinition(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
 
 	/**
 	 * @brief Convenience: parse document from a text buffer.
 	 * @param pBuffer  The text buffer to read line data from.
 	 */
 	void ParseFromBuffer(ITextBuffer* pBuffer);
-
-	void SetBuffer(ITextBuffer* pBuffer) { m_pBuffer = pBuffer; }
-	ITextBuffer* GetBuffer() const { return m_pBuffer; }
 
 private:
     void EnsureParser();
@@ -281,7 +278,7 @@ private:
     int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
     bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
     bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
-    bool TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
+    bool TryGetTagDefinitionByNameAt(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
     uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
     /**
@@ -365,7 +362,6 @@ private:
 
 	std::vector<TagDef> m_tagDefs;
 	std::vector<TagRef> m_tagRefs;
-	ITextBuffer* m_pBuffer; // Needed to get line/char info for unresolved references
 };
 
 

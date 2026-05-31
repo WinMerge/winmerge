@@ -3308,7 +3308,7 @@ void CMergeEditView::GotoTreeSitterDefinition()
 	const CEPoint pos = GetCursorPos();
 	int nDefLine = 0;
 	int nDefChar = 0;
-	if (pParser->FindDefinition(pos.y, pos.x, nDefLine, nDefChar))
+	if (pParser->FindDefinition(pDoc->m_ptBuf[m_nThisPane].get(), pos.y, pos.x, nDefLine, nDefChar))
 		GotoLine(nDefLine, false, m_nThisPane, true, nDefChar);
 }
 
@@ -3332,7 +3332,7 @@ void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
 	const CEPoint pos = GetCursorPos();
 	int nDefLine = 0;
 	int nDefChar = 0;
-	pCmdUI->Enable(pParser->FindDefinition(pos.y, pos.x, nDefLine, nDefChar));
+	pCmdUI->Enable(pParser->FindDefinition(pDoc->m_ptBuf[m_nThisPane].get(), pos.y, pos.x, nDefLine, nDefChar));
 }
 
 /**

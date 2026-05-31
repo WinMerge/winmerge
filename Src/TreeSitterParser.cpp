@@ -1978,13 +1978,13 @@ bool CTreeSitterParser::ByteOffsetToLineChar(uint32_t byteOffset, int& nLineInde
     return false;
 }
 
-bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const
+bool CTreeSitterParser::TryGetTagDefinitionByNameAt(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const
 {
-    if (!m_pBuffer || nLineIndex < 0 || nLineIndex >= m_pBuffer->GetLineCount())
+    if (!pBuffer || nLineIndex < 0 || nLineIndex >= pBuffer->GetLineCount())
         return false;
 
-    const tchar_t* pszLine = m_pBuffer->GetLineChars(nLineIndex);
-    const int nLineLength = m_pBuffer->GetLineLength(nLineIndex);
+    const tchar_t* pszLine = pBuffer->GetLineChars(nLineIndex);
+    const int nLineLength = pBuffer->GetLineLength(nLineIndex);
     if (!pszLine || nLineLength <= 0)
         return false;
 
@@ -2040,7 +2040,7 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos
     return true;
 }
 
-bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const
+bool CTreeSitterParser::FindDefinition(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const
 {
     if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
         return false;
@@ -2077,7 +2077,7 @@ bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLi
     if (!foundAtPosition)
     {
         if (!TryGetTagDefinitionByNameAt(
-                nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte))
+                pBuffer, nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte))
             return false;
 
         defStartByte = tagDefStartByte;
@@ -2097,7 +2097,7 @@ bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLi
         if (!positionResolved || (posDefLine == nLineIndex && posDefChar == nCharPos))
         {
             if (TryGetTagDefinitionByNameAt(
-                    nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte) &&
+                    pBuffer, nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte) &&
                 (!positionResolved || tagDefStartByte != defStartByte))
             {
                 defStartByte = tagDefStartByte;

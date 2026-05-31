@@ -29,13 +29,14 @@ unsigned ParseLineTreeSitter(unsigned dwCookie, int nLineIndex, const tchar_t* p
     int nLength, CrystalLineParser::TEXTBLOCK* pBuf,
     int& nActualItems, void* pContext)
 {
-    // Get parser from global context
-    CTreeSitterParser* pParser = reinterpret_cast<CTreeSitterParser*>(pContext);
-    if (pParser != nullptr)
+    // Get parser and buffer from context
+    TreeSitterParseContext* pCtx = reinterpret_cast<TreeSitterParseContext*>(pContext);
+    if (pCtx != nullptr && pCtx->pParser != nullptr)
     {
+        CTreeSitterParser* pParser = pCtx->pParser;
         // Lazy reparse: if cache is dirty, reparse now (once per paint cycle)
-        if (pParser->IsDirty())
-            pParser->EnsureParsed(pParser->GetBuffer());
+        if (pParser->IsDirty() && pCtx->pBuffer != nullptr)
+            pParser->EnsureParsed(pCtx->pBuffer);
 
         if (pParser->HasTree())
         {
