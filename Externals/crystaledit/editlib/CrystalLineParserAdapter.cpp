@@ -1,6 +1,7 @@
 #include "pch.h"
 #include <Windows.h>
 #include "CrystalLineParserAdapter.h"
+#include "SyntaxColors.h"
 #include <algorithm>
 
 /**
@@ -89,6 +90,41 @@ CrystalLineParser::TextType CrystalLineParserAdapter::GetParserType() const
 }
 
 /**
+ * @brief Check if a specific position is inside a comment.
+ */
+bool CrystalLineParserAdapter::IsCommentPosition(int nLineIndex, int nCharPos) const
+{
+	if (m_pTextBuffer == nullptr || nLineIndex < 0 || nLineIndex >= m_pTextBuffer->GetLineCount())
+	{
+		return false;
+	}
+
+	// Parse the line to get syntax blocks
+	const int MAX_BLOCKS = 256;
+	CrystalLineParser::TEXTBLOCK blocks[MAX_BLOCKS];
+	int nActualItems = 0;
+
+	// We need to call ParseLine, but it's non-const and modifies cache
+	// Cast away const - this is safe because ParseLine only updates internal cache
+	const_cast<CrystalLineParserAdapter*>(this)->ParseLine(nLineIndex, blocks, nActualItems);
+
+	// Find the block containing nCharPos
+	for (int i = 0; i < nActualItems; i++)
+	{
+		int nBlockStart = blocks[i].m_nCharPos;
+		int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : m_pTextBuffer->GetLineLength(nLineIndex);
+
+		if (nCharPos >= nBlockStart && nCharPos < nBlockEnd)
+		{
+			// Check if this block is a comment
+			return blocks[i].m_nColorIndex == COLORINDEX_COMMENT;
+		}
+	}
+
+	return false;
+}
+
+/**
  * @brief Get or compute the parser cookie for a specific line.
  */
 unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
@@ -157,4 +193,219 @@ void CrystalLineParserAdapter::InvalidateFromLine(int nStartLine)
 	{
 		m_ParseCookies[i] = 0;
 	}
+}
+
+namespace {
+	/**
+	 * @brief Helper to identify brace type: returns 1-8 for {}()[]<>, 0 otherwise.
+	 */
+	int bracetype(tchar_t c)
+	{
+		static const tchar_t* braces = _T("{}()[]<>");
+		const tchar_t* pos = tc::tcschr(braces, c);
+		return pos != nullptr ? static_cast<int>(pos - braces) + 1 : 0;
+	}
+}
+
+/**
+ * @brief Find the matching brace/bracket/parenthesis for the given position.
+ */
+bool CrystalLineParserAdapter::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+{
+	if (m_pTextBuffer == nullptr || m_pTextDef == nullptr)
+	{
+		return false;
+	}
+
+	int nLineCount = m_pTextBuffer->GetLineCount();
+	if (nLineIndex < 0 || nLineIndex >= nLineCount)
+	{
+		return false;
+	}
+
+	int nLength = m_pTextBuffer->GetLineLength(nLineIndex);
+	const tchar_t* pszText = m_pTextBuffer->GetLineChars(nLineIndex);
+	const tchar_t* pszEnd = pszText + nCharPos;
+
+	// Determine which brace we're on and search direction
+	bool bAfter = false;
+	int nType = 0;
+
+	if (nCharPos < nLength)
+	{
+		nType = bracetype(*pszEnd);
+		if (nType)
+		{
+			bAfter = false;
+		}
+		else if (nCharPos > 0)
+		{
+			nType = bracetype(pszEnd[-1]);
+			bAfter = true;
+		}
+	}
+	else if (nCharPos > 0)
+	{
+		nType = bracetype(pszEnd[-1]);
+		bAfter = true;
+	}
+
+	if (!nType)
+	{
+		return false; // Not on a brace
+	}
+
+	// Calculate matching brace type and initial position
+	int nOther = ((nType - 1) ^ 1) + 1;
+	int nCount = 0;
+	int nComment = 0;
+
+	if (bAfter)
+	{
+		if (nOther & 1)
+			pszEnd--;
+	}
+	else
+	{
+		if (!(nOther & 1))
+			pszEnd++;
+	}
+
+	// Get comment delimiters
+	const tchar_t* pszOpenComment = m_pTextDef->opencomment;
+	const tchar_t* pszCloseComment = m_pTextDef->closecomment;
+	const tchar_t* pszCommentLine = m_pTextDef->commentline;
+
+	int nOpenComment = static_cast<int>(tc::tcslen(pszOpenComment));
+	int nCloseComment = static_cast<int>(tc::tcslen(pszCloseComment));
+	int nCommentLine = static_cast<int>(tc::tcslen(pszCommentLine));
+
+	int ptY = nLineIndex;
+	int ptX = nCharPos;
+
+	// Search backward or forward
+	if (nOther & 1)
+	{
+		// Search backward
+		for (;;)
+		{
+			while (--pszEnd >= pszText)
+			{
+				const tchar_t* pszTest = pszEnd - nOpenComment + 1;
+				if (pszTest >= pszText && nOpenComment > 0 && !tc::tcsnicmp(pszTest, pszOpenComment, nOpenComment))
+				{
+					nComment--;
+					pszEnd = pszTest;
+					if (--pszEnd < pszText)
+						break;
+				}
+				pszTest = pszEnd - nCloseComment + 1;
+				if (pszTest >= pszText && nCloseComment > 0 && !tc::tcsnicmp(pszTest, pszCloseComment, nCloseComment))
+				{
+					nComment++;
+					pszEnd = pszTest;
+					if (--pszEnd < pszText)
+						break;
+				}
+				if (!nComment)
+				{
+					// Check if in comment
+					pszTest = pszEnd - nCommentLine + 1;
+					if (pszTest >= pszText && nCommentLine > 0 && !tc::tcsnicmp(pszTest, pszCommentLine, nCommentLine))
+						break;
+
+					if (bracetype(*pszEnd) == nType)
+					{
+						nCount++;
+					}
+					else if (bracetype(*pszEnd) == nOther)
+					{
+						if (!nCount--)
+						{
+							outLineIndex = ptY;
+							outCharPos = static_cast<int>(pszEnd - pszText);
+							if (bAfter)
+								outCharPos++;
+							return true;
+						}
+					}
+				}
+			}
+			if (ptY > 0)
+			{
+				ptY--;
+				ptX = m_pTextBuffer->GetLineLength(ptY);
+				pszText = m_pTextBuffer->GetLineChars(ptY);
+				pszEnd = pszText + ptX;
+			}
+			else
+				break;
+		}
+	}
+	else
+	{
+		// Search forward
+		const tchar_t* pszBegin = pszText;
+		pszText = pszEnd;
+		pszEnd = pszBegin + nLength;
+
+		for (;;)
+		{
+			while (pszText < pszEnd)
+			{
+				const tchar_t* pszTest = pszText + nCloseComment;
+				if (pszTest <= pszEnd && nCloseComment > 0 && !tc::tcsnicmp(pszText, pszCloseComment, nCloseComment))
+				{
+					nComment--;
+					pszText = pszTest;
+					if (pszText > pszEnd)
+						break;
+				}
+				pszTest = pszText + nOpenComment;
+				if (pszTest <= pszEnd && nOpenComment > 0 && !tc::tcsnicmp(pszText, pszOpenComment, nOpenComment))
+				{
+					nComment++;
+					pszText = pszTest;
+					if (pszText > pszEnd)
+						break;
+				}
+				if (!nComment)
+				{
+					// Check if in comment
+					pszTest = pszText + nCommentLine;
+					if (pszTest <= pszEnd && nCommentLine > 0 && !tc::tcsnicmp(pszText, pszCommentLine, nCommentLine))
+						break;
+
+					if (bracetype(*pszText) == nType)
+					{
+						nCount++;
+					}
+					else if (bracetype(*pszText) == nOther)
+					{
+						if (!nCount--)
+						{
+							outLineIndex = ptY;
+							outCharPos = static_cast<int>(pszText - pszBegin);
+							if (bAfter)
+								outCharPos++;
+							return true;
+						}
+					}
+				}
+				pszText++;
+			}
+			if (ptY < nLineCount - 1)
+			{
+				ptY++;
+				ptX = 0;
+				nLength = m_pTextBuffer->GetLineLength(ptY);
+				pszBegin = pszText = m_pTextBuffer->GetLineChars(ptY);
+				pszEnd = pszBegin + nLength;
+			}
+			else
+				break;
+		}
+	}
+
+	return false;
 }

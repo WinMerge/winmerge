@@ -281,6 +281,7 @@ bool CCrystalTextView::
 DoSetTextType (CrystalLineParser::TextDefinition *def)
 {
   m_CurSourceDef = def;
+  m_nCurrentTextType = def->type;
   SetFlags (def->flags);
 
 // Do not set these
@@ -355,6 +356,7 @@ CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_pFindTextDlg(nullptr)
 , m_CurSourceDef(nullptr)
+, m_nCurrentTextType(CrystalLineParser::SRC_PLAIN)
 , m_dwLastDblClickTime(0)
 , m_rxnode(nullptr)
 , m_pszMatched(nullptr)
@@ -6347,7 +6349,8 @@ OnSourceType (UINT nId)
 void CCrystalTextView::
 OnUpdateSourceType (CCmdUI * pCmdUI)
 {
-  pCmdUI->SetRadio (&CrystalLineParser::m_SourceDefs[(pCmdUI->m_nID - ID_SOURCE_PLAIN)] == m_CurSourceDef);
+  CrystalLineParser::TextType nType = static_cast<CrystalLineParser::TextType>(pCmdUI->m_nID - ID_SOURCE_PLAIN);
+  pCmdUI->SetRadio (nType == m_nCurrentTextType);
 }
 
 int
@@ -6370,6 +6373,23 @@ void CCrystalTextView::
 OnMatchBrace ()
 {
   CEPoint ptCursorPos = GetCursorPos ();
+
+  // Delegate to syntax parser if available
+  if (m_pSyntaxParser != nullptr)
+    {
+      int outLineIndex = 0, outCharPos = 0;
+      if (m_pSyntaxParser->FindMatchingBrace(ptCursorPos.y, ptCursorPos.x, outLineIndex, outCharPos))
+        {
+          CEPoint ptMatch(outCharPos, outLineIndex);
+          SetCursorPos(ptMatch);
+          SetSelection(ptMatch, ptMatch);
+          SetAnchor(ptMatch);
+          EnsureVisible(ptMatch);
+          return;
+        }
+    }
+
+  // Legacy fallback: if no parser or parser doesn't support brace matching
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y), *pszEnd = pszText + ptCursorPos.x;
   bool bAfter = false;
@@ -6407,9 +6427,21 @@ OnMatchBrace ()
           if (!(nOther & 1))
             pszEnd++;
         }
-      const tchar_t* pszOpenComment = m_CurSourceDef->opencomment,
-        *pszCloseComment = m_CurSourceDef->closecomment,
-        *pszCommentLine = m_CurSourceDef->commentline, *pszTest;
+
+      // Get comment syntax - always use m_CurSourceDef for block comment tracking
+      // (ISyntaxParser::IsCommentPosition is used later for single position checks)
+      const tchar_t* pszOpenComment = _T("");
+      const tchar_t* pszCloseComment = _T("");
+      const tchar_t* pszCommentLine = _T("");
+
+      if (m_CurSourceDef != nullptr)
+        {
+          pszOpenComment = m_CurSourceDef->opencomment;
+          pszCloseComment = m_CurSourceDef->closecomment;
+          pszCommentLine = m_CurSourceDef->commentline;
+        }
+
+      const tchar_t* pszTest;
       int nOpenComment = (int) tc::tcslen (pszOpenComment),
         nCloseComment = (int) tc::tcslen (pszCloseComment),
         nCommentLine = (int) tc::tcslen (pszCommentLine);
@@ -6441,8 +6473,22 @@ OnMatchBrace ()
                     }
                   if (!nComment)
                     {
-                      pszTest = pszEnd - nCommentLine + 1;
-                      if (pszTest >= pszText && !tc::tcsnicmp (pszTest, pszCommentLine, nCommentLine))
+                      // Check if current position is in a comment
+                      bool bInComment = false;
+                      if (m_pSyntaxParser != nullptr)
+                        {
+                          // Use ISyntaxParser if available
+                          int nCharPos = static_cast<int>(pszEnd - pszText);
+                          bInComment = m_pSyntaxParser->IsCommentPosition(ptCursorPos.y, nCharPos);
+                        }
+                      else
+                        {
+                          // Fall back to legacy comment detection
+                          pszTest = pszEnd - nCommentLine + 1;
+                          bInComment = (pszTest >= pszText && !tc::tcsnicmp (pszTest, pszCommentLine, nCommentLine));
+                        }
+
+                      if (bInComment)
                         {
                           break;
                         }
@@ -6508,8 +6554,22 @@ OnMatchBrace ()
                     }
                   if (!nComment)
                     {
-                      pszTest = pszText + nCommentLine;
-                      if (pszTest <= pszEnd && !tc::tcsnicmp (pszText, pszCommentLine, nCommentLine))
+                      // Check if current position is in a comment
+                      bool bInComment = false;
+                      if (m_pSyntaxParser != nullptr)
+                        {
+                          // Use ISyntaxParser if available
+                          int nCharPos = static_cast<int>(pszText - pszBegin);
+                          bInComment = m_pSyntaxParser->IsCommentPosition(ptCursorPos.y, nCharPos);
+                        }
+                      else
+                        {
+                          // Fall back to legacy comment detection
+                          pszTest = pszText + nCommentLine;
+                          bInComment = (pszTest <= pszEnd && !tc::tcsnicmp (pszText, pszCommentLine, nCommentLine));
+                        }
+
+                      if (bInComment)
                         {
                           break;
                         }
@@ -6567,7 +6627,7 @@ OnEditGoTo ()
 void CCrystalTextView::
 OnUpdateToggleSourceHeader (CCmdUI * pCmdUI)
 {
-  pCmdUI->Enable (m_CurSourceDef->type == CrystalLineParser::SRC_C);
+  pCmdUI->Enable (m_nCurrentTextType == CrystalLineParser::SRC_C);
 }
 
 void CCrystalTextView::
@@ -6578,7 +6638,7 @@ OnToggleSourceHeader ()
       CFileStatus status;
       return CFile::GetStatus(lpszPath, status) != 0;
     };
-  if (m_CurSourceDef->type == CrystalLineParser::SRC_C)
+  if (m_nCurrentTextType == CrystalLineParser::SRC_C)
     {
       CDocument *pDoc = GetDocument ();
       ASSERT (pDoc != nullptr);
@@ -6657,11 +6717,6 @@ OnUpdateTopMargin (CCmdUI * pCmdUI)
 void CCrystalTextView::
 OnTopMargin ()
 {
-  ASSERT (m_CurSourceDef != nullptr);
-  if (m_bTopMargin)
-    m_CurSourceDef->flags &= ~SRCOPT_TOPMARGIN;
-  else
-    m_CurSourceDef->flags |= SRCOPT_TOPMARGIN;
   SetTopMargin (!m_bTopMargin);
 }
 
@@ -6674,11 +6729,6 @@ OnUpdateSelMargin (CCmdUI * pCmdUI)
 void CCrystalTextView::
 OnSelMargin ()
 {
-  ASSERT (m_CurSourceDef != nullptr);
-  if (m_bSelMargin)
-    m_CurSourceDef->flags &= ~SRCOPT_SELMARGIN;
-  else
-    m_CurSourceDef->flags |= SRCOPT_SELMARGIN;
   SetSelectionMargin (!m_bSelMargin);
 }
 
@@ -6691,17 +6741,7 @@ OnUpdateWordWrap (CCmdUI * pCmdUI)
 void CCrystalTextView::
 OnWordWrap ()
 {
-  ASSERT (m_CurSourceDef != nullptr);
-  if (m_bWordWrap)
-    {
-      m_CurSourceDef->flags &= ~SRCOPT_WORDWRAP;
-      SetWordWrapping (false);
-    }
-  else
-    {
-      m_CurSourceDef->flags |= SRCOPT_WORDWRAP;
-      SetWordWrapping (true);
-    }
+  SetWordWrapping (!m_bWordWrap);
 }
 
 void CCrystalTextView::

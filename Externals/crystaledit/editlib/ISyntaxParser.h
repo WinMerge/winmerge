@@ -46,4 +46,28 @@ public:
 	 * @return The TextType enum value representing the language/format.
 	 */
 	virtual CrystalLineParser::TextType GetParserType() const = 0;
+
+	/**
+	 * @brief Check if a specific position is inside a comment.
+	 * @param nLineIndex Zero-based line index.
+	 * @param nCharPos Zero-based character position in the line.
+	 * @return true if the position is inside a comment (line or block), false otherwise.
+	 * 
+	 * Used by bracket matching and other features that need to skip comments.
+	 * The default implementation returns false (no comment detection).
+	 */
+	virtual bool IsCommentPosition(int nLineIndex, int nCharPos) const { return false; }
+
+	/**
+	 * @brief Find the matching brace/bracket/parenthesis for the given position.
+	 * @param nLineIndex Zero-based line index of the starting position.
+	 * @param nCharPos Zero-based character position of the starting position.
+	 * @param outLineIndex [out] Line index of the matching brace (if found).
+	 * @param outCharPos [out] Character position of the matching brace (if found).
+	 * @return true if a matching brace was found, false otherwise.
+	 * 
+	 * The default implementation returns false (no brace matching support).
+	 * Implementations should handle (), [], {}, <> pairs and skip comments.
+	 */
+	virtual bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const { return false; }
 };

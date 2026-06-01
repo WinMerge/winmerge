@@ -789,6 +789,7 @@ public :
 
     //  Source type
     CrystalLineParser::TextDefinition *m_CurSourceDef;
+    CrystalLineParser::TextType m_nCurrentTextType; // Current parser type for menu state, etc.
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextType (const tchar_t* pszExt);
     virtual bool SetTextType (CrystalLineParser::TextType enuType);

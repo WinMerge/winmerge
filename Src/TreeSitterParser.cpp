@@ -1886,6 +1886,105 @@ bool CTreeSitterParser::IsCommentPosition(int nLineIndex, int nCharPos) const
     return sNodeType.find(L"comment") != std::wstring::npos;
 }
 
+bool CTreeSitterParser::FindMatchingBrace(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+{
+    if (m_pTree == nullptr || pBuffer == nullptr)
+    {
+        return false;
+    }
+
+    // Convert line/char position to byte offset
+    int nLineCount = pBuffer->GetLineCount();
+    if (nLineIndex < 0 || nLineIndex >= nLineCount)
+    {
+        return false;
+    }
+
+    uint32_t byteOffset = 0;
+    for (int i = 0; i < nLineIndex; i++)
+    {
+        byteOffset += static_cast<uint32_t>(pBuffer->GetLineLength(i));
+        byteOffset += 1; // newline
+    }
+    byteOffset += static_cast<uint32_t>(nCharPos);
+
+    // Get the root node
+    TSNode rootNode = ts_tree_root_node(m_pTree);
+
+    // Get the smallest node at this position
+    TSNode node = ts_node_descendant_for_byte_range(rootNode, byteOffset, byteOffset);
+
+    if (ts_node_is_null(node))
+    {
+        return false;
+    }
+
+    // Check if this node represents a brace/bracket
+    const char* pszType = ts_node_type(node);
+    if (pszType == nullptr)
+    {
+        return false;
+    }
+
+    // Common brace types in various languages
+    std::string sType(pszType);
+    if (sType == "(" || sType == ")" ||
+        sType == "[" || sType == "]" ||
+        sType == "{" || sType == "}" ||
+        sType == "<" || sType == ">" ||
+        sType == "\"(\"" || sType == "\")\"" ||
+        sType == "\"[\"" || sType == "\"]\"" ||
+        sType == "\"{\"" || sType == "\"}\"" ||
+        sType == "\"<\"" || sType == "\">\"")
+    {
+        // Get the parent node - it should contain both opening and closing
+        TSNode parent = ts_node_parent(node);
+        if (ts_node_is_null(parent))
+        {
+            return false;
+        }
+
+        // Find the matching sibling
+        uint32_t childCount = ts_node_child_count(parent);
+        for (uint32_t i = 0; i < childCount; i++)
+        {
+            TSNode child = ts_node_child(parent, i);
+            if (ts_node_is_null(child))
+                continue;
+
+            // Skip the current node itself
+            if (ts_node_start_byte(child) == ts_node_start_byte(node))
+                continue;
+
+            const char* pszChildType = ts_node_type(child);
+            if (pszChildType == nullptr)
+                continue;
+
+            std::string sChildType(pszChildType);
+
+            // Check if this is the matching brace
+            bool bIsMatch = false;
+            if (sType == "(" || sType == "\"(\"") bIsMatch = (sChildType == ")" || sChildType == "\")\"");
+            else if (sType == ")" || sType == "\")\"") bIsMatch = (sChildType == "(" || sChildType == "\"(\"");
+            else if (sType == "[" || sType == "\"[\"") bIsMatch = (sChildType == "]" || sChildType == "\"]\"");
+            else if (sType == "]" || sType == "\"]\"") bIsMatch = (sChildType == "[" || sChildType == "\"[\"");
+            else if (sType == "{" || sType == "\"{\"") bIsMatch = (sChildType == "}" || sChildType == "\"}\"");
+            else if (sType == "}" || sType == "\"}\"") bIsMatch = (sChildType == "{" || sChildType == "\"{\"");
+            else if (sType == "<" || sType == "\"<\"") bIsMatch = (sChildType == ">" || sChildType == "\">\"");
+            else if (sType == ">" || sType == "\">\"") bIsMatch = (sChildType == "<" || sChildType == "\"<\"");
+
+            if (bIsMatch)
+            {
+                // Convert byte offset back to line/char
+                uint32_t matchByteOffset = ts_node_start_byte(child);
+                return ByteOffsetToLineChar(matchByteOffset, outLineIndex, outCharPos);
+            }
+        }
+    }
+
+    return false;
+}
+
 bool CTreeSitterParser::TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const
 {
     for (const auto& scope : m_localScopes)

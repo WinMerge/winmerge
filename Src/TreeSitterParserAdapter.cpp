@@ -69,3 +69,29 @@ CrystalLineParser::TextType TreeSitterParserAdapter::GetParserType() const
 	// Return SRC_PLAIN as a placeholder; callers should check if parser is Tree-sitter-based
 	return CrystalLineParser::SRC_PLAIN;
 }
+
+/**
+ * @brief Check if a specific position is inside a comment.
+ */
+bool TreeSitterParserAdapter::IsCommentPosition(int nLineIndex, int nCharPos) const
+{
+	// Delegate to the underlying Tree-sitter parser
+	return m_parser.IsCommentPosition(nLineIndex, nCharPos);
+}
+
+/**
+ * @brief Find the matching brace/bracket/parenthesis for the given position.
+ */
+bool TreeSitterParserAdapter::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+{
+	if (m_pTextBuffer == nullptr)
+	{
+		return false;
+	}
+
+	// Ensure parsed
+	const_cast<CTreeSitterParser&>(m_parser).EnsureParsed(m_pTextBuffer);
+
+	// Delegate to the underlying Tree-sitter parser
+	return m_parser.FindMatchingBrace(m_pTextBuffer, nLineIndex, nCharPos, outLineIndex, outCharPos);
+}

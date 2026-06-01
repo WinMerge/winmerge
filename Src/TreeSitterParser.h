@@ -262,6 +262,19 @@ public:
 
     bool FindDefinition(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
 
+    /**
+     * @brief Find matching brace/bracket/parenthesis at the given position.
+     * @param pBuffer  The text buffer to read line data from.
+     * @param nLineIndex  Zero-based line index of the starting position.
+     * @param nCharPos  Zero-based character position in the line.
+     * @param outLineIndex  [out] Line index of the matching brace.
+     * @param outCharPos  [out] Character position of the matching brace.
+     * @return true if a matching brace was found, false otherwise.
+     * 
+     * Uses tree-sitter's AST structure to find the matching delimiter.
+     */
+    bool FindMatchingBrace(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
+
 	/**
 	 * @brief Convenience: parse document from a text buffer.
 	 * @param pBuffer  The text buffer to read line data from.
