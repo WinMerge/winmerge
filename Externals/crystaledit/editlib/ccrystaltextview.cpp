@@ -94,6 +94,7 @@
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
 #include "ISyntaxParser.h"
+#include "CrystalLineParserAdapter.h"
 #include "renderers/ccrystalrendererdirectwrite.h"
 #include "renderers/ccrystalrenderergdi.h"
 #include "dialogs/cfindtextdlg.h"
@@ -280,9 +281,19 @@ EXPAND_PRIMITIVE (MoveCtrlEnd, TextEnd)
 bool CCrystalTextView::
 DoSetTextType (CrystalLineParser::TextDefinition *def)
 {
-  m_CurSourceDef = def;
   m_nCurrentTextType = def->type;
   SetFlags (def->flags);
+
+  // Create syntax parser if not already set (e.g., by WinMerge's SyntaxParserFactory)
+  // This ensures CCrystalTextView always has a parser available
+  if (!m_pSyntaxParser && def->type != CrystalLineParser::SRC_PLAIN)
+  {
+    m_pSyntaxParser = std::make_unique<CrystalLineParserAdapter>(def->type);
+    if (m_pTextBuffer)
+    {
+      m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
+    }
+  }
 
 // Do not set these
 // EOL is determined from file, tabsize and viewtabs are
@@ -318,19 +329,14 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
 bool CCrystalTextView::
 SetTextType (const tchar_t* pszExt)
 {
-  m_CurSourceDef = &CrystalLineParser::m_SourceDefs[0];
-
   CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (pszExt);
-
   return SetTextType (def);
 }
 
 bool CCrystalTextView::
 SetTextType (CrystalLineParser::TextType enuType)
 {
-  CrystalLineParser::TextDefinition *def;
-
-  m_CurSourceDef = def = &CrystalLineParser::m_SourceDefs[0];
+  CrystalLineParser::TextDefinition *def = &CrystalLineParser::m_SourceDefs[0];
   for (size_t i = 0; i < CrystalLineParser::m_SourceDefs.size(); i++, def++)
     {
       if (def->type == enuType)
@@ -345,17 +351,13 @@ bool CCrystalTextView::
 SetTextType (CrystalLineParser::TextDefinition *def)
 {
   if (def)
-    if (m_CurSourceDef != def)
-      return DoSetTextType (def);
-    else
-      return true;
+    return DoSetTextType (def);
   return false;
 }
 
 CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_pFindTextDlg(nullptr)
-, m_CurSourceDef(nullptr)
 , m_nCurrentTextType(CrystalLineParser::SRC_PLAIN)
 , m_dwLastDblClickTime(0)
 , m_rxnode(nullptr)
@@ -4797,17 +4799,11 @@ OnSetFocus (CWnd * pOldWnd)
 unsigned CCrystalTextView::
 ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
 {
-  // Use new parser interface if available
+  // Always use ISyntaxParser if available
   if (m_pSyntaxParser)
   {
     // Note: ISyntaxParser doesn't use dwCookie or pContext; it manages state internally
     return m_pSyntaxParser->ParseLine(nLineIndex, pBuf, nActualItems);
-  }
-
-  // Fall back to legacy parser
-  if (m_CurSourceDef != nullptr && m_CurSourceDef->ParseLineX != nullptr)
-  {
-    return m_CurSourceDef->ParseLineX (dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), pBuf, nActualItems, pContext);
   }
 
   // No parser available - return plain text

@@ -788,7 +788,6 @@ public :
     CCrystalRenderer *m_pCrystalRendererSaved;
 
     //  Source type
-    CrystalLineParser::TextDefinition *m_CurSourceDef; // Legacy parser definition (used only when m_pSyntaxParser is null)
     CrystalLineParser::TextType m_nCurrentTextType; // Current parser type for menu state, etc.
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextType (const tchar_t* pszExt);
