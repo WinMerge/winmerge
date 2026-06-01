@@ -852,13 +852,13 @@
     <ClCompile Include="TreeSitterParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TreeSitterWrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TreeSitterParserAdapter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SyntaxParserFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxParserHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1634,13 +1634,13 @@
     <ClInclude Include="TreeSitterParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TreeSitterWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TreeSitterParserAdapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SyntaxParserFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxParserHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

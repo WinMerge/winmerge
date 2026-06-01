@@ -60,7 +60,7 @@ unsigned CrystalLineParserAdapter::ParseLine(int nLineIndex, CrystalLineParser::
 	unsigned dwCookie = GetLineCookie(nLineIndex);
 
 	// Call the legacy parser function
-	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, nLineIndex, pszChars, nLength, pBuf, nActualItems, nullptr);
+	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, pBuf, nActualItems, nullptr);
 
 	// Cache the result cookie for the next line
 	if (nLineIndex < nLineCount)
@@ -106,26 +106,34 @@ unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
 	}
 
 	// If we already have a valid cookie, return it
-	if (m_ParseCookies[nLineIndex] != 0 || nLineIndex == 0)
+	if (m_ParseCookies[nLineIndex] != 0)
 	{
 		return m_ParseCookies[nLineIndex];
 	}
 
-	// Otherwise, parse previous lines until we find a valid cookie
-	int nParseLine = nLineIndex - 1;
-	while (nParseLine > 0 && m_ParseCookies[nParseLine] == 0)
+	// Special case: if requesting cookie for line 0, it's always 0
+	if (nLineIndex == 0)
 	{
-		nParseLine--;
+		return 0;
 	}
 
-	// Parse forward from the last valid cookie to compute the cookie for nLineIndex
-	for (int i = nParseLine; i < nLineIndex; i++)
+	// Otherwise, get cookie from previous line and parse current line
+	// This is more efficient than parsing all previous lines
+	unsigned dwPrevCookie = GetLineCookie(nLineIndex - 1);
+
+	// Now parse line nLineIndex-1 to compute cookie for nLineIndex
+	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex - 1);
+	int nLength = m_pTextBuffer->GetLineLength(nLineIndex - 1);
+	int nActualItems = 0;
+
+	if (m_pTextDef != nullptr && m_pTextDef->ParseLineX != nullptr)
 	{
-		int nActualItems = 0;
-		ParseLine(i, nullptr, nActualItems);
+		unsigned dwNewCookie = m_pTextDef->ParseLineX(dwPrevCookie, pszChars, nLength, nullptr, nActualItems, nullptr);
+		m_ParseCookies[nLineIndex] = dwNewCookie;
+		return dwNewCookie;
 	}
 
-	return m_ParseCookies[nLineIndex];
+	return 0;
 }
 
 /**

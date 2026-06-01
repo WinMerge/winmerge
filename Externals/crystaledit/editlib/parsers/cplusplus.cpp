@@ -317,13 +317,13 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
     }
 }
 unsigned
-CrystalLineParser::ParseLineC (unsigned dwCookie, int nLineIndex, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLineC (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
 {
-  return ParseLineCJava (dwCookie, nLineIndex, pszChars, nLength, pBuf, nActualItems, IsCppKeyword, IsUser1Keyword, pContext);
+  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsCppKeyword, IsUser1Keyword, pContext);
 }
 
 unsigned
-CrystalLineParser::ParseLineCJava (unsigned dwCookie, int nLineIndex, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems,
+CrystalLineParser::ParseLineCJava (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems,
 	bool (*IsKeyword)(const tchar_t *pszChars, int nLength),
 	bool (*IsUser1Keyword)(const tchar_t *pszChars, int nLength),
     void *pContext)

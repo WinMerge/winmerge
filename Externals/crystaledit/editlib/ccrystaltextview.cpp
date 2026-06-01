@@ -4803,7 +4803,7 @@ ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItem
   }
 
   // Fall back to legacy parser
-  return m_CurSourceDef->ParseLineX (dwCookie, nLineIndex, GetLineChars(nLineIndex), GetLineLength(nLineIndex), pBuf, nActualItems, pContext);
+  return m_CurSourceDef->ParseLineX (dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), pBuf, nActualItems, pContext);
 }
 
 int CCrystalTextView::

@@ -195,9 +195,6 @@ public:
 	void SetFilterList(std::shared_ptr<FilterList> pFilterList);
 	const SubstitutionList* GetSubstitutionList() const;
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
-	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
-	void SetFilterCommentsSourceDef(const String& ext);
-	void SetFilterCommentsParseContext(void* parseContext, int index) { m_pParseContext[index] = parseContext; }
 	void SetSyntaxParser(ISyntaxParser* pParser, int index) { m_pSyntaxParser[index] = pParser; }
 	void SetTextBuffer(ITextBuffer* pTextBuffer, int index) { m_pTextBuffer[index] = pTextBuffer; }
 	void SetCodepage(int codepage) { m_codepage = codepage; }
@@ -243,8 +240,6 @@ private:
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
-	void* m_pParseContext[3]; /**< Context for incremental parsing, owned by the parser */
 	ISyntaxParser* m_pSyntaxParser[3]; /**< New unified parser interface (nullptr = use legacy) */
 	ITextBuffer* m_pTextBuffer[3]; /**< Text buffer for parser access (nullptr = use legacy) */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */

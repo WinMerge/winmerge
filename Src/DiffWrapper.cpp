@@ -39,7 +39,6 @@
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
 #include "cio.h"
-#include "TreeSitterWrapper.h"
 #include "SyntaxParserHelper.h"
 
 using Poco::Exception;
@@ -58,8 +57,7 @@ constexpr char* FILTERED_LINE = "!" "c0d5089f" "-" "3d91" "-" "4d69" "-" "b406" 
  * Initializes members.
  */
 CDiffWrapper::CDiffWrapper()
-: m_pFilterCommentsDef(nullptr)
-, m_bCreatePatchFile(false)
+: m_bCreatePatchFile(false)
 , m_bUseDiffList(false)
 , m_bAddCmdLine(true)
 , m_bAppendFiles(false)
@@ -80,7 +78,6 @@ CDiffWrapper::CDiffWrapper()
 	// Initialize new parser members
 	for (int i = 0; i < 3; i++)
 	{
-		m_pParseContext[i] = nullptr;
 		m_pSyntaxParser[i] = nullptr;
 		m_pTextBuffer[i] = nullptr;
 	}
@@ -321,36 +318,23 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	std::string lineDataLeft, lineDataRight;
 	std::vector<bool> allTextIsCommentLeft(qtyLinesLeft), allTextIsCommentRight(qtyLinesRight);
 
-	if (m_options.m_filterCommentsLines)
+	if (m_options.m_filterCommentsLines &&
+		(m_pSyntaxParser[0] != nullptr && m_pTextBuffer[0] != nullptr &&
+		 m_pSyntaxParser[1] != nullptr && m_pTextBuffer[1] != nullptr))
 	{
-		// Use new unified parser interface
-		if (m_pSyntaxParser[0] != nullptr && m_pTextBuffer[0] != nullptr &&
-			m_pSyntaxParser[1] != nullptr && m_pTextBuffer[1] != nullptr)
-		{
-			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
+		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
+		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
 
-			// Use SyntaxParserHelper for unified comment filtering
-			lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
-				m_pSyntaxParser[0], m_pTextBuffer[0],
-				lineNumberLeft, ctxt.nParsedLineEndLeft,
-				allTextIsCommentLeft);
+		// Use SyntaxParserHelper for unified comment filtering
+		lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
+			m_pSyntaxParser[0], m_pTextBuffer[0],
+			lineNumberLeft, ctxt.nParsedLineEndLeft,
+			allTextIsCommentLeft);
 
-			lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
-				m_pSyntaxParser[1], m_pTextBuffer[1],
-				lineNumberRight, ctxt.nParsedLineEndRight,
-				allTextIsCommentRight);
-		}
-		else
-		{
-			// No parser available - treat entire text as non-comment
-			lineDataLeft.assign(file_data_ary[0].linbuf[lineNumberLeft + file_data_ary[0].linbuf_base],
-				file_data_ary[0].linbuf[lineNumberLeft + qtyLinesLeft + file_data_ary[0].linbuf_base]
-				- file_data_ary[0].linbuf[lineNumberLeft + file_data_ary[0].linbuf_base]);
-			lineDataRight.assign(file_data_ary[1].linbuf[lineNumberRight + file_data_ary[1].linbuf_base],
-				file_data_ary[1].linbuf[lineNumberRight + qtyLinesRight + file_data_ary[1].linbuf_base]
-				- file_data_ary[1].linbuf[lineNumberRight + file_data_ary[1].linbuf_base]);
-		}
+		lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
+			m_pSyntaxParser[1], m_pTextBuffer[1],
+			lineNumberRight, ctxt.nParsedLineEndRight,
+			allTextIsCommentRight);
 	}
 	else
 	{
@@ -1825,11 +1809,6 @@ const SubstitutionList* CDiffWrapper::GetSubstitutionList() const
 void CDiffWrapper::SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionList)
 {
 	m_pSubstitutionList = std::move(pSubstitutionList);
-}
-
-void CDiffWrapper::SetFilterCommentsSourceDef(const String& ext)
-{
-	m_pFilterCommentsDef = CrystalLineParser::GetTextType(ext.c_str());
 }
 
 /**

@@ -195,9 +195,6 @@
     <ClCompile Include="..\..\Src\TreeSitterParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\TreeSitterWrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\SyntaxParserHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -22,7 +22,6 @@
 #include "xdiff_gnudiff_compat.h"
 #include "unicoder.h"
 #include "DiffFileData.h"
-#include "../TreeSitterWrapper.h"
 
 namespace CompareEngines
 {
@@ -126,12 +125,6 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 		if (PosOfDot != String::npos)
 			Ext.erase(0, PosOfDot + 1);
 
-		m_pDiffWrapper->SetFilterCommentsSourceDef(Ext);
-
-		std::unique_ptr<void, void(*)(void*)> treeSitterParsers[2] = {
-			{ nullptr, DestroyTreeSitterParseContextForDiff },
-			{ nullptr, DestroyTreeSitterParseContextForDiff }
-		};
 		if (m_pDiffWrapper->GetOptions().m_filterCommentsLines)
 		{
 			for (int i = 0; i < 2; ++i)
@@ -145,8 +138,6 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 					String text = ucr::toTString(std::string(start, linelen(start, fullLen)));
 					lines.push_back(std::move(text));
 				}
-				treeSitterParsers[i].reset(CreateTreeSitterParseContextForDiff(ucr::toTString(diffData->m_inf[i].name), lines));
-				m_pDiffWrapper->SetFilterCommentsParseContext(treeSitterParsers[i].get(), i);
 			}
 		}
 

@@ -1522,10 +1522,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="TreeSitterWrapper.cpp">
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="WebPageDiffFrm.cpp" />
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
@@ -1773,7 +1769,6 @@
     <ClInclude Include="Common\VersionInfo.h" />
     <ClInclude Include="TreeSitterParser.h" />
     <ClInclude Include="TreeSitterParserAdapter.h" />
-    <ClInclude Include="TreeSitterWrapper.h" />
     <ClInclude Include="WebPageDiffFrm.h" />
     <ClInclude Include="WildcardDropList.h" />
     <ClInclude Include="WindowsManager.h" />

@@ -55,7 +55,6 @@
 #include "DiffContext.h"
 #include "Logger.h"
 #include "TreeSitterParser.h"
-#include "TreeSitterWrapper.h"
 #include "SyntaxParserFactory.h"
 
 #ifdef _DEBUG
@@ -75,11 +74,6 @@ bool CMergeDoc::IsTreeSitterEnabled() const
 
 void CMergeDoc::UpdateTreeSitterSupport()
 {
-	m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
-	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 0);
-	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 1);
-	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 2);
-
 	// Reset syntax parsers for DiffWrapper
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
@@ -146,16 +140,6 @@ void CMergeDoc::UpdateTreeSitterSupport()
 		m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
 		m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
 
-		m_pTreeSitterTextDefs[nBuffer].reset(CreateTreeSitterTextDefinition(sExt.c_str(), sExt.c_str(), nBuffer));
-
-		// Create parse context for lazy reparse during rendering (legacy path)
-		m_pTreeSitterContexts[nBuffer] = std::make_unique<TreeSitterParseContext>();
-		m_pTreeSitterContexts[nBuffer]->pParser = m_pTreeSitterParsers[nBuffer].get();
-		m_pTreeSitterContexts[nBuffer]->pBuffer = m_ptBuf[nBuffer].get();
-
-		m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterContexts[nBuffer].get());
-		m_diffWrapper.SetFilterCommentsParseContext(m_pTreeSitterParsers[nBuffer].get(), nBuffer);
-
 		// Create unified syntax parser using factory
 		m_pSyntaxParsers[nBuffer] = SyntaxParserFactory::CreateParser(sExt, true); // prefer Tree-sitter
 		if (m_pSyntaxParsers[nBuffer])
@@ -181,9 +165,6 @@ void CMergeDoc::UpdateTreeSitterSupport()
 			m_diffWrapper.SetTextBuffer(m_ptBuf[nBuffer].get(), nBuffer);
 		}
 	}
-
-	if (m_pTreeSitterTextDefs[0])
-		m_diffWrapper.SetFilterCommentsSourceDef(m_pTreeSitterTextDefs[0].get());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -471,11 +452,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	m_diffWrapper.SetSubstitutionList(
 		(theApp.m_pSubstitutionFiltersList && theApp.m_pSubstitutionFiltersList->GetEnabled()) ?
 		theApp.m_pSubstitutionFiltersList->MakeSubstitutionList() : nullptr);
-
-	if (GetView(0, 0)->m_CurSourceDef->type != 0)
-		m_diffWrapper.SetFilterCommentsSourceDef(GetView(0, 0)->m_CurSourceDef);
-	else
-		m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{

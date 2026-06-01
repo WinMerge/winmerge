@@ -335,7 +335,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, int nLineIndex, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_USER1 | COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
@@ -343,7 +343,7 @@ CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, int nLineIndex, const 
   bool bCodeSection;
   if ((dwCookie & COOKIE_EXT_USER1) && !IsLineSection(pszChars, nLength, bCodeSection))
     {
-      dwCookie = CrystalLineParser::ParseLinePascal(dwCookie & ~COOKIE_EXT_USER1, nLineIndex, pszChars, nLength, pBuf, nActualItems, pContext);
+      dwCookie = CrystalLineParser::ParseLinePascal(dwCookie & ~COOKIE_EXT_USER1, pszChars, nLength, pBuf, nActualItems, pContext);
       return dwCookie | COOKIE_EXT_USER1;
     }
   dwCookie = 0;
