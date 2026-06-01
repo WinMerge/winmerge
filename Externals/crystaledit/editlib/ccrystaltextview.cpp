@@ -4805,7 +4805,14 @@ ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItem
   }
 
   // Fall back to legacy parser
-  return m_CurSourceDef->ParseLineX (dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), pBuf, nActualItems, pContext);
+  if (m_CurSourceDef != nullptr && m_CurSourceDef->ParseLineX != nullptr)
+  {
+    return m_CurSourceDef->ParseLineX (dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), pBuf, nActualItems, pContext);
+  }
+
+  // No parser available - return plain text
+  nActualItems = 0;
+  return 0;
 }
 
 int CCrystalTextView::
@@ -6288,7 +6295,7 @@ void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
   m_pColors = pSource->m_pColors;
   m_pMarkers = pSource->m_pMarkers;
   m_bDisableDragAndDrop = pSource->m_bDisableDragAndDrop;
-  SetTextType(pSource->m_CurSourceDef);
+  SetTextType(pSource->m_nCurrentTextType);
   SetFont (pSource->m_lfBaseFont);
 }
 
@@ -6428,17 +6435,17 @@ OnMatchBrace ()
             pszEnd++;
         }
 
-      // Get comment syntax - always use m_CurSourceDef for block comment tracking
-      // (ISyntaxParser::IsCommentPosition is used later for single position checks)
+      // Get comment syntax from current text type definition
       const tchar_t* pszOpenComment = _T("");
       const tchar_t* pszCloseComment = _T("");
       const tchar_t* pszCommentLine = _T("");
 
-      if (m_CurSourceDef != nullptr)
+      if (m_nCurrentTextType >= 0 && m_nCurrentTextType < CrystalLineParser::SRC_MAX_ENTRY)
         {
-          pszOpenComment = m_CurSourceDef->opencomment;
-          pszCloseComment = m_CurSourceDef->closecomment;
-          pszCommentLine = m_CurSourceDef->commentline;
+          const CrystalLineParser::TextDefinition* pDef = &CrystalLineParser::m_SourceDefs[m_nCurrentTextType];
+          pszOpenComment = pDef->opencomment;
+          pszCloseComment = pDef->closecomment;
+          pszCommentLine = pDef->commentline;
         }
 
       const tchar_t* pszTest;

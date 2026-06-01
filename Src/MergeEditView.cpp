@@ -4511,7 +4511,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 */
 void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 {
-	const bool bIsCurrentScheme = (static_cast<UINT>(m_CurSourceDef->type) == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
+	const bool bIsCurrentScheme = (static_cast<UINT>(m_nCurrentTextType) == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
 	pCmdUI->SetRadio(bIsCurrentScheme);
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT));
 }
