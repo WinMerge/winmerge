@@ -91,7 +91,7 @@ IsJavaKeyword (const tchar_t *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineJava (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLineJava (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsJavaKeyword, nullptr, pContext);
+  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsJavaKeyword, nullptr);
 }

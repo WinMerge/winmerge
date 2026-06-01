@@ -94,7 +94,7 @@ namespace test
 				std::wstring msg = L"index: " + std::to_wstring(i) + L" dwCookie";
 				Assert::AreEqual(
 					static_cast<unsigned>(expected[i].dwCookie),
-					CrystalLineParser::ParseLineHtml(data[i].dwCookie, data[i].pszChars, static_cast<int>(tc::tcslen(data[i].pszChars)), pblocks.get(), nActualItems, nullptr), msg.c_str());
+					CrystalLineParser::ParseLineHtml(data[i].dwCookie, data[i].pszChars, static_cast<int>(tc::tcslen(data[i].pszChars)), pblocks.get(), nActualItems), msg.c_str());
 				msg = L"index: " + std::to_wstring(i) + L" nblocks";
 				Assert::AreEqual(static_cast<int>(expected[i].nblocks), nActualItems, msg.c_str());
 				for (int j = 0; j < nActualItems; ++j)

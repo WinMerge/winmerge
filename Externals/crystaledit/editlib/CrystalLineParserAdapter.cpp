@@ -61,7 +61,7 @@ unsigned CrystalLineParserAdapter::ParseLine(int nLineIndex, CrystalLineParser::
 	unsigned dwCookie = GetLineCookie(nLineIndex);
 
 	// Call the legacy parser function
-	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, pBuf, nActualItems, nullptr);
+	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, pBuf, nActualItems);
 
 	// Cache the result cookie for the next line
 	if (nLineIndex < nLineCount)
@@ -87,41 +87,6 @@ void CrystalLineParserAdapter::OnTextChanged(int nStartLine, int nEndLine)
 CrystalLineParser::TextType CrystalLineParserAdapter::GetParserType() const
 {
 	return m_textType;
-}
-
-/**
- * @brief Check if a specific position is inside a comment.
- */
-bool CrystalLineParserAdapter::IsCommentPosition(int nLineIndex, int nCharPos) const
-{
-	if (m_pTextBuffer == nullptr || nLineIndex < 0 || nLineIndex >= m_pTextBuffer->GetLineCount())
-	{
-		return false;
-	}
-
-	// Parse the line to get syntax blocks
-	const int MAX_BLOCKS = 256;
-	CrystalLineParser::TEXTBLOCK blocks[MAX_BLOCKS];
-	int nActualItems = 0;
-
-	// We need to call ParseLine, but it's non-const and modifies cache
-	// Cast away const - this is safe because ParseLine only updates internal cache
-	const_cast<CrystalLineParserAdapter*>(this)->ParseLine(nLineIndex, blocks, nActualItems);
-
-	// Find the block containing nCharPos
-	for (int i = 0; i < nActualItems; i++)
-	{
-		int nBlockStart = blocks[i].m_nCharPos;
-		int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : m_pTextBuffer->GetLineLength(nLineIndex);
-
-		if (nCharPos >= nBlockStart && nCharPos < nBlockEnd)
-		{
-			// Check if this block is a comment
-			return blocks[i].m_nColorIndex == COLORINDEX_COMMENT;
-		}
-	}
-
-	return false;
 }
 
 /**
@@ -164,7 +129,7 @@ unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
 
 	if (m_pTextDef != nullptr && m_pTextDef->ParseLineX != nullptr)
 	{
-		unsigned dwNewCookie = m_pTextDef->ParseLineX(dwPrevCookie, pszChars, nLength, nullptr, nActualItems, nullptr);
+		unsigned dwNewCookie = m_pTextDef->ParseLineX(dwPrevCookie, pszChars, nLength, nullptr, nActualItems);
 		m_ParseCookies[nLineIndex] = dwNewCookie;
 		return dwNewCookie;
 	}

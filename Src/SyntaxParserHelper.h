@@ -50,23 +50,6 @@ public:
 		int nEndLine,
 		std::vector<bool>& allTextIsComment);
 
-	/**
-	 * @brief Check if a specific position is within a comment.
-	 * @param pParser Pointer to the syntax parser.
-	 * @param pTextBuffer Pointer to the text buffer.
-	 * @param nLineIndex Zero-based line index.
-	 * @param nCharPos Zero-based character position in the line.
-	 * @return true if the position is within a comment, false otherwise.
-	 *
-	 * This method parses the line and checks the color index at the specified
-	 * position to determine if it's a comment region.
-	 */
-	static bool IsCommentPosition(
-		ISyntaxParser* pParser,
-		ITextBuffer* pTextBuffer,
-		int nLineIndex,
-		int nCharPos);
-
 private:
 	SyntaxParserHelper() = delete; // Static utility class
 };

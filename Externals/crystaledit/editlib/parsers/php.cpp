@@ -299,13 +299,13 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLinePhp(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems, void *pContext)
+CrystalLineParser::ParseLinePhp(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_PHP, pContext);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_PHP);
 }
 
 unsigned
-CrystalLineParser::ParseLinePhpLanguage (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLinePhpLanguage (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR);

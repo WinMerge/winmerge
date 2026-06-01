@@ -18,7 +18,7 @@
 #include "crystallineparser.h"
 
 unsigned
-CrystalLineParser::ParseLineAsp (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLineAsp (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_BASIC, pContext);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_BASIC);
 }

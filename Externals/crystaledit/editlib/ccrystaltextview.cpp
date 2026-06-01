@@ -391,7 +391,6 @@ CCrystalTextView::CCrystalTextView ()
 , m_panSubLineIndexCache(new std::vector<int>())
 , m_pstrIncrementalSearchString(new CString)
 , m_pstrIncrementalSearchStringOld(new CString)
-, m_ParseCookies(new vector<uint32_t>)
 , m_pnActualLineLength(new vector<int>)
 , m_nIdealCharPos(0)
 , m_bFocused(false)
@@ -486,9 +485,6 @@ CCrystalTextView::~CCrystalTextView ()
   m_pstrIncrementalSearchStringOld = nullptr;
 
   //END SW
-  ASSERT(m_ParseCookies != nullptr);
-  delete m_ParseCookies;
-  m_ParseCookies = nullptr;
   ASSERT(m_pnActualLineLength != nullptr);
   delete m_pnActualLineLength;
   m_pnActualLineLength = nullptr;
@@ -1437,46 +1433,6 @@ GetLineColors (int nLineIndex, CEColor & crBkgnd,
   bDrawWhitespace = false;
 }
 
-DWORD CCrystalTextView::
-GetParseCookie (int nLineIndex)
-{
-  // If using new parser interface, cookies are not needed
-  if (m_pSyntaxParser)
-    return 0;
-
-  // Legacy cookie-based parsing
-  const int nLineCount = GetLineCount ();
-  if (m_ParseCookies->size() == 0)
-    {
-      // must be initialized to invalid value (DWORD) -1
-      m_ParseCookies->assign(nLineCount, static_cast<uint32_t>(-1));
-    }
-
-  if (nLineIndex < 0)
-    return 0;
-  if ((*m_ParseCookies)[nLineIndex] != - 1)
-    return (*m_ParseCookies)[nLineIndex];
-
-  int L = nLineIndex;
-  while (L >= 0 && (*m_ParseCookies)[L] == - 1)
-    L--;
-  L++;
-
-  int nBlocks = 0;
-  while (L <= nLineIndex)
-    {
-      unsigned dwCookie = 0;
-      if (L > 0)
-        dwCookie = (*m_ParseCookies)[L - 1];
-      ASSERT (dwCookie != - 1);
-      (*m_ParseCookies)[L] = ParseLine (dwCookie, L, nullptr, nBlocks, m_pTextBuffer->GetParseContext());
-      ASSERT ((*m_ParseCookies)[L] != - 1);
-      L++;
-    }
-
-  return (*m_ParseCookies)[nLineIndex];
-}
-
 std::vector<TEXTBLOCK> CCrystalTextView::
 GetAdditionalTextBlocks (int nLineIndex)
 {
@@ -1952,14 +1908,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   if (m_pSyntaxParser)
   {
     // Use new parser interface - no cookie management needed
-    ParseLine(0, nLineIndex, blocks.data(), nBlocks, nullptr);
-  }
-  else
-  {
-    // Legacy cookie-based parsing
-    unsigned dwCookie = GetParseCookie(nLineIndex - 1);
-    (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, nLineIndex, blocks.data(), nBlocks, m_pTextBuffer->GetParseContext());
-    ASSERT((*m_ParseCookies)[nLineIndex] != -1);
+    ParseLine(0, nLineIndex, blocks.data(), nBlocks);
   }
 
   ASSERT(nBlocks < static_cast<int>(blocks.size()));
@@ -2734,10 +2683,8 @@ OnDraw (CDC * pdc)
   const int nLineHeight = GetLineHeight ();
   PrepareSelBounds ();
 
-  // if the private arrays (m_ParseCookies and m_pnActualLineLength) 
+  // if the private arrays (m_pnActualLineLength) 
   // are defined, check they are in phase with the text buffer
-  if (m_ParseCookies->size())
-    ASSERT(m_ParseCookies->size() == static_cast<size_t>(nLineCount));
   if (m_pnActualLineLength->size())
     ASSERT(m_pnActualLineLength->size() == static_cast<size_t>(nLineCount));
 
@@ -2844,7 +2791,6 @@ ResetView ()
   m_ptAnchor.x = 0;
   m_ptAnchor.y = 0;
   InvalidateLineCache( 0, -1 );
-  m_ParseCookies->clear();
   m_pnActualLineLength->clear();
   m_ptCursorPos.x = 0;
   m_ptCursorPos.y = 0;
@@ -4797,7 +4743,7 @@ OnSetFocus (CWnd * pOldWnd)
 }
 
 unsigned CCrystalTextView::
-ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 {
   // Always use ISyntaxParser if available
   if (m_pSyntaxParser)
@@ -5084,14 +5030,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     {
       ASSERT (nLineIndex != -1);
       //  All text below this line should be reparsed
-      const int cookiesSize = (int) m_ParseCookies->size();
-      if (cookiesSize > 0)
-        {
-          ASSERT (cookiesSize == nLineCount);
-          // must be reinitialized to invalid value (DWORD) - 1
-          for (int i = nLineIndex; i < cookiesSize; ++i)
-            (*m_ParseCookies)[i] = static_cast<uint32_t>(-1);
-        }
+      m_pSyntaxParser->OnTextChanged(nLineIndex, nLineIndex);
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength->size())
         {
@@ -5115,22 +5054,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
         nLineIndex = 0;         //  Refresh all text
 
       //  All text below this line should be reparsed
-      if (m_ParseCookies->size())
-        {
-          size_t arrSize = m_ParseCookies->size();
-          if (arrSize != static_cast<size_t>(nLineCount))
-            {
-              size_t oldsize = arrSize; 
-              m_ParseCookies->resize(nLineCount);
-              arrSize = nLineCount;
-              // must be initialized to invalid value (DWORD) - 1
-              for (size_t i = oldsize; i < arrSize; ++i)
-                (*m_ParseCookies)[i] = static_cast<uint32_t>(-1);
-            }
-          for (size_t i = nLineIndex; i < arrSize; ++i)
-            (*m_ParseCookies)[i] = static_cast<uint32_t>(-1);
-        }
-
+      m_pSyntaxParser->OnTextChanged(0, nLineCount - 1);
       //  Recalculate actual length for all lines below this
       if (m_pnActualLineLength->size())
         {
@@ -6389,224 +6313,6 @@ OnMatchBrace ()
           SetAnchor(ptMatch);
           EnsureVisible(ptMatch);
           return;
-        }
-    }
-
-  // Legacy fallback: if no parser or parser doesn't support brace matching
-  int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
-  const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y), *pszEnd = pszText + ptCursorPos.x;
-  bool bAfter = false;
-  int nType = 0;
-  if (ptCursorPos.x < nLength)
-    {
-      nType = bracetype (*pszEnd);
-      if (nType)
-        {
-          bAfter = false;
-        }
-      else if (ptCursorPos.x > 0)
-        {
-          nType = bracetype (pszEnd[-1]);
-          bAfter = true;
-        }
-    }
-  else if (ptCursorPos.x > 0)
-    {
-      nType = bracetype (pszEnd[-1]);
-      bAfter = true;
-    }
-  if (nType)
-    {
-      int nOther, nCount = 0, nComment = 0;
-      if (bAfter)
-        {
-          nOther = ((nType - 1) ^ 1) + 1;
-          if (nOther & 1)
-            pszEnd--;
-        }
-      else
-        {
-          nOther = ((nType - 1) ^ 1) + 1;
-          if (!(nOther & 1))
-            pszEnd++;
-        }
-
-      // Get comment syntax from current text type definition
-      const tchar_t* pszOpenComment = _T("");
-      const tchar_t* pszCloseComment = _T("");
-      const tchar_t* pszCommentLine = _T("");
-
-      if (m_nCurrentTextType >= 0 && m_nCurrentTextType < CrystalLineParser::SRC_MAX_ENTRY)
-        {
-          const CrystalLineParser::TextDefinition* pDef = &CrystalLineParser::m_SourceDefs[m_nCurrentTextType];
-          pszOpenComment = pDef->opencomment;
-          pszCloseComment = pDef->closecomment;
-          pszCommentLine = pDef->commentline;
-        }
-
-      const tchar_t* pszTest;
-      int nOpenComment = (int) tc::tcslen (pszOpenComment),
-        nCloseComment = (int) tc::tcslen (pszCloseComment),
-        nCommentLine = (int) tc::tcslen (pszCommentLine);
-      if (nOther & 1)
-        {
-          for (;;)
-            {
-              while (--pszEnd >= pszText)
-                {
-                  pszTest = pszEnd - nOpenComment + 1;
-                  if (pszTest >= pszText && !tc::tcsnicmp (pszTest, pszOpenComment, nOpenComment))
-                    {
-                      nComment--;
-                      pszEnd = pszTest;
-                      if (--pszEnd < pszText)
-                        {
-                          break;
-                        }
-                    }
-                  pszTest = pszEnd - nCloseComment + 1;
-                  if (pszTest >= pszText && !tc::tcsnicmp (pszTest, pszCloseComment, nCloseComment))
-                    {
-                      nComment++;
-                      pszEnd = pszTest;
-                      if (--pszEnd < pszText)
-                        {
-                          break;
-                        }
-                    }
-                  if (!nComment)
-                    {
-                      // Check if current position is in a comment
-                      bool bInComment = false;
-                      if (m_pSyntaxParser != nullptr)
-                        {
-                          // Use ISyntaxParser if available
-                          int nCharPos = static_cast<int>(pszEnd - pszText);
-                          bInComment = m_pSyntaxParser->IsCommentPosition(ptCursorPos.y, nCharPos);
-                        }
-                      else
-                        {
-                          // Fall back to legacy comment detection
-                          pszTest = pszEnd - nCommentLine + 1;
-                          bInComment = (pszTest >= pszText && !tc::tcsnicmp (pszTest, pszCommentLine, nCommentLine));
-                        }
-
-                      if (bInComment)
-                        {
-                          break;
-                        }
-                      if (bracetype (*pszEnd) == nType)
-                        {
-                          nCount++;
-                        }
-                      else if (bracetype (*pszEnd) == nOther)
-                        {
-                          if (!nCount--)
-                            {
-                              ptCursorPos.x = (LONG) (pszEnd - pszText);
-                              if (bAfter)
-                                ptCursorPos.x++;
-                              SetCursorPos (ptCursorPos);
-                              SetSelection (ptCursorPos, ptCursorPos);
-                              SetAnchor (ptCursorPos);
-                              EnsureVisible (ptCursorPos);
-                              return;
-                            }
-                        }
-                    }
-                }
-              if (ptCursorPos.y)
-                {
-                  ptCursorPos.x = m_pTextBuffer->GetLineLength (--ptCursorPos.y);
-                  pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y);
-                  pszEnd = pszText + ptCursorPos.x;
-                }
-              else
-                break;
-            }
-        }
-      else
-        {
-          const tchar_t* pszBegin = pszText;
-          pszText = pszEnd;
-          pszEnd = pszBegin + nLength;
-          int nLines = m_pTextBuffer->GetLineCount ();
-          for (;;)
-            {
-              while (pszText < pszEnd)
-                {
-                  pszTest = pszText + nCloseComment;
-                  if (pszTest <= pszEnd && !tc::tcsnicmp (pszText, pszCloseComment, nCloseComment))
-                    {
-                      nComment--;
-                      pszText = pszTest;
-                      if (pszText > pszEnd)
-                        {
-                          break;
-                        }
-                    }
-                  pszTest = pszText + nOpenComment;
-                  if (pszTest <= pszEnd && !tc::tcsnicmp (pszText, pszOpenComment, nOpenComment))
-                    {
-                      nComment++;
-                      pszText = pszTest;
-                      if (pszText > pszEnd)
-                        {
-                          break;
-                        }
-                    }
-                  if (!nComment)
-                    {
-                      // Check if current position is in a comment
-                      bool bInComment = false;
-                      if (m_pSyntaxParser != nullptr)
-                        {
-                          // Use ISyntaxParser if available
-                          int nCharPos = static_cast<int>(pszText - pszBegin);
-                          bInComment = m_pSyntaxParser->IsCommentPosition(ptCursorPos.y, nCharPos);
-                        }
-                      else
-                        {
-                          // Fall back to legacy comment detection
-                          pszTest = pszText + nCommentLine;
-                          bInComment = (pszTest <= pszEnd && !tc::tcsnicmp (pszText, pszCommentLine, nCommentLine));
-                        }
-
-                      if (bInComment)
-                        {
-                          break;
-                        }
-                      if (bracetype (*pszText) == nType)
-                        {
-                          nCount++;
-                        }
-                      else if (bracetype (*pszText) == nOther)
-                        {
-                          if (!nCount--)
-                            {
-                              ptCursorPos.x = (LONG) (pszText - pszBegin);
-                              if (bAfter)
-                                ptCursorPos.x++;
-                              SetCursorPos (ptCursorPos);
-                              SetSelection (ptCursorPos, ptCursorPos);
-                              SetAnchor (ptCursorPos);
-                              EnsureVisible (ptCursorPos);
-                              return;
-                            }
-                        }
-                    }
-                  pszText++;
-                }
-              if (ptCursorPos.y < nLines)
-                {
-                  ptCursorPos.x = 0;
-                  nLength = m_pTextBuffer->GetLineLength (++ptCursorPos.y);
-                  pszBegin = pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y);
-                  pszEnd = pszBegin + nLength;
-                }
-              else
-                break;
-            }
         }
     }
 }

@@ -30,7 +30,7 @@ static void AdjustCharPosInTextBlocks(CrystalLineParser::TEXTBLOCK* pBuf, int st
 }
 
 unsigned
-CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage, void *pContext)
+CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage)
 {
   if (nLength == 0)
     {
@@ -102,7 +102,7 @@ out:
               const tchar_t *pszEnd = tc::tcsstr(pszChars + I, _T("</script>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
               int nActualItemsEmbedded = 0;
-              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded, pContext);
+              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
               AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
               nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
@@ -119,7 +119,7 @@ out:
               const tchar_t *pszEnd = tc::tcsstr(pszChars + I, _T("</style>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
               int nActualItemsEmbedded = 0;
-              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded, pContext);
+              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
               AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
               nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
@@ -139,7 +139,7 @@ out:
                   if (!pszEnd)
                     pszEnd = tc::tcsstr(pszChars + I, _T("%>"));
                   int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-                  unsigned (*pParseLineFunc)(unsigned, const tchar_t *, int, TEXTBLOCK *, int &, void *);
+                  unsigned (*pParseLineFunc)(unsigned, const tchar_t *, int, TEXTBLOCK *, int &);
                   switch (nEmbeddedLanguage)
                   {
                   case SRC_BASIC: pParseLineFunc = ParseLineBasic; break;
@@ -147,7 +147,7 @@ out:
                   default: pParseLineFunc = ParseLineJavaScript; break;
                   }
                   int nActualItemsEmbedded = 0;
-                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded, pContext);
+                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
                   AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
                   nActualItems += nActualItemsEmbedded;
                   if (!pszEnd)
@@ -185,7 +185,7 @@ out:
                   int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
                   int nActualItemsEmbedded = 0;
                   int nOffset = (I > 0 && pszChars[I - 1] == '{') ? (I - 1) : I;
-                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, pBuf + nActualItems, nActualItemsEmbedded, pContext);
+                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, pBuf + nActualItems, nActualItemsEmbedded);
                   AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, nOffset);
                   nActualItems += nActualItemsEmbedded;
                   if (!pszEnd)
@@ -433,7 +433,7 @@ next:
 }
 
 unsigned
-CrystalLineParser::ParseLineHtml (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLineHtml (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_JAVA, pContext);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_JAVA);
 }

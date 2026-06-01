@@ -118,7 +118,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineSh (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLineSh (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

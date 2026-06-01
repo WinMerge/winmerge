@@ -258,8 +258,6 @@ public:
      */
     std::wstring GetNodeTypeAt(int nLineIndex, int nCharPos) const;
 
-    bool IsCommentPosition(int nLineIndex, int nCharPos) const;
-
     bool FindDefinition(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
 
     /**

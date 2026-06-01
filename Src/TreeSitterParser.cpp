@@ -1880,12 +1880,6 @@ std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) cons
 #endif
 }
 
-bool CTreeSitterParser::IsCommentPosition(int nLineIndex, int nCharPos) const
-{
-    const std::wstring sNodeType = GetNodeTypeAt(nLineIndex, nCharPos);
-    return sNodeType.find(L"comment") != std::wstring::npos;
-}
-
 bool CTreeSitterParser::FindMatchingBrace(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
 {
     if (m_pTree == nullptr || pBuffer == nullptr)

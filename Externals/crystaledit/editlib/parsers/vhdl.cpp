@@ -363,7 +363,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineVhdl (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
+CrystalLineParser::ParseLineVhdl (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

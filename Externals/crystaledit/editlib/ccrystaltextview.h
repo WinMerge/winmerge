@@ -149,20 +149,6 @@ private:
     // New parser abstraction interface (optional, for gradual migration)
     std::unique_ptr<ISyntaxParser> m_pSyntaxParser;
 
-    /**  
-    This array must be initialized to (DWORD) - 1, code for invalid values (not yet computed).
-    We prefer to limit the recomputing delay to the moment when we need to read
-    a parseCookie value for drawing.
-    GetParseCookie must always be used to read the m_ParseCookies value of a line.
-    If the actual value is invalid code, GetParseCookie computes the value, 
-    stores it in m_ParseCookies, and returns the new valid value.
-    When we edit the text, the parse cookies value may change for the modified line
-    and all the lines below (As m_ParseCookies[line i] depends on m_ParseCookies[line (i-1)])
-    It would be a loss of time to recompute all these values after each action.
-    So we just set all these values to invalid code (DWORD) - 1.
-    */
-    std::vector<uint32_t> *m_ParseCookies;
-    DWORD GetParseCookie (int nLineIndex);
 
     /**
     Pre-calculated line lengths (in characters)
@@ -612,7 +598,6 @@ protected:
     */
     virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
     virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
-    void InvalidateParseCookies() { m_ParseCookies->clear(); }
     void InvalidateScreenRect(bool bInvalidateView = true);
     void InvalidateVertScrollBar();
     void InvalidateHorzScrollBar();
@@ -701,7 +686,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    unsigned ParseLine (unsigned dwCookie, int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, void *pContext);
+    unsigned ParseLine (unsigned dwCookie, int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :
