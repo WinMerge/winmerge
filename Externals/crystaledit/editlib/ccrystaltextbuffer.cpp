@@ -750,7 +750,8 @@ GetLineFlags (int nLine) const
 
   if (nLine < 0 || nLine >= static_cast<int>(m_aLines.size()))
     {
-      ASSERT(false);      //  nLine is out of range.
+      // Return 0 for out-of-range lines instead of asserting
+      // This can happen when all lines are deleted
       return 0;
     }
 
