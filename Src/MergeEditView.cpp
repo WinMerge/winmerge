@@ -4088,6 +4088,10 @@ bool CMergeEditView::IsDiffVisible(int nDiff)
  */
 bool CMergeEditView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/)
 {
+	int nLineCount = GetLineCount();
+	if (diff.dbegin >= nLineCount || diff.dend >= nLineCount)
+		return false; // Invalid diff range
+
 	const int nDiffStart = GetSubLineIndex(diff.dbegin);
 	const int nDiffEnd = GetSubLineIndex(diff.dend);
 	// Diff's height is last line - first line + last line's line count
@@ -4127,6 +4131,10 @@ bool CMergeEditView::IsDiffFiltered(int nDiff)
  */
 bool CMergeEditView::IsDiffFiltered(const DIFFRANGE& diff)
 {
+	int nLineCount = GetLineCount();
+	if (diff.dbegin >= nLineCount || diff.dend >= nLineCount)
+		return false; // Invalid diff range
+
 	// Check if all lines in the diff range have the LF_INVISIBLE flag
 	for (int line = diff.dbegin; line <= diff.dend; ++line)
 	{
