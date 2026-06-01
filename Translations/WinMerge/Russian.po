@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-04-28 00:00+0000\n"
+"PO-Revision-Date: 2026-06-01 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -117,12 +117,12 @@ msgstr "Выбрать &отличие\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "Добавить в фильтры"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "Добавить в фильтр отображения"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -234,17 +234,17 @@ msgstr "Фильтр по этому столбцу"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:154 Merge.rc:1876
 msgid "&Text..."
-msgstr ""
+msgstr "Текст..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:155 Merge.rc:1877
 msgid "&Number..."
-msgstr ""
+msgstr "Номер..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156 Merge.rc:1878
 msgid "&Date/Time..."
-msgstr ""
+msgstr "Дата/время..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
@@ -2925,97 +2925,97 @@ msgstr "Нормализовать Юникод"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1871
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "Добавить условие строки"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1873
 msgid "L&ine Text..."
-msgstr ""
+msgstr "Текст строки..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874 Merge.rc:1929
 msgid "&Column"
-msgstr ""
+msgstr "Столбец"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1879 Merge.rc:1954
 msgid "Column: &1"
-msgstr ""
+msgstr "Столбец: &1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1880 Merge.rc:1955
 msgid "Column: &2"
-msgstr ""
+msgstr "Столбец: &2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1881 Merge.rc:1956
 msgid "Column: &3"
-msgstr ""
+msgstr "Столбец: &3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1882 Merge.rc:1957
 msgid "Column: &4"
-msgstr ""
+msgstr "Столбец: &4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &5"
-msgstr ""
+msgstr "Столбец: &5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &6"
-msgstr ""
+msgstr "Столбец: &6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &7"
-msgstr ""
+msgstr "Столбец: &7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &8"
-msgstr ""
+msgstr "Столбец: &8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &9"
-msgstr ""
+msgstr "Столбец: &9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1888 Merge.rc:1963
 msgid "Column: 1&0"
-msgstr ""
+msgstr "Столбец: 1&0"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1890
 msgid "Line L&ength..."
-msgstr ""
+msgstr "Длина строки..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1891
 msgid "&Word Count..."
-msgstr ""
+msgstr "Количество слов..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1892
 msgid "Line &Number"
-msgstr ""
+msgstr "Номер строки"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1894
 msgid "&Odd Lines"
-msgstr ""
+msgstr "Нечётные строки"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1895
 msgid "&Even Lines"
-msgstr ""
+msgstr "Чётные строки"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1898 Merge.rc:1982
 msgid "Line &Status"
-msgstr ""
+msgstr "Состояния строки"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
@@ -3032,17 +3032,17 @@ msgstr "Идентичные"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_TRIVIAL
 #: Merge.rc:1902 Merge.rc:1986
 msgid "Trivial"
-msgstr ""
+msgstr "Тривиальное"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EXISTS
 #: Merge.rc:1904
 msgid "Exists"
-msgstr ""
+msgstr "Существует"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1905
 msgid "Missing"
-msgstr ""
+msgstr "Отсутствует"
 
 #. IDS_MOVED
 #: Merge.rc:1906 Merge.rc:5018
@@ -3052,47 +3052,47 @@ msgstr "Перемещено"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1907
 msgid "Bookmarked"
-msgstr ""
+msgstr "В закладках"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1909 Merge.rc:1988
 msgid "&EOL"
-msgstr ""
+msgstr "&EOL"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1924
 msgid "L&ine Text"
-msgstr ""
+msgstr "Текст строки"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1936
 msgid "&Number"
-msgstr ""
+msgstr "Номер"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
+msgstr "Дата/Время"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965
 msgid "Line L&ength"
-msgstr ""
+msgstr "Длина строки"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1999
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "Преобразование строки/столбца"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
 msgid "&Trim"
-msgstr ""
+msgstr "Обрезать"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2002
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "Нормализовать пробелы"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2003 Merge.rc:2279
@@ -3102,77 +3102,77 @@ msgstr "&Заменить"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2004
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "Замена регулярных выражений"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2038
 msgid "&Refine Current Filter"
-msgstr ""
+msgstr "Уточнить текущий фильтр"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2040
 msgid "Add Con&text Lines"
-msgstr ""
+msgstr "Добавить контекстные строки"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2048
 msgid "Filter by &Occurrence"
-msgstr ""
+msgstr "Фильтр по вхождению"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2050
 msgid "&First"
-msgstr ""
+msgstr "Первый"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2051
 msgid "&Last"
-msgstr ""
+msgstr "Последний"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2052
 msgid "First &5 Matches"
-msgstr ""
+msgstr "Первые &5 совпадений"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2053
 msgid "After First &5"
-msgstr ""
+msgstr "После первых &5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2056
 msgid "By &Block"
-msgstr ""
+msgstr "По блоку"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2058
 msgid "&Range"
-msgstr ""
+msgstr "Диапазон"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2060 Merge.rc:2066
 msgid "&Inside..."
-msgstr ""
+msgstr "Внутри..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2061 Merge.rc:2067
 msgid "&Outside..."
-msgstr ""
+msgstr "Снаружи..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2064
 msgid "Create &Range"
-msgstr ""
+msgstr "Создать диапазон"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2072
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "Совместить: И(A&ND)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2073
 msgid "Combine: &OR"
-msgstr ""
+msgstr "Совместить: ИЛИ(&OR)"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2188
@@ -4348,22 +4348,22 @@ msgstr "Только справа (отсутствуют)"
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2879
 msgid "Match Inside/Outside Filter Expressions"
-msgstr ""
+msgstr "Совпадение внутри/снаружи выражения фильтра"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2882
 msgid "&Start filter:"
-msgstr ""
+msgstr "Начальный фильтр:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2885
 msgid "&End filter:"
-msgstr ""
+msgstr "Конечный фильтр:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2888
 msgid "Lines between start and end filter matches will be included."
-msgstr ""
+msgstr "Строки между начальным и конечным совпадениями фильтра будут включены."
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2895 Merge.rc:3087 Merge.rc:4504
@@ -8836,7 +8836,7 @@ msgstr "Декомпилятор Java (CFR).\r\nДекомпилирует фа�
 
 #: Strings.rc:206
 msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
-msgstr ""
+msgstr "Обработчик схемы URL буфера обмена (cliphcat).\r\nАргументы: Параметры командной строки, передаваемые команде cliphcat."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
