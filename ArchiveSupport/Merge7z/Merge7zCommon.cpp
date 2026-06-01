@@ -733,8 +733,8 @@ DEFINE_FORMAT(CXzHandler,		0C, "xz txz");
 DEFINE_FORMAT(CPpmdHandler,		0D, "");
 DEFINE_FORMAT(CZstdHandler,		0E,  "zst tzst");
 
-DEFINE_FORMAT(CLvmHandler,		BF, "");
-DEFINE_FORMAT(CAvbHandler,		C0, "");
+//DEFINE_FORMAT(CLvmHandler,		BF, "");
+//DEFINE_FORMAT(CAvbHandler,		C0, "");
 DEFINE_FORMAT(CLpHandler,		C1, "");
 DEFINE_FORMAT(CSparseHandler,	C2, "");
 DEFINE_FORMAT(CApFsHandler,		C3, "");

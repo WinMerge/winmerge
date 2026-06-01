@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-02-03 07:46+0000\n"
-"PO-Revision-Date: 2026-05-02 14:40-0400\n"
+"POT-Creation-Date: 2026-05-27 07:01+0000\n"
+"PO-Revision-Date: 2026-05-31 17:10-0400\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -122,12 +122,12 @@ msgstr "&Sélectionner la différence suivante\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "Ajouter aux &filtres"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "Ajouter au filtre &d'affichage"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -239,17 +239,17 @@ msgstr "&Filtrer par cette colonne"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:154 Merge.rc:1876
 msgid "&Text..."
-msgstr ""
+msgstr "&Texte..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:155 Merge.rc:1877
 msgid "&Number..."
-msgstr ""
+msgstr "&Numéro..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156 Merge.rc:1878
 msgid "&Date/Time..."
-msgstr ""
+msgstr "&Date/Heure..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
@@ -2930,97 +2930,97 @@ msgstr "Normaliser l'&Unicode"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1871
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "Ajouter une condition de l&igne"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1873
 msgid "L&ine Text..."
-msgstr ""
+msgstr "Texte de la l&igne..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874 Merge.rc:1929
 msgid "&Column"
-msgstr ""
+msgstr "&Colonne"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1879 Merge.rc:1954
 msgid "Column: &1"
-msgstr ""
+msgstr "Colonne : &1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1880 Merge.rc:1955
 msgid "Column: &2"
-msgstr ""
+msgstr "Colonne : &2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1881 Merge.rc:1956
 msgid "Column: &3"
-msgstr ""
+msgstr "Colonne : &3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1882 Merge.rc:1957
 msgid "Column: &4"
-msgstr ""
+msgstr "Colonne : &4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &5"
-msgstr ""
+msgstr "Colonne : &5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &6"
-msgstr ""
+msgstr "Colonne : &6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &7"
-msgstr ""
+msgstr "Colonne : &7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &8"
-msgstr ""
+msgstr "Colonne : &8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &9"
-msgstr ""
+msgstr "Colonne : &9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1888 Merge.rc:1963
 msgid "Column: 1&0"
-msgstr ""
+msgstr "Colonne : &10"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1890
 msgid "Line L&ength..."
-msgstr ""
+msgstr "Longu&eur de la ligne..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1891
 msgid "&Word Count..."
-msgstr ""
+msgstr "Nombre de &mots..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1892
 msgid "Line &Number"
-msgstr ""
+msgstr "&Numéro de la ligne"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1894
 msgid "&Odd Lines"
-msgstr ""
+msgstr "Lignes &impaires"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1895
 msgid "&Even Lines"
-msgstr ""
+msgstr "Lignes &paires"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1898 Merge.rc:1982
 msgid "Line &Status"
-msgstr ""
+msgstr "É&tat de la ligne"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
@@ -3037,17 +3037,17 @@ msgstr "Identique"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_TRIVIAL
 #: Merge.rc:1902 Merge.rc:1986
 msgid "Trivial"
-msgstr ""
+msgstr "Trivial"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EXISTS
 #: Merge.rc:1904
 msgid "Exists"
-msgstr ""
+msgstr "Existe"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1905
 msgid "Missing"
-msgstr ""
+msgstr "Manquant"
 
 #. IDS_MOVED
 #: Merge.rc:1906 Merge.rc:5018
@@ -3057,47 +3057,47 @@ msgstr "Déplacé"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1907
 msgid "Bookmarked"
-msgstr ""
+msgstr "Mis en favori"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1909 Merge.rc:1988
 msgid "&EOL"
-msgstr ""
+msgstr "&EOL"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1924
 msgid "L&ine Text"
-msgstr ""
+msgstr "Texte de la l&igne"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1936
 msgid "&Number"
-msgstr ""
+msgstr "&Numéro"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
+msgstr "&Date/Heure"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965
 msgid "Line L&ength"
-msgstr ""
+msgstr "Longu&eur de la ligne"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1999
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "&Transformer la ligne/colonne"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
 msgid "&Trim"
-msgstr ""
+msgstr "&Rogner"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2002
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "Normaliser les &espaces"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2003 Merge.rc:2279
@@ -3107,77 +3107,77 @@ msgstr "&Remplacer"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2004
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "Remplacement reg&ex "
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2038
 msgid "&Refine Current Filter"
-msgstr ""
+msgstr "Affiner le filt&re actuel"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2040
 msgid "Add Con&text Lines"
-msgstr ""
+msgstr "Ajouter des lignes de con&texte"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2048
 msgid "Filter by &Occurrence"
-msgstr ""
+msgstr "Filtrer par &occurrence"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2050
 msgid "&First"
-msgstr ""
+msgstr "&Premier"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2051
 msgid "&Last"
-msgstr ""
+msgstr "&Dernier"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2052
 msgid "First &5 Matches"
-msgstr ""
+msgstr "&5 premières correspondances"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2053
 msgid "After First &5"
-msgstr ""
+msgstr "Après les &5 premières"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2056
 msgid "By &Block"
-msgstr ""
+msgstr "Par &bloc"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2058
 msgid "&Range"
-msgstr ""
+msgstr "&Plage"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2060 Merge.rc:2066
 msgid "&Inside..."
-msgstr ""
+msgstr "À l'&intérieur..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2061 Merge.rc:2067
 msgid "&Outside..."
-msgstr ""
+msgstr "En deh&ors..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2064
 msgid "Create &Range"
-msgstr ""
+msgstr "Créer une &plage"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2072
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "Combiner : A&ND"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2073
 msgid "Combine: &OR"
-msgstr ""
+msgstr "Combiner : &OR"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2188
@@ -4355,22 +4355,22 @@ msgstr "Droite seulement (manquant)"
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2879
 msgid "Match Inside/Outside Filter Expressions"
-msgstr ""
+msgstr "Correspondre à l’intérieur/extérieur du filtre d'expressions"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2882
 msgid "&Start filter:"
-msgstr ""
+msgstr "Filtre de &début :"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2885
 msgid "&End filter:"
-msgstr ""
+msgstr "Filtre de &fin :"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2888
 msgid "Lines between start and end filter matches will be included."
-msgstr ""
+msgstr "Les lignes situées entre les correspondances de filtre de début et de fin seront incluses."
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2895 Merge.rc:3087 Merge.rc:4504
