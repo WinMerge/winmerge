@@ -1908,7 +1908,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   if (m_pSyntaxParser)
   {
     // Use new parser interface - no cookie management needed
-    ParseLine(0, nLineIndex, blocks.data(), nBlocks);
+    ParseLine(nLineIndex, blocks.data(), nBlocks);
   }
 
   ASSERT(nBlocks < static_cast<int>(blocks.size()));
@@ -4743,7 +4743,7 @@ OnSetFocus (CWnd * pOldWnd)
 }
 
 unsigned CCrystalTextView::
-ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
+ParseLine (int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 {
   // Always use ISyntaxParser if available
   if (m_pSyntaxParser)
@@ -5029,8 +5029,6 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
   if ((dwFlags & UPDATE_SINGLELINE) != 0)
     {
       ASSERT (nLineIndex != -1);
-      //  All text below this line should be reparsed
-      m_pSyntaxParser->OnTextChanged(nLineIndex, nLineIndex);
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength->size())
         {
@@ -5053,8 +5051,6 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       if (nLineIndex == -1)
         nLineIndex = 0;         //  Refresh all text
 
-      //  All text below this line should be reparsed
-      m_pSyntaxParser->OnTextChanged(0, nLineCount - 1);
       //  Recalculate actual length for all lines below this
       if (m_pnActualLineLength->size())
         {
@@ -5162,6 +5158,11 @@ SetAnchor (const CEPoint & ptNewAnchor)
 {
   ASSERT_VALIDTEXTPOS (ptNewAnchor);
   m_ptAnchor = ptNewAnchor;
+}
+
+void CCrystalTextView::
+OnEditOperation2 (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
+{
 }
 
 void CCrystalTextView::

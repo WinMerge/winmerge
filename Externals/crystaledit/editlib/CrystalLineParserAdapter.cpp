@@ -73,23 +73,14 @@ unsigned CrystalLineParserAdapter::ParseLine(int nLineIndex, CrystalLineParser::
 }
 
 /**
- * @brief Notify the parser that the text buffer has been modified.
- */
-void CrystalLineParserAdapter::OnTextChanged(int nStartLine, int nEndLine)
-{
-	// Invalidate parse state from the first modified line
-	InvalidateFromLine(nStartLine);
-}
-
-/**
  * @brief Notify the parser of a detailed text edit.
  * Legacy line-based parsers don't use detailed edit information;
  * they just invalidate state from the start line.
  */
-void CrystalLineParserAdapter::NotifyEdit(const TextEdit& textEdit)
+void CrystalLineParserAdapter::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
 	// Invalidate from the start line of the edit
-	InvalidateFromLine(textEdit.ptStartPos.y);
+	InvalidateFromLine(ptStartPos.y);
 }
 
 /**

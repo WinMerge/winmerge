@@ -1680,6 +1680,10 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, const tchar_t* pszT
   if (bGroupFlag)
     FlushUndoGroup (pSource);
 
+  if (pSource)
+    pSource->OnEditOperation2(true, CEPoint (nPos, nLine),
+        CEPoint (nEndChar, nEndLine), pszText, cchText, nAction);
+
   return true;
 }
 
@@ -1797,6 +1801,10 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 
   AddUndoRecord (false, CEPoint (nStartChar, nStartLine), CEPoint (nEndChar, nEndLine),
                  sTextToDelete.c_str (), sTextToDelete.length (), nAction, paSavedRevisionNumbers);
+
+  if (pSource)
+    pSource->OnEditOperation2(false, CEPoint (nStartChar, nStartLine),
+        CEPoint (nEndChar, nEndLine), sTextToDelete.c_str (), sTextToDelete.length (), nAction);
 
   return true;
 }

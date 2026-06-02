@@ -52,25 +52,11 @@ unsigned TreeSitterParserAdapter::ParseLine(int nLineIndex, CrystalLineParser::T
 }
 
 /**
- * @brief Notify the parser that the text buffer has been modified.
- */
-void TreeSitterParserAdapter::OnTextChanged(int nStartLine, int nEndLine)
-{
-	// For now, just mark dirty. If NotifyEdit is called with detailed info,
-	// it will use incremental parsing instead.
-	// This fallback is used when only line range is available.
-	if (m_pTextBuffer != nullptr)
-	{
-		m_parser.MarkDirty();
-	}
-}
-
-/**
  * @brief Notify the parser of a detailed text edit for incremental parsing.
  * This enables efficient incremental reparsing using tree-sitter's built-in
  * incremental parsing feature.
  */
-void TreeSitterParserAdapter::NotifyEdit(const TextEdit& textEdit)
+void TreeSitterParserAdapter::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
 	if (m_pTextBuffer == nullptr)
 	{
@@ -78,7 +64,7 @@ void TreeSitterParserAdapter::NotifyEdit(const TextEdit& textEdit)
 	}
 
 	// Delegate to the underlying Tree-sitter parser for incremental reparsing
-	m_parser.NotifyEdit(textEdit);
+	m_parser.NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
 }
 
 /**

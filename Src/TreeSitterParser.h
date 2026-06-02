@@ -37,7 +37,7 @@ typedef struct TSQuery TSQuery;
 typedef struct TSLanguage TSLanguage;
 
 class ITextBuffer;
-struct TextEdit;
+struct CEPoint;
 
 /**
  * @brief Manages a tree-sitter grammar loaded from a DLL.
@@ -204,7 +204,7 @@ public:
      *
      * @param textEdit  The edit information (position, type, text).
      */
-    void NotifyEdit(const TextEdit& textEdit);
+    void NotifyEdit(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType);
 
     /**
      * @brief Ensure the document is parsed and cache is up-to-date.

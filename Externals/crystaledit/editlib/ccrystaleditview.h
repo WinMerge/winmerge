@@ -130,6 +130,7 @@ public :
     bool ReplaceSelection (const tchar_t* pszNewText, size_t cchNewText, DWORD dwFlags, bool bGroupWithPrevious = false);
 
     virtual void OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText) override;
+    virtual void OnEditOperation2 (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def) override;
 

@@ -74,6 +74,7 @@
 #include "utils/cs2cs.h"
 #include "utils/string_util.h"
 #include "utils/icu.hpp"
+#include "ISyntaxParser.h"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -1819,6 +1820,13 @@ isclosebrace (const tchar_t* s)
 
 int bracetype (tchar_t c);
 int bracetype (const tchar_t* s);
+
+void CCrystalEditView::
+OnEditOperation2(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
+{
+  if (m_pSyntaxParser != nullptr)
+    m_pSyntaxParser->NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
+}
 
 void CCrystalEditView::
 OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)

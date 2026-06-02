@@ -23,8 +23,7 @@ public:
 	// ISyntaxParser interface implementation
 	void SetTextBuffer(ITextBuffer* pTextBuffer) override;
 	unsigned ParseLine(int nLineIndex, CrystalLineParser::TEXTBLOCK* pBuf, int& nActualItems) override;
-	void OnTextChanged(int nStartLine, int nEndLine) override;
-	void NotifyEdit(const TextEdit& textEdit) override;
+	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 	CrystalLineParser::TextType GetParserType() const override;
 	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
 

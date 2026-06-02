@@ -451,7 +451,7 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
  *
  * Falls back to a simple MarkDirty() if the tree or undo info is unavailable.
  */
-void CTreeSitterParser::NotifyEdit(const TextEdit& textEdit)
+void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
     m_bDirty = true;
 
@@ -585,12 +585,12 @@ void CTreeSitterParser::NotifyEdit(const TextEdit& textEdit)
     TSInputEdit tsEdit;
     memset(&tsEdit, 0, sizeof(tsEdit));
 
-    if (textEdit.bInsert)
+    if (bInsert)
     {
         // Insert: old range is empty (start == old_end), new range is the inserted text
-        tsEdit.start_byte = charPosToByteOffset(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
+        tsEdit.start_byte = charPosToByteOffset(ptStartPos.y, ptStartPos.x);
         tsEdit.old_end_byte = tsEdit.start_byte;
-        tsEdit.start_point = charPosToTSPoint(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
+        tsEdit.start_point = charPosToTSPoint(ptStartPos.y, ptStartPos.x);
         tsEdit.old_end_point = tsEdit.start_point;
 
         // For new_end, we need the end position after insert.
@@ -600,8 +600,8 @@ void CTreeSitterParser::NotifyEdit(const TextEdit& textEdit)
         // Instead, compute new_end_byte = start_byte + utf8_length_of_inserted_text.
         // Normalize to LF-only: ParseDocument() concatenates lines with '\n' (no '\r'),
         // so '\r' bytes must be excluded from all byte-offset calculations.
-        const tchar_t* pInsText = textEdit.pszText;
-        size_t nInsLen = textEdit.nTextLength;
+        const tchar_t* pInsText = pszText;
+        size_t nInsLen = cchText;
 #ifdef _UNICODE
         // Convert to UTF-8 and strip '\r' to match ParseDocument()'s representation.
         int nRawUtf8Len = WideCharToMultiByte(CP_UTF8, 0,
@@ -622,7 +622,7 @@ void CTreeSitterParser::NotifyEdit(const TextEdit& textEdit)
         int nCrCount = static_cast<int>(std::count(pInsText, pInsText + nInsLen, static_cast<char>('\r')));
         tsEdit.new_end_byte = tsEdit.start_byte + static_cast<uint32_t>(nInsLen - nCrCount);
 #endif
-        tsEdit.new_end_point.row = static_cast<uint32_t>(textEdit.ptEndPos.y);
+        tsEdit.new_end_point.row = static_cast<uint32_t>(ptEndPos.y);
         // For the column, we can compute it from the text: count bytes after last newline
         uint32_t lastNewlineBytes = 0;
         bool foundNewline = false;
@@ -660,12 +660,12 @@ void CTreeSitterParser::NotifyEdit(const TextEdit& textEdit)
     else
     {
         // Delete: old range is the deleted text, new range is empty (start == new_end)
-        tsEdit.start_byte = charPosToByteOffset(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
-        tsEdit.start_point = charPosToTSPoint(textEdit.ptStartPos.y, textEdit.ptStartPos.x);
+        tsEdit.start_byte = charPosToByteOffset(ptStartPos.y, ptStartPos.x);
+        tsEdit.start_point = charPosToTSPoint(ptStartPos.y, ptStartPos.x);
 
         // For old_end, we use the old document positions
-        tsEdit.old_end_byte = charPosToByteOffset(textEdit.ptEndPos.y, textEdit.ptEndPos.x);
-        tsEdit.old_end_point = charPosToTSPoint(textEdit.ptEndPos.y, textEdit.ptEndPos.x);
+        tsEdit.old_end_byte = charPosToByteOffset(ptEndPos.y, ptEndPos.x);
+        tsEdit.old_end_point = charPosToTSPoint(ptEndPos.y, ptEndPos.x);
 
         // After deletion, the cursor is at start
         tsEdit.new_end_byte = tsEdit.start_byte;

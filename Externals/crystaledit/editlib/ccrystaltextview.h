@@ -140,15 +140,15 @@ private :
     bool m_bFocused;
 protected:
     CEPoint m_ptAnchor;
-private:
-    LOGFONT m_lfBaseFont;
-    LOGFONT m_lfSavedBaseFont;
 
     //  Parsing stuff
 
     // New parser abstraction interface (optional, for gradual migration)
     std::unique_ptr<ISyntaxParser> m_pSyntaxParser;
 
+private:
+    LOGFONT m_lfBaseFont;
+    LOGFONT m_lfSavedBaseFont;
 
     /**
     Pre-calculated line lengths (in characters)
@@ -686,7 +686,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    unsigned ParseLine (unsigned dwCookie, int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    unsigned ParseLine (int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :
@@ -818,6 +818,7 @@ public :
 
     //  Overridable: an opportunity for Auto-Indent, Smart-Indent etc.
     virtual void OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText);
+    virtual void OnEditOperation2 (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType);
 
     // Overrides
     // ClassWizard generated virtual function overrides
