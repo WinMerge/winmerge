@@ -11,6 +11,7 @@
 #include "pch.h"
 #include <Windows.h>
 #include "TreeSitterParser.h"
+#include "ISyntaxParser.h"
 #include "ITextBuffer.h"
 #include "utils/ctchar.h"
 

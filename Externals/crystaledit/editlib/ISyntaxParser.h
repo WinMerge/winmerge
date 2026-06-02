@@ -2,6 +2,28 @@
 
 #include "ITextBuffer.h"
 #include "parsers/crystallineparser.h"
+#include "cepoint.h"
+
+/**
+ * @brief Structure representing a text edit operation.
+ *
+ * This structure provides information about a single text edit
+ * without exposing internal undo mechanism details.
+ */
+struct TextEdit
+{
+	bool bInsert;                ///< true for insert, false for delete
+	CEPoint ptStartPos;          ///< Starting position of the edit
+	CEPoint ptEndPos;            ///< Ending position of the edit
+	const tchar_t* pszText;      ///< Text that was inserted or deleted
+	size_t nTextLength;          ///< Length of pszText
+
+	TextEdit()
+		: bInsert(false)
+		, pszText(nullptr)
+		, nTextLength(0)
+	{}
+};
 
 /**
  * @brief Abstract interface for syntax parsers.
@@ -40,6 +62,18 @@ public:
 	 * Line-based parsers may ignore this notification.
 	 */
 	virtual void OnTextChanged(int nStartLine, int nEndLine) = 0;
+
+	/**
+	 * @brief Notify the parser of a detailed text edit for incremental parsing.
+	 * @param textEdit The edit information (position, type, text).
+	 *
+	 * This provides more detailed information than OnTextChanged(). Implementations that
+	 * support incremental reparsing (like Tree-sitter) should override this method to
+	 * perform efficient updates. The default implementation does nothing.
+	 *
+	 * Implementations that do not override this may still use OnTextChanged() instead.
+	 */
+	virtual void NotifyEdit(const TextEdit& textEdit) { /* default: no-op */ }
 
 	/**
 	 * @brief Get the parser type for this syntax parser.

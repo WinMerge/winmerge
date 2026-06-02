@@ -22,6 +22,7 @@
 #include "codepage_detect.h"
 #include "TFile.h"
 #include "TreeSitterParser.h"
+#include "ISyntaxParser.h"
 #include <Poco/Exception.h>
 
 using Poco::Exception;

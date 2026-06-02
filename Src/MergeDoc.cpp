@@ -87,7 +87,6 @@ void CMergeDoc::UpdateTreeSitterSupport()
 		m_pSyntaxParsers[nBuffer].reset();
 		m_pTreeSitterTextDefs[nBuffer].reset();
 		m_pTreeSitterParsers[nBuffer].reset();
-		m_ptBuf[nBuffer]->SetParseContext(nullptr);
 	}
 
 	// If Tree-sitter is disabled, create legacy line-based parsers

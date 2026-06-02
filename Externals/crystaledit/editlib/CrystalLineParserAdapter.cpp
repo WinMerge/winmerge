@@ -82,6 +82,17 @@ void CrystalLineParserAdapter::OnTextChanged(int nStartLine, int nEndLine)
 }
 
 /**
+ * @brief Notify the parser of a detailed text edit.
+ * Legacy line-based parsers don't use detailed edit information;
+ * they just invalidate state from the start line.
+ */
+void CrystalLineParserAdapter::NotifyEdit(const TextEdit& textEdit)
+{
+	// Invalidate from the start line of the edit
+	InvalidateFromLine(textEdit.ptStartPos.y);
+}
+
+/**
  * @brief Get the parser type for this syntax parser.
  */
 CrystalLineParser::TextType CrystalLineParserAdapter::GetParserType() const

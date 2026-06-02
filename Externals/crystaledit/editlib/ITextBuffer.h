@@ -1,29 +1,6 @@
 #pragma once
 
 #include "utils/ctchar.h"
-#include "cepoint.h"
-
-/**
- * @brief Structure representing a text edit operation.
- *
- * This structure provides information about a single text edit
- * without exposing internal undo mechanism details.
- */
-struct TextEdit
-{
-	bool bInsert;                ///< true for insert, false for delete
-	CEPoint ptStartPos;          ///< Starting position of the edit
-	CEPoint ptEndPos;            ///< Ending position of the edit
-	const tchar_t* pszText;      ///< Text that was inserted or deleted
-	size_t nTextLength;          ///< Length of pszText
-
-	TextEdit()
-		: bInsert(false)
-		, pszText(nullptr)
-		, nTextLength(0)
-	{
-	}
-};
 
 /**
  * @brief Abstract interface for text buffer access.
