@@ -25,7 +25,7 @@ msgstr ""
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5739
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5740
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 
@@ -167,7 +167,7 @@ msgstr "&Скрипты"
 #. IDS_NO_EDIT_SCRIPTS
 #: Merge.rc:127 Merge.rc:351 Merge.rc:462 Merge.rc:672 Merge.rc:677
 #: Merge.rc:884 Merge.rc:896 Merge.rc:903 Merge.rc:960 Merge.rc:1206
-#: Merge.rc:5312
+#: Merge.rc:5313
 msgid "< Empty >"
 msgstr "< Пусто >"
 
@@ -227,7 +227,7 @@ msgid "Auto-Fit All Columns"
 msgstr "Автоширина столбцов"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
-#: Merge.rc:152 Merge.rc:5575
+#: Merge.rc:152 Merge.rc:5576
 msgid "&Filter by This Column"
 msgstr "Фильтр по этому столбцу"
 
@@ -288,7 +288,7 @@ msgid "&Previous Page"
 msgstr "Предыдущая страница"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:193 Merge.rc:201 Merge.rc:1262 Merge.rc:5608
+#: Merge.rc:193 Merge.rc:201 Merge.rc:1262 Merge.rc:5609
 msgid "&Next Page"
 msgstr "Следующая страница"
 
@@ -539,7 +539,7 @@ msgstr "Двоичный"
 #. IDS_IMAGE_MENU
 #: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608
 #: Merge.rc:617 Merge.rc:669 Merge.rc:957 Merge.rc:1183 Merge.rc:1196
-#: Merge.rc:5407
+#: Merge.rc:5408
 msgid "&Image"
 msgstr "Изображение"
 
@@ -661,7 +661,7 @@ msgid "&Huge"
 msgstr "&Огромные значки"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:377 Merge.rc:528 Merge.rc:775 Merge.rc:5643
+#: Merge.rc:377 Merge.rc:528 Merge.rc:775 Merge.rc:5644
 msgid "Men&u Bar"
 msgstr "Панель меню"
 
@@ -761,7 +761,7 @@ msgid "&Cascade"
 msgstr "&Каскадом"
 
 #. IDS_MESSAGEBOX_HELP
-#: Merge.rc:409 Merge.rc:586 Merge.rc:923 Merge.rc:3476 Merge.rc:4480
+#: Merge.rc:409 Merge.rc:586 Merge.rc:923 Merge.rc:3476 Merge.rc:4481
 msgid "&Help"
 msgstr "&Помощь"
 
@@ -1316,7 +1316,7 @@ msgid "Lo&cation Pane"
 msgstr "Панель управления"
 
 #. IDS_OUTPUTBAR_CAPTION
-#: Merge.rc:780 Merge.rc:5194
+#: Merge.rc:780 Merge.rc:5195
 msgid "Output Pane"
 msgstr "Панель вывода"
 
@@ -1574,55 +1574,55 @@ msgid "Co&mpare As"
 msgstr "Сравнить как"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
-#: Merge.rc:965 Merge.rc:977 Merge.rc:4794
+#: Merge.rc:965 Merge.rc:977 Merge.rc:4795
 #, c-format
 msgid "Left to Middle (%1 of %2)"
 msgstr "Слева в центр (%1 из %2)"
 
 #. IDS_COPY_LEFT_TO_RIGHT2
-#: Merge.rc:966 Merge.rc:978 Merge.rc:4793
+#: Merge.rc:966 Merge.rc:978 Merge.rc:4794
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "Слева направо (%1 из %2)"
 
 #. IDS_MOVE_LEFT_TO2
-#: Merge.rc:967 Merge.rc:979 Merge.rc:1042 Merge.rc:4805 Merge.rc:4834
+#: Merge.rc:967 Merge.rc:979 Merge.rc:1042 Merge.rc:4806 Merge.rc:4835
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "Слева... (%1 из %2)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT2
-#: Merge.rc:968 Merge.rc:980 Merge.rc:4791
+#: Merge.rc:968 Merge.rc:980 Merge.rc:4792
 #, c-format
 msgid "Middle to Left (%1 of %2)"
 msgstr "Из центра налево (%1 из %2)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT2
-#: Merge.rc:969 Merge.rc:981 Merge.rc:4792
+#: Merge.rc:969 Merge.rc:981 Merge.rc:4793
 #, c-format
 msgid "Middle to Right (%1 of %2)"
 msgstr "Из центра направо (%1 из %2)"
 
 #. IDS_MOVE_MIDDLE_TO2
-#: Merge.rc:970 Merge.rc:982 Merge.rc:1043 Merge.rc:4806 Merge.rc:4835
+#: Merge.rc:970 Merge.rc:982 Merge.rc:1043 Merge.rc:4807 Merge.rc:4836
 #, c-format
 msgid "Middle to... (%1 of %2)"
 msgstr "Из центра... (%1 из %2)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE2
-#: Merge.rc:971 Merge.rc:983 Merge.rc:4790
+#: Merge.rc:971 Merge.rc:983 Merge.rc:4791
 #, c-format
 msgid "Right to Middle (%1 of %2)"
 msgstr "Справа в центр (%1 из %2)"
 
 #. IDS_COPY_RIGHT_TO_LEFT2
-#: Merge.rc:972 Merge.rc:984 Merge.rc:4789
+#: Merge.rc:972 Merge.rc:984 Merge.rc:4790
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "Справа налево (%1 из %2)"
 
 #. IDS_MOVE_RIGHT_TO2
-#: Merge.rc:973 Merge.rc:985 Merge.rc:1044 Merge.rc:4807 Merge.rc:4836
+#: Merge.rc:973 Merge.rc:985 Merge.rc:1044 Merge.rc:4808 Merge.rc:4837
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Справа... (%1 из %2)"
@@ -1678,31 +1678,31 @@ msgid "Cop&y Paths"
 msgstr "Копировать пути"
 
 #. IDS_DEL_LEFT_FMT2
-#: Merge.rc:1023 Merge.rc:1032 Merge.rc:4822
+#: Merge.rc:1023 Merge.rc:1032 Merge.rc:4823
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "Слева (%1 из %2)"
 
 #. IDS_DEL_MIDDLE_FMT2
-#: Merge.rc:1024 Merge.rc:1033 Merge.rc:4823
+#: Merge.rc:1024 Merge.rc:1033 Merge.rc:4824
 #, c-format
 msgid "Middle (%1 of %2)"
 msgstr "В центре (%1 из %2)"
 
 #. IDS_DEL_RIGHT_FMT2
-#: Merge.rc:1025 Merge.rc:1034 Merge.rc:4824
+#: Merge.rc:1025 Merge.rc:1034 Merge.rc:4825
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "Справа (%1 из %2)"
 
 #. IDS_DEL_BOTH_FMT2
-#: Merge.rc:1026 Merge.rc:1035 Merge.rc:4825
+#: Merge.rc:1026 Merge.rc:1035 Merge.rc:4826
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "Оба (%1 из %2)"
 
 #. IDS_DEL_ALL_FMT2
-#: Merge.rc:1027 Merge.rc:1036 Merge.rc:4830
+#: Merge.rc:1027 Merge.rc:1036 Merge.rc:4831
 #, c-format
 msgid "All (%1 of %2)"
 msgstr "Все (%1 из %2)"
@@ -1728,19 +1728,19 @@ msgid "&Zip"
 msgstr "&Заархивировать"
 
 #. IDS_COPY_BOTH_TO2
-#: Merge.rc:1045 Merge.rc:4808
+#: Merge.rc:1045 Merge.rc:4809
 #, c-format
 msgid "Both to... (%1 of %2)"
 msgstr "Оба на... (%1 из %2)"
 
 #. IDS_COPY_ALL_TO2
-#: Merge.rc:1046 Merge.rc:4809
+#: Merge.rc:1046 Merge.rc:4810
 #, c-format
 msgid "All to... (%1 of %2)"
 msgstr "Все на... (%1 из %2)"
 
 #. IDS_COPY_DIFFERENCES_TO2
-#: Merge.rc:1047 Merge.rc:4810
+#: Merge.rc:1047 Merge.rc:4811
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Отличия на... (%1 из %2)"
@@ -1807,12 +1807,12 @@ msgstr "Параметры распаковщика"
 
 #. IDS_USERCHOICE_NONE
 #: Merge.rc:1085 Merge.rc:1091 Merge.rc:1832 Merge.rc:1836 Merge.rc:2027
-#: Merge.rc:2031 Merge.rc:5314
+#: Merge.rc:2031 Merge.rc:5315
 msgid "<None>"
 msgstr "<Нет>"
 
 #. IDS_USERCHOICE_AUTOMATIC
-#: Merge.rc:1086 Merge.rc:1092 Merge.rc:5315
+#: Merge.rc:1086 Merge.rc:1092 Merge.rc:5316
 msgid "<Automatic>"
 msgstr "<Автоматически>"
 
@@ -1917,37 +1917,37 @@ msgid "&Compare Method"
 msgstr "Метод сравнения"
 
 #. IDS_COMPMETHOD_FULL_CONTENTS
-#: Merge.rc:1133 Merge.rc:1165 Merge.rc:1359 Merge.rc:4573
+#: Merge.rc:1133 Merge.rc:1165 Merge.rc:1359 Merge.rc:4574
 msgid "Full Contents"
 msgstr "Полный по содержимому"
 
 #. IDS_COMPMETHOD_QUICK_CONTENTS
-#: Merge.rc:1134 Merge.rc:1166 Merge.rc:1360 Merge.rc:4574
+#: Merge.rc:1134 Merge.rc:1166 Merge.rc:1360 Merge.rc:4575
 msgid "Quick Contents"
 msgstr "Быстрый по содержимому"
 
 #. IDS_COMPMETHOD_BINARY_CONTENTS
-#: Merge.rc:1135 Merge.rc:1167 Merge.rc:1361 Merge.rc:4575
+#: Merge.rc:1135 Merge.rc:1167 Merge.rc:1361 Merge.rc:4576
 msgid "Binary Contents"
 msgstr "По двоичному содержимому"
 
 #. IDS_COMPMETHOD_MODDATE
-#: Merge.rc:1136 Merge.rc:1168 Merge.rc:1362 Merge.rc:4576
+#: Merge.rc:1136 Merge.rc:1168 Merge.rc:1362 Merge.rc:4577
 msgid "Modified Date"
 msgstr "По дате изменения"
 
 #. IDS_COMPMETHOD_DATESIZE
-#: Merge.rc:1137 Merge.rc:1169 Merge.rc:1363 Merge.rc:4577
+#: Merge.rc:1137 Merge.rc:1169 Merge.rc:1363 Merge.rc:4578
 msgid "Modified Date and Size"
 msgstr "По дате изменения и размеру"
 
 #. IDS_COMPMETHOD_SIZE
-#: Merge.rc:1138 Merge.rc:1170 Merge.rc:1364 Merge.rc:4578
+#: Merge.rc:1138 Merge.rc:1170 Merge.rc:1364 Merge.rc:4579
 msgid "Size"
 msgstr "По размеру"
 
 #. IDS_COMPMETHOD_EXISTENCE
-#: Merge.rc:1139 Merge.rc:1171 Merge.rc:1365 Merge.rc:4579
+#: Merge.rc:1139 Merge.rc:1171 Merge.rc:1365 Merge.rc:4580
 msgid "Existence"
 msgstr "По наличию"
 
@@ -2742,12 +2742,12 @@ msgid "Text files only"
 msgstr "Только текстовые файлы"
 
 #. IDS_EOL_NONE
-#: Merge.rc:1663 Merge.rc:1914 Merge.rc:5241
+#: Merge.rc:1663 Merge.rc:1914 Merge.rc:5242
 msgid "None"
 msgstr "Нет"
 
 #. IDS_EOL_MIXED
-#: Merge.rc:1664 Merge.rc:5236
+#: Merge.rc:1664 Merge.rc:5237
 msgid "Mixed"
 msgstr "Смешанный"
 
@@ -3019,13 +3019,13 @@ msgstr "Состояния строки"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
-#: Merge.rc:5000
+#: Merge.rc:5001
 msgid "Different"
 msgstr "Отличаются"
 
 #. IDS_IDENTICAL
 #: Merge.rc:1901 Merge.rc:1985 Merge.rc:2856 Merge.rc:3009 Merge.rc:3070
-#: Merge.rc:4990
+#: Merge.rc:4991
 msgid "Identical"
 msgstr "Идентичные"
 
@@ -3045,7 +3045,7 @@ msgid "Missing"
 msgstr "Отсутствует"
 
 #. IDS_MOVED
-#: Merge.rc:1906 Merge.rc:5018
+#: Merge.rc:1906 Merge.rc:5019
 msgid "Moved"
 msgstr "Перемещено"
 
@@ -3387,7 +3387,7 @@ msgid "Replace &All"
 msgstr "З&аменить все"
 
 #. IDS_OPTIONSPG_MARKERCOLORS
-#: Merge.rc:2286 Merge.rc:4500
+#: Merge.rc:2286 Merge.rc:4501
 msgid "Markers"
 msgstr "Маркеры"
 
@@ -3407,7 +3407,7 @@ msgid "&Background color:"
 msgstr "Цвет фона:"
 
 #. IDS_MESSAGEBOX_OK
-#: Merge.rc:2300 Merge.rc:3105 Merge.rc:3362 Merge.rc:4462
+#: Merge.rc:2300 Merge.rc:3105 Merge.rc:3362 Merge.rc:4463
 msgid "&Ok"
 msgstr "&Ok"
 
@@ -3482,7 +3482,7 @@ msgid "Export..."
 msgstr "Экспорт..."
 
 #. IDS_OPTIONSPG_GENCOMPARE
-#: Merge.rc:2348 Merge.rc:4490 Merge.rc:4493 Merge.rc:4510
+#: Merge.rc:2348 Merge.rc:4491 Merge.rc:4494 Merge.rc:4511
 msgid "General"
 msgstr "Основные"
 
@@ -3555,7 +3555,7 @@ msgid "Defaults"
 msgstr "По умолчанию"
 
 #. IDS_OPTIONSPG_COLORS
-#: Merge.rc:2380 Merge.rc:2396 Merge.rc:2523 Merge.rc:2548 Merge.rc:4496
+#: Merge.rc:2380 Merge.rc:2396 Merge.rc:2523 Merge.rc:2548 Merge.rc:4497
 msgid "Colors"
 msgstr "Цвета"
 
@@ -3600,7 +3600,7 @@ msgid "Deleted"
 msgstr "Удаленное"
 
 #. IDS_OPTIONSPG_TEXTCOLORS
-#: Merge.rc:2401 Merge.rc:2463 Merge.rc:2495 Merge.rc:2529 Merge.rc:4498
+#: Merge.rc:2401 Merge.rc:2463 Merge.rc:2495 Merge.rc:2529 Merge.rc:4499
 msgid "Text"
 msgstr "Текст"
 
@@ -3781,7 +3781,7 @@ msgid "&Use custom system colors"
 msgstr "Использовать настраиваемые системные цвета"
 
 #. IDS_PRPCAT_SYSTEM
-#: Merge.rc:2560 Merge.rc:4502 Merge.rc:4503 Merge.rc:4949
+#: Merge.rc:2560 Merge.rc:4503 Merge.rc:4504 Merge.rc:4950
 msgid "System"
 msgstr "Система"
 
@@ -3826,7 +3826,7 @@ msgid "Br&owse..."
 msgstr "Обзор..."
 
 #. IDS_OPTIONSPG_COMPARE
-#: Merge.rc:2582 Merge.rc:4491
+#: Merge.rc:2582 Merge.rc:4492
 msgid "Compare"
 msgstr "Сравнение"
 
@@ -3916,7 +3916,7 @@ msgid "Completely unhighlight the ignored differences"
 msgstr "Совсем не подсвечивать игнорируемые отличия"
 
 #. IDS_OPTIONSPG_EDITOR
-#: Merge.rc:2613 Merge.rc:4492
+#: Merge.rc:2613 Merge.rc:4493
 msgid "Editor"
 msgstr "Редактор"
 
@@ -4171,7 +4171,7 @@ msgid "Items compared:"
 msgstr "Обработано:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2782 Merge.rc:3122 Merge.rc:5614
+#: Merge.rc:2782 Merge.rc:3122 Merge.rc:5615
 msgid "&Close"
 msgstr "&Закрыть"
 
@@ -4211,7 +4211,7 @@ msgid "&Go to"
 msgstr "Перейт&и"
 
 #. IDS_PROJECT_ITEM_FILE_FILTER
-#: Merge.rc:2812 Merge.rc:4612
+#: Merge.rc:2812 Merge.rc:4613
 msgid "File Filters"
 msgstr "Фильтры файлов"
 
@@ -4366,7 +4366,7 @@ msgid "Lines between start and end filter matches will be included."
 msgstr "Строки между начальным и конечным совпадениями фильтра будут включены."
 
 #. IDS_OPTIONSPG_CODEPAGE
-#: Merge.rc:2895 Merge.rc:3087 Merge.rc:4504
+#: Merge.rc:2895 Merge.rc:3087 Merge.rc:4505
 msgid "Codepage"
 msgstr "Кодовая страница"
 
@@ -4406,7 +4406,7 @@ msgid "Detect codepage for files with mlang.dll\nRestart required."
 msgstr "Определять кодировку для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
 
 #. IDS_OPTIONSPG_ARCHIVE
-#: Merge.rc:2914 Merge.rc:4505
+#: Merge.rc:2914 Merge.rc:4506
 msgid "Archive Support"
 msgstr "Поддержка архивов"
 
@@ -4616,7 +4616,7 @@ msgid "&Use same codepage for both"
 msgstr "Использовать одинаковую кодовую страницу для обоих вариантов"
 
 #. IDS_MESSAGEBOX_CANCEL
-#: Merge.rc:3106 Merge.rc:4463
+#: Merge.rc:3106 Merge.rc:4464
 msgid "&Cancel"
 msgstr "&Отмена"
 
@@ -4651,7 +4651,7 @@ msgid "&Test"
 msgstr "&Тестировать"
 
 #. IDS_OPTIONSPG_TABLECOMPARE
-#: Merge.rc:3127 Merge.rc:3266 Merge.rc:4519
+#: Merge.rc:3127 Merge.rc:3266 Merge.rc:4520
 msgid "Table"
 msgstr "Таблица"
 
@@ -4691,7 +4691,7 @@ msgid "&Quote character:"
 msgstr "Символ кавычки:"
 
 #. IDS_OPTIONSPG_BACKUPS
-#: Merge.rc:3149 Merge.rc:4507
+#: Merge.rc:3149 Merge.rc:4508
 msgid "Backup Files"
 msgstr "Резервные копии"
 
@@ -4741,7 +4741,7 @@ msgid "A&ppend timestamp"
 msgstr "Добавить дату"
 
 #. IDS_CONFIRM_COPY_CAPTION
-#: Merge.rc:3168 Merge.rc:4857
+#: Merge.rc:3168 Merge.rc:4858
 msgid "Confirm Copy"
 msgstr "Подтверждения"
 
@@ -4761,7 +4761,7 @@ msgid "To right"
 msgstr "Направо"
 
 #. IDS_MESSAGEBOX_DONT_ASK_AGAIN
-#: Merge.rc:3177 Merge.rc:4482
+#: Merge.rc:3177 Merge.rc:4483
 msgid "Don't ask this &question again."
 msgstr "Не спрашивать &больше."
 
@@ -4776,7 +4776,7 @@ msgid "No"
 msgstr "Нет"
 
 #. IDS_PROJECT_ITEM_PLUGIN
-#: Merge.rc:3185 Merge.rc:4614
+#: Merge.rc:3185 Merge.rc:4615
 msgid "Plugins"
 msgstr "Плагины"
 
@@ -4806,7 +4806,7 @@ msgid "Enable &automatic unpacking/prediffing"
 msgstr "Включить авто распаковку/предсравнение для плагина"
 
 #. IDS_OPTIONSPG_SHELL
-#: Merge.rc:3210 Merge.rc:4508
+#: Merge.rc:3210 Merge.rc:4509
 msgid "Shell Integration"
 msgstr "Интеграция в оболочку"
 
@@ -4871,7 +4871,7 @@ msgid "Clear all recent items"
 msgstr "Очистить все недавние элементы"
 
 #. IDS_OPTIONSPG_FOLDERCOMPARE
-#: Merge.rc:3230 Merge.rc:4516
+#: Merge.rc:3230 Merge.rc:4517
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Папка"
@@ -4947,7 +4947,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr "Настраиваемые значения разделителей"
 
 #. IDS_OPTIONSPG_BINARYCOMPARE
-#: Merge.rc:3291 Merge.rc:4518
+#: Merge.rc:3291 Merge.rc:4519
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Двоичный"
@@ -4978,7 +4978,7 @@ msgid "&Character Set..."
 msgstr "Набор символов..."
 
 #. IDS_PRPCAT_IMAGE
-#: Merge.rc:3305 Merge.rc:4517 Merge.rc:4957
+#: Merge.rc:3305 Merge.rc:4518 Merge.rc:4958
 msgid "Image"
 msgstr "Изображение"
 
@@ -4998,7 +4998,7 @@ msgid "OCR result:"
 msgstr "Результат распознавания:"
 
 #. IDS_OPTIONSPG_WEBPAGECOMPARE
-#: Merge.rc:3319 Merge.rc:4520
+#: Merge.rc:3319 Merge.rc:4521
 msgid "Webpage"
 msgstr "Веб-страница"
 
@@ -5202,3157 +5202,3163 @@ msgstr "Файл проекта успешно загружен."
 msgid "Project file saved."
 msgstr "Файл проекта успешно сохранен."
 
+#. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
+#: Merge.rc:4436
+#, c-format
+msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgstr ""
+
 #. ID_EDIT_UNDO
-#: Merge.rc:4441
+#: Merge.rc:4442
 msgid "\nUndo (Ctrl+Z)"
 msgstr "\nОтменить (Ctrl+Z)"
 
 #. ID_EDIT_REDO
-#: Merge.rc:4442
+#: Merge.rc:4443
 msgid "\nRedo (Ctrl+Y)"
 msgstr "\nВернуть (Ctrl+Y)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:4449
+#: Merge.rc:4450
 msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
 msgstr "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge Сравнение Файлов"
 
 #. IDR_DIRDOCTYPE
-#: Merge.rc:4450
+#: Merge.rc:4451
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Сравнение Папок"
 
 #. IDS_SPLASH_GPLTEXT
-#: Merge.rc:4456
+#: Merge.rc:4457
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 msgstr "WinMerge поставляется БЕЗ КАКОЙ-ЛИБО ГАРАНТИИ. Это свободное ПО и мы приветствуем его распространение согласно некоторых условий; ознакомьтесь с GNU General Public License в меню Помощь для более подробной информации."
 
 #. IDS_MESSAGEBOX_ABORT
-#: Merge.rc:4464
+#: Merge.rc:4465
 msgid "&Abort"
 msgstr "&Прервать"
 
 #. IDS_MESSAGEBOX_RETRY
-#: Merge.rc:4465
+#: Merge.rc:4466
 msgid "&Retry"
 msgstr "Пов&торить"
 
 #. IDS_MESSAGEBOX_IGNORE
-#: Merge.rc:4466
+#: Merge.rc:4467
 msgid "&Ignore"
 msgstr "&Игнорировать"
 
 #. IDS_MESSAGEBOX_IGNOREALL
-#: Merge.rc:4467
+#: Merge.rc:4468
 msgid "Ignore &all"
 msgstr "Игнорировать &все"
 
 #. IDS_MESSAGEBOX_YES
-#: Merge.rc:4468
+#: Merge.rc:4469
 msgid "&Yes"
 msgstr "&Да"
 
 #. IDS_MESSAGEBOX_YES_TO_ALL
-#: Merge.rc:4474
+#: Merge.rc:4475
 msgid "Yes to &all"
 msgstr "Да для всех"
 
 #. IDS_MESSAGEBOX_NO
-#: Merge.rc:4475
+#: Merge.rc:4476
 msgid "&No"
 msgstr "&Нет"
 
 #. IDS_MESSAGEBOX_NO_TO_ALL
-#: Merge.rc:4476
+#: Merge.rc:4477
 msgid "No to a&ll"
 msgstr "Нет для всех"
 
 #. IDS_MESSAGEBOX_CONTINUE
-#: Merge.rc:4477
+#: Merge.rc:4478
 msgid "&Continue"
 msgstr "Продолжить"
 
 #. IDS_MESSAGEBOX_SKIP
-#: Merge.rc:4478
+#: Merge.rc:4479
 msgid "&Skip"
 msgstr "П&ропустить"
 
 #. IDS_MESSAGEBOX_SKIPALL
-#: Merge.rc:4479
+#: Merge.rc:4480
 msgid "Skip &all"
 msgstr "Проп&устить все"
 
 #. IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN
-#: Merge.rc:4481
+#: Merge.rc:4482
 msgid "Don't display this &message again."
 msgstr "Не показывать &больше."
 
-#: Merge.rc:4484
+#: Merge.rc:4485
 msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr "Чтобы снова сделать это сообщение видимым, нажмите «Сброс» на странице «Сообщения» в настройках."
 
 #. IDS_OPTIONSPG_EDITOR_COMPAREMERGE
-#: Merge.rc:4494
+#: Merge.rc:4495
 msgid "Compare/Merge"
 msgstr "Сравнить/Объединить"
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
-#: Merge.rc:4495 Merge.rc:4499
+#: Merge.rc:4496 Merge.rc:4500
 msgid "Syntax"
 msgstr "Синтаксис"
 
 #. IDS_OPTIONSPG_COLOR_SCHEMES
-#: Merge.rc:4497
+#: Merge.rc:4498
 msgid "Color Schemes"
 msgstr "Цветовая схема"
 
 #. IDS_OPTIONSPG_DIRCOLORS
-#: Merge.rc:4501
+#: Merge.rc:4502
 msgid "Folder Compare"
 msgstr "Сравнение папок"
 
 #. IDS_OPTIONSPG_PROJECT
-#: Merge.rc:4506
+#: Merge.rc:4507
 msgid "Project"
 msgstr "Проект"
 
 #. IDS_COLHDR_NSDIFFS
-#: Merge.rc:4509 Merge.rc:4932
+#: Merge.rc:4510 Merge.rc:4933
 msgid "Differences"
 msgstr "Отличия"
 
 #. IDS_OPTIONSPG_MESSAGEBOXES
-#: Merge.rc:4511
+#: Merge.rc:4512
 msgid "Message Boxes"
 msgstr "Сообщения"
 
 #. IDS_TO
-#: Merge.rc:4526
+#: Merge.rc:4527
 msgid "To:"
 msgstr "На:"
 
 #. IDS_FROM_LEFT
-#: Merge.rc:4527
+#: Merge.rc:4528
 msgid "From left:"
 msgstr "Слева:"
 
 #. IDS_TO_LEFT
-#: Merge.rc:4528
+#: Merge.rc:4529
 msgid "To left:"
 msgstr "Налево:"
 
 #. IDS_FROM_RIGHT
-#: Merge.rc:4529
+#: Merge.rc:4530
 msgid "From right:"
 msgstr "Справа:"
 
 #. IDS_TO_RIGHT
-#: Merge.rc:4530
+#: Merge.rc:4531
 msgid "To right:"
 msgstr "Направо:"
 
 #. IDS_FROM_MIDDLE
-#: Merge.rc:4531
+#: Merge.rc:4532
 msgid "From middle:"
 msgstr "Из центра:"
 
 #. IDS_TO_MIDDLE
-#: Merge.rc:4532
+#: Merge.rc:4533
 msgid "To middle:"
 msgstr "В центр:"
 
 #. IDS_VERSION_FMT
-#: Merge.rc:4538
+#: Merge.rc:4539
 #, c-format
 msgid "Version %1"
 msgstr "Версия %1"
 
 #. IDS_OPTIONS_TITLE
-#: Merge.rc:4544
+#: Merge.rc:4545
 #, c-format
 msgid "Options (%1)"
 msgstr "Настройки (%1)"
 
 #. IDS_MESSAGE_BOX_ARE_RESET
-#: Merge.rc:4545
+#: Merge.rc:4546
 msgid "All message boxes are now displayed again."
 msgstr "Теперь снова будут отображаться все сообщения."
 
-#: Merge.rc:4547
+#: Merge.rc:4548
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr "Размер отступа выходит за границы приемлемых значений.\n\nИспользуйте значения 1 - %1."
 
 #. IDS_PROJECT_OPEN
-#: Merge.rc:4553 Merge.rc:4609
+#: Merge.rc:4554 Merge.rc:4610
 msgid "Open"
 msgstr "Открыть"
 
 #. IDS_PROGRAMFILES
-#: Merge.rc:4554
+#: Merge.rc:4555
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "Программы|*.exe;*.bat;*.cmd|Все файлы (*.*)|*.*||"
 
 #. IDS_ALLFILES
-#: Merge.rc:4555
+#: Merge.rc:4556
 msgid "All Files (*.*)|*.*||"
 msgstr "Все файлы (*.*)|*.*||"
 
 #. IDS_PROJECTFILES
-#: Merge.rc:4556
+#: Merge.rc:4557
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "Файлы проектов WinMerge (*.WinMerge)|*.WinMerge||"
 
 #. IDS_INIFILES
-#: Merge.rc:4558
+#: Merge.rc:4559
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Файлы настроек (*.ini)|*.ini|Все файлы (*.*)|*.*||"
 
 #. IDS_REPLACELIST_FILES
-#: Merge.rc:4559
+#: Merge.rc:4560
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 msgstr "Значения, разделённые табуляцией (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
-#: Merge.rc:4565
+#: Merge.rc:4566
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Текстовые файлы (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Все файлы (*.*)|*.*||"
 
 #. IDS_HTML_REPORT_FILES
-#: Merge.rc:4566
+#: Merge.rc:4567
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "Файлы HTML (*.htm,*.html)|*.htm;*.html|Все файлы (*.*)|*.*||"
 
 #. IDS_XML_REPORT_FILES
-#: Merge.rc:4567
+#: Merge.rc:4568
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Файлы XML (*.xml)|*.xml|Все файлы (*.*)|*.*||"
 
 #. IDS_EXPANDSUBDIRS_DONOTEXPAND
-#: Merge.rc:4585
+#: Merge.rc:4586
 msgid "Do not expand"
 msgstr "Не разворачивать"
 
 #. IDS_EXPANDSUBDIRS_ALL
-#: Merge.rc:4586
+#: Merge.rc:4587
 msgid "Expand all subfolders"
 msgstr "Разворачивать все подпапки"
 
 #. IDS_EXPANDSUBDIRS_DIFFERENT
-#: Merge.rc:4587
+#: Merge.rc:4588
 msgid "Expand different subfolders"
 msgstr "Разворачивать отличающиеся подпапки"
 
 #. IDS_EXPANDSUBDIRS_IDENTICAL
-#: Merge.rc:4588
+#: Merge.rc:4589
 msgid "Expand identical subfolders"
 msgstr "Разворачивать идентичные подпапки"
 
 #. IDS_SYNTAXTABLE_FILETYPE
-#: Merge.rc:4594
+#: Merge.rc:4595
 msgid "File Type"
 msgstr "Тип файла"
 
 #. IDS_COLHDR_EXTENSION
-#: Merge.rc:4595 Merge.rc:4889
+#: Merge.rc:4596 Merge.rc:4890
 msgid "Extension"
 msgstr "Расширение"
 
 #. IDS_PRPCAT_MESSAGE
-#: Merge.rc:4601 Merge.rc:4961
+#: Merge.rc:4602 Merge.rc:4962
 msgid "Message"
 msgstr "Сообщение"
 
 #. IDS_MESSAGEBOX_ANSWER
-#: Merge.rc:4602
+#: Merge.rc:4603
 msgid "Answer"
 msgstr "Ответ"
 
 #. IDS_PROJECT_ITEM
-#: Merge.rc:4608
+#: Merge.rc:4609
 msgid "Item"
 msgstr "Элемент"
 
 #. IDS_PROJECT_LOAD
-#: Merge.rc:4610
+#: Merge.rc:4611
 msgid "Load"
 msgstr "Загрузить"
 
 #. IDS_PROJECT_SAVE
-#: Merge.rc:4611
+#: Merge.rc:4612
 msgid "Save"
 msgstr "Сохранить"
 
 #. IDS_PROJECT_ITEM_INCLUDE_SUBFOLDERS
-#: Merge.rc:4613
+#: Merge.rc:4614
 msgid "Include Subfolders"
 msgstr "Включая подпапки"
 
 #. IDS_PROJECT_ITEM_COMPARE_OPTIONS
-#: Merge.rc:4615
+#: Merge.rc:4616
 msgid "Compare Options"
 msgstr "Настройки сравнения"
 
 #. IDS_PROJECT_ITEM_HIDDEN_ITEMS
-#: Merge.rc:4616
+#: Merge.rc:4617
 msgid "Hidden Items"
 msgstr "Скрытые элементы"
 
 #. IDS_PLUGINSLIST_NAME
-#: Merge.rc:4622 Merge.rc:5248
+#: Merge.rc:4623 Merge.rc:5249
 msgid "Name"
 msgstr "Имя"
 
 #. IDS_FILTERFILE_PATHTITLE
-#: Merge.rc:4623
+#: Merge.rc:4624
 msgid "Location"
 msgstr "Расположение"
 
 #. IDS_FILTER_TITLE
-#: Merge.rc:4624
+#: Merge.rc:4625
 msgid "Filters"
 msgstr "Фильтры"
 
 #. IDS_FILTER_PREFIX
-#: Merge.rc:4625
+#: Merge.rc:4626
 msgid "[F] "
 msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
-#: Merge.rc:4626 Merge.rc:5250
+#: Merge.rc:4627 Merge.rc:5251
 msgid "Description"
 msgstr "Описание"
 
 #. IDS_FILEFILTER_SAVENEW
-#: Merge.rc:4627
+#: Merge.rc:4628
 msgid "Select Filename for New Filter"
 msgstr "Укажите имя файла для нового фильтра"
 
 #. IDS_FILEFILTER_FILEMASK
-#: Merge.rc:4628
+#: Merge.rc:4629
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Файлы фильтров (*.flt)|*.flt|Все файлы (*.*)|*.*||"
 
-#: Merge.rc:4630
+#: Merge.rc:4631
 #, c-format
 msgid "Cannot find filter template!\n\nCopy %1 to WinMerge/Filters Folder:\n%2."
 msgstr "Не удается найти файл шаблона фильтра!\n\nСкопируйте файл %1 в папку с фильтрами:\n%2."
 
-#: Merge.rc:4632
+#: Merge.rc:4633
 #, c-format
 msgid "Cannot copy filter template:\n%1\n\nMake sure the folder exists and is writable."
 msgstr "Не удается скопировать файл шаблона фильтра в папку с фильтрами:\n%1\n\nУбедитесь, что папка существует и доступна для записи."
 
-#: Merge.rc:4634
+#: Merge.rc:4635
 msgid "User's filter folder is not defined!\n\nSelect filter folder in Options/System."
 msgstr "Папка с фильтрами пользователя не определена!\n\nУкажите папку с фильтрами на вкладке Система в Настройках."
 
-#: Merge.rc:4636
+#: Merge.rc:4637
 #, c-format
 msgid "Failed to delete filter:\n%1\n\nFile may be read-only."
 msgstr "Не удается удалить файл фильтра:\n%1\n\nВозможно, файл только для чтения?"
 
 #. IDS_FILEFILTER_INSTALL
-#: Merge.rc:4637
+#: Merge.rc:4638
 msgid "Locate Filter File to Install"
 msgstr "Указать файл фильтра для установки"
 
-#: Merge.rc:4639
+#: Merge.rc:4640
 msgid "Installing filter file failed.\n\nCould not copy new filter to folder."
 msgstr "Сбой установки файла фильтра.\n\nНе удается скопировать файл фильтра в папку с фильтрами."
 
 #. IDS_FILEFILTER_OVERWRITE
-#: Merge.rc:4640
+#: Merge.rc:4641
 msgid "Filter file exists. Overwrite?"
 msgstr "Фильтр уже существует. Перезаписать?"
 
 #. IDS_FILTERLINE_REGEXP
-#: Merge.rc:4646
+#: Merge.rc:4647
 msgid "Regular expression"
 msgstr "Регулярное выражение"
 
 #. IDS_FILTERCHANGED
-#: Merge.rc:4652
+#: Merge.rc:4653
 msgid "Filters updated. Refresh all open folder compares?\n\nSelect 'No' to refresh later."
 msgstr "Фильтры были обновлены. Обновить все открытые сравниваемые папки?\n\nЕсли не хотите обновлять сейчас, нажмите \"Нет\"."
 
 #. IDS_DIRECTORY_WINDOW_TITLE
-#: Merge.rc:4658
+#: Merge.rc:4659
 msgid "Folder Comparison Results"
 msgstr "Результаты сравнения папок"
 
 #. IDS_FILE_COMPARISON_TITLE
-#: Merge.rc:4659
+#: Merge.rc:4660
 msgid "File Comparison"
 msgstr "Сравнение файлов"
 
 #. IDS_EMPTY_LEFT_FILE
-#: Merge.rc:4660
+#: Merge.rc:4661
 msgid "Untitled Left"
 msgstr "Безымянный слева"
 
 #. IDS_EMPTY_MIDDLE_FILE
-#: Merge.rc:4661
+#: Merge.rc:4662
 msgid "Untitled Middle"
 msgstr "Безымянный в центре"
 
 #. IDS_EMPTY_RIGHT_FILE
-#: Merge.rc:4662
+#: Merge.rc:4663
 msgid "Untitled Right"
 msgstr "Безымянный справа"
 
 #. IDS_CONFLICT_BASE_FILE
-#: Merge.rc:4663
+#: Merge.rc:4664
 msgid "Base File"
 msgstr "Базовый файл"
 
 #. IDS_CONFLICT_THEIRS_FILE
-#: Merge.rc:4664
+#: Merge.rc:4665
 msgid "Theirs File"
 msgstr "Их файл"
 
 #. IDS_CONFLICT_MINE_FILE
-#: Merge.rc:4665
+#: Merge.rc:4666
 msgid "Mine File"
 msgstr "Мой файл"
 
 #. IDS_SELFCOMPARE_ORIGINAL_FILE
-#: Merge.rc:4666
+#: Merge.rc:4667
 msgid "Original File"
 msgstr "Исходный файл"
 
 #. IDS_LINE_STATUS_INFO_EOL
-#: Merge.rc:4672
+#: Merge.rc:4673
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Стр: %s  Стб: %d/%d  Симв: %d/%d  EOL: %s"
 
 #. IDS_EMPTY_LINE_STATUS_INFO
-#: Merge.rc:4673
+#: Merge.rc:4674
 #, c-format
 msgid "Line: %s"
 msgstr "Строка: %s"
 
 #. IDS_LINE_STATUS_INFO
-#: Merge.rc:4674
+#: Merge.rc:4675
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Стр: %s  Стб: %d/%d  Симв: %d/%d"
 
 #. IDS_LINE_STATUS_INFO_SEL
-#: Merge.rc:4675
+#: Merge.rc:4676
 #, c-format
 msgid "  Sel: %d | %d"
 msgstr " Выбр: %d | %d"
 
 #. IDS_MERGEMODE_MERGING
-#: Merge.rc:4676
+#: Merge.rc:4677
 msgid "Merge"
 msgstr "Объединение"
 
 #. IDS_DIFF_NUMBER_STATUS_FMT
-#: Merge.rc:4677
+#: Merge.rc:4678
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "Отличие %1 из %2"
 
 #. IDS_NO_DIFF_SEL_FMT
-#: Merge.rc:4678
+#: Merge.rc:4679
 #, c-format
 msgid "%1 Differences Found"
 msgstr "Найдено отличий %1"
 
 #. IDS_1_DIFF_FOUND
-#: Merge.rc:4679
+#: Merge.rc:4680
 msgid "1 Difference Found"
 msgstr "Найдено всего одно отличие"
 
 #. IDS_NO_ERR_SEL_FMT
-#: Merge.rc:4680
+#: Merge.rc:4681
 #, c-format
 msgid "%1 Errors Found"
 msgstr "Найдено ошибок %1"
 
 #. IDS_1_ERR_FOUND
-#: Merge.rc:4681
+#: Merge.rc:4682
 msgid "1 Error Found"
 msgstr "Найдена 1 ошибка"
 
 #. IDS_STATUSBAR_READONLY, Abbreviation from "Read Only"
-#: Merge.rc:4682
+#: Merge.rc:4683
 msgid "RO"
 msgstr "RO"
 
 #. IDS_DIRVIEW_STATUS_FMT_FOCUS
-#: Merge.rc:4688
+#: Merge.rc:4689
 #, c-format
 msgid "Item %1 of %2"
 msgstr "Элемент %1 из %2"
 
 #. IDS_DIRVIEW_STATUS_FMT_NOFOCUS
-#: Merge.rc:4689
+#: Merge.rc:4690
 #, c-format
 msgid "Items: %1"
 msgstr "Элементов: %1"
 
 #. IDS_DIRVIEW_STATUS_COMPARING
-#: Merge.rc:4690
+#: Merge.rc:4691
 msgid "Comparing items..."
 msgstr "Идет сравнение..."
 
 #. IDS_ITEMS_PER_SEC
-#: Merge.rc:4691
+#: Merge.rc:4692
 #, c-format
 msgid "%.1f[items/sec]"
 msgstr "%.1f[элементов/сек]"
 
 #. IDS_ERROR_INCOMPARABLE
-#: Merge.rc:4697
+#: Merge.rc:4698
 msgid "Select two existing folders/files to compare."
 msgstr "Выберите для сравнения 2 существующих папки или файла."
 
 #. IDS_DIRSEL_TAG
-#: Merge.rc:4698
+#: Merge.rc:4699
 msgid "Folder Selection"
 msgstr "Выбор папки"
 
 #. IDS_OPEN_FILESDIRS
-#: Merge.rc:4699
+#: Merge.rc:4700
 msgid "Select two (or three) folders/files to compare."
 msgstr "Выберите для сравнения 2 (или 3) папки или файла."
 
 #. IDS_OPEN_LEFTINVALID
-#: Merge.rc:4700
+#: Merge.rc:4701
 msgid "Left (1st) path is invalid!"
 msgstr "Путь слева (1-й) указан неверно!"
 
 #. IDS_OPEN_MIDDLEINVALID
-#: Merge.rc:4701
+#: Merge.rc:4702
 msgid "Middle (2nd) path is invalid!"
 msgstr "Путь в центре (2-й) указан неверно!"
 
 #. IDS_OPEN_RIGHTINVALID2
-#: Merge.rc:4702
+#: Merge.rc:4703
 msgid "Right (2nd) path is invalid!"
 msgstr "Путь справа (2-й) указан неверно!"
 
 #. IDS_OPEN_RIGHTINVALID3
-#: Merge.rc:4703
+#: Merge.rc:4704
 msgid "Right (3rd) path is invalid!"
 msgstr "Путь справа (3-й) указан неверно!"
 
 #. IDS_OPEN_BOTHINVALID
-#: Merge.rc:4704
+#: Merge.rc:4705
 msgid "Both paths are invalid!"
 msgstr "Оба пути указаны неверно!"
 
-#: Merge.rc:4706
+#: Merge.rc:4707
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr "Пути слева (1-й) и в центре (2-й) указаны неверно!"
 
 #. IDS_OPEN_LEFTRIGHTINVALID
-#: Merge.rc:4707
+#: Merge.rc:4708
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "Пути слева (1-й) и справа (3-й) указаны неверно!"
 
-#: Merge.rc:4709
+#: Merge.rc:4710
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr "Пути в центре (2-й) и справа (3-й) указаны неверно!"
 
 #. IDS_OPEN_ALLINVALID
-#: Merge.rc:4710
+#: Merge.rc:4711
 msgid "All paths are invalid!"
 msgstr "Все пути указаны неверно!"
 
 #. IDS_OPEN_UNPACKERDISABLED
-#: Merge.rc:4711
+#: Merge.rc:4712
 msgid "Only enabled for file comparisons"
 msgstr "Включено только для сравнения файлов"
 
 #. IDS_OPEN_MISMATCH
-#: Merge.rc:4712
+#: Merge.rc:4713
 msgid "Cannot compare file and folder!"
 msgstr "Не удается сравнить файл и папку!"
 
 #. IDS_ERROR_FILE_NOT_FOUND
-#: Merge.rc:4718
+#: Merge.rc:4719
 #, c-format
 msgid "File not found: %1"
 msgstr "Файл не найден: %1"
 
 #. IDS_ERROR_FOLDER_NOT_FOUND
-#: Merge.rc:4719
+#: Merge.rc:4720
 #, c-format
 msgid "Folder not found: %1"
 msgstr "Папка не найдена: %1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
-#: Merge.rc:4720
+#: Merge.rc:4721
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "Файл не распакован: %1"
 
 #. IDS_ERROR_FILEOPEN
-#: Merge.rc:4721
+#: Merge.rc:4722
 #, c-format
 msgid "Cannot open file\n%1\n\n%2"
 msgstr "Не удается открыть файл\n%1\n\n%2"
 
 #. IDS_ERROR_CONF_RESOLVE
-#: Merge.rc:4722
+#: Merge.rc:4723
 msgid "Failed to parse conflict file."
 msgstr "Сбой разбора файла конфликтов."
 
 #. IDS_NOT_CONFLICT_FILE
-#: Merge.rc:4723
+#: Merge.rc:4724
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
 msgstr "Файл\n%1\nне является файлом конфликтов."
 
 #. IDS_COMPARE_LARGE_FILES
-#: Merge.rc:4724
+#: Merge.rc:4725
 msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr "Вы собираетесь сравнить очень большие файлы.\nОтображение содержимого этих файлов требует много памяти.\nХотите увидеть только результаты сравнения, а не содержимое файлов?\n\n"
 
 #. IDS_SAVE_AS_TITLE
-#: Merge.rc:4730
+#: Merge.rc:4731
 msgid "Save As"
 msgstr "Сохранить как"
 
 #. IDS_SAVE_FMT
-#: Merge.rc:4731
+#: Merge.rc:4732
 #, c-format
 msgid "Save changes to %1?"
 msgstr "Сохранить изменения в %1?"
 
 #. IDS_SAVEREADONLY_FMT
-#: Merge.rc:4732
+#: Merge.rc:4733
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr "%1 помечен как только для чтения. Перезаписать файл только для чтения? (ответив Нет можно сохранить файл с другим именем)"
 
 #. IDS_ERROR_BACKUP
-#: Merge.rc:4733
+#: Merge.rc:4734
 msgid "Error backing up file"
 msgstr "Ошибка создания резервной копии"
 
-#: Merge.rc:4735
+#: Merge.rc:4736
 #, c-format
 msgid "Unable to backup original file:\n%1\n\nContinue anyway?"
 msgstr "Не удается создать копию исходного файла:\n%1\n\nПродолжить в любом случае?"
 
 #. IDS_FILESAVE_FAILED
-#: Merge.rc:4736
+#: Merge.rc:4737
 #, c-format
 msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
 msgstr "Сбой сохранения файла.\n%1\n%2\nХотите:\n\t- использовать другое имя файла (Нажмите OK)\n\t-отменить текущую операцию (Нажмите Отмена)?"
 
-#: Merge.rc:4738
+#: Merge.rc:4739
 #, c-format
 msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr "Плагин '%2' не может упаковать ваши изменения из левого файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
 
-#: Merge.rc:4740
+#: Merge.rc:4741
 #, c-format
 msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr "Плагин '%2' не может упаковать ваши изменения из центрального файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
 
-#: Merge.rc:4742
+#: Merge.rc:4743
 #, c-format
 msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr "Плагин '%2' не может упаковать ваши изменения из правого файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
 
 #. IDS_FILECHANGED_ONDISK
-#: Merge.rc:4743
+#: Merge.rc:4744
 #, c-format
 msgid "Another application updated\n%1\nsince WinMerge loaded it.\n\nOverwrite?"
 msgstr "Другое приложение обновило файл\n%1\nуже загруженный в WinMerge .\n\nПерезаписать измененный файл?"
 
 #. IDS_SAVEREADONLY_MULTI
-#: Merge.rc:4744
+#: Merge.rc:4745
 #, c-format
 msgid "%1\nis read-only. Override?"
 msgstr "%1\nпомечен как только для чтения. Перезаписать файл только для чтения?"
 
 #. IDS_FILECHANGED_RESCAN
-#: Merge.rc:4745
+#: Merge.rc:4746
 #, c-format
 msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
 msgstr "Другое приложение обновило файл\n%1\nуже проверенный WinMerge.\n\nПерезагрузить файл?"
 
 #. IDS_SAVE_LEFT_AS
-#: Merge.rc:4746
+#: Merge.rc:4747
 msgid "Save Left File As"
 msgstr "Сохранить файл слева как"
 
 #. IDS_SAVE_MIDDLE_AS
-#: Merge.rc:4747
+#: Merge.rc:4748
 msgid "Save Middle File As"
 msgstr "Сохранить файл в центре как"
 
 #. IDS_SAVE_RIGHT_AS
-#: Merge.rc:4748
+#: Merge.rc:4749
 msgid "Save Right File As"
 msgstr "Сохранить файл справа как"
 
 #. IDS_FILE_DISAPPEARED
-#: Merge.rc:4753
+#: Merge.rc:4754
 #, c-format
 msgid "File\n%1\nnot found. Save a copy to continue."
 msgstr "Файл\n%1\nутрачен. Для продолжения сохраните копию файла."
 
 #. IDS_VIEWS_OUTOFSYNC
-#: Merge.rc:4759
+#: Merge.rc:4760
 msgid "Cannot merge unsynched documents.\n\nRefresh before continuing."
 msgstr "Не удается объединить отличия, если документы не синхронизированы.\n\nОбновите документы, прежде чем продолжить."
 
 #. IDS_BREAK_ON_WHITESPACE
-#: Merge.rc:4764
+#: Merge.rc:4765
 msgid "Break at whitespace"
 msgstr "Разбивать по пробельным символам"
 
 #. IDS_BREAK_ON_PUNCTUATION
-#: Merge.rc:4765
+#: Merge.rc:4766
 msgid "Break at whitespace or punctuation"
 msgstr "Разбивать по пробельным символам и знакам пунктуации"
 
 #. IDS_L2M
-#: Merge.rc:4771
+#: Merge.rc:4772
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "Копировать в центр\tAlt+Right"
 
 #. IDS_R2M
-#: Merge.rc:4772
+#: Merge.rc:4773
 msgid "Copy to &Middle\tAlt+Left"
 msgstr "Копировать в центр\tAlt+Left"
 
 #. IDS_COPY_FROM_MIDDLE_R
-#: Merge.rc:4773
+#: Merge.rc:4774
 msgid "Copy from Middle\tAlt+Shift+Right"
 msgstr "Копировать из центра\tAlt+Shift+Right"
 
 #. IDS_COPY_FROM_MIDDLE_L
-#: Merge.rc:4774
+#: Merge.rc:4775
 msgid "Copy from Middle\tAlt+Shift+Left"
 msgstr "Копировать из центра\tAlt+Shift+Left"
 
 #. IDS_L2MNEXT
-#: Merge.rc:4775
+#: Merge.rc:4776
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr "Копировать в центр и перейти\tCtrl+Alt+Right"
 
 #. IDS_R2MNEXT
-#: Merge.rc:4776
+#: Merge.rc:4777
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr "Копировать в центр и перейти\tCtrl+Alt+Left"
 
 #. IDS_ALL_MIDDLE
-#: Merge.rc:4777
+#: Merge.rc:4778
 msgid "Copy All to Middle"
 msgstr "Копировать все в центр"
 
 #. IDS_COPY_RIGHT_TO_LEFT
-#: Merge.rc:4783
+#: Merge.rc:4784
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Справа налево (%1)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE
-#: Merge.rc:4784
+#: Merge.rc:4785
 #, c-format
 msgid "Right to Middle (%1)"
 msgstr "Справа в центр (%1)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT
-#: Merge.rc:4785
+#: Merge.rc:4786
 #, c-format
 msgid "Middle to Left (%1)"
 msgstr "Из центра налево (%1)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT
-#: Merge.rc:4786
+#: Merge.rc:4787
 #, c-format
 msgid "Middle to Right (%1)"
 msgstr "Из центра направо (%1)"
 
 #. IDS_COPY_LEFT_TO_RIGHT
-#: Merge.rc:4787
+#: Merge.rc:4788
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "Слева направо (%1)"
 
 #. IDS_COPY_LEFT_TO_MIDDLE
-#: Merge.rc:4788
+#: Merge.rc:4789
 #, c-format
 msgid "Left to Middle (%1)"
 msgstr "Слева в центр (%1)"
 
 #. IDS_MOVE_LEFT_TO
-#: Merge.rc:4799 Merge.rc:4831
+#: Merge.rc:4800 Merge.rc:4832
 #, c-format
 msgid "Left to... (%1)"
 msgstr "Слева... (%1)"
 
 #. IDS_MOVE_MIDDLE_TO
-#: Merge.rc:4800 Merge.rc:4832
+#: Merge.rc:4801 Merge.rc:4833
 #, c-format
 msgid "Middle to... (%1)"
 msgstr "Из центра... (%1)"
 
 #. IDS_MOVE_RIGHT_TO
-#: Merge.rc:4801 Merge.rc:4833
+#: Merge.rc:4802 Merge.rc:4834
 #, c-format
 msgid "Right to... (%1)"
 msgstr "Справа... (%1)"
 
 #. IDS_COPY_BOTH_TO
-#: Merge.rc:4802
+#: Merge.rc:4803
 #, c-format
 msgid "Both to... (%1)"
 msgstr "Оба... (%1)"
 
 #. IDS_COPY_ALL_TO
-#: Merge.rc:4803
+#: Merge.rc:4804
 #, c-format
 msgid "All to... (%1)"
 msgstr "Все... (%1)"
 
 #. IDS_COPY_DIFFERENCES_TO
-#: Merge.rc:4804
+#: Merge.rc:4805
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Отличия... (%1)"
 
 #. IDS_COPY_ONLYDIFFITEMS
-#: Merge.rc:4811
+#: Merge.rc:4812
 msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
 msgstr "Некоторые выбранные элементы идентичны или пропущены.\nХотите скопировать только элементы с отличиями?"
 
 #. IDS_DEL_LEFT_FMT
-#: Merge.rc:4817
+#: Merge.rc:4818
 #, c-format
 msgid "Left (%1)"
 msgstr "Слева (%1)"
 
 #. IDS_DEL_MIDDLE_FMT
-#: Merge.rc:4818
+#: Merge.rc:4819
 #, c-format
 msgid "Middle (%1)"
 msgstr "Из центра (%1)"
 
 #. IDS_DEL_RIGHT_FMT
-#: Merge.rc:4819
+#: Merge.rc:4820
 #, c-format
 msgid "Right (%1)"
 msgstr "Справа (%1)"
 
 #. IDS_DEL_BOTH_FMT
-#: Merge.rc:4820
+#: Merge.rc:4821
 #, c-format
 msgid "Both (%1)"
 msgstr "Оба (%1)"
 
 #. IDS_DEL_ALL_FMT
-#: Merge.rc:4821
+#: Merge.rc:4822
 #, c-format
 msgid "All (%1)"
 msgstr "Все (%1)"
 
 #. IDS_SELECT_DEST_LEFT
-#: Merge.rc:4837
+#: Merge.rc:4838
 msgid "Left Side - Select Destination Folder:"
 msgstr "Слева - выбор папки назначения:"
 
 #. IDS_SELECT_DEST_MIDDLE
-#: Merge.rc:4838
+#: Merge.rc:4839
 msgid "Middle Side - Select Destination Folder:"
 msgstr "В центре - выбор папки назначения:"
 
 #. IDS_SELECT_DEST_RIGHT
-#: Merge.rc:4839
+#: Merge.rc:4840
 msgid "Right Side - Select Destination Folder:"
 msgstr "Справа - выбор папки назначения:"
 
 #. IDS_FILES_AFFECTED_FMT
-#: Merge.rc:4840
+#: Merge.rc:4841
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(%1 файлов обработано)"
 
 #. IDS_FILES_AFFECTED_FMT2
-#: Merge.rc:4841
+#: Merge.rc:4842
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 из %2 файлов обработано)"
 
 #. IDS_CONFIRM_DELETE_SINGLE
-#: Merge.rc:4847
+#: Merge.rc:4848
 #, c-format
 msgid "Are you sure you want to delete\n\n%1 ?"
 msgstr "Хотите удалить\n\n%1 ?"
 
 #. IDS_CONFIRM_SINGLE_COPY
-#: Merge.rc:4848
+#: Merge.rc:4849
 msgid "Are you sure you want to copy?"
 msgstr "Хотите копировать?"
 
 #. IDS_CONFIRM_MULTIPLE_COPY
-#: Merge.rc:4849
+#: Merge.rc:4850
 #, c-format
 msgid "Are you sure you want to copy %d items?"
 msgstr "Хотите копировать %d элементов?"
 
 #. IDS_DIRCMP_NOTSYNC
-#: Merge.rc:4850
+#: Merge.rc:4851
 #, c-format
 msgid "Operation aborted!\n\nFolder contents changed, path\n%1\nnot found.\n\nRefresh the compare."
 msgstr "Операция прервана!\n\nСодержимое папки изменено, путь\n%1\nне был найден.\n\nОбновите сравнение."
 
 #. IDS_CONFIRM_SINGLE_MOVE
-#: Merge.rc:4855
+#: Merge.rc:4856
 msgid "Are you sure you want to move?"
 msgstr "Хотите переместить?"
 
 #. IDS_CONFIRM_MULTIPLE_MOVE
-#: Merge.rc:4856
+#: Merge.rc:4857
 #, c-format
 msgid "Are you sure you want to move %d items?"
 msgstr "Хотите переместить %d элементов?"
 
 #. IDS_CONFIRM_MOVE_CAPTION
-#: Merge.rc:4858
+#: Merge.rc:4859
 msgid "Confirm Move"
 msgstr "Подтвердите перемещение"
 
-#: Merge.rc:4860
+#: Merge.rc:4861
 msgid "Close the folder comparison window?"
 msgstr "Закрыть окно сравнения папок?"
 
-#: Merge.rc:4862
+#: Merge.rc:4863
 msgid "Close the folder comparison window, which took a long time?"
 msgstr "Закрыть окно сравнения папок, занявшее много времени на выполнение?"
 
 #. IDS_ERROR_INVALID_DIR_FILE_NAME
-#: Merge.rc:4863
+#: Merge.rc:4864
 msgid "The file or folder name is invalid."
 msgstr "Неверное имя файла или папки."
 
 #. IDS_ERROR_EXECUTE_FILE
-#: Merge.rc:4869
+#: Merge.rc:4870
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Не удается запустить внешний редактор: %1"
 
 #. IDS_UNKNOWN_ARCHIVE_FORMAT
-#: Merge.rc:4875
+#: Merge.rc:4876
 msgid "Unknown archive format"
 msgstr "Неизвестный формат архива"
 
-#: Merge.rc:4877
+#: Merge.rc:4878
 msgid "Failed to extract archive.\nCompare as text file?"
 msgstr "Не удалось извлечь архивные файлы.\nВы хотите сравнить архивные файлы как текстовые файлы?"
 
 #. IDS_COLHDR_FILENAME
-#: Merge.rc:4883
+#: Merge.rc:4884
 msgid "Filename"
 msgstr "Имя файла"
 
 #. IDS_COLHDR_DIR
-#: Merge.rc:4884
+#: Merge.rc:4885
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "Папка"
 
 #. IDS_COLHDR_RESULT
-#: Merge.rc:4885
+#: Merge.rc:4886
 msgid "Comparison Result"
 msgstr "Результат сравнения"
 
 #. IDS_COLHDR_LTIMEM
-#: Merge.rc:4886
+#: Merge.rc:4887
 msgid "Left Date"
 msgstr "Дата слева"
 
 #. IDS_COLHDR_RTIMEM
-#: Merge.rc:4887
+#: Merge.rc:4888
 msgid "Right Date"
 msgstr "Дата справа"
 
 #. IDS_COLHDR_MTIMEM
-#: Merge.rc:4888
+#: Merge.rc:4889
 msgid "Middle Date"
 msgstr "Дата в центре"
 
 #. IDS_COLHDR_LSIZE
-#: Merge.rc:4890
+#: Merge.rc:4891
 msgid "Left Size"
 msgstr "Размер слева"
 
 #. IDS_COLHDR_RSIZE
-#: Merge.rc:4891
+#: Merge.rc:4892
 msgid "Right Size"
 msgstr "Размер справа"
 
 #. IDS_COLHDR_MSIZE
-#: Merge.rc:4896
+#: Merge.rc:4897
 msgid "Middle Size"
 msgstr "Размер в центре"
 
 #. IDS_COLHDR_RSIZE_SHORT
-#: Merge.rc:4897
+#: Merge.rc:4898
 msgid "Right Size (Short)"
 msgstr "Размер справа (сокр.)"
 
 #. IDS_COLHDR_LSIZE_SHORT
-#: Merge.rc:4898
+#: Merge.rc:4899
 msgid "Left Size (Short)"
 msgstr "Размер слева (сокр.)"
 
 #. IDS_COLHDR_MSIZE_SHORT
-#: Merge.rc:4899
+#: Merge.rc:4900
 msgid "Middle Size (Short)"
 msgstr "Размер в центре (сокр.)"
 
 #. IDS_COLHDR_LTIMEC
-#: Merge.rc:4905
+#: Merge.rc:4906
 msgid "Left Creation Time"
 msgstr "Время создания слева"
 
 #. IDS_COLHDR_RTIMEC
-#: Merge.rc:4906
+#: Merge.rc:4907
 msgid "Right Creation Time"
 msgstr "Время создания справа"
 
 #. IDS_COLHDR_MTIMEC
-#: Merge.rc:4907
+#: Merge.rc:4908
 msgid "Middle Creation Time"
 msgstr "Время создания в центре"
 
 #. IDS_COLHDR_NEWER
-#: Merge.rc:4908
+#: Merge.rc:4909
 msgid "Newer File"
 msgstr "Более новый файл"
 
 #. IDS_COLHDR_LVERSION
-#: Merge.rc:4909
+#: Merge.rc:4910
 msgid "Left File Version"
 msgstr "Версия файла слева"
 
 #. IDS_COLHDR_RVERSION
-#: Merge.rc:4910
+#: Merge.rc:4911
 msgid "Right File Version"
 msgstr "Версия файла справа"
 
 #. IDS_COLHDR_MVERSION
-#: Merge.rc:4911
+#: Merge.rc:4912
 msgid "Middle File Version"
 msgstr "Версия файла в центре"
 
 #. IDS_COLHDR_RESULT_ABBR
-#: Merge.rc:4912
+#: Merge.rc:4913
 msgid "Short Result"
 msgstr "Упрощенный результат"
 
 #. IDS_COLHDR_LATTRIBUTES
-#: Merge.rc:4913
+#: Merge.rc:4914
 msgid "Left Attributes"
 msgstr "Атрибуты слева"
 
 #. IDS_COLHDR_RATTRIBUTES
-#: Merge.rc:4914
+#: Merge.rc:4915
 msgid "Right Attributes"
 msgstr "Атрибуты справа"
 
 #. IDS_COLHDR_MATTRIBUTES
-#: Merge.rc:4915
+#: Merge.rc:4916
 msgid "Middle Attributes"
 msgstr "Атрибуты в центре"
 
 #. IDS_COLHDR_LEOL_TYPE
-#: Merge.rc:4920
+#: Merge.rc:4921
 msgid "Left EOL"
 msgstr "EOL слева"
 
 #. IDS_COLHDR_MEOL_TYPE
-#: Merge.rc:4921
+#: Merge.rc:4922
 msgid "Middle EOL"
 msgstr "EOL в центре"
 
 #. IDS_COLHDR_REOL_TYPE
-#: Merge.rc:4922
+#: Merge.rc:4923
 msgid "Right EOL"
 msgstr "EOL справа"
 
 #. IDS_COLHDR_LENCODING
-#: Merge.rc:4928
+#: Merge.rc:4929
 msgid "Left Encoding"
 msgstr "Кодировка слева"
 
 #. IDS_COLHDR_RENCODING
-#: Merge.rc:4929
+#: Merge.rc:4930
 msgid "Right Encoding"
 msgstr "Кодировка справа"
 
 #. IDS_COLHDR_MENCODING
-#: Merge.rc:4930
+#: Merge.rc:4931
 msgid "Middle Encoding"
 msgstr "Кодировка в центре"
 
 #. IDS_COLHDR_NIDIFFS
-#: Merge.rc:4931
+#: Merge.rc:4932
 msgid "Ignored Diff"
 msgstr "Игнор. отличия"
 
 #. IDS_COLHDR_BINARY
-#: Merge.rc:4933
+#: Merge.rc:4934
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Двоичный"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
-#: Merge.rc:4934 Merge.rc:5251
+#: Merge.rc:4935 Merge.rc:5252
 msgid "Unpacker"
 msgstr "Распаковщик"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4935 Merge.rc:5252 Merge.rc:5552
+#: Merge.rc:4936 Merge.rc:5253 Merge.rc:5553
 msgid "Prediffer"
 msgstr "Предсравнение"
 
 #. IDS_COLHDR_LEFT
-#: Merge.rc:4936
+#: Merge.rc:4937
 msgid "Left"
 msgstr "Слева"
 
 #. IDS_COLHDR_MIDDLE
-#: Merge.rc:4937
+#: Merge.rc:4938
 msgid "Middle"
 msgstr "В центре"
 
 #. IDS_COLHDR_RIGHT
-#: Merge.rc:4938
+#: Merge.rc:4939
 msgid "Right"
 msgstr "Справа"
 
 #. IDS_COLHDR_DIFF
-#: Merge.rc:4939
+#: Merge.rc:4940
 msgid "Diff"
 msgstr "Отличия"
 
 #. IDS_COLHDR_LEFT_DUPLICATE
-#: Merge.rc:4940
+#: Merge.rc:4941
 msgid "Left Duplicate Count"
 msgstr "Кол-во дублей слева"
 
 #. IDS_COLHDR_RIGHT_DUPLICATE
-#: Merge.rc:4941
+#: Merge.rc:4942
 msgid "Right Duplicate Count"
 msgstr "Кол-во дублей справа"
 
 #. IDS_COLHDR_MIDDLE_DUPLICATE
-#: Merge.rc:4942
+#: Merge.rc:4943
 msgid "Middle Duplicate Count"
 msgstr "Кол-во дублей в центре"
 
 #. IDS_COLHDR_MOVE
-#: Merge.rc:4943
+#: Merge.rc:4944
 msgid "Move"
 msgstr "Переместить"
 
 #. IDS_PRPCAT_AUDIO
-#: Merge.rc:4950
+#: Merge.rc:4951
 msgid "Audio"
 msgstr "Аудио"
 
 #. IDS_PRPCAT_CALENDAR
-#: Merge.rc:4951
+#: Merge.rc:4952
 msgid "Calendar"
 msgstr "Календарь"
 
 #. IDS_PRPCAT_COMMUNICATION
-#: Merge.rc:4952
+#: Merge.rc:4953
 msgid "Communication"
 msgstr "Коммуникация"
 
 #. IDS_PRPCAT_CONTACT
-#: Merge.rc:4953
+#: Merge.rc:4954
 msgid "Contact"
 msgstr "Контакт"
 
 #. IDS_PRPCAT_DEVICES
-#: Merge.rc:4954
+#: Merge.rc:4955
 msgid "Devices"
 msgstr "Устройства"
 
 #. IDS_PRPCAT_DOCUMENT
-#: Merge.rc:4955
+#: Merge.rc:4956
 msgid "Document"
 msgstr "Документ"
 
 #. IDS_PRPCAT_HOME
-#: Merge.rc:4956
+#: Merge.rc:4957
 msgid "Home"
 msgstr "Домой"
 
 #. IDS_PRPCAT_JOURNAL
-#: Merge.rc:4958
+#: Merge.rc:4959
 msgid "Journal"
 msgstr "Журнал"
 
 #. IDS_PRPCAT_LINK
-#: Merge.rc:4959
+#: Merge.rc:4960
 msgid "Link"
 msgstr "Ссылка"
 
 #. IDS_PRPCAT_MEDIA
-#: Merge.rc:4960
+#: Merge.rc:4961
 msgid "Media"
 msgstr "Медиа"
 
 #. IDS_PRPCAT_MUSIC
-#: Merge.rc:4962
+#: Merge.rc:4963
 msgid "Music"
 msgstr "Музыка"
 
 #. IDS_PRPCAT_NOTE
-#: Merge.rc:4963
+#: Merge.rc:4964
 msgid "Note"
 msgstr "Заметка"
 
 #. IDS_PRPCAT_PHOTO
-#: Merge.rc:4964
+#: Merge.rc:4965
 msgid "Photo"
 msgstr "Фото"
 
 #. IDS_PRPCAT_RECORDEDTV
-#: Merge.rc:4965
+#: Merge.rc:4966
 msgid "RecordedTV"
 msgstr "Записанное ТВ"
 
 #. IDS_PRPCAT_SEARCH
-#: Merge.rc:4966
+#: Merge.rc:4967
 msgid "Search"
 msgstr "Поиск"
 
 #. IDS_PRPCAT_SECURITY
-#: Merge.rc:4967
+#: Merge.rc:4968
 msgid "Security"
 msgstr "Безопасность"
 
 #. IDS_PRPCAT_SOFTWARE
-#: Merge.rc:4968
+#: Merge.rc:4969
 msgid "Software"
 msgstr "ПО"
 
 #. IDS_PRPCAT_TASK
-#: Merge.rc:4969
+#: Merge.rc:4970
 msgid "Task"
 msgstr "Задача"
 
 #. IDS_PRPCAT_VIDEO
-#: Merge.rc:4970
+#: Merge.rc:4971
 msgid "Video"
 msgstr "Видео"
 
 #. IDS_PRPCAT_HASH
-#: Merge.rc:4971
+#: Merge.rc:4972
 msgid "Hash"
 msgstr "Хеш"
 
 #. IDS_CANT_COMPARE_FILES
-#: Merge.rc:4977
+#: Merge.rc:4978
 msgid "Unable to compare files"
 msgstr "Не удается сравнить файлы"
 
 #. IDS_ABORTED_ITEM
-#: Merge.rc:4978
+#: Merge.rc:4979
 msgid "Item aborted"
 msgstr "Сравнение прервано"
 
 #. IDS_FILE_SKIPPED
-#: Merge.rc:4979
+#: Merge.rc:4980
 msgid "File skipped"
 msgstr "Файл пропущен"
 
 #. IDS_DIR_SKIPPED
-#: Merge.rc:4980
+#: Merge.rc:4981
 msgid "Folder skipped"
 msgstr "Папка пропущена"
 
 #. IDS_LEFT_ONLY_IN_FMT
-#: Merge.rc:4981
+#: Merge.rc:4982
 #, c-format
 msgid "Left only: %1"
 msgstr "Только слева: %1"
 
 #. IDS_MIDDLE_ONLY_IN_FMT
-#: Merge.rc:4982
+#: Merge.rc:4983
 #, c-format
 msgid "Middle only: %1"
 msgstr "Только в центре: %1"
 
 #. IDS_RIGHT_ONLY_IN_FMT
-#: Merge.rc:4983
+#: Merge.rc:4984
 #, c-format
 msgid "Right only: %1"
 msgstr "Только справа: %1"
 
 #. IDS_DOES_NOT_EXIST_IN_FMT
-#: Merge.rc:4984
+#: Merge.rc:4985
 #, c-format
 msgid "Does not exist in %1"
 msgstr "Не существует в %1"
 
 #. IDS_BIN_FILES_SAME
-#: Merge.rc:4985
+#: Merge.rc:4986
 msgid "Binary files are identical"
 msgstr "Двоичные файлы идентичны"
 
 #. IDS_BIN_FILES_DIFF
-#: Merge.rc:4991
+#: Merge.rc:4992
 msgid "Binary files are different"
 msgstr "Двоичные файлы отличаются"
 
 #. IDS_FILES_ARE_DIFFERENT
-#: Merge.rc:4992
+#: Merge.rc:4993
 msgid "Files are different"
 msgstr "Файлы отличаются"
 
 #. IDS_FOLDERS_ARE_DIFFERENT
-#: Merge.rc:4993
+#: Merge.rc:4994
 msgid "Folders are different"
 msgstr "Папки отличаются"
 
 #. IDS_LEFTONLY
-#: Merge.rc:4994
+#: Merge.rc:4995
 msgid "Left Only"
 msgstr "Только слева"
 
 #. IDS_RIGHTONLY
-#: Merge.rc:4995
+#: Merge.rc:4996
 msgid "Right Only"
 msgstr "Только справа"
 
 #. IDS_MIDDLEONLY
-#: Merge.rc:4996
+#: Merge.rc:4997
 msgid "Middle Only"
 msgstr "Только в центре"
 
 #. IDS_NOITEMLEFT
-#: Merge.rc:4997
+#: Merge.rc:4998
 msgid "No item in left"
 msgstr "Нет элемента слева"
 
 #. IDS_NOITEMRIGHT
-#: Merge.rc:4998
+#: Merge.rc:4999
 msgid "No item in right"
 msgstr "Нет элемента справа"
 
 #. IDS_NOITEMMIDDLE
-#: Merge.rc:4999
+#: Merge.rc:5000
 msgid "No item in middle"
 msgstr "Нет элемента в центре"
 
 #. IDS_CMPRES_ERROR
-#: Merge.rc:5001
+#: Merge.rc:5002
 msgid "Error"
 msgstr "Ошибка"
 
 #. IDS_TEXT_FILES_SAME
-#: Merge.rc:5002
+#: Merge.rc:5003
 msgid "Text files are identical"
 msgstr "Текстовые файлы идентичны"
 
 #. IDS_LEFTONLY_DIFF
-#: Merge.rc:5003
+#: Merge.rc:5004
 msgid " (Middle and right are identical)"
 msgstr " (В центре и справа идентичны)"
 
 #. IDS_MIDDLEONLY_DIFF
-#: Merge.rc:5004
+#: Merge.rc:5005
 msgid " (Left and right are identical)"
 msgstr " (Слева и справа идентичны)"
 
 #. IDS_RIGHTONLY_DIFF
-#: Merge.rc:5005
+#: Merge.rc:5006
 msgid " (Left and middle are identical)"
 msgstr " (Слева и в центре идентичны)"
 
 #. IDS_PATH_MISMATCH
-#: Merge.rc:5006
+#: Merge.rc:5007
 msgid " (paths differ)"
 msgstr " (пути отличаются)"
 
 #. IDS_TEXT_FILES_DIFF
-#: Merge.rc:5007
+#: Merge.rc:5008
 msgid "Text files are different"
 msgstr "Текстовые файлы отличаются"
 
 #. IDS_IMAGE_FILES_SAME
-#: Merge.rc:5008
+#: Merge.rc:5009
 msgid "Image files are identical"
 msgstr "Файлы изображений идентичны"
 
 #. IDS_IMAGE_FILES_DIFF
-#: Merge.rc:5009
+#: Merge.rc:5010
 msgid "Image files are different"
 msgstr "Файлы изображений отличаются"
 
 #. IDS_EXPR_DIFF
-#: Merge.rc:5010
+#: Merge.rc:5011
 #, c-format
 msgid "Files are different (expr: %1)"
 msgstr "Файлы отличаются (выражение: %1)"
 
 #. IDS_HASH_GROUP
-#: Merge.rc:5011
+#: Merge.rc:5012
 #, c-format
 msgid "Group%d"
 msgstr "Группа%d"
 
 #. IDS_RENAME_MOVE_DETECTION_DISALBED
-#: Merge.rc:5012
+#: Merge.rc:5013
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
 msgstr "Отключено"
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME
-#: Merge.rc:5013
+#: Merge.rc:5014
 msgid "Detect renames"
 msgstr "Обнаружение переименований"
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME_MOVE
-#: Merge.rc:5014
+#: Merge.rc:5015
 msgid "Detect renames and moves"
 msgstr "Обнаружение переименований и перемещений"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
-#: Merge.rc:5015
+#: Merge.rc:5016
 msgid "Merge renames"
 msgstr "Объединение переименований"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
-#: Merge.rc:5016
+#: Merge.rc:5017
 msgid "Merge renames and moves"
 msgstr "Объединение переименований и перемещений"
 
 #. IDS_RENAMED
-#: Merge.rc:5017
+#: Merge.rc:5018
 msgid "Renamed"
 msgstr "Переименовано"
 
 #. IDS_RENAMED_MOVED
-#: Merge.rc:5019
+#: Merge.rc:5020
 msgid "Renamed/Moved"
 msgstr "Переименовано/Перемещено"
 
 #. IDS_RENAMED_MOVED_ITEMS
-#: Merge.rc:5020
+#: Merge.rc:5021
 #, c-format
 msgid "(%1 items)"
 msgstr "(элементов %1)"
 
 #. IDS_RENAMED_MOVED_RESULT
-#: Merge.rc:5021
+#: Merge.rc:5022
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (набор %2): "
 
 #. IDS_SWITCH_FLAT_MODE
-#: Merge.rc:5022
+#: Merge.rc:5023
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
 msgstr "Некоторые перемещённые элементы были объединены.\nВ режиме дерева эти элементы могут отображаться в позициях, не соответствующих фактической структуре папок, что может вызывать путаницу.\nПереключиться в плоский режим?"
 
 #. IDS_ELAPSED_TIME
-#: Merge.rc:5028
+#: Merge.rc:5029
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Прошло времени: %ld мс"
 
 #. IDS_STATUS_SELITEM1
-#: Merge.rc:5029
+#: Merge.rc:5030
 msgid "1 item selected"
 msgstr "Выбран 1 элемент"
 
 #. IDS_STATUS_SELITEMS
-#: Merge.rc:5030
+#: Merge.rc:5031
 #, c-format
 msgid "%1 items selected"
 msgstr "Выбрано элементов: %1"
 
 #. IDS_COLDESC_FILENAME
-#: Merge.rc:5036
+#: Merge.rc:5037
 msgid "Filename or folder name."
 msgstr "Имя файла или папки."
 
 #. IDS_COLDESC_DIR
-#: Merge.rc:5037
+#: Merge.rc:5038
 msgid "Subfolder name when subfolders are included."
 msgstr "Имена подпапок, если подпапки включены."
 
 #. IDS_COLDESC_RESULT
-#: Merge.rc:5038
+#: Merge.rc:5039
 msgid "Comparison result, long form."
 msgstr "Результат сравнения, длинная форма."
 
 #. IDS_COLDESC_LTIMEM
-#: Merge.rc:5043
+#: Merge.rc:5044
 msgid "Left side modification date."
 msgstr "Дата изменения слева."
 
 #. IDS_COLDESC_RTIMEM
-#: Merge.rc:5044
+#: Merge.rc:5045
 msgid "Right side modification date."
 msgstr "Дата изменения справа."
 
 #. IDS_COLDESC_MTIMEM
-#: Merge.rc:5045
+#: Merge.rc:5046
 msgid "Middle side modification date."
 msgstr "Дата изменения в центре."
 
 #. IDS_COLDESC_EXTENSION
-#: Merge.rc:5046
+#: Merge.rc:5047
 msgid "File's extension."
 msgstr "Расширение файла."
 
 #. IDS_COLDESC_LSIZE
-#: Merge.rc:5047
+#: Merge.rc:5048
 msgid "Left file size in bytes."
 msgstr "Размер файла слева в байтах."
 
 #. IDS_COLDESC_RSIZE
-#: Merge.rc:5048
+#: Merge.rc:5049
 msgid "Right file size in bytes."
 msgstr "Размер файла справа в байтах."
 
 #. IDS_COLDESC_MSIZE
-#: Merge.rc:5049
+#: Merge.rc:5050
 msgid "Middle file size in bytes."
 msgstr "Размер файла в центре в байтах."
 
 #. IDS_COLDESC_LSIZE_SHORT
-#: Merge.rc:5050
+#: Merge.rc:5051
 msgid "Left file size abbreviated."
 msgstr "Размер файла слева (сокр.)"
 
 #. IDS_COLDESC_RSIZE_SHORT
-#: Merge.rc:5051
+#: Merge.rc:5052
 msgid "Right file size abbreviated."
 msgstr "Размер файла справа (сокр.)"
 
 #. IDS_COLDESC_MSIZE_SHORT
-#: Merge.rc:5052
+#: Merge.rc:5053
 msgid "Middle file size abbreviated."
 msgstr "Размер файла в центре (сокр.)"
 
 #. IDS_COLDESC_LTIMEC
-#: Merge.rc:5058
+#: Merge.rc:5059
 msgid "Left side creation time."
 msgstr "Время создания файла слева."
 
 #. IDS_COLDESC_RTIMEC
-#: Merge.rc:5059
+#: Merge.rc:5060
 msgid "Right side creation time."
 msgstr "Время создания файла справа."
 
 #. IDS_COLDESC_MTIMEC
-#: Merge.rc:5060
+#: Merge.rc:5061
 msgid "Middle side creation time."
 msgstr "Время создания файла в центре."
 
 #. IDS_COLDESC_NEWER
-#: Merge.rc:5061
+#: Merge.rc:5062
 msgid "Tells which side has newer modification date."
 msgstr "Показать на какой из сторон дата изменения файла новее."
 
 #. IDS_COLDESC_LVERSION
-#: Merge.rc:5062
+#: Merge.rc:5063
 msgid "Left side file version, only for some file types."
 msgstr "Версия файла слева, только для некоторых типов файлов."
 
 #. IDS_COLDESC_RVERSION
-#: Merge.rc:5063
+#: Merge.rc:5064
 msgid "Right side file version, only for some file types."
 msgstr "Версия файла справа, только для некоторых типов файлов."
 
 #. IDS_COLDESC_MVERSION
-#: Merge.rc:5068
+#: Merge.rc:5069
 msgid "Middle side file version, only for some file types."
 msgstr "Версия файла в центре, только для некоторых типов файлов."
 
 #. IDS_COLDESC_RESULT_ABBR
-#: Merge.rc:5069
+#: Merge.rc:5070
 msgid "Short comparison result."
 msgstr "Результат быстрого сравнения."
 
 #. IDS_COLDESC_LATTRIBUTES
-#: Merge.rc:5070
+#: Merge.rc:5071
 msgid "Left side attributes."
 msgstr "Атрибуты слева."
 
 #. IDS_COLDESC_RATTRIBUTES
-#: Merge.rc:5071
+#: Merge.rc:5072
 msgid "Right side attributes."
 msgstr "Атрибуты справа."
 
 #. IDS_COLDESC_MATTRIBUTES
-#: Merge.rc:5072
+#: Merge.rc:5073
 msgid "Middle side attributes."
 msgstr "Атрибуты в центре."
 
 #. IDS_COLDESC_LEOL_TYPE
-#: Merge.rc:5073
+#: Merge.rc:5074
 msgid "Left side file EOL type."
 msgstr "Тип EOL для файла слева."
 
 #. IDS_COLDESC_REOL_TYPE
-#: Merge.rc:5074
+#: Merge.rc:5075
 msgid "Right side file EOL type."
 msgstr "Тип EOL для файла справа."
 
 #. IDS_COLDESC_MEOL_TYPE
-#: Merge.rc:5075
+#: Merge.rc:5076
 msgid "Middle side file EOL type."
 msgstr "Тип EOL для файла в центре."
 
 #. IDS_COLDESC_LENCODING
-#: Merge.rc:5081
+#: Merge.rc:5082
 msgid "Left side encoding."
 msgstr "Кодировка слева."
 
 #. IDS_COLDESC_RENCODING
-#: Merge.rc:5082
+#: Merge.rc:5083
 msgid "Right side encoding."
 msgstr "Кодировка справа."
 
 #. IDS_COLDESC_MENCODING
-#: Merge.rc:5083
+#: Merge.rc:5084
 msgid "Middle side encoding."
 msgstr "Кодировка в центре."
 
 #. IDS_COLDESC_NIDIFFS
-#: Merge.rc:5084
+#: Merge.rc:5085
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr "Количество проигнорированных отличий в файле. Эти отличия проигнорированы WinMerge и не могут быть обработаны."
 
 #. IDS_COLDESC_NSDIFFS
-#: Merge.rc:5085
+#: Merge.rc:5086
 msgid "Number of differences in file (excluding ignored)."
 msgstr "Количество отличий в файле. Это количество не включает в себя проигнорированные отличия."
 
 #. IDS_COLDESC_BINARY
-#: Merge.rc:5086
+#: Merge.rc:5087
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показать звездочку (*) если файл двоичный."
 
 #. IDS_COLDESC_UNPACKER
-#: Merge.rc:5087
+#: Merge.rc:5088
 msgid "Unpacker plugin name or pipeline."
 msgstr "Имя плагина распаковщика или конвейера."
 
 #. IDS_COLDESC_PREDIFFER
-#: Merge.rc:5088
+#: Merge.rc:5089
 msgid "Prediffer plugin name or pipeline."
 msgstr "Имя плагина предсравнения или конвейера."
 
 #. IDS_DIRECTORY_REPORT_TITLE
-#: Merge.rc:5094
+#: Merge.rc:5095
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Сравнение %1 с %2"
 
 #. IDS_DIRECTORY_REPORT_TITLE3
-#: Merge.rc:5095
+#: Merge.rc:5096
 #, c-format
 msgid "Compare %1 with %2 and %3"
 msgstr "Сравнить %1 с %2 и %3"
 
 #. IDS_REPORT_COMMALIST
-#: Merge.rc:5096
+#: Merge.rc:5097
 msgid "Comma-separated list"
 msgstr "Список с разделителем Запятая"
 
 #. IDS_REPORT_TABLIST
-#: Merge.rc:5097
+#: Merge.rc:5098
 msgid "Tab-separated list"
 msgstr "Список с разделителем Табуляция"
 
 #. IDS_REPORT_SIMPLEHTML
-#: Merge.rc:5098
+#: Merge.rc:5099
 msgid "Simple HTML"
 msgstr "Простой HTML"
 
 #. IDS_REPORT_SIMPLEXML
-#: Merge.rc:5099
+#: Merge.rc:5100
 msgid "Simple XML"
 msgstr "Простой XML"
 
-#: Merge.rc:5101
+#: Merge.rc:5102
 msgid "Report file already exists. Overwrite?"
 msgstr "Файл отчета уже существует. Перезаписать существующий файл?"
 
 #. IDS_REPORT_ERROR
-#: Merge.rc:5106
+#: Merge.rc:5107
 #, c-format
 msgid "Error creating the report:\n%1"
 msgstr "Ошибка создания отчета:\n%1"
 
 #. IDS_REPORT_SUCCESS
-#: Merge.rc:5107
+#: Merge.rc:5108
 msgid "Report created successfully."
 msgstr "Отчет успешно создан."
 
 #. IDS_SYNCPOINT_LASTBLOCK
-#: Merge.rc:5113
+#: Merge.rc:5114
 msgid "Cannot add a synchronization point at this line."
 msgstr "Невозможно добавить точку синхронизации в этой строке."
 
 #. IDS_FILE_TO_ITSELF
-#: Merge.rc:5119
+#: Merge.rc:5120
 msgid "Same file is opened in both panes."
 msgstr "На обеих панелях открыт один и тот же файл."
 
 #. IDS_FILESSAME
-#: Merge.rc:5120
+#: Merge.rc:5121
 msgid "Selected files are identical."
 msgstr "Выбранные файлы идентичны."
 
 #. IDS_FILESSAME_CURCFG
-#: Merge.rc:5121
+#: Merge.rc:5122
 msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
 msgstr "Выбранные файлы идентичны (с текущими настройками).\r\nПроверка идентичности двоичных данных..."
 
 #. IDS_FILESSAME_BINERROR
-#: Merge.rc:5122
+#: Merge.rc:5123
 msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
 msgstr "Выбранные файлы идентичны (с текущими настройками).\Но произошёл сбой двоичного сравнения."
 
 #. IDS_FILESSAME_BINSAME
-#: Merge.rc:5123
+#: Merge.rc:5124
 msgid "Selected files are identical (binary match)."
 msgstr "Выбранные файлы идентичны (двоичное совпадение)."
 
 #. IDS_FILESSAME_BINDIFF
-#: Merge.rc:5124
+#: Merge.rc:5125
 msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
 msgstr "Выбранные файлы идентичны (с текущими настройками).\r\nНо отличаются на двоичном уровне."
 
 #. IDS_FILEERROR
-#: Merge.rc:5125
+#: Merge.rc:5126
 msgid "An error occurred while comparing files."
 msgstr "При сравнении файлов произошла ошибка."
 
 #. IDS_TEMP_FILEERROR
-#: Merge.rc:5126
+#: Merge.rc:5127
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "Временные файлы не могут быть созданы. Проверьте настройки путей временных файлов."
 
 #. IDS_SUGGEST_IGNOREEOL
-#: Merge.rc:5127
+#: Merge.rc:5128
 msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr "В файлах используются различные типы конца строки.\n\nСчитать все концы строк в этом сравнении равнозначными?\n\nЕсли Вас не интересуют отличия EOL, установите параметр 'Игнорировать концы строк (Win/Unix/Mac)' на вкладке Сравнение в Настройках."
 
 #. IDS_INVALID_DIRECTORY
-#: Merge.rc:5128
+#: Merge.rc:5129
 msgid "Selected folder is invalid."
 msgstr "Выбранная папка указана неверно."
 
 #. IDS_CANNOT_OPEN_BINARYFILE
-#: Merge.rc:5129
+#: Merge.rc:5130
 msgid "Cannot open a binary file in Editor."
 msgstr "Не удается открыть двоичный файл в редакторе."
 
 #. IDS_CREATE_PAIR_FOLDER
-#: Merge.rc:5130
+#: Merge.rc:5131
 #, c-format
 msgid "Create matching folder:\n%1\non the other side and open?"
 msgstr "Папка существует только на одной стороне и не может быть открыта.\n\nСоздать подходящую папку:\n%1\nна другой стороне и открыть эти папки?"
 
 #. IDS_CONFIRM_COPY_ALL_DIFFS
-#: Merge.rc:5131
+#: Merge.rc:5132
 msgid "Copy all differences to other file?"
 msgstr "Хотите скопировать все отличия в другой файл?"
 
 #. IDS_MOVE_TO_NEXTFILE
-#: Merge.rc:5136
+#: Merge.rc:5137
 msgid "Move to next file?"
 msgstr "Перейти к следующему файлу?"
 
 #. IDS_MOVE_TO_PREVFILE
-#: Merge.rc:5137
+#: Merge.rc:5138
 msgid "Move to previous file?"
 msgstr "Перейти к предыдущему файлу?"
 
 #. IDS_MOVE_TO_NEXTPAGE
-#: Merge.rc:5138
+#: Merge.rc:5139
 msgid "Move to next page?"
 msgstr "Перейти к следующей странице?"
 
 #. IDS_MOVE_TO_PREVPAGE
-#: Merge.rc:5139
+#: Merge.rc:5140
 msgid "Move to previous page?"
 msgstr "Перейти к предыдущей странице?"
 
 #. IDS_MOVE_TO_FIRSTFILE
-#: Merge.rc:5140
+#: Merge.rc:5141
 msgid "Move to first file?"
 msgstr "Перейти к первому файлу?"
 
 #. IDS_MOVE_TO_LASTFILE
-#: Merge.rc:5141
+#: Merge.rc:5142
 msgid "Move to last file?"
 msgstr "Перейти к последнему файлу?"
 
-#: Merge.rc:5148
+#: Merge.rc:5149
 #, c-format
 msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
 msgstr "Различные кодировки: слева - (cp%d), справа - (cp%d). \nКаждый из файлов может быть отображен в своей кодировке, но их объединение или копирование может повредить информацию.\nОтобразить оба файла в системной кодировке Windows по умолчанию (рекомендуется)?"
 
-#: Merge.rc:5150
+#: Merge.rc:5151
 msgid "Information lost due to encoding errors: both files"
 msgstr "Информация потеряна из-за ошибочной кодировки: оба файла"
 
-#: Merge.rc:5152
+#: Merge.rc:5153
 msgid "Information lost due to encoding errors: first file"
 msgstr "Информация потеряна из-за ошибочной кодировки: первый файл"
 
-#: Merge.rc:5154
+#: Merge.rc:5155
 msgid "Information lost due to encoding errors: second file"
 msgstr "Информация потеряна из-за ошибочной кодировки: второй файл"
 
-#: Merge.rc:5156
+#: Merge.rc:5157
 msgid "Information lost due to encoding errors: third file"
 msgstr "Информация потеряна из-за ошибочной кодировки: третий файл"
 
 #. IDS_LINEDIFF_NODIFF
-#: Merge.rc:5162
+#: Merge.rc:5163
 msgid "No difference"
 msgstr "Нет отличий"
 
 #. IDS_LINEDIFF_NODIFF_CAPTION
-#: Merge.rc:5163
+#: Merge.rc:5164
 msgid "Line difference"
 msgstr "Строка отличий"
 
 #. IDS_NUM_REPLACED
-#: Merge.rc:5169
+#: Merge.rc:5170
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Заменено строк %1."
 
 #. IDS_EDIT_TEXT_NOT_FOUND
-#: Merge.rc:5170
+#: Merge.rc:5171
 #, c-format
 msgid "Cannot find string \"%s\"."
 msgstr "Не удается найти строку \"%s\"."
 
 #. IDS_MERGE_MODE
-#: Merge.rc:5176
+#: Merge.rc:5177
 msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr "Вы входите в режим объединения. Для отключения режима объединения нажмите клавишу F9."
 
 #. IDS_AUTO_MERGE
-#: Merge.rc:5182
+#: Merge.rc:5183
 #, c-format
 msgid "Automatic merges: %1\nUnresolved conflicts: %2"
 msgstr "Количество автоматически объединяемых изменений: %1\nКоличество неразрешенных конфликтов: %2"
 
 #. IDS_CODEPAGE_MERGED
-#: Merge.rc:5183
+#: Merge.rc:5184
 msgid "Codepage change merged."
 msgstr "Изменение кодовой страницы объединено."
 
 #. IDS_CODEPAGE_CONFLICT
-#: Merge.rc:5184
+#: Merge.rc:5185
 msgid "Codepage changes are conflicting."
 msgstr "Изменения кодовой страницы противоречат друг другу."
 
 #. IDS_EOL_MERGED
-#: Merge.rc:5185
+#: Merge.rc:5186
 msgid "EOL change merged."
 msgstr "Изменение EOL было объединено."
 
 #. IDS_EOL_CONFLICT
-#: Merge.rc:5186
+#: Merge.rc:5187
 msgid "EOL changes are conflicting."
 msgstr "Изменения EOL противоречат друг другу."
 
 #. IDS_LOCBAR_CAPTION
-#: Merge.rc:5192
+#: Merge.rc:5193
 msgid "Location Pane"
 msgstr "Панель управления"
 
 #. IDS_DIFFBAR_CAPTION
-#: Merge.rc:5193
+#: Merge.rc:5194
 msgid "Diff Pane"
 msgstr "Панель сравнения"
 
 #. IDS_DIFF_SUCCEEDED
-#: Merge.rc:5200
+#: Merge.rc:5201
 msgid "Patch file written."
 msgstr "Патч успешно записан."
 
 #. IDS_DIFF_ITEM1NOTFOUND
-#: Merge.rc:5201
+#: Merge.rc:5202
 msgid "First item not found!"
 msgstr "1. элемент не найден!"
 
 #. IDS_DIFF_ITEM2NOTFOUND
-#: Merge.rc:5202
+#: Merge.rc:5203
 msgid "Second item not found!"
 msgstr "2. элемент не найден!"
 
 #. IDS_DIFF_FILEOVERWRITE
-#: Merge.rc:5203
+#: Merge.rc:5204
 msgid "Patch file already exists. Overwrite?"
 msgstr "Патч уже существует. Перезаписать?"
 
 #. IDS_DIFF_SELECTEDFILES
-#: Merge.rc:5204
+#: Merge.rc:5205
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 файлов выбрано]"
 
 #. IDS_DIFF_NORMAL
-#: Merge.rc:5205
+#: Merge.rc:5206
 msgid "Normal"
 msgstr "Нормальный"
 
 #. IDS_DIFF_CONTEXT
-#: Merge.rc:5206
+#: Merge.rc:5207
 msgid "Context"
 msgstr "Контекст"
 
 #. IDS_DIFF_UNIFIED
-#: Merge.rc:5207
+#: Merge.rc:5208
 msgid "Unified"
 msgstr "Унифицированный"
 
 #. IDS_FILEWRITE_ERROR
-#: Merge.rc:5209
+#: Merge.rc:5210
 #, c-format
 msgid "Could not write to file %1."
 msgstr "Не удается записать в файл %1."
 
 #. IDS_PATH_NOT_ABSOLUTE
-#: Merge.rc:5210
+#: Merge.rc:5211
 #, c-format
 msgid "Output path is not absolute: %1"
 msgstr "Указанный путь для вывода не является абсолютным: %1"
 
 #. IDS_MUST_SPECIFY_OUTPUT
-#: Merge.rc:5211
+#: Merge.rc:5212
 msgid "Specify an output file."
 msgstr "Указать выходной файл."
 
-#: Merge.rc:5213
+#: Merge.rc:5214
 msgid "Cannot create patch from binary files."
 msgstr "Не удается создать патч из двоичных файлов."
 
 #. IDS_SAVEFILES_FORPATCH
-#: Merge.rc:5214
+#: Merge.rc:5215
 msgid "Save all files first.\n\nCreating a patch requires no unsaved changes."
 msgstr "Сначала сохраните все файлы.\n\nДля создания патча необходимо, чтобы в файлах не было несохраненных изменений."
 
 #. IDS_FOLDER_NOTEXIST
-#: Merge.rc:5215
+#: Merge.rc:5216
 msgid "Folder does not exist."
 msgstr "Папка не существует."
 
 #. IDS_NO_ZIP_SUPPORT
-#: Merge.rc:5220
+#: Merge.rc:5221
 msgid "Archive support not enabled.\n7-Zip and/or Merge7z*.dll not found.\nSee manual for archive support."
 msgstr "Поддержка архивов не включена.\nНе найдены необходимые компоненты (7-Zip и/или Merge7z*.dll) для поддержки архивов.\nДополнительную информацию о поддержке архивов и ее включении смотрите в руководстве."
 
 #. IDS_OPT_EXPORT_CAPTION
-#: Merge.rc:5221
+#: Merge.rc:5222
 msgid "Select file for export"
 msgstr "Выбрать файл для экспорта"
 
 #. IDS_OPT_IMPORT_CAPTION
-#: Merge.rc:5222
+#: Merge.rc:5223
 msgid "Select file for import"
 msgstr "Выбрать файл для импорта"
 
 #. IDS_OPT_IMPORT_DONE
-#: Merge.rc:5223
+#: Merge.rc:5224
 msgid "Options imported from file."
 msgstr "Настройки, импортируемые из файла."
 
 #. IDS_OPT_EXPORT_DONE
-#: Merge.rc:5224
+#: Merge.rc:5225
 msgid "Options exported to file."
 msgstr "Настройки, экспортируемые в файл."
 
 #. IDS_OPT_IMPORT_ERR
-#: Merge.rc:5225
+#: Merge.rc:5226
 msgid "Failed to import options from file."
 msgstr "Сбой импорта настроек из файла."
 
 #. IDS_OPT_EXPORT_ERR
-#: Merge.rc:5226
+#: Merge.rc:5227
 msgid "Failed to write options to file."
 msgstr "Сбой экспорта настроек в файл."
 
 #. IDS_CLOSEALL_WINDOWS
-#: Merge.rc:5227
+#: Merge.rc:5228
 msgid "Close multiple compare windows?\n\nContinue?"
 msgstr "Вы собираетесь закрыть сразу несколько окон сравнения.\n\nПродолжить?"
 
 #. IDS_EOL_BIN
-#: Merge.rc:5237
+#: Merge.rc:5238
 msgctxt "EOL Type"
 msgid "Binary"
 msgstr "Двоичный"
 
 #. IDS_MARKER_COLOR_FMT
-#: Merge.rc:5242
+#: Merge.rc:5243
 #, c-format
 msgid "Marker Color %d"
 msgstr "Цвет маркера %d"
 
 #. IDS_MARKER_NEW_PATTERN
-#: Merge.rc:5243
+#: Merge.rc:5244
 msgid "New Pattern"
 msgstr "Новый шаблон"
 
 #. IDS_PLUGINSLIST_TYPE
-#: Merge.rc:5249
+#: Merge.rc:5250
 msgid "Type"
 msgstr "Тип"
 
 #. IDS_PLUGINS_TYPE_EDITSCRIPT
-#: Merge.rc:5253
+#: Merge.rc:5254
 msgid "Editor script"
 msgstr "Редактор скриптов"
 
 #. ID_SELECTLINEDIFF
-#: Merge.rc:5259
+#: Merge.rc:5260
 msgid "\nDifference in Current Line (F4)"
 msgstr "\nОтличие в текущей строке (F4)"
 
 #. ID_OPTIONS
-#: Merge.rc:5260
+#: Merge.rc:5261
 msgid "\nOptions"
 msgstr "\nНастройки"
 
 #. ID_REFRESH
-#: Merge.rc:5261
+#: Merge.rc:5262
 msgid "\nRefresh (F5)"
 msgstr "\nОбновить (F5)"
 
 #. ID_PREVDIFF
-#: Merge.rc:5267
+#: Merge.rc:5268
 msgid "\nPrevious Difference (Alt+Up)"
 msgstr "\nПредыдущее отличие (Alt+Up)"
 
 #. ID_NEXTDIFF
-#: Merge.rc:5268
+#: Merge.rc:5269
 msgid "\nNext Difference (Alt+Down)"
 msgstr "\nСледующее отличие (Alt+Down)"
 
 #. ID_PREVCONFLICT
-#: Merge.rc:5269
+#: Merge.rc:5270
 msgid "\nPrevious Conflict (Alt+Shift+Up)"
 msgstr "\nПредыдущий конфликт (Alt+Shift+Up)"
 
 #. ID_NEXTCONFLICT
-#: Merge.rc:5270
+#: Merge.rc:5271
 msgid "\nNext Conflict (Alt+Shift+Down)"
 msgstr "\nСледующий конфликт (Alt+Shift+Down)"
 
 #. ID_FIRSTDIFF
-#: Merge.rc:5275
+#: Merge.rc:5276
 msgid "\nFirst Difference (Alt+Home)"
 msgstr "\nПервое отличие (Alt+Home)"
 
 #. ID_CURDIFF
-#: Merge.rc:5276
+#: Merge.rc:5277
 msgid "\nCurrent Difference (Alt+Enter)"
 msgstr "\nТекущее отличие (Alt+Enter)"
 
 #. ID_LASTDIFF
-#: Merge.rc:5277
+#: Merge.rc:5278
 msgid "\nLast Difference (Alt+End)"
 msgstr "\nПоследнее отличие (Alt+End)"
 
 #. ID_L2R
-#: Merge.rc:5278
+#: Merge.rc:5279
 msgid "\nCopy to Right (Alt+Right)"
 msgstr "\nКопировать направо (Alt+Right)"
 
 #. ID_R2L
-#: Merge.rc:5279
+#: Merge.rc:5280
 msgid "\nCopy to Left (Alt+Left)"
 msgstr "\nКопировать налево (Alt+Left)"
 
 #. ID_L2RNEXT
-#: Merge.rc:5280
+#: Merge.rc:5281
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr "\nКопировать направо и перейти (Ctrl+Alt+Right)"
 
 #. ID_R2LNEXT
-#: Merge.rc:5281
+#: Merge.rc:5282
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)"
 
 #. ID_ALL_RIGHT
-#: Merge.rc:5282
+#: Merge.rc:5283
 msgid "\nCopy All to Right"
 msgstr "\nКопировать все направо"
 
 #. ID_ALL_LEFT
-#: Merge.rc:5283
+#: Merge.rc:5284
 msgid "\nCopy All to Left"
 msgstr "\nКопировать все налево"
 
 #. ID_AUTO_MERGE
-#: Merge.rc:5284
+#: Merge.rc:5285
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nАвто объединение (Ctrl+Alt+M)"
 
 #. ID_FIRSTFILE
-#: Merge.rc:5285
+#: Merge.rc:5286
 msgid "\nFirst File"
 msgstr "\nПервый файл"
 
 #. ID_NEXTFILE
-#: Merge.rc:5286
+#: Merge.rc:5287
 msgid "\nNext File (Ctrl+F8)"
 msgstr "\nСледующий файл (Ctrl+F8)"
 
 #. ID_LASTFILE
-#: Merge.rc:5287
+#: Merge.rc:5288
 msgid "\nLast File"
 msgstr "\nПоследний файл"
 
 #. ID_PREVFILE
-#: Merge.rc:5288
+#: Merge.rc:5289
 msgid "\nPrevious File (Ctrl+F7)"
 msgstr "\nПредыдущий файл (Ctrl+F7)"
 
 #. IDS_UNPACK_AUTO
-#: Merge.rc:5295
+#: Merge.rc:5296
 msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr "Автоматический подбор распаковщика (укажите расширение хотя бы у одного из файлов)."
 
 #. IDS_NO_PREDIFFER
-#: Merge.rc:5296
+#: Merge.rc:5297
 msgid "No Prediffer (Normal)"
 msgstr "Без предсравнения (обычно)"
 
 #. IDS_SUGGESTED_PLUGINS
-#: Merge.rc:5297
+#: Merge.rc:5298
 msgid "Suggested Plugins"
 msgstr "Предлагаемые плагины"
 
 #. IDS_NOT_SUGGESTED_PLUGINS
-#: Merge.rc:5298
+#: Merge.rc:5299
 msgid "All Plugins"
 msgstr "Все плагины"
 
 #. IDS_PRIVATEBUILD_FMT
-#: Merge.rc:5304
+#: Merge.rc:5305
 #, c-format
 msgid "Private Build: %1"
 msgstr "Частный билд: %1"
 
 #. IDS_ALLRIGHTS_RESERVED
-#: Merge.rc:5305
+#: Merge.rc:5306
 msgid " - All rights reserved."
 msgstr " - Все права защищены."
 
 #. IDS_TITLE_PLUGINS_SETTINGS
-#: Merge.rc:5311
+#: Merge.rc:5312
 msgid "Plugin Settings"
 msgstr "Параметры плагина"
 
 #. IDS_NO_SCT_SCRIPTS
-#: Merge.rc:5313
+#: Merge.rc:5314
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не найден - .sct скрипты отключены"
 
 #. IDS_LOCBAR_GOTOLINE_FMT
-#: Merge.rc:5321
+#: Merge.rc:5322
 #, c-format
 msgid "G&o to Line %1"
 msgstr "Перейти к строке %1"
 
 #. IDS_GOTO_MOVED_LINE
-#: Merge.rc:5327
+#: Merge.rc:5328
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Перейти к перемещенной строке\tCtrl+Shift+G"
 
 #. IDS_AUTOCOMPLETE_DISABLED
-#: Merge.rc:5333
+#: Merge.rc:5334
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
 msgstr "Отключено"
 
 #. IDS_AUTOCOMPLETE_FILE_SYS
-#: Merge.rc:5334
+#: Merge.rc:5335
 msgid "From file system"
 msgstr "Как в файловой системе"
 
 #. IDS_AUTOCOMPLETE_MRU
-#: Merge.rc:5335
+#: Merge.rc:5336
 msgid "From Most Recently Used list"
 msgstr "Как в истории"
 
 #. IDS_COLORSCHEME_PLAIN
-#: Merge.rc:5341
+#: Merge.rc:5342
 msgid "No Highlighting"
 msgstr "Без выделения"
 
 #. IDS_COLORSCHEME_BATCH
-#: Merge.rc:5347
+#: Merge.rc:5348
 msgid "Batch"
 msgstr "Пакет"
 
 #. IDS_COLORSCHEME_PO
-#: Merge.rc:5374
+#: Merge.rc:5375
 msgid "Portable Object"
 msgstr "Портативный объект"
 
 #. IDS_COLORSCHEME_RSRC
-#: Merge.rc:5378
+#: Merge.rc:5379
 msgid "Resources"
 msgstr "Ресурсы"
 
 #. IDS_COLORSCHEME_SH
-#: Merge.rc:5382
+#: Merge.rc:5383
 msgid "Shell"
 msgstr "Оболочка"
 
 #. IDS_CLOSE_LEFT_TABS
-#: Merge.rc:5399
+#: Merge.rc:5400
 msgid "Close &Left Tabs"
 msgstr "Закрыть вкладки слева"
 
 #. IDS_CLOSE_RIGHT_TABS
-#: Merge.rc:5400
+#: Merge.rc:5401
 msgid "Close R&ight Tabs"
 msgstr "Закрыть вкладки справа"
 
 #. IDS_CLOSE_OTHER_TABS
-#: Merge.rc:5401
+#: Merge.rc:5402
 msgid "Close &Other Tabs"
 msgstr "Закрыть другие вкладки"
 
 #. IDS_TABBAR_AUTO_MAXWIDTH
-#: Merge.rc:5402
+#: Merge.rc:5403
 msgid "Enable &Auto Max Width"
 msgstr "Включить максимальную авто ширину"
 
 #. IDS_WEBPAGE_MENU
-#: Merge.rc:5412
+#: Merge.rc:5413
 msgid "We&bpage"
 msgstr "Веб-страница"
 
 #. IDS_VIEW_WRAP_TEXT
-#: Merge.rc:5417
+#: Merge.rc:5418
 msgid "W&rap Text"
 msgstr "&Перенос строк"
 
 #. IDS_NOTINSTALLED
-#: Merge.rc:5422
+#: Merge.rc:5423
 msgid "%1 is not installed."
 msgstr "%1 не установлен."
 
 #. IDS_CREATE_FOLDER
-#: Merge.rc:5427
+#: Merge.rc:5428
 #, c-format
 msgid "%1 does not exist. Create it?"
 msgstr "%1 не существует. Создать?"
 
 #. IDS_CREATE_FOLDER_ERROR
-#: Merge.rc:5428
+#: Merge.rc:5429
 msgid "Failed to create folder."
 msgstr "Не удалось создать папку."
 
 #. IDC_EXT_EDITOR_PATH
-#: Merge.rc:5433
+#: Merge.rc:5434
 msgid "Parameters:\n$file: Current file path\n$linenum: Current cursor line number"
 msgstr "Можно указать следующие параметры пути:\n$file: Имя пути текущего файла\n$linenum: Номер строки текущей позиции курсора"
 
 #. IDS_DIFF_ALGORITHM_DEFAULT
-#: Merge.rc:5438
+#: Merge.rc:5439
 msgid "default"
 msgstr "по умолчанию"
 
 #. IDS_DIFF_ALGORITHM_MINIMAL
-#: Merge.rc:5439
+#: Merge.rc:5440
 msgid "minimal"
 msgstr "минимально"
 
 #. IDS_DIFF_ALGORITHM_PATIENCE
-#: Merge.rc:5440
+#: Merge.rc:5441
 msgid "patience"
 msgstr "терпеливо"
 
 #. IDS_DIFF_ALGORITHM_HISTOGRAM
-#: Merge.rc:5441
+#: Merge.rc:5442
 msgid "histogram"
 msgstr "гистограмма"
 
 #. IDS_DIFF_ALGORITHM_NONE
-#: Merge.rc:5442
+#: Merge.rc:5443
 msgid "none"
 msgstr "нет"
 
 #. IDS_RENDERING_MODE_GDI
-#: Merge.rc:5447
+#: Merge.rc:5448
 msgid "GDI"
 msgstr "GDI"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_DEFAULT
-#: Merge.rc:5448
+#: Merge.rc:5449
 msgid "DirectWrite Default"
 msgstr "Прямая запись по умолчанию"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_ALIASED
-#: Merge.rc:5449
+#: Merge.rc:5450
 msgid "DirectWrite Aliased"
 msgstr "Прямая запись с псевдонимом"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_CLASSIC
-#: Merge.rc:5450
+#: Merge.rc:5451
 msgid "DirectWrite GDI Classic"
 msgstr "Прямая запись GDI Classic"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_NATURAL
-#: Merge.rc:5451
+#: Merge.rc:5452
 msgid "DirectWrite GDI Natural"
 msgstr "Прямая запись GDI Natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL
-#: Merge.rc:5452
+#: Merge.rc:5453
 msgid "DirectWrite Natural"
 msgstr "Прямая запись Natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL_SYMMETRIC
-#: Merge.rc:5453
+#: Merge.rc:5454
 msgid "DirectWrite Natural Symmetric"
 msgstr "Прямая запись Natural Symmetric"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_DISABLED
-#: Merge.rc:5458
+#: Merge.rc:5459
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
 msgstr "Отключено"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_1
-#: Merge.rc:5459
+#: Merge.rc:5460
 msgid "MDI child window or main window"
 msgstr "MDI дочернее окно или главное окно"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_2
-#: Merge.rc:5460
+#: Merge.rc:5461
 msgid "MDI child window only"
 msgstr "MDI дочернее окно только"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_3
-#: Merge.rc:5461
+#: Merge.rc:5462
 msgid "Close main window if only one MDI child window"
 msgstr "Закрыть главное окно, если дочернее окно MDI единственное"
 
 #. IDS_DIFF_GROUP
-#: Merge.rc:5466
+#: Merge.rc:5467
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Отличия"
 
 #. IDS_DIFF_HIGHLIGHT
-#: Merge.rc:5467
+#: Merge.rc:5468
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
 msgstr "Подсветка"
 
 #. IDS_DIFF_BLINK
-#: Merge.rc:5468
+#: Merge.rc:5469
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
 msgstr "Мигание"
 
 #. IDS_DIFF_BLOCKSIZE
-#: Merge.rc:5469
+#: Merge.rc:5470
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
 msgstr "Размер блока"
 
 #. IDS_DIFF_BLOCKALPHA
-#: Merge.rc:5470
+#: Merge.rc:5471
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
 msgstr "Прозрачность блока"
 
 #. IDS_DIFF_CDTHRESHOLD
-#: Merge.rc:5471
+#: Merge.rc:5472
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
 msgstr "Порог цветоразличения"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION
-#: Merge.rc:5472
+#: Merge.rc:5473
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
 msgstr "Обнаружение Ins/Del"
 
 #. IDS_OVERLAY_MODE_NONE
-#: Merge.rc:5473 Merge.rc:5478
+#: Merge.rc:5474 Merge.rc:5479
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
 msgstr "Нет"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_VERTICAL
-#: Merge.rc:5474
+#: Merge.rc:5475
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
 msgstr "Вертикально"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_HORIZONTAL
-#: Merge.rc:5475
+#: Merge.rc:5476
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
 msgstr "Горизонтально"
 
 #. IDS_OVERLAY_GROUP
-#: Merge.rc:5476
+#: Merge.rc:5477
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
 msgstr "Наложение"
 
 #. IDS_OVERLAY_ALPHA
-#: Merge.rc:5477
+#: Merge.rc:5478
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
 msgstr "Альфа"
 
 #. IDS_OVERLAY_MODE_XOR
-#: Merge.rc:5479
+#: Merge.rc:5480
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
 msgstr "XOR"
 
 #. IDS_OVERLAY_MODE_ALPHA
-#: Merge.rc:5480
+#: Merge.rc:5481
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
 msgstr "Альфа-смешение"
 
 #. IDS_OVERLAY_MODE_ALPHA_ANIMATION
-#: Merge.rc:5481
+#: Merge.rc:5482
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
 msgstr "Альфа-анимация"
 
 #. IDS_ZOOM
-#: Merge.rc:5482
+#: Merge.rc:5483
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
 msgstr "Масштаб"
 
 #. IDS_PAGE
-#: Merge.rc:5483
+#: Merge.rc:5484
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
 msgstr "Страница:"
 
 #. IDS_IMGCMP_STATUS_PT_RGBA_FMT
-#: Merge.rc:5484
+#: Merge.rc:5485
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 msgstr "Чс: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #. IDS_IMGCMP_STATUS_DIST1_FMT
-#: Merge.rc:5485
+#: Merge.rc:5486
 #, c-format
 msgid "Dist: %g  "
 msgstr "Путь: %g  "
 
 #. IDS_IMGCMP_STATUS_DIST2_FMT
-#: Merge.rc:5486
+#: Merge.rc:5487
 #, c-format
 msgid "Dist: %g, %g  "
 msgstr "Путь: %g, %g  "
 
 #. IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT
-#: Merge.rc:5487
+#: Merge.rc:5488
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr "Страница: %d/%d  Масштаб: %d%%  %dx%dpx  %dbpp  "
 
 #. IDS_IMGCMP_STATUS_RC_FMT
-#: Merge.rc:5488
+#: Merge.rc:5489
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
 
 #. IDS_IMGCMP_STATUS_FLIPPED_FMT
-#: Merge.rc:5489
+#: Merge.rc:5490
 #, c-format
 msgid "Flipped: %s  "
 msgstr "Отражен: %s  "
 
 #. IDS_IMGCMP_STATUS_ROTATED_FMT
-#: Merge.rc:5490
+#: Merge.rc:5491
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Повернут: %d  "
 
 #. IDS_IMGCMP_REPORT_ALLPAGES
-#: Merge.rc:5491
+#: Merge.rc:5492
 msgid "All pages"
 msgstr "Все страницы"
 
 #. IDS_IGNSUB_STR1
-#: Merge.rc:5496
+#: Merge.rc:5497
 msgid "<Edit here>"
 msgstr "<Редактировать здесь>"
 
 #. IDS_IGNSUB_STR2
-#: Merge.rc:5497
+#: Merge.rc:5498
 msgid "No differences found to select"
 msgstr "Не найдено отличий для выбора"
 
 #. IDS_IGNSUB_STR3
-#: Merge.rc:5498
+#: Merge.rc:5499
 msgid "No differences found to add as substitution filter"
 msgstr "Не найдено отличий для добавления в фильтр подмены"
 
 #. IDS_IGNSUB_STR4
-#: Merge.rc:5499
+#: Merge.rc:5500
 msgid "The pair is already in the Substitution Filters list"
 msgstr "Эта пара уже присутствует в списке фильтров подмены"
 
 #. IDS_IGNSUB_STR5
-#: Merge.rc:5500
+#: Merge.rc:5501
 msgid "Add this change to Substitution Filters?"
 msgstr "Добавить это изменение в фильтры подмены?"
 
 #. IDS_OCRRESULT_TEXTONLY
-#: Merge.rc:5505
+#: Merge.rc:5506
 msgid "Text only"
 msgstr "Только текст"
 
 #. IDS_OCRRESULT_POS_LINE
-#: Merge.rc:5506
+#: Merge.rc:5507
 msgid "Line-by-line position and text"
 msgstr "Построчная позиция и текст"
 
 #. IDS_OCRRESULT_POS_WORD
-#: Merge.rc:5507
+#: Merge.rc:5508
 msgid "Word-by-word position and text"
 msgstr "Пословная позиция и текст"
 
 #. IDS_USERDATAFOLDER_APPDATA
-#: Merge.rc:5512
+#: Merge.rc:5513
 msgid "AppData (Roaming) folder"
 msgstr "Папка AppData (Roaming)"
 
 #. IDS_USERDATAFOLDER_INSTALL
-#: Merge.rc:5513
+#: Merge.rc:5514
 msgid "Install folder"
 msgstr "Папка установки"
 
 #. IDS_USERDATAFOLDER_DOCUMENTS
-#: Merge.rc:5514
+#: Merge.rc:5515
 msgid "Documents folder"
 msgstr "Папка Документы"
 
 #. IDS_SINGLEINSTANCE_DISABLED
-#: Merge.rc:5519
+#: Merge.rc:5520
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
 msgstr "Отключено"
 
 #. IDS_SINGLEINSTANCE_STR1
-#: Merge.rc:5520
+#: Merge.rc:5521
 msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
 
 #. IDS_CLIPBOARD_HISTORY
-#: Merge.rc:5521
+#: Merge.rc:5522
 msgid "Clipboard &History"
 msgstr "История буфера обмена"
 
 #. IDS_SINGLEINSTANCE_STR2
-#: Merge.rc:5522
+#: Merge.rc:5523
 msgid "Allow only one instance; wait for termination"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED
-#: Merge.rc:5527
+#: Merge.rc:5528
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "Отключено"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
-#: Merge.rc:5528
+#: Merge.rc:5529
 msgid "Only on window activated"
 msgstr "Активно только в окне"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
-#: Merge.rc:5529
+#: Merge.rc:5530
 msgid "Immediately"
 msgstr "Незамедлительно"
 
 #. IDS_PLUGIN_ALL
-#: Merge.rc:5534
+#: Merge.rc:5535
 msgid "Al&l"
 msgstr "Все"
 
 #. IDS_PLUGIN_OTHERS
-#: Merge.rc:5535
+#: Merge.rc:5536
 msgid "&Others"
 msgstr "Другое"
 
-#: Merge.rc:5537
+#: Merge.rc:5538
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
 msgstr "Отсутствует имя плагина в конвейере: %1"
 
-#: Merge.rc:5539
+#: Merge.rc:5540
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
 msgstr "Отсутствует кавычка в конвейере плагинов: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
-#: Merge.rc:5540
+#: Merge.rc:5541
 #, c-format
 msgid "Plugin name '%1' already exists."
 msgstr "Имя плагина '%1' уже существует."
 
 #. IDS_PLUGIN_TITLE1
-#: Merge.rc:5541
+#: Merge.rc:5542
 msgid "Specify plugin arguments"
 msgstr "Укажите аргументы плагина"
 
-#: Merge.rc:5543
+#: Merge.rc:5544
 #, c-format
 msgid "Plugin not found or invalid: %1"
 msgstr "Плагин не найден или недействителен: %1"
 
 #. IDS_PLUGIN_NOT_UNPACK
-#: Merge.rc:5544
+#: Merge.rc:5545
 #, c-format
 msgid "'%1' is not an unpacker plugin"
 msgstr "'%1' не является плагином распаковщика"
 
 #. IDS_PLUGIN_NOT_PREDIFF
-#: Merge.rc:5545
+#: Merge.rc:5546
 #, c-format
 msgid "'%1' is not a prediffer plugin"
 msgstr "'%1' не является плагином предсравнения"
 
-#: Merge.rc:5547
+#: Merge.rc:5548
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr "Ошибка предсравнения '%1' с '%2'. Предсравнение отключено."
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
-#: Merge.rc:5548
+#: Merge.rc:5549
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr "Циклическая ссылка в конвейере плагина: %1"
 
 #. IDS_PLUGIN_TYPE1
-#: Merge.rc:5549
+#: Merge.rc:5550
 msgid "URL Handler"
 msgstr "Обработчик URL"
 
 #. IDS_PLUGIN_TYPE2
-#: Merge.rc:5550
+#: Merge.rc:5551
 msgid "File Unpacker"
 msgstr "Распаковщик файлов"
 
 #. IDS_PLUGIN_TYPE3
-#: Merge.rc:5551
+#: Merge.rc:5552
 msgid "File or Folder Unpacker"
 msgstr "Распаковщик файлов или папок"
 
 #. IDS_PLUGIN_TYPE5
-#: Merge.rc:5553
+#: Merge.rc:5554
 msgid "Alias for Unpacker"
 msgstr "Псевдоним для распаковщика"
 
 #. IDS_PLUGIN_TYPE6
-#: Merge.rc:5554
+#: Merge.rc:5555
 msgid "Alias for Prediffer"
 msgstr "Псевдоним для предсравнения"
 
 #. IDS_PLUGIN_TYPE7
-#: Merge.rc:5555
+#: Merge.rc:5556
 msgid "Alias for Editor script"
 msgstr "Псевдоним для редактора скриптов"
 
 #. IDS_PLUGIN_ALIAS_DESC
-#: Merge.rc:5556
+#: Merge.rc:5557
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
 msgstr "Псевдоним для конвейера плагина '%1'"
 
 #. IDS_PLUGIN_NEW_DESC
-#: Merge.rc:5557
+#: Merge.rc:5558
 msgid "New plugin description"
 msgstr "Создать описание плагина"
 
 #. IDS_PLUGIN_TARGETS_ALL
-#: Merge.rc:5558
+#: Merge.rc:5559
 msgid "All"
 msgstr "Все"
 
 #. IDS_PLUGIN_TARGETS_1ST
-#: Merge.rc:5559
+#: Merge.rc:5560
 msgid "1st"
 msgstr "1-й"
 
 #. IDS_PLUGIN_TARGETS_2ND
-#: Merge.rc:5560
+#: Merge.rc:5561
 msgid "2nd"
 msgstr "2-й"
 
 #. IDS_PLUGIN_TARGETS_3RD
-#: Merge.rc:5561
+#: Merge.rc:5562
 msgid "3rd"
 msgstr "3-й"
 
 #. IDS_PLUGIN_TARGETS_1ST_2ND
-#: Merge.rc:5562
+#: Merge.rc:5563
 msgid "1st and 2nd"
 msgstr "1-й и 2-й"
 
 #. IDS_PLUGIN_TARGETS_1ST_3RD
-#: Merge.rc:5563
+#: Merge.rc:5564
 msgid "1st and 3rd"
 msgstr "1-й и 3-й"
 
 #. IDS_PLUGIN_TARGETS_2ND_3RD
-#: Merge.rc:5564
+#: Merge.rc:5565
 msgid "2nd and 3rd"
 msgstr "2-й и 3-й"
 
 #. IDS_FILTER_APPLIED
-#: Merge.rc:5569
+#: Merge.rc:5570
 msgid "Filter applied"
 msgstr "Фильтр применен"
 
 #. IDS_FILTERMENU_COMPARE
-#: Merge.rc:5574
+#: Merge.rc:5575
 #, c-format
 msgid "Compare %1"
 msgstr "Сравнить %1"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
-#: Merge.rc:5576
+#: Merge.rc:5577
 msgid "&Filter by This Column..."
 msgstr "Фильтр по этому столбцу..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
-#: Merge.rc:5581
+#: Merge.rc:5582
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Буфер обмена в %s"
 
 #. IDS_CLIPBOARDHISTORY_DISABLED
-#: Merge.rc:5582
+#: Merge.rc:5583
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr "История буфера обмена отключена.\r\nЧтобы включить историю буфера обмена, нажмите Win+V, а затем кнопку 'включить'."
 
-#: Merge.rc:5584
+#: Merge.rc:5585
 msgid "This system does not support clipboard history."
 msgstr "Эта система не поддерживает историю буфера обмена."
 
-#: Merge.rc:5586
+#: Merge.rc:5587
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32-битная версия WinMerge не поддерживает Сравнение буфера обмена"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
-#: Merge.rc:5591
+#: Merge.rc:5592
 msgid "WebView2 runtime not installed. Download it?"
 msgstr "Не установлена среда выполнения WebView2. Загрузить?"
 
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
-#: Merge.rc:5596
+#: Merge.rc:5597
 msgid "New Text Compare"
 msgstr "Создать сравнение текста"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
-#: Merge.rc:5597
+#: Merge.rc:5598
 msgid "New Table Compare"
 msgstr "Создать сравнение таблиц"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
-#: Merge.rc:5598
+#: Merge.rc:5599
 msgid "New Binary Compare"
 msgstr "Создать двоичное сравнение"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
-#: Merge.rc:5599
+#: Merge.rc:5600
 msgid "New Image Compare"
 msgstr "Создать сравнение изображений"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
-#: Merge.rc:5600
+#: Merge.rc:5601
 msgid "New Webpage Compare"
 msgstr "Создать сравнение веб-страниц"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
-#: Merge.rc:5601
+#: Merge.rc:5602
 msgid "New Folder Compare"
 msgstr "Создать сравнение папок"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
-#: Merge.rc:5602
+#: Merge.rc:5603
 msgid "Clipboard Compare"
 msgstr "Сравнение буфера обмена"
 
 #. IDS_PREVIEWBAR_PRINT
-#: Merge.rc:5607
+#: Merge.rc:5608
 msgid "&Print..."
 msgstr "Печать..."
 
 #. IDS_PREVIEWBAR_PREVPAGE
-#: Merge.rc:5609
+#: Merge.rc:5610
 msgid "Pre&v Page"
 msgstr "Предыдущая страница"
 
 #. IDS_PREVIEWBAR_TWOPAGE
-#: Merge.rc:5610
+#: Merge.rc:5611
 msgid "&Two Page"
 msgstr "Две страницы"
 
 #. IDS_PREVIEWBAR_ONEPAGE
-#: Merge.rc:5611
+#: Merge.rc:5612
 msgid "&One Page"
 msgstr "Одна страница"
 
 #. IDS_PREVIEWBAR_ZOOMIN
-#: Merge.rc:5612
+#: Merge.rc:5613
 msgid "Zoom &In"
 msgstr "Увеличить"
 
 #. IDS_PREVIEWBAR_ZOOMOUT
-#: Merge.rc:5613
+#: Merge.rc:5614
 msgid "Zoom &Out"
 msgstr "Уменьшить"
 
 #. IDS_WEBPAGE_COMPARING
-#: Merge.rc:5619
+#: Merge.rc:5620
 msgid "Comparing..."
 msgstr "Сравнение..."
 
 #. IDS_WEBPAGE_ZOOM
-#: Merge.rc:5620
+#: Merge.rc:5621
 msgid "Zoom:"
 msgstr "Масштаб:"
 
 #. IDS_COPY_GRANULARITY_DIFFHUNK
-#: Merge.rc:5625
+#: Merge.rc:5626
 msgid "Diff hunk"
 msgstr "Отличающийся кусок"
 
 #. IDS_COPY_GRANULARITY_INLINE
-#: Merge.rc:5626
+#: Merge.rc:5627
 msgid "Inline diff"
 msgstr "Встроенное отличие"
 
 #. IDS_COPY_GRANULARITY_LINE
-#: Merge.rc:5627
+#: Merge.rc:5628
 msgid "Line"
 msgstr "Строка"
 
-#: Merge.rc:5628
+#: Merge.rc:5629
 msgid "Character"
 msgstr "Символ"
 
 #. ID_MICE_PREVDIFF
-#: Merge.rc:5633
+#: Merge.rc:5634
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr "\nПредыдущее отличие (Alt+Up)\n(Правая кнопка+Колесо вверх)\n(Alt+Колесо вверх)"
 
 #. ID_MICE_NEXTDIFF
-#: Merge.rc:5634
+#: Merge.rc:5635
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
 msgstr "\nСледующее отличие (Alt+Down)\n(Правая кнопка+Колесо вниз)\n(Alt+Колесо вниз)"
 
 #. ID_MICE_L2R
-#: Merge.rc:5635
+#: Merge.rc:5636
 msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
 msgstr "\nКопировать направо (Alt+Right)\n(Правая кнопка+Колесо вправо)\n(Alt+Колесо вправо)\n(Alt+Shift+Колесо вниз)"
 
 #. ID_MICE_R2L
-#: Merge.rc:5636
+#: Merge.rc:5637
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
 msgstr "\nКопировать налево (Alt+Left)\n(Правая кнопка+Колесо влево)\n(Alt+Колесо влево)\n(Alt+Shift+Колесо вверх)"
 
 #. ID_MICE_L2RNEXT
-#: Merge.rc:5637
+#: Merge.rc:5638
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
 msgstr "\nКопировать направо и перейти (Ctrl+Alt+Right)\n(Ctrl+Alt+Колесо вправо)\n(Ctrl+Alt+Shift+Колесо вниз)"
 
 #. ID_MICE_R2LNEXT
-#: Merge.rc:5638
+#: Merge.rc:5639
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)\n(Ctrl+Alt+Колесо влево)\n(Ctrl+Alt+Shift+Колесо вверх)"
 
 #. IDS_LOG_COMPARING_2
-#: Merge.rc:5648
+#: Merge.rc:5649
 #, c-format
 msgid "Comparing %1 with %2"
 msgstr "Сравнение %1 с %2"
 
 #. IDS_LOG_COMPARING_3
-#: Merge.rc:5649
+#: Merge.rc:5650
 #, c-format
 msgid "Comparing %1 with %2 and %3"
 msgstr "Сравнение %1 с %2 и %3"
 
 #. IDS_LOG_COMPARE_COMPLETED
-#: Merge.rc:5650
+#: Merge.rc:5651
 msgid "Comparison completed"
 msgstr "Сравнение завершено"
 
 #. IDS_LOG_COMPARE_ERROR_2
-#: Merge.rc:5651
+#: Merge.rc:5652
 #, c-format
 msgid "Failed to compare %1 with %2: "
 msgstr "Не удалось сравнить %1 с %2: "
 
 #. IDS_LOG_COMPARE_ERROR_3
-#: Merge.rc:5652
+#: Merge.rc:5653
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
 msgstr "Не удалось сравнить %1 с %2 и %3: "
 
 #. IDS_LOG_FILE_SAVED
-#: Merge.rc:5653
+#: Merge.rc:5654
 msgid "File saved"
 msgstr "Файл сохранен"
 
 #. IDS_LOG_COPYING_FILES
-#: Merge.rc:5654
+#: Merge.rc:5655
 msgid "Copying files..."
 msgstr "Копирование файлов..."
 
 #. IDS_LOG_MOVING_FILES
-#: Merge.rc:5655
+#: Merge.rc:5656
 msgid "Moving files..."
 msgstr "Перемещение файлов..."
 
 #. IDS_LOG_DELETING_FILES
-#: Merge.rc:5656
+#: Merge.rc:5657
 msgid "Deleting files..."
 msgstr "Удаление файлов..."
 
 #. IDS_LOG_RECYCLEBIN
-#: Merge.rc:5657
+#: Merge.rc:5658
 msgid "Recycle Bin"
 msgstr "Корзина"
 
 #. IDS_LOG_PERMANENTLY_DELETED
-#: Merge.rc:5658
+#: Merge.rc:5659
 msgid "Permanently deleted"
 msgstr "Удалено без возможности восстановления"
 
 #. IDS_LOG_FILEOPERATION_COMPLETED
-#: Merge.rc:5659
+#: Merge.rc:5660
 msgid "File operation completed successfully"
 msgstr "Файловая операция успешно завершена"
 
 #. IDS_LOG_FILEOPERATION_CANCELED
-#: Merge.rc:5660
+#: Merge.rc:5661
 msgid "File operation canceled"
 msgstr "Файловая операция отменена"
 
 #. IDS_FILTER_ERROR_NO_ERROR
-#: Merge.rc:5665
+#: Merge.rc:5666
 msgid "No error"
 msgstr "Ошибок нет"
 
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
-#: Merge.rc:5666
+#: Merge.rc:5667
 msgid "Filter expression is empty"
 msgstr "Пустое выражение фильтра"
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
-#: Merge.rc:5667
+#: Merge.rc:5668
 msgid "Unknown character in filter expression"
 msgstr "Неизвестный символ в выражении фильтра"
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
-#: Merge.rc:5668
+#: Merge.rc:5669
 msgid "Unterminated string literal"
 msgstr "Незаконченный литерал"
 
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
-#: Merge.rc:5669
+#: Merge.rc:5670
 msgid "Syntax error in filter expression"
 msgstr "Синтаксическая ошибка в выражении фильтра"
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
-#: Merge.rc:5670
+#: Merge.rc:5671
 msgid "Failed to parse filter expression"
 msgstr "Не удалось разобрать выражение фильтра"
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
-#: Merge.rc:5671
+#: Merge.rc:5672
 msgid "Invalid literal value"
 msgstr "Неверное значение литерала"
 
 #. IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION
-#: Merge.rc:5672
+#: Merge.rc:5673
 msgid "Invalid regular expression"
 msgstr "Неверное регулярное выражение"
 
 #. IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER
-#: Merge.rc:5673
+#: Merge.rc:5674
 msgid "Undefined identifier"
 msgstr "Неопределенный идентификатор"
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
-#: Merge.rc:5674
+#: Merge.rc:5675
 msgid "Invalid number of arguments"
 msgstr "Неверное количество аргументов"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
-#: Merge.rc:5675
+#: Merge.rc:5676
 msgid "Filter name not found"
 msgstr "Не найдено имя фильтра "
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
-#: Merge.rc:5676
+#: Merge.rc:5677
 msgid "Division by zero in filter expression"
 msgstr "Деление на ноль в выражении фильтра"
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
-#: Merge.rc:5677
+#: Merge.rc:5678
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
 #. IDS_FILTER_ERROR_INVALID_PROPERTY_NAME
-#: Merge.rc:5678
+#: Merge.rc:5679
 msgid "Invalid property name"
 msgstr "Неверное имя свойства"
 
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
-#: Merge.rc:5679
+#: Merge.rc:5680
 msgid "Invalid directive"
 msgstr "Неверная директива"
 
 #. IDS_FILTER_OP_EQUALS
-#: Merge.rc:5684
+#: Merge.rc:5685
 msgid "Equals"
 msgstr "Равно"
 
 #. IDS_FILTER_OP_NOT_EQUALS
-#: Merge.rc:5685
+#: Merge.rc:5686
 msgid "Does not equal"
 msgstr "Не равно"
 
 #. IDS_FILTER_OP_LESS_THAN
-#: Merge.rc:5686
+#: Merge.rc:5687
 msgid "Less than"
 msgstr "Меньше чем"
 
 #. IDS_FILTER_OP_LESS_EQUAL
-#: Merge.rc:5687
+#: Merge.rc:5688
 msgid "Less than or equal to"
 msgstr "Меньше или равно"
 
 #. IDS_FILTER_OP_GREATER_EQUAL
-#: Merge.rc:5688
+#: Merge.rc:5689
 msgid "Greater than or equal to"
 msgstr "Больше или равно"
 
 #. IDS_FILTER_OP_GREATER_THAN
-#: Merge.rc:5689
+#: Merge.rc:5690
 msgid "Greater than"
 msgstr "Больше чем"
 
 #. IDS_FILTER_OP_BETWEEN
-#: Merge.rc:5690
+#: Merge.rc:5691
 msgid "Between"
 msgstr "Между"
 
 #. IDS_FILTER_OP_NOT_BETWEEN
-#: Merge.rc:5691
+#: Merge.rc:5692
 msgid "Not Between"
 msgstr "Не между"
 
 #. IDS_FILTER_OP_CONTAINS
-#: Merge.rc:5692
+#: Merge.rc:5693
 msgid "Contains"
 msgstr "Содержит"
 
 #. IDS_FILTER_OP_NOT_CONTAINS
-#: Merge.rc:5693
+#: Merge.rc:5694
 msgid "Not Contains"
 msgstr "Не содержит"
 
 #. IDS_FILTER_OP_RECONTAINS
-#: Merge.rc:5694
+#: Merge.rc:5695
 msgid "Contains (regex)"
 msgstr "Содержит (regex)"
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
-#: Merge.rc:5695
+#: Merge.rc:5696
 msgid "Not Contains (regex)"
 msgstr "Не содержит (regex)"
 
 #. IDS_FILTER_OP_LIKE
-#: Merge.rc:5696
+#: Merge.rc:5697
 msgid "Match (wildcard)"
 msgstr "Совпадение (маска)"
 
 #. IDS_FILTER_OP_NOT_LIKE
-#: Merge.rc:5697
+#: Merge.rc:5698
 msgid "Not match (wildcard)"
 msgstr "Несовпадение (маска)"
 
 #. IDS_FILTER_OP_MATCHES
-#: Merge.rc:5698
+#: Merge.rc:5699
 msgid "Match (regex)"
 msgstr "Совпадение (regex)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
-#: Merge.rc:5699
+#: Merge.rc:5700
 msgid "Not match (regex)"
 msgstr "Несовпадение (regex)"
 
 #. IDS_COLORMODE_LIGHT
-#: Merge.rc:5704
+#: Merge.rc:5705
 msgid "Light"
 msgstr "Светлый"
 
 #. IDS_COLORMODE_DARK
-#: Merge.rc:5705
+#: Merge.rc:5706
 msgid "Dark"
 msgstr "Тёмный"
 
 #. IDS_COLORMODE_FOLLOWSYSTEM
-#: Merge.rc:5706
+#: Merge.rc:5707
 msgid "Follow system"
 msgstr "Системный"
 
 #. IDS_EXAMPLE
-#: Merge.rc:5711
+#: Merge.rc:5712
 #, c-format
 msgid "e.g. %1"
 msgstr "например, %1"
 
 #. IDS_DETECTED_PREVIOUS_CRASH
-#: Merge.rc:5716
+#: Merge.rc:5717
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge обнаружил предыдущий сбой. Пожалуйста, сообщите о нём, если это возможно."
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5721
+#: Merge.rc:5722
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 msgstr "# Список замены регулярных выражений\r\n# Формат: регулярное выражение<TAB>замена\r\n# Поддерживаются обратные ссылки типа $1, $2\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5722
+#: Merge.rc:5723
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr "# Список замены\r\n# Формат: поиск<TAB>замена\r\n# Строки, начинающиеся с #, игнорируются\r\n\r\nот1\tдо1\r\nот2\tдо2\r\n"
 
