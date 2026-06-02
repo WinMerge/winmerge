@@ -5160,16 +5160,6 @@ SetAnchor (const CEPoint & ptNewAnchor)
   m_ptAnchor = ptNewAnchor;
 }
 
-void CCrystalTextView::
-OnEditOperation2 (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
-{
-}
-
-void CCrystalTextView::
-OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
-{
-}
-
 BOOL CCrystalTextView::
 PreTranslateMessage (MSG * pMsg)
 {

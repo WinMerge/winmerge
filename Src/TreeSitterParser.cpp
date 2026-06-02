@@ -582,8 +582,7 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
         return pt;
     };
 
-    TSInputEdit tsEdit;
-    memset(&tsEdit, 0, sizeof(tsEdit));
+    TSInputEdit tsEdit{};
 
     if (bInsert)
     {
