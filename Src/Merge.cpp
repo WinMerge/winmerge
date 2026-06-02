@@ -1361,6 +1361,54 @@ bool CMergeApp::IsProjectFile(const String& filepath)
 		return false;
 }
 
+/**
+ * Returns true if the plugin pipeline contains plugin arguments.
+ *
+ * Plugin arguments loaded from project files are considered potentially risky.
+ */
+static bool ContainsPluginArguments(const String& pluginPipeline)
+{
+	String errorMessage;
+	auto plugins = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
+	for (const auto& plugin : plugins)
+	{
+		if (!plugin.args.empty())
+			return true;
+	}
+	return false;
+}
+
+static bool ConfirmOpeningProjectWithPluginArguments(const ProjectFile& project)
+{
+	bool hasRiskyPluginPipeline = false;
+	String pluginPipelines;
+	for (const auto& item : project.Items())
+	{
+		for (const auto& pluginPipeline : { item.GetUnpacker(), item.GetPrediffer() })
+		{
+			if (ContainsPluginArguments(pluginPipeline))
+			{
+				hasRiskyPluginPipeline = true;
+				pluginPipelines += _T("\"") + pluginPipeline + _T("\"\n");
+			}
+		}
+	}
+	if (hasRiskyPluginPipeline)
+	{
+		int ans = AfxMessageBox(
+			strutils::format_string1(
+				_("This project file contains plugins with custom arguments:\n\n"
+					"%1\n"
+					"These arguments may affect plugin behavior or execute external programs.\n\n"
+					"Do you want to open this project file?"),
+				pluginPipelines).c_str(),
+			MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_PROJFILE_CONTAIN_PLUGIN_ARGS);
+		if (IDNO == ans)
+			return false;
+	}
+	return true;
+}
+
 bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 {
 	if (sProject.empty())
@@ -1368,7 +1416,9 @@ bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 
 	try
 	{
-        project.Read(sProject);
+		project.Read(sProject);
+		if (!ConfirmOpeningProjectWithPluginArguments(project))
+			return false;
 	}
 	catch (Poco::Exception& e)
 	{
