@@ -4438,6 +4438,7 @@ STRINGTABLE
 BEGIN
     IDS_PROJFILE_LOAD_SUCCESS "Project file loaded."
     IDS_PROJFILE_SAVE_SUCCESS "Project file saved."
+    IDS_PROJFILE_CONTAIN_PLUGIN_ARGS "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
 END
 
 // Generic Edit commands
