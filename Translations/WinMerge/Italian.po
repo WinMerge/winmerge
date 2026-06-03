@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 25.05.2026\n"
+"Project-Id-Version: WinMerge - Italian - 03.06.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-05-25 09:03+0100\n"
+"PO-Revision-Date: 2026-06-03 08:44+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -5238,7 +5238,7 @@ msgstr "Salvataggio file progetto completato."
 #: Merge.rc:4436
 #, c-format
 msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
-msgstr ""
+msgstr "Questo file progetto contiene plugin con argomenti personalizzati:\n\n%1\nQuesti argomenti possono influenzare il comportamento dei plugin o eseguire programmi esterni.\n\nVuoi aprire questo file progetto?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4442
