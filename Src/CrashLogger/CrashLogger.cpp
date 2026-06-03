@@ -175,6 +175,57 @@ namespace
 			HANDLE hFile;
 			MyStackWalker(HANDLE f) : hFile(f) {}
 		protected:
+			static void MyStrCpy(char* szDest, size_t nMaxDestSize, const char* szSrc)
+			{
+				if (nMaxDestSize <= 0)
+					return;
+				strncpy_s(szDest, nMaxDestSize, szSrc, _TRUNCATE);
+				// INFO: _TRUNCATE will ensure that it is null-terminated;
+				// but with older compilers (<1400) it uses "strncpy" and this does not!)
+				szDest[nMaxDestSize - 1] = 0;
+			} // MyStrCpy
+
+			// Adapted from StackWalker.cpp.
+			// Modified to output module-relative offsets (WinMergeU+0xXXXXXX)
+			// to simplify crash analysis in WinDbg.
+			void OnCallstackEntry(CallstackEntryType eType, CallstackEntry& entry)
+			{
+				CHAR   buffer[STACKWALK_MAX_NAMELEN];
+				size_t maxLen = STACKWALK_MAX_NAMELEN;
+#if _MSC_VER >= 1400
+				maxLen = _TRUNCATE;
+#endif
+				if ((eType != lastEntry) && (entry.offset != 0))
+				{
+					if (entry.name[0] == 0)
+						MyStrCpy(entry.name, STACKWALK_MAX_NAMELEN, "(function-name not available)");
+					if (entry.undName[0] != 0)
+						MyStrCpy(entry.name, STACKWALK_MAX_NAMELEN, entry.undName);
+					if (entry.undFullName[0] != 0)
+						MyStrCpy(entry.name, STACKWALK_MAX_NAMELEN, entry.undFullName);
+
+					DWORD64 relOffset = 0;
+					if (entry.baseOfImage != 0)
+						relOffset = entry.offset - entry.baseOfImage;
+
+					if (entry.lineFileName[0] == 0)
+					{
+						MyStrCpy(entry.lineFileName, STACKWALK_MAX_NAMELEN, "(filename not available)");
+						if (entry.moduleName[0] == 0)
+							MyStrCpy(entry.moduleName, STACKWALK_MAX_NAMELEN, "(module-name not available)");
+
+						_snprintf_s(buffer, maxLen, "%p (%s+0x%llX): %s: %s\n", (LPVOID)entry.offset, entry.moduleName, relOffset, entry.lineFileName, entry.name);
+					}
+					else
+					{
+						_snprintf_s(buffer, maxLen, "%s (%d): %s [%s+0x%llX]\n", entry.lineFileName, entry.lineNumber, entry.name, entry.moduleName, relOffset);
+					}
+
+					buffer[STACKWALK_MAX_NAMELEN - 1] = 0;
+					OnOutput(buffer);
+				}
+			}
+
 			void OnOutput(LPCSTR text) override
 			{
 				if (hFile)
