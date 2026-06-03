@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-05-24 18:45-0300\n"
+"PO-Revision-Date: 2026-06-03 08:05-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -5206,7 +5206,7 @@ msgstr "Arquivo de projeto salvo."
 #: Merge.rc:4436
 #, c-format
 msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
-msgstr ""
+msgstr "Este arquivo de projeto contém plugins com argumentos personalizados:\n\n%1\nEstes argumentos podem afetar o comportamento do plugin ou executar programas externos.\n\nDeseja abrir este arquivo de projeto?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4442
