@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-05-25 12:42+0300\n"
+"PO-Revision-Date: 2026-06-02 17:09+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -164,9 +164,7 @@ msgid "&Scripts"
 msgstr "&Betikler"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:127 Merge.rc:351 Merge.rc:462 Merge.rc:672 Merge.rc:677
-#: Merge.rc:884 Merge.rc:896 Merge.rc:903 Merge.rc:960 Merge.rc:1206
-#: Merge.rc:5313
+#: Merge.rc:127 Merge.rc:351 Merge.rc:462 Merge.rc:672 Merge.rc:677 Merge.rc:884 Merge.rc:896 Merge.rc:903 Merge.rc:960 Merge.rc:1206 Merge.rc:5313
 msgid "< Empty >"
 msgstr "< Boş >"
 
@@ -266,8 +264,7 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "&Ekleme/silme algılansın"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:187 Merge.rc:220 Merge.rc:227 Merge.rc:371 Merge.rc:522
-#: Merge.rc:769
+#: Merge.rc:187 Merge.rc:220 Merge.rc:227 Merge.rc:371 Merge.rc:522 Merge.rc:769
 msgid "&None"
 msgstr "&Yok"
 
@@ -517,40 +514,32 @@ msgid "&New"
 msgstr "&Yeni"
 
 #. IDR_POPUP_LINEFILTERMENU
-#: Merge.rc:325 Merge.rc:334 Merge.rc:428 Merge.rc:437 Merge.rc:605
-#: Merge.rc:614 Merge.rc:666 Merge.rc:954 Merge.rc:1180 Merge.rc:1193
-#: Merge.rc:1931
+#: Merge.rc:325 Merge.rc:334 Merge.rc:428 Merge.rc:437 Merge.rc:605 Merge.rc:614 Merge.rc:666 Merge.rc:954 Merge.rc:1180 Merge.rc:1193 Merge.rc:1931
 msgid "&Text"
 msgstr "Me&tin"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:326 Merge.rc:335 Merge.rc:429 Merge.rc:438 Merge.rc:606
-#: Merge.rc:615 Merge.rc:667 Merge.rc:955 Merge.rc:1181 Merge.rc:1194
+#: Merge.rc:326 Merge.rc:335 Merge.rc:429 Merge.rc:438 Merge.rc:606 Merge.rc:615 Merge.rc:667 Merge.rc:955 Merge.rc:1181 Merge.rc:1194
 msgid "T&able"
 msgstr "T&ablo"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:327 Merge.rc:336 Merge.rc:430 Merge.rc:439 Merge.rc:607
-#: Merge.rc:616 Merge.rc:668 Merge.rc:956 Merge.rc:1182 Merge.rc:1195
+#: Merge.rc:327 Merge.rc:336 Merge.rc:430 Merge.rc:439 Merge.rc:607 Merge.rc:616 Merge.rc:668 Merge.rc:956 Merge.rc:1182 Merge.rc:1195
 msgid "&Binary"
 msgstr "&Binary"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608
-#: Merge.rc:617 Merge.rc:669 Merge.rc:957 Merge.rc:1183 Merge.rc:1196
-#: Merge.rc:5408
+#: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608 Merge.rc:617 Merge.rc:669 Merge.rc:957 Merge.rc:1183 Merge.rc:1196 Merge.rc:5408
 msgid "&Image"
 msgstr "&Görsel"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609
-#: Merge.rc:618 Merge.rc:670 Merge.rc:958 Merge.rc:1184 Merge.rc:1197
+#: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609 Merge.rc:618 Merge.rc:670 Merge.rc:958 Merge.rc:1184 Merge.rc:1197
 msgid "&Webpage"
 msgstr "İnternet &sitesi"
 
 #. IDR_POPUP_NEW, ID_FILE_NEW_FOLDER
-#: Merge.rc:330 Merge.rc:339 Merge.rc:433 Merge.rc:442 Merge.rc:610
-#: Merge.rc:619 Merge.rc:1185
+#: Merge.rc:330 Merge.rc:339 Merge.rc:433 Merge.rc:442 Merge.rc:610 Merge.rc:619 Merge.rc:1185
 msgid "&Folder"
 msgstr "&Klasör"
 
@@ -1400,14 +1389,12 @@ msgid "Copy from &Left to"
 msgstr "So&ldan şuraya kopyala"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:818 Merge.rc:829 Merge.rc:834 Merge.rc:845 Merge.rc:990
-#: Merge.rc:2801 Merge.rc:3093
+#: Merge.rc:818 Merge.rc:829 Merge.rc:834 Merge.rc:845 Merge.rc:990 Merge.rc:2801 Merge.rc:3093
 msgid "&Middle"
 msgstr "&Ortaya"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:819 Merge.rc:824 Merge.rc:835 Merge.rc:840 Merge.rc:991
-#: Merge.rc:2802 Merge.rc:3095
+#: Merge.rc:819 Merge.rc:824 Merge.rc:835 Merge.rc:840 Merge.rc:991 Merge.rc:2802 Merge.rc:3095
 msgid "&Right"
 msgstr "&Sağa"
 
@@ -1417,8 +1404,7 @@ msgid "Copy from &Middle to"
 msgstr "Or&tadan şuraya kopyala"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:823 Merge.rc:828 Merge.rc:839 Merge.rc:844 Merge.rc:989
-#: Merge.rc:2800 Merge.rc:3091
+#: Merge.rc:823 Merge.rc:828 Merge.rc:839 Merge.rc:844 Merge.rc:989 Merge.rc:2800 Merge.rc:3091
 msgid "&Left"
 msgstr "So&la"
 
@@ -1805,8 +1791,7 @@ msgid "Unpacker Settings"
 msgstr "Çıkarıcı ayarları"
 
 #. IDS_USERCHOICE_NONE
-#: Merge.rc:1085 Merge.rc:1091 Merge.rc:1832 Merge.rc:1836 Merge.rc:2027
-#: Merge.rc:2031 Merge.rc:5315
+#: Merge.rc:1085 Merge.rc:1091 Merge.rc:1832 Merge.rc:1836 Merge.rc:2027 Merge.rc:2031 Merge.rc:5315
 msgid "<None>"
 msgstr "<Yok>"
 
@@ -2231,9 +2216,7 @@ msgid "1GB or more"
 msgstr "1 GB veya daha fazla"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_RANGE
-#: Merge.rc:1419 Merge.rc:1496 Merge.rc:1548 Merge.rc:1554 Merge.rc:1571
-#: Merge.rc:1597 Merge.rc:1618 Merge.rc:1686 Merge.rc:1752 Merge.rc:1777
-#: Merge.rc:1980
+#: Merge.rc:1419 Merge.rc:1496 Merge.rc:1548 Merge.rc:1554 Merge.rc:1571 Merge.rc:1597 Merge.rc:1618 Merge.rc:1686 Merge.rc:1752 Merge.rc:1777 Merge.rc:1980
 msgid "Custom Range..."
 msgstr "Özel aralık..."
 
@@ -2603,40 +2586,32 @@ msgid "Add &Difference Condition"
 msgstr "&Fark Koşulu Ekle"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_EOL_EQUAL
-#: Merge.rc:1584 Merge.rc:1601 Merge.rc:1622 Merge.rc:1739 Merge.rc:1760
-#: Merge.rc:1785 Merge.rc:1926 Merge.rc:1933 Merge.rc:1938 Merge.rc:1947
-#: Merge.rc:1967 Merge.rc:1990
+#: Merge.rc:1584 Merge.rc:1601 Merge.rc:1622 Merge.rc:1739 Merge.rc:1760 Merge.rc:1785 Merge.rc:1926 Merge.rc:1933 Merge.rc:1938 Merge.rc:1947 Merge.rc:1967 Merge.rc:1990
 msgid "Equal"
 msgstr "Eşit"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_EOL_NOT_EQUAL
-#: Merge.rc:1585 Merge.rc:1602 Merge.rc:1623 Merge.rc:1740 Merge.rc:1761
-#: Merge.rc:1786 Merge.rc:1927 Merge.rc:1934 Merge.rc:1939 Merge.rc:1948
-#: Merge.rc:1968 Merge.rc:1991
+#: Merge.rc:1585 Merge.rc:1602 Merge.rc:1623 Merge.rc:1740 Merge.rc:1761 Merge.rc:1786 Merge.rc:1927 Merge.rc:1934 Merge.rc:1939 Merge.rc:1948 Merge.rc:1968 Merge.rc:1991
 msgid "Not Equal"
 msgstr "Eşit Değil"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_LESS
-#: Merge.rc:1586 Merge.rc:1603 Merge.rc:1741 Merge.rc:1762 Merge.rc:1787
-#: Merge.rc:1940 Merge.rc:1949 Merge.rc:1969
+#: Merge.rc:1586 Merge.rc:1603 Merge.rc:1741 Merge.rc:1762 Merge.rc:1787 Merge.rc:1940 Merge.rc:1949 Merge.rc:1969
 msgid "Less Than"
 msgstr "Daha küçük"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_LESS_EQUAL
-#: Merge.rc:1587 Merge.rc:1604 Merge.rc:1742 Merge.rc:1763 Merge.rc:1788
-#: Merge.rc:1941 Merge.rc:1950 Merge.rc:1970
+#: Merge.rc:1587 Merge.rc:1604 Merge.rc:1742 Merge.rc:1763 Merge.rc:1788 Merge.rc:1941 Merge.rc:1950 Merge.rc:1970
 msgid "Less Than or Equal to"
 msgstr "Küçük veya eşit"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER
-#: Merge.rc:1588 Merge.rc:1605 Merge.rc:1743 Merge.rc:1764 Merge.rc:1789
-#: Merge.rc:1942 Merge.rc:1951 Merge.rc:1971
+#: Merge.rc:1588 Merge.rc:1605 Merge.rc:1743 Merge.rc:1764 Merge.rc:1789 Merge.rc:1942 Merge.rc:1951 Merge.rc:1971
 msgid "Greater Than"
 msgstr "Daha büyük"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER_EQUAL
-#: Merge.rc:1589 Merge.rc:1606 Merge.rc:1744 Merge.rc:1765 Merge.rc:1790
-#: Merge.rc:1943 Merge.rc:1952 Merge.rc:1972
+#: Merge.rc:1589 Merge.rc:1606 Merge.rc:1744 Merge.rc:1765 Merge.rc:1790 Merge.rc:1943 Merge.rc:1952 Merge.rc:1972
 msgid "Greater Than or Equal to"
 msgstr "Daha büyük veya eşit"
 
@@ -2856,8 +2831,7 @@ msgid "Open Regex Replace Lists Folder..."
 msgstr "Regex değiştirme listeleri klasörünü aç…"
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
-#: Merge.rc:1842 Merge.rc:2070 Merge.rc:2251 Merge.rc:2270 Merge.rc:2298
-#: Merge.rc:2841
+#: Merge.rc:1842 Merge.rc:2070 Merge.rc:2251 Merge.rc:2270 Merge.rc:2298 Merge.rc:2841
 msgid "Match &case"
 msgstr "BÜYÜK/küçük &harfler eşleştirilsin"
 
@@ -3017,14 +2991,12 @@ msgid "Line &Status"
 msgstr "&Satır durumu"
 
 #. IDS_DIFFERENT
-#: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
-#: Merge.rc:5001
+#: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031 Merge.rc:5001
 msgid "Different"
 msgstr "Farklılık"
 
 #. IDS_IDENTICAL
-#: Merge.rc:1901 Merge.rc:1985 Merge.rc:2856 Merge.rc:3009 Merge.rc:3070
-#: Merge.rc:4991
+#: Merge.rc:1901 Merge.rc:1985 Merge.rc:2856 Merge.rc:3009 Merge.rc:3070 Merge.rc:4991
 msgid "Identical"
 msgstr "Aynı"
 
@@ -3184,10 +3156,8 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "WinMerge sitesini ziyaret edin!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:2194 Merge.rc:2336 Merge.rc:2687 Merge.rc:2711 Merge.rc:2725
-#: Merge.rc:2753 Merge.rc:2844 Merge.rc:2873 Merge.rc:2889 Merge.rc:2950
-#: Merge.rc:2967 Merge.rc:2979 Merge.rc:3143 Merge.rc:3203 Merge.rc:3338
-#: Merge.rc:3380 Merge.rc:3423 Merge.rc:3473
+#: Merge.rc:2194 Merge.rc:2336 Merge.rc:2687 Merge.rc:2711 Merge.rc:2725 Merge.rc:2753 Merge.rc:2844 Merge.rc:2873 Merge.rc:2889 Merge.rc:2950 Merge.rc:2967 Merge.rc:2979 Merge.rc:3143
+#: Merge.rc:3203 Merge.rc:3338 Merge.rc:3380 Merge.rc:3423 Merge.rc:3473
 msgid "OK"
 msgstr "Tamam"
 
@@ -3287,11 +3257,8 @@ msgid "Se&lect..."
 msgstr "&Seç..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:2237 Merge.rc:2257 Merge.rc:2281 Merge.rc:2302 Merge.rc:2337
-#: Merge.rc:2688 Merge.rc:2712 Merge.rc:2726 Merge.rc:2754 Merge.rc:2807
-#: Merge.rc:2845 Merge.rc:2874 Merge.rc:2890 Merge.rc:2951 Merge.rc:2968
-#: Merge.rc:2980 Merge.rc:3144 Merge.rc:3204 Merge.rc:3363 Merge.rc:3381
-#: Merge.rc:3424 Merge.rc:3474
+#: Merge.rc:2237 Merge.rc:2257 Merge.rc:2281 Merge.rc:2302 Merge.rc:2337 Merge.rc:2688 Merge.rc:2712 Merge.rc:2726 Merge.rc:2754 Merge.rc:2807 Merge.rc:2845 Merge.rc:2874 Merge.rc:2890
+#: Merge.rc:2951 Merge.rc:2968 Merge.rc:2980 Merge.rc:3144 Merge.rc:3204 Merge.rc:3363 Merge.rc:3381 Merge.rc:3424 Merge.rc:3474
 msgid "Cancel"
 msgstr "İptal"
 
@@ -3546,10 +3513,8 @@ msgid "Language:"
 msgstr "Dil:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2375 Merge.rc:2555 Merge.rc:2577 Merge.rc:2608 Merge.rc:2625
-#: Merge.rc:2642 Merge.rc:2650 Merge.rc:2686 Merge.rc:2710 Merge.rc:2909
-#: Merge.rc:2920 Merge.rc:2929 Merge.rc:3163 Merge.rc:3198 Merge.rc:3261
-#: Merge.rc:3286 Merge.rc:3300 Merge.rc:3314 Merge.rc:3330
+#: Merge.rc:2375 Merge.rc:2555 Merge.rc:2577 Merge.rc:2608 Merge.rc:2625 Merge.rc:2642 Merge.rc:2650 Merge.rc:2686 Merge.rc:2710 Merge.rc:2909 Merge.rc:2920 Merge.rc:2929 Merge.rc:3163
+#: Merge.rc:3198 Merge.rc:3261 Merge.rc:3286 Merge.rc:3300 Merge.rc:3314 Merge.rc:3330
 msgid "Defaults"
 msgstr "Varsayılanlar"
 
@@ -3699,8 +3664,7 @@ msgid "User 2:"
 msgstr "2. kullanıcı:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2465 Merge.rc:2467 Merge.rc:2469 Merge.rc:2471 Merge.rc:2473
-#: Merge.rc:2475 Merge.rc:2477 Merge.rc:2479 Merge.rc:2481
+#: Merge.rc:2465 Merge.rc:2467 Merge.rc:2469 Merge.rc:2471 Merge.rc:2473 Merge.rc:2475 Merge.rc:2477 Merge.rc:2479 Merge.rc:2481
 msgid "Bold"
 msgstr "Koyu"
 
@@ -5224,8 +5188,20 @@ msgstr "Proje dosyası kaydedildi."
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4436
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"Bu proje dosyası, özel değişkenler (parametreler) içeren eklentiler barındırıyor:\n"
+"\n"
+"%1\n"
+"Bu değişkenler eklenti davranışını etkileyebilir veya harici programlar yürütebilir.\n"
+"\n"
+"Bu proje dosyasını açmak istiyor musunuz?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4442
@@ -8662,7 +8638,7 @@ msgstr "Tanımsız tanımlayıcı"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
 #: Merge.rc:5675
 msgid "Invalid number of arguments"
-msgstr "Geçersiz argüman sayısı"
+msgstr "Geçersiz değişken sayısı"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
 #: Merge.rc:5676
@@ -9217,7 +9193,7 @@ msgid ""
 "Arguments: tidy command line options."
 msgstr ""
 "HTML iyileştirici: tidy-html5. \r\n"
-"Parametreler: Tidy komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Tidy komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:140
 msgid ""
@@ -9225,7 +9201,7 @@ msgid ""
 "Arguments: jq filter/command line options."
 msgstr ""
 "JSON iyileştirici: jq komutu. \r\n"
-"Parametreler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:142
 msgid ""
@@ -9233,7 +9209,7 @@ msgid ""
 "Arguments: tidy command line options."
 msgstr ""
 "XML iyileştirici: tidy-html5. \r\n"
-"Parametreler: Tidy komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Tidy komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:144
 msgid ""
@@ -9241,7 +9217,7 @@ msgid ""
 "Arguments: yq filter/command line options."
 msgstr ""
 "YAML iyileştirici: yq komutu. \r\n"
-"Parametreler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:146
 msgid ""
@@ -9249,7 +9225,7 @@ msgid ""
 "Arguments: msgcat command line options."
 msgstr ""
 "PO Biçimlendirici (gettext msgcat aracı).\r\n"
-"Parametreler: msgcat komut satırı seçenekleri."
+"Değişkenler: msgcat komut satırı seçenekleri."
 
 #: Strings.rc:148
 msgid ""
@@ -9257,7 +9233,7 @@ msgid ""
 "Arguments: dot command line options."
 msgstr ""
 "Graphviz ön izleyici. \r\n"
-"Parametreler: Dot komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Dot komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:150
 msgid ""
@@ -9265,7 +9241,7 @@ msgid ""
 "Arguments: md2html command line options."
 msgstr ""
 "Markdown ön izleyici. \r\n"
-"Parametreler: Dot komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Dot komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:152
 msgid ""
@@ -9273,7 +9249,7 @@ msgid ""
 "Arguments: plantuml.jar command line options."
 msgstr ""
 "PlantUML ön izleyici. \r\n"
-"Parametreler: Plantuml.jar komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Plantuml.jar komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:154
 msgid ""
@@ -9281,7 +9257,7 @@ msgid ""
 "Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV sorgulayıcı: q komutu. \r\n"
-"Parametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
+"Değişkenler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
 
 #: Strings.rc:156
 msgid ""
@@ -9289,7 +9265,7 @@ msgid ""
 "Arguments: SQL statement/q command line options."
 msgstr ""
 "TSV sorgulayıcı: q komutu. \r\n"
-"Parametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
+"Değişkenler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
 
 #: Strings.rc:158
 msgid ""
@@ -9297,7 +9273,7 @@ msgid ""
 "Arguments: jq filter/command line options."
 msgstr ""
 "JSON sorgulayıcı: jq komutu. \r\n"
-"Parametreler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:164
 msgid ""
@@ -9305,7 +9281,7 @@ msgid ""
 "Arguments: yq filter/command line options."
 msgstr ""
 "YAML sorgulayıcı: yq komutu. \r\n"
-"Parametreler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:166
 msgid ""
@@ -9313,7 +9289,7 @@ msgid ""
 "Arguments: tidy command line options."
 msgstr ""
 "HTML doğrulayıcı: tidy-html5. \r\n"
-"Parametreler: Tidy komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Tidy komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:168
 msgid ""
@@ -9321,7 +9297,7 @@ msgid ""
 "Arguments: msgfmt command line options."
 msgstr ""
 "PO Doğrulayıcı (gettext msgfmt aracı).\r\n"
-"Parametreler: msgfmt komut satırı seçenekleri."
+"Değişkenler: msgfmt komut satırı seçenekleri."
 
 #: Strings.rc:170
 msgid ""
@@ -9329,7 +9305,7 @@ msgid ""
 "Arguments: javap command line options."
 msgstr ""
 "JVM bayt kodu çözücüsü: javap. \r\n"
-"Parametreler: javap komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: javap komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:172
 msgid ""
@@ -9337,7 +9313,7 @@ msgid ""
 "Arguments: ildasm command line options."
 msgstr ""
 "IL kod çözücüsü: ildasm. \r\n"
-"Parametreler: ildasm komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: ildasm komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:174
 msgid ""
@@ -9345,7 +9321,7 @@ msgid ""
 "Arguments: dumpbin command line options."
 msgstr ""
 "Doğal kod çözücüsü: dumpbin. \r\n"
-"Parametreler: dumpbin komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: dumpbin komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:176
 msgid ""
@@ -9353,7 +9329,7 @@ msgid ""
 "Arguments: tika-app.jar command line options."
 msgstr ""
 "Genel içerik ayıklayıcı: Apache Tika. \r\n"
-"Parametreler: javap komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: javap komutuna aktarılacak komut satırı parametreleri."
 
 #. IDS_PLUGIN_DESCRIPTION41
 #: Strings.rc:177
@@ -9382,7 +9358,7 @@ msgstr "MS Word dosyalarının içeriği görüntülensin"
 
 #: Strings.rc:183
 msgid "Ignore columns - list from plugin name/argument"
-msgstr "Bazı sütunlar yok sayılsın. Eklenti adı ya da eklenti parametresi ile yok sayılan sütun listesi"
+msgstr "Bazı sütunlar yok sayılsın. Eklenti adı ya da eklenti değişkeni ile yok sayılan sütun listesi"
 
 #: Strings.rc:185
 msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
@@ -9390,7 +9366,7 @@ msgstr "Eklenti C, C++, PHP ve JavaScript dosyalarındaki komutları yok sayar (
 
 #: Strings.rc:187
 msgid "Ignore fields - list from plugin name/argument"
-msgstr "Bazı alanlar yok sayılsın. Eklenti adı ya da eklenti parametresi ile yok sayılan alan listesi"
+msgstr "Bazı alanlar yok sayılsın. Eklenti adı ya da eklenti değişkeni ile yok sayılan alan listesi"
 
 #: Strings.rc:189
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
@@ -9412,7 +9388,7 @@ msgid ""
 "Arguments: curl command line options."
 msgstr ""
 "cURL ile HTTP URL şema işleyici.\r\n"
-"Parametreler: curl komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: curl komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:199
 msgid ""
@@ -9420,7 +9396,7 @@ msgid ""
 "Arguments: reg.exe command line options."
 msgstr ""
 "Windows kayıt defteri adresi şema işleyici. \r\n"
-"Parametreler: reg.exe komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: reg.exe komutuna aktarılacak komut satırı parametreleri."
 
 #. IDS_PLUGIN_DESCRIPTION54
 #: Strings.rc:200
@@ -9455,7 +9431,7 @@ msgid ""
 msgstr ""
 "Java tersine derleyici (CFR).\r\n"
 ".class dosyalarını okunabilir Java kaynak koduna dönüştürür.\r\n"
-"Parametreler: CFR komut satırı seçenekleri."
+"Değişkenler: CFR komut satırı seçenekleri."
 
 #: Strings.rc:206
 msgid ""
@@ -9463,7 +9439,7 @@ msgid ""
 "Arguments: cliphcat command line options."
 msgstr ""
 "Pano URL şeması işleyicisi (cliphcat).\r\n"
-"Parametreler: cliphcat komut satırı seçenekleri."
+"Değişkenler: cliphcat komut satırı seçenekleri."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
@@ -9659,7 +9635,7 @@ msgstr "'%1' dosyası bulunamadı"
 
 #: Strings.rc:307
 msgid "Enter command line arguments for patch"
-msgstr "Yama komutu için komut satırı parametrelerini yazın"
+msgstr "Yama komutu için komut satırı değişkenlerini yazın"
 
 #: Strings.rc:309
 #, c-format
