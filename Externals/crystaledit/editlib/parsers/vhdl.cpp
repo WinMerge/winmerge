@@ -329,7 +329,7 @@ IsVhdlChar (const tchar_t *pszChars, int nLength)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I, unsigned &dwCookie, int &nAttributeBegin)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int nIdentBegin, int I, unsigned &dwCookie, int &nAttributeBegin)
 {
   if (IsVhdlNumber (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -363,7 +363,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineVhdl (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineVhdl (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -462,10 +462,6 @@ out:
       //     continue;
       //   }
 
-      if (pBuf == nullptr)
-        continue;               //  We don't need to extract keywords,
-      //  for faster parsing skip the rest of loop
-
       if (xisalnum (pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha (pszChars[nPrevI]) && !xisalpha (pszChars[I + 1])))
         {
           if (nIdentBegin == -1)
@@ -480,7 +476,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie, nAttributeBegin);
+              DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, dwCookie, nAttributeBegin);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -490,7 +486,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie, nAttributeBegin);
+      DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, dwCookie, nAttributeBegin);
     }
 
   dwCookie &= COOKIE_EXT_COMMENT;

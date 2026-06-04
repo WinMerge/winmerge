@@ -23,14 +23,14 @@
 #define new DEBUG_NEW
 #endif
 
-static void AdjustCharPosInTextBlocks(CrystalLineParser::TEXTBLOCK* pBuf, int startBlock, int endBlock, int offset)
+static void AdjustCharPosInTextBlocks(std::vector<CrystalLineParser::TEXTBLOCK> blocks, int startBlock, int endBlock, int offset)
 {
   for (int i = startBlock; i <= endBlock; ++i)
-    pBuf[i].m_nCharPos += offset;
+    blocks[i].m_nCharPos += offset;
 }
 
 unsigned
-CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage)
+CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks, int nEmbeddedLanguage)
 {
   if (nLength == 0)
     {
@@ -101,10 +101,9 @@ out:
             {
               const tchar_t *pszEnd = tc::tcsstr(pszChars + I, _T("</script>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              int nActualItemsEmbedded = 0;
-              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
-              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
-              nActualItems += nActualItemsEmbedded;
+              int nActualItems = static_cast<int>(blocks.size());
+              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, blocks);
+              AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size()) - 1, I);
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_SCRIPT;
               else
@@ -118,10 +117,9 @@ out:
             {
               const tchar_t *pszEnd = tc::tcsstr(pszChars + I, _T("</style>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              int nActualItemsEmbedded = 0;
-              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
-              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
-              nActualItems += nActualItemsEmbedded;
+              int nActualItems = static_cast<int>(blocks.size());
+              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, blocks);
+              AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size() - 1), I);
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_STYLE;
               else
@@ -139,17 +137,16 @@ out:
                   if (!pszEnd)
                     pszEnd = tc::tcsstr(pszChars + I, _T("%>"));
                   int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-                  unsigned (*pParseLineFunc)(unsigned, const tchar_t *, int, TEXTBLOCK *, int &);
+                  unsigned (*pParseLineFunc)(unsigned, const tchar_t *, int, std::vector<TEXTBLOCK>&);
                   switch (nEmbeddedLanguage)
                   {
                   case SRC_BASIC: pParseLineFunc = ParseLineBasic; break;
                   case SRC_PHP: pParseLineFunc = ParseLinePhpLanguage; break;
                   default: pParseLineFunc = ParseLineJavaScript; break;
                   }
-                  int nActualItemsEmbedded = 0;
-                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
-                  AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
-                  nActualItems += nActualItemsEmbedded;
+                  int nActualItems = static_cast<int>(blocks.size());
+                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, blocks);
+                  AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size()) - 1, I);
                   if (!pszEnd)
                     {
                       dwCookie |= COOKIE_EXT_USER1;
@@ -183,11 +180,10 @@ out:
                 {
                   const tchar_t* pszEnd = tc::tcsstr(pszChars + I, _T("}"));
                   int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-                  int nActualItemsEmbedded = 0;
+                  int nActualItems = static_cast<int>(blocks.size());
                   int nOffset = (I > 0 && pszChars[I - 1] == '{') ? (I - 1) : I;
-                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, pBuf + nActualItems, nActualItemsEmbedded);
-                  AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, nOffset);
-                  nActualItems += nActualItemsEmbedded;
+                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, blocks);
+                  AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size()) - 1, I);
                   if (!pszEnd)
                       dwCookie |= COOKIE_EXT_USER1;
                   else if (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING))
@@ -299,8 +295,6 @@ out:
             }
         }
 
-      if (pBuf == nullptr)
-        continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
 
       if (xisalnum (pszChars[I]) || pszChars[I] == '.')
@@ -433,7 +427,7 @@ next:
 }
 
 unsigned
-CrystalLineParser::ParseLineHtml (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineHtml (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_JAVA);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, blocks,  SRC_JAVA);
 }

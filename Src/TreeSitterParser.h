@@ -224,10 +224,7 @@ public:
      * @param nMaxBlocks   Maximum number of TEXTBLOCK entries that fit in pBuf.
      *                     Pass 0 to skip bounds checking (legacy behavior).
      */
-    void GetLineBlocks(int nLineIndex,
-                       CrystalLineParser::TEXTBLOCK* pBuf,
-                       int& nActualItems,
-                       int nMaxBlocks = 0) const;
+    std::vector<CrystalLineParser::TEXTBLOCK> GetLineBlocks(int nLineIndex) const;
 
     /** @brief Check if a valid tree is available. */
     bool HasTree() const { return m_pTree != nullptr; }

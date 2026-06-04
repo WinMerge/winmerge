@@ -254,7 +254,7 @@ IsPhp2Keyword (const tchar_t *pszChars, int nLength)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I, DWORD dwCookie)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int nIdentBegin, int I, DWORD dwCookie)
 {
   if (dwCookie & COOKIE_USER2)
     {
@@ -299,13 +299,13 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLinePhp(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
+CrystalLineParser::ParseLinePhp(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_PHP);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, blocks, SRC_PHP);
 }
 
 unsigned
-CrystalLineParser::ParseLinePhpLanguage (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLinePhpLanguage (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR);
@@ -449,10 +449,6 @@ out:
           continue;
         }
 
-      if (pBuf == nullptr)
-        continue;               //  We don't need to extract keywords,
-      //  for faster parsing skip the rest of loop
-
       if (xisalnum (pszChars[I]) || pszChars[I] == '.')
         {
           if (nIdentBegin == -1)
@@ -462,7 +458,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie);
+              DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, dwCookie);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -491,7 +487,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie);
+      DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, dwCookie);
     }
 
   dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR);

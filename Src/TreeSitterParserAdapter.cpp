@@ -33,22 +33,16 @@ void TreeSitterParserAdapter::SetTextBuffer(ITextBuffer* pTextBuffer)
 /**
  * @brief Parse a single line and return syntax highlighting information.
  */
-unsigned TreeSitterParserAdapter::ParseLine(int nLineIndex, CrystalLineParser::TEXTBLOCK* pBuf, int& nActualItems)
+std::vector<CrystalLineParser::TEXTBLOCK> TreeSitterParserAdapter::ParseLine(int nLineIndex)
 {
 	if (m_pTextBuffer == nullptr)
-	{
-		nActualItems = 0;
-		return 0;
-	}
+		return {};
 
 	// Ensure the document is parsed (handles lazy reparsing if dirty)
 	m_parser.EnsureParsed(m_pTextBuffer);
 
 	// Get the cached color blocks for this line
-	m_parser.GetLineBlocks(nLineIndex, pBuf, nActualItems);
-
-	// Tree-sitter doesn't use cookies (returns 0)
-	return 0;
+	return m_parser.GetLineBlocks(nLineIndex);
 }
 
 /**

@@ -2,7 +2,7 @@
 #include "crystallineparser.h"
 
 unsigned
-CrystalLineParser::ParseLinePlain (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLinePlain (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
   return 0;
 }

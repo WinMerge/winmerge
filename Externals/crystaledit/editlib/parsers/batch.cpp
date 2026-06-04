@@ -687,7 +687,7 @@ IsUser2Keyword (const tchar_t *pszChars, int nLength)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I, unsigned &dwCookie)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int nIdentBegin, int I, unsigned &dwCookie)
 {
   if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -714,7 +714,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineBatch (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineBatch (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
   if (nLength == 0)
     return dwCookie;
@@ -854,10 +854,6 @@ out:
             bFirstChar = false;
         }
 
-      if (pBuf == nullptr)
-        continue;               //  We don't need to extract keywords,
-      //  for faster parsing skip the rest of loop
-
       if (pszChars[I] == _T ('_') || pszChars[I] == _T ('@') || xisalnum (pszChars[I]) || pszChars[I] == '.')
         {
           if (nIdentBegin == -1)
@@ -873,7 +869,7 @@ out:
                 }
               else
                 {
-                   DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie);
+                   DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, dwCookie);
                 }
               bRedefineBlock = true;
               bDecIndex = true;
@@ -884,7 +880,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie);
+      DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, dwCookie);
     }
 
   dwCookie = 0;

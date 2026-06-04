@@ -104,7 +104,7 @@ IsUser1Keyword (const tchar_t *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineSgml (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineSgml (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -240,10 +240,6 @@ out:
           dwCookie &= ~COOKIE_PREPROCESSOR;
           continue;
         }
-
-      if (pBuf == nullptr)
-        continue;               //  We don't need to extract keywords,
-      //  for faster parsing skip the rest of loop
 
       if (xisalnum (pszChars[I]) || pszChars[I] == '.')
         {

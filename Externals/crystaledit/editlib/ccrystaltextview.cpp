@@ -1895,14 +1895,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   int nLength = GetViewableLineLength (nLineIndex);
 
   //  Parse the line
-  std::vector<TEXTBLOCK> blocks((nLength + 1) * 3); // be aware of nLength == 0
-  int nBlocks = 0;
-
-  ParseLine(nLineIndex, blocks.data(), nBlocks);
-
-  ASSERT(nBlocks < static_cast<int>(blocks.size()));
-  blocks.resize(nBlocks);
-
+  std::vector<TEXTBLOCK> blocks = ParseLine(nLineIndex);
   std::vector<TEXTBLOCK> additionalBlocks = GetAdditionalTextBlocks(nLineIndex);
   std::vector<TEXTBLOCK> mergedBlocks;
   if (m_pMarkers && m_pMarkers->GetEnabled() && m_pMarkers->GetMarkers().size() > 0)
@@ -4737,21 +4730,15 @@ OnSetFocus (CWnd * pOldWnd)
   UpdateCaret ();
 }
 
-void CCrystalTextView::
-ParseLine (int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
+std::vector<TEXTBLOCK> CCrystalTextView::
+ParseLine (int nLineIndex)
 {
-  nActualItems = 0;
-
+  std::vector<TEXTBLOCK> blocks;
   if (m_pSyntaxParser)
-    m_pSyntaxParser->ParseLine(nLineIndex, pBuf, nActualItems);
-
-  if (nActualItems == 0)
-    {
-      pBuf[0].m_nCharPos = 0;
-      pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
-      pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
-      nActualItems++;
-    }
+    blocks = m_pSyntaxParser->ParseLine(nLineIndex);
+  if (blocks.empty())
+    blocks.push_back({ 0, COLORINDEX_NORMALTEXT, COLORINDEX_BKGND });
+  return blocks;
 }
 
 int CCrystalTextView::

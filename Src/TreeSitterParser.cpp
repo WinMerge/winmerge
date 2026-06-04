@@ -1500,51 +1500,36 @@ void CTreeSitterParser::BuildLineCache(int nLineCount)
     }
 }
 
-void CTreeSitterParser::GetLineBlocks(int nLineIndex,
-                                           CrystalLineParser::TEXTBLOCK* pBuf,
-                                           int& nActualItems,
-                                           int nMaxBlocks) const
+std::vector<CrystalLineParser::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineIndex) const
 {
-    // Cookie-only mode (pBuf == nullptr): caller just wants the cookie.
-    // Tree-sitter doesn't use cookies, so nothing to do.
-    if (!pBuf)
-        return;
-
     // Fix #4: bounds check against cached line count
     if (nLineIndex < 0 || nLineIndex >= static_cast<int>(m_lineBlocks.size()))
-        return;
+        return {};
 
     const auto& blocks = m_lineBlocks[nLineIndex];
 
-    pBuf[0].m_nCharPos = 0;
-    pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
-    pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
-    nActualItems = 1;
+    std::vector<CrystalLineParser::TEXTBLOCK> newBlocks;
+    newBlocks.push_back({0, COLORINDEX_NORMALTEXT, COLORINDEX_BKGND});
 
     for (const auto& block : blocks)
     {
         // If the caller's last block is at the same position, overwrite it
         // (same logic as DEFINE_BLOCK macro in crystallineparser.h)
-        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == block.nCharPos)
+        if (newBlocks.size() > 0 && newBlocks.back().m_nCharPos == block.nCharPos)
         {
-            pBuf[nActualItems - 1].m_nColorIndex = block.nColorIndex;
-            pBuf[nActualItems - 1].m_nBgColorIndex = COLORINDEX_BKGND;
+            newBlocks.back().m_nColorIndex = block.nColorIndex;
+            newBlocks.back().m_nBgColorIndex = COLORINDEX_BKGND;
             continue;
         }
 
         // Skip if same color as previous block (no visible change)
-        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nColorIndex == block.nColorIndex)
+        if (newBlocks.size() > 0 && newBlocks.back().m_nColorIndex == block.nColorIndex)
             continue;
 
-        // Bounds check: stop if we'd overflow the buffer
-        if (nMaxBlocks > 0 && nActualItems >= nMaxBlocks)
-            break;
-
-        pBuf[nActualItems].m_nCharPos = block.nCharPos;
-        pBuf[nActualItems].m_nColorIndex = block.nColorIndex;
-        pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;
-        nActualItems++;
+        newBlocks.push_back({block.nCharPos, block.nColorIndex, COLORINDEX_BKGND});
     }
+
+    return newBlocks;
 }
 
 

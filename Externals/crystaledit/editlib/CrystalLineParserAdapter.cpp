@@ -31,27 +31,24 @@ void CrystalLineParserAdapter::SetTextBuffer(ITextBuffer* pTextBuffer)
 	if (m_pTextBuffer != nullptr)
 	{
 		int nLineCount = m_pTextBuffer->GetLineCount();
-		m_ParseCookies.resize(nLineCount + 1, 0);
+		m_ParseCookies.resize(nLineCount + 1, -1);
 	}
 }
 
 /**
  * @brief Parse a single line and return syntax highlighting information.
  */
-unsigned CrystalLineParserAdapter::ParseLine(int nLineIndex, CrystalLineParser::TEXTBLOCK* pBuf, int& nActualItems)
+std::vector<CrystalLineParser::TEXTBLOCK> CrystalLineParserAdapter::ParseLine(int nLineIndex)
 {
+	std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+
 	if (m_pTextBuffer == nullptr || m_pTextDef == nullptr || m_pTextDef->ParseLineX == nullptr)
-	{
-		nActualItems = 0;
-		return 0;
-	}
+		return blocks;
 
 	// Ensure parse cookie cache is large enough
 	int nLineCount = m_pTextBuffer->GetLineCount();
 	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-	{
-		m_ParseCookies.resize(nLineCount + 1, 0);
-	}
+		m_ParseCookies.resize(nLineCount + 1, -1);
 
 	// Get the line text
 	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex);
@@ -61,15 +58,13 @@ unsigned CrystalLineParserAdapter::ParseLine(int nLineIndex, CrystalLineParser::
 	unsigned dwCookie = GetLineCookie(nLineIndex);
 
 	// Call the legacy parser function
-	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, pBuf, nActualItems);
+	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, blocks);
 
 	// Cache the result cookie for the next line
 	if (nLineIndex < nLineCount)
-	{
 		m_ParseCookies[nLineIndex + 1] = dwNewCookie;
-	}
 
-	return dwNewCookie;
+	return blocks;
 }
 
 /**
@@ -97,41 +92,33 @@ CrystalLineParser::TextType CrystalLineParserAdapter::GetParserType() const
 unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
 {
 	if (nLineIndex <= 0 || m_pTextBuffer == nullptr)
-	{
 		return 0; // First line always starts with cookie 0
-	}
 
 	// Ensure the cookie cache is large enough
 	int nLineCount = m_pTextBuffer->GetLineCount();
 	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-	{
-		m_ParseCookies.resize(nLineCount + 1, 0);
-	}
+		m_ParseCookies.resize(nLineCount + 1, -1);
 
 	// If we already have a valid cookie, return it
-	if (m_ParseCookies[nLineIndex] != 0)
-	{
+	if (m_ParseCookies[nLineIndex] != -1)
 		return m_ParseCookies[nLineIndex];
-	}
 
 	// Special case: if requesting cookie for line 0, it's always 0
 	if (nLineIndex == 0)
-	{
 		return 0;
-	}
 
 	// Otherwise, get cookie from previous line and parse current line
 	// This is more efficient than parsing all previous lines
-	unsigned dwPrevCookie = GetLineCookie(nLineIndex - 1);
+	unsigned dwPrevCookie = (m_ParseCookies[nLineIndex - 1] != -1) ? m_ParseCookies[nLineIndex - 1] : GetLineCookie(nLineIndex - 1);
 
 	// Now parse line nLineIndex-1 to compute cookie for nLineIndex
 	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex - 1);
 	int nLength = m_pTextBuffer->GetLineLength(nLineIndex - 1);
-	int nActualItems = 0;
 
 	if (m_pTextDef != nullptr && m_pTextDef->ParseLineX != nullptr)
 	{
-		unsigned dwNewCookie = m_pTextDef->ParseLineX(dwPrevCookie, pszChars, nLength, nullptr, nActualItems);
+		std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+		unsigned dwNewCookie = m_pTextDef->ParseLineX(dwPrevCookie, pszChars, nLength, blocks);
 		m_ParseCookies[nLineIndex] = dwNewCookie;
 		return dwNewCookie;
 	}
@@ -145,21 +132,15 @@ unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
 void CrystalLineParserAdapter::InvalidateFromLine(int nStartLine)
 {
 	if (nStartLine < 0 || m_pTextBuffer == nullptr)
-	{
 		return;
-	}
 
 	int nLineCount = m_pTextBuffer->GetLineCount();
 	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-	{
-		m_ParseCookies.resize(nLineCount + 1, 0);
-	}
+		m_ParseCookies.resize(nLineCount + 1, -1);
 
 	// Clear cookies from nStartLine+1 onward (the start line's cookie is still valid from previous line)
 	for (size_t i = nStartLine + 1; i < m_ParseCookies.size(); i++)
-	{
-		m_ParseCookies[i] = 0;
-	}
+		m_ParseCookies[i] = -1;
 }
 
 namespace {

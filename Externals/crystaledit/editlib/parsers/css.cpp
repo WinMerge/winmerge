@@ -534,7 +534,7 @@ IsCssExKeyword(const tchar_t *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineCss (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineCss (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);
@@ -644,10 +644,6 @@ out:
           if (!xisspace (pszChars[I]))
             bFirstChar = false;
         }
-
-      if (pBuf == nullptr)
-        continue;               //  We don't need to extract keywords,
-      //  for faster parsing skip the rest of loop
 
       if (xisalnum (pszChars[I]) || pszChars[I] == '.' || pszChars[I] == '-' || pszChars[I] == '%')
         {

@@ -686,7 +686,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    void ParseLine (int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    std::vector<CrystalLineParser::TEXTBLOCK> ParseLine (int nLineIndex);
 
     // Attributes
 public :

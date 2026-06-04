@@ -298,7 +298,7 @@ IsLineSection(const tchar_t *pszChars, int nLength, bool& bCodeSection)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int nIdentBegin, int I)
 {
   if (IsInnoSetupKeyword (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -335,7 +335,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_USER1 | COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
@@ -343,7 +343,7 @@ CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, const tchar_t *pszChar
   bool bCodeSection;
   if ((dwCookie & COOKIE_EXT_USER1) && !IsLineSection(pszChars, nLength, bCodeSection))
     {
-      dwCookie = CrystalLineParser::ParseLinePascal(dwCookie & ~COOKIE_EXT_USER1, pszChars, nLength, pBuf, nActualItems);
+      dwCookie = CrystalLineParser::ParseLinePascal(dwCookie & ~COOKIE_EXT_USER1, pszChars, nLength, blocks);
       return dwCookie | COOKIE_EXT_USER1;
     }
   dwCookie = 0;
@@ -511,10 +511,6 @@ out:
             bFirstChar = false;
         }
 
-      if (pBuf == nullptr)
-        continue;               //  We don't need to extract keywords,
-      //  for faster parsing skip the rest of loop
-
       if (xisalnum (pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha (pszChars[nPrevI]) && !xisalpha (pszChars[I + 1])))
         {
           if (nIdentBegin == -1)
@@ -524,7 +520,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+              DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -534,7 +530,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+      DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I);
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))

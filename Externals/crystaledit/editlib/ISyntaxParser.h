@@ -30,7 +30,7 @@ public:
 	 * @param nActualItems [in/out] Maximum items on input, actual items written on output.
 	 * @return Parser cookie/state for this line (used for multi-line state tracking).
 	 */
-	virtual unsigned ParseLine(int nLineIndex, CrystalLineParser::TEXTBLOCK* pBuf, int& nActualItems) = 0;
+	virtual std::vector<CrystalLineParser::TEXTBLOCK> ParseLine(int nLineIndex) = 0;
 
 	/**
 	 * @brief Notify the parser of a detailed text edit for incremental parsing.
