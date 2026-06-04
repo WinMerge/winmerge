@@ -287,13 +287,11 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
   // Create syntax parser if not already set (e.g., by WinMerge's SyntaxParserFactory)
   // This ensures CCrystalTextView always has a parser available
   if (!m_pSyntaxParser && def->type != CrystalLineParser::SRC_PLAIN)
-  {
-    m_pSyntaxParser = std::make_unique<CrystalLineParserAdapter>(def->type);
-    if (m_pTextBuffer)
     {
-      m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
+      m_pSyntaxParser = std::make_unique<CrystalLineParserAdapter>(def->type);
+      if (m_pTextBuffer)
+        m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
     }
-  }
 
 // Do not set these
 // EOL is determined from file, tabsize and viewtabs are
@@ -1899,17 +1897,8 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   //  Parse the line
   std::vector<TEXTBLOCK> blocks((nLength + 1) * 3); // be aware of nLength == 0
   int nBlocks = 0;
-  // insert at least one textblock of normal color at the beginning
-  blocks[0].m_nCharPos = 0;
-  blocks[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
-  blocks[0].m_nBgColorIndex = COLORINDEX_BKGND;
-  nBlocks++;
 
-  if (m_pSyntaxParser)
-  {
-    // Use new parser interface - no cookie management needed
-    ParseLine(nLineIndex, blocks.data(), nBlocks);
-  }
+  ParseLine(nLineIndex, blocks.data(), nBlocks);
 
   ASSERT(nBlocks < static_cast<int>(blocks.size()));
   blocks.resize(nBlocks);
@@ -3815,6 +3804,8 @@ ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
   m_pTextBuffer = pBuf;
   if (m_pTextBuffer != nullptr)
     m_pTextBuffer->AddView (this);
+  if (m_pSyntaxParser)
+    m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
   // don't reset CCrystalEditView options
   CCrystalTextView::ResetView ();
 
@@ -3843,7 +3834,11 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
     }
   m_pTextBuffer = pBuf;
   if (m_pTextBuffer != nullptr)
-    m_pTextBuffer->AddView (this);
+    {
+      m_pTextBuffer->AddView(this);
+    }
+  if (m_pSyntaxParser)
+    m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
   ResetView ();
 
   //  Init scrollbars
@@ -4742,19 +4737,21 @@ OnSetFocus (CWnd * pOldWnd)
   UpdateCaret ();
 }
 
-unsigned CCrystalTextView::
+void CCrystalTextView::
 ParseLine (int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  // Always use ISyntaxParser if available
-  if (m_pSyntaxParser)
-  {
-    // Note: ISyntaxParser doesn't use dwCookie or pContext; it manages state internally
-    return m_pSyntaxParser->ParseLine(nLineIndex, pBuf, nActualItems);
-  }
-
-  // No parser available - return plain text
   nActualItems = 0;
-  return 0;
+
+  if (m_pSyntaxParser)
+    m_pSyntaxParser->ParseLine(nLineIndex, pBuf, nActualItems);
+
+  if (nActualItems == 0)
+    {
+      pBuf[0].m_nCharPos = 0;
+      pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
+      pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
+      nActualItems++;
+    }
 }
 
 int CCrystalTextView::

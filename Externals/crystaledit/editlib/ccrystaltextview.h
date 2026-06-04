@@ -686,7 +686,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    unsigned ParseLine (int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    void ParseLine (int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :

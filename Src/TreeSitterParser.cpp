@@ -1516,11 +1516,10 @@ void CTreeSitterParser::GetLineBlocks(int nLineIndex,
 
     const auto& blocks = m_lineBlocks[nLineIndex];
 
-    // The caller (GetTextBlocks) pre-inserts a NORMALTEXT block at position 0
-    // and sets nActualItems = 1 before calling ParseLine. We follow the same
-    // convention as existing parsers: append our blocks starting at the current
-    // nActualItems, but overwrite the caller's default block if we have our own
-    // block at position 0.
+    pBuf[0].m_nCharPos = 0;
+    pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
+    pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
+    nActualItems = 1;
 
     for (const auto& block : blocks)
     {

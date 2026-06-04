@@ -55,7 +55,7 @@ enum CopyGranularity { DiffHunk, InlineDiff, Line, Character };
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
 
-IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditViewEx)
+IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditView)
 
 CMergeEditView::CMergeEditView()
 : m_bCurrentLineIsDiff(false)
@@ -78,7 +78,7 @@ CMergeEditView::~CMergeEditView()
 }
 
 
-BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
+BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditView)
 	//{{AFX_MSG_MAP(CMergeEditView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_TIMER()
@@ -613,7 +613,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 void CMergeEditView::OnInitialUpdate()
 {
 	PushCursors();
-	CCrystalEditViewEx::OnInitialUpdate();
+	CCrystalEditView::OnInitialUpdate();
 	PopCursors();
 	LOGFONT lf = theApp.m_lfDiff;
 	lf.lfHeight = static_cast<LONG>(lf.lfHeight * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0);
@@ -626,7 +626,7 @@ void CMergeEditView::OnInitialUpdate()
 
 void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
 {
-	CCrystalEditViewEx::OnActivateView(bActivate, pActivateView, pDeactiveView);
+	CCrystalEditView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 
 	CMergeDoc* pDoc = GetDocument();
 	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
@@ -815,7 +815,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor &
 			}
 			else
 				// Line not inside diff, get colors from CrystalEditor
-				CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd,
+				CCrystalEditView::GetLineColors(nLineIndex, crBkgnd,
 					crText, bDrawWhitespace);
 		}
 		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
@@ -927,7 +927,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor &
 		}
 		else
 			// Syntax highlighting, get colors from CrystalEditor
-			CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd,
+			CCrystalEditView::GetLineColors(nLineIndex, crBkgnd,
 				crText, bDrawWhitespace);
 	}
 }
@@ -1198,7 +1198,7 @@ void CMergeEditView::OnEditCopy()
  */
 void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
 {
-	CCrystalEditViewEx::OnUpdateEditCopy(pCmdUI);
+	CCrystalEditView::OnUpdateEditCopy(pCmdUI);
 }
 
 /**
@@ -1253,7 +1253,7 @@ void CMergeEditView::OnEditCut()
 void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 {
 	if (QueryEditable())
-		CCrystalEditViewEx::OnUpdateEditCut(pCmdUI);
+		CCrystalEditView::OnUpdateEditCut(pCmdUI);
 	else
 		pCmdUI->Enable(false);
 }
@@ -1266,7 +1266,7 @@ void CMergeEditView::OnEditPaste()
 	if (!QueryEditable())
 		return;
 
-	CCrystalEditViewEx::Paste();
+	CCrystalEditView::Paste();
 	m_pTextBuffer->SetModified(true);
 }
 
@@ -1276,7 +1276,7 @@ void CMergeEditView::OnEditPaste()
 void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 {
 	if (QueryEditable())
-		CCrystalEditViewEx::OnUpdateEditPaste(pCmdUI);
+		CCrystalEditView::OnUpdateEditPaste(pCmdUI);
 	else
 		pCmdUI->Enable(false);
 }
@@ -1295,7 +1295,7 @@ void CMergeEditView::OnEditUndo()
 			return;
 
 		GetParentFrame()->SetActiveView(this, true);
-		if(CCrystalEditViewEx::DoEditUndo())
+		if(CCrystalEditView::DoEditUndo())
 		{
 			CMergeFrameCommon::LogUndo();
 
@@ -1878,7 +1878,7 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	if (diff != -1 && pd->m_diffList.IsDiffSignificant(diff))
 		SelectDiff(diff, false, false);
 
-	CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
+	CCrystalEditView::OnLButtonDblClk(nFlags, point);
 }
 
 /**
@@ -1889,7 +1889,7 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
  */
 void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	CCrystalEditViewEx::OnLButtonUp(nFlags, point);
+	CCrystalEditView::OnLButtonUp(nFlags, point);
 	DeselectDiffIfCursorNotInCurrentDiff();
 }
 
@@ -1906,7 +1906,7 @@ void CMergeEditView::OnRButtonUp(UINT nFlags, CPoint point)
 	{
 		DeselectDiffIfCursorNotInCurrentDiff();
 	}
-	CCrystalEditViewEx::OnRButtonUp(nFlags, point);
+	CCrystalEditView::OnRButtonUp(nFlags, point);
 }
 
 void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
@@ -2381,7 +2381,7 @@ void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t
 	}*/
 
 	// perform original function
-	CCrystalEditViewEx::OnEditOperation(nAction, pszText, cchText);
+	CCrystalEditView::OnEditOperation(nAction, pszText, cchText);
 
 	// Notify tree-sitter parser of the edit for incremental reparsing.
 	// This is now handled in CDiffTextBuffer::AddUndoRecord() which
@@ -2447,7 +2447,7 @@ void CMergeEditView::OnEditRedo()
 			return;
 
 		GetParentFrame()->SetActiveView(this, true);
-		if(CCrystalEditViewEx::DoEditRedo())
+		if(CCrystalEditView::DoEditRedo())
 		{
 			CMergeFrameCommon::LogRedo();
 
@@ -2479,7 +2479,7 @@ void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-	CCrystalEditViewEx::OnUpdate(pSender, lHint, pHint);
+	CCrystalEditView::OnUpdate(pSender, lHint, pHint);
 }
 
 /**
@@ -2603,7 +2603,7 @@ void CMergeEditView::OnTimer(UINT_PTR nIDEvent)
 		fTimerWaitingForIdle = 0;
 	}
 
-	CCrystalEditViewEx::OnTimer(nIDEvent);
+	CCrystalEditView::OnTimer(nIDEvent);
 }
 
 /**
@@ -2687,7 +2687,7 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 
-	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
+	return CCrystalEditView::PreTranslateMessage(pMsg);
 }
 
 /// Store interface we use to display status line info
@@ -3716,7 +3716,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 
 void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
 {
-	CCrystalEditViewEx::OnUpdateEditCopy(pCmdUI);
+	CCrystalEditView::OnUpdateEditCopy(pCmdUI);
 }
 
 /**
