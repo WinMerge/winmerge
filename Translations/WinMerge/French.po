@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-05-27 07:01+0000\n"
-"PO-Revision-Date: 2026-05-31 17:10-0400\n"
-"Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
+"PO-Revision-Date: 2026-06-04 09:55+0200\n"
+"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -5232,8 +5232,20 @@ msgstr "Fichier de projet enregistré."
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4436
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"Ce fichier de projet contient des plugins avec des arguments personnalisés :\n"
+"\n"
+"%1\n"
+"Ces arguments peuvent modifier le comportement des plugins ou lancer des programmes externes.\n"
+"\n"
+"Souhaitez-vous ouvrir ce fichier de projet ?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4442
