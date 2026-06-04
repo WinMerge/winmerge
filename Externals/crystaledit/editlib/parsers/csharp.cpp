@@ -134,7 +134,7 @@ IsCppKeyword (const tchar_t *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineCSharp (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
+CrystalLineParser::ParseLineCSharp (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-  return ParseLineCJava (dwCookie, pszChars, nLength, blocks, IsCppKeyword, nullptr);
+  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, IsCppKeyword, nullptr);
 }

@@ -23,14 +23,14 @@
 #define new DEBUG_NEW
 #endif
 
-static void AdjustCharPosInTextBlocks(std::vector<CrystalLineParser::TEXTBLOCK> blocks, int startBlock, int endBlock, int offset)
+static void AdjustCharPosInTextBlocks(std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int startBlock, int endBlock, int offset)
 {
   for (int i = startBlock; i <= endBlock; ++i)
-    blocks[i].m_nCharPos += offset;
+    (*pBuf)[i].m_nCharPos += offset;
 }
 
 unsigned
-CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks, int nEmbeddedLanguage)
+CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf, int nEmbeddedLanguage)
 {
   if (nLength == 0)
     {
@@ -101,9 +101,13 @@ out:
             {
               const tchar_t *pszEnd = tc::tcsstr(pszChars + I, _T("</script>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              int nActualItems = static_cast<int>(blocks.size());
-              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, blocks);
-              AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size()) - 1, I);
+              std::vector<TEXTBLOCK> blocks;
+              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, &blocks);
+              if (pBuf)
+                {
+                  AdjustCharPosInTextBlocks(&blocks, 0, static_cast<int>(blocks.size()) - 1, I);
+                  pBuf->insert(pBuf->end(), blocks.begin(), blocks.end());
+                }
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_SCRIPT;
               else
@@ -117,9 +121,13 @@ out:
             {
               const tchar_t *pszEnd = tc::tcsstr(pszChars + I, _T("</style>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              int nActualItems = static_cast<int>(blocks.size());
-              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, blocks);
-              AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size() - 1), I);
+              std::vector<TEXTBLOCK> blocks;
+              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, &blocks);
+              if (pBuf)
+                {
+                  AdjustCharPosInTextBlocks(&blocks, 0, static_cast<int>(blocks.size()) - 1, I);
+                  pBuf->insert(pBuf->end(), blocks.begin(), blocks.end());
+                }
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_STYLE;
               else
@@ -137,16 +145,20 @@ out:
                   if (!pszEnd)
                     pszEnd = tc::tcsstr(pszChars + I, _T("%>"));
                   int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-                  unsigned (*pParseLineFunc)(unsigned, const tchar_t *, int, std::vector<TEXTBLOCK>&);
+                  unsigned (*pParseLineFunc)(unsigned, const tchar_t *, int, std::vector<TEXTBLOCK>*);
                   switch (nEmbeddedLanguage)
                   {
                   case SRC_BASIC: pParseLineFunc = ParseLineBasic; break;
                   case SRC_PHP: pParseLineFunc = ParseLinePhpLanguage; break;
                   default: pParseLineFunc = ParseLineJavaScript; break;
                   }
-                  int nActualItems = static_cast<int>(blocks.size());
-                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, blocks);
-                  AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size()) - 1, I);
+                  std::vector<TEXTBLOCK> blocks;
+                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, &blocks);
+                  if (pBuf)
+                    {
+                      AdjustCharPosInTextBlocks(&blocks, 0, static_cast<int>(blocks.size()) - 1, I);
+                      pBuf->insert(pBuf->end(), blocks.begin(), blocks.end());
+                    }
                   if (!pszEnd)
                     {
                       dwCookie |= COOKIE_EXT_USER1;
@@ -180,10 +192,15 @@ out:
                 {
                   const tchar_t* pszEnd = tc::tcsstr(pszChars + I, _T("}"));
                   int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-                  int nActualItems = static_cast<int>(blocks.size());
+                  int nActualItems = pBuf ? static_cast<int>(pBuf->size()) : 0;
                   int nOffset = (I > 0 && pszChars[I - 1] == '{') ? (I - 1) : I;
-                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, blocks);
-                  AdjustCharPosInTextBlocks(blocks, nActualItems, static_cast<int>(blocks.size()) - 1, I);
+                  std::vector<TEXTBLOCK> blocks;
+                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, &blocks);
+                  if (pBuf)
+                    {
+                      AdjustCharPosInTextBlocks(&blocks, 0, static_cast<int>(blocks.size()) - 1, I);
+                      pBuf->insert(pBuf->end(), blocks.begin(), blocks.end());
+                    }
                   if (!pszEnd)
                       dwCookie |= COOKIE_EXT_USER1;
                   else if (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING))
@@ -295,6 +312,8 @@ out:
             }
         }
 
+      if (pBuf == nullptr)
+        continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
 
       if (xisalnum (pszChars[I]) || pszChars[I] == '.')
@@ -427,7 +446,7 @@ next:
 }
 
 unsigned
-CrystalLineParser::ParseLineHtml (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
+CrystalLineParser::ParseLineHtml (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, blocks,  SRC_JAVA);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf,  SRC_JAVA);
 }

@@ -58,7 +58,7 @@ std::vector<CrystalLineParser::TEXTBLOCK> CrystalLineParserAdapter::ParseLine(in
 	unsigned dwCookie = GetLineCookie(nLineIndex);
 
 	// Call the legacy parser function
-	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, blocks);
+	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, &blocks);
 
 	// Cache the result cookie for the next line
 	if (nLineIndex < nLineCount)
@@ -118,9 +118,7 @@ unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
 		{
 			const tchar_t* pszChars = m_pTextBuffer->GetLineChars(i);
 			int nLength = m_pTextBuffer->GetLineLength(i);
-			std::vector<CrystalLineParser::TEXTBLOCK> blocks;
-			unsigned dwNewCookie = m_pTextDef->ParseLineX(cookie, pszChars, nLength, blocks);
-			m_ParseCookies[i + 1] = dwNewCookie;
+			m_ParseCookies[i + 1] = m_pTextDef->ParseLineX(cookie, pszChars, nLength, nullptr);
 		}
 	}
 

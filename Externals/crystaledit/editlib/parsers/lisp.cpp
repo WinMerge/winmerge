@@ -261,7 +261,7 @@ IsLispKeyword (const tchar_t *pszChars, int nLength)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int nIdentBegin, int I, bool &bDefun)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int nIdentBegin, int I, bool &bDefun)
 {
   if (IsLispKeyword (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -315,7 +315,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLi
 }
 
 unsigned
-CrystalLineParser::ParseLineLisp (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
+CrystalLineParser::ParseLineLisp (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -448,6 +448,10 @@ out:
           continue;
         }
 
+      if (pBuf == nullptr)
+        continue;               //  We don't need to extract keywords,
+      //  for faster parsing skip the rest of loop
+
       if (xisalnum (pszChars[I]) || pszChars[I] == '.')
         {
           if (nIdentBegin == -1)
@@ -457,7 +461,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, bDefun);
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I, bDefun);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -467,7 +471,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I, bDefun);
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I, bDefun);
     }
 
   dwCookie &= COOKIE_EXT_COMMENT;

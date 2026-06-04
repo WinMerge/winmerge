@@ -109,7 +109,7 @@ IsUser1Keyword (const tchar_t *pszChars, int nLength)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int nIdentBegin, int I)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int nIdentBegin, int I)
 {
   if (IsGoKeyword (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -146,7 +146,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLi
 }
 
 unsigned
-CrystalLineParser::ParseLineGo (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>& blocks)
+CrystalLineParser::ParseLineGo (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
@@ -294,6 +294,8 @@ out:
           continue;
         }
 
+      if (pBuf == nullptr)
+        continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
 
       if (xisalnum (pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha (pszChars[nPrevI]) && !xisalpha (pszChars[I + 1])))
@@ -305,7 +307,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I);
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -315,7 +317,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      DefineIdentiferBlock(pszChars, nLength, blocks, nIdentBegin, I);
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
     }
 
   dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING;
