@@ -107,23 +107,24 @@ unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
 	if (nLineIndex == 0)
 		return 0;
 
-	// Otherwise, get cookie from previous line and parse current line
-	// This is more efficient than parsing all previous lines
-	unsigned dwPrevCookie = (m_ParseCookies[nLineIndex - 1] != -1) ? m_ParseCookies[nLineIndex - 1] : GetLineCookie(nLineIndex - 1);
-
-	// Now parse line nLineIndex-1 to compute cookie for nLineIndex
-	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex - 1);
-	int nLength = m_pTextBuffer->GetLineLength(nLineIndex - 1);
-
 	if (m_pTextDef != nullptr && m_pTextDef->ParseLineX != nullptr)
 	{
-		std::vector<CrystalLineParser::TEXTBLOCK> blocks;
-		unsigned dwNewCookie = m_pTextDef->ParseLineX(dwPrevCookie, pszChars, nLength, blocks);
-		m_ParseCookies[nLineIndex] = dwNewCookie;
-		return dwNewCookie;
+		int start = nLineIndex - 1;
+		while (start > 0 && m_ParseCookies[start] == -1)
+			--start;
+
+		unsigned cookie = (start == 0) ? 0 : m_ParseCookies[start];
+		for (int i = start; i < nLineIndex; ++i)
+		{
+			const tchar_t* pszChars = m_pTextBuffer->GetLineChars(i);
+			int nLength = m_pTextBuffer->GetLineLength(i);
+			std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+			unsigned dwNewCookie = m_pTextDef->ParseLineX(cookie, pszChars, nLength, blocks);
+			m_ParseCookies[i + 1] = dwNewCookie;
+		}
 	}
 
-	return 0;
+	return m_ParseCookies[nLineIndex];
 }
 
 /**
