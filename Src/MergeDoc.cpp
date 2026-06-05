@@ -2416,7 +2416,7 @@ void CMergeDoc::SetTableProperties()
 void CMergeDoc::SetTextType(int textType)
 {
 	ForEachView([textType, this](auto& pView) {
-		pView->SetTextType(CrystalLineParser::TextType(textType));
+		pView->SetTextType(ISyntaxParser::TextType(textType));
 		pView->SetDisableBSAtSOL(false);
 		m_bChangedSchemeManually = true;
 	});

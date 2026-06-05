@@ -332,7 +332,7 @@ SetTextType (const tchar_t* pszExt)
 }
 
 bool CCrystalTextView::
-SetTextType (CrystalLineParser::TextType enuType)
+SetTextType (ISyntaxParser::TextType enuType)
 {
   CrystalLineParser::TextDefinition *def = &CrystalLineParser::m_SourceDefs[0];
   for (size_t i = 0; i < CrystalLineParser::m_SourceDefs.size(); i++, def++)
@@ -6244,14 +6244,14 @@ OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt)
 void CCrystalTextView::
 OnSourceType (UINT nId)
 {
-  SetTextType ((CrystalLineParser::TextType) (nId - ID_SOURCE_PLAIN));
+  SetTextType ((ISyntaxParser::TextType) (nId - ID_SOURCE_PLAIN));
   Invalidate ();
 }
 
 void CCrystalTextView::
 OnUpdateSourceType (CCmdUI * pCmdUI)
 {
-  CrystalLineParser::TextType nType = static_cast<CrystalLineParser::TextType>(pCmdUI->m_nID - ID_SOURCE_PLAIN);
+  ISyntaxParser::TextType nType = static_cast<ISyntaxParser::TextType>(pCmdUI->m_nID - ID_SOURCE_PLAIN);
   pCmdUI->SetRadio (nType == m_nCurrentTextType);
 }
 

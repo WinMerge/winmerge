@@ -773,10 +773,10 @@ public :
     CCrystalRenderer *m_pCrystalRendererSaved;
 
     //  Source type
-    CrystalLineParser::TextType m_nCurrentTextType; // Current parser type for menu state, etc.
+    ISyntaxParser::TextType m_nCurrentTextType; // Current parser type for menu state, etc.
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextType (const tchar_t* pszExt);
-    virtual bool SetTextType (CrystalLineParser::TextType enuType);
+    virtual bool SetTextType (ISyntaxParser::TextType enuType);
     virtual bool SetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextTypeByContent (const tchar_t* pszContent);
 
