@@ -30,7 +30,7 @@ static void AdjustCharPosInTextBlocks(std::vector<CrystalLineParser::TEXTBLOCK>*
 }
 
 unsigned
-CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf, int nEmbeddedLanguage)
+CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf, TextType nEmbeddedLanguage)
 {
   if (nLength == 0)
     {

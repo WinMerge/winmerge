@@ -94,7 +94,7 @@
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
 #include "ISyntaxParser.h"
-#include "CrystalLineParserAdapter.h"
+#include "CrystalLineSyntaxParser.h"
 #include "renderers/ccrystalrendererdirectwrite.h"
 #include "renderers/ccrystalrenderergdi.h"
 #include "dialogs/cfindtextdlg.h"
@@ -288,7 +288,7 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
   // This ensures CCrystalTextView always has a parser available
   if (!m_pSyntaxParser && def->type != CrystalLineParser::SRC_PLAIN)
     {
-      m_pSyntaxParser = std::make_unique<CrystalLineParserAdapter>(def->type);
+      m_pSyntaxParser = std::make_unique<CrystalLineSyntaxParser>(def->type);
       if (m_pTextBuffer)
         m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
     }

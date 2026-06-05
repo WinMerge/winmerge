@@ -14,6 +14,10 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrystalLineSyntaxParser.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\abap.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -182,6 +186,10 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SyntaxParserRegistry.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\tcl.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -213,6 +221,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)crystallineparser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrystalLineSyntaxParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ISyntaxParserFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SyntaxParserRegistry.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\fpattern.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\string_util.h" />
   </ItemGroup>

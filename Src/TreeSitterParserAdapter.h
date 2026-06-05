@@ -21,9 +21,9 @@ public:
 
 	// ISyntaxParser interface implementation
 	void SetTextBuffer(ITextBuffer* pTextBuffer) override;
-	std::vector<CrystalLineParser::TEXTBLOCK> ParseLine(int nLineIndex) override;
+	std::vector<ISyntaxParser::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
-	CrystalLineParser::TextType GetParserType() const override;
+	ISyntaxParser::TextType GetParserType() const override;
 	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
 
 	/**

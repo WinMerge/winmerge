@@ -35,7 +35,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		}
 
 		// Parse the line to get color blocks
-		std::vector<CrystalLineParser::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
+		std::vector<ISyntaxParser::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
 
 		// Extract non-comment text
 		std::string lineText;
@@ -125,7 +125,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		}
 
 		// Parse the line to get color blocks
-		std::vector<CrystalLineParser::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
+		std::vector<ISyntaxParser::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
 
 		// Check if entire line is a comment
 		bool hasNonComment = false;

@@ -39,7 +39,7 @@ std::unique_ptr<ISyntaxParser> SyntaxParserFactory::CreateParser(
 		}
 	}
 
-	return std::make_unique<CrystalLineParserAdapter>(textType);
+	return std::make_unique<CrystalLineSyntaxParser>(textType);
 }
 
 /**
@@ -48,7 +48,7 @@ std::unique_ptr<ISyntaxParser> SyntaxParserFactory::CreateParser(
 std::unique_ptr<ISyntaxParser> SyntaxParserFactory::CreateLineBasedParser(
 	CrystalLineParser::TextType textType)
 {
-	return std::make_unique<CrystalLineParserAdapter>(textType);
+	return std::make_unique<CrystalLineSyntaxParser>(textType);
 }
 
 /**

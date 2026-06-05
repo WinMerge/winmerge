@@ -1,28 +1,29 @@
 #include "pch.h"
 #include <Windows.h>
-#include "CrystalLineParserAdapter.h"
+#include "CrystalLineSyntaxParser.h"
 #include "SyntaxColors.h"
 #include <algorithm>
 
 /**
  * @brief Construct a parser adapter for a specific text type.
  */
-CrystalLineParserAdapter::CrystalLineParserAdapter(CrystalLineParser::TextType textType)
+CrystalLineSyntaxParser::CrystalLineSyntaxParser(ISyntaxParser::TextType textType)
 	: m_pTextBuffer(nullptr)
 	, m_textType(textType)
 	, m_pTextDef(nullptr)
 {
 	// Find the text definition for this type
-	if (textType >= 0 && textType < CrystalLineParser::SRC_MAX_ENTRY)
+	const int index = static_cast<int>(textType);
+	if (index >= 0 && index < static_cast<int>(CrystalLineParser::m_SourceDefs.size()))
 	{
-		m_pTextDef = &CrystalLineParser::m_SourceDefs[textType];
+		m_pTextDef = &CrystalLineParser::m_SourceDefs[index];
 	}
 }
 
 /**
  * @brief Set the text buffer that this parser will operate on.
  */
-void CrystalLineParserAdapter::SetTextBuffer(ITextBuffer* pTextBuffer)
+void CrystalLineSyntaxParser::SetTextBuffer(ITextBuffer* pTextBuffer)
 {
 	m_pTextBuffer = pTextBuffer;
 
@@ -38,9 +39,9 @@ void CrystalLineParserAdapter::SetTextBuffer(ITextBuffer* pTextBuffer)
 /**
  * @brief Parse a single line and return syntax highlighting information.
  */
-std::vector<CrystalLineParser::TEXTBLOCK> CrystalLineParserAdapter::ParseLine(int nLineIndex)
+std::vector<ISyntaxParser::TEXTBLOCK> CrystalLineSyntaxParser::ParseLine(int nLineIndex)
 {
-	std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+	std::vector<ISyntaxParser::TEXTBLOCK> blocks;
 
 	if (m_pTextBuffer == nullptr || m_pTextDef == nullptr || m_pTextDef->ParseLineX == nullptr)
 		return blocks;
@@ -72,7 +73,7 @@ std::vector<CrystalLineParser::TEXTBLOCK> CrystalLineParserAdapter::ParseLine(in
  * Legacy line-based parsers don't use detailed edit information;
  * they just invalidate state from the start line.
  */
-void CrystalLineParserAdapter::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
+void CrystalLineSyntaxParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
 	// Invalidate from the start line of the edit
 	InvalidateFromLine(ptStartPos.y);
@@ -81,7 +82,7 @@ void CrystalLineParserAdapter::NotifyEdit(bool bInsert, const CEPoint & ptStartP
 /**
  * @brief Get the parser type for this syntax parser.
  */
-CrystalLineParser::TextType CrystalLineParserAdapter::GetParserType() const
+ISyntaxParser::TextType CrystalLineSyntaxParser::GetParserType() const
 {
 	return m_textType;
 }
@@ -89,7 +90,7 @@ CrystalLineParser::TextType CrystalLineParserAdapter::GetParserType() const
 /**
  * @brief Get or compute the parser cookie for a specific line.
  */
-unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
+unsigned CrystalLineSyntaxParser::GetLineCookie(int nLineIndex)
 {
 	if (nLineIndex <= 0 || m_pTextBuffer == nullptr)
 		return 0; // First line always starts with cookie 0
@@ -128,7 +129,7 @@ unsigned CrystalLineParserAdapter::GetLineCookie(int nLineIndex)
 /**
  * @brief Invalidate cached parse state from a specific line onward.
  */
-void CrystalLineParserAdapter::InvalidateFromLine(int nStartLine)
+void CrystalLineSyntaxParser::InvalidateFromLine(int nStartLine)
 {
 	if (nStartLine < 0 || m_pTextBuffer == nullptr)
 		return;
@@ -157,7 +158,7 @@ namespace {
 /**
  * @brief Find the matching brace/bracket/parenthesis for the given position.
  */
-bool CrystalLineParserAdapter::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+bool CrystalLineSyntaxParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
 {
 	if (m_pTextBuffer == nullptr || m_pTextDef == nullptr)
 	{

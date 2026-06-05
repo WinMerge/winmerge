@@ -55,7 +55,7 @@
 #include "DiffContext.h"
 #include "Logger.h"
 #include "TreeSitterParser.h"
-#include "SyntaxParserFactory.h"
+#include "SyntaxParserRegistry.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -97,7 +97,7 @@ void CMergeDoc::UpdateTreeSitterSupport()
 			String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
 
 			// Create legacy line-based parser
-			m_pSyntaxParsers[nBuffer] = SyntaxParserFactory::CreateParser(sExt, false); // use legacy parser
+			m_pSyntaxParsers[nBuffer] = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str()); // use legacy parser
 			if (m_pSyntaxParsers[nBuffer])
 			{
 				m_pSyntaxParsers[nBuffer]->SetTextBuffer(m_ptBuf[nBuffer].get());
@@ -105,7 +105,7 @@ void CMergeDoc::UpdateTreeSitterSupport()
 				// Set syntax parser on view
 				if (m_pView[0][nBuffer] != nullptr)
 				{
-					auto viewParser = SyntaxParserFactory::CreateParser(sExt, false);
+					auto viewParser = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str());
 					if (viewParser)
 					{
 						viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
@@ -140,7 +140,7 @@ void CMergeDoc::UpdateTreeSitterSupport()
 		m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
 
 		// Create unified syntax parser using factory
-		m_pSyntaxParsers[nBuffer] = SyntaxParserFactory::CreateParser(sExt, true); // prefer Tree-sitter
+		m_pSyntaxParsers[nBuffer] = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str()); // prefer Tree-sitter
 		if (m_pSyntaxParsers[nBuffer])
 		{
 			// Configure parser with text buffer
@@ -149,8 +149,8 @@ void CMergeDoc::UpdateTreeSitterSupport()
 			// Set syntax parser on view
 			if (m_pView[0][nBuffer] != nullptr)
 			{
-				// Clone parser for view (factory returns unique_ptr, need separate instance for view)
-				auto viewParser = SyntaxParserFactory::CreateParser(sExt, true);
+				// Clone parser for view (registry returns unique_ptr, need separate instance for view)
+				auto viewParser = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str());
 				if (viewParser)
 				{
 					viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());

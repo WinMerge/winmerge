@@ -33,7 +33,7 @@ void TreeSitterParserAdapter::SetTextBuffer(ITextBuffer* pTextBuffer)
 /**
  * @brief Parse a single line and return syntax highlighting information.
  */
-std::vector<CrystalLineParser::TEXTBLOCK> TreeSitterParserAdapter::ParseLine(int nLineIndex)
+std::vector<ISyntaxParser::TEXTBLOCK> TreeSitterParserAdapter::ParseLine(int nLineIndex)
 {
 	if (m_pTextBuffer == nullptr)
 		return {};
@@ -64,11 +64,11 @@ void TreeSitterParserAdapter::NotifyEdit(bool bInsert, const CEPoint & ptStartPo
 /**
  * @brief Get the parser type for this syntax parser.
  */
-CrystalLineParser::TextType TreeSitterParserAdapter::GetParserType() const
+ISyntaxParser::TextType TreeSitterParserAdapter::GetParserType() const
 {
 	// Tree-sitter parsers don't map directly to the legacy TextType enum
-	// Return SRC_PLAIN as a placeholder; callers should check if parser is Tree-sitter-based
-	return CrystalLineParser::SRC_PLAIN;
+	// Return Plain as a placeholder; callers should check if parser is Tree-sitter-based
+	return ISyntaxParser::TextType::Plain;
 }
 
 /**

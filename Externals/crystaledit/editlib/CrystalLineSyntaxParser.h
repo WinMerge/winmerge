@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ISyntaxParser.h"
+#include "parsers/crystallineparser.h"
 #include <vector>
 #include <memory>
 
@@ -10,21 +11,21 @@
  * This class adapts the traditional ParseLineX function pointer style
  * to the ISyntaxParser interface, managing per-line cookie state internally.
  */
-class CrystalLineParserAdapter : public ISyntaxParser
+class CrystalLineSyntaxParser : public ISyntaxParser
 {
 public:
 	/**
 	 * @brief Construct a parser adapter for a specific text type.
 	 * @param textType The language/format type to parse.
 	 */
-	explicit CrystalLineParserAdapter(CrystalLineParser::TextType textType);
-	virtual ~CrystalLineParserAdapter() = default;
+	explicit CrystalLineSyntaxParser(ISyntaxParser::TextType textType);
+	virtual ~CrystalLineSyntaxParser() = default;
 
 	// ISyntaxParser interface implementation
 	void SetTextBuffer(ITextBuffer* pTextBuffer) override;
-	std::vector<CrystalLineParser::TEXTBLOCK> ParseLine(int nLineIndex) override;
+	std::vector<ISyntaxParser::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
-	CrystalLineParser::TextType GetParserType() const override;
+	ISyntaxParser::TextType GetParserType() const override;
 	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
 
 private:
@@ -42,7 +43,7 @@ private:
 	void InvalidateFromLine(int nStartLine);
 
 	ITextBuffer* m_pTextBuffer;                    ///< Text buffer interface
-	CrystalLineParser::TextType m_textType;        ///< Parser type
+	ISyntaxParser::TextType m_textType;            ///< Parser type
 	CrystalLineParser::TextDefinition* m_pTextDef; ///< Parser definition
 	std::vector<unsigned> m_ParseCookies;          ///< Per-line parser state cookies
 };
