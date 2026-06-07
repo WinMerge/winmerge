@@ -15,7 +15,7 @@ TreeSitterParserAdapter::TreeSitterParserAdapter(const CTreeSitterLanguage* pLan
 /**
  * @brief Set the text buffer that this parser will operate on.
  */
-void TreeSitterParserAdapter::SetTextBuffer(ITextBuffer* pTextBuffer)
+void TreeSitterParserAdapter::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
 {
 	m_pTextBuffer = pTextBuffer;
 
@@ -33,7 +33,7 @@ void TreeSitterParserAdapter::SetTextBuffer(ITextBuffer* pTextBuffer)
 /**
  * @brief Parse a single line and return syntax highlighting information.
  */
-std::vector<ISyntaxParser::TEXTBLOCK> TreeSitterParserAdapter::ParseLine(int nLineIndex)
+std::vector<LangServices::TEXTBLOCK> TreeSitterParserAdapter::ParseLine(int nLineIndex)
 {
 	if (m_pTextBuffer == nullptr)
 		return {};
@@ -64,11 +64,11 @@ void TreeSitterParserAdapter::NotifyEdit(bool bInsert, const CEPoint & ptStartPo
 /**
  * @brief Get the parser type for this syntax parser.
  */
-ISyntaxParser::TextType TreeSitterParserAdapter::GetParserType() const
+LangServices::LanguageId TreeSitterParserAdapter::GetParserType() const
 {
-	// Tree-sitter parsers don't map directly to the legacy TextType enum
+	// Tree-sitter parsers don't map directly to the legacy LanguageId enum
 	// Return Plain as a placeholder; callers should check if parser is Tree-sitter-based
-	return ISyntaxParser::TextType::Plain;
+	return LangServices::LanguageId::SRC_PLAIN;
 }
 
 /**

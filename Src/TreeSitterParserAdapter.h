@@ -9,7 +9,7 @@
  * This class bridges the whole-document Tree-sitter parser to the line-based
  * ISyntaxParser interface, managing incremental updates and lazy reparsing.
  */
-class TreeSitterParserAdapter : public ISyntaxParser
+class TreeSitterParserAdapter : public LangServices::ISyntaxParser
 {
 public:
 	/**
@@ -20,10 +20,10 @@ public:
 	virtual ~TreeSitterParserAdapter() = default;
 
 	// ISyntaxParser interface implementation
-	void SetTextBuffer(ITextBuffer* pTextBuffer) override;
-	std::vector<ISyntaxParser::TEXTBLOCK> ParseLine(int nLineIndex) override;
+	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
+	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
-	ISyntaxParser::TextType GetParserType() const override;
+	LangServices::LanguageId GetParserType() const override;
 	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
 
 	/**
@@ -34,7 +34,7 @@ public:
 	const CTreeSitterParser* GetTreeSitterParser() const { return &m_parser; }
 
 private:
-	ITextBuffer* m_pTextBuffer;           ///< Text buffer interface
+	LangServices::ITextBuffer* m_pTextBuffer;           ///< Text buffer interface
 	CTreeSitterParser m_parser;           ///< Underlying Tree-sitter parser
 	const CTreeSitterLanguage* m_pLanguage; ///< Language definition
 };

@@ -3,6 +3,7 @@
 #include "../utils/ctchar.h"
 #include "../SyntaxColors.h"
 #include "../ISyntaxParser.h"
+#include "../TextDefinition.h"
 #include <cassert>
 #include <array>
 #include <vector>
@@ -44,75 +45,12 @@
 #define COOKIE_GET_LUA_EQUALS_SIGN_COUNT(cookie) (((cookie) & 0xF0000000) >> 28)
 #define COOKIE_SET_LUA_EQUALS_SIGN_COUNT(cookie, count) (cookie) = (((cookie) & 0x0FFFFFFF) | ((count) << 28))
 
-#define SRCOPT_INSERTTABS 1
-#define SRCOPT_SHOWTABS 2
-#define SRCOPT_BSATBOL 4
-#define SRCOPT_SELMARGIN 8
-#define SRCOPT_AUTOINDENT 16
-#define SRCOPT_BRACEANSI 32
-#define SRCOPT_BRACEGNU 64
-#define SRCOPT_EOLNDOS 128
-#define SRCOPT_EOLNUNIX 256
-#define SRCOPT_EOLNMAC 512
-#define SRCOPT_FNBRACE 1024
-#define SRCOPT_WORDWRAP 2048
-#define SRCOPT_TOPMARGIN 4096
-
 namespace CrystalLineParser
 {
-// TEXTBLOCK and TextType are now defined in ISyntaxParser.h.
+// TEXTBLOCK is now defined in ISyntaxParser.h.
 // These aliases preserve backward compatibility for all existing code.
-using TEXTBLOCK = ISyntaxParser::TEXTBLOCK;
-using TextType  = ISyntaxParser::TextType;
-
-// Legacy SRC_* constants as constexpr aliases.
-constexpr auto SRC_PLAIN         = ISyntaxParser::TextType::Plain;
-constexpr auto SRC_ABAP          = ISyntaxParser::TextType::Abap;
-constexpr auto SRC_ADA           = ISyntaxParser::TextType::Ada;
-constexpr auto SRC_ASP           = ISyntaxParser::TextType::Asp;
-constexpr auto SRC_AUTOIT        = ISyntaxParser::TextType::AutoIt;
-constexpr auto SRC_BASIC         = ISyntaxParser::TextType::Basic;
-constexpr auto SRC_BATCH         = ISyntaxParser::TextType::Batch;
-constexpr auto SRC_C             = ISyntaxParser::TextType::C;
-constexpr auto SRC_CSHARP        = ISyntaxParser::TextType::CSharp;
-constexpr auto SRC_CSS           = ISyntaxParser::TextType::Css;
-constexpr auto SRC_DCL           = ISyntaxParser::TextType::Dcl;
-constexpr auto SRC_DLANG         = ISyntaxParser::TextType::Dlang;
-constexpr auto SRC_FORTRAN       = ISyntaxParser::TextType::Fortran;
-constexpr auto SRC_FSHARP        = ISyntaxParser::TextType::FSharp;
-constexpr auto SRC_GO            = ISyntaxParser::TextType::Go;
-constexpr auto SRC_HTML          = ISyntaxParser::TextType::Html;
-constexpr auto SRC_INI           = ISyntaxParser::TextType::Ini;
-constexpr auto SRC_INNOSETUP     = ISyntaxParser::TextType::InnoSetup;
-constexpr auto SRC_INSTALLSHIELD = ISyntaxParser::TextType::InstallShield;
-constexpr auto SRC_JAVA          = ISyntaxParser::TextType::Java;
-constexpr auto SRC_JAVASCRIPT    = ISyntaxParser::TextType::JavaScript;
-constexpr auto SRC_JSON          = ISyntaxParser::TextType::Json;
-constexpr auto SRC_LISP          = ISyntaxParser::TextType::Lisp;
-constexpr auto SRC_LUA           = ISyntaxParser::TextType::Lua;
-constexpr auto SRC_MATLAB        = ISyntaxParser::TextType::Matlab;
-constexpr auto SRC_NSIS          = ISyntaxParser::TextType::Nsis;
-constexpr auto SRC_PASCAL        = ISyntaxParser::TextType::Pascal;
-constexpr auto SRC_PERL          = ISyntaxParser::TextType::Perl;
-constexpr auto SRC_PHP           = ISyntaxParser::TextType::Php;
-constexpr auto SRC_PO            = ISyntaxParser::TextType::Po;
-constexpr auto SRC_POWERSHELL    = ISyntaxParser::TextType::PowerShell;
-constexpr auto SRC_PYTHON        = ISyntaxParser::TextType::Python;
-constexpr auto SRC_REXX          = ISyntaxParser::TextType::Rexx;
-constexpr auto SRC_RSRC          = ISyntaxParser::TextType::Rsrc;
-constexpr auto SRC_RUBY          = ISyntaxParser::TextType::Ruby;
-constexpr auto SRC_RUST          = ISyntaxParser::TextType::Rust;
-constexpr auto SRC_SGML          = ISyntaxParser::TextType::Sgml;
-constexpr auto SRC_SH            = ISyntaxParser::TextType::Sh;
-constexpr auto SRC_SIOD          = ISyntaxParser::TextType::Siod;
-constexpr auto SRC_SMARTY        = ISyntaxParser::TextType::Smarty;
-constexpr auto SRC_SQL           = ISyntaxParser::TextType::Sql;
-constexpr auto SRC_TCL           = ISyntaxParser::TextType::Tcl;
-constexpr auto SRC_TEX           = ISyntaxParser::TextType::Tex;
-constexpr auto SRC_VERILOG       = ISyntaxParser::TextType::Verilog;
-constexpr auto SRC_VHDL          = ISyntaxParser::TextType::Vhdl;
-constexpr auto SRC_XML           = ISyntaxParser::TextType::Xml;
-constexpr auto SRC_MAX_ENTRY     = ISyntaxParser::TextType::MaxEntry;
+using TEXTBLOCK = LangServices::TEXTBLOCK;
+using LanguageId = LangServices::LanguageId;
 
 inline void defineBlock(std::vector<TEXTBLOCK>* pBuf, int pos, int colorindex)
 {
@@ -127,35 +65,11 @@ inline void defineBlock(std::vector<TEXTBLOCK>* pBuf, int pos, int colorindex)
 	}
 }
 
-// Tabsize is commented out since we have only GUI setting for it now.
-// Not removed because we may later want to have per-filetype settings again.
-// See ccrystaltextview.cpp for per filetype table initialization.
-struct TextDefinition
-{
-	TextType type;
-	const tchar_t* name;
-	tchar_t* exts;
-	bool extsIsDynamic;
-	unsigned (* ParseLineX) (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
-	unsigned flags;
-//        unsigned tabsize;
-	tchar_t opencomment[8];
-	tchar_t closecomment[8];
-	tchar_t commentline[8];
-	unsigned encoding;
-};
-
-extern std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs;
-
 bool IsXKeyword(const tchar_t *pszKey, size_t nKeyLen, const tchar_t *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const tchar_t *, const tchar_t *, size_t));
 bool IsXNumber(const tchar_t* pszChars, int nLength);
 bool IsHtmlKeyword(const tchar_t *pszChars, int nLength);
 bool IsHtmlUser1Keyword(const tchar_t *pszChars, int nLength);
 bool IsHtmlUser2Keyword(const tchar_t *pszChars, int nLength);
-
-TextDefinition *GetTextType(const tchar_t *pszExt);
-TextDefinition* GetTextType(int index);
-void SetExtension(int index, const tchar_t *pszExts);
 
 unsigned ParseLinePlain(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
@@ -174,7 +88,7 @@ unsigned ParseLineFortran(unsigned dwCookie, const tchar_t *pszChars, int nLengt
 unsigned ParseLineFSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineGo(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineHtml(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
-unsigned ParseLineHtmlEx(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf, TextType nEmbeddedLanguage);
+unsigned ParseLineHtmlEx(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf, LangServices::LanguageId nEmbeddedLanguage);
 unsigned ParseLineIni(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineInnoSetup(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineIS(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);

@@ -32,7 +32,7 @@
 #include "unicoder.h"
 #include "TFile.h"
 #include "Exceptions.h"
-#include "parsers/crystallineparser.h"
+#include "TextDefinition.h"
 #include "SyntaxColors.h"
 #include "Logger.h"
 #include "MergeApp.h"

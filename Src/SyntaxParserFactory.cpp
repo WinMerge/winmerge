@@ -20,8 +20,8 @@ std::unique_ptr<ISyntaxParser> SyntaxParserFactory::CreateParser(
 	}
 
 	// Fall back to line-based parser
-	// Map file extension to TextType
-	ISyntaxParser::TextType textType = CrystalLineParser::SRC_PLAIN;
+	// Map file extension to LanguageId
+	LanguageId textType = LanguageId::SRC_PLAIN;
 
 	// Find matching text definition by extension
 	for (size_t i = 0; i < CrystalLineParser::m_SourceDefs.size(); i++)
@@ -46,7 +46,7 @@ std::unique_ptr<ISyntaxParser> SyntaxParserFactory::CreateParser(
  * @brief Create a line-based CrystalEdit parser for a specific text type.
  */
 std::unique_ptr<ISyntaxParser> SyntaxParserFactory::CreateLineBasedParser(
-	ISyntaxParser::TextType textType)
+	LanguageId textType)
 {
 	return std::make_unique<CrystalLineSyntaxParser>(textType);
 }

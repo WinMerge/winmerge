@@ -34,7 +34,7 @@ public:
 
 private:
 	bool m_init;
-	String m_Extension[CrystalLineParser::SRC_XML];
+	String m_Extension[LangServices::LanguageId::SRC_XML];
 
 // Implementation methods
 	void InitList();

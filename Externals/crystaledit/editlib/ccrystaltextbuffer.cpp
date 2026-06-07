@@ -358,7 +358,7 @@ LoadFromFile (const tchar_t* pszFileName, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AU
   int nExt = GetExtPosition (pszFileName);
   if (pszFileName[nExt] == _T ('.'))
     nExt++;
-  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (pszFileName + nExt);
+  LangServices::TextDefinition *def = LangServices::GetTextType (pszFileName + nExt);
   if (def && def->encoding != -1)
     m_nSourceEncoding = def->encoding;
 
@@ -990,11 +990,11 @@ RemoveView (CCrystalTextView * pView)
       m_lpViews.erase (it);
 }
 
-CrystalLineParser::TextDefinition *CCrystalTextBuffer::
+LangServices::TextDefinition *CCrystalTextBuffer::
 RetypeViews (const tchar_t* lpszFileName)
 {
   std::basic_string<tchar_t> sNew = GetExt (lpszFileName);
-  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (sNew.c_str ());
+  LangServices::TextDefinition *def = LangServices::GetTextType (sNew.c_str ());
   for (auto* pView : m_lpViews)
     pView->SetTextType (def);
   return def;

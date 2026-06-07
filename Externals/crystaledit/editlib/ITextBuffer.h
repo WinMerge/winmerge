@@ -2,6 +2,9 @@
 
 #include "utils/ctchar.h"
 
+namespace LangServices
+{
+
 /**
  * @brief Abstract interface for text buffer access.
  *
@@ -35,3 +38,5 @@ public:
 	 */
 	virtual int GetLineLength(int nLineIndex) const = 0;
 };
+
+}

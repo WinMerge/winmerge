@@ -132,7 +132,7 @@ public :
     virtual void OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText) override;
     virtual void OnEditOperation2 (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 
-    virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def) override;
+    virtual bool DoSetTextType (LangServices::TextDefinition *def) override;
 
     // Overrides
     // ClassWizard generated virtual function overrides

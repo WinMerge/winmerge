@@ -120,8 +120,8 @@ public:
 	void SelectArea(const CEPoint & ptStart, const CEPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	using CGhostTextView::GetSelection;
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
-	virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
+    virtual std::vector<LangServices::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
+	virtual std::vector<LangServices::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
 	virtual CEColor GetColor(int nColorIndex) const override;
 	virtual void GetLineColors (int nLineIndex, CEColor & crBkgnd,
 			CEColor & crText, bool & bDrawWhitespace) override;

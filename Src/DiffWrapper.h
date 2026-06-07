@@ -26,9 +26,7 @@ struct file_data;
 class MovedLines;
 class FilterList;
 class SubstitutionList;
-class ISyntaxParser;
-class ITextBuffer;
-namespace CrystalLineParser { struct TextDefinition; };
+namespace LangServices { class ITextBuffer; struct TextDefinition; class ISyntaxParser; };
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -195,8 +193,8 @@ public:
 	void SetFilterList(std::shared_ptr<FilterList> pFilterList);
 	const SubstitutionList* GetSubstitutionList() const;
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
-	void SetSyntaxParser(ISyntaxParser* pParser, int index) { m_pSyntaxParser[index] = pParser; }
-	void SetTextBuffer(ITextBuffer* pTextBuffer, int index) { m_pTextBuffer[index] = pTextBuffer; }
+	void SetSyntaxParser(LangServices::ISyntaxParser* pParser, int index) { m_pSyntaxParser[index] = pParser; }
+	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer, int index) { m_pTextBuffer[index] = pTextBuffer; }
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
 	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
@@ -240,8 +238,8 @@ private:
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	ISyntaxParser* m_pSyntaxParser[3]; /**< New unified parser interface (nullptr = use legacy) */
-	ITextBuffer* m_pTextBuffer[3]; /**< Text buffer for parser access (nullptr = use legacy) */
+	LangServices::ISyntaxParser* m_pSyntaxParser[3]; /**< New unified parser interface (nullptr = use legacy) */
+	LangServices::ITextBuffer* m_pTextBuffer[3]; /**< Text buffer for parser access (nullptr = use legacy) */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	int m_codepage; /**< Codepage used in line filter */
 };

@@ -680,7 +680,7 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
  * Called lazily from ParseLine during the paint cycle. This means
  * we reparse at most once per paint, not once per keystroke.
  */
-void CTreeSitterParser::EnsureParsed(ITextBuffer* pBuffer)
+void CTreeSitterParser::EnsureParsed(LangServices::ITextBuffer* pBuffer)
 {
     if (m_bDirty && m_pLang)
     {
@@ -1500,7 +1500,7 @@ void CTreeSitterParser::BuildLineCache(int nLineCount)
     }
 }
 
-std::vector<CrystalLineParser::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineIndex) const
+std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineIndex) const
 {
     // Fix #4: bounds check against cached line count
     if (nLineIndex < 0 || nLineIndex >= static_cast<int>(m_lineBlocks.size()))
@@ -1508,7 +1508,7 @@ std::vector<CrystalLineParser::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int n
 
     const auto& blocks = m_lineBlocks[nLineIndex];
 
-    std::vector<CrystalLineParser::TEXTBLOCK> newBlocks;
+    std::vector<LangServices::TEXTBLOCK> newBlocks;
     newBlocks.push_back({0, COLORINDEX_NORMALTEXT, COLORINDEX_BKGND});
 
     for (const auto& block : blocks)
@@ -1767,7 +1767,7 @@ void TreeSitterRegistry::RegisterExtension(const std::wstring& sExt, const std::
 /**
  * @brief Convenience: parse document from a text buffer.
  */
-void CTreeSitterParser::ParseFromBuffer(ITextBuffer* pBuffer)
+void CTreeSitterParser::ParseFromBuffer(LangServices::ITextBuffer* pBuffer)
 {
     if (!pBuffer)
         return;
@@ -1864,7 +1864,7 @@ std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) cons
 #endif
 }
 
-bool CTreeSitterParser::FindMatchingBrace(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+bool CTreeSitterParser::FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
 {
     if (m_pTree == nullptr || pBuffer == nullptr)
     {
@@ -2078,7 +2078,7 @@ bool CTreeSitterParser::ByteOffsetToLineChar(uint32_t byteOffset, int& nLineInde
     return false;
 }
 
-bool CTreeSitterParser::TryGetTagDefinitionByNameAt(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const
+bool CTreeSitterParser::TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const
 {
     if (!pBuffer || nLineIndex < 0 || nLineIndex >= pBuffer->GetLineCount())
         return false;
@@ -2140,7 +2140,7 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(ITextBuffer* pBuffer, int nL
     return true;
 }
 
-bool CTreeSitterParser::FindDefinition(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const
+bool CTreeSitterParser::FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const
 {
     if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
         return false;

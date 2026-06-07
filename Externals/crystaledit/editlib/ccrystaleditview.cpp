@@ -142,7 +142,7 @@ CCrystalEditView:: ~CCrystalEditView ()
 }
 
 bool CCrystalEditView::
-DoSetTextType (CrystalLineParser::TextDefinition *def)
+DoSetTextType (LangServices::TextDefinition *def)
 {
   SetAutoIndent ((def->flags & SRCOPT_AUTOINDENT) != 0);
   SetDisableBSAtSOL ((def->flags & SRCOPT_BSATBOL) == 0);

@@ -94,7 +94,9 @@
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
 #include "ISyntaxParser.h"
-#include "CrystalLineSyntaxParser.h"
+#include "TextDefinition.h"
+#include "SyntaxParserRegistry.h"
+#include "cepoint.h"
 #include "renderers/ccrystalrendererdirectwrite.h"
 #include "renderers/ccrystalrenderergdi.h"
 #include "dialogs/cfindtextdlg.h"
@@ -113,7 +115,7 @@
 #include "darkmodelib.h"
 
 using std::vector;
-using CrystalLineParser::TEXTBLOCK;
+using TEXTBLOCK = LangServices::TEXTBLOCK;
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -279,16 +281,16 @@ EXPAND_PRIMITIVE (MoveCtrlEnd, TextEnd)
 // CCrystalTextView construction/destruction
 
 bool CCrystalTextView::
-DoSetTextType (CrystalLineParser::TextDefinition *def)
+DoSetTextType (LangServices::TextDefinition *def)
 {
-  m_nCurrentTextType = def->type;
+  m_CurSourceDef = def;
   SetFlags (def->flags);
 
   // Create syntax parser if not already set (e.g., by WinMerge's SyntaxParserFactory)
   // This ensures CCrystalTextView always has a parser available
-  if (!m_pSyntaxParser && def->type != CrystalLineParser::SRC_PLAIN)
+  if (!m_pSyntaxParser && def->type != LangServices::LanguageId::SRC_PLAIN)
     {
-      m_pSyntaxParser = std::make_unique<CrystalLineSyntaxParser>(def->type);
+      m_pSyntaxParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
       if (m_pTextBuffer)
         m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
     }
@@ -327,36 +329,40 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
 bool CCrystalTextView::
 SetTextType (const tchar_t* pszExt)
 {
-  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (pszExt);
+  m_CurSourceDef = LangServices::GetTextType (LangServices::LanguageId::SRC_PLAIN);
+
+  LangServices::TextDefinition *def = LangServices::GetTextType (pszExt);
+
   return SetTextType (def);
 }
 
 bool CCrystalTextView::
-SetTextType (ISyntaxParser::TextType enuType)
+SetTextType (LangServices::LanguageId enuType)
 {
-  CrystalLineParser::TextDefinition *def = &CrystalLineParser::m_SourceDefs[0];
-  for (size_t i = 0; i < CrystalLineParser::m_SourceDefs.size(); i++, def++)
-    {
-      if (def->type == enuType)
-        {
-          return SetTextType (def);
-        }
-    }
+  LangServices::TextDefinition *def;
+
+  m_CurSourceDef = def = LangServices::GetTextType (LangServices::LanguageId::SRC_PLAIN);
+  def = LangServices::GetTextType(enuType);
+  if (def)
+    return SetTextType (def);
   return false;
 }
 
 bool CCrystalTextView::
-SetTextType (CrystalLineParser::TextDefinition *def)
+SetTextType (LangServices::TextDefinition *def)
 {
   if (def)
-    return DoSetTextType (def);
+    if (m_CurSourceDef != def)
+      return DoSetTextType (def);
+    else
+      return true;
   return false;
 }
 
 CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_pFindTextDlg(nullptr)
-, m_nCurrentTextType(CrystalLineParser::SRC_PLAIN)
+, m_CurSourceDef(nullptr)
 , m_dwLastDblClickTime(0)
 , m_rxnode(nullptr)
 , m_pszMatched(nullptr)
@@ -449,7 +455,7 @@ CCrystalTextView::CCrystalTextView ()
 
   //END SW
   CCrystalTextView::ResetView ();
-  SetTextType (CrystalLineParser::SRC_PLAIN);
+  SetTextType (LangServices::LanguageId::SRC_PLAIN);
 }
 
 CCrystalTextView::~CCrystalTextView ()
@@ -3827,11 +3833,9 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
     }
   m_pTextBuffer = pBuf;
   if (m_pTextBuffer != nullptr)
-    {
-      m_pTextBuffer->AddView(this);
-    }
+    m_pTextBuffer->AddView (this);
   if (m_pSyntaxParser)
-    m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
+    m_pSyntaxParser->SetTextBuffer (m_pTextBuffer);
   ResetView ();
 
   //  Init scrollbars
@@ -6190,7 +6194,7 @@ void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
   m_pColors = pSource->m_pColors;
   m_pMarkers = pSource->m_pMarkers;
   m_bDisableDragAndDrop = pSource->m_bDisableDragAndDrop;
-  SetTextType(pSource->m_nCurrentTextType);
+  SetTextType(pSource->m_CurSourceDef);
   SetFont (pSource->m_lfBaseFont);
 }
 
@@ -6244,15 +6248,14 @@ OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt)
 void CCrystalTextView::
 OnSourceType (UINT nId)
 {
-  SetTextType ((ISyntaxParser::TextType) (nId - ID_SOURCE_PLAIN));
+  SetTextType ((LangServices::LanguageId) (nId - ID_SOURCE_PLAIN));
   Invalidate ();
 }
 
 void CCrystalTextView::
 OnUpdateSourceType (CCmdUI * pCmdUI)
 {
-  ISyntaxParser::TextType nType = static_cast<ISyntaxParser::TextType>(pCmdUI->m_nID - ID_SOURCE_PLAIN);
-  pCmdUI->SetRadio (nType == m_nCurrentTextType);
+  pCmdUI->SetRadio (LangServices::GetTextType ((pCmdUI->m_nID - ID_SOURCE_PLAIN)) == m_CurSourceDef);
 }
 
 int
@@ -6311,7 +6314,7 @@ OnEditGoTo ()
 void CCrystalTextView::
 OnUpdateToggleSourceHeader (CCmdUI * pCmdUI)
 {
-  pCmdUI->Enable (m_nCurrentTextType == CrystalLineParser::SRC_C);
+  pCmdUI->Enable (m_CurSourceDef->type == LangServices::LanguageId::SRC_C);
 }
 
 void CCrystalTextView::
@@ -6322,7 +6325,7 @@ OnToggleSourceHeader ()
       CFileStatus status;
       return CFile::GetStatus(lpszPath, status) != 0;
     };
-  if (m_nCurrentTextType == CrystalLineParser::SRC_C)
+  if (m_CurSourceDef->type == LangServices::LanguageId::SRC_C)
     {
       CDocument *pDoc = GetDocument ();
       ASSERT (pDoc != nullptr);
@@ -6401,6 +6404,11 @@ OnUpdateTopMargin (CCmdUI * pCmdUI)
 void CCrystalTextView::
 OnTopMargin ()
 {
+  ASSERT (m_CurSourceDef != nullptr);
+  if (m_bTopMargin)
+    m_CurSourceDef->flags &= ~SRCOPT_TOPMARGIN;
+  else
+    m_CurSourceDef->flags |= SRCOPT_TOPMARGIN;
   SetTopMargin (!m_bTopMargin);
 }
 
@@ -6413,6 +6421,11 @@ OnUpdateSelMargin (CCmdUI * pCmdUI)
 void CCrystalTextView::
 OnSelMargin ()
 {
+  ASSERT (m_CurSourceDef != nullptr);
+  if (m_bSelMargin)
+    m_CurSourceDef->flags &= ~SRCOPT_SELMARGIN;
+  else
+    m_CurSourceDef->flags |= SRCOPT_SELMARGIN;
   SetSelectionMargin (!m_bSelMargin);
 }
 
@@ -6425,7 +6438,17 @@ OnUpdateWordWrap (CCmdUI * pCmdUI)
 void CCrystalTextView::
 OnWordWrap ()
 {
-  SetWordWrapping (!m_bWordWrap);
+  ASSERT (m_CurSourceDef != nullptr);
+  if (m_bWordWrap)
+    {
+      m_CurSourceDef->flags &= ~SRCOPT_WORDWRAP;
+      SetWordWrapping (false);
+    }
+  else
+    {
+      m_CurSourceDef->flags |= SRCOPT_WORDWRAP;
+      SetWordWrapping (true);
+    }
 }
 
 void CCrystalTextView::
@@ -6486,7 +6509,7 @@ CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
 /**
  * @brief Set syntax parser using the new interface.
  */
-void CCrystalTextView::SetSyntaxParser(std::unique_ptr<ISyntaxParser> pParser)
+void CCrystalTextView::SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser)
 {
   m_pSyntaxParser = std::move(pParser);
 
@@ -7102,7 +7125,7 @@ SetTextTypeByContent (const tchar_t* pszContent)
     {
       if (rxnode)
         RxFree (rxnode);
-      return SetTextType(CrystalLineParser::SRC_XML);
+      return SetTextType(LangServices::LanguageId::SRC_XML);
     }
   if (rxnode)
     RxFree (rxnode);

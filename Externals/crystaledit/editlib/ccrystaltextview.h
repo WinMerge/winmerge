@@ -36,7 +36,8 @@
 #include "FindTextHelper.h"
 #include "cepoint.h"
 #include "cecolor.h"
-#include "parsers/crystallineparser.h"
+#include "TextDefinition.h"
+#include "ISyntaxParser.h"
 #include "renderers/ccrystalrenderer.h"
 #include "utils/cregexp.h"
 #include "utils/icu.hpp"
@@ -55,7 +56,6 @@ struct LastSearchInfos;
 class CCrystalTextMarkers;
 class CEditReplaceDlg;
 struct tagRECONVERTSTRING;
-class ISyntaxParser;
 
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView class declaration
@@ -144,7 +144,7 @@ protected:
     //  Parsing stuff
 
     // New parser abstraction interface (optional, for gradual migration)
-    std::unique_ptr<ISyntaxParser> m_pSyntaxParser;
+    std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParser;
 
 private:
     LOGFONT m_lfBaseFont;
@@ -609,23 +609,23 @@ protected:
     // function to draw a single screen line
     // (a wrapped line can consist of many screen lines
     virtual void DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
-         const std::vector<CrystalLineParser::TEXTBLOCK>& blocks,
+         const std::vector<LangServices::TEXTBLOCK>& blocks,
         int &nActualItem, CEColor crText,
         CEColor crBkgnd, bool bDrawWhitespace,
         int nLineIndex, int nOffset,
         int nCount, int &nActualOffset, CEPoint ptTextPos );
     //END SW
 
-    std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
+    std::vector<LangServices::TEXTBLOCK> MergeTextBlocks(const std::vector<LangServices::TEXTBLOCK>& blocks1, const std::vector<LangServices::TEXTBLOCK>& blocks2) const;
+    virtual std::vector<LangServices::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
+    virtual std::vector<LangServices::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
+    virtual std::vector<LangServices::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
     virtual CString GetColumnName(int nColumn);
     virtual CString GetHTMLLine (int nLineIndex, const tchar_t* pszTag, int nColumnCountMax);
     virtual CString GetHTMLStyles ();
-    std::vector<CrystalLineParser::TEXTBLOCK> GetTextBlocks(int nLineIndex);
+    std::vector<LangServices::TEXTBLOCK> GetTextBlocks(int nLineIndex);
 protected:
     virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, CEColor crText, CEColor crBkgnd);
 
@@ -686,7 +686,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    std::vector<CrystalLineParser::TEXTBLOCK> ParseLine (int nLineIndex);
+    std::vector<LangServices::TEXTBLOCK> ParseLine (int nLineIndex);
 
     // Attributes
 public :
@@ -745,13 +745,13 @@ public :
      * This method enables use of the new parser abstraction while maintaining
      * backward compatibility with the legacy parser system.
      */
-    void SetSyntaxParser(std::unique_ptr<ISyntaxParser> pParser);
+    void SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser);
 
     /**
      * @brief Get the current syntax parser.
      * @return Pointer to ISyntaxParser, or nullptr if using legacy parser.
      */
-    ISyntaxParser* GetSyntaxParser() const { return m_pSyntaxParser.get(); }
+    LangServices::ISyntaxParser* GetSyntaxParser() const { return m_pSyntaxParser.get(); }
     //END SW
 
     bool GetEnableHideLines () const { return m_bHideLines; }
@@ -773,11 +773,11 @@ public :
     CCrystalRenderer *m_pCrystalRendererSaved;
 
     //  Source type
-    ISyntaxParser::TextType m_nCurrentTextType; // Current parser type for menu state, etc.
-    virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
+    LangServices::TextDefinition *m_CurSourceDef;
+    virtual bool DoSetTextType (LangServices::TextDefinition *def);
     virtual bool SetTextType (const tchar_t* pszExt);
-    virtual bool SetTextType (ISyntaxParser::TextType enuType);
-    virtual bool SetTextType (CrystalLineParser::TextDefinition *def);
+    virtual bool SetTextType (LangServices::LanguageId enuType);
+    virtual bool SetTextType (LangServices::TextDefinition *def);
     virtual bool SetTextTypeByContent (const tchar_t* pszContent);
 
     // Operations

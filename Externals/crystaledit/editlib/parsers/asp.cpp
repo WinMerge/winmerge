@@ -20,5 +20,5 @@
 unsigned
 CrystalLineParser::ParseLineAsp (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, SRC_BASIC);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, LanguageId::SRC_BASIC);
 }

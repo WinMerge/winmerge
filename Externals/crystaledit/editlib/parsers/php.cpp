@@ -301,7 +301,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLi
 unsigned
 CrystalLineParser::ParseLinePhp(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, SRC_PHP);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, LanguageId::SRC_PHP);
 }
 
 unsigned

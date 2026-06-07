@@ -1,29 +1,94 @@
 #include "pch.h"
-#include <Windows.h>
+#include "parsers/crystallineparser.h"
 #include "CrystalLineSyntaxParser.h"
 #include "SyntaxColors.h"
 #include <algorithm>
+#include <map>
+
+using LangServices::LanguageId;
+
+static const std::pair<LanguageId, ParseFunc> m_ParseXDef[] =
+{
+{ LanguageId::SRC_PLAIN, CrystalLineParser::ParseLinePlain },
+{ LanguageId::SRC_ABAP, CrystalLineParser::ParseLineAbap },
+{ LanguageId::SRC_ADA, CrystalLineParser::ParseLineAda },
+{ LanguageId::SRC_ASP, CrystalLineParser::ParseLineAsp },
+{ LanguageId::SRC_AUTOIT, CrystalLineParser::ParseLineAutoIt },
+{ LanguageId::SRC_BASIC, CrystalLineParser::ParseLineBasic },
+{ LanguageId::SRC_BATCH, CrystalLineParser::ParseLineBatch },
+{ LanguageId::SRC_C, CrystalLineParser::ParseLineC },
+{ LanguageId::SRC_CSHARP, CrystalLineParser::ParseLineCSharp },
+{ LanguageId::SRC_CSS, CrystalLineParser::ParseLineCss },
+{ LanguageId::SRC_DCL, CrystalLineParser::ParseLineDcl },
+{ LanguageId::SRC_DLANG, CrystalLineParser::ParseLineDlang },
+{ LanguageId::SRC_FORTRAN, CrystalLineParser::ParseLineFortran },
+{ LanguageId::SRC_FSHARP, CrystalLineParser::ParseLineFSharp },
+{ LanguageId::SRC_GO, CrystalLineParser::ParseLineGo },
+{ LanguageId::SRC_HTML, CrystalLineParser::ParseLineHtml },
+{ LanguageId::SRC_INI, CrystalLineParser::ParseLineIni },
+{ LanguageId::SRC_INNOSETUP, CrystalLineParser::ParseLineInnoSetup },
+{ LanguageId::SRC_INSTALLSHIELD, CrystalLineParser::ParseLineIS },
+{ LanguageId::SRC_JAVA, CrystalLineParser::ParseLineJava },
+{ LanguageId::SRC_JAVASCRIPT, CrystalLineParser::ParseLineJavaScript },
+{ LanguageId::SRC_JSON, CrystalLineParser::ParseLineJavaScript },
+{ LanguageId::SRC_LISP, CrystalLineParser::ParseLineLisp },
+{ LanguageId::SRC_LUA, CrystalLineParser::ParseLineLua },
+{ LanguageId::SRC_MATLAB, CrystalLineParser::ParseLineMatlab },
+{ LanguageId::SRC_NSIS, CrystalLineParser::ParseLineNsis },
+{ LanguageId::SRC_PASCAL, CrystalLineParser::ParseLinePascal },
+{ LanguageId::SRC_PERL, CrystalLineParser::ParseLinePerl },
+{ LanguageId::SRC_PHP, CrystalLineParser::ParseLinePhp },
+{ LanguageId::SRC_PO, CrystalLineParser::ParseLinePo },
+{ LanguageId::SRC_POWERSHELL, CrystalLineParser::ParseLinePowerShell },
+{ LanguageId::SRC_PYTHON, CrystalLineParser::ParseLinePython },
+{ LanguageId::SRC_REXX, CrystalLineParser::ParseLineRexx },
+{ LanguageId::SRC_RSRC, CrystalLineParser::ParseLineRsrc },
+{ LanguageId::SRC_RUBY, CrystalLineParser::ParseLineRuby },
+{ LanguageId::SRC_RUST, CrystalLineParser::ParseLineRust },
+{ LanguageId::SRC_SGML, CrystalLineParser::ParseLineSgml },
+{ LanguageId::SRC_SH, CrystalLineParser::ParseLineSh },
+{ LanguageId::SRC_SIOD, CrystalLineParser::ParseLineSiod },
+{ LanguageId::SRC_SMARTY, CrystalLineParser::ParseLineSmarty },
+{ LanguageId::SRC_SQL, CrystalLineParser::ParseLineSql },
+{ LanguageId::SRC_TCL, CrystalLineParser::ParseLineTcl },
+{ LanguageId::SRC_TEX, CrystalLineParser::ParseLineTex },
+{ LanguageId::SRC_VERILOG, CrystalLineParser::ParseLineVerilog },
+{ LanguageId::SRC_VHDL, CrystalLineParser::ParseLineVhdl },
+{ LanguageId::SRC_XML, CrystalLineParser::ParseLineXml },
+};
+
+bool CrystalLineSyntaxParserFactory::IsSupported(LanguageId textType) const
+{
+	for (const auto& pair : m_ParseXDef)
+		if (textType == pair.first)
+			return true;
+	return false;
+}
 
 /**
  * @brief Construct a parser adapter for a specific text type.
  */
-CrystalLineSyntaxParser::CrystalLineSyntaxParser(ISyntaxParser::TextType textType)
+CrystalLineSyntaxParser::CrystalLineSyntaxParser(LanguageId textType)
 	: m_pTextBuffer(nullptr)
 	, m_textType(textType)
 	, m_pTextDef(nullptr)
+	, m_ParseLineX(nullptr)
 {
 	// Find the text definition for this type
-	const int index = static_cast<int>(textType);
-	if (index >= 0 && index < static_cast<int>(CrystalLineParser::m_SourceDefs.size()))
+	for (const auto& pair : m_ParseXDef)
 	{
-		m_pTextDef = &CrystalLineParser::m_SourceDefs[index];
+		if (textType == pair.first)
+		{
+			m_pTextDef = LangServices::GetTextType(textType);
+			m_ParseLineX = pair.second;
+		}
 	}
 }
 
 /**
  * @brief Set the text buffer that this parser will operate on.
  */
-void CrystalLineSyntaxParser::SetTextBuffer(ITextBuffer* pTextBuffer)
+void CrystalLineSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
 {
 	m_pTextBuffer = pTextBuffer;
 
@@ -32,24 +97,24 @@ void CrystalLineSyntaxParser::SetTextBuffer(ITextBuffer* pTextBuffer)
 	if (m_pTextBuffer != nullptr)
 	{
 		int nLineCount = m_pTextBuffer->GetLineCount();
-		m_ParseCookies.resize(nLineCount + 1, -1);
+		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
 	}
 }
 
 /**
  * @brief Parse a single line and return syntax highlighting information.
  */
-std::vector<ISyntaxParser::TEXTBLOCK> CrystalLineSyntaxParser::ParseLine(int nLineIndex)
+std::vector<LangServices::TEXTBLOCK> CrystalLineSyntaxParser::ParseLine(int nLineIndex)
 {
-	std::vector<ISyntaxParser::TEXTBLOCK> blocks;
+	std::vector<LangServices::TEXTBLOCK> blocks;
 
-	if (m_pTextBuffer == nullptr || m_pTextDef == nullptr || m_pTextDef->ParseLineX == nullptr)
+	if (m_pTextBuffer == nullptr || m_ParseLineX == nullptr)
 		return blocks;
 
 	// Ensure parse cookie cache is large enough
 	int nLineCount = m_pTextBuffer->GetLineCount();
 	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-		m_ParseCookies.resize(nLineCount + 1, -1);
+		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
 
 	// Get the line text
 	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex);
@@ -59,7 +124,7 @@ std::vector<ISyntaxParser::TEXTBLOCK> CrystalLineSyntaxParser::ParseLine(int nLi
 	unsigned dwCookie = GetLineCookie(nLineIndex);
 
 	// Call the legacy parser function
-	unsigned dwNewCookie = m_pTextDef->ParseLineX(dwCookie, pszChars, nLength, &blocks);
+	unsigned dwNewCookie = m_ParseLineX(dwCookie, pszChars, nLength, &blocks);
 
 	// Cache the result cookie for the next line
 	if (nLineIndex < nLineCount)
@@ -82,7 +147,7 @@ void CrystalLineSyntaxParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPo
 /**
  * @brief Get the parser type for this syntax parser.
  */
-ISyntaxParser::TextType CrystalLineSyntaxParser::GetParserType() const
+LanguageId CrystalLineSyntaxParser::GetParserType() const
 {
 	return m_textType;
 }
@@ -98,7 +163,7 @@ unsigned CrystalLineSyntaxParser::GetLineCookie(int nLineIndex)
 	// Ensure the cookie cache is large enough
 	int nLineCount = m_pTextBuffer->GetLineCount();
 	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-		m_ParseCookies.resize(nLineCount + 1, -1);
+		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
 
 	// If we already have a valid cookie, return it
 	if (m_ParseCookies[nLineIndex] != -1)
@@ -108,7 +173,7 @@ unsigned CrystalLineSyntaxParser::GetLineCookie(int nLineIndex)
 	if (nLineIndex == 0)
 		return 0;
 
-	if (m_pTextDef != nullptr && m_pTextDef->ParseLineX != nullptr)
+	if (m_pTextDef != nullptr && m_ParseLineX != nullptr)
 	{
 		int start = nLineIndex - 1;
 		while (start > 0 && m_ParseCookies[start] == -1)
@@ -119,7 +184,7 @@ unsigned CrystalLineSyntaxParser::GetLineCookie(int nLineIndex)
 		{
 			const tchar_t* pszChars = m_pTextBuffer->GetLineChars(i);
 			int nLength = m_pTextBuffer->GetLineLength(i);
-			m_ParseCookies[i + 1] = m_pTextDef->ParseLineX(cookie, pszChars, nLength, nullptr);
+			m_ParseCookies[i + 1] = m_ParseLineX(cookie, pszChars, nLength, nullptr);
 		}
 	}
 
@@ -136,11 +201,11 @@ void CrystalLineSyntaxParser::InvalidateFromLine(int nStartLine)
 
 	int nLineCount = m_pTextBuffer->GetLineCount();
 	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-		m_ParseCookies.resize(nLineCount + 1, -1);
+		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
 
 	// Clear cookies from nStartLine+1 onward (the start line's cookie is still valid from previous line)
 	for (size_t i = nStartLine + 1; i < m_ParseCookies.size(); i++)
-		m_ParseCookies[i] = -1;
+		m_ParseCookies[i] = static_cast<unsigned>(-1);
 }
 
 namespace {

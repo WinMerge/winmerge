@@ -9,8 +9,8 @@
  * @brief Get text with comments filtered out.
  */
 std::string SyntaxParserHelper::GetCommentsFilteredText(
-	ISyntaxParser* pParser,
-	ITextBuffer* pTextBuffer,
+	LangServices::ISyntaxParser* pParser,
+	LangServices::ITextBuffer* pTextBuffer,
 	int nStartLine,
 	int nEndLine)
 {
@@ -35,7 +35,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		}
 
 		// Parse the line to get color blocks
-		std::vector<ISyntaxParser::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
+		std::vector<LangServices::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
 
 		// Extract non-comment text
 		std::string lineText;
@@ -87,8 +87,8 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
  * @brief Get text with comments filtered out and per-line comment status.
  */
 std::string SyntaxParserHelper::GetCommentsFilteredText(
-	ISyntaxParser* pParser,
-	ITextBuffer* pTextBuffer,
+	LangServices::ISyntaxParser* pParser,
+	LangServices::ITextBuffer* pTextBuffer,
 	int nStartLine,
 	int nEndLine,
 	std::vector<bool>& allTextIsComment)
@@ -125,7 +125,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		}
 
 		// Parse the line to get color blocks
-		std::vector<ISyntaxParser::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
+		std::vector<LangServices::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
 
 		// Check if entire line is a comment
 		bool hasNonComment = false;

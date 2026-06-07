@@ -21,7 +21,9 @@
 #pragma once
 
 #include "SyntaxColors.h"
-#include "parsers/crystallineparser.h"
+#include "TextDefinition.h"
+#include "ITextBuffer.h"
+#include "ISyntaxParser.h"
 
 #include <string>
 #include <vector>
@@ -36,7 +38,6 @@ typedef struct TSTree TSTree;
 typedef struct TSQuery TSQuery;
 typedef struct TSLanguage TSLanguage;
 
-class ITextBuffer;
 struct CEPoint;
 
 /**
@@ -178,7 +179,7 @@ public:
 
     /**
      * @brief Parse (or re-parse) the full document.
-     * @param ppszLines  Array of line pointers (from ITextBuffer).
+     * @param ppszLines  Array of line pointers (from LangServices::ITextBuffer).
      * @param pnLineLengths  Array of line lengths.
      * @param nLineCount  Number of lines in the document.
      */
@@ -212,7 +213,7 @@ public:
      *
      * Called lazily from ParseLine. Only reparses if marked dirty.
      */
-    void EnsureParsed(ITextBuffer* pBuf);
+    void EnsureParsed(LangServices::ITextBuffer* pBuf);
 
     /**
      * @brief Get the cached color blocks for a specific line.
@@ -224,7 +225,7 @@ public:
      * @param nMaxBlocks   Maximum number of TEXTBLOCK entries that fit in pBuf.
      *                     Pass 0 to skip bounds checking (legacy behavior).
      */
-    std::vector<CrystalLineParser::TEXTBLOCK> GetLineBlocks(int nLineIndex) const;
+    std::vector<LangServices::TEXTBLOCK> GetLineBlocks(int nLineIndex) const;
 
     /** @brief Check if a valid tree is available. */
     bool HasTree() const { return m_pTree != nullptr; }
@@ -255,7 +256,7 @@ public:
      */
     std::wstring GetNodeTypeAt(int nLineIndex, int nCharPos) const;
 
-    bool FindDefinition(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
+    bool FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
 
     /**
      * @brief Find matching brace/bracket/parenthesis at the given position.
@@ -268,13 +269,13 @@ public:
      * 
      * Uses tree-sitter's AST structure to find the matching delimiter.
      */
-    bool FindMatchingBrace(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
+    bool FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
 
 	/**
 	 * @brief Convenience: parse document from a text buffer.
 	 * @param pBuffer  The text buffer to read line data from.
 	 */
-	void ParseFromBuffer(ITextBuffer* pBuffer);
+	void ParseFromBuffer(LangServices::ITextBuffer* pBuffer);
 
 private:
     void EnsureParser();
@@ -286,7 +287,7 @@ private:
     int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
     bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
     bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
-    bool TryGetTagDefinitionByNameAt(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
+    bool TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
     uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
     /**

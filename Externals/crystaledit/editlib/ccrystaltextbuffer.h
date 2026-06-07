@@ -31,7 +31,7 @@
 
 #pragma once
 
-#include "parsers/crystallineparser.h"
+#include "TextDefinition.h"
 #include "LineInfo.h"
 #include "UndoRecord.h"
 #include "cepoint.h"
@@ -91,7 +91,7 @@ public :
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer command target
 
-class EDITPADC_CLASS CCrystalTextBuffer : public ITextBuffer
+class EDITPADC_CLASS CCrystalTextBuffer : public LangServices::ITextBuffer
   {
 public:
     int m_nSourceEncoding;
@@ -272,7 +272,7 @@ public :
     size_t GetRedoDescription (std::basic_string<tchar_t>& desc, size_t pos = 0) const;
 
     //  Notify all connected views about changes in name of file
-    CrystalLineParser::TextDefinition *RetypeViews (const tchar_t* lpszFileName);
+    LangServices::TextDefinition *RetypeViews (const tchar_t* lpszFileName);
     //  Notify all connected views about changes in text
     void UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext,
                       DWORD dwUpdateFlags, int nLineIndex = -1);

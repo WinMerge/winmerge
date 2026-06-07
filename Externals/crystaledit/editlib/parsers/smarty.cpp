@@ -213,7 +213,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLi
 unsigned
 CrystalLineParser::ParseLineSmarty(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, SRC_SMARTY);
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, LanguageId::SRC_SMARTY);
 }
 
 unsigned

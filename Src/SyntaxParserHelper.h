@@ -26,8 +26,8 @@ public:
 	 * from the text. Useful for diff post-filtering to ignore comment changes.
 	 */
 	static std::string GetCommentsFilteredText(
-		ISyntaxParser* pParser,
-		ITextBuffer* pTextBuffer,
+		LangServices::ISyntaxParser* pParser,
+		LangServices::ITextBuffer* pTextBuffer,
 		int nStartLine,
 		int nEndLine);
 
@@ -44,8 +44,8 @@ public:
 	 * consists entirely of comments (useful for diff filtering).
 	 */
 	static std::string GetCommentsFilteredText(
-		ISyntaxParser* pParser,
-		ITextBuffer* pTextBuffer,
+		LangServices::ISyntaxParser* pParser,
+		LangServices::ITextBuffer* pTextBuffer,
 		int nStartLine,
 		int nEndLine,
 		std::vector<bool>& allTextIsComment);

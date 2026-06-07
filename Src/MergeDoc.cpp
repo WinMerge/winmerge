@@ -72,7 +72,7 @@ bool CMergeDoc::IsTreeSitterEnabled() const
 	return GetOptionsMgr()->GetBool(OPT_TREE_SITTER);
 }
 
-void CMergeDoc::UpdateTreeSitterSupport()
+void CMergeDoc::UpdateSyntaxParsers()
 {
 	// Reset syntax parsers for DiffWrapper
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
@@ -89,68 +89,21 @@ void CMergeDoc::UpdateTreeSitterSupport()
 		m_pTreeSitterParsers[nBuffer].reset();
 	}
 
-	// If Tree-sitter is disabled, create legacy line-based parsers
-	if (!IsTreeSitterEnabled())
-	{
-		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-		{
-			String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-
-			// Create legacy line-based parser
-			m_pSyntaxParsers[nBuffer] = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str()); // use legacy parser
-			if (m_pSyntaxParsers[nBuffer])
-			{
-				m_pSyntaxParsers[nBuffer]->SetTextBuffer(m_ptBuf[nBuffer].get());
-
-				// Set syntax parser on view
-				if (m_pView[0][nBuffer] != nullptr)
-				{
-					auto viewParser = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str());
-					if (viewParser)
-					{
-						viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
-						// Call base class method directly to avoid ambiguity with legacy SetSyntaxParser
-						static_cast<CCrystalTextView*>(m_pView[0][nBuffer])->SetSyntaxParser(std::move(viewParser));
-					}
-				}
-
-				// Configure DiffWrapper to use unified parser interface
-				m_diffWrapper.SetSyntaxParser(m_pSyntaxParsers[nBuffer].get(), nBuffer);
-				m_diffWrapper.SetTextBuffer(m_ptBuf[nBuffer].get(), nBuffer);
-			}
-		}
-		return;
-	}
-
-	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
-	if (!registry.IsInitialized())
-		registry.Initialize();
-
-	// Create unified syntax parsers for each buffer
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-		const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(sExt.c_str());
-		if (pLang == nullptr || pLang->GetLanguage() == nullptr)
-			continue;
 
-		// Create Tree-sitter parser instance (keep legacy member for compatibility)
-		m_pTreeSitterParsers[nBuffer] = std::make_unique<CTreeSitterParser>();
-		m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
-		m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
+		LangServices::TextDefinition* def = LangServices::GetTextType(sExt.c_str());
 
-		// Create unified syntax parser using factory
-		m_pSyntaxParsers[nBuffer] = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str()); // prefer Tree-sitter
+		m_pSyntaxParsers[nBuffer] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
 		if (m_pSyntaxParsers[nBuffer])
 		{
-			// Configure parser with text buffer
 			m_pSyntaxParsers[nBuffer]->SetTextBuffer(m_ptBuf[nBuffer].get());
 
 			// Set syntax parser on view
 			if (m_pView[0][nBuffer] != nullptr)
 			{
-				// Clone parser for view (registry returns unique_ptr, need separate instance for view)
-				auto viewParser = SyntaxParserRegistry::GetInstance().CreateParser(sExt.c_str());
+				auto viewParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
 				if (viewParser)
 				{
 					viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
@@ -2416,7 +2369,7 @@ void CMergeDoc::SetTableProperties()
 void CMergeDoc::SetTextType(int textType)
 {
 	ForEachView([textType, this](auto& pView) {
-		pView->SetTextType(ISyntaxParser::TextType(textType));
+		pView->SetTextType(LangServices::LanguageId(textType));
 		pView->SetDisableBSAtSOL(false);
 		m_bChangedSchemeManually = true;
 	});
@@ -2634,7 +2587,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			}
 			else
 			{
-				CrystalLineParser::TextDefinition *enuType = CrystalLineParser::GetTextType(sext[paneTyped].c_str());
+				LangServices::TextDefinition *enuType = LangServices::GetTextType(sext[paneTyped].c_str());
 				ForEachView([&bTyped, enuType](auto& pView) {
 					if (!bTyped[pView->m_nThisPane])
 						pView->SetTextType(enuType);
@@ -2658,9 +2611,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		}
 
-		UpdateTreeSitterSupport();
+		UpdateSyntaxParsers();
 
-		// Set TreeSitter TextDefinition as syntax highlighting for each view
+		// Set TreeSitter LangServices::TextDefinition as syntax highlighting for each view
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			if (m_pTreeSitterTextDefs[nBuffer])
@@ -2792,7 +2745,7 @@ void CMergeDoc::RefreshOptions()
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
-	UpdateTreeSitterSupport();
+	UpdateSyntaxParsers();
 
 	// Refresh view options
 	ForEachView([](auto& pView) { pView->RefreshOptions(); });

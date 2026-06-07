@@ -43,7 +43,6 @@
 #endif
 
 using std::vector;
-using CrystalLineParser::TEXTBLOCK;
 
 /** @brief Timer ID for delayed rescan. */
 const UINT IDT_RESCAN = 2;
@@ -632,19 +631,19 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
 }
 
-std::vector<CrystalLineParser::TEXTBLOCK> CMergeEditView::GetMarkerTextBlocks(int nLineIndex) const
+std::vector<LangServices::TEXTBLOCK> CMergeEditView::GetMarkerTextBlocks(int nLineIndex) const
 {
 	if (m_bDetailView)
 	{
 		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
-			return std::vector<CrystalLineParser::TEXTBLOCK>();
+			return std::vector<LangServices::TEXTBLOCK>();
 	}
 	return CCrystalTextView::GetMarkerTextBlocks(nLineIndex);
 }
 
-std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
+std::vector<LangServices::TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 {
-	static const std::vector<TEXTBLOCK> emptyBlocks;
+	static const std::vector<LangServices::TEXTBLOCK> emptyBlocks;
 	if (m_bDetailView)
 	{
 		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
@@ -682,7 +681,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 
 	bool lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
 
-	std::vector<TEXTBLOCK> blocks(nWordDiffs * 2 + 1);
+	std::vector<LangServices::TEXTBLOCK> blocks(nWordDiffs * 2 + 1);
 	blocks[0].m_nCharPos = 0;
 	blocks[0].m_nColorIndex = COLORINDEX_NONE;
 	blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
@@ -3498,7 +3497,7 @@ void CMergeEditView::RefreshOptions()
 	SetLineUsedAsHeaders(GetOptionsMgr()->GetInt(OPT_LINE_NUMBER_USED_AS_HEADERS));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
-		SetTextType(CrystalLineParser::SRC_PLAIN);
+		SetTextType(LangServices::LanguageId::SRC_PLAIN);
 	else if (!GetDocument()->GetChangedSchemeManually() && GetDocument()->IsTreeSitterEnabled() && GetDocument()->GetTreeSitterTextDefinition(m_nThisPane) != nullptr)
 		SetTextType(GetDocument()->GetTreeSitterTextDefinition(m_nThisPane));
 	else if (!GetDocument()->GetChangedSchemeManually())
@@ -3507,11 +3506,11 @@ void CMergeEditView::RefreshOptions()
 		String fileName = GetDocument()->m_ptBuf[m_nThisPane]->GetTempFileName();
 		String sExt;
 		paths::SplitFilename(fileName, nullptr, nullptr, &sExt);
-		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(sExt.c_str());
+		LangServices::TextDefinition* def = LangServices::GetTextType(sExt.c_str());
 		if (def != nullptr)
 			SetTextType(def->type);
 		else
-			SetTextType(CrystalLineParser::SRC_PLAIN);
+			SetTextType(LangServices::LanguageId::SRC_PLAIN);
 		SetDisableBSAtSOL(false);
 	}
 
@@ -4519,7 +4518,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 */
 void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 {
-	const bool bIsCurrentScheme = (static_cast<UINT>(m_nCurrentTextType) == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
+	const bool bIsCurrentScheme = (static_cast<UINT>(m_CurSourceDef->type) == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
 	pCmdUI->SetRadio(bIsCurrentScheme);
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT));
 }

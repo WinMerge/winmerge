@@ -1,9 +1,11 @@
 #pragma once
 
 #include "ISyntaxParser.h"
-#include "parsers/crystallineparser.h"
+#include "ISyntaxParserFactory.h"
 #include <vector>
 #include <memory>
+
+using ParseFunc = unsigned (*)(unsigned, const tchar_t*, int, std::vector<LangServices::TEXTBLOCK>*);
 
 /**
  * @brief Adapter that wraps legacy CrystalEdit line-based parsers.
@@ -11,21 +13,21 @@
  * This class adapts the traditional ParseLineX function pointer style
  * to the ISyntaxParser interface, managing per-line cookie state internally.
  */
-class CrystalLineSyntaxParser : public ISyntaxParser
+class CrystalLineSyntaxParser : public LangServices::ISyntaxParser
 {
 public:
 	/**
 	 * @brief Construct a parser adapter for a specific text type.
 	 * @param textType The language/format type to parse.
 	 */
-	explicit CrystalLineSyntaxParser(ISyntaxParser::TextType textType);
+	explicit CrystalLineSyntaxParser(LangServices::LanguageId textType);
 	virtual ~CrystalLineSyntaxParser() = default;
 
 	// ISyntaxParser interface implementation
-	void SetTextBuffer(ITextBuffer* pTextBuffer) override;
-	std::vector<ISyntaxParser::TEXTBLOCK> ParseLine(int nLineIndex) override;
+	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
+	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
-	ISyntaxParser::TextType GetParserType() const override;
+	LangServices::LanguageId GetParserType() const override;
 	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
 
 private:
@@ -42,8 +44,31 @@ private:
 	 */
 	void InvalidateFromLine(int nStartLine);
 
-	ITextBuffer* m_pTextBuffer;                    ///< Text buffer interface
-	ISyntaxParser::TextType m_textType;            ///< Parser type
-	CrystalLineParser::TextDefinition* m_pTextDef; ///< Parser definition
+	LangServices::ITextBuffer* m_pTextBuffer;                    ///< Text buffer interface
+	ParseFunc m_ParseLineX;                        ///< Pointer to the legacy line parser function
+	LangServices::LanguageId m_textType;                ///< Parser type
+	LangServices::TextDefinition* m_pTextDef;           ///< Parser definition
 	std::vector<unsigned> m_ParseCookies;          ///< Per-line parser state cookies
 };
+
+class CrystalLineSyntaxParserFactory : public LangServices::ISyntaxParserFactory
+{
+public:
+	static CrystalLineSyntaxParserFactory& GetInstance()
+	{
+		static CrystalLineSyntaxParserFactory instance;
+		return instance;
+	}
+
+	CrystalLineSyntaxParserFactory() {};
+	virtual ~CrystalLineSyntaxParserFactory() = default;
+
+	virtual bool IsSupported(LangServices::LanguageId type) const override;
+	virtual std::unique_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
+	{
+		if (!IsSupported(type))
+			return nullptr;
+		return std::make_unique<CrystalLineSyntaxParser>(type);
+	}
+};
+
