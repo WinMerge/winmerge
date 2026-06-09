@@ -3972,6 +3972,8 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			try {
 				DirItemIterator it(m_pIList.get(), reinterpret_cast<NMLVDISPINFO *>(pNMHDR)->item.iItem);
+				if (!it.IsValid())
+					return;
 				DIFFITEM& di = *it;
 				unsigned sideFlags = (di.diffcode.diffcode & DIFFCODE::SIDEFLAGS);
 				*pResult = DoItemRename(it, GetDiffContext(), String(sText));
