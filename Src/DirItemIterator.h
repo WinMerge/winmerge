@@ -84,6 +84,11 @@ public:
 		return m_sel != it.m_sel;
 	}
 
+	bool IsValid() const
+	{
+		return m_sel != -1;
+	}
+
 	bool m_selected;
 	bool m_reverse;
 	int m_sel;
@@ -191,6 +196,11 @@ public:
 	bool operator!=(const DirItemIterator& it) const
 	{
 		return m_sel != it.m_sel;
+	}
+
+	bool IsValid() const
+	{
+		return m_pdi != nullptr && m_pdi != reinterpret_cast<const DIFFITEM*>(-1L);
 	}
 
 	bool m_selected;

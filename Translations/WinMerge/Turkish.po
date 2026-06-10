@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-05-25 12:42+0300\n"
+"PO-Revision-Date: 2026-06-02 17:09+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -5234,8 +5234,20 @@ msgstr "Proje dosyası kaydedildi."
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4443
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"Bu proje dosyası, özel değişkenler (parametreler) içeren eklentiler barındırıyor:\n"
+"\n"
+"%1\n"
+"Bu değişkenler eklenti davranışını etkileyebilir veya harici programlar yürütebilir.\n"
+"\n"
+"Bu proje dosyasını açmak istiyor musunuz?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4449
@@ -8672,7 +8684,7 @@ msgstr "Tanımsız tanımlayıcı"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
 #: Merge.rc:5682
 msgid "Invalid number of arguments"
-msgstr "Geçersiz argüman sayısı"
+msgstr "Geçersiz değişken sayısı"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
 #: Merge.rc:5683
@@ -9227,7 +9239,7 @@ msgid ""
 "Arguments: tidy command line options."
 msgstr ""
 "HTML iyileştirici: tidy-html5. \r\n"
-"Parametreler: Tidy komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Tidy komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:140
 msgid ""
@@ -9235,7 +9247,7 @@ msgid ""
 "Arguments: jq filter/command line options."
 msgstr ""
 "JSON iyileştirici: jq komutu. \r\n"
-"Parametreler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:142
 msgid ""
@@ -9243,7 +9255,7 @@ msgid ""
 "Arguments: tidy command line options."
 msgstr ""
 "XML iyileştirici: tidy-html5. \r\n"
-"Parametreler: Tidy komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Tidy komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:144
 msgid ""
@@ -9251,7 +9263,7 @@ msgid ""
 "Arguments: yq filter/command line options."
 msgstr ""
 "YAML iyileştirici: yq komutu. \r\n"
-"Parametreler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:146
 msgid ""
@@ -9259,7 +9271,7 @@ msgid ""
 "Arguments: msgcat command line options."
 msgstr ""
 "PO Biçimlendirici (gettext msgcat aracı).\r\n"
-"Parametreler: msgcat komut satırı seçenekleri."
+"Değişkenler: msgcat komut satırı seçenekleri."
 
 #: Strings.rc:148
 msgid ""
@@ -9267,7 +9279,7 @@ msgid ""
 "Arguments: dot command line options."
 msgstr ""
 "Graphviz ön izleyici. \r\n"
-"Parametreler: Dot komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Dot komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:150
 msgid ""
@@ -9275,7 +9287,7 @@ msgid ""
 "Arguments: md2html command line options."
 msgstr ""
 "Markdown ön izleyici. \r\n"
-"Parametreler: Dot komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Dot komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:152
 msgid ""
@@ -9283,7 +9295,7 @@ msgid ""
 "Arguments: plantuml.jar command line options."
 msgstr ""
 "PlantUML ön izleyici. \r\n"
-"Parametreler: Plantuml.jar komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Plantuml.jar komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:154
 msgid ""
@@ -9291,7 +9303,7 @@ msgid ""
 "Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV sorgulayıcı: q komutu. \r\n"
-"Parametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
+"Değişkenler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
 
 #: Strings.rc:156
 msgid ""
@@ -9299,7 +9311,7 @@ msgid ""
 "Arguments: SQL statement/q command line options."
 msgstr ""
 "TSV sorgulayıcı: q komutu. \r\n"
-"Parametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
+"Değişkenler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
 
 #: Strings.rc:158
 msgid ""
@@ -9307,7 +9319,7 @@ msgid ""
 "Arguments: jq filter/command line options."
 msgstr ""
 "JSON sorgulayıcı: jq komutu. \r\n"
-"Parametreler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:164
 msgid ""
@@ -9315,7 +9327,7 @@ msgid ""
 "Arguments: yq filter/command line options."
 msgstr ""
 "YAML sorgulayıcı: yq komutu. \r\n"
-"Parametreler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
+"Değişkenler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 #: Strings.rc:166
 msgid ""
@@ -9323,7 +9335,7 @@ msgid ""
 "Arguments: tidy command line options."
 msgstr ""
 "HTML doğrulayıcı: tidy-html5. \r\n"
-"Parametreler: Tidy komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: Tidy komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:168
 msgid ""
@@ -9331,7 +9343,7 @@ msgid ""
 "Arguments: msgfmt command line options."
 msgstr ""
 "PO Doğrulayıcı (gettext msgfmt aracı).\r\n"
-"Parametreler: msgfmt komut satırı seçenekleri."
+"Değişkenler: msgfmt komut satırı seçenekleri."
 
 #: Strings.rc:170
 msgid ""
@@ -9339,7 +9351,7 @@ msgid ""
 "Arguments: javap command line options."
 msgstr ""
 "JVM bayt kodu çözücüsü: javap. \r\n"
-"Parametreler: javap komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: javap komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:172
 msgid ""
@@ -9347,7 +9359,7 @@ msgid ""
 "Arguments: ildasm command line options."
 msgstr ""
 "IL kod çözücüsü: ildasm. \r\n"
-"Parametreler: ildasm komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: ildasm komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:174
 msgid ""
@@ -9355,7 +9367,7 @@ msgid ""
 "Arguments: dumpbin command line options."
 msgstr ""
 "Doğal kod çözücüsü: dumpbin. \r\n"
-"Parametreler: dumpbin komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: dumpbin komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:176
 msgid ""
@@ -9363,7 +9375,7 @@ msgid ""
 "Arguments: tika-app.jar command line options."
 msgstr ""
 "Genel içerik ayıklayıcı: Apache Tika. \r\n"
-"Parametreler: javap komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: javap komutuna aktarılacak komut satırı parametreleri."
 
 #. IDS_PLUGIN_DESCRIPTION41
 #: Strings.rc:177
@@ -9392,7 +9404,7 @@ msgstr "MS Word dosyalarının içeriği görüntülensin"
 
 #: Strings.rc:183
 msgid "Ignore columns - list from plugin name/argument"
-msgstr "Bazı sütunlar yok sayılsın. Eklenti adı ya da eklenti parametresi ile yok sayılan sütun listesi"
+msgstr "Bazı sütunlar yok sayılsın. Eklenti adı ya da eklenti değişkeni ile yok sayılan sütun listesi"
 
 #: Strings.rc:185
 msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
@@ -9400,7 +9412,7 @@ msgstr "Eklenti C, C++, PHP ve JavaScript dosyalarındaki komutları yok sayar (
 
 #: Strings.rc:187
 msgid "Ignore fields - list from plugin name/argument"
-msgstr "Bazı alanlar yok sayılsın. Eklenti adı ya da eklenti parametresi ile yok sayılan alan listesi"
+msgstr "Bazı alanlar yok sayılsın. Eklenti adı ya da eklenti değişkeni ile yok sayılan alan listesi"
 
 #: Strings.rc:189
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
@@ -9422,7 +9434,7 @@ msgid ""
 "Arguments: curl command line options."
 msgstr ""
 "cURL ile HTTP URL şema işleyici.\r\n"
-"Parametreler: curl komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: curl komutuna aktarılacak komut satırı parametreleri."
 
 #: Strings.rc:199
 msgid ""
@@ -9430,7 +9442,7 @@ msgid ""
 "Arguments: reg.exe command line options."
 msgstr ""
 "Windows kayıt defteri adresi şema işleyici. \r\n"
-"Parametreler: reg.exe komutuna aktarılacak komut satırı parametreleri."
+"Değişkenler: reg.exe komutuna aktarılacak komut satırı parametreleri."
 
 #. IDS_PLUGIN_DESCRIPTION54
 #: Strings.rc:200
@@ -9465,7 +9477,7 @@ msgid ""
 msgstr ""
 "Java tersine derleyici (CFR).\r\n"
 ".class dosyalarını okunabilir Java kaynak koduna dönüştürür.\r\n"
-"Parametreler: CFR komut satırı seçenekleri."
+"Değişkenler: CFR komut satırı seçenekleri."
 
 #: Strings.rc:206
 msgid ""
@@ -9473,7 +9485,7 @@ msgid ""
 "Arguments: cliphcat command line options."
 msgstr ""
 "Pano URL şeması işleyicisi (cliphcat).\r\n"
-"Parametreler: cliphcat komut satırı seçenekleri."
+"Değişkenler: cliphcat komut satırı seçenekleri."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
@@ -9669,7 +9681,7 @@ msgstr "'%1' dosyası bulunamadı"
 
 #: Strings.rc:307
 msgid "Enter command line arguments for patch"
-msgstr "Yama komutu için komut satırı parametrelerini yazın"
+msgstr "Yama komutu için komut satırı değişkenlerini yazın"
 
 #: Strings.rc:309
 #, c-format

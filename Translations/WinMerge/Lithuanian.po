@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-05-24 06:19+0000\n"
-"PO-Revision-Date: 2026-05-25 08:35+0200\n"
+"POT-Creation-Date: 2026-06-02 21:26+0000\n"
+"PO-Revision-Date: 2026-06-04 07:25+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -5214,7 +5214,7 @@ msgstr "Projekto failas išsaugotas."
 #: Merge.rc:4443
 #, c-format
 msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
-msgstr ""
+msgstr "Šiame projekto faile yra papildinių su pasirinktiniais argumentais:\n\n%1\nŠie argumentai gali įtakoti papildinio veikimą arba paleisti išorines programas.\n\nNorite atidaryti šį projekto failą?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4449

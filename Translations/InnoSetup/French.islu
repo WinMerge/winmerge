@@ -1,7 +1,7 @@
-﻿[Messages]
+[Messages]
 
-WizardInfoBefore=License Agreement
-InfoBeforeLabel=GNU General Public License
+WizardInfoBefore=Contrat de licence
+InfoBeforeLabel=Licence publique générale GNU
 
 [CustomMessages]
 
@@ -39,7 +39,7 @@ FrenchLanguage=Menus et dialogues Français
 GalicianLanguage=Menus et dialogues Galicien
 GermanLanguage=Menus et dialogues Allemand
 GreekLanguage=Menus et dialogues Grec
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=Menus et dialogues Hébreu
 HungarianLanguage=Menus et dialogues Hongrois
 ItalianLanguage=Menus et dialogues Italien
 JapaneseLanguage=Menus et dialogues Japonais
@@ -61,7 +61,7 @@ SwedishLanguage=Menus et dialogues Suédois
 TamilLanguage=Menus et dialogues Tamil
 TurkishLanguage=Menus et dialogues Turque
 UkrainianLanguage=Menus et dialogues Ukrainien
-VietnameseLanguage=Vietnamese menus and dialogs
+VietnameseLanguage=Menus et dialogues Vietnamien
 
 ;Tasks
 ExplorerContextMenu=Activer l'intégration du menu contextuel de l'&Explorateur 
