@@ -232,6 +232,7 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 			TempFile right = WriteToTempFile(_T("0\na b c\n"));
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.SetOptions(&options);
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
@@ -250,6 +251,7 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 			TempFile right = WriteToTempFile(_T("0\na b c\n"));
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.SetOptions(&options);
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
@@ -268,6 +270,7 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 			TempFile right = WriteToTempFile(_T("0\nabc\n"));
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.SetOptions(&options);
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
@@ -287,6 +290,7 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 			TempFile right = WriteToTempFile(_T("0\na /*bb*/ c\n"));
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.SetOptions(&options);
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
@@ -318,6 +322,7 @@ TEST(DiffWrapper, RunFileDiff_IgnoreComments)
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
 			dw.SetOptions(&options);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
 			diffList.GetDiff(0, dr);
@@ -335,6 +340,7 @@ TEST(DiffWrapper, RunFileDiff_IgnoreComments)
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
 			dw.SetOptions(&options);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.RunFileDiff();
 			EXPECT_EQ(2, diffList.GetSize());
 			diffList.GetDiff(0, dr);
@@ -358,6 +364,7 @@ TEST(DiffWrapper, RunFileDiff_IgnoreComments)
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
 			dw.SetOptions(&options);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
 			diffList.GetDiff(0, dr);

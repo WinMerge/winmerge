@@ -30,7 +30,7 @@ constexpr unsigned FLAG_RESCAN_WAITS_FOR_IDLE = 1;
 #include "edtlib.h"
 #include "GhostTextView.h"
 #include "OptionsDiffColors.h"
-#include "TreeSitterParser.h"
+#include "ISyntaxParser.h"
 #include <map>
 #include <vector>
 
@@ -378,3 +378,4 @@ inline bool CMergeEditView::IsCursorInDiff() const
 {
 	return m_bCurrentLineIsDiff;
 }
+

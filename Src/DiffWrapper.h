@@ -17,6 +17,7 @@
 #include "DiffList.h"
 #include "UnicodeString.h"
 #include "FileTransform.h"
+#include "TextDefinition.h"
 #include "ITextBuffer.h"
 #include "ISyntaxParser.h"
 
@@ -28,7 +29,6 @@ struct file_data;
 class MovedLines;
 class FilterList;
 class SubstitutionList;
-namespace LangServices { class ITextBuffer; struct TextDefinition; class ISyntaxParser; };
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -153,6 +153,7 @@ struct PostFilterContext
 {
 	int nParsedLineEndLeft = -1;
 	int nParsedLineEndRight = -1;
+	std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParser[3];
 	std::unique_ptr<LangServices::ITextBuffer> m_pTextBuffer[3]; /**< Text buffer for parser access */
 };
 
@@ -196,10 +197,11 @@ public:
 	void SetFilterList(std::shared_ptr<FilterList> pFilterList);
 	const SubstitutionList* GetSubstitutionList() const;
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
-	void SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser, int index);
+	void SetFilterCommentsSourceDef(LangServices::TextDefinition *def) { m_pFilterCommentsDef = def; };
+	void SetFilterCommentsSourceDef(const String& ext);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
-	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary);
+	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
 	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file) const;
 
@@ -240,7 +242,7 @@ private:
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParser[3]; /**< New unified parser interface */
+	LangServices::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	int m_codepage; /**< Codepage used in line filter */
 };
@@ -290,3 +292,4 @@ inline void CDiffWrapper::SetAlternativePaths(const PathContext &altPaths)
 {
 	m_alternativePaths = altPaths;
 }
+

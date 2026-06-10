@@ -67,47 +67,6 @@ int CMergeDoc::m_nBuffersTemp = 2;
 
 static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
 
-bool CMergeDoc::IsTreeSitterEnabled() const
-{
-	return GetOptionsMgr()->GetInt(OPT_TREE_SITTER_MODE);
-}
-
-void CMergeDoc::UpdateSyntaxParsers()
-{
-	// Reset syntax parsers for DiffWrapper
-	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-		m_diffWrapper.SetSyntaxParser(nullptr, nBuffer);
-
-	// Clean up old parser state
-	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-		m_pSyntaxParsers[nBuffer].reset();
-
-	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-	{
-		String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-
-		LangServices::TextDefinition* def = LangServices::GetTextType(sExt.c_str());
-		if (!def)
-			continue;
-
-		// Set syntax parser on view
-		if (m_pView[0][nBuffer] != nullptr)
-		{
-			auto viewParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
-			if (viewParser)
-			{
-				viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
-				// Call base class method directly to avoid ambiguity with legacy SetSyntaxParser
-				static_cast<CCrystalTextView*>(m_pView[0][nBuffer])->SetSyntaxParser(std::move(viewParser));
-			}
-		}
-
-		// Configure DiffWrapper to use unified parser interface
-		auto diffWrapperParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
-		m_diffWrapper.SetSyntaxParser(std::move(diffWrapperParser), nBuffer);
-	}
-}
-
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
 
@@ -394,6 +353,11 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		(theApp.m_pSubstitutionFiltersList && theApp.m_pSubstitutionFiltersList->GetEnabled()) ?
 		theApp.m_pSubstitutionFiltersList->MakeSubstitutionList() : nullptr);
 
+	if (GetView(0, 0)->m_CurSourceDef->type != 0)
+		m_diffWrapper.SetFilterCommentsSourceDef(GetView(0, 0)->m_CurSourceDef);
+	else
+		m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
+
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		// Check if files have been modified since last rescan
@@ -617,8 +581,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			m_bEditAfterRescan[nBuffer] = false;
-			if (m_pSyntaxParsers[nBuffer])
-				m_pSyntaxParsers[nBuffer]->Invalidate();
 		}
 	}
 
@@ -2583,16 +2545,14 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			UpdateHeaderPath(nBuffer);
 
 			ForEachView(nBuffer, [](auto& pView) { pView->DocumentsLoaded(); });
-
+			
 			if ((m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL) ||
-				(m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
+			    (m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
 			{
 				nNormalBuffer++;
 			}
-
+			
 		}
-
-		UpdateSyntaxParsers();
 
 		CMergeFrameCommon::LogComparisonCompleted(*this);
 
@@ -2715,7 +2675,6 @@ void CMergeDoc::RefreshOptions()
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
-	UpdateSyntaxParsers();
 
 	// Refresh view options
 	ForEachView([](auto& pView) { pView->RefreshOptions(); });

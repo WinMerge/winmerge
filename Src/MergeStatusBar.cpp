@@ -287,14 +287,6 @@ void CMergeStatusBar::MergeStatus::Update()
 
 		if (m_nCodepage > 0)
 			strEncoding.Format(_("%s").c_str(), m_sCodepageName.c_str());
-		if (!m_sSyntaxParser.empty())
-		{
-			if (!strEncoding.IsEmpty())
-				strEncoding += _T("  ");
-			strEncoding += _T("[TS:");
-			strEncoding += m_sSyntaxParser.c_str();
-			strEncoding += _T("]");
-		}
 		m_pWndStatusBar->SetPaneText(m_base, strInfo);
 		m_pWndStatusBar->SetPaneText(m_base + 1, strEncoding);
 	}

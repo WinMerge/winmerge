@@ -67,7 +67,6 @@ protected:
 		String m_sEol;
 		String m_sEolDisplay;
 		String m_sCodepageName;
-		String m_sSyntaxParser; /**< Tree-sitter language name, empty if not active */
 	};
 	friend class MergeStatus; // MergeStatus accesses status bar
 	MergeStatus m_status[3];

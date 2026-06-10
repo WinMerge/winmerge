@@ -27,8 +27,6 @@
 #include <optional>
 
 class CLineFilterHelperMenu;
-class CTreeSitterParser;
-namespace LangServices { struct TextDefinition; class ISyntaxParser; }
 
 /**
  * @brief Additional action codes for WinMerge.
@@ -201,9 +199,6 @@ public:
 	void GetPrediffer(PrediffingInfo* infoPrediffer) const;
 	const PrediffingInfo* GetPrediffer() const override;
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
-	LangServices::ISyntaxParser* GetSyntaxParser(int nBuffer) { return m_pSyntaxParsers[nBuffer].get(); }
-	bool IsTreeSitterEnabled() const;
-	void UpdateSyntaxParsers();
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView* pLocationView) { m_pLocationView = pLocationView; }
@@ -411,7 +406,6 @@ protected:
 	std::optional<bool> m_bEnableTableEditing;
 	std::unique_ptr<TableProps> m_pTablePropsPrepared;
 	std::unique_ptr<CLineFilterHelperMenu> m_pFilterMenu;
-	std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParsers[3]; /**< Unified syntax parsers for each pane */
 	/**
 	 * Are automatic rescans enabled?
 	 * If automatic rescans are enabled then we rescan files after edit
@@ -511,3 +505,4 @@ inline bool CMergeDoc::HasSyncPoints()
 {
 	return m_bHasSyncPoints;
 }
+

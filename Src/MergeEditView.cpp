@@ -33,6 +33,7 @@
 #include "SelectPluginDlg.h"
 #include "Constants.h"
 #include "MouseHook.h"
+#include "TreeSitterParser.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2382,13 +2383,6 @@ void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t
 	// perform original function
 	CCrystalEditView::OnEditOperation(nAction, pszText, cchText);
 
-	// Notify tree-sitter parser of the edit for incremental reparsing.
-	// This is now handled in CDiffTextBuffer::AddUndoRecord() which
-	// calls NotifyEdit() with the TextEdit information directly.
-	// We do NOT reparse here -- doing a full reparse on every keystroke
-	// causes catastrophic memory/CPU usage. Instead, ParseLine() will
-	// call EnsureParsed() lazily when the view is next painted.
-
 	// augment with additional operations
 
 	// Change header to inform about changed doc
@@ -3295,7 +3289,7 @@ void CMergeEditView::OnWMGoto()
 void CMergeEditView::GotoTreeSitterDefinition()
 {
 	CMergeDoc* pDoc = GetDocument();
-	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(pDoc->GetSyntaxParser(m_nThisPane));
+	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser());
 	if (!pSyntaxParser)
 		return;
 
@@ -3320,7 +3314,7 @@ void CMergeEditView::OnGotoDefinition()
 void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(pDoc->GetSyntaxParser(m_nThisPane));
+	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser());
 	if (!pSyntaxParser)
 	{
 		pCmdUI->Enable(FALSE);
@@ -4356,8 +4350,6 @@ void CMergeEditView::DocumentsLoaded()
 	// Set tab type (tabs/spaces)
 	bool bInsertTabs = (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0);
 	SetInsertTabs(bInsertTabs);
-
-	// Note: TreeSitter initialization is now handled by CMergeDoc::OpenDocs
 
 	// Sometimes WinMerge doesn't update scrollbars correctly (they remain
 	// disabled) after docs are open in screen. So lets make sure they are

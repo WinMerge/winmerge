@@ -21,8 +21,7 @@
 #include "FileTextEncoding.h"
 #include "codepage_detect.h"
 #include "TFile.h"
-#include "TreeSitterParser.h"
-#include "ISyntaxParser.h"
+#include "TextDefinition.h"
 #include <Poco/Exception.h>
 
 using Poco::Exception;

@@ -32,15 +32,14 @@
 #include "unicoder.h"
 #include "TFile.h"
 #include "Exceptions.h"
-#include "TextDefinition.h"
 #include "SyntaxColors.h"
 #include "Logger.h"
 #include "MergeApp.h"
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
 #include "cio.h"
+#include "SyntaxParserRegistry.h"
 #include "SyntaxParserHelper.h"
-#include "ITextBuffer.h"
 
 using Poco::Exception;
 
@@ -58,7 +57,8 @@ constexpr char* FILTERED_LINE = "!" "c0d5089f" "-" "3d91" "-" "4d69" "-" "b406" 
  * Initializes members.
  */
 CDiffWrapper::CDiffWrapper()
-: m_bCreatePatchFile(false)
+: m_pFilterCommentsDef(nullptr)
+, m_bCreatePatchFile(false)
 , m_bUseDiffList(false)
 , m_bAddCmdLine(true)
 , m_bAppendFiles(false)
@@ -75,10 +75,6 @@ CDiffWrapper::CDiffWrapper()
 {
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
-
-	// Initialize new parser members
-	for (int i = 0; i < 3; i++)
-		m_pSyntaxParser[i] = nullptr;
 }
 
 /**
@@ -300,7 +296,7 @@ static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_da
 	{
 	public:
 		DiffTextBuffer(const file_data& fileData)
-			: m_fileData(fileData), m_cacheLineIndex(-1), m_lineCount(fileData.valid_lines) {}
+			: m_fileData(fileData), m_lineCache(fileData.valid_lines), m_lineCount(fileData.valid_lines) {}
 		int GetLineCount() const override
 		{
 			return m_lineCount;
@@ -309,24 +305,23 @@ static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_da
 		{
 			if (nLineIndex < 0 || nLineIndex >= m_lineCount)
 				return nullptr;
-			if (m_cacheLineIndex == nLineIndex)
-				return m_lineCache.c_str();
-			m_lineCache = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
-			return m_lineCache.c_str();
+			if (!m_lineCache[nLineIndex].empty())
+				return m_lineCache[nLineIndex].c_str();
+			m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
+			return m_lineCache[nLineIndex].c_str();
 		}
 		int GetLineLength(int nLineIndex) const override
 		{
 			if (nLineIndex < 0 || nLineIndex >= m_lineCount)
 				return 0;
-			if (m_cacheLineIndex == nLineIndex)
-				return static_cast<int>(m_lineCache.length());
-			m_lineCache = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
-			return static_cast<int>(m_lineCache.length());
+			if (!m_lineCache[nLineIndex].empty())
+				return static_cast<int>(m_lineCache[nLineIndex].length());
+			m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
+			return static_cast<int>(m_lineCache[nLineIndex].length());
 		}
 	private:
 		const file_data& m_fileData;
-		mutable String m_lineCache;
-		mutable int m_cacheLineIndex;
+		mutable std::vector<String> m_lineCache;
 		int m_lineCount;
 	};
 	return std::unique_ptr<LangServices::ITextBuffer>(new DiffTextBuffer(fileData));
@@ -337,7 +332,7 @@ static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_da
  * @param [in, out]  thisob	Current change
  * @return Number of trivial diffs inserted
  */
-int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary)
+int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary) const
 {
 	const int first0 = thisob->line0;
 	const int first1 = thisob->line1;
@@ -354,30 +349,31 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	std::string lineDataLeft, lineDataRight;
 	std::vector<bool> allTextIsCommentLeft(qtyLinesLeft), allTextIsCommentRight(qtyLinesRight);
 
-	if (m_options.m_filterCommentsLines &&
-		(m_pSyntaxParser[0] != nullptr && m_pSyntaxParser[1] != nullptr))
+	if (m_options.m_filterCommentsLines)
 	{
-		if (ctxt.m_pTextBuffer[0] == nullptr)
+		if (ctxt.m_pSyntaxParser[0] == nullptr)
 		{
+			ctxt.m_pSyntaxParser[0] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(m_pFilterCommentsDef->type);
 			ctxt.m_pTextBuffer[0] = CreateTextBuffer(file_data_ary[0]);
-			m_pSyntaxParser[0]->SetTextBuffer(ctxt.m_pTextBuffer[0].get());
+			ctxt.m_pSyntaxParser[0]->SetTextBuffer(ctxt.m_pTextBuffer[0].get());
 		}
-		if (ctxt.m_pTextBuffer[1] == nullptr)
+		if (ctxt.m_pSyntaxParser[1] == nullptr)
 		{
+			ctxt.m_pSyntaxParser[1] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(m_pFilterCommentsDef->type);
 			ctxt.m_pTextBuffer[1] = CreateTextBuffer(file_data_ary[1]);
-			m_pSyntaxParser[1]->SetTextBuffer(ctxt.m_pTextBuffer[1].get());
+			ctxt.m_pSyntaxParser[1]->SetTextBuffer(ctxt.m_pTextBuffer[1].get());
 		}
 		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
 		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
 
 		// Use SyntaxParserHelper for unified comment filtering
 		lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
-			m_pSyntaxParser[0].get(), ctxt.m_pTextBuffer[0].get(),
+			ctxt.m_pSyntaxParser[0].get(), ctxt.m_pTextBuffer[0].get(),
 			lineNumberLeft, ctxt.nParsedLineEndLeft,
 			allTextIsCommentLeft);
 
 		lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
-			m_pSyntaxParser[1].get(), ctxt.m_pTextBuffer[1].get(),
+			ctxt.m_pSyntaxParser[1].get(), ctxt.m_pTextBuffer[1].get(),
 			lineNumberRight, ctxt.nParsedLineEndRight,
 			allTextIsCommentRight);
 	}
@@ -1856,9 +1852,9 @@ void CDiffWrapper::SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubsti
 	m_pSubstitutionList = std::move(pSubstitutionList);
 }
 
-void CDiffWrapper::SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser, int index)
+void CDiffWrapper::SetFilterCommentsSourceDef(const String& ext)
 {
-	m_pSyntaxParser[index] = std::move(pParser);
+	m_pFilterCommentsDef = LangServices::GetTextType(ext.c_str());
 }
 
 /**
