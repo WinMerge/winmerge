@@ -69,53 +69,42 @@ static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nS
 
 bool CMergeDoc::IsTreeSitterEnabled() const
 {
-	return GetOptionsMgr()->GetBool(OPT_TREE_SITTER);
+	return GetOptionsMgr()->GetInt(OPT_TREE_SITTER_MODE);
 }
 
 void CMergeDoc::UpdateSyntaxParsers()
 {
 	// Reset syntax parsers for DiffWrapper
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-	{
 		m_diffWrapper.SetSyntaxParser(nullptr, nBuffer);
-		m_diffWrapper.SetTextBuffer(nullptr, nBuffer);
-	}
 
 	// Clean up old parser state
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-	{
 		m_pSyntaxParsers[nBuffer].reset();
-		m_pTreeSitterTextDefs[nBuffer].reset();
-		m_pTreeSitterParsers[nBuffer].reset();
-	}
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
 
 		LangServices::TextDefinition* def = LangServices::GetTextType(sExt.c_str());
+		if (!def)
+			continue;
 
-		m_pSyntaxParsers[nBuffer] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
-		if (m_pSyntaxParsers[nBuffer])
+		// Set syntax parser on view
+		if (m_pView[0][nBuffer] != nullptr)
 		{
-			m_pSyntaxParsers[nBuffer]->SetTextBuffer(m_ptBuf[nBuffer].get());
-
-			// Set syntax parser on view
-			if (m_pView[0][nBuffer] != nullptr)
+			auto viewParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
+			if (viewParser)
 			{
-				auto viewParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
-				if (viewParser)
-				{
-					viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
-					// Call base class method directly to avoid ambiguity with legacy SetSyntaxParser
-					static_cast<CCrystalTextView*>(m_pView[0][nBuffer])->SetSyntaxParser(std::move(viewParser));
-				}
+				viewParser->SetTextBuffer(m_ptBuf[nBuffer].get());
+				// Call base class method directly to avoid ambiguity with legacy SetSyntaxParser
+				static_cast<CCrystalTextView*>(m_pView[0][nBuffer])->SetSyntaxParser(std::move(viewParser));
 			}
-
-			// Configure DiffWrapper to use unified parser interface
-			m_diffWrapper.SetSyntaxParser(m_pSyntaxParsers[nBuffer].get(), nBuffer);
-			m_diffWrapper.SetTextBuffer(m_ptBuf[nBuffer].get(), nBuffer);
 		}
+
+		// Configure DiffWrapper to use unified parser interface
+		auto diffWrapperParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
+		m_diffWrapper.SetSyntaxParser(std::move(diffWrapperParser), nBuffer);
 	}
 }
 
@@ -628,6 +617,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			m_bEditAfterRescan[nBuffer] = false;
+			if (m_pSyntaxParsers[nBuffer])
+				m_pSyntaxParsers[nBuffer]->Invalidate();
 		}
 	}
 
@@ -636,16 +627,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		std::any_of(m_ptBuf, m_ptBuf + m_nBuffers,
 			[&](std::unique_ptr<CDiffTextBuffer>& buf) { return buf->getEncoding() != m_ptBuf[0]->getEncoding(); }))
 		identical = IDENTLEVEL::NONE;
-
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		// Parse the document
-		if (m_pTreeSitterParsers[nBuffer])
-		{
-			m_pTreeSitterParsers[nBuffer]->Invalidate();
-			m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
-		}
-	}
 
 	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
@@ -2612,17 +2593,6 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		}
 
 		UpdateSyntaxParsers();
-
-		// Set TreeSitter LangServices::TextDefinition as syntax highlighting for each view
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		{
-			if (m_pTreeSitterTextDefs[nBuffer])
-			{
-				ForEachView(nBuffer, [&](auto& pView) {
-					pView->SetTextType(m_pTreeSitterTextDefs[nBuffer].get());
-				});
-			}
-		}
 
 		CMergeFrameCommon::LogComparisonCompleted(*this);
 

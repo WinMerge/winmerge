@@ -308,20 +308,6 @@ void CMergeStatusBar::MergeStatus::UpdateResources()
 	Update();
 }
 
-/**
- * @brief Set the syntax parser indicator text.
- * @param szParser  Language name (e.g. "fsharp"), or empty/null to clear.
- */
-void CMergeStatusBar::MergeStatus::SetSyntaxParser(const tchar_t* szParser)
-{
-	String sParser = szParser ? szParser : _T("");
-	if (m_sSyntaxParser != sParser)
-	{
-		m_sSyntaxParser = sParser;
-		Update();
-	}
-}
-
 /// Visible representation of eol
 static String EolString(const String & sEol)
 {

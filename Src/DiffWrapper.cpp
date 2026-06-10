@@ -40,6 +40,7 @@
 #include "codepage_detect.h"
 #include "cio.h"
 #include "SyntaxParserHelper.h"
+#include "ITextBuffer.h"
 
 using Poco::Exception;
 
@@ -77,10 +78,7 @@ CDiffWrapper::CDiffWrapper()
 
 	// Initialize new parser members
 	for (int i = 0; i < 3; i++)
-	{
 		m_pSyntaxParser[i] = nullptr;
-		m_pTextBuffer[i] = nullptr;
-	}
 }
 
 /**
@@ -296,12 +294,50 @@ static std::string GetEOL(const std::string& str)
 	return "";
 }
 
+static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_data& fileData)
+{
+	class DiffTextBuffer : public LangServices::ITextBuffer
+	{
+	public:
+		DiffTextBuffer(const file_data& fileData)
+			: m_fileData(fileData), m_cacheLineIndex(-1), m_lineCount(fileData.valid_lines) {}
+		int GetLineCount() const override
+		{
+			return m_lineCount;
+		}
+		const tchar_t* GetLineChars(int nLineIndex) const override
+		{
+			if (nLineIndex < 0 || nLineIndex >= m_lineCount)
+				return nullptr;
+			if (m_cacheLineIndex == nLineIndex)
+				return m_lineCache.c_str();
+			m_lineCache = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
+			return m_lineCache.c_str();
+		}
+		int GetLineLength(int nLineIndex) const override
+		{
+			if (nLineIndex < 0 || nLineIndex >= m_lineCount)
+				return 0;
+			if (m_cacheLineIndex == nLineIndex)
+				return static_cast<int>(m_lineCache.length());
+			m_lineCache = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
+			return static_cast<int>(m_lineCache.length());
+		}
+	private:
+		const file_data& m_fileData;
+		mutable String m_lineCache;
+		mutable int m_cacheLineIndex;
+		int m_lineCount;
+	};
+	return std::unique_ptr<LangServices::ITextBuffer>(new DiffTextBuffer(fileData));
+}
+
 /**
  * @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
  * @param [in, out]  thisob	Current change
  * @return Number of trivial diffs inserted
  */
-int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary) const
+int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary)
 {
 	const int first0 = thisob->line0;
 	const int first1 = thisob->line1;
@@ -319,20 +355,29 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	std::vector<bool> allTextIsCommentLeft(qtyLinesLeft), allTextIsCommentRight(qtyLinesRight);
 
 	if (m_options.m_filterCommentsLines &&
-		(m_pSyntaxParser[0] != nullptr && m_pTextBuffer[0] != nullptr &&
-		 m_pSyntaxParser[1] != nullptr && m_pTextBuffer[1] != nullptr))
+		(m_pSyntaxParser[0] != nullptr && m_pSyntaxParser[1] != nullptr))
 	{
+		if (ctxt.m_pTextBuffer[0] == nullptr)
+		{
+			ctxt.m_pTextBuffer[0] = CreateTextBuffer(file_data_ary[0]);
+			m_pSyntaxParser[0]->SetTextBuffer(ctxt.m_pTextBuffer[0].get());
+		}
+		if (ctxt.m_pTextBuffer[1] == nullptr)
+		{
+			ctxt.m_pTextBuffer[1] = CreateTextBuffer(file_data_ary[1]);
+			m_pSyntaxParser[1]->SetTextBuffer(ctxt.m_pTextBuffer[1].get());
+		}
 		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
 		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
 
 		// Use SyntaxParserHelper for unified comment filtering
 		lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
-			m_pSyntaxParser[0], m_pTextBuffer[0],
+			m_pSyntaxParser[0].get(), ctxt.m_pTextBuffer[0].get(),
 			lineNumberLeft, ctxt.nParsedLineEndLeft,
 			allTextIsCommentLeft);
 
 		lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
-			m_pSyntaxParser[1], m_pTextBuffer[1],
+			m_pSyntaxParser[1].get(), ctxt.m_pTextBuffer[1].get(),
 			lineNumberRight, ctxt.nParsedLineEndRight,
 			allTextIsCommentRight);
 	}
@@ -1809,6 +1854,11 @@ const SubstitutionList* CDiffWrapper::GetSubstitutionList() const
 void CDiffWrapper::SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionList)
 {
 	m_pSubstitutionList = std::move(pSubstitutionList);
+}
+
+void CDiffWrapper::SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser, int index)
+{
+	m_pSyntaxParser[index] = std::move(pParser);
 }
 
 /**

@@ -291,7 +291,7 @@ DoSetTextType (LangServices::TextDefinition *def)
   if (!m_pSyntaxParser && def->type != LangServices::LanguageId::SRC_PLAIN)
     {
       m_pSyntaxParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
-      if (m_pTextBuffer)
+      if (m_pSyntaxParser && m_pTextBuffer)
         m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
     }
 

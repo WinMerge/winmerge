@@ -35,6 +35,8 @@ public:
 
 	virtual ~ISyntaxParser() = default;
 
+	virtual void Invalidate() = 0;
+
 	/**
 	 * @brief Set the text buffer that this parser will operate on.
 	 * @param pTextBuffer Pointer to the text buffer interface.

@@ -24,6 +24,7 @@
 #include "TextDefinition.h"
 #include "ITextBuffer.h"
 #include "ISyntaxParser.h"
+#include "ISyntaxParserFactory.h"
 
 #include <string>
 #include <vector>
@@ -399,15 +400,6 @@ public:
     void Initialize(const std::wstring& sGrammarDir = L"");
 
     /**
-     * @brief Find a loaded language for a file extension.
-     * @param sExt  File extension without dot (e.g. "fs", "py", "cpp").
-     * @return Pointer to the language, or nullptr if not available.
-     *
-     * Loads the grammar DLL lazily on first request for each language.
-     */
-    const CTreeSitterLanguage* GetLanguageForExt(const std::wstring& sExt);
-
-    /**
      * @brief Find a loaded language by language name.
      * @param sLangName  Language name (e.g. "javascript", "css", "python").
      * @return Pointer to the language, or nullptr if not available.
@@ -418,12 +410,6 @@ public:
     const CTreeSitterLanguage* GetLanguageForName(const std::wstring& sLangName);
 
     /**
-     * @brief Register a file extension mapping to a language name.
-     * @param sExt       Extension (e.g. "fs").
-     * @param sLanguage  Language name (e.g. "fsharp").
-     */
-    void RegisterExtension(const std::wstring& sExt, const std::wstring& sLanguage);
-
     /** @brief Check if the registry has been initialized. */
     bool IsInitialized() const { return m_bInitialized; }
 
@@ -441,7 +427,62 @@ private:
 
     // language names that failed to load (don't retry)
     std::unordered_set<std::wstring> m_failedLanguages;
+};
 
-    // file extension -> language name
-    std::unordered_map<std::wstring, std::wstring> m_extMap;
+/**
+ * @brief Adapter that wraps CTreeSitterParser to implement ISyntaxParser.
+ *
+ * This class bridges the whole-document Tree-sitter parser to the line-based
+ * ISyntaxParser interface, managing incremental updates and lazy reparsing.
+ */
+class TreeSitterSyntaxParser : public LangServices::ISyntaxParser
+{
+public:
+	/**
+	 * @brief Construct a Tree-sitter parser adapter.
+	 * @param pLanguage Pointer to a loaded CTreeSitterLanguage.
+	 */
+	explicit TreeSitterSyntaxParser(LangServices::LanguageId textType);
+	virtual ~TreeSitterSyntaxParser() = default;
+
+	// ISyntaxParser interface implementation
+    void Invalidate() override;
+	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
+	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
+	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
+	LangServices::LanguageId GetParserType() const override;
+	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
+
+	/**
+	 * @brief Get the underlying Tree-sitter parser for advanced operations.
+	 * @return Pointer to the CTreeSitterParser instance.
+	 */
+	CTreeSitterParser* GetTreeSitterParser() { return &m_parser; }
+	const CTreeSitterParser* GetTreeSitterParser() const { return &m_parser; }
+
+private:
+	LangServices::ITextBuffer* m_pTextBuffer;           ///< Text buffer interface
+	CTreeSitterParser m_parser;           ///< Underlying Tree-sitter parser
+	const CTreeSitterLanguage* m_pLanguage; ///< Language definition
+};
+
+class TreeSitterSyntaxParserFactory : public LangServices::ISyntaxParserFactory
+{
+public:
+    static TreeSitterSyntaxParserFactory& GetInstance()
+    {
+        static TreeSitterSyntaxParserFactory instance;
+        return instance;
+    }
+
+    TreeSitterSyntaxParserFactory() {};
+    virtual ~TreeSitterSyntaxParserFactory() = default;
+
+    virtual bool IsSupported(LangServices::LanguageId type) const override;
+    virtual std::unique_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
+    {
+        if (!IsSupported(type))
+            return nullptr;
+        return std::make_unique<TreeSitterSyntaxParser>(type);
+    }
 };

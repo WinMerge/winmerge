@@ -17,6 +17,8 @@
 #include "DiffList.h"
 #include "UnicodeString.h"
 #include "FileTransform.h"
+#include "ITextBuffer.h"
+#include "ISyntaxParser.h"
 
 class CDiffContext;
 class PrediffingInfo;
@@ -151,6 +153,7 @@ struct PostFilterContext
 {
 	int nParsedLineEndLeft = -1;
 	int nParsedLineEndRight = -1;
+	std::unique_ptr<LangServices::ITextBuffer> m_pTextBuffer[3]; /**< Text buffer for parser access */
 };
 
 /**
@@ -193,11 +196,10 @@ public:
 	void SetFilterList(std::shared_ptr<FilterList> pFilterList);
 	const SubstitutionList* GetSubstitutionList() const;
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
-	void SetSyntaxParser(LangServices::ISyntaxParser* pParser, int index) { m_pSyntaxParser[index] = pParser; }
-	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer, int index) { m_pTextBuffer[index] = pTextBuffer; }
+	void SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser, int index);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
-	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
+	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary);
 	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file) const;
 
@@ -238,8 +240,7 @@ private:
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	LangServices::ISyntaxParser* m_pSyntaxParser[3]; /**< New unified parser interface (nullptr = use legacy) */
-	LangServices::ITextBuffer* m_pTextBuffer[3]; /**< Text buffer for parser access (nullptr = use legacy) */
+	std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParser[3]; /**< New unified parser interface */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	int m_codepage; /**< Codepage used in line filter */
 };

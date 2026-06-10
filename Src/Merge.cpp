@@ -73,6 +73,9 @@
 #include "ColorSchemes.h"
 #include "CrashLogger.h"
 #include "FileSaveHelper.h"
+#include "CrystalLineSyntaxParser.h"
+#include "TreeSitterParser.h"
+#include "SyntaxParserRegistry.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -412,6 +415,8 @@ BOOL CMergeApp::InitInstance()
 
 	CCrystalTextView::SetRenderingModeDefault(static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE)));
 
+	InitSyntaxParserFactories();
+
 	if (m_pLineFilters != nullptr)
 		m_pLineFilters->Initialize(GetOptionsMgr());
 
@@ -492,6 +497,30 @@ BOOL CMergeApp::InitInstance()
 #endif
 
 	return bContinue;
+}
+
+void CMergeApp::InitSyntaxParserFactories()
+{
+	std::vector<LangServices::ISyntaxParserFactory*> factories = { &CrystalLineSyntaxParserFactory::GetInstance(), &TreeSitterSyntaxParserFactory::GetInstance() };
+	for (auto& factory : factories)
+		LangServices::SyntaxParserRegistry::GetInstance().UnregisterFactory(factory);
+	std::vector<LangServices::ISyntaxParserFactory*> factoriesNew;
+	switch (GetOptionsMgr()->GetInt(OPT_TREE_SITTER_MODE))
+	{
+	case 0: // Disable Tree Sitter
+		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
+		break;
+	case 1: // Prefer Tree Sitter
+		factoriesNew.push_back(&TreeSitterSyntaxParserFactory::GetInstance());
+		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
+		break;
+	case 2: // Prefer Build-in
+		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
+		factoriesNew.push_back(&TreeSitterSyntaxParserFactory::GetInstance());
+		break;
+	}
+	for (auto& factory: factoriesNew)
+		LangServices::SyntaxParserRegistry::GetInstance().RegisterFactory(factory);
 }
 
 void CMergeApp::OutputConsole(const String& message)

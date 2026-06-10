@@ -3295,10 +3295,11 @@ void CMergeEditView::OnWMGoto()
 void CMergeEditView::GotoTreeSitterDefinition()
 {
 	CMergeDoc* pDoc = GetDocument();
-	if (!pDoc->IsTreeSitterEnabled())
+	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(pDoc->GetSyntaxParser(m_nThisPane));
+	if (!pSyntaxParser)
 		return;
 
-	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
+	CTreeSitterParser* pParser = pSyntaxParser->GetTreeSitterParser();
 	if (!pParser || !pParser->HasLanguage())
 		return;
 
@@ -3319,8 +3320,15 @@ void CMergeEditView::OnGotoDefinition()
 void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
-	if (!pDoc->IsTreeSitterEnabled() || !pParser || !pParser->HasLanguage())
+	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(pDoc->GetSyntaxParser(m_nThisPane));
+	if (!pSyntaxParser)
+	{
+		pCmdUI->Enable(FALSE);
+		return;
+	}
+
+	CTreeSitterParser* pParser = pSyntaxParser->GetTreeSitterParser();
+	if (!pParser || !pParser->HasLanguage())
 	{
 		pCmdUI->Enable(FALSE);
 		return;
@@ -3498,8 +3506,6 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(LangServices::LanguageId::SRC_PLAIN);
-	else if (!GetDocument()->GetChangedSchemeManually() && GetDocument()->IsTreeSitterEnabled() && GetDocument()->GetTreeSitterTextDefinition(m_nThisPane) != nullptr)
-		SetTextType(GetDocument()->GetTreeSitterTextDefinition(m_nThisPane));
 	else if (!GetDocument()->GetChangedSchemeManually())
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.

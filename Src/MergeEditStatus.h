@@ -14,5 +14,4 @@ class IMergeEditStatus
 public:
 	virtual void SetLineInfo(const tchar_t* szLine, int nChar, int nChars, int nColumn,
 		int nColumns, int nSelectedLines, int nSelectedChars, const tchar_t* szEol, int nCodepage, bool bHasBom) = 0;
-	virtual void SetSyntaxParser(const tchar_t* szParser) = 0;
 };

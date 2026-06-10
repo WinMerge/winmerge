@@ -1357,6 +1357,8 @@ void CMainFrame::OnOptions()
 			UpdateResources();
 		}
 
+		CMergeApp::InitSyntaxParserFactories();
+
 		// Set new temporary path
 		theApp.SetupTempPath();
 

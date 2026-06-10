@@ -48,7 +48,6 @@ protected:
 		// Implement MergeEditStatus
 		void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
 			int nChar, int nChars, int nSelectedLines, int nSelectedChars, const tchar_t* szEol, int nCodepage, bool bHasBom) override;
-		void SetSyntaxParser(const tchar_t* szParser) override;
 		void UpdateResources();
 	protected:
 		void Update();

@@ -24,6 +24,7 @@ public:
 	virtual ~CrystalLineSyntaxParser() = default;
 
 	// ISyntaxParser interface implementation
+	void Invalidate() override { InvalidateFromLine(0); }
 	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
 	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;

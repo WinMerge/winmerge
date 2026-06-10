@@ -201,8 +201,7 @@ public:
 	void GetPrediffer(PrediffingInfo* infoPrediffer) const;
 	const PrediffingInfo* GetPrediffer() const override;
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
-	CTreeSitterParser* GetTreeSitterParser(int nBuffer) { return m_pTreeSitterParsers[nBuffer].get(); }
-	LangServices::TextDefinition* GetTreeSitterTextDefinition(int nBuffer) { return m_pTreeSitterTextDefs[nBuffer].get(); }
+	LangServices::ISyntaxParser* GetSyntaxParser(int nBuffer) { return m_pSyntaxParsers[nBuffer].get(); }
 	bool IsTreeSitterEnabled() const;
 	void UpdateSyntaxParsers();
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
@@ -412,8 +411,6 @@ protected:
 	std::optional<bool> m_bEnableTableEditing;
 	std::unique_ptr<TableProps> m_pTablePropsPrepared;
 	std::unique_ptr<CLineFilterHelperMenu> m_pFilterMenu;
-	std::unique_ptr<CTreeSitterParser> m_pTreeSitterParsers[3]; /**< TreeSitter parsers for each pane */
-	std::unique_ptr<LangServices::TextDefinition> m_pTreeSitterTextDefs[3]; /**< TreeSitter LangServices::TextDefinitions for each pane */
 	std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParsers[3]; /**< Unified syntax parsers for each pane */
 	/**
 	 * Are automatic rescans enabled?

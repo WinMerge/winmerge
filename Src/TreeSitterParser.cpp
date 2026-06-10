@@ -13,6 +13,7 @@
 #include "TreeSitterParser.h"
 #include "ISyntaxParser.h"
 #include "ITextBuffer.h"
+#include "TextDefinition.h"
 #include "utils/ctchar.h"
 
 #include <tree_sitter/api.h>
@@ -1539,62 +1540,32 @@ std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineI
 
 // Default extension -> language mappings.
 // Users can extend this via configuration.
-static const struct
+static struct
 {
-    const wchar_t* ext;
+    LangServices::LanguageId id;
     const wchar_t* language;
-} s_defaultExtMap[] =
+    bool available;
+} s_map[] =
 {
-    // F# (primary target)
-    { L"fs",    L"fsharp" },
-    { L"fsx",   L"fsharp" },
-    { L"fsi",   L"fsharp_signature" },
-
-    // Common languages
-    { L"c",     L"c" },
-    { L"h",     L"c" },
-    { L"cpp",   L"cpp" },
-    { L"cxx",   L"cpp" },
-    { L"cc",    L"cpp" },
-    { L"hpp",   L"cpp" },
-    { L"hxx",   L"cpp" },
-    { L"cs",    L"c-sharp" },
-    { L"py",    L"python" },
-    { L"js",    L"javascript" },
-    { L"ts",    L"typescript" },
-    { L"tsx",   L"tsx" },
-    { L"jsx",   L"javascript" },
-    { L"java",  L"java" },
-    { L"go",    L"go" },
-    { L"rs",    L"rust" },
-    { L"rb",    L"ruby" },
-    { L"lua",   L"lua" },
-    { L"sh",    L"bash" },
-    { L"bash",  L"bash" },
-    { L"json",  L"json" },
-    { L"yaml",  L"yaml" },
-    { L"yml",   L"yaml" },
-    { L"xml",   L"xml" },
-    { L"html",  L"html" },
-    { L"htm",   L"html" },
-    { L"css",   L"css" },
-    { L"sql",   L"sql" },
-    { L"ps1",   L"powershell" },
-    { L"psm1",  L"powershell" },
-    { L"php",   L"php" },
-    { L"pl",    L"perl" },
-    { L"swift", L"swift" },
-    { L"kt",    L"kotlin" },
-    { L"scala", L"scala" },
-    { L"hs",    L"haskell" },
-    { L"ml",    L"ocaml" },
-    { L"mli",   L"ocaml" },
-    { L"ex",    L"elixir" },
-    { L"exs",   L"elixir" },
-    { L"zig",   L"zig" },
-    { L"nim",   L"nim" },
-    { L"toml",  L"toml" },
-    { L"md",    L"markdown" },
+    { LangServices::LanguageId::SRC_C, L"cpp" },
+    { LangServices::LanguageId::SRC_CSHARP, L"c-sharp" },
+    { LangServices::LanguageId::SRC_CSS, L"css" },
+    { LangServices::LanguageId::SRC_FSHARP, L"fsharp" },
+    { LangServices::LanguageId::SRC_GO, L"go" },
+    { LangServices::LanguageId::SRC_HTML, L"html" },
+    { LangServices::LanguageId::SRC_JAVA, L"java" },
+    { LangServices::LanguageId::SRC_JAVASCRIPT, L"javascript" },
+    { LangServices::LanguageId::SRC_JSON, L"json" },
+    { LangServices::LanguageId::SRC_LUA, L"lua" },
+    { LangServices::LanguageId::SRC_PERL, L"perl" },
+    { LangServices::LanguageId::SRC_PHP, L"php" },
+    { LangServices::LanguageId::SRC_POWERSHELL, L"powershell" },
+    { LangServices::LanguageId::SRC_PYTHON, L"python" },
+    { LangServices::LanguageId::SRC_RUBY, L"ruby" },
+    { LangServices::LanguageId::SRC_RUST, L"rust" },
+    { LangServices::LanguageId::SRC_SH, L"bash" },
+    { LangServices::LanguageId::SRC_SQL, L"sql" },
+    { LangServices::LanguageId::SRC_XML, L"xml" },
 };
 
 TreeSitterRegistry& TreeSitterRegistry::Instance()
@@ -1623,12 +1594,6 @@ void TreeSitterRegistry::Initialize(const std::wstring& sGrammarDir)
     else
     {
         m_sGrammarDir = sGrammarDir;
-    }
-
-    // Register default extension mappings
-    for (const auto& mapping : s_defaultExtMap)
-    {
-        m_extMap[mapping.ext] = mapping.language;
     }
 
     // Check if the grammar directory exists
@@ -1669,54 +1634,6 @@ void TreeSitterRegistry::Initialize(const std::wstring& sGrammarDir)
     m_bInitialized = true;
 }
 
-const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForExt(const std::wstring& sExt)
-{
-    // Look up extension -> language name
-    auto itExt = m_extMap.find(sExt);
-    if (itExt == m_extMap.end())
-        return nullptr;
-
-    const std::wstring& sLangName = itExt->second;
-
-    // Check if already loaded
-    auto itLang = m_languages.find(sLangName);
-    if (itLang != m_languages.end())
-    {
-        // Already loaded - return if it has a valid highlight query
-        if (!itLang->second->GetHighlightQuery())
-            return nullptr;
-        return itLang->second.get();
-    }
-
-    // Check if this language previously failed to load
-    if (m_failedLanguages.count(sLangName) > 0)
-        return nullptr;
-
-    // Check if a DLL is available for this language
-    if (m_availableLanguages.count(sLangName) == 0)
-        return nullptr;
-
-    // Lazy load: load the grammar DLL now
-    auto pLang = std::make_unique<CTreeSitterLanguage>();
-    if (!pLang->Load(m_sGrammarDir, sLangName))
-    {
-        // Record failure so we don't retry
-        m_failedLanguages.insert(sLangName);
-        return nullptr;
-    }
-
-    // Check if the loaded grammar has a highlight query
-    if (!pLang->GetHighlightQuery())
-    {
-        m_failedLanguages.insert(sLangName);
-        return nullptr;
-    }
-
-    const CTreeSitterLanguage* pResult = pLang.get();
-    m_languages[sLangName] = std::move(pLang);
-    return pResult;
-}
-
 const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wstring& sLangName)
 {
     // Check if already loaded
@@ -1753,11 +1670,6 @@ const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wst
     const CTreeSitterLanguage* pResult = pLang.get();
     m_languages[sLangName] = std::move(pLang);
     return pResult;
-}
-
-void TreeSitterRegistry::RegisterExtension(const std::wstring& sExt, const std::wstring& sLanguage)
-{
-    m_extMap[sExt] = sLanguage;
 }
 
 // ============================================================================
@@ -2207,4 +2119,124 @@ bool CTreeSitterParser::FindDefinition(LangServices::ITextBuffer* pBuffer, int n
     }
 
     return ByteOffsetToLineChar(defStartByte, nDefLine, nDefChar);
+}
+
+static const wchar_t* GetLanguageNameForId(LangServices::LanguageId id)
+{
+	for (const auto& mapping : s_map)
+	{
+		if (mapping.id == id)
+			return mapping.language;
+	}
+	return nullptr;
+}
+
+/**
+ * @brief Construct a Tree-sitter parser adapter.
+ */
+TreeSitterSyntaxParser::TreeSitterSyntaxParser(LangServices::LanguageId textType)
+	: m_pTextBuffer(nullptr)
+{
+	auto& registry = TreeSitterRegistry::Instance();
+	if (!registry.IsInitialized())
+		registry.Initialize();
+	auto* name = GetLanguageNameForId(textType);
+	auto* pLanguage = registry.GetLanguageForName(name);
+	m_parser.SetLanguage(pLanguage);
+	m_pLanguage = pLanguage;
+}
+
+void TreeSitterSyntaxParser::Invalidate()
+{
+    m_parser.Invalidate();
+	m_parser.ParseFromBuffer(m_pTextBuffer);
+}
+
+/**
+ * @brief Set the text buffer that this parser will operate on.
+ */
+void TreeSitterSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
+{
+	m_pTextBuffer = pTextBuffer;
+
+	// Parse the entire document when buffer is set
+	if (m_pTextBuffer != nullptr)
+	{
+		m_parser.ParseFromBuffer(m_pTextBuffer);
+	}
+	else
+	{
+		m_parser.Invalidate();
+	}
+}
+
+/**
+ * @brief Parse a single line and return syntax highlighting information.
+ */
+std::vector<LangServices::TEXTBLOCK> TreeSitterSyntaxParser::ParseLine(int nLineIndex)
+{
+	if (m_pTextBuffer == nullptr)
+		return {};
+
+	// Ensure the document is parsed (handles lazy reparsing if dirty)
+	m_parser.EnsureParsed(m_pTextBuffer);
+
+	// Get the cached color blocks for this line
+	return m_parser.GetLineBlocks(nLineIndex);
+}
+
+/**
+ * @brief Notify the parser of a detailed text edit for incremental parsing.
+ * This enables efficient incremental reparsing using tree-sitter's built-in
+ * incremental parsing feature.
+ */
+void TreeSitterSyntaxParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
+{
+	if (m_pTextBuffer == nullptr)
+	{
+		return;
+	}
+
+	// Delegate to the underlying Tree-sitter parser for incremental reparsing
+	m_parser.NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
+}
+
+/**
+ * @brief Get the parser type for this syntax parser.
+ */
+LangServices::LanguageId TreeSitterSyntaxParser::GetParserType() const
+{
+	// Tree-sitter parsers don't map directly to the legacy LanguageId enum
+	// Return Plain as a placeholder; callers should check if parser is Tree-sitter-based
+	return LangServices::LanguageId::SRC_PLAIN;
+}
+
+/**
+ * @brief Find the matching brace/bracket/parenthesis for the given position.
+ */
+bool TreeSitterSyntaxParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+{
+	if (m_pTextBuffer == nullptr)
+	{
+		return false;
+	}
+
+	// Ensure parsed
+	const_cast<CTreeSitterParser&>(m_parser).EnsureParsed(m_pTextBuffer);
+
+	// Delegate to the underlying Tree-sitter parser
+	return m_parser.FindMatchingBrace(m_pTextBuffer, nLineIndex, nCharPos, outLineIndex, outCharPos);
+}
+
+bool TreeSitterSyntaxParserFactory::IsSupported(LangServices::LanguageId type) const
+{
+    const auto* name = GetLanguageNameForId(type);
+    if (!name)
+        return false;
+	auto& registry = TreeSitterRegistry::Instance();
+	if (!registry.IsInitialized())
+		registry.Initialize();
+	if (registry.GetLanguageForName(name))
+		return true;
+	return false;
 }
