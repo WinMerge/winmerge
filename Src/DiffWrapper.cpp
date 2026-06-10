@@ -290,6 +290,21 @@ static std::string GetEOL(const std::string& str)
 	return "";
 }
 
+static bool iseolch(tchar_t ch)
+{
+	return ch == '\n' || ch == '\r';
+}
+
+static size_t linelen(const tchar_t* string, size_t maxlen)
+{
+	const tchar_t* q = string + maxlen;
+	do
+	{
+		maxlen = q - string;
+	} while (maxlen && iseolch(*--q));
+	return maxlen;
+}
+
 static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_data& fileData)
 {
 	class DiffTextBuffer : public LangServices::ITextBuffer
@@ -305,19 +320,17 @@ static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_da
 		{
 			if (nLineIndex < 0 || nLineIndex >= m_lineCount)
 				return nullptr;
-			if (!m_lineCache[nLineIndex].empty())
-				return m_lineCache[nLineIndex].c_str();
-			m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
+			if (m_lineCache[nLineIndex].empty())
+				m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
 			return m_lineCache[nLineIndex].c_str();
 		}
 		int GetLineLength(int nLineIndex) const override
 		{
 			if (nLineIndex < 0 || nLineIndex >= m_lineCount)
 				return 0;
-			if (!m_lineCache[nLineIndex].empty())
-				return static_cast<int>(m_lineCache[nLineIndex].length());
-			m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
-			return static_cast<int>(m_lineCache[nLineIndex].length());
+			if (m_lineCache[nLineIndex].empty())
+				m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
+			return static_cast<int>(linelen(m_lineCache[nLineIndex].c_str(), m_lineCache[nLineIndex].length()));
 		}
 	private:
 		const file_data& m_fileData;
