@@ -28,7 +28,7 @@ void SyntaxParserRegistry::UnregisterFactory(ISyntaxParserFactory* factory)
 		m_factories.erase(it);
 }
 
-std::unique_ptr<ISyntaxParser> SyntaxParserRegistry::CreateParser(LanguageId type) const
+std::shared_ptr<ISyntaxParser> SyntaxParserRegistry::CreateParser(LanguageId type) const
 {
 	for (ISyntaxParserFactory* f : m_factories)
 	{

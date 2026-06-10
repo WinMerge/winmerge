@@ -260,6 +260,11 @@ public:
 		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 			func(m_pView[nGroup][nBuffer]);
 	}
+	template <typename Function>
+	void ForEachGroupView(int nGroup, Function func) {
+		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+			func(m_pView[nGroup][nBuffer]);
+	}
 	CMergeEditFrame * GetParentFrame();
 
 	void AddSyncPoint();

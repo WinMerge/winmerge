@@ -30,7 +30,7 @@ public:
 	 * @return A newly created ISyntaxParser, or nullptr if this factory
 	 *         does not support the requested type.
 	 */
-	virtual std::unique_ptr<ISyntaxParser> Create(LanguageId type) const = 0;
+	virtual std::shared_ptr<ISyntaxParser> Create(LanguageId type) const = 0;
 };
 
 }

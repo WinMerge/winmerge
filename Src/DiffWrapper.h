@@ -153,7 +153,7 @@ struct PostFilterContext
 {
 	int nParsedLineEndLeft = -1;
 	int nParsedLineEndRight = -1;
-	std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParser[3];
+	std::shared_ptr<LangServices::ISyntaxParser> m_pSyntaxParser[3];
 	std::unique_ptr<LangServices::ITextBuffer> m_pTextBuffer[3]; /**< Text buffer for parser access */
 };
 

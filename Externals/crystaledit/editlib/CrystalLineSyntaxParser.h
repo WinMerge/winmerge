@@ -65,11 +65,11 @@ public:
 	virtual ~CrystalLineSyntaxParserFactory() = default;
 
 	virtual bool IsSupported(LangServices::LanguageId type) const override;
-	virtual std::unique_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
+	virtual std::shared_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
 	{
 		if (!IsSupported(type))
 			return nullptr;
-		return std::make_unique<CrystalLineSyntaxParser>(type);
+		return std::make_shared<CrystalLineSyntaxParser>(type);
 	}
 };
 

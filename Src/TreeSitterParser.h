@@ -479,7 +479,7 @@ public:
     virtual ~TreeSitterSyntaxParserFactory() = default;
 
     virtual bool IsSupported(LangServices::LanguageId type) const override;
-    virtual std::unique_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
+    virtual std::shared_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
     {
         if (!IsSupported(type))
             return nullptr;

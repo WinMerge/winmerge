@@ -3289,7 +3289,7 @@ void CMergeEditView::OnWMGoto()
 void CMergeEditView::GotoTreeSitterDefinition()
 {
 	CMergeDoc* pDoc = GetDocument();
-	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser());
+	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser().get());
 	if (!pSyntaxParser)
 		return;
 
@@ -3314,7 +3314,7 @@ void CMergeEditView::OnGotoDefinition()
 void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser());
+	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser().get());
 	if (!pSyntaxParser)
 	{
 		pCmdUI->Enable(FALSE);

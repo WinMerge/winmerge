@@ -47,7 +47,7 @@ public:
 	 * an empty extension as the ordering key, then falling back to registration
 	 * order for ties).
 	 */
-	std::unique_ptr<ISyntaxParser> CreateParser(LanguageId type) const;
+	std::shared_ptr<ISyntaxParser> CreateParser(LanguageId type) const;
 
 private:
 	SyntaxParserRegistry() = default;

@@ -143,8 +143,7 @@ protected:
 
     //  Parsing stuff
 
-    // New parser abstraction interface (optional, for gradual migration)
-    std::unique_ptr<LangServices::ISyntaxParser> m_pSyntaxParser;
+    std::shared_ptr<LangServices::ISyntaxParser> m_pSyntaxParser;
 
 private:
     LOGFONT m_lfBaseFont;
@@ -745,13 +744,16 @@ public :
      * This method enables use of the new parser abstraction while maintaining
      * backward compatibility with the legacy parser system.
      */
-    void SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser);
+    void SetSyntaxParser(std::shared_ptr<LangServices::ISyntaxParser> pParser);
 
     /**
      * @brief Get the current syntax parser.
      * @return Pointer to ISyntaxParser, or nullptr if using legacy parser.
      */
-    LangServices::ISyntaxParser* GetSyntaxParser() const { return m_pSyntaxParser.get(); }
+    std::shared_ptr<LangServices::ISyntaxParser> GetSyntaxParser() const { return m_pSyntaxParser; }
+
+    void ShareSyntaxParser(CCrystalTextView* pSource) { m_pSyntaxParser = pSource->GetSyntaxParser(); }
+
     //END SW
 
     bool GetEnableHideLines () const { return m_bHideLines; }

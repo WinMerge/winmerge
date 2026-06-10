@@ -6194,7 +6194,7 @@ void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
   m_pColors = pSource->m_pColors;
   m_pMarkers = pSource->m_pMarkers;
   m_bDisableDragAndDrop = pSource->m_bDisableDragAndDrop;
-  SetTextType(pSource->m_CurSourceDef);
+  ShareSyntaxParser(pSource);
   SetFont (pSource->m_lfBaseFont);
 }
 
@@ -6509,18 +6509,18 @@ CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
 /**
  * @brief Set syntax parser using the new interface.
  */
-void CCrystalTextView::SetSyntaxParser(std::unique_ptr<LangServices::ISyntaxParser> pParser)
+void CCrystalTextView::SetSyntaxParser(std::shared_ptr<LangServices::ISyntaxParser> pParser)
 {
   m_pSyntaxParser = std::move(pParser);
 
   if (m_pSyntaxParser)
-  {
-    // Connect the parser to the text buffer
-    if (m_pTextBuffer != nullptr)
     {
-      m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
+      // Connect the parser to the text buffer
+      if (m_pTextBuffer != nullptr)
+        {
+          m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
+        }
     }
-  }
 }
 //END SW
 
