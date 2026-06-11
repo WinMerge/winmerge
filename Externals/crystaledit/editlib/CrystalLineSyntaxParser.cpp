@@ -94,11 +94,6 @@ void CrystalLineSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuff
 
 	// Reset parse state when buffer changes
 	m_ParseCookies.clear();
-	if (m_pTextBuffer != nullptr)
-	{
-		int nLineCount = m_pTextBuffer->GetLineCount();
-		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
-	}
 }
 
 /**

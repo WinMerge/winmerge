@@ -357,7 +357,7 @@ void CTreeSitterParser::Invalidate()
     m_tagRefs.clear();
     m_nLineCount = 0;
     m_nextBlockOrder = 0;
-    m_bDirty = false;
+    m_bDirty = true;
 }
 
 void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
@@ -2159,15 +2159,7 @@ void TreeSitterSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffe
 {
 	m_pTextBuffer = pTextBuffer;
 
-	// Parse the entire document when buffer is set
-	if (m_pTextBuffer != nullptr)
-	{
-		m_parser.ParseFromBuffer(m_pTextBuffer);
-	}
-	else
-	{
-		m_parser.Invalidate();
-	}
+	m_parser.Invalidate();
 }
 
 /**
