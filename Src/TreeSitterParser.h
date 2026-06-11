@@ -193,7 +193,7 @@ public:
      * will trigger a single reparse. This avoids reparsing on every
      * keystroke and instead defers to the next paint cycle.
      */
-    void MarkDirty() { m_bDirty = true; }
+    void MarkDirty() { m_bNeedsParse = true; }
 
     /**
      * @brief Notify the parser of an edit for incremental reparsing.
@@ -238,7 +238,7 @@ public:
     int GetCachedLineCount() const { return m_nLineCount; }
 
     /** @brief Check if cache needs rebuilding. */
-    bool IsDirty() const { return m_bDirty; }
+    bool IsDirty() const { return m_bNeedsParse; }
 
     /** @brief Invalidate cached results and free tree. */
     void Invalidate();
@@ -306,7 +306,7 @@ private:
     TSTree*             m_pTree;
     const CTreeSitterLanguage* m_pLang;
     CTreeSitterColorMap m_colorMap;
-    bool                m_bDirty;       // True when cache needs rebuild
+    bool                m_bNeedsParse;       // True when cache needs rebuild
 
     // Cached per-line highlight blocks
     std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;

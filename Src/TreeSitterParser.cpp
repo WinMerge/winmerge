@@ -303,7 +303,7 @@ CTreeSitterParser::CTreeSitterParser()
     : m_pParser(nullptr)   // Fix #2: lazy-init, don't call ts_parser_new() here
     , m_pTree(nullptr)
     , m_pLang(nullptr)
-    , m_bDirty(false)
+    , m_bNeedsParse(false)
     , m_nLineCount(0)
 {
 }
@@ -357,7 +357,7 @@ void CTreeSitterParser::Invalidate()
     m_tagRefs.clear();
     m_nLineCount = 0;
     m_nextBlockOrder = 0;
-    m_bDirty = true;
+    m_bNeedsParse = true;
 }
 
 void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
@@ -439,7 +439,7 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
     }
 
     // Cache is now fresh
-    m_bDirty = false;
+    m_bNeedsParse = false;
 }
 
 /**
@@ -454,7 +454,7 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
  */
 void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
-    m_bDirty = true;
+    m_bNeedsParse = true;
 
     // If we don't have a tree, there's nothing to edit incrementally
     if (!m_pTree)
@@ -683,10 +683,10 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
  */
 void CTreeSitterParser::EnsureParsed(LangServices::ITextBuffer* pBuffer)
 {
-    if (m_bDirty && m_pLang)
+    if (m_bNeedsParse && m_pLang)
     {
         ParseFromBuffer(pBuffer);
-        // ParseFromBuffer sets m_bDirty = false via ParseDocument
+        // ParseFromBuffer sets m_bNeedsParse = false via ParseDocument
     }
 }
 
