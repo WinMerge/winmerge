@@ -17,8 +17,6 @@
 #include "codepage_detect.h"
 #include "Logger.h"
 #include "TFile.h"
-#include "coretools.h"
-#include "../TreeSitterWrapper.h"
 
 namespace CompareEngines
 {
@@ -201,30 +199,6 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 			dw.SetFilterList(m_pCtxt->m_pFilterList);
 			dw.SetSubstitutionList(m_pCtxt->m_pSubstitutionList);
 			dw.SetFilterCommentsSourceDef(Ext);
-
-			std::unique_ptr<void, void(*)(void*)> treeSitterParsers[3] = {
-				{ nullptr, DestroyTreeSitterParseContextForDiff },
-				{ nullptr, DestroyTreeSitterParseContextForDiff },
-				{ nullptr, DestroyTreeSitterParseContextForDiff }
-			};
-			if (dw.GetOptions().m_filterCommentsLines)
-			{
-				DiffFileData* fileDiffs[3] = { &diffdata10, &diffdata12, &diffdata02 };
-				for (int i = 0; i < 3; ++i)
-				{
-					const int targetIndex = (i == 0) ? 1 : (i == 1 ? 0 : 1);
-					std::vector<String> lines;
-					for (int line = 0; line < fileDiffs[i]->m_inf[targetIndex].valid_lines; ++line)
-					{
-						const char* start = fileDiffs[i]->m_inf[targetIndex].linbuf[fileDiffs[i]->m_inf[targetIndex].linbuf_base + line];
-						const char* end = fileDiffs[i]->m_inf[targetIndex].linbuf[fileDiffs[i]->m_inf[targetIndex].linbuf_base + line + 1];
-						const size_t fullLen = static_cast<size_t>(end - start);
-						lines.push_back(ucr::toTString(std::string(start, linelen(start, fullLen))));
-					}
-					treeSitterParsers[i].reset(CreateTreeSitterParseContextForDiff(ucr::toTString(fileDiffs[i]->m_inf[targetIndex].name), lines));
-					dw.SetFilterCommentsParseContext(treeSitterParsers[i].get(), i);
-				}
-			}
 			dw.SetCreateDiffList(&diffList);
 			dw.LoadWinMergeDiffsFromDiffUtilsScript3(
 				script10, script12, script02,

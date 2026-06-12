@@ -89,6 +89,7 @@ struct DIFFOPTIONS
 	bool bCompletelyBlankOutIgnoredChanges;
 	bool bIgnoreMissingTrailingEol; /**< Ignore missing trailing EOL -option. */
 	bool bIgnoreLineBreaks; /**< Ignore line breaks (treat as spaces) -option. */
+	bool bTreeSitterCommentFilter = true; /**< Use tree-sitter (when a grammar is available) for the comments filter. */
 };
 
 /**
@@ -130,6 +131,7 @@ public:
 	DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
 	int m_contextLines; /**< Number of context lines (for patch files) */
 	bool m_filterCommentsLines;/**< Ignore Multiline comments differences.*/
+	bool m_bTreeSitterCommentFilter; /**< Use tree-sitter (when a grammar is available) for the comments filter */
 	bool m_bIndentHeuristic; /**< Indent heuristic */
 	bool m_bCompletelyBlankOutIgnoredDiffereneces; /**< Completely blank out ignored differences */
 };

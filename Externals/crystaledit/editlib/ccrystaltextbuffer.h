@@ -156,7 +156,7 @@ public :
     };
     std::shared_ptr<SharedTableProperties> m_pSharedTableProps;
 
-	void* pParseContext; // context for incremental parsing, owned by the parser
+	void* pParseContext = nullptr; // context for incremental parsing, owned by the parser
 
     //  Helper methods
     void InsertLine (const tchar_t* pszLine, size_t nLength, int nPosition = -1, int nCount = 1);

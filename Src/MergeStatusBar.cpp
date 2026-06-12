@@ -293,6 +293,11 @@ void CMergeStatusBar::MergeStatus::Update()
 				strEncoding += _T("  ");
 			strEncoding += _T("[TS:");
 			strEncoding += m_sSyntaxParser.c_str();
+			if (!m_sSyntaxSymbol.empty())
+			{
+				strEncoding += _T(" \u25B8 "); // black right-pointing small triangle
+				strEncoding += m_sSyntaxSymbol.c_str();
+			}
 			strEncoding += _T("]");
 		}
 		m_pWndStatusBar->SetPaneText(m_base, strInfo);
@@ -311,13 +316,17 @@ void CMergeStatusBar::MergeStatus::UpdateResources()
 /**
  * @brief Set the syntax parser indicator text.
  * @param szParser  Language name (e.g. "fsharp"), or empty/null to clear.
+ * @param szSymbol  Enclosing symbol breadcrumb at the cursor (e.g.
+ *                  "MyClass.MyMethod"), or empty/null for none.
  */
-void CMergeStatusBar::MergeStatus::SetSyntaxParser(const tchar_t* szParser)
+void CMergeStatusBar::MergeStatus::SetSyntaxParser(const tchar_t* szParser, const tchar_t* szSymbol)
 {
 	String sParser = szParser ? szParser : _T("");
-	if (m_sSyntaxParser != sParser)
+	String sSymbol = szSymbol ? szSymbol : _T("");
+	if (m_sSyntaxParser != sParser || m_sSyntaxSymbol != sSymbol)
 	{
 		m_sSyntaxParser = sParser;
+		m_sSyntaxSymbol = sSymbol;
 		Update();
 	}
 }

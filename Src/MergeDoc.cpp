@@ -72,15 +72,30 @@ bool CMergeDoc::IsTreeSitterEnabled() const
 	return GetOptionsMgr()->GetBool(OPT_TREE_SITTER);
 }
 
+void CMergeDoc::TreeSitterTextDefinitionDeleter::operator()(CrystalLineParser::TextDefinition* p) const
+{
+	FreeTreeSitterTextDefinition(p);
+}
+
 void CMergeDoc::UpdateTreeSitterSupport()
 {
 	m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
-	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 0);
-	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 1);
-	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 2);
+	// The comment filter creates its own tree-sitter parse contexts from the
+	// diffed text in CDiffWrapper::PostFilter, gated by
+	// DIFFOPTIONS::bTreeSitterCommentFilter (loaded from OPT_TREE_SITTER).
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
+		if (CrystalLineParser::TextDefinition* pOldDef = m_pTreeSitterTextDefs[nBuffer].get())
+		{
+			// Re-point any view still drawing with the definition we are
+			// about to free; the proper type is re-applied afterwards by our
+			// callers (OpenDocs / each view's RefreshOptions).
+			ForEachView(nBuffer, [&](auto& pView) {
+				if (pView->GetTextType() == pOldDef)
+					pView->SetTextType(CrystalLineParser::SRC_PLAIN);
+			});
+		}
 		m_pTreeSitterTextDefs[nBuffer].reset();
 		m_pTreeSitterParsers[nBuffer].reset();
 		m_ptBuf[nBuffer]->SetParseContext(nullptr);
@@ -90,8 +105,7 @@ void CMergeDoc::UpdateTreeSitterSupport()
 		return;
 
 	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
-	if (!registry.IsInitialized())
-		registry.Initialize();
+	registry.Initialize();
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
@@ -112,11 +126,7 @@ void CMergeDoc::UpdateTreeSitterSupport()
 		m_pTreeSitterContexts[nBuffer]->pBuffer = m_ptBuf[nBuffer].get();
 
 		m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterContexts[nBuffer].get());
-		m_diffWrapper.SetFilterCommentsParseContext(m_pTreeSitterParsers[nBuffer].get(), nBuffer);
 	}
-
-	if (m_pTreeSitterTextDefs[0])
-		m_diffWrapper.SetFilterCommentsSourceDef(m_pTreeSitterTextDefs[0].get());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2619,13 +2629,16 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		UpdateTreeSitterSupport();
 
 		// Set TreeSitter TextDefinition as syntax highlighting for each view
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		if (GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		{
-			if (m_pTreeSitterTextDefs[nBuffer])
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
-				ForEachView(nBuffer, [&](auto& pView) {
-					pView->SetTextType(m_pTreeSitterTextDefs[nBuffer].get());
-				});
+				if (m_pTreeSitterTextDefs[nBuffer])
+				{
+					ForEachView(nBuffer, [&](auto& pView) {
+						pView->SetTextType(m_pTreeSitterTextDefs[nBuffer].get());
+					});
+				}
 			}
 		}
 
