@@ -36,6 +36,7 @@ public:
 	void AddView(CCrystalTextView *pView);
 	void DeleteView(CCrystalTextView *pView);
 	void UpdateViews();
+	void InvalidateViews();
 	void SetEnabled(bool enabled) { m_enabled = enabled; };
 	bool GetEnabled() const { return m_enabled; };
 	CString MakeNewId() const;

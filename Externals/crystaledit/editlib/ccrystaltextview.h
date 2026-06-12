@@ -769,6 +769,7 @@ public :
 
     //  Source type
     CrystalLineParser::TextDefinition *m_CurSourceDef;
+    CrystalLineParser::TextDefinition *GetTextType () const { return m_CurSourceDef; }
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextType (const tchar_t* pszExt);
     virtual bool SetTextType (CrystalLineParser::TextType enuType);

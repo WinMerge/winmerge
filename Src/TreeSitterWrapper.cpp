@@ -49,7 +49,7 @@ unsigned ParseLineTreeSitter(unsigned dwCookie, int nLineIndex, const tchar_t* p
                 // Buffer size: GetTextBlocks allocates (nLength+1)*3 TEXTBLOCK entries
                 int nMaxBlocks = (nLength + 1) * 3;
 
-                pParser->GetLineBlocks(nLineIndex, pBuf, nActualItems, 0);
+                pParser->GetLineBlocks(nLineIndex, pBuf, nActualItems, nMaxBlocks);
 
                 // Return cookie for next line
                 return 0;
@@ -156,19 +156,35 @@ void FreeTreeSitterTextDefinition(CrystalLineParser::TextDefinition* pDef)
     delete pDef;
 }
 
-void* CreateTreeSitterParseContextForDiff(const std::wstring& filePath, const std::vector<std::wstring>& lines)
+/**
+ * @brief Look up the tree-sitter language for a file by its extension.
+ */
+static const CTreeSitterLanguage* GetTreeSitterLanguageForFile(const std::wstring& filePath)
 {
     std::wstring ext = filePath;
     size_t posOfDot = ext.rfind('.');
-    if (posOfDot != std::wstring::npos)
-        ext.erase(0, posOfDot + 1);
+    if (posOfDot == std::wstring::npos)
+        return nullptr;
+    ext.erase(0, posOfDot + 1);
 
     TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
-    if (!registry.IsInitialized())
-        registry.Initialize();
+    registry.Initialize();
 
     const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(ext.c_str());
     if (pLang == nullptr || pLang->GetLanguage() == nullptr)
+        return nullptr;
+    return pLang;
+}
+
+bool HasTreeSitterLanguageForFile(const std::wstring& filePath)
+{
+    return GetTreeSitterLanguageForFile(filePath) != nullptr;
+}
+
+void* CreateTreeSitterParseContextForDiff(const std::wstring& filePath, const std::vector<std::wstring>& lines)
+{
+    const CTreeSitterLanguage* pLang = GetTreeSitterLanguageForFile(filePath);
+    if (pLang == nullptr)
         return nullptr;
 
     auto* pParser = new CTreeSitterParser();

@@ -42,6 +42,7 @@ void Load(const COptionsMgr *pOptionsMgr, DIFFOPTIONS& options)
 	options.bIgnoreLineBreaks = pOptionsMgr->GetBool(OPT_CMP_IGNORE_LINE_BREAKS);
 	options.bIndentHeuristic = pOptionsMgr->GetBool(OPT_CMP_INDENT_HEURISTIC);
 	options.bCompletelyBlankOutIgnoredChanges = pOptionsMgr->GetBool(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
+	options.bTreeSitterCommentFilter = pOptionsMgr->GetBool(OPT_TREE_SITTER);
 }
 
 void Save(COptionsMgr *pOptionsMgr, const DIFFOPTIONS& options)

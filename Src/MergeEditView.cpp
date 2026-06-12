@@ -29,6 +29,8 @@
 #include "DropHandler.h"
 #include "IDirDoc.h"
 #include "editcmd.h"
+#include "ccrystaltextmarkers.h"
+#include "FindTextHelper.h"
 #include "Shell.h"
 #include "SelectPluginDlg.h"
 #include "Constants.h"
@@ -1299,6 +1301,11 @@ void CMergeEditView::OnEditUndo()
 		{
 			CMergeFrameCommon::LogUndo();
 
+			// Undo bypasses OnEditOperation/NotifyEdit, so the tree-sitter
+			// tree no longer matches the buffer; force a full reparse.
+			if (CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane))
+				pParser->DiscardTree();
+
 			--pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_nThisPane);
 			pDoc->FlushAndRescan();
@@ -2451,6 +2458,11 @@ void CMergeEditView::OnEditRedo()
 		{
 			CMergeFrameCommon::LogRedo();
 
+			// Redo bypasses OnEditOperation/NotifyEdit, so the tree-sitter
+			// tree no longer matches the buffer; force a full reparse.
+			if (CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane))
+				pParser->DiscardTree();
+
 			++pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_nThisPane);
 			pDoc->FlushAndRescan();
@@ -2757,6 +2769,8 @@ void CMergeEditView::OnUpdateCaret()
 		curChar, chars, selectedLines, selectedChars,
 		sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage(), GetDocument()->m_ptBuf[m_nThisPane]->getHasBom());
 
+	UpdateTreeSitterStatus(cursorPos, (dwLineFlags & LF_GHOST) != 0);
+
 	// Is cursor inside difference?
 	if (dwLineFlags & LF_NONTRIVIAL_DIFF)
 		m_bCurrentLineIsDiff = true;
@@ -2766,6 +2780,59 @@ void CMergeEditView::OnUpdateCaret()
 	CWnd* pWnd = GetFocus();
 	if (!m_bDetailView || (pWnd && pWnd->m_hWnd == this->m_hWnd))
 		UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
+}
+
+/**
+ * @brief Update tree-sitter dependent status for the current caret position.
+ *
+ * Shows the active tree-sitter language and the enclosing symbol breadcrumb
+ * (e.g. "MyClass.MyMethod") in the status bar, and highlights all occurrences
+ * of the identifier under the cursor in all panes via a transient marker.
+ */
+void CMergeEditView::UpdateTreeSitterStatus(const CEPoint& cursorPos, bool bGhostLine)
+{
+	CMergeDoc* pDoc = GetDocument();
+	CTreeSitterParser* pParser = pDoc->IsTreeSitterEnabled() ?
+		pDoc->GetTreeSitterParser(m_nThisPane) : nullptr;
+
+	String sParser, sSymbol, sIdentifier;
+	if (pParser != nullptr && pParser->HasLanguage())
+	{
+		pParser->EnsureParsed(pDoc->m_ptBuf[m_nThisPane].get());
+		sParser = pParser->GetLanguage()->GetName();
+		if (!bGhostLine)
+		{
+			sSymbol = pParser->GetEnclosingSymbols(cursorPos.y, cursorPos.x);
+			sIdentifier = pParser->GetIdentifierAt(cursorPos.y, cursorPos.x);
+		}
+	}
+
+	if (m_piMergeEditStatus != nullptr)
+		m_piMergeEditStatus->SetSyntaxParser(sParser.c_str(), sSymbol.c_str());
+
+	// Highlight all occurrences of the identifier under the cursor using a
+	// transient (non-user-defined, not persisted) marker shared by all panes.
+	// Compare against the live marker table (not a cached copy) so external
+	// marker-table changes cannot leave this logic out of sync.
+	if (CCrystalTextMarkers* pMarkers = theApp.GetMainMarkers())
+	{
+		static const tchar_t MARKER_KEY[] = _T("TREESITTER_SYMBOL");
+		const auto& markers = static_cast<const CCrystalTextMarkers*>(pMarkers)->GetMarkers();
+		const auto it = markers.find(MARKER_KEY);
+		const bool bUnchanged = (it != markers.end()) ?
+			(it->second.sFindWhat == sIdentifier.c_str()) : sIdentifier.empty();
+		if (!bUnchanged)
+		{
+			if (sIdentifier.empty())
+				pMarkers->DeleteMarker(MARKER_KEY);
+			else
+				pMarkers->SetMarker(MARKER_KEY, sIdentifier.c_str(),
+					FIND_MATCH_CASE | FIND_WHOLE_WORD, COLORINDEX_MARKERBKGND0, false);
+			// Markers only change colors; a repaint of the attached views is
+			// enough -- UpdateViews() would reset every view's parse cookies.
+			pMarkers->InvalidateViews();
+		}
+	}
 }
 /**
  * @brief Select linedifference in the current line.

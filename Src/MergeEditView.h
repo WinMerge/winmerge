@@ -129,6 +129,7 @@ public:
 		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoTreeSitterDefinition();
+	void UpdateTreeSitterStatus(const CEPoint& cursorPos, bool bGhostLine);
 	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true, int nChar = -1);
 	int GetTopLine() const { return m_nTopLine; }
 	using CCrystalTextView::GetScreenLines;

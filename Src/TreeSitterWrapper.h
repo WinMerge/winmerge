@@ -60,6 +60,15 @@ CrystalLineParser::TextDefinition* CreateTreeSitterTextDefinition(
  */
 void FreeTreeSitterTextDefinition(CrystalLineParser::TextDefinition* pDef);
 
+/**
+ * @brief Check whether a tree-sitter grammar is available for a file.
+ * @param filePath  File path; the grammar is selected by its extension.
+ *
+ * Cheap pre-check for CreateTreeSitterParseContextForDiff() so callers can
+ * skip materializing the file's lines when no grammar exists.
+ */
+bool HasTreeSitterLanguageForFile(const std::wstring& filePath);
+
 void* CreateTreeSitterParseContextForDiff(const std::wstring& filePath, const std::vector<std::wstring>& lines);
 void DestroyTreeSitterParseContextForDiff(void* parseContext);
 bool IsTreeSitterCommentPositionForDiff(void* parseContext, int nLineIndex, int nCharPos);

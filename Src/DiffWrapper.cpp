@@ -231,7 +231,7 @@ static String convertToTString(const char* start, const char* end)
 	}
 }
 
-static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType, void* parseContext)
+static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType)
 {
 	if (!enuType)
 		return dwCookie;
@@ -240,12 +240,12 @@ static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine,
 		String text = convertToTString(linbuf[i], linbuf[i + 1]);
 		int nActualItems = 0;
 		std::vector<CrystalLineParser::TEXTBLOCK> blocks(text.length());
-		dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), static_cast<int>(text.length()), blocks.data(), nActualItems, parseContext);
+		dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), static_cast<int>(text.length()), blocks.data(), nActualItems, nullptr);
 	}
 	return dwCookie;
 }
 
-static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType, void* parseContext)
+static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType)
 {
 	String filteredT;
 	std::vector<bool> allTextIsComment(endLine - startLine + 1);
@@ -261,7 +261,7 @@ static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredT
 		{
 			int nActualItems = 0;
 			std::vector<CrystalLineParser::TEXTBLOCK> blocks(textlen);
-			dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), textlen, blocks.data(), nActualItems, parseContext);
+			dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), textlen, blocks.data(), nActualItems, nullptr);
 
 			if (nActualItems == 0)
 			{
@@ -389,6 +389,15 @@ static std::string GetEOL(const std::string& str)
  * @param [in, out]  thisob	Current change
  * @return Number of trivial diffs inserted
  */
+PostFilterContext::~PostFilterContext()
+{
+	for (void* ctx : pTreeSitterContext)
+	{
+		if (ctx != nullptr)
+			DestroyTreeSitterParseContextForDiff(ctx);
+	}
+}
+
 int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary) const
 {
 	const int first0 = thisob->line0;
@@ -408,43 +417,81 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 
 	if (m_options.m_filterCommentsLines)
 	{
-		const bool bUseTreeSitter = m_pParseContext[0] != nullptr && m_pParseContext[1] != nullptr;
+		if (!ctxt.bTreeSitterContextInitialized)
+		{
+			ctxt.bTreeSitterContextInitialized = true;
+			if (m_options.m_bTreeSitterCommentFilter)
+			{
+				// Create tree-sitter parse contexts for both files of this
+				// compared pair from the very text being diffed, so the line
+				// numbers used below always match the parsed text. The
+				// grammar is chosen by file extension: the diffed paths may
+				// be extension-less temp files (editor rescan saves buffers
+				// as "*.tmp"), so prefer the original compare paths when the
+				// caller provided them via SetCompareFiles().
+				for (int side = 0; side < 2; ++side)
+				{
+					const file_data& inf = file_data_ary[side];
+					const int nPane = ctxt.nPaneIndexes[side];
+					String name = (nPane < m_originalFile.GetSize() && !m_originalFile[nPane].empty()) ?
+						m_originalFile[nPane] : ucr::toTString(inf.name);
+					if (!HasTreeSitterLanguageForFile(name))
+						continue;
+					std::vector<String> lines;
+					lines.reserve(inf.valid_lines);
+					for (int line = 0; line < inf.valid_lines; ++line)
+					{
+						const char* start = inf.linbuf[inf.linbuf_base + line];
+						const char* end = inf.linbuf[inf.linbuf_base + line + 1];
+						// Use the same decoding as GetTreeSitterCommentsFilteredText
+						// (convertToTString) so the parser's character positions
+						// line up with the positions queried below.
+						lines.push_back(convertToTString(start, start + linelen(start, end - start)));
+					}
+					ctxt.pTreeSitterContext[side] = CreateTreeSitterParseContextForDiff(name, lines);
+				}
+			}
+		}
+		const bool bUseTreeSitter =
+			ctxt.pTreeSitterContext[0] != nullptr && ctxt.pTreeSitterContext[1] != nullptr;
 
 		if (bUseTreeSitter)
 		{
 			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
+			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
 
 			auto resultLeft = GetTreeSitterCommentsFilteredText(
 				lineNumberLeft, ctxt.nParsedLineEndLeft,
-				file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pParseContext[0]);
+				file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, ctxt.pTreeSitterContext[0]);
 			lineDataLeft = std::move(std::get<0>(resultLeft));
 			allTextIsCommentLeft = std::move(std::get<1>(resultLeft));
 
 			auto resultRight = GetTreeSitterCommentsFilteredText(
 				lineNumberRight, ctxt.nParsedLineEndRight,
-				file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pParseContext[1]);
+				file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, ctxt.pTreeSitterContext[1]);
 			lineDataRight = std::move(std::get<0>(resultRight));
 			allTextIsCommentRight = std::move(std::get<1>(resultRight));
 		}
 		else
 		{
+			// Parse the gap since the last processed hunk first so the
+			// multi-line comment state (the cookie) is carried forward.
 			ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
-				ctxt.nParsedLineEndLeft + 1, lineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
+				ctxt.nParsedLineEndLeft + 1, lineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
 			ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
-				ctxt.nParsedLineEndRight + 1, lineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef, m_pParseContext[1]);
+				ctxt.nParsedLineEndRight + 1, lineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
 
 			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
+			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
 
 			auto resultLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
-				lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
+				lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
 			lineDataLeft = std::move(std::get<0>(resultLeft));
 			ctxt.dwCookieLeft = std::get<1>(resultLeft);
 			allTextIsCommentLeft = std::move(std::get<2>(resultLeft));
 
 			auto resultRight = GetCommentsFilteredText(ctxt.dwCookieRight,
-				lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef, m_pParseContext[1]);
+				lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
 			lineDataRight = std::move(std::get<0>(resultRight));
 			ctxt.dwCookieRight = std::get<1>(resultRight);
 			allTextIsCommentRight = std::move(std::get<2>(resultRight));
@@ -1531,9 +1578,12 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 
 		switch (file)
 		{
-		case 0: next = script10; pdiff = &diff10; pinf = inf10; break;
-		case 1: next = script12; pdiff = &diff12; pinf = inf12; break;
-		case 2: next = script02; pdiff = &diff02; pinf = inf02; break;
+		case 0: next = script10; pdiff = &diff10; pinf = inf10;
+			ctxt.nPaneIndexes[0] = 1; ctxt.nPaneIndexes[1] = 0; break;
+		case 1: next = script12; pdiff = &diff12; pinf = inf12;
+			ctxt.nPaneIndexes[0] = 1; ctxt.nPaneIndexes[1] = 2; break;
+		case 2: next = script02; pdiff = &diff02; pinf = inf02;
+			ctxt.nPaneIndexes[0] = 0; ctxt.nPaneIndexes[1] = 2; break;
 		}
 
 		while (next != nullptr)

@@ -28,6 +28,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <memory>
+#include <mutex>
 
 // Forward declarations for tree-sitter C API types.
 // The actual tree_sitter/api.h header is included only in the .cpp file.
@@ -244,6 +245,16 @@ public:
     /** @brief Invalidate cached results and free tree. */
     void Invalidate();
 
+    /**
+     * @brief Drop the parse tree and mark dirty, keeping cached blocks.
+     *
+     * Use when the buffer changed in a way that cannot be described by
+     * ts_tree_edit() (e.g. undo/redo or multiple coalesced edits); the
+     * next EnsureParsed() does a full (non-incremental) reparse while the
+     * stale color cache is still served until then.
+     */
+    void DiscardTree();
+
     /** @brief Get the language object (for service layer). */
     const CTreeSitterLanguage* GetLanguage() const { return m_pLang; }
 
@@ -262,6 +273,26 @@ public:
 
     bool FindDefinition(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
 
+    /**
+     * @brief Get a breadcrumb of the enclosing named definitions at a position.
+     * @param nLineIndex  Zero-based line index.
+     * @param nCharPos    Zero-based character position in line.
+     * @return Outermost-to-innermost names joined with '.', e.g.
+     *         "MyClass.MyMethod", or an empty string if the position is not
+     *         inside any named definition (function, class, namespace, ...).
+     */
+    std::wstring GetEnclosingSymbols(int nLineIndex, int nCharPos) const;
+
+    /**
+     * @brief Get the identifier text at a position.
+     * @param nLineIndex  Zero-based line index.
+     * @param nCharPos    Zero-based character position in line.
+     * @return The identifier under the position, or an empty string if the
+     *         position is not on an identifier node (comments, strings,
+     *         operators, whitespace, ...).
+     */
+    std::wstring GetIdentifierAt(int nLineIndex, int nCharPos) const;
+
 	/**
 	 * @brief Convenience: parse document from a text buffer.
 	 * @param pBuffer  The text buffer to read line data from.
@@ -276,6 +307,7 @@ private:
     void RunInjectionQuery();
     void BuildLineCache(int nLineCount);
     int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
+    uint32_t LineCharToByteOffset(int nLineIndex, int nCharPos) const;
     bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
     bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
     bool TryGetTagDefinitionByNameAt(ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
@@ -415,14 +447,24 @@ public:
      */
     void RegisterExtension(const std::wstring& sExt, const std::wstring& sLanguage);
 
-    /** @brief Check if the registry has been initialized. */
+    /**
+     * @brief Check if the registry has been initialized.
+     * @note Unsynchronized; prefer calling Initialize() unconditionally
+     *       (it is idempotent and re-checks under the registry lock).
+     */
     bool IsInitialized() const { return m_bInitialized; }
 
 private:
     TreeSitterRegistry() : m_bInitialized(false) {}
 
+    const CTreeSitterLanguage* LoadLanguage(const std::wstring& sLangName);
+
     bool m_bInitialized;
     std::wstring m_sGrammarDir;
+
+    // Guards all members: lazy loading may be triggered concurrently from
+    // folder-compare worker threads and the UI thread.
+    std::mutex m_mutex;
 
     // language name -> loaded grammar (loaded lazily)
     std::unordered_map<std::wstring, std::unique_ptr<CTreeSitterLanguage>> m_languages;

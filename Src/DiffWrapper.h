@@ -149,10 +149,29 @@ struct DIFFSTATUS
 
 struct PostFilterContext
 {
+	PostFilterContext() = default;
+	PostFilterContext(const PostFilterContext&) = delete;
+	PostFilterContext& operator=(const PostFilterContext&) = delete;
+	~PostFilterContext();
+
 	int nParsedLineEndLeft = -1;
 	int nParsedLineEndRight = -1;
 	unsigned dwCookieLeft = 0;
 	unsigned dwCookieRight = 0;
+	/**
+	 * Pane indexes of the left/right file of the compared pair, used to look
+	 * up the original (non-temp) file names for grammar selection. 2-way
+	 * compares use {0, 1}; the 3-way pair scripts use (1,0), (1,2), (0,2).
+	 */
+	int nPaneIndexes[2] = { 0, 1 };
+	/**
+	 * Tree-sitter parse contexts for the left/right file of the compared
+	 * pair. Created lazily by CDiffWrapper::PostFilter from the diffed text
+	 * itself (so line numbers always match, including for each pair of a
+	 * 3-way compare) and freed by the destructor.
+	 */
+	void* pTreeSitterContext[2] = { nullptr, nullptr };
+	bool bTreeSitterContextInitialized = false;
 };
 
 /**
@@ -197,7 +216,6 @@ public:
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
-	void SetFilterCommentsParseContext(void* parseContext, int index) { m_pParseContext[index] = parseContext; }
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
 	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
@@ -242,7 +260,6 @@ private:
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
 	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
-	void* m_pParseContext[3]; /**< Context for incremental parsing, owned by the parser */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	int m_codepage; /**< Codepage used in line filter */
 };

@@ -414,7 +414,9 @@ protected:
 	std::unique_ptr<TableProps> m_pTablePropsPrepared;
 	std::unique_ptr<CLineFilterHelperMenu> m_pFilterMenu;
 	std::unique_ptr<CTreeSitterParser> m_pTreeSitterParsers[3]; /**< TreeSitter parsers for each pane */
-	std::unique_ptr<CrystalLineParser::TextDefinition> m_pTreeSitterTextDefs[3]; /**< TreeSitter TextDefinitions for each pane */
+	/** Frees via FreeTreeSitterTextDefinition() (name/exts are allocated separately) */
+	struct TreeSitterTextDefinitionDeleter { void operator()(CrystalLineParser::TextDefinition* p) const; };
+	std::unique_ptr<CrystalLineParser::TextDefinition, TreeSitterTextDefinitionDeleter> m_pTreeSitterTextDefs[3]; /**< TreeSitter TextDefinitions for each pane */
 	std::unique_ptr<TreeSitterParseContext> m_pTreeSitterContexts[3]; /**< TreeSitter parse contexts for each pane */
 	/**
 	 * Are automatic rescans enabled?

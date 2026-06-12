@@ -70,6 +70,7 @@ DiffutilsOptions::DiffutilsOptions()
 , m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 , m_contextLines(0)
 , m_filterCommentsLines(false)
+, m_bTreeSitterCommentFilter(true)
 , m_bCompletelyBlankOutIgnoredDiffereneces(false)
 , m_bIndentHeuristic(true)
 {
@@ -85,6 +86,7 @@ DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
 , m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 , m_contextLines(0)
 , m_filterCommentsLines(false)
+, m_bTreeSitterCommentFilter(true)
 , m_bCompletelyBlankOutIgnoredDiffereneces(false)
 , m_bIndentHeuristic(true)
 {
@@ -99,6 +101,7 @@ void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
 	CompareOptions::SetFromDiffOptions(options);
 	m_bCompletelyBlankOutIgnoredDiffereneces = options.bCompletelyBlankOutIgnoredChanges;
 	m_filterCommentsLines = options.bFilterCommentsLines;
+	m_bTreeSitterCommentFilter = options.bTreeSitterCommentFilter;
 	m_bIndentHeuristic = options.bIndentHeuristic;
 	switch (options.nDiffAlgorithm)
 	{
@@ -186,6 +189,7 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 {
 	options.bCompletelyBlankOutIgnoredChanges = m_bCompletelyBlankOutIgnoredDiffereneces;
 	options.bFilterCommentsLines = m_filterCommentsLines;
+	options.bTreeSitterCommentFilter = m_bTreeSitterCommentFilter;
 	options.bIgnoreBlankLines = m_bIgnoreBlankLines;
 	options.bIgnoreCase = m_bIgnoreCase;
 	options.bIgnoreEol = m_bIgnoreEOLDifference;
