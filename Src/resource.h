@@ -245,6 +245,7 @@
 #define IDC_IGNCASE_CHECK               1020
 #define IDC_COMPANY                     1021
 #define IDC_GNU_ASCII                   1022
+#define IDC_TREE_SITTER_CHECK           1023
 #define IDC_HILITE_CHECK                1025
 #define IDC_IGNOREREGEXP                1026
 #define IDC_ALL_WHITE                   1027
@@ -1007,6 +1008,7 @@
 #define ID_EDIT_GOTO_NEXT_BOOKMARK      33146
 #define ID_EDIT_GOTO_PREV_BOOKMARK      33147
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33148
+#define ID_EDIT_GOTO_DEFINITION         33149
 #define ID_VIEW_CHANGESCHEME            33150
 #define ID_COLORSCHEME_FIRST            33151
 #define IDS_COLORSCHEME_PLAIN           33151

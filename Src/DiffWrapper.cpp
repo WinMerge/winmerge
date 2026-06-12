@@ -39,6 +39,7 @@
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
 #include "cio.h"
+#include "TreeSitterWrapper.h"
 
 using Poco::Exception;
 
@@ -230,7 +231,7 @@ static String convertToTString(const char* start, const char* end)
 	}
 }
 
-static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType)
+static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType, void* parseContext)
 {
 	if (!enuType)
 		return dwCookie;
@@ -239,12 +240,12 @@ static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine,
 		String text = convertToTString(linbuf[i], linbuf[i + 1]);
 		int nActualItems = 0;
 		std::vector<CrystalLineParser::TEXTBLOCK> blocks(text.length());
-		dwCookie = enuType->ParseLineX(dwCookie, text.c_str(), static_cast<int>(text.length()), blocks.data(), nActualItems);
+		dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), static_cast<int>(text.length()), blocks.data(), nActualItems, parseContext);
 	}
 	return dwCookie;
 }
 
-static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType)
+static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType, void* parseContext)
 {
 	String filteredT;
 	std::vector<bool> allTextIsComment(endLine - startLine + 1);
@@ -260,7 +261,7 @@ static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredT
 		{
 			int nActualItems = 0;
 			std::vector<CrystalLineParser::TEXTBLOCK> blocks(textlen);
-			dwCookie = enuType->ParseLineX(dwCookie, text.c_str(), textlen, blocks.data(), nActualItems);
+			dwCookie = enuType->ParseLineX(dwCookie, i, text.c_str(), textlen, blocks.data(), nActualItems, parseContext);
 
 			if (nActualItems == 0)
 			{
@@ -296,6 +297,32 @@ static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredT
 	}
 
 	return { ucr::toUTF8(filteredT), dwCookie, allTextIsComment };
+}
+
+static std::tuple<std::string, std::vector<bool>> GetTreeSitterCommentsFilteredText(int startLine, int endLine, const char **linbuf, void* parseContext)
+{
+	String filteredT;
+	std::vector<bool> allTextIsComment(endLine - startLine + 1, true);
+	for (int i = startLine; i <= endLine; ++i)
+	{
+		String text = convertToTString(linbuf[i], linbuf[i + 1]);
+		for (int j = 0; j < static_cast<int>(text.size()); ++j)
+		{
+			const tchar_t ch = text[j];
+			const bool isComment = IsTreeSitterCommentPositionForDiff(parseContext, i, j);
+			if (!isComment)
+			{
+				filteredT += ch;
+				if (ch != '\r' && ch != '\n')
+					allTextIsComment[i - startLine] = false;
+			}
+		}
+
+		if (text.empty())
+			allTextIsComment[i - startLine] = false;
+	}
+
+	return { ucr::toUTF8(filteredT), allTextIsComment };
 }
 
 /**
@@ -381,25 +408,47 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 
 	if (m_options.m_filterCommentsLines)
 	{
-		ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
-			ctxt.nParsedLineEndLeft + 1, lineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
-		ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
-			ctxt.nParsedLineEndRight + 1, lineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
+		const bool bUseTreeSitter = m_pParseContext[0] != nullptr && m_pParseContext[1] != nullptr;
 
-		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
+		if (bUseTreeSitter)
+		{
+			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
+			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
 
-		auto resultLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
-			lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
-		lineDataLeft = std::move(std::get<0>(resultLeft));
-		ctxt.dwCookieLeft = std::get<1>(resultLeft);
-		allTextIsCommentLeft = std::move(std::get<2>(resultLeft));
+			auto resultLeft = GetTreeSitterCommentsFilteredText(
+				lineNumberLeft, ctxt.nParsedLineEndLeft,
+				file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pParseContext[0]);
+			lineDataLeft = std::move(std::get<0>(resultLeft));
+			allTextIsCommentLeft = std::move(std::get<1>(resultLeft));
 
-		auto resultRight = GetCommentsFilteredText(ctxt.dwCookieRight,
-			lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
-		lineDataRight = std::move(std::get<0>(resultRight));
-		ctxt.dwCookieRight = std::get<1>(resultRight);
-		allTextIsCommentRight = std::move(std::get<2>(resultRight));
+			auto resultRight = GetTreeSitterCommentsFilteredText(
+				lineNumberRight, ctxt.nParsedLineEndRight,
+				file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pParseContext[1]);
+			lineDataRight = std::move(std::get<0>(resultRight));
+			allTextIsCommentRight = std::move(std::get<1>(resultRight));
+		}
+		else
+		{
+			ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
+				ctxt.nParsedLineEndLeft + 1, lineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
+			ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
+				ctxt.nParsedLineEndRight + 1, lineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef, m_pParseContext[1]);
+
+			ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
+			ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
+
+			auto resultLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
+				lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef, m_pParseContext[0]);
+			lineDataLeft = std::move(std::get<0>(resultLeft));
+			ctxt.dwCookieLeft = std::get<1>(resultLeft);
+			allTextIsCommentLeft = std::move(std::get<2>(resultLeft));
+
+			auto resultRight = GetCommentsFilteredText(ctxt.dwCookieRight,
+				lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef, m_pParseContext[1]);
+			lineDataRight = std::move(std::get<0>(resultRight));
+			ctxt.dwCookieRight = std::get<1>(resultRight);
+			allTextIsCommentRight = std::move(std::get<2>(resultRight));
+		}
 	}
 	else
 	{

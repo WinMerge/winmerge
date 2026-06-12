@@ -49,6 +49,7 @@
           <Directory Id="FILTERSDIR" Name="Filters" />
           <Directory Id="LANGDIR" Name="Languages" />
           <Directory Id="PLUGINSDIR" Name="MergePlugins" />
+          <Directory Id="TREESITTERGRAMMARSDIR" Name="TreeSitterGrammars" />
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">

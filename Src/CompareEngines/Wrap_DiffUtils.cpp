@@ -22,6 +22,7 @@
 #include "xdiff_gnudiff_compat.h"
 #include "unicoder.h"
 #include "DiffFileData.h"
+#include "../TreeSitterWrapper.h"
 
 namespace CompareEngines
 {
@@ -126,6 +127,28 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 			Ext.erase(0, PosOfDot + 1);
 
 		m_pDiffWrapper->SetFilterCommentsSourceDef(Ext);
+
+		std::unique_ptr<void, void(*)(void*)> treeSitterParsers[2] = {
+			{ nullptr, DestroyTreeSitterParseContextForDiff },
+			{ nullptr, DestroyTreeSitterParseContextForDiff }
+		};
+		if (m_pDiffWrapper->GetOptions().m_filterCommentsLines)
+		{
+			for (int i = 0; i < 2; ++i)
+			{
+				std::vector<String> lines;
+				for (int line = 0; line < diffData->m_inf[i].valid_lines; ++line)
+				{
+					const char* start = diffData->m_inf[i].linbuf[diffData->m_inf[i].linbuf_base + line];
+					const char* end = diffData->m_inf[i].linbuf[diffData->m_inf[i].linbuf_base + line + 1];
+					const size_t fullLen = static_cast<size_t>(end - start);
+					String text = ucr::toTString(std::string(start, linelen(start, fullLen)));
+					lines.push_back(std::move(text));
+				}
+				treeSitterParsers[i].reset(CreateTreeSitterParseContextForDiff(ucr::toTString(diffData->m_inf[i].name), lines));
+				m_pDiffWrapper->SetFilterCommentsParseContext(treeSitterParsers[i].get(), i);
+			}
+		}
 
 		struct change *next = script;
 

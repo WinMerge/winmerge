@@ -41,6 +41,7 @@ inline const String OPT_TOOLBAR_SIZE {_T("Settings/ToolbarSize"s)};
 inline const String OPT_RESIZE_PANES {_T("Settings/AutoResizePanes"s)};
 
 inline const String OPT_SYNTAX_HIGHLIGHT {_T("Settings/HiliteSyntax"s)};
+inline const String OPT_TREE_SITTER {_T("Settings/TreeSitter"s)};
 inline const String OPT_VIEW_WHITESPACE {_T("Settings/ViewWhitespace"s)};
 inline const String OPT_VIEW_EOL {_T("Settings/ViewEOL"s)};
 inline const String OPT_SCROLL_TO_FIRST {_T("Settings/ScrollToFirst"s)};

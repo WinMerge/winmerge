@@ -607,6 +607,7 @@ protected:
     */
     virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
     virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
+    void InvalidateParseCookies() { m_ParseCookies->clear(); }
     void InvalidateScreenRect(bool bInvalidateView = true);
     void InvalidateVertScrollBar();
     void InvalidateHorzScrollBar();
@@ -695,7 +696,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    unsigned ParseLine (unsigned dwCookie, const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    unsigned ParseLine (unsigned dwCookie, int nLineIndex, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, void *pContext);
 
     // Attributes
 public :

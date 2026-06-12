@@ -534,7 +534,7 @@ IsCssExKeyword(const tchar_t *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineCss (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineCss (unsigned dwCookie, int nLineIndex, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);

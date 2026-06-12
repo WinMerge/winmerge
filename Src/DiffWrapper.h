@@ -9,6 +9,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "diff.h"
 #include "FileLocation.h"
 #include "PathContext.h"
@@ -196,6 +197,7 @@ public:
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
+	void SetFilterCommentsParseContext(void* parseContext, int index) { m_pParseContext[index] = parseContext; }
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
 	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
@@ -240,6 +242,7 @@ private:
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
 	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
+	void* m_pParseContext[3]; /**< Context for incremental parsing, owned by the parser */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	int m_codepage; /**< Codepage used in line filter */
 };
@@ -289,4 +292,3 @@ inline void CDiffWrapper::SetAlternativePaths(const PathContext &altPaths)
 {
 	m_alternativePaths = altPaths;
 }
-

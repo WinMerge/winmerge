@@ -54,6 +54,8 @@
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
 #include "Logger.h"
+#include "TreeSitterParser.h"
+#include "TreeSitterWrapper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -64,6 +66,58 @@ using std::swap;
 int CMergeDoc::m_nBuffersTemp = 2;
 
 static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
+
+bool CMergeDoc::IsTreeSitterEnabled() const
+{
+	return GetOptionsMgr()->GetBool(OPT_TREE_SITTER);
+}
+
+void CMergeDoc::UpdateTreeSitterSupport()
+{
+	m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
+	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 0);
+	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 1);
+	m_diffWrapper.SetFilterCommentsParseContext(nullptr, 2);
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_pTreeSitterTextDefs[nBuffer].reset();
+		m_pTreeSitterParsers[nBuffer].reset();
+		m_ptBuf[nBuffer]->SetParseContext(nullptr);
+	}
+
+	if (!IsTreeSitterEnabled())
+		return;
+
+	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
+	if (!registry.IsInitialized())
+		registry.Initialize();
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
+		const CTreeSitterLanguage* pLang = registry.GetLanguageForExt(sExt.c_str());
+		if (pLang == nullptr || pLang->GetLanguage() == nullptr)
+			continue;
+
+		m_pTreeSitterParsers[nBuffer] = std::make_unique<CTreeSitterParser>();
+		m_pTreeSitterParsers[nBuffer]->SetLanguage(pLang);
+		m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
+
+		m_pTreeSitterTextDefs[nBuffer].reset(CreateTreeSitterTextDefinition(sExt.c_str(), sExt.c_str(), nBuffer));
+
+		// Create parse context for lazy reparse during rendering
+		m_pTreeSitterContexts[nBuffer] = std::make_unique<TreeSitterParseContext>();
+		m_pTreeSitterContexts[nBuffer]->pParser = m_pTreeSitterParsers[nBuffer].get();
+		m_pTreeSitterContexts[nBuffer]->pBuffer = m_ptBuf[nBuffer].get();
+
+		m_ptBuf[nBuffer]->SetParseContext(m_pTreeSitterContexts[nBuffer].get());
+		m_diffWrapper.SetFilterCommentsParseContext(m_pTreeSitterParsers[nBuffer].get(), nBuffer);
+	}
+
+	if (m_pTreeSitterTextDefs[0])
+		m_diffWrapper.SetFilterCommentsSourceDef(m_pTreeSitterTextDefs[0].get());
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -587,6 +641,16 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		std::any_of(m_ptBuf, m_ptBuf + m_nBuffers,
 			[&](std::unique_ptr<CDiffTextBuffer>& buf) { return buf->getEncoding() != m_ptBuf[0]->getEncoding(); }))
 		identical = IDENTLEVEL::NONE;
+
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		// Parse the document
+		if (m_pTreeSitterParsers[nBuffer])
+		{
+			m_pTreeSitterParsers[nBuffer]->Invalidate();
+			m_pTreeSitterParsers[nBuffer]->ParseFromBuffer(m_ptBuf[nBuffer].get());
+		}
+	}
 
 	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
@@ -2543,13 +2607,26 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			UpdateHeaderPath(nBuffer);
 
 			ForEachView(nBuffer, [](auto& pView) { pView->DocumentsLoaded(); });
-			
+
 			if ((m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL) ||
-			    (m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
+				(m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
 			{
 				nNormalBuffer++;
 			}
-			
+
+		}
+
+		UpdateTreeSitterSupport();
+
+		// Set TreeSitter TextDefinition as syntax highlighting for each view
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (m_pTreeSitterTextDefs[nBuffer])
+			{
+				ForEachView(nBuffer, [&](auto& pView) {
+					pView->SetTextType(m_pTreeSitterTextDefs[nBuffer].get());
+				});
+			}
 		}
 
 		CMergeFrameCommon::LogComparisonCompleted(*this);
@@ -2673,6 +2750,7 @@ void CMergeDoc::RefreshOptions()
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
+	UpdateTreeSitterSupport();
 
 	// Refresh view options
 	ForEachView([](auto& pView) { pView->RefreshOptions(); });

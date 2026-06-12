@@ -197,6 +197,7 @@
     <Import Project="..\Externals\poco\Foundation\Foundation.vcxitems" Label="Shared" />
     <Import Project="..\Externals\poco\XML\XML.vcxitems" Label="Shared" />
     <Import Project="CrashLogger\CrashLogger.vcxitems" Label="Shared" />
+    <Import Project="..\Externals\tree-sitter\tree-sitter.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -1503,6 +1504,14 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="TreeSitterParser.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="TreeSitterWrapper.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="WebPageDiffFrm.cpp" />
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
@@ -1746,6 +1755,8 @@
     <ClInclude Include="TrDialogs.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
+    <ClInclude Include="TreeSitterParser.h" />
+    <ClInclude Include="TreeSitterWrapper.h" />
     <ClInclude Include="WebPageDiffFrm.h" />
     <ClInclude Include="WildcardDropList.h" />
     <ClInclude Include="WindowsManager.h" />
@@ -1931,6 +1942,25 @@
     <Message Text="Copy visual elements to $(OutDir)" />
     <Copy SourceFiles="@(VisualElementsManifest)" DestinationFolder="$(OutDir)" ContinueOnError="true" />
     <Copy SourceFiles="@(LogoImages)" DestinationFolder="$(OutDir)\LogoImages" ContinueOnError="true" />
+  </Target>
+  <!--
+    Build tree-sitter grammar DLLs and query bundles into the Release output.
+    Non-Release builds copy from the Release grammar directory after the app
+    binary has been built.
+  -->
+  <Target Name="BuildTreeSitterGrammars" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Building tree-sitter grammars into $(OutDir)TreeSitterGrammars\" Importance="high" />
+    <Exec Command="powershell -ExecutionPolicy Bypass -File &quot;$(ProjectDir)..\Tools\TreeSitterGrammars\build-grammars.ps1&quot; -OutDir &quot;$(OutDir)TreeSitterGrammars&quot; -Platform $(Platform) -Configuration $(Configuration)" />
+  </Target>
+  <Target Name="CopyTreeSitterGrammars" AfterTargets="Build" Condition="'$(Configuration)' != 'Release' AND Exists('$(OutDir)..\Release\TreeSitterGrammars')">
+    <ItemGroup>
+      <TreeSitterDlls Include="$(OutDir)..\Release\TreeSitterGrammars\*.dll" />
+      <TreeSitterQueries Include="$(OutDir)..\Release\TreeSitterGrammars\*.scm" />
+    </ItemGroup>
+    <Message Text="Copying tree-sitter grammars from Release to $(OutDir)TreeSitterGrammars\" Importance="high" />
+    <MakeDir Directories="$(OutDir)TreeSitterGrammars" />
+    <Copy SourceFiles="@(TreeSitterDlls)" DestinationFolder="$(OutDir)TreeSitterGrammars" SkipUnchangedFiles="true" ContinueOnError="true" />
+    <Copy SourceFiles="@(TreeSitterQueries)" DestinationFolder="$(OutDir)TreeSitterGrammars" SkipUnchangedFiles="true" ContinueOnError="true" />
   </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

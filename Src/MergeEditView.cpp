@@ -107,6 +107,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_EDIT_GOTO_DEFINITION, OnGotoDefinition)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_GOTO_DEFINITION, OnUpdateGotoDefinition)
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
 	// [View] menu
@@ -2381,6 +2383,13 @@ void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t
 	// perform original function
 	CCrystalEditViewEx::OnEditOperation(nAction, pszText, cchText);
 
+	// Notify tree-sitter parser of the edit for incremental reparsing.
+	// This is now handled in CDiffTextBuffer::AddUndoRecord() which
+	// calls NotifyEdit() with the TextEdit information directly.
+	// We do NOT reparse here -- doing a full reparse on every keystroke
+	// causes catastrophic memory/CPU usage. Instead, ParseLine() will
+	// call EnsureParsed() lazily when the view is next painted.
+
 	// augment with additional operations
 
 	// Change header to inform about changed doc
@@ -2981,6 +2990,28 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		point = rect.TopLeft();
 		point.Offset(5, 5);
 	}
+	else
+	{
+		CPoint clientPoint = point;
+		ScreenToClient(&clientPoint);
+		if (clientPoint.y >= GetTopMarginHeight())
+		{
+			CPoint adjustedPoint = clientPoint;
+			AdjustTextPoint(adjustedPoint);
+			CEPoint textPoint = ClientToText(adjustedPoint);
+			if (IsValidTextPosY(textPoint))
+			{
+				if (!IsValidTextPosX(textPoint))
+					textPoint.x = GetLineLength(textPoint.y);
+				SetCursorPos(textPoint);
+				if (!IsSelection() || !IsInsideSelBlock(textPoint))
+				{
+					SetAnchor(textPoint);
+					SetSelection(textPoint, textPoint);
+				}
+			}
+		}
+	}
 
 	pSub->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 		point.x, point.y, AfxGetMainWnd());
@@ -3262,6 +3293,48 @@ void CMergeEditView::OnWMGoto()
 	}
 }
 
+void CMergeEditView::GotoTreeSitterDefinition()
+{
+	CMergeDoc* pDoc = GetDocument();
+	if (!pDoc->IsTreeSitterEnabled())
+		return;
+
+	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
+	if (!pParser || !pParser->HasLanguage())
+		return;
+
+	pParser->EnsureParsed(pDoc->m_ptBuf[m_nThisPane].get());
+
+	const CEPoint pos = GetCursorPos();
+	int nDefLine = 0;
+	int nDefChar = 0;
+	if (pParser->FindDefinition(pDoc->m_ptBuf[m_nThisPane].get(), pos.y, pos.x, nDefLine, nDefChar))
+		GotoLine(nDefLine, false, m_nThisPane, true, nDefChar);
+}
+
+void CMergeEditView::OnGotoDefinition()
+{
+	GotoTreeSitterDefinition();
+}
+
+void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pDoc = GetDocument();
+	CTreeSitterParser* pParser = pDoc->GetTreeSitterParser(m_nThisPane);
+	if (!pDoc->IsTreeSitterEnabled() || !pParser || !pParser->HasLanguage())
+	{
+		pCmdUI->Enable(FALSE);
+		return;
+	}
+
+	pParser->EnsureParsed(pDoc->m_ptBuf[m_nThisPane].get());
+
+	const CEPoint pos = GetCursorPos();
+	int nDefLine = 0;
+	int nDefChar = 0;
+	pCmdUI->Enable(pParser->FindDefinition(pDoc->m_ptBuf[m_nThisPane].get(), pos.y, pos.x, nDefLine, nDefChar));
+}
+
 /**
 * @brief Called when "Go to Moved Line Between Left and Middle" item is selected.
 * Go to moved line between the left and right panes when in 2-way file comparison.
@@ -3426,6 +3499,8 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
+	else if (!GetDocument()->GetChangedSchemeManually() && GetDocument()->IsTreeSitterEnabled() && GetDocument()->GetTreeSitterTextDefinition(m_nThisPane) != nullptr)
+		SetTextType(GetDocument()->GetTreeSitterTextDefinition(m_nThisPane));
 	else if (!GetDocument()->GetChangedSchemeManually())
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
@@ -4276,6 +4351,8 @@ void CMergeEditView::DocumentsLoaded()
 	// Set tab type (tabs/spaces)
 	bool bInsertTabs = (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0);
 	SetInsertTabs(bInsertTabs);
+
+	// Note: TreeSitter initialization is now handled by CMergeDoc::OpenDocs
 
 	// Sometimes WinMerge doesn't update scrollbars correctly (they remain
 	// disabled) after docs are open in screen. So lets make sure they are

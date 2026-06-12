@@ -48,6 +48,7 @@ protected:
 		// Implement MergeEditStatus
 		void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
 			int nChar, int nChars, int nSelectedLines, int nSelectedChars, const tchar_t* szEol, int nCodepage, bool bHasBom) override;
+		void SetSyntaxParser(const tchar_t* szParser) override;
 		void UpdateResources();
 	protected:
 		void Update();
@@ -67,6 +68,7 @@ protected:
 		String m_sEol;
 		String m_sEolDisplay;
 		String m_sCodepageName;
+		String m_sSyntaxParser; /**< Tree-sitter language name, empty if not active */
 	};
 	friend class MergeStatus; // MergeStatus accesses status bar
 	MergeStatus m_status[3];

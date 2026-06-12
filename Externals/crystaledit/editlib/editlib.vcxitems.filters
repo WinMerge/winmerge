@@ -205,5 +205,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)darkmodelib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ITextBuffer.h" />
   </ItemGroup>
 </Project>

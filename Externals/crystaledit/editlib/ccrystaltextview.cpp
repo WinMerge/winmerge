@@ -1459,7 +1459,7 @@ GetParseCookie (int nLineIndex)
       if (L > 0)
         dwCookie = (*m_ParseCookies)[L - 1];
       ASSERT (dwCookie != - 1);
-      (*m_ParseCookies)[L] = ParseLine (dwCookie, GetLineChars(L), GetLineLength(L), nullptr, nBlocks);
+      (*m_ParseCookies)[L] = ParseLine (dwCookie, L, nullptr, nBlocks, m_pTextBuffer->GetParseContext());
       ASSERT ((*m_ParseCookies)[L] != - 1);
       L++;
     }
@@ -1939,7 +1939,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   blocks[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
   blocks[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
-  (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), blocks.data(), nBlocks);
+  (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, nLineIndex, blocks.data(), nBlocks, m_pTextBuffer->GetParseContext());
   ASSERT((*m_ParseCookies)[nLineIndex] != -1 && nBlocks < static_cast<int>(blocks.size()));
   blocks.resize(nBlocks);
 
@@ -4775,9 +4775,9 @@ OnSetFocus (CWnd * pOldWnd)
 }
 
 unsigned CCrystalTextView::
-ParseLine (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+ParseLine (unsigned dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems, void *pContext)
 {
-  return m_CurSourceDef->ParseLineX (dwCookie, pszChars, nLength, pBuf, nActualItems);
+  return m_CurSourceDef->ParseLineX (dwCookie, nLineIndex, GetLineChars(nLineIndex), GetLineLength(nLineIndex), pBuf, nActualItems, pContext);
 }
 
 int CCrystalTextView::

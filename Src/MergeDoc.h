@@ -27,6 +27,9 @@
 #include <optional>
 
 class CLineFilterHelperMenu;
+class CTreeSitterParser;
+struct TreeSitterParseContext;
+namespace CrystalLineParser { struct TextDefinition; }
 
 /**
  * @brief Additional action codes for WinMerge.
@@ -199,6 +202,10 @@ public:
 	void GetPrediffer(PrediffingInfo* infoPrediffer) const;
 	const PrediffingInfo* GetPrediffer() const override;
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
+	CTreeSitterParser* GetTreeSitterParser(int nBuffer) { return m_pTreeSitterParsers[nBuffer].get(); }
+	CrystalLineParser::TextDefinition* GetTreeSitterTextDefinition(int nBuffer) { return m_pTreeSitterTextDefs[nBuffer].get(); }
+	bool IsTreeSitterEnabled() const;
+	void UpdateTreeSitterSupport();
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView* pLocationView) { m_pLocationView = pLocationView; }
@@ -406,6 +413,9 @@ protected:
 	std::optional<bool> m_bEnableTableEditing;
 	std::unique_ptr<TableProps> m_pTablePropsPrepared;
 	std::unique_ptr<CLineFilterHelperMenu> m_pFilterMenu;
+	std::unique_ptr<CTreeSitterParser> m_pTreeSitterParsers[3]; /**< TreeSitter parsers for each pane */
+	std::unique_ptr<CrystalLineParser::TextDefinition> m_pTreeSitterTextDefs[3]; /**< TreeSitter TextDefinitions for each pane */
+	std::unique_ptr<TreeSitterParseContext> m_pTreeSitterContexts[3]; /**< TreeSitter parse contexts for each pane */
 	/**
 	 * Are automatic rescans enabled?
 	 * If automatic rescans are enabled then we rescan files after edit
@@ -505,4 +515,3 @@ inline bool CMergeDoc::HasSyncPoints()
 {
 	return m_bHasSyncPoints;
 }
-

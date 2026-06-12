@@ -30,6 +30,7 @@ constexpr unsigned FLAG_RESCAN_WAITS_FOR_IDLE = 1;
 #include "edtlib.h"
 #include "GhostTextView.h"
 #include "OptionsDiffColors.h"
+#include "TreeSitterParser.h"
 #include <map>
 #include <vector>
 
@@ -127,6 +128,7 @@ public:
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
+	void GotoTreeSitterDefinition();
 	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true, int nChar = -1);
 	int GetTopLine() const { return m_nTopLine; }
 	using CCrystalTextView::GetScreenLines;
@@ -210,6 +212,8 @@ protected:
 	afx_msg void OnEditPaste();
 	afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
 	afx_msg void OnEditUndo();
+	afx_msg void OnGotoDefinition();
+	afx_msg void OnUpdateGotoDefinition(CCmdUI* pCmdUI);
 	afx_msg void OnFirstdiff();
 	afx_msg void OnUpdateFirstdiff(CCmdUI* pCmdUI);
 	afx_msg void OnLastdiff();
@@ -374,4 +378,3 @@ inline bool CMergeEditView::IsCursorInDiff() const
 {
 	return m_bCurrentLineIsDiff;
 }
-

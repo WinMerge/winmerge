@@ -35,6 +35,7 @@
 #include "LineInfo.h"
 #include "UndoRecord.h"
 #include "cepoint.h"
+#include "ITextBuffer.h"
 #include <memory>
 #include <vector>
 #include <list>
@@ -90,7 +91,7 @@ public :
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer command target
 
-class EDITPADC_CLASS CCrystalTextBuffer
+class EDITPADC_CLASS CCrystalTextBuffer : public ITextBuffer
   {
 public:
     int m_nSourceEncoding;
@@ -155,6 +156,8 @@ public :
     };
     std::shared_ptr<SharedTableProperties> m_pSharedTableProps;
 
+	void* pParseContext; // context for incremental parsing, owned by the parser
+
     //  Helper methods
     void InsertLine (const tchar_t* pszLine, size_t nLength, int nPosition = -1, int nCount = 1);
     void AppendLine (int nLineIndex, const tchar_t* pszChars, size_t nLength, bool bDetectEol = true);
@@ -169,7 +172,6 @@ public :
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos,
                                 const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, std::vector<uint32_t> *paSavedRevisionNumbers = nullptr);
-    virtual UndoRecord GetUndoRecord (int nUndoPos) const { return m_aUndoBuf[nUndoPos]; }
 
     virtual std::vector<uint32_t> *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
     virtual void RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *psaSavedRevisionNumbers);
@@ -208,12 +210,12 @@ public :
     void RemoveView (CCrystalTextView * pView);
 
     //  Text access functions
-    int GetLineCount () const;
-    int GetLineLength (int nLine) const;
+    int GetLineCount () const override;
+    int GetLineLength (int nLine) const override;
     int GetFullLineLength (int nLine) const; // including EOLs
     const tchar_t* GetLineEol (int nLine) const;
     bool ChangeLineEol (int nLine, const tchar_t* lpEOL);
-    const tchar_t* GetLineChars (int nLine) const;
+    const tchar_t* GetLineChars (int nLine) const override;
     lineflags_t GetLineFlags (int nLine) const;
     uint32_t GetLineRevisionNumber (int nLine) const;
     int GetLineWithFlag (lineflags_t dwFlag) const;
@@ -246,6 +248,8 @@ public :
     //  Undo/Redo
     bool CanUndo () const;
     bool CanRedo () const;
+    int GetUndoPosition () const { return m_nUndoPosition; }
+    virtual UndoRecord GetUndoRecord (int nUndoPos) const { return m_aUndoBuf[nUndoPos]; }
     virtual bool Undo (CCrystalTextView * pSource, CEPoint & ptCursorPos);
     virtual bool UndoInsert (CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur);
     virtual bool Redo (CCrystalTextView * pSource, CEPoint & ptCursorPos);
@@ -315,6 +319,9 @@ public :
     // More bookmarks
     int FindNextBookmarkLine (int nCurrentLine = 0) const;
     int FindPrevBookmarkLine (int nCurrentLine = 0) const;
+
+	void* GetParseContext() const { return pParseContext; }
+	void SetParseContext(void* pContext) { pParseContext = pContext; }
 
     // Overrides
     // ClassWizard generated virtual function overrides
