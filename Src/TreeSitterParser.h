@@ -448,6 +448,7 @@ public:
 	// ISyntaxParser interface implementation
     void Invalidate() override;
 	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
+	LangServices::ITextBuffer* GetTextBuffer() const override { return m_pTextBuffer; }
 	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 	LangServices::LanguageId GetParserType() const override;
@@ -478,7 +479,7 @@ public:
     TreeSitterSyntaxParserFactory() {};
     virtual ~TreeSitterSyntaxParserFactory() = default;
 
-    virtual bool IsSupported(LangServices::LanguageId type) const override;
+    bool IsSupported(LangServices::LanguageId type) const;
     virtual std::shared_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
     {
         if (!IsSupported(type))

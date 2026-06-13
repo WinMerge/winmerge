@@ -25,7 +25,7 @@ msgstr ""
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5748
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5754
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 
@@ -8371,6 +8371,16 @@ msgstr "# Список замены регулярных выражений\r\n#
 #: Merge.rc:5731
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr "# Список замены\r\n# Формат: поиск<TAB>замена\r\n# Строки, начинающиеся с #, игнорируются\r\n\r\nот1\tдо1\r\nот2\tдо2\r\n"
+
+#. IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER
+#: Merge.rc:5736
+msgid "Prefer Tree-sitter"
+msgstr ""
+
+#. IDS_TREE_SITTER_MODE_PREFER_BUILD_IN
+#: Merge.rc:5737
+msgid "Prefer Build-in"
+msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43

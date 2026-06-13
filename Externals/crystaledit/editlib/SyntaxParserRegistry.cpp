@@ -34,8 +34,6 @@ std::shared_ptr<ISyntaxParser> SyntaxParserRegistry::CreateParser(LanguageId typ
 	{
 		if (f == nullptr)
 			continue;
-		if (!f->IsSupported(type))
-			continue;
 		auto parser = f->Create(type);
 		if (parser != nullptr)
 			return parser;

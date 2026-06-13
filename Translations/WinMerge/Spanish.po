@@ -26,7 +26,7 @@ msgstr ""
 "X-Generator: Poedit 2.3.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5748
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5754
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SPANISH, SUBLANG_SPANISH_MODERN"
 
@@ -8829,6 +8829,16 @@ msgstr ""
 "\r\n"
 "desde1\thasta1\r\n"
 "desde2\thasta2\r\n"
+
+#. IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER
+#: Merge.rc:5736
+msgid "Prefer Tree-sitter"
+msgstr ""
+
+#. IDS_TREE_SITTER_MODE_PREFER_BUILD_IN
+#: Merge.rc:5737
+msgid "Prefer Build-in"
+msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43

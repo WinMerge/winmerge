@@ -37,6 +37,13 @@ public:
 	 * @return Number of characters in the line (excluding line ending).
 	 */
 	virtual int GetLineLength(int nLineIndex) const = 0;
+
+	/**
+	 * @brief Get the full length of a specific line, including line ending characters.
+	 * @param nLineIndex Zero-based line index.
+	 * @return Total number of characters in the line, including line ending.
+	 */
+	virtual int GetFullLineLength(int nLineIndex) const = 0;
 };
 
 }

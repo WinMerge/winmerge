@@ -17,12 +17,9 @@ namespace LangServices
  * Dependency constraints: this file MUST NOT include CCrystalTextView or
  * crystallineparser.h. Only ISyntaxParser.h is allowed.
  */
-class ISyntaxParserFactory
+struct ISyntaxParserFactory
 {
-public:
 	virtual ~ISyntaxParserFactory() = default;
-
-	virtual bool IsSupported(LanguageId type) const = 0;
 
 	/**
 	 * @brief Create a parser instance for the given LanguageId.

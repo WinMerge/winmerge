@@ -286,8 +286,6 @@ DoSetTextType (LangServices::TextDefinition *def)
   m_CurSourceDef = def;
   SetFlags (def->flags);
 
-  // Create syntax parser if not already set (e.g., by WinMerge's SyntaxParserFactory)
-  // This ensures CCrystalTextView always has a parser available
   if (!m_pSyntaxParser && def->type != LangServices::LanguageId::SRC_PLAIN)
     {
       m_pSyntaxParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);

@@ -24,15 +24,9 @@ struct TEXTBLOCK
  * allowing both line-based parsers (CrystalEdit) and whole-document parsers (Tree-sitter)
  * to be used interchangeably. The parser accesses text data through LangServices::ITextBuffer
  * to avoid direct MFC dependencies.
- *
- * TEXTBLOCK and LanguageId are defined here as the canonical location so that
- * ISyntaxParser.h does not depend on crystallineparser.h. crystallineparser.h
- * provides backward-compatible using-aliases pointing to these definitions.
  */
-class ISyntaxParser
+struct ISyntaxParser
 {
-public:
-
 	virtual ~ISyntaxParser() = default;
 
 	virtual void Invalidate() = 0;
@@ -42,6 +36,12 @@ public:
 	 * @param pTextBuffer Pointer to the text buffer interface.
 	 */
 	virtual void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) = 0;
+
+	/**
+	 * @brief Get the currently set text buffer.
+	 * @return Pointer to the text buffer interface, or nullptr if not set.
+	 */
+	virtual LangServices::ITextBuffer* GetTextBuffer() const = 0;
 
 	/**
 	 * @brief Parse a single line and return syntax highlighting information.

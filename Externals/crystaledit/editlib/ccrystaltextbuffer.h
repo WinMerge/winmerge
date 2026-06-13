@@ -211,7 +211,7 @@ public :
     //  Text access functions
     int GetLineCount () const override;
     int GetLineLength (int nLine) const override;
-    int GetFullLineLength (int nLine) const; // including EOLs
+    int GetFullLineLength (int nLine) const override; // including EOLs
     const tchar_t* GetLineEol (int nLine) const;
     bool ChangeLineEol (int nLine, const tchar_t* lpEOL);
     const tchar_t* GetLineChars (int nLine) const override;

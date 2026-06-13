@@ -5731,6 +5731,12 @@ BEGIN
     IDS_STRING_REPLACE_LIST_TEMPLATE "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER "Prefer Tree-sitter"
+    IDS_TREE_SITTER_MODE_PREFER_BUILD_IN "Prefer Build-in"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

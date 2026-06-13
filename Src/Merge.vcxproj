@@ -1745,8 +1745,6 @@
     <ClInclude Include="stringdiffs.h" />
     <ClInclude Include="stringdiffsi.h" />
     <ClInclude Include="Common\SuperComboBox.h" />
-    <ClInclude Include="ISyntaxParserFactory.h" />
-    <ClInclude Include="SyntaxParserRegistry.h" />
     <ClInclude Include="SyntaxParserHelper.h" />
     <ClInclude Include="TempFile.h" />
     <ClInclude Include="TestMain.h" />

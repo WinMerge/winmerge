@@ -1,103 +1,27 @@
 #include "pch.h"
 #include <Windows.h>
 #include "SyntaxParserHelper.h"
+#include "unicoder.h"
 #include "SyntaxColors.h"
 #include "utils/ctchar.h"
 #include <vector>
-
-/**
- * @brief Get text with comments filtered out.
- */
-std::string SyntaxParserHelper::GetCommentsFilteredText(
-	LangServices::ISyntaxParser* pParser,
-	LangServices::ITextBuffer* pTextBuffer,
-	int nStartLine,
-	int nEndLine)
-{
-	if (pParser == nullptr || pTextBuffer == nullptr)
-		return std::string();
-
-	std::string result;
-
-	// Process each line in the range
-	for (int nLine = nStartLine; nLine <= nEndLine; nLine++)
-	{
-		if (nLine < 0 || nLine >= pTextBuffer->GetLineCount())
-			continue;
-
-		const tchar_t* pszChars = pTextBuffer->GetLineChars(nLine);
-		int nLength = pTextBuffer->GetLineLength(nLine);
-
-		if (nLength == 0)
-		{
-			result += '\n';
-			continue;
-		}
-
-		// Parse the line to get color blocks
-		std::vector<LangServices::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
-
-		// Extract non-comment text
-		std::string lineText;
-		int nCurrentPos = 0;
-		int nActualItems = static_cast<int>(blocks.size());
-
-		for (int i = 0; i < nActualItems; i++)
-		{
-			int nBlockStart = blocks[i].m_nCharPos;
-			int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : nLength;
-			int nColorIndex = blocks[i].m_nColorIndex;
-
-			// Skip comment blocks
-			if (nColorIndex == COLORINDEX_COMMENT)
-			{
-				nCurrentPos = nBlockEnd;
-				continue;
-			}
-
-			// Append non-comment text
-			if (nBlockEnd > nBlockStart)
-			{
-#ifdef _UNICODE
-				// Convert wide char to UTF-8
-				int nBlockLen = nBlockEnd - nBlockStart;
-				int nUtf8Len = WideCharToMultiByte(CP_UTF8, 0, pszChars + nBlockStart, nBlockLen, nullptr, 0, nullptr, nullptr);
-				if (nUtf8Len > 0)
-				{
-					std::vector<char> utf8Buffer(nUtf8Len);
-					WideCharToMultiByte(CP_UTF8, 0, pszChars + nBlockStart, nBlockLen, utf8Buffer.data(), nUtf8Len, nullptr, nullptr);
-					lineText.append(utf8Buffer.data(), nUtf8Len);
-				}
-#else
-				lineText.append(pszChars + nBlockStart, nBlockEnd - nBlockStart);
-#endif
-			}
-
-			nCurrentPos = nBlockEnd;
-		}
-
-		result += lineText;
-		result += '\n';
-	}
-
-	return result;
-}
 
 /**
  * @brief Get text with comments filtered out and per-line comment status.
  */
 std::string SyntaxParserHelper::GetCommentsFilteredText(
 	LangServices::ISyntaxParser* pParser,
-	LangServices::ITextBuffer* pTextBuffer,
 	int nStartLine,
 	int nEndLine,
 	std::vector<bool>& allTextIsComment)
 {
-	if (pParser == nullptr || pTextBuffer == nullptr)
+	if (pParser == nullptr || !pParser->GetTextBuffer())
 	{
 		allTextIsComment.clear();
 		return std::string();
 	}
+
+	auto* pTextBuffer = pParser->GetTextBuffer();
 
 	std::string result;
 	int nLineCount = nEndLine - nStartLine + 1;
@@ -115,18 +39,17 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		}
 
 		const tchar_t* pszChars = pTextBuffer->GetLineChars(nLine);
-		int nLength = pTextBuffer->GetLineLength(nLine);
-
-		if (nLength == 0)
-		{
-			result += '\n';
-			allTextIsComment[lineIndex] = false;
-			continue;
-		}
+		int nFullLength = pTextBuffer->GetFullLineLength(nLine);
 
 		// Parse the line to get color blocks
 		std::vector<LangServices::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
-
+		if (blocks.empty())
+		{
+			allTextIsComment[lineIndex] = false;
+			result.append(ucr::toUTF8(pszChars, nFullLength));
+			continue;
+		}
+		
 		// Check if entire line is a comment
 		bool hasNonComment = false;
 		std::string lineText;
@@ -136,7 +59,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		for (int i = 0; i < nActualItems; i++)
 		{
 			int nBlockStart = blocks[i].m_nCharPos;
-			int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : nLength;
+			int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : nFullLength;
 			int nColorIndex = blocks[i].m_nColorIndex;
 
 			// Skip comment blocks
@@ -151,21 +74,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 
 			// Append non-comment text
 			if (nBlockEnd > nBlockStart)
-			{
-#ifdef _UNICODE
-				// Convert wide char to UTF-8
-				int nBlockLen = nBlockEnd - nBlockStart;
-				int nUtf8Len = WideCharToMultiByte(CP_UTF8, 0, pszChars + nBlockStart, nBlockLen, nullptr, 0, nullptr, nullptr);
-				if (nUtf8Len > 0)
-				{
-					std::vector<char> utf8Buffer(nUtf8Len);
-					WideCharToMultiByte(CP_UTF8, 0, pszChars + nBlockStart, nBlockLen, utf8Buffer.data(), nUtf8Len, nullptr, nullptr);
-					lineText.append(utf8Buffer.data(), nUtf8Len);
-				}
-#else
-				lineText.append(pszChars + nBlockStart, nBlockEnd - nBlockStart);
-#endif
-			}
+				lineText.append(ucr::toUTF8(pszChars + nBlockStart, nBlockEnd - nBlockStart));
 
 			nCurrentPos = nBlockEnd;
 		}
@@ -174,7 +83,6 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		allTextIsComment[lineIndex] = (nActualItems > 0 && !hasNonComment);
 
 		result += lineText;
-		result += '\n';
 	}
 
 	return result;

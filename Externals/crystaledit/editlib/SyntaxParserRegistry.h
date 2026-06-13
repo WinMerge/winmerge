@@ -9,11 +9,6 @@ namespace LangServices
 
 /**
  * @brief Central registry for ISyntaxParserFactory instances.
- *
- * Factories are registered at application startup and queried whenever a
- * parser needs to be created.  The registry selects the best factory by
- * comparing priority values returned by ISyntaxParserFactory::GetPriority()
- * and ::GetPriorityFromContent().
  */
 class SyntaxParserRegistry
 {
@@ -42,10 +37,6 @@ public:
 	 * @param type The language / file-format type.
 	 * @return Parser from the highest-priority factory that returns non-null
 	 *         for this type, or nullptr if none can handle it.
-	 *
-	 * Factories are tried in descending priority order (using GetPriority with
-	 * an empty extension as the ordering key, then falling back to registration
-	 * order for ties).
 	 */
 	std::shared_ptr<ISyntaxParser> CreateParser(LanguageId type) const;
 

@@ -90,8 +90,9 @@ CrystalLineSyntaxParser::CrystalLineSyntaxParser(LanguageId textType)
  */
 void CrystalLineSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
 {
+	if (m_pTextBuffer == pTextBuffer)
+		return;
 	m_pTextBuffer = pTextBuffer;
-
 	// Reset parse state when buffer changes
 	m_ParseCookies.clear();
 }

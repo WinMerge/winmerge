@@ -26,7 +26,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../Src\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5748
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5754
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_GERMAN, SUBLANG_GERMAN"
@@ -9570,6 +9570,16 @@ msgstr ""
 "\r\n"
 "von1\tzu1\r\n"
 "von2\tzu2\r\n"
+
+#. IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER
+#: Merge.rc:5736
+msgid "Prefer Tree-sitter"
+msgstr ""
+
+#. IDS_TREE_SITTER_MODE_PREFER_BUILD_IN
+#: Merge.rc:5737
+msgid "Prefer Build-in"
+msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43

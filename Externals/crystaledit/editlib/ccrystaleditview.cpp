@@ -1822,7 +1822,7 @@ int bracetype (tchar_t c);
 int bracetype (const tchar_t* s);
 
 void CCrystalEditView::
-OnEditOperation2(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
+OnTextBufferChanged(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
   if (m_pSyntaxParser != nullptr)
     m_pSyntaxParser->NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);

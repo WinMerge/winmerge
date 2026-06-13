@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5748
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5754
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_FARSI, SUBLANG_DEFAULT"
@@ -9301,6 +9301,16 @@ msgstr ""
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
 #: Merge.rc:5731
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgstr ""
+
+#. IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER
+#: Merge.rc:5736
+msgid "Prefer Tree-sitter"
+msgstr ""
+
+#. IDS_TREE_SITTER_MODE_PREFER_BUILD_IN
+#: Merge.rc:5737
+msgid "Prefer Build-in"
 msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1

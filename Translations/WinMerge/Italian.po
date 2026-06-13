@@ -24,7 +24,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5748
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5754
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_ITALIAN, SUBLANG_ITALIAN"
 
@@ -8866,6 +8866,16 @@ msgstr "# Elenco sostituzione Regex\r\n# Formato: regex<TAB>sostituzione\r\n# So
 #: Merge.rc:5731
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr "# Elenco sostituzioni\r\n# Formato: ricerca<TAB>sostituzione\r\n# Le righe che iniziano con # verranno ignorate\r\n\r\nda1\ta1\r\nda2\ta2\r\n"
+
+#. IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER
+#: Merge.rc:5736
+msgid "Prefer Tree-sitter"
+msgstr ""
+
+#. IDS_TREE_SITTER_MODE_PREFER_BUILD_IN
+#: Merge.rc:5737
+msgid "Prefer Build-in"
+msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43

@@ -25,7 +25,7 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5748
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5754
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN"
 
@@ -8372,6 +8372,16 @@ msgstr "# Lista de substituição de regex\r\n# Formato: regex<TAB>substituiçã
 #: Merge.rc:5731
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr "# Lista de substituição\r\n# Formato: busca<TAB>substituição\r\n# Linhas começando com # são ignoradas\r\n\r\nde1\tpara1\r\nde2\tpara2\r\n"
+
+#. IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER
+#: Merge.rc:5736
+msgid "Prefer Tree-sitter"
+msgstr ""
+
+#. IDS_TREE_SITTER_MODE_PREFER_BUILD_IN
+#: Merge.rc:5737
+msgid "Prefer Build-in"
+msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43

@@ -332,6 +332,14 @@ static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_da
 				m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
 			return static_cast<int>(linelen(m_lineCache[nLineIndex].c_str(), m_lineCache[nLineIndex].length()));
 		}
+		int GetFullLineLength(int nLineIndex) const override
+		{
+			if (nLineIndex < 0 || nLineIndex >= m_lineCount)
+				return 0;
+			if (m_lineCache[nLineIndex].empty())
+				m_lineCache[nLineIndex] = convertToTString(m_fileData.linbuf[nLineIndex + m_fileData.linbuf_base], m_fileData.linbuf[nLineIndex + 1 + m_fileData.linbuf_base]);
+			return static_cast<int>(m_lineCache[nLineIndex].length());
+		}
 	private:
 		const file_data& m_fileData;
 		mutable std::vector<String> m_lineCache;
@@ -362,7 +370,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	std::string lineDataLeft, lineDataRight;
 	std::vector<bool> allTextIsCommentLeft(qtyLinesLeft), allTextIsCommentRight(qtyLinesRight);
 
-	if (m_options.m_filterCommentsLines)
+	if (m_options.m_filterCommentsLines && m_pFilterCommentsDef != nullptr)
 	{
 		if (ctxt.m_pSyntaxParser[0] == nullptr)
 		{
@@ -381,12 +389,12 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 
 		// Use SyntaxParserHelper for unified comment filtering
 		lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
-			ctxt.m_pSyntaxParser[0].get(), ctxt.m_pTextBuffer[0].get(),
+			ctxt.m_pSyntaxParser[0].get(),
 			lineNumberLeft, ctxt.nParsedLineEndLeft,
 			allTextIsCommentLeft);
 
 		lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
-			ctxt.m_pSyntaxParser[1].get(), ctxt.m_pTextBuffer[1].get(),
+			ctxt.m_pSyntaxParser[1].get(),
 			lineNumberRight, ctxt.nParsedLineEndRight,
 			allTextIsCommentRight);
 	}
