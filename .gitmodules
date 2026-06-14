@@ -34,3 +34,6 @@
 [submodule "Externals/cliphcat"]
 	path = Externals/cliphcat
 	url = https://github.com/WinMerge/cliphcat
+[submodule "Externals/tree-sitter-grammars"]
+	path = Externals/tree-sitter-grammars
+	url = https://github.com/WinMerge/tree-sitter-grammars

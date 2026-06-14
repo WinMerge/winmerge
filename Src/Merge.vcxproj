@@ -1943,25 +1943,6 @@
     <Copy SourceFiles="@(VisualElementsManifest)" DestinationFolder="$(OutDir)" ContinueOnError="true" />
     <Copy SourceFiles="@(LogoImages)" DestinationFolder="$(OutDir)\LogoImages" ContinueOnError="true" />
   </Target>
-  <!--
-    Build tree-sitter grammar DLLs and query bundles into the Release output.
-    Non-Release builds copy from the Release grammar directory after the app
-    binary has been built.
-  -->
-  <Target Name="BuildTreeSitterGrammars" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
-    <Message Text="Building tree-sitter grammars into $(OutDir)TreeSitterGrammars\" Importance="high" />
-    <Exec Command="powershell -ExecutionPolicy Bypass -File &quot;$(ProjectDir)..\Tools\TreeSitterGrammars\build-grammars.ps1&quot; -OutDir &quot;$(OutDir)TreeSitterGrammars&quot; -Platform $(Platform) -Configuration $(Configuration)" />
-  </Target>
-  <Target Name="CopyTreeSitterGrammars" AfterTargets="Build" Condition="'$(Configuration)' != 'Release' AND Exists('$(OutDir)..\Release\TreeSitterGrammars')">
-    <ItemGroup>
-      <TreeSitterDlls Include="$(OutDir)..\Release\TreeSitterGrammars\*.dll" />
-      <TreeSitterQueries Include="$(OutDir)..\Release\TreeSitterGrammars\*.scm" />
-    </ItemGroup>
-    <Message Text="Copying tree-sitter grammars from Release to $(OutDir)TreeSitterGrammars\" Importance="high" />
-    <MakeDir Directories="$(OutDir)TreeSitterGrammars" />
-    <Copy SourceFiles="@(TreeSitterDlls)" DestinationFolder="$(OutDir)TreeSitterGrammars" SkipUnchangedFiles="true" ContinueOnError="true" />
-    <Copy SourceFiles="@(TreeSitterQueries)" DestinationFolder="$(OutDir)TreeSitterGrammars" SkipUnchangedFiles="true" ContinueOnError="true" />
-  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

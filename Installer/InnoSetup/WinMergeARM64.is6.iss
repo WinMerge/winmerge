@@ -434,8 +434,8 @@ Source: ..\..\Build\{#ARCH}\Release\WinMergeU.VisualElementsManifest.xml; DestDi
 Source: ..\..\Build\{#ARCH}\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 ; Resources
 Source: ..\..\Build\{#ARCH}\Release\Resources\*.png; DestDir: {app}\Resources; Flags: promptifolder; Components: Core
-Source: ..\..\Build\{#ARCH}\Release\TreeSitterGrammars\*.dll; DestDir: {app}\TreeSitterGrammars; Flags: ignoreversion recursesubdirs; Components: Core
-Source: ..\..\Build\{#ARCH}\Release\TreeSitterGrammars\*.scm; DestDir: {app}\TreeSitterGrammars; Flags: ignoreversion recursesubdirs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\TreeSitterGrammars\*.*; DestDir: {app}\TreeSitterGrammars; Flags: ignoreversion recursesubdirs; Components: Core
+
 ; 32Bit Plugin Proxy
 Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
