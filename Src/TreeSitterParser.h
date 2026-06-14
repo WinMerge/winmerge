@@ -464,7 +464,6 @@ public:
 private:
 	LangServices::ITextBuffer* m_pTextBuffer;           ///< Text buffer interface
 	CTreeSitterParser m_parser;           ///< Underlying Tree-sitter parser
-	const CTreeSitterLanguage* m_pLanguage; ///< Language definition
 };
 
 class TreeSitterSyntaxParserFactory : public LangServices::ISyntaxParserFactory

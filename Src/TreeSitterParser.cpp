@@ -14,6 +14,7 @@
 #include "ISyntaxParser.h"
 #include "ITextBuffer.h"
 #include "TextDefinition.h"
+#include "unicoder.h"
 #include "utils/ctchar.h"
 
 #include <tree_sitter/api.h>
@@ -385,25 +386,9 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
 	{
 		if (ppszLines[i] && pnLineLengths[i] > 0)
 		{
-#ifdef _UNICODE
 			// Convert UTF-16 to UTF-8
-			int nLen = WideCharToMultiByte(CP_UTF8, 0,
-				ppszLines[i], pnLineLengths[i],
-				nullptr, 0, nullptr, nullptr);
-			if (nLen > 0)
-			{
-				std::string lineUtf8(nLen, '\0');
-				WideCharToMultiByte(CP_UTF8, 0,
-					ppszLines[i], pnLineLengths[i],
-					&lineUtf8[0], nLen,
-					nullptr, nullptr);
-				m_lineUtf8[i] = lineUtf8;
-				m_documentText.append(lineUtf8);
-			}
-#else
-			m_lineUtf8[i].assign(ppszLines[i], pnLineLengths[i]);
-			m_documentText.append(ppszLines[i], pnLineLengths[i]);
-#endif
+			m_lineUtf8[i] = ucr::toUTF8(ppszLines[i], pnLineLengths[i]);
+			m_documentText.append(m_lineUtf8[i]);
 		}
 		if (i < nLineCount - 1)
 			m_documentText += '\n';
@@ -2014,16 +1999,7 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* p
 	while (nEnd < nLineLength && IsIdentChar(pszLine[nEnd]))
 		++nEnd;
 
-	std::wstring symbolW(pszLine + nStart, nEnd - nStart);
-#ifdef _UNICODE
-	int nUtf8Len = WideCharToMultiByte(CP_UTF8, 0, symbolW.c_str(), static_cast<int>(symbolW.size()), nullptr, 0, nullptr, nullptr);
-	if (nUtf8Len <= 0)
-		return false;
-	std::string symbol(nUtf8Len, '\0');
-	WideCharToMultiByte(CP_UTF8, 0, symbolW.c_str(), static_cast<int>(symbolW.size()), symbol.data(), nUtf8Len, nullptr, nullptr);
-#else
-	std::string symbol(symbolW.begin(), symbolW.end());
-#endif
+	std::string symbol = ucr::toUTF8(pszLine + nStart, nEnd - nStart);
 
 	const TagDef* pBestDef = nullptr;
 	for (const auto& def : m_tagDefs)
@@ -2133,13 +2109,11 @@ TreeSitterSyntaxParser::TreeSitterSyntaxParser(LangServices::LanguageId textType
 	auto* name = GetLanguageNameForId(textType);
 	auto* pLanguage = registry.GetLanguageForName(name);
 	m_parser.SetLanguage(pLanguage);
-	m_pLanguage = pLanguage;
 }
 
 void TreeSitterSyntaxParser::Invalidate()
 {
 	m_parser.Invalidate();
-	m_parser.ParseFromBuffer(m_pTextBuffer);
 }
 
 /**
