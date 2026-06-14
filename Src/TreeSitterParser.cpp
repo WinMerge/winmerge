@@ -1194,24 +1194,14 @@ void CTreeSitterParser::RunHighlightQuery()
 		});
 
 	// Remove duplicate highlights for the same range, keeping only the highest priority one
-	auto it = highlights.begin();
-	while (it != highlights.end())
-	{
-		auto next = it + 1;
-		// Skip all subsequent entries with the same byte range
-		while (next != highlights.end() && 
-			   next->startByte == it->startByte && 
-			   next->endByte == it->endByte)
-		{
-			++next;
-		}
-		// Erase duplicates (lower priority entries for same range)
-		if (next != it + 1)
-		{
-			highlights.erase(it + 1, next);
-		}
-		++it;
-	}
+	highlights.erase(
+		std::unique(highlights.begin(), highlights.end(),
+			[](const HighlightEntry& a, const HighlightEntry& b)
+			{
+				return a.startByte == b.startByte &&
+					a.endByte == b.endByte;
+			}),
+		highlights.end());
 
 	// Build per-line block arrays
 	m_lineBlocks.clear();
