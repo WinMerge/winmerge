@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2026-05-28 11:50+0100\n"
+"PO-Revision-Date: 2026-06-14 11:35+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.9\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:26 Merge.rc:59 Merge.rc:5754
@@ -3782,7 +3782,7 @@ msgstr "Itens filtrados:"
 #. IDD_PROPPAGE_COLORS_SYSTEM, IDC_SYSCOLOR_HOOK_ENABLED
 #: Merge.rc:2555
 msgid "&Use custom system colors"
-msgstr "&Usar cores personalizadas do sistema (Alguns elementos da interface podem não se aplicar)"
+msgstr "&Usar cores personalizadas do sistema"
 
 #. IDS_PRPCAT_SYSTEM
 #: Merge.rc:2564 Merge.rc:4511 Merge.rc:4512 Merge.rc:4958
@@ -5234,8 +5234,20 @@ msgstr "Projeto guardado com sucesso."
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4444
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"Este projeto contém plugins com argumentos personalizados:\n"
+"\n"
+"%1\n"
+"Estes argumentos podem afetar o comportamento do plugin ou executar programas externos.\n"
+"\n"
+"Pretende abrir este projeto?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4450
@@ -6364,7 +6376,7 @@ msgstr "Confirmar"
 
 #: Merge.rc:4869
 msgid "Close the folder comparison window?"
-msgstr "Está prestes a fechar a janela que está a comparar as pastas. Tem a certeza de que pretende fechar a janela?"
+msgstr "Fechar a janela de comparação de pastas?"
 
 #: Merge.rc:4871
 msgid "Close the folder comparison window, which took a long time?"
