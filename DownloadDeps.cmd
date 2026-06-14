@@ -14,7 +14,7 @@ https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_b
 https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.8.0/ShellExtension-1.18.8.0.zip!Build ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z/Merge7z2601.1-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z/Merge7z2601.1-x64.zip!Build\X64\Release ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z/Merge7z2601.1-ARM.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z/Merge7z2601.1-ARM.zip!Build\ARM\Release ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z/Merge7z2601.1-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.22-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.22-x64.zip!Build\x64\Release ^
@@ -30,6 +30,10 @@ https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.
 https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.21.2.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.21.2.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.21.2.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/sdottaka/tree-sitter-grammars/releases/download/v0.1.0/tree-sitter-grammars-0.1.0-x86.zip!Build\x86\Release ^
+https://github.com/sdottaka/tree-sitter-grammars/releases/download/v0.1.0/tree-sitter-grammars-0.1.0-x64.zip!Build\X64\Release ^
+https://github.com/sdottaka/tree-sitter-grammars/releases/download/v0.1.0/tree-sitter-grammars-0.1.0-ARM.zip!Build\ARM\Release ^
+https://github.com/sdottaka/tree-sitter-grammars/releases/download/v0.1.0/tree-sitter-grammars-0.1.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
 https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-windows-i386.exe!Build\jq ^
@@ -93,6 +97,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\WinWebDiff 2> NUL
     mkdir Build\%%i\%%j\Frhed 2> NUL
     mkdir Build\%%i\%%j\darkmodelib 2> NUL
+    mkdir Build\%%i\%%j\TreeSitterGrammars 2> NUL
     mkdir Build\%%i\%%j\Filters 2> NUL
     mkdir Build\%%i\%%j\ColorSchemes 2> NUL
     mkdir Build\%%i\%%j\MergePlugins 2> NUL
@@ -111,6 +116,8 @@ for %%i in (x86 x64 ARM ARM64) do (
       copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\ 2> NUL
       copy Build\%%i\Release\WinWebDiff\WinWebDiffLib.dll Build\%%i\%%j\WinWebDiff\ 2> NUL
       copy Build\%%i\Release\darkmodelib\darkmode.dll Build\%%i\%%j\darkmodelib\ 2> NUL
+      copy Build\%%i\Release\TreeSitterGrammars\*.dll Build\%%i\%%j\TreeSitterGrammars\ 2> NUL
+      copy Build\%%i\Release\TreeSitterGrammars\*.scm Build\%%i\%%j\TreeSitterGrammars\ 2> NUL
     )
     echo ** jq
     copy Build\jq\jq-windows-i386.exe Build\%%i\%%j\Commands\jq\jq.exe

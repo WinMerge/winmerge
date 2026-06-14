@@ -71,7 +71,7 @@ void CSampleView::AssertValid() const
 
 void CSampleView::Dump(CDumpContext& dc) const
 {
-	CCrystalEditViewEx::Dump(dc);
+	CCrystalEditView::Dump(dc);
 }
 
 CSampleDoc* CSampleView::GetDocument() // non-debug version is inline
@@ -91,7 +91,7 @@ CCrystalTextBuffer *CSampleView::LocateTextBuffer()
 
 void CSampleView::OnInitialUpdate() 
 {
-	CCrystalEditViewEx::OnInitialUpdate();
+	CCrystalEditView::OnInitialUpdate();
 
 	SetFont(GetDocument()->m_lf);
 	SetColorContext(GetDocument()->m_pSyntaxColors);

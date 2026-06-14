@@ -21,6 +21,7 @@
 #include "FileTextEncoding.h"
 #include "codepage_detect.h"
 #include "TFile.h"
+#include "TextDefinition.h"
 #include <Poco/Exception.h>
 
 using Poco::Exception;
@@ -221,8 +222,8 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 
 	// Set encoding based on extension, if we know one
 	paths::SplitFilename(pszFileName, nullptr, nullptr, &sExt);
-	CrystalLineParser::TextDefinition *def = 
-		CrystalLineParser::GetTextType(sExt.c_str());
+	LangServices::TextDefinition *def = 
+		LangServices::GetTextType(sExt.c_str());
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	

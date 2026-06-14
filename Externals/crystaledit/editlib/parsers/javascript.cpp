@@ -87,7 +87,7 @@ IsJavaScriptKeyword (const tchar_t *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineJavaScript (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineJavaScript (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsJavaScriptKeyword, nullptr);
+  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, IsJavaScriptKeyword, nullptr);
 }

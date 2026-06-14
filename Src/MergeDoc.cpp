@@ -54,6 +54,8 @@
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
 #include "Logger.h"
+#include "TreeSitterParser.h"
+#include "SyntaxParserRegistry.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2310,7 +2312,7 @@ void CMergeDoc::SetTableProperties()
 void CMergeDoc::SetTextType(int textType)
 {
 	ForEachView([textType, this](auto& pView) {
-		pView->SetTextType(CrystalLineParser::TextType(textType));
+		pView->SetTextType(LangServices::LanguageId(textType));
 		pView->SetDisableBSAtSOL(false);
 		m_bChangedSchemeManually = true;
 	});
@@ -2511,29 +2513,32 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
 				sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-				ForEachView(nBuffer, [&](auto& pView) {
-					bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
-					if (bTyped[nBuffer])
-						paneTyped = nBuffer;
-				});
+				bTyped[nBuffer] = m_pView[0][nBuffer]->SetTextType(sext[nBuffer].c_str());
+				if (bTyped[nBuffer])
+					paneTyped = nBuffer;
 			}
 
 			if (paneTyped == -1)
 			{
 				String sFirstLine;
 				m_ptBuf[0]->GetLine(0, sFirstLine);
-				ForEachView([&bTyped, &sFirstLine](auto& pView) {
+				ForEachGroupView(0, [&bTyped, &sFirstLine](auto& pView) {
 					bTyped[pView->m_nThisPane] = pView->SetTextTypeByContent(sFirstLine.c_str());
 				});
 			}
 			else
 			{
-				CrystalLineParser::TextDefinition *enuType = CrystalLineParser::GetTextType(sext[paneTyped].c_str());
-				ForEachView([&bTyped, enuType](auto& pView) {
+				LangServices::TextDefinition *enuType = LangServices::GetTextType(sext[paneTyped].c_str());
+				ForEachGroupView(0, [&bTyped, enuType](auto& pView) {
 					if (!bTyped[pView->m_nThisPane])
 						pView->SetTextType(enuType);
 				});
 			}
+
+			ForEachView([&](auto& pView) {
+				if (pView != m_pView[0][pView->m_nThisPane])
+					pView->ShareSyntaxParser(m_pView[0][pView->m_nThisPane]);
+			});
 		}
 
 		int nNormalBuffer = 0;

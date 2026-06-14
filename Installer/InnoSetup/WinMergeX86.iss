@@ -448,6 +448,7 @@ Source: ..\..\Build\{#ARCH}\Release\WinMergeU.VisualElementsManifest.xml; DestDi
 Source: ..\..\Build\{#ARCH}\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 ; Resources
 Source: ..\..\Build\{#ARCH}\Release\Resources\*.png; DestDir: {app}\Resources; Flags: promptifolder; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\TreeSitterGrammars\*.*; DestDir: {app}\TreeSitterGrammars; Flags: ignoreversion recursesubdirs; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; \

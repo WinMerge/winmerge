@@ -73,7 +73,7 @@ if "%1" == "x64" (
 )
 
 rem Create folder structure
-for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff darkmodelib Merge7z\Lang Commands\Apache-Tika Commands\cliphcat Commands\tidy-html5 Commands\jq Commands\q Commands\msys2 Commands\md4c Resources) do (
+for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff darkmodelib TreeSitterGrammars Merge7z\Lang Commands\Apache-Tika Commands\cliphcat Commands\tidy-html5 Commands\jq Commands\q Commands\msys2 Commands\md4c Resources) do (
   mkdir "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\%%i" 2> NUL
 )
 
@@ -179,6 +179,14 @@ rem darkmodelib
 echo Copy darkmodelib...
 copy Build\%PLATFORM%\Release\darkmodelib\LICENSE.md "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\darkmodelib\" > NUL
 copy Build\%PLATFORM%\Release\darkmodelib\darkmode.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\darkmodelib\" > NUL
+
+rem TreeSitterGrammars
+echo Copy TreeSitterGrammars...
+copy Build\%PLATFORM%\Release\TreeSitterGrammars\*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\TreeSitterGrammars\" > NUL
+copy Build\%PLATFORM%\Release\TreeSitterGrammars\*.scm "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\TreeSitterGrammars\" > NUL
+for /D %%i in (Build\%PLATFORM%\Release\TreeSitterGrammars\tree-sitter-*) do (
+    xcopy /Y /I "%%i\LICENSE" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\TreeSitterGrammars\%%~nxi\" > NUL
+)
 
 rem Commands
 echo Copy Commands...

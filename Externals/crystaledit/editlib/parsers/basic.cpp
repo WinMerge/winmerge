@@ -314,7 +314,7 @@ IsBasicKeyword (const tchar_t *pszChars, int nLength)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int nIdentBegin, int I)
 {
   if (IsBasicKeyword (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -347,7 +347,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineBasic (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineBasic (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -424,7 +424,7 @@ out:
       if (pszChars[I] == '\'')
         {
           if (nIdentBegin >= 0)
-            DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+            DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
           break;
@@ -451,7 +451,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -460,7 +460,7 @@ out:
     }
 
   if (nIdentBegin >= 0)
-    DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+    DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
 
   dwCookie &= COOKIE_EXT_COMMENT;
   return dwCookie;

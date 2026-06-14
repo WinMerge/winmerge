@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "OptionsEditorSyntax.h"
 #include "OptionsMgr.h"
-#include "parsers/crystallineparser.h"
+#include "TextDefinition.h"
 
 namespace Options { namespace EditorSyntax
 {
@@ -19,9 +19,9 @@ void GetDefaults(COptionsMgr* pOptionsMgr, String* pExtension)
 	if (pOptionsMgr == nullptr || pExtension == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = LangServices::LanguageId::SRC_ABAP; i <= LangServices::LanguageId::SRC_XML; i++)
 	{
-		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
+		LangServices::TextDefinition* def = LangServices::GetTextType(i);
 		if (def != nullptr)
 		{
 			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
@@ -42,10 +42,10 @@ void Init(COptionsMgr *pOptionsMgr)
 	if (pOptionsMgr == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = LangServices::LanguageId::SRC_ABAP; i <= LangServices::LanguageId::SRC_XML; i++)
 	{
 		// Register the extension settings defined in CrystalLineParser in OptionsMgr as the default value.
-		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
+		LangServices::TextDefinition* def = LangServices::GetTextType(i);
 		if (def != nullptr)
 		{
 			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
@@ -53,7 +53,7 @@ void Init(COptionsMgr *pOptionsMgr)
 
 			// Register the settings read from the registry in CrystalLineParser.
 			String exts = pOptionsMgr->GetString(name);
-			CrystalLineParser::SetExtension(i, exts.c_str());
+			LangServices::SetExtension(i, exts.c_str());
 		}
 	}
 }
@@ -68,9 +68,9 @@ void Load(COptionsMgr *pOptionsMgr, String* pExtension)
 	if (pOptionsMgr == nullptr || pExtension == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = LangServices::LanguageId::SRC_ABAP; i <= LangServices::LanguageId::SRC_XML; i++)
 	{
-		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
+		LangServices::TextDefinition* def = LangServices::GetTextType(i);
 		if (def != nullptr)
 		{
 			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
@@ -90,17 +90,17 @@ void Save(COptionsMgr* pOptionsMgr, const String* const pExtension)
 	if (pOptionsMgr == nullptr || pExtension == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = LangServices::LanguageId::SRC_ABAP; i <= LangServices::LanguageId::SRC_XML; i++)
 	{
 		// Save the extension settings to OptionsMgr.
-		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
+		LangServices::TextDefinition* def = LangServices::GetTextType(i);
 		if (def != nullptr)
 		{
 			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
 			pOptionsMgr->SaveOption(name, pExtension[i-1]);
 
 			// Save the extension settings to CrystalLineParser.
-			CrystalLineParser::SetExtension(i, pExtension[i-1].c_str());
+			LangServices::SetExtension(i, pExtension[i-1].c_str());
 		}
 	}
 }

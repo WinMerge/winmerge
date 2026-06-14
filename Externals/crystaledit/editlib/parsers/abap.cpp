@@ -1052,7 +1052,7 @@ static bool IsNumber(const tchar_t* pszChars, int nLength)
 }
 
 static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int nIdentBegin, int I)
 {
 	if (IsAbapKeyword(pszChars + nIdentBegin, I - nIdentBegin))
 	{
@@ -1065,7 +1065,7 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TE
 }
 
 unsigned
-CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
+CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
 	if (nLength == 0)
 		return dwCookie & COOKIE_EXT_COMMENT;
@@ -1223,7 +1223,7 @@ CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int
 		{
 			if (nIdentBegin >= 0)
 			{
-				DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+				DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
 
 				bRedefineBlock = true;
 				bDecIndex = true;
@@ -1233,7 +1233,7 @@ CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int
 	}
 
 	if (nIdentBegin >= 0)
-		DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+		DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
 
 	if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
 		dwCookie &= COOKIE_EXT_COMMENT;

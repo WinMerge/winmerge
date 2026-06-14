@@ -126,6 +126,7 @@
     <Import Project="..\..\..\Src\FilterEngine\FilterEngine.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Externals\poco\Foundation\Foundation.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Externals\poco\XML\XML.vcxitems" Label="Shared" />
+    <Import Project="..\..\..\Externals\tree-sitter\tree-sitter.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -578,6 +579,7 @@
     <ClCompile Include="..\..\..\Src\SubstitutionList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\SyntaxParserHelper.cpp" />
     <ClCompile Include="..\..\..\Src\TempFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -707,6 +709,10 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\TreeSitterParser.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -904,6 +910,7 @@
     <ClInclude Include="..\..\..\Src\Common\varprop.h" />
     <ClInclude Include="..\..\..\Src\SubstitutionFiltersList.h" />
     <ClInclude Include="..\..\..\Src\SubstitutionList.h" />
+    <ClInclude Include="..\..\..\Src\SyntaxParserHelper.h" />
     <ClInclude Include="..\..\..\Src\TempFile.h" />
     <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h" />
     <ClInclude Include="pch.h" />
