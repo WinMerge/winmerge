@@ -2184,6 +2184,9 @@ bool TreeSitterSyntaxParser::FindMatchingBrace(int nLineIndex, int nCharPos, int
 	return m_parser.FindMatchingBrace(m_pTextBuffer, nLineIndex, nCharPos, outLineIndex, outCharPos);
 }
 
+/**
+ * @brief Check if the given language type is supported by this parser factory.
+ */
 bool TreeSitterSyntaxParserFactory::IsSupported(LangServices::LanguageId type) const
 {
 	const auto* name = GetLanguageNameForId(type);
