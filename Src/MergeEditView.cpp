@@ -2426,6 +2426,14 @@ void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t
 	}
 }
 
+void CMergeEditView::OnTextBufferChanged(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
+{
+	__super::OnTextBufferChanged(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
+
+	if (m_pTreeSitterParser)
+		m_pTreeSitterParser->NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
+}
+
 /**
  * @brief Redo last action
  */
@@ -3286,17 +3294,31 @@ void CMergeEditView::OnWMGoto()
 	}
 }
 
+CTreeSitterParser* CMergeEditView::GetTreeSitterParser()
+{
+	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser().get());
+	if (pSyntaxParser && pSyntaxParser->GetTreeSitterParser())
+		return pSyntaxParser->GetTreeSitterParser();
+
+	if (!m_CurSourceDef)
+		return nullptr;
+
+	m_pTreeSitterParser = TreeSitterSyntaxParserFactory::GetInstance().Create(m_CurSourceDef->type);
+	if (!m_pTreeSitterParser)
+		return nullptr;
+
+	m_pTreeSitterParser->SetTextBuffer(GetDocument()->m_ptBuf[m_nThisPane].get());
+
+	return dynamic_cast<TreeSitterSyntaxParser *>(m_pTreeSitterParser.get())->GetTreeSitterParser();
+}
+
 void CMergeEditView::GotoTreeSitterDefinition()
 {
-	CMergeDoc* pDoc = GetDocument();
-	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser().get());
-	if (!pSyntaxParser)
-		return;
-
-	CTreeSitterParser* pParser = pSyntaxParser->GetTreeSitterParser();
+	CTreeSitterParser* pParser = GetTreeSitterParser();
 	if (!pParser || !pParser->HasLanguage())
 		return;
 
+	CMergeDoc* pDoc = GetDocument();
 	pParser->EnsureParsed(pDoc->m_ptBuf[m_nThisPane].get());
 
 	const CEPoint pos = GetCursorPos();
@@ -3313,21 +3335,14 @@ void CMergeEditView::OnGotoDefinition()
 
 void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
 {
-	CMergeDoc* pDoc = GetDocument();
-	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser().get());
-	if (!pSyntaxParser)
-	{
-		pCmdUI->Enable(FALSE);
-		return;
-	}
-
-	CTreeSitterParser* pParser = pSyntaxParser->GetTreeSitterParser();
+	CTreeSitterParser* pParser = GetTreeSitterParser();
 	if (!pParser || !pParser->HasLanguage())
 	{
 		pCmdUI->Enable(FALSE);
 		return;
 	}
 
+	CMergeDoc* pDoc = GetDocument();
 	pParser->EnsureParsed(pDoc->m_ptBuf[m_nThisPane].get());
 
 	const CEPoint pos = GetCursorPos();

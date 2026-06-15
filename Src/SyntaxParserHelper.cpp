@@ -1,5 +1,4 @@
 #include "pch.h"
-#include <Windows.h>
 #include "SyntaxParserHelper.h"
 #include "unicoder.h"
 #include "SyntaxColors.h"
