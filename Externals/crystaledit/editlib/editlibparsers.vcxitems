@@ -222,7 +222,6 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)crystallineparser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrystalLineSyntaxParser.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ISyntaxParserFactory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SyntaxParserRegistry.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TextDefinition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\fpattern.h" />

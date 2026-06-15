@@ -24,7 +24,6 @@
 #include "TextDefinition.h"
 #include "ITextBuffer.h"
 #include "ISyntaxParser.h"
-#include "ISyntaxParserFactory.h"
 
 #include <string>
 #include <vector>

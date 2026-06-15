@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ISyntaxParser.h"
-#include "ISyntaxParserFactory.h"
 #include <vector>
 #include <memory>
 

@@ -180,6 +180,5 @@
       <Filter>Parsers\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TextDefinition.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ISyntaxParserFactory.h" />
   </ItemGroup>
 </Project>

@@ -40,6 +40,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 
 		const tchar_t* pszChars = pTextBuffer->GetLineChars(nLine);
 		int nFullLength = pTextBuffer->GetFullLineLength(nLine);
+		int nLength = pTextBuffer->GetLineLength(nLine);
 
 		// Parse the line to get color blocks
 		std::vector<LangServices::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
@@ -59,7 +60,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		for (int i = 0; i < nActualItems; i++)
 		{
 			int nBlockStart = blocks[i].m_nCharPos;
-			int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : nFullLength;
+			int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : nLength;
 			int nColorIndex = blocks[i].m_nColorIndex;
 
 			// Skip comment blocks
