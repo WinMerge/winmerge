@@ -30,7 +30,7 @@ jobs:
         shell: pwsh
         run: |
           .\DownloadDeps.cmd
-          .\BuildAll.vs2022.cmd x64 -ci
+          .\BuildAll.cmd x64 -ci
 
       - name: Perform CodeQL Analysis
         id: analyze_codeql
