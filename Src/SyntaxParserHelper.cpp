@@ -40,7 +40,6 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 
 		const tchar_t* pszChars = pTextBuffer->GetLineChars(nLine);
 		int nFullLength = pTextBuffer->GetFullLineLength(nLine);
-		int nLength = pTextBuffer->GetLineLength(nLine);
 
 		// Parse the line to get color blocks
 		std::vector<LangServices::TEXTBLOCK> blocks = pParser->ParseLine(nLine);
@@ -60,7 +59,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		for (int i = 0; i < nActualItems; i++)
 		{
 			int nBlockStart = blocks[i].m_nCharPos;
-			int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : nLength;
+			int nBlockEnd = (i + 1 < nActualItems) ? blocks[i + 1].m_nCharPos : nFullLength;
 			int nColorIndex = blocks[i].m_nColorIndex;
 
 			// Skip comment blocks
@@ -70,8 +69,12 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 				continue;
 			}
 
-			// Found non-comment content
-			hasNonComment = true;
+			tchar_t c = pszChars[blocks[i].m_nCharPos];
+			if (c != '\r' && c != '\n')
+			{
+				// Found non-comment content
+				hasNonComment = true;
+			}
 
 			// Append non-comment text
 			if (nBlockEnd > nBlockStart)
@@ -84,6 +87,12 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		allTextIsComment[lineIndex] = (nActualItems > 0 && !hasNonComment);
 
 		result += lineText;
+		if (nActualItems > 0 && blocks[nActualItems - 1].m_nColorIndex == COLORINDEX_COMMENT)
+		{
+			// If there is an inline comment, the EOL for that line will be deleted, so add the EOL.
+			int nLength = pTextBuffer->GetLineLength(nLine);
+			result += ucr::toUTF8(pszChars + nLength, nFullLength - nLength);
+		}
 	}
 
 	return result;

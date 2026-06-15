@@ -109,22 +109,22 @@ std::vector<LangServices::TEXTBLOCK> CrystalLineSyntaxParser::ParseLine(int nLin
 
 	// Ensure parse cookie cache is large enough
 	int nLineCount = m_pTextBuffer->GetLineCount();
-	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
+	if (static_cast<int>(m_ParseCookies.size()) < nLineCount)
+		m_ParseCookies.resize(nLineCount, static_cast<unsigned>(-1));
 
 	// Get the line text
 	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex);
 	int nLength = m_pTextBuffer->GetLineLength(nLineIndex);
 
 	// Get the cookie from the previous line
-	unsigned dwCookie = GetLineCookie(nLineIndex);
+	unsigned dwCookie = GetLineCookie(nLineIndex - 1);
 
 	// Call the legacy parser function
 	unsigned dwNewCookie = m_ParseLineX(dwCookie, pszChars, nLength, &blocks);
 
 	// Cache the result cookie for the next line
 	if (nLineIndex < nLineCount)
-		m_ParseCookies[nLineIndex + 1] = dwNewCookie;
+		m_ParseCookies[nLineIndex] = dwNewCookie;
 
 	return blocks;
 }
@@ -153,34 +153,30 @@ LanguageId CrystalLineSyntaxParser::GetParserType() const
  */
 unsigned CrystalLineSyntaxParser::GetLineCookie(int nLineIndex)
 {
-	if (nLineIndex <= 0 || m_pTextBuffer == nullptr)
-		return 0; // First line always starts with cookie 0
+	if (nLineIndex < 0 || m_pTextBuffer == nullptr)
+		return 0;
 
 	// Ensure the cookie cache is large enough
 	int nLineCount = m_pTextBuffer->GetLineCount();
-	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
+	if (static_cast<int>(m_ParseCookies.size()) < nLineCount)
+		m_ParseCookies.resize(nLineCount, static_cast<unsigned>(-1));
 
 	// If we already have a valid cookie, return it
 	if (m_ParseCookies[nLineIndex] != -1)
 		return m_ParseCookies[nLineIndex];
 
-	// Special case: if requesting cookie for line 0, it's always 0
-	if (nLineIndex == 0)
-		return 0;
-
 	if (m_pTextDef != nullptr && m_ParseLineX != nullptr)
 	{
 		int start = nLineIndex - 1;
-		while (start > 0 && m_ParseCookies[start] == -1)
+		while (start >= 0 && m_ParseCookies[start] == -1)
 			--start;
 
-		unsigned cookie = (start == 0) ? 0 : m_ParseCookies[start];
-		for (int i = start; i < nLineIndex; ++i)
+		unsigned cookie = (start < 0) ? 0 : m_ParseCookies[start];
+		for (int i = start + 1; i <= nLineIndex; ++i)
 		{
 			const tchar_t* pszChars = m_pTextBuffer->GetLineChars(i);
 			int nLength = m_pTextBuffer->GetLineLength(i);
-			m_ParseCookies[i + 1] = m_ParseLineX(cookie, pszChars, nLength, nullptr);
+			m_ParseCookies[i] = cookie = m_ParseLineX(cookie, pszChars, nLength, nullptr);
 		}
 	}
 
@@ -196,11 +192,11 @@ void CrystalLineSyntaxParser::InvalidateFromLine(int nStartLine)
 		return;
 
 	int nLineCount = m_pTextBuffer->GetLineCount();
-	if (static_cast<int>(m_ParseCookies.size()) < nLineCount + 1)
-		m_ParseCookies.resize(nLineCount + 1, static_cast<unsigned>(-1));
+	if (static_cast<int>(m_ParseCookies.size()) < nLineCount)
+		m_ParseCookies.resize(nLineCount, static_cast<unsigned>(-1));
 
-	// Clear cookies from nStartLine+1 onward (the start line's cookie is still valid from previous line)
-	for (size_t i = nStartLine + 1; i < m_ParseCookies.size(); i++)
+	// Clear cookies from nStartLine onward (the start line's cookie is still valid from previous line)
+	for (size_t i = nStartLine; i < m_ParseCookies.size(); i++)
 		m_ParseCookies[i] = static_cast<unsigned>(-1);
 }
 

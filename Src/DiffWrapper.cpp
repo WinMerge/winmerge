@@ -389,14 +389,9 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 
 		// Use SyntaxParserHelper for unified comment filtering
 		lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
-			ctxt.m_pSyntaxParser[0].get(),
-			lineNumberLeft, ctxt.nParsedLineEndLeft,
-			allTextIsCommentLeft);
-
+			ctxt.m_pSyntaxParser[0].get(), lineNumberLeft, ctxt.nParsedLineEndLeft, allTextIsCommentLeft); 
 		lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
-			ctxt.m_pSyntaxParser[1].get(),
-			lineNumberRight, ctxt.nParsedLineEndRight,
-			allTextIsCommentRight);
+			ctxt.m_pSyntaxParser[1].get(), lineNumberRight, ctxt.nParsedLineEndRight, allTextIsCommentRight);
 	}
 	else
 	{
