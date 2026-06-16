@@ -6194,6 +6194,8 @@ void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
   m_pColors = pSource->m_pColors;
   m_pMarkers = pSource->m_pMarkers;
   m_bDisableDragAndDrop = pSource->m_bDisableDragAndDrop;
+  m_CurSourceDef = pSource->m_CurSourceDef;
+  m_dwFlags = pSource->m_dwFlags;
   ShareSyntaxParser(pSource);
   SetFont (pSource->m_lfBaseFont);
 }
