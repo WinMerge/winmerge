@@ -55,7 +55,7 @@ enum CopyGranularity { DiffHunk, InlineDiff, Line, Character };
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
 
-IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditView)
+IMPLEMENT_DYNCREATE(CMergeEditView, CGhostTextView)
 
 CMergeEditView::CMergeEditView()
 : m_bCurrentLineIsDiff(false)
@@ -78,7 +78,7 @@ CMergeEditView::~CMergeEditView()
 }
 
 
-BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditView)
+BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	//{{AFX_MSG_MAP(CMergeEditView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_TIMER()

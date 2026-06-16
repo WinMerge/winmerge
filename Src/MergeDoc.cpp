@@ -2536,8 +2536,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			}
 
 			ForEachView([&](auto& pView) {
-				if (pView != m_pView[0][pView->m_nThisPane])
-					pView->ShareSyntaxParser(m_pView[0][pView->m_nThisPane]);
+				auto* pMaster = m_pView[0][pView->m_nThisPane];
+				if (pView != pMaster)
+					pView->ShareSyntaxParser(pMaster);
 			});
 		}
 

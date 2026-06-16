@@ -283,15 +283,17 @@ EXPAND_PRIMITIVE (MoveCtrlEnd, TextEnd)
 bool CCrystalTextView::
 DoSetTextType (LangServices::TextDefinition *def)
 {
+  LangServices::LanguageId oldLangId = m_CurSourceDef ? m_CurSourceDef->type : LangServices::LanguageId::SRC_PLAIN;
   m_CurSourceDef = def;
   SetFlags (def->flags);
 
-  if (!m_pSyntaxParser && def->type != LangServices::LanguageId::SRC_PLAIN)
+  if (!m_pSyntaxParser || def->type != oldLangId)
     {
       m_pSyntaxParser = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(def->type);
       if (m_pSyntaxParser && m_pTextBuffer)
         m_pSyntaxParser->SetTextBuffer(m_pTextBuffer);
     }
+
 
 // Do not set these
 // EOL is determined from file, tabsize and viewtabs are
