@@ -192,13 +192,12 @@ out:
                 {
                   const tchar_t* pszEnd = tc::tcsstr(pszChars + I, _T("}"));
                   int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-                  int nActualItems = pBuf ? static_cast<int>(pBuf->size()) : 0;
                   int nOffset = (I > 0 && pszChars[I - 1] == '{') ? (I - 1) : I;
                   std::vector<TEXTBLOCK> blocks;
                   dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, &blocks);
                   if (pBuf)
                     {
-                      AdjustCharPosInTextBlocks(&blocks, 0, static_cast<int>(blocks.size()) - 1, I);
+                      AdjustCharPosInTextBlocks(&blocks, 0, static_cast<int>(blocks.size()) - 1, nOffset);
                       pBuf->insert(pBuf->end(), blocks.begin(), blocks.end());
                     }
                   if (!pszEnd)

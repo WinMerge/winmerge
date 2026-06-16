@@ -14,7 +14,7 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 	int nEndLine,
 	std::vector<bool>& allTextIsComment)
 {
-	if (pParser == nullptr || !pParser->GetTextBuffer())
+	if (pParser == nullptr || !pParser->GetTextBuffer() || nEndLine < nStartLine)
 	{
 		allTextIsComment.clear();
 		return std::string();
@@ -52,7 +52,6 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 		// Check if entire line is a comment
 		bool hasNonComment = false;
 		std::string lineText;
-		int nCurrentPos = 0;
 		int nActualItems = static_cast<int>(blocks.size());
 
 		for (int i = 0; i < nActualItems; i++)
@@ -63,12 +62,12 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 
 			// Skip comment blocks
 			if (nColorIndex == COLORINDEX_COMMENT)
-			{
-				nCurrentPos = nBlockEnd;
 				continue;
-			}
 
-			tchar_t c = pszChars[blocks[i].m_nCharPos];
+			if (nBlockStart < 0 || nBlockStart >= nFullLength)
+				continue;
+
+			tchar_t c = pszChars[nBlockStart];
 			if (c != '\r' && c != '\n')
 			{
 				// Found non-comment content
@@ -78,8 +77,6 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 			// Append non-comment text
 			if (nBlockEnd > nBlockStart)
 				lineText.append(ucr::toUTF8(pszChars + nBlockStart, nBlockEnd - nBlockStart));
-
-			nCurrentPos = nBlockEnd;
 		}
 
 		// Update allTextIsComment flag

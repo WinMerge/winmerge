@@ -376,14 +376,14 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		{
 			ctxt.m_pSyntaxParser[0] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(m_pFilterCommentsDef->type);
 			ctxt.m_pTextBuffer[0] = CreateTextBuffer(file_data_ary[0]);
-			if (ctxt.m_pSyntaxParser[0])
+			if (ctxt.m_pSyntaxParser[0] && ctxt.m_pTextBuffer[0])
 				ctxt.m_pSyntaxParser[0]->SetTextBuffer(ctxt.m_pTextBuffer[0].get());
 		}
 		if (ctxt.m_pSyntaxParser[1] == nullptr)
 		{
 			ctxt.m_pSyntaxParser[1] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(m_pFilterCommentsDef->type);
 			ctxt.m_pTextBuffer[1] = CreateTextBuffer(file_data_ary[1]);
-			if (ctxt.m_pSyntaxParser[1])
+			if (ctxt.m_pSyntaxParser[1] && ctxt.m_pTextBuffer[1])
 				ctxt.m_pSyntaxParser[1]->SetTextBuffer(ctxt.m_pTextBuffer[1].get());
 		}
 		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
