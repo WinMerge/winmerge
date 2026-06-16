@@ -752,7 +752,12 @@ public :
      */
     std::shared_ptr<LangServices::ISyntaxParser> GetSyntaxParser() const { return m_pSyntaxParser; }
 
-    void ShareSyntaxParser(CCrystalTextView* pSource) { m_pSyntaxParser = pSource->GetSyntaxParser(); }
+    void ShareSyntaxParser(CCrystalTextView* pSource)
+    {
+        m_CurSourceDef = pSource->m_CurSourceDef;
+        m_dwFlags = pSource->m_dwFlags;
+        m_pSyntaxParser = pSource->GetSyntaxParser();
+    }
 
     //END SW
 
