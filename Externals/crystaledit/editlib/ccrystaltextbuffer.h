@@ -31,10 +31,11 @@
 
 #pragma once
 
-#include "parsers/crystallineparser.h"
+#include "TextDefinition.h"
 #include "LineInfo.h"
 #include "UndoRecord.h"
 #include "cepoint.h"
+#include "ITextBuffer.h"
 #include <memory>
 #include <vector>
 #include <list>
@@ -90,7 +91,7 @@ public :
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer command target
 
-class EDITPADC_CLASS CCrystalTextBuffer
+class EDITPADC_CLASS CCrystalTextBuffer : public LangServices::ITextBuffer
   {
 public:
     int m_nSourceEncoding;
@@ -208,12 +209,12 @@ public :
     void RemoveView (CCrystalTextView * pView);
 
     //  Text access functions
-    int GetLineCount () const;
-    int GetLineLength (int nLine) const;
-    int GetFullLineLength (int nLine) const; // including EOLs
+    int GetLineCount () const override;
+    int GetLineLength (int nLine) const override;
+    int GetFullLineLength (int nLine) const override; // including EOLs
     const tchar_t* GetLineEol (int nLine) const;
     bool ChangeLineEol (int nLine, const tchar_t* lpEOL);
-    const tchar_t* GetLineChars (int nLine) const;
+    const tchar_t* GetLineChars (int nLine) const override;
     lineflags_t GetLineFlags (int nLine) const;
     uint32_t GetLineRevisionNumber (int nLine) const;
     int GetLineWithFlag (lineflags_t dwFlag) const;
@@ -271,7 +272,7 @@ public :
     size_t GetRedoDescription (std::basic_string<tchar_t>& desc, size_t pos = 0) const;
 
     //  Notify all connected views about changes in name of file
-    CrystalLineParser::TextDefinition *RetypeViews (const tchar_t* lpszFileName);
+    LangServices::TextDefinition *RetypeViews (const tchar_t* lpszFileName);
     //  Notify all connected views about changes in text
     void UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext,
                       DWORD dwUpdateFlags, int nLineIndex = -1);

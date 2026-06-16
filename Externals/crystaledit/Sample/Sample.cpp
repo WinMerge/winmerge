@@ -9,6 +9,8 @@
 #include "ChildFrm.h"
 #include "SampleDoc.h"
 #include "SampleView.h"
+#include "SyntaxParserRegistry.h"
+#include "CrystalLineSyntaxParser.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -71,6 +73,8 @@ BOOL CSampleApp::InitInstance()
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
 	LoadStdProfileSettings();  // Load standard INI file options (including MRU)
+
+	LangServices::SyntaxParserRegistry::GetInstance().RegisterFactory(&CrystalLineSyntaxParserFactory::GetInstance());
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.

@@ -919,6 +919,10 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SyntaxParserHelper.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="7zCommon.cpp" />
     <ClCompile Include="AboutDlg.cpp" />
     <ClCompile Include="ClipboardHistoryMenu.cpp" />
@@ -1736,6 +1740,7 @@
     <ClInclude Include="stringdiffs.h" />
     <ClInclude Include="stringdiffsi.h" />
     <ClInclude Include="Common\SuperComboBox.h" />
+    <ClInclude Include="SyntaxParserHelper.h" />
     <ClInclude Include="TempFile.h" />
     <ClInclude Include="TestMain.h" />
     <ClInclude Include="TestFilterDlg.h" />

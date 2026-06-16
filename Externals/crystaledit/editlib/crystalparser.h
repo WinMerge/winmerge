@@ -15,7 +15,6 @@
 
 #pragma once
 
-#include "crystaltextblock.h"
 #include <vector>
 
 /**
@@ -38,7 +37,7 @@ class EDITPADC_CLASS CCrystalParser : public CObject
 {
 	DECLARE_DYNAMIC(CCrystalParser)
 	friend class CCrystalTextView;
-	friend class CCrystalEditViewEx;
+	friend class CCrystalEditView;
 
 // construction/destruction
 public:
@@ -47,27 +46,6 @@ public:
 
 // overridables
 public:
-	/**
-	Is called by tht view, when there is a Line to parse.
-
-	@param dwCookie The result of parsing the previous line. This parameter contains flags,
-		you set while parsing the previous line. Normaly this will be flags that
-		indicate a region that was still open at the end of the last line. You
-		set those flags for a line by returning them ored (|).
-	@param nLineIndex The zero-based index of the line to parse.
-	@param pBlock You have to split the lines in to parts which are specified by there
-		beginning (zero-based index of the character in this line) and there text
-		color. You have to specifie each one of this blocks by adding them to
-		this block array, using CTextBlock::Add(). You do not have to care about
-		the sort to add the elements.
-
-		When the function is called with this parameter set to `nullptr`, you only
-		have to calculate the cookies which can be (hoply) done much more faster.
-
-	@return The calculated flags for this line (see dwCookie).
-	*/
-	virtual unsigned ParseLine( unsigned dwCookie, int nLineIndex, CCrystalTextBlock *pBlock );
-
 	/**
 	Called by CCrystalTextView-object to wrap the line with the given index into sublines.
 

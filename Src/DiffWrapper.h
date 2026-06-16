@@ -9,6 +9,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "diff.h"
 #include "FileLocation.h"
 #include "PathContext.h"
@@ -16,6 +17,9 @@
 #include "DiffList.h"
 #include "UnicodeString.h"
 #include "FileTransform.h"
+#include "TextDefinition.h"
+#include "ITextBuffer.h"
+#include "ISyntaxParser.h"
 
 class CDiffContext;
 class PrediffingInfo;
@@ -25,7 +29,6 @@ struct file_data;
 class MovedLines;
 class FilterList;
 class SubstitutionList;
-namespace CrystalLineParser { struct TextDefinition; };
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -150,8 +153,8 @@ struct PostFilterContext
 {
 	int nParsedLineEndLeft = -1;
 	int nParsedLineEndRight = -1;
-	unsigned dwCookieLeft = 0;
-	unsigned dwCookieRight = 0;
+	std::shared_ptr<LangServices::ISyntaxParser> m_pSyntaxParser[3];
+	std::unique_ptr<LangServices::ITextBuffer> m_pTextBuffer[3]; /**< Text buffer for parser access */
 };
 
 /**
@@ -194,7 +197,7 @@ public:
 	void SetFilterList(std::shared_ptr<FilterList> pFilterList);
 	const SubstitutionList* GetSubstitutionList() const;
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
-	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
+	void SetFilterCommentsSourceDef(LangServices::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
@@ -239,7 +242,7 @@ private:
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
+	LangServices::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	int m_codepage; /**< Codepage used in line filter */
 };

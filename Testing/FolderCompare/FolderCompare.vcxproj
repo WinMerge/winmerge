@@ -797,6 +797,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\Src\SyntaxParserHelper.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="..\..\Src\xdiff_gnudiff_compat.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -876,6 +881,7 @@
     <ClInclude Include="..\..\Src\HashCalc.h" />
     <ClInclude Include="..\..\Src\PropertySystem.h" />
     <ClInclude Include="..\..\Src\SubstitutionList.h" />
+    <ClInclude Include="..\..\Src\SyntaxParserHelper.h" />
     <ClInclude Include="..\..\Src\UniMarkdownFile.h" />
     <ClInclude Include="..\..\Src\Common\varprop.h" />
     <ClInclude Include="..\..\Src\xdiff_gnudiff_compat.h" />

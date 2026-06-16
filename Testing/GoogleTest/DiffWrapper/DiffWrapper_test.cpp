@@ -7,6 +7,8 @@
 #include "UniFile.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
+#include "SyntaxParserRegistry.h"
+#include "CrystalLineSyntaxParser.h"
 
 const TempFile WriteToTempFile(const String& text)
 {
@@ -219,6 +221,8 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 	DIFFOPTIONS options{};
 	DIFFRANGE dr;
 
+	LangServices::SyntaxParserRegistry::GetInstance().RegisterFactory(&CrystalLineSyntaxParserFactory::GetInstance());
+
 	options.bIgnoreLineBreaks = true;
 	for (auto algo : { DIFF_ALGORITHM_DEFAULT, DIFF_ALGORITHM_MINIMAL, DIFF_ALGORITHM_PATIENCE, DIFF_ALGORITHM_HISTOGRAM, DIFF_ALGORITHM_NONE })
 	{
@@ -302,6 +306,8 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 			EXPECT_EQ(OP_TRIVIAL, dr.op);
 		}
 	}
+
+	LangServices::SyntaxParserRegistry::GetInstance().UnregisterFactory(&CrystalLineSyntaxParserFactory::GetInstance());
 }
 
 TEST(DiffWrapper, RunFileDiff_IgnoreComments)
@@ -309,6 +315,8 @@ TEST(DiffWrapper, RunFileDiff_IgnoreComments)
 	CDiffWrapper dw;
 	DIFFOPTIONS options{};
 	DIFFRANGE dr;
+
+	LangServices::SyntaxParserRegistry::GetInstance().RegisterFactory(&CrystalLineSyntaxParserFactory::GetInstance());
 
 	for (auto algo : { DIFF_ALGORITHM_DEFAULT, DIFF_ALGORITHM_MINIMAL, DIFF_ALGORITHM_PATIENCE, DIFF_ALGORITHM_HISTOGRAM })
 	{
@@ -375,6 +383,8 @@ TEST(DiffWrapper, RunFileDiff_IgnoreComments)
 			EXPECT_EQ(1, dr.end[1]);
 		}
 	}
+
+	LangServices::SyntaxParserRegistry::GetInstance().UnregisterFactory(&CrystalLineSyntaxParserFactory::GetInstance());
 }
 
 TEST(DiffWrapper, RunFileDiff_LineFilters)

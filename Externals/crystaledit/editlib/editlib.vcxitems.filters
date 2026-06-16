@@ -33,15 +33,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextview2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)crystaleditviewex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)crystalparser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)crystaltextblock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)LineInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -100,6 +91,7 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FindTextHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)crystalparser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h">
@@ -114,13 +106,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)crystaleditviewex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)crystalparser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)crystaltextblock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)editcmd.h">
@@ -205,5 +191,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)darkmodelib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ITextBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ISyntaxParser.h" />
   </ItemGroup>
 </Project>

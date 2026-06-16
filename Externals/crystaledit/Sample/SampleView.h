@@ -5,11 +5,10 @@
 #pragma once
 
 #include "CCrystalEditView.h"
-#include "CrystalEditViewEx.h"
 
 class CSampleDoc;
 
-class CSampleView : public CCrystalEditViewEx
+class CSampleView : public CCrystalEditView
 {
 protected: // create from serialization only
 	CSampleView();

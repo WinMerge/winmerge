@@ -36,11 +36,13 @@
 #include "FindTextHelper.h"
 #include "cepoint.h"
 #include "cecolor.h"
-#include "parsers/crystallineparser.h"
+#include "TextDefinition.h"
+#include "ISyntaxParser.h"
 #include "renderers/ccrystalrenderer.h"
 #include "utils/cregexp.h"
 #include "utils/icu.hpp"
 #include <vector>
+#include <memory>
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
@@ -82,9 +84,9 @@ class EDITPADC_CLASS CCrystalTextView : public CView
   {
     DECLARE_DYNCREATE (CCrystalTextView)
 
-    friend CCrystalParser;
-    friend CCrystalTextBuffer;
-    friend CEditReplaceDlg;
+    friend class CCrystalParser;
+    friend class CCrystalTextBuffer;
+    friend class CEditReplaceDlg;
 
 protected:
     //  Search parameters
@@ -138,26 +140,14 @@ private :
     bool m_bFocused;
 protected:
     CEPoint m_ptAnchor;
-private:
-    LOGFONT m_lfBaseFont;
-    LOGFONT m_lfSavedBaseFont;
 
     //  Parsing stuff
 
-    /**  
-    This array must be initialized to (DWORD) - 1, code for invalid values (not yet computed).
-    We prefer to limit the recomputing delay to the moment when we need to read
-    a parseCookie value for drawing.
-    GetParseCookie must always be used to read the m_ParseCookies value of a line.
-    If the actual value is invalid code, GetParseCookie computes the value, 
-    stores it in m_ParseCookies, and returns the new valid value.
-    When we edit the text, the parse cookies value may change for the modified line
-    and all the lines below (As m_ParseCookies[line i] depends on m_ParseCookies[line (i-1)])
-    It would be a loss of time to recompute all these values after each action.
-    So we just set all these values to invalid code (DWORD) - 1.
-    */
-    std::vector<uint32_t> *m_ParseCookies;
-    DWORD GetParseCookie (int nLineIndex);
+    std::shared_ptr<LangServices::ISyntaxParser> m_pSyntaxParser;
+
+private:
+    LOGFONT m_lfBaseFont;
+    LOGFONT m_lfSavedBaseFont;
 
     /**
     Pre-calculated line lengths (in characters)
@@ -618,23 +608,23 @@ protected:
     // function to draw a single screen line
     // (a wrapped line can consist of many screen lines
     virtual void DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
-         const std::vector<CrystalLineParser::TEXTBLOCK>& blocks,
+         const std::vector<LangServices::TEXTBLOCK>& blocks,
         int &nActualItem, CEColor crText,
         CEColor crBkgnd, bool bDrawWhitespace,
         int nLineIndex, int nOffset,
         int nCount, int &nActualOffset, CEPoint ptTextPos );
     //END SW
 
-    std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
+    std::vector<LangServices::TEXTBLOCK> MergeTextBlocks(const std::vector<LangServices::TEXTBLOCK>& blocks1, const std::vector<LangServices::TEXTBLOCK>& blocks2) const;
+    virtual std::vector<LangServices::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
+    virtual std::vector<LangServices::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
+    virtual std::vector<LangServices::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
     virtual CString GetColumnName(int nColumn);
     virtual CString GetHTMLLine (int nLineIndex, const tchar_t* pszTag, int nColumnCountMax);
     virtual CString GetHTMLStyles ();
-    std::vector<CrystalLineParser::TEXTBLOCK> GetTextBlocks(int nLineIndex);
+    std::vector<LangServices::TEXTBLOCK> GetTextBlocks(int nLineIndex);
 protected:
     virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, CEColor crText, CEColor crBkgnd);
 
@@ -695,7 +685,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    unsigned ParseLine (unsigned dwCookie, const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    std::vector<LangServices::TEXTBLOCK> ParseLine (int nLineIndex);
 
     // Attributes
 public :
@@ -746,6 +736,29 @@ public :
     @return Pointer to parser used before or `nullptr`, if no parser has been used before.
     */
     CCrystalParser *SetParser( CCrystalParser *pParser );
+
+    /**
+     * @brief Set syntax parser using the new interface.
+     * @param pParser Unique pointer to ISyntaxParser implementation.
+     * 
+     * This method enables use of the new parser abstraction while maintaining
+     * backward compatibility with the legacy parser system.
+     */
+    void SetSyntaxParser(std::shared_ptr<LangServices::ISyntaxParser> pParser);
+
+    /**
+     * @brief Get the current syntax parser.
+     * @return Pointer to ISyntaxParser, or nullptr if using legacy parser.
+     */
+    std::shared_ptr<LangServices::ISyntaxParser> GetSyntaxParser() const { return m_pSyntaxParser; }
+
+    void ShareSyntaxParser(CCrystalTextView* pSource)
+    {
+        m_CurSourceDef = pSource->m_CurSourceDef;
+        m_dwFlags = pSource->m_dwFlags;
+        m_pSyntaxParser = pSource->GetSyntaxParser();
+    }
+
     //END SW
 
     bool GetEnableHideLines () const { return m_bHideLines; }
@@ -767,11 +780,11 @@ public :
     CCrystalRenderer *m_pCrystalRendererSaved;
 
     //  Source type
-    CrystalLineParser::TextDefinition *m_CurSourceDef;
-    virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
+    LangServices::TextDefinition *m_CurSourceDef;
+    virtual bool DoSetTextType (LangServices::TextDefinition *def);
     virtual bool SetTextType (const tchar_t* pszExt);
-    virtual bool SetTextType (CrystalLineParser::TextType enuType);
-    virtual bool SetTextType (CrystalLineParser::TextDefinition *def);
+    virtual bool SetTextType (LangServices::LanguageId enuType);
+    virtual bool SetTextType (LangServices::TextDefinition *def);
     virtual bool SetTextTypeByContent (const tchar_t* pszContent);
 
     // Operations
@@ -811,7 +824,8 @@ public :
     void UpdateCompositionWindowFont();
 
     //  Overridable: an opportunity for Auto-Indent, Smart-Indent etc.
-    virtual void OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText);
+    virtual void OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText) {};
+    virtual void OnTextBufferChanged (bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) {};
 
     // Overrides
     // ClassWizard generated virtual function overrides

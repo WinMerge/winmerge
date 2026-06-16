@@ -1,8 +1,12 @@
 #pragma once
 
 #include "../utils/ctchar.h"
+#include "../SyntaxColors.h"
+#include "../ISyntaxParser.h"
+#include "../TextDefinition.h"
 #include <cassert>
 #include <array>
+#include <vector>
 
 #define ISXKEYWORD(keywordlist, key, keylen) CrystalLineParser::IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), tc::tcsncmp)
 #define ISXKEYWORDI(keywordlist, key, keylen) CrystalLineParser::IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), tc::tcsnicmp)
@@ -10,18 +14,8 @@
 #ifndef ASSERT
 #define ASSERT(condition) assert(condition);
 #endif
-#define DEFINE_BLOCK(pos, colorindex)   \
-ASSERT((pos) >= 0 && (pos) <= nLength);\
-if (pBuf != nullptr)\
-  {\
-    if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
-        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
-        if (nActualItems == 0 || pBuf[nActualItems - 1].m_nColorIndex != (colorindex)){\
-            pBuf[nActualItems].m_nCharPos = (pos);\
-            pBuf[nActualItems].m_nColorIndex = (colorindex);\
-            pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
-            nActualItems ++;}}\
-  }
+
+#define DEFINE_BLOCK(pos, colorindex) CrystalLineParser::defineBlock(pBuf, pos, colorindex)
 
 #define COOKIE_COMMENT          0x0001
 #define COOKIE_PREPROCESSOR     0x0002
@@ -51,101 +45,25 @@ if (pBuf != nullptr)\
 #define COOKIE_GET_LUA_EQUALS_SIGN_COUNT(cookie) (((cookie) & 0xF0000000) >> 28)
 #define COOKIE_SET_LUA_EQUALS_SIGN_COUNT(cookie, count) (cookie) = (((cookie) & 0x0FFFFFFF) | ((count) << 28))
 
-#define SRCOPT_INSERTTABS 1
-#define SRCOPT_SHOWTABS 2
-#define SRCOPT_BSATBOL 4
-#define SRCOPT_SELMARGIN 8
-#define SRCOPT_AUTOINDENT 16
-#define SRCOPT_BRACEANSI 32
-#define SRCOPT_BRACEGNU 64
-#define SRCOPT_EOLNDOS 128
-#define SRCOPT_EOLNUNIX 256
-#define SRCOPT_EOLNMAC 512
-#define SRCOPT_FNBRACE 1024
-#define SRCOPT_WORDWRAP 2048
-#define SRCOPT_TOPMARGIN 4096
-
 namespace CrystalLineParser
 {
-//  Syntax coloring overrides
-struct TEXTBLOCK
-{
-	int m_nCharPos;
-	int m_nColorIndex;
-	int m_nBgColorIndex;
-};
+// TEXTBLOCK is now defined in ISyntaxParser.h.
+// These aliases preserve backward compatibility for all existing code.
+using TEXTBLOCK = LangServices::TEXTBLOCK;
+using LanguageId = LangServices::LanguageId;
 
-typedef enum
+inline void defineBlock(std::vector<TEXTBLOCK>* pBuf, int pos, int colorindex)
 {
-	SRC_PLAIN = 0,
-	SRC_ABAP,
-	SRC_ADA,
-	SRC_ASP,
-	SRC_AUTOIT,
-	SRC_BASIC,
-	SRC_BATCH,
-	SRC_C,
-	SRC_CSHARP,
-	SRC_CSS,
-	SRC_DCL,
-	SRC_DLANG,
-	SRC_FORTRAN,
-	SRC_FSHARP,
-	SRC_GO,
-	SRC_HTML,
-	SRC_INI,
-	SRC_INNOSETUP,
-	SRC_INSTALLSHIELD,
-	SRC_JAVA,
-	SRC_JAVASCRIPT,
-	SRC_JSON,
-	SRC_LISP,
-	SRC_LUA,
-	SRC_MATLAB,
-	SRC_NSIS,
-	SRC_PASCAL,
-	SRC_PERL,
-	SRC_PHP,
-	SRC_PO,
-	SRC_POWERSHELL,
-	SRC_PYTHON,
-	SRC_REXX,
-	SRC_RSRC,
-	SRC_RUBY,
-	SRC_RUST,
-	SRC_SGML,
-	SRC_SH,
-	SRC_SIOD,
-	SRC_SMARTY,
-	SRC_SQL,
-	SRC_TCL,
-	SRC_TEX,
-	SRC_VERILOG,
-	SRC_VHDL,
-	SRC_XML,
-	SRC_MAX_ENTRY	/* always last entry, used for bound checking */
+	if (!pBuf)
+		return;
+	if (pBuf->empty() || pBuf->back().m_nCharPos <= pos)
+	{
+		if (pBuf->size() > 0 && pBuf->back().m_nCharPos == pos)
+			pBuf->pop_back();
+		if (pBuf->empty() || pBuf->back().m_nColorIndex != colorindex)
+			pBuf->push_back({ pos, colorindex, static_cast<int>(COLORINDEX_BKGND) });
+	}
 }
-TextType;
-
-// Tabsize is commented out since we have only GUI setting for it now.
-// Not removed because we may later want to have per-filetype settings again.
-// See ccrystaltextview.cpp for per filetype table initialization.
-struct TextDefinition
-{
-	TextType type;
-	const tchar_t* name;
-	tchar_t* exts;
-	bool extsIsDynamic;
-	unsigned (* ParseLineX) (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-	unsigned flags;
-//        unsigned tabsize;
-	tchar_t opencomment[8];
-	tchar_t closecomment[8];
-	tchar_t commentline[8];
-	unsigned encoding;
-};
-
-extern std::array<TextDefinition, SRC_MAX_ENTRY> m_SourceDefs;
 
 bool IsXKeyword(const tchar_t *pszKey, size_t nKeyLen, const tchar_t *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const tchar_t *, const tchar_t *, size_t));
 bool IsXNumber(const tchar_t* pszChars, int nLength);
@@ -153,58 +71,54 @@ bool IsHtmlKeyword(const tchar_t *pszChars, int nLength);
 bool IsHtmlUser1Keyword(const tchar_t *pszChars, int nLength);
 bool IsHtmlUser2Keyword(const tchar_t *pszChars, int nLength);
 
-TextDefinition *GetTextType(const tchar_t *pszExt);
-TextDefinition* GetTextType(int index);
-void SetExtension(int index, const tchar_t *pszExts);
-
-unsigned ParseLinePlain(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems);
-unsigned ParseLineAda(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems);
-unsigned ParseLineAsp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineAutoIt(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineBasic(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineBatch(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineC(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineCJava(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, bool (*IsKeyword)(const tchar_t *pszChars, int nLength), bool (*IsUser1Keyword)(const tchar_t *pszChars, int nLength));
-unsigned ParseLineCSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineCss(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineDcl(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineDlang(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineFortran(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineFSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineGo(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineHtml(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineHtmlEx(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage);
-unsigned ParseLineIni(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineInnoSetup(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineIS(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineJava(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineJavaScript(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineLisp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineLua(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineMatlab(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineNsis(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLinePascal(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLinePerl(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLinePhp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLinePhpLanguage(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLinePo(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLinePowerShell(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLinePython(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineRexx(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineRsrc(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineRuby(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineRust(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineSgml(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineSh(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineSiod(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineSmarty(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems);
-unsigned ParseLineSmartyLanguage(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems);
-unsigned ParseLineSql(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineTcl(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineTex(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineVerilog(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineVhdl(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
-unsigned ParseLineXml(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLinePlain(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineAda(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineAsp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineAutoIt(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineBasic(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineBatch(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineC(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineCJava(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf, bool (*IsKeyword)(const tchar_t *pszChars, int nLength), bool (*IsUser1Keyword)(const tchar_t *pszChars, int nLength));
+unsigned ParseLineCSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineCss(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineDcl(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineDlang(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineFortran(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineFSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineGo(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineHtml(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineHtmlEx(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf, LangServices::LanguageId nEmbeddedLanguage);
+unsigned ParseLineIni(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineInnoSetup(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineIS(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineJava(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineJavaScript(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineLisp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineLua(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineMatlab(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineNsis(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLinePascal(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLinePerl(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLinePhp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLinePhpLanguage(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLinePo(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLinePowerShell(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLinePython(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineRexx(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineRsrc(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineRuby(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineRust(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSgml(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSh(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSiod(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSmarty(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSmartyLanguage(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSql(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineTcl(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineTex(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineVerilog(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineVhdl(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineXml(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 
 }

@@ -93,6 +93,7 @@ public:
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	static void SetupTempPath();
+	static void InitSyntaxParserFactories();
 	bool IsReallyIdle() const;
 	void RegisterIdleFunc(std::function<void()> func) { m_idleFuncs.push_back(func); };
 	CMultiDocTemplate* GetOpenTemplate();
