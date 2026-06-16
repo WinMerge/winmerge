@@ -578,6 +578,7 @@
     <ClCompile Include="..\..\..\Src\SubstitutionList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\SyntaxParserHelper.cpp" />
     <ClCompile Include="..\..\..\Src\TempFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -904,6 +905,7 @@
     <ClInclude Include="..\..\..\Src\Common\varprop.h" />
     <ClInclude Include="..\..\..\Src\SubstitutionFiltersList.h" />
     <ClInclude Include="..\..\..\Src\SubstitutionList.h" />
+    <ClInclude Include="..\..\..\Src\SyntaxParserHelper.h" />
     <ClInclude Include="..\..\..\Src\TempFile.h" />
     <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h" />
     <ClInclude Include="pch.h" />

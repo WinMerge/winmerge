@@ -30,8 +30,10 @@ constexpr unsigned FLAG_RESCAN_WAITS_FOR_IDLE = 1;
 #include "edtlib.h"
 #include "GhostTextView.h"
 #include "OptionsDiffColors.h"
+#include "ISyntaxParser.h"
 #include <map>
 #include <vector>
+#include <memory>
 
 class IMergeEditStatus;
 class CLocationView;
@@ -97,6 +99,7 @@ public:
 	bool IsReadOnly(int pane) const;
 	void ShowDiff(bool bScroll, bool bSelectText);
 	virtual void OnEditOperation(int nAction, const tchar_t* pszText, size_t cchText) override;
+	virtual void OnTextBufferChanged (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 	bool IsLineInCurrentDiff(int nLine) const;
 	void SelectNone();
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
@@ -119,8 +122,8 @@ public:
 	void SelectArea(const CEPoint & ptStart, const CEPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	using CGhostTextView::GetSelection;
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
-    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
-	virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
+	virtual std::vector<LangServices::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
+	virtual std::vector<LangServices::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
 	virtual CEColor GetColor(int nColorIndex) const override;
 	virtual void GetLineColors (int nLineIndex, CEColor & crBkgnd,
 			CEColor & crText, bool & bDrawWhitespace) override;

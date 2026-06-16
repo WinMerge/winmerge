@@ -19,9 +19,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextmarkers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextview.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextview2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)crystaleditviewex.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)crystalparser.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)crystaltextblock.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\ceditreplacedlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\cfindtextdlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\chcondlg.cpp" />
@@ -69,9 +67,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextmarkers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextview.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)cecolor.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)crystaleditviewex.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystalparser.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)crystaltextblock.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)darkmodelib.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\ceditreplacedlg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\cfindtextdlg.h" />
@@ -83,6 +79,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)editreg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)edtlib.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FindTextHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ISyntaxParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ITextBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LineInfo.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)cepoint.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderer.h" />

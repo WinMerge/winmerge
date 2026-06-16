@@ -1,11 +1,11 @@
 /**
  * @file  GhostTextView.h
  *
- * @brief Declaration of CGhostTextView (subclasses CCrystalEditViewEx to handle ghost lines)
+ * @brief Declaration of CGhostTextView (subclasses CCrystalEditView to handle ghost lines)
  */
 #pragma once
 
-#include "crystalEditViewex.h"
+#include "ccrystaleditview.h"
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
@@ -17,7 +17,7 @@ class CGhostTextBuffer;
 // CCrystalTextView class declaration
 
 /** 
-This class hooks CCrystalEditViewEx to work with ghost lines. 
+This class hooks CCrystalEditView to work with ghost lines. 
 
 Use a CGhostTextBuffer buffer and virtualize some functions 
 to handle apparent/real lines differences. 
@@ -27,7 +27,7 @@ real lines is correct, as they are empty and have no EOL.
 WinMerge also paints the ghost lines in a custom color through virtualizing 
 GetLineColors (in MergeEditView).
 */
-class EDITPADC_CLASS CGhostTextView : public CCrystalEditViewEx
+class EDITPADC_CLASS CGhostTextView : public CCrystalEditView
 {
 	DECLARE_DYNCREATE (CGhostTextView)
 protected:

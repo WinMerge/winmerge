@@ -20,7 +20,7 @@
 #endif
 
 
-IMPLEMENT_DYNCREATE (CGhostTextView, CCrystalEditViewEx)
+IMPLEMENT_DYNCREATE (CGhostTextView, CCrystalEditView)
 
 /** 
  * @brief Constructor, initializes members.
@@ -51,7 +51,7 @@ ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
 		// ...
 	}
 	m_pGhostTextBuffer = dynamic_cast<CGhostTextBuffer*> (pBuf);
-	CCrystalEditViewEx::ReAttachToBuffer(pBuf);
+	CCrystalEditView::ReAttachToBuffer(pBuf);
 }
 
 void CGhostTextView::
@@ -63,14 +63,14 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
 		// ...
 	}
 	m_pGhostTextBuffer = dynamic_cast<CGhostTextBuffer*> (pBuf);
-	CCrystalEditViewEx::AttachToBuffer(pBuf);
+	CCrystalEditView::AttachToBuffer(pBuf);
 }
 
 void CGhostTextView::
 DetachFromBuffer ()
 {
 	m_pGhostTextBuffer = nullptr;
-	CCrystalEditViewEx::DetachFromBuffer();
+	CCrystalEditView::DetachFromBuffer();
 }
 
 void CGhostTextView::popPosition(const SCursorPushed& Ssrc, CEPoint & pt)

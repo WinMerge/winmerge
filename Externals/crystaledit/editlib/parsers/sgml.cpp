@@ -104,7 +104,7 @@ IsUser1Keyword (const tchar_t *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineSgml (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineSgml (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

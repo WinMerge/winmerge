@@ -37,13 +37,6 @@ CCrystalParser::~CCrystalParser()
 }
 
 
-unsigned CCrystalParser::ParseLine(unsigned /*dwCookie*/, 
-								int /*nLineIndex*/, 
-								CCrystalTextBlock * /*pBlock*/ )
-{
-	return 0;
-}
-
 void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<int>* anBreaks, int& nBreaks )
 {
 	// The parser must be attached to a view!
