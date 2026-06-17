@@ -350,7 +350,6 @@ void CTreeSitterParser::Invalidate()
 	}
 	m_lineBlocks.clear();
 	m_lineUtf8.clear();
-	m_documentText.clear();
 	m_localScopes.clear();
 	m_localRefHighlights.clear();
 	m_pendingRefs.clear();
@@ -361,50 +360,82 @@ void CTreeSitterParser::Invalidate()
 	m_bNeedsParse = true;
 }
 
-void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
-					                   const int* pnLineLengths,
-					                   int nLineCount)
+void CTreeSitterParser::ParseDocument(LangServices::ITextBuffer* pBuffer)
 {
+	if (!pBuffer)
+		return;
+
+	const int nLineCount = pBuffer->GetLineCount();
+	if (nLineCount == 0)
+		return;
+
 	EnsureParser();
 	if (!m_pParser || !m_pLang || !m_pLang->GetLanguage())
 		return;
 
 	// Build contiguous document text from line pointers.
 	// Tree-sitter requires UTF-8 input, so we convert from tchar_t (wchar_t on Windows).
-	m_documentText.clear();
 	m_lineUtf8.clear();
 	m_nLineCount = nLineCount;
 
 	// Pre-calculate total size estimate
-	size_t totalEstimate = 0;
-	for (int i = 0; i < nLineCount; i++)
-		totalEstimate += static_cast<size_t>(pnLineLengths[i]) * 3 + 1; // worst case UTF-8
-	m_documentText.reserve(totalEstimate);
 	m_lineUtf8.resize(nLineCount);
-
 	for (int i = 0; i < nLineCount; i++)
 	{
-		if (ppszLines[i] && pnLineLengths[i] > 0)
-		{
-			// Convert UTF-16 to UTF-8
-			m_lineUtf8[i] = ucr::toUTF8(ppszLines[i], pnLineLengths[i]);
-			m_documentText.append(m_lineUtf8[i]);
-		}
-		if (i < nLineCount - 1)
-			m_documentText += '\n';
+		const tchar_t* pszLine = pBuffer->GetLineChars(i);
+		const int nLen = pBuffer->GetLineLength(i);
+		if (pszLine && nLen > 0)
+			m_lineUtf8[i] = ucr::toUTF8(pszLine, nLen);
+		else
+			m_lineUtf8[i].clear();
 	}
 
-	// Parse the document.
-	// Pass the old tree if available -- tree-sitter can reuse unchanged subtrees
-	// for faster re-parsing. (For full incremental support, ts_tree_edit() should
-	// be called on the old tree before re-parsing, but even without edit info
-	// tree-sitter benefits from having the previous tree as a reference.)
+	struct Payload
+	{
+		const std::vector<std::string>* pLineUtf8;
+		int nLineCount;
+		char newline;
+	};
+	Payload payload{ &m_lineUtf8, nLineCount, '\n' };
+
+	TSInput input;
+	input.payload = &payload;
+	input.encoding = TSInputEncodingUTF8;
+	input.read = [](void* pPayload, uint32_t /*byteOffset*/,
+		TSPoint position, uint32_t* bytesRead) -> const char*
+		{
+			auto* p = static_cast<Payload*>(pPayload);
+			const int row = static_cast<int>(position.row);
+
+			if (row >= p->nLineCount)
+			{
+				*bytesRead = 0;
+				return nullptr;
+			}
+
+			const std::string& line = (*p->pLineUtf8)[row];
+			const uint32_t col = position.column;
+
+			if (col < static_cast<uint32_t>(line.size()))
+			{
+				*bytesRead = static_cast<uint32_t>(line.size()) - col;
+				return line.c_str() + col;
+			}
+			else if (col == static_cast<uint32_t>(line.size()))
+			{
+				if (row < p->nLineCount - 1)
+				{
+					*bytesRead = 1;
+					return &p->newline;
+				}
+			}
+
+			*bytesRead = 0;
+			return nullptr;
+		};
+
 	TSTree* pOldTree = m_pTree;
-	m_pTree = ts_parser_parse_string(
-		m_pParser,
-		pOldTree,
-		m_documentText.c_str(),
-		static_cast<uint32_t>(m_documentText.size()));
+	m_pTree = ts_parser_parse(m_pParser, pOldTree, input);
 
 	if (pOldTree)
 		ts_tree_delete(pOldTree);
@@ -599,10 +630,7 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 void CTreeSitterParser::EnsureParsed(LangServices::ITextBuffer* pBuffer)
 {
 	if (m_bNeedsParse && m_pLang)
-	{
-		ParseFromBuffer(pBuffer);
-		// ParseFromBuffer sets m_bNeedsParse = false via ParseDocument
-	}
+		ParseDocument(pBuffer);
 }
 
 /**
@@ -660,9 +688,11 @@ uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos) const
 		byteOffset += 1; // '\n' separator added by ParseDocument()
 	}
 
+	uint32_t totalBytes = GetTotalBytes();
+
 	// Out-of-range line: return end of document
 	if (nLine >= nLines)
-		return static_cast<uint32_t>(m_documentText.size());
+		return totalBytes;
 
 	if (nCharPos <= 0)
 		return byteOffset;
@@ -690,6 +720,39 @@ uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos) const
 	}
 
 	return byteOffset + byteIdx;
+}
+
+std::string CTreeSitterParser::GetUtf8Text(uint32_t startByte, uint32_t endByte) const
+{
+	std::string result;
+	uint32_t currentOffset = 0;
+	for (const auto& line : m_lineUtf8)
+	{
+		const uint32_t lineEnd = currentOffset + static_cast<uint32_t>(line.size());
+		if (endByte <= currentOffset)
+			break;
+		if (startByte < lineEnd)
+		{
+			uint32_t s = (startByte > currentOffset) ? startByte - currentOffset : 0;
+			uint32_t e = (std::min)(endByte - currentOffset,
+				static_cast<uint32_t>(line.size()));
+			result.append(line, s, e - s);
+			if (endByte > lineEnd)
+				result += '\n';
+		}
+		currentOffset = lineEnd + 1; // +1 for '\n'
+	}
+	return result;
+}
+
+uint32_t CTreeSitterParser::GetTotalBytes() const
+{
+	uint32_t total = 0;
+	for (const auto& line : m_lineUtf8)
+		total += static_cast<uint32_t>(line.size()) + 1; // +1 for '\n'
+	if (!m_lineUtf8.empty())
+		total -= 1;
+	return total;
 }
 
 /**
@@ -770,6 +833,8 @@ void CTreeSitterParser::RunTagsQuery()
 
 	ts_query_cursor_exec(pCursor, pQuery, rootNode);
 
+	uint32_t totalBytes = GetTotalBytes();
+
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor, &match))
 	{
@@ -801,9 +866,9 @@ void CTreeSitterParser::RunTagsQuery()
 
 			if (sCapture == "name")
 			{
-				if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
+				if (nodeStart < totalBytes && nodeEnd <= totalBytes)
 				{
-					name = m_documentText.substr(nodeStart, nodeEnd - nodeStart);
+					name = GetUtf8Text(nodeStart, nodeEnd - nodeStart);
 					nameStart = nodeStart;
 					nameEnd = nodeEnd;
 					hasName = true;
@@ -881,6 +946,7 @@ void CTreeSitterParser::RunLocalsQuery()
 
 	// Temporary storage for references (resolved after all defs are collected)
 	std::vector<PendingRef> references;
+	uint32_t totalBytes = GetTotalBytes();
 
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor, &match))
@@ -915,40 +981,40 @@ void CTreeSitterParser::RunLocalsQuery()
 			else if (HasCapturePrefix(sCapture, "local.definition"))
 			{
 				// Extract the text of the definition node as the symbol name
-				if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
+				if (nodeStart < totalBytes && nodeEnd <= totalBytes)
 				{
-					std::string defName = m_documentText.substr(nodeStart, nodeEnd - nodeStart);
+					std::string defName = GetUtf8Text(nodeStart, nodeEnd - nodeStart);
 
 					// Find the innermost enclosing scope and add this definition
 					LocalScope* pBestScope = nullptr;
 					for (auto& scope : m_localScopes)
 					{
-					    if (nodeStart >= scope.startByte && nodeEnd <= scope.endByte)
-					    {
-					        if (!pBestScope ||
-					            (scope.endByte - scope.startByte) < (pBestScope->endByte - pBestScope->startByte))
-					        {
-					            pBestScope = &scope;
-					        }
-					    }
+						if (nodeStart >= scope.startByte && nodeEnd <= scope.endByte)
+						{
+							if (!pBestScope ||
+								(scope.endByte - scope.startByte) < (pBestScope->endByte - pBestScope->startByte))
+							{
+								pBestScope = &scope;
+							}
+						}
 					}
 					if (pBestScope)
 					{
-					    LocalDef def;
-					    def.name = defName;
-					    def.startByte = nodeStart;
-					    def.endByte = nodeEnd;
-					    def.highlight = -1;  // Will be resolved during RunHighlightQuery
-					    pBestScope->defs.push_back(def);
+						LocalDef def;
+						def.name = defName;
+						def.startByte = nodeStart;
+						def.endByte = nodeEnd;
+						def.highlight = -1;  // Will be resolved during RunHighlightQuery
+						pBestScope->defs.push_back(def);
 					}
 				}
 			}
 			else if (HasCapturePrefix(sCapture, "local.reference"))
 			{
-				if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
+				if (nodeStart < totalBytes && nodeEnd <= totalBytes)
 				{
 					PendingRef ref;
-					ref.name = m_documentText.substr(nodeStart, nodeEnd - nodeStart);
+					ref.name = GetUtf8Text(nodeStart, nodeEnd - nodeStart);
 					ref.startByte = nodeStart;
 					ref.endByte = nodeEnd;
 					ref.scopeStartByte = nodeStart;
@@ -1026,6 +1092,8 @@ void CTreeSitterParser::RunHighlightQuery()
 	// Key: (startByte << 32 | endByte). This assumes files < 4GB and that
 	// nodes with identical byte ranges should share the same highlight.
 	std::unordered_map<uint64_t, int> nodeHighlightMap;
+
+	uint32_t totalBytes = GetTotalBytes();
 
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor, &match))
@@ -1246,6 +1314,8 @@ void CTreeSitterParser::RunInjectionQuery()
 	};
 	std::vector<InjectionRegion> injections;
 
+	uint32_t totalBytes = GetTotalBytes();
+
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor, &match))
 	{
@@ -1288,8 +1358,8 @@ void CTreeSitterParser::RunInjectionQuery()
 				// The captured node's text is the language name
 				uint32_t start = ts_node_start_byte(capture.node);
 				uint32_t end = ts_node_end_byte(capture.node);
-				if (start < m_documentText.size() && end <= m_documentText.size())
-					language = m_documentText.substr(start, end - start);
+				if (start < totalBytes && end <= totalBytes)
+					language = GetUtf8Text(start, end - start);
 			}
 		}
 
@@ -1331,10 +1401,10 @@ void CTreeSitterParser::RunInjectionQuery()
 			continue;
 
 		// Extract the injection content
-		if (inj.contentStart >= m_documentText.size() || inj.contentEnd > m_documentText.size())
+		if (inj.contentStart >= totalBytes || inj.contentEnd > totalBytes)
 			continue;
 
-		std::string injContent = m_documentText.substr(inj.contentStart, inj.contentEnd - inj.contentStart);
+		std::string injContent = GetUtf8Text(inj.contentStart, inj.contentEnd - inj.contentStart);
 		if (injContent.empty())
 			continue;
 
@@ -1630,31 +1700,6 @@ const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wst
 // ============================================================================
 // CTreeSitterParser - Additional Methods
 // ============================================================================
-
-/**
- * @brief Convenience: parse document from a text buffer.
- */
-void CTreeSitterParser::ParseFromBuffer(LangServices::ITextBuffer* pBuffer)
-{
-	if (!pBuffer)
-		return;
-
-	const int nLineCount = pBuffer->GetLineCount();
-	if (nLineCount == 0)
-		return;
-
-	// Collect line pointers and lengths
-	std::vector<const tchar_t*> ppszLines(nLineCount);
-	std::vector<int> pnLineLengths(nLineCount);
-
-	for (int i = 0; i < nLineCount; i++)
-	{
-		ppszLines[i] = pBuffer->GetLineChars(i);
-		pnLineLengths[i] = pBuffer->GetLineLength(i);
-	}
-
-	ParseDocument(ppszLines.data(), pnLineLengths.data(), nLineCount);
-}
 
 /**
  * @brief Get the node type name at a specific position.

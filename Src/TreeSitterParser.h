@@ -179,11 +179,9 @@ public:
 
 	/**
 	 * @brief Parse (or re-parse) the full document.
-	 * @param ppszLines  Array of line pointers (from LangServices::ITextBuffer).
-	 * @param pnLineLengths  Array of line lengths.
-	 * @param nLineCount  Number of lines in the document.
+	 * @param pBuffer  The text buffer to read line data from.
 	 */
-	void ParseDocument(const tchar_t* const* ppszLines, const int* pnLineLengths, int nLineCount);
+	void ParseDocument(LangServices::ITextBuffer* pBuffer);
 
 	/**
 	 * @brief Mark the parse cache as dirty (e.g. after an edit).
@@ -271,12 +269,6 @@ public:
 	 */
 	bool FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
 
-	/**
-	 * @brief Convenience: parse document from a text buffer.
-	 * @param pBuffer  The text buffer to read line data from.
-	 */
-	void ParseFromBuffer(LangServices::ITextBuffer* pBuffer);
-
 private:
 	void EnsureParser();
 	void RunHighlightQuery();
@@ -286,6 +278,8 @@ private:
 	void BuildLineCache(int nLineCount);
 	int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
 	uint32_t CharPosToByteOffset(int nLine, int nCharPos) const;
+	std::string GetUtf8Text(uint32_t startByte, uint32_t endByte) const;
+	uint32_t GetTotalBytes() const;
 	bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
 	bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
 	bool TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
@@ -314,9 +308,6 @@ private:
 	// Per-line UTF-8 content (for byte offset -> character position mapping)
 	std::vector<std::string> m_lineUtf8;
 
-	// Full document text (needed for tree-sitter, which requires contiguous input
-	// or a custom read callback)
-	std::string m_documentText;
 	int         m_nLineCount;
 	uint32_t    m_nextBlockOrder;
 
