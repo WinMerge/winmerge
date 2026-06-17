@@ -414,11 +414,9 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
 		m_nextBlockOrder = 0;
 		// 1. Run locals query first to build scope/def/ref information
 		RunLocalsQuery();
-		// 2. Run tags query for same-file symbol definitions/references
-		RunTagsQuery();
-		// 3. Run highlight query (uses locals info for scope-aware coloring)
+		// 2. Run highlight query (uses locals info for scope-aware coloring)
 		RunHighlightQuery();
-		// 4. Run injection query to handle embedded languages
+		// 3. Run injection query to handle embedded languages
 		RunInjectionQuery();
 		BuildLineCache(nLineCount);
 	}
@@ -451,74 +449,6 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 	//   start_byte:     absolute byte offset of the edit start in old doc
 	//   old_end_byte:   absolute byte offset of the old content end
 	//   new_end_byte:   absolute byte offset of the new content end
-
-	// Helper: compute absolute byte offset from (line, charPos) using old m_lineUtf8
-	// Each line in m_documentText is followed by '\n' (except the last)
-	auto charPosToByteOffset = [this](int line, int charPos) -> uint32_t
-	{
-		uint32_t byteOffset = 0;
-		int nLines = static_cast<int>(m_lineUtf8.size());
-
-		// Sum up all lines before 'line'
-		for (int i = 0; i < line && i < nLines; i++)
-		{
-			byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size());
-			byteOffset += 1; // for '\n' separator
-		}
-
-		// Add the byte offset within the target line
-		if (line >= 0 && line < nLines && charPos > 0)
-		{
-#ifdef _UNICODE
-			const std::string& utf8Line = m_lineUtf8[line];
-			// Convert charPos (UTF-16 units) to UTF-8 byte count
-			// We need the original line text to do this properly.
-			// Use the stored UTF-8 line and convert back to count bytes.
-			int nUtf16Len = MultiByteToWideChar(CP_UTF8, 0,
-				utf8Line.c_str(), static_cast<int>(utf8Line.size()),
-				nullptr, 0);
-			if (charPos >= nUtf16Len)
-			{
-				byteOffset += static_cast<uint32_t>(utf8Line.size());
-			}
-			else
-			{
-				// Walk the UTF-8 bytes counting UTF-16 chars until we reach charPos
-				int utf16Count = 0;
-				uint32_t byteIdx = 0;
-				const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
-				uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
-				while (byteIdx < lineLen && utf16Count < charPos)
-				{
-					uint8_t ch = p[byteIdx];
-					uint32_t seqLen;
-					if (ch < 0x80)
-					    seqLen = 1;
-					else if (ch < 0xE0)
-					    seqLen = 2;
-					else if (ch < 0xF0)
-					    seqLen = 3;
-					else
-					    seqLen = 4;
-
-					byteIdx += seqLen;
-					// A 4-byte UTF-8 sequence produces a surrogate pair (2 UTF-16 units)
-					utf16Count += (seqLen == 4) ? 2 : 1;
-				}
-				byteOffset += byteIdx;
-			}
-#else
-			byteOffset += static_cast<uint32_t>(charPos);
-#endif
-		}
-		else if (line >= nLines && line > 0)
-		{
-			// Line is beyond our cached data -- use end of document
-			byteOffset = static_cast<uint32_t>(m_documentText.size());
-		}
-
-		return byteOffset;
-	};
 
 	// Helper: compute TSPoint (row, column in bytes) from (line, charPos)
 	auto charPosToTSPoint = [this](int line, int charPos) -> TSPoint
@@ -573,7 +503,7 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 	if (bInsert)
 	{
 		// Insert: old range is empty (start == old_end), new range is the inserted text
-		tsEdit.start_byte = charPosToByteOffset(ptStartPos.y, ptStartPos.x);
+		tsEdit.start_byte = CharPosToByteOffset(ptStartPos.y, ptStartPos.x);
 		tsEdit.old_end_byte = tsEdit.start_byte;
 		tsEdit.start_point = charPosToTSPoint(ptStartPos.y, ptStartPos.x);
 		tsEdit.old_end_point = tsEdit.start_point;
@@ -645,11 +575,11 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 	else
 	{
 		// Delete: old range is the deleted text, new range is empty (start == new_end)
-		tsEdit.start_byte = charPosToByteOffset(ptStartPos.y, ptStartPos.x);
+		tsEdit.start_byte = CharPosToByteOffset(ptStartPos.y, ptStartPos.x);
 		tsEdit.start_point = charPosToTSPoint(ptStartPos.y, ptStartPos.x);
 
 		// For old_end, we use the old document positions
-		tsEdit.old_end_byte = charPosToByteOffset(ptEndPos.y, ptEndPos.x);
+		tsEdit.old_end_byte = CharPosToByteOffset(ptEndPos.y, ptEndPos.x);
 		tsEdit.old_end_point = charPosToTSPoint(ptEndPos.y, ptEndPos.x);
 
 		// After deletion, the cursor is at start
@@ -710,6 +640,56 @@ int CTreeSitterParser::Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) cons
 #else
 	return static_cast<int>(byteCol);
 #endif
+}
+
+/**
+ * @brief Convert (line, UTF-16 char position) to an absolute UTF-8 byte offset.
+ * @param nLine        Zero-based line index.
+ * @param nCharPos     Zero-based character position in the line (UTF-16 code units).
+ * @return Absolute byte offset in the UTF-8 document text.
+ */
+uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos) const
+{
+	const int nLines = static_cast<int>(m_lineUtf8.size());
+
+	// Accumulate bytes from all preceding lines (each separated by '\n')
+	uint32_t byteOffset = 0;
+	for (int i = 0; i < nLine && i < nLines; i++)
+	{
+		byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size());
+		byteOffset += 1; // '\n' separator added by ParseDocument()
+	}
+
+	// Out-of-range line: return end of document
+	if (nLine >= nLines)
+		return static_cast<uint32_t>(m_documentText.size());
+
+	if (nCharPos <= 0)
+		return byteOffset;
+
+	const std::string& utf8Line = m_lineUtf8[nLine];
+	const uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
+	const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
+
+	uint32_t byteIdx = 0;
+	int      utf16Count = 0;
+
+	while (byteIdx < lineLen && utf16Count < nCharPos)
+	{
+		const uint8_t ch = p[byteIdx];
+		uint32_t seqLen;
+		if (ch < 0x80) seqLen = 1;
+		else if (ch < 0xE0) seqLen = 2;
+		else if (ch < 0xF0) seqLen = 3;
+		else                seqLen = 4;
+
+		byteIdx += seqLen;
+		// 4-byte UTF-8 sequence encodes a codepoint above U+FFFF,
+		// which becomes a surrogate pair (2 UTF-16 code units).
+		utf16Count += (seqLen == 4) ? 2 : 1;
+	}
+
+	return byteOffset + byteIdx;
 }
 
 /**
@@ -1386,49 +1366,49 @@ void CTreeSitterParser::RunInjectionQuery()
 				{
 					for (uint16_t ci = 0; ci < injMatch.capture_count; ci++)
 					{
-					    TSQueryCapture cap = injMatch.captures[ci];
-					    TSNode capNode = cap.node;
+						TSQueryCapture cap = injMatch.captures[ci];
+						TSNode capNode = cap.node;
 
-					    uint32_t capNameLen = 0;
-					    const char* capName = ts_query_capture_name_for_id(
-					        pInjQuery, cap.index, &capNameLen);
-					    std::string sCapName(capName, capNameLen);
-					    int colorIndex = m_colorMap.MapCapture(sCapName);
+						uint32_t capNameLen = 0;
+						const char* capName = ts_query_capture_name_for_id(
+							pInjQuery, cap.index, &capNameLen);
+						std::string sCapName(capName, capNameLen);
+						int colorIndex = m_colorMap.MapCapture(sCapName);
 
-					    // Map the injected node's position back to the parent document.
-					    // The injection content starts at inj.startPoint in the parent doc.
-					    TSPoint capStart = ts_node_start_point(capNode);
-					    TSPoint capEnd = ts_node_end_point(capNode);
+						// Map the injected node's position back to the parent document.
+						// The injection content starts at inj.startPoint in the parent doc.
+						TSPoint capStart = ts_node_start_point(capNode);
+						TSPoint capEnd = ts_node_end_point(capNode);
 
-					    // Translate rows/columns to parent document coordinates.
-					    // Since the injection content is a contiguous substring of
-					    // m_documentText, continuation line columns in the sub-parse
-					    // are already correct relative to the parent document lines.
-					    // NOTE: This does NOT handle injection.combined (multiple
-					    // disjoint ranges concatenated into one parse), but we don't
-					    // support that feature currently.
-					    uint32_t parentStartRow = inj.startPoint.row + capStart.row;
-					    uint32_t parentEndRow = inj.startPoint.row + capEnd.row;
-					    uint32_t parentStartCol = (capStart.row == 0)
-					        ? inj.startPoint.column + capStart.column
-					        : capStart.column;
+						// Translate rows/columns to parent document coordinates.
+						// Since the injection content is a contiguous substring of
+						// m_documentText, continuation line columns in the sub-parse
+						// are already correct relative to the parent document lines.
+						// NOTE: This does NOT handle injection.combined (multiple
+						// disjoint ranges concatenated into one parse), but we don't
+						// support that feature currently.
+						uint32_t parentStartRow = inj.startPoint.row + capStart.row;
+						uint32_t parentEndRow = inj.startPoint.row + capEnd.row;
+						uint32_t parentStartCol = (capStart.row == 0)
+							? inj.startPoint.column + capStart.column
+							: capStart.column;
 
-					    // Add to parent's line blocks
-					    for (uint32_t row = parentStartRow;
-					         row <= parentEndRow && row < static_cast<uint32_t>(m_nLineCount);
-					         row++)
-					    {
-					        uint32_t byteCol = (row == parentStartRow) ? parentStartCol : 0;
-					        int charPos = Utf8ByteOffsetToCharPos(static_cast<int>(row), byteCol);
+						// Add to parent's line blocks
+						for (uint32_t row = parentStartRow;
+							 row <= parentEndRow && row < static_cast<uint32_t>(m_nLineCount);
+							 row++)
+						{
+							uint32_t byteCol = (row == parentStartRow) ? parentStartCol : 0;
+							int charPos = Utf8ByteOffsetToCharPos(static_cast<int>(row), byteCol);
 
-					        TreeSitterLineBlock block;
-					        block.nCharPos = charPos;
-					        block.nColorIndex = colorIndex;
-					        block.nPriority = MakeCapturePriority(sCapName,
-					            ts_node_start_byte(capNode), ts_node_end_byte(capNode));
-					        block.nOrder = NextBlockOrder();
-					        m_lineBlocks[row].push_back(block);
-					    }
+							TreeSitterLineBlock block;
+							block.nCharPos = charPos;
+							block.nColorIndex = colorIndex;
+							block.nPriority = MakeCapturePriority(sCapName,
+								ts_node_start_byte(capNode), ts_node_end_byte(capNode));
+							block.nOrder = NextBlockOrder();
+							m_lineBlocks[row].push_back(block);
+						}
 					}
 				}
 
@@ -1691,39 +1671,7 @@ std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) cons
 		return _T("");
 
 	// Calculate byte offset
-	uint32_t byteOffset = 0;
-
-	// Add bytes from all previous lines
-	for (int i = 0; i < nLineIndex; i++)
-	{
-		if (i >= static_cast<int>(m_lineUtf8.size()))
-			return _T("");
-		byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size());
-		byteOffset++;  // newline character
-	}
-
-	// Add bytes from current line up to nCharPos
-	const std::string& lineUtf8 = m_lineUtf8[nLineIndex];
-	int charCount = 0;
-	for (size_t i = 0; i < lineUtf8.size() && charCount < nCharPos; )
-	{
-		unsigned char byte = lineUtf8[i];
-
-		// UTF-8 character length determination
-		int charLen = 1;
-		if ((byte & 0x80) == 0x00)
-			charLen = 1;  // ASCII
-		else if ((byte & 0xE0) == 0xC0)
-			charLen = 2;
-		else if ((byte & 0xF0) == 0xE0)
-			charLen = 3;
-		else if ((byte & 0xF8) == 0xF0)
-			charLen = 4;
-
-		i += charLen;
-		byteOffset += charLen;
-		charCount++;
-	}
+	const uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
 
 	// Get the tree-sitter node at this byte position
 	TSNode rootNode = ts_tree_root_node(m_pTree);
@@ -2018,33 +1966,16 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* p
 	return true;
 }
 
-bool CTreeSitterParser::FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const
+bool CTreeSitterParser::FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar)
 {
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return false;
 
-	uint32_t byteOffset = 0;
-	for (int i = 0; i < nLineIndex; ++i)
-		byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size()) + 1;
+	// Run tags query for same-file symbol definitions/references
+	if (m_tagDefs.empty() && m_pLang && m_pLang->GetTagsQuery())
+		RunTagsQuery();
 
-	const std::string& lineUtf8 = m_lineUtf8[nLineIndex];
-	int charCount = 0;
-	for (size_t i = 0; i < lineUtf8.size() && charCount < nCharPos; )
-	{
-		const unsigned char byte = static_cast<unsigned char>(lineUtf8[i]);
-		int charLen = 1;
-		if ((byte & 0x80) == 0x00)
-			charLen = 1;
-		else if ((byte & 0xE0) == 0xC0)
-			charLen = 2;
-		else if ((byte & 0xF0) == 0xE0)
-			charLen = 3;
-		else if ((byte & 0xF8) == 0xF0)
-			charLen = 4;
-		i += charLen;
-		byteOffset += charLen;
-		charCount++;
-	}
+	const uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
 
 	uint32_t defStartByte = 0;
 	uint32_t defEndByte = 0;

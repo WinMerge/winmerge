@@ -49,52 +49,52 @@ struct CEPoint;
 class CTreeSitterLanguage
 {
 public:
-    CTreeSitterLanguage();
-    ~CTreeSitterLanguage();
+	CTreeSitterLanguage();
+	~CTreeSitterLanguage();
 
-    CTreeSitterLanguage(const CTreeSitterLanguage&) = delete;
-    CTreeSitterLanguage& operator=(const CTreeSitterLanguage&) = delete;
+	CTreeSitterLanguage(const CTreeSitterLanguage&) = delete;
+	CTreeSitterLanguage& operator=(const CTreeSitterLanguage&) = delete;
 
-    /**
-     * @brief Load a grammar DLL and its query files.
-     * @param sGrammarDir  Directory containing grammar DLLs and .scm files.
-     * @param sLanguage    Language name (e.g. "fsharp", "python", "cpp").
-     * @return true if both the DLL and highlight query loaded successfully.
-     *
-     * Also attempts to load locals.scm, tags.scm, and injections.scm if present.
-     * Failure to load optional queries is not fatal.
-     */
-    bool Load(const std::wstring& sGrammarDir, const std::wstring& sLanguage);
+	/**
+	 * @brief Load a grammar DLL and its query files.
+	 * @param sGrammarDir  Directory containing grammar DLLs and .scm files.
+	 * @param sLanguage    Language name (e.g. "fsharp", "python", "cpp").
+	 * @return true if both the DLL and highlight query loaded successfully.
+	 *
+	 * Also attempts to load locals.scm, tags.scm, and injections.scm if present.
+	 * Failure to load optional queries is not fatal.
+	 */
+	bool Load(const std::wstring& sGrammarDir, const std::wstring& sLanguage);
 
-    /** @brief Get the loaded TSLanguage pointer (or nullptr). */
-    const TSLanguage* GetLanguage() const { return m_pLanguage; }
+	/** @brief Get the loaded TSLanguage pointer (or nullptr). */
+	const TSLanguage* GetLanguage() const { return m_pLanguage; }
 
-    /** @brief Get the compiled highlight TSQuery (or nullptr). */
-    const TSQuery* GetHighlightQuery() const { return m_pHighlightQuery; }
+	/** @brief Get the compiled highlight TSQuery (or nullptr). */
+	const TSQuery* GetHighlightQuery() const { return m_pHighlightQuery; }
 
-    /** @brief Get the compiled locals TSQuery (or nullptr). */
-    const TSQuery* GetLocalsQuery() const { return m_pLocalsQuery; }
+	/** @brief Get the compiled locals TSQuery (or nullptr). */
+	const TSQuery* GetLocalsQuery() const { return m_pLocalsQuery; }
 
-    /** @brief Get the compiled tags TSQuery (or nullptr). */
-    const TSQuery* GetTagsQuery() const { return m_pTagsQuery; }
+	/** @brief Get the compiled tags TSQuery (or nullptr). */
+	const TSQuery* GetTagsQuery() const { return m_pTagsQuery; }
 
-    /** @brief Get the compiled injection TSQuery (or nullptr). */
-    const TSQuery* GetInjectionQuery() const { return m_pInjectionQuery; }
+	/** @brief Get the compiled injection TSQuery (or nullptr). */
+	const TSQuery* GetInjectionQuery() const { return m_pInjectionQuery; }
 
-    /** @brief Get the language name. */
-    const std::wstring& GetName() const { return m_sName; }
+	/** @brief Get the language name. */
+	const std::wstring& GetName() const { return m_sName; }
 
 private:
-    /** @brief Helper to load and compile a .scm query file. */
-    TSQuery* LoadQuery(const std::wstring& sPath);
+	/** @brief Helper to load and compile a .scm query file. */
+	TSQuery* LoadQuery(const std::wstring& sPath);
 
-    HMODULE           m_hDll;
-    const TSLanguage* m_pLanguage;
-    TSQuery*          m_pHighlightQuery;
-    TSQuery*          m_pLocalsQuery;
-    TSQuery*          m_pTagsQuery;
-    TSQuery*          m_pInjectionQuery;
-    std::wstring      m_sName;
+	HMODULE           m_hDll;
+	const TSLanguage* m_pLanguage;
+	TSQuery*          m_pHighlightQuery;
+	TSQuery*          m_pLocalsQuery;
+	TSQuery*          m_pTagsQuery;
+	TSQuery*          m_pInjectionQuery;
+	std::wstring      m_sName;
 };
 
 
@@ -111,17 +111,17 @@ private:
 class CTreeSitterColorMap
 {
 public:
-    CTreeSitterColorMap();
+	CTreeSitterColorMap();
 
-    /**
-     * @brief Map a tree-sitter capture name to a COLORINDEX.
-     * @param sCaptureName  The capture name (e.g. "keyword", "string").
-     * @return The COLORINDEX, or COLORINDEX_NORMALTEXT if unknown.
-     */
-    int MapCapture(const std::string& sCaptureName) const;
+	/**
+	 * @brief Map a tree-sitter capture name to a COLORINDEX.
+	 * @param sCaptureName  The capture name (e.g. "keyword", "string").
+	 * @return The COLORINDEX, or COLORINDEX_NORMALTEXT if unknown.
+	 */
+	int MapCapture(const std::string& sCaptureName) const;
 
 private:
-    std::unordered_map<std::string, int> m_map;
+	std::unordered_map<std::string, int> m_map;
 };
 
 
@@ -130,10 +130,10 @@ private:
  */
 struct TreeSitterLineBlock
 {
-    int nCharPos;
-    int nColorIndex;
-    int nPriority;
-    uint32_t nOrder;
+	int nCharPos;
+	int nColorIndex;
+	int nPriority;
+	uint32_t nOrder;
 };
 
 
@@ -165,111 +165,111 @@ struct TreeSitterLineBlock
 class CTreeSitterParser
 {
 public:
-    CTreeSitterParser();
-    ~CTreeSitterParser();
+	CTreeSitterParser();
+	~CTreeSitterParser();
 
-    CTreeSitterParser(const CTreeSitterParser&) = delete;
-    CTreeSitterParser& operator=(const CTreeSitterParser&) = delete;
+	CTreeSitterParser(const CTreeSitterParser&) = delete;
+	CTreeSitterParser& operator=(const CTreeSitterParser&) = delete;
 
-    /**
-     * @brief Set the language to use for parsing.
-     * @param pLang  Pointer to a loaded CTreeSitterLanguage.
-     */
-    void SetLanguage(const CTreeSitterLanguage* pLang);
+	/**
+	 * @brief Set the language to use for parsing.
+	 * @param pLang  Pointer to a loaded CTreeSitterLanguage.
+	 */
+	void SetLanguage(const CTreeSitterLanguage* pLang);
 
-    /**
-     * @brief Parse (or re-parse) the full document.
-     * @param ppszLines  Array of line pointers (from LangServices::ITextBuffer).
-     * @param pnLineLengths  Array of line lengths.
-     * @param nLineCount  Number of lines in the document.
-     */
-    void ParseDocument(const tchar_t* const* ppszLines, const int* pnLineLengths, int nLineCount);
+	/**
+	 * @brief Parse (or re-parse) the full document.
+	 * @param ppszLines  Array of line pointers (from LangServices::ITextBuffer).
+	 * @param pnLineLengths  Array of line lengths.
+	 * @param nLineCount  Number of lines in the document.
+	 */
+	void ParseDocument(const tchar_t* const* ppszLines, const int* pnLineLengths, int nLineCount);
 
-    /**
-     * @brief Mark the parse cache as dirty (e.g. after an edit).
-     *
-     * The next call to EnsureParsed() (from ParseLine/GetLineBlocks)
-     * will trigger a single reparse. This avoids reparsing on every
-     * keystroke and instead defers to the next paint cycle.
-     */
-    void MarkDirty() { m_bNeedsParse = true; }
+	/**
+	 * @brief Mark the parse cache as dirty (e.g. after an edit).
+	 *
+	 * The next call to EnsureParsed() (from ParseLine/GetLineBlocks)
+	 * will trigger a single reparse. This avoids reparsing on every
+	 * keystroke and instead defers to the next paint cycle.
+	 */
+	void MarkDirty() { m_bNeedsParse = true; }
 
-    /**
-     * @brief Notify the parser of an edit for incremental reparsing.
-     *
-     * Uses the provided TextEdit information and calls ts_tree_edit()
-     * on the existing tree so tree-sitter can reuse unchanged subtrees
-     * during the next reparse.
-     *
-     * Also marks the cache dirty.
-     *
-     * @param textEdit  The edit information (position, type, text).
-     */
-    void NotifyEdit(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType);
+	/**
+	 * @brief Notify the parser of an edit for incremental reparsing.
+	 *
+	 * Uses the provided TextEdit information and calls ts_tree_edit()
+	 * on the existing tree so tree-sitter can reuse unchanged subtrees
+	 * during the next reparse.
+	 *
+	 * Also marks the cache dirty.
+	 *
+	 * @param textEdit  The edit information (position, type, text).
+	 */
+	void NotifyEdit(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType);
 
-    /**
-     * @brief Ensure the document is parsed and cache is up-to-date.
-     * @param pBuf  The text buffer to read line data from (if reparse needed).
-     *
-     * Called lazily from ParseLine. Only reparses if marked dirty.
-     */
-    void EnsureParsed(LangServices::ITextBuffer* pBuf);
+	/**
+	 * @brief Ensure the document is parsed and cache is up-to-date.
+	 * @param pBuf  The text buffer to read line data from (if reparse needed).
+	 *
+	 * Called lazily from ParseLine. Only reparses if marked dirty.
+	 */
+	void EnsureParsed(LangServices::ITextBuffer* pBuf);
 
-    /**
-     * @brief Get the cached color blocks for a specific line.
-     * @param nLineIndex   Zero-based line index.
-     * @param pBuf         Output buffer for TEXTBLOCK entries (may be nullptr for cookie-only).
-     * @param nActualItems In/out: on entry, the number of blocks already in pBuf
-     *                     (caller pre-inserts a default NORMALTEXT block at position 0);
-     *                     on return, the total number of blocks.
-     * @param nMaxBlocks   Maximum number of TEXTBLOCK entries that fit in pBuf.
-     *                     Pass 0 to skip bounds checking (legacy behavior).
-     */
-    std::vector<LangServices::TEXTBLOCK> GetLineBlocks(int nLineIndex) const;
+	/**
+	 * @brief Get the cached color blocks for a specific line.
+	 * @param nLineIndex   Zero-based line index.
+	 * @param pBuf         Output buffer for TEXTBLOCK entries (may be nullptr for cookie-only).
+	 * @param nActualItems In/out: on entry, the number of blocks already in pBuf
+	 *                     (caller pre-inserts a default NORMALTEXT block at position 0);
+	 *                     on return, the total number of blocks.
+	 * @param nMaxBlocks   Maximum number of TEXTBLOCK entries that fit in pBuf.
+	 *                     Pass 0 to skip bounds checking (legacy behavior).
+	 */
+	std::vector<LangServices::TEXTBLOCK> GetLineBlocks(int nLineIndex) const;
 
-    /** @brief Check if a valid tree is available. */
-    bool HasTree() const { return m_pTree != nullptr; }
+	/** @brief Check if a valid tree is available. */
+	bool HasTree() const { return m_pTree != nullptr; }
 
-    /** @brief Check if a language is set. */
-    bool HasLanguage() const { return m_pLang != nullptr; }
+	/** @brief Check if a language is set. */
+	bool HasLanguage() const { return m_pLang != nullptr; }
 
-    /** @brief Get the number of lines in the cached parse result. */
-    int GetCachedLineCount() const { return m_nLineCount; }
+	/** @brief Get the number of lines in the cached parse result. */
+	int GetCachedLineCount() const { return m_nLineCount; }
 
-    /** @brief Check if cache needs rebuilding. */
-    bool IsDirty() const { return m_bNeedsParse; }
+	/** @brief Check if cache needs rebuilding. */
+	bool IsDirty() const { return m_bNeedsParse; }
 
-    /** @brief Invalidate cached results and free tree. */
-    void Invalidate();
+	/** @brief Invalidate cached results and free tree. */
+	void Invalidate();
 
-    /** @brief Get the language object (for service layer). */
-    const CTreeSitterLanguage* GetLanguage() const { return m_pLang; }
+	/** @brief Get the language object (for service layer). */
+	const CTreeSitterLanguage* GetLanguage() const { return m_pLang; }
 
-    /**
-     * @brief Get the node type name at a specific position.
-     * @param nLineIndex  Zero-based line index.
-     * @param nCharPos    Zero-based character position in line.
-     * @return Node type name (e.g. "comment", "string_literal"), or empty string.
-     * 
-     * This is used by TreeSitterHighlightService to determine if a position
-     * is within a comment or string for filtering purposes.
-     */
-    std::wstring GetNodeTypeAt(int nLineIndex, int nCharPos) const;
+	/**
+	 * @brief Get the node type name at a specific position.
+	 * @param nLineIndex  Zero-based line index.
+	 * @param nCharPos    Zero-based character position in line.
+	 * @return Node type name (e.g. "comment", "string_literal"), or empty string.
+	 * 
+	 * This is used by TreeSitterHighlightService to determine if a position
+	 * is within a comment or string for filtering purposes.
+	 */
+	std::wstring GetNodeTypeAt(int nLineIndex, int nCharPos) const;
 
-    bool FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar) const;
+	bool FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
 
-    /**
-     * @brief Find matching brace/bracket/parenthesis at the given position.
-     * @param pBuffer  The text buffer to read line data from.
-     * @param nLineIndex  Zero-based line index of the starting position.
-     * @param nCharPos  Zero-based character position in the line.
-     * @param outLineIndex  [out] Line index of the matching brace.
-     * @param outCharPos  [out] Character position of the matching brace.
-     * @return true if a matching brace was found, false otherwise.
-     * 
-     * Uses tree-sitter's AST structure to find the matching delimiter.
-     */
-    bool FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
+	/**
+	 * @brief Find matching brace/bracket/parenthesis at the given position.
+	 * @param pBuffer  The text buffer to read line data from.
+	 * @param nLineIndex  Zero-based line index of the starting position.
+	 * @param nCharPos  Zero-based character position in the line.
+	 * @param outLineIndex  [out] Line index of the matching brace.
+	 * @param outCharPos  [out] Character position of the matching brace.
+	 * @return true if a matching brace was found, false otherwise.
+	 * 
+	 * Uses tree-sitter's AST structure to find the matching delimiter.
+	 */
+	bool FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
 
 	/**
 	 * @brief Convenience: parse document from a text buffer.
@@ -278,96 +278,97 @@ public:
 	void ParseFromBuffer(LangServices::ITextBuffer* pBuffer);
 
 private:
-    void EnsureParser();
-    void RunHighlightQuery();
-    void RunLocalsQuery();
-    void RunTagsQuery();
-    void RunInjectionQuery();
-    void BuildLineCache(int nLineCount);
-    int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
-    bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
-    bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
-    bool TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
-    uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
+	void EnsureParser();
+	void RunHighlightQuery();
+	void RunLocalsQuery();
+	void RunTagsQuery();
+	void RunInjectionQuery();
+	void BuildLineCache(int nLineCount);
+	int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
+	uint32_t CharPosToByteOffset(int nLine, int nCharPos) const;
+	bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
+	bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
+	bool TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
+	uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
-    /**
-     * @brief Extract #set! predicate properties from a query pattern.
-     * @param pQuery       The query containing the pattern.
-     * @param patternIndex The pattern index.
-     * @param key          The property key to look for (e.g. "injection.language").
-     * @return The property value, or empty string if not found.
-     */
-    static std::string GetSetProperty(const TSQuery* pQuery,
-                                       uint32_t patternIndex,
-                                       const std::string& key);
+	/**
+	 * @brief Extract #set! predicate properties from a query pattern.
+	 * @param pQuery       The query containing the pattern.
+	 * @param patternIndex The pattern index.
+	 * @param key          The property key to look for (e.g. "injection.language").
+	 * @return The property value, or empty string if not found.
+	 */
+	static std::string GetSetProperty(const TSQuery* pQuery,
+			                           uint32_t patternIndex,
+			                           const std::string& key);
 
-    TSParser*           m_pParser;      // Created lazily on first use
-    TSTree*             m_pTree;
-    const CTreeSitterLanguage* m_pLang;
-    CTreeSitterColorMap m_colorMap;
-    bool                m_bNeedsParse;       // True when cache needs rebuild
+	TSParser*           m_pParser;      // Created lazily on first use
+	TSTree*             m_pTree;
+	const CTreeSitterLanguage* m_pLang;
+	CTreeSitterColorMap m_colorMap;
+	bool                m_bNeedsParse;       // True when cache needs rebuild
 
-    // Cached per-line highlight blocks
-    std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
+	// Cached per-line highlight blocks
+	std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
 
-    // Per-line UTF-8 content (for byte offset -> character position mapping)
-    std::vector<std::string> m_lineUtf8;
+	// Per-line UTF-8 content (for byte offset -> character position mapping)
+	std::vector<std::string> m_lineUtf8;
 
-    // Full document text (needed for tree-sitter, which requires contiguous input
-    // or a custom read callback)
-    std::string m_documentText;
-    int         m_nLineCount;
-    uint32_t    m_nextBlockOrder;
+	// Full document text (needed for tree-sitter, which requires contiguous input
+	// or a custom read callback)
+	std::string m_documentText;
+	int         m_nLineCount;
+	uint32_t    m_nextBlockOrder;
 
-    // --- Locals support ---
-    // Maps (startByte, endByte) of definition nodes to their highlight color.
-    // Built by RunLocalsQuery + RunHighlightQuery cross-referencing.
-    struct LocalDef
-    {
-        std::string name;       // Variable/symbol name
-        uint32_t    startByte;  // Definition node start
-        uint32_t    endByte;    // Definition node end
-        int         highlight;  // COLORINDEX from highlights.scm (-1 = unknown)
-    };
+	// --- Locals support ---
+	// Maps (startByte, endByte) of definition nodes to their highlight color.
+	// Built by RunLocalsQuery + RunHighlightQuery cross-referencing.
+	struct LocalDef
+	{
+		std::string name;       // Variable/symbol name
+		uint32_t    startByte;  // Definition node start
+		uint32_t    endByte;    // Definition node end
+		int         highlight;  // COLORINDEX from highlights.scm (-1 = unknown)
+	};
 
-    struct LocalScope
-    {
-        uint32_t startByte;
-        uint32_t endByte;
-        bool     inherits;
-        std::vector<LocalDef> defs;
-    };
+	struct LocalScope
+	{
+		uint32_t startByte;
+		uint32_t endByte;
+		bool     inherits;
+		std::vector<LocalDef> defs;
+	};
 
-    // Scopes from locals.scm, sorted by startByte
-    std::vector<LocalScope> m_localScopes;
+	// Scopes from locals.scm, sorted by startByte
+	std::vector<LocalScope> m_localScopes;
 
-    // Map from reference node byte range -> resolved highlight color.
-    // Key: (startByte << 32 | endByte). Assumes files < 4GB.
-    std::unordered_map<uint64_t, int> m_localRefHighlights;
+	// Map from reference node byte range -> resolved highlight color.
+	// Key: (startByte << 32 | endByte). Assumes files < 4GB.
+	std::unordered_map<uint64_t, int> m_localRefHighlights;
 
-    // Pending references from RunLocalsQuery, resolved during RunHighlightQuery
-    struct PendingRef
-    {
-        std::string name;
-        uint32_t    startByte;
-        uint32_t    endByte;
-        uint32_t    scopeStartByte;
-    };
-    std::vector<PendingRef> m_pendingRefs;
+	// Pending references from RunLocalsQuery, resolved during RunHighlightQuery
+	struct PendingRef
+	{
+		std::string name;
+		uint32_t    startByte;
+		uint32_t    endByte;
+		uint32_t    scopeStartByte;
+	};
+	std::vector<PendingRef> m_pendingRefs;
 
-    struct TagDef
-    {
-        std::string name;
-        uint32_t    startByte;
-        uint32_t    endByte;
-    };
+	struct TagDef
+	{
+		std::string name;
+		uint32_t    startByte;
+		uint32_t    endByte;
+	};
 
-    struct TagRef
-    {
-        std::string name;
-        uint32_t    startByte;
-        uint32_t    endByte;
-    };
+	struct TagRef
+	{
+		std::string name;
+		uint32_t    startByte;
+		uint32_t    endByte;
+	};
 
 	std::vector<TagDef> m_tagDefs;
 	std::vector<TagRef> m_tagRefs;
@@ -383,49 +384,49 @@ private:
 class TreeSitterRegistry
 {
 public:
-    /**
-     * @brief Get the singleton instance.
-     */
-    static TreeSitterRegistry& Instance();
+	/**
+	 * @brief Get the singleton instance.
+	 */
+	static TreeSitterRegistry& Instance();
 
-    /**
-     * @brief Initialize the registry by scanning the grammar directory.
-     * @param sGrammarDir  Path to directory containing grammar DLLs and .scm files.
-     *                     If empty, uses "<exe_dir>/TreeSitterGrammars/".
-     *
-     * This only discovers available DLL filenames. Grammars are loaded
-     * lazily on first request via GetLanguageForExt().
-     */
-    void Initialize(const std::wstring& sGrammarDir = L"");
+	/**
+	 * @brief Initialize the registry by scanning the grammar directory.
+	 * @param sGrammarDir  Path to directory containing grammar DLLs and .scm files.
+	 *                     If empty, uses "<exe_dir>/TreeSitterGrammars/".
+	 *
+	 * This only discovers available DLL filenames. Grammars are loaded
+	 * lazily on first request via GetLanguageForExt().
+	 */
+	void Initialize(const std::wstring& sGrammarDir = L"");
 
-    /**
-     * @brief Find a loaded language by language name.
-     * @param sLangName  Language name (e.g. "javascript", "css", "python").
-     * @return Pointer to the language, or nullptr if not available.
-     *
-     * Used by injection processing to look up grammars for embedded languages.
-     * Loads the grammar DLL lazily on first request.
-     */
-    const CTreeSitterLanguage* GetLanguageForName(const std::wstring& sLangName);
+	/**
+	 * @brief Find a loaded language by language name.
+	 * @param sLangName  Language name (e.g. "javascript", "css", "python").
+	 * @return Pointer to the language, or nullptr if not available.
+	 *
+	 * Used by injection processing to look up grammars for embedded languages.
+	 * Loads the grammar DLL lazily on first request.
+	 */
+	const CTreeSitterLanguage* GetLanguageForName(const std::wstring& sLangName);
 
-    /**
-    /** @brief Check if the registry has been initialized. */
-    bool IsInitialized() const { return m_bInitialized; }
+	/**
+	/** @brief Check if the registry has been initialized. */
+	bool IsInitialized() const { return m_bInitialized; }
 
 private:
-    TreeSitterRegistry() : m_bInitialized(false) {}
+	TreeSitterRegistry() : m_bInitialized(false) {}
 
-    bool m_bInitialized;
-    std::wstring m_sGrammarDir;
+	bool m_bInitialized;
+	std::wstring m_sGrammarDir;
 
-    // language name -> loaded grammar (loaded lazily)
-    std::unordered_map<std::wstring, std::unique_ptr<CTreeSitterLanguage>> m_languages;
+	// language name -> loaded grammar (loaded lazily)
+	std::unordered_map<std::wstring, std::unique_ptr<CTreeSitterLanguage>> m_languages;
 
-    // language names that have a DLL available but haven't been loaded yet
-    std::unordered_set<std::wstring> m_availableLanguages;
+	// language names that have a DLL available but haven't been loaded yet
+	std::unordered_set<std::wstring> m_availableLanguages;
 
-    // language names that failed to load (don't retry)
-    std::unordered_set<std::wstring> m_failedLanguages;
+	// language names that failed to load (don't retry)
+	std::unordered_set<std::wstring> m_failedLanguages;
 };
 
 /**
@@ -445,7 +446,7 @@ public:
 	virtual ~TreeSitterSyntaxParser() = default;
 
 	// ISyntaxParser interface implementation
-    void Invalidate() override;
+	void Invalidate() override;
 	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
 	LangServices::ITextBuffer* GetTextBuffer() const override { return m_pTextBuffer; }
 	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
@@ -468,20 +469,20 @@ private:
 class TreeSitterSyntaxParserFactory : public LangServices::ISyntaxParserFactory
 {
 public:
-    static TreeSitterSyntaxParserFactory& GetInstance()
-    {
-        static TreeSitterSyntaxParserFactory instance;
-        return instance;
-    }
+	static TreeSitterSyntaxParserFactory& GetInstance()
+	{
+		static TreeSitterSyntaxParserFactory instance;
+		return instance;
+	}
 
-    TreeSitterSyntaxParserFactory() {};
-    virtual ~TreeSitterSyntaxParserFactory() = default;
+	TreeSitterSyntaxParserFactory() {};
+	virtual ~TreeSitterSyntaxParserFactory() = default;
 
-    bool IsSupported(LangServices::LanguageId type) const;
-    virtual std::shared_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
-    {
-        if (!IsSupported(type))
-            return nullptr;
-        return std::make_unique<TreeSitterSyntaxParser>(type);
-    }
+	bool IsSupported(LangServices::LanguageId type) const;
+	virtual std::shared_ptr<LangServices::ISyntaxParser> Create(LangServices::LanguageId type) const override
+	{
+		if (!IsSupported(type))
+			return nullptr;
+		return std::make_unique<TreeSitterSyntaxParser>(type);
+	}
 };
