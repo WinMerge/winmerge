@@ -456,6 +456,29 @@ void CTreeSitterParser::ParseDocument(LangServices::ITextBuffer* pBuffer)
 	m_bNeedsParse = false;
 }
 
+static std::string NormalizeLineEndings(std::string text)
+{
+	std::string result;
+	result.reserve(text.size());
+
+	for (size_t i = 0; i < text.size(); ++i)
+	{
+		if (text[i] == '\r')
+		{
+			if (i + 1 < text.size() && text[i + 1] == '\n')
+				++i; // CRLF
+
+			result += '\n';
+		}
+		else
+		{
+			result += text[i];
+		}
+	}
+
+	return result;
+}
+
 /**
  * @brief Notify the parser of an edit for incremental reparsing.
  *
@@ -468,157 +491,16 @@ void CTreeSitterParser::ParseDocument(LangServices::ITextBuffer* pBuffer)
  */
 void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
-	m_bNeedsParse = true;
-
 	// If we don't have a tree, there's nothing to edit incrementally
 	if (!m_pTree)
 		return;
 
-	// Convert CEPoint (char-based, line/col) to UTF-8 byte offsets.
-	// m_lineUtf8 holds the per-line UTF-8 from the previous parse.
-	// We need:
-	//   start_byte:     absolute byte offset of the edit start in old doc
-	//   old_end_byte:   absolute byte offset of the old content end
-	//   new_end_byte:   absolute byte offset of the new content end
-
-	// Helper: compute TSPoint (row, column in bytes) from (line, charPos)
-	auto charPosToTSPoint = [this](int line, int charPos) -> TSPoint
-	{
-		TSPoint pt;
-		pt.row = static_cast<uint32_t>(line);
-		pt.column = 0;
-
-		if (charPos > 0 && line >= 0 && line < static_cast<int>(m_lineUtf8.size()))
-		{
-			const std::string& utf8Line = m_lineUtf8[line];
-#ifdef _UNICODE
-			int nUtf16Len = MultiByteToWideChar(CP_UTF8, 0,
-				utf8Line.c_str(), static_cast<int>(utf8Line.size()),
-				nullptr, 0);
-			if (charPos >= nUtf16Len)
-			{
-				pt.column = static_cast<uint32_t>(utf8Line.size());
-			}
-			else
-			{
-				int utf16Count = 0;
-				uint32_t byteIdx = 0;
-				const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
-				uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
-				while (byteIdx < lineLen && utf16Count < charPos)
-				{
-					uint8_t ch = p[byteIdx];
-					uint32_t seqLen;
-					if (ch < 0x80)
-					    seqLen = 1;
-					else if (ch < 0xE0)
-					    seqLen = 2;
-					else if (ch < 0xF0)
-					    seqLen = 3;
-					else
-					    seqLen = 4;
-					byteIdx += seqLen;
-					utf16Count += (seqLen == 4) ? 2 : 1;
-				}
-				pt.column = byteIdx;
-			}
-#else
-			pt.column = static_cast<uint32_t>(charPos);
-#endif
-		}
-		return pt;
-	};
-
 	TSInputEdit tsEdit{};
 
-	if (bInsert)
-	{
-		// Insert: old range is empty (start == old_end), new range is the inserted text
-		tsEdit.start_byte = CharPosToByteOffset(ptStartPos.y, ptStartPos.x);
-		tsEdit.old_end_byte = tsEdit.start_byte;
-		tsEdit.start_point = charPosToTSPoint(ptStartPos.y, ptStartPos.x);
-		tsEdit.old_end_point = tsEdit.start_point;
-
-		// For new_end, we need the end position after insert.
-		// The TextEdit's ptEndPos gives us the end position in the *new* document.
-		// But our m_lineUtf8 is from the *old* document, so we can't use
-		// charPosToByteOffset for the end position directly.
-		// Instead, compute new_end_byte = start_byte + utf8_length_of_inserted_text.
-		// Normalize to LF-only: ParseDocument() concatenates lines with '\n' (no '\r'),
-		// so '\r' bytes must be excluded from all byte-offset calculations.
-		const tchar_t* pInsText = pszText;
-		size_t nInsLen = cchText;
-#ifdef _UNICODE
-		// Convert to UTF-8 and strip '\r' to match ParseDocument()'s representation.
-		int nRawUtf8Len = WideCharToMultiByte(CP_UTF8, 0,
-			pInsText, static_cast<int>(nInsLen),
-			nullptr, 0, nullptr, nullptr);
-		std::string insUtf8;
-		if (nRawUtf8Len > 0)
-		{
-			insUtf8.resize(nRawUtf8Len);
-			WideCharToMultiByte(CP_UTF8, 0, pInsText, static_cast<int>(nInsLen),
-				&insUtf8[0], nRawUtf8Len, nullptr, nullptr);
-			insUtf8.erase(std::remove(insUtf8.begin(), insUtf8.end(), '\r'), insUtf8.end());
-		}
-		int nUtf8Len = static_cast<int>(insUtf8.size());
-		tsEdit.new_end_byte = tsEdit.start_byte + static_cast<uint32_t>(nUtf8Len);
-#else
-		// Exclude '\r' characters to match ParseDocument()'s LF-only representation.
-		int nCrCount = static_cast<int>(std::count(pInsText, pInsText + nInsLen, static_cast<char>('\r')));
-		tsEdit.new_end_byte = tsEdit.start_byte + static_cast<uint32_t>(nInsLen - nCrCount);
-#endif
-		tsEdit.new_end_point.row = static_cast<uint32_t>(ptEndPos.y);
-		// For the column, we can compute it from the text: count bytes after last newline
-		uint32_t lastNewlineBytes = 0;
-		bool foundNewline = false;
-#ifdef _UNICODE
-		// Use the already-normalized UTF-8 string to find the last newline position.
-		if (nUtf8Len > 0)
-		{
-			auto lastNL = insUtf8.rfind('\n');
-			if (lastNL != std::string::npos)
-			{
-				foundNewline = true;
-				lastNewlineBytes = static_cast<uint32_t>(nUtf8Len - lastNL - 1);
-			}
-		}
-#else
-		{
-			const char* pText = pInsText;
-			for (int i = static_cast<int>(nInsLen) - 1; i >= 0; i--)
-			{
-				if (pText[i] == '\n') { foundNewline = true; lastNewlineBytes = nInsLen - i - 1; break; }
-			}
-		}
-#endif
-		if (foundNewline)
-		{
-			tsEdit.new_end_point.column = lastNewlineBytes;
-		}
-		else
-		{
-			// No newline in inserted text: column = start column + inserted byte length
-			tsEdit.new_end_point.column = tsEdit.start_point.column +
-				(tsEdit.new_end_byte - tsEdit.start_byte);
-		}
-	}
-	else
-	{
-		// Delete: old range is the deleted text, new range is empty (start == new_end)
-		tsEdit.start_byte = CharPosToByteOffset(ptStartPos.y, ptStartPos.x);
-		tsEdit.start_point = charPosToTSPoint(ptStartPos.y, ptStartPos.x);
-
-		// For old_end, we use the old document positions
-		tsEdit.old_end_byte = CharPosToByteOffset(ptEndPos.y, ptEndPos.x);
-		tsEdit.old_end_point = charPosToTSPoint(ptEndPos.y, ptEndPos.x);
-
-		// After deletion, the cursor is at start
-		tsEdit.new_end_byte = tsEdit.start_byte;
-		tsEdit.new_end_point = tsEdit.start_point;
-	}
+	UpdateUtf8Cache(bInsert, ptStartPos, ptEndPos, pszText, cchText, tsEdit);
 
 	ts_tree_edit(m_pTree, &tsEdit);
+
 }
 
 /**
@@ -661,9 +543,7 @@ int CTreeSitterParser::Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) cons
 
 #ifdef _UNICODE
 	// Convert the prefix [0..byteCol) from UTF-8 to UTF-16 and count chars
-	int nChars = MultiByteToWideChar(CP_UTF8, 0,
-		utf8Line.c_str(), static_cast<int>(byteCol),
-		nullptr, 0);
+	int nChars = MultiByteToWideChar(CP_UTF8, 0, utf8Line.c_str(), static_cast<int>(byteCol), nullptr, 0);
 	return nChars;
 #else
 	return static_cast<int>(byteCol);
@@ -722,6 +602,57 @@ uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos) const
 	return byteOffset + byteIdx;
 }
 
+// Convert CEPoint (char-based, line/col) to UTF-8 byte offsets.
+// m_lineUtf8 holds the per-line UTF-8 from the previous parse.
+// We need:
+//   start_byte:     absolute byte offset of the edit start in old doc
+//   old_end_byte:   absolute byte offset of the old content end
+//   new_end_byte:   absolute byte offset of the new content end
+
+// Helper: compute TSPoint (row, column in bytes) from (line, charPos)
+void CTreeSitterParser::CharPosToTSPoint(int line, int charPos, TSPoint& pt) const
+{
+	pt.row = static_cast<uint32_t>(line);
+	pt.column = 0;
+
+	if (charPos > 0 && line >= 0 && line < static_cast<int>(m_lineUtf8.size()))
+	{
+		const std::string& utf8Line = m_lineUtf8[line];
+#ifdef _UNICODE
+		int nUtf16Len = MultiByteToWideChar(CP_UTF8, 0, utf8Line.c_str(), static_cast<int>(utf8Line.size()), nullptr, 0);
+		if (charPos >= nUtf16Len)
+		{
+			pt.column = static_cast<uint32_t>(utf8Line.size());
+		}
+		else
+		{
+			int utf16Count = 0;
+			uint32_t byteIdx = 0;
+			const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
+			uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
+			while (byteIdx < lineLen && utf16Count < charPos)
+			{
+				uint8_t ch = p[byteIdx];
+				uint32_t seqLen;
+				if (ch < 0x80)
+					seqLen = 1;
+				else if (ch < 0xE0)
+					seqLen = 2;
+				else if (ch < 0xF0)
+					seqLen = 3;
+				else
+					seqLen = 4;
+				byteIdx += seqLen;
+				utf16Count += (seqLen == 4) ? 2 : 1;
+			}
+			pt.column = byteIdx;
+		}
+#else
+		pt.column = static_cast<uint32_t>(charPos);
+#endif
+	}
+}
+
 std::string CTreeSitterParser::GetUtf8Text(uint32_t startByte, uint32_t endByte) const
 {
 	std::string result;
@@ -734,8 +665,7 @@ std::string CTreeSitterParser::GetUtf8Text(uint32_t startByte, uint32_t endByte)
 		if (startByte < lineEnd)
 		{
 			uint32_t s = (startByte > currentOffset) ? startByte - currentOffset : 0;
-			uint32_t e = (std::min)(endByte - currentOffset,
-				static_cast<uint32_t>(line.size()));
+			uint32_t e = (std::min)(endByte - currentOffset, static_cast<uint32_t>(line.size()));
 			result.append(line, s, e - s);
 			if (endByte > lineEnd)
 				result += '\n';
@@ -753,6 +683,98 @@ uint32_t CTreeSitterParser::GetTotalBytes() const
 	if (!m_lineUtf8.empty())
 		total -= 1;
 	return total;
+}
+
+void CTreeSitterParser::UpdateUtf8Cache(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, TSInputEdit& edit)
+{
+	edit.start_byte = CharPosToByteOffset(ptStartPos.y, ptStartPos.x);
+	CharPosToTSPoint(ptStartPos.y, ptStartPos.x, edit.start_point); 
+
+	if (bInsert)
+	{
+		edit.old_end_byte = edit.start_byte;
+		edit.old_end_point = edit.start_point;
+	}
+	else
+	{
+		edit.old_end_byte = CharPosToByteOffset(ptEndPos.y, ptEndPos.x);
+		CharPosToTSPoint(ptEndPos.y, ptEndPos.x, edit.old_end_point);
+	}
+
+	std::string insertedUtf8;
+	if (pszText && cchText > 0)
+		insertedUtf8 = NormalizeLineEndings(ucr::toUTF8(pszText, cchText));
+
+	std::string doc;
+
+	for (size_t i = 0; i < m_lineUtf8.size(); ++i)
+	{
+		if (i > 0)
+			doc += '\n';
+
+		doc += m_lineUtf8[i];
+	}
+
+	if (bInsert)
+		doc.insert(edit.start_byte, insertedUtf8);
+	else
+		doc.erase(edit.start_byte, edit.old_end_byte - edit.start_byte);
+
+	m_lineUtf8.clear();
+
+	size_t pos = 0;
+	for (;;)
+	{
+		size_t nl = doc.find('\n', pos);
+
+		if (nl == std::string::npos)
+		{
+			m_lineUtf8.push_back(doc.substr(pos));
+			break;
+		}
+
+		m_lineUtf8.push_back(doc.substr(pos, nl - pos));
+
+		pos = nl + 1;
+	}
+
+	if (bInsert)
+	{
+		edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(insertedUtf8.size());
+
+		int line = ptStartPos.y; 
+		int col = ptStartPos.x;
+
+		for (size_t i = 0; i < insertedUtf8.size(); ++i)
+		{
+			if (insertedUtf8[i] == '\n')
+			{
+				++line;
+				col = 0;
+			}
+			else
+			{
+				++col;
+			}
+		}
+
+		edit.new_end_point.row = static_cast<uint32_t>(line);
+
+		if (line == ptStartPos.y)
+		{
+			edit.new_end_point.column = edit.start_point.column + static_cast<uint32_t>(insertedUtf8.size());
+		}
+		else
+		{
+			size_t lastNL = insertedUtf8.rfind('\n');
+			edit.new_end_point.column = static_cast<uint32_t>(insertedUtf8.size() - lastNL - 1);
+		}
+	}
+	else
+	{
+		edit.new_end_byte = edit.start_byte;
+		edit.new_end_point = edit.start_point;
+	}
 }
 
 /**
@@ -1706,7 +1728,7 @@ const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wst
  * 
  * This is used for comment filtering and other syntax-aware operations.
  */
-std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) const
+String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) const
 {
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return _T("");
@@ -1730,18 +1752,8 @@ std::wstring CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) cons
 	if (!pszType)
 		return _T("");
 
-	// Convert from UTF-8 to wstring/String
-#ifdef UNICODE
-	int nLen = MultiByteToWideChar(CP_UTF8, 0, pszType, -1, nullptr, 0);
-	if (nLen == 0)
-		return _T("");
-
-	std::vector<wchar_t> buffer(nLen);
-	MultiByteToWideChar(CP_UTF8, 0, pszType, -1, buffer.data(), nLen);
-	return std::wstring(buffer.data());
-#else
-	return String(pszType);
-#endif
+	// Convert from UTF-8 to String
+	return ucr::toTString(pszType);
 }
 
 bool CTreeSitterParser::FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const

@@ -24,6 +24,7 @@
 #include "TextDefinition.h"
 #include "ITextBuffer.h"
 #include "ISyntaxParser.h"
+#include "UnicodeString.h"
 
 #include <string>
 #include <vector>
@@ -39,6 +40,8 @@ typedef struct TSQuery TSQuery;
 typedef struct TSLanguage TSLanguage;
 
 struct CEPoint;
+struct TSPoint;
+struct TSInputEdit;
 
 /**
  * @brief Manages a tree-sitter grammar loaded from a DLL.
@@ -252,7 +255,7 @@ public:
 	 * This is used by TreeSitterHighlightService to determine if a position
 	 * is within a comment or string for filtering purposes.
 	 */
-	std::wstring GetNodeTypeAt(int nLineIndex, int nCharPos) const;
+	String GetNodeTypeAt(int nLineIndex, int nCharPos) const;
 
 	bool FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
 
@@ -278,8 +281,10 @@ private:
 	void BuildLineCache(int nLineCount);
 	int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
 	uint32_t CharPosToByteOffset(int nLine, int nCharPos) const;
+	void CharPosToTSPoint(int line, int charPos, TSPoint& pt) const;
 	std::string GetUtf8Text(uint32_t startByte, uint32_t endByte) const;
 	uint32_t GetTotalBytes() const;
+	void UpdateUtf8Cache(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, TSInputEdit& tsEdit);
 	bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
 	bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
 	bool TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
