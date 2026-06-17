@@ -301,7 +301,8 @@ bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstri
 // ============================================================================
 
 CTreeSitterParser::CTreeSitterParser()
-	: m_pParser(nullptr)   // Fix #2: lazy-init, don't call ts_parser_new() here
+	: m_pTextBuffer(nullptr)
+	, m_pParser(nullptr)   // Fix #2: lazy-init, don't call ts_parser_new() here
 	, m_pTree(nullptr)
 	, m_pLang(nullptr)
 	, m_bNeedsParse(false)
@@ -349,7 +350,6 @@ void CTreeSitterParser::Invalidate()
 		m_pTree = nullptr;
 	}
 	m_lineBlocks.clear();
-	m_lineUtf8.clear();
 	m_localScopes.clear();
 	m_localRefHighlights.clear();
 	m_pendingRefs.clear();
@@ -360,12 +360,12 @@ void CTreeSitterParser::Invalidate()
 	m_bNeedsParse = true;
 }
 
-void CTreeSitterParser::ParseDocument(LangServices::ITextBuffer* pBuffer)
+void CTreeSitterParser::ParseDocument()
 {
-	if (!pBuffer)
+	if (!m_pTextBuffer)
 		return;
 
-	const int nLineCount = pBuffer->GetLineCount();
+	const int nLineCount = m_pTextBuffer->GetLineCount();
 	if (nLineCount == 0)
 		return;
 
@@ -373,34 +373,19 @@ void CTreeSitterParser::ParseDocument(LangServices::ITextBuffer* pBuffer)
 	if (!m_pParser || !m_pLang || !m_pLang->GetLanguage())
 		return;
 
-	// Build contiguous document text from line pointers.
-	// Tree-sitter requires UTF-8 input, so we convert from tchar_t (wchar_t on Windows).
-	m_lineUtf8.clear();
 	m_nLineCount = nLineCount;
-
-	// Pre-calculate total size estimate
-	m_lineUtf8.resize(nLineCount);
-	for (int i = 0; i < nLineCount; i++)
-	{
-		const tchar_t* pszLine = pBuffer->GetLineChars(i);
-		const int nLen = pBuffer->GetLineLength(i);
-		if (pszLine && nLen > 0)
-			m_lineUtf8[i] = ucr::toUTF8(pszLine, nLen);
-		else
-			m_lineUtf8[i].clear();
-	}
 
 	struct Payload
 	{
-		const std::vector<std::string>* pLineUtf8;
+		LangServices::ITextBuffer* pBuffer;
 		int nLineCount;
-		char newline;
+		wchar_t newline;
 	};
-	Payload payload{ &m_lineUtf8, nLineCount, '\n' };
+	Payload payload{ m_pTextBuffer, nLineCount, L'\n' };
 
 	TSInput input;
 	input.payload = &payload;
-	input.encoding = TSInputEncodingUTF8;
+	input.encoding = TSInputEncodingUTF16LE;
 	input.read = [](void* pPayload, uint32_t /*byteOffset*/,
 		TSPoint position, uint32_t* bytesRead) -> const char*
 		{
@@ -413,20 +398,21 @@ void CTreeSitterParser::ParseDocument(LangServices::ITextBuffer* pBuffer)
 				return nullptr;
 			}
 
-			const std::string& line = (*p->pLineUtf8)[row];
-			const uint32_t col = position.column;
+			const tchar_t* pszLine = p->pBuffer->GetLineChars(row);
+			const int nLen = p->pBuffer->GetLineLength(row);
+			const uint32_t colChars = position.column / sizeof(wchar_t);
 
-			if (col < static_cast<uint32_t>(line.size()))
+			if (colChars < static_cast<uint32_t>(nLen))
 			{
-				*bytesRead = static_cast<uint32_t>(line.size()) - col;
-				return line.c_str() + col;
+				*bytesRead = (static_cast<uint32_t>(nLen) - colChars) * sizeof(wchar_t);
+				return reinterpret_cast<const char*>(pszLine + colChars);
 			}
-			else if (col == static_cast<uint32_t>(line.size()))
+			else if (colChars == static_cast<uint32_t>(nLen))
 			{
 				if (row < p->nLineCount - 1)
 				{
-					*bytesRead = 1;
-					return &p->newline;
+					*bytesRead = sizeof(wchar_t);
+					return reinterpret_cast<const char*>(&p->newline);
 				}
 			}
 
@@ -456,29 +442,6 @@ void CTreeSitterParser::ParseDocument(LangServices::ITextBuffer* pBuffer)
 	m_bNeedsParse = false;
 }
 
-static std::string NormalizeLineEndings(std::string text)
-{
-	std::string result;
-	result.reserve(text.size());
-
-	for (size_t i = 0; i < text.size(); ++i)
-	{
-		if (text[i] == '\r')
-		{
-			if (i + 1 < text.size() && text[i + 1] == '\n')
-				++i; // CRLF
-
-			result += '\n';
-		}
-		else
-		{
-			result += text[i];
-		}
-	}
-
-	return result;
-}
-
 /**
  * @brief Notify the parser of an edit for incremental reparsing.
  *
@@ -491,16 +454,36 @@ static std::string NormalizeLineEndings(std::string text)
  */
 void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
-	// If we don't have a tree, there's nothing to edit incrementally
-	if (!m_pTree)
+	if (!m_pTree || !m_pTextBuffer)
 		return;
 
 	TSInputEdit tsEdit{};
 
-	UpdateUtf8Cache(bInsert, ptStartPos, ptEndPos, pszText, cchText, tsEdit);
+	uint32_t startByte = CharPosToByteOffset(ptStartPos.y, ptStartPos.x);
+	tsEdit.start_byte = startByte;
+	CharPosToTSPoint(ptStartPos.y, ptStartPos.x, tsEdit.start_point);
+
+	uint32_t deltaBytes = static_cast<uint32_t>(cchText * sizeof(wchar_t));
+
+	if (bInsert)
+	{
+		tsEdit.old_end_byte = startByte;
+		tsEdit.old_end_point = tsEdit.start_point;
+
+		tsEdit.new_end_byte = startByte + deltaBytes;
+		CharPosToTSPoint(ptEndPos.y, ptEndPos.x, tsEdit.new_end_point);
+	}
+	else
+	{
+		tsEdit.old_end_byte = startByte + deltaBytes;
+		CharPosToTSPoint(ptEndPos.y, ptEndPos.x, tsEdit.old_end_point);
+
+		tsEdit.new_end_byte = startByte;
+		tsEdit.new_end_point = tsEdit.start_point;
+	}
 
 	ts_tree_edit(m_pTree, &tsEdit);
-
+	m_bNeedsParse = true;
 }
 
 /**
@@ -509,272 +492,88 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
  * Called lazily from ParseLine during the paint cycle. This means
  * we reparse at most once per paint, not once per keystroke.
  */
-void CTreeSitterParser::EnsureParsed(LangServices::ITextBuffer* pBuffer)
+void CTreeSitterParser::EnsureParsed()
 {
 	if (m_bNeedsParse && m_pLang)
-		ParseDocument(pBuffer);
+		ParseDocument();
 }
 
-/**
- * @brief Convert a UTF-8 byte offset within a line to a UTF-16 character position.
- *
- * Tree-sitter reports column positions as byte offsets in the UTF-8 text.
- * WinMerge's TEXTBLOCK.m_nCharPos expects tchar_t (wchar_t) character indices.
- * For pure ASCII, these are identical. For multi-byte UTF-8 / surrogate pairs,
- * we need to walk the UTF-8 bytes and count the corresponding UTF-16 code units.
- *
- * @param nLine    Zero-based line index.
- * @param byteCol  Byte offset within the line's UTF-8 representation.
- * @return Character position (index into the wchar_t line).
- */
-int CTreeSitterParser::Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const
-{
-	if (nLine < 0 || nLine >= static_cast<int>(m_lineUtf8.size()))
-		return static_cast<int>(byteCol);
-
-	const std::string& utf8Line = m_lineUtf8[nLine];
-	if (utf8Line.empty() || byteCol == 0)
-		return 0;
-
-	// Clamp to line length
-	uint32_t maxByte = static_cast<uint32_t>(utf8Line.size());
-	if (byteCol > maxByte)
-		byteCol = maxByte;
-
-#ifdef _UNICODE
-	// Convert the prefix [0..byteCol) from UTF-8 to UTF-16 and count chars
-	int nChars = MultiByteToWideChar(CP_UTF8, 0, utf8Line.c_str(), static_cast<int>(byteCol), nullptr, 0);
-	return nChars;
-#else
-	return static_cast<int>(byteCol);
-#endif
-}
-
-/**
- * @brief Convert (line, UTF-16 char position) to an absolute UTF-8 byte offset.
- * @param nLine        Zero-based line index.
- * @param nCharPos     Zero-based character position in the line (UTF-16 code units).
- * @return Absolute byte offset in the UTF-8 document text.
- */
 uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos) const
 {
-	const int nLines = static_cast<int>(m_lineUtf8.size());
+	if (!m_pTextBuffer)
+		return 0;
 
-	// Accumulate bytes from all preceding lines (each separated by '\n')
+	const int nLines = m_pTextBuffer->GetLineCount();
 	uint32_t byteOffset = 0;
 	for (int i = 0; i < nLine && i < nLines; i++)
 	{
-		byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size());
-		byteOffset += 1; // '\n' separator added by ParseDocument()
+		byteOffset += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
+		byteOffset += sizeof(wchar_t); 
 	}
 
-	uint32_t totalBytes = GetTotalBytes();
-
-	// Out-of-range line: return end of document
 	if (nLine >= nLines)
-		return totalBytes;
+		return GetTotalBytes();
 
-	if (nCharPos <= 0)
-		return byteOffset;
-
-	const std::string& utf8Line = m_lineUtf8[nLine];
-	const uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
-	const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
-
-	uint32_t byteIdx = 0;
-	int      utf16Count = 0;
-
-	while (byteIdx < lineLen && utf16Count < nCharPos)
-	{
-		const uint8_t ch = p[byteIdx];
-		uint32_t seqLen;
-		if (ch < 0x80) seqLen = 1;
-		else if (ch < 0xE0) seqLen = 2;
-		else if (ch < 0xF0) seqLen = 3;
-		else                seqLen = 4;
-
-		byteIdx += seqLen;
-		// 4-byte UTF-8 sequence encodes a codepoint above U+FFFF,
-		// which becomes a surrogate pair (2 UTF-16 code units).
-		utf16Count += (seqLen == 4) ? 2 : 1;
-	}
-
-	return byteOffset + byteIdx;
+	return byteOffset + static_cast<uint32_t>(nCharPos * sizeof(wchar_t));
 }
 
-// Convert CEPoint (char-based, line/col) to UTF-8 byte offsets.
-// m_lineUtf8 holds the per-line UTF-8 from the previous parse.
-// We need:
-//   start_byte:     absolute byte offset of the edit start in old doc
-//   old_end_byte:   absolute byte offset of the old content end
-//   new_end_byte:   absolute byte offset of the new content end
-
-// Helper: compute TSPoint (row, column in bytes) from (line, charPos)
 void CTreeSitterParser::CharPosToTSPoint(int line, int charPos, TSPoint& pt) const
 {
 	pt.row = static_cast<uint32_t>(line);
-	pt.column = 0;
-
-	if (charPos > 0 && line >= 0 && line < static_cast<int>(m_lineUtf8.size()))
-	{
-		const std::string& utf8Line = m_lineUtf8[line];
-#ifdef _UNICODE
-		int nUtf16Len = MultiByteToWideChar(CP_UTF8, 0, utf8Line.c_str(), static_cast<int>(utf8Line.size()), nullptr, 0);
-		if (charPos >= nUtf16Len)
-		{
-			pt.column = static_cast<uint32_t>(utf8Line.size());
-		}
-		else
-		{
-			int utf16Count = 0;
-			uint32_t byteIdx = 0;
-			const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
-			uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
-			while (byteIdx < lineLen && utf16Count < charPos)
-			{
-				uint8_t ch = p[byteIdx];
-				uint32_t seqLen;
-				if (ch < 0x80)
-					seqLen = 1;
-				else if (ch < 0xE0)
-					seqLen = 2;
-				else if (ch < 0xF0)
-					seqLen = 3;
-				else
-					seqLen = 4;
-				byteIdx += seqLen;
-				utf16Count += (seqLen == 4) ? 2 : 1;
-			}
-			pt.column = byteIdx;
-		}
-#else
-		pt.column = static_cast<uint32_t>(charPos);
-#endif
-	}
+	pt.column = static_cast<uint32_t>(charPos * sizeof(wchar_t));
 }
 
-std::string CTreeSitterParser::GetUtf8Text(uint32_t startByte, uint32_t endByte) const
+std::wstring CTreeSitterParser::GetUtf16Text(uint32_t startByte, uint32_t endByte) const
 {
-	std::string result;
+	std::wstring result;
+	if (!m_pTextBuffer)
+		return result;
+
+	const int nLines = m_pTextBuffer->GetLineCount();
 	uint32_t currentOffset = 0;
-	for (const auto& line : m_lineUtf8)
+
+	for (int i = 0; i < nLines; i++)
 	{
-		const uint32_t lineEnd = currentOffset + static_cast<uint32_t>(line.size());
+		const int nLen = m_pTextBuffer->GetLineLength(i);
+		const uint32_t lineEnd = currentOffset + static_cast<uint32_t>(nLen * sizeof(wchar_t));
+
 		if (endByte <= currentOffset)
 			break;
+
 		if (startByte < lineEnd)
 		{
-			uint32_t s = (startByte > currentOffset) ? startByte - currentOffset : 0;
-			uint32_t e = (std::min)(endByte - currentOffset, static_cast<uint32_t>(line.size()));
-			result.append(line, s, e - s);
-			if (endByte > lineEnd)
-				result += '\n';
+			uint32_t sChar = (startByte > currentOffset) ? (startByte - currentOffset) / sizeof(wchar_t) : 0;
+			uint32_t eChar = (std::min)(endByte - currentOffset, static_cast<uint32_t>(nLen * sizeof(wchar_t))) / sizeof(wchar_t);
+
+			const tchar_t* pszLine = m_pTextBuffer->GetLineChars(i);
+			if (pszLine)
+			{
+				result.append(pszLine + sChar, eChar - sChar);
+			}
+
+			if (endByte > lineEnd && i < nLines - 1)
+				result += L'\n';
 		}
-		currentOffset = lineEnd + 1; // +1 for '\n'
+		currentOffset = lineEnd + sizeof(wchar_t);
 	}
 	return result;
 }
 
 uint32_t CTreeSitterParser::GetTotalBytes() const
 {
-	uint32_t total = 0;
-	for (const auto& line : m_lineUtf8)
-		total += static_cast<uint32_t>(line.size()) + 1; // +1 for '\n'
-	if (!m_lineUtf8.empty())
-		total -= 1;
-	return total;
-}
+	if (!m_pTextBuffer)
+		return 0;
 
-void CTreeSitterParser::UpdateUtf8Cache(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, TSInputEdit& edit)
-{
-	edit.start_byte = CharPosToByteOffset(ptStartPos.y, ptStartPos.x);
-	CharPosToTSPoint(ptStartPos.y, ptStartPos.x, edit.start_point); 
-
-	if (bInsert)
+	const int nLines = m_pTextBuffer->GetLineCount();
+	uint32_t totalChars = 0;
+	for (int i = 0; i < nLines; i++)
 	{
-		edit.old_end_byte = edit.start_byte;
-		edit.old_end_point = edit.start_point;
+		totalChars += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i)) + 1; 
 	}
-	else
-	{
-		edit.old_end_byte = CharPosToByteOffset(ptEndPos.y, ptEndPos.x);
-		CharPosToTSPoint(ptEndPos.y, ptEndPos.x, edit.old_end_point);
-	}
+	if (nLines > 0)
+		totalChars -= 1;
 
-	std::string insertedUtf8;
-	if (pszText && cchText > 0)
-		insertedUtf8 = NormalizeLineEndings(ucr::toUTF8(pszText, cchText));
-
-	std::string doc;
-
-	for (size_t i = 0; i < m_lineUtf8.size(); ++i)
-	{
-		if (i > 0)
-			doc += '\n';
-
-		doc += m_lineUtf8[i];
-	}
-
-	if (bInsert)
-		doc.insert(edit.start_byte, insertedUtf8);
-	else
-		doc.erase(edit.start_byte, edit.old_end_byte - edit.start_byte);
-
-	m_lineUtf8.clear();
-
-	size_t pos = 0;
-	for (;;)
-	{
-		size_t nl = doc.find('\n', pos);
-
-		if (nl == std::string::npos)
-		{
-			m_lineUtf8.push_back(doc.substr(pos));
-			break;
-		}
-
-		m_lineUtf8.push_back(doc.substr(pos, nl - pos));
-
-		pos = nl + 1;
-	}
-
-	if (bInsert)
-	{
-		edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(insertedUtf8.size());
-
-		int line = ptStartPos.y; 
-		int col = ptStartPos.x;
-
-		for (size_t i = 0; i < insertedUtf8.size(); ++i)
-		{
-			if (insertedUtf8[i] == '\n')
-			{
-				++line;
-				col = 0;
-			}
-			else
-			{
-				++col;
-			}
-		}
-
-		edit.new_end_point.row = static_cast<uint32_t>(line);
-
-		if (line == ptStartPos.y)
-		{
-			edit.new_end_point.column = edit.start_point.column + static_cast<uint32_t>(insertedUtf8.size());
-		}
-		else
-		{
-			size_t lastNL = insertedUtf8.rfind('\n');
-			edit.new_end_point.column = static_cast<uint32_t>(insertedUtf8.size() - lastNL - 1);
-		}
-	}
-	else
-	{
-		edit.new_end_byte = edit.start_byte;
-		edit.new_end_point = edit.start_point;
-	}
+	return totalChars * sizeof(wchar_t);
 }
 
 /**
@@ -860,7 +659,7 @@ void CTreeSitterParser::RunTagsQuery()
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor, &match))
 	{
-		std::string name;
+		std::wstring name;
 		uint32_t nameStart = 0;
 		uint32_t nameEnd = 0;
 		bool hasName = false;
@@ -890,7 +689,7 @@ void CTreeSitterParser::RunTagsQuery()
 			{
 				if (nodeStart < totalBytes && nodeEnd <= totalBytes)
 				{
-					name = GetUtf8Text(nodeStart, nodeEnd - nodeStart);
+					name = GetUtf16Text(nodeStart, nodeEnd);
 					nameStart = nodeStart;
 					nameEnd = nodeEnd;
 					hasName = true;
@@ -1005,7 +804,7 @@ void CTreeSitterParser::RunLocalsQuery()
 				// Extract the text of the definition node as the symbol name
 				if (nodeStart < totalBytes && nodeEnd <= totalBytes)
 				{
-					std::string defName = GetUtf8Text(nodeStart, nodeEnd - nodeStart);
+					std::wstring defName = GetUtf16Text(nodeStart, nodeEnd);
 
 					// Find the innermost enclosing scope and add this definition
 					LocalScope* pBestScope = nullptr;
@@ -1036,7 +835,7 @@ void CTreeSitterParser::RunLocalsQuery()
 				if (nodeStart < totalBytes && nodeEnd <= totalBytes)
 				{
 					PendingRef ref;
-					ref.name = GetUtf8Text(nodeStart, nodeEnd - nodeStart);
+					ref.name = GetUtf16Text(nodeStart, nodeEnd);
 					ref.startByte = nodeStart;
 					ref.endByte = nodeEnd;
 					ref.scopeStartByte = nodeStart;
@@ -1115,8 +914,6 @@ void CTreeSitterParser::RunHighlightQuery()
 	// nodes with identical byte ranges should share the same highlight.
 	std::unordered_map<uint64_t, int> nodeHighlightMap;
 
-	uint32_t totalBytes = GetTotalBytes();
-
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor, &match))
 	{
@@ -1177,7 +974,7 @@ void CTreeSitterParser::RunHighlightQuery()
 			}
 		}
 
-		// Pass 2: Resolve references â€” find matching definition in enclosing scopes
+		// Pass 2: Resolve references — find matching definition in enclosing scopes
 		for (const auto& ref : m_pendingRefs)
 		{
 			int resolvedHighlight = -1;
@@ -1268,9 +1065,7 @@ void CTreeSitterParser::RunHighlightQuery()
 		for (uint32_t row = h.startRow; row <= h.endRow && row < static_cast<uint32_t>(m_nLineCount); row++)
 		{
 			uint32_t byteCol = (row == h.startRow) ? h.startCol : 0;
-
-			// Convert UTF-8 byte offset to UTF-16 character position
-			int charPos = Utf8ByteOffsetToCharPos(static_cast<int>(row), byteCol);
+			int charPos = byteCol / sizeof(wchar_t);
 
 			TreeSitterLineBlock block;
 			block.nCharPos = charPos;
@@ -1285,9 +1080,7 @@ void CTreeSitterParser::RunHighlightQuery()
 		if (h.endRow < static_cast<uint32_t>(m_nLineCount))
 		{
 			uint32_t endByteCol = h.endCol;
-
-			// Convert UTF-8 byte offset at token end to UTF-16 character position
-			int endCharPos = Utf8ByteOffsetToCharPos(static_cast<int>(h.endRow), endByteCol);
+			int endCharPos = endByteCol / sizeof(wchar_t);
 
 			TreeSitterLineBlock endBlock;
 			endBlock.nCharPos = endCharPos;
@@ -1381,7 +1174,11 @@ void CTreeSitterParser::RunInjectionQuery()
 				uint32_t start = ts_node_start_byte(capture.node);
 				uint32_t end = ts_node_end_byte(capture.node);
 				if (start < totalBytes && end <= totalBytes)
-					language = GetUtf8Text(start, end - start);
+				{
+					std::wstring wLang = GetUtf16Text(start, end);
+					for (wchar_t ch : wLang)
+						language += static_cast<char>(ch);
+				}
 			}
 		}
 
@@ -1412,7 +1209,7 @@ void CTreeSitterParser::RunInjectionQuery()
 		for (char ch : inj.language)
 			wLangName += static_cast<wchar_t>(ch);
 
-		// Try to find the language â€” look it up by name directly in the registry's
+		// Try to find the language — look it up by name directly in the registry's
 		// available languages (we need a way to get language by name, not just by ext).
 		// For now, try common mappings. The language name from injections.scm
 		// is typically the tree-sitter language name (e.g. "javascript", "css").
@@ -1426,7 +1223,7 @@ void CTreeSitterParser::RunInjectionQuery()
 		if (inj.contentStart >= totalBytes || inj.contentEnd > totalBytes)
 			continue;
 
-		std::string injContent = GetUtf8Text(inj.contentStart, inj.contentEnd - inj.contentStart);
+		std::wstring injContent = GetUtf16Text(inj.contentStart, inj.contentEnd);
 		if (injContent.empty())
 			continue;
 
@@ -1437,10 +1234,21 @@ void CTreeSitterParser::RunInjectionQuery()
 
 		ts_parser_set_language(pInjParser, pInjLang->GetLanguage());
 
-		TSTree* pInjTree = ts_parser_parse_string(
-			pInjParser, nullptr,
-			injContent.c_str(),
-			static_cast<uint32_t>(injContent.size()));
+		TSInput injInput;
+		injInput.payload = &injContent;
+		injInput.encoding = TSInputEncodingUTF16LE;
+		injInput.read = [](void* payload, uint32_t byte_offset, TSPoint position, uint32_t* bytes_read) -> const char* {
+			auto* pStr = static_cast<std::wstring*>(payload);
+			uint32_t char_offset = byte_offset / sizeof(wchar_t);
+			if (char_offset >= pStr->size()) {
+				*bytes_read = 0;
+				return nullptr;
+			}
+			*bytes_read = (static_cast<uint32_t>(pStr->size()) - char_offset) * sizeof(wchar_t);
+			return reinterpret_cast<const char*>(pStr->c_str() + char_offset);
+		};
+
+		TSTree* pInjTree = ts_parser_parse(pInjParser, nullptr, injInput);
 
 		if (pInjTree)
 		{
@@ -1491,7 +1299,7 @@ void CTreeSitterParser::RunInjectionQuery()
 							 row++)
 						{
 							uint32_t byteCol = (row == parentStartRow) ? parentStartCol : 0;
-							int charPos = Utf8ByteOffsetToCharPos(static_cast<int>(row), byteCol);
+							int charPos = byteCol / sizeof(wchar_t);
 
 							TreeSitterLineBlock block;
 							block.nCharPos = charPos;
@@ -1733,8 +1541,7 @@ String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) const
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return _T("");
 
-	// Convert line + character position to byte offset
-	if (nLineIndex >= static_cast<int>(m_lineUtf8.size()))
+	if (!m_pTextBuffer || nLineIndex >= m_pTextBuffer->GetLineCount())
 		return _T("");
 
 	// Calculate byte offset
@@ -1756,15 +1563,15 @@ String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) const
 	return ucr::toTString(pszType);
 }
 
-bool CTreeSitterParser::FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+bool CTreeSitterParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
 {
-	if (m_pTree == nullptr || pBuffer == nullptr)
+	if (m_pTree == nullptr || m_pTextBuffer == nullptr)
 	{
 		return false;
 	}
 
 	// Convert line/char position to byte offset
-	int nLineCount = pBuffer->GetLineCount();
+	int nLineCount = m_pTextBuffer->GetLineCount();
 	if (nLineIndex < 0 || nLineIndex >= nLineCount)
 	{
 		return false;
@@ -1773,10 +1580,10 @@ bool CTreeSitterParser::FindMatchingBrace(LangServices::ITextBuffer* pBuffer, in
 	uint32_t byteOffset = 0;
 	for (int i = 0; i < nLineIndex; i++)
 	{
-		byteOffset += static_cast<uint32_t>(pBuffer->GetLineLength(i));
-		byteOffset += 1; // newline
+		byteOffset += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
+		byteOffset += sizeof(wchar_t); 
 	}
-	byteOffset += static_cast<uint32_t>(nCharPos);
+	byteOffset += static_cast<uint32_t>(nCharPos * sizeof(wchar_t));
 
 	// Get the root node
 	TSNode rootNode = ts_tree_root_node(m_pTree);
@@ -1945,38 +1752,44 @@ bool CTreeSitterParser::TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_
 
 bool CTreeSitterParser::ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const
 {
+	if (!m_pTextBuffer)
+		return false;
+
 	uint32_t currentOffset = 0;
-	for (int i = 0; i < static_cast<int>(m_lineUtf8.size()); ++i)
+	int nLines = m_pTextBuffer->GetLineCount();
+	
+	for (int i = 0; i < nLines; ++i)
 	{
-		const std::string& utf8Line = m_lineUtf8[i];
+		const uint32_t lineLenBytes = static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
 		const uint32_t lineStart = currentOffset;
-		const uint32_t lineEnd = lineStart + static_cast<uint32_t>(utf8Line.size());
+		const uint32_t lineEnd = lineStart + lineLenBytes;
+
 		if (byteOffset <= lineEnd)
 		{
 			nLineIndex = i;
-			nCharPos = Utf8ByteOffsetToCharPos(i, byteOffset - lineStart);
+			nCharPos = (byteOffset - lineStart) / sizeof(wchar_t);
 			return true;
 		}
-		currentOffset = lineEnd + 1;
+		currentOffset = lineEnd + sizeof(wchar_t); 
 	}
 
-	if (!m_lineUtf8.empty() && byteOffset == currentOffset - 1)
+	if (nLines > 0 && byteOffset == currentOffset - sizeof(wchar_t))
 	{
-		nLineIndex = static_cast<int>(m_lineUtf8.size()) - 1;
-		nCharPos = static_cast<int>(m_lineUtf8.back().size());
+		nLineIndex = nLines - 1;
+		nCharPos = m_pTextBuffer->GetLineLength(nLines - 1);
 		return true;
 	}
 
 	return false;
 }
 
-bool CTreeSitterParser::TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const
+bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const
 {
-	if (!pBuffer || nLineIndex < 0 || nLineIndex >= pBuffer->GetLineCount())
+	if (!m_pTextBuffer || nLineIndex < 0 || nLineIndex >= m_pTextBuffer->GetLineCount())
 		return false;
 
-	const tchar_t* pszLine = pBuffer->GetLineChars(nLineIndex);
-	const int nLineLength = pBuffer->GetLineLength(nLineIndex);
+	const tchar_t* pszLine = m_pTextBuffer->GetLineChars(nLineIndex);
+	const int nLineLength = m_pTextBuffer->GetLineLength(nLineIndex);
 	if (!pszLine || nLineLength <= 0)
 		return false;
 
@@ -2004,7 +1817,7 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* p
 	while (nEnd < nLineLength && IsIdentChar(pszLine[nEnd]))
 		++nEnd;
 
-	std::string symbol = ucr::toUTF8(pszLine + nStart, nEnd - nStart);
+	std::wstring symbol(pszLine + nStart, nEnd - nStart);
 
 	const TagDef* pBestDef = nullptr;
 	for (const auto& def : m_tagDefs)
@@ -2023,7 +1836,7 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* p
 	return true;
 }
 
-bool CTreeSitterParser::FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar)
+bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar)
 {
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return false;
@@ -2043,7 +1856,7 @@ bool CTreeSitterParser::FindDefinition(LangServices::ITextBuffer* pBuffer, int n
 	if (!foundAtPosition)
 	{
 		if (!TryGetTagDefinitionByNameAt(
-				pBuffer, nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte))
+				nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte))
 			return false;
 
 		defStartByte = tagDefStartByte;
@@ -2063,7 +1876,7 @@ bool CTreeSitterParser::FindDefinition(LangServices::ITextBuffer* pBuffer, int n
 		if (!positionResolved || (posDefLine == nLineIndex && posDefChar == nCharPos))
 		{
 			if (TryGetTagDefinitionByNameAt(
-					pBuffer, nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte) &&
+					nLineIndex, nCharPos, tagDefStartByte, tagDefEndByte) &&
 				(!positionResolved || tagDefStartByte != defStartByte))
 			{
 				defStartByte = tagDefStartByte;
@@ -2089,7 +1902,6 @@ static const wchar_t* GetLanguageNameForId(LangServices::LanguageId id)
  * @brief Construct a Tree-sitter parser adapter.
  */
 TreeSitterSyntaxParser::TreeSitterSyntaxParser(LangServices::LanguageId textType)
-	: m_pTextBuffer(nullptr)
 {
 	auto& registry = TreeSitterRegistry::Instance();
 	if (!registry.IsInitialized())
@@ -2109,8 +1921,7 @@ void TreeSitterSyntaxParser::Invalidate()
  */
 void TreeSitterSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
 {
-	m_pTextBuffer = pTextBuffer;
-
+	m_parser.SetTextBuffer(pTextBuffer);
 	m_parser.Invalidate();
 }
 
@@ -2119,11 +1930,8 @@ void TreeSitterSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffe
  */
 std::vector<LangServices::TEXTBLOCK> TreeSitterSyntaxParser::ParseLine(int nLineIndex)
 {
-	if (m_pTextBuffer == nullptr)
-		return {};
-
 	// Ensure the document is parsed (handles lazy reparsing if dirty)
-	m_parser.EnsureParsed(m_pTextBuffer);
+	m_parser.EnsureParsed();
 
 	// Get the cached color blocks for this line
 	return m_parser.GetLineBlocks(nLineIndex);
@@ -2136,11 +1944,6 @@ std::vector<LangServices::TEXTBLOCK> TreeSitterSyntaxParser::ParseLine(int nLine
  */
 void TreeSitterSyntaxParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
-	if (m_pTextBuffer == nullptr)
-	{
-		return;
-	}
-
 	// Delegate to the underlying Tree-sitter parser for incremental reparsing
 	m_parser.NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
 }
@@ -2160,16 +1963,11 @@ LangServices::LanguageId TreeSitterSyntaxParser::GetParserType() const
  */
 bool TreeSitterSyntaxParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
 {
-	if (m_pTextBuffer == nullptr)
-	{
-		return false;
-	}
-
 	// Ensure parsed
-	const_cast<CTreeSitterParser&>(m_parser).EnsureParsed(m_pTextBuffer);
+	const_cast<CTreeSitterParser&>(m_parser).EnsureParsed();
 
 	// Delegate to the underlying Tree-sitter parser
-	return m_parser.FindMatchingBrace(m_pTextBuffer, nLineIndex, nCharPos, outLineIndex, outCharPos);
+	return m_parser.FindMatchingBrace(nLineIndex, nCharPos, outLineIndex, outCharPos);
 }
 
 /**

@@ -180,11 +180,13 @@ public:
 	 */
 	void SetLanguage(const CTreeSitterLanguage* pLang);
 
+	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) { m_pTextBuffer = pTextBuffer; }
+	LangServices::ITextBuffer* GetTextBuffer() const { return m_pTextBuffer; }
+
 	/**
 	 * @brief Parse (or re-parse) the full document.
-	 * @param pBuffer  The text buffer to read line data from.
 	 */
-	void ParseDocument(LangServices::ITextBuffer* pBuffer);
+	void ParseDocument();
 
 	/**
 	 * @brief Mark the parse cache as dirty (e.g. after an edit).
@@ -210,11 +212,10 @@ public:
 
 	/**
 	 * @brief Ensure the document is parsed and cache is up-to-date.
-	 * @param pBuf  The text buffer to read line data from (if reparse needed).
 	 *
 	 * Called lazily from ParseLine. Only reparses if marked dirty.
 	 */
-	void EnsureParsed(LangServices::ITextBuffer* pBuf);
+	void EnsureParsed();
 
 	/**
 	 * @brief Get the cached color blocks for a specific line.
@@ -257,11 +258,10 @@ public:
 	 */
 	String GetNodeTypeAt(int nLineIndex, int nCharPos) const;
 
-	bool FindDefinition(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
+	bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
 
 	/**
 	 * @brief Find matching brace/bracket/parenthesis at the given position.
-	 * @param pBuffer  The text buffer to read line data from.
 	 * @param nLineIndex  Zero-based line index of the starting position.
 	 * @param nCharPos  Zero-based character position in the line.
 	 * @param outLineIndex  [out] Line index of the matching brace.
@@ -270,7 +270,7 @@ public:
 	 * 
 	 * Uses tree-sitter's AST structure to find the matching delimiter.
 	 */
-	bool FindMatchingBrace(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
+	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
 
 private:
 	void EnsureParser();
@@ -279,15 +279,13 @@ private:
 	void RunTagsQuery();
 	void RunInjectionQuery();
 	void BuildLineCache(int nLineCount);
-	int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
 	uint32_t CharPosToByteOffset(int nLine, int nCharPos) const;
 	void CharPosToTSPoint(int line, int charPos, TSPoint& pt) const;
-	std::string GetUtf8Text(uint32_t startByte, uint32_t endByte) const;
+	std::wstring GetUtf16Text(uint32_t startByte, uint32_t endByte) const;
 	uint32_t GetTotalBytes() const;
-	void UpdateUtf8Cache(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, TSInputEdit& tsEdit);
 	bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
 	bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
-	bool TryGetTagDefinitionByNameAt(LangServices::ITextBuffer* pBuffer, int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
+	bool TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
 	uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
 	/**
@@ -301,6 +299,7 @@ private:
 			                           uint32_t patternIndex,
 			                           const std::string& key);
 
+	LangServices::ITextBuffer* m_pTextBuffer;
 	TSParser*           m_pParser;      // Created lazily on first use
 	TSTree*             m_pTree;
 	const CTreeSitterLanguage* m_pLang;
@@ -310,9 +309,6 @@ private:
 	// Cached per-line highlight blocks
 	std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
 
-	// Per-line UTF-8 content (for byte offset -> character position mapping)
-	std::vector<std::string> m_lineUtf8;
-
 	int         m_nLineCount;
 	uint32_t    m_nextBlockOrder;
 
@@ -321,7 +317,7 @@ private:
 	// Built by RunLocalsQuery + RunHighlightQuery cross-referencing.
 	struct LocalDef
 	{
-		std::string name;       // Variable/symbol name
+		std::wstring name;      // Variable/symbol name
 		uint32_t    startByte;  // Definition node start
 		uint32_t    endByte;    // Definition node end
 		int         highlight;  // COLORINDEX from highlights.scm (-1 = unknown)
@@ -345,7 +341,7 @@ private:
 	// Pending references from RunLocalsQuery, resolved during RunHighlightQuery
 	struct PendingRef
 	{
-		std::string name;
+		std::wstring name;
 		uint32_t    startByte;
 		uint32_t    endByte;
 		uint32_t    scopeStartByte;
@@ -354,14 +350,14 @@ private:
 
 	struct TagDef
 	{
-		std::string name;
+		std::wstring name;
 		uint32_t    startByte;
 		uint32_t    endByte;
 	};
 
 	struct TagRef
 	{
-		std::string name;
+		std::wstring name;
 		uint32_t    startByte;
 		uint32_t    endByte;
 	};
@@ -444,7 +440,7 @@ public:
 	// ISyntaxParser interface implementation
 	void Invalidate() override;
 	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
-	LangServices::ITextBuffer* GetTextBuffer() const override { return m_pTextBuffer; }
+	LangServices::ITextBuffer* GetTextBuffer() const override { return m_parser.GetTextBuffer(); }
 	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 	LangServices::LanguageId GetParserType() const override;
@@ -458,7 +454,6 @@ public:
 	const CTreeSitterParser* GetTreeSitterParser() const { return &m_parser; }
 
 private:
-	LangServices::ITextBuffer* m_pTextBuffer;           ///< Text buffer interface
 	CTreeSitterParser m_parser;           ///< Underlying Tree-sitter parser
 };
 
