@@ -153,22 +153,11 @@ struct TreeSitterLineBlock
  *      and the next paint cycle triggers a single reparse.
  *
  * Override ParseLine() in the view to call this parser's GetLineBlocks().
- *
- * Usage:
- * @code
- *   auto pLang = TreeSitterRegistry::Instance().GetLanguageForExt(L"fs");
- *   if (pLang) {
- *       m_treeSitterParser.SetLanguage(pLang);
- *       m_treeSitterParser.ParseFromView(pView);
- *       // In ParseLine override:
- *       m_treeSitterParser.GetLineBlocks(nLineIndex, pBuf, nActualItems);
- *   }
- * @endcode
  */
 class CTreeSitterParser : public LangServices::ISyntaxParser
 {
 public:
-	CTreeSitterParser();
+	CTreeSitterParser() = delete;
 	virtual ~CTreeSitterParser();
 
 	explicit CTreeSitterParser(LangServices::LanguageId textType);
@@ -182,7 +171,7 @@ public:
 	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 	LangServices::LanguageId GetParserType() const override { return m_textType; }
-	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
+	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) override;
 
 	/**
 	 * @brief Set the language to use for parsing.
@@ -242,7 +231,7 @@ public:
 	 * This is used by TreeSitterHighlightService to determine if a position
 	 * is within a comment or string for filtering purposes.
 	 */
-	String GetNodeTypeAt(int nLineIndex, int nCharPos) const;
+	String GetNodeTypeAt(int nLineIndex, int nCharPos);
 
 	bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
 

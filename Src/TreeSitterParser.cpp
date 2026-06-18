@@ -298,18 +298,6 @@ bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstri
 // CTreeSitterParser
 // ============================================================================
 
-CTreeSitterParser::CTreeSitterParser()
-	: m_pTextBuffer(nullptr)
-	, m_pParser(nullptr)
-	, m_pTree(nullptr)
-	, m_pLang(nullptr)
-	, m_bNeedsParse(false)
-	, m_bTagsQueried(false)
-	, m_nLineCount(0)
-	, m_textType(LangServices::SRC_PLAIN)
-{
-}
-
 static const wchar_t* GetLanguageNameForId(LangServices::LanguageId id);
 
 /**
@@ -874,17 +862,6 @@ void CTreeSitterParser::RunLocalsQuery()
 			return (a.endByte - a.startByte) < (b.endByte - b.startByte);
 		});
 
-	// Store references for later resolution in RunHighlightQuery.
-	// We can't resolve them yet because definition highlights haven't been
-	// determined. Instead, store them and resolve after RunHighlightQuery
-	// has assigned highlights to definitions.
-	//
-	// Actually, we'll store the reference info and do a two-pass approach:
-	// RunHighlightQuery will first assign highlights to definition nodes,
-	// then we resolve references.
-	//
-	// For now, store references as pending. The key is (startByte << 32 | endByte).
-	// We'll store reference name -> node range for later lookup.
 	m_pendingRefs = std::move(references);
 }
 
@@ -916,9 +893,9 @@ void CTreeSitterParser::RunHighlightQuery()
 	struct HighlightEntry
 	{
 		uint32_t startRow;
-		uint32_t startCol;   // UTF-8 byte offset in line
+		uint32_t startCol;
 		uint32_t endRow;
-		uint32_t endCol;     // UTF-8 byte offset in line
+		uint32_t endCol;
 		uint32_t startByte;
 		uint32_t endByte;
 		int colorIndex;
@@ -1417,7 +1394,6 @@ static struct
 {
 	LangServices::LanguageId id;
 	const wchar_t* language;
-	bool available;
 } s_map[] =
 {
 	{ LangServices::LanguageId::SRC_C, L"cpp" },
@@ -1554,12 +1530,11 @@ const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wst
  * 
  * This is used for comment filtering and other syntax-aware operations.
  */
-String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) const
+String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos)
 {
-	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
-		return _T("");
+	EnsureParsed();
 
-	if (!m_pTextBuffer || nLineIndex >= m_pTextBuffer->GetLineCount())
+	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return _T("");
 
 	// Calculate byte offset
@@ -1581,21 +1556,20 @@ String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos) const
 	return ucr::toTString(pszType);
 }
 
-bool CTreeSitterParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+bool CTreeSitterParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos)
 {
+	EnsureParsed();
+
 	if (m_pTree == nullptr || m_pTextBuffer == nullptr)
 	{
 		return false;
 	}
 
 	// Convert line/char position to byte offset
-	int nLineCount = m_pTextBuffer->GetLineCount();
-	if (nLineIndex < 0 || nLineIndex >= nLineCount)
+	if (nLineIndex < 0 || nLineIndex >= m_nLineCount)
 	{
 		return false;
 	}
-
-	const_cast<CTreeSitterParser*>(this)->EnsureParsed();
 
 	uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
 
@@ -1852,10 +1826,10 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos
 
 bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar)
 {
+	EnsureParsed();
+
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return false;
-
-	EnsureParsed();
 
 	// Run tags query for same-file symbol definitions/references
 	if (!m_bTagsQueried && m_pLang && m_pLang->GetTagsQuery())
