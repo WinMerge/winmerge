@@ -20,8 +20,6 @@
 #include <tree_sitter/api.h>
 
 #include <fstream>
-#include <sstream>
-#include <cassert>
 #include <algorithm>
 #include <climits>
 #include <cstring>
@@ -302,7 +300,7 @@ bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstri
 
 CTreeSitterParser::CTreeSitterParser()
 	: m_pTextBuffer(nullptr)
-	, m_pParser(nullptr)   // Fix #2: lazy-init, don't call ts_parser_new() here
+	, m_pParser(nullptr)
 	, m_pTree(nullptr)
 	, m_pLang(nullptr)
 	, m_bNeedsParse(false)
@@ -444,13 +442,6 @@ void CTreeSitterParser::ParseDocument()
 
 /**
  * @brief Notify the parser of an edit for incremental reparsing.
- *
- * Reads the last UndoRecord from the buffer to get the edit position,
- * then calls ts_tree_edit() on the existing tree. This allows tree-sitter
- * to reuse unchanged subtrees during the next reparse, which is
- * significantly faster for large documents.
- *
- * Falls back to a simple MarkDirty() if the tree or undo info is unavailable.
  */
 void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
@@ -607,7 +598,7 @@ std::string CTreeSitterParser::GetSetProperty(const TSQuery* pQuery,
 
 		uint32_t nameLen = 0;
 		const char* name = ts_query_string_value_for_id(pQuery, steps[i].value_id, &nameLen);
-		if (!name || std::string(name, nameLen) != "set!")
+		if (!name || strncmp(name, "set!", nameLen) != 0 || nameLen != 4)
 			continue;
 
 		// Next step should be the property key (string)
@@ -616,7 +607,7 @@ std::string CTreeSitterParser::GetSetProperty(const TSQuery* pQuery,
 
 		uint32_t keyLen = 0;
 		const char* keyStr = ts_query_string_value_for_id(pQuery, steps[i + 1].value_id, &keyLen);
-		if (!keyStr || std::string(keyStr, keyLen) != key)
+		if (!keyStr || strncmp(key.c_str(), keyStr, keyLen) != 0 || keyLen != key.length())
 		{
 			// Skip to the Done sentinel for this predicate
 			while (i < stepCount && steps[i].type != TSQueryPredicateStepTypeDone)
@@ -1371,7 +1362,7 @@ std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineI
 	{
 		// If the caller's last block is at the same position, overwrite it
 		// (same logic as DEFINE_BLOCK macro in crystallineparser.h)
-		if (newBlocks.size() > 0 && newBlocks.back().m_nCharPos == block.nCharPos)
+		if (!newBlocks.empty() && newBlocks.back().m_nCharPos == block.nCharPos)
 		{
 			newBlocks.back().m_nColorIndex = block.nColorIndex;
 			newBlocks.back().m_nBgColorIndex = COLORINDEX_BKGND;
@@ -1379,7 +1370,7 @@ std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineI
 		}
 
 		// Skip if same color as previous block (no visible change)
-		if (newBlocks.size() > 0 && newBlocks.back().m_nColorIndex == block.nColorIndex)
+		if (!newBlocks.empty() && newBlocks.back().m_nColorIndex == block.nColorIndex)
 			continue;
 
 		newBlocks.push_back({block.nCharPos, block.nColorIndex, COLORINDEX_BKGND});
@@ -1577,13 +1568,7 @@ bool CTreeSitterParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& out
 		return false;
 	}
 
-	uint32_t byteOffset = 0;
-	for (int i = 0; i < nLineIndex; i++)
-	{
-		byteOffset += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
-		byteOffset += sizeof(wchar_t); 
-	}
-	byteOffset += static_cast<uint32_t>(nCharPos * sizeof(wchar_t));
+	uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
 
 	// Get the root node
 	TSNode rootNode = ts_tree_root_node(m_pTree);
@@ -1902,6 +1887,7 @@ static const wchar_t* GetLanguageNameForId(LangServices::LanguageId id)
  * @brief Construct a Tree-sitter parser adapter.
  */
 TreeSitterSyntaxParser::TreeSitterSyntaxParser(LangServices::LanguageId textType)
+	: m_textType(textType)
 {
 	auto& registry = TreeSitterRegistry::Instance();
 	if (!registry.IsInitialized())
@@ -1946,16 +1932,6 @@ void TreeSitterSyntaxParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos
 {
 	// Delegate to the underlying Tree-sitter parser for incremental reparsing
 	m_parser.NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
-}
-
-/**
- * @brief Get the parser type for this syntax parser.
- */
-LangServices::LanguageId TreeSitterSyntaxParser::GetParserType() const
-{
-	// Tree-sitter parsers don't map directly to the legacy LanguageId enum
-	// Return Plain as a placeholder; callers should check if parser is Tree-sitter-based
-	return LangServices::LanguageId::SRC_PLAIN;
 }
 
 /**

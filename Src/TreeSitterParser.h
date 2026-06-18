@@ -220,12 +220,7 @@ public:
 	/**
 	 * @brief Get the cached color blocks for a specific line.
 	 * @param nLineIndex   Zero-based line index.
-	 * @param pBuf         Output buffer for TEXTBLOCK entries (may be nullptr for cookie-only).
-	 * @param nActualItems In/out: on entry, the number of blocks already in pBuf
-	 *                     (caller pre-inserts a default NORMALTEXT block at position 0);
-	 *                     on return, the total number of blocks.
-	 * @param nMaxBlocks   Maximum number of TEXTBLOCK entries that fit in pBuf.
-	 *                     Pass 0 to skip bounds checking (legacy behavior).
+	 * @return Vector of TEXTBLOCKs for this line, sorted by nCharPos.
 	 */
 	std::vector<LangServices::TEXTBLOCK> GetLineBlocks(int nLineIndex) const;
 
@@ -401,7 +396,6 @@ public:
 	 */
 	const CTreeSitterLanguage* GetLanguageForName(const std::wstring& sLangName);
 
-	/**
 	/** @brief Check if the registry has been initialized. */
 	bool IsInitialized() const { return m_bInitialized; }
 
@@ -443,7 +437,7 @@ public:
 	LangServices::ITextBuffer* GetTextBuffer() const override { return m_parser.GetTextBuffer(); }
 	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
-	LangServices::LanguageId GetParserType() const override;
+	LangServices::LanguageId GetParserType() const override { return m_textType; }
 	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
 
 	/**
@@ -455,6 +449,7 @@ public:
 
 private:
 	CTreeSitterParser m_parser;           ///< Underlying Tree-sitter parser
+	LangServices::LanguageId m_textType;  ///< Original LanguageId for this parser (e.g. SRC_CPP)
 };
 
 class TreeSitterSyntaxParserFactory : public LangServices::ISyntaxParserFactory
@@ -466,7 +461,7 @@ public:
 		return instance;
 	}
 
-	TreeSitterSyntaxParserFactory() {};
+	TreeSitterSyntaxParserFactory() {}
 	virtual ~TreeSitterSyntaxParserFactory() = default;
 
 	bool IsSupported(LangServices::LanguageId type) const;
