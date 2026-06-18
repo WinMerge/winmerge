@@ -304,8 +304,33 @@ CTreeSitterParser::CTreeSitterParser()
 	, m_pTree(nullptr)
 	, m_pLang(nullptr)
 	, m_bNeedsParse(false)
+	, m_bTagsQueried(false)
 	, m_nLineCount(0)
+	, m_textType(LangServices::SRC_PLAIN)
 {
+}
+
+static const wchar_t* GetLanguageNameForId(LangServices::LanguageId id);
+
+/**
+ * @brief Construct a Tree-sitter parser adapter.
+ */
+CTreeSitterParser::CTreeSitterParser(LangServices::LanguageId textType)
+	: m_pTextBuffer(nullptr)
+	, m_pParser(nullptr)
+	, m_pTree(nullptr)
+	, m_pLang(nullptr)
+	, m_bNeedsParse(false)
+	, m_bTagsQueried(false)
+	, m_nLineCount(0)
+	, m_textType(textType)
+{
+	auto& registry = TreeSitterRegistry::Instance();
+	if (!registry.IsInitialized())
+		registry.Initialize();
+	auto* name = GetLanguageNameForId(textType);
+	auto* pLanguage = registry.GetLanguageForName(name);
+	SetLanguage(pLanguage);
 }
 
 CTreeSitterParser::~CTreeSitterParser()
@@ -356,6 +381,7 @@ void CTreeSitterParser::Invalidate()
 	m_nLineCount = 0;
 	m_nextBlockOrder = 0;
 	m_bNeedsParse = true;
+	m_bTagsQueried = false;
 }
 
 void CTreeSitterParser::ParseDocument()
@@ -475,6 +501,7 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 
 	ts_tree_edit(m_pTree, &tsEdit);
 	m_bNeedsParse = true;
+	m_bTagsQueried = false;
 }
 
 /**
@@ -1568,6 +1595,8 @@ bool CTreeSitterParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& out
 		return false;
 	}
 
+	const_cast<CTreeSitterParser*>(this)->EnsureParsed();
+
 	uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
 
 	// Get the root node
@@ -1826,8 +1855,10 @@ bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLi
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return false;
 
+	EnsureParsed();
+
 	// Run tags query for same-file symbol definitions/references
-	if (m_tagDefs.empty() && m_pLang && m_pLang->GetTagsQuery())
+	if (!m_bTagsQueried && m_pLang && m_pLang->GetTagsQuery())
 		RunTagsQuery();
 
 	const uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
@@ -1884,66 +1915,24 @@ static const wchar_t* GetLanguageNameForId(LangServices::LanguageId id)
 }
 
 /**
- * @brief Construct a Tree-sitter parser adapter.
- */
-TreeSitterSyntaxParser::TreeSitterSyntaxParser(LangServices::LanguageId textType)
-	: m_textType(textType)
-{
-	auto& registry = TreeSitterRegistry::Instance();
-	if (!registry.IsInitialized())
-		registry.Initialize();
-	auto* name = GetLanguageNameForId(textType);
-	auto* pLanguage = registry.GetLanguageForName(name);
-	m_parser.SetLanguage(pLanguage);
-}
-
-void TreeSitterSyntaxParser::Invalidate()
-{
-	m_parser.Invalidate();
-}
-
-/**
  * @brief Set the text buffer that this parser will operate on.
  */
-void TreeSitterSyntaxParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
+void CTreeSitterParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
 {
-	m_parser.SetTextBuffer(pTextBuffer);
-	m_parser.Invalidate();
+	m_pTextBuffer = pTextBuffer;
+	Invalidate();
 }
 
 /**
  * @brief Parse a single line and return syntax highlighting information.
  */
-std::vector<LangServices::TEXTBLOCK> TreeSitterSyntaxParser::ParseLine(int nLineIndex)
+std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::ParseLine(int nLineIndex)
 {
 	// Ensure the document is parsed (handles lazy reparsing if dirty)
-	m_parser.EnsureParsed();
+	EnsureParsed();
 
 	// Get the cached color blocks for this line
-	return m_parser.GetLineBlocks(nLineIndex);
-}
-
-/**
- * @brief Notify the parser of a detailed text edit for incremental parsing.
- * This enables efficient incremental reparsing using tree-sitter's built-in
- * incremental parsing feature.
- */
-void TreeSitterSyntaxParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
-{
-	// Delegate to the underlying Tree-sitter parser for incremental reparsing
-	m_parser.NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
-}
-
-/**
- * @brief Find the matching brace/bracket/parenthesis for the given position.
- */
-bool TreeSitterSyntaxParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
-{
-	// Ensure parsed
-	const_cast<CTreeSitterParser&>(m_parser).EnsureParsed();
-
-	// Delegate to the underlying Tree-sitter parser
-	return m_parser.FindMatchingBrace(nLineIndex, nCharPos, outLineIndex, outCharPos);
+	return GetLineBlocks(nLineIndex);
 }
 
 /**

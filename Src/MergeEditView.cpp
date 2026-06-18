@@ -3296,9 +3296,9 @@ void CMergeEditView::OnWMGoto()
 
 CTreeSitterParser* CMergeEditView::GetTreeSitterParser()
 {
-	TreeSitterSyntaxParser* pSyntaxParser = dynamic_cast<TreeSitterSyntaxParser *>(GetSyntaxParser().get());
-	if (pSyntaxParser && pSyntaxParser->GetTreeSitterParser())
-		return pSyntaxParser->GetTreeSitterParser();
+	CTreeSitterParser* pSyntaxParser = dynamic_cast<CTreeSitterParser *>(GetSyntaxParser().get());
+	if (pSyntaxParser)
+		return pSyntaxParser;
 
 	if (!m_CurSourceDef)
 		return nullptr;
@@ -3309,7 +3309,7 @@ CTreeSitterParser* CMergeEditView::GetTreeSitterParser()
 
 	m_pTreeSitterParser->SetTextBuffer(GetDocument()->m_ptBuf[m_nThisPane].get());
 
-	return dynamic_cast<TreeSitterSyntaxParser *>(m_pTreeSitterParser.get())->GetTreeSitterParser();
+	return dynamic_cast<CTreeSitterParser *>(m_pTreeSitterParser.get());
 }
 
 void CMergeEditView::GotoTreeSitterDefinition()

@@ -165,23 +165,30 @@ struct TreeSitterLineBlock
  *   }
  * @endcode
  */
-class CTreeSitterParser
+class CTreeSitterParser : public LangServices::ISyntaxParser
 {
 public:
 	CTreeSitterParser();
-	~CTreeSitterParser();
+	virtual ~CTreeSitterParser();
 
+	explicit CTreeSitterParser(LangServices::LanguageId textType);
 	CTreeSitterParser(const CTreeSitterParser&) = delete;
 	CTreeSitterParser& operator=(const CTreeSitterParser&) = delete;
+
+	// ISyntaxParser interface implementation
+	void Invalidate() override;
+	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
+	LangServices::ITextBuffer* GetTextBuffer() const override { return m_pTextBuffer; }
+	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
+	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
+	LangServices::LanguageId GetParserType() const override { return m_textType; }
+	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
 
 	/**
 	 * @brief Set the language to use for parsing.
 	 * @param pLang  Pointer to a loaded CTreeSitterLanguage.
 	 */
 	void SetLanguage(const CTreeSitterLanguage* pLang);
-
-	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) { m_pTextBuffer = pTextBuffer; }
-	LangServices::ITextBuffer* GetTextBuffer() const { return m_pTextBuffer; }
 
 	/**
 	 * @brief Parse (or re-parse) the full document.
@@ -196,19 +203,6 @@ public:
 	 * keystroke and instead defers to the next paint cycle.
 	 */
 	void MarkDirty() { m_bNeedsParse = true; }
-
-	/**
-	 * @brief Notify the parser of an edit for incremental reparsing.
-	 *
-	 * Uses the provided TextEdit information and calls ts_tree_edit()
-	 * on the existing tree so tree-sitter can reuse unchanged subtrees
-	 * during the next reparse.
-	 *
-	 * Also marks the cache dirty.
-	 *
-	 * @param textEdit  The edit information (position, type, text).
-	 */
-	void NotifyEdit(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType);
 
 	/**
 	 * @brief Ensure the document is parsed and cache is up-to-date.
@@ -236,9 +230,6 @@ public:
 	/** @brief Check if cache needs rebuilding. */
 	bool IsDirty() const { return m_bNeedsParse; }
 
-	/** @brief Invalidate cached results and free tree. */
-	void Invalidate();
-
 	/** @brief Get the language object (for service layer). */
 	const CTreeSitterLanguage* GetLanguage() const { return m_pLang; }
 
@@ -254,18 +245,6 @@ public:
 	String GetNodeTypeAt(int nLineIndex, int nCharPos) const;
 
 	bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
-
-	/**
-	 * @brief Find matching brace/bracket/parenthesis at the given position.
-	 * @param nLineIndex  Zero-based line index of the starting position.
-	 * @param nCharPos  Zero-based character position in the line.
-	 * @param outLineIndex  [out] Line index of the matching brace.
-	 * @param outCharPos  [out] Character position of the matching brace.
-	 * @return true if a matching brace was found, false otherwise.
-	 * 
-	 * Uses tree-sitter's AST structure to find the matching delimiter.
-	 */
-	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const;
 
 private:
 	void EnsureParser();
@@ -298,8 +277,10 @@ private:
 	TSParser*           m_pParser;      // Created lazily on first use
 	TSTree*             m_pTree;
 	const CTreeSitterLanguage* m_pLang;
+	LangServices::LanguageId m_textType;  ///< Original LanguageId for this parser (e.g. SRC_CPP)
 	CTreeSitterColorMap m_colorMap;
 	bool                m_bNeedsParse;       // True when cache needs rebuild
+	bool                m_bTagsQueried;      // True if we've already run the tags query at least once
 
 	// Cached per-line highlight blocks
 	std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
@@ -415,43 +396,6 @@ private:
 	std::unordered_set<std::wstring> m_failedLanguages;
 };
 
-/**
- * @brief Adapter that wraps CTreeSitterParser to implement ISyntaxParser.
- *
- * This class bridges the whole-document Tree-sitter parser to the line-based
- * ISyntaxParser interface, managing incremental updates and lazy reparsing.
- */
-class TreeSitterSyntaxParser : public LangServices::ISyntaxParser
-{
-public:
-	/**
-	 * @brief Construct a Tree-sitter parser adapter.
-	 * @param pLanguage Pointer to a loaded CTreeSitterLanguage.
-	 */
-	explicit TreeSitterSyntaxParser(LangServices::LanguageId textType);
-	virtual ~TreeSitterSyntaxParser() = default;
-
-	// ISyntaxParser interface implementation
-	void Invalidate() override;
-	void SetTextBuffer(LangServices::ITextBuffer* pTextBuffer) override;
-	LangServices::ITextBuffer* GetTextBuffer() const override { return m_parser.GetTextBuffer(); }
-	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
-	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
-	LangServices::LanguageId GetParserType() const override { return m_textType; }
-	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
-
-	/**
-	 * @brief Get the underlying Tree-sitter parser for advanced operations.
-	 * @return Pointer to the CTreeSitterParser instance.
-	 */
-	CTreeSitterParser* GetTreeSitterParser() { return &m_parser; }
-	const CTreeSitterParser* GetTreeSitterParser() const { return &m_parser; }
-
-private:
-	CTreeSitterParser m_parser;           ///< Underlying Tree-sitter parser
-	LangServices::LanguageId m_textType;  ///< Original LanguageId for this parser (e.g. SRC_CPP)
-};
-
 class TreeSitterSyntaxParserFactory : public LangServices::ISyntaxParserFactory
 {
 public:
@@ -469,6 +413,6 @@ public:
 	{
 		if (!IsSupported(type))
 			return nullptr;
-		return std::make_unique<TreeSitterSyntaxParser>(type);
+		return std::make_shared<CTreeSitterParser>(type);
 	}
 };
