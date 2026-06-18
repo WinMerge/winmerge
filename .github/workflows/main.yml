@@ -13,6 +13,9 @@ jobs:
     runs-on: windows-latest
 
     steps:  
+    - name: Configure Git for long paths
+      run: git config --global core.longpaths true
+
     - uses: actions/checkout@v6
       with:
         submodules: 'recursive'
