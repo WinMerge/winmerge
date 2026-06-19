@@ -366,6 +366,7 @@ void CTreeSitterParser::Invalidate()
 	m_pendingRefs.clear();
 	m_tagDefs.clear();
 	m_tagRefs.clear();
+	m_lineStartBytes.clear();
 	m_nLineCount = 0;
 	m_nextBlockOrder = 0;
 	m_bNeedsParse = true;
@@ -386,6 +387,17 @@ void CTreeSitterParser::ParseDocument()
 		return;
 
 	m_nLineCount = nLineCount;
+
+	m_lineStartBytes.resize(nLineCount + 1);
+	uint32_t offset = 0;
+	for (int i = 0; i < nLineCount; i++)
+	{
+		m_lineStartBytes[i] = offset;
+		offset += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
+		if (i < nLineCount - 1)
+			offset += sizeof(wchar_t);  // '\n' separator
+	}
+	m_lineStartBytes[nLineCount] = offset;
 
 	struct Payload
 	{
@@ -480,7 +492,7 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 	}
 	else
 	{
-		tsEdit.old_end_byte = startByte + deltaBytes;
+		tsEdit.old_end_byte = CharPosToByteOffset(ptEndPos.y, ptEndPos.x, true);
 		CharPosToTSPoint(ptEndPos.y, ptEndPos.x, tsEdit.old_end_point);
 
 		tsEdit.new_end_byte = startByte;
@@ -504,23 +516,31 @@ void CTreeSitterParser::EnsureParsed()
 		ParseDocument();
 }
 
-uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos) const
+uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos, bool useCache) const
 {
-	if (!m_pTextBuffer)
-		return 0;
-
-	const int nLines = m_pTextBuffer->GetLineCount();
-	uint32_t byteOffset = 0;
-	for (int i = 0; i < nLine && i < nLines; i++)
+	if (!useCache)
 	{
-		byteOffset += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
-		byteOffset += sizeof(wchar_t); 
+		if (!m_pTextBuffer)
+			return 0;
+		const int nLines = m_pTextBuffer->GetLineCount();
+		uint32_t byteOffset = 0;
+		for (int i = 0; i < nLine && i < nLines; i++)
+		{
+			byteOffset += static_cast<uint32_t>(
+				m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
+			byteOffset += sizeof(wchar_t);  // '\n'
+		}
+		if (nLine >= nLines)
+			return byteOffset;
+		return byteOffset + static_cast<uint32_t>(nCharPos * sizeof(wchar_t));
 	}
 
+	if (m_lineStartBytes.empty())
+		return 0;
+	const int nLines = static_cast<int>(m_lineStartBytes.size()) - 1;
 	if (nLine >= nLines)
-		return GetTotalBytes();
-
-	return byteOffset + static_cast<uint32_t>(nCharPos * sizeof(wchar_t));
+		return m_lineStartBytes[nLines];  // end of document
+	return m_lineStartBytes[nLine] + static_cast<uint32_t>(nCharPos * sizeof(wchar_t));
 }
 
 void CTreeSitterParser::CharPosToTSPoint(int line, int charPos, TSPoint& pt) const
@@ -532,54 +552,45 @@ void CTreeSitterParser::CharPosToTSPoint(int line, int charPos, TSPoint& pt) con
 std::wstring CTreeSitterParser::GetUtf16Text(uint32_t startByte, uint32_t endByte) const
 {
 	std::wstring result;
-	if (!m_pTextBuffer)
+	if (m_lineStartBytes.empty())
 		return result;
 
-	const int nLines = m_pTextBuffer->GetLineCount();
-	uint32_t currentOffset = 0;
+	const int nLines = static_cast<int>(m_lineStartBytes.size()) - 1;
 
-	for (int i = 0; i < nLines; i++)
+	// Binary search for the first line containing startByte
+	int startLine = static_cast<int>(std::upper_bound(m_lineStartBytes.begin(), m_lineStartBytes.begin() + nLines + 1,
+			startByte) - m_lineStartBytes.begin()) - 1;
+	if (startLine < 0)
+		startLine = 0;
+
+	for (int i = startLine; i < nLines; i++)
 	{
-		const int nLen = m_pTextBuffer->GetLineLength(i);
-		const uint32_t lineEnd = currentOffset + static_cast<uint32_t>(nLen * sizeof(wchar_t));
+		const uint32_t lineStart = m_lineStartBytes[i];
+		const uint32_t lineEnd = m_lineStartBytes[i + 1] - (i < nLines - 1 ? sizeof(wchar_t) : 0);
 
-		if (endByte <= currentOffset)
+		if (startByte >= m_lineStartBytes[i + 1])
+			continue;
+		if (endByte <= lineStart)
 			break;
 
-		if (startByte < lineEnd)
-		{
-			uint32_t sChar = (startByte > currentOffset) ? (startByte - currentOffset) / sizeof(wchar_t) : 0;
-			uint32_t eChar = (std::min)(endByte - currentOffset, static_cast<uint32_t>(nLen * sizeof(wchar_t))) / sizeof(wchar_t);
+		const uint32_t sChar = (startByte > lineStart ? startByte - lineStart : 0) / sizeof(wchar_t);
+		const uint32_t eChar = ((std::min)(endByte, lineEnd) - lineStart) / sizeof(wchar_t);
 
-			const tchar_t* pszLine = m_pTextBuffer->GetLineChars(i);
-			if (pszLine)
-			{
-				result.append(pszLine + sChar, eChar - sChar);
-			}
+		const tchar_t* pszLine = m_pTextBuffer->GetLineChars(i);
+		if (pszLine && eChar > sChar)
+			result.append(pszLine + sChar, eChar - sChar);
 
-			if (endByte > lineEnd && i < nLines - 1)
-				result += L'\n';
-		}
-		currentOffset = lineEnd + sizeof(wchar_t);
+		if (endByte > lineEnd + sizeof(wchar_t) - 1 && i < nLines - 1)
+			result += L'\n';
 	}
 	return result;
 }
 
 uint32_t CTreeSitterParser::GetTotalBytes() const
 {
-	if (!m_pTextBuffer)
-		return 0;
-
-	const int nLines = m_pTextBuffer->GetLineCount();
-	uint32_t totalChars = 0;
-	for (int i = 0; i < nLines; i++)
-	{
-		totalChars += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i)) + 1; 
-	}
-	if (nLines > 0)
-		totalChars -= 1;
-
-	return totalChars * sizeof(wchar_t);
+	if (!m_lineStartBytes.empty())
+		return m_lineStartBytes.back();
+	return 0;
 }
 
 /**
@@ -741,6 +752,8 @@ void CTreeSitterParser::RunTagsQuery()
 	}
 
 	ts_query_cursor_delete(pCursor);
+
+	m_bTagsQueried = true;
 }
 
 /**
@@ -1740,35 +1753,28 @@ bool CTreeSitterParser::TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_
 
 bool CTreeSitterParser::ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const
 {
-	if (!m_pTextBuffer)
+	if (m_lineStartBytes.empty())
 		return false;
 
-	uint32_t currentOffset = 0;
-	int nLines = m_pTextBuffer->GetLineCount();
-	
-	for (int i = 0; i < nLines; ++i)
-	{
-		const uint32_t lineLenBytes = static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
-		const uint32_t lineStart = currentOffset;
-		const uint32_t lineEnd = lineStart + lineLenBytes;
+	const int nLines = static_cast<int>(m_lineStartBytes.size()) - 1;
+	if (nLines == 0)
+		return false;
 
-		if (byteOffset <= lineEnd)
-		{
-			nLineIndex = i;
-			nCharPos = (byteOffset - lineStart) / sizeof(wchar_t);
-			return true;
-		}
-		currentOffset = lineEnd + sizeof(wchar_t); 
-	}
+	auto it = std::upper_bound(m_lineStartBytes.begin(), m_lineStartBytes.begin() + nLines, byteOffset);
+	int line = static_cast<int>(it - m_lineStartBytes.begin()) - 1;
+	if (line < 0)
+		line = 0;
+	if (line >= nLines)
+		line = nLines - 1;
 
-	if (nLines > 0 && byteOffset == currentOffset - sizeof(wchar_t))
-	{
-		nLineIndex = nLines - 1;
-		nCharPos = m_pTextBuffer->GetLineLength(nLines - 1);
-		return true;
-	}
+	nLineIndex = line;
+	nCharPos = static_cast<int>((byteOffset - m_lineStartBytes[line]) / sizeof(wchar_t));
 
-	return false;
+	const int lineLen = m_pTextBuffer->GetLineLength(line);
+	if (nCharPos > lineLen)
+		nCharPos = lineLen;
+
+	return true;
 }
 
 bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const

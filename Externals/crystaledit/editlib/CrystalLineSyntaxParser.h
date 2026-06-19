@@ -45,10 +45,10 @@ private:
 	 */
 	void InvalidateFromLine(int nStartLine);
 
-	LangServices::ITextBuffer* m_pTextBuffer;                    ///< Text buffer interface
+	LangServices::ITextBuffer* m_pTextBuffer;      ///< Text buffer interface
 	ParseFunc m_ParseLineX;                        ///< Pointer to the legacy line parser function
-	LangServices::LanguageId m_textType;                ///< Parser type
-	LangServices::TextDefinition* m_pTextDef;           ///< Parser definition
+	LangServices::LanguageId m_textType;           ///< Parser type
+	LangServices::TextDefinition* m_pTextDef;      ///< Parser definition
 	std::vector<unsigned> m_ParseCookies;          ///< Per-line parser state cookies
 };
 

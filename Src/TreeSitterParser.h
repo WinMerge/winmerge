@@ -154,6 +154,14 @@ struct TreeSitterLineBlock
  *
  * Override ParseLine() in the view to call this parser's GetLineBlocks().
  */
+/**
+ * @brief Maximum number of lines for which tree-sitter highlighting is enabled.
+ *
+ * Files with more lines than this threshold will fall back to plain-text
+ * display to avoid the cost of parsing a huge document on every paint.
+ */
+static constexpr int kMaxLinesForHighlight = 100000;
+
 class CTreeSitterParser : public LangServices::ISyntaxParser
 {
 public:
@@ -242,7 +250,7 @@ private:
 	void RunTagsQuery();
 	void RunInjectionQuery();
 	void BuildLineCache(int nLineCount);
-	uint32_t CharPosToByteOffset(int nLine, int nCharPos) const;
+	uint32_t CharPosToByteOffset(int nLine, int nCharPos, bool useCache = true) const;
 	void CharPosToTSPoint(int line, int charPos, TSPoint& pt) const;
 	std::wstring GetUtf16Text(uint32_t startByte, uint32_t endByte) const;
 	uint32_t GetTotalBytes() const;
@@ -276,6 +284,7 @@ private:
 
 	int         m_nLineCount;
 	uint32_t    m_nextBlockOrder;
+	std::vector<uint32_t> m_lineStartBytes;
 
 	// --- Locals support ---
 	// Maps (startByte, endByte) of definition nodes to their highlight color.
