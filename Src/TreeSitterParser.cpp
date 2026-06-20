@@ -312,6 +312,7 @@ CTreeSitterParser::CTreeSitterParser(LangServices::LanguageId textType)
 	, m_bTagsQueried(false)
 	, m_nLineCount(0)
 	, m_textType(textType)
+	, m_bTreeSitterDisabled(false)
 {
 	auto& registry = TreeSitterRegistry::Instance();
 	if (!registry.IsInitialized())
@@ -367,7 +368,7 @@ void CTreeSitterParser::Invalidate()
 	m_tagDefs.clear();
 	m_tagRefs.clear();
 	m_lineStartBytes.clear();
-	m_lineCached.clear();
+	m_cachedChunks.clear();
 	m_nLineCount = 0;
 	m_nextBlockOrder = 0;
 	m_bNeedsParse = true;
@@ -383,11 +384,11 @@ void CTreeSitterParser::ParseDocument()
 	if (nLineCount == 0)
 		return;
 
+	m_nLineCount = nLineCount;
+
 	EnsureParser();
 	if (!m_pParser || !m_pLang || !m_pLang->GetLanguage())
 		return;
-
-	m_nLineCount = nLineCount;
 
 	m_lineStartBytes.resize(nLineCount + 1);
 	uint32_t offset = 0;
@@ -400,11 +401,11 @@ void CTreeSitterParser::ParseDocument()
 	}
 	m_lineStartBytes[nLineCount] = offset;
 
-	m_lineCached.assign(m_nLineCount, false);
+	m_cachedChunks.assign((nLineCount + kCacheChunkSize - 1) / kCacheChunkSize, false);
 
 	// Build per-line block arrays
 	m_lineBlocks.clear();
-	m_lineBlocks.resize(m_nLineCount);
+	m_lineBlocks.resize(nLineCount);
 
 	struct Payload
 	{
@@ -452,7 +453,8 @@ void CTreeSitterParser::ParseDocument()
 		};
 
 	TSTree* pOldTree = m_pTree;
-	m_pTree = ts_parser_parse(m_pParser, pOldTree, input);
+	if (nLineCount < kMaxLinesForHighlight)
+		m_pTree = ts_parser_parse(m_pParser, pOldTree, input);
 
 	if (pOldTree)
 		ts_tree_delete(pOldTree);
@@ -513,18 +515,24 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
  */
 void CTreeSitterParser::EnsureParsed(int nLineIndex)
 {
+	if (m_bTreeSitterDisabled)
+		return;
+
 	if (m_bNeedsParse && m_pLang)
 		ParseDocument();
 
-	if (m_lineCached[nLineIndex])
+	const int chunk = nLineIndex / kCacheChunkSize;
+	if (m_cachedChunks[chunk])
 		return;
 
-	const int nStartLine = nLineIndex;
-	const int nEndLine = (std::min)(m_nLineCount - 1, nLineIndex + kHighlightMargin);
+	const int nStartLine = chunk * kCacheChunkSize;
+	const int nEndLine = (std::min)(m_nLineCount - 1, nStartLine + kCacheChunkSize - 1);
 
 	RunHighlightQuery(nStartLine, nEndLine);
 	RunInjectionQuery(nStartLine, nEndLine);
 	BuildLineCache(nStartLine, nEndLine);
+
+	m_cachedChunks[chunk] = true;
 }
 
 uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos, bool useCache) const
@@ -1380,9 +1388,6 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 			blocks = std::move(deduped);
 		}
 	}
-
-	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineCached.size()); i++)
-		m_lineCached[i] = true;
 }
 
 std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineIndex) const
@@ -1929,6 +1934,9 @@ void CTreeSitterParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
  */
 std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::ParseLine(int nLineIndex)
 {
+	if (m_bTreeSitterDisabled)
+		return {};
+
 	// Ensure the document is parsed (handles lazy reparsing if dirty)
 	EnsureParsed(nLineIndex);
 

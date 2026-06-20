@@ -160,7 +160,7 @@ struct TreeSitterLineBlock
  * Files with more lines than this threshold will fall back to plain-text
  * display to avoid the cost of parsing a huge document on every paint.
  */
-static constexpr int kMaxLinesForHighlight = 100000;
+static constexpr int kMaxLinesForHighlight = 65536;
 
 class CTreeSitterParser : public LangServices::ISyntaxParser
 {
@@ -250,8 +250,6 @@ private:
 	bool TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
 	uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
-	static constexpr int kHighlightMargin = 300;  ///< Number of lines above/below to highlight when a line is requested
-	
 	/**
 	 * @brief Extract #set! predicate properties from a query pattern.
 	 * @param pQuery       The query containing the pattern.
@@ -274,8 +272,11 @@ private:
 
 	// Cached per-line highlight blocks
 	std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
-	std::vector<bool> m_lineCached;  // per-line cache flag
+	static constexpr int kCacheChunkSize = 300;
+	std::vector<bool> m_cachedChunks;
 	std::vector<uint32_t> m_lineStartBytes;
+
+	bool                m_bTreeSitterDisabled;    // True if we disabled treesitter due to excessive line count
 
 	int         m_nLineCount;
 	uint32_t    m_nextBlockOrder;
