@@ -367,6 +367,7 @@ void CTreeSitterParser::Invalidate()
 	m_tagDefs.clear();
 	m_tagRefs.clear();
 	m_lineStartBytes.clear();
+	m_lineCached.clear();
 	m_nLineCount = 0;
 	m_nextBlockOrder = 0;
 	m_bNeedsParse = true;
@@ -398,6 +399,12 @@ void CTreeSitterParser::ParseDocument()
 			offset += sizeof(wchar_t);  // '\n' separator
 	}
 	m_lineStartBytes[nLineCount] = offset;
+
+	m_lineCached.assign(m_nLineCount, false);
+
+	// Build per-line block arrays
+	m_lineBlocks.clear();
+	m_lineBlocks.resize(m_nLineCount);
 
 	struct Payload
 	{
@@ -453,13 +460,7 @@ void CTreeSitterParser::ParseDocument()
 	if (m_pTree)
 	{
 		m_nextBlockOrder = 0;
-		// 1. Run locals query first to build scope/def/ref information
 		RunLocalsQuery();
-		// 2. Run highlight query (uses locals info for scope-aware coloring)
-		RunHighlightQuery();
-		// 3. Run injection query to handle embedded languages
-		RunInjectionQuery();
-		BuildLineCache(nLineCount);
 	}
 
 	// Cache is now fresh
@@ -510,10 +511,20 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
  * Called lazily from ParseLine during the paint cycle. This means
  * we reparse at most once per paint, not once per keystroke.
  */
-void CTreeSitterParser::EnsureParsed()
+void CTreeSitterParser::EnsureParsed(int nLineIndex)
 {
 	if (m_bNeedsParse && m_pLang)
 		ParseDocument();
+
+	if (m_lineCached[nLineIndex])
+		return;
+
+	const int nStartLine = nLineIndex;
+	const int nEndLine = (std::min)(m_nLineCount - 1, nLineIndex + kHighlightMargin);
+
+	RunHighlightQuery(nStartLine, nEndLine);
+	RunInjectionQuery(nStartLine, nEndLine);
+	BuildLineCache(nStartLine, nEndLine);
 }
 
 uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos, bool useCache) const
@@ -888,7 +899,7 @@ void CTreeSitterParser::RunLocalsQuery()
  * recorded, and references are resolved to use the same highlight as their
  * matching definition.
  */
-void CTreeSitterParser::RunHighlightQuery()
+void CTreeSitterParser::RunHighlightQuery(int nStartLine, int nEndLine)
 {
 	if (!m_pTree || !m_pLang || !m_pLang->GetHighlightQuery())
 		return;
@@ -899,6 +910,13 @@ void CTreeSitterParser::RunHighlightQuery()
 	TSQueryCursor* pCursor = ts_query_cursor_new();
 	if (!pCursor)
 		return;
+
+	for (int i = nStartLine; i < nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
+		m_lineBlocks[i].clear();
+
+	ts_query_cursor_set_point_range(pCursor,
+		{ static_cast<uint32_t>(nStartLine), 0 },
+		{ static_cast<uint32_t>(nEndLine + 1), 0 });
 
 	ts_query_cursor_exec(pCursor, pQuery, rootNode);
 
@@ -1063,10 +1081,6 @@ void CTreeSitterParser::RunHighlightQuery()
 			}),
 		highlights.end());
 
-	// Build per-line block arrays
-	m_lineBlocks.clear();
-	m_lineBlocks.resize(m_nLineCount);
-
 	for (const auto& h : highlights)
 	{
 		// Handle tokens that span multiple lines (e.g. multi-line strings/comments)
@@ -1112,7 +1126,7 @@ void CTreeSitterParser::RunHighlightQuery()
  * language grammar, runs highlights on the injected content, and merges
  * the results into the main highlight blocks.
  */
-void CTreeSitterParser::RunInjectionQuery()
+void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 {
 	if (!m_pTree || !m_pLang || !m_pLang->GetInjectionQuery())
 		return;
@@ -1123,6 +1137,10 @@ void CTreeSitterParser::RunInjectionQuery()
 	TSQueryCursor* pCursor = ts_query_cursor_new();
 	if (!pCursor)
 		return;
+
+	ts_query_cursor_set_point_range(pCursor,
+		{ static_cast<uint32_t>(nStartLine), 0 },
+		{ static_cast<uint32_t>(nEndLine + 1), 0 });
 
 	ts_query_cursor_exec(pCursor, pQuery, rootNode);
 
@@ -1330,11 +1348,11 @@ void CTreeSitterParser::RunInjectionQuery()
 	}
 }
 
-void CTreeSitterParser::BuildLineCache(int nLineCount)
+void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 {
 	// Sort each line's blocks by character position and deterministic precedence.
 	// For identical start positions, keep the most specific / shortest capture.
-	for (int i = 0; i < nLineCount && i < static_cast<int>(m_lineBlocks.size()); i++)
+	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
 	{
 		auto& blocks = m_lineBlocks[i];
 		std::sort(blocks.begin(), blocks.end(),
@@ -1362,6 +1380,9 @@ void CTreeSitterParser::BuildLineCache(int nLineCount)
 			blocks = std::move(deduped);
 		}
 	}
+
+	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineCached.size()); i++)
+		m_lineCached[i] = true;
 }
 
 std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineIndex) const
@@ -1545,7 +1566,7 @@ const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wst
  */
 String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos)
 {
-	EnsureParsed();
+	EnsureParsed(nLineIndex);
 
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return _T("");
@@ -1571,7 +1592,7 @@ String CTreeSitterParser::GetNodeTypeAt(int nLineIndex, int nCharPos)
 
 bool CTreeSitterParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos)
 {
-	EnsureParsed();
+	EnsureParsed(nLineIndex);
 
 	if (m_pTree == nullptr || m_pTextBuffer == nullptr)
 	{
@@ -1832,7 +1853,7 @@ bool CTreeSitterParser::TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos
 
 bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar)
 {
-	EnsureParsed();
+	EnsureParsed(nLineIndex);
 
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return false;
@@ -1909,7 +1930,7 @@ void CTreeSitterParser::SetTextBuffer(LangServices::ITextBuffer* pTextBuffer)
 std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::ParseLine(int nLineIndex)
 {
 	// Ensure the document is parsed (handles lazy reparsing if dirty)
-	EnsureParsed();
+	EnsureParsed(nLineIndex);
 
 	// Get the cached color blocks for this line
 	return GetLineBlocks(nLineIndex);

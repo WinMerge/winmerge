@@ -193,20 +193,11 @@ public:
 	void ParseDocument();
 
 	/**
-	 * @brief Mark the parse cache as dirty (e.g. after an edit).
-	 *
-	 * The next call to EnsureParsed() (from ParseLine/GetLineBlocks)
-	 * will trigger a single reparse. This avoids reparsing on every
-	 * keystroke and instead defers to the next paint cycle.
-	 */
-	void MarkDirty() { m_bNeedsParse = true; }
-
-	/**
 	 * @brief Ensure the document is parsed and cache is up-to-date.
 	 *
 	 * Called lazily from ParseLine. Only reparses if marked dirty.
 	 */
-	void EnsureParsed();
+	void EnsureParsed(int nLineIndex = 0);
 
 	/**
 	 * @brief Get the cached color blocks for a specific line.
@@ -245,11 +236,11 @@ public:
 
 private:
 	void EnsureParser();
-	void RunHighlightQuery();
+	void RunHighlightQuery(int nStartLine, int nEndLine);
 	void RunLocalsQuery();
 	void RunTagsQuery();
-	void RunInjectionQuery();
-	void BuildLineCache(int nLineCount);
+	void RunInjectionQuery(int nStartLine, int nEndLine);
+	void BuildLineCache(int nStartLine, int nEndLine);
 	uint32_t CharPosToByteOffset(int nLine, int nCharPos, bool useCache = true) const;
 	void CharPosToTSPoint(int line, int charPos, TSPoint& pt) const;
 	std::wstring GetUtf16Text(uint32_t startByte, uint32_t endByte) const;
@@ -259,6 +250,8 @@ private:
 	bool TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
 	uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
+	static constexpr int kHighlightMargin = 300;  ///< Number of lines above/below to highlight when a line is requested
+	
 	/**
 	 * @brief Extract #set! predicate properties from a query pattern.
 	 * @param pQuery       The query containing the pattern.
@@ -281,10 +274,11 @@ private:
 
 	// Cached per-line highlight blocks
 	std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
+	std::vector<bool> m_lineCached;  // per-line cache flag
+	std::vector<uint32_t> m_lineStartBytes;
 
 	int         m_nLineCount;
 	uint32_t    m_nextBlockOrder;
-	std::vector<uint32_t> m_lineStartBytes;
 
 	// --- Locals support ---
 	// Maps (startByte, endByte) of definition nodes to their highlight color.
