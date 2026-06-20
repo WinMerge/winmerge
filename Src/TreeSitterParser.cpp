@@ -15,7 +15,6 @@
 #include "ITextBuffer.h"
 #include "TextDefinition.h"
 #include "unicoder.h"
-#include "utils/ctchar.h"
 
 #include <tree_sitter/api.h>
 
@@ -1390,39 +1389,6 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 	}
 }
 
-std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::GetLineBlocks(int nLineIndex) const
-{
-	// Fix #4: bounds check against cached line count
-	if (nLineIndex < 0 || nLineIndex >= static_cast<int>(m_lineBlocks.size()))
-		return {};
-
-	const auto& blocks = m_lineBlocks[nLineIndex];
-
-	std::vector<LangServices::TEXTBLOCK> newBlocks;
-	newBlocks.push_back({0, COLORINDEX_NORMALTEXT, COLORINDEX_BKGND});
-
-	for (const auto& block : blocks)
-	{
-		// If the caller's last block is at the same position, overwrite it
-		// (same logic as DEFINE_BLOCK macro in crystallineparser.h)
-		if (!newBlocks.empty() && newBlocks.back().m_nCharPos == block.nCharPos)
-		{
-			newBlocks.back().m_nColorIndex = block.nColorIndex;
-			newBlocks.back().m_nBgColorIndex = COLORINDEX_BKGND;
-			continue;
-		}
-
-		// Skip if same color as previous block (no visible change)
-		if (!newBlocks.empty() && newBlocks.back().m_nColorIndex == block.nColorIndex)
-			continue;
-
-		newBlocks.push_back({block.nCharPos, block.nColorIndex, COLORINDEX_BKGND});
-	}
-
-	return newBlocks;
-}
-
-
 // ============================================================================
 // TreeSitterRegistry
 // ============================================================================
@@ -1940,8 +1906,33 @@ std::vector<LangServices::TEXTBLOCK> CTreeSitterParser::ParseLine(int nLineIndex
 	// Ensure the document is parsed (handles lazy reparsing if dirty)
 	EnsureParsed(nLineIndex);
 
-	// Get the cached color blocks for this line
-	return GetLineBlocks(nLineIndex);
+	std::vector<LangServices::TEXTBLOCK> newBlocks;
+	newBlocks.push_back({0, COLORINDEX_NORMALTEXT, COLORINDEX_BKGND});
+
+	if (nLineIndex < 0 || nLineIndex >= static_cast<int>(m_lineBlocks.size()))
+		return newBlocks;
+
+	const auto& blocks = m_lineBlocks[nLineIndex];
+
+	for (const auto& block : blocks)
+	{
+		// If the caller's last block is at the same position, overwrite it
+		// (same logic as DEFINE_BLOCK macro in crystallineparser.h)
+		if (!newBlocks.empty() && newBlocks.back().m_nCharPos == block.nCharPos)
+		{
+			newBlocks.back().m_nColorIndex = block.nColorIndex;
+			newBlocks.back().m_nBgColorIndex = COLORINDEX_BKGND;
+			continue;
+		}
+
+		// Skip if same color as previous block (no visible change)
+		if (!newBlocks.empty() && newBlocks.back().m_nColorIndex == block.nColorIndex)
+			continue;
+
+		newBlocks.push_back({block.nCharPos, block.nColorIndex, COLORINDEX_BKGND});
+	}
+
+	return newBlocks;
 }
 
 /**

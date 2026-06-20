@@ -34,14 +34,12 @@
 
 // Forward declarations for tree-sitter C API types.
 // The actual tree_sitter/api.h header is included only in the .cpp file.
-typedef struct TSParser TSParser;
-typedef struct TSTree TSTree;
-typedef struct TSQuery TSQuery;
-typedef struct TSLanguage TSLanguage;
-
-struct CEPoint;
+struct TSParser;
+struct TSTree;
+struct TSQuery;
+struct TSLanguage;
 struct TSPoint;
-struct TSInputEdit;
+struct CEPoint;
 
 /**
  * @brief Manages a tree-sitter grammar loaded from a DLL.
@@ -199,27 +197,8 @@ public:
 	 */
 	void EnsureParsed(int nLineIndex = 0);
 
-	/**
-	 * @brief Get the cached color blocks for a specific line.
-	 * @param nLineIndex   Zero-based line index.
-	 * @return Vector of TEXTBLOCKs for this line, sorted by nCharPos.
-	 */
-	std::vector<LangServices::TEXTBLOCK> GetLineBlocks(int nLineIndex) const;
-
-	/** @brief Check if a valid tree is available. */
-	bool HasTree() const { return m_pTree != nullptr; }
-
 	/** @brief Check if a language is set. */
 	bool HasLanguage() const { return m_pLang != nullptr; }
-
-	/** @brief Get the number of lines in the cached parse result. */
-	int GetCachedLineCount() const { return m_nLineCount; }
-
-	/** @brief Check if cache needs rebuilding. */
-	bool IsDirty() const { return m_bNeedsParse; }
-
-	/** @brief Get the language object (for service layer). */
-	const CTreeSitterLanguage* GetLanguage() const { return m_pLang; }
 
 	/**
 	 * @brief Get the node type name at a specific position.
@@ -269,17 +248,15 @@ private:
 	CTreeSitterColorMap m_colorMap;
 	bool                m_bNeedsParse;       // True when cache needs rebuild
 	bool                m_bTagsQueried;      // True if we've already run the tags query at least once
+	bool                m_bTreeSitterDisabled; // True if we disabled treesitter due to excessive line count
+	int                 m_nLineCount;
+	uint32_t            m_nextBlockOrder;
 
 	// Cached per-line highlight blocks
 	std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
 	static constexpr int kCacheChunkSize = 300;
 	std::vector<bool> m_cachedChunks;
 	std::vector<uint32_t> m_lineStartBytes;
-
-	bool                m_bTreeSitterDisabled;    // True if we disabled treesitter due to excessive line count
-
-	int         m_nLineCount;
-	uint32_t    m_nextBlockOrder;
 
 	// --- Locals support ---
 	// Maps (startByte, endByte) of definition nodes to their highlight color.
