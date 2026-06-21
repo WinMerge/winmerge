@@ -54,7 +54,6 @@
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
 #include "Logger.h"
-#include "TreeSitterParser.h"
 #include "SyntaxParserRegistry.h"
 
 #ifdef _DEBUG

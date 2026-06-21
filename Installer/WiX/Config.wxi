@@ -20,7 +20,6 @@
     
     <?define ProgramFilesFolder = "ProgramFiles64Folder" ?>
     <?define MergeBuildDir = "..\..\Build\x64\Release" ?>
-    <?define TreeSitterBuildDir = "..\..\Build\x64\Release\TreeSitterGrammars" ?>
     <?define ShellExtBuildDir = "..\..\Build\x64\ShellExtensionUnicode release mindependency" ?>
     
     <?define StartMenuShortcutsGuid = "CDC49AA0-DC37-439d-8358-68E2EA9EF909" ?>
@@ -33,7 +32,6 @@
     
     <?define ProgramFilesFolder = "ProgramFilesFolder" ?>
     <?define MergeBuildDir = "..\..\Build\Release" ?>
-    <?define TreeSitterBuildDir = "..\..\Build\x86\Release\TreeSitterGrammars" ?>
     <?define ShellExtBuildDir = "..\..\Build\ShellExtensionUnicode release mindependency" ?>
     
     <?define StartMenuShortcutsGuid = "12413436-9929-453c-870B-03146CE11960" ?>
