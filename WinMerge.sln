@@ -57,7 +57,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\X
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashLogger", "Src\CrashLogger\CrashLogger.vcxitems", "{CDEDDAC4-79B9-4A34-A564-8019F60D241F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tree-sitter", "Externals\tree-sitter\tree-sitter.vcxitems", "{07127EEC-6A5B-4FB4-89E8-4E21A2978773}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tree-sitter", "Externals\tree-sitter.vcxitems", "{07127EEC-6A5B-4FB4-89E8-4E21A2978773}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -181,7 +181,7 @@ Global
 		SolutionGuid = {BA780561-B5A9-4ED1-B35C-B342695F3F39}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Externals\tree-sitter\tree-sitter.vcxitems*{07127eec-6a5b-4fb4-89e8-4e21a2978773}*SharedItemsImports = 9
+		Externals\tree-sitter.vcxitems*{07127eec-6a5b-4fb4-89e8-4e21a2978773}*SharedItemsImports = 9
 		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{0f686afa-d587-43c0-bada-2beddc3fa758}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{4170552a-09e2-4fac-b71d-0e2f5eb3c869}*SharedItemsImports = 9
@@ -190,7 +190,7 @@ Global
 		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\poco\XML\XML.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
-		Externals\tree-sitter\tree-sitter.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\tree-sitter.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
@@ -202,7 +202,7 @@ Global
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\poco\XML\XML.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Externals\tree-sitter\tree-sitter.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\tree-sitter.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CrashLogger\CrashLogger.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
