@@ -146,6 +146,13 @@ CTreeSitterColorMap::CTreeSitterColorMap()
 	m_map["tag"]                    = COLORINDEX_KEYWORD;
 	m_map["tag.attribute"]          = COLORINDEX_USER2;
 	m_map["tag.delimiter"]          = COLORINDEX_OPERATOR;
+
+	m_map["text"]                   = COLORINDEX_NORMALTEXT;
+	m_map["text.title"]             = COLORINDEX_KEYWORD;
+	m_map["text.uri"]               = COLORINDEX_USER2;
+	m_map["text.reference"]         = COLORINDEX_USER1;
+	m_map["text.literal"]           = COLORINDEX_STRING;
+	m_map["text.escape"]            = COLORINDEX_OPERATOR;
 }
 
 int CTreeSitterColorMap::MapCapture(const std::string& sCaptureName) const
@@ -532,6 +539,12 @@ void CTreeSitterParser::EnsureParsed(int nLineIndex)
 	BuildLineCache(nStartLine, nEndLine);
 
 	m_cachedChunks[chunk] = true;
+}
+
+void CTreeSitterParser::EnsureTagsQueried()
+{
+	if (!m_bTagsQueried)
+		RunTagsQuery();
 }
 
 uint32_t CTreeSitterParser::CharPosToByteOffset(int nLine, int nCharPos, bool useCache) const
@@ -1405,21 +1418,23 @@ static struct
 	{ LangServices::LanguageId::SRC_CSHARP, L"c-sharp" },
 	{ LangServices::LanguageId::SRC_CSS, L"css" },
 	{ LangServices::LanguageId::SRC_FSHARP, L"fsharp" },
+	{ LangServices::LanguageId::SRC_FSHARP_SIGNATURE, L"fsharp_signature" },
 	{ LangServices::LanguageId::SRC_GO, L"go" },
 	{ LangServices::LanguageId::SRC_HTML, L"html" },
 	{ LangServices::LanguageId::SRC_JAVA, L"java" },
 	{ LangServices::LanguageId::SRC_JAVASCRIPT, L"javascript" },
 	{ LangServices::LanguageId::SRC_JSON, L"json" },
-	{ LangServices::LanguageId::SRC_LUA, L"lua" },
-	{ LangServices::LanguageId::SRC_PERL, L"perl" },
+	{ LangServices::LanguageId::SRC_MARKDOWN, L"markdown" },
 	{ LangServices::LanguageId::SRC_PHP, L"php" },
 	{ LangServices::LanguageId::SRC_POWERSHELL, L"powershell" },
 	{ LangServices::LanguageId::SRC_PYTHON, L"python" },
 	{ LangServices::LanguageId::SRC_RUBY, L"ruby" },
 	{ LangServices::LanguageId::SRC_RUST, L"rust" },
 	{ LangServices::LanguageId::SRC_SH, L"bash" },
-	{ LangServices::LanguageId::SRC_SQL, L"sql" },
+	{ LangServices::LanguageId::SRC_TSX, L"tsx" },
+	{ LangServices::LanguageId::SRC_TYPESCRIPT, L"typescript" },
 	{ LangServices::LanguageId::SRC_XML, L"xml" },
+	{ LangServices::LanguageId::SRC_YAML, L"yaml" },
 };
 
 TreeSitterRegistry& TreeSitterRegistry::Instance()
@@ -1829,9 +1844,7 @@ bool CTreeSitterParser::FindDefinition(int nLineIndex, int nCharPos, int& nDefLi
 	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
 		return false;
 
-	// Run tags query for same-file symbol definitions/references
-	if (!m_bTagsQueried && m_pLang && m_pLang->GetTagsQuery())
-		RunTagsQuery();
+	EnsureTagsQueried();
 
 	const uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
 

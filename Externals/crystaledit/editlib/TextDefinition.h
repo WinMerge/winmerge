@@ -39,6 +39,7 @@ enum LanguageId
 	SRC_DLANG,
 	SRC_FORTRAN,
 	SRC_FSHARP,
+	SRC_FSHARP_SIGNATURE,
 	SRC_GO,
 	SRC_HTML,
 	SRC_INI,
@@ -49,6 +50,7 @@ enum LanguageId
 	SRC_JSON,
 	SRC_LISP,
 	SRC_LUA,
+	SRC_MARKDOWN,
 	SRC_MATLAB,
 	SRC_NSIS,
 	SRC_PASCAL,
@@ -68,9 +70,12 @@ enum LanguageId
 	SRC_SQL,
 	SRC_TCL,
 	SRC_TEX,
+	SRC_TSX,
+	SRC_TYPESCRIPT,
 	SRC_VERILOG,
 	SRC_VHDL,
 	SRC_XML,
+	SRC_YAML,
 	SRC_MAX_ENTRY, /* always last entry, used for bound checking */
 };
 

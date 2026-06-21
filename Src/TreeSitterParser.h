@@ -197,6 +197,8 @@ public:
 	 */
 	void EnsureParsed(int nLineIndex = 0);
 
+	void EnsureTagsQueried();
+
 	/** @brief Check if a language is set. */
 	bool HasLanguage() const { return m_pLang != nullptr; }
 

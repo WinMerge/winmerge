@@ -34,7 +34,7 @@ public:
 
 private:
 	bool m_init;
-	String m_Extension[LangServices::LanguageId::SRC_XML];
+	String m_Extension[LangServices::LanguageId::SRC_MAX_ENTRY];
 
 // Implementation methods
 	void InitList();

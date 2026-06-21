@@ -18,6 +18,7 @@ ABAP
 ASP
 AutoIt
 Basic
+Batch
 C/C++
 C#
 CSS
@@ -25,6 +26,7 @@ DCL
 D
 Fortran
 F#
+F# Signature
 Go
 HTML
 INI
@@ -36,6 +38,7 @@ JSON
 Lua
 Ada
 AutoLISP
+Markdown
 MATLAB
 NSIS
 Pascal
@@ -52,9 +55,12 @@ Smarty
 SQL
 TCL
 TEX
+TypeScript JSX
+TypeScript
 Verilog
 VHDL
 XML
+YAML
 CSV
 TSV
 Visual SourceSafe
