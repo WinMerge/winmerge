@@ -507,14 +507,15 @@ void CMergeApp::InitSyntaxParserFactories()
 	std::vector<LangServices::ISyntaxParserFactory*> factoriesNew;
 	switch (GetOptionsMgr()->GetInt(OPT_TREE_SITTER_MODE))
 	{
-	case 0: // Disable Tree Sitter
+	case 0: // Disable Tree-sitter
 		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
 		break;
-	case 1: // Prefer Tree Sitter
+	case 1: // Prefer Tree-sitter
 		factoriesNew.push_back(&TreeSitterSyntaxParserFactory::GetInstance());
 		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
 		break;
-	case 2: // Prefer Build-in
+	case 2: // Prefer Built-in
+	default:
 		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
 		factoriesNew.push_back(&TreeSitterSyntaxParserFactory::GetInstance());
 		break;

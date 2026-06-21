@@ -5739,7 +5739,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_TREE_SITTER_MODE_PREFER_TREE_SITTER "Prefer Tree-sitter"
-    IDS_TREE_SITTER_MODE_PREFER_BUILD_IN "Prefer Build-in"
+    IDS_TREE_SITTER_MODE_PREFER_BUILT_IN "Prefer Built-in"
 END
 
 #endif    // English (United States) resources

@@ -489,8 +489,6 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 	tsEdit.start_byte = startByte;
 	CharPosToTSPoint(ptStartPos.y, ptStartPos.x, tsEdit.start_point);
 
-	uint32_t deltaBytes = static_cast<uint32_t>(cchText * sizeof(wchar_t));
-
 	if (bInsert)
 	{
 		tsEdit.old_end_byte = startByte;
@@ -526,6 +524,9 @@ void CTreeSitterParser::EnsureParsed(int nLineIndex)
 
 	if (m_bNeedsParse && m_pLang)
 		ParseDocument();
+
+	if (nLineIndex < 0 || nLineIndex >= m_nLineCount)
+		return;
 
 	const int chunk = nLineIndex / kCacheChunkSize;
 	if (m_cachedChunks[chunk])
@@ -931,7 +932,7 @@ void CTreeSitterParser::RunHighlightQuery(int nStartLine, int nEndLine)
 	if (!pCursor)
 		return;
 
-	for (int i = nStartLine; i < nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
+	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
 		m_lineBlocks[i].clear();
 
 	ts_query_cursor_set_point_range(pCursor,
@@ -1020,7 +1021,7 @@ void CTreeSitterParser::RunHighlightQuery(int nStartLine, int nEndLine)
 			}
 		}
 
-		// Pass 2: Resolve references — find matching definition in enclosing scopes
+		// Pass 2: Resolve references - find matching definition in enclosing scopes
 		for (const auto& ref : m_pendingRefs)
 		{
 			int resolvedHighlight = -1;
@@ -1255,7 +1256,7 @@ void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 		for (char ch : inj.language)
 			wLangName += static_cast<wchar_t>(ch);
 
-		// Try to find the language — look it up by name directly in the registry's
+		// Try to find the language - look it up by name directly in the registry's
 		// available languages (we need a way to get language by name, not just by ext).
 		// For now, try common mappings. The language name from injections.scm
 		// is typically the tree-sitter language name (e.g. "javascript", "css").
