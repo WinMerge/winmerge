@@ -85,7 +85,7 @@ struct ISyntaxParser
 	 * The default implementation returns false (no brace matching support).
 	 */
 	virtual bool FindMatchingBrace(int nLineIndex, int nCharPos,
-		int& outLineIndex, int& outCharPos) const {
+		int& outLineIndex, int& outCharPos) {
 		return false;
 	}
 };

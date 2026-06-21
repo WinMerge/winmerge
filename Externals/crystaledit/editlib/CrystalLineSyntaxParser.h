@@ -29,7 +29,7 @@ public:
 	std::vector<LangServices::TEXTBLOCK> ParseLine(int nLineIndex) override;
 	void NotifyEdit(bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType) override;
 	LangServices::LanguageId GetParserType() const override;
-	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const override;
+	bool FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) override;
 
 private:
 	/**
@@ -45,10 +45,10 @@ private:
 	 */
 	void InvalidateFromLine(int nStartLine);
 
-	LangServices::ITextBuffer* m_pTextBuffer;                    ///< Text buffer interface
+	LangServices::ITextBuffer* m_pTextBuffer;      ///< Text buffer interface
 	ParseFunc m_ParseLineX;                        ///< Pointer to the legacy line parser function
-	LangServices::LanguageId m_textType;                ///< Parser type
-	LangServices::TextDefinition* m_pTextDef;           ///< Parser definition
+	LangServices::LanguageId m_textType;           ///< Parser type
+	LangServices::TextDefinition* m_pTextDef;      ///< Parser definition
 	std::vector<unsigned> m_ParseCookies;          ///< Per-line parser state cookies
 };
 

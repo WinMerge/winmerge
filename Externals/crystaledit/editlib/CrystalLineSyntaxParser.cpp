@@ -215,7 +215,7 @@ namespace {
 /**
  * @brief Find the matching brace/bracket/parenthesis for the given position.
  */
-bool CrystalLineSyntaxParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos) const
+bool CrystalLineSyntaxParser::FindMatchingBrace(int nLineIndex, int nCharPos, int& outLineIndex, int& outCharPos)
 {
 	if (m_pTextBuffer == nullptr || m_pTextDef == nullptr)
 	{
