@@ -356,7 +356,7 @@ External components used by WinMerge
 * md4c (MIT) (https://github.com/mity/md4c)
 * Inno Setup (https://jrsoftware.org/files/is/license.txt) (https://jrsoftware.org/isinfo.php)
 * tree-sitter (MIT) (https://github.com/tree-sitter/tree-sitter)
-  * tree-sitter-fsharp     (MIT) (https://github.com/ionide/tree-istter-fsharp)
+  * tree-sitter-fsharp     (MIT) (https://github.com/ionide/tree-sitter-fsharp)
   * tree-sitter-markdown   (MIT) (https://github.com/tree-sitter-grammars/tree-sitter-markdown)
   * tree-sitter-xml        (MIT) (https://github.com/tree-sitter-grammars/tree-sitter-xml)
   * tree-sitter-yaml       (MIT) (https://github.com/tree-sitter-grammars/tree-sitter-yaml)
