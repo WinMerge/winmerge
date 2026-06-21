@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-05-25 21:16+0000\n"
-"PO-Revision-Date: 2026-05-25 23:00+0000\n"
+"POT-Creation-Date: 2026-06-02 21:26+0000\n"
+"PO-Revision-Date: 2026-06-20 22:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,7 @@ msgstr "Filtruj według tej kolumny
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:154 Merge.rc:1876
 msgid "&Text..."
-msgstr "Tekst...""
+msgstr "Tekst..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:155 Merge.rc:1877
@@ -243,7 +243,7 @@ msgstr "Numer..."
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156 Merge.rc:1878
 msgid "&Date/Time..."
-msgstr ""
+msgstr "Data/czas..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
@@ -2989,7 +2989,7 @@ msgstr "Kolumna: 10"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1890
 msgid "Line L&ength..."
-msgstr "Długość wiersza...""
+msgstr "Długość wiersza..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1891
@@ -3101,7 +3101,7 @@ msgstr "Zastąp"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2004
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "Zastąp wyrażenie regularne"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2038
@@ -3131,7 +3131,7 @@ msgstr "Ostatni"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2052
 msgid "First &5 Matches"
-msgstr "Pierwsze 5 dopasowań”"
+msgstr "Pierwsze 5 dopasowań"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2053
