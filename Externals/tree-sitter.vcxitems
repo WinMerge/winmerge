@@ -14,11 +14,11 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)lib\src\lib.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)tree-sitter\lib\src\lib.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)lib\include\tree_sitter\api.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)tree-sitter\lib\include\tree_sitter\api.h" />
   </ItemGroup>
 </Project>
