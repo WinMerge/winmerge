@@ -1,6 +1,6 @@
-﻿[Messages]
+[Messages]
 
-WizardInfoBefore=License Agreement
+WizardInfoBefore=Acuerdo de licencia
 InfoBeforeLabel=GNU General Public License
 
 [CustomMessages]
@@ -10,16 +10,16 @@ OptionalFeatures=Características opcionales:
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Instalación Típica
-FullInstallation=Instalación Completa
-CompactInstallation=Instalación Compacta
-CustomInstallation=Instalación Personalizada
+TypicalInstallation=Instalación típica
+FullInstallation=Instalación completa
+CompactInstallation=Instalación compacta
+CustomInstallation=Instalación personalizada
 
 ;Components
 AppCoreFiles=Ficheros básicos de WinMerge
 Filters=Filtros
 Plugins=Complementos
-ShellExtension32bit=Extensión del Shell de 32-bit para WinMerge
+ShellExtension32bit=Extensión del Explorador de 32-bit para WinMerge
 
 ;Localization Components
 Languages=Idiomas
@@ -29,7 +29,7 @@ BulgarianLanguage=Menús y diálogos en búlgaro
 CatalanLanguage=Menús y diálogos en catalán
 ChineseSimplifiedLanguage=Menús y diálogos en chino (simplificado)
 ChineseTraditionalLanguage=Menús y diálogos en chino (tradicional)
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Menús y diálogos en corso
 CroatianLanguage=Menús y diálogos en croata
 CzechLanguage=Menús y diálogos en checo
 DanishLanguage=Menús y diálogos en danés
@@ -39,7 +39,7 @@ FrenchLanguage=Menús y diálogos en francés
 GalicianLanguage=Menús y diálogos en gallego
 GermanLanguage=Menús y diálogos en alemán
 GreekLanguage=Menús y diálogos en griego
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=Menús y diálogos en hebreo
 HungarianLanguage=Menús y diálogos en húngaro
 ItalianLanguage=Menús y diálogos en italiano
 JapaneseLanguage=Menús y diálogos en japonés
@@ -61,32 +61,32 @@ SwedishLanguage=Menús y diálogos en sueco
 TamilLanguage=Menús y diálogos en tamil
 TurkishLanguage=Menús y diálogos en turco
 UkrainianLanguage=Menús y diálogos en ucraniano
-VietnameseLanguage=Vietnamese menus and dialogs
+VietnameseLanguage=Menús y diálogos en vietnamita
 
 ;Tasks
-ExplorerContextMenu=Habilitar la integración con menú de contexto de &Explorer
+ExplorerContextMenu=Habilitar la integración con el menú contextual del &Explorador
 IntegrateTortoiseCVS=Integrar con &TortoiseCVS
 IntegrateTortoiseGit=Integrar con To&rtoiseGit
 IntegrateTortoiseSVN=Integrar con T&ortoiseSVN
-AddToPath=&Añadir la carpeta de WinMerge a tu ruta de sistema
+AddToPath=&Añadir la carpeta de WinMerge a la ruta del sistema
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=Mezcla a 3
-ThreeWayMergeWizardPageDescription=¿Usas WinMerge como herramienta de mezcla a 3 para TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Registrar WinMerge como herramienta de mezcla a 3
-MergeAtRightPane=Mezclar en el panel derecho
-MergeAtCenterPane=Mezclar en el panel central
-MergeAtLeftPane=Mezclar en el panel izquierdo
-AutoMergeAtStartup=Auto mezclar al inicio
+ThreeWayMergeWizardPageCaption=Combinación a 3 bandas
+ThreeWayMergeWizardPageDescription=¿Usa WinMerge como herramienta de combinación a 3 bandas para TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Registrar WinMerge como herramienta de combinación a 3 bandas
+MergeAtRightPane=Combinar en el panel derecho
+MergeAtCenterPane=Combinar en el panel central
+MergeAtLeftPane=Combinar en el panel izquierdo
+AutoMergeAtStartup=Combinar automáticamente al iniciar el sistema
 
 ;Icon Labels
-ReadMe=Léeme
-UsersGuide=Guía de Usuario
-ViewStartMenuFolder=&Ver la carpeta de WinMerge del Menú de Inicio
+ReadMe=Léame
+UsersGuide=Manual de usuario
+ViewStartMenuFolder=&Vea la carpeta de WinMerge del menú Inicio
 
 ;Code Dialogs
-DeletePreviousStartMenu=El instalador ha detectado que se cambió la ubicación del Menú de Inicio de "%s" a "%s". ¿Quieres eliminar la anterior carpeta del Menú de Inicio?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+DeletePreviousStartMenu=El instalador ha detectado que se cambió la ubicación del menú Inicio de "%s" a "%s". ¿Quiere eliminar la anterior carpeta del menú Inicio?
+ExplorerNeedsRestart=La extensión del intérprete de órdenes de Winmerge necesita reiniciar el Explorador para actualizarse. ¿Desea reiniciarlo?
 
 ; Project file description
-ProjectFileDesc=Fichero de Proyecto de WinMerge
+ProjectFileDesc=Fichero del proyecto de WinMerge
