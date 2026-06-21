@@ -37,6 +37,3 @@
 [submodule "Externals/tree-sitter-grammars"]
 	path = Externals/tree-sitter-grammars
 	url = https://github.com/WinMerge/tree-sitter-grammars
-[submodule "Externals/tree-sitter"]
-	path = Externals/tree-sitter
-	url = https://github.com/tree-sitter/tree-sitter/
