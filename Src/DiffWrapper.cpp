@@ -311,7 +311,9 @@ static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_da
 	{
 	public:
 		DiffTextBuffer(const file_data& fileData)
-			: m_fileData(fileData), m_lineCache(fileData.buffered_lines - m_fileData.linbuf_base), m_lineCount(fileData.buffered_lines - m_fileData.linbuf_base) {}
+			: m_fileData(fileData), m_lineCache(fileData.valid_lines - fileData.linbuf_base), m_lineCount(fileData.valid_lines - fileData.linbuf_base)
+		{
+		}
 		int GetLineCount() const override
 		{
 			return m_lineCount;
