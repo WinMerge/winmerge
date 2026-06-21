@@ -57,7 +57,7 @@ void PropEditorSyntax::ReadOptions()
 void PropEditorSyntax::WriteOptions()
 {
 	if (m_init)
-		for (int i = LangServices::LanguageId::SRC_ABAP; i <= LangServices::LanguageId::SRC_XML; ++i)
+		for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
 		{
 			m_Extension[i-1] = m_listSyntax.GetItemText(i-1, 1);
 			WildcardRemoveDuplicatePatterns(m_Extension[i-1]);
@@ -101,10 +101,10 @@ void PropEditorSyntax::InitList()
 	m_listSyntax.SetEditStyle(1, CSubeditList::EditStyle::WILDCARD_DROP_LIST);
 
 
-	String fixedPattern[LangServices::LanguageId::SRC_XML];
+	String fixedPattern[LangServices::LanguageId::SRC_MAX_ENTRY];
 	Options::EditorSyntax::GetDefaults(GetOptionsMgr(), fixedPattern);
 
-	for (int i = LangServices::LanguageId::SRC_ABAP; i <= LangServices::LanguageId::SRC_XML; ++i)
+	for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
 	{
 		LangServices::TextDefinition* def = LangServices::GetTextType(i);
 		
@@ -124,6 +124,6 @@ void PropEditorSyntax::InitList()
 void PropEditorSyntax::OnDefaults()
 {
 	Options::EditorSyntax::GetDefaults(GetOptionsMgr(), m_Extension);
-	for (int i = LangServices::LanguageId::SRC_ABAP; i <= LangServices::LanguageId::SRC_XML; ++i)
+	for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
 		m_listSyntax.SetItemText(i-1, 1, m_Extension[i-1].c_str());
 }

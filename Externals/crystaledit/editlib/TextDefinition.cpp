@@ -115,7 +115,7 @@ GetTextType(const tchar_t* pszExt)
 TextDefinition*
 GetTextType(int index)
 {
-  if (index < 0 || index > SRC_XML)
+  if (index < 0 || index >= SRC_MAX_ENTRY)
 	return nullptr;
   return &m_SourceDefs[index];
 }
@@ -124,7 +124,7 @@ TextDefinition*
 GetTextType(LanguageId type)
 {
   int index = static_cast<int>(type);
-  if (index < 0 || index > SRC_XML)
+  if (index < 0 || index >= SRC_MAX_ENTRY)
 	return nullptr;
   return &m_SourceDefs[index];
 }
@@ -137,7 +137,7 @@ GetTextType(LanguageId type)
 void
 SetExtension(int index, const tchar_t* pszExts)
 {
-  if (index < 0 || index > SRC_XML)
+  if (index < 0 || index >= SRC_MAX_ENTRY)
 	return;
 
   auto& def = m_SourceDefs[index];
