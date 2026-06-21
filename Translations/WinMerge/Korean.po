@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-05-25 16:02+0900\n"
+"PO-Revision-Date: 2026-06-22 03:47+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -5716,8 +5716,20 @@ msgstr "프로젝트 파일을 성공적으로 저장했습니다."
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4436
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"이 프로젝트 파일에는 사용자 지정 인수가 있는 플러그인이 포함되어 있습니다:\n"
+"\n"
+"%1\n"
+"이러한 인수는 플러그인 동작에 영향을 미치거나 외부 프로그램을 실행할 수 있습니다.\n"
+"\n"
+"이 프로젝트 파일을 열고 싶으신가요?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4442
