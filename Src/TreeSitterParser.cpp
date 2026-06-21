@@ -386,32 +386,30 @@ void CTreeSitterParser::ParseDocument()
 	if (!m_pTextBuffer)
 		return;
 
-	const int nLineCount = m_pTextBuffer->GetLineCount();
-	if (nLineCount == 0)
+	m_nLineCount = m_pTextBuffer->GetLineCount();
+	if (m_nLineCount == 0)
 		return;
-
-	m_nLineCount = nLineCount;
 
 	EnsureParser();
 	if (!m_pParser || !m_pLang || !m_pLang->GetLanguage())
 		return;
 
-	m_lineStartBytes.resize(nLineCount + 1);
+	m_lineStartBytes.resize(m_nLineCount + 1);
 	uint32_t offset = 0;
-	for (int i = 0; i < nLineCount; i++)
+	for (int i = 0; i < m_nLineCount; i++)
 	{
 		m_lineStartBytes[i] = offset;
 		offset += static_cast<uint32_t>(m_pTextBuffer->GetLineLength(i) * sizeof(wchar_t));
-		if (i < nLineCount - 1)
+		if (i < m_nLineCount - 1)
 			offset += sizeof(wchar_t);  // '\n' separator
 	}
-	m_lineStartBytes[nLineCount] = offset;
+	m_lineStartBytes[m_nLineCount] = offset;
 
-	m_cachedChunks.assign((nLineCount + kCacheChunkSize - 1) / kCacheChunkSize, false);
+	m_cachedChunks.assign((m_nLineCount + kCacheChunkSize - 1) / kCacheChunkSize, false);
 
 	// Build per-line block arrays
 	m_lineBlocks.clear();
-	m_lineBlocks.resize(nLineCount);
+	m_lineBlocks.resize(m_nLineCount);
 
 	struct Payload
 	{
@@ -419,7 +417,7 @@ void CTreeSitterParser::ParseDocument()
 		int nLineCount;
 		wchar_t newline;
 	};
-	Payload payload{ m_pTextBuffer, nLineCount, L'\n' };
+	Payload payload{ m_pTextBuffer, m_nLineCount, L'\n' };
 
 	TSInput input;
 	input.payload = &payload;
@@ -459,7 +457,7 @@ void CTreeSitterParser::ParseDocument()
 		};
 
 	TSTree* pOldTree = m_pTree;
-	if (nLineCount < kMaxLinesForHighlight)
+	if (m_nLineCount < kMaxLinesForHighlight)
 		m_pTree = ts_parser_parse(m_pParser, pOldTree, input);
 
 	if (pOldTree)
