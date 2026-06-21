@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.30.0\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2026-05-02 22:31+0200\n"
-"Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
+"PO-Revision-Date: 2026-06-21 20:58+0200\n"
+"Last-Translator: P0rsche-911\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.9\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:26 Merge.rc:59 Merge.rc:5740
@@ -118,12 +118,12 @@ msgstr "Seleccionar &diferencia de línea\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "Añadir a los Filtros de &línea"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "Aña&dir al filtro de visualización"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -235,17 +235,17 @@ msgstr "&Filtrar por esta columna"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:154 Merge.rc:1876
 msgid "&Text..."
-msgstr ""
+msgstr "&Texto"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:155 Merge.rc:1877
 msgid "&Number..."
-msgstr ""
+msgstr "&Número"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:156 Merge.rc:1878
 msgid "&Date/Time..."
-msgstr ""
+msgstr "Fec&ha y hora"
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:165 Merge.rc:282
@@ -2926,97 +2926,97 @@ msgstr "Estandarizar Unicode"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1871
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "Añad&ir condición de línea"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1873
 msgid "L&ine Text..."
-msgstr ""
+msgstr "Te&xto de línea..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874 Merge.rc:1929
 msgid "&Column"
-msgstr ""
+msgstr "&Columna"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1879 Merge.rc:1954
 msgid "Column: &1"
-msgstr ""
+msgstr "Columna: &1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1880 Merge.rc:1955
 msgid "Column: &2"
-msgstr ""
+msgstr "Columna: &2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1881 Merge.rc:1956
 msgid "Column: &3"
-msgstr ""
+msgstr "Columna: &3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1882 Merge.rc:1957
 msgid "Column: &4"
-msgstr ""
+msgstr "Columna: &4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &5"
-msgstr ""
+msgstr "Columna: &5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &6"
-msgstr ""
+msgstr "Columna: &6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &7"
-msgstr ""
+msgstr "Columna: &7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &8"
-msgstr ""
+msgstr "Columna: &8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &9"
-msgstr ""
+msgstr "Columna: &9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1888 Merge.rc:1963
 msgid "Column: 1&0"
-msgstr ""
+msgstr "Columna: 1&0"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1890
 msgid "Line L&ength..."
-msgstr ""
+msgstr "Longitud d&e la línea..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1891
 msgid "&Word Count..."
-msgstr ""
+msgstr "Conta&dor de palabras..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1892
 msgid "Line &Number"
-msgstr ""
+msgstr "&Número de línea"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1894
 msgid "&Odd Lines"
-msgstr ""
+msgstr "Líneas i&mpares"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1895
 msgid "&Even Lines"
-msgstr ""
+msgstr "Líneas par&es"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1898 Merge.rc:1982
 msgid "Line &Status"
-msgstr ""
+msgstr "E&stado de la línea"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1900 Merge.rc:1984 Merge.rc:2857 Merge.rc:2990 Merge.rc:3031
@@ -3033,17 +3033,17 @@ msgstr "Igual"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_TRIVIAL
 #: Merge.rc:1902 Merge.rc:1986
 msgid "Trivial"
-msgstr ""
+msgstr "Insignificante"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EXISTS
 #: Merge.rc:1904
 msgid "Exists"
-msgstr ""
+msgstr "Existe"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1905
 msgid "Missing"
-msgstr ""
+msgstr "Falta"
 
 #. IDS_MOVED
 #: Merge.rc:1906 Merge.rc:5019
@@ -3053,47 +3053,47 @@ msgstr "Desplazado"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1907
 msgid "Bookmarked"
-msgstr ""
+msgstr "Añadido a favoritos"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1909 Merge.rc:1988
 msgid "&EOL"
-msgstr ""
+msgstr "Fin de &línea"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1924
 msgid "L&ine Text"
-msgstr ""
+msgstr "&Texto de línea"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1936
 msgid "&Number"
-msgstr ""
+msgstr "&Número"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1945
 msgid "&Date/Time"
-msgstr ""
+msgstr "Fec&ha y hora"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1965
 msgid "Line L&ength"
-msgstr ""
+msgstr "Longitud d&e la línea..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1999
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "&Transformar línea/columna"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2001
 msgid "&Trim"
-msgstr ""
+msgstr "Recor&tar"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2002
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "Normali&zar espacios en blanco"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2003 Merge.rc:2279
@@ -3103,77 +3103,77 @@ msgstr "Sustitui&r"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2004
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "Sustitución con &expresiones regulares"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2038
 msgid "&Refine Current Filter"
-msgstr ""
+msgstr "Pe&rfeccionar el filtro actual"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2040
 msgid "Add Con&text Lines"
-msgstr ""
+msgstr "Añadir líneas de conte&xto"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2048
 msgid "Filter by &Occurrence"
-msgstr ""
+msgstr "Filtrar p&or aparición"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2050
 msgid "&First"
-msgstr ""
+msgstr "&Primero"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2051
 msgid "&Last"
-msgstr ""
+msgstr "Ú&ltimo"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2052
 msgid "First &5 Matches"
-msgstr ""
+msgstr "Primeras &5 coincidencias"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2053
 msgid "After First &5"
-msgstr ""
+msgstr "&Después de las 5 primeras"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2056
 msgid "By &Block"
-msgstr ""
+msgstr "Por &bloque"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2058
 msgid "&Range"
-msgstr ""
+msgstr "&Rango"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2060 Merge.rc:2066
 msgid "&Inside..."
-msgstr ""
+msgstr "Den&tro..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2061 Merge.rc:2067
 msgid "&Outside..."
-msgstr ""
+msgstr "&Fuera..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2064
 msgid "Create &Range"
-msgstr ""
+msgstr "Crear ran&go"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2072
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "Combinar: A&ND"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2073
 msgid "Combine: &OR"
-msgstr ""
+msgstr "Combinar: &OR"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2188
@@ -3789,7 +3789,7 @@ msgstr "Sistema"
 #. IDD_PROPPAGE_SYSTEM, IDC_USE_RECYCLE_BIN
 #: Merge.rc:2563
 msgid "&Use Recycle Bin"
-msgstr "Enviar archivo&s eliminados a la Papelera de reciclaje"
+msgstr "&Usar la Papelera de reciclaje"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
 #: Merge.rc:2564
@@ -4349,22 +4349,22 @@ msgstr "Solo al derecho (faltante)"
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2879
 msgid "Match Inside/Outside Filter Expressions"
-msgstr ""
+msgstr "Coincidir con expresiones de filtro internas/externas"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2882
 msgid "&Start filter:"
-msgstr ""
+msgstr "&Filtro de inicio:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2885
 msgid "&End filter:"
-msgstr ""
+msgstr "Filtro fi&nal:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2888
 msgid "Lines between start and end filter matches will be included."
-msgstr ""
+msgstr "Se incluirán las líneas situadas entre el inicio y el final de las coincidencias del filtro."
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2895 Merge.rc:3087 Merge.rc:4505
@@ -5226,8 +5226,20 @@ msgstr "Archivo de proyecto guardado con éxito."
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4436
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"Estos argumentos pueden afectar al comportamiento del complemento o ejecutar programas externos.\n"
+"\n"
+"¿Quiere abrir este archivo de proyecto?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4442
@@ -5955,7 +5967,7 @@ msgstr "¿Guardar los cambios en %1?"
 #: Merge.rc:4733
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
-msgstr "%1 está definido como de solo lectura. ¿Desea anular el modo de solo lectura? (Seleccione 'No' para guardarlo con un nuevo nombre de archivo)."
+msgstr "%1 está en modo de solo lectura. ¿Desea anular dicho modo? (Seleccione 'No' para guardarlo con un nuevo nombre de archivo)."
 
 #. IDS_ERROR_BACKUP
 #: Merge.rc:4734
@@ -7707,8 +7719,12 @@ msgstr ""
 
 #. ID_PREVFILE
 #: Merge.rc:5289
-msgid "\nPrevious File (Ctrl+F7)"
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
 msgstr ""
+"\n"
+"Fichero anterior (Ctrl+F7)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5296
@@ -9073,7 +9089,7 @@ msgstr "Archivos de propiedades de Java sin caracteres de escape"
 #. IDS_PLUGIN_MENU_CAPTION43
 #: Strings.rc:106
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Descompilar Java (CFR)"
 
 #. IDS_PLUGIN_DESCRIPTION1
 #: Strings.rc:111
@@ -9522,7 +9538,7 @@ msgid ""
 msgstr ""
 "No se pueden obtener macros.\r\n"
 "Para permitir que WinMerge compare macros, use MS Office para alterar la configuración en la seguridad de macros para la aplicación actual.\r\n"
-"La función 'Confiar en el acceso al proyecto de Visual Basic' debe estar activada para utilizar esta función en WinMerge."
+"Debe activar 'Confiar en el acceso al proyecto de Visual Basic' para utilizar esta función en WinMerge."
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR14
 #: Strings.rc:228
