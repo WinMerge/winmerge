@@ -183,6 +183,7 @@ struct TreeSitterLineBlock
 	int nCharPos;
 	int nColorIndex;
 	int nPriority;
+	int nLayerPriority;
 	uint32_t nOrder;
 };
 
@@ -271,7 +272,7 @@ private:
 	std::vector<HighlightEntry> BuildHighlightEntries(const std::vector<HighlightCapture>& captures);
 	void ResolveLocalReferences(std::vector<HighlightEntry>& entries);
 	void TranslateCoordinates(std::vector<HighlightEntry>& entries, uint32_t injectionStartRow, uint32_t injectStartCol);
-	void EmitLineBlocks(const std::vector<HighlightEntry>& entries);
+	void EmitLineBlocks(const std::vector<HighlightEntry>& entries, int layerPriority);
 	void RunHighlightQuery(int nStartLine, int nEndLine);
 	void RunLocalsQuery();
 	void RunTagsQuery();

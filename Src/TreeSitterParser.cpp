@@ -1187,7 +1187,7 @@ void CTreeSitterParser::TranslateCoordinates(std::vector<HighlightEntry>& entrie
 	}
 }
 
-void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entries)
+void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entries, int layerPriority)
 {
 	for (const auto& h : entries)
 	{
@@ -1199,6 +1199,7 @@ void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entrie
 			block.nCharPos = byteCol / sizeof(wchar_t);
 			block.nColorIndex = h.colorIndex;
 			block.nPriority = h.priority;
+			block.nLayerPriority = layerPriority;
 			block.nOrder = h.order;
 
 			m_lineBlocks[row].push_back(block);
@@ -1210,6 +1211,7 @@ void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entrie
 
 			endBlock.nCharPos = h.endCol / sizeof(wchar_t);
 			endBlock.nColorIndex = COLORINDEX_NORMALTEXT;
+			endBlock.nLayerPriority = layerPriority;
 			endBlock.nPriority = INT_MIN;
 			endBlock.nOrder = h.order;
 
@@ -1238,7 +1240,7 @@ void CTreeSitterParser::RunHighlightQuery(int nStartLine, int nEndLine)
 	auto captures = CollectCaptures(rootNode, pQuery, nStartLine, nEndLine);
 	auto entries = BuildHighlightEntries(captures);
 	ResolveLocalReferences(entries);
-	EmitLineBlocks(entries);
+	EmitLineBlocks(entries, 0);
 }
 
 /**
@@ -1273,9 +1275,7 @@ void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 	for (const auto& inj : injections)
 	{
 		// Convert language name to wstring for registry lookup
-		std::wstring wLangName;
-		for (char ch : inj.language)
-			wLangName += static_cast<wchar_t>(ch);
+		std::wstring wLangName = ucr::toTString(inj.language);
 
 		// Try to find the language - look it up by name directly in the registry's
 		// available languages (we need a way to get language by name, not just by ext).
@@ -1327,7 +1327,7 @@ void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 			auto captures = CollectCaptures(injRoot, pInjQuery, 0, INT_MAX);
 			auto entries = BuildHighlightEntries(captures);
 			TranslateCoordinates(entries, inj.startRow, inj.startCol);
-			EmitLineBlocks(entries);
+			EmitLineBlocks(entries, 1);
 
 			ts_tree_delete(pInjTree);
 		}
@@ -1348,6 +1348,8 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 			{
 				if (a.nCharPos != b.nCharPos)
 					return a.nCharPos < b.nCharPos;
+				if (a.nLayerPriority != b.nLayerPriority)
+					return a.nLayerPriority < b.nLayerPriority;
 				if (a.nPriority != b.nPriority)
 					return a.nPriority < b.nPriority;
 				return a.nOrder < b.nOrder;
