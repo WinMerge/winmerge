@@ -31,6 +31,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <memory>
+#include <mutex>
 
 // Forward declarations for tree-sitter C API types.
 // The actual tree_sitter/api.h header is included only in the .cpp file.
@@ -357,6 +358,11 @@ private:
 
 	bool m_bInitialized;
 	std::wstring m_sGrammarDir;
+
+	// Guards lazy initialization and grammar loading: Initialize() and
+	// GetLanguageForName() may be called concurrently from folder-compare
+	// worker threads (via CDiffWrapper::PostFilter) and the UI thread.
+	std::mutex m_mutex;
 
 	// language name -> loaded grammar (loaded lazily)
 	std::unordered_map<std::wstring, std::unique_ptr<CTreeSitterLanguage>> m_languages;

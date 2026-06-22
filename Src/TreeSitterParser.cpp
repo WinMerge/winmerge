@@ -1444,6 +1444,8 @@ TreeSitterRegistry& TreeSitterRegistry::Instance()
 
 void TreeSitterRegistry::Initialize(const std::wstring& sGrammarDir)
 {
+	std::lock_guard<std::mutex> lock(m_mutex);
+
 	if (m_bInitialized)
 		return;
 
@@ -1504,6 +1506,8 @@ void TreeSitterRegistry::Initialize(const std::wstring& sGrammarDir)
 
 const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wstring& sLangName)
 {
+	std::lock_guard<std::mutex> lock(m_mutex);
+
 	// Check if already loaded
 	auto itLang = m_languages.find(sLangName);
 	if (itLang != m_languages.end())
