@@ -1664,21 +1664,22 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, const tchar_t* pszT
   if (!bHistory)
     {
       delete paSavedRevisionNumbers;
-      return true;
     }
-
-  bool bGroupFlag = false;
-  if (!m_bUndoGroup)
+  else
     {
-      BeginUndoGroup ();
-      bGroupFlag = true;
+      bool bGroupFlag = false;
+      if (!m_bUndoGroup)
+        {
+          BeginUndoGroup ();
+          bGroupFlag = true;
+        }
+  
+      AddUndoRecord (true, CEPoint (nPos, nLine), CEPoint (nEndChar, nEndLine),
+                     pszText, cchText, nAction, paSavedRevisionNumbers);
+  
+      if (bGroupFlag)
+        FlushUndoGroup (pSource);
     }
-
-  AddUndoRecord (true, CEPoint (nPos, nLine), CEPoint (nEndChar, nEndLine),
-                 pszText, cchText, nAction, paSavedRevisionNumbers);
-
-  if (bGroupFlag)
-    FlushUndoGroup (pSource);
 
   if (pSource)
     pSource->OnTextBufferChanged(true, CEPoint (nPos, nLine),
@@ -1796,11 +1797,12 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   if (!bHistory)
     {
       delete paSavedRevisionNumbers;
-      return true;
     }
-
-  AddUndoRecord (false, CEPoint (nStartChar, nStartLine), CEPoint (nEndChar, nEndLine),
-                 sTextToDelete.c_str (), sTextToDelete.length (), nAction, paSavedRevisionNumbers);
+  else
+    {
+      AddUndoRecord (false, CEPoint (nStartChar, nStartLine), CEPoint (nEndChar, nEndLine),
+                     sTextToDelete.c_str (), sTextToDelete.length (), nAction, paSavedRevisionNumbers);
+    }
 
   if (pSource)
     pSource->OnTextBufferChanged(false, CEPoint (nStartChar, nStartLine),
