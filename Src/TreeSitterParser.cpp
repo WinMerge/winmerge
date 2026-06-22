@@ -533,6 +533,9 @@ void CTreeSitterParser::EnsureParsed(int nLineIndex)
 	const int nStartLine = chunk * kCacheChunkSize;
 	const int nEndLine = (std::min)(m_nLineCount - 1, nStartLine + kCacheChunkSize - 1);
 
+	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
+		m_lineBlocks[i].clear();
+
 	RunHighlightQuery(nStartLine, nEndLine);
 	RunInjectionQuery(nStartLine, nEndLine);
 	BuildLineCache(nStartLine, nEndLine);
@@ -908,56 +911,20 @@ void CTreeSitterParser::RunLocalsQuery()
 	m_pendingRefs = std::move(references);
 }
 
-/**
- * @brief Run the highlight query against the parsed tree and collect token ranges.
- *
- * This produces per-line block arrays by walking all highlight query matches
- * and mapping tree-sitter byte positions to WinMerge character positions.
- *
- * If locals information is available, definition nodes get their highlights
- * recorded, and references are resolved to use the same highlight as their
- * matching definition.
- */
-void CTreeSitterParser::RunHighlightQuery(int nStartLine, int nEndLine)
+std::vector<HighlightCapture>
+CTreeSitterParser::CollectCaptures(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine)
 {
-	if (!m_pTree || !m_pLang || !m_pLang->GetHighlightQuery())
-		return;
-
-	const TSQuery* pQuery = m_pLang->GetHighlightQuery();
-	TSNode rootNode = ts_tree_root_node(m_pTree);
+	std::vector<HighlightCapture> captures;
 
 	TSQueryCursor* pCursor = ts_query_cursor_new();
 	if (!pCursor)
-		return;
-
-	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
-		m_lineBlocks[i].clear();
+		return captures;
 
 	ts_query_cursor_set_point_range(pCursor,
 		{ static_cast<uint32_t>(nStartLine), 0 },
 		{ static_cast<uint32_t>(nEndLine + 1), 0 });
 
 	ts_query_cursor_exec(pCursor, pQuery, rootNode);
-
-	// Temporary structure to collect all highlights
-	struct HighlightEntry
-	{
-		uint32_t startRow;
-		uint32_t startCol;
-		uint32_t endRow;
-		uint32_t endCol;
-		uint32_t startByte;
-		uint32_t endByte;
-		int colorIndex;
-		int priority;
-		uint32_t order;
-	};
-	std::vector<HighlightEntry> highlights;
-
-	// Map from (startByte, endByte) to colorIndex for definition resolution.
-	// Key: (startByte << 32 | endByte). This assumes files < 4GB and that
-	// nodes with identical byte ranges should share the same highlight.
-	std::unordered_map<uint64_t, int> nodeHighlightMap;
 
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor, &match))
@@ -971,208 +938,165 @@ void CTreeSitterParser::RunHighlightQuery(int nStartLine, int nEndLine)
 			const char* captureName = ts_query_capture_name_for_id(
 				pQuery, capture.index, &captureNameLen);
 
-			std::string sName(captureName, captureNameLen);
-			int colorIndex = m_colorMap.MapCapture(sName);
 
-			uint32_t nodeStartByte = ts_node_start_byte(node);
-			uint32_t nodeEndByte = ts_node_end_byte(node);
-			TSPoint startPoint = ts_node_start_point(node);
-			TSPoint endPoint = ts_node_end_point(node);
+			HighlightCapture c;
 
-			HighlightEntry entry;
-			entry.startRow = startPoint.row;
-			entry.startCol = startPoint.column;
-			entry.endRow = endPoint.row;
-			entry.endCol = endPoint.column;
-			entry.startByte = nodeStartByte;
-			entry.endByte = nodeEndByte;
-			entry.colorIndex = colorIndex;
-			entry.priority = MakeCapturePriority(sName, nodeStartByte, nodeEndByte);
-			entry.order = NextBlockOrder();
+			c.captureName.assign(captureName, captureNameLen);
 
-			highlights.push_back(entry);
+			c.startByte = ts_node_start_byte(node);
+			c.endByte = ts_node_end_byte(node);
 
-			// Record this node's highlight for locals resolution
-			uint64_t nodeKey = (static_cast<uint64_t>(nodeStartByte) << 32) |
-					           static_cast<uint64_t>(nodeEndByte);
-			nodeHighlightMap[nodeKey] = colorIndex;
+			TSPoint start = ts_node_start_point(node);
+			TSPoint end = ts_node_end_point(node);
+
+			c.startRow = start.row;
+			c.startCol = start.column;
+
+			c.endRow = end.row;
+			c.endCol = end.column;
+
+			c.colorIndex = m_colorMap.MapCapture(c.captureName);
+
+			captures.push_back(std::move(c));
 		}
 	}
 
 	ts_query_cursor_delete(pCursor);
 
-	// --- Locals resolution ---
-	// Now that we know the highlight for each node, assign highlights to
-	// definitions and resolve references.
-	if (!m_localScopes.empty())
+	return captures;
+}
+
+std::vector<HighlightEntry>
+CTreeSitterParser::BuildHighlightEntries(const std::vector<HighlightCapture>& captures)
+{
+	std::vector<HighlightEntry> entries;
+
+	entries.reserve(captures.size());
+
+	for (const auto& c : captures)
 	{
-		// Pass 1: Assign highlights to definitions based on their node's highlight
-		for (auto& scope : m_localScopes)
+		HighlightEntry entry;
+
+		entry.startByte = c.startByte;
+		entry.endByte = c.endByte;
+
+		entry.startRow = c.startRow;
+		entry.startCol = c.startCol;
+
+		entry.endRow = c.endRow;
+		entry.endCol = c.endCol;
+
+		entry.colorIndex = c.colorIndex;
+
+		entry.priority = MakeCapturePriority(c.captureName, c.startByte, c.endByte);
+
+		entry.order = NextBlockOrder();
+
+		entries.push_back(std::move(entry));
+	}
+
+	return entries;
+}
+
+void CTreeSitterParser::ResolveLocalReferences(std::vector<HighlightEntry>& highlights)
+{
+	if (m_localScopes.empty())
+		return;
+
+	std::unordered_map<uint64_t, int> nodeHighlightMap;
+
+	for (const auto& e : highlights)
+	{
+		uint64_t key = (static_cast<uint64_t>(e.startByte) << 32) | e.endByte;
+		nodeHighlightMap[key] = e.colorIndex;
+	}
+
+	// Pass 1: Assign highlights to definitions based on their node's highlight
+	for (auto& scope : m_localScopes)
+	{
+		for (auto& def : scope.defs)
 		{
-			for (auto& def : scope.defs)
-			{
-				uint64_t defKey = (static_cast<uint64_t>(def.startByte) << 32) |
-					              static_cast<uint64_t>(def.endByte);
-				auto it = nodeHighlightMap.find(defKey);
-				if (it != nodeHighlightMap.end())
-					def.highlight = it->second;
-			}
-		}
-
-		// Pass 2: Resolve references - find matching definition in enclosing scopes
-		for (const auto& ref : m_pendingRefs)
-		{
-			int resolvedHighlight = -1;
-
-			// Search scopes from innermost to outermost
-			// Find all scopes that contain this reference
-			std::vector<const LocalScope*> enclosingScopes;
-			for (const auto& scope : m_localScopes)
-			{
-				if (ref.startByte >= scope.startByte && ref.endByte <= scope.endByte)
-					enclosingScopes.push_back(&scope);
-			}
-
-			// Sort by size (smallest = innermost first)
-			std::sort(enclosingScopes.begin(), enclosingScopes.end(),
-				[](const LocalScope* a, const LocalScope* b)
-				{
-					return (a->endByte - a->startByte) < (b->endByte - b->startByte);
-				});
-
-			// Search for a matching definition
-			for (const auto* pScope : enclosingScopes)
-			{
-				for (const auto& def : pScope->defs)
-				{
-					// Match by name and ensure the definition appears before the reference
-					if (def.name == ref.name && def.startByte <= ref.startByte && def.highlight >= 0)
-					{
-					    resolvedHighlight = def.highlight;
-					    break;
-					}
-				}
-				if (resolvedHighlight >= 0)
-					break;
-				// If this scope doesn't inherit, stop searching
-				if (!pScope->inherits)
-					break;
-			}
-
-			if (resolvedHighlight >= 0)
-			{
-				uint64_t refKey = (static_cast<uint64_t>(ref.startByte) << 32) |
-					              static_cast<uint64_t>(ref.endByte);
-				m_localRefHighlights[refKey] = resolvedHighlight;
-			}
-		}
-
-		// Pass 3: Apply resolved reference highlights to the highlight entries
-		for (auto& h : highlights)
-		{
-			uint64_t key = (static_cast<uint64_t>(h.startByte) << 32) |
-					       static_cast<uint64_t>(h.endByte);
-			auto it = m_localRefHighlights.find(key);
-			if (it != m_localRefHighlights.end())
-				h.colorIndex = it->second;
+			uint64_t defKey = (static_cast<uint64_t>(def.startByte) << 32) |
+							  static_cast<uint64_t>(def.endByte);
+			auto it = nodeHighlightMap.find(defKey);
+			if (it != nodeHighlightMap.end())
+				def.highlight = it->second;
 		}
 	}
 
-	// Sort by start position (row, then column), then by priority (descending)
-	std::sort(highlights.begin(), highlights.end(),
-		[](const HighlightEntry& a, const HighlightEntry& b)
-		{
-			if (a.startRow != b.startRow)
-				return a.startRow < b.startRow;
-			if (a.startCol != b.startCol)
-				return a.startCol < b.startCol;
-			// Same position: higher priority first
-			return a.priority > b.priority;
-		});
-
-	// Remove duplicate highlights for the same range, keeping only the highest priority one
-	highlights.erase(
-		std::unique(highlights.begin(), highlights.end(),
-			[](const HighlightEntry& a, const HighlightEntry& b)
-			{
-				return a.startByte == b.startByte &&
-					a.endByte == b.endByte;
-			}),
-		highlights.end());
-
-	for (const auto& h : highlights)
+	// Pass 2: Resolve references - find matching definition in enclosing scopes
+	for (const auto& ref : m_pendingRefs)
 	{
-		// Handle tokens that span multiple lines (e.g. multi-line strings/comments)
-		for (uint32_t row = h.startRow; row <= h.endRow && row < static_cast<uint32_t>(m_nLineCount); row++)
-		{
-			uint32_t byteCol = (row == h.startRow) ? h.startCol : 0;
-			int charPos = byteCol / sizeof(wchar_t);
+		int resolvedHighlight = -1;
 
-			TreeSitterLineBlock block;
-			block.nCharPos = charPos;
-			block.nColorIndex = h.colorIndex;
-			block.nPriority = h.priority;
-			block.nOrder = h.order;
-			m_lineBlocks[row].push_back(block);
+		// Search scopes from innermost to outermost
+		// Find all scopes that contain this reference
+		std::vector<const LocalScope*> enclosingScopes;
+		for (const auto& scope : m_localScopes)
+		{
+			if (ref.startByte >= scope.startByte && ref.endByte <= scope.endByte)
+				enclosingScopes.push_back(&scope);
 		}
 
-		// Emit a block at the end of the capture to restore normal color.
-		// This prevents the token's color from "bleeding" past its end.
-		if (h.endRow < static_cast<uint32_t>(m_nLineCount))
-		{
-			uint32_t endByteCol = h.endCol;
-			int endCharPos = endByteCol / sizeof(wchar_t);
+		// Sort by size (smallest = innermost first)
+		std::sort(enclosingScopes.begin(), enclosingScopes.end(),
+			[](const LocalScope* a, const LocalScope* b)
+			{
+				return (a->endByte - a->startByte) < (b->endByte - b->startByte);
+			});
 
-			TreeSitterLineBlock endBlock;
-			endBlock.nCharPos = endCharPos;
-			endBlock.nColorIndex = COLORINDEX_NORMALTEXT;
-			endBlock.nPriority = INT_MIN;
-			endBlock.nOrder = h.order;
-			m_lineBlocks[h.endRow].push_back(endBlock);
+		// Search for a matching definition
+		for (const auto* pScope : enclosingScopes)
+		{
+			for (const auto& def : pScope->defs)
+			{
+				// Match by name and ensure the definition appears before the reference
+				if (def.name == ref.name && def.startByte <= ref.startByte && def.highlight >= 0)
+				{
+					resolvedHighlight = def.highlight;
+					break;
+				}
+			}
+			if (resolvedHighlight >= 0)
+				break;
+			// If this scope doesn't inherit, stop searching
+			if (!pScope->inherits)
+				break;
 		}
+
+		if (resolvedHighlight >= 0)
+		{
+			uint64_t refKey = (static_cast<uint64_t>(ref.startByte) << 32) |
+				              static_cast<uint64_t>(ref.endByte);
+			m_localRefHighlights[refKey] = resolvedHighlight;
+		}
+	}
+
+	// Pass 3: Apply resolved reference highlights to the highlight entries
+	for (auto& h : highlights)
+	{
+		uint64_t key = (static_cast<uint64_t>(h.startByte) << 32) |
+				       static_cast<uint64_t>(h.endByte);
+		auto it = m_localRefHighlights.find(key);
+		if (it != m_localRefHighlights.end())
+			h.colorIndex = it->second;
 	}
 }
 
-/**
- * @brief Run the injection query to find embedded language regions.
- *
- * Processes injections.scm captures:
- *   @injection.content   - The node whose content should be parsed as another language
- *   @injection.language  - The node whose text specifies the language name
- *   (#set! injection.language "xxx") - Hard-coded language name
- *
- * For each injection region, this spawns a sub-parser with the appropriate
- * language grammar, runs highlights on the injected content, and merges
- * the results into the main highlight blocks.
- */
-void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
+std::vector<InjectionRegion>
+CTreeSitterParser::CollectInjectionRegions(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine)
 {
-	if (!m_pTree || !m_pLang || !m_pLang->GetInjectionQuery())
-		return;
-
-	const TSQuery* pQuery = m_pLang->GetInjectionQuery();
-	TSNode rootNode = ts_tree_root_node(m_pTree);
+	std::vector<InjectionRegion> injections;
 
 	TSQueryCursor* pCursor = ts_query_cursor_new();
 	if (!pCursor)
-		return;
+		return injections;
 
 	ts_query_cursor_set_point_range(pCursor,
 		{ static_cast<uint32_t>(nStartLine), 0 },
 		{ static_cast<uint32_t>(nEndLine + 1), 0 });
 
 	ts_query_cursor_exec(pCursor, pQuery, rootNode);
-
-	// Collect injection regions
-	struct InjectionRegion
-	{
-		std::string language;       // Target language name
-		uint32_t    contentStart;   // Byte offset in document
-		uint32_t    contentEnd;
-		TSPoint     startPoint;
-		TSPoint     endPoint;
-	};
-	std::vector<InjectionRegion> injections;
 
 	uint32_t totalBytes = GetTotalBytes();
 
@@ -1233,16 +1157,115 @@ void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 			region.language = language;
 			region.contentStart = ts_node_start_byte(contentNode);
 			region.contentEnd = ts_node_end_byte(contentNode);
-			region.startPoint = ts_node_start_point(contentNode);
-			region.endPoint = ts_node_end_point(contentNode);
+			TSPoint startPoint = ts_node_start_point(contentNode);
+			TSPoint endPoint = ts_node_end_point(contentNode);
+			region.startRow = startPoint.row;
+			region.startCol = startPoint.column;
+			region.endRow = endPoint.row;
+			region.endCol = endPoint.column;
 			injections.push_back(region);
 		}
 	}
 
 	ts_query_cursor_delete(pCursor);
 
+	return injections;
+}
+
+void CTreeSitterParser::TranslateCoordinates(std::vector<HighlightEntry>& entries, uint32_t injectionStartRow, uint32_t injectionStartCol)
+{
+	for (auto& e : entries)
+	{
+		e.startRow += injectionStartRow;
+		e.endRow += injectionStartRow;
+
+		if (e.startRow == injectionStartRow)
+			e.startCol += injectionStartCol;
+
+		if (e.endRow == injectionStartRow)
+			e.endCol += injectionStartCol;
+	}
+}
+
+void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entries)
+{
+	for (const auto& h : entries)
+	{
+		for (uint32_t row = h.startRow; row <= h.endRow && row < static_cast<uint32_t>(m_nLineCount); ++row)
+		{
+			uint32_t byteCol = (row == h.startRow) ? h.startCol : 0;
+
+			TreeSitterLineBlock block;
+			block.nCharPos = byteCol / sizeof(wchar_t);
+			block.nColorIndex = h.colorIndex;
+			block.nPriority = h.priority;
+			block.nOrder = h.order;
+
+			m_lineBlocks[row].push_back(block);
+		}
+
+		if (h.endRow < static_cast<uint32_t>(m_nLineCount))
+		{
+			TreeSitterLineBlock endBlock;
+
+			endBlock.nCharPos = h.endCol / sizeof(wchar_t);
+			endBlock.nColorIndex = COLORINDEX_NORMALTEXT;
+			endBlock.nPriority = INT_MIN;
+			endBlock.nOrder = h.order;
+
+			m_lineBlocks[h.endRow].push_back(endBlock);
+		}
+	}
+}
+
+/**
+ * @brief Run the highlight query against the parsed tree and collect token ranges.
+ *
+ * This produces per-line block arrays by walking all highlight query matches
+ * and mapping tree-sitter byte positions to WinMerge character positions.
+ *
+ * If locals information is available, definition nodes get their highlights
+ * recorded, and references are resolved to use the same highlight as their
+ * matching definition.
+ */
+void CTreeSitterParser::RunHighlightQuery(int nStartLine, int nEndLine)
+{
+	if (!m_pTree || !m_pLang || !m_pLang->GetHighlightQuery())
+		return;
+
+	const TSQuery* pQuery = m_pLang->GetHighlightQuery();
+	TSNode rootNode = ts_tree_root_node(m_pTree);
+	auto captures = CollectCaptures(rootNode, pQuery, nStartLine, nEndLine);
+	auto entries = BuildHighlightEntries(captures);
+	ResolveLocalReferences(entries);
+	EmitLineBlocks(entries);
+}
+
+/**
+ * @brief Run the injection query to find embedded language regions.
+ *
+ * Processes injections.scm captures:
+ *   @injection.content   - The node whose content should be parsed as another language
+ *   @injection.language  - The node whose text specifies the language name
+ *   (#set! injection.language "xxx") - Hard-coded language name
+ *
+ * For each injection region, this spawns a sub-parser with the appropriate
+ * language grammar, runs highlights on the injected content, and merges
+ * the results into the main highlight blocks.
+ */
+void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
+{
+	if (!m_pTree || !m_pLang || !m_pLang->GetInjectionQuery())
+		return;
+
+	const TSQuery* pQuery = m_pLang->GetInjectionQuery();
+	TSNode rootNode = ts_tree_root_node(m_pTree);
+
+	auto injections = CollectInjectionRegions(rootNode, pQuery, nStartLine, nEndLine);
 	if (injections.empty())
 		return;
+
+	uint32_t totalBytes = GetTotalBytes();
 
 	// Process each injection: look up the language, parse the content, run highlights
 	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
@@ -1300,65 +1323,11 @@ void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 			// Run highlight query on the injected tree
 			const TSQuery* pInjQuery = pInjLang->GetHighlightQuery();
 			TSNode injRoot = ts_tree_root_node(pInjTree);
-			TSQueryCursor* pInjCursor = ts_query_cursor_new();
 
-			if (pInjCursor)
-			{
-				ts_query_cursor_exec(pInjCursor, pInjQuery, injRoot);
-
-				TSQueryMatch injMatch;
-				while (ts_query_cursor_next_match(pInjCursor, &injMatch))
-				{
-					for (uint16_t ci = 0; ci < injMatch.capture_count; ci++)
-					{
-						TSQueryCapture cap = injMatch.captures[ci];
-						TSNode capNode = cap.node;
-
-						uint32_t capNameLen = 0;
-						const char* capName = ts_query_capture_name_for_id(
-							pInjQuery, cap.index, &capNameLen);
-						std::string sCapName(capName, capNameLen);
-						int colorIndex = m_colorMap.MapCapture(sCapName);
-
-						// Map the injected node's position back to the parent document.
-						// The injection content starts at inj.startPoint in the parent doc.
-						TSPoint capStart = ts_node_start_point(capNode);
-						TSPoint capEnd = ts_node_end_point(capNode);
-
-						// Translate rows/columns to parent document coordinates.
-						// Since the injection content is a contiguous substring of
-						// m_documentText, continuation line columns in the sub-parse
-						// are already correct relative to the parent document lines.
-						// NOTE: This does NOT handle injection.combined (multiple
-						// disjoint ranges concatenated into one parse), but we don't
-						// support that feature currently.
-						uint32_t parentStartRow = inj.startPoint.row + capStart.row;
-						uint32_t parentEndRow = inj.startPoint.row + capEnd.row;
-						uint32_t parentStartCol = (capStart.row == 0)
-							? inj.startPoint.column + capStart.column
-							: capStart.column;
-
-						// Add to parent's line blocks
-						for (uint32_t row = parentStartRow;
-							 row <= parentEndRow && row < static_cast<uint32_t>(m_nLineCount);
-							 row++)
-						{
-							uint32_t byteCol = (row == parentStartRow) ? parentStartCol : 0;
-							int charPos = byteCol / sizeof(wchar_t);
-
-							TreeSitterLineBlock block;
-							block.nCharPos = charPos;
-							block.nColorIndex = colorIndex;
-							block.nPriority = MakeCapturePriority(sCapName,
-								ts_node_start_byte(capNode), ts_node_end_byte(capNode));
-							block.nOrder = NextBlockOrder();
-							m_lineBlocks[row].push_back(block);
-						}
-					}
-				}
-
-				ts_query_cursor_delete(pInjCursor);
-			}
+			auto captures = CollectCaptures(injRoot, pInjQuery, 0, INT_MAX);
+			auto entries = BuildHighlightEntries(captures);
+			TranslateCoordinates(entries, inj.startRow, inj.startCol);
+			EmitLineBlocks(entries);
 
 			ts_tree_delete(pInjTree);
 		}

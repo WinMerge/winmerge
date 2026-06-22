@@ -39,7 +39,55 @@ struct TSTree;
 struct TSQuery;
 struct TSLanguage;
 struct TSPoint;
+struct TSNode;
 struct CEPoint;
+
+struct HighlightCapture
+{
+	std::string captureName;
+
+	uint32_t startByte;
+	uint32_t endByte;
+
+	uint32_t startRow;
+	uint32_t startCol;
+
+	uint32_t endRow;
+	uint32_t endCol;
+
+	int colorIndex;
+};
+
+// Collect injection regions
+struct InjectionRegion
+{
+	std::string language;       // Target language name
+	uint32_t contentStart;   // Byte offset in document
+	uint32_t contentEnd;
+
+	uint32_t startRow;
+	uint32_t startCol;
+
+	uint32_t endRow;
+	uint32_t endCol;
+};
+
+// Temporary structure to collect all highlights
+struct HighlightEntry
+{
+	uint32_t startByte;
+	uint32_t endByte;
+
+	uint32_t startRow;
+	uint32_t startCol;
+
+	uint32_t endRow;
+	uint32_t endCol;
+
+	int colorIndex;
+	int priority;
+	uint32_t order;
+};
 
 /**
  * @brief Manages a tree-sitter grammar loaded from a DLL.
@@ -217,6 +265,12 @@ public:
 
 private:
 	void EnsureParser();
+	std::vector<HighlightCapture> CollectCaptures(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine);
+	std::vector<InjectionRegion> CollectInjectionRegions(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine);
+	std::vector<HighlightEntry> BuildHighlightEntries(const std::vector<HighlightCapture>& captures);
+	void ResolveLocalReferences(std::vector<HighlightEntry>& entries);
+	void TranslateCoordinates(std::vector<HighlightEntry>& entries, uint32_t injectionStartRow, uint32_t injectStartCol);
+	void EmitLineBlocks(const std::vector<HighlightEntry>& entries);
 	void RunHighlightQuery(int nStartLine, int nEndLine);
 	void RunLocalsQuery();
 	void RunTagsQuery();
