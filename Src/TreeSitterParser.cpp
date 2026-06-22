@@ -50,6 +50,17 @@ int MakeCapturePriority(const std::string& captureName, uint32_t startByte, uint
 	const int spanScore = 100000 - static_cast<int>(std::min<uint32_t>(span, 100000));
 	return specificityScore + spanScore;
 }
+
+struct TSQueryCursorDeleter {
+	void operator()(TSQueryCursor* p) const { ts_query_cursor_delete(p); }
+};
+using UniqueTSQueryCursor = std::unique_ptr<TSQueryCursor, TSQueryCursorDeleter>;
+
+static constexpr uint64_t MakeByteRangeKey(uint32_t startByte, uint32_t endByte)
+{
+	return (static_cast<uint64_t>(startByte) << 32) | endByte;
+}
+
 }
 
 // ============================================================================
@@ -626,6 +637,39 @@ uint32_t CTreeSitterParser::GetTotalBytes() const
 	return 0;
 }
 
+std::vector<const CTreeSitterParser::LocalScope*>
+CTreeSitterParser::FindEnclosingScopes(const std::vector<LocalScope>& localScopes, uint32_t startByte, uint32_t endByte)
+{
+	std::vector<const LocalScope*> result;
+	for (const auto& scope : localScopes)
+	{
+		if (startByte >= scope.startByte && endByte <= scope.endByte)
+			result.push_back(&scope);
+	}
+	std::sort(result.begin(), result.end(),
+		[](const LocalScope* a, const LocalScope* b)
+		{
+			return (a->endByte - a->startByte) < (b->endByte - b->startByte);
+		});
+	return result;
+}
+
+const CTreeSitterParser::LocalDef*
+CTreeSitterParser::FindDefinitionInScopes(const std::wstring& name, uint32_t refStartByte, const std::vector<const LocalScope*>& enclosingScopes)
+{
+	for (const auto* pScope : enclosingScopes)
+	{
+		for (const auto& def : pScope->defs)
+		{
+			if (def.name == name && def.startByte <= refStartByte)
+				return &def;
+		}
+		if (!pScope->inherits)
+			break;
+	}
+	return nullptr;
+}
+
 /**
  * @brief Extract a #set! predicate property value from a query pattern.
  *
@@ -698,16 +742,16 @@ void CTreeSitterParser::RunTagsQuery()
 	const TSQuery* pQuery = m_pLang->GetTagsQuery();
 	TSNode rootNode = ts_tree_root_node(m_pTree);
 
-	TSQueryCursor* pCursor = ts_query_cursor_new();
+	UniqueTSQueryCursor pCursor(ts_query_cursor_new());
 	if (!pCursor)
 		return;
 
-	ts_query_cursor_exec(pCursor, pQuery, rootNode);
+	ts_query_cursor_exec(pCursor.get(), pQuery, rootNode);
 
 	uint32_t totalBytes = GetTotalBytes();
 
 	TSQueryMatch match;
-	while (ts_query_cursor_next_match(pCursor, &match))
+	while (ts_query_cursor_next_match(pCursor.get(), &match))
 	{
 		std::wstring name;
 		uint32_t nameStart = 0;
@@ -784,8 +828,6 @@ void CTreeSitterParser::RunTagsQuery()
 		}
 	}
 
-	ts_query_cursor_delete(pCursor);
-
 	m_bTagsQueried = true;
 }
 
@@ -811,18 +853,18 @@ void CTreeSitterParser::RunLocalsQuery()
 	const TSQuery* pQuery = m_pLang->GetLocalsQuery();
 	TSNode rootNode = ts_tree_root_node(m_pTree);
 
-	TSQueryCursor* pCursor = ts_query_cursor_new();
+	UniqueTSQueryCursor pCursor(ts_query_cursor_new());
 	if (!pCursor)
 		return;
 
-	ts_query_cursor_exec(pCursor, pQuery, rootNode);
+	ts_query_cursor_exec(pCursor.get(), pQuery, rootNode);
 
 	// Temporary storage for references (resolved after all defs are collected)
 	std::vector<PendingRef> references;
 	uint32_t totalBytes = GetTotalBytes();
 
 	TSQueryMatch match;
-	while (ts_query_cursor_next_match(pCursor, &match))
+	while (ts_query_cursor_next_match(pCursor.get(), &match))
 	{
 		for (uint16_t i = 0; i < match.capture_count; i++)
 		{
@@ -897,8 +939,6 @@ void CTreeSitterParser::RunLocalsQuery()
 		}
 	}
 
-	ts_query_cursor_delete(pCursor);
-
 	// Sort scopes by start byte, then by size (smallest/innermost first for lookup)
 	std::sort(m_localScopes.begin(), m_localScopes.end(),
 		[](const LocalScope& a, const LocalScope& b)
@@ -911,23 +951,23 @@ void CTreeSitterParser::RunLocalsQuery()
 	m_pendingRefs = std::move(references);
 }
 
-std::vector<HighlightCapture>
+std::vector<CTreeSitterParser::HighlightCapture>
 CTreeSitterParser::CollectCaptures(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine)
 {
 	std::vector<HighlightCapture> captures;
 
-	TSQueryCursor* pCursor = ts_query_cursor_new();
+	UniqueTSQueryCursor pCursor(ts_query_cursor_new());
 	if (!pCursor)
 		return captures;
 
-	ts_query_cursor_set_point_range(pCursor,
+	ts_query_cursor_set_point_range(pCursor.get(),
 		{ static_cast<uint32_t>(nStartLine), 0 },
 		{ static_cast<uint32_t>(nEndLine + 1), 0 });
 
-	ts_query_cursor_exec(pCursor, pQuery, rootNode);
+	ts_query_cursor_exec(pCursor.get(), pQuery, rootNode);
 
 	TSQueryMatch match;
-	while (ts_query_cursor_next_match(pCursor, &match))
+	while (ts_query_cursor_next_match(pCursor.get(), &match))
 	{
 		for (uint16_t i = 0; i < match.capture_count; i++)
 		{
@@ -961,12 +1001,10 @@ CTreeSitterParser::CollectCaptures(TSNode& rootNode, const TSQuery* pQuery, int 
 		}
 	}
 
-	ts_query_cursor_delete(pCursor);
-
 	return captures;
 }
 
-std::vector<HighlightEntry>
+std::vector<CTreeSitterParser::HighlightEntry>
 CTreeSitterParser::BuildHighlightEntries(const std::vector<HighlightCapture>& captures)
 {
 	std::vector<HighlightEntry> entries;
@@ -1007,7 +1045,7 @@ void CTreeSitterParser::ResolveLocalReferences(std::vector<HighlightEntry>& high
 
 	for (const auto& e : highlights)
 	{
-		uint64_t key = (static_cast<uint64_t>(e.startByte) << 32) | e.endByte;
+		uint64_t key = MakeByteRangeKey(e.startByte, e.endByte);
 		nodeHighlightMap[key] = e.colorIndex;
 	}
 
@@ -1016,8 +1054,7 @@ void CTreeSitterParser::ResolveLocalReferences(std::vector<HighlightEntry>& high
 	{
 		for (auto& def : scope.defs)
 		{
-			uint64_t defKey = (static_cast<uint64_t>(def.startByte) << 32) |
-							  static_cast<uint64_t>(def.endByte);
+			uint64_t defKey = MakeByteRangeKey(def.startByte, def.endByte);
 			auto it = nodeHighlightMap.find(defKey);
 			if (it != nodeHighlightMap.end())
 				def.highlight = it->second;
@@ -1027,81 +1064,45 @@ void CTreeSitterParser::ResolveLocalReferences(std::vector<HighlightEntry>& high
 	// Pass 2: Resolve references - find matching definition in enclosing scopes
 	for (const auto& ref : m_pendingRefs)
 	{
-		int resolvedHighlight = -1;
-
 		// Search scopes from innermost to outermost
 		// Find all scopes that contain this reference
-		std::vector<const LocalScope*> enclosingScopes;
-		for (const auto& scope : m_localScopes)
-		{
-			if (ref.startByte >= scope.startByte && ref.endByte <= scope.endByte)
-				enclosingScopes.push_back(&scope);
-		}
-
-		// Sort by size (smallest = innermost first)
-		std::sort(enclosingScopes.begin(), enclosingScopes.end(),
-			[](const LocalScope* a, const LocalScope* b)
-			{
-				return (a->endByte - a->startByte) < (b->endByte - b->startByte);
-			});
+		auto enclosingScopes = FindEnclosingScopes(m_localScopes, ref.startByte, ref.endByte);
 
 		// Search for a matching definition
-		for (const auto* pScope : enclosingScopes)
-		{
-			for (const auto& def : pScope->defs)
-			{
-				// Match by name and ensure the definition appears before the reference
-				if (def.name == ref.name && def.startByte <= ref.startByte && def.highlight >= 0)
-				{
-					resolvedHighlight = def.highlight;
-					break;
-				}
-			}
-			if (resolvedHighlight >= 0)
-				break;
-			// If this scope doesn't inherit, stop searching
-			if (!pScope->inherits)
-				break;
-		}
-
-		if (resolvedHighlight >= 0)
-		{
-			uint64_t refKey = (static_cast<uint64_t>(ref.startByte) << 32) |
-				              static_cast<uint64_t>(ref.endByte);
-			m_localRefHighlights[refKey] = resolvedHighlight;
-		}
+		const LocalDef* pDef = FindDefinitionInScopes(ref.name, ref.startByte, enclosingScopes);
+		if (pDef && pDef->highlight >= 0)
+			m_localRefHighlights[MakeByteRangeKey(ref.startByte, ref.endByte)] = pDef->highlight;
 	}
 
 	// Pass 3: Apply resolved reference highlights to the highlight entries
 	for (auto& h : highlights)
 	{
-		uint64_t key = (static_cast<uint64_t>(h.startByte) << 32) |
-				       static_cast<uint64_t>(h.endByte);
+		uint64_t key = MakeByteRangeKey(h.startByte, h.endByte);
 		auto it = m_localRefHighlights.find(key);
 		if (it != m_localRefHighlights.end())
 			h.colorIndex = it->second;
 	}
 }
 
-std::vector<InjectionRegion>
+std::vector<CTreeSitterParser::InjectionRegion>
 CTreeSitterParser::CollectInjectionRegions(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine)
 {
 	std::vector<InjectionRegion> injections;
 
-	TSQueryCursor* pCursor = ts_query_cursor_new();
+	UniqueTSQueryCursor pCursor(ts_query_cursor_new());
 	if (!pCursor)
 		return injections;
 
-	ts_query_cursor_set_point_range(pCursor,
+	ts_query_cursor_set_point_range(pCursor.get(),
 		{ static_cast<uint32_t>(nStartLine), 0 },
 		{ static_cast<uint32_t>(nEndLine + 1), 0 });
 
-	ts_query_cursor_exec(pCursor, pQuery, rootNode);
+	ts_query_cursor_exec(pCursor.get(), pQuery, rootNode);
 
 	uint32_t totalBytes = GetTotalBytes();
 
 	TSQueryMatch match;
-	while (ts_query_cursor_next_match(pCursor, &match))
+	while (ts_query_cursor_next_match(pCursor.get(), &match))
 	{
 		std::string language;
 		TSNode contentNode = {};
@@ -1117,9 +1118,7 @@ CTreeSitterParser::CollectInjectionRegions(TSNode& rootNode, const TSQuery* pQue
 			if (!selfVal.empty())
 			{
 				// Use the current language
-				const std::wstring& wname = m_pLang->GetName();
-				for (wchar_t ch : wname)
-					language += static_cast<char>(ch);  // ASCII only
+				language = ucr::toUTF8(m_pLang->GetName());
 			}
 		}
 
@@ -1143,11 +1142,7 @@ CTreeSitterParser::CollectInjectionRegions(TSNode& rootNode, const TSQuery* pQue
 				uint32_t start = ts_node_start_byte(capture.node);
 				uint32_t end = ts_node_end_byte(capture.node);
 				if (start < totalBytes && end <= totalBytes)
-				{
-					std::wstring wLang = GetUtf16Text(start, end);
-					for (wchar_t ch : wLang)
-						language += static_cast<char>(ch);
-				}
+					language = ucr::toUTF8(GetUtf16Text(start, end));
 			}
 		}
 
@@ -1166,8 +1161,6 @@ CTreeSitterParser::CollectInjectionRegions(TSNode& rootNode, const TSQuery* pQue
 			injections.push_back(region);
 		}
 	}
-
-	ts_query_cursor_delete(pCursor);
 
 	return injections;
 }
@@ -1664,32 +1657,14 @@ bool CTreeSitterParser::TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_
 		if (byteOffset < ref.startByte || byteOffset >= ref.endByte)
 			continue;
 
-		std::vector<const LocalScope*> enclosingScopes;
-		for (const auto& scope : m_localScopes)
-		{
-			if (ref.startByte >= scope.startByte && ref.endByte <= scope.endByte)
-				enclosingScopes.push_back(&scope);
-		}
+		auto enclosingScopes = FindEnclosingScopes(m_localScopes, ref.startByte, ref.endByte);
 
-		std::sort(enclosingScopes.begin(), enclosingScopes.end(),
-			[](const LocalScope* a, const LocalScope* b)
-			{
-				return (a->endByte - a->startByte) < (b->endByte - b->startByte);
-			});
-
-		for (const auto* pScope : enclosingScopes)
+		const LocalDef* pDef = FindDefinitionInScopes(ref.name, ref.startByte, enclosingScopes);
+		if (pDef)
 		{
-			for (const auto& def : pScope->defs)
-			{
-				if (def.name == ref.name && def.startByte <= ref.startByte)
-				{
-					defStartByte = def.startByte;
-					defEndByte = def.endByte;
-					return true;
-				}
-			}
-			if (!pScope->inherits)
-				break;
+			defStartByte = pDef->startByte;
+			defEndByte = pDef->endByte;
+			return true;
 		}
 
 		return false;

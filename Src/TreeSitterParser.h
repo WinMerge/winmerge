@@ -43,53 +43,6 @@ struct TSPoint;
 struct TSNode;
 struct CEPoint;
 
-struct HighlightCapture
-{
-	std::string captureName;
-
-	uint32_t startByte;
-	uint32_t endByte;
-
-	uint32_t startRow;
-	uint32_t startCol;
-
-	uint32_t endRow;
-	uint32_t endCol;
-
-	int colorIndex;
-};
-
-// Collect injection regions
-struct InjectionRegion
-{
-	std::string language;       // Target language name
-	uint32_t contentStart;   // Byte offset in document
-	uint32_t contentEnd;
-
-	uint32_t startRow;
-	uint32_t startCol;
-
-	uint32_t endRow;
-	uint32_t endCol;
-};
-
-// Temporary structure to collect all highlights
-struct HighlightEntry
-{
-	uint32_t startByte;
-	uint32_t endByte;
-
-	uint32_t startRow;
-	uint32_t startCol;
-
-	uint32_t endRow;
-	uint32_t endCol;
-
-	int colorIndex;
-	int priority;
-	uint32_t order;
-};
-
 /**
  * @brief Manages a tree-sitter grammar loaded from a DLL.
  *
@@ -202,14 +155,6 @@ struct TreeSitterLineBlock
  *
  * Override ParseLine() in the view to call this parser's GetLineBlocks().
  */
-/**
- * @brief Maximum number of lines for which tree-sitter highlighting is enabled.
- *
- * Files with more lines than this threshold will fall back to plain-text
- * display to avoid the cost of parsing a huge document on every paint.
- */
-static constexpr int kMaxLinesForHighlight = 65536;
-
 class CTreeSitterParser : public LangServices::ISyntaxParser
 {
 public:
@@ -235,20 +180,6 @@ public:
 	 */
 	void SetLanguage(const CTreeSitterLanguage* pLang);
 
-	/**
-	 * @brief Parse (or re-parse) the full document.
-	 */
-	void ParseDocument();
-
-	/**
-	 * @brief Ensure the document is parsed and cache is up-to-date.
-	 *
-	 * Called lazily from ParseLine. Only reparses if marked dirty.
-	 */
-	void EnsureParsed(int nLineIndex = 0);
-
-	void EnsureTagsQueried();
-
 	/** @brief Check if a language is set. */
 	bool HasLanguage() const { return m_pLang != nullptr; }
 
@@ -266,10 +197,84 @@ public:
 	bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
 
 private:
+	static constexpr int kMaxLinesForHighlight = 65536;
+	static constexpr int kCacheChunkSize = 300;
+
+	struct HighlightCapture
+	{
+		std::string captureName;
+
+		uint32_t startByte;
+		uint32_t endByte;
+
+		uint32_t startRow;
+		uint32_t startCol;
+
+		uint32_t endRow;
+		uint32_t endCol;
+
+		int colorIndex;
+	};
+
+	// Collect injection regions
+	struct InjectionRegion
+	{
+		std::string language;       // Target language name
+		uint32_t contentStart;   // Byte offset in document
+		uint32_t contentEnd;
+
+		uint32_t startRow;
+		uint32_t startCol;
+
+		uint32_t endRow;
+		uint32_t endCol;
+	};
+
+	// Temporary structure to collect all highlights
+	struct HighlightEntry
+	{
+		uint32_t startByte;
+		uint32_t endByte;
+
+		uint32_t startRow;
+		uint32_t startCol;
+
+		uint32_t endRow;
+		uint32_t endCol;
+
+		int colorIndex;
+		int priority;
+		uint32_t order;
+	};
+
+	// --- Locals support ---
+	// Maps (startByte, endByte) of definition nodes to their highlight color.
+	// Built by RunLocalsQuery + RunHighlightQuery cross-referencing.
+	struct LocalDef
+	{
+		std::wstring name;      // Variable/symbol name
+		uint32_t    startByte;  // Definition node start
+		uint32_t    endByte;    // Definition node end
+		int         highlight;  // COLORINDEX from highlights.scm (-1 = unknown)
+	};
+
+	struct LocalScope
+	{
+		uint32_t startByte;
+		uint32_t endByte;
+		bool     inherits;
+		std::vector<LocalDef> defs;
+	};
+
+	void EnsureParsed(int nLineIndex = 0);
+	void EnsureTagsQueried();
 	void EnsureParser();
+	void ParseDocument();
 	std::vector<HighlightCapture> CollectCaptures(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine);
 	std::vector<InjectionRegion> CollectInjectionRegions(TSNode& rootNode, const TSQuery* pQuery, int nStartLine, int nEndLine);
 	std::vector<HighlightEntry> BuildHighlightEntries(const std::vector<HighlightCapture>& captures);
+	static std::vector<const LocalScope*> FindEnclosingScopes(const std::vector<LocalScope>& localScopes, uint32_t startByte, uint32_t endByte);
+	static const LocalDef* FindDefinitionInScopes(const std::wstring& name, uint32_t refStartByte, const std::vector<const LocalScope*>& enclosingScopes);
 	void ResolveLocalReferences(std::vector<HighlightEntry>& entries);
 	void TranslateCoordinates(std::vector<HighlightEntry>& entries, uint32_t injectionStartRow, uint32_t injectStartCol);
 	void EmitLineBlocks(const std::vector<HighlightEntry>& entries, int layerPriority);
@@ -312,28 +317,8 @@ private:
 
 	// Cached per-line highlight blocks
 	std::vector<std::vector<TreeSitterLineBlock>> m_lineBlocks;
-	static constexpr int kCacheChunkSize = 300;
 	std::vector<bool> m_cachedChunks;
 	std::vector<uint32_t> m_lineStartBytes;
-
-	// --- Locals support ---
-	// Maps (startByte, endByte) of definition nodes to their highlight color.
-	// Built by RunLocalsQuery + RunHighlightQuery cross-referencing.
-	struct LocalDef
-	{
-		std::wstring name;      // Variable/symbol name
-		uint32_t    startByte;  // Definition node start
-		uint32_t    endByte;    // Definition node end
-		int         highlight;  // COLORINDEX from highlights.scm (-1 = unknown)
-	};
-
-	struct LocalScope
-	{
-		uint32_t startByte;
-		uint32_t endByte;
-		bool     inherits;
-		std::vector<LocalDef> defs;
-	};
 
 	// Scopes from locals.scm, sorted by startByte
 	std::vector<LocalScope> m_localScopes;

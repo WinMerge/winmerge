@@ -3318,9 +3318,6 @@ void CMergeEditView::GotoTreeSitterDefinition()
 	if (!pParser || !pParser->HasLanguage())
 		return;
 
-	CMergeDoc* pDoc = GetDocument();
-	pParser->EnsureParsed();
-
 	const CEPoint pos = GetCursorPos();
 	int nDefLine = 0;
 	int nDefChar = 0;
@@ -3341,9 +3338,6 @@ void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 		return;
 	}
-
-	CMergeDoc* pDoc = GetDocument();
-	pParser->EnsureParsed();
 
 	const CEPoint pos = GetCursorPos();
 	int nDefLine = 0;
