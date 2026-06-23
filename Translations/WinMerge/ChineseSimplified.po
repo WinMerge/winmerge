@@ -5227,8 +5227,20 @@ msgstr "项目文件已保存。"
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4436
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"该项目文件包含带有自定义参数的插件：\n"
+"\n"
+"%1\n"
+"这些参数可能会影响插件的行为，或执行外部程序。\n"
+"\n"
+"您要打开此项目文件吗？"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4442
