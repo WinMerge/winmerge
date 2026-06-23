@@ -1188,6 +1188,9 @@ void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entrie
 	{
 		for (uint32_t row = h.startRow; row <= h.endRow && row < static_cast<uint32_t>(m_nLineCount); ++row)
 		{
+			if (row == h.endRow && h.endCol == 0)
+				break;
+
 			uint32_t byteCol = (row == h.startRow) ? h.startCol : 0;
 
 			TreeSitterLineBlock block;
