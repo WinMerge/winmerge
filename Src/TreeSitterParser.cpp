@@ -51,6 +51,22 @@ int MakeCapturePriority(const std::string& captureName, uint32_t startByte, uint
 	return specificityScore + spanScore;
 }
 
+int GetColorPriority(int colorIndex)
+{
+	switch (colorIndex)
+	{
+	case COLORINDEX_FUNCNAME:     return 100;
+	case COLORINDEX_USER1:        return 90;
+	case COLORINDEX_KEYWORD:      return 80;
+	case COLORINDEX_USER2:        return 70;
+	case COLORINDEX_STRING:       return 60;
+	case COLORINDEX_NUMBER:       return 50;
+	case COLORINDEX_OPERATOR:     return 40;
+	case COLORINDEX_COMMENT:      return 30;
+	default:                      return 0;
+	}
+}
+
 struct TSQueryCursorDeleter {
 	void operator()(TSQueryCursor* p) const { ts_query_cursor_delete(p); }
 };
@@ -1348,8 +1364,15 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 					return a.nCharPos < b.nCharPos;
 				if (a.nLayerPriority != b.nLayerPriority)
 					return a.nLayerPriority < b.nLayerPriority;
+
+				const int aColorPrio = GetColorPriority(a.nColorIndex);
+				const int bColorPrio = GetColorPriority(b.nColorIndex);
+				if (aColorPrio != bColorPrio)
+					return aColorPrio < bColorPrio;
+
 				if (a.nPriority != b.nPriority)
 					return a.nPriority < b.nPriority;
+
 				// Descending order: higher order (later pattern in highlights.scm)
 				// sorts first, so the lower order (earlier/more specific pattern)
 				// ends up last and is kept by the dedup step below.
