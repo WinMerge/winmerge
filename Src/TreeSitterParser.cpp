@@ -470,6 +470,8 @@ void CTreeSitterParser::ParseDocument()
 	TSTree* pOldTree = m_pTree;
 	if (m_nLineCount < kMaxLinesForHighlight)
 		m_pTree = ts_parser_parse(m_pParser, pOldTree, input);
+	else
+		m_pTree = nullptr;
 
 	if (pOldTree)
 		ts_tree_delete(pOldTree);
@@ -1345,7 +1347,10 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 					return a.nLayerPriority < b.nLayerPriority;
 				if (a.nPriority != b.nPriority)
 					return a.nPriority < b.nPriority;
-				return a.nOrder < b.nOrder;
+				// Descending order: higher order (later pattern in highlights.scm)
+				// sorts first, so the lower order (earlier/more specific pattern)
+				// ends up last and is kept by the dedup step below.
+				return a.nOrder > b.nOrder;
 			});
 
 		// Remove consecutive entries at the same position (keep the last one,
