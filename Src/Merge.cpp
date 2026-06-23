@@ -501,27 +501,30 @@ BOOL CMergeApp::InitInstance()
 
 void CMergeApp::InitSyntaxParserFactories()
 {
-	std::vector<LangServices::ISyntaxParserFactory*> factories = { &CrystalLineSyntaxParserFactory::GetInstance(), &TreeSitterSyntaxParserFactory::GetInstance() };
-	for (auto& factory : factories)
-		LangServices::SyntaxParserRegistry::GetInstance().UnregisterFactory(factory);
-	std::vector<LangServices::ISyntaxParserFactory*> factoriesNew;
-	switch (GetOptionsMgr()->GetInt(OPT_TREE_SITTER_MODE))
-	{
-	case 0: // Disable Tree-sitter
-		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
-		break;
-	case 1: // Prefer Tree-sitter
-		factoriesNew.push_back(&TreeSitterSyntaxParserFactory::GetInstance());
-		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
-		break;
-	case 2: // Prefer Built-in
-	default:
-		factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
-		factoriesNew.push_back(&TreeSitterSyntaxParserFactory::GetInstance());
-		break;
-	}
-	for (auto& factory: factoriesNew)
-		LangServices::SyntaxParserRegistry::GetInstance().RegisterFactory(factory);
+	using namespace LangServices;
+
+	auto& registry = SyntaxParserRegistry::GetInstance();
+
+	auto& crystal = CrystalLineSyntaxParserFactory::GetInstance();
+	auto& treeSitter = TreeSitterSyntaxParserFactory::GetInstance();
+
+	const std::array<ISyntaxParserFactory*, 2> allFactories{ &crystal, &treeSitter };
+	for (auto* factory : allFactories)
+		registry.UnregisterFactory(factory);
+
+	static const std::array<std::vector<ISyntaxParserFactory*>, 4> modes{
+		std::vector<ISyntaxParserFactory*>{ &crystal },                 // Built-in only
+		std::vector<ISyntaxParserFactory*>{ &crystal,& treeSitter },    // Built-in first
+		std::vector<ISyntaxParserFactory*>{ &treeSitter,& crystal },    // Tree-sitter first
+		std::vector<ISyntaxParserFactory*>{ &treeSitter }               // Tree-sitter only
+	};
+
+	int mode = GetOptionsMgr()->GetInt(OPT_SYNTAX_HIGHLIGHT_MODE);
+	if (mode < 0 || mode >= static_cast<int>(modes.size()))
+		mode = 3;
+
+	for (auto* factory : modes[mode])
+		registry.RegisterFactory(factory);
 }
 
 void CMergeApp::OutputConsole(const String& message)

@@ -2208,6 +2208,43 @@ beta	release</screen>
           </para>
         </listitem>
       </itemizedlist>
+
+      <para>
+        <option>Highlight mode</option> determines which syntax parser is
+        used for syntax highlighting.
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+            <option>Built-in only</option>: Use only WinMerge's built-in
+            syntax parser.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Built-in first</option>: Prefer the built-in syntax
+            parser. If it does not support the current file type,
+            Tree-sitter is used.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Tree-sitter first</option>: Prefer Tree-sitter. If
+            Tree-sitter does not support the current file type, the built-in
+            syntax parser is used.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Tree-sitter only</option>: Use only Tree-sitter for
+            syntax highlighting.
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
