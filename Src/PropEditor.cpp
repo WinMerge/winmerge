@@ -85,7 +85,7 @@ BOOL PropEditor::OnInitDialog()
 void PropEditor::LoadComboBoxStrings()
 {
 	SetDlgItemComboBoxList(IDC_HILITE_SYNTAX_MODE,
-		{ _("Built-in only"), _("Built-in first"), _("Tree-sitter first"), _T("Tree-sitter only")});
+		{ _("Built-in only"), _("Built-in first"), _("Tree-sitter first"), _("Tree-sitter only")});
 	SetDlgItemComboBoxList(IDC_RENDERING_MODE,
 		{ _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") });
 }
