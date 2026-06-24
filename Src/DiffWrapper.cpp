@@ -371,31 +371,38 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	
 	std::string lineDataLeft, lineDataRight;
 	std::vector<bool> allTextIsCommentLeft(qtyLinesLeft), allTextIsCommentRight(qtyLinesRight);
+	bool doFilterComments = m_options.m_filterCommentsLines && m_pFilterCommentsDef != nullptr;
 
-	if (m_options.m_filterCommentsLines && m_pFilterCommentsDef != nullptr)
+	if (doFilterComments)
 	{
-		if (ctxt.m_pSyntaxParser[0] == nullptr)
+		if (!ctxt.m_bSyntaxParserInitialized[0])
 		{
 			ctxt.m_pSyntaxParser[0] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(m_pFilterCommentsDef->type);
 			ctxt.m_pTextBuffer[0] = CreateTextBuffer(file_data_ary[0]);
 			if (ctxt.m_pSyntaxParser[0] && ctxt.m_pTextBuffer[0])
 				ctxt.m_pSyntaxParser[0]->SetTextBuffer(ctxt.m_pTextBuffer[0].get());
+			ctxt.m_bSyntaxParserInitialized[0] = true;
 		}
-		if (ctxt.m_pSyntaxParser[1] == nullptr)
+		if (!ctxt.m_bSyntaxParserInitialized[1])
 		{
 			ctxt.m_pSyntaxParser[1] = LangServices::SyntaxParserRegistry::GetInstance().CreateParser(m_pFilterCommentsDef->type);
 			ctxt.m_pTextBuffer[1] = CreateTextBuffer(file_data_ary[1]);
 			if (ctxt.m_pSyntaxParser[1] && ctxt.m_pTextBuffer[1])
 				ctxt.m_pSyntaxParser[1]->SetTextBuffer(ctxt.m_pTextBuffer[1].get());
+			ctxt.m_bSyntaxParserInitialized[1] = true;
 		}
-		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
-		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;
+	}
+
+	if (doFilterComments && ctxt.m_pSyntaxParser[0] && ctxt.m_pSyntaxParser[1])
+	{
+		int nLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
+		int nLineEndRight = lineNumberRight + qtyLinesRight - 1;
 
 		// Use SyntaxParserHelper for unified comment filtering
 		lineDataLeft = SyntaxParserHelper::GetCommentsFilteredText(
-			ctxt.m_pSyntaxParser[0].get(), lineNumberLeft, ctxt.nParsedLineEndLeft, allTextIsCommentLeft); 
+			ctxt.m_pSyntaxParser[0].get(), lineNumberLeft, nLineEndLeft, allTextIsCommentLeft); 
 		lineDataRight = SyntaxParserHelper::GetCommentsFilteredText(
-			ctxt.m_pSyntaxParser[1].get(), lineNumberRight, ctxt.nParsedLineEndRight, allTextIsCommentRight);
+			ctxt.m_pSyntaxParser[1].get(), lineNumberRight, nLineEndRight, allTextIsCommentRight);
 	}
 	else
 	{
