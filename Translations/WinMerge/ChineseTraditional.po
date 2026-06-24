@@ -1,4 +1,3 @@
-# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -11,16 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-01-25 13:30+0000\n"
-"PO-Revision-Date: 2026-04-10 08:35+0900\n"
-"Last-Translator: 昇\n"
-"Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2026-06-02 21:26+0000\n"
+"PO-Revision-Date: 2026-06-22 14:35+0800\n"
+"Last-Translator: 昇 <love80312@gmai.com>\n"
+"Language-Team: ChineseTraditional <winmerge-"
+"translate@lists.sourceforge.net>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:26 Merge.rc:59 Merge.rc:5761
@@ -115,12 +115,12 @@ msgstr "選取行內差異 (&D)\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "新增至篩選器 (&F)"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "新增至顯示篩選器 (&L)"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -160,7 +160,7 @@ msgstr "貼上 (&P)"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:125 Merge.rc:896 Merge.rc:903
 msgid "&Scripts"
-msgstr "隨譯即行碼 (&S)"
+msgstr "指令碼 (&S)"
 
 #. IDS_NO_EDIT_SCRIPTS
 #: Merge.rc:127 Merge.rc:352 Merge.rc:463 Merge.rc:673 Merge.rc:678
@@ -197,22 +197,22 @@ msgstr "開啟 (&E)"
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT
 #: Merge.rc:137 Merge.rc:1003 Merge.rc:1010 Merge.rc:1017
 msgid "With &Registered Application"
-msgstr "用登錄的應用程式 (&R)"
+msgstr "使用已註冊應用程式 (&R)"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_WITHEDITOR
 #: Merge.rc:138 Merge.rc:1004 Merge.rc:1011 Merge.rc:1018
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "用外部編輯器 (&E) \tCtrl+Alt+E"
+msgstr "使用外部編輯器 (&E) \tCtrl+Alt+E"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_WITH
 #: Merge.rc:139 Merge.rc:1005 Merge.rc:1012 Merge.rc:1019
 msgid "&With..."
-msgstr "用 (&W)..."
+msgstr "使用 (&W)..."
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_PARENT_FOLDER
 #: Merge.rc:140 Merge.rc:1006 Merge.rc:1013 Merge.rc:1020
 msgid "Open &Parent Folder..."
-msgstr "開啟父資料夾... (&P)"
+msgstr "開啟上層資料夾... (&P)"
 
 #. IDR_POPUP_IMG_CTXT, ID_FILE_SHELLMENU
 #: Merge.rc:142 Merge.rc:1273
@@ -232,22 +232,22 @@ msgstr "自動調整所有欄位寬度"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:153 Merge.rc:5589
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "依此欄篩選(&F)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:155 Merge.rc:1879
 msgid "&Text..."
-msgstr ""
+msgstr "文字... (&T)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:156 Merge.rc:1880
 msgid "&Number..."
-msgstr ""
+msgstr "數字 (&N)..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:157 Merge.rc:1881
 msgid "&Date/Time..."
-msgstr ""
+msgstr "日期/時間... (&D)"
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:166 Merge.rc:283
@@ -413,12 +413,12 @@ msgstr "動畫圖層間隔 (&O)"
 #. IDR_POPUP_IMGMERGEVIEW, ID_IMG_COMPARE_EXTRACTED_TEXT
 #: Merge.rc:275
 msgid "Compare Extracted &Text from Images"
-msgstr "比較從圖片中擷取的文字 (&T)"
+msgstr "比對從圖片中擷取的文字 (&T)"
 
 #. IDD_OPEN, IDOK
 #: Merge.rc:284 Merge.rc:2240
 msgid "Co&mpare"
-msgstr "比較 (&M)"
+msgstr "比對 (&M)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_SCREENSHOTS
 #: Merge.rc:286 Merge.rc:1281
@@ -537,7 +537,7 @@ msgstr "表格 (&A)"
 #: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608
 #: Merge.rc:617 Merge.rc:669 Merge.rc:958 Merge.rc:1185 Merge.rc:1198
 msgid "&Binary"
-msgstr "二進制 (&B)"
+msgstr "二進位 (&B)"
 
 #. IDS_IMAGE_MENU
 #: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609
@@ -556,12 +556,12 @@ msgstr "網頁 (&W)"
 #: Merge.rc:331 Merge.rc:340 Merge.rc:434 Merge.rc:443 Merge.rc:611
 #: Merge.rc:620 Merge.rc:1188
 msgid "&Folder"
-msgstr ""
+msgstr "資料夾 (&F)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:333 Merge.rc:436 Merge.rc:613
 msgid "New (&3 panes)"
-msgstr "新增三方比較 (&3)"
+msgstr "新增三方比對 (&3)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_OPEN
 #: Merge.rc:342 Merge.rc:445 Merge.rc:622
@@ -762,7 +762,7 @@ msgstr "垂直並排 (&V)"
 #. IDR_MERGEDOCTYPE, ID_WINDOW_CASCADE
 #: Merge.rc:408 Merge.rc:585 Merge.rc:923
 msgid "&Cascade"
-msgstr "前後疊放 (&C)"
+msgstr "重疊顯示 (&C)"
 
 #. IDS_MESSAGEBOX_HELP
 #: Merge.rc:410 Merge.rc:587 Merge.rc:925 Merge.rc:3482 Merge.rc:4489
@@ -862,12 +862,12 @@ msgstr "顯示略過的項目 (&K)"
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWBINARIES
 #: Merge.rc:482
 msgid "S&how Binary Files"
-msgstr "顯示二進制檔案 (&H)"
+msgstr "顯示二進位檔 (&H)"
 
 #. IDR_DIRDOCTYPE
 #: Merge.rc:483
 msgid "&3-way Compare"
-msgstr "&3 向比較"
+msgstr "&3 向比對"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTLEFTONLY
 #: Merge.rc:485
@@ -892,7 +892,7 @@ msgstr "顯示僅在左側缺少的項目 (&L)"
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGMIDDLEONLY
 #: Merge.rc:490
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "顯示僅在左側缺少的項目 (&M)"
+msgstr "顯示僅在中間缺少的項目 (&M)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGRIGHTONLY
 #: Merge.rc:491
@@ -937,7 +937,7 @@ msgstr "收合所有子資料夾 (&C)"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:504
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "顯示空資料夾 (&E)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:506 Merge.rc:717
@@ -977,7 +977,7 @@ msgstr "顯示篩選欄 (&Y)\tCtrl+Shift+L"
 #. IDR_DIRDOCTYPE, ID_VIEW_DIR_STATISTICS
 #: Merge.rc:534
 msgid "Com&pare Statistics..."
-msgstr "統計比較結果 (&P)"
+msgstr "統計比對結果 (&P)"
 
 #. IDR_MERGEDOCTYPE, ID_REFRESH
 #: Merge.rc:536 Merge.rc:784
@@ -997,7 +997,7 @@ msgstr "合併 (&M)"
 #. IDR_DIRDOCTYPE, ID_MERGE_COMPARE
 #: Merge.rc:541
 msgid "Co&mpare\tEnter"
-msgstr "比較 (&M)\tEnter"
+msgstr "比對 (&M)\tEnter"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFF
 #: Merge.rc:543 Merge.rc:788
@@ -1117,12 +1117,12 @@ msgstr "預覽列印 (&R)..."
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:654
 msgid "&Convert Line Endings to"
-msgstr "轉換換行字元 (&C)"
+msgstr "轉換換行符號為 (&C)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_MERGINGMODE
 #: Merge.rc:661
 msgid "Mer&ge Mode\tF9"
-msgstr "開/關合併模式 (&G)\tF9"
+msgstr "合併模式 (&G)\tF9"
 
 #. IDR_MERGEDOCTYPE, ID_RESCAN
 #: Merge.rc:663
@@ -1132,12 +1132,12 @@ msgstr "重新載入 (&D)\tCtrl+F5"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:665
 msgid "Reco&mpare As"
-msgstr "重新比較 (&M)"
+msgstr "重新比對 (&M)"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:672 Merge.rc:961 Merge.rc:1201
 msgid "A&rchive"
-msgstr ""
+msgstr "封存檔 (&R)"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:685
@@ -1212,7 +1212,7 @@ msgstr "清除全部書籤 (&C)"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:726
 msgid "Syntax Highlight"
-msgstr "語法高亮顯著色"
+msgstr "語法高亮顯著提示"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:731
@@ -1277,7 +1277,7 @@ msgstr "檢視空白字元 (&V)"
 #. IDR_MERGEDOCTYPE, ID_VIEW_EOL
 #: Merge.rc:749
 msgid "View E&OL"
-msgstr "檢視行尾符號 (&O)"
+msgstr "檢視換行符號 (&O)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_LINEDIFFS
 #: Merge.rc:750
@@ -1345,32 +1345,32 @@ msgstr "進階 (&D)"
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFFLM
 #: Merge.rc:800
 msgid "Next Difference (Left/Middle)\tAlt+1"
-msgstr "下一個左側和中間的差異\tAlt+1"
+msgstr "下一個差異（左側/中間）\tAlt+1"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFFLM
 #: Merge.rc:801
 msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
-msgstr "上一個左側和中間的差異\tAlt+Shift+1"
+msgstr "上一個差異（左側/中間）\tAlt+Shift+1"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFFLR
 #: Merge.rc:803
 msgid "Next Difference (Left/Right)\tAlt+2"
-msgstr "下一個左側和右側的差異\tAlt+2"
+msgstr "下一個差異（左側/右側）\tAlt+2"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFFLR
 #: Merge.rc:804
 msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
-msgstr "上一個左側和右側的差異\tAlt+Shift+2"
+msgstr "上一個差異（左側/右側）\tAlt+Shift+2"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFFMR
 #: Merge.rc:806
 msgid "Next Difference (Middle/Right)\tAlt+3"
-msgstr "下一個中間和右側的差異\tAlt+3"
+msgstr "下一個差異（中間/右側）\tAlt+3"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFFMR
 #: Merge.rc:807
 msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
-msgstr "上一個中間和右側的差異\tAlt+Shift+3"
+msgstr "上一個差異（中間/右側）\tAlt+Shift+3"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFFLO
 #: Merge.rc:809
@@ -1513,7 +1513,7 @@ msgstr "套用預先差異 (&d)..."
 #. IDR_MERGEDOCTYPE, ID_TRANSFORM_WITH_SCRIPT
 #: Merge.rc:900
 msgid "&Transform with Editor Script..."
-msgstr "使用編輯器指令腳本進行轉換 (&T)..."
+msgstr "使用編輯器指令碼轉換 (&T)..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:901
@@ -1533,27 +1533,27 @@ msgstr "分割 (&L)"
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE
 #: Merge.rc:942
 msgid "Comp&are"
-msgstr "比較 (&A)"
+msgstr "比對 (&A)"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE_WITH_MOVED_RENAMED
 #: Merge.rc:943
 msgid "Compar&e with Renamed/Moved Items"
-msgstr "比較已重新命名/已移動之項目 (&E)"
+msgstr "比對已重新命名/已移動之項目 (&E)"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE_IN_NEW_WINDOW
 #: Merge.rc:944
 msgid "Compare in New &Window"
-msgstr "在新視窗中比較 (&W)"
+msgstr "在新視窗中比對 (&W)"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE_NONHORIZONTALLY
 #: Merge.rc:945 Merge.rc:952
 msgid "Compare Non-hor&izontally..."
-msgstr "非水平比較 (&I)..."
+msgstr "非水平比對 (&I)..."
 
 #. IDR_POPUP_DIRVIEW
 #: Merge.rc:946
 msgid "Compare Non-hor&izontally"
-msgstr "非水平比較 (&I)"
+msgstr "非水平比對 (&I)"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE_LEFT1_LEFT2
 #: Merge.rc:948
@@ -1578,7 +1578,7 @@ msgstr "第二個左側項目和第一個右側項目 (&S)"
 #. IDR_POPUP_DIRVIEW
 #: Merge.rc:954
 msgid "Co&mpare As"
-msgstr "比較為 (&M)"
+msgstr "比對為 (&M)"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
 #: Merge.rc:967 Merge.rc:979 Merge.rc:4803
@@ -1682,7 +1682,7 @@ msgstr "開啟右側 (&P)"
 #. IDR_POPUP_DIRVIEW
 #: Merge.rc:1023
 msgid "Cop&y Paths"
-msgstr "複製徑名 (&Y)"
+msgstr "複製路徑 (&Y)"
 
 #. IDS_DEL_LEFT_FMT2
 #: Merge.rc:1025 Merge.rc:1034 Merge.rc:4831
@@ -1861,7 +1861,7 @@ msgstr "空格 (&H)"
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
 #: Merge.rc:1120 Merge.rc:1153
 msgid "Com&pare"
-msgstr "比較之 (&P)"
+msgstr "比對之 (&P)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
 #: Merge.rc:1121 Merge.rc:1154
@@ -1886,7 +1886,7 @@ msgstr "忽略大小寫 (&C)"
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
 #: Merge.rc:1126 Merge.rc:1159
 msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
-msgstr "忽略行尾差異（Windows/Unix/Mac）(&R)"
+msgstr "忽略 EOL 差異（Windows/Unix/Mac）(&R)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
 #: Merge.rc:1127 Merge.rc:1160
@@ -1906,12 +1906,12 @@ msgstr "忽略註解差異 (&O)"
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
 #: Merge.rc:1130 Merge.rc:1163
 msgid "Ignore &Missing Trailing EOL"
-msgstr "忽略缺少結尾行尾換行符號 (&M)"
+msgstr "忽略缺失的行尾換行符號 (&M)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS
 #: Merge.rc:1131 Merge.rc:1164
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr "忽略換行符號（視為空格） (&B)"
+msgstr "忽略換行（視為空格） (&B)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_RECURS_CHECK
 #: Merge.rc:1133 Merge.rc:3245
@@ -1921,7 +1921,7 @@ msgstr "包括子資料夾 (&I)"
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS
 #: Merge.rc:1134 Merge.rc:1166
 msgid "&Compare Method"
-msgstr "檔案比較方式 (&C)"
+msgstr "檔案比對方式 (&C)"
 
 #. IDS_COMPMETHOD_FULL_CONTENTS
 #: Merge.rc:1136 Merge.rc:1168 Merge.rc:1362 Merge.rc:4582
@@ -1936,7 +1936,7 @@ msgstr "快速內容"
 #. IDS_COMPMETHOD_BINARY_CONTENTS
 #: Merge.rc:1138 Merge.rc:1170 Merge.rc:1364 Merge.rc:4584
 msgid "Binary Contents"
-msgstr "二進制內容"
+msgstr "二進位內容"
 
 #. IDS_COMPMETHOD_MODDATE
 #: Merge.rc:1139 Merge.rc:1171 Merge.rc:1365 Merge.rc:4585
@@ -2101,7 +2101,7 @@ msgstr "全部清除 (&C)"
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_MASK_REMOVE_LAST
 #: Merge.rc:1387
 msgid "Remove Last Filter &Group"
-msgstr "刪除最後一個過濾器組 (&G)"
+msgstr "刪除最後一個篩選器組 (&G)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_MASK_ALL
 #: Merge.rc:1388
@@ -2126,7 +2126,7 @@ msgstr "編輯器備份檔案 (&E)"
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_BIN
 #: Merge.rc:1393
 msgid "&Compiled Binary Files"
-msgstr "編譯後的二進制執行檔 (&C)"
+msgstr "已編譯二進位檔 (&C)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_LOG
 #: Merge.rc:1394
@@ -2151,7 +2151,7 @@ msgstr "版本控制 (&V)"
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_BUILD
 #: Merge.rc:1400
 msgid "&Build Artifacts"
-msgstr "建構工件 (&B)"
+msgstr "建構產出物 (&B)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FOLDER_IDE
 #: Merge.rc:1401
@@ -2741,12 +2741,12 @@ msgstr "目標：全部 (&A)"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1654
 msgid "Binary files only"
-msgstr ""
+msgstr "僅二進位檔"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1655
 msgid "Text files only"
-msgstr ""
+msgstr "僅文字檔案"
 
 #. IDS_EOL_NONE
 #: Merge.rc:1666 Merge.rc:1917 Merge.rc:5250
@@ -2766,22 +2766,22 @@ msgstr "清除條件 (&C)"
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_SIZE
 #: Merge.rc:1803
 msgid "Compare &Size"
-msgstr "比較大小 (&S)"
+msgstr "比對大小 (&S)"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_DATE
 #: Merge.rc:1804
 msgid "Compare &Date"
-msgstr "比較日期 (&D)"
+msgstr "比對日期 (&D)"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_ATTR
 #: Merge.rc:1805
 msgid "Compare &Attributes"
-msgstr "比較屬性 (&A)"
+msgstr "比對屬性 (&A)"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CMP_CONTENTS
 #: Merge.rc:1806
 msgid "Compare C&ontents"
-msgstr "比較內容 (&O)"
+msgstr "比對內容 (&O)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_CLEAR
 #: Merge.rc:1815
@@ -2806,7 +2806,7 @@ msgstr "已規範化 Unicode 名稱 (&U)"
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_RELPATH
 #: Merge.rc:1820
 msgid "&Relative Path"
-msgstr ""
+msgstr "相對路徑 (&R)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_DATE
 #: Merge.rc:1822
@@ -2831,37 +2831,37 @@ msgstr "插入 regexReplace()函數 (&X)"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1828 Merge.rc:2023
 msgid "Replace &Lists"
-msgstr ""
+msgstr "取代清單 (&L)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_CREATE_REPLACELIST
 #: Merge.rc:1830 Merge.rc:2025
 msgid "&Create String Replace List and Insert..."
-msgstr ""
+msgstr "建立字串取代清單並插入 (&C)..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_CREATE_REGEXREPLACELIST
 #: Merge.rc:1831 Merge.rc:2026
 msgid "Create &Regex Replace List and Insert..."
-msgstr ""
+msgstr "建立正規表示式取代清單並插入 (&R)..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1833 Merge.rc:2028
 msgid "&String Replace Lists"
-msgstr ""
+msgstr "字串取代清單 (&S)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1837 Merge.rc:2032
 msgid "Re&gex Replace Lists"
-msgstr ""
+msgstr "正規表示式取代清單(&G)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_STRING_REPLACE_LISTS_FOLDER
 #: Merge.rc:1842 Merge.rc:2037
 msgid "Open String Replace Lists Folder..."
-msgstr ""
+msgstr "開啟字串取代清單資料夾..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_REGEX_REPLACE_LISTS_FOLDER
 #: Merge.rc:1843 Merge.rc:2038
 msgid "Open Regex Replace Lists Folder..."
-msgstr ""
+msgstr "開啟正規表示式取代清單資料夾..."
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
 #: Merge.rc:1845 Merge.rc:2073 Merge.rc:2255 Merge.rc:2274 Merge.rc:2302
@@ -2907,7 +2907,7 @@ msgstr "簡體中文 (&S)"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TOTRADITIONALCHINESE
 #: Merge.rc:1856 Merge.rc:2016
 msgid "&Traditional Chinese"
-msgstr "繁體中文 (&T)"
+msgstr "正體中文 (&T)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1858 Merge.rc:2018
@@ -2927,102 +2927,102 @@ msgstr "片假名 (&K)"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORMALIZEUNICODE
 #: Merge.rc:1863 Merge.rc:2012
 msgid "Normalize &Unicode"
-msgstr ""
+msgstr "標準化 Unicode (&U)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1874
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "新增行條件 (&I)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1876
 msgid "L&ine Text..."
-msgstr ""
+msgstr "行文本 (&I)..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1877 Merge.rc:1932
 msgid "&Column"
-msgstr ""
+msgstr "欄位 (&C)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1882 Merge.rc:1957
 msgid "Column: &1"
-msgstr ""
+msgstr "欄位：&1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &2"
-msgstr ""
+msgstr "欄位：&2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &3"
-msgstr ""
+msgstr "欄位：&3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &4"
-msgstr ""
+msgstr "欄位：&4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &5"
-msgstr ""
+msgstr "欄位：&5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &6"
-msgstr ""
+msgstr "欄位：&6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1888 Merge.rc:1963
 msgid "Column: &7"
-msgstr ""
+msgstr "欄位：&7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1889 Merge.rc:1964
 msgid "Column: &8"
-msgstr ""
+msgstr "欄位：&8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1890 Merge.rc:1965
 msgid "Column: &9"
-msgstr ""
+msgstr "欄位：&9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1891 Merge.rc:1966
 msgid "Column: 1&0"
-msgstr ""
+msgstr "欄位：1&0"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1893
 msgid "Line L&ength..."
-msgstr ""
+msgstr "每行長度... (&E)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1894
 msgid "&Word Count..."
-msgstr ""
+msgstr "字數統計 (&W)..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1895
 msgid "Line &Number"
-msgstr ""
+msgstr "行號 (&N)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1897
 msgid "&Odd Lines"
-msgstr ""
+msgstr "奇數行 (&O)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1898
 msgid "&Even Lines"
-msgstr ""
+msgstr "偶數行(&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1901 Merge.rc:1985
 msgid "Line &Status"
-msgstr ""
+msgstr "行狀態 (&S)"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1903 Merge.rc:1987 Merge.rc:2863 Merge.rc:2996 Merge.rc:3037
@@ -3039,17 +3039,17 @@ msgstr "完全相同"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_TRIVIAL
 #: Merge.rc:1905 Merge.rc:1989
 msgid "Trivial"
-msgstr ""
+msgstr "瑣碎"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EXISTS
 #: Merge.rc:1907
 msgid "Exists"
-msgstr ""
+msgstr "存在"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1908
 msgid "Missing"
-msgstr ""
+msgstr "遺失了"
 
 #. IDS_MOVED
 #: Merge.rc:1909 Merge.rc:5027
@@ -3059,47 +3059,47 @@ msgstr "已移動"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1910
 msgid "Bookmarked"
-msgstr ""
+msgstr "已收藏"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1912 Merge.rc:1991
 msgid "&EOL"
-msgstr ""
+msgstr "換行符號 (&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1927
 msgid "L&ine Text"
-msgstr ""
+msgstr "行文本 (&I)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1939
 msgid "&Number"
-msgstr ""
+msgstr "數字 (&N)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1948
 msgid "&Date/Time"
-msgstr ""
+msgstr "日期/時間 (&D)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1968
 msgid "Line L&ength"
-msgstr ""
+msgstr "每行長度 (&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2002
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "轉換行/列 (&T)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2004
 msgid "&Trim"
-msgstr ""
+msgstr "修剪空白 (&T)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2005
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "標準化空白字元 (&W)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2006 Merge.rc:2283
@@ -3109,77 +3109,77 @@ msgstr "取代 (&R)"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2007
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "正規表示式取代(&E)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2041
 msgid "&Refine Current Filter"
-msgstr ""
+msgstr "細化目前篩選器(&R)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2043
 msgid "Add Con&text Lines"
-msgstr ""
+msgstr "加入上下文字行 (&T)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2051
 msgid "Filter by &Occurrence"
-msgstr ""
+msgstr "依出現次數/位置篩選 (&O)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2053
 msgid "&First"
-msgstr ""
+msgstr "第一個 (&F)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2054
 msgid "&Last"
-msgstr ""
+msgstr "最後一個 (&L)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2055
 msgid "First &5 Matches"
-msgstr ""
+msgstr "前 5 個符合項(&5)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2056
 msgid "After First &5"
-msgstr ""
+msgstr "前 5 個符合項之後(&5)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2059
 msgid "By &Block"
-msgstr ""
+msgstr "依區塊(&B)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2061
 msgid "&Range"
-msgstr ""
+msgstr "範圍(&R)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2063 Merge.rc:2069
 msgid "&Inside..."
-msgstr ""
+msgstr "內部 (&I)..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2064 Merge.rc:2070
 msgid "&Outside..."
-msgstr ""
+msgstr "外部... (&O)"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2067
 msgid "Create &Range"
-msgstr ""
+msgstr "建立範圍 (&R)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2075
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "組合方式：AND (&N)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2076
 msgid "Combine: &OR"
-msgstr ""
+msgstr "組合方式：OR (&O)"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2192
@@ -3336,7 +3336,7 @@ msgstr "只匹配完整單詞 (&W)"
 #. IDD_EDIT_MARKER, IDC_EDIT_REGEXP
 #: Merge.rc:2256 Merge.rc:2275 Merge.rc:2303
 msgid "Regular &expression"
-msgstr "正規表達式 (&E)"
+msgstr "正規表示式 (&E)"
 
 #. IDD_EDIT_FIND, IDC_FINDDLG_DONTWRAP
 #: Merge.rc:2257
@@ -3376,7 +3376,7 @@ msgstr "至檔尾不折返 (&D)"
 #. IDD_EDIT_REPLACE, IDC_STATIC
 #: Merge.rc:2278
 msgid "Replace in"
-msgstr "替換於"
+msgstr "取代於"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_WHOLE_FILE
 #: Merge.rc:2280
@@ -3436,7 +3436,7 @@ msgstr "啟用行篩選器"
 #. IDD_FILTERS_LINEFILTERS, IDC_STATIC
 #: Merge.rc:2315
 msgid "Regular Expressions (one per line):"
-msgstr "正規表達式 (每行一式)："
+msgstr "正規表示式 (每行一式)："
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_EDIT
 #: Merge.rc:2318 Merge.rc:3206
@@ -3455,7 +3455,9 @@ msgstr "替代篩選器"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_STATIC
 #: Merge.rc:2327
-msgid "Changes to the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgid ""
+"Changes to the listed pairs below will be ignored or marked as "
+"insignificant. Patches are unaffected."
 msgstr "列表中列出的配對將被忽略或標記為無關緊要的變更。修補程式不受影響。"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_IGNORED_SUSBSTITUTIONS_ENABLED
@@ -3506,7 +3508,7 @@ msgstr "自動捲至首個行內差異 (&C)"
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2359
 msgid "Cl&ose windows with 'Esc':"
-msgstr "按 'Esc' 關閉視窗 (&O):"
+msgstr "按【Esc】關閉視窗 (&O):"
 
 #. IDD_PROPPAGE_GENERAL, IDC_VERIFY_OPEN_PATHS
 #: Merge.rc:2361
@@ -3523,12 +3525,12 @@ msgstr "單一實例模式："
 msgid "As&k when closing multiple windows"
 msgstr "關閉多重視窗時先詢問 (&K)"
 
-# "比較時計入檔案時間 (&P)"
+# "比對時計入檔案時間 (&P)"
 # Do you want with it to say "Include file time difference in comparing" or "Do not change file time in comparing"?
 #. IDD_PROPPAGE_GENERAL, IDC_PRESERVE_FILETIME
 #: Merge.rc:2367
 msgid "&Preserve file time in file compare"
-msgstr "比較檔案時保留檔案時間 (&P)"
+msgstr "比對檔案時保留檔案時間 (&P)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STARTUP_FOLDER_SELECT
 #: Merge.rc:2369
@@ -3538,17 +3540,17 @@ msgstr "啟動時顯示「選擇檔案或資料夾」對話方塊"
 #. IDD_PROPPAGE_GENERAL, IDC_CLOSE_WITH_OK
 #: Merge.rc:2371
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "點擊比較按鈕後關閉「選擇檔案或資料夾」對話框"
+msgstr "點擊比對按鈕後關閉「選擇檔案或資料夾」對話框"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2373
 msgid "Op&en dialog Auto completion:"
-msgstr "「開啟」對話方塊之自動完成 (&E)："
+msgstr "開啟對話框自動補全(&E):"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2375
 msgid "Auto-&reload modified files:"
-msgstr "自動重新載入修改的檔案 (&R)："
+msgstr "自動重新載入已修改的檔案(&R)："
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2377
@@ -3641,7 +3643,7 @@ msgstr "已選取的移位區塊："
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
 #: Merge.rc:2431
 msgid "Same As Next (3 panes):"
-msgstr "和下一個相同 (3方比較):"
+msgstr "和下一個相同 (3方比對):"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
 #: Merge.rc:2436
@@ -3763,7 +3765,7 @@ msgstr "使用者自定義標記3："
 #. IDD_PROPPAGE_COLORS_DIR, IDC_USE_DIR_COMPARE_COLORS
 #: Merge.rc:2530
 msgid "&Use folder compare colors"
-msgstr "使用資料夾比較顏色 (&U)"
+msgstr "使用資料夾比對顏色 (&U)"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
 #: Merge.rc:2534
@@ -3808,7 +3810,7 @@ msgstr "外部編輯器 (&E)："
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
 #: Merge.rc:2571
 msgid "&Store user data in:"
-msgstr "將使用者資料儲存在: (&S)"
+msgstr "將使用者資料儲存在(&S)："
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
 #: Merge.rc:2573
@@ -3838,7 +3840,7 @@ msgstr "瀏覽 (&O)..."
 #. IDS_OPTIONSPG_COMPARE
 #: Merge.rc:2586 Merge.rc:4500
 msgid "Compare"
-msgstr "比較"
+msgstr "比對"
 
 #. IDD_PROPPAGE_COMPARE, IDC_STATIC
 #: Merge.rc:2589
@@ -3848,7 +3850,7 @@ msgstr "空白字元"
 #. IDD_PROPPAGE_COMPARE, IDC_WHITESPACE
 #: Merge.rc:2590
 msgid "&Compare"
-msgstr "比較 (&C)"
+msgstr "比對 (&C)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_WHITE_CHANGE
 #: Merge.rc:2591
@@ -3873,7 +3875,7 @@ msgstr "忽略大小寫 (&C)"
 #. IDD_PROPPAGE_COMPARE, IDC_EOL_SENSITIVE
 #: Merge.rc:2595
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "忽略行尾差異（Windows/Unix/Mac）(&R)"
+msgstr "忽略 EOL 差異（Windows/Unix/Mac）(&R)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNORE_NUMBERS
 #: Merge.rc:2597
@@ -3898,7 +3900,7 @@ msgstr "忽略缺失的行尾換行符號 (&M)"
 #. IDD_PROPPAGE_COMPARE, IDC_IGNLBRKS_CHECK
 #: Merge.rc:2603
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr "忽略換行符號（視為空格） (&B)"
+msgstr "忽略換行（視為空格） (&B)"
 
 #. IDD_PROPPAGE_COMPARE, IDC_MOVED_BLOCKS
 #: Merge.rc:2605
@@ -3923,7 +3925,7 @@ msgstr "啟用縮排啟發式演算法 (&H)"
 #. IDD_PROPPAGE_COMPARE, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES
 #: Merge.rc:2610
 msgid "Completely unhighlight the ignored differences"
-msgstr "完全取消對忽略的差異的突顯顯示"
+msgstr "完全取消對已忽略差異的高亮顯著提示"
 
 #. IDS_OPTIONSPG_EDITOR
 #: Merge.rc:2617 Merge.rc:4501
@@ -3933,7 +3935,7 @@ msgstr "編輯器"
 #. IDD_PROPPAGE_EDITOR, IDC_HILITE_CHECK
 #: Merge.rc:2620
 msgid "&Highlight syntax"
-msgstr "高亮度語法 (&H)"
+msgstr "語法高亮顯著提示 (&H)"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2621
@@ -3943,22 +3945,22 @@ msgstr ""
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2623
 msgid "&Preserve original EOL"
-msgstr "保留原始行尾 (&P)"
+msgstr "保留原始 EOL (&P)"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2624
 msgid "Tabs"
-msgstr "製表符（Tab）"
+msgstr "定位字元（Tab）"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2625
 msgid "&Tab size:"
-msgstr "製表符（Tab）大小 (&T)："
+msgstr "定位字元（Tab）大小 (&T)："
 
 #. IDD_PROPPAGE_EDITOR, IDC_PROP_INSERT_TABS
 #: Merge.rc:2627
 msgid "&Insert tabs"
-msgstr "插入製表符（Tab） (&I)"
+msgstr "插入定位字元（Tab） (&I)"
 
 #. IDD_PROPPAGE_EDITOR, IDC_PROP_INSERT_SPACES
 #: Merge.rc:2628
@@ -4007,7 +4009,9 @@ msgstr "斷句字元 (&O)："
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2663
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgid ""
+"Some messages can be hidden by the user. Press Reset to make all messages "
+"visible again."
 msgstr ""
 "WinMerge 部分訊息可由使用者隱藏。\n"
 "按下「重設」按鈕可使所有訊息再次可見。"
@@ -4185,7 +4189,7 @@ msgstr "項目總數："
 #. IDD_DIRCOMP_PROGRESS, IDC_STATIC
 #: Merge.rc:2773
 msgid "Items compared:"
-msgstr "比較過的項目："
+msgstr "比對過的項目："
 
 #. IDS_PREVIEWBAR_CLOSE
 #: Merge.rc:2788 Merge.rc:3128 Merge.rc:5628
@@ -4235,7 +4239,7 @@ msgstr "檔案篩選器"
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
 #: Merge.rc:2821
 msgid "&Mask / Filter Expression"
-msgstr "遮罩/篩選條件 (&M)"
+msgstr "遮罩/篩選表示式 (&M)"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
 #: Merge.rc:2824
@@ -4290,97 +4294,97 @@ msgstr "右側 (&R)："
 #. IDD_FILTERS_CONDITION, IDC_STATIC
 #: Merge.rc:2848
 msgid "Expression:"
-msgstr "表達式:"
+msgstr "表示式:"
 
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2856
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "依比對結果篩選"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2859
 msgid "&Include"
-msgstr ""
+msgstr "包含 (&I)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2860
 msgid "&Exclude"
-msgstr ""
+msgstr "排除 (&E)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2861
 msgid "Comparison Results"
-msgstr ""
+msgstr "比對結果"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2864
 msgid "Left only"
-msgstr ""
+msgstr "僅左側"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2865
 msgid "Right only"
-msgstr ""
+msgstr "僅右側"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2866
 msgid "Skipped"
-msgstr ""
+msgstr "已跳過"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2867
 msgid "Middle only"
-msgstr ""
+msgstr "僅中間"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2868
 msgid "Left only (different)"
-msgstr ""
+msgstr "僅左側 (有差異)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2870
 msgid "Middle only (different)"
-msgstr ""
+msgstr "僅中間 (有差異)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2872
 msgid "Right only (different)"
-msgstr ""
+msgstr "僅右側 (有差異)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2874
 msgid "Left only (missing)"
-msgstr ""
+msgstr "僅左側 (遺失)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2875
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "僅中間 (遺失)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2877
 msgid "Right only (missing)"
-msgstr ""
+msgstr "僅右側 (遺失)"
 
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2885
 msgid "Match Inside/Outside Filter Expressions"
-msgstr ""
+msgstr "符合內部／外部篩選條件的表示式"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2888
 msgid "&Start filter:"
-msgstr ""
+msgstr "起始篩選器(&S)："
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2891
 msgid "&End filter:"
-msgstr ""
+msgstr "結束篩選器(&E)："
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2894
 msgid "Lines between start and end filter matches will be included."
-msgstr ""
+msgstr "位於起始與結束篩選條件符合項目之間的所有行都將被納入。"
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2901 Merge.rc:3093 Merge.rc:4513
@@ -4508,7 +4512,7 @@ msgstr "放棄全部 (&R)"
 #. IDD_DIRCMP_REPORT
 #: Merge.rc:2962
 msgid "Folder Compare Report"
-msgstr "比較目錄後的報告"
+msgstr "比對目錄後的報告"
 
 #. IDD_DIRCMP_REPORT, IDC_STATIC
 #: Merge.rc:2965
@@ -4523,7 +4527,7 @@ msgstr "樣式 (&S)："
 #. IDD_DIRCMP_REPORT, IDC_REPORT_INCLUDEFILECMPREPORT
 #: Merge.rc:2970
 msgid "&Include file compare report"
-msgstr "包括檔案比較報告 (&I)"
+msgstr "包括檔案比對報告 (&I)"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:2979
@@ -4548,7 +4552,7 @@ msgstr "個人篩選器(僅適用現在使用者)"
 #. IDD_COMPARE_STATISTICS3
 #: Merge.rc:2991 Merge.rc:3032
 msgid "Compare Statistics"
-msgstr "比較後的統計"
+msgstr "比對後的統計"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
 #: Merge.rc:2994 Merge.rc:3035
@@ -4563,7 +4567,7 @@ msgstr "檔案："
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
 #: Merge.rc:3001 Merge.rc:3020 Merge.rc:3042 Merge.rc:3081
 msgid "Binary:"
-msgstr "二進制："
+msgstr "二進位："
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
 #: Merge.rc:3004 Merge.rc:3045
@@ -4728,12 +4732,12 @@ msgstr "產生備份檔於："
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FOLDERCMP
 #: Merge.rc:3159
 msgid "&Folder compare"
-msgstr "比較資料夾時 (&F)"
+msgstr "比對資料夾時 (&F)"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FILECMP
 #: Merge.rc:3160
 msgid "Fil&e compare"
-msgstr "比較檔案時 (&E)"
+msgstr "比對檔案時 (&E)"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
 #: Merge.rc:3161
@@ -4758,7 +4762,7 @@ msgstr "備份檔檔名："
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_BAK
 #: Merge.rc:3167
 msgid "&Append .bak extension"
-msgstr "附上 .bak 副檔名 (&A)"
+msgstr "附加 .bak 副檔名 (&A)"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_TIME
 #: Merge.rc:3168
@@ -4823,7 +4827,7 @@ msgstr "檔案篩選器："
 #. IDD_PLUGINS_LIST, IDC_STATIC
 #: Merge.rc:3200
 msgid "&Plugin arguments:"
-msgstr "外掛程式參數 (&P)："
+msgstr "外掛程式引數 (&P)："
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
 #: Merge.rc:3202 Merge.rc:3416
@@ -4853,7 +4857,7 @@ msgstr "啟用進階選單 (&N)"
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_COMPARE_AS
 #: Merge.rc:3222
 msgid "Enable &Compare As menu"
-msgstr "啟用「作為比較」選單 (&C)"
+msgstr "啟用「作為比對」選單 (&C)"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION
 #: Merge.rc:3223
@@ -4904,7 +4908,7 @@ msgstr "資料夾"
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3239
 msgid "&Compare method:"
-msgstr "檔案比較方式 (&C)："
+msgstr "檔案比對方式 (&C)："
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_STOPFIRST
 #: Merge.rc:3241
@@ -4919,7 +4923,7 @@ msgstr "如兩檔案之修改時間間隔少於三秒，則忽略此差異 (&O)"
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3246
 msgid "Expand subfolders &after comparison:"
-msgstr "展開子資料夾並進行比較："
+msgstr "展開子資料夾並進行比對："
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_WALKSUBDIRS
 #: Merge.rc:3248
@@ -4934,32 +4938,32 @@ msgstr "忽略重新分析點 (&R)"
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3251
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr "當大小超過以下ＭＢ限制時，切換為快速比較 (&Q)："
+msgstr "當大小超過以下ＭＢ限制時，切換為快速比對 (&Q)："
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3253
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr "當大小超過以下ＭＢ限制時，切換為二進制比較 (&B)："
+msgstr "當大小超過以下ＭＢ限制時，切換為二進位比對 (&B)："
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3257
 msgid "Additional comparison condi&tions:"
-msgstr "額外的比較條件 (&t)："
+msgstr "額外的比對條件(&t)："
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3260
 msgid "&Rename/move detection:"
-msgstr "重新命名/移動 偵測: (&R)"
+msgstr "重新命名/移動 偵測(&R)："
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3262
 msgid "Rename/move detection &keys:"
-msgstr "重新命名/移動 偵測鍵: (&K)"
+msgstr "重新命名/移動 偵測鍵(&K)："
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
 #: Merge.rc:3265
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "合併重新命名與移動(&E)："
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
 #: Merge.rc:3276 Merge.rc:3281 Merge.rc:3284
@@ -4975,12 +4979,12 @@ msgstr "被分隔符號分隔的自訂數值"
 #: Merge.rc:3297 Merge.rc:4527
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr "二進制"
+msgstr "二進位"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
 #: Merge.rc:3300
 msgid "Binary file &patterns:"
-msgstr "二進制檔案副檔名 (&P)"
+msgstr "二進位檔副檔名 (&P)"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
 #: Merge.rc:3302
@@ -4995,7 +4999,7 @@ msgstr "顯示設定 (&S)..."
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_BINARYMODE
 #: Merge.rc:3304
 msgid "&Binary Mode..."
-msgstr "二進制模式 (&B)..."
+msgstr "二進位模式 (&B)..."
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_CHARACTERSET
 #: Merge.rc:3305
@@ -5015,7 +5019,7 @@ msgstr "圖片檔案副檔名 (&P)"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_ENABLE_IMGCMP_IN_DIRCMP
 #: Merge.rc:3316
 msgid "&Enable image compare in folder compare"
-msgstr "在資料夾比較中啟用圖片比較 (&E)"
+msgstr "在資料夾比對中啟用圖片比對 (&E)"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3318
@@ -5030,12 +5034,12 @@ msgstr "網頁"
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
 #: Merge.rc:3328
 msgid "URL pattern to &include (Regular expression):"
-msgstr "要包含的 URL 模式（正則表示式） (&I)："
+msgstr "要包含的 URL模式（正規表示式） (&I)："
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
 #: Merge.rc:3330
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr "要排除的 URL 模式（正則表示式） (&E)："
+msgstr "要排除的 URL模式（正規表示式） (&E)："
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
 #: Merge.rc:3332
@@ -5050,7 +5054,7 @@ msgstr "每個面板使用單獨的使用者資料夾 (&S)"
 #. IDD_ENCODINGERROR, IDC_HEXVIEW
 #: Merge.rc:3347
 msgid "&Hex View"
-msgstr "二進制顯示 (&H)"
+msgstr "二進位顯示 (&H)"
 
 #. IDD_PLUGINS_EDITPLUGIN
 #: Merge.rc:3392
@@ -5080,12 +5084,12 @@ msgstr "解壓縮後的檔案副檔名 (&U):"
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_ARGUMENTSREQUIRED
 #: Merge.rc:3418
 msgid "&Require arguments"
-msgstr "需要參數 (&R)"
+msgstr "需要引數 (&R)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_GENERATESCRIPT
 #: Merge.rc:3419
 msgid "&Generate editor script"
-msgstr "產生編輯器腳本 (&G)"
+msgstr "產生編輯器指令碼 (&G)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_COMMAND_LINE_STATIC
 #: Merge.rc:3422
@@ -5095,12 +5099,12 @@ msgstr "命令列 (&L)："
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC
 #: Merge.rc:3425
 msgid "&Script file extension:"
-msgstr "腳本檔案副檔名 (&C):"
+msgstr "指令碼檔案副檔名 (&C):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_BODY_STATIC
 #: Merge.rc:3427
 msgid "Script &body:"
-msgstr "腳本主體 (&B):"
+msgstr "指令碼主體 (&B):"
 
 #. IDD_PLUGINS_EDITPLUGIN
 #: Merge.rc:3436
@@ -5155,7 +5159,7 @@ msgstr "AaBbYyZz"
 #. IDD_PLUGINS_EDITPLUGIN
 #: Merge.rc:3471
 msgid "Sc&ript:"
-msgstr "隨譯即行碼 (&S)："
+msgstr "字型集 (&R)："
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_MANAGE_LINK
 #: Merge.rc:3476
@@ -5242,8 +5246,20 @@ msgstr "專案檔成功儲存。"
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4444
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
+"此專案檔包含帶有自訂引數的外掛程式：\n"
+"\n"
+"%1\n"
+"這些引數可能會影響外掛程式的行為，或執行外部程式。\n"
+"\n"
+"您要開啟此專案檔嗎？"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4450
@@ -5275,12 +5291,12 @@ msgid ""
 "WinMerge File Compare"
 msgstr ""
 "\n"
-"檔案比較\n"
+"FileCompare\n"
 "\n"
 "\n"
 "\n"
-"WinMerge.檔案比較\n"
-"WinMerge 檔案比較"
+"WinMerge.FileCompare\n"
+"WinMerge 資料夾比對"
 
 #. IDR_DIRDOCTYPE
 #: Merge.rc:4459
@@ -5294,22 +5310,27 @@ msgid ""
 "WinMerge Folder Compare"
 msgstr ""
 "\n"
-"資料夾比較\n"
+"FolderCompare\n"
 "\n"
 "\n"
 "\n"
-"WinMerge.資料夾比較\n"
-"WinMerge 資料夾比較"
+"WinMerge.FolderCompare\n"
+"WinMerge 資料夾比對"
 
 #. IDS_SPLASH_GPLTEXT
 #: Merge.rc:4465
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
-msgstr "WinMerge 不附帶任何保證。這是一款自由軟體，可依照 GNU 通用公共授權條款（GPL）的條件進行再散佈。詳情請參閱「說明」選單。"
+msgid ""
+"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be "
+"redistributed under the conditions of the GNU General Public License - see "
+"the Help menu for details."
+msgstr ""
+"WinMerge 不附帶任何保證。這是一款自由軟體，可依照 GNU 通用公共授權條款（GPL）"
+"的條件進行再散佈。詳情請參閱「說明」選單。"
 
 #. IDS_MESSAGEBOX_ABORT
 #: Merge.rc:4473
 msgid "&Abort"
-msgstr "放棄 (&A)"
+msgstr "中斷 (&A)"
 
 #. IDS_MESSAGEBOX_RETRY
 #: Merge.rc:4474
@@ -5367,13 +5388,16 @@ msgid "Don't display this &message again."
 msgstr "不要再顯示此訊息 (&M)"
 
 #: Merge.rc:4493
-msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
-msgstr "若要再次顯示此訊息方塊，請在「選項」對話框的「訊息方塊」頁面上按下重設按鈕。"
+msgid ""
+"To make this message box visible, press Reset on the Message Boxes page in "
+"Options."
+msgstr ""
+"若要再次顯示此訊息方塊，請在「選項」對話框的「訊息方塊」頁面上按下重設按鈕。"
 
 #. IDS_OPTIONSPG_EDITOR_COMPAREMERGE
 #: Merge.rc:4503
 msgid "Compare/Merge"
-msgstr "比較/合併"
+msgstr "比對/合併"
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
 #: Merge.rc:4504 Merge.rc:4508
@@ -5388,7 +5412,7 @@ msgstr "色彩主題"
 #. IDS_OPTIONSPG_DIRCOLORS
 #: Merge.rc:4510
 msgid "Folder Compare"
-msgstr "資料夾比較"
+msgstr "資料夾比對"
 
 #. IDS_OPTIONSPG_PROJECT
 #: Merge.rc:4515
@@ -5461,7 +5485,7 @@ msgstr "所有訊息對話框會重新再顯示。"
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr ""
-"製表符ＴＡＢ大小值超出範圍。\n"
+"定位字元Ｔａｂ大小值超出範圍。\n"
 "請使用 1 - %1。"
 
 #. IDS_PROJECT_OPEN
@@ -5492,12 +5516,15 @@ msgstr "選項檔 (*.ini)|*.ini|所有檔案 (*.*)|*.*||"
 #. IDS_REPLACELIST_FILES
 #: Merge.rc:4568
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "定位字元分隔值(*.tsv;*.txt)|*.tsv;*.txt|所有檔案 (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4574
-msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr "Text檔 (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|所有檔案 (*.*)|*.*||"
+msgid ""
+"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
+"*.*||"
+msgstr ""
+"Text檔 (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|所有檔案 (*.*)|*.*||"
 
 #. IDS_HTML_REPORT_FILES
 #: Merge.rc:4575
@@ -5572,7 +5599,7 @@ msgstr "包括子資料夾"
 #. IDS_PROJECT_ITEM_COMPARE_OPTIONS
 #: Merge.rc:4624
 msgid "Compare Options"
-msgstr "比較選項"
+msgstr "比對選項"
 
 #. IDS_PROJECT_ITEM_HIDDEN_ITEMS
 #: Merge.rc:4625
@@ -5687,7 +5714,7 @@ msgstr "檔案篩選器檔已存在。要覆蓋現有篩選器嗎？"
 #. IDS_FILTERLINE_REGEXP
 #: Merge.rc:4655
 msgid "Regular expression"
-msgstr "正規表示法"
+msgstr "正規表示式"
 
 #. IDS_FILTERCHANGED
 #: Merge.rc:4661
@@ -5696,7 +5723,7 @@ msgid ""
 "\n"
 "Select 'No' to refresh later."
 msgstr ""
-"篩選器已更新。想重整所有進行中的資料夾比較嗎？\n"
+"篩選器已更新。想重整所有進行中的資料夾比對嗎？\n"
 "\n"
 "選擇『否』可稍後再重整。"
 
@@ -5749,7 +5776,7 @@ msgstr "原始檔案"
 #: Merge.rc:4681
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr "行: %s  列: %d/%d  字元: %d/%d  EOL: %s"
 
 #. IDS_EMPTY_LINE_STATUS_INFO
 #: Merge.rc:4682
@@ -5761,13 +5788,13 @@ msgstr "行： %s"
 #: Merge.rc:4683
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr "行: %s  列: %d/%d  字元: %d/%d"
 
 #. IDS_LINE_STATUS_INFO_SEL
 #: Merge.rc:4684
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr "選取：%d | %d"
+msgstr "  選取：%d 行| %d 字元"
 
 #. IDS_MERGEMODE_MERGING
 #: Merge.rc:4685
@@ -5778,7 +5805,7 @@ msgstr "合併"
 #: Merge.rc:4686
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "%2 個差異中之第 %1"
+msgstr "%2 個差異中 第 %1 個"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4687
@@ -5811,7 +5838,7 @@ msgstr "唯讀"
 #: Merge.rc:4697
 #, c-format
 msgid "Item %1 of %2"
-msgstr "%2 個項目之第 %1"
+msgstr "%2 個項目之 第 %1"
 
 #. IDS_DIRVIEW_STATUS_FMT_NOFOCUS
 #: Merge.rc:4698
@@ -5822,13 +5849,13 @@ msgstr "項目：%1"
 #. IDS_DIRVIEW_STATUS_COMPARING
 #: Merge.rc:4699
 msgid "Comparing items..."
-msgstr "比較項目中..."
+msgstr "比對項目中..."
 
 #. IDS_ITEMS_PER_SEC
 #: Merge.rc:4700
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr "%.1f[items/sec]"
+msgstr "%.1f[項目/秒]"
 
 #. IDS_ERROR_INCOMPARABLE
 #: Merge.rc:4706
@@ -5843,7 +5870,7 @@ msgstr "資料夾選取"
 #. IDS_OPEN_FILESDIRS
 #: Merge.rc:4708
 msgid "Select two (or three) folders/files to compare."
-msgstr "選取兩個 (或三個) 檔案或資料夾做比較。"
+msgstr "選取兩個 (或三個) 檔案或資料夾做比對。"
 
 #. IDS_OPEN_LEFTINVALID
 #: Merge.rc:4709
@@ -5891,12 +5918,12 @@ msgstr "所有路徑無效！"
 #. IDS_OPEN_UNPACKERDISABLED
 #: Merge.rc:4720
 msgid "Only enabled for file comparisons"
-msgstr "僅為檔案比較啟用"
+msgstr "僅為檔案比對啟用"
 
 #. IDS_OPEN_MISMATCH
 #: Merge.rc:4721
 msgid "Cannot compare file and folder!"
-msgstr "無法比較檔案和資料夾！"
+msgstr "無法比對檔案和資料夾！"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4727
@@ -5908,13 +5935,13 @@ msgstr "找不到檔案：%1"
 #: Merge.rc:4728
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "找不到資料夾：%1"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4729
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "檔案為封裝檔：%1"
+msgstr "檔案未解包：%1"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4730
@@ -5953,8 +5980,8 @@ msgid ""
 "Comparing large files requires significant memory.\n"
 "Show only comparison results (not file contents)?"
 msgstr ""
-"比較大檔案需要大量記憶體。\n"
-"是否僅顯示比較結果（不顯示文件內容）？"
+"比對大檔案需要大量的記憶體。\n"
+"是否僅顯示比對結果（不顯示檔案內容）？"
 
 #. IDS_SAVE_AS_TITLE
 #: Merge.rc:4739
@@ -6001,12 +6028,11 @@ msgid ""
 "\t- Use different filename (OK)\n"
 "\t- Abort (Cancel)?"
 msgstr ""
-"無法儲存檔案。\n"
+"儲存檔案時失敗。\n"
 "%1\n"
 "%2\n"
-"您要：\n"
-"\t- 以不同名稱儲存檔案 (按「確定」)\n"
-"\t- 放棄目前操作 (按「取消」)？"
+"\t- 存為不同檔名 (確定)\n"
+"\t- 中斷 (取消)？"
 
 #: Merge.rc:4747
 #, c-format
@@ -6015,11 +6041,10 @@ msgid ""
 "\n"
 "Original unchanged. Save unpacked version?"
 msgstr ""
-"外掛程式 '%2' 無法將您對左側檔案的變更包裝回 '%1'。\n"
+"外掛程式「%2」無法將您對左側檔案的變更包裝回「%1」。\n"
 "\n"
-"將不變更原始檔。\n"
-"\n"
-"您要將未封裝版本儲存成為另一檔案嗎？"
+"原始檔未變更。\n"
+"是否儲存解包後的版本？"
 
 #: Merge.rc:4749
 #, c-format
@@ -6028,11 +6053,10 @@ msgid ""
 "\n"
 "Original unchanged. Save unpacked version?"
 msgstr ""
-"外掛程式 '%2' 無法將您對中間檔案的變更包裝回到 '%1'。\n"
+"外掛程式「%2」無法將您對中間檔案的變更包裝回到「%1」。\n"
 "\n"
-"將不變更原始檔。\n"
-"\n"
-"您要將未封裝版本儲存成為另一檔案嗎？"
+"原始檔未變更。\n"
+"是否儲存解包後的版本？"
 
 #: Merge.rc:4751
 #, c-format
@@ -6041,11 +6065,10 @@ msgid ""
 "\n"
 "Original unchanged. Save unpacked version?"
 msgstr ""
-"外掛程式 '%2' 無法將您對右側檔案的變更包裝回 '%1'。\n"
+"外掛程式「%2」無法將您對右側檔案的變更包裝回「%1」。\n"
 "\n"
-"將不變更原始檔。\n"
-"\n"
-"您要將未封裝版本儲存成為另一檔案嗎？"
+"原始檔未變更。\n"
+"是否儲存解包後的版本？"
 
 #. IDS_FILECHANGED_ONDISK
 #: Merge.rc:4752
@@ -6122,7 +6145,10 @@ msgid ""
 "Cannot merge unsynched documents.\n"
 "\n"
 "Refresh before continuing."
-msgstr "無法合併未同步的文件，請在繼續前先重整。"
+msgstr ""
+"無法合併未同步的文件。\n"
+"\n"
+"請在繼續之前先重整。"
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4773
@@ -6246,7 +6272,9 @@ msgstr "差異到... (%1)"
 msgid ""
 "Some selected items are identical or skipped.\n"
 "Copy only items with differences?"
-msgstr "僅複製有差異的項目？"
+msgstr ""
+"部分選取項目完全相同或已被略過。\n"
+"是否僅複製有差異的項目？"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4826
@@ -6340,12 +6368,12 @@ msgid ""
 "\n"
 "Refresh the compare."
 msgstr ""
-"操作已中止！\n"
+"操作已中斷！\n"
 "\n"
 "資料夾內容已變更，找不到路徑：\n"
 "%1\n"
 "\n"
-"請重整再比較。"
+"請重整再比對。"
 
 #. IDS_CONFIRM_SINGLE_MOVE
 #: Merge.rc:4864
@@ -6365,11 +6393,11 @@ msgstr "確認移除"
 
 #: Merge.rc:4869
 msgid "Close the folder comparison window?"
-msgstr "您要關閉一個正在比較資料夾的視窗，您確定要關閉視窗嗎？"
+msgstr "您要關閉一個正在比對資料夾的視窗，您確定要關閉視窗嗎？"
 
 #: Merge.rc:4871
 msgid "Close the folder comparison window, which took a long time?"
-msgstr "關閉資料夾比較視窗嗎？，花了很長時間哦!?"
+msgstr "關閉資料夾比對視窗嗎？，花了很長時間哦!?"
 
 #. IDS_ERROR_INVALID_DIR_FILE_NAME
 #: Merge.rc:4872
@@ -6393,7 +6421,7 @@ msgid ""
 "Compare as text file?"
 msgstr ""
 "無法解壓縮封存檔案。\n"
-"您是否要將封存檔案作為文字檔進行比較？"
+"您是否要將封存檔案作為文字檔進行比對？"
 
 #. IDS_COLHDR_FILENAME
 #: Merge.rc:4892
@@ -6550,7 +6578,7 @@ msgstr "忽略的差異"
 #: Merge.rc:4942
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "二進制"
+msgstr "二進位"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
 #: Merge.rc:4943 Merge.rc:5260
@@ -6705,12 +6733,12 @@ msgstr "雜湊"
 #. IDS_CANT_COMPARE_FILES
 #: Merge.rc:4986
 msgid "Unable to compare files"
-msgstr "無法比較檔案"
+msgstr "無法比對檔案"
 
 #. IDS_ABORTED_ITEM
 #: Merge.rc:4987
 msgid "Item aborted"
-msgstr "中斷的項目"
+msgstr "項目已中斷"
 
 #. IDS_FILE_SKIPPED
 #: Merge.rc:4988
@@ -6749,22 +6777,22 @@ msgstr "在 %1 中不存在"
 #. IDS_BIN_FILES_SAME
 #: Merge.rc:4994
 msgid "Binary files are identical"
-msgstr "二進制檔完全相同"
+msgstr "二進位檔完全相同"
 
 #. IDS_BIN_FILES_DIFF
 #: Merge.rc:5000
 msgid "Binary files are different"
-msgstr "二進制檔不同"
+msgstr "二進位檔有差異"
 
 #. IDS_FILES_ARE_DIFFERENT
 #: Merge.rc:5001
 msgid "Files are different"
-msgstr "檔案不同"
+msgstr "檔案有差異"
 
 #. IDS_FOLDERS_ARE_DIFFERENT
 #: Merge.rc:5002
 msgid "Folders are different"
-msgstr "兩資料夾不同"
+msgstr "資料夾有差異"
 
 #. IDS_LEFTONLY
 #: Merge.rc:5003
@@ -6804,48 +6832,48 @@ msgstr "錯誤"
 #. IDS_TEXT_FILES_SAME
 #: Merge.rc:5011
 msgid "Text files are identical"
-msgstr "文字檔內容相同"
+msgstr "文字檔內容完全相同"
 
 #. IDS_LEFTONLY_DIFF
 #: Merge.rc:5012
 msgid " (Middle and right are identical)"
-msgstr " (中間和右側內容相同)"
+msgstr " (中間和右側內容完全相同)"
 
 #. IDS_MIDDLEONLY_DIFF
 #: Merge.rc:5013
 msgid " (Left and right are identical)"
-msgstr " (左側和右側內容相同)"
+msgstr " (左側和右側內容完全相同)"
 
 #. IDS_RIGHTONLY_DIFF
 #: Merge.rc:5014
 msgid " (Left and middle are identical)"
-msgstr " (左側和中間內容相同)"
+msgstr " (左側和中間內容完全相同)"
 
 #. IDS_PATH_MISMATCH
 #: Merge.rc:5015
 msgid " (paths differ)"
-msgstr ""
+msgstr "（路徑不同）"
 
 #. IDS_TEXT_FILES_DIFF
 #: Merge.rc:5016
 msgid "Text files are different"
-msgstr "文字檔內容不同"
+msgstr "文字檔內容有差異"
 
 #. IDS_IMAGE_FILES_SAME
 #: Merge.rc:5017
 msgid "Image files are identical"
-msgstr "圖片檔相同"
+msgstr "圖片檔完全相同"
 
 #. IDS_IMAGE_FILES_DIFF
 #: Merge.rc:5018
 msgid "Image files are different"
-msgstr "圖片檔不同"
+msgstr "圖片檔有差異"
 
 #. IDS_EXPR_DIFF
 #: Merge.rc:5019
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr "檔案不同 (表達式：%1)"
+msgstr "檔案有差異（表示式：%1）"
 
 #. IDS_HASH_GROUP
 #: Merge.rc:5020
@@ -6872,12 +6900,12 @@ msgstr "偵測重新命名與移動"
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
 #: Merge.rc:5024
 msgid "Merge renames"
-msgstr ""
+msgstr "合併重新命名"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
 #: Merge.rc:5025
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "合併重新命名與移動"
 
 #. IDS_RENAMED
 #: Merge.rc:5026
@@ -6905,9 +6933,14 @@ msgstr "%1 (組合 %2):"
 #: Merge.rc:5031
 msgid ""
 "Some moved items have been merged.\n"
-"In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
+"In Tree Mode, these items may appear in positions that do not reflect the "
+"actual folder structure, which can be confusing.\n"
 "Switch to Flat Mode?"
 msgstr ""
+"部分移動的項目已合併。\n"
+"在樹狀模式下，這些項目顯示的位置可能無法反映實際的資料夾結構，容易造成混"
+"淆。\n"
+"是否切換至平坦模式？"
 
 #. IDS_ELAPSED_TIME
 #: Merge.rc:5037
@@ -6939,7 +6972,7 @@ msgstr "包括子資料夾時之子資料夾名稱。"
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5047
 msgid "Comparison result, long form."
-msgstr "比較結果，長式表單。"
+msgstr "比對結果（詳細形式）。"
 
 #. IDS_COLDESC_LTIMEM
 #: Merge.rc:5052
@@ -7029,7 +7062,7 @@ msgstr "中間檔案版本，只某些檔案類型。"
 #. IDS_COLDESC_RESULT_ABBR
 #: Merge.rc:5078
 msgid "Short comparison result."
-msgstr "短式比較結果。"
+msgstr "短式比對結果。"
 
 #. IDS_COLDESC_LATTRIBUTES
 #: Merge.rc:5079
@@ -7049,17 +7082,17 @@ msgstr "中間屬性。"
 #. IDS_COLDESC_LEOL_TYPE
 #: Merge.rc:5082
 msgid "Left side file EOL type."
-msgstr "左側檔案的行尾類型。"
+msgstr "左側檔案的換行符號類型。"
 
 #. IDS_COLDESC_REOL_TYPE
 #: Merge.rc:5083
 msgid "Right side file EOL type."
-msgstr "右側檔案的行尾類型。"
+msgstr "右側檔案的換行符號類型。"
 
 #. IDS_COLDESC_MEOL_TYPE
 #: Merge.rc:5084
 msgid "Middle side file EOL type."
-msgstr "中間檔案的行尾類型。"
+msgstr "中間檔案的換行符號類型。"
 
 #. IDS_COLDESC_LENCODING
 #: Merge.rc:5090
@@ -7089,7 +7122,7 @@ msgstr "檔案中的差異個數。此數不包括被忽略的差異。"
 #. IDS_COLDESC_BINARY
 #: Merge.rc:5095
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "是二進制檔，就顯示星號 (*)"
+msgstr "是二進位檔，就顯示星號 (*)"
 
 #. IDS_COLDESC_UNPACKER
 #: Merge.rc:5096
@@ -7105,13 +7138,13 @@ msgstr "預差異化外掛名稱或處理序。"
 #: Merge.rc:5103
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "比較 %1 和 %2"
+msgstr "比對 %1 和 %2"
 
 #. IDS_DIRECTORY_REPORT_TITLE3
 #: Merge.rc:5104
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr "比較 %1 和 %2 與 %3"
+msgstr "比對 %1 和 %2 與 %3"
 
 #. IDS_REPORT_COMMALIST
 #: Merge.rc:5105
@@ -7121,7 +7154,7 @@ msgstr "逗號分隔列表"
 #. IDS_REPORT_TABLIST
 #: Merge.rc:5106
 msgid "Tab-separated list"
-msgstr "製表符（Tab）分隔列表"
+msgstr "定位字元（Tab）分隔列表"
 
 #. IDS_REPORT_SIMPLEHTML
 #: Merge.rc:5107
@@ -7173,8 +7206,8 @@ msgid ""
 "Selected files are identical (with current settings).\r\n"
 "Checking binary identity..."
 msgstr ""
-"所選檔案相同（使用目前設定）。\r\n"
-"正在檢查二進制一致性..."
+"所選檔案完全相同（使用目前設定）。\r\n"
+"正在檢查二進位一致性..."
 
 #. IDS_FILESSAME_BINERROR
 #: Merge.rc:5131
@@ -7182,13 +7215,13 @@ msgid ""
 "Selected files are identical (with current settings).\r\n"
 "But binary comparison failed."
 msgstr ""
-"所選檔案相同（使用目前設定）。\r\n"
-"但二進制比較失敗。"
+"所選檔案完全相同（使用目前設定）。\r\n"
+"但二進位比對失敗。"
 
 #. IDS_FILESSAME_BINSAME
 #: Merge.rc:5132
 msgid "Selected files are identical (binary match)."
-msgstr "所選檔案相同（二進制符合）。"
+msgstr "所選檔案完全相同（二進位符合）。"
 
 #. IDS_FILESSAME_BINDIFF
 #: Merge.rc:5133
@@ -7196,8 +7229,8 @@ msgid ""
 "Selected files are identical (with current settings).\r\n"
 "But differ at the binary level."
 msgstr ""
-"所選檔案相同（使用目前設定）。\r\n"
-"但在二進制層級上有差異。"
+"所選檔案完全相同（使用目前設定）。\r\n"
+"但在二進位層級上有差異。"
 
 #. IDS_FILEERROR
 #: Merge.rc:5134
@@ -7216,13 +7249,14 @@ msgid ""
 "\n"
 "Treat all EOL as equivalent?\n"
 "\n"
-"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of "
+"Options."
 msgstr ""
-"檔案使用了不同的行尾格式。\n"
+"檔案使用的是不同的 EOL。\n"
 "\n"
-"要將所有行尾格式視為等效嗎？\n"
+"要將所有 EOL 視為相同嗎？\n"
 "\n"
-"請至選項的『比較』區段中，設定『忽略行尾差異（Windows/Unix/Mac）』。"
+"您可以在「選項」的「比對」區塊中，設定「忽略 EOL 差異（Windows/Unix/Mac）」。"
 
 #. IDS_INVALID_DIRECTORY
 #: Merge.rc:5137
@@ -7232,7 +7266,7 @@ msgstr "所選的資料夾無效。"
 #. IDS_CANNOT_OPEN_BINARYFILE
 #: Merge.rc:5138
 msgid "Cannot open a binary file in Editor."
-msgstr "編輯器不能開啟二進制檔。"
+msgstr "編輯器不能開啟二進位檔。"
 
 #. IDS_CREATE_PAIR_FOLDER
 #: Merge.rc:5139
@@ -7242,11 +7276,9 @@ msgid ""
 "%1\n"
 "on the other side and open?"
 msgstr ""
-"資料夾僅存於另一邊，因此不能開啟\n"
-"\n"
-"想新增一個相合的資料夾：\n"
+"是否要在另一側建立對應的資料夾：\n"
 "%1\n"
-"到另一邊，然後開啟兩夾嗎？"
+"並將其開啟？"
 
 #. IDS_CONFIRM_COPY_ALL_DIFFS
 #: Merge.rc:5140
@@ -7287,11 +7319,13 @@ msgstr "您要移動到最後一個檔案嗎？"
 #, c-format
 msgid ""
 "Different codepages: left (cp%d), right (cp%d).\n"
-"Display in codepage (better display) or default Windows codepage (safer merging)?\n"
+"Display in codepage (better display) or default Windows codepage (safer "
+"merging)?\n"
 "(Recommended: default Windows codepage)"
 msgstr ""
 "不同的字碼頁：左側(cp%d)、右側(cp%d)。\n"
-"要用個別字碼頁顯示 (顯示效果較佳)還是用預設的 Windows 字碼頁顯示 (合併較安全)？\n"
+"要用個別字碼頁顯示 (顯示效果較佳)還是用預設的 Windows 字碼頁顯示 (合併較安"
+"全)？\n"
 "要使用相同的預設 windows 字碼頁去看兩邊嗎？(建議)"
 
 #: Merge.rc:5159
@@ -7360,12 +7394,12 @@ msgstr "字碼頁變更存在衝突。"
 #. IDS_EOL_MERGED
 #: Merge.rc:5194
 msgid "EOL change merged."
-msgstr "行尾格式變更已合併。"
+msgstr "換行符號變更已合併。"
 
 #. IDS_EOL_CONFLICT
 #: Merge.rc:5195
 msgid "EOL changes are conflicting."
-msgstr "行尾格式變更發生衝突。"
+msgstr "換行符號變更發生衝突。"
 
 # also refer to line 5584
 #. IDS_LOCBAR_CAPTION
@@ -7440,7 +7474,7 @@ msgstr "指定一個輸出檔。"
 
 #: Merge.rc:5222
 msgid "Cannot create patch from binary files."
-msgstr "無法從二進制檔建補綴檔。"
+msgstr "無法從二進位檔建補綴檔。"
 
 #. IDS_SAVEFILES_FORPATCH
 #: Merge.rc:5223
@@ -7506,7 +7540,7 @@ msgid ""
 "\n"
 "Continue?"
 msgstr ""
-"將關閉多個比較視窗。\n"
+"將關閉多個比對視窗。\n"
 "\n"
 "要繼續嗎？"
 
@@ -7514,7 +7548,7 @@ msgstr ""
 #: Merge.rc:5246
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "二進制"
+msgstr "二進位"
 
 #. IDS_MARKER_COLOR_FMT
 #: Merge.rc:5251
@@ -7536,7 +7570,7 @@ msgstr "類型"
 #. IDS_PLUGINS_TYPE_EDITSCRIPT
 #: Merge.rc:5262
 msgid "Editor script"
-msgstr "編輯器隨譯即行碼"
+msgstr "編輯器指令碼"
 
 #. ID_SELECTLINEDIFF
 #: Merge.rc:5268
@@ -7798,12 +7832,12 @@ msgstr "從最近使用清單"
 #. IDS_COLORSCHEME_PLAIN
 #: Merge.rc:5350
 msgid "No Highlighting"
-msgstr "無高亮顯著色"
+msgstr "無高亮顯著提示"
 
 #. IDS_COLORSCHEME_PO
 #: Merge.rc:5385
 msgid "Portable Object"
-msgstr ".PO"
+msgstr "PO檔"
 
 #. IDS_COLORSCHEME_RSRC
 #: Merge.rc:5389
@@ -7813,7 +7847,7 @@ msgstr "資源檔"
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5393
 msgid "Shell"
-msgstr "Shell"
+msgstr "命令殼層(Shell)"
 
 #. IDS_CLOSE_LEFT_TABS
 #: Merge.rc:5413
@@ -7849,7 +7883,7 @@ msgstr "自動換行 (&R)"
 #: Merge.rc:5436
 #, c-format
 msgid "%1 is not installed."
-msgstr "Frhed %1。"
+msgstr "未安裝 %1。"
 
 #. IDS_CREATE_FOLDER
 #: Merge.rc:5441
@@ -7964,7 +7998,7 @@ msgstr "差異"
 #: Merge.rc:5481
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "醒目提示"
+msgstr "高亮顯著提示"
 
 #. IDS_DIFF_BLINK
 #: Merge.rc:5482
@@ -8172,7 +8206,7 @@ msgstr "只允許執行唯一程式"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5535
 msgid "Clipboard &History"
-msgstr ""
+msgstr "剪貼簿歷史紀錄 (&H)"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5536
@@ -8219,12 +8253,12 @@ msgstr "外掛處理序中缺少引號：%1"
 #: Merge.rc:5554
 #, c-format
 msgid "Plugin name '%1' already exists."
-msgstr "外掛名稱 '%1' 已經存在。"
+msgstr "外掛名稱「%1」已經存在。"
 
 #. IDS_PLUGIN_TITLE1
 #: Merge.rc:5555
 msgid "Specify plugin arguments"
-msgstr "指定外掛程式參數"
+msgstr "指定外掛程式引數"
 
 #: Merge.rc:5557
 #, c-format
@@ -8246,7 +8280,7 @@ msgstr "'%1' 不是預差異化外掛"
 #: Merge.rc:5561
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
-msgstr "使用外掛 '%2' 預先差異檔案 '%1' 時發生錯誤。預先差異將不再應用。"
+msgstr "使用外掛「%2」預先差異檔案「%1」時發生錯誤。預先差異將不再套用。"
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
 #: Merge.rc:5562
@@ -8282,13 +8316,13 @@ msgstr "預差異化的別名"
 #. IDS_PLUGIN_TYPE7
 #: Merge.rc:5569
 msgid "Alias for Editor script"
-msgstr "編輯器腳本的別名"
+msgstr "編輯器指令碼的別名"
 
 #. IDS_PLUGIN_ALIAS_DESC
 #: Merge.rc:5570
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr "外掛處理序 '%1' 的別名"
+msgstr "外掛處理序「%1」的別名"
 
 #. IDS_PLUGIN_NEW_DESC
 #: Merge.rc:5571
@@ -8339,12 +8373,12 @@ msgstr "已套用篩選器"
 #: Merge.rc:5588
 #, c-format
 msgid "Compare %1"
-msgstr "比較 %1"
+msgstr "比對 %1"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
 #: Merge.rc:5590
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "依此欄篩選(&F)..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
 #: Merge.rc:5595
@@ -8367,7 +8401,7 @@ msgstr "此系統不支援剪貼簿歷史紀錄。"
 
 #: Merge.rc:5600
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
+msgstr "32 位元版本的 WinMerge 不支援剪貼簿比對"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
 #: Merge.rc:5605
@@ -8377,37 +8411,37 @@ msgstr "尚未安裝 WebView2 執行階段。是否要下載安裝？"
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
 #: Merge.rc:5610
 msgid "New Text Compare"
-msgstr "新文字比較"
+msgstr "新文字比對"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
 #: Merge.rc:5611
 msgid "New Table Compare"
-msgstr "新表格比較"
+msgstr "新表格比對"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
 #: Merge.rc:5612
 msgid "New Binary Compare"
-msgstr "新二進制比較"
+msgstr "新二進位比對"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
 #: Merge.rc:5613
 msgid "New Image Compare"
-msgstr "新圖片比較"
+msgstr "新圖片比對"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
 #: Merge.rc:5614
 msgid "New Webpage Compare"
-msgstr "新網頁比較"
+msgstr "新網頁比對"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5615
 msgid "New Folder Compare"
-msgstr ""
+msgstr "新增資料夾比對"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5616
 msgid "Clipboard Compare"
-msgstr "剪貼簿比較"
+msgstr "剪貼簿比對"
 
 #. IDS_PREVIEWBAR_PRINT
 #: Merge.rc:5621
@@ -8554,30 +8588,30 @@ msgstr ""
 #: Merge.rc:5662
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr "正在比較 %1 與 %2"
+msgstr "正在比對 %1 與 %2"
 
 #. IDS_LOG_COMPARING_3
 #: Merge.rc:5663
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr "正在比較 %1 與 %2 及 %3"
+msgstr "正在比對 %1 與 %2 及 %3"
 
 #. IDS_LOG_COMPARE_COMPLETED
 #: Merge.rc:5664
 msgid "Comparison completed"
-msgstr "比較完成"
+msgstr "比對完成"
 
 #. IDS_LOG_COMPARE_ERROR_2
 #: Merge.rc:5665
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr "無法比較 %1 與 %2："
+msgstr "無法比對 %1 與 %2："
 
 #. IDS_LOG_COMPARE_ERROR_3
 #: Merge.rc:5666
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr "無法比較 %1 與 %2 及 %3："
+msgstr "無法比對 %1 與 %2 及 %3："
 
 #. IDS_LOG_FILE_SAVED
 #: Merge.rc:5667
@@ -8627,12 +8661,12 @@ msgstr "無錯誤"
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
 #: Merge.rc:5680
 msgid "Filter expression is empty"
-msgstr "過濾表達式為空"
+msgstr "篩選表示式為空"
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
 #: Merge.rc:5681
 msgid "Unknown character in filter expression"
-msgstr "過濾表達式中存在未知字符"
+msgstr "篩選表示式中存在未知字符"
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
 #: Merge.rc:5682
@@ -8642,12 +8676,12 @@ msgstr "未終止的字串文字"
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
 #: Merge.rc:5683
 msgid "Syntax error in filter expression"
-msgstr "過濾表達式中的語法錯誤"
+msgstr "篩選表示式中的語法錯誤"
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
 #: Merge.rc:5684
 msgid "Failed to parse filter expression"
-msgstr "解析過濾表達式失敗"
+msgstr "解析篩選表示式失敗"
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
 #: Merge.rc:5685
@@ -8667,17 +8701,17 @@ msgstr "未定義標識符"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
 #: Merge.rc:5688
 msgid "Invalid number of arguments"
-msgstr "參數數量無效"
+msgstr "引數數量無效"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
 #: Merge.rc:5689
 msgid "Filter name not found"
-msgstr "未找到過濾器名稱"
+msgstr "未找到篩選器名稱"
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
 #: Merge.rc:5690
 msgid "Division by zero in filter expression"
-msgstr "過濾表達式中除以零"
+msgstr "篩選表示式中除以零"
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
 #: Merge.rc:5691
@@ -8692,7 +8726,7 @@ msgstr "無效的屬性名稱"
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
 #: Merge.rc:5693
 msgid "Invalid directive"
-msgstr ""
+msgstr "無效指令"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5698
@@ -8747,32 +8781,32 @@ msgstr "不包含"
 #. IDS_FILTER_OP_RECONTAINS
 #: Merge.rc:5708
 msgid "Contains (regex)"
-msgstr "包含（正規表示法）"
+msgstr "包含（正規表示式）"
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
 #: Merge.rc:5709
 msgid "Not Contains (regex)"
-msgstr "不包含（正規表示法）"
+msgstr "不包含（正規表示式）"
 
 #. IDS_FILTER_OP_LIKE
 #: Merge.rc:5710
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "符合 (萬用字元)"
 
 #. IDS_FILTER_OP_NOT_LIKE
 #: Merge.rc:5711
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "不符合 (萬用字元)"
 
 #. IDS_FILTER_OP_MATCHES
 #: Merge.rc:5712
 msgid "Match (regex)"
-msgstr ""
+msgstr "符合 (正規表示式)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
 #: Merge.rc:5713
 msgid "Not match (regex)"
-msgstr ""
+msgstr "不符合 (正規表示式)"
 
 #. IDS_COLORMODE_LIGHT
 #: Merge.rc:5718
@@ -8798,7 +8832,7 @@ msgstr "例:%1"
 #. IDS_DETECTED_PREVIOUS_CRASH
 #: Merge.rc:5730
 msgid "WinMerge detected a previous crash. Please report this if possible."
-msgstr ""
+msgstr "WinMerge 偵測到上一次執行時發生損毀。如果可以的話，請協助回報此問題。"
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
 #: Merge.rc:5735
@@ -8809,6 +8843,11 @@ msgid ""
 "\r\n"
 "(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 msgstr ""
+"# 正規表示式取代清單\r\n"
+"# 格式：正規表示式<TAB>取代目標\r\n"
+"# 支援如 $1、$2 的反向引用\r\n"
+"\r\n"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
 #: Merge.rc:5736
@@ -8820,6 +8859,12 @@ msgid ""
 "from1\tto1\r\n"
 "from2\tto2\r\n"
 msgstr ""
+"# 取代清單\r\n"
+"# 格式：搜尋目標<TAB>取代目標\r\n"
+"# 以 # 開頭的行將被忽略\r\n"
+"\r\n"
+"from1\tto1\r\n"
+"from2\tto2\r\n"
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
 #: Merge.rc:5741
@@ -8994,7 +9039,7 @@ msgstr "忽略開頭行號"
 #. IDS_PLUGIN_MENU_CAPTION23
 #: Strings.rc:82
 msgid "Apply Prediff Substitution Filters"
-msgstr "應用預先差異替代篩選器"
+msgstr "套用預先差異替代篩選器"
 
 #. IDS_PLUGIN_MENU_CAPTION24
 #: Strings.rc:83
@@ -9019,7 +9064,7 @@ msgstr "美化 YAML"
 #. IDS_PLUGIN_MENU_CAPTION28
 #: Strings.rc:87
 msgid "Prettify PO"
-msgstr ""
+msgstr "美化 PO 檔"
 
 #. IDS_PLUGIN_MENU_CAPTION29
 #: Strings.rc:88
@@ -9064,7 +9109,7 @@ msgstr "驗證 HTML"
 #. IDS_PLUGIN_MENU_CAPTION37
 #: Strings.rc:100
 msgid "Validate PO"
-msgstr ""
+msgstr "驗證 PO 檔"
 
 #. IDS_PLUGIN_MENU_CAPTION38
 #: Strings.rc:101
@@ -9094,7 +9139,7 @@ msgstr "取消轉義 Java 屬性文件"
 #. IDS_PLUGIN_MENU_CAPTION43
 #: Strings.rc:106
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "反編譯 Java (CFR)"
 
 #. IDS_PLUGIN_DESCRIPTION1
 #: Strings.rc:111
@@ -9164,9 +9209,9 @@ msgid ""
 "Usage: ExecFilterCommand COMMAND\r\n"
 " COMMAND - command to execute. %1 = filename."
 msgstr ""
-"應用篩選器命令。\r\n"
+"套用篩選器。\r\n"
 "用法：ExecFilterCommand COMMAND\r\n"
-"COMMAND - 要執行的命令。命令中的 %1 會被替換為檔案名稱。"
+" COMMAND - 要執行的命令。%1 = 檔名。"
 
 #: Strings.rc:127
 msgid ""
@@ -9176,7 +9221,7 @@ msgid ""
 msgstr ""
 "選取的文字進行分詞。\r\n"
 "用法：Tokenize PATTERNS\r\n"
-" PATTERNS - 用於分詞的正則表示式。（例如：[^\\w]+）"
+" PATTERNS - 用於分詞的正規表示式。（例如：[^\\w]+）"
 
 #. IDS_PLUGIN_DESCRIPTION12
 #: Strings.rc:128
@@ -9199,7 +9244,7 @@ msgstr ""
 "用法：SelectColumns RANGES\r\n"
 " 或：SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
 " RANGES - 要選取的欄位範圍列表。例如：-3,5-10,30-\r\n"
-" PATTERNS - 正則表示式\r\n"
+" PATTERNS - 正規表示式\r\n"
 " -v - 選取不符合條件的欄位\r\n"
 " -i - 忽略大小寫\r\n"
 " -g - 啟用全域標誌\r\n"
@@ -9220,7 +9265,7 @@ msgstr ""
 "用法：SelectLines RANGES\r\n"
 " 或：SelectLines [-v] [-i] -e PATTERNS\r\n"
 " RANGES - 要選取的行範圍列表。例如：-3,5-10,30-\r\n"
-" PATTERNS - 正則表示式\r\n"
+" PATTERNS - 正規表示式\r\n"
 " -v - 選取不符合條件的行\r\n"
 " -i - 忽略大小寫\r\n"
 " -e - 使用 PATTERNS 進行匹配"
@@ -9230,38 +9275,40 @@ msgid ""
 "HTML Prettier (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
-"使用 tidy-html5 進行 HTML 格式化。\r\n"
-"參數：傳遞給 tidy 命令的命令行選項。"
+"HTML 美化器 (tidy-html5)。\r\n"
+"引數：tidy 命令列選項。"
 
 #: Strings.rc:140
 msgid ""
 "JSON Prettier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
-"使用 jq 命令進行 JSON 格式化。\r\n"
-"參數：傳遞給 jq 命令的過濾器或命令行選項。"
+"JSON 美化器 (jq)。\r\n"
+"引數：jq 篩選器/命令列選項。"
 
 #: Strings.rc:142
 msgid ""
 "XML Prettier (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
-"使用 tidy-html5 進行 XML 格式化。\r\n"
-"參數：傳遞給 tidy 命令的命令行選項。"
+"XML 美化器 (tidy-html5)。\r\n"
+"引數：tidy 命令列選項。"
 
 #: Strings.rc:144
 msgid ""
 "YAML Prettier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
-"使用 yq 命令進行 YAML 格式化。\r\n"
-"參數：傳遞給 yq 命令的過濾器或命令行選項。"
+"YAML 美化器 (yq)。\r\n"
+"引數：yq 篩選器/命令列選項。"
 
 #: Strings.rc:146
 msgid ""
 "PO Prettier (gettext msgcat).\r\n"
 "Arguments: msgcat command line options."
 msgstr ""
+"PO 美化器 (gettext msgcat)。\r\n"
+"引數：msgcat 命令列選項。"
 
 #: Strings.rc:148
 msgid ""
@@ -9269,7 +9316,7 @@ msgid ""
 "Arguments: dot command line options."
 msgstr ""
 "Graphviz 預覽器。\r\n"
-"參數：傳遞給 dot 命令的命令行選項。"
+"引數：dot 命令列選項。"
 
 #: Strings.rc:150
 msgid ""
@@ -9277,7 +9324,7 @@ msgid ""
 "Arguments: md2html command line options."
 msgstr ""
 "Markdown 預覽器。\r\n"
-"參數：傳遞給 md2html 命令的命令行選項。"
+"引數：md2html 命令列選項。"
 
 #: Strings.rc:152
 msgid ""
@@ -9285,39 +9332,39 @@ msgid ""
 "Arguments: plantuml.jar command line options."
 msgstr ""
 "PlantUML 預覽器。\r\n"
-"參數：傳遞給 plantuml.jar 命令的命令行選項。"
+"引數：plantuml.jar 命令列選項。"
 
 #: Strings.rc:154
 msgid ""
 "CSV Querier (q).\r\n"
 "Arguments: SQL statement/q command line options."
 msgstr ""
-"使用 q 命令進行 CSV 查詢。\r\n"
-"參數：SQL 語句或傳遞給 q 命令的命令行選項。"
+"CSV 查詢器 (q)。\r\n"
+"引數：SQL 語句/q 命令列選項。"
 
 #: Strings.rc:156
 msgid ""
 "TSV Querier (q).\r\n"
 "Arguments: SQL statement/q command line options."
 msgstr ""
-"使用 q 命令進行 TSV 查詢。\r\n"
-"參數：SQL 語句或傳遞給 q 命令的命令行選項。"
+"TSV 查詢器 (q)。\r\n"
+"引數：SQL 語句/q 命令列選項。"
 
 #: Strings.rc:158
 msgid ""
 "JSON Querier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
-"使用 jq 命令進行 JSON 查詢。\r\n"
-"參數：過濾器或傳遞給 jq 命令的命令行選項。"
+"JSON 查詢器 (jq)。\r\n"
+"引數：jq 篩選器/命令列選項。"
 
 #: Strings.rc:164
 msgid ""
 "YAML Querier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
-"使用 yq 命令進行 YAML 查詢。\r\n"
-"參數：過濾器或傳遞給 yq 命令的命令行選項。"
+"YAML 查詢器 (yq)。\r\n"
+"引數：yq 篩選器/命令列選項。"
 
 #: Strings.rc:166
 msgid ""
@@ -9325,13 +9372,15 @@ msgid ""
 "Arguments: tidy command line options."
 msgstr ""
 "使用 tidy-html5 進行 HTML 驗證。\r\n"
-"參數：傳遞給 tidy 命令的命令行選項。"
+"引數：傳遞給 tidy 命令的命令行選項。"
 
 #: Strings.rc:168
 msgid ""
 "PO Validator (gettext msgfmt).\r\n"
 "Arguments: msgfmt command line options."
 msgstr ""
+"PO 檔驗證工具 (gettext msgfmt)。\r\n"
+"引數：msgfmt 命令列選項。"
 
 #: Strings.rc:170
 msgid ""
@@ -9339,7 +9388,7 @@ msgid ""
 "Arguments: javap command line options."
 msgstr ""
 "使用 javap 命令進行 JVM 字節碼反彙編。\r\n"
-"參數：傳遞給 javap 命令的命令行選項。"
+"引數：傳遞給 javap 命令的命令行選項。"
 
 #: Strings.rc:172
 msgid ""
@@ -9347,7 +9396,7 @@ msgid ""
 "Arguments: ildasm command line options."
 msgstr ""
 "使用 ildasm 命令進行 IL 反彙編。\r\n"
-"參數：傳遞給 ildasm 命令的命令行選項。"
+"引數：傳遞給 ildasm 命令的命令行選項。"
 
 #: Strings.rc:174
 msgid ""
@@ -9355,7 +9404,7 @@ msgid ""
 "Arguments: dumpbin command line options."
 msgstr ""
 "使用 dumpbin 命令進行本機代碼反彙編。\r\n"
-"參數：傳遞給 dumpbin 命令的命令行選項。"
+"引數：傳遞給 dumpbin 命令的命令行選項。"
 
 #: Strings.rc:176
 msgid ""
@@ -9363,7 +9412,7 @@ msgid ""
 "Arguments: tika-app.jar command line options."
 msgstr ""
 "使用 Apache Tika 進行通用內容提取。\r\n"
-"參數：傳遞給 tika-app.jar 的命令行選項。"
+"引數：傳遞給 tika-app.jar 的命令行選項。"
 
 #. IDS_PLUGIN_DESCRIPTION41
 #: Strings.rc:177
@@ -9396,7 +9445,8 @@ msgstr "忽略某些欄位 - 從外掛程式名稱或外掛程式引數中忽略
 
 #: Strings.rc:185
 msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
-msgstr "該外掛程式忽略C、C++、PHP和JavaScript檔案中的註解 (//... 和 / ... */)。"
+msgstr ""
+"該外掛程式忽略C、C++、PHP和JavaScript檔案中的註解 (//... 和 / ... */)。"
 
 #: Strings.rc:187
 msgid "Ignore fields - list from plugin name/argument"
@@ -9463,10 +9513,17 @@ msgid ""
 "Decompiles .class files into readable Java source code.\r\n"
 "Arguments: CFR command line options."
 msgstr ""
+"Java 反編譯器 (CFR)。\r\n"
+"將 .class 檔案反編譯為可讀的 Java 原始碼。\r\n"
+"引數：CFR 命令列選項。"
 
 #: Strings.rc:206
-msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+msgid ""
+"Clipboard URL Scheme Handler (cliphcat).\r\n"
+"Arguments: cliphcat command line options."
 msgstr ""
+"剪貼簿 URL 配置處理器 (cliphcat)。\n"
+"引數：cliphcat 命令列選項。"
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
@@ -9484,21 +9541,21 @@ msgstr "更新外部參照 (連結)"
 #. IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3
 #: Strings.rc:216 Strings.rc:239 Strings.rc:256
 msgid "Compare document properties"
-msgstr "比較文件屬性"
+msgstr "比對文件屬性"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR5
 #: Strings.rc:217
 msgid "Compare names"
-msgstr "比較名稱"
+msgstr "比對名稱"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR6
 #: Strings.rc:218
 msgid "Compare cell values"
-msgstr "比較儲存格值"
+msgstr "比對儲存格值"
 
 #: Strings.rc:220
 msgid "Compare worksheets as image (very slow)"
-msgstr "以圖像方式比較工作表（速度非常慢）"
+msgstr "將工作表轉換為圖片進行比對（速度非常慢）"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR8
 #: Strings.rc:221
@@ -9508,22 +9565,22 @@ msgstr "- 圖像分割大小："
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR9
 #: Strings.rc:222
 msgid "Compare worksheets as HTML"
-msgstr "以 HTML 方式比較工作表"
+msgstr "將工作表轉換為 HTML 進行比對"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR10
 #: Strings.rc:223
 msgid "Compare formulas"
-msgstr "比較公式"
+msgstr "比對公式"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR4
 #: Strings.rc:224 Strings.rc:244 Strings.rc:263 Strings.rc:276
 msgid "Compare texts in shapes"
-msgstr "比較圖形中的文字"
+msgstr "比對圖形中的文字"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR12
 #: Strings.rc:225
 msgid "Compare headers and footers"
-msgstr "比較頁首和頁尾"
+msgstr "比對頁首和頁尾"
 
 #: Strings.rc:227 Strings.rc:247 Strings.rc:267 Strings.rc:279
 msgid ""
@@ -9531,23 +9588,22 @@ msgid ""
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr ""
 "無法取得巨集。\r\n"
-"在 MS Office 巨集安全性中啟用\n"
-"「信任對 Visual Basic 專案的存取」。"
+"請在 MS Office 巨集安全性中啟用「信任對 VBA 專案物件模型的存取」。"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR14
 #: Strings.rc:228
 msgid "Replace line breaks in formulas with spaces"
-msgstr "將公式中的換行符號替換成空格"
+msgstr "將公式中的換行替換為空格"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR15
 #: Strings.rc:229
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "在檔名中包含工作表順序編號"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR5
 #: Strings.rc:234 Strings.rc:245 Strings.rc:265 Strings.rc:277
 msgid "Compare VBA macros"
-msgstr "比較 VBA 巨集"
+msgstr "比對 VBA 巨集"
 
 #: Strings.rc:236
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
@@ -9560,16 +9616,16 @@ msgstr "將文件數據提取到多個檔案中"
 #. IDS_PLUGIN_COMPAREMSWORDFILES_STR4
 #: Strings.rc:240
 msgid "Compare bookmarks"
-msgstr "比較書籤"
+msgstr "比對書籤"
 
 #. IDS_PLUGIN_COMPAREMSWORDFILES_STR5
 #: Strings.rc:241
 msgid "Compare text contents of documents"
-msgstr "比較文件的文字內容"
+msgstr "比對文件的文字內容"
 
 #: Strings.rc:243
 msgid "Compare documents as HTML file (very slow)"
-msgstr "以 HTML 檔案方式比較文件（速度非常慢）"
+msgstr "以 HTML 檔案方式比對文件（速度非常慢）"
 
 #: Strings.rc:253
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
@@ -9581,12 +9637,12 @@ msgstr "將投影片數據提取到多個檔案中"
 
 #: Strings.rc:258
 msgid "Compare slides as image (very slow)"
-msgstr "以圖像方式比較投影片（速度非常慢）"
+msgstr "以圖像方式比對投影片（速度非常慢）"
 
 #. IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6
 #: Strings.rc:264
 msgid "Compare texts in notes page"
-msgstr "比較備註頁面中的文字"
+msgstr "比對備註頁面中的文字"
 
 #: Strings.rc:273
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
@@ -9600,7 +9656,7 @@ msgstr "將頁面數據提取到多個檔案中"
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR3
 #: Strings.rc:275
 msgid "Compare pages as image (very slow)"
-msgstr "以圖像方式比較頁面（速度非常慢）"
+msgstr "以圖像方式比對頁面（速度非常慢）"
 
 #: Strings.rc:285
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
@@ -9624,7 +9680,7 @@ msgstr "忽略大小寫"
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR6
 #: Strings.rc:290
 msgid "Use RegExp"
-msgstr "使用正則表達式"
+msgstr "使用正規表示式"
 
 #. IDS_PLUGIN_PREDIFFLINEFILTER_STR7
 #: Strings.rc:291
@@ -9653,32 +9709,32 @@ msgstr ""
 #: Strings.rc:304
 #, c-format
 msgid "Enter filename for patch '%1'"
-msgstr "輸入要套用修補程式 '%1' 的檔案名稱"
+msgstr "輸入要套用修補程式「%1」的檔案名稱"
 
 #. IDS_PLUGIN_APPLYPATCH_STR2
 #: Strings.rc:305
 #, c-format
 msgid "File '%1' does not exist"
-msgstr "檔案 '%1' 不存在"
+msgstr "檔案「%1」不存在"
 
 #: Strings.rc:307
 msgid "Enter command line arguments for patch"
-msgstr "輸入修補程式的命令行參數"
+msgstr "輸入修補程式的命令行引數"
 
 #: Strings.rc:309
 #, c-format
 msgid "Enter folder name for patch '%1'"
-msgstr "輸入要套用修補程式 '%1' 的資料夾名稱"
+msgstr "輸入要套用修補程式「%1」的資料夾名稱"
 
 #. IDS_PLUGIN_APPLYPATCH_STR5
 #: Strings.rc:314
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr "資料夾 '%1' 不存在"
+msgstr "資料夾「%1」不存在"
 
 #: Strings.rc:316
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr "對於包含絕對路徑的修補檔案，不要指定 '-p0' 命令行選項"
+msgstr "對於包含絕對路徑的修補檔案，不要指定【-p0】命令行選項"
 
 #: Strings.rc:322
 msgid "AI.sct WinMerge Plugin Options"
@@ -9686,7 +9742,7 @@ msgstr "AI.sct WinMerge 外掛選項"
 
 #: Strings.rc:324
 msgid "Enter prompt"
-msgstr "輸入提示"
+msgstr "輸入提示詞"
 
 #: Strings.rc:326
 #, c-format
