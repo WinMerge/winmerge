@@ -283,7 +283,7 @@ función funciona mejor en casos sencillos, por ejemplo, cuando las líneas
 presentan grandes similitudes. Cuando se detectan, las líneas similares se
 ajustan para alinearlas en el panel "Archivo". La siguiente figura muestra
 comparaciones de los mismos dos archivos, antes y después de activar la
-opción <option>Alinear líneas similares.</option></para>
+opción <option>Alinear líneas similares:</option></para>
 
               <simplelist columns="2" type="horiz">
                 <member><emphasis role="strong">Desactivada</emphasis>: <inlinemediaobject>

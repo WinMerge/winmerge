@@ -1770,6 +1770,33 @@ WinMergeを新しいバージョンにアップデートした時は、メッセ
 の画面描画が遅いと思う場合は、これを無効にすると良いかもしれません。</para>
         </listitem>
       </itemizedlist>
+
+      <para>
+<option>ハイライトモードは</option>、構文の強調表示にどの構文パーサーを使用するかを決定します。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>組み込みのみ</option>：WinMerge の組み込み構文パーサーのみを使用します。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>組み込みを優先</option>：組み込みの構文解析器を優先します。現在のファイル形式に対応していない場合は、Tree-sitter
+が使用されます。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Tree-sitter を優先</option>：Tree-sitter を優先します。Tree-sitter
+が現在のファイル形式に対応していない場合は、組み込みの構文パーサーが使用されます。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Tree-sitter のみ</option>：構文強調表示には Tree-sitter のみを使用します。</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>

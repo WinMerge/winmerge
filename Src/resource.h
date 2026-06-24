@@ -245,7 +245,7 @@
 #define IDC_IGNCASE_CHECK               1020
 #define IDC_COMPANY                     1021
 #define IDC_GNU_ASCII                   1022
-#define IDC_HILITE_SYNTAX_MODE            1023
+#define IDC_HILITE_SYNTAX_MODE          1023
 #define IDC_HILITE_CHECK                1025
 #define IDC_IGNOREREGEXP                1026
 #define IDC_ALL_WHITE                   1027

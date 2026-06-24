@@ -545,13 +545,13 @@ accesos directos <guimenuitem>Izquierdo</guimenuitem>,
       <warning>
         <para>Le recomendamos encarecidamente que mantenga activada la opción <guilabel>
 Enviar archivos eliminados a la Papelera de reciclaje</guilabel> (véase
-<xref linkend="Configuration" />), para que pueda deshacer las eliminaciones
-en caso de errores.  Además, debe mantener activada la Papelera de
-reciclaje: la opción de WinMerge no funciona si desactiva la Papelera de
-reciclaje en Windows. Una vez más, no puede deshacer la eliminación de
-archivos o carpetas a menos que utilice tanto la opción de WinMerge
-<guilabel>Enviar archivos eliminados a la Papelera de reciclaje</guilabel>
-como la Papelera de reciclaje de Windows.</para>
+<xref linkend="Configuration" />), para que pueda revertir lo borrado por
+error o accidente. Además, debe mantener activada la Papelera de reciclaje:
+la opción de WinMerge no funciona si desactiva la Papelera de reciclaje en
+Windows.  Una vez más, ¡no puede deshacer el borrado de archivos o carpetas
+a menos que utilice tanto la opción de WinMerge <guilabel>Enviar archivos
+eliminados a la Papelera de reciclaje</guilabel> o la Papelera de reciclaje
+de Windows!</para>
       </warning>
     </section>
 
