@@ -3333,16 +3333,7 @@ void CMergeEditView::OnGotoDefinition()
 void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
 {
 	CTreeSitterParser* pParser = GetTreeSitterParser();
-	if (!pParser || !pParser->HasLanguage())
-	{
-		pCmdUI->Enable(FALSE);
-		return;
-	}
-
-	const CEPoint pos = GetCursorPos();
-	int nDefLine = 0;
-	int nDefChar = 0;
-	pCmdUI->Enable(pParser->FindDefinition(pos.y, pos.x, nDefLine, nDefChar));
+	pCmdUI->Enable(pParser && pParser->HasLanguage());
 }
 
 /**

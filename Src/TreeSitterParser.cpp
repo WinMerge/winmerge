@@ -116,7 +116,7 @@ CTreeSitterColorMap::CTreeSitterColorMap()
 	m_map["function.macro"]         = COLORINDEX_FUNCNAME;
 	m_map["method"]                 = COLORINDEX_FUNCNAME;
 	m_map["method.call"]            = COLORINDEX_FUNCNAME;
-	m_map["constructor"]            = COLORINDEX_FUNCNAME;
+	m_map["constructor"]            = COLORINDEX_NORMALTEXT;
 
 	// Comments
 	m_map["comment"]                = COLORINDEX_COMMENT;
