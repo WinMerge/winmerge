@@ -151,9 +151,8 @@ struct DIFFSTATUS
 
 struct PostFilterContext
 {
-	int nParsedLineEndLeft = -1;
-	int nParsedLineEndRight = -1;
 	std::shared_ptr<LangServices::ISyntaxParser> m_pSyntaxParser[3];
+	bool m_bSyntaxParserInitialized[3] = { false, false, false };
 	std::unique_ptr<LangServices::ITextBuffer> m_pTextBuffer[3]; /**< Text buffer for parser access */
 };
 
