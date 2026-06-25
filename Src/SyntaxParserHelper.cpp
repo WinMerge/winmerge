@@ -75,16 +75,17 @@ std::string SyntaxParserHelper::GetCommentsFilteredText(
 				lineText.append(ucr::toUTF8(pszChars + nBlockStart, nBlockEnd - nBlockStart));
 		}
 
-		// Update allTextIsComment flag
-		allTextIsComment[lineIndex] = hasComment && !lineText.empty() && (lineText[0] == '\r' || lineText[0] == '\n');
-
-		result += lineText;
 		if (nActualItems > 0 && blocks[nActualItems - 1].m_nColorIndex == COLORINDEX_COMMENT)
 		{
 			// If there is an inline comment, the EOL for that line will be deleted, so add the EOL.
 			int nLength = pTextBuffer->GetLineLength(nLine);
-			result += ucr::toUTF8(pszChars + nLength, nFullLength - nLength);
+			lineText += ucr::toUTF8(pszChars + nLength, nFullLength - nLength);
 		}
+
+		// Update allTextIsComment flag
+		allTextIsComment[lineIndex] = hasComment && !lineText.empty() && (lineText[0] == '\r' || lineText[0] == '\n');
+
+		result += lineText;
 	}
 
 	return result;
