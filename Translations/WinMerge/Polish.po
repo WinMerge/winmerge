@@ -233,7 +233,7 @@ msgstr "Automatycznie dopasuj wszystkie kolumny"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:153 Merge.rc:5589
 msgid "&Filter by This Column"
-msgstr "Filtruj według tej kolumny
+msgstr "Filtruj według tej kolumny"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:155 Merge.rc:1879
