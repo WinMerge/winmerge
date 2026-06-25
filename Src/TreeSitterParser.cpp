@@ -157,16 +157,16 @@ CTreeSitterColorMap::CTreeSitterColorMap()
 	m_map["type.qualifier"]         = COLORINDEX_USER1;
 	m_map["storageclass"]           = COLORINDEX_USER1;
 
-	// Variables / properties / modules -> USER2 or NORMALTEXT
+	// Variables / properties / modules -> USER1, USER2 or NORMALTEXT
 	m_map["variable"]               = COLORINDEX_NORMALTEXT;
-	m_map["variable.builtin"]       = COLORINDEX_USER2;
+	m_map["variable.builtin"]       = COLORINDEX_USER1;
 	m_map["variable.parameter"]     = COLORINDEX_NORMALTEXT;
-	m_map["variable.member"]        = COLORINDEX_USER2;
+	m_map["variable.member"]        = COLORINDEX_USER1;
 	m_map["property"]               = COLORINDEX_NORMALTEXT;
 	m_map["field"]                  = COLORINDEX_NORMALTEXT;
 	m_map["constant"]               = COLORINDEX_NORMALTEXT;
-	m_map["constant.builtin"]       = COLORINDEX_USER2;
-	m_map["constant.macro"]         = COLORINDEX_USER2;
+	m_map["constant.builtin"]       = COLORINDEX_USER1;
+	m_map["constant.macro"]         = COLORINDEX_USER1;
 	m_map["module"]                 = COLORINDEX_USER1;
 	m_map["namespace"]              = COLORINDEX_USER1;
 	m_map["label"]                  = COLORINDEX_USER2;
