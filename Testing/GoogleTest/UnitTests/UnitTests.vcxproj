@@ -126,6 +126,7 @@
     <Import Project="..\..\..\Src\FilterEngine\FilterEngine.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Externals\poco\Foundation\Foundation.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Externals\poco\XML\XML.vcxitems" Label="Shared" />
+    <Import Project="..\..\..\Externals\tree-sitter\tree-sitter.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -708,6 +709,10 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\TreeSitterParser.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>

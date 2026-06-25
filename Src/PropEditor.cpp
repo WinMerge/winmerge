@@ -24,6 +24,7 @@ static const unsigned MAX_TABSIZE = 64u;
 PropEditor::PropEditor(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropEditor::IDD)
 , m_bHiliteSyntax(false)
+, m_nHiliteSyntaxMode(0)
 , m_nTabType(-1)
 , m_nTabSize(0)
 , m_bAllowMixedEol(false)
@@ -33,6 +34,7 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 		+[](unsigned v) { return v; }, +[](unsigned v) { return std::clamp(v, 1u, MAX_TABSIZE); });
 	BindOption(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio);
 	BindOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax, IDC_HILITE_CHECK, DDX_Check);
+	BindOption(OPT_SYNTAX_HIGHLIGHT_MODE, m_nHiliteSyntaxMode, IDC_HILITE_SYNTAX_MODE, DDX_CBIndex);
 	BindOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol, IDC_MIXED_EOL, DDX_Check);
 	BindOptionCustom(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex,
 		+[](int v) { return v + 1; }, +[](int v) { return (v - 1); });
@@ -82,6 +84,8 @@ BOOL PropEditor::OnInitDialog()
  */
 void PropEditor::LoadComboBoxStrings()
 {
+	SetDlgItemComboBoxList(IDC_HILITE_SYNTAX_MODE,
+		{ _("Built-in only"), _("Built-in first"), _("Tree-sitter first"), _("Tree-sitter only")});
 	SetDlgItemComboBoxList(IDC_RENDERING_MODE,
 		{ _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") });
 }

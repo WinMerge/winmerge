@@ -27,6 +27,7 @@ public:
 	//{{AFX_DATA(PropEditor)
 	enum { IDD = IDD_PROPPAGE_EDITOR };
 	bool    m_bHiliteSyntax;
+	int     m_nHiliteSyntaxMode;
 	int	    m_nTabType;
 	unsigned m_nTabSize;
 	bool    m_bAllowMixedEol;

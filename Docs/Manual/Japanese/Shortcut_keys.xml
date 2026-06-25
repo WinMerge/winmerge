@@ -212,6 +212,12 @@
         </row>
 
         <row>
+          <entry><keycap>F12</keycap></entry>
+
+          <entry>定義へ移動</entry>
+        </row>
+
+        <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo></entry>
 
           <entry>列選択を開始します</entry>

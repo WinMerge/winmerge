@@ -11,6 +11,9 @@ jobs:
     name: Analyze
     runs-on: windows-latest
     steps:
+      - name: Configure Git for long paths
+        run: git config --global core.longpaths true
+
       - name: Checkout repository
         id: checkout_repo
         uses: actions/checkout@v6

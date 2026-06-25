@@ -74,6 +74,7 @@
 #include "CrashLogger.h"
 #include "FileSaveHelper.h"
 #include "CrystalLineSyntaxParser.h"
+#include "TreeSitterParser.h"
 #include "SyntaxParserRegistry.h"
 #include <../src/mfc/afximpl.h>
 
@@ -500,13 +501,30 @@ BOOL CMergeApp::InitInstance()
 
 void CMergeApp::InitSyntaxParserFactories()
 {
-	std::vector<LangServices::ISyntaxParserFactory*> factories = { &CrystalLineSyntaxParserFactory::GetInstance() };
-	for (auto& factory : factories)
-		LangServices::SyntaxParserRegistry::GetInstance().UnregisterFactory(factory);
-	std::vector<LangServices::ISyntaxParserFactory*> factoriesNew;
-	factoriesNew.push_back(&CrystalLineSyntaxParserFactory::GetInstance());
-	for (auto& factory: factoriesNew)
-		LangServices::SyntaxParserRegistry::GetInstance().RegisterFactory(factory);
+	using namespace LangServices;
+
+	auto& registry = SyntaxParserRegistry::GetInstance();
+
+	auto& crystal = CrystalLineSyntaxParserFactory::GetInstance();
+	auto& treeSitter = TreeSitterSyntaxParserFactory::GetInstance();
+
+	const std::array<ISyntaxParserFactory*, 2> allFactories{ &crystal, &treeSitter };
+	for (auto* factory : allFactories)
+		registry.UnregisterFactory(factory);
+
+	static const std::array<std::vector<ISyntaxParserFactory*>, 4> modes{
+		std::vector<ISyntaxParserFactory*>{ &crystal },                 // Built-in only
+		std::vector<ISyntaxParserFactory*>{ &crystal,& treeSitter },    // Built-in first
+		std::vector<ISyntaxParserFactory*>{ &treeSitter,& crystal },    // Tree-sitter first
+		std::vector<ISyntaxParserFactory*>{ &treeSitter }               // Tree-sitter only
+	};
+
+	int mode = GetOptionsMgr()->GetInt(OPT_SYNTAX_HIGHLIGHT_MODE);
+	if (mode < 0 || mode >= static_cast<int>(modes.size()))
+		mode = 3;
+
+	for (auto* factory : modes[mode])
+		registry.RegisterFactory(factory);
 }
 
 void CMergeApp::OutputConsole(const String& message)

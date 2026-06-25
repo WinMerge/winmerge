@@ -153,8 +153,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{0AB2
 		Externals\winimerge\ExpandEnvironmenStrings.js = Externals\winimerge\ExpandEnvironmenStrings.js
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic", "Externals\crystaledit\Sample\SampleStatic.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinIMerge", "WinIMerge", "{0B7E421E-A8CA-444C-B650-D1D7F1D55688}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frhed", "Frhed", "{97E9C1F1-F87E-4BE6-A66C-6B97DCD80873}"
@@ -508,6 +506,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translation
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashLogger", "Src\CrashLogger\CrashLogger.vcxitems", "{CDEDDAC4-79B9-4A34-A564-8019F60D241F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tree-sitter", "Externals\tree-sitter\tree-sitter.vcxitems", "{07127EEC-6A5B-4FB4-89E8-4E21A2978773}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic", "Externals\crystaledit\Sample\SampleStatic.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1140,26 +1142,6 @@ Global
 		{49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC}.Test|ARM64.ActiveCfg = Debug|ARM64
 		{49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC}.Test|x64.ActiveCfg = Debug|x64
 		{49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC}.Test|x86.ActiveCfg = Debug|Win32
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM.ActiveCfg = Debug|ARM
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM.Build.0 = Debug|ARM
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM64.Build.0 = Debug|ARM64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x64.ActiveCfg = Debug|x64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x64.Build.0 = Debug|x64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x86.ActiveCfg = Debug|Win32
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x86.Build.0 = Debug|Win32
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM.ActiveCfg = Release|ARM
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM.Build.0 = Release|ARM
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM64.ActiveCfg = Release|ARM64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM64.Build.0 = Release|ARM64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x64.ActiveCfg = Release|x64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x64.Build.0 = Release|x64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x86.ActiveCfg = Release|Win32
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x86.Build.0 = Release|Win32
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|ARM.ActiveCfg = Debug|ARM
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|ARM64.ActiveCfg = Debug|ARM64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|x64.ActiveCfg = Debug|x64
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|x86.ActiveCfg = Debug|Win32
 		{139D8239-98B4-4B29-A199-B27CDB8B4708}.Debug|ARM.ActiveCfg = Debug|ARM
 		{139D8239-98B4-4B29-A199-B27CDB8B4708}.Debug|ARM.Build.0 = Debug|ARM
 		{139D8239-98B4-4B29-A199-B27CDB8B4708}.Debug|ARM64.ActiveCfg = Debug|ARM64
@@ -1296,8 +1278,8 @@ Global
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Release|x86.Build.0 = Release|Win32
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|ARM.ActiveCfg = Debug|ARM
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|ARM64.ActiveCfg = Debug|ARM64
-		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|x64.ActiveCfg = Release|x64
-		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|x86.ActiveCfg = Release|Win32
+		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|x64.ActiveCfg = Debug|x64
+		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|x86.ActiveCfg = Debug|Win32
 		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|ARM.ActiveCfg = Debug|ARM64
 		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|ARM64.ActiveCfg = Debug|ARM64
 		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|ARM64.Build.0 = Debug|ARM64
@@ -1392,6 +1374,26 @@ Global
 		{40AF6A7D-B4E7-4919-B38A-75F625E36AF5}.Test|x64.Build.0 = Debug|x64
 		{40AF6A7D-B4E7-4919-B38A-75F625E36AF5}.Test|x86.ActiveCfg = Debug|Win32
 		{40AF6A7D-B4E7-4919-B38A-75F625E36AF5}.Test|x86.Build.0 = Debug|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM.Build.0 = Debug|ARM
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|ARM64.Build.0 = Debug|ARM64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x64.ActiveCfg = Debug|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x64.Build.0 = Debug|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x86.ActiveCfg = Debug|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x86.Build.0 = Debug|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM.ActiveCfg = Release|ARM
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM.Build.0 = Release|ARM
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM64.ActiveCfg = Release|ARM64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|ARM64.Build.0 = Release|ARM64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x64.ActiveCfg = Release|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x64.Build.0 = Release|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x86.ActiveCfg = Release|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x86.Build.0 = Release|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|ARM.ActiveCfg = Debug|ARM
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|ARM64.ActiveCfg = Debug|ARM64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|x64.ActiveCfg = Debug|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|x86.ActiveCfg = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1430,7 +1432,6 @@ Global
 		{49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC} = {0B7E421E-A8CA-444C-B650-D1D7F1D55688}
 		{A9E83C9D-8AD6-4C87-888D-3F91B5656CD1} = {0B7E421E-A8CA-444C-B650-D1D7F1D55688}
 		{0AB212AD-1F11-4BAB-BAD5-8BFC4435F453} = {A9E83C9D-8AD6-4C87-888D-3F91B5656CD1}
-		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 		{0B7E421E-A8CA-444C-B650-D1D7F1D55688} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{97E9C1F1-F87E-4BE6-A66C-6B97DCD80873} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4} = {CE514278-A13F-4F6A-93EB-5653410AC214}
@@ -1479,11 +1480,14 @@ Global
 		{DAFD8D9E-6509-4482-A533-44C843C3BCC7} = {220B870C-D051-463E-997B-8C392081EE15}
 		{40AF6A7D-B4E7-4919-B38A-75F625E36AF5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{02828B8D-E4B9-41FE-84C4-D5CDA7761627} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
+		{07127EEC-6A5B-4FB4-89E8-4E21A2978773} = {CE514278-A13F-4F6A-93EB-5653410AC214}
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Externals\tree-sitter\tree-sitter.vcxitems*{07127eec-6a5b-4fb4-89e8-4e21a2978773}*SharedItemsImports = 9
 		Plugins\src_VCPP\Common\Common.vcxitems*{098b241d-63af-4683-baf8-6da57fd8fe75}*SharedItemsImports = 4
 		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{0ee652ff-27b0-4f91-bad6-2931bc072762}*SharedItemsImports = 4
@@ -1494,6 +1498,7 @@ Global
 		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\poco\XML\XML.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\tree-sitter\tree-sitter.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
@@ -1506,6 +1511,7 @@ Global
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\poco\XML\XML.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\tree-sitter\tree-sitter.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CrashLogger\CrashLogger.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
@@ -1516,6 +1522,7 @@ Global
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Externals\poco\XML\XML.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Externals\tree-sitter\tree-sitter.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4

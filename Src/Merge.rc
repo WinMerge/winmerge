@@ -128,6 +128,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "Go to &Definition\tF12",      ID_EDIT_GOTO_DEFINITION
         MENUITEM "Go to Moved Line Between Left and Middle\tCtrl+Shift+G", ID_GOTO_MOVED_LINE_LM
         MENUITEM "Go to Moved Line Between Middle and Right\tCtrl+Alt+G", ID_GOTO_MOVED_LINE_MR
         MENUITEM SEPARATOR
@@ -707,6 +708,7 @@ BEGIN
             MENUITEM "&Clear All Bookmarks",        ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "Go to &Definition\tF12",      ID_EDIT_GOTO_DEFINITION
         MENUITEM SEPARATOR
         MENUITEM "&Options...\tCtrl+,",         ID_OPTIONS
     END
@@ -1100,6 +1102,7 @@ BEGIN
     BEGIN
         MENUITEM "G&o to Diff",                 ID_LOCBAR_GOTODIFF
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "Go to &Definition\tF12",      ID_EDIT_GOTO_DEFINITION
         MENUITEM SEPARATOR
         MENUITEM "Move Cursor on &Click",       ID_LOCBAR_MOVECURSOR_ONCLICK
         MENUITEM SEPARATOR
@@ -2145,6 +2148,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
+    VK_F12,         ID_EDIT_GOTO_DEFINITION, VIRTKEY, NOINVERT
     VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F4,          ID_SELECTPREVLINEDIFF,  VIRTKEY, SHIFT, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
@@ -2614,14 +2618,16 @@ CAPTION "Editor"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,309,10
-    CONTROL         "&Preserve original EOL",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,309,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,30,311,72,WS_GROUP
-    LTEXT           "&Tab size:",IDC_STATIC,14,42,256,10
-    EDITTEXT        IDC_TAB_EDIT,24,54,18,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    CONTROL         "&Insert tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,72,256,10
-    CONTROL         "Insert &spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,84,256,10
-    LTEXT           "&Rendering mode:",IDC_STATIC,7,106,310,10
-    COMBOBOX        IDC_RENDERING_MODE,7,118,310,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "Highlight &mode:",IDC_STATIC,7,18,256,10
+    COMBOBOX        IDC_HILITE_SYNTAX_MODE,7,30,310,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "&Preserve original EOL",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,309,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,58,311,72,WS_GROUP
+    LTEXT           "&Tab size:",IDC_STATIC,14,70,256,10
+    EDITTEXT        IDC_TAB_EDIT,24,82,18,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    CONTROL         "&Insert tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,100,256,10
+    CONTROL         "Insert &spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,112,256,10
+    LTEXT           "&Rendering mode:",IDC_STATIC,7,134,310,10
+    COMBOBOX        IDC_RENDERING_MODE,7,146,310,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -4151,6 +4157,8 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
     0, 0, 0, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
@@ -5353,6 +5361,7 @@ BEGIN
     IDS_COLORSCHEME_DLANG   "D"
     IDS_COLORSCHEME_FORTRAN "Fortran"
     IDS_COLORSCHEME_FSHARP  "F#"
+    IDS_COLORSCHEME_FSHARP_SIGNATURE "F# Signature"
     IDS_COLORSCHEME_GO      "Go"
     IDS_COLORSCHEME_HTML    "HTML"
     IDS_COLORSCHEME_INI     "INI"
@@ -5367,6 +5376,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_COLORSCHEME_MARKDOWN "Markdown"
     IDS_COLORSCHEME_MATLAB  "MATLAB"
     IDS_COLORSCHEME_NSIS    "NSIS"
     IDS_COLORSCHEME_PASCAL  "Pascal"
@@ -5390,9 +5400,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLORSCHEME_TEX     "TEX"
+    IDS_COLORSCHEME_TSX     "TypeScript JSX"
+    IDS_COLORSCHEME_TYPESCRIPT "TypeScript"
     IDS_COLORSCHEME_VERILOG "Verilog"
     IDS_COLORSCHEME_VHDL    "VHDL"
     IDS_COLORSCHEME_XML     "XML"
+    IDS_COLORSCHEME_YAML    "YAML"
 END
 
 STRINGTABLE
@@ -5721,6 +5734,14 @@ STRINGTABLE
 BEGIN
     IDS_REGEX_REPLACE_LIST_TEMPLATE  "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
     IDS_STRING_REPLACE_LIST_TEMPLATE "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY "Built-in only"
+    IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST "Built-in first"
+    IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST "Tree-sitter first"
+    IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY "Tree-sitter only"
 END
 
 #endif    // English (United States) resources

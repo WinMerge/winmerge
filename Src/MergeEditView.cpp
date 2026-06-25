@@ -33,6 +33,7 @@
 #include "SelectPluginDlg.h"
 #include "Constants.h"
 #include "MouseHook.h"
+#include "TreeSitterParser.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -106,6 +107,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_EDIT_GOTO_DEFINITION, OnGotoDefinition)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_GOTO_DEFINITION, OnUpdateGotoDefinition)
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
 	// [View] menu
@@ -2426,6 +2429,9 @@ void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t
 void CMergeEditView::OnTextBufferChanged(bool bInsert, const CEPoint& ptStartPos, const CEPoint& ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType)
 {
 	__super::OnTextBufferChanged(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
+
+	if (m_pTreeSitterParser)
+		m_pTreeSitterParser->NotifyEdit(bInsert, ptStartPos, ptEndPos, pszText, cchText, nActionType);
 }
 
 /**
@@ -3264,6 +3270,48 @@ void CMergeEditView::OnWMGoto()
 				pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
+}
+
+CTreeSitterParser* CMergeEditView::GetTreeSitterParser()
+{
+	CTreeSitterParser* pSyntaxParser = dynamic_cast<CTreeSitterParser *>(GetSyntaxParser().get());
+	if (pSyntaxParser)
+		return pSyntaxParser;
+
+	if (!m_CurSourceDef)
+		return nullptr;
+
+	m_pTreeSitterParser = TreeSitterSyntaxParserFactory::GetInstance().Create(m_CurSourceDef->type);
+	if (!m_pTreeSitterParser)
+		return nullptr;
+
+	m_pTreeSitterParser->SetTextBuffer(GetDocument()->m_ptBuf[m_nThisPane].get());
+
+	return dynamic_cast<CTreeSitterParser *>(m_pTreeSitterParser.get());
+}
+
+void CMergeEditView::GotoTreeSitterDefinition()
+{
+	CTreeSitterParser* pParser = GetTreeSitterParser();
+	if (!pParser || !pParser->HasLanguage())
+		return;
+
+	const CEPoint pos = GetCursorPos();
+	int nDefLine = 0;
+	int nDefChar = 0;
+	if (pParser->FindDefinition(pos.y, pos.x, nDefLine, nDefChar))
+		GotoLine(nDefLine, false, m_nThisPane, true, nDefChar);
+}
+
+void CMergeEditView::OnGotoDefinition()
+{
+	GotoTreeSitterDefinition();
+}
+
+void CMergeEditView::OnUpdateGotoDefinition(CCmdUI* pCmdUI)
+{
+	CTreeSitterParser* pParser = GetTreeSitterParser();
+	pCmdUI->Enable(pParser && pParser->HasLanguage());
 }
 
 /**

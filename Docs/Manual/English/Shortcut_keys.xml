@@ -251,6 +251,12 @@
         </row>
 
         <row>
+          <entry><keycap>F12</keycap></entry>
+
+          <entry>Go to definition</entry>
+        </row>
+
+        <row>
           <entry><keycombo>
               <keycap>Ctrl</keycap>
 

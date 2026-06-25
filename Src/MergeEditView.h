@@ -39,6 +39,7 @@ class IMergeEditStatus;
 class CLocationView;
 class CMergeDoc;
 struct DIFFRANGE;
+class CTreeSitterParser;
 
 /**
 This class is the base class for WinMerge editor panels.
@@ -90,6 +91,8 @@ private:
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 	int m_nClickedColumn;
 
+	std::shared_ptr<LangServices::ISyntaxParser> m_pTreeSitterParser;
+
 // Attributes
 public:
 
@@ -130,6 +133,8 @@ public:
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
+	CTreeSitterParser* GetTreeSitterParser();
+	void GotoTreeSitterDefinition();
 	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true, int nChar = -1);
 	int GetTopLine() const { return m_nTopLine; }
 	using CCrystalTextView::GetScreenLines;
@@ -213,6 +218,8 @@ protected:
 	afx_msg void OnEditPaste();
 	afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
 	afx_msg void OnEditUndo();
+	afx_msg void OnGotoDefinition();
+	afx_msg void OnUpdateGotoDefinition(CCmdUI* pCmdUI);
 	afx_msg void OnFirstdiff();
 	afx_msg void OnUpdateFirstdiff(CCmdUI* pCmdUI);
 	afx_msg void OnLastdiff();

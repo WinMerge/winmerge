@@ -23,16 +23,18 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_DLANG, _T("D"), _T("d;di"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_FORTRAN, _T("Fortran"), _T("f;f90;f9p;fpp;for;f77"), false, SRCOPT_INSERTTABS | SRCOPT_AUTOINDENT, /*8,*/ _T(""), _T(""), _T("!"), (unsigned)-1,
 	SRC_FSHARP, _T("F#"), _T("fs;fsx"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_FSHARP_SIGNATURE, _T("F#Signature"), _T("fsi"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_GO, _T("Go"), _T("go"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_HTML, _T("HTML"), _T("html;htm;shtml;ihtml;ssi;stm;stml;jsp"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("<!--"), _T("-->"), _T(""), (unsigned)-1,
 	SRC_INI, _T("INI"), _T("ini;reg;vbp;isl"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU | SRCOPT_EOLNUNIX, /*2,*/ _T(""), _T(""), _T(";"), (unsigned)-1,
 	SRC_INNOSETUP, _T("InnoSetup"), _T("iss"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("{"), _T("}"), _T(";"), (unsigned)-1,
 	SRC_INSTALLSHIELD, _T("InstallShield"), _T("rul"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_JAVA, _T("Java"), _T("java;jav"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
-	SRC_JAVASCRIPT, _T("JavaScript"), _T("js;ts"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_JAVASCRIPT, _T("JavaScript"), _T("js"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_JSON, _T("JSON"), _T("json"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_LISP, _T("AutoLISP"), _T("lsp;dsl"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(";|"), _T("|;"), _T(";"), (unsigned)-1,
 	SRC_LUA, _T("Lua"), _T("lua"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("--[["), _T("]]"), _T("--"), (unsigned)-1,
+	SRC_MARKDOWN, _T("Markdown"), _T("md;markdown;mdown;mkd;mkdn"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("<!--"), _T("-->"), _T(""), (unsigned)-1,
 	SRC_MATLAB, _T("MATLAB"), _T("m"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("%{"), _T("%}"), _T("%"), (unsigned)-1,
 	SRC_NSIS, _T("NSIS"), _T("nsi;nsh"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T(";"), (unsigned)-1,
 	SRC_PASCAL, _T("Pascal"), _T("pas"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("{"), _T("}"), _T(""), (unsigned)-1,
@@ -52,9 +54,12 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_SQL, _T("SQL"), _T("sql"), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_TCL, _T("TCL"), _T("tcl"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU | SRCOPT_EOLNUNIX, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
 	SRC_TEX, _T("TEX"), _T("tex;sty;clo;ltx;fd;dtx"), false, SRCOPT_AUTOINDENT, /*4,*/ _T(""), _T(""), _T("%"), (unsigned)-1,
+	SRC_TSX, _T("TypeScriptJSX"), _T("tsx"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_TYPESCRIPT, _T("TypeScript"), _T("ts"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_VERILOG, _T("Verilog"), _T("v;vh"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_VHDL, _T("VHDL"), _T("vhd;vhdl;vho"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(""), _T(""), _T("--"), (unsigned)-1,
-	SRC_XML, _T("XML"), _T("xml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("<!--"), _T("-->"), _T(""), (unsigned)-1
+	SRC_XML, _T("XML"), _T("xml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("<!--"), _T("-->"), _T(""), (unsigned)-1,
+	SRC_YAML, _T("YAML"), _T("yaml;yml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
 };
 
 static bool

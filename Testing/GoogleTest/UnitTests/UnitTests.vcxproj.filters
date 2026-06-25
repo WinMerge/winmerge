@@ -351,6 +351,9 @@
     <ClCompile Include="..\..\..\Src\Common\locality.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\TreeSitterParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\Src\SyntaxParserHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

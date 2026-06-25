@@ -849,6 +849,9 @@
     <ClCompile Include="FilterMenuHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TreeSitterParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="SyntaxParserHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1620,6 +1623,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ReplaceListHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSitterParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SyntaxParserHelper.h">

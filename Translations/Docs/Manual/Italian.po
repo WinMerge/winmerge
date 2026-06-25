@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-05-30 19:56+0900\n"
+"POT-Creation-Date: 2026-06-25 07:56+0900\n"
 "PO-Revision-Date: 2026-04-19 13:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3162,7 +3162,7 @@ msgstr ""
 "degli strumenti."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:614 English/Configuration.xml:2853
+#: English/Compare_dirs.xml:614 English/Configuration.xml:2890
 msgid "deleting files"
 msgstr "eliminazione di file"
 
@@ -3473,7 +3473,7 @@ msgstr ""
 "dal menu principale."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:798 English/Configuration.xml:2758
+#: English/Compare_dirs.xml:798 English/Configuration.xml:2795
 msgid "archiving files"
 msgstr "archiviazione di file"
 
@@ -4725,7 +4725,7 @@ msgid "Copies just the source filename into the system clipboard."
 msgstr "Copia solo il nome del file sorgente negli appunti di sistema."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_files.xml:134 English/Configuration.xml:2649
+#: English/Compare_files.xml:134 English/Configuration.xml:2686
 msgid "difference colors"
 msgstr "colori diversi"
 
@@ -5064,7 +5064,7 @@ msgstr ""
 "differenza."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:338 English/Configuration.xml:2436
+#: English/Compare_files.xml:338 English/Configuration.xml:2473
 msgid "line differences"
 msgstr "differenze di linea"
 
@@ -5358,7 +5358,7 @@ msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_files.xml:520 English/Configuration.xml:2175
-#: English/Configuration.xml:2346 English/Configuration.xml:2551
+#: English/Configuration.xml:2383 English/Configuration.xml:2588
 msgid "editing"
 msgstr "modifica"
 
@@ -6166,7 +6166,7 @@ msgid "for File Compare window"
 msgstr "per la finestra Confronta file"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1007 English/Configuration.xml:2269
+#: English/Compare_files.xml:1007 English/Configuration.xml:2306
 msgid "tabs"
 msgstr "schede"
 
@@ -6870,8 +6870,8 @@ msgstr "Punti di sincronizzazione<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:1476 English/Compare_images.xml:117
-#: English/Configuration.xml:2558 English/Configuration.xml:2724
-#: English/Configuration.xml:2843 English/Configuration.xml:3272
+#: English/Configuration.xml:2595 English/Configuration.xml:2761
+#: English/Configuration.xml:2880 English/Configuration.xml:3309
 #: English/Filters.xml:2661 English/Filters.xml:3103 English/Filters.xml:3108
 #: English/Filters.xml:3119
 msgid "TBD"
@@ -6896,7 +6896,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:1491 English/Compare_files.xml:1776
-#: English/Configuration.xml:2355
+#: English/Configuration.xml:2392
 msgid "rescanning files"
 msgstr "nuova scansione dei file"
 
@@ -7739,7 +7739,7 @@ msgstr ""
 
 #. type: Content of: <appendix><table><title>
 #: English/Compare_images.xml:163 English/Compare_images.xml:168
-#: English/Shortcut_keys.xml:735
+#: English/Shortcut_keys.xml:741
 msgid "Zoom"
 msgstr "Zoom"
 
@@ -8388,11 +8388,11 @@ msgstr ""
 "tempo."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:5 English/Configuration.xml:2553
-#: English/Configuration.xml:2567 English/Configuration.xml:2651
-#: English/Configuration.xml:2702 English/Configuration.xml:2720
-#: English/Configuration.xml:2732 English/Configuration.xml:2838
-#: English/Configuration.xml:2855 English/Configuration.xml:3126
+#: English/Configuration.xml:5 English/Configuration.xml:2590
+#: English/Configuration.xml:2604 English/Configuration.xml:2688
+#: English/Configuration.xml:2739 English/Configuration.xml:2757
+#: English/Configuration.xml:2769 English/Configuration.xml:2875
+#: English/Configuration.xml:2892 English/Configuration.xml:3163
 msgid "options"
 msgstr "opzioni"
 
@@ -8874,7 +8874,7 @@ msgid "timestamps"
 msgstr "timestamp"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:353 English/Configuration.xml:2218
+#: English/Configuration.xml:353 English/Configuration.xml:2255
 msgid "preserving"
 msgstr "preservando"
 
@@ -9419,7 +9419,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><see>
 #: English/Configuration.xml:743 English/Configuration.xml:849
-#: English/Configuration.xml:2216 English/Configuration.xml:2222
+#: English/Configuration.xml:2253 English/Configuration.xml:2259
 msgid "EOL"
 msgstr "EOL"
 
@@ -9475,7 +9475,7 @@ msgid "<option>Enabled</option>: Numeric differences are ignored."
 msgstr "<option>Abilitato</option>: le differenze numeriche vengono ignorate."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:796 English/Configuration.xml:3124
+#: English/Configuration.xml:796 English/Configuration.xml:3161
 msgid "codepage"
 msgstr "tabella codici"
 
@@ -11615,7 +11615,7 @@ msgstr ""
 "utilizzando il pulsante <guibutton >Ripristina</guibutton >."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2177 English/Configuration.xml:2348
+#: English/Configuration.xml:2177 English/Configuration.xml:2385
 msgid "options for File Compare window"
 msgstr "opzioni per la finestra Confronta file"
 
@@ -11625,7 +11625,7 @@ msgid "Editor &gt; General page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Editore &gt;Pagina generale<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2184 English/Configuration.xml:2677
+#: English/Configuration.xml:2184 English/Configuration.xml:2714
 msgid "syntax highlighting"
 msgstr "evidenziazione della sintassi"
 
@@ -11664,13 +11664,47 @@ msgstr ""
 "certa potenza di elaborazione, quindi se l'aggiornamento dello schermo di "
 "WinMerge sembra lento, disattivare questa opzione potrebbe essere d'aiuto."
 
-#. type: Content of: <article><section><section><title><indexterm><primary>
+#. type: Content of: <article><section><section><para>
+#: English/Configuration.xml:2213
+msgid ""
+"<option>Highlight mode</option> determines which syntax parser is used for "
+"syntax highlighting."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2220
+msgid ""
+"<option>Built-in only</option>: Use only WinMerge's built-in syntax parser."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:2227
+msgid ""
+"<option>Built-in first</option>: Prefer the built-in syntax parser. If it "
+"does not support the current file type, Tree-sitter is used."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:2235
+msgid ""
+"<option>Tree-sitter first</option>: Prefer Tree-sitter. If Tree-sitter does "
+"not support the current file type, the built-in syntax parser is used."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:2243
+msgid ""
+"<option>Tree-sitter only</option>: Use only Tree-sitter for syntax "
+"highlighting."
+msgstr ""
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: English/Configuration.xml:2257
 msgid "end of line"
 msgstr "fine della riga"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2215
+#: English/Configuration.xml:2252
 msgid ""
 "Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -11679,7 +11713,7 @@ msgstr ""
 ">><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2229
+#: English/Configuration.xml:2266
 msgid ""
 "<option>Disabled</option> (default): Assumes that files are meant to be "
 "Windows files. If a file does not use the standard Windows line ending, "
@@ -11696,7 +11730,7 @@ msgstr ""
 "lo stile EOL come <guilabel >Win</guilabel >."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2238
+#: English/Configuration.xml:2275
 msgid ""
 "For most situations you should leave this option disabled: the default "
 "behavior works even when comparing two files that have different line ending "
@@ -11707,7 +11741,7 @@ msgstr ""
 "che hanno stili di fine riga diversi."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2246
+#: English/Configuration.xml:2283
 msgid ""
 "<option>Enabled</option>: Prevents WinMerge from automatically changing line "
 "endings, so that it detects different EOL styles for every line. This might "
@@ -11720,7 +11754,7 @@ msgstr ""
 "stili EOL diversi (ad esempio, Windows e Unix)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: English/Configuration.xml:2254
+#: English/Configuration.xml:2291
 msgid ""
 "This is an advanced option for users who are familiar with EOL bytes and who "
 "want to compare files with different EOL styles inside <emphasis>one</"
@@ -11735,22 +11769,22 @@ msgstr ""
 "non è necessaria per confrontare due file con stili EOL diversi."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2271
+#: English/Configuration.xml:2308
 msgid "editing options"
 msgstr "opzioni di modifica"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2268
+#: English/Configuration.xml:2305
 msgid "Tabs<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Schede<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2277
+#: English/Configuration.xml:2314
 msgid "Tab size"
 msgstr "Dimensioni della scheda"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2281
+#: English/Configuration.xml:2318
 msgid ""
 "Width of a tab space. Specify a value <replaceable>n</replaceable>: the "
 "resulting width is equivalent to that of <replaceable>n</replaceable> "
@@ -11762,12 +11796,12 @@ msgstr ""
 "valore massimo è 64."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2290
+#: English/Configuration.xml:2327
 msgid "Tab insert options"
 msgstr "Opzioni di inserimento schede"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2294
+#: English/Configuration.xml:2331
 msgid ""
 "Determines what kind of character is used when you insert a tab in text. "
 "Only one of these options can be enabled:"
@@ -11776,7 +11810,7 @@ msgstr ""
 "tabulazione nel testo.È possibile abilitare solo una di queste opzioni:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2301
+#: English/Configuration.xml:2338
 msgid ""
 "<guilabel>Insert Tabs</guilabel> (default): Uses a single tab character."
 msgstr ""
@@ -11784,7 +11818,7 @@ msgstr ""
 "singolo carattere di tabulazione."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2308
+#: English/Configuration.xml:2345
 msgid ""
 "<guilabel>Insert Spaces</guilabel>: Uses one or more spaces (determined by "
 "the <option>Tab size</option>) instead of a tab character. For example, with "
@@ -11796,17 +11830,17 @@ msgstr ""
 "predefinita, vengono inseriti quattro spazi."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2323
+#: English/Configuration.xml:2360
 msgid "rendering"
 msgstr "rendering"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2322
+#: English/Configuration.xml:2359
 msgid "Rendering Mode<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Modalità di rendering<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2330
+#: English/Configuration.xml:2367
 msgid ""
 "<option>GDI</option> (default): Renders text using the Graphics Device "
 "Interface (GDI)."
@@ -11815,7 +11849,7 @@ msgstr ""
 "utilizzando la Graphics Device Interface (GDI)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2336
+#: English/Configuration.xml:2373
 msgid ""
 "<option>DirectWrite Modes</option>: Renders text using various DirectWrite "
 "rendering modes, including support for colored emojis on Windows 8.1 and "
@@ -11833,24 +11867,24 @@ msgstr ""
 "per i dettagli."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2345
+#: English/Configuration.xml:2382
 msgid ""
 "Editor &gt; Compare/Merge page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Editore &gt;Confronta/Unisci pagina<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2357
+#: English/Configuration.xml:2394
 msgid "enabling and disabling autoscan"
 msgstr "abilitare e disabilitare la scansione automatica"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2354
+#: English/Configuration.xml:2391
 msgid "Automatic rescan<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Nuova scansione automatica<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2364
+#: English/Configuration.xml:2401
 msgid ""
 "<option>Disabled</option> (default): WinMerge rescans automatically when you "
 "merge a difference, or if you manually rescan (for example, click the "
@@ -11862,7 +11896,7 @@ msgstr ""
 "<guibutton >Ripeti scansione</guibutton >)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2372
+#: English/Configuration.xml:2409
 msgid ""
 "<option>Enabled</option>: Forces WinMerge to rescan after every edit event "
 "(a change to files, like typing)."
@@ -11871,7 +11905,7 @@ msgstr ""
 "evento di modifica (una modifica ai file, come la digitazione)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><note><para>
-#: English/Configuration.xml:2378
+#: English/Configuration.xml:2415
 msgid ""
 "To avoid slowing down your editing, WinMerge delays automatic rescanning a "
 "little: it waits one second after each edit event.  Because each new edit "
@@ -11883,12 +11917,12 @@ msgstr ""
 "scansioni finché non si mette in pausa o si interrompe la modifica."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2391
+#: English/Configuration.xml:2428
 msgid "copy granularity"
 msgstr "granularità della copia"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2390
+#: English/Configuration.xml:2427
 msgid ""
 "Copy granularity for selected differences<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -11897,7 +11931,7 @@ msgstr ""
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2396
+#: English/Configuration.xml:2433
 msgid ""
 "Specifies the copy granularity when copying to another pane by clicking the "
 "<guimenuitem>Copy to right</guimenuitem> menu item etc.  with text selected."
@@ -11907,14 +11941,14 @@ msgstr ""
 "ecc. con il testo selezionato."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2404
+#: English/Configuration.xml:2441
 msgid "<option>Diff hunk</option>: Copies diff hunks within the selected text."
 msgstr ""
 "<option>Diff hunk</option>: copia i diff hunk all'interno del testo "
 "selezionato."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2411
+#: English/Configuration.xml:2448
 msgid ""
 "<option>Inline diff</option>: Copies inline diffs within the selected text."
 msgstr ""
@@ -11922,7 +11956,7 @@ msgstr ""
 "testo selezionato."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2418
+#: English/Configuration.xml:2455
 msgid ""
 "<option>Line</option>: Copies the differences within the selected text line "
 "by line."
@@ -11931,7 +11965,7 @@ msgstr ""
 "riga per riga."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2425
+#: English/Configuration.xml:2462
 msgid ""
 "<option>Character</option> (default): Copies the differences within the "
 "selected text character by character."
@@ -11940,17 +11974,17 @@ msgstr ""
 "del testo selezionato carattere per carattere."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2438
+#: English/Configuration.xml:2475
 msgid "viewing options"
 msgstr "opzioni di visualizzazione"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2435
+#: English/Configuration.xml:2472
 msgid "Line Difference Coloring<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Colorazione differenza linea<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2443
+#: English/Configuration.xml:2480
 msgid ""
 "These settings enable and configure the detection of <glossterm> line "
 "differences </glossterm> (changes within the lines of difference blocks):"
@@ -11960,12 +11994,12 @@ msgstr ""
 "blocchi di differenza):"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2452
+#: English/Configuration.xml:2489
 msgid "View line differences"
 msgstr "Visualizza le differenze di linea"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2458
+#: English/Configuration.xml:2495
 msgid ""
 "<option>Enabled</option> (default): WinMerge highlights differences within "
 "lines. Also enables the <menuchoice> <guimenu>View</guimenu> "
@@ -11977,12 +12011,12 @@ msgstr ""
 "guimenuitem > </menuchoice >."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2466
+#: English/Configuration.xml:2503
 msgid "Choose one of these suboptions:"
 msgstr "Scegli una di queste opzioni secondarie:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2471
+#: English/Configuration.xml:2508
 msgid ""
 "<guilabel>Character level</guilabel>: Highlights individual characters that "
 "are different. This option can be useful if you are looking for changes "
@@ -11994,7 +12028,7 @@ msgstr ""
 "interruzioni di parola chiare."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2480
+#: English/Configuration.xml:2517
 msgid ""
 "<guilabel>Word-level</guilabel> (default): Highlights entire words that are "
 "different."
@@ -12003,7 +12037,7 @@ msgstr ""
 "parole che sono diverse."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2487
+#: English/Configuration.xml:2524
 msgid ""
 "<guilabel>Break at whitespace</guilabel> (default): Words are assumed to be "
 "separated by whitespace characters.  This usually works for typical text "
@@ -12014,7 +12048,7 @@ msgstr ""
 "funziona per i tipici file di testo."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2495
+#: English/Configuration.xml:2532
 msgid ""
 "<guilabel>Break at whitespace or punctuation</guilabel>: Considers both "
 "whitespace and punctuation characters to be word breaks. This can useful for "
@@ -12027,7 +12061,7 @@ msgstr ""
 "punteggiatura (come elenchi separati da virgole)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2509
+#: English/Configuration.xml:2546
 msgid ""
 "<option>Disabled</option>: WinMerge does not highlight line differences, and "
 "all settings for the level and whitespace options are ignored. Also disables "
@@ -12041,12 +12075,12 @@ msgstr ""
 "menuchoice >."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2525
+#: English/Configuration.xml:2562
 msgid "Word break characters"
 msgstr "Caratteri di interruzione di parola"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2528
+#: English/Configuration.xml:2565
 msgid ""
 "Specifies the symbols that are treated as non-whitespace word separators "
 "when <guilabel>Break at whitespace or punctuation</guilabel> is selected."
@@ -12056,12 +12090,12 @@ msgstr ""
 "spazi bianchi o punteggiatura</guilabel>."
 
 #. type: Content of: <article><section><section><note><title>
-#: English/Configuration.xml:2537
+#: English/Configuration.xml:2574
 msgid "Related topic"
 msgstr "Argomento correlato"
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:2540
+#: English/Configuration.xml:2577
 msgid ""
 "<xref linkend=\"CompareFiles_linediff-highlight\" /> explains in more detail "
 "how WinMerge detects and marks line differences."
@@ -12070,18 +12104,18 @@ msgstr ""
 "dettagliato come WinMerge rileva e contrassegna le differenze di linea."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2550
+#: English/Configuration.xml:2587
 msgid "Editor &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Editore &gt;Pagina di sintassi<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2565
+#: English/Configuration.xml:2602
 msgid "color schemes"
 msgstr "combinazioni di colori"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2564
+#: English/Configuration.xml:2601
 msgid ""
 "Colors &gt; Color Schemes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
@@ -12089,7 +12123,7 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2572
+#: English/Configuration.xml:2609
 msgid ""
 "The Color Schemes page allows you to customize the overall color appearance "
 "of WinMerge, including support for light and dark modes. You can select and "
@@ -12102,17 +12136,17 @@ msgstr ""
 "salvare o eliminare le tue combinazioni personalizzate."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2577
+#: English/Configuration.xml:2614
 msgid "Color mode"
 msgstr "Modalità colore"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2580
+#: English/Configuration.xml:2617
 msgid "Selects the color mode for the application. Choose from:"
 msgstr "Seleziona la modalità colore per l'applicazione.Scegli tra:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2585
+#: English/Configuration.xml:2622
 msgid ""
 "<option>Light</option> (default): Uses the color scheme specified for light "
 "mode. When selected, the appearance of dialog windows, menus, and other UI "
@@ -12124,7 +12158,7 @@ msgstr ""
 "verrà mostrato in uno stile chiaro."
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2590
+#: English/Configuration.xml:2627
 msgid ""
 "<option>Dark</option>: Uses the color scheme specified for dark mode. When "
 "selected, the appearance of dialog windows, menus, and other UI elements "
@@ -12136,7 +12170,7 @@ msgstr ""
 "uno stile scuro."
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2595
+#: English/Configuration.xml:2632
 msgid ""
 "<option>Follow system</option>: Automatically switches between light and "
 "dark mode based on your operating system's setting."
@@ -12145,12 +12179,12 @@ msgstr ""
 "chiara a quella scura in base alle impostazioni del tuo sistema operativo."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2603
+#: English/Configuration.xml:2640
 msgid "Light mode scheme"
 msgstr "Schema della modalità luce"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2606
+#: English/Configuration.xml:2643
 msgid ""
 "Selects the color scheme to use when <guilabel>Color mode</guilabel> is set "
 "to Light. Available schemes include <option>Default</option> (default), "
@@ -12162,12 +12196,12 @@ msgstr ""
 "schema definito dall'utente che hai salvato."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2612
+#: English/Configuration.xml:2649
 msgid "Dark mode scheme"
 msgstr "Schema della modalità oscura"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2615
+#: English/Configuration.xml:2652
 msgid ""
 "Selects the color scheme to use when <guilabel>Color mode</guilabel> is set "
 "to Dark. Available schemes include <option>VS Dark</option> (default), "
@@ -12179,12 +12213,12 @@ msgstr ""
 "qualsiasi schema definito dall'utente che hai salvato."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2621
+#: English/Configuration.xml:2658
 msgid "Save current scheme"
 msgstr "Salva lo schema corrente"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2624
+#: English/Configuration.xml:2661
 msgid ""
 "Saves the current color settings as a new scheme. The scheme is saved as an "
 "INI file. <emphasis> Only schemes saved in the <filename>Documents/WinMerge/"
@@ -12199,12 +12233,12 @@ msgstr ""
 "modalità scura</guilabel >.</emphasis>"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2632
+#: English/Configuration.xml:2669
 msgid "Delete current scheme"
 msgstr "Elimina lo schema corrente"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2635
+#: English/Configuration.xml:2672
 msgid ""
 "Deletes the currently selected color scheme. This button is only enabled for "
 "user-defined schemes (not for built-in schemes like Default or VS Dark)."
@@ -12214,7 +12248,7 @@ msgstr ""
 "integrati come Predefinito o VS Scuro)."
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2642
+#: English/Configuration.xml:2679
 msgid ""
 "Use these options to tailor the WinMerge interface to your preferences or to "
 "match your system theme. Custom color schemes make it easy to share or reuse "
@@ -12226,13 +12260,13 @@ msgstr ""
 "impostazioni di colore preferite."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2648
+#: English/Configuration.xml:2685
 msgid "Colors &gt; Differences page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Colori >Pagina delle differenze<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2656
+#: English/Configuration.xml:2693
 msgid ""
 "Use this page if you want to change any of the difference colors used in the "
 "File Compare window. You can set the background, deleted, and text color."
@@ -12242,7 +12276,7 @@ msgstr ""
 "sfondo, l'eliminazione e il colore del testo."
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2662 English/Configuration.xml:2743
+#: English/Configuration.xml:2699 English/Configuration.xml:2780
 msgid ""
 "To change a color, click in its box to open a standard Color chooser dialog. "
 "Choose one of the predefined colors or define your own custom color, then "
@@ -12254,8 +12288,8 @@ msgstr ""
 "<guibutton >OK</guibutton > per caricare il nuovo colore nella casella."
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2669 English/Configuration.xml:2692
-#: English/Configuration.xml:2750
+#: English/Configuration.xml:2706 English/Configuration.xml:2729
+#: English/Configuration.xml:2787
 msgid ""
 "To revert to the default colors of a scheme, choose a different scheme and "
 "return to the modified scheme."
@@ -12264,17 +12298,17 @@ msgstr ""
 "diverso e torna allo schema modificato."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2679
+#: English/Configuration.xml:2716
 msgid "color options"
 msgstr "opzioni di colore"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2676
+#: English/Configuration.xml:2713
 msgid "Colors &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Colori >Pagina di sintassi<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2684
+#: English/Configuration.xml:2721
 msgid ""
 "By default, the WinMerge File Compare window marks the syntax of certain "
 "kinds of source code, as described in <xref "
@@ -12289,17 +12323,17 @@ msgstr ""
 "il colore e lo spessore del testo."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2700
+#: English/Configuration.xml:2737
 msgid "text colors"
 msgstr "colori del testo"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2699
+#: English/Configuration.xml:2736
 msgid "Colors &gt; Text page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Colori >Pagina di testo<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2707
+#: English/Configuration.xml:2744
 msgid ""
 "Use this page to change the colors used for text. First, check the option, "
 "<guilabel>Use customized text colors</guilabel>. This activates the text "
@@ -12315,22 +12349,22 @@ msgstr ""
 "il testo."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2718
+#: English/Configuration.xml:2755
 msgid "marker colors"
 msgstr "colori dei marcatori"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2717
+#: English/Configuration.xml:2754
 msgid "Colors &gt; Markers page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Colori >Pagina dei marcatori<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2730
+#: English/Configuration.xml:2767
 msgid "folder compare colors"
 msgstr "cartella confronta i colori"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2729
+#: English/Configuration.xml:2766
 msgid ""
 "Colors &gt; Folder Compare page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
@@ -12338,7 +12372,7 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2737
+#: English/Configuration.xml:2774
 msgid ""
 "By default, the WinMerge Folder Compare window use background colors to show "
 "the status from a item (equal, different, not exists on all sides or "
@@ -12349,42 +12383,42 @@ msgstr ""
 "diverso, non esiste su tutti i lati o filtrato)."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2760
+#: English/Configuration.xml:2797
 msgid "configuring support after installation"
 msgstr "configurazione del supporto dopo l'installazione"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2757
+#: English/Configuration.xml:2794
 msgid "Archive Support page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Archivia la pagina di supporto<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2765
+#: English/Configuration.xml:2802
 msgid "This page contains options for configuring archive support using 7-Zip."
 msgstr ""
 "Questa pagina contiene le opzioni per configurare il supporto dell'archivio "
 "utilizzando 7-Zip."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2772 English/Open_paths.xml:60
+#: English/Configuration.xml:2809 English/Open_paths.xml:60
 msgid "7-Zip archives"
 msgstr "Archivi 7-Zip"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2774
+#: English/Configuration.xml:2811
 msgid "enabling and disabling integration"
 msgstr "abilitare e disabilitare l'integrazione"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2771
+#: English/Configuration.xml:2808
 msgid "Enable archive file support<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Abilita il supporto dei file di archivio<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2779
+#: English/Configuration.xml:2816
 msgid ""
 "This option controls how WinMerge handles archive files (based on 7-Zip "
 "integration)."
@@ -12393,25 +12427,25 @@ msgstr ""
 "(basato sull'integrazione 7-Zip)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2786
+#: English/Configuration.xml:2823
 msgid "<option>Enabled</option> (default): WinMerge recognizes 7-Zip archives."
 msgstr ""
 "<option>Abilitato</option> (impostazione predefinita): WinMerge riconosce "
 "gli archivi 7-Zip."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2793
+#: English/Configuration.xml:2830
 msgid "<option>Disabled</option>: Turns off 7-Zip archive integration."
 msgstr ""
 "<option>Disabilitato</option>: disattiva l'integrazione dell'archivio 7-Zip."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2803
+#: English/Configuration.xml:2840
 msgid "detecting archive types"
 msgstr "rilevamento dei tipi di archivio"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2802
+#: English/Configuration.xml:2839
 msgid ""
 "Detect archive type from file signature<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -12420,7 +12454,7 @@ msgstr ""
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2810
+#: English/Configuration.xml:2847
 msgid ""
 "<option>Disabled</option> (default): WinMerge recognizes only archives whose "
 "file extension is known on your system (for example, in the registry or "
@@ -12431,7 +12465,7 @@ msgstr ""
 "esempio, nel registro o tramite un'associazione di file)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2818
+#: English/Configuration.xml:2855
 msgid ""
 "<option>Enabled</option>: WinMerge can recognize archive files even if their "
 "file extension is not known. To recognize an archive, WinMerge searches the "
@@ -12442,7 +12476,7 @@ msgstr ""
 "cerca all'inizio del file i byte della firma dell'archivio."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><tip><para>
-#: English/Configuration.xml:2823
+#: English/Configuration.xml:2860
 msgid ""
 "You can use this option to enable WinMerge to recognize Open Office files."
 msgstr ""
@@ -12450,30 +12484,30 @@ msgstr ""
 "riconoscere i file Open Office."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2836 English/Open_paths.xml:367
+#: English/Configuration.xml:2873 English/Open_paths.xml:367
 #: English/Quick_start.xml:203
 msgid "project files"
 msgstr "file di progetto"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2835
+#: English/Configuration.xml:2872
 msgid "Project page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Pagina del progetto<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2848
+#: English/Configuration.xml:2885
 msgid "System page"
 msgstr "Pagina di sistema"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2852
+#: English/Configuration.xml:2889
 msgid ""
 "Send deleted files to Recycle Bin<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Invia i file eliminati al Cestino<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2862
+#: English/Configuration.xml:2899
 msgid ""
 "<option>Enabled</option> (default): Files and folders that you delete in a "
 "Folder Compare window are moved to the Recycle Bin, if it is available."
@@ -12483,7 +12517,7 @@ msgstr ""
 "se disponibile."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: English/Configuration.xml:2869
+#: English/Configuration.xml:2906
 msgid ""
 "Remember: if the Recycle Bin on your system has been deactivated, this "
 "option does not work, and deleted files are lost!"
@@ -12492,7 +12526,7 @@ msgstr ""
 "non funziona e i file cancellati andranno persi!"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2879
+#: English/Configuration.xml:2916
 msgid ""
 "<option>Disabled</option>: Files and folders deleted in a directory compare "
 "actually deleted."
@@ -12501,22 +12535,22 @@ msgstr ""
 "cartella vengono confrontati con quelli effettivamente eliminati."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2889
+#: English/Configuration.xml:2926
 msgid "external editor"
 msgstr "redattore esterno"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2891
+#: English/Configuration.xml:2928
 msgid "configuring"
 msgstr "configurazione"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2888
+#: English/Configuration.xml:2925
 msgid "External editor<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Editor esterno<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2896
+#: English/Configuration.xml:2933
 msgid ""
 "The WinMerge File Compare window provides common editing functions.  If you "
 "prefer using your favorite, full-featured editor, you can configure WinMerge "
@@ -12528,7 +12562,7 @@ msgstr ""
 "cartelle."
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2903
+#: English/Configuration.xml:2940
 msgid ""
 "Installation configures Notepad as the default external editor, because it "
 "is found on all Windows systems. To configure a different external editor, "
@@ -12539,7 +12573,7 @@ msgstr ""
 "esterno, inserisci il percorso completo del suo file eseguibile."
 
 #. type: Content of: <article><section><section><tip><para>
-#: English/Configuration.xml:2910
+#: English/Configuration.xml:2947
 msgid ""
 "Along with the path, you can include any command line parameters supported "
 "by the external tool, in this format: <command> <replaceable>path to "
@@ -12553,7 +12587,7 @@ msgstr ""
 "replaceable> </option>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2923
+#: English/Configuration.xml:2960
 msgid ""
 "To use the configured external editor, right-click a file in the Folder "
 "Compare window and choose <menuchoice> <guimenuitem>Open Left</guimenuitem> "
@@ -12569,22 +12603,22 @@ msgstr ""
 "menuchoice >."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2939
+#: English/Configuration.xml:2976
 msgid "user data"
 msgstr "dati dell'utente"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2940
+#: English/Configuration.xml:2977
 msgid "storage location"
 msgstr "posizione di archiviazione"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2938
+#: English/Configuration.xml:2975
 msgid "Store user data in<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Archivia i dati utente in<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2945
+#: English/Configuration.xml:2982
 msgid ""
 "Specifies where WinMerge stores user data such as filters, plugins, color "
 "schemes, and configuration logs."
@@ -12593,7 +12627,7 @@ msgstr ""
 "combinazioni di colori e registri di configurazione."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2952
+#: English/Configuration.xml:2989
 msgid ""
 "<guilabel>AppData (Roaming) folder</guilabel> (default): Stores user data in "
 "the roaming application data folder of your user profile."
@@ -12603,7 +12637,7 @@ msgstr ""
 "tuo profilo utente."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2959
+#: English/Configuration.xml:2996
 msgid ""
 "<guilabel>Documents folder</guilabel>: Stores user data in the "
 "<filename>WinMerge</filename> subfolder of your Documents directory."
@@ -12612,27 +12646,27 @@ msgstr ""
 "nella sottocartella <filename >WinMerge</filename > della cartella Documenti."
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2966
+#: English/Configuration.xml:3003
 msgid "This setting affects newly created user data only."
 msgstr "Questa impostazione influisce solo sui dati utente appena creati."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2973 English/Filters.xml:1637
+#: English/Configuration.xml:3010 English/Filters.xml:1637
 msgid "Filters folders"
 msgstr "Filtra le cartelle"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2975
+#: English/Configuration.xml:3012
 msgid "specifying default private folder"
 msgstr "specificando la cartella privata predefinita"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2972
+#: English/Configuration.xml:3009
 msgid "Filter folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Cartella filtro<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2980
+#: English/Configuration.xml:3017
 msgid ""
 "Use this field to specify your own private folder for file filters.  By "
 "default this folder is your user profile directory (for example, "
@@ -12646,17 +12680,17 @@ msgstr ""
 "cartella."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2990
+#: English/Configuration.xml:3027
 msgid "temporary files, folder used"
 msgstr "file temporanei, cartella utilizzata"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2989
+#: English/Configuration.xml:3026
 msgid "Temporary files folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Cartella dei file temporanei<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2995
+#: English/Configuration.xml:3032
 msgid ""
 "Specify the folder where WinMerge stores temporary files. Either one of "
 "these options is available:"
@@ -12665,7 +12699,7 @@ msgstr ""
 "disponibile una di queste opzioni:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3002
+#: English/Configuration.xml:3039
 msgid ""
 "<guilabel>System's temp folder</guilabel> (default): For example, this might "
 "be <filename>C:\\Windows\\Temp</filename> on your system."
@@ -12675,7 +12709,7 @@ msgstr ""
 "sistema."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3009
+#: English/Configuration.xml:3046
 msgid ""
 "<guilabel>Custom folder</guilabel>: Click <guibutton>Browse</guibutton> and "
 "select a different folder where you have write access."
@@ -12685,29 +12719,29 @@ msgstr ""
 "scrittura."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:3020
+#: English/Configuration.xml:3057
 msgid "backup files, options"
 msgstr "file di backup, opzioni"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:3019
+#: English/Configuration.xml:3056
 msgid "Backup Files page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Pagina File di backup<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:3025
+#: English/Configuration.xml:3062
 msgid "This page allows you to control how WinMerge creates backup files."
 msgstr ""
 "Questa pagina consente di controllare il modo in cui WinMerge crea i file di "
 "backup."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3030
+#: English/Configuration.xml:3067
 msgid "Create backup files for"
 msgstr "Crea file di backup per"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3033
+#: English/Configuration.xml:3070
 msgid ""
 "Specify when WinMerge should create backup files. You can enable or disable "
 "each of these options independently:"
@@ -12716,7 +12750,7 @@ msgstr ""
 "disabilitare ciascuna di queste opzioni in modo indipendente:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3040
+#: English/Configuration.xml:3077
 msgid ""
 "<guilabel>Folder compare</guilabel> (disabled by default): Backup files are "
 "create whenever files are overwritten (copied)."
@@ -12726,7 +12760,7 @@ msgstr ""
 "sovrascritti (copiati)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3048
+#: English/Configuration.xml:3085
 msgid ""
 "<guilabel>File compare</guilabel> (enabled by default): Backup files are "
 "created whenever files are saved."
@@ -12736,12 +12770,12 @@ msgstr ""
 "salvati."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3056
+#: English/Configuration.xml:3093
 msgid "Create backup files in"
 msgstr "Crea file di backup in"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3059
+#: English/Configuration.xml:3096
 msgid ""
 "Specify where backup files are created. Only one of these options can be "
 "enabled:"
@@ -12750,7 +12784,7 @@ msgstr ""
 "una di queste opzioni:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3066
+#: English/Configuration.xml:3103
 msgid ""
 "<guilabel>Original file's folder</guilabel> (enabled by default): Backup "
 "files are created in the same folder as the source file. This is usually a "
@@ -12764,7 +12798,7 @@ msgstr ""
 "richiedere molto lavoro."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3075
+#: English/Configuration.xml:3112
 msgid ""
 "<guilabel>Global backup folder</guilabel> (disabled by default): All backup "
 "files are created in one global folder. This makes them easy to clean up. "
@@ -12778,12 +12812,12 @@ msgstr ""
 "sovrascrive quello precedente con lo stesso nome."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3086
+#: English/Configuration.xml:3123
 msgid "Backup filename"
 msgstr "Nome del file di backup"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3089
+#: English/Configuration.xml:3126
 msgid ""
 "When WinMerge creates a backup file, it appends an extension to the source "
 "file name. You can choose either or both of these extension schemes:"
@@ -12792,7 +12826,7 @@ msgstr ""
 "file di origine.Puoi scegliere uno o entrambi questi schemi di estensione:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3097
+#: English/Configuration.xml:3134
 msgid ""
 "<guilabel>Append .bak extension</guilabel> (enabled by default): For "
 "example, the <filename>file.txt</filename> is backed up to <filename>file."
@@ -12803,7 +12837,7 @@ msgstr ""
 "filename> in <filename>file.txt.bak</filename>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3105
+#: English/Configuration.xml:3142
 msgid ""
 "<guilabel>Append timestamp</guilabel> (enabled by default): Timestamps are "
 "almost always unique, so this option usually avoids duplicating backup file "
@@ -12815,7 +12849,7 @@ msgstr ""
 "origine hanno gli stessi nomi."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3112
+#: English/Configuration.xml:3149
 msgid ""
 "Also, storing a copy of a file each time you save it provides a way to track "
 "changes to the file. However, you should consider that this option can "
@@ -12826,12 +12860,12 @@ msgstr ""
 "Tuttavia, dovresti considerare che questa opzione può creare molti file."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:3123
+#: English/Configuration.xml:3160
 msgid "Codepage page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Pagina della tabella codici<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:3131
+#: English/Configuration.xml:3168
 msgid ""
 "WinMerge detects handles file encoding transparently, and in most cases you "
 "should not need to change the default settings.This page allows you to "
@@ -12843,7 +12877,7 @@ msgstr ""
 "determinati formati di file, se necessario."
 
 #. type: Content of: <article><section><note><para>
-#: English/Configuration.xml:3138
+#: English/Configuration.xml:3175
 msgid ""
 "A full explanation of text encoding and Windows codepages is beyond the "
 "scope of WinMerge documentation. Fortunately, there is lots of information "
@@ -12855,7 +12889,7 @@ msgstr ""
 "punti da cui iniziare:"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: English/Configuration.xml:3147
+#: English/Configuration.xml:3184
 msgid ""
 "<ulink url=\"https://en.wikipedia.org/wiki/Code_pages\"> Wikipedia: Code "
 "pages </ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
@@ -12866,7 +12900,7 @@ msgstr ""
 "Character_encoding\"> Codifica dei caratteri </ulink>"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: English/Configuration.xml:3160
+#: English/Configuration.xml:3197
 msgid ""
 "<ulink url=\"https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-"
 "ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43\"> Microsoft: Code Pages "
@@ -12877,12 +12911,12 @@ msgstr ""
 "supportate da Windows </ulink>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3170
+#: English/Configuration.xml:3207
 msgid "Default Codepage"
 msgstr "Tabella codici predefinita"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3173
+#: English/Configuration.xml:3210
 msgid ""
 "Choose one of these radio buttons to set the default codepage that WinMerge "
 "uses when handling ANSI files:"
@@ -12891,7 +12925,7 @@ msgstr ""
 "predefinita utilizzata da WinMerge durante la gestione dei file ANSI:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3180
+#: English/Configuration.xml:3217
 msgid ""
 "<guilabel>System codepage</guilabel> (default):The codepage used by your "
 "Windows system. This default is usually the best choice.  However if you "
@@ -12905,7 +12939,7 @@ msgstr ""
 
 #. This is just a guess - don't find any info on this option.
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3189
+#: English/Configuration.xml:3226
 msgid ""
 "<guilabel>According to WinMerge User Interface</guilabel>: The encoding used "
 "by your installation of WinMerge."
@@ -12914,7 +12948,7 @@ msgstr ""
 "utilizzata dalla tua installazione di WinMerge."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3196
+#: English/Configuration.xml:3233
 msgid ""
 "<guilabel>Custom codepage</guilabel>: Enter the codepage number explicitly. "
 "For example, <userinput>UTF-8</userinput> or <userinput>ISO-8851-1</"
@@ -12925,7 +12959,7 @@ msgstr ""
 "<userinput>ISO-8851-1</userinput>."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3205
+#: English/Configuration.xml:3242
 msgid "Detect codepage info for these files: .html, .rc, .xml"
 msgstr ""
 "Rileva informazioni sulla tabella codici per questi file: .html, .rc, .xml"
@@ -12934,7 +12968,7 @@ msgstr ""
 #. why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
 #. or is this understood?
 #. type: Content of: <article><section><section><important><para>
-#: English/Configuration.xml:3209
+#: English/Configuration.xml:3246
 msgid ""
 "Uncheck this option in <filename>WinMerge.exe</filename>.  Characters "
 "conversions can result in lossy conversions and the risk is very high. "
@@ -12947,7 +12981,7 @@ msgstr ""
 "file con la codepage corrente."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3221
+#: English/Configuration.xml:3258
 msgid ""
 "<option>Disabled</option> (default): WinMerge does not read codepage "
 "information from the source files. It uses the default codepage setting "
@@ -12958,7 +12992,7 @@ msgstr ""
 "l'impostazione della tabella codici predefinita."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3229
+#: English/Configuration.xml:3266
 msgid ""
 "<option>Enabled</option>: WinMerge detects the codepage for these "
 "extensions: <filename class=\"extension\">html</filename>, <filename "
@@ -12973,7 +13007,7 @@ msgstr ""
 "l'impostazione dell'opzione codepage predefinita."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3237
+#: English/Configuration.xml:3274
 msgid ""
 "This option is of interest when your documents use a codepage that is "
 "different from the codepage of your Windows configuration."
@@ -12982,7 +13016,7 @@ msgstr ""
 "codici diversa dalla tabella codici della configurazione di Windows."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3243
+#: English/Configuration.xml:3280
 msgid ""
 "For example, you might merge two Slovak or two Japanese files in an English "
 "environment. With this option enabled (and with the required fonts), your "
@@ -12995,7 +13029,7 @@ msgstr ""
 "caratteri slovacchi o giapponesi."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3250
+#: English/Configuration.xml:3287
 msgid ""
 "WinMerge also detects a codepage difference between the left/right files. To "
 "avoid lossy conversions when you merge, copy, or paste, we suggest that you "
@@ -13006,7 +13040,7 @@ msgstr ""
 "ti suggeriamo di ignorare le informazioni sulla tabella codici."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><caution><para>
-#: English/Configuration.xml:3257
+#: English/Configuration.xml:3294
 msgid ""
 "When you copy or paste text to an external application, the external "
 "application must use the same codepage as WinMerge does.  Refer to the "
@@ -13021,35 +13055,35 @@ msgstr ""
 "esterno non supporta le codepage personalizzate, disabilita questa opzione."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3270
+#: English/Configuration.xml:3307
 msgid "Detect codepage for text files using mlang.dll"
 msgstr "Rileva la tabella codici per i file di testo utilizzando mlang.dll"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:3278
+#: English/Configuration.xml:3315
 msgid "Shell Integration page"
 msgstr "Pagina Integrazione shell"
 
 #. type: Content of: <article><title><indexterm><primary>
-#: English/Configuration.xml:3283 English/Faq.xml:95 English/Install.xml:174
+#: English/Configuration.xml:3320 English/Faq.xml:95 English/Install.xml:174
 #: English/Install.xml:189 English/Install.xml:352
 #: English/Version_control.xml:4
 msgid "integration"
 msgstr "integrazione"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:3285 English/Install.xml:191
+#: English/Configuration.xml:3322 English/Install.xml:191
 #: English/Install.xml:354
 msgid "with Windows shell"
 msgstr "con la shell di Windows"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3282
+#: English/Configuration.xml:3319
 msgid "Explorer<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Esplora<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3290
+#: English/Configuration.xml:3327
 msgid ""
 "The <option>Add to context menu</option> option enables you to launch "
 "WinMerge directly from Windows Explorer, comparing items that you have "
@@ -13063,12 +13097,12 @@ msgstr ""
 "abilitare una o entrambe queste opzioni:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:3299
+#: English/Configuration.xml:3336
 msgid "Enable advanced menu"
 msgstr "Abilita il menu avanzato"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3305
+#: English/Configuration.xml:3342
 msgid ""
 "<option>Disabled</option> (default): Only the <guimenuitem>WinMerge</"
 "guimenuitem> shortcut is included in the Windows Explorer context menu."
@@ -13078,7 +13112,7 @@ msgstr ""
 "Esplora risorse."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3313
+#: English/Configuration.xml:3350
 msgid ""
 "<option>Enabled</option>: Replaces the <guimenuitem>WinMerge</guimenuitem> "
 "shortcut in the Explorer context menu with <guimenuitem>Compare</"
@@ -13089,12 +13123,12 @@ msgstr ""
 "<guimenuitem >Confronta</guimenuitem >."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:3326
+#: English/Configuration.xml:3363
 msgid "Enable Compare As menu"
 msgstr "Abilita il menu Confronta come"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3332
+#: English/Configuration.xml:3369
 msgid ""
 "<option>Disabled</option> (default): Removes <guimenuitem>Compare As</"
 "guimenuitem> menu item from Explorer context menu."
@@ -13103,7 +13137,7 @@ msgstr ""
 "<guimenuitem >Confronta come</guimenuitem > dal menu contestuale di Explorer."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3340
+#: English/Configuration.xml:3377
 msgid ""
 "<option>Enabled</option>: Adds <guimenuitem>Compare As</guimenuitem> menu "
 "item to Explorer context menu."
@@ -13112,7 +13146,7 @@ msgstr ""
 ">Confronta come</guimenuitem > al menu contestuale di Explorer."
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3351
+#: English/Configuration.xml:3388
 msgid ""
 "<xref linkend=\"OpenPaths_shell-integ\" /> describes how to use the WinMerge "
 "and Compare shortcuts."
@@ -27987,17 +28021,17 @@ msgstr "Generale"
 
 #. type: Content of: <appendix><table><tgroup><thead><row><entry>
 #: English/Shortcut_keys.xml:16 English/Shortcut_keys.xml:57
-#: English/Shortcut_keys.xml:162 English/Shortcut_keys.xml:409
-#: English/Shortcut_keys.xml:543 English/Shortcut_keys.xml:609
-#: English/Shortcut_keys.xml:683 English/Shortcut_keys.xml:740
+#: English/Shortcut_keys.xml:162 English/Shortcut_keys.xml:415
+#: English/Shortcut_keys.xml:549 English/Shortcut_keys.xml:615
+#: English/Shortcut_keys.xml:689 English/Shortcut_keys.xml:746
 msgid "Keys"
 msgstr "Chiavi"
 
 #. type: Content of: <appendix><table><tgroup><thead><row><entry>
 #: English/Shortcut_keys.xml:18 English/Shortcut_keys.xml:59
-#: English/Shortcut_keys.xml:164 English/Shortcut_keys.xml:411
-#: English/Shortcut_keys.xml:545 English/Shortcut_keys.xml:611
-#: English/Shortcut_keys.xml:685 English/Shortcut_keys.xml:742
+#: English/Shortcut_keys.xml:164 English/Shortcut_keys.xml:417
+#: English/Shortcut_keys.xml:551 English/Shortcut_keys.xml:617
+#: English/Shortcut_keys.xml:691 English/Shortcut_keys.xml:748
 msgid "Function"
 msgstr "Funzione"
 
@@ -28065,7 +28099,7 @@ msgid "Rescan folders"
 msgstr "Nuova scansione delle cartelle"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:84 English/Shortcut_keys.xml:417
+#: English/Shortcut_keys.xml:84 English/Shortcut_keys.xml:423
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Home</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Alt</keycap> <keycap>Home</keycap> </keycombo>"
 
@@ -28075,7 +28109,7 @@ msgid "Go to first different file or folder"
 msgstr "Vai al primo file o cartella diverso"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:94 English/Shortcut_keys.xml:427
+#: English/Shortcut_keys.xml:94 English/Shortcut_keys.xml:433
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>End</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Alt</keycap> <keycap>Fine</keycap> </keycombo>"
 
@@ -28085,7 +28119,7 @@ msgid "Go to last different file or folder"
 msgstr "Vai all'ultimo file o cartella diverso"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:104 English/Shortcut_keys.xml:437
+#: English/Shortcut_keys.xml:104 English/Shortcut_keys.xml:443
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Enter</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Alt</keycap> <keycap>Invio</keycap> </keycombo>"
 
@@ -28097,7 +28131,7 @@ msgstr ""
 "schermo)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:114 English/Shortcut_keys.xml:447
+#: English/Shortcut_keys.xml:114 English/Shortcut_keys.xml:453
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Up Arrow</keycap> </keycombo>"
 msgstr ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Freccia su</keycap> </keycombo>"
@@ -28108,7 +28142,7 @@ msgid "Go to previous different file or folder"
 msgstr "Vai al file o alla cartella precedente diversa"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:124 English/Shortcut_keys.xml:457
+#: English/Shortcut_keys.xml:124 English/Shortcut_keys.xml:463
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Down Arrow</keycap> </keycombo>"
 msgstr ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Freccia giù</keycap> </keycombo>"
@@ -28119,7 +28153,7 @@ msgid "Go to next different file or folder"
 msgstr "Vai al file o alla cartella successiva"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:134 English/Shortcut_keys.xml:489
+#: English/Shortcut_keys.xml:134 English/Shortcut_keys.xml:495
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Left Arrow</keycap> </keycombo>"
 msgstr ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Freccia sinistra</keycap> </keycombo>"
@@ -28130,7 +28164,7 @@ msgid "Copy selected items from right to left"
 msgstr "Copia gli elementi selezionati da destra a sinistra"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:144 English/Shortcut_keys.xml:499
+#: English/Shortcut_keys.xml:144 English/Shortcut_keys.xml:505
 msgid ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Right Arrow</keycap> </keycombo>"
 msgstr ""
@@ -28212,8 +28246,8 @@ msgid "<keycap>F7</keycap>"
 msgstr "<keycap>F7</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:214 English/Shortcut_keys.xml:453
-#: English/Shortcut_keys.xml:553
+#: English/Shortcut_keys.xml:214 English/Shortcut_keys.xml:459
+#: English/Shortcut_keys.xml:559
 msgid "Go to previous difference"
 msgstr "Vai alla differenza precedente"
 
@@ -28223,7 +28257,7 @@ msgid "<keycap>Shift</keycap>+<keycap>F7</keycap>"
 msgstr "<keycap>Maiusc</keycap>+<keycap>F7</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:220 English/Shortcut_keys.xml:474
+#: English/Shortcut_keys.xml:220 English/Shortcut_keys.xml:480
 msgid "Go to previous conflict"
 msgstr "Vai al conflitto precedente"
 
@@ -28243,8 +28277,8 @@ msgid "<keycap>F8</keycap>"
 msgstr "<keycap>F8</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:232 English/Shortcut_keys.xml:463
-#: English/Shortcut_keys.xml:559
+#: English/Shortcut_keys.xml:232 English/Shortcut_keys.xml:469
+#: English/Shortcut_keys.xml:565
 msgid "Go to next difference"
 msgstr "Vai alla differenza successiva"
 
@@ -28254,7 +28288,7 @@ msgid "<keycap>Shift</keycap>+<keycap>F8</keycap>"
 msgstr "<keycap>Maiusc</keycap>+<keycap>F8</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:238 English/Shortcut_keys.xml:485
+#: English/Shortcut_keys.xml:238 English/Shortcut_keys.xml:491
 msgid "Go to next conflict"
 msgstr "Vai al conflitto successivo"
 
@@ -28280,26 +28314,40 @@ msgstr "Modalità di unione attivata o disattivata (attiva/disattiva)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:254
+#, fuzzy
+#| msgid "<keycap>F5</keycap>"
+msgid "<keycap>F12</keycap>"
+msgstr "<keycap>F5</keycap>"
+
+#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
+#: English/Shortcut_keys.xml:256
+#, fuzzy
+#| msgid "Go to function"
+msgid "Go to definition"
+msgstr "Vai alla funzione"
+
+#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
+#: English/Shortcut_keys.xml:260
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:260
+#: English/Shortcut_keys.xml:266
 msgid "Begin column selection"
 msgstr "Inizia la selezione della colonna"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:264
+#: English/Shortcut_keys.xml:270
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:270
+#: English/Shortcut_keys.xml:276
 msgid "Toggle diff context mode"
 msgstr "Attiva/disattiva la modalità contesto differenze"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:274
+#: English/Shortcut_keys.xml:280
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>E</keycap> </"
 "keycombo>"
@@ -28308,22 +28356,22 @@ msgstr ""
 "keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:281
+#: English/Shortcut_keys.xml:287
 msgid "Open with external editor"
 msgstr "Apri con editor esterno"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:285
+#: English/Shortcut_keys.xml:291
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:291
+#: English/Shortcut_keys.xml:297
 msgid "Go to difference or line"
 msgstr "Vai alla differenza o alla linea"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:295 English/Shortcut_keys.xml:306
+#: English/Shortcut_keys.xml:301 English/Shortcut_keys.xml:312
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>G</keycap> </"
 "keycombo>"
@@ -28332,17 +28380,17 @@ msgstr ""
 "</keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:302
+#: English/Shortcut_keys.xml:308
 msgid "Go to moved line (2 panes)"
 msgstr "Vai alla riga spostata (2 riquadri)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:313
+#: English/Shortcut_keys.xml:319
 msgid "Go to moved line between left side and middle (3 panes)"
 msgstr "Vai alla linea spostata tra il lato sinistro e il centro (3 riquadri)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:317
+#: English/Shortcut_keys.xml:323
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>G</keycap> </"
 "keycombo>"
@@ -28351,13 +28399,13 @@ msgstr ""
 "keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:324
+#: English/Shortcut_keys.xml:330
 msgid "Go to moved line between middle and right side (3 panes)"
 msgstr ""
 "Vai alla linea spostata tra il lato centrale e quello destro (3 riquadri)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:328
+#: English/Shortcut_keys.xml:334
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>M</keycap> </"
 "keycombo>"
@@ -28366,12 +28414,12 @@ msgstr ""
 "</keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:335
+#: English/Shortcut_keys.xml:341
 msgid "Add marker"
 msgstr "Aggiungi marcatore"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:339
+#: English/Shortcut_keys.xml:345
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>M</keycap> </"
 "keycombo>"
@@ -28380,32 +28428,32 @@ msgstr ""
 "keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:346
+#: English/Shortcut_keys.xml:352
 msgid "Do auto merge"
 msgstr "L'auto è in funzione"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:350
+#: English/Shortcut_keys.xml:356
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>S</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Alt</keycap> <keycap>S</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:356
+#: English/Shortcut_keys.xml:362
 msgid "Add synchronization point"
 msgstr "Aggiungi punto di sincronizzazione"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:360
+#: English/Shortcut_keys.xml:366
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>U</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>U</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:366
+#: English/Shortcut_keys.xml:372
 msgid "Convert selected text to lower case"
 msgstr "Converti il ​​testo selezionato in minuscolo"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:370
+#: English/Shortcut_keys.xml:376
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>U</keycap> </"
 "keycombo>"
@@ -28414,52 +28462,52 @@ msgstr ""
 "</keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:377
+#: English/Shortcut_keys.xml:383
 msgid "Convert selected text to upper case"
 msgstr "Converti il ​​testo selezionato in maiuscolo"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:381
+#: English/Shortcut_keys.xml:387
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Y</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>Y</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:387
+#: English/Shortcut_keys.xml:393
 msgid "Redo previously undone action"
 msgstr "Ripeti l'azione precedentemente annullata"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:391
+#: English/Shortcut_keys.xml:397
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:397
+#: English/Shortcut_keys.xml:403
 msgid "Undo last action"
 msgstr "Annulla l'ultima azione"
 
 #. type: Content of: <appendix><table><title>
-#: English/Shortcut_keys.xml:404
+#: English/Shortcut_keys.xml:410
 msgid "Difference navigation and merging (normal mode)"
 msgstr "Navigazione e unione delle differenze (modalità normale)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:423
+#: English/Shortcut_keys.xml:429
 msgid "Go to first difference"
 msgstr "Vai alla prima differenza"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:433
+#: English/Shortcut_keys.xml:439
 msgid "Go to last difference"
 msgstr "Vai all'ultima differenza"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:443
+#: English/Shortcut_keys.xml:449
 msgid "Go to current difference or select difference"
 msgstr "Vai alla differenza attuale o seleziona la differenza"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:467
+#: English/Shortcut_keys.xml:473
 msgid ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Up Arrow</"
 "keycap> </keycombo>"
@@ -28468,7 +28516,7 @@ msgstr ""
 "keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:478
+#: English/Shortcut_keys.xml:484
 msgid ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down Arrow</"
 "keycap> </keycombo>"
@@ -28477,17 +28525,17 @@ msgstr ""
 "keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:495 English/Shortcut_keys.xml:565
+#: English/Shortcut_keys.xml:501 English/Shortcut_keys.xml:571
 msgid "Copy difference from right side to left side"
 msgstr "Copia la differenza dal lato destro al lato sinistro"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:505 English/Shortcut_keys.xml:571
+#: English/Shortcut_keys.xml:511 English/Shortcut_keys.xml:577
 msgid "Copy difference from left side to right side"
 msgstr "Copia la differenza dal lato sinistro al lato destro"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:509 English/Shortcut_keys.xml:575
+#: English/Shortcut_keys.xml:515 English/Shortcut_keys.xml:581
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Left Arrow</"
 "keycap> </keycombo>"
@@ -28496,14 +28544,14 @@ msgstr ""
 "sinistra</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:517 English/Shortcut_keys.xml:583
+#: English/Shortcut_keys.xml:523 English/Shortcut_keys.xml:589
 msgid "Copy difference from right side to left side and select next difference"
 msgstr ""
 "Copia la differenza dal lato destro a quello sinistro e seleziona la "
 "differenza successiva"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:522 English/Shortcut_keys.xml:588
+#: English/Shortcut_keys.xml:528 English/Shortcut_keys.xml:594
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Right Arrow</"
 "keycap> </keycombo>"
@@ -28512,94 +28560,94 @@ msgstr ""
 "destra</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:530 English/Shortcut_keys.xml:596
+#: English/Shortcut_keys.xml:536 English/Shortcut_keys.xml:602
 msgid "Copy difference from left side to right side and select next difference"
 msgstr ""
 "Copia la differenza dal lato sinistro al lato destro e seleziona la "
 "differenza successiva"
 
 #. type: Content of: <appendix><table><title>
-#: English/Shortcut_keys.xml:538
+#: English/Shortcut_keys.xml:544
 msgid "Difference navigation and merging (merge mode)"
 msgstr "Navigazione e unione delle differenze (modalità unione)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:551
+#: English/Shortcut_keys.xml:557
 msgid "<keycap>Up Arrow</keycap>"
 msgstr "<keycap>Freccia su</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:557
+#: English/Shortcut_keys.xml:563
 msgid "<keycap>Down Arrow</keycap>"
 msgstr "<keycap>Freccia giù</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:563
+#: English/Shortcut_keys.xml:569
 msgid "<keycap>Left Arrow</keycap>"
 msgstr "<keycap>Freccia sinistra</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:569
+#: English/Shortcut_keys.xml:575
 msgid "<keycap>Right Arrow</keycap>"
 msgstr "<keycap>Freccia destra</keycap>"
 
 #. type: Content of: <appendix><table><title>
-#: English/Shortcut_keys.xml:604
+#: English/Shortcut_keys.xml:610
 msgid "Find and Replace"
 msgstr "Trova e sostituisci"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:617
+#: English/Shortcut_keys.xml:623
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>F</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>F</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:623
+#: English/Shortcut_keys.xml:629
 msgid "Find text (opens Find dialog)"
 msgstr "Trova testo (apre la finestra di dialogo Trova)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:627
+#: English/Shortcut_keys.xml:633
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>H</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>H</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:633
+#: English/Shortcut_keys.xml:639
 msgid "Replace text (opens Replace dialog)"
 msgstr "Sostituisci testo (apre la finestra di dialogo Sostituisci)"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:637
+#: English/Shortcut_keys.xml:643
 msgid "<keycap>F3</keycap>"
 msgstr "<keycap>F3</keycap>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:639
+#: English/Shortcut_keys.xml:645
 msgid "Find next"
 msgstr "Trova successivo"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:643
+#: English/Shortcut_keys.xml:649
 msgid "<keycombo> <keycap>Shift</keycap> <keycap>F3</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Maiusc</keycap> <keycap>F3</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:649
+#: English/Shortcut_keys.xml:655
 msgid "Find previous"
 msgstr "Trova precedente"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:653
+#: English/Shortcut_keys.xml:659
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>F3</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>F3</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:659
+#: English/Shortcut_keys.xml:665
 msgid "Find selected text in file"
 msgstr "Trova il testo selezionato nel file"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:663
+#: English/Shortcut_keys.xml:669
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F3</keycap> "
 "</keycombo>"
@@ -28608,47 +28656,47 @@ msgstr ""
 "</keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:671
+#: English/Shortcut_keys.xml:677
 msgid "Find selected text upwards in file"
 msgstr "Trova il testo selezionato verso l'alto nel file"
 
 #. type: Content of: <appendix><table><title>
-#: English/Shortcut_keys.xml:678
+#: English/Shortcut_keys.xml:684
 msgid "Bookmarks"
 msgstr "Segnalibri"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:691
+#: English/Shortcut_keys.xml:697
 msgid "<keycombo> <keycap>F2</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>F2</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:695
+#: English/Shortcut_keys.xml:701
 msgid "Next Bookmark"
 msgstr "Segnalibro successivo"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:699
+#: English/Shortcut_keys.xml:705
 msgid "<keycombo> <keycap>Shift</keycap> <keycap>F2</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Maiusc</keycap> <keycap>F2</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:705
+#: English/Shortcut_keys.xml:711
 msgid "Previous Bookmark"
 msgstr "Segnalibro precedente"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:709
+#: English/Shortcut_keys.xml:715
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:715
+#: English/Shortcut_keys.xml:721
 msgid "Toggle Bookmark"
 msgstr "Attiva/disattiva segnalibro"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:719
+#: English/Shortcut_keys.xml:725
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F2</keycap> "
 "</keycombo>"
@@ -28657,42 +28705,42 @@ msgstr ""
 "</keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:727
+#: English/Shortcut_keys.xml:733
 msgid "Clear all Bookmarks"
 msgstr "Cancella tutti i segnalibri"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:748
+#: English/Shortcut_keys.xml:754
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>+</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>+</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:754 English/Shortcut_keys.xml:784
+#: English/Shortcut_keys.xml:760 English/Shortcut_keys.xml:790
 msgid "Increase text size"
 msgstr "Aumenta la dimensione del testo"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:758
+#: English/Shortcut_keys.xml:764
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>-</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>-</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:764 English/Shortcut_keys.xml:794
+#: English/Shortcut_keys.xml:770 English/Shortcut_keys.xml:800
 msgid "Decrease text size"
 msgstr "Diminuisci la dimensione del testo"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:768
+#: English/Shortcut_keys.xml:774
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>*</keycap> </keycombo>"
 msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>*</keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:774
+#: English/Shortcut_keys.xml:780
 msgid "Reset text zoom to default size"
 msgstr "Ripristina lo zoom del testo alle dimensioni predefinite"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:778
+#: English/Shortcut_keys.xml:784
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <mousebutton>MouseWheel Up</mousebutton> </"
 "keycombo>"
@@ -28701,7 +28749,7 @@ msgstr ""
 "mousebutton> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Shortcut_keys.xml:788
+#: English/Shortcut_keys.xml:794
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <mousebutton>MouseWheel Down</mousebutton> "
 "</keycombo>"
