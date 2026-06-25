@@ -1,6 +1,6 @@
 for /f %%a in ('powershell -command "Get-Date -Format HH:mm:ss.fff"') do set start=%%a
 
-set workdir=BuildTmp\Src
+set workdir=%~dp0BuildTmp\Src
 if "%1" == "vs2017" (
   set vsversion=vs2017
 )
@@ -19,12 +19,12 @@ git submodule init
 git submodule update
 
 git checkout-index -a -f --prefix=%workdir%\
-for /d %%d in (Externals\*) do (
-  pushd %%d
+for /F %%d in ('git submodule foreach --quiet --recursive "echo $displaypath"') do (
+  pushd "%%d"
   if exist .git (
-    rmdir /q /s ..\..\%workdir%\%%d
-    mkdir ..\..\%workdir%\%%d
-    git checkout-index -a -f --prefix=..\..\%workdir%\%%d\
+    rmdir /q /s "%workdir%\%%d"
+    mkdir "%workdir%\%%d"
+    git checkout-index -a -f --prefix=%workdir%\%%d\
   )
   popd
 )
