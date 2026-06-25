@@ -521,7 +521,7 @@ void CTreeSitterParser::NotifyEdit(bool bInsert, const CEPoint & ptStartPos, con
 		tsEdit.old_end_byte = startByte;
 		tsEdit.old_end_point = tsEdit.start_point;
 
-		tsEdit.new_end_byte = CharPosToByteOffset(ptEndPos.y, ptEndPos.x, true);
+		tsEdit.new_end_byte = CharPosToByteOffset(ptEndPos.y, ptEndPos.x, false);
 		CharPosToTSPoint(ptEndPos.y, ptEndPos.x, tsEdit.new_end_point);
 	}
 	else
