@@ -21,7 +21,6 @@ namespace
 	constexpr const tchar_t* CRASH_DUMP_PATTERN = _T("WinMerge*.dmp");
 
 	static volatile bool g_bCrashLoggingEnabled = false;
-	static void* g_hVectoredHandler = nullptr;
 
 	/**
 	 * @brief Get exception name from code
@@ -39,28 +38,6 @@ namespace
 		case EXCEPTION_INT_DIVIDE_BY_ZERO: return _T("Integer Divide by Zero");
 		case EXCEPTION_STACK_OVERFLOW: return _T("Stack Overflow");
 		default: return _T("Unknown Exception");
-		}
-	}
-
-	/**
-	 * @brief Check if exception code is considered fatal
-	 */
-	bool IsFatalException(DWORD code)
-	{
-		switch (code)
-		{
-		case EXCEPTION_ACCESS_VIOLATION:
-		case EXCEPTION_STACK_OVERFLOW:
-		case EXCEPTION_ILLEGAL_INSTRUCTION:
-		case EXCEPTION_IN_PAGE_ERROR:
-			return true;
-#ifdef _DEBUG
-		case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:
-		case EXCEPTION_DATATYPE_MISALIGNMENT:
-			return true;
-#endif
-		default:
-			return false;
 		}
 	}
 
@@ -247,24 +224,11 @@ namespace
 		CloseHandle(hFile);
 	}
 
-	/**
-	 * @brief Vectored exception handler for crash logging
-	 * @note This handler logs only the first crash per process lifetime to prevent
-	 *       crash loops. The handling flag is intentionally never reset, ensuring
-	 *       that if crash logging itself triggers an exception or if multiple crashes
-	 *       occur in rapid succession, only the first is logged.
-	 */
-	LONG CALLBACK WinMergeVectoredExceptionHandler(EXCEPTION_POINTERS* ex)
+	LONG WINAPI WinMergeUnhandledExceptionFilter(EXCEPTION_POINTERS* ex)
 	{
-		if (!g_bCrashLoggingEnabled || !ex || !ex->ExceptionRecord ||
-		    !IsFatalException(ex->ExceptionRecord->ExceptionCode))
+		if (!g_bCrashLoggingEnabled || !ex)
 			return EXCEPTION_CONTINUE_SEARCH;
-		
-		// One-time crash logging per process to prevent crash loops
-		static volatile LONG handling = 0;
-		if (InterlockedExchange(&handling, 1) == 1)
-			 return EXCEPTION_CONTINUE_SEARCH;
-		
+
 		__try
 		{
 			WriteCrashInfo(ex);
@@ -273,6 +237,8 @@ namespace
 		{
 			// Best-effort logging only
 		}
+
+		// Continue to WER
 		return EXCEPTION_CONTINUE_SEARCH;
 	}
 
@@ -401,29 +367,18 @@ namespace
 namespace CrashLogger
 {
 	/**
-	 * @brief Install crash logger using Vectored Exception Handler
-	 * @return true if handler was successfully installed
-	 * @note Uses AddVectoredExceptionHandler instead of SetUnhandledExceptionFilter
-	 *       because on Windows XP/7, the error reporting dialog can appear repeatedly
-	 *       even after canceling it when using SetUnhandledExceptionFilter.
-	 *       VEH with priority 1 ensures our handler runs early in the exception chain.
+	 * @brief Install crash logger using SetUnhandledExceptionFilter.
 	 */
 	bool Install()
 	{
-		if (!g_hVectoredHandler)
-			g_hVectoredHandler = AddVectoredExceptionHandler(1, WinMergeVectoredExceptionHandler);
-		g_bCrashLoggingEnabled = (g_hVectoredHandler != nullptr);
-		return g_bCrashLoggingEnabled;
+		SetUnhandledExceptionFilter(WinMergeUnhandledExceptionFilter);
+		g_bCrashLoggingEnabled = true;
+		return true;
 	}
 
 	void Disable()
 	{
 		g_bCrashLoggingEnabled = false;
-		if (g_hVectoredHandler)
-		{
-			RemoveVectoredExceptionHandler(g_hVectoredHandler);
-			g_hVectoredHandler = nullptr;
-		}
 	}
 
 	bool HasPreviousCrash()

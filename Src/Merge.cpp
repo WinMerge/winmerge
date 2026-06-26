@@ -385,7 +385,8 @@ BOOL CMergeApp::InitInstance()
 
 	// Install crash logger
 #ifndef _M_ARM
-	CrashLogger::Install();
+	if (IsWin10_OrGreater())
+		CrashLogger::Install();
 #else
 // NOTE:
 // CrashLogger is disabled on ARM32.
