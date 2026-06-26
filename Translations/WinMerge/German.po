@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-06-03 21:24+0200\n"
+"PO-Revision-Date: 2026-06-26 17:00+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -189,7 +189,7 @@ msgstr "&Gehe zu...\tStrg+G"
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_GOTO_DEFINITION
 #: Merge.rc:131 Merge.rc:711 Merge.rc:1105
 msgid "Go to &Definition\tF12"
-msgstr ""
+msgstr "Zu &Definition wechseln\tF12"
 
 #. IDR_POPUP_MERGEVIEW, ID_GOTO_MOVED_LINE_LM
 #: Merge.rc:132
@@ -4283,7 +4283,7 @@ msgstr "&Syntax hervorheben"
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2621
 msgid "Highlight &mode:"
-msgstr ""
+msgstr "Hervorhebungs&modus:"
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2623
@@ -9568,22 +9568,22 @@ msgstr ""
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
 #: Merge.rc:5741
 msgid "Built-in only"
-msgstr ""
+msgstr "Nur integrierte"
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
 #: Merge.rc:5742
 msgid "Built-in first"
-msgstr ""
+msgstr "Integrierte zuerst"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
 #: Merge.rc:5743
 msgid "Tree-sitter first"
-msgstr ""
+msgstr "Tree-sitter zuerst"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5744
 msgid "Tree-sitter only"
-msgstr ""
+msgstr "Nur Tree-sitter"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
