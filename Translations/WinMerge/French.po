@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-05-27 07:01+0000\n"
-"PO-Revision-Date: 2026-06-04 09:55+0200\n"
-"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
+"PO-Revision-Date: 2026-06-26 20:51-0400\n"
+"Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgstr "&Atteindre...\tCtrl+G"
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_GOTO_DEFINITION
 #: Merge.rc:131 Merge.rc:711 Merge.rc:1105
 msgid "Go to &Definition\tF12"
-msgstr ""
+msgstr "Atteindre la &Définition\tF12"
 
 #. IDR_POPUP_MERGEVIEW, ID_GOTO_MOVED_LINE_LM
 #: Merge.rc:132
@@ -878,32 +878,32 @@ msgstr "Comparaison &3 voies"
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTLEFTONLY
 #: Merge.rc:485
 msgid "Show &Left Only Different Items"
-msgstr "Afficher les é&léments différents à Gauche seulement"
+msgstr "Afficher uniquement les é&léments différents à Gauche"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY
 #: Merge.rc:486
 msgid "Show &Middle Only Different Items"
-msgstr "Afficher les éléments différents au &Milieu seulement"
+msgstr "Afficher uniquement les éléments différents au &Milieu"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTRIGHTONLY
 #: Merge.rc:487
 msgid "Show &Right Only Different Items"
-msgstr "Afficher les éléments diffé&rents à Droite seulement"
+msgstr "Afficher uniquement les éléments diffé&rents à Droite"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGLEFTONLY
 #: Merge.rc:489
 msgid "Show L&eft Only Missing Items"
-msgstr "Afficher les éléments manquants à Gauch&e seulement"
+msgstr "Afficher uniquement les éléments manquants à Gauch&e"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGMIDDLEONLY
 #: Merge.rc:490
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "Afficher les éléments manquants au Mi&lieu seulement"
+msgstr "Afficher uniquement les éléments manquants au Mi&lieu"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGRIGHTONLY
 #: Merge.rc:491
 msgid "Show Rig&ht Only Missing Items"
-msgstr "Affic&her les éléments manquants à Droite seulement"
+msgstr "Affic&her uniquement les éléments manquants à Droite"
 
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOWHIDDENITEMS
 #: Merge.rc:494
@@ -1218,7 +1218,7 @@ msgstr "Effa&cer tous les signets"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:726
 msgid "Syntax Highlight"
-msgstr "Mettre en surbrillance la syntaxe"
+msgstr "Surbrillance syntaxique"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:731
@@ -1378,32 +1378,32 @@ msgstr "Différence précédente (Milieu/Droite)\tAlt+Maj+3"
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFFLO
 #: Merge.rc:809
 msgid "Next Left-Only Difference\tAlt+7"
-msgstr "Différence suivante Gauche seulement\tAlt+7"
+msgstr "Différence suivante à Gauche uniquement\tAlt+7"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFFLO
 #: Merge.rc:810
 msgid "Previous Left-Only Difference\tAlt+Shift+7"
-msgstr "Différence précédente Gauche seulement\tAlt+Maj+7"
+msgstr "Différence précédente à Gauche uniquement\tAlt+Maj+7"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFFMO
 #: Merge.rc:812
 msgid "Next Middle-Only Difference\tAlt+8"
-msgstr "Différence suivante Milieu seulement\tAlt+8"
+msgstr "Différence suivante au Milieu uniquement\tAlt+8"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFFMO
 #: Merge.rc:813
 msgid "Previous Middle-Only Difference\tAlt+Shift+8"
-msgstr "Différence précédente Milieu seulement\tAlt+Maj+8"
+msgstr "Différence précédente au Milieu uniquement\tAlt+Maj+8"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFFRO
 #: Merge.rc:815
 msgid "Next Right-Only Difference\tAlt+9"
-msgstr "Différence suivante Droite seulement\tAlt+9"
+msgstr "Différence suivante à Droite uniquement\tAlt+9"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFFRO
 #: Merge.rc:816
 msgid "Previous Right-Only Difference\tAlt+Shift+9"
-msgstr "Différence précédente Droite seulement\tAlt+Maj+9"
+msgstr "Différence précédente à Droite uniquement\tAlt+Maj+9"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:818
@@ -3112,7 +3112,7 @@ msgstr "&Remplacer"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2007
 msgid "Reg&ex Replace"
-msgstr "Remplacement reg&ex "
+msgstr "Remplacement reg&ex"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2041
@@ -3334,7 +3334,7 @@ msgstr "Chercher q&uoi :"
 #. IDD_EDIT_MARKER, IDC_EDIT_WHOLE_WORD
 #: Merge.rc:2254 Merge.rc:2273 Merge.rc:2301
 msgid "Match &whole word only"
-msgstr "&Mot entier seulement"
+msgstr "&Mot entier uniquement"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_REGEXP
 #: Merge.rc:2256 Merge.rc:2275 Merge.rc:2303
@@ -3925,7 +3925,7 @@ msgstr "Activer l'indentation &heuristique"
 #. IDD_PROPPAGE_COMPARE, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES
 #: Merge.rc:2610
 msgid "Completely unhighlight the ignored differences"
-msgstr "Ne pas mettre en surbrillance les différences ignorées"
+msgstr "Retirer complètement la surbrillance des différences ignorées"
 
 #. IDS_OPTIONSPG_EDITOR
 #: Merge.rc:2617 Merge.rc:4501
@@ -3935,12 +3935,12 @@ msgstr "Éditeur"
 #. IDD_PROPPAGE_EDITOR, IDC_HILITE_CHECK
 #: Merge.rc:2620
 msgid "&Highlight syntax"
-msgstr "Mettre en &surbrillance la syntaxe"
+msgstr "&Surbrillance syntaxique"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2621
 msgid "Highlight &mode:"
-msgstr ""
+msgstr "&Mode de surbrillance :"
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2623
@@ -4315,12 +4315,12 @@ msgstr "Résultats de la comparaison"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2864
 msgid "Left only"
-msgstr "Gauche seulement"
+msgstr "Gauche uniquement"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2865
 msgid "Right only"
-msgstr "Droite seulement"
+msgstr "Droite uniquement"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2866
@@ -4330,37 +4330,37 @@ msgstr "Ignoré"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2867
 msgid "Middle only"
-msgstr "Milieu seulement"
+msgstr "Milieu uniquement"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2868
 msgid "Left only (different)"
-msgstr "Gauche seulement (différent)"
+msgstr "Gauche uniquement (différent)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2870
 msgid "Middle only (different)"
-msgstr "Milieu seulement (différent)"
+msgstr "Milieu uniquement (différent)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2872
 msgid "Right only (different)"
-msgstr "Droite seulement (différent)"
+msgstr "Droite uniquement (différent)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2874
 msgid "Left only (missing)"
-msgstr "Gauche seulement (manquant)"
+msgstr "Gauche uniquement (manquant)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2875
 msgid "Middle only (missing)"
-msgstr "Milieu seulement (manquant)"
+msgstr "Milieu uniquement (manquant)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2877
 msgid "Right only (missing)"
-msgstr "Droite seulement (manquant)"
+msgstr "Droite uniquement (manquant)"
 
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2885
@@ -4543,7 +4543,7 @@ msgstr "Filtre partagé (pour tous les utilisateurs)"
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_PRIVATE
 #: Merge.rc:2984
 msgid "Private Filter (current user only)"
-msgstr "Filtre privé (utilisateur actuel seulement)"
+msgstr "Filtre privé (utilisateur actuel uniquement)"
 
 #. IDD_COMPARE_STATISTICS3
 #: Merge.rc:2991 Merge.rc:3032
@@ -8133,7 +8133,7 @@ msgstr "Ajouter cette modification aux filtres de substitution ?"
 #. IDS_OCRRESULT_TEXTONLY
 #: Merge.rc:5519
 msgid "Text only"
-msgstr "Texte seulement"
+msgstr "Texte uniquement"
 
 #. IDS_OCRRESULT_POS_LINE
 #: Merge.rc:5520
@@ -8190,7 +8190,7 @@ msgstr "Désactivé"
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
 #: Merge.rc:5542
 msgid "Only on window activated"
-msgstr "Seulement sur la fenêtre activée"
+msgstr "Uniquement sur la fenêtre activée"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
 #: Merge.rc:5543
@@ -8838,22 +8838,22 @@ msgstr ""
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
 #: Merge.rc:5741
 msgid "Built-in only"
-msgstr ""
+msgstr "Intégré uniquement"
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
 #: Merge.rc:5742
 msgid "Built-in first"
-msgstr ""
+msgstr "Intégré en premier"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
 #: Merge.rc:5743
 msgid "Tree-sitter first"
-msgstr ""
+msgstr "Tree-sitter en premier"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5744
 msgid "Tree-sitter only"
-msgstr ""
+msgstr "Tree-sitter uniquement"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
