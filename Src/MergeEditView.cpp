@@ -338,7 +338,9 @@ std::pair<int, int> CMergeEditView::GetSelectedLineAndCharacterCount()
 	{
 		if ((GetLineFlags(nLine) & (LF_GHOST | LF_INVISIBLE)) == 0)
 		{
-			int nLineLength = GetLineLength(nLine) + ((m_pTextBuffer && m_pTextBuffer->GetLineEol(nLine)[0]) ? 1 : 0);
+			int nLineLength = GetLineLength(nLine);
+			if (nLineLength < GetFullLineLength(nLine))
+				nLineLength++; // Add 1 for the EOL char
 			nCharsOrColumns += (nLine == ptEnd.y) ? ptEnd.x : nLineLength;
 			if (nLine == ptStart.y)
 				nCharsOrColumns -= ptStart.x;
