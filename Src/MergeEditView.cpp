@@ -291,6 +291,14 @@ CMergeEditView *CMergeEditView::GetGroupView(int nBuffer) const
 	return GetDocument()->GetView(m_nThisGroup, nBuffer);
 }
 
+int CMergeEditView::GetActiveGroup() const
+{
+	CMergeEditView* pView = dynamic_cast<CMergeEditView*>(GetFocus());
+	if (pView)
+		return pView->m_nThisGroup;
+	return -1;
+}
+
 void CMergeEditView::PrimeListWithFile()
 {
 	// Set the tab size now, just in case the options change...
@@ -2714,7 +2722,7 @@ void CMergeEditView::UpdateStatusbar()
  */
 void CMergeEditView::OnUpdateCaret()
 {
-	if (m_bCursorHidden || m_piMergeEditStatus == nullptr || !IsTextBufferInitialized() || m_nThisGroup != 0)
+	if (m_bCursorHidden || m_piMergeEditStatus == nullptr || !IsTextBufferInitialized() || m_nThisGroup != GetActiveGroup())
 		return;
 
 	CEPoint cursorPos = GetCursorPos();
