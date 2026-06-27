@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-06-02 17:09+0300\n"
+"PO-Revision-Date: 2026-06-27 18:44+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -164,9 +164,7 @@ msgid "&Scripts"
 msgstr "&Betikler"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:127 Merge.rc:352 Merge.rc:463 Merge.rc:673 Merge.rc:678
-#: Merge.rc:886 Merge.rc:898 Merge.rc:905 Merge.rc:962 Merge.rc:1209
-#: Merge.rc:5321
+#: Merge.rc:127 Merge.rc:352 Merge.rc:463 Merge.rc:673 Merge.rc:678 Merge.rc:886 Merge.rc:898 Merge.rc:905 Merge.rc:962 Merge.rc:1209 Merge.rc:5321
 msgid "< Empty >"
 msgstr "< Boş >"
 
@@ -178,7 +176,7 @@ msgstr "&Git...\tCtrl+G"
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_GOTO_DEFINITION
 #: Merge.rc:131 Merge.rc:711 Merge.rc:1105
 msgid "Go to &Definition\tF12"
-msgstr ""
+msgstr "&Tanıma git\\tF12"
 
 #. IDR_POPUP_MERGEVIEW, ID_GOTO_MOVED_LINE_LM
 #: Merge.rc:132
@@ -271,8 +269,7 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "&Ekleme/silme algılansın"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:188 Merge.rc:221 Merge.rc:228 Merge.rc:372 Merge.rc:523
-#: Merge.rc:771
+#: Merge.rc:188 Merge.rc:221 Merge.rc:228 Merge.rc:372 Merge.rc:523 Merge.rc:771
 msgid "&None"
 msgstr "&Yok"
 
@@ -522,40 +519,32 @@ msgid "&New"
 msgstr "&Yeni"
 
 #. IDR_POPUP_LINEFILTERMENU
-#: Merge.rc:326 Merge.rc:335 Merge.rc:429 Merge.rc:438 Merge.rc:606
-#: Merge.rc:615 Merge.rc:667 Merge.rc:956 Merge.rc:1183 Merge.rc:1196
-#: Merge.rc:1934
+#: Merge.rc:326 Merge.rc:335 Merge.rc:429 Merge.rc:438 Merge.rc:606 Merge.rc:615 Merge.rc:667 Merge.rc:956 Merge.rc:1183 Merge.rc:1196 Merge.rc:1934
 msgid "&Text"
 msgstr "Me&tin"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:327 Merge.rc:336 Merge.rc:430 Merge.rc:439 Merge.rc:607
-#: Merge.rc:616 Merge.rc:668 Merge.rc:957 Merge.rc:1184 Merge.rc:1197
+#: Merge.rc:327 Merge.rc:336 Merge.rc:430 Merge.rc:439 Merge.rc:607 Merge.rc:616 Merge.rc:668 Merge.rc:957 Merge.rc:1184 Merge.rc:1197
 msgid "T&able"
 msgstr "T&ablo"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608
-#: Merge.rc:617 Merge.rc:669 Merge.rc:958 Merge.rc:1185 Merge.rc:1198
+#: Merge.rc:328 Merge.rc:337 Merge.rc:431 Merge.rc:440 Merge.rc:608 Merge.rc:617 Merge.rc:669 Merge.rc:958 Merge.rc:1185 Merge.rc:1198
 msgid "&Binary"
 msgstr "&Binary"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609
-#: Merge.rc:618 Merge.rc:670 Merge.rc:959 Merge.rc:1186 Merge.rc:1199
-#: Merge.rc:5421
+#: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609 Merge.rc:618 Merge.rc:670 Merge.rc:959 Merge.rc:1186 Merge.rc:1199 Merge.rc:5421
 msgid "&Image"
 msgstr "&Görsel"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:330 Merge.rc:339 Merge.rc:433 Merge.rc:442 Merge.rc:610
-#: Merge.rc:619 Merge.rc:671 Merge.rc:960 Merge.rc:1187 Merge.rc:1200
+#: Merge.rc:330 Merge.rc:339 Merge.rc:433 Merge.rc:442 Merge.rc:610 Merge.rc:619 Merge.rc:671 Merge.rc:960 Merge.rc:1187 Merge.rc:1200
 msgid "&Webpage"
 msgstr "İnternet &sitesi"
 
 #. IDR_POPUP_NEW, ID_FILE_NEW_FOLDER
-#: Merge.rc:331 Merge.rc:340 Merge.rc:434 Merge.rc:443 Merge.rc:611
-#: Merge.rc:620 Merge.rc:1188
+#: Merge.rc:331 Merge.rc:340 Merge.rc:434 Merge.rc:443 Merge.rc:611 Merge.rc:620 Merge.rc:1188
 msgid "&Folder"
 msgstr "&Klasör"
 
@@ -1405,14 +1394,12 @@ msgid "Copy from &Left to"
 msgstr "So&ldan şuraya kopyala"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:820 Merge.rc:831 Merge.rc:836 Merge.rc:847 Merge.rc:992
-#: Merge.rc:2807 Merge.rc:3099
+#: Merge.rc:820 Merge.rc:831 Merge.rc:836 Merge.rc:847 Merge.rc:992 Merge.rc:2807 Merge.rc:3099
 msgid "&Middle"
 msgstr "&Ortaya"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:821 Merge.rc:826 Merge.rc:837 Merge.rc:842 Merge.rc:993
-#: Merge.rc:2808 Merge.rc:3101
+#: Merge.rc:821 Merge.rc:826 Merge.rc:837 Merge.rc:842 Merge.rc:993 Merge.rc:2808 Merge.rc:3101
 msgid "&Right"
 msgstr "&Sağa"
 
@@ -1422,8 +1409,7 @@ msgid "Copy from &Middle to"
 msgstr "Or&tadan şuraya kopyala"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:825 Merge.rc:830 Merge.rc:841 Merge.rc:846 Merge.rc:991
-#: Merge.rc:2806 Merge.rc:3097
+#: Merge.rc:825 Merge.rc:830 Merge.rc:841 Merge.rc:846 Merge.rc:991 Merge.rc:2806 Merge.rc:3097
 msgid "&Left"
 msgstr "So&la"
 
@@ -1810,8 +1796,7 @@ msgid "Unpacker Settings"
 msgstr "Çıkarıcı ayarları"
 
 #. IDS_USERCHOICE_NONE
-#: Merge.rc:1087 Merge.rc:1093 Merge.rc:1835 Merge.rc:1839 Merge.rc:2030
-#: Merge.rc:2034 Merge.rc:5323
+#: Merge.rc:1087 Merge.rc:1093 Merge.rc:1835 Merge.rc:1839 Merge.rc:2030 Merge.rc:2034 Merge.rc:5323
 msgid "<None>"
 msgstr "<Yok>"
 
@@ -2236,9 +2221,7 @@ msgid "1GB or more"
 msgstr "1 GB veya daha fazla"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_RANGE
-#: Merge.rc:1422 Merge.rc:1499 Merge.rc:1551 Merge.rc:1557 Merge.rc:1574
-#: Merge.rc:1600 Merge.rc:1621 Merge.rc:1689 Merge.rc:1755 Merge.rc:1780
-#: Merge.rc:1983
+#: Merge.rc:1422 Merge.rc:1499 Merge.rc:1551 Merge.rc:1557 Merge.rc:1574 Merge.rc:1600 Merge.rc:1621 Merge.rc:1689 Merge.rc:1755 Merge.rc:1780 Merge.rc:1983
 msgid "Custom Range..."
 msgstr "Özel aralık..."
 
@@ -2608,40 +2591,32 @@ msgid "Add &Difference Condition"
 msgstr "&Fark Koşulu Ekle"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_EOL_EQUAL
-#: Merge.rc:1587 Merge.rc:1604 Merge.rc:1625 Merge.rc:1742 Merge.rc:1763
-#: Merge.rc:1788 Merge.rc:1929 Merge.rc:1936 Merge.rc:1941 Merge.rc:1950
-#: Merge.rc:1970 Merge.rc:1993
+#: Merge.rc:1587 Merge.rc:1604 Merge.rc:1625 Merge.rc:1742 Merge.rc:1763 Merge.rc:1788 Merge.rc:1929 Merge.rc:1936 Merge.rc:1941 Merge.rc:1950 Merge.rc:1970 Merge.rc:1993
 msgid "Equal"
 msgstr "Eşit"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_EOL_NOT_EQUAL
-#: Merge.rc:1588 Merge.rc:1605 Merge.rc:1626 Merge.rc:1743 Merge.rc:1764
-#: Merge.rc:1789 Merge.rc:1930 Merge.rc:1937 Merge.rc:1942 Merge.rc:1951
-#: Merge.rc:1971 Merge.rc:1994
+#: Merge.rc:1588 Merge.rc:1605 Merge.rc:1626 Merge.rc:1743 Merge.rc:1764 Merge.rc:1789 Merge.rc:1930 Merge.rc:1937 Merge.rc:1942 Merge.rc:1951 Merge.rc:1971 Merge.rc:1994
 msgid "Not Equal"
 msgstr "Eşit Değil"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_LESS
-#: Merge.rc:1589 Merge.rc:1606 Merge.rc:1744 Merge.rc:1765 Merge.rc:1790
-#: Merge.rc:1943 Merge.rc:1952 Merge.rc:1972
+#: Merge.rc:1589 Merge.rc:1606 Merge.rc:1744 Merge.rc:1765 Merge.rc:1790 Merge.rc:1943 Merge.rc:1952 Merge.rc:1972
 msgid "Less Than"
 msgstr "Daha küçük"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_LESS_EQUAL
-#: Merge.rc:1590 Merge.rc:1607 Merge.rc:1745 Merge.rc:1766 Merge.rc:1791
-#: Merge.rc:1944 Merge.rc:1953 Merge.rc:1973
+#: Merge.rc:1590 Merge.rc:1607 Merge.rc:1745 Merge.rc:1766 Merge.rc:1791 Merge.rc:1944 Merge.rc:1953 Merge.rc:1973
 msgid "Less Than or Equal to"
 msgstr "Küçük veya eşit"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER
-#: Merge.rc:1591 Merge.rc:1608 Merge.rc:1746 Merge.rc:1767 Merge.rc:1792
-#: Merge.rc:1945 Merge.rc:1954 Merge.rc:1974
+#: Merge.rc:1591 Merge.rc:1608 Merge.rc:1746 Merge.rc:1767 Merge.rc:1792 Merge.rc:1945 Merge.rc:1954 Merge.rc:1974
 msgid "Greater Than"
 msgstr "Daha büyük"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_DIFF_LINE_LENGTH_GREATER_EQUAL
-#: Merge.rc:1592 Merge.rc:1609 Merge.rc:1747 Merge.rc:1768 Merge.rc:1793
-#: Merge.rc:1946 Merge.rc:1955 Merge.rc:1975
+#: Merge.rc:1592 Merge.rc:1609 Merge.rc:1747 Merge.rc:1768 Merge.rc:1793 Merge.rc:1946 Merge.rc:1955 Merge.rc:1975
 msgid "Greater Than or Equal to"
 msgstr "Daha büyük veya eşit"
 
@@ -2861,8 +2836,7 @@ msgid "Open Regex Replace Lists Folder..."
 msgstr "Regex değiştirme listeleri klasörünü aç…"
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
-#: Merge.rc:1845 Merge.rc:2073 Merge.rc:2255 Merge.rc:2274 Merge.rc:2302
-#: Merge.rc:2847
+#: Merge.rc:1845 Merge.rc:2073 Merge.rc:2255 Merge.rc:2274 Merge.rc:2302 Merge.rc:2847
 msgid "Match &case"
 msgstr "BÜYÜK/küçük &harfler eşleştirilsin"
 
@@ -3022,14 +2996,12 @@ msgid "Line &Status"
 msgstr "&Satır durumu"
 
 #. IDS_DIFFERENT
-#: Merge.rc:1903 Merge.rc:1987 Merge.rc:2863 Merge.rc:2996 Merge.rc:3037
-#: Merge.rc:5009
+#: Merge.rc:1903 Merge.rc:1987 Merge.rc:2863 Merge.rc:2996 Merge.rc:3037 Merge.rc:5009
 msgid "Different"
 msgstr "Farklılık"
 
 #. IDS_IDENTICAL
-#: Merge.rc:1904 Merge.rc:1988 Merge.rc:2862 Merge.rc:3015 Merge.rc:3076
-#: Merge.rc:4999
+#: Merge.rc:1904 Merge.rc:1988 Merge.rc:2862 Merge.rc:3015 Merge.rc:3076 Merge.rc:4999
 msgid "Identical"
 msgstr "Aynı"
 
@@ -3189,10 +3161,8 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "WinMerge sitesini ziyaret edin!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:2198 Merge.rc:2340 Merge.rc:2693 Merge.rc:2717 Merge.rc:2731
-#: Merge.rc:2759 Merge.rc:2850 Merge.rc:2879 Merge.rc:2895 Merge.rc:2956
-#: Merge.rc:2973 Merge.rc:2985 Merge.rc:3149 Merge.rc:3209 Merge.rc:3344
-#: Merge.rc:3386 Merge.rc:3429 Merge.rc:3479
+#: Merge.rc:2198 Merge.rc:2340 Merge.rc:2693 Merge.rc:2717 Merge.rc:2731 Merge.rc:2759 Merge.rc:2850 Merge.rc:2879 Merge.rc:2895 Merge.rc:2956 Merge.rc:2973 Merge.rc:2985 Merge.rc:3149
+#: Merge.rc:3209 Merge.rc:3344 Merge.rc:3386 Merge.rc:3429 Merge.rc:3479
 msgid "OK"
 msgstr "Tamam"
 
@@ -3292,11 +3262,8 @@ msgid "Se&lect..."
 msgstr "&Seç..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:2241 Merge.rc:2261 Merge.rc:2285 Merge.rc:2306 Merge.rc:2341
-#: Merge.rc:2694 Merge.rc:2718 Merge.rc:2732 Merge.rc:2760 Merge.rc:2813
-#: Merge.rc:2851 Merge.rc:2880 Merge.rc:2896 Merge.rc:2957 Merge.rc:2974
-#: Merge.rc:2986 Merge.rc:3150 Merge.rc:3210 Merge.rc:3369 Merge.rc:3387
-#: Merge.rc:3430 Merge.rc:3480
+#: Merge.rc:2241 Merge.rc:2261 Merge.rc:2285 Merge.rc:2306 Merge.rc:2341 Merge.rc:2694 Merge.rc:2718 Merge.rc:2732 Merge.rc:2760 Merge.rc:2813 Merge.rc:2851 Merge.rc:2880 Merge.rc:2896
+#: Merge.rc:2957 Merge.rc:2974 Merge.rc:2986 Merge.rc:3150 Merge.rc:3210 Merge.rc:3369 Merge.rc:3387 Merge.rc:3430 Merge.rc:3480
 msgid "Cancel"
 msgstr "İptal"
 
@@ -3551,10 +3518,8 @@ msgid "Language:"
 msgstr "Dil:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2379 Merge.rc:2559 Merge.rc:2581 Merge.rc:2612 Merge.rc:2631
-#: Merge.rc:2648 Merge.rc:2656 Merge.rc:2692 Merge.rc:2716 Merge.rc:2915
-#: Merge.rc:2926 Merge.rc:2935 Merge.rc:3169 Merge.rc:3204 Merge.rc:3267
-#: Merge.rc:3292 Merge.rc:3306 Merge.rc:3320 Merge.rc:3336
+#: Merge.rc:2379 Merge.rc:2559 Merge.rc:2581 Merge.rc:2612 Merge.rc:2631 Merge.rc:2648 Merge.rc:2656 Merge.rc:2692 Merge.rc:2716 Merge.rc:2915 Merge.rc:2926 Merge.rc:2935 Merge.rc:3169
+#: Merge.rc:3204 Merge.rc:3267 Merge.rc:3292 Merge.rc:3306 Merge.rc:3320 Merge.rc:3336
 msgid "Defaults"
 msgstr "Varsayılanlar"
 
@@ -3704,8 +3669,7 @@ msgid "User 2:"
 msgstr "2. kullanıcı:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2469 Merge.rc:2471 Merge.rc:2473 Merge.rc:2475 Merge.rc:2477
-#: Merge.rc:2479 Merge.rc:2481 Merge.rc:2483 Merge.rc:2485
+#: Merge.rc:2469 Merge.rc:2471 Merge.rc:2473 Merge.rc:2475 Merge.rc:2477 Merge.rc:2479 Merge.rc:2481 Merge.rc:2483 Merge.rc:2485
 msgid "Bold"
 msgstr "Koyu"
 
@@ -3932,7 +3896,7 @@ msgstr "Söz dizimi &vurgulansın"
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2621
 msgid "Highlight &mode:"
-msgstr ""
+msgstr "&Vurgulama modu:"
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2623
@@ -8847,22 +8811,22 @@ msgstr ""
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
 #: Merge.rc:5741
 msgid "Built-in only"
-msgstr ""
+msgstr "Yalnızca yerleşik"
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
 #: Merge.rc:5742
 msgid "Built-in first"
-msgstr ""
+msgstr "Önce yerleşik olanlar"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
 #: Merge.rc:5743
 msgid "Tree-sitter first"
-msgstr ""
+msgstr "Önce Tree-sitter"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5744
 msgid "Tree-sitter only"
-msgstr ""
+msgstr "Yalnızca Tree-sitter"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
