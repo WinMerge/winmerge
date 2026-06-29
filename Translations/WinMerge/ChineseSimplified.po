@@ -181,7 +181,7 @@ msgstr "转到(&G)...\tCtrl+G"
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_GOTO_DEFINITION
 #: Merge.rc:131 Merge.rc:711 Merge.rc:1105
 msgid "Go to &Definition\tF12"
-msgstr ""
+msgstr "转到定义(&D)\tF12"
 
 #. IDR_POPUP_MERGEVIEW, ID_GOTO_MOVED_LINE_LM
 #: Merge.rc:132
@@ -3935,7 +3935,7 @@ msgstr "语法高亮(&H)"
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2621
 msgid "Highlight &mode:"
-msgstr ""
+msgstr "高亮模式(&M)："
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2623
@@ -8844,22 +8844,22 @@ msgstr ""
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
 #: Merge.rc:5741
 msgid "Built-in only"
-msgstr ""
+msgstr "仅限内置"
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
 #: Merge.rc:5742
 msgid "Built-in first"
-msgstr ""
+msgstr "内置优先"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
 #: Merge.rc:5743
 msgid "Tree-sitter first"
-msgstr ""
+msgstr "Tree-sitter 优先"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5744
 msgid "Tree-sitter only"
-msgstr ""
+msgstr "仅限 Tree-sitter"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
