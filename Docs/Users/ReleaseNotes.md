@@ -1,202 +1,84 @@
-# WinMerge 2.16.56.2 Release Notes
+# WinMerge 2.16.57 Beta Release Notes
 
 * [About This Release](#about-this-release)
-* [What Is New in 2.16.56.2](#what-is-new-in-216562)
-* [What Is New in 2.16.56](#what-is-new-in-21656)
-* [What Is New in 2.16.55 beta?](#what-is-new-in-21655-beta)
+* [What Is New in 2.16.57 Beta?](#what-is-new-in-21657-beta)
 * [Known issues](#known-issues)
 
-May 2026
+July 2026
 
 ## About This Release
 
-This is a WinMerge 2.16.56.2 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.56.2
-
-### File compare
-
-* BugFix: Fix incorrect copy when selection ends inside a word diff (PR #3358)
-
-* BugFix: Skip invisible lines in search/replace
-
-* BugFix: Fix text misalignment and repaint artifacts when toggling line numbers in word wrap mode
-
-* BugFix: Fix crash in 3-pane diff when move block detection is enabled
-
-### Folder compare
-
-* BugFix: Preserve tree expansion and UI state after refresh (#3366,PR #3369)
-
-* BugFix: Do not convert drive-relative paths like `C:` to `C:\` (PR #3373)
-
-* BugFix: "Right only files" missing when showing left/right only (#3378)
-
-### Image compare
-
-* BugFix: Image compare does not remember the state of the "Blink" toggle between sessions (#3368)
-
-* BugFix: [FEATURE] override option for unrestricted Image Compare (#3382)
-
-### Plugins
-
-* BugFix: Fix missing "Unpacked file extension" value in Edit Plugin dialog
-
-### Archive support
-
-* Update 7-Zip to 26.01
-
-### Installer
-
-* Fixed missing Vietnamese WinMerge translation in installer
-
-### Translations
-
-* Translation updates:
-
-  * French (PR #3347)
-  * Korean (PR #3349)
-  * Russian (PR #3348)
-
-## What Is New in 2.16.56
+## What Is New in 2.16.57 Beta?
 
 ### General
 
-* Show error message when entering invalid path in header bar (PR #3322)
+* BugFix: Fixed an issue where file mapping failures could incorrectly trigger a crash (#3412)
 
-* Add recent items and clipboard history to header bar menu (PR #3330)
-
-### Folder compare
-
-* Add Folder comparison mode with archive extraction support (PR #3320)
-
-* Refactor: unify open parameters and move recurse to OpenFolderParams (PR #3326)
-
-* Add codepage filter UI and hasbom field support (PR #3318)
-
-### Archive support
-
-* Use 7-Zip IsArc API for archive detection and refactor format guessing logic (PR #3323)
-
-* Prioritize explicitly selected plugins over archive detection (PR #3324)
-
-### Translations
-
-* Translation updates:
-  * Brazilian (PR #3328,#3341)
-  * Chinese Simplified (PR #3307,#3331,#3344)
-  * French (PR #3312)
-  * German (PR #3329)
-  * Italian (PR #3335,#3342)
-  * Korean (PR #3334)
-  * Lithuanian (PR #3308)
-  * Russian (PR #3309)
-  * Turkish (PR #3333)
-
-### Documentation
-
-* Update Italian documentation (PR #3319)
-
-* Update French manual (PR #3325)
-
-## What Is New in 2.16.55 Beta
-
-### General
-
-* Fix incorrect GetAsyncKeyState usage for modifier key detection (PR #3257)
-
-* Update POCO C++ Libraries to 1.15.1 (PR #3292)
+* Add module-relative offsets to crash log stack traces
 
 ### File compare
 
-* BugFix: Fix keyboard input issue after Alt+mouse operations (PR #3254)
+* BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to avoid accessing line EOL directly
 
-* BugFix: Register self-compare in MRU and refactor command line parameter
-    buil… (PR #3266)
+* BugFix: Fix incorrect caret position in status bar
 
-* Refactor save confirmation logic using SaveClosingDlg::ShowAndSave
-    (PR #3256)
+* BugFix: Clear sync points before reloading compare files
 
-* Enable IME text reconversion in editor view (PR #3214)
-    
-### Image compare
+* BugFix: Fix assertion failure on empty buffer access when all lines are deleted from a pane
 
-* BugFix: Fix crash caused by OnClose being called twice in image compare
-    window (PR #3255)
+* Add display line filter bar for file compare window (PR #3374)
 
-* Speedup image comparision slider during WipeEffect (PR winimerge/#33)
+* Improve syntax highlighting with Tree-sitter integration for better support of multiple languages (PR #3306, PR #3337, PR #3338, PR #3350, PR #3415, PR #3427)
+
+* Refactor syntax parsing behind ISyntaxParser interface (PR #3415)
 
 ### Folder compare
 
-* BugFix: Fix an issue where skipped items were not properly filtered during
-    folder/file comparison. (PR #3267)
+* BugFix: Crash when trying to delete a "left-only" or "right-only" file during renaming (#3411)
 
-* BugFix: Fix potential hang in DiffWorker shutdown (PR #3300)
+* Refactor filter evaluation parameters with new EvalContext for better code maintainability (PR #3353)
 
-* Extend “Merge renamed items” option to support moved items (PR #3181)
+### Archive support
 
-* Refactor compare engines to use DiffContext (PR #3197)
+* BugFix: Fix error dialogs when comparing two Rar4 files (#3392)
 
-* Refactor compare engines to write results into DIFFITEM and add
-    FullQuickCompare (PR #3201)
-    
-* Add e:/e!: filter prefixes for files and directories (PR #3205)
+* Update 7-Zip to 26.02
 
-* Add replaceWithList and regexReplaceWithList filter functions (PR #3213)
+### Select Files or Folders dialog
 
-* Add Replace Lists menu for Rename/Move detection keys (PR #3215)
-
-* Make replace and replaceWithList case-insensitive (PR #3222)
-
-* Add directives (@cs, @ci, @name) to filter expressions (PR #3253)
-
-* Add "Filter by This Column" to folder view header context menu (PR #3268)
-
-* Add display filter attributes and UI for filtering by comparison results
-    (PR #3284)
-
-* Add ability to hide empty folders in tree mode (PR #3293)
-
-* Add Unpacker and Prediffer fields to file filter expressions (PR #3295)
-
-* Enable dynamic increase/decrease of compare threads (PR #3304)
+* Add support for clipboard URL comparison and clipboard history menu (PR #3352)
 
 ### Plugins
 
-* Add PrettifyPO and ValidatePO plugins for .po/.pot files (PR #3190)
+* Add HandleSchemeClipboard plugin (PR #3352)
 
-* Feature request: In CompareMSExcelFiles do not append a sheet order number
-    to individual tsv, txt or html files (#3212)
+### Project files
 
-* Add CFR Java decompiler plugin for .class file comparison (PR #3242,#3243)
+* Warn user before opening project files containing plugin arguments for security reasons (PR #3397, #3396)
 
 ### Translations
 
 * Translation updates:
-  * Brazilian (PR #3185,#3194,#3219,#3231,#3245,#3275,#3287,#3303)
-  * Chinese Simplified (PR #3183,#3191,#3220,#3228,#3244)
-  * Corsican (PR #3259,#3299)
-  * French (PR #3239)
-  * German (PR #3187,#3196,#3217,#3232,#3237,#3251,#3274,#3288,#3297)
-  * Hungarian (PR #3186,#3238,#3252)
-  * Italian (PR #3199,#3218,#3229,#3235,#3236,#3246,#3249,#3269,#3272,#3285,#3302)
-  * Japanese (PR #3258)
-  * Korean (PR #3247,#3279,#3301)
-  * Lithuanian (PR #3184,#3192,#3230,#3276,#3290)
-  * Polish (PR #3233,#3273)
-  * Russian (PR #3226,#3281)
-  * Turkish (PR #3204,#3221,#3227,#3250,#3271,#3286,#3298)
 
-
-### Documentation
-
-* Added: Community standard files (like issue templates, pr template).
-    (PR #3225)
-
-* Add context IDs to PO files \& strip comments for releases (PR #3296)
+  * Brazilian (PR #3431)
+  * Chinese Simplified (PR #3429, PR #3438)
+  * Chinese Traditional (PR #3426)
+  * Corsican (PR #3420)
+  * French (PR #3393, PR #3406, PR #3408, PR #3435)
+  * German (PR #3432)
+  * Italian (PR #3399, PR #3434)
+  * Korean (PR #3422, PR #3433)
+  * Lithuanian (PR #3405, PR #3439)
+  * Polish (PR #3418, PR #3430)
+  * Portuguese (PR #3391, PR #3414)
+  * Russian (PR #3395, PR #3428)
+  * Spanish (PR #3421, PR #3423, PR #3424, PR #3425)
+  * Turkish (PR #3403, PR #3436)
 
 ## Known issues
 
