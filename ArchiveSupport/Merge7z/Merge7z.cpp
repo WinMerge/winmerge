@@ -351,6 +351,7 @@ HRESULT Format7zDLL::Interface::Updater::Commit(HWND hwndParent)
 		// Build the operationChain. One element per item
 		CRecordVector<CUpdatePair2> operationChain;
 		CUpdatePair2 pair2;
+		pair2.Construct();
 		pair2.NewData = pair2.NewProps = true;
 
 		operationChain.Reserve(dirItems.Items.Size());
