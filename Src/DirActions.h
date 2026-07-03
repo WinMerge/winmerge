@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "FileTransform.h"
 #include "FileFilterHelper.h"
+#include "7zCommon.h"
 
 class CDiffContext;
 class PathContext;
@@ -598,6 +599,37 @@ struct DirActions
 	const CDiffContext& m_ctxt;
 	const bool *m_RO;
 };
+
+void AddZipItem(const CDiffContext& ctxt, const DIFFITEM& di, int index, bool bDiffsOnly, std::vector<CompressibleItem>& items);
+void BalanceZipFolders(std::vector<CompressibleItem>& original, std::vector<CompressibleItem>& altered);
+template<typename Iterator>
+std::vector<CompressibleItem> CreateZipItems(const CDiffContext& ctxt, Iterator first, Iterator last, int index, bool bDiffsOnly)
+{
+	std::vector<CompressibleItem> items;
+
+	for (; first != last; ++first)
+	{
+		const DIFFITEM* pdi = (*first).second;
+		if (pdi != nullptr)
+			AddZipItem(ctxt, *pdi, index, bDiffsOnly, items);
+	}
+
+	std::sort(items.begin(), items.end(),
+		[](const CompressibleItem& a, const CompressibleItem& b)
+		{
+			return a.name < b.name;
+		});
+
+	items.erase(
+		std::unique(items.begin(), items.end(),
+			[](const CompressibleItem& a, const CompressibleItem& b)
+			{
+				return a.name == b.name;
+			}),
+		items.end());
+
+	return items;
+}
 
 struct Counts {
 	Counts() : count(0), total(0) {}

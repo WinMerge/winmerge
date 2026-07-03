@@ -23,6 +23,7 @@
 #include "DirActions.h"
 #include "IListCtrlImpl.h"
 #include "FileOpenFlags.h"
+#include "7zCommon.h"
 
 class FileActionScript;
 
@@ -46,6 +47,25 @@ struct IListCtrl;
 class CFileFilterHelperMenu;
 
 /**
+ * @brief Flags controlling CDirView::OnCtxtDirZip() / CollectZipItems() behavior.
+ *        (Moved out of the Merge7z adapter class, since that class no longer
+ *        knows anything about WinMerge's directory-compare domain.)
+ */
+namespace DirViewZipFlags
+{
+	enum
+	{
+		Left = 0x0000,
+		Right = 0x0001,
+		Middle = 0x0002,
+		Original = 0x0004,
+		Altered = 0x0008,
+		BalanceFolders = 0x0010,
+		DiffsOnly = 0x0020,
+	};
+}
+
+/**
  * @brief Position value for special items (..) in directory compare view.
  */
 const uintptr_t SPECIAL_ITEM_POS = (uintptr_t)(reinterpret_cast<DIFFITEM *>( - 1L));
@@ -67,7 +87,6 @@ constexpr int DefColumnWidth = 111;
 class CDirView : public CListView
 {
 	friend struct FileCmpReport;
-	friend DirItemEnumerator;
 protected:
 	CDirView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CDirView)
@@ -135,6 +154,7 @@ private:
 	Counts Count(DirActions::method_type2 func) const;
 	void DoDirAction(DirActions::method_type func, const String& status_message);
 	void DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, const String& status_message);
+	std::vector<CompressibleItem> CollectZipItems(int index, bool bDiffsOnly);
 	void DoOpen(SIDE_TYPE stype);
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);

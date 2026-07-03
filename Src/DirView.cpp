@@ -347,12 +347,12 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_BOTH, OnUpdateCtxtDirCopyBoth2)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_ALL, OnUpdateCtxtDirCopyBoth2)
 	// Context menu -> Zip
-	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZip<DirItemEnumerator::Left>)
-	ON_COMMAND(ID_DIR_ZIP_MIDDLE, OnCtxtDirZip<DirItemEnumerator::Middle>)
-	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZip<DirItemEnumerator::Right>)
-	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZip<DirItemEnumerator::Original | DirItemEnumerator::Altered | DirItemEnumerator::BalanceFolders>)
-	ON_COMMAND(ID_DIR_ZIP_ALL, OnCtxtDirZip<DirItemEnumerator::Original | DirItemEnumerator::Altered | DirItemEnumerator::BalanceFolders>)
-	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZip<DirItemEnumerator::Original | DirItemEnumerator::Altered | DirItemEnumerator::BalanceFolders | DirItemEnumerator::DiffsOnly>)
+	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZip<DirViewZipFlags::Left>)
+	ON_COMMAND(ID_DIR_ZIP_MIDDLE, OnCtxtDirZip<DirViewZipFlags::Middle>)
+	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZip<DirViewZipFlags::Right>)
+	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZip<DirViewZipFlags::Original | DirViewZipFlags::Altered | DirViewZipFlags::BalanceFolders>)
+	ON_COMMAND(ID_DIR_ZIP_ALL, OnCtxtDirZip<DirViewZipFlags::Original | DirViewZipFlags::Altered | DirViewZipFlags::BalanceFolders>)
+	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZip<DirViewZipFlags::Original | DirViewZipFlags::Altered | DirViewZipFlags::BalanceFolders | DirViewZipFlags::DiffsOnly>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_LEFT, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_MIDDLE, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_RIGHT, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
@@ -3456,10 +3456,42 @@ void CDirView::OnCtxtDirZip(int flag)
 		return;
 	}
 
-	DirItemEnumerator
-	(
-		this, LVNI_SELECTED | flag
-	).CompressArchive();
+	const bool bDiffsOnly = (flag & DirViewZipFlags::DiffsOnly) != 0;
+	const bool bBoth = (flag & DirViewZipFlags::Original) && (flag & DirViewZipFlags::Altered);
+	const int nDirs = GetDocument()->m_nDirs;
+	const CDiffContext & ctxt = GetDiffContext();
+	DirItemWithIndexIterator begin(m_pIList.get(), -1, true);
+	DirItemWithIndexIterator end;
+
+	std::vector<CompressibleItem> items;
+	if (bBoth)
+	{
+		auto original = CreateZipItems(ctxt, begin, end, 0, bDiffsOnly);
+		auto altered = CreateZipItems(ctxt, begin, end, 1, bDiffsOnly);
+		if (flag & DirViewZipFlags::BalanceFolders)
+			BalanceZipFolders(original, altered);
+		for (auto& ci : original)
+		{
+			ci.name.insert(0, _T("original\\"));
+			items.push_back(std::move(ci));
+		}
+		for (auto& ci : altered)
+		{
+			ci.name.insert(0, _T("altered\\"));
+			items.push_back(std::move(ci));
+		}
+	}
+	else
+	{
+		int index;
+		if (nDirs < 3)
+			index = (flag & DirViewZipFlags::Right) ? 1 : 0;
+		else
+			index = (flag & DirViewZipFlags::Right) ? 2 : (flag & DirViewZipFlags::Middle) ? 1 : 0;
+		items = CreateZipItems(ctxt, begin, end, index, bDiffsOnly);
+	}
+
+	CompressibleItemEnumerator(std::move(items)).CompressArchive();
 }
 
 void CDirView::ShowShellContextMenu(UINT id)
