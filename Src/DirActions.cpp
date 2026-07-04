@@ -154,6 +154,54 @@ static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const Str
 }
 
 /**
+ * @brief Add a DIFFITEM to the list of items to be compressed.
+ */
+void AddZipItem(const CDiffContext& ctxt, const DIFFITEM& di, int index, bool bDiffsOnly, std::vector<CompressibleItem>& items)
+{
+	if (di.diffcode.diffcode == 0)
+		 return;
+
+	if (di.diffcode.isDirectory())
+	{
+		if (di.HasChildren())
+		{
+			for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+				AddZipItem(ctxt, *pdic, index, bDiffsOnly, items);
+			return;
+		}
+
+		if (bDiffsOnly && !IsItemNavigableDiff(ctxt, di))
+			return;
+
+		if (!di.diffcode.exists(index))
+			return;
+
+		CompressibleItem ci;
+		const String & sFilename = di.diffFileInfo[index].filename.get();
+		const String & sSubdir = di.diffFileInfo[index].path.get();
+		ci.name = sSubdir.length() ? paths::ConcatPath(sSubdir, sFilename) : sFilename;
+		ci.fullPath = paths::ConcatPath(di.getFilepath(index, ctxt.GetNormalizedPath(index)), sFilename);
+		ci.recurse = true;
+		items.push_back(std::move(ci));
+		return;
+	}
+
+	if (bDiffsOnly && !IsItemNavigableDiff(ctxt, di))
+		return;
+	
+	if (!di.diffcode.exists(index))
+		return;
+	
+	CompressibleItem ci;
+	const String & sFilename = di.diffFileInfo[index].filename.get();
+	const String & sSubdir = di.diffFileInfo[index].path.get();
+	ci.name = sSubdir.length() ? paths::ConcatPath(sSubdir, sFilename) : sFilename;
+	ci.fullPath = paths::ConcatPath(di.getFilepath(index, ctxt.GetNormalizedPath(index)), sFilename);
+	ci.recurse = false;
+	items.push_back(std::move(ci));
+}
+
+/**
  * @brief Confirm actions with user as appropriate
  * (type, whether single or multiple).
  */

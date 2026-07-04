@@ -320,178 +320,30 @@ SingleItemEnumerator::SingleItemEnumerator(const tchar_t* path, const tchar_t* F
 {
 }
 
-/**
- * @brief Construct a DirItemEnumerator.
- *
- * Argument *nFlags* controls operation as follows:
- * LVNI_ALL:		Enumerate all items.
- * LVNI_SELECTED:	Enumerate selected items only.
- * Original:		Set folder prefix for first iteration to "original"
- * Altered:			Set folder prefix for second iteration to "altered"
- * BalanceFolders:	Ensure that all nonempty folders on either side have a
- *					corresponding folder on the other side, even if it is
- *					empty (DirScan doesn't recurse into folders which
- *					appear only on one side).
- * DiffsOnly:		Enumerate diffs only.
- */
-DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
-: m_pView(pView)
-, m_nFlags(nFlags)
-, m_nIndex(-1)
-, m_index(0)
+CompressibleItemEnumerator::CompressibleItemEnumerator(std::vector<CompressibleItem> items)
+ : m_items(std::move(items))
 {
-	if (m_nFlags & Original)
-	{
-		m_rgFolderPrefix.push_back(_T("original"));
-	}
-	if (m_nFlags & Altered)
-	{
-		m_rgFolderPrefix.push_back(_T("altered"));
-	}
-	if (m_nFlags & BalanceFolders)
-	{
-		const CDiffContext& ctxt = pView->GetDiffContext();
-		// Collect implied folders
-		for (UINT i = Open() ; i-- ; )
-		{
-			const DIFFITEM &di = Next();
-			if ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di))
-			{
-				continue;
-			}
-			// Enumerating items
-			if (di.diffcode.exists(m_index))
-			{
-				// Item is present on right side, i.e. folder is implied
-				m_rgImpliedFolders[m_index][di.diffFileInfo[m_index].path.get()] = PVOID(1);
-			}
-		}
-	}
 }
 
-/**
- * @brief Initialize enumerator, return number of items to be enumerated.
- */
-UINT DirItemEnumerator::Open()
+UINT CompressibleItemEnumerator::Open()
 {
-	m_nIndex = -1;
-	m_curFolderPrefix = m_rgFolderPrefix.begin();
-	if (m_pView->GetDocument()->m_nDirs < 3)
-		m_index = (m_nFlags & Right) != 0 ? 1 : 0;
-	else
-		m_index = ((m_nFlags & Right) != 0) ? 2 : ((m_nFlags & Middle) != 0 ? 1 : 0);
-	size_t nrgFolderPrefix = m_rgFolderPrefix.size();
-	if (nrgFolderPrefix)
-	{
-		m_strFolderPrefix = *m_curFolderPrefix++;
-	}
-	else
-	{
-		nrgFolderPrefix = 1;
-	}
-	return
-	static_cast<UINT>((
-		(m_nFlags & LVNI_SELECTED)
-	?	pView(m_pView)->GetSelectedCount()
-	:	pView(m_pView)->GetItemCount()
-	) * nrgFolderPrefix);
+	m_itemPos = 0;
+	return static_cast<UINT>(m_items.size());
 }
 
-/**
- * @brief Return next item.
- */
-const DIFFITEM &DirItemEnumerator::Next()
+CompressibleItemEnumerator::Envelope* CompressibleItemEnumerator::Enum(Item & item)
 {
-	enum {nMask = LVNI_FOCUSED|LVNI_SELECTED|LVNI_CUT|LVNI_DROPHILITED};
-	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
-	{
-		m_strFolderPrefix = *m_curFolderPrefix++;
-		m_index++;
-	}
-	const auto& di = m_pView->GetDiffItem(m_nIndex);
-	for (const auto* pfdi : m_selectedFolderDiffItems)
-	{
-		if (di.IsAncestor(pfdi))
-			return *DIFFITEM::GetEmptyItem();
-	}
-	if (di.diffcode.isDirectory())
-		m_selectedFolderDiffItems.push_back(&di);
-	return di;
-}
-
-/**
- * @brief Pass information about an item to Merge7z.
- *
- * Information is passed through struct Merge7z::DirItemEnumerator::Item.
- * The *mask* member denotes which of the other members contain valid data.
- * If *mask* is zero upon return, which will be the case if Enum() decides to
- * leave the struct untouched, Merge7z will ignore the item.
- * If Enum() allocates temporary storage for string members, it must also
- * allocate an Envelope, providing a Free() method to free the temporary
- * storage, along with the Envelope itself. The Envelope pointer is passed to
- * Merge7z as the return value of the function. It is not meant to be a success
- * indicator, so if no temporary storage is required, it is perfectly alright
- * to return `nullptr`.
- */
-Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
-{
-	const CDiffContext& ctxt = m_pView->GetDiffContext();
-	const DIFFITEM &di = Next();
-
-	if (di.isEmpty() || ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di)))
-	{
+	if (m_itemPos >= m_items.size())
 		return 0;
-	}
-
-	bool isSideOnly = !di.diffcode.exists(m_index);
-
-	Envelope *envelope = new Envelope;
-
-	const String &sFilename = di.diffFileInfo[m_index].filename;
-	const String &sSubdir = di.diffFileInfo[m_index].path;
-	if (sSubdir.length())
-		envelope->Name = paths::ConcatPath(sSubdir, sFilename);
-	else
-		envelope->Name = sFilename;
-	envelope->FullPath = paths::ConcatPath(
-			di.getFilepath(m_index, ctxt.GetNormalizedPath(m_index)),
-			sFilename);
-
-	UINT32 Recurse = item.Mask.Recurse;
-
-	if (m_nFlags & BalanceFolders)
-	{
-		// Enumerating items on right side
-		if (isSideOnly)
-		{
-			// Item is missing on right side
-			PVOID &implied = m_rgImpliedFolders[m_index][di.diffFileInfo[1-m_index].path.get()];
-			if (implied == nullptr)
-			{
-				// Folder is not implied by some other file, and has
-				// not been enumerated so far, so enumerate it now!
-				envelope->Name = di.diffFileInfo[1-m_index].path;
-				envelope->FullPath = di.getFilepath(1-m_index, ctxt.GetNormalizedPath(1-m_index));
-				implied = PVOID(2); // Don't enumerate same folder twice!
-				isSideOnly = false;
-				Recurse = 0;
-			}
-		}
-	}
-
-	if (isSideOnly)
-	{
-		return envelope;
-	}
-
-	if (m_strFolderPrefix.length())
-	{
-		if (envelope->Name.length())
-			envelope->Name.insert(0, _T("\\"));
-		envelope->Name.insert(0, m_strFolderPrefix);
-	}
-
-	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.CheckIfPresent|Recurse;
+	
+	const CompressibleItem & ci = m_items[m_itemPos++];
+	
+	Envelope* envelope = new Envelope;
+	envelope->Name = ci.name;
+	envelope->FullPath = ci.fullPath;
+	
+	item.Mask.Item = item.Mask.Name | item.Mask.FullPath | item.Mask.CheckIfPresent
+		 | (ci.recurse ? item.Mask.Recurse : 0);
 	item.Name = envelope->Name.c_str();
 	item.FullPath = envelope->FullPath.c_str();
 	return envelope;
@@ -500,7 +352,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 /**
  * @brief Apply appropriate handlers from left to right.
  */
-bool DirItemEnumerator::MultiStepCompressArchive(const tchar_t* path)
+bool CompressibleItemEnumerator::MultiStepCompressArchive(const tchar_t* path)
 {
 	DeleteFile(path);
 	Merge7z::Format *piHandler = ArchiveGuessFormat(path);
@@ -531,7 +383,7 @@ bool DirItemEnumerator::MultiStepCompressArchive(const tchar_t* path)
 /**
  * @brief Generate archive from DirView items.
  */
-void DirItemEnumerator::CompressArchive(const tchar_t* path)
+void CompressibleItemEnumerator::CompressArchive(const tchar_t* path)
 {
 	String strPath;
 	if (path == nullptr)
