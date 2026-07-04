@@ -601,7 +601,6 @@ struct DirActions
 };
 
 void AddZipItem(const CDiffContext& ctxt, const DIFFITEM& di, int index, bool bDiffsOnly, std::vector<CompressibleItem>& items);
-void BalanceZipFolders(std::vector<CompressibleItem>& original, std::vector<CompressibleItem>& altered);
 template<typename Iterator>
 std::vector<CompressibleItem> CreateZipItems(const CDiffContext& ctxt, Iterator first, Iterator last, int index, bool bDiffsOnly)
 {

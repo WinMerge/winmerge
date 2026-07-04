@@ -60,7 +60,6 @@ namespace DirViewZipFlags
 		Middle = 0x0002,
 		Original = 0x0004,
 		Altered = 0x0008,
-		BalanceFolders = 0x0010,
 		DiffsOnly = 0x0020,
 	};
 }
@@ -154,7 +153,6 @@ private:
 	Counts Count(DirActions::method_type2 func) const;
 	void DoDirAction(DirActions::method_type func, const String& status_message);
 	void DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, const String& status_message);
-	std::vector<CompressibleItem> CollectZipItems(int index, bool bDiffsOnly);
 	void DoOpen(SIDE_TYPE stype);
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
