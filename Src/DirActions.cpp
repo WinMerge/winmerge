@@ -170,7 +170,7 @@ void AddZipItem(const CDiffContext& ctxt, const DIFFITEM& di, int index, bool bD
 			return;
 		}
 
-		if (bDiffsOnly && di.diffcode.existAll())
+		if (bDiffsOnly && !IsItemNavigableDiff(ctxt, di))
 			return;
 
 		if (!di.diffcode.exists(index))

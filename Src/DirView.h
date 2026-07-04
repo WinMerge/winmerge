@@ -47,7 +47,7 @@ struct IListCtrl;
 class CFileFilterHelperMenu;
 
 /**
- * @brief Flags controlling CDirView::OnCtxtDirZip() / CollectZipItems() behavior.
+ * @brief Flags controlling CDirView::OnCtxtDirZip() / CreateZipItems() behavior.
  *        (Moved out of the Merge7z adapter class, since that class no longer
  *        knows anything about WinMerge's directory-compare domain.)
  */
