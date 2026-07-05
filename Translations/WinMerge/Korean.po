@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-06-27 00:44+0900\n"
+"PO-Revision-Date: 2026-07-06 02:56+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -1053,22 +1053,22 @@ msgstr "기본 글꼴 사용"
 #: Merge.rc:509 Merge.rc:756
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "창 맞바꾸기(&A)"
+msgstr "창 교환(&A)"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP12
 #: Merge.rc:511 Merge.rc:758
 msgid "Swap &1st | 2nd"
-msgstr "첫 번째와 두 번째 맞바꾸기(&1)"
+msgstr "첫 번째 | 두 번째 교환(&1)"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP23
 #: Merge.rc:512 Merge.rc:759
 msgid "Swap &2nd | 3rd"
-msgstr "두 번째와 세 번째 맞바꾸기(&2)"
+msgstr "두 번째 | 세 번째 교환(&2)"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP13
 #: Merge.rc:513 Merge.rc:760
 msgid "Swap 1st | &3rd"
-msgstr "첫 번째와 세 번째 맞바꾸기(&3)"
+msgstr "첫 번째 | 세 번째 교환(&3)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_DISPLAY_FILTER_BAR_MENU
 #: Merge.rc:530 Merge.rc:778
@@ -1392,19 +1392,19 @@ msgstr "&3 줄"
 #: Merge.rc:738 Merge.rc:2048
 #, c-format
 msgid "&5 Lines"
-msgstr "&5 줄"
+msgstr "&5줄"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_CONTEXT_7
 #: Merge.rc:739 Merge.rc:2049
 #, c-format
 msgid "&7 Lines"
-msgstr "&7 줄"
+msgstr "&7줄"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_DIFFCONTEXT_9
 #: Merge.rc:740
 #, c-format
 msgid "&9 Lines"
-msgstr "&9 줄"
+msgstr "&9줄"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_DIFFCONTEXT_TOGGLE
 #: Merge.rc:742
@@ -3469,7 +3469,7 @@ msgstr "읽기 전용(&A)"
 #: Merge.rc:2213
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr "첫 번째와 두 번째 맞바꾸기"
+msgstr "첫 번째 | 두 번째 교환"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE1
 #: Merge.rc:2214 Merge.rc:2570 Merge.rc:2675
@@ -3493,7 +3493,7 @@ msgstr "읽기 전용(&D)"
 #: Merge.rc:2219
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr "두 번째와 세 번째 맞바꾸기"
+msgstr "두 번째 | 세 번째 교환"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_FILTER_USER_BROWSE
 #: Merge.rc:2220 Merge.rc:2575
@@ -3517,7 +3517,7 @@ msgstr "읽기 전용(&N)"
 #: Merge.rc:2225
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr "첫 번째와 세 번째 맞바꾸기"
+msgstr "첫 번째 | 세 번째 교환"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_BROWSE
 #: Merge.rc:2226 Merge.rc:2967 Merge.rc:3165
@@ -4393,7 +4393,7 @@ msgstr "파일&2:"
 #: Merge.rc:2679
 #, c-format
 msgid "&Swap"
-msgstr "맞바꾸기(&S)"
+msgstr "교환(&S)"
 
 #. IDD_DIRCMP_REPORT, IDC_REPORT_COPYCLIPBOARD
 #: Merge.rc:2680 Merge.rc:2972
@@ -6316,7 +6316,7 @@ msgstr "줄: %s  열: %d/%d  문자: %d/%d"
 #: Merge.rc:4684
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr "  선택됨: %d | %d"
+msgstr "  선택: %d | %d"
 
 #. IDS_MERGEMODE_MERGING
 #: Merge.rc:4685
@@ -8478,7 +8478,7 @@ msgstr "플러그인 설정"
 #: Merge.rc:5322
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH이 없습니다 - .sct 스크립트 비활성화됨"
+msgstr "WSH를 찾을 수 없음 - .sct 스크립트 비활성화됨"
 
 #. IDS_LOCBAR_GOTOLINE_FMT
 #: Merge.rc:5330
@@ -9973,24 +9973,24 @@ msgid ""
 "JSON Prettier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
-"'jq command'를 사용하여 JSON 꾸미기입니다. \r\n"
-"인수: jq 명령에 전달된 필터 또는 명령줄 옵션입니다."
+"JSON Prettier (jq).\r\n"
+"인수: jq 필터/명령줄 옵션입니다."
 
 #: Strings.rc:142
 msgid ""
 "XML Prettier (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
-"Tidy-html5를 사용하여 XML을 꾸미기입니다. \r\n"
-"인수: tidy 명령에 전달된 명령줄 옵션입니다."
+"XML Prettier (tidy-html5).\n"
+"인수: tidy 명령줄 옵션입니다."
 
 #: Strings.rc:144
 msgid ""
 "YAML Prettier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
-"'yq command'를 사용하여 YAML 꾸미기입니다. \r\n"
-"인수: yq 명령에 전달된 필터 또는 명령줄 옵션입니다."
+"YAML Prettier (yq).\n"
+"인수: yq 필터/명령줄 옵션입니다."
 
 #: Strings.rc:146
 msgid ""
@@ -10029,32 +10029,32 @@ msgid ""
 "CSV Querier (q).\r\n"
 "Arguments: SQL statement/q command line options."
 msgstr ""
-"q 명령을 사용하는 CSV 쿼리어입니다. \r\n"
-"인수: q 명령에 전달된 SQL문 또는 명령줄 옵션입니다."
+"CSV Querier (q).\r\n"
+"인수: SQL 문/q 명령줄 옵션입니다."
 
 #: Strings.rc:156
 msgid ""
 "TSV Querier (q).\r\n"
 "Arguments: SQL statement/q command line options."
 msgstr ""
-"q 명령을 사용하는 TSV 쿼리어입니다. \n"
-"인수: q 명령에 전달된 SQL문 또는 명령줄 옵션입니다."
+"TSV Querier (q).\r\n"
+"인수: SQL 문/q 명령줄 옵션입니다."
 
 #: Strings.rc:158
 msgid ""
 "JSON Querier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
-"'jq command'를 사용하여 JSON 쿼리어입니다. \r\n"
-"인수: jq 명령에 전달된 필터 또는 명령줄 옵션입니다."
+"JSON Querier (jq).\r\n"
+"인수: jq 필터/명령줄 옵션입니다."
 
 #: Strings.rc:164
 msgid ""
 "YAML Querier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
-"'yq command'를 사용하여 YAML 쿼리어입니다. \r\n"
-"인수: yq 명령에 전달된 필터 또는 명령줄 옵션입니다."
+"YAML Querier (yq).\r\n"
+"인수: yq 필터/명령줄 옵션입니다."
 
 #: Strings.rc:166
 msgid ""
