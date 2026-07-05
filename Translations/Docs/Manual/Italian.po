@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: WinMerge - Doc  - 05.07.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-06-25 07:56+0900\n"
-"PO-Revision-Date: 2026-07-05 11:35+0200\n"
+"PO-Revision-Date: 2026-07-05 11:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -75,7 +75,7 @@ msgid ""
 "While using WinMerge, click <menuchoice> <guimenu>Help</guimenu> <guimenuitem>WinMerge Help</guimenuitem> </menuchoice>. HTML Help opens at the beginning "
 "(this topic)."
 msgstr ""
-"Mentre usi WinMerge, fai clic su <menuchoice> <guimenu >Aiuto</guimenu > <guimenuitem >Aiuto WinMerge</guimenuitem > </menuchoice >.La Guida HTML si apre "
+"Mentre usi WinMerge, fai clic su <menuchoice> <guimenu>Aiuto</guimenu> <guimenuitem>Aiuto WinMerge</guimenuitem> </menuchoice>.La Guida HTML si apre "
 "all'inizio (questo argomento)."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
@@ -302,7 +302,7 @@ msgstr "Inserisci <userinput>UTF-8</userinput> nel campo."
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><para>
 #: English/About_Doc.xml:228
 msgid "Click the <guibutton>Browse</guibutton> button to navigate to the path."
-msgstr "Fai clic sul pulsante <guibutton >Sfoglia</guibutton > per raggiungere il percorso."
+msgstr "Fai clic sul pulsante <guibutton>Sfoglia</guibutton> per raggiungere il percorso."
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><para>
 #: English/About_Doc.xml:230
@@ -339,7 +339,7 @@ msgstr ""
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/About_Doc.xml:258 English/Compare_dirs.xml:1241
 msgid "Click <guibutton>OK</guibutton>."
-msgstr "Fai clic su <guibutton >OK</guibutton >."
+msgstr "Fai clic su <guibutton>OK</guibutton>."
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:260
@@ -1873,7 +1873,7 @@ msgid ""
 msgstr ""
 "Durante un confronto ricorsivo (ovvero, se hai abilitato l'opzione <option>Includi sottocartelle</option> nella finestra di dialogo Seleziona file o "
 "cartelle quando hai avviato il confronto), puoi fare clic sul comando <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Modalità albero</"
-"guimenuitem> </menuchoice> per passare da una visualizzazione all'altra.Il comando <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem >Modalità "
+"guimenuitem> </menuchoice> per passare da una visualizzazione all'altra.Il comando <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Modalità "
 "albero</guimenuitem> </menuchoice> è disabilitato per i confronti non ricorsivi."
 
 #. type: Content of: <article><section><para>
@@ -2361,7 +2361,7 @@ msgid ""
 "In the WinMerge menu, <menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Copy to Right</guimenuitem> </menuchoice> and <menuchoice> <guimenu>Merge</"
 "guimenu> <guimenuitem>Copy to Left</guimenuitem> </menuchoice> behave the same way as the toolbar Copy commands."
 msgstr ""
-"Nel menu WinMerge, <menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a destra</guimenuitem> </menuchoice> e <menuchoice> <guimenu >Unisci</"
+"Nel menu WinMerge, <menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a destra</guimenuitem> </menuchoice> e <menuchoice> <guimenu>Unisci</"
 "guimenu> <guimenuitem>Copia a sinistra</guimenuitem> </menuchoice> si comportano allo stesso modo dei comandi Copia della barra degli strumenti."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -2382,7 +2382,7 @@ msgid ""
 "guimenuitem>, and <guimenuitem>All</guimenuitem> shortcuts."
 msgstr ""
 "Puoi usare la voce del menu contestuale <guimenuitem>Elimina</guimenuitem> per eliminare gli elementi selezionati su uno o tutti i lati.Come altre "
-"operazioni sui file, <guimenuitem>Elimina</guimenuitem> ha un sottomenu con le scorciatoie <guimenuitem>Sinistra</guimenuitem>, <guimenuitem >Centro</"
+"operazioni sui file, <guimenuitem>Elimina</guimenuitem> ha un sottomenu con le scorciatoie <guimenuitem>Sinistra</guimenuitem>, <guimenuitem>Centro</"
 "guimenuitem>, <guimenuitem>Destra</guimenuitem> e <guimenuitem>Tutto</guimenuitem>."
 
 #. type: Content of: <article><section><section><warning><para>
@@ -2541,7 +2541,7 @@ msgid ""
 "guimenuitem> </menuchoice>, <menuchoice> <guimenu>File</guimenu> <guimenuitem>Middle Read-only</guimenuitem> </menuchoice> or <menuchoice> <guimenu>File</"
 "guimenu> <guimenuitem>Right Read-only</guimenuitem> </menuchoice> check box."
 msgstr ""
-"Per proteggere i file e le cartelle su entrambi i lati di un confronto dalle modifiche, attiva <menuchoice> <guimenu>File</guimenu> <guimenuitem >Sola "
+"Per proteggere i file e le cartelle su entrambi i lati di un confronto dalle modifiche, attiva <menuchoice> <guimenu>File</guimenu> <guimenuitem>Sola "
 "lettura sinistra</guimenuitem> </menuchoice>, <menuchoice> <guimenu>File</guimenu> <guimenuitem>Sola lettura centrale</guimenuitem> </menuchoice> o "
 "<menuchoice> <guimenu>File</guimenu>Casella di controllo <guimenuitem>Sola lettura destra</guimenuitem> </menuchoice>."
 
@@ -2721,8 +2721,8 @@ msgid ""
 msgstr ""
 "Se un confronto di cartelle include il contenuto di un file di archivio, qualsiasi modifica apportata ai file inclusi in WinMerge (ad esempio, "
 "utilizzando un'operazione <guimenuitem>Apri</guimenuitem> per modificare il file) viene salvata nel file di archivio.Ma non puoi aggiornare il contenuto "
-"dell'archivio utilizzando le operazioni sui file <guimenuitem>Copia</guimenuitem>, <guimenuitem>Sposta</guimenuitem> o <guimenuitem >Elimina</"
-"guimenuitem> di WinMerge.Crea invece un nuovo file di archivio utilizzando una delle scorciatoie <guimenuitem>Zip</guimenuitem>."
+"dell'archivio utilizzando le operazioni sui file <guimenuitem>Copia</guimenuitem>, <guimenuitem>Sposta</guimenuitem> o <guimenuitem>Elimina</guimenuitem> "
+"di WinMerge.Crea invece un nuovo file di archivio utilizzando una delle scorciatoie <guimenuitem>Zip</guimenuitem>."
 
 #. type: Content of: <article><para><indexterm><primary>
 #: English/Compare_dirs.xml:916 English/Faq.xml:56 English/Open_paths.xml:9
@@ -3252,8 +3252,8 @@ msgid ""
 "<guilabel>Left Size (Short)</guilabel>, <guilabel>Middle Size (Short)</guilabel>, <guilabel>Right Size (Short)</guilabel>: Shorter versions of file "
 "sizes, rounded to KB, MB, or GB."
 msgstr ""
-"<guilabel>Dimensione sinistra (corta)</guilabel>, <guilabel>Dimensione media (corta)</guilabel>, <guilabel>Dimensione destra (corta)</guilabel >: "
-"versioni più brevi delle dimensioni dei file, arrotondate a KB, MB o GB."
+"<guilabel>Dimensione sinistra (corta)</guilabel>, <guilabel>Dimensione media (corta)</guilabel>, <guilabel>Dimensione destra (corta)</guilabel>: versioni "
+"più brevi delle dimensioni dei file, arrotondate a KB, MB o GB."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:1339
@@ -3288,7 +3288,7 @@ msgid ""
 "you refresh the view (press <keycap>F5</keycap>) or click <menuchoice> <guimenu>View</guimenu> <guimenuitem>Show Hidden Items</guimenuitem> </menuchoice>."
 msgstr ""
 "Puoi nascondere rapidamente uno o più elementi selezionati utilizzando la scorciatoia del menu contestuale <guimenuitem>Nascondi elementi</"
-"guimenuitem>.Gli elementi rimangono nascosti finché non aggiorni la vista (premi <keycap>F5</keycap>) o fai clic su <menuchoice> <guimenu >Visualizza</"
+"guimenuitem>.Gli elementi rimangono nascosti finché non aggiorni la vista (premi <keycap>F5</keycap>) o fai clic su <menuchoice> <guimenu>Visualizza</"
 "guimenu> <guimenuitem>Visualizza elementi nascosti</guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><tip><para>
@@ -4151,7 +4151,7 @@ msgid ""
 "Click <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Bookmarks</guimenuitem> <guimenuitem>Clear All Bookmarks</guimenuitem> </menuchoice> to delete "
 "all bookmarks."
 msgstr ""
-"Fai clic su <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Segnalibri</guimenuitem> <guimenuitem>Cancella tutti i segnalibri</guimenuitem > </"
+"Fai clic su <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Segnalibri</guimenuitem> <guimenuitem>Cancella tutti i segnalibri</guimenuitem> </"
 "menuchoice> per eliminare tutti i segnalibri."
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
@@ -4619,7 +4619,7 @@ msgid ""
 "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only when the <guilabel>Preserve original EOL </guilabel> option is enabled in the "
 "Editor page of WinMerge options)."
 msgstr ""
-"<guilabel>EOL</guilabel>: stile di avanzamento riga della riga attuale (mostrato solo quando l'opzione <guilabel>Preserva EOL originale </guilabel > è "
+"<guilabel>EOL</guilabel>: stile di avanzamento riga della riga attuale (mostrato solo quando l'opzione <guilabel>Preserva EOL originale </guilabel> è "
 "abilitata nella pagina Editor delle opzioni di WinMerge)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -5026,8 +5026,8 @@ msgid ""
 "Shortcuts: <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Go to</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> </"
 "keycombo>, context menu in File pane and Location pane."
 msgstr ""
-"Scorciatoie: <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Vai a</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap> <keycap >G</"
-"keycap> </keycombo>, menu contestuale nel pannello File e nel pannello Posizione."
+"Scorciatoie: <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Vai a</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> "
+"</keycombo>, menu contestuale nel pannello File e nel pannello Posizione."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:1408
@@ -5176,9 +5176,9 @@ msgid ""
 "If a merge result looks incorrect, click <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Undo</guimenuitem> </menuchoice> or press <keycombo> "
 "<keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo> to undo the merge. Then rescan the files and try merging again."
 msgstr ""
-"Se il risultato di un'unione sembra errato, fai clic su <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Annulla</guimenuitem> </menuchoice > o "
-"premi <keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo> per annullare l'unione.Quindi esegui nuovamente la scansione dei file e prova a "
-"unirli nuovamente."
+"Se il risultato di un'unione sembra errato, fai clic su <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Annulla</guimenuitem> </menuchoice> o premi "
+"<keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo> per annullare l'unione.Quindi esegui nuovamente la scansione dei file e prova a unirli "
+"nuovamente."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:1545
@@ -5525,7 +5525,7 @@ msgid ""
 msgstr ""
 "Quando hai finito, fai clic su <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> per salvare il lato <guilabel>File estratto</guilabel> "
 "come file risultato.Per impostazione predefinita, la nuova versione sovrascrive il file di conflitto originale.In alternativa, puoi fare clic su "
-"<menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva con destra</guimenuitem> <guimenuitem>Salva con nome</guimenuitem> </menuchoice > e scegliere un "
+"<menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva con destra</guimenuitem> <guimenuitem>Salva con nome</guimenuitem> </menuchoice> e scegliere un "
 "nome file diverso."
 
 #. type: Content of: <article><section><section><para>
@@ -7664,7 +7664,7 @@ msgid ""
 "files bigger (in mega bytes) than this value are compared using <guilabel>Quick Contents</guilabel> compare method."
 msgstr ""
 "Dimensione soglia per passare al metodo di confronto <guilabel>Contenuti rapidi</guilabel>.Quando è selezionato il metodo di confronto <guilabel "
-">Contenuti completi</guilabel>, i file più grandi (in mega byte) di questo valore vengono confrontati usando il metodo di confronto <guilabel >Contenuti "
+">Contenuti completi</guilabel>, i file più grandi (in mega byte) di questo valore vengono confrontati usando il metodo di confronto <guilabel>Contenuti "
 "rapidi</guilabel>."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -8927,8 +8927,8 @@ msgstr "Granularità della copia per le differenze selezionate<placeholder type=
 msgid ""
 "Specifies the copy granularity when copying to another pane by clicking the <guimenuitem>Copy to right</guimenuitem> menu item etc.  with text selected."
 msgstr ""
-"Specifica la granularità della copia quando si copia in un altro pannello facendo clic sulla voce del menu <guimenuitem>Copia a destra</guimenuitem > "
-"ecc. con il testo selezionato."
+"Specifica la granularità della copia quando si copia in un altro pannello facendo clic sulla voce del menu <guimenuitem>Copia a destra</guimenuitem> ecc. "
+"con il testo selezionato."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2441
@@ -9965,7 +9965,7 @@ msgid ""
 msgstr ""
 "Sfoglia il contenuto della cartella fino alla cartella che desideri confrontare.Non selezionare nessun file o sottocartella, fai semplicemente clic su "
 "<guibutton>Apri</guibutton> quando <literal>Selezione cartella</literal> è visualizzato nel campo <guilabel>Nome file</guilabel>.Se hai già selezionato "
-"un file o una sottocartella, digita semplicemente una stringa casuale nel campo <guilabel>Nome file</guilabel> e fai clic su <guibutton >Apri</"
+"un file o una sottocartella, digita semplicemente una stringa casuale nel campo <guilabel>Nome file</guilabel> e fai clic su <guibutton>Apri</"
 "guibutton>.Se il nome file immesso non viene trovato, WinMerge apre la cartella."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
@@ -14396,7 +14396,7 @@ msgid ""
 "Click <menuchoice> <guimenu>View</guimenu> <guimenuitem>Display Filter Bar</guimenuitem> </menuchoice>, or press <keycombo><keycap>Ctrl</"
 "keycap><keycap>Shift</keycap> <keycap>L</keycap></keycombo>."
 msgstr ""
-"Fai clic su <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Visualizza barra filtri</guimenuitem> </menuchoice>, o premi <keycombo><keycap >Ctrl</"
+"Fai clic su <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Visualizza barra filtri</guimenuitem> </menuchoice>, o premi <keycombo><keycap>Ctrl</"
 "keycap><keycap>Maiusc</keycap> <keycap>L</keycap></keycombo>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -15571,7 +15571,7 @@ msgid ""
 "The text should be appropriate for the type of rule you are testing. For example, if you have checked the <guilabel>Folder Name</guilabel> option, you "
 "probably want to enter a folder name, such as \\temp."
 msgstr ""
-"Il testo deve essere appropriato per il tipo di regola che stai testando.Ad esempio, se hai selezionato l'opzione <guilabel>Nome cartella</guilabel >, "
+"Il testo deve essere appropriato per il tipo di regola che stai testando.Ad esempio, se hai selezionato l'opzione <guilabel>Nome cartella</guilabel>, "
 "probabilmente vorrai inserire il nome di una cartella, come \\temp."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
@@ -15580,7 +15580,7 @@ msgid ""
 "The <guilabel>Result</guilabel> box displays your entry, followed by its status: either <computeroutput>passed</computeroutput> or "
 "<computeroutput>failed</computeroutput>."
 msgstr ""
-"La casella <guilabel>Risultato</guilabel> mostra la tua voce, seguita dal suo stato: <computeroutput>superato</computeroutput> o <computeroutput >non "
+"La casella <guilabel>Risultato</guilabel> mostra la tua voce, seguita dal suo stato: <computeroutput>superato</computeroutput> o <computeroutput>non "
 "riuscito</computeroutput>."
 
 #. type: Content of: <article><section><section><title>
@@ -16338,7 +16338,7 @@ msgid ""
 "Open WinMerge and using the <xref linkend=\"Configuration_shell-integ\" /> in the Options window. In the Options window use the <guibutton>Register shell "
 "extension</guibutton> or <guibutton>Unregister shell extension</guibutton> buttons."
 msgstr ""
-"Apri WinMerge e utilizza <xref linkend=\"Configuration_shell-integ\" /> nella finestra Opzioni.Nella finestra Opzioni usa i pulsanti <guibutton >Registra "
+"Apri WinMerge e utilizza <xref linkend=\"Configuration_shell-integ\" /> nella finestra Opzioni.Nella finestra Opzioni usa i pulsanti <guibutton>Registra "
 "estensione della shell</guibutton> o <guibutton>Annulla registrazione estensione della shell</guibutton>."
 
 #. type: Content of: <article><title>
@@ -16699,7 +16699,7 @@ msgid ""
 "button is not enabled, click <placeholder type=\"inlinemediaobject\" id=\"1\"/> <guibutton>First Difference</guibutton> instead."
 msgstr ""
 "Fai clic su <placeholder type=\"inlinemediaobject\" id=\"0\"/> <guibutton>Differenza attuale</guibutton> nella barra degli strumenti per selezionare la "
-"prima differenza.Se questo pulsante non è abilitato, fai invece clic su <placeholder type=\"inlinemediaobject\" id=\"1\"/> <guibutton >Prima differenza</"
+"prima differenza.Se questo pulsante non è abilitato, fai invece clic su <placeholder type=\"inlinemediaobject\" id=\"1\"/> <guibutton>Prima differenza</"
 "guibutton>."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
@@ -16729,7 +16729,7 @@ msgid ""
 "Click <placeholder type=\"inlinemediaobject\" id=\"0\"/> <guibutton>Copy Left</guibutton> to merge Difference 2 from <filename>File2</filename> to "
 "<filename>File1</filename>."
 msgstr ""
-"Fai clic su <placeholder type=\"inlinemediaobject\" id=\"0\"/> <guibutton>Copia a sinistra</guibutton> per unire la differenza 2 da <filename >File2</"
+"Fai clic su <placeholder type=\"inlinemediaobject\" id=\"0\"/> <guibutton>Copia a sinistra</guibutton> per unire la differenza 2 da <filename>File2</"
 "filename> a <filename>File1</filename>."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
@@ -16787,9 +16787,8 @@ msgstr ""
 "Sei tu a controllare dove viene conservato il risultato dell'unione.La finestra Confronto file WinMerge non dispone di un riquadro dei risultati "
 "separato, come fanno alcuni strumenti di unione.Quindi la strategia più semplice è salvare le modifiche su uno, due o tre file sorgente.Premi <keycombo> "
 "<keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> in qualsiasi momento per salvare le modifiche correnti su tutti i file;in alternativa, fai clic su "
-"<menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a sinistra</guimenuitem> </menuchoice>, <menuchoice> <guimenu >File</guimenu> <guimenuitem>Salva "
-"a destra</guimenuitem> </menuchoice> o <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a destra</guimenuitem> </menuchoice> per salvare soloun "
-"file."
+"<menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a sinistra</guimenuitem> </menuchoice>, <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a "
+"destra</guimenuitem> </menuchoice> o <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a destra</guimenuitem> </menuchoice> per salvare soloun file."
 
 #. type: Content of: <article><section><section><para>
 #: English/Intro_diffs.xml:436
@@ -17629,7 +17628,7 @@ msgid ""
 "To apply a plugin to your file comparison, click the <guibutton>Select</guibutton> button for the <guilabel>Unpacker</guilabel> option. In the Select "
 "Unpacker dialog:"
 msgstr ""
-"Per applicare un plugin al confronto dei file, fai clic sul pulsante <guibutton>Seleziona</guibutton> per l'opzione <guilabel>Unpacker</guilabel >.Nella "
+"Per applicare un plugin al confronto dei file, fai clic sul pulsante <guibutton>Seleziona</guibutton> per l'opzione <guilabel>Unpacker</guilabel>.Nella "
 "finestra di dialogo Seleziona decompressore:"
 
 #. type: Content of: <article><section><section><para>
@@ -18642,7 +18641,7 @@ msgid ""
 "With your cursor in either File pane of the File Compare window, click <menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Scripts</guisubmenu> </"
 "menuchoice> and choose one of these functions:"
 msgstr ""
-"Con il cursore nel pannello File della finestra Confronta file, fai clic su <menuchoice> <guimenu>Plugin</guimenu> <guisubmenu>Script</guisubmenu > </"
+"Con il cursore nel pannello File della finestra Confronta file, fai clic su <menuchoice> <guimenu>Plugin</guimenu> <guisubmenu>Script</guisubmenu> </"
 "menuchoice> e scegli una di queste funzioni:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -18789,7 +18788,7 @@ msgid ""
 "linkend=\"Plugins_msword\" /> plugin is available). WinMerge converts the doc file (or rather, a copy of it ) to a plain text file and opens it in the "
 "File Compare window."
 msgstr ""
-"Ad esempio, supponiamo di fare clic con il pulsante destro del mouse su un file <filename>doc</filename> di MS Word e scegliere <guimenuitem >Confronta</"
+"Ad esempio, supponiamo di fare clic con il pulsante destro del mouse su un file <filename>doc</filename> di MS Word e scegliere <guimenuitem>Confronta</"
 "guimenuitem> (assumendo anche che il plugin <xref linkend=\"Plugins_msword\" /> sia disponibile).WinMerge converte il file doc (o meglio, una sua copia) "
 "in un file di testo semplice e lo apre nella finestra Confronta file."
 
@@ -18895,7 +18894,7 @@ msgstr "Fai clic su <keycap>F5</keycap> per aggiornare la finestra."
 #: English/Plugins.xml:351
 msgid "When you open a subfolder during a non-recursive compare, the mode is always reset to <guimenuitem>&lt;None&gt;</guimenuitem>."
 msgstr ""
-"Quando apri una sottocartella durante un confronto non ricorsivo, la modalità viene sempre reimpostata su <guimenuitem>&lt;Nessuno&gt;</guimenuitem >."
+"Quando apri una sottocartella durante un confronto non ricorsivo, la modalità viene sempre reimpostata su <guimenuitem>&lt;Nessuno&gt;</guimenuitem>."
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:355
@@ -21866,7 +21865,7 @@ msgid ""
 "If the file has not been modified, the context menu contains the shortcut, <guimenuitem>Diff with previous version</guimenuitem>. This command compares "
 "the checked-out version of the file with the previous version that was checked in to the repository."
 msgstr ""
-"Se il file non è stato modificato, il menu contestuale contiene la scorciatoia <guimenuitem>Differenze con la versione precedente</guimenuitem >.Questo "
+"Se il file non è stato modificato, il menu contestuale contiene la scorciatoia <guimenuitem>Differenze con la versione precedente</guimenuitem>.Questo "
 "comando confronta la versione estratta del file con la versione precedente archiviata nel repository."
 
 #. type: Content of: <article><section><section><example><orderedlist><listitem><itemizedlist><listitem><para>
