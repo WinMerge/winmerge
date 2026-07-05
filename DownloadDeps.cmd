@@ -30,10 +30,10 @@ https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.
 https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.21.2.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.21.2.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.21.2.0-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.1.4/tree-sitter-grammars-0.1.4-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.1.4/tree-sitter-grammars-0.1.4-x64.zip!Build\X64\Release ^
-https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.1.4/tree-sitter-grammars-0.1.4-ARM.zip!Build\ARM\Release ^
-https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.1.4/tree-sitter-grammars-0.1.4-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.2.0/tree-sitter-grammars-0.2.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.2.0/tree-sitter-grammars-0.2.0-x64.zip!Build\X64\Release ^
+https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.2.0/tree-sitter-grammars-0.2.0-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/tree-sitter-grammars/releases/download/v0.2.0/tree-sitter-grammars-0.2.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
 https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-windows-i386.exe!Build\jq ^

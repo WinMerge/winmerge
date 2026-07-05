@@ -162,7 +162,7 @@ CTreeSitterColorMap::CTreeSitterColorMap()
 	m_map["variable.builtin"]       = COLORINDEX_USER1;
 	m_map["variable.parameter"]     = COLORINDEX_NORMALTEXT;
 	m_map["variable.member"]        = COLORINDEX_USER1;
-	m_map["property"]               = COLORINDEX_NORMALTEXT;
+	m_map["property"]               = COLORINDEX_USER1;
 	m_map["field"]                  = COLORINDEX_NORMALTEXT;
 	m_map["constant"]               = COLORINDEX_NORMALTEXT;
 	m_map["constant.builtin"]       = COLORINDEX_USER1;
@@ -1415,16 +1415,19 @@ static struct
 	{ LangServices::LanguageId::SRC_FSHARP_SIGNATURE, L"fsharp_signature" },
 	{ LangServices::LanguageId::SRC_GO, L"go" },
 	{ LangServices::LanguageId::SRC_HTML, L"html" },
+	{ LangServices::LanguageId::SRC_INI, L"ini" },
 	{ LangServices::LanguageId::SRC_JAVA, L"java" },
 	{ LangServices::LanguageId::SRC_JAVASCRIPT, L"javascript" },
 	{ LangServices::LanguageId::SRC_JSON, L"json" },
 	{ LangServices::LanguageId::SRC_MARKDOWN, L"markdown" },
 	{ LangServices::LanguageId::SRC_PHP, L"php" },
 	{ LangServices::LanguageId::SRC_POWERSHELL, L"powershell" },
+	{ LangServices::LanguageId::SRC_PROPERTIES, L"properties" },
 	{ LangServices::LanguageId::SRC_PYTHON, L"python" },
 	{ LangServices::LanguageId::SRC_RUBY, L"ruby" },
 	{ LangServices::LanguageId::SRC_RUST, L"rust" },
 	{ LangServices::LanguageId::SRC_SH, L"bash" },
+	{ LangServices::LanguageId::SRC_TOML, L"toml" },
 	{ LangServices::LanguageId::SRC_TSX, L"tsx" },
 	{ LangServices::LanguageId::SRC_TYPESCRIPT, L"typescript" },
 	{ LangServices::LanguageId::SRC_XML, L"xml" },
