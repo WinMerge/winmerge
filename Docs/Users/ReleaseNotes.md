@@ -73,7 +73,7 @@ Please submit bug reports to our bug-tracker.
   * Corsican (PR #3420)
   * French (PR #3393, PR #3406, PR #3408, PR #3435)
   * German (PR #3432)
-  * Italian (PR #3399, PR #3434)
+  * Italian (PR #3399, PR #3434, PR #3446)
   * Korean (PR #3422, PR #3433)
   * Lithuanian (PR #3405, PR #3439)
   * Polish (PR #3418, PR #3430)
