@@ -53,15 +53,16 @@ sito WinMerge e configurarli tu stesso:</para>
 
         <orderedlist>
           <listitem>
-            <simpara>Crea una cartella denominata <filename class="cartella"
->Languages</filename> nella cartella di installazione di WinMerge (dove si
-trova <filename>WinMergeU.exe</filename>), se non esiste già.</simpara>
+            <simpara>Create a folder named <filename class="directory" >Languages</filename>
+under the WinMerge installation directory (where
+<filename>WinMergeU.exe</filename> is located), if it does not already
+exist.</simpara>
           </listitem>
 
           <listitem>
             <simpara>Vai al sito di <ulink url="https://winmerge.org/downloads/">download di
 WinMerge</ulink>.Scarica uno dei file binari archiviati (in formato Zip o
-7z) per la versione corrente di WinMerge e salvalo nel tuo file system.</simpara>
+7z) per la versione attuale di WinMerge e salvalo nel tuo file system.</simpara>
           </listitem>
 
           <listitem>
@@ -92,13 +93,13 @@ qualsiasi di essi:</para>
       </listitem>
 
       <listitem>
-        <simpara>Seleziona <guimenuitem >Opzioni</guimenuitem > dal menu <guimenu
->Modifica</guimenu >.</simpara>
+        <simpara>Seleziona <guimenuitem>Opzioni</guimenuitem> dal menu
+<guimenu>Modifica</guimenu>.</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Seleziona la tua lingua e fai clic su <guibutton >OK</guibutton > nella
-pagina Generale della finestra di dialogo Opzioni.</simpara>
+        <simpara>Seleziona la tua lingua e fai clic su <guibutton>OK</guibutton> nella pagina
+Generale della finestra di dialogo Opzioni.</simpara>
       </listitem>
     </orderedlist>
 

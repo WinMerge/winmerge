@@ -1,1 +1,1 @@
-call "%~dp0build_html.bat" French html-it %*
+call "%~dp0build_html.bat" Italian html-it %*

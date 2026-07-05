@@ -35,8 +35,8 @@ cartella di installazione di WinMerge\Docs.</para>
         <term>Menu Guida di WinMerge</term>
 
         <listitem>
-          <para>Mentre usi WinMerge, fai clic su <menuchoice> <guimenu >Aiuto</guimenu >
-<guimenuitem >Aiuto WinMerge</guimenuitem > </menuchoice >.La Guida HTML si
+          <para>Mentre usi WinMerge, fai clic su <menuchoice> <guimenu>Aiuto</guimenu>
+<guimenuitem>Aiuto WinMerge</guimenuitem> </menuchoice>.La Guida HTML si
 apre all'inizio (questo argomento).</para>
         </listitem>
       </varlistentry>
@@ -46,7 +46,7 @@ apre all'inizio (questo argomento).</para>
 
         <listitem>
           <para>Mentre usi una qualsiasi finestra WinMerge, premi <keycap>F1</keycap>.Se un
-argomento specifico è disponibile per la finestra corrente, la Guida si apre
+argomento specifico è disponibile per la finestra attuale, la Guida si apre
 in corrispondenza di quell'argomento.In caso contrario, la Guida si aprirà
 all'inizio.</para>
         </listitem>
@@ -223,7 +223,7 @@ risposta lì.</para>
 
         <tbody>
           <row>
-            <entry>Inserisci <userinput>UTF-8</userinput> nel campo.<para>Fai clic sul pulsante <guibutton >Sfoglia</guibutton > per raggiungere il
+            <entry>Inserisci <userinput>UTF-8</userinput> nel campo.<para>Fai clic sul pulsante <guibutton>Sfoglia</guibutton> per raggiungere il
 percorso.</para><para>Premi <keycap>F5</keycap> una volta per aggiornare la finestra.</para></entry>
 
             <entry>Il carattere in grassetto nel testo descrittivo può indicare:<itemizedlist>
@@ -246,24 +246,24 @@ combinazione.</entry>
           </row>
 
           <row>
-            <entry><para>Fai clic su <guibutton >OK</guibutton >.</para></entry>
+            <entry><para>Fai clic su <guibutton>OK</guibutton>.</para></entry>
 
             <entry>Fare clic indica un clic con il tasto sinistro del mouse su un oggetto, ad
 esempio una voce di menu o un pulsante.</entry>
           </row>
 
           <row>
-            <entry>Fai clic su <menuchoice> <guimenu >File</guimenu > <guimenuitem
->Apri</guimenuitem > </menuchoice >.</entry>
+            <entry>Fai clic su <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem> </menuchoice>.</entry>
 
             <entry>La freccia indica la navigazione nel menu.Nell'esempio, scegli la voce
-<guimenuitem >Apri</guimenuitem > nel menu <guimenu >File</guimenu > di
+<guimenuitem>Apri</guimenuitem> nel menu <guimenu>File</guimenu> di
 WinMerge.</entry>
           </row>
 
           <row>
-            <entry>Fai clic con il tasto destro sulla riga e scegli la scorciatoia <guimenuitem
->Confronta</guimenuitem >.</entry>
+            <entry>Fai clic con il tasto destro sulla riga e scegli la scorciatoia
+<guimenuitem>Confronta</guimenuitem>.</entry>
 
             <entry>Fare clic con il pulsante destro del mouse su un oggetto per aprire il
 relativo menu contestuale, quindi fare clic con il pulsante sinistro o
@@ -271,7 +271,7 @@ destro del mouse sull'elemento indicato nel menu contestuale.</entry>
           </row>
 
           <row>
-            <entry>Inserisci <replaceable>file di opzioni</replaceable>.ini<para>Usa il campo <guilabel >Filtro</guilabel > per eliminare i file
+            <entry>Inserisci <replaceable>file di opzioni</replaceable>.ini<para>Usa il campo <guilabel>Filtro</guilabel> per eliminare i file
 dall'operazione.</para><para>Una o più linee diverse consecutive formano una differenza (o
 <glossterm>diff</glossterm>).</para></entry>
 

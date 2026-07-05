@@ -2246,7 +2246,7 @@ rep="norepeat"><replaceable>texte_de_remplacement</replaceable></arg></cmdsynops
         <varlistentry>
           <term><option>-i</option></term>
           <listitem>
-            <para>ignorer la casse (seulement pour -e)</para>
+            <para>ignorer la casse (uniquement pour -e)</para>
           </listitem>
         </varlistentry>
 

@@ -28,11 +28,11 @@ WinMerge o da una finestra del prompt dei comandi.</para>
 
         <listitem>
           <para>
-Fai clic su <menuchoice> <guimenu >File</guimenu > <guimenuitem
->Apri</guimenuitem > </menuchoice >.Specifica i due o tre URL che vuoi
-confrontare nella finestra di dialogo "Seleziona file o cartella" e
-seleziona la voce di menu <guimenuitem >Pagina web</guimenuitem > dal menu a
-discesa del pulsante <guibutton >Confronta</guibutton >.<mediaobject>
+Fai clic su <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem> </menuchoice>.Specifica i due o tre URL che
+vuoi confrontare nella finestra di dialogo "Seleziona file o cartella" e
+seleziona la voce di menu <guimenuitem>Pagina web</guimenuitem> dal menu a
+discesa del pulsante <guibutton>Confronta</guibutton>.<mediaobject>
 <imageobject> <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
 </imageobject><textobject>
                 <phrase>Seleziona la finestra File o Cartelle</phrase>

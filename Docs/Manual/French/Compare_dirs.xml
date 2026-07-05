@@ -473,7 +473,7 @@ fileref="screenshots/ctx_menu_copy1.png" format="PNG" /> </imageobject><textobje
         <itemizedlist>
           <listitem>
             <para><guimenuitem>De gauche à droite</guimenuitem> et <guimenuitem>De droite à
-gauche</guimenuitem> copient la sélection (ou seulement les éléments de la
+gauche</guimenuitem> copient la sélection (ou uniquement les éléments de la
 sélection qui peuvent être copiés) d'un côté vers l'autre. Dans l'exemple,
 le suffixe <guilabel>(2 sur 4)</guilabel> indique que seuls les deux
 fichiers différents seront copiés ; les fichiers identiques ne le seront

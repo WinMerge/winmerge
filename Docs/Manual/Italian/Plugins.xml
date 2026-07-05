@@ -141,8 +141,8 @@ stia confrontando cartelle o file.</para>
 file</title>
 
       <para>Con il cursore nel pannello File della finestra Confronta file, fai clic su
-<menuchoice> <guimenu >Plugin</guimenu > <guisubmenu >Script</guisubmenu >
-</menuchoice > e scegli una di queste funzioni:</para>
+<menuchoice> <guimenu>Plugin</guimenu> <guisubmenu>Script</guisubmenu>
+</menuchoice> e scegli una di queste funzioni:</para>
 
       <itemizedlist>
         <listitem>
@@ -210,7 +210,7 @@ file</title>
         </listitem>
       </itemizedlist>
 
-      <para>Le funzioni vengono fornite al menu <guisubmenu >Script</guisubmenu > dai
+      <para>Le funzioni vengono fornite al menu <guisubmenu>Script</guisubmenu> dai
 plugin <xref linkend="EditorAddin" /> e <xref linkend="Plugins_datetime" />.</para>
 
       <note>
@@ -228,14 +228,14 @@ su automatica o manuale.</para>
       <itemizedlist>
         <listitem>
           <para>Per impostare la modalità automatica per questo tipo di plugin, fai clic su
-<menuchoice> <guimenu >Plugin</guimenu > <guimenuitem >Decompressione
-automatica</guimenuitem > </menuchoice >.</para>
+<menuchoice> <guimenu>Plugin</guimenu> <guimenuitem>Decompressione
+automatica</guimenuitem> </menuchoice>.</para>
         </listitem>
 
         <listitem>
-          <para>Per impostare la modalità manuale, fai clic su <menuchoice> <guimenu
->Plugin</guimenu > <guimenuitem >Decompressione manuale</guimenuitem >
-</menuchoice >.</para>
+          <para>Per impostare la modalità manuale, fai clic su <menuchoice>
+<guimenu>Plugin</guimenu> <guimenuitem>Decompressione manuale</guimenuitem>
+</menuchoice>.</para>
         </listitem>
       </itemizedlist>
 
@@ -252,8 +252,8 @@ decompressione (se presente), preelabora il file prima che WinMerge lo apra
 nella finestra Confronta file.</para>
 
         <para>Ad esempio, supponiamo di fare clic con il pulsante destro del mouse su un
-file <filename>doc</filename> di MS Word e scegliere <guimenuitem
->Confronta</guimenuitem > (assumendo anche che il plugin <xref
+file <filename>doc</filename> di MS Word e scegliere
+<guimenuitem>Confronta</guimenuitem> (assumendo anche che il plugin <xref
 linkend="Plugins_msword" /> sia disponibile).WinMerge converte il file doc
 (o meglio, una sua copia) in un file di testo semplice e lo apre nella
 finestra Confronta file.</para>
@@ -274,8 +274,8 @@ avviare il confronto senza plug-in.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <menuchoice> <guimenu >Plugin</guimenu > <guimenuitem >Modifica
-con Unpacker</guimenuitem > </menuchoice >.</para>
+            <para>Fai clic su <menuchoice> <guimenu>Plugin</guimenu> <guimenuitem>Modifica con
+Unpacker</guimenuitem> </menuchoice>.</para>
 
             <para>Questa voce di menu è abilitata solo se il tipo di file selezionato è
 supportato da un plug-in di decompressione disponibile.</para>
@@ -290,7 +290,7 @@ supportato da un plug-in di decompressione disponibile.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <guibutton >OK</guibutton > per chiudere la finestra di dialogo
+            <para>Fai clic su <guibutton>OK</guibutton> per chiudere la finestra di dialogo
 Seleziona Unpacker e avviare il confronto dei file.</para>
           </listitem>
         </orderedlist>
@@ -318,18 +318,18 @@ cartella hanno modalità predifferenti diverse.</para>
 
       <para>Per impostare la modalità per uno o più file nella finestra Confronto
 cartelle, fai clic con il pulsante destro del mouse sui file e scegli
-<menuchoice> <guimenu >Impostazioni plugin</guimenu > <guisubmenu
->Impostazioni preferenze</guisubmenu > </menuchoice >, quindi scegli una
-delle opzioni del sottomenu:</para>
+<menuchoice> <guimenu>Impostazioni plugin</guimenu> <guisubmenu>Impostazioni
+preferenze</guisubmenu> </menuchoice>, quindi scegli una delle opzioni del
+sottomenu:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guisubmenu >&lt;Automatico&gt;</guisubmenu > seleziona il primo plugin di
+          <para><guisubmenu>&lt;Automatico&gt;</guisubmenu> seleziona il primo plugin di
 predifferenza disponibile per il tipo di file.</para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu >&lt;None&gt;</guisubmenu > significa che non viene utilizzato
+          <para><guisubmenu>&lt;None&gt;</guisubmenu> significa che non viene utilizzato
 alcun plugin di prediffer.</para>
         </listitem>
       </itemizedlist>
@@ -338,8 +338,8 @@ alcun plugin di prediffer.</para>
 
       <note>
         <para>Quando apri una sottocartella durante un confronto non ricorsivo, la
-modalità viene sempre reimpostata su <guimenuitem
->&lt;Nessuno&gt;</guimenuitem >.</para>
+modalità viene sempre reimpostata su
+<guimenuitem>&lt;Nessuno&gt;</guimenuitem>.</para>
       </note>
 
       <para>Quando apri un file dalla finestra Confronto cartelle, l'impostazione
@@ -351,8 +351,8 @@ Confronto file.</para>
       <title>Applicazione dei plug-in di preferenza nella finestra Confronto file</title>
 
       <para>Nella finestra Confronta file, puoi applicare un plugin di prediffer facendo
-clic su <menuchoice> <guimenu >Plugin</guimenu > <guisubmenu
->Prediffer</guisubmenu > </menuchoice > e scegliendo uno dei plugin
+clic su <menuchoice> <guimenu>Plugin</guimenu>
+<guisubmenu>Prediffer</guisubmenu> </menuchoice> e scegliendo uno dei plugin
 nell'elenco.I plugin suggeriti sono indicati in cima all'elenco.I file
 vengono confrontati nuovamente dopo l'applicazione del plug-in, quindi non è
 necessario ripetere la scansione dei file.</para>
@@ -1549,20 +1549,20 @@ class="extension">*.dll</filename></seg>
 
     <section id="Plugins_HandleSchemeHTTP">
       <title><filename>HandleSchemeHTTP<indexterm>
-          <primary>HandleSchemeHTTP plugin file</primary>
+          <primary>File plugin HandleSchemeHTTP</primary>
         </indexterm></filename></title>
 
-      <para>HTTP/HTTPS URL Scheme Handler using curl</para>
+      <para>Gestore schema URL HTTP/HTTPS che usa curl</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeHTTP</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>argomenti</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
           <term><option><replaceable>argomenti</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the curl command</para>
+            <para>Opzioni riga di comando passate al comando curl</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1581,7 +1581,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dipendenza</segtitle>
 
           <seglistitem>
-            <seg>URL Handler</seg>
+            <seg>Gestore URL</seg>
 
             <seg>^http://.*$, ^https://.*$</seg>
 
@@ -1598,20 +1598,20 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_HandleSchemeReg">
       <title><filename>HandleSchemeReg<indexterm>
-          <primary>HandleSchemeReg plugin file</primary>
+          <primary>File plugin HandleSchemeReg</primary>
         </indexterm></filename></title>
 
-      <para>Windows Registry URL Scheme Handler using reg.exe</para>
+      <para>Gestore schema URL del registro di Windows che usa reg.exe</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeReg</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>argomenti</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
           <term><option><replaceable>argomenti</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the reg.exe command</para>
+            <para>Opzioni riga di comando passate al comando reg.exe</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1630,7 +1630,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dipendenza</segtitle>
 
           <seglistitem>
-            <seg>URL Handler</seg>
+            <seg>Gestore URL</seg>
 
             <seg>^reg:.*$</seg>
 
@@ -1647,20 +1647,20 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_HandleSchemeClipboard">
       <title><filename>HandleSchemeClipboard<indexterm>
-          <primary>HandleSchemeClipboard plugin file</primary>
+          <primary>Fileplugin HandleSchemeClipboard</primary>
         </indexterm></filename></title>
 
-      <para>Clipboard URL Scheme Handler using cliphcat</para>
+      <para>Gestore dello schema URL degli appunti che usa cliphcat</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeClipboard</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>argomenti</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
           <term><option><replaceable>argomenti</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the cliphcat command</para>
+            <para>Opzioni riga di comando passate al comando cliphcat</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1679,7 +1679,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dipendenza</segtitle>
 
           <seglistitem>
-            <seg>URL Handler</seg>
+            <seg>Gestore URL</seg>
 
             <seg>^clip://.*$, ^clipboard://.*$</seg>
 
@@ -2583,80 +2583,79 @@ esempio, file NC e BASIC).</para>
           <primary>file del plugin aggiuntivo dell'editor</primary>
         </indexterm></filename></title>
 
-      <para>Aggiunge alcune funzioni al menu <menuchoice> <guimenu >Plugin</guimenu >
-<guisubmenu >Script</guisubmenu > </menuchoice >:</para>
+      <para>Aggiunge alcune funzioni al menu <menuchoice> <guimenu>Plugin</guimenu>
+<guisubmenu>Script</guisubmenu> </menuchoice>:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem >Rendi maiuscolo</guimenuitem > converte la selezione in
+          <simpara><guimenuitem>Rendi maiuscolo</guimenuitem> converte la selezione in
 MAIUSCOLO.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Rendi minuscolo</guimenuitem > converte la selezione in
+          <simpara><guimenuitem>Rendi minuscolo</guimenuitem> converte la selezione in
 minuscolo.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Rimuovi linee duplicate</guimenuitem > rimuove le linee
+          <simpara><guimenuitem>Rimuovi linee duplicate</guimenuitem> rimuove le linee
 duplicate nella selezione.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Conta righe duplicate</guimenuitem > rimuove le righe
-duplicate nella selezione e inserisce il numero di righe duplicate sulla
-destra.</simpara>
+          <simpara><guimenuitem>Conta righe duplicate</guimenuitem> rimuove le righe duplicate
+nella selezione e inserisce il numero di righe duplicate sulla destra.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Ordina le righe in ordine crescente</guimenuitem > ordina la
+          <simpara><guimenuitem>Ordina le righe in ordine crescente</guimenuitem> ordina la
 selezione in ordine crescente.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Ordina le righe discendente</guimenuitem > ordina la selezione
+          <simpara><guimenuitem>Ordina le righe discendente</guimenuitem> ordina la selezione
 in ordine discendente.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Inverti colonne</guimenuitem > inverte le colonne nella
+          <simpara><guimenuitem>Inverti colonne</guimenuitem> inverte le colonne nella
 selezione.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Inverti linee</guimenuitem > inverte le linee nella selezione.</simpara>
+          <simpara><guimenuitem>Inverti linee</guimenuitem> inverte le linee nella selezione.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Seleziona colonne...</guimenuitem > seleziona alcune colonne
+          <simpara><guimenuitem>Seleziona colonne...</guimenuitem> seleziona alcune colonne
 nella selezione.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Seleziona righe...</guimenuitem > seleziona alcune righe nella
+          <simpara><guimenuitem>Seleziona righe...</guimenuitem> seleziona alcune righe nella
 selezione.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Sostituisci...</guimenuitem > sostituisce il testo nella
+          <simpara><guimenuitem>Sostituisci...</guimenuitem> sostituisce il testo nella
 selezione con un altro testo.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Applica comando filtro...</guimenuitem > sostituisce la
+          <simpara><guimenuitem>Applica comando filtro...</guimenuitem> sostituisce la
 selezione con l'output del comando filtro specificato.Specificando %1
 nell'argomento del comando filter lo sostituisce con il nome file del
 riquadro attivo.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Tokenizza...</guimenuitem > sostituisce il delimitatore del
+          <simpara><guimenuitem>Tokenizza...</guimenuitem> sostituisce il delimitatore del
 token con un fine riga nella selezione.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Taglia spazi</guimenuitem > rimuove gli spazi all'inizio e
-alla fine delle righe nella selezione.</simpara>
+          <simpara><guimenuitem>Taglia spazi</guimenuitem> rimuove gli spazi all'inizio e alla
+fine delle righe nella selezione.</simpara>
         </listitem>
       </itemizedlist>
 
@@ -2678,18 +2677,18 @@ alla fine delle righe nella selezione.</simpara>
           <primary>inserire il file del plugin datetime</primary>
         </indexterm></filename></title>
 
-      <para>Aggiunge due funzioni al menu <menuchoice> <guimenu >Plugin</guimenu >
-<guisubmenu >Script</guisubmenu > </menuchoice >:</para>
+      <para>Aggiunge due funzioni al menu <menuchoice> <guimenu>Plugin</guimenu>
+<guisubmenu>Script</guisubmenu> </menuchoice>:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem >Inserisci data</guimenuitem > inserisce la data nel formato
-locale corrente.</simpara>
+          <simpara><guimenuitem>Inserisci data</guimenuitem> inserisce la data nel formato
+locale attuale.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem >Inserisci ora</guimenuitem > inserisce l'ora nel formato
-locale corrente.</simpara>
+          <simpara><guimenuitem>Inserisci ora</guimenuitem> inserisce l'ora nel formato locale
+attuale.</simpara>
         </listitem>
       </itemizedlist>
 

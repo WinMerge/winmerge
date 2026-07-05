@@ -87,7 +87,7 @@ Che tu ci creda o no.</screen></para>
           <para>Nella finestra di dialogo Seleziona file e cartelle, specifica
 <filename>File1</filename> come <guilabel>primo</guilabel> file e
 <filename>File2</filename> come <guilabel>2°</guilabel> file, quindi fai
-clic su <guibutton >Confronta</guibutton >.La finestra Confronto file
+clic su <guibutton>Confronta</guibutton>.La finestra Confronto file
 visualizza i due file nel riquadro File sinistro e destro, in questo modo:</para>
 
           <mediaobject>
@@ -166,9 +166,9 @@ passaggi successivi.</para>
 fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza attuale</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton
->Differenza corrente</guibutton > nella barra degli strumenti (o premi
-<keycombo> <keycap >Alt</keycap> <keycap >Invio</keycap> </keycombo >).Se
+            </inlinemediaobject>
+<guibutton>Differenza attuale</guibutton> nella barra degli strumenti (o
+premi <keycombo> <keycap>Alt</keycap> <keycap>Invio</keycap> </keycombo>).Se
 questo pulsante non è abilitato (ad esempio, se il cursore si trova su una
 riga diversa), fai clic su <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -199,9 +199,9 @@ fileref="screenshots/filecomp_diffpane1.png" /> </imageobject><textobject>
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza successiva</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton
->Differenza successiva</guibutton > nella barra degli strumenti (o fai clic
-su <keycombo> <keycap >Alt</keycap> <keycap >Invio</keycap>
+            </inlinemediaobject>
+<guibutton>Differenza successiva</guibutton> nella barra degli strumenti (o
+fai clic su <keycombo> <keycap>Alt</keycap> <keycap>Invio</keycap>
 </keycombo>).Questo salta sulla riga identica (che non è una differenza) e
 seleziona l'ultima riga.</para>
 
@@ -269,16 +269,16 @@ precedenza:</para>
 fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza attuale</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton
->Differenza corrente</guibutton > nella barra degli strumenti per
+            </inlinemediaobject>
+<guibutton>Differenza attuale</guibutton> nella barra degli strumenti per
 selezionare la prima differenza.Se questo pulsante non è abilitato, fai
 invece clic su <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Prima differenza</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton
->Prima differenza</guibutton >.</para>
+            </inlinemediaobject>
+<guibutton>Prima differenza</guibutton>.</para>
         </listitem>
 
         <listitem>
@@ -287,12 +287,11 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
                 <phrase>Copia pulsante destro</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton >Copia
-a destra</guibutton > per unire la Differenza 1 da
-<filename>File1</filename> a <filename>File2</filename>.In
-<filename>File</filename>2, nota che la singola riga di differenza è
-sostituita dalle due righe di <filename>File1</filename>, e la riga grigia
-vuota ora è scomparsa.</para>
+            </inlinemediaobject> <guibutton>Copia
+a destra</guibutton> per unire la Differenza 1 da <filename>File1</filename>
+a <filename>File2</filename>.In <filename>File</filename>2, nota che la
+singola riga di differenza è sostituita dalle due righe di
+<filename>File1</filename>, e la riga grigia vuota ora è scomparsa.</para>
         </listitem>
 
         <listitem>
@@ -301,9 +300,9 @@ vuota ora è scomparsa.</para>
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza successiva</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton
->Differenza successiva</guibutton > per selezionare Differenza 2. Questo è
-più semplice che trovare e selezionare la differenza da solo.È
+            </inlinemediaobject>
+<guibutton>Differenza successiva</guibutton> per selezionare Differenza
+2. Questo è più semplice che trovare e selezionare la differenza da solo.È
 particolarmente utile se desideri esaminare tutte le differenze senza
 tralasciarne nessuna accidentalmente.</para>
         </listitem>
@@ -314,9 +313,9 @@ tralasciarne nessuna accidentalmente.</para>
 fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
                 <phrase>Copia pulsante sinistro</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton >Copia
-a sinistra</guibutton > per unire la differenza 2 da <filename
->File2</filename > a <filename >File1</filename >.</para>
+            </inlinemediaobject> <guibutton>Copia
+a sinistra</guibutton> per unire la differenza 2 da
+<filename>File2</filename> a <filename>File1</filename>.</para>
 
           <para>Il messaggio che i file sono identici ti dice che l'unione è completa:</para>
 
@@ -327,8 +326,8 @@ fileref="screenshots/filemerged1.png" format="PNG" /> </imageobject></mediaobjec
         </listitem>
 
         <listitem>
-          <para>Fai clic su <guibutton >OK</guibutton > per chiudere il messaggio.Il
-messaggio di differenza di stato cambia da <computeroutput>Differenza 1 di
+          <para>Fai clic su <guibutton>OK</guibutton> per chiudere il messaggio.Il messaggio
+di differenza di stato cambia da <computeroutput>Differenza 1 di
 1</computeroutput> a <computeroutput>identico</computeroutput>.</para>
         </listitem>
 
@@ -358,15 +357,15 @@ separato, come fanno alcuni strumenti di unione.Quindi la strategia più
 semplice è salvare le modifiche su uno, due o tre file sorgente.Premi
 <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> in qualsiasi
 momento per salvare le modifiche correnti su tutti i file;in alternativa,
-fai clic su <menuchoice> <guimenu >File</guimenu > <guimenuitem >Salva a
-sinistra</guimenuitem > </menuchoice >, <menuchoice > <guimenu
->File</guimenu > <guimenuitem >Salva a destra</guimenuitem > </menuchoice >
-o <menuchoice > <guimenu >File</guimenu > <guimenuitem >Salva a
-destra</guimenuitem > </menuchoice > per salvare soloun file.</para>
+fai clic su <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a
+sinistra</guimenuitem> </menuchoice>, <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Salva a destra</guimenuitem> </menuchoice> o <menuchoice>
+<guimenu>File</guimenu> <guimenuitem>Salva a destra</guimenuitem>
+</menuchoice> per salvare soloun file.</para>
 
       <para>Per scrivere su un terzo file invece che su uno dei file sorgente, usa
-<menuchoice > <guimenu >File</guimenu > <guimenuitem >Salva con
-nome</guimenuitem > </menuchoice >.Ad esempio, il file di destinazione
+<menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva con
+nome</guimenuitem> </menuchoice>.Ad esempio, il file di destinazione
 potrebbe essere il file delle differenze o dei conflitti generato da un
 sistema di controllo della versione.</para>
 

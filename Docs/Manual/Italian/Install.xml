@@ -79,24 +79,24 @@ shell e aggiunge WinMerge al menu Start.Per installare WinMerge:</para>
       </listitem>
 
       <listitem>
-        <simpara>Fai clic su <guibutton >Avanti</guibutton > nella schermata del contratto di
+        <simpara>Fai clic su <guibutton>Avanti</guibutton> nella schermata del contratto di
 licenza.</simpara>
       </listitem>
 
       <listitem>
         <simpara>Nella pagina Seleziona percorso di destinazione, accetta il percorso per
 WinMerge o, se scegli un altro percorso, ti consigliamo di installare
-WinMerge nella sua cartella.Fai clic su <guibutton >Avanti</guibutton >.</simpara>
+WinMerge nella sua cartella.Fai clic su <guibutton>Avanti</guibutton>.</simpara>
       </listitem>
 
       <listitem>
         <simpara>Nella pagina Seleziona componenti, scegli una delle installazioni
 preconfigurate nel controllo superiore.Raccomandiamo la configurazione
-<guilabel >Tipica</guilabel > per la maggior parte degli utenti.Il riquadro
+<guilabel >Tipica</guilabel> per la maggior parte degli utenti.Il riquadro
 inferiore mostra tutti i componenti disponibili.È possibile modificare la
 configurazione predefinita selezionando o deselezionando i componenti.Ad
 esempio, se desideri utilizzare una localizzazione WinMerge per una lingua
-diversa dall'inglese, seleziona il componente <guilabel >Lingue</guilabel >.</simpara>
+diversa dall'inglese, seleziona il componente <guilabel>Lingue</guilabel>.</simpara>
 
         <variablelist>
           <varlistentry>
@@ -153,7 +153,7 @@ traduzione.Vedi <xref linkend="Locales" /> per i dettagli.</para>
           </varlistentry>
         </variablelist>
 
-        <para>Fai clic su <guibutton >Avanti</guibutton >.</para>
+        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
@@ -167,12 +167,12 @@ o specificare una cartella diversa.</para>
           </listitem>
 
           <listitem>
-            <para>Facoltativamente, seleziona l'opzione <guilabel >Non creare una cartella nel
-menu Start</guilabel >.</para>
+            <para>Facoltativamente, seleziona l'opzione <guilabel>Non creare una cartella nel
+menu Start</guilabel>.</para>
           </listitem>
         </itemizedlist>
 
-        <para>Fai clic su <guibutton >Avanti</guibutton >.</para>
+        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
@@ -256,7 +256,7 @@ Path del sistema.</para>
           </varlistentry>
         </variablelist>
 
-        <para>Fai clic su <guibutton >Avanti</guibutton >.</para>
+        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
@@ -303,20 +303,20 @@ come strumento di unione a 3 vie per TortoiseSVN/Git.</simpara>
             <term>Unione automatica all'avvio</term>
 
             <listitem>
-              <para>Facoltativamente, disabilita l'opzione <guilabel >Unisci automaticamente
-all'avvio</guilabel >.</para>
+              <para>Facoltativamente, disabilita l'opzione <guilabel>Unisci automaticamente
+all'avvio</guilabel>.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <para>Fai clic su <guibutton >Avanti</guibutton >.</para>
+        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
         <simpara>Nella pagina Pronto per l'installazione, verifica le selezioni di
-installazione.Se necessario, fai clic su <guibutton >Indietro</guibutton >
-per modificare qualcosa nella pagina precedente.Quando sei sicuro di essere
-pronto per procedere, fai clic su <guibutton >Installa</guibutton >.</simpara>
+installazione.Se necessario, fai clic su <guibutton>Indietro</guibutton> per
+modificare qualcosa nella pagina precedente.Quando sei sicuro di essere
+pronto per procedere, fai clic su <guibutton>Installa</guibutton>.</simpara>
       <para></para>
       </listitem>
 
@@ -373,8 +373,8 @@ amministratore.</para>
     </note>
 
     <para>Apri WinMerge e utilizza <xref linkend="Configuration_shell-integ" /> nella
-finestra Opzioni.Nella finestra Opzioni usa i pulsanti <guibutton >Registra
-estensione della shell</guibutton > o <guibutton >Annulla registrazione
-estensione della shell</guibutton >.</para>
+finestra Opzioni.Nella finestra Opzioni usa i pulsanti <guibutton>Registra
+estensione della shell</guibutton> o <guibutton>Annulla registrazione
+estensione della shell</guibutton>.</para>
   </section>
 </article>

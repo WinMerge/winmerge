@@ -23,10 +23,10 @@ WinMerge o da una finestra del prompt dei comandi.</para>
         <term>Dalla finestra WinMerge</term>
 
         <listitem>
-          <para>Fai clic su <menuchoice> <guimenu >File</guimenu > <guimenuitem
->Apri</guimenuitem > </menuchoice >.Utilizzare la finestra di dialogo
-Seleziona file o cartelle per specificare i file di origine sinistro e
-destro da confrontare.Per ulteriori dettagli sulla finestra di dialogo
+          <para>Fai clic su <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem> </menuchoice>.Utilizzare la finestra di
+dialogo Seleziona file o cartelle per specificare i file di origine sinistro
+e destro da confrontare.Per ulteriori dettagli sulla finestra di dialogo
 Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
@@ -323,9 +323,9 @@ nella pagina Editor della finestra di dialogo Opzioni.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <menuchoice> <guimenu >Visualizza</guimenu> <guimenuitem
->Visualizza differenze di linea</guimenuitem > </menuchoice > per attivare o
-disattivare le differenze di linea.</para>
+            <para>Fai clic su <menuchoice> <guimenu>Visualizza</guimenu>
+<guimenuitem>Visualizza differenze di linea</guimenuitem> </menuchoice> per
+attivare o disattivare le differenze di linea.</para>
           </listitem>
         </itemizedlist>
 
@@ -462,14 +462,14 @@ fileref="screenshots/line-diff-punctuation.png" format="PNG" />
           </indexterm></title>
 
         <para>Sebbene WinMerge non sia un editor o IDE completo, fornisce funzioni di
-modifica di base, come <guilabel >Annulla</guilabel > e <guilabel
->Ripeti</guilabel >, <guilabel >Trova</guilabel > e <guilabel
->Sostituisci</guilabel > e <guilabel >Vai a</guilabel >.Queste attività di
-modifica di base sono spesso necessarie durante l'unione (ad esempio, per
-modificare il testo all'interno delle differenze).Puoi apportare modifiche
-nel riquadro File attivo (ricorda di fare clic in un riquadro per renderlo
-attivo).Le modifiche non vengono scritte in un file finché non si salva un
-riquadro in un file di risultati.</para>
+modifica di base, come <guilabel>Annulla</guilabel> e
+<guilabel>Ripeti</guilabel>, <guilabel>Trova</guilabel> e
+<guilabel>Sostituisci</guilabel> e <guilabel>Vai a</guilabel>.Queste
+attività di modifica di base sono spesso necessarie durante l'unione (ad
+esempio, per modificare il testo all'interno delle differenze).Puoi
+apportare modifiche nel riquadro File attivo (ricorda di fare clic in un
+riquadro per renderlo attivo).Le modifiche non vengono scritte in un file
+finché non si salva un riquadro in un file di risultati.</para>
 
         <para>Le funzionalità di modifica di WinMerge includono anche l'evidenziazione
 della sintassi.Questa funzionalità opzionale supporta diversi formati di
@@ -478,11 +478,11 @@ l'evidenziazione della sintassi non viene applicata all'interno delle
 differenze, come mostra lo screenshot precedente.</para>
 
         <tip>
-          <para>Assicurati che la <guilabel >Riscansione automatica</guilabel > sia
-abilitata, come descritto in <xref linkend="Compare_files_scan" />.In caso
-contrario, aggiorna manualmente la visualizzazione (premi F5) prima e dopo
-la modifica di un file, per assicurarti che il rilevamento delle differenze
-WinMerge sia aggiornato.</para>
+          <para>Assicurati che la <guilabel>Riscansione automatica</guilabel> sia abilitata,
+come descritto in <xref linkend="Compare_files_scan" />.In caso contrario,
+aggiorna manualmente la visualizzazione (premi F5) prima e dopo la modifica
+di un file, per assicurarti che il rilevamento delle differenze WinMerge sia
+aggiornato.</para>
         </tip>
       </section>
 
@@ -494,9 +494,8 @@ WinMerge sia aggiornato.</para>
           </indexterm></title>
 
         <para>Puoi scegliere i caratteri per il pannello File facendo clic su <menuchoice>
-<guimenu >Visualizza</guimenu > <guimenuitem >Seleziona
-carattere</guimenuitem > </menuchoice >.WinMerge supporta solo i caratteri a
-larghezza fissa.</para>
+<guimenu>Visualizza</guimenu> <guimenuitem>Seleziona carattere</guimenuitem>
+</menuchoice>.WinMerge supporta solo i caratteri a larghezza fissa.</para>
 
         <para>Ecco alcuni suggerimenti sui caratteri per utilizzare WinMerge con le lingue
 dell'Asia orientale:</para>
@@ -508,18 +507,18 @@ dell'Asia orientale:</para>
           </listitem>
 
           <listitem>
-            <simpara>Cinese tradizionale: carattere <guilabel >MingLiU</guilabel > a larghezza
+            <simpara>Cinese tradizionale: carattere <guilabel>MingLiU</guilabel> a larghezza
 fissa</simpara>
           </listitem>
 
           <listitem>
-            <simpara>Giapponese: caratteri <guilabel >MS Gothic</guilabel > o <guilabel >MS
-Mincho</guilabel > a larghezza fissa</simpara>
+            <simpara>Giapponese: caratteri <guilabel>MS Gothic</guilabel> o <guilabel>MS
+Mincho</guilabel> a larghezza fissa</simpara>
           </listitem>
 
           <listitem>
-            <simpara>Coreano: <guilabel >GulimChe</guilabel > carattere a larghezza fissa (non
-<guilabel >Gulim</guilabel >, perché questa variante utilizza glifi a
+            <simpara>Coreano: <guilabel>GulimChe</guilabel> carattere a larghezza fissa (non
+<guilabel>Gulim</guilabel>, perché questa variante utilizza glifi a
 spaziatura proporzionale che non sono centrati nelle celle della griglia e
 scarsamente allineati in modalità a larghezza fissa).</simpara>
           </listitem>
@@ -535,8 +534,8 @@ scarsamente allineati in modalità a larghezza fissa).</simpara>
 
         <para>I riquadri File hanno margini grigi opzionali che mostrano i numeri di riga
 e alcuni simboli.Per mostrare o nascondere i margini, fai clic su
-<menuchoice> <guimenu >Visualizza</guimenu > <guimenuitem >Visualizza
-margini</guimenuitem > </menuchoice >.Se utilizzi più finestre di confronto
+<menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Visualizza
+margini</guimenuitem> </menuchoice>.Se utilizzi più finestre di confronto
 file, puoi controllare i margini per ciascuna finestra in modo
 indipendente.Il margine può mostrare alcune o tutte queste funzionalità:</para>
 
@@ -558,14 +557,15 @@ indipendente.Il margine può mostrare alcune o tutte queste funzionalità:</para
 
         <itemizedlist>
           <listitem>
-            <para>Numeri di riga, se <menuchoice> <guimenu >Visualizza</guimenu> <guimenuitem
->Visualizza numeri di riga</guimenuitem > </menuchoice > è abilitato.</para>
+            <para>Numeri di riga, se <menuchoice> <guimenu>Visualizza</guimenu>
+<guimenuitem>Visualizza numeri di riga</guimenuitem> </menuchoice> è
+abilitato.</para>
           </listitem>
 
           <listitem>
-            <para>Segnalibri, se <menuchoice> <guimenu >Modifica</guimenu > <guisubmenu
->Segnalibri</guisubmenu > </menuchoice > è abilitato.Un segnalibro è un
-cerchio blu, nel margine accanto a una riga, che puoi far ricordare a
+            <para>Segnalibri, se <menuchoice> <guimenu>Modifica</guimenu>
+<guisubmenu>Segnalibri</guisubmenu> </menuchoice> è abilitato.Un segnalibro
+è un cerchio blu, nel margine accanto a una riga, che puoi far ricordare a
 WinMerge e a cui tornare.</para>
 
             <itemizedlist>
@@ -576,10 +576,10 @@ stessa azione elimina un segnalibro esistente.</para>
               </listitem>
 
               <listitem>
-                <para>Per navigare tra i segnalibri, fai clic su <menuchoice> <guimenu
->Modifica</guimenu > <guimenuitem >Segnalibri</guimenuitem > </menuchoice >
-e scegli <guimenuitem >Avanti</guimenuitem > o <guimenuitem
->Precedente</guimenuitem >.</para>
+                <para>Per navigare tra i segnalibri, fai clic su <menuchoice>
+<guimenu>Modifica</guimenu> <guimenuitem>Segnalibri</guimenuitem>
+</menuchoice> e scegli <guimenuitem>Avanti</guimenuitem> o
+<guimenuitem>Precedente</guimenuitem>.</para>
               </listitem>
 
               <listitem>
@@ -588,16 +588,16 @@ e scegli <guimenuitem >Avanti</guimenuitem > o <guimenuitem
               </listitem>
 
               <listitem>
-                <para>Fai clic su <menuchoice> <guimenu >Modifica</guimenu > <guimenuitem
->Segnalibri</guimenuitem > <guimenuitem >Cancella tutti i
-segnalibri</guimenuitem > </menuchoice > per eliminare tutti i segnalibri.</para>
+                <para>Fai clic su <menuchoice> <guimenu>Modifica</guimenu>
+<guimenuitem>Segnalibri</guimenuitem> <guimenuitem>Cancella tutti i
+segnalibri</guimenuitem> </menuchoice> per eliminare tutti i segnalibri.</para>
               </listitem>
             </itemizedlist>
           </listitem>
 
           <listitem>
-            <para>Simboli freccia a capo, se <menuchoice> <guimenu >Visualizza</guimenu>
-<guimenuitem >Righe a capo</guimenuitem > </menuchoice > è abilitato.</para>
+            <para>Simboli freccia a capo, se <menuchoice> <guimenu>Visualizza</guimenu>
+<guimenuitem>Righe a capo</guimenuitem> </menuchoice> è abilitato.</para>
           </listitem>
         </itemizedlist>
 
@@ -660,7 +660,7 @@ WinMerge e anche attraverso questi meccanismi alternativi:</para>
 
       <itemizedlist>
         <listitem>
-          <para>Menu di WinMerge, in particolare <guimenu >Unisci</guimenu ></para>
+          <para>Menu di WinMerge, in particolare <guimenu>Unisci</guimenu></para>
         </listitem>
 
         <listitem>
@@ -683,10 +683,10 @@ linkend="Intro_diffs" /> forniscono esempi di confronto e unione.</para>
             <primary>modalità unione</primary>
           </indexterm></title>
 
-        <para><menuchoice> <guimenu >File</guimenu> <guimenuitem >Modalità
-unione</guimenuitem> </menuchoice > (o premi <keycap >F9</keycap >)
-ripristina queste singole scorciatoie da tastiera di WinMerge 1.7.1 per le
-funzioni di fusione e navigazione delle differenze:</para>
+        <para><menuchoice> <guimenu>File</guimenu> <guimenuitem>Modalità
+unione</guimenuitem> </menuchoice> (o premi <keycap>F9</keycap>) ripristina
+queste singole scorciatoie da tastiera di WinMerge 1.7.1 per le funzioni di
+fusione e navigazione delle differenze:</para>
 
         <itemizedlist>
           <listitem>
@@ -708,8 +708,8 @@ normale).Tieni presente che le combinazioni di tasti <keycap>Maiusc</keycap>
 e <keycap>Alt</keycap> <keycap>Freccia</keycap> funzionano in modalità
 unione allo stesso modo della modalità normale.</para>
 
-        <para>La modalità di unione è indicata nella barra di stato dal testo <guilabel
->Unisci</guilabel >.</para>
+        <para>La modalità di unione è indicata nella barra di stato dal testo
+<guilabel>Unisci</guilabel>.</para>
       </section>
     </section>
 
@@ -756,13 +756,13 @@ mostra molte differenze di base (oro) e alcuni blocchi di differenze vuoti
           <term><inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
-                <phrase>Puntatore di differenza corrente nel riquadro Posizione</phrase>
+                <phrase>Puntatore di differenza attuale nel riquadro 'Posizione'</phrase>
               </textobject>
             </inlinemediaobject> Differenza attuale</term>
 
           <listitem>
             <para>Se hai selezionato una differenza, il riquadro Posizione contrassegna la
-linea della differenza corrente con una coppia di piccoli triangoli su
+linea della differenza attuale con una coppia di piccoli triangoli su
 entrambi i lati delle barre verticali.Se navighi verso un'altra differenza,
 il puntatore si sposta verso l'alto o verso il basso insieme alla
 posizione.Lo scorrimento del riquadro File non modifica la posizione del
@@ -845,29 +845,29 @@ scorciatoie:<indexterm>
 
       <itemizedlist>
         <listitem>
-          <para><guimenuitem >Vai alla riga 1</guimenuitem >: sposta il cursore all'inizio
-del file.</para>
+          <para><guimenuitem>Vai alla riga 1</guimenuitem>: sposta il cursore all'inizio del
+file.</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem >Vai a</guimenuitem >: sposta il cursore su una riga
-specificata (descritta in <xref linkend="Compare_files_nav_functions" />).</para>
+          <para><guimenuitem>Vai a</guimenuitem>: sposta il cursore su una riga specificata
+(descritta in <xref linkend="Compare_files_nav_functions" />).</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem >Nessun blocco spostato</guimenuitem >: disattiva il colore
-della differenza spostata per i blocchi spostati.</para>
+          <para><guimenuitem>Nessun blocco spostato</guimenuitem>: disattiva il colore della
+differenza spostata per i blocchi spostati.</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem >Blox di tutte le mosse</guimenuitem >: attiva le mosse con
+          <para><guimenuitem>Blox di tutte le mosse</guimenuitem>: attiva le mosse con
 colori diversi per tutti i blocchi spostati.</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem >Blocco spostato per differenza attuale</guimenuitem >: attiva
-il colore della differenza spostata solo per la differenza spostata
-attualmente selezionata.</para>
+          <para><guimenuitem>Blocco spostato per differenza attuale</guimenuitem>: attiva il
+colore della differenza spostata solo per la differenza spostata attualmente
+selezionata.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -887,8 +887,8 @@ separatamente dal resto del file.</para>
 
       <para>Puoi unire le differenze direttamente nel pannello Diff facendo clic con il
 pulsante destro del mouse sul lato superiore o inferiore e scegliendo
-<guimenuitem >Copia a destra</guimenuitem > o <guimenuitem >Copia a
-sinistra</guimenuitem >.</para>
+<guimenuitem>Copia a destra</guimenuitem> o <guimenuitem>Copia a
+sinistra</guimenuitem>.</para>
     </section>
 
     <section>
@@ -913,32 +913,32 @@ sul documento e sulla tua posizione al suo interno:</para>
           <listitem>
             <itemizedlist>
               <listitem>
-                <para><guilabel >Ln</guilabel >: numero di riga nel file sorgente.</para>
+                <para><guilabel>Ln</guilabel>: numero di riga nel file sorgente.</para>
               </listitem>
 
               <listitem>
-                <para><guilabel >Col</guilabel >: posizione del cursore nella colonna e numero
+                <para><guilabel>Col</guilabel>: posizione del cursore nella colonna e numero
 totale di colonne nella riga.</para>
 
-                <para><guilabel >Col</guilabel > conta le tabulazioni come <replaceable
->n</replaceable > spazi, dove <replaceable >n</replaceable > è il numero di
-caratteri definiti come <guilabel >dimensione delle tabulazioni</guilabel >
-nella pagina Editor delle opzioni di WinMerge (4 per impostazione
-predefinita).</para>
+                <para><guilabel>Col</guilabel> conta le tabulazioni come
+<replaceable>n</replaceable> spazi, dove <replaceable>n</replaceable> è il
+numero di caratteri definiti come <guilabel>dimensione delle
+tabulazioni</guilabel> nella pagina Editor delle opzioni di WinMerge (4 per
+impostazione predefinita).</para>
               </listitem>
 
               <listitem>
-                <para><guilabel >Ch</guilabel >: posizione del carattere del cursore e numero
-totale di caratteri nella riga.</para>
+                <para><guilabel>Ch</guilabel>: posizione del carattere del cursore e numero totale
+di caratteri nella riga.</para>
 
-                <para><guilabel >Ch</guilabel > conta le tabulazioni come singoli caratteri di
+                <para><guilabel>Ch</guilabel> conta le tabulazioni come singoli caratteri di
 tabulazione.</para>
               </listitem>
 
               <listitem>
-                <para><guilabel >EOL</guilabel >: stile di avanzamento riga della riga corrente
-(mostrato solo quando l'opzione <guilabel >Preserva EOL originale </guilabel
-> è abilitata nella pagina Editor delle opzioni di WinMerge).</para>
+                <para><guilabel>EOL</guilabel>: stile di avanzamento riga della riga attuale
+(mostrato solo quando l'opzione <guilabel>Preserva EOL originale </guilabel>
+è abilitata nella pagina Editor delle opzioni di WinMerge).</para>
               </listitem>
             </itemizedlist>
           </listitem>
@@ -948,7 +948,7 @@ tabulazione.</para>
           <term>Stato di sola lettura</term>
 
           <listitem>
-            <para><guilabel >RO</guilabel > viene mostrato nel pannello se il file è impostato
+            <para><guilabel>RO</guilabel> viene mostrato nel pannello se il file è impostato
 in sola lettura (come descritto in <xref linkend="protectingfiles"
 />).Altrimenti il ​​riquadro è vuoto.</para>
           </listitem>
@@ -967,9 +967,9 @@ Unicode.</para>
           <term>Stile EOL</term>
 
           <listitem>
-            <para>Stile EOL del file: <guilabel >Win</guilabel > per file Windows/DOS (CRLF),
-<guilabel >Unix</guilabel > (LF), <guilabel >Mac</guilabel > (CR), o
-<guilabel >Misto</guilabel >.</para>
+            <para>Stile EOL del file: <guilabel>Win</guilabel> per file Windows/DOS (CRLF),
+<guilabel>Unix</guilabel> (LF), <guilabel>Mac</guilabel> (CR), o
+<guilabel>Misto</guilabel>.</para>
 
             <note>
               <para>Quando viene utilizzato lo stile EOL per riga, lo stile EOL del file non
@@ -982,17 +982,17 @@ viene visualizzato (questo riquadro è vuoto).</para>
       <para>Quando una finestra Confronta file è aperta, la barra di stato della
 finestra WinMerge mostra uno di questi messaggi sui file confrontati:<itemizedlist>
           <listitem>
-            <para><guilabel >Identici</guilabel >: i file non contengono differenze</para>
+            <para><guilabel>Identici</guilabel>: i file non contengono differenze</para>
           </listitem>
 
           <listitem>
-            <para><guilabel ><replaceable>n</replaceable>differenze trovate</guilabel>: il
+            <para><guilabel><replaceable>n</replaceable>differenze trovate</guilabel>: il
 numero di differenze rilevate, visualizzato solo quando non è selezionata
 alcuna differenza.</para>
           </listitem>
 
           <listitem>
-            <para><guilabel >Differenza <replaceable>x</replaceable> di
+            <para><guilabel>Differenza <replaceable>x</replaceable> di
 <replaceable>n</replaceable></guilabel>: il numero di sequenza della
 differenza selezionata nel numero totale di differenze, a partire da 1.</para>
           </listitem>
@@ -1034,8 +1034,8 @@ le relative scorciatoie nella barra degli strumenti e nei menu:</para>
 
       <variablelist>
         <varlistentry>
-          <term>Differenza nella riga corrente/Differenza riga selezionata<indexterm>
-              <primary>Differenza nella funzione Linea corrente</primary>
+          <term>Differenza nella riga attuale/Differenza riga selezionata<indexterm>
+              <primary>Differenza nella funzione 'Riga attuale'</primary>
             </indexterm><indexterm>
               <primary>Selezionare la funzione Differenza di linea</primary>
             </indexterm></term>
@@ -1059,12 +1059,12 @@ fileref="screenshots/linediff.png" format="PNG" /> </imageobject><textobject>
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/diff_inline_btn.png" /> </imageobject><textobject>
-                  <phrase>Differenza nel pulsante Linea corrente</phrase>
+                  <phrase>Differenza nel pulsante 'Linea attuale'</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Modifica</guimenu > <guimenuitem >Seleziona
-differenza di linea</guimenuitem > </menuchoice >, <keycap >F4</keycap >,
-menu contestuale nel pannello File all'interno di una differenza.</para>
+<menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Seleziona differenza
+di linea</guimenuitem> </menuchoice>, <keycap>F4</keycap>, menu contestuale
+nel pannello File all'interno di una differenza.</para>
           </listitem>
         </varlistentry>
 
@@ -1076,9 +1076,9 @@ menu contestuale nel pannello File all'interno di una differenza.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Seleziona la differenza successiva sotto la posizione corrente del cursore
+            <para>Seleziona la differenza successiva sotto la posizione attuale del cursore
 nel documento (non necessariamente relativa alla differenza
-corrente).Utilizzare per scorrere le differenze in sequenza da qualsiasi
+attuale).Utilizzare per scorrere le differenze in sequenza da qualsiasi
 punto.Disponibile tranne quando è attualmente selezionata l'ultima
 differenza.</para>
 
@@ -1088,9 +1088,9 @@ fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Differenza successiva</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu> <guimenuitem >Differenza
-successiva</guimenuitem> </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Giù</keycap> </keycombo > (o <keycap >Giù</keycap> in modalità
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Differenza
+successiva</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Giù</keycap> </keycombo> (o <keycap>Giù</keycap> in modalità
 unione).</para>
           </listitem>
         </varlistentry>
@@ -1103,8 +1103,8 @@ unione).</para>
             </indexterm></term>
 
           <listitem>
-            <para>Seleziona la differenza precedente sopra la posizione corrente del cursore
-(non necessariamente relativa alla differenza corrente).Utilizzare per
+            <para>Seleziona la differenza precedente sopra la posizione attuale del cursore
+(non necessariamente relativa alla differenza attuale).Utilizzare per
 tornare indietro in sequenza attraverso le differenze.Disponibile tranne
 quando è attualmente selezionata la prima differenza.</para>
 
@@ -1114,10 +1114,9 @@ fileref="screenshots/prevdiff_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Differenza precedente</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu> <guimenuitem >Differenza
-precedente</guimenuitem> </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Su</keycap> </keycombo > (o <keycap >Su</keycap > in modalità
-unione).</para>
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Differenza
+precedente</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Su</keycap> </keycombo> (o <keycap>Su</keycap> in modalità unione).</para>
           </listitem>
         </varlistentry>
 
@@ -1140,15 +1139,15 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Prima differenza</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu> <guimenuitem >Prima
-differenza</guimenuitem> </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Home</keycap> </keycombo>.</para>
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Prima
+differenza</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Home</keycap> </keycombo>.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>Differenza attuale<indexterm>
-              <primary>Funzione Differenza di corrente</primary>
+              <primary>Funzione Differenza attuale</primary>
 
               <secondary>con Confronta file</secondary>
             </indexterm></term>
@@ -1164,9 +1163,9 @@ modo molto pratico per selezionare una differenza utilizzando la tastiera.</simp
                 </listitem>
 
                 <listitem>
-                  <simpara>Quando c'è una differenza di corrente, la funzione passa a quella
-posizione.Ciò è utile se hai fatto scorrere la differenza selezionata fuori
-dalla vista e desideri tornare rapidamente alla sua posizione.</simpara>
+                  <simpara>Quando c'è una differenza attuale, la funzione passa a quella posizione.Ciò
+è utile se hai fatto scorrere la differenza selezionata fuori dalla vista e
+desideri tornare rapidamente alla sua posizione.</simpara>
                 </listitem>
               </itemizedlist></para>
 
@@ -1176,9 +1175,9 @@ fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Differenza attuale</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu > <guimenuitem >Differenza
-corrente</guimenuitem > </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Invio</keycap> </keycombo >.</para>
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Differenza
+attuale</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Invio</keycap> </keycombo>.</para>
           </listitem>
         </varlistentry>
 
@@ -1198,9 +1197,9 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Ultima differenza</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu> <guimenuitem >Ultima
-differenza</guimenuitem> </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Fine</keycap> </keycombo >.</para>
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Ultima
+differenza</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Fine</keycap> </keycombo>.</para>
           </listitem>
         </varlistentry>
 
@@ -1218,15 +1217,15 @@ dialogo Vai a, in cui si specifica il numero, quale file utilizzare
             <tip>
               <para>Il numero Vai a riga può essere utile quando è necessario unire la stessa
 modifica da un file a più file di destinazione.Saltare a una particolare
-differenza può essere più rapido che usare <guimenuitem >Trova</guimenuitem
-> per cercare testo o scorrere le differenze.</para>
+differenza può essere più rapido che usare <guimenuitem>Trova</guimenuitem>
+per cercare testo o scorrere le differenze.</para>
             </tip>
             <para></para>
 
-            <para>Scorciatoie: <menuchoice> <guimenu >Modifica</guimenu> <guimenuitem >Vai
-a</guimenuitem> </menuchoice >, <keycombo> <keycap >Ctrl</keycap> <keycap
->G</keycap> </keycombo >, menu contestuale nel pannello File e nel pannello
-Posizione.</para>
+            <para>Scorciatoie: <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Vai
+a</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>G</keycap> </keycombo>, menu contestuale nel pannello File e nel
+pannello Posizione.</para>
           </listitem>
         </varlistentry>
 
@@ -1236,7 +1235,7 @@ Posizione.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Consente di passare allo spostamento da/a della differenza corrente
+            <para>Consente di passare allo spostamento da/a della differenza attuale
 sull'altro pannello (2 riquadri).</para>
 
             <para>Scorciatoie: <keycombo> <keycap>Ctrl</keycap> <keycap>Maiusc</keycap>
@@ -1251,7 +1250,7 @@ riquadro Diff.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Consente di passare allo spostamento da/a della differenza corrente
+            <para>Consente di passare allo spostamento da/a della differenza attuale
 sull'altro pannello (3 riquadri).</para>
 
             <para>Scorciatoie: <keycombo> <keycap>Ctrl</keycap> <keycap>Maiusc</keycap>
@@ -1266,7 +1265,7 @@ riquadro Diff.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Consente di passare allo spostamento da/a della differenza corrente
+            <para>Consente di passare allo spostamento da/a della differenza attuale
 sull'altro pannello (3 riquadri).</para>
 
             <para>Scorciatoie: <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
@@ -1308,30 +1307,30 @@ questo argomento).</para>
           <primary>nuova scansione dei file</primary>
         </indexterm></title>
 
-      <para>Per impostazione predefinita, l'opzione <guilabel >Riscansione
-automatica</guilabel > è abilitata nella pagina Editor delle opzioni di
+      <para>Per impostazione predefinita, l'opzione <guilabel>Riscansione
+automatica</guilabel> è abilitata nella pagina Editor delle opzioni di
 WinMerge.La nuova scansione mantiene aggiornate le operazioni di confronto e
 unione.Senza una nuova scansione, le differenze WinMerge non rilevano le
 modifiche che potrebbero verificarsi nei file mentre li confronti, ad
 esempio in un editor esterno.</para>
 
       <para>La nuova scansione si verifica quando esegui determinate azioni (come unire
-una differenza o modificare un file) durante un confronto di file.Se un file
-è cambiato, WinMerge visualizza una finestra di dialogo che informa che
+una differenza o modificare un file) durante un confronto di file. Se un
+file è cambiato, WinMerge visualizza una finestra di dialogo che informa che
 un'altra applicazione ha aggiornato il file e chiede se desideri ricaricare
 il file.</para>
 
-      <para>Fai clic su <guibutton >Sì</guibutton > per ricaricare il file prima di
-procedere, oppure su <guibutton >No</guibutton > per ignorare le modifiche e
+      <para>Fai clic su <guibutton>Sì</guibutton> per ricaricare il file prima di
+procedere, oppure su <guibutton>No</guibutton> per ignorare le modifiche e
 lavorare con la versione del file caricata in precedenza.</para>
 
       <important>
-        <para>Se la <guilabel >Riscansione automatica</guilabel > è disabilitata, o se
+        <para>Se la <guilabel>Riscansione automatica</guilabel> è disabilitata, o se
 sospetti che un file possa essere cambiato, ti consigliamo vivamente di
-eseguire <guimenuitem >Aggiorna</guimenuitem > <emphasis >prima</emphasis >
-di eseguire qualsiasi operazione di unione: fai clic su <menuchoice>
-<guimenu >Modifica</guimenu > <guimenuitem >Aggiorna</guimenuitem >
-</menuchoice > o su <inlinemediaobject>
+eseguire <guimenuitem>Aggiorna</guimenuitem> <emphasis>prima</emphasis> di
+eseguire qualsiasi operazione di unione: fai clic su <menuchoice>
+<guimenu>Modifica</guimenu> <guimenuitem>Aggiorna</guimenuitem>
+</menuchoice> o su <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
               <phrase>Pulsante Aggiorna</phrase>
@@ -1340,10 +1339,10 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
 della barra degli strumenti oppure premi <keycap>F5</keycap>.</para>
 
         <para>Se il risultato di un'unione sembra errato, fai clic su <menuchoice>
-<guimenu >Modifica</guimenu > <guimenuitem >Annulla</guimenuitem >
-</menuchoice > o premi <keycombo> <keycap >Ctrl</keycap > <keycap >Z</keycap
-> </keycombo > per annullare l'unione.Quindi esegui nuovamente la scansione
-dei file e prova a unirli nuovamente.</para>
+<guimenu>Modifica</guimenu> <guimenuitem>Annulla</guimenuitem> </menuchoice>
+o premi <keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo> per
+annullare l'unione.Quindi esegui nuovamente la scansione dei file e prova a
+unirli nuovamente.</para>
       </important>
     </section>
 
@@ -1357,15 +1356,14 @@ dei file e prova a unirli nuovamente.</para>
       <para>Le funzioni di unione possono selezionare implicitamente le differenze in
 base alla posizione del cursore o alla selezione del testo.Ad esempio, se
 fai clic in un punto qualsiasi di una differenza e poi fai clic sul pulsante
-<guibutton >Copia a destra</guibutton > nella barra degli strumenti,
-l'intero blocco della differenza verrà unito.Ciò rende facile unire molte
-piccole differenze.Allo stesso modo, se selezioni un testo che si estende su
-tutte o parte di più differenze, tutte le differenze incluse verranno unite
-con un unico comando di unione.</para>
+<guibutton>Copia a destra</guibutton> nella barra degli strumenti, l'intero
+blocco della differenza verrà unito.Ciò rende facile unire molte piccole
+differenze.Allo stesso modo, se selezioni un testo che si estende su tutte o
+parte di più differenze, tutte le differenze incluse verranno unite con un
+unico comando di unione.</para>
 
       <para>Se il risultato di un'operazione di unione non è quello che ti aspettavi,
-puoi fare clic su <guibutton >Annulla</guibutton > per invertire
-l'operazione.</para>
+puoi fare clic su <guibutton>Annulla</guibutton> per invertire l'operazione.</para>
 
       <para>Ecco le funzioni di unione e le relative scorciatoie nella barra degli
 strumenti e nei menu:</para>
@@ -1390,11 +1388,11 @@ fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
                   <phrase>Copia pulsante destro</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu> <guimenuitem >Copia a
-destra</guimenuitem> </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Destra</keycap> </keycombo > (o <keycap >Destra</keycap > in
-modalità unione), menu contestuale nel pannello File all'interno di
-undifferenza e nel riquadro Diff.</para>
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a
+destra</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Destra</keycap> </keycombo> (o <keycap>Destra</keycap> in modalità
+unione), menu contestuale nel pannello File all'interno di undifferenza e
+nel riquadro Diff.</para>
           </listitem>
         </varlistentry>
 
@@ -1404,7 +1402,7 @@ undifferenza e nel riquadro Diff.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Copia la differenza corrente dal riquadro File di destra a quello di
+            <para>Copia la differenza attuale dal riquadro File di destra a quello di
 sinistra.Vedi la descrizione <command>Copy Right</command> per i dettagli.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
@@ -1413,9 +1411,9 @@ fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
                   <phrase>Copia pulsante sinistro</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu > <guimenuitem >Copia a
-sinistra</guimenuitem > </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Sinistra</keycap> </keycombo > (o <keycap >Sinistra</keycap > in
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a
+sinistra</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Sinistra</keycap> </keycombo> (o <keycap>Sinistra</keycap> in
 modalità unione), menu contestuale nel pannello File all'interno di
 undifferenza e nel riquadro Diff.</para>
           </listitem>
@@ -1427,7 +1425,7 @@ undifferenza e nel riquadro Diff.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Unisce la differenza corrente dal riquadro File di destra a quello di
+            <para>Unisce la differenza attuale dal riquadro File di destra a quello di
 sinistra, quindi seleziona la differenza successiva (se ne esiste
 una).Equivalente a <command>Copia a destra</command> e <command>Differenza
 successiva</command> in un unico passaggio.</para>
@@ -1438,10 +1436,10 @@ fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Copyright e Avanzamento</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu > <guimenuitem >Copia a
-sinistra</guimenuitem > </menuchoice >, <keycombo> <keycap >Ctrl</keycap>
-<keycap >Alt</keycap> <keycap >Destra</keycap> </keycombo >, menu
-contestuale nel pannello File all'interno di una differenza.</para>
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a
+sinistra</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>Alt</keycap> <keycap>Destra</keycap> </keycombo>, menu contestuale
+nel pannello File all'interno di una differenza.</para>
           </listitem>
         </varlistentry>
 
@@ -1451,7 +1449,7 @@ contestuale nel pannello File all'interno di una differenza.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Unisce la differenza corrente da sinistra a destra, quindi seleziona la
+            <para>Unisce la differenza attuale da sinistra a destra, quindi seleziona la
 differenza successiva (se ne esiste una).Equivalente a <command>Copia a
 sinistra</command> e <command>Differenza successiva</command> in un unico
 passaggio.</para>
@@ -1462,10 +1460,10 @@ fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Copia sinistra e Avanza</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Unisci</guimenu > <guimenuitem >Copia a
-sinistra</guimenuitem > </menuchoice >, <keycombo> <keycap >Ctrl</keycap>
-<keycap >Alt</keycap> <keycap >Sinistra</keycap> </keycombo >, menu
-contestuale nel pannello File all'interno di una differenza.</para>
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a
+sinistra</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>Alt</keycap> <keycap>Sinistra</keycap> </keycombo>, menu contestuale
+nel pannello File all'interno di una differenza.</para>
           </listitem>
         </varlistentry>
 
@@ -1491,9 +1489,9 @@ fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Tutto a destra</phrase>
                 </textobject>
               </inlinemediaobject>,
-pulsante <menuchoice> <guimenu >Unisci</guimenu > <guimenuitem >Copia a
-sinistra</guimenuitem > </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Sinistra</keycap> </keycombo >, menu contestuale nel pannello File
+pulsante <menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a
+sinistra</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Sinistra</keycap> </keycombo>, menu contestuale nel pannello File
 all'interno di una differenza.</para>
           </listitem>
         </varlistentry>
@@ -1514,9 +1512,9 @@ fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Tutto a sinistra</phrase>
                 </textobject>
               </inlinemediaobject>,
-pulsante <menuchoice> <guimenu >Unisci</guimenu > <guimenuitem >Copia a
-sinistra</guimenuitem > </menuchoice >, <keycombo> <keycap >Alt</keycap>
-<keycap >Sinistra</keycap> </keycombo >, menu contestuale nel pannello File
+pulsante <menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Copia a
+sinistra</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Sinistra</keycap> </keycombo>, menu contestuale nel pannello File
 all'interno di una differenza.</para>
           </listitem>
         </varlistentry>
@@ -1539,8 +1537,8 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Aggiorna</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu >Visualizza</guimenu > <guimenuitem
->Aggiorna</guimenuitem > </menuchoice >, <keycap >F5</keycap >.</para>
+<menuchoice> <guimenu>Visualizza</guimenu>
+<guimenuitem>Aggiorna</guimenuitem> </menuchoice>, <keycap>F5</keycap>.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1562,27 +1560,27 @@ WinMerge per risolvere i conflitti e salvare il file dei risultati uniti.</para>
 
       <orderedlist>
         <listitem>
-          <para>Fai clic su <menuchoice> <guimenu >File</guimenu > <guimenuitem >Apri file
-di conflitto</guimenuitem > </menuchoice > e usa la finestra di dialogo Apri
-per selezionare il file di conflitto nel tuo file system.Il file in
-conflitto si apre nella finestra Confronta file:</para>
+          <para>Fai clic su <menuchoice> <guimenu>File</guimenu> <guimenuitem>Apri file di
+conflitto</guimenuitem> </menuchoice> e usa la finestra di dialogo Apri per
+selezionare il file di conflitto nel tuo file system.Il file in conflitto si
+apre nella finestra Confronta file:</para>
 
           <itemizedlist>
             <listitem>
-              <para>L'intestazione del file nel riquadro File di sinistra è intitolata <guilabel
->Il loro file</guilabel >.Questo lato rappresenta il file che di solito si
-trova nel repository del sistema di controllo della versione.Questo file
-solitamente non può essere modificato, quindi WinMerge imposta il riquadro
-File sinistro in sola lettura.Ciò significa che le differenze possono essere
-unite solo da questo file all'altro file.</para>
+              <para>L'intestazione del file nel riquadro File di sinistra è intitolata
+<guilabel>Il loro file</guilabel>.Questo lato rappresenta il file che di
+solito si trova nel repository del sistema di controllo della
+versione.Questo file solitamente non può essere modificato, quindi WinMerge
+imposta il riquadro File sinistro in sola lettura.Ciò significa che le
+differenze possono essere unite solo da questo file all'altro file.</para>
             </listitem>
 
             <listitem>
-              <para>Il pannello File di destra è intitolato <guilabel >Estrai file</guilabel
->.Questo lato è la copia di lavoro del file.Tutte le modifiche dovrebbero
-essere apportate a questo file, che è il file dei risultati.</para>
+              <para>Il pannello File di destra è intitolato <guilabel>Estrai
+file</guilabel>.Questo lato è la copia di lavoro del file.Tutte le modifiche
+dovrebbero essere apportate a questo file, che è il file dei risultati.</para>
 
-              <para>Il lato <guilabel >File estratto</guilabel > viene impostato su modificato
+              <para>Il lato <guilabel>File estratto</guilabel> viene impostato su modificato
 dopo l'apertura del file in conflitto (noterai l'asterisco nell'intestazione
 del riquadro File).Ciò consente di salvare rapidamente il file se non
 richiede alcuna modifica.Garantisce inoltre che non ti dimentichi di
@@ -1599,13 +1597,13 @@ di miniera.</para>
         </listitem>
 
         <listitem>
-          <para>Quando hai finito, fai clic su <keycombo> <keycap >Ctrl</keycap> <keycap
->S</keycap> </keycombo > per salvare il lato <guilabel >File
-estratto</guilabel > come file risultato.Per impostazione predefinita, la
+          <para>Quando hai finito, fai clic su <keycombo> <keycap>Ctrl</keycap>
+<keycap>S</keycap> </keycombo> per salvare il lato <guilabel>File
+estratto</guilabel> come file risultato.Per impostazione predefinita, la
 nuova versione sovrascrive il file di conflitto originale.In alternativa,
-puoi fare clic su <menuchoice> <guimenu >File</guimenu > <guimenuitem >Salva
-con destra</guimenuitem > <guimenuitem >Salva con nome</guimenuitem >
-</menuchoice > e scegliere un nome file diverso.</para>
+puoi fare clic su <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva
+con destra</guimenuitem> <guimenuitem>Salva con nome</guimenuitem>
+</menuchoice> e scegliere un nome file diverso.</para>
         </listitem>
       </orderedlist>
 

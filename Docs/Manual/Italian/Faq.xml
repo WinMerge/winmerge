@@ -35,7 +35,7 @@ una perdita di dati.La conversione potrebbe essere approssimativa (ad
 esempio, gli accenti vengono persi) o impossibile: i caratteri sono stati
 sostituiti da punti interrogativi ( <literal>?</literal> ).</para>
           <para>Inoltre, <filename>WinMerge.exe</filename> non è in grado di aprire file con
-nomi esterni alla codepage ANSI corrente.Ad esempio, su un sistema inglese,
+nomi esterni alla codepage ANSI attuale.Ad esempio, su un sistema inglese,
 <filename>WinMerge.exe</filename> non è riuscito ad aprire un file con un
 nome ebraico.</para>
           <para>WinMerge ha sviluppato l'eseguibile <filename>WinMergeU.exe</filename>
@@ -63,12 +63,12 @@ nella finestra di dialogo Sfoglia.<indexterm>
         <answer>
           <para>Sfoglia il contenuto della cartella fino alla cartella che desideri
 confrontare.Non selezionare nessun file o sottocartella, fai semplicemente
-clic su <guibutton >Apri</guibutton > quando <literal >Selezione
-cartella</literal > è visualizzato nel campo <guilabel >Nome file</guilabel
->.Se hai già selezionato un file o una sottocartella, digita semplicemente
-una stringa casuale nel campo <guilabel >Nome file</guilabel > e fai clic su
-<guibutton >Apri</guibutton >.Se il nome file immesso non viene trovato,
-WinMerge apre la cartella.</para>
+clic su <guibutton>Apri</guibutton> quando <literal>Selezione
+cartella</literal> è visualizzato nel campo <guilabel>Nome
+file</guilabel>.Se hai già selezionato un file o una sottocartella, digita
+semplicemente una stringa casuale nel campo <guilabel>Nome file</guilabel> e
+fai clic su <guibutton>Apri</guibutton>.Se il nome file immesso non viene
+trovato, WinMerge apre la cartella.</para>
         </answer>
       </qandaentry>
 
@@ -136,11 +136,11 @@ configurare il supporto dell'archivio:</para>
 
           <itemizedlist>
             <listitem>
-              <para>In WinMerge, fai clic sul pulsante <guibutton >Opzioni</guibutton > (o fai
-clic su <menuchoice > <guimenu >Modifica</guimenu > <guimenuitem
->Opzioni</guimenuitem > </menuchoice >).Nella pagina Supporto archivio,
-abilita l'opzione <guilabel >Rileva tipo di archivio dalla firma del
-file</guilabel ></para>
+              <para>In WinMerge, fai clic sul pulsante <guibutton>Opzioni</guibutton> (o fai
+clic su <menuchoice> <guimenu>Modifica</guimenu>
+<guimenuitem>Opzioni</guimenuitem> </menuchoice>).Nella pagina Supporto
+archivio, abilita l'opzione <guilabel>Rileva tipo di archivio dalla firma
+del file</guilabel></para>
             </listitem>
           </itemizedlist>
         </answer>
@@ -154,13 +154,14 @@ file?</para>
         </question>
 
         <answer>
-          <para>Questo perché WinMerge usa sempre il metodo di confronto file <guilabel
->Contenuti rapidi</guilabel > per file di grandi dimensioni.Questo metodo
-consente a WinMerge di confrontare file di grandi dimensioni in modo più
-efficiente.Per verificare se questo è la causa del comportamento che stai
-riscontrando, puoi provare ad aumentare la soglia dei <guilabel >Contenuti
-rapidi</guilabel > per i file di grandi dimensioni.Vedi la discussione di
-questo metodo in <xref linkend="Compare_dirs_starting" /> per sapere come.</para>
+          <para>Questo perché WinMerge usa sempre il metodo di confronto file
+<guilabel>Contenuti rapidi</guilabel> per file di grandi dimensioni.Questo
+metodo consente a WinMerge di confrontare file di grandi dimensioni in modo
+più efficiente.Per verificare se questo è la causa del comportamento che
+stai riscontrando, puoi provare ad aumentare la soglia dei
+<guilabel>Contenuti rapidi</guilabel> per i file di grandi dimensioni.Vedi
+la discussione di questo metodo in <xref linkend="Compare_dirs_starting" />
+per sapere come.</para>
         </answer>
       </qandaentry>
 
@@ -204,10 +205,10 @@ aprire un file se non viene fornito un comando esplicito?</ulink>.</para>
         <answer>
           <para>Forse i tuoi file hanno stili di fine riga diversi (ad esempio, Windows e
 Unix).Per impostazione predefinita, WinMerge confronta gli stili di fine
-riga.Per disabilitarlo, fai clic su <menuchoice> <guimenu >Modifica</guimenu
-> <guimenuitem >Opzioni</guimenuitem > </menuchoice >.Nella pagina
-Confronta, abilita (seleziona) l'opzione <guilabel >Ignora differenze di
-ritorno a capo</guilabel >.</para>
+riga.Per disabilitarlo, fai clic su <menuchoice> <guimenu>Modifica</guimenu>
+<guimenuitem>Opzioni</guimenuitem> </menuchoice>.Nella pagina Confronta,
+abilita (seleziona) l'opzione <guilabel>Ignora differenze di ritorno a
+capo</guilabel>.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -229,11 +230,11 @@ For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>
           
 
           <para>Per i file ANSI, ciò è probabilmente dovuto a problemi di tabella codici.Per
-risolvere il problema, fai clic su <menuchoice> <guimenu >Modifica</guimenu
-> <guimenuitem >Opzioni</guimenuitem > </menuchoice >.Quindi, nella pagina
-Codepages, verifica se l'opzione <guilabel >Rileva informazioni
-codepage</guilabel > è selezionata.Se lo è, deseleziona l'opzione, fai clic
-su <guibutton >OK</guibutton > e vedi se aiuta.</para>
+risolvere il problema, fai clic su <menuchoice> <guimenu>Modifica</guimenu>
+<guimenuitem>Opzioni</guimenuitem> </menuchoice>.Quindi, nella pagina
+Codepages, verifica se l'opzione <guilabel>Rileva informazioni
+codepage</guilabel> è selezionata.Se lo è, deseleziona l'opzione, fai clic
+su <guibutton>OK</guibutton> e vedi se aiuta.</para>
         </answer>
       </qandaentry>
 
@@ -254,7 +255,7 @@ automatica</glossterm>?Perché è necessario?</para>
         </question>
 
         <answer>
-          <para>Quando è abilitata la <guilabel >Riscansione automatica</guilabel > (nella
+          <para>Quando è abilitata la <guilabel>Riscansione automatica</guilabel> (nella
 pagina Editor delle Opzioni), WinMerge ritarda la nuova scansione mentre
 modifichi i file.Cioè, non viene eseguita alcuna nuova scansione fino a poco
 dopo aver smesso di digitare.Senza questo ritardo, WinMerge eseguirebbe
@@ -270,8 +271,8 @@ più grandi, la cui nuova scansione può richiedere diversi secondi.</para>
         </question>
 
         <answer>
-          <para>Sì, esiste un supporto di stampa di base: fai clic su <menuchoice> <guimenu
->File</guimenu > <guimenuitem >Stampa</guimenuitem > </menuchoice >.</para>
+          <para>Sì, esiste un supporto di stampa di base: fai clic su <menuchoice>
+<guimenu>File</guimenu> <guimenuitem>Stampa</guimenuitem> </menuchoice>.</para>
         </answer>
       </qandaentry>
 
@@ -282,9 +283,9 @@ visibili solo righe diverse?</para>
         </question>
 
         <answer>
-          <para>Sì, puoi mostrare solo righe diverse facendo clic su <menuchoice> <guimenu
->Visualizza</guimenu ><guimenuitem >Contesto differenze</guimenuitem >
-<guimenuitem >0 righe</guimenuitem > </menuchoice >.</para>
+          <para>Sì, puoi mostrare solo righe diverse facendo clic su <menuchoice>
+<guimenu>Visualizza</guimenu><guimenuitem>Contesto differenze</guimenuitem>
+<guimenuitem>0 righe</guimenuitem> </menuchoice>.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -307,7 +308,7 @@ visibili solo righe diverse?</para>
 
       <qandaentry>
         <question>
-          <para>Non voglio vedere il messaggio <guilabel >I file sono identici</guilabel >
+          <para>Non voglio vedere il messaggio <guilabel>I file sono identici</guilabel>
 quando confronto file identici, voglio solo che WinMerge esca.</para>
         </question>
 
@@ -382,11 +383,10 @@ esempio file .jar come file zip)</para>
         </question>
 
         <answer>
-          <para>Sì: fai clic sul pulsante <guibutton >Opzioni</guibutton > (o fai clic su
-<menuchoice > <guimenu >Modifica</guimenu > <guimenuitem
->Opzioni</guimenuitem > </menuchoice >).Nella pagina Supporto archivio,
-abilita l'opzione <guilabel >Rileva tipo di archivio dalla firma del
-file</guilabel >.</para>
+          <para>Sì: fai clic sul pulsante <guibutton>Opzioni</guibutton> (o fai clic su
+<menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Opzioni</guimenuitem>
+</menuchoice>).Nella pagina Supporto archivio, abilita l'opzione
+<guilabel>Rileva tipo di archivio dalla firma del file</guilabel>.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -408,33 +408,33 @@ Windows (ANSI)?</para>
 
         <answer>
           <para>Apri il file nel Blocco note di Windows (ad esempio, fai clic su
-<menuchoice> <guimenu >Start</guimenu > <guisubmenu >Programmi
-(tutti)</guisubmenu > <guisubmenu >Accessori</guisubmenu > <guimenuitem
->Blocco note</guimenuitem > </menuchoice >).Fai clic su <menuchoice>
-<guimenu >File</guimenu > <guimenuitem >Salva con nome</guimenuitem >
-</menuchoice > e, nella finestra di dialogo Salva con nome, scorri fino alla
-voce <guilabel >Codifica</guilabel > nell'elenco a discesa.I possibili
-valori includono:</para>
+<menuchoice> <guimenu>Start</guimenu> <guisubmenu>Programmi
+(tutti)</guisubmenu> <guisubmenu>Accessori</guisubmenu> <guimenuitem>Blocco
+note</guimenuitem> </menuchoice>).Fai clic su <menuchoice>
+<guimenu>File</guimenu> <guimenuitem>Salva con nome</guimenuitem>
+</menuchoice> e, nella finestra di dialogo Salva con nome, scorri fino alla
+voce <guilabel>Codifica</guilabel> nell'elenco a discesa.I possibili valori
+includono:</para>
 
           <itemizedlist>
             <listitem>
-              <para><guilabel >ANSI</guilabel >: apparentemente il file si trova nella codepage
+              <para><guilabel>ANSI</guilabel>: apparentemente il file si trova nella codepage
 locale di Windows.Se il file è interamente in inglese e con punteggiatura
 normale, anche il file è in ASCII.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel >Unicode</guilabel >: il file probabilmente ha la codifica Unicode
+              <para><guilabel>Unicode</guilabel>: il file probabilmente ha la codifica Unicode
 predefinita di Windows, UCS-2LE.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel >UTF-8</guilabel >: il file è nella codifica Unicode
+              <para><guilabel>UTF-8</guilabel>: il file è nella codifica Unicode
 multipiattaforma, UTF-8.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel >Unicode big endian</guilabel >: il file ha una codifica Unicode
+              <para><guilabel>Unicode big endian</guilabel>: il file ha una codifica Unicode
 diversa che è poco utilizzata o supportata in Windows, probabilmente
 UCS-2BE.</para>
             </listitem>

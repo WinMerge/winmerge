@@ -634,7 +634,7 @@ centrale.</para>
 destro.</para>
 
         <para>WinMerge non può confrontare file con cartelle, quindi i parametri del
-percorso (<option ><replaceable>leftpath</replaceable></option>,
+percorso (<option><replaceable>leftpath</replaceable></option>,
 <option><replaceable>middlepath</replaceable></option> e
 <option><replaceable>rightpath</replaceable></option>) devono puntare allo
 stesso tipo di destinazione (cartelle o file).Se WinMerge non riesce a

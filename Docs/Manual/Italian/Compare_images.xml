@@ -23,11 +23,11 @@ WinMerge o da una finestra del prompt dei comandi.</para>
         <term>Dalla finestra WinMerge</term>
 
         <listitem>
-          <para>Fai clic su <menuchoice> <guimenu >File</guimenu > <guimenuitem
->Apri</guimenuitem > </menuchoice >.Utilizzare la finestra di dialogo
-Seleziona file o cartelle per specificare le immagini di origine sinistra e
-destra da confrontare.Per ulteriori dettagli sulla finestra di dialogo
-Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
+          <para>Fai clic su <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem> </menuchoice>.Utilizzare la finestra di
+dialogo Seleziona file o cartelle per specificare le immagini di origine
+sinistra e destra da confrontare.Per ulteriori dettagli sulla finestra di
+dialogo Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -57,8 +57,8 @@ i blocchi.È anche possibile la sovrapposizione delle immagini.</para>
       </textobject>
     </mediaobject>
 
-    <para>Puoi impostare la maggior parte delle opzioni nel <guilabel >pannello
-Posizione</guilabel >:</para>
+    <para>Puoi impostare la maggior parte delle opzioni nel <guilabel>pannello
+Posizione</guilabel>:</para>
 
     <section>
       <title>Differenza<indexterm>
@@ -69,8 +69,8 @@ Posizione</guilabel >:</para>
         <varlistentry>
           <term>Evidenziare</term>
           <listitem>
-            <para>Con la casella <guilabel >Evidenzia</guilabel > puoi abilitare o
-disabilitare l'evidenziazione delle differenze tra le immagini.</para>
+            <para>Con la casella <guilabel>Evidenzia</guilabel> puoi abilitare o disabilitare
+l'evidenziazione delle differenze tra le immagini.</para>
           </listitem>
         </varlistentry>
 
@@ -78,14 +78,14 @@ disabilitare l'evidenziazione delle differenze tra le immagini.</para>
           <term>Battito di ciglia</term>
           <listitem>
             <para>Se l'evidenziazione è abilitata puoi anche farla lampeggiare selezionando la
-casella <guilabel >Lampeggia</guilabel >.</para>
+casella <guilabel>Lampeggia</guilabel>.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>Dimensione del blocco</term>
           <listitem>
-            <para>Il cursore <guilabel >Dimensione blocco</guilabel > definisce la dimensione
+            <para>Il cursore <guilabel>Dimensione blocco</guilabel> definisce la dimensione
 dei blocchi che evidenziano le differenze tra le immagini.</para>
           </listitem>
         </varlistentry>
@@ -93,7 +93,7 @@ dei blocchi che evidenziano le differenze tra le immagini.</para>
         <varlistentry>
           <term>Blocco Alfa</term>
           <listitem>
-            <para>Il cursore <guilabel >Blocco alfa</guilabel > definisce quanto è forte la
+            <para>Il cursore <guilabel>Blocco alfa</guilabel> definisce quanto è forte la
 fusione alfa dei blocchi.</para>
           </listitem>
         </varlistentry>
@@ -101,8 +101,8 @@ fusione alfa dei blocchi.</para>
         <varlistentry>
           <term>Soglia distanza colore</term>
           <listitem>
-            <para>Il cursore <guilabel >CD</guilabel > imposta la <emphasis >Soglia distanza
-colore</emphasis > che aiuta a ignorare le differenze di colore.</para>
+            <para>Il cursore <guilabel>CD</guilabel> imposta la <emphasis>Soglia distanza
+colore</emphasis> che aiuta a ignorare le differenze di colore.</para>
           </listitem>
         </varlistentry>
 
@@ -146,9 +146,9 @@ sovrapposizione</emphasis>:</para>
         <varlistentry>
           <term>Alfa</term>
           <listitem>
-            <para>Il cursore <guilabel >Alfa</guilabel > definisce quanto è forte la fusione
-alfa dei nodi di sovrapposizione <guilabel >Miscela alfa</guilabel > o
-<guilabel >Animazione fusione alfa</guilabel >.</para>
+            <para>Il cursore <guilabel>Alfa</guilabel> definisce quanto è forte la fusione
+alfa dei nodi di sovrapposizione <guilabel>Miscela alfa</guilabel> o
+<guilabel>Animazione fusione alfa</guilabel>.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -163,8 +163,8 @@ alfa dei nodi di sovrapposizione <guilabel >Miscela alfa</guilabel > o
         <varlistentry>
           <term>Zoom</term>
           <listitem>
-            <para>Con il cursore <guilabel >Zoom</guilabel > puoi ingrandire o rimpicciolire
-le immagini.</para>
+            <para>Con il cursore <guilabel>Zoom</guilabel> puoi ingrandire o rimpicciolire le
+immagini.</para>
           </listitem>
         </varlistentry>
 
@@ -172,7 +172,7 @@ le immagini.</para>
           <term>Pagina</term>
           <listitem>
             <para>Se il formato dell'immagine supporta più pagine puoi selezionare la pagina
-corrente con la casella numerica <guilabel >Pagina</guilabel >.</para>
+attuale con la casella numerica <guilabel>Pagina</guilabel>.</para>
           </listitem>
         </varlistentry>
       </variablelist>

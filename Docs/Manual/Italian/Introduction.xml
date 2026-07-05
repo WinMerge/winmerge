@@ -105,15 +105,15 @@ url="https://github.com/WinMerge/winmerge/issues">segnalazione di
 bug</ulink>.Allega quante più informazioni possibili: come minimo il numero
 di versione di WinMerge che stai utilizzando.Se puoi, allega anche un
 registro di configurazione che puoi visualizzare facendo clic su
-<menuchoice> <guimenu >Aiuto</guimenu > <guimenuitem
->Configurazione</guimenuitem > </menuchoice > nella finestra di
+<menuchoice> <guimenu>Aiuto</guimenu>
+<guimenuitem>Configurazione</guimenuitem> </menuchoice> nella finestra di
 WinMerge.Buone informazioni in una segnalazione di bug aumentano le
 probabilità che il bug venga risolto rapidamente.</para>
 
     <important>
       <para>Includere il numero di versione nelle segnalazioni di bug.Puoi controllare
-il numero di versione facendo clic su <menuchoice> <guimenu >Aiuto</guimenu
-> <guimenuitem >Informazioni su WinMerge</guimenuitem > </menuchoice >.</para>
+il numero di versione facendo clic su <menuchoice> <guimenu>Aiuto</guimenu>
+<guimenuitem>Informazioni su WinMerge</guimenuitem> </menuchoice>.</para>
     </important>
   </section>
 

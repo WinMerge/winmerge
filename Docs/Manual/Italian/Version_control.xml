@@ -89,37 +89,37 @@ estratto.</para>
           <listitem>
             <para>Fai clic con il pulsante destro del mouse su un file che si trova sotto la
 gestione di Subversion (solitamente indicato da un'icona TortoiseSVN
-distinta) e fai clic su <guimenu >TortoiseSVN</guimenu > nel menu
-contestuale.</para>
+distinta) e fai clic su <guimenu>TortoiseSVN</guimenu> nel menu contestuale.</para>
 
             <itemizedlist>
               <listitem>
                 <para>Se il file non è stato modificato, il menu contestuale contiene la
-scorciatoia <guimenuitem >Differenze con la versione precedente</guimenuitem
->.Questo comando confronta la versione estratta del file con la versione
-precedente archiviata nel repository.</para>
+scorciatoia <guimenuitem>Differenze con la versione
+precedente</guimenuitem>.Questo comando confronta la versione estratta del
+file con la versione precedente archiviata nel repository.</para>
               </listitem>
 
               <listitem>
                 <para>Se hai modificato il file, il menu contestuale contiene la stessa
-scorciatoia <guimenuitem >Diff con la versione precedente</guimenuitem >,
-più la scorciatoia <guimenuitem >Diff</guimenuitem >.Questo comando
-confronta la tua revisione con la versione corrente (quella che hai
-estratto).È utile per rivedere le modifiche apportate.</para>
+scorciatoia <guimenuitem>Diff con la versione precedente</guimenuitem>, più
+la scorciatoia <guimenuitem>Diff</guimenuitem>.Questo comando confronta la
+tua revisione con la versione attuale (quella che hai estratto).È utile per
+rivedere le modifiche apportate.</para>
               </listitem>
             </itemizedlist>
           </listitem>
 
           <listitem>
-            <para>Scegli la scorciatoia <guimenuitem >Diff con la versione
-precedente</guimenuitem > o <guimenuitem >Diff</guimenuitem >.Si apre la
+            <para>Scegli la scorciatoia <guimenuitem>Diff con la versione
+precedente</guimenuitem> o <guimenuitem>Diff</guimenuitem>.Si apre la
 finestra WinMerge, con le versioni dei file di destinazione caricate nella
 finestra Confronto file.</para>
           </listitem>
-        </orderedlist><para>La scorciatoia <menuchoice> <guimenu >TortoiseSVN</guimenu> <guimenuitem
->Diff</guimenuitem > </menuchoice > è disponibile per confrontare due file
-qualsiasi nel tuo file system, non solo i file gestiti da Subversion.Per
-illustrare come funziona l'integrazione WinMerge in questo caso:</para>
+        </orderedlist><para>La scorciatoia <menuchoice> <guimenu>TortoiseSVN</guimenu>
+<guimenuitem>Diff</guimenuitem> </menuchoice> è disponibile per confrontare
+due file qualsiasi nel tuo file system, non solo i file gestiti da
+Subversion.Per illustrare come funziona l'integrazione WinMerge in questo
+caso:</para>
 
 <orderedlist>
           <listitem>
@@ -128,8 +128,8 @@ qualsiasi e fai clic con il pulsante destro del mouse.</para>
           </listitem>
 
           <listitem>
-            <para>Scegli <menuchoice> <guimenu >TortoiseSVN</guimenu > <guimenuitem
->Diff</guimenuitem > </menuchoice > nel menu contestuale.</para>
+            <para>Scegli <menuchoice> <guimenu>TortoiseSVN</guimenu>
+<guimenuitem>Diff</guimenuitem> </menuchoice> nel menu contestuale.</para>
 
             <para>Si apre la finestra WinMerge, con i file selezionati caricati nella finestra
 Confronta file.</para>
@@ -146,23 +146,23 @@ impostati in modi molto simili.</para>
 
 <orderedlist>
           <listitem>
-            <para>In Visual Studio, vai al menu <menuchoice> <guimenu >Strumenti</guimenu >
-<guimenuitem >Opzioni...</guimenuitem > </menuchoice >.</para>
+            <para>In Visual Studio, vai al menu <menuchoice> <guimenu>Strumenti</guimenu>
+<guimenuitem>Opzioni...</guimenuitem> </menuchoice>.</para>
           </listitem>
 		  
           <listitem>
-            <para>In <menuchoice> <guimenu >Controllo del codice sorgente</guimenu >
-</menuchoice >, trova le opzioni <menuchoice> <guimenu >Visual Studio Team
-Foundation Server</guimenu > </menuchoice >.</para>
+            <para>In <menuchoice> <guimenu>Controllo del codice sorgente</guimenu>
+</menuchoice>, trova le opzioni <menuchoice> <guimenu>Visual Studio Team
+Foundation Server</guimenu> </menuchoice>.</para>
           </listitem>
 		  
           <listitem>
-            <para>Fai clic sul pulsante <guimenuitem >Configura strumenti
-utente...</guimenuitem >.</para>
+            <para>Fai clic sul pulsante <guimenuitem>Configura strumenti
+utente...</guimenuitem>.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic sul pulsante <guimenuitem >Aggiungi...</guimenuitem >.</para>
+            <para>Fai clic sul pulsante <guimenuitem>Aggiungi...</guimenuitem>.</para>
           </listitem>
 		  
 		  <listitem>

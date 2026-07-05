@@ -67,10 +67,10 @@ class="directory">c:\workfiles\project1</filename> .</para>
 linkend="Install" /> per installare questo plugin.</para>
 
       <para>L'apertura di due file di archivio è simile all'apertura di file normali:
-specifica due file di archivio nei campi <guilabel >1°</guilabel > e
-<guilabel >2°</guilabel > della finestra di dialogo Apri.Se WinMerge
-riconosce il formato di archivio, apre il contenuto dei file di archivio
-nella finestra Confronto cartelle.</para>
+specifica due file di archivio nei campi <guilabel>1°</guilabel> e
+<guilabel>2°</guilabel> della finestra di dialogo Apri.Se WinMerge riconosce
+il formato di archivio, apre il contenuto dei file di archivio nella
+finestra Confronto cartelle.</para>
 
       <para>L'argomento <xref linkend="Compare_dirs" /> descrive come lavorare con i
 file di archivio. Ad esempio, se un file di archivio contiene due
@@ -95,7 +95,7 @@ archivio.</para>
           <secondary>applicandolo nella finestra di dialogo Seleziona file o cartelle</secondary>
         </indexterm></title>
 
-      <para>Il campo di modifica <guilabel >Filtro</guilabel > ti consente di limitare i
+      <para>Il campo di modifica <guilabel>Filtro</guilabel> ti consente di limitare i
 file da includere nel confronto delle cartelle.È possibile specificare una o
 più maschere di file o un singolo filtro di file (non entrambi).</para>
 
@@ -112,10 +112,11 @@ di espressioni regolari che possono includere o escludere file.WinMerge
 installa una serie di file di filtro predefiniti nella sua cartella
 <filename>Filters</filename> e puoi anche crearne di tuoi.</para>
 
-      <para>Per specificare un filtro, fai clic sul pulsante <guibutton
->Seleziona</guibutton > accanto al campo <guilabel >Filtri</guilabel > per
-scegliere da un elenco di filtri disponibili.Oppure fai clic sull'elenco a
-discesa Filtro e scegli un file di filtro utilizzato di recente.</para>
+      <para>Per specificare un filtro, fai clic sul pulsante
+<guibutton>Seleziona</guibutton> accanto al campo
+<guilabel>Filtri</guilabel> per scegliere da un elenco di filtri
+disponibili.Oppure fai clic sull'elenco a discesa Filtro e scegli un file di
+filtro utilizzato di recente.</para>
 
       <para>Per informazioni complete sulle maschere di filtro e sui file di filtro,
 vedi <xref linkend="Filters" />.</para>
@@ -135,16 +136,18 @@ di MS Word, ma decomprimendoli è possibile confrontare solo il contenuto del
 testo.Vedi <xref linkend="Plugins" /> per i dettagli.</para>
 
       <para>Per applicare un plugin al confronto dei file, fai clic sul pulsante
-<guibutton >Seleziona</guibutton > per l'opzione <guilabel
->Unpacker</guilabel >.Nella finestra di dialogo Seleziona decompressore:</para>
+<guibutton>Seleziona</guibutton> per l'opzione
+<guilabel>Unpacker</guilabel>.Nella finestra di dialogo Seleziona
+decompressore:</para>
 
       <xi:include href="select_unpacker.xml"
                   xmlns:xi="http://www.w3.org/2001/XInclude"
                   xpointer="element(select-unpacker-proc)" />
 
-      <para>La tua scelta verrà visualizzata nel campo <guilabel >Unpacker</guilabel
->.Tieni presente che non è possibile selezionare un programma di
-decompressione quando si avvia un'operazione di confronto cartelle.</para>
+      <para>La tua scelta verrà visualizzata nel campo
+<guilabel>Unpacker</guilabel>.Tieni presente che non è possibile selezionare
+un programma di decompressione quando si avvia un'operazione di confronto
+cartelle.</para>
     </section>
   </section>
 
@@ -176,10 +179,10 @@ incluse le sue opzioni secondarie, se lo desideri.</para>
     <section>
       <title>Utilizzando il collegamento WinMerge</title>
 
-      <para>Se abiliti <option >Aggiungi al menu contestuale</option > senza l'opzione
-secondaria del menu avanzato, la scorciatoia <guimenuitem
->WinMerge</guimenuitem > verrà aggiunta al menu contestuale di Explorer.Per
-esempio:</para>
+      <para>Se abiliti <option>Aggiungi al menu contestuale</option> senza l'opzione
+secondaria del menu avanzato, la scorciatoia
+<guimenuitem>WinMerge</guimenuitem> verrà aggiunta al menu contestuale di
+Explorer.Per esempio:</para>
 
       <para>Per utilizzare l'integrazione di base della shell, iniziare selezionando due
 percorsi in Esplora risorse.Quindi, fai clic con il pulsante destro del
@@ -205,11 +208,11 @@ sul 1° lato e <filename>File1</filename> sul 2°.</para>
 apre la finestra di dialogo Seleziona file o cartelle, in cui è possibile
 specificare nuovi percorsi.Allo stesso modo, se selezioni un solo percorso,
 la finestra di dialogo Seleziona file o cartelle si apre con il file o la
-cartella selezionati nel campo <guilabel >1°</guilabel >, lasciando il
-percorso <guilabel >2°</guilabel > da specificare.</para>
+cartella selezionati nel campo <guilabel>1°</guilabel>, lasciando il
+percorso <guilabel>2°</guilabel> da specificare.</para>
       </note>
 
-      <para>La scorciatoia <guimenuitem >WinMerge</guimenuitem > è veloce e facile da
+      <para>La scorciatoia <guimenuitem>WinMerge</guimenuitem> è veloce e facile da
 usare, ma puoi confrontare solo i file o le cartelle che puoi selezionare
 contemporaneamente in Esplora risorse.Per selezioni più flessibili,
 considera l'attivazione del menu avanzato, descritto nella sezione
@@ -219,9 +222,9 @@ successiva.</para>
     <section>
       <title>Utilizzando il menu avanzato</title>
 
-      <para>Se scegli <option >Abilita menu avanzato</option >, la scorciatoia
-<guimenuitem >WinMerge</guimenuitem > sarà sostituita con due scorciatoie
-<guimenuitem >Confronta</guimenuitem >:</para>
+      <para>Se scegli <option>Abilita menu avanzato</option>, la scorciatoia
+<guimenuitem>WinMerge</guimenuitem> sarà sostituita con due scorciatoie
+<guimenuitem>Confronta</guimenuitem>:</para>
 
       <mediaobject>
 <imageobject> <imagedata fileref="screenshots/ctx_menu_advanced.png"
@@ -230,12 +233,12 @@ format="PNG" /> </imageobject><textobject>
         </textobject>
       </mediaobject>
 
-      <para>Usa le scorciatoie <guimenuitem >Confronta</guimenuitem > in questo ordine:</para>
+      <para>Usa le scorciatoie <guimenuitem>Confronta</guimenuitem> in questo ordine:</para>
 
       <orderedlist>
         <listitem>
           <para>Fai clic con il pulsante destro del mouse sul primo percorso e scegli
-<guimenuitem >Confronta con</guimenuitem >.WinMerge memorizza il percorso in
+<guimenuitem>Confronta con</guimenuitem>.WinMerge memorizza il percorso in
 memoria finché non si seleziona il secondo percorso.</para>
         </listitem>
 
@@ -244,17 +247,16 @@ memoria finché non si seleziona il secondo percorso.</para>
 scegliere la seconda strada:</para>
 
           <para>Fai clic con il pulsante destro del mouse sul nuovo percorso e scegli la
-scorciatoia <guimenuitem >Riseleziona primo</guimenuitem >.La nuova
-selezione sovrascrive il percorso precedente e puoi procedere al passaggio
-successivo.</para>
+scorciatoia <guimenuitem>Riseleziona primo</guimenuitem>.La nuova selezione
+sovrascrive il percorso precedente e puoi procedere al passaggio successivo.</para>
         </listitem>
 
         <listitem>
           <para>Passare al secondo file o cartella che si desidera confrontare.Il secondo
 percorso può trovarsi in qualsiasi cartella o anche in una finestra di
 Esplora risorse diversa dal primo percorso.Fai clic con il pulsante destro
-del mouse sul secondo percorso e scegli <guimenuitem >Confronta</guimenuitem
->.</para>
+del mouse sul secondo percorso e scegli
+<guimenuitem>Confronta</guimenuitem>.</para>
 
           <para>WinMerge apre la finestra Confronta file o Confronta cartelle, caricando il
 primo e il secondo percorso rispettivamente nel 1° e nel 2° lato.</para>
@@ -262,11 +264,11 @@ primo e il secondo percorso rispettivamente nel 1° e nel 2° lato.</para>
       </orderedlist>
 
       <note>
-        <para>Se fai clic su <guimenuitem >Confronta</guimenuitem > prima di designare il
+        <para>Se fai clic su <guimenuitem>Confronta</guimenuitem> prima di designare il
 primo percorso, si aprirà la finestra di dialogo Seleziona file o cartelle,
-con la tua selezione come primo (<guilabel >1°</guilabel >)
-percorso.Specifica il secondo percorso nel campo <guilabel >2°</guilabel >
-per continuare con il confronto.</para>
+con la tua selezione come primo (<guilabel>1°</guilabel>) percorso.Specifica
+il secondo percorso nel campo <guilabel>2°</guilabel> per continuare con il
+confronto.</para>
       </note>
 
 <!--              <tip>
@@ -275,13 +277,13 @@ of the Select Files or Folders dialog's MRU list. This is very handy when you ne
 to compare one file/folder against several files/folders.</para> </tip> -->
       
 
-      <para>I percorsi <guimenuitem >Confronta con</guimenuitem > vengono archiviati in
+      <para>I percorsi <guimenuitem>Confronta con</guimenuitem> vengono archiviati in
 memoria fino all'apertura di WinMerge. Di conseguenza, non è necessario
 selezionare entrambi i file contemporaneamente o addirittura utilizzare la
 stessa visualizzazione di Esplora risorse: puoi sceglierne uno, apri una
 cartella diversa e scegliere l'altra. Entrambi i percorsi vengono eliminati
 dalla memoria dopo un'operazione di confronto. Ciò significa che non puoi
-selezionare un percorso <guimenuitem >Confronta con</guimenuitem > e
+selezionare un percorso <guimenuitem>Confronta con</guimenuitem> e
 confrontarlo con diversi percorsi.</para>
     </section>
 
@@ -298,22 +300,22 @@ risorse<indexterm>
         </indexterm></title>
 
       <para>Per impostazione predefinita, i confronti di cartelle che fai usando la
-scorciatoia <guimenuitem >WinMerge</guimenuitem > o <guimenuitem
->Confronta</guimenuitem > sono ricorsivi.Esiste un modo per avviare
-confronti non ricorsivi con l'integrazione di Windows Explorer:</para>
+scorciatoia <guimenuitem>WinMerge</guimenuitem> o
+<guimenuitem>Confronta</guimenuitem> sono ricorsivi.Esiste un modo per
+avviare confronti non ricorsivi con l'integrazione di Windows Explorer:</para>
 
       <itemizedlist>
         <listitem>
-          <para>Disabilita <guilabel >Includi sottocartelle</guilabel > nella pagina
-Cartella della finestra di dialogo Opzioni di WinMerge.</para>
+          <para>Disabilita <guilabel>Includi sottocartelle</guilabel> nella pagina Cartella
+della finestra di dialogo Opzioni di WinMerge.</para>
         </listitem>
       </itemizedlist>
 
       <tip>
-        <para>Premi <keycap >Ctrl</keycap > mentre selezioni la scorciatoia <guimenuitem
->WinMerge</guimenuitem > o <guimenuitem >Confronta</guimenuitem > nel menu
-contestuale di Esplora risorse per forzare un confronto inverso con le
-attuali impostazioni 'Includi sottocartelle'.</para>
+        <para>Premi <keycap>Ctrl</keycap> mentre selezioni la scorciatoia
+<guimenuitem>WinMerge</guimenuitem> o <guimenuitem>Confronta</guimenuitem>
+nel menu contestuale di Esplora risorse per forzare un confronto inverso con
+le attuali impostazioni 'Includi sottocartelle'.</para>
       </tip>
     </section>
   </section>
@@ -385,8 +387,8 @@ confrontano ripetutamente gli stessi file.</para>
       <title>Utilizzo dei file di progetto</title>
 
       <para>Per usare un file di progetto Nella finestra WinMerge, fai clic su
-<menuchoice> <guimenu >File</guimenu > <guimenuitem >Apri
-progetto</guimenuitem > </menuchoice >.WinMerge legge i percorsi dal file di
+<menuchoice> <guimenu>File</guimenu> <guimenuitem>Apri
+progetto</guimenuitem> </menuchoice>.WinMerge legge i percorsi dal file di
 progetto.Se il file di progetto ha due o tre percorsi, verranno aperti due o
 tre percorsi.Se viene fornito un solo percorso o uno dei percorsi non è
 valido, WinMerge apre la finestra di dialogo Seleziona file o cartelle, in
@@ -402,8 +404,8 @@ progetto stessi.</simpara>
         <listitem>
           <simpara>Se specifichi un file di progetto come file di sinistra ma non specifichi un
 file di destra, il singolo file di progetto viene aperto come se avessi
-usato il comando <menuchoice> <guimenu >File</guimenu > <guimenuitem >Apri
-progetto</guimenuitem > </menuchoice >.</simpara>
+usato il comando <menuchoice> <guimenu>File</guimenu> <guimenuitem>Apri
+progetto</guimenuitem> </menuchoice>.</simpara>
         </listitem>
 
         <listitem>
@@ -420,18 +422,18 @@ inserirlo come percorso di file singolo.</para>
     <section>
       <title>Modifica e salvataggio dei file di progetto</title>
 
-      <para>Per salvare un file di progetto, fai clic su <menuchoice> <guimenu
->File</guimenu > <guimenuitem >Salva progetto</guimenuitem > </menuchoice
->.La finestra di dialogo <guilabel >File di progetto</guilabel > fornisce
-campi e opzioni che puoi modificare facilmente per creare un file di
-progetto.Se una finestra di confronto è attualmente aperta, la finestra di
-dialogo <guilabel >File di progetto</guilabel > viene inizializzata con i
-valori del confronto corrente;in caso contrario, fornisci tu stesso i
-valori.Per utilizzare un progetto esistente, fai clic su <guibutton
->Apri</guibutton > e seleziona un progetto per caricarne i valori (tutti i
-valori esistenti verranno sovrascritti nella finestra di dialogo).</para>
+      <para>Per salvare un file di progetto, fai clic su <menuchoice>
+<guimenu>File</guimenu> <guimenuitem>Salva progetto</guimenuitem>
+</menuchoice>.La finestra di dialogo <guilabel>File di progetto</guilabel>
+fornisce campi e opzioni che puoi modificare facilmente per creare un file
+di progetto.Se una finestra di confronto è attualmente aperta, la finestra
+di dialogo <guilabel>File di progetto</guilabel> viene inizializzata con i
+valori del confronto attuale;in caso contrario, fornisci tu stesso i
+valori.Per utilizzare un progetto esistente, fai clic su
+<guibutton>Apri</guibutton> e seleziona un progetto per caricarne i valori
+(tutti i valori esistenti verranno sovrascritti nella finestra di dialogo).</para>
 
-      <para>Una volta terminata la modifica, fai clic su <guibutton >Salva</guibutton >
+      <para>Una volta terminata la modifica, fai clic su <guibutton>Salva</guibutton>
 per archiviare il file.</para>
 
       <mediaobject>
