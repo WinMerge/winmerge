@@ -20,13 +20,15 @@
 
 * Add display line filter bar for file compare window (PR #3374)
 
-* Improve syntax highlighting with Tree-sitter integration for better support of multiple languages (PR #3306, PR #3337, PR #3338, PR #3350, PR #3415, PR #3427)
+* Improve syntax highlighting with Tree-sitter integration for better support of multiple languages (PR #3306, PR #3337, PR #3338, PR #3350, PR #3415, PR #3427, PR #3440)
 
 * Refactor syntax parsing behind ISyntaxParser interface (PR #3415)
 
 ### Folder compare
 
 * BugFix: Crash when trying to delete a "left-only" or "right-only" file during renaming (#3411)
+
+* BugFix: ZIP export includes unchanged files in subfolders (#3445)
 
 * Refactor filter evaluation parameters with new EvalContext for better code maintainability (PR #3353)
 
