@@ -124,8 +124,6 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_GOBACKFORWARD, OnWebSyncEvent)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_GOBACKFORWARD, OnUpdateWebSyncEvent)
 	ON_COMMAND_RANGE(ID_WEB_CLEAR_DISK_CACHE, ID_WEB_CLEAR_ALL_PROFILE, OnWebClear)
-	// [Tools] menu
-	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
@@ -1567,80 +1565,57 @@ void CWebPageDiffFrame::OnWebClear(UINT nID)
 	m_pWebDiffWindow->ClearBrowsingData(-1, dataKinds);
 }
 
-bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
+bool CWebPageDiffFrame::GenerateReport(ReportContext& reportContext) const
 {
 	bool result = false;
 	bool completed = false;
-	if (!GenerateReport(sFileName, [&completed, &result](bool res) { result = res; completed = true; }))
+	if (!GenerateReport(reportContext, [&completed, &result](bool res) { result = res; completed = true; }))
 		return false;
 	CMainFrame::WaitAndDoMessageLoop(completed, 0);
 	return result;
 }
 
-bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<void(bool)> callback) const
+bool CWebPageDiffFrame::GenerateReport(ReportContext& reportContext, std::function<void(bool)> callback) const
 {
 	String rptdir_full, rptdir, path, name, ext;
 	String title[3];
 	String diffrpt_filename[3];
 	String diffrpt_filename_full[3];
 	const wchar_t* pfilenames[3]{};
-	paths::SplitFilename(sFileName, &path, &name, &ext);
-	rptdir_full = paths::ConcatPath(path, name) + _T(".files");
+	rptdir_full = reportContext.outputDirectory;
 	rptdir = paths::FindFileName(rptdir_full);
 	paths::CreateIfNeeded(rptdir_full);
 
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 	{
 		title[pane] = m_strDesc[pane].empty() ? ucr::toTString(m_pWebDiffWindow->GetCurrentUrl(pane)) : m_strDesc[pane];
-		diffrpt_filename[pane] = strutils::format(_T("%s/%d.pdf"), rptdir, pane + 1);
-		diffrpt_filename_full[pane] = strutils::format(_T("%s/%d.pdf"), rptdir_full, pane + 1);
+		diffrpt_filename[pane] = strutils::format(_T("%s/%d_%d.pdf"), rptdir, reportContext.index + 1, pane + 1);
+		diffrpt_filename_full[pane] = strutils::format(_T("%s/%d_%d.pdf"), rptdir_full, reportContext.index + 1, pane + 1);
 		pfilenames[pane] = diffrpt_filename_full[pane].c_str();
 	}
 
-	UniStdioFile file;
-	if (!file.Open(sFileName, _T("wt")))
-	{
-		String errMsg = GetSysError(GetLastError());
-		String msg = strutils::format_string1(
-			_("Error creating the report:\n%1"), errMsg);
-		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
-		return false;
-	}
-
-	file.SetCodepage(ucr::CP_UTF_8);
+	UniStdioFile& file = reportContext.file;
+	const int paneCount = m_pWebDiffWindow->GetPaneCount();
 
 	file.WriteString(
-		_T("<!DOCTYPE html>\n")
-		_T("<html>\n")
-		_T("<head>\n")
-		_T("<meta charset=\"UTF-8\">\n")
-		_T("<title>WinMerge Webpage Compare Report</title>\n")
-		_T("<style>\n")
-		_T("table { table-layout: fixed; width: 100%; border-collapse: collapse; }\n")
-		_T("th {position: sticky; top: 0;}\n")
-		_T("td,th { border: solid 1px black; }\n")
-		_T("embed { width: 100%; height: calc(100vh - 56px) }\n")
-		_T(".title { color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
-		_T("</style>\n")
-		_T("</head>\n")
-		_T("<body>\n")
-		_T("<table>\n")
-		_T("<tr>\n"));
-	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
-		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), title[pane]));
+		strutils::format(_T("<table class=\"cmp-table-webpage cmp-table-full cmp-table-%d\">\n")
+		_T("<tr>\n"), paneCount));
+	for (int pane = 0; pane < paneCount; ++pane)
+		file.WriteString(strutils::format(_T("<th class=\"title %s\">%s</th>\n"),
+			(pane == 0) ? _T("title-left") : (
+					(pane == paneCount - 1) ? _T("title-right") : _T("title-middle")),
+			title[pane]));
 	file.WriteString(_T("</tr>\n"));
 	file.WriteString(
 		_T("<tr>\n"));
-	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+	for (int pane = 0; pane < paneCount; ++pane)
 		file.WriteString(
-			strutils::format(_T("<td><embed type=\"application/pdf\" src=\"%s\" title=\"%s\"></td>\n"),
+			strutils::format(_T("<td><embed class=\"cmp-pdf-webpage\" type=\"application/pdf\" src=\"%s\" title=\"%s\"></td>\n"),
 				paths::urlEncodeFileName(diffrpt_filename[pane]), diffrpt_filename[pane]));
 	file.WriteString(
 		_T("</tr>\n"));
 	file.WriteString(
-		_T("</table>\n")
-		_T("</body>\n")
-		_T("</html>\n"));
+		_T("</table>\n"));
 
 	return SUCCEEDED(m_pWebDiffWindow->SaveDiffFiles(IWebDiffWindow::PDF, pfilenames, 
 		Callback<IWebDiffCallback>([this, callback](const WebDiffCallbackResult& result) -> HRESULT
@@ -1648,21 +1623,6 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<vo
 				callback(SUCCEEDED(result.errorCode));
 				return S_OK;
 			})));
-}
-
-/**
- * @brief Generate report from file compare results.
- */
-void CWebPageDiffFrame::OnToolsGenerateReport()
-{
-	String s;
-	CString folder;
-	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
-		return;
-
-	CWaitCursor waitstatus;
-	if (GenerateReport(s))
-		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION | MB_MODELESS);
 }
 
 void CWebPageDiffFrame::OnRefresh()

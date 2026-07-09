@@ -108,9 +108,6 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
-	// [Tools] menu
-	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
-	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	// [Plugins] menu
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
@@ -3206,27 +3203,10 @@ String CMergeDoc::GetFileExt(const tchar_t* sFileName, const tchar_t* sDescripti
 /**
  * @brief Generate report from file compare results.
  */
-bool CMergeDoc::GenerateReport(const String& sFileName) const
+bool CMergeDoc::GenerateReport(ReportContext& reportContext) const
 {
-	// calculate HTML font size
-	LOGFONT lf;
-	CDC dc;
-	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
-	m_pView[0][0]->GetFont(lf);
-	int nFontSize = -MulDiv (lf.lfHeight, 72, dc.GetDeviceCaps (LOGPIXELSY));
+	UniStdioFile& file = reportContext.file;
 
-	// create HTML report
-	UniStdioFile file;
-	if (!file.Open(sFileName, _T("wt")))
-	{
-		String errMsg = GetSysError(GetLastError());
-		String msg = strutils::format_string1(
-			_("Error creating the report:\n%1"), errMsg);
-		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
-		return false;
-	}
-
-	file.SetCodepage(ucr::CP_UTF_8);
 	// Get paths
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
@@ -3250,63 +3230,21 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		}
 	}
 
+	int cmpIdx = reportContext.index + 1;
+
 	if (m_ptBuf[0]->GetTableEditing())
 	{
-		String headerText =
-			_T("<!DOCTYPE html>\n")
-			_T("<html>\n")
-			_T("<head>\n")
-			_T("<meta charset=\"UTF-8\">\n")
-			_T("<title>WinMerge File Compare Report</title>\n")
-			_T("<style>\n")
-			_T("<!--\n")
-			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); font-size: %dpt;  }\n")
-			_T("tr { vertical-align: top; line-height: 1.2 }\n")
-			_T("tr:first-child { position: sticky; top: 0; z-index: 99; }\n")
-			_T("td,th { word-break: break-all; padding: 0 3px; border: 1px solid #a0a0a0; }\n")
-			_T(".ln { position: sticky; left: 0; }\n")
-			_T(".title { font-weight: bold; color: white; background-color: blue; vertical-align: top; text-align: center; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
-			_T("%s")
-			_T("-->\n")
-			_T("</style>\n")
-			_T("<script>\n")
-			_T("<!--\n");
-		if (m_nBuffers < 3)
-			headerText +=
-				_T("window.addEventListener('load', (event) => {\n")
-				_T("  const div1 = document.getElementById(\"div1\");\n")
-				_T("  const div2 = document.getElementById(\"div2\");\n")
-				_T("  div1.addEventListener(\"scroll\", function() { div2.scrollTop = div1.scrollTop; div2.scrollLeft = div1.scrollLeft; });\n")
-				_T("  div2.addEventListener(\"scroll\", function() { div1.scrollTop = div2.scrollTop; div1.scrollLeft = div2.scrollLeft; });\n")
-				_T("});\n");
-		else
-			headerText +=
-				_T("window.addEventListener('load', (event) => {\n")
-				_T("  const div1 = document.getElementById(\"div1\");\n")
-				_T("  const div2 = document.getElementById(\"div2\");\n")
-				_T("  const div3 = document.getElementById(\"div3\");\n")
-				_T("  div1.addEventListener(\"scroll\", function() { div2.scrollTop = div3.scrollTop = div1.scrollTop; div2.scrollLeft = div3.scrollLeft = div1.scrollLeft; });\n")
-				_T("  div2.addEventListener(\"scroll\", function() { div1.scrollTop = div3.scrollTop = div2.scrollTop; div1.scrollLeft = div3.scrollLeft = div2.scrollLeft; });\n")
-				_T("  div3.addEventListener(\"scroll\", function() { div1.scrollTop = div2.scrollTop = div3.scrollTop; div1.scrollLeft = div2.scrollLeft = div3.scrollLeft; });\n")
-				_T("});\n");
-		headerText +=
-			_T("-->\n")
-			_T("</script>\n")
-			_T("</head>\n");
-		String header = 
-			strutils::format(headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
-		file.WriteString(header);
-
 		file.WriteString(
-			strutils::format(_T("<body>\n")
-			_T("<div style=\"display: grid; grid-template-columns: %s; grid-template-rows: max-content; height: calc(100vh - 16px);\">\n"), 
-				m_nBuffers < 3 ? _T("50% 50%") : _T("33.33% 33.33% 33.33%")));
+			strutils::format(
+				_T("<div class=\"cmp-grid cmp-grid-%d\">\n"), m_nBuffers));
 
 		// titles
 		int nBuffer;
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			String data = _T("<div class=\"title\">");
+			String data = strutils::format(_T("<div class=\"title %s\">"), 
+				(nBuffer == 0) ? _T("title-left") : (
+					(nBuffer == m_nBuffers - 1) ? _T("title-right") : _T("title-middle")));
 			file.WriteString(data);
 			file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
 			file.WriteString(_T("</div>\n"));
@@ -3320,9 +3258,9 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			int nColumnCountMax = m_ptBuf[nBuffer]->GetColumnCountMax();
 			file.WriteString(
 				strutils::format(
-				_T("<div id=\"div%d\" style=\"overflow-x: auto;\">\n")
-				_T("<table style=\"width: max-content; border-collapse: collapse;\">\n"), nBuffer + 1));
-			file.WriteString(_T("<tr>"));
+					_T("<div data-group=\"%d\" class=\"cmp-scroll\">\n")
+					_T("<table class=\"cmp-table-table cmp-table-auto\">\n"), cmpIdx));
+			file.WriteString(_T("<tr class=\"cmp-table-header\">"));
 			String columnHeader = _T("<th class=\"cn\"></th>");
 			for (int nColumn = 0; nColumn < nColumnCountMax; nColumn++)
 				columnHeader += _T("<th class=\"cn\">") + m_pView[0][nBuffer]->GetColumnName(nColumn) + _T("</th>");
@@ -3351,11 +3289,11 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 					++nDiff;
 					if (iVisibleLineNumber > 0)
 					{
-						tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+						tdtag += strutils::format(_T("<a id=\"d%d_%d\" href=\"#d%d_%d\">%d</a>"), cmpIdx, nDiff, cmpIdx, nDiff, iVisibleLineNumber);
 						iVisibleLineNumber = 0;
 					}
 					else
-						tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+						tdtag += strutils::format(_T("<a id=\"d%d_%d\" href=\"#d%d_%d\">.</a>"), cmpIdx, nDiff, cmpIdx, nDiff);
 				}
 				if (iVisibleLineNumber > 0)
 					tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
@@ -3371,9 +3309,9 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 				bool bBorderLine = nLineIndex + 1 < nLineCount && !m_pView[0][nBuffer]->GetLineVisible(nLineIndex + 1);
 				if (bBorderLine)
 				{
-					file.WriteString(_T("<tr style=\"height: 1px\">"));
+					file.WriteString(_T("<tr class=\"cmp-collapsed-row\">"));
 					file.WriteString(
-						strutils::format(_T("<td colspan=\"%d\" style=\"background-color: black\"></td>")
+						strutils::format(_T("<td colspan=\"%d\" class=\"cmp-collapsed-cell\"></td>")
 							, nColumnCountMax + 1));
 					file.WriteString(_T("</tr>\n"));
 				}
@@ -3381,35 +3319,13 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			file.WriteString(_T("</table></div>\n"));
 		}
 		file.WriteString(
-			_T("</div>\n</body>\n"));
+			_T("</div>\n"));
 	}
 	else
 	{
-		String headerText =
-			_T("<!DOCTYPE html>\n")
-			_T("<html>\n")
-			_T("<head>\n")
-			_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
-			_T("<title>WinMerge File Compare Report</title>\n")
-			_T("<style>\n")
-			_T("<!--\n")
-			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); }\n")
-			_T("th { position: sticky; top: 0; }\n")
-			_T("td,th { word-break: break-all; font-size: %dpt; padding: 0 3px; }\n")
-			_T("tr { vertical-align: top; }\n")
-			_T(".title { font-weight: bold; color: white; background-color: blue; vertical-align: top; text-align: center; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
-			_T("%s")
-			_T("-->\n")
-			_T("</style>\n")
-			_T("</head>\n");
-		String header = 
-			strutils::format(headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
-		file.WriteString(header);
-
 		file.WriteString(
-			_T("<body>\n")
-			_T("<table style=\"width: 100%; border-collapse: collapse;\">\n")
-			_T("<colgroup>\n"));
+			strutils::format(_T("<table class=\"cmp-table-text cmp-table-full cmp-table-%d\">\n")
+			_T("<colgroup>\n"), m_nBuffers));
 		double marginWidth = m_pView[0][0]->GetViewLineNumbers() ?
 			strutils::to_str(m_pView[0][0]->GetLineCount()).length() / 1.5 + 0.5 : 0.5;
 		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -3430,7 +3346,9 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		int nBuffer;
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			String data = _T("<th colspan=\"2\" class=\"title\">");
+			String data = strutils::format(_T("<th colspan=\"2\" class=\"title %s\">"), 
+				(nBuffer == 0) ? _T("title-left") : (
+					(nBuffer == m_nBuffers - 1) ? _T("title-right") : _T("title-middle")));
 			file.WriteString(data);
 			file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
 			file.WriteString(_T("</th>\n"));
@@ -3478,11 +3396,11 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 						++nDiff;
 						if (iVisibleLineNumber > 0)
 						{
-							tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+							tdtag += strutils::format(_T("<a id=\"d%d_%d\" href=\"#d%d_%d\">%d</a>"), cmpIdx, nDiff, cmpIdx, nDiff, iVisibleLineNumber);
 							iVisibleLineNumber = 0;
 						}
 						else
-							tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+							tdtag += strutils::format(_T("<a id=\"d%d_%d\" href=\"#d%d_%d\">.</a>"), cmpIdx, nDiff, cmpIdx, nDiff);
 					}
 					if (iVisibleLineNumber > 0)
 						tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
@@ -3508,11 +3426,12 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 			if (bBorderLine)
 			{
-				file.WriteString(_T("<tr style=\"height: 1px\">"));
+				file.WriteString(_T("<tr class=\"cmp-collapsed-row\">"));
 				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				{
 					if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
-						file.WriteString(_T("<td colspan=\"2\" style=\"background-color: black\"></td>"));
+						file.WriteString(strutils::format(
+							_T("<td colspan=\"2\" class=\"cmp-collapsed-cell\"></td>")));
 					else
 						file.WriteString(_T("<td colspan=\"2\"></td>"));
 				}
@@ -3524,51 +3443,17 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		}
 		file.WriteString(
 			_T("</tbody>\n")
-			_T("</table>\n")
-			_T("</body>\n"));
+			_T("</table>\n"));
 	}
-	file.WriteString(
-		_T("</html>\n"));
-
-	file.Close();
 
 	return true;
 }
 
-/**
- * @brief Generate report from file compare results.
- */
-void CMergeDoc::OnToolsGenerateReport()
+IMergeDoc::DocumentType CMergeDoc::GetDocumentType() const
 {
-	String s;
-
-	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, nullptr, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
-		return;
-
-	if (GenerateReport(s))
-		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
-}
-
-/**
- * @brief Generate patch from files selected.
- *
- * Creates a patch from selected files in active directory compare, or
- * active file compare. Files in file compare must be saved before
- * creating a patch.
- */
-void CMergeDoc::OnToolsGeneratePatch()
-{
-	// If there are changes in files, tell user to save them first
-	if (IsModified())
-	{
-		I18n::MessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
-		return;
-	}
-
-	CPatchTool patcher;
-	patcher.AddFiles(m_filePaths.GetLeft(),
-			m_filePaths.GetRight());
-	patcher.CreatePatch();
+	if (m_ptBuf[0]->GetTableEditing())
+		return IMergeDoc::DocumentType::Table;
+	return IMergeDoc::DocumentType::Text;
 }
 
 /**

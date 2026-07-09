@@ -32,6 +32,7 @@
 #include "BCMenu.h"
 #include "DirCmpReportDlg.h"
 #include "DirCmpReport.h"
+#include "FileCmpReport.h"
 #include "CompareStatisticsDlg.h"
 #include "LoadSaveCodepageDlg.h"
 #include "ConfirmFolderCopyDlg.h"
@@ -3310,7 +3311,7 @@ LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 
 	if (IMergeDoc * pMergeDoc = GetMainFrame()->GetActiveIMergeDoc())
 	{
-		pMergeDoc->GenerateReport(pMsg->sReportPath);
+		CFileCmpReport::GenerateDocumentReport({ pMergeDoc }, pMsg->sReportPath);
 		pMergeDoc->CloseNow();
 	}
 	MSG msg;

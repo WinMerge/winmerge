@@ -5114,6 +5114,7 @@ STRINGTABLE
 BEGIN
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
     IDS_REPORT_SUCCESS      "Report created successfully."
+    IDS_INCLUDE_ALL_COMPARISONS "Include all %1 open file comparisons in the report?"
 END
 
 // FILE COMPARE : SYNC POINT

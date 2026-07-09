@@ -69,7 +69,8 @@ public:
 	void SetDirDoc(IDirDoc * pDirDoc) override;
 	void DirDocClosing(IDirDoc * pDirDoc) override;
 	bool CloseNow() override;
-	bool GenerateReport(const String& sFileName) const override { return true; }
+	bool GenerateReport(ReportContext& reportContext) const override { return true; }
+	IMergeDoc::DocumentType GetDocumentType() const override { return IMergeDoc::DocumentType::Unknown; }
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	PackingInfo* GetUnpacker() { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker;  };

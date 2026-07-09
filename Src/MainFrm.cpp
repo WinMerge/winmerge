@@ -38,6 +38,7 @@
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "WebPageDiffFrm.h"
+#include "FileCmpReport.h"
 #include "OutputDoc.h"
 #include "OutputBar.h"
 #include "OutputView.h"
@@ -304,6 +305,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
+	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	// [Window] menu
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
@@ -1073,7 +1075,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
-		pMergeDoc->GenerateReport(sReportFile);
+		CFileCmpReport::GenerateDocumentReport({ pMergeDoc }, sReportFile);
 
 	return true;
 }
@@ -1119,7 +1121,7 @@ bool CMainFrame::ShowHexMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocati
 		pHexMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
-		pHexMergeDoc->GenerateReport(sReportFile);
+		CFileCmpReport::GenerateDocumentReport({ pHexMergeDoc }, sReportFile);
 
 	return true;
 }
@@ -1155,7 +1157,7 @@ bool CMainFrame::ShowImgMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocati
 		pImgMergeFrame->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
-		pImgMergeFrame->GenerateReport(sReportFile);
+		CFileCmpReport::GenerateDocumentReport({ pImgMergeFrame }, sReportFile);
 
 	return true;
 }
@@ -1186,11 +1188,7 @@ bool CMainFrame::ShowWebDiffDoc(IDirDoc * pDirDoc, int nFiles, const FileLocatio
 	pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 
 	if (!sReportFile.empty())
-	{
-		completed = false;
-		if (pWebPageMergeFrame->GenerateReport(sReportFile, [&result, &completed](bool res) { result = res; completed = true; }))
-			WaitAndDoMessageLoop(completed, 0);
-	}
+		CFileCmpReport::GenerateDocumentReport({ pWebPageMergeFrame }, sReportFile);
 
 	return true;
 }
@@ -2034,6 +2032,63 @@ std::vector<CWebPageDiffFrame *> CMainFrame::GetAllWebPageDiffFrames()
 }
 
 /**
+ * @brief Get all IMergeDoc instances (text, binary, image, webpage comparisons)
+ * @return Vector of IMergeDoc pointers from all open comparison windows
+ */
+std::vector<IMergeDoc*> CMainFrame::GetAllMergeDocuments()
+{
+	std::vector<IMergeDoc*> allDocs;
+	for (auto* doc : GetAllMergeDocs())
+		allDocs.push_back(doc);
+	for (auto* doc : GetAllHexMergeDocs())
+		allDocs.push_back(doc);
+	for (auto* doc : GetAllImgMergeFrames())
+		allDocs.push_back(doc);
+	for (auto* doc : GetAllWebPageDiffFrames())
+		allDocs.push_back(doc);
+	return allDocs;
+}
+
+/**
+ * @brief Unified handler for generating reports from any comparison window type.
+ * Called from CMergeDoc, CImgMergeFrame, and CWebPageDiffFrame OnToolsGenerateReport().
+ * Displays file dialog and decides between single or multi-document report.
+ */
+void CMainFrame::OnToolsGenerateReport()
+{
+	String s;
+
+	if (!SelectFile(GetSafeHwnd(), s, false, nullptr, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
+		return;
+
+	// Ask if user wants to include all open comparisons (all types: text, image, webpage)
+	int nResult = IDNO;
+	auto allDocs = GetAllMergeDocuments();
+	if (allDocs.size() > 1)
+	{
+		String msg = strutils::format(
+			_("Include all %zd open comparisons (text, image, webpage) in the report?"), 
+			allDocs.size());
+		nResult = AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONQUESTION);
+	}
+
+	bool bSuccess = false;
+	if (nResult == IDYES)
+	{
+		// Generate unified report for all open comparisons (all types)
+		bSuccess = CFileCmpReport::GenerateDocumentReport(allDocs, s);
+	}
+	else
+	{
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+			bSuccess = CFileCmpReport::GenerateDocumentReport({ pMergeDoc }, s);
+	}
+
+	if (bSuccess)
+		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+}
+
+/**
  * @brief Obtain a merge doc to display a difference in files.
  * @return Pointer to CMergeDoc to use. 
  */
@@ -2060,7 +2115,46 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, in
  */
 void CMainFrame::OnToolsGeneratePatch()
 {
+	int nResult = IDNO;
+	const MergeDocList &mergedocs = GetAllMergeDocs();
+
+	if (mergedocs.GetSize() > 1)
+	{
+		String msg = strutils::format(
+			_("Include all %zd open comparisons in the patch?"), 
+			mergedocs.GetSize());
+		nResult = AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONQUESTION);
+	}
+
+	std::vector<const CMergeDoc*> docsToPatch;
+	if (nResult == IDYES)
+	{
+		for (auto* doc : mergedocs)
+			docsToPatch.push_back(doc);
+	}
+	else
+	{
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+			docsToPatch.push_back(static_cast<const CMergeDoc*>(pMergeDoc));
+	}
+
 	CPatchTool patcher;
+	bool modified = false;
+	for (auto* doc : docsToPatch)
+	{
+		// If there are changes in files, tell user to save them first
+		if (doc->IsModified())
+			modified = true;
+
+		patcher.AddFiles(doc->GetPath(0), doc->GetPath(1));
+	}
+
+	if (modified)
+	{
+		I18n::MessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
+		return;
+	}
+
 	patcher.CreatePatch();
 }
 
