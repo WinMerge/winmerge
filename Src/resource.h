@@ -58,6 +58,7 @@
 #define IDD_MESSAGE_BOX                 219
 #define IDD_PREFERENCES                 224
 #define IDD_DIRCMP_REPORT               226
+#define IDD_FILECMP_REPORT              227
 #define IDD_COMPARE_STATISTICS          229
 #define IDD_COMPARE_STATISTICS3         230
 #define IDD_LOAD_SAVE_CODEPAGE          231
@@ -458,6 +459,8 @@
 #define IDC_SELECTION_TEXT_COLOR        1287
 #define IDC_REGULAR_TEXT_COLOR          1288
 #define IDC_AUTO_COMPLETE_SOURCE        1289
+#define IDC_REPORT_WINDOW_LIST          1290
+#define IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES 1291
 #define IDC_FILTER_USER_BROWSE          1297
 #define IDC_FILTER_USER_PATH            1298
 #define IDC_FILTERCOMMENTS_CHECK        1299

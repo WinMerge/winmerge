@@ -855,6 +855,12 @@
     <ClCompile Include="SyntaxParserHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileCmpReport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileCmpReportDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1631,11 +1637,11 @@
     <ClInclude Include="SyntaxParserHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ISyntaxParserFactory.h">
+    <ClInclude Include="FileCmpReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SyntaxParserRegistry.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FileCmpReportDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

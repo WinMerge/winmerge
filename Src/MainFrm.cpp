@@ -86,6 +86,7 @@
 #include "ColorSchemes.h"
 #include "OptionsSyntaxColors.h"
 #include "SysColorHook.h"
+#include "FileCmpReportDlg.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -2049,6 +2050,20 @@ std::vector<IMergeDoc*> CMainFrame::GetAllMergeDocuments()
 	return allDocs;
 }
 
+CFrameWnd* GetFrameWndByDocument(IMergeDoc* pDoc)
+{
+	CDocument* pDocBase = dynamic_cast<CDocument*>(pDoc);
+	if (pDocBase)
+	{
+		POSITION pos = pDocBase->GetFirstViewPosition();
+		if (pos == nullptr)
+			return nullptr;
+		auto* pView = pDocBase->GetNextView(pos);
+		return pView ? pView->GetParentFrame() : nullptr;
+	}
+	return dynamic_cast<CFrameWnd*>(pDoc);
+}
+
 /**
  * @brief Unified handler for generating reports from any comparison window type.
  * Called from CMergeDoc, CImgMergeFrame, and CWebPageDiffFrame OnToolsGenerateReport().
@@ -2056,34 +2071,30 @@ std::vector<IMergeDoc*> CMainFrame::GetAllMergeDocuments()
  */
 void CMainFrame::OnToolsGenerateReport()
 {
-	String s;
+	FileCmpReportDlg dlg;
+	IMergeDoc* pMergeDoc = GetActiveIMergeDoc();
+	std::vector<FileCmpReportDlg::WindowItem> windowInfoList;
 
-	if (!SelectFile(GetSafeHwnd(), s, false, nullptr, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
+	for (auto* pDoc : GetAllMergeDocuments())
+	{
+		FileCmpReportDlg::WindowItem item;
+		item.pFrame = GetFrameWndByDocument(pDoc);
+		item.data = reinterpret_cast<uintptr_t>(pDoc);
+		item.checked = (pDoc == pMergeDoc);
+		windowInfoList.push_back(item);
+	}
+	dlg.SetWindows(windowInfoList);
+
+	INT_PTR ans = dlg.DoModal();
+	if (ans == IDCANCEL)
 		return;
 
-	// Ask if user wants to include all open comparisons (all types: text, image, webpage)
-	int nResult = IDNO;
-	auto allDocs = GetAllMergeDocuments();
-	if (allDocs.size() > 1)
-	{
-		String msg = strutils::format(
-			_("Include all %zd open comparisons (text, image, webpage) in the report?"), 
-			allDocs.size());
-		nResult = AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONQUESTION);
-	}
+	String s = dlg.GetOptions().reportFile;
+	std::vector<IMergeDoc*> docs;
+	for (const auto data : dlg.GetOptions().selectedData)
+		docs.push_back(reinterpret_cast<IMergeDoc*>(data));
 
-	bool bSuccess = false;
-	if (nResult == IDYES)
-	{
-		// Generate unified report for all open comparisons (all types)
-		bSuccess = CFileCmpReport::GenerateDocumentReport(allDocs, s);
-	}
-	else
-	{
-		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-			bSuccess = CFileCmpReport::GenerateDocumentReport({ pMergeDoc }, s);
-	}
-
+	bool bSuccess = CFileCmpReport::GenerateDocumentReport(docs, s);
 	if (bSuccess)
 		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
