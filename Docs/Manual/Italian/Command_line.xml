@@ -9,11 +9,11 @@
     </indexterm></title>
 
   <para>La riga di comando WinMerge accetta diversi parametri oltre ai percorsi da
-confrontare.La maggior parte di questi parametri sono destinati all'utilizzo
-di WinMerge come applicazione di confronto esterna o all'avvio di
-un'operazione di confronto da un file batch.</para>
+confrontare. La maggior parte di questi parametri sono destinati all'uso di
+WinMerge come applicazione di confronto esterna o all'avvio di un'operazione
+di confronto da un file batch.</para>
 
-  <para>Utilizza uno di questi formati per il comando WinMerge:</para>
+  <para>Usa uno di questi formati per il comando WinMerge:</para>
 
   <para><cmdsynopsis sepchar=" ">
 <command>WinMergeU</command> <arg choice="opt"
@@ -91,9 +91,9 @@ rep="norepeat"><option>/o</option>
 rep="norepeat"><replaceable>conflittofile</replaceable></arg></cmdsynopsis>
 
   <para>L'immissione del comando senza parametri o nomi di percorso apre
-semplicemente la finestra WinMerge.I parametri sono preceduti da una barra (
-<literal>/</literal> ) o da un trattino ( <literal>-</literal> ).I nomi dei
-percorsi non hanno caratteri di prefisso.</para>
+semplicemente la finestra WinMerge. I parametri sono preceduti da una barra
+( <literal>/</literal> ) o da un trattino ( <literal>-</literal> ). I nomi
+dei percorsi non hanno caratteri di prefisso.</para>
 
   <variablelist>
     <varlistentry>
@@ -109,12 +109,13 @@ percorsi non hanno caratteri di prefisso.</para>
       </indexterm>
       <term><option>/r</option></term>
       <listitem>
-        <para>Confronta tutti i file in tutte le sottocartelle (confronto ricorsivo).Le
+        <para>Confronta tutti i file in tutte le sottocartelle (confronto ricorsivo). Le
 cartelle univoche (presenti solo su un lato) sono elencate nel risultato del
-confronto come elementi separati.Tieni presente che l'inclusione di
-sottocartelle può aumentare significativamente il tempo di confronto.Senza
+confronto come elementi separati. Tieni presente che l'inclusione di
+sottocartelle può aumentare significativamente il tempo di confronto. Senza
 questo parametro, WinMerge elenca solo i file e le sottocartelle al livello
-superiore delle due cartelle di destinazione.Non confronta le sottocartelle.</para>
+superiore delle due cartelle di destinazione. Non confronta le
+sottocartelle.</para>
       </listitem>
     </varlistentry>
 
@@ -125,7 +126,7 @@ superiore delle due cartelle di destinazione.Non confronta le sottocartelle.</pa
       <term><option>/r-</option></term>
       <listitem>
         <para>Confronta tutti i file all'interno delle cartelle specificate ma esclude i
-file e le sottocartelle all'interno delle relative sottocartelle.Ciò
+file e le sottocartelle all'interno delle relative sottocartelle. Ciò
 consente un tempo di confronto più breve.</para>
       </listitem>
     </varlistentry>
@@ -139,9 +140,9 @@ consente un tempo di confronto più breve.</para>
       <term><option>/e</option></term>
       <listitem>
         <para>Ti consente di chiudere WinMerge con la semplice pressione del tasto
-<keycap>Esc</keycap>.Ciò è utile quando usi WinMerge come applicazione di
+<keycap>Esc</keycap>. Ciò è utile quando usi WinMerge come applicazione di
 confronto esterna: puoi chiudere WinMerge rapidamente, come una finestra di
-dialogo.Senza questo parametro, potresti dover premere <keycap>Esc</keycap>
+dialogo. Senza questo parametro, potresti dover premere <keycap>Esc</keycap>
 più volte per chiudere tutte le finestre.</para>
       </listitem>
     </varlistentry>
@@ -154,10 +155,10 @@ più volte per chiudere tutte le finestre.</para>
 
       <term><option>/f</option></term>
       <listitem>
-        <para>Applica un filtro specificato per limitare il confronto.Il filtro può essere
-una maschera di file come <filename><userinput>*.h
+        <para>Applica un filtro specificato per limitare il confronto. Il filtro può
+essere una maschera di file come <filename><userinput>*.h
 *.cpp</userinput></filename>, o il nome di un filtro di file come
-<userinput>XML/HTML Devel</userinput>.Aggiungi virgolette attorno a una
+<userinput>XML/HTML Devel</userinput>. Aggiungi virgolette attorno a una
 maschera di filtro o a un nome che contiene spazi.</para>
       </listitem>
     </varlistentry>
@@ -170,7 +171,7 @@ maschera di filtro o a un nome che contiene spazi.</para>
 
       <term><option>/m <replaceable>metodo di confronto</replaceable></option></term>
       <listitem>
-        <para>Imposta il metodo di confronto da utilizzare per il confronto.Può essere una
+        <para>Imposta il metodo di confronto da usare per il confronto. Può essere una
 delle parole chiave <userinput>Full</userinput>,
 <userinput>Quick</userinput>, <userinput>Binary</userinput>,
 <userinput>Date</userinput>, <userinput>SizeDate</userinput>,
@@ -198,9 +199,9 @@ delle parole chiave <userinput>Text</userinput>,
       <term><option>/x</option></term>
       <listitem>
         <para>Chiude WinMerge (dopo aver visualizzato una finestra di dialogo informativa)
-quando si avvia un confronto di file identici.Dopo il confronto il parametro
-non ha alcun effetto, ad esempio se i file diventano identici in seguito
-alla fusione o alla modifica.Questo parametro è utile quando si utilizza
+quando si avvia un confronto di file identici. Dopo il confronto il
+parametro non ha alcun effetto, ad esempio se i file diventano identici in
+seguito alla fusione o alla modifica. Questo parametro è utile quando si usa
 WinMerge come applicazione di confronto esterna o quando si desidera
 eliminare passaggi non necessari ignorando i file che non presentano
 differenze.</para>
@@ -210,7 +211,8 @@ differenze.</para>
     <varlistentry>
       <term><option>/xq</option></term>
       <listitem>
-        <para>È simile a <option>/x</option> ma non mostra il messaggio sui file identici.</para>
+        <para>È simile a <option>/x</option> ma nonvisualizza il messaggio sui file
+identici.</para>
       </listitem>
     </varlistentry>
 
@@ -222,8 +224,8 @@ differenze.</para>
 
       <term><option>/s</option></term>
       <listitem>
-        <para>Limita le finestre WinMerge a una singola istanza.Ad esempio, se WinMerge è
-già in esecuzione, nella stessa istanza si apre un nuovo confronto.Senza
+        <para>Limita le finestre WinMerge a una singola istanza. Ad esempio, se WinMerge è
+già in esecuzione, nella stessa istanza si apre un nuovo confronto. Senza
 questo parametro sono consentite più finestre: a seconda delle altre
 impostazioni, un nuovo confronto potrebbe aprirsi nella finestra esistente o
 in una nuova finestra.</para>
@@ -233,7 +235,7 @@ in una nuova finestra.</para>
     <varlistentry>
       <term><option>/sw</option></term>
       <listitem>
-        <para>Limita la finestra WinMerge a un'istanza e all'opzione /s.Tuttavia, attende
+        <para>Limita la finestra WinMerge a un'istanza e all'opzione /s. Tuttavia, attende
 che l'istanza che visualizza la finestra termini.</para>
       </listitem>
     </varlistentry>
@@ -254,7 +256,7 @@ dell'opzione "Consenti l'esecuzione di una sola istanza".</para>
       <term><option>/ul</option></term>
       <listitem>
         <para>Impedisce a WinMerge di aggiungere il percorso sinistro all'elenco dei
-prodotti più utilizzati di recente (MRU).Le applicazioni esterne non devono
+prodotti più usati di recente (MRU). Le applicazioni esterne non devono
 aggiungere percorsi all'elenco MRU nella finestra di dialogo Seleziona file
 o cartelle.</para>
       </listitem>
@@ -264,7 +266,7 @@ o cartelle.</para>
       <term><option>/um</option></term>
       <listitem>
         <para>Impedisce a WinMerge di aggiungere il percorso intermedio all'elenco dei
-prodotti più utilizzati di recente (MRU).Le applicazioni esterne non devono
+prodotti più usati di recente (MRU). Le applicazioni esterne non devono
 aggiungere percorsi all'elenco MRU nella finestra di dialogo Seleziona file
 o cartelle.</para>
       </listitem>
@@ -274,7 +276,7 @@ o cartelle.</para>
       <term><option>/ur</option></term>
       <listitem>
         <para>Impedisce a WinMerge di aggiungere il percorso corretto all'elenco dei
-prodotti più utilizzati di recente (MRU).Le applicazioni esterne non devono
+prodotti più usati di recente (MRU). Le applicazioni esterne non devono
 aggiungere percorsi all'elenco MRU nella finestra di dialogo Seleziona file
 o cartelle.</para>
       </listitem>
@@ -284,9 +286,9 @@ o cartelle.</para>
       <term><option>/u</option></term>
       <listitem>
         <para>Impedisce a WinMerge di aggiungere il percorso (sinistro o destro)
-all'elenco Utilizzati più di recente (MRU).Le applicazioni esterne non
-devono aggiungere percorsi all'elenco MRU nella finestra di dialogo
-Seleziona file o cartelle.</para>
+all'elenco Usati più di recente (MRU). Le applicazioni esterne non devono
+aggiungere percorsi all'elenco MRU nella finestra di dialogo Seleziona file
+o cartelle.</para>
       </listitem>
     </varlistentry>
 
@@ -297,24 +299,24 @@ Seleziona file o cartelle.</para>
 
       <term><option>/wl</option></term>
       <listitem>
-        <para>Apre il lato sinistro in sola lettura.Utilizzalo quando non desideri
-modificare gli elementi sul lato sinistro nel confronto.</para>
+        <para>Apre il lato sinistro in sola lettura. Usalo quando non vuoi modificare gli
+elementi sul lato sinistro nel confronto.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/wm</option></term>
       <listitem>
-        <para>Apre il lato centrale in sola lettura.Utilizzalo quando non desideri
-modificare gli elementi sul lato destro nel confronto.</para>
+        <para>Apre il lato centrale in sola lettura. Usalo quando non vuoi modificare gli
+elementi sul lato destro nel confronto.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/wr</option></term>
       <listitem>
-        <para>Apre il lato destro in sola lettura.Utilizzalo quando non desideri
-modificare gli elementi sul lato destro nel confronto.</para>
+        <para>Apre il lato destro in sola lettura. Usalo quando non vuoi modificare gli
+elementi sul lato destro nel confronto.</para>
       </listitem>
     </varlistentry>
 
@@ -347,8 +349,8 @@ modificare gli elementi sul lato destro nel confronto.</para>
 
       <term><option>/minimizza</option></term>
       <listitem>
-        <para>Avvia WinMerge come finestra ridotta a icona.Questa opzione può essere utile
-durante lunghi confronti.</para>
+        <para>Avvia WinMerge come finestra ridotta a icona. Questa opzione può essere
+utile durante lunghi confronti.</para>
       </listitem>
     </varlistentry>
 
@@ -398,7 +400,7 @@ file.</para>
     <varlistentry>
       <term><option>/table-delimiter <replaceable>delimitatore</replaceable></option></term>
       <listitem>
-        <para>Specifica un carattere delimitatore per la modifica della tabella.Per
+        <para>Specifica un carattere delimitatore per la modifica della tabella. Per
 specificare un carattere di tabulazione, specificare "tab", "\t" o "\x09".</para>
       </listitem>
     </varlistentry>
@@ -407,10 +409,10 @@ specificare un carattere di tabulazione, specificare "tab", "\t" o "\x09".</para
       <term><option>/dl</option></term>
       <listitem>
         <para>Specifica una descrizione nella barra del titolo sul lato sinistro,
-sovrascrivendo il testo della cartella o del nome file predefinito.Ad
+sovrascrivendo il testo della cartella o del nome file predefinito. Ad
 esempio: <userinput>/dl "Versione 1.0</userinput>" o <userinput>/dl
-WorkingCopy</userinput>.Utilizzare le virgolette attorno alle descrizioni
-che contengono spazi.</para>
+WorkingCopy</userinput>. Usa le virgolette attorno alle descrizioni che
+contengono spazi.</para>
       </listitem>
     </varlistentry>
 
@@ -456,7 +458,7 @@ come <option>/dl</option>.</para>
       <listitem>
         <para>
 Esegue WinMerge senza visualizzare finestre di messaggio durante il
-confronto o la generazione di report.Il processo termina automaticamente al
+confronto o la generazione di report. Il processo termina automaticamente al
 termine dell'operazione, rendendolo adatto all'esecuzione batch o tramite
 script.</para>
       </listitem>
@@ -466,8 +468,8 @@ script.</para>
       <term><option>/noprefs</option></term>
       <listitem>
         <para>
-Esegue WinMerge senza caricare o salvare le impostazioni dal registro.Tutti
-i confronti utilizzano solo le preferenze predefinite.</para>
+Esegue WinMerge senza caricare o salvare le impostazioni dal registro. Tutti
+i confronti usano solo le preferenze predefinite.</para>
       </listitem>
     </varlistentry>
 
@@ -560,7 +562,7 @@ consente di ignorare i commenti.</para></listitem>
       <term><option>/unpacker <replaceable>pipeline di plugin</replaceable></option></term>
       <listitem>
         <para>
-Specifica la pipeline del plugin per il plugin Unpacker.Esempio:
+Specifica la pipeline del plugin per il plugin Unpacker. Esempio:
 <option>/unpacker "SortAscending|SelectLines 1-10"</option></para>
       </listitem>
     </varlistentry>
@@ -569,7 +571,7 @@ Specifica la pipeline del plugin per il plugin Unpacker.Esempio:
       <term><option>/prediffer <replaceable>pipeline di plug-in</replaceable></option></term>
       <listitem>
         <para>
-Specifica la pipeline del plug-in per il plug-in Prediffer.Esempio:
+Specifica la pipeline del plug-in per il plug-in Prediffer. Esempio:
 <option>/prediffer "IgnoraColonne 1-10"</option></para>
       </listitem>
     </varlistentry>
@@ -578,7 +580,7 @@ Specifica la pipeline del plug-in per il plug-in Prediffer.Esempio:
       <term><option>/cp <replaceable>codepage</replaceable></option></term>
       <listitem>
         <para>
-Specifica la tabella codici da utilizzare per il confronto dei file.Esempio:
+Specifica la tabella codici da usare per il confronto dei file. Esempio:
 <option>/cp 65001</option></para>
       </listitem>
     </varlistentry>
@@ -605,7 +607,7 @@ di impostazioni, può essere omesso:</para>
 <option>/cfg DiffAlgo=3</option></para>
         <para>
 Nota: questa voce non spiega quali nomi di configurazione sono
-disponibili.Per un elenco delle impostazioni, fare riferimento a
+disponibili. Per un elenco delle impostazioni, fare riferimento a
 <filename>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge</filename> in
 regedit.</para>
       </listitem>
@@ -637,7 +639,7 @@ destro.</para>
 percorso (<option><replaceable>leftpath</replaceable></option>,
 <option><replaceable>middlepath</replaceable></option> e
 <option><replaceable>rightpath</replaceable></option>) devono puntare allo
-stesso tipo di destinazione (cartelle o file).Se WinMerge non riesce a
+stesso tipo di destinazione (cartelle o file). Se WinMerge non riesce a
 trovare nessuno dei percorsi specificati, apre la finestra di dialogo
 Seleziona file o cartelle, dove è possibile cercare i percorsi corretti.</para>
 
@@ -674,21 +676,19 @@ file chiamato <filename>File.txt</filename>.</para>
 i file dei risultati uniti.</para>
 
         <para>Il percorso di output è raramente necessario quando si avvia WinMerge dalla
-riga di comando.È pensato per essere utilizzato con strumenti di controllo
-della versione, dove potrebbe essere necessario specificare un percorso di
-output per il file <wordasword>risultato</wordasword>.Se specifichi un
-percorso di output, WinMerge mostra comunque solo due o tre file nella
-finestra Confronta file.Tuttavia, se si salva uno di questi file, verrà
-scritto nel percorso di output, lasciando intatti i due o tre file di
-origine.</para>
+riga di comando.  pensato per essere usato con strumenti di controllo della
+versione, dove potrebbe essere necessario specificare un percorso di output
+per il file <wordasword>risultato</wordasword>. Se specifichi un percorso di
+output, WinMergevisualizza comunque solo due o tre file nella finestra
+Confronta file. Tuttavia, se si salva uno di questi file, verrà scritto nel
+percorso di output, lasciando intatti i due o tre file di origine.</para>
 
         <para>I sistemi di controllo della versione in genere si riferiscono ai file
-sorgente e di risultato utilizzando termini come
-<glossterm>loro</glossterm>, <glossterm>mio</glossterm> e
-<glossterm>unito</glossterm> o <glossterm>risolto</glossterm>.Se specifichi
-un percorso di output sulla riga di comando di WinMerge e stai lavorando con
-un sistema di controllo della versione, dovresti elencare i file in
-quest'ordine.</para>
+sorgente e di risultato usando termini come <glossterm>loro</glossterm>,
+<glossterm>mio</glossterm> e <glossterm>unito</glossterm> o
+<glossterm>risolto</glossterm>. Se specifichi un percorso di output sulla
+riga di comando di WinMerge e stai lavorando con un sistema di controllo
+della versione, dovresti elencare i file in quest'ordine.</para>
       </listitem>
     </varlistentry>
 
@@ -696,15 +696,15 @@ quest'ordine.</para>
       <term><option>/o <replaceable>percorso di output</replaceable></option></term>
       <listitem>
         <para>
-Genera un rapporto di confronto per file o cartelle.Esempio:
+Genera un rapporto di confronto per file o cartelle. Esempio:
 <option>WinMergeU percorso1 percorso2 /o c:\tmp\report.html</option></para>
         <para>Spesso è utile combinare questa opzione con:</para>
         <itemizedlist>
           <listitem><para><option>/noninteractive</option> - esce da WinMerge dopo aver prodotto il
 report.</para></listitem>
           <listitem><para><option>/minimize</option> - avvia WinMerge in stato ridotto a icona.</para></listitem>
-          <listitem><para><option>/noprefs</option> - ignora le preferenze correnti e utilizza le
-impostazioni predefinite.Qualsiasi modifica apportata con
+          <listitem><para><option>/noprefs</option> - ignora le preferenze correnti e usa le
+impostazioni predefinite. Qualsiasi modifica apportata con
 <option>/cfg</option> sarà quindi temporanea e non verrà salvata.</para></listitem>
         </itemizedlist>
         <para>
@@ -739,10 +739,10 @@ confronto file.</para></listitem>
       <term><option><replaceable>file di conflitto</replaceable></option></term>
       <listitem>
         <para>Specifica un file di conflitto, generalmente generato da un sistema di
-controllo della versione.Il file di conflitto si apre nella finestra
+controllo della versione. Il file di conflitto si apre nella finestra
 Confronto file, dove è possibile unire e risolvere i conflitti, come
-descritto in <xref linkend="ResolveConflictFiles" />.Tieni presente che non
-è possibile utilizzare altri percorsi con un file in conflitto.</para>
+descritto in <xref linkend="ResolveConflictFiles" />. Tieni presente che non
+è possibile usare altri percorsi con un file in conflitto.</para>
       </listitem>
     </varlistentry>
 
@@ -754,8 +754,8 @@ descritto in <xref linkend="ResolveConflictFiles" />.Tieni presente che non
 
       <term><option>/file ini <replaceable>file ini</replaceable></option></term>
       <listitem>
-        <para>specifica un file INI utilizzato per caricare e salvare le impostazioni al
-posto del registro.</para>
+        <para>specifica un file INI usato per caricare e salvare le impostazioni al posto
+del registro.</para>
       </listitem>
     </varlistentry>
 

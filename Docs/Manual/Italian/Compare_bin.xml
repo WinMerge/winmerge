@@ -10,7 +10,7 @@
     <secondary>binario</secondary>
   </indexterm>
 
-  <para>WinMerge può visualizzare e modificare i tuoi file in formato esadecimale.</para>
+  <para>WinMerge può visualizzare e modificare i file in formato esadecimale.</para>
   
   <mediaobject>
 <imageobject> <imagedata fileref="screenshots/hexcmp1.png" format="PNG" />
@@ -21,8 +21,8 @@
   
   <para>
 L'apertura dei file in formato esadecimale dipende dal fatto che il nome del
-file corrisponda ai modelli definiti.Per impostazione predefinita, se
-l'estensione del file è .bin o .frx, verrà aperto in formato esadecimale.Se
-desideri modificare i modelli, specificalo nella pagina Confronta/Binario
-nella finestra di dialogo Opzioni.</para>
+file corrisponda ai modelli definiti. Per impostazione predefinita, se
+l'estensione del file è .bin o .frx, verrà aperto in formato esadecimale. Se
+vuoi modificare i modelli, specificalo nella pagina Confronta/Binario nella
+finestra di dialogo Opzioni.</para>
 </article>

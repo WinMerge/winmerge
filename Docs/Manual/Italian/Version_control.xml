@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Version_control">
-  <title>Utilizzo di WinMerge con altri strumenti<indexterm>
+  <title>Uso di WinMerge con altri strumenti<indexterm>
       <primary>integrazione</primary>
     </indexterm></title>
 
   <para>Il confronto e l'unione dei file sono spesso attività secondarie in un
-processo di gestione delle modifiche più ampio.Per questo motivo WinMerge
-viene spesso utilizzato non solo da solo, ma anche insieme ad altri
-strumenti.Inoltre, le utilità diff e merge forniscono funzionalità diverse,
-quindi a volte è utile combinare diversi strumenti.Questo argomento descrive
-i metodi principali per utilizzare WinMerge con altri strumenti.</para>
+processo di gestione delle modifiche più ampio. Per questo motivo WinMerge
+viene spesso usato non solo da solo, ma anche insieme ad altri
+strumenti. Inoltre, le utilità diff e merge forniscono funzionalità diverse,
+quindi a volte è utile combinare diversi strumenti. Questo argomento
+descrive i metodi principali per usare WinMerge con altri strumenti.</para>
 
   <section>
-    <title>Utilizzo dell'interfaccia della riga di comando (CLI)</title>
+    <title>Uso dell'interfaccia della riga di comando (CLI)</title>
 
     <para>L'interfaccia della riga di comando (CLI) di WinMerge, descritta in <xref
 linkend="Command_line" />, consente di eseguire WinMerge da una finestra del
-prompt dei comandi, da script o da un altro strumento o programma.In
+prompt dei comandi, da script o da un altro strumento o programma. In
 sostanza, qualsiasi programma che consenta di richiamare un eseguibile
-esterno con almeno un percorso, può essere utilizzato per avviare
-un'operazione WinMerge.</para>
+esterno con almeno un percorso, può essere usato per avviare un'operazione
+WinMerge.</para>
 
     <para>Ecco solo alcuni esempi:</para>
 
@@ -42,42 +42,41 @@ passare parametri, come questo:</para>
     <tip>
       <para>Allo stesso modo, molti strumenti GUI (come client di controllo versione e
 IDE) che includono strumenti diff integrati consentono invece di configurare
-WinMerge come strumento diff predefinito.La sezione successiva descrive come
-utilizzare WinMerge in questo modo con TortoiseSVN e Visual Studio Team
-Foundation Server.Per altri strumenti, come Eclipse e Perforce, controlla la
-loro documentazione o cerca in Internet dettagli ed esempi.</para>
+WinMerge come strumento diff predefinito. La sezione successiva descrive
+come usare WinMerge in questo modo con TortoiseSVN e Visual Studio Team
+Foundation Server. Per altri strumenti, come Eclipse e Perforce, controlla
+la loro documentazione o cerca in Internet dettagli ed esempi.</para>
     </tip>
   </section>
 
   <section id="VersionControl_vcs">
-    <title>Utilizzo di WinMerge con sistemi di controllo della versione<indexterm>
+    <title>Uso di WinMerge con sistemi di controllo della versione<indexterm>
         <primary>sistemi di controllo della versione</primary>
 
         <secondary>integrazione con</secondary>
       </indexterm></title>
 
     <para>È possibile configurare WinMerge per interagire con alcuni sistemi di
-controllo della versione supportati (VCS).Questa sezione descrive
+controllo della versione supportati (VCS). Questa sezione descrive
 l'integrazione VCS e fornisce alcuni esempi.</para>
 
     <section>
-      <title>Utilizzo di WinMerge come strumento diff del sistema di controllo della
-versione</title>
+      <title>Uso di WinMerge come strumento diff del sistema di controllo della versione</title>
 
       <indexterm>
         <primary>Integrazione TortoiseSVN</primary>
       </indexterm>
 
       <para>Quando confronti i file in TortoiseCVS, TortoiseSVN o TortoiseGit, puoi fare
-in modo che VCS avvii WinMerge invece della sua utilità diff nativa.Puoi
+in modo che VCS avvii WinMerge invece della sua utilità diff nativa. Puoi
 configurare alcune di queste integrazioni durante l'<link
 linkend="Installing_usinginstaller">installazione di WinMerge</link>.</para>
 
       <example>
         <title>Integrazione TortoiseSVN</title>
 
-        <para>Ecco un'operazione di confronto di esempio in TortoiseSVN che utilizza
-l'integrazione WinMerge.L'integrazione con TortoiseCVS e TortoiseGit è
+        <para>Ecco un'operazione di confronto di esempio in TortoiseSVN che usa
+l'integrazione WinMerge. L'integrazione con TortoiseCVS e TortoiseGit è
 simile.</para>
 
 <orderedlist>
@@ -89,21 +88,21 @@ estratto.</para>
           <listitem>
             <para>Fai clic con il pulsante destro del mouse su un file che si trova sotto la
 gestione di Subversion (solitamente indicato da un'icona TortoiseSVN
-distinta) e fai clic su <guimenu>TortoiseSVN</guimenu> nel menu contestuale.</para>
+distinta) e seleziona <guimenu>TortoiseSVN</guimenu> nel menu contestuale.</para>
 
             <itemizedlist>
               <listitem>
                 <para>Se il file non è stato modificato, il menu contestuale contiene la
 scorciatoia <guimenuitem>Differenze con la versione
-precedente</guimenuitem>.Questo comando confronta la versione estratta del
+precedente</guimenuitem>. Questo comando confronta la versione estratta del
 file con la versione precedente archiviata nel repository.</para>
               </listitem>
 
               <listitem>
                 <para>Se hai modificato il file, il menu contestuale contiene la stessa
 scorciatoia <guimenuitem>Diff con la versione precedente</guimenuitem>, più
-la scorciatoia <guimenuitem>Diff</guimenuitem>.Questo comando confronta la
-tua revisione con la versione attuale (quella che hai estratto).È utile per
+la scorciatoia <guimenuitem>Diff</guimenuitem>. Questo comando confronta la
+tua revisione con la versione attuale (quella che hai estratto). È utile per
 rivedere le modifiche apportate.</para>
               </listitem>
             </itemizedlist>
@@ -111,14 +110,14 @@ rivedere le modifiche apportate.</para>
 
           <listitem>
             <para>Scegli la scorciatoia <guimenuitem>Diff con la versione
-precedente</guimenuitem> o <guimenuitem>Diff</guimenuitem>.Si apre la
+precedente</guimenuitem> o <guimenuitem>Diff</guimenuitem>. Si apre la
 finestra WinMerge, con le versioni dei file di destinazione caricate nella
 finestra Confronto file.</para>
           </listitem>
         </orderedlist><para>La scorciatoia <menuchoice> <guimenu>TortoiseSVN</guimenu>
 <guimenuitem>Diff</guimenuitem> </menuchoice> è disponibile per confrontare
 due file qualsiasi nel tuo file system, non solo i file gestiti da
-Subversion.Per illustrare come funziona l'integrazione WinMerge in questo
+Subversion. Per illustrare come funziona l'integrazione WinMerge in questo
 caso:</para>
 
 <orderedlist>
@@ -140,8 +139,8 @@ Confronta file.</para>
         <title>Integrazione di Visual Studio Team Foundation Server</title>
 
         <para>È possibile impostare manualmente WinMerge come strumento predefinito da
-utilizzare in Visual Studio per mostrare le differenze in Team Foundation
-Server (TFS).Altri sistemi di controllo della versione possono essere
+usare in Visual Studio per visualizzare le differenze in Team Foundation
+Server (TFS). Altri sistemi di controllo della versione possono essere
 impostati in modi molto simili.</para>
 
 <orderedlist>
@@ -157,12 +156,11 @@ Foundation Server</guimenu> </menuchoice>.</para>
           </listitem>
 		  
           <listitem>
-            <para>Fai clic sul pulsante <guimenuitem>Configura strumenti
-utente...</guimenuitem>.</para>
+            <para>Seleziona <guimenuitem>Configura strumenti utente...</guimenuitem>.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic sul pulsante <guimenuitem>Aggiungi...</guimenuitem>.</para>
+            <para>Seleziona <guimenuitem>Aggiungi...</guimenuitem>.</para>
           </listitem>
 		  
 		  <listitem>
@@ -187,12 +185,12 @@ format="PNG" /> </imageobject></mediaobject>
                 <para>Argomenti: /e /u /dl %6 /dr %7 %1 %2</para>
               </listitem>
             </itemizedlist>
-			<para>Dove {Percorso WinMerge} è il percorso in cui è installato WinMerge.Nello
-screenshot sopra è installato nel percorso di installazione predefinito
+			<para>Dove {Percorso WinMerge} è il percorso in cui è installato WinMerge. Nella
+schermata sopra è installato nel percorso di installazione predefinito
 C:\Program Files (x86)\WinMerge\WinMerge.exe</para>
 			<para>Gli argomenti sono descritti in <xref linkend="Command_line" />.</para>
           </listitem>
-        </orderedlist><para>Ogni volta che dici a TFS di confrontare due file, ora utilizzerà WinMerge.</para>
+        </orderedlist><para>Ogni volta che dici a TFS di confrontare due file, ora userà WinMerge.</para>
       </example>
     </section>
   </section>

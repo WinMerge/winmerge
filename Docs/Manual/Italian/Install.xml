@@ -4,20 +4,20 @@
       <primary>installazione di WinMerge</primary>
     </indexterm></title>
 
-  <para>WinMerge può essere installato utilizzando il programma di installazione o
-decomprimendo i file da un archivio.L'utilizzo del programma di
-installazione è il metodo consigliato.</para>
+  <para>WinMerge può essere installato usando il programma di installazione o
+decomprimendo i file da un archivio. L'uso del programma di installazione è
+il metodo consigliato.</para>
 
   <section>
     <title>Ottenere file</title>
 
-    <para>L'ultima versione può essere sempre scaricata dalla home page di WinMerge:
-<ulink url="https://winmerge.org/">WinMerge.org</ulink>.Tieni presente che
-possono verificarsi ritardi nell'aggiornamento delle home page per le ultime
-versioni, ma la pagina di stato del progetto su <ulink
-url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
-mostra i file più recenti.Le versioni stabili sono disponibili anche in
-diversi siti di download di file.</para>
+    <para>La versione più recente può essere sempre scaricata dal sito web di
+WinMerge: <ulink url="https://winmerge.org/">WinMerge.org</ulink>. Tieni
+presente che possono verificarsi ritardi nell'aggiornamento delle home page
+per le ultime versioni, ma la pagina di stato del progetto su <ulink
+url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>visualizza
+i file più recenti. Le versioni stabili sono disponibili anche in diversi
+siti di download di file.</para>
   </section>
 
   <section>
@@ -30,7 +30,7 @@ versioni successive.</para>
       </listitem>
       <listitem>
         <para>WinMerge (32 bit) supporta Windows XP SP3 e versioni successive, comprese le
-versioni più recenti.Funziona sia su Windows a 32 bit che su Windows a 64
+versioni più recenti. Funziona sia su Windows a 32 bit che su Windows a 64
 bit.</para>
       </listitem>
       <listitem>
@@ -57,20 +57,20 @@ NT.</para>
   </section>
   
   <section id="Installing_usinginstaller">
-    <title>Utilizzo del programma di installazione (consigliato)</title>
+    <title>Uso del programma di installazione (consigliato)</title>
     <para></para>
     <note>
       <para>Il programma di installazione richiede i privilegi utente di
-amministratore.Se non disponi dei privilegi di amministratore, puoi
+amministratore. Se non disponi dei privilegi di amministratore, puoi
 installare WinMerge decomprimendolo da un file di archivio (vedi <xref
-linkend="InstallFromArchive" />) o utilizzando il programma di installazione
-per utente (WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
+linkend="InstallFromArchive" />) o usando il programma di installazione per
+utente (WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
     </note>
 
-    <para>L'utilizzo del programma di installazione è consigliato per la maggior parte
-degli utenti.Il programma di installazione richiede il percorso in cui è
-installato WinMerge.Quindi installa i file, configura l'integrazione della
-shell e aggiunge WinMerge al menu Start.Per installare WinMerge:</para>
+    <para>L'uso del programma di installazione è consigliato per la maggior parte
+degli utenti. Il programma di installazione richiede il percorso in cui è
+installato WinMerge. Quindi installa i file, configura l'integrazione della
+shell e aggiunge WinMerge al menu Start. Per installare WinMerge:</para>
 
     <orderedlist>
       <listitem>
@@ -79,24 +79,24 @@ shell e aggiunge WinMerge al menu Start.Per installare WinMerge:</para>
       </listitem>
 
       <listitem>
-        <simpara>Fai clic su <guibutton>Avanti</guibutton> nella schermata del contratto di
+        <simpara>Seleziona <guibutton>Avanti</guibutton> nella schermata del contratto di
 licenza.</simpara>
       </listitem>
 
       <listitem>
         <simpara>Nella pagina Seleziona percorso di destinazione, accetta il percorso per
 WinMerge o, se scegli un altro percorso, ti consigliamo di installare
-WinMerge nella sua cartella.Fai clic su <guibutton>Avanti</guibutton>.</simpara>
+WinMerge nella sua cartella. Seleziona <guibutton>Avanti</guibutton>.</simpara>
       </listitem>
 
       <listitem>
         <simpara>Nella pagina Seleziona componenti, scegli una delle installazioni
-preconfigurate nel controllo superiore.Raccomandiamo la configurazione
-<guilabel >Tipica</guilabel> per la maggior parte degli utenti.Il riquadro
-inferiore mostra tutti i componenti disponibili.È possibile modificare la
-configurazione predefinita selezionando o deselezionando i componenti.Ad
-esempio, se desideri utilizzare una localizzazione WinMerge per una lingua
-diversa dall'inglese, seleziona il componente <guilabel>Lingue</guilabel>.</simpara>
+preconfigurate nel controllo superiore. Per la maggior parte degli utenti
+raccomandiamo la configurazione <guilabel >Tipica</guilabel>. Il riquadro
+inferiorevisualizza tutti i componenti disponibili. È possibile modificare
+la configurazione predefinita selezionando o deselezionando i componenti. Ad
+esempio, se vuoi usare una localizzazione WinMerge per una lingua diversa
+dall'inglese, seleziona il componente <guilabel>Lingue</guilabel>.</simpara>
 
         <variablelist>
           <varlistentry>
@@ -105,7 +105,7 @@ diversa dall'inglese, seleziona il componente <guilabel>Lingue</guilabel>.</simp
               </indexterm></term>
 
             <listitem>
-              <para>Eseguibile WinMerge, Guida e altri file necessari.Non può essere
+              <para>Eseguibile WinMerge, Guida e altri file necessari. Non può essere
 deselezionato.</para>
             </listitem>
           </varlistentry>
@@ -134,7 +134,7 @@ confrontando gli elementi selezionati lì.</para>
 
             <listitem>
               <para>I plugin WinMerge sono DLL o scriptlet personalizzati, scritti nell'API COM,
-che puoi utilizzare per preelaborare i dati prima di un confronto.</para>
+che puoi usare per preelaborare i dati prima di un confronto.</para>
             </listitem>
           </varlistentry>
 
@@ -142,18 +142,18 @@ che puoi utilizzare per preelaborare i dati prima di un confronto.</para>
             <term>Lingue</term>
 
             <listitem>
-              <para>File di traduzione WinMerge.Se desideri configurare WinMerge per utilizzare
-una lingua diversa dall'inglese, espandi questa voce e scegli una o più
-traduzioni disponibili.Il programma di installazione crea una sottocartella
+              <para>File di traduzione WinMerge. Se vuoi configurare WinMerge per usare una
+lingua diversa dall'inglese, espandi questa voce e scegli una o più
+traduzioni disponibili. Il programma di installazione crea una sottocartella
 Lingue nella cartella WinMerge, contenente un file di traduzione *.po per
-ciascuna delle selezioni.Dopo l'installazione, puoi aprire WinMerge e
+ciascuna delle selezioni. Dopo l'installazione, puoi aprire WinMerge e
 modificarne la localizzazione in una delle lingue del file di
-traduzione.Vedi <xref linkend="Locales" /> per i dettagli.</para>
+traduzione. Per i dettagli vedi <xref linkend="Locales" />.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
+        <para>Seleziona <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
@@ -172,7 +172,7 @@ menu Start</guilabel>.</para>
           </listitem>
         </itemizedlist>
 
-        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
+        <para>Seleziona <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
@@ -256,7 +256,7 @@ Path del sistema.</para>
           </varlistentry>
         </variablelist>
 
-        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
+        <para>Seleziona <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
@@ -309,21 +309,21 @@ all'avvio</guilabel>.</para>
           </varlistentry>
         </variablelist>
 
-        <para>Fai clic su <guibutton>Avanti</guibutton>.</para>
+        <para>Seleziona <guibutton>Avanti</guibutton>.</para>
       </listitem>
 
       <listitem>
         <simpara>Nella pagina Pronto per l'installazione, verifica le selezioni di
-installazione.Se necessario, fai clic su <guibutton>Indietro</guibutton> per
-modificare qualcosa nella pagina precedente.Quando sei sicuro di essere
-pronto per procedere, fai clic su <guibutton>Installa</guibutton>.</simpara>
+installazione. Se necessario, seleziona <guibutton>Indietro</guibutton> per
+modificare qualcosa nella pagina precedente. Quando sei sicuro di essere
+pronto per procedere, seleziona <guibutton>Installa</guibutton>.</simpara>
       <para></para>
       </listitem>
 
       <listitem>
         <simpara>Dopo che il programma di installazione ha copiato i file, viene visualizzata
-la schermata finale.Utilizzando le due caselle di controllo, confermare se
-la cartella del menu Start WinMerge creata deve essere aperta e se
+la schermata finale. Usa le due caselle di controllo, e conferma se la
+cartella del menu Start WinMerge creata deve essere aperta e se
 l'applicazione WinMerge deve essere avviata.</simpara>
       </listitem>
     </orderedlist>
@@ -334,8 +334,8 @@ l'applicazione WinMerge deve essere avviata.</simpara>
         <primary>archivio, installando WinMerge da</primary>
       </indexterm></title>
 
-    <para>WinMerge è praticamente indipendente dagli altri componenti del sistema.Non
-è strettamente integrato con Windows e non utilizza molte DLL.</para>
+    <para>WinMerge è praticamente indipendente dagli altri componenti del sistema. Non
+è strettamente integrato con Windows e non usa molte DLL.</para>
 
     <para>I file di archivio hanno la struttura di cartelle corretta.WinMerge dovrebbe
 essere decompresso preservando questa struttura di cartelle nella cartella
@@ -362,7 +362,7 @@ programma di installazione <indexterm>
         <primary>Integrazione della shell di Windows</primary>
       </indexterm></title>
 
-    <para>Se non si utilizza il programma di installazione e si desidera abilitare
+    <para>Se non si usa il programma di installazione e si desidera abilitare
 l'integrazione della shell di Windows Explorer, è necessario registrare
 separatamente la DLL di integrazione della shell
 (<filename>ShellExtension*.dll</filename>).</para>
@@ -372,8 +372,8 @@ separatamente la DLL di integrazione della shell
 amministratore.</para>
     </note>
 
-    <para>Apri WinMerge e utilizza <xref linkend="Configuration_shell-integ" /> nella
-finestra Opzioni.Nella finestra Opzioni usa i pulsanti <guibutton>Registra
+    <para>Apri WinMerge e usa <xref linkend="Configuration_shell-integ" /> nella
+finestra Opzioni. Nella finestra Opzioni usa i pulsanti <guibutton>Registra
 estensione della shell</guibutton> o <guibutton>Annulla registrazione
 estensione della shell</guibutton>.</para>
   </section>

@@ -10,8 +10,8 @@
   </indexterm>
 
   <para>
-Questo argomento descrive come confrontare le pagine Web utilizzando la
-finestra Confronto pagine Web.<note><para>
+Questo argomento descrive come confrontare le pagine Web usando la finestra
+Confronto pagine Web.<note><para>
 Questa funzionalità è ancora sperimentale e potrebbe essere instabile e
 molto lenta.</para>
 </note></para>
@@ -28,8 +28,8 @@ WinMerge o da una finestra del prompt dei comandi.</para>
 
         <listitem>
           <para>
-Fai clic su <menuchoice> <guimenu>File</guimenu>
-<guimenuitem>Apri</guimenuitem> </menuchoice>.Specifica i due o tre URL che
+Seleziona <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem> </menuchoice>. Specifica i due o tre URL che
 vuoi confrontare nella finestra di dialogo "Seleziona file o cartella" e
 seleziona la voce di menu <guimenuitem>Pagina web</guimenuitem> dal menu a
 discesa del pulsante <guibutton>Confronta</guibutton>.<mediaobject>
@@ -47,9 +47,9 @@ discesa del pulsante <guibutton>Confronta</guibutton>.<mediaobject>
         <listitem>
           <para>Esegui <command>WinMergeU.exe</command>, che si trova nella cartella di
 installazione di WinMerge. Negli argomenti del comando, includi due o tre
-URL delle pagine web che desideri confrontare e specifica l'opzione della
-riga di comando <option>/t webpage</option>. Per ulteriori informazioni
-sull'utilizzo della riga di comando, vedi <xref linkend="Command_line" />.</para>
+URL delle pagine web che vuoi confrontare e specifica l'opzione della riga
+di comando <option>/t webpage</option>. Per ulteriori informazioni sull'uso
+della riga di comando, vedi <xref linkend="Command_line" />.</para>
 
           <example>
             <title>Riga di comando</title>
@@ -79,9 +79,9 @@ https://example.net https://example.com </userinput></para>
 
     <para>
 Quando viene visualizzata la finestra di confronto delle pagine Web, il menu
-della pagina Web verrà aggiunto alla barra dei menu.Le voci di menu nel menu
-Pagina Web sono le seguenti.Alcune delle stesse funzionalità di queste voci
-di menu sono disponibili nel riquadro Posizione.</para>
+della pagina Web verrà aggiunto alla barra dei menu. Le voci di menu nel
+menu Pagina Web sono le seguenti. Alcune delle stesse funzionalità di queste
+voci di menu sono disponibili nel riquadro Posizione.</para>
 
     <section>
       <title>
@@ -315,7 +315,7 @@ Limitazioni attuali<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-Non è possibile confrontare le pagine Web che utilizzano l'elemento FRAMESET
+Non è possibile confrontare le pagine Web che usano l'elemento FRAMESET
 attualmente deprecato.</para>
         </listitem>
       </itemizedlist>

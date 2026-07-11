@@ -9,8 +9,8 @@
     <secondary>immagini</secondary>
   </indexterm>
 
-  <para>Questo argomento descrive come confrontare le immagini utilizzando la
-finestra Confronto immagini.</para>
+  <para>Questo argomento descrive come confrontare le immagini usando la finestra
+Confronto immagini.</para>
 
   <section id="Compare_images_starting">
     <title>Avvio di un'operazione di confronto delle immagini</title>
@@ -23,11 +23,11 @@ WinMerge o da una finestra del prompt dei comandi.</para>
         <term>Dalla finestra WinMerge</term>
 
         <listitem>
-          <para>Fai clic su <menuchoice> <guimenu>File</guimenu>
-<guimenuitem>Apri</guimenuitem> </menuchoice>.Utilizzare la finestra di
-dialogo Seleziona file o cartelle per specificare le immagini di origine
-sinistra e destra da confrontare.Per ulteriori dettagli sulla finestra di
-dialogo Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
+          <para>Seleziona <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem> </menuchoice>. Usa la finestra di dialogo
+Seleziona file o cartelle per specificare le immagini di origine sinistra e
+destra da confrontare. Per ulteriori dettagli sulla finestra di dialogo
+Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -37,8 +37,8 @@ dialogo Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
         <listitem>
           <para>Esegui <command>WinMergeU.exe</command>, che si trova nella cartella di
 installazione di WinMerge. Negli argomenti del comando, includi le immagini
-sinistra e destra da confrontare. Per ulteriori informazioni sull'utilizzo
-della riga di comando, vedi <xref linkend="Command_line" />.</para>
+sinistra e destra da confrontare. Per ulteriori informazioni sull'uso della
+riga di comando, vedi <xref linkend="Command_line" />.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,7 +48,7 @@ della riga di comando, vedi <xref linkend="Command_line" />.</para>
     <title>Finestra Confronta immagini</title>
 
     <para>WinMerge supporta molti tipi di immagini e può evidenziare le differenze con
-i blocchi.È anche possibile la sovrapposizione delle immagini.</para>
+i blocchi. È anche possibile la sovrapposizione delle immagini.</para>
 
     <mediaobject>
 <imageobject> <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />

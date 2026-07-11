@@ -21,31 +21,32 @@
               <secondary>Supporto WinMerge</secondary>
             </indexterm>A partire dalla versione 2.14,
 WinMerge ha interrotto il supporto per i vecchi sistemi Windows a 32 bit,
-inclusi Windows 9x, ME e NT4.Inoltre, WinMerge versione 2.16 non supporta
+inclusi Windows 9x, ME e NT4. Inoltre, WinMerge versione 2.16 non supporta
 Windows 2000.</para>
           <para>In precedenza, WinMerge forniva un eseguibile ANSI (8 bit),
-<filename>WinMerge.exe</filename>, progettato attorno alle vecchie codepage
-di Windows.<filename>WinMerge.exe</filename> memorizzava internamente solo i
-caratteri ANSI supportati dalla codepage di Windows.Questo eseguibile
-presentava gravi limitazioni per lavorare con Unicode: se si apriva un file
-Unicode, i caratteri venivano convertiti nella codepage ANSI di
-Windows.Poiché sono presenti oltre 100.000 caratteri Unicode e solo 256
-possono essere rappresentati nel set di caratteri ANSI, potrebbe verificarsi
-una perdita di dati.La conversione potrebbe essere approssimativa (ad
-esempio, gli accenti vengono persi) o impossibile: i caratteri sono stati
-sostituiti da punti interrogativi ( <literal>?</literal> ).</para>
+<filename>WinMerge.exe</filename>, progettato attorno alle vecchie pagine
+codice di Windows.<filename>WinMerge.exe</filename> memorizzava internamente
+solo i caratteri ANSI supportati dalla pagina codice di Windows. Questo
+eseguibile presentava gravi limitazioni per lavorare con Unicode: se si
+apriva un file Unicode, i caratteri venivano convertiti nella pagina codice
+ANSI di Windows. Poiché sono presenti oltre 100.000 caratteri Unicode e solo
+256 possono essere rappresentati nel set di caratteri ANSI, potrebbe
+verificarsi una perdita di dati. La conversione potrebbe essere
+approssimativa (ad esempio, gli accenti vengono persi) o impossibile: i
+caratteri sono stati sostituiti da punti interrogativi (
+<literal>?</literal> ).</para>
           <para>Inoltre, <filename>WinMerge.exe</filename> non è in grado di aprire file con
-nomi esterni alla codepage ANSI attuale.Ad esempio, su un sistema inglese,
-<filename>WinMerge.exe</filename> non è riuscito ad aprire un file con un
-nome ebraico.</para>
+nomi esterni alla pagina codice ANSI attuale. Ad esempio, su un sistema
+inglese, <filename>WinMerge.exe</filename> non è riuscito ad aprire un file
+con un nome ebraico.</para>
           <para>WinMerge ha sviluppato l'eseguibile <filename>WinMergeU.exe</filename>
 abilitato per Unicode per funzionare con i nuovi sistemi Windows basati su
 Unicode.<filename>WinMergeU.exe</filename> non presenta nessuna delle
 limitazioni dell'eseguibile ANSI.</para>
           <para><filename>WinMergeU.exe</filename> è stato installato per impostazione
 predefinita da qualche tempo e poiché rimangono pochi sistemi Windows basati
-su ANSI, l'utilità di mantenere <filename>WinMerge.exe</filename> è minima.A
-partire dalla versione 2.14, WinMerge non include più
+su ANSI, l'utilità di mantenere <filename>WinMerge.exe</filename> è
+minima. A partire dalla versione 2.14, WinMerge non include più
 <filename>WinMerge.exe</filename> nel programma di installazione.</para>
         </answer>
       </qandaentry>
@@ -61,13 +62,13 @@ nella finestra di dialogo Sfoglia.<indexterm>
         </question>
 
         <answer>
-          <para>Sfoglia il contenuto della cartella fino alla cartella che desideri
-confrontare.Non selezionare nessun file o sottocartella, fai semplicemente
+          <para>Sfoglia il contenuto della cartella fino alla cartella che vuoi
+confrontare. Non selezionare nessun file o sottocartella, fai semplicemente
 clic su <guibutton>Apri</guibutton> quando <literal>Selezione
 cartella</literal> è visualizzato nel campo <guilabel>Nome
-file</guilabel>.Se hai già selezionato un file o una sottocartella, digita
+file</guilabel>. Se hai già selezionato un file o una sottocartella, digita
 semplicemente una stringa casuale nel campo <guilabel>Nome file</guilabel> e
-fai clic su <guibutton>Apri</guibutton>.Se il nome file immesso non viene
+seleziona <guibutton>Apri</guibutton>. Se il nome file immesso non viene
 trovato, WinMerge apre la cartella.</para>
         </answer>
       </qandaentry>
@@ -81,7 +82,7 @@ trovato, WinMerge apre la cartella.</para>
           <para>Al momento non è previsto il supporto multipiattaforma, ma puoi provare la
 versione non ufficiale <ulink
 url="https://github.com/datadiode/winmerge2011"> WinMerge 2011</ulink> di
-Jochen Neubeck.Questa versione dovrebbe funzionare con Wine anche sotto
+Jochen Neubeck. Questa versione dovrebbe funzionare con Wine anche sotto
 Linux.</para>
         </answer>
       </qandaentry>
@@ -101,9 +102,9 @@ Linux.</para>
 
         <answer>
           <para>Fornire un'integrazione con CVS ha un valore discutibile perché esistono già
-tanti buoni client CVS.Tuttavia, WinMerge fornisce un'integrazione con la
+tanti buoni client CVS. Tuttavia, WinMerge fornisce un'integrazione con la
 funzione diff di uno di questi client, TortoiseCVS (come descritto in <xref
-linkend="Version_control" />).Inoltre, WinMerge può risolvere i file in
+linkend="Version_control" />). Inoltre, WinMerge può risolvere i file in
 conflitto (vedi <xref linkend="ResolveConflictFiles" />).</para>
         </answer>
       </qandaentry>
@@ -116,9 +117,9 @@ conflitto (vedi <xref linkend="ResolveConflictFiles" />).</para>
         </question>
 
         <answer>
-          <para>MRU è un'abbreviazione di <quote>Utilizzato più recentemente</quote> e si
+          <para>MRU è un'abbreviazione di <quote>Usato più recentemente</quote> e si
 riferisce agli elenchi della cronologia nella finestra di dialogo Seleziona
-file o cartelle.L'elenco contiene gli ultimi venti percorsi utilizzati su
+file o cartelle. L'elenco contiene gli ultimi venti percorsi usati su
 ciascun lato.</para>
         </answer>
       </qandaentry>
@@ -131,16 +132,15 @@ ciascun lato.</para>
         </question>
 
         <answer>
-          <para>I file OpenOffice sono archivi.Per poterli aprire in WinMerge, devi
+          <para>I file OpenOffice sono archivi. Per poterli aprire in WinMerge, devi
 configurare il supporto dell'archivio:</para>
 
           <itemizedlist>
             <listitem>
-              <para>In WinMerge, fai clic sul pulsante <guibutton>Opzioni</guibutton> (o fai
-clic su <menuchoice> <guimenu>Modifica</guimenu>
-<guimenuitem>Opzioni</guimenuitem> </menuchoice>).Nella pagina Supporto
-archivio, abilita l'opzione <guilabel>Rileva tipo di archivio dalla firma
-del file</guilabel></para>
+              <para>In WinMerge, seleziona <guibutton>Opzioni</guibutton> (o seleziona
+<menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Opzioni</guimenuitem>
+</menuchoice>). Nella pagina Supporto archivio, abilita l'opzione
+<guilabel>Rileva tipo di archivio dalla firma del file</guilabel></para>
             </listitem>
           </itemizedlist>
         </answer>
@@ -155,13 +155,13 @@ file?</para>
 
         <answer>
           <para>Questo perché WinMerge usa sempre il metodo di confronto file
-<guilabel>Contenuti rapidi</guilabel> per file di grandi dimensioni.Questo
+<guilabel>Contenuti rapidi</guilabel> per file di grandi dimensioni. Questo
 metodo consente a WinMerge di confrontare file di grandi dimensioni in modo
-più efficiente.Per verificare se questo è la causa del comportamento che
+più efficiente. Per verificare se questo è la causa del comportamento che
 stai riscontrando, puoi provare ad aumentare la soglia dei
-<guilabel>Contenuti rapidi</guilabel> per i file di grandi dimensioni.Vedi
-la discussione di questo metodo in <xref linkend="Compare_dirs_starting" />
-per sapere come.</para>
+<guilabel>Contenuti rapidi</guilabel> per i file di grandi dimensioni. Per
+sapere come vedi la discussione di questo metodo in <xref
+linkend="Compare_dirs_starting" />.</para>
         </answer>
       </qandaentry>
 
@@ -177,14 +177,14 @@ quale file viene visualizzato sul lato sinistro?<indexterm>
         <answer>
           <para>Quando vengono selezionati più file in Esplora risorse, il file su cui si fa
 clic con il pulsante destro del mouse diventa il primo elemento
-(primario).Gli elementi rimanenti seguono nell'ordine in cui sono stati
-selezionati.Pertanto, per far apparire un file sul lato sinistro in
+(primario). Gli elementi rimanenti seguono nell'ordine in cui sono stati
+selezionati. Pertanto, per far apparire un file sul lato sinistro in
 WinMerge, seleziona più file e fai clic con il pulsante destro del mouse su
-quello che desideri confrontare a sinistra.</para>
+quello che vuoi  confrontare a sinistra.</para>
           <para>Per ulteriori informazioni sul comportamento della shell di Windows, vedi:
 <ulink
 url="https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406">The
-Old New Thing: in che modo Explorer determina quale programma utilizzare per
+Old New Thing: in che modo Explorer determina quale programma usare per
 aprire un file se non viene fornito un comando esplicito?</ulink>.</para>
         </answer>
       </qandaentry>
@@ -203,10 +203,10 @@ aprire un file se non viene fornito un comando esplicito?</ulink>.</para>
         </question>
 
         <answer>
-          <para>Forse i tuoi file hanno stili di fine riga diversi (ad esempio, Windows e
-Unix).Per impostazione predefinita, WinMerge confronta gli stili di fine
-riga.Per disabilitarlo, fai clic su <menuchoice> <guimenu>Modifica</guimenu>
-<guimenuitem>Opzioni</guimenuitem> </menuchoice>.Nella pagina Confronta,
+          <para>Forse i file hanno stili di fine riga diversi (ad esempio, Windows e
+Unix). Per impostazione predefinita, WinMerge confronta gli stili di fine
+riga. Per disabilitarlo, seleziona <menuchoice> <guimenu>Modifica</guimenu>
+<guimenuitem>Opzioni</guimenuitem> </menuchoice>. Nella pagina Confronta,
 abilita (seleziona) l'opzione <guilabel>Ignora differenze di ritorno a
 capo</guilabel>.</para>
         </answer>
@@ -229,12 +229,13 @@ capo</guilabel>.</para>
 For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>-->
           
 
-          <para>Per i file ANSI, ciò è probabilmente dovuto a problemi di tabella codici.Per
-risolvere il problema, fai clic su <menuchoice> <guimenu>Modifica</guimenu>
-<guimenuitem>Opzioni</guimenuitem> </menuchoice>.Quindi, nella pagina
-Codepages, verifica se l'opzione <guilabel>Rileva informazioni
-codepage</guilabel> è selezionata.Se lo è, deseleziona l'opzione, fai clic
-su <guibutton>OK</guibutton> e vedi se aiuta.</para>
+          <para>Per i file ANSI, ciò è probabilmente dovuto a problemi di tabella
+codici. Per risolvere il problema, seleziona <menuchoice>
+<guimenu>Modifica</guimenu> <guimenuitem>Opzioni</guimenuitem>
+</menuchoice>. Quindi, nella pagina Codepages, verifica se l'opzione
+<guilabel>Rileva informazioni pagina codice</guilabel> è selezionata. Se lo
+è, deseleziona l'opzione, seleziona <guibutton>OK</guibutton> e vedi se
+aiuta.</para>
         </answer>
       </qandaentry>
 
@@ -257,11 +258,12 @@ automatica</glossterm>?Perché è necessario?</para>
         <answer>
           <para>Quando è abilitata la <guilabel>Riscansione automatica</guilabel> (nella
 pagina Editor delle Opzioni), WinMerge ritarda la nuova scansione mentre
-modifichi i file.Cioè, non viene eseguita alcuna nuova scansione fino a poco
-dopo aver smesso di digitare.Senza questo ritardo, WinMerge eseguirebbe
-nuovamente la scansione dopo ogni carattere digitato, rendendo il processo
-di modifica troppo lento.Il ritardo migliora soprattutto la modifica di file
-più grandi, la cui nuova scansione può richiedere diversi secondi.</para>
+modifichi i file. Cioè, non viene eseguita alcuna nuova scansione fino a
+poco dopo aver smesso di digitare. Senza questo ritardo, WinMerge
+eseguirebbe nuovamente la scansione dopo ogni carattere digitato, rendendo
+il processo di modifica troppo lento. Il ritardo migliora soprattutto la
+modifica di file più grandi, la cui nuova scansione può richiedere diversi
+secondi.</para>
         </answer>
       </qandaentry>
 
@@ -271,7 +273,7 @@ più grandi, la cui nuova scansione può richiedere diversi secondi.</para>
         </question>
 
         <answer>
-          <para>Sì, esiste un supporto di stampa di base: fai clic su <menuchoice>
+          <para>Sì, esiste un supporto di stampa di base: seleziona <menuchoice>
 <guimenu>File</guimenu> <guimenuitem>Stampa</guimenuitem> </menuchoice>.</para>
         </answer>
       </qandaentry>
@@ -283,7 +285,7 @@ visibili solo righe diverse?</para>
         </question>
 
         <answer>
-          <para>Sì, puoi mostrare solo righe diverse facendo clic su <menuchoice>
+          <para>Sì, puoi visualizzare solo righe diverse facendo clic su <menuchoice>
 <guimenu>Visualizza</guimenu><guimenuitem>Contesto differenze</guimenuitem>
 <guimenuitem>0 righe</guimenuitem> </menuchoice>.</para>
         </answer>
@@ -308,12 +310,13 @@ visibili solo righe diverse?</para>
 
       <qandaentry>
         <question>
-          <para>Non voglio vedere il messaggio <guilabel>I file sono identici</guilabel>
-quando confronto file identici, voglio solo che WinMerge esca.</para>
+          <para>Non voglio visualizzare il messaggio <guilabel>I file sono
+identici</guilabel> quando confronto file identici, voglio solo che WinMerge
+esca.</para>
         </question>
 
         <answer>
-          <para>Utilizza l'opzione della riga di comando <option>-x</option>.</para>
+          <para>Usa l'opzione della riga di comando <option>-x</option>.</para>
         </answer>
       </qandaentry>
 
@@ -331,7 +334,7 @@ di dialogo Seleziona file o cartelle con percorsi temporanei?</para>
 
       <qandaentry>
         <question>
-          <para>Ma il programma che sto utilizzando non consente i parametri della riga di
+          <para>Ma il programma che sto usando non consente i parametri della riga di
 comando!</para>
         </question>
 
@@ -361,7 +364,7 @@ comando!</para>
       <qandaentry>
         <question>
           <para>Come posso aprire i file patch in stile Perry che gli sviluppatori WinMerge
-utilizzano quando inviano le patch?<indexterm>
+usano quando inviano le patch?<indexterm>
               <primary>file patch, in stile Perry</primary>
             </indexterm></para>
         </question>
@@ -383,9 +386,9 @@ esempio file .jar come file zip)</para>
         </question>
 
         <answer>
-          <para>Sì: fai clic sul pulsante <guibutton>Opzioni</guibutton> (o fai clic su
-<menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Opzioni</guimenuitem>
-</menuchoice>).Nella pagina Supporto archivio, abilita l'opzione
+          <para>Sì: seleziona <guibutton>Opzioni</guibutton> (o fai seleziona <menuchoice>
+<guimenu>Modifica</guimenu> <guimenuitem>Opzioni</guimenuitem>
+</menuchoice>). Nella pagina Supporto archivio, abilita l'opzione
 <guilabel>Rileva tipo di archivio dalla firma del file</guilabel>.</para>
         </answer>
       </qandaentry>
@@ -393,34 +396,33 @@ esempio file .jar come file zip)</para>
   </section>
 
   <section id="Faq_encoding">
-    <title>Codifica del testo (codepage)<indexterm>
+    <title>Codifica del testo (pagina codice)<indexterm>
         <primary>ANSI</primary>
 
-        <secondary>rilevamento nei file utilizzando Blocco note</secondary>
+        <secondary>rilevamento nei file usando Blocco note</secondary>
       </indexterm></title>
 
     <qandaset>
       <qandaentry>
         <question id="Faq_detectencoding">
-          <para id="Faq_detectencoding_text">Come faccio a sapere se il mio file è codificato nella codepage locale di
-Windows (ANSI)?</para>
+          <para id="Faq_detectencoding_text">Come faccio a sapere se il mio file è codificato nella pagina codice locale
+di Windows (ANSI)?</para>
         </question>
 
         <answer>
-          <para>Apri il file nel Blocco note di Windows (ad esempio, fai clic su
-<menuchoice> <guimenu>Start</guimenu> <guisubmenu>Programmi
-(tutti)</guisubmenu> <guisubmenu>Accessori</guisubmenu> <guimenuitem>Blocco
-note</guimenuitem> </menuchoice>).Fai clic su <menuchoice>
-<guimenu>File</guimenu> <guimenuitem>Salva con nome</guimenuitem>
-</menuchoice> e, nella finestra di dialogo Salva con nome, scorri fino alla
-voce <guilabel>Codifica</guilabel> nell'elenco a discesa.I possibili valori
-includono:</para>
+          <para>Apri il file nel Blocco note di Windows (ad esempio, seleziona <menuchoice>
+<guimenu>Start</guimenu> <guisubmenu>Programmi (tutti)</guisubmenu>
+<guisubmenu>Accessori</guisubmenu> <guimenuitem>Blocco note</guimenuitem>
+</menuchoice>). Seleziona <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Salva con nome</guimenuitem> </menuchoice> e, nella finestra di
+dialogo Salva con nome, scorri fino alla voce <guilabel>Codifica</guilabel>
+nell'elenco a discesa. I possibili valori includono:</para>
 
           <itemizedlist>
             <listitem>
-              <para><guilabel>ANSI</guilabel>: apparentemente il file si trova nella codepage
-locale di Windows.Se il file è interamente in inglese e con punteggiatura
-normale, anche il file è in ASCII.</para>
+              <para><guilabel>ANSI</guilabel>: apparentemente il file si trova nella pagina
+codice locale di Windows. Se il file è interamente in inglese e con
+punteggiatura normale, anche il file è in ASCII.</para>
             </listitem>
 
             <listitem>
@@ -435,8 +437,7 @@ multipiattaforma, UTF-8.</para>
 
             <listitem>
               <para><guilabel>Unicode big endian</guilabel>: il file ha una codifica Unicode
-diversa che è poco utilizzata o supportata in Windows, probabilmente
-UCS-2BE.</para>
+diversa che è poco usata o supportata in Windows, probabilmente UCS-2BE.</para>
             </listitem>
           </itemizedlist>
         </answer>
@@ -462,22 +463,22 @@ UCS-2BE.</para>
         </question>
 
         <answer>
-          <para>No. Potrebbe essere aggiunto nelle versioni successive.Fino ad allora, puoi
-usare il port Win32 di <filename>diffutils</filename>.L'ultima versione di
-<filename>diffutils</filename> (e patch) può essere scaricata dalla pagina
-del progetto <application>SourceForge GnuWin32</application>: <ulink
-url="https://sourceforge.net/projects/gnuwin32/">
+          <para>No. Potrebbe essere aggiunto nelle versioni successive. Fino ad allora, puoi
+usare il port Win32 di <filename>diffutils</filename>. La versione più
+recente di <filename>diffutils</filename> (e patch) può essere scaricata
+dalla pagina del progetto <application>SourceForge GnuWin32</application>:
+<ulink url="https://sourceforge.net/projects/gnuwin32/">
 https://sourceforge.net/projects/gnuwin32</ulink>.</para>
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question>
-          <para>È possibile applicare le patch utilizzando WinMerge?</para>
+          <para>È possibile applicare le patch usando WinMerge?</para>
         </question>
 
         <answer>
-          <para>Puoi applicare le patch utilizzando il plugin sperimentale ApplyPatch.sct.Le
+          <para>Puoi applicare le patch usando il plugin sperimentale ApplyPatch.sct. Le
 estensioni delle patch supportate dal plugin sono .diff o .patch.</para>
         </answer>
       </qandaentry>

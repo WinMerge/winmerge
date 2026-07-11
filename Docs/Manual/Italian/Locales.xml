@@ -6,14 +6,14 @@
 
   <para>L'interfaccia utente di WinMerge è in inglese per impostazione predefinita,
 ma è possibile localizzare l'installazione in altre lingue per le quali sono
-state fornite traduzioni.La localizzazione di WinMerge modifica le stringhe
+state fornite traduzioni. La localizzazione di WinMerge modifica le stringhe
 di testo visualizzate nell'interfaccia, inclusi menu, finestre di dialogo,
 descrizioni comandi e messaggi, nella lingua scelta.</para>
 
   <para>Tieni presente che la localizzazione non si estende oltre la traduzione
-delle stringhe.Ad esempio, non influisce sulla suddivisione dei numeri o
+delle stringhe. Ad esempio, non influisce sulla suddivisione dei numeri o
 sull'ordine alfabetico delle parole.(Questi problemi dovrebbero essere
-risolti nel modo convenzionale di Windows utilizzando le impostazioni
+risolti nel modo convenzionale di Windows usando le impostazioni
 internazionali nel Pannello di controllo.)</para>
 
   <para>La localizzazione dell'installazione di WinMerge prevede questi due passaggi
@@ -40,37 +40,35 @@ file di traduzione a WinMerge, durante o dopo l'installazione.</para>
     <itemizedlist>
       <listitem>
         <para>È più semplice configurare un file di lingua durante l'installazione di
-WinMerge.Le istruzioni in <xref linkend="Installing_usinginstaller" />
-descrivono come utilizzare la pagina Seleziona componenti per installare uno
-o più file di traduzione.</para>
+WinMerge. Le istruzioni in <xref linkend="Installing_usinginstaller" />
+descrivono come usare la pagina Seleziona componenti per installare uno o
+più file di traduzione.</para>
       </listitem>
 
       <listitem>
         <para>Se non hai configurato un file di lingua quando hai installato WinMerge (o
-non hai utilizzato affatto il programma di installazione), non è necessario
-reinstallare WinMerge.Puoi ottenere i file di traduzione più recenti dal
+non hai usato affatto il programma di installazione), non è necessario
+reinstallare WinMerge. Puoi ottenere i file di traduzione più recenti dal
 sito WinMerge e configurarli tu stesso:</para>
 
         <orderedlist>
           <listitem>
-            <simpara>Create a folder named <filename class="directory" >Languages</filename>
-under the WinMerge installation directory (where
-<filename>WinMergeU.exe</filename> is located), if it does not already
-exist.</simpara>
+            <simpara>Crea una cartella denominata <filename class="directory"
+>Languages</filename> nella cartella di installazione di WinMerge (dove si
+trova <filename>WinMergeU.exe</filename>), se non esiste già.</simpara>
           </listitem>
 
           <listitem>
             <simpara>Vai al sito di <ulink url="https://winmerge.org/downloads/">download di
-WinMerge</ulink>.Scarica uno dei file binari archiviati (in formato Zip o
+WinMerge</ulink>. Scarica uno dei file binari archiviati (in formato Zip o
 7z) per la versione attuale di WinMerge e salvalo nel tuo file system.</simpara>
           </listitem>
 
           <listitem>
             <simpara>Apri l'archivio scaricato e individua i file <filename>*.po</filename>, dove
 * è una lingua (ad esempio, <filename>Swedish.po</filename> per la
-traduzione svedese).Estrai i file della lingua che desideri nella
-sottocartella <filename>Languages</filename> nella cartella di installazione
-di WinMerge.</simpara>
+traduzione svedese). Estrai i file della lingua che vuoi nella sottocartella
+<filename>Languages</filename> nella cartella di installazione di WinMerge.</simpara>
           </listitem>
         </orderedlist>
 
@@ -98,7 +96,7 @@ qualsiasi di essi:</para>
       </listitem>
 
       <listitem>
-        <simpara>Seleziona la tua lingua e fai clic su <guibutton>OK</guibutton> nella pagina
+        <simpara>Seleziona la tua lingua e seleziona <guibutton>OK</guibutton> nella pagina
 Generale della finestra di dialogo Opzioni.</simpara>
       </listitem>
     </orderedlist>
@@ -276,7 +274,7 @@ traduzioni:</para>
 
     <para>Ti preghiamo di inviare eventuali errori che trovi nelle traduzioni come bug
 al nostro <ulink url="https://github.com/WinMerge/winmerge/issues">elenco
-dei bug</ulink>.Sarebbe fantastico se fornissi anche una versione corretta
+dei bug</ulink>. Sarebbe fantastico se fornissi anche una versione corretta
 del testo tradotto.</para>
   </section>
 
@@ -285,13 +283,13 @@ del testo tradotto.</para>
         <primary>invio di traduzioni</primary>
       </indexterm></title>
 
-    <para>Se desideri aggiungere la tua lingua all'elenco, leggi la <ulink
+    <para>Se vuoi aggiungere la tua lingua all'elenco, leggi la <ulink
 url="https://winmerge.org/translations/">documentazione di
-traduzione</ulink> sul sito Web WinMerge per sapere come.La maggior parte
+traduzione</ulink> sul sito web WinMerge per sapere come. La maggior parte
 delle traduzioni sono incomplete, quindi il tuo aiuto per migliorarle
-sarebbe apprezzato.Tradurre (o migliorare la traduzione) non richiede di
+sarebbe apprezzato. Tradurre (o migliorare la traduzione) non richiede di
 avere tutti gli strumenti di compilazione o di conoscere gli interni di
-WinMerge.Devi solo seguire le istruzioni nel link precedente.E se hai
+WinMerge. Devi solo seguire le istruzioni nel link precedente. E se hai
 problemi, chiedi aiuto a noi in uno dei <ulink
 url="https://forums.winmerge.org/">forum WinMerge</ulink>.</para>
   </section>

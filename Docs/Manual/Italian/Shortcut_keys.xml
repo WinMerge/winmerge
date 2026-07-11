@@ -5,7 +5,7 @@
     </indexterm></title>
 
   <para>WinMerge include la maggior parte dei tasti di scelta rapida familiari
-comunemente utilizzati in altre applicazioni Windows.</para>
+comunemente usati in altre applicazioni Windows.</para>
 
   <table>
     <title>Generale</title>
@@ -290,14 +290,14 @@ schermo)</entry>
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>U</keycap> </keycombo></entry>
 
-          <entry>Converti il ​​testo selezionato in minuscolo</entry>
+          <entry>Converti il testo selezionato in minuscolo</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Maiusc</keycap> <keycap>U</keycap>
 </keycombo></entry>
 
-          <entry>Converti il ​​testo selezionato in maiuscolo</entry>
+          <entry>Converti il testo selezionato in maiuscolo</entry>
         </row>
 
         <row>

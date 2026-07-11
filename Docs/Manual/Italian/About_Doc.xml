@@ -8,8 +8,7 @@
     <title>Pubblico e ambito</title>
 
     <para>La Guida di WinMerge è destinata sia agli utenti nuovi che a quelli
-esperti.Spiega come utilizzare WinMerge e ne documenta le capacità e i
-limiti.</para>
+esperti. Spiega come usare WinMerge e ne documenta le capacità e i limiti.</para>
   </section>
 
   <section>
@@ -35,8 +34,8 @@ cartella di installazione di WinMerge\Docs.</para>
         <term>Menu Guida di WinMerge</term>
 
         <listitem>
-          <para>Mentre usi WinMerge, fai clic su <menuchoice> <guimenu>Aiuto</guimenu>
-<guimenuitem>Aiuto WinMerge</guimenuitem> </menuchoice>.La Guida HTML si
+          <para>Mentre usi WinMerge, seleziona <menuchoice> <guimenu>Aiuto</guimenu>
+<guimenuitem>Aiuto WinMerge</guimenuitem> </menuchoice>. La Guida HTML si
 apre all'inizio (questo argomento).</para>
         </listitem>
       </varlistentry>
@@ -45,9 +44,9 @@ apre all'inizio (questo argomento).</para>
         <term>Aiuto sensibile al contesto</term>
 
         <listitem>
-          <para>Mentre usi una qualsiasi finestra WinMerge, premi <keycap>F1</keycap>.Se un
+          <para>Mentre usi una qualsiasi finestra WinMerge, premi <keycap>F1</keycap>. Se un
 argomento specifico è disponibile per la finestra attuale, la Guida si apre
-in corrispondenza di quell'argomento.In caso contrario, la Guida si aprirà
+in corrispondenza di quell'argomento. In caso contrario, la Guida si aprirà
 all'inizio.</para>
         </listitem>
       </varlistentry>
@@ -56,7 +55,7 @@ all'inizio.</para>
         <term>Riga di comando di WinMerge</term>
 
         <listitem>
-          <para>Usa il /?O -?passare quando si esegue WinMerge dalla riga di comando.La
+          <para>Usa il /?O -?passare quando si esegue WinMerge dalla riga di comando. La
 Guida HTML si apre all'inizio.</para>
         </listitem>
       </varlistentry>
@@ -66,7 +65,7 @@ Guida HTML si apre all'inizio.</para>
 
         <listitem>
           <para>Apri il tuo browser Web su <ulink
-url="https://winmerge.org/">winmerge.org</ulink>.In <ulink
+url="https://winmerge.org/">winmerge.org</ulink>. In <ulink
 url="https://winmerge.org/docs/">Documentazione</ulink>, segui il
 collegamento <ulink url="https://manual.winmerge.org/">Manuale</ulink> alla
 versione più recente della Guida.</para>
@@ -76,7 +75,7 @@ versione più recente della Guida.</para>
   </section>
 
   <section>
-    <title>Come utilizzare la Guida</title>
+    <title>Come usare la Guida</title>
 
     <para>Si prega di leggere i seguenti argomenti per apprendere le basi essenziali
 di WinMerge,</para>
@@ -86,7 +85,7 @@ di WinMerge,</para>
         <term><xref linkend="Quick_start" /></term>
 
         <listitem>
-          <para>Ti consente di iniziare rapidamente con WinMerge e ne mostra l'utilizzo di
+          <para>Ti consente di iniziare rapidamente con WinMerge e nevisualizza l'uso di
 base.</para>
         </listitem>
       </varlistentry>
@@ -159,8 +158,8 @@ bianchi, dei colori e della codifica del testo.</para>
 
         <listitem>
           <para>Presenta diversi modi per aprire file e cartelle in WinMerge: ce ne sono
-molti!Ad esempio, sai come utilizzare il menu contestuale dell'estensione
-della shell in modalità avanzata?</para>
+molti!Ad esempio, sai come usare il menu contestuale dell'estensione della
+shell in modalità avanzata?</para>
         </listitem>
       </varlistentry>
 
@@ -169,7 +168,7 @@ della shell in modalità avanzata?</para>
 
         <listitem>
           <para>Descrive le funzionalità extra opzionali che puoi aggiungere a WinMerge
-utilizzando il suo meccanismo di plug-in.</para>
+usando il suo meccanismo di plug-in.</para>
         </listitem>
       </varlistentry>
 
@@ -186,8 +185,8 @@ di cartelle o file.</para>
         <term><xref linkend="Command_line" /></term>
 
         <listitem>
-          <para>Elenca i parametri della riga di comando per l'utilizzo di WinMerge con
-altri strumenti o da uno script.</para>
+          <para>Elenca i parametri della riga di comando per l'uso di WinMerge con altri
+strumenti o da uno script.</para>
         </listitem>
       </varlistentry>
 
@@ -199,7 +198,7 @@ altri strumenti o da uno script.</para>
 
           <para>Prima di inviare domande a <ulink
 url="https://github.com/WinMerge/winmerge/">GitHub</ulink>, controlla prima
-l'argomento <xref linkend="Faq" /> per vedere se la tua domanda trova la
+l'argomento <xref linkend="Faq" /> per vedere se la domanda trova la
 risposta lì.</para>
         </listitem>
       </varlistentry>
@@ -223,8 +222,7 @@ risposta lì.</para>
 
         <tbody>
           <row>
-            <entry>Inserisci <userinput>UTF-8</userinput> nel campo.<para>Fai clic sul pulsante <guibutton>Sfoglia</guibutton> per raggiungere il
-percorso.</para><para>Premi <keycap>F5</keycap> una volta per aggiornare la finestra.</para></entry>
+            <entry>Inserisci <userinput>UTF-8</userinput> nel campo.<para>Per raggiungere il percorso seleziona <guibutton>Sfoglia</guibutton> .</para><para>Per aggiornare la finestra premi <keycap>F5</keycap> una volta .</para></entry>
 
             <entry>Il carattere in grassetto nel testo descrittivo può indicare:<itemizedlist>
                 <listitem>
@@ -240,7 +238,7 @@ percorso.</para><para>Premi <keycap>F5</keycap> una volta per aggiornare la fine
           <row>
             <entry>Premi <keycombo> <keycap>Ctrl</keycap> <keycap>O</keycap> </keycombo></entry>
 
-            <entry><wordasword>Premere</wordasword> indica un'azione da tastiera.In questo
+            <entry><wordasword>Premere</wordasword> indica un'azione da tastiera. In questo
 esempio, premi i tasti <keycap>Ctrl</keycap> e <keycap>O</keycap> in
 combinazione.</entry>
           </row>
@@ -256,7 +254,7 @@ esempio una voce di menu o un pulsante.</entry>
             <entry>Fai clic su <menuchoice> <guimenu>File</guimenu>
 <guimenuitem>Apri</guimenuitem> </menuchoice>.</entry>
 
-            <entry>La freccia indica la navigazione nel menu.Nell'esempio, scegli la voce
+            <entry>La freccia indica la navigazione nel menu. Nell'esempio, scegli la voce
 <guimenuitem>Apri</guimenuitem> nel menu <guimenu>File</guimenu> di
 WinMerge.</entry>
           </row>
@@ -265,9 +263,9 @@ WinMerge.</entry>
             <entry>Fai clic con il tasto destro sulla riga e scegli la scorciatoia
 <guimenuitem>Confronta</guimenuitem>.</entry>
 
-            <entry>Fare clic con il pulsante destro del mouse su un oggetto per aprire il
-relativo menu contestuale, quindi fare clic con il pulsante sinistro o
-destro del mouse sull'elemento indicato nel menu contestuale.</entry>
+            <entry>Per aprire il relativo menu contestuale fai clic con il pulsante destro del
+mouse su un oggetto, quindi fai clic con il pulsante sinistro o destro del
+mouse sull'elemento indicato nel menu contestuale.</entry>
           </row>
 
           <row>
@@ -277,9 +275,9 @@ dall'operazione.</para><para>Una o più linee diverse consecutive formano una di
 
             <entry>Il testo in corsivo può rappresentare:<itemizedlist>
                 <listitem>
-                  <para>Un valore o una stringa sostituibile.Nel primo esempio, sostituiresti il
-​​termine in corsivo con un nome file reale, ma inseriresti l'estensione
-file <filename>ini</filename>, che non è in corsivo, come scritto.</para>
+                  <para>Un valore o una stringa sostituibile. Nel primo esempio, sostituiresti il
+termine in corsivo con un nome file reale, ma inseriresti l'estensione file
+<filename>ini</filename>, che non è in corsivo, come scritto.</para>
                 </listitem>
 
                 <listitem>
@@ -323,7 +321,7 @@ rep="norepeat"><replaceable>percorso di input</replaceable></arg> <arg
 choice="opt" rep="norepeat"><replaceable>percorso di
 output</replaceable></arg></cmdsynopsis></entry>
 
-            <entry>Nelle righe di sintassi, le parentesi indicano elementi opzionali.In questo
+            <entry>Nelle righe di sintassi, le parentesi indicano elementi opzionali. In questo
 esempio è necessario inserire un percorso di input con il comando;puoi
 inserire un percorso di output, ma il comando è valido senza di esso.</entry>
           </row>

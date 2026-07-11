@@ -13,15 +13,15 @@
 
     <para>Dopo aver installato WinMerge, seguire la procedura e le discussioni
 contenute in questo argomento per apprendere le operazioni e i concetti di
-base di WinMerge.I metodi mostrati non sono gli unici modi per eseguire le
-operazioni: in genere esistono diversi modi per eseguire ciascuna
-attività.Una volta terminato, puoi continuare ad apprendere altri metodi e
+base di WinMerge. I metodivisualizzati non sono gli unici modi per eseguire
+le operazioni: in genere esistono diversi modi per eseguire ciascuna
+attività. Una volta terminato, puoi continuare ad apprendere altri metodi e
 competenze più avanzate, trattate in altri argomenti della guida.</para>
 
     <section>
       <title><indexterm><primary>Finestra WinMerge</primary></indexterm>Apri la finestra WinMerge</title>
 
-      <para>Ecco alcuni dei metodi che puoi utilizzare:</para>
+      <para>Ecco alcuni dei metodi che puoi usare:</para>
 
       <itemizedlist>
         <listitem>
@@ -47,21 +47,21 @@ inserisci <command>winmerge</command>.</para>
     <section>
       <title>Apri la finestra di dialogo <guilabel>Seleziona file o cartelle</guilabel></title>
 
-      <para>Nella finestra WinMerge utilizza i seguenti metodi per aprire la finestra di
+      <para>Nella finestra WinMerge usa i seguenti metodi per aprire la finestra di
 dialogo <guilabel>Seleziona file o cartelle</guilabel>:</para>
 
       <itemizedlist>
         <listitem>
-          <para>Fai clic su
+          <para>Seleziona
 <menuchoice><guimenu>File</guimenu><guimenuitem>Apri</guimenuitem></menuchoice>.</para>
         </listitem>
 
         <listitem>
-          <para>Fai clic sul pulsante <inlinemediaobject>
+          <para>Seleziona <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>Pulsante di apertura di WinMerge</phrase></textobject>
-            </inlinemediaobject> Apri
-della barra degli strumenti.</para>
+            </inlinemediaobject> Apri della barra
+degli strumenti.</para>
         </listitem>
 
         <listitem>
@@ -86,7 +86,7 @@ della barra degli strumenti.</para>
         <title>Specificare i file e le cartelle</title>
 
         <para>Nei campi <guilabel>1°</guilabel> e <guilabel>2°</guilabel>, specifica i
-file e le cartelle da confrontare.Utilizza uno di questi metodi:</para>
+file e le cartelle da confrontare. Usa uno di questi metodi:</para>
 
         <para><itemizedlist>
             <listitem>
@@ -94,44 +94,43 @@ file e le cartelle da confrontare.Utilizza uno di questi metodi:</para>
             </listitem>
 
             <listitem>
-              <para>Fai clic sul pulsante <guibutton>Sfoglia</guibutton> per raggiungere il
-percorso desiderato.</para>
+              <para>Seleziona <guibutton>Sfoglia</guibutton> per raggiungere il percorso
+desiderato.</para>
 
               <para>Nella finestra di dialogo Apri, il testo <literal>Selezione
 cartella</literal>, viene inizialmente visualizzato nel campo <guilabel>Nome
-file</guilabel>.La selezione dipende dal tipo di confronto che desideri
+file</guilabel>. La selezione dipende dal tipo di confronto che vuoi
 eseguire:</para>
 
               <itemizedlist>
                 <listitem>
-                  <para>Se stai confrontando file, seleziona il file di destinazione.Il testo
+                  <para>Se stai confrontando file, seleziona il file di destinazione. Il testo
 <literal>Selezione cartella</literal> viene sovrascritto con la tua
 selezione.</para>
                 </listitem>
 
                 <listitem>
                   <para>Se stai confrontando cartelle, apri la cartella di destinazione;non
-selezionare un file.Il testo <literal>Selezione cartella</literal> rimane al
-suo posto.</para>
+selezionare un file. Il testo <literal>Selezione cartella</literal> rimane
+al suo posto.</para>
                 </listitem>
               </itemizedlist>
 
-              <para>Fai clic su <guibutton>Apri</guibutton> per chiudere la finestra di dialogo
+              <para>Seleziona <guibutton>Apri</guibutton> per chiudere la finestra di dialogo
 Apri e caricare la selezione nel campo <guilabel>1°</guilabel> o
-<guilabel>2°</guilabel>.Se hai specificato le cartelle, il campo include una
-barra rovesciata ( \ ) alla fine del percorso.</para>
+<guilabel>2°</guilabel>. Se hai specificato le cartelle, il campo include
+una barra rovesciata ( \ ) alla fine del percorso.</para>
             </listitem>
 
             <listitem>
-              <para>Fare clic sulla casella combinata e scegliere un percorso utilizzato in
-precedenza.</para>
+              <para>Fai clic sulla casella combinata e scegli un percorso usato in precedenza.</para>
 
               <tip>
-                <para>Per rendere più semplice la selezione dei percorsi utilizzati di frequente,
+                <para>Per rendere più semplice la selezione dei percorsi usati di frequente,
 valuta la possibilità di abilitare l'opzione <guilabel>Completamento
-automatico finestra di apertura</guilabel>.Con questa opzione, WinMerge
-mostra un elenco di percorsi disponibili durante la digitazione nei
-campi.Vedi <xref linkend="Configuration" /> per i dettagli.</para>
+automatico finestra di apertura</guilabel>. Con questa opzione,
+WinMergevisualizza un elenco di percorsi disponibili durante la digitazione
+nei campi. Per i dettagli vedi <xref linkend="Configuration" />.</para>
               </tip>
               <para></para>
             </listitem>
@@ -143,7 +142,7 @@ campo <guilabel>1°</guilabel> o <guilabel>2°</guilabel>.</para>
           </itemizedlist></para>
 
         <para><note><para>È possibile selezionare solo una coppia di file o una coppia di cartelle da
-confrontare.Se selezioni un file e una cartella o se uno dei file o delle
+confrontare. Se selezioni un file e una cartella o se uno dei file o delle
 cartelle non viene trovato, WinMerge disabilita il pulsante
 <guibutton>Confronta</guibutton> nella finestra di dialogo.</para>
 
@@ -156,37 +155,37 @@ informa inoltre se uno dei percorsi non è valido.</para>
         <title>Controlla l'ambito dei confronti delle cartelle</title>
 
         <para>Se stai confrontando cartelle, puoi usare il campo
-<guilabel>Filtro</guilabel> per eliminare alcuni file dall'operazione.Il
+<guilabel>Filtro</guilabel> per eliminare alcuni file dall'operazione. Il
 campo specifica un sottoinsieme di file nei percorsi selezionati che devono
 essere inclusi;tutti i file non specificati sono esclusi.</para>
 
         <para>È possibile inserire maschere di file per filtrare i file con determinate
-estensioni.Ad esempio, questa espressione include solo file di origine C e
+estensioni. Ad esempio, questa espressione include solo file di origine C e
 C++;tutti gli altri tipi di file vengono eliminati dalla selezione.</para>
 
         <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
 
         <para>Per un filtraggio più efficace, inserisci un file filtro invece delle
-maschere file: fai clic sul pulsante <guibutton>Seleziona</guibutton>
-accanto al campo <guilabel>Filtri</guilabel> per scegliere da un elenco di
-filtri disponibili.I filtri di file contengono un numero qualsiasi di regole
-per includere o escludere file.WinMerge installa una serie di file filtro,
-che puoi modificare o aumentare con i tuoi file.</para>
+maschere file: seleziona <guibutton>Seleziona</guibutton> accanto al campo
+<guilabel>Filtri</guilabel> per scegliere da un elenco di filtri
+disponibili. I filtri di file contengono un numero qualsiasi di regole per
+includere o escludere file.WinMerge installa una serie di file filtro, che
+puoi modificare o aumentare con i file.</para>
 
-        <para>Vedi <xref linkend="Filters" /> per i dettagli completi sulle maschere di
-file e sui file di filtro.</para>
+        <para>Per i dettagli completi sulle maschere di file e sui file di filtro vedi
+<xref linkend="Filters" />.</para>
 
         <para>La casella di controllo <guilabel>Includi sottocartelle</guilabel> fornisce
-un altro modo per controllare l'ambito dei confronti delle cartelle.Se
+un altro modo per controllare l'ambito dei confronti delle cartelle. Se
 selezioni questa opzione, WinMerge confronta ricorsivamente le sottocartelle
-e mostra tutti i file e le cartelle che trova in un'unica visualizzazione.Se
-disabiliti l'opzione, viene confrontata solo la cartella attuale e le
-sottocartelle vengono elencate per nome (senza il loro contenuto), in modo
-da poterle sfogliare.</para>
+evisualizza tutti i file e le cartelle che trova in un'unica
+visualizzazione. Se disabiliti l'opzione, viene confrontata solo la cartella
+attuale e le sottocartelle vengono elencate per nome (senza il loro
+contenuto), in modo da poterle sfogliare.</para>
       </section>
 
       <section>
-        <title>Utilizza i plugin Unpacker</title>
+        <title>Usa i plugin Unpacker</title>
         <para>Il campo Unpacker consente di eseguire operazioni di confronto sui plug-in.</para>
       </section>
     </section>
@@ -201,13 +200,13 @@ da poterle sfogliare.</para>
         </indexterm></title>
 
       <para>La finestra di dialogo <guilabel>Seleziona file o cartelle</guilabel> è
-l'interfaccia principale per l'apertura di file e cartelle.Ma puoi usare
+l'interfaccia principale per l'apertura di file e cartelle. Ma puoi usare
 anche molti altri modi:</para>
 
       <itemizedlist>
         <listitem>
           <simpara><xref linkend="OpenPaths_project" /> rappresenta il modo più semplice e
-veloce per aprire i percorsi utilizzati di frequente.</simpara>
+veloce per aprire i percorsi usati di frequente.</simpara>
         </listitem>
 
         <listitem>
@@ -215,9 +214,9 @@ veloce per aprire i percorsi utilizzati di frequente.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>Utilizzare l'interfaccia <xref linkend="Command_line" /> per avviare
-WinMerge da altre applicazioni, da un prompt dei comandi o da un file batch
-o script.</simpara>
+          <simpara>Per avviare WinMerge da altre applicazioni usa l'interfaccia <xref
+linkend="Command_line" /> , da un prompt dei comandi o da un file batch o
+script.</simpara>
         </listitem>
 
         <listitem>
@@ -240,7 +239,7 @@ sul collegamento sul desktop di WinMerge.</simpara>
       </indexterm>Confronto di cartelle</title>
 
     <para>Se hai selezionato due cartelle nella finestra di dialogo Apri, viene aperta
-la finestra Confronto cartelle.La finestra Confronto cartelle è un elenco
+la finestra Confronto cartelle. La finestra Confronto cartelle è un elenco
 tabellare degli elementi trovati nelle cartelle confrontate.Ogni riga
 visualizza le informazioni su un file trovato, con il nome del file nella
 colonna di sinistra e informazioni aggiuntive nelle altre colonne:</para>
@@ -253,26 +252,27 @@ fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject><textobject>
     </mediaobject>
 
     <para>WinMerge non ha il concetto di lato <wordasword>originale</wordasword> e
-<wordasword>modificato</wordasword>.Invece, mostra semplicemente cosa c'è di
-diverso tra due cartelle selezionate.Un file o una cartella che si trova
-solo su un lato viene semplicemente mostrato come un elemento univoco su
-quel lato, non come aggiunto o rimosso.Ad esempio, nella colonna
+<wordasword>modificato</wordasword>. Invece,visualizza semplicemente cosa
+c'è di diverso tra due cartelle selezionate. Un file o una cartella che si
+trova solo su un lato viene semplicementevisualizzato come un elemento
+univoco su quel lato, non come aggiunto o rimosso. Ad esempio, nella colonna
 <guilabel>Risultato del confronto </guilabel>della figura precedente,
 <filename>Merge.aps</filename> e <filename>Merge.rc.bak</filename> si
 trovano ciascuno solo in una delle cartelle confrontate.</para>
 
     <para>Puoi gestire file e cartelle in molti modi usando il menu
 <guimenu>Unisci</guimenu>, i pulsanti della barra degli strumenti o il menu
-contestuale (clicca con il tasto destro).L'azione più importante è rendere i
-file o le cartelle identici su entrambi i lati selezionando uno dei numerosi
-elementi Copia.Quando copi un file o una cartella sull'altro lato, il valore
-del risultato del confronto cambia in <literal>Identical</literal>.</para>
+contestuale (clicca con il tasto destro). L'azione più importante è rendere
+i file o le cartelle identici su entrambi i lati selezionando uno dei
+numerosi elementi Copia. Quando copi un file o una cartella sull'altro lato,
+il valore del risultato del confronto cambia in
+<literal>Identical</literal>.</para>
 
     <para>Se un file o una cartella esiste su entrambi i lati (e non è un file
-binario), può essere aperto per il confronto dei file utilizzando uno di
-questi metodi:<itemizedlist>
+binario), può essere aperto per il confronto dei file usando uno di questi
+metodi:<itemizedlist>
         <listitem>
-          <simpara>Fai clic su <menuchoice> <guimenuitem>Confronta</guimenuitem>
+          <simpara>Seleziona <menuchoice> <guimenuitem>Confronta</guimenuitem>
 <guimenuitem>Unisci</guimenuitem> </menuchoice> nel menu WinMerge.</simpara>
         </listitem>
 
@@ -289,18 +289,17 @@ questi metodi:<itemizedlist>
           <simpara>Seleziona la riga e premi <keycap>Invio</keycap>.</simpara>
         </listitem>
       </itemizedlist>Se confronti una sottocartella, la tabella di confronto della nuova cartella
-viene caricata nella finestra Confronto cartelle attuale.Una volta terminato
-il confronto della cartella, puoi tornare alla cartella principale facendo
-doppio clic sulla freccia su <inlinemediaobject>
+viene caricata nella finestra Confronto cartelle attuale. Una volta
+terminato il confronto della cartella, puoi tornare alla cartella principale
+facendo doppio clic sulla freccia su <inlinemediaobject>
 <imageobject> <imagedata contentwidth="23"
 fileref="screenshots/nav_uparrow_btn.png" /> </imageobject><textobject>
           <phrase>Pulsante freccia su del navigatore</phrase>
         </textobject>
-      </inlinemediaobject>
-nella parte superiore della colonna Nome file.</para>
+      </inlinemediaobject> nella parte superiore della colonna Nome file.</para>
 
     <para>Se confronti un file, WinMerge apre la finestra Confronta file, descritta
-nella sezione successiva.Se modifichi un file nella finestra Confronta file
+nella sezione successiva. Se modifichi un file nella finestra Confronta file
 e poi ritorni alla finestra Confronta cartelle, vedrai che i dati del file
 vengono aggiornati lì.</para>
   </section>
@@ -323,26 +322,26 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
       </textobject>
     </mediaobject>
 
-    <para>La finestra Confronto file mostra i due file selezionati fianco a fianco, in
-riquadri File separati.Le diverse linee sono evidenziate con un colore di
-sfondo.Una o più linee diverse consecutive formano una differenza (o
-<glossterm>diff</glossterm>).Nell'esempio precedente, una singola differenza
-viene selezionata nei riquadri File e visualizzata da sola nel riquadro
-Diff.WinMerge funziona principalmente con queste differenze, non con linee
-separate.Quando unisci una differenza, copi tutte le sue linee da un lato
-all'altro.</para>
+    <para>La finestra Confronto filevisualizza i due file selezionati fianco a fianco,
+in riquadri File separati. Le diverse linee sono evidenziate con un colore
+di sfondo. Una o più linee diverse consecutive formano una differenza (o
+<glossterm>diff</glossterm>). Nell'esempio precedente, una singola
+differenza viene selezionata nei riquadri File e visualizzata da sola nel
+riquadro Diff. WinMerge funziona principalmente con queste differenze, non
+con linee separate. Quando unisci una differenza, copi tutte le sue linee da
+un lato all'altro.</para>
 
     <para><important>
         <para>Nota come WinMerge riempie le righe mancanti, in modo che le righe simili
-siano sempre allineate verticalmente, una accanto all'altra.Questo è diverso
-dalla maggior parte degli altri programmi di confronto/unione e può
+siano sempre allineate verticalmente, una accanto all'altra. Questo è
+diverso dalla maggior parte degli altri programmi di confronto/unione e può
 richiedere del tempo per essere appreso.</para>
       </important></para>
 
     <para>WinMerge ha un semplice editor integrato che consente di digitare, copiare,
-tagliare e incollare testo di base.Se la <guilabel>Riscansione
+tagliare e incollare testo di base. Se la <guilabel>Riscansione
 automatica</guilabel> è abilitata, WinMerge aggiorna le differenze tra i
-file mentre modifichi un file.Se la <guilabel>Riscansione
+file mentre modifichi un file. Se la <guilabel>Riscansione
 automatica</guilabel> è disabilitata, puoi aggiornare i file selezionando
 <menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Aggiorna</guimenuitem>
 </menuchoice>, facendo clic sul pulsante <inlinemediaobject>

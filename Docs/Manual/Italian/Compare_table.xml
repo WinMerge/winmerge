@@ -12,9 +12,9 @@
 
   <para>Nella versione 2.16.7 o successiva, è possibile visualizzare e modificare
 file con valori separati da delimitatori come CSV e TSV in formato tabella
-come un software per fogli di calcolo.Le operazioni di modifica, spostamento
-alle differenze e unione in questo formato sono le stesse di una normale
-finestra di file di testo.</para>
+come un software per fogli di calcolo. Le operazioni di modifica,
+spostamento alle differenze e unione in questo formato sono le stesse di una
+normale finestra di file di testo.</para>
 
   <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -29,21 +29,21 @@ fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
       </indexterm></title>
 
     <para>L'apertura dei file in formato tabella dipende dalla corrispondenza del nome
-file ai modelli definiti.Per impostazione predefinita, se l'estensione del
-file è .csv o .tsv, verrà aperto in formato tabella.Se desideri modificare i
+file ai modelli definiti. Per impostazione predefinita, se l'estensione del
+file è .csv o .tsv, verrà aperto in formato tabella. Se vuoi modificare i
 modelli, specificalo nella pagina Confronta/Tabella nella finestra di
 dialogo Opzioni.</para>
 
     <para>Se vuoi aprirlo temporaneamente in formato tabella dopo averlo aperto come
-testo semplice, fai clic su <menuchoice> <guimenu>File</guimenu>
+testo semplice, seleziona <menuchoice> <guimenu>File</guimenu>
 <guimenuitem>Riconfronta come</guimenuitem>
-<guimenuitem>Tabella</guimenuitem> </menuchoice>.Se appare la finestra di
-dialogo Tabella, seleziona il Tipo di file e fai clic su
+<guimenuitem>Tabella</guimenuitem> </menuchoice>. Se appare la finestra di
+dialogo Tabella, seleziona il Tipo di file e seleziona
 <guilabel>OK</guilabel>.</para>
     
     <para>
 Se vuoi aprire temporaneamente file che sono stati aperti in formato tabella
-come normali file di testo, fai clic su <menuchoice> <guimenu>File</guimenu>
+come normali file di testo, seleziona <menuchoice> <guimenu>File</guimenu>
 <guimenuitem>Riconfronta come</guimenuitem> <guimenuitem>Testo</guimenuitem>
 </menuchoice>.</para>
   </section>
@@ -76,8 +76,8 @@ Se vuoi cambiare le impostazioni di cui sopra, puoi farlo nella pagina
 Confronta/Tabella della finestra di dialogo Opzioni o nella finestra di
 dialogo della tabella che appare quando si fa clic su <menuchoice>
 <guimenu>File</guimenu> <guimenuitem>Riconfronta come</guimenuitem>
-<guimenuitem>Tabella</guimenuitem> </menuchoice>.Vedi <xref
-linkend="Configuration_compare_table" /> per i dettagli.</para>
+<guimenuitem>Tabella</guimenuitem> </menuchoice>. Per i dettagli vedi <xref
+linkend="Configuration_compare_table" />.</para>
 
   </section>
 
@@ -105,8 +105,8 @@ nell'intestazione della colonna.</para>
           <para>
 Quando è selezionata la voce di menu <menuchoice>
 <guimenu>Visualizza</guimenu> <guimenuitem>Righe a capo</guimenuitem>
-</menuchoice>, il testo andrà a capo in ogni colonna.Controlla questa voce
-di menu se vuoi vedere i valori dei campi multilinea.</para>
+</menuchoice>, il testo andrà a capo in ogni colonna. Controlla questa voce
+di menu se vuoi visualizzare i valori dei campi multilinea.</para>
         </listitem>
       </itemizedlist>
     </para>

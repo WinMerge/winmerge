@@ -4,8 +4,8 @@
 
   <para>Questo argomento descrive il modo in cui WinMerge rileva e visualizza le
 differenze all'interno dei file di testo e illustra semplici operazioni di
-confronto e unione dei file.Vedi <xref linkend="Compare_bin" /> per
-informazioni correlate sui file esadecimali.</para>
+confronto e unione dei file. Per informazioni correlate sui file esadecimali
+vedi <xref linkend="Compare_bin" />.</para>
 
   <section id="Intro_diffs_comparing">
     <title>Confronto di file<indexterm>
@@ -15,33 +15,33 @@ informazioni correlate sui file esadecimali.</para>
       </indexterm></title>
 
     <para>Di solito confrontiamo due file che sono in qualche modo correlati, ad
-esempio due versioni modificate in momenti diversi o da persone diverse.Se
-esamini due di questi file puoi solitamente vedere alcune aree simili e
-identificare anche diversi tipi di differenze: caratteri e parole diversi,
-righe diverse, persino interi blocchi di testo diversi.Ma cercare di
+esempio due versioni modificate in momenti diversi o da persone diverse. Se
+esamini due di questi file puoi solitamente visualizzare alcune aree simili
+e identificare anche diversi tipi di differenze: caratteri e parole diversi,
+righe diverse, persino interi blocchi di testo diversi. Ma cercare di
 comprendere tutte le differenze tra due file scansionandoli nel tuo editor
-preferito può essere noioso e soggetto a errori.Strumenti specializzati di
+preferito può essere noioso e soggetto a errori. Strumenti specializzati di
 differenza/unione come WinMerge sono progettati per rendere questo lavoro
 più sistematico ed efficiente.</para>
 
-    <para>Una semplice utilità di differenza utilizzata dalla maggior parte delle
-persone è un controllo ortografico: ti guida sistematicamente attraverso un
-documento, evidenzia le parole diverse da quelle presenti nel dizionario e
-ti aiuta a risolvere ogni problema di ortografia.Tuttavia, guardare solo i
-caratteri e le parole non è un modo efficace per comprendere le differenze
-tra più file.Per questo motivo, molte utilità di differenza utilizzano
-invece le linee come unità di confronto di base.</para>
+    <para>Una semplice utilità di differenza usata dalla maggior parte delle persone è
+un controllo ortografico: ti guida sistematicamente attraverso un documento,
+evidenzia le parole diverse da quelle presenti nel dizionario e ti aiuta a
+risolvere ogni problema di ortografia. Tuttavia, guardare solo i caratteri e
+le parole non è un modo efficace per comprendere le differenze tra più
+file. Per questo motivo, molte utilità di differenza usano invece le linee
+come unità di confronto di base.</para>
 
-    <para>WinMerge utilizza anche le linee come unità di differenza di base.Parole e
+    <para>WinMerge usa anche le linee come unità di differenza di base. Parole e
 caratteri non vengono trattati individualmente nelle operazioni di confronto
-e unione.Per illustrare, considera due file identici tranne che per una riga
-diversa.Se le due versioni della riga hanno quattro parole diverse e una
-versione ha uno spazio extra, allora diciamo che il file ha una differenza,
-non cinque.</para>
+e unione. Per illustrare, considera due file identici tranne che per una
+riga diversa. Se le due versioni della riga hanno quattro parole diverse e
+una versione ha uno spazio extra, allora diciamo che il file ha una
+differenza, non cinque.</para>
 
     <para>Se è più veloce confrontare le righe che le parole, a volte è anche utile
 trattare un intero blocco di righe come un'unica differenza, invece di
-confrontare una riga alla volta.Come vedremo più avanti, il rilevamento
+confrontare una riga alla volta. Come vedremo più avanti, il rilevamento
 delle differenze su più righe rende anche la fusione più efficiente.</para>
 
     <section>
@@ -52,8 +52,8 @@ differenze di riga tra due file in WinMerge:</para>
 
       <orderedlist>
         <listitem>
-          <para>Utilizzando un editor di testo, crea due file con i nomi e i contenuti
-mostrati qui, facendo attenzione a preservare esattamente le parole e le
+          <para>Usando un editor di testo, crea due file con i nomi e i contenuti
+visualizzati qui, facendo attenzione a preservare esattamente le parole e le
 interruzioni di riga:</para>
 
           <formalpara>
@@ -75,7 +75,7 @@ Che tu ci creda o no.</screen></para>
         </listitem>
 
         <listitem>
-          <para>Avvia WinMerge.Ad esempio, fai doppio clic sul <inlinemediaobject>
+          <para>Avvia WinMerge. Ad esempio, fai doppio clic sul <inlinemediaobject>
 <imageobject> <imagedata contentwidth="32" fileref="screenshots/wm_icon.png"
 /> </imageobject><textobject>
                 <phrase>Collegamento sul desktop di WinMerge</phrase>
@@ -86,8 +86,8 @@ Che tu ci creda o no.</screen></para>
         <listitem>
           <para>Nella finestra di dialogo Seleziona file e cartelle, specifica
 <filename>File1</filename> come <guilabel>primo</guilabel> file e
-<filename>File2</filename> come <guilabel>2°</guilabel> file, quindi fai
-clic su <guibutton>Confronta</guibutton>.La finestra Confronto file
+<filename>File2</filename> come <guilabel>2°</guilabel> file, quindi
+seleziona <guibutton>Confronta</guibutton>. La finestra Confronto file
 visualizza i due file nel riquadro File sinistro e destro, in questo modo:</para>
 
           <mediaobject>
@@ -98,7 +98,7 @@ fileref="screenshots/missing_lines.png" /> </imageobject><textobject>
           </mediaobject>
 
           <para>Gli elementi sono descritti più dettagliatamente in <xref
-linkend="Compare_files" />.Ecco alcune funzionalità che dovresti notare in
+linkend="Compare_files" />. Ecco alcune funzionalità che dovresti notare in
 questo esempio:</para>
 
           <variablelist>
@@ -119,8 +119,8 @@ WinMerge informa che sono state rilevate due differenze.</para>
 differenza (oro, per impostazione predefinita).</para>
 
                 <para>È possibile abilitare le differenze di linea per contrassegnare il testo
-modificato all'interno dei blocchi di differenze, utilizzando il colore di
-sfondo della parola (giallo chiaro, per impostazione predefinita).</para>
+modificato all'interno dei blocchi di differenze, usando il colore di sfondo
+della parola (giallo chiaro, per impostazione predefinita).</para>
 
                 <para>Le linee identiche non sono contrassegnate: hanno lo sfondo bianco, come la
 terza linea nell'esempio.</para>
@@ -133,18 +133,19 @@ terza linea nell'esempio.</para>
               <listitem>
                 <para>Si noti che nel riquadro di confronto sinistro la seconda riga contiene del
 testo: l'altro riquadro presenta una riga grigia vuota nella stessa
-posizione.Questa riga vuota non esiste nel file sorgente
+posizione. Questa riga vuota non esiste nel file sorgente
 <filename>File2</filename>, quindi cosa ci fa in WinMerge?</para>
 
                 <para>WinMerge inserisce una o più righe vuote grigie in una versione di una
-differenza quando l'altra versione ha più righe.Queste linee grigie vuote
-non rappresentano righe vuote nel file di origine;sono solo segnaposto nel
-display.Lo scopo delle linee segnaposto è mantenere allineate verticalmente
-le versioni sinistra e destra delle differenze.Pertanto, nel nostro esempio,
-il testo <computeroutput>WinMerge confronta le righe</computeroutput>,
-appare fianco a fianco nella finestra di confronto, anche se si trovano su
-righe diverse nei file di origine.Ciò rende più semplice confrontare le
-differenze in WinMerge rispetto a un editor convenzionale.</para>
+differenza quando l'altra versione ha più righe. Queste linee grigie vuote
+non rappresentano righe vuote nel file sorgente sono solo segnaposto nel
+display. Lo scopo delle linee segnaposto è mantenere allineate verticalmente
+le versioni sinistra e destra delle differenze. Pertanto, nel nostro
+esempio, il testo <computeroutput>WinMerge confronta le
+righe</computeroutput>, appare fianco a fianco nella finestra di confronto,
+anche se si trovano su righe diverse nei file di origine. Ciò rende più
+semplice confrontare le differenze in WinMerge rispetto a un editor
+convenzionale.</para>
 
                 <tip>
                   <para>Una conseguenza delle righe vuote è che entrambi i riquadri della finestra
@@ -156,33 +157,32 @@ se i file di origine non lo fanno.</para>
           </variablelist>
 
           <para>Ora che hai compreso come WinMerge rileva e visualizza le differenze, puoi
-utilizzare le funzioni di confronto in modo efficace, come mostrato nei
+usare le funzioni di confronto in modo efficace, comevisualizzato nei
 passaggi successivi.</para>
         </listitem>
 
         <listitem>
-          <para>Fai clic su <inlinemediaobject>
+          <para>Seleziona <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza attuale</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Differenza attuale</guibutton> nella barra degli strumenti (o
-premi <keycombo> <keycap>Alt</keycap> <keycap>Invio</keycap> </keycombo>).Se
-questo pulsante non è abilitato (ad esempio, se il cursore si trova su una
-riga diversa), fai clic su <inlinemediaobject>
+premi <keycombo> <keycap>Alt</keycap> <keycap>Invio</keycap>
+</keycombo>). Se questo pulsante non è abilitato (ad esempio, se il cursore
+si trova su una riga diversa), seleziona <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Prima differenza</phrase>
               </textobject>
-            </inlinemediaobject>
-Prima differenza (o premi <keycombo> <keycap>Alt</keycap>
-<keycap>Home</keycap> </keycombo>).</para>
+            </inlinemediaobject> Prima differenza (o premi <keycombo>
+<keycap>Alt</keycap> <keycap>Home</keycap> </keycombo>).</para>
 
           <para>Quando selezioni una differenza, le due versioni vengono caricate nel
-riquadro Diff.Il riquadro Diff conferma quali righe sono incluse in una
-differenza e consente di esaminarle isolandole dal resto del file.Nel nostro
-esempio, la Differenza 1 ha chiaramente due linee.</para>
+riquadro Diff. Il riquadro Diff conferma quali righe sono incluse in una
+differenza e consente di esaminarle isolandole dal resto del file. Nel
+nostro esempio, la Differenza 1 ha chiaramente due linee.</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="588"
@@ -194,7 +194,7 @@ fileref="screenshots/filecomp_diffpane1.png" /> </imageobject><textobject>
         </listitem>
 
         <listitem>
-          <para>Fai clic su <inlinemediaobject>
+          <para>Seleziona <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza successiva</phrase>
@@ -202,13 +202,13 @@ fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
             </inlinemediaobject>
 <guibutton>Differenza successiva</guibutton> nella barra degli strumenti (o
 fai clic su <keycombo> <keycap>Alt</keycap> <keycap>Invio</keycap>
-</keycombo>).Questo salta sulla riga identica (che non è una differenza) e
+</keycombo>). Questo salta sulla riga identica (che non è una differenza) e
 seleziona l'ultima riga.</para>
 
           <para>Hai raggiunto la fine del file e hai avuto la possibilità di esaminare ogni
-differenza.Questo era un esempio banale – c'erano solo due differenze – e ci
-sono altri modi per confrontare le differenze in WinMerge.Ma dimostra
-l'efficienza dell'utilizzo dei controlli di navigazione WinMerge.</para>
+differenza. Questo era un esempio banale – c'erano solo due differenze – e
+ci sono altri modi per confrontare le differenze in WinMerge. Ma dimostra
+l'efficienza dell'uso dei controlli di navigazione WinMerge.</para>
         </listitem>
       </orderedlist>
     </section>
@@ -222,56 +222,57 @@ l'efficienza dell'utilizzo dei controlli di navigazione WinMerge.</para>
       </indexterm></title>
 
     <para>Lo scopo dell'unione è combinare le modifiche di due file in un unico
-file.L'unione estende i concetti e le funzioni utilizzate nell'operazione di
+file. L'unione estende i concetti e le funzioni usate nell'operazione di
 confronto: leggere la sezione precedente prima di iniziare questa
 sezione.Oltre a rilevare le differenze tra due versioni di file, risolviamo
 le differenze e salviamo il risultato in un'unica versione
 <glossterm>target</glossterm>.</para>
 
     <para>L'unione di file rende possibile lo sviluppo simultaneo ed è un'attività
-comune negli ambienti di team.Ad esempio, supponiamo che tu e un'altra
+comune negli ambienti di team. Ad esempio, supponiamo che tu e un'altra
 persona vogliate aggiungere codice allo stesso file di programma
-contemporaneamente.Entrambi iniziate con una copia identica del file, ma
-durante lo sviluppo create versioni separate che non sono identiche.Ad un
+contemporaneamente. Entrambi iniziate con una copia identica del file, ma
+durante lo sviluppo create versioni separate che non sono identiche. Ad un
 certo punto, le due versioni devono essere unite in un'unica versione che
 preservi le modifiche di ciascun contributore.</para>
 
     <para>L'unione può essere richiesta (o addirittura avviata) da sistemi di
-controllo della versione come Subversion e Git.Ad esempio, il tuo sistema di
-controllo della versione potrebbe impedirti di inviare modifiche al suo
-repository a causa di conflitti di unione.Può verificarsi un conflitto se
+controllo della versione come Subversion e Git. Ad esempio, il tuo sistema
+di controllo della versione potrebbe impedirti di inviare modifiche al suo
+repository a causa di conflitti di unione. Può verificarsi un conflitto se
 qualcun altro ha archiviato una versione diversa dello stesso file mentre
 stavi lavorando sulla tua versione e il sistema di controllo della versione
-non è stato in grado di unire automaticamente le differenze.Quando ciò
+non è stato in grado di unire automaticamente le differenze. Quando ciò
 accade, potresti dover unire le versioni in conflitto prima di riprovare a
-contribuire con la tua versione.Molti sistemi dispongono di strumenti
-integrati per la differenza e l'unione, ma potresti preferire utilizzare
+contribuire con la tua versione. Molti sistemi dispongono di strumenti
+integrati per la differenza e l'unione, ma potresti preferire usare
 WinMerge.</para>
 
-    <para>Proprio come per il confronto, utilizzi i controlli della barra degli
-strumenti di WinMerge (o le scorciatoie da tastiera) per esaminare
-sistematicamente le differenze.Risolvi ogni differenza copiando il
-<glossterm>candidato</glossterm> sinistro o destro sull'altro lato.Una volta
-risolte tutte le differenze, WinMerge ti informa che tutte le differenze
-sono state risolte (le versioni sono identiche) e che l'unione è terminata.</para>
+    <para>Proprio come per il confronto, usi i controlli della barra degli strumenti
+di WinMerge (o le scorciatoie da tastiera) per esaminare sistematicamente le
+differenze. Risolvi ogni differenza copiando il
+<glossterm>candidato</glossterm> sinistro o destro sull'altro lato. Una
+volta risolte tutte le differenze, WinMerge ti informa che tutte le
+differenze sono state risolte (le versioni sono identiche) e che l'unione è
+terminata.</para>
 
     <section>
       <title>Semplice operazione di unione</title>
 
-      <para>Questo breve esercizio dimostra come utilizzare i controlli nella finestra
-Confronta file in modo sistematico per unire i file semplici mostrati in
+      <para>Questo breve esercizio dimostra come usare i controlli nella finestra
+Confronta file in modo sistematico per unire i file semplicivisualizzati in
 precedenza:</para>
 
       <orderedlist>
         <listitem>
-          <para>Fai clic su <inlinemediaobject>
+          <para>Seleziona <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza attuale</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Differenza attuale</guibutton> nella barra degli strumenti per
-selezionare la prima differenza.Se questo pulsante non è abilitato, fai
+selezionare la prima differenza. Se questo pulsante non è abilitato, fai
 invece clic su <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
@@ -282,40 +283,40 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
         </listitem>
 
         <listitem>
-          <para>Fai clic su <inlinemediaobject>
+          <para>Seleziona <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
                 <phrase>Copia pulsante destro</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton>Copia
-a destra</guibutton> per unire la Differenza 1 da <filename>File1</filename>
-a <filename>File2</filename>.In <filename>File</filename>2, nota che la
+            </inlinemediaobject> <guibutton>Copia a
+destra</guibutton> per unire la Differenza 1 da <filename>File1</filename> a
+<filename>File2</filename>. In <filename>File</filename>2, nota che la
 singola riga di differenza è sostituita dalle due righe di
 <filename>File1</filename>, e la riga grigia vuota ora è scomparsa.</para>
         </listitem>
 
         <listitem>
-          <para>Fai clic su <inlinemediaobject>
+          <para>Seleziona <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Pulsante Differenza successiva</phrase>
               </textobject>
             </inlinemediaobject>
 <guibutton>Differenza successiva</guibutton> per selezionare Differenza
-2. Questo è più semplice che trovare e selezionare la differenza da solo.È
-particolarmente utile se desideri esaminare tutte le differenze senza
+2. Questo è più semplice che trovare e selezionare la differenza da solo. È
+particolarmente utile se vuoi esaminare tutte le differenze senza
 tralasciarne nessuna accidentalmente.</para>
         </listitem>
 
         <listitem>
-          <para>Fai clic su <inlinemediaobject>
+          <para>Seleziona <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
                 <phrase>Copia pulsante sinistro</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton>Copia
-a sinistra</guibutton> per unire la differenza 2 da
-<filename>File2</filename> a <filename>File1</filename>.</para>
+            </inlinemediaobject> <guibutton>Copia a
+sinistra</guibutton> per unire la differenza 2 da <filename>File2</filename>
+a <filename>File1</filename>.</para>
 
           <para>Il messaggio che i file sono identici ti dice che l'unione è completa:</para>
 
@@ -326,7 +327,7 @@ fileref="screenshots/filemerged1.png" format="PNG" /> </imageobject></mediaobjec
         </listitem>
 
         <listitem>
-          <para>Fai clic su <guibutton>OK</guibutton> per chiudere il messaggio.Il messaggio
+          <para>Per chiudere il messaggio seleziona <guibutton>OK</guibutton>. Il messaggio
 di differenza di stato cambia da <computeroutput>Differenza 1 di
 1</computeroutput> a <computeroutput>identico</computeroutput>.</para>
         </listitem>
@@ -338,7 +339,7 @@ salvare le modifiche.</para>
       </orderedlist>
 
       <para>Sebbene sia molto semplice, questo esempio dimostra una metodologia di base
-che puoi utilizzare per eseguire un confronto di qualsiasi lunghezza, unendo
+che puoi usare per eseguire un confronto di qualsiasi lunghezza, unendo
 ciascuna differenza una per una finché non ottieni il risultato desiderato.</para>
     </section>
 
@@ -351,13 +352,13 @@ ciascuna differenza una per una finché non ottieni il risultato desiderato.</pa
           <primary>file dei risultati, in unione</primary>
         </indexterm></title>
 
-      <para>Sei tu a controllare dove viene conservato il risultato dell'unione.La
+      <para>Sei tu a controllare dove viene conservato il risultato dell'unione. La
 finestra Confronto file WinMerge non dispone di un riquadro dei risultati
-separato, come fanno alcuni strumenti di unione.Quindi la strategia più
-semplice è salvare le modifiche su uno, due o tre file sorgente.Premi
+separato, come fanno alcuni strumenti di unione. Quindi la strategia più
+semplice è salvare le modifiche su uno, due o tre file sorgente. Premi
 <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> in qualsiasi
-momento per salvare le modifiche correnti su tutti i file;in alternativa,
-fai clic su <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a
+momento per salvare le modifiche correnti su tutti i file; in alternativa,
+seleziona <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva a
 sinistra</guimenuitem> </menuchoice>, <menuchoice> <guimenu>File</guimenu>
 <guimenuitem>Salva a destra</guimenuitem> </menuchoice> o <menuchoice>
 <guimenu>File</guimenu> <guimenuitem>Salva a destra</guimenuitem>
@@ -365,14 +366,14 @@ sinistra</guimenuitem> </menuchoice>, <menuchoice> <guimenu>File</guimenu>
 
       <para>Per scrivere su un terzo file invece che su uno dei file sorgente, usa
 <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva con
-nome</guimenuitem> </menuchoice>.Ad esempio, il file di destinazione
+nome</guimenuitem> </menuchoice>. Ad esempio, il file di destinazione
 potrebbe essere il file delle differenze o dei conflitti generato da un
 sistema di controllo della versione.</para>
 
       <para>Allo stesso modo, nella riga di comando di WinMerge, puoi lasciare entrambe
-o tutte e tre le versioni sorgente invariate utilizzando l'argomento
-facoltativo <option>outputfile </option>, come descritto in <xref
-linkend="Command_line" />.</para>
+o tutte e tre le versioni sorgente invariate usando l'argomento facoltativo
+<option>outputfile </option>, come descritto in <xref linkend="Command_line"
+/>.</para>
     </section>
   </section>
 </article>
