@@ -38,3 +38,9 @@ void PutFilesToClipboard(const Container& list, WindowHandle currentWindowHandle
 
 	PutFilesToClipboardInternal(strPaths, strPathsSepSpc, currentWindowHandle);
 }
+
+template<typename WindowHandle>
+bool PutFileAndTextToClipboard(const String& filename, const String& text, WindowHandle currentWindowHandle);
+
+template<typename WindowHandle>
+bool PutFileAndTextAndHTMLToClipboard(const String& filename, const String& text, WindowHandle currentWindowHandle);

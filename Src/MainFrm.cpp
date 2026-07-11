@@ -2094,7 +2094,17 @@ void CMainFrame::OnToolsGenerateReport()
 	for (const auto data : dlg.GetOptions().selectedData)
 		docs.push_back(reinterpret_cast<IMergeDoc*>(data));
 
+	if (s.empty())
+	{
+		auto wTemp = std::make_shared<TempFile>();
+		wTemp->Create(_T(""), _T(".html"));
+		s = wTemp->GetPath();
+		m_tempFiles.push_back(wTemp);
+	}
+
 	bool bSuccess = CFileCmpReport::GenerateDocumentReport(docs, s);
+	if (bSuccess && dlg.GetOptions().copyToClipboard)
+		bSuccess = CFileCmpReport::CopyToClipboard(s);
 	if (bSuccess)
 		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }

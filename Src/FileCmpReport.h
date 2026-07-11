@@ -24,6 +24,8 @@ public:
 	static bool GenerateDocumentReport(const std::vector<IMergeDoc*>& mergeDocuments, 
 											const String& sFileName);
 
+	static bool CopyToClipboard(const String& sFileName);
+
 private:
 	/**
 	 * @brief Write HTML header to file

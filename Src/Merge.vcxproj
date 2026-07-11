@@ -1518,6 +1518,7 @@
     </ClCompile>
     <ClCompile Include="WebPageDiffFrm.cpp" />
     <ClCompile Include="WildcardDropList.cpp" />
+    <ClCompile Include="WindowListCtrl.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WinRtLoader.cpp" />
@@ -1763,6 +1764,7 @@
     <ClInclude Include="TreeSitterParser.h" />
     <ClInclude Include="WebPageDiffFrm.h" />
     <ClInclude Include="WildcardDropList.h" />
+    <ClInclude Include="WindowListCtrl.h" />
     <ClInclude Include="WindowsManager.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
     <ClInclude Include="WinMergePluginBase.h" />

@@ -8,6 +8,7 @@
 
 #include "TrDialogs.h"
 #include "SuperComboBox.h"
+#include "WindowListCtrl.h"
 
 struct IMergeDoc;
 
@@ -22,16 +23,13 @@ class FileCmpReportDlg : public CTrDialog
 	DECLARE_DYNAMIC(FileCmpReportDlg)
 
 public:
-	struct WindowItem
-	{
-		CFrameWnd* pFrame;
-		uintptr_t data;
-		bool checked;
-	};
+	using WindowItem = CWindowListCtrl::WindowItem;
+
 	struct Options
 	{
 		String reportFile;
 		bool includeAllImagePages = false;
+		bool copyToClipboard = false;
 		std::vector<uintptr_t> selectedData;
 	};
 
@@ -51,13 +49,14 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(FileCmpReportDlg)
 	afx_msg void OnBtnClickReportBrowse();
-	afx_msg void OnBnClickedCopyClipboard();
+	afx_msg void OnBtnDblclickCopyClipboard();
 	virtual void OnOK() override;
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP();
 
 private:
+	void LoadSettings();
 	void CollectOptions();
 
 private:
@@ -65,8 +64,7 @@ private:
 	Options				 m_options;
 
 	//{{AFX_DATA(FileCmpReportDlg)
-	CListCtrl m_list;
-	CImageList m_imageList;
+	CWindowListCtrl m_list;
 	CSuperComboBox m_ctlReportFile;
 	//}}AFX_DATA
 };

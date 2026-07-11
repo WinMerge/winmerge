@@ -13,6 +13,7 @@
 #include "MergeApp.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "ClipBoard.h"
 
 static IMergeDoc* GetFirstDocument(const std::vector<IMergeDoc*>& mergeDocuments, IMergeDoc::DocumentType docType)
 {
@@ -291,5 +292,28 @@ bool CFileCmpReport::GenerateDocumentReport(const std::vector<IMergeDoc*>& merge
 	WriteFooter(file);
 
 	file.Close();
+	return true;
+}
+
+bool CFileCmpReport::CopyToClipboard(const String& sFileName)
+{
+	UniMemFile file;
+	if (!file.OpenReadOnly(sFileName))
+	{
+		String errMsg = GetSysError(GetLastError());
+		String msg = strutils::format_string1(
+			_("Error opening the report for clipboard copy:\n%1"), errMsg);
+		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
+		return false;
+	}
+	file.SetUnicoding(ucr::UTF8);
+	String content;
+	file.ReadStringAll(content);
+	file.Close();
+	if (!PutFileAndTextAndHTMLToClipboard(sFileName, content, HWND(nullptr)))
+	{
+		AfxMessageBox(_("Failed to copy report to clipboard.").c_str(), MB_OK | MB_ICONSTOP);
+		return false;
+	}
 	return true;
 }

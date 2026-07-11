@@ -116,6 +116,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_REPORTFILES_REPORTTYPE, 0, 0, 3);
 	pOptions->InitOption(OPT_REPORTFILES_COPYTOCLIPBOARD, false);
 	pOptions->InitOption(OPT_REPORTFILES_INCLUDEFILECMPREPORT, false);
+	pOptions->InitOption(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES, true);
 
 	pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
 	pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);

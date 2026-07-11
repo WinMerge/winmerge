@@ -6,42 +6,10 @@
 
 #include "pch.h"
 #include "ClipBoard.h"
+#include "unicoder.h"
 #include <ShlObj.h>
 
 inline CLIPFORMAT GetClipTcharTextFormat() { return (sizeof(tchar_t) == 1 ? CF_TEXT : CF_UNICODETEXT); }
-
-/**
- * @brief Copies string to clipboard.
- * @param [in] text Text to copy to clipboard.
- * @param [in] currentWindowHandle Handle to current window.
- * @return `true` if text copying succeeds, `false` otherwise.
- */
-template<>
-bool PutToClipboard<HWND>(const String & text, HWND currentWindowHandle)
-{
-	if (text.empty())
-		return false;
-
-	bool bOK = false;
-	if (OpenClipboard(currentWindowHandle))
-	{
-		EmptyClipboard();
-		const size_t dataSiz = text.length() + 1;
-		HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, dataSiz * sizeof(tchar_t));
-		if (hData != nullptr)
-		{
-			if (tchar_t* pszData = static_cast<tchar_t*>(::GlobalLock(hData)))
-			{
-				tc::tcslcpy(pszData, dataSiz, text.c_str());
-				GlobalUnlock(hData);
-			}
-			CLIPFORMAT fmt = GetClipTcharTextFormat();
-			bOK = SetClipboardData(fmt, hData) != nullptr;
-		}
-		CloseClipboard();
-	}
-	return bOK;
-}
 
 /**
  * @brief Retrieves the string from clipboard.
@@ -71,13 +39,53 @@ bool GetFromClipboard(String & text)
 	return bSuccess;
 }
 
-template<>
-void PutFilesToClipboardInternal<HWND>(const String& strPaths, const String& strPathsSepSpc, HWND currentWindowHandle)
+struct ClipboardData
 {
-	// CF_HDROP
+	CLIPFORMAT format;
+	HGLOBAL hData;
+};
+
+bool SetClipboardDataMultiple(HWND hwnd, std::initializer_list<ClipboardData> list)
+{
+	if (!OpenClipboard(hwnd))
+		return false;
+
+	EmptyClipboard();
+
+	for (auto& item : list)
+	{
+		if (::SetClipboardData(item.format, item.hData) == nullptr)
+		{
+			CloseClipboard();
+			return false;
+		}
+	}
+
+	CloseClipboard();
+	return true;
+}
+
+HGLOBAL CreateClipboardText(const String& text)
+{
+	if (text.empty())
+		return nullptr;
+	const size_t dataSize = text.length() + 1;
+	HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, dataSize * sizeof(tchar_t));
+	if (hData == nullptr)
+		return nullptr;
+	if (tchar_t* pszData = static_cast<tchar_t*>(GlobalLock(hData)))
+	{
+		tc::tcslcpy(pszData, dataSize, text.c_str());
+		GlobalUnlock(hData);
+	}
+	return hData;
+}
+
+HGLOBAL CreateClipboardHDROP(const String& strPaths)
+{
 	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(tchar_t) * strPaths.length());
 	if (hDrop == nullptr)
-		return;
+		return nullptr;
 	if (tchar_t* pDrop = static_cast<tchar_t*>(GlobalLock(hDrop)))
 	{
 		DROPFILES df = { 0 };
@@ -87,43 +95,203 @@ void PutFilesToClipboardInternal<HWND>(const String& strPaths, const String& str
 		memcpy((BYTE*)pDrop + sizeof(DROPFILES), (const tchar_t*)strPaths.c_str(), sizeof(tchar_t) * strPaths.length());
 		GlobalUnlock(hDrop);
 	}
+	return hDrop;
+}
+
+HGLOBAL CreateClipboardDropEffect(DWORD dropEffect)
+{
+	HGLOBAL hData = GlobalAlloc(GHND, sizeof(DWORD));
+	if (hData == nullptr)
+		return nullptr;
+	if (DWORD* p = static_cast<DWORD*>(GlobalLock(hData)))
+	{
+		*p = dropEffect;
+		GlobalUnlock(hData);
+	}
+	return hData;
+}
+
+HGLOBAL CreateClipboardHTML(const String& htmlContent)
+{
+	if (htmlContent.empty())
+		return nullptr;
+
+	// CF_HTML format constants
+	static const char header[] =
+		"Version:0.9\n"
+		"StartHTML:%09d\n"
+		"EndHTML:%09d\n"
+		"StartFragment:%09d\n"
+		"EndFragment:%09d\n";
+	static const char start[] = "<html><body>\n<!--StartFragment -->";
+	static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
+	
+	// Convert to UTF-8 for CF_HTML
+	std::string htmlUtf8 = ucr::toUTF8(htmlContent);
+	std::vector<char> htmlBuffer(htmlUtf8.begin(), htmlUtf8.end());
+
+	// Rewrite CF_HTML header with valid offsets
+	char headerBuf[256];
+	int cbHeader = wsprintfA(headerBuf, header, 0, 0, 0, 0);
+	int size = static_cast<int>(htmlBuffer.size());
+	wsprintfA(headerBuf, header, cbHeader,
+		size - 1,
+		cbHeader + sizeof start - 1,
+		size - sizeof end + 1);
+	memcpy(htmlBuffer.data(), headerBuf, cbHeader);
+
+	HGLOBAL hData = GlobalAlloc(GMEM_DDESHARE | GMEM_MOVEABLE, size);
+	if (hData == nullptr)
+		return nullptr;
+
+	if (void* pData = GlobalLock(hData))
+	{
+		memcpy(pData, htmlBuffer.data(), size);
+		GlobalUnlock(hData);
+	}
+	return hData;
+}
+
+/**
+ * @brief Copies string to clipboard.
+ * @param [in] text Text to copy to clipboard.
+ * @param [in] currentWindowHandle Handle to current window.
+ * @return `true` if text copying succeeds, `false` otherwise.
+ */
+template<>
+bool PutToClipboard<HWND>(const String& text, HWND currentWindowHandle)
+{
+	if (text.empty())
+		return false;
+
+	HGLOBAL hText = CreateClipboardText(text);
+	if (hText == nullptr)
+		return false;
+
+	return SetClipboardDataMultiple(currentWindowHandle,
+		{ { GetClipTcharTextFormat(), hText } });
+}
+
+template<>
+void PutFilesToClipboardInternal<HWND>(const String& strPaths, const String& strPathsSepSpc, HWND currentWindowHandle)
+{
+	// CF_HDROP
+	HGLOBAL hDrop = CreateClipboardHDROP(strPaths);
+	if (hDrop == nullptr)
+		return;
 
 	// CF_DROPEFFECT
-	HGLOBAL hDropEffect = GlobalAlloc(GHND, sizeof(DWORD));
+	HGLOBAL hDropEffect = CreateClipboardDropEffect(DROPEFFECT_COPY);
 	if (hDropEffect == nullptr)
 	{
 		GlobalFree(hDrop);
 		return;
 	}
-	if (DWORD* p = static_cast<DWORD*>(GlobalLock(hDropEffect)))
-	{
-		*p = DROPEFFECT_COPY;
-		GlobalUnlock(hDropEffect);
-	}
 
 	// CF_UNICODETEXT
-	HGLOBAL hPathnames = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, sizeof(tchar_t) * (strPathsSepSpc.length() + 1));
+	HGLOBAL hPathnames = CreateClipboardText(strPathsSepSpc);
 	if (hPathnames == nullptr)
 	{
 		GlobalFree(hDrop);
 		GlobalFree(hDropEffect);
 		return;
 	}
-	if (void* pPathnames = GlobalLock(hPathnames))
-	{
-		memcpy((BYTE*)pPathnames, (const tchar_t*)strPathsSepSpc.c_str(), sizeof(tchar_t) * strPathsSepSpc.length());
-		((tchar_t*)pPathnames)[strPathsSepSpc.length()] = 0;
-		GlobalUnlock(hPathnames);
-	}
 
 	UINT CF_DROPEFFECT = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
-	if (::OpenClipboard(currentWindowHandle))
+	bool bOK = SetClipboardDataMultiple(currentWindowHandle,
 	{
-		EmptyClipboard();
-		SetClipboardData(CF_HDROP, hDrop);
-		SetClipboardData(CF_DROPEFFECT, hDropEffect);
-		SetClipboardData(GetClipTcharTextFormat(), hPathnames);
-		CloseClipboard();
-	}
+		{ CF_HDROP, hDrop },
+		{ CLIPFORMAT(CF_DROPEFFECT), hDropEffect },
+		{ GetClipTcharTextFormat(), hPathnames}
+	});
 }
 
+template<>
+bool PutFileAndTextToClipboard<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
+{
+	// CF_HDROP
+	String strPaths = filename;
+	strPaths += _T('\0');
+	strPaths += _T('\0');
+
+	HGLOBAL hDrop = CreateClipboardHDROP(strPaths);
+	if (hDrop == nullptr)
+		return false;
+
+	// CFSTR_PREFERREDDROPEFFECT
+	HGLOBAL hDropEffect = CreateClipboardDropEffect(DROPEFFECT_COPY);
+	if (hDropEffect == nullptr)
+	{
+		GlobalFree(hDrop);
+		return false;
+	}
+
+	// CF_UNICODETEXT
+	HGLOBAL hText = CreateClipboardText(text);
+	if (hText == nullptr)
+	{
+		GlobalFree(hDrop);
+		GlobalFree(hDropEffect);
+		return false;
+	}
+
+	UINT cfDropEffect = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
+
+	return SetClipboardDataMultiple(currentWindowHandle,
+	{
+		{ CF_HDROP, hDrop },
+		{ CLIPFORMAT(cfDropEffect), hDropEffect },
+		{ GetClipTcharTextFormat(), hText }
+	});
+}
+
+template<>
+bool PutFileAndTextAndHTMLToClipboard<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
+{
+	// CF_HDROP
+	String strPaths = filename;
+	strPaths += _T('\0');
+	strPaths += _T('\0');
+
+	HGLOBAL hDrop = CreateClipboardHDROP(strPaths);
+	if (hDrop == nullptr)
+		return false;
+
+	// CFSTR_PREFERREDDROPEFFECT
+	HGLOBAL hDropEffect = CreateClipboardDropEffect(DROPEFFECT_COPY);
+	if (hDropEffect == nullptr)
+	{
+		GlobalFree(hDrop);
+		return false;
+	}
+
+	// CF_UNICODETEXT
+	HGLOBAL hText = CreateClipboardText(text);
+	if (hText == nullptr)
+	{
+		GlobalFree(hDrop);
+		GlobalFree(hDropEffect);
+		return false;
+	}
+
+	// CF_HTML
+	HGLOBAL hHTML = CreateClipboardHTML(text);
+	if (hHTML == nullptr)
+	{
+		GlobalFree(hDrop);
+		GlobalFree(hDropEffect);
+		GlobalFree(hText);
+		return false;
+	}
+
+	UINT cfDropEffect = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
+	UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
+
+	return SetClipboardDataMultiple(currentWindowHandle,
+	{
+		{ CF_HDROP, hDrop },
+		{ CLIPFORMAT(cfDropEffect), hDropEffect },
+		{ GetClipTcharTextFormat(), hText },
+		{ CLIPFORMAT(CF_HTML), hHTML }
+	});
+}

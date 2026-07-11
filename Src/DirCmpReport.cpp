@@ -23,6 +23,7 @@
 #include "UniFile.h"
 #include "TempFile.h"
 #include "I18n.h"
+#include "ClipBoard.h"
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
 
@@ -127,31 +128,6 @@ void DirCmpReport::SetFileCmpReport(IFileCmpReport *pFileCmpReport)
 }
 
 /**
- * @brief Copy string content to clipboard as Unicode text.
- * @param [in] content String to copy to clipboard.
- * @return true if successful, false otherwise.
- */
-static bool CopyTextToClipboard(const String& content)
-{
-	size_t len = content.length();
-	HGLOBAL hMem = GlobalAlloc(GMEM_DDESHARE | GMEM_MOVEABLE, (len + 1) * sizeof(wchar_t));
-	if (!hMem)
-		return false;
-
-	wchar_t* pMem = static_cast<wchar_t*>(GlobalLock(hMem));
-	if (!pMem)
-	{
-		GlobalFree(hMem);
-		return false;
-	}
-
-	wcscpy_s(pMem, len + 1, content.c_str());
-	GlobalUnlock(hMem);
-	SetClipboardData(CF_UNICODETEXT, hMem);
-	return true;
-}
-
-/**
  * @brief Generate CF_HTML format data and copy to clipboard.
  * @param [in] htmlContent HTML content string to convert to CF_HTML format.
  */
@@ -197,14 +173,6 @@ void DirCmpReport::GenerateCF_HTML(const String& htmlContent)
  */
 bool DirCmpReport::GenerateReportToClipboard(String &errStr)
 {
-	if (!OpenClipboard(NULL))
-		return false;
-	if (!EmptyClipboard())
-	{
-		CloseClipboard();
-		return false;
-	}
-
 	// Generate report to temporary file
 	TempFile tempFile;
 	String tempFilePath = tempFile.Create(_T("winmerge_report_"), _T(".txt"));
@@ -237,10 +205,9 @@ bool DirCmpReport::GenerateReportToClipboard(String &errStr)
 		file.Close();
 
 		// Copy to clipboard as Unicode text
-		if (!CopyTextToClipboard(content))
+		if (!PutFileAndTextToClipboard(tempFilePath, content, HWND(nullptr)))
 		{
 			errStr = _("Failed to copy to clipboard.");
-			CloseClipboard();
 			m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
 			return false;
 		}
@@ -251,7 +218,6 @@ bool DirCmpReport::GenerateReportToClipboard(String &errStr)
 			GenerateCF_HTML(content);  // Pass the content directly
 		}
 	}
-	CloseClipboard();
 	m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
 	// TempFile destructor will automatically delete the temporary file
 	return true;

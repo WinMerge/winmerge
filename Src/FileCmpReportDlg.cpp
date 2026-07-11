@@ -8,16 +8,17 @@
 #include "stdafx.h"
 #include "FileCmpReportDlg.h"
 #include "FileOrFolderSelect.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 IMPLEMENT_DYNAMIC(FileCmpReportDlg, CTrDialog)
 
-FileCmpReportDlg::FileCmpReportDlg(CWnd* pParent)
-	: CTrDialog(IDD_FILECMP_REPORT, pParent)
+FileCmpReportDlg::FileCmpReportDlg(CWnd* pParent) : CTrDialog(IDD_FILECMP_REPORT, pParent)
 {}
 
 BEGIN_MESSAGE_MAP(FileCmpReportDlg, CTrDialog)
-	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, &FileCmpReportDlg::OnBtnClickReportBrowse)
-	ON_BN_CLICKED(IDC_REPORT_COPYCLIPBOARD, &FileCmpReportDlg::OnBnClickedCopyClipboard)
+	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
+	ON_BN_DOUBLECLICKED(IDC_REPORT_COPYCLIPBOARD, OnBtnDblclickCopyClipboard)
 END_MESSAGE_MAP()
 
 void FileCmpReportDlg::DoDataExchange(CDataExchange* pDX)
@@ -27,6 +28,7 @@ void FileCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_REPORT_WINDOW_LIST, m_list);
 	DDX_Control(pDX, IDC_REPORT_FILE, m_ctlReportFile);
 	DDX_Check(pDX, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES, m_options.includeAllImagePages);
+	DDX_Check(pDX, IDC_REPORT_COPYCLIPBOARD, m_options.copyToClipboard);
 	DDX_CBString(pDX, IDC_REPORT_FILE, m_options.reportFile);
 }
 
@@ -34,62 +36,48 @@ BOOL FileCmpReportDlg::OnInitDialog()
 {
 	__super::OnInitDialog();
 
+	LoadSettings();
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 	CRect rc;
-	m_list.GetClientRect(&rc);
-	m_list.SetExtendedStyle(m_list.GetExtendedStyle() | LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT);
-	m_list.InsertColumn(0, _T("Title"), LVCFMT_LEFT, rc.Width());
-	m_imageList.Create(GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), ILC_COLOR32 | ILC_MASK, 4, 4);
-	m_list.SetImageList(&m_imageList, LVSIL_SMALL);
+	m_list.Initialize();
+	m_list.SetWindows(m_windows);
 
-	for (const auto& windowItem: m_windows)
-	{
-		HWND hwndFrame = windowItem.pFrame->GetSafeHwnd();
-		HICON hIcon = (HICON)::SendMessage(hwndFrame, WM_GETICON, ICON_SMALL2, 0);
-		if (hIcon == nullptr)
-			hIcon = (HICON)::GetClassLongPtr(hwndFrame, GCLP_HICONSM);
-		int image = m_imageList.Add(hIcon);
-		CString title;
-		windowItem.pFrame->GetWindowText(title);
-		LVITEM item = {};
-		item.mask = LVIF_TEXT | LVIF_IMAGE;
-		item.iItem = m_list.GetItemCount();
-		item.iImage = image;
-		item.pszText = title.GetBuffer();
-		int index = m_list.InsertItem(&item);
-		m_list.SetCheck(index, windowItem.checked);
-	}
+	// Set selected path to variable so file selection dialog shows
+	// correct filename and path.
+	CString cstrReportFile;
+	m_ctlReportFile.GetWindowText(cstrReportFile);
+	m_options.reportFile = cstrReportFile;
 
-	if (!m_options.reportFile.empty())
-		m_ctlReportFile.SetWindowText(m_options.reportFile.c_str());
+	UpdateData(FALSE);
 
 	return TRUE;
+}
+
+void FileCmpReportDlg::LoadSettings()
+{
+	m_options.copyToClipboard = GetOptionsMgr()->GetBool(OPT_REPORTFILES_COPYTOCLIPBOARD);
+	m_options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
 }
 
 void FileCmpReportDlg::CollectOptions()
 {
 	UpdateData(TRUE);
 
-	m_options.selectedData.clear();
+	m_list.GetCheckedData(m_options.selectedData);
+}
 
-	for (int i = 0; i < (int)m_windows.size(); ++i)
-	{
-		if (m_list.GetCheck(i))
-			m_options.selectedData.push_back(m_windows[i].data);
-	}
+void FileCmpReportDlg::OnBtnDblclickCopyClipboard()
+{
+	m_ctlReportFile.SetWindowText(_T(""));
 }
 
 void FileCmpReportDlg::OnOK()
 {
 	CollectOptions();
 	m_ctlReportFile.SaveState(_T("ReportFiles"));
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_COPYTOCLIPBOARD, m_options.copyToClipboard);
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES, m_options.includeAllImagePages);
 	__super::OnOK();
-}
-
-void FileCmpReportDlg::OnBnClickedCopyClipboard()
-{
-	CollectOptions();
-	EndDialog(IDC_REPORT_COPYCLIPBOARD);
 }
 
 void FileCmpReportDlg::OnBtnClickReportBrowse()
