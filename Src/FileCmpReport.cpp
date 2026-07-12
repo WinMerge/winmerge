@@ -33,48 +33,42 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 	auto* pTableDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Table);
 	auto* pImageDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Image);
 
-	// calculate HTML font size
-	String variables;
-	if (!options.darkMode)
-		variables = LR"(
-:root {
-	--bg: #ffffff;
-	--fg: #1a1a1a;
-	--border: #a0a0a0;
-	--surface: #e8e8e8;
-	--title-grad-start: mediumblue;
-	--title-grad-end: darkblue;
-	--title-fg: #ffffff;
-	--toc-bg: #f0f4f8;
-	--toc-border: #d0dae3;
-	--link: #0353a4;
-	--fab-bg: #003366;
-	--fab-fg: #ffffff;
-	--section-border: #d0d0d0;
-	--collapsed-cell-bg: #000000;
-	--shadow: rgba(0, 0, 0, 0.3);
-}
-)";
-	else
-		variables = LR"(
-:root {
-	--bg: #1e1e1e;
-	--fg: #e0e0e0;
-	--border: #555555;
-	--surface: #2a2a2a;
-	--title-grad-start: #2a4d9b;
-	--title-grad-end: #16265c;
-	--title-fg: #ffffff;
-	--toc-bg: #2a2f36;
-	--toc-border: #3a4048;
-	--link: #7fb2f0;
-	--fab-bg: #1f4e79;
-	--fab-fg: #ffffff;
-	--section-border: #3a3a3a;
-	--collapsed-cell-bg: #ffffff;
-	--shadow: rgba(0, 0, 0, 0.6);
-}
-)";
+	// Light mode colors
+	const wchar_t* bgColor = _T("#ffffff");
+	const wchar_t* fgColor = _T("#1a1a1a");
+	const wchar_t* borderColor = _T("#a0a0a0");
+	const wchar_t* surfaceColor = _T("#e8e8e8");
+	const wchar_t* titleGradStart = _T("mediumblue");
+	const wchar_t* titleGradEnd = _T("darkblue");
+	const wchar_t* titleFgColor = _T("#ffffff");
+	const wchar_t* tocBgColor = _T("#f0f4f8");
+	const wchar_t* tocBorderColor = _T("#d0dae3");
+	const wchar_t* linkColor = _T("#0353a4");
+	const wchar_t* fabBgColor = _T("#003366");
+	const wchar_t* fabFgColor = _T("#ffffff");
+	const wchar_t* sectionBorderColor = _T("#d0d0d0");
+	const wchar_t* collapsedCellBgColor = _T("#000000");
+	const wchar_t* shadowColor = _T("rgba(0, 0, 0, 0.3)");
+
+	// Dark mode colors
+	if (options.darkMode)
+	{
+		bgColor = _T("#1e1e1e");
+		fgColor = _T("#e0e0e0");
+		borderColor = _T("#555555");
+		surfaceColor = _T("#2a2a2a");
+		titleGradStart = _T("#2a4d9b");
+		titleGradEnd = _T("#16265c");
+		titleFgColor = _T("#ffffff");
+		tocBgColor = _T("#2a2f36");
+		tocBorderColor = _T("#3a4048");
+		linkColor = _T("#7fb2f0");
+		fabBgColor = _T("#1f4e79");
+		fabFgColor = _T("#ffffff");
+		sectionBorderColor = _T("#3a3a3a");
+		collapsedCellBgColor = _T("#ffffff");
+		shadowColor = _T("rgba(0, 0, 0, 0.6)");
+	}
 
 	String htmlHeader = strutils::format(
 LR"(
@@ -85,15 +79,14 @@ LR"(
 <title>WinMerge Compare Report</title>
 <style>
 <!--
-%s
-body { font-family: "Segoe UI", Arial, sans-serif; margin: 20px; background-color: var(--bg); color: var(--fg); }
+body { font-family: "Segoe UI", Arial, sans-serif; margin: 20px; background-color: %s; color: %s; }
 table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.15); font-size: %.2fpt; }
 .cmp-table-text td { word-break: break-all; padding: 0 3px; vertical-align: top; }
-.cmp-table-table td, .cmp-table-table th { word-break: break-all; padding: 0 3px; border: 1px solid var(--border); vertical-align: top; }
-.cmp-table-image td, .cmp-table-webpage td { border: 1px solid var(--border); }
-.ln { position: sticky; left: 0; background-color: var(--surface); }
-.title { font-weight: 600; color: var(--title-fg); text-align: left; padding: 8px 12px; background: linear-gradient(var(--title-grad-start), var(--title-grad-end)); border-bottom: none; position: sticky; vertical-align: top; text-align: center; top: 0; z-index: 9999; }
-.title-right, .title-middle { box-shadow: inset 1px 0 var(--bg); }
+.cmp-table-table td, .cmp-table-table th { word-break: break-all; padding: 0 3px; border: 1px solid %s; vertical-align: top; }
+.cmp-table-image td, .cmp-table-webpage td { border: 1px solid %s; }
+.ln { position: sticky; left: 0; background-color: %s; }
+.title { font-weight: 600; color: %s; text-align: left; padding: 8px 12px; background: linear-gradient(%s, %s); border-bottom: none; position: sticky; vertical-align: top; text-align: center; top: 0; z-index: 9999; }
+.title-right, .title-middle { box-shadow: inset 1px 0 %s; }
 .cmp-div-image { overflow: scroll; text-align: center; }
 .cmp-pdf-webpage { width: 100%%; height: calc(100vh - 56px) }
 .cmp-table-full { width: 100%%; border-collapse: collapse; overflow: hidden; }
@@ -104,29 +97,31 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .cmp-grid-2 { grid-template-columns: 50%% 50%%; }
 .cmp-grid-3 { grid-template-columns: 33.33%% 33.33%% 33.33%%; }
 .cmp-collapsed-row { height: 1px; }
-.cmp-collapsed-cell { background-color: var(--collapsed-cell-bg); }
+.cmp-collapsed-cell { background-color: %s; }
 .cmp-scroll { overflow-x: auto; }
 )"
-		,variables, options.fontSize);
+		, bgColor, fgColor, options.fontSize, borderColor, borderColor, surfaceColor, titleFgColor, 
+		  titleGradStart, titleGradEnd, bgColor, collapsedCellBgColor);
 
 	if (mergeDocuments.size() > 1)
 	{
-		htmlHeader += LR"(
-#toc { background-color: var(--toc-bg); border: 1px solid var(--toc-border); border-radius: 6px; padding: 12px 20px; margin: 0 0 24px 0; }
-#toc ol { margin: 0; padding-left: 20px; }
-#toc a { color: var(--link); text-decoration: none; }
-#toc a:hover { text-decoration: underline; }
-#toc-sentinel { height: 1px; }
-#toc-fab { display: none; position: fixed; top: calc(var(--title-height, 40px) + 8px); left: 20px; z-index: 10000; width: 40px; height: 40px; border-radius: 50%; background-color: var(--fab-bg); color: var(--fab-fg); border: none; box-shadow: 0 2px 6px var(--shadow); cursor: pointer; font-size: 18px; line-height: 40px; padding: 0; }
-#toc-fab.visible { display: block; }
-#toc-fab-panel { display: none; position: fixed; top: calc(var(--title-height, 40px) + 54px); left: 20px; z-index: 10000; background-color: var(--toc-bg); border: 1px solid var(--toc-border); border-radius: 6px; padding: 12px 20px; max-height: 60vh; overflow-y: auto; box-shadow: 0 2px 6px var(--shadow); }
-#toc-fab-panel.open { display: block; }
-#toc-fab-panel ol { margin: 0; padding-left: 20px; }
-#toc-fab-panel a { color: var(--link); text-decoration: none; }
-#toc-fab-panel a:hover { text-decoration: underline; }
-.report-section { margin: 0 0 32px 0; padding-bottom: 24px; border-bottom: 1px solid var(--section-border); }
-.report-section:last-of-type { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-)";
+		htmlHeader += strutils::format(
+			_T("#toc { background-color: %s; border: 1px solid %s; border-radius: 6px; padding: 12px 20px; margin: 0 0 24px 0; }\n")
+			_T("#toc ol { margin: 0; padding-left: 20px; }\n")
+			_T("#toc a { color: %s; text-decoration: none; }\n")
+			_T("#toc a:hover { text-decoration: underline; }\n")
+			_T("#toc-sentinel { height: 1px; }\n")
+			_T("#toc-fab { display: none; position: fixed; top: 48px; left: 20px; z-index: 10000; width: 40px; height: 40px; border-radius: 50%%; background-color: %s; color: %s; border: none; box-shadow: 0 2px 6px %s; cursor: pointer; font-size: 18px; line-height: 40px; padding: 0; }\n")
+			_T("#toc-fab.visible { display: block; }\n")
+			_T("#toc-fab-panel { display: none; position: fixed; top: 102px; left: 20px; z-index: 10000; background-color: %s; border: 1px solid %s; border-radius: 6px; padding: 12px 20px; max-height: 60vh; overflow-y: auto; box-shadow: 0 2px 6px %s; }\n")
+			_T("#toc-fab-panel.open { display: block; }\n")
+			_T("#toc-fab-panel ol { margin: 0; padding-left: 20px; }\n")
+			_T("#toc-fab-panel a { color: %s; text-decoration: none; }\n")
+			_T("#toc-fab-panel a:hover { text-decoration: underline; }\n")
+			_T(".report-section { margin: 0 0 32px 0; padding-bottom: 24px; border-bottom: 1px solid %s; }\n")
+			_T(".report-section:last-of-type { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }\n"),
+			tocBgColor, tocBorderColor, linkColor, fabBgColor, fabFgColor, shadowColor,
+			tocBgColor, tocBorderColor, shadowColor, linkColor, sectionBorderColor);
 	}
 	if (pTextDoc || pTableDoc)
 	{
