@@ -273,7 +273,18 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 bool UniMemFile::DoGetFileStatus()
 {
 	m_lastError.ClearError();
-	m_filesize = m_hMapping->end() - m_hMapping->begin();
+
+	if (m_hMapping == nullptr)
+	{
+		m_filesize = 0;
+		m_statusFetched = 1;
+		return true;
+	}
+
+	auto begin = m_hMapping->begin();
+	auto end = m_hMapping->end();
+
+	m_filesize = end - begin;
 	m_statusFetched = 1;
 	return true;
 }
