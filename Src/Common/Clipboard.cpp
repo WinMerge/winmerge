@@ -5,7 +5,7 @@
  */
 
 #include "pch.h"
-#include "ClipBoard.h"
+#include "Clipboard.h"
 #include "unicoder.h"
 #include <ShlObj.h>
 
