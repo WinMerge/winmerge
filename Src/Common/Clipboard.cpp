@@ -129,21 +129,22 @@ HGLOBAL CreateClipboardHTML(const String& htmlContent)
 	static const char start[] = "<html><body>\n<!--StartFragment -->";
 	static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
 	
-	// Convert to UTF-8 for CF_HTML
+	// Convert to UTF-8 for CF_HTML and wrap with required fragment markers
 	std::string htmlUtf8 = ucr::toUTF8(htmlContent);
-	std::vector<char> htmlBuffer(htmlUtf8.begin(), htmlUtf8.end());
+	std::string fragment = std::string(start) + htmlUtf8 + std::string(end);
 
-	// Rewrite CF_HTML header with valid offsets
 	char headerBuf[256];
 	int cbHeader = wsprintfA(headerBuf, header, 0, 0, 0, 0);
-	int size = static_cast<int>(htmlBuffer.size());
-	wsprintfA(headerBuf, header, cbHeader,
-		size - 1,
-		cbHeader + sizeof start - 1,
-		size - sizeof end + 1);
-	memcpy(htmlBuffer.data(), headerBuf, cbHeader);
+	const int startHTML = cbHeader;
+	const int endHTML = cbHeader + static_cast<int>(fragment.size());
+	const int startFragment = cbHeader + static_cast<int>(sizeof(start) - 1);
+	const int endFragment = endHTML - static_cast<int>(sizeof(end) - 1);
+	wsprintfA(headerBuf, header, startHTML, endHTML, startFragment, endFragment);
 
-	HGLOBAL hData = GlobalAlloc(GMEM_DDESHARE | GMEM_MOVEABLE, size);
+	std::vector<char> htmlBuffer(cbHeader + fragment.size());
+	memcpy(htmlBuffer.data(), headerBuf, cbHeader);
+	memcpy(htmlBuffer.data() + cbHeader, fragment.data(), fragment.size());
+	int size = static_cast<int>(htmlBuffer.size());
 	if (hData == nullptr)
 		return nullptr;
 
