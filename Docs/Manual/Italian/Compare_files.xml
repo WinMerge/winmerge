@@ -6,11 +6,11 @@
       <primary>confronto dei file</primary>
     </indexterm></title>
 
-  <para>In questo argomento viene descritto come utilizzare la finestra Confronta
-file WinMerge per confrontare e unire file di testo.Per comprendere i
-concetti di base sulle differenze discussi qui, ti suggeriamo di leggere
-prima <xref linkend="Intro_diffs" />.Vedi <xref linkend="Compare_bin" /> per
-informazioni correlate sui file esadecimali.</para>
+  <para>In questo argomento viene descritto come usare la finestra Confronta file
+WinMerge per confrontare e unire file di testo. Per comprendere i concetti
+di base sulle differenze discussi qui, ti suggeriamo di leggere prima <xref
+linkend="Intro_diffs" />. Per informazioni correlate sui file esadecimali
+vedi <xref linkend="Compare_bin" />.</para>
 
   <section id="Compare_files_starting">
     <title>Avvio di un'operazione di confronto di file</title>
@@ -24,9 +24,9 @@ WinMerge o da una finestra del prompt dei comandi.</para>
 
         <listitem>
           <para>Fai clic su <menuchoice> <guimenu>File</guimenu>
-<guimenuitem>Apri</guimenuitem> </menuchoice>.Utilizzare la finestra di
-dialogo Seleziona file o cartelle per specificare i file di origine sinistro
-e destro da confrontare.Per ulteriori dettagli sulla finestra di dialogo
+<guimenuitem>Apri</guimenuitem> </menuchoice>. Usare la finestra di dialogo
+Seleziona file o cartelle per specificare i file di origine sinistro e
+destro da confrontare. Per ulteriori dettagli sulla finestra di dialogo
 Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
@@ -37,8 +37,8 @@ Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
         <listitem>
           <para>Esegui <command>WinMergeU.exe</command>, che si trova nella cartella di
 installazione di WinMerge. Negli argomenti del comando, includi i file
-sinistro e destro da confrontare. Per ulteriori informazioni sull'utilizzo
-della riga di comando, vedi <xref linkend="Command_line" />.</para>
+sinistro e destro da confrontare. Per ulteriori informazioni sull'uso della
+riga di comando, vedi <xref linkend="Command_line" />.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -56,9 +56,9 @@ della riga di comando, vedi <xref linkend="Command_line" />.</para>
       </indexterm></title>
 
     <para>La finestra Confronto file visualizza i file confrontati in due riquadri
-File, affiancati.La barra degli strumenti e il menu contestuale di WinMerge
-forniscono funzioni per visualizzare, navigare e unire le differenze.Lo
-screenshot seguente mostra un confronto tra due versioni di un file.</para>
+File, affiancati. La barra degli strumenti e il menu contestuale di WinMerge
+forniscono funzioni per visualizzare, navigare e unire le differenze. La
+schermata seguente visualizza un confronto tra due versioni di un file.</para>
 
     <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -72,25 +72,25 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
           <primary>Riquadri di file</primary>
         </indexterm></title>
 
-      <para>I riquadri File sinistro e destro mostrano il contenuto del testo e le
-differenze dei due file confrontati.I riquadri File sono l'area principale
+      <para>I riquadri File sinistro e destrovisualizzano il contenuto del testo e le
+differenze dei due file confrontati. I riquadri File sono l'area principale
 per la navigazione e l'unione delle differenze e consentono anche di
-modificare direttamente il testo.In questa sezione vengono descritte le
+modificare direttamente il testo. In questa sezione vengono descritte le
 funzionalità che supportano queste azioni e le modalità con cui è possibile
 personalizzare i riquadri File.</para>
 
       <section>
         <title>Intestazione del riquadro file</title>
 
-        <para>L'intestazione nella parte superiore di ciascun riquadro File mostra il
-percorso completo del file di origine.I nomi dei file sinistro e destro sono
-identificati anche nell'intestazione della finestra Confronta, sopra i
+        <para>L'intestazione nella parte superiore di ciascun riquadro Filevisualizza il
+percorso completo del file di origine. I nomi dei file sinistro e destro
+sono identificati anche nell'intestazione della finestra Confronta, sopra i
 riquadri File.</para>
 
         <para>Uno dei riquadri File è sempre attivo (indicato dallo sfondo scuro
 dell'intestazione);l'altro è inattivo e ha una barra dell'intestazione più
-chiara.Puoi modificare solo nel riquadro attivo (come descritto in <xref
-linkend="CompareFiles_editing" />).Fare clic su uno dei lati per renderlo
+chiara. Puoi modificare solo nel riquadro attivo (come descritto in <xref
+linkend="CompareFiles_editing" />). Fai clic su uno dei lati per renderlo
 attivo e rendere inattivo l'altro lato.</para>
 
         <para>Un asterisco (*) prima del nome file nell'intestazione indica che nel file
@@ -129,10 +129,10 @@ utili per copiare e incollare le informazioni sul file:</para>
             <secondary>nei riquadri File</secondary>
           </indexterm></title>
 
-        <para>WinMerge evidenzia diversi tipi di differenze nei riquadri File.La pagina
+        <para>WinMerge evidenzia diversi tipi di differenze nei riquadri File. La pagina
 Colori nella finestra di dialogo Opzioni definisce un insieme di colori di
 sfondo e testo per la maggior parte dei tipi di differenza, con variazioni
-che ne indicano lo stato: non selezionato, selezionato o eliminato.Questa
+che ne indicano lo stato: non selezionato, selezionato o eliminato. Questa
 sezione descrive come viene rilevato e visualizzato ciascuno dei tipi di
 differenza di base.</para>
 
@@ -141,13 +141,13 @@ differenza di base.</para>
             <term>Differenza</term>
 
             <listitem>
-              <para>Un blocco differenza contiene una o più linee contigue diverse.Il colore di
+              <para>Un blocco differenza contiene una o più linee contigue diverse. Il colore di
 sfondo diverso predefinito è oro, ma le righe vuote sono contrassegnate con
 il colore eliminato.</para>
 
               <para>Per questa e altre schermate in questa sezione, abbiamo abilitato
-<option>Visualizza numeri di riga</option> per mostrare quali righe nei file
-sorgente vengono confrontate.</para>
+<option>Visualizza numeri di riga</option> per visualizzare quali righe nei
+file sorgente vengono confrontate.</para>
 
               <mediaobject>
 <imageobject> <imagedata contentwidth="489"
@@ -185,9 +185,9 @@ grigio predefinito.</para>
 
             <listitem>
               <para>Questo colore contrassegna il contenuto che hai configurato WinMerge per
-ignorare.A differenza dei blocchi di differenza, il contenuto ignorato non
-viene confrontato, viene semplicemente evidenziato per aiutarti a vedere
-cosa è stato ignorato.Le differenze ignorate includono:</para>
+ignorare. A differenza dei blocchi di differenza, il contenuto ignorato non
+viene confrontato, viene semplicemente evidenziato per aiutarti a
+visualizzare cosa è stato ignorato. Le differenze ignorate includono:</para>
 
               <itemizedlist>
                 <listitem>
@@ -203,7 +203,7 @@ pagina Confronta della finestra di dialogo Opzioni.</para>
 
               <para>L'esempio successivo ripete il confronto precedente, questa volta con
 <option>Ignora righe vuote</option> abilitata.Ora ci sono solo due
-differenze.La riga vuota sul lato destro è contrassegnata con il colore
+differenze. La riga vuota sul lato destro è contrassegnata con il colore
 Differenze ignorate.</para>
 
               <mediaobject>
@@ -224,8 +224,8 @@ fileref="screenshots/ignore-blank-lines.png" format="PNG" /> </imageobject><text
             <listitem>
               <para>Le differenze spostate sono linee identiche trovate in posizioni diverse nei
 file confrontati, se <option>Rilevamento blocchi spostati</option> è
-abilitato nella pagina Confronta della finestra di dialogo Opzioni.Lo
-screenshot successivo ripete il confronto precedente, questa volta con il
+abilitato nella pagina Confronta della finestra di dialogo Opzioni. La
+schermata successiva ripete il confronto precedente, questa volta con il
 rilevamento dei blocchi spostati abilitato.</para>
 
               <mediaobject>
@@ -238,14 +238,14 @@ fileref="screenshots/moved-01.png" format="PNG" /> </imageobject><textobject>
 
               <para>Nota che le due righe identiche (contenenti <literal>a</literal> e
 <literal>c</literal>) che si trovano in posizioni diverse sono
-contrassegnate con il colore spostato arancione predefinito.Un altro effetto
-del rilevamento dei blocchi spostati in questo caso è che le ultime due
-righe ora rappresentano due differenze separate anziché un singolo blocco di
-differenze.</para>
+contrassegnate con il colore spostato arancione predefinito. Un altro
+effetto del rilevamento dei blocchi spostati in questo caso è che le ultime
+due righe ora rappresentano due differenze separate anziché un singolo
+blocco di differenze.</para>
 
-              <para>In alcuni casi, mostrare le differenze spostate può rendere più semplice la
-visualizzazione delle modifiche nei file.Tuttavia, troppe linee spostate
-potrebbero rendere difficile la navigazione nel confronto.Usa il tuo
+              <para>In alcuni casi, visualizza le differenze spostate può rendere più semplice
+la visualizzazione delle modifiche nei file. Tuttavia, troppe linee spostate
+potrebbero rendere difficile la navigazione nel confronto. Usa il tuo
 giudizio!</para>
             </listitem>
           </varlistentry>
@@ -254,9 +254,10 @@ giudizio!</para>
             <term>Differenza di parole</term>
 
             <listitem>
-              <para>WinMerge può contrassegnare il testo modificato con blocchi di differenza.Le
-differenze di linea sono contrassegnate dalla parola colore differenza.Vedi
-<xref linkend="CompareFiles_linediff-highlight" /> per i dettagli.</para>
+              <para>WinMerge può contrassegnare il testo modificato con blocchi di
+differenza. Le differenze di linea sono contrassegnate dalla parola colore
+differenza. Per i dettagli vedi <xref
+linkend="CompareFiles_linediff-highlight" />.</para>
             </listitem>
           </varlistentry>
 
@@ -268,13 +269,13 @@ differenze di linea sono contrassegnate dalla parola colore differenza.Vedi
             <listitem>
               <para>WinMerge tenta di allineare linee simili all'interno di blocchi di
 differenza quando abiliti <option>Allinea linee simili</option> nella pagina
-Confronta della finestra di dialogo Opzioni.Cosa significa
+Confronta della finestra di dialogo Opzioni. Cosa significa
 <quote>simile</quote>?In genere, questa funzionalità funziona meglio nei
 casi semplici, ad esempio nel caso di linee che presentano forti
-somiglianze.Quando vengono rilevate, linee simili vengono regolate per
-allinearsi nel riquadro File.La figura successiva mostra i confronti degli
-stessi due file, prima e dopo aver abilitato l'opzione <option>Allinea linee
-simili</option>:</para>
+somiglianze. Quando vengono rilevate, linee simili vengono regolate per
+allinearsi nel riquadro File. La figura successiva visualizza i confronti
+degli stessi due file, prima e dopo aver abilitato l'opzione <option>Allinea
+linee simili</option>:</para>
 
               <simplelist columns="2" type="horiz">
                 <member><emphasis role="strong">Disabilitato</emphasis>: <inlinemediaobject>
@@ -313,7 +314,7 @@ differenza.</para>
           </indexterm></title>
 
         <para>A volte è utile evidenziare non solo i blocchi di differenza, ma anche il
-testo modificato al loro interno.Puoi disabilitarli o abilitarli in due
+testo modificato al loro interno. Puoi disabilitarli o abilitarli in due
 modi:</para>
 
         <itemizedlist>
@@ -336,7 +337,7 @@ sulle differenze in linea al loro interno.</para>
         </note>
 
         <para>Questa sezione descrive come vengono rilevate e contrassegnate le differenze
-di linea.Tieni presente che l'effetto di queste opzioni è influenzato anche
+di linea. Tieni presente che l'effetto di queste opzioni è influenzato anche
 dalle impostazioni attuali degli spazi bianchi nella pagina Confronta della
 finestra di dialogo Opzioni.</para>
 
@@ -347,8 +348,9 @@ finestra di dialogo Opzioni.</para>
               </indexterm></term>
 
             <listitem>
-              <para>I seguenti esempi mostrano come vengono visualizzate le differenze di riga a
-livello di parola con ciascuna delle impostazioni degli spazi bianchi:</para>
+              <para>I seguenti esempivisualizzano come vengono visualizzate le differenze di
+riga a livello di parola con ciascuna delle impostazioni degli spazi
+bianchi:</para>
 
               <example>
                 <title>Differenze di linea con gli spazi bianchi: confronta</title>
@@ -366,7 +368,7 @@ fileref="screenshots/word-diff-allwhite.png" format="PNG" /> </imageobject><text
                 <title>Differenze di linea con spazi bianchi: ignora la modifica</title>
 
                 <para>Spazi e tabulazioni multipli vengono trattati come un unico
-spazio.Nell'esempio, lo spazio extra tra le ultime due parole non è
+spazio. Nell'esempio, lo spazio extra tra le ultime due parole non è
 contrassegnato:</para>
 
 <mediaobject>
@@ -399,9 +401,9 @@ fileref="screenshots/word-diff-nowhite.png" format="PNG" /> </imageobject><texto
 
             <listitem>
               <para>Una differenza di riga a livello di carattere include il primo e l'ultimo
-carattere diverso in una parola e tutti i caratteri tra di essi.Una singola
+carattere diverso in una parola e tutti i caratteri tra di essi. Una singola
 differenza a livello di carattere può estendersi a parole
-adiacenti.L'esempio seguente illustra:</para>
+adiacenti. L'esempio seguente illustra:</para>
 
               <mediaobject>
 <imageobject> <imagedata contentwidth="485"
@@ -414,7 +416,7 @@ fileref="screenshots/char-diff-01.png" format="PNG" /> </imageobject><textobject
               <note>
                 <para>Come per le differenze di riga a livello di parola, l'evidenziazione dei
 caratteri varia a seconda di come WinMerge è configurato per rilevare le
-interruzioni di parola.Nell'esempio, lo spazio extra dopo la parola
+interruzioni di parola. Nell'esempio, lo spazio extra dopo la parola
 <literal>cure</literal> in <filename>file2</filename> viene evidenziato solo
 se viene confrontato lo spazio bianco.</para>
               </note>
@@ -430,13 +432,13 @@ se viene confrontato lo spazio bianco.</para>
 
             <listitem>
               <para>Le parole e i caratteri nelle differenze di riga possono essere separati da
-spazi o da una combinazione di spazi e punteggiatura.Lo spazio bianco
+spazi o da una combinazione di spazi e punteggiatura. Lo spazio bianco
 (l'impostazione predefinita) è la scelta tipica per confrontare la maggior
-parte dei file di testo.Tutti gli esempi di differenze di riga precedenti
-utilizzano spazi bianchi per separare parole e caratteri.</para>
+parte dei file di testo. Tutti gli esempi di differenze di riga precedenti
+usano spazi bianchi per separare parole e caratteri.</para>
 
-              <para>In alcuni casi è utile interrompere la punteggiatura.Ad esempio, lo
-screenshot successivo confronta un elenco separato da virgole.Per
+              <para>In alcuni casi è utile interrompere la punteggiatura. Ad esempio, la
+schermata successiva confronta un elenco separato da virgole. Per
 evidenziare differenze di riga significative, abbiamo abilitato
 <option>Interrompi in corrispondenza di spazi bianchi o
 punteggiatura</option> nella pagina Editor della finestra di dialogo
@@ -464,22 +466,22 @@ fileref="screenshots/line-diff-punctuation.png" format="PNG" />
         <para>Sebbene WinMerge non sia un editor o IDE completo, fornisce funzioni di
 modifica di base, come <guilabel>Annulla</guilabel> e
 <guilabel>Ripeti</guilabel>, <guilabel>Trova</guilabel> e
-<guilabel>Sostituisci</guilabel> e <guilabel>Vai a</guilabel>.Queste
+<guilabel>Sostituisci</guilabel> e <guilabel>Vai a</guilabel>. Queste
 attività di modifica di base sono spesso necessarie durante l'unione (ad
-esempio, per modificare il testo all'interno delle differenze).Puoi
+esempio, per modificare il testo all'interno delle differenze). Puoi
 apportare modifiche nel riquadro File attivo (ricorda di fare clic in un
-riquadro per renderlo attivo).Le modifiche non vengono scritte in un file
+riquadro per renderlo attivo). Le modifiche non vengono scritte in un file
 finché non si salva un riquadro in un file di risultati.</para>
 
         <para>Le funzionalità di modifica di WinMerge includono anche l'evidenziazione
-della sintassi.Questa funzionalità opzionale supporta diversi formati di
-file ed è possibile configurare i colori utilizzati.Tieni presente che
+della sintassi. Questa funzionalità opzionale supporta diversi formati di
+file ed è possibile configurare i colori usati. Tieni presente che
 l'evidenziazione della sintassi non viene applicata all'interno delle
-differenze, come mostra lo screenshot precedente.</para>
+differenze, come visualizza la schermata precedente.</para>
 
         <tip>
           <para>Assicurati che la <guilabel>Riscansione automatica</guilabel> sia abilitata,
-come descritto in <xref linkend="Compare_files_scan" />.In caso contrario,
+come descritto in <xref linkend="Compare_files_scan" />. In caso contrario,
 aggiorna manualmente la visualizzazione (premi F5) prima e dopo la modifica
 di un file, per assicurarti che il rilevamento delle differenze WinMerge sia
 aggiornato.</para>
@@ -497,7 +499,7 @@ aggiornato.</para>
 <guimenu>Visualizza</guimenu> <guimenuitem>Seleziona carattere</guimenuitem>
 </menuchoice>.WinMerge supporta solo i caratteri a larghezza fissa.</para>
 
-        <para>Ecco alcuni suggerimenti sui caratteri per utilizzare WinMerge con le lingue
+        <para>Ecco alcuni suggerimenti sui caratteri per usare WinMerge con le lingue
 dell'Asia orientale:</para>
 
         <itemizedlist>
@@ -518,9 +520,9 @@ Mincho</guilabel> a larghezza fissa</simpara>
 
           <listitem>
             <simpara>Coreano: <guilabel>GulimChe</guilabel> carattere a larghezza fissa (non
-<guilabel>Gulim</guilabel>, perché questa variante utilizza glifi a
-spaziatura proporzionale che non sono centrati nelle celle della griglia e
-scarsamente allineati in modalità a larghezza fissa).</simpara>
+<guilabel>Gulim</guilabel>, perché questa variante usa glifi a spaziatura
+proporzionale che non sono centrati nelle celle della griglia e scarsamente
+allineati in modalità a larghezza fissa).</simpara>
           </listitem>
         </itemizedlist>
       </section>
@@ -532,12 +534,12 @@ scarsamente allineati in modalità a larghezza fissa).</simpara>
             <secondary>nei riquadri File</secondary>
           </indexterm></title>
 
-        <para>I riquadri File hanno margini grigi opzionali che mostrano i numeri di riga
-e alcuni simboli.Per mostrare o nascondere i margini, fai clic su
+        <para>I riquadri File hanno margini grigi opzionali che visualizzano i numeri di
+riga e alcuni simboli. Per visualizzare/nascondere i margini, seleziona
 <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Visualizza
-margini</guimenuitem> </menuchoice>.Se utilizzi più finestre di confronto
-file, puoi controllare i margini per ciascuna finestra in modo
-indipendente.Il margine può mostrare alcune o tutte queste funzionalità:</para>
+margini</guimenuitem> </menuchoice>. Se usi più finestre di confronto file,
+puoi controllare i margini per ciascuna finestra in modo indipendente. Il
+margine può visualizzare alcune o tutte queste funzionalità:</para>
 
         <indexterm>
           <primary>numeri di riga</primary>
@@ -564,19 +566,19 @@ abilitato.</para>
 
           <listitem>
             <para>Segnalibri, se <menuchoice> <guimenu>Modifica</guimenu>
-<guisubmenu>Segnalibri</guisubmenu> </menuchoice> è abilitato.Un segnalibro
+<guisubmenu>Segnalibri</guisubmenu> </menuchoice> è abilitato. Un segnalibro
 è un cerchio blu, nel margine accanto a una riga, che puoi far ricordare a
 WinMerge e a cui tornare.</para>
 
             <itemizedlist>
               <listitem>
                 <para>Per impostare un segnalibro su una riga, fai doppio clic sul suo margine (o
-premi <keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>).La
+premi <keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>). La
 stessa azione elimina un segnalibro esistente.</para>
               </listitem>
 
               <listitem>
-                <para>Per navigare tra i segnalibri, fai clic su <menuchoice>
+                <para>Per navigare tra i segnalibri, seleziona <menuchoice>
 <guimenu>Modifica</guimenu> <guimenuitem>Segnalibri</guimenuitem>
 </menuchoice> e scegli <guimenuitem>Avanti</guimenuitem> o
 <guimenuitem>Precedente</guimenuitem>.</para>
@@ -601,8 +603,8 @@ segnalibri</guimenuitem> </menuchoice> per eliminare tutti i segnalibri.</para>
           </listitem>
         </itemizedlist>
 
-        <para>La schermata seguente mostra un margine con i segnalibri e il ritorno a capo
-abilitati.Senza numeri di riga, la larghezza del margine è minima.</para>
+        <para>La schermata seguente visualizza un margine con i segnalibri e il ritorno a
+capo abilitati. Senza numeri di riga, la larghezza del margine è minima.</para>
 
         <mediaobject>
 <imageobject> <imagedata contentwidth="384"
@@ -612,9 +614,9 @@ capo automatico</phrase>
           </textobject>
         </mediaobject>
 
-        <para>Lo screenshot successivo mostra un margine con segnalibri e numeri di riga
-abilitati.Si noti che il margine è più ampio.In effetti, il margine è
-sufficientemente ampio per contenere il numero di riga più grande.Pertanto,
+        <para>La schermata successiva visualizza un margine con segnalibri e numeri di
+riga abilitati. Si noti che il margine è più ampio. In effetti, il margine è
+sufficientemente ampio per contenere il numero di riga più grande. Pertanto,
 i margini per file di grandi dimensioni con molte righe possono essere
 piuttosto ampi.</para>
 
@@ -640,19 +642,19 @@ file.</para>
 
       <note>
         <para>Le scorciatoie di WinMerge hanno gli stessi nomi e pulsanti sia che si apra
-una finestra Confronto cartelle o Confronto file.Tuttavia, le funzioni si
+una finestra Confronto cartelle o Confronto file. Tuttavia, le funzioni si
 comportano diversamente: con una finestra Confronta file, le funzioni
 operano sulle differenze all'interno dei file, non sulle differenze
 all'interno delle cartelle.</para>
       </note>
 
-      <para>Le diverse funzioni che puoi utilizzare dipendono dal contesto, che spesso
-cambia mentre lavori.Ciò significa che una funzione è disponibile solo
-quando il suo funzionamento è possibile per una determinata posizione o
-altra condizione nell'ambiente WinMerge.Ad esempio, se fai clic su una riga
-di testo all'interno di una differenza, potresti notare che diversi pulsanti
-di navigazione e unione vengono abilitati nella barra degli strumenti.Se si
-fa clic in un'altra area di testo che non si trova all'interno di una
+      <para>Le diverse funzioni che puoi usare dipendono dal contesto, che spesso cambia
+mentre lavori. Ciò significa che una funzione è disponibile solo quando il
+suo funzionamento è possibile per una determinata posizione o altra
+condizione nell'ambiente WinMerge. Ad esempio, se selezioni una riga di
+testo all'interno di una differenza, potresti notare che diversi pulsanti di
+navigazione e unione vengono abilitati nella barra degli strumenti. Se si fa
+clic in un'altra area di testo che non si trova all'interno di una
 differenza, queste funzioni non saranno più disponibili.</para>
 
       <para>Le funzioni di differenza sono disponibili nella barra degli strumenti
@@ -704,9 +706,9 @@ Difference</function>.</simpara>
 
         <para>La modalità unione omette il tasto <keycap>Alt</keycap> per queste
 operazioni comuni (rendendole più veloci da usare rispetto alla modalità
-normale).Tieni presente che le combinazioni di tasti <keycap>Maiusc</keycap>
-e <keycap>Alt</keycap> <keycap>Freccia</keycap> funzionano in modalità
-unione allo stesso modo della modalità normale.</para>
+normale). Tieni presente che le combinazioni di tasti
+<keycap>Maiusc</keycap> e <keycap>Alt</keycap> <keycap>Freccia</keycap>
+funzionano in modalità unione allo stesso modo della modalità normale.</para>
 
         <para>La modalità di unione è indicata nella barra di stato dal testo
 <guilabel>Unisci</guilabel>.</para>
@@ -729,7 +731,7 @@ lunghezza dei file confrontati in due barre verticali (corrispondenti ai
 riquadri File sinistro e destro).È particolarmente utile per lavorare con
 file troppo lunghi per essere spostati facilmente nei riquadri File.</para>
 
-      <para>Il riquadro Posizione mostra diversi tipi di elementi:</para>
+      <para>Il riquadro Posizionevisualizza diversi tipi di elementi:</para>
 
       <variablelist>
         <varlistentry>
@@ -742,13 +744,13 @@ fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
 
           <listitem>
             <para>Ogni blocco di differenze nei riquadri File è indicato nel riquadro
-Posizione da una linea orizzontale su ciascuna barra verticale.Lo spessore,
+Posizione da una linea orizzontale su ciascuna barra verticale. Lo spessore,
 il colore e la posizione di queste linee sono indizi sulla dimensione
 (numero di linee), sui tipi e sulla distribuzione di tutte le differenze nei
-file.Ad esempio, il colore di una linea è uguale al colore del blocco
-differenza corrispondente.Il riquadro Posizione nello screenshot precedente
-mostra molte differenze di base (oro) e alcuni blocchi di differenze vuoti
-(grigio).</para>
+file. Ad esempio, il colore di una linea è uguale al colore del blocco
+differenza corrispondente. Il riquadro Posizione nella schermata
+precedentevisualizza molte differenze di base (oro) e alcuni blocchi di
+differenze vuoti (grigio).</para>
           </listitem>
         </varlistentry>
 
@@ -763,9 +765,9 @@ fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
           <listitem>
             <para>Se hai selezionato una differenza, il riquadro Posizione contrassegna la
 linea della differenza attuale con una coppia di piccoli triangoli su
-entrambi i lati delle barre verticali.Se navighi verso un'altra differenza,
+entrambi i lati delle barre verticali. Se navighi verso un'altra differenza,
 il puntatore si sposta verso l'alto o verso il basso insieme alla
-posizione.Lo scorrimento del riquadro File non modifica la posizione del
+posizione. Lo scorrimento del riquadro File non modifica la posizione del
 puntatore di differenza (o delle linee di differenza) nel riquadro della
 posizione.</para>
           </listitem>
@@ -782,12 +784,12 @@ fileref="screenshots/locpane_viewbar.png" /> </imageobject><textobject>
           <listitem>
             <para>L'area dei file attualmente visibili nei riquadri File è indicata da una
 barra di visualizzazione ombreggiata (traslucida) sopra il riquadro
-Posizione.L'altezza e la posizione della barra dell'area corrispondono alla
-parte dei file visibile nella regione di scorrimento.Ad esempio, potresti
-vedere la barra espandersi o ridursi se modifichi l'altezza dei riquadri
-File.Questa sincronizzazione della barra di visualizzazione del riquadro
-Posizione e dei riquadri File consente una navigazione rapida e alcune
-azioni utili:</para>
+Posizione. L'altezza e la posizione della barra dell'area corrispondono alla
+parte dei file visibile nella regione di scorrimento. Ad esempio, potresti
+visualizzare la barra espandersi o ridursi se modifichi l'altezza dei
+riquadri File. Questa sincronizzazione della barra di visualizzazione del
+riquadro Posizione e dei riquadri File consente una navigazione rapida e
+alcune azioni utili:</para>
 
             <itemizedlist>
               <listitem>
@@ -798,12 +800,12 @@ Posizione si sposta con esso.</para>
               <listitem>
                 <para>Al contrario, puoi trascinare la barra dell'area di visualizzazione nel
 riquadro Posizione verso l'alto o verso il basso per scorrere i riquadri
-File.Questa azione del pollice della barra di scorrimento è molto utile per
+File. Questa azione del pollice della barra di scorrimento è molto utile per
 navigare in file lunghi.</para>
               </listitem>
 
               <listitem>
-                <para>Fare clic in un punto qualsiasi nel riquadro Posizione per passare alla
+                <para>Fai clic in un punto qualsiasi nel riquadro Posizione per passare alla
 posizione corrispondente nei riquadri File.</para>
               </listitem>
             </itemizedlist>
@@ -816,13 +818,13 @@ posizione corrispondente nei riquadri File.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Le differenze spostate sono linee identiche in posizioni diverse.Vengono
+            <para>Le differenze spostate sono linee identiche in posizioni diverse. Vengono
 visualizzati solo se è selezionata l'opzione Abilita rilevamento blocchi
-spostati nella pagina Confronta della finestra di dialogo Opzioni.Vedi <xref
-linkend="CompareFiles_diffcolors" /> per maggiori dettagli sulle differenze
-spostate nel riquadro File.Il riquadro Posizione disegna una linea che
-collega le differenze spostate nelle barre di posizione sinistra e
-destra.Per esempio:</para>
+spostati nella pagina Confronta della finestra di dialogo Opzioni. Vedi
+<xref linkend="CompareFiles_diffcolors" /> per maggiori dettagli sulle
+differenze spostate nel riquadro File. Il riquadro Posizione disegna una
+linea che collega le differenze spostate nelle barre di posizione sinistra e
+destra. Per esempio:</para>
 
             <mediaobject>
 <imageobject> <imagedata contentwidth="576"
@@ -877,11 +879,11 @@ selezionata.</para>
           <primary>Riquadro Diff, finestra Confronta file</primary>
         </indexterm></title>
 
-      <para>Il riquadro Diff mostra il contenuto dei due lati di una differenza
+      <para>Il riquadro Diffvisualizza il contenuto dei due lati di una differenza
 selezionata.</para>
 
       <para>Quando selezioni una differenza, le due versioni vengono caricate nei lati
-superiore e inferiore del riquadro Diff.In questo modo, il riquadro Diff
+superiore e inferiore del riquadro Diff. In questo modo, il riquadro Diff
 conferma quali righe sono incluse in una differenza e consente di esaminarle
 separatamente dal resto del file.</para>
 
@@ -902,7 +904,7 @@ sinistra</guimenuitem>.</para>
           <secondary>codifica dei caratteri</secondary>
         </indexterm></title>
 
-      <para>Ogni riquadro File contiene una barra di stato nella parte inferiore.La
+      <para>Ogni riquadro File contiene una barra di stato nella parte inferiore. La
 barra di stato contiene diversi riquadri con diversi tipi di informazioni
 sul documento e sulla tua posizione al suo interno:</para>
 
@@ -948,9 +950,9 @@ tabulazione.</para>
           <term>Stato di sola lettura</term>
 
           <listitem>
-            <para><guilabel>RO</guilabel> viene mostrato nel pannello se il file è impostato
-in sola lettura (come descritto in <xref linkend="protectingfiles"
-/>).Altrimenti il ​​riquadro è vuoto.</para>
+            <para><guilabel>RO</guilabel> vienevisualizzato nel pannello se il file è
+impostato in sola lettura (come descritto in <xref linkend="protectingfiles"
+/>). Altrimenti il riquadro è vuoto.</para>
           </listitem>
         </varlistentry>
 
@@ -972,15 +974,15 @@ Unicode.</para>
 <guilabel>Misto</guilabel>.</para>
 
             <note>
-              <para>Quando viene utilizzato lo stile EOL per riga, lo stile EOL del file non
-viene visualizzato (questo riquadro è vuoto).</para>
+              <para>Quando viene usato lo stile EOL per riga, lo stile EOL del file non viene
+visualizzato (questo riquadro è vuoto).</para>
             </note>
           </listitem>
         </varlistentry>
       </variablelist>
 
       <para>Quando una finestra Confronta file è aperta, la barra di stato della
-finestra WinMerge mostra uno di questi messaggi sui file confrontati:<itemizedlist>
+finestra WinMergevisualizza uno di questi messaggi sui file confrontati:<itemizedlist>
           <listitem>
             <para><guilabel>Identici</guilabel>: i file non contengono differenze</para>
           </listitem>
@@ -1008,14 +1010,15 @@ differenza selezionata nel numero totale di differenze, a partire da 1.</para>
       </indexterm></title>
 
     <para>Questa sezione descrive come navigare e selezionare le differenze nella
-finestra Confronto file.Tieni presente che quando selezioni una differenza,
+finestra Confronto file. Tieni presente che quando selezioni una differenza,
 questa viene sempre selezionata in entrambi o in tutti e tre i riquadri
 File.</para>
 
     <tip>
-      <para>To save time, enable <guilabel>Automatically scroll to first
-difference</guilabel> in the General page of WinMerge options.Quindi non è
-necessario passare manualmente alla prima differenza e selezionarla.</para>
+      <para>Per risparmiare tempo, abilita <guilabel >Scorri automaticamente alla prima
+differenza</guilabel > nella pagina Generale delle opzioni di
+WinMerge. Quindi non è necessario passare manualmente alla prima differenza
+e selezionarla.</para>
     </tip>
 
     <section id="Compare_files_nav_functions">
@@ -1042,8 +1045,8 @@ le relative scorciatoie nella barra degli strumenti e nei menu:</para>
 
           <listitem>
             <para>Abilitato se hai fatto clic (o selezionato) il testo all'interno di una
-differenza in un riquadro File.Seleziona le differenze di parole all'interno
-della riga.Per esempio:</para>
+differenza in un riquadro File. Seleziona le differenze di parole
+all'interno della riga. Per esempio:</para>
 
             <mediaobject>
 <imageobject> <imagedata contentwidth="562"
@@ -1054,7 +1057,7 @@ fileref="screenshots/linediff.png" format="PNG" /> </imageobject><textobject>
             <para></para>
 
             <para>Se vuoi selezionare il blocco differenza stesso, usa invece
-<command>Differenza corrente</command>.</para>
+<command>Differenza attuale</command>.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -1077,10 +1080,9 @@ nel pannello File all'interno di una differenza.</para>
 
           <listitem>
             <para>Seleziona la differenza successiva sotto la posizione attuale del cursore
-nel documento (non necessariamente relativa alla differenza
-attuale).Utilizzare per scorrere le differenze in sequenza da qualsiasi
-punto.Disponibile tranne quando è attualmente selezionata l'ultima
-differenza.</para>
+nel documento (non necessariamente relativa alla differenza attuale). Usalee
+per scorrere le differenze in sequenza da qualsiasi punto. Disponibile
+tranne quando è attualmente selezionata l'ultima differenza.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -1104,9 +1106,9 @@ unione).</para>
 
           <listitem>
             <para>Seleziona la differenza precedente sopra la posizione attuale del cursore
-(non necessariamente relativa alla differenza attuale).Utilizzare per
-tornare indietro in sequenza attraverso le differenze.Disponibile tranne
-quando è attualmente selezionata la prima differenza.</para>
+(non necessariamente relativa alla differenza attuale). Usala per tornare
+indietro in sequenza attraverso le differenze. Disponibile tranne quando è
+attualmente selezionata la prima differenza.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -1128,10 +1130,10 @@ precedente</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
             </indexterm></term>
 
           <listitem>
-            <para>Utilizzalo per iniziare a confrontare o unire le differenze o per
-individuare la prima differenza da qualsiasi altra posizione.Disponibile
-tranne quando è attualmente selezionata la prima differenza.Puoi anche
-selezionare una differenza facendo doppio clic sul suo testo.</para>
+            <para>Usalo per iniziare a confrontare o unire le differenze o per individuare la
+prima differenza da qualsiasi altra posizione. Disponibile tranne quando è
+attualmente selezionata la prima differenza. Puoi anche selezionare una
+differenza facendo doppio clic sul suo testo.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -1158,14 +1160,14 @@ differenza</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
             <para><itemizedlist>
                 <listitem>
                   <simpara>Se il cursore si trova all'interno di una differenza ma non è selezionata
-alcuna differenza, questa funzione seleziona l'intera differenza.Questo è un
-modo molto pratico per selezionare una differenza utilizzando la tastiera.</simpara>
+alcuna differenza, questa funzione seleziona l'intera differenza. Questo è
+un modo molto pratico per selezionare una differenza usando la tastiera.</simpara>
                 </listitem>
 
                 <listitem>
-                  <simpara>Quando c'è una differenza attuale, la funzione passa a quella posizione.Ciò
+                  <simpara>Quando c'è una differenza attuale, la funzione passa a quella posizione. Ciò
 è utile se hai fatto scorrere la differenza selezionata fuori dalla vista e
-desideri tornare rapidamente alla sua posizione.</simpara>
+vuoi tornare rapidamente alla sua posizione.</simpara>
                 </listitem>
               </itemizedlist></para>
 
@@ -1210,13 +1212,13 @@ differenza</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
 
           <listitem>
             <para>Consente di passare a un numero di riga o a un numero di differenza (ad
-esempio, la differenza 2 è la seconda differenza).Apre la finestra di
-dialogo Vai a, in cui si specifica il numero, quale file utilizzare
-(sinistro o destro) e il tipo di posizione (riga o differenza).</para>
+esempio, la differenza 2 è la seconda differenza). Apre la finestra di
+dialogo Vai a, in cui si specifica il numero, quale file usare (sinistro o
+destro) e il tipo di posizione (riga o differenza).</para>
 
             <tip>
               <para>Il numero Vai a riga può essere utile quando è necessario unire la stessa
-modifica da un file a più file di destinazione.Saltare a una particolare
+modifica da un file a più file di destinazione. Saltare a una particolare
 differenza può essere più rapido che usare <guimenuitem>Trova</guimenuitem>
 per cercare testo o scorrere le differenze.</para>
             </tip>
@@ -1298,8 +1300,8 @@ riquadro Diff.</para>
       </indexterm></title>
 
     <para>L'unione copia le differenze da un riquadro File all'altro: da sinistra a
-destra o da destra a sinistra.Ciò è diverso dalla modifica diretta del testo
-utilizzando le funzioni di modifica di WinMerge (descritte in precedenza in
+destra o da destra a sinistra. Ciò è diverso dalla modifica diretta del
+testo usando le funzioni di modifica di WinMerge (descritte in precedenza in
 questo argomento).</para>
 
     <section id="Compare_files_scan">
@@ -1309,16 +1311,16 @@ questo argomento).</para>
 
       <para>Per impostazione predefinita, l'opzione <guilabel>Riscansione
 automatica</guilabel> è abilitata nella pagina Editor delle opzioni di
-WinMerge.La nuova scansione mantiene aggiornate le operazioni di confronto e
-unione.Senza una nuova scansione, le differenze WinMerge non rilevano le
+WinMerge. La nuova scansione mantiene aggiornate le operazioni di confronto
+e unione. Senza una nuova scansione, le differenze WinMerge non rilevano le
 modifiche che potrebbero verificarsi nei file mentre li confronti, ad
 esempio in un editor esterno.</para>
 
       <para>La nuova scansione si verifica quando esegui determinate azioni (come unire
 una differenza o modificare un file) durante un confronto di file. Se un
 file è cambiato, WinMerge visualizza una finestra di dialogo che informa che
-un'altra applicazione ha aggiornato il file e chiede se desideri ricaricare
-il file.</para>
+un'altra applicazione ha aggiornato il file e chiede se vuoi ricaricare il
+file.</para>
 
       <para>Fai clic su <guibutton>Sì</guibutton> per ricaricare il file prima di
 procedere, oppure su <guibutton>No</guibutton> per ignorare le modifiche e
@@ -1328,7 +1330,7 @@ lavorare con la versione del file caricata in precedenza.</para>
         <para>Se la <guilabel>Riscansione automatica</guilabel> è disabilitata, o se
 sospetti che un file possa essere cambiato, ti consigliamo vivamente di
 eseguire <guimenuitem>Aggiorna</guimenuitem> <emphasis>prima</emphasis> di
-eseguire qualsiasi operazione di unione: fai clic su <menuchoice>
+eseguire qualsiasi operazione di unione: seleziona <menuchoice>
 <guimenu>Modifica</guimenu> <guimenuitem>Aggiorna</guimenuitem>
 </menuchoice> o su <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
@@ -1338,10 +1340,10 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
           </inlinemediaobject> pulsante
 della barra degli strumenti oppure premi <keycap>F5</keycap>.</para>
 
-        <para>Se il risultato di un'unione sembra errato, fai clic su <menuchoice>
+        <para>Se il risultato di un'unione sembra errato, seleziona <menuchoice>
 <guimenu>Modifica</guimenu> <guimenuitem>Annulla</guimenuitem> </menuchoice>
 o premi <keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo> per
-annullare l'unione.Quindi esegui nuovamente la scansione dei file e prova a
+annullare l'unione. Quindi esegui nuovamente la scansione dei file e prova a
 unirli nuovamente.</para>
       </important>
     </section>
@@ -1354,16 +1356,16 @@ unirli nuovamente.</para>
         </indexterm></title>
 
       <para>Le funzioni di unione possono selezionare implicitamente le differenze in
-base alla posizione del cursore o alla selezione del testo.Ad esempio, se
-fai clic in un punto qualsiasi di una differenza e poi fai clic sul pulsante
+base alla posizione del cursore o alla selezione del testo. Ad esempio, se
+fai clic in un punto qualsiasi di una differenza e poi seleziona
 <guibutton>Copia a destra</guibutton> nella barra degli strumenti, l'intero
-blocco della differenza verrà unito.Ciò rende facile unire molte piccole
-differenze.Allo stesso modo, se selezioni un testo che si estende su tutte o
-parte di più differenze, tutte le differenze incluse verranno unite con un
+blocco della differenza verrà unito. Ciò rende facile unire molte piccole
+differenze. Allo stesso modo, se selezioni un testo che si estende su tutte
+o parte di più differenze, tutte le differenze incluse verranno unite con un
 unico comando di unione.</para>
 
       <para>Se il risultato di un'operazione di unione non è quello che ti aspettavi,
-puoi fare clic su <guibutton>Annulla</guibutton> per invertire l'operazione.</para>
+per invertire l'operazione puoi selezionare <guibutton>Annulla</guibutton> .</para>
 
       <para>Ecco le funzioni di unione e le relative scorciatoie nella barra degli
 strumenti e nei menu:</para>
@@ -1375,10 +1377,10 @@ strumenti e nei menu:</para>
             </indexterm></term>
 
           <listitem>
-            <para>Copia una o più differenze da sinistra a destra.Tieni presente che non è
+            <para>Copia una o più differenze da sinistra a destra. Tieni presente che non è
 necessario che le differenze siano completamente selezionate: nella sua
 forma più semplice, ciò significa sostituire il testo nella differenza di
-destinazione con il testo nella differenza di origine.Ma poiché le
+destinazione con il testo nella differenza di origine. Ma poiché le
 differenze possono contenere anche righe vuote, è possibile che vengano
 create o rimosse nuove righe.</para>
 
@@ -1403,7 +1405,7 @@ nel riquadro Diff.</para>
 
           <listitem>
             <para>Copia la differenza attuale dal riquadro File di destra a quello di
-sinistra.Vedi la descrizione <command>Copy Right</command> per i dettagli.</para>
+sinistra. Per i dettagli vedi la descrizione <command>Copy Right</command>.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
@@ -1427,7 +1429,7 @@ undifferenza e nel riquadro Diff.</para>
           <listitem>
             <para>Unisce la differenza attuale dal riquadro File di destra a quello di
 sinistra, quindi seleziona la differenza successiva (se ne esiste
-una).Equivalente a <command>Copia a destra</command> e <command>Differenza
+una). Equivalente a <command>Copia a destra</command> e <command>Differenza
 successiva</command> in un unico passaggio.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
@@ -1450,7 +1452,7 @@ nel pannello File all'interno di una differenza.</para>
 
           <listitem>
             <para>Unisce la differenza attuale da sinistra a destra, quindi seleziona la
-differenza successiva (se ne esiste una).Equivalente a <command>Copia a
+differenza successiva (se ne esiste una). Equivalente a <command>Copia a
 sinistra</command> e <command>Differenza successiva</command> in un unico
 passaggio.</para>
 
@@ -1473,15 +1475,16 @@ nel pannello File all'interno di una differenza.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Copia tutte le differenze dal riquadro File da sinistra a destra.Utilizzare
-per sincronizzare due file con un comando.Allo stesso modo, puoi annullare
-l'intera unione facendo clic su <inlinemediaobject>
+            <para>Copia tutte le differenze dal riquadro File da sinistra a destra. Usalo per
+sincronizzare due file con un comando. Allo stesso modo, puoi annullare
+l'intera unione selezioanndo <inlinemediaobject>
 <imageobject> <imagedata contentdepth="11"
 fileref="screenshots/undo_btn.png" /> </imageobject><textobject>
                   <phrase>Pulsante Aggiorna</phrase>
                 </textobject>
-              </inlinemediaobject> Annulla o premendo <keycombo> <keycap>Ctrl</keycap>
-<keycap>Z</keycap> </keycombo>.</para>
+              </inlinemediaobject>
+Annulla o premendo <keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap>
+</keycombo>.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -1502,8 +1505,8 @@ all'interno di una differenza.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Copia tutte le differenze dal riquadro File da destra a sinistra.Di fatto,
-sostituisce il contenuto del riquadro File sinistro.Vedi simile a
+            <para>Copia tutte le differenze dal riquadro File da destra a sinistra. Di fatto,
+sostituisce il contenuto del riquadro File sinistro. Vedi simile a
 <command>Tutto bene</command>.</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
@@ -1527,9 +1530,9 @@ all'interno di una differenza.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Esegue nuovamente la scansione dei file per aggiornare le differenze.Da
-utilizzare dopo aver apportato modifiche ai file, se la scansione automatica
-è disabilitata (vedi <xref linkend="Compare_files_scan" /> per i dettagli).</para>
+            <para>Esegue nuovamente la scansione dei file per aggiornare le differenze. Da
+usare dopo aver apportato modifiche ai file, se la scansione automatica è
+disabilitata (per i dettagli vedi <xref linkend="Compare_files_scan" />).</para>
 
             <para>Scorciatoie: pulsante <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
@@ -1549,58 +1552,58 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
           <primary>file in conflitto</primary>
         </indexterm></title>
 
-      <para>È possibile utilizzare WinMerge per risolvere i file di conflitto che alcuni
+      <para>È possibile usare WinMerge per risolvere i file di conflitto che alcuni
 sistemi di controllo della versione producono durante le operazioni di
-unione.Viene creato un file di conflitto quando un'unione rileva differenze
-che non possono essere risolte automaticamente.È un singolo file contenente
+unione. Viene creato un file di conflitto quando un'unione rileva differenze
+che non possono essere risolte automaticamente. È un singolo file contenente
 il contenuto unito in modo incompleto dei due file.WinMerge separa il file
 in conflitto in file separati e apre tali file nella finestra Confronta
-file.È quindi possibile utilizzare le funzioni di confronto e unione di
-WinMerge per risolvere i conflitti e salvare il file dei risultati uniti.</para>
+file. È quindi possibile usare le funzioni di confronto e unione di WinMerge
+per risolvere i conflitti e salvare il file dei risultati uniti.</para>
 
       <orderedlist>
         <listitem>
           <para>Fai clic su <menuchoice> <guimenu>File</guimenu> <guimenuitem>Apri file di
 conflitto</guimenuitem> </menuchoice> e usa la finestra di dialogo Apri per
-selezionare il file di conflitto nel tuo file system.Il file in conflitto si
-apre nella finestra Confronta file:</para>
+selezionare il file di conflitto nel tuo file system. Il file in conflitto
+si apre nella finestra Confronta file:</para>
 
           <itemizedlist>
             <listitem>
               <para>L'intestazione del file nel riquadro File di sinistra è intitolata
-<guilabel>Il loro file</guilabel>.Questo lato rappresenta il file che di
+<guilabel>Il loro file</guilabel>. Questo lato rappresenta il file che di
 solito si trova nel repository del sistema di controllo della
-versione.Questo file solitamente non può essere modificato, quindi WinMerge
-imposta il riquadro File sinistro in sola lettura.Ciò significa che le
+versione. Questo file solitamente non può essere modificato, quindi WinMerge
+imposta il riquadro File sinistro in sola lettura. Ciò significa che le
 differenze possono essere unite solo da questo file all'altro file.</para>
             </listitem>
 
             <listitem>
               <para>Il pannello File di destra è intitolato <guilabel>Estrai
-file</guilabel>.Questo lato è la copia di lavoro del file.Tutte le modifiche
-dovrebbero essere apportate a questo file, che è il file dei risultati.</para>
+file</guilabel>. Questo lato è la copia di lavoro del file. Tutte le
+modifiche dovrebbero essere apportate a questo file, che è il file dei
+risultati.</para>
 
               <para>Il lato <guilabel>File estratto</guilabel> viene impostato su modificato
 dopo l'apertura del file in conflitto (noterai l'asterisco nell'intestazione
-del riquadro File).Ciò consente di salvare rapidamente il file se non
-richiede alcuna modifica.Garantisce inoltre che non ti dimentichi di
-risolvere i file.Se scegli di non salvare il file, il file in conflitto
+del riquadro File). Ciò consente di salvare rapidamente il file se non
+richiede alcuna modifica. Garantisce inoltre che non ti dimentichi di
+risolvere i file. Se scegli di non salvare il file, il file in conflitto
 originale non verrà modificato.</para>
             </listitem>
           </itemizedlist>
         </listitem>
 
         <listitem>
-          <para>Utilizzare tutte le normali funzioni di confronto e unione descritte in
-precedenza in questo argomento per risolvere i conflitti nel riquadro File
-di miniera.</para>
+          <para>Usa tutte le normali funzioni di confronto e unione descritte in precedenza
+in questo argomento per risolvere i conflitti nel riquadro File di miniera.</para>
         </listitem>
 
         <listitem>
-          <para>Quando hai finito, fai clic su <keycombo> <keycap>Ctrl</keycap>
+          <para>Quando hai finito, seleziona <keycombo> <keycap>Ctrl</keycap>
 <keycap>S</keycap> </keycombo> per salvare il lato <guilabel>File
-estratto</guilabel> come file risultato.Per impostazione predefinita, la
-nuova versione sovrascrive il file di conflitto originale.In alternativa,
+estratto</guilabel> come file risultato. Per impostazione predefinita, la
+nuova versione sovrascrive il file di conflitto originale. In alternativa,
 puoi fare clic su <menuchoice> <guimenu>File</guimenu> <guimenuitem>Salva
 con destra</guimenuitem> <guimenuitem>Salva con nome</guimenuitem>
 </menuchoice> e scegliere un nome file diverso.</para>
@@ -1608,15 +1611,15 @@ con destra</guimenuitem> <guimenuitem>Salva con nome</guimenuitem>
       </orderedlist>
 
       <para>Molti sistemi di controllo della versione consentono di configurare uno
-strumento di unione esterno.Se il tuo lo fa, potresti essere in grado di
+strumento di unione esterno. Se il tuo lo fa, potresti essere in grado di
 fare in modo che il tuo sistema di controllo della versione avvii WinMerge
 automaticamente quando si verifica un conflitto di unione.</para>
 
       <para>Puoi anche aprire un file di conflitto dalla riga di comando di WinMerge,
 che accetta tre parametri del nome file: <option>Loro</option>,
 <option>Mine</option> e, facoltativamente, <option>Resolved</option> (se
-desideri un file di risultati diverso dal file di conflitto).Per ulteriori
-informazioni, vedi <xref linkend="Command_line" />.Nella riga di comando è
+vuoi un file di risultati diverso dal file di conflitto). Per ulteriori
+informazioni, vedi <xref linkend="Command_line" />. Nella riga di comando è
 accettato anche il percorso singolo al file in conflitto.</para>
     </section>
   </section>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "../Tools/dtd/docbookx.dtd">
 <section id="select-unpacker">
-  <title>Utilizzando la finestra di dialogo Seleziona Unpacker</title>
+  <title>Usando la finestra di dialogo Seleziona Unpacker</title>
 
   <orderedlist id="select-unpacker-proc">
     <listitem>
@@ -9,9 +9,9 @@
 
       <itemizedlist>
         <listitem>
-          <para>Per utilizzare la modalità automatica (che applica il primo plugin
-disponibile), verifica che <guilabel>&lt;Automatico&gt;</guilabel> sia
-visualizzato nel controllo <guilabel>Unpacker file</guilabel>.</para>
+          <para>Per usare la modalità automatica (che applica il primo plugin disponibile),
+verifica che <guilabel>&lt;Automatico&gt;</guilabel> sia visualizzato nel
+controllo <guilabel>Unpacker file</guilabel>.</para>
         </listitem>
 
         <listitem>
@@ -19,13 +19,13 @@ visualizzato nel controllo <guilabel>Unpacker file</guilabel>.</para>
 <guilabel>Unpacker file</guilabel> per scegliere il plugin.</para>
 
           <para>Per impostazione predefinita, questo controllo elenca solo i plug-in
-suggeriti per il tipo di file selezionato per il confronto.Per vedere tutti
-i plugin disponibili, abilita l'opzione <guilabel>Visualizza tutti i packer,
-non selezionare l'estensione</guilabel>.</para>
+suggeriti per il tipo di file selezionato per il confronto. Per visualizzare
+tutti i plugin disponibili, abilita l'opzione <guilabel>Visualizza tutti i
+packer, non selezionare l'estensione</guilabel>.</para>
         </listitem>
 
         <listitem>
-          <para>Per avviare il confronto senza utilizzare alcun plugin, scegli
+          <para>Per avviare il confronto senza usare alcun plugin, scegli
 <guimenuitem>&lt;Nessuno&gt;</guimenuitem> nel controllo <guilabel>Unpacker
 file</guilabel>.</para>
         </listitem>
@@ -33,7 +33,7 @@ file</guilabel>.</para>
     </listitem>
 
     <listitem>
-      <para>Fai clic su <guibutton>OK</guibutton> per chiudere la finestra di dialogo
+      <para>Seleziona <guibutton>OK</guibutton> per chiudere la finestra di dialogo
 Seleziona Unpacker.</para>
     </listitem>
   </orderedlist>

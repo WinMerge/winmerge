@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Filters">
-  <title>Utilizzo dei filtri<indexterm>
+  <title>Uso dei filtri<indexterm>
       <primary>filtri</primary>
 
       <seealso>filtri di file</seealso>
@@ -12,11 +12,11 @@
       <seealso>filtri sostitutivi</seealso>
     </indexterm></title>
 
-  <para>Quando confronti file o cartelle, puoi utilizzare i filtri per restringere
-l'ambito del confronto.Ciò può essere utile quando desideri semplificare il
+  <para>Quando confronti file o cartelle, puoi usare i filtri per restringere
+l'ambito del confronto. Ciò può essere utile quando vuoi semplificare il
 risultato del confronto eliminando le differenze che non ti interessano. I
-filtri sono regole basate su espressioni regolari.WinMerge utilizza il
-popolare motore di espressioni regolari PCRE (Perl Compatibile Regular
+filtri sono regole basate su espressioni regolari. WinMerge usa il popolare
+motore di espressioni regolari PCRE (Perl Compatibile Regular
 Expressions).<indexterm>
       <primary>espressioni regolari</primary>
 
@@ -32,7 +32,7 @@ Expressions).<indexterm>
   <para>La funzione di base del filtro è semplice: valuta ogni elemento che verrebbe
 normalmente confrontato (una cartella, un file o una riga all'interno di un
 file) e, se l'espressione del filtro corrisponde all'elemento di
-destinazione, applica il filtro.A seconda del tipo di filtro, l'elemento
+destinazione, applica il filtro. A seconda del tipo di filtro, l'elemento
 viene incluso o escluso dal confronto.</para>
 
   <para>Esistono diversi filtri WinMerge per le operazioni di confronto di cartelle
@@ -48,16 +48,16 @@ e file:</para>
 
       <listitem>
         <para>È possibile specificare i file da includere in un confronto di cartelle
-utilizzando semplici maschere di file o, per filtri più complessi,
-applicando più regole specificate in un filtro di file.</para>
+usando semplici maschere di file o, per filtri più complessi, applicando più
+regole specificate in un filtro di file.</para>
 
         <para>I file e le cartelle filtrati vengono nascosti nel risultato per
-impostazione predefinita, che in genere è ciò che desideri.Puoi fare clic su
+impostazione predefinita, che in genere è ciò che vuoi. Puoi fare clic su
 <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Visualizza elementi
-saltati</guimenuitem> </menuchoice> per mostrare gli elementi filtrati, ma
-la finestra Confronta cartelle mostra solo informazioni minime su di essi.Ad
-esempio, non è possibile stabilire se un file ignorato è un file di testo o
-binario.</para>
+saltati</guimenuitem> </menuchoice> per visualizzare gli elementi filtrati,
+ma la finestra Confronta cartellevisualizza solo informazioni minime su di
+essi. Ad esempio, non è possibile stabilire se un file ignorato è un file di
+testo o binario.</para>
 
         <para>Il filtro visualizzazione file/cartelle è disponibile anche per le
 operazioni di confronto delle cartelle. A differenza dei filtri file, non
@@ -76,11 +76,11 @@ linkend="Filters_DisplayFileFolderFilter"/>.</para>
 
       <listitem>
         <para>I filtri di riga vengono applicati solo alle operazioni di confronto dei
-file.Ti consentono di ignorare le differenze su una singola riga.</para>
+file. Ti consentono di ignorare le differenze su una singola riga.</para>
         <para>I filtri di sostituzione vengono applicati solo alle operazioni di confronto
-dei file.Sostituiscono le stringhe nel blocco diff con le stringhe
+dei file. Sostituiscono le stringhe nel blocco diff con le stringhe
 specificate, le confrontano e ignorano il blocco diff se i risultati della
-sostituzione corrispondono.Sono utili per ignorare un gran numero di
+sostituzione corrispondono. Sono utili per ignorare un gran numero di
 modifiche poco interessanti.</para>
         <para>Il filtro della riga di visualizzazione viene applicato anche solo alle
 operazioni di confronto dei file. A differenza dei filtri di linea, non
@@ -92,7 +92,7 @@ linkend="Filters_DisplayLineFilter"/>.</para>
   </variablelist>
 
   <section id="Filters_Mask">
-    <title>Utilizzo delle maschere dei file<indexterm>
+    <title>Uso delle maschere dei file<indexterm>
         <primary>maschere di file</primary>
       </indexterm><indexterm>
         <primary>filtri</primary>
@@ -104,9 +104,9 @@ linkend="Filters_DisplayLineFilter"/>.</para>
         <secondary>nei confronti delle cartelle</secondary>
       </indexterm></title>
 
-    <para>È possibile utilizzare una o più <glossterm>maschere file</glossterm> che
+    <para>È possibile usare una o più <glossterm>maschere file</glossterm> che
 specificano le estensioni dei file da includere in un confronto di
-cartelle.Tutti gli altri file vengono omessi dalla selezione.</para>
+cartelle. Tutti gli altri file vengono omessi dalla selezione.</para>
 
     <section id="Filters_MaskApply">
       <title>Definizione e applicazione di maschere di file<indexterm>
@@ -123,7 +123,7 @@ di confronto delle cartelle:</para>
           <para>Se stai usando la finestra di dialogo Seleziona file o cartelle, dopo aver
 scelto le cartelle <guilabel>1a</guilabel> e <guilabel>2a</guilabel>,
 inserisci una o più maschere di file nel campo
-<guilabel>Filtro</guilabel>.Le maschere vengono applicate quando si avvia
+<guilabel>Filtro</guilabel>. Le maschere vengono applicate quando si avvia
 l'operazione di confronto delle cartelle.</para>
         </listitem>
 
@@ -150,7 +150,7 @@ nella prossima sezione).</para>
           <secondary>nelle maschere dei file</secondary>
         </indexterm></title>
 
-      <para>Puoi specificare maschere file e filtri estesi utilizzando questo formato:</para>
+      <para>Puoi specificare maschere file e filtri estesi usando questo formato:</para>
 
       <synopsis>
         <replaceable>Filtro1 Gruppo1</replaceable>;<replaceable>Filtro2</replaceable> ...|<replaceable>Filtro1 Gruppo2</replaceable>;<replaceable>Filtro2</replaceable> ...|...
@@ -166,8 +166,8 @@ gruppo.</para></listitem>
         <listitem>
           <para>Per includere un carattere letterale <filename>|</filename> (pipe) in
 un'espressione regolare che non è racchiusa tra virgolette doppie (come nei
-filtri <filename>f:</filename> o <filename>f!:</filename>), utilizzare
-invece <filename>||</filename>.</para>
+filtri <filename>f:</filename> o <filename>f!:</filename>), usare invece
+<filename>||</filename>.</para>
           <para>Esempio: <userinput>f:(abc||def)\.txt$</userinput></para>
         </listitem>
         <listitem>
@@ -180,10 +180,10 @@ tipi:</para>
 2.16.19)</para></listitem></varlistentry>
             <varlistentry><term><replaceable>cartella</replaceable>\</term><listitem><para>Cartelle di destinazione (devono terminare con \) (disponibile dal 16.2.19)</para></listitem></varlistentry>
             <varlistentry><term>!<replaceable>cartella</replaceable>\</term><listitem><para>Escludi cartelle corrispondenti (disponibile dal 16.2.19)</para></listitem></varlistentry>
-            <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi dei file utilizzando le espressioni regolari (disponibile
-dalla versione 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi dei file usando le espressioni regolari (disponibile dalla
+versione 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Escludi file corrispondenti a regex (disponibile dalla versione 2.16.49)</para></listitem></varlistentry>
-            <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi delle cartelle utilizzando regex (disponibile dalla versione
+            <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi delle cartelle usando regex (disponibile dalla versione
 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Escludi cartelle corrispondenti a regex (disponibile dal 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>fe: <replaceable>espressione</replaceable></term><listitem><para>Espressione di filtro per file (ad esempio fe:Size &lt; 1KB) (disponibile
@@ -203,7 +203,7 @@ dal 16.2.49)</para></listitem></varlistentry>
 
         <para>In questo esempio da riga di comando, l'operazione di confronto delle
 cartelle include solo file con estensioni <filename>xml</filename> o
-<filename>txt</filename>.Tutti gli altri file vengono omessi:</para>
+<filename>txt</filename>. Tutti gli altri file vengono omessi:</para>
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f *.xml;*.txt</userinput></para>
       </example>
@@ -234,10 +234,10 @@ cartelle include solo file con estensioni <filename>cpp</filename> o
       <title>Sintassi dell'espressione di filtro</title>
 
       <para>
-WinMerge consente un potente filtraggio utilizzando espressioni che operano
-sui metadati dei file, sui contenuti e sul contesto di confronto.Questa
-sezione descrive gli attributi, gli operatori, le funzioni, i tipi di dati e
-le regole di valutazione supportati.</para>
+WinMerge consente un potente filtraggio usando espressioni che operano sui
+metadati dei file, sui contenuti e sul contesto di confronto. Questa sezione
+descrive gli attributi, gli operatori, le funzioni, i tipi di dati e le
+regole di valutazione supportati.</para>
 
       <section id="FilterExpression_Literals">
         <title>Letterali e tipi</title>
@@ -272,7 +272,7 @@ reale, timestamp, stringa, contenuto file, array o
 
         <para>
 Le espressioni di filtro supportano direttive che controllano il modo in cui
-viene valutata l'espressione.Le direttive sono specificate all'inizio
+viene valutata l'espressione. Le direttive sono specificate all'inizio
 dell'espressione, precedute da <literal>@</literal> e separate
 dall'espressione da spazi bianchi.</para>
 
@@ -285,15 +285,15 @@ Per impostazione predefinita, tutti gli operatori di confronto di stringhe
 <literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
 <literal>contains</literal>, <literal>recontains</literal>,
 <literal>like</literal>,<literal>corrispondenze</literal>) non fanno
-distinzione tra maiuscole e minuscole.Puoi controllare questo comportamento
-utilizzando le seguenti direttive:</para>
+distinzione tra maiuscole e minuscole. Puoi controllare questo comportamento
+usando le seguenti direttive:</para>
 
           <variablelist>
             <varlistentry>
               <term><literal>@cs</literal>, <literal>@casesensitive</literal></term>
               <listitem>
                 <para>
-Abilita il confronto con distinzione tra maiuscole e minuscole.Con queste
+Abilita il confronto con distinzione tra maiuscole e minuscole. Con queste
 direttive, <literal>"ABC"</literal> e <literal>"abc"</literal> sono
 considerati diversi.</para>
               </listitem>
@@ -304,8 +304,8 @@ considerati diversi.</para>
               <listitem>
                 <para>
 Abilita il confronto senza distinzione tra maiuscole e minuscole
-(comportamento predefinito).Con queste direttive, <literal>"ABC"</literal> e
-<literal>"abc"</literal> sono considerati identici.</para>
+(comportamento predefinito). Con queste direttive, <literal>"ABC"</literal>
+e <literal>"abc"</literal> sono considerati identici.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -323,8 +323,8 @@ Abilita il confronto senza distinzione tra maiuscole e minuscole
 
           <para>
 Per impostazione predefinita, le espressioni di filtro sono ottimizzate per
-migliorare le prestazioni.Puoi controllare questo comportamento utilizzando
-le seguenti direttive:</para>
+migliorare le prestazioni. Puoi controllare questo comportamento usando le
+seguenti direttive:</para>
 
           <variablelist>
             <varlistentry>
@@ -332,7 +332,7 @@ le seguenti direttive:</para>
               <listitem>
                 <para>
 Abilita l'ottimizzazione dell'espressione del filtro (comportamento
-predefinito).Ciò potrebbe migliorare le prestazioni per le espressioni
+predefinito). Ciò potrebbe migliorare le prestazioni per le espressioni
 complesse.</para>
               </listitem>
             </varlistentry>
@@ -341,7 +341,7 @@ complesse.</para>
               <term><literal>@nooptimize</literal>, <literal>@noopt</literal></term>
               <listitem>
                 <para>
-Disabilita l'ottimizzazione dell'espressione del filtro.Ciò è utile per il
+Disabilita l'ottimizzazione dell'espressione del filtro. Ciò è utile per il
 debug o quando l'ottimizzazione provoca risultati imprevisti.</para>
               </listitem>
             </varlistentry>
@@ -359,7 +359,7 @@ debug o quando l'ottimizzazione provoca risultati imprevisti.</para>
 
           <para>
 La direttiva <literal>@name</literal> consente di assegnare un nome
-descrittivo a un'espressione di filtro.Questo nome è destinato all'uso nei
+descrittivo a un'espressione di filtro. Questo nome è destinato all'uso nei
 messaggi di errore e nei log per identificare quale espressione di filtro ha
 causato un problema.</para>
 
@@ -368,13 +368,13 @@ causato un problema.</para>
               <term><literal>@name="Nome filtro"</literal>, <literal>@name=Nome filtro</literal></term>
               <listitem>
                 <para>
-Assegna un nome all'espressione di filtro.Se il nome contiene spazi o
-caratteri speciali, deve essere racchiuso tra virgolette doppie.I nomi senza
-spazi possono essere specificati senza virgolette.</para>
+Assegna un nome all'espressione di filtro. Se il nome contiene spazi o
+caratteri speciali, deve essere racchiuso tra virgolette doppie. I nomi
+senza spazi possono essere specificati senza virgolette.</para>
                 <para>
-Il nome specificato verrà utilizzato nei messaggi di errore e nell'output
-diagnostico per identificare il filtro.Ciò è particolarmente utile quando si
-lavora con più espressioni di filtro complesse.</para>
+Il nome specificato verrà usato nei messaggi di errore e nell'output
+diagnostico per identificare il filtro. Ciò è particolarmente utile quando
+si lavora con più espressioni di filtro complesse.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -389,7 +389,7 @@ lavora con più espressioni di filtro complesse.</para>
           <note>
             <para>
 La direttiva <literal>@name</literal> può essere combinata con altre
-direttive.Quando vengono utilizzate più direttive, dovrebbero apparire tutte
+direttive. Quando vengono usate più direttive, dovrebbero apparire tutte
 all'inizio dell'espressione, separate da spazi bianchi.</para>
           </note>
         </section>
@@ -400,10 +400,10 @@ all'inizio dell'espressione, separate da spazi bianchi.</para>
 
         <para>
 Le espressioni di filtro supportano una varietà di attributi che fanno
-riferimento ai metadati e al contenuto dei file.I nomi degli attributi non
-fanno distinzione tra maiuscole e minuscole.Facoltativamente, è possibile
+riferimento ai metadati e al contenuto dei file. I nomi degli attributi non
+fanno distinzione tra maiuscole e minuscole. Facoltativamente, è possibile
 specificare a quale lato del confronto (Sinistra, Destra o Centro) si
-applica un attributo utilizzando un prefisso.</para>
+applica un attributo usando un prefisso.</para>
 
         <section>
           <title>Attributi fondamentali</title>
@@ -419,7 +419,7 @@ applica un attributo utilizzando un prefisso.</para>
             </varlistentry>
             <varlistentry>
               <term><varname>BaseName</varname></term>
-              <listitem><para>Restituisce il nome del file senza estensione.Ad esempio, "document.txt"
+              <listitem><para>Restituisce il nome del file senza estensione. Ad esempio, "document.txt"
 restituisce "documento".</para></listitem>
             </varlistentry>
             <varlistentry>
@@ -470,7 +470,7 @@ RelPath restituisce "src\main.cpp".</para></listitem>
             <varlistentry>
               <term><varname>AttrStr</varname></term>
               <listitem>
-                <para>Restituisce la stringa dell'attributo del file.Esempi:
+                <para>Restituisce la stringa dell'attributo del file. Esempi:
 <literal>"R"</literal> per sola lettura, <literal>"H"</literal> per
 nascosto, <literal>"A"</literal> per archivio, <literal>"S"</literal> per
 file di sistema.</para>
@@ -483,14 +483,13 @@ file di sistema.</para>
           <title>Attributi solo file</title>
           <para>
 I seguenti attributi sono disponibili solo per gli elementi di confronto
-file.Se utilizzato con elementi di cartelle, il comportamento non è
-definito.</para>
+file. Se usato con elementi di cartelle, il comportamento non è definito.</para>
 
           <variablelist>
             <varlistentry>
               <term><varname>Content</varname></term>
-              <listitem><para>Contenuto del file.Restituisce un valore di tipo FileContent.Con questo tipo
-è possibile utilizzare solo <literal>contains</literal> e
+              <listitem><para>Contenuto del file. Restituisce un valore di tipo FileContent. Con questo
+tipo è possibile usare solo <literal>contains</literal> e
 <literal>recontains</literal>.</para></listitem>
             </varlistentry>
           </variablelist>
@@ -500,8 +499,7 @@ definito.</para>
           <title>Attributi solo cartella</title>
           <para>
 I seguenti attributi sono disponibili solo per gli elementi di confronto
-delle cartelle.Se utilizzato con elementi file, il comportamento non è
-definito.</para>
+delle cartelle. Se usato con elementi file, il comportamento non è definito.</para>
 
           <variablelist>
             <varlistentry>
@@ -550,7 +548,7 @@ vie (ad esempio, <literal>MiddleName</literal>)</para></listitem>
 
           <para>
 Gli attributi senza prefisso (ad esempio, <literal>Size</literal>)
-restituiscono un array di valori da tutti i lati disponibili (Sinistra,
+restituiscono una matrice di valori da tutti i lati disponibili (Sinistra,
 Centro, Destra).</para>
         </section>
 
@@ -561,7 +559,7 @@ Questi attributi forniscono l'accesso ai valori del sistema di proprietà di
 Windows, come i metadati definiti dallo schema del sistema di proprietà di
 Windows (ad esempio, <literal>System.Title</literal>,
 <literal>System.FileOwner</literal>,
-<literal>System.Image.HorizontalResolution</literal>).</para>
+<literal>System. Image.HorizontalResolution</literal>).</para>
 
           <variablelist>
             <varlistentry>
@@ -569,7 +567,7 @@ Windows (ad esempio, <literal>System.Title</literal>,
               <listitem>
                 <para>
 Restituisce una matrice di valori di proprietà (Sinistra, Centro, Destra)
-per il nome della proprietà canonica specificata.Esempio:
+per il nome della proprietà canonica specificata. Esempio:
 <literal>prop("System.Title")</literal></para>
               </listitem>
             </varlistentry>
@@ -578,7 +576,7 @@ per il nome della proprietà canonica specificata.Esempio:
               <term><varname>LeftProp</varname></term>
               <listitem>
                 <para>
-Valore della proprietà del file sul lato sinistro.Esempio:
+Valore della proprietà del file sul lato sinistro. Esempio:
 <literal>leftprop("System.FileOwner")</literal></para>
               </listitem>
             </varlistentry>
@@ -748,7 +746,7 @@ visualizzare tutti i file in cui è stato usato un decompressore.</para>
               <listitem>
                 <para>
 Restituisce il nome del plugin prediffer usato per il confronto dei file o
-una stringa vuota se non è stato utilizzato alcun prediffer. Questo è un
+una stringa vuota se non è stato usato alcun prediffer. Questo è un
 attributo globale (non supporta prefissi specifici del lato). Esempio:
 <literal>Prediffer = "IgnoreColumns"</literal> per visualizzare i file
 confrontati usando il prediffer IgnoreColumns, o <literal>Prediffer !=
@@ -809,19 +807,19 @@ file senza BOM.</para>
 
           <para>
 Gli attributi senza prefisso laterale (ad esempio, <literal>Size</literal>)
-restituiscono un array di valori da tutti i lati disponibili (Sinistra,
-Centro, Destra).Quando si applica un operatore a tali array, il
-comportamento varia a seconda che il confronto avvenga con un array scalare
-o con un altro.</para>
+restituiscono una matrice di valori da tutti i lati disponibili (Sinistra,
+Centro, Destra). Quando si applica un operatore a tali array, il
+comportamento varia a seconda che il confronto avvenga con una matrice
+scalare o con un altro.</para>
 
           <section id="FilterExpression_ArrayVsScalar">
             <title>Array vs scalare</title>
             <para>
-Quando si confronta un array con uno scalare, l'operazione viene applicata
-individualmente a ciascun elemento dell'array.Ciò si traduce in un array
-booleano.Se qualsiasi elemento in questo array booleano è
+Quando si confronta una matrice con uno scalare, l'operazione viene
+applicata individualmente a ciascun elemento dell'array. Ciò si traduce in
+una matrice booleano. Se qualsiasi elemento in questo array booleano è
 <literal>true</literal>, l'espressione complessiva restituisce
-<literal>true</literal>.Altrimenti, restituisce <literal>false</literal>.</para>
+<literal>true</literal>. Altrimenti, restituisce <literal>false</literal>.</para>
             <example>
               <title>Esempio</title>
 <programlisting>[3, 5, 8] &gt;6 -> [falso, falso, vero] -> vero</programlisting></example>
@@ -835,16 +833,16 @@ Quando si confrontano due array, il comportamento dipende dall'operatore:</para>
               <listitem>
                 <para>
 Per <literal>=</literal> e <literal>!=</literal>: gli array devono avere la
-stessa lunghezza.Il risultato è un singolo valore booleano, non un
-array.<literal>=</literal> restituisce <literal>true</literal> solo se tutti
-gli elementi sono uguali.<literal>!=</literal> restituisce
+stessa lunghezza. Il risultato è un singolo valore booleano, non una
+matrice.<literal>=</literal> restituisce <literal>true</literal> solo se
+tutti gli elementi sono uguali.<literal>!=</literal> restituisce
 <literal>true</literal> se qualche elemento è diverso.</para>
               </listitem>
               <listitem>
                 <para>
 Per tutti gli altri operatori (ad esempio, <literal>&gt;</literal>,
 <literal>&lt;</literal>): l'operazione viene applicata per elemento,
-producendo un array booleano.Il risultato finale dell'espressione è
+producendo una matrice booleana. Il risultato finale dell'espressione è
 <literal>true</literal> se qualsiasi elemento nell'array booleano è
 <literal>true</literal> e <literal>false</literal> se tutti gli elementi
 sono <literal>false</literal>.</para>
@@ -864,7 +862,7 @@ sono <literal>false</literal>.</para>
             <itemizedlist>
               <listitem>
                 <para>
-I confronti tra array e scalari producono un array booleano.Il risultato
+I confronti tra array e scalari producono una matrice booleano. Il risultato
 complessivo dell'espressione è <literal>true</literal> se almeno un elemento
 è <literal>true</literal>.</para>
               </listitem>
@@ -875,8 +873,8 @@ un singolo valore booleano.</para>
               </listitem>
               <listitem>
                 <para>
-Array vs array con altri operatori produce un array booleano.Il risultato
-finale è <literal>true</literal> se qualsiasi elemento è
+Array vs array con altri operatori produce una matrice booleano. Il
+risultato finale è <literal>true</literal> se qualsiasi elemento è
 <literal>true</literal>.</para>
               </listitem>
             </itemizedlist>
@@ -893,9 +891,9 @@ Per impostazione predefinita, tutti gli operatori di confronto di stringhe
 <literal>&lt;=</literal>, <literal>&gt;</literal>, <literal>&gt;=</literal>,
 <literal>like</literal>, <literal>match</literal>,
 <literal>contains</literal> e<literal>recontains</literal>) non fanno
-distinzione tra maiuscole e minuscole.Puoi controllare questo comportamento
-utilizzando le direttive (vedi <xref
-linkend="FilterExpression_CaseSensitivity" />).</para>
+distinzione tra maiuscole e minuscole. Puoi controllare questo comportamento
+usando le direttive (vedi <xref linkend="FilterExpression_CaseSensitivity"
+/>).</para>
 
         <variablelist>
           <varlistentry>
@@ -974,22 +972,23 @@ organizzate per categoria.</para>
           <variablelist>
             <varlistentry>
               <term><function>strlen</function>(<replaceable>fonte</replaceable>)</term>
-              <listitem><para>Restituisce la lunghezza della stringa come <literal>Intero</literal>.Se
-<replaceable>source</replaceable> è un array di stringhe, il risultato è un
-array di numeri interi.Esempio: <literal>strlen(Nome)</literal></para></listitem>
+              <listitem><para>Restituisce la lunghezza della stringa come <literal>Intero</literal>. Se
+<replaceable>source</replaceable> è una matrice di stringhe, il risultato è
+una matrice di numeri interi. Esempio: <literal>strlen(Nome)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>strCount</function>(<replaceable>str</replaceable>,
 <replaceable>substr</replaceable>)</term>
               <listitem>
                 <para>
-Counts how many times the substring <replaceable>substr</replaceable>
-appears in <replaceable>str</replaceable>.  The search is case-insensitive
-by default (respects <literal>@cs</literal>/<literal>@ci</literal>
-directives).  If <replaceable>str</replaceable> is an array, the result is
-an integer array with counts for each element.  Overlapping matches are
-counted separately (e.g., <literal>strCount("aaaa", "aa")</literal> returns
-2).</para>
+Conta quante volte la sottostringa <replaceable>substr</replaceable> appare
+in <replaceable>str</replaceable>. Per impostazione predefinita, la ricerca
+non fa distinzione tra maiuscole e minuscole (rispetta le direttive
+<literal>@cs</literal>/<literal>@ci</literal>). Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
+numeri interi con conteggi per ciascun elemento. Le corrispondenze
+sovrapposte vengono conteggiate separatamente (ad esempio,
+<literal>strCount("aaaa", "aa")</literal> restituisce 2).</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>strCount("ciao ciao mondo", "ciao")</literal> restituisce 2</para></listitem>
@@ -1007,13 +1006,13 @@ contenenti "ERROR" più di due volte</para></listitem>
 <replaceable>pattern</replaceable>)</term>
               <listitem>
                 <para>
-Counts how many times the regular expression
-<replaceable>pattern</replaceable> matches in
-<replaceable>str</replaceable>.  The search is case-insensitive by default
-(respects <literal>@cs</literal>/<literal>@ci</literal> directives).  If
-<replaceable>str</replaceable> is an array, the result is an integer array
-with counts for each element.  Zero-length matches are handled gracefully to
-avoid infinite loops.</para>
+Conta quante volte l'espressione regolare <replaceable>pattern</replaceable>
+corrisponde a <replaceable>str</replaceable>. Per impostazione predefinita,
+la ricerca non fa distinzione tra maiuscole e minuscole (rispetta le
+direttive <literal>@cs</literal>/<literal>@ci</literal>). Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
+numeri interi con conteggi per ciascun elemento. Le corrispondenze di
+lunghezza zero vengono gestite con garbo per evitare cicli infiniti.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>regexCount("test123abc456", "\d+")</literal> restituisce 2</para></listitem>
@@ -1029,15 +1028,16 @@ righe con parole chiave errore o avviso</para></listitem>
 <replaceable>substr</replaceable>[, <replaceable>occurrence</replaceable>])</term>
               <listitem>
                 <para>
-Finds the position (0-based) of the Nth occurrence of substring
-<replaceable>substr</replaceable> in <replaceable>str</replaceable>.  The
-optional <replaceable>occurrence</replaceable> parameter specifies which
-occurrence to find (0-based, default is 0 for the first occurrence).  The
-search is case-insensitive by default (respects
-<literal>@cs</literal>/<literal>@ci</literal> directives).  Returns
-<literal>none</literal> if the substring is not found or if the occurrence
-index is out of range.  If <replaceable>str</replaceable> is an array, the
-result is an array of positions (or none values).</para>
+Trova la posizione (in base 0) dell'ennesima occorrenza della sottostringa
+<replaceable>substr</replaceable> in <replaceable>str</replaceable>. Il
+parametro facoltativo <replaceable>occurrence</replaceable> specifica quale
+occorrenza trovare (in base 0, il valore predefinito è 0 per la prima
+occorrenza). Per impostazione predefinita, la ricerca non fa distinzione tra
+maiuscole e minuscole (rispetta le direttive
+<literal>@cs</literal>/<literal>@ci</literal>). Se la sottostringa non viene
+trovata o se l'indice delle occorrenze è fuori intervallo restituisce
+<literal>none</literal>. Se <replaceable>str</replaceable> è una matrice, il
+risultato è una matrice di posizioni (o nessun valore).</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>strFind("ciao mondo", "o")</literal> restituisce 4 (prima 'o')</para></listitem>
@@ -1056,18 +1056,20 @@ distinzione tra maiuscole e minuscole)</para></listitem>
 <replaceable>occurrence</replaceable>]])</term>
               <listitem>
                 <para>
-Finds the position (0-based) of the Nth occurrence of a regular expression
-match in <replaceable>str</replaceable>.  The optional
-<replaceable>group</replaceable> parameter specifies which capture group to
-locate (0-based, default is 0 for the entire match).  The optional
-<replaceable>occurrence</replaceable> parameter specifies which occurrence
-of the pattern to find (0-based, default is 0 for the first occurrence).
-The search is case-insensitive by default (respects
-<literal>@cs</literal>/<literal>@ci</literal> directives).  Returns
-<literal>none</literal> if the pattern doesn't match, the group index is out
-of range, or the occurrence index is out of range.  If
-<replaceable>str</replaceable> is an array, the result is an array of
-positions (or none values).</para>
+Trova la posizione (in base 0) dell'ennesima occorrenza di una
+corrispondenza di espressione regolare in <replaceable>str</replaceable>. Il
+parametro facoltativo <replaceable>group</replaceable> specifica quale
+gruppo di acquisizione individuare (in base 0, il valore predefinito è 0 per
+l'intera corrispondenza). Il parametro facoltativo
+<replaceable>occurrence</replaceable> specifica quale occorrenza del modello
+trovare (in base 0, il valore predefinito è 0 per la prima occorrenza). Per
+impostazione predefinita, la ricerca non fa distinzione tra maiuscole e
+minuscole (rispetta le direttive
+<literal>@cs</literal>/<literal>@ci</literal>). Se il modello non
+corrisponde, l'indice del gruppo è fuori intervallo o l'indice delle
+occorrenze è fuori intervallo restituisce <literal>none</literal> . Se
+<replaceable>str</replaceable> è una matrive, il risultato è una matrice di
+posizioni (o nessun valore).</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>regexFind("test123abc456", "\d+")</literal> restituisce 4
@@ -1087,18 +1089,18 @@ restituisce 10 (versione principale "2" nella seconda occorrenza)</para></listit
               <term><function>substr</function>(<replaceable>sorgente</replaceable>,
 <replaceable>inizio</replaceable>, <replaceable>conteggio</replaceable>)</term>
               <listitem><para>Restituisce un intervallo specifico di testo dalla <emphasis>stringa o
-dall'array di stringhe</emphasis> come <literal>Stringa</literal>.Se
-<replaceable>source</replaceable> è un array di stringhe, il risultato è un
-array di stringhe.Esempio: <literal>substr(Nome, 0, 3)</literal></para></listitem>
+dall'array di stringhe</emphasis> come <literal>Stringa</literal>. Se
+<replaceable>source</replaceable> è una matrice di stringhe, il risultato è
+una matrice di stringhe. Esempio: <literal>substr(Nome, 0, 3)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>replace</function> (da, a, in)</term>
               <listitem>
                 <para>
 Sostituisce tutte le occorrenze della stringa
-<replaceable>from</replaceable> con <replaceable>to</replaceable>.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
-stringhe a cui sono applicate le sostituzioni.Esempio:
+<replaceable>from</replaceable> con <replaceable>to</replaceable>. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
+stringhe a cui sono applicate le sostituzioni. Esempio:
 <literal>sostituisci(nome, ".bak", ".txt")</literal></para>
               </listitem>
             </varlistentry>
@@ -1107,10 +1109,10 @@ stringhe a cui sono applicate le sostituzioni.Esempio:
               <listitem>
                 <para>
 Sostituisce tutte le corrispondenze del modello di espressione regolare con
-la stringa sostitutiva.Supporta i riferimenti all'indietro ($1, $2, ecc.)
-nella stringa di sostituzione.Se <replaceable>str</replaceable> è un array,
-il risultato è un array di stringhe a cui sono applicate le
-sostituzioni.Esempio: <literal>regexReplace(name, "^(\w+)_(\w+)$",
+la stringa sostitutiva. Supporta i riferimenti all'indietro ($1, $2, ecc.)
+nella stringa di sostituzione. Se <replaceable>str</replaceable> è una
+matrice, il risultato è una matrice di stringhe a cui sono applicate le
+sostituzioni. Esempio: <literal>regexReplace(name, "^(\w+)_(\w+)$",
 "$2_$1")</literal> scambia le parole separate da un carattere di
 sottolineatura.</para>
               </listitem>
@@ -1119,13 +1121,13 @@ sottolineatura.</para>
               <term><function>replaceWithList</function>(str, percorsofile)</term>
               <listitem>
                 <para>
-Sostituisce più stringhe in <replaceable>str</replaceable> utilizzando le
-regole di sostituzione caricate da un file separato da tabulazioni.Il
-formato del file è una regola di sostituzione per riga:
-<literal>search_string&lt;TAB&gt;replacement_string</literal>.Le righe che
+Sostituisce più stringhe in <replaceable>str</replaceable> usando le regole
+di sostituzione caricate da un file separato da tabulazioni. Il formato del
+file è una regola di sostituzione per riga:
+<literal>search_string&lt;TAB&gt;replacement_string</literal>. Le righe che
 iniziano con <literal>#</literal> vengono trattate come commenti e
-ignorate.Anche le righe vuote vengono ignorate.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
+ignorate. Anche le righe vuote vengono ignorate. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
 stringhe a cui sono applicate le sostituzioni.</para>
                 <para>Esempio di formato file:</para>
                 <screen># Riga di commento
@@ -1143,14 +1145,14 @@ applica le sostituzioni dal file al nome del file</para></listitem>
               <term><function>regexReplaceWithList</function>(str, percorsofile)</term>
               <listitem>
                 <para>
-Sostituisce le stringhe in <replaceable>str</replaceable> utilizzando
-modelli di espressioni regolari caricati da un file separato da
-tabulazioni.Il formato del file è un modello per riga:
-<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>.La stringa di
+Sostituisce le stringhe in <replaceable>str</replaceable> usando modelli di
+espressioni regolari caricati da un file separato da tabulazioni. Il formato
+del file è un modello per riga:
+<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>. La stringa di
 sostituzione può includere riferimenti all'indietro ($1, $2 e così via) ai
-gruppi acquisiti.Le righe che iniziano con <literal>#</literal> vengono
-trattate come commenti e ignorate.Anche le righe vuote vengono ignorate.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
+gruppi acquisiti. Le righe che iniziano con <literal>#</literal> vengono
+trattate come commenti e ignorate. Anche le righe vuote vengono ignorate. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
 stringhe a cui sono applicate le sostituzioni.</para>
                 <para>Esempio di formato file:</para>
                 <screen># Riga di commento
@@ -1170,20 +1172,22 @@ al nome del file</para></listitem>
 <replaceable>offset</replaceable>]])</term>
               <listitem>
                 <para>
-Captures text matching a regular expression pattern from the string.  The
-optional <replaceable>group</replaceable> parameter specifies which capture
-group to extract (0-based).  Group 0 (default) returns the entire match;
-groups 1, 2, etc. return the corresponding capture groups defined by
-parentheses in the pattern.  The optional <replaceable>offset</replaceable>
-parameter specifies which occurrence of the pattern to capture (0-based).
-Offset 0 (default) returns the first match; offset 1 returns the second
-match, etc.  This is useful for capturing the Nth occurrence in a line, such
-as the second number in a string.  Returns <literal>none</literal> if the
-pattern doesn't match, the group index is out of range, or the offset
-exceeds the number of matches.  If <replaceable>str</replaceable> is an
-array, the result is an array with captures for each element.  The search is
-case-insensitive by default (respects
-<literal>@cs</literal>/<literal>@ci</literal> directives).</para>
+Cattura il testo che corrisponde a un modello di espressione regolare dalla
+stringa. Il parametro facoltativo <replaceable>group</replaceable> specifica
+quale gruppo di acquisizione estrarre (in base 0). Il gruppo 0 (predefinito)
+restituisce l'intera corrispondenza; i gruppi 1, 2, ecc. restituiscono i
+gruppi di acquisizione corrispondenti definiti tra parentesi nel modello.  l
+parametro facoltativo <replaceable>offset</replaceable> specifica quale
+occorrenza del modello acquisire (in base 0). Offset 0 (predefinito)
+restituisce la prima corrispondenza; offset 1 restituisce la seconda
+corrispondenza, ecc. Questo è utile per catturare l'ennesima occorrenza in
+una riga, come il secondo numero in una stringa. Restituisce
+<literal>none</literal> se il modello non corrisponde, l'indice del gruppo è
+fuori intervallo o l'offset supera il numero di corrispondenze. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice con
+acquisizioni per ciascun elemento. Per impostazione predefinita, la ricerca
+non fa distinzione tra maiuscole e minuscole (rispetta le direttive
+<literal>@cs</literal>/<literal>@ci</literal>).</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>regexExtract("abc123", "[a-z]+\d+")</literal> restituisce
@@ -1225,11 +1229,11 @@ filtra i file con la versione principale 2</para></listitem>
               <term><function>normalizeUnicode</function>(str[, modulo])</term>
               <listitem>
                 <para>
-Normalizza la stringa Unicode.Il parametro facoltativo del modulo specifica
+Normalizza la stringa Unicode. Il parametro facoltativo del modulo specifica
 il modulo di normalizzazione: "NFC" o "C" (predefinito), "NFD" o "D", "NFKC"
-o "KC", "NFKD" o "KD".È possibile utilizzare anche forme numeriche: 1=NFC,
-2=NFD, 5=NFKC, 6=NFKD.Se <replaceable>str</replaceable> è un array, il
-risultato è un array di stringhe normalizzate.Esempio:
+o "KC", "NFKD" o "KD". È possibile usare anche forme numeriche: 1=NFC,
+2=NFD, 5=NFKC, 6=NFKD. Se <replaceable>str</replaceable> è una matrice, il
+risultato è una matrice di stringhe normalizzate. Esempio:
 <literal>normalizeUnicode(name, "NFC")</literal></para>
               </listitem>
             </varlistentry>
@@ -1238,9 +1242,9 @@ risultato è un array di stringhe normalizzate.Esempio:
 <function>toLower</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converte tutti i caratteri della stringa in minuscolo.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
-stringhe minuscole.Esempio: <literal>toLower("Hello World")</literal>
+Converte tutti i caratteri della stringa in minuscolo. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
+stringhe minuscole. Esempio: <literal>toLower("Hello World")</literal>
 restituisce <literal>"hello world"</literal></para>
               </listitem>
             </varlistentry>
@@ -1249,9 +1253,9 @@ restituisce <literal>"hello world"</literal></para>
 <function>toUpper</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converte tutti i caratteri della stringa in maiuscolo.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
-stringhe maiuscole.Esempio: <literal>toUpper("Hello World")</literal>
+Converte tutti i caratteri della stringa in maiuscolo. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
+stringhe maiuscole. Esempio: <literal>toUpper("Hello World")</literal>
 restituisce <literal>"HELLO WORLD"</literal></para>
               </listitem>
             </varlistentry>
@@ -1260,11 +1264,10 @@ restituisce <literal>"HELLO WORLD"</literal></para>
 <function>toHalfWidth</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converte i caratteri a larghezza intera in caratteri a metà
-larghezza.Utilizzato principalmente per convertire caratteri alfanumerici e
-katakana a larghezza intera in caratteri a metà larghezza.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
-stringhe convertite.</para>
+Converte i caratteri a larghezza intera in caratteri a metà larghezza. Usato
+principalmente per convertire caratteri alfanumerici e katakana a larghezza
+intera in caratteri a metà larghezza. Se <replaceable>str</replaceable> è
+una matrice, il risultato è una matrice di stringhe convertite.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1273,9 +1276,9 @@ stringhe convertite.</para>
               <listitem>
                 <para>
 Converte i caratteri a mezza larghezza in caratteri a larghezza
-intera.Utilizzato principalmente per convertire caratteri alfanumerici e
-katakana da metà larghezza a larghezza intera.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
+intera. Usato principalmente per convertire caratteri alfanumerici e
+katakana da metà larghezza a larghezza intera. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
 stringhe convertite.</para>
               </listitem>
             </varlistentry>
@@ -1284,9 +1287,9 @@ stringhe convertite.</para>
 <function>toKatakana</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converte i caratteri hiragana in katakana.I caratteri non hiragana rimangono
-invariati.Se <replaceable>str</replaceable> è un array, il risultato è un
-array di stringhe convertite.</para>
+Converte i caratteri hiragana in katakana. I caratteri non hiragana
+rimangono invariati. Se <replaceable>str</replaceable> è una matrice, il
+risultato è una matrice di stringhe convertite.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1294,9 +1297,9 @@ array di stringhe convertite.</para>
 <function>toHiragana</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converte i caratteri katakana in hiragana.I caratteri non katakana rimangono
-invariati.Se <replaceable>str</replaceable> è un array, il risultato è un
-array di stringhe convertite.</para>
+Converte i caratteri katakana in hiragana. I caratteri non katakana
+rimangono invariati. Se <replaceable>str</replaceable> è una matrice, il
+risultato è una matrice di stringhe convertite.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1304,9 +1307,9 @@ array di stringhe convertite.</para>
 <function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converte i caratteri cinesi tradizionali in caratteri cinesi semplificati.I
-caratteri che non hanno una forma semplificata rimangono invariati.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
+Converte i caratteri cinesi tradizionali in caratteri cinesi semplificati. I
+caratteri che non hanno una forma semplificata rimangono invariati. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
 stringhe convertite.</para>
               </listitem>
             </varlistentry>
@@ -1315,9 +1318,9 @@ stringhe convertite.</para>
 <function>toTraditionalChinese</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converte i caratteri cinesi semplificati in caratteri cinesi tradizionali.I
-personaggi che non hanno una forma tradizionale rimangono invariati.Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
+Converte i caratteri cinesi semplificati in caratteri cinesi tradizionali. I
+caratteri che non hanno una forma tradizionale rimangono invariati. Se
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
 stringhe convertite.</para>
               </listitem>
             </varlistentry>
@@ -1327,8 +1330,8 @@ stringhe convertite.</para>
               <listitem>
                 <para>
 Rimuove gli spazi bianchi iniziali e finali (spazio, tabulazione, nuova
-riga, ritorno a capo) dalla stringa. Se <replaceable>str</replaceable> è un
-array, il risultato è un array di stringhe tagliate.</para>
+riga, ritorno a capo) dalla stringa. Se <replaceable>str</replaceable> è una
+matrice, il risultato è una matrice di stringhe tagliate.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>trim(" ciao ")</literal> restituisce <literal>"ciao"</literal></para></listitem>
@@ -1344,8 +1347,8 @@ array, il risultato è un array di stringhe tagliate.</para>
                 <para>
 Rimuove i caratteri di spazio bianco iniziali (spazio, tabulazione, nuova
 riga, ritorno a capo) dall'inizio della stringa. Gli spazi bianchi finali
-vengono conservati. Se <replaceable>str</replaceable> è un array, il
-risultato è un array di stringhe tagliate a sinistra.</para>
+vengono conservati. Se <replaceable>str</replaceable> è una matrice, il
+risultato è una matrice di stringhe tagliate a sinistra.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>trimLeft(" ciao ")</literal> restituisce <literal>"ciao "</literal></para></listitem>
@@ -1359,7 +1362,7 @@ risultato è un array di stringhe tagliate a sinistra.</para>
                 <para>
 Rimuove gli spazi bianchi finali (spazio, tabulazione, nuova riga, ritorno a
 capo) dalla fine della stringa. Gli spazi iniziali vengono mantenuti. Se
-<replaceable>str</replaceable> è un array, il risultato è un array di
+<replaceable>str</replaceable> è una matrice, il risultato è una matrice di
 stringhe tagliate a destra.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
@@ -1377,9 +1380,9 @@ ciao"</literal></para></listitem>
             <varlistentry>
               <term><function>lineCount</function>(<replaceable>contenuto</replaceable>)</term>
               <listitem><para>Restituisce il numero di righe nel contenuto del file o nell'array del
-contenuto del file come <literal>Intero</literal>.Se
-<replaceable>content</replaceable> è un array, il risultato è un array di
-numeri interi.Esempio: <literal>lineCount(Content)</literal></para></listitem>
+contenuto del file come <literal>Intero</literal>. Se
+<replaceable>content</replaceable> è una matrice, il risultato è una matrice
+di numeri interi. Esempio: <literal>lineCount(Content)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>sublines</function>(<replaceable>contenuto</replaceable>,
@@ -1388,9 +1391,9 @@ numeri interi.Esempio: <literal>lineCount(Content)</literal></para></listitem>
                 <para>
 Estrae il numero specificato di righe a partire dall'indice di riga
 specificato nel contenuto del file o nell'array del contenuto del file e li
-restituisce come un'unica stringa concatenata.Se
-<replaceable>content</replaceable> è un array, il risultato è un array di
-stringhe.</para>
+restituisce come un'unica stringa concatenata. Se
+<replaceable>content</replaceable> è una matrice, il risultato è una matrice
+di stringhe.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -1403,20 +1406,22 @@ stringhe.</para>
               <term><function>toNumber</function>(<replaceable>str</replaceable>),
 <function>toInt</function>(<replaceable>str</replaceable>),
 <function>toDouble</function>(<replaceable>str</replaceable>)</term>
-              <listitem><para>Convert a string to a number. <function>toNumber</function> returns an
-integer or floating-point number depending on the input format;
-<function>toInt</function> returns only integers;
-<function>toDouble</function> returns only floating-point numbers.  Commas
-in the input are ignored. Returns <literal>none</literal>on parse failure.
-Example: <literal>le:toInt(Column("Count")) &gt; 100</literal></para></listitem>
+              <listitem><para>Converte una stringa in un numero. <function>toNumber</function> restituisce
+un numero intero o in virgola mobile a seconda del formato sorgente;
+<function>toInt</function> restituisce solo numeri interi;
+<function>toDouble</function> restituisce solo numeri a virgola mobile. Le
+virgole nel dato sorgente vengono ignorate. In caso di errore di analisi
+restituisce <literal>none</literal>. Esempio:
+<literal>le:toInt(Column("Count")) > 100</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>toDateTime</function>(<replaceable>str</replaceable>)</term>
               <listitem>
                 <para>
-Converts a string to a timestamp value. Supports multiple date/time
-formats.  Returns <literal>none</literal>if the string cannot be parsed.
-Example: <literal>toDateTime("2025-01-15") &gt; today()</literal></para>
+Converte una stringa in un valore timestamp. Supporta più formati
+data/ora. Se la stringa non può essere analizzata restituisce
+<literal>none</literal>. Esempio: <literal>toDateTime("2025-01-15") >
+today()</literal></para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -1451,8 +1456,8 @@ indipendentemente dalle impostazioni locali.</para></listitem>
             <varlistentry>
               <term><function>toDateStr</function>(<replaceable>timestamp</replaceable>)</term>
               <listitem><para>Converte il timestamp specificato in una stringa di data nel formato
-<literal>aaaa-MM-gg</literal>.Se <replaceable>timestamp</replaceable> è un
-array di timestamp, il risultato è un array di stringhe.</para></listitem>
+<literal>aaaa-MM-gg</literal>. Se <replaceable>timestamp</replaceable> è una
+matrice di timestamp, il risultato è una matrice di stringhe.</para></listitem>
             </varlistentry>
           </variablelist>
         </section>
@@ -1463,8 +1468,8 @@ array di timestamp, il risultato è un array di stringhe.</para></listitem>
             <varlistentry>
               <term><function>abs</function>(<replaceable>valore</replaceable>)</term>
               <listitem><para>Restituisce il valore assoluto dell'<emphasis>intero o dell'array di
-interi</emphasis>.Se <replaceable>value</replaceable> è un array di numeri
-interi, il risultato è un array di numeri interi.</para></listitem>
+interi</emphasis>. Se <replaceable>value</replaceable> è una matrice di
+numeri interi, il risultato è una matrice di numeri interi.</para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>isWithin</function>(<replaceable>valore</replaceable>,
@@ -1473,9 +1478,9 @@ interi, il risultato è un array di numeri interi.</para></listitem>
                 <para>
 Restituisce <literal>true</literal> se <replaceable>valore</replaceable> è
 compreso nell'intervallo <literal>[min, max]</literal> (incluso su entrambe
-le estremità).Supporta numeri interi, numeri a virgola mobile, timestamp e
-stringhe (confronto senza distinzione tra maiuscole e minuscole).Se
-<replaceable>value</replaceable> è un array, il risultato è un array
+le estremità). Supporta numeri interi, numeri a virgola mobile, timestamp e
+stringhe (confronto senza distinzione tra maiuscole e minuscole). Se
+<replaceable>value</replaceable> è una matrice, il risultato è una matrice
 booleano con ogni elemento controllato individualmente.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
@@ -1496,10 +1501,11 @@ dimensioni dei file sono comprese tra 1KB e 10MB</para></listitem>
                 <para>
 Restituisce <literal>true</literal> se <replaceable>value</replaceable> è
 compreso nell'intervallo <literal>[min, max)</literal> (incluso nel limite
-inferiore, escluso nel limite superiore).Supporta numeri interi, numeri a
+inferiore, escluso nel limite superiore). Supporta numeri interi, numeri a
 virgola mobile, timestamp e stringhe (confronto senza distinzione tra
-maiuscole e minuscole).Se <replaceable>value</replaceable> è un array, il
-risultato è un array booleano con ogni elemento controllato individualmente.</para>
+maiuscole e minuscole). Se <replaceable>value</replaceable> è una matrice,
+il risultato è una matrice booleano con ogni elemento controllato
+individualmente.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>inRange(5, 1, 10)</literal> restituisce <literal>true</literal></para></listitem>
@@ -1579,7 +1585,7 @@ numero di lati (2 o 3)</para></listitem>
                 <para>
 Restituisce <replaceable>trueValue</replaceable> se
 <replaceable>condizione</replaceable> restituisce true, altrimenti
-restituisce <replaceable>falseValue</replaceable>.Questa funzione esegue la
+restituisce <replaceable>falseValue</replaceable>. Questa funzione esegue la
 valutazione del cortocircuito (valuta solo il ramo che verrà restituito).</para>
                 <para>Esempi:</para>
                 <itemizedlist>
@@ -1597,17 +1603,17 @@ o 0 se il file non esiste</para></listitem>
 <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
               <listitem>
                 <para>
-Selezione condizionale per elemento.Per ogni elemento in
+Selezione condizionale per elemento. Per ogni elemento in
 <replaceable>conditionArray</replaceable>, restituisce l'elemento
 corrispondente da <replaceable>trueValue</replaceable> se la condizione è
-vera, altrimenti restituisce l'elemento corrispondente da
-<replaceable>falseValue</replaceable>.Se
+vera, Altrimenti restituisce l'elemento corrispondente da
+<replaceable>falseValue</replaceable>. Se
 <replaceable>trueValue</replaceable> o <replaceable>falseValue</replaceable>
 è uno scalare, viene trasmesso a tutti gli elementi.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
-                  <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - restituisce un
-array di etichette "grande"/"piccolo" per ogni file</para></listitem>
+                  <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - restituisce una
+matrice di etichette "grande"/"piccolo" per ogni file</para></listitem>
                   <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x",
 "y", "z"))</literal> - restituisce <literal>array("a", "y", "c")</literal></para></listitem>
                   <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> -
@@ -1621,7 +1627,7 @@ controlla se qualche file è compreso tra 100KB e 10MB</para></listitem>
               <listitem>
                 <para>
 Seleziona un valore dagli argomenti in base a
-<replaceable>index</replaceable>.Se <replaceable>index</replaceable> è 0,
+<replaceable>index</replaceable>. Se <replaceable>index</replaceable> è 0,
 restituisce <replaceable>value0</replaceable>;se 1, restituisce
 <replaceable>value1</replaceable>, ecc. Gli indici negativi sono limitati a
 0. Gli indici oltre l'ultimo valore restituiscono l'ultimo valore.</para>
@@ -1641,9 +1647,9 @@ limiti, restituisce l'ultimo valore)</para></listitem>
 <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
               <listitem>
                 <para>
-Selezione del valore in base agli elementi.Per ogni indice in
+Selezione del valore in base agli elementi. Per ogni indice in
 <replaceable>indexArray</replaceable>, seleziona il valore corrispondente
-dagli argomenti rimanenti.Se <replaceable>indexArray</replaceable> è uno
+dagli argomenti rimanenti. Se <replaceable>indexArray</replaceable> è uno
 scalare, si comporta come <literal>choose</literal>.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
@@ -1670,7 +1676,7 @@ orEach(<replaceable>valore1</replaceable>,
 notEach(<replaceable>valore</replaceable>)</term>
               <listitem>
                 <para>
-Operazioni logiche per elementi.Queste funzioni operano su booleani, array
+Operazioni logiche per elementi. Queste funzioni operano su booleani, array
 booleani o una combinazione di entrambi:</para>
                 <itemizedlist>
                   <listitem><para><literal>andEach</literal> - Operazione logica AND</para></listitem>
@@ -1679,9 +1685,9 @@ booleani o una combinazione di entrambi:</para>
                 </itemizedlist>
                 <para>
 Quando gli argomenti sono scalari, restituisce un risultato booleano
-scalare.Quando un argomento è un array e l'altro è uno scalare, lo scalare
-viene trasmesso a tutti gli elementi.Quando entrambi gli argomenti sono
-array, esegue l'operazione a livello di elemento.</para>
+scalare. Quando un argomento è una matrice e l'altro è uno scalare, lo
+scalare viene trasmesso a tutti gli elementi. Quando entrambi gli argomenti
+sono array, esegue l'operazione a livello di elemento.</para>
                 <para>Esempi:</para>
                 <itemizedlist>
                   <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - file tra 1KB e
@@ -1714,9 +1720,9 @@ logInfo(<replaceable>value1</replaceable>,
 Restituisce la rappresentazione di stringa concatenata di tutti gli
 argomenti nel log (rispettivamente a livello di errore, avviso o
 informazione), separati da spazi, e restituisce il valore dell'ultimo
-argomento.Queste funzioni sono utili per il debug delle espressioni di
+argomento. Queste funzioni sono utili per il debug delle espressioni di
 filtro.</para>
-                <para>Esempi (utilizzando il valore restituito):</para>
+                <para>Esempi (usando il valore restituito):</para>
                 <itemizedlist>
                   <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - registra le
 dimensioni del file e controlla se è maggiore di 1 MB</para></listitem>
@@ -1840,7 +1846,7 @@ sinistra-centrale (solo filtro di visualizzazione)</para></listitem>
   </section>
 
   <section id="Filters_FileFilter">
-    <title>Utilizzo dei filtri file<indexterm>
+    <title>Uso dei filtri file<indexterm>
         <primary>filtri</primary>
 
         <secondary>filtri di file</secondary>
@@ -1851,8 +1857,8 @@ sinistra-centrale (solo filtro di visualizzazione)</para></listitem>
       </indexterm></title>
 
     <para>I <glossterm>filtri file</glossterm> sono file di testo con estensione
-<filename>flt</filename>.Consentono di applicare più regole di filtro a un
-confronto di cartelle.A differenza delle maschere di file, i filtri di file
+<filename>flt</filename>. Consentono di applicare più regole di filtro a un
+confronto di cartelle. A differenza delle maschere di file, i filtri di file
 possono includere o escludere corrispondenze.</para>
 
     <para><indexterm>
@@ -1860,10 +1866,10 @@ possono includere o escludere corrispondenze.</para>
 
         <secondary>modello</secondary>
       </indexterm>WinMerge installa una serie di filtri
-di file predefiniti.Se questi filtri di file non forniscono il filtraggio
-necessario, puoi crearne uno tuo.Per semplificare questo compito, WinMerge
+di file predefiniti. Se questi filtri di file non forniscono il filtraggio
+necessario, puoi crearne uno tuo. Per semplificare questo compito, WinMerge
 fornisce anche un file modello denominato
-<filename>FileFilter.tmpl</filename>.Questa sezione descrive come applicare
+<filename>FileFilter.tmpl</filename>. Questa sezione descrive come applicare
 i filtri di file ai confronti e documenta la sintassi del filtro di
 file.<xref linkend="Filters_dlg" /> descrive come aggiungere, modificare e
 gestire i filtri.</para>
@@ -1886,13 +1892,13 @@ gestire i filtri.</para>
           <term>Sottocartella Filtri nella cartella di installazione di WinMerge</term>
 
           <listitem>
-            <para>Qui è dove vengono installati i filtri di file predefiniti.Ad esempio,
-<filename>C:\Programmi\WinMerge\Filters</filename>.Puoi creare o copiare
+            <para>Qui è dove vengono installati i filtri di file predefiniti. Ad esempio,
+<filename>C:\Programmi\WinMerge\Filters</filename>. Puoi creare o copiare
 file di filtro in questa posizione per renderli disponibili a tutti gli
 utenti del tuo sistema.</para>
 
             <para>Prima di creare un nuovo filtro file, verifica se quelli predefiniti
-contengono già ciò che ti serve.In caso contrario, potresti trovare utili
+contengono già ciò che ti serve. In caso contrario, potresti trovare utili
 esempi di regole nei file esistenti.</para>
           </listitem>
         </varlistentry>
@@ -1902,10 +1908,10 @@ esempi di regole nei file esistenti.</para>
 
           <listitem>
             <para>La posizione di questa cartella è definita nella pagina Sistema delle
-opzioni WinMerge.Per impostazione predefinita, è specificata come
+opzioni WinMerge. Per impostazione predefinita, è specificata come
 sottocartella nella cartella del profilo utente (ad esempio,
-<filename>Documents</filename> in Windows 10).I filtri creati o copiati qui
-sono normalmente visibili solo a te.Se crei nuovi filtri di file, puoi
+<filename>Documents</filename> in Windows 10). I filtri creati o copiati qui
+sono normalmente visibili solo a te. Se crei nuovi filtri di file, puoi
 copiarli qui per mantenerli privati.</para>
           </listitem>
         </varlistentry>
@@ -1922,7 +1928,7 @@ cartella, devi prima installarli.</para>
           <secondary>applicando</secondary>
         </indexterm></title>
 
-      <para>Puoi applicare un filtro file utilizzando uno di questi metodi:</para>
+      <para>Puoi applicare un filtro file usando uno di questi metodi:</para>
 
       <itemizedlist>
         <listitem>
@@ -1932,8 +1938,8 @@ file o cartelle:</para>
           <orderedlist>
             <listitem>
               <para>Dopo aver scelto le cartelle <guilabel>1a</guilabel> e
-<guilabel>2a</guilabel>, fai clic su <guibutton>Seleziona</guibutton>
-accanto al campo <guilabel>Filtro</guilabel>.</para>
+<guilabel>2a</guilabel>, seleziona <guibutton>Seleziona</guibutton> accanto
+al campo <guilabel>Filtro</guilabel>.</para>
             </listitem>
 
             <listitem>
@@ -1948,7 +1954,7 @@ caricato nel campo <guilabel>Filtro</guilabel>.</para>
             </listitem>
 
             <listitem>
-              <para>Procedere con l'operazione di confronto.Il file nel campo
+              <para>Procedere con l'operazione di confronto. Il file nel campo
 <guilabel>Filtro</guilabel> viene applicato quando avvii l'operazione.</para>
             </listitem>
           </orderedlist>
@@ -1961,19 +1967,19 @@ disabilitando il filtro):</para>
 
           <orderedlist>
             <listitem>
-              <para>Fai clic su <menuchoice> <guimenu>Strumenti</guimenu>
+              <para>Seleziona <menuchoice> <guimenu>Strumenti</guimenu>
 <guimenuitem>Filtri</guimenuitem> </menuchoice>.</para>
             </listitem>
 
             <listitem>
               <para>Nella finestra di dialogo Filtri, configura la nuova impostazione del filtro
-file e fai clic su <guibutton>OK</guibutton>.</para>
+file e seleziona <guibutton>OK</guibutton>.</para>
             </listitem>
 
             <listitem>
               <para>Il nuovo filtro non viene applicato automaticamente quando chiudi la
-finestra di dialogo Filtri: premi <keycap>F5</keycap> per vedere i nuovi
-risultati nella finestra Confronto cartelle.</para>
+finestra di dialogo Filtri: premi <keycap>F5</keycap> per visualizzare i
+nuovi risultati nella finestra Confronto cartelle.</para>
             </listitem>
           </orderedlist>
         </listitem>
@@ -1984,7 +1990,7 @@ risultati nella finestra Confronto cartelle.</para>
 
               <secondary>applicare filtri ai file</secondary>
             </indexterm>Quando avvii un confronto di cartelle
-dalla riga di comando di WinMerge, utilizza il flag <option>-f</option> per
+dalla riga di comando di WinMerge, usa il flag <option>-f</option> per
 specificare un filtro file.</para>
         </listitem>
       </itemizedlist>
@@ -2004,12 +2010,12 @@ specificare un filtro file.</para>
       <para>Questa sezione descrive la sintassi dei filtri di file WinMerge e fornisce
 linee guida per scriverli.</para>
 
-      <para>Il delimitatore del commento è <code>##</code>.Dopo un delimitatore di
-commento, tutti i caratteri in una riga vengono ignorati.WinMerge ignora la
-maggior parte dei caratteri di spazio bianco nelle regole.Tuttavia, un
+      <para>Il delimitatore del commento è <code>##</code>. Dopo un delimitatore di
+commento, tutti i caratteri in una riga vengono ignorati. WinMerge ignora la
+maggior parte dei caratteri di spazio bianco nelle regole. Tuttavia, un
 commento deve essere sempre preceduto da uno o più caratteri di spazio
-bianco (spazio o tabulazione).Per utilizzare <code>##</code> come caratteri
-in una regola, ometti il ​​prefisso dello spazio bianco.</para>
+bianco (spazio o tabulazione). Per usare <code>##</code> come caratteri in
+una regola, ometti il prefisso dello spazio bianco.</para>
 
       <para>Le prime due righe richieste di un filtro file sono:</para>
 
@@ -2026,7 +2032,7 @@ in una regola, ometti il ​​prefisso dello spazio bianco.</para>
           <term>def</term>
 
           <listitem>
-            <para>Il tipo di filtro da applicare.Specifica uno di questi valori:</para>
+            <para>Il tipo di filtro da applicare. Specifica uno di questi valori:</para>
 
             <variablelist>
               <varlistentry>
@@ -2053,9 +2059,9 @@ in una regola, ometti il ​​prefisso dello spazio bianco.</para>
             </variablelist>
 
             <tip>
-              <para>Non confondere questi termini.Ricorda, nei filtri dei file, una regola
+              <para>Non confondere questi termini. Ricorda, nei filtri dei file, una regola
 <guilabel>include</guilabel> non specifica cosa includere, specifica cosa
-<emphasis>non</emphasis> includere.Allo stesso modo,
+<emphasis>non</emphasis> includere. Allo stesso modo,
 <guilabel>exclude</guilabel> non specifica cosa escludere, specifica cosa
 non escludere.</para>
             </tip>
@@ -2063,17 +2069,17 @@ non escludere.</para>
         </varlistentry>
       </variablelist>
 
-      <para>Successivamente, il file dovrebbe contenere una o più regole di filtro.Puoi
-aggiungere tutte le regole che desideri.Deve esserci una regola per riga e
+      <para>Successivamente, il file dovrebbe contenere una o più regole di filtro. Puoi
+aggiungere tutte le regole che vuoi. Deve esserci una regola per riga e
 ciascuna regola deve essere interamente su una riga (in una regola non sono
-consentite interruzioni di riga).Una regola inizia con un identificatore di
-tipo, seguito da un'espressione regolare o da un'espressione di filtro.I
+consentite interruzioni di riga). Una regola inizia con un identificatore di
+tipo, seguito da un'espressione regolare o da un'espressione di filtro. I
 designatori di tipo supportati sono:</para>
 
       <variablelist>
-        <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi dei file utilizzando le espressioni regolari</para></listitem></varlistentry>
+        <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi dei file usando le espressioni regolari</para></listitem></varlistentry>
         <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Escludi file corrispondenti a regex (disponibile dalla versione 2.16.19)</para></listitem></varlistentry>
-        <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi delle cartelle utilizzando regex</para></listitem></varlistentry>
+        <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Abbina i nomi delle cartelle usando regex</para></listitem></varlistentry>
         <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Escludi cartelle corrispondenti a regex (disponibile dal 16.2.19)</para></listitem></varlistentry>
         <varlistentry><term>fe: <replaceable>espressione</replaceable></term><listitem><para>Espressione di filtro per file (ad esempio fe:Size &lt; 1KB) (disponibile
 dal 16.2.49)</para></listitem></varlistentry>
@@ -2112,7 +2118,7 @@ importanti nelle regole di filtro dei file:<indexterm>
           <term>$ (fine riga)</term>
 
           <listitem>
-            <para>Spesso richiesto affinché le regole funzionino correttamente.Per esempio:</para>
+            <para>Spesso richiesto affinché le regole funzionino correttamente. Per esempio:</para>
 
             <screen>\.c$ ## corrisponde solo ai nomi di file con estensione <filename>c</filename>.
 \.c ## corrisponde a qualsiasi estensione che inizia con <filename>c</filename>, come <filename>cpp</filename> e <filename>com</filename>.</screen>
@@ -2123,20 +2129,20 @@ importanti nelle regole di filtro dei file:<indexterm>
           <term>\ (fuga)</term>
 
           <listitem>
-            <para>Forza i caratteri speciali a corrispondere ai caratteri normali.Ad esempio,
+            <para>Forza i caratteri speciali a corrispondere ai caratteri normali. Ad esempio,
 per abbinare il nome di una cartella, anteporre al delimitatore della barra
-rovesciata della cartella una barra rovesciata (<code>\\</code>).Per far
+rovesciata della cartella una barra rovesciata (<code>\\</code>). Per far
 corrispondere il punto nel nome di un file, specificare una barra rovesciata
 seguita da un punto (<code>\.</code>).</para>
           </listitem>
         </varlistentry>
       </variablelist>
 
-      <para>Non vengono utilizzati caratteri speciali o caratteri jolly per abbinare i
-nomi dei file.Per abbinare tutti i nomi di file di un certo tipo, ometti
+      <para>Non vengono usati caratteri speciali o caratteri jolly per abbinare i nomi
+dei file. Per abbinare tutti i nomi di file di un certo tipo, ometti
 semplicemente il nome del file.</para>
 
-      <para>Le regole non fanno distinzione tra maiuscole e minuscole.Ad esempio,
+      <para>Le regole non fanno distinzione tra maiuscole e minuscole. Ad esempio,
 <code>f: \.bat$</code> corrisponde a <filename>winmerge.bat</filename> e
 <filename>compare.BAT</filename>.</para>
 
@@ -2163,7 +2169,7 @@ f: ^[h,k,m] ## File <filename>h*.*</filename>, <filename>k*.*</filename> e <file
   </section>
 
   <section id="Filters_LineFilter">
-    <title>Utilizzo dei filtri di linea<indexterm>
+    <title>Uso dei filtri di linea<indexterm>
         <primary>filtri</primary>
 
         <secondary>linea</secondary>
@@ -2173,8 +2179,8 @@ f: ^[h,k,m] ## File <filename>h*.*</filename>, <filename>k*.*</filename> e <file
         <secondary>nei confronti dei file</secondary>
       </indexterm></title>
 
-    <para>In un confronto di file è possibile utilizzare i filtri di riga per ignorare
-singole righe.Ad esempio, potresti utilizzare filtri di riga per ignorare i
+    <para>In un confronto di file è possibile usare i filtri di riga per ignorare
+singole righe. Ad esempio, potresti usare filtri di riga per ignorare i
 commenti o determinati tipi di codice generato, come i timestamp del sistema
 di controllo della versione.Ogni filtro di linea è una regola ed è possibile
 applicare un numero qualsiasi di filtri di linea a un confronto di file.</para>
@@ -2185,7 +2191,7 @@ applicare un numero qualsiasi di filtri di linea a un confronto di file.</para>
     <section id="Filters_LineFilterApply">
       <title>Applicazione di filtri di linea</title>
 
-      <para>È possibile applicare filtri di linea utilizzando uno di questi metodi:</para>
+      <para>È possibile applicare filtri di linea usando uno di questi metodi:</para>
 
       <itemizedlist>
         <listitem>
@@ -2195,14 +2201,14 @@ file o cartelle</para>
           <orderedlist>
             <listitem>
               <para>Dopo aver scelto il file <guilabel>primo</guilabel> e
-<guilabel>secondo</guilabel>, fai clic su <guibutton>Seleziona</guibutton>
+<guilabel>secondo</guilabel>, seleziona <guibutton>Seleziona</guibutton>
 accanto al campo <guilabel>Filtro</guilabel>.</para>
             </listitem>
 
             <listitem>
-              <para>Nella finestra di dialogo Filtri, utilizzare la scheda Filtri di linea per
-abilitare i filtri di linea che si desidera utilizzare (se presenti) o per
-vedere quali filtri di linea sono attualmente abilitati.</para>
+              <para>Nella finestra di dialogo Filtri, usare la scheda Filtri di linea per
+abilitare i filtri di linea che si desidera usare (se presenti) o per
+visualizzare quali filtri di linea sono attualmente abilitati.</para>
 
               <note>
                 <para>Il campo <guilabel>Filtro</guilabel> non indica quali filtri di linea sono
@@ -2212,8 +2218,8 @@ abilitati.</para>
             </listitem>
 
             <listitem>
-              <para>Procedere con l'operazione di confronto dei file.I filtri di linea abilitati
-vengono applicati all'avvio dell'operazione.</para>
+              <para>Procedere con l'operazione di confronto dei file. I filtri di linea
+abilitati vengono applicati all'avvio dell'operazione.</para>
             </listitem>
           </orderedlist>
         </listitem>
@@ -2224,7 +2230,7 @@ applicare filtri diversi o disabilitare i filtri)</para>
 
           <orderedlist>
             <listitem>
-              <para>Fai clic su <menuchoice> <guimenu>Strumenti</guimenu>
+              <para>Seleziona <menuchoice> <guimenu>Strumenti</guimenu>
 <guimenuitem>Filtri</guimenuitem> </menuchoice>.</para>
             </listitem>
 
@@ -2233,27 +2239,27 @@ applicare filtri diversi o disabilitare i filtri)</para>
             </listitem>
 
             <listitem>
-              <para>Seleziona i singoli filtri di linea che desideri applicare e deseleziona i
-filtri che non desideri applicare.</para>
+              <para>Seleziona i singoli filtri di linea che vuoi applicare e deseleziona i
+filtri che non vuoi applicare.</para>
 
-              <para>Puoi anche aggiungere, modificare e rimuovere filtri dall'elenco utilizzando
-i pulsanti <guibutton>Nuovo</guibutton>, <guibutton>Modifica</guibutton> e
+              <para>Puoi anche aggiungere, modificare e rimuovere filtri dall'elenco usando i
+pulsanti <guibutton>Nuovo</guibutton>, <guibutton>Modifica</guibutton> e
 <guibutton>Rimuovi</guibutton>.</para>
             </listitem>
 
             <listitem>
               <para>Per attivare i filtri di linea, seleziona <guilabel>Abilita filtri di
-linea</guilabel>.Per disattivare il filtraggio della linea, deseleziona
+linea</guilabel>. Per disattivare il filtraggio della linea, deseleziona
 l'opzione.</para>
             </listitem>
 
             <listitem>
-              <para>Fai clic su <guibutton>OK</guibutton> per chiudere la finestra di dialogo
+              <para>Seleziona <guibutton>OK</guibutton> per chiudere la finestra di dialogo
 Filtri file.</para>
             </listitem>
 
             <listitem>
-              <para>Fai clic su <keycap>F5</keycap> per applicare le modifiche e aggiornare la
+              <para>Seleziona <keycap>F5</keycap> per applicare le modifiche e aggiornare la
 finestra Confronta file.</para>
             </listitem>
           </orderedlist>
@@ -2278,13 +2284,13 @@ finestra Confronta file.</para>
 
       <para>Un filtro di riga è una regola che viene valutata rispetto a ogni differenza
 di riga singola nei file confrontati, se le regole di filtro di riga sono
-abilitate.Quando una regola corrisponde a una differenza di riga singola, la
-differenza viene ignorata.</para>
+abilitate. Quando una regola corrisponde a una differenza di riga singola,
+la differenza viene ignorata.</para>
 
       <para>Le differenze ignorate sono contrassegnate nella finestra Confronta file con
 il colore <guilabel>Differenza ignorata</guilabel> (come definito nella
-pagina Colori delle Opzioni di WinMerge).Ciò consente di distinguere le
-differenze ignorate da altri tipi.Tuttavia, non è possibile selezionare o
+pagina Colori delle Opzioni di WinMerge). Ciò consente di distinguere le
+differenze ignorate da altri tipi. Tuttavia, non è possibile selezionare o
 unire la differenza ignorata.</para>
 
       <para>La corrispondenza del filtro di linea può essere descritta in termini di due
@@ -2293,8 +2299,8 @@ idee:</para>
       <itemizedlist>
         <listitem>
           <para>Quando una regola corrisponde a qualsiasi parte della linea, l'intera
-differenza viene ignorata.Pertanto non è possibile filtrare solo parte di
-una riga.Ad esempio, supponiamo che due file abbiano la seguente differenza
+differenza viene ignorata. Pertanto non è possibile filtrare solo parte di
+una riga. Ad esempio, supponiamo che due file abbiano la seguente differenza
 di una sola riga:</para>
 
           <formalpara>
@@ -2309,7 +2315,7 @@ di una sola riga:</para>
             <para><screen>#Janne Sibelius</screen></para>
           </formalpara>
 
-          <para>Senza filtraggio, la linea viene rilevata come differenza.Ma se applichiamo
+          <para>Senza filtraggio, la linea viene rilevata come differenza. Ma se applichiamo
 una regola di filtro di riga con l'espressione <code>^#</code>, le righe
 vengono riportate come identiche, poiché l'espressione specifica solo il
 primo carattere, che corrisponde in entrambi i file.</para>
@@ -2317,7 +2323,7 @@ primo carattere, che corrisponde in entrambi i file.</para>
 
         <listitem>
           <para>Una regola viene applicata a una differenza su più righe solo se tutte le
-righe corrispondono.Ad esempio, considera questa differenza di due righe:</para>
+righe corrispondono. Ad esempio, considera questa differenza di due righe:</para>
 
           <formalpara>
             <title>File1:</title>
@@ -2334,15 +2340,15 @@ Pekka Himanen</screen></para>
           </formalpara>
 
           <para>La stessa regola <code>^#</code> corrisponde alla prima riga, ma non alla
-seconda riga.Pertanto, la differenza non viene ignorata.</para>
+seconda riga. Pertanto, la differenza non viene ignorata.</para>
         </listitem>
       </itemizedlist>
 
       <tip>
-        <para>Di solito è buona norma utilizzare i marcatori di inizio riga (
-<code>^</code> ) e di fine riga ( <code>$</code> ) per controllare con
-precisione i modelli, poiché la regola viene applicata se qualsiasi parte di
-una riga corrisponde all'espressione.</para>
+        <para>Di solito è buona norma usare i marcatori di inizio riga ( <code>^</code> )
+e di fine riga ( <code>$</code> ) per controllare con precisione i modelli,
+poiché la regola viene applicata se qualsiasi parte di una riga corrisponde
+all'espressione.</para>
       </tip>
 
       <example>
@@ -2395,8 +2401,8 @@ influenzato.</para>
 
       <itemizedlist>
         <listitem>
-          <para>Fai clic su <menuchoice> <guimenu>Visualizza</guimenu>
-<guimenuitem>Visualizza barra filtri</guimenuitem> </menuchoice>, o premi
+          <para>Seleziona <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Visualizza
+barra filtri</guimenuitem> </menuchoice>, o premi
 <keycombo><keycap>Ctrl</keycap><keycap>Maiusc</keycap>
 <keycap>L</keycap></keycombo>.</para>
         </listitem>
@@ -2459,10 +2465,10 @@ contains "Hello"</literal>.</para>
     <section id="Filters_DisplayLineFilter_Syntax">
       <title>Sintassi espressione filtro</title>
 
-      <para>Display line filter expressions use the same engine as folder compare filter
-expressions (see <xref linkend="FilterExpression_Syntax"/>), with the
-following additional attributes and functions that operate on individual
-lines.</para>
+      <para>Le espressioni di filtro di riga di visualizzazione usano lo stesso motore
+delle espressioni di filtro di confronto di cartelle (vedi <xref
+linkend="FilterExpression_Syntax"/>), con i seguenti attributi e funzioni
+aggiuntivi che operano su singole righe.</para>
 
       <section id="Filters_DisplayLineFilter_Attrs">
         <title>Attributi linea</title>
@@ -2492,8 +2498,9 @@ fantasma. Supporta prefissi specifici del lato. Esempio: <literal>LineNumber
           </varlistentry>
           <varlistentry>
             <term><varname>ViewLineNumber</varname></term>
-            <listitem><para>Display line number including ghost lines (1-based). Global attribute (no
-side prefix).  Example: <literal>ViewLineNumber &lt;= 100</literal></para></listitem>
+            <listitem><para>Visualizza il numero di riga incluse le linee fantasma (in base
+1). Attributo globale (nessun prefisso laterale). Esempio:
+<literal>ViewLineNumber &lt;= 100</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Different</varname></term>
@@ -2540,15 +2547,16 @@ funziona anche a 2 vie). Attributi globali. Esempio:
           </varlistentry>
           <varlistentry>
             <term><varname>EOL</varname></term>
-            <listitem><para>End-of-line style for the current line as an integer value.  Supports
-side-specific prefixes.  Values: 0 = None, 1 = LF, 2 = CR, 3 = CRLF Example:
-<literal>le:EOL = 3</literal> shows only lines with CRLF endings</para></listitem>
+            <listitem><para>Stile di fine riga per la riga attuale come valore intero. Supporta prefissi
+specifici del lato. Valori: 0 = Nessuno, 1 = LF, 2 = CR, 3 = CRLF Esempio:
+<literal>le:EOL = 3</literal> visualizza solo le righe con terminazioni CRLF</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>EOLStr</varname></term>
-            <listitem><para>End-of-line style for the current line as a string.  Supports side-specific
-prefixes.  Values: "None", "LF", "CR", "CRLF" Example: <literal>le:EOLStr =
-"LF"</literal> shows only lines with LF endings</para></listitem>
+            <listitem><para>Stile di fine riga per la riga attuale come stringa. Supporta prefissi
+specifici del lato. Valori: "None", "LF", "CR", "CRLF" Esempio:
+<literal>le:EOLStr = "LF"</literal> visualizza solo le righe con
+terminazioni LF</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Column</varname>, <varname>ColumnCount</varname> (solo modalità
@@ -2570,8 +2578,8 @@ current line.  Supports side-specific prefix functions.  Example:
 <replaceable>indexOrName</replaceable>),
 <function>ColumnOffsetAt</function>(<replaceable>offset</replaceable>,
 <replaceable>indexOrName</replaceable>) (solo modalità tabella)</term>
-            <listitem><para>Cell content by index or name, at the current, absolute, or relative line.
-Example: <literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
+            <listitem><para>Contenuto della cella per indice o nome, alla riga attuale, assoluta o
+relativa. Esempio: <literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
 "Category")</literal></para></listitem>
           </varlistentry>
         </variablelist>
@@ -2642,9 +2650,9 @@ blocco differenza.</para></listitem>
             <term><function>matchDistance</function>(<replaceable>expr</replaceable>),
 <function>matchDistanceBefore</function>(<replaceable>expr</replaceable>),
 <function>matchDistanceAfter</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>Distance in lines to the nearest matching range (both directions, before
-only, or after only).  Example: <literal>le:matchDistance(Different) &lt;=
-5</literal></para></listitem>
+            <listitem><para>Distanza in linee dall'intervallo di corrispondenza più vicino (entrambe le
+direzioni, solo prima o solo dopo). Esempio:
+<literal>le:matchDistance(Different) &lt;= 5</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchInside</function>(<replaceable>beginExpr</replaceable>,
@@ -2702,17 +2710,17 @@ shows rows with the alphabetically first status value.</para></listitem>
             <term><function>sum</function>(<replaceable>expr</replaceable>),
 <function>sum</function>(<replaceable>expr</replaceable>,
 <replaceable>condition</replaceable>)</term>
-            <listitem><para>Calculates the sum of all numeric values produced by evaluating
-<replaceable>expr</replaceable> for all lines in the file.  If
-<replaceable>condition</replaceable> is provided, only lines where
-<replaceable>condition</replaceable> evaluates to true are included in the
-calculation.  Non-numeric results are ignored. Returns
-<literal>none</literal>if no numeric values are found.  Example:
+            <listitem><para>Calcola la somma di tutti i valori numerici prodotti valutando
+<replaceable>expr</replaceable> per tutte le righe nel file. Se viene
+fornita <replaceable>condition</replaceable>, solo le righe in cui
+<replaceable>condition</replaceable> restituisce true vengono incluse nel
+calcolo. I risultati non numerici vengono ignorati. Restituisce
+<literal>none</literal>se non viene trovato alcun valore numerico. Esempio:
 <literal>le:toInt(Column("Quantity")) / sum(toInt(Column("Quantity"))) *
-100</literal> calculates each row's percentage of the total quantity.
-Example with condition: <literal>le:sum(toInt(Column("Sales")),
-Column("Region") = "East")</literal> calculates total sales for the "East"
-region.</para></listitem>
+100</literal> calcola la percentuale di ciascuna riga della quantità
+totale. Esempio con condizione: <literal>le:sum(toInt(Column("Sales")),
+Column("Region") = "East")</literal> calcola le vendite totali per la
+regione "East".</para></listitem>
           </varlistentry>
         </variablelist>
       </section>
@@ -2731,7 +2739,7 @@ region.</para></listitem>
             <tbody>
               <row>
                 <entry><userinput>TODO</userinput></entry>
-                <entry>Visualizza le righe contenenti il ​​testo "TODO" (stringa semplice)</entry>
+                <entry>Visualizza le righe contenenti il testo "TODO" (stringa semplice)</entry>
               </row>
               <row>
                 <entry><userinput>le:Different</userinput></entry>
@@ -2815,7 +2823,7 @@ funziona allo stesso modo del filtro visualizzazione riga nella finestra
 'Confronto file', ma opera su file e cartelle anziché su righe. Controlla
 quali elementi sono visibili senza influenzare il risultato del confronto.</para>
 
-    <para>Per aprire la barra dei filtri visualizzazione, fai clic su <menuchoice>
+    <para>Per aprire la barra dei filtri visualizzazione, seleziona <menuchoice>
 <guimenu>Visualizza</guimenu> <guimenuitem>Barra filtri
 visualizzazione</guimenuitem> </menuchoice>, o premi
 <keycombo><keycap>Ctrl</keycap><keycap>Maiusc</keycap>
@@ -2844,7 +2852,7 @@ modificati nell'ultima settimana</para></listitem>
   </section>
 
   <section id="Filters_SubstitutionFilter">
-    <title>Utilizzo dei filtri di sostituzione<indexterm>
+    <title>Uso dei filtri di sostituzione<indexterm>
         <primary>filtri</primary>
 
         <secondary>sostituzione</secondary>
@@ -2858,7 +2866,7 @@ modificati nell'ultima settimana</para></listitem>
   </section>
 
   <section id="Filters_dlg">
-    <title>Utilizzo della finestra di dialogo Filtri<indexterm>
+    <title>Uso della finestra di dialogo Filtri<indexterm>
         <primary>Finestra di dialogo Filtri</primary>
       </indexterm><indexterm>
         <primary>filtri</primary>
@@ -2869,21 +2877,21 @@ modificati nell'ultima settimana</para></listitem>
     <para>Questa sezione descrive la finestra di dialogo Filtri, che fornisce funzioni
 per creare e gestire filtri di file e filtri di linea.</para>
 
-    <para>Per aprire la finestra di dialogo Filtri, utilizzare uno di questi metodi:</para>
+    <para>Per aprire la finestra di dialogo Filtri, usare uno di questi metodi:</para>
 
     <itemizedlist>
       <listitem>
-        <para>Nella finestra di dialogo Seleziona file o cartelle, fai clic su
+        <para>Nella finestra di dialogo Seleziona file o cartelle, seleziona
 <guibutton>Seleziona</guibutton> a destra del campo
-<guilabel>Filtro</guilabel >.Utilizzare questo metodo quando si desidera
-applicare un filtro di file a un'operazione di confronto di cartelle.</para>
+<guilabel>Filtro</guilabel >. Usa questo metodo quando vuoi applicare un
+filtro di file a un'operazione di confronto di cartelle.</para>
       </listitem>
 
       <listitem>
-        <para>Fai clic su <menuchoice> <guimenu>Strumenti</guimenu>
-<guimenuitem>Filtri</guimenuitem> </menuchoice>.Questo metodo può essere
-utilizzato in qualsiasi momento, tranne quando è aperta la finestra di
-dialogo Seleziona file o cartelle.</para>
+        <para>Seleziona <menuchoice> <guimenu>Strumenti</guimenu>
+<guimenuitem>Filtri</guimenuitem> </menuchoice>. Questo metodo può essere
+usato in qualsiasi momento, tranne quando è aperta la finestra di dialogo
+Seleziona file o cartelle.</para>
       </listitem>
     </itemizedlist>
 
@@ -2895,7 +2903,7 @@ filtro WinMerge:</para>
         <term>Filtri di file</term>
 
         <listitem>
-          <para>Scegli questa scheda per utilizzare i filtri dei file per le operazioni di
+          <para>Scegli questa scheda per usare i filtri dei file per le operazioni di
 confronto delle cartelle.</para>
         </listitem>
       </varlistentry>
@@ -2932,23 +2940,23 @@ linkend="Filters_DisplayLineFilter"/>.</para>
     </variablelist>
 
     <section id="Filters_FileFiltersTab">
-      <title>Utilizzando la scheda Filtri file<indexterm>
+      <title>Usando la scheda Filtri file<indexterm>
           <primary>filtri di file</primary>
 
           <secondary>abilitante</secondary>
         </indexterm></title>
 
       <para>La parte principale di questa scheda è un elenco di filtri di file
-disponibili per le operazioni di confronto delle cartelle.L'elenco include
-filtri di file condivisi, privati ​​e installati conosciuti da WinMerge,
-come descritto in <xref linkend="Filters_FileFilterLoc" />.</para>
+disponibili per le operazioni di confronto delle cartelle. L'elenco include
+filtri di file condivisi, privati e installati conosciuti da WinMerge, come
+descritto in <xref linkend="Filters_FileFilterLoc" />.</para>
 
       <section id="Filters_FileFilterEnabling">
         <title>Abilitazione e disabilitazione dei filtri file</title>
 
         <para>È necessario abilitare un filtro file per renderlo disponibile in
 un'operazione di confronto di cartelle o disabilitare un filtro attuale per
-impedirne l'utilizzo:</para>
+impedirne l'uso:</para>
 
         <orderedlist>
           <listitem>
@@ -2961,13 +2969,13 @@ dall'elenco.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <guibutton>OK</guibutton> per chiudere la finestra di dialogo
+            <para>Seleziona <guibutton>OK</guibutton> per chiudere la finestra di dialogo
 Filtri.</para>
           </listitem>
         </orderedlist>
 
         <para>Esistono diversi modi per applicare i filtri dei file dopo averli
-abilitati.Per i dettagli, vedi <xref linkend="Filters_FileFilterApply" />.</para>
+abilitati. Per i dettagli, vedi <xref linkend="Filters_FileFilterApply" />.</para>
       </section>
 
       <section id="Filters_FileFilterCfg">
@@ -2981,9 +2989,9 @@ file</guilabel> e creare nuovi filtri file:</para>
             <term>Test</term>
 
             <listitem>
-              <para>Seleziona un filtro di file nell'elenco e fai clic su
-<guibutton>Prova</guibutton> per vedere rapidamente come funziona il
-filtro.Vedi <xref linkend="Filters_TestingDlg" /> per i dettagli.</para>
+              <para>Seleziona un filtro di file nell'elenco e seleziona
+<guibutton>Prova</guibutton> per visualizzare rapidamente come funziona il
+filtro. Per i dettagli vedi <xref linkend="Filters_TestingDlg" />.</para>
             </listitem>
           </varlistentry>
 
@@ -2991,7 +2999,7 @@ filtro.Vedi <xref linkend="Filters_TestingDlg" /> per i dettagli.</para>
             <term>Installare</term>
 
             <listitem>
-              <para>Consente di individuare un filtro file e di aggiungerlo all'elenco Filtri.I
+              <para>Consente di individuare un filtro file e di aggiungerlo all'elenco Filtri. I
 filtri dei file che non si trovano nella cartella condivisa o privata
 predefinita non vengono rilevati a meno che non li installi.</para>
             </listitem>
@@ -3002,9 +3010,9 @@ predefinita non vengono rilevati a meno che non li installi.</para>
 
             <listitem>
               <para>Crea una nuova copia di un modello di file nelle cartelle dei filtri
-condivise o private e la apre nell'editor predefinito.Modifica il modello e
-aggiungi le tue regole, come descritto in <xref
-linkend="Filters_CreatingFile" />.</para>
+condivise o private e la apre nell'editor predefinito. Modifica il modello e
+aggiungi le regole, come descritto in <xref linkend="Filters_CreatingFile"
+/>.</para>
             </listitem>
           </varlistentry>
 
@@ -3012,7 +3020,7 @@ linkend="Filters_CreatingFile" />.</para>
             <term>Modificare</term>
 
             <listitem>
-              <para>Seleziona un filtro file nell'elenco e fai clic su
+              <para>Seleziona un filtro file nell'elenco e seleziona
 <guibutton>Modifica</guibutton> per aprire il file nel tuo editor
 predefinito.</para>
             </listitem>
@@ -3022,16 +3030,16 @@ predefinito.</para>
             <term>Eliminare</term>
 
             <listitem>
-              <para>Seleziona un filtro file nell'elenco e fai clic su
+              <para>Seleziona un filtro file nell'elenco e seleziona
 <guibutton>Elimina</guibutton> per eliminare il file e rimuoverlo
-dall'elenco.Sì, il file è stato davvero eliminato!</para>
+dall'elenco. Sì, il file è stato davvero eliminato!</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <para>Le tue modifiche vengono salvate quando fai clic su
-<guibutton>OK</guibutton> per chiudere la finestra di dialogo Filtri.I
-filtri di linea sono memorizzati nel registro di Windows.</para>
+        <para>Le modifiche vengono salvate quando selezioni <guibutton>OK</guibutton> per
+chiudere la finestra di dialogo Filtri. I filtri di linea sono memorizzati
+nel registro di Windows.</para>
       </section>
 
       <section id="Filters_CreatingFile">
@@ -3042,37 +3050,37 @@ necessario, puoi crearne uno tuo:</para>
 
         <orderedlist>
           <listitem>
-            <para>Fai clic su <menuchoice> <guimenu>Strumenti</guimenu>
+            <para>Seleziona <menuchoice> <guimenu>Strumenti</guimenu>
 <guimenuitem>Filtri</guimenuitem> </menuchoice>.Oppure, dalla finestra di
-dialogo Seleziona file o cartelle, fai clic su
+dialogo Seleziona file o cartelle, seleziona
 <guibutton>Seleziona</guibutton> a destra del campo
 <guilabel>Filtro</guilabel>.</para>
           </listitem>
 
           <listitem id="Filters_New_step">
-            <para>Nella scheda Filtri file della finestra di dialogo Filtri, fai clic su
+            <para>Nella scheda Filtri file della finestra di dialogo Filtri, seleziona
 <guibutton>Nuovo</guibutton>.</para>
           </listitem>
 
           <listitem>
             <para>Nella finestra di dialogo Filtro condiviso o privato, scegli
 <guilabel>Filtro condiviso</guilabel> o <guilabel>Filtro privato</guilabel>
-(vedi <xref linkend="Filters_FileFilterLoc" /> per i loro usi) e fai clic su
+(vedi <xref linkend="Filters_FileFilterLoc" /> per i loro usi) e seleziona
 <keycap>OK</keycap>.</para>
 
             <para>La finestra di dialogo Seleziona nome file per nuovo filtro si apre nella
-cartella dei file condivisi o privati ​​sul sistema (se la cartella privata
+cartella dei file condivisi o privati sul sistema (se la cartella privata
 non esiste, WinMerge la crea).</para>
           </listitem>
 
           <listitem>
             <para>Nella finestra di dialogo Seleziona nome file per nuovo filtro, inserisci un
-nuovo nome file e fai clic su <guibutton>Salva</guibutton>.</para>
+nuovo nome file e seleziona <guibutton>Salva</guibutton>.</para>
 
             <note>
               <para>Non scegliere un nome di file esistente: per modificare un file esistente,
-torna al passaggio <xref linkend="Filters_New_step" /> e fai clic su
-Modifica invece che su Nuovo.</para>
+torna al passaggio <xref linkend="Filters_New_step" /> e seleziona Modifica
+invece che su Nuovo.</para>
             </note>
 
             <para>WinMerge inizializza il nuovo file con il contenuto del modello
@@ -3083,13 +3091,13 @@ predefinito.</para>
           <listitem>
             <para>Segui le istruzioni del modello per modificare il modello, aggiornando il
 nome e la descrizione del segnaposto e aggiungendo regole di filtro come
-descritto in <xref linkend="Filters_FileFilterSyntax" />.Salva il file nel
+descritto in <xref linkend="Filters_FileFilterSyntax" />. Salva il file nel
 tuo editor di testo.</para>
 
             <tip>
-              <para>Se desideri testare rapidamente una regola che stai definendo, prova a fare
-clic su Test nella finestra di dialogo Filtri.Vedi <xref
-linkend="Filters_TestingDlg" /> per i dettagli.</para>
+              <para>Se vuoi testare rapidamente una regola che stai definendo, prova a fare clic
+su Test nella finestra di dialogo Filtri. Per i dettagli vedi <xref
+linkend="Filters_TestingDlg" />.</para>
             </tip>
             <para></para>
           </listitem>
@@ -3100,24 +3108,23 @@ linkend="Filters_TestingDlg" /> per i dettagli.</para>
 tuo nuovo filtro di file, prova a fare clic su <guibutton>OK</guibutton> per
 chiuderlo, quindi fai di nuovo clic su <menuchoice>
 <guimenu>Strumenti</guimenu> <guimenuitem>Filtri</guimenuitem> </menuchoice>
-per riaprirlo.L'elenco <guilabel>Filtri file</guilabel> ora dovrebbe
+per riaprirlo. L'elenco <guilabel>Filtri file</guilabel> ora dovrebbe
 includere il nuovo filtro file.</para>
 
             <para>Se hai salvato il file in una posizione alternativa sul tuo file system),
-WinMerge non potrà rilevarlo a meno che non lo installi.Per rendere un
+WinMerge non potrà rilevarlo a meno che non lo installi. Per rendere un
 filtro file rilevabile ovunque sul tuo sistema:</para>
 
             <orderedlist numeration="loweralpha">
               <listitem>
-                <para>Fai clic su <guibutton>Installa</guibutton> nella finestra di dialogo
-Filtri.</para>
+                <para>Seleziona <guibutton>Installa</guibutton> nella finestra di dialogo Filtri.</para>
               </listitem>
 
               <listitem>
                 <para>Nella finestra di dialogo Individua il file del filtro da installare, vai al
-file <filename>flt</filename> sul tuo sistema e fai clic su <guibutton
->Apri</guibutton>.L'elenco Filtri file ora dovrebbe includere il filtro file
-installato.</para>
+file <filename>flt</filename> sul tuo sistema e seleziona <guibutton
+>Apri</guibutton>. L'elenco Filtri file ora dovrebbe includere il filtro
+file installato.</para>
               </listitem>
             </orderedlist>
           </listitem>
@@ -3133,26 +3140,26 @@ installato.</para>
             <primary>testare i filtri dei file</primary>
           </indexterm></title>
 
-        <para>Utilizza la finestra di dialogo Prova filtro per testare rapidamente un
-filtro di file rispetto a dati di esempio, per sviluppare nuove regole o per
-comprendere come funzionano le regole esistenti.Può essere più semplice che
+        <para>Usa la finestra di dialogo Prova filtro per testare rapidamente un filtro di
+file rispetto a dati di esempio, per sviluppare nuove regole o per
+comprendere come funzionano le regole esistenti. Può essere più semplice che
 eseguire un'operazione di confronto completa.</para>
 
         <para>A partire dalla finestra di dialogo Filtri:</para>
 
         <orderedlist>
           <listitem>
-            <para>Nella scheda Filtri file, scegli il filtro file che desideri testare.</para>
+            <para>Nella scheda Filtri file, scegli il filtro file che vuoi testare.</para>
           </listitem>
 
           <listitem>
-            <para>Se vuoi vedere le regole che testerai, fai clic su
+            <para>Se vuoi visualizzare le regole che testerai, seleziona
 <guibutton>Modifica</guibutton> ora per aprire il file in modo da poterlo
 visualizzare durante i passaggi successivi.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <guibutton>Prova</guibutton>.</para>
+            <para>Seleziona <guibutton>Prova</guibutton>.</para>
           </listitem>
 
           <listitem>
@@ -3174,12 +3181,12 @@ l'opzione <guilabel>Nome cartella</guilabel>.</para>
           <listitem>
             <para>Inserisci il testo da testare.</para>
 
-            <para>Il testo deve essere appropriato per il tipo di regola che stai testando.Ad
+            <para>Il testo deve essere appropriato per il tipo di regola che stai testando. Ad
 esempio, se hai selezionato l'opzione <guilabel>Nome cartella</guilabel>,
 probabilmente vorrai inserire il nome di una cartella, come \temp.</para>
 
-            <para>La casella <guilabel>Risultato</guilabel> mostra la tua voce, seguita dal
-suo stato: <computeroutput>superato</computeroutput> o <computeroutput>non
+            <para>La casella <guilabel>Risultato</guilabel>visualizza la voce, seguita dal suo
+stato: <computeroutput>superato</computeroutput> o <computeroutput>non
 riuscito</computeroutput>.</para>
           </listitem>
         </orderedlist>
@@ -3187,29 +3194,30 @@ riuscito</computeroutput>.</para>
     </section>
 
     <section id="Filters_LineFiltersTab">
-      <title>Utilizzando la scheda Filtri di linea<indexterm>
+      <title>Usando la scheda Filtri di linea<indexterm>
           <primary>filtri di linea</primary>
 
           <secondary>abilitante</secondary>
         </indexterm></title>
 
-      <para>Utilizzare questa scheda per configurare e abilitare i filtri di riga per le
-operazioni di confronto dei file.La scheda presenta un elenco di regole.Ogni
-regola contiene una singola espressione regolare.È possibile applicare
-qualsiasi combinazione di regole dall'elenco a un confronto di file.</para>
+      <para>Usa questa scheda per configurare e abilitare i filtri di riga per le
+operazioni di confronto dei file. La scheda presenta un elenco di
+regole.Ogni regola contiene una singola espressione regolare. È possibile
+applicare qualsiasi combinazione di regole dall'elenco a un confronto di
+file.</para>
 
       <section id="Filters_LineFilterCfg">
         <title>Configurazione dei filtri di linea</title>
 
         <para>Sotto l'elenco delle <guilabel>Espressioni regolari</guilabel> c'è una
-casella di modifica e dei pulsanti che puoi utilizzare per mantenere
-l'elenco in qualsiasi momento aggiungendo, modificando e rimuovendo regole.</para>
+casella di modifica e dei pulsanti che puoi usare per mantenere l'elenco in
+qualsiasi momento aggiungendo, modificando e rimuovendo regole.</para>
 
         <para>Per aggiungere una nuova regola:</para>
 
         <orderedlist>
           <listitem>
-            <para>Fai clic su <guibutton>Nuovo</guibutton>.Il cursore di modifica viene
+            <para>Seleziona <guibutton>Nuovo</guibutton>. Il cursore di modifica viene
 automaticamente abilitato nella casella di modifica.</para>
           </listitem>
 
@@ -3219,7 +3227,7 @@ automaticamente abilitato nella casella di modifica.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <guibutton>Salva</guibutton> per caricare l'espressione in una
+            <para>Seleziona <guibutton>Salva</guibutton> per caricare l'espressione in una
 nuova riga nell'elenco.</para>
           </listitem>
         </orderedlist>
@@ -3228,7 +3236,7 @@ nuova riga nell'elenco.</para>
 
         <orderedlist>
           <listitem>
-            <para>Seleziona la riga e fai clic su <guibutton>Modifica</guibutton>.</para>
+            <para>Seleziona la riga e seleziona <guibutton>Modifica</guibutton>.</para>
           </listitem>
 
           <listitem>
@@ -3236,13 +3244,13 @@ nuova riga nell'elenco.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <guibutton>Salva</guibutton><guibutton> </guibutton>quando hai
+            <para>Seleziona <guibutton>Salva</guibutton><guibutton> </guibutton>quando hai
 finito.</para>
           </listitem>
         </orderedlist>
 
-        <para>Per eliminare una regola esistente, seleziona (seleziona) la regola e fai
-clic su <guibutton>Rimuovi</guibutton>.</para>
+        <para>Per eliminare una regola esistente, seleziona (spunta) la regola e seleziona
+<guibutton>Rimuovi</guibutton>.</para>
       </section>
 
       <section id="Filters_LineFilterEnabling">
@@ -3261,25 +3269,25 @@ applicare.</para>
 
           <listitem>
             <para>Seleziona o deseleziona l'opzione <guilabel>Abilita filtri di
-linea</guilabel>.Se attivi il filtro, verranno utilizzate tutte le regole
+linea</guilabel>. Se attivi il filtro, verranno usate tutte le regole
 attualmente selezionate nell'elenco <guilabel>Espressione
-regolare</guilabel>.Se il filtro è disattivato, non verrà utilizzata alcuna
+regolare</guilabel>. Se il filtro è disattivato, non verrà usata alcuna
 regola anche se selezionata.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <guibutton>OK</guibutton> per chiudere la finestra di dialogo
-Filtri e salvare le tue impostazioni.</para>
+            <para>Seleziona <guibutton>OK</guibutton> per chiudere la finestra di dialogo
+Filtri e salvare le impostazioni.</para>
           </listitem>
         </orderedlist>
 
         <para>Esistono diversi modi per applicare i filtri dei file dopo averli
-abilitati.Per i dettagli, vedi <xref linkend="Filters_LineFilterApply" />.</para>
+abilitati. Per i dettagli, vedi <xref linkend="Filters_LineFilterApply" />.</para>
       </section>
     </section>
 
     <section id="Filters_SubstitutionFiltersTab">
-      <title>Utilizzando la scheda Filtri di sostituzione<indexterm>
+      <title>Usando la scheda Filtri di sostituzione<indexterm>
           <primary>filtri sostitutivi</primary>
 
           <secondary>abilitante</secondary>
@@ -3313,10 +3321,10 @@ abilitati.Per i dettagli, vedi <xref linkend="Filters_LineFilterApply" />.</para
         <secondary>ottenere aiuto</secondary>
       </indexterm></title>
 
-    <para>Le espressioni regolari possono essere molto complesse.Fortunatamente, la
+    <para>Le espressioni regolari possono essere molto complesse. Fortunatamente, la
 maggior parte dei filtri di file in WinMerge coinvolge semplici espressioni
-di estensione, come mostrato negli esempi in questo argomento.I file filtro
-installati con WinMerge includono molti altri esempi utili.</para>
+di estensione, comevisualizzato negli esempi in questo argomento. I file
+filtro installati con WinMerge includono molti altri esempi utili.</para>
 
     <para>Infine, ci sono molte risorse sul Web per assistenza con le espressioni
 regolari, inclusi questi siti:</para>

@@ -5,7 +5,7 @@
     </indexterm></title>
 
   <para>I plugin WinMerge sono DLL o scriptlet personalizzati, scritti nell'API COM,
-che preelaborano i dati prima di un confronto.Ad esempio, puoi utilizzare un
+che preelaborano i dati prima di un confronto. Ad esempio, puoi usare un
 plug-in per estrarre dati di testo da file MS Word affinché WinMerge possa
 confrontarli.</para>
   
@@ -27,7 +27,7 @@ plugin.</para>
     <listitem>
       <para>Facile da installare: per installare un plugin che non è incluso
 nell'installazione di WinMerge, basta copiare il file del plugin in
-<filename class="directory">MergePlugins</filename>.Il plugin sarà
+<filename class="directory">MergePlugins</filename>. Il plugin sarà
 disponibile la prossima volta che apri WinMerge. Puoi trovare altri plugin
 sul web, scritti da altri sviluppatori.</para>
     </listitem>
@@ -57,24 +57,24 @@ nell'editor attivo (pannello File) della finestra Confronta file.</para>
 
         <listitem>
           <para>Questo tipo di plugin trasforma un file compresso in un formato
-visualizzabile decomprimendolo.Il file originale non viene modificato: viene
-creato e caricato in WinMerge un file trasformato temporaneo.</para>
+visualizzabile decomprimendolo. Il file originale non viene modificato:
+viene creato e caricato in WinMerge un file trasformato temporaneo.</para>
 
           <para>I plugin di unpacker operano su interi file, non sul testo selezionato o
-sulle differenze all'interno dei file.Pertanto, sono disponibili solo quando
-si avviano i confronti di file, dalla finestra Confronto cartelle o dalla
-finestra di dialogo Seleziona file o cartelle.I plugin di decompressione non
-sono disponibili nella finestra Confronto file.</para>
+sulle differenze all'interno dei file. Pertanto, sono disponibili solo
+quando si avviano i confronti di file, dalla finestra Confronto cartelle o
+dalla finestra di dialogo Seleziona file o cartelle. I plugin di
+decompressione non sono disponibili nella finestra Confronto file.</para>
 
           <para>A volte il file decompresso può essere recompresso (vedi i dettagli in <xref
 linkend="Plugins_available" /> per verificare se un plugin supporta la
-recompressione).Quindi, puoi unire e salvare il file trasformato.In questo
-caso l'imballaggio viene effettuato automaticamente.Per sicurezza, ti
+recompressione). Quindi, puoi unire e salvare il file trasformato. In questo
+caso l'imballaggio viene effettuato automaticamente. Per sicurezza, ti
 suggeriamo di rinominare il file trasformato quando lo salvi.</para>
 
           <note>
             <para>Quando confronti le cartelle, WinMerge può fornire risultati diversi per i
-file compressi e non compressi.Ad esempio, i file identici quando non
+file compressi e non compressi. Ad esempio, i file identici quando non
 compressi potrebbero essere diversi se includono la data di
 creazione.WinMerge applica l'unpacker in tutte le situazioni e sarai sicuro
 di ottenere lo stesso risultato quando confronti una cartella o quando
@@ -94,7 +94,7 @@ class="registered">Microsoft</trademark> <application>Excel</application>.</para
 
         <listitem>
           <para>Questo tipo di plugin non funziona sui file sorgente visualizzati nella
-finestra Confronta.Funziona invece su copie temporanee dei file e le copie
+finestra Confronta. Funziona invece su copie temporanee dei file e le copie
 vengono quindi scansionate per creare l'elenco delle differenze.</para>
 
           <para>Plugin di esempio: <xref linkend="IgnoreColumns" /> ignora le differenze
@@ -111,28 +111,27 @@ queste colonne.</para>
     <para>In che modo WinMerge è in grado di applicare il plug-in giusto per un
 determinato file?Ogni plugin specifica un elenco di estensioni di file
 (elencate anche nella sezione <xref linkend="Plugins_available" /> di ogni
-plugin, sotto <citetitle>Filtro file</citetitle>).Le estensioni vengono
-utilizzate per associare uno o più tipi di file al plugin: quando
-l'estensione di un file confrontato corrisponde a un'estensione nell'elenco
-del plugin, il plugin è considerato un plugin
-<firstterm>suggerito.</firstterm></para>
+plugin, sotto <citetitle>Filtro file</citetitle>). Le estensioni vengono
+usate per associare uno o più tipi di file al plugin: quando l'estensione di
+un file confrontato corrisponde a un'estensione nell'elenco del plugin, il
+plugin è considerato un plugin <firstterm>suggerito.</firstterm></para>
 
     <para>Sono disponibili opzioni WinMerge separate per i tipi di decompressione e
 prediffer, descritti più avanti in questo argomento, che consentono di
-applicare i plug-in manualmente o automaticamente.Non esiste una modalità
+applicare i plug-in manualmente o automaticamente. Non esiste una modalità
 automatica per i plugin di complemento dell'editor.</para>
 
-    <para>Quando applichi plug-in a un file selezionato utilizzando la modalità
-automatica, WinMerge cerca nell'elenco dei plug-in suggeriti per quel tipo
-di file e applica il primo plug-in il cui nome corrisponde.La ricerca viene
-eseguita in ordine alfabetico, quindi se sono presenti più plugin suggeriti
-per un tipo di file, verrà applicato solo il primo trovato.</para>
+    <para>Quando applichi plug-in a un file selezionato usando la modalità automatica,
+WinMerge cerca nell'elenco dei plug-in suggeriti per quel tipo di file e
+applica il primo plug-in il cui nome corrisponde. La ricerca viene eseguita
+in ordine alfabetico, quindi se sono presenti più plugin suggeriti per un
+tipo di file, verrà applicato solo il primo trovato.</para>
   </section>
 
   <section>
     <title>Applicazione dei plugin</title>
 
-    <para>Le seguenti sottosezioni descrivono come applicare ciascun tipo di plugin.I
+    <para>Le seguenti sottosezioni descrivono come applicare ciascun tipo di plugin. I
 metodi sono diversi per ogni tipo di plugin e variano anche a seconda che si
 stia confrontando cartelle o file.</para>
 
@@ -140,7 +139,7 @@ stia confrontando cartelle o file.</para>
       <title>Applicazione dei plugin complemento dell'editor nella finestra Confronta
 file</title>
 
-      <para>Con il cursore nel pannello File della finestra Confronta file, fai clic su
+      <para>Con il cursore nel pannello File della finestra Confronta file, seleziona
 <menuchoice> <guimenu>Plugin</guimenu> <guisubmenu>Script</guisubmenu>
 </menuchoice> e scegli una di queste funzioni:</para>
 
@@ -227,28 +226,28 @@ su automatica o manuale.</para>
 
       <itemizedlist>
         <listitem>
-          <para>Per impostare la modalità automatica per questo tipo di plugin, fai clic su
+          <para>Per impostare la modalità automatica per questo tipo di plugin, seleziona
 <menuchoice> <guimenu>Plugin</guimenu> <guimenuitem>Decompressione
 automatica</guimenuitem> </menuchoice>.</para>
         </listitem>
 
         <listitem>
-          <para>Per impostare la modalità manuale, fai clic su <menuchoice>
+          <para>Per impostare la modalità manuale, seleziona <menuchoice>
 <guimenu>Plugin</guimenu> <guimenuitem>Decompressione manuale</guimenuitem>
 </menuchoice>.</para>
         </listitem>
       </itemizedlist>
 
       <para>Ricordati di fare clic su <keycap>F5</keycap> per ricaricare la finestra
-Confronto cartelle utilizzando la nuova impostazione.</para>
+Confronto cartelle usando la nuova impostazione.</para>
 
       <section>
-        <title>Utilizzando la modalità automatica</title>
+        <title>Usando la modalità automatica</title>
 
         <para>Per applicare i plugin quando è impostata la decompressione automatica, è
 sufficiente avviare un'operazione di confronto su un file nella finestra
-Confronto cartelle.Se il tipo di file suggerisce il plug-in di
-decompressione (se presente), preelabora il file prima che WinMerge lo apra
+Confronto cartelle. Se il tipo di file suggerisce il plug-in di
+decompressione (se presente), pre-elabora il file prima che WinMerge lo apra
 nella finestra Confronta file.</para>
 
         <para>Ad esempio, supponiamo di fare clic con il pulsante destro del mouse su un
@@ -260,10 +259,10 @@ finestra Confronta file.</para>
       </section>
 
       <section>
-        <title>Utilizzo della modalità manuale</title>
+        <title>Uso della modalità manuale</title>
 
         <para>La modalità manuale ti consente di scegliere un plug-in di decompressione
-diverso da quello selezionato per te in modalità automatica.Puoi anche
+diverso da quello selezionato per te in modalità automatica. Puoi anche
 avviare il confronto senza plug-in.</para>
 
         <para>Per applicare i plugin quando è impostata la decompressione manuale:</para>
@@ -274,7 +273,7 @@ avviare il confronto senza plug-in.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <menuchoice> <guimenu>Plugin</guimenu> <guimenuitem>Modifica con
+            <para>Seleziona <menuchoice> <guimenu>Plugin</guimenu> <guimenuitem>Modifica con
 Unpacker</guimenuitem> </menuchoice>.</para>
 
             <para>Questa voce di menu è abilitata solo se il tipo di file selezionato è
@@ -290,8 +289,8 @@ supportato da un plug-in di decompressione disponibile.</para>
           </listitem>
 
           <listitem>
-            <para>Fai clic su <guibutton>OK</guibutton> per chiudere la finestra di dialogo
-Seleziona Unpacker e avviare il confronto dei file.</para>
+            <para>Per chiudere la finestra di dialogo Seleziona Unpacker e avviare il
+confronto dei file seleziona <guibutton>OK</guibutton> .</para>
           </listitem>
         </orderedlist>
       </section>
@@ -301,10 +300,10 @@ Seleziona Unpacker e avviare il confronto dei file.</para>
       <title>Applicazione dei plugin di decompressione nella finestra di dialogo
 Seleziona file o cartelle</title>
 
-      <para>È possibile utilizzare la finestra di dialogo Seleziona Unpacker per
-applicare un plug-in quando si avvia un confronto di file dalla finestra di
-dialogo Seleziona file o cartelle.Vedi <xref linkend="Open_paths_unpacker"
-/> per i dettagli.</para>
+      <para>È possibile usare la finestra di dialogo Seleziona Unpacker per applicare un
+plug-in quando si avvia un confronto di file dalla finestra di dialogo
+Seleziona file o cartelle. Per i dettagli vedi <xref
+linkend="Open_paths_unpacker" />.</para>
     </section>
 
     <section>
@@ -329,12 +328,12 @@ predifferenza disponibile per il tipo di file.</para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu>&lt;None&gt;</guisubmenu> significa che non viene utilizzato
-alcun plugin di prediffer.</para>
+          <para><guisubmenu>&lt;None&gt;</guisubmenu> significa che non viene usato alcun
+plugin di prediffer.</para>
         </listitem>
       </itemizedlist>
 
-      <para>Fai clic su <keycap>F5</keycap> per aggiornare la finestra.</para>
+      <para>Per aggiornare la finestra seleziona <keycap>F5</keycap> .</para>
 
       <note>
         <para>Quando apri una sottocartella durante un confronto non ricorsivo, la
@@ -353,7 +352,7 @@ Confronto file.</para>
       <para>Nella finestra Confronta file, puoi applicare un plugin di prediffer facendo
 clic su <menuchoice> <guimenu>Plugin</guimenu>
 <guisubmenu>Prediffer</guisubmenu> </menuchoice> e scegliendo uno dei plugin
-nell'elenco.I plugin suggeriti sono indicati in cima all'elenco.I file
+nell'elenco. I plugin suggeriti sono indicati in cima all'elenco. I file
 vengono confrontati nuovamente dopo l'applicazione del plug-in, quindi non è
 necessario ripetere la scansione dei file.</para>
     </section>
@@ -2086,7 +2085,7 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-e</option></term>
           <listitem>
-            <para>utilizzare <replaceable>modelli</replaceable> per la corrispondenza</para>
+            <para>usare <replaceable>modelli</replaceable> per la corrispondenza</para>
           </listitem>
         </varlistentry>
 
@@ -2169,7 +2168,7 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-e</option></term>
           <listitem>
-            <para>utilizzare <replaceable>modelli</replaceable> per la corrispondenza</para>
+            <para>usare <replaceable>modelli</replaceable> per la corrispondenza</para>
           </listitem>
         </varlistentry>
 
@@ -2369,16 +2368,16 @@ rep="norepeat"><replaceable>modelli</replaceable></arg></cmdsynopsis>
           <primary>File del plugin IgnoreColumns</primary>
         </indexterm></filename></title>
 
-      <para>Questo plugin ignora i caratteri nelle colonne specificate.La prima colonna
+      <para>Questo plugin ignora i caratteri nelle colonne specificate. La prima colonna
 è la numero 1.</para>
 
       <para>Tieni presente che questo plugin non supporta file con tabulazioni: il
 plugin non fallisce, ma tutte le tabulazioni vengono trattate come caratteri
 normali.</para>
 
-      <para>Per specificare le colonne, utilizza la finestra di dialogo delle
-impostazioni del plugin o rinomina la <filename>dll</filename> utilizzando i
-seguenti campi come parametri:</para>
+      <para>Per specificare le colonne, usa la finestra di dialogo delle impostazioni
+del plugin o rinomina la <filename>dll</filename> usando i seguenti campi
+come parametri:</para>
 
       <itemizedlist>
         <listitem>
@@ -2483,12 +2482,11 @@ class="extension">*.ts</filename></seg>
         </indexterm></filename></title>
 
       <para>Questo plugin è per file con campi e virgole come delimitatori (file CSV, ad
-esempio).Ignora i caratteri delimitatori.Il primo campo è il numero 1.</para>
+esempio). Ignora i caratteri delimitatori. Il primo campo è il numero 1.</para>
 
-      <para>Per specificare i delimitatori, utilizzare la finestra di dialogo delle
-impostazioni del plugin o rinominare la <filename>dll</filename> utilizzando
-gli stessi campi dei parametri utilizzati per <xref linkend="IgnoreColumns"
-/>.</para>
+      <para>Per specificare i delimitatori, usare la finestra di dialogo delle
+impostazioni del plugin o rinominare la <filename>dll</filename> usando gli
+stessi campi dei parametri usati per <xref linkend="IgnoreColumns" />.</para>
 
       <para><segmentedlist>
           <segtitle>Categoria</segtitle>
@@ -2516,15 +2514,14 @@ gli stessi campi dei parametri utilizzati per <xref linkend="IgnoreColumns"
           <primary>Ignora il file del pluginFieldsTab</primary>
         </indexterm></filename></title>
 
-      <para>Questo plugin è per i file che utilizzano campi e tabulazioni come
-delimitatori (<application>ad esempio, file Excel</application> salvati nel
-formato <filename class="extension">*.txt</filename>).Ignora i caratteri
-delimitatori.Il primo campo è il numero 1.</para>
+      <para>Questo plugin è per i file che usano campi e tabulazioni come delimitatori
+(<application>ad esempio, file Excel</application> salvati nel formato
+<filename class="extension">*.txt</filename>). Ignora i caratteri
+delimitatori. Il primo campo è il numero 1.</para>
 
-      <para>Per specificare i delimitatori, utilizzare la finestra di dialogo delle
-impostazioni del plugin o rinominare la <filename>dll</filename> utilizzando
-gli stessi campi dei parametri utilizzati per <xref linkend="IgnoreColumns"
-/>.</para>
+      <para>Per specificare i delimitatori, usare la finestra di dialogo delle
+impostazioni del plugin o rinominare la <filename>dll</filename> usando gli
+stessi campi dei parametri usati per <xref linkend="IgnoreColumns" />.</para>
 
       <para><segmentedlist>
           <segtitle>Categoria</segtitle>
@@ -2643,7 +2640,7 @@ selezione con un altro testo.</simpara>
 
         <listitem>
           <simpara><guimenuitem>Applica comando filtro...</guimenuitem> sostituisce la
-selezione con l'output del comando filtro specificato.Specificando %1
+selezione con l'output del comando filtro specificato. Specificando %1
 nell'argomento del comando filter lo sostituisce con il nome file del
 riquadro attivo.</simpara>
         </listitem>
@@ -2724,7 +2721,7 @@ attuale.</simpara>
 opzionale da <trademark class="registered">Microsoft</trademark>.</para>
 
       <para>Dovrebbe essere già incluso nella tua versione di Windows, a meno che tu non
-utilizzi una versione precedente a Windows XP molto vecchia.</para>
+usi una versione precedente a Windows XP molto vecchia.</para>
     </section>
   </section>
 </article>

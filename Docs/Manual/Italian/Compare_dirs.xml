@@ -5,7 +5,7 @@
     </indexterm></title>
 
   <para>In questo argomento viene descritto come confrontare e unire le cartelle
-utilizzando la finestra Confronto cartelle.</para>
+usando la finestra Confronto cartelle.</para>
 
   <section id="Compare_dirs_starting">
     <title>Avvio di un'operazione di confronto delle cartelle</title>
@@ -18,14 +18,13 @@ WinMerge o dalla finestra del prompt dei comandi.</para>
         <term>Dalla finestra WinMerge</term>
 
         <listitem>
-          <para>Fai clic su <menuchoice> <guimenu>File</guimenu>
-<guimenuitem>Apri</guimenuitem> </menuchoice>.Utilizzare la finestra di
-dialogo Seleziona file o cartelle per specificare le cartelle sinistra e
-destra da confrontare.Per impostazione predefinita, il confronto include
-tutti i file nelle cartelle ed è ricorsivo (include le sottocartelle).Per
-modificare una qualsiasi di queste opzioni e per ulteriori dettagli sulla
-finestra di dialogo Seleziona file o cartella, vedi <xref
-linkend="Open_paths" />.</para>
+          <para>Seleziona <menuchoice> <guimenu>File</guimenu>
+<guimenuitem>Apri</guimenuitem> </menuchoice>. Usa la finestra di dialogo
+Seleziona file o cartelle per specificare le cartelle sinistra e destra da
+confrontare. Per impostazione predefinita, il confronto include tutti i file
+nelle cartelle ed è ricorsivo (include le sottocartelle). Per modificare una
+qualsiasi di queste opzioni e per ulteriori dettagli sulla finestra di
+dialogo Seleziona file o cartella, vedi <xref linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -62,8 +61,8 @@ finestra Confronta.</para>
 
             <para>La modalità non ricorsiva presenta il vantaggio della velocità quando sono
 presenti molte sottocartelle che non necessitano di essere
-esaminate.Inoltre, la visualizzazione può essere più semplice da gestire
-perché mostra gli elementi solo nelle cartelle selezionate.</para>
+esaminate. Inoltre, la visualizzazione può essere più semplice da gestire
+perchévisualizza gli elementi solo nelle cartelle selezionate.</para>
           </listitem>
         </varlistentry>
 
@@ -73,16 +72,16 @@ perché mostra gli elementi solo nelle cartelle selezionate.</para>
           <listitem>
             <para>Il metodo <guilabel>Contenuti rapidi</guilabel> per il confronto dei file,
 descritto in <xref linkend="Configuration" />, può essere utile quando
-confronti file binari di grandi dimensioni;e viene utilizzato
-automaticamente per confrontare file più grandi di 4 MB.I possibili
-svantaggi sono che i filtri di riga non funzionano e non vi sono
-informazioni sui conteggi delle differenze nella finestra Confronto
-cartelle.Nella maggior parte dei casi questo non dovrebbe avere importanza,
-perché file di grandi dimensioni sono solitamente binari.</para>
+confronti file binari di grandi dimensioni;e viene usato automaticamente per
+confrontare file più grandi di 4 MB. I possibili svantaggi sono che i filtri
+di riga non funzionano e non vi sono informazioni sui conteggi delle
+differenze nella finestra Confronto cartelle. Nella maggior parte dei casi
+questo non dovrebbe avere importanza, perché file di grandi dimensioni sono
+solitamente binari.</para>
 
-            <para>Per utilizzare questo metodo, configuralo prima dell'operazione di
-confronto: nella pagina Confronta delle opzioni di WinMerge, fai clic sul
-menu a discesa <guilabel>Metodo di confronto file</guilabel> e scegli
+            <para>Per usare questo metodo, configuralo prima dell'operazione di confronto:
+nella pagina Confronta delle opzioni di WinMerge, fai clic sul menu a
+discesa <guilabel>Metodo di confronto file</guilabel> e scegli
 <guimenuitem>Contenuti rapidi</guimenuitem>.</para>
           </listitem>
         </varlistentry>
@@ -93,7 +92,7 @@ menu a discesa <guilabel>Metodo di confronto file</guilabel> e scegli
           <listitem>
             <para>Puoi modificare il limite di dimensione del file di 4 MB del
 <guilabel>Confronta per contenuto rapido</guilabel>, ad esempio se hai molti
-file di testo molto grandi.Per fare ciò, esegui il comando
+file di testo molto grandi. Per fare ciò, esegui il comando
 <command>regedit</command> di Windows, vai a questa parola chiave e modifica
 il suo valore: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>Come al solito, fai
 attenzione quando modifichi il registro!</para>
@@ -119,22 +118,23 @@ format="PNG" /> </imageobject><textobject>
 
       <para>Se l'operazione di confronto è rapida, potresti non notare la finestra di
 avanzamento, che si chiude non appena WinMerge visualizza il risultato del
-confronto delle cartelle.La finestra di avanzamento mostra il numero di file
-e cartelle da includere nell'operazione e il numero confrontato finora.La
-barra di avanzamento rappresenta graficamente gli Articoli confrontati.</para>
+confronto delle cartelle. La finestra di avanzamentovisualizza il numero di
+file e cartelle da includere nell'operazione e il numero confrontato
+finora. La barra di avanzamento rappresenta graficamente gli Articoli
+confrontati.</para>
 
       <note>
         <para>Poiché i file confrontati sono generalmente di dimensioni diverse, i dati
-sullo stato non indicano il tempo utilizzato o rimanente.Ad esempio, un
-rapporto 50/100 non significa necessariamente che la metà del tempo
-dell'operazione di confronto è scaduta.</para>
+sullo stato non indicano il tempo usato o rimanente. Ad esempio, un rapporto
+50/100 non significa necessariamente che la metà del tempo dell'operazione
+di confronto è scaduta.</para>
       </note>
 
       <para><!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
 I get the partial list, but no Abort indicator.-->
 Puoi fare clic su <guibutton>Interrompi</guibutton> per terminare
 l'operazione in qualsiasi momento prima che termini l'operazione di
-confronto.Viene visualizzata la finestra Confronto cartelle con i risultati
+confronto. Viene visualizzata la finestra Confronto cartelle con i risultati
 calcolati in quel momento, omettendo eventuali risultati incompleti.</para>
     </section>
   </section>
@@ -154,8 +154,8 @@ calcolati in quel momento, omettendo eventuali risultati incompleti.</para>
         <secondary>nella finestra Confronto cartelle</secondary>
       </indexterm></title>
 
-    <para>La finestra Confronto cartelle mostra il risultato di un confronto
-cartelle.Sono disponibili due diverse visualizzazioni:</para>
+    <para>La finestra Confronto cartellevisualizza il risultato di un confronto
+cartelle. Sono disponibili due diverse visualizzazioni:</para>
 
     <variablelist>
       <varlistentry id="Compare_dirs_tabview">
@@ -164,8 +164,9 @@ cartelle.Sono disponibili due diverse visualizzazioni:</para>
           </indexterm></term>
 
         <listitem>
-          <para>In tabular view, each file or folder in the result is listed in a row.Questa
-è la visualizzazione predefinita.Ecco un esempio:</para>
+          <para>Nella visualizzazione tabellare, ogni file o cartella nel risultato è
+elencato in una riga. Questa è la visualizzazione predefinita. Ecco un
+esempio:</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -181,8 +182,8 @@ fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject></mediaobjec
 
         <listitem>
           <para>Nella visualizzazione ad albero, le cartelle sono espandibili e comprimibili
-e contengono file e sottocartelle.La visualizzazione ad albero è disponibile
-solo nei confronti ricorsivi.Per esempio:</para>
+e contengono file e sottocartelle. La visualizzazione ad albero è
+disponibile solo nei confronti ricorsivi. Per esempio:</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="599"
@@ -197,7 +198,7 @@ qualsiasi della riga.</para>
             </listitem>
 
             <listitem>
-              <para>Per espandere o comprimere tutte le cartelle nella vista, fai clic su
+              <para>Per espandere o comprimere tutte le cartelle nella vista, seleziona
 <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Espandi
 sottocartelle</guimenuitem> <guimenuitem>Tutte le
 sottocartelle</guimenuitem> </menuchoice> o <menuchoice>
@@ -214,14 +215,14 @@ sottocartelle</guimenuitem> </menuchoice> nel menu.</para>
 file o cartelle quando hai avviato il confronto), puoi fare clic sul comando
 <menuchoice> <guimenu>Visualizza</guimenu> <guimenuitem>Modalità
 albero</guimenuitem> </menuchoice> per passare da una visualizzazione
-all'altra.Il comando <menuchoice> <guimenu>Visualizza</guimenu>
+all'altra. Il comando <menuchoice> <guimenu>Visualizza</guimenu>
 <guimenuitem>Modalità albero</guimenuitem> </menuchoice> è disabilitato per
 i confronti non ricorsivi.</para>
 
-    <para>In entrambe le visualizzazioni, le colonne mostrano diversi tipi di dati per
-ciascun elemento risultato.Puoi controllare l'ordinamento degli elementi
-nella vista facendo clic sull'intestazione di una colonna.Ciò modifica
-l'ordinamento in due modi:</para>
+    <para>In entrambe le visualizzazioni, le colonnevisualizzano diversi tipi di dati
+per ciascun elemento risultato. Puoi controllare l'ordinamento degli
+elementi nella vista facendo clic sull'intestazione di una colonna. Ciò
+modifica l'ordinamento in due modi:</para>
 
     <itemizedlist>
       <listitem>
@@ -255,10 +256,10 @@ diverso per i confronti ricorsivi e non ricorsivi:</para>
             <para>Il risultato del confronto include tutte le sottocartelle. Puoi controllare
 i tipi di elementi visualizzati all'interno delle cartelle scegliendo le
 opzioni nel menu <guimenu>Visualizza</guimenu> (ad esempio,
-<guimenuitem>Visualizza elementi identici</guimenuitem>).La colonna Cartella
-è sempre vuota: vengono visualizzati solo i file all'interno delle
+<guimenuitem>Visualizza elementi identici</guimenuitem>). La colonna
+Cartella è sempre vuota: vengono visualizzati solo i file all'interno delle
 cartelle. Per visualizzare la sottocartella di un elemento, osserva il suo
-percorso nella colonna dei risultati Confronta.Le cartelle che esistono su
+percorso nella colonna dei risultati Confronta. Le cartelle che esistono su
 un solo lato vengono visualizzate se una delle opzioni del menu
 <guimenu>Visualizza</guimenu>, <guimenuitem>Visualizza file univoci a
 sinistra</guimenuitem>, <guimenuitem>Visualizza file univoci centrali
@@ -272,8 +273,8 @@ destra</guimenuitem>, è abilitata.</para>
 
           <listitem>
             <para>Il risultato include solo i file e le sottocartelle al livello superiore
-delle cartelle selezionate.Tuttavia, puoi accedere a qualsiasi sottocartella
-che desideri confrontare.</para>
+delle cartelle selezionate. Tuttavia, puoi accedere a qualsiasi
+sottocartella che vuoi confrontare.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -287,7 +288,7 @@ che desideri confrontare.</para>
         </indexterm></title>
 
       <para>Nella finestra Confronto cartelle, file e cartelle vengono confrontati e
-divisi in diverse categorie.In ogni riga la categoria è chiaramente
+divisi in diverse categorie. In ogni riga la categoria è chiaramente
 identificata nella colonna di sinistra con una di queste icone:</para>
 
       <simplelist>
@@ -368,7 +369,7 @@ essere confrontati;ad esempio quando un altro programma ha bloccato il file.</me
 <imageobject> <imagedata contentwidth="16" fileref="screenshots/aborted.png"
 format="PNG" /> </imageobject></inlinemediaobject> Elemento interrotto.WinMerge
 non ha terminato il confronto di questo elemento quando il confronto è stato
-interrotto.Il risultato è sconosciuto.</member>
+interrotto. Il risultato è sconosciuto.</member>
       </simplelist>
     </section>
 
@@ -381,9 +382,9 @@ interrotto.Il risultato è sconosciuto.</member>
         <secondary>confronto cartelle</secondary>
       </indexterm>
 
-      <para>Puoi utilizzare il mouse, la <link linkend="Shortcut_keys">tastiera</link> e
-le scorciatoie del menu contestuale per navigare nella finestra Confronto
-cartelle.Puoi anche utilizzare i pulsanti della barra degli strumenti.Ad
+      <para>Puoi usare il mouse, la <link linkend="Shortcut_keys">tastiera</link> e le
+scorciatoie del menu contestuale per navigare nella finestra Confronto
+cartelle. Puoi anche usare i pulsanti della barra degli strumenti. Ad
 esempio, il pulsante <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
@@ -398,13 +399,13 @@ cartella diversa e la seleziona.</para>
 diversi.</para>
       </note>
 
-      <para>È possibile selezionare più file e cartelle.Tuttavia, alcune operazioni
+      <para>È possibile selezionare più file e cartelle. Tuttavia, alcune operazioni
 (come <command>Rinomina</command>) non sono disponibili con selezioni
 multiple.</para>
 
       <para>Usa i pulsanti di navigazione (<guibutton>Differenza successiva</guibutton>,
 <guibutton>Differenza precedente</guibutton> e così via) per scorrere le
-differenze nei file confrontati.Utilizza le funzioni WinMerge per unire i
+differenze nei file confrontati. Usa le funzioni WinMerge per unire i
 contenuti copiando, spostando o eliminando uno o più file o sottocartelle.</para>
     </section>
   </section>
@@ -423,14 +424,13 @@ contenuti copiando, spostando o eliminando uno o più file o sottocartelle.</par
     <para>La finestra Confronto cartelle supporta operazioni comuni sui file, come
 modifica, copia, eliminazione, spostamento e ridenominazione (lo spostamento
 equivale a un'operazione di copia seguita da un'eliminazione).È possibile
-utilizzare queste operazioni sui file e alcune funzioni speciali di WinMerge
-per unire il contenuto delle cartelle.Puoi anche aprire file utilizzando
-programmi associati o editor esterni.</para>
+usare queste operazioni sui file e alcune funzioni speciali di WinMerge per
+unire il contenuto delle cartelle. Puoi anche aprire file usando programmi
+associati o editor esterni.</para>
 
     <para>Il modo più conveniente per eseguire la maggior parte di queste attività è
-fare clic con il pulsante destro del mouse su uno o più elementi e
-utilizzare il menu contestuale, dove sono disponibili tutte le operazioni
-sui file.</para>
+fai clic con il pulsante destro del mouse su uno o più elementi e usare il
+menu contestuale, dove sono disponibili tutte le operazioni sui file.</para>
 
     <section>
       <title>Copia dei file<indexterm>
@@ -440,9 +440,9 @@ sui file.</para>
         </indexterm></title>
 
       <para>L'operazione di file più comune nella finestra Confronto cartelle è la copia
-di file da un lato all'altro.Esistono diverse forme della funzione di copia
+di file da un lato all'altro. Esistono diverse forme della funzione di copia
 di WinMerge: tutte copiano solo file diversi, perché copiare file identici
-non serve a unire.Le funzioni di copia sono disponibili nel menu
+non serve a unire. Le funzioni di copia sono disponibili nel menu
 contestuale, nel menu WinMerge e nella barra degli strumenti:</para>
 
       <section>
@@ -462,10 +462,10 @@ fileref="screenshots/ctx_menu_copy1.png" format="PNG" /> </imageobject><textobje
           <listitem>
             <para><guimenuitem>Da sinistra a destra</guimenuitem> e <guimenuitem>Da destra a
 sinistra</guimenuitem> copiano la selezione (o solo gli elementi della
-selezione che possono essere copiati) da un lato all'altro.Nell'esempio, il
+selezione che possono essere copiati) da un lato all'altro. Nell'esempio, il
 suffisso <guilabel>(2 di 4)</guilabel> indica che verranno copiati solo i
-due file diversi;i file identici no.Queste scorciatoie sono disponibili solo
-se uno qualsiasi dei file selezionati è diverso: se selezioni solo file
+due file diversi; I file identici no. Queste scorciatoie sono disponibili
+solo se uno qualsiasi dei file selezionati è diverso: se selezioni solo file
 identici, le scorciatoie non saranno disponibili.</para>
           </listitem>
 
@@ -475,7 +475,7 @@ da...</guimenuitem> ti permettono di specificare una cartella di
 destinazione della copia nel tuo sistema, invece di una cartella
 confrontata. Quando si apre la finestra di dialogo Sfoglia per cartelle, vai
 alla cartella di destinazione sul tuo sistema (o crea una nuova cartella di
-destinazione) e fai clic su <guibutton>OK</guibutton>.</para>
+destinazione) e seleziona <guibutton>OK</guibutton>.</para>
           </listitem>
         </itemizedlist>
         <para>Nella finestra Confronto cartelle con tre cartelle, la voce
@@ -508,7 +508,7 @@ fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
 sinistra</guibutton> svolgono lo stesso compito delle scorciatoie del menu
 contestuale <guimenuitem>Da sinistra a destra</guimenuitem> e
 <guimenuitem>Da destra a sinistra</guimenuitem>: copiano da lato a lato solo
-i file che sonovalido per la copia.Tuttavia questi comandi non visualizzano
+i file che sonovalido per la copia. Tuttavia questi comandi non visualizzano
 direttamente il numero di file da copiare;invece, visualizzano una finestra
 di dialogo di conferma in cui è possibile controllare un elenco di percorsi
 di file di origine e di destinazione.</para>
@@ -529,7 +529,7 @@ degli strumenti.</para>
         </indexterm></title>
 
       <para>Puoi usare la voce del menu contestuale <guimenuitem>Elimina</guimenuitem>
-per eliminare gli elementi selezionati su uno o tutti i lati.Come altre
+per eliminare gli elementi selezionati su uno o tutti i lati. Come altre
 operazioni sui file, <guimenuitem>Elimina</guimenuitem> ha un sottomenu con
 le scorciatoie <guimenuitem>Sinistra</guimenuitem>,
 <guimenuitem>Centro</guimenuitem>, <guimenuitem>Destra</guimenuitem> e
@@ -539,11 +539,11 @@ le scorciatoie <guimenuitem>Sinistra</guimenuitem>,
         <para>Ti consigliamo vivamente di mantenere abilitata l'opzione <guilabel>Invia i
 file eliminati nel cestino</guilabel> (Vedi <xref linkend="Configuration"
 />), in modo da poter annullare le eliminazioni in caso di
-incidenti.Inoltre, dovresti mantenere abilitato il Cestino: l'opzione
-WinMerge non funziona se disabiliti il ​​Cestino in Windows.Ancora una
-volta, non puoi annullare l'eliminazione di file o cartelle a meno che non
-utilizzi sia l'opzione <guilabel>Invia i file eliminati nel
-Cestino</guilabel> di WinMerge sia il Cestino di Windows!</para>
+incidenti. Inoltre, dovresti mantenere abilitato il Cestino: l'opzione
+WinMerge non funziona se disabiliti il Cestino in Windows. Ancora una volta,
+non puoi annullare l'eliminazione di file o cartelle a meno che non usi sia
+l'opzione <guilabel>Invia i file eliminati nel Cestino</guilabel> di
+WinMerge sia il Cestino di Windows!</para>
       </warning>
     </section>
 
@@ -556,11 +556,11 @@ Cestino</guilabel> di WinMerge sia il Cestino di Windows!</para>
 
       <para>Per rinominare un file o una cartella, scegli
 <guimenuitem>Rinomina</guimenuitem> nel suo menu contestuale o premi
-<keycap>F2</keycap>.Quindi cambia il nome nella casella di modifica e premi
-<keycap>Invio</keycap>, oppure premi <keycap>Esc</keycap> per annullare.Puoi
-rinominare solo un singolo file o cartella.Tieni presente che la
-ridenominazione modifica gli elementi su entrambi o su tutti e tre i lati:
-al momento non è possibile rinominare un elemento solo su un lato.</para>
+<keycap>F2</keycap>. Quindi cambia il nome nella casella di modifica e premi
+<keycap>Invio</keycap>, oppure premi <keycap>Esc</keycap> per
+annullare. Puoi rinominare solo un singolo file o cartella. Tieni presente
+che la ridenominazione modifica gli elementi su entrambi o su tutti e tre i
+lati: al momento non è possibile rinominare un elemento solo su un lato.</para>
     </section>
 
     <section>
@@ -594,7 +594,7 @@ tipo di file.</para>
           <term>Con editor esterno</term>
 
           <listitem>
-            <para>Apre il file con un editor esterno.L'editor predefinito è Blocco note, ma
+            <para>Apre il file con un editor esterno. L'editor predefinito è Blocco note, ma
 puoi configurarne uno diverso nelle opzioni WinMerge.</para>
           </listitem>
         </varlistentry>
@@ -631,7 +631,7 @@ registro delle modifiche.</para>
       <itemizedlist>
         <listitem>
           <para><guimenuitem>Copia nomi di percorso</guimenuitem> ha un menu con tre
-scorciatoie, simili ad altre operazioni sui file.Copia i percorsi completi
+scorciatoie, simili ad altre operazioni sui file. Copia i percorsi completi
 di uno o più elementi selezionati negli appunti, uno per riga.</para>
         </listitem>
 
@@ -669,9 +669,9 @@ dei file Windows.</para>
       </important>
 
       <para>Questo stato protetto viene ereditato dai file aperti nel confronto
-cartelle.Ad esempio, se si confrontano due cartelle, si imposta un lato in
+cartelle. Ad esempio, se si confrontano due cartelle, si imposta un lato in
 sola lettura e si aprono due file per il confronto, il file aperto sul lato
-protetto sarà protetto da scrittura.Allo stesso modo, non è possibile
+protetto sarà protetto da scrittura. Allo stesso modo, non è possibile
 copiare un file dal lato non protetto a quello protetto.</para>
 
       <para>Il codice <guilabel>RO</guilabel> nel riquadro sinistro, centrale o destro
@@ -685,9 +685,9 @@ indica che il lato è attualmente di sola lettura.</para>
         </indexterm></title>
 
       <para>Un aggiornamento completo di cartelle di grandi dimensioni può richiedere
-molto tempo.In WinMerge 2.2 e versioni precedenti, dovevi sempre eseguire un
-aggiornamento completo per aggiornare i file dopo averli modificati
-all'esterno di WinMerge.A partire dalla versione 2.4, WinMerge può
+molto tempo. In WinMerge 2.2 e versioni precedenti, dovevi sempre eseguire
+un aggiornamento completo per aggiornare i file dopo averli modificati
+all'esterno di WinMerge. A partire dalla versione 2.4, WinMerge può
 aggiornare solo gli elementi selezionati: scegli
 <guimenuitem>Aggiorna</guimenuitem> dal menu contestuale o <menuchoice>
 <guimenu>Visualizza</guimenu> <guimenuitem>Aggiorna
@@ -744,7 +744,7 @@ archivio</para>
 
           <listitem>
             <para>Aggiunge file e cartelle in modo ricorsivo da entrambi i lati al file di
-archivio.Poiché i nomi dei file sono gli stessi, vengono aggiunti a
+archivio. Poiché i nomi dei file sono gli stessi, vengono aggiunti a
 sottocartelle diverse, denominate <filename
 class="directory">Original</filename> e <filename
 class="directory">Altered</filename>, all'interno dell'archivio: i file sul
@@ -759,7 +759,7 @@ inseriti in <filename class="directory">Altered</filename>.</para>
 
           <listitem>
             <para>Aggiunge file e cartelle in modo ricorsivo da tutti i lati al file di
-archivio.Poiché i nomi dei file sono gli stessi, vengono aggiunti a
+archivio. Poiché i nomi dei file sono gli stessi, vengono aggiunti a
 sottocartelle diverse, denominate <filename
 class="directory">Original</filename> e <filename
 class="directory">Altered</filename>, all'interno dell'archivio: i file sul
@@ -803,13 +803,13 @@ cartelle.</para>
       </tip>
 
       <para>Se un confronto di cartelle include il contenuto di un file di archivio,
-qualsiasi modifica apportata ai file inclusi in WinMerge (ad esempio,
-utilizzando un'operazione <guimenuitem>Apri</guimenuitem> per modificare il
-file) viene salvata nel file di archivio.Ma non puoi aggiornare il contenuto
-dell'archivio utilizzando le operazioni sui file
+qualsiasi modifica apportata ai file inclusi in WinMerge (ad esempio, usando
+un'operazione <guimenuitem>Apri</guimenuitem> per modificare il file) viene
+salvata nel file di archivio. Ma non puoi aggiornare il contenuto
+dell'archivio usando le operazioni sui file
 <guimenuitem>Copia</guimenuitem>, <guimenuitem>Sposta</guimenuitem> o
-<guimenuitem>Elimina</guimenuitem> di WinMerge.Crea invece un nuovo file di
-archivio utilizzando una delle scorciatoie <guimenuitem>Zip</guimenuitem>.</para>
+<guimenuitem>Elimina</guimenuitem> di WinMerge. Crea invece un nuovo file di
+archivio usando una delle scorciatoie <guimenuitem>Zip</guimenuitem>.</para>
     </section>
   </section>
 
@@ -821,8 +821,8 @@ archivio utilizzando una delle scorciatoie <guimenuitem>Zip</guimenuitem>.</para
       </indexterm></title>
 
     <para>In questa sezione vengono illustrate le modalità per sfogliare le cartelle
-elencate in una finestra Confronto cartelle.Quando sfogli una cartella,
-esegui un'operazione di confronto completamente nuova.Il suo risultato
+elencate in una finestra Confronto cartelle. Quando sfogli una cartella,
+esegui un'operazione di confronto completamente nuova. Il risultato
 sovrascrive il risultato attuale nella finestra.</para>
 
     <section>
@@ -849,8 +849,8 @@ confronto ricorsivo sull'intera struttura di cartelle.</para>
 sulla sua riga o seleziona la riga e premi <keycap>Invio</keycap>.</para>
 
             <para>A volte non è possibile aprire la cartella principale (ad esempio se non si
-dispone dei permessi per accedervi).Queste due icone indicano se è possibile
-aprire una cartella principale:</para>
+dispone dei permessi per accedervi). Queste due icone indicano se è
+possibile aprire una cartella principale:</para>
 
             <simplelist type="vert">
               <member><inlinemediaobject>
@@ -887,8 +887,8 @@ cartelle.</para>
           <listitem>
             <para>Se si accede a una sottocartella che esiste solo su un lato, WinMerge può
 creare una nuova cartella corrispondente sull'altro lato, rispettivamente su
-entrambi gli altri lati.Vedi <xref linkend="CompareDirs_browse_unique" />
-per i dettagli.</para>
+entrambi gli altri lati. Per i dettagli vedi <xref
+linkend="CompareDirs_browse_unique" />.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -899,11 +899,11 @@ per i dettagli.</para>
 
           <listitem>
             <para>Non è possibile confrontare due sottocartelle (ovvero selezionando due
-righe) in cui le sottocartelle su ciascun lato sono diverse.Solo se hai
+righe) in cui le sottocartelle su ciascun lato sono diverse. Solo se hai
 precedentemente confrontato cartelle identiche (ad esempio, esplorando una
 singola sottocartella in un risultato di confronto) puoi confrontare due
-sottocartelle.Selezionare innanzitutto le due cartelle nella finestra
-Confronto cartelle, come mostrato nella figura seguente:</para>
+sottocartelle. Seleziona innanzitutto le due cartelle nella finestra
+Confronto cartelle, come visualizzato nella figura seguente:</para>
 
             <mediaobject>
 <imageobject> <imagedata contentwidth="572"
@@ -918,15 +918,15 @@ la cartella a sinistra nel risultato;la seconda cartella selezionata diventa
 la cartella giusta nel risultato.</para>
 
             <para>Con le due cartelle selezionate, fai clic con il pulsante destro del mouse e
-scegli <guimenuitem>Confronta</guimenuitem> (o fai clic su <menuchoice>
+scegli <guimenuitem>Confronta</guimenuitem> (o seleziona <menuchoice>
 <guimenu>Unisci</guimenu> <guimenuitem>Confronta</guimenuitem> </menuchoice>
 nel menu).</para>
 
             <tip>
               <para>Ancora una volta, l'operazione <guimenuitem>Confronta</guimenuitem> è
 disponibile solo quando i percorsi correnti delle cartelle sinistra e destra
-sono identici nella finestra Confronta cartelle, come mostrato nello
-screenshot precedente.Ad esempio, non è disponibile se la finestra attuale
+sono identici nella finestra Confronta cartelle, come visualizzato nella
+schermata precedente. Ad esempio, non è disponibile se la finestra attuale
 confronta due cartelle diverse.</para>
             </tip>
           </listitem>
@@ -944,22 +944,22 @@ confronta due cartelle diverse.</para>
       <para>In WinMerge 2.6 e versioni precedenti non era possibile esplorare cartelle
 univoche (cartelle che esistono solo in un lato del risultato del
 confronto), perché WinMerge non può confrontare una cartella esistente con
-una cartella inesistente.Per copiare qualsiasi cosa da una cartella univoca
+una cartella inesistente. Per copiare qualsiasi cosa da una cartella univoca
 in WinMerge, dovevi prima creare una copia dell'intera struttura delle
 cartelle.</para>
 
-      <para>Tuttavia, potresti preferire non copiare l'intera struttura delle cartelle.A
-partire dalla versione 2.8, WinMerge fornisce invece un modo alternativo per
-creare una nuova cartella vuota.Ciò ti consente di copiare solo gli elementi
-desiderati dalla cartella originale e univoca alla cartella vuota
-creata.Questa procedura dimostra:</para>
+      <para>Tuttavia, potresti preferire non copiare l'intera struttura delle
+cartelle. A partire dalla versione 2.8, WinMerge fornisce invece un modo
+alternativo per creare una nuova cartella vuota. Ciò ti consente di copiare
+solo gli elementi desiderati dalla cartella originale e univoca alla
+cartella vuota creata. Questa procedura dimostra:</para>
 
       <orderedlist>
         <listitem>
           <para>Sfoglia fino alla cartella univoca (seleziona la cartella e premi
 <keycap>Invio,</keycap> fai doppio clic su di essa o fai clic con il
-pulsante destro del mouse e scegli <guimenuitem>Confronta</guimenuitem>).Per
-esempio:</para>
+pulsante destro del mouse e scegli
+<guimenuitem>Confronta</guimenuitem>). Per esempio:</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="590"
@@ -969,14 +969,14 @@ fileref="screenshots/foldercmp_unique1.png" format="PNG" /> </imageobject><texto
           </mediaobject>
 
           <para>Un messaggio WinMerge informa che la cartella esiste solo su un lato e non
-può essere aperta.Il messaggio richiede quindi di confermare se si desidera
+può essere aperta. Il messaggio richiede quindi di confermare se si desidera
 creare una cartella corrispondente e aprirla come l'altro lato del risultato
 del confronto.</para>
         </listitem>
 
         <listitem>
           <para>Fai clic su <guibutton>Sì</guibutton> per confermare
-(<guibutton>No</guibutton> annulla il confronto).Nel nuovo risultato del
+(<guibutton>No</guibutton> annulla il confronto). Nel nuovo risultato del
 confronto, la cartella univoca viene aperta sul lato sinistro e la nuova
 cartella creata vuota è sulla destra:</para>
 
@@ -989,8 +989,8 @@ create</phrase>
           </mediaobject>
 
           <para>Nel risultato del confronto, puoi copiare o spostare elementi (ad esempio,
-utilizzando il menu contestuale del tasto destro) dalla cartella univoca
-alla cartella creata.</para>
+usando il menu contestuale del tasto destro) dalla cartella univoca alla
+cartella creata.</para>
         </listitem>
       </orderedlist>
     </section>
@@ -1004,20 +1004,20 @@ alla cartella creata.</para>
       </indexterm></title>
 
     <para>Questa sezione descrive come controllare il modo in cui la finestra
-Confronto cartelle visualizza i risultati.Puoi personalizzare la
-visualizzazione mostrando, nascondendo e riordinando le colonne della
+Confronto cartelle visualizza i risultati. Puoi personalizzare la
+visualizzazione abilitando, nascondendo e riordinando le colonne della
 tabella.</para>
 
     <section>
-      <title>Mostrare e nascondere i tipi di file<indexterm>
+      <title>Visualizza/nascondi i tipi di file<indexterm>
           <primary>Visualizza il menu</primary>
 
           <secondary>Finestra Confronta cartelle</secondary>
         </indexterm></title>
 
       <para>Il menu <guimenu>Visualizza</guimenu> contiene queste scorciatoie per
-mostrare o nascondere tipi di elementi.Abilita (seleziona) un'opzione di
-menu per mostrare l'elemento;disabilitarlo per nascondere l'elemento.</para>
+visualizzare o nascondere tipi di elementi. Abilita (seleziona) un'opzione
+di menu per visualizzare l'elemento;disabilitarlo per nascondere l'elemento.</para>
 
       <itemizedlist>
         <listitem>
@@ -1060,20 +1060,20 @@ omessi dai filtri dei file</para>
       <title>Modifica dell'ordinamento delle colonne</title>
 
       <para>Le righe nella finestra Confronto cartelle vengono ordinate in base
-all'ordinamento di una particolare colonna.Questa colonna di ordinamento è
-indicata da una piccola freccia nella sua intestazione.La freccia punta
+all'ordinamento di una particolare colonna. Questa colonna di ordinamento è
+indicata da una piccola freccia nella sua intestazione. La freccia punta
 verso l'alto se la colonna è ordinata in ordine crescente, verso il basso se
-discendente.L'esempio di confronto delle cartelle nella parte superiore di
+discendente. L'esempio di confronto delle cartelle nella parte superiore di
 questo argomento è ordinato in base alla colonna Nome file, in ordine
 crescente.</para>
 
       <para>Per scegliere un'altra colonna dell'ordine, fai semplicemente clic
-sull'intestazione di quella colonna.La colonna selezionata viene impostata
+sull'intestazione di quella colonna. La colonna selezionata viene impostata
 sul suo ordinamento predefinito e tutte le righe vengono riordinate in base
 all'ordinamento di quella colonna.</para>
 
       <para>Per modificare la direzione di ordinamento di una colonna che è già la
-colonna di ordinamento, fare nuovamente clic sulla sua intestazione.Cioè,
+colonna di ordinamento, fare nuovamente clic sulla sua intestazione. Cioè,
 facendo clic sull'intestazione di una colonna di ordinamento si inverte
 l'ordine (alternando tra ordine ascendente e discendente).</para>
     </section>
@@ -1086,15 +1086,15 @@ l'ordine (alternando tra ordine ascendente e discendente).</para>
       <orderedlist>
         <listitem>
           <para>Fai clic con il tasto destro su qualsiasi intestazione di colonna e scegli
-<guimenuitem>Personalizza colonne</guimenuitem>.Oppure fai clic su
-<menuchoice> <guimenu>Strumenti</guimenu> <guimenuitem>Personalizza
-colonne</guimenuitem> </menuchoice></para>
+<guimenuitem>Personalizza colonne</guimenuitem>. O seleziona <menuchoice>
+<guimenu>Strumenti</guimenu> <guimenuitem>Personalizza colonne</guimenuitem>
+</menuchoice></para>
         </listitem>
 
         <listitem>
           <para>La finestra di dialogo Visualizza colonne contiene un elenco di tutti i nomi
-di colonne disponibili, ciascuna con una casella di controllo.Configura le
-colonne utilizzando qualsiasi combinazione di queste azioni:</para>
+di colonne disponibili, ciascuna con una casella di controllo. Configura le
+colonne usando qualsiasi combinazione di queste azioni:</para>
 
           <itemizedlist>
             <listitem>
@@ -1103,12 +1103,13 @@ nell'elenco non è sufficiente)</para>
             </listitem>
 
             <listitem>
-              <para>Deseleziona le colonne che desideri nascondere.</para>
+              <para>Deseleziona le colonne che vuoi nascondere.</para>
             </listitem>
 
             <listitem>
-              <para>Per cambiare l'ordine delle colonne, seleziona uno o più elementi e fai clic
-su <guibutton>Sposta su</guibutton> o <guibutton>Sposta giù</guibutton>.</para>
+              <para>Per cambiare l'ordine delle colonne, seleziona uno o più elementi e
+seleziona <guibutton>Sposta su</guibutton> o <guibutton>Sposta
+giù</guibutton>.</para>
             </listitem>
 
             <listitem>
@@ -1132,7 +1133,7 @@ nella finestra Confronto cartelle:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Nome file</guilabel>: nome dell'elemento confrontato.In un
+          <para><guilabel>Nome file</guilabel>: nome dell'elemento confrontato. In un
 confronto non ricorsivo, questa colonna include sia file che cartelle;in un
 confronto ricorsivo, non include le cartelle: le cartelle sono invece
 elencate nella colonna Cartella.</para>
@@ -1140,7 +1141,7 @@ elencate nella colonna Cartella.</para>
 
         <listitem>
           <para><guilabel>Cartella</guilabel>: percorso della sottocartella confrontata,
-relativa alla cartella confrontata.Per un confronto non ricorsivo questa
+relativa alla cartella confrontata. Per un confronto non ricorsivo questa
 colonna è sempre vuota: le cartelle sono invece elencate nella colonna
 <guilabel>Nome file</guilabel>.</para>
         </listitem>
@@ -1153,7 +1154,7 @@ dettagliato (vedi anche <guilabel>Risultato breve</guilabel>).</para>
         <listitem>
           <para><guilabel>Data sinistra</guilabel>, <guilabel>Data centrale</guilabel>,
 <guilabel>Data destra</guilabel>: date di modifica dell'elemento su ciascun
-lato.La più recente delle due date (o la data per qualsiasi elemento
+lato. La più recente delle due date (o la data per qualsiasi elemento
 univoco) è preceduta da un asterisco ( * ).</para>
         </listitem>
 
@@ -1168,19 +1169,20 @@ colonne aggiuntive:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Risultato breve</guilabel>: mostra la colonna <guilabel>Risultato
-del confronto</guilabel> in una forma breve (solo a destra).</para>
+          <para><guilabel>Risultato breve</guilabel>:visualizza la colonna
+<guilabel>Risultato del confronto</guilabel> in una forma breve (solo a
+destra).</para>
         </listitem>
 
         <listitem>
           <para><guilabel>Binario</guilabel>: la colonna contiene un asterisco (*) quando il
-file è un file binario.Questo è utile per l'ordinamento e per l'uso con la
+file è un file binario. Questo è utile per l'ordinamento e per l'uso con la
 colonna <guilabel>Risultato breve</guilabel>.</para>
         </listitem>
 
         <listitem>
           <para><guilabel>Attributi sinistra</guilabel>, <guilabel>Attributi
-centrali</guilabel>, <guilabel>Attributi destra</guilabel>: mostra gli
+centrali</guilabel>, <guilabel>Attributi destra</guilabel>:visualizza gli
 attributi del file.</para>
         </listitem>
 
@@ -1200,7 +1202,7 @@ Unicode per i file Unicode.</para>
         <listitem>
           <para><guilabel>Versione del file a sinistra</guilabel>, <guilabel>Versione del
 file centrale</guilabel>, <guilabel>Versione del file a destra</guilabel>:
-numero di versione del file, se presente.Tieni presente che la versione
+numero di versione del file, se presente. Tieni presente che la versione
 viene letta solo per alcuni tipi di file binari noti per avere solitamente
 una risorsa di versione.</para>
         </listitem>
@@ -1218,7 +1220,7 @@ più brevi delle dimensioni dei file, arrotondate a KB, MB o GB.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>File più recente</guilabel>: mostra quale lato è più recente.</para>
+          <para><guilabel>File più recente</guilabel>:visualizza quale lato è più recente.</para>
         </listitem>
 
         <listitem>
@@ -1228,13 +1230,13 @@ escluse le differenze eventualmente ignorate.</para>
 
         <listitem>
           <para><guilabel>Differenze ignorate</guilabel>: numero di differenze ignorate
-all'interno dei file.Queste sono differenze ignorate dai filtri di linea.</para>
+all'interno dei file. Queste sono differenze ignorate dai filtri di linea.</para>
         </listitem>
 
         <listitem>
           <para><guilabel>EOL sinistro</guilabel>, <guilabel>EOL centrale</guilabel>,
-<guilabel>EOL destro</guilabel>: mostra lo stile EOL (avanzamento riga) dei
-file.</para>
+<guilabel>EOL destro</guilabel>:visualizza lo stile EOL (avanzamento riga)
+dei file.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1242,26 +1244,25 @@ file.</para>
     <section>
       <title>Nascondere oggetti</title>
 
-      <para>Puoi nascondere rapidamente uno o più elementi selezionati utilizzando la
+      <para>Puoi nascondere rapidamente uno o più elementi selezionati usando la
 scorciatoia del menu contestuale <guimenuitem>Nascondi
-elementi</guimenuitem>.Gli elementi rimangono nascosti finché non aggiorni
-la vista (premi <keycap>F5</keycap>) o fai clic su <menuchoice>
+elementi</guimenuitem>. Gli elementi rimangono nascosti finché non aggiorni
+la vista (premi <keycap>F5</keycap>) o seleziona <menuchoice>
 <guimenu>Visualizza</guimenu> <guimenuitem>Visualizza elementi
 nascosti</guimenuitem> </menuchoice>.</para>
 
       <tip>
         <para>Impara a conoscere <guimenuitem>Nascondi elementi</guimenuitem>: può farti
 risparmiare molto tempo eliminando dalla vista gli elementi che hai già
-gestito o che al momento non ti interessano.Ad esempio, potresti nascondere
-i file dopo averli uniti, rendendo più semplice vedere quali elementi
+gestito o che al momento non ti interessano. Ad esempio, potresti nascondere
+i file dopo averli uniti, rendendo più semplice visualizzare quali elementi
 restano da unire.</para>
       </tip>
     </section>
   </section>
 
   <section id="CompareDirs_winshell">
-    <title>Utilizzando i comandi della shell di Windows dalla finestra Confronto
-cartelle</title>
+    <title>Usando i comandi della shell di Windows dalla finestra Confronto cartelle</title>
 
     <para>È possibile fare clic con il pulsante destro del mouse su una selezione
 nella finestra Confronto cartelle e avviare i comandi della shell di Windows
@@ -1269,21 +1270,21 @@ direttamente dal menu contestuale.</para>
 
     <para>Se la selezione avviene su entrambi i lati, puoi scegliere il <guimenu>menu
 della shell sinistra</guimenu> o il <guimenu>menu della shell
-destra</guimenu>.Se la selezione avviene su tutti i lati, puoi scegliere il
+destra</guimenu>. Se la selezione avviene su tutti i lati, puoi scegliere il
 <guimenu>menu della conchiglia sinistra</guimenu>, <guimenu>menu della
 conchiglia centrale</guimenu> o <guimenu>menu della conchiglia
-destra</guimenu>.Se l'elemento è presente solo su un lato, sarà disponibile
+destra</guimenu>. Se l'elemento è presente solo su un lato, sarà disponibile
 solo il menu della shell di quel lato.</para>
 
     <caution>
       <para>Tieni presente che i comandi del menu della shell vengono eseguiti
-interamente al di fuori di WinMerge.Di conseguenza, WinMerge potrebbe non
+interamente al di fuori di WinMerge. Di conseguenza, WinMerge potrebbe non
 rispondere ad alcune operazioni nello stesso modo delle operazioni eseguite
-all'interno di WinMerge.Ad esempio, se elimini un file tramite questa
-integrazione invece di utilizzare il comando WinMerge
-<command>Delete</command>, la modifica non viene mostrata automaticamente
-nella finestra Confronto cartelle (devi aggiornare manualmente la finestra
-per vedere la modifica).</para>
+all'interno di WinMerge. Ad esempio, se elimini un file tramite questa
+integrazione invece di usare il comando WinMerge <command>Delete</command>,
+la modifica non vienevisualizzata automaticamente nella finestra Confronto
+cartelle (per visualizzare la modifica devi aggiornare manualmente la
+finestra).</para>
     </caution>
   </section>
   <para></para>
