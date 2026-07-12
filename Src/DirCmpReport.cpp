@@ -218,7 +218,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 
 	if (m_sReportFile.empty())
 	{
-		m_tempFile = std::make_unique<TempFile>();
+		m_tempFile = std::make_shared<TempFile>();
 		String ext = GetExtention(this->m_nReportType);
 		m_tempFile->Create(_T(""), ext);
 		m_sReportFile = m_tempFile->GetPath();
