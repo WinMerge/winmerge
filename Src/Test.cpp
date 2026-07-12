@@ -100,7 +100,7 @@ TEST(SyntaxHighlight, Verilog)
 	if (pDoc == nullptr)
 		return;
 
-	std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+	std::vector<LangServices::TEXTBLOCK> blocks;
 	blocks = pDoc->GetView(0, 0)->GetTextBlocks(0);
 	EXPECT_EQ(COLORINDEX_COMMENT, blocks[0].m_nColorIndex);
 	blocks = pDoc->GetView(0, 0)->GetTextBlocks(2);
@@ -498,7 +498,7 @@ bool PutToClipboard2(const String& text, HWND hwnd)
 	for (int i = 0; i < 10; ++i)
 	{
 		SetFocus(hwnd);
-		result = PutToClipboard(text, hwnd);
+		result = ClipboardUtils::Put(text, hwnd);
 		EXPECT_EQ(true, result);
 		if (result)
 			break;

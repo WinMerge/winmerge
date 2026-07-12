@@ -2112,6 +2112,9 @@ void CMainFrame::OnToolsGenerateReport()
 	for (const auto data : dlg.GetOptions().selectedData)
 		docs.push_back(reinterpret_cast<IMergeDoc*>(data));
 
+	if (docs.empty())
+		return;
+
 	if (s.empty())
 	{
 		auto wTemp = std::make_shared<TempFile>();

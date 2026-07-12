@@ -206,6 +206,7 @@ void PutFilesInternal<HWND>(const String& strPaths, const String& strPathsSepSpc
 		{ CLIPFORMAT(cfDropEffect), hDropEffect },
 		{ GetClipTcharTextFormat(), hPathnames }
 	});
+}
 
 template<>
 bool PutFileAndText<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
