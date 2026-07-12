@@ -200,14 +200,12 @@ void PutFilesInternal<HWND>(const String& strPaths, const String& strPathsSepSpc
 		return;
 	}
 
-	UINT CF_DROPEFFECT = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
-	bool bOK = SetClipboardDataMultiple(currentWindowHandle,
-	{
+	UINT cfDropEffect = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
+	SetClipboardDataMultiple(currentWindowHandle, {
 		{ CF_HDROP, hDrop },
-		{ CLIPFORMAT(CF_DROPEFFECT), hDropEffect },
-		{ GetClipTcharTextFormat(), hPathnames}
+		{ CLIPFORMAT(cfDropEffect), hDropEffect },
+		{ GetClipTcharTextFormat(), hPathnames }
 	});
-}
 
 template<>
 bool PutFileAndText<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
