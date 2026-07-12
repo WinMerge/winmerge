@@ -14,7 +14,7 @@
 #include "DirView.h"
 #include "Constants.h"
 #include "Merge.h"
-#include "ClipBoard.h"
+#include "Clipboard.h"
 #include "DirActions.h"
 #include "DirViewColItems.h"
 #include "DirFrame.h"  // StatePane
@@ -3311,7 +3311,7 @@ LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 
 	if (IMergeDoc * pMergeDoc = GetMainFrame()->GetActiveIMergeDoc())
 	{
-		CFileCmpReport::GenerateDocumentReport({ pMergeDoc }, pMsg->sReportPath);
+		CMainFrame::GenerateDocumentReport({ pMergeDoc }, pMsg->sReportPath);
 		pMergeDoc->CloseNow();
 	}
 	MSG msg;
@@ -3680,14 +3680,14 @@ void CDirView::OnCopyPathnames(SIDE_TYPE stype)
 {
 	std::list<String> list;
 	CopyPathnames(SelBegin(), SelEnd(), std::back_inserter(list), stype, GetDiffContext());
-	PutToClipboard(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	ClipboardUtils::Put(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 void CDirView::OnCopyBothPathnames()
 {
 	std::list<String> list;
 	CopyBothPathnames(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
-	PutToClipboard(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	ClipboardUtils::Put(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -3697,7 +3697,7 @@ void CDirView::OnCopyFilenames()
 {
 	std::list<String> list;
 	CopyFilenames(SelBegin(), SelEnd(), std::back_inserter(list));
-	PutToClipboard(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	ClipboardUtils::Put(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -3715,7 +3715,7 @@ void CDirView::OnCopyToClipboard(SIDE_TYPE stype)
 {
 	std::list<String> list;
 	CopyPathnames(SelBegin(), SelEnd(), std::back_inserter(list), stype, GetDiffContext());
-	PutFilesToClipboard(list, GetMainFrame()->GetSafeHwnd());
+	ClipboardUtils::PutFiles(list, GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -3725,7 +3725,7 @@ void CDirView::OnCopyBothToClipboard()
 {
 	std::list<String> list;
 	CopyBothPathnames(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
-	PutFilesToClipboard(list, GetMainFrame()->GetSafeHwnd());
+	ClipboardUtils::PutFiles(list, GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -3751,7 +3751,7 @@ void CDirView::OnCopyAllDisplayedColumns()
 		text += _T("\r\n");
 	}
 
-	PutToClipboard(text, GetMainFrame()->GetSafeHwnd());
+	ClipboardUtils::Put(text, GetMainFrame()->GetSafeHwnd());
 }
 
 /**

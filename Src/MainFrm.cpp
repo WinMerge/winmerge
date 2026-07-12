@@ -971,6 +971,24 @@ int GetActivePaneFromFlags(int nFiles, const fileopenflags_t dwFlags[])
 	return nActivePane;
 }
 
+ void CMainFrame::GenerateDocumentReport(const std::vector<IMergeDoc*>& docs, const String& sReportFile)
+{
+	if (sReportFile.empty())
+		return;
+	CDC dc;
+	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
+	String sError;
+	CFileCmpReport::Options options;
+	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
+	options.darkMode = DarkMode::isEnabled();
+	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+	if (!CFileCmpReport::GenerateDocumentReport(docs, sReportFile, options, sError))
+	{
+		String msg = I18n::LoadString(IDS_REPORT_ERROR) + _T("\n") + sError;
+		RootLogger::Error(msg);
+	}
+}
+
 /**
  * @brief Creates new MergeDoc instance and shows documents.
  * @param [in] pDirDoc Dir compare document to create a new Merge document for.
@@ -1076,7 +1094,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
-		CFileCmpReport::GenerateDocumentReport({ pMergeDoc }, sReportFile);
+		GenerateDocumentReport({ pMergeDoc }, sReportFile);
 
 	return true;
 }
@@ -1122,7 +1140,7 @@ bool CMainFrame::ShowHexMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocati
 		pHexMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
-		CFileCmpReport::GenerateDocumentReport({ pHexMergeDoc }, sReportFile);
+		GenerateDocumentReport({ pHexMergeDoc }, sReportFile);
 
 	return true;
 }
@@ -1158,7 +1176,7 @@ bool CMainFrame::ShowImgMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocati
 		pImgMergeFrame->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
-		CFileCmpReport::GenerateDocumentReport({ pImgMergeFrame }, sReportFile);
+		GenerateDocumentReport({ pImgMergeFrame }, sReportFile);
 
 	return true;
 }
@@ -1189,7 +1207,7 @@ bool CMainFrame::ShowWebDiffDoc(IDirDoc * pDirDoc, int nFiles, const FileLocatio
 	pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 
 	if (!sReportFile.empty())
-		CFileCmpReport::GenerateDocumentReport({ pWebPageMergeFrame }, sReportFile);
+		GenerateDocumentReport({ pWebPageMergeFrame }, sReportFile);
 
 	return true;
 }
@@ -2102,11 +2120,28 @@ void CMainFrame::OnToolsGenerateReport()
 		m_tempFiles.push_back(wTemp);
 	}
 
-	bool bSuccess = CFileCmpReport::GenerateDocumentReport(docs, s);
+	CDC dc;
+	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
+
+	String sError;
+	CFileCmpReport::Options options;
+	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
+	options.darkMode = DarkMode::isEnabled();
+	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+	bool bSuccess = CFileCmpReport::GenerateDocumentReport(docs, s, options, sError);
 	if (bSuccess && dlg.GetOptions().copyToClipboard)
-		bSuccess = CFileCmpReport::CopyToClipboard(s);
+		bSuccess = CFileCmpReport::CopyToClipboard(s, sError);
 	if (bSuccess)
+	{
 		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+
+		if (dlg.GetOptions().openReportFile)
+			shell::Open(s.c_str());
+	}
+	else
+	{
+		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP);
+	}
 }
 
 /**

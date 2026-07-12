@@ -2251,7 +2251,7 @@ bool CImgMergeFrame::GenerateReport(ReportContext& reportContext) const
 	int curPages[3]{};
 	for (int pane = 0; pane < paneCount; ++pane)
 		curPages[pane] = m_pImgMergeWindow->GetCurrentPage(pane);
-	if (reportContext.allImagePages)
+	if (reportContext.includeAllImagePages)
 	{
 		diffimg_filename.resize(m_pImgMergeWindow->GetMaxPageCount());
 		for (int page = 0; page < m_pImgMergeWindow->GetMaxPageCount(); ++page)

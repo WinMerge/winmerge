@@ -6,7 +6,7 @@
 
 #include "StdAfx.h"
 #include "ClipboardHistory.h"
-#include "ClipBoard.h"
+#include "Clipboard.h"
 #include "Concurrent.h"
 #include "UniFile.h"
 #include "locality.h"
@@ -50,7 +50,7 @@ namespace ClipboardHistory
 		String GetClipboardText()
 		{
 			String text;
-			GetFromClipboard(text);
+			ClipboardUtils::Get(text);
 			return text;
 		}
 

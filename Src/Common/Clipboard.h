@@ -1,20 +1,25 @@
 /**
- * @file  ClipBoard.h
+ * @file  Clipboard.h
  *
- * @brief ClipBoard helper functions definitions.
+ * @brief Clipboard helper functions definitions.
  */
 #pragma once
 
 #include "UnicodeString.h"
 
+namespace ClipboardUtils
+{
+
 template<typename WindowHandle>
-bool PutToClipboard(const String & text, WindowHandle currentWindowHandle);
-bool GetFromClipboard(String & text);
+bool Put(const String & text, WindowHandle currentWindowHandle);
+
+bool Get(String & text);
+
 template<typename WindowHandle>
-void PutFilesToClipboardInternal(const String& strPaths, const String& strPathsSepSpc, WindowHandle currentWindowHandle);
+void PutFilesInternal(const String& strPaths, const String& strPathsSepSpc, WindowHandle currentWindowHandle);
 
 template<class Container, typename WindowHandle>
-void PutFilesToClipboard(const Container& list, WindowHandle currentWindowHandle)
+void PutFiles(const Container& list, WindowHandle currentWindowHandle)
 {
 	constexpr size_t MaxPathFull = 32767;
 	String strPaths, strPathsSepSpc;
@@ -36,11 +41,13 @@ void PutFilesToClipboard(const Container& list, WindowHandle currentWindowHandle
 	strPaths += _T('\0');
 	strPathsSepSpc = strutils::trim_ws_end(strPathsSepSpc);
 
-	PutFilesToClipboardInternal(strPaths, strPathsSepSpc, currentWindowHandle);
+	PutFilesInternal(strPaths, strPathsSepSpc, currentWindowHandle);
 }
 
 template<typename WindowHandle>
-bool PutFileAndTextToClipboard(const String& filename, const String& text, WindowHandle currentWindowHandle);
+bool PutFileAndText(const String& filename, const String& text, WindowHandle currentWindowHandle);
 
 template<typename WindowHandle>
-bool PutFileAndTextAndHTMLToClipboard(const String& filename, const String& text, WindowHandle currentWindowHandle);
+bool PutFileAndTextAndHTML(const String& filename, const String& text, WindowHandle currentWindowHandle);
+
+}

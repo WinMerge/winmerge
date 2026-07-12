@@ -163,6 +163,7 @@ private:
 	FileFilterHelper m_fileHelper; /**< File filter helper */
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	clock_t m_elapsed; /**< Elapsed time of the compare */
+	std::shared_ptr<TempFile> m_tempFile; /**< Temporary file for clipboard copy */
 };
 
 /**

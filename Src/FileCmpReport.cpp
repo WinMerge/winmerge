@@ -9,11 +9,9 @@
 #include "UnicodeString.h"
 #include "paths.h"
 #include "MergeEditView.h"
-#include "Merge.h"
-#include "MergeApp.h"
-#include "OptionsMgr.h"
-#include "OptionsDef.h"
-#include "ClipBoard.h"
+#include "Clipboard.h"
+#include "UniFile.h"
+#include "MergeDoc.h"
 
 static IMergeDoc* GetFirstDocument(const std::vector<IMergeDoc*>& mergeDocuments, IMergeDoc::DocumentType docType)
 {
@@ -29,27 +27,16 @@ static IMergeDoc* GetFirstDocument(const std::vector<IMergeDoc*>& mergeDocuments
  * @brief Write HTML header to file
  * @param [in,out] file UniStdioFile to write header to
  */
-void CFileCmpReport::WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, UniStdioFile& file)
+static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFileCmpReport::Options& options, UniStdioFile& file)
 {
 	auto* pTextDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Text);
 	auto* pTableDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Table);
 	auto* pImageDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Image);
 
 	// calculate HTML font size
-	CDC dc;
-	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
-	int nFontSize = -MulDiv(theApp.m_lfDiff.lfHeight, 72, dc.GetDeviceCaps(LOGPIXELSY));
-	bool bDarkMode = (GetOptionsMgr()->GetInt(OPT_COLOR_MODE_EFFECTIVE) == 1);
-
-	String htmlHeader = strutils::format(
-LR"(
-<!DOCTYPE html>
-<html%s>
-<head>
-<meta charset=\"UTF-8\">
-<title>WinMerge Compare Report</title>
-<style>
-<!--
+	String variables;
+	if (!options.darkMode)
+		variables = LR"(
 :root {
 	--bg: #ffffff;
 	--fg: #1a1a1a;
@@ -67,7 +54,10 @@ LR"(
 	--collapsed-cell-bg: #000000;
 	--shadow: rgba(0, 0, 0, 0.3);
 }
-html[data-theme="dark"] {
+)";
+	else
+		variables = LR"(
+:root {
 	--bg: #1e1e1e;
 	--fg: #e0e0e0;
 	--border: #555555;
@@ -84,8 +74,20 @@ html[data-theme="dark"] {
 	--collapsed-cell-bg: #ffffff;
 	--shadow: rgba(0, 0, 0, 0.6);
 }
+)";
+
+	String htmlHeader = strutils::format(
+LR"(
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WinMerge Compare Report</title>
+<style>
+<!--
+%s
 body { font-family: "Segoe UI", Arial, sans-serif; margin: 20px; background-color: var(--bg); color: var(--fg); }
-table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.15); font-size: %dpt; }
+table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.15); font-size: %.2fpt; }
 .cmp-table-text td { word-break: break-all; padding: 0 3px; vertical-align: top; }
 .cmp-table-table td, .cmp-table-table th { word-break: break-all; padding: 0 3px; border: 1px solid var(--border); vertical-align: top; }
 .cmp-table-image td, .cmp-table-webpage td { border: 1px solid var(--border); }
@@ -105,7 +107,7 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .cmp-collapsed-cell { background-color: var(--collapsed-cell-bg); }
 .cmp-scroll { overflow-x: auto; }
 )"
-		, bDarkMode ? _T(" data-theme=\"dark\"") : _T(""), nFontSize);
+		,variables, options.fontSize);
 
 	if (mergeDocuments.size() > 1)
 	{
@@ -229,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
  * @brief Write HTML footer to file
  * @param [in,out] file UniStdioFile to write footer to
  */
-void CFileCmpReport::WriteFooter(UniStdioFile& file)
+static void WriteFooter(UniStdioFile& file)
 {
 	// Write HTML footer
 	file.WriteString(_T("</body>\n</html>\n"));
@@ -242,7 +244,7 @@ void CFileCmpReport::WriteFooter(UniStdioFile& file)
  * @return true if report was generated successfully
  */
 bool CFileCmpReport::GenerateDocumentReport(const std::vector<IMergeDoc*>& mergeDocuments,
-												 const String& sFileName)
+												 const String& sFileName, const Options& options, String& errStr)
 {
 	if (mergeDocuments.empty())
 		return false;
@@ -251,9 +253,8 @@ bool CFileCmpReport::GenerateDocumentReport(const std::vector<IMergeDoc*>& merge
 	if (!file.Open(sFileName, _T("wt")))
 	{
 		String errMsg = GetSysError(GetLastError());
-		String msg = strutils::format_string1(
+		errStr = strutils::format_string1(
 			_("Error creating the report:\n%1"), errMsg);
-		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 		return false;
 	}
 
@@ -261,9 +262,9 @@ bool CFileCmpReport::GenerateDocumentReport(const std::vector<IMergeDoc*>& merge
 
 	String outputDirectory = paths::RemoveExtension(sFileName) + _T(".files");
 
-	ReportContext reportContext(file, true, outputDirectory);
+	ReportContext reportContext(file, options.includeAllImagePages, outputDirectory);
 
-	WriteHeader(mergeDocuments, file);
+	WriteHeader(mergeDocuments, options, file);
 
 	int i = 0;
 	// Generate report for each document
@@ -295,24 +296,23 @@ bool CFileCmpReport::GenerateDocumentReport(const std::vector<IMergeDoc*>& merge
 	return true;
 }
 
-bool CFileCmpReport::CopyToClipboard(const String& sFileName)
+bool CFileCmpReport::CopyToClipboard(const String& sFileName, String& errStr)
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(sFileName))
 	{
 		String errMsg = GetSysError(GetLastError());
-		String msg = strutils::format_string1(
+		errStr = strutils::format_string1(
 			_("Error opening the report for clipboard copy:\n%1"), errMsg);
-		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 		return false;
 	}
 	file.SetUnicoding(ucr::UTF8);
 	String content;
 	file.ReadStringAll(content);
 	file.Close();
-	if (!PutFileAndTextAndHTMLToClipboard(sFileName, content, HWND(nullptr)))
+	if (!ClipboardUtils::PutFileAndTextAndHTML(sFileName, content, HWND(nullptr)))
 	{
-		AfxMessageBox(_("Failed to copy report to clipboard.").c_str(), MB_OK | MB_ICONSTOP);
+		errStr = _("Failed to copy to clipboard.");
 		return false;
 	}
 	return true;

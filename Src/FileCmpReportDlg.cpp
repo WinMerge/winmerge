@@ -16,20 +16,28 @@ IMPLEMENT_DYNAMIC(FileCmpReportDlg, CTrDialog)
 FileCmpReportDlg::FileCmpReportDlg(CWnd* pParent) : CTrDialog(IDD_FILECMP_REPORT, pParent)
 {}
 
-BEGIN_MESSAGE_MAP(FileCmpReportDlg, CTrDialog)
-	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
-	ON_BN_DOUBLECLICKED(IDC_REPORT_COPYCLIPBOARD, OnBtnDblclickCopyClipboard)
-END_MESSAGE_MAP()
-
 void FileCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
 
 	DDX_Control(pDX, IDC_REPORT_WINDOW_LIST, m_list);
 	DDX_Control(pDX, IDC_REPORT_FILE, m_ctlReportFile);
-	DDX_Check(pDX, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES, m_options.includeAllImagePages);
 	DDX_Check(pDX, IDC_REPORT_COPYCLIPBOARD, m_options.copyToClipboard);
+	DDX_Check(pDX, IDC_REPORT_OPENREPORTFILE, m_options.openReportFile);
+	DDX_Check(pDX, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES, m_options.includeAllImagePages);
 	DDX_CBString(pDX, IDC_REPORT_FILE, m_options.reportFile);
+}
+
+BEGIN_MESSAGE_MAP(FileCmpReportDlg, CTrDialog)
+	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
+	ON_BN_DOUBLECLICKED(IDC_REPORT_COPYCLIPBOARD, OnBtnDblclickCopyClipboard)
+END_MESSAGE_MAP()
+
+void FileCmpReportDlg::LoadSettings()
+{
+	m_options.copyToClipboard = GetOptionsMgr()->GetBool(OPT_REPORTFILES_COPYTOCLIPBOARD);
+	m_options.openReportFile = GetOptionsMgr()->GetBool(OPT_REPORTFILES_OPENREPORTFILE);
+	m_options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
 }
 
 BOOL FileCmpReportDlg::OnInitDialog()
@@ -37,6 +45,8 @@ BOOL FileCmpReportDlg::OnInitDialog()
 	__super::OnInitDialog();
 
 	LoadSettings();
+
+	m_ctlReportFile.SetFileControlStates(true);
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 	CRect rc;
 	m_list.Initialize();
@@ -53,31 +63,11 @@ BOOL FileCmpReportDlg::OnInitDialog()
 	return TRUE;
 }
 
-void FileCmpReportDlg::LoadSettings()
-{
-	m_options.copyToClipboard = GetOptionsMgr()->GetBool(OPT_REPORTFILES_COPYTOCLIPBOARD);
-	m_options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
-}
-
 void FileCmpReportDlg::CollectOptions()
 {
 	UpdateData(TRUE);
 
 	m_list.GetCheckedData(m_options.selectedData);
-}
-
-void FileCmpReportDlg::OnBtnDblclickCopyClipboard()
-{
-	m_ctlReportFile.SetWindowText(_T(""));
-}
-
-void FileCmpReportDlg::OnOK()
-{
-	CollectOptions();
-	m_ctlReportFile.SaveState(_T("ReportFiles"));
-	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_COPYTOCLIPBOARD, m_options.copyToClipboard);
-	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES, m_options.includeAllImagePages);
-	__super::OnOK();
 }
 
 void FileCmpReportDlg::OnBtnClickReportBrowse()
@@ -91,3 +81,17 @@ void FileCmpReportDlg::OnBtnClickReportBrowse()
 	}
 }
 
+void FileCmpReportDlg::OnBtnDblclickCopyClipboard()
+{
+	m_ctlReportFile.SetWindowText(_T(""));
+}
+
+void FileCmpReportDlg::OnOK()
+{
+	CollectOptions();
+	m_ctlReportFile.SaveState(_T("ReportFiles"));
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_COPYTOCLIPBOARD, m_options.copyToClipboard);
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_OPENREPORTFILE, m_options.openReportFile);
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES, m_options.includeAllImagePages);
+	__super::OnOK();
+}

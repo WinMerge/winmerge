@@ -22,7 +22,7 @@
 #include "SyntaxColors.h"
 #include "MergeCmdLineInfo.h"
 #include "editcmd.h"
-#include "ClipBoard.h"
+#include "Clipboard.h"
 #include "gtest/gtest.h"
 
 String getProjectRoot()

@@ -99,6 +99,7 @@ BOOL DirCmpReportDlg::OnInitDialog()
 
 	LoadSettings();
 
+	m_ctlReportFile.SetFileControlStates(true);
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)

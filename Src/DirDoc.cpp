@@ -485,6 +485,7 @@ void CDirDoc::Rescan()
 				}
 			}
 			SetGeneratingReport(false);
+			m_tempFile = m_pReport->GetTempFile();
 			SetReport(nullptr);
 		});
 		m_diffThread.SetMarkedRescan(false);

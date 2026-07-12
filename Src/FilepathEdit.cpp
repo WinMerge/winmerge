@@ -13,7 +13,7 @@
 #include "stdafx.h"
 #include <Shlwapi.h>
 #include "FilepathEdit.h"
-#include "ClipBoard.h"
+#include "Clipboard.h"
 #include "FileOrFolderSelect.h"
 #include "paths.h"
 #include "cecolor.h"
@@ -232,7 +232,7 @@ void CFilepathEdit::CustomCopy(size_t iBegin, size_t iEnd /*=-1*/)
 	if (iEnd == String::npos)
 		iEnd = m_sOriginalText.length();
 
-	PutToClipboard(m_sOriginalText.substr(iBegin, iEnd - iBegin), m_hWnd);
+	ClipboardUtils::Put(m_sOriginalText.substr(iBegin, iEnd - iBegin), m_hWnd);
 }
 
 /**

@@ -162,6 +162,8 @@ public:
 	HMENU NewDefaultMenu(int ID = 0);
 	void UpdatePrediffersMenu(CMenu* pPredifferMenu);
 
+	static void GenerateDocumentReport(const std::vector<IMergeDoc*>& docs, const String& sReportFile);
+
 	bool DoFileOrFolderOpen(const PathContext *pFiles = nullptr,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), IDirDoc *pDirDoc = nullptr,

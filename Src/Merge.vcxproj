@@ -1053,7 +1053,7 @@
     </ClCompile>
     <ClCompile Include="MergeFrameCommon.cpp" />
     <ClCompile Include="MergeEditFrm.cpp" />
-    <ClCompile Include="Common\ClipBoard.cpp">
+    <ClCompile Include="Common\Clipboard.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1583,7 +1583,7 @@
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
-    <ClInclude Include="Common\ClipBoard.h" />
+    <ClInclude Include="Common\Clipboard.h" />
     <ClInclude Include="Common\CMoveConstraint.h" />
     <ClInclude Include="codepage_detect.h" />
     <ClInclude Include="Common\ColorButton.h" />

@@ -19,7 +19,7 @@
 #include "codepage_detect.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
-#include "ClipBoard.h"
+#include "Clipboard.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -214,7 +214,7 @@ int CPatchTool::CreatePatch()
 				String lines;
 				file.ReadStringAll(lines);
 				file.Close();
-				PutToClipboard(lines, AfxGetMainWnd()->m_hWnd);
+				ClipboardUtils::Put(lines, AfxGetMainWnd()->m_hWnd);
 			}
 		}
 	}

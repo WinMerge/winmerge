@@ -1,13 +1,16 @@
 /**
- * @file  ClipBoard.cpp
+ * @file  Clipboard.cpp
  *
- * @brief ClipBoard helper functions implementations.
+ * @brief Clipboard helper functions implementations.
  */
 
 #include "pch.h"
 #include "ClipBoard.h"
 #include "unicoder.h"
 #include <ShlObj.h>
+
+namespace ClipboardUtils
+{
 
 inline CLIPFORMAT GetClipTcharTextFormat() { return (sizeof(tchar_t) == 1 ? CF_TEXT : CF_UNICODETEXT); }
 
@@ -17,7 +20,7 @@ inline CLIPFORMAT GetClipTcharTextFormat() { return (sizeof(tchar_t) == 1 ? CF_T
  * @param [in] currentWindowHandle Handle to current window.
  * @return `true` if retrieving the clipboard text succeeds, `false` otherwise.
  */
-bool GetFromClipboard(String & text)
+bool Get(String & text)
 {
 	bool bSuccess = false;
 	if (OpenClipboard(nullptr))
@@ -159,7 +162,7 @@ HGLOBAL CreateClipboardHTML(const String& htmlContent)
  * @return `true` if text copying succeeds, `false` otherwise.
  */
 template<>
-bool PutToClipboard<HWND>(const String& text, HWND currentWindowHandle)
+bool Put<HWND>(const String& text, HWND currentWindowHandle)
 {
 	if (text.empty())
 		return false;
@@ -173,7 +176,7 @@ bool PutToClipboard<HWND>(const String& text, HWND currentWindowHandle)
 }
 
 template<>
-void PutFilesToClipboardInternal<HWND>(const String& strPaths, const String& strPathsSepSpc, HWND currentWindowHandle)
+void PutFilesInternal<HWND>(const String& strPaths, const String& strPathsSepSpc, HWND currentWindowHandle)
 {
 	// CF_HDROP
 	HGLOBAL hDrop = CreateClipboardHDROP(strPaths);
@@ -207,7 +210,7 @@ void PutFilesToClipboardInternal<HWND>(const String& strPaths, const String& str
 }
 
 template<>
-bool PutFileAndTextToClipboard<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
+bool PutFileAndText<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
 {
 	// CF_HDROP
 	String strPaths = filename;
@@ -246,7 +249,7 @@ bool PutFileAndTextToClipboard<HWND>(const String& filename, const String& text,
 }
 
 template<>
-bool PutFileAndTextAndHTMLToClipboard<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
+bool PutFileAndTextAndHTML<HWND>(const String& filename, const String& text, HWND currentWindowHandle)
 {
 	// CF_HDROP
 	String strPaths = filename;
@@ -294,4 +297,6 @@ bool PutFileAndTextAndHTMLToClipboard<HWND>(const String& filename, const String
 		{ GetClipTcharTextFormat(), hText },
 		{ CLIPFORMAT(CF_HTML), hHTML }
 	});
+}
+
 }

@@ -10,11 +10,11 @@ class UniStdioFile;
 
 struct ReportContext
 {
-	ReportContext(UniStdioFile& file, bool allImagePages, const String& outputDirectory)
-		: file(file), allImagePages(allImagePages), outputDirectory(outputDirectory) {}
+	ReportContext(UniStdioFile& file, bool includeAllImagePages, const String& outputDirectory)
+		: file(file), includeAllImagePages(includeAllImagePages), outputDirectory(outputDirectory) {}
 	UniStdioFile& file;
 	int index = 0;
-	bool allImagePages;
+	bool includeAllImagePages = false;
 	String outputDirectory;
 };
 

@@ -30,6 +30,7 @@ public:
 		String reportFile;
 		bool includeAllImagePages = false;
 		bool copyToClipboard = false;
+		bool openReportFile = false;
 		std::vector<uintptr_t> selectedData;
 	};
 
@@ -43,13 +44,13 @@ public:
 	const Options& GetOptions() const { return m_options; }
 
 protected:
-	virtual BOOL OnInitDialog() override;
 	virtual void DoDataExchange(CDataExchange* pDX) override;	// DDX/DDV support
 
 	// Generated message map functions
 	//{{AFX_MSG(FileCmpReportDlg)
 	afx_msg void OnBtnClickReportBrowse();
 	afx_msg void OnBtnDblclickCopyClipboard();
+	virtual BOOL OnInitDialog() override;
 	virtual void OnOK() override;
 	//}}AFX_MSG
 
