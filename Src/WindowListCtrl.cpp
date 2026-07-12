@@ -91,7 +91,7 @@ void CWindowListCtrl::SetWindows(const std::vector<WindowItem>& windows)
 		item.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_PARAM;
 		item.iItem = GetItemCount();
 		item.iImage = image;
-		item.pszText = title.GetBuffer();
+		item.pszText = const_cast<LPTSTR>((LPCTSTR)title);
 		item.lParam = window.data;
 
 		int index = InsertItem(&item);
