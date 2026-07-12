@@ -270,6 +270,25 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 	return true;
 }
 
+bool UniMemFile::DoGetFileStatus()
+{
+	m_lastError.ClearError();
+
+	if (m_hMapping == nullptr)
+	{
+		m_filesize = 0;
+		m_statusFetched = 1;
+		return true;
+	}
+
+	auto begin = m_hMapping->begin();
+	auto end = m_hMapping->end();
+
+	m_filesize = end - begin;
+	m_statusFetched = 1;
+	return true;
+}
+
 /**
  * @brief Check for Unicode BOM (byte order mark) at start of file
  *

@@ -202,6 +202,7 @@ public:
 // Implementation methods
 protected:
 	virtual bool DoOpen(const String& filename, AccessMode mode);
+	virtual bool DoGetFileStatus();
 
 // Implementation data
 private:
