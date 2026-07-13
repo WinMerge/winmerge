@@ -24,16 +24,30 @@ static IMergeDoc* GetFirstDocument(const std::vector<IMergeDoc*>& mergeDocuments
 }
 
 /**
- * @brief Write HTML header to file
- * @param [in,out] file UniStdioFile to write header to
+ * @brief Write the HTML document header, style block, and opening report structure.
+ *
+ * This routine centralizes all header generation for file-comparison reports. It:
+ * - detects available document views (text/table/image) to conditionally emit UI sections,
+ * - selects a full color palette for light mode by default,
+ * - overrides that palette when @p options.darkMode is enabled,
+ * - formats and writes the initial HTML/CSS/JS scaffold directly to @p file.
+ *
+ * Because the generated output is intentionally template-heavy and spans many lines,
+ * this function keeps all visual constants and top-level layout emission in one place.
+ *
+ * @param [in] mergeDocuments Active merge document set used to determine available report modes.
+ * @param [in] options Report rendering options (for example dark mode selection).
+ * @param [in,out] file Target stream that receives generated HTML output.
  */
 static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFileCmpReport::Options& options, UniStdioFile& file)
 {
+	// Identify first available document by type so header navigation and section stubs
+	// can be emitted only for views present in the current comparison session.
 	auto* pTextDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Text);
 	auto* pTableDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Table);
 	auto* pImageDoc = GetFirstDocument(mergeDocuments, IMergeDoc::DocumentType::Image);
 
-	// Light mode colors
+	// Base (light theme) palette. Dark mode below selectively overrides these values.
 	const wchar_t* bgColor = _T("#ffffff");
 	const wchar_t* fgColor = _T("#1a1a1a");
 	const wchar_t* borderColor = _T("#a0a0a0");
@@ -50,7 +64,7 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 	const wchar_t* collapsedCellBgColor = _T("#000000");
 	const wchar_t* shadowColor = _T("rgba(0, 0, 0, 0.3)");
 
-	// Dark mode colors
+	// Dark theme overrides to keep contrast/readability while preserving layout behavior.
 	if (options.darkMode)
 	{
 		bgColor = _T("#1e1e1e");
@@ -70,6 +84,7 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 		shadowColor = _T("rgba(0, 0, 0, 0.6)");
 	}
 
+	// Emit the static header template (doctype/head/meta/styles and opening body structure).
 	String htmlHeader = strutils::format(
 LR"(<!DOCTYPE html>
 <html>
