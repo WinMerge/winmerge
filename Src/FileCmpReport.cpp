@@ -52,8 +52,7 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 	const wchar_t* fgColor = _T("#1a1a1a");
 	const wchar_t* borderColor = _T("#a0a0a0");
 	const wchar_t* surfaceColor = _T("#e8e8e8");
-	const wchar_t* titleGradStart = _T("mediumblue");
-	const wchar_t* titleGradEnd = _T("darkblue");
+	const wchar_t* titleBgColor = _T("#191970");
 	const wchar_t* titleFgColor = _T("#ffffff");
 	const wchar_t* tocBgColor = _T("#f0f4f8");
 	const wchar_t* tocBorderColor = _T("#d0dae3");
@@ -71,8 +70,7 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 		fgColor = _T("#e0e0e0");
 		borderColor = _T("#555555");
 		surfaceColor = _T("#2a2a2a");
-		titleGradStart = _T("#2a4d9b");
-		titleGradEnd = _T("#16265c");
+		titleBgColor = _T("#2f2f36");
 		titleFgColor = _T("#ffffff");
 		tocBgColor = _T("#2a2f36");
 		tocBorderColor = _T("#3a4048");
@@ -99,7 +97,7 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .cmp-table-table td, .cmp-table-table th { word-break: break-all; padding: 0 3px; border: 1px solid %s; vertical-align: top; }
 .cmp-table-image td, .cmp-table-webpage td { border: 1px solid %s; }
 .ln { position: sticky; left: 0; background-color: %s; }
-.title { font-weight: 600; color: %s; text-align: left; padding: 8px 12px; background: linear-gradient(%s, %s); border-bottom: none; position: sticky; vertical-align: top; text-align: center; top: 0; z-index: 9999; }
+.title { font-weight: 600; color: %s; text-align: left; padding: 8px 12px; background-color: %s; border-bottom: none; position: sticky; vertical-align: top; text-align: center; top: 0; z-index: 9999; }
 .title-right, .title-middle { box-shadow: inset 1px 0 %s; }
 .cmp-div-image { overflow: scroll; text-align: center; }
 .cmp-pdf-webpage { width: 100%%; height: calc(100vh - 56px) }
@@ -115,7 +113,7 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .cmp-scroll { overflow-x: auto; }
 )"
 		, bgColor, fgColor, options.fontSize, borderColor, borderColor, surfaceColor, titleFgColor, 
-		  titleGradStart, titleGradEnd, bgColor, collapsedCellBgColor);
+		  titleBgColor, bgColor, collapsedCellBgColor);
 
 	if (mergeDocuments.size() > 1)
 	{
