@@ -57,12 +57,25 @@ struct ClipboardItem
 	ClipboardItem& operator=(const ClipboardItem&) = delete;
 
 	ClipboardItem(ClipboardItem&& other) noexcept
+		: format(other.format),
+		hData(other.hData)
 	{
-		format = other.format;
-		hData = other.hData;
 		other.hData = nullptr;
 	}
-	ClipboardItem& operator=(ClipboardItem&&) noexcept = default;
+
+	ClipboardItem& operator=(ClipboardItem&& other) noexcept
+	{
+		if (this != &other)
+		{
+			if (hData)
+				GlobalFree(hData);
+
+			format = other.format;
+			hData = other.hData;
+			other.hData = nullptr;
+		}
+		return *this;
+	}
 
 	~ClipboardItem()
 	{

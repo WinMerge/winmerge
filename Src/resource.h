@@ -1981,7 +1981,6 @@
 #define IDS_REPORT_FILEOVERWRITE        41994
 #define IDS_REPORT_ERROR                41995
 #define IDS_REPORT_SUCCESS              41996
-#define IDS_INCLUDE_ALL_COMPARISONS     41997
 #define IDS_SYNCPOINT_LASTBLOCK         42000
 #define IDS_FILE_TO_ITSELF              42100
 #define IDS_FILESSAME                   42101
