@@ -76,7 +76,12 @@ void CWindowListCtrl::SetWindows(const std::vector<WindowItem>& windows)
 
 	for (const auto& window : windows)
 	{
-		HWND hwnd = window.pFrame->GetSafeHwnd();
+		if (window.pFrame == nullptr)
+			continue;
+
+		const HWND hwnd = window.pFrame->GetSafeHwnd();
+		if (hwnd == nullptr)
+			continue;
 
 		HICON hIcon = (HICON)::SendMessage(hwnd, WM_GETICON, ICON_SMALL2, 0);
 		if (hIcon == nullptr)
