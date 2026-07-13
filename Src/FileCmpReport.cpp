@@ -71,8 +71,7 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 	}
 
 	String htmlHeader = strutils::format(
-LR"(
-<!DOCTYPE html>
+LR"(<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -131,8 +130,7 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 	htmlHeader += _T("--></style>\n");
 	if (pTableDoc || pImageDoc)
 	{
-		htmlHeader += LR"(
-<script>
+		htmlHeader += LR"(<script>
 <!--
 document.addEventListener("DOMContentLoaded", () => {
 	const syncing = new WeakSet();
@@ -158,8 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 	if (mergeDocuments.size() > 1)
 	{
-		htmlHeader += LR"(
-<script>
+		htmlHeader += LR"(<script>
 <!--
 document.addEventListener("DOMContentLoaded", () => {
 	const list = document.getElementById("toc-list");
@@ -210,8 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	htmlHeader += _T("</head><body>\n");
 	if (mergeDocuments.size() > 1)
 	{
-		htmlHeader += LR"(
-<div id="toc-sentinel"></div>
+		htmlHeader += LR"(<div id="toc-sentinel"></div>
 <nav id="toc">
 <ol id="toc-list"></ol>
 </nav>
