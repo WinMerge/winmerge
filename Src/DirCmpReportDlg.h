@@ -49,5 +49,6 @@ public:
 	REPORT_TYPE m_nReportType; /**< Report type integer */
 	bool m_bCopyToClipboard; /**< Do we copy report to clipboard? */
 	bool m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */
+	bool m_bOpenReportFile;
 	//}}AFX_DATA
 };

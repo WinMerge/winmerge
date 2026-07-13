@@ -21,6 +21,7 @@ IMPLEMENT_DYNAMIC(DirCmpReportDlg, CTrDialog)
 DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(DirCmpReportDlg::IDD, pParent)
 	, m_bCopyToClipboard(false)
+	, m_bOpenReportFile(false)
 	, m_bIncludeFileCmpReport(false)
 	, m_nReportType(REPORT_TYPE_COMMALIST)
 {
@@ -39,6 +40,7 @@ void DirCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_REPORT_STYLECOMBO, m_ctlStyle);
 	DDX_Text(pDX, IDC_REPORT_FILE, m_sReportFile);
 	DDX_Check(pDX, IDC_REPORT_COPYCLIPBOARD, m_bCopyToClipboard);
+	DDX_Check(pDX, IDC_REPORT_OPENREPORTFILE, m_bOpenReportFile);
 	DDX_Check(pDX, IDC_REPORT_INCLUDEFILECMPREPORT, m_bIncludeFileCmpReport);
 }
 
@@ -87,6 +89,7 @@ void DirCmpReportDlg::LoadSettings()
 {
 	m_nReportType = static_cast<REPORT_TYPE>(GetOptionsMgr()->GetInt(OPT_REPORTFILES_REPORTTYPE));
 	m_bCopyToClipboard = GetOptionsMgr()->GetBool(OPT_REPORTFILES_COPYTOCLIPBOARD);
+	m_bOpenReportFile = GetOptionsMgr()->GetBool(OPT_REPORTFILES_OPENREPORTFILE);
 	m_bIncludeFileCmpReport = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEFILECMPREPORT);
 }
 
@@ -191,6 +194,7 @@ void DirCmpReportDlg::OnOK()
 	m_ctlReportFile.SaveState(_T("ReportFiles"));
 	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_REPORTTYPE, static_cast<int>(m_nReportType));
 	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_COPYTOCLIPBOARD, m_bCopyToClipboard);
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_OPENREPORTFILE, m_bOpenReportFile);
 	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_INCLUDEFILECMPREPORT, m_bIncludeFileCmpReport);
 
 	CTrDialog::OnOK();

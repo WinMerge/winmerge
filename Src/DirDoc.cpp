@@ -43,6 +43,7 @@
 #include "FolderCmp.h"
 #include "DirViewColItems.h"
 #include "RenameMoveDetection.h"
+#include "Shell.h"
 #include <Poco/Semaphore.h>
 #include <set>
 
@@ -474,7 +475,16 @@ void CDirDoc::Rescan()
 				if (errStr.empty())
 				{
 					if (GetReportFile().empty())
+					{
 						I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+						if (GetOptionsMgr()->GetBool(OPT_REPORTFILES_OPENREPORTFILE))
+						{
+							if (m_pReport->GetReportType() == REPORT_TYPE_SIMPLEHTML)
+								shell::Open(m_pReport->GetReportFile().c_str());
+							else
+								CMergeApp::OpenFileToExternalEditor(m_pReport->GetReportFile());
+						}
+					}
 				}
 				else
 				{

@@ -189,7 +189,7 @@ bool DirCmpReport::GenerateReportToFile(String &errStr)
 	return true;
 }
 
-static String GetExtention(REPORT_TYPE nReportType)
+static String GetReportExtension(REPORT_TYPE nReportType)
 {
 	switch (nReportType)
 	{
@@ -219,7 +219,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	if (m_sReportFile.empty())
 	{
 		m_tempFile = std::make_shared<TempFile>();
-		String ext = GetExtention(this->m_nReportType);
+		String ext = GetReportExtension(this->m_nReportType);
 		m_tempFile->Create(_T(""), ext);
 		m_sReportFile = m_tempFile->GetPath();
 	}
