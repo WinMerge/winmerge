@@ -169,6 +169,32 @@ ClipboardItem CreateClipboardDropEffect(DWORD dropEffect)
 	return { CLIPFORMAT(cfDropEffect), hData };
 }
 
+namespace
+{
+	// Case-insensitive substring search. Returns std::string::npos if not found.
+	size_t ifind(const std::string& haystack, const char* needle, size_t startPos = 0)
+	{
+		const size_t needleLen = strlen(needle);
+		if (needleLen == 0 || haystack.size() < needleLen)
+			return std::string::npos;
+		for (size_t i = startPos; i + needleLen <= haystack.size(); ++i)
+		{
+			size_t j = 0;
+			for (; j < needleLen; ++j)
+			{
+				if (std::tolower(static_cast<unsigned char>(haystack[i + j])) !=
+					std::tolower(static_cast<unsigned char>(needle[j])))
+				{
+					break;
+				}
+			}
+			if (j == needleLen)
+				return i;
+		}
+		return std::string::npos;
+	}
+}
+
 ClipboardItem CreateClipboardHTML(const String& htmlContent)
 {
 	if (htmlContent.empty())
@@ -188,19 +214,52 @@ ClipboardItem CreateClipboardHTML(const String& htmlContent)
 	// Convert to UTF-8.
 	const std::string htmlUtf8 = ucr::toUTF8(htmlContent);
 
+	// Locate <body ...> and </body> so the fragment markers are placed
+	// inside the body element rather than wrapping the whole document
+	// (which would otherwise sit in front of <!DOCTYPE>/<html>/<head>).
+	size_t fragInsertStart = 0;
+	size_t fragInsertEnd = htmlUtf8.size();
+
+	const size_t bodyOpenPos = ifind(htmlUtf8, "<body");
+	if (bodyOpenPos != std::string::npos)
+	{
+		const size_t bodyOpenEnd = htmlUtf8.find('>', bodyOpenPos);
+		if (bodyOpenEnd != std::string::npos)
+		{
+			fragInsertStart = bodyOpenEnd + 1;
+
+			const size_t bodyClosePos = ifind(htmlUtf8, "</body", fragInsertStart);
+			if (bodyClosePos != std::string::npos && bodyClosePos >= fragInsertStart)
+				fragInsertEnd = bodyClosePos;
+		}
+	}
+
+	// Split the document into three parts: before-fragment, fragment, after-fragment.
+	const std::string beforeFragment = htmlUtf8.substr(0, fragInsertStart);
+	const std::string fragmentBody = htmlUtf8.substr(fragInsertStart, fragInsertEnd - fragInsertStart);
+	const std::string afterFragment = htmlUtf8.substr(fragInsertEnd);
+
 	// Build CF_HTML header.
 	char headerBuf[256];
 	const int cbHeader = wsprintfA(headerBuf, header, 0, 0, 0, 0);
 
 	const int startHTML = cbHeader;
-	const int endHTML = startHTML + static_cast<int>(sizeof(startFragment) - 1 + htmlUtf8.size() + sizeof(endFragment) - 1);
-
-	const int startFragmentOffset = startHTML + static_cast<int>(sizeof(startFragment) - 1);
-	const int endFragmentOffset = startFragmentOffset + static_cast<int>(htmlUtf8.size());
+	const int startFragmentOffset = startHTML
+		+ static_cast<int>(beforeFragment.size())
+		+ static_cast<int>(sizeof(startFragment) - 1);
+	const int endFragmentOffset = startFragmentOffset + static_cast<int>(fragmentBody.size());
+	const int endHTML = endFragmentOffset
+		+ static_cast<int>(sizeof(endFragment) - 1)
+		+ static_cast<int>(afterFragment.size());
 
 	wsprintfA(headerBuf, header, startHTML, endHTML, startFragmentOffset, endFragmentOffset);
 
-	const SIZE_T totalSize = cbHeader + (sizeof(startFragment) - 1) + htmlUtf8.size() + (sizeof(endFragment) - 1);
+	const SIZE_T totalSize = cbHeader
+		+ beforeFragment.size()
+		+ (sizeof(startFragment) - 1)
+		+ fragmentBody.size()
+		+ (sizeof(endFragment) - 1)
+		+ afterFragment.size();
 
 	HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, totalSize);
 	if (hData == nullptr)
@@ -216,13 +275,19 @@ ClipboardItem CreateClipboardHTML(const String& htmlContent)
 	memcpy(p, headerBuf, cbHeader);
 	p += cbHeader;
 
+	memcpy(p, beforeFragment.data(), beforeFragment.size());
+	p += beforeFragment.size();
+
 	memcpy(p, startFragment, sizeof(startFragment) - 1);
 	p += sizeof(startFragment) - 1;
 
-	memcpy(p, htmlUtf8.data(), htmlUtf8.size());
-	p += htmlUtf8.size();
+	memcpy(p, fragmentBody.data(), fragmentBody.size());
+	p += fragmentBody.size();
 
 	memcpy(p, endFragment, sizeof(endFragment) - 1);
+	p += sizeof(endFragment) - 1;
+
+	memcpy(p, afterFragment.data(), afterFragment.size());
 
 	GlobalUnlock(hData);
 
