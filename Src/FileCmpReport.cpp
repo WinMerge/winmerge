@@ -266,16 +266,23 @@ bool CFileCmpReport::GenerateDocumentReport(const std::vector<IMergeDoc*>& merge
 
 		reportContext.index = i;
 
+		bool ok = false;
 		if (mergeDocuments.size() > 1)
 		{
 			file.WriteString(strutils::format(_T("<section id=\"doc%d\" class=\"report-section\">\n"), i));
 			// Generate HTML content from the document
-			pMergeDoc->GenerateReport(reportContext);
+			ok = pMergeDoc->GenerateReport(reportContext);
 			file.WriteString(_T("</section>\n"));
 		}
 		else
 		{
-			pMergeDoc->GenerateReport(reportContext);
+			ok = pMergeDoc->GenerateReport(reportContext);
+		}
+		if (!ok)
+		{
+			errStr = strutils::format(_T("Failed to generate report for document %d."), i + 1);
+			file.Close();
+			return false;
 		}
 
 		++i;

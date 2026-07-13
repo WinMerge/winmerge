@@ -983,10 +983,7 @@ int GetActivePaneFromFlags(int nFiles, const fileopenflags_t dwFlags[])
 	options.darkMode = DarkMode::isEnabled();
 	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
 	if (!CFileCmpReport::GenerateDocumentReport(docs, sReportFile, options, sError))
-	{
-		String msg = I18n::LoadString(IDS_REPORT_ERROR) + _T("\n") + sError;
-		RootLogger::Error(msg);
-	}
+		RootLogger::Error(sError);
 }
 
 /**
@@ -2095,8 +2092,14 @@ void CMainFrame::OnToolsGenerateReport()
 
 	for (auto* pDoc : GetAllMergeDocuments())
 	{
+		if (pDoc == nullptr || pDoc->GetDocumentType() == IMergeDoc::DocumentType::Unknown)
+			continue;
+		CFrameWnd* pFrame = GetFrameWndByDocument(pDoc);
+		if (pFrame == nullptr)
+			continue;
+
 		FileCmpReportDlg::WindowItem item;
-		item.pFrame = GetFrameWndByDocument(pDoc);
+		item.pFrame = pFrame;
 		item.data = reinterpret_cast<uintptr_t>(pDoc);
 		item.checked = (pDoc == pMergeDoc);
 		windowInfoList.push_back(item);
@@ -2193,8 +2196,10 @@ void CMainFrame::OnToolsGeneratePatch()
 	}
 	else
 	{
-		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-			docsToPatch.push_back(static_cast<const CMergeDoc*>(pMergeDoc));
+		if (auto* pMergeDoc = dynamic_cast<CMergeDoc*>(GetActiveIMergeDoc()))
+			docsToPatch.push_back(pMergeDoc);
+		else
+			return;
 	}
 
 	CPatchTool patcher;

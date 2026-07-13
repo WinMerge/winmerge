@@ -150,7 +150,7 @@ bool DirCmpReport::GenerateReportToClipboard(String &errStr)
 		bSuccess = ClipboardUtils::PutFileAndTextAndHTML(m_sReportFile, content, HWND(nullptr));
 	else
 		bSuccess = ClipboardUtils::PutFileAndText(m_sReportFile, content, HWND(nullptr));
-	if (bSuccess)
+	if (!bSuccess)
 	{
 		errStr = _("Failed to copy to clipboard.");
 		return false;

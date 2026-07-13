@@ -48,7 +48,7 @@ BOOL FileCmpReportDlg::OnInitDialog()
 
 	m_ctlReportFile.SetFileControlStates(true);
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
-	CRect rc;
+
 	m_list.Initialize();
 	m_list.SetWindows(m_windows);
 
