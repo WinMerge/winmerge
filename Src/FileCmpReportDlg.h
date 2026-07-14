@@ -50,6 +50,7 @@ protected:
 	//{{AFX_MSG(FileCmpReportDlg)
 	afx_msg void OnBtnClickReportBrowse();
 	afx_msg void OnBtnDblclickCopyClipboard();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	virtual BOOL OnInitDialog() override;
 	virtual void OnOK() override;
 	//}}AFX_MSG

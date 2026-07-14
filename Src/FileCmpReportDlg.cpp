@@ -31,6 +31,7 @@ void FileCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(FileCmpReportDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
 	ON_BN_DOUBLECLICKED(IDC_REPORT_COPYCLIPBOARD, OnBtnDblclickCopyClipboard)
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 void FileCmpReportDlg::LoadSettings()
@@ -61,6 +62,18 @@ BOOL FileCmpReportDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;
+}
+
+HBRUSH FileCmpReportDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = __super::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	if (nCtlColor == CTLCOLOR_STATIC && pWnd->GetDlgCtrlID() == IDC_REPORT_INFO)
+	{
+		pDC->SetTextColor(::GetSysColor(COLOR_GRAYTEXT));
+		pDC->SetBkMode(TRANSPARENT);
+	}
+	return hbr;
 }
 
 void FileCmpReportDlg::CollectOptions()
