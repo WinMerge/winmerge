@@ -171,48 +171,73 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		htmlHeader += LR"(<script>
 <!--
-document.addEventListener("DOMContentLoaded", () => {
-	const list = document.getElementById("toc-list");
-	document.querySelectorAll("section.report-section").forEach((section, i) => {
-		const titles = [...section.querySelectorAll(".title")]
-			.map(elem => elem.textContent.trim())
-			.filter(text => text.length > 0);
-		const label = titles.length ? titles.join(" - ") : `Comparison ${i + 1}`;
-		const li = document.createElement("li");
-		const a = document.createElement("a");
-		a.href = `#${section.id}`;
-		a.textContent = label;
-		li.appendChild(a);
-		list.appendChild(li);
-	});
+document.addEventListener("DOMContentLoaded", function () {
+	var isIE = /*@cc_on!@*/false || !!document.documentMode;
+	if (isIE) {
+		["toc", "toc-fab", "toc-fab-panel"].forEach(function (id) {
+			var e = document.getElementById(id);
+			if (e) e.style.display = "none";
+		});
+		return;
+	}
 
-	const sentinel = document.getElementById("toc-sentinel");
-	const fab = document.getElementById("toc-fab");
-	const fabPanel = document.getElementById("toc-fab-panel");
+	var list = document.getElementById("toc-list");
+
+	Array.prototype.forEach.call(
+		document.querySelectorAll("section.report-section"),
+		function (section, i) {
+			var titles = [];
+			Array.prototype.forEach.call(
+				section.querySelectorAll(".title"),
+				function (elem) {
+					var text = elem.textContent.trim();
+					if (text.length)
+						titles.push(text);
+				});
+			var label = titles.length ? titles.join(" - ") : "Comparison " + (i + 1);
+			var li = document.createElement("li");
+			var a = document.createElement("a");
+			a.href = "#" + section.id;
+			a.textContent = label;
+			li.appendChild(a);
+			list.appendChild(li);
+		});
+
+	var sentinel = document.getElementById("toc-sentinel");
+	var fab = document.getElementById("toc-fab");
+	var fabPanel = document.getElementById("toc-fab-panel");
+
 	fabPanel.appendChild(list.cloneNode(true));
 
-	const titleElem = document.querySelector(".title");
-	if (titleElem)
-	{
-		const setTitleHeight = () => document.documentElement.style.setProperty(
-			"--title-height", `${titleElem.getBoundingClientRect().height}px`);
+	var titleElem = document.querySelector(".title");
+	if (titleElem) {
+		function setTitleHeight() {
+			document.documentElement.style.setProperty(
+				"--title-height",
+				titleElem.getBoundingClientRect().height + "px");
+		}
 		setTitleHeight();
 		window.addEventListener("resize", setTitleHeight);
 	}
 
-	new IntersectionObserver(([entry]) => {
-		fab.classList.toggle("visible", !entry.isIntersecting);
-		if (entry.isIntersecting)
-			fabPanel.classList.remove("open");
-	}, { threshold: 0 }).observe(sentinel);
+	if (window.IntersectionObserver) {
+		new IntersectionObserver(function (entries) {
+			var entry = entries[0];
+			fab.classList.toggle("visible", !entry.isIntersecting);
+			if (entry.isIntersecting)
+				fabPanel.classList.remove("open");
+		}, { threshold: 0 }).observe(sentinel);
+	}
 
-	fab.addEventListener("click", () => fabPanel.classList.toggle("open"));
-	fabPanel.addEventListener("click", (e) => {
+	fab.addEventListener("click", function () {
+		fabPanel.classList.toggle("open");
+	});
+
+	fabPanel.addEventListener("click", function (e) {
 		if (e.target.tagName === "A")
 			fabPanel.classList.remove("open");
 	});
 });
-
 -->
 </script>
 )";
