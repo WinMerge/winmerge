@@ -60,8 +60,9 @@ public:
 	int UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
-	bool GenerateReport(const String& sFileName) const override;
+	bool GenerateReport(ReportContext& reportContext) const override;
 	bool GenerateReport(const String& sFileName, bool allPages) const;
+	IMergeDoc::DocumentType GetDocumentType() const override { return IMergeDoc::DocumentType::Image; }
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
 	const PrediffingInfo* GetPrediffer() const override { return nullptr; };
@@ -252,7 +253,6 @@ protected:
 	afx_msg void OnImgCompareExtractedText();
 	afx_msg void OnShellMenu();
 	afx_msg void OnUpdateShellMenu(CCmdUI* pCmdUI);
-	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	afx_msg void OnHelp();

@@ -474,7 +474,7 @@
     <ClCompile Include="PropTextColors.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\ClipBoard.cpp">
+    <ClCompile Include="Common\Clipboard.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\coretools.cpp">
@@ -855,6 +855,15 @@
     <ClCompile Include="SyntaxParserHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileCmpReport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileCmpReportDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowListCtrl.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1220,7 +1229,7 @@
     <ClInclude Include="PropTextColors.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\ClipBoard.h">
+    <ClInclude Include="Common\Clipboard.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\coretools.h">
@@ -1631,11 +1640,14 @@
     <ClInclude Include="SyntaxParserHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ISyntaxParserFactory.h">
+    <ClInclude Include="FileCmpReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SyntaxParserRegistry.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FileCmpReportDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowListCtrl.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

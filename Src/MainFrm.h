@@ -162,6 +162,8 @@ public:
 	HMENU NewDefaultMenu(int ID = 0);
 	void UpdatePrediffersMenu(CMenu* pPredifferMenu);
 
+	static void GenerateDocumentReport(const std::vector<IMergeDoc*>& docs, const String& sReportFile);
+
 	bool DoFileOrFolderOpen(const PathContext *pFiles = nullptr,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), IDirDoc *pDirDoc = nullptr,
@@ -245,6 +247,10 @@ public:
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
 	void OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show);
 	void AddTempFile(const TempFilePtr& pTempFile) { m_tempFiles.push_back(pTempFile); }
+	MergeDocList &GetAllMergeDocs();
+	DirDocList &GetAllDirDocs();
+	std::vector<IMergeDoc*> GetAllMergeDocuments();
+	void OnToolsGenerateReport();
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -499,8 +505,6 @@ protected:
 
 private:
 	OpenDocList &GetAllOpenDocs();
-	MergeDocList &GetAllMergeDocs();
-	DirDocList &GetAllDirDocs();
 	HexMergeDocList &GetAllHexMergeDocs();
 	std::vector<CImgMergeFrame *> GetAllImgMergeFrames();
 	std::vector<CWebPageDiffFrame *> GetAllWebPageDiffFrames();

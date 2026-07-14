@@ -23,6 +23,7 @@
 #include "UniFile.h"
 #include "TempFile.h"
 #include "I18n.h"
+#include "Clipboard.h"
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
 
@@ -127,132 +128,34 @@ void DirCmpReport::SetFileCmpReport(IFileCmpReport *pFileCmpReport)
 }
 
 /**
- * @brief Copy string content to clipboard as Unicode text.
- * @param [in] content String to copy to clipboard.
- * @return true if successful, false otherwise.
- */
-static bool CopyTextToClipboard(const String& content)
-{
-	size_t len = content.length();
-	HGLOBAL hMem = GlobalAlloc(GMEM_DDESHARE | GMEM_MOVEABLE, (len + 1) * sizeof(wchar_t));
-	if (!hMem)
-		return false;
-
-	wchar_t* pMem = static_cast<wchar_t*>(GlobalLock(hMem));
-	if (!pMem)
-	{
-		GlobalFree(hMem);
-		return false;
-	}
-
-	wcscpy_s(pMem, len + 1, content.c_str());
-	GlobalUnlock(hMem);
-	SetClipboardData(CF_UNICODETEXT, hMem);
-	return true;
-}
-
-/**
- * @brief Generate CF_HTML format data and copy to clipboard.
- * @param [in] htmlContent HTML content string to convert to CF_HTML format.
- */
-void DirCmpReport::GenerateCF_HTML(const String& htmlContent)
-{
-	// CF_HTML format constants
-	static const char header[] =
-		"Version:0.9\n"
-		"StartHTML:%09d\n"
-		"EndHTML:%09d\n"
-		"StartFragment:%09d\n"
-		"EndFragment:%09d\n";
-	static const char start[] = "<html><body>\n<!--StartFragment -->";
-	static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
-
-	// Convert to UTF-8 for CF_HTML
-	std::string htmlUtf8 = ucr::toUTF8(htmlContent);
-	std::vector<char> htmlBuffer(htmlUtf8.begin(), htmlUtf8.end());
-
-	// Rewrite CF_HTML header with valid offsets
-	char headerBuf[MAX_PATH_FULL];
-	int cbHeader = wsprintfA(headerBuf, header, 0, 0, 0, 0);
-	int size = static_cast<int>(htmlBuffer.size());
-	wsprintfA(headerBuf, header, cbHeader,
-		size - 1,
-		cbHeader + sizeof start - 1,
-		size - sizeof end + 1);
-	memcpy(htmlBuffer.data(), headerBuf, cbHeader);
-
-	HGLOBAL hMemHTML = GlobalAlloc(GMEM_DDESHARE | GMEM_MOVEABLE, size);
-	if (hMemHTML)
-	{
-		memcpy(GlobalLock(hMemHTML), htmlBuffer.data(), size);
-		GlobalUnlock(hMemHTML);
-		SetClipboardData(CF_HTML, hMemHTML);
-	}
-}
-
-/**
  * @brief Generate report to clipboard.
  * @param [out] errStr Empty if succeeded, otherwise contains error message.
  * @return true if successful, false otherwise.
  */
 bool DirCmpReport::GenerateReportToClipboard(String &errStr)
 {
-	if (!OpenClipboard(NULL))
-		return false;
-	if (!EmptyClipboard())
-	{
-		CloseClipboard();
-		return false;
-	}
-
-	// Generate report to temporary file
-	TempFile tempFile;
-	String tempFilePath = tempFile.Create(_T("winmerge_report_"), _T(".txt"));
-	bool savedIncludeFileCmpReport = m_bIncludeFileCmpReport;
-	m_bIncludeFileCmpReport = false;
-
-	{
-		UniStdioFile file;
-		if (!file.OpenCreateUtf8(tempFilePath))
-		{
-			CloseClipboard();
-			errStr = _("Failed to create temporary file.");
-			return false;
-		}
-		file.SetBom(true);
-		file.WriteBom();
-		m_pFile = &file;
-		GenerateReport(m_nReportType);
-		file.Close();
-		m_pFile = nullptr;
-	}
-
 	// Read temporary file and copy to clipboard
 	UniMemFile file;
-	if (file.OpenReadOnly(tempFilePath))
+	if (!file.OpenReadOnly(m_sReportFile))
+		return false;
+	
+	file.SetUnicoding(ucr::UTF8);
+	String content;
+	file.ReadStringAll(content);
+	file.Close();
+
+	bool bSuccess = false;
+	// If report type is HTML, render CF_HTML format as well
+	if (m_nReportType == REPORT_TYPE_SIMPLEHTML)
+		bSuccess = ClipboardUtils::PutFileAndTextAndHTML(m_sReportFile, content, HWND(nullptr));
+	else
+		bSuccess = ClipboardUtils::PutFileAndText(m_sReportFile, content, HWND(nullptr));
+	if (!bSuccess)
 	{
-		file.ReadBom();
-		String content;
-		file.ReadStringAll(content);
-		file.Close();
-
-		// Copy to clipboard as Unicode text
-		if (!CopyTextToClipboard(content))
-		{
-			errStr = _("Failed to copy to clipboard.");
-			CloseClipboard();
-			m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
-			return false;
-		}
-
-		// If report type is HTML, render CF_HTML format as well
-		if (m_nReportType == REPORT_TYPE_SIMPLEHTML)
-		{
-			GenerateCF_HTML(content);  // Pass the content directly
-		}
+		errStr = _("Failed to copy to clipboard.");
+		return false;
 	}
-	CloseClipboard();
-	m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
+
 	// TempFile destructor will automatically delete the temporary file
 	return true;
 }
@@ -286,6 +189,23 @@ bool DirCmpReport::GenerateReportToFile(String &errStr)
 	return true;
 }
 
+static String GetReportExtension(REPORT_TYPE nReportType)
+{
+	switch (nReportType)
+	{
+	case REPORT_TYPE_SIMPLEHTML:
+		return _T(".html");
+	case REPORT_TYPE_SIMPLEXML:
+		return _T(".xml");
+	case REPORT_TYPE_COMMALIST:
+		return _T(".csv");
+	case REPORT_TYPE_TABLIST:
+		return _T(".tsv");
+	default:
+		return _T(".txt");
+	}
+}
+
 /**
  * @brief Generate report and save it to file.
  * @param [out] errStr Empty if succeeded, otherwise contains error message.
@@ -296,14 +216,20 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	assert(m_pList != nullptr);
 	assert(m_pFile == nullptr);
 
+	if (m_sReportFile.empty())
+	{
+		m_tempFile = std::make_shared<TempFile>();
+		String ext = GetReportExtension(this->m_nReportType);
+		m_tempFile->Create(_T(""), ext);
+		m_sReportFile = m_tempFile->GetPath();
+	}
+	
+	if (!GenerateReportToFile(errStr))
+		return false;
+
 	if (m_bCopyToClipboard)
 	{
 		if (!GenerateReportToClipboard(errStr))
-			return false;
-	}
-	if (!m_sReportFile.empty())
-	{
-		if (!GenerateReportToFile(errStr))
 			return false;
 	}
 	return true;

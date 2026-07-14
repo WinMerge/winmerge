@@ -7,10 +7,12 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 #include "UnicodeString.h"
 #include "PathContext.h"
 #include "DirReportTypes.h"
 #include "IListCtrl.h"
+#include "TempFile.h"
 
 struct DiffFuncStruct;
 class UniStdioFile;
@@ -53,6 +55,7 @@ public:
 	bool GetIncludeFileCmpReport() const { return m_bIncludeFileCmpReport; }
 	void SetDiffFuncStruct(DiffFuncStruct* myStruct) { m_myStruct = myStruct; }
 	bool GenerateReport(String &errStr);
+	std::shared_ptr<TempFile> GetTempFile() const { return m_tempFile; }
 
 protected:
 	void GenerateReport(REPORT_TYPE nReportType);
@@ -66,7 +69,6 @@ protected:
 	void GenerateXmlHtmlContent(bool xml);
 	void GenerateHTMLFooter();
 	void GenerateXmlFooter();
-	void GenerateCF_HTML(const String& htmlContent);
 	bool GenerateReportToClipboard(String &errStr);
 	bool GenerateReportToFile(String &errStr);
 
@@ -84,5 +86,6 @@ private:
 	bool m_bOutputUTF8;
 	REPORT_TYPE m_nReportType; /**< Report type integer */
 	bool m_bCopyToClipboard; /**< Do we copy report to clipboard? */
+	std::shared_ptr<TempFile> m_tempFile; /**< Temporary file for clipboard copy */
 	DiffFuncStruct* m_myStruct;
 };

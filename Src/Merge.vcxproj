@@ -920,6 +920,8 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileCmpReport.cpp" />
+    <ClCompile Include="FileCmpReportDlg.cpp" />
     <ClCompile Include="SyntaxParserHelper.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1006,6 +1008,8 @@
     <ClInclude Include="ClipboardHistoryMenu.h" />
     <ClInclude Include="Common\ScopeExit.h" />
     <ClInclude Include="Common\ValidatingEdit.h" />
+    <ClInclude Include="FileCmpReport.h" />
+    <ClInclude Include="FileCmpReportDlg.h" />
     <ClInclude Include="FileFilterHelperMenu.h" />
     <ClInclude Include="DirFilterBar.h" />
     <ClInclude Include="ComparisonResultFilterDlg.h" />
@@ -1049,7 +1053,7 @@
     </ClCompile>
     <ClCompile Include="MergeFrameCommon.cpp" />
     <ClCompile Include="MergeEditFrm.cpp" />
-    <ClCompile Include="Common\ClipBoard.cpp">
+    <ClCompile Include="Common\Clipboard.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1514,6 +1518,7 @@
     </ClCompile>
     <ClCompile Include="WebPageDiffFrm.cpp" />
     <ClCompile Include="WildcardDropList.cpp" />
+    <ClCompile Include="WindowListCtrl.cpp" />
     <ClCompile Include="WindowsManager.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WinRtLoader.cpp" />
@@ -1578,7 +1583,7 @@
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
-    <ClInclude Include="Common\ClipBoard.h" />
+    <ClInclude Include="Common\Clipboard.h" />
     <ClInclude Include="Common\CMoveConstraint.h" />
     <ClInclude Include="codepage_detect.h" />
     <ClInclude Include="Common\ColorButton.h" />
@@ -1759,6 +1764,7 @@
     <ClInclude Include="TreeSitterParser.h" />
     <ClInclude Include="WebPageDiffFrm.h" />
     <ClInclude Include="WildcardDropList.h" />
+    <ClInclude Include="WindowListCtrl.h" />
     <ClInclude Include="WindowsManager.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
     <ClInclude Include="WinMergePluginBase.h" />
