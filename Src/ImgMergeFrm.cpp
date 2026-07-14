@@ -2289,7 +2289,7 @@ bool CImgMergeFrame::GenerateReport(ReportContext& reportContext) const
 	UniStdioFile& file = reportContext.file;
 
 	file.WriteString(
-		strutils::format(_T("<table class=\"cmp-table-image cmp-table-full cmp-table-fill-height cmp-table-%d\">\n")
+		strutils::format(_T("<table class=\"cmp-table-image cmp-table-full cmp-table-%d\">\n")
 		_T("<tr>\n"), paneCount));
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 		file.WriteString(strutils::format(_T("<th class=\"title %s\">%s</th>\n"), 

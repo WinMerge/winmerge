@@ -99,13 +99,12 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .ln { position: sticky; left: 0; background-color: %s; }
 .title { font-weight: 600; color: %s; text-align: left; padding: 8px 12px; background-color: %s; border-bottom: none; position: sticky; vertical-align: top; text-align: center; top: 0; z-index: 9999; }
 .title-right, .title-middle { box-shadow: inset 1px 0 %s; }
-.cmp-div-image { overflow: scroll; text-align: center; }
-.cmp-pdf-webpage { width: 100%%; height: calc(100vh - 56px) }
+.cmp-div-image { overflow: scroll; text-align: center; max-height: calc(100vh - 70px); }
+.cmp-pdf-webpage { width: 100%%; height: calc(100vh - 70px) }
 .cmp-table-full { width: 100%%; border-collapse: collapse; overflow: hidden; }
 .cmp-table-auto { width: max-content; border-collapse: collapse; overflow: hidden; }
-.cmp-table-full .cmp-table-fill-height { height: 100%%; }
 .cmp-table-header { position: sticky; top: 0; z-index: 99; }
-.cmp-grid { display: grid; grid-template-rows: max-content; height: calc(100vh - 16px); }
+.cmp-grid { display: grid; grid-template-rows: max-content; height: calc(100vh - 30px); }
 .cmp-grid-2 { grid-template-columns: 50%% 50%%; }
 .cmp-grid-3 { grid-template-columns: 33.33%% 33.33%% 33.33%%; }
 .cmp-collapsed-row { height: 1px; }
