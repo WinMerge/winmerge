@@ -2181,7 +2181,7 @@ GetHTMLStyles ()
   CEColor clrSelMargin = GetColor(COLORINDEX_SELMARGIN);
   CEColor clrNormalText = GetColor(COLORINDEX_NORMALTEXT);
   strStyles += Fmt(_T(".cn {text-align: center; word-break: normal; color: #%02x%02x%02x; background-color: #%02x%02x%02x;}\n")
-                   _T(".ln {text-align: right; word-break: normal; color: #%02x%02x%02x; background-color: #%02x%02x%02x;}\n"),
+                   _T(".ln {text-align: right; word-break: normal; color: #%02x%02x%02x; background-color: #%02x%02x%02x; position: sticky; left: 0; }\n"),
     GetRValue(clrNormalText), GetGValue(clrNormalText), GetBValue(clrNormalText),
     GetRValue(clrSelMargin), GetGValue(clrSelMargin), GetBValue(clrSelMargin),
     GetRValue(clrNormalText), GetGValue(clrNormalText), GetBValue(clrNormalText),

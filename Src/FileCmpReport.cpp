@@ -51,7 +51,6 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 	const wchar_t* bgColor = _T("#ffffff");
 	const wchar_t* fgColor = _T("#1a1a1a");
 	const wchar_t* borderColor = _T("#a0a0a0");
-	const wchar_t* surfaceColor = _T("#e8e8e8");
 	const wchar_t* titleBgColor = _T("#191970");
 	const wchar_t* titleFgColor = _T("#ffffff");
 	const wchar_t* tocBgColor = _T("#f0f4f8");
@@ -69,7 +68,6 @@ static void WriteHeader(const std::vector<IMergeDoc*>& mergeDocuments, const CFi
 		bgColor = _T("#1e1e1e");
 		fgColor = _T("#e0e0e0");
 		borderColor = _T("#555555");
-		surfaceColor = _T("#2a2a2a");
 		titleBgColor = _T("#2f2f36");
 		titleFgColor = _T("#ffffff");
 		tocBgColor = _T("#2a2f36");
@@ -88,7 +86,7 @@ LR"(<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WinMerge Compare Report</title>
+<title>WinMerge File Compare Report</title>
 <style>
 <!--
 body { font-family: "Segoe UI", Arial, sans-serif; margin: 20px; background-color: %s; color: %s; }
@@ -96,7 +94,6 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .cmp-table-text td { word-break: break-all; padding: 0 3px; vertical-align: top; }
 .cmp-table-table td, .cmp-table-table th { word-break: break-all; padding: 0 3px; border: 1px solid %s; vertical-align: top; }
 .cmp-table-image td, .cmp-table-webpage td { border: 1px solid %s; }
-.ln { position: sticky; left: 0; background-color: %s; }
 .title { font-weight: 600; color: %s; text-align: left; padding: 8px 12px; background-color: %s; border-bottom: none; position: sticky; vertical-align: top; text-align: center; top: 0; z-index: 9999; }
 .title-right, .title-middle { box-shadow: inset 1px 0 %s; }
 .cmp-div-image { overflow: scroll; text-align: center; max-height: calc(100vh - 70px); }
@@ -111,7 +108,7 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .cmp-collapsed-cell { background-color: %s; }
 .cmp-scroll { overflow-x: auto; }
 )"
-		, bgColor, fgColor, options.fontSize, borderColor, borderColor, surfaceColor, titleFgColor, 
+		, bgColor, fgColor, options.fontSize, borderColor, borderColor, titleFgColor, 
 		  titleBgColor, bgColor, collapsedCellBgColor);
 
 	if (mergeDocuments.size() > 1)
