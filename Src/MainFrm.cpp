@@ -2129,6 +2129,8 @@ void CMainFrame::OnToolsGenerateReport()
 	CDC dc;
 	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
 
+	CWaitCursor waitStatus;
+
 	String sError;
 	CFileCmpReport::Options options;
 	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
