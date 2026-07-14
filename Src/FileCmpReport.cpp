@@ -96,6 +96,7 @@ table { table-layout: fixed; margin: 0; border: none; box-shadow: 0px 0px 3px 1p
 .cmp-table-image td, .cmp-table-webpage td { border: 1px solid %s; }
 .title { font-weight: 600; color: %s; text-align: left; padding: 8px 12px; background-color: %s; border-bottom: none; position: sticky; vertical-align: top; text-align: center; top: 0; z-index: 9999; }
 .title-right, .title-middle { box-shadow: inset 1px 0 %s; }
+.ln { position: sticky; left: 0; }
 .cmp-div-image { overflow: scroll; text-align: center; max-height: calc(100vh - 70px); }
 .cmp-pdf-webpage { width: 100%%; height: calc(100vh - 70px) }
 .cmp-table-full { width: 100%%; border-collapse: collapse; overflow: hidden; }
