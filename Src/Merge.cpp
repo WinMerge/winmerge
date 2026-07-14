@@ -921,6 +921,29 @@ void CMergeApp::ShowDialog(MergeCmdLineInfo::DialogType type)
 	}
 }
 
+/**
+ * @brief Adjust file and folder paths for comparison.
+ */
+static PathContext AdjustFileFolderPaths(const PathContext& Files)
+{
+	PathContext paths = Files;
+	if (paths.GetSize() < 2)
+		return paths;
+	paths::PATH_EXISTENCE p1 = paths::DoesPathExist(paths[0]);
+	paths::PATH_EXISTENCE p2 = paths::DoesPathExist(paths[1]);
+	if ((p1 == paths::IS_EXISTING_FILE) && (p2 == paths::IS_EXISTING_DIR) && !IsArchiveFile(paths[0]))
+	{
+		paths[1] = paths::ConcatPath(paths[1], paths::FindFileName(paths[0]));
+		if (paths.GetSize() > 2)
+		{
+			paths::PATH_EXISTENCE p3 = paths::DoesPathExist(paths[2]);
+			if (p3 == paths::IS_EXISTING_DIR)
+				paths[2] = paths::ConcatPath(paths[2], paths::FindFileName(paths[0]));
+		}
+	}
+	return paths;
+}
+
 /** @brief Read command line arguments and open files for comparison.
  *
  * The name of the function is a legacy code from the time that this function
@@ -1037,22 +1060,18 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		}
 		if (cmdInfo.m_Files.GetSize() > 2)
 		{
+			PathContext paths = AdjustFileFolderPaths(cmdInfo.m_Files);
 			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
 			cmdInfo.m_dwMiddleFlags |= FFILEOPEN_CMDLINE;
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
-			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
+			bCompared = pMainFrame->DoFileOrFolderOpen(&paths,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
 				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
-			PathContext paths = cmdInfo.m_Files;
-			paths::PATH_EXISTENCE p1 = paths::DoesPathExist(paths[0]);
-			paths::PATH_EXISTENCE p2 = paths::DoesPathExist(paths[1]);
-			if ((p1 == paths::IS_EXISTING_FILE) && (p2 == paths::IS_EXISTING_DIR) && !IsArchiveFile(paths[0]))
-				paths[1] = paths::ConcatPath(paths[1], paths::FindFileName(paths[0]));
-
+			PathContext paths = AdjustFileFolderPaths(cmdInfo.m_Files);
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&paths,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
