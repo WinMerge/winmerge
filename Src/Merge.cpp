@@ -1047,8 +1047,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
+			PathContext paths = cmdInfo.m_Files;
+			paths::PATH_EXISTENCE p1 = paths::DoesPathExist(paths[0]);
+			paths::PATH_EXISTENCE p2 = paths::DoesPathExist(paths[1]);
+			if ((p1 == paths::IS_EXISTING_FILE) && (p2 == paths::IS_EXISTING_DIR) && !IsArchiveFile(paths[0]))
+				paths[1] = paths::ConcatPath(paths[1], paths::FindFileName(paths[0]));
+
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
-			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
+			bCompared = pMainFrame->DoFileOrFolderOpen(&paths,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
 				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 		}
