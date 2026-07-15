@@ -1,6 +1,7 @@
-# WinMerge 2.16.57 Beta Release Notes
+# WinMerge 2.16.58 Release Notes
 
 * [About This Release](#about-this-release)
+* [What Is New in 2.16.58?](#what-is-new-in-21658)
 * [What Is New in 2.16.57 Beta?](#what-is-new-in-21657-beta)
 * [Known issues](#known-issues)
 
@@ -8,47 +9,65 @@ July 2026
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.58 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.58?
+
+### File compare
+
+* BugFix: Fix crash caused by file size races in UniMemFile (#3456, PR #3457)
+* Add support for generating a single HTML report from multiple file comparisons (PR #3450)
+
+### Folder compare
+
+* BugFix: Fix archive vs folder comparison selecting the wrong source (#3458)
+
+### Select files or folders dialog
+
+* BugFix: Handle exceptions raised while creating the common file dialog (#3462, PR #3464)
+
+### Translations
+
+* Translation updates:
+
+  * Brazilian (PR #3459)
+  * Chinese Simplified (PR #3460)
+  * Italian (PR #3455)
+  * Japanese
+  * Korean (PR #3447)
+  * Lithuanian (PR #3461)
+  * Polish (PR #3463)
+  * Russian (PR #3448)
 
 ## What Is New in 2.16.57 Beta?
 
 ### General
 
 * BugFix: Fixed an issue where file mapping failures could incorrectly trigger a crash (#3412)
-
 * Add module-relative offsets to crash log stack traces
 
 ### File compare
 
 * BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to avoid accessing line EOL directly
-
 * BugFix: Fix incorrect caret position in status bar
-
 * BugFix: Clear sync points before reloading compare files
-
 * BugFix: Fix assertion failure on empty buffer access when all lines are deleted from a pane
-
 * Add display line filter bar for file compare window (PR #3374)
-
 * Improve syntax highlighting with Tree-sitter integration for better support of multiple languages (PR #3306, PR #3337, PR #3338, PR #3350, PR #3415, PR #3427, PR #3440)
-
 * Refactor syntax parsing behind ISyntaxParser interface (PR #3415)
 
 ### Folder compare
 
 * BugFix: Crash when trying to delete a "left-only" or "right-only" file during renaming (#3411)
-
 * BugFix: ZIP export includes unchanged files in subfolders (#3445)
-
 * Refactor filter evaluation parameters with new EvalContext for better code maintainability (PR #3353)
 
 ### Archive support
 
 * BugFix: Fix error dialogs when comparing two Rar4 files (#3392)
-
 * Update 7-Zip to 26.02
 
 ### Select Files or Folders dialog

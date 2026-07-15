@@ -1,6 +1,35 @@
 # Change log
 
-## WinMerge 2.16.57 - 2026-07-27
+## WinMerge 2.16.58 - 2026-07-27
+
+### File compare
+
+* BugFix: Fix crash caused by file size races in UniMemFile (#3456, PR #3457)
+
+* Add support for generating a single HTML report from multiple file comparisons (PR #3450)
+
+### Folder compare
+
+* BugFix: Fix archive vs folder comparison selecting the wrong source (#3458)
+
+### Select files or folders dialog
+
+* BugFix: Handle exceptions raised while creating the common file dialog (#3462, PR #3464)
+
+### Translations
+
+* Translation updates:
+
+  * Brazilian (PR #3459)
+  * Chinese Simplified (PR #3460)
+  * Italian (PR #3455)
+  * Japanese
+  * Korean (PR #3447)
+  * Lithuanian (PR #3461)
+  * Polish (PR #3463)
+  * Russian (PR #3448)
+
+## WinMerge 2.16.57 - 2026-07-05
 
 ### General
 
