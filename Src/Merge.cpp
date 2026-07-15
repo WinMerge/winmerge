@@ -924,8 +924,9 @@ void CMergeApp::ShowDialog(MergeCmdLineInfo::DialogType type)
 /**
  * @brief Adjust file and folder paths for comparison.
  */
+bool IsArchiveFile(const String&);
+
 static PathContext AdjustFileFolderPaths(const PathContext& Files)
-{
 	PathContext paths = Files;
 	if (paths.GetSize() < 2)
 		return paths;
