@@ -76,6 +76,7 @@
 #include "CrystalLineSyntaxParser.h"
 #include "TreeSitterParser.h"
 #include "SyntaxParserRegistry.h"
+#include "7zCommon.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -924,25 +925,24 @@ void CMergeApp::ShowDialog(MergeCmdLineInfo::DialogType type)
 /**
  * @brief Adjust file and folder paths for comparison.
  */
-bool IsArchiveFile(const String&);
-
-static PathContext AdjustFileFolderPaths(const PathContext& Files)
-	PathContext paths = Files;
+static PathContext AdjustFileFolderPaths(const PathContext& paths)
+{
+	PathContext pathsAdjusted = paths;
 	if (paths.GetSize() < 2)
-		return paths;
+		return pathsAdjusted;
 	paths::PATH_EXISTENCE p1 = paths::DoesPathExist(paths[0]);
 	paths::PATH_EXISTENCE p2 = paths::DoesPathExist(paths[1]);
 	if ((p1 == paths::IS_EXISTING_FILE) && (p2 == paths::IS_EXISTING_DIR) && !IsArchiveFile(paths[0]))
 	{
-		paths[1] = paths::ConcatPath(paths[1], paths::FindFileName(paths[0]));
+		pathsAdjusted[1] = paths::ConcatPath(paths[1], paths::FindFileName(paths[0]));
 		if (paths.GetSize() > 2)
 		{
 			paths::PATH_EXISTENCE p3 = paths::DoesPathExist(paths[2]);
 			if (p3 == paths::IS_EXISTING_DIR)
-				paths[2] = paths::ConcatPath(paths[2], paths::FindFileName(paths[0]));
+				pathsAdjusted[2] = paths::ConcatPath(paths[2], paths::FindFileName(paths[0]));
 		}
 	}
-	return paths;
+	return pathsAdjusted;
 }
 
 /** @brief Read command line arguments and open files for comparison.
