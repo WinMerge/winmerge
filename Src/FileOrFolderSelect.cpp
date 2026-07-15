@@ -29,6 +29,26 @@ static void ConvertFilter(tchar_t* filterStr);
 static String LastSelectedFolder;
 
 /**
+ * @brief Calls GetOpenFileName() with a workaround for buggy shell extensions.
+ *
+ * Some third-party shell extensions (e.g. OldNewExplorer) may crash while
+ * the common file dialog is being created when lpstrInitialDir is specified.
+ * If an access violation occurs, retry once without lpstrInitialDir.
+ */
+static BOOL MyGetOpenFileName(OPENFILENAME* pofn)
+{
+	__try
+	{
+		return GetOpenFileName(pofn);
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
+	}
+	pofn->lpstrInitialDir = nullptr;
+	return GetOpenFileName(pofn);
+}
+
+/**
  * @brief Helper function for selecting folder or file.
  * This function shows standard Windows file selection dialog for selecting
  * file or folder to open or file to save. The last parameter @p is_open selects
@@ -104,7 +124,7 @@ bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
 
 	bool bRetVal = false;
 	if (is_open)
-		bRetVal = !!GetOpenFileName((OPENFILENAME *)&ofn);
+		bRetVal = !!MyGetOpenFileName((OPENFILENAME *)&ofn);
 	else
 		bRetVal = !!GetSaveFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
@@ -257,7 +277,7 @@ bool SelectFileOrFolder(HWND parent, String& path, const tchar_t* initialPath /*
 	ofn.lpstrFileTitle = nullptr;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_NOCHANGEDIR;
 
-	bool bRetVal = !!GetOpenFileName((OPENFILENAME *)&ofn);
+	bool bRetVal = !!MyGetOpenFileName((OPENFILENAME*)&ofn);
 
 	if (bRetVal)
 	{
