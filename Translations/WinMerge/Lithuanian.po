@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-06-24 08:24+0000\n"
-"PO-Revision-Date: 2026-06-30 06:45+0200\n"
+"POT-Creation-Date: 2026-07-14 20:48+0000\n"
+"PO-Revision-Date: 2026-07-15 14:34+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -4511,27 +4511,27 @@ msgstr "Įtraukt&i failų palyginimo ataskaitą"
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
 #: Merge.rc:2973 Merge.rc:2989
 msgid "Open report after &generating"
-msgstr ""
+msgstr "Atverti ataskaitą, kai ji bus su&generuota"
 
 #. IDD_FILECMP_REPORT
 #: Merge.rc:2980
 msgid "File Compare Report"
-msgstr ""
+msgstr "Failų lyginimo ataskaita"
 
 #. IDD_FILECMP_REPORT, IDC_STATIC
 #: Merge.rc:2983
 msgid "Comparisons to include:"
-msgstr ""
+msgstr "Palyginimai turi apimti:"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
 #: Merge.rc:2990
 msgid "&Include all image pages"
-msgstr ""
+msgstr "Įtraukt&i visus vaizdo puslapius"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2991
 msgid "\x24D8 The report uses the current comparison settings."
-msgstr ""
+msgstr "\x24D8 Ataskaitoje naudojami dabartiniai lyginimo parametrai."
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:2998
