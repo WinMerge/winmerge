@@ -596,17 +596,6 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 			m_sErrorMessages.emplace_back(_T("Unknown option '/") + param + _T("'"));
 		}
 	}
-	// If "compare file dir" make it "compare file dir\file".
-	if (m_Files.GetSize() >= 2)
-	{
-		paths::PATH_EXISTENCE p1 = paths::DoesPathExist(m_Files[0]);
-		paths::PATH_EXISTENCE p2 = paths::DoesPathExist(m_Files[1]);
-
-		if ((p1 == paths::IS_EXISTING_FILE) && (p2 == paths::IS_EXISTING_DIR))
-		{
-			m_Files[1] = paths::ConcatPath(m_Files[1], paths::FindFileName(m_Files[0]));
-		}
-	}
 	if (m_bShowUsage)
 	{
 		m_bNonInteractive = false;
