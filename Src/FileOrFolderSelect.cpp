@@ -29,11 +29,8 @@ static void ConvertFilter(tchar_t* filterStr);
 static String LastSelectedFolder;
 
 /**
- * @brief Calls GetOpenFileName() with a workaround for buggy shell extensions.
- *
- * Some third-party shell extensions (e.g. OldNewExplorer) may crash while
- * the common file dialog is being created when lpstrInitialDir is specified.
- * If an access violation occurs, retry once without lpstrInitialDir.
+ * @brief Calls GetOpenFileName() and converts exceptions raised by
+ *        third-party shell extensions into a dialog failure.
  */
 static BOOL MyGetOpenFileName(OPENFILENAME* pofn)
 {
@@ -44,8 +41,7 @@ static BOOL MyGetOpenFileName(OPENFILENAME* pofn)
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
 	}
-	pofn->lpstrInitialDir = nullptr;
-	return GetOpenFileName(pofn);
+	return FALSE;
 }
 
 /**
