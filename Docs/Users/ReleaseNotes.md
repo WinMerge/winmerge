@@ -19,6 +19,7 @@ Please submit bug reports to our bug-tracker.
 ### File compare
 
 * BugFix: Fix crash caused by file size races in UniMemFile (#3456, PR #3457)
+
 * Add support for generating a single HTML report from multiple file comparisons (PR #3450)
 
 ### Folder compare
@@ -47,27 +48,37 @@ Please submit bug reports to our bug-tracker.
 ### General
 
 * BugFix: Fixed an issue where file mapping failures could incorrectly trigger a crash (#3412)
+
 * Add module-relative offsets to crash log stack traces
 
 ### File compare
 
 * BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to avoid accessing line EOL directly
+
 * BugFix: Fix incorrect caret position in status bar
+
 * BugFix: Clear sync points before reloading compare files
+
 * BugFix: Fix assertion failure on empty buffer access when all lines are deleted from a pane
+
 * Add display line filter bar for file compare window (PR #3374)
+
 * Improve syntax highlighting with Tree-sitter integration for better support of multiple languages (PR #3306, PR #3337, PR #3338, PR #3350, PR #3415, PR #3427, PR #3440)
+
 * Refactor syntax parsing behind ISyntaxParser interface (PR #3415)
 
 ### Folder compare
 
 * BugFix: Crash when trying to delete a "left-only" or "right-only" file during renaming (#3411)
+
 * BugFix: ZIP export includes unchanged files in subfolders (#3445)
+
 * Refactor filter evaluation parameters with new EvalContext for better code maintainability (PR #3353)
 
 ### Archive support
 
 * BugFix: Fix error dialogs when comparing two Rar4 files (#3392)
+
 * Update 7-Zip to 26.02
 
 ### Select Files or Folders dialog
