@@ -1666,8 +1666,16 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 			MruHelper::addToMru(0, tFiles[0]);
 		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
 			MruHelper::addToMru(1, tFiles[1]);
-		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-			MruHelper::addToMru(2, tFiles[2]);
+		if (tFiles.GetSize() == 3)
+		{
+			if (!(dwFlags[2] & FFILEOPEN_NOMRU))
+				MruHelper::addToMru(2, tFiles[2]);
+		}
+		else
+		{
+			if (!(dwFlags[0] & FFILEOPEN_NOMRU) || !(dwFlags[1] & FFILEOPEN_NOMRU))
+				MruHelper::addToMru(2, _T(""));
+		}
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;

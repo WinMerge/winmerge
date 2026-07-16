@@ -36,6 +36,9 @@ namespace MruHelper
 		const TCHAR* szRegSubKey = GetRegSubKeyFromPane(pane);
 		if (!szRegSubKey)
 			return;
+		AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Empty"), sItem.empty() ? 1 : 0);
+		if (sItem.empty())
+			return;
 		auto list = getMruList(pane, nMaxItems);
 		list.erase(std::remove(list.begin(), list.end(), sItem), list.end());
 		list.insert(list.begin(), sItem);

@@ -1062,9 +1062,6 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		if (cmdInfo.m_Files.GetSize() > 2)
 		{
 			PathContext paths = AdjustFileFolderPaths(cmdInfo.m_Files);
-			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
-			cmdInfo.m_dwMiddleFlags |= FFILEOPEN_CMDLINE;
-			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&paths,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
