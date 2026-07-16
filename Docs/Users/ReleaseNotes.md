@@ -30,6 +30,8 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: Handle exceptions raised while creating the common file dialog (#3462, PR #3464)
 
+* BugFix: Fix MRU handling for three-way comparisons. (#3452)
+
 ### Translations
 
 * Translation updates:
@@ -41,6 +43,7 @@ Please submit bug reports to our bug-tracker.
   * Korean (PR #3447)
   * Lithuanian (PR #3461)
   * Polish (PR #3463)
+  * Turkish (PR #3465)
   * Russian (PR #3448)
 
 ## What Is New in 2.16.57 Beta?
