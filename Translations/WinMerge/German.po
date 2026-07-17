@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-06-26 17:00+0200\n"
+"PO-Revision-Date: 2026-07-17 17:20+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -4940,27 +4940,27 @@ msgstr "Dateivergleichsbericht einschließen"
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
 #: Merge.rc:2973 Merge.rc:2989
 msgid "Open report after &generating"
-msgstr ""
+msgstr "Bericht nach dem &Erstellen öffnen"
 
 #. IDD_FILECMP_REPORT
 #: Merge.rc:2980
 msgid "File Compare Report"
-msgstr ""
+msgstr "Dateivergleichsbericht"
 
 #. IDD_FILECMP_REPORT, IDC_STATIC
 #: Merge.rc:2983
 msgid "Comparisons to include:"
-msgstr ""
+msgstr "Zu berücksichtigende Vergleiche:"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
 #: Merge.rc:2990
 msgid "&Include all image pages"
-msgstr ""
+msgstr "Alle B&ildseiten einbinden"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2991
-msgid "\x24D8 The report uses the current comparison settings."
-msgstr ""
+msgid "\\x24D8 The report uses the current comparison settings."
+msgstr "\\x24D8 Der Bericht verwendet die aktuellen Vergleichseinstellungen."
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:2998
