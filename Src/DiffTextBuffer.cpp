@@ -159,7 +159,7 @@ void CDiffTextBuffer::prepareForRescan()
 	for (int ct = GetLineCount() - 1; ct >= 0; --ct)
 	{
 		SetLineFlag(ct, 
-			LF_INVISIBLE | LF_DIFF | LF_TRIVIAL | LF_MOVED | LF_SNP,
+			LF_INVISIBLE | LF_DIFF | LF_TRIVIAL | LF_MOVED | LF_SNP | LF_DIFF_1STONLY | LF_DIFF_2NDONLY | LF_DIFF_3RDONLY,
 			false, false, false);
 	}
 }
