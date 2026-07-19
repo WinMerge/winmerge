@@ -33,6 +33,7 @@ public:
 	size_t GetItemCount();
 	const PATCHFILES& GetItemAt(size_t position);
 	void ClearItems();
+	int  GetCheckedCount();
 
 // Dialog Data
 	//{{AFX_DATA(CPatchDlg)
@@ -125,13 +126,5 @@ inline size_t CPatchDlg::GetItemCount()
 inline const PATCHFILES& CPatchDlg::GetItemAt(size_t position)
 {
 	return m_fileList.at(position);
-}
-
-/** 
- * @brief Empties internal item list.
- */
-inline void CPatchDlg::ClearItems()
-{
-	m_fileList.clear();
 }
 

@@ -338,7 +338,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	if (SelectFileOrFolder(GetSafeHwnd(), s, folder.c_str()))
 	{
 		m_ctlFile1.SetWindowText(s.c_str());
-		if (m_fileList.size() > 1)
+		if (GetCheckedCount() > 0)
 		{
 			m_ctlFile2.SetWindowText(_T(""));
 			ClearItems();
@@ -358,7 +358,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 	if (SelectFileOrFolder(GetSafeHwnd(), s, folder.c_str()))
 	{
 		m_ctlFile2.SetWindowText(s.c_str());
-		if (m_fileList.size() > 1)
+		if (GetCheckedCount() > 0)
 		{
 			m_ctlFile1.SetWindowText(_T(""));
 			ClearItems();
@@ -533,7 +533,7 @@ void CPatchDlg::OnDefaultSettings()
 
 void CPatchDlg::OnSelchangeFile1()
 {
-	if (m_fileList.size() > 1)
+	if (GetCheckedCount() > 0)
 	{
 		m_ctlFile2.SetWindowText(_T(""));
 		ClearItems();
@@ -542,7 +542,7 @@ void CPatchDlg::OnSelchangeFile1()
 
 void CPatchDlg::OnSelchangeFile2()
 {
-	if (m_fileList.size() > 1)
+	if (GetCheckedCount() > 0)
 	{
 		m_ctlFile1.SetWindowText(_T(""));
 		ClearItems();
@@ -551,7 +551,7 @@ void CPatchDlg::OnSelchangeFile2()
 
 void CPatchDlg::OnEditchangeFile1()
 {
-	if (m_fileList.size() > 1)
+	if (GetCheckedCount() > 0)
 	{
 		m_ctlFile2.SetWindowText(_T(""));
 		ClearItems();
@@ -560,7 +560,7 @@ void CPatchDlg::OnEditchangeFile1()
 
 void CPatchDlg::OnEditchangeFile2()
 {
-	if (m_fileList.size() > 1)
+	if (GetCheckedCount() > 0)
 	{
 		m_ctlFile1.SetWindowText(_T(""));
 		ClearItems();
@@ -581,3 +581,35 @@ void CPatchDlg::Swap()
 		++iter;
 	}
 }
+
+/**
+ * @brief Returns the number of checked items in the list.
+ */
+int CPatchDlg::GetCheckedCount()
+{
+	int count = 0;
+	for (size_t i = 0; i < m_fileList.size(); ++i)
+	{
+		if (m_fileList[i].checked)
+			count++;
+	}
+	return count;
+}
+
+/** 
+ * @brief Empties internal item list.
+ */
+void CPatchDlg::ClearItems()
+{
+	if (!m_list.m_hWnd)
+		return;
+	m_bInOnInitDialog = true;
+	const int nItems = m_list.GetItemCount();
+	for (int i = 0; i < nItems; ++i)
+	{
+		m_fileList[i].checked = false;
+		m_list.SetCheck(i, FALSE);
+	}
+	m_bInOnInitDialog = false;
+}
+
