@@ -3397,7 +3397,7 @@ void CDirView::OnToolsGeneratePatch()
 	// Collect patch items using the new CreatePatchItems function
 	auto patchItems = CreatePatchItems(ctxt, SelBegin(), SelEnd(), patchOnlyDiffItems.value());
 
-	// Check for binary files and add items to patcher
+	// Add items to patcher (binary files will be skipped during patch creation)
 	for (const auto& item : patchItems)
 	{
 		patcher.AddFiles(item.leftFile, item.leftpatch, item.rightFile, item.rightpatch, 
