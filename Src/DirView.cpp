@@ -487,7 +487,7 @@ void CDirView::OnInitialUpdate()
 		HICON hIcon = (HICON)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, 0);
 		if (hIcon != nullptr)
 		{
-			VERIFY(-1 != m_imageList.Add(hIcon));
+			VERIFY(-1 != m_imageState.Add(hIcon));
 			::DestroyIcon(hIcon);
 		}
 	}
