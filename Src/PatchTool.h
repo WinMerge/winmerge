@@ -19,13 +19,16 @@ class CPatchDlg;
  */
 struct PATCHFILES
 {
+	String title; /**< Title of the patch item */
 	String lfile; /**< Left file */
 	String pathLeft; /**< Left path added to patch file */
 	String rfile; /**< Right file */
 	String pathRight; /**< Right path added to patch file */
 	time_t ltime; /**< Left time */
 	time_t rtime; /**< Right time */
-	PATCHFILES() : ltime(0), rtime(0) {};
+	bool checked; /**< Is this item checked to be included in patch? */
+	int diffStatus; /**< Icon index representing diff status (DIFFIMG_*) */
+	PATCHFILES() : ltime(0), rtime(0), checked(true), diffStatus(-1) {};
 	/**
 	 * @brief Swap diff sides.
 	 */
@@ -49,9 +52,9 @@ public:
 	CPatchTool();
 	~CPatchTool();
 
-	void AddFiles(const String &file1, const String &file2);
+	void AddFiles(const String &file1, const String &file2, const String& title, bool checked);
 	void AddFiles(const String &file1, const String &altPath1,
-		const String &file2, const String &altPath2);
+		const String &file2, const String &altPath2, const String& title, bool checked, int diffStatus);
 	int CreatePatch();
 
 protected:

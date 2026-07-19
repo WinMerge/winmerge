@@ -259,6 +259,7 @@ protected:
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnDirCopy(UINT id);
 	afx_msg std::optional<bool> PromptCopyOnlyDiffItems();
+	afx_msg std::optional<bool> PromptPatchOnlyDiffItems();
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnCtxtDirCopy();
 	afx_msg void OnUpdateDirCopy(CCmdUI* pCmdUI);

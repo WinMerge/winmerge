@@ -202,6 +202,52 @@ void AddZipItem(const CDiffContext& ctxt, const DIFFITEM& di, int index, bool bD
 }
 
 /**
+ * @brief Add a DIFFITEM to the list of items to be included in a patch.
+ */
+void AddPatchItem(const CDiffContext& ctxt, const DIFFITEM& di, bool bDiffsOnly, std::vector<PatchItem>& items)
+{
+	if (di.diffcode.diffcode == 0)
+		return;
+
+	if (di.diffcode.isDirectory())
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+			AddPatchItem(ctxt, *pdic, bDiffsOnly, items);
+		return;
+	}
+
+	if (bDiffsOnly && !IsItemNavigableDiff(ctxt, di))
+		return;
+
+	if (!di.diffcode.exists(0) && !di.diffcode.exists(1))
+		return;
+
+	PatchItem pi;
+
+	// Set left side path if it exists, otherwise leave empty
+	if (di.diffcode.exists(0))
+	{
+		const String& sFilename = di.diffFileInfo[0].filename.get();
+		const String& sSubdir = di.diffFileInfo[0].path.get();
+		pi.leftpatch = sSubdir.length() ? paths::ConcatPath(sSubdir, sFilename) : sFilename;
+		pi.leftFile = paths::ConcatPath(di.getFilepath(0, ctxt.GetNormalizedPath(0)), sFilename);
+	}
+
+	// Set right side path if it exists, otherwise leave empty
+	if (di.diffcode.exists(1))
+	{
+		const String& sFilenameR = di.diffFileInfo[1].filename.get();
+		const String& sSubdirR = di.diffFileInfo[1].path.get();
+		pi.rightpatch = sSubdirR.length() ? paths::ConcatPath(sSubdirR, sFilenameR) : sFilenameR;
+		pi.rightFile = paths::ConcatPath(di.getFilepath(1, ctxt.GetNormalizedPath(1)), sFilenameR);
+	}
+
+	// Set icon index based on diff status
+	pi.diffStatus = GetColImage(di);
+	items.push_back(std::move(pi));
+}
+
+/**
  * @brief Confirm actions with user as appropriate
  * (type, whether single or multiple).
  */

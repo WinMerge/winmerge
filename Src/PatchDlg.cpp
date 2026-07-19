@@ -15,6 +15,7 @@
 #include "Environment.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "DirActions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,6 +37,7 @@ CPatchDlg::CPatchDlg(CWnd* pParent /*= nullptr*/)
 	, m_includeCmdLine(false)
 	, m_outputStyle(OUTPUT_NORMAL)
 	, m_contextLines(0)
+	, m_bInOnInitDialog(false)
 {
 }
 
@@ -46,6 +48,7 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPatchDlg)
+	DDX_Control(pDX, IDC_DIFF_WINDOW_LIST, m_list);
 	DDX_Control(pDX, IDC_DIFF_STYLE, m_comboStyle);
 	DDX_Control(pDX, IDC_DIFF_CONTEXT, m_comboContext);
 	DDX_Check(pDX, IDC_DIFF_COPYCLIPBOARD, m_copyToClipboard);
@@ -64,6 +67,8 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPatchDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CPatchDlg)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_DIFF_WINDOW_LIST, OnItemChangedList)
+	ON_MESSAGE(WM_APP_UPDATE_EDIT_CONTROLS, OnUpdateEditControls)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE1, OnDiffBrowseFile1)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE2, OnDiffBrowseFile2)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_RESULT, OnDiffBrowseResult)
@@ -196,7 +201,59 @@ void CPatchDlg::OnOK()
  */
 BOOL CPatchDlg::OnInitDialog()
 {
+	m_bInOnInitDialog = true;
+
 	CTrDialog::OnInitDialog();
+
+	const int iconCX = []() {
+		const int cx = GetSystemMetrics(SM_CXSMICON);
+		if (cx < 24)
+			return 16;
+		if (cx < 32)
+			return 24;
+		if (cx < 48)
+			return 32;
+		return 48;
+	}();
+	const int iconCY = iconCX;
+	m_imageList.Create(iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1);
+
+	HINSTANCE hInstance = AfxGetInstanceHandle();
+	int icon_ids[] = {
+		IDI_LFILE, IDI_MFILE, IDI_RFILE,
+		IDI_MRFILE, IDI_LRFILE, IDI_LMFILE,
+		IDI_NOTEQUALFILE, IDI_EQUALFILE, IDI_FILE, 
+		IDI_EQUALBINARY, IDI_BINARYDIFF,
+		IDI_LFOLDER, IDI_MFOLDER, IDI_RFOLDER,
+		IDI_MRFOLDER, IDI_LRFOLDER, IDI_LMFOLDER,
+		IDI_FILESKIP, IDI_FOLDERSKIP,
+		IDI_NOTEQUALFOLDER, IDI_EQUALFOLDER, IDI_FOLDER,
+		IDI_COMPARE_ERROR,
+		IDI_FOLDERUP, IDI_FOLDERUP_DISABLE,
+		IDI_COMPARE_ABORTED,
+		IDI_NOTEQUALTEXTFILE, IDI_EQUALTEXTFILE,
+		IDI_NOTEQUALIMAGE, IDI_EQUALIMAGE, 
+	};
+	for (auto id : icon_ids)
+		m_imageList.Add((HICON)::LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, LR_DEFAULTCOLOR));
+
+	std::vector<CWindowListCtrl::Item> items;
+	m_list.Initialize();
+
+	// Set the image list after Initialize() to ensure it's not overwritten
+	m_list.SetImageList(&m_imageList, LVSIL_SMALL);
+
+	for (size_t i = 0; i < m_fileList.size(); ++i)
+	{
+		const PATCHFILES& tFiles = m_fileList[i];
+		CWindowListCtrl::Item item;
+		item.title = tFiles.title;
+		item.data = (uintptr_t)(void*)&m_fileList[i];
+		item.checked = tFiles.checked;
+		item.iImage = tFiles.diffStatus;  // Use diff status icon from DirView
+		items.push_back(item);
+	}
+	m_list.SetItems(items);
 
 	// Load combobox history
 	m_ctlFile1.LoadState(_T("Files\\DiffFile1"));
@@ -204,21 +261,7 @@ BOOL CPatchDlg::OnInitDialog()
 	m_comboContext.LoadState(_T("PatchCreator\\DiffContext"));
 	m_ctlResult.LoadState(_T("Files\\DiffFileResult"));
 
-	size_t count = m_fileList.size();
-
-	// If one file added, show filenames on dialog
-	if (count == 1)
-	{
-        const PATCHFILES& tFiles = m_fileList.front();
-		m_file1 = tFiles.lfile;
-		m_ctlFile1.SetWindowText(tFiles.lfile.c_str());
-		m_file2 = tFiles.rfile;
-		m_ctlFile2.SetWindowText(tFiles.rfile.c_str());
-	}
-	else if (count > 1)	// Multiple files added, show number of files
-	{
-		m_file1 = m_file2 = strutils::format_string1(_("[%1 files selected]"), strutils::to_str(count));
-	}
+	UpdateEditControls();
 	UpdateData(FALSE);
 
 	// Add patch styles to combobox
@@ -237,8 +280,43 @@ BOOL CPatchDlg::OnInitDialog()
 	
 	LoadSettings();
 
+	m_bInOnInitDialog = false;
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CPatchDlg::OnItemChangedList(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	if (m_bInOnInitDialog)
+	{
+		*pResult = 0;
+		return;
+	}
+
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	if ((pNMLV->uChanged & LVIF_STATE) != 0)
+	{
+		BOOL oldChecked = ((pNMLV->uOldState & LVIS_STATEIMAGEMASK) >> 12) == 2;
+		BOOL newChecked = ((pNMLV->uNewState & LVIS_STATEIMAGEMASK) >> 12) == 2;
+		if (oldChecked != newChecked)
+		{
+			m_fileList[pNMLV->iItem].checked = newChecked;
+			if (!m_updatePosted)
+			{
+				m_updatePosted = true;
+				PostMessage(WM_APP_UPDATE_EDIT_CONTROLS);
+			}
+		}
+	}
+	*pResult = 0;
+}
+
+LRESULT CPatchDlg::OnUpdateEditControls(WPARAM, LPARAM)
+{
+	m_updatePosted = false;
+	UpdateEditControls();
+	return 0;
 }
 
 /** 
@@ -335,6 +413,38 @@ void CPatchDlg::OnDiffSwapFiles()
 
 	//  swapped files
 	Swap();
+}
+
+void CPatchDlg::UpdateEditControls()
+{
+	int firstSel = -1;
+	size_t count = 0;
+	for (size_t i = 0; i < m_fileList.size(); i++)
+	{
+		if (m_fileList[i].checked)
+		{
+			firstSel = (int)i;
+			count++;
+		}
+	}
+
+	// If one file added, show filenames on dialog
+	if (count == 1)
+	{
+		const PATCHFILES& tFiles = m_fileList[firstSel];
+		m_file1 = tFiles.lfile;
+		m_file2 = tFiles.rfile;
+	}
+	else if (count > 1)	// Multiple files added, show number of files
+	{
+		m_file1 = m_file2 = strutils::format_string1(_("[%1 files selected]"), strutils::to_str(count));
+	}
+	else
+	{
+		m_file1 = m_file2 = _T("");
+	}
+	m_ctlFile1.SetWindowText(m_file1.c_str());
+	m_ctlFile2.SetWindowText(m_file2.c_str());
 }
 
 /** 
