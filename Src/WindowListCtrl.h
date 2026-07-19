@@ -36,7 +36,7 @@ public:
 
 protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	afx_msg void OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg BOOL OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
 	DECLARE_MESSAGE_MAP();
 
 private:

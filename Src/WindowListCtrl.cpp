@@ -14,7 +14,7 @@ CWindowListCtrl::~CWindowListCtrl()
 {}
 
 BEGIN_MESSAGE_MAP(CWindowListCtrl, CListCtrl)
-	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, &CWindowListCtrl::OnItemChanged)
+	ON_NOTIFY_REFLECT_EX(LVN_ITEMCHANGED, &CWindowListCtrl::OnItemChanged)
 END_MESSAGE_MAP()
 
 BOOL CWindowListCtrl::PreTranslateMessage(MSG* pMsg)
@@ -34,7 +34,7 @@ BOOL CWindowListCtrl::PreTranslateMessage(MSG* pMsg)
 	return CListCtrl::PreTranslateMessage(pMsg);
 }
 
-void CWindowListCtrl::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
+BOOL CWindowListCtrl::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	NM_LISTVIEW* pNMLV = (NM_LISTVIEW*)pNMHDR;
 
@@ -64,6 +64,7 @@ void CWindowListCtrl::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 
 	*pResult = 0;
+	return FALSE;
 }
 
 void CWindowListCtrl::Initialize()
