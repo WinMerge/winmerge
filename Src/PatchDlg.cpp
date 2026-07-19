@@ -235,7 +235,14 @@ BOOL CPatchDlg::OnInitDialog()
 		IDI_NOTEQUALIMAGE, IDI_EQUALIMAGE, 
 	};
 	for (auto id : icon_ids)
-		m_imageList.Add((HICON)::LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, LR_DEFAULTCOLOR));
+	{
+		HICON hIcon = (HICON)::LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, LR_DEFAULTCOLOR);
+		if (hIcon != nullptr)
+		{
+			m_imageList.Add(hIcon);
+			::DestroyIcon(hIcon);
+		}
+	}
 
 	std::vector<CWindowListCtrl::Item> items;
 	m_list.Initialize();
