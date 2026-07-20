@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-07-14 20:48+0000\n"
-"PO-Revision-Date: 2026-07-15 14:34+0200\n"
+"POT-Creation-Date: 2026-07-20 09:18+0000\n"
+"PO-Revision-Date: 2026-07-20 09:50+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -6065,7 +6065,7 @@ msgstr "Skirtumus į... (%1)"
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4845
 msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
-msgstr ""
+msgstr "Kai kurie pasirinkti elementai yra identiški arba praleisti.\nApdoroti tik besiskiriančius elementus?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4851
