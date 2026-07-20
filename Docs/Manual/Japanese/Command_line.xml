@@ -28,7 +28,9 @@ rep="norepeat"><option>/t</option>
 <replaceable>window-type</replaceable></arg> <arg><option>/x</option></arg>
 <arg><option>/xq</option></arg> <arg><option>/s</option></arg>
 <arg><option>/sw</option></arg> <arg><option>/s-</option></arg> <arg
-choice="opt" rep="norepeat"><option>/ul</option></arg> <arg choice="opt"
+choice="opt" rep="norepeat"><option>/g</option>
+<replaceable>group-name</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/ul</option></arg> <arg choice="opt"
 rep="norepeat"><option>/um</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ur</option></arg> <arg choice="opt"
 rep="norepeat"><option>/u</option></arg> <arg choice="opt"
@@ -217,6 +219,19 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
       <term><option>/s-</option></term>
       <listitem>
         <para>"複数のインスタンスを起動しない"の設定値を無視して、常に別のインスタンスが起動されるようにします。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>WinMergeウィンドウ</primary>
+        <secondary>インスタンスグループ</secondary>
+      </indexterm>
+
+      <term><option>/g</option> <replaceable>group-name</replaceable></term>
+      <listitem>
+        <para>WinMerge インスタンスのグループ名を指定します。<option>/s</option>
+オプションと組み合わせて使用すると、同じグループ名を指定したインスタンスは同じウィンドウを共有します。これにより、複数のシングルインスタンスグループを使用できます。</para>
       </listitem>
     </varlistentry>
 

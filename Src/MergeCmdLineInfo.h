@@ -125,6 +125,8 @@ public:
 	String m_sOutputpath;
 	String m_sReportFile;
 
+	String m_sGroupName; /**< Group name for instance grouping */
+
 	String m_sIniFilepath;
 
 	std::optional<usertasksflags_t> m_dwUserTasksFlags;
