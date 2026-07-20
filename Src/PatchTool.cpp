@@ -20,6 +20,7 @@
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "Clipboard.h"
+#include "Shell.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -41,36 +42,42 @@ CPatchTool::~CPatchTool() = default;
  * @brief Adds files to list for patching.
  * @param [in] file1 First file to add.
  * @param [in] file2 Second file to add.
+ * @param [in] title Title for the patch item.
+ * @param [in] checked Whether the patch item is checked or not.
  */
-void CPatchTool::AddFiles(const String &file1, const String &file2)
+void CPatchTool::AddFiles(const String &file1, const String &file2, const String& title, bool checked)
 {
 	PATCHFILES tFiles;
 	tFiles.lfile = file1;
 	tFiles.rfile = file2;
+	tFiles.title = title;
+	tFiles.checked = checked;
 
 	// TODO: Read and add file's timestamps
 	m_fileList.push_back(tFiles);
 }
 
 /**
- * @brief Add files with alternative paths.
- * This function adds files with alternative paths. Alternative path is the
- * one that is added to the patch file. So while @p file1 and @p file2 are
- * paths in disk (can be temp file names), @p altPath1 and @p altPath2 are
- * "visible " paths printed to the patch file.
- * @param [in] file1 First path in disk.
- * @param [in] altPath1 First path as printed to the patch file.
- * @param [in] file2 Second path in disk.
- * @param [in] altPath2 Second path as printed to the patch file.
+ * @brief Add files with diff status information.
+ * @param [in] file1 Left file path.
+ * @param [in] altPath1 Left alternate path for patch.
+ * @param [in] file2 Right file path.
+ * @param [in] altPath2 Right alternate path for patch.
+ * @param [in] title Title for the patch item.
+ * @param [in] checked Whether item is checked.
+ * @param [in] diffStatus Icon index representing diff status (DIFFIMG_*).
  */
 void CPatchTool::AddFiles(const String &file1, const String &altPath1,
-		const String &file2, const String &altPath2)
+		const String &file2, const String &altPath2, const String& title, bool checked, int diffStatus)
 {
 	PATCHFILES tFiles;
 	tFiles.lfile = file1;
 	tFiles.rfile = file2;
 	tFiles.pathLeft = altPath1;
 	tFiles.pathRight = altPath2;
+	tFiles.title = title;
+	tFiles.checked = checked;
+	tFiles.diffStatus = diffStatus;
 
 	// TODO: Read and add file's timestamps
 	m_fileList.push_back(tFiles);
@@ -89,9 +96,9 @@ int CPatchTool::CreatePatch()
 	CPatchDlg dlgPatch;
 
 	// If files already inserted, add them to dialog
-    for(std::vector<PATCHFILES>::iterator iter = m_fileList.begin(); iter != m_fileList.end(); ++iter)
-    {
-        dlgPatch.AddItem(*iter);
+	for(std::vector<PATCHFILES>::iterator iter = m_fileList.begin(); iter != m_fileList.end(); ++iter)
+	{
+		dlgPatch.AddItem(*iter);
 	}
 
 	if (ShowDialog(&dlgPatch))
@@ -115,6 +122,8 @@ int CPatchTool::CreatePatch()
 		for (size_t index = 0; index < fileCount; index++)
 		{
 			const PATCHFILES& tFiles = dlgPatch.GetItemAt(index);
+			if (!tFiles.checked)
+				continue;
 			if (paths::DoesPathExist(tFiles.lfile) == paths::IS_EXISTING_DIR && paths::DoesPathExist(tFiles.rfile) == paths::IS_EXISTING_DIR)
 			{
 				// Walk given folders recursively and adds found files into patch list
@@ -133,6 +142,8 @@ int CPatchTool::CreatePatch()
 			}
 		}
 		fileCount = fileList.size();
+		if (fileCount == 0)
+			return 0;
 
 		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
 		m_diffWrapper.SetAppendFiles(true);
@@ -198,7 +209,12 @@ int CPatchTool::CreatePatch()
 	if (retVal)
 	{
 		if (m_bOpenToEditor)
-			CMergeApp::OpenFileToExternalEditor(m_sPatchFile);
+		{
+			if (dlgPatch.m_outputStyle == (enum output_style)OUTPUT_HTML)
+				shell::Open(m_sPatchFile.c_str());
+			else
+				CMergeApp::OpenFileToExternalEditor(m_sPatchFile);
+		}
 		if (m_bCopyToClipbard)
 		{
 			UniMemFile file;
@@ -214,7 +230,10 @@ int CPatchTool::CreatePatch()
 				String lines;
 				file.ReadStringAll(lines);
 				file.Close();
-				ClipboardUtils::Put(lines, AfxGetMainWnd()->m_hWnd);
+				if (dlgPatch.m_outputStyle == (enum output_style)OUTPUT_HTML)
+					ClipboardUtils::PutFileAndTextAndHTML(m_sPatchFile, lines, AfxGetMainWnd()->m_hWnd);
+				else
+					ClipboardUtils::PutFileAndText(m_sPatchFile, lines, AfxGetMainWnd()->m_hWnd);
 			}
 		}
 	}

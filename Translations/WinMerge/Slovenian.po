@@ -699,7 +699,7 @@ msgid "&Plugins"
 msgstr "&Vtičniki"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_SETTINGS
-#: Merge.rc:389 Merge.rc:564 Merge.rc:876 Merge.rc:2756 Merge.rc:3227
+#: Merge.rc:389 Merge.rc:564 Merge.rc:876 Merge.rc:2758 Merge.rc:3229
 msgid "P&lugin Settings..."
 msgstr "Nasta&vitve vtičnika..."
 
@@ -764,7 +764,7 @@ msgid "&Cascade"
 msgstr "&Kaskadna okna"
 
 #. IDS_MESSAGEBOX_HELP
-#: Merge.rc:410 Merge.rc:587 Merge.rc:925 Merge.rc:3501 Merge.rc:4512
+#: Merge.rc:410 Merge.rc:587 Merge.rc:925 Merge.rc:3503 Merge.rc:4514
 msgid "&Help"
 msgstr "&Pomoč"
 
@@ -819,7 +819,7 @@ msgid "Ri&ght Read-Only"
 msgstr "De&sno samo-za-branje"
 
 #. IDD_ENCODINGERROR, IDC_FILEENCODING
-#: Merge.rc:459 Merge.rc:664 Merge.rc:1060 Merge.rc:3364
+#: Merge.rc:459 Merge.rc:664 Merge.rc:1060 Merge.rc:3366
 msgid "&File Encoding..."
 msgstr "De&kodiranje datoteke..."
 
@@ -1049,7 +1049,7 @@ msgid "Generate &Report..."
 msgstr "Ustvari &poročilo..."
 
 #. IDD_ENCODINGERROR, IDC_PLUGIN
-#: Merge.rc:572 Merge.rc:888 Merge.rc:3365
+#: Merge.rc:572 Merge.rc:888 Merge.rc:3367
 msgid "&Edit with Unpacker..."
 msgstr "&Uredi z razpakovalcem.."
 
@@ -1319,7 +1319,7 @@ msgid "Lo&cation Pane"
 msgstr "Podokno loka&cije"
 
 #. IDS_OUTPUTBAR_CAPTION
-#: Merge.rc:782 Merge.rc:5226
+#: Merge.rc:782 Merge.rc:5228
 msgid "Output Pane"
 msgstr ""
 
@@ -1405,13 +1405,13 @@ msgstr "Kopiraj iz &leve v"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
 #: Merge.rc:820 Merge.rc:831 Merge.rc:836 Merge.rc:847 Merge.rc:992
-#: Merge.rc:2807 Merge.rc:3118
+#: Merge.rc:2809 Merge.rc:3120
 msgid "&Middle"
 msgstr "Sre&dnjo"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
 #: Merge.rc:821 Merge.rc:826 Merge.rc:837 Merge.rc:842 Merge.rc:993
-#: Merge.rc:2808 Merge.rc:3120
+#: Merge.rc:2810 Merge.rc:3122
 msgid "&Right"
 msgstr "&Desno"
 
@@ -1422,7 +1422,7 @@ msgstr "Kopiraj iz &srednje v"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
 #: Merge.rc:825 Merge.rc:830 Merge.rc:841 Merge.rc:846 Merge.rc:991
-#: Merge.rc:2806 Merge.rc:3116
+#: Merge.rc:2808 Merge.rc:3118
 msgid "&Left"
 msgstr "&Levo"
 
@@ -1577,55 +1577,55 @@ msgid "Co&mpare As"
 msgstr "Pri&merjaj kot"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
-#: Merge.rc:967 Merge.rc:979 Merge.rc:4826
+#: Merge.rc:967 Merge.rc:979 Merge.rc:4828
 #, c-format
 msgid "Left to Middle (%1 of %2)"
 msgstr "Iz leve v srednjo (%1 od %2)"
 
 #. IDS_COPY_LEFT_TO_RIGHT2
-#: Merge.rc:968 Merge.rc:980 Merge.rc:4825
+#: Merge.rc:968 Merge.rc:980 Merge.rc:4827
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "Z leve proti desni (%1 od %2)"
 
 #. IDS_MOVE_LEFT_TO2
-#: Merge.rc:969 Merge.rc:981 Merge.rc:1044 Merge.rc:4837 Merge.rc:4866
+#: Merge.rc:969 Merge.rc:981 Merge.rc:1044 Merge.rc:4839 Merge.rc:4868
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "Levo v... (%1 od%2)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT2
-#: Merge.rc:970 Merge.rc:982 Merge.rc:4823
+#: Merge.rc:970 Merge.rc:982 Merge.rc:4825
 #, c-format
 msgid "Middle to Left (%1 of %2)"
 msgstr "Iz srednje v levo (%1 od %2)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT2
-#: Merge.rc:971 Merge.rc:983 Merge.rc:4824
+#: Merge.rc:971 Merge.rc:983 Merge.rc:4826
 #, c-format
 msgid "Middle to Right (%1 of %2)"
 msgstr "Iz srednje v desno (%1 od %2)"
 
 #. IDS_MOVE_MIDDLE_TO2
-#: Merge.rc:972 Merge.rc:984 Merge.rc:1045 Merge.rc:4838 Merge.rc:4867
+#: Merge.rc:972 Merge.rc:984 Merge.rc:1045 Merge.rc:4840 Merge.rc:4869
 #, c-format
 msgid "Middle to... (%1 of %2)"
 msgstr "Srednjo v... (%1 od %2)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE2
-#: Merge.rc:973 Merge.rc:985 Merge.rc:4822
+#: Merge.rc:973 Merge.rc:985 Merge.rc:4824
 #, c-format
 msgid "Right to Middle (%1 of %2)"
 msgstr "Iz desne v srednjo (%1 od %2)"
 
 #. IDS_COPY_RIGHT_TO_LEFT2
-#: Merge.rc:974 Merge.rc:986 Merge.rc:4821
+#: Merge.rc:974 Merge.rc:986 Merge.rc:4823
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "Z desne proti levi (%1 od %2)"
 
 #. IDS_MOVE_RIGHT_TO2
-#: Merge.rc:975 Merge.rc:987 Merge.rc:1046 Merge.rc:4839 Merge.rc:4868
+#: Merge.rc:975 Merge.rc:987 Merge.rc:1046 Merge.rc:4841 Merge.rc:4870
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Desno v... (%1 od%2)"
@@ -1681,31 +1681,31 @@ msgid "Cop&y Paths"
 msgstr "Kopiraj &imena poti"
 
 #. IDS_DEL_LEFT_FMT2
-#: Merge.rc:1025 Merge.rc:1034 Merge.rc:4854
+#: Merge.rc:1025 Merge.rc:1034 Merge.rc:4856
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "Leva (%1 od %2)"
 
 #. IDS_DEL_MIDDLE_FMT2
-#: Merge.rc:1026 Merge.rc:1035 Merge.rc:4855
+#: Merge.rc:1026 Merge.rc:1035 Merge.rc:4857
 #, c-format
 msgid "Middle (%1 of %2)"
 msgstr "Srednja (%1 od %2)"
 
 #. IDS_DEL_RIGHT_FMT2
-#: Merge.rc:1027 Merge.rc:1036 Merge.rc:4856
+#: Merge.rc:1027 Merge.rc:1036 Merge.rc:4858
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "Desna (%1 od %2)"
 
 #. IDS_DEL_BOTH_FMT2
-#: Merge.rc:1028 Merge.rc:1037 Merge.rc:4857
+#: Merge.rc:1028 Merge.rc:1037 Merge.rc:4859
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "Obe (%1 od %2)"
 
 #. IDS_DEL_ALL_FMT2
-#: Merge.rc:1029 Merge.rc:1038 Merge.rc:4862
+#: Merge.rc:1029 Merge.rc:1038 Merge.rc:4864
 #, c-format
 msgid "All (%1 of %2)"
 msgstr "Vse (%1 od %2)"
@@ -1731,19 +1731,19 @@ msgid "&Zip"
 msgstr "Arhiv &Zip"
 
 #. IDS_COPY_BOTH_TO2
-#: Merge.rc:1047 Merge.rc:4840
+#: Merge.rc:1047 Merge.rc:4842
 #, c-format
 msgid "Both to... (%1 of %2)"
 msgstr "Obe v... (%1 od %2)"
 
 #. IDS_COPY_ALL_TO2
-#: Merge.rc:1048 Merge.rc:4841
+#: Merge.rc:1048 Merge.rc:4843
 #, c-format
 msgid "All to... (%1 of %2)"
 msgstr "Vse v... (%1 od %2)"
 
 #. IDS_COPY_DIFFERENCES_TO2
-#: Merge.rc:1049 Merge.rc:4842
+#: Merge.rc:1049 Merge.rc:4844
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Razlike v... (%1 od %2)"
@@ -1910,7 +1910,7 @@ msgid "Ignore Line &Breaks (Treat as Spaces)"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_RECURS_CHECK
-#: Merge.rc:1133 Merge.rc:3264
+#: Merge.rc:1133 Merge.rc:3266
 msgid "&Include Subfolders"
 msgstr "&Vključi podmape"
 
@@ -1920,37 +1920,37 @@ msgid "&Compare Method"
 msgstr "&Način primerjave"
 
 #. IDS_COMPMETHOD_FULL_CONTENTS
-#: Merge.rc:1136 Merge.rc:1168 Merge.rc:1362 Merge.rc:4605
+#: Merge.rc:1136 Merge.rc:1168 Merge.rc:1362 Merge.rc:4607
 msgid "Full Contents"
 msgstr "Popolna vsebina"
 
 #. IDS_COMPMETHOD_QUICK_CONTENTS
-#: Merge.rc:1137 Merge.rc:1169 Merge.rc:1363 Merge.rc:4606
+#: Merge.rc:1137 Merge.rc:1169 Merge.rc:1363 Merge.rc:4608
 msgid "Quick Contents"
 msgstr "Hitra vsebina"
 
 #. IDS_COMPMETHOD_BINARY_CONTENTS
-#: Merge.rc:1138 Merge.rc:1170 Merge.rc:1364 Merge.rc:4607
+#: Merge.rc:1138 Merge.rc:1170 Merge.rc:1364 Merge.rc:4609
 msgid "Binary Contents"
 msgstr "Dvojiška vsebina"
 
 #. IDS_COMPMETHOD_MODDATE
-#: Merge.rc:1139 Merge.rc:1171 Merge.rc:1365 Merge.rc:4608
+#: Merge.rc:1139 Merge.rc:1171 Merge.rc:1365 Merge.rc:4610
 msgid "Modified Date"
 msgstr "Spremenjen datum"
 
 #. IDS_COMPMETHOD_DATESIZE
-#: Merge.rc:1140 Merge.rc:1172 Merge.rc:1366 Merge.rc:4609
+#: Merge.rc:1140 Merge.rc:1172 Merge.rc:1366 Merge.rc:4611
 msgid "Modified Date and Size"
 msgstr "Spremenjen datum in velikost"
 
 #. IDS_COMPMETHOD_SIZE
-#: Merge.rc:1141 Merge.rc:1173 Merge.rc:1367 Merge.rc:4610
+#: Merge.rc:1141 Merge.rc:1173 Merge.rc:1367 Merge.rc:4612
 msgid "Size"
 msgstr "Velikost"
 
 #. IDS_COMPMETHOD_EXISTENCE
-#: Merge.rc:1142 Merge.rc:1174 Merge.rc:1368 Merge.rc:4611
+#: Merge.rc:1142 Merge.rc:1174 Merge.rc:1368 Merge.rc:4613
 msgid "Existence"
 msgstr ""
 
@@ -2861,7 +2861,7 @@ msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
 #: Merge.rc:1845 Merge.rc:2073 Merge.rc:2255 Merge.rc:2274 Merge.rc:2302
-#: Merge.rc:2847
+#: Merge.rc:2849
 msgid "Match &case"
 msgstr "Ujemaj m/V črke"
 
@@ -3021,14 +3021,14 @@ msgid "Line &Status"
 msgstr ""
 
 #. IDS_DIFFERENT
-#: Merge.rc:1903 Merge.rc:1987 Merge.rc:2863 Merge.rc:3015 Merge.rc:3056
-#: Merge.rc:5032
+#: Merge.rc:1903 Merge.rc:1987 Merge.rc:2865 Merge.rc:3017 Merge.rc:3058
+#: Merge.rc:5034
 msgid "Different"
 msgstr "Razlika"
 
 #. IDS_IDENTICAL
-#: Merge.rc:1904 Merge.rc:1988 Merge.rc:2862 Merge.rc:3034 Merge.rc:3095
-#: Merge.rc:5022
+#: Merge.rc:1904 Merge.rc:1988 Merge.rc:2864 Merge.rc:3036 Merge.rc:3097
+#: Merge.rc:5024
 msgid "Identical"
 msgstr "Enako"
 
@@ -3048,7 +3048,7 @@ msgid "Missing"
 msgstr ""
 
 #. IDS_MOVED
-#: Merge.rc:1909 Merge.rc:5050
+#: Merge.rc:1909 Merge.rc:5052
 msgid "Moved"
 msgstr ""
 
@@ -3188,10 +3188,10 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "Obišči domačo stran WinMerge!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:2198 Merge.rc:2340 Merge.rc:2693 Merge.rc:2717 Merge.rc:2731
-#: Merge.rc:2759 Merge.rc:2850 Merge.rc:2879 Merge.rc:2895 Merge.rc:2956
-#: Merge.rc:2974 Merge.rc:2992 Merge.rc:3004 Merge.rc:3168 Merge.rc:3228
-#: Merge.rc:3363 Merge.rc:3405 Merge.rc:3448 Merge.rc:3498
+#: Merge.rc:2198 Merge.rc:2340 Merge.rc:2695 Merge.rc:2719 Merge.rc:2733
+#: Merge.rc:2761 Merge.rc:2852 Merge.rc:2881 Merge.rc:2897 Merge.rc:2958
+#: Merge.rc:2976 Merge.rc:2994 Merge.rc:3006 Merge.rc:3170 Merge.rc:3230
+#: Merge.rc:3365 Merge.rc:3407 Merge.rc:3450 Merge.rc:3500
 msgid "OK"
 msgstr "Vredu"
 
@@ -3201,7 +3201,7 @@ msgid "Contributors"
 msgstr "Sodelavci"
 
 #. IDD_SELECT_FILES_OR_FOLDERS
-#: Merge.rc:2205 Merge.rc:3371
+#: Merge.rc:2205 Merge.rc:3373
 msgid "Select Files or Folders"
 msgstr "Izberi datoteke ali mape"
 
@@ -3221,7 +3221,7 @@ msgid "Swap 1st | 2nd"
 msgstr "Zamenjaj 1-vo | 2-go"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_BROWSEFILE
-#: Merge.rc:2214 Merge.rc:2570 Merge.rc:2675 Merge.rc:2987
+#: Merge.rc:2214 Merge.rc:2570 Merge.rc:2677 Merge.rc:2989
 msgid "&Browse..."
 msgstr "Pre&brskaj..."
 
@@ -3261,7 +3261,7 @@ msgid "Swap 1st | 3rd"
 msgstr "Zamenjaj 1-vo | 3-tjo"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_BROWSE
-#: Merge.rc:2226 Merge.rc:2967 Merge.rc:3184
+#: Merge.rc:2226 Merge.rc:2969 Merge.rc:3186
 msgid "Browse..."
 msgstr "Prebrskaj..."
 
@@ -3292,10 +3292,10 @@ msgstr "Iz&beri..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2241 Merge.rc:2261 Merge.rc:2285 Merge.rc:2306 Merge.rc:2341
-#: Merge.rc:2694 Merge.rc:2718 Merge.rc:2732 Merge.rc:2760 Merge.rc:2813
-#: Merge.rc:2851 Merge.rc:2880 Merge.rc:2896 Merge.rc:2957 Merge.rc:2975
-#: Merge.rc:2993 Merge.rc:3005 Merge.rc:3169 Merge.rc:3229 Merge.rc:3388
-#: Merge.rc:3406 Merge.rc:3449 Merge.rc:3499
+#: Merge.rc:2696 Merge.rc:2720 Merge.rc:2734 Merge.rc:2762 Merge.rc:2815
+#: Merge.rc:2853 Merge.rc:2882 Merge.rc:2898 Merge.rc:2959 Merge.rc:2977
+#: Merge.rc:2995 Merge.rc:3007 Merge.rc:3171 Merge.rc:3231 Merge.rc:3390
+#: Merge.rc:3408 Merge.rc:3451 Merge.rc:3501
 msgid "Cancel"
 msgstr "Prekliči"
 
@@ -3305,7 +3305,7 @@ msgid "Status:"
 msgstr "Stanje:"
 
 #. IDD_PLUGINS_LIST, ID_HELP
-#: Merge.rc:2243 Merge.rc:2342 Merge.rc:3230
+#: Merge.rc:2243 Merge.rc:2342 Merge.rc:3232
 msgid "Help"
 msgstr "Pomoč"
 
@@ -3390,7 +3390,7 @@ msgid "Replace &All"
 msgstr "Zamenjaj &vse"
 
 #. IDS_OPTIONSPG_MARKERCOLORS
-#: Merge.rc:2290 Merge.rc:4532
+#: Merge.rc:2290 Merge.rc:4534
 msgid "Markers"
 msgstr "Označevalci"
 
@@ -3410,12 +3410,12 @@ msgid "&Background color:"
 msgstr "Bar&va ozadja:"
 
 #. IDS_MESSAGEBOX_OK
-#: Merge.rc:2304 Merge.rc:3130 Merge.rc:3387 Merge.rc:4494
+#: Merge.rc:2304 Merge.rc:3132 Merge.rc:3389 Merge.rc:4496
 msgid "&Ok"
 msgstr "&Vredu"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:2305 Merge.rc:2787 Merge.rc:3500
+#: Merge.rc:2305 Merge.rc:2789 Merge.rc:3502
 msgid "&Apply"
 msgstr "&Uporabi"
 
@@ -3435,12 +3435,12 @@ msgid "Regular Expressions (one per line):"
 msgstr "Regularni izrazi (1 na vrstico):"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_EDIT
-#: Merge.rc:2318 Merge.rc:3225
+#: Merge.rc:2318 Merge.rc:3227
 msgid "Edit"
 msgstr "Uredi"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_REMOVE
-#: Merge.rc:2319 Merge.rc:2331 Merge.rc:3226
+#: Merge.rc:2319 Merge.rc:2331 Merge.rc:3228
 msgid "Remove"
 msgstr "Odstrani"
 
@@ -3460,7 +3460,7 @@ msgid "Enable"
 msgstr "Omogoči"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_ADD
-#: Merge.rc:2330 Merge.rc:3224
+#: Merge.rc:2330 Merge.rc:3226
 msgid "Add"
 msgstr "Dodaj"
 
@@ -3485,7 +3485,7 @@ msgid "Export..."
 msgstr "Izvozi..."
 
 #. IDS_OPTIONSPG_GENCOMPARE
-#: Merge.rc:2352 Merge.rc:4522 Merge.rc:4525 Merge.rc:4542
+#: Merge.rc:2352 Merge.rc:4524 Merge.rc:4527 Merge.rc:4544
 msgid "General"
 msgstr "Splošno"
 
@@ -3551,14 +3551,14 @@ msgstr "Jezik:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
 #: Merge.rc:2379 Merge.rc:2559 Merge.rc:2581 Merge.rc:2612 Merge.rc:2631
-#: Merge.rc:2648 Merge.rc:2656 Merge.rc:2692 Merge.rc:2716 Merge.rc:2915
-#: Merge.rc:2926 Merge.rc:2935 Merge.rc:3188 Merge.rc:3223 Merge.rc:3286
-#: Merge.rc:3311 Merge.rc:3325 Merge.rc:3339 Merge.rc:3355
+#: Merge.rc:2648 Merge.rc:2656 Merge.rc:2694 Merge.rc:2718 Merge.rc:2917
+#: Merge.rc:2928 Merge.rc:2937 Merge.rc:3190 Merge.rc:3225 Merge.rc:3288
+#: Merge.rc:3313 Merge.rc:3327 Merge.rc:3341 Merge.rc:3357
 msgid "Defaults"
 msgstr "Privzeto"
 
 #. IDS_OPTIONSPG_COLORS
-#: Merge.rc:2384 Merge.rc:2400 Merge.rc:2527 Merge.rc:2552 Merge.rc:4528
+#: Merge.rc:2384 Merge.rc:2400 Merge.rc:2527 Merge.rc:2552 Merge.rc:4530
 msgid "Colors"
 msgstr "Barve"
 
@@ -3603,7 +3603,7 @@ msgid "Deleted"
 msgstr "Izbrisano"
 
 #. IDS_OPTIONSPG_TEXTCOLORS
-#: Merge.rc:2405 Merge.rc:2467 Merge.rc:2499 Merge.rc:2533 Merge.rc:4530
+#: Merge.rc:2405 Merge.rc:2467 Merge.rc:2499 Merge.rc:2533 Merge.rc:4532
 msgid "Text"
 msgstr "Besedilo"
 
@@ -3653,7 +3653,7 @@ msgid "Selected Word Diff:"
 msgstr "Izbrane razlike besed:"
 
 #. IDD_INPUTBOX
-#: Merge.rc:2455 Merge.rc:2490 Merge.rc:2511 Merge.rc:3400
+#: Merge.rc:2455 Merge.rc:2490 Merge.rc:2511 Merge.rc:3402
 msgid "Dialog"
 msgstr "Pogovorno okno"
 
@@ -3784,7 +3784,7 @@ msgid "&Use custom system colors"
 msgstr ""
 
 #. IDS_PRPCAT_SYSTEM
-#: Merge.rc:2564 Merge.rc:4534 Merge.rc:4535 Merge.rc:4981
+#: Merge.rc:2564 Merge.rc:4536 Merge.rc:4537 Merge.rc:4983
 msgid "System"
 msgstr "Sistem"
 
@@ -3824,12 +3824,12 @@ msgid "C&ustom folder:"
 msgstr "&Mapa po meri:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE2
-#: Merge.rc:2580 Merge.rc:2678
+#: Merge.rc:2580 Merge.rc:2680
 msgid "Br&owse..."
 msgstr "Prebr&skaj..."
 
 #. IDS_OPTIONSPG_COMPARE
-#: Merge.rc:2586 Merge.rc:4523
+#: Merge.rc:2586 Merge.rc:4525
 msgid "Compare"
 msgstr "Primerjaj"
 
@@ -3919,7 +3919,7 @@ msgid "Completely unhighlight the ignored differences"
 msgstr "Popolnoma odstrani poudarek prezrtih razlik"
 
 #. IDS_OPTIONSPG_EDITOR
-#: Merge.rc:2617 Merge.rc:4524
+#: Merge.rc:2617 Merge.rc:4526
 msgid "Editor"
 msgstr "Urejevalnik"
 
@@ -4004,7 +4004,7 @@ msgid "Some messages can be hidden by the user. Press Reset to make all messages
 msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
 
 #. IDD_SELECT_FILES_OR_FOLDERS, IDC_RESET
-#: Merge.rc:2664 Merge.rc:3386
+#: Merge.rc:2664 Merge.rc:3388
 msgid "Reset"
 msgstr "Ponastavi"
 
@@ -4013,398 +4013,403 @@ msgstr "Ponastavi"
 msgid "Patch Generator"
 msgstr "Ustvarjalec popravkov"
 
+#. IDD_FILECMP_REPORT, IDC_STATIC
+#: Merge.rc:2673 Merge.rc:2985
+msgid "Comparisons to include:"
+msgstr ""
+
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2673
+#: Merge.rc:2675
 msgid "File&1:"
 msgstr "Datoteka&1:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2676
+#: Merge.rc:2678
 msgid "File&2:"
 msgstr "Datoteka&2:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_SWAPFILES
-#: Merge.rc:2679
+#: Merge.rc:2681
 msgid "&Swap"
 msgstr "&Zamenjaj"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_COPYCLIPBOARD
-#: Merge.rc:2680 Merge.rc:2972 Merge.rc:2988
+#: Merge.rc:2682 Merge.rc:2974 Merge.rc:2990
 msgid "&Copy to clipboard"
 msgstr "&Kopiraj v odložišče"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_APPENDFILE
-#: Merge.rc:2681
+#: Merge.rc:2683
 msgid "&Append to existing file"
 msgstr "&Dodaj v obstoječo datoteko"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2682
+#: Merge.rc:2684
 msgid "&Result:"
 msgstr "&Rezultat:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_RESULT
-#: Merge.rc:2684
+#: Merge.rc:2686
 msgid "Bro&wse..."
 msgstr "Prebrs&kaj..."
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2685
+#: Merge.rc:2687
 msgid "&Format"
 msgstr "&Format"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2686
+#: Merge.rc:2688
 msgid "St&yle:"
 msgstr "S&log:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2688
+#: Merge.rc:2690
 msgid "&Context:"
 msgstr "&Skladnost:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_INCLCMDLINE
-#: Merge.rc:2690
+#: Merge.rc:2692
 msgid "Inclu&de command line"
 msgstr "&Vključi ukazno vrstico"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_OPENTOEDITOR
-#: Merge.rc:2691
+#: Merge.rc:2693
 msgid "Open in e&xternal editor"
 msgstr "Odpri v zu&nanjem urejevalniku"
 
 #. IDD_DIRCOLS
-#: Merge.rc:2708
+#: Merge.rc:2710
 msgid "Display Columns"
 msgstr "Prikaži stolpce"
 
 #. IDD_DIRCOLS, IDC_UP
-#: Merge.rc:2712
+#: Merge.rc:2714
 msgid "Move &Up"
 msgstr "Premakni navz&gor"
 
 #. IDD_DIRCOLS, IDC_DOWN
-#: Merge.rc:2713
+#: Merge.rc:2715
 msgid "Move &Down"
 msgstr "Premakni navz&dol"
 
 #. IDD_DIRCOLS, IDC_COLDLG_ADDITIONAL_PROPERTIES
-#: Merge.rc:2715
+#: Merge.rc:2717
 msgid "&Additional Properties"
 msgstr "&Dodatne lastnosti"
 
 #. IDD_DIRADDITIONALPROPS
-#: Merge.rc:2723
+#: Merge.rc:2725
 msgid "Additional Properties"
 msgstr "Dodatne lastnosti"
 
 #. IDD_PLUGINS_SELECTPLUGIN
-#: Merge.rc:2737
+#: Merge.rc:2739
 msgid "Select Plugin"
 msgstr "Izberi vtičnik"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2740 Merge.rc:3416
+#: Merge.rc:2742 Merge.rc:3418
 msgid "Plugin &name:"
 msgstr "I&me vtičnita:"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_STATIC
-#: Merge.rc:2742
+#: Merge.rc:2744
 msgid "&Target files:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2744 Merge.rc:3418
+#: Merge.rc:2746 Merge.rc:3420
 msgid "Extensions list:"
 msgstr "Seznam končnic:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2746 Merge.rc:3420
+#: Merge.rc:2748 Merge.rc:3422
 msgid "Description:"
 msgstr "Opis:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2748 Merge.rc:3422
+#: Merge.rc:2750 Merge.rc:3424
 msgid "Default arguments:"
 msgstr "Privzeti argumenti:"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALLOW_ALL
-#: Merge.rc:2750
+#: Merge.rc:2752
 msgid "Display all plugins (Ignore extension)"
 msgstr "Prikaži vse vtičnike, ne preverjaj končnico"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE
-#: Merge.rc:2752
+#: Merge.rc:2754
 msgid "&Open files in same window type after unpacking"
 msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
-#: Merge.rc:2754 Merge.rc:3430
+#: Merge.rc:2756 Merge.rc:3432
 msgid "&Plugin pipeline:"
 msgstr "Cevovo&d vtičnika:"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALIAS
-#: Merge.rc:2757
+#: Merge.rc:2759
 msgid "&Alias..."
 msgstr ""
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_STOP
-#: Merge.rc:2767
+#: Merge.rc:2769
 msgid "Stop"
 msgstr "Ustavi"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_PAUSE
-#: Merge.rc:2768
+#: Merge.rc:2770
 msgid "Pause"
 msgstr "Pavza"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_CONTINUE
-#: Merge.rc:2769
+#: Merge.rc:2771
 msgid "Continue"
 msgstr "Nadaljuj"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2771 Merge.rc:3274
+#: Merge.rc:2773 Merge.rc:3276
 msgid "C&PU cores to use:"
 msgstr "Š&tevilo jeder CPE za uporabo:"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_STATIC
-#: Merge.rc:2772
+#: Merge.rc:2774
 msgid "Items total:"
 msgstr "Skupaj vnosov:"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_STATIC
-#: Merge.rc:2773
+#: Merge.rc:2775
 msgid "Items compared:"
 msgstr "Primerjanih vnosov:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2788 Merge.rc:3147 Merge.rc:5653
+#: Merge.rc:2790 Merge.rc:3149 Merge.rc:5653
 msgid "&Close"
 msgstr "&Zapri"
 
 #. IDD_WMGOTO
-#: Merge.rc:2799
+#: Merge.rc:2801
 msgid "Go to"
 msgstr "Pojdi na"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2802
+#: Merge.rc:2804
 msgid "G&o to:"
 msgstr "Pojdi &na:"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2805
+#: Merge.rc:2807
 msgid "File"
 msgstr "Datoteka"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2809
+#: Merge.rc:2811
 msgid "Go to what"
 msgstr "Pojdi na kaj"
 
 #. IDD_WMGOTO, IDC_WMGOTO_TOLINE
-#: Merge.rc:2810
+#: Merge.rc:2812
 msgid "Li&ne"
 msgstr "&Vrstico"
 
 #. IDD_WMGOTO, IDC_WMGOTO_TODIFF
-#: Merge.rc:2811
+#: Merge.rc:2813
 msgid "&Difference"
 msgstr "&Razlika"
 
 #. IDD_WMGOTO, IDOK
-#: Merge.rc:2812
+#: Merge.rc:2814
 msgid "&Go to"
 msgstr "Pojdi &na"
 
 #. IDS_PROJECT_ITEM_FILE_FILTER
-#: Merge.rc:2818 Merge.rc:4644
+#: Merge.rc:2820 Merge.rc:4646
 msgid "File Filters"
 msgstr "Filtri datotek"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
-#: Merge.rc:2821
+#: Merge.rc:2823
 msgid "&Mask / Filter Expression"
 msgstr ""
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
-#: Merge.rc:2824
+#: Merge.rc:2826
 msgid "Preset &Filters"
 msgstr ""
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_TEST_BTN
-#: Merge.rc:2826
+#: Merge.rc:2828
 msgid "Test..."
 msgstr "Preizkusi..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_INSTALL
-#: Merge.rc:2827
+#: Merge.rc:2829
 msgid "Install..."
 msgstr "Namesti..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_NEWBTN
-#: Merge.rc:2828
+#: Merge.rc:2830
 msgid "New..."
 msgstr "Nova..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_EDITBTN
-#: Merge.rc:2829
+#: Merge.rc:2831
 msgid "Edit..."
 msgstr "Uredi..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_DELETEBTN
-#: Merge.rc:2830
+#: Merge.rc:2832
 msgid "Delete..."
 msgstr "Izbriši..."
 
 #. IDD_FILTERS_CONDITION
-#: Merge.rc:2835
+#: Merge.rc:2837
 msgid "Filter Condition"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2838
+#: Merge.rc:2840
 msgid "&Left-hand side:"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2840
+#: Merge.rc:2842
 msgid "&Operator:"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2842
+#: Merge.rc:2844
 msgid "&Right-hand side:"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2848
+#: Merge.rc:2850
 msgid "Expression:"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER
-#: Merge.rc:2856
+#: Merge.rc:2858
 msgid "Filter by Comparison Result"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
-#: Merge.rc:2859
+#: Merge.rc:2861
 msgid "&Include"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
-#: Merge.rc:2860
+#: Merge.rc:2862
 msgid "&Exclude"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
-#: Merge.rc:2861
+#: Merge.rc:2863
 msgid "Comparison Results"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
-#: Merge.rc:2864
+#: Merge.rc:2866
 msgid "Left only"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
-#: Merge.rc:2865
+#: Merge.rc:2867
 msgid "Right only"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
-#: Merge.rc:2866
+#: Merge.rc:2868
 msgid "Skipped"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
-#: Merge.rc:2867
+#: Merge.rc:2869
 msgid "Middle only"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
-#: Merge.rc:2868
+#: Merge.rc:2870
 msgid "Left only (different)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
-#: Merge.rc:2870
+#: Merge.rc:2872
 msgid "Middle only (different)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
-#: Merge.rc:2872
+#: Merge.rc:2874
 msgid "Right only (different)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
-#: Merge.rc:2874
+#: Merge.rc:2876
 msgid "Left only (missing)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
-#: Merge.rc:2875
+#: Merge.rc:2877
 msgid "Middle only (missing)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
-#: Merge.rc:2877
+#: Merge.rc:2879
 msgid "Right only (missing)"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE
-#: Merge.rc:2885
+#: Merge.rc:2887
 msgid "Match Inside/Outside Filter Expressions"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
-#: Merge.rc:2888
+#: Merge.rc:2890
 msgid "&Start filter:"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
-#: Merge.rc:2891
+#: Merge.rc:2893
 msgid "&End filter:"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
-#: Merge.rc:2894
+#: Merge.rc:2896
 msgid "Lines between start and end filter matches will be included."
 msgstr ""
 
 #. IDS_OPTIONSPG_CODEPAGE
-#: Merge.rc:2901 Merge.rc:3112 Merge.rc:4536
+#: Merge.rc:2903 Merge.rc:3114 Merge.rc:4538
 msgid "Codepage"
 msgstr "Kodna stran"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
-#: Merge.rc:2904
+#: Merge.rc:2906
 msgid "Default Codepage"
 msgstr "Privzeta kodna stran"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
-#: Merge.rc:2905
+#: Merge.rc:2907
 msgid "Select the default codepage for non-Unicode files:"
 msgstr "Izberite privzeto dodeljeno kodno stran pri nalaganju ne-Unicode datotek:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_SYSTEM
-#: Merge.rc:2906
+#: Merge.rc:2908
 msgid "System codepage"
 msgstr "Sistemska kodna stran"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_UI
-#: Merge.rc:2907
+#: Merge.rc:2909
 msgid "According to WinMerge User Interface"
 msgstr "Glede na uporabniški vmesnik WinMerge"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_CUSTOM
-#: Merge.rc:2908
+#: Merge.rc:2910
 msgid "Custom codepage:"
 msgstr "Poljubna kodna stran:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE
-#: Merge.rc:2910
+#: Merge.rc:2912
 msgid ""
 "Detect codepage for: .html, .rc, .xml\n"
 "Restart required."
@@ -4413,7 +4418,7 @@ msgstr ""
 "Zahtevan je ponovni zagon seje."
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE2
-#: Merge.rc:2912
+#: Merge.rc:2914
 msgid ""
 "Detect codepage for files with mlang.dll\n"
 "Restart required."
@@ -4422,794 +4427,789 @@ msgstr ""
 "Zahtevan je ponovni zagon seje."
 
 #. IDS_OPTIONSPG_ARCHIVE
-#: Merge.rc:2920 Merge.rc:4537
+#: Merge.rc:2922 Merge.rc:4539
 msgid "Archive Support"
 msgstr "Podpora arhivov"
 
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_ENABLE
-#: Merge.rc:2923
+#: Merge.rc:2925
 msgid "&Enable archive file support"
 msgstr "Omogoči podporo &arhivskih datotek"
 
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_DETECTTYPE
-#: Merge.rc:2924
+#: Merge.rc:2926
 msgid "&Detect archive type from file signature"
 msgstr "Zaznaj vrs&to arhiva iz podpisa datoteke"
 
 #. IDD_PROPPAGE_PROJECT, IDC_STATIC
-#: Merge.rc:2933
+#: Merge.rc:2935
 msgid "Items saved to or restored from the project file:"
 msgstr "Vnosi, shranjeni v datoteko projekta ali obnovljeni iz nje:"
 
 #. IDD_SAVECLOSING
-#: Merge.rc:2940
+#: Merge.rc:2942
 msgid "Save Modified Files?"
 msgstr "Shranim spremenjene datoteke?"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_LEFTFRAME
-#: Merge.rc:2943
+#: Merge.rc:2945
 msgid "Left side file"
 msgstr "Leva stran datoteke"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVELEFT
-#: Merge.rc:2945
+#: Merge.rc:2947
 msgid "&Save changes"
 msgstr "&Shrani spremembe"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDLEFT
-#: Merge.rc:2946
+#: Merge.rc:2948
 msgid "&Discard changes"
 msgstr "&Zavrzi spremembe"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_MIDDLEFRAME
-#: Merge.rc:2947
+#: Merge.rc:2949
 msgid "Middle side file"
 msgstr "Datoteka na sredini"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVEMIDDLE
-#: Merge.rc:2949
+#: Merge.rc:2951
 msgid "Sa&ve changes"
 msgstr "S&hrani spremembe"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDMIDDLE
-#: Merge.rc:2950
+#: Merge.rc:2952
 msgid "Discard c&hanges"
 msgstr "Za&vrzi spremembe"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_RIGHTFRAME
-#: Merge.rc:2951
+#: Merge.rc:2953
 msgid "Right side file"
 msgstr "Datoteka na desni strani"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVERIGHT
-#: Merge.rc:2953
+#: Merge.rc:2955
 msgid "S&ave changes"
 msgstr "Shrani spremembe"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDRIGHT
-#: Merge.rc:2954
+#: Merge.rc:2956
 msgid "Dis&card changes"
 msgstr "Z&avrzi spremembe"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDALL
-#: Merge.rc:2955
+#: Merge.rc:2957
 msgid "Disca&rd All"
 msgstr "Zav&rzi vse"
 
 #. IDD_DIRCMP_REPORT
-#: Merge.rc:2962
+#: Merge.rc:2964
 msgid "Folder Compare Report"
 msgstr "Poročilo primerjanja datotek"
 
 #. IDD_FILECMP_REPORT, IDC_STATIC
-#: Merge.rc:2965 Merge.rc:2985
+#: Merge.rc:2967 Merge.rc:2987
 msgid "Report &file:"
 msgstr "Datoteka &poročila:"
 
 #. IDD_DIRCMP_REPORT, IDC_STATIC
-#: Merge.rc:2968
+#: Merge.rc:2970
 msgid "&Style:"
 msgstr "S&log:"
 
 #. IDD_DIRCMP_REPORT, IDC_REPORT_INCLUDEFILECMPREPORT
-#: Merge.rc:2970
+#: Merge.rc:2972
 msgid "&Include file compare report"
 msgstr "Vključi &poročilo o primerjavi datoteke"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
-#: Merge.rc:2973 Merge.rc:2989
+#: Merge.rc:2975 Merge.rc:2991
 msgid "Open report after &generating"
 msgstr ""
 
 #. IDD_FILECMP_REPORT
-#: Merge.rc:2980
+#: Merge.rc:2982
 msgid "File Compare Report"
 msgstr ""
 
-#. IDD_FILECMP_REPORT, IDC_STATIC
-#: Merge.rc:2983
-msgid "Comparisons to include:"
-msgstr ""
-
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
-#: Merge.rc:2990
+#: Merge.rc:2992
 msgid "&Include all image pages"
 msgstr ""
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
-#: Merge.rc:2991
+#: Merge.rc:2993
 msgid "\x24D8 The report uses the current comparison settings."
 msgstr ""
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
-#: Merge.rc:2998
+#: Merge.rc:3000
 msgid "Shared or Private Filter"
 msgstr "Deljen ali zasebni filter"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_STATIC
-#: Merge.rc:3001
+#: Merge.rc:3003
 msgid "What type of filter do you want?"
 msgstr "Katero vrsto filtra želite ustvariti?"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_SHARED
-#: Merge.rc:3002
+#: Merge.rc:3004
 msgid "Shared Filter (for all users)"
 msgstr "Deljen filter (za vse uporabnike na tem računalniku)"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_PRIVATE
-#: Merge.rc:3003
+#: Merge.rc:3005
 msgid "Private Filter (current user only)"
 msgstr "Zasebni filter (le za trenutnega uporabnika)"
 
 #. IDD_COMPARE_STATISTICS3
-#: Merge.rc:3010 Merge.rc:3051
+#: Merge.rc:3012 Merge.rc:3053
 msgid "Compare Statistics"
 msgstr "Statistika primerjave"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3013 Merge.rc:3054
+#: Merge.rc:3015 Merge.rc:3056
 msgid "Folders:"
 msgstr "Mape:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3014 Merge.rc:3055
+#: Merge.rc:3016 Merge.rc:3057
 msgid "Files:"
 msgstr "Datoteke:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3020 Merge.rc:3039 Merge.rc:3061 Merge.rc:3100
+#: Merge.rc:3022 Merge.rc:3041 Merge.rc:3063 Merge.rc:3102
 msgid "Binary:"
 msgstr "Dvojiško:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3023 Merge.rc:3064
+#: Merge.rc:3025 Merge.rc:3066
 msgid "Unique"
 msgstr "Unikat"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3024 Merge.rc:3065
+#: Merge.rc:3026 Merge.rc:3067
 msgid "Left:"
 msgstr "Levo:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3029 Merge.rc:3075
+#: Merge.rc:3031 Merge.rc:3077
 msgid "Right:"
 msgstr "Desno:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3043 Merge.rc:3104
+#: Merge.rc:3045 Merge.rc:3106
 msgid "Total:"
 msgstr "Skupaj:"
 
 #. IDD_COMPARE_STATISTICS3, IDOK
-#: Merge.rc:3046 Merge.rc:3107
+#: Merge.rc:3048 Merge.rc:3109
 msgid "Close"
 msgstr "Zapri"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3070
+#: Merge.rc:3072
 msgid "Middle:"
 msgstr "Srednjo:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3080
+#: Merge.rc:3082
 msgid "Missing Left:"
 msgstr "Manjka leva:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3085
+#: Merge.rc:3087
 msgid "Missing Middle:"
 msgstr "Manjka srednja:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3090
+#: Merge.rc:3092
 msgid "Missing Right:"
 msgstr "Manjka desna:"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_GROUP
-#: Merge.rc:3115
+#: Merge.rc:3117
 msgid "Affects"
 msgstr "Vpliva"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_RIGHT_FILES_LABEL
-#: Merge.rc:3117 Merge.rc:3119 Merge.rc:3121
+#: Merge.rc:3119 Merge.rc:3121 Merge.rc:3123
 msgid "(Affects)"
 msgstr "(Vpliva)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOADING_GROUP
-#: Merge.rc:3122
+#: Merge.rc:3124
 msgid "Select Codepage for"
 msgstr "Izberi kodno stran za"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_FILES_LABEL
-#: Merge.rc:3123
+#: Merge.rc:3125
 msgid "&File Loading:"
 msgstr "&Nalaganje datoteke:"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_SAVE_FILES_LABEL
-#: Merge.rc:3125
+#: Merge.rc:3127
 msgid "File &Saving:"
 msgstr "&Shranjevanje datoteke:"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_SAVE_SAME_CODEPAGE
-#: Merge.rc:3128
+#: Merge.rc:3130
 msgid "&Use same codepage for both"
 msgstr "&Uporabi isto kodno tabelo za oboje"
 
 #. IDS_MESSAGEBOX_CANCEL
-#: Merge.rc:3131 Merge.rc:4495
+#: Merge.rc:3133 Merge.rc:4497
 msgid "&Cancel"
 msgstr "Pre&kliči"
 
 #. IDD_FILTERS_FILEFILTERS_TEST
-#: Merge.rc:3136
+#: Merge.rc:3138
 msgid "Test Filter"
 msgstr "Preizkusi filter"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_HEADER
-#: Merge.rc:3139
+#: Merge.rc:3141
 msgid "Testing filter:"
 msgstr "Preizkus filtra:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_PROMPT_LABEL
-#: Merge.rc:3141
+#: Merge.rc:3143
 msgid "&Enter text to test:"
 msgstr "&Vnesi besedilo za preizkus:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_IS_DIRECTORY
-#: Merge.rc:3143
+#: Merge.rc:3145
 msgid "&Folder Name"
 msgstr "&Ime mape"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_STATIC
-#: Merge.rc:3144
+#: Merge.rc:3146
 msgid "Result:"
 msgstr "Rezultat:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_TEST_BTN
-#: Merge.rc:3146
+#: Merge.rc:3148
 msgid "&Test"
 msgstr "P&reizkusi"
 
 #. IDS_OPTIONSPG_TABLECOMPARE
-#: Merge.rc:3152 Merge.rc:3291 Merge.rc:4551
+#: Merge.rc:3154 Merge.rc:3293 Merge.rc:4553
 msgid "Table"
 msgstr "Tabela"
 
 #. IDD_OPEN_TABLE, IDC_STATIC
-#: Merge.rc:3155
+#: Merge.rc:3157
 msgid "File type"
 msgstr "Vrsta datoteke"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_CSV
-#: Merge.rc:3156
+#: Merge.rc:3158
 msgid "&CSV"
 msgstr "&CSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_TSV
-#: Merge.rc:3157
+#: Merge.rc:3159
 msgid "&TSV"
 msgstr "&TSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_DSV
-#: Merge.rc:3158
+#: Merge.rc:3160
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Ločilo &po meri-Ločene vrednosti"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3160 Merge.rc:3162 Merge.rc:3297 Merge.rc:3305
+#: Merge.rc:3162 Merge.rc:3164 Merge.rc:3299 Merge.rc:3307
 msgid "D&elimiter character:"
 msgstr "Znak &ločila:"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_COMPARETABLE_ALLOWNEWLINE
-#: Merge.rc:3164 Merge.rc:3307
+#: Merge.rc:3166 Merge.rc:3309
 msgid "&Allow newlines in quotes"
 msgstr "&Dovoli nove vrstice v narekovajih"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3166 Merge.rc:3309
+#: Merge.rc:3168 Merge.rc:3311
 msgid "&Quote character:"
 msgstr "Z&nak narekovaja:"
 
 #. IDS_OPTIONSPG_BACKUPS
-#: Merge.rc:3174 Merge.rc:4539
+#: Merge.rc:3176 Merge.rc:4541
 msgid "Backup Files"
 msgstr "Datoteke varnostnih kopij"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:3177
+#: Merge.rc:3179
 msgid "Create backup files for:"
 msgstr "Ustvari datoteke varnostnih kopij v:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FOLDERCMP
-#: Merge.rc:3178
+#: Merge.rc:3180
 msgid "&Folder compare"
 msgstr "Primerjava &map"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FILECMP
-#: Merge.rc:3179
+#: Merge.rc:3181
 msgid "Fil&e compare"
 msgstr "Primerjava &datotek"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:3180
+#: Merge.rc:3182
 msgid "Create backup files in:"
 msgstr "Ustvari datoteke varnostnih kopij v:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_ORIGFOLD
-#: Merge.rc:3181
+#: Merge.rc:3183
 msgid "&Original file's folder"
 msgstr "&Mapi izvorne datoteke"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_GLOBALFOLD
-#: Merge.rc:3182
+#: Merge.rc:3184
 msgid "&Global backup folder:"
 msgstr "&Globalni mapi varnostnih kopij:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:3185
+#: Merge.rc:3187
 msgid "Backup filename:"
 msgstr "Ime datoteke varnostne kopije:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_BAK
-#: Merge.rc:3186
+#: Merge.rc:3188
 msgid "&Append .bak extension"
 msgstr "&Dodaj končnico '.bak'"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_TIME
-#: Merge.rc:3187
+#: Merge.rc:3189
 msgid "A&ppend timestamp"
 msgstr "Dodaj ča&sovni žig"
 
 #. IDS_CONFIRM_COPY_CAPTION
-#: Merge.rc:3193 Merge.rc:4889
+#: Merge.rc:3195 Merge.rc:4891
 msgid "Confirm Copy"
 msgstr "Potrdi kopiranje"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_QUERY
-#: Merge.rc:3197
+#: Merge.rc:3199
 msgid "Are you sure you want to copy XXX items?"
 msgstr "Ali ste prepričani, da želite kopirati XXX vnosov?"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_FROM_TEXT
-#: Merge.rc:3198
+#: Merge.rc:3200
 msgid "From left"
 msgstr "Z leve"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_TO_TEXT
-#: Merge.rc:3200
+#: Merge.rc:3202
 msgid "To right"
 msgstr "Na desno"
 
 #. IDS_MESSAGEBOX_DONT_ASK_AGAIN
-#: Merge.rc:3202 Merge.rc:4514
+#: Merge.rc:3204 Merge.rc:4516
 msgid "Don't ask this &question again."
 msgstr "Tega ne &sprašuj več."
 
 #. IDD_CONFIRM_COPY, IDYES
-#: Merge.rc:3204
+#: Merge.rc:3206
 msgid "Yes"
 msgstr "Da"
 
 #. IDD_CONFIRM_COPY, IDNO
-#: Merge.rc:3205
+#: Merge.rc:3207
 msgid "No"
 msgstr "Ne"
 
 #. IDS_PROJECT_ITEM_PLUGIN
-#: Merge.rc:3210 Merge.rc:4646
+#: Merge.rc:3212 Merge.rc:4648
 msgid "Plugins"
 msgstr "Vtičniki"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGINS_ENABLE
-#: Merge.rc:3213
+#: Merge.rc:3215
 msgid "&Enable plugins"
 msgstr "&Omogoči vtičnike"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:3214 Merge.rc:3414
+#: Merge.rc:3216 Merge.rc:3416
 msgid "Plugin &type:"
 msgstr ""
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
-#: Merge.rc:3217
+#: Merge.rc:3219
 msgid "File filters:"
 msgstr "Filtri datotek:"
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
-#: Merge.rc:3219
+#: Merge.rc:3221
 msgid "&Plugin arguments:"
 msgstr "Ar&gumenti vtičnika:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
-#: Merge.rc:3221 Merge.rc:3435
+#: Merge.rc:3223 Merge.rc:3437
 msgid "Enable &automatic unpacking/prediffing"
 msgstr "Omogočite samodejno razpakiranje/predrazlikovanje vtičnika"
 
 #. IDS_OPTIONSPG_SHELL
-#: Merge.rc:3235 Merge.rc:4540
+#: Merge.rc:3237 Merge.rc:4542
 msgid "Shell Integration"
 msgstr "Integracija v lupino"
 
 #. IDD_PROPPAGE_SHELL, IDC_STATIC
-#: Merge.rc:3238
+#: Merge.rc:3240
 msgid "Explorer"
 msgstr "Raziskovalec"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_CONTEXT
-#: Merge.rc:3239
+#: Merge.rc:3241
 msgid "&Add to context menu"
 msgstr "&Dodaj v priročni meni"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_ADVANCED
-#: Merge.rc:3240
+#: Merge.rc:3242
 msgid "E&nable advanced menu"
 msgstr "Omogoči &napredni meni"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_COMPARE_AS
-#: Merge.rc:3241
+#: Merge.rc:3243
 msgid "Enable &Compare As menu"
 msgstr "Omogoči 'P&rimerjaj' kot meni"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION
-#: Merge.rc:3242
+#: Merge.rc:3244
 msgid "&Register Shell Extension"
 msgstr "&Registriraj končnico lupine"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION
-#: Merge.rc:3243
+#: Merge.rc:3245
 msgid "&Unregister Shell Extension"
 msgstr "&Odstrani registracijo končnice lupine"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION_PERUSER
-#: Merge.rc:3244
+#: Merge.rc:3246
 msgid "Register Shell Extension for Current User &Only"
 msgstr "Registriraj končnico lupine le za &trenutnega uporabnika"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION_PERUSER
-#: Merge.rc:3245
+#: Merge.rc:3247
 msgid "Unregister Shell Extension for Current User On&ly"
 msgstr "Odstrani registracijo končnice lupine &le za trenut. uporabnika"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_WINMERGECONTEXTMENU
-#: Merge.rc:3246
+#: Merge.rc:3248
 msgid "Register Shell Extension for &Windows 11"
 msgstr "Registriraj razširitev lupine za &Windows 11 ali novejši"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_WINMERGECONTEXTMENU
-#: Merge.rc:3247
+#: Merge.rc:3249
 msgid "Unregister Shell Extension for W&indows 11"
 msgstr "Odstrani razširitev lupine za W&indows 11 ali novejši"
 
 #. IDD_PROPPAGE_SHELL, IDC_STATIC
-#: Merge.rc:3248
+#: Merge.rc:3250
 msgid "Jump List"
 msgstr "Seznam skokov"
 
 #. IDD_PROPPAGE_SHELL, IDC_CLEAR_ALL_RECENT_ITEMS
-#: Merge.rc:3250
+#: Merge.rc:3252
 msgid "Clear all recent items"
 msgstr "Počisti vse nedavne vnose"
 
 #. IDS_OPTIONSPG_FOLDERCOMPARE
-#: Merge.rc:3255 Merge.rc:4548
+#: Merge.rc:3257 Merge.rc:4550
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Mapa"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3258
+#: Merge.rc:3260
 msgid "&Compare method:"
 msgstr "&Način primerjave:"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_STOPFIRST
-#: Merge.rc:3260
+#: Merge.rc:3262
 msgid "S&top after first difference"
 msgstr "&Ustavi po prvi razliki"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_IGNORE_SMALLTIMEDIFF
-#: Merge.rc:3262
+#: Merge.rc:3264
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Prezri razlike manjše od 3 sekund"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3265
+#: Merge.rc:3267
 msgid "Expand subfolders &after comparison:"
 msgstr "S&amodejno razširi podmape po primerjavi:"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_WALKSUBDIRS
-#: Merge.rc:3267
+#: Merge.rc:3269
 msgid "Include &unique subfolders contents"
 msgstr "&Vključi unikatne vsebine podmap"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_IGNORE_REPARSEPOINTS
-#: Merge.rc:3269
+#: Merge.rc:3271
 msgid "Ignore &reparse points"
 msgstr "P&rezri točke ponovne razčlenitve"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3270
+#: Merge.rc:3272
 msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr "Prag za preklop na &hitro primerjavo (MB):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3272
+#: Merge.rc:3274
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3276
+#: Merge.rc:3278
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3279
+#: Merge.rc:3281
 msgid "&Rename/move detection:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3281
+#: Merge.rc:3283
 msgid "Rename/move detection &keys:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3284
+#: Merge.rc:3286
 msgid "M&erge renames and moves:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3295 Merge.rc:3300 Merge.rc:3303
+#: Merge.rc:3297 Merge.rc:3302 Merge.rc:3305
 msgid "File patterns:"
 msgstr "Vzorci datotek:"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3302
+#: Merge.rc:3304
 msgid "Custom Delimiter-Separated Values"
 msgstr "Ločilo po meri-Ločene vrednosti"
 
 #. IDS_OPTIONSPG_BINARYCOMPARE
-#: Merge.rc:3316 Merge.rc:4550
+#: Merge.rc:3318 Merge.rc:4552
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Dvojiško"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
-#: Merge.rc:3319
+#: Merge.rc:3321
 msgid "Binary file &patterns:"
 msgstr "Vzorci &dvojiških datotek:"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
-#: Merge.rc:3321
+#: Merge.rc:3323
 msgid "Frhed settings"
 msgstr "Nastavitve Frhed"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_VIEWSETTINGS
-#: Merge.rc:3322
+#: Merge.rc:3324
 msgid "View &Settings..."
 msgstr "Nas&tavitve prikaza..."
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_BINARYMODE
-#: Merge.rc:3323
+#: Merge.rc:3325
 msgid "&Binary Mode..."
 msgstr "&Dvojiški način..."
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_CHARACTERSET
-#: Merge.rc:3324
+#: Merge.rc:3326
 msgid "&Character Set..."
 msgstr "Nabor z&nakov..."
 
 #. IDS_PRPCAT_IMAGE
-#: Merge.rc:3330 Merge.rc:4549 Merge.rc:4989
+#: Merge.rc:3332 Merge.rc:4551 Merge.rc:4991
 msgid "Image"
 msgstr "Slika"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
-#: Merge.rc:3333
+#: Merge.rc:3335
 msgid "Image file &patterns:"
 msgstr "V&zorci slikovnih datotek:"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_ENABLE_IMGCMP_IN_DIRCMP
-#: Merge.rc:3335
+#: Merge.rc:3337
 msgid "&Enable image compare in folder compare"
 msgstr "Omogoči primerjavo &slik v primerjanju map"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
-#: Merge.rc:3337
+#: Merge.rc:3339
 msgid "OCR result:"
 msgstr "Rezultat OCR:"
 
 #. IDS_OPTIONSPG_WEBPAGECOMPARE
-#: Merge.rc:3344 Merge.rc:4552
+#: Merge.rc:3346 Merge.rc:4554
 msgid "Webpage"
 msgstr "Domača stran"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3347
+#: Merge.rc:3349
 msgid "URL pattern to &include (Regular expression):"
 msgstr "Vzorec URL-ja za v&ključitev (regularni izraz):"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3349
+#: Merge.rc:3351
 msgid "URL pattern to &exclude (Regular expression):"
 msgstr "Vzorec URL-ja za &izključitev (regularni izraz):"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3351
+#: Merge.rc:3353
 msgid "&User data folder location:"
 msgstr "&Mesto mape z uporabniškimi podatki:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE
-#: Merge.rc:3353
+#: Merge.rc:3355
 msgid "&Separate user data folders for each pane"
 msgstr "&Ločene mape z uporabniškimi podtaki za vsako podokno"
 
 #. IDD_ENCODINGERROR, IDC_HEXVIEW
-#: Merge.rc:3366
+#: Merge.rc:3368
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3411
+#: Merge.rc:3413
 msgid "Edit Plugin"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:3424
+#: Merge.rc:3426
 msgid "&Category:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_MENUCAPTION_STATIC
-#: Merge.rc:3426
+#: Merge.rc:3428
 msgid "&Menu caption:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_WINDOWTYPE_STATIC
-#: Merge.rc:3428
+#: Merge.rc:3430
 msgid "&Window type:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC
-#: Merge.rc:3433
+#: Merge.rc:3435
 msgid "&Unpacked file extension:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_ARGUMENTSREQUIRED
-#: Merge.rc:3437
+#: Merge.rc:3439
 msgid "&Require arguments"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_GENERATESCRIPT
-#: Merge.rc:3438
+#: Merge.rc:3440
 msgid "&Generate editor script"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_COMMAND_LINE_STATIC
-#: Merge.rc:3441
+#: Merge.rc:3443
 msgid "Command &line:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC
-#: Merge.rc:3444
+#: Merge.rc:3446
 msgid "&Script file extension:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_BODY_STATIC
-#: Merge.rc:3446
+#: Merge.rc:3448
 msgid "Script &body:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3455
+#: Merge.rc:3457
 msgid "Font"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3458
+#: Merge.rc:3460
 msgid "&Font:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3464
+#: Merge.rc:3466
 msgid "Font st&yle:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3470
+#: Merge.rc:3472
 msgid "&Size:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3476
+#: Merge.rc:3478
 msgid "Effects"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3477
+#: Merge.rc:3479
 msgid "Stri&keout"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3478
+#: Merge.rc:3480
 msgid "&Underline"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3480
+#: Merge.rc:3482
 msgid "&Color:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3485
+#: Merge.rc:3487
 msgid "Sample"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3486
+#: Merge.rc:3488
 msgid "AaBbYyZz"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3490
+#: Merge.rc:3492
 msgid "Sc&ript:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_MANAGE_LINK
-#: Merge.rc:3495
+#: Merge.rc:3497
 msgid "<A>Show more fonts</A>"
 msgstr ""
 
 #. ID_INDICATOR_EXT
-#: Merge.rc:4440
+#: Merge.rc:4442
 msgid "EXT"
 msgstr "KON"
 
 #. ID_INDICATOR_CAPS
-#: Merge.rc:4441
+#: Merge.rc:4443
 msgid "CAP"
 msgstr "CAP"
 
 #. ID_INDICATOR_NUM
-#: Merge.rc:4442
+#: Merge.rc:4444
 msgid "NUM"
 msgstr "NUM"
 
 #. ID_INDICATOR_SCRL
-#: Merge.rc:4443
+#: Merge.rc:4445
 msgid "SCRL"
 msgstr "SCRL"
 
 #. ID_INDICATOR_OVR
-#: Merge.rc:4444
+#: Merge.rc:4446
 msgid "OVR"
 msgstr "OVR"
 
 #. ID_INDICATOR_REC
-#: Merge.rc:4445
+#: Merge.rc:4447
 msgid "REC"
 msgstr "ZAP"
 
 #. ID_FILE_NEW
-#: Merge.rc:4451
+#: Merge.rc:4453
 msgid ""
 "\n"
 "New Documents (Ctrl+N)"
@@ -5218,7 +5218,7 @@ msgstr ""
 "Novi dokumenti (Ctrl+N)"
 
 #. ID_FILE_OPEN
-#: Merge.rc:4452
+#: Merge.rc:4454
 msgid ""
 "\n"
 "Open (Ctrl+O)"
@@ -5227,7 +5227,7 @@ msgstr ""
 "Odpri (Ctrl+O)"
 
 #. ID_FILE_SAVE
-#: Merge.rc:4453
+#: Merge.rc:4455
 msgid ""
 "\n"
 "Save (Ctrl+S)"
@@ -5236,33 +5236,33 @@ msgstr ""
 "Shrani (Ctrl+S)"
 
 #. IDS_UNK_ERROR_READING_PROJECT
-#: Merge.rc:4459
+#: Merge.rc:4461
 msgid "Unknown error opening project file."
 msgstr "Neznana napaka pri poskusu odpiranja projektne datoteke."
 
 #. IDS_UNK_ERROR_SAVING_PROJECT
-#: Merge.rc:4460
+#: Merge.rc:4462
 msgid "Unknown error saving project file."
 msgstr "Neznana napaka pri poskusu shranjevanja projektne datoteke."
 
 #. IDS_PROJFILE_LOAD_SUCCESS
-#: Merge.rc:4465
+#: Merge.rc:4467
 msgid "Project file loaded."
 msgstr "Datoteka projekta je uspešno naložena."
 
 #. IDS_PROJFILE_SAVE_SUCCESS
-#: Merge.rc:4466
+#: Merge.rc:4468
 msgid "Project file saved."
 msgstr "Datoteka projekta je uspešno shranjena."
 
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
-#: Merge.rc:4467
+#: Merge.rc:4469
 #, c-format
 msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
 msgstr ""
 
 #. ID_EDIT_UNDO
-#: Merge.rc:4473
+#: Merge.rc:4475
 msgid ""
 "\n"
 "Undo (Ctrl+Z)"
@@ -5271,7 +5271,7 @@ msgstr ""
 "Razveljavi (Ctrl+Z)"
 
 #. ID_EDIT_REDO
-#: Merge.rc:4474
+#: Merge.rc:4476
 msgid ""
 "\n"
 "Redo (Ctrl+Y)"
@@ -5280,7 +5280,7 @@ msgstr ""
 "Povrni (Ctrl+Y)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:4481
+#: Merge.rc:4483
 msgid ""
 "\n"
 "FileCompare\n"
@@ -5299,7 +5299,7 @@ msgstr ""
 "WinMerge Primerjava datotek"
 
 #. IDR_DIRDOCTYPE
-#: Merge.rc:4482
+#: Merge.rc:4484
 msgid ""
 "\n"
 "FolderCompare\n"
@@ -5318,162 +5318,162 @@ msgstr ""
 "WinMerge Primerjava map"
 
 #. IDS_SPLASH_GPLTEXT
-#: Merge.rc:4488
+#: Merge.rc:4490
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 msgstr "WinMerge prihaja POPOLNOMA BREZ GARANCIJE. To je brezplačen program. Dobrodošli ste za njegovo razširjanje pod določenimi pogoji. Več o tem poglejte v GNU licenci v meniju Pomoč."
 
 #. IDS_MESSAGEBOX_ABORT
-#: Merge.rc:4496
+#: Merge.rc:4498
 msgid "&Abort"
 msgstr "Pre&kini"
 
 #. IDS_MESSAGEBOX_RETRY
-#: Merge.rc:4497
+#: Merge.rc:4499
 msgid "&Retry"
 msgstr "&Poskusi zmova"
 
 #. IDS_MESSAGEBOX_IGNORE
-#: Merge.rc:4498
+#: Merge.rc:4500
 msgid "&Ignore"
 msgstr "&Prezri"
 
 #. IDS_MESSAGEBOX_IGNOREALL
-#: Merge.rc:4499
+#: Merge.rc:4501
 msgid "Ignore &all"
 msgstr "Prezri &vse"
 
 #. IDS_MESSAGEBOX_YES
-#: Merge.rc:4500
+#: Merge.rc:4502
 msgid "&Yes"
 msgstr "&Da"
 
 #. IDS_MESSAGEBOX_YES_TO_ALL
-#: Merge.rc:4506
+#: Merge.rc:4508
 msgid "Yes to &all"
 msgstr "Da za &vse"
 
 #. IDS_MESSAGEBOX_NO
-#: Merge.rc:4507
+#: Merge.rc:4509
 msgid "&No"
 msgstr "&Ne"
 
 #. IDS_MESSAGEBOX_NO_TO_ALL
-#: Merge.rc:4508
+#: Merge.rc:4510
 msgid "No to a&ll"
 msgstr "Ne za &vse"
 
 #. IDS_MESSAGEBOX_CONTINUE
-#: Merge.rc:4509
+#: Merge.rc:4511
 msgid "&Continue"
 msgstr "&Nadaljuj"
 
 #. IDS_MESSAGEBOX_SKIP
-#: Merge.rc:4510
+#: Merge.rc:4512
 msgid "&Skip"
 msgstr "&Preskoči"
 
 #. IDS_MESSAGEBOX_SKIPALL
-#: Merge.rc:4511
+#: Merge.rc:4513
 msgid "Skip &all"
 msgstr "Preskoči &vse"
 
 #. IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN
-#: Merge.rc:4513
+#: Merge.rc:4515
 msgid "Don't display this &message again."
 msgstr "Tega sporočila ne kaži več."
 
-#: Merge.rc:4516
+#: Merge.rc:4518
 msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr "Za ponovno vidnost tega sporočilnega okna pritisnite gumb 'Ponastavi' na strani 'Sporočilna okna' v pogovornem oknu 'Možnosti'."
 
 #. IDS_OPTIONSPG_EDITOR_COMPAREMERGE
-#: Merge.rc:4526
+#: Merge.rc:4528
 msgid "Compare/Merge"
 msgstr ""
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
-#: Merge.rc:4527 Merge.rc:4531
+#: Merge.rc:4529 Merge.rc:4533
 msgid "Syntax"
 msgstr "Sintaksa"
 
 #. IDS_OPTIONSPG_COLOR_SCHEMES
-#: Merge.rc:4529
+#: Merge.rc:4531
 msgid "Color Schemes"
 msgstr "Barvne sheme"
 
 #. IDS_OPTIONSPG_DIRCOLORS
-#: Merge.rc:4533
+#: Merge.rc:4535
 msgid "Folder Compare"
 msgstr "Primerjava map"
 
 #. IDS_OPTIONSPG_PROJECT
-#: Merge.rc:4538
+#: Merge.rc:4540
 msgid "Project"
 msgstr "Projekt"
 
 #. IDS_COLHDR_NSDIFFS
-#: Merge.rc:4541 Merge.rc:4964
+#: Merge.rc:4543 Merge.rc:4966
 msgid "Differences"
 msgstr "Razlike"
 
 #. IDS_OPTIONSPG_MESSAGEBOXES
-#: Merge.rc:4543
+#: Merge.rc:4545
 msgid "Message Boxes"
 msgstr "Sporočilna okna"
 
 #. IDS_TO
-#: Merge.rc:4558
+#: Merge.rc:4560
 msgid "To:"
 msgstr "Na:"
 
 #. IDS_FROM_LEFT
-#: Merge.rc:4559
+#: Merge.rc:4561
 msgid "From left:"
 msgstr "Iz leve:"
 
 #. IDS_TO_LEFT
-#: Merge.rc:4560
+#: Merge.rc:4562
 msgid "To left:"
 msgstr "V levo:"
 
 #. IDS_FROM_RIGHT
-#: Merge.rc:4561
+#: Merge.rc:4563
 msgid "From right:"
 msgstr "Iz desne:"
 
 #. IDS_TO_RIGHT
-#: Merge.rc:4562
+#: Merge.rc:4564
 msgid "To right:"
 msgstr "Na desno:"
 
 #. IDS_FROM_MIDDLE
-#: Merge.rc:4563
+#: Merge.rc:4565
 msgid "From middle:"
 msgstr "Od sredine:"
 
 #. IDS_TO_MIDDLE
-#: Merge.rc:4564
+#: Merge.rc:4566
 msgid "To middle:"
 msgstr "V sredino:"
 
 #. IDS_VERSION_FMT
-#: Merge.rc:4570
+#: Merge.rc:4572
 #, c-format
 msgid "Version %1"
 msgstr "Različica %1"
 
 #. IDS_OPTIONS_TITLE
-#: Merge.rc:4576
+#: Merge.rc:4578
 #, c-format
 msgid "Options (%1)"
 msgstr "Možnosti (%1)"
 
 #. IDS_MESSAGE_BOX_ARE_RESET
-#: Merge.rc:4577
+#: Merge.rc:4579
 msgid "All message boxes are now displayed again."
 msgstr "Vsa sporočilna polja so zdaj znova prikazana."
 
-#: Merge.rc:4579
+#: Merge.rc:4581
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr ""
@@ -5482,156 +5482,156 @@ msgstr ""
 "Prosimo, uporabite vrednosti 1 - %1."
 
 #. IDS_PROJECT_OPEN
-#: Merge.rc:4585 Merge.rc:4641
+#: Merge.rc:4587 Merge.rc:4643
 msgid "Open"
 msgstr "Odpri"
 
 #. IDS_PROGRAMFILES
-#: Merge.rc:4586
+#: Merge.rc:4588
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "Programi|*.exe;*.bat;*.cmd|Vse datoteke (*.*)|*.*||"
 
 #. IDS_ALLFILES
-#: Merge.rc:4587
+#: Merge.rc:4589
 msgid "All Files (*.*)|*.*||"
 msgstr "Vse datoteke (*.*)|*.*||"
 
 #. IDS_PROJECTFILES
-#: Merge.rc:4588
+#: Merge.rc:4590
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "Datoteke WinMerge projektov (*.WinMerge)|*.WinMerge||"
 
 #. IDS_INIFILES
-#: Merge.rc:4590
+#: Merge.rc:4592
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Datoteke z možnostmi (*.ini)|*.ini|Vse datoteke (*.*)|*.*||"
 
 #. IDS_REPLACELIST_FILES
-#: Merge.rc:4591
+#: Merge.rc:4593
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 msgstr ""
 
 #. IDS_TEXT_REPORT_FILES
-#: Merge.rc:4597
+#: Merge.rc:4599
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Besedilne datoteke (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Vse datoteke (*.*)|*.*||"
 
 #. IDS_HTML_REPORT_FILES
-#: Merge.rc:4598
+#: Merge.rc:4600
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML datoteke (*.htm,*.html)|*.htm;*.html|Vse datoteke (*.*)|*.*||"
 
 #. IDS_XML_REPORT_FILES
-#: Merge.rc:4599
+#: Merge.rc:4601
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Datoteke XML (*.xml)|*.xml|Vse datoteke (*.*)|*.*||"
 
 #. IDS_EXPANDSUBDIRS_DONOTEXPAND
-#: Merge.rc:4617
+#: Merge.rc:4619
 msgid "Do not expand"
 msgstr "Ne razširi"
 
 #. IDS_EXPANDSUBDIRS_ALL
-#: Merge.rc:4618
+#: Merge.rc:4620
 msgid "Expand all subfolders"
 msgstr "Razširi vse podmape"
 
 #. IDS_EXPANDSUBDIRS_DIFFERENT
-#: Merge.rc:4619
+#: Merge.rc:4621
 msgid "Expand different subfolders"
 msgstr "Razširi različne podmape"
 
 #. IDS_EXPANDSUBDIRS_IDENTICAL
-#: Merge.rc:4620
+#: Merge.rc:4622
 msgid "Expand identical subfolders"
 msgstr "Razširi enake podmape"
 
 #. IDS_SYNTAXTABLE_FILETYPE
-#: Merge.rc:4626
+#: Merge.rc:4628
 msgid "File Type"
 msgstr "Vrsta datoteke"
 
 #. IDS_COLHDR_EXTENSION
-#: Merge.rc:4627 Merge.rc:4921
+#: Merge.rc:4629 Merge.rc:4923
 msgid "Extension"
 msgstr "Končnica"
 
 #. IDS_PRPCAT_MESSAGE
-#: Merge.rc:4633 Merge.rc:4993
+#: Merge.rc:4635 Merge.rc:4995
 msgid "Message"
 msgstr "Sporočilo"
 
 #. IDS_MESSAGEBOX_ANSWER
-#: Merge.rc:4634
+#: Merge.rc:4636
 msgid "Answer"
 msgstr "Odgovor"
 
 #. IDS_PROJECT_ITEM
-#: Merge.rc:4640
+#: Merge.rc:4642
 msgid "Item"
 msgstr "Vnos"
 
 #. IDS_PROJECT_LOAD
-#: Merge.rc:4642
+#: Merge.rc:4644
 msgid "Load"
 msgstr "Naloži"
 
 #. IDS_PROJECT_SAVE
-#: Merge.rc:4643
+#: Merge.rc:4645
 msgid "Save"
 msgstr "Shrani"
 
 #. IDS_PROJECT_ITEM_INCLUDE_SUBFOLDERS
-#: Merge.rc:4645
+#: Merge.rc:4647
 msgid "Include Subfolders"
 msgstr "Vključi podmape"
 
 #. IDS_PROJECT_ITEM_COMPARE_OPTIONS
-#: Merge.rc:4647
+#: Merge.rc:4649
 msgid "Compare Options"
 msgstr "Možnosti primerjave"
 
 #. IDS_PROJECT_ITEM_HIDDEN_ITEMS
-#: Merge.rc:4648
+#: Merge.rc:4650
 msgid "Hidden Items"
 msgstr "Skriti vnosi"
 
 #. IDS_PLUGINSLIST_NAME
-#: Merge.rc:4654 Merge.rc:5280
+#: Merge.rc:4656 Merge.rc:5280
 msgid "Name"
 msgstr "Ime"
 
 #. IDS_FILTERFILE_PATHTITLE
-#: Merge.rc:4655
+#: Merge.rc:4657
 msgid "Location"
 msgstr "Lokacija"
 
 #. IDS_FILTER_TITLE
-#: Merge.rc:4656
+#: Merge.rc:4658
 msgid "Filters"
 msgstr "Filtri"
 
 #. IDS_FILTER_PREFIX
-#: Merge.rc:4657
+#: Merge.rc:4659
 msgid "[F] "
 msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
-#: Merge.rc:4658 Merge.rc:5282
+#: Merge.rc:4660 Merge.rc:5282
 msgid "Description"
 msgstr "Opis"
 
 #. IDS_FILEFILTER_SAVENEW
-#: Merge.rc:4659
+#: Merge.rc:4661
 msgid "Select Filename for New Filter"
 msgstr "Izberite ime datoteke za nov filter"
 
 #. IDS_FILEFILTER_FILEMASK
-#: Merge.rc:4660
+#: Merge.rc:4662
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Datoteke filtrov (*.flt)|*.flt|Vse datoteke (*.*)|*.*||"
 
-#: Merge.rc:4662
+#: Merge.rc:4664
 #, c-format
 msgid ""
 "Cannot find filter template!\n"
@@ -5644,7 +5644,7 @@ msgstr ""
 "Kopirajte datoteko %1 v mapo \"WinMerge/Filters\\:\n"
 "%2."
 
-#: Merge.rc:4664
+#: Merge.rc:4666
 #, c-format
 msgid ""
 "Cannot copy filter template:\n"
@@ -5657,7 +5657,7 @@ msgstr ""
 "\n"
 "Prosimo, preverite, če mapa obstaja in je zapisljiva."
 
-#: Merge.rc:4666
+#: Merge.rc:4668
 msgid ""
 "User's filter folder is not defined!\n"
 "\n"
@@ -5667,7 +5667,7 @@ msgstr ""
 "\n"
 "Izberite mapo filtrov v Možnosti/Sistem."
 
-#: Merge.rc:4668
+#: Merge.rc:4670
 #, c-format
 msgid ""
 "Failed to delete filter:\n"
@@ -5681,11 +5681,11 @@ msgstr ""
 "Morda je datoteka zaščitena 'samo-za-branje'?"
 
 #. IDS_FILEFILTER_INSTALL
-#: Merge.rc:4669
+#: Merge.rc:4671
 msgid "Locate Filter File to Install"
 msgstr "Poiščite datoteko filtra za namestitev"
 
-#: Merge.rc:4671
+#: Merge.rc:4673
 msgid ""
 "Installing filter file failed.\n"
 "\n"
@@ -5696,17 +5696,17 @@ msgstr ""
 "Ni mogoče kopirati nove datoteke filtrov v mapo filtrov."
 
 #. IDS_FILEFILTER_OVERWRITE
-#: Merge.rc:4672
+#: Merge.rc:4674
 msgid "Filter file exists. Overwrite?"
 msgstr "Filter datoteka že obstaja. Prepišem obstoječi filter?"
 
 #. IDS_FILTERLINE_REGEXP
-#: Merge.rc:4678
+#: Merge.rc:4680
 msgid "Regular expression"
 msgstr "Regularni izraz"
 
 #. IDS_FILTERCHANGED
-#: Merge.rc:4684
+#: Merge.rc:4686
 msgid ""
 "Filters updated. Refresh all open folder compares?\n"
 "\n"
@@ -5716,223 +5716,223 @@ msgstr ""
 "Če jih ne želite osvežiti sedaj, lahko izberete 'Ne' in osvežite primerjave kasneje."
 
 #. IDS_DIRECTORY_WINDOW_TITLE
-#: Merge.rc:4690
+#: Merge.rc:4692
 msgid "Folder Comparison Results"
 msgstr "Rezultati primerjave map"
 
 #. IDS_FILE_COMPARISON_TITLE
-#: Merge.rc:4691
+#: Merge.rc:4693
 msgid "File Comparison"
 msgstr "Primerjava map"
 
 #. IDS_EMPTY_LEFT_FILE
-#: Merge.rc:4692
+#: Merge.rc:4694
 msgid "Untitled Left"
 msgstr "Leva neimenovana"
 
 #. IDS_EMPTY_MIDDLE_FILE
-#: Merge.rc:4693
+#: Merge.rc:4695
 msgid "Untitled Middle"
 msgstr "Srednja neimenovana"
 
 #. IDS_EMPTY_RIGHT_FILE
-#: Merge.rc:4694
+#: Merge.rc:4696
 msgid "Untitled Right"
 msgstr "Desna neimenovana"
 
 #. IDS_CONFLICT_BASE_FILE
-#: Merge.rc:4695
+#: Merge.rc:4697
 msgid "Base File"
 msgstr "Osnovna datoteka"
 
 #. IDS_CONFLICT_THEIRS_FILE
-#: Merge.rc:4696
+#: Merge.rc:4698
 msgid "Theirs File"
 msgstr "Njihova datoteka"
 
 #. IDS_CONFLICT_MINE_FILE
-#: Merge.rc:4697
+#: Merge.rc:4699
 msgid "Mine File"
 msgstr "Vaša datoteka"
 
 #. IDS_SELFCOMPARE_ORIGINAL_FILE
-#: Merge.rc:4698
+#: Merge.rc:4700
 msgid "Original File"
 msgstr "Izvirna datoteka"
 
 #. IDS_LINE_STATUS_INFO_EOL
-#: Merge.rc:4704
+#: Merge.rc:4706
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Vr: %s  St: %d/%d  Zn: %d/%d  EOL: %s"
 
 #. IDS_EMPTY_LINE_STATUS_INFO
-#: Merge.rc:4705
+#: Merge.rc:4707
 #, c-format
 msgid "Line: %s"
 msgstr "Vrstica: %s"
 
 #. IDS_LINE_STATUS_INFO
-#: Merge.rc:4706
+#: Merge.rc:4708
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Vr: %s  St: %d/%d  Zn: %d/%d"
 
 #. IDS_LINE_STATUS_INFO_SEL
-#: Merge.rc:4707
+#: Merge.rc:4709
 #, c-format
 msgid "  Sel: %d | %d"
 msgstr "  Izb: %d | %d"
 
 #. IDS_MERGEMODE_MERGING
-#: Merge.rc:4708
+#: Merge.rc:4710
 msgid "Merge"
 msgstr "Združi"
 
 #. IDS_DIFF_NUMBER_STATUS_FMT
-#: Merge.rc:4709
+#: Merge.rc:4711
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "Razlika %1 od %2"
 
 #. IDS_NO_DIFF_SEL_FMT
-#: Merge.rc:4710
+#: Merge.rc:4712
 #, c-format
 msgid "%1 Differences Found"
 msgstr "%1 najdenih razlik"
 
 #. IDS_1_DIFF_FOUND
-#: Merge.rc:4711
+#: Merge.rc:4713
 msgid "1 Difference Found"
 msgstr "1 najdena razlika"
 
 #. IDS_NO_ERR_SEL_FMT
-#: Merge.rc:4712
+#: Merge.rc:4714
 #, c-format
 msgid "%1 Errors Found"
 msgstr ""
 
 #. IDS_1_ERR_FOUND
-#: Merge.rc:4713
+#: Merge.rc:4715
 msgid "1 Error Found"
 msgstr ""
 
 #. IDS_STATUSBAR_READONLY, Abbreviation from "Read Only"
-#: Merge.rc:4714
+#: Merge.rc:4716
 msgid "RO"
 msgstr "SZB"
 
 #. IDS_DIRVIEW_STATUS_FMT_FOCUS
-#: Merge.rc:4720
+#: Merge.rc:4722
 #, c-format
 msgid "Item %1 of %2"
 msgstr "Vnos %1 od %2"
 
 #. IDS_DIRVIEW_STATUS_FMT_NOFOCUS
-#: Merge.rc:4721
+#: Merge.rc:4723
 #, c-format
 msgid "Items: %1"
 msgstr "Vnosov: %1"
 
 #. IDS_DIRVIEW_STATUS_COMPARING
-#: Merge.rc:4722
+#: Merge.rc:4724
 msgid "Comparing items..."
 msgstr "Primerjava vnosov..."
 
 #. IDS_ITEMS_PER_SEC
-#: Merge.rc:4723
+#: Merge.rc:4725
 #, c-format
 msgid "%.1f[items/sec]"
 msgstr "%.1f[vnosov/sek.]"
 
 #. IDS_ERROR_INCOMPARABLE
-#: Merge.rc:4729
+#: Merge.rc:4731
 msgid "Select two existing folders/files to compare."
 msgstr "Za primerjavo izberite dve obstoječi mapi ali datoteki."
 
 #. IDS_DIRSEL_TAG
-#: Merge.rc:4730
+#: Merge.rc:4732
 msgid "Folder Selection"
 msgstr "Izbira map"
 
 #. IDS_OPEN_FILESDIRS
-#: Merge.rc:4731
+#: Merge.rc:4733
 msgid "Select two (or three) folders/files to compare."
 msgstr "Za primerjavo izberite dve (ali tri) mape ali dve (ali tri) datoteke."
 
 #. IDS_OPEN_LEFTINVALID
-#: Merge.rc:4732
+#: Merge.rc:4734
 msgid "Left (1st) path is invalid!"
 msgstr "Leva (prva) pot je neveljavna!"
 
 #. IDS_OPEN_MIDDLEINVALID
-#: Merge.rc:4733
+#: Merge.rc:4735
 msgid "Middle (2nd) path is invalid!"
 msgstr "Srednja (druga) pot je neveljavna!"
 
 #. IDS_OPEN_RIGHTINVALID2
-#: Merge.rc:4734
+#: Merge.rc:4736
 msgid "Right (2nd) path is invalid!"
 msgstr "Desna (druga) pot je neveljavna!"
 
 #. IDS_OPEN_RIGHTINVALID3
-#: Merge.rc:4735
+#: Merge.rc:4737
 msgid "Right (3rd) path is invalid!"
 msgstr "Desna (tretja) pot je neveljavna!"
 
 #. IDS_OPEN_BOTHINVALID
-#: Merge.rc:4736
+#: Merge.rc:4738
 msgid "Both paths are invalid!"
 msgstr "Obe poti sta neveljavni!"
 
-#: Merge.rc:4738
+#: Merge.rc:4740
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr "Leva (prva) in srednja (druga) pot sta neveljavni!"
 
 #. IDS_OPEN_LEFTRIGHTINVALID
-#: Merge.rc:4739
+#: Merge.rc:4741
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "Leva (prva) in desna (tretja) pot sta neveljavni!"
 
-#: Merge.rc:4741
+#: Merge.rc:4743
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr "Srednja (druga) in desna (tretja) pot sta neveljavni!"
 
 #. IDS_OPEN_ALLINVALID
-#: Merge.rc:4742
+#: Merge.rc:4744
 msgid "All paths are invalid!"
 msgstr "Vse poti so neveljavne!"
 
 #. IDS_OPEN_UNPACKERDISABLED
-#: Merge.rc:4743
+#: Merge.rc:4745
 msgid "Only enabled for file comparisons"
 msgstr "Omogočeno je le za primerjave datotek"
 
 #. IDS_OPEN_MISMATCH
-#: Merge.rc:4744
+#: Merge.rc:4746
 msgid "Cannot compare file and folder!"
 msgstr "Ni mogoče primerjati datoteke in mape!"
 
 #. IDS_ERROR_FILE_NOT_FOUND
-#: Merge.rc:4750
+#: Merge.rc:4752
 #, c-format
 msgid "File not found: %1"
 msgstr "Datoteka ni bila najdena: %1"
 
 #. IDS_ERROR_FOLDER_NOT_FOUND
-#: Merge.rc:4751
+#: Merge.rc:4753
 #, c-format
 msgid "Folder not found: %1"
 msgstr ""
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
-#: Merge.rc:4752
+#: Merge.rc:4754
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "Datoteka ni razpakirana: %1"
 
 #. IDS_ERROR_FILEOPEN
-#: Merge.rc:4753
+#: Merge.rc:4755
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -5946,12 +5946,12 @@ msgstr ""
 "%2"
 
 #. IDS_ERROR_CONF_RESOLVE
-#: Merge.rc:4754
+#: Merge.rc:4756
 msgid "Failed to parse conflict file."
 msgstr "Ni uspela razčlenitev datoteke v sporu."
 
 #. IDS_NOT_CONFLICT_FILE
-#: Merge.rc:4755
+#: Merge.rc:4757
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
 msgstr ""
@@ -5960,7 +5960,7 @@ msgstr ""
 "ni datoteka v sporu."
 
 #. IDS_COMPARE_LARGE_FILES
-#: Merge.rc:4756
+#: Merge.rc:4758
 msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr ""
 "Primerjate zelo velike datoteke.\n"
@@ -5969,28 +5969,28 @@ msgstr ""
 "\n"
 
 #. IDS_SAVE_AS_TITLE
-#: Merge.rc:4762
+#: Merge.rc:4764
 msgid "Save As"
 msgstr "Shrani kot"
 
 #. IDS_SAVE_FMT
-#: Merge.rc:4763
+#: Merge.rc:4765
 #, c-format
 msgid "Save changes to %1?"
 msgstr "Želite shraniti spremembe v %1?"
 
 #. IDS_SAVEREADONLY_FMT
-#: Merge.rc:4764
+#: Merge.rc:4766
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr "%1 je označena Samo-za- branje. Ali želite preglasiti datoteko Samo-za- branje? ('Ne', za shranjevanje pod novim imenom)"
 
 #. IDS_ERROR_BACKUP
-#: Merge.rc:4765
+#: Merge.rc:4767
 msgid "Error backing up file"
 msgstr "Napaka pri varnostnem kopiranju datoteke"
 
-#: Merge.rc:4767
+#: Merge.rc:4769
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -6004,7 +6004,7 @@ msgstr ""
 "Želite vseeno nadaljevati?"
 
 #. IDS_FILESAVE_FAILED
-#: Merge.rc:4768
+#: Merge.rc:4770
 #, c-format
 msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
 msgstr ""
@@ -6015,7 +6015,7 @@ msgstr ""
 "\t- uporabiti drugačno ime datoteke (Pritisnite 'Vredu')\n"
 "\t- prekiniti trenutno operacijo (Pritisnite 'Prekliči')?"
 
-#: Merge.rc:4770
+#: Merge.rc:4772
 #, c-format
 msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
@@ -6025,7 +6025,7 @@ msgstr ""
 "\n"
 "Ali želite shraniti nepakirano različico v drugo datoteko?"
 
-#: Merge.rc:4772
+#: Merge.rc:4774
 #, c-format
 msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
@@ -6035,7 +6035,7 @@ msgstr ""
 "\n"
 "Ali želite razpakirano različico shraniti v drugo datoteko?"
 
-#: Merge.rc:4774
+#: Merge.rc:4776
 #, c-format
 msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
@@ -6046,7 +6046,7 @@ msgstr ""
 "Ali želite shraniti nepakirano različico v drugo datoteko?"
 
 #. IDS_FILECHANGED_ONDISK
-#: Merge.rc:4775
+#: Merge.rc:4777
 #, c-format
 msgid ""
 "Another application updated\n"
@@ -6062,7 +6062,7 @@ msgstr ""
 "Želite prepisati spremenjeno datoteko?"
 
 #. IDS_SAVEREADONLY_MULTI
-#: Merge.rc:4776
+#: Merge.rc:4778
 #, c-format
 msgid ""
 "%1\n"
@@ -6072,7 +6072,7 @@ msgstr ""
 "je označena 'samo-za-branje'. Ali želite preglasiti vnos 'samo-za-branje'?"
 
 #. IDS_FILECHANGED_RESCAN
-#: Merge.rc:4777
+#: Merge.rc:4779
 #, c-format
 msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
 msgstr ""
@@ -6082,22 +6082,22 @@ msgstr ""
 "Ali želite znova naložiti datoteko?"
 
 #. IDS_SAVE_LEFT_AS
-#: Merge.rc:4778
+#: Merge.rc:4780
 msgid "Save Left File As"
 msgstr "Shrani levo datoteko kot"
 
 #. IDS_SAVE_MIDDLE_AS
-#: Merge.rc:4779
+#: Merge.rc:4781
 msgid "Save Middle File As"
 msgstr "Shrani srednjo datoteko kot"
 
 #. IDS_SAVE_RIGHT_AS
-#: Merge.rc:4780
+#: Merge.rc:4782
 msgid "Save Right File As"
 msgstr "Shrani desno datoteko kot"
 
 #. IDS_FILE_DISAPPEARED
-#: Merge.rc:4785
+#: Merge.rc:4787
 #, c-format
 msgid ""
 "File\n"
@@ -6109,7 +6109,7 @@ msgstr ""
 "je izginila. Za nadaljevanje shranite kopijo datoteke."
 
 #. IDS_VIEWS_OUTOFSYNC
-#: Merge.rc:4791
+#: Merge.rc:4793
 msgid ""
 "Cannot merge unsynched documents.\n"
 "\n"
@@ -6120,186 +6120,186 @@ msgstr ""
 "Osvežite dokumente pred nadaljevanjem."
 
 #. IDS_BREAK_ON_WHITESPACE
-#: Merge.rc:4796
+#: Merge.rc:4798
 msgid "Break at whitespace"
 msgstr "Prelom na praznem znaku"
 
 #. IDS_BREAK_ON_PUNCTUATION
-#: Merge.rc:4797
+#: Merge.rc:4799
 msgid "Break at whitespace or punctuation"
 msgstr "Prelom na praznem znaku ali ločilu"
 
 #. IDS_L2M
-#: Merge.rc:4803
+#: Merge.rc:4805
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "Kopiraj v s%rednjo\tAlt+Desno"
 
 #. IDS_R2M
-#: Merge.rc:4804
+#: Merge.rc:4806
 msgid "Copy to &Middle\tAlt+Left"
 msgstr "Kopiraj v s%rednjo\tAlt+Levo"
 
 #. IDS_COPY_FROM_MIDDLE_R
-#: Merge.rc:4805
+#: Merge.rc:4807
 msgid "Copy from Middle\tAlt+Shift+Right"
 msgstr "Kopiraj iz srednje\tAlt+Shift+Desno"
 
 #. IDS_COPY_FROM_MIDDLE_L
-#: Merge.rc:4806
+#: Merge.rc:4808
 msgid "Copy from Middle\tAlt+Shift+Left"
 msgstr "Kopiraj iz srednje\tAlt+Shift+Levo"
 
 #. IDS_L2MNEXT
-#: Merge.rc:4807
+#: Merge.rc:4809
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr "Kopiraj v sredino in naprej\tCtrl+Alt+Desno"
 
 #. IDS_R2MNEXT
-#: Merge.rc:4808
+#: Merge.rc:4810
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr "Kopiraj v srednjo in naprej\tCtrl+Alt+Levo"
 
 #. IDS_ALL_MIDDLE
-#: Merge.rc:4809
+#: Merge.rc:4811
 msgid "Copy All to Middle"
 msgstr "Kopiraj vse v srednjo"
 
 #. IDS_COPY_RIGHT_TO_LEFT
-#: Merge.rc:4815
+#: Merge.rc:4817
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Z desne proti levi (%1)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE
-#: Merge.rc:4816
+#: Merge.rc:4818
 #, c-format
 msgid "Right to Middle (%1)"
 msgstr "Iz desne v srednjo (%1)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT
-#: Merge.rc:4817
+#: Merge.rc:4819
 #, c-format
 msgid "Middle to Left (%1)"
 msgstr "Iz srednje v levo (%1)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT
-#: Merge.rc:4818
+#: Merge.rc:4820
 #, c-format
 msgid "Middle to Right (%1)"
 msgstr "Iz srednje v desno (%1 od %2)"
 
 #. IDS_COPY_LEFT_TO_RIGHT
-#: Merge.rc:4819
+#: Merge.rc:4821
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "Z leve proti desni (%1)"
 
 #. IDS_COPY_LEFT_TO_MIDDLE
-#: Merge.rc:4820
+#: Merge.rc:4822
 #, c-format
 msgid "Left to Middle (%1)"
 msgstr "Iz leve v srednjo (%1)"
 
 #. IDS_MOVE_LEFT_TO
-#: Merge.rc:4831 Merge.rc:4863
+#: Merge.rc:4833 Merge.rc:4865
 #, c-format
 msgid "Left to... (%1)"
 msgstr "Leva do... (%1)"
 
 #. IDS_MOVE_MIDDLE_TO
-#: Merge.rc:4832 Merge.rc:4864
+#: Merge.rc:4834 Merge.rc:4866
 #, c-format
 msgid "Middle to... (%1)"
 msgstr "Srednjo v.... (%1)"
 
 #. IDS_MOVE_RIGHT_TO
-#: Merge.rc:4833 Merge.rc:4865
+#: Merge.rc:4835 Merge.rc:4867
 #, c-format
 msgid "Right to... (%1)"
 msgstr "Desno v... (%1)"
 
 #. IDS_COPY_BOTH_TO
-#: Merge.rc:4834
+#: Merge.rc:4836
 #, c-format
 msgid "Both to... (%1)"
 msgstr "Obe v... (%1)"
 
 #. IDS_COPY_ALL_TO
-#: Merge.rc:4835
+#: Merge.rc:4837
 #, c-format
 msgid "All to... (%1)"
 msgstr "Vse v... (%1)"
 
 #. IDS_COPY_DIFFERENCES_TO
-#: Merge.rc:4836
+#: Merge.rc:4838
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Razlike v... (%1)"
 
-#. IDS_COPY_ONLYDIFFITEMS
-#: Merge.rc:4843
-msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
+#. IDS_ONLYDIFFITEMS_CONFIRM
+#: Merge.rc:4845
+msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
 msgstr ""
 
 #. IDS_DEL_LEFT_FMT
-#: Merge.rc:4849
+#: Merge.rc:4851
 #, c-format
 msgid "Left (%1)"
 msgstr "Leva (%1)"
 
 #. IDS_DEL_MIDDLE_FMT
-#: Merge.rc:4850
+#: Merge.rc:4852
 #, c-format
 msgid "Middle (%1)"
 msgstr "Srednja (%1)"
 
 #. IDS_DEL_RIGHT_FMT
-#: Merge.rc:4851
+#: Merge.rc:4853
 #, c-format
 msgid "Right (%1)"
 msgstr "Desna (%1)"
 
 #. IDS_DEL_BOTH_FMT
-#: Merge.rc:4852
+#: Merge.rc:4854
 #, c-format
 msgid "Both (%1)"
 msgstr "Obe (%1)"
 
 #. IDS_DEL_ALL_FMT
-#: Merge.rc:4853
+#: Merge.rc:4855
 #, c-format
 msgid "All (%1)"
 msgstr "Vse (%1)"
 
 #. IDS_SELECT_DEST_LEFT
-#: Merge.rc:4869
+#: Merge.rc:4871
 msgid "Left Side - Select Destination Folder:"
 msgstr "Leva stran - izberite ciljno mapo:"
 
 #. IDS_SELECT_DEST_MIDDLE
-#: Merge.rc:4870
+#: Merge.rc:4872
 msgid "Middle Side - Select Destination Folder:"
 msgstr "Srednje okno - izberite ciljno mapo:"
 
 #. IDS_SELECT_DEST_RIGHT
-#: Merge.rc:4871
+#: Merge.rc:4873
 msgid "Right Side - Select Destination Folder:"
 msgstr "Desna stran - izberite ciljno mapo:"
 
 #. IDS_FILES_AFFECTED_FMT
-#: Merge.rc:4872
+#: Merge.rc:4874
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(%1 vpletenih datotek)"
 
 #. IDS_FILES_AFFECTED_FMT2
-#: Merge.rc:4873
+#: Merge.rc:4875
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 od %2 vpletenih datotek)"
 
 #. IDS_CONFIRM_DELETE_SINGLE
-#: Merge.rc:4879
+#: Merge.rc:4881
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -6311,18 +6311,18 @@ msgstr ""
 "%1 ?"
 
 #. IDS_CONFIRM_SINGLE_COPY
-#: Merge.rc:4880
+#: Merge.rc:4882
 msgid "Are you sure you want to copy?"
 msgstr "Ali ste prepričani, da želite kopirati?"
 
 #. IDS_CONFIRM_MULTIPLE_COPY
-#: Merge.rc:4881
+#: Merge.rc:4883
 #, c-format
 msgid "Are you sure you want to copy %d items?"
 msgstr "Ali ste prepričani, da želite kopirati %d vnosov?"
 
 #. IDS_DIRCMP_NOTSYNC
-#: Merge.rc:4882
+#: Merge.rc:4884
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -6342,46 +6342,46 @@ msgstr ""
 "Osvežite primerjavo."
 
 #. IDS_CONFIRM_SINGLE_MOVE
-#: Merge.rc:4887
+#: Merge.rc:4889
 msgid "Are you sure you want to move?"
 msgstr "Ali ste prepričani, da želite premakniti?"
 
 #. IDS_CONFIRM_MULTIPLE_MOVE
-#: Merge.rc:4888
+#: Merge.rc:4890
 #, c-format
 msgid "Are you sure you want to move %d items?"
 msgstr "Ali ste prepričani, da želite premakniti: %d vnosov?"
 
 #. IDS_CONFIRM_MOVE_CAPTION
-#: Merge.rc:4890
+#: Merge.rc:4892
 msgid "Confirm Move"
 msgstr "Potrdi premik"
 
-#: Merge.rc:4892
+#: Merge.rc:4894
 msgid "Close the folder comparison window?"
 msgstr "Zaklenili boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
 
-#: Merge.rc:4894
+#: Merge.rc:4896
 msgid "Close the folder comparison window, which took a long time?"
 msgstr "Zaprli boste primerjalno okno map, ki je vzelo precej časa. Ali ste prepričani, da želite zapreti okno?"
 
 #. IDS_ERROR_INVALID_DIR_FILE_NAME
-#: Merge.rc:4895
+#: Merge.rc:4897
 msgid "The file or folder name is invalid."
 msgstr "Ime datoteke ali mape ni veljavno."
 
 #. IDS_ERROR_EXECUTE_FILE
-#: Merge.rc:4901
+#: Merge.rc:4903
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Ni bilo mogoče zagnati zunanjega urejevalnika: %1"
 
 #. IDS_UNKNOWN_ARCHIVE_FORMAT
-#: Merge.rc:4907
+#: Merge.rc:4909
 msgid "Unknown archive format"
 msgstr "Neznan format arhiva"
 
-#: Merge.rc:4909
+#: Merge.rc:4911
 msgid ""
 "Failed to extract archive.\n"
 "Compare as text file?"
@@ -6390,746 +6390,746 @@ msgstr ""
 "Ali želite primerjati arhivske datoteke kot besedilne datoteke?"
 
 #. IDS_COLHDR_FILENAME
-#: Merge.rc:4915
+#: Merge.rc:4917
 msgid "Filename"
 msgstr "Ime datoteke"
 
 #. IDS_COLHDR_DIR
-#: Merge.rc:4916
+#: Merge.rc:4918
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "Mapa"
 
 #. IDS_COLHDR_RESULT
-#: Merge.rc:4917
+#: Merge.rc:4919
 msgid "Comparison Result"
 msgstr "Rezultat primerjave"
 
 #. IDS_COLHDR_LTIMEM
-#: Merge.rc:4918
+#: Merge.rc:4920
 msgid "Left Date"
 msgstr "Levi datum"
 
 #. IDS_COLHDR_RTIMEM
-#: Merge.rc:4919
+#: Merge.rc:4921
 msgid "Right Date"
 msgstr "Datum desne"
 
 #. IDS_COLHDR_MTIMEM
-#: Merge.rc:4920
+#: Merge.rc:4922
 msgid "Middle Date"
 msgstr "Datum srednje"
 
 #. IDS_COLHDR_LSIZE
-#: Merge.rc:4922
+#: Merge.rc:4924
 msgid "Left Size"
 msgstr "Leva velikost"
 
 #. IDS_COLHDR_RSIZE
-#: Merge.rc:4923
+#: Merge.rc:4925
 msgid "Right Size"
 msgstr "Velikost desne"
 
 #. IDS_COLHDR_MSIZE
-#: Merge.rc:4928
+#: Merge.rc:4930
 msgid "Middle Size"
 msgstr "Velikost srednje"
 
 #. IDS_COLHDR_RSIZE_SHORT
-#: Merge.rc:4929
+#: Merge.rc:4931
 msgid "Right Size (Short)"
 msgstr "Velikost desne (kratko)"
 
 #. IDS_COLHDR_LSIZE_SHORT
-#: Merge.rc:4930
+#: Merge.rc:4932
 msgid "Left Size (Short)"
 msgstr "Leva velikost (kratko)"
 
 #. IDS_COLHDR_MSIZE_SHORT
-#: Merge.rc:4931
+#: Merge.rc:4933
 msgid "Middle Size (Short)"
 msgstr "Velikost srednje (Kratko)"
 
 #. IDS_COLHDR_LTIMEC
-#: Merge.rc:4937
+#: Merge.rc:4939
 msgid "Left Creation Time"
 msgstr "Čas ustvarjanja leve"
 
 #. IDS_COLHDR_RTIMEC
-#: Merge.rc:4938
+#: Merge.rc:4940
 msgid "Right Creation Time"
 msgstr "Čas ustvarjanja desne"
 
 #. IDS_COLHDR_MTIMEC
-#: Merge.rc:4939
+#: Merge.rc:4941
 msgid "Middle Creation Time"
 msgstr "Čas ustvarjanja srednje"
 
 #. IDS_COLHDR_NEWER
-#: Merge.rc:4940
+#: Merge.rc:4942
 msgid "Newer File"
 msgstr "Novejša datoteka"
 
 #. IDS_COLHDR_LVERSION
-#: Merge.rc:4941
+#: Merge.rc:4943
 msgid "Left File Version"
 msgstr "Različica leve datoteke"
 
 #. IDS_COLHDR_RVERSION
-#: Merge.rc:4942
+#: Merge.rc:4944
 msgid "Right File Version"
 msgstr "Različica desne datoteke"
 
 #. IDS_COLHDR_MVERSION
-#: Merge.rc:4943
+#: Merge.rc:4945
 msgid "Middle File Version"
 msgstr "Različica srednje datoteke"
 
 #. IDS_COLHDR_RESULT_ABBR
-#: Merge.rc:4944
+#: Merge.rc:4946
 msgid "Short Result"
 msgstr "Kratek rezultat"
 
 #. IDS_COLHDR_LATTRIBUTES
-#: Merge.rc:4945
+#: Merge.rc:4947
 msgid "Left Attributes"
 msgstr "Levi atributi"
 
 #. IDS_COLHDR_RATTRIBUTES
-#: Merge.rc:4946
+#: Merge.rc:4948
 msgid "Right Attributes"
 msgstr "Atributi desne"
 
 #. IDS_COLHDR_MATTRIBUTES
-#: Merge.rc:4947
+#: Merge.rc:4949
 msgid "Middle Attributes"
 msgstr "Atributi srednje"
 
 #. IDS_COLHDR_LEOL_TYPE
-#: Merge.rc:4952
+#: Merge.rc:4954
 msgid "Left EOL"
 msgstr "Konci vrstic v levi"
 
 #. IDS_COLHDR_MEOL_TYPE
-#: Merge.rc:4953
+#: Merge.rc:4955
 msgid "Middle EOL"
 msgstr "Konci vrstic v srednji"
 
 #. IDS_COLHDR_REOL_TYPE
-#: Merge.rc:4954
+#: Merge.rc:4956
 msgid "Right EOL"
 msgstr "Konci vrstic v desni"
 
 #. IDS_COLHDR_LENCODING
-#: Merge.rc:4960
+#: Merge.rc:4962
 msgid "Left Encoding"
 msgstr "Kodiranje leve"
 
 #. IDS_COLHDR_RENCODING
-#: Merge.rc:4961
+#: Merge.rc:4963
 msgid "Right Encoding"
 msgstr "Kodiranje desne"
 
 #. IDS_COLHDR_MENCODING
-#: Merge.rc:4962
+#: Merge.rc:4964
 msgid "Middle Encoding"
 msgstr "Kodiranje srednje"
 
 #. IDS_COLHDR_NIDIFFS
-#: Merge.rc:4963
+#: Merge.rc:4965
 msgid "Ignored Diff"
 msgstr "Prezrte razlike"
 
 #. IDS_COLHDR_BINARY
-#: Merge.rc:4965
+#: Merge.rc:4967
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Dvojiško"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
-#: Merge.rc:4966 Merge.rc:5283
+#: Merge.rc:4968 Merge.rc:5283
 msgid "Unpacker"
 msgstr "Razpakovalec"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4967 Merge.rc:5284 Merge.rc:5591
+#: Merge.rc:4969 Merge.rc:5284 Merge.rc:5591
 msgid "Prediffer"
 msgstr "Predpregled razlik"
 
 #. IDS_COLHDR_LEFT
-#: Merge.rc:4968
+#: Merge.rc:4970
 msgid "Left"
 msgstr "Levo"
 
 #. IDS_COLHDR_MIDDLE
-#: Merge.rc:4969
+#: Merge.rc:4971
 msgid "Middle"
 msgstr "Sredina"
 
 #. IDS_COLHDR_RIGHT
-#: Merge.rc:4970
+#: Merge.rc:4972
 msgid "Right"
 msgstr "Desno"
 
 #. IDS_COLHDR_DIFF
-#: Merge.rc:4971
+#: Merge.rc:4973
 msgid "Diff"
 msgstr "Razlika"
 
 #. IDS_COLHDR_LEFT_DUPLICATE
-#: Merge.rc:4972
+#: Merge.rc:4974
 msgid "Left Duplicate Count"
 msgstr "Število levih dvojnikov"
 
 #. IDS_COLHDR_RIGHT_DUPLICATE
-#: Merge.rc:4973
+#: Merge.rc:4975
 msgid "Right Duplicate Count"
 msgstr "Število desnih dvojnikov"
 
 #. IDS_COLHDR_MIDDLE_DUPLICATE
-#: Merge.rc:4974
+#: Merge.rc:4976
 msgid "Middle Duplicate Count"
 msgstr "Število srednjih dvojnikov"
 
 #. IDS_COLHDR_MOVE
-#: Merge.rc:4975
+#: Merge.rc:4977
 msgid "Move"
 msgstr "Premakni"
 
 #. IDS_PRPCAT_AUDIO
-#: Merge.rc:4982
+#: Merge.rc:4984
 msgid "Audio"
 msgstr "Samodejno"
 
 #. IDS_PRPCAT_CALENDAR
-#: Merge.rc:4983
+#: Merge.rc:4985
 msgid "Calendar"
 msgstr "Koledar"
 
 #. IDS_PRPCAT_COMMUNICATION
-#: Merge.rc:4984
+#: Merge.rc:4986
 msgid "Communication"
 msgstr "Komunikacija"
 
 #. IDS_PRPCAT_CONTACT
-#: Merge.rc:4985
+#: Merge.rc:4987
 msgid "Contact"
 msgstr "Stik"
 
 #. IDS_PRPCAT_DEVICES
-#: Merge.rc:4986
+#: Merge.rc:4988
 msgid "Devices"
 msgstr "Naprave"
 
 #. IDS_PRPCAT_DOCUMENT
-#: Merge.rc:4987
+#: Merge.rc:4989
 msgid "Document"
 msgstr "Dokument"
 
 #. IDS_PRPCAT_HOME
-#: Merge.rc:4988
+#: Merge.rc:4990
 msgid "Home"
 msgstr "Domov"
 
 #. IDS_PRPCAT_JOURNAL
-#: Merge.rc:4990
+#: Merge.rc:4992
 msgid "Journal"
 msgstr "Žurnal"
 
 #. IDS_PRPCAT_LINK
-#: Merge.rc:4991
+#: Merge.rc:4993
 msgid "Link"
 msgstr "Poveži"
 
 #. IDS_PRPCAT_MEDIA
-#: Merge.rc:4992
+#: Merge.rc:4994
 msgid "Media"
 msgstr "Medij"
 
 #. IDS_PRPCAT_MUSIC
-#: Merge.rc:4994
+#: Merge.rc:4996
 msgid "Music"
 msgstr "Glasba"
 
 #. IDS_PRPCAT_NOTE
-#: Merge.rc:4995
+#: Merge.rc:4997
 msgid "Note"
 msgstr "Opomba"
 
 #. IDS_PRPCAT_PHOTO
-#: Merge.rc:4996
+#: Merge.rc:4998
 msgid "Photo"
 msgstr "Fotografija"
 
 #. IDS_PRPCAT_RECORDEDTV
-#: Merge.rc:4997
+#: Merge.rc:4999
 msgid "RecordedTV"
 msgstr "Posneta TV"
 
 #. IDS_PRPCAT_SEARCH
-#: Merge.rc:4998
+#: Merge.rc:5000
 msgid "Search"
 msgstr "Poišči"
 
 #. IDS_PRPCAT_SECURITY
-#: Merge.rc:4999
+#: Merge.rc:5001
 msgid "Security"
 msgstr "Varnost"
 
 #. IDS_PRPCAT_SOFTWARE
-#: Merge.rc:5000
+#: Merge.rc:5002
 msgid "Software"
 msgstr "Program"
 
 #. IDS_PRPCAT_TASK
-#: Merge.rc:5001
+#: Merge.rc:5003
 msgid "Task"
 msgstr "Opravilo"
 
 #. IDS_PRPCAT_VIDEO
-#: Merge.rc:5002
+#: Merge.rc:5004
 msgid "Video"
 msgstr "Videoposnetek"
 
 #. IDS_PRPCAT_HASH
-#: Merge.rc:5003
+#: Merge.rc:5005
 msgid "Hash"
 msgstr "Hash"
 
 #. IDS_CANT_COMPARE_FILES
-#: Merge.rc:5009
+#: Merge.rc:5011
 msgid "Unable to compare files"
 msgstr "Datotek ni mogoče primerjati"
 
 #. IDS_ABORTED_ITEM
-#: Merge.rc:5010
+#: Merge.rc:5012
 msgid "Item aborted"
 msgstr "Prekinjen vnos"
 
 #. IDS_FILE_SKIPPED
-#: Merge.rc:5011
+#: Merge.rc:5013
 msgid "File skipped"
 msgstr "Preskočena datoteka"
 
 #. IDS_DIR_SKIPPED
-#: Merge.rc:5012
+#: Merge.rc:5014
 msgid "Folder skipped"
 msgstr "Preskočena mapa"
 
 #. IDS_LEFT_ONLY_IN_FMT
-#: Merge.rc:5013
+#: Merge.rc:5015
 #, c-format
 msgid "Left only: %1"
 msgstr "Samo leva: %1"
 
 #. IDS_MIDDLE_ONLY_IN_FMT
-#: Merge.rc:5014
+#: Merge.rc:5016
 #, c-format
 msgid "Middle only: %1"
 msgstr "Samo srednja: %1"
 
 #. IDS_RIGHT_ONLY_IN_FMT
-#: Merge.rc:5015
+#: Merge.rc:5017
 #, c-format
 msgid "Right only: %1"
 msgstr "Samo desna: %1"
 
 #. IDS_DOES_NOT_EXIST_IN_FMT
-#: Merge.rc:5016
+#: Merge.rc:5018
 #, c-format
 msgid "Does not exist in %1"
 msgstr "Ne obstaja v %1"
 
 #. IDS_BIN_FILES_SAME
-#: Merge.rc:5017
+#: Merge.rc:5019
 msgid "Binary files are identical"
 msgstr "Dvojiški datoteki sta enaki"
 
 #. IDS_BIN_FILES_DIFF
-#: Merge.rc:5023
+#: Merge.rc:5025
 msgid "Binary files are different"
 msgstr "Dvojiški datoteki sta različni"
 
 #. IDS_FILES_ARE_DIFFERENT
-#: Merge.rc:5024
+#: Merge.rc:5026
 msgid "Files are different"
 msgstr "Datoteke so različne"
 
 #. IDS_FOLDERS_ARE_DIFFERENT
-#: Merge.rc:5025
+#: Merge.rc:5027
 msgid "Folders are different"
 msgstr "Mapi sta različni"
 
 #. IDS_LEFTONLY
-#: Merge.rc:5026
+#: Merge.rc:5028
 msgid "Left Only"
 msgstr "Samo leva"
 
 #. IDS_RIGHTONLY
-#: Merge.rc:5027
+#: Merge.rc:5029
 msgid "Right Only"
 msgstr "Samo desna"
 
 #. IDS_MIDDLEONLY
-#: Merge.rc:5028
+#: Merge.rc:5030
 msgid "Middle Only"
 msgstr "Samo srednja"
 
 #. IDS_NOITEMLEFT
-#: Merge.rc:5029
+#: Merge.rc:5031
 msgid "No item in left"
 msgstr "Noben vnos v levi"
 
 #. IDS_NOITEMRIGHT
-#: Merge.rc:5030
+#: Merge.rc:5032
 msgid "No item in right"
 msgstr "Noben vnos v desni"
 
 #. IDS_NOITEMMIDDLE
-#: Merge.rc:5031
+#: Merge.rc:5033
 msgid "No item in middle"
 msgstr "Noben vnos v srednji"
 
 #. IDS_CMPRES_ERROR
-#: Merge.rc:5033
+#: Merge.rc:5035
 msgid "Error"
 msgstr "Napaka"
 
 #. IDS_TEXT_FILES_SAME
-#: Merge.rc:5034
+#: Merge.rc:5036
 msgid "Text files are identical"
 msgstr "Besedilne datoteke so enake"
 
 #. IDS_LEFTONLY_DIFF
-#: Merge.rc:5035
+#: Merge.rc:5037
 msgid " (Middle and right are identical)"
 msgstr " (Srednja in desna sta enaki)"
 
 #. IDS_MIDDLEONLY_DIFF
-#: Merge.rc:5036
+#: Merge.rc:5038
 msgid " (Left and right are identical)"
 msgstr " (Leva in desno sta enaki)"
 
 #. IDS_RIGHTONLY_DIFF
-#: Merge.rc:5037
+#: Merge.rc:5039
 msgid " (Left and middle are identical)"
 msgstr " (Leva in srednja sta enaki)"
 
 #. IDS_PATH_MISMATCH
-#: Merge.rc:5038
+#: Merge.rc:5040
 msgid " (paths differ)"
 msgstr ""
 
 #. IDS_TEXT_FILES_DIFF
-#: Merge.rc:5039
+#: Merge.rc:5041
 msgid "Text files are different"
 msgstr "Besedilne datoteke so različne"
 
 #. IDS_IMAGE_FILES_SAME
-#: Merge.rc:5040
+#: Merge.rc:5042
 msgid "Image files are identical"
 msgstr "Slikovne datoteke so enake"
 
 #. IDS_IMAGE_FILES_DIFF
-#: Merge.rc:5041
+#: Merge.rc:5043
 msgid "Image files are different"
 msgstr "Slikovne datoteke so različne"
 
 #. IDS_EXPR_DIFF
-#: Merge.rc:5042
+#: Merge.rc:5044
 #, c-format
 msgid "Files are different (expr: %1)"
 msgstr ""
 
 #. IDS_HASH_GROUP
-#: Merge.rc:5043
+#: Merge.rc:5045
 #, c-format
 msgid "Group%d"
 msgstr "Skupina %d"
 
 #. IDS_RENAME_MOVE_DETECTION_DISALBED
-#: Merge.rc:5044
+#: Merge.rc:5046
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
 msgstr ""
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME
-#: Merge.rc:5045
+#: Merge.rc:5047
 msgid "Detect renames"
 msgstr ""
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME_MOVE
-#: Merge.rc:5046
+#: Merge.rc:5048
 msgid "Detect renames and moves"
 msgstr ""
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
-#: Merge.rc:5047
+#: Merge.rc:5049
 msgid "Merge renames"
 msgstr ""
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
-#: Merge.rc:5048
+#: Merge.rc:5050
 msgid "Merge renames and moves"
 msgstr ""
 
 #. IDS_RENAMED
-#: Merge.rc:5049
+#: Merge.rc:5051
 msgid "Renamed"
 msgstr ""
 
 #. IDS_RENAMED_MOVED
-#: Merge.rc:5051
+#: Merge.rc:5053
 msgid "Renamed/Moved"
 msgstr ""
 
 #. IDS_RENAMED_MOVED_ITEMS
-#: Merge.rc:5052
+#: Merge.rc:5054
 #, c-format
 msgid "(%1 items)"
 msgstr ""
 
 #. IDS_RENAMED_MOVED_RESULT
-#: Merge.rc:5053
+#: Merge.rc:5055
 #, c-format
 msgid "%1 (set %2): "
 msgstr ""
 
 #. IDS_SWITCH_FLAT_MODE
-#: Merge.rc:5054
+#: Merge.rc:5056
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
 msgstr ""
 
 #. IDS_ELAPSED_TIME
-#: Merge.rc:5060
+#: Merge.rc:5062
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Potekel čas: %ld ms"
 
 #. IDS_STATUS_SELITEM1
-#: Merge.rc:5061
+#: Merge.rc:5063
 msgid "1 item selected"
 msgstr "1 izbran vnos"
 
 #. IDS_STATUS_SELITEMS
-#: Merge.rc:5062
+#: Merge.rc:5064
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 označenih predmetov"
 
 #. IDS_COLDESC_FILENAME
-#: Merge.rc:5068
+#: Merge.rc:5070
 msgid "Filename or folder name."
 msgstr "Ime datoteke ali mape."
 
 #. IDS_COLDESC_DIR
-#: Merge.rc:5069
+#: Merge.rc:5071
 msgid "Subfolder name when subfolders are included."
 msgstr "Imena podmap, ko so vključene podmape."
 
 #. IDS_COLDESC_RESULT
-#: Merge.rc:5070
+#: Merge.rc:5072
 msgid "Comparison result, long form."
 msgstr "Rezultat primerjave, dolga oblika."
 
 #. IDS_COLDESC_LTIMEM
-#: Merge.rc:5075
+#: Merge.rc:5077
 msgid "Left side modification date."
 msgstr "Čas spremembe na levi strani."
 
 #. IDS_COLDESC_RTIMEM
-#: Merge.rc:5076
+#: Merge.rc:5078
 msgid "Right side modification date."
 msgstr "Čas spremembe na desni strani."
 
 #. IDS_COLDESC_MTIMEM
-#: Merge.rc:5077
+#: Merge.rc:5079
 msgid "Middle side modification date."
 msgstr "Datum ustvarjanja na sredini."
 
 #. IDS_COLDESC_EXTENSION
-#: Merge.rc:5078
+#: Merge.rc:5080
 msgid "File's extension."
 msgstr "Končnica datoteke."
 
 #. IDS_COLDESC_LSIZE
-#: Merge.rc:5079
+#: Merge.rc:5081
 msgid "Left file size in bytes."
 msgstr "Velikost leve datoteke v bajtih."
 
 #. IDS_COLDESC_RSIZE
-#: Merge.rc:5080
+#: Merge.rc:5082
 msgid "Right file size in bytes."
 msgstr "Velikost desne datoteke v bajtih."
 
 #. IDS_COLDESC_MSIZE
-#: Merge.rc:5081
+#: Merge.rc:5083
 msgid "Middle file size in bytes."
 msgstr "Velikost srednje datoteke v bajtih."
 
 #. IDS_COLDESC_LSIZE_SHORT
-#: Merge.rc:5082
+#: Merge.rc:5084
 msgid "Left file size abbreviated."
 msgstr "Skrajšana velikost leve datoteke."
 
 #. IDS_COLDESC_RSIZE_SHORT
-#: Merge.rc:5083
+#: Merge.rc:5085
 msgid "Right file size abbreviated."
 msgstr "Skrajšana velikost desne datoteke."
 
 #. IDS_COLDESC_MSIZE_SHORT
-#: Merge.rc:5084
+#: Merge.rc:5086
 msgid "Middle file size abbreviated."
 msgstr "Velikost srednje datoteke je skrajšana."
 
 #. IDS_COLDESC_LTIMEC
-#: Merge.rc:5090
+#: Merge.rc:5092
 msgid "Left side creation time."
 msgstr "Čas ustvarjanja na levi strani."
 
 #. IDS_COLDESC_RTIMEC
-#: Merge.rc:5091
+#: Merge.rc:5093
 msgid "Right side creation time."
 msgstr "Čas ustvarjanja na desni strani."
 
 #. IDS_COLDESC_MTIMEC
-#: Merge.rc:5092
+#: Merge.rc:5094
 msgid "Middle side creation time."
 msgstr "Čas ustvarjanja na sredini."
 
 #. IDS_COLDESC_NEWER
-#: Merge.rc:5093
+#: Merge.rc:5095
 msgid "Tells which side has newer modification date."
 msgstr "Pove, katera stran ima novejši datum spremembe."
 
 #. IDS_COLDESC_LVERSION
-#: Merge.rc:5094
+#: Merge.rc:5096
 msgid "Left side file version, only for some file types."
 msgstr "Različica leve datoteke, le za nekatere vrste datotek."
 
 #. IDS_COLDESC_RVERSION
-#: Merge.rc:5095
+#: Merge.rc:5097
 msgid "Right side file version, only for some file types."
 msgstr "Različica desne datoteke, le za nekatere vrste datotek."
 
 #. IDS_COLDESC_MVERSION
-#: Merge.rc:5100
+#: Merge.rc:5102
 msgid "Middle side file version, only for some file types."
 msgstr "Različica srednje datoteke, le za nekatere vrste datotek."
 
 #. IDS_COLDESC_RESULT_ABBR
-#: Merge.rc:5101
+#: Merge.rc:5103
 msgid "Short comparison result."
 msgstr "Rezultat kratke primerjave."
 
 #. IDS_COLDESC_LATTRIBUTES
-#: Merge.rc:5102
+#: Merge.rc:5104
 msgid "Left side attributes."
 msgstr "Atributi leve strani."
 
 #. IDS_COLDESC_RATTRIBUTES
-#: Merge.rc:5103
+#: Merge.rc:5105
 msgid "Right side attributes."
 msgstr "Atributi desne strani."
 
 #. IDS_COLDESC_MATTRIBUTES
-#: Merge.rc:5104
+#: Merge.rc:5106
 msgid "Middle side attributes."
 msgstr "Atributi srednje."
 
 #. IDS_COLDESC_LEOL_TYPE
-#: Merge.rc:5105
+#: Merge.rc:5107
 msgid "Left side file EOL type."
 msgstr "Vrsta znakov koncev vrstic v levi datoteki."
 
 #. IDS_COLDESC_REOL_TYPE
-#: Merge.rc:5106
+#: Merge.rc:5108
 msgid "Right side file EOL type."
 msgstr "Vrsta znakov koncev vrstic v desni datoteki."
 
 #. IDS_COLDESC_MEOL_TYPE
-#: Merge.rc:5107
+#: Merge.rc:5109
 msgid "Middle side file EOL type."
 msgstr "Vrsta znakov koncev vrstic v srednji datoteki."
 
 #. IDS_COLDESC_LENCODING
-#: Merge.rc:5113
+#: Merge.rc:5115
 msgid "Left side encoding."
 msgstr "Kodna stran leve strani."
 
 #. IDS_COLDESC_RENCODING
-#: Merge.rc:5114
+#: Merge.rc:5116
 msgid "Right side encoding."
 msgstr "Kodna stran desne strani."
 
 #. IDS_COLDESC_MENCODING
-#: Merge.rc:5115
+#: Merge.rc:5117
 msgid "Middle side encoding."
 msgstr "Kodiranje v sredini."
 
 #. IDS_COLDESC_NIDIFFS
-#: Merge.rc:5116
+#: Merge.rc:5118
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr "Število prezrtih razlik v datoteki. Te razlike je WinMerge prezrl in jih ni mogoče združiti."
 
 #. IDS_COLDESC_NSDIFFS
-#: Merge.rc:5117
+#: Merge.rc:5119
 msgid "Number of differences in file (excluding ignored)."
 msgstr "Število razlik v datoteki. Ta številka ne vsebuje prezrtih razlik."
 
 #. IDS_COLDESC_BINARY
-#: Merge.rc:5118
+#: Merge.rc:5120
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Prikaže zvezdico (*), če je datoteka dvojiška."
 
 #. IDS_COLDESC_UNPACKER
-#: Merge.rc:5119
+#: Merge.rc:5121
 msgid "Unpacker plugin name or pipeline."
 msgstr "Ime vtičnika razpakovalca ali cevovod."
 
 #. IDS_COLDESC_PREDIFFER
-#: Merge.rc:5120
+#: Merge.rc:5122
 msgid "Prediffer plugin name or pipeline."
 msgstr "Ime vtičnika predrazlikovalca ali cevovod."
 
 #. IDS_DIRECTORY_REPORT_TITLE
-#: Merge.rc:5126
+#: Merge.rc:5128
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Primerjaj %1 z %2"
 
 #. IDS_DIRECTORY_REPORT_TITLE3
-#: Merge.rc:5127
+#: Merge.rc:5129
 #, c-format
 msgid "Compare %1 with %2 and %3"
 msgstr "Primerjaj %1 z %2 in %3"
 
 #. IDS_REPORT_COMMALIST
-#: Merge.rc:5128
+#: Merge.rc:5130
 msgid "Comma-separated list"
 msgstr "Seznam, ločen z vejicami"
 
 #. IDS_REPORT_TABLIST
-#: Merge.rc:5129
+#: Merge.rc:5131
 msgid "Tab-separated list"
 msgstr "Seznam, ločen s tabulatorji"
 
 #. IDS_REPORT_SIMPLEHTML
-#: Merge.rc:5130
+#: Merge.rc:5132
 msgid "Simple HTML"
 msgstr "Enostavni HTML"
 
 #. IDS_REPORT_SIMPLEXML
-#: Merge.rc:5131
+#: Merge.rc:5133
 msgid "Simple XML"
 msgstr "Enostavni XML"
 
-#: Merge.rc:5133
+#: Merge.rc:5135
 msgid "Report file already exists. Overwrite?"
 msgstr "Datoteka poročila že obstaja. Ali jo želite prepisati?"
 
 #. IDS_REPORT_ERROR
-#: Merge.rc:5138
+#: Merge.rc:5140
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -7139,57 +7139,57 @@ msgstr ""
 "%1"
 
 #. IDS_REPORT_SUCCESS
-#: Merge.rc:5139
+#: Merge.rc:5141
 msgid "Report created successfully."
 msgstr "Poročilo je bilo uspešno izdelano."
 
 #. IDS_SYNCPOINT_LASTBLOCK
-#: Merge.rc:5145
+#: Merge.rc:5147
 msgid "Cannot add a synchronization point at this line."
 msgstr "V tej vrstici ni mogoče dodati točke sinhronizacije."
 
 #. IDS_FILE_TO_ITSELF
-#: Merge.rc:5151
+#: Merge.rc:5153
 msgid "Same file is opened in both panes."
 msgstr "Ista datoteka je odprta v obeh podoknih."
 
 #. IDS_FILESSAME
-#: Merge.rc:5152
+#: Merge.rc:5154
 msgid "Selected files are identical."
 msgstr "Izbrani datoteki sta enaki."
 
 #. IDS_FILESSAME_CURCFG
-#: Merge.rc:5153
+#: Merge.rc:5155
 msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
 msgstr ""
 
 #. IDS_FILESSAME_BINERROR
-#: Merge.rc:5154
+#: Merge.rc:5156
 msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
 msgstr ""
 
 #. IDS_FILESSAME_BINSAME
-#: Merge.rc:5155
+#: Merge.rc:5157
 msgid "Selected files are identical (binary match)."
 msgstr ""
 
 #. IDS_FILESSAME_BINDIFF
-#: Merge.rc:5156
+#: Merge.rc:5158
 msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
 msgstr ""
 
 #. IDS_FILEERROR
-#: Merge.rc:5157
+#: Merge.rc:5159
 msgid "An error occurred while comparing files."
 msgstr "Prišlo je do napake med primerjavo datotek."
 
 #. IDS_TEMP_FILEERROR
-#: Merge.rc:5158
+#: Merge.rc:5160
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "Začasnih datotek ni bilo mogoče ustvariti. Preverite nastavitve začasne poti (PATH)."
 
 #. IDS_SUGGEST_IGNOREEOL
-#: Merge.rc:5159
+#: Merge.rc:5161
 msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "Ti datoteki imata različno vrsto znakov za konec vrstic.\n"
@@ -7199,17 +7199,17 @@ msgstr ""
 "Opomba: Če jih želite vedno obravnavati kot enaki, nastavite možnost 'Prezri različnost vrste znakov za koncev vrstic' na zavihku 'Primerjava' pogovornega okna 'Nastavitve' (dostopen pod Urejanje/Možnosti)."
 
 #. IDS_INVALID_DIRECTORY
-#: Merge.rc:5160
+#: Merge.rc:5162
 msgid "Selected folder is invalid."
 msgstr "Izbrana mapa ni veljavna."
 
 #. IDS_CANNOT_OPEN_BINARYFILE
-#: Merge.rc:5161
+#: Merge.rc:5163
 msgid "Cannot open a binary file in Editor."
 msgstr "V urejevalniku ni mogoče odpreti dvojiške datoteke."
 
 #. IDS_CREATE_PAIR_FOLDER
-#: Merge.rc:5162
+#: Merge.rc:5164
 #, c-format
 msgid "Create matching folder:\n%1\non the other side and open?"
 msgstr ""
@@ -7221,41 +7221,41 @@ msgstr ""
 "na drugi strani in jo odpreti?"
 
 #. IDS_CONFIRM_COPY_ALL_DIFFS
-#: Merge.rc:5163
+#: Merge.rc:5165
 msgid "Copy all differences to other file?"
 msgstr "Ali ste prepričani, da želite kopirati vse razlike v drugo datoteko?"
 
 #. IDS_MOVE_TO_NEXTFILE
-#: Merge.rc:5168
+#: Merge.rc:5170
 msgid "Move to next file?"
 msgstr "Ali se želite premakniti na naslednjo datoteko?"
 
 #. IDS_MOVE_TO_PREVFILE
-#: Merge.rc:5169
+#: Merge.rc:5171
 msgid "Move to previous file?"
 msgstr "Ali se želite premakniti na prejšnjo datoteko?"
 
 #. IDS_MOVE_TO_NEXTPAGE
-#: Merge.rc:5170
+#: Merge.rc:5172
 msgid "Move to next page?"
 msgstr "Ali se želite premakniti na naslednjo stran?"
 
 #. IDS_MOVE_TO_PREVPAGE
-#: Merge.rc:5171
+#: Merge.rc:5173
 msgid "Move to previous page?"
 msgstr "Ali se želite premakniti na prejšnjo stran?"
 
 #. IDS_MOVE_TO_FIRSTFILE
-#: Merge.rc:5172
+#: Merge.rc:5174
 msgid "Move to first file?"
 msgstr "Ali se želite premakniti v prvo datoteko?"
 
 #. IDS_MOVE_TO_LASTFILE
-#: Merge.rc:5173
+#: Merge.rc:5175
 msgid "Move to last file?"
 msgstr "Ali se želite premakniti na zadnjo datoteko?"
 
-#: Merge.rc:5180
+#: Merge.rc:5182
 #, c-format
 msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
 msgstr ""
@@ -7263,51 +7263,51 @@ msgstr ""
 "Prikaz vsake datoteke v svoji kodni strani bo omogočil boljši prikaz, vendar bo nevarno združevanje/kopiranje.\n"
 "Ali želite obe datoteke obravnavati v privzeti kodni strani sistema Windows (priporočeno)?"
 
-#: Merge.rc:5182
+#: Merge.rc:5184
 msgid "Information lost due to encoding errors: both files"
 msgstr "Izgubljeni podatki pri kodiranju: obe datoteki"
 
-#: Merge.rc:5184
+#: Merge.rc:5186
 msgid "Information lost due to encoding errors: first file"
 msgstr "Izgubljeni podatki zaradi napak pri kodiranju: prva datoteka"
 
-#: Merge.rc:5186
+#: Merge.rc:5188
 msgid "Information lost due to encoding errors: second file"
 msgstr "Izgubljeni podatki zaradi napak pri kodiranju: druga datoteka"
 
-#: Merge.rc:5188
+#: Merge.rc:5190
 msgid "Information lost due to encoding errors: third file"
 msgstr "Izgubljeni podatki zaradi napak pri kodiranju: tretja datoteka"
 
 #. IDS_LINEDIFF_NODIFF
-#: Merge.rc:5194
+#: Merge.rc:5196
 msgid "No difference"
 msgstr "Ni razlik"
 
 #. IDS_LINEDIFF_NODIFF_CAPTION
-#: Merge.rc:5195
+#: Merge.rc:5197
 msgid "Line difference"
 msgstr "Razlika v vrstici"
 
 #. IDS_NUM_REPLACED
-#: Merge.rc:5201
+#: Merge.rc:5203
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Zamenjano %1 nizov."
 
 #. IDS_EDIT_TEXT_NOT_FOUND
-#: Merge.rc:5202
+#: Merge.rc:5204
 #, c-format
 msgid "Cannot find string \"%s\"."
 msgstr "Ni mogoče najti niza \"%s\"."
 
 #. IDS_MERGE_MODE
-#: Merge.rc:5208
+#: Merge.rc:5210
 msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr "Zdaj vstopate v združevalni način. Če želite izklopiti združevalni način, pritisnite tipko F9."
 
 #. IDS_AUTO_MERGE
-#: Merge.rc:5214
+#: Merge.rc:5216
 #, c-format
 msgid ""
 "Automatic merges: %1\n"
@@ -7317,49 +7317,39 @@ msgstr ""
 "Število nerešenih sporov: %2"
 
 #. IDS_CODEPAGE_MERGED
-#: Merge.rc:5215
+#: Merge.rc:5217
 msgid "Codepage change merged."
 msgstr "Sprememba kodne strani je bila združena."
 
 #. IDS_CODEPAGE_CONFLICT
-#: Merge.rc:5216
+#: Merge.rc:5218
 msgid "Codepage changes are conflicting."
 msgstr "Spremembe kodne strani so v sporu."
 
 #. IDS_EOL_MERGED
-#: Merge.rc:5217
+#: Merge.rc:5219
 msgid "EOL change merged."
 msgstr "Sprememba konca vrstice (EOL) je bila združena."
 
 #. IDS_EOL_CONFLICT
-#: Merge.rc:5218
+#: Merge.rc:5220
 msgid "EOL changes are conflicting."
 msgstr "Spremembe koncev vrstic (EOL) so v sporu."
 
 #. IDS_LOCBAR_CAPTION
-#: Merge.rc:5224
+#: Merge.rc:5226
 msgid "Location Pane"
 msgstr "Podokno lokacije"
 
 #. IDS_DIFFBAR_CAPTION
-#: Merge.rc:5225
+#: Merge.rc:5227
 msgid "Diff Pane"
 msgstr "Podokno razlik"
 
 #. IDS_DIFF_SUCCEEDED
-#: Merge.rc:5232
+#: Merge.rc:5234
 msgid "Patch file written."
 msgstr "Datoteka popravka je bila uspešno zapisana."
-
-#. IDS_DIFF_ITEM1NOTFOUND
-#: Merge.rc:5233
-msgid "First item not found!"
-msgstr "1. vnos ni bil najden!"
-
-#. IDS_DIFF_ITEM2NOTFOUND
-#: Merge.rc:5234
-msgid "Second item not found!"
-msgstr "2. vnos ni bil najden!"
 
 #. IDS_DIFF_FILEOVERWRITE
 #: Merge.rc:5235

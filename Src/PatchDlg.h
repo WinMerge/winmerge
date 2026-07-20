@@ -10,6 +10,7 @@
 #include "TrDialogs.h"
 #include "SuperComboBox.h"
 #include "UnicodeString.h"
+#include "WindowListCtrl.h"
 
 struct PATCHFILES;
 
@@ -32,6 +33,7 @@ public:
 	size_t GetItemCount();
 	const PATCHFILES& GetItemAt(size_t position);
 	void ClearItems();
+	int  GetCheckedCount();
 
 // Dialog Data
 	//{{AFX_DATA(CPatchDlg)
@@ -41,6 +43,7 @@ public:
 	CSuperComboBox m_ctlFile1;
 	CSuperComboBox m_ctlFile2;
 	CSuperComboBox m_ctlResult;
+	CWindowListCtrl m_list;
 	String	m_file1;
 	String	m_file2;
 	String	m_fileResult;
@@ -65,6 +68,7 @@ protected:
 
 	std::vector<PATCHFILES> m_fileList; /**< Source files to create patch from */
 
+	void UpdateEditControls();
 	void UpdateSettings();
 	void LoadSettings();
 	void SaveSettings();
@@ -74,6 +78,8 @@ protected:
 	//{{AFX_MSG(CPatchDlg)
 	virtual void OnOK() override;
 	virtual BOOL OnInitDialog() override;
+	afx_msg LRESULT OnUpdateEditControls(WPARAM, LPARAM);
+	afx_msg void OnItemChangedList(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnDiffBrowseFile1();
 	afx_msg void OnDiffBrowseFile2();
 	afx_msg void OnDiffBrowseResult();
@@ -86,6 +92,12 @@ protected:
 	afx_msg void OnEditchangeFile2();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	bool m_bInOnInitDialog;
+	bool m_updatePosted = false;
+	CImageList m_imageList;
+	static constexpr UINT WM_APP_UPDATE_EDIT_CONTROLS = WM_APP + 1;
 };
 
 /** 
@@ -114,13 +126,5 @@ inline size_t CPatchDlg::GetItemCount()
 inline const PATCHFILES& CPatchDlg::GetItemAt(size_t position)
 {
 	return m_fileList.at(position);
-}
-
-/** 
- * @brief Empties internal item list.
- */
-inline void CPatchDlg::ClearItems()
-{
-	m_fileList.clear();
 }
 

@@ -52,6 +52,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "PatchTool.h"
+#include "DirActions.h"
 #include "Plugins.h"
 #include "ConfigLog.h"
 #include "7zCommon.h"
@@ -2187,40 +2188,22 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, in
  */
 void CMainFrame::OnToolsGeneratePatch()
 {
-	int nResult = IDNO;
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-
-	if (mergedocs.GetSize() > 1)
-	{
-		String msg = strutils::format(
-			_("Include all %zd open comparisons in the patch?"), 
-			mergedocs.GetSize());
-		nResult = AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONQUESTION);
-	}
-
-	std::vector<const CMergeDoc*> docsToPatch;
-	if (nResult == IDYES)
-	{
-		for (auto* doc : mergedocs)
-			docsToPatch.push_back(doc);
-	}
-	else
-	{
-		if (auto* pMergeDoc = dynamic_cast<CMergeDoc*>(GetActiveIMergeDoc()))
-			docsToPatch.push_back(pMergeDoc);
-		else
-			return;
-	}
-
 	CPatchTool patcher;
 	bool modified = false;
-	for (auto* doc : docsToPatch)
+	for (auto* doc : GetAllMergeDocs())
 	{
 		// If there are changes in files, tell user to save them first
 		if (doc->IsModified())
 			modified = true;
 
-		patcher.AddFiles(doc->GetPath(0), doc->GetPath(1));
+		bool checked = (doc == dynamic_cast<CMergeDoc*>(GetActiveIMergeDoc()));
+		String title = doc->GetTitle();
+
+		// Determine diff status based on diff count
+		int diffStatus = (doc->GetDiffCount() == 0) ? DIFFIMG_TEXTSAME : DIFFIMG_TEXTDIFF;
+
+		patcher.AddFiles(doc->GetPath(0), _T(""), doc->GetPath(1), _T(""),
+			title, checked, diffStatus);
 	}
 
 	if (modified)

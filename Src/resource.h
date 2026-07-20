@@ -278,6 +278,7 @@
 #define IDC_DIFF_BROWSE_RESULT          1077
 #define IDC_DIFF_APPENDFILE             1078
 #define IDC_DIFF_COPYCLIPBOARD          1079
+#define IDC_DIFF_WINDOW_LIST            1080
 #define IDC_FILES_DIRS_GROUP0           1082
 #define IDC_FILES_DIRS_GROUP1           1083
 #define IDC_FILES_DIRS_GROUP2           1084
@@ -2016,8 +2017,6 @@
 #define IDS_DIFFBAR_CAPTION             42202
 #define IDS_OUTPUTBAR_CAPTION           42203
 #define IDS_DIFF_SUCCEEDED              42400
-#define IDS_DIFF_ITEM1NOTFOUND          42401
-#define IDS_DIFF_ITEM2NOTFOUND          42402
 #define IDS_DIFF_FILEOVERWRITE          42403
 #define IDS_DIFF_SELECTEDFILES          42404
 #define IDS_DIFF_NORMAL                 42405
@@ -2256,7 +2255,7 @@
 #define IDS_COPY_GRANULARITY_LINE       44643
 #define IDS_COPY_GRANULARITY_Character  44644
 #define IDS_VIEW_MENU_BAR               44645
-#define IDS_COPY_ONLYDIFFITEMS          44646
+#define IDS_ONLYDIFFITEMS_CONFIRM       44646
 #define IDS_LOG_COMPARING_2             44650
 #define IDS_LOG_COMPARING_3             44651
 #define IDS_LOG_COMPARE_COMPLETED       44652

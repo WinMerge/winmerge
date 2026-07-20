@@ -993,13 +993,28 @@ std::optional<bool> CDirView::PromptCopyOnlyDiffItems()
 	Counts counts = Count(&DirActions::IsItemIdenticalOrSkipped);
 	if (counts.count > 0)
 	{
-		int ans = AfxMessageBox(_("Some selected items are identical or skipped.\nCopy only items with differences?").c_str(),
-			MB_YESNOCANCEL | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_COPY_ONLYDIFFITEMS);
+		int ans = AfxMessageBox(_("Some selected items are identical or skipped.\nProcess only items with differences?").c_str(),
+			MB_YESNOCANCEL | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_ONLYDIFFITEMS_CONFIRM);
 		if (ans == IDCANCEL)
 			return std::nullopt;
 		copyOnlyDiffItems = (ans == IDYES);
 	}
 	return copyOnlyDiffItems;
+}
+
+std::optional<bool> CDirView::PromptPatchOnlyDiffItems()
+{
+	bool patchOnlyDiffItems = true;
+	Counts counts = Count(&DirActions::IsItemIdenticalOrSkipped);
+	if (counts.count > 0)
+	{
+		int ans = AfxMessageBox(_("Some selected items are identical or skipped.\nProcess only items with differences?").c_str(),
+			MB_YESNOCANCEL | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_ONLYDIFFITEMS_CONFIRM);
+		if (ans == IDCANCEL)
+			return std::nullopt;
+		patchOnlyDiffItems = (ans == IDYES);
+	}
+	return patchOnlyDiffItems;
 }
 
 /// User chose (context men) Copy from right to left
@@ -3388,39 +3403,19 @@ void CDirView::OnToolsGeneratePatch()
 	CPatchTool patcher;
 	const CDiffContext& ctxt = GetDiffContext();
 
-	// Get selected items from folder compare
-	bool bValidFiles = true;
-	for (DirItemIterator it = SelBegin(); bValidFiles && it != SelEnd(); ++it)
+	// Prompt user about diff-only filtering
+	auto patchOnlyDiffItems = PromptPatchOnlyDiffItems();
+	if (!patchOnlyDiffItems.has_value())
+		return;
+
+	// Collect patch items using the new CreatePatchItems function
+	auto patchItems = CreatePatchItems(ctxt, SelBegin(), SelEnd(), patchOnlyDiffItems.value());
+
+	// Add items to patcher (binary files will be skipped during patch creation)
+	for (const auto& item : patchItems)
 	{
-		const DIFFITEM &item = *it;
-		if (item.diffcode.isBin())
-		{
-			I18n::MessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
-				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
-			bValidFiles = false;
-		}
-
-		if (bValidFiles)
-		{
-			// Format full paths to files (leftFile/rightFile)
-			String leftFile = item.getFilepath(0, ctxt.GetNormalizedPath(0));
-			if (!leftFile.empty())
-				leftFile = paths::ConcatPath(leftFile, item.diffFileInfo[0].filename);
-			String rightFile = item.getFilepath(1, ctxt.GetNormalizedPath(1));
-			if (!rightFile.empty())
-				rightFile = paths::ConcatPath(rightFile, item.diffFileInfo[1].filename);
-
-			// Format relative paths to files in folder compare
-			String leftpatch = item.diffFileInfo[0].path;
-			if (!leftpatch.empty())
-				leftpatch += _T("/");
-			leftpatch += item.diffFileInfo[0].filename;
-			String rightpatch = item.diffFileInfo[1].path;
-			if (!rightpatch.empty())
-				rightpatch += _T("/");
-			rightpatch += item.diffFileInfo[1].filename;
-			patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
-		}
+		patcher.AddFiles(item.leftFile, item.leftpatch, item.rightFile, item.rightpatch, 
+				(!item.leftpatch.empty() ? item.leftpatch : item.rightpatch), true, item.diffStatus);
 	}
 
 	patcher.CreatePatch();

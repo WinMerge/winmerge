@@ -17,16 +17,26 @@ public:
 		uintptr_t data = 0;
 		bool checked = false;
 	};
+	struct Item
+	{
+		String title;
+		uintptr_t data = 0;
+		bool checked = false;
+		int iImage = -1;
+	};
 
 	CWindowListCtrl();
 	virtual ~CWindowListCtrl();
 
 	void Initialize();
 	void SetWindows(const std::vector<WindowItem>& windows);
-	void GetCheckedData(std::vector<uintptr_t>& data) const;
+	void SetItems(const std::vector<Item>& items);
+	std::vector<uintptr_t> GetCheckedData() const;
+	std::vector<bool> GetChecked() const;
 
 protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg BOOL OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
 	DECLARE_MESSAGE_MAP();
 
 private:

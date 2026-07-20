@@ -48,6 +48,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(FileCmpReportDlg)
+	afx_msg void OnItemChangedReportWindowList(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnBtnClickReportBrowse();
 	afx_msg void OnBtnDblclickCopyClipboard();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);

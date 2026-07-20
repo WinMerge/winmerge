@@ -630,6 +630,29 @@ std::vector<CompressibleItem> CreateZipItems(const CDiffContext& ctxt, Iterator 
 	return items;
 }
 
+struct PatchItem
+{
+	String leftFile;
+	String rightFile;
+	String leftpatch;
+	String rightpatch;
+	int diffStatus = -1; /**< Icon index representing diff status (DIFFIMG_*) */
+};
+
+void AddPatchItem(const CDiffContext& ctxt, const DIFFITEM& di, bool bDiffsOnly, std::vector<PatchItem>& items);
+template<typename Iterator>
+std::vector<PatchItem> CreatePatchItems(const CDiffContext& ctxt, Iterator first, Iterator last, bool bDiffsOnly)
+{
+	std::vector<PatchItem> items;
+	for (; first != last; ++first)
+	{
+		DIFFITEM* pdi = &(*first);
+		if (pdi != nullptr)
+			AddPatchItem(ctxt, *pdi, bDiffsOnly, items);
+	}
+	return items;
+}
+
 struct Counts {
 	Counts() : count(0), total(0) {}
 	Counts(int c, int t): count(c), total(t) {}

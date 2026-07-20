@@ -80,7 +80,7 @@ void FileCmpReportDlg::CollectOptions()
 {
 	UpdateData(TRUE);
 
-	m_list.GetCheckedData(m_options.selectedData);
+	m_options.selectedData = m_list.GetCheckedData();
 }
 
 void FileCmpReportDlg::OnBtnClickReportBrowse()

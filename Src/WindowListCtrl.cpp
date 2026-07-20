@@ -14,6 +14,7 @@ CWindowListCtrl::~CWindowListCtrl()
 {}
 
 BEGIN_MESSAGE_MAP(CWindowListCtrl, CListCtrl)
+	ON_NOTIFY_REFLECT_EX(LVN_ITEMCHANGED, &CWindowListCtrl::OnItemChanged)
 END_MESSAGE_MAP()
 
 BOOL CWindowListCtrl::PreTranslateMessage(MSG* pMsg)
@@ -28,27 +29,47 @@ BOOL CWindowListCtrl::PreTranslateMessage(MSG* pMsg)
 
 			return TRUE;
 		}
-		if (pMsg->wParam == VK_SPACE)
-		{
-			POSITION pos = GetFirstSelectedItemPosition();
-			if (pos == nullptr)
-				return TRUE;
-
-			int first = GetNextSelectedItem(pos);
-			bool check = !GetCheck(first);
-			SetCheck(first, check);
-
-			while (pos != nullptr)
-			{
-				int i = GetNextSelectedItem(pos);
-				SetCheck(i, check);
-			}
-
-			return TRUE;
-		}
 	}
 
 	return CListCtrl::PreTranslateMessage(pMsg);
+}
+
+BOOL CWindowListCtrl::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NM_LISTVIEW* pNMLV = (NM_LISTVIEW*)pNMHDR;
+
+	// Check if the state image (checkbox) has changed
+	if ((pNMLV->uChanged & LVIF_STATE) &&
+		((pNMLV->uOldState & LVIS_STATEIMAGEMASK) != (pNMLV->uNewState & LVIS_STATEIMAGEMASK)))
+	{
+		int changedItem = pNMLV->iItem;
+		if (changedItem < 0 || changedItem >= GetItemCount())
+		{
+			*pResult = 0;
+			return FALSE;
+		}
+
+		// Check if the clicked item is currently selected
+		bool isClickedItemSelected = (GetItemState(changedItem, LVIS_SELECTED) & LVIS_SELECTED) != 0;
+
+		if (isClickedItemSelected)
+		{
+			// Get the new state of the clicked item
+			bool newState = GetCheck(changedItem);
+
+			// Apply the same state to all selected items
+			POSITION pos = GetFirstSelectedItemPosition();
+			while (pos != nullptr)
+			{
+				int i = GetNextSelectedItem(pos);
+				SetCheck(i, newState);
+			}
+		}
+		// If the clicked item is not selected, only its state is changed (no additional action needed)
+	}
+
+	*pResult = 0;
+	return FALSE;
 }
 
 void CWindowListCtrl::Initialize()
@@ -59,17 +80,14 @@ void CWindowListCtrl::Initialize()
 	GetClientRect(&rc);
 
 	InsertColumn(0, _T(""), LVCFMT_LEFT, rc.Width());
-
-	m_imageList.Create(GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), ILC_COLOR32 | ILC_MASK, 4, 4);
-
-	SetImageList(&m_imageList, LVSIL_SMALL);
 }
 
 void CWindowListCtrl::SetWindows(const std::vector<WindowItem>& windows)
 {
 	DeleteAllItems();
-	m_imageList.DeleteImageList();
 
+	if (m_imageList.GetSafeHandle() != nullptr)
+		m_imageList.DeleteImageList();
 	m_imageList.Create(GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), ILC_COLOR32 | ILC_MASK, 4, 4);
 
 	SetImageList(&m_imageList, LVSIL_SMALL);
@@ -104,9 +122,33 @@ void CWindowListCtrl::SetWindows(const std::vector<WindowItem>& windows)
 	}
 }
 
-void CWindowListCtrl::GetCheckedData(std::vector<uintptr_t>& data) const
+void CWindowListCtrl::SetItems(const std::vector<Item>& items)
 {
-	data.clear();
+	DeleteAllItems();
+
+	for (const auto& itemData: items)
+	{
+		LVITEM item = {};
+		item.mask = LVIF_TEXT | LVIF_PARAM;
+
+		if (itemData.iImage >= 0)
+		{
+			item.mask |= LVIF_IMAGE;
+			item.iImage = itemData.iImage;
+		}
+
+		item.iItem = GetItemCount();
+		item.pszText = const_cast<LPTSTR>(itemData.title.c_str());
+		item.lParam = itemData.data;
+
+		int index = InsertItem(&item);
+		SetCheck(index, itemData.checked);
+	}
+}
+
+std::vector<uintptr_t> CWindowListCtrl::GetCheckedData() const
+{
+	std::vector<uintptr_t> data;
 
 	LVITEM item{};
 	item.mask = LVIF_PARAM;
@@ -121,4 +163,13 @@ void CWindowListCtrl::GetCheckedData(std::vector<uintptr_t>& data) const
 
 		data.push_back(static_cast<uintptr_t>(item.lParam));
 	}
+	return data;
+}
+
+std::vector<bool> CWindowListCtrl::GetChecked() const
+{
+	std::vector<bool> checkedList;
+	for (int i = 0; i < GetItemCount(); ++i)
+		checkedList.push_back(GetCheck(i));
+	return checkedList;
 }
