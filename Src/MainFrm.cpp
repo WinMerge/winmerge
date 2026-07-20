@@ -2196,7 +2196,7 @@ void CMainFrame::OnToolsGeneratePatch()
 		if (doc->IsModified())
 			modified = true;
 
-		bool checked = (doc == GetActiveIMergeDoc());
+		bool checked = (doc == dynamic_cast<CMergeDoc*>(GetActiveIMergeDoc()));
 		String title = doc->GetTitle();
 
 		// Determine diff status based on diff count
