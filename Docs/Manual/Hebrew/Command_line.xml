@@ -30,7 +30,9 @@ rep="norepeat"><option>/t</option>
 <replaceable>window-type</replaceable></arg> <arg><option>/x</option></arg>
 <arg><option>/xq</option></arg> <arg><option>/s</option></arg>
 <arg><option>/sw</option></arg> <arg><option>/s-</option></arg> <arg
-choice="opt" rep="norepeat"><option>/ul</option></arg> <arg choice="opt"
+choice="opt" rep="norepeat"><option>/g</option>
+<replaceable>group-name</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/ul</option></arg> <arg choice="opt"
 rep="norepeat"><option>/um</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ur</option></arg> <arg choice="opt"
 rep="norepeat"><option>/u</option></arg> <arg choice="opt"
@@ -234,6 +236,20 @@ keywords <userinput>Full</userinput>, <userinput>Quick</userinput>,
       <listitem>
         <para>ודא שמופע אחר תמיד מבוצע, תוך התעלמות מהערך של האפשרות "אפשר להפעיל רק מופע
 אחד".</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>חלון WinMerge</primary>
+        <secondary>instance groups</secondary>
+      </indexterm>
+
+      <term><option>/g</option> <replaceable>group-name</replaceable></term>
+      <listitem>
+        <para>Specifies a group name for the WinMerge instance. When used with the
+<option>/s</option> option, instances with the same group name share the
+same window, allowing you to organize multiple single-instance groups.</para>
       </listitem>
     </varlistentry>
 

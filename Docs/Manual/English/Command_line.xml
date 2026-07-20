@@ -49,6 +49,9 @@
 
       <arg><option>/s-</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/g</option>
+      <replaceable>group-name</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/um</option></arg>
@@ -329,7 +332,7 @@
       </indexterm>
 
       <term><option>/g</option>
-      <replaceable>groupname</replaceable></term>
+      <replaceable>group-name</replaceable></term>
       <listitem>
         <para>Specifies a group name for the WinMerge instance. When used with
         the <option>/s</option> option, instances with the same group name share

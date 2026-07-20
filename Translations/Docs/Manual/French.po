@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-06-25 07:56+0900\n"
+"POT-Creation-Date: 2026-07-20 16:31+0900\n"
 "PO-Revision-Date: 2026-06-26 16:33-0400\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
@@ -630,6 +630,72 @@ msgstr ""
 
 #. type: Content of: <article><para><cmdsynopsis>
 #: English/Command_line.xml:25
+#, fuzzy
+#| msgid ""
+#| "<command>WinMergeU</command> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/r</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/r-</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/e</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/f</option> <replaceable>filter</replaceable></"
+#| "arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/m</option> "
+#| "<replaceable>compare-method</replaceable></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/t</option> <replaceable>window-type</"
+#| "replaceable></arg> <arg><option>/x</option></arg> <arg><option>/xq</"
+#| "option></arg> <arg><option>/s</option></arg> <arg><option>/sw</option></"
+#| "arg> <arg><option>/s-</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/ul</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/um</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/ur</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/u</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/wl</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/wm</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/wr</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/new</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/self-compare</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/clipboard-compare</option></arg> <arg><option>/"
+#| "minimize</option></arg> <arg><option>/maximize</option></arg> <arg "
+#| "choice=\"opt\" rep=\"norepeat\"><option>/fl</option></arg> <arg "
+#| "choice=\"opt\" rep=\"norepeat\"><option>/fm</option></arg> <arg "
+#| "choice=\"opt\" rep=\"norepeat\"><option>/fr</option></arg> <arg "
+#| "choice=\"opt\" rep=\"norepeat\"><option>/l</option> "
+#| "<replaceable>linenumber</replaceable></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/c</option> <replaceable>charpos</replaceable></"
+#| "arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/table-delimiter</"
+#| "option> <replaceable>delimiter</replaceable></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/dl</option> <replaceable>leftdesc</"
+#| "replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/dm</"
+#| "option> <replaceable>middledesc</replaceable></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/dr</option> <replaceable>rightdesc</"
+#| "replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/al</"
+#| "option></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/am</option></"
+#| "arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/ar</option></arg> <arg "
+#| "choice=\"opt\" rep=\"norepeat\"><option>/noninteractive</option></arg> "
+#| "<arg choice=\"opt\" rep=\"norepeat\"><option>/noprefs</option></arg> <arg "
+#| "choice=\"opt\" rep=\"norepeat\"><option>/enableexitcode</option></arg> "
+#| "<arg choice=\"opt\" rep=\"norepeat\"><option>/ignorews</option></arg> "
+#| "<arg choice=\"opt\" rep=\"norepeat\"><option>/ignoreblanklines</option></"
+#| "arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/ignorecase</option></"
+#| "arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/ignoreeol</option></"
+#| "arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/ignorecodepage</"
+#| "option></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/"
+#| "ignorecomments</option></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/unpacker</option> <replaceable>unpacker-name</"
+#| "replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/"
+#| "prediffer</option> <replaceable>prediffer-name</replaceable></arg> <arg "
+#| "choice=\"opt\" rep=\"norepeat\"><option>/cp</option> "
+#| "<replaceable>codepage</replaceable></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/fileext</option> <replaceable>file-extension</"
+#| "replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/cfg</"
+#| "option> <replaceable>name=value</replaceable></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/inifile</option> <replaceable>inifile</"
+#| "replaceable></arg> <arg choice=\"plain\" "
+#| "rep=\"norepeat\"><replaceable>leftpath</replaceable></arg> <arg "
+#| "cchoice=\"opt\" rep=\"norepeat\"><replaceable>middlepath</replaceable></"
+#| "arg> <arg choice=\"plain\" rep=\"norepeat\"><replaceable>rightpath</"
+#| "replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/o</"
+#| "option> <replaceable>outputpath</replaceable></arg> <arg choice=\"opt\" "
+#| "rep=\"norepeat\"><option>/or</option> <replaceable>reportpath</"
+#| "replaceable></arg>"
 msgid ""
 "<command>WinMergeU</command> <arg choice=\"opt\" rep=\"norepeat\"><option>/"
 "r</option></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/r-</option></"
@@ -640,18 +706,20 @@ msgid ""
 "rep=\"norepeat\"><option>/t</option> <replaceable>window-type</replaceable></"
 "arg> <arg><option>/x</option></arg> <arg><option>/xq</option></arg> "
 "<arg><option>/s</option></arg> <arg><option>/sw</option></arg> <arg><option>/"
-"s-</option></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/ul</option></"
-"arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/um</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/ur</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/u</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/wl</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/wm</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/wr</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/new</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/self-compare</option></arg> <arg "
-"choice=\"opt\" rep=\"norepeat\"><option>/clipboard-compare</option></arg> "
-"<arg><option>/minimize</option></arg> <arg><option>/maximize</option></arg> "
-"<arg choice=\"opt\" rep=\"norepeat\"><option>/fl</option></arg> <arg "
+"s-</option></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/g</option> "
+"<replaceable>group-name</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/ul</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/um</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/ur</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/u</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/wl</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/wm</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/wr</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/new</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/self-compare</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/clipboard-compare</option></arg> <arg><option>/"
+"minimize</option></arg> <arg><option>/maximize</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/fl</option></arg> <arg "
 "choice=\"opt\" rep=\"norepeat\"><option>/fm</option></arg> <arg "
 "choice=\"opt\" rep=\"norepeat\"><option>/fr</option></arg> <arg "
 "choice=\"opt\" rep=\"norepeat\"><option>/l</option> <replaceable>linenumber</"
@@ -758,7 +826,7 @@ msgstr ""
 "replaceable></arg>"
 
 #. type: Content of: <article><cmdsynopsis>
-#: English/Command_line.xml:162
+#: English/Command_line.xml:165
 msgid ""
 "<command>WinMergeU</command> <arg choice=\"plain\" "
 "rep=\"norepeat\"><replaceable>conflictfile</replaceable></arg>"
@@ -767,7 +835,7 @@ msgstr ""
 "rep=\"norepeat\"><replaceable>fichier_conflit</replaceable></arg>"
 
 #. type: Content of: <article><para>
-#: English/Command_line.xml:168
+#: English/Command_line.xml:171
 msgid ""
 "Entering the command with no parameters or pathnames simply opens the "
 "WinMerge window. Parameters are prefixed with either a forward slash "
@@ -780,29 +848,29 @@ msgstr ""
 "noms de chemin n'ont pas de caractère de préfixe."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:175
+#: English/Command_line.xml:178
 msgid "<option>/?</option>"
 msgstr "<option>/?</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:177
+#: English/Command_line.xml:180
 msgid "Opens WinMerge Help at this topic."
 msgstr "Ouvre l'aide de WinMerge sur cette rubrique."
 
 #. type: Content of: <article><section><section><title><indexterm><seealso>
-#: English/Command_line.xml:183 English/Compare_dirs.xml:54
+#: English/Command_line.xml:186 English/Compare_dirs.xml:54
 #: English/Compare_dirs.xml:254 English/Open_paths.xml:288
 #: English/Open_paths.xml:294
 msgid "recursive folder compare"
 msgstr "comparaison récursive de dossiers"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:185
+#: English/Command_line.xml:188
 msgid "<option>/r</option>"
 msgstr "<option>/r</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:187
+#: English/Command_line.xml:190
 msgid ""
 "Compares all files in all subfolders (recursive compare). Unique folders "
 "(occurring only on one side) are listed in the compare result as separate "
@@ -820,17 +888,17 @@ msgstr ""
 "compare pas les sous-dossiers."
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
-#: English/Command_line.xml:198
+#: English/Command_line.xml:201
 msgid "non-recursive folder compare"
 msgstr "comparaison non récursive de dossiers"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:200
+#: English/Command_line.xml:203
 msgid "<option>/r-</option>"
 msgstr "<option>/r-</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:202
+#: English/Command_line.xml:205
 msgid ""
 "Compares all files within the specified folders but excludes the files and "
 "subfolders within its subfolders.  This allows for a shorter comparison time."
@@ -840,24 +908,24 @@ msgstr ""
 "temps de comparaison plus court."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:210 English/Command_line.xml:294
-#: English/Command_line.xml:417 English/Configuration.xml:277
-#: English/Quick_start.xml:22
+#: English/Command_line.xml:213 English/Command_line.xml:297
+#: English/Command_line.xml:330 English/Command_line.xml:435
+#: English/Configuration.xml:277 English/Quick_start.xml:22
 msgid "WinMerge window"
 msgstr "Fenêtre WinMerge"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
-#: English/Command_line.xml:211
+#: English/Command_line.xml:214
 msgid "closing"
 msgstr "fermeture"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:214
+#: English/Command_line.xml:217
 msgid "<option>/e</option>"
 msgstr "<option>/e</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:216
+#: English/Command_line.xml:219
 msgid ""
 "Enables you to close WinMerge with a single <keycap>Esc</keycap> key press. "
 "This is useful when you use WinMerge as an external compare application: you "
@@ -871,7 +939,7 @@ msgstr ""
 "<keycap>Echap</keycap> plusieurs fois pour fermer toutes ses fenêtres."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:226 English/Configuration.xml:820
+#: English/Command_line.xml:229 English/Configuration.xml:820
 #: English/Configuration.xml:848 English/Configuration.xml:871
 #: English/Filters.xml:4 English/Filters.xml:96 English/Filters.xml:100
 #: English/Filters.xml:142 English/Filters.xml:1609 English/Filters.xml:1613
@@ -882,18 +950,18 @@ msgid "filters"
 msgstr "filtres"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
-#: English/Command_line.xml:227 English/Command_line.xml:243
-#: English/Command_line.xml:259
+#: English/Command_line.xml:230 English/Command_line.xml:246
+#: English/Command_line.xml:262
 msgid "applying in command line"
 msgstr "application en ligne de commande"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:230
+#: English/Command_line.xml:233
 msgid "<option>/f</option>"
 msgstr "<option>/f</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:232
+#: English/Command_line.xml:235
 msgid ""
 "Applies a specified filter to restrict the comparison. The filter can be a "
 "filemask like <filename><userinput>*.h *.cpp</userinput></filename>, or the "
@@ -907,17 +975,17 @@ msgstr ""
 "contenant des espaces."
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
-#: English/Command_line.xml:242
+#: English/Command_line.xml:245
 msgid "compare method"
 msgstr "méthode de comparaison"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:246
+#: English/Command_line.xml:249
 msgid "<option>/m <replaceable>compare-method</replaceable></option>"
 msgstr "<option>/m <replaceable>méthode-comparaison</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:248
+#: English/Command_line.xml:251
 msgid ""
 "Sets the compare method to use for the comparison.  This can be one of the "
 "keywords <userinput>Full</userinput>, <userinput>Quick</userinput>, "
@@ -932,17 +1000,17 @@ msgstr ""
 "<userinput>Size</userinput> (Taille) ou <userinput>Existence</userinput>."
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
-#: English/Command_line.xml:258
+#: English/Command_line.xml:261
 msgid "window type"
 msgstr "type de fenêtre"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:262
+#: English/Command_line.xml:265
 msgid "<option>/t <replaceable>window-type</replaceable></option>"
 msgstr "<option>/t <replaceable>type-fenêtre</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:264
+#: English/Command_line.xml:267
 msgid ""
 "Specifies the type of window in which to display files.  This can be one of "
 "the keywords <userinput>Text</userinput>, <userinput>Table</userinput>, "
@@ -956,12 +1024,12 @@ msgstr ""
 "(Page Web) ou <userinput>Folder</userinput>."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:272
+#: English/Command_line.xml:275
 msgid "<option>/x</option>"
 msgstr "<option>/x</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:274
+#: English/Command_line.xml:277
 msgid ""
 "Closes WinMerge (after displaying an information dialog) when you start a "
 "comparison of identical files. The parameter has no effect after the "
@@ -979,12 +1047,12 @@ msgstr ""
 "qui n'ont aucune différence."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:285
+#: English/Command_line.xml:288
 msgid "<option>/xq</option>"
 msgstr "<option>/xq</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:287
+#: English/Command_line.xml:290
 msgid ""
 "Is similar to <option>/x</option> but does not show the message about "
 "identical files."
@@ -993,17 +1061,17 @@ msgstr ""
 "les fichiers identiques."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Command_line.xml:295 English/Configuration.xml:279
+#: English/Command_line.xml:298 English/Configuration.xml:279
 msgid "limiting instances"
 msgstr "limitation des instances"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:298
+#: English/Command_line.xml:301
 msgid "<option>/s</option>"
 msgstr "<option>/s</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:300
+#: English/Command_line.xml:303
 msgid ""
 "Limits WinMerge windows to a single instance.  For example, if WinMerge is "
 "already running, a new compare opens in the same instance. Without this "
@@ -1017,12 +1085,12 @@ msgstr ""
 "existante ou dans une nouvelle fenêtre."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:309
+#: English/Command_line.xml:312
 msgid "<option>/sw</option>"
 msgstr "<option>/sw</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:311
+#: English/Command_line.xml:314
 msgid ""
 "Limit the WinMerge window to one instance as well as the option /s.  "
 "However, it waits for the instance displaying the window to terminate."
@@ -1031,12 +1099,12 @@ msgstr ""
 "Cependant, elle attend que l'instance affichant la fenêtre se termine."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:318
+#: English/Command_line.xml:321
 msgid "<option>/s-</option>"
 msgstr "<option>/s-</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:320
+#: English/Command_line.xml:323
 msgid ""
 "Ensure that another instance is always executed, ignoring the value of the "
 "\"Allow only one instance to run\" option."
@@ -1044,19 +1112,39 @@ msgstr ""
 "Garantit qu'une autre instance est toujours exécutée, en ignorant la valeur "
 "de l'option « N'autoriser qu'une seule instance à s'exécuter »."
 
+#. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
+#: English/Command_line.xml:331
+msgid "instance groups"
+msgstr ""
+
+#. type: Content of: <article><variablelist><varlistentry><term>
+#: English/Command_line.xml:334
+#, fuzzy
+#| msgid "<option>/cp <replaceable>codepage</replaceable></option>"
+msgid "<option>/g</option> <replaceable>group-name</replaceable>"
+msgstr "<option>/cp <replaceable>page-de-code</replaceable></option>"
+
+#. type: Content of: <article><variablelist><varlistentry><listitem><para>
+#: English/Command_line.xml:337
+msgid ""
+"Specifies a group name for the WinMerge instance. When used with the "
+"<option>/s</option> option, instances with the same group name share the "
+"same window, allowing you to organize multiple single-instance groups."
+msgstr ""
+
 #. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
-#: English/Command_line.xml:327 English/Configuration.xml:430
+#: English/Command_line.xml:345 English/Configuration.xml:430
 #: English/Faq.xml:114
 msgid "MRU list"
 msgstr "Liste MRU"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:330
+#: English/Command_line.xml:348
 msgid "<option>/ul</option>"
 msgstr "<option>/ul</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:332
+#: English/Command_line.xml:350
 msgid ""
 "Prevents WinMerge from adding the left path to the Most Recently Used (MRU) "
 "list. External applications should not add paths to the MRU list in the "
@@ -1068,12 +1156,12 @@ msgstr ""
 "fichiers ou des dossiers."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:339
+#: English/Command_line.xml:357
 msgid "<option>/um</option>"
 msgstr "<option>/um</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:341
+#: English/Command_line.xml:359
 msgid ""
 "Prevents WinMerge from adding the middle path to the Most Recently Used "
 "(MRU) list. External applications should not add paths to the MRU list in "
@@ -1085,12 +1173,12 @@ msgstr ""
 "fichiers ou des dossiers."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:348
+#: English/Command_line.xml:366
 msgid "<option>/ur</option>"
 msgstr "<option>/ur</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:350
+#: English/Command_line.xml:368
 msgid ""
 "Prevents WinMerge from adding the right path to the Most Recently Used (MRU) "
 "list. External applications should not add paths to the MRU list in the "
@@ -1102,12 +1190,12 @@ msgstr ""
 "fichiers ou des dossiers."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:357
+#: English/Command_line.xml:375
 msgid "<option>/u</option>"
 msgstr "<option>/u</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:359
+#: English/Command_line.xml:377
 msgid ""
 "Prevents WinMerge from adding either path (left or right) to the Most "
 "Recently Used (MRU) list. External applications should not add paths to the "
@@ -1119,18 +1207,18 @@ msgstr ""
 "dialogue Sélectionner des fichiers ou des dossiers."
 
 #. type: Content of: <article><section><section><title><indexterm><see>
-#: English/Command_line.xml:368 English/Compare_dirs.xml:741
+#: English/Command_line.xml:386 English/Compare_dirs.xml:741
 #: English/Compare_dirs.xml:745
 msgid "protecting files"
 msgstr "protection des fichiers"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:371
+#: English/Command_line.xml:389
 msgid "<option>/wl</option>"
 msgstr "<option>/wl</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:373
+#: English/Command_line.xml:391
 msgid ""
 "Opens the left side as read-only. Use this when you don't want to change "
 "left side items in the compare."
@@ -1139,12 +1227,12 @@ msgstr ""
 "souhaitez pas modifier les éléments du côté gauche lors de la comparaison."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:379
+#: English/Command_line.xml:397
 msgid "<option>/wm</option>"
 msgstr "<option>/wm</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:381
+#: English/Command_line.xml:399
 msgid ""
 "Opens the middle side as read-only. Use this when you don't want to change "
 "right side items in the compare."
@@ -1153,12 +1241,12 @@ msgstr ""
 "ne souhaitez pas modifier les éléments du côté droit lors de la comparaison."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:387
+#: English/Command_line.xml:405
 msgid "<option>/wr</option>"
 msgstr "<option>/wr</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:389
+#: English/Command_line.xml:407
 msgid ""
 "Opens the right side as read-only. Use this when you don't want to change "
 "right side items in the compare."
@@ -1167,48 +1255,48 @@ msgstr ""
 "souhaitez pas modifier les éléments du côté droit lors de la comparaison."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:395
+#: English/Command_line.xml:413
 msgid "<option>/new</option>"
 msgstr "<option>/new</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:397
+#: English/Command_line.xml:415
 msgid "Opens a new blank window."
 msgstr "Ouvre une nouvelle fenêtre vide."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:402
+#: English/Command_line.xml:420
 msgid "<option>/self-compare</option>"
 msgstr "<option>/self-compare</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:404
+#: English/Command_line.xml:422
 msgid "Compares the specified file with a copy of the file."
 msgstr "Compare le fichier spécifié avec une copie de lui-même."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:409
+#: English/Command_line.xml:427
 msgid "<option>/clipboard-compare</option>"
 msgstr "<option>/clipboard-compare</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:411
+#: English/Command_line.xml:429
 msgid "Compares the two most recent contents of the clipboard history."
 msgstr ""
 "Compare les deux contenus les plus récents de l'historique du presse-papiers."
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
-#: English/Command_line.xml:418
+#: English/Command_line.xml:436
 msgid "opening minimized or maximized"
 msgstr "ouverture réduite ou agrandie"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:421
+#: English/Command_line.xml:439
 msgid "<option>/minimize</option>"
 msgstr "<option>/minimize</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:423
+#: English/Command_line.xml:441
 msgid ""
 "Starts WinMerge as a minimized window.  This option can be useful during "
 "lengthy compares."
@@ -1217,77 +1305,77 @@ msgstr ""
 "lors de comparaisons de longue durée."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:429
+#: English/Command_line.xml:447
 msgid "<option>/maximize</option>"
 msgstr "<option>/maximize</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:431
+#: English/Command_line.xml:449
 msgid "Starts WinMerge as a maximized window."
 msgstr "Démarre WinMerge en tant que fenêtre agrandie."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:437
+#: English/Command_line.xml:455
 msgid "<option>/fl</option>"
 msgstr "<option>/fl</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:439
+#: English/Command_line.xml:457
 msgid "Sets focus to the left side at startup."
 msgstr "Place le focus sur le côté gauche au démarrage."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:444
+#: English/Command_line.xml:462
 msgid "<option>/fm</option>"
 msgstr "<option>/fm</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:446
+#: English/Command_line.xml:464
 msgid "Sets focus to the middle side at startup."
 msgstr "Place le focus sur le côté du milieu au démarrage."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:451
+#: English/Command_line.xml:469
 msgid "<option>/fr</option>"
 msgstr "<option>/fr</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:453
+#: English/Command_line.xml:471
 msgid "Sets focus to the right side at startup."
 msgstr "Place le focus sur le côté droit au démarrage."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:458
+#: English/Command_line.xml:476
 msgid "<option>/l <replaceable>linenumber</replaceable></option>"
 msgstr "<option>/l <replaceable>numéroligne</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:460
+#: English/Command_line.xml:478
 msgid "Specifies a line number to jump to after loading the files."
 msgstr ""
 "Spécifie un numéro de ligne vers lequel sauter après le chargement des "
 "fichiers."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:465
+#: English/Command_line.xml:483
 msgid "<option>/c <replaceable>charpos</replaceable></option>"
 msgstr "<option>/c <replaceable>poscaractère</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:467
+#: English/Command_line.xml:485
 msgid "Specifies a character position to jump to after loading the files."
 msgstr ""
 "Spécifie une position de caractère vers laquelle sauter après le chargement "
 "des fichiers."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:472
+#: English/Command_line.xml:490
 msgid "<option>/table-delimiter <replaceable>delimiter</replaceable></option>"
 msgstr ""
 "<option>/table-delimiter <replaceable>délimiteur</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:474
+#: English/Command_line.xml:492
 msgid ""
 "Specifies a delimiter character for table editing. To specify a tab "
 "character, specify \"tab\", \"\\t\", or \"\\x09\"."
@@ -1296,12 +1384,12 @@ msgstr ""
 "une tabulation, indiquez « tab », « \\t » ou « \\x09 »."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:479
+#: English/Command_line.xml:497
 msgid "<option>/dl</option>"
 msgstr "<option>/dl</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:481
+#: English/Command_line.xml:499
 msgid ""
 "Specifies a description in the left side title bar, overriding the default "
 "folder or filename text. For example: <userinput>/dl \"Version 1.0</"
@@ -1315,12 +1403,12 @@ msgstr ""
 "espaces."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:490
+#: English/Command_line.xml:508
 msgid "<option>/dm</option>"
 msgstr "<option>/dm</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:492
+#: English/Command_line.xml:510
 msgid ""
 "Specifies a description in the middle side title bar, just like <option>/dl</"
 "option>."
@@ -1329,12 +1417,12 @@ msgstr ""
 "<option>/dl</option>."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:498
+#: English/Command_line.xml:516
 msgid "<option>/dr</option>"
 msgstr "<option>/dr</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:500
+#: English/Command_line.xml:518
 msgid ""
 "Specifies a description in the right side title bar, just like <option>/dl</"
 "option>."
@@ -1343,42 +1431,42 @@ msgstr ""
 "<option>/dl</option>."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:506
+#: English/Command_line.xml:524
 msgid "<option>/al</option>"
 msgstr "<option>/al</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:508
+#: English/Command_line.xml:526
 msgid "Auto-merges at the left side at startup."
 msgstr "Fusionne automatiquement sur le côté gauche au démarrage."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:513
+#: English/Command_line.xml:531
 msgid "<option>/am</option>"
 msgstr "<option>/am</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:515
+#: English/Command_line.xml:533
 msgid "Auto-merges at the middle side at startup."
 msgstr "Fusionne automatiquement sur le côté milieu au démarrage."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:520
+#: English/Command_line.xml:538
 msgid "<option>/ar</option>"
 msgstr "<option>/ar</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:522
+#: English/Command_line.xml:540
 msgid "Auto-merges at the right side at startup."
 msgstr "Fusionne automatiquement sur le côté droit au démarrage."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:527
+#: English/Command_line.xml:545
 msgid "<option>/noninteractive</option>"
 msgstr "<option>/noninteractive</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:530
+#: English/Command_line.xml:548
 msgid ""
 "Runs WinMerge without displaying message boxes during comparison or report "
 "generation.  The process terminates automatically when the operation is "
@@ -1390,12 +1478,12 @@ msgstr ""
 "batch ou par script."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:538
+#: English/Command_line.xml:556
 msgid "<option>/noprefs</option>"
 msgstr "<option>/noprefs</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:541
+#: English/Command_line.xml:559
 msgid ""
 "Runs WinMerge without loading or saving settings from the registry.  All "
 "comparisons use default preferences only."
@@ -1404,12 +1492,12 @@ msgstr ""
 "Toutes les comparaisons utilisent uniquement les préférences par défaut."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:548
+#: English/Command_line.xml:566
 msgid "<option>/enableexitcode</option>"
 msgstr "<option>/enableexitcode</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:550
+#: English/Command_line.xml:568
 msgid ""
 "Sets the comparison result to the process exit code. 0: identical, 1: "
 "different, 2: error"
@@ -1418,12 +1506,12 @@ msgstr ""
 "identique, 1 : différent, 2 : erreur"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:555
+#: English/Command_line.xml:573
 msgid "<option>/ignorews</option>"
 msgstr "<option>/ignorews</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:557
+#: English/Command_line.xml:575
 msgid ""
 "Controls the \"Whitespaces\" option (whitespace comparison settings) "
 "persistently:"
@@ -1432,13 +1520,13 @@ msgstr ""
 "de manière persistante :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:559
+#: English/Command_line.xml:577
 msgid "<option>/ignorews:0</option> - do not ignore whitespace differences."
 msgstr ""
 "<option>/ignorews:0</option> - n'ignore pas les différences d'espaces blancs."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:560
+#: English/Command_line.xml:578
 msgid ""
 "<option>/ignorews</option> or <option>/ignorews:1</option> - ignore "
 "differences in the amount of whitespace."
@@ -1447,31 +1535,31 @@ msgstr ""
 "différences de quantité d'espaces blancs."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:561
+#: English/Command_line.xml:579
 msgid "<option>/ignorews:2</option> - ignore all whitespace characters."
 msgstr ""
 "<option>/ignorews:2</option> - ignore tous les caractères d'espacement."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:567
+#: English/Command_line.xml:585
 msgid "<option>/ignoreblanklines</option>"
 msgstr "<option>/ignoreblanklines</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:569
+#: English/Command_line.xml:587
 msgid "Controls the \"Ignore blank lines\" option persistently:"
 msgstr ""
 "Contrôle l'option « Ignorer les lignes vides » de manière persistante :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:571
+#: English/Command_line.xml:589
 msgid "<option>/ignoreblanklines:0</option> - disables ignoring blank lines."
 msgstr ""
 "<option>/ignoreblanklines:0</option> - désactive l'ignorance des lignes "
 "vides."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:572
+#: English/Command_line.xml:590
 msgid ""
 "<option>/ignoreblanklines</option> or <option>/ignoreblanklines:1</option> - "
 "enables ignoring blank lines."
@@ -1480,24 +1568,24 @@ msgstr ""
 "active l'ignorance des lignes vides."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:578
+#: English/Command_line.xml:596
 msgid "<option>/ignorecase</option>"
 msgstr "<option>/ignorecase</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:580
+#: English/Command_line.xml:598
 msgid "Controls the \"Ignore case\" option persistently:"
 msgstr "Contrôle l'option « Ignorer la casse » de manière persistante :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:582
+#: English/Command_line.xml:600
 msgid "<option>/ignorecase:0</option> - disables ignoring case differences."
 msgstr ""
 "<option>/ignorecase:0</option> - désactive l'ignorance des différences de "
 "casse."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:583
+#: English/Command_line.xml:601
 msgid ""
 "<option>/ignorecase</option> or <option>/ignorecase:1</option> - enables "
 "ignoring case differences."
@@ -1506,25 +1594,25 @@ msgstr ""
 "l'ignorance des différences de casse."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:589
+#: English/Command_line.xml:607
 msgid "<option>/ignoreeol</option>"
 msgstr "<option>/ignoreeol</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:591
+#: English/Command_line.xml:609
 msgid "Controls the \"Ignore EOL differences\" option persistently:"
 msgstr ""
 "Contrôle l'option « Ignorer les différences EOL » de manière persistante :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:593
+#: English/Command_line.xml:611
 msgid "<option>/ignoreeol:0</option> - disables ignoring EOL differences."
 msgstr ""
 "<option>/ignoreeol:0</option> - désactive l'ignorance des différences EOL "
 "(fin de ligne)."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:594
+#: English/Command_line.xml:612
 msgid ""
 "<option>/ignoreeol</option> or <option>/ignoreeol:1</option> - enables "
 "ignoring EOL differences."
@@ -1533,19 +1621,19 @@ msgstr ""
 "l'ignorance des différences EOL (fin de ligne)."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:600
+#: English/Command_line.xml:618
 msgid "<option>/ignorecodepage</option>"
 msgstr "<option>/ignorecodepage</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:602
+#: English/Command_line.xml:620
 msgid "Controls the \"Ignore codepage differences\" option persistently:"
 msgstr ""
 "Contrôle l'option « Ignorer les différences de page de code » de manière "
 "persistante :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:604
+#: English/Command_line.xml:622
 msgid ""
 "<option>/ignorecodepage:0</option> - disables ignoring codepage differences."
 msgstr ""
@@ -1553,7 +1641,7 @@ msgstr ""
 "de page de code."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:605
+#: English/Command_line.xml:623
 msgid ""
 "<option>/ignorecodepage</option> or <option>/ignorecodepage:1</option> - "
 "enables ignoring codepage differences."
@@ -1562,25 +1650,25 @@ msgstr ""
 "active l'ignorance des différences de page de code."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:611
+#: English/Command_line.xml:629
 msgid "<option>/ignorecomments</option>"
 msgstr "<option>/ignorecomments</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:613
+#: English/Command_line.xml:631
 msgid "Controls the \"Ignore comment differences\" option persistently:"
 msgstr ""
 "Contrôle l'option « Ignorer les différences de commentaires » de manière "
 "persistante :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:615
+#: English/Command_line.xml:633
 msgid "<option>/ignorecomments:0</option> - disables ignoring comments."
 msgstr ""
 "<option>/ignorecomments:0</option> - désactive l'ignorance des commentaires."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:616
+#: English/Command_line.xml:634
 msgid ""
 "<option>/ignorecomments</option> or <option>/ignorecomments:1</option> - "
 "enables ignoring comments."
@@ -1589,13 +1677,13 @@ msgstr ""
 "active l'ignorance des commentaires."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:622
+#: English/Command_line.xml:640
 msgid "<option>/unpacker <replaceable>plugin pipeline</replaceable></option>"
 msgstr ""
 "<option>/unpacker <replaceable>pipeline de plug-ins</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:625
+#: English/Command_line.xml:643
 msgid ""
 "Specifies the plugin pipeline for the Unpacker plugin.  Example: <option>/"
 "unpacker \"SortAscending|SelectLines 1-10\"</option>"
@@ -1604,13 +1692,13 @@ msgstr ""
 "<option>/unpacker \"SortAscending|SelectLines 1-10\"</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:632
+#: English/Command_line.xml:650
 msgid "<option>/prediffer <replaceable>plugin pipeline</replaceable></option>"
 msgstr ""
 "<option>/prediffer <replaceable>pipeline de plug-ins</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:635
+#: English/Command_line.xml:653
 msgid ""
 "Specifies the plugin pipeline for the Prediffer plugin.  Example: <option>/"
 "prediffer \"IgnoreColumns 1-10\"</option>"
@@ -1619,12 +1707,12 @@ msgstr ""
 "<option>/prediffer \"IgnoreColumns 1-10\"</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:642
+#: English/Command_line.xml:660
 msgid "<option>/cp <replaceable>codepage</replaceable></option>"
 msgstr "<option>/cp <replaceable>page-de-code</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:645
+#: English/Command_line.xml:663
 msgid ""
 "Specifies the codepage to use for file comparison.  Example: <option>/cp "
 "65001</option>"
@@ -1633,35 +1721,35 @@ msgstr ""
 "Exemple : <option>/cp 65001</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:652
+#: English/Command_line.xml:670
 msgid "<option>/fileext <replaceable>file-extension</replaceable></option>"
 msgstr "<option>/fileext <replaceable>extension-fichier</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:654
+#: English/Command_line.xml:672
 msgid "Specifies a file extension for determining syntax hightliting."
 msgstr ""
 "Spécifie une extension de fichier pour déterminer la coloration syntaxique."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:659
+#: English/Command_line.xml:677
 msgid "<option>/cfg <replaceable>name=value</replaceable></option>"
 msgstr "<option>/cfg <replaceable>nom=valeur</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:662
+#: English/Command_line.xml:680
 msgid "Sets a configuration value in the WinMerge registry or INI file."
 msgstr ""
 "Définit une valeur de configuration dans le registre WinMerge ou dans le "
 "fichier INI."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:665
+#: English/Command_line.xml:683
 msgid "Example: <option>/cfg Settings/DiffAlgorithm=3</option>"
 msgstr "Exemple : <option>/cfg Settings/DiffAlgorithm=3</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:668
+#: English/Command_line.xml:686
 msgid ""
 "If the section name is unambiguous and does not conflict with other setting "
 "names, it can be omitted:"
@@ -1670,12 +1758,12 @@ msgstr ""
 "d'autres noms de paramètres, il peut être omis :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:671
+#: English/Command_line.xml:689
 msgid "<option>/cfg DiffAlgo=3</option>"
 msgstr "<option>/cfg DiffAlgo=3</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:674
+#: English/Command_line.xml:692
 msgid ""
 "Note: This entry does not explain which configuration names are available.  "
 "For a list of settings, refer to "
@@ -1688,43 +1776,43 @@ msgstr ""
 "dans regedit."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:681
+#: English/Command_line.xml:699
 msgid "<option><replaceable>leftpath</replaceable></option>"
 msgstr "<option><replaceable>chemin_gauche</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:683
+#: English/Command_line.xml:701
 msgid "Specifies the folder, file or project file to open on the left side."
 msgstr ""
 "Spécifie le dossier, le fichier ou le fichier de projet à ouvrir sur le côté "
 "gauche."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:688
+#: English/Command_line.xml:706
 msgid "<option><replaceable>middlepath</replaceable></option>"
 msgstr "<option><replaceable>chemin_milieu</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:690
+#: English/Command_line.xml:708
 msgid "Specifies the folder, file or project file to open on the middle side."
 msgstr ""
 "Spécifie le dossier, le fichier ou le fichier de projet à ouvrir sur le côté "
 "milieu."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:695
+#: English/Command_line.xml:713
 msgid "<option><replaceable>rightpath</replaceable></option>"
 msgstr "<option><replaceable>chemin_droite</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:697
+#: English/Command_line.xml:715
 msgid "Specifies the folder, file or project file to open on the right side."
 msgstr ""
 "Spécifie le dossier, le fichier ou le fichier de projet à ouvrir sur le côté "
 "droit."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:699
+#: English/Command_line.xml:717
 msgid ""
 "WinMerge cannot compare files to folders, so the path parameters "
 "(<option><replaceable>leftpath</replaceable></option>, "
@@ -1744,7 +1832,7 @@ msgstr ""
 "rechercher les chemins corrects."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:708
+#: English/Command_line.xml:726
 msgid ""
 "In file comparisons, you can specify a folder name in one of the path "
 "parameters, as long as the folder contains a file with the same name as the "
@@ -1756,12 +1844,12 @@ msgstr ""
 "fichier."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:712
+#: English/Command_line.xml:730
 msgid "For example, consider this command:"
 msgstr "Par exemple, considérez cette commande :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:714
+#: English/Command_line.xml:732
 msgid ""
 "<userinput>WinMergeU <filename>C:\\Folder\\File.txt</filename> <filename "
 "class=\"directory\">C:\\Folder2</filename> </userinput>"
@@ -1770,7 +1858,7 @@ msgstr ""
 "class=\"directory\">C:\\Dossier2</filename> </userinput>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:717
+#: English/Command_line.xml:735
 msgid ""
 "If <filename class=\"directory\">C:\\Folder2</filename> contains a file "
 "named <filename>File.txt</filename>: WinMerge implicitly resolves the second "
@@ -1787,23 +1875,23 @@ msgstr ""
 "emphasis> de fichier nommé <filename>Fichier.txt</filename>."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:730 English/Compare_files.xml:1481
+#: English/Command_line.xml:748 English/Compare_files.xml:1481
 #: English/Intro_diffs.xml:253 English/Intro_diffs.xml:407
 msgid "merging differences"
 msgstr "fusion des différences"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Command_line.xml:731 English/Intro_diffs.xml:409
+#: English/Command_line.xml:749 English/Intro_diffs.xml:409
 msgid "result file"
 msgstr "fichier résultat"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:734
+#: English/Command_line.xml:752
 msgid "<option>/o <replaceable>outputpath</replaceable></option>"
 msgstr "<option>/o <replaceable>chemin_sortie</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:736
+#: English/Command_line.xml:754
 msgid ""
 "Specifies an optional output file path where you want merged result files to "
 "be saved."
@@ -1812,7 +1900,7 @@ msgstr ""
 "fichiers de résultats fusionnés soient enregistrés."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:739
+#: English/Command_line.xml:757
 msgid ""
 "The output path is rarely needed when you start WinMerge from the command "
 "line. It is meant to be used with version control tools, where you might "
@@ -1831,7 +1919,7 @@ msgstr ""
 "laissant les deux ou trois fichiers sources intacts."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:747
+#: English/Command_line.xml:765
 msgid ""
 "Version control systems typically refer to the source and result files using "
 "terms like <glossterm>theirs</glossterm>, <glossterm>mine</glossterm>, and "
@@ -1848,12 +1936,12 @@ msgstr ""
 "version, vous devez lister les fichiers dans cet ordre."
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:757
+#: English/Command_line.xml:775
 msgid "<option>/or <replaceable>outputpath</replaceable></option>"
 msgstr "<option>/or <replaceable>cheminsortie</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:760
+#: English/Command_line.xml:778
 msgid ""
 "Outputs a comparison report for files or folders.  Example: "
 "<option>WinMergeU path1 path2 /or c:\\tmp\\report.html</option>"
@@ -1863,12 +1951,12 @@ msgstr ""
 "option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:763
+#: English/Command_line.xml:781
 msgid "It is often useful to combine this option with:"
 msgstr "Il est souvent utile de combiner cette option avec :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:765
+#: English/Command_line.xml:783
 msgid ""
 "<option>/noninteractive</option> - exits WinMerge after producing the report."
 msgstr ""
@@ -1876,12 +1964,12 @@ msgstr ""
 "rapport."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:766
+#: English/Command_line.xml:784
 msgid "<option>/minimize</option> - starts WinMerge in minimized state."
 msgstr "<option>/minimize</option> - démarre WinMerge à l'état réduit."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:767
+#: English/Command_line.xml:785
 msgid ""
 "<option>/noprefs</option> - ignores the current preferences and uses default "
 "settings.  Any changes made with <option>/cfg</option> will then be "
@@ -1892,7 +1980,7 @@ msgstr ""
 "cfg</option> seront alors temporaires et ne seront pas enregistrées."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:771
+#: English/Command_line.xml:789
 msgid ""
 "The following <option>/cfg</option> settings can also be useful (parameter "
 "names may change in the future):"
@@ -1901,12 +1989,12 @@ msgstr ""
 "(les noms des paramètres peuvent changer à l'avenir) :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:773
+#: English/Command_line.xml:791
 msgid "For file comparisons:"
 msgstr "Pour les comparaisons de fichiers :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:775
+#: English/Command_line.xml:793
 msgid ""
 "<option>/cfg Settings/DiffContextV2=0</option> - hides matching lines in the "
 "report (equivalent to View -> Diff Context -> 0 Lines)."
@@ -1916,7 +2004,7 @@ msgstr ""
 "lignes)."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:776
+#: English/Command_line.xml:794
 msgid ""
 "<option>/cfg Settings/ViewLineNumbers=1</option> - outputs line numbers (set "
 "to 0 to disable)."
@@ -1925,12 +2013,12 @@ msgstr ""
 "ligne (définir sur 0 pour désactiver)."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:778
+#: English/Command_line.xml:796
 msgid "For folder comparisons:"
 msgstr "Pour les comparaisons de dossiers :"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:780
+#: English/Command_line.xml:798
 msgid ""
 "<option>/cfg Settings/DirViewExpandSubdirs=1</option> - automatically expand "
 "all subfolders."
@@ -1939,7 +2027,7 @@ msgstr ""
 "automatiquement tous les sous-dossiers."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:781
+#: English/Command_line.xml:799
 msgid ""
 "<option>/cfg ReportFiles/ReportType=2</option> - report style: Simple HTML."
 msgstr ""
@@ -1947,7 +2035,7 @@ msgstr ""
 "Simple."
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:782
+#: English/Command_line.xml:800
 msgid ""
 "<option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - include file "
 "comparison reports."
@@ -1956,22 +2044,22 @@ msgstr ""
 "rapports de comparaison de fichiers."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:789 English/Compare_files.xml:1805
+#: English/Command_line.xml:807 English/Compare_files.xml:1805
 msgid "conflict files"
 msgstr "fichiers de conflit"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
-#: English/Command_line.xml:790 English/Command_line.xml:806
+#: English/Command_line.xml:808 English/Command_line.xml:824
 msgid "specifying on command line"
 msgstr "spécification en ligne de commande"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:793
+#: English/Command_line.xml:811
 msgid "<option><replaceable>conflictfile</replaceable></option>"
 msgstr "<option><replaceable>fichier_conflit</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:795
+#: English/Command_line.xml:813
 msgid ""
 "Specifies a conflict file, typically generated by a Version control system. "
 "The conflict file opens in the File Compare window, where you can merge and "
@@ -1985,17 +2073,17 @@ msgstr ""
 "autre chemin ne peut être utilisé avec un fichier de conflit."
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
-#: English/Command_line.xml:805
+#: English/Command_line.xml:823
 msgid "ini file"
 msgstr "fichier ini"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:809
+#: English/Command_line.xml:827
 msgid "<option>/inifile <replaceable>inifile</replaceable></option>"
 msgstr "<option>/inifile <replaceable>fichier_ini</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:811
+#: English/Command_line.xml:829
 msgid ""
 "specifies an INI file used to load and save settings instead of the registry."
 msgstr ""
