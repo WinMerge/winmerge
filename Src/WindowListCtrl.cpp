@@ -43,6 +43,11 @@ BOOL CWindowListCtrl::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 		((pNMLV->uOldState & LVIS_STATEIMAGEMASK) != (pNMLV->uNewState & LVIS_STATEIMAGEMASK)))
 	{
 		int changedItem = pNMLV->iItem;
+		if (changedItem < 0 || changedItem >= GetItemCount())
+		{
+			*pResult = 0;
+			return FALSE;
+		}
 
 		// Check if the clicked item is currently selected
 		bool isClickedItemSelected = (GetItemState(changedItem, LVIS_SELECTED) & LVIS_SELECTED) != 0;
