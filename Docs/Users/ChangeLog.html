@@ -28,33 +28,55 @@ vertical-align: middle;
 <h2 id="winmerge-21658---2026-07-27">WinMerge 2.16.58 - 2026-07-27</h2>
 <h3 id="file-compare">File compare</h3>
 <ul>
-<li><p>BugFix: Fix crash caused by file size races in UniMemFile (#3456,
-PR #3457)</p></li>
-<li><p>Add support for generating a single HTML report from multiple
-file comparisons (PR #3450)</p></li>
+<li><p>BugFix: Crash (Access Violation) when file changes externally
+over a given threshold (#3456, PR #3457)</p></li>
+<li><p>BugFix: Parts of the panes become black text on a black
+background after copying changes in 3-way merge mode (#3468,
+#3469)</p></li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
-<li>BugFix: Fix archive vs folder comparison selecting the wrong source
-(#3458)</li>
+<li><p>BugFix: Fix archive vs folder comparison selecting the wrong
+source (#3449, PR #3458)</p></li>
+<li><p>BugFix: Fix HICON resource leaks in image list
+initialization</p></li>
 </ul>
 <h3 id="select-files-or-folders-dialog">Select files or folders
 dialog</h3>
 <ul>
-<li>BugFix: Handle exceptions raised while creating the common file
-dialog (#3462, PR #3464)</li>
+<li><p>BugFix: Handle exceptions raised while creating the common file
+dialog (#3462, PR #3464)</p></li>
+<li><p>BugFix: Fix MRU handling for three-way comparisons.
+(#3452)</p></li>
+</ul>
+<h3 id="reports">Reports</h3>
+<ul>
+<li>Add support for generating a single HTML report from multiple file
+comparisons (PR #3450)</li>
+</ul>
+<h3 id="generate-patch-dialog">Generate Patch dialog</h3>
+<ul>
+<li>Add a file list with checkboxes to the Generate Patch dialog (PR
+#3470)</li>
+</ul>
+<h3 id="command-line">Command line</h3>
+<ul>
+<li>Add /g command line option for single-instance groups (PR
+#3472)</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
-<li>Brazilian (PR #3459)</li>
+<li>Brazilian (PR #3459, PR #3476)</li>
 <li>Chinese Simplified (PR #3460)</li>
-<li>Italian (PR #3455)</li>
+<li>French (PR #3478)</li>
+<li>Italian (PR #3455, PR #3473, PR #3477)</li>
 <li>Japanese</li>
 <li>Korean (PR #3447)</li>
-<li>Lithuanian (PR #3461)</li>
+<li>Lithuanian (PR #3461, PR #3471)</li>
 <li>Polish (PR #3463)</li>
+<li>Turkish (PR #3465, PR #3474)</li>
 <li>Russian (PR #3448)</li>
 </ul></li>
 </ul>
@@ -85,8 +107,8 @@ better support of multiple languages (PR #3306, PR #3337, PR #3338, PR
 <ul>
 <li><p>BugFix: Crash when trying to delete a &quot;left-only&quot; or &quot;right-only&quot;
 file during renaming (#3411)</p></li>
-<li><p>BugFix: ZIP export includes unchanged files in subfolders
-(#3445)</p></li>
+<li><p>BugFix: ZIP export includes unchanged files in subfolders (#3444,
+PR#3445)</p></li>
 <li><p>Refactor filter evaluation parameters with new EvalContext for
 better code maintainability (PR #3353)</p></li>
 </ul>
@@ -684,7 +706,7 @@ folder compare window requested in #324. (PR #2825)</li>
 <li>BugFix: [Bug Fix] Enable/disable &#39;Switch to ...&#39; options in Compare
 &gt; Folder page (PR #2819)</li>
 </ul>
-<h3 id="command-line">Command line</h3>
+<h3 id="command-line-1">Command line</h3>
 <ul>
 <li>BugFix: Fixed failure to compare files with relative paths when /s
 option is used from a different current directory than the running
@@ -1350,7 +1372,7 @@ dialog</h3>
 <li>BugFix: Fixed the issue when the compare button could not be clicked
 when specifying an archive file and a regular file.</li>
 </ul>
-<h3 id="reports">Reports</h3>
+<h3 id="reports-1">Reports</h3>
 <ul>
 <li>BugFix: Fixed an issue where the widths of the left and right panes
 in HTML reports are not equal.</li>
@@ -1727,7 +1749,7 @@ comparison (PR #1945)</li>
 <ul>
 <li>Add support for generating report files (PR #1941)</li>
 </ul>
-<h3 id="command-line-1">Command line</h3>
+<h3 id="command-line-2">Command line</h3>
 <ul>
 <li>Compare folders recursively if &quot;Include subfolders&quot; is checked in
 the Options dialog even if the /r command line option is not specified.
@@ -1849,7 +1871,7 @@ opened on 32-bit OS</li>
 <li>Make the plugin settings dialog translatable and enable saving
 settings to an INI file (PR #1783)</li>
 </ul>
-<h3 id="command-line-2">Command line</h3>
+<h3 id="command-line-3">Command line</h3>
 <ul>
 <li>BugFix: Fixed the problem that the /fr option is ignored when
 specifying the command line option /new</li>
@@ -1943,7 +1965,7 @@ category</li>
 <ul>
 <li>BugFix: Plugin IgnoreLeadingLineNumbers hangs (#1715)</li>
 </ul>
-<h3 id="command-line-3">Command line</h3>
+<h3 id="command-line-4">Command line</h3>
 <ul>
 <li>BugFix: Fixed a crash that occurred when comparing alternate data
 streams, such as file.zip:Zone.Identifier:$DATA, using the /self-compare
@@ -2405,7 +2427,7 @@ when comparing three directories. (PR #1372)</li>
 <li>Make the sort order of file names including numbers the same as
 Explorer. (osdn.net #44557)</li>
 </ul>
-<h3 id="reports-1">Reports</h3>
+<h3 id="reports-2">Reports</h3>
 <ul>
 <li>BugFix: Fix report generation process. (PR #1324)</li>
 <li>BugFix: Fix report generation process about replacement with HTML
@@ -2430,7 +2452,7 @@ after unpacking&quot; checkbox was checked, but the checkbox was not checked
 the next time the dialog was opened.</li>
 <li>Sugg: Increase the dialogue for Plugins (#1308)</li>
 </ul>
-<h3 id="command-line-4">Command line</h3>
+<h3 id="command-line-5">Command line</h3>
 <ul>
 <li>BugFix: Crash on command line compare (#1363)</li>
 </ul>
@@ -2534,7 +2556,7 @@ LF.</li>
 <li>PrettifyHTML plugin: Added &quot;--tidy-mark no&quot; to default plugin
 arguments</li>
 </ul>
-<h3 id="command-line-5">Command line</h3>
+<h3 id="command-line-6">Command line</h3>
 <ul>
 <li>Added <code>/t webpage</code> command line option</li>
 </ul>
@@ -2724,7 +2746,7 @@ version 2.16.16 or earlier</li>
 <li>Make plugin descriptions translatable</li>
 <li>Upgrade Apache Tika to 2.2.1</li>
 </ul>
-<h3 id="command-line-6">Command line</h3>
+<h3 id="command-line-7">Command line</h3>
 <ul>
 <li>Added <code>/clipboard-compare</code> command line option</li>
 </ul>
@@ -2996,7 +3018,7 @@ file. (PR #953)</li>
 <li>DisassembleNative</li>
 </ul></li>
 </ul>
-<h3 id="command-line-7">Command line</h3>
+<h3 id="command-line-8">Command line</h3>
 <ul>
 <li>Added /c <code>column number</code> command line option</li>
 <li>Added /EnableExitCode command line option</li>
@@ -3113,7 +3135,7 @@ GetColumnRangeString(); (#853)</li>
 <li>Updated Apache Tika to version 2.0.0</li>
 <li>Updated yq to version 4.11.1</li>
 </ul>
-<h3 id="command-line-8">Command line</h3>
+<h3 id="command-line-9">Command line</h3>
 <ul>
 <li>Added /l command line option (osdn.net #41528)</li>
 <li>Added /t, /table-delimiter, /new, /fileext and /inifile command line
@@ -3434,7 +3456,7 @@ in the &quot;Select Files or Folders&quot; window</li>
 <li>Russian (PR #588)</li>
 </ul></li>
 </ul>
-<h3 id="command-line-9">Command line</h3>
+<h3 id="command-line-10">Command line</h3>
 <ul>
 <li>Single instance mode does not work when launched from Visual Studio
 2019 (#622) (Added /sw command line option)</li>
@@ -4368,7 +4390,7 @@ line</li>
 <li>BugFix: File1/File2 fields don&#39;t remember manual input
 (sf.net#1949)</li>
 </ul>
-<h3 id="reports-2">Reports</h3>
+<h3 id="reports-3">Reports</h3>
 <ul>
 <li>BugFix: Garbled text was copied to the clipboard when generating a
 report on the clipboard (sf.net#2200)</li>
@@ -4411,7 +4433,7 @@ using &#39;Date&#39; compare method</li>
 <li>Fix a problem that typed-in Context in Generate Patch is not applied
 (sf.net#2179)</li>
 </ul>
-<h3 id="reports-3">Reports</h3>
+<h3 id="reports-4">Reports</h3>
 <ul>
 <li>Entitify file paths in HTML &amp; XML directory comparison reports
 (sf.net#2199)</li>
@@ -4580,7 +4602,7 @@ files).(Bitbucket #1)</li>
 <ul>
 <li>Add image file compare/merge support</li>
 </ul>
-<h3 id="reports-4">Reports</h3>
+<h3 id="reports-5">Reports</h3>
 <ul>
 <li>Add &quot;Include File Compare Report&quot; checkbox to &quot;Folder Compare
 Report&quot; dialog</li>
@@ -4635,7 +4657,7 @@ folder is selected</li>
 <li>Remove &quot;Language&quot; menu item from View menu (You can specify UI
 language at Options dialog)</li>
 </ul>
-<h3 id="command-line-10">Command line</h3>
+<h3 id="command-line-11">Command line</h3>
 <ul>
 <li>Incompatible change: The third file path is now treated as a right
 path for 3-way comparison, not output path Use /o option for output path

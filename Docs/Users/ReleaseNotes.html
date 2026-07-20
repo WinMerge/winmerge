@@ -41,71 +41,95 @@ earlier WinMerge stable releases as a recommended release.</p>
 <h2 id="what-is-new-in-21658">What Is New in 2.16.58?</h2>
 <h3 id="file-compare">File compare</h3>
 <ul>
-<li>BugFix: Fix crash caused by file size races in UniMemFile (#3456, PR
-#3457)</li>
-<li>Add support for generating a single HTML report from multiple file
-comparisons (PR #3450)</li>
+<li><p>BugFix: Crash (Access Violation) when file changes externally
+over a given threshold (#3456, PR #3457)</p></li>
+<li><p>BugFix: Parts of the panes become black text on a black
+background after copying changes in 3-way merge mode (#3468,
+#3469)</p></li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
-<li>BugFix: Fix archive vs folder comparison selecting the wrong source
-(#3458)</li>
+<li><p>BugFix: Fix archive vs folder comparison selecting the wrong
+source (#3449, PR #3458)</p></li>
+<li><p>BugFix: Fix HICON resource leaks in image list
+initialization</p></li>
 </ul>
 <h3 id="select-files-or-folders-dialog">Select files or folders
 dialog</h3>
 <ul>
-<li>BugFix: Handle exceptions raised while creating the common file
-dialog (#3462, PR #3464)</li>
+<li><p>BugFix: Handle exceptions raised while creating the common file
+dialog (#3462, PR #3464)</p></li>
+<li><p>BugFix: Fix MRU handling for three-way comparisons.
+(#3452)</p></li>
+</ul>
+<h3 id="reports">Reports</h3>
+<ul>
+<li>Add support for generating a single HTML report from multiple file
+comparisons (PR #3450)</li>
+</ul>
+<h3 id="generate-patch-dialog">Generate Patch dialog</h3>
+<ul>
+<li>Add a file list with checkboxes to the Generate Patch dialog (PR
+#3470)</li>
+</ul>
+<h3 id="command-line">Command line</h3>
+<ul>
+<li>Add /g command line option for single-instance groups (PR
+#3472)</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
-<li>Brazilian (PR #3459)</li>
+<li>Brazilian (PR #3459, PR #3476)</li>
 <li>Chinese Simplified (PR #3460)</li>
-<li>Italian (PR #3455)</li>
+<li>French (PR #3478)</li>
+<li>Italian (PR #3455, PR #3473, PR #3477)</li>
 <li>Japanese</li>
 <li>Korean (PR #3447)</li>
-<li>Lithuanian (PR #3461)</li>
+<li>Lithuanian (PR #3461, PR #3471)</li>
 <li>Polish (PR #3463)</li>
+<li>Turkish (PR #3465, PR #3474)</li>
 <li>Russian (PR #3448)</li>
 </ul></li>
 </ul>
 <h2 id="what-is-new-in-21657-beta">What Is New in 2.16.57 Beta?</h2>
 <h3 id="general">General</h3>
 <ul>
-<li>BugFix: Fixed an issue where file mapping failures could incorrectly
-trigger a crash (#3412)</li>
-<li>Add module-relative offsets to crash log stack traces</li>
+<li><p>BugFix: Fixed an issue where file mapping failures could
+incorrectly trigger a crash (#3412)</p></li>
+<li><p>Add module-relative offsets to crash log stack traces</p></li>
 </ul>
 <h3 id="file-compare-1">File compare</h3>
 <ul>
-<li>BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to
-avoid accessing line EOL directly</li>
-<li>BugFix: Fix incorrect caret position in status bar</li>
-<li>BugFix: Clear sync points before reloading compare files</li>
-<li>BugFix: Fix assertion failure on empty buffer access when all lines
-are deleted from a pane</li>
-<li>Add display line filter bar for file compare window (PR #3374)</li>
-<li>Improve syntax highlighting with Tree-sitter integration for better
-support of multiple languages (PR #3306, PR #3337, PR #3338, PR #3350,
-PR #3415, PR #3427, PR #3440)</li>
-<li>Refactor syntax parsing behind ISyntaxParser interface (PR
-#3415)</li>
+<li><p>BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to
+avoid accessing line EOL directly</p></li>
+<li><p>BugFix: Fix incorrect caret position in status bar</p></li>
+<li><p>BugFix: Clear sync points before reloading compare files</p></li>
+<li><p>BugFix: Fix assertion failure on empty buffer access when all
+lines are deleted from a pane</p></li>
+<li><p>Add display line filter bar for file compare window (PR
+#3374)</p></li>
+<li><p>Improve syntax highlighting with Tree-sitter integration for
+better support of multiple languages (PR #3306, PR #3337, PR #3338, PR
+#3350, PR #3415, PR #3427, PR #3440)</p></li>
+<li><p>Refactor syntax parsing behind ISyntaxParser interface (PR
+#3415)</p></li>
 </ul>
 <h3 id="folder-compare-1">Folder compare</h3>
 <ul>
-<li>BugFix: Crash when trying to delete a &quot;left-only&quot; or &quot;right-only&quot;
-file during renaming (#3411)</li>
-<li>BugFix: ZIP export includes unchanged files in subfolders
-(#3445)</li>
-<li>Refactor filter evaluation parameters with new EvalContext for
-better code maintainability (PR #3353)</li>
+<li><p>BugFix: Crash when trying to delete a &quot;left-only&quot; or &quot;right-only&quot;
+file during renaming (#3411)</p></li>
+<li><p>BugFix: ZIP export includes unchanged files in subfolders (#3444,
+PR#3445)</p></li>
+<li><p>Refactor filter evaluation parameters with new EvalContext for
+better code maintainability (PR #3353)</p></li>
 </ul>
 <h3 id="archive-support">Archive support</h3>
 <ul>
-<li>BugFix: Fix error dialogs when comparing two Rar4 files (#3392)</li>
-<li>Update 7-Zip to 26.02</li>
+<li><p>BugFix: Fix error dialogs when comparing two Rar4 files
+(#3392)</p></li>
+<li><p>Update 7-Zip to 26.02</p></li>
 </ul>
 <h3 id="select-files-or-folders-dialog-1">Select Files or Folders
 dialog</h3>

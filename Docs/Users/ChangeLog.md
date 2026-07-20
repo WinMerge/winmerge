@@ -4,32 +4,52 @@
 
 ### File compare
 
-* BugFix: Fix crash caused by file size races in UniMemFile (#3456, PR #3457)
+* BugFix: Crash (Access Violation) when file changes externally over a given
+    threshold (#3456, PR #3457)
 
-* Add support for generating a single HTML report from multiple file comparisons (PR #3450)
+* BugFix: Parts of the panes become black text on a black background after
+    copying changes in 3-way merge mode (#3468, #3469)
 
 ### Folder compare
 
-* BugFix: Fix archive vs folder comparison selecting the wrong source (#3458)
+* BugFix: Fix archive vs folder comparison selecting the wrong source
+    (#3449, PR #3458)
+
+* BugFix: Fix HICON resource leaks in image list initialization
 
 ### Select files or folders dialog
 
-* BugFix: Handle exceptions raised while creating the common file dialog (#3462, PR #3464)
+* BugFix: Handle exceptions raised while creating the common file dialog
+    (#3462, PR #3464)
 
 * BugFix: Fix MRU handling for three-way comparisons. (#3452)
+
+### Reports
+
+* Add support for generating a single HTML report from multiple file
+    comparisons (PR #3450)
+
+### Generate Patch dialog
+
+* Add a file list with checkboxes to the Generate Patch dialog (PR #3470)
+
+### Command line
+
+* Add /g command line option for single-instance groups (PR #3472)
 
 ### Translations
 
 * Translation updates:
 
-  * Brazilian (PR #3459)
+  * Brazilian (PR #3459, PR #3476)
   * Chinese Simplified (PR #3460)
-  * Italian (PR #3455)
+  * French (PR #3478)
+  * Italian (PR #3455, PR #3473, PR #3477)
   * Japanese
   * Korean (PR #3447)
-  * Lithuanian (PR #3461)
+  * Lithuanian (PR #3461, PR #3471)
   * Polish (PR #3463)
-  * Turkish (PR #3465)
+  * Turkish (PR #3465, PR #3474)
   * Russian (PR #3448)
 
 ## WinMerge 2.16.57 - 2026-07-05
@@ -60,7 +80,7 @@
 
 * BugFix: Crash when trying to delete a "left-only" or "right-only" file during renaming (#3411)
 
-* BugFix: ZIP export includes unchanged files in subfolders (#3445)
+* BugFix: ZIP export includes unchanged files in subfolders (#3444, PR#3445)
 
 * Refactor filter evaluation parameters with new EvalContext for better code maintainability (PR #3353)
 
