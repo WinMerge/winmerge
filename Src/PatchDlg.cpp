@@ -284,6 +284,11 @@ void CPatchDlg::OnItemChangedList(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	if (pNMLV->iItem < 0 || static_cast<size_t>(pNMLV->iItem) >= m_fileList.size())
+	{
+		*pResult = 0;
+		return;
+	}
 	if ((pNMLV->uChanged & LVIF_STATE) != 0)
 	{
 		BOOL oldChecked = ((pNMLV->uOldState & LVIS_STATEIMAGEMASK) >> 12) == 2;
