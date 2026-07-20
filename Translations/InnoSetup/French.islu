@@ -6,87 +6,87 @@ InfoBeforeLabel=Licence publique générale GNU
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Caractéristiques optionnelles :
+OptionalFeatures=Fonctionnalités optionnelles :
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Installation - typique
-FullInstallation=Installation - complète
-CompactInstallation=Installation - compacte
-CustomInstallation=Installation - personnalisée
+TypicalInstallation=Installation typique
+FullInstallation=Installation complète
+CompactInstallation=Installation compacte
+CustomInstallation=Installation personnalisée
 
 ;Components
-AppCoreFiles=Fichiers vitaux - Winmerge
+AppCoreFiles=Fichiers principaux de WinMerge
 Filters=Filtres
-Plugins=Plugiciels
-ShellExtension32bit=Menu contextuel - WinMerge 32-bit
+Plugins=Plug-ins
+ShellExtension32bit=Extension du Shell pour WinMerge (32 bits)
 
 ;Localization Components
 Languages=Langues
-ArabicLanguage=Menus et dialogues Arabe
-BasqueLanguage=Menus et dialogues Basque
-BulgarianLanguage=Menus et dialogues Bulgare
-CatalanLanguage=Menus et dialogues Catalan
-ChineseSimplifiedLanguage=Menus et dialogues Chinois (Simplifié)
-ChineseTraditionalLanguage=Menus et dialogues Chinois (Traditionnel)
-CorsicanLanguage=Menus et dialogues Corse
-CroatianLanguage=Menus et dialogues Croate
-CzechLanguage=Menus et dialogues Tchécoslovaque
-DanishLanguage=Menus et dialogues Danois
-DutchLanguage=Menus et dialogues Néerlandais
-FinnishLanguage=Menus et dialogues Finlandais
-FrenchLanguage=Menus et dialogues Français
-GalicianLanguage=Menus et dialogues Galicien
-GermanLanguage=Menus et dialogues Allemand
-GreekLanguage=Menus et dialogues Grec
-HebrewLanguage=Menus et dialogues Hébreu
-HungarianLanguage=Menus et dialogues Hongrois
-ItalianLanguage=Menus et dialogues Italien
-JapaneseLanguage=Menus et dialogues Japonais
-KoreanLanguage=Menus et dialogues Coréen
-LithuanianLanguage=Menus et dialogues Lituanien
-NorwegianLanguage=Menus et dialogues Norvégien
-PersianLanguage=Menus et dialogues Perse
-PolishLanguage=Menus et dialogues Polonais
-PortugueseBrazilLanguage=Menus et dialogues Portugais (Brésilien)
-PortugueseLanguage=Menus et dialogues Portugais
-RomanianLanguage=Menus et dialogues Roumain
-RussianLanguage=Menus et dialogues Russe
-SerbianLanguage=Menus et dialogues Serbe
-SinhalaLanguage=Menus et dialogues Singhalais
-SlovakLanguage=Menus et dialogues Slovaque
-SlovenianLanguage=Menus et dialogues Slovène
-SpanishLanguage=Menus et dialogues Espagnol
-SwedishLanguage=Menus et dialogues Suédois
-TamilLanguage=Menus et dialogues Tamil
-TurkishLanguage=Menus et dialogues Turque
-UkrainianLanguage=Menus et dialogues Ukrainien
-VietnameseLanguage=Menus et dialogues Vietnamien
+ArabicLanguage=Menus et dialogues en arabe
+BasqueLanguage=Menus et dialogues en basque
+BulgarianLanguage=Menus et dialogues en bulgare
+CatalanLanguage=Menus et dialogues en catalan
+ChineseSimplifiedLanguage=Menus et dialogues en chinois (simplifié)
+ChineseTraditionalLanguage=Menus et dialogues en chinois (traditionnel)
+CorsicanLanguage=Menus et dialogues en corse
+CroatianLanguage=Menus et dialogues en croate
+CzechLanguage=Menus et dialogues en tchèque
+DanishLanguage=Menus et dialogues en danois
+DutchLanguage=Menus et dialogues en néerlandais
+FinnishLanguage=Menus et dialogues en finnois
+FrenchLanguage=Menus et dialogues en français
+GalicianLanguage=Menus et dialogues en galicien
+GermanLanguage=Menus et dialogues en allemand
+GreekLanguage=Menus et dialogues en grec
+HebrewLanguage=Menus et dialogues en hébreu
+HungarianLanguage=Menus et dialogues en hongrois
+ItalianLanguage=Menus et dialogues en italien
+JapaneseLanguage=Menus et dialogues en japonais
+KoreanLanguage=Menus et dialogues en coréen
+LithuanianLanguage=Menus et dialogues en lituanien
+NorwegianLanguage=Menus et dialogues en norvégien
+PersianLanguage=Menus et dialogues en persan
+PolishLanguage=Menus et dialogues en polonais
+PortugueseBrazilLanguage=Menus et dialogues en portugais (Brésil)
+PortugueseLanguage=Menus et dialogues en portugais
+RomanianLanguage=Menus et dialogues en roumain
+RussianLanguage=Menus et dialogues en russe
+SerbianLanguage=Menus et dialogues en serbe
+SinhalaLanguage=Menus et dialogues en cinghalais
+SlovakLanguage=Menus et dialogues en slovaque
+SlovenianLanguage=Menus et dialogues en slovène
+SpanishLanguage=Menus et dialogues en espagnol
+SwedishLanguage=Menus et dialogues en suédois
+TamilLanguage=Menus et dialogues en tamoul
+TurkishLanguage=Menus et dialogues en turc
+UkrainianLanguage=Menus et dialogues en ukrainien
+VietnameseLanguage=Menus et dialogues en vietnamien
 
 ;Tasks
-ExplorerContextMenu=Activer l'intégration du menu contextuel de l'&Explorateur 
-IntegrateTortoiseCVS=Intégrer avec &TortoiseCVS
-IntegrateTortoiseGit=Intégrer avec To&rtoiseGit
-IntegrateTortoiseSVN=Intégrer avec T&ortoiseSVN
-AddToPath=&Ajouter le dossier WinMerge à votre chemin système
+ExplorerContextMenu=&Activer l'intégration au menu contextuel de l'Explorateur
+IntegrateTortoiseCVS=Intégrer à &TortoiseCVS
+IntegrateTortoiseGit=Intégrer à To&rtoiseGit
+IntegrateTortoiseSVN=Intégrer à T&ortoiseSVN
+AddToPath=&Ajouter le dossier WinMerge au chemin système (PATH)
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=Merge à 3-voies
-ThreeWayMergeWizardPageDescription=Utilisez-vous WinMerge comme un outil de merge à 3-voies pour TortoiseSVN/Git ?
-RegisterWinMergeAs3WayMergeTool=Enregistrer WinMerge comme outils de merge à 3-voies
-MergeAtRightPane=Merge vers panneau Droit
-MergeAtCenterPane=Merge vers panneau Milieu
-MergeAtLeftPane=Merge vers panneau Gauche
-AutoMergeAtStartup=Merge automatique au démarrage
+ThreeWayMergeWizardPageCaption=Fusion à 3 voies
+ThreeWayMergeWizardPageDescription=Utilisez-vous WinMerge comme outil de fusion à 3 voies pour TortoiseSVN/Git ?
+RegisterWinMergeAs3WayMergeTool=Enregistrer WinMerge comme outil de fusion à 3 voies
+MergeAtRightPane=Fusionner dans le volet de droite
+MergeAtCenterPane=Fusionner dans le volet du milieu
+MergeAtLeftPane=Fusionner dans le volet de gauche
+AutoMergeAtStartup=Fusion automatique au démarrage
 
 ;Icon Labels
-ReadMe=Lisez moi
+ReadMe=Lisez-moi
 UsersGuide=Guide de l'utilisateur
-ViewStartMenuFolder=&Voir le dossier du menu Démarrer de WinMerge
+ViewStartMenuFolder=&Afficher le dossier WinMerge dans le menu Démarrer
 
 ;Code Dialogs
-DeletePreviousStartMenu=Le programme d'installation a détecté que vous avez modifié l'emplacement de votre menu Démarrer de "%s" à "%s". Souhaitez-vous supprimer le dossier précédent du menu Démarrer ?
-ExplorerNeedsRestart=Le menu contextuel WinMerge nécessite un redémarrage de l'Explorateur pour se mettre à jour. Souhaitez-vous redémarrer l'Explorateur ?
+DeletePreviousStartMenu=L'assistant d'installation a détecté que vous avez changé l'emplacement de votre menu Démarrer de "%s" à "%s". Souhaitez-vous supprimer l'ancien dossier du menu Démarrer ?
+ExplorerNeedsRestart=L'extension d'interpréteur WinMerge nécessite un redémarrage de l'Explorateur pour être mise à jour. Souhaitez-vous redémarrer l'Explorateur maintenant ?
 
 ; Project file description
-ProjectFileDesc=Fichier de projet WinMerge
+ProjectFileDesc=Fichier du projet WinMerge

@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-05-27 07:01+0000\n"
-"PO-Revision-Date: 2026-06-26 20:51-0400\n"
+"PO-Revision-Date: 2026-07-20 08:10-0400\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -4025,7 +4025,7 @@ msgstr "Générateur de retouche"
 #. IDD_FILECMP_REPORT, IDC_STATIC
 #: Merge.rc:2673 Merge.rc:2985
 msgid "Comparisons to include:"
-msgstr ""
+msgstr "Comparaisons à inclure :"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2675
@@ -4533,22 +4533,22 @@ msgstr "&Inclure le rapport de comparaison de fichier"
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
 #: Merge.rc:2975 Merge.rc:2991
 msgid "Open report after &generating"
-msgstr ""
+msgstr "Ouvrir le rapport après la &génération"
 
 #. IDD_FILECMP_REPORT
 #: Merge.rc:2982
 msgid "File Compare Report"
-msgstr ""
+msgstr "Rapport de comparaison de fichiers"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
 #: Merge.rc:2992
 msgid "&Include all image pages"
-msgstr ""
+msgstr "&Inclure toutes les pages d'images"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2993
-msgid "\x24D8 The report uses the current comparison settings."
-msgstr ""
+msgid "\\x24D8 The report uses the current comparison settings."
+msgstr "\\x24D8 Le rapport utilise les paramètres de comparaison actuels."
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3000
@@ -6273,8 +6273,12 @@ msgstr "Différences vers... (%1)"
 
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4845
-msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Process only items with differences?"
 msgstr ""
+"Certains éléments sélectionnés sont identiques ou ont été ignorés.\n"
+"Traiter uniquement les éléments présentant des différences ?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4851
