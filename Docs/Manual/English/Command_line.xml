@@ -324,6 +324,21 @@
 
     <varlistentry>
       <indexterm>
+        <primary>WinMerge window</primary>
+        <secondary>instance groups</secondary>
+      </indexterm>
+
+      <term><option>/g</option>
+      <replaceable>groupname</replaceable></term>
+      <listitem>
+        <para>Specifies a group name for the WinMerge instance. When used with
+        the <option>/s</option> option, instances with the same group name share
+        the same window, allowing you to organize multiple single-instance groups.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
         <primary>MRU list</primary>
       </indexterm>
 

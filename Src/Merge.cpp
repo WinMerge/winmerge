@@ -155,24 +155,23 @@ static COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 	return new CRegOptionsMgr(_T("Thingamahoochie\\WinMerge\\"));
 }
 
-static HANDLE CreateMutexHandle()
+HANDLE CMergeApp::CreateMutexHandle() const
 {
 	// Create exclusion mutex name
 	tchar_t szDesktopName[MAX_PATH] = _T("Win9xDesktop");
 	DWORD dwLengthNeeded;
 	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
 		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
-	tchar_t szMutexName[MAX_PATH + 40];
 	// Combine window class name and desktop name to form a unique mutex name.
 	// As the window class name is decorated to distinguish between ANSI and
 	// UNICODE build, so will be the mutex name.
-	wsprintf(szMutexName, _T("%s-%s"), CMainFrame::szClassName, szDesktopName);
-	return CreateMutex(nullptr, FALSE, szMutexName);
+	String sMutexName = strutils::format(_T("%s-%s"), GetWindowClassName(), szDesktopName);
+	return CreateMutex(nullptr, FALSE, sMutexName.c_str());
 }
 
 static HWND ActivatePreviousInstanceAndSendCommandline(tchar_t* cmdLine)
 {
-	HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
+	HWND hWnd = FindWindow(theApp.GetWindowClassName(), nullptr);
 	if (hWnd == nullptr)
 		return nullptr;
 	if (IsIconic(hWnd))
@@ -203,6 +202,24 @@ static int ConvertLastCompareResultToExitCode(int nLastCompareResult)
 	else if (nLastCompareResult > 0)
 		return 1;
 	return 2;
+}
+
+const tchar_t* CMergeApp::GetWindowClassName() const
+{
+	if (!m_sWindowClassName.empty())
+		return m_sWindowClassName.c_str();
+	static const tchar_t szClassName[] = _T("WinMergeWindowClassW");
+	if (!m_sGroupName.empty())
+	{
+		// Create class name with group: "WinMergeWindowClassW-groupname"
+		m_sWindowClassName = String(szClassName) + _T("-") + m_sGroupName;
+	}
+	else
+	{
+		// Use default class name
+		m_sWindowClassName = szClassName;
+	}
+	return m_sWindowClassName.c_str();
 }
 
 std::vector<JumpList::Item> CMergeApp::CreateUserTasks(MergeCmdLineInfo::usertasksflags_t flags)
@@ -321,6 +338,10 @@ BOOL CMergeApp::InitInstance()
 		for (auto& msg : cmdInfo.m_sErrorMessages)
 			OutputConsole(msg);
 	}
+
+	// Store group name for later use by CMainFrame
+	if (!cmdInfo.m_sGroupName.empty())
+		SetGroupName(cmdInfo.m_sGroupName);
 
 	// Initialize temp folder
 	SetupTempPath();

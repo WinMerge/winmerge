@@ -414,8 +414,6 @@ CMainFrame::~CMainFrame()
 	strdiff::Close();
 }
 
-const tchar_t CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
-
 /**
  * @brief Change MainFrame window class name
  *        see http://support.microsoft.com/kb/403825/ja
@@ -425,6 +423,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	WNDCLASS wndcls;
 	BOOL bRes = __super::PreCreateWindow(cs);
 	HINSTANCE hInst = AfxGetInstanceHandle();
+	const tchar_t* szClassName = theApp.GetWindowClassName();
+
 	// see if the class already exists
 	if (!::GetClassInfo(hInst, szClassName, &wndcls))
 	{

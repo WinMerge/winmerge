@@ -149,7 +149,6 @@ public:
 // Attributes
 public:	
 	bool m_bShowErrors; /**< Show folder compare error items? */
-	static const tchar_t szClassName[];
 
 // Operations
 public:
