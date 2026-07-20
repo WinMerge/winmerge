@@ -142,6 +142,8 @@ int CPatchTool::CreatePatch()
 			}
 		}
 		fileCount = fileList.size();
+		if (fileCount == 0)
+			return 0;
 
 		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
 		m_diffWrapper.SetAppendFiles(true);
