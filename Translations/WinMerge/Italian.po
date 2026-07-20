@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 17.07.2026\n"
+"Project-Id-Version: WinMerge - Italian - 20.07.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-07-17 19:02+0100\n"
+"PO-Revision-Date: 2026-07-20 09:59+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -6304,7 +6304,7 @@ msgstr "Differenze a... (%1)"
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4845
 msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
-msgstr ""
+msgstr "Alcuni elementi selezionati sono identici o saltati.\nVuoi elaborare solo gli elementi con differenze?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4851
