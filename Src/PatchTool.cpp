@@ -20,6 +20,7 @@
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "Clipboard.h"
+#include "Shell.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -95,9 +96,9 @@ int CPatchTool::CreatePatch()
 	CPatchDlg dlgPatch;
 
 	// If files already inserted, add them to dialog
-    for(std::vector<PATCHFILES>::iterator iter = m_fileList.begin(); iter != m_fileList.end(); ++iter)
-    {
-        dlgPatch.AddItem(*iter);
+	for(std::vector<PATCHFILES>::iterator iter = m_fileList.begin(); iter != m_fileList.end(); ++iter)
+	{
+		dlgPatch.AddItem(*iter);
 	}
 
 	if (ShowDialog(&dlgPatch))
@@ -206,7 +207,12 @@ int CPatchTool::CreatePatch()
 	if (retVal)
 	{
 		if (m_bOpenToEditor)
-			CMergeApp::OpenFileToExternalEditor(m_sPatchFile);
+		{
+			if (dlgPatch.m_outputStyle == (enum output_style)OUTPUT_HTML)
+				shell::Open(m_sPatchFile.c_str());
+			else
+				CMergeApp::OpenFileToExternalEditor(m_sPatchFile);
+		}
 		if (m_bCopyToClipbard)
 		{
 			UniMemFile file;
@@ -222,7 +228,10 @@ int CPatchTool::CreatePatch()
 				String lines;
 				file.ReadStringAll(lines);
 				file.Close();
-				ClipboardUtils::Put(lines, AfxGetMainWnd()->m_hWnd);
+				if (dlgPatch.m_outputStyle == (enum output_style)OUTPUT_HTML)
+					ClipboardUtils::PutFileAndTextAndHTML(m_sPatchFile, lines, AfxGetMainWnd()->m_hWnd);
+				else
+					ClipboardUtils::PutFileAndText(m_sPatchFile, lines, AfxGetMainWnd()->m_hWnd);
 			}
 		}
 	}

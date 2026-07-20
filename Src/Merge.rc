@@ -5232,8 +5232,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIFF_SUCCEEDED      "Patch file written."
-    IDS_DIFF_ITEM1NOTFOUND  "First item not found!"
-    IDS_DIFF_ITEM2NOTFOUND  "Second item not found!"
     IDS_DIFF_FILEOVERWRITE  "Patch file already exists. Overwrite?"
     IDS_DIFF_SELECTEDFILES  "[%1 files selected]"
     IDS_DIFF_NORMAL         "Normal"

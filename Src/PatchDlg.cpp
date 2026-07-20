@@ -16,6 +16,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "DirActions.h"
+#include "TempFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -97,50 +98,41 @@ void CPatchDlg::OnOK()
 	// multiple files.  Multiple files are selected from DirView.
 	// Only if single files selected, filenames are checked here.
 	// Filenames read from Dirview must be valid ones.
-	size_t selectCount = m_fileList.size();
+	size_t selectCount = GetCheckedCount();
 	if (selectCount == 0)
-	{
-		PATCHFILES tFiles;
-		tFiles.lfile = m_file1;
-		tFiles.rfile = m_file2;
-		AddItem(tFiles);
-		selectCount = 1;
-	}
-	if (selectCount == 1)
 	{
 		bool file1Ok = (paths::DoesPathExist(m_file1) != paths::DOES_NOT_EXIST) || paths::IsNullDeviceName(m_file1);
 		bool file2Ok = (paths::DoesPathExist(m_file2) != paths::DOES_NOT_EXIST) || paths::IsNullDeviceName(m_file2);
 
-		if (!file1Ok || !file2Ok)
+		if (file1Ok || file2Ok)
 		{
-			if (!file1Ok)
-				I18n::MessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
-
-			if (!file2Ok)
-				I18n::MessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
-			return;
+			PATCHFILES tFiles;
+			tFiles.lfile = m_file1;
+			tFiles.rfile = m_file2;
+			AddItem(tFiles);
+			selectCount = 1;
 		}
-
-		PATCHFILES tFiles = m_fileList[0];
-		if (tFiles.lfile != m_file1 && !tFiles.pathLeft.empty())
-			tFiles.pathLeft.clear();
-		if (tFiles.rfile != m_file2 && !tFiles.pathRight.empty())
-			tFiles.pathRight.clear();
-		tFiles.lfile = m_file1;
-		tFiles.rfile = m_file2;
-		m_fileList[0] = tFiles;
 	}
+
+	switch (m_comboStyle.GetCurSel())
+	{
+	case 1: m_outputStyle = (enum output_style)OUTPUT_CONTEXT; break;
+	case 2: m_outputStyle = (enum output_style)OUTPUT_UNIFIED; break;
+	case 3: m_outputStyle = (enum output_style)OUTPUT_HTML; break;
+	default: m_outputStyle = (enum output_style)OUTPUT_NORMAL; break;
+	}
+
+	m_contextLines = GetDlgItemInt(IDC_DIFF_CONTEXT);
 
 	// Check that result (patch) file is absolute path
 	if (!paths::IsPathAbsolute(m_fileResult))
 	{
 		if (m_fileResult.length() == 0)
 		{
-			tchar_t szTempFile[MAX_PATH];
-			::GetTempFileName(env::GetTemporaryPath().c_str(), _T("pat"), 0, szTempFile);
-			m_fileResult = szTempFile;
+			TempFile tempFile;
+			tempFile.Create(_T("pat"), (m_outputStyle == (enum output_style)OUTPUT_HTML) ? _T(".html") : _T(".diff"));
+			m_fileResult = tempFile.GetPath();
 			m_ctlResult.SetWindowText(m_fileResult.c_str());
-			DeleteFile(m_fileResult.c_str());
 		}
 		if (!paths::IsPathAbsolute(m_fileResult))
 		{
@@ -165,16 +157,6 @@ void CPatchDlg::OnOK()
 		}
 	}
 	// else it's OK to write new file
-
-	switch (m_comboStyle.GetCurSel())
-	{
-	case 1: m_outputStyle = (enum output_style)OUTPUT_CONTEXT; break;
-	case 2: m_outputStyle = (enum output_style)OUTPUT_UNIFIED; break;
-	case 3: m_outputStyle = (enum output_style)OUTPUT_HTML; break;
-	default: m_outputStyle = (enum output_style)OUTPUT_NORMAL; break;
-	}
-
-	m_contextLines = GetDlgItemInt(IDC_DIFF_CONTEXT);
 
 	SaveSettings();
 

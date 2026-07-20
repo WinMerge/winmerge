@@ -2017,8 +2017,6 @@
 #define IDS_DIFFBAR_CAPTION             42202
 #define IDS_OUTPUTBAR_CAPTION           42203
 #define IDS_DIFF_SUCCEEDED              42400
-#define IDS_DIFF_ITEM1NOTFOUND          42401
-#define IDS_DIFF_ITEM2NOTFOUND          42402
 #define IDS_DIFF_FILEOVERWRITE          42403
 #define IDS_DIFF_SELECTEDFILES          42404
 #define IDS_DIFF_NORMAL                 42405
