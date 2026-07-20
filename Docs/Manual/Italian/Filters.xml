@@ -1532,8 +1532,9 @@ controlla se qualche file è stato modificato questo mese (escluso oggi)</para><
             <varlistentry>
               <term><function>at</function>(<replaceable>array</replaceable>,
 <replaceable>index</replaceable>)</term>
-              <listitem><para>Returns the element at the specified index (0-based). Negative indices count
-from the end. Example: <literal>at(array(1, 2, 3), -1)</literal> returns 3</para></listitem>
+              <listitem><para>Restituisce l'elemento in corrispondenza dell'indice specificato (in base
+0). Gli indici negativi contano dalla fine. Esempio: <literal>at(array(1, 2,
+3), -1)</literal> restituisce 3</para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>anyof</function>(<replaceable>booleans</replaceable>)</term>
@@ -2407,11 +2408,12 @@ barra filtri</guimenuitem> </menuchoice>, o premi
 <keycap>L</keycap></keycombo>.</para>
         </listitem>
         <listitem>
-          <para>Right-click selected text in the File Compare window and choose <menuchoice>
-<guimenu>Add to Filters</guimenu> <guimenuitem>Add to Display
-Filters</guimenuitem> </menuchoice>. WinMerge automatically builds a
-<literal>Line contains "..."</literal> expression from the selected text and
-opens the filter bar.</para>
+          <para>Fai clic con il pulsante destro del mouse sul testo selezionato nella
+finestra Confronta file e scegli <menuchoice> <guimenu >Aggiungi ai
+filtri</guimenu > <guimenuitem >Aggiungi ai filtri di
+visualizzazione</guimenuitem > </menuchoice >. WinMerge creerà
+automaticamente un'espressione <literal>La riga contiene "..."</literal> dal
+testo selezionato e apre la barra filtri.</para>
         </listitem>
       </itemizedlist>
 
@@ -2449,13 +2451,13 @@ linkend="Filters_DisplayLineFilter_Syntax"/>.</para>
             <para>Esempio: <userinput>le:Different e la riga contiene "ERRORE"</userinput></para>
 
             <important>
-              <para>The <literal>le:</literal> prefix must appear at the very beginning of the
-input. If it appears anywhere else, the entire input is treated as a plain
-string.</para>
-              <para>For example, <userinput>Hello or le:Line contains "Hello"</userinput> does
-<emphasis>not</emphasis> contain a filter expression.  The whole input is
-treated as a literal string search for the text <literal>Hello or le:Line
-contains "Hello"</literal>.</para>
+              <para>Il prefisso <literal>le:</literal> deve apparire proprio all'inizio
+dell'input. Se appare altrove, l'intero input viene trattato come una
+semplice stringa.</para>
+              <para>Ad esempio, <userinput>Hello o le:Line contiene "Hello"</userinput>
+<emphasis>non</emphasis> contiene un'espressione di filtro. L'intero input
+viene trattato come una ricerca di stringhe letterali per il testo
+<literal>Hello o le:Line contiene "Hello"</literal>.</para>
             </important>
           </listitem>
         </varlistentry>
@@ -2568,9 +2570,10 @@ CSV/tabella. Supporta prefissi specifici del lato. Esempio:
           <varlistentry>
             <term><function>LineAt</function>(<replaceable>lineNumber</replaceable>),
 <function>LineOffsetAt</function>(<replaceable>offset</replaceable>)</term>
-            <listitem><para>Text of the line at an absolute line number or at a relative offset from the
-current line.  Supports side-specific prefix functions.  Example:
-<literal>le:Different and RightLineOffsetAt(-1) matches "^//"</literal></para></listitem>
+            <listitem><para>Testo della riga in corrispondenza di un numero di riga assoluto o di un
+offset relativo rispetto alla riga attuale. Supporta funzioni di prefisso
+specifiche del lato. Esempio: <literal>le:Different e RightLineOffsetAt(-1)
+corrisponde a "^//"</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>Column</function>(<replaceable>indexOrName</replaceable>),
@@ -2627,17 +2630,19 @@ righe nel primo blocco differenza.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockOffset</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>Returns the 1-based offset of the current line within the matching
-block. Returns <literal>none</literal> if the current line is not in any
-matching block.  Example: <literal>le:matchBlockOffset(Different) =
-1</literal> shows only the first line of each difference block.</para></listitem>
+            <listitem><para>Restituisce l'offset in base 1 della riga attuale all'interno del blocco
+corrispondente. Se la riga attuale non si trova in nessun blocco
+corrispondente restituisce <literal>none</literal>. Esempio:
+<literal>le:matchBlockOffset(Different) = 1</literal> visualizza solo la
+prima riga di ciascun blocco differenza.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockSize</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>Returns the size (number of lines) of the matching block containing the
-current line. Returns <literal>none</literal> if the current line is not in
-any matching block.  Example: <literal>le:matchBlockSize(Different) &gt;
-5</literal> shows only lines in difference blocks larger than 5 lines.</para></listitem>
+            <listitem><para>Restituisce la dimensione (numero di righe) del blocco corrispondente
+contenente la riga attuale. Se la riga attuale on si trova in nessun blocco
+corrispondente restituisce <literal>none</literal>. Esempio:
+<literal>le:matchBlockSize(Different) > 5</literal> visualizza solo le righe
+nei blocchi di differenza più grandi di 5 righe.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockCount</function>(<replaceable>expr</replaceable>)</term>
@@ -2683,28 +2688,29 @@ prezzo supera il prezzo medio. Esempio con condizione:
             <term><function>maximum</function>(<replaceable>expr</replaceable>),
 <function>maximum</function>(<replaceable>expr</replaceable>,
 <replaceable>condition</replaceable>)</term>
-            <listitem><para>Returns the maximum value among all results produced by evaluating
-<replaceable>expr</replaceable> for all lines in the file.  If
-<replaceable>condition</replaceable> is provided, only lines where
-<replaceable>condition</replaceable> evaluates to true are considered.
-Works with numeric values, strings (alphabetical comparison), and
-timestamps.  Returns <literal>none</literal>if no values are found.
-Example: <literal>le:toInt(Column("Quantity")) =
-maximum(toInt(Column("Quantity")))</literal> shows rows with the highest
-quantity.</para></listitem>
+            <listitem><para>Restituisce il valore massimo tra tutti i risultati prodotti valutando
+<replaceable>expr</replaceable> per tutte le righe nel file. Se viene
+fornita <replaceable>condizione</replaceable>, vengono considerate solo le
+righe in cui <replaceable>condizione</replaceable> restituisce
+vero. Funziona con valori numerici, stringhe (confronto alfabetico) e
+timestamp. Se non viene trovato alcun valore restituisce
+<literal>none</literal>. Esempio: <literal>le:toInt(Column("Quantity")) =
+maxim(toInt(Column("Quantity")))</literal> visualizza le righe con la
+quantità più alta.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>minimum</function>(<replaceable>expr</replaceable>),
 <function>minimum</function>(<replaceable>expr</replaceable>,
 <replaceable>condition</replaceable>)</term>
-            <listitem><para>Returns the minimum value among all results produced by evaluating
-<replaceable>expr</replaceable> for all lines in the file.  If
-<replaceable>condition</replaceable> is provided, only lines where
-<replaceable>condition</replaceable> evaluates to true are considered.
-Works with numeric values, strings (alphabetical comparison), and
-timestamps.  Returns <literal>none</literal>if no values are found.
-Example: <literal>le:Column("Status") = minimum(Column("Status"))</literal>
-shows rows with the alphabetically first status value.</para></listitem>
+            <listitem><para>Restituisce il valore minimo tra tutti i risultati prodotti valutando
+<replaceable>expr</replaceable> per tutte le righe nel file. Se viene
+fornita <replaceable>condizione</replaceable>, vengono considerate solo le
+righe in cui <replaceable>condizione</replaceable> restituisce
+vero. Funziona con valori numerici, stringhe (confronto alfabetico) e
+timestamp. Se non viene trovato alcun valore restituisce
+<literal>none</literal>. Esempio: <literal>le:Column("Status") =
+Minimum(Column("Status"))</literal> visualizza le righe con il primo valore
+di stato in ordine alfabetico.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>sum</function>(<replaceable>expr</replaceable>),

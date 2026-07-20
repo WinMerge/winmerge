@@ -1036,10 +1036,8 @@ msgstr "インスタンスグループ"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:334
-#, fuzzy
-#| msgid "<option>/g</option> <replaceable>groupname</replaceable>"
 msgid "<option>/g</option> <replaceable>group-name</replaceable>"
-msgstr "<option>/g</option> <replaceable>グループ名</replaceable>"
+msgstr "<option>/g</option> <replaceable>group-name</replaceable>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:337

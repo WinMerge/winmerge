@@ -24,40 +24,42 @@ rep="norepeat"><option>/?</option></arg></cmdsynopsis></para>
 rep="norepeat"><option>/r</option></arg> <arg choice="opt"
 rep="norepeat"><option>/r-</option></arg> <arg choice="opt"
 rep="norepeat"><option>/e</option></arg> <arg choice="opt"
-rep="norepeat"><option>/f</option> <replaceable>filter</replaceable></arg>
+rep="norepeat"><option>/f</option> <replaceable>filtre</replaceable></arg>
 <arg choice="opt" rep="norepeat"><option>/m</option>
-<replaceable>compare-method</replaceable></arg> <arg choice="opt"
+<replaceable>méthode-de-comparaison</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/t</option>
-<replaceable>window-type</replaceable></arg> <arg><option>/x</option></arg>
-<arg><option>/xq</option></arg> <arg><option>/s</option></arg>
-<arg><option>/sw</option></arg> <arg><option>/s-</option></arg> <arg
-choice="opt" rep="norepeat"><option>/g</option>
-<replaceable>group-name</replaceable></arg> <arg choice="opt"
+<replaceable>type-de-fenêtre</replaceable></arg>
+<arg><option>/x</option></arg> <arg><option>/xq</option></arg>
+<arg><option>/s</option></arg> <arg><option>/sw</option></arg>
+<arg><option>/s-</option></arg> <arg choice="opt"
+rep="norepeat"><option>/g</option>
+<replaceable>nom-du-groupe</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/ul</option></arg> <arg choice="opt"
 rep="norepeat"><option>/um</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ur</option></arg> <arg choice="opt"
 rep="norepeat"><option>/u</option></arg> <arg choice="opt"
 rep="norepeat"><option>/wl</option></arg> <arg choice="opt"
 rep="norepeat"><option>/wm</option></arg> <arg choice="opt"
-rep="norepeat"><option>/wr</option></arg> <arg choice="opt"
-rep="norepeat"><option>/new</option></arg> <arg choice="opt"
-rep="norepeat"><option>/self-compare</option></arg> <arg choice="opt"
+rep="norepeat"><option>/wr</option></arg> <arg choix="opt"
+rep="norepeat"><option>/new</option></arg> <arg choix="opt"
+rep="norepeat"><option>/self-compare</option></arg> <arg choix="opt"
 rep="norepeat"><option>/clipboard-compare</option></arg>
 <arg><option>/minimize</option></arg> <arg><option>/maximize</option></arg>
-<arg choice="opt" rep="norepeat"><option>/fl</option></arg> <arg
-choice="opt" rep="norepeat"><option>/fm</option></arg> <arg choice="opt"
-rep="norepeat"><option>/fr</option></arg> <arg choice="opt"
+<arg choix="opt" rep="norepeat"><option>/fl</option></arg> <arg choix="opt"
+rep="norepeat"><option>/fm</option></arg> <arg choix="opt"
+rep="norepeat"><option>/fr</option></arg> <arg choix="opt"
 rep="norepeat"><option>/l</option>
-<replaceable>linenumber</replaceable></arg> <arg choice="opt"
-rep="norepeat"><option>/c</option> <replaceable>charpos</replaceable></arg>
-<arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
-<replaceable>delimiter</replaceable></arg> <arg choice="opt"
+<replaceable>numéro-de-ligne</replaceable></arg> <arg choix="opt"
+rep="norepeat"><option>/c</option>
+<replaceable>position-du-caractère</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/table-delimiter</option>
+<replaceable>délimiteur</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/dl</option>
-<replaceable>leftdesc</replaceable></arg> <arg choice="opt"
+<replaceable>desc-gauche</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/dm</option>
-<replaceable>middledesc</replaceable></arg> <arg choice="opt"
+<replaceable>desc-milieu</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/dr</option>
-<replaceable>rightdesc</replaceable></arg> <arg choice="opt"
+<replaceable>desc-droite</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/al</option></arg> <arg choice="opt"
 rep="norepeat"><option>/am</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ar</option></arg> <arg choice="opt"
@@ -68,27 +70,28 @@ rep="norepeat"><option>/ignorews</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ignoreblanklines</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ignorecase</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ignoreeol</option></arg> <arg choice="opt"
-rep="norepeat"><option>/ignorecodepage</option></arg> <arg choice="opt"
-rep="norepeat"><option>/ignorecomments</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecodepage</option></arg> <arg choix="opt"
+rep="norepeat"><option>/ignorecomments</option></arg> <arg choix="opt"
 rep="norepeat"><option>/unpacker</option>
-<replaceable>unpacker-name</replaceable></arg> <arg choice="opt"
+<replaceable>nom-du-décompilateur</replaceable></arg> <arg choix="opt"
 rep="norepeat"><option>/prediffer</option>
-<replaceable>prediffer-name</replaceable></arg> <arg choice="opt"
+<replaceable>nom-du-prediffer</replaceable></arg> <arg choix="opt"
 rep="norepeat"><option>/cp</option>
-<replaceable>codepage</replaceable></arg> <arg choice="opt"
+<replaceable>page-de-code</replaceable></arg> <arg choix="opt"
 rep="norepeat"><option>/fileext</option>
-<replaceable>file-extension</replaceable></arg> <arg choice="opt"
+<replaceable>extension-du-fichier</replaceable></arg> <arg choix="opt"
 rep="norepeat"><option>/cfg</option>
-<replaceable>name=value</replaceable></arg> <arg choice="opt"
+<replaceable>nom=valeur</replaceable></arg> <arg choix="opt"
 rep="norepeat"><option>/inifile</option>
-<replaceable>inifile</replaceable></arg> <arg choice="plain"
-rep="norepeat"><replaceable>leftpath</replaceable></arg> <arg cchoice="opt"
-rep="norepeat"><replaceable>middlepath</replaceable></arg> <arg
-choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
-<arg choice="opt" rep="norepeat"><option>/o</option>
-<replaceable>outputpath</replaceable></arg> <arg choice="opt"
+<replaceable>fichier-ini</replaceable></arg> <arg choice="plain"
+rep="norepeat"><replaceable>chemin-gauche</replaceable></arg> <arg
+cchoice="opt" rep="norepeat"><replaceable>chemin-milieu</replaceable></arg>
+<arg choice="plain"
+rep="norepeat"><replaceable>chemin-droite</replaceable></arg> <arg
+choice="opt" rep="norepeat"><option>/o</option>
+<replaceable>chemin-sortie</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/or</option>
-<replaceable>reportpath</replaceable></arg></cmdsynopsis></para>
+<replaceable>chemin-rapport</replaceable></arg></cmdsynopsis></para>
 
   <cmdsynopsis sepchar=" ">
 <command>WinMergeU</command> <arg choice="plain"
@@ -256,14 +259,15 @@ de l'option « N'autoriser qu'une seule instance à s'exécuter ».</para>
     <varlistentry>
       <indexterm>
         <primary>Fenêtre WinMerge</primary>
-        <secondary>instance groups</secondary>
+        <secondary>groupes d'instances</secondary>
       </indexterm>
 
-      <term><option>/g</option> <replaceable>group-name</replaceable></term>
+      <term><option>/g <replaceable>nom-groupe</replaceable></option></term>
       <listitem>
-        <para>Specifies a group name for the WinMerge instance. When used with the
-<option>/s</option> option, instances with the same group name share the
-same window, allowing you to organize multiple single-instance groups.</para>
+        <para>Spécifie un nom de groupe pour l'instance WinMerge. Lorsqu'il est utilisé
+avec l'option <option>/s</option>, les instances portant le même nom de
+groupe partagent la même fenêtre, ce qui vous permet d'organiser plusieurs
+groupes d'instances uniques.</para>
       </listitem>
     </varlistentry>
 
