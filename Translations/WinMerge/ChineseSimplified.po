@@ -4542,8 +4542,8 @@ msgstr "包含所有图片页面(&I)"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2993
-msgid "\\x24D8 The report uses the current comparison settings."
-msgstr "\\x24D8 该报告使用了当前的比较设置。"
+msgid "\x24D8 The report uses the current comparison settings."
+msgstr "\x24D8 该报告使用了当前的比较设置。"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3000
