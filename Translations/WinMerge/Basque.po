@@ -4943,7 +4943,7 @@ msgstr ""
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2993
-msgid "\x24D8 The report uses the current comparison settings."
+msgid "\\u24D8 The report uses the current comparison settings."
 msgstr ""
 
 #. IDD_FILTERS_FILEFILTERS_SHARED

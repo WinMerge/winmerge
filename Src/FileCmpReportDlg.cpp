@@ -53,6 +53,11 @@ BOOL FileCmpReportDlg::OnInitDialog()
 	m_list.Initialize();
 	m_list.SetWindows(m_windows);
 
+	String label;
+	GetDlgItemText(IDC_REPORT_INFO, label);
+	strutils::replace(label, _T("\\u24D8"), _T("\u24D8"));
+	SetDlgItemText(IDC_REPORT_INFO, label);
+
 	// Set selected path to variable so file selection dialog shows
 	// correct filename and path.
 	CString cstrReportFile;

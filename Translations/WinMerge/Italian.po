@@ -4552,8 +4552,8 @@ msgstr "&Includi tutte le pagine immagini"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2993
-msgid "\x24D8 The report uses the current comparison settings."
-msgstr "\x24D8 Il rapporto usa le impostazioni di confronto attuali."
+msgid "\\u24D8 The report uses the current comparison settings."
+msgstr "\\u24D8 Il rapporto usa le impostazioni di confronto attuali."
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3000
