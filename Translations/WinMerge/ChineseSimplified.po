@@ -4542,8 +4542,8 @@ msgstr "包含所有图片页面(&I)"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2993
-msgid "\x24D8 The report uses the current comparison settings."
-msgstr "\x24D8 该报告使用了当前的比较设置。"
+msgid "\\x24D8 The report uses the current comparison settings."
+msgstr "\\x24D8 该报告使用了当前的比较设置。"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3000
@@ -6276,8 +6276,12 @@ msgstr "差异到... (%1)"
 
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4845
-msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Process only items with differences?"
 msgstr ""
+"某些选定项目内容相同或被跳过。\n"
+"是否仅处理存在差异的项目？"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4851
