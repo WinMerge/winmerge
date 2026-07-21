@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-17 17:20+0200\n"
+"PO-Revision-Date: 2026-07-21 16:52+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -4960,7 +4960,7 @@ msgstr "Alle B&ildseiten einbinden"
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2993
 msgid "\\u24D8 The report uses the current comparison settings."
-msgstr ""
+msgstr "\\u24D8 Der Bericht verwendet die aktuellen Vergleichseinstellungen."
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3000
@@ -6846,8 +6846,12 @@ msgstr "Unterschiede nach... (%1)"
 
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4845
-msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Process only items with differences?"
 msgstr ""
+"Einige ausgewählte Elemente sind identisch oder wurden übersprungen.\n"
+"Nur Elemente mit Unterschieden verarbeiten?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4851
