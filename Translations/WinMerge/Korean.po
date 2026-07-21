@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-07-06 02:56+0900\n"
+"PO-Revision-Date: 2026-07-22 00:26+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -4380,7 +4380,7 @@ msgstr "패치 생성기"
 #. IDD_FILECMP_REPORT, IDC_STATIC
 #: Merge.rc:2673 Merge.rc:2985
 msgid "Comparisons to include:"
-msgstr ""
+msgstr "포함할 비교:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2675
@@ -4942,22 +4942,22 @@ msgstr "파일 비교 보고서 포함(&I)"
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
 #: Merge.rc:2975 Merge.rc:2991
 msgid "Open report after &generating"
-msgstr ""
+msgstr "생성 후 보고서 열기(&G)"
 
 #. IDD_FILECMP_REPORT
 #: Merge.rc:2982
 msgid "File Compare Report"
-msgstr ""
+msgstr "파일 비교 보고서"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
 #: Merge.rc:2992
 msgid "&Include all image pages"
-msgstr ""
+msgstr "모든 이미지 페이지 포함(&I)"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2993
 msgid "\\u24D8 The report uses the current comparison settings."
-msgstr ""
+msgstr "\\u24D8 보고서는 현재 비교 설정을 사용합니다."
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3000
@@ -6842,8 +6842,12 @@ msgstr "차이... (%1)"
 
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4845
-msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Process only items with differences?"
 msgstr ""
+"선택한 항목 중 일부가 동일하거나 건너뛰어졌습니다.\n"
+"차이점이 있는 항목만 처리하시겠습니까?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4851
