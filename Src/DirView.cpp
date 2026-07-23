@@ -28,6 +28,7 @@
 #include "paths.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
+#include "DiffImageListUtils.h"
 #include "OptionsMgr.h"
 #include "BCMenu.h"
 #include "DirCmpReportDlg.h"
@@ -450,34 +451,7 @@ void CDirView::OnInitialUpdate()
 	if (hWnd != nullptr)
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
-	// Load the icons used for the list view (to reflect diff status)
-	// NOTE: these must be in the exactly the same order as in the `enum`
-	// definition in the DirActions.h file (ref: DIFFIMG_LUNIQUE)
-	VERIFY(m_imageList.Create(iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
-	int icon_ids[] = {
-		IDI_LFILE, IDI_MFILE, IDI_RFILE,
-		IDI_MRFILE, IDI_LRFILE, IDI_LMFILE,
-		IDI_NOTEQUALFILE, IDI_EQUALFILE, IDI_FILE, 
-		IDI_EQUALBINARY, IDI_BINARYDIFF,
-		IDI_LFOLDER, IDI_MFOLDER, IDI_RFOLDER,
-		IDI_MRFOLDER, IDI_LRFOLDER, IDI_LMFOLDER,
-		IDI_FILESKIP, IDI_FOLDERSKIP,
-		IDI_NOTEQUALFOLDER, IDI_EQUALFOLDER, IDI_FOLDER,
-		IDI_COMPARE_ERROR,
-		IDI_FOLDERUP, IDI_FOLDERUP_DISABLE,
-		IDI_COMPARE_ABORTED,
-		IDI_NOTEQUALTEXTFILE, IDI_EQUALTEXTFILE,
-		IDI_NOTEQUALIMAGE, IDI_EQUALIMAGE, 
-	};
-	for (auto id : icon_ids)
-	{
-		HICON hIcon = (HICON)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, 0);
-		if (hIcon != nullptr)
-		{
-			VERIFY(-1 != m_imageList.Add(hIcon));
-			::DestroyIcon(hIcon);
-		}
-	}
+	DiffImageListUtils::InitializeDiffImageList(m_imageList);
 	m_pList->SetImageList(&m_imageList, LVSIL_SMALL);
 
 	// Load the icons used for the list view (expanded/collapsed state icons)

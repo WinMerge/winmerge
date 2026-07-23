@@ -414,6 +414,7 @@ protected:
 	afx_msg void OnHelpContents();
 	afx_msg void OnClose();
 	afx_msg void OnToolsGeneratePatch();
+	afx_msg void OnToolsGenerateArchive();
 	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);
 	afx_msg void OnPluginUnpackMode(UINT nID);

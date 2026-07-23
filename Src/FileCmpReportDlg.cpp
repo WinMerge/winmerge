@@ -8,8 +8,10 @@
 #include "stdafx.h"
 #include "FileCmpReportDlg.h"
 #include "FileOrFolderSelect.h"
+#include "DiffImageListUtils.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "resource.h"
 
 IMPLEMENT_DYNAMIC(FileCmpReportDlg, CTrDialog)
 
@@ -51,7 +53,10 @@ BOOL FileCmpReportDlg::OnInitDialog()
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 
 	m_list.Initialize();
-	m_list.SetWindows(m_windows);
+	DiffImageListUtils::InitializeDiffImageList(m_list.GetImageList());
+	m_list.SetImageList(&m_list.GetImageList(), LVSIL_SMALL);
+
+	m_list.SetItems(m_items);
 
 	String label;
 	GetDlgItemText(IDC_REPORT_INFO, label);

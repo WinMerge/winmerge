@@ -81,7 +81,7 @@ public:
 	
 	UINT Open() override;
 	Envelope* Enum(Item& item) override;
-	void CompressArchive(const tchar_t* = 0);
+	bool CompressArchive(const tchar_t* = 0);
 private:
 	std::vector<CompressibleItem> m_items;
 	size_t m_itemPos = 0;

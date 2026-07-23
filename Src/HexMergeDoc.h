@@ -70,7 +70,7 @@ public:
 	void DirDocClosing(IDirDoc * pDirDoc) override;
 	bool CloseNow() override;
 	bool GenerateReport(ReportContext& reportContext) const override { return true; }
-	IMergeDoc::DocumentType GetDocumentType() const override { return IMergeDoc::DocumentType::Unknown; }
+	IMergeDoc::DocumentType GetDocumentType() const override { return IMergeDoc::DocumentType::Binary; }
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	PackingInfo* GetUnpacker() { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker;  };

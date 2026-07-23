@@ -56,11 +56,22 @@ public:
 	void AddFiles(const String &file1, const String &altPath1,
 		const String &file2, const String &altPath2, const String& title, bool checked, int diffStatus);
 	int CreatePatch();
+	bool CreatePatchFile(const String& outputFile);
 
 protected:
 	bool ShowDialog(CPatchDlg *pDlgPatch);
 
 private:
+	struct PatchWriteResult
+	{
+		int writeFileCount = 0;
+		bool diffFailed = false;
+		bool patchFileFailed = false;
+		bool binaryFound = false;
+	};
+
+	PatchWriteResult WritePatchFile(const std::vector<PATCHFILES>& files,
+		enum output_style outputStyle, bool appendHeader);
 	void AddFilesToList(const String& sDir1, const String& sDir2, const DirItem* ent1, const DirItem* ent2, std::vector<PATCHFILES>* fileList);
 	int GetItemsForPatchList(const PathContext& paths, const String subdir[], std::vector<PATCHFILES>* fileList);
 

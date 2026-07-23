@@ -82,46 +82,6 @@ void CWindowListCtrl::Initialize()
 	InsertColumn(0, _T(""), LVCFMT_LEFT, rc.Width());
 }
 
-void CWindowListCtrl::SetWindows(const std::vector<WindowItem>& windows)
-{
-	DeleteAllItems();
-
-	if (m_imageList.GetSafeHandle() != nullptr)
-		m_imageList.DeleteImageList();
-	m_imageList.Create(GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), ILC_COLOR32 | ILC_MASK, 4, 4);
-
-	SetImageList(&m_imageList, LVSIL_SMALL);
-
-	for (const auto& window : windows)
-	{
-		if (window.pFrame == nullptr)
-			continue;
-
-		const HWND hwnd = window.pFrame->GetSafeHwnd();
-		if (hwnd == nullptr)
-			continue;
-
-		HICON hIcon = (HICON)::SendMessage(hwnd, WM_GETICON, ICON_SMALL2, 0);
-		if (hIcon == nullptr)
-			hIcon = (HICON)::GetClassLongPtr(hwnd, GCLP_HICONSM);
-
-		int image = m_imageList.Add(hIcon);
-
-		CString title;
-		window.pFrame->GetWindowText(title);
-
-		LVITEM item = {};
-		item.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_PARAM;
-		item.iItem = GetItemCount();
-		item.iImage = image;
-		item.pszText = const_cast<LPTSTR>((LPCTSTR)title);
-		item.lParam = window.data;
-
-		int index = InsertItem(&item);
-		SetCheck(index, window.checked);
-	}
-}
-
 void CWindowListCtrl::SetItems(const std::vector<Item>& items)
 {
 	DeleteAllItems();

@@ -15,7 +15,7 @@
 #include "Environment.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "DirActions.h"
+#include "DiffImageListUtils.h"
 #include "TempFile.h"
 
 #ifdef _DEBUG
@@ -187,50 +187,10 @@ BOOL CPatchDlg::OnInitDialog()
 
 	CTrDialog::OnInitDialog();
 
-	const int iconCX = []() {
-		const int cx = GetSystemMetrics(SM_CXSMICON);
-		if (cx < 24)
-			return 16;
-		if (cx < 32)
-			return 24;
-		if (cx < 48)
-			return 32;
-		return 48;
-	}();
-	const int iconCY = iconCX;
-	m_imageList.Create(iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1);
-
-	HINSTANCE hInstance = AfxGetInstanceHandle();
-	int icon_ids[] = {
-		IDI_LFILE, IDI_MFILE, IDI_RFILE,
-		IDI_MRFILE, IDI_LRFILE, IDI_LMFILE,
-		IDI_NOTEQUALFILE, IDI_EQUALFILE, IDI_FILE, 
-		IDI_EQUALBINARY, IDI_BINARYDIFF,
-		IDI_LFOLDER, IDI_MFOLDER, IDI_RFOLDER,
-		IDI_MRFOLDER, IDI_LRFOLDER, IDI_LMFOLDER,
-		IDI_FILESKIP, IDI_FOLDERSKIP,
-		IDI_NOTEQUALFOLDER, IDI_EQUALFOLDER, IDI_FOLDER,
-		IDI_COMPARE_ERROR,
-		IDI_FOLDERUP, IDI_FOLDERUP_DISABLE,
-		IDI_COMPARE_ABORTED,
-		IDI_NOTEQUALTEXTFILE, IDI_EQUALTEXTFILE,
-		IDI_NOTEQUALIMAGE, IDI_EQUALIMAGE, 
-	};
-	for (auto id : icon_ids)
-	{
-		HICON hIcon = (HICON)::LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, LR_DEFAULTCOLOR);
-		if (hIcon != nullptr)
-		{
-			m_imageList.Add(hIcon);
-			::DestroyIcon(hIcon);
-		}
-	}
-
 	std::vector<CWindowListCtrl::Item> items;
 	m_list.Initialize();
-
-	// Set the image list after Initialize() to ensure it's not overwritten
-	m_list.SetImageList(&m_imageList, LVSIL_SMALL);
+	DiffImageListUtils::InitializeDiffImageList(m_list.GetImageList());
+	m_list.SetImageList(&m_list.GetImageList(), LVSIL_SMALL);
 
 	for (size_t i = 0; i < m_fileList.size(); ++i)
 	{
@@ -599,4 +559,3 @@ void CPatchDlg::ClearItems()
 	}
 	m_bInOnInitDialog = false;
 }
-

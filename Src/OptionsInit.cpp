@@ -119,6 +119,10 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_REPORTFILES_INCLUDEFILECMPREPORT, false);
 	pOptions->InitOption(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES, true);
 
+	pOptions->InitOption(OPT_ARCHIVE_INCLUDEREPORT, false);
+	pOptions->InitOption(OPT_ARCHIVE_INCLUDEPATCH, false);
+	pOptions->InitOption(OPT_ARCHIVE_COPYTOCLIPBOARD, false);
+
 	pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
 	pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);
 	pOptions->InitOption(OPT_COPY_GRANULARITY, 3/*Character*/);

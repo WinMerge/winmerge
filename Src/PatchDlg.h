@@ -96,7 +96,6 @@ protected:
 private:
 	bool m_bInOnInitDialog;
 	bool m_updatePosted = false;
-	CImageList m_imageList;
 	static constexpr UINT WM_APP_UPDATE_EDIT_CONTROLS = WM_APP + 1;
 };
 
@@ -127,4 +126,3 @@ inline const PATCHFILES& CPatchDlg::GetItemAt(size_t position)
 {
 	return m_fileList.at(position);
 }
-

@@ -90,7 +90,6 @@ void CPatchTool::AddFiles(const String &file1, const String &altPath1,
  */
 int CPatchTool::CreatePatch()
 {
-	DIFFSTATUS status;
 	int retVal = 0;
 
 	CPatchDlg dlgPatch;
@@ -145,56 +144,25 @@ int CPatchTool::CreatePatch()
 		if (fileCount == 0)
 			return 0;
 
-		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
-		m_diffWrapper.SetAppendFiles(true);
-
-		bool bShowedBinaryMessage = false;
-		int writeFileCount = 0;
-
-		for (size_t index = 0; index < fileCount; index++)
+		const PatchWriteResult writeResult = WritePatchFile(
+			fileList, dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
+		if (writeResult.diffFailed)
 		{
-			const PATCHFILES& tFiles = fileList[index];
-			String filename1 = tFiles.lfile.length() == 0 ? paths::NATIVE_NULL_DEVICE_NAME : tFiles.lfile;
-			String filename2 = tFiles.rfile.length() == 0 ? paths::NATIVE_NULL_DEVICE_NAME : tFiles.rfile;
-			
-			// Set up DiffWrapper
-			m_diffWrapper.SetPaths(PathContext(filename1, filename2), false);
-			m_diffWrapper.SetAlternativePaths(PathContext(tFiles.pathLeft, tFiles.pathRight));
-			m_diffWrapper.SetCompareFiles(PathContext(tFiles.lfile, tFiles.rfile));
-			bool bDiffSuccess = m_diffWrapper.RunFileDiff();
-			m_diffWrapper.GetDiffStatus(&status);
-
-			if (!bDiffSuccess)
-			{
-				I18n::MessageBox(IDS_FILEERROR, MB_ICONSTOP);
-				bResult = false;
-				break;
-			}
-			else if (status.bBinaries)
-			{
-				if (!bShowedBinaryMessage)
-				{
-					I18n::MessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING);
-					bShowedBinaryMessage = true;
-				}
-			}
-			else if (status.bPatchFileFailed)
-			{
-				String errMsg = strutils::format_string1(_("Could not write to file %1."), dlgPatch.m_fileResult);
-				AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
-				bResult = false;
-				break;
-			}
-			else
-			{
-				writeFileCount++;
-			}
-
+			I18n::MessageBox(IDS_FILEERROR, MB_ICONSTOP);
+			bResult = false;
 		}
-		
-		m_diffWrapper.WritePatchFileTerminator(dlgPatch.m_outputStyle);
+		else if (writeResult.patchFileFailed)
+		{
+			String errMsg = strutils::format_string1(_("Could not write to file %1."), dlgPatch.m_fileResult);
+			AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
+			bResult = false;
+		}
+		else if (writeResult.binaryFound)
+		{
+			I18n::MessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING);
+		}
 
-		if (bResult && writeFileCount > 0)
+		if (bResult && writeResult.writeFileCount > 0)
 		{
 			AfxMessageBox((_("Patch file written.") + _T("\n") + dlgPatch.m_fileResult).c_str(),
 				MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_DIFF_SUCCEEDED);
@@ -238,6 +206,73 @@ int CPatchTool::CreatePatch()
 		}
 	}
 	return retVal;
+}
+
+bool CPatchTool::CreatePatchFile(const String& outputFile)
+{
+	if (outputFile.empty() || !paths::CreateIfNeeded(paths::GetPathOnly(outputFile)))
+		return false;
+
+	DIFFOPTIONS diffOptions = {0};
+	Options::DiffOptions::Load(GetOptionsMgr(), diffOptions);
+	PATCHOPTIONS patchOptions = {};
+	patchOptions.outputStyle = static_cast<enum output_style>(OUTPUT_UNIFIED);
+	patchOptions.nContext = GetOptionsMgr()->GetInt(OPT_PATCHCREATOR_CONTEXT_LINES);
+	patchOptions.bAddCommandline = false;
+
+	m_diffWrapper.SetCreatePatchFile(outputFile);
+	m_diffWrapper.SetAppendFiles(false);
+	m_diffWrapper.SetPrediffer(nullptr);
+	m_diffWrapper.SetPatchOptions(&patchOptions);
+	m_diffWrapper.SetOptions(&diffOptions);
+	std::vector<PATCHFILES> files;
+	for (const auto& item : m_fileList)
+	{
+		if (item.checked)
+			files.push_back(item);
+	}
+	const PatchWriteResult writeResult = WritePatchFile(
+		files, patchOptions.outputStyle, false);
+	return !writeResult.diffFailed && writeResult.writeFileCount > 0;
+}
+
+CPatchTool::PatchWriteResult CPatchTool::WritePatchFile(
+	const std::vector<PATCHFILES>& files, enum output_style outputStyle,
+	bool appendHeader)
+{
+	PatchWriteResult result;
+	m_diffWrapper.WritePatchFileHeader(outputStyle, appendHeader);
+	m_diffWrapper.SetAppendFiles(true);
+
+	for (const PATCHFILES& item : files)
+	{
+		const String filename1 = item.lfile.empty() ? paths::NATIVE_NULL_DEVICE_NAME : item.lfile;
+		const String filename2 = item.rfile.empty() ? paths::NATIVE_NULL_DEVICE_NAME : item.rfile;
+		m_diffWrapper.SetPaths(PathContext(filename1, filename2), false);
+		m_diffWrapper.SetAlternativePaths(PathContext(item.pathLeft, item.pathRight));
+		m_diffWrapper.SetCompareFiles(PathContext(item.lfile, item.rfile));
+
+		if (!m_diffWrapper.RunFileDiff())
+		{
+			result.diffFailed = true;
+			break;
+		}
+
+		DIFFSTATUS status;
+		m_diffWrapper.GetDiffStatus(&status);
+		if (status.bPatchFileFailed)
+		{
+			result.patchFileFailed = true;
+			break;
+		}
+		if (status.bBinaries)
+			result.binaryFound = true;
+		else
+			++result.writeFileCount;
+	}
+
+	m_diffWrapper.WritePatchFileTerminator(outputStyle);
+	return result;
 }
 
 /** 

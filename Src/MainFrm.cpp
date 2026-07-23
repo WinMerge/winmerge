@@ -88,6 +88,9 @@
 #include "OptionsSyntaxColors.h"
 #include "SysColorHook.h"
 #include "FileCmpReportDlg.h"
+#include "MergeFrameCommon.h"
+#include "ArchiveTool.h"
+#include "DiffImageListUtils.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -146,6 +149,7 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_PLUGINS_LIST,				IDB_PLUGINS_LIST,				CMainFrame::MENU_ALL },
 	{ ID_FILE_PRINT,				IDB_FILE_PRINT,					CMainFrame::MENU_FILECMP },
 	{ ID_TOOLS_GENERATEREPORT,		IDB_TOOLS_GENERATEREPORT,		CMainFrame::MENU_FILECMP },
+	{ ID_TOOLS_GENERATEARCHIVE,		IDB_TOOLS_GENERATEARCHIVE,		CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_TOGGLE_BOOKMARK,		IDB_EDIT_TOGGLE_BOOKMARK,		CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_GOTO_NEXT_BOOKMARK,	IDB_EDIT_GOTO_NEXT_BOOKMARK,	CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_GOTO_PREV_BOOKMARK,	IDB_EDIT_GOTO_PREV_BOOKMARK,	CMainFrame::MENU_FILECMP },
@@ -309,6 +313,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	ON_COMMAND(ID_TOOLS_GENERATEARCHIVE, OnToolsGenerateArchive)
 	// [Window] menu
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
@@ -972,6 +977,15 @@ int GetActivePaneFromFlags(int nFiles, const fileopenflags_t dwFlags[])
 	return nActivePane;
 }
 
+static void SetReportOptions(CFileCmpReport::Options& options)
+{
+	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
+	options.darkMode = DarkMode::isEnabled();
+	CDC dc;
+	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
+	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+}
+
  void CMainFrame::GenerateDocumentReport(const std::vector<IMergeDoc*>& docs, const String& sReportFile)
 {
 	if (sReportFile.empty())
@@ -980,9 +994,7 @@ int GetActivePaneFromFlags(int nFiles, const fileopenflags_t dwFlags[])
 	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
 	String sError;
 	CFileCmpReport::Options options;
-	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
-	options.darkMode = DarkMode::isEnabled();
-	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+	SetReportOptions(options);
 	if (!CFileCmpReport::GenerateDocumentReport(docs, sReportFile, options, sError))
 		RootLogger::Error(sError);
 }
@@ -2097,7 +2109,7 @@ void CMainFrame::OnToolsGenerateReport()
 {
 	FileCmpReportDlg dlg;
 	IMergeDoc* pMergeDoc = GetActiveIMergeDoc();
-	std::vector<FileCmpReportDlg::WindowItem> windowInfoList;
+	std::vector<FileCmpReportDlg::Item> windowInfoList;
 
 	for (auto* pDoc : GetAllMergeDocuments())
 	{
@@ -2107,13 +2119,14 @@ void CMainFrame::OnToolsGenerateReport()
 		if (pFrame == nullptr)
 			continue;
 
-		FileCmpReportDlg::WindowItem item;
-		item.pFrame = pFrame;
+		FileCmpReportDlg::Item item;
+		item.title = CMergeFrameCommon::GetTitleString(*pDoc);
 		item.data = reinterpret_cast<uintptr_t>(pDoc);
 		item.checked = (pDoc == pMergeDoc);
+		item.iImage = DiffImageListUtils::GetDiffImageIndex(pDoc);
 		windowInfoList.push_back(item);
 	}
-	dlg.SetWindows(windowInfoList);
+	dlg.SetItems(windowInfoList);
 
 	INT_PTR ans = dlg.DoModal();
 	if (ans == IDCANCEL)
@@ -2135,16 +2148,11 @@ void CMainFrame::OnToolsGenerateReport()
 		m_tempFiles.push_back(wTemp);
 	}
 
-	CDC dc;
-	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
-
 	CWaitCursor waitStatus;
 
 	String sError;
 	CFileCmpReport::Options options;
-	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
-	options.darkMode = DarkMode::isEnabled();
-	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+	SetReportOptions(options);
 	bool bSuccess = CFileCmpReport::GenerateDocumentReport(docs, s, options, sError);
 	if (bSuccess && dlg.GetOptions().copyToClipboard)
 		bSuccess = CFileCmpReport::CopyToClipboard(s, sError);
@@ -2213,6 +2221,23 @@ void CMainFrame::OnToolsGeneratePatch()
 	}
 
 	patcher.CreatePatch();
+}
+
+void CMainFrame::OnToolsGenerateArchive()
+{
+	ArchiveTool packager;
+	for (auto* pDoc : GetAllMergeDocuments())
+	{
+		if (pDoc == nullptr)
+			continue;
+		const bool checked = pDoc == GetActiveIMergeDoc();
+		int diffStatus = DiffImageListUtils::GetDiffImageIndex(pDoc);
+		packager.AddDocument(pDoc, checked, diffStatus);
+	}
+	CFileCmpReport::Options options;
+	SetReportOptions(options);
+	packager.SetReportOptions(options);
+	packager.CreateArchive();
 }
 
 void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)

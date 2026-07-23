@@ -10,8 +10,6 @@
 #include "SuperComboBox.h"
 #include "WindowListCtrl.h"
 
-struct IMergeDoc;
-
 /** 
  * @brief File compare dialog class.
  * This dialog (and class) shows file-compare report's selections
@@ -23,7 +21,7 @@ class FileCmpReportDlg : public CTrDialog
 	DECLARE_DYNAMIC(FileCmpReportDlg)
 
 public:
-	using WindowItem = CWindowListCtrl::WindowItem;
+	using Item = CWindowListCtrl::Item;
 
 	struct Options
 	{
@@ -39,7 +37,7 @@ public:
 // Dialog Data
 	enum { IDD = IDD_FILECMP_REPORT };
 
-	void SetWindows(const std::vector<WindowItem>& windows) { m_windows = windows; }
+	void SetItems(const std::vector<Item>& items) { m_items = items; }
 	void SetReportFile(const String& path) { m_options.reportFile = path; }
 	const Options& GetOptions() const { return m_options; }
 
@@ -48,7 +46,6 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(FileCmpReportDlg)
-	afx_msg void OnItemChangedReportWindowList(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnBtnClickReportBrowse();
 	afx_msg void OnBtnDblclickCopyClipboard();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
@@ -63,7 +60,7 @@ private:
 	void CollectOptions();
 
 private:
-	std::vector<WindowItem> m_windows;
+	std::vector<Item>	 m_items;
 	Options				 m_options;
 
 	//{{AFX_DATA(FileCmpReportDlg)

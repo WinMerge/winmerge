@@ -31,6 +31,7 @@ struct IMergeDoc
 	{
 		Text,         // CMergeDoc
 		Table,        // CMergeDoc
+		Binary,       // CHexMergeDoc
 		Image,        // CImgMergeFrame
 		WebPage,      // CWebPageDiffFrame
 		Unknown
