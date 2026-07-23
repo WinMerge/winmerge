@@ -383,7 +383,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
-        MENUITEM "Generate &Archive...",        ID_TOOLS_GENERATEARCHIVE
     END
     POPUP "&Plugins"
     BEGIN

@@ -10,6 +10,7 @@
 #include "FileCmpReport.h"
 #include "MainFrm.h"
 #include "MergeDoc.h"
+#include "MergeFrameCommon.h"
 #include "PatchTool.h"
 #include "TempFile.h"
 #include "7zCommon.h"
@@ -149,9 +150,7 @@ void ArchiveTool::AddDocument(IMergeDoc* document, bool checked, int diffStatus)
 	const int fileCount = document->GetFileCount();
 	for (int i = 0; i < fileCount; ++i)
 		item.paths.SetPath(i, document->GetPath(i));
-	item.title = document->GetDescription(0);
-	if (item.title.empty())
-		item.title = item.paths.GetLeft();
+	item.title = CMergeFrameCommon::GetTitleString(*document);
 	item.checked = checked;
 	item.diffStatus = diffStatus;
 	m_items.push_back(std::move(item));
