@@ -89,6 +89,7 @@
 #include "SysColorHook.h"
 #include "FileCmpReportDlg.h"
 #include "MergeFrameCommon.h"
+#include "ArchiveTool.h"
 #include "DiffImageListUtils.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
@@ -148,6 +149,7 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_PLUGINS_LIST,				IDB_PLUGINS_LIST,				CMainFrame::MENU_ALL },
 	{ ID_FILE_PRINT,				IDB_FILE_PRINT,					CMainFrame::MENU_FILECMP },
 	{ ID_TOOLS_GENERATEREPORT,		IDB_TOOLS_GENERATEREPORT,		CMainFrame::MENU_FILECMP },
+	{ ID_TOOLS_GENERATEARCHIVE,		IDB_TOOLS_GENERATEARCHIVE,		CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_TOGGLE_BOOKMARK,		IDB_EDIT_TOGGLE_BOOKMARK,		CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_GOTO_NEXT_BOOKMARK,	IDB_EDIT_GOTO_NEXT_BOOKMARK,	CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_GOTO_PREV_BOOKMARK,	IDB_EDIT_GOTO_PREV_BOOKMARK,	CMainFrame::MENU_FILECMP },
@@ -311,6 +313,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	ON_COMMAND(ID_TOOLS_GENERATEARCHIVE, OnToolsGenerateArchive)
 	// [Window] menu
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
@@ -2218,6 +2221,23 @@ void CMainFrame::OnToolsGeneratePatch()
 	}
 
 	patcher.CreatePatch();
+}
+
+void CMainFrame::OnToolsGenerateArchive()
+{
+	ArchiveTool packager;
+	for (auto* pDoc : GetAllMergeDocuments())
+	{
+		if (pDoc == nullptr)
+			continue;
+		const bool checked = pDoc == GetActiveIMergeDoc();
+		int diffStatus = DiffImageListUtils::GetDiffImageIndex(pDoc);
+		packager.AddDocument(pDoc, checked, diffStatus);
+	}
+	CFileCmpReport::Options options;
+	SetReportOptions(options);
+	packager.SetReportOptions(options);
+	packager.CreateArchive();
 }
 
 void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)

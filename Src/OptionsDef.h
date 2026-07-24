@@ -85,6 +85,11 @@ inline const String OPT_REPORTFILES_OPENREPORTFILE {_T("ReportFiles/OpenReportFi
 inline const String OPT_REPORTFILES_INCLUDEFILECMPREPORT {_T("ReportFiles/IncludeFileCmpReport"s)};
 inline const String OPT_REPORTFILES_INCLUDEALLIMAGEPAGES {_T("ReportFiles/IncludeAllImagePages"s)};
 
+// archive
+inline const String OPT_ARCHIVE_INCLUDEREPORT {_T("Archives/IncludeReport"s)};
+inline const String OPT_ARCHIVE_INCLUDEPATCH {_T("Archives/IncludePatch"s)};
+inline const String OPT_ARCHIVE_COPYTOCLIPBOARD {_T("Archives/CopyToClipboard"s)};
+
 // File compare
 inline const String OPT_AUTOMATIC_RESCAN {_T("Settings/AutomaticRescan"s)};
 inline const String OPT_ALLOW_MIXED_EOL {_T("Settings/AllowMixedEOL"s)};
