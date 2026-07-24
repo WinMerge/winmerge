@@ -383,7 +383,7 @@ bool CompressibleItemEnumerator::MultiStepCompressArchive(const tchar_t* path)
 /**
  * @brief Generate archive from DirView items.
  */
-void CompressibleItemEnumerator::CompressArchive(const tchar_t* path)
+bool CompressibleItemEnumerator::CompressArchive(const tchar_t* path)
 {
 	String strPath;
 	if (path == nullptr)
@@ -451,7 +451,9 @@ void CompressibleItemEnumerator::CompressArchive(const tchar_t* path)
 	if (path && !MultiStepCompressArchive(path))
 	{
 		I18n::MessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
+		return false;
 	}
+	return true;
 }
 
 

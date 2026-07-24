@@ -1005,6 +1005,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="DiffImageListUtils.cpp" />
     <ClInclude Include="ClipboardHistoryMenu.h" />
     <ClInclude Include="Common\ScopeExit.h" />
     <ClInclude Include="Common\ValidatingEdit.h" />
@@ -1531,6 +1532,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClInclude Include="DiffImageListUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Externals\boost\boost\config.hpp" />

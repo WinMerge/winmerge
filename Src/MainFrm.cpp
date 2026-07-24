@@ -88,6 +88,8 @@
 #include "OptionsSyntaxColors.h"
 #include "SysColorHook.h"
 #include "FileCmpReportDlg.h"
+#include "MergeFrameCommon.h"
+#include "DiffImageListUtils.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -972,6 +974,15 @@ int GetActivePaneFromFlags(int nFiles, const fileopenflags_t dwFlags[])
 	return nActivePane;
 }
 
+static void SetReportOptions(CFileCmpReport::Options& options)
+{
+	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
+	options.darkMode = DarkMode::isEnabled();
+	CDC dc;
+	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
+	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+}
+
  void CMainFrame::GenerateDocumentReport(const std::vector<IMergeDoc*>& docs, const String& sReportFile)
 {
 	if (sReportFile.empty())
@@ -980,9 +991,7 @@ int GetActivePaneFromFlags(int nFiles, const fileopenflags_t dwFlags[])
 	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
 	String sError;
 	CFileCmpReport::Options options;
-	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
-	options.darkMode = DarkMode::isEnabled();
-	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+	SetReportOptions(options);
 	if (!CFileCmpReport::GenerateDocumentReport(docs, sReportFile, options, sError))
 		RootLogger::Error(sError);
 }
@@ -2097,7 +2106,7 @@ void CMainFrame::OnToolsGenerateReport()
 {
 	FileCmpReportDlg dlg;
 	IMergeDoc* pMergeDoc = GetActiveIMergeDoc();
-	std::vector<FileCmpReportDlg::WindowItem> windowInfoList;
+	std::vector<FileCmpReportDlg::Item> windowInfoList;
 
 	for (auto* pDoc : GetAllMergeDocuments())
 	{
@@ -2107,13 +2116,14 @@ void CMainFrame::OnToolsGenerateReport()
 		if (pFrame == nullptr)
 			continue;
 
-		FileCmpReportDlg::WindowItem item;
-		item.pFrame = pFrame;
+		FileCmpReportDlg::Item item;
+		item.title = CMergeFrameCommon::GetTitleString(*pDoc);
 		item.data = reinterpret_cast<uintptr_t>(pDoc);
 		item.checked = (pDoc == pMergeDoc);
+		item.iImage = DiffImageListUtils::GetDiffImageIndex(pDoc);
 		windowInfoList.push_back(item);
 	}
-	dlg.SetWindows(windowInfoList);
+	dlg.SetItems(windowInfoList);
 
 	INT_PTR ans = dlg.DoModal();
 	if (ans == IDCANCEL)
@@ -2135,16 +2145,11 @@ void CMainFrame::OnToolsGenerateReport()
 		m_tempFiles.push_back(wTemp);
 	}
 
-	CDC dc;
-	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
-
 	CWaitCursor waitStatus;
 
 	String sError;
 	CFileCmpReport::Options options;
-	options.includeAllImagePages = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEALLIMAGEPAGES);
-	options.darkMode = DarkMode::isEnabled();
-	options.fontSize = -theApp.m_lfDiff.lfHeight * 72.0 / dc.GetDeviceCaps(LOGPIXELSY);
+	SetReportOptions(options);
 	bool bSuccess = CFileCmpReport::GenerateDocumentReport(docs, s, options, sError);
 	if (bSuccess && dlg.GetOptions().copyToClipboard)
 		bSuccess = CFileCmpReport::CopyToClipboard(s, sError);

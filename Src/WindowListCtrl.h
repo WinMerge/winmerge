@@ -11,12 +11,6 @@ class CWindowListCtrl : public CListCtrl
 	DECLARE_DYNAMIC(CWindowListCtrl)
 
 public:
-	struct WindowItem
-	{
-		CFrameWnd* pFrame = nullptr;
-		uintptr_t data = 0;
-		bool checked = false;
-	};
 	struct Item
 	{
 		String title;
@@ -29,7 +23,7 @@ public:
 	virtual ~CWindowListCtrl();
 
 	void Initialize();
-	void SetWindows(const std::vector<WindowItem>& windows);
+	CImageList& GetImageList() { return m_imageList; }
 	void SetItems(const std::vector<Item>& items);
 	std::vector<uintptr_t> GetCheckedData() const;
 	std::vector<bool> GetChecked() const;
