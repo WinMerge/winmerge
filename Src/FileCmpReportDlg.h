@@ -60,8 +60,8 @@ private:
 	void CollectOptions();
 
 private:
-	std::vector<Item>	 m_items;
-	Options				 m_options;
+	std::vector<Item>	m_items;
+	Options				m_options;
 
 	//{{AFX_DATA(FileCmpReportDlg)
 	CWindowListCtrl m_list;
