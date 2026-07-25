@@ -27,13 +27,15 @@ struct IMergeDoc
 		Removed,
 	};
 
-	enum class DocumentType
+	enum DocumentType // = WindowType
 	{
+		Automatic,
 		Text,         // CMergeDoc
 		Table,        // CMergeDoc
 		Binary,       // CHexMergeDoc
 		Image,        // CImgMergeFrame
 		WebPage,      // CWebPageDiffFrame
+		Folder,       // CDirFrame
 		Unknown
 	};
 

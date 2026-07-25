@@ -27,6 +27,7 @@ void ArchiveDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_ARCHIVE_FILE, m_ctlArchiveFile);
 	DDX_Check(pDX, IDC_ARCHIVE_REPORT, m_options.includeReport);
 	DDX_Check(pDX, IDC_ARCHIVE_PATCH, m_options.includePatch);
+	DDX_Check(pDX, IDC_ARCHIVE_PROJECT, m_options.includeProject);
 	DDX_Check(pDX, IDC_ARCHIVE_COPYCLIPBOARD, m_options.copyToClipboard);
 	DDX_CBString(pDX, IDC_ARCHIVE_FILE, m_options.archiveFile);
 }
@@ -41,6 +42,7 @@ BOOL ArchiveDlg::OnInitDialog()
 
 	m_options.includeReport = GetOptionsMgr()->GetBool(OPT_ARCHIVE_INCLUDEREPORT);
 	m_options.includePatch = GetOptionsMgr()->GetBool(OPT_ARCHIVE_INCLUDEPATCH);
+	m_options.includeProject = GetOptionsMgr()->GetBool(OPT_ARCHIVE_INCLUDEPROJECT);
 	m_options.copyToClipboard = GetOptionsMgr()->GetBool(OPT_ARCHIVE_COPYTOCLIPBOARD);
 	m_ctlArchiveFile.SetFileControlStates(true);
 	m_ctlArchiveFile.LoadState(_T("Archives"));
@@ -95,6 +97,7 @@ void ArchiveDlg::OnOK()
 	m_ctlArchiveFile.SaveState(_T("Archives"));
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_INCLUDEREPORT, m_options.includeReport);
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_INCLUDEPATCH, m_options.includePatch);
+	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_INCLUDEPROJECT, m_options.includeProject);
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_COPYTOCLIPBOARD, m_options.copyToClipboard);
 	__super::OnOK();
 }

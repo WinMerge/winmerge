@@ -121,6 +121,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_ARCHIVE_INCLUDEREPORT, false);
 	pOptions->InitOption(OPT_ARCHIVE_INCLUDEPATCH, false);
+	pOptions->InitOption(OPT_ARCHIVE_INCLUDEPROJECT, false);
 	pOptions->InitOption(OPT_ARCHIVE_COPYTOCLIPBOARD, false);
 
 	pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);

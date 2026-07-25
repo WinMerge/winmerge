@@ -88,6 +88,7 @@ inline const String OPT_REPORTFILES_INCLUDEALLIMAGEPAGES {_T("ReportFiles/Includ
 // archive
 inline const String OPT_ARCHIVE_INCLUDEREPORT {_T("Archives/IncludeReport"s)};
 inline const String OPT_ARCHIVE_INCLUDEPATCH {_T("Archives/IncludePatch"s)};
+inline const String OPT_ARCHIVE_INCLUDEPROJECT {_T("Archives/IncludeProject"s)};
 inline const String OPT_ARCHIVE_COPYTOCLIPBOARD {_T("Archives/CopyToClipboard"s)};
 
 // File compare

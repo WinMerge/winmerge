@@ -31,6 +31,7 @@ public:
 		String archiveFile;
 		bool includeReport = true;
 		bool includePatch = true;
+		bool includeProject = true;
 		bool copyToClipboard = false;
 		std::vector<size_t> selectedItems;
 	};

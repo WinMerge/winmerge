@@ -562,7 +562,8 @@
 #define IDC_ARCHIVE_BROWSE              1432
 #define IDC_ARCHIVE_REPORT              1433
 #define IDC_ARCHIVE_PATCH               1434
-#define IDC_ARCHIVE_COPYCLIPBOARD       1435
+#define IDC_ARCHIVE_PROJECT             1435
+#define IDC_ARCHIVE_COPYCLIPBOARD       1436
 #define IDC_ENABLE_IMGCMP_IN_DIRCMP     1401
 #define IDC_COMPARETABLE_CSV            1402
 #define IDC_COMPARETABLE_TSV            1403
@@ -2026,6 +2027,7 @@
 #define IDS_LOCBAR_CAPTION              42201
 #define IDS_DIFFBAR_CAPTION             42202
 #define IDS_OUTPUTBAR_CAPTION           42203
+#define IDS_ARCHIVE_SUCCEEDED           42300
 #define IDS_DIFF_SUCCEEDED              42400
 #define IDS_DIFF_FILEOVERWRITE          42403
 #define IDS_DIFF_SELECTEDFILES          42404

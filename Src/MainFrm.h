@@ -50,6 +50,7 @@ class COutputDoc;
 class CTempPathContext;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
+typedef std::shared_ptr<TempFolder> TempFolderPtr;
 
 // typed lists (homogenous pointer lists)
 typedef CTypedPtrList<CPtrList, COpenDoc *> OpenDocList;
@@ -246,6 +247,7 @@ public:
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
 	void OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show);
 	void AddTempFile(const TempFilePtr& pTempFile) { m_tempFiles.push_back(pTempFile); }
+	void AddTempFolder(const TempFolderPtr& pTempFolder) { m_tempFolders.push_back(pTempFolder); }
 	MergeDocList &GetAllMergeDocs();
 	DirDocList &GetAllDirDocs();
 	std::vector<IMergeDoc*> GetAllMergeDocuments();

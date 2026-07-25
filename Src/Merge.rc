@@ -3008,7 +3008,8 @@ BEGIN
     PUSHBUTTON      "&Browse...",IDC_ARCHIVE_BROWSE,210,126,51,14
     CONTROL         "Include HTML &report",IDC_ARCHIVE_REPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,254,10
     CONTROL         "Include &patch",IDC_ARCHIVE_PATCH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,254,10
-    CONTROL         "&Copy to clipboard",IDC_ARCHIVE_COPYCLIPBOARD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,168,254,10
+    CONTROL         "Include pro&ject",IDC_ARCHIVE_PROJECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,168,254,10
+    CONTROL         "&Copy to clipboard",IDC_ARCHIVE_COPYCLIPBOARD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,180,254,10
     DEFPUSHBUTTON   "OK",IDOK,157,194,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,211,194,50,14
 END
@@ -5268,6 +5269,12 @@ BEGIN
                             "Cannot create patch from binary files."
     IDS_SAVEFILES_FORPATCH  "Save all files first.\n\nCreating a patch requires no unsaved changes."
     IDS_FOLDER_NOTEXIST     "Folder does not exist."
+END
+
+// CREATE ARCHIVE
+STRINGTABLE
+BEGIN
+    IDS_ARCHIVE_SUCCEEDED   "Archive file written."
 END
 
 STRINGTABLE
