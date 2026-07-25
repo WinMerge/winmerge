@@ -23,7 +23,7 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5816
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5817
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_UKRAINIAN, SUBLANG_DEFAULT"
 
@@ -165,7 +165,7 @@ msgstr "&Сценарії"
 #. IDS_NO_EDIT_SCRIPTS
 #: Merge.rc:127 Merge.rc:352 Merge.rc:463 Merge.rc:673 Merge.rc:678
 #: Merge.rc:887 Merge.rc:899 Merge.rc:906 Merge.rc:963 Merge.rc:1210
-#: Merge.rc:5374
+#: Merge.rc:5375
 msgid "< Empty >"
 msgstr "< Порожньо >"
 
@@ -230,7 +230,7 @@ msgid "Auto-Fit All Columns"
 msgstr "Автоширина стовпців"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
-#: Merge.rc:153 Merge.rc:5644
+#: Merge.rc:153 Merge.rc:5645
 msgid "&Filter by This Column"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgid "&Previous Page"
 msgstr "&Попередня сторінка"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:194 Merge.rc:202 Merge.rc:1266 Merge.rc:5677
+#: Merge.rc:194 Merge.rc:202 Merge.rc:1266 Merge.rc:5678
 msgid "&Next Page"
 msgstr "&Наступна сторінка"
 
@@ -542,7 +542,7 @@ msgstr "&Двійковий"
 #. IDS_IMAGE_MENU
 #: Merge.rc:329 Merge.rc:338 Merge.rc:432 Merge.rc:441 Merge.rc:609
 #: Merge.rc:618 Merge.rc:670 Merge.rc:960 Merge.rc:1187 Merge.rc:1200
-#: Merge.rc:5476
+#: Merge.rc:5477
 msgid "&Image"
 msgstr "&Зображення"
 
@@ -664,7 +664,7 @@ msgid "&Huge"
 msgstr "&Величезні"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:378 Merge.rc:529 Merge.rc:777 Merge.rc:5712
+#: Merge.rc:378 Merge.rc:529 Merge.rc:777 Merge.rc:5713
 msgid "Men&u Bar"
 msgstr "Рядок м&еню"
 
@@ -1815,12 +1815,12 @@ msgstr "Налаштування розпакувальника"
 
 #. IDS_USERCHOICE_NONE
 #: Merge.rc:1088 Merge.rc:1094 Merge.rc:1836 Merge.rc:1840 Merge.rc:2031
-#: Merge.rc:2035 Merge.rc:5376
+#: Merge.rc:2035 Merge.rc:5377
 msgid "<None>"
 msgstr "<Немає>"
 
 #. IDS_USERCHOICE_AUTOMATIC
-#: Merge.rc:1089 Merge.rc:1095 Merge.rc:5377
+#: Merge.rc:1089 Merge.rc:1095 Merge.rc:5378
 msgid "<Automatic>"
 msgstr "<Автоматично>"
 
@@ -2750,12 +2750,12 @@ msgid "Text files only"
 msgstr ""
 
 #. IDS_EOL_NONE
-#: Merge.rc:1667 Merge.rc:1918 Merge.rc:5303
+#: Merge.rc:1667 Merge.rc:1918 Merge.rc:5304
 msgid "None"
 msgstr "Немає"
 
 #. IDS_EOL_MIXED
-#: Merge.rc:1668 Merge.rc:5298
+#: Merge.rc:1668 Merge.rc:5299
 msgid "Mixed"
 msgstr "Мішаний"
 
@@ -4189,7 +4189,7 @@ msgid "Items compared:"
 msgstr "Порівняно елементів:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2791 Merge.rc:3168 Merge.rc:5683
+#: Merge.rc:2791 Merge.rc:3168 Merge.rc:5684
 msgid "&Close"
 msgstr "&Закрити"
 
@@ -5636,7 +5636,7 @@ msgid "Hidden Items"
 msgstr "Приховані елементи"
 
 #. IDS_PLUGINSLIST_NAME
-#: Merge.rc:4680 Merge.rc:5310
+#: Merge.rc:4680 Merge.rc:5311
 msgid "Name"
 msgstr "Ім'я"
 
@@ -5656,7 +5656,7 @@ msgid "[F] "
 msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
-#: Merge.rc:4684 Merge.rc:5312
+#: Merge.rc:4684 Merge.rc:5313
 msgid "Description"
 msgstr "Опис"
 
@@ -6602,12 +6602,12 @@ msgid "Binary"
 msgstr "Двійковий"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
-#: Merge.rc:4992 Merge.rc:5313
+#: Merge.rc:4992 Merge.rc:5314
 msgid "Unpacker"
 msgstr "Розпакувальник"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4993 Merge.rc:5314 Merge.rc:5621
+#: Merge.rc:4993 Merge.rc:5315 Merge.rc:5622
 msgid "Prediffer"
 msgstr "Попередній порівнювач"
 
@@ -7498,8 +7498,13 @@ msgstr "Папка не існує."
 msgid "Archive file written."
 msgstr ""
 
+#. IDS_ARCHIVE_SAVEFILES
+#: Merge.rc:5278
+msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
+msgstr ""
+
 #. IDS_NO_ZIP_SUPPORT
-#: Merge.rc:5282
+#: Merge.rc:5283
 msgid ""
 "Archive support not enabled.\n"
 "7-Zip and/or Merge7z*.dll not found.\n"
@@ -7511,37 +7516,37 @@ msgstr ""
 "Подивіться інструкцію, щоб довідатися більше про підтримку архівів і як її ввімкнути."
 
 #. IDS_OPT_EXPORT_CAPTION
-#: Merge.rc:5283
+#: Merge.rc:5284
 msgid "Select file for export"
 msgstr "Вибрати файл для експорту"
 
 #. IDS_OPT_IMPORT_CAPTION
-#: Merge.rc:5284
+#: Merge.rc:5285
 msgid "Select file for import"
 msgstr "Вибрати файл для імпорту"
 
 #. IDS_OPT_IMPORT_DONE
-#: Merge.rc:5285
+#: Merge.rc:5286
 msgid "Options imported from file."
 msgstr "Налаштування, імпортовані з файлу."
 
 #. IDS_OPT_EXPORT_DONE
-#: Merge.rc:5286
+#: Merge.rc:5287
 msgid "Options exported to file."
 msgstr "Налаштування, експортовані в файл."
 
 #. IDS_OPT_IMPORT_ERR
-#: Merge.rc:5287
+#: Merge.rc:5288
 msgid "Failed to import options from file."
 msgstr "Помилка імпорту налаштувань з файлу."
 
 #. IDS_OPT_EXPORT_ERR
-#: Merge.rc:5288
+#: Merge.rc:5289
 msgid "Failed to write options to file."
 msgstr "Помилка експорту налаштувань в файл."
 
 #. IDS_CLOSEALL_WINDOWS
-#: Merge.rc:5289
+#: Merge.rc:5290
 msgid ""
 "Close multiple compare windows?\n"
 "\n"
@@ -7552,34 +7557,34 @@ msgstr ""
 "Продовжити?"
 
 #. IDS_EOL_BIN
-#: Merge.rc:5299
+#: Merge.rc:5300
 msgctxt "EOL Type"
 msgid "Binary"
 msgstr "Двійковий"
 
 #. IDS_MARKER_COLOR_FMT
-#: Merge.rc:5304
+#: Merge.rc:5305
 #, c-format
 msgid "Marker Color %d"
 msgstr "Колір маркера %d"
 
 #. IDS_MARKER_NEW_PATTERN
-#: Merge.rc:5305
+#: Merge.rc:5306
 msgid "New Pattern"
 msgstr "Новий шаблон"
 
 #. IDS_PLUGINSLIST_TYPE
-#: Merge.rc:5311
+#: Merge.rc:5312
 msgid "Type"
 msgstr "Тип"
 
 #. IDS_PLUGINS_TYPE_EDITSCRIPT
-#: Merge.rc:5315
+#: Merge.rc:5316
 msgid "Editor script"
 msgstr "Сценарій редактора"
 
 #. ID_SELECTLINEDIFF
-#: Merge.rc:5321
+#: Merge.rc:5322
 msgid ""
 "\n"
 "Difference in Current Line (F4)"
@@ -7588,7 +7593,7 @@ msgstr ""
 "Відмінність у поточному рядку (F4)"
 
 #. ID_OPTIONS
-#: Merge.rc:5322
+#: Merge.rc:5323
 msgid ""
 "\n"
 "Options"
@@ -7597,7 +7602,7 @@ msgstr ""
 "Налаштування"
 
 #. ID_REFRESH
-#: Merge.rc:5323
+#: Merge.rc:5324
 msgid ""
 "\n"
 "Refresh (F5)"
@@ -7606,7 +7611,7 @@ msgstr ""
 "Оновити (F5)"
 
 #. ID_PREVDIFF
-#: Merge.rc:5329
+#: Merge.rc:5330
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)"
@@ -7615,7 +7620,7 @@ msgstr ""
 "Попередня відмінність (Alt+Up)"
 
 #. ID_NEXTDIFF
-#: Merge.rc:5330
+#: Merge.rc:5331
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
@@ -7624,7 +7629,7 @@ msgstr ""
 "Наступна відмінність (Alt+Down)"
 
 #. ID_PREVCONFLICT
-#: Merge.rc:5331
+#: Merge.rc:5332
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
@@ -7633,7 +7638,7 @@ msgstr ""
 "Попередній конфлікт (Alt+Shift+Up)"
 
 #. ID_NEXTCONFLICT
-#: Merge.rc:5332
+#: Merge.rc:5333
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
@@ -7642,7 +7647,7 @@ msgstr ""
 "Наступний конфлікт (Alt+Shift+Down)"
 
 #. ID_FIRSTDIFF
-#: Merge.rc:5337
+#: Merge.rc:5338
 msgid ""
 "\n"
 "First Difference (Alt+Home)"
@@ -7651,7 +7656,7 @@ msgstr ""
 "Перша відмінність (Alt+Home)"
 
 #. ID_CURDIFF
-#: Merge.rc:5338
+#: Merge.rc:5339
 msgid ""
 "\n"
 "Current Difference (Alt+Enter)"
@@ -7660,7 +7665,7 @@ msgstr ""
 "Поточна відмінність (Alt+Enter)"
 
 #. ID_LASTDIFF
-#: Merge.rc:5339
+#: Merge.rc:5340
 msgid ""
 "\n"
 "Last Difference (Alt+End)"
@@ -7669,7 +7674,7 @@ msgstr ""
 "Остання відмінність (Alt+End)"
 
 #. ID_L2R
-#: Merge.rc:5340
+#: Merge.rc:5341
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)"
@@ -7678,7 +7683,7 @@ msgstr ""
 "Копіювати праворуч (Alt+Right)"
 
 #. ID_R2L
-#: Merge.rc:5341
+#: Merge.rc:5342
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)"
@@ -7687,7 +7692,7 @@ msgstr ""
 "Копіювати ліворуч (Alt+Left)"
 
 #. ID_L2RNEXT
-#: Merge.rc:5342
+#: Merge.rc:5343
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)"
@@ -7696,7 +7701,7 @@ msgstr ""
 "Копіювати праворуч і перейти далі (Ctrl+Alt+Right)"
 
 #. ID_R2LNEXT
-#: Merge.rc:5343
+#: Merge.rc:5344
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)"
@@ -7705,7 +7710,7 @@ msgstr ""
 "Копіювати ліворуч і перейти далі (Ctrl+Alt+Left)"
 
 #. ID_ALL_RIGHT
-#: Merge.rc:5344
+#: Merge.rc:5345
 msgid ""
 "\n"
 "Copy All to Right"
@@ -7714,7 +7719,7 @@ msgstr ""
 "Копіювати все праворуч"
 
 #. ID_ALL_LEFT
-#: Merge.rc:5345
+#: Merge.rc:5346
 msgid ""
 "\n"
 "Copy All to Left"
@@ -7723,7 +7728,7 @@ msgstr ""
 "Копіювати все ліворуч"
 
 #. ID_AUTO_MERGE
-#: Merge.rc:5346
+#: Merge.rc:5347
 msgid ""
 "\n"
 "Auto Merge (Ctrl+Alt+M)"
@@ -7732,7 +7737,7 @@ msgstr ""
 "Автоматичне злиття (Ctrl+Alt+M)"
 
 #. ID_FIRSTFILE
-#: Merge.rc:5347
+#: Merge.rc:5348
 msgid ""
 "\n"
 "First File"
@@ -7741,7 +7746,7 @@ msgstr ""
 "Перший файл"
 
 #. ID_NEXTFILE
-#: Merge.rc:5348
+#: Merge.rc:5349
 msgid ""
 "\n"
 "Next File (Ctrl+F8)"
@@ -7750,7 +7755,7 @@ msgstr ""
 "Наступний файл (Ctrl+F8)"
 
 #. ID_LASTFILE
-#: Merge.rc:5349
+#: Merge.rc:5350
 msgid ""
 "\n"
 "Last File"
@@ -7759,7 +7764,7 @@ msgstr ""
 "Останній файл"
 
 #. ID_PREVFILE
-#: Merge.rc:5350
+#: Merge.rc:5351
 msgid ""
 "\n"
 "Previous File (Ctrl+F7)"
@@ -7768,142 +7773,142 @@ msgstr ""
 "Попередній файл (Ctrl+F7)"
 
 #. IDS_UNPACK_AUTO
-#: Merge.rc:5357
+#: Merge.rc:5358
 msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr "Автоматичний підбір розпакувальника (вкажіть розширення хоча б одного з файлів)."
 
 #. IDS_NO_PREDIFFER
-#: Merge.rc:5358
+#: Merge.rc:5359
 msgid "No Prediffer (Normal)"
 msgstr "Без попереднього порівняння (звичайне)"
 
 #. IDS_SUGGESTED_PLUGINS
-#: Merge.rc:5359
+#: Merge.rc:5360
 msgid "Suggested Plugins"
 msgstr "Рекомендовані плагіни"
 
 #. IDS_NOT_SUGGESTED_PLUGINS
-#: Merge.rc:5360
+#: Merge.rc:5361
 msgid "All Plugins"
 msgstr "Усі плагіни"
 
 #. IDS_PRIVATEBUILD_FMT
-#: Merge.rc:5366
+#: Merge.rc:5367
 #, c-format
 msgid "Private Build: %1"
 msgstr "Приватний білд: %1"
 
 #. IDS_ALLRIGHTS_RESERVED
-#: Merge.rc:5367
+#: Merge.rc:5368
 msgid " - All rights reserved."
 msgstr " - Усі права захищені."
 
 #. IDS_TITLE_PLUGINS_SETTINGS
-#: Merge.rc:5373
+#: Merge.rc:5374
 msgid "Plugin Settings"
 msgstr "Налаштування плагіну"
 
 #. IDS_NO_SCT_SCRIPTS
-#: Merge.rc:5375
+#: Merge.rc:5376
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не знайдений - .sct сценарії вимкнуті"
 
 #. IDS_LOCBAR_GOTOLINE_FMT
-#: Merge.rc:5383
+#: Merge.rc:5384
 #, c-format
 msgid "G&o to Line %1"
 msgstr "Перейти до &рядка %1"
 
 #. IDS_GOTO_MOVED_LINE
-#: Merge.rc:5389
+#: Merge.rc:5390
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Перейти до переміщеного рядка\tCtrl+Shift+G"
 
 #. IDS_AUTOCOMPLETE_DISABLED
-#: Merge.rc:5395
+#: Merge.rc:5396
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
 msgstr "Вимкнено"
 
 #. IDS_AUTOCOMPLETE_FILE_SYS
-#: Merge.rc:5396
+#: Merge.rc:5397
 msgid "From file system"
 msgstr "Як на диску"
 
 #. IDS_AUTOCOMPLETE_MRU
-#: Merge.rc:5397
+#: Merge.rc:5398
 msgid "From Most Recently Used list"
 msgstr "Як в списку нещодавніх документів"
 
 #. IDS_COLORSCHEME_PLAIN
-#: Merge.rc:5403
+#: Merge.rc:5404
 msgid "No Highlighting"
 msgstr "Не підсвічувати"
 
 #. IDS_COLORSCHEME_PO
-#: Merge.rc:5438
+#: Merge.rc:5439
 msgid "Portable Object"
 msgstr "Portable Object"
 
 #. IDS_COLORSCHEME_RSRC
-#: Merge.rc:5443
+#: Merge.rc:5444
 msgid "Resources"
 msgstr "Ресурси"
 
 #. IDS_COLORSCHEME_SH
-#: Merge.rc:5447
+#: Merge.rc:5448
 msgid "Shell"
 msgstr "Shell"
 
 #. IDS_CLOSE_LEFT_TABS
-#: Merge.rc:5468
+#: Merge.rc:5469
 msgid "Close &Left Tabs"
 msgstr "Закрити вкладки зліва"
 
 #. IDS_CLOSE_RIGHT_TABS
-#: Merge.rc:5469
+#: Merge.rc:5470
 msgid "Close R&ight Tabs"
 msgstr "Закрити вкладки справа"
 
 #. IDS_CLOSE_OTHER_TABS
-#: Merge.rc:5470
+#: Merge.rc:5471
 msgid "Close &Other Tabs"
 msgstr "Закрити інші вкладки"
 
 #. IDS_TABBAR_AUTO_MAXWIDTH
-#: Merge.rc:5471
+#: Merge.rc:5472
 msgid "Enable &Auto Max Width"
 msgstr "Увімкнути автоматичну максимальну ширину"
 
 #. IDS_WEBPAGE_MENU
-#: Merge.rc:5481
+#: Merge.rc:5482
 msgid "We&bpage"
 msgstr "Ве&бсторінка"
 
 #. IDS_VIEW_WRAP_TEXT
-#: Merge.rc:5486
+#: Merge.rc:5487
 msgid "W&rap Text"
 msgstr "П&ереносити текст"
 
 #. IDS_NOTINSTALLED
-#: Merge.rc:5491
+#: Merge.rc:5492
 #, c-format
 msgid "%1 is not installed."
 msgstr "%1 не встановлено."
 
 #. IDS_CREATE_FOLDER
-#: Merge.rc:5496
+#: Merge.rc:5497
 #, c-format
 msgid "%1 does not exist. Create it?"
 msgstr "%1 не існує. Створити?"
 
 #. IDS_CREATE_FOLDER_ERROR
-#: Merge.rc:5497
+#: Merge.rc:5498
 msgid "Failed to create folder."
 msgstr "Не вдалося створити папку."
 
 #. IDC_EXT_EDITOR_PATH
-#: Merge.rc:5502
+#: Merge.rc:5503
 msgid ""
 "Parameters:\n"
 "$file: Current file path\n"
@@ -7914,487 +7919,487 @@ msgstr ""
 "$linenum: Поточний номер рядка курсора"
 
 #. IDS_DIFF_ALGORITHM_DEFAULT
-#: Merge.rc:5507
+#: Merge.rc:5508
 msgid "default"
 msgstr "за замовчуванням"
 
 #. IDS_DIFF_ALGORITHM_MINIMAL
-#: Merge.rc:5508
+#: Merge.rc:5509
 msgid "minimal"
 msgstr "мінімально"
 
 #. IDS_DIFF_ALGORITHM_PATIENCE
-#: Merge.rc:5509
+#: Merge.rc:5510
 msgid "patience"
 msgstr "терплячо"
 
 #. IDS_DIFF_ALGORITHM_HISTOGRAM
-#: Merge.rc:5510
+#: Merge.rc:5511
 msgid "histogram"
 msgstr "гістограма"
 
 #. IDS_DIFF_ALGORITHM_NONE
-#: Merge.rc:5511
+#: Merge.rc:5512
 msgid "none"
 msgstr "немає"
 
 #. IDS_RENDERING_MODE_GDI
-#: Merge.rc:5516
+#: Merge.rc:5517
 msgid "GDI"
 msgstr "GDI"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_DEFAULT
-#: Merge.rc:5517
+#: Merge.rc:5518
 msgid "DirectWrite Default"
 msgstr "DirectWrite за замовчуванням"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_ALIASED
-#: Merge.rc:5518
+#: Merge.rc:5519
 msgid "DirectWrite Aliased"
 msgstr "DirectWrite Aliased"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_CLASSIC
-#: Merge.rc:5519
+#: Merge.rc:5520
 msgid "DirectWrite GDI Classic"
 msgstr "DirectWrite GDI Classic"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_NATURAL
-#: Merge.rc:5520
+#: Merge.rc:5521
 msgid "DirectWrite GDI Natural"
 msgstr "DirectWrite GDI Natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL
-#: Merge.rc:5521
+#: Merge.rc:5522
 msgid "DirectWrite Natural"
 msgstr "DirectWrite Natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL_SYMMETRIC
-#: Merge.rc:5522
+#: Merge.rc:5523
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_DISABLED
-#: Merge.rc:5527
+#: Merge.rc:5528
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
 msgstr "Вимкнено"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_1
-#: Merge.rc:5528
+#: Merge.rc:5529
 msgid "MDI child window or main window"
 msgstr "Дочірнє вікно MDI або головне вікно"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_2
-#: Merge.rc:5529
+#: Merge.rc:5530
 msgid "MDI child window only"
 msgstr "Лише дочірнє вікно MDI"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_3
-#: Merge.rc:5530
+#: Merge.rc:5531
 msgid "Close main window if only one MDI child window"
 msgstr "Закривати головне вікно, якщо є лише одне дочірнє вікно MDI"
 
 #. IDS_DIFF_GROUP
-#: Merge.rc:5535
+#: Merge.rc:5536
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Відмінність"
 
 #. IDS_DIFF_HIGHLIGHT
-#: Merge.rc:5536
+#: Merge.rc:5537
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
 msgstr "Підсвітити"
 
 #. IDS_DIFF_BLINK
-#: Merge.rc:5537
+#: Merge.rc:5538
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
 msgstr "Блимати"
 
 #. IDS_DIFF_BLOCKSIZE
-#: Merge.rc:5538
+#: Merge.rc:5539
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
 msgstr "Розмір блоку"
 
 #. IDS_DIFF_BLOCKALPHA
-#: Merge.rc:5539
+#: Merge.rc:5540
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
 msgstr "Прозорість блоку"
 
 #. IDS_DIFF_CDTHRESHOLD
-#: Merge.rc:5540
+#: Merge.rc:5541
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
 msgstr "Поріг розрізнення кольорів"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION
-#: Merge.rc:5541
+#: Merge.rc:5542
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
 msgstr "Виявлення вставок/видалень"
 
 #. IDS_OVERLAY_MODE_NONE
-#: Merge.rc:5542 Merge.rc:5547
+#: Merge.rc:5543 Merge.rc:5548
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
 msgstr "Немає"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_VERTICAL
-#: Merge.rc:5543
+#: Merge.rc:5544
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
 msgstr "Вертикальних"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_HORIZONTAL
-#: Merge.rc:5544
+#: Merge.rc:5545
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
 msgstr "Горизонтальних"
 
 #. IDS_OVERLAY_GROUP
-#: Merge.rc:5545
+#: Merge.rc:5546
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
 msgstr "Накладання"
 
 #. IDS_OVERLAY_ALPHA
-#: Merge.rc:5546
+#: Merge.rc:5547
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
 msgstr "Альфа"
 
 #. IDS_OVERLAY_MODE_XOR
-#: Merge.rc:5548
+#: Merge.rc:5549
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
 msgstr "XOR"
 
 #. IDS_OVERLAY_MODE_ALPHA
-#: Merge.rc:5549
+#: Merge.rc:5550
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
 msgstr "Змішування прозорості"
 
 #. IDS_OVERLAY_MODE_ALPHA_ANIMATION
-#: Merge.rc:5550
+#: Merge.rc:5551
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
 msgstr "Анімація прозорості"
 
 #. IDS_ZOOM
-#: Merge.rc:5551
+#: Merge.rc:5552
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
 msgstr "Масштаб"
 
 #. IDS_PAGE
-#: Merge.rc:5552
+#: Merge.rc:5553
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
 msgstr "Сторінка:"
 
 #. IDS_IMGCMP_STATUS_PT_RGBA_FMT
-#: Merge.rc:5553
+#: Merge.rc:5554
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 msgstr "Точка: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #. IDS_IMGCMP_STATUS_DIST1_FMT
-#: Merge.rc:5554
+#: Merge.rc:5555
 #, c-format
 msgid "Dist: %g  "
 msgstr "Відстань: %g  "
 
 #. IDS_IMGCMP_STATUS_DIST2_FMT
-#: Merge.rc:5555
+#: Merge.rc:5556
 #, c-format
 msgid "Dist: %g, %g  "
 msgstr "Відстань: %g, %g  "
 
 #. IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT
-#: Merge.rc:5556
+#: Merge.rc:5557
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr "Сторінка: %d/%d  Масштаб: %d%%  %dx%dпікс  %dbpp  "
 
 #. IDS_IMGCMP_STATUS_RC_FMT
-#: Merge.rc:5557
+#: Merge.rc:5558
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
 
 #. IDS_IMGCMP_STATUS_FLIPPED_FMT
-#: Merge.rc:5558
+#: Merge.rc:5559
 #, c-format
 msgid "Flipped: %s  "
 msgstr "Перевернуто: %s  "
 
 #. IDS_IMGCMP_STATUS_ROTATED_FMT
-#: Merge.rc:5559
+#: Merge.rc:5560
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Повернуто: %d  "
 
 #. IDS_IMGCMP_REPORT_ALLPAGES
-#: Merge.rc:5560
+#: Merge.rc:5561
 msgid "All pages"
 msgstr "Всі сторінки"
 
 #. IDS_IGNSUB_STR1
-#: Merge.rc:5565
+#: Merge.rc:5566
 msgid "<Edit here>"
 msgstr "<Редагувати тут>"
 
 #. IDS_IGNSUB_STR2
-#: Merge.rc:5566
+#: Merge.rc:5567
 msgid "No differences found to select"
 msgstr "Не знайдено відмінностей для вибору"
 
 #. IDS_IGNSUB_STR3
-#: Merge.rc:5567
+#: Merge.rc:5568
 msgid "No differences found to add as substitution filter"
 msgstr "Не знайдено відмінностей для додавання як фільтр підміни"
 
 #. IDS_IGNSUB_STR4
-#: Merge.rc:5568
+#: Merge.rc:5569
 msgid "The pair is already in the Substitution Filters list"
 msgstr "Пара вже є в списку фільтрів підміни"
 
 #. IDS_IGNSUB_STR5
-#: Merge.rc:5569
+#: Merge.rc:5570
 msgid "Add this change to Substitution Filters?"
 msgstr "Додати цю зміну до фільтрів підміни?"
 
 #. IDS_OCRRESULT_TEXTONLY
-#: Merge.rc:5574
+#: Merge.rc:5575
 msgid "Text only"
 msgstr "Тільки текст"
 
 #. IDS_OCRRESULT_POS_LINE
-#: Merge.rc:5575
+#: Merge.rc:5576
 msgid "Line-by-line position and text"
 msgstr "Порядкова позиція та текст"
 
 #. IDS_OCRRESULT_POS_WORD
-#: Merge.rc:5576
+#: Merge.rc:5577
 msgid "Word-by-word position and text"
 msgstr "Послівна позиція та текст"
 
 #. IDS_USERDATAFOLDER_APPDATA
-#: Merge.rc:5581
+#: Merge.rc:5582
 msgid "AppData (Roaming) folder"
 msgstr "Папка AppData (Roaming)"
 
 #. IDS_USERDATAFOLDER_INSTALL
-#: Merge.rc:5582
+#: Merge.rc:5583
 msgid "Install folder"
 msgstr "Папка встановлення"
 
 #. IDS_USERDATAFOLDER_DOCUMENTS
-#: Merge.rc:5583
+#: Merge.rc:5584
 msgid "Documents folder"
 msgstr "Папка Документів"
 
 #. IDS_SINGLEINSTANCE_DISABLED
-#: Merge.rc:5588
+#: Merge.rc:5589
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
 msgstr "Вимкнено"
 
 #. IDS_SINGLEINSTANCE_STR1
-#: Merge.rc:5589
+#: Merge.rc:5590
 msgid "Allow only one instance to run"
 msgstr "Дозволити запуск лише однієї копії"
 
 #. IDS_CLIPBOARD_HISTORY
-#: Merge.rc:5590
+#: Merge.rc:5591
 msgid "Clipboard &History"
 msgstr ""
 
 #. IDS_SINGLEINSTANCE_STR2
-#: Merge.rc:5591
+#: Merge.rc:5592
 msgid "Allow only one instance; wait for termination"
 msgstr "Дозволити лише одну копію; чекати завершення"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED
-#: Merge.rc:5596
+#: Merge.rc:5597
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "Вимкнено"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
-#: Merge.rc:5597
+#: Merge.rc:5598
 msgid "Only on window activated"
 msgstr "Тільки при активному вікні"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
-#: Merge.rc:5598
+#: Merge.rc:5599
 msgid "Immediately"
 msgstr "Негайно"
 
 #. IDS_PLUGIN_ALL
-#: Merge.rc:5603
+#: Merge.rc:5604
 msgid "Al&l"
 msgstr "Ус&і"
 
 #  Context of the string - "Plugin type: Others". "Інший" is singular and it feets better.
 #. IDS_PLUGIN_OTHERS
-#: Merge.rc:5604
+#: Merge.rc:5605
 msgid "&Others"
 msgstr "&Інший"
 
-#: Merge.rc:5606
+#: Merge.rc:5607
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
 msgstr "Відсутня назва плагіна в конвеєрі: %1"
 
-#: Merge.rc:5608
+#: Merge.rc:5609
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
 msgstr "Відсутня лапка в конвеєрі плагіна: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
-#: Merge.rc:5609
+#: Merge.rc:5610
 #, c-format
 msgid "Plugin name '%1' already exists."
 msgstr "Плагін з назвою '%1' вже існує."
 
 #. IDS_PLUGIN_TITLE1
-#: Merge.rc:5610
+#: Merge.rc:5611
 msgid "Specify plugin arguments"
 msgstr "Вкажіть аргументи плагіна"
 
-#: Merge.rc:5612
+#: Merge.rc:5613
 #, c-format
 msgid "Plugin not found or invalid: %1"
 msgstr "Плагін не знайден або є недійсним: %1"
 
 #. IDS_PLUGIN_NOT_UNPACK
-#: Merge.rc:5613
+#: Merge.rc:5614
 #, c-format
 msgid "'%1' is not an unpacker plugin"
 msgstr "'%1' не є плагіном розпакувальника"
 
 #. IDS_PLUGIN_NOT_PREDIFF
-#: Merge.rc:5614
+#: Merge.rc:5615
 #, c-format
 msgid "'%1' is not a prediffer plugin"
 msgstr "'%1' не є плагіном попереднього порівняння"
 
-#: Merge.rc:5616
+#: Merge.rc:5617
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr "Помилка при попередньому порівнянні '%1' з '%2'. Попереднє порівняння вимкнено."
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
-#: Merge.rc:5617
+#: Merge.rc:5618
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr "Кільцева залежність у конвеєрі плагінів: %1"
 
 #. IDS_PLUGIN_TYPE1
-#: Merge.rc:5618
+#: Merge.rc:5619
 msgid "URL Handler"
 msgstr "Обробник URL"
 
 #. IDS_PLUGIN_TYPE2
-#: Merge.rc:5619
+#: Merge.rc:5620
 msgid "File Unpacker"
 msgstr "Розпакувальник файла"
 
 #. IDS_PLUGIN_TYPE3
-#: Merge.rc:5620
+#: Merge.rc:5621
 msgid "File or Folder Unpacker"
 msgstr "Розпакувальник файли або папки"
 
 #. IDS_PLUGIN_TYPE5
-#: Merge.rc:5622
+#: Merge.rc:5623
 msgid "Alias for Unpacker"
 msgstr "Псевдонім для розпакувальника"
 
 #. IDS_PLUGIN_TYPE6
-#: Merge.rc:5623
+#: Merge.rc:5624
 msgid "Alias for Prediffer"
 msgstr "Псевдонім для попередньогр порівнювача"
 
 #. IDS_PLUGIN_TYPE7
-#: Merge.rc:5624
+#: Merge.rc:5625
 msgid "Alias for Editor script"
 msgstr "Псевдонім для редактора сценаріїв"
 
 #. IDS_PLUGIN_ALIAS_DESC
-#: Merge.rc:5625
+#: Merge.rc:5626
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
 msgstr "Псевдонім для конвеєра плагінів '%1'"
 
 #. IDS_PLUGIN_NEW_DESC
-#: Merge.rc:5626
+#: Merge.rc:5627
 msgid "New plugin description"
 msgstr "Опис нового плагіна"
 
 #. IDS_PLUGIN_TARGETS_ALL
-#: Merge.rc:5627
+#: Merge.rc:5628
 msgid "All"
 msgstr "Все"
 
 #. IDS_PLUGIN_TARGETS_1ST
-#: Merge.rc:5628
+#: Merge.rc:5629
 msgid "1st"
 msgstr "1-й"
 
 #. IDS_PLUGIN_TARGETS_2ND
-#: Merge.rc:5629
+#: Merge.rc:5630
 msgid "2nd"
 msgstr "2-й"
 
 #. IDS_PLUGIN_TARGETS_3RD
-#: Merge.rc:5630
+#: Merge.rc:5631
 msgid "3rd"
 msgstr "3-й"
 
 #. IDS_PLUGIN_TARGETS_1ST_2ND
-#: Merge.rc:5631
+#: Merge.rc:5632
 msgid "1st and 2nd"
 msgstr "1-й та 2-й"
 
 #. IDS_PLUGIN_TARGETS_1ST_3RD
-#: Merge.rc:5632
+#: Merge.rc:5633
 msgid "1st and 3rd"
 msgstr "1-й та 3-й"
 
 #. IDS_PLUGIN_TARGETS_2ND_3RD
-#: Merge.rc:5633
+#: Merge.rc:5634
 msgid "2nd and 3rd"
 msgstr "2-й та 3-й"
 
 #. IDS_FILTER_APPLIED
-#: Merge.rc:5638
+#: Merge.rc:5639
 msgid "Filter applied"
 msgstr "Застосован Фільтр"
 
 #. IDS_FILTERMENU_COMPARE
-#: Merge.rc:5643
+#: Merge.rc:5644
 #, c-format
 msgid "Compare %1"
 msgstr "Порівняти %1"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
-#: Merge.rc:5645
+#: Merge.rc:5646
 msgid "&Filter by This Column..."
 msgstr ""
 
 #. IDS_CLIPBOARDHISTORY_TIME
-#: Merge.rc:5650
+#: Merge.rc:5651
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Буфера обміну в %s"
 
 #. IDS_CLIPBOARDHISTORY_DISABLED
-#: Merge.rc:5651
+#: Merge.rc:5652
 msgid ""
 "Clipboard history disabled.\r\n"
 "Enable: Windows logo key + V, then Turn on."
@@ -8402,115 +8407,115 @@ msgstr ""
 "Історію буфера обміну вимкнено.\r\n"
 "Увімкнути: Win + V, потім увімкнути."
 
-#: Merge.rc:5653
+#: Merge.rc:5654
 msgid "This system does not support clipboard history."
 msgstr "Ця сисмтема не підтримує історію буфера обміну."
 
-#: Merge.rc:5655
+#: Merge.rc:5656
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32-бітна версія WinMerge не підтримує порівняння з буфера обміну"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
-#: Merge.rc:5660
+#: Merge.rc:5661
 msgid "WebView2 runtime not installed. Download it?"
 msgstr "Середовище виконання WebView2 не встановлено. Завантажити?"
 
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
-#: Merge.rc:5665
+#: Merge.rc:5666
 msgid "New Text Compare"
 msgstr "Нове порівняння тексту"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
-#: Merge.rc:5666
+#: Merge.rc:5667
 msgid "New Table Compare"
 msgstr "Нове порівняння таблиць"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
-#: Merge.rc:5667
+#: Merge.rc:5668
 msgid "New Binary Compare"
 msgstr "Нове двійкове порівняння"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
-#: Merge.rc:5668
+#: Merge.rc:5669
 msgid "New Image Compare"
 msgstr "Нове порівняння зображень"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
-#: Merge.rc:5669
+#: Merge.rc:5670
 msgid "New Webpage Compare"
 msgstr "Нове порівняння вебсторінки"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
-#: Merge.rc:5670
+#: Merge.rc:5671
 msgid "New Folder Compare"
 msgstr ""
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
-#: Merge.rc:5671
+#: Merge.rc:5672
 msgid "Clipboard Compare"
 msgstr "Порівняння буфера обміну"
 
 #. IDS_PREVIEWBAR_PRINT
-#: Merge.rc:5676
+#: Merge.rc:5677
 msgid "&Print..."
 msgstr "&Друк..."
 
 #. IDS_PREVIEWBAR_PREVPAGE
-#: Merge.rc:5678
+#: Merge.rc:5679
 msgid "Pre&v Page"
 msgstr "Поп&ередня сторінка"
 
 #. IDS_PREVIEWBAR_TWOPAGE
-#: Merge.rc:5679
+#: Merge.rc:5680
 msgid "&Two Page"
 msgstr "&Дві сторінки"
 
 #. IDS_PREVIEWBAR_ONEPAGE
-#: Merge.rc:5680
+#: Merge.rc:5681
 msgid "&One Page"
 msgstr "&Одна сторінка"
 
 #. IDS_PREVIEWBAR_ZOOMIN
-#: Merge.rc:5681
+#: Merge.rc:5682
 msgid "Zoom &In"
 msgstr "Збільши&ти"
 
 #. IDS_PREVIEWBAR_ZOOMOUT
-#: Merge.rc:5682
+#: Merge.rc:5683
 msgid "Zoom &Out"
 msgstr "З&меншити масштаб"
 
 #. IDS_WEBPAGE_COMPARING
-#: Merge.rc:5688
+#: Merge.rc:5689
 msgid "Comparing..."
 msgstr "Порівняння..."
 
 #. IDS_WEBPAGE_ZOOM
-#: Merge.rc:5689
+#: Merge.rc:5690
 msgid "Zoom:"
 msgstr "Масштаб:"
 
 #. IDS_COPY_GRANULARITY_DIFFHUNK
-#: Merge.rc:5694
+#: Merge.rc:5695
 msgid "Diff hunk"
 msgstr "Блок відмінностей"
 
 #. IDS_COPY_GRANULARITY_INLINE
-#: Merge.rc:5695
+#: Merge.rc:5696
 msgid "Inline diff"
 msgstr "Відмінності у рядку"
 
 #. IDS_COPY_GRANULARITY_LINE
-#: Merge.rc:5696
+#: Merge.rc:5697
 msgid "Line"
 msgstr "Рядок"
 
-#: Merge.rc:5697
+#: Merge.rc:5698
 msgid "Character"
 msgstr "Символ"
 
 #. ID_MICE_PREVDIFF
-#: Merge.rc:5702
+#: Merge.rc:5703
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)\n"
@@ -8523,7 +8528,7 @@ msgstr ""
 "(Alt+Wheel Up)"
 
 #. ID_MICE_NEXTDIFF
-#: Merge.rc:5703
+#: Merge.rc:5704
 msgid ""
 "\n"
 "Next Difference (Alt+Down)\n"
@@ -8535,7 +8540,7 @@ msgstr ""
 "(Alt+Wheel Down)"
 
 #. ID_MICE_L2R
-#: Merge.rc:5704
+#: Merge.rc:5705
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)\n"
@@ -8550,7 +8555,7 @@ msgstr ""
 "(Alt+Shift+Wheel Down)"
 
 #. ID_MICE_R2L
-#: Merge.rc:5705
+#: Merge.rc:5706
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)\n"
@@ -8565,7 +8570,7 @@ msgstr ""
 "(Alt+Shift+Wheel Up)"
 
 #. ID_MICE_L2RNEXT
-#: Merge.rc:5706
+#: Merge.rc:5707
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)\n"
@@ -8578,7 +8583,7 @@ msgstr ""
 "(Ctrl+Alt+Shift+Wheel Down)"
 
 #. ID_MICE_R2LNEXT
-#: Merge.rc:5707
+#: Merge.rc:5708
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)\n"
@@ -8591,282 +8596,282 @@ msgstr ""
 "(Ctrl+Alt+Shift+Wheel Up)"
 
 #. IDS_LOG_COMPARING_2
-#: Merge.rc:5717
+#: Merge.rc:5718
 #, c-format
 msgid "Comparing %1 with %2"
 msgstr "Порівняння  %1 з %2"
 
 #. IDS_LOG_COMPARING_3
-#: Merge.rc:5718
+#: Merge.rc:5719
 #, c-format
 msgid "Comparing %1 with %2 and %3"
 msgstr "Порівняння  %1 з %2 та %3"
 
 #. IDS_LOG_COMPARE_COMPLETED
-#: Merge.rc:5719
+#: Merge.rc:5720
 msgid "Comparison completed"
 msgstr "Порівняння завершено"
 
 #. IDS_LOG_COMPARE_ERROR_2
-#: Merge.rc:5720
+#: Merge.rc:5721
 #, c-format
 msgid "Failed to compare %1 with %2: "
 msgstr "Не вдалося порівняти %1 із %2: "
 
 #. IDS_LOG_COMPARE_ERROR_3
-#: Merge.rc:5721
+#: Merge.rc:5722
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
 msgstr "Не вдалося порівняти %1 із %2 та %3: "
 
 #. IDS_LOG_FILE_SAVED
-#: Merge.rc:5722
+#: Merge.rc:5723
 msgid "File saved"
 msgstr "Файл збережено"
 
 #. IDS_LOG_COPYING_FILES
-#: Merge.rc:5723
+#: Merge.rc:5724
 msgid "Copying files..."
 msgstr "Копіювання файлів..."
 
 #. IDS_LOG_MOVING_FILES
-#: Merge.rc:5724
+#: Merge.rc:5725
 msgid "Moving files..."
 msgstr "Переміщення файлів..."
 
 #. IDS_LOG_DELETING_FILES
-#: Merge.rc:5725
+#: Merge.rc:5726
 msgid "Deleting files..."
 msgstr "Видалення файлів..."
 
 #. IDS_LOG_RECYCLEBIN
-#: Merge.rc:5726
+#: Merge.rc:5727
 msgid "Recycle Bin"
 msgstr "Кошик"
 
 #. IDS_LOG_PERMANENTLY_DELETED
-#: Merge.rc:5727
+#: Merge.rc:5728
 msgid "Permanently deleted"
 msgstr "Видалено остаточно"
 
 #. IDS_LOG_FILEOPERATION_COMPLETED
-#: Merge.rc:5728
+#: Merge.rc:5729
 msgid "File operation completed successfully"
 msgstr "Операція над файлами виконана успішно"
 
 #. IDS_LOG_FILEOPERATION_CANCELED
-#: Merge.rc:5729
+#: Merge.rc:5730
 msgid "File operation canceled"
 msgstr "Операція над файлами скасована"
 
 #. IDS_FILTER_ERROR_NO_ERROR
-#: Merge.rc:5734
+#: Merge.rc:5735
 msgid "No error"
 msgstr "Без помилок"
 
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
-#: Merge.rc:5735
+#: Merge.rc:5736
 msgid "Filter expression is empty"
 msgstr "Вираз фільтра порожній"
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
-#: Merge.rc:5736
+#: Merge.rc:5737
 msgid "Unknown character in filter expression"
 msgstr "Невідомий символ у виразі фільтра"
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
-#: Merge.rc:5737
+#: Merge.rc:5738
 msgid "Unterminated string literal"
 msgstr "Незавершений рядковий літерал"
 
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
-#: Merge.rc:5738
+#: Merge.rc:5739
 msgid "Syntax error in filter expression"
 msgstr "Синтаксична помилка у виразі фільтра"
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
-#: Merge.rc:5739
+#: Merge.rc:5740
 msgid "Failed to parse filter expression"
 msgstr "Не вдалося розібрати вираз фільтра"
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
-#: Merge.rc:5740
+#: Merge.rc:5741
 msgid "Invalid literal value"
 msgstr "Неприпустиме значення літерала"
 
 #. IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION
-#: Merge.rc:5741
+#: Merge.rc:5742
 msgid "Invalid regular expression"
 msgstr "Неприпустимий регулярний вираз"
 
 #. IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER
-#: Merge.rc:5742
+#: Merge.rc:5743
 msgid "Undefined identifier"
 msgstr "Невизначений ідентифікатор"
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
-#: Merge.rc:5743
+#: Merge.rc:5744
 msgid "Invalid number of arguments"
 msgstr "Невірна кількість аргументів"
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
-#: Merge.rc:5744
+#: Merge.rc:5745
 msgid "Filter name not found"
 msgstr "Ім'я фільтра не знайдено"
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
-#: Merge.rc:5745
+#: Merge.rc:5746
 msgid "Division by zero in filter expression"
 msgstr "Ділення на нуль у виразі фільтра"
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
-#: Merge.rc:5746
+#: Merge.rc:5747
 msgid "Unknown error"
 msgstr "Невідома помилка"
 
 #. IDS_FILTER_ERROR_INVALID_PROPERTY_NAME
-#: Merge.rc:5747
+#: Merge.rc:5748
 msgid "Invalid property name"
 msgstr "Неприпустимиа назва властивості"
 
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
-#: Merge.rc:5748
+#: Merge.rc:5749
 msgid "Invalid directive"
 msgstr ""
 
 #. IDS_FILTER_OP_EQUALS
-#: Merge.rc:5753
+#: Merge.rc:5754
 msgid "Equals"
 msgstr "Дорівнює"
 
 #. IDS_FILTER_OP_NOT_EQUALS
-#: Merge.rc:5754
+#: Merge.rc:5755
 msgid "Does not equal"
 msgstr "Не дорівнює"
 
 #. IDS_FILTER_OP_LESS_THAN
-#: Merge.rc:5755
+#: Merge.rc:5756
 msgid "Less than"
 msgstr "Менше ніж"
 
 #. IDS_FILTER_OP_LESS_EQUAL
-#: Merge.rc:5756
+#: Merge.rc:5757
 msgid "Less than or equal to"
 msgstr "Менше або дорівнює"
 
 #. IDS_FILTER_OP_GREATER_EQUAL
-#: Merge.rc:5757
+#: Merge.rc:5758
 msgid "Greater than or equal to"
 msgstr "Більше або дорівнює"
 
 #. IDS_FILTER_OP_GREATER_THAN
-#: Merge.rc:5758
+#: Merge.rc:5759
 msgid "Greater than"
 msgstr "Більше ніж"
 
 #. IDS_FILTER_OP_BETWEEN
-#: Merge.rc:5759
+#: Merge.rc:5760
 msgid "Between"
 msgstr "В межах"
 
 #. IDS_FILTER_OP_NOT_BETWEEN
-#: Merge.rc:5760
+#: Merge.rc:5761
 msgid "Not Between"
 msgstr "Не в межах"
 
 #. IDS_FILTER_OP_CONTAINS
-#: Merge.rc:5761
+#: Merge.rc:5762
 msgid "Contains"
 msgstr "Містить"
 
 #. IDS_FILTER_OP_NOT_CONTAINS
-#: Merge.rc:5762
+#: Merge.rc:5763
 msgid "Not Contains"
 msgstr "Не містить"
 
 #. IDS_FILTER_OP_RECONTAINS
-#: Merge.rc:5763
+#: Merge.rc:5764
 msgid "Contains (regex)"
 msgstr "Містить (регулярний вираз)"
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
-#: Merge.rc:5764
+#: Merge.rc:5765
 msgid "Not Contains (regex)"
 msgstr "Не містить (регулярний вираз)"
 
 #. IDS_FILTER_OP_LIKE
-#: Merge.rc:5765
+#: Merge.rc:5766
 msgid "Match (wildcard)"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_LIKE
-#: Merge.rc:5766
+#: Merge.rc:5767
 msgid "Not match (wildcard)"
 msgstr ""
 
 #. IDS_FILTER_OP_MATCHES
-#: Merge.rc:5767
+#: Merge.rc:5768
 msgid "Match (regex)"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_MATCHES
-#: Merge.rc:5768
+#: Merge.rc:5769
 msgid "Not match (regex)"
 msgstr ""
 
 #. IDS_COLORMODE_LIGHT
-#: Merge.rc:5773
+#: Merge.rc:5774
 msgid "Light"
 msgstr "Світла"
 
 #. IDS_COLORMODE_DARK
-#: Merge.rc:5774
+#: Merge.rc:5775
 msgid "Dark"
 msgstr "Темна"
 
 #. IDS_COLORMODE_FOLLOWSYSTEM
-#: Merge.rc:5775
+#: Merge.rc:5776
 msgid "Follow system"
 msgstr "Як в системі"
 
 #. IDS_EXAMPLE
-#: Merge.rc:5780
+#: Merge.rc:5781
 #, c-format
 msgid "e.g. %1"
 msgstr ""
 
 #. IDS_DETECTED_PREVIOUS_CRASH
-#: Merge.rc:5785
+#: Merge.rc:5786
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr ""
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5790
+#: Merge.rc:5791
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 msgstr ""
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5791
+#: Merge.rc:5792
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
-#: Merge.rc:5796
+#: Merge.rc:5797
 msgid "Built-in only"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
-#: Merge.rc:5797
+#: Merge.rc:5798
 msgid "Built-in first"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
-#: Merge.rc:5798
+#: Merge.rc:5799
 msgid "Tree-sitter first"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
-#: Merge.rc:5799
+#: Merge.rc:5800
 msgid "Tree-sitter only"
 msgstr ""
 

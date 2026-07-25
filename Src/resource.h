@@ -2028,6 +2028,7 @@
 #define IDS_DIFFBAR_CAPTION             42202
 #define IDS_OUTPUTBAR_CAPTION           42203
 #define IDS_ARCHIVE_SUCCEEDED           42300
+#define IDS_ARCHIVE_SAVEFILES           42301
 #define IDS_DIFF_SUCCEEDED              42400
 #define IDS_DIFF_FILEOVERWRITE          42403
 #define IDS_DIFF_SELECTEDFILES          42404

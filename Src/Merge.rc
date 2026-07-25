@@ -5275,6 +5275,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_ARCHIVE_SUCCEEDED   "Archive file written."
+    IDS_ARCHIVE_SAVEFILES 	"Save all files first.\n\nCreating an archive requires no unsaved changes."
 END
 
 STRINGTABLE

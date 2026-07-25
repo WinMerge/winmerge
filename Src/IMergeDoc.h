@@ -56,5 +56,6 @@ struct IMergeDoc
 	virtual bool GetReadOnly(int pane) const = 0;
 	virtual int GetDiffCount() const = 0;
 	virtual int GetTrivialCount() const = 0;
+	virtual bool IsModified() const = 0;
 };
 

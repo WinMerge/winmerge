@@ -104,14 +104,13 @@ String GetArchiveFileName(const String& path, const String& prefix, const String
 	return paths::ConcatPath(prefix, relativePath);
 }
 
-bool AddArchiveItem(std::vector<CompressibleItem>& archiveItems, const String& path, const String& name, bool recurse = false)
+void AddArchiveItem(std::vector<CompressibleItem>& archiveItems, const String& path, const String& name, bool recurse = false)
 {
 	CompressibleItem item;
 	item.name = name;
 	item.fullPath = path;
 	item.recurse = recurse;
 	archiveItems.push_back(std::move(item));
-	return true;
 }
 
 void SetProjectFileItem(ProjectFileItem& projItem, const PathContext& paths, const IMergeDoc* pDoc)
@@ -304,6 +303,13 @@ bool ArchiveTool::CreateArchive()
 	CPatchTool patchTool;
 	for (size_t i = 0; i < selectedItems.size(); ++i)
 	{
+		IMergeDoc* pDoc = selectedItems[i].document;
+		if (pDoc && pDoc->IsModified())
+		{
+			I18n::MessageBox(IDS_ARCHIVE_SAVEFILES, MB_ICONSTOP);
+			return false;
+		}
+
 		ProjectFileItem projItem;
 		const ArchiveItem& item = selectedItems[i];
 		std::vector<String> roots;
@@ -342,10 +348,10 @@ bool ArchiveTool::CreateArchive()
 			project.Items().push_back(projItem);
 		}
 
-		if (item.document->GetDocumentType() == IMergeDoc::DocumentType::Text ||
-			item.document->GetDocumentType() == IMergeDoc::DocumentType::Table)
+		if (pDoc->GetDocumentType() == IMergeDoc::DocumentType::Text ||
+			pDoc->GetDocumentType() == IMergeDoc::DocumentType::Table)
 		{
-			if (auto* document = dynamic_cast<CMergeDoc*>(item.document))
+			if (auto* document = dynamic_cast<CMergeDoc*>(pDoc))
 				patchTool.AddFiles(item.paths.GetLeft(), _T(""), item.paths.GetRight(), _T(""),
 					item.title, true, item.diffStatus);
 		}
