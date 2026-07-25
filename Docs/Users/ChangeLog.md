@@ -42,15 +42,16 @@
 * Translation updates:
 
   * Brazilian (PR #3459, PR #3476)
-  * Chinese Simplified (PR #3460)
+  * Chinese Simplified (PR #3460, PR #3479)
   * French (PR #3478)
+  * German (PR #3480)
   * Italian (PR #3455, PR #3473, PR #3477)
   * Japanese
-  * Korean (PR #3447)
+  * Korean (PR #3447, PR #3481)
   * Lithuanian (PR #3461, PR #3471)
   * Polish (PR #3463)
   * Turkish (PR #3465, PR #3474)
-  * Russian (PR #3448)
+  * Russian (PR #3448, PR #3484)
 
 ## WinMerge 2.16.57 - 2026-07-05
 
