@@ -4561,8 +4561,8 @@ msgstr "アーカイブファイル(&F):"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
-msgid "Include HTML &report"
-msgstr "HTMLレポートを含める(&R)"
+msgid "Include &report"
+msgstr "レポートを含める(&R)"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010

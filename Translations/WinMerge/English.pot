@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-07-25 21:52+0000\n"
+"POT-Creation-Date: 2026-07-26 02:22+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -4544,7 +4544,7 @@ msgstr ""
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
-msgid "Include HTML &report"
+msgid "Include &report"
 msgstr ""
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH

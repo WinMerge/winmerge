@@ -4571,7 +4571,7 @@ msgstr ""
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
-msgid "Include HTML &report"
+msgid "Include &report"
 msgstr ""
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
