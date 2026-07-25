@@ -135,14 +135,29 @@ public:
 		else if (nodename == Left_desc_element_name)
 		{
 			currentItem.m_leftDesc = currentItem.GetLeftDesc() + xmlch2tstr(ch + start, length);
+			if (!currentItem.m_bHasLeft)
+			{
+				currentItem.m_bHasLeft = true;
+				currentItem.m_paths.SetLeft(_T(""), false);
+			}
 		}
 		else if (nodename == Middle_desc_element_name)
 		{
 			currentItem.m_middleDesc = currentItem.GetMiddleDesc() + xmlch2tstr(ch + start, length);
+			if (!currentItem.m_bHasMiddle)
+			{
+				currentItem.m_bHasMiddle = true;
+				currentItem.m_paths.SetMiddle(_T(""), false);
+			}
 		}
 		else if (nodename == Right_desc_element_name)
 		{
 			currentItem.m_rightDesc = currentItem.GetRightDesc() + xmlch2tstr(ch + start, length);
+			if (!currentItem.m_bHasRight)
+			{
+				currentItem.m_bHasRight = true;
+				currentItem.m_paths.SetRight(_T(""), false);
+			}
 		}
 		else if (nodename == Filter_element_name)
 		{

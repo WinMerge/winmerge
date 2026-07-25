@@ -331,15 +331,19 @@ bool ArchiveTool::CreateArchive()
 			const String& path = item.paths[j];
 			if (!path.empty() && !paths::IsURL(path))
 			{
+				String archiveFileName = GetArchiveFileName(path, root, commonRoots[j]);
+				paths.SetPath(j, archiveFileName, false);
 				if (paths::DoesPathExist(path) == paths::IS_EXISTING_FILE)
 				{
-					String archiveFileName = GetArchiveFileName(path, root, commonRoots[j]);
-					paths.SetPath(j, archiveFileName, false);
 					CompressibleItem archiveItem;
 					archiveItem.name = archiveFileName;
 					archiveItem.fullPath = path;
 					archiveItems.push_back(std::move(archiveItem));
 				}
+			}
+			else
+			{
+				paths.SetPath(j, path, false);
 			}
 		}
 		if (paths.GetSize() >= 2)
