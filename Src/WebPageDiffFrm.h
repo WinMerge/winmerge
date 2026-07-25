@@ -72,6 +72,7 @@ public:
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const override { return m_strDesc[pane]; }
+	bool IsModified() const override { return false; }
 	static bool IsLoadable();
 	static bool MatchURLPattern(const String& url);
 	IHeaderBar* GetHeaderInterface() override { return &m_wndFilePathBar; }

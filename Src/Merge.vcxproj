@@ -1005,6 +1005,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="ArchiveDlg.cpp" />
+    <ClCompile Include="ArchiveTool.cpp" />
     <ClCompile Include="DiffImageListUtils.cpp" />
     <ClInclude Include="ClipboardHistoryMenu.h" />
     <ClInclude Include="Common\ScopeExit.h" />
@@ -1532,6 +1534,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClInclude Include="ArchiveDlg.h" />
+    <ClInclude Include="ArchiveTool.h" />
     <ClInclude Include="DiffImageListUtils.h" />
   </ItemGroup>
   <ItemGroup>

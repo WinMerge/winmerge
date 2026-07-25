@@ -27,13 +27,15 @@ struct IMergeDoc
 		Removed,
 	};
 
-	enum class DocumentType
+	enum DocumentType // = WindowType
 	{
+		Automatic,
 		Text,         // CMergeDoc
 		Table,        // CMergeDoc
 		Binary,       // CHexMergeDoc
 		Image,        // CImgMergeFrame
 		WebPage,      // CWebPageDiffFrame
+		Folder,       // CDirFrame
 		Unknown
 	};
 
@@ -54,5 +56,6 @@ struct IMergeDoc
 	virtual bool GetReadOnly(int pane) const = 0;
 	virtual int GetDiffCount() const = 0;
 	virtual int GetTrivialCount() const = 0;
+	virtual bool IsModified() const = 0;
 };
 

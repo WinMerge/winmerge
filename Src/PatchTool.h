@@ -57,6 +57,7 @@ public:
 		const String &file2, const String &altPath2, const String& title, bool checked, int diffStatus);
 	int CreatePatch();
 	bool CreatePatchFile(const String& outputFile);
+	const std::vector<PATCHFILES>& GetFileList() const { return m_fileList; }
 
 protected:
 	bool ShowDialog(CPatchDlg *pDlgPatch);
