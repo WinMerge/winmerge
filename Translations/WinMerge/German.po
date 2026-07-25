@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-21 16:52+0200\n"
+"PO-Revision-Date: 2026-07-25 21:00+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -1677,7 +1677,7 @@ msgstr "S&ynchronisationspunkt entfernen"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "&Archiv erstellen..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -4970,27 +4970,27 @@ msgstr "\\u24D8 Der Bericht verwendet die aktuellen Vergleichseinstellungen."
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "Archiv-Generator"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "Archiv&datei:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
 msgid "Include &report"
-msgstr ""
+msgstr "Be&richt einbeziehen"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "&Patch einbeziehen"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "Pro&jekt einbeziehen"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -6082,7 +6082,7 @@ msgstr "Tabulator-getrennte Werte (*.tsv;*.txt)|*.tsv;*.txt|Alle Dateien (*.*)|*
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "ZIP-Dateien (*.zip)|*.zip|7z-Dateien (*.7z)|*.7z|TAR-Dateien (*.tar)|*.tar|Alle Dateien (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -8209,12 +8209,18 @@ msgstr "Der Ordner existiert nicht."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "Archivdatei wurde erstellt."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
-msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
+msgid ""
+"Save all files first.\n"
+"\n"
+"Creating an archive requires no unsaved changes."
 msgstr ""
+"Speichern Sie zunächst alle Dateien.\n"
+"\n"
+"Vor dem Erstellen eines Archivs müssen alle Änderungen gespeichert werden."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
