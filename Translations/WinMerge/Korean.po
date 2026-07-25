@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-07-22 00:26+0900\n"
+"PO-Revision-Date: 2026-07-26 05:09+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -1681,7 +1681,7 @@ msgstr "동기화 지점 지우기(&H)"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "압축 파일 생성(&A)..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -4967,27 +4967,27 @@ msgstr "\\u24D8 보고서는 현재 비교 설정을 사용합니다."
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "압축 파일 생성기"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "압축 파일(&F):"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
 msgid "Include &report"
-msgstr ""
+msgstr "보고서 포함(&R)"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "패치 포함(&P)"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "프로젝트 포함(&J)"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -6079,7 +6079,7 @@ msgstr "탭으로 구분된 값 (*.tsv;*.txt)|*.tsv;*.txt|모든 파일 (*.*)|*.
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "ZIP 파일 (*.zip)|*.zip|7z 파일 (*.7z)|*.7z|TAR 파일 (*.tar)|*.tar|모든 파일 (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -8200,12 +8200,18 @@ msgstr "폴더가 존재하지 않습니다."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "압축 파일이 작성되었습니다."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
-msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
+msgid ""
+"Save all files first.\n"
+"\n"
+"Creating an archive requires no unsaved changes."
 msgstr ""
+"모든 파일을 먼저 저장하세요.\n"
+"\n"
+"아카이브를 생성하려면 저장되지 않은 변경 사항이 필요하지 않습니다."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
