@@ -7554,7 +7554,7 @@ msgstr "File archivio salvato."
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
-msgstr "Prima salva tutti i file.\n\nLa creazione di un archivio richiede che modifiche siano salvate."
+msgstr "Prima salva tutti i file.\n\nLa creazione di un archivio richiede che le modifiche siano salvate."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
