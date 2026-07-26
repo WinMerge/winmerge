@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-07-20 07:40-0300\n"
+"PO-Revision-Date: 2026-07-26 12:40-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1496,7 +1496,7 @@ msgstr "Limpar Pont&os de Sincronização"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "Gerar &Arquivo compactado..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -4543,27 +4543,27 @@ msgstr "\\u24D8 O relatório usa as configurações de comparações atuais."
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "Gerador de Arquivo Compactado"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "Arquivo compactado:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
 msgid "Include &report"
-msgstr ""
+msgstr "Incluir &relatório"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "Incluir &patch"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "Incluir pro&jeto"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -5487,7 +5487,7 @@ msgstr "Valores Separados por Tabulação (*.tsv;*.txt)|*.tsv;*.txt|Todos os Arq
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Arquivos ZIP (*.zip)|*.zip|Arquivos 7z (*.7z)|*.7z|Arquivos TAR (*.tar)|*.tar|Todos os Arquivos (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -7228,12 +7228,12 @@ msgstr "A pasta não existe."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "Arquivo compactado gravado."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
-msgstr ""
+msgstr "Salvar todos os arquivos primeiro.\n\nA criação de um arquivo compactado exige que não haja alterações não salvas."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
