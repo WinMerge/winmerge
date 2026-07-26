@@ -256,7 +256,7 @@ void ArchiveTool::AddDocument(IMergeDoc* document, bool checked, int diffStatus)
 	item.document = document;
 	const int fileCount = document->GetFileCount();
 	for (int i = 0; i < fileCount; ++i)
-		item.paths.SetPath(i, document->GetPath(i));
+		item.paths.SetPath(i, document->GetPath(i), false);
 	item.title = CMergeFrameCommon::GetTitleString(*document);
 	item.checked = checked;
 	item.diffStatus = diffStatus;
@@ -356,8 +356,20 @@ bool ArchiveTool::CreateArchive()
 			pDoc->GetDocumentType() == IMergeDoc::DocumentType::Table)
 		{
 			if (auto* document = dynamic_cast<CMergeDoc*>(pDoc))
-				patchTool.AddFiles(item.paths.GetLeft(), _T(""), item.paths.GetRight(), _T(""),
-					item.title, true, item.diffStatus);
+			{
+				String left = item.paths.GetLeft();
+				String right = item.paths.GetRight();
+				if (!left.empty() && !paths::IsURL(left) && !right.empty() && !paths::IsURL(right))
+				{
+					patchTool.AddFiles(left, _T(""), right, _T(""),
+						item.title, true, item.diffStatus);
+				}
+				else
+				{
+					I18n::MessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
+					return false;
+				}
+			}
 		}
 	}
 
