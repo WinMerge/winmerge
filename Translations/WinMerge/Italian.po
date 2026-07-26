@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 20.07.2026\n"
+"Project-Id-Version: WinMerge - Italian - 26.07.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-07-20 09:59+0100\n"
+"PO-Revision-Date: 2026-07-26 10:40+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1495,7 +1495,7 @@ msgstr "A&zzera punti sincronizzazione"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "Genera &archivio..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -4563,27 +4563,27 @@ msgstr "\\u24D8 Il rapporto usa le impostazioni di confronto attuali."
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "Generatore archivio"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "&File archivio:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
 msgid "Include &report"
-msgstr ""
+msgstr "Includi &rapporto"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "Includi &patch"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "Includi pro&getto"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -5569,7 +5569,7 @@ msgstr "Valori separati da tabulazioni (*.tsv;*.txt)|*.tsv;*.txt|Tutti i file (*
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "File ZIP (*.zip)|*.zip|File 7z (*.7z)|*.7z|File TAR (*.tar)|*.tar|Tutti i file (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -7549,12 +7549,12 @@ msgstr "La cartella non esiste."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "File archivio salvato."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
-msgstr ""
+msgstr "Prima salva tutti i file.\n\nLa creazione di un archivio richiede che le modifiche siano salvate."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
