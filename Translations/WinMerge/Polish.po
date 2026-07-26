@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-07-14 20:48+0000\n"
-"PO-Revision-Date: 2026-07-15 22:00+0000\n"
+"POT-Creation-Date: 2026-07-26 02:22+0000\n"
+"PO-Revision-Date: 2026-07-26 23:30+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1495,7 +1495,7 @@ msgstr "Wyczyść punkty sync&hronizacji"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "Wygeneruj archiwum..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -2934,12 +2934,12 @@ msgstr "Normalizuj Unicode"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1875
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "Dodaj warunek wiersza"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1877
 msgid "L&ine Text..."
-msgstr ""
+msgstr "Tekst wiersza..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1878 Merge.rc:1933
@@ -4022,7 +4022,7 @@ msgstr "Generuj łatkę"
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:2674 Merge.rc:2986 Merge.rc:3004
 msgid "Comparisons to include:"
-msgstr ""
+msgstr "Uwzględnij następujące porównania:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2676
@@ -4542,27 +4542,27 @@ msgstr "\\u24D8 Raport został wygenerowany z użyciem bieżących ustawień por
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "Generator archiwum"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "Plik archiwum:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
 msgid "Include &report"
-msgstr ""
+msgstr "Uwzględnij raport"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "Uwzględnij łatkę"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "Uwzględnij projekt"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -5486,7 +5486,7 @@ msgstr "Wartości rozdzielane tabulatorami (*.tsv;*.txt)|*.tsv;*.txt|Wszystkie p
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Pliki ZIP (*.zip)|*.zip|Pliki 7z (*.7z)|*.7z|Pliki TAR (*.tar)|*.tar|Wszystkie pliki (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -6101,7 +6101,7 @@ msgstr "Różnice do... (%1)"
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4869
 msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
-msgstr ""
+msgstr "Niektóre wybrane elementy są identyczne lub zostały pominięte.\nPrzetworzyć tylko elementy z różnicami?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4875
@@ -7227,12 +7227,12 @@ msgstr "Folder nie istnieje."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "Zapisano plik archiwum."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
-msgstr ""
+msgstr "Najpierw zapisz wszystkie pliki.\n\nAby utworzyć archiwum, wszystkie zmiany muszą być zapisane."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
