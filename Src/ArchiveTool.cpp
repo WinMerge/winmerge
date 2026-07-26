@@ -437,6 +437,6 @@ bool ArchiveTool::CreateArchive()
 	if (options.copyToClipboard)
 		ClipboardUtils::PutFiles(std::vector<String>{ archivePath }, AfxGetMainWnd()->m_hWnd);
 
-	AfxMessageBox((_("Archive written.") + _T("\n") + archivePath).c_str(), MB_OK | MB_ICONINFORMATION);
+	AfxMessageBox((_("Archive file written.") + _T("\n") + archivePath).c_str(), MB_OK | MB_ICONINFORMATION);
 	return true;
 }
