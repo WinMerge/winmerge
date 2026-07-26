@@ -1657,6 +1657,11 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		if (infoUnpacker)
 			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
 		CFrameWnd *pFrame = pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
+		if (!pFrame)
+		{
+			delete pOpenDoc;
+			return false;
+		}
 		pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}

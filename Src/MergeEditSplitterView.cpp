@@ -34,7 +34,9 @@ CMergeEditSplitterView::CMergeEditSplitterView(): m_bDetailView(false)
 
 CMergeEditSplitterView::~CMergeEditSplitterView()
 {
-	dynamic_cast<CMergeDoc *>(GetDocument())->RemoveMergeViews(this);
+	auto* pDoc = dynamic_cast<CMergeDoc*>(GetDocument());
+	if (pDoc)
+		pDoc->RemoveMergeViews(this);
 }
 
 
@@ -55,7 +57,11 @@ END_MESSAGE_MAP()
 
 BOOL CMergeEditSplitterView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
-	CView::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
+	if (!CView::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext))
+	{
+		TRACE0("Failed to CView::Create\n");
+		return FALSE;
+	}
 
 	bool bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY);
 	if (m_bDetailView)

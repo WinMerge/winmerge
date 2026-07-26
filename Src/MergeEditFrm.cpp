@@ -111,7 +111,11 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	m_pwndDetailMergeEditSplitterView = new CMergeEditSplitterView();
 	m_pwndDetailMergeEditSplitterView->m_bDetailView = true;
-	m_pwndDetailMergeEditSplitterView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), &m_wndDetailBar, ID_VIEW_DETAIL_BAR+1, pContext);
+	if (!m_pwndDetailMergeEditSplitterView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), &m_wndDetailBar, ID_VIEW_DETAIL_BAR+1, pContext))
+	{
+		TRACE0("Failed to create CMergeEditSplitterView\n");
+		return FALSE;
+	}
 
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);

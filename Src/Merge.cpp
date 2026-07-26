@@ -715,7 +715,8 @@ static String makeLogString(const tchar_t* lpszPrompt, int result)
 		_("Try Again"),
 		_("Continue"),
 	};
-	String msg = String(lpszPrompt) + _T(": ") + Answers[result];
+	String ans = (result < 0 || result >= static_cast<int>(Answers.size())) ? _T("Unknown") : Answers[result];
+	String msg = String(lpszPrompt) + _T(": ") + ans;
 	return msg;
 }
 
