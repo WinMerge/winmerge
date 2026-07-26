@@ -15,17 +15,14 @@ pushd "%~dp0"
 rmdir /q /s %workdir% > NUL 2> NUL
 mkdir %workdir% 2> NUL
 
-git submodule init
-git submodule update
+git submodule update --init --recursive
 
 git checkout-index -a -f --prefix=%workdir%\
 for /F %%d in ('git submodule foreach --quiet --recursive "echo $displaypath"') do (
   pushd "%%d"
-  if exist .git (
-    rmdir /q /s "%workdir%\%%d"
-    mkdir "%workdir%\%%d"
-    git checkout-index -a -f --prefix=%workdir%\%%d\
-  )
+  rmdir /q /s "%workdir%\%%d"
+  mkdir "%workdir%\%%d"
+  git checkout-index -a -f --prefix=%workdir%\%%d\
   popd
 )
 
