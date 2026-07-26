@@ -179,6 +179,9 @@ OnNotifyLineHasBeenEdited(int nLine)
 	SetLineFlag(nLine, LF_TRIVIAL, false, false, false);
 	SetLineFlag(nLine, LF_MOVED, false, false, false);
 	SetLineFlag(nLine, LF_SNP, false, false, false);
+	SetLineFlag(nLine, LF_DIFF_1STONLY, false, false, false);
+	SetLineFlag(nLine, LF_DIFF_2NDONLY, false, false, false);
+	SetLineFlag(nLine, LF_DIFF_3RDONLY, false, false, false);
 	CGhostTextBuffer::OnNotifyLineHasBeenEdited(nLine);
 }
 
