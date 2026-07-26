@@ -1824,6 +1824,7 @@
   <ItemGroup>
     <Image Include="res\aborted.ico" />
     <Image Include="res\all.bmp" />
+    <Image Include="res\archive.bmp" />
     <Image Include="res\binarydiff12.ico" />
     <Image Include="res\binarydiff13.ico" />
     <Image Include="res\binarydiff23.ico" />
