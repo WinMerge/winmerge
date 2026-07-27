@@ -359,7 +359,7 @@ bool ArchiveTool::CreateArchive()
 			{
 				String left = item.paths.GetLeft();
 				String right = item.paths.GetRight();
-				if (!left.empty() && !paths::IsURL(left) && !right.empty() && !paths::IsURL(right))
+				if (!paths::IsURL(left) && !paths::IsURL(right) && (!left.empty() || !right.empty()))
 				{
 					patchTool.AddFiles(left, _T(""), right, _T(""),
 						item.title, true, item.diffStatus);
