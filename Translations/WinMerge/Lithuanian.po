@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-07-20 09:18+0000\n"
-"PO-Revision-Date: 2026-07-20 09:50+0200\n"
+"POT-Creation-Date: 2026-07-26 02:22+0000\n"
+"PO-Revision-Date: 2026-07-27 07:27+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1494,7 +1494,7 @@ msgstr "Išvalyti sinc&hronizavino taškus"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "Generuoti &archyvą..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -4541,27 +4541,27 @@ msgstr "\\u24D8 Ataskaitoje naudojami dabartiniai lyginimo parametrai."
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "Archyvų generatorius"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "Archyvo &failas:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
 msgid "Include &report"
-msgstr ""
+msgstr "Įt&raukti ataskaitą"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "Įtraukti &pataisą"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "Įtraukti pro&jektą"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -5485,7 +5485,7 @@ msgstr "TAB simboliais sudalintos reikšmės (*.tsv;*.txt)|*.tsv;*.txt|All Files
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "ZIP failai (*.zip)|*.zip|7z failai (*.7z)|*.7z|TAR failai (*.tar)|*.tar|Visi failai (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -7164,7 +7164,7 @@ msgstr "Skirtumų polangis"
 #. IDS_DIFF_SUCCEEDED
 #: Merge.rc:5258
 msgid "Patch file written."
-msgstr "Pataisų failas sėkmingai įrašytas."
+msgstr "Pataisų failas įrašytas."
 
 #. IDS_DIFF_FILEOVERWRITE
 #: Merge.rc:5259
@@ -7216,7 +7216,7 @@ msgstr "Negalima kurti pataisų failo iš binarinių failų."
 #. IDS_SAVEFILES_FORPATCH
 #: Merge.rc:5270
 msgid "Save all files first.\n\nCreating a patch requires no unsaved changes."
-msgstr "Pirmiausia išsaugokite visus failus.\n\nPataisos kūrimui reikia, kad failuose nebūtų neišsaugotų pakeitimų."
+msgstr "Pirmiausia išsaugokite visus failus.\n\nPataisos kūrimui reikia, kad nebūtų neišsaugotų pakeitimų."
 
 #. IDS_FOLDER_NOTEXIST
 #: Merge.rc:5271
@@ -7226,12 +7226,12 @@ msgstr "Katalogas nerastas."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "Archyvo failas įrašytas."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
-msgstr ""
+msgstr "Pirmiausia išsaugokite visus failus.\n\nKuriant archyvą reikia, kad nebūtų neišsaugotų pakeitimų."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
