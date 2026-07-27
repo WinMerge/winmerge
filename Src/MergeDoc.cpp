@@ -3207,28 +3207,9 @@ bool CMergeDoc::GenerateReport(ReportContext& reportContext) const
 {
 	UniStdioFile& file = reportContext.file;
 
-	// Get paths
-	// If archive, use archive path + folder + filename inside archive
-	// If desc text given, use it
 	PathContext paths = m_filePaths;
-	if (m_pDirDoc != nullptr && m_pDirDoc->IsArchiveFolders())
-	{
-		for (int i = 0; i < paths.GetSize(); i++)
-		{
-			if (!m_strDesc[i].empty())
-				paths[i] = m_strDesc[i];
-			else
-				m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
-		}
-	}
-	else
-	{
-		for (int i = 0; i < paths.GetSize(); i++)
-		{
-			if (!m_strDesc[i].empty())
-				paths[i] = m_strDesc[i];
-		}
-	}
+	for (int i = 0; i < paths.GetSize(); i++)
+		paths[i] = CMergeFrameCommon::GetReportTitleString(*this, i);
 
 	int cmpIdx = reportContext.index + 1;
 

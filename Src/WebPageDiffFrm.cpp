@@ -1588,7 +1588,7 @@ bool CWebPageDiffFrame::GenerateReport(ReportContext& reportContext, std::functi
 
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 	{
-		title[pane] = m_strDesc[pane].empty() ? ucr::toTString(m_pWebDiffWindow->GetCurrentUrl(pane)) : m_strDesc[pane];
+		title[pane] = CMergeFrameCommon::GetReportTitleString(*this, pane);
 		diffrpt_filename[pane] = strutils::format(_T("%s/%d_%d.pdf"), rptdir, reportContext.index + 1, pane + 1);
 		diffrpt_filename_full[pane] = strutils::format(_T("%s/%d_%d.pdf"), rptdir_full, reportContext.index + 1, pane + 1);
 		pfilenames[pane] = diffrpt_filename_full[pane].c_str();

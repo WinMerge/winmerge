@@ -2259,7 +2259,7 @@ bool CImgMergeFrame::GenerateReport(ReportContext& reportContext) const
 			m_pImgMergeWindow->SetCurrentPageAll(page);
 			for (int pane = 0; pane < paneCount; ++pane)
 			{
-				title[pane] = m_strDesc[pane].empty() ? ucr::toTString(m_pImgMergeWindow->GetFileName(pane)) : m_strDesc[pane];
+				title[pane] = CMergeFrameCommon::GetReportTitleString(*this, pane);
 				const int curPage = m_pImgMergeWindow->GetCurrentPage(pane) + 1;
 				diffimg_filename[page][pane] = strutils::format(_T("%s/%d_%d_%d.png"),
 					imgdir, reportContext.index + 1, pane + 1, curPage);
@@ -2274,7 +2274,7 @@ bool CImgMergeFrame::GenerateReport(ReportContext& reportContext) const
 		diffimg_filename.resize(1);
 		for (int pane = 0; pane < paneCount; ++pane)
 		{
-			title[pane] = m_strDesc[pane].empty() ? ucr::toTString(m_pImgMergeWindow->GetFileName(pane)) : m_strDesc[pane];
+			title[pane] = CMergeFrameCommon::GetReportTitleString(*this, pane);
 			const int curPage = m_pImgMergeWindow->GetCurrentPage(pane) + 1;
 			diffimg_filename[0][pane] = strutils::format(_T("%s/%d_%d_%d.png"),
 				imgdir, reportContext.index + 1, pane + 1, curPage);

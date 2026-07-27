@@ -30,6 +30,7 @@ public:
 	static String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
 	static String GetDiffStatusString(int curDiff, int diffCount);
 	static String GetTitleString(const IMergeDoc& mergeDoc);
+	static String GetReportTitleString(const IMergeDoc& mergeDoc, int pane);
 	static String GetTooltipString(const IMergeDoc& mergeDoc);
 	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo* pInfoUnpacker, const PrediffingInfo* pInfoPrediffer, bool hasTrivialDiffs = false);
 	static void LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpackerconst , const PrediffingInfo* infoPrediffer);

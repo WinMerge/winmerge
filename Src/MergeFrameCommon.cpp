@@ -25,6 +25,7 @@
 #include "IAsyncTask.h"
 #include "EditorFilePathBar.h"
 #include "ShellContextMenu.h"
+#include "IDirDoc.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -321,6 +322,18 @@ String CMergeFrameCommon::GetTitleString(const IMergeDoc& mergeDoc)
 	else
 		sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
 	return GetTitleStringFlags(mergeDoc) + sTitle;
+}
+
+String CMergeFrameCommon::GetReportTitleString(const IMergeDoc& mergeDoc, int pane)
+{
+	String strDesc = mergeDoc.GetDescription(pane);
+	if (!strDesc.empty())
+		return strDesc;
+	String path = mergeDoc.GetPath(pane);
+	IDirDoc* pDirDoc = mergeDoc.GetDirDoc();
+	if (pDirDoc != nullptr && pDirDoc->IsArchiveFolders())
+		pDirDoc->ApplyDisplayRoot(pane, path);
+	return path;
 }
 
 String CMergeFrameCommon::GetTooltipString(const IMergeDoc& mergeDoc)
