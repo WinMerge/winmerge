@@ -99,6 +99,7 @@ void FileCmpReportDlg::OnBtnClickReportBrowse()
 	String chosenFilepath;
 	if (SelectFile(GetSafeHwnd(), chosenFilepath, false, folder.c_str(), _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
 	{
+		UpdateData(TRUE);
 		m_options.reportFile = chosenFilepath;
 		UpdateData(FALSE);
 	}

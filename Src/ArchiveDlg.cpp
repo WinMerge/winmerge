@@ -86,6 +86,7 @@ void ArchiveDlg::OnBrowseArchive()
 	if (SelectFile(GetSafeHwnd(), chosenPath, false, initialPath.c_str(), _T(""),
 		I18n::LoadString(IDS_ARCHIVEFILES), _T("zip")))
 	{
+		UpdateData(TRUE);
 		m_options.archiveFile = chosenPath;
 		UpdateData(FALSE);
 	}
