@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-07-24 00:00+0000\n"
+"PO-Revision-Date: 2026-07-28 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1496,7 +1496,7 @@ msgstr "Очистить точки синхронизации"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "Создать архив..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -4543,27 +4543,27 @@ msgstr "\\u24D8 Отчет использует текущие параметр�
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "Создание архивов"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "Архивный файл:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
 msgid "Include &report"
-msgstr ""
+msgstr "Включить отчет"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "Включить патч"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "Включить проект"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -5487,7 +5487,7 @@ msgstr "Значения, разделённые табуляцией (*.tsv;*.t
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "ZIP файлы (*.zip)|*.zip|7z файлы (*.7z)|*.7z|TAR файлы (*.tar)|*.tar|Все файлы (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -7228,12 +7228,12 @@ msgstr "Папка не существует."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "Архивный файл записан."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
-msgstr ""
+msgstr "Сначала сохраните все файлы.\n\nПри создании архива не должно быть несохранённых изменений."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
