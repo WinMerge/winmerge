@@ -1777,16 +1777,16 @@
 #define IDS_NOT_CONFLICT_FILE           41223
 #define IDS_SAVE_AS_TITLE               41232
 #define IDS_SAVE_FMT                    41233
-#define IDS_SAVEREADONLY_FMT            41234
+#define IDS_SAVEREADONLY_FMT            41234 // Persistent key for "Don't ask again"
 #define IDS_ERROR_BACKUP                41236
-#define IDS_BACKUP_FAILED_PROMPT        41237
+#define IDS_BACKUP_FAILED_PROMPT        41237 // Persistent key for "Don't ask again"
 #define IDS_FILESAVE_FAILED             41238
 #define IDS_FILEPACK_FAILED_LEFT        41239
 #define IDS_FILEPACK_FAILED_MIDDLE      41240
 #define IDS_FILEPACK_FAILED_RIGHT       41241
 #define IDS_FILECHANGED_ONDISK          41242
-#define IDS_SAVEREADONLY_MULTI          41243
-#define IDS_FILECHANGED_RESCAN          41244
+#define IDS_SAVEREADONLY_MULTI          41243 // Persistent key for "Don't ask again"
+#define IDS_FILECHANGED_RESCAN          41244 // Persistent key for "Don't ask again"
 #define IDS_SAVE_LEFT_AS                41245
 #define IDS_SAVE_MIDDLE_AS              41246
 #define IDS_SAVE_RIGHT_AS               41247
@@ -1838,7 +1838,7 @@
 #define IDS_FILES_AFFECTED_FMT          41690
 #define IDS_FILES_AFFECTED_FMT2         41691
 #define IDS_CONFIRM_DELETE_SINGLE       41692
-#define IDS_CONFIRM_SINGLE_COPY         41693
+#define IDS_CONFIRM_SINGLE_COPY         41693 // Persistent key for "Don't ask again"
 #define IDS_CONFIRM_MULTIPLE_COPY       41694
 #define IDS_DIRCMP_NOTSYNC              41695
 #define IDS_CONFIRM_SINGLE_MOVE         41696
@@ -1846,11 +1846,11 @@
 #define IDS_CONFIRM_COPY_CAPTION        41698
 #define IDS_CONFIRM_MOVE_CAPTION        41699
 #define IDS_CONFIRM_CLOSE_WINDOW_COMPARING 41700
-#define IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON 41701
+#define IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON 41701 // Persistent key for "Don't ask again"
 #define IDS_ERROR_INVALID_DIR_FILE_NAME 41702
 #define IDS_ERROR_EXECUTE_FILE          41719
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      41731
-#define IDS_FAILED_EXTRACT_ARCHIVE_FILES 41732
+#define IDS_FAILED_EXTRACT_ARCHIVE_FILES 41732 // Persistent key for "Don't ask again"
 #define IDS_COLHDR_FILENAME             41751
 #define IDS_COLHDR_DIR                  41752
 #define IDS_COLHDR_RESULT               41753
@@ -1992,28 +1992,28 @@
 #define IDS_REPORT_TABLIST              41991
 #define IDS_REPORT_SIMPLEHTML           41992
 #define IDS_REPORT_SIMPLEXML            41993
-#define IDS_REPORT_FILEOVERWRITE        41994
+#define IDS_REPORT_FILEOVERWRITE        41994 // Persistent key for "Don't ask again"
 #define IDS_REPORT_ERROR                41995
 #define IDS_REPORT_SUCCESS              41996
 #define IDS_SYNCPOINT_LASTBLOCK         42000
-#define IDS_FILE_TO_ITSELF              42100
-#define IDS_FILESSAME                   42101
+#define IDS_FILE_TO_ITSELF              42100 // Persistent key for "Don't ask again"
+#define IDS_FILESSAME                   42101 // Persistent key for "Don't ask again"
 #define IDS_FILESSAME_CURCFG            42102
 #define IDS_FILESSAME_BINERROR          42103
 #define IDS_FILESSAME_BINSAME           42104
 #define IDS_FILESSAME_BINDIFF           42105
 #define IDS_FILEERROR                   42107
 #define IDS_TEMP_FILEERROR              42108
-#define IDS_SUGGEST_IGNOREEOL           42109
+#define IDS_SUGGEST_IGNOREEOL           42109 // Persistent key for "Don't ask again"
 #define IDS_INVALID_DIRECTORY           42110
 #define IDS_CANNOT_OPEN_BINARYFILE      42111
-#define IDS_CREATE_PAIR_FOLDER          42112
-#define IDS_MOVE_TO_NEXTFILE            42113
-#define IDS_MOVE_TO_PREVFILE            42114
-#define IDS_MOVE_TO_NEXTPAGE            42115
-#define IDS_MOVE_TO_PREVPAGE            42116
-#define IDS_MOVE_TO_FIRSTFILE           42117
-#define IDS_MOVE_TO_LASTFILE            42118
+#define IDS_CREATE_PAIR_FOLDER          42112 // Persistent key for "Don't ask again"
+#define IDS_MOVE_TO_NEXTFILE            42113 // Persistent key for "Don't ask again"
+#define IDS_MOVE_TO_PREVFILE            42114 // Persistent key for "Don't ask again"
+#define IDS_MOVE_TO_NEXTPAGE            42115 // Persistent key for "Don't ask again"
+#define IDS_MOVE_TO_PREVPAGE            42116 // Persistent key for "Don't ask again"
+#define IDS_MOVE_TO_FIRSTFILE           42117 // Persistent key for "Don't ask again"
+#define IDS_MOVE_TO_LASTFILE            42118 // Persistent key for "Don't ask again"
 #define IDS_SUGGEST_IGNORECODEPAGE      42131
 #define IDS_LOSSY_TRANSCODING_FIRST     42132
 #define IDS_LOSSY_TRANSCODING_SECOND    42133
@@ -2021,16 +2021,16 @@
 #define IDS_LOSSY_TRANSCODING_BOTH      42135
 #define IDS_LINEDIFF_NODIFF             42151
 #define IDS_LINEDIFF_NODIFF_CAPTION     42152
-#define IDS_NUM_REPLACED                42161
+#define IDS_NUM_REPLACED                42161 // Persistent key for "Don't ask again"
 #define IDS_EDIT_TEXT_NOT_FOUND         42162
-#define IDS_MERGE_MODE                  42181
+#define IDS_MERGE_MODE                  42181 // Persistent key for "Don't ask again"
 #define IDS_LOCBAR_CAPTION              42201
 #define IDS_DIFFBAR_CAPTION             42202
 #define IDS_OUTPUTBAR_CAPTION           42203
 #define IDS_ARCHIVE_SUCCEEDED           42300
 #define IDS_ARCHIVE_SAVEFILES           42301
-#define IDS_DIFF_SUCCEEDED              42400
-#define IDS_DIFF_FILEOVERWRITE          42403
+#define IDS_DIFF_SUCCEEDED              42400 // Persistent key for "Don't ask again"
+#define IDS_DIFF_FILEOVERWRITE          42403 // Persistent key for "Don't ask again"
 #define IDS_DIFF_SELECTEDFILES          42404
 #define IDS_DIFF_NORMAL                 42405
 #define IDS_DIFF_CONTEXT                42406
@@ -2039,7 +2039,7 @@
 #define IDS_FILEWRITE_ERROR             42409
 #define IDS_PATH_NOT_ABSOLUTE           42410
 #define IDS_MUST_SPECIFY_OUTPUT         42411
-#define IDS_CANNOT_CREATE_BINARYPATCH   42412
+#define IDS_CANNOT_CREATE_BINARYPATCH   42412 // Persistent key for "Don't ask again"
 #define IDS_SAVEFILES_FORPATCH          42414
 #define IDS_FOLDER_NOTEXIST             42415
 #define IDS_RENAME_MOVE_DETECTION_DISALBED     42420
@@ -2052,7 +2052,7 @@
 #define IDS_RENAMED_MOVED               42427
 #define IDS_RENAMED_MOVED_ITEMS         42428
 #define IDS_RENAMED_MOVED_RESULT        42429
-#define IDS_SWITCH_FLAT_MODE            42430
+#define IDS_SWITCH_FLAT_MODE            42430 // Persistent key for "Don't ask again"
 #define IDS_NO_ZIP_SUPPORT              42449
 #define IDS_OPT_EXPORT_CAPTION          42452
 #define IDS_OPT_IMPORT_CAPTION          42453
@@ -2067,7 +2067,7 @@
 #define IDS_UNK_ERROR_SAVING_PROJECT    42511
 #define IDS_PROJFILE_LOAD_SUCCESS       42513
 #define IDS_PROJFILE_SAVE_SUCCESS       42514
-#define IDS_PROJFILE_CONTAIN_PLUGIN_ARGS 42515
+#define IDS_PROJFILE_CONTAIN_PLUGIN_ARGS 42515 // Persistent key for "Don't ask again"
 #define IDS_TEXT_REPORT_FILES           42540
 #define IDS_HTML_REPORT_FILES           42541
 #define IDS_XML_REPORT_FILES            42542
@@ -2180,7 +2180,7 @@
 #define IDS_IMGCMP_STATUS_FLIPPED_FMT   44154
 #define IDS_IMGCMP_STATUS_ROTATED_FMT   44155
 #define IDS_IMGCMP_REPORT_ALLPAGES      44156
-#define IDS_COMPARE_LARGE_FILES         44165
+#define IDS_COMPARE_LARGE_FILES         44165 // Persistent key for "Don't ask again"
 #define IDS_OCRRESULT_TEXTONLY          44166
 #define IDS_OCRRESULT_POS_LINE          44167
 #define IDS_OCRRESULT_POS_WORD          44168
@@ -2240,7 +2240,7 @@
 #define IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 44613
 #define IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED 44614
 #define IDS_PROJECT_ITEM_HIDDEN_ITEMS   44615
-#define IDS_CONFIRM_COPY_ALL_DIFFS      44616
+#define IDS_CONFIRM_COPY_ALL_DIFFS      44616 // Persistent key for "Don't ask again"
 #define IDS_JUMPLIST_NEW_TEXT_COMPARE   44617
 #define IDS_JUMPLIST_NEW_TABLE_COMPARE  44618
 #define IDS_JUMPLIST_NEW_BINARY_COMPARE 44619
@@ -2268,7 +2268,7 @@
 #define IDS_COPY_GRANULARITY_LINE       44643
 #define IDS_COPY_GRANULARITY_Character  44644
 #define IDS_VIEW_MENU_BAR               44645
-#define IDS_ONLYDIFFITEMS_CONFIRM       44646
+#define IDS_ONLYDIFFITEMS_CONFIRM       44646 // Persistent key for "Don't ask again"
 #define IDS_LOG_COMPARING_2             44650
 #define IDS_LOG_COMPARING_3             44651
 #define IDS_LOG_COMPARE_COMPLETED       44652
