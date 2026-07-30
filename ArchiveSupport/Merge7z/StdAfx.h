@@ -7,4 +7,4 @@
 
 #define LANG
 
-#include "../../Externals/sevenzip/CPP/Common/Common.h"
+#include "../../Externals/7zip/CPP/Common/Common.h"

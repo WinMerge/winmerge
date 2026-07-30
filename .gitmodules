@@ -7,9 +7,6 @@
 [submodule "Externals/patch"]
 	path = Externals/patch
 	url = https://github.com/WinMerge/patch.git
-[submodule "Externals/sevenzip"]
-	path = Externals/sevenzip
-	url = https://github.com/WinMerge/sevenzip.git
 [submodule "Externals/freeimage"]
 	path = Externals/freeimage
 	url = https://github.com/WinMerge/freeimage.git
@@ -37,3 +34,6 @@
 [submodule "Externals/tree-sitter-grammars"]
 	path = Externals/tree-sitter-grammars
 	url = https://github.com/WinMerge/tree-sitter-grammars
+[submodule "Externals/7zip"]
+	path = Externals/7zip
+	url = https://github.com/WinMerge/7zip
