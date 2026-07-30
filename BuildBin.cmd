@@ -5,10 +5,10 @@ cscript /nologo ExpandEnvironmenStrings.js Version.in > Version.h
 
 setlocal
 for /f "usebackq tokens=*" %%i in (`"%programfiles(x86)%\microsoft visual studio\installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
-  set InstallDir=%%i
+  set "InstallDir=%%i"
 )
 if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
-  call "%InstallDir%\Common7\Tools\vsdevcmd.bat
+  call "%InstallDir%\Common7\Tools\vsdevcmd.bat"
 )
 
 if "%1" == "" (
@@ -19,11 +19,12 @@ if "%1" == "" (
   call :BuildBin %1 || goto :eof
 )
 
+endlocal
+
 goto :eof
 
 :BuildBin
-MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || goto :eof
-endlocal
+msbuild WinMerge.sln /t:Rebuild /p:Configuration=Release /p:Platform="%1" || goto :eof
 
 if exist "%SIGNBAT_PATH%" (
   call "%SIGNBAT_PATH%" Build\%1\Release\WinMergeU.exe
