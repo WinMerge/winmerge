@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-07-26 02:22+0000\n"
-"PO-Revision-Date: 2026-07-26 23:30+0000\n"
+"PO-Revision-Date: 2026-08-01 11:30+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -178,7 +178,7 @@ msgstr "Idź do...\tCtrl+G"
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_GOTO_DEFINITION
 #: Merge.rc:131 Merge.rc:711 Merge.rc:1106
 msgid "Go to &Definition\tF12"
-msgstr ""
+msgstr "Idź do definicji\tF12"
 
 #. IDR_POPUP_MERGEVIEW, ID_GOTO_MOVED_LINE_LM
 #: Merge.rc:132
@@ -3061,7 +3061,7 @@ msgstr "Przeniesiono"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1911
 msgid "Bookmarked"
-msgstr ""
+msgstr "Dodano do zakładek"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1913 Merge.rc:1992
@@ -3937,7 +3937,7 @@ msgstr "Podświetlaj składnię"
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2622
 msgid "Highlight &mode:"
-msgstr ""
+msgstr "Tryb podświetlenia:"
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2624
@@ -8439,12 +8439,12 @@ msgstr "Najpierw wbudowane"
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
 #: Merge.rc:5799
 msgid "Tree-sitter first"
-msgstr ""
+msgstr "Najpierw Tree-sitter"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5800
 msgid "Tree-sitter only"
-msgstr ""
+msgstr "Tylko Tree-sitter"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
