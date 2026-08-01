@@ -117,12 +117,12 @@ msgstr "Eltérés kijelölése\tF4"
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:111
 msgid "Add to &Filters"
-msgstr ""
+msgstr "Hozzáadás a &szűrőkhöz"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "Hozzáadás a &megjelenítési szűrőhöz"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -186,7 +186,7 @@ msgstr "&Ugrás...\tCtrl+G"
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_GOTO_DEFINITION
 #: Merge.rc:131 Merge.rc:711 Merge.rc:1106
 msgid "Go to &Definition\tF12"
-msgstr ""
+msgstr "Ugrás a &Definícióhoz\tF12"
 
 #. IDR_POPUP_MERGEVIEW, ID_GOTO_MOVED_LINE_LM
 #: Merge.rc:132
@@ -242,22 +242,22 @@ msgstr "Minden oszlop automatikus illeszkedése"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:153 Merge.rc:5645
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "&Szűrés ezen oszlop alapján"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:155 Merge.rc:1880
 msgid "&Text..."
-msgstr ""
+msgstr "&Szöveg..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:156 Merge.rc:1881
 msgid "&Number..."
-msgstr ""
+msgstr "&Szám..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_DATETIME
 #: Merge.rc:157 Merge.rc:1882
 msgid "&Date/Time..."
-msgstr ""
+msgstr "&Dátum/Idő..."
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
 #: Merge.rc:166 Merge.rc:283
@@ -589,7 +589,7 @@ msgstr "Weboldal"
 #: Merge.rc:331 Merge.rc:340 Merge.rc:434 Merge.rc:443 Merge.rc:611
 #: Merge.rc:620 Merge.rc:1189
 msgid "&Folder"
-msgstr ""
+msgstr "&Mappa"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:333 Merge.rc:436 Merge.rc:613
@@ -1028,7 +1028,7 @@ msgstr "Minden alkönyvtár bezárása"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:504
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "&Üres mappák mutatása"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:506 Merge.rc:717
@@ -1259,7 +1259,7 @@ msgstr "Újra összehasonlítás mint"
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:672 Merge.rc:962 Merge.rc:1202
 msgid "A&rchive"
-msgstr ""
+msgstr "&Archív"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:685
@@ -1674,7 +1674,7 @@ msgstr "Szinkronizációs pontok törlése"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:873
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "&Archívum generálása..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:885
@@ -2973,12 +2973,12 @@ msgstr "Cél: &Összes"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1655
 msgid "Binary files only"
-msgstr ""
+msgstr "Csak bináris fájlok"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1656
 msgid "Text files only"
-msgstr ""
+msgstr "Csak szöveges fájlok"
 
 #. IDS_EOL_NONE
 #: Merge.rc:1667 Merge.rc:1918 Merge.rc:5304
@@ -3167,97 +3167,97 @@ msgstr "&Unicode normalizálása"
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1875
 msgid "Add L&ine Condition"
-msgstr ""
+msgstr "&Sorfeltétel hozzáadása"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_RANGE
 #: Merge.rc:1877
 msgid "L&ine Text..."
-msgstr ""
+msgstr "&Sorszöveg..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1878 Merge.rc:1933
 msgid "&Column"
-msgstr ""
+msgstr "&Oszlop"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_1
 #: Merge.rc:1883 Merge.rc:1958
 msgid "Column: &1"
-msgstr ""
+msgstr "Oszlop: &1"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_2
 #: Merge.rc:1884 Merge.rc:1959
 msgid "Column: &2"
-msgstr ""
+msgstr "Oszlop: &2"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_3
 #: Merge.rc:1885 Merge.rc:1960
 msgid "Column: &3"
-msgstr ""
+msgstr "Oszlop: &3"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_4
 #: Merge.rc:1886 Merge.rc:1961
 msgid "Column: &4"
-msgstr ""
+msgstr "Oszlop: &4"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_5
 #: Merge.rc:1887 Merge.rc:1962
 msgid "Column: &5"
-msgstr ""
+msgstr "Oszlop: &5"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_6
 #: Merge.rc:1888 Merge.rc:1963
 msgid "Column: &6"
-msgstr ""
+msgstr "Oszlop: &6"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_7
 #: Merge.rc:1889 Merge.rc:1964
 msgid "Column: &7"
-msgstr ""
+msgstr "Oszlop: &7"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_8
 #: Merge.rc:1890 Merge.rc:1965
 msgid "Column: &8"
-msgstr ""
+msgstr "Oszlop: &8"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_9
 #: Merge.rc:1891 Merge.rc:1966
 msgid "Column: &9"
-msgstr ""
+msgstr "Oszlop: &9"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_10
 #: Merge.rc:1892 Merge.rc:1967
 msgid "Column: 1&0"
-msgstr ""
+msgstr "Oszlop: 1&0"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_LENGTH_RANGE
 #: Merge.rc:1894
 msgid "Line L&ength..."
-msgstr ""
+msgstr "Sorhossz..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_WORD_COUNT_RANGE
 #: Merge.rc:1895
 msgid "&Word Count..."
-msgstr ""
+msgstr "&Szószám..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1896
 msgid "Line &Number"
-msgstr ""
+msgstr "Sor &száma"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_ODD_LINES
 #: Merge.rc:1898
 msgid "&Odd Lines"
-msgstr ""
+msgstr "&Páratlan sorok"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EVEN_LINES
 #: Merge.rc:1899
 msgid "&Even Lines"
-msgstr ""
+msgstr "&Páros sorok"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1902 Merge.rc:1986
 msgid "Line &Status"
-msgstr ""
+msgstr "Sor &állapota"
 
 #. IDS_DIFFERENT
 #: Merge.rc:1904 Merge.rc:1988 Merge.rc:2866 Merge.rc:3036 Merge.rc:3077
@@ -3276,17 +3276,17 @@ msgstr "Egyező"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_TRIVIAL
 #: Merge.rc:1906 Merge.rc:1990
 msgid "Trivial"
-msgstr ""
+msgstr "Jelentéktelen"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_EXISTS
 #: Merge.rc:1908
 msgid "Exists"
-msgstr ""
+msgstr "Létezik"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1909
 msgid "Missing"
-msgstr ""
+msgstr "Hiányzó"
 
 #. IDS_MOVED
 #: Merge.rc:1910 Merge.rc:5076
@@ -3296,47 +3296,47 @@ msgstr "Áthelyezve"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_BOOKMARKED
 #: Merge.rc:1911
 msgid "Bookmarked"
-msgstr ""
+msgstr "Könyvjelzőzött"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1913 Merge.rc:1992
 msgid "&EOL"
-msgstr ""
+msgstr "&Sorvég"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1928
 msgid "L&ine Text"
-msgstr ""
+msgstr "&Sor szöveg"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1940
 msgid "&Number"
-msgstr ""
+msgstr "&Szám"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1949
 msgid "&Date/Time"
-msgstr ""
+msgstr "&Dátum/Idő"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:1969
 msgid "Line L&ength"
-msgstr ""
+msgstr "Sorhossz"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2003
 msgid "&Transform Line/Column"
-msgstr ""
+msgstr "Sor/Oszlop &átalakítása"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_TRIM
 #: Merge.rc:2005
 msgid "&Trim"
-msgstr ""
+msgstr "&Vágás"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_NORM_SPACE
 #: Merge.rc:2006
 msgid "Normalize &Whitespace"
-msgstr ""
+msgstr "&Szóközök normalizálása"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
 #: Merge.rc:2007 Merge.rc:2284
@@ -3347,77 +3347,77 @@ msgstr "Csere"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_FUNC_REGEXREPLACE
 #: Merge.rc:2008
 msgid "Reg&ex Replace"
-msgstr ""
+msgstr "Reg&ex Csere"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2042
 msgid "&Refine Current Filter"
-msgstr ""
+msgstr "Az aktuális szűrő &finomítása"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2044
 msgid "Add Con&text Lines"
-msgstr ""
+msgstr "&Kontextussorok hozzáadása"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2052
 msgid "Filter by &Occurrence"
-msgstr ""
+msgstr "Szűrés &előfordulás szerint"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_1
 #: Merge.rc:2054
 msgid "&First"
-msgstr ""
+msgstr "&Első"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_EQ_LAST
 #: Merge.rc:2055
 msgid "&Last"
-msgstr ""
+msgstr "&Utolsó"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_LE_5
 #: Merge.rc:2056
 msgid "First &5 Matches"
-msgstr ""
+msgstr "Első &5 egyezés"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHNUMBER_GT_5
 #: Merge.rc:2057
 msgid "After First &5"
-msgstr ""
+msgstr "Első &5 után"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_OCCURRENCE_BY_BLOCK
 #: Merge.rc:2060
 msgid "By &Block"
-msgstr ""
+msgstr "&Blokk szerint"
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2062
 msgid "&Range"
-msgstr ""
+msgstr "&Tartomány"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHINSIDE
 #: Merge.rc:2064 Merge.rc:2070
 msgid "&Inside..."
-msgstr ""
+msgstr "&Belső..."
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MATCHOUTSIDE
 #: Merge.rc:2065 Merge.rc:2071
 msgid "&Outside..."
-msgstr ""
+msgstr "&Külső..."
 
 #. IDR_POPUP_LINEFILTERMENU
 #: Merge.rc:2068
 msgid "Create &Range"
-msgstr ""
+msgstr "&Tartomány létrehozása"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2076
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "Kombinálás: &ÉS"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2077
 msgid "Combine: &OR"
-msgstr ""
+msgstr "Kombinálás: &VAGY"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2193
@@ -4280,7 +4280,7 @@ msgstr "&Szintaxis kiemelés"
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2622
 msgid "Highlight &mode:"
-msgstr ""
+msgstr "Kiemelés &mód:"
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2624
@@ -4378,7 +4378,7 @@ msgstr "Patch Generátor"
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:2674 Merge.rc:2986 Merge.rc:3004
 msgid "Comparisons to include:"
-msgstr ""
+msgstr "Tartalmazandó összehasonlítások:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2676
@@ -4683,92 +4683,92 @@ msgstr "Kifejezés:"
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2859
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Szűrés összehasonlítási eredmény alapján"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2862
 msgid "&Include"
-msgstr ""
+msgstr "&Belefoglalás"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2863
 msgid "&Exclude"
-msgstr ""
+msgstr "&Kizárás"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2864
 msgid "Comparison Results"
-msgstr ""
+msgstr "Összehasonlítási eredmények"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2867
 msgid "Left only"
-msgstr ""
+msgstr "Csak bal"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2868
 msgid "Right only"
-msgstr ""
+msgstr "CSak jobb"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2869
 msgid "Skipped"
-msgstr ""
+msgstr "Kihagyva"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2870
 msgid "Middle only"
-msgstr ""
+msgstr "Csak középső"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2871
 msgid "Left only (different)"
-msgstr ""
+msgstr "Csak bal (eltérő)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2873
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Csak középső (eltérő)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2875
 msgid "Right only (different)"
-msgstr ""
+msgstr "Csak jobb (eltérő)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2877
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Csak bal (hiányzó)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2878
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Csak középső (hiányzó)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2880
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Csak jobb (hiányzó)"
 
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:2888
 msgid "Match Inside/Outside Filter Expressions"
-msgstr ""
+msgstr "Szűrőkifejezések belső/külső egyezése"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2891
 msgid "&Start filter:"
-msgstr ""
+msgstr "Szűrő &kezdete:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2894
 msgid "&End filter:"
-msgstr ""
+msgstr "Szűrő &vége:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2897
 msgid "Lines between start and end filter matches will be included."
-msgstr ""
+msgstr "A szűrőtalálatok kezdő és záró sorai bele lesznek foglalva."
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2904 Merge.rc:3133 Merge.rc:4561
@@ -4940,47 +4940,47 @@ msgstr "Fájl-összehasonlító jelentés hozzáadása"
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
 #: Merge.rc:2976 Merge.rc:2992
 msgid "Open report after &generating"
-msgstr ""
+msgstr "Jelentés megnyitása &generálás után"
 
 #. IDD_FILECMP_REPORT
 #: Merge.rc:2983
 msgid "File Compare Report"
-msgstr ""
+msgstr "Fájl-összehasonlító jelentés"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
 #: Merge.rc:2993
 msgid "&Include all image pages"
-msgstr ""
+msgstr "&Összes képoldal belefoglalása"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:2994
 msgid "\\u24D8 The report uses the current comparison settings."
-msgstr ""
+msgstr "\\u24D8 A jelentés az aktuális összehasonlítási beállításokat használja."
 
 #. IDD_ARCHIVE
 #: Merge.rc:3001
 msgid "Archive Generator"
-msgstr ""
+msgstr "Archívumgenerátor"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3006
 msgid "Archive &file:"
-msgstr ""
+msgstr "Archív &fájl:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
-msgid "Include &report"
-msgstr ""
+msgid "Include report"
+msgstr "&Jelentés belefoglalása"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3010
 msgid "Include &patch"
-msgstr ""
+msgstr "&Javítás belefoglalása"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3011
 msgid "Include pro&ject"
-msgstr ""
+msgstr "&Projekt belefoglalása"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3019
@@ -5775,7 +5775,7 @@ msgstr "Projekt fájl sikeresen elmentve."
 #: Merge.rc:4492
 #, c-format
 msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
-msgstr ""
+msgstr "Ez a projektfájl egyéni argumentumokkal rendelkező bővítményeket tartalmaz:\n\n%1\nEzek az argumentumok befolyásolhatják a bővítmények viselkedését, vagy külső programokat futtathatnak.\n\nMegnyitod ezt a projektfájlt?"
 
 #. ID_EDIT_UNDO
 #: Merge.rc:4498
@@ -6056,7 +6056,7 @@ msgstr "Tabulátorral elválasztott értékek (*.tsv;*.txt)|*.tsv;*.txt|Összes 
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4617
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "ZIP fájlok (*.zip)|*.zip|7z fájlok (*.7z)|*.7z|TAR fájlok (*.tar)|*.tar|Minden fájl (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4623
@@ -6502,7 +6502,7 @@ msgstr "Ez a fájl nem található: %1"
 #: Merge.rc:4777
 #, c-format
 msgid "Folder not found: %1"
-msgstr ""
+msgstr "%1 mappa nem található"
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
 #: Merge.rc:4778
@@ -6815,7 +6815,7 @@ msgstr "Különbségek ehhez...(%1)"
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4869
 msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
-msgstr ""
+msgstr "Néhány kiválasztott elem azonos vagy kimaradt.\nCsak az eltéréseket tartalmazó elemek feldolgozása?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4875
@@ -8101,12 +8101,12 @@ msgstr "A mappa nem létezik."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5277
 msgid "Archive file written."
-msgstr ""
+msgstr "Archív fájl kiírva."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5278
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
-msgstr ""
+msgstr "Először mentsd el az összes fájlt.\n\nArchívum létrehozásához nem lehetnek mentetlen módosítások."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5283
@@ -8832,7 +8832,7 @@ msgstr "Csak egy példány futhat egyszerre"
 #. IDS_CLIPBOARD_HISTORY
 #: Merge.rc:5591
 msgid "Clipboard &History"
-msgstr ""
+msgstr "Vágólap &előzmények"
 
 #. IDS_SINGLEINSTANCE_STR2
 #: Merge.rc:5592
@@ -9004,7 +9004,7 @@ msgstr "Összehasonlítás %1"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
 #: Merge.rc:5646
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "&Szűrés ezen oszlop alapján..."
 
 #. IDS_CLIPBOARDHISTORY_TIME
 #: Merge.rc:5651
@@ -9058,7 +9058,7 @@ msgstr "Új weboldal összehasonlítás"
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
 #: Merge.rc:5671
 msgid "New Folder Compare"
-msgstr ""
+msgstr "Új mappa összehasonlítás"
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
 #: Merge.rc:5672
@@ -9296,7 +9296,7 @@ msgstr "Érvénytelen tulajdonságnév"
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
 #: Merge.rc:5749
 msgid "Invalid directive"
-msgstr ""
+msgstr "Érvénytelen utasítás"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5754
@@ -9361,22 +9361,22 @@ msgstr "Nem tartalmazza (regex)"
 #. IDS_FILTER_OP_LIKE
 #: Merge.rc:5766
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Egyezés (helyettesítő karakter)"
 
 #. IDS_FILTER_OP_NOT_LIKE
 #: Merge.rc:5767
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Nem egyezik (helyettesítő karakter)"
 
 #. IDS_FILTER_OP_MATCHES
 #: Merge.rc:5768
 msgid "Match (regex)"
-msgstr ""
+msgstr "Egyezés (regex)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
 #: Merge.rc:5769
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Nem egyezik (regex)"
 
 #. IDS_COLORMODE_LIGHT
 #: Merge.rc:5774
@@ -9417,22 +9417,22 @@ msgstr "# Cserelista\r\n# Formátum: search<TAB>replacement\r\n# A # karakterrel
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
 #: Merge.rc:5797
 msgid "Built-in only"
-msgstr ""
+msgstr "Csak beépített"
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
 #: Merge.rc:5798
 msgid "Built-in first"
-msgstr ""
+msgstr "Beépített először"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
 #: Merge.rc:5799
 msgid "Tree-sitter first"
-msgstr ""
+msgstr "Tree-sitter először"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5800
 msgid "Tree-sitter only"
-msgstr ""
+msgstr "Tree-sitter csak"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
@@ -9914,7 +9914,7 @@ msgstr "Java dekompilátor (CFR).\r\nA .class fájlokat olvasható Java forrásk
 
 #: Strings.rc:206
 msgid "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
-msgstr ""
+msgstr "Vágólap URL-séma kezelő (cliphcat).\r\nArgumentumok: cliphcat parancssori opciók."
 
 #: Strings.rc:212
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
