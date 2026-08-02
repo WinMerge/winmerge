@@ -94,6 +94,9 @@ static const unsigned int MAX_TAB_LEN = 64;  // Same as in CrystalViewText.cpp
 #define DRAG_BORDER_X       5
 #define DRAG_BORDER_Y       5
 
+static constexpr UINT_PTR CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID = 1005;
+static constexpr UINT REGISTER_DROP_TARGET_TIMER_DELAY = 100;
+
 /////////////////////////////////////////////////////////////////////////////
 // CEditDropTargetImpl class declaration
 
@@ -164,6 +167,7 @@ ON_COMMAND (ID_EDIT_SWITCH_OVRMODE, OnEditSwitchOvrmode)
 ON_UPDATE_COMMAND_UI (ID_EDIT_SWITCH_OVRMODE, OnUpdateEditSwitchOvrmode)
 ON_WM_CREATE ()
 ON_WM_DESTROY ()
+ON_WM_TIMER ()
 ON_COMMAND (ID_EDIT_REPLACE, OnEditReplace)
 ON_UPDATE_COMMAND_UI (ID_EDIT_UNDO, OnUpdateEditUndo)
 ON_COMMAND (ID_EDIT_UNDO, OnEditUndo)
@@ -1322,6 +1326,8 @@ DoDragScroll (const CPoint & point)
 void CCrystalEditView::
 SetAlternateDropTarget (IDropTarget *pDropTarget)
 {
+  if (m_pDropTarget == nullptr)
+    return;
   ASSERT(m_pDropTarget->m_pAlternateDropTarget == nullptr);
   m_pDropTarget->m_pAlternateDropTarget = pDropTarget;
   m_pDropTarget->m_pAlternateDropTarget->AddRef();
@@ -1386,19 +1392,32 @@ OnCreate (LPCREATESTRUCT lpCreateStruct)
 
   ASSERT (m_pDropTarget == nullptr);
   m_pDropTarget = new CEditDropTargetImpl (this);
-  if (!m_pDropTarget->Register (this))
-    {
-      TRACE0 ("Warning: Unable to register drop target for ccrystaleditview.\n");
-      delete m_pDropTarget;
-      m_pDropTarget = nullptr;
-    }
-
+  // Delay registration to avoid slowing down view creation.
+  SetTimer(CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID, REGISTER_DROP_TARGET_TIMER_DELAY, nullptr);
   return 0;
+}
+
+void CCrystalEditView::
+OnTimer (UINT_PTR nIDEvent)
+{
+  if (nIDEvent == CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID)
+    {
+      KillTimer (CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID);
+      if (m_pDropTarget && !m_pDropTarget->Register (this))
+        {
+          TRACE0 ("Warning: Unable to register drop target for ccrystaleditview.\n");
+          delete m_pDropTarget;
+          m_pDropTarget = nullptr;
+        }
+    }
+  CCrystalTextView::OnTimer (nIDEvent);
 }
 
 void CCrystalEditView::
 OnDestroy ()
 {
+  KillTimer (CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID);
+
   if (m_pDropTarget != nullptr)
     {
       m_pDropTarget->Revoke ();
