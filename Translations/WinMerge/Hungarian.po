@@ -4969,7 +4969,7 @@ msgstr "Archív &fájl:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3009
-msgid "Include report"
+msgid "Include &report"
 msgstr "&Jelentés belefoglalása"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
