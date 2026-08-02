@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-07-26 02:22+0000\n"
-"PO-Revision-Date: 2026-08-01 11:30+0000\n"
+"PO-Revision-Date: 2026-08-03 00:30+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "Dodaj do filtrów"
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_DISPLAY_FILTERS
 #: Merge.rc:113
 msgid "Add to &Display Filter"
-msgstr ""
+msgstr "Dodaj do filtra wyświetlania"
 
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_LINE_FILTERS
 #: Merge.rc:114
@@ -692,7 +692,7 @@ msgstr "Filtry..."
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEPATCH
 #: Merge.rc:385 Merge.rc:559 Merge.rc:871
 msgid "&Generate Patch..."
-msgstr "Generuj łatkę..."
+msgstr "Wygeneruj łatkę..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:387 Merge.rc:562 Merge.rc:875
@@ -1047,7 +1047,7 @@ msgstr "Dostosuj kolumny..."
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEREPORT
 #: Merge.rc:560 Merge.rc:872
 msgid "Generate &Report..."
-msgstr "Utwórz raport..."
+msgstr "Wygeneruj raport..."
 
 #. IDD_ENCODINGERROR, IDC_PLUGIN
 #: Merge.rc:572 Merge.rc:889 Merge.rc:3386
@@ -3051,7 +3051,7 @@ msgstr "Istnieje"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_LINE_MISSING
 #: Merge.rc:1909
 msgid "Missing"
-msgstr ""
+msgstr "Brakuje"
 
 #. IDS_MOVED
 #: Merge.rc:1910 Merge.rc:5076
@@ -3176,12 +3176,12 @@ msgstr "Utwórz zakres"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_AND
 #: Merge.rc:2076
 msgid "Combine: A&ND"
-msgstr ""
+msgstr "Połącz: ORAZ"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_OPERATOR_OR
 #: Merge.rc:2077
 msgid "Combine: &OR"
-msgstr ""
+msgstr "Połącz: LUB"
 
 #. IDD_ABOUTBOX
 #: Merge.rc:2193
@@ -4017,7 +4017,7 @@ msgstr "Resetuj"
 #. IDD_GENERATE_PATCH
 #: Merge.rc:2671
 msgid "Patch Generator"
-msgstr "Generuj łatkę"
+msgstr "Generator łatki"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:2674 Merge.rc:2986 Merge.rc:3004
@@ -7041,7 +7041,7 @@ msgstr "Nie można otworzyć w edytorze pliku binarnego."
 #: Merge.rc:5188
 #, c-format
 msgid "Create matching folder:\n%1\non the other side and open?"
-msgstr "Folder istnieje tylko na jednej ze stron i nie może zostać otwarty.\n\nCzy chcesz utworzyć odpowiedni folder:\n%1\npo drugiej stronie i otworzyć te foldery?"
+msgstr "Folder istnieje tylko na jednej ze stron i nie może zostać otwarty.\n\nCzy utworzyć pasujący folder:\n%1\npo drugiej stronie i otworzyć te foldery?"
 
 #. IDS_CONFIRM_COPY_ALL_DIFFS
 #: Merge.rc:5189
@@ -7217,7 +7217,7 @@ msgstr "Nie można utworzyć łatki z plików binarnych."
 #. IDS_SAVEFILES_FORPATCH
 #: Merge.rc:5270
 msgid "Save all files first.\n\nCreating a patch requires no unsaved changes."
-msgstr "Najpierw zapisz wszystkie pliki.\n\nAby utworzyć łatkę, konieczne jest, aby w plikach nie było żadnych niezapisanych zmian."
+msgstr "Najpierw zapisz wszystkie pliki.\n\nAby utworzyć łatkę, wymagane jest, aby w plikach nie było żadnych niezapisanych zmian."
 
 #. IDS_FOLDER_NOTEXIST
 #: Merge.rc:5271
@@ -8095,7 +8095,7 @@ msgstr "Dwie strony"
 #. IDS_PREVIEWBAR_ONEPAGE
 #: Merge.rc:5681
 msgid "&One Page"
-msgstr "Jedną stronę"
+msgstr "Jedna strona"
 
 #. IDS_PREVIEWBAR_ZOOMIN
 #: Merge.rc:5682
