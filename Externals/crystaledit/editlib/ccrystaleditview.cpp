@@ -95,7 +95,7 @@ static const unsigned int MAX_TAB_LEN = 64;  // Same as in CrystalViewText.cpp
 #define DRAG_BORDER_Y       5
 
 static constexpr UINT_PTR CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID = 1005;
-static constexpr UINT REGISTER_DROP_TARGET_TIMER_DELAY = 100;
+static constexpr UINT REGISTER_DROP_TARGET_TIMER_DELAY = 200;
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditDropTargetImpl class declaration
