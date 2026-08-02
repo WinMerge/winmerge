@@ -22,6 +22,8 @@
 #include "MovedLines.h"
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
+#include "MergeLogger.h"
+#include "MergeTextFormatter.h"
 #include "IDirDoc.h"
 #include "FileLoadResult.h"
 #include "FileTransform.h"
@@ -1024,7 +1026,7 @@ bool CMergeDoc::DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer)
 		bSaveSuccess = true;
 		result = true;
 
-		CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
+		MergeLogger::LogFileSaved(m_filePaths[nBuffer]);
 	}
 	else if (nSaveErrorCode == SAVE_CANCELLED)
 	{
@@ -1088,7 +1090,7 @@ bool CMergeDoc::DoSaveAs(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer)
 		bSaveSuccess = true;
 		result = true;
 
-		CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
+		MergeLogger::LogFileSaved(m_filePaths[nBuffer]);
 	}
 	return result;
 }
@@ -1482,7 +1484,7 @@ void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	const String s = CMergeFrameCommon::GetDiffStatusString(GetCurrentDiff(), m_diffList.GetSignificantDiffs());
+	const String s = MergeTextFormatter::GetDiffStatusString(GetCurrentDiff(), m_diffList.GetSignificantDiffs());
 	pCmdUI->SetText(s.c_str());
 }
 
@@ -2087,7 +2089,7 @@ bool CMergeDoc::CloseNow()
  */
 CString CMergeDoc::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(*this).c_str();
+	return MergeTextFormatter::GetTooltipString(*this).c_str();
 }
 
 /**
@@ -2338,7 +2340,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 {
 	PrediffingInfo prediffer;
 	m_diffWrapper.GetPrediffer(&prediffer);
-	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer);
+	MergeLogger::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer);
 
 	CWaitCursor waitstatus;
 	IDENTLEVEL identical = IDENTLEVEL::NONE;
@@ -2554,7 +2556,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			
 		}
 
-		CMergeFrameCommon::LogComparisonCompleted(*this);
+		MergeLogger::LogComparisonCompleted(*this);
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created
@@ -2782,7 +2784,7 @@ bool CMergeDoc::IsEditedAfterRescan(int nBuffer) const
  */
 void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : MergeTextFormatter::GetTitleString(*this);
 	CDocument::SetTitle(sTitle.c_str());
 }
 
@@ -3209,7 +3211,7 @@ bool CMergeDoc::GenerateReport(ReportContext& reportContext) const
 
 	PathContext paths = m_filePaths;
 	for (int i = 0; i < paths.GetSize(); i++)
-		paths[i] = CMergeFrameCommon::GetReportTitleString(*this, i);
+		paths[i] = MergeTextFormatter::GetReportTitleString(*this, i);
 
 	int cmpIdx = reportContext.index + 1;
 

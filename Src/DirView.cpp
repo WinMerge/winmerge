@@ -53,6 +53,7 @@
 #include "MouseHook.h"
 #include "RenameMoveDetection.h"
 #include "FileFilterHelper.h"
+#include "MergeLogger.h"
 #include <numeric>
 #include <functional>
 
@@ -2921,7 +2922,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		if (m_elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);
 		GetMainFrame()->StartFlashing();
-		CMergeFrameCommon::LogComparisonCompleted(*ctxt.m_pCompareStats);
+		MergeLogger::LogComparisonCompleted(*ctxt.m_pCompareStats);
 
 		if (m_bTreeMode && ctxt.m_pRenameMoveDetection && ctxt.m_pRenameMoveDetection->HasMergedMovedItems())
 		{

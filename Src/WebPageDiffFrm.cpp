@@ -10,6 +10,8 @@
 #include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
+#include "MergeLogger.h"
+#include "MergeTextFormatter.h"
 #include "IDirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -26,9 +28,9 @@
 #include "Environment.h"
 #include "UniFile.h"
 #include "Logger.h"
+#include "DarkModeLib.h"
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
-#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -185,7 +187,7 @@ CWebPageDiffFrame::~CWebPageDiffFrame()
 
 bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback)
 {
-	CMergeFrameCommon::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
 
 	m_callbackOnOpenCompleted = callback;
 	m_bCompareCompleted = false;
@@ -476,7 +478,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 			}
 			m_bCompareCompleted = true;
 
-			CMergeFrameCommon::LogComparisonCompleted(*this);
+			MergeLogger::LogComparisonCompleted(*this);
 
 			return S_OK;
 		});
@@ -876,7 +878,7 @@ void CWebPageDiffFrame::UpdateHeaderSizes()
  */
 void CWebPageDiffFrame::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : MergeTextFormatter::GetTitleString(*this);
 	CMergeFrameCommon::SetTitle(sTitle.c_str());
 	if (m_hWnd != nullptr)
 	{
@@ -937,7 +939,7 @@ bool CWebPageDiffFrame::CloseNow()
  */
 CString CWebPageDiffFrame::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(*this).c_str();
+	return MergeTextFormatter::GetTooltipString(*this).c_str();
 }
 
 /**
@@ -1072,7 +1074,7 @@ void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	}
 	else
 	{
-		s = CMergeFrameCommon::GetDiffStatusString(m_pWebDiffWindow->GetCurrentDiffIndex(), m_pWebDiffWindow->GetDiffCount());
+		s = MergeTextFormatter::GetDiffStatusString(m_pWebDiffWindow->GetCurrentDiffIndex(), m_pWebDiffWindow->GetDiffCount());
 	}
 	pCmdUI->SetText(s.c_str());
 }
@@ -1588,7 +1590,7 @@ bool CWebPageDiffFrame::GenerateReport(ReportContext& reportContext, std::functi
 
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 	{
-		title[pane] = CMergeFrameCommon::GetReportTitleString(*this, pane);
+		title[pane] = MergeTextFormatter::GetReportTitleString(*this, pane);
 		diffrpt_filename[pane] = strutils::format(_T("%s/%d_%d.pdf"), rptdir, reportContext.index + 1, pane + 1);
 		diffrpt_filename_full[pane] = strutils::format(_T("%s/%d_%d.pdf"), rptdir_full, reportContext.index + 1, pane + 1);
 		pfilenames[pane] = diffrpt_filename_full[pane].c_str();

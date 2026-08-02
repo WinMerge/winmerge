@@ -873,6 +873,12 @@
     <ClCompile Include="ArchiveTool.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MergeLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeTextFormatter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1667,6 +1673,12 @@
     <ClInclude Include="ArchiveDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MergeLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeTextFormatter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">
@@ -2106,6 +2118,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\move_right_to_middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\archive.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

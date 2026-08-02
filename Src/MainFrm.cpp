@@ -88,7 +88,7 @@
 #include "OptionsSyntaxColors.h"
 #include "SysColorHook.h"
 #include "FileCmpReportDlg.h"
-#include "MergeFrameCommon.h"
+#include "MergeTextFormatter.h"
 #include "ArchiveTool.h"
 #include "DiffImageListUtils.h"
 #include <Poco/Logger.h>
@@ -2125,7 +2125,7 @@ void CMainFrame::OnToolsGenerateReport()
 			continue;
 
 		FileCmpReportDlg::Item item;
-		item.title = CMergeFrameCommon::GetTitleString(*pDoc);
+		item.title = MergeTextFormatter::GetTitleString(*pDoc);
 		item.data = reinterpret_cast<uintptr_t>(pDoc);
 		item.checked = (pDoc == pMergeDoc);
 		item.iImage = DiffImageListUtils::GetDiffImageIndex(pDoc);

@@ -18,6 +18,7 @@
 #include "LocationView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
+#include "MergeLogger.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
 #include "WMGotoDlg.h"
@@ -1307,7 +1308,7 @@ void CMergeEditView::OnEditUndo()
 		GetParentFrame()->SetActiveView(this, true);
 		if(CCrystalEditView::DoEditUndo())
 		{
-			CMergeFrameCommon::LogUndo();
+			MergeLogger::LogUndo();
 
 			--pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_nThisPane);
@@ -2460,7 +2461,7 @@ void CMergeEditView::OnEditRedo()
 		GetParentFrame()->SetActiveView(this, true);
 		if(CCrystalEditView::DoEditRedo())
 		{
-			CMergeFrameCommon::LogRedo();
+			MergeLogger::LogRedo();
 
 			++pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_nThisPane);

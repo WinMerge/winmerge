@@ -922,6 +922,14 @@
   <ItemGroup>
     <ClCompile Include="FileCmpReport.cpp" />
     <ClCompile Include="FileCmpReportDlg.cpp" />
+    <ClCompile Include="MergeLogger.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="MergeTextFormatter.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="SyntaxParserHelper.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1026,6 +1034,8 @@
     <ClInclude Include="LineFilterBar.h" />
     <ClInclude Include="LineFilterHelper.h" />
     <ClInclude Include="LineFilterHelperMenu.h" />
+    <ClInclude Include="MergeLogger.h" />
+    <ClInclude Include="MergeTextFormatter.h" />
     <ClInclude Include="MruHelper.h" />
     <ClInclude Include="I18n.h" />
     <ClInclude Include="I18nGUI.h" />

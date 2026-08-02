@@ -27,6 +27,8 @@
 #include "SyntaxColors.h"
 #include "Merge.h"
 #include "MainFrm.h"
+#include "MergeLogger.h"
+#include "MergeTextFormatter.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -265,7 +267,7 @@ bool CHexMergeDoc::DoFileSave(int nBuffer)
 							compareResult == 0);
 				}
 
-				CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
+				MergeLogger::LogFileSaved(m_filePaths[nBuffer]);
 			}
 		}
 	}
@@ -301,7 +303,7 @@ bool CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 		UpdateLastCompareResult();
 		UpdateHeaderPath(nBuffer);
 
-		CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
+		MergeLogger::LogFileSaved(m_filePaths[nBuffer]);
 
 		return true;
 	}
@@ -414,7 +416,7 @@ bool CHexMergeDoc::CloseNow()
  */
 CString CHexMergeDoc::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(*this).c_str();
+	return MergeTextFormatter::GetTooltipString(*this).c_str();
 }
 
 /**
@@ -451,7 +453,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readO
  */
 bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[])
 {
-	CMergeFrameCommon::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
 
 	CWaitCursor waitstatus;
 	CHexMergeFrame *pf = GetParentFrame();
@@ -488,7 +490,7 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 
 		GetMainFrame()->WatchDocuments(this);
 
-		CMergeFrameCommon::LogComparisonCompleted(*this);
+		MergeLogger::LogComparisonCompleted(*this);
 	}
 	else
 	{
@@ -632,7 +634,7 @@ void CHexMergeDoc::RefreshOptions()
  */
 void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : MergeTextFormatter::GetTitleString(*this);
 	CDocument::SetTitle(sTitle.c_str());
 	if (auto* pParentFrame = GetParentFrame())
 		pParentFrame->SetWindowText(sTitle.c_str());

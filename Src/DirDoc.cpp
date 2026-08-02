@@ -44,6 +44,8 @@
 #include "DirViewColItems.h"
 #include "RenameMoveDetection.h"
 #include "Shell.h"
+#include "MergeLogger.h"
+#include "MergeTextFormatter.h"
 #include <Poco/Semaphore.h>
 #include <set>
 
@@ -202,7 +204,7 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 			m_pTempPathContext->m_strRoot[nIndex] = m_pCtxt->GetNormalizedPath(nIndex);
 	}
 
-	CMergeFrameCommon::LogComparisonStart(paths, m_strDesc, nullptr, nullptr);
+	MergeLogger::LogComparisonStart(paths, m_strDesc, nullptr, nullptr);
 }
 
 
@@ -921,7 +923,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
  */
 CString CDirDoc::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(m_pCtxt->GetNormalizedPaths(), m_strDesc, nullptr, nullptr).c_str();
+	return MergeTextFormatter::GetTooltipString(m_pCtxt->GetNormalizedPaths(), m_strDesc, nullptr, nullptr).c_str();
 }
 
 /**

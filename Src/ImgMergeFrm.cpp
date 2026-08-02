@@ -16,6 +16,8 @@
 #include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
+#include "MergeLogger.h"
+#include "MergeTextFormatter.h"
 #include "BCMenu.h"
 #include "IDirDoc.h"
 #include "OptionsDef.h"
@@ -229,7 +231,7 @@ CImgMergeFrame::~CImgMergeFrame()
 
 bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent)
 {
-	CMergeFrameCommon::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
 
 	CWaitCursor waitstatus;
 	int nNormalBuffer = 0;
@@ -276,7 +278,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 
 	GetMainFrame()->WatchDocuments(this);
 
-	CMergeFrameCommon::LogComparisonCompleted(*this);
+	MergeLogger::LogComparisonCompleted(*this);
 
 	return true;
 }
@@ -804,7 +806,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				compareResult == 0);
 		}
 
-		CMergeFrameCommon::LogFileSaved(m_filePaths[pane]);
+		MergeLogger::LogFileSaved(m_filePaths[pane]);
 	}
 	return true;
 }
@@ -866,7 +868,7 @@ RETRY:
 		m_fileInfo[pane].Update(m_filePaths[pane]);
 		UpdateHeaderPath(pane);
 
-		CMergeFrameCommon::LogFileSaved(m_filePaths[pane]);
+		MergeLogger::LogFileSaved(m_filePaths[pane]);
 	}
 	return true;
 }
@@ -1177,7 +1179,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
  */
 void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : MergeTextFormatter::GetTitleString(*this);
 	CMergeFrameCommon::SetTitle(sTitle.c_str());
 	if (m_hWnd != nullptr)
 		SetWindowText(sTitle.c_str());
@@ -1285,7 +1287,7 @@ bool CImgMergeFrame::CloseNow()
  */
 CString CImgMergeFrame::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(*this).c_str();
+	return MergeTextFormatter::GetTooltipString(*this).c_str();
 }
 
 /**
@@ -1483,7 +1485,7 @@ LRESULT CImgMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 
 void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	const String s = CMergeFrameCommon::GetDiffStatusString(m_pImgMergeWindow->GetCurrentDiffIndex(), m_pImgMergeWindow->GetDiffCount());
+	const String s = MergeTextFormatter::GetDiffStatusString(m_pImgMergeWindow->GetCurrentDiffIndex(), m_pImgMergeWindow->GetDiffCount());
 	pCmdUI->SetText(s.c_str());
 }
 	
@@ -2259,7 +2261,7 @@ bool CImgMergeFrame::GenerateReport(ReportContext& reportContext) const
 			m_pImgMergeWindow->SetCurrentPageAll(page);
 			for (int pane = 0; pane < paneCount; ++pane)
 			{
-				title[pane] = CMergeFrameCommon::GetReportTitleString(*this, pane);
+				title[pane] = MergeTextFormatter::GetReportTitleString(*this, pane);
 				const int curPage = m_pImgMergeWindow->GetCurrentPage(pane) + 1;
 				diffimg_filename[page][pane] = strutils::format(_T("%s/%d_%d_%d.png"),
 					imgdir, reportContext.index + 1, pane + 1, curPage);
@@ -2274,7 +2276,7 @@ bool CImgMergeFrame::GenerateReport(ReportContext& reportContext) const
 		diffimg_filename.resize(1);
 		for (int pane = 0; pane < paneCount; ++pane)
 		{
-			title[pane] = CMergeFrameCommon::GetReportTitleString(*this, pane);
+			title[pane] = MergeTextFormatter::GetReportTitleString(*this, pane);
 			const int curPage = m_pImgMergeWindow->GetCurrentPage(pane) + 1;
 			diffimg_filename[0][pane] = strutils::format(_T("%s/%d_%d_%d.png"),
 				imgdir, reportContext.index + 1, pane + 1, curPage);
