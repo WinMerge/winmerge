@@ -35,6 +35,7 @@ protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CToolBar    m_wndToolBar;
 	CImageList  m_imgListToolBar;
+	CImageList  m_imgListToolBarDisabled;
 
 // Generated message map functions
 protected:

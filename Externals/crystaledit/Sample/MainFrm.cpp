@@ -103,11 +103,25 @@ BOOL CMainFrame::LoadToolBar()
 	const int cx = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16);
 	const int cy = MulDiv(15, GetSystemMetrics(SM_CYSMICON), 16);
 	m_imgListToolBar.Detach();
+	m_imgListToolBarDisabled.Detach();
 	m_imgListToolBar.Create(cx, cy, ILC_COLOR32, ICON_COUNT, 0);
-	CBitmap bm;
-	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), IDR_MAINFRAME, cx * ICON_COUNT, cy, false, RGB(0xc0, 0xc0, 0xc0)));
-	m_imgListToolBar.Add(&bm, nullptr);
+	m_imgListToolBarDisabled.Create(cx, cy, ILC_COLOR32, ICON_COUNT, 0);
+	HBITMAP hEnabled = nullptr;
+	HBITMAP hDisabled = nullptr;
+	CBitmap bmEnabled;
+	CBitmap bmDisabled;
+	if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), IDR_TOOLBAR_PNG, cx * ICON_COUNT, cy, &hEnabled, &hDisabled))
+	{
+		TRACE(_T("LoadToolBar: failed to load IDR_TOOLBAR_PNG\n"));
+		return FALSE;
+	}
+	bmEnabled.Attach(hEnabled);
+	bmDisabled.Attach(hDisabled);
+	m_imgListToolBar.Add(&bmEnabled, nullptr);
+	m_imgListToolBarDisabled.Add(&bmDisabled, nullptr);
 	if (CImageList* pImgList = toolbarCtrl.SetImageList(&m_imgListToolBar))
+		pImgList->DeleteImageList();
+	if (CImageList* pImgList = toolbarCtrl.SetDisabledImageList(&m_imgListToolBarDisabled))
 		pImgList->DeleteImageList();
 	toolbarCtrl.SetButtonSize({ cx + 8, cy + 8 });
 	return TRUE;
