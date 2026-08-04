@@ -111,6 +111,8 @@ END
 
 IDR_LOGO                IMAGE                   "res\\logo.jpg"
 IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
+IDR_TOOLBAR_ENABLED_PNG IMAGE                   "res\\ToolbarEnabled.png"
+IDR_TOOLBAR_ENABLED32_PNG IMAGE                 "res\\ToolbarEnabled32.png"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -119,8 +121,6 @@ IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
 //
 
 IDB_TOOLBAR_ENABLED8BIT BITMAP                  "res\\ToolbarEnabled8bit.bmp"
-IDB_TOOLBAR_ENABLED     BITMAP                  "res\\ToolbarEnabled.bmp"
-IDB_TOOLBAR_ENABLED32   BITMAP                  "res\\ToolbarEnabled32.bmp"
 IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"
 IDB_EDIT_CUT            BITMAP                  "res\\cut.bmp"
 IDB_EDIT_PASTE          BITMAP                  "res\\paste.bmp"

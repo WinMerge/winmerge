@@ -5,9 +5,9 @@
 #define IDD_ABOUTBOX                    100
 #define IDR_MAINFRAME                   128
 #define IDR_SAMPLETYPE                  129
-#define IDR_MARGIN_ICONS                131
 #define IDR_MARGIN_CURSOR               132
 #define IDR_MARGIN_ICONS_PNG            133
+#define IDR_TOOLBAR_PNG                 134
 #define IDD_EDIT_FIND                   220
 #define IDD_EDIT_REPLACE                221
 #define IDD_EDIT_MARKER                 222

@@ -107,7 +107,9 @@ using boost::end;
 #define new DEBUG_NEW
 #endif
 
-static void LoadToolbarImageList(int orgImageWidth, int newImageHeight, UINT nIDResource, bool bGrayscale, CImageList& ImgList);
+static constexpr int TOOLBAR_IMAGE_COUNT = 26;
+
+static void LoadToolbarImageList(int newImageWidth, HBITMAP hBitmap, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
@@ -3095,14 +3097,21 @@ void CMainFrame::LoadToolbarImages()
 	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 	CImageList imgEnabled, imgDisabled;
+	HBITMAP hEnabled = nullptr;
+	HBITMAP hDisabled = nullptr;
 	CSize sizeButton(0, 0);
 
-	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
-		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		false, imgEnabled);
-	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
-		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		true, imgDisabled);
+	const UINT toolbarResource = toolbarOrgImgSize <= 16 ? IDR_TOOLBAR_ENABLED_PNG : IDR_TOOLBAR_ENABLED32_PNG;
+	if (LoadPngResourceAndResize(AfxGetInstanceHandle(), toolbarResource,
+		toolbarNewImgSize * TOOLBAR_IMAGE_COUNT, toolbarNewImgSize - 1, &hEnabled, &hDisabled))
+	{
+		LoadToolbarImageList(toolbarNewImgSize, hEnabled, imgEnabled);
+		LoadToolbarImageList(toolbarNewImgSize, hDisabled, imgDisabled);
+	}
+	else
+	{
+		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), toolbarResource);
+	}
 
 	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
 
@@ -3125,10 +3134,10 @@ void CMainFrame::LoadToolbarImages()
 /**
  * @brief Load a transparent 32-bit color image list.
  */
-static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nNewWidth, int nNewHeight, int nCount, bool bGrayscale, CImageList& ImgList)
+static void BuildHiColImageListFromBitmap(HBITMAP hBitmap, int nNewWidth, int nNewHeight, int nCount, CImageList& ImgList)
 {
 	CBitmap bm;
-	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), nIDResource, nNewWidth * nCount, nNewHeight, bGrayscale, RGB(0xff, 0, 0xff)));
+	bm.Attach(hBitmap);
 
 	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
 	VERIFY(-1 != ImgList.Add(&bm, nullptr));
@@ -3137,12 +3146,10 @@ static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nN
 /**
  * @brief Load toolbar image list.
  */
-static void LoadToolbarImageList(int orgImageWidth, int newImageWidth, UINT nIDResource, bool bGrayscale, CImageList& ImgList)
+static void LoadToolbarImageList(int newImageWidth, HBITMAP hBitmap, CImageList& ImgList)
 {
-	const int ImageCount = 26;
-	const int orgImageHeight = orgImageWidth - 1;
 	const int newImageHeight = newImageWidth - 1;
-	LoadHiColImageList(nIDResource, orgImageWidth, orgImageHeight, newImageWidth, newImageHeight, ImageCount, bGrayscale, ImgList);
+	BuildHiColImageListFromBitmap(hBitmap, newImageWidth, newImageHeight, TOOLBAR_IMAGE_COUNT, ImgList);
 }
 
 /**

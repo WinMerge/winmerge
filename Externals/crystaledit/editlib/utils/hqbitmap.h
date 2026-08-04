@@ -8,4 +8,4 @@
 
 #include <atlimage.h>
 
-HBITMAP LoadBitmapAndConvertTo32bit(HINSTANCE hInstance, int nIDResource, int nNewWidth, int nNewHeight, bool bGrayscale, COLORREF clrMask);
+bool LoadPngResourceAndResize(HINSTANCE hInstance, int nIDResource, int nNewWidth, int nNewHeight, HBITMAP* phBitmap, HBITMAP* phGrayscaleBitmap);

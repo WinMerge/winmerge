@@ -112,6 +112,8 @@
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_MARGIN_ICONS_PNG            310
+#define IDR_TOOLBAR_ENABLED_PNG         311
+#define IDR_TOOLBAR_ENABLED32_PNG       312
 #define IDB_EDIT_COPY                   316
 #define IDB_EDIT_CUT                    317
 #define IDB_EDIT_PASTE                  318
@@ -163,7 +165,6 @@
 #define IDB_MOVE_LEFT_TO_BROWSE         367
 #define IDB_MOVE_MIDDLE_TO_BROWSE       368
 #define IDB_MOVE_RIGHT_TO_BROWSE        369
-#define IDB_TOOLBAR_ENABLED32           370
 #define IDB_VIEW_ZOOMIN                 371
 #define IDB_VIEW_ZOOMOUT                372
 #define IDB_FILE_NEW3                   373
@@ -176,7 +177,6 @@
 #define IDB_MERGE_COMPARE_LEFT2_RIGHT1  380
 #define IDB_COPY_FROM_LEFT              381
 #define IDB_COPY_FROM_RIGHT             382
-#define IDB_TOOLBAR_ENABLED             383
 #define IDB_FILE_NEW_TABLE              384
 #define IDB_FILE_NEW_HEX                385
 #define IDB_FILE_NEW_IMAGE              386

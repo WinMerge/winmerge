@@ -440,19 +440,10 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Bitmap
-//
-
-IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
-
-IDR_MARGIN_ICONS        BITMAP                  "res\\mg_icons.bmp"
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // IMAGE
 //
 
+IDR_TOOLBAR_PNG         IMAGE                   "res\\Toolbar.png"
 IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
 
 
