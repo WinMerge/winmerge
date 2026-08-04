@@ -16,6 +16,7 @@
 #include "FrameWndHelper.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
+#include "MergeResultView.h"
 #include "LocationView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -46,6 +47,8 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_MERGE_RESULT_BAR, OnUpdateViewMergeResultBar)
+	ON_COMMAND_EX(ID_VIEW_MERGE_RESULT_BAR, OnBarCheck)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
 	// Display filter bar
@@ -68,6 +71,7 @@ constexpr UINT_PTR IDT_PREVIEWMODE = 3;
 CMergeEditFrame::CMergeEditFrame()
 : CMergeFrameCommon(IDI_EQUALTEXTFILE, IDI_NOTEQUALTEXTFILE)
 , m_pwndDetailMergeEditSplitterView(nullptr)
+, m_pMergeResultView(nullptr)
 {
 	m_pMergeDoc = 0;
 }
@@ -123,6 +127,26 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		pView->SetStatusInterface(m_wndStatusBar.GetIMergeEditStatus(pView->m_nThisPane));
 	});
 	m_pMergeDoc->SetLocationView(pLocationView);
+
+	// kdiff3-style merge result pane (3-way compare only): a dockable
+	// bar at the bottom with a full-width editable result view
+	if (m_pMergeDoc->m_nBuffers == 3)
+	{
+		sCaption = _("Merge Result Pane");
+		if (!m_wndResultBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_MERGE_RESULT_BAR))
+		{
+			TRACE0("Failed to create MergeResultBar\n");
+			return FALSE;
+		}
+		m_pMergeResultView = new CMergeResultView();
+		if (!m_pMergeResultView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), &m_wndResultBar, 154, pContext))
+		{
+			TRACE0("Failed to create CMergeResultView\n");
+			return FALSE;
+		}
+		m_pMergeDoc->SetMergeResultView(m_pMergeResultView);
+		m_wndResultBar.SetFrameHwnd(GetSafeHwnd());
+	}
 
 	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
@@ -214,11 +238,20 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_wndLocationBar, AFX_IDW_DOCKBAR_LEFT, &rc);
 
 	// Merge frame also has a dockable bar at the very bottom
-	// created in OnCreateClient 
+	// created in OnCreateClient
 	m_wndDetailBar.SetBarStyle(m_wndDetailBar.GetBarStyle() |
 		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_TOP);
 	m_wndDetailBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
 	DockControlBar(&m_wndDetailBar, AFX_IDW_DOCKBAR_BOTTOM, &rc);
+
+	// Merge result pane bar (3-way compare only), docked at the bottom
+	if (m_wndResultBar.m_hWnd != nullptr)
+	{
+		m_wndResultBar.SetBarStyle(m_wndResultBar.GetBarStyle() |
+			CBRS_SIZE_DYNAMIC | CBRS_ALIGN_TOP);
+		m_wndResultBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
+		DockControlBar(&m_wndResultBar, AFX_IDW_DOCKBAR_BOTTOM, &rc);
+	}
 
 	// Merge frame also has a status bar at bottom, 
 	// m_wndDetailBar is below, so we create this bar after m_wndDetailBar
@@ -236,6 +269,8 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
 	m_wndLocationBar.LoadState(_T("Settings"));
 	m_wndDetailBar.LoadState(_T("Settings"));
+	if (m_wndResultBar.m_hWnd != nullptr)
+		m_wndResultBar.LoadState(_T("Settings"));
 
 	return 0;
 }
@@ -249,7 +284,33 @@ BOOL CMergeEditFrame::OnBarCheck(UINT nID)
 		int nDiff = m_pMergeDoc->GetCurrentDiff();
 		m_pMergeDoc->ForEachView ([nDiff](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
 	}
+	if (nID == ID_VIEW_MERGE_RESULT_BAR && m_wndResultBar.m_hWnd != nullptr)
+		m_pMergeDoc->SetMergeResultPaneVisible(!!m_wndResultBar.IsWindowVisible());
 	return result;
+}
+
+/**
+ * @brief Make the merge result pane visible (used when the document was
+ * opened with an output path, e.g. as a merge tool or for conflict files).
+ */
+void CMergeEditFrame::ShowMergeResultPane()
+{
+	if (m_wndResultBar.m_hWnd != nullptr && !m_wndResultBar.IsWindowVisible())
+		ShowControlBar(&m_wndResultBar, TRUE, FALSE);
+}
+
+/**
+ * @brief Enable the Merge Result Pane menu item only for 3-way compares.
+ */
+void CMergeEditFrame::OnUpdateViewMergeResultBar(CCmdUI* pCmdUI)
+{
+	if (m_wndResultBar.m_hWnd == nullptr)
+	{
+		pCmdUI->Enable(FALSE);
+		pCmdUI->SetCheck(FALSE);
+		return;
+	}
+	OnUpdateControlBarMenu(pCmdUI);
 }
 
 void CMergeEditFrame::ActivateFrame(int nCmdShow) 
@@ -285,6 +346,8 @@ void CMergeEditFrame::SavePosition()
 	// for the dimensions of the diff pane, use the CSizingControlBar save
 	m_wndLocationBar.SaveState(_T("Settings"));
 	m_wndDetailBar.SaveState(_T("Settings"));
+	if (m_wndResultBar.m_hWnd != nullptr)
+		m_wndResultBar.SaveState(_T("Settings"));
 }
 
 void CMergeEditFrame::SaveActivePane()
@@ -471,6 +534,8 @@ void CMergeEditFrame::UpdateResources()
 	m_wndStatusBar.UpdateResources();
 	m_wndLocationBar.UpdateResources();
 	m_wndDetailBar.UpdateResources();
+	if (m_wndResultBar.m_hWnd != nullptr)
+		m_wndResultBar.UpdateResources();
 }
 
 /**
