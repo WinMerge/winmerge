@@ -167,13 +167,13 @@ void CCrystalRendererGDI::DrawMarginIcon(int x, int y, int iconIndex, int iconsi
 	{
 		s_mapIcons.emplace(iconsize, new CImageList);
 		pIcons = s_mapIcons[iconsize].get();
-		VERIFY(pIcons->Create(iconsize, iconsize,
-			ILC_COLOR32 | ILC_MASK, 0, 1));
+		VERIFY(pIcons->Create(iconsize, iconsize, ILC_COLOR32 | ILC_MASK, 0, 1));
 		CBitmap bmp;
 		HBITMAP hBitmap = nullptr;
-		if (LoadPngResourceAndResize(AfxGetInstanceHandle(), IDR_MARGIN_ICONS_PNG,
+		if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), IDR_MARGIN_ICONS_PNG,
 			iconsize * MARGIN_ICON_COUNT, iconsize, &hBitmap, nullptr))
-			bmp.Attach(hBitmap);
+			return;
+		bmp.Attach(hBitmap);
 		pIcons->Add(&bmp, nullptr);
 	}
 	if (iconIndex >= 0)
