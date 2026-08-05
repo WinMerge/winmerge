@@ -77,6 +77,14 @@ public:
 	virtual bool DeleteText2(CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory = true) override;
+	virtual bool Undo(CCrystalTextView * pSource, CEPoint & ptCursorPos) override;
+	virtual bool Redo(CCrystalTextView * pSource, CEPoint & ptCursorPos) override;
+
+	/**
+	 * @brief Treat the current content as the unchanged baseline, so the
+	 * margin change markers only show lines the user modifies afterwards.
+	 */
+	void AdoptCurrentRevision() { m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber; }
 
 private:
 	CMergeDoc* m_pResultOwnerDoc; /**< Owning document (base class member is private) */

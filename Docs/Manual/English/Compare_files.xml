@@ -825,11 +825,16 @@
       read-only, and the Merge Result pane contains the merge result, which
       you can edit freely.</para>
 
-      <para>When the pane opens, non-conflicting differences are merged
-      automatically, treating the middle file as the common ancestor.
-      Conflicting differences, where both sides changed the same lines, are
-      marked with a <computeroutput>&lt;Merge Conflict&gt;</computeroutput>
-      placeholder line.</para>
+      <para>When the pane opens, every difference initially starts
+      unresolved, marked with a
+      <computeroutput>&lt;Merge Conflict&gt;</computeroutput> placeholder
+      line. If an automatic merge is requested — with the
+      <option>/al</option>, <option>/am</option> or <option>/ar</option>
+      command-line option, or with the <guimenuitem>Auto
+      Merge</guimenuitem> command — non-conflicting differences are resolved
+      automatically, treating the middle file as the common ancestor, and
+      only true conflicts, where both sides changed the same lines, remain
+      unresolved.</para>
 
       <para>To resolve a difference, select it and choose
       <guimenuitem>Choose Left</guimenuitem>,
@@ -850,10 +855,15 @@
       conflicts remain, and prompts about an unsaved merge result when the
       window is closed.</para>
 
-      <para>You can also show or hide the pane manually with
+      <para>You can also start a merge in any three-way text comparison with
+      <menuchoice><guimenu>Merge</guimenu><guimenuitem>Start Merge
+      Session</guimenuitem></menuchoice> (differences start unresolved) or
+      <menuchoice><guimenu>Merge</guimenu><guimenuitem>Auto
+      Merge</guimenuitem></menuchoice> (non-conflicting differences are
+      resolved automatically), or show and hide the pane with
       <menuchoice><guimenu>View</guimenu><guimenuitem>Merge Result
-      Pane</guimenuitem></menuchoice> in any three-way text comparison.
-      Hiding the pane restores the normal editable three-pane behavior.</para>
+      Pane</guimenuitem></menuchoice>. Hiding the pane restores the normal
+      editable three-pane behavior.</para>
     </section>
 
     <section>

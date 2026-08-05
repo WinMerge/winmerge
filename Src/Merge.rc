@@ -895,6 +895,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
+        MENUITEM "Start Merge Sess&ion",        ID_MERGE_START_SESSION
         POPUP "Merge Resul&t"
         BEGIN
             MENUITEM "Choose Left\tCtrl+Shift+1",   ID_MERGE_CHOOSE_LEFT
@@ -5405,6 +5406,7 @@ BEGIN
     ID_MERGE_CHOOSE_ALL_RIGHT "Resolve all unresolved conflicts using right pane content\nChoose Right for All"
     ID_MERGE_RESULT_SAVE    "Save merge result\nSave Merge Result"
     ID_MERGE_RESULT_SAVEAS  "Save merge result to selected path\nSave Merge Result As"
+    ID_MERGE_START_SESSION  "Open the Merge Result pane to merge the compared files; differences start unresolved\nStart Merge Session"
     ID_VIEW_MERGE_RESULT_BAR "Show or hide the merge result pane (3-way compare)\nMerge Result Pane"
     ID_FIRSTFILE            "\nFirst File"
     ID_NEXTFILE             "\nNext File (Ctrl+F8)"
