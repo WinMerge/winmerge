@@ -1255,8 +1255,14 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 /**
  * @brief Saves both files
  */
-void CMergeDoc::OnFileSave() 
+void CMergeDoc::OnFileSave()
 {
+	// With the merge result pane active it is the (only) editable pane,
+	// so Save must cover it: version control tools rely on Ctrl+S
+	// writing the merge output path (-o)
+	if (IsMergeResultPaneActive() && IsMergeResultModified())
+		SaveMergeResult(false);
+
 	// We will need to know if either of the originals actually changed
 	// so we know whether to update the diff status
 	bool bChangedOriginal = false;
@@ -1361,7 +1367,8 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(IsModified());
+	pCmdUI->Enable(IsModified() ||
+		(IsMergeResultPaneActive() && IsMergeResultModified()));
 }
 
 /**
