@@ -21,6 +21,7 @@
 #include "FileLoadResult.h"
 #include "FileTransform.h"
 #include "LineFilterHelper.h"
+#include "MergeResultPane.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -123,6 +124,7 @@ class CMergeEditFrame;
 class CEncodingErrorBar;
 class CLocationView;
 class CMergeEditSplitterView;
+class CMergeResultView;
 
 /**
  * @brief Document class for merging two files
@@ -326,6 +328,44 @@ public:
 	bool DoFileEncodingDialog(int pane = -1);
 // End MergeDocEncoding.cpp
 
+// Implementation in MergeDocResultPane.cpp (kdiff3-style merge result pane)
+public:
+	CMergeResultView* GetMergeResultView() const { return m_pMergeResultView; }
+	void SetMergeResultView(CMergeResultView* pView) { m_pMergeResultView = pView; }
+	CMergeResultTextBuffer* GetMergeResultBuffer() const { return m_ptResultBuf.get(); }
+	bool HasMergeResultPane() const;
+	bool IsMergeResultPaneActive() const;
+	bool IsMergeResultPaneVisible() const;
+	void SetMergeResultPaneVisible(bool bVisible);
+	void ShowMergeResultPaneForOutput();
+	void BuildMergeResult();
+	void UpdateMergeResultAfterRescan();
+	bool IsMergeResultModified() const;
+	int GetResultUnresolvedCount() const;
+	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
+	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
+	void ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious = false);
+	void ResultChooseSources(int nDiff, const std::vector<int>& srcPanes, bool bGroupWithPrevious = false);
+	void ResultToggleSource(int nDiff, int srcPane);
+	void ResultChooseAllConflicts(int srcPane);
+	bool SaveMergeResult(bool bSaveAs);
+	void OnResultPaneCurrentDiffChanged(int nDiff);
+	// called from CMergeResultTextBuffer on user edits
+	void OnResultBufferInsertedLines(int nLine, int nCount);
+	void OnResultBufferDeletedLines(int nStartLine, int nCount);
+	void OnResultLineEdited(int nLine);
+private:
+	String GetPaneApparentLinesText(int nPane, int nApparentBegin, int nApparentEnd, int* pnLines) const;
+	int GetResultSegmentIndexByLine(int nLine) const;
+	std::unique_ptr<CMergeResultTextBuffer> m_ptResultBuf; /**< Merge result buffer (not part of the diff) */
+	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
+	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */
+	std::vector<int> m_resultDiffToSegment; /**< diff index -> segment index or -1 */
+	bool m_bResultBuilt; /**< Result buffer has been generated */
+	bool m_bResultROForced; /**< Source buffers forced read-only by result pane */
+	bool m_bResultSavedRO[3]; /**< Read-only states before the result pane forced them */
+// End MergeDocResultPane.cpp
+
 // Implementation
 public:
 	FileChange IsFileChangedOnDisk(const tchar_t* szPath, DiffFileInfo &dfi,
@@ -376,7 +416,14 @@ public:
 	// to customize the mergeview menu
 	HMENU createPrediffersSubmenu(HMENU hMenu);
 	const String& GetSaveAsPath() const { return m_strSaveAsPath; }
-	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
+	void SetSaveAsPath(const String& strSaveAsPath)
+	{
+		m_strSaveAsPath = strSaveAsPath;
+		// A merge output path means the user wants the merge result:
+		// bring up the result pane even if it was last hidden
+		if (!strSaveAsPath.empty())
+			ShowMergeResultPaneForOutput();
+	}
 
 // implementation methods
 private:
@@ -466,6 +513,13 @@ protected:
 	afx_msg void OnBnClickedFileEncoding();
 	afx_msg void OnBnClickedPlugin();
 	afx_msg void OnBnClickedHexView();
+	afx_msg void OnMergeChooseSource(UINT nID);
+	afx_msg void OnUpdateMergeChooseSource(CCmdUI* pCmdUI);
+	afx_msg void OnMergeChooseAllConflicts(UINT nID);
+	afx_msg void OnUpdateMergeChooseAllConflicts(CCmdUI* pCmdUI);
+	afx_msg void OnMergeResultSave();
+	afx_msg void OnMergeResultSaveAs();
+	afx_msg void OnUpdateMergeResultSave(CCmdUI* pCmdUI);
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
 	afx_msg void OnFileRecompareAsTable();

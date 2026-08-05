@@ -72,6 +72,38 @@ END
 // Menu
 //
 
+IDR_POPUP_MERGERESULTVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
+        MENUITEM "Ne&xt Conflict\tAlt+Shift+Down", ID_NEXTCONFLICT
+        MENUITEM "Pre&vious Conflict\tAlt+Shift+Up", ID_PREVCONFLICT
+        MENUITEM SEPARATOR
+        MENUITEM "Choose Left\tCtrl+Shift+1",   ID_MERGE_CHOOSE_LEFT
+        MENUITEM "Choose Middle\tCtrl+Shift+2", ID_MERGE_CHOOSE_MIDDLE
+        MENUITEM "Choose Right\tCtrl+Shift+3",  ID_MERGE_CHOOSE_RIGHT
+        POPUP "Choose for All Unresolved Conflicts"
+        BEGIN
+            MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
+            MENUITEM "Middle",                      ID_MERGE_CHOOSE_ALL_MIDDLE
+            MENUITEM "Right",                       ID_MERGE_CHOOSE_ALL_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Save Merge Result",           ID_MERGE_RESULT_SAVE
+        MENUITEM "Save Merge Result &As...",    ID_MERGE_RESULT_SAVEAS
+    END
+END
+
 IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
@@ -779,6 +811,7 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
+        MENUITEM "Merge Result Pane",           ID_VIEW_MERGE_RESULT_BAR
         MENUITEM "Output Pane",                 ID_VIEW_OUTPUT_BAR
         MENUITEM SEPARATOR
         MENUITEM "Refresh\tF5",                 ID_REFRESH
@@ -861,6 +894,22 @@ BEGIN
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
+        MENUITEM SEPARATOR
+        POPUP "Merge Resul&t"
+        BEGIN
+            MENUITEM "Choose Left\tCtrl+Shift+1",   ID_MERGE_CHOOSE_LEFT
+            MENUITEM "Choose Middle\tCtrl+Shift+2", ID_MERGE_CHOOSE_MIDDLE
+            MENUITEM "Choose Right\tCtrl+Shift+3",  ID_MERGE_CHOOSE_RIGHT
+            POPUP "Choose for All Unresolved Conflicts"
+            BEGIN
+                MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
+                MENUITEM "Middle",                      ID_MERGE_CHOOSE_ALL_MIDDLE
+                MENUITEM "Right",                       ID_MERGE_CHOOSE_ALL_RIGHT
+            END
+            MENUITEM SEPARATOR
+            MENUITEM "Save Merge Result",           ID_MERGE_RESULT_SAVE
+            MENUITEM "Save Merge Result &As...",    ID_MERGE_RESULT_SAVEAS
+        END
         MENUITEM SEPARATOR
         MENUITEM "Add &Synchronization Point\tAlt+S", ID_ADD_SYNCPOINT
         MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
@@ -2092,6 +2141,9 @@ BEGIN
     "2",            ID_PREVDIFFLR,          VIRTKEY, SHIFT, ALT, NOINVERT
     "3",            ID_NEXTDIFFMR,          VIRTKEY, ALT, NOINVERT
     "3",            ID_PREVDIFFMR,          VIRTKEY, SHIFT, ALT, NOINVERT
+    "1",            ID_MERGE_CHOOSE_LEFT,   VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "2",            ID_MERGE_CHOOSE_MIDDLE, VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "3",            ID_MERGE_CHOOSE_RIGHT,  VIRTKEY, SHIFT, CONTROL, NOINVERT
     "7",            ID_NEXTDIFFLO,          VIRTKEY, ALT, NOINVERT
     "7",            ID_PREVDIFFLO,          VIRTKEY, SHIFT, ALT, NOINVERT
     "8",            ID_NEXTDIFFMO,          VIRTKEY, ALT, NOINVERT
@@ -5345,6 +5397,15 @@ BEGIN
     ID_ALL_RIGHT            "\nCopy All to Right"
     ID_ALL_LEFT             "\nCopy All to Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
+    ID_MERGE_CHOOSE_LEFT    "Select or deselect left pane content for current difference; selected blocks are combined in selection order\nChoose Left (Ctrl+Shift+1)"
+    ID_MERGE_CHOOSE_MIDDLE  "Select or deselect middle pane content for current difference; selected blocks are combined in selection order\nChoose Middle (Ctrl+Shift+2)"
+    ID_MERGE_CHOOSE_RIGHT   "Select or deselect right pane content for current difference; selected blocks are combined in selection order\nChoose Right (Ctrl+Shift+3)"
+    ID_MERGE_CHOOSE_ALL_LEFT "Resolve all unresolved conflicts using left pane content\nChoose Left for All"
+    ID_MERGE_CHOOSE_ALL_MIDDLE "Resolve all unresolved conflicts using middle pane content\nChoose Middle for All"
+    ID_MERGE_CHOOSE_ALL_RIGHT "Resolve all unresolved conflicts using right pane content\nChoose Right for All"
+    ID_MERGE_RESULT_SAVE    "Save merge result\nSave Merge Result"
+    ID_MERGE_RESULT_SAVEAS  "Save merge result to selected path\nSave Merge Result As"
+    ID_VIEW_MERGE_RESULT_BAR "Show or hide the merge result pane (3-way compare)\nMerge Result Pane"
     ID_FIRSTFILE            "\nFirst File"
     ID_NEXTFILE             "\nNext File (Ctrl+F8)"
     ID_LASTFILE             "\nLast File"

@@ -112,6 +112,7 @@ public:
 	fileopenflags_t m_dwLeftFlags; /**< Left side file's behavior options. */
 	fileopenflags_t m_dwMiddleFlags; /**< Middle side file's behavior options. */
 	fileopenflags_t m_dwRightFlags; /**< Right side file's behavior options. */
+	bool m_bSetFocusToOutputPane; /**< Set focus to the merge result (output) pane */
 
 	String m_sLeftDesc; /**< Left side file's description. */
 	String m_sMiddleDesc; /**< Middle side file's description. */

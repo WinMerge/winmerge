@@ -109,6 +109,7 @@ public:
 		int m_char = -1;
 		String m_fileExt;
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
+		bool m_bSetFocusToOutputPane = false; /**< Focus the merge result pane after opening */
 	};
 
 	struct OpenTableFileParams : public OpenTextFileParams
@@ -284,6 +285,7 @@ protected:
 	CWindowsManager m_wndManager;
 	Poco::Channel::Ptr m_pLogChannel;
 	int m_logging;
+	bool m_bMergeChooseButtonsShown = true; /**< Toolbar 1/2/3 buttons currently visible? */
 
 	// Tweak MDI client window behavior
 	class CMDIClient : public CWnd
@@ -489,6 +491,7 @@ protected:
 	afx_msg void OnLastFile();
 	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
 	afx_msg LRESULT OnChildFrameAdded(WPARAM wParam, LPARAM lParam);

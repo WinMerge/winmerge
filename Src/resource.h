@@ -46,6 +46,7 @@
 #define IDR_POPUP_ADDCMPMENU            150
 #define IDR_POPUP_RENAMEMOVE_MENU       151
 #define IDR_POPUP_BROWSE                152
+#define IDR_POPUP_MERGERESULTVIEW       153
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203
@@ -1151,6 +1152,15 @@
 #define ID_MICE_L2RNEXT                 33375
 #define ID_MICE_R2LNEXT                 33376
 #define ID_VIEW_MENU_BAR                33377
+#define ID_VIEW_MERGE_RESULT_BAR        33378
+#define ID_MERGE_CHOOSE_LEFT            33379
+#define ID_MERGE_CHOOSE_MIDDLE          33380
+#define ID_MERGE_CHOOSE_RIGHT           33381
+#define ID_MERGE_CHOOSE_ALL_LEFT        33382
+#define ID_MERGE_CHOOSE_ALL_MIDDLE      33383
+#define ID_MERGE_CHOOSE_ALL_RIGHT       33384
+#define ID_MERGE_RESULT_SAVE            33385
+#define ID_MERGE_RESULT_SAVEAS          33386
 #define ID_TABBAR_AUTO_MAXWIDTH         33451
 #define ID_IMG_VIEWDIFFERENCES          33453
 #define ID_IMG_ZOOM_25                  33454
