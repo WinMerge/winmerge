@@ -13,6 +13,7 @@
 #include "StdAfx.h"
 #include "MainFrm.h"
 #include "DarkModeLib.h"
+#include "MergeResultView.h"
 #include "EditorFilepathBar.h"
 #include <vector>
 #include <unordered_set>
@@ -1104,6 +1105,16 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 
 	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
 		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+
+	// -fb: focus the merge result (output) pane; applied after
+	// MoveOnLoad so it takes precedence over -fl/-fm/-fr
+	if (pOpenParams && pOpenParams->m_bSetFocusToOutputPane)
+	{
+		CMergeResultView* pResultView = pMergeDoc->GetMergeResultView();
+		if (pResultView != nullptr && pResultView->GetSafeHwnd() != nullptr &&
+			pMergeDoc->IsMergeResultPaneVisible())
+			pResultView->TakeFocus();
+	}
 
 	if (!sReportFile.empty())
 		GenerateDocumentReport({ pMergeDoc }, sReportFile);

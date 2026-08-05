@@ -82,6 +82,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/fb</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/l</option>
       <replaceable>linenumber</replaceable></arg>
 
@@ -473,6 +475,15 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/fb</option></term>
+      <listitem>
+        <para>Sets focus to the bottom (Merge Result) pane at startup. Applies
+        to three-way text comparisons where the Merge Result pane is shown
+        (see the <option>/o</option> option).</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/l <replaceable>linenumber</replaceable></option></term>
       <listitem>
         <para>Specifies a line number to jump to after loading the files.</para>
@@ -761,6 +772,12 @@
         WinMerge still shows only two or three files in the File Compare window. However,
         if you save either of these files, it is written to the output path,
         leaving the two or three source files intact.</para>
+
+        <para>In a three-way text comparison, specifying an output path also
+        opens the Merge Result pane at the bottom of the File Compare window,
+        where the merge result can be reviewed and edited before it is saved
+        to the output path. See the Merge Result pane topic in
+        <citetitle>Comparing and merging text files</citetitle>.</para>
 
         <para>Version control systems typically refer to the source and result
         files using terms like <glossterm>theirs</glossterm>,

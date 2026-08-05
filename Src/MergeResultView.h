@@ -37,13 +37,12 @@ public:
 	/** @brief Scroll view so that the segment of the given diff is visible. */
 	void ScrollToDiff(int nDiff);
 	bool IsResultPaneVisible() const;
+	/** @brief Make this view the frame's active, focused view. */
+	void TakeFocus();
 
 protected:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bSyncingCurrentDiff; /**< true while this view drives diff selection */
-
-	/** @brief Make this view the frame's active, focused view. */
-	void TakeFocus();
 
 	//{{AFX_MSG(CMergeResultView)
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
