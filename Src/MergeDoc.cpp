@@ -144,6 +144,8 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SAVE, OnUpdateMergeResultSave)
 	ON_COMMAND(ID_MERGE_RESULT_SAVEAS, OnMergeResultSaveAs)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SAVEAS, OnUpdateMergeResultSave)
+	ON_COMMAND(ID_MERGE_START_SESSION, OnMergeStartSession)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_START_SESSION, OnUpdateMergeStartSession)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -171,6 +173,7 @@ CMergeDoc::CMergeDoc()
 , m_editorScriptInfo(_T(""))
 , m_pMergeResultView(nullptr)
 , m_bResultBuilt(false)
+, m_bResultAutoMerge(false)
 , m_bResultROForced(false)
 , m_bResultSavedRO{ false, false, false }
 {
@@ -237,6 +240,8 @@ void CMergeDoc::DeleteContents ()
 		m_ptResultBuf->FreeAll();
 	m_resultSegments.clear();
 	m_resultDiffToSegment.clear();
+	m_resultSegUndo.clear();
+	m_resultSegRedo.clear();
 	m_bResultBuilt = false;
 }
 

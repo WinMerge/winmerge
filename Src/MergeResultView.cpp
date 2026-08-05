@@ -83,9 +83,37 @@ void CMergeResultView::OnInitialUpdate()
 
 void CMergeResultView::RefreshOptions()
 {
+	// Apply the same view options as the compare panes. Layout-affecting
+	// calls need an attached buffer; before the first BuildMergeResult
+	// this view has none.
+	if (m_pTextBuffer != nullptr)
+	{
+		SetRenderingMode(static_cast<RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE)));
+		SetInsertTabs(GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0);
+		SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
+		SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
+		SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+		SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL),
+			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+		SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	}
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 	if (m_hWnd != nullptr)
 		Invalidate();
+}
+
+/**
+ * @brief Close the compare window with Esc, like the compare panes do.
+ */
+BOOL CMergeResultView::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_ESCAPE)
+	{
+		if (GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) != 0)
+			GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
+		return false;
+	}
+	return CGhostTextView::PreTranslateMessage(pMsg);
 }
 
 /**

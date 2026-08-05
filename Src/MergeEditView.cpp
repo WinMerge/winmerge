@@ -2319,6 +2319,16 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnAutoMerge()
 {
+	// With a merge result pane available, Auto Merge switches to the
+	// 4-pane merge view and auto-merges into the result pane, leaving
+	// the compared files untouched
+	if (GetDocument()->HasMergeResultPane())
+	{
+		CWaitCursor waitstatus;
+		GetDocument()->StartMergeSession(true);
+		return;
+	}
+
 	// Check current pane is not readonly
 	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || !QueryEditable())
 		return;
@@ -2333,9 +2343,14 @@ void CMergeEditView::OnAutoMerge()
  */
 void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 && 
-		!GetDocument()->IsModified() && 
-		!GetDocument()->GetAutoMerged() && 
+	if (GetDocument()->HasMergeResultPane())
+	{
+		pCmdUI->Enable(TRUE);
+		return;
+	}
+	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 &&
+		!GetDocument()->IsModified() &&
+		!GetDocument()->GetAutoMerged() &&
 		QueryEditable());
 }
 

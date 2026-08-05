@@ -338,6 +338,8 @@ public:
 	bool IsMergeResultPaneVisible() const;
 	void SetMergeResultPaneVisible(bool bVisible);
 	void ShowMergeResultPaneForOutput();
+	void SetResultAutoMerge(bool bAutoMerge) { m_bResultAutoMerge = bAutoMerge; }
+	void StartMergeSession(bool bAutoMerge);
 	void BuildMergeResult();
 	void UpdateMergeResultAfterRescan();
 	bool IsMergeResultModified() const;
@@ -354,6 +356,11 @@ public:
 	void OnResultBufferInsertedLines(int nLine, int nCount);
 	void OnResultBufferDeletedLines(int nStartLine, int nCount);
 	void OnResultLineEdited(int nLine);
+	// segment table snapshots kept in sync with the buffer's undo stack
+	void OnResultUndoGroupStart(int nUndoPos);
+	void OnResultUndone(int nUndoPos);
+	void OnResultRedone(int nUndoPos);
+	void OnResultUndoStackCleared();
 private:
 	String GetPaneApparentLinesText(int nPane, int nApparentBegin, int nApparentEnd, int* pnLines) const;
 	int GetResultSegmentIndexByLine(int nLine) const;
@@ -361,7 +368,10 @@ private:
 	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
 	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */
 	std::vector<int> m_resultDiffToSegment; /**< diff index -> segment index or -1 */
+	std::map<int, std::vector<MergeResultSegment>> m_resultSegUndo; /**< table before undo group (key: group start) */
+	std::map<int, std::vector<MergeResultSegment>> m_resultSegRedo; /**< table after undo group (key: group start) */
 	bool m_bResultBuilt; /**< Result buffer has been generated */
+	bool m_bResultAutoMerge; /**< Auto-resolve non-conflicting differences when building */
 	bool m_bResultROForced; /**< Source buffers forced read-only by result pane */
 	bool m_bResultSavedRO[3]; /**< Read-only states before the result pane forced them */
 // End MergeDocResultPane.cpp
@@ -520,6 +530,8 @@ protected:
 	afx_msg void OnMergeResultSave();
 	afx_msg void OnMergeResultSaveAs();
 	afx_msg void OnUpdateMergeResultSave(CCmdUI* pCmdUI);
+	afx_msg void OnMergeStartSession();
+	afx_msg void OnUpdateMergeStartSession(CCmdUI* pCmdUI);
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
 	afx_msg void OnFileRecompareAsTable();

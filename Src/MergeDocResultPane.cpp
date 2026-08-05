@@ -56,6 +56,11 @@ void CMergeResultTextBuffer::SetModified(bool bModified /*= true*/)
 /**
  * @brief Record undo, but do not register the result buffer in the
  * document's pane undo-target list (the result pane has its own undo).
+ *
+ * When a new undo group starts, snapshot the segment table so that
+ * Undo/Redo can restore it exactly; deriving the table from the replayed
+ * buffer operations is ambiguous (e.g. a Choose is delete+insert, whose
+ * generic bookkeeping cannot know what the segment state used to be).
  */
 void CMergeResultTextBuffer::AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
 	const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
@@ -64,6 +69,34 @@ void CMergeResultTextBuffer::AddUndoRecord(bool bInsert, const CEPoint & ptStart
 {
 	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText,
 		cchText, nActionType, paSavedRevisionNumbers);
+	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
+		m_pResultOwnerDoc->OnResultUndoGroupStart(m_nUndoPosition - 1);
+}
+
+/**
+ * @brief Undo, restoring the segment table from its snapshot.
+ * The internal-op guard keeps the generic edit hooks from adjusting the
+ * table during the replay; the snapshot restore is exact.
+ */
+bool CMergeResultTextBuffer::Undo(CCrystalTextView * pSource, CEPoint & ptCursorPos)
+{
+	InternalOpGuard guard(*this);
+	const bool bResult = CGhostTextBuffer::Undo(pSource, ptCursorPos);
+	if (bResult)
+		m_pResultOwnerDoc->OnResultUndone(m_nUndoPosition);
+	else
+		m_pResultOwnerDoc->OnResultUndoStackCleared(); // failed undo clears the stack
+	return bResult;
+}
+
+bool CMergeResultTextBuffer::Redo(CCrystalTextView * pSource, CEPoint & ptCursorPos)
+{
+	InternalOpGuard guard(*this);
+	const int nGroupStart = m_nUndoPosition;
+	const bool bResult = CGhostTextBuffer::Redo(pSource, ptCursorPos);
+	if (bResult)
+		m_pResultOwnerDoc->OnResultRedone(nGroupStart);
+	return bResult;
 }
 
 void CMergeResultTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
@@ -176,6 +209,32 @@ void CMergeDoc::ShowMergeResultPaneForOutput()
 }
 
 /**
+ * @brief Start (or re-run) a merge session in the result pane.
+ * @param [in] bAutoMerge Auto-resolve the non-conflicting differences.
+ *
+ * Used by the Merge menu's Start Merge Session command (no auto-merge)
+ * and by the Auto Merge command (with auto-merge), which switches a
+ * plain 3-way comparison to the 4-pane merge view.
+ */
+void CMergeDoc::StartMergeSession(bool bAutoMerge)
+{
+	if (!HasMergeResultPane())
+		return;
+	if (m_bResultBuilt && bAutoMerge != m_bResultAutoMerge)
+	{
+		if (IsMergeResultModified() &&
+			ShowMessageBox(_("Rebuilding the merge result discards the changes made in the Merge Result pane.\n\nContinue?"),
+				MB_YESNO | MB_ICONWARNING) != IDYES)
+			return;
+		m_bResultBuilt = false; // rebuild with the new auto-merge mode
+	}
+	m_bResultAutoMerge = bAutoMerge;
+	if (CMergeEditFrame* pFrame = GetParentFrame())
+		pFrame->ShowMergeResultPane();
+	SetMergeResultPaneVisible(true);
+}
+
+/**
  * @brief Extract the text of pane nPane for apparent lines
  * [nApparentBegin, nApparentEnd], skipping ghost lines.
  * Every extracted line is terminated with an EOL (the line's own EOL,
@@ -238,6 +297,7 @@ void CMergeDoc::BuildMergeResult()
 	m_ptResultBuf->SetTempPath(env::GetTemporaryPath()); // needed by SaveToFile
 
 	m_resultSegments.clear();
+	OnResultUndoStackCleared(); // buffer undo history is gone as well
 	const int nDiffCount = m_diffList.GetSize();
 	m_resultDiffToSegment.assign(nDiffCount, -1);
 
@@ -273,9 +333,11 @@ void CMergeDoc::BuildMergeResult()
 		MergeResultSegment seg;
 		seg.diffIdx = nDiff;
 		seg.nStartLine = nCurLine;
-		if (pdi->op == OP_DIFF)
+		// Without auto-merge every significant difference starts
+		// unresolved; with it only true 3-way conflicts do
+		if (pdi->op == OP_DIFF ||
+			(!m_bResultAutoMerge && pdi->op != OP_TRIVIAL))
 		{
-			// 3-way conflict: leave unresolved, insert a placeholder line
 			seg.state = ResultSegmentState::Conflict;
 			seg.nLines = 1;
 			text += _("<Merge Conflict>");
@@ -306,11 +368,14 @@ void CMergeDoc::BuildMergeResult()
 			nEndLine, nEndChar, CE_ACTION_UNKNOWN, false /* no history */);
 	}
 	m_ptResultBuf->SetModified(false);
+	// the generated content is the baseline: no change markers on it
+	m_ptResultBuf->AdoptCurrentRevision();
 	m_bResultBuilt = true;
 
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 	{
 		m_pMergeResultView->AttachToBuffer(m_ptResultBuf.get());
+		m_pMergeResultView->RefreshOptions();
 		m_pMergeResultView->Invalidate();
 	}
 }
@@ -636,6 +701,51 @@ int CMergeDoc::GetResultSegmentIndexByLine(int nLine) const
 	return -1;
 }
 
+/**
+ * @brief A new undo group begins: snapshot the segment table (state
+ * before the group's operations) and drop any stale redo snapshots.
+ */
+void CMergeDoc::OnResultUndoGroupStart(int nUndoPos)
+{
+	m_resultSegUndo.erase(m_resultSegUndo.lower_bound(nUndoPos), m_resultSegUndo.end());
+	m_resultSegRedo.erase(m_resultSegRedo.lower_bound(nUndoPos), m_resultSegRedo.end());
+	m_resultSegUndo[nUndoPos] = m_resultSegments;
+}
+
+/**
+ * @brief An undo group was undone: restore the table from before the
+ * group, keeping the current table for redo.
+ */
+void CMergeDoc::OnResultUndone(int nUndoPos)
+{
+	const auto it = m_resultSegUndo.find(nUndoPos);
+	if (it == m_resultSegUndo.end())
+		return;
+	m_resultSegRedo[nUndoPos] = m_resultSegments;
+	m_resultSegments = it->second;
+	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+		m_pMergeResultView->Invalidate();
+}
+
+/**
+ * @brief An undo group was redone: restore the table from after the group.
+ */
+void CMergeDoc::OnResultRedone(int nUndoPos)
+{
+	const auto it = m_resultSegRedo.find(nUndoPos);
+	if (it == m_resultSegRedo.end())
+		return;
+	m_resultSegments = it->second;
+	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+		m_pMergeResultView->Invalidate();
+}
+
+void CMergeDoc::OnResultUndoStackCleared()
+{
+	m_resultSegUndo.clear();
+	m_resultSegRedo.clear();
+}
+
 void CMergeDoc::OnResultLineEdited(int nLine)
 {
 	const int nSegment = GetResultSegmentIndexByLine(nLine);
@@ -771,4 +881,14 @@ void CMergeDoc::OnUpdateMergeResultSave(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
 		IsMergeResultPaneActive());
+}
+
+void CMergeDoc::OnMergeStartSession()
+{
+	StartMergeSession(false);
+}
+
+void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(HasMergeResultPane() && !IsMergeResultPaneVisible());
 }
