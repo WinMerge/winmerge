@@ -34,7 +34,12 @@ struct MergeResultSegment
 {
 	int diffIdx;      /**< Index in diff list, or -1 for common text */
 	ResultSegmentState state;
-	int srcPane;      /**< Source pane (0/1/2) of content for Auto/Chosen, else -1 */
+	/**
+	 * Source panes (0/1/2) of the content for Auto/Chosen, in order.
+	 * Like KDiff3, several sources may be selected for one difference
+	 * (their blocks are concatenated); empty for unresolved conflicts.
+	 */
+	std::vector<int> srcPanes;
 	int nStartLine;   /**< First line of segment in result buffer */
 	int nLines;       /**< Number of lines in segment (can be 0) */
 };

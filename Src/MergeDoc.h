@@ -345,6 +345,8 @@ public:
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
 	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
 	void ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious = false);
+	void ResultChooseSources(int nDiff, const std::vector<int>& srcPanes, bool bGroupWithPrevious = false);
+	void ResultToggleSource(int nDiff, int srcPane);
 	void ResultChooseAllConflicts(int srcPane);
 	bool SaveMergeResult(bool bSaveAs);
 	void OnResultPaneCurrentDiffChanged(int nDiff);

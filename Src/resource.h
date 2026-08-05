@@ -46,6 +46,7 @@
 #define IDR_POPUP_ADDCMPMENU            150
 #define IDR_POPUP_RENAMEMOVE_MENU       151
 #define IDR_POPUP_BROWSE                152
+#define IDR_POPUP_MERGERESULTVIEW       153
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203

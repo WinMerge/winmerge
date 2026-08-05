@@ -270,7 +270,14 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndLocationBar.LoadState(_T("Settings"));
 	m_wndDetailBar.LoadState(_T("Settings"));
 	if (m_wndResultBar.m_hWnd != nullptr)
+	{
 		m_wndResultBar.LoadState(_T("Settings"));
+		// The merge result pane is opt-in per document: it is shown only
+		// when the compare was opened with a merge output path, or when
+		// the user turns it on in the View menu. Plain 3-way compares
+		// always start without it, whatever the saved docking state says.
+		ShowControlBar(&m_wndResultBar, FALSE, FALSE);
+	}
 
 	return 0;
 }

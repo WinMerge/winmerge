@@ -257,7 +257,7 @@ void CMergeDoc::BuildMergeResult()
 			MergeResultSegment seg;
 			seg.diffIdx = -1;
 			seg.state = ResultSegmentState::Common;
-			seg.srcPane = 1;
+			seg.srcPanes.push_back(1);
 			seg.nStartLine = nCurLine;
 			seg.nLines = nLines;
 			m_resultSegments.push_back(seg);
@@ -277,7 +277,6 @@ void CMergeDoc::BuildMergeResult()
 		{
 			// 3-way conflict: leave unresolved, insert a placeholder line
 			seg.state = ResultSegmentState::Conflict;
-			seg.srcPane = -1;
 			seg.nLines = 1;
 			text += _("<Merge Conflict>");
 			text += m_ptResultBuf->GetDefaultEol();
@@ -290,7 +289,7 @@ void CMergeDoc::BuildMergeResult()
 			int nLines = 0;
 			text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
 			seg.state = ResultSegmentState::Auto;
-			seg.srcPane = srcPane;
+			seg.srcPanes.push_back(srcPane);
 			seg.nLines = nLines;
 		}
 		m_resultDiffToSegment[nDiff] = static_cast<int>(m_resultSegments.size());
@@ -394,8 +393,29 @@ const MergeResultSegment* CMergeDoc::GetResultSegmentByDiff(int nDiff) const
  */
 void CMergeDoc::ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious /*= false*/)
 {
-	if (!IsMergeResultPaneActive() || srcPane < 0 || srcPane >= m_nBuffers)
+	ResultChooseSources(nDiff, { srcPane }, bGroupWithPrevious);
+}
+
+/**
+ * @brief Replace the result segment of nDiff with the concatenated
+ * content of the given source panes, in order.
+ *
+ * Like KDiff3, several panes may be selected for one difference: the
+ * typical case is a conflict where both sides added something (e.g. a
+ * new function each) and the merge should keep both. An empty selection
+ * restores the unresolved conflict placeholder (or removes the block
+ * for a non-conflicting difference).
+ */
+void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
+	bool bGroupWithPrevious /*= false*/)
+{
+	if (!IsMergeResultPaneActive())
 		return;
+	for (int srcPane : srcPanes)
+	{
+		if (srcPane < 0 || srcPane >= m_nBuffers)
+			return;
+	}
 	if (nDiff < 0 || nDiff >= static_cast<int>(m_resultDiffToSegment.size()))
 		return;
 	const int nSegment = m_resultDiffToSegment[nDiff];
@@ -417,7 +437,22 @@ void CMergeDoc::ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevio
 	}
 
 	int nNewLines = 0;
-	const String text = GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nNewLines);
+	String text;
+	bool bBackToConflict = false;
+	for (int srcPane : srcPanes)
+	{
+		int nPaneLines = 0;
+		text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nPaneLines);
+		nNewLines += nPaneLines;
+	}
+	if (srcPanes.empty() && pdi->op == OP_DIFF)
+	{
+		// deselected everything: the conflict is unresolved again
+		text = _("<Merge Conflict>");
+		text += m_ptResultBuf->GetDefaultEol();
+		nNewLines = 1;
+		bBackToConflict = true;
+	}
 
 	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
 	CCrystalTextView* pSource = (m_pMergeResultView != nullptr &&
@@ -453,8 +488,8 @@ void CMergeDoc::ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevio
 	m_ptResultBuf->FlushUndoGroup(pSource);
 
 	const int nDelta = nNewLines - seg.nLines;
-	seg.state = ResultSegmentState::Chosen;
-	seg.srcPane = srcPane;
+	seg.state = bBackToConflict ? ResultSegmentState::Conflict : ResultSegmentState::Chosen;
+	seg.srcPanes = srcPanes;
 	seg.nLines = nNewLines;
 	if (nDelta != 0)
 	{
@@ -464,6 +499,32 @@ void CMergeDoc::ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevio
 
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 		m_pMergeResultView->Invalidate();
+}
+
+/**
+ * @brief Toggle a source pane for the given difference (KDiff3 style).
+ *
+ * Pressing 1/2/3 adds that pane's block to the difference's selection,
+ * or removes it when already selected. Blocks are concatenated in the
+ * order they were selected. Removing the last selection restores the
+ * unresolved conflict placeholder.
+ */
+void CMergeDoc::ResultToggleSource(int nDiff, int srcPane)
+{
+	const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
+	if (pSegment == nullptr)
+		return;
+	std::vector<int> srcPanes;
+	if (pSegment->state == ResultSegmentState::Auto ||
+		pSegment->state == ResultSegmentState::Chosen)
+		srcPanes = pSegment->srcPanes;
+	// (a hand-edited or unresolved segment starts a fresh selection)
+	const auto it = std::find(srcPanes.begin(), srcPanes.end(), srcPane);
+	if (it != srcPanes.end())
+		srcPanes.erase(it);
+	else
+		srcPanes.push_back(srcPane);
+	ResultChooseSources(nDiff, srcPanes);
 }
 
 /**
@@ -668,14 +729,22 @@ void CMergeDoc::OnMergeChooseSource(UINT nID)
 	const int nDiff = GetCurrentDiff();
 	if (nDiff < 0)
 		return;
-	ResultChooseSource(nDiff, srcPane);
+	ResultToggleSource(nDiff, srcPane);
 }
 
 void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 {
 	const int nDiff = GetCurrentDiff();
-	pCmdUI->Enable(IsMergeResultPaneActive() && nDiff >= 0 &&
-		GetResultSegmentByDiff(nDiff) != nullptr);
+	const MergeResultSegment* pSegment =
+		(IsMergeResultPaneActive() && nDiff >= 0) ? GetResultSegmentByDiff(nDiff) : nullptr;
+	pCmdUI->Enable(pSegment != nullptr);
+	// show which panes are currently selected for this difference
+	const int srcPane = pCmdUI->m_nID - ID_MERGE_CHOOSE_LEFT;
+	const bool bChecked = pSegment != nullptr &&
+		(pSegment->state == ResultSegmentState::Auto ||
+		 pSegment->state == ResultSegmentState::Chosen) &&
+		std::find(pSegment->srcPanes.begin(), pSegment->srcPanes.end(), srcPane) != pSegment->srcPanes.end();
+	pCmdUI->SetCheck(bChecked);
 }
 
 void CMergeDoc::OnMergeChooseAllConflicts(UINT nID)

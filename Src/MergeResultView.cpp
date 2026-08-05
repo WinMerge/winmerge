@@ -12,6 +12,8 @@
 #include "MergeEditView.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "BCMenu.h"
+#include "I18nGUI.h"
 #include <algorithm>
 
 #ifdef _DEBUG
@@ -38,6 +40,12 @@ CMergeResultView::~CMergeResultView()
 BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	//{{AFX_MSG_MAP(CMergeResultView)
 	ON_WM_LBUTTONDOWN()
+	ON_WM_CONTEXTMENU()
+	ON_WM_GETDLGCODE()
+	// Difference/conflict navigation is implemented by the compare views;
+	// forward it so it also works while the result view is active
+	ON_COMMAND_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnUpdateForwardToMergeView)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -143,11 +151,44 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 }
 
 /**
+ * @brief Ask for all keyboard input.
+ *
+ * This view lives inside a docking control bar, whose input
+ * pre-translation runs the dialog-navigation logic (IsDialogMessage).
+ * Without DLGC_WANTALLKEYS that logic swallows printable keys as
+ * potential dialog mnemonics and the result cannot be edited by typing.
+ * The compare panes are not hosted in a control bar, which is why they
+ * are not affected.
+ */
+UINT CMergeResultView::OnGetDlgCode()
+{
+	return DLGC_WANTALLKEYS | DLGC_WANTARROWS | DLGC_WANTCHARS;
+}
+
+/**
+ * @brief Make this view the frame's active, focused view.
+ *
+ * A view hosted inside a docking bar does not always become the active
+ * view through the default CView mouse activation path, in which case
+ * keyboard input keeps going to a (read-only) compare pane and the
+ * result cannot be edited by typing. Force activation explicitly.
+ */
+void CMergeResultView::TakeFocus()
+{
+	CFrameWnd* pFrame = GetParentFrame();
+	if (pFrame != nullptr && pFrame->GetActiveView() != this)
+		pFrame->SetActiveView(this);
+	if (::GetFocus() != m_hWnd)
+		SetFocus();
+}
+
+/**
  * @brief Clicking a resolved/conflict segment selects the matching diff
  * in the compare panes.
  */
 void CMergeResultView::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	TakeFocus();
 	CGhostTextView::OnLButtonDown(nFlags, point);
 
 	CMergeDoc* pDoc = GetDocument();
@@ -166,6 +207,51 @@ void CMergeResultView::OnLButtonDown(UINT nFlags, CPoint point)
 	pView->SelectDiff(pSegment->diffIdx, true, false);
 	m_bSyncingCurrentDiff = false;
 	Invalidate();
+}
+
+/**
+ * @brief Run a navigation command on a compare view.
+ * The current-diff machinery lives in CMergeEditView; when this view is
+ * the active one those commands would otherwise have no handler.
+ */
+void CMergeResultView::OnForwardToMergeView(UINT nID)
+{
+	CMergeEditView* pView = GetDocument()->GetActiveMergeView();
+	if (pView != nullptr && pView->GetSafeHwnd() != nullptr)
+		pView->SendMessage(WM_COMMAND, nID);
+}
+
+void CMergeResultView::OnUpdateForwardToMergeView(CCmdUI* pCmdUI)
+{
+	CMergeEditView* pView = GetDocument()->GetActiveMergeView();
+	if (pView == nullptr || pView->GetSafeHwnd() == nullptr ||
+		!pView->OnCmdMsg(pCmdUI->m_nID, CN_UPDATE_COMMAND_UI, pCmdUI, nullptr))
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Show the result pane context menu (merge, edit and save commands).
+ */
+void CMergeResultView::OnContextMenu(CWnd* pWnd, CPoint point)
+{
+	TakeFocus();
+
+	if (point.x == -1 && point.y == -1)
+	{
+		// Keyboard invocation: pop up at the caret
+		CEPoint ptCursor = GetCursorPos();
+		CPoint ptClient = TextToClient(ptCursor);
+		ClientToScreen(&ptClient);
+		point = ptClient;
+	}
+
+	BCMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_MERGERESULTVIEW));
+	I18n::TranslateMenu(menu.m_hMenu);
+	BCMenu* pSub = static_cast<BCMenu*>(menu.GetSubMenu(0));
+	if (pSub != nullptr)
+		pSub->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+			point.x, point.y, AfxGetMainWnd());
 }
 
 /**

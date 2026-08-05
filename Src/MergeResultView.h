@@ -42,8 +42,15 @@ protected:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bSyncingCurrentDiff; /**< true while this view drives diff selection */
 
+	/** @brief Make this view the frame's active, focused view. */
+	void TakeFocus();
+
 	//{{AFX_MSG(CMergeResultView)
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg UINT OnGetDlgCode();
+	afx_msg void OnForwardToMergeView(UINT nID);
+	afx_msg void OnUpdateForwardToMergeView(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
