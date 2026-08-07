@@ -65,8 +65,6 @@ void PluginMenu::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		}
 		else
 		{
-			CMenu popup;
-			popup.CreatePopupMenu();
 			if (processType.empty())
 			{
 				for (const auto& [caption, name, id, plugin] : allPlugins[processType])
@@ -74,11 +72,12 @@ void PluginMenu::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 			}
 			else
 			{
+				CMenu popup;
+				popup.CreatePopupMenu();
 				for (const auto& [caption, name, id, plugin] : allPlugins[processType])
 					popup.AppendMenu(MF_STRING, id, caption.c_str());
-				pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), processType.c_str());
+				pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.Detach()), processType.c_str());
 			}
-			popup.Detach();
 		}
 	}
 
