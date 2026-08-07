@@ -53,6 +53,7 @@ IDI_EQUALWEBPAGE        ICON                    "res\\equalwebpage.ico"
 IDI_NOTEQUALWEBPAGE     ICON                    "res\\notequalwebpage.ico"
 IDI_TREE_STATE_COLLAPSED ICON                   "res\\treestate_collapsed.ico"
 IDI_TREE_STATE_EXPANDED ICON                    "res\\treestate_expanded.ico"
+IDI_PLUGINS             ICON                    "res\\plugins.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////

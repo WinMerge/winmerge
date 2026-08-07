@@ -29,6 +29,7 @@
 #include "UniFile.h"
 #include "Logger.h"
 #include "DarkModeLib.h"
+#include "PluginMenu.h"
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
 
@@ -761,7 +762,7 @@ void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		infoUnpacker.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_WEBPAGE : -ID_MERGE_COMPARE_WEBPAGE;
 	}
 

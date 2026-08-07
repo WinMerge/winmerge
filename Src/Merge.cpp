@@ -77,6 +77,7 @@
 #include "TreeSitterParser.h"
 #include "SyntaxParserRegistry.h"
 #include "7zCommon.h"
+#include "PluginMenu.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -875,7 +876,8 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 	if (!pPopup)
 		return false;
 	String filteredFilenames = strutils::join(cmdInfo.m_Files.begin(), cmdInfo.m_Files.end(), _T("|"));
-	CMainFrame::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
+	PluginMenu::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames,
+		PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 
 	CPoint point;
 	GetCursorPos(&point);
@@ -913,7 +915,7 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 		}
 		else if(nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
 		{
-			cmdInfo.m_sUnpacker = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
+			cmdInfo.m_sUnpacker = PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
 		}
 		else
 		{
