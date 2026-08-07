@@ -16,11 +16,12 @@ class CMergeDoc;
  */
 enum class ResultSegmentState
 {
-	Common,   /**< Text outside any difference (taken from middle/base pane) */
-	Auto,     /**< Difference resolved automatically (non-conflicting change) */
-	Chosen,   /**< Difference resolved by an explicit Choose Left/Middle/Right */
-	Conflict, /**< Unresolved 3-way conflict (placeholder line in result) */
-	Edited,   /**< Segment has been edited by hand in the result pane */
+	Common,     /**< Text outside any difference (taken from middle/base pane) */
+	Auto,       /**< Difference resolved automatically (non-conflicting change) */
+	Chosen,     /**< Difference resolved by an explicit Choose Left/Middle/Right */
+	Unresolved, /**< Difference not resolved yet, but the sides do not conflict */
+	Conflict,   /**< Unresolved 3-way conflict: all three sides differ */
+	Edited,     /**< Segment has been edited by hand in the result pane */
 };
 
 /**

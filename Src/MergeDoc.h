@@ -344,6 +344,7 @@ public:
 	void UpdateMergeResultAfterRescan();
 	bool IsMergeResultModified() const;
 	int GetResultUnresolvedCount() const;
+	static String GetResultPlaceholderText(ResultSegmentState state);
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
 	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
 	void ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious = false);

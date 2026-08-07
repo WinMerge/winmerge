@@ -1162,6 +1162,8 @@
 #define ID_MERGE_RESULT_SAVE            33385
 #define ID_MERGE_RESULT_SAVEAS          33386
 #define ID_MERGE_START_SESSION          33387
+#define ID_MERGE_CHOOSE_THIS            33388
+#define ID_MERGE_COPY_LINES_TO_RESULT   33389
 #define ID_TABBAR_AUTO_MAXWIDTH         33451
 #define ID_IMG_VIEWDIFFERENCES          33453
 #define ID_IMG_ZOOM_25                  33454

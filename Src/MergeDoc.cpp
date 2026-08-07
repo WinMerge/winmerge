@@ -1994,18 +1994,32 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
-	// Merge result pane: ask about unsaved result changes first
-	if (IsMergeResultModified())
+	// Merge result pane: deal with the merge before the source files
+	if (IsMergeResultPaneActive())
 	{
-		int nAnswer = ShowMessageBox(
-			_("The merge result has unsaved changes.\n\nSave the merge result?"),
-			bAllowCancel ? (MB_YESNOCANCEL | MB_ICONWARNING) : (MB_YESNO | MB_ICONWARNING));
-		if (nAnswer == IDCANCEL)
-			return false;
-		if (nAnswer == IDYES && !SaveMergeResult(false))
+		const int nUnresolved = GetResultUnresolvedCount();
+		if (nUnresolved > 0 && bAllowCancel)
 		{
-			if (bAllowCancel)
+			// The merge is unfinished, so there is nothing worth saving:
+			// ask whether to abandon it rather than whether to save
+			const String msg = strutils::format_string1(
+				_("The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"),
+				strutils::format(_T("%d"), nUnresolved));
+			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING) != IDYES)
 				return false;
+		}
+		else if (IsMergeResultModified())
+		{
+			int nAnswer = ShowMessageBox(
+				_("The merge result has not been saved.\n\nSave the merge result?"),
+				bAllowCancel ? (MB_YESNOCANCEL | MB_ICONWARNING) : (MB_YESNO | MB_ICONWARNING));
+			if (nAnswer == IDCANCEL)
+				return false;
+			if (nAnswer == IDYES && !SaveMergeResult(false))
+			{
+				if (bAllowCancel)
+					return false;
+			}
 		}
 	}
 

@@ -266,6 +266,13 @@ protected:
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
 	afx_msg void OnAutoMerge();
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
+	int GetMergeTargetDiff();
+	String GetPaneNameForMergeMenu() const;
+	afx_msg void OnMergeChooseThis();
+	afx_msg void OnUpdateMergeChooseThis(CCmdUI* pCmdUI);
+	afx_msg void OnMergeCopyLinesToResult();
+	afx_msg void OnUpdateMergeCopyLinesToResult(CCmdUI* pCmdUI);
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnCopyX2Y(UINT nID);
 	afx_msg void OnCopyLinesX2Y(UINT nID);
 	afx_msg void OnX2Y(int srcPane, int dstPane, bool selectedLineOnly = false);
