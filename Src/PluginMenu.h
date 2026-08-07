@@ -2,10 +2,14 @@
  * @file PluginMenu.h
  * @brief Declaration file for PluginMenu namespace functions
  */
+#pragma once
+
+class CMenu;
+class CWnd;
+
 #include "UnicodeString.h"
 #include <vector>
 #include <string>
-
 namespace PluginMenu
 {
 	enum MenuFlags
