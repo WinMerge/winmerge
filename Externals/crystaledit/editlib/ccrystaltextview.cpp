@@ -2704,6 +2704,23 @@ OnDraw (CDC * pdc)
   int nCurrentLine = m_nTopLine;
   while (rcLine.top < rcClient.bottom)
     {
+      // Invisible lines have no screen height.
+      // Directly skip to the next visible line instead of iterating perhaps millions of hidden lines
+      if (nCurrentLine < nLineCount && !GetLineVisible (nCurrentLine))
+        {
+          const int nNextSubLine = GetSubLineIndex (nCurrentLine);
+          if (nNextSubLine < GetSubLineCount ())
+            {
+              int nNextLine;
+              int nSubLine;
+              GetLineBySubLine (nNextSubLine, nNextLine, nSubLine);
+              nCurrentLine = nNextLine > nCurrentLine ? nNextLine : nCurrentLine + 1;
+            }
+          else
+            nCurrentLine = nLineCount;
+          continue;
+        }
+
       int nSubLines = 1;
       if( nCurrentLine < nLineCount /*&& GetLineLength( nCurrentLine ) > nMaxLineChars*/ )
         nSubLines = GetSubLines(nCurrentLine);
