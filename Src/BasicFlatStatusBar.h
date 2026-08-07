@@ -28,7 +28,7 @@ public:
 	void SetPaneIcon(int nIndex, HICON hIcon);
 
 protected:
-	CPoint CBasicFlatStatusBar::GetClientCursorPos() const;
+	CPoint GetClientCursorPos() const;
 	int GetIndexFromPoint(const CPoint& pt) const;
 	static COLORREF LightenColor(COLORREF color, double amount);
 
