@@ -8,6 +8,8 @@
 
 #include <afxwin.h>
 #include <afxext.h>
+#include <vector>
+#include <map>
 
 #define SBPS_CLICKABLE 0x10000000
 

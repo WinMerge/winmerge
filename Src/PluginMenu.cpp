@@ -95,7 +95,7 @@ String PluginMenu::GetPluginPipelineByMenuId(unsigned idSearch, const std::vecto
 {
 	PluginInfo* pluginFound = nullptr;
 	String pluginName;
-	[[maybe_unused]] auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
+	[[maybe_unused]] auto [_, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
 	for (const auto& [processType, pluginList] : allPlugins)
 	{
 		for (const auto& [caption, name, id, plugin] : pluginList)
