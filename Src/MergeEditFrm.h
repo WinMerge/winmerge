@@ -55,6 +55,7 @@ protected:
 	CMergeEditSplitterView *m_pwndDetailMergeEditSplitterView;
 	CMergeResultBar m_wndResultBar;
 	CMergeResultView *m_pMergeResultView;
+	bool m_bResultBarVisible; /**< Last seen visibility of the merge result bar */
 	CMergeStatusBar m_wndStatusBar;
 	CLocationBar m_wndLocationBar;
 	std::unique_ptr<CLineFilterBar> m_pFilterBar;
