@@ -334,13 +334,16 @@ void CMergeDoc::BuildMergeResult()
 		seg.diffIdx = nDiff;
 		seg.nStartLine = nCurLine;
 		// Without auto-merge every significant difference starts
-		// unresolved; with it only true 3-way conflicts do
+		// unresolved; with it only true 3-way conflicts do. A difference
+		// where the sides agree (or only one side changed) is not a
+		// conflict even while it is still unresolved.
 		if (pdi->op == OP_DIFF ||
 			(!m_bResultAutoMerge && pdi->op != OP_TRIVIAL))
 		{
-			seg.state = ResultSegmentState::Conflict;
+			seg.state = (pdi->op == OP_DIFF) ?
+				ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
 			seg.nLines = 1;
-			text += _("<Merge Conflict>");
+			text += GetResultPlaceholderText(seg.state);
 			text += m_ptResultBuf->GetDefaultEol();
 		}
 		else
@@ -417,14 +420,26 @@ bool CMergeDoc::IsMergeResultModified() const
 }
 
 /**
- * @brief Number of still unresolved conflict segments.
+ * @brief Placeholder line shown for a difference that has no content
+ * chosen for it yet.
+ */
+String CMergeDoc::GetResultPlaceholderText(ResultSegmentState state)
+{
+	return (state == ResultSegmentState::Conflict) ?
+		_("<Merge Conflict>") : _("<Unresolved Difference>");
+}
+
+/**
+ * @brief Number of differences with nothing chosen for them yet
+ * (both real conflicts and non-conflicting differences).
  */
 int CMergeDoc::GetResultUnresolvedCount() const
 {
 	int nCount = 0;
 	for (const auto& seg : m_resultSegments)
 	{
-		if (seg.state == ResultSegmentState::Conflict)
+		if (seg.state == ResultSegmentState::Conflict ||
+			seg.state == ResultSegmentState::Unresolved)
 			++nCount;
 	}
 	return nCount;
@@ -510,10 +525,11 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nPaneLines);
 		nNewLines += nPaneLines;
 	}
-	if (srcPanes.empty() && pdi->op == OP_DIFF)
+	if (srcPanes.empty())
 	{
-		// deselected everything: the conflict is unresolved again
-		text = _("<Merge Conflict>");
+		// deselected everything: the difference is unresolved again
+		text = GetResultPlaceholderText(pdi->op == OP_DIFF ?
+			ResultSegmentState::Conflict : ResultSegmentState::Unresolved);
 		text += m_ptResultBuf->GetDefaultEol();
 		nNewLines = 1;
 		bBackToConflict = true;
@@ -553,7 +569,8 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 	m_ptResultBuf->FlushUndoGroup(pSource);
 
 	const int nDelta = nNewLines - seg.nLines;
-	seg.state = bBackToConflict ? ResultSegmentState::Conflict : ResultSegmentState::Chosen;
+	seg.state = !bBackToConflict ? ResultSegmentState::Chosen :
+		(pdi->op == OP_DIFF ? ResultSegmentState::Conflict : ResultSegmentState::Unresolved);
 	seg.srcPanes = srcPanes;
 	seg.nLines = nNewLines;
 	if (nDelta != 0)
@@ -583,6 +600,7 @@ void CMergeDoc::ResultToggleSource(int nDiff, int srcPane)
 	if (pSegment->state == ResultSegmentState::Auto ||
 		pSegment->state == ResultSegmentState::Chosen)
 		srcPanes = pSegment->srcPanes;
+	// (a hand-edited or unresolved segment starts a fresh selection)
 	// (a hand-edited or unresolved segment starts a fresh selection)
 	const auto it = std::find(srcPanes.begin(), srcPanes.end(), srcPane);
 	if (it != srcPanes.end())
@@ -627,7 +645,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	if (nUnresolved > 0)
 	{
 		const String msg = strutils::format_string1(
-			_("There are still %1 unresolved conflicts in the merge result.\n\nSave the result anyway?"),
+			_("There are still %1 unresolved difference(s) in the merge result.\n\nSave the result anyway?"),
 			strutils::format(_T("%d"), nUnresolved));
 		if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING) != IDYES)
 			return false;

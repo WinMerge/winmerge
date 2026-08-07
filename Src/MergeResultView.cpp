@@ -42,10 +42,12 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_CONTEXTMENU()
 	ON_WM_GETDLGCODE()
-	// Difference/conflict navigation is implemented by the compare views;
-	// forward it so it also works while the result view is active
+	// Difference/conflict navigation and Auto Merge are implemented by the
+	// compare views; forward them so they also work while this view is active
 	ON_COMMAND_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -146,6 +148,19 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 		{
 			crBkgnd = m_cachedColors.clrWordDiff;
 			crText = m_cachedColors.clrWordDiffText;
+		}
+		break;
+	case ResultSegmentState::Unresolved:
+		// not decided yet, but the sides do not conflict
+		if (bCurrent)
+		{
+			crBkgnd = m_cachedColors.clrSelDiff;
+			crText = m_cachedColors.clrSelDiffText;
+		}
+		else
+		{
+			crBkgnd = m_cachedColors.clrDiff;
+			crText = m_cachedColors.clrDiffText;
 		}
 		break;
 	case ResultSegmentState::Auto:
