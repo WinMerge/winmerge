@@ -58,6 +58,59 @@ COLORREF CBasicFlatStatusBar::LightenColor(COLORREF color, double amount)
 	return RGB(red, green, blue);
 }
 
+HICON CBasicFlatStatusBar::GetPaneIcon(int nIndex) const
+{
+	return m_paneIcons.count(nIndex) ? m_paneIcons.at(nIndex) : nullptr;
+}
+
+void CBasicFlatStatusBar::SetPaneIcon(int nIndex, HICON hIcon)
+{
+	if (hIcon)
+		m_paneIcons[nIndex] = hIcon;
+	else
+		m_paneIcons.erase(nIndex);
+	Invalidate();
+}
+
+void CBasicFlatStatusBar::SetSubPaneButtons(int nIndex, std::vector<SubPaneButton> buttons)
+{
+	if (buttons.empty())
+		m_subPaneButtons.erase(nIndex);
+	else
+		m_subPaneButtons[nIndex] = std::move(buttons);
+}
+
+void CBasicFlatStatusBar::GetSubPaneButtonRects(int nIndex, std::vector<CRect>& rects) const
+{
+	rects.clear();
+	auto it = m_subPaneButtons.find(nIndex);
+	if (it == m_subPaneButtons.end() || it->second.empty())
+		return;
+
+	CRect rcPart;
+	GetStatusBarCtrl().GetRect(nIndex, &rcPart);
+
+	const int n = static_cast<int>(it->second.size());
+	const int w = rcPart.Width() / n;
+	int x = rcPart.left;
+	for (int i = 0; i < n; ++i)
+	{
+		int right = (i == n - 1) ? rcPart.right : x + w;
+		rects.emplace_back(x, rcPart.top, right, rcPart.bottom);
+		x = right;
+	}
+}
+
+int CBasicFlatStatusBar::HitTestSubPaneButton(int nIndex, const CPoint& pt) const
+{
+	std::vector<CRect> rects;
+	GetSubPaneButtonRects(nIndex, rects);
+	for (size_t i = 0; i < rects.size(); ++i)
+		if (rects[i].PtInRect(pt))
+			return static_cast<int>(i);
+	return -1;
+}
+
 void CBasicFlatStatusBar::OnPaint()
 {
 	const COLORREF clr3DFace = GetSysColor(COLOR_3DFACE);
@@ -91,6 +144,24 @@ void CBasicFlatStatusBar::OnPaint()
 		CRect rcPart;
 		ctrl.GetRect(i, &rcPart);
 
+		auto it = m_subPaneButtons.find(i);
+		const bool bShowSubButtons = (i == m_nTrackingPane) && it != m_subPaneButtons.end() && !it->second.empty();
+
+		if (bShowSubButtons)
+		{
+			std::vector<CRect> rects;
+			GetSubPaneButtonRects(i, rects);
+			for (size_t b = 0; b < rects.size(); ++b)
+			{
+				const bool bHot = (m_nHotSubButton == static_cast<int>(b));
+				if (bHot)
+					DrawRoundedRect(memDC.m_hDC, rects[b].left, rects[b].top,
+						rects[b].Width(), rects[b].Height(), radius, clr3DFaceLight, clr3DFace);
+				memDC.DrawText(it->second[b].text.c_str(), rects[b], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+			}
+			continue;
+		}
+
 		if (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane)
 			DrawRoundedRect(memDC.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
 
@@ -99,6 +170,17 @@ void CBasicFlatStatusBar::OnPaint()
 		{
 			CRect rcText = rcPart;
 			rcText.left += radius;
+
+			auto itIcon = m_paneIcons.find(i);
+			if (itIcon != m_paneIcons.end() && itIcon->second)
+			{
+				const int iconSize = GetSystemMetrics(SM_CXSMICON);
+				const int iconY = rcPart.top + (rcPart.Height() - iconSize) / 2;
+				::DrawIconEx(memDC.m_hDC, rcText.left, iconY, itIcon->second,
+					iconSize, iconSize, 0, nullptr, DI_NORMAL);
+				rcText.left += iconSize + 4;
+			}
+
 			CString text = ctrl.GetText(i);
 			if (text.Find('\t') >= 0)
 			{
@@ -134,15 +216,21 @@ void CBasicFlatStatusBar::OnMouseMove(UINT nFlags, CPoint point)
 		m_bMouseTracking = true;
 	}
 	int i = GetIndexFromPoint(GetClientCursorPos());
+
+	int nNewHotSubButton = -1;
+	if (i >= 0 && m_subPaneButtons.count(i))
+		nNewHotSubButton = HitTestSubPaneButton(i, point);
+
 	for (int pane : {i, m_nTrackingPane})
 	{
-		if (pane >= 0 && (GetPaneStyle(pane) & SBPS_CLICKABLE) != 0)
+		if (pane >= 0 && ((GetPaneStyle(pane) & SBPS_CLICKABLE) != 0 || m_subPaneButtons.count(pane)))
 		{
 			CRect rcPart;
 			GetStatusBarCtrl().GetRect(pane, &rcPart);
 			InvalidateRect(&rcPart, false);
 		}
 	}
+	m_nHotSubButton = nNewHotSubButton;
 	m_nTrackingPane = i;
 }
 

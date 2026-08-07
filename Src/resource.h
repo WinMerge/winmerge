@@ -231,6 +231,7 @@
 #define IDI_TREE_STATE_COLLAPSED        535
 #define IDI_TREE_STATE_EXPANDED         536
 #define IDI_FILE                        537
+#define IDI_PLUGINS                     538
 #define IDC_PATH0_BUTTON                1001
 #define IDC_PATH1_BUTTON                1002
 #define IDC_PATH2_BUTTON                1003
