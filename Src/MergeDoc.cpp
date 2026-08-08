@@ -58,6 +58,7 @@
 #include "DiffContext.h"
 #include "Logger.h"
 #include "SyntaxParserRegistry.h"
+#include "PluginMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -3156,7 +3157,7 @@ void CMergeDoc::SetPredifferByMenu(UINT nID)
 		return;
 	}
 
-	String pluginName = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+	String pluginName = PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
 
 	// build a PrediffingInfo structure fom the ID
 	PrediffingInfo prediffer(pluginName);
@@ -3169,7 +3170,7 @@ void CMergeDoc::OnScriptsForCopying(UINT nID)
 {
 	m_CurrentEditorScriptID = nID;
 	m_editorScriptInfo.SetPluginPipeline(
-		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
+		PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
 }
 
 void CMergeDoc::OnUpdateScriptsForCopying(CCmdUI* pCmdUI)
@@ -3264,7 +3265,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		infoUnpacker.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -static_cast<int>(nID);
 	}

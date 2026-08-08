@@ -35,6 +35,7 @@
 #include "Constants.h"
 #include "MouseHook.h"
 #include "TreeSitterParser.h"
+#include "PluginMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -3778,7 +3779,7 @@ void CMergeEditView::OnScripts(UINT nID)
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
 	EditorScriptInfo scriptInfo(
-		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
+		PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
 	bool bChanged = false;
 	scriptInfo.TransformText(m_nThisPane, text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
@@ -5062,13 +5063,13 @@ void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = 0;
-	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	const int pane = pNMItemActivate->iItem / 4;
+	LPNMMOUSE pNMMouse = reinterpret_cast<LPNMMOUSE>(pNMHDR);
+	const int pane = static_cast<int>(pNMMouse->dwItemSpec) / 4;
 	CMergeDoc* pDoc = GetDocument();
-	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMItemActivate->hdr.hwndFrom)))
+	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMMouse->hdr.hwndFrom)))
 		return;
 
-	switch (pNMItemActivate->iItem % 4)
+	switch (pNMMouse->dwItemSpec % 4)
 	{
 	case 0:
 		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);

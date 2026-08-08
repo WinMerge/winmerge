@@ -93,6 +93,7 @@
 #include "MergeTextFormatter.h"
 #include "ArchiveTool.h"
 #include "DiffImageListUtils.h"
+#include "PluginMenu.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -367,6 +368,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnUpdateCompareMethod)
 	// Status bar
+	ON_NOTIFY(NM_CLICK, AFX_IDW_STATUS_BAR, OnStatusBarClick)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
@@ -414,12 +416,15 @@ CMainFrame::CMainFrame()
 , m_pOutputDoc(nullptr)
 , m_pLogChannel(nullptr)
 , m_logging(GetOptionsMgr()->GetInt(OPT_LOGGING))
+, m_hIconPlugin(nullptr)
 {
 	InitializeCriticalSection(&m_cs);
 }
 
 CMainFrame::~CMainFrame()
 {
+	if (m_hIconPlugin)
+		DestroyIcon(m_hIconPlugin);
 	GetOptionsMgr()->SaveOption(OPT_TABBAR_AUTO_MAXWIDTH, m_wndTabBar.GetAutoMaxWidth());
 	strdiff::Close();
 }
@@ -504,7 +509,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, pointToPixel(225));
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE, pointToPixel(225));
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
 	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
 
@@ -753,7 +758,8 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_FOLDER - ID_MERGE_COMPARE_TEXT); --i)
 					pMenu->DeleteMenu(i, MF_BYPOSITION);
 
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
+				PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames,
+					PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 			}
 			else if (topMenuId == ID_NO_EDIT_SCRIPTS || topMenuId == ID_NO_EDIT_SCRIPTS_FOR_COPYING)
 			{
@@ -765,7 +771,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				while (i--)
 					pMenu->DeleteMenu(0, MF_BYPOSITION);
 
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, 
+				PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, 0, 
 					topMenuId == ID_NO_EDIT_SCRIPTS ? ID_SCRIPT_FIRST : ID_SCRIPT_FOR_COPYING_FIRST);
 			}
 			else if (topMenuId == ID_PLUGINS_LIST)
@@ -781,9 +787,9 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 						pMenu->DeleteMenu(0, MF_BYPOSITION);
 
 					if (j == 0)
-						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, false, ID_UNPACKERS_FIRST);
+						PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, 0, ID_UNPACKERS_FIRST);
 					else
-						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FIRST);
+						PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
 				}
 			}
 		}
@@ -3883,9 +3889,10 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
+	std::vector<SubPaneButton> buttons;
+	String pluginNames;
 	if (auto pMergeDoc = GetActiveIMergeDoc())
 	{
-		String pluginNames;
 		const PackingInfo* infoUnpacker = pMergeDoc->GetUnpacker();
 		if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
 			pluginNames += infoUnpacker->GetPluginPipeline() + _T("&&");
@@ -3895,10 +3902,31 @@ void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 		const EditorScriptInfo* infoEditorScript = pMergeDoc->GetEditorScript();
 		if (infoEditorScript && !infoEditorScript->GetPluginPipeline().empty())
 			pluginNames += infoEditorScript->GetPluginPipeline() + _T("&&");
-		pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
+		if (!pluginNames.empty())
+			pluginNames = pluginNames.substr(0, pluginNames.length() - 1);
+		else
+			pluginNames = strutils::strip_hot_key(_("&Plugins"));
+		if (m_wndStatusBar.GetPaneIcon(1) == nullptr)
+		{
+			if (!m_hIconPlugin)
+				m_hIconPlugin = ::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_PLUGINS));
+			m_wndStatusBar.SetPaneIcon(1, m_hIconPlugin);
+		}
+		buttons.push_back({ strutils::strip_hot_key(_("Unpac&ker")) });
+		switch (pMergeDoc->GetDocumentType())
+		{
+		case IMergeDoc::Text:
+		case IMergeDoc::Table:
+			buttons.push_back({ strutils::strip_hot_key(_("&Prediffer")) });
+			break;
+		}
 	}
 	else
-		pCmdUI->SetText(_T(""));
+	{
+		m_wndStatusBar.SetPaneIcon(1, nullptr);
+	}
+	pCmdUI->SetText(pluginNames.c_str());
+	m_wndStatusBar.SetSubPaneButtons(1, buttons);
 }
 
 /**
@@ -3907,6 +3935,39 @@ void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 void CMainFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetText(_T(""));
+}
+
+/**
+ * @brief Called when user clicks on the status bar
+ */
+void CMainFrame::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	*pResult = 0;
+	LPNMMOUSE pNMMouse = reinterpret_cast<LPNMMOUSE>(pNMHDR);
+	int index = static_cast<int>(pNMMouse->dwItemSpec);
+	if (index < 0)
+		return;
+	CPoint point = pNMMouse->pt;
+	int subidx = m_wndStatusBar.HitTestSubPaneButton(index, point);
+	if (subidx < 0)
+		return;
+	if (auto pMergeDoc = GetActiveIMergeDoc())
+	{
+		PathContext paths;
+		for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
+			paths.SetPath(i, pMergeDoc->GetPath(i));
+		String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+		std::vector<CRect> rects;
+		m_wndStatusBar.GetSubPaneButtonRects(index, rects);
+		CPoint pt = CPoint(rects[subidx].left, rects[subidx].top);
+		m_wndStatusBar.ClientToScreen(&pt);
+		if (subidx == 0)
+			PluginMenu::ShowMenu(filteredFilenames, FileTransform::UnpackerEventNames, 
+				PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST, pt.x, pt.y, this);
+		else if (subidx == 1)
+			PluginMenu::ShowMenu(filteredFilenames, FileTransform::PredifferEventNames,
+				PluginMenu::FlattenMenu|PluginMenu::AddSelectMenu, ID_PREDIFFERS_FIRST, pt.x, pt.y, this);
+	}
 }
 
 /**
@@ -4074,113 +4135,6 @@ void CMainFrame::ReloadMenu()
 		// force redrawing the menu bar
 		pMainFrame->DrawMenuBar();
 	}
-}
-
-void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
-	const std::vector<std::wstring>& events, bool addAllMenu, unsigned baseId)
-{
-	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		return;
-
-	CWaitCursor waitstatus;
-
-	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
-
-	if (!addAllMenu)
-	{
-		pMenu->AppendMenu(MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested Plugins").c_str());
-	}
-	else
-	{
-		pMenu->AppendMenu(MF_SEPARATOR);
-	}
-
-	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
-		pMenu->AppendMenu(MF_STRING, id, caption.c_str());
-
-	CMenu* pMenu2 = pMenu;
-	CMenu popupAll;
-	if (addAllMenu)
-	{
-		popupAll.CreatePopupMenu();
-		pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popupAll.m_hMenu), _("Al&l").c_str());
-		pMenu2 = &popupAll;
-	}
-	else
-	{
-		pMenu->AppendMenu(MF_SEPARATOR, 0);
-		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All Plugins").c_str());
-	}
-
-	std::list<String> processTypes;
-	for (const auto& [processType, pluginList] : allPlugins)
-		processTypes.push_back(processType);
-	auto it = std::find(processTypes.begin(), processTypes.end(), _("&Others"));
-	if (it != processTypes.end())
-	{
-		processTypes.erase(it);
-		processTypes.push_back(_("&Others"));
-	}
-
-	for (const auto& processType : processTypes)
-	{
-		CMenu popup;
-		popup.CreatePopupMenu();
-		if (processType.empty())
-		{
-			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
-				pMenu2->AppendMenu(MF_STRING, id, caption.c_str());
-		}
-		else
-		{
-			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
-				popup.AppendMenu(MF_STRING, id, caption.c_str());
-			pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), processType.c_str());
-		}
-		popup.Detach();
-	}
-
-	if (addAllMenu)
-	{
-		if (baseId == ID_UNPACKERS_FIRST)
-			pMenu2->AppendMenu(MF_STRING, ID_OPEN_WITH_UNPACKER, _("&Select...").c_str());
-		else if (baseId == ID_PREDIFFERS_FIRST)
-			pMenu2->AppendMenu(MF_STRING, ID_APPLY_PREDIFFER, _("&Select...").c_str());
-	}
-	popupAll.Detach();
-}
-
-String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring>& events, unsigned baseId)
-{
-	PluginInfo* pluginFound = nullptr;
-	String pluginName;
-	[[maybe_unused]] auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
-	for (const auto& [processType, pluginList] : allPlugins)
-	{
-		for (const auto& [caption, name, id, plugin] : pluginList)
-		{
-			if (id == idSearch)
-			{
-				pluginName = name;
-				pluginFound = plugin;
-				break;
-			}
-		}
-	}
-	if (pluginFound)
-	{
-		if (!pluginFound->GetExtendedPropertyValue(_T("ArgumentsRequired")).has_value() && 
-		    !pluginFound->GetExtendedPropertyValue(pluginName + _T(".ArgumentsRequired")).has_value())
-			return pluginName;
-		CSelectPluginDlg dlg(pluginName, _T(""), 
-			(baseId == ID_UNPACKERS_FIRST)  ? CSelectPluginDlg::PluginType::Unpacker    : (
-			(baseId == ID_PREDIFFERS_FIRST) ? CSelectPluginDlg::PluginType::Prediffer   : 
-			                                  CSelectPluginDlg::PluginType::EditorScript), true);
-		if (dlg.DoModal() != IDOK)
-			return {};
-		return dlg.GetPluginPipeline();
-	}
-	return {};
 }
 
 IMergeDoc* CMainFrame::GetActiveIMergeDoc()

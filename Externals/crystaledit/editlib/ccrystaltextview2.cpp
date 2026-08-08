@@ -862,6 +862,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
 
       AdjustTextPoint (point);
       m_ptCursorPos = ClientToText (point);
+      m_ptAnchor = m_ptCursorPos;
       EnsureVisible (m_ptCursorPos);
       SetSelection (m_ptCursorPos, m_ptCursorPos);
       UpdateCaret ();

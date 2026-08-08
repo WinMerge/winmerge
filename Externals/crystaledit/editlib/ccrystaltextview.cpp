@@ -2711,10 +2711,11 @@ OnDraw (CDC * pdc)
       rcLine.bottom = (std::min)(rcClient.bottom, rcLine.top + nSubLines * nLineHeight);
       rcMargin.bottom = rcLine.bottom;
 
+      bool bLineVisible = nCurrentLine < nLineCount && GetLineVisible(nCurrentLine);
       CRect rcMarginAndLine(rcClient.left, rcLine.top, rcClient.right, rcLine.bottom);
-      if (pdc->RectVisible(rcMarginAndLine))
+      if (bLineVisible)
         {
-          if (nCurrentLine < nLineCount && GetLineVisible (nCurrentLine))
+          if (pdc->RectVisible(rcMarginAndLine))
             {
               DrawMargin (rcMargin, nCurrentLine, nCurrentLine + 1);
               DrawSingleLine (rcLine, nCurrentLine);
@@ -2727,7 +2728,10 @@ OnDraw (CDC * pdc)
                   nCursorY + nLineHeight - 1, 1);
               nLastLineBottom = rcMargin.bottom;
             }
-          else
+        }
+      else
+        {
+          if (nCurrentLine >= nLineCount && pdc->RectVisible(rcMarginAndLine))
             {
               DrawMargin (rcMargin, -1, -1);
               DrawSingleLine (rcLine, -1);
