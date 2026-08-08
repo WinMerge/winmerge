@@ -199,7 +199,7 @@ BEGIN
                             "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
     IDS_PLUGIN_DESCRIPTION54 "Basic text functions"
     IDS_PLUGIN_DESCRIPTION55 "AI-assisted text conversion"
-    IDS_PLUGIN_DESCRIPTION56 "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
+    IDS_PLUGIN_DESCRIPTION56 "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
     IDS_PLUGIN_DESCRIPTION57 "Unescape and display escaped Java properties files."
     IDS_PLUGIN_DESCRIPTION58 "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
     IDS_PLUGIN_DESCRIPTION59 
@@ -323,11 +323,11 @@ BEGIN
     IDS_PLUGIN_EDITORADDIN_STR2
                             "Enter prompt"
     IDS_PLUGIN_EDITORADDIN_STR3 
-                            "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
+                            "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
     IDS_PLUGIN_EDITORADDIN_STR4
-                            "Environment variable name for OpenAI API key"
+                            "Environment variable name for API key"
     IDS_PLUGIN_EDITORADDIN_STR5
-                            "OpenAI API key"
+                            "API key"
     IDS_PLUGIN_EDITORADDIN_STR6
                             "Temperature"
     IDS_PLUGIN_EDITORADDIN_STR7
@@ -335,7 +335,9 @@ BEGIN
     IDS_PLUGIN_EDITORADDIN_STR8
                             "Model"
     IDS_PLUGIN_EDITORADDIN_STR9
-                            "OpenAI API key changed. Restart to apply."
+                            "API key changed. Restart to apply."
+    IDS_PLUGIN_EDITORADDIN_STR10
+                            "Provider"
 END
 
 #endif    // English (United States) resources
@@ -352,4 +354,3 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
