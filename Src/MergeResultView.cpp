@@ -12,6 +12,7 @@
 #include "MergeEditView.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "SyntaxColors.h"
 #include "BCMenu.h"
 #include "I18nGUI.h"
 #include <algorithm>
@@ -92,7 +93,9 @@ void CMergeResultView::RefreshOptions()
 	{
 		SetRenderingMode(static_cast<RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE)));
 		SetInsertTabs(GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0);
-		SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
+		// The margin always stays on: it carries the per-line provenance
+		// markers (which pane each result line was taken from)
+		SetSelectionMargin(true);
 		SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 		SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 		SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL),
@@ -131,10 +134,11 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 	if (pDoc == nullptr)
 		return;
 	const MergeResultSegment* pSegment = pDoc->GetResultSegmentByLine(nLineIndex);
-	if (pSegment == nullptr || pSegment->diffIdx == -1)
+	if (pSegment == nullptr || pSegment->state == ResultSegmentState::Common)
 		return;
 
-	const bool bCurrent = (pSegment->diffIdx == pDoc->GetCurrentDiff());
+	const bool bCurrent = pSegment->diffIdx >= 0 &&
+		(pSegment->diffIdx == pDoc->GetCurrentDiff());
 	bDrawWhitespace = true;
 	switch (pSegment->state)
 	{
@@ -191,6 +195,27 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 	default:
 		break;
 	}
+}
+
+/**
+ * @brief Draw the provenance marker into the margin, kdiff3 style:
+ * '1'/'2'/'3' = line taken from that pane (the toolbar button numbers),
+ * '?' = unresolved placeholder, 'm' = segment modified by hand.
+ */
+void CMergeResultView::DrawMargin(const CRect & rect, int nLineIndex, int nLineNumber)
+{
+	CGhostTextView::DrawMargin(rect, nLineIndex, nLineNumber);
+	if (nLineIndex < 0 || m_pTextBuffer == nullptr)
+		return;
+	CMergeDoc* pDoc = GetDocument();
+	if (pDoc == nullptr)
+		return;
+	const tchar_t marker = pDoc->GetResultLineMarker(nLineIndex);
+	if (marker == 0)
+		return;
+	m_pCrystalRenderer->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
+	int nWidth = GetCharWidth();
+	m_pCrystalRenderer->DrawText(rect.left + 2, rect.top, rect, &marker, 1, &nWidth);
 }
 
 /**

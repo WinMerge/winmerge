@@ -78,8 +78,8 @@ BEGIN
     BEGIN
         MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
         MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
-        MENUITEM "Ne&xt Conflict\tAlt+Shift+Down", ID_NEXTCONFLICT
-        MENUITEM "Pre&vious Conflict\tAlt+Shift+Up", ID_PREVCONFLICT
+        MENUITEM "Ne&xt Unresolved Difference\tAlt+Shift+Down", ID_NEXTCONFLICT
+        MENUITEM "Pre&vious Unresolved Difference\tAlt+Shift+Up", ID_PREVCONFLICT
         MENUITEM SEPARATOR
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
@@ -100,6 +100,15 @@ BEGIN
         MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Show &Full Conflict Sections", ID_MERGE_RESULT_SHOW_SECTIONS
+        POPUP "&Line Endings for Saving"
+        BEGIN
+            MENUITEM "&As in Sources",              ID_MERGE_RESULT_EOL_ASIS
+            MENUITEM "&Windows (CRLF)",             ID_MERGE_RESULT_EOL_DOS
+            MENUITEM "&Unix (LF)",                  ID_MERGE_RESULT_EOL_UNIX
+            MENUITEM "Classic &Mac (CR)",           ID_MERGE_RESULT_EOL_MAC
+        END
         MENUITEM SEPARATOR
         MENUITEM "Save Merge Result",           ID_MERGE_RESULT_SAVE
         MENUITEM "Save Merge Result &As...",    ID_MERGE_RESULT_SAVEAS
@@ -5414,6 +5423,11 @@ BEGIN
     ID_MERGE_START_SESSION  "Open the Merge Result pane to merge the compared files; differences start unresolved\nStart Merge Session"
     ID_MERGE_CHOOSE_THIS    "Put this pane's lines for the difference at the cursor into the Merge Result pane; choosing it again removes them\nChoose for This Difference"
     ID_MERGE_COPY_LINES_TO_RESULT "Put this pane's lines into the Merge Result pane for every difference the selection covers\nChoose for Selected Differences"
+    ID_MERGE_RESULT_EOL_ASIS "Keep each line's own line ending when saving, so the output differs minimally from the sources\nAs in Sources"
+    ID_MERGE_RESULT_EOL_DOS "Save all lines with Windows (CRLF) line endings\nWindows (CRLF)"
+    ID_MERGE_RESULT_EOL_UNIX "Save all lines with Unix (LF) line endings\nUnix (LF)"
+    ID_MERGE_RESULT_EOL_MAC "Save all lines with classic Mac (CR) line endings\nClassic Mac (CR)"
+    ID_MERGE_RESULT_SHOW_SECTIONS "Show unresolved conflicts as full conflict sections (<<<<<<<) instead of one-line placeholders\nShow Full Conflict Sections"
     ID_VIEW_MERGE_RESULT_BAR "Show or hide the merge result pane (3-way compare)\nMerge Result Pane"
     ID_FIRSTFILE            "\nFirst File"
     ID_NEXTFILE             "\nNext File (Ctrl+F8)"

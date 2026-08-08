@@ -232,6 +232,7 @@
 #define IDI_TREE_STATE_COLLAPSED        535
 #define IDI_TREE_STATE_EXPANDED         536
 #define IDI_FILE                        537
+#define IDI_PLUGINS                     538
 #define IDC_PATH0_BUTTON                1001
 #define IDC_PATH1_BUTTON                1002
 #define IDC_PATH2_BUTTON                1003
@@ -1164,6 +1165,11 @@
 #define ID_MERGE_START_SESSION          33387
 #define ID_MERGE_CHOOSE_THIS            33388
 #define ID_MERGE_COPY_LINES_TO_RESULT   33389
+#define ID_MERGE_RESULT_EOL_ASIS        33390
+#define ID_MERGE_RESULT_EOL_DOS         33391
+#define ID_MERGE_RESULT_EOL_UNIX        33392
+#define ID_MERGE_RESULT_EOL_MAC         33393
+#define ID_MERGE_RESULT_SHOW_SECTIONS   33394
 #define ID_TABBAR_AUTO_MAXWIDTH         33451
 #define ID_IMG_VIEWDIFFERENCES          33453
 #define ID_IMG_ZOOM_25                  33454

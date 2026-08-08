@@ -58,6 +58,7 @@
 #include "DiffContext.h"
 #include "Logger.h"
 #include "SyntaxParserRegistry.h"
+#include "PluginMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -146,6 +147,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SAVEAS, OnUpdateMergeResultSave)
 	ON_COMMAND(ID_MERGE_START_SESSION, OnMergeStartSession)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_START_SESSION, OnUpdateMergeStartSession)
+	ON_COMMAND_RANGE(ID_MERGE_RESULT_EOL_ASIS, ID_MERGE_RESULT_EOL_MAC, OnMergeResultEolStyle)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_RESULT_EOL_ASIS, ID_MERGE_RESULT_EOL_MAC, OnUpdateMergeResultEolStyle)
+	ON_COMMAND(ID_MERGE_RESULT_SHOW_SECTIONS, OnMergeResultShowSections)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SHOW_SECTIONS, OnUpdateMergeResultShowSections)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -243,7 +248,9 @@ void CMergeDoc::DeleteContents ()
 	m_resultDiffToSegment.clear();
 	m_resultSegUndo.clear();
 	m_resultSegRedo.clear();
+	m_resultDiffSnapshot.clear();
 	m_bResultBuilt = false;
+	m_bResultResumeAttempted = false;
 }
 
 /**
@@ -1995,8 +2002,13 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
-	// Merge result pane: deal with the merge before the source files
-	if (IsMergeResultPaneActive())
+	// Merge result pane: deal with the merge before the source files.
+	// A hidden result pane still holds the user's merge work: hiding the
+	// bar must not turn closing the window into silent data loss, so the
+	// prompt is also shown when the pane is hidden but the result was
+	// modified by the user.
+	if (HasMergeResultPane() && m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		(IsMergeResultPaneActive() || IsMergeResultModified()))
 	{
 		const int nUnresolved = GetResultUnresolvedCount();
 		if (nUnresolved > 0 && bAllowCancel)
@@ -3145,7 +3157,7 @@ void CMergeDoc::SetPredifferByMenu(UINT nID)
 		return;
 	}
 
-	String pluginName = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+	String pluginName = PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
 
 	// build a PrediffingInfo structure fom the ID
 	PrediffingInfo prediffer(pluginName);
@@ -3158,7 +3170,7 @@ void CMergeDoc::OnScriptsForCopying(UINT nID)
 {
 	m_CurrentEditorScriptID = nID;
 	m_editorScriptInfo.SetPluginPipeline(
-		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
+		PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
 }
 
 void CMergeDoc::OnUpdateScriptsForCopying(CCmdUI* pCmdUI)
@@ -3253,7 +3265,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		infoUnpacker.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -static_cast<int>(nID);
 	}

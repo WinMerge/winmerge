@@ -54,6 +54,7 @@
 #include "RenameMoveDetection.h"
 #include "FileFilterHelper.h"
 #include "MergeLogger.h"
+#include "PluginMenu.h"
 #include <numeric>
 #include <functional>
 
@@ -1881,7 +1882,7 @@ void CDirView::OpenSelectionAs(int sel1, int sel2, int sel3, UINT id)
 	if (ID_UNPACKERS_FIRST <= id && id <= ID_UNPACKERS_LAST)
 	{
 		PackingInfo infoUnpackerAlt(
-				CMainFrame::GetPluginPipelineByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+				PluginMenu::GetPluginPipelineByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		CMainFrame::OpenFolderParams openFolderParams(ctxt.m_bRecursive);
 		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
 			nullptr, &infoUnpackerAlt, infoPrediffer, 0, &openFolderParams);
@@ -4668,8 +4669,8 @@ void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)
 		return;
 
 	String filteredFilenames = GetDiffContext().GetFilteredFilenames(*GetItemKey(sel));
-	CMainFrame::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
-		FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
+	PluginMenu::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
+		FileTransform::UnpackerEventNames, PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 }
 
 void CDirView::OnViewCompareStatistics()
@@ -4978,8 +4979,9 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = 0;
-	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	switch (pNMItemActivate->iItem)
+	LPNMMOUSE pNMMouse = reinterpret_cast<LPNMMOUSE>(pNMHDR);
+	int index = static_cast<int>(pNMMouse->dwItemSpec);
+	switch (index)
 	{
 	case 0:
 		break;
@@ -5011,8 +5013,8 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	case 4:
 	case 5:
 	{
-		const int index = std::clamp(pNMItemActivate->iItem - 3, 0, GetDocument()->m_nDirs - 1);
-		GetDocument()->SetReadOnly(index, !GetDocument()->GetReadOnly(index));
+		const int idx = std::clamp(index - 3, 0, GetDocument()->m_nDirs - 1);
+		GetDocument()->SetReadOnly(idx, !GetDocument()->GetReadOnly(idx));
 		break;
 	}
 	default:

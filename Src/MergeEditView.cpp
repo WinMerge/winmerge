@@ -35,6 +35,7 @@
 #include "Constants.h"
 #include "MouseHook.h"
 #include "TreeSitterParser.h"
+#include "PluginMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1493,8 +1494,72 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(enabled);
 }
 
+/**
+ * @brief Find the next/previous difference that still needs a decision in
+ * the merge result pane (kdiff3's "unsolved conflict" navigation).
+ * @return Diff index, or -1 when there is none in that direction.
+ */
+int CMergeEditView::FindPendingResultDiff(bool bNext)
+{
+	CMergeDoc* pd = GetDocument();
+	const int nDiffCount = pd->m_diffList.GetSize();
+	const int nCurDiff = pd->GetCurrentDiff();
+	int nBegin;
+	if (nCurDiff != -1)
+		nBegin = bNext ? nCurDiff + 1 : nCurDiff - 1;
+	else
+	{
+		// No selected difference: anchor the scan on the cursor line
+		// (the difference at the cursor counts as "next"/"previous")
+		const int nLine = GetCursorPos().y;
+		nBegin = bNext ? nDiffCount : -1;
+		if (bNext)
+		{
+			for (int i = 0; i < nDiffCount; ++i)
+				if (pd->m_diffList.DiffRangeAt(i)->dend >= nLine)
+				{
+					nBegin = i;
+					break;
+				}
+		}
+		else
+		{
+			for (int i = nDiffCount - 1; i >= 0; --i)
+				if (pd->m_diffList.DiffRangeAt(i)->dbegin <= nLine)
+				{
+					nBegin = i;
+					break;
+				}
+		}
+	}
+	const int nStep = bNext ? 1 : -1;
+	for (int i = nBegin; i >= 0 && i < nDiffCount; i += nStep)
+	{
+		if (pd->m_diffList.IsDiffSignificant(i) && !IsDiffFiltered(i) &&
+			pd->IsResultDiffPending(i))
+			return i;
+	}
+	return -1;
+}
+
 void CMergeEditView::OnNextConflict()
 {
+	// While merging, "next conflict" means the next difference that still
+	// needs a decision, skipping the ones already resolved
+	if (GetDocument()->IsMergeResultPaneActive())
+	{
+		const int nDiff = FindPendingResultDiff(true);
+		if (nDiff >= 0)
+		{
+			SelectDiff(nDiff, true, false);
+			return;
+		}
+		// Nothing linked and pending. When unresolved segments remain the
+		// segment <-> diff links were severed by a rescan: fall back to
+		// plain conflict navigation instead of leaving the command dead
+		if (GetDocument()->GetResultUnresolvedCount() == 0)
+			return;
+	}
 	OnNext3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
 }
 
@@ -1503,11 +1568,36 @@ void CMergeEditView::OnNextConflict()
  */
 void CMergeEditView::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
+	if (GetDocument()->IsMergeResultPaneActive())
+	{
+		if (FindPendingResultDiff(true) >= 0)
+		{
+			pCmdUI->Enable(TRUE);
+			return;
+		}
+		if (GetDocument()->GetResultUnresolvedCount() == 0)
+		{
+			pCmdUI->Enable(FALSE);
+			return;
+		}
+		// severed links: use the plain conflict enablement below
+	}
 	OnUpdateNext3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
 }
 
 void CMergeEditView::OnPrevConflict()
 {
+	if (GetDocument()->IsMergeResultPaneActive())
+	{
+		const int nDiff = FindPendingResultDiff(false);
+		if (nDiff >= 0)
+		{
+			SelectDiff(nDiff, true, false);
+			return;
+		}
+		if (GetDocument()->GetResultUnresolvedCount() == 0)
+			return;
+	}
 	OnPrev3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
 }
 
@@ -1516,6 +1606,19 @@ void CMergeEditView::OnPrevConflict()
  */
 void CMergeEditView::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
+	if (GetDocument()->IsMergeResultPaneActive())
+	{
+		if (FindPendingResultDiff(false) >= 0)
+		{
+			pCmdUI->Enable(TRUE);
+			return;
+		}
+		if (GetDocument()->GetResultUnresolvedCount() == 0)
+		{
+			pCmdUI->Enable(FALSE);
+			return;
+		}
+	}
 	OnUpdatePrev3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
 }
 
@@ -3676,7 +3779,7 @@ void CMergeEditView::OnScripts(UINT nID)
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
 	EditorScriptInfo scriptInfo(
-		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
+		PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
 	bool bChanged = false;
 	scriptInfo.TransformText(m_nThisPane, text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
@@ -4960,13 +5063,13 @@ void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = 0;
-	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	const int pane = pNMItemActivate->iItem / 4;
+	LPNMMOUSE pNMMouse = reinterpret_cast<LPNMMOUSE>(pNMHDR);
+	const int pane = static_cast<int>(pNMMouse->dwItemSpec) / 4;
 	CMergeDoc* pDoc = GetDocument();
-	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMItemActivate->hdr.hwndFrom)))
+	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMMouse->hdr.hwndFrom)))
 		return;
 
-	switch (pNMItemActivate->iItem % 4)
+	switch (pNMMouse->dwItemSpec % 4)
 	{
 	case 0:
 		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
