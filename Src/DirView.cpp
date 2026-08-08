@@ -1882,7 +1882,7 @@ void CDirView::OpenSelectionAs(int sel1, int sel2, int sel3, UINT id)
 	if (ID_UNPACKERS_FIRST <= id && id <= ID_UNPACKERS_LAST)
 	{
 		PackingInfo infoUnpackerAlt(
-				PluginMenu::GetPluginPipelineByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+				PluginMenu::GetPluginPipelineByMenuId(nullptr, id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		CMainFrame::OpenFolderParams openFolderParams(ctxt.m_bRecursive);
 		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
 			nullptr, &infoUnpackerAlt, infoPrediffer, 0, &openFolderParams);
@@ -4669,7 +4669,7 @@ void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)
 		return;
 
 	String filteredFilenames = GetDiffContext().GetFilteredFilenames(*GetItemKey(sel));
-	PluginMenu::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
+	PluginMenu::AppendPluginMenus(pCmdUI->m_pMenu, nullptr, filteredFilenames,
 		FileTransform::UnpackerEventNames, PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 }
 

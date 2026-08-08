@@ -876,7 +876,7 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 	if (!pPopup)
 		return false;
 	String filteredFilenames = strutils::join(cmdInfo.m_Files.begin(), cmdInfo.m_Files.end(), _T("|"));
-	PluginMenu::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames,
+	PluginMenu::AppendPluginMenus(pPopup, nullptr, filteredFilenames, FileTransform::UnpackerEventNames,
 		PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 
 	CPoint point;
@@ -915,7 +915,7 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 		}
 		else if(nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
 		{
-			cmdInfo.m_sUnpacker = PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
+			cmdInfo.m_sUnpacker = PluginMenu::GetPluginPipelineByMenuId(nullptr, nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
 		}
 		else
 		{

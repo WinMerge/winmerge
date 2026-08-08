@@ -745,7 +745,7 @@ void COpenView::OnCompare(UINT nID)
 			PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
 			if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 			{
-				tmpPackingInfo.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+				tmpPackingInfo.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(&tmpPackingInfo, nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 				nID = 0;
 			}
 			PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
@@ -852,7 +852,7 @@ void COpenView::OnCompare(UINT nID)
 	}
 	else if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		tmpPackingInfo.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		tmpPackingInfo.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(&tmpPackingInfo, nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		GetMainFrame()->DoFileOrFolderOpen(
 			&tmpPathContext, dwFlags.data(),
 			nullptr, _T(""), nullptr, &tmpPackingInfo, &tmpPrediffingInfo, 0, pOpenFolderParams.get());
@@ -1151,7 +1151,7 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 			for (int i = 0; i < 3; i++)
 				tmpPath[i] = m_strPath[i].empty() ? _T("|.|") : m_strPath[i];
 			String filteredFilenames = strutils::join(std::begin(tmpPath), std::end(tmpPath), _T("|"));
-			PluginMenu::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames, 
+			PluginMenu::AppendPluginMenus(pPopup, nullptr, filteredFilenames, FileTransform::UnpackerEventNames, 
 				PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 		}
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,

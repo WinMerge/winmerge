@@ -103,6 +103,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_FOLDER, OnFileRecompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnUpdateFileRecompareAs)
 	// [View] menu
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
@@ -156,8 +157,6 @@ CMergeDoc::CMergeDoc()
 , m_nGroups(0)
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
-, m_CurrentPredifferID(0)
-, m_CurrentEditorScriptID(ID_SCRIPT_FOR_COPYING_NONE)
 , m_bChangedSchemeManually(false)
 , m_editorScriptInfo(_T(""))
 {
@@ -2950,81 +2949,7 @@ void CMergeDoc::OnApplyPrediffer()
 		return;
 	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());
 	SetPrediffer(&prediffer);
-	m_CurrentPredifferID = -1;
 	FlushAndRescan(true);
-}
-
-/**
- * @brief Create the dynamic submenu for prediffers
- *
- * @note The plugins are grouped in (suggested) and (not suggested)
- *       The IDs follow the order of GetAvailableScripts
- *       For example :
- *				suggested 0         ID_1ST + 0 
- *				suggested 1         ID_1ST + 2 
- *				suggested 2         ID_1ST + 5 
- *				not suggested 0     ID_1ST + 1 
- *				not suggested 1     ID_1ST + 3 
- *				not suggested 2     ID_1ST + 4 
- */
-HMENU CMergeDoc::createPrediffersSubmenu(HMENU hMenu)
-{
-	// empty the menu
-	int j = GetMenuItemCount(hMenu);
-	while (j --)
-		DeleteMenu(hMenu, 0, MF_BYPOSITION);
-
-	// title
-	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No Prediffer (Normal)").c_str());
-	
-	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		return hMenu;
-
-	m_CurrentPredifferID = -1;
-
-	// compute the m_CurrentPredifferID (to set the radio button)
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
-	if (prediffer.GetPluginPipeline().empty())
-		m_CurrentPredifferID = ID_NO_PREDIFFER;
-
-	// get the scriptlet files
-	const auto& [ suggestedPlugins, allPlugins ]= FileTransform::CreatePluginMenuInfos(
-		m_strBothFilenames, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
-
-	// build the menu : first part, Suggested Plugins
-	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested Plugins").c_str());
-
-	for (const auto& [caption, name, id, plugin ] : suggestedPlugins)
-		AppendMenu(hMenu, MF_STRING, id, caption.c_str());
-
-	// build the menu : second part, others plugins
-	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All Plugins").c_str());
-
-	String lastPluginName;
-	String errorMessage;
-	auto result = prediffer.ParsePluginPipeline(errorMessage);
-	if (result.size() > 0)
-		lastPluginName = result.back().name;
-	
-	for (const auto& [processType, pluginAry] : allPlugins)
-	{
-		for (const auto& [caption, name, id, plugin] : pluginAry)
-		{
-			if (!name.empty())
-			{
-				AppendMenu(hMenu, MF_STRING, id, caption.c_str());
-				if (lastPluginName == plugin->m_name)
-					m_CurrentPredifferID = id;
-			}
-		}
-	}
-
-	return hMenu;
 }
 
 /**
@@ -3032,22 +2957,7 @@ HMENU CMergeDoc::createPrediffersSubmenu(HMENU hMenu)
  */
 void CMergeDoc::OnUpdatePrediffer(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(true);
-
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
-
-	if (prediffer.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
-	{
-		pCmdUI->SetRadio(false);
-		return;
-	}
-
-	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
-	if (prediffer.GetPluginPipeline().empty())
-		m_CurrentPredifferID = ID_NO_PREDIFFER;
-
-	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
+	PluginMenu::UpdateMenu(pCmdUI);
 }
 
 /**
@@ -3055,48 +2965,29 @@ void CMergeDoc::OnUpdatePrediffer(CCmdUI* pCmdUI)
  */
 void CMergeDoc::OnPrediffer(UINT nID )
 {
-	SetPredifferByMenu(nID);
-	FlushAndRescan(true);
-}
-
-/**
- * @brief Handler for all prediffer choices.
- * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
- * ID_NO_PREDIFFER, & specific prediffers.
- */
-void CMergeDoc::SetPredifferByMenu(UINT nID)
-{
-	// update data for the radio button
-	m_CurrentPredifferID = nID;
-
-	if (nID == ID_NO_PREDIFFER)
-	{
-		// All flags are set correctly during the construction
-		PrediffingInfo infoPrediffer(false);
-		SetPrediffer(&infoPrediffer);
-		return;
-	}
-
-	String pluginName = PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+	PrediffingInfo infoPrediffer;
+	GetPrediffer(&infoPrediffer);
 
 	// build a PrediffingInfo structure fom the ID
-	PrediffingInfo prediffer(pluginName);
+	infoPrediffer.SetPluginPipeline(
+		PluginMenu::GetPluginPipelineByMenuId(&infoPrediffer, nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST));
 	
 	// update the prediffer and rescan
-	SetPrediffer(&prediffer);
+	SetPrediffer(&infoPrediffer);
+
+	FlushAndRescan(true);
 }
 
 void CMergeDoc::OnScriptsForCopying(UINT nID)
 {
-	m_CurrentEditorScriptID = nID;
 	m_editorScriptInfo.SetPluginPipeline(
-		PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
+		PluginMenu::GetPluginPipelineByMenuId(&m_editorScriptInfo, nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
 }
 
 void CMergeDoc::OnUpdateScriptsForCopying(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(true);
-	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentEditorScriptID));
+	PluginMenu::UpdateMenu(pCmdUI);
 }
 
 void CMergeDoc::OnSelectEditorScriptForCopying() 
@@ -3108,7 +2999,6 @@ void CMergeDoc::OnSelectEditorScriptForCopying()
 	if (dlg.DoModal() != IDOK)
 		return;
 	m_editorScriptInfo.SetPluginPipeline(dlg.GetPluginPipeline());
-	m_CurrentEditorScriptID = 0;
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()
@@ -3185,7 +3075,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		infoUnpacker.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(&infoUnpacker, nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -static_cast<int>(nID);
 	}
@@ -3193,6 +3083,11 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	if (GetMainFrame()->DoFileOrFolderOpen(&m_filePaths, dwFlags, strDesc, _T(""),
 		nullptr, &infoUnpacker, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
+}
+
+void CMergeDoc::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
+{
+	PluginMenu::UpdateMenu(pCmdUI);
 }
 
 // Return file extension either from file name 
