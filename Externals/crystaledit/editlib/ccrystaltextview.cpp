@@ -2704,23 +2704,6 @@ OnDraw (CDC * pdc)
   int nCurrentLine = m_nTopLine;
   while (rcLine.top < rcClient.bottom)
     {
-      // Invisible lines have no screen height.
-      // Directly skip to the next visible line instead of iterating perhaps millions of hidden lines
-      if (nCurrentLine < nLineCount && !GetLineVisible (nCurrentLine))
-        {
-          const int nNextSubLine = GetSubLineIndex (nCurrentLine);
-          if (nNextSubLine < GetSubLineCount ())
-            {
-              int nNextLine;
-              int nSubLine;
-              GetLineBySubLine (nNextSubLine, nNextLine, nSubLine);
-              nCurrentLine = nNextLine > nCurrentLine ? nNextLine : nCurrentLine + 1;
-            }
-          else
-            nCurrentLine = nLineCount;
-          continue;
-        }
-
       int nSubLines = 1;
       if( nCurrentLine < nLineCount /*&& GetLineLength( nCurrentLine ) > nMaxLineChars*/ )
         nSubLines = GetSubLines(nCurrentLine);
@@ -2728,10 +2711,11 @@ OnDraw (CDC * pdc)
       rcLine.bottom = (std::min)(rcClient.bottom, rcLine.top + nSubLines * nLineHeight);
       rcMargin.bottom = rcLine.bottom;
 
+      bool bLineVisible = nCurrentLine < nLineCount && GetLineVisible(nCurrentLine);
       CRect rcMarginAndLine(rcClient.left, rcLine.top, rcClient.right, rcLine.bottom);
-      if (pdc->RectVisible(rcMarginAndLine))
+      if (bLineVisible)
         {
-          if (nCurrentLine < nLineCount && GetLineVisible (nCurrentLine))
+          if (pdc->RectVisible(rcMarginAndLine))
             {
               DrawMargin (rcMargin, nCurrentLine, nCurrentLine + 1);
               DrawSingleLine (rcLine, nCurrentLine);
@@ -2744,7 +2728,10 @@ OnDraw (CDC * pdc)
                   nCursorY + nLineHeight - 1, 1);
               nLastLineBottom = rcMargin.bottom;
             }
-          else
+        }
+      else
+        {
+          if (nCurrentLine >= nLineCount && pdc->RectVisible(rcMarginAndLine))
             {
               DrawMargin (rcMargin, -1, -1);
               DrawSingleLine (rcLine, -1);
