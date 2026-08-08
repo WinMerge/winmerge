@@ -173,6 +173,7 @@ CMergeDoc::CMergeDoc()
 , m_editorScriptInfo(_T(""))
 , m_pMergeResultView(nullptr)
 , m_bResultBuilt(false)
+, m_bResultSaved(false)
 , m_bResultAutoMerge(false)
 , m_bResultROForced(false)
 , m_bResultSavedRO{ false, false, false }
@@ -1265,7 +1266,7 @@ void CMergeDoc::OnFileSave()
 	// With the merge result pane active it is the (only) editable pane,
 	// so Save must cover it: version control tools rely on Ctrl+S
 	// writing the merge output path (-o)
-	if (IsMergeResultPaneActive() && IsMergeResultModified())
+	if (IsMergeResultPaneActive() && IsMergeResultUnsaved())
 		SaveMergeResult(false);
 
 	// We will need to know if either of the originals actually changed
@@ -1373,7 +1374,7 @@ void CMergeDoc::OnFileSaveRight()
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(IsModified() ||
-		(IsMergeResultPaneActive() && IsMergeResultModified()));
+		(IsMergeResultPaneActive() && IsMergeResultUnsaved()));
 }
 
 /**
@@ -2008,7 +2009,7 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING) != IDYES)
 				return false;
 		}
-		else if (IsMergeResultModified())
+		else if (IsMergeResultUnsaved())
 		{
 			int nAnswer = ShowMessageBox(
 				_("The merge result has not been saved.\n\nSave the merge result?"),

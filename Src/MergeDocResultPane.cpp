@@ -374,6 +374,9 @@ void CMergeDoc::BuildMergeResult()
 	// the generated content is the baseline: no change markers on it
 	m_ptResultBuf->AdoptCurrentRevision();
 	m_bResultBuilt = true;
+	// generated, but not written to the output path yet: an automatically
+	// merged result still has to be saved even if the user edits nothing
+	m_bResultSaved = false;
 
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 	{
@@ -390,9 +393,16 @@ void CMergeDoc::UpdateMergeResultAfterRescan()
 {
 	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || m_pMergeResultView == nullptr)
 		return;
-	if (!IsMergeResultPaneVisible())
+	if (!m_bResultBuilt)
+		return; // nothing generated yet, it will be built from the new diffs
+	if (!IsMergeResultPaneVisible() && !m_ptResultBuf->IsModified())
+	{
+		// Hidden and untouched: throw the stale result away so that showing
+		// the pane again rebuilds it from the current differences
+		m_bResultBuilt = false;
 		return;
-	if (m_bResultBuilt && m_ptResultBuf->IsModified())
+	}
+	if (m_ptResultBuf->IsModified())
 	{
 		// The user already changed the result: don't discard their work.
 		// The diff list changed, so the segment <-> diff links are no
@@ -417,6 +427,20 @@ bool CMergeDoc::IsMergeResultModified() const
 {
 	return m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
 		m_ptResultBuf->IsModified();
+}
+
+/**
+ * @brief Is there merge result content that has not been written out?
+ *
+ * True also for a freshly built result that the user has not edited: an
+ * automatic merge produces the content, and it is still lost if the
+ * window is closed without saving.
+ */
+bool CMergeDoc::IsMergeResultUnsaved() const
+{
+	if (m_ptResultBuf == nullptr || !m_ptResultBuf->IsInitialized() || !m_bResultBuilt)
+		return false;
+	return !m_bResultSaved || m_ptResultBuf->IsModified();
 }
 
 /**
@@ -601,7 +625,6 @@ void CMergeDoc::ResultToggleSource(int nDiff, int srcPane)
 		pSegment->state == ResultSegmentState::Chosen)
 		srcPanes = pSegment->srcPanes;
 	// (a hand-edited or unresolved segment starts a fresh selection)
-	// (a hand-edited or unresolved segment starts a fresh selection)
 	const auto it = std::find(srcPanes.begin(), srcPanes.end(), srcPane);
 	if (it != srcPanes.end())
 		srcPanes.erase(it);
@@ -611,7 +634,9 @@ void CMergeDoc::ResultToggleSource(int nDiff, int srcPane)
 }
 
 /**
- * @brief Resolve all remaining conflicts by taking the given pane.
+ * @brief Resolve every difference that has nothing chosen for it yet by
+ * taking the given pane. Covers both real conflicts and differences that
+ * are simply still unresolved (the usual case without auto-merge).
  */
 void CMergeDoc::ResultChooseAllConflicts(int srcPane)
 {
@@ -621,7 +646,9 @@ void CMergeDoc::ResultChooseAllConflicts(int srcPane)
 	for (int nDiff = 0; nDiff < static_cast<int>(m_resultDiffToSegment.size()); ++nDiff)
 	{
 		const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
-		if (pSegment != nullptr && pSegment->state == ResultSegmentState::Conflict)
+		if (pSegment != nullptr &&
+			(pSegment->state == ResultSegmentState::Conflict ||
+			 pSegment->state == ResultSegmentState::Unresolved))
 		{
 			ResultChooseSource(nDiff, srcPane, bGroupWithPrevious);
 			bGroupWithPrevious = true;
@@ -674,6 +701,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 		return false;
 	}
 	m_ptResultBuf->SetModified(false);
+	m_bResultSaved = true;
 	return true;
 }
 

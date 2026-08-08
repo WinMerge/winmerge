@@ -72,6 +72,7 @@ CMergeEditFrame::CMergeEditFrame()
 : CMergeFrameCommon(IDI_EQUALTEXTFILE, IDI_NOTEQUALTEXTFILE)
 , m_pwndDetailMergeEditSplitterView(nullptr)
 , m_pMergeResultView(nullptr)
+, m_bResultBarVisible(false)
 {
 	m_pMergeDoc = 0;
 }
@@ -291,8 +292,9 @@ BOOL CMergeEditFrame::OnBarCheck(UINT nID)
 		int nDiff = m_pMergeDoc->GetCurrentDiff();
 		m_pMergeDoc->ForEachView ([nDiff](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
 	}
-	if (nID == ID_VIEW_MERGE_RESULT_BAR && m_wndResultBar.m_hWnd != nullptr)
-		m_pMergeDoc->SetMergeResultPaneVisible(!!m_wndResultBar.IsWindowVisible());
+	// The merge result pane's own state follows the bar's visibility, which
+	// is synchronized in OnIdleUpdateCmdUI (the bar can also be closed with
+	// its close button, which does not come through here)
 	return result;
 }
 
@@ -445,6 +447,18 @@ void CMergeEditFrame::UpdateSplitter()
 void CMergeEditFrame::OnIdleUpdateCmdUI()
 {
 	UpdateHeaderSizes();
+	// Follow the merge result bar however it was shown or hidden (View menu,
+	// its close button, docking state), so that closing it always gives the
+	// compared files back their normal editable state
+	if (m_wndResultBar.m_hWnd != nullptr && m_pMergeDoc != nullptr)
+	{
+		const bool bVisible = !!m_wndResultBar.IsVisible();
+		if (bVisible != m_bResultBarVisible)
+		{
+			m_bResultBarVisible = bVisible;
+			m_pMergeDoc->SetMergeResultPaneVisible(bVisible);
+		}
+	}
 	CMergeFrameCommon::OnIdleUpdateCmdUI();
 }
 

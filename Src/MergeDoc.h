@@ -343,6 +343,8 @@ public:
 	void BuildMergeResult();
 	void UpdateMergeResultAfterRescan();
 	bool IsMergeResultModified() const;
+	/** @brief Result content that has not been written to the output yet */
+	bool IsMergeResultUnsaved() const;
 	int GetResultUnresolvedCount() const;
 	static String GetResultPlaceholderText(ResultSegmentState state);
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
@@ -372,6 +374,7 @@ private:
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegUndo; /**< table before undo group (key: group start) */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegRedo; /**< table after undo group (key: group start) */
 	bool m_bResultBuilt; /**< Result buffer has been generated */
+	bool m_bResultSaved; /**< Result has been written to the output since it was built */
 	bool m_bResultAutoMerge; /**< Auto-resolve non-conflicting differences when building */
 	bool m_bResultROForced; /**< Source buffers forced read-only by result pane */
 	bool m_bResultSavedRO[3]; /**< Read-only states before the result pane forced them */
