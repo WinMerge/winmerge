@@ -38,11 +38,12 @@ static int GetMenuItemData(CMenu* pMenu, unsigned id)
 
 static void AddMenuItem(CMenu* pMenu, const std::vector<PluginForFile::PipelineItem>& plugins, const String& name, const String& caption, unsigned id)
 {
-	const int order = GetPluginPipelineOrder(plugins, name);
-	const String caption2 = order >= 0 ? caption + _T(" (") + std::to_wstring(order + 1) + _T(")") : caption;
+	const bool isNone = name.empty();
+	const int order = isNone ? (plugins.empty() ? 0 : -1) : GetPluginPipelineOrder(plugins, name);
+	const String caption2 = (!isNone && order >= 0) ? caption + _T(" (") + std::to_wstring(order + 1) + _T(")") : caption;
 	pMenu->AppendMenu(MF_STRING, id, caption2.c_str());
-	if (order >= 0)
-		SetMenuItemData(pMenu, id, order + 1);
+	if ((isNone && plugins.empty()) || (!isNone && order >= 0))
+		SetMenuItemData(pMenu, id, isNone ? 1 : (order + 1));
 }
 
 void PluginMenu::AppendPluginMenus(CMenu *pMenu, const PluginForFile* pluginInfo, const String& filteredFilenames,
