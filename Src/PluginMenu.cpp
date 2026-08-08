@@ -151,7 +151,10 @@ String PluginMenu::GetPluginPipelineByMenuId(const PluginForFile* pluginInfo, un
 	{
 		String pipeline = pluginInfo ? pluginInfo->GetPluginPipeline() : _T("");
 		if (bCtrlKey)
-			pipeline = pipeline.empty() ? pluginName : (pipeline + _T("|") + pluginName);
+		{
+			if (!pluginName.empty())
+				pipeline = pipeline.empty() ? pluginName : (pipeline + _T("|") + pluginName);
+		}
 		else
 			pipeline = pluginName;
 		if (!pluginFound->GetExtendedPropertyValue(_T("ArgumentsRequired")).has_value() &&

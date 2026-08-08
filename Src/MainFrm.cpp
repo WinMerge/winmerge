@@ -754,6 +754,18 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames,
 					PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 			}
+			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
+			{
+				CMenu* pMenu = pPopupMenu;
+				ASSERT(pMenu != nullptr);
+
+				// empty the menu
+				int i = pMenu->GetMenuItemCount();
+				while (i--)
+					pMenu->DeleteMenu(0, MF_BYPOSITION);
+
+				PluginMenu::AppendPluginMenus(pMenu, nullptr, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
+			}
 			else if (topMenuId == ID_PLUGINS_LIST)
 			{
 				for (int j = 0; j < 4; j++)
