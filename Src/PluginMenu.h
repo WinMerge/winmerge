@@ -11,6 +11,7 @@
 class CMenu;
 class PluginForFile;
 class CCmdUI;
+class CWnd;
 
 namespace PluginMenu
 {
