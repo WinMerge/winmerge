@@ -346,7 +346,22 @@ public:
 	/** @brief Result content that has not been written to the output yet */
 	bool IsMergeResultUnsaved() const;
 	int GetResultUnresolvedCount() const;
-	static String GetResultPlaceholderText(ResultSegmentState state);
+	void GetResultUnresolvedCounts(int& nUnresolved, int& nConflicts, int& nWhiteSpaceOnly) const;
+	String GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly, int* pnLines) const;
+	static String GetResultPlaceholderText(ResultSegmentState state, bool bWhiteSpaceOnly);
+	String GetResultSegmentDisplayText(const MergeResultSegment& seg, int* pnLines) const;
+	void SetResultShowFullConflicts(bool bShow);
+	bool GetResultShowFullConflicts() const { return m_bResultShowFullConflicts; }
+	/** @brief Difference still waiting for a decision in the result pane? */
+	bool IsResultDiffPending(int nDiff) const;
+	/** @brief Is the line an unresolved-difference placeholder (not editable)? */
+	bool IsResultPlaceholderLine(int nLine) const;
+	/** @brief Would deleting the given range destroy a placeholder line? */
+	bool IsResultDeleteTouchingPlaceholder(int nStartLine, int nStartPos,
+		int nEndLine, int nEndPos) const;
+	/** @brief Margin provenance marker for a result line ('1'..'3', 'm', '?'), 0 for none */
+	tchar_t GetResultLineMarker(int nLine) const;
+	void UpdateMergeResultPaneCaption();
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
 	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
 	void ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious = false);
@@ -358,6 +373,7 @@ public:
 	// called from CMergeResultTextBuffer on user edits
 	void OnResultBufferInsertedLines(int nLine, int nCount);
 	void OnResultBufferDeletedLines(int nStartLine, int nCount);
+	void OnResultBufferDeletedWholeLines(int nFirstLine, int nCount);
 	void OnResultLineEdited(int nLine);
 	// segment table snapshots kept in sync with the buffer's undo stack
 	void OnResultUndoGroupStart(int nUndoPos);
@@ -367,12 +383,32 @@ public:
 private:
 	String GetPaneApparentLinesText(int nPane, int nApparentBegin, int nApparentEnd, int* pnLines) const;
 	int GetResultSegmentIndexByLine(int nLine) const;
+	bool IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const;
+	CRLFSTYLE PickResultCRLFStyle() const;
+	void PickResultEncoding();
+	bool TryResumeMergeResultFromOutput(String& text);
+	String GetResultBufferLinesText(int nStartLine, int nLines) const;
+	String BuildExpandedResultText() const;
+	void ReRenderResultConflictSegments();
+	/** One entry per diff: {dbegin, dend, op} when the result was built */
+	struct ResultDiffSnapshot { int dbegin; int dend; int op; };
+	bool ResultDiffListUnchanged() const;
 	std::unique_ptr<CMergeResultTextBuffer> m_ptResultBuf; /**< Merge result buffer (not part of the diff) */
 	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
 	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */
 	std::vector<int> m_resultDiffToSegment; /**< diff index -> segment index or -1 */
+	std::vector<ResultDiffSnapshot> m_resultDiffSnapshot; /**< diff list as it was when the result was built */
+	bool m_bResultLinksDropNotified = false; /**< told the user the segment<->diff links were dropped */
+	bool m_bResultResumeAttempted = false; /**< already looked at the existing output file once */
+	bool m_bResultShowFullConflicts = false; /**< show full conflict sections instead of compact placeholders */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegUndo; /**< table before undo group (key: group start) */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegRedo; /**< table after undo group (key: group start) */
+	/**
+	 * Line-ending style used when saving the merge result.
+	 * AUTOMATIC = keep each line's own EOL as it came from the sources
+	 * (minimal difference against the inputs); DOS/UNIX/MAC = normalize.
+	 */
+	CRLFSTYLE m_resultSaveEolStyle = CRLFSTYLE::AUTOMATIC;
 	bool m_bResultBuilt; /**< Result buffer has been generated */
 	bool m_bResultSaved; /**< Result has been written to the output since it was built */
 	bool m_bResultAutoMerge; /**< Auto-resolve non-conflicting differences when building */
@@ -536,6 +572,10 @@ protected:
 	afx_msg void OnUpdateMergeResultSave(CCmdUI* pCmdUI);
 	afx_msg void OnMergeStartSession();
 	afx_msg void OnUpdateMergeStartSession(CCmdUI* pCmdUI);
+	afx_msg void OnMergeResultEolStyle(UINT nID);
+	afx_msg void OnUpdateMergeResultEolStyle(CCmdUI* pCmdUI);
+	afx_msg void OnMergeResultShowSections();
+	afx_msg void OnUpdateMergeResultShowSections(CCmdUI* pCmdUI);
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
 	afx_msg void OnFileRecompareAsTable();

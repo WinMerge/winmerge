@@ -33,16 +33,36 @@ enum class ResultSegmentState
  */
 struct MergeResultSegment
 {
-	int diffIdx;      /**< Index in diff list, or -1 for common text */
-	ResultSegmentState state;
+	int diffIdx = -1; /**< Index in diff list, or -1 for common text */
+	ResultSegmentState state = ResultSegmentState::Common;
 	/**
 	 * Source panes (0/1/2) of the content for Auto/Chosen, in order.
 	 * Like KDiff3, several sources may be selected for one difference
 	 * (their blocks are concatenated); empty for unresolved conflicts.
 	 */
 	std::vector<int> srcPanes;
-	int nStartLine;   /**< First line of segment in result buffer */
-	int nLines;       /**< Number of lines in segment (can be 0) */
+	/**
+	 * Line count contributed by each entry of srcPanes, in the same
+	 * order; used to attribute individual result lines to their source
+	 * pane (margin provenance markers).
+	 */
+	std::vector<int> srcPaneLines;
+	int nStartLine = 0; /**< First line of segment in result buffer */
+	int nLines = 0;   /**< Number of lines in segment (can be 0) */
+	bool bWhiteSpaceOnly = false; /**< Conflict where the sides differ only in white space */
+	/**
+	 * Buffer revision when this segment's content was last generated
+	 * (build or Choose). Lines with a higher revision were edited by
+	 * hand afterwards; the margin marks exactly those with 'm'.
+	 */
+	uint32_t nBaseRevision = 0;
+	/**
+	 * For Conflict/Unresolved segments: the full conflict section in
+	 * version-control format (<<<<<<< ... >>>>>>>). This is what gets
+	 * saved; the buffer displays either it or a compact placeholder.
+	 */
+	String blockText;
+	int nBlockLines = 0; /**< Line count of blockText */
 };
 
 /**
@@ -86,6 +106,19 @@ public:
 	 * margin change markers only show lines the user modifies afterwards.
 	 */
 	void AdoptCurrentRevision() { m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber; }
+	/** Buffer-wide revision counter (lines edited later get higher numbers) */
+	uint32_t GetCurrentRevisionNumber() const { return m_dwCurrentRevisionNumber; }
+	/**
+	 * @brief Drop the undo history (both directions). Needed after a
+	 * programmatic, history-less buffer change (conflict rendering toggle,
+	 * link severing): the recorded positions no longer match the text.
+	 */
+	void ClearUndoBuffer()
+	{
+		m_aUndoBuf.clear();
+		m_nUndoPosition = 0;
+		m_nSyncPosition = 0;
+	}
 
 private:
 	CMergeDoc* m_pResultOwnerDoc; /**< Owning document (base class member is private) */

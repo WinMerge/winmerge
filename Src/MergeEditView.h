@@ -268,6 +268,7 @@ protected:
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
 	int GetMergeTargetDiff();
 	String GetPaneNameForMergeMenu() const;
+	int FindPendingResultDiff(bool bNext);
 	afx_msg void OnMergeChooseThis();
 	afx_msg void OnUpdateMergeChooseThis(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCopyLinesToResult();

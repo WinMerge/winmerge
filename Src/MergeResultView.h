@@ -33,6 +33,7 @@ public:
 	virtual bool QueryEditable() override;
 	virtual void OnInitialUpdate() override;
 	virtual BOOL PreTranslateMessage(MSG* pMsg) override;
+	virtual void DrawMargin(const CRect & rect, int nLineIndex, int nLineNumber) override;
 
 	void RefreshOptions();
 	/** @brief Scroll view so that the segment of the given diff is visible. */

@@ -146,6 +146,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SAVEAS, OnUpdateMergeResultSave)
 	ON_COMMAND(ID_MERGE_START_SESSION, OnMergeStartSession)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_START_SESSION, OnUpdateMergeStartSession)
+	ON_COMMAND_RANGE(ID_MERGE_RESULT_EOL_ASIS, ID_MERGE_RESULT_EOL_MAC, OnMergeResultEolStyle)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_RESULT_EOL_ASIS, ID_MERGE_RESULT_EOL_MAC, OnUpdateMergeResultEolStyle)
+	ON_COMMAND(ID_MERGE_RESULT_SHOW_SECTIONS, OnMergeResultShowSections)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SHOW_SECTIONS, OnUpdateMergeResultShowSections)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -243,7 +247,9 @@ void CMergeDoc::DeleteContents ()
 	m_resultDiffToSegment.clear();
 	m_resultSegUndo.clear();
 	m_resultSegRedo.clear();
+	m_resultDiffSnapshot.clear();
 	m_bResultBuilt = false;
+	m_bResultResumeAttempted = false;
 }
 
 /**
@@ -1995,8 +2001,13 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
-	// Merge result pane: deal with the merge before the source files
-	if (IsMergeResultPaneActive())
+	// Merge result pane: deal with the merge before the source files.
+	// A hidden result pane still holds the user's merge work: hiding the
+	// bar must not turn closing the window into silent data loss, so the
+	// prompt is also shown when the pane is hidden but the result was
+	// modified by the user.
+	if (HasMergeResultPane() && m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		(IsMergeResultPaneActive() || IsMergeResultModified()))
 	{
 		const int nUnresolved = GetResultUnresolvedCount();
 		if (nUnresolved > 0 && bAllowCancel)

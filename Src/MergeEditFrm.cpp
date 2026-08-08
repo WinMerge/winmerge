@@ -556,7 +556,11 @@ void CMergeEditFrame::UpdateResources()
 	m_wndLocationBar.UpdateResources();
 	m_wndDetailBar.UpdateResources();
 	if (m_wndResultBar.m_hWnd != nullptr)
+	{
 		m_wndResultBar.UpdateResources();
+		if (m_pMergeDoc != nullptr)
+			m_pMergeDoc->UpdateMergeResultPaneCaption();
+	}
 }
 
 /**
