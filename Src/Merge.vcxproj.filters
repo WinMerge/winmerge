@@ -729,6 +729,15 @@
     <ClCompile Include="MergeDocDiffCopy.cpp">
       <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MergeDocResultPane.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeResultBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeResultView.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="EditPluginDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
@@ -1401,6 +1410,15 @@
       <Filter>MFCGui\MDIChild\BinaryCompare\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DiffTextBuffer.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultPane.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultView.h">
       <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DiffViewBar.h">
