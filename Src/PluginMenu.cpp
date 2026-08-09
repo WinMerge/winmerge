@@ -10,14 +10,15 @@
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 
-static int GetPluginPipelineOrder(const std::vector<PluginForFile::PipelineItem>& plugins, const String& pluginName)
+static std::vector<int> GetPluginPipelineOrder(const std::vector<PluginForFile::PipelineItem>& plugins, const String& pluginName)
 {
+	std::vector<int> orders;
 	for (size_t i = 0; i < plugins.size(); ++i)
 	{
 		if (plugins[i].name == pluginName)
-			return static_cast<int>(i);
+			orders.push_back(static_cast<int>(i));
 	}
-	return -1;
+	return orders;
 }
 
 static void SetMenuItemData(CMenu* pMenu, unsigned id, int order)
@@ -36,14 +37,26 @@ static int GetMenuItemData(CMenu* pMenu, unsigned id)
 	return static_cast<int>(mii.dwItemData);
 }
 
+static String MakeMenuCaption(const String& name, const String& caption, const std::vector<int>& orders)
+{
+	if (orders.empty() || name.empty())
+		return caption;
+	String caption2 = caption + _T(" ");
+	for (auto order : orders)
+		caption2 += _T("(") + strutils::to_str(order + 1) + _T(")");
+	return caption2;
+}
+
 static void AddMenuItem(CMenu* pMenu, const std::vector<PluginForFile::PipelineItem>& plugins, const String& name, const String& caption, unsigned id)
 {
 	const bool isNone = name.empty();
-	const int order = isNone ? (plugins.empty() ? 0 : -1) : GetPluginPipelineOrder(plugins, name);
-	const String caption2 = (!isNone && order >= 0) ? caption + _T(" (") + std::to_wstring(order + 1) + _T(")") : caption;
-	pMenu->AppendMenu(MF_STRING, id, caption2.c_str());
-	if ((isNone && plugins.empty()) || (!isNone && order >= 0))
-		SetMenuItemData(pMenu, id, isNone ? 1 : (order + 1));
+	std::vector<int> orders = GetPluginPipelineOrder(plugins, name);
+	if (isNone && plugins.empty())
+		orders.push_back(0);
+	pMenu->AppendMenu(MF_STRING, id, MakeMenuCaption(name, caption, orders).c_str());
+	const int order1 = (orders.empty() ? -1 : orders[0]);
+	if (order1 >= 0)
+		SetMenuItemData(pMenu, id, order1 + 1);
 }
 
 void PluginMenu::AppendPluginMenus(CMenu *pMenu, const PluginForFile* pluginInfo, const String& filteredFilenames,
