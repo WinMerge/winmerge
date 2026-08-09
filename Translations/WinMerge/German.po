@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-25 21:00+0200\n"
+"PO-Revision-Date: 2026-08-09 08:40+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -9087,7 +9087,7 @@ msgstr "Alias für Editor-Skript"
 #: Merge.rc:5626
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr "Alias für Plug-in Pipeline '%1'"
+msgstr "Alias für Plugin Pipeline '%1'"
 
 #. IDS_PLUGIN_NEW_DESC
 #: Merge.rc:5627
@@ -9132,7 +9132,7 @@ msgstr "2. und 3."
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5635
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "(Strg+Klick, um zur Pipeline hinzuzufügen)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5640
