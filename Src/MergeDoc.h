@@ -373,8 +373,6 @@ public:
 	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
 
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
-	// to customize the mergeview menu
-	HMENU createPrediffersSubmenu(HMENU hMenu);
 	const String& GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
 
@@ -422,8 +420,6 @@ protected:
 	 */
 	bool m_bAutomaticRescan;
 	/// active prediffer ID : helper to check the radio button
-	int m_CurrentPredifferID;
-	int m_CurrentEditorScriptID;
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 	String m_sCurrentHeaderTitle[3];
 	EditorScriptInfo m_editorScriptInfo;
@@ -460,7 +456,6 @@ protected:
 	afx_msg void OnUpdateStatusRO(CCmdUI* pCmdUI);
 	afx_msg void OnDiffContext(UINT nID);
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
-	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnApplyPrediffer();
 	afx_msg void OnBnClickedFileEncoding();
@@ -472,6 +467,7 @@ protected:
 	afx_msg void OnUpdateFileRecompareAsText(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
+	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
 	template<int srcPane, int dstPane>
 	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
@@ -502,7 +498,6 @@ private:
 	void FlagMovedLines();
 	String GetFileExt(const tchar_t* sFileName, const tchar_t* sDescription) const;
 	void DoFileSave(int pane);
-	void SetPredifferByMenu(UINT nID);
 };
 
 /**

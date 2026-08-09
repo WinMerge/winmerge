@@ -3523,7 +3523,7 @@ void CMergeEditView::OnScripts(UINT nID)
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
 	EditorScriptInfo scriptInfo(
-		PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
+		PluginMenu::GetPluginPipelineByMenuId(nullptr, nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
 	bool bChanged = false;
 	scriptInfo.TransformText(m_nThisPane, text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);

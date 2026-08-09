@@ -2227,6 +2227,7 @@
 #define IDS_PLUGIN_TARGETS_1ST_2ND      44504
 #define IDS_PLUGIN_TARGETS_1ST_3RD      44505
 #define IDS_PLUGIN_TARGETS_2ND_3RD      44506
+#define IDS_PLUGIN_CTRL_CLICK           44507
 #define IDS_L2M                         44600
 #define IDS_R2M                         44601
 #define IDS_COPY_FROM_MIDDLE_R          44602

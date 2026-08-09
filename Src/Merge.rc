@@ -5632,6 +5632,7 @@ BEGIN
     IDS_PLUGIN_TARGETS_1ST_2ND "1st and 2nd"
     IDS_PLUGIN_TARGETS_1ST_3RD "1st and 3rd"
     IDS_PLUGIN_TARGETS_2ND_3RD "2nd and 3rd"
+    IDS_PLUGIN_CTRL_CLICK   "(Ctrl+Click to add to pipeline)"
 END
 
 STRINGTABLE

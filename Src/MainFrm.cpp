@@ -744,21 +744,17 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				paths.SetPath(i, pMergeDoc->GetPath(i));
 			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
 			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
-			if (topMenuId == ID_NO_PREDIFFER)
-			{
-				UpdatePrediffersMenu(pPopupMenu);
-			}
-			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
+			if (topMenuId == ID_MERGE_COMPARE_TEXT)
 			{
 				CMenu* pMenu = pPopupMenu;
 				// empty the menu
 				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_FOLDER - ID_MERGE_COMPARE_TEXT); --i)
 					pMenu->DeleteMenu(i, MF_BYPOSITION);
 
-				PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames,
+				PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames,
 					PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 			}
-			else if (topMenuId == ID_NO_EDIT_SCRIPTS || topMenuId == ID_NO_EDIT_SCRIPTS_FOR_COPYING)
+			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
 			{
 				CMenu* pMenu = pPopupMenu;
 				ASSERT(pMenu != nullptr);
@@ -768,14 +764,25 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				while (i--)
 					pMenu->DeleteMenu(0, MF_BYPOSITION);
 
-				PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, 0, 
-					topMenuId == ID_NO_EDIT_SCRIPTS ? ID_SCRIPT_FIRST : ID_SCRIPT_FOR_COPYING_FIRST);
+				PluginMenu::AppendPluginMenus(pMenu, nullptr, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
 			}
 			else if (topMenuId == ID_PLUGINS_LIST)
 			{
-				for (int j = 0; j < 2; j++)
+				for (int j = 0; j < 4; j++)
 				{
-					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 5));
+					CMenu* pMenu = nullptr;
+					if (j == 0)
+						pMenu = pPopupMenu->GetSubMenu(8);
+					else if (j == 1)
+						pMenu = pPopupMenu->GetSubMenu(11);
+					else if (j == 2)
+						pMenu = pPopupMenu->GetSubMenu(pPopupMenu->GetMenuItemCount() - 5);
+					else
+					{
+						pMenu = pPopupMenu->GetSubMenu(pPopupMenu->GetMenuItemCount() - 3);
+						if (pMenu)
+							pMenu = pMenu->GetSubMenu(0);
+					}
 					ASSERT(pMenu != nullptr);
 
 					// empty the menu
@@ -784,9 +791,14 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 						pMenu->DeleteMenu(0, MF_BYPOSITION);
 
 					if (j == 0)
-						PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, 0, ID_UNPACKERS_FIRST);
+						PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames, 0, ID_UNPACKERS_FIRST);
+					else if (j == 1)
+						PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetPrediffer(), filteredFilenames, FileTransform::PredifferEventNames,
+							PluginMenu::FlattenMenu, ID_PREDIFFERS_FIRST);
+					else if (j == 2)
+						PluginMenu::AppendPluginMenus(pMenu, nullptr, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
 					else
-						PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
+						PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetEditorScript(), filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FOR_COPYING_FIRST);
 				}
 			}
 		}
@@ -2386,28 +2398,6 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 	return pFrame->GetMergeDoc()->GetActiveMergeView();
 }
 
-void CMainFrame::UpdatePrediffersMenu(CMenu* pPredifferMenu)
-{
-	if (pPredifferMenu == nullptr)
-		return;
-
-	HMENU prediffersSubmenu = pPredifferMenu->m_hMenu;
-	if (prediffersSubmenu != nullptr)
-	{
-		CMergeEditView * pEditView = GetActiveMergeEditView();
-		if (pEditView != nullptr)
-			pEditView->GetDocument()->createPrediffersSubmenu(prediffersSubmenu);
-		else
-		{
-			// no view or dir view : display an empty submenu
-			int i = GetMenuItemCount(prediffersSubmenu);
-			while (i --)
-				::DeleteMenu(prediffersSubmenu, 0, MF_BYPOSITION);
-			::AppendMenu(prediffersSubmenu, MF_SEPARATOR, 0, nullptr);
-		}
-	}
-}
-
 /**
  * @brief Save WinMerge configuration and info to file
  */
@@ -3846,10 +3836,10 @@ void CMainFrame::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		CPoint pt = CPoint(rects[subidx].left, rects[subidx].top);
 		m_wndStatusBar.ClientToScreen(&pt);
 		if (subidx == 0)
-			PluginMenu::ShowMenu(filteredFilenames, FileTransform::UnpackerEventNames, 
+			PluginMenu::ShowMenu(pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames,
 				PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST, pt.x, pt.y, this);
 		else if (subidx == 1)
-			PluginMenu::ShowMenu(filteredFilenames, FileTransform::PredifferEventNames,
+			PluginMenu::ShowMenu(pMergeDoc->GetPrediffer(), filteredFilenames, FileTransform::PredifferEventNames,
 				PluginMenu::FlattenMenu|PluginMenu::AddSelectMenu, ID_PREDIFFERS_FIRST, pt.x, pt.y, this);
 	}
 }
