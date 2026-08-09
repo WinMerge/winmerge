@@ -171,7 +171,7 @@ void CCrystalRendererGDI::DrawMarginIcon(int x, int y, int iconIndex, int iconsi
 		CBitmap bmp;
 		HBITMAP hBitmap = nullptr;
 		if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), IDR_MARGIN_ICONS_PNG,
-			iconsize * MARGIN_ICON_COUNT, iconsize, &hBitmap, nullptr))
+			MARGIN_ICON_COUNT, iconsize * MARGIN_ICON_COUNT, iconsize, &hBitmap, nullptr))
 			return;
 		bmp.Attach(hBitmap);
 		pIcons->Add(&bmp, nullptr);

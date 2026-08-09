@@ -8,4 +8,4 @@
 
 #include <atlimage.h>
 
-bool LoadPngResourceAndResize(HINSTANCE hInstance, int nIDResource, int nNewWidth, int nNewHeight, HBITMAP* phBitmap, HBITMAP* phGrayscaleBitmap);
+bool LoadPngResourceAndResize(HINSTANCE hInstance, int nIDResource, int nIconCount, int nNewWidth, int nNewHeight, HBITMAP* phBitmap, HBITMAP* phGrayscaleBitmap);

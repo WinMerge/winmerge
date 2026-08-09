@@ -110,7 +110,7 @@ BOOL CMainFrame::LoadToolBar()
 	HBITMAP hDisabled = nullptr;
 	CBitmap bmEnabled;
 	CBitmap bmDisabled;
-	if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), IDR_TOOLBAR_PNG, cx * ICON_COUNT, cy, &hEnabled, &hDisabled))
+	if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), IDR_TOOLBAR_PNG, ICON_COUNT, cx * ICON_COUNT, cy, &hEnabled, &hDisabled))
 	{
 		TRACE(_T("LoadToolBar: failed to load IDR_TOOLBAR_PNG\n"));
 		return FALSE;

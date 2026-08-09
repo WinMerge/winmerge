@@ -3108,7 +3108,7 @@ void CMainFrame::LoadToolbarImages()
 	CSize sizeButton(0, 0);
 
 	const UINT toolbarResource = toolbarOrgImgSize <= 16 ? IDR_TOOLBAR_ENABLED_PNG : IDR_TOOLBAR_ENABLED32_PNG;
-	if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), toolbarResource,
+	if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), toolbarResource, TOOLBAR_IMAGE_COUNT,
 		toolbarNewImgSize * TOOLBAR_IMAGE_COUNT, toolbarNewImgSize - 1, &hEnabled, &hDisabled))
 	{
 		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), toolbarResource);
