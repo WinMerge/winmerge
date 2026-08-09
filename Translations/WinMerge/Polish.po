@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-07-26 02:22+0000\n"
-"PO-Revision-Date: 2026-08-03 00:30+0000\n"
+"POT-Creation-Date: 2026-08-08 23:06+0000\n"
+"PO-Revision-Date: 2026-08-10 00:30+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -6923,7 +6923,7 @@ msgstr "Pokazuje gwiazdkę (*) jeśli plik jest binarny."
 #. IDS_COLDESC_UNPACKER
 #: Merge.rc:5145
 msgid "Unpacker plugin name or pipeline."
-msgstr "Nazwa pluginu rozpakowującego lub pipeline."
+msgstr "Nazwa wtyczki rozpakowującej lub pipeline."
 
 #. IDS_COLDESC_PREDIFFER
 #: Merge.rc:5146
@@ -8005,7 +8005,7 @@ msgstr "2 i 3"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5635
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "(Ctrl+Klik, aby dodać do pipeline)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5640
