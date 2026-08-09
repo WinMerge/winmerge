@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-08-03 16:40-0300\n"
+"PO-Revision-Date: 2026-08-09 20:10-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -5620,7 +5620,7 @@ msgid "Cannot copy filter template:\n%1\n\nMake sure the folder exists and is wr
 msgstr "Não foi possível copiar o modelo de filtro:\n%1\n\nCertifique-se de que a pasta existe e é gravável."
 
 #: Merge.rc:4692
-msgid "User's filter folder is not defined!\n\nSelect filter folder in Options/System.
+msgid "User's filter folder is not defined!\n\nSelect filter folder in Options/System."
 msgstr "A pasta de filtros do usuário não está definida!\n\nSelecione a pasta de filtros em Opções/Sistema."
 
 #: Merge.rc:4694
@@ -5887,7 +5887,7 @@ msgstr "O arquivo\n%1\nnão é um arquivo de conflito."
 
 #. IDS_COMPARE_LARGE_FILES
 #: Merge.rc:4782
-msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?
+msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr "A comparação de arquivos grandes requer uma memória significativa.\nMostrar apenas os resultados da comparação (não o conteúdo dos arquivos)?"
 
 #. IDS_SAVE_AS_TITLE
@@ -5947,13 +5947,13 @@ msgstr "Outro aplicativo atualizou\n%1\ndesde que o WinMerge o carregou.\n\nSobr
 #. IDS_SAVEREADONLY_MULTI
 #: Merge.rc:4802
 #, c-format
-msgid "%1\nis read-only. Override?
+msgid "%1\nis read-only. Override?"
 msgstr "%1\né somente leitura. Substituir?"
 
 #. IDS_FILECHANGED_RESCAN
 #: Merge.rc:4803
 #, c-format
-msgid "Another application updated\n%1\nsince last scan.\n\nReload?
+msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
 msgstr "Outro aplicativo atualizou\n%1\ndesde o último escaneamento.\n\nRecarregar?"
 
 #. IDS_SAVE_LEFT_AS
@@ -5974,7 +5974,7 @@ msgstr "Salvar o Arquivo da Direita Como"
 #. IDS_FILE_DISAPPEARED
 #: Merge.rc:4811
 #, c-format
-msgid "File\n%1\nnot found. Save a copy to continue.
+msgid "File\n%1\nnot found. Save a copy to continue."
 msgstr "Arquivo\n%1\nnão encontrado. Salve uma cópia para continuar."
 
 #. IDS_VIEWS_OUTOFSYNC
@@ -8824,7 +8824,7 @@ msgid "YAML Querier (yq).\r\nArguments: yq filter/command line options."
 msgstr "Consultador de YAML (yq).\r\nArgumentos: opções do filtro/linha de comando do yq."
 
 #: Strings.rc:166
-msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options.
+msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "Validador de HTML (tidy-html5).\r\nArgumentos: opções da linha de comando do tidy."
 
 #: Strings.rc:168
