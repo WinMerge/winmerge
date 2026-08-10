@@ -174,9 +174,6 @@ protected:
 	afx_msg BOOL OnOpenRecentFile(UINT nID);
 	afx_msg void OnAppAbout();
 	afx_msg void OnHelp();
-	afx_msg void OnMergingMode();
-	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateMergingStatus(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
