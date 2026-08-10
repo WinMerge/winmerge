@@ -1604,13 +1604,14 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	auto [side, prefixlen] = ParseAttributeName(vl);
 	ValueType (*functmp)(int, const FilterEvalContext&) = nullptr;
 	const char* p = vl.c_str() + prefixlen;
+	bool singlePane = ctxt->ctxt && ctxt->ctxt->GetCompareDirs() == 1;
 
 	// Handle dynamic column fields (column1, column2, etc.)
 	if (strncmp(p, "column", 6) == 0 && isdigit(p[6]))
 	{
 		// Parse column number (Column1, Column2, etc.)
 		int columnIndex = atoi(p + 6) - 1;
-		if (prefixlen == 0)
+		if (prefixlen == 0 && !singlePane)
 		{
 			func = [columnIndex](const FilterEvalContext& ectxt) -> ValueType {
 				const int dirs = ectxt.expr->ctxt->GetCompareDirs();
@@ -1647,7 +1648,7 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
 
 	// Set up the wrapper function based on side/prefix
-	if (prefixlen > 0)
+	if (prefixlen > 0 || singlePane)
 		func = [side, functmp](const FilterEvalContext& ectxt)-> ValueType { return functmp(side < 0 ? ectxt.expr->ctxt->GetCompareDirs() + side: side, ectxt); };
 	else
 	{
@@ -3993,11 +3994,11 @@ static auto columnOffsetAt(int index, const FilterEvalContext& ectxt, std::vecto
 	return std::monostate{};
 }
 
-void FunctionNode::SetLineAtFunc(int side, int prefixlen, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
+void FunctionNode::SetLineAtFunc(int side, int prefixlen, bool singlePane, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
 {
 	if (!args || args->size() != 1)
 		throw std::invalid_argument(functionName + " function requires 1 argument");
-	if (prefixlen == 0)
+	if (prefixlen == 0 && !singlePane)
 		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
 			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
@@ -4011,11 +4012,11 @@ void FunctionNode::SetLineAtFunc(int side, int prefixlen, ValueType (*proc)(int,
 			{ return proc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, args); };
 }
 
-void FunctionNode::SetColumnFunc(int side, int prefixlen)
+void FunctionNode::SetColumnFunc(int side, int prefixlen, bool singlePane)
 {
 	if (!args || args->size() != 1)
 		throw std::invalid_argument(functionName + " function requires 1 argument");
-	if (prefixlen == 0)
+	if (prefixlen == 0 && !singlePane)
 		func = [](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
 			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
@@ -4029,11 +4030,11 @@ void FunctionNode::SetColumnFunc(int side, int prefixlen)
 			{ return columnFunc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, args); };
 }
 
-void FunctionNode::SetColumnAtFunc(int side, int prefixlen, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
+void FunctionNode::SetColumnAtFunc(int side, int prefixlen, bool singlePane, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
 {
 	if (!args || args->size() != 2)
 		throw std::invalid_argument(functionName + " function requires 2 arguments");
-	if (prefixlen == 0)
+	if (prefixlen == 0 && !singlePane)
 		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
 			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
@@ -4051,36 +4052,37 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
 	auto [side, prefixlen] = ParseAttributeName(functionName);
+	bool singlePane = ctxt->ctxt->GetCompareDirs() == 1;
 
 	// Special handling for prop, lineat, lineoffsetat functions
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "prop") == 0)
 	{
-		SetPropFunc(side, prefixlen);
+		SetPropFunc(side, prefixlen, singlePane);
 		return;
 	}
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "lineat") == 0)
 	{
-		SetLineAtFunc(side, prefixlen, lineAt);
+		SetLineAtFunc(side, prefixlen, singlePane, lineAt);
 		return;
 	}
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "lineoffsetat") == 0)
 	{
-		SetLineAtFunc(side, prefixlen, lineOffsetAt);
+		SetLineAtFunc(side, prefixlen, singlePane, lineOffsetAt);
 		return;
 	}
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "columnat") == 0)
 	{
-		SetColumnAtFunc(side, prefixlen, columnAt);
+		SetColumnAtFunc(side, prefixlen, singlePane, columnAt);
 		return;
 	}
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "columnoffsetat") == 0)
 	{
-		SetColumnAtFunc(side, prefixlen, columnOffsetAt);
+		SetColumnAtFunc(side, prefixlen, singlePane, columnOffsetAt);
 		return;
 	}
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "column") == 0)
 	{
-		SetColumnFunc(side, prefixlen);
+		SetColumnFunc(side, prefixlen, singlePane);
 		return;
 	}
 

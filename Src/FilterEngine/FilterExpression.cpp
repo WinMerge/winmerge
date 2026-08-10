@@ -419,6 +419,40 @@ std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
 	}
 }
 
+static String ConvertString(const ValueType& value)
+{
+	if (const auto strVal = std::get_if<std::string>(&value))
+		return ucr::toTString(*strVal);
+	return ucr::toTString(ToStringValue(value));
+}
+
+String FilterExpression::TransformLine(const FilterEvalContext& ectxt)
+{
+	try
+	{
+		const auto result = rootNode->Evaluate(ectxt);
+		return ConvertString(result);
+	}
+	catch (const Poco::RegularExpressionException& e)
+	{
+		errorCode = FILTER_ERROR_INVALID_REGULAR_EXPRESSION;
+		errorPosition = -1;
+		errorMessage = e.message();
+		if (logger)
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
+		return String();
+	}
+	catch (const std::exception& e)
+	{
+		errorCode = FILTER_ERROR_EVALUATION_FAILED;
+		errorPosition = -1;
+		errorMessage = e.what();
+		if (logger)
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
+		return String();
+	}
+}
+
 bool FilterExpression::HasCaseSensitiveDirective(const String& expression)
 {
 	String directives = ExtractDirectives(expression);
