@@ -8403,7 +8403,7 @@ msgstr "第二个和第三个"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5634
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "（按住 Ctrl 键并单击以添加到流程中）"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5639
