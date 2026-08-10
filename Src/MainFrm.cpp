@@ -3758,9 +3758,9 @@ void CMainFrame::OnUpdateMergingMode(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 {
-	String text = _T("\u2191\u2193");
+	String text = theApp.GetMergingMode() ? _T("\u2191\u2193") : _T("Alt");
 	pCmdUI->SetText(text.c_str());
-	pCmdUI->Enable(theApp.GetMergingMode());
+	pCmdUI->Enable(true);
 }
 
 /**
