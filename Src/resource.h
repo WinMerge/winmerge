@@ -1745,7 +1745,6 @@
 #define IDS_LINE_STATUS_INFO_EOL        40832
 #define IDS_EMPTY_LINE_STATUS_INFO      40833
 #define IDS_LINE_STATUS_INFO            40834
-#define IDS_MERGEMODE_MERGING           40835
 #define IDS_DIFF_NUMBER_STATUS_FMT      40836
 #define IDS_NO_DIFF_SEL_FMT             40837
 #define IDS_1_DIFF_FOUND                40838

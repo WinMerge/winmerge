@@ -93,9 +93,6 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND_EX_RANGE(ID_FILE_PROJECT_MRU_FIRST, ID_FILE_PROJECT_MRU_LAST, OnOpenRecentFile)
 	ON_UPDATE_COMMAND_UI(ID_FILE_PROJECT_MRU_FIRST, CWinApp::OnUpdateRecentFileMenu)
-	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
-	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 	//}}AFX_MSG_MAP
 	// Standard file based document commands
@@ -1705,44 +1702,12 @@ bool CMergeApp::GetMergingMode() const
 }
 
 /**
- * @brief Set doc to Merging/Editing mode
+ * @brief Set Merging/Editing mode
  */
 void CMergeApp::SetMergingMode(bool bMergingMode)
 {
 	m_bMergingMode = bMergingMode;
 	GetOptionsMgr()->SaveOption(OPT_MERGE_MODE, m_bMergingMode);
-}
-
-/**
- * @brief Switch Merging/Editing mode and update
- * buffer read-only states accordingly
- */
-void CMergeApp::OnMergingMode()
-{
-	bool bMergingMode = GetMergingMode();
-
-	if (!bMergingMode)
-		I18n::MessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_MODE);
-	SetMergingMode(!bMergingMode);
-}
-
-/**
- * @brief Update Menuitem for Merging Mode
- */
-void CMergeApp::OnUpdateMergingMode(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(GetMergingMode());
-}
-
-/**
- * @brief Update MergingMode UI in statusbar
- */
-void CMergeApp::OnUpdateMergingStatus(CCmdUI *pCmdUI)
-{
-	String text = I18n::LoadString(IDS_MERGEMODE_MERGING);
-	pCmdUI->SetText(text.c_str());
-	pCmdUI->Enable(GetMergingMode());
 }
 
 UINT CMergeApp::GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault)

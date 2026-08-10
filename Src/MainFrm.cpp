@@ -365,6 +365,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnUpdateCompareMethod)
 	// Status bar
+	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_NOTIFY(NM_CLICK, AFX_IDW_STATUS_BAR, OnStatusBarClick)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
@@ -506,8 +509,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE, pointToPixel(225));
-	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE, pointToPixel(285));
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, SBPS_CLICKABLE, pointToPixel(15)); 
 	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
@@ -3729,6 +3732,38 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Switch Merging/Editing mode and update
+ * buffer read-only states accordingly
+ */
+void CMainFrame::OnMergingMode()
+{
+	bool bMergingMode = theApp.GetMergingMode();
+
+	if (!bMergingMode)
+		I18n::MessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_MODE);
+	theApp.SetMergingMode(!bMergingMode);
+}
+
+/**
+ * @brief Update Menuitem for Merging Mode
+ */
+void CMainFrame::OnUpdateMergingMode(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(theApp.GetMergingMode());
+}
+
+/**
+ * @brief Update MergingMode UI in statusbar
+ */
+void CMainFrame::OnUpdateMergingStatus(CCmdUI *pCmdUI)
+{
+	String text = theApp.GetMergingMode() ? _T("\u2191\u2193") : _T("Alt");
+	pCmdUI->SetText(text.c_str());
+	pCmdUI->Enable(true);
+}
+
+/**
  * @brief Update plugin name
  * @param [in] pCmdUI UI component to update.
  */
@@ -3792,26 +3827,33 @@ void CMainFrame::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	int index = static_cast<int>(pNMMouse->dwItemSpec);
 	if (index < 0)
 		return;
-	CPoint point = pNMMouse->pt;
-	int subidx = m_wndStatusBar.HitTestSubPaneButton(index, point);
-	if (subidx < 0)
-		return;
-	if (auto pMergeDoc = GetActiveIMergeDoc())
+	if (index == 1)
 	{
-		PathContext paths;
-		for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
-			paths.SetPath(i, pMergeDoc->GetPath(i));
-		String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
-		std::vector<CRect> rects;
-		m_wndStatusBar.GetSubPaneButtonRects(index, rects);
-		CPoint pt = CPoint(rects[subidx].left, rects[subidx].top);
-		m_wndStatusBar.ClientToScreen(&pt);
-		if (subidx == 0)
-			PluginMenu::ShowMenu(pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames,
-				PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST, pt.x, pt.y, this);
-		else if (subidx == 1)
-			PluginMenu::ShowMenu(pMergeDoc->GetPrediffer(), filteredFilenames, FileTransform::PredifferEventNames,
-				PluginMenu::FlattenMenu|PluginMenu::AddSelectMenu, ID_PREDIFFERS_FIRST, pt.x, pt.y, this);
+		CPoint point = pNMMouse->pt;
+		int subidx = m_wndStatusBar.HitTestSubPaneButton(index, point);
+		if (subidx < 0)
+			return;
+		if (auto pMergeDoc = GetActiveIMergeDoc())
+		{
+			PathContext paths;
+			for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
+				paths.SetPath(i, pMergeDoc->GetPath(i));
+			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+			std::vector<CRect> rects;
+			m_wndStatusBar.GetSubPaneButtonRects(index, rects);
+			CPoint pt = CPoint(rects[subidx].left, rects[subidx].top);
+			m_wndStatusBar.ClientToScreen(&pt);
+			if (subidx == 0)
+				PluginMenu::ShowMenu(pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames,
+					PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST, pt.x, pt.y, this);
+			else if (subidx == 1)
+				PluginMenu::ShowMenu(pMergeDoc->GetPrediffer(), filteredFilenames, FileTransform::PredifferEventNames,
+					PluginMenu::FlattenMenu | PluginMenu::AddSelectMenu, ID_PREDIFFERS_FIRST, pt.x, pt.y, this);
+		}
+	}
+	else if (index == 2)
+	{
+		OnMergingMode();
 	}
 }
 
