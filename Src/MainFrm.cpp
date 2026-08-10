@@ -3090,24 +3090,17 @@ void CMainFrame::LoadToolbarImages()
 {
 	const int toolbarNewImgSize = MulDiv(8, GetSystemMetrics(SM_CXSMICON), 16) * 
 		(2 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
-	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 	CImageList imgEnabled, imgDisabled;
-	HBITMAP hEnabled = nullptr;
-	HBITMAP hDisabled = nullptr;
 	CSize sizeButton(0, 0);
 
-	const UINT toolbarResource = toolbarOrgImgSize <= 16 ? IDR_TOOLBAR_ENABLED_PNG : IDR_TOOLBAR_ENABLED32_PNG;
-	if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), toolbarResource, TOOLBAR_IMAGE_COUNT,
-		toolbarNewImgSize * TOOLBAR_IMAGE_COUNT, toolbarNewImgSize - 1, &hEnabled, &hDisabled))
+	if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), IDR_TOOLBAR_ENABLED32_PNG, TOOLBAR_IMAGE_COUNT,
+		toolbarNewImgSize, toolbarNewImgSize - 1, imgEnabled, &imgDisabled))
 	{
-		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), toolbarResource);
+		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), IDR_TOOLBAR_ENABLED32_PNG);
 		return;
 	}
 	
-	LoadToolbarImageList(toolbarNewImgSize, hEnabled, imgEnabled);
-	LoadToolbarImageList(toolbarNewImgSize, hDisabled, imgDisabled);
-
 	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
 
 	BarCtrl.SetButtonSize(sizeButton);
@@ -3123,28 +3116,6 @@ void CMainFrame::LoadToolbarImages()
 	rbbi.fMask = RBBIM_CHILDSIZE;
 	rbbi.cyMinChild = sizeButton.cy;
 	m_wndReBar.GetReBarCtrl().SetBandInfo(1, &rbbi);
-}
-
-
-/**
- * @brief Load a transparent 32-bit color image list.
- */
-static void BuildHiColImageListFromBitmap(HBITMAP hBitmap, int nNewWidth, int nNewHeight, int nCount, CImageList& ImgList)
-{
-	CBitmap bm;
-	bm.Attach(hBitmap);
-
-	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
-	VERIFY(-1 != ImgList.Add(&bm, nullptr));
-}
-
-/**
- * @brief Load toolbar image list.
- */
-static void LoadToolbarImageList(int newImageWidth, HBITMAP hBitmap, CImageList& ImgList)
-{
-	const int newImageHeight = newImageWidth - 1;
-	BuildHiColImageListFromBitmap(hBitmap, newImageWidth, newImageHeight, TOOLBAR_IMAGE_COUNT, ImgList);
 }
 
 /**
