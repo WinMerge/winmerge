@@ -1604,7 +1604,7 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	auto [side, prefixlen] = ParseAttributeName(vl);
 	ValueType (*functmp)(int, const FilterEvalContext&) = nullptr;
 	const char* p = vl.c_str() + prefixlen;
-	bool singlePane = ctxt->ctxt->GetCompareDirs() == 1;
+	bool singlePane = ctxt->ctxt && ctxt->ctxt->GetCompareDirs() == 1;
 
 	// Handle dynamic column fields (column1, column2, etc.)
 	if (strncmp(p, "column", 6) == 0 && isdigit(p[6]))
