@@ -1095,16 +1095,20 @@ bool CMergeDoc::TryResumeMergeResultFromOutput(String& text)
 	{
 		String r;
 		r.reserve(s.length());
-		for (size_t i = 0; i < s.length(); ++i)
+		size_t i = 0;
+		while (i < s.length())
 		{
 			if (s[i] == _T('\r'))
 			{
 				r += _T('\n');
-				if (i + 1 < s.length() && s[i + 1] == _T('\n'))
-					++i;
+				// a \r\n pair collapses into one \n
+				i += (i + 1 < s.length() && s[i + 1] == _T('\n')) ? 2 : 1;
 			}
 			else
+			{
 				r += s[i];
+				++i;
+			}
 		}
 		return r;
 	};
