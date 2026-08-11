@@ -8905,7 +8905,7 @@ msgstr ""
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
+msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
 msgstr ""
 
 #. IDS_PLUGIN_DESCRIPTION57
@@ -9135,15 +9135,15 @@ msgstr ""
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
+msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
 msgstr ""
 
 #: Strings.rc:328
-msgid "Environment variable name for OpenAI API key"
+msgid "Environment variable name for API key"
 msgstr ""
 
 #: Strings.rc:330
-msgid "OpenAI API key"
+msgid "API key"
 msgstr ""
 
 #: Strings.rc:332
@@ -9159,6 +9159,9 @@ msgid "Model"
 msgstr ""
 
 #: Strings.rc:338
-msgid "OpenAI API key changed. Restart to apply."
+msgid "API key changed. Restart to apply."
 msgstr ""
 
+#: Strings.rc:340
+msgid "Provider"
+msgstr ""
