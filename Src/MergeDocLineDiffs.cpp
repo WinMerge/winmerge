@@ -355,7 +355,7 @@ CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ig
 		if (nLineBegin <= nLineEnd)
 		{
 			if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
-				m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
+				m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText, CRLFSTYLE::AUTOMATIC, false);
 			strText += m_ptBuf[file]->GetLineEol(nLineEnd);
 			nOffsets[file][0] = 0;
 		}
