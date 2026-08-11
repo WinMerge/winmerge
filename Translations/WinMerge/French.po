@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-05-27 07:01+0000\n"
-"PO-Revision-Date: 2026-07-26 22:43-0400\n"
+"PO-Revision-Date: 2026-08-10 08:26-0400\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -8396,7 +8396,7 @@ msgstr "2ème et 3ème"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5634
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "(Ctrl+Clic pour ajouter au pipeline)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5639
