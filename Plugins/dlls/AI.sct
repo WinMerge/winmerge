@@ -36,9 +36,9 @@ var mergeApp;
 
 function getProviderConfig(providerName) {
   var configs = {
-    "OpenAI": { "baseUrl": "https://api.openai.com/v1", "defaultModel": "gpt-3.5-turbo" },
-    "MiniMax": { "baseUrl": "https://api.minimax.io/v1", "defaultModel": "MiniMax-M3" },
-    "MiniMax (China)": { "baseUrl": "https://api.minimaxi.com/v1", "defaultModel": "MiniMax-M3" }
+    "OpenAI": { "baseUrl": "https://api.openai.com/v1", "defaultModel": "gpt-3.5-turbo", "apiKeyEnvName": "OPENAI_API_KEY" },
+    "MiniMax": { "baseUrl": "https://api.minimax.io/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY" },
+    "MiniMax (China)": { "baseUrl": "https://api.minimaxi.com/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY" }
   };
   return configs[providerName] || configs["OpenAI"];
 }
@@ -411,7 +411,11 @@ function onload() {
 
 function cboProvider_onchange() {
   var providerOption = cboProvider.options[cboProvider.selectedIndex];
+  var provider = getProviderConfig(cboProvider.value);
   cboModel.value = providerOption.getAttribute("defaultmodel");
+  txtApiKeyEnvName.value = provider.apiKeyEnvName;
+  apiKey = getApiKey(provider.apiKeyEnvName);
+  txtApiKey.value = apiKey;
 }
 
 function onkeydown() {
