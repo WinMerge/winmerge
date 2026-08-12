@@ -668,6 +668,7 @@ void CImgMergeFrame::LoadOptions()
 	m_pImgMergeWindow->SetVectorImageZoomRatio(GetOptionsMgr()->GetInt(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO) / 1000.0f);
 	m_pImgMergeWindow->SetBlinkInterval(GetOptionsMgr()->GetInt(OPT_CMP_IMG_BLINKINTERVAL));
 	m_pImgMergeWindow->SetOverlayAnimationInterval(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL));
+	m_pImgMergeWindow->SetPreferWICDecoder(GetOptionsMgr()->GetBool(OPT_CMP_IMG_PREFER_WIC_DECODER));
 }
 
 void CImgMergeFrame::SaveOptions()
