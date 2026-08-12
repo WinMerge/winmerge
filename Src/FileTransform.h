@@ -16,6 +16,7 @@
 #include "UnicodeString.h"
 
 class PluginInfo;
+struct FilterExpression;
 
 namespace FileTransform
 {
@@ -31,8 +32,15 @@ extern bool AutoPrediffing;
 class PluginForFile
 {
 public:
+	enum class PipelineItemType
+	{
+		Plugin,
+		LineExpression,
+	};
+
 	struct PipelineItem
 	{
+		PipelineItemType type;
 		String name;
 		uint8_t targetFlags;
 		std::vector<String> args;
@@ -90,7 +98,7 @@ public:
 	}
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, std::shared_ptr<FilterExpression>, uint8_t, std::vector<String>, bool>>& plugins,
 		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler

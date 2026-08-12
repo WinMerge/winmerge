@@ -277,6 +277,28 @@ namespace
 		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 		EXPECT_EQ(_T("ExecFilterCommand 'dir  c:\\ '|ExecFilterCommand ' sort '"), pluginPipeline);
 
+		parseResult = PluginForFile::ParsePluginPipeline(_T("le:replace(Line, \"\\s+\", \"\")|le:1:replace(Line, \"\\s+\", \"\")|le:1,3:replace(Line, \"\\s+\", \"\")"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(3, parseResult.size());
+		EXPECT_EQ(PluginForFile::PipelineItemType::LineExpression, parseResult[0].type);
+		EXPECT_EQ(_T(""), parseResult[0].name);
+		EXPECT_EQ(_T("replace(Line, \"\\s+\", \"\")"), parseResult[0].args[0]);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+
+		EXPECT_EQ(PluginForFile::PipelineItemType::LineExpression, parseResult[1].type);
+		EXPECT_EQ(_T(""), parseResult[1].name);
+		EXPECT_EQ(0b001, parseResult[1].targetFlags);
+		EXPECT_EQ(_T("replace(Line, \"\\s+\", \"\")"), parseResult[1].args[0]);
+		EXPECT_EQ(0, parseResult[1].quoteChar);
+
+		EXPECT_EQ(PluginForFile::PipelineItemType::LineExpression, parseResult[2].type);
+		EXPECT_EQ(_T(""), parseResult[2].name);
+		EXPECT_EQ(0b101, parseResult[2].targetFlags);
+		EXPECT_EQ(_T("replace(Line, \"\\s+\", \"\")"), parseResult[2].args[0]);
+		EXPECT_EQ(0, parseResult[2].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("le:replace(Line, \"\\s+\", \"\")|le:1:replace(Line, \"\\s+\", \"\")|le:1,3:replace(Line, \"\\s+\", \"\")"), pluginPipeline);
+
 		parseResult = PluginForFile::ParsePluginPipeline(_T("|"), errorMessage);
 		EXPECT_TRUE(!errorMessage.empty());
 

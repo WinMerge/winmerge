@@ -387,7 +387,7 @@ void CSelectPluginDlg::OnSelchangePluginName()
 					String errorMessage;
 					auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
 					if (parseResult.empty())
-						parseResult.push_back({ name, targetFlags, {}, '\0' });
+						parseResult.push_back({ PluginForFile::PipelineItemType::Plugin, name, targetFlags, {}, '\0' });
 					parseResult.back().name = name;
 					parseResult.back().targetFlags = targetFlags;
 					m_strPluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
