@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-08-09 20:10-0300\n"
+"PO-Revision-Date: 2026-08-11 23:15-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -8913,8 +8913,8 @@ msgstr "Conversão de texto assistida por IA"
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
-msgstr "Conversor de texto (API da OpenAI).\r\nUso: AIConvertText PROMPT"
+msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
+msgstr "Conversor de texto (API compatível com a OpenAI).\r\nUso: AIConvertText PROMPT"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -9143,16 +9143,16 @@ msgstr "Insira o prompt"
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
-msgstr "Insira a chave da API da OpenAI.\r\n- Requer registro na OpenAI (podem ser aplicadas taxas).\r\n- Chave armazenada na variável de ambiente %1."
+msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
+msgstr "Insira a chave da API.\r\n- Registro com o fornecedor selecionado pode ser necessário (podem incorrer taxas).\r\n- Chave armazenada na variável de ambiente %1."
 
 #: Strings.rc:328
-msgid "Environment variable name for OpenAI API key"
-msgstr "Nome da variável de ambiente para a chave da API da OpenAI"
+msgid "Environment variable name for API key"
+msgstr "Nome da variável de ambiente para a chave da API"
 
 #: Strings.rc:330
-msgid "OpenAI API key"
-msgstr "Chave da API da OpenAI"
+msgid "API key"
+msgstr "Chave da API"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -9167,5 +9167,9 @@ msgid "Model"
 msgstr "Modelo"
 
 #: Strings.rc:338
-msgid "OpenAI API key changed. Restart to apply."
-msgstr "Chave da API da OpenAI alterada. Reinicie para aplicar."
+msgid "API key changed. Restart to apply."
+msgstr "Chave da API alterada. Reinicie para aplicar."
+
+#: Strings.rc:340
+msgid "Provider"
+msgstr "Fornecedor"
