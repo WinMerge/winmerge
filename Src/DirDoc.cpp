@@ -271,6 +271,7 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_bIgnoreCodepage = pOptions->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	pCtxt->m_bEnableImageCompare = pOptions->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
 	pCtxt->m_dColorDistanceThreshold = pOptions->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
+	pCtxt->m_bPreferWICDecoder = pOptions->GetBool(OPT_CMP_IMG_PREFER_WIC_DECODER);
 
 	m_imgfileFilter.SetMaskOrExpression(pOptions->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;

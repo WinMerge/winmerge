@@ -19,6 +19,7 @@ namespace CompareEngines
 ImageCompare::ImageCompare(CDiffContext& ctxt)
 	: m_ctxt(ctxt)
 	, m_colorDistanceThreshold(ctxt.m_dColorDistanceThreshold)
+	, m_preferWICDecoder(ctxt.m_bPreferWICDecoder)
 	, m_pImgMergeWindow(nullptr)
 	, m_hModule(nullptr)
 {
@@ -50,6 +51,7 @@ int ImageCompare::compare_files(const String& file1, const String& file2, const 
 	if (!m_pImgMergeWindow)
 		return DIFFCODE::CMPERR;
 	m_pImgMergeWindow->SetColorDistanceThreshold(m_colorDistanceThreshold);
+	m_pImgMergeWindow->SetPreferWICDecoder(m_preferWICDecoder);
 	if (!m_pImgMergeWindow->OpenImages(file1.c_str(), file2.c_str()))
 		return DIFFCODE::CMPERR;
 	std::optional<bool> bImgDiff = false;
