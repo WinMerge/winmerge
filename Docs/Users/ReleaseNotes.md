@@ -61,12 +61,12 @@ Please submit bug reports to our bug-tracker.
 
   * Brazilian (PR #3459, PR #3476, PR #3489)
   * Chinese Simplified (PR #3460, PR #3479)
-  * French (PR #3478)
+  * French (PR #3478, PR #3491)
   * German (PR #3480, PR #3486)
   * Italian (PR #3455, PR #3473, PR #3477, PR #3488)
   * Japanese
   * Korean (PR #3447, PR #3481, PR #3487)
-  * Lithuanian (PR #3461, PR #3471)
+  * Lithuanian (PR #3461, PR #3471, PR #3492)
   * Polish (PR #3463, PR #3490)
   * Turkish (PR #3465, PR #3474)
   * Russian (PR #3448, PR #3484)
