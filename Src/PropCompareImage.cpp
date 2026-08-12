@@ -22,6 +22,7 @@
 PropCompareImage::PropCompareImage(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompareImage::IDD)
  , m_bEnableImageCompare(false)
+ , m_bPreferWICDecoder(false)
  , m_nOcrResultType(0)
 {
 	auto readconv = +[](String v) { return v; };
@@ -29,6 +30,7 @@ PropCompareImage::PropCompareImage(COptionsMgr *optionsMgr)
 	BindOptionCustom(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns, IDC_COMPAREIMAGE_PATTERNS, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare, IDC_ENABLE_IMGCMP_IN_DIRCMP, DDX_Check);
 	BindOption(OPT_CMP_IMG_OCR_RESULT_TYPE, m_nOcrResultType, IDC_COMPAREIMAGE_OCR_RESULT_TYPE, DDX_CBIndex);
+	BindOption(OPT_CMP_IMG_PREFER_WIC_DECODER, m_bPreferWICDecoder, IDC_COMPAREIMAGE_PREFER_WIC_DECODER, DDX_Check);
 }
 
 void PropCompareImage::DoDataExchange(CDataExchange* pDX)

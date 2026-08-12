@@ -25,6 +25,7 @@ public:
 	CComboBox m_comboPatterns;
 	String m_sFilePatterns;
 	bool m_bEnableImageCompare;
+	bool m_bPreferWICDecoder;
 	int  m_nOcrResultType;
 	//}}AFX_DATA
 
