@@ -9149,7 +9149,6 @@ msgstr "Insira o prompt"
 #: Strings.rc:326
 #, c-format
 msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
-
 msgstr "Insira a chave da API.\r\n- Registro com o fornecedor selecionado pode ser necessário (podem incorrer taxas).\r\n- Chave armazenada na variável de ambiente %1."
 
 #: Strings.rc:328
