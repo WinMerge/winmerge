@@ -4052,7 +4052,7 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
 	auto [side, prefixlen] = ParseAttributeName(functionName);
-	bool singlePane = ctxt->ctxt->GetCompareDirs() == 1;
+	bool singlePane = ctxt->ctxt && ctxt->ctxt->GetCompareDirs() == 1;
 
 	// Special handling for prop, lineat, lineoffsetat functions
 	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "prop") == 0)
