@@ -262,6 +262,22 @@
       <command>"${WINMERGE_HOME}\Commands\dumpbin\dumpbin.bat" ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
+  <plugin name="IgnoreWhitespace">
+    <event value="ALIAS_PREDIFF"/>
+    <description value="Ignore Whitespace"/>
+    <file-filters value="\.txt$"/>
+    <is-automatic value="false"/>
+    <extended-properties value="MenuCaption=Ignore Whitespace"/>
+    <pipeline value="le:replace(Line, &quot;\s+&quot;, &quot;&quot;)"/>
+  </plugin>
+  <plugin name="IgnoreCase">
+    <event value="ALIAS_PREDIFF"/>
+    <description value="Ignore Case"/>
+    <file-filters value="\.txt$"/>
+    <is-automatic value="false"/>
+    <extended-properties value="MenuCaption=Ignore Case"/>
+    <pipeline value="le:toUpper(Line)"/>
+  </plugin>
   <!--
   <plugin name="JScript-test">
     <event value="FILE_PACK_UNPACK" />

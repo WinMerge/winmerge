@@ -427,7 +427,7 @@ ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, con
 }
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, std::shared_ptr<FilterExpression>, uint8_t, std::vector<String>, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PACK_UNPACK", errorMessage);
@@ -455,7 +455,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 			if (pluginInfo.first)
 			{
 				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ pluginInfo.first, nullptr, targetFlags, args, pluginInfo.second });
+					{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
 			}
 		}
 		else
@@ -467,14 +467,31 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 				{
 					uint8_t targetFlags2 = 1 << i;
 					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, nullptr, targetFlags2, args, pluginInfo.second });
+						{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
 				}
 			}
 		}
 	}
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	int i = 0;
 	for (auto& [itemType, pluginName, targetFlags, args, quoteChar] : result)
 	{
+		if (itemType == PluginForFile::PipelineItemType::LineExpression)
+		{
+			if (i == 0 || result[i - 1].type != PluginForFile::PipelineItemType::LineExpression || result[i - 1].targetFlags != targetFlags)
+			{
+				std::shared_ptr<FilterExpression> expr = std::make_shared<FilterExpression>(ucr::toUTF8(args[0]));
+				pipelineResolved.push_back({ itemType, pluginName, targetFlags, args, quoteChar });
+				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+					{ nullptr, { expr }, targetFlags, args, true });
+			}
+			else
+			{
+				std::get<1>(plugins.back()).push_back(std::make_shared<FilterExpression>(ucr::toUTF8(args[0])));
+			}
+			i++;
+			continue;
+		}
 		PluginInfo* plugin = nullptr;
 		if (pluginName == _T("<None>") || pluginName == _("<None>"))
 			;
@@ -482,10 +499,10 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 		{
 			const auto filenames = strutils::split(filteredFilenames, '|');
 			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
-			for (int i = 0; i < filenames.size(); ++i)
+			for (int j = 0; j < filenames.size(); ++j)
 			{
 				bool bWithFile = true;
-				const String filename{ filenames[i].data(), filenames[i].size() };
+				const String filename{ filenames[j].data(), filenames[j].size() };
 				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filename);
 				if (plugin == nullptr)
 					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filename);
@@ -506,20 +523,20 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 				{
 					pipelineResolved.push_back({ itemType, pluginInfo.first->m_name, targetFlags, args, quoteChar });
 					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, nullptr, targetFlags, args, pluginInfo.second });
+						{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
 				}
 			}
 			else
 			{
-				for (int i = 0; i < pluginInfos.size(); ++i)
+				for (int j = 0; j < pluginInfos.size(); ++j)
 				{
-					const auto& pluginInfo = pluginInfos[i];
-					if (isTargetInFlags(i, targetFlags) && pluginInfo.first)
+					const auto& pluginInfo = pluginInfos[j];
+					if (isTargetInFlags(j, targetFlags) && pluginInfo.first)
 					{
-						uint8_t targetFlags2 = 1 << i;
+						uint8_t targetFlags2 = 1 << j;
 						pipelineResolved.push_back({ itemType, pluginInfo.first->m_name, targetFlags2, args, quoteChar });
 						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-							{ pluginInfo.first, nullptr, targetFlags2, args, pluginInfo.second });
+							{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
 					}
 				}
 			}
@@ -555,9 +572,10 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 			{
 				pipelineResolved.push_back({ itemType, plugin->m_name, targetFlags, args, quoteChar });
 				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ plugin, nullptr, targetFlags, args, bWithFile });
+					{ plugin, {}, targetFlags, args, bWithFile });
 			}
 		}
+		++i;
 	}
 	if (pPluginPipelineResolved)
 		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
@@ -574,7 +592,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, std::shared_ptr<FilterExpression>, uint8_t, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>> plugins;
 	if (!GetPackUnpackPlugin(_T(""), bUrl, true, plugins, nullptr, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -585,7 +603,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 		return true;
 
 	auto itSubcode = handlerSubcodes.rbegin();
-	for (auto& [plugin, expr, targetFlags, args, bWithFile] : plugins)
+	for (auto& [plugin, exprs, targetFlags, args, bWithFile] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
 			continue;
@@ -683,7 +701,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 
 	// control value
 	String errorMessage;
-	std::vector < std::tuple < PluginInfo*, std::shared_ptr<FilterExpression>, uint8_t, std::vector<String>, bool >> plugins;
+	std::vector < std::tuple < PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool >> plugins;
 	if (!GetPackUnpackPlugin(filteredText, bUrl, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -693,7 +711,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 	if (m_bWebBrowser && m_PluginPipeline.empty())
 		return true;
 
-	for (auto& [plugin, expr, targetFlags, args, bWithFile] : plugins)
+	for (auto& [plugin, exprs, targetFlags, args, bWithFile] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
 			continue;
@@ -765,10 +783,10 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 	preferredWindowType = -1;
 	String ext;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, std::shared_ptr<FilterExpression>, uint8_t, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, errorMessage))
 	{
-		for (auto& [plugin, expr, targetFlags, args, bWithFile] : plugins)
+		for (auto& [plugin, exprs, targetFlags, args, bWithFile] : plugins)
 		{
 			if (target != -1 && !isTargetInFlags(target, targetFlags))
 				continue;
@@ -797,15 +815,32 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 // transformation prediffing
 
 bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PREDIFF", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	int i = 0;
 	for (auto& [itemType, pluginName, targetFlags, args, quoteChar] : result)
 	{
+		if (itemType == PluginForFile::PipelineItemType::LineExpression)
+		{
+			if (i == 0 || result[i - 1].type != PluginForFile::PipelineItemType::LineExpression || result[i - 1].targetFlags != targetFlags)
+			{
+				std::shared_ptr<FilterExpression> expr = std::make_shared<FilterExpression>(ucr::toUTF8(args[0]));
+				pipelineResolved.push_back({ itemType, pluginName, targetFlags, args, quoteChar });
+				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+					{ nullptr, { expr }, targetFlags, args, true });
+			}
+			else
+			{
+				std::get<1>(plugins.back()).push_back(std::make_shared<FilterExpression>(ucr::toUTF8(args[0])));
+			}
+			i++;
+			continue;
+		}
 		PluginInfo* plugin = nullptr;
 		if (pluginName == _T("<None>") || pluginName == _("<None>"))
 			;
@@ -813,10 +848,10 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 		{
 			const auto filenames = strutils::split(filteredFilenames, '|');
 			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
-			for (int i = 0; i < filenames.size(); ++i)
+			for (int j = 0; j < filenames.size(); ++j)
 			{
 				bool bWithFile = true;
-				const String filename{ filenames[i].data(), filenames[i].size() };
+				const String filename{ filenames[j].data(), filenames[j].size() };
 				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filename);
 				if (plugin == nullptr)
 				{
@@ -835,20 +870,20 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 				{
 					pipelineResolved.push_back({ itemType, pluginInfo.first->m_name, targetFlags, args, quoteChar });
 					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, targetFlags, args, pluginInfo.second });
+						{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
 				}
 			}
 			else
 			{
-				for (int i = 0; i < pluginInfos.size(); ++i)
+				for (int j = 0; j < pluginInfos.size(); ++j)
 				{
-					const auto& pluginInfo = pluginInfos[i];
-					if (isTargetInFlags(i, targetFlags) && pluginInfo.first)
+					const auto& pluginInfo = pluginInfos[j];
+					if (isTargetInFlags(j, targetFlags) && pluginInfo.first)
 					{
-						uint8_t targetFlags2 = 1 << i;
+						uint8_t targetFlags2 = 1 << j;
 						pipelineResolved.push_back({ itemType, pluginInfo.first->m_name, targetFlags2, args, quoteChar });
 						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-							{ pluginInfo.first, targetFlags2, args, pluginInfo.second });
+							{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
 					}
 				}
 			}
@@ -880,9 +915,10 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 			{
 				pipelineResolved.push_back({ itemType, plugin->m_name, targetFlags, args, quoteChar });
 				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ plugin, targetFlags, args, bWithFile });
+					{ plugin, {}, targetFlags, args, bWithFile });
 			}
 		}
+		i++;
 	}
 	if (pPluginPipelineResolved)
 		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
@@ -898,14 +934,14 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 	// control value
 	bool bHandled = false;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>> plugins;
 	if (!GetPrediffPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
 
-	for (const auto& [plugin, targetFlags, args, bWithFile] : plugins)
+	for (const auto& [plugin, exprs, targetFlags, args, bWithFile] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
 			continue;
@@ -971,14 +1007,29 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 ////////////////////////////////////////////////////////////////////////////////
 // transformation text
 
-bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>>& plugins,
+bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, int>>& plugins,
 	String& errorMessage) const
 {
 	auto result = ExpandAliases(this->m_PluginPipeline, _T(""), L"ALIAS_EDITOR_SCRIPT", errorMessage);
 	if (!errorMessage.empty())
 		return false;
+	int i = 0;
 	for (auto& [itemType, pluginName, targetFlags, args, quoteChar] : result)
 	{
+		if (itemType == PluginForFile::PipelineItemType::LineExpression)
+		{
+			if (i == 0 || result[i - 1].type != PluginForFile::PipelineItemType::LineExpression || result[i - 1].targetFlags != targetFlags)
+			{
+				std::shared_ptr<FilterExpression> expr = std::make_shared<FilterExpression>(ucr::toUTF8(args[0]));
+				plugins.push_back({ nullptr, { expr }, targetFlags, args, true });
+			}
+			else
+			{
+				std::get<1>(plugins.back()).push_back(std::make_shared<FilterExpression>(ucr::toUTF8(args[0])));
+			}
+			i++;
+			continue;
+		}
 		bool found = false;
 		PluginArray *pluginInfoArray = CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"EDITOR_SCRIPT");
 		for (const auto& plugin : *pluginInfoArray)
@@ -986,11 +1037,11 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 			std::vector<String> namesArray;
 			std::vector<int> idArray;
 			int nFunc = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
-			for (int i = 0; i < nFunc; ++i)
+			for (int j = 0; j < nFunc; ++j)
 			{
-				if (namesArray[i] == pluginName)
+				if (namesArray[j] == pluginName)
 				{
-					plugins.push_back({ plugin.get(), targetFlags, args, idArray[i]});
+					plugins.push_back({ plugin.get(), {}, targetFlags, args, idArray[j] });
 					found = true;
 					break;
 				}
@@ -1003,6 +1054,7 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 			errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
 			return false;
 		}
+		++i;
 	}
 	return true;
 }
@@ -1016,14 +1068,14 @@ bool EditorScriptInfo::TransformText(int target, String& text, const std::vector
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, int>> plugins;
 	if (!GetEditorScriptPlugin(plugins, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
 
-	for (const auto& [plugin, targetFlags, args, fncID] : plugins)
+	for (const auto& [plugin, exprs, targetFlags, args, fncID] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
 			continue;

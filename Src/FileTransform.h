@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <optional>
+#include <memory>
 #include "UnicodeString.h"
 
 class PluginInfo;
@@ -98,7 +99,7 @@ public:
 	}
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, std::shared_ptr<FilterExpression>, uint8_t, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>>& plugins,
 		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler
@@ -159,7 +160,7 @@ public:
 	}
 
 	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>>& plugins,
 		String* pPluginPipelineResolved, String& errorMessage) const;
 
 	/**
@@ -189,7 +190,7 @@ public:
 	{
 	}
 
-	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>>& plugins,
+	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, int>>& plugins,
 		String& errorMessage) const;
 
 	bool TransformText(int target, String & text, const std::vector<StringView>& variables, bool& changed);
