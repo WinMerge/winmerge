@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-08-09 08:40+0200\n"
+"PO-Revision-Date: 2026-08-12 19:35+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -5550,7 +5550,7 @@ msgstr "&Bildvergleich im Ordnervergleich aktivieren"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3358
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "&WIC-Decoder bevorzugen"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3359
@@ -10262,8 +10262,12 @@ msgstr "KI-unterstützte Textkonvertierungsfunktionen"
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter (OpenAI-compatible API).\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"Textkonverter (OpenAI-kompatible API).\r\n"
+"Verwendung: AIConvertText PROMPT"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -10510,16 +10514,22 @@ msgstr "Eingabeaufforderung"
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
+msgid ""
+"Enter API key.\r\n"
+"- Registration with the selected provider may be required (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
+"API-Schlüssel eingeben.\r\n"
+"- Eine Registrierung beim ausgewählten Anbieter kann erforderlich sein (es können Gebühren anfallen).\r\n"
+"- Der Schlüssel wurde in der Umgebungsvariable %1 gespeichert."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "Name der Umgebungsvariable für den API-Schlüssel"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "API-Schlüssel"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -10535,8 +10545,8 @@ msgstr "Modell"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "Der API-Schlüssel wurde geändert. Bitte starten Sie die Anwendung neu, damit die Änderung wirksam wird."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "Anbieter"
