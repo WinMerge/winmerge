@@ -5070,7 +5070,7 @@ msgstr "在文件夹比较中启用图像比较(&E)"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3358
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "首选 WIC 解码器(&P)"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3359
@@ -9539,8 +9539,12 @@ msgstr "AI 辅助的文本转换功能"
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter (OpenAI-compatible API).\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"文本转换器（兼容 OpenAI 的 API）。\r\n"
+"用法：AIConvertText PROMPT"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -9787,16 +9791,22 @@ msgstr "输入 Prompt"
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
+msgid ""
+"Enter API key.\r\n"
+"- Registration with the selected provider may be required (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
+"请输入 API 密钥。\r\n"
+"- 可能需要向所选服务提供商注册（可能需要支付费用）。\r\n"
+"- 密钥已存储在环境变量 %1 中。"
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "API 密钥的环境变量名称"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "API 密钥"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -9812,8 +9822,8 @@ msgstr "模型"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "API 密钥已更改。请重启以使更改生效。"
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "提供商"
