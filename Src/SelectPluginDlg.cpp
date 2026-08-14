@@ -167,8 +167,10 @@ void CSelectPluginDlg::prepareListbox()
 	PluginInfo* pSelPlugin = nullptr;
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
-	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
-	uint8_t targetFlags = parseResult.empty() ? 0xff : parseResult.back().targetFlags;
+	PluginForFile::PluginPipelineItem* pLastItem = (parseResult.empty() || !PluginForFile::IsPluginPipelineItem(parseResult.back())) ?
+		nullptr : &PluginForFile::GetPluginPipelineItem(parseResult.back());
+	String lastPluginName = !pLastItem ? _T("") : pLastItem->name;
+	uint8_t targetFlags = !pLastItem ? 0xff : pLastItem->targetFlags;
 	INT_PTR nameCount = 0;
 
 	// Target files combobox
@@ -298,7 +300,8 @@ void CSelectPluginDlg::OnClickedAlias()
 		{
 			for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
 			{
-				if (name == parseResult.front().name)
+				if (PluginForFile::IsPluginPipelineItem(parseResult.front()) &&
+					name == PluginForFile::GetPluginPipelineItem(parseResult.front()).name)
 					plugin = plugin2;
 			}
 		}
@@ -387,9 +390,13 @@ void CSelectPluginDlg::OnSelchangePluginName()
 					String errorMessage;
 					auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
 					if (parseResult.empty())
-						parseResult.push_back({ PluginForFile::PipelineItemType::Plugin, name, targetFlags, {}, '\0' });
-					parseResult.back().name = name;
-					parseResult.back().targetFlags = targetFlags;
+						parseResult.push_back(PluginForFile::PluginPipelineItem{ targetFlags, name, {}, '\0' });
+					if (PluginForFile::IsPluginPipelineItem(parseResult.back()))
+					{
+						auto& lastItem = PluginForFile::GetPluginPipelineItem(parseResult.back());
+						lastItem.name = name;
+						lastItem.targetFlags = targetFlags;
+					}
 					m_strPluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 					pPlugin = plugin;
 					break;
@@ -438,7 +445,8 @@ void CSelectPluginDlg::OnClickedSettings()
 			{
 				for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
 				{
-					if (name == parseResult.front().name)
+					if (PluginForFile::IsPluginPipelineItem(parseResult.front())&&
+						name == PluginForFile::GetPluginPipelineItem(parseResult.front()).name)
 					{
 						plugin = plugin2;
 						break;

@@ -14,6 +14,7 @@
 #include <vector>
 #include <optional>
 #include <memory>
+#include <variant>
 #include "UnicodeString.h"
 
 class PluginInfo;
@@ -33,20 +34,25 @@ extern bool AutoPrediffing;
 class PluginForFile
 {
 public:
-	enum class PipelineItemType
+	struct PluginPipelineItem
 	{
-		Plugin,
-		LineExpression,
-	};
-
-	struct PipelineItem
-	{
-		PipelineItemType type;
-		String name;
 		uint8_t targetFlags;
+		String name;
 		std::vector<String> args;
 		tchar_t quoteChar;
 	};
+
+	struct FilterExpressionPipelineItem
+	{
+		uint8_t targetFlags;
+		String expression;
+	};
+
+	using PipelineItem = std::variant<PluginPipelineItem, FilterExpressionPipelineItem>;
+
+	static bool IsPluginPipelineItem(const PipelineItem& item) { return std::holds_alternative<PluginPipelineItem>(item); }
+	static const PluginPipelineItem& GetPluginPipelineItem(const PipelineItem& item) { return std::get<PluginPipelineItem>(item); }
+	static PluginPipelineItem& GetPluginPipelineItem(PipelineItem& item) { return std::get<PluginPipelineItem>(item); }
 
 	void Initialize(bool automatic)
 	{
@@ -99,7 +105,7 @@ public:
 	}
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
 		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler
@@ -160,7 +166,7 @@ public:
 	}
 
 	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
 		String* pPluginPipelineResolved, String& errorMessage) const;
 
 	/**
@@ -190,7 +196,7 @@ public:
 	{
 	}
 
-	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<std::shared_ptr<FilterExpression>>, uint8_t, std::vector<String>, int>>& plugins,
+	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>>& plugins,
 		String& errorMessage) const;
 
 	bool TransformText(int target, String & text, const std::vector<StringView>& variables, bool& changed);

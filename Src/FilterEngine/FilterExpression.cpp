@@ -419,14 +419,14 @@ std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
 	}
 }
 
-static String ConvertString(const ValueType& value)
+static std::string ConvertString(const ValueType& value)
 {
 	if (const auto strVal = std::get_if<std::string>(&value))
-		return ucr::toTString(*strVal);
-	return ucr::toTString(ToStringValue(value));
+		return *strVal;
+	return ToStringValue(value);
 }
 
-String FilterExpression::TransformLine(const FilterEvalContext& ectxt)
+std::string FilterExpression::TransformLine(const FilterEvalContext& ectxt)
 {
 	try
 	{
@@ -440,7 +440,7 @@ String FilterExpression::TransformLine(const FilterEvalContext& ectxt)
 		errorMessage = e.message();
 		if (logger)
 			logger(0, "FilterExpression evaluation error: " + errorMessage);
-		return String();
+		return {};
 	}
 	catch (const std::exception& e)
 	{
@@ -449,7 +449,7 @@ String FilterExpression::TransformLine(const FilterEvalContext& ectxt)
 		errorMessage = e.what();
 		if (logger)
 			logger(0, "FilterExpression evaluation error: " + errorMessage);
-		return String();
+		return {};
 	}
 }
 
