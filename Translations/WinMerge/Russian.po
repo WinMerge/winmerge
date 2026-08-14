@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-07-28 00:00+0000\n"
+"PO-Revision-Date: 2026-08-14 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -5060,7 +5060,7 @@ msgstr "Сравнивать изображения в папках сравне
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3358
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "Предпочтительный декодер WIC"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3359
@@ -8006,7 +8006,7 @@ msgstr "2-й и 3-й"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5636
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "(Ctrl+Щелчок для добавления в конвейер)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5641
@@ -8918,7 +8918,7 @@ msgstr "Функции конвертации текста с помощью И�
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
 msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Конвертер текста (API, совместимый с OpenAI).\r\nИспользование: AIConvertText ЗАПРОС"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -9148,15 +9148,15 @@ msgstr "Введите запрос"
 #: Strings.rc:326
 #, c-format
 msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
-msgstr ""
+msgstr "Введите ключ API.\r\n- Может потребоваться регистрация у выбранного поставщика (может взиматься плата).\r\n- Ключ хранится в переменной окружения %1."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "Имя переменной окружения для ключа API"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "Ключ API"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -9172,8 +9172,8 @@ msgstr "Модель"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "Изменен ключ API. Для применения изменений перезапустите приложение."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "Поставщик"
