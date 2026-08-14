@@ -1192,7 +1192,7 @@ qué grupo de captura se debe extraer (contando a partir de 0).  El grupo 0
 (por defecto) devuelve toda la coincidencia. Los grupos 1, 2, etc.,
 devuelven los grupos de captura correspondientes definidos por los
 paréntesis del patrón.  El parámetro opcional
-<replaceable>desplazamiento<replaceable> especifica qué coincidencia del
+<replaceable>desplazamiento</replaceable> especifica qué coincidencia del
 patrón se debe capturar (contando a partir de 0).  El desplazamiento 0 (por
 defecto) devuelve la primera coincidencia.  El desplazamiento 1 devuelve la
 segunda y así sucesivamente.  Esto resulta útil para extraer la enésima
@@ -2723,8 +2723,8 @@ precio supera el precio medio.  Ejemplo con condición:
 <replaceable>condición</replaceable>)</term>
             <listitem><para>Devuelve el valor máximo de entre todos los resultados obtenidos al evaluar
 <replaceable>expr</replaceable> en todas las líneas del archivo.  Si se
-proporciona <replaceable>condición<replaceable>, solo se tienen en cuenta
-las líneas en las que <replaceable>condición<replaceable> se evalúa como
+proporciona <replaceable>condición</replaceable>, solo se tienen en cuenta
+las líneas en las que <replaceable>condición</replaceable> se evalúa como
 verdadero.  Funciona con valores numéricos, cadenas (comparación alfabética)
 y marcas de tiempo.  Devuelve <literal>ninguno</literal> si no se encuentran
 valores. Ejemplo: <literal>le:toInt(Column("Quantity")) =
@@ -2737,8 +2737,8 @@ cantidad más alta.</para></listitem>
 <replaceable>condición</replaceable>)</term>
             <listitem><para>Devuelve el valor mínimo de entre todos los resultados obtenidos al evaluar
 <replaceable>expr</replaceable> para todas las líneas del archivo.  Si se
-proporciona <replaceable>condición<replaceable>, solo se tienen en cuenta
-las líneas en las que <replaceable>condición<replaceable> se evalúa como
+proporciona <replaceable>condición</replaceable>, solo se tienen en cuenta
+las líneas en las que <replaceable>condición</replaceable> se evalúa como
 verdadero.  Funciona con valores numéricos, cadenas (comparación alfabética)
 y marcas de tiempo.  Devuelve <literal>ninguno</literal> si no se encuentran
 valores.  Ejemplo: <literal>le:Column("Status") =

@@ -115,7 +115,6 @@ END
 
 IDR_LOGO                IMAGE                   "res\\logo.jpg"
 IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
-IDR_TOOLBAR_ENABLED_PNG IMAGE                   "res\\ToolbarEnabled.png"
 IDR_TOOLBAR_ENABLED32_PNG IMAGE                 "res\\ToolbarEnabled32.png"
 
 

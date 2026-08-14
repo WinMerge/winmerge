@@ -668,6 +668,7 @@ void CImgMergeFrame::LoadOptions()
 	m_pImgMergeWindow->SetVectorImageZoomRatio(GetOptionsMgr()->GetInt(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO) / 1000.0f);
 	m_pImgMergeWindow->SetBlinkInterval(GetOptionsMgr()->GetInt(OPT_CMP_IMG_BLINKINTERVAL));
 	m_pImgMergeWindow->SetOverlayAnimationInterval(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL));
+	m_pImgMergeWindow->SetPreferWICDecoder(GetOptionsMgr()->GetBool(OPT_CMP_IMG_PREFER_WIC_DECODER));
 }
 
 void CImgMergeFrame::SaveOptions()
@@ -1054,7 +1055,7 @@ void CImgMergeFrame::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		infoUnpacker.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(&infoUnpacker, nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_IMAGE : -ID_MERGE_COMPARE_IMAGE;
 	}
 

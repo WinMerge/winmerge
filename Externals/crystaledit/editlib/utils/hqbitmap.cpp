@@ -9,12 +9,40 @@
 #include "hqbitmap.h"
 #include <atlimage.h>
 #include <vector>
+#include <memory>
 
-bool LoadPngResourceAndResize(HINSTANCE hInstance, int nIDResource, int nNewWidth, int nNewHeight, HBITMAP* phBitmap, HBITMAP* phGrayscaleBitmap)
+static HBITMAP CreateHBITMAPFromPARGB(const BYTE* pPixels, int width, int height, int stride)
 {
-	*phBitmap = nullptr;
-	if (phGrayscaleBitmap)
-		*phGrayscaleBitmap = nullptr;
+	BITMAPINFO bmi = {};
+	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmi.bmiHeader.biWidth = width;
+	bmi.bmiHeader.biHeight = -height; // top-down
+	bmi.bmiHeader.biPlanes = 1;
+	bmi.bmiHeader.biBitCount = 32;
+	bmi.bmiHeader.biCompression = BI_RGB;
+
+	void* pBits = nullptr;
+	HBITMAP hBitmap = CreateDIBSection(nullptr, &bmi, DIB_RGB_COLORS, &pBits, nullptr, 0);
+	if (hBitmap == nullptr)
+		return nullptr;
+
+	if (pBits == nullptr)
+	{
+		DeleteObject(hBitmap);
+		return nullptr;
+	}
+
+	BYTE* dst = reinterpret_cast<BYTE*>(pBits);
+	for (int y = 0; y < height; ++y)
+		memcpy(dst + y * width * 4, pPixels + y * stride, static_cast<size_t>(width) * 4);
+
+	return hBitmap;
+}
+
+bool LoadPngResourceToImageList(HINSTANCE hInstance, int nIDResource, int nIconCount, int nNewWidth, int nNewHeight, CImageList& imageList, CImageList* pGrayscaleImageList)
+{
+	if (nIconCount <= 0 || nNewWidth <= 0 || nNewHeight <= 0)
+		return false;
 	HRSRC resource = FindResource(hInstance, MAKEINTRESOURCE(nIDResource), _T("IMAGE"));
 	if (resource == nullptr)
 		return false;
@@ -28,57 +56,92 @@ bool LoadPngResourceAndResize(HINSTANCE hInstance, int nIDResource, int nNewWidt
 	if (stream == nullptr)
 		return false;
 	Gdiplus::Bitmap bitmapSrc(stream);
+	stream->Release();
 	if (bitmapSrc.GetLastStatus() != Gdiplus::Ok)
-	{
-		stream->Release();
 		return false;
-	}
 
-	const int resizedStride = nNewWidth * 4;
+	const int nNewTotalWidth = nNewWidth * nIconCount;
+	const int srcHeight = static_cast<int>(bitmapSrc.GetHeight());
+	const int srcWidth = static_cast<int>(bitmapSrc.GetWidth());
+	const int srcWidthPerIcon = srcWidth / nIconCount;
+	const int resizedStride = nNewTotalWidth * 4;
 	std::vector<BYTE> resizedBuf(static_cast<size_t>(resizedStride) * nNewHeight);
-	Gdiplus::Bitmap bitmapDst(nNewWidth, nNewHeight, resizedStride, PixelFormat32bppPARGB, resizedBuf.data());
+	std::vector<BYTE> grayscaleBuf;
+	if (pGrayscaleImageList)
+		grayscaleBuf.resize(resizedBuf.size());
+	Gdiplus::Bitmap bitmapDst(nNewTotalWidth, nNewHeight, resizedStride, PixelFormat32bppARGB, resizedBuf.data());
 	Gdiplus::Graphics dcDst(&bitmapDst);
 	dcDst.SetInterpolationMode(Gdiplus::InterpolationMode::InterpolationModeHighQualityBicubic);
-	dcDst.DrawImage(&bitmapSrc, 0, 0, nNewWidth, nNewHeight);
+	dcDst.SetPixelOffsetMode(Gdiplus::PixelOffsetModeHighQuality);
+	dcDst.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-	if (bitmapDst.GetHBITMAP(Gdiplus::Color::Transparent, phBitmap) != Gdiplus::Ok)
+	for (int i = 0; i < nIconCount; ++i)
 	{
-		stream->Release();
-		return false;
+		std::unique_ptr<Gdiplus::Bitmap> iconSrc(
+			bitmapSrc.Clone(i * srcWidthPerIcon, 0, srcWidthPerIcon, srcHeight, PixelFormat32bppARGB));
+		if (!iconSrc)
+			return false;
+		dcDst.DrawImage(iconSrc.get(), Gdiplus::Rect(i * nNewWidth, 0, nNewWidth, nNewHeight),
+			0, 0, srcWidthPerIcon, srcHeight, Gdiplus::UnitPixel);
 	}
 
-	if (phGrayscaleBitmap == nullptr)
-	{
-		stream->Release();
-		return true;
-	}
-
-	std::vector<BYTE> grayscaleBuf = resizedBuf;
 	for (int y = 0; y < nNewHeight; ++y)
 	{
-		BYTE* pRow = grayscaleBuf.data() + y * resizedStride;
-		for (int x = 0; x < nNewWidth; ++x)
+		BYTE* row = resizedBuf.data() + y * resizedStride;
+		BYTE* grow = pGrayscaleImageList ? grayscaleBuf.data() + y * resizedStride : nullptr;
+		for (int x = 0; x < nNewTotalWidth; ++x)
 		{
-			BYTE* pPixel = pRow + x * 4;
-			const BYTE b = pPixel[0];
-			const BYTE g = pPixel[1];
-			const BYTE r = pPixel[2];
-			const BYTE gray = static_cast<BYTE>(
-				(static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
-					+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
-					+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
-			pPixel[0] = pPixel[1] = pPixel[2] = gray;
+			BYTE* p = row + x * 4; // B, G, R, A (straight)
+			const BYTE a = p[3];
+			const BYTE pb = static_cast<BYTE>(p[0] * a / 255);
+			const BYTE pg = static_cast<BYTE>(p[1] * a / 255);
+			const BYTE pr = static_cast<BYTE>(p[2] * a / 255);
+			p[0] = pb; p[1] = pg; p[2] = pr;
+
+			if (grow)
+			{
+				BYTE* gp = grow + x * 4;
+				const BYTE gray = static_cast<BYTE>(
+					(static_cast<int>(0.114 * 256) * (((255 - pb) >> 1) + pb)
+						+ static_cast<int>(0.587 * 256) * (((255 - pg) >> 1) + pg)
+						+ static_cast<int>(0.299 * 256) * (((255 - pr) >> 1) + pr)) >> 8);
+				gp[0] = gp[1] = gp[2] = gray;
+				gp[3] = a;
+			}
 		}
 	}
 
-	Gdiplus::Bitmap grayscaleBitmap(nNewWidth, nNewHeight, resizedStride, PixelFormat32bppPARGB, grayscaleBuf.data());
-	if (grayscaleBitmap.GetHBITMAP(Gdiplus::Color::Transparent, phGrayscaleBitmap) != Gdiplus::Ok)
+	CBitmap bitmap;
+	bitmap.Attach(CreateHBITMAPFromPARGB(resizedBuf.data(), nNewTotalWidth, nNewHeight, resizedStride));
+	if ((HBITMAP)bitmap == nullptr)
+		return false;
+
+	if (!imageList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nIconCount, 0))
+		return false;
+	if (imageList.Add(&bitmap, nullptr) == -1)
 	{
-		DeleteObject(*phBitmap);
-		*phBitmap = nullptr;
-		stream->Release();
+		imageList.DeleteImageList();
 		return false;
 	}
-	stream->Release();
+
+	if (pGrayscaleImageList == nullptr)
+		return true;
+
+	CBitmap grayscaleBitmap;
+	grayscaleBitmap.Attach(CreateHBITMAPFromPARGB(grayscaleBuf.data(), nNewTotalWidth, nNewHeight, resizedStride));
+	if ((HBITMAP)grayscaleBitmap == nullptr)
+	{
+		imageList.DeleteImageList();
+		return false;
+	}
+
+	if (!pGrayscaleImageList->Create(nNewWidth, nNewHeight, ILC_COLOR32, nIconCount, 0) ||
+		pGrayscaleImageList->Add(&grayscaleBitmap, nullptr) == -1)
+	{
+		imageList.DeleteImageList();
+		pGrayscaleImageList->DeleteImageList();
+		return false;
+	}
+
 	return true;
 }

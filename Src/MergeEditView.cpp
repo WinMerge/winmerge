@@ -183,11 +183,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI(ID_ALL_RIGHT, OnUpdateAllRight)
 	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
 	ON_UPDATE_COMMAND_UI(ID_AUTO_MERGE, OnUpdateAutoMerge)
-	ON_COMMAND(ID_MERGE_CHOOSE_THIS, OnMergeChooseThis)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_CHOOSE_THIS, OnUpdateMergeChooseThis)
-	ON_COMMAND(ID_MERGE_COPY_LINES_TO_RESULT, OnMergeCopyLinesToResult)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_COPY_LINES_TO_RESULT, OnUpdateMergeCopyLinesToResult)
-	ON_WM_RBUTTONDOWN()
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_LINES_L2R, OnLinesL2r)
@@ -1113,7 +1108,6 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 
 	// notify either side, as it will notify the other one
 	pd->ForEachView ([&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
-	pd->OnResultPaneCurrentDiffChanged(nDiff);
 }
 
 void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()
@@ -1494,72 +1488,8 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(enabled);
 }
 
-/**
- * @brief Find the next/previous difference that still needs a decision in
- * the merge result pane (kdiff3's "unsolved conflict" navigation).
- * @return Diff index, or -1 when there is none in that direction.
- */
-int CMergeEditView::FindPendingResultDiff(bool bNext)
-{
-	CMergeDoc* pd = GetDocument();
-	const int nDiffCount = pd->m_diffList.GetSize();
-	const int nCurDiff = pd->GetCurrentDiff();
-	int nBegin;
-	if (nCurDiff != -1)
-		nBegin = bNext ? nCurDiff + 1 : nCurDiff - 1;
-	else
-	{
-		// No selected difference: anchor the scan on the cursor line
-		// (the difference at the cursor counts as "next"/"previous")
-		const int nLine = GetCursorPos().y;
-		nBegin = bNext ? nDiffCount : -1;
-		if (bNext)
-		{
-			for (int i = 0; i < nDiffCount; ++i)
-				if (pd->m_diffList.DiffRangeAt(i)->dend >= nLine)
-				{
-					nBegin = i;
-					break;
-				}
-		}
-		else
-		{
-			for (int i = nDiffCount - 1; i >= 0; --i)
-				if (pd->m_diffList.DiffRangeAt(i)->dbegin <= nLine)
-				{
-					nBegin = i;
-					break;
-				}
-		}
-	}
-	const int nStep = bNext ? 1 : -1;
-	for (int i = nBegin; i >= 0 && i < nDiffCount; i += nStep)
-	{
-		if (pd->m_diffList.IsDiffSignificant(i) && !IsDiffFiltered(i) &&
-			pd->IsResultDiffPending(i))
-			return i;
-	}
-	return -1;
-}
-
 void CMergeEditView::OnNextConflict()
 {
-	// While merging, "next conflict" means the next difference that still
-	// needs a decision, skipping the ones already resolved
-	if (GetDocument()->IsMergeResultPaneActive())
-	{
-		const int nDiff = FindPendingResultDiff(true);
-		if (nDiff >= 0)
-		{
-			SelectDiff(nDiff, true, false);
-			return;
-		}
-		// Nothing linked and pending. When unresolved segments remain the
-		// segment <-> diff links were severed by a rescan: fall back to
-		// plain conflict navigation instead of leaving the command dead
-		if (GetDocument()->GetResultUnresolvedCount() == 0)
-			return;
-	}
 	OnNext3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
 }
 
@@ -1568,36 +1498,11 @@ void CMergeEditView::OnNextConflict()
  */
 void CMergeEditView::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
-	if (GetDocument()->IsMergeResultPaneActive())
-	{
-		if (FindPendingResultDiff(true) >= 0)
-		{
-			pCmdUI->Enable(TRUE);
-			return;
-		}
-		if (GetDocument()->GetResultUnresolvedCount() == 0)
-		{
-			pCmdUI->Enable(FALSE);
-			return;
-		}
-		// severed links: use the plain conflict enablement below
-	}
 	OnUpdateNext3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
 }
 
 void CMergeEditView::OnPrevConflict()
 {
-	if (GetDocument()->IsMergeResultPaneActive())
-	{
-		const int nDiff = FindPendingResultDiff(false);
-		if (nDiff >= 0)
-		{
-			SelectDiff(nDiff, true, false);
-			return;
-		}
-		if (GetDocument()->GetResultUnresolvedCount() == 0)
-			return;
-	}
 	OnPrev3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
 }
 
@@ -1606,19 +1511,6 @@ void CMergeEditView::OnPrevConflict()
  */
 void CMergeEditView::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
-	if (GetDocument()->IsMergeResultPaneActive())
-	{
-		if (FindPendingResultDiff(false) >= 0)
-		{
-			pCmdUI->Enable(TRUE);
-			return;
-		}
-		if (GetDocument()->GetResultUnresolvedCount() == 0)
-		{
-			pCmdUI->Enable(FALSE);
-			return;
-		}
-	}
 	OnUpdatePrev3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
 }
 
@@ -2427,16 +2319,6 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnAutoMerge()
 {
-	// With a merge result pane available, Auto Merge switches to the
-	// 4-pane merge view and auto-merges into the result pane, leaving
-	// the compared files untouched
-	if (GetDocument()->HasMergeResultPane())
-	{
-		CWaitCursor waitstatus;
-		GetDocument()->StartMergeSession(true);
-		return;
-	}
-
 	// Check current pane is not readonly
 	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || !QueryEditable())
 		return;
@@ -2451,133 +2333,10 @@ void CMergeEditView::OnAutoMerge()
  */
 void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 {
-	if (GetDocument()->HasMergeResultPane())
-	{
-		pCmdUI->Enable(TRUE);
-		return;
-	}
-	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 &&
-		!GetDocument()->IsModified() &&
-		!GetDocument()->GetAutoMerged() &&
+	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 && 
+		!GetDocument()->IsModified() && 
+		!GetDocument()->GetAutoMerged() && 
 		QueryEditable());
-}
-
-/**
- * @brief Make this pane the active one, so that commands shown in its
- * context menu act on it.
- *
- * Without this, right-clicking a pane while another view (for example the
- * merge result pane) is active would leave that other view active, and
- * the pane commands in the menu would be disabled.
- */
-void CMergeEditView::OnRButtonDown(UINT nFlags, CPoint point)
-{
-	if (!m_bDetailView && GetParentFrame() != nullptr &&
-		GetParentFrame()->GetActiveView() != this)
-		SetActivePane();
-	// While merging, put the caret where the user clicked so the menu acts
-	// on that difference. An existing selection is kept: the merge commands
-	// work on the selected lines. Outside merging the caret is left alone,
-	// keeping the behavior of a normal compare unchanged.
-	if (GetDocument()->IsMergeResultPaneActive() && !IsSelection())
-	{
-		const CEPoint pt = ClientToText(point);
-		SetCursorPos(pt);
-		SetAnchor(pt);
-		SetSelection(pt, pt);
-	}
-	__super::OnRButtonDown(nFlags, point);
-}
-
-/**
- * @brief Difference the merge commands in this pane's context menu act on.
- *
- * It is the difference the user pointed at: the first one in the selection,
- * or else the one under the caret. There is deliberately no fallback to the
- * document's current difference, which may be somewhere else entirely.
- */
-int CMergeEditView::GetMergeTargetDiff()
-{
-	int firstDiff, lastDiff;
-	GetSelectedDiffs(firstDiff, lastDiff);
-	if (firstDiff != -1 && lastDiff != -1)
-		return firstDiff;
-	return GetDocument()->m_diffList.LineToDiff(GetCursorPos().y);
-}
-
-/**
- * @brief Use this pane's content of the difference under the cursor in
- * the merge result (toggles, like the Choose Left/Middle/Right commands).
- */
-void CMergeEditView::OnMergeChooseThis()
-{
-	CMergeDoc* pDoc = GetDocument();
-	const int nDiff = GetMergeTargetDiff();
-	if (nDiff >= 0)
-		pDoc->ResultToggleSource(nDiff, m_nThisPane);
-}
-
-/**
- * @brief Name of this pane as the merge commands refer to it.
- */
-String CMergeEditView::GetPaneNameForMergeMenu() const
-{
-	if (GetDocument()->m_nBuffers < 3)
-		return (m_nThisPane == 0) ? _("Left") : _("Right");
-	return (m_nThisPane == 0) ? _("Left") :
-		(m_nThisPane == 1) ? _("Middle") : _("Right");
-}
-
-void CMergeEditView::OnUpdateMergeChooseThis(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pDoc = GetDocument();
-	const int nDiff = GetMergeTargetDiff();
-	const MergeResultSegment* pSegment =
-		(pDoc->IsMergeResultPaneActive() && nDiff >= 0) ? pDoc->GetResultSegmentByDiff(nDiff) : nullptr;
-	pCmdUI->Enable(pSegment != nullptr);
-	pCmdUI->SetCheck(pSegment != nullptr &&
-		(pSegment->state == ResultSegmentState::Auto ||
-		 pSegment->state == ResultSegmentState::Chosen) &&
-		std::find(pSegment->srcPanes.begin(), pSegment->srcPanes.end(), m_nThisPane) != pSegment->srcPanes.end());
-	// Name the pane, so it is clear which side is chosen
-	pCmdUI->SetText(strutils::format_string1(
-		_("Choose %1 for This Difference"), GetPaneNameForMergeMenu()).c_str());
-}
-
-/**
- * @brief Use this pane's content for every difference touched by the
- * selection in the merge result.
- */
-void CMergeEditView::OnMergeCopyLinesToResult()
-{
-	CMergeDoc* pDoc = GetDocument();
-	int firstDiff, lastDiff;
-	GetSelectedDiffs(firstDiff, lastDiff);
-	if (firstDiff == -1 || lastDiff == -1)
-		return;
-	bool bGroupWithPrevious = false;
-	for (int nDiff = firstDiff; nDiff <= lastDiff; ++nDiff)
-	{
-		if (pDoc->GetResultSegmentByDiff(nDiff) == nullptr)
-			continue;
-		pDoc->ResultChooseSource(nDiff, m_nThisPane, bGroupWithPrevious);
-		bGroupWithPrevious = true;
-	}
-}
-
-void CMergeEditView::OnUpdateMergeCopyLinesToResult(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pDoc = GetDocument();
-	if (!pDoc->IsMergeResultPaneActive())
-	{
-		pCmdUI->Enable(FALSE);
-		return;
-	}
-	int firstDiff, lastDiff;
-	GetSelectedDiffs(firstDiff, lastDiff);
-	pCmdUI->Enable(firstDiff != -1 && lastDiff != -1);
-	pCmdUI->SetText(strutils::format_string1(
-		_("Choose %1 for Selected Differences"), GetPaneNameForMergeMenu()).c_str());
 }
 
 /**
@@ -3162,21 +2921,6 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		text = text.Left(text.Find(_T("\t")));
 		menu.SetMenuText(id, text, MF_BYCOMMAND);
 	};
-
-	// Merge result commands only make sense while merging
-	// (their text names the pane and is set in the update handlers)
-	if (!GetDocument()->IsMergeResultPaneActive())
-	{
-		// Remove within the popup: removing by position from the menu
-		// itself would take out the whole popup
-		if (BCMenu* pMergeSub = static_cast<BCMenu*>(menu.GetSubMenu(0)))
-		{
-			pMergeSub->RemoveMenu(ID_MERGE_CHOOSE_THIS, MF_BYCOMMAND);
-			pMergeSub->RemoveMenu(ID_MERGE_COPY_LINES_TO_RESULT, MF_BYCOMMAND);
-			if ((pMergeSub->GetMenuState(0, MF_BYPOSITION) & MF_SEPARATOR) != 0)
-				pMergeSub->RemoveMenu(0, MF_BYPOSITION); // separator they left behind
-		}
-	}
 
 	// Remove copying item copying from active side
 	if (m_nThisPane == 0) // left?
@@ -3779,7 +3523,7 @@ void CMergeEditView::OnScripts(UINT nID)
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
 	EditorScriptInfo scriptInfo(
-		PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
+		PluginMenu::GetPluginPipelineByMenuId(nullptr, nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
 	bool bChanged = false;
 	scriptInfo.TransformText(m_nThisPane, text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);

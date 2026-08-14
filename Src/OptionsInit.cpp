@@ -190,6 +190,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_BLINKINTERVAL, 800, 200, 8000);
 	pOptions->InitOption(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL, 1000, 200, 8000);
 	pOptions->InitOption(OPT_CMP_IMG_OCR_RESULT_TYPE, 0, 0, 2);
+	pOptions->InitOption(OPT_CMP_IMG_PREFER_WIC_DECODER, false);
 
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_TYPE, 0, 0, 1);
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_PERPANE, true);

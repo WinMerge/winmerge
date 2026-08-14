@@ -31,6 +31,7 @@ private:
 	int compare_files(const String& file1, const String& file2, const IAbortable *piAbortable) const;
 	mutable IImgMergeWindow *m_pImgMergeWindow;
 	double m_colorDistanceThreshold;
+	bool m_preferWICDecoder = false;
 	struct HINSTANCE__* m_hModule;
 	CDiffContext& m_ctxt;
 };

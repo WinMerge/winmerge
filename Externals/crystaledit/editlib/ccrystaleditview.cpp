@@ -117,6 +117,7 @@ public :
     virtual DROPEFFECT OnDragScroll (CWnd * pWnd, DWORD dwKeyState, CPoint point);
 
     IDropTarget * m_pAlternateDropTarget;
+    bool m_bRegistered = false;
   };
 
 
@@ -1403,11 +1404,15 @@ OnTimer (UINT_PTR nIDEvent)
   if (nIDEvent == CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID)
     {
       KillTimer (CRYSTAL_REGISTER_DROP_TARGET_TIMER_ID);
-      if (m_pDropTarget && !m_pDropTarget->Register (this))
+      if (m_pDropTarget && !m_pDropTarget->m_bRegistered)
         {
-          TRACE0 ("Warning: Unable to register drop target for ccrystaleditview.\n");
-          delete m_pDropTarget;
-          m_pDropTarget = nullptr;
+          m_pDropTarget->m_bRegistered = true;
+          if (!m_pDropTarget->Register(this))
+            {
+              TRACE0("Warning: Unable to register drop target for ccrystaleditview.\n");
+              delete m_pDropTarget;
+              m_pDropTarget = nullptr;
+            }
         }
     }
   CCrystalTextView::OnTimer (nIDEvent);

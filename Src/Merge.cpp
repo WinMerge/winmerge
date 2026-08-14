@@ -93,9 +93,6 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND_EX_RANGE(ID_FILE_PROJECT_MRU_FIRST, ID_FILE_PROJECT_MRU_LAST, OnOpenRecentFile)
 	ON_UPDATE_COMMAND_UI(ID_FILE_PROJECT_MRU_FIRST, CWinApp::OnUpdateRecentFileMenu)
-	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
-	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 	//}}AFX_MSG_MAP
 	// Standard file based document commands
@@ -876,7 +873,7 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 	if (!pPopup)
 		return false;
 	String filteredFilenames = strutils::join(cmdInfo.m_Files.begin(), cmdInfo.m_Files.end(), _T("|"));
-	PluginMenu::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames,
+	PluginMenu::AppendPluginMenus(pPopup, nullptr, filteredFilenames, FileTransform::UnpackerEventNames,
 		PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 
 	CPoint point;
@@ -915,7 +912,7 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 		}
 		else if(nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
 		{
-			cmdInfo.m_sUnpacker = PluginMenu::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
+			cmdInfo.m_sUnpacker = PluginMenu::GetPluginPipelineByMenuId(nullptr, nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
 		}
 		else
 		{
@@ -1064,7 +1061,6 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			pOpenTextFileParams->m_char = cmdInfo.m_nCharIndex;
 			pOpenTextFileParams->m_fileExt = cmdInfo.m_sFileExt;
 			pOpenTextFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
-			pOpenTextFileParams->m_bSetFocusToOutputPane = cmdInfo.m_bSetFocusToOutputPane;
 		}
 		if (auto* pOpenTableFileParams = dynamic_cast<CMainFrame::OpenTableFileParams*>(pOpenParams.get()))
 		{
@@ -1706,44 +1702,12 @@ bool CMergeApp::GetMergingMode() const
 }
 
 /**
- * @brief Set doc to Merging/Editing mode
+ * @brief Set Merging/Editing mode
  */
 void CMergeApp::SetMergingMode(bool bMergingMode)
 {
 	m_bMergingMode = bMergingMode;
 	GetOptionsMgr()->SaveOption(OPT_MERGE_MODE, m_bMergingMode);
-}
-
-/**
- * @brief Switch Merging/Editing mode and update
- * buffer read-only states accordingly
- */
-void CMergeApp::OnMergingMode()
-{
-	bool bMergingMode = GetMergingMode();
-
-	if (!bMergingMode)
-		I18n::MessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_MODE);
-	SetMergingMode(!bMergingMode);
-}
-
-/**
- * @brief Update Menuitem for Merging Mode
- */
-void CMergeApp::OnUpdateMergingMode(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(GetMergingMode());
-}
-
-/**
- * @brief Update MergingMode UI in statusbar
- */
-void CMergeApp::OnUpdateMergingStatus(CCmdUI *pCmdUI)
-{
-	String text = I18n::LoadString(IDS_MERGEMODE_MERGING);
-	pCmdUI->SetText(text.c_str());
-	pCmdUI->Enable(GetMergingMode());
 }
 
 UINT CMergeApp::GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault)

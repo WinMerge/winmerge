@@ -7,5 +7,6 @@
 #pragma once
 
 #include <atlimage.h>
+class CImageList;
 
-bool LoadPngResourceAndResize(HINSTANCE hInstance, int nIDResource, int nNewWidth, int nNewHeight, HBITMAP* phBitmap, HBITMAP* phGrayscaleBitmap);
+bool LoadPngResourceToImageList(HINSTANCE hInstance, int nIDResource, int nIconCount, int nNewWidth, int nNewHeight, CImageList& imageList, CImageList* pGrayscaleImageList);

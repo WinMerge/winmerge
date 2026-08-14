@@ -34,10 +34,19 @@ var pluginArguments = "\"\"";
 var variables = new Array();
 var mergeApp;
 
+function getProviderConfig(providerName) {
+  var configs = {
+    "OpenAI": { "baseUrl": "https://api.openai.com/v1", "defaultModel": "gpt-3.5-turbo", "apiKeyEnvName": "OPENAI_API_KEY" },
+    "MiniMax": { "baseUrl": "https://api.minimax.io/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY" },
+    "MiniMax (China)": { "baseUrl": "https://api.minimaxi.com/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY" }
+  };
+  return configs[providerName] || configs["OpenAI"];
+}
+
 function get_PluginEvent() { return "EDITOR_SCRIPT"; }
 function get_PluginDescription() { return "AI-assisted text conversion"; }
 function get_PluginFileFilters() { return ".*"; }
-function get_PluginExtendedProperties() { return "GenerateUnpacker;AIConvertText.MenuCaption=Convert Text with AI...;AIConvertText.Description=Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT;AIConvertText.ArgumentsRequired;"; }
+function get_PluginExtendedProperties() { return "GenerateUnpacker;AIConvertText.MenuCaption=Convert Text with AI...;AIConvertText.Description=Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT;AIConvertText.ArgumentsRequired;"; }
 function get_PluginArguments() { return pluginArguments; }
 function put_PluginArguments(NewValue) { pluginArguments = NewValue; }
 function get_PluginVariables() { return variables.join("\0"); }
@@ -148,20 +157,20 @@ function setEnvVal(name, value) {
   wsh.Exec("setx " + name + " \"" + value + "\"");
 }
 
-function getOpenAIKey() {
+function getApiKey() {
   var keyEnvName = regRead(REGKEY_PATH + "OpenAI.ApiKeyEnvName", "OPENAI_API_KEY");
-  var openAIKey = wsh.ExpandEnvironmentStrings("%" + keyEnvName + "%");
-  if (openAIKey === "" || openAIKey === "%" + keyEnvName + "%") {
-    try { openAIKey = wsh.RegRead("HKEY_CURRENT_USER\\Environment\\" + keyEnvName); } catch (e) { openAIKey = ""; }
-    if (openAIKey === "") {
-      var msg = mergeApp.Translate("Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1.");
+  var apiKey = wsh.ExpandEnvironmentStrings("%" + keyEnvName + "%");
+  if (apiKey === "" || apiKey === "%" + keyEnvName + "%") {
+    try { apiKey = wsh.RegRead("HKEY_CURRENT_USER\\Environment\\" + keyEnvName); } catch (e) { apiKey = ""; }
+    if (apiKey === "") {
+      var msg = mergeApp.Translate("Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1.");
       msg = msg.replace("%1", keyEnvName);
-      openAIKey = mergeApp.InputBox(msg, "AIConvertText plugin", "");
-      if (openAIKey !== "")
-        setEnvVal(keyEnvName, openAIKey);
+      apiKey = mergeApp.InputBox(msg, "AIConvertText plugin", "");
+      if (apiKey !== "")
+        setEnvVal(keyEnvName, apiKey);
     }
   }
-  return openAIKey;
+  return apiKey;
 }
 
 function getTrailingNL(text) {
@@ -187,7 +196,7 @@ function getResp(xh) {
 }
 
 function AIConvertText(Text) {
-  var openAIKey = getOpenAIKey();
+  var apiKey = getApiKey();
   var cmd;
   if (IsFirstArgumentEmpty()) {
     cmd = regRead(REGKEY_PATH + "AIConvertText.Prompt", "");
@@ -200,15 +209,17 @@ function AIConvertText(Text) {
   }
   if (cmd === "")
     throw new Error(30001, "Canceled");
-  var openAIUrl = "https://api.openai.com/v1/chat/completions";
+  var providerName = regRead(REGKEY_PATH + "OpenAI.Provider", "OpenAI");
+  var provider = getProviderConfig(providerName);
+  var apiUrl = provider.baseUrl + "/chat/completions";
   var temperature = regRead(REGKEY_PATH + "OpenAI.Temperature", "1.00");
   var maxTokens = regRead(REGKEY_PATH + "OpenAI.MaxTokens", 4096);
-  var model = regRead(REGKEY_PATH + "OpenAI.Model", "gpt-3.5-turbo");
+  var model = regRead(REGKEY_PATH + "OpenAI.Model", provider.defaultModel);
   var body = '{"model": "' + model + '", "temperature": ' + Number(temperature) + ', "messages": [{"role": "system", "content": "' + quote(cmd) + '"}, {"role": "user", "content": "' + quote(Text) + '"}]}';
   var xh = new ActiveXObject("Msxml2.ServerXMLHTTP");
-  xh.open("POST", openAIUrl, false);
+  xh.open("POST", apiUrl, false);
   xh.setRequestHeader("Content-Type", "application/json");
-  xh.setRequestHeader("Authorization", "Bearer " + openAIKey);
+  xh.setRequestHeader("Authorization", "Bearer " + apiKey);
   xh.send(body);
   return syncTrailingNL(Text, getContentOrThrowError(getResp(xh)));
 }
@@ -244,11 +255,14 @@ function run(sh, cmd) {
 }
 
 function exportSettingsToXMLFile(filepath) {
+  var providerName = regRead(REGKEY_PATH + "OpenAI.Provider", "OpenAI");
+  var provider = getProviderConfig(providerName);
   var key_defvalues = {
     "OpenAI.ApiKeyEnvName": "OPENAI_API_KEY",
+    "OpenAI.Provider": "OpenAI",
     "OpenAI.Temperature": "1.00",
     "OpenAI.MaxTokens": 4096,
-    "OpenAI.Model": "gpt-3.5-turbo"
+    "OpenAI.Model": provider.defaultModel
   };
   var doc = new ActiveXObject("MSXML2.DOMDocument");
   var ts = fso.OpenTextFile(filepath, 2, true, -1);
@@ -308,7 +322,7 @@ var xmlFilePath;
 var settings = {};
 var wsh = new ActiveXObject("WScript.Shell");
 var fso = new ActiveXObject("Scripting.FileSystemObject");
-var openAIKey = "";
+var apiKey = "";
 
 function regRead(key, defaultValue) {
   return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
@@ -356,20 +370,16 @@ function saveSettingsToXMLFile(filepath, settings) {
   ts.Close();
 }
 
-function getOpenAIKey(keyEnvName) {
-  var openAIKey = wsh.ExpandEnvironmentStrings("%" + keyEnvName + "%");
-  if (openAIKey === "" || openAIKey === "%" + keyEnvName + "%") {
+function getApiKey(keyEnvName) {
+  var apiKey = wsh.ExpandEnvironmentStrings("%" + keyEnvName + "%");
+  if (apiKey === "" || apiKey === "%" + keyEnvName + "%") {
     try {
-      openAIKey = wsh.RegRead("HKEY_CURRENT_USER\\Environment\\" + keyEnvName);
+      apiKey = wsh.RegRead("HKEY_CURRENT_USER\\Environment\\" + keyEnvName);
     } catch (e) {
-      openAIKey = "";
+      apiKey = "";
     }
   }
-  return openAIKey;
-}
-
-function run(sh, cmd) {
-  sh.Run(cmd, 1, true);
+  return apiKey;
 }
 
 function onload() {
@@ -381,15 +391,31 @@ function onload() {
   window.resizeTo(w, h);
   window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
+  var provider = regRead(REGKEY_PATH + "OpenAI.Provider", "OpenAI");
+  cboProvider.value = provider;
+  if (cboProvider.selectedIndex < 0) {
+    cboProvider.value = "OpenAI";
+  }
+  var providerOption = cboProvider.options[cboProvider.selectedIndex];
+  var defaultModel = providerOption.getAttribute("defaultmodel");
   var keyEnvName = regRead(REGKEY_PATH + "OpenAI.ApiKeyEnvName", "OPENAI_API_KEY");
-  openAIKey = getOpenAIKey(keyEnvName);
+  apiKey = getApiKey(keyEnvName);
 
   txtApiKeyEnvName.value = keyEnvName;
-  txtApiKey.value = openAIKey;
+  txtApiKey.value = apiKey;
   txtTemperature.value = regRead(REGKEY_PATH + "OpenAI.Temperature", "1.00");
   txtMaxTokens.value = regRead(REGKEY_PATH + "OpenAI.MaxTokens", 4096);
-  cboModel.value = regRead(REGKEY_PATH + "OpenAI.Model", "gpt-3.5-turbo");
+  cboModel.value = regRead(REGKEY_PATH + "OpenAI.Model", defaultModel);
   document.onkeydown = onkeydown;
+}
+
+function cboProvider_onchange() {
+  var providerOption = cboProvider.options[cboProvider.selectedIndex];
+  var provider = getProviderConfig(cboProvider.value);
+  cboModel.value = providerOption.getAttribute("defaultmodel");
+  txtApiKeyEnvName.value = provider.apiKeyEnvName;
+  apiKey = getApiKey(provider.apiKeyEnvName);
+  txtApiKey.value = apiKey;
 }
 
 function onkeydown() {
@@ -399,10 +425,6 @@ function onkeydown() {
   } else if (k == 27/*Escape*/) {
     btnCancel_onclick();
   }
-}
-
-function btnApiKey_onclick() {
-  run(wsh, "cmd /c start \"\" https://platform.openai.com/api-keys");
 }
 
 function btnOk_onclick() {
@@ -430,12 +452,13 @@ function btnOk_onclick() {
     }
   }
   regWrite(REGKEY_PATH + "OpenAI.ApiKeyEnvName", txtApiKeyEnvName.value, "REG_SZ");
+  regWrite(REGKEY_PATH + "OpenAI.Provider", cboProvider.value, "REG_SZ");
   regWrite(REGKEY_PATH + "OpenAI.Temperature", temperature, "REG_SZ");
   regWrite(REGKEY_PATH + "OpenAI.MaxTokens", maxTokens, "REG_DWORD");
   regWrite(REGKEY_PATH + "OpenAI.Model", cboModel.value, "REG_SZ");
-  if (txtApiKey.value !== openAIKey) {
+  if (txtApiKey.value !== apiKey) {
     setEnvVal(txtApiKeyEnvName.value, txtApiKey.value);
-    alert("${OpenAI API key changed. Restart to apply.}");
+    alert("${API key changed. Restart to apply.}");
   }
 
   saveSettingsToXMLFile(xmlFilePath, settings);
@@ -455,13 +478,23 @@ function btnCancel_onclick() {
     <div class="container">
       <ul>
         <li>
-          <label for="txtApiKeyEnvName">${Environment variable name for OpenAI API key}:</label>
+          <label for="cboProvider">${Provider}:</label>
+        </li>
+        <li>
+          <select id="cboProvider" onchange="cboProvider_onchange();">
+            <option value="OpenAI" defaultmodel="gpt-3.5-turbo">OpenAI</option>
+            <option value="MiniMax" defaultmodel="MiniMax-M3">MiniMax</option>
+            <option value="MiniMax (China)" defaultmodel="MiniMax-M3">MiniMax (China)</option>
+          </select>
+        </li>
+        <li>
+          <label for="txtApiKeyEnvName">${Environment variable name for API key}:</label>
         </li>
         <li>
           <input id="txtApiKeyEnvName" type="text" />
         </li>
         <li>
-          <label for="txtApiKey"><a href="https://platform.openai.com/api-keys" onclick="btnApiKey_onclick(); return false;">${OpenAI API key}:</a></label>
+          <label for="txtApiKey">${API key}:</label>
         </li>
         <li>
           <input id="txtApiKey" type="password" />
@@ -482,6 +515,7 @@ function btnCancel_onclick() {
         </li>
         <li>
           <select id="cboModel">
+            <option value="MiniMax-M3">MiniMax-M3</option>
             <option value="gpt-5-mini">gpt-5-mini</option>
             <option value="gpt-5-nano">gpt-5-nano</option>
             <option value="gpt-5">gpt-5</option>

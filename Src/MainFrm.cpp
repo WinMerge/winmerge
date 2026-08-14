@@ -368,6 +368,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnUpdateCompareMethod)
 	// Status bar
+	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_NOTIFY(NM_CLICK, AFX_IDW_STATUS_BAR, OnStatusBarClick)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
@@ -509,8 +512,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE, pointToPixel(225));
-	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE, pointToPixel(285));
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, SBPS_CLICKABLE, pointToPixel(15)); 
 	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
@@ -747,21 +750,17 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				paths.SetPath(i, pMergeDoc->GetPath(i));
 			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
 			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
-			if (topMenuId == ID_NO_PREDIFFER)
-			{
-				UpdatePrediffersMenu(pPopupMenu);
-			}
-			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
+			if (topMenuId == ID_MERGE_COMPARE_TEXT)
 			{
 				CMenu* pMenu = pPopupMenu;
 				// empty the menu
 				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_FOLDER - ID_MERGE_COMPARE_TEXT); --i)
 					pMenu->DeleteMenu(i, MF_BYPOSITION);
 
-				PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames,
+				PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames,
 					PluginMenu::AddAllMenu|PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST);
 			}
-			else if (topMenuId == ID_NO_EDIT_SCRIPTS || topMenuId == ID_NO_EDIT_SCRIPTS_FOR_COPYING)
+			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
 			{
 				CMenu* pMenu = pPopupMenu;
 				ASSERT(pMenu != nullptr);
@@ -771,14 +770,25 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				while (i--)
 					pMenu->DeleteMenu(0, MF_BYPOSITION);
 
-				PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, 0, 
-					topMenuId == ID_NO_EDIT_SCRIPTS ? ID_SCRIPT_FIRST : ID_SCRIPT_FOR_COPYING_FIRST);
+				PluginMenu::AppendPluginMenus(pMenu, nullptr, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
 			}
 			else if (topMenuId == ID_PLUGINS_LIST)
 			{
-				for (int j = 0; j < 2; j++)
+				for (int j = 0; j < 4; j++)
 				{
-					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 5));
+					CMenu* pMenu = nullptr;
+					if (j == 0)
+						pMenu = pPopupMenu->GetSubMenu(8);
+					else if (j == 1)
+						pMenu = pPopupMenu->GetSubMenu(11);
+					else if (j == 2)
+						pMenu = pPopupMenu->GetSubMenu(pPopupMenu->GetMenuItemCount() - 5);
+					else
+					{
+						pMenu = pPopupMenu->GetSubMenu(pPopupMenu->GetMenuItemCount() - 3);
+						if (pMenu)
+							pMenu = pMenu->GetSubMenu(0);
+					}
 					ASSERT(pMenu != nullptr);
 
 					// empty the menu
@@ -787,9 +797,14 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 						pMenu->DeleteMenu(0, MF_BYPOSITION);
 
 					if (j == 0)
-						PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, 0, ID_UNPACKERS_FIRST);
+						PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames, 0, ID_UNPACKERS_FIRST);
+					else if (j == 1)
+						PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetPrediffer(), filteredFilenames, FileTransform::PredifferEventNames,
+							PluginMenu::FlattenMenu, ID_PREDIFFERS_FIRST);
+					else if (j == 2)
+						PluginMenu::AppendPluginMenus(pMenu, nullptr, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
 					else
-						PluginMenu::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FIRST);
+						PluginMenu::AppendPluginMenus(pMenu, pMergeDoc->GetEditorScript(), filteredFilenames, FileTransform::EditorScriptEventNames, 0, ID_SCRIPT_FOR_COPYING_FIRST);
 				}
 			}
 		}
@@ -2405,28 +2420,6 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 	return pFrame->GetMergeDoc()->GetActiveMergeView();
 }
 
-void CMainFrame::UpdatePrediffersMenu(CMenu* pPredifferMenu)
-{
-	if (pPredifferMenu == nullptr)
-		return;
-
-	HMENU prediffersSubmenu = pPredifferMenu->m_hMenu;
-	if (prediffersSubmenu != nullptr)
-	{
-		CMergeEditView * pEditView = GetActiveMergeEditView();
-		if (pEditView != nullptr)
-			pEditView->GetDocument()->createPrediffersSubmenu(prediffersSubmenu);
-		else
-		{
-			// no view or dir view : display an empty submenu
-			int i = GetMenuItemCount(prediffersSubmenu);
-			while (i --)
-				::DeleteMenu(prediffersSubmenu, 0, MF_BYPOSITION);
-			::AppendMenu(prediffersSubmenu, MF_SEPARATOR, 0, nullptr);
-		}
-	}
-}
-
 /**
  * @brief Save WinMerge configuration and info to file
  */
@@ -3208,32 +3201,17 @@ void CMainFrame::LoadToolbarImages()
 {
 	const int toolbarNewImgSize = MulDiv(8, GetSystemMetrics(SM_CXSMICON), 16) * 
 		(2 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
-	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 	CImageList imgEnabled, imgDisabled;
-	HBITMAP hEnabled = nullptr;
-	HBITMAP hDisabled = nullptr;
 	CSize sizeButton(0, 0);
 
-	const UINT toolbarResource = toolbarOrgImgSize <= 16 ? IDR_TOOLBAR_ENABLED_PNG : IDR_TOOLBAR_ENABLED32_PNG;
-	if (!LoadPngResourceAndResize(AfxGetInstanceHandle(), toolbarResource,
-		toolbarNewImgSize * TOOLBAR_IMAGE_COUNT, toolbarNewImgSize - 1, &hEnabled, &hDisabled))
+	if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), IDR_TOOLBAR_ENABLED32_PNG, TOOLBAR_IMAGE_COUNT,
+		toolbarNewImgSize, toolbarNewImgSize - 1, imgEnabled, &imgDisabled))
 	{
-		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), toolbarResource);
+		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), IDR_TOOLBAR_ENABLED32_PNG);
 		return;
 	}
 	
-	LoadToolbarImageList(toolbarNewImgSize, hEnabled, imgEnabled);
-	LoadToolbarImageList(toolbarNewImgSize, hDisabled, imgDisabled);
-
-	// Images for the merge result pane's choose buttons (1/2/3) are
-	// drawn at runtime and appended after the strip images
-	for (auto text : { _T("1"), _T("2"), _T("3") })
-	{
-		AppendGlyphImage(imgEnabled, toolbarNewImgSize, toolbarNewImgSize - 1, text, false);
-		AppendGlyphImage(imgDisabled, toolbarNewImgSize, toolbarNewImgSize - 1, text, true);
-	}
-
 	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
 
 	BarCtrl.SetButtonSize(sizeButton);
@@ -3249,28 +3227,6 @@ void CMainFrame::LoadToolbarImages()
 	rbbi.fMask = RBBIM_CHILDSIZE;
 	rbbi.cyMinChild = sizeButton.cy;
 	m_wndReBar.GetReBarCtrl().SetBandInfo(1, &rbbi);
-}
-
-
-/**
- * @brief Load a transparent 32-bit color image list.
- */
-static void BuildHiColImageListFromBitmap(HBITMAP hBitmap, int nNewWidth, int nNewHeight, int nCount, CImageList& ImgList)
-{
-	CBitmap bm;
-	bm.Attach(hBitmap);
-
-	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
-	VERIFY(-1 != ImgList.Add(&bm, nullptr));
-}
-
-/**
- * @brief Load toolbar image list.
- */
-static void LoadToolbarImageList(int newImageWidth, HBITMAP hBitmap, CImageList& ImgList)
-{
-	const int newImageHeight = newImageWidth - 1;
-	BuildHiColImageListFromBitmap(hBitmap, newImageWidth, newImageHeight, TOOLBAR_IMAGE_COUNT, ImgList);
 }
 
 /**
@@ -3884,6 +3840,38 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Switch Merging/Editing mode and update
+ * buffer read-only states accordingly
+ */
+void CMainFrame::OnMergingMode()
+{
+	bool bMergingMode = theApp.GetMergingMode();
+
+	if (!bMergingMode)
+		I18n::MessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_MODE);
+	theApp.SetMergingMode(!bMergingMode);
+}
+
+/**
+ * @brief Update Menuitem for Merging Mode
+ */
+void CMainFrame::OnUpdateMergingMode(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(theApp.GetMergingMode());
+}
+
+/**
+ * @brief Update MergingMode UI in statusbar
+ */
+void CMainFrame::OnUpdateMergingStatus(CCmdUI *pCmdUI)
+{
+	String text = theApp.GetMergingMode() ? _T("\u2191\u2193") : _T("Alt");
+	pCmdUI->SetText(text.c_str());
+	pCmdUI->Enable(true);
+}
+
+/**
  * @brief Update plugin name
  * @param [in] pCmdUI UI component to update.
  */
@@ -3947,26 +3935,33 @@ void CMainFrame::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	int index = static_cast<int>(pNMMouse->dwItemSpec);
 	if (index < 0)
 		return;
-	CPoint point = pNMMouse->pt;
-	int subidx = m_wndStatusBar.HitTestSubPaneButton(index, point);
-	if (subidx < 0)
-		return;
-	if (auto pMergeDoc = GetActiveIMergeDoc())
+	if (index == 1)
 	{
-		PathContext paths;
-		for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
-			paths.SetPath(i, pMergeDoc->GetPath(i));
-		String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
-		std::vector<CRect> rects;
-		m_wndStatusBar.GetSubPaneButtonRects(index, rects);
-		CPoint pt = CPoint(rects[subidx].left, rects[subidx].top);
-		m_wndStatusBar.ClientToScreen(&pt);
-		if (subidx == 0)
-			PluginMenu::ShowMenu(filteredFilenames, FileTransform::UnpackerEventNames, 
-				PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST, pt.x, pt.y, this);
-		else if (subidx == 1)
-			PluginMenu::ShowMenu(filteredFilenames, FileTransform::PredifferEventNames,
-				PluginMenu::FlattenMenu|PluginMenu::AddSelectMenu, ID_PREDIFFERS_FIRST, pt.x, pt.y, this);
+		CPoint point = pNMMouse->pt;
+		int subidx = m_wndStatusBar.HitTestSubPaneButton(index, point);
+		if (subidx < 0)
+			return;
+		if (auto pMergeDoc = GetActiveIMergeDoc())
+		{
+			PathContext paths;
+			for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
+				paths.SetPath(i, pMergeDoc->GetPath(i));
+			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+			std::vector<CRect> rects;
+			m_wndStatusBar.GetSubPaneButtonRects(index, rects);
+			CPoint pt = CPoint(rects[subidx].left, rects[subidx].top);
+			m_wndStatusBar.ClientToScreen(&pt);
+			if (subidx == 0)
+				PluginMenu::ShowMenu(pMergeDoc->GetUnpacker(), filteredFilenames, FileTransform::UnpackerEventNames,
+					PluginMenu::AddSelectMenu, ID_UNPACKERS_FIRST, pt.x, pt.y, this);
+			else if (subidx == 1)
+				PluginMenu::ShowMenu(pMergeDoc->GetPrediffer(), filteredFilenames, FileTransform::PredifferEventNames,
+					PluginMenu::FlattenMenu | PluginMenu::AddSelectMenu, ID_PREDIFFERS_FIRST, pt.x, pt.y, this);
+		}
+	}
+	else if (index == 2)
+	{
+		OnMergingMode();
 	}
 }
 

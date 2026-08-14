@@ -4346,6 +4346,70 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 	EXPECT_TRUE(fe.Evaluate(ectxt3));
 }
 
+TEST_P(FilterExpressionTest, TransformLine)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	CreateSimpleDiffItem(di);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.diritem = false;
+
+	struct Provider : public ILineDataProvider
+	{
+		std::string GetLine(int pane, int lineIndex) const override
+		{
+			char buf[256];
+			sprintf_s(buf, "%*sLine %d", lineIndex, " ", lineIndex + 1);
+			return buf;
+		}
+
+		int GetLineCount() const override
+		{
+			return 10;
+		}
+
+		int GetColumnCount(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
+		{
+			return "";
+		}
+
+		int GetRealLineNumber(int pane, int lineIndex) const override
+		{
+			return lineIndex;
+		}
+
+		unsigned GetLineFlags(int pane, int lineIndex) const override
+		{
+			return 0;
+		}
+
+		unsigned GetLineEol(int pane, int lineIndex) const override
+		{
+			return 1;
+		}
+	} provider;
+
+	auto pFilterSharedContext = std::make_unique<FilterSharedContext>();
+	FilterEvalContext ectxt{ &fe, &di, &provider, pFilterSharedContext.get() };
+
+	ectxt.lineIndex = 0;
+	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
+	EXPECT_TRUE(fe.Parse("replace(Line, \" \", \"\")"));
+	EXPECT_STREQ(_T("Line1"), fe.TransformLine(ectxt).c_str());
+
+	ectxt.lineIndex = 1;
+	EXPECT_STREQ(_T("Line2"), fe.TransformLine(ectxt).c_str());
+}
+
 TEST_P(FilterExpressionTest, StrFindAndRegexFindFunctions)
 {
 	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
