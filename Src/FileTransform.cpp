@@ -396,14 +396,14 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 static bool
 ExpandPackUnpackAliases(const String& filteredFilenames, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
-	String& errorMessage)
+	String& errorMessage, int stack)
 {
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins2;
 	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
 		if (plugin && plugin->m_event == _T("ALIAS_PACK_UNPACK"))
 		{
-			if (plugins.size() > 50)
+			if (stack > 20)
 			{
 				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), plugin->m_pipeline);
 				return false;
@@ -415,7 +415,7 @@ ExpandPackUnpackAliases(const String& filteredFilenames, bool bReverse,
 			strutils::replace(pipeline, _T("${*}"), argsStr);
 
 			std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> newPlugins;
-			if (!PackingInfo(pipeline).GetPackUnpackPlugin(filteredFilenames, false, bReverse, newPlugins, nullptr, errorMessage))
+			if (!PackingInfo(pipeline).GetPackUnpackPlugin(filteredFilenames, false, bReverse, newPlugins, nullptr, errorMessage, stack + 1))
 				return false;
 
 			plugins2.insert(plugins2.end(), newPlugins.begin(), newPlugins.end());
@@ -432,14 +432,14 @@ ExpandPackUnpackAliases(const String& filteredFilenames, bool bReverse,
 static bool
 ExpandPrediffAliases(const String& filteredFilenames, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
-	String& errorMessage)
+	String& errorMessage, int stack)
 {
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins2;
 	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
 		if (plugin && plugin->m_event == _T("ALIAS_PREDIFF"))
 		{
-			if (plugins.size() > 50)
+			if (stack > 20)
 			{
 				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), plugin->m_pipeline);
 				return false;
@@ -451,7 +451,7 @@ ExpandPrediffAliases(const String& filteredFilenames, bool bReverse,
 			strutils::replace(pipeline, _T("${*}"), argsStr);
 
 			std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> newPlugins;
-			if (!PrediffingInfo(pipeline).GetPrediffPlugin(filteredFilenames, bReverse, newPlugins, nullptr, errorMessage))
+			if (!PrediffingInfo(pipeline).GetPrediffPlugin(filteredFilenames, bReverse, newPlugins, nullptr, errorMessage, stack + 1))
 				return false;
 			plugins2.insert(plugins2.end(), newPlugins.begin(), newPlugins.end());
 		}
@@ -467,14 +467,14 @@ ExpandPrediffAliases(const String& filteredFilenames, bool bReverse,
 static bool
 ExpandEditorScriptAliases(
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>>& plugins,
-	String& errorMessage)
+	String& errorMessage, int stack)
 {
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>> plugins2;
 	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
 		if (plugin && plugin->m_event == _T("ALIAS_EDITOR_SCRIPT"))
 		{
-			if (plugins.size() > 50)
+			if (stack > 20)
 			{
 				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), plugin->m_pipeline);
 				return false;
@@ -486,7 +486,7 @@ ExpandEditorScriptAliases(
 			strutils::replace(pipeline, _T("${*}"), argsStr);
 
 			std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>> newPlugins;
-			if (!EditorScriptInfo(pipeline).GetEditorScriptPlugin(newPlugins, errorMessage))
+			if (!EditorScriptInfo(pipeline).GetEditorScriptPlugin(newPlugins, errorMessage, stack + 1))
 				return false;
 			plugins2.insert(plugins2.end(), newPlugins.begin(), newPlugins.end());
 		}
@@ -501,7 +501,7 @@ ExpandEditorScriptAliases(
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
-	String *pPluginPipelineResolved, String& errorMessage) const
+	String *pPluginPipelineResolved, String& errorMessage, int stack) const
 {
 	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
@@ -661,7 +661,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 	if (pPluginPipelineResolved)
 		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
 
-	if (!ExpandPackUnpackAliases(filteredFilenames, bReverse, plugins, errorMessage))
+	if (!ExpandPackUnpackAliases(filteredFilenames, bReverse, plugins, errorMessage, stack))
 		return false;
 
 	return true;
@@ -1193,7 +1193,7 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 
 bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
-	String *pPluginPipelineResolved, String& errorMessage) const
+	String *pPluginPipelineResolved, String& errorMessage, int stack) const
 {
 	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
@@ -1309,7 +1309,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	if (pPluginPipelineResolved)
 		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
 
-	if (!ExpandPrediffAliases(filteredFilenames, bReverse, plugins, errorMessage))
+	if (!ExpandPrediffAliases(filteredFilenames, bReverse, plugins, errorMessage, stack))
 		return false;
 
 	return true;
@@ -1409,7 +1409,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 // transformation text
 
 bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>>& plugins,
-	String& errorMessage) const
+	String& errorMessage, int stack) const
 {
 	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
@@ -1450,13 +1450,22 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 		}
 		if (!found)
 		{
+			PluginInfo* plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"ALIAS_EDITOR_SCRIPT", pluginName);
+			if (plugin)
+			{
+				plugins.push_back({ plugin, {}, targetFlags, args, 0 });
+				found = true;
+			}
+		}
+		if (!found)
+		{
 			errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
 			return false;
 		}
 		++i;
 	}
 
-	if (!ExpandEditorScriptAliases(plugins, errorMessage))
+	if (!ExpandEditorScriptAliases(plugins, errorMessage, stack))
 		return false;
 
 	return true;

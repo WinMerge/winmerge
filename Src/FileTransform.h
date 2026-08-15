@@ -106,7 +106,7 @@ public:
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 		std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
-		String *pPluginPipelineResolved, String& errorMessage) const;
+		String *pPluginPipelineResolved, String& errorMessage, int stack = 0) const;
 
 	// Events handler
 	// WinMerge uses one of these entry points to call a plugin
@@ -167,7 +167,7 @@ public:
 
 	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
 		std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
-		String* pPluginPipelineResolved, String& errorMessage) const;
+		String* pPluginPipelineResolved, String& errorMessage, int stack = 0) const;
 
 	/**
 	 * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
@@ -197,7 +197,7 @@ public:
 	}
 
 	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>>& plugins,
-		String& errorMessage) const;
+		String& errorMessage, int stack = 0) const;
 
 	bool TransformText(int target, String & text, const std::vector<StringView>& variables, bool& changed);
 };
