@@ -29,6 +29,7 @@
 #include "codepage_detect.h"
 #include "FilterEngine/FilterExpression.h"
 #include "FilterEngine/ILineDataProvider.h"
+#include "FilterErrorMessages.h"
 
 using Poco::Exception;
 
@@ -79,6 +80,31 @@ static String makeTargetsPrefix(uint8_t targetFlags)
 static inline bool isTargetInFlags(int target, unsigned targetFlags)
 {
 	return ((1 << target) & targetFlags) != 0;
+}
+
+/**
+ * @brief Set the Variables/Arguments properties on a plugin's script dispatch, if it has them
+ *
+ * @note Caller must already hold g_mutex before invoking this
+ *
+ * Shared by PackingInfo::Unpacking(), PackingInfo::pack(), PrediffingInfo::Prediffing()
+ * and EditorScriptInfo::TransformText(), which all set these two properties identically
+ * before invoking the plugin.
+ */
+static bool SetPluginVariablesAndArguments(PluginInfo* plugin, LPDISPATCH piScript,
+	const std::vector<String>& args, const std::vector<StringView>& variables)
+{
+	if (plugin->m_hasVariablesProperty)
+	{
+		if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
+			return false;
+	}
+	if (plugin->m_hasArgumentsProperty)
+	{
+		if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : PluginForFile::MakeArguments(args, variables), piScript))
+			return false;
+	}
+	return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -432,6 +458,173 @@ static bool ExpandPluginAliases(
 	return true;
 }
 
+struct PackUnpackPluginTraits
+{
+	// fallback lookup order when resolving a named or <Automatic> plugin;
+	// the "true" entries are BUFFER_* events (bWithFile = false for those)
+	static const std::vector<std::pair<const wchar_t*, bool>>& LookupChain()
+	{
+		static const std::vector<std::pair<const wchar_t*, bool>> chain = {
+			{ L"FILE_PACK_UNPACK", false },
+			{ L"FILE_FOLDER_PACK_UNPACK", false },
+			{ L"ALIAS_PACK_UNPACK", false },
+			{ L"BUFFER_PACK_UNPACK", true },
+		};
+		return chain;
+	}
+	static const String& AliasEvent()
+	{
+		static const String event = _T("ALIAS_PACK_UNPACK");
+		return event;
+	}
+	static String NotThisKindMessage(const String& pluginName)
+	{
+		return strutils::format_string1(_("'%1' is not an unpacker plugin"), pluginName);
+	}
+};
+
+struct PrediffPluginTraits
+{
+	static const std::vector<std::pair<const wchar_t*, bool>>& LookupChain()
+	{
+		static const std::vector<std::pair<const wchar_t*, bool>> chain = {
+			{ L"FILE_PREDIFF", false },
+			{ L"ALIAS_PREDIFF", false },
+			{ L"BUFFER_PREDIFF", true },
+		};
+		return chain;
+	}
+	static const String& AliasEvent()
+	{
+		static const String event = _T("ALIAS_PREDIFF");
+		return event;
+	}
+	static String NotThisKindMessage(const String& pluginName)
+	{
+		return strutils::format_string1(_("'%1' is not a prediffer plugin"), pluginName);
+	}
+};
+
+/**
+ * @brief Resolve an already-parsed plugin pipeline (<None>/<Automatic>/named entries and
+ *        line-expression items) into the concrete plugin list. Shared by PackingInfo and
+ *        PrediffingInfo, which only differ in which plugin events they search (see Traits).
+ *
+ * @note Unlike the two hand-written versions this replaces, the "consecutive line-expression
+ *        merge" below is always bReverse-aware (matches what PrediffingInfo::GetPrediffPlugin
+ *        used to do); the old PackingInfo::GetPackUnpackPlugin unconditionally used
+ *        plugins.back(), which was wrong when bReverse is true (as in PackingInfo::pack()).
+ */
+template <typename Traits, typename RecurseFunc>
+static bool ResolvePluginPipeline(const std::vector<PluginForFile::PipelineItem>& result,
+	const String& filteredFilenames, bool bReverse,
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
+	String* pPluginPipelineResolved, String& errorMessage, int stack, RecurseFunc&& recurse)
+{
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	int i = 0;
+	for (auto& pipelineItem : result)
+	{
+		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
+		{
+			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
+			if (i == 0 || std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
+				std::get<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]).targetFlags != targetFlags)
+			{
+				pipelineResolved.push_back( PluginForFile::FilterExpressionPipelineItem{ targetFlags, expression });
+				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+					{ nullptr, { expression }, targetFlags, {}, true });
+			}
+			else
+			{
+				auto& lastPlugin = bReverse ? plugins.front() : plugins.back();
+				std::get<1>(lastPlugin).push_back(expression);
+			}
+			i++;
+			continue;
+		}
+		auto& [ targetFlags, pluginName, args, quoteChar] = PluginForFile::GetPluginPipelineItem(pipelineItem);
+		PluginInfo* plugin = nullptr;
+		if (pluginName == _T("<None>") || pluginName == _("<None>"))
+			;
+		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
+		{
+			const auto filenames = strutils::split(filteredFilenames, '|');
+			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
+			for (int j = 0; j < filenames.size(); ++j)
+			{
+				bool bWithFile = true;
+				const String filename{ filenames[j].data(), filenames[j].size() };
+				for (const auto& [eventName, isBufferEvent] : Traits::LookupChain())
+				{
+					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(eventName, filename);
+					if (plugin)
+					{
+						bWithFile = !isBufferEvent;
+						break;
+					}
+				}
+				pluginInfos.push_back({ plugin, bWithFile });
+			}
+			if (!filenames.empty() &&
+				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
+					[&](const auto& elem) { return elem == pluginInfos.front(); }))
+			{
+				const auto& pluginInfo = pluginInfos.front();
+				if (pluginInfo.first)
+				{
+					pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, pluginInfo.first->m_name, args, quoteChar });
+					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+						{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
+				}
+			}
+			else
+			{
+				for (int j = 0; j < pluginInfos.size(); ++j)
+				{
+					const auto& pluginInfo = pluginInfos[j];
+					if (isTargetInFlags(j, targetFlags) && pluginInfo.first)
+					{
+						uint8_t targetFlags2 = 1 << j;
+						pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags2, pluginInfo.first->m_name, args, quoteChar });
+						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+							{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
+					}
+				}
+			}
+		}
+		else
+		{
+			bool bWithFile = true;
+			for (const auto& [eventName, isBufferEvent] : Traits::LookupChain())
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(eventName, pluginName);
+				if (plugin)
+				{
+					bWithFile = !isBufferEvent;
+					break;
+				}
+			}
+			if (!plugin)
+			{
+				if (CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName) == nullptr)
+					errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
+				else
+					errorMessage = Traits::NotThisKindMessage(pluginName);
+				return false;
+			}
+			pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, plugin->m_name, args, quoteChar });
+			plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+				{ plugin, {}, targetFlags, args, bWithFile });
+		}
+		++i;
+	}
+	if (pPluginPipelineResolved)
+		*pPluginPipelineResolved = PluginForFile::MakePluginPipeline(pipelineResolved);
+
+	return ExpandPluginAliases(Traits::AliasEvent(), plugins, errorMessage, stack, std::forward<RecurseFunc>(recurse));
+}
+
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage, int stack) const
@@ -478,123 +671,9 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 			}
 		}
 	}
-	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	int i = 0;
-	for (auto& pipelineItem : result)
-	{
-		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
-		{
-			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
-			if (i == 0 || std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
-				std::get<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]).targetFlags != targetFlags)
-			{
-				pipelineResolved.push_back( PluginForFile::FilterExpressionPipelineItem{ targetFlags, expression });
-				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ nullptr, { expression }, targetFlags, {}, true });
-			}
-			else
-			{
-				std::get<1>(plugins.back()).push_back(expression);
-			}
-			i++;
-			continue;
-		}
-		auto& [ targetFlags, pluginName, args, quoteChar] = PluginForFile::GetPluginPipelineItem(pipelineItem);
-		PluginInfo* plugin = nullptr;
-		if (pluginName == _T("<None>") || pluginName == _("<None>"))
-			;
-		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
-		{
-			const auto filenames = strutils::split(filteredFilenames, '|');
-			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
-			for (int j = 0; j < filenames.size(); ++j)
-			{
-				bool bWithFile = true;
-				const String filename{ filenames[j].data(), filenames[j].size() };
-				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filename);
-				if (plugin == nullptr)
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filename);
-				if (plugin == nullptr)
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"ALIAS_PACK_UNPACK", filename);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filename);
-					if (plugin)
-						bWithFile = false;
-				}
-				pluginInfos.push_back({ plugin, bWithFile });
-			}
-			if (!filenames.empty() &&
-				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
-					[&](const auto& elem) { return elem == pluginInfos.front(); }))
-			{
-				const auto& pluginInfo = pluginInfos.front();
-				if (pluginInfo.first)
-				{
-					pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, pluginInfo.first->m_name, args, quoteChar });
-					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
-				}
-			}
-			else
-			{
-				for (int j = 0; j < pluginInfos.size(); ++j)
-				{
-					const auto& pluginInfo = pluginInfos[j];
-					if (isTargetInFlags(j, targetFlags) && pluginInfo.first)
-					{
-						uint8_t targetFlags2 = 1 << j;
-						pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags2, pluginInfo.first->m_name, args, quoteChar });
-						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-							{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
-					}
-				}
-			}
-		}
-		else
-		{
-			bool bWithFile = true;
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
-			if (plugin == nullptr)
-			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"ALIAS_PACK_UNPACK", pluginName);
-					if (plugin == nullptr)
-					{
-						plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
-						if (plugin == nullptr)
-						{
-							plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
-							if (plugin == nullptr)
-							{
-								errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
-							}
-							else
-							{
-								plugin = nullptr;
-								errorMessage = strutils::format_string1(_("'%1' is not an unpacker plugin"), pluginName);
-							}
-							return false;
-						}
-						bWithFile = false;
-					}
-				}
-			}
-			if (plugin)
-			{
-				pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, plugin->m_name, args, quoteChar });
-				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ plugin, {}, targetFlags, args, bWithFile });
-			}
-		}
-		++i;
-	}
-	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
 
-	return ExpandPluginAliases(_T("ALIAS_PACK_UNPACK"), plugins, errorMessage, stack,
+	return ResolvePluginPipeline<PackUnpackPluginTraits>(result, filteredFilenames, bReverse,
+		plugins, pPluginPipelineResolved, errorMessage, stack,
 		[&](const String& pipeline, auto& newPlugins, String& error, int nextStack)
 		{
 			return PackingInfo(pipeline).GetPackUnpackPlugin(filteredFilenames, false, bReverse, newPlugins, nullptr, error, nextStack);
@@ -637,16 +716,8 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		if (bWithFile)
 		{
@@ -877,16 +948,24 @@ static std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> Creat
 	return result;
 }
 
-static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
+/**
+ * @brief Parsed FilterExpression + FilterEvalContext pairs for one filter pipeline, plus the
+ *        CDiffContext/DIFFITEM they point into. The diff context must outlive the
+ *        FilterExpression objects (they hold a raw pointer to it), so callers keep this alive
+ *        for as long as they keep using the FilterExpression/FilterEvalContext vectors.
+ */
+struct FilterExpressionSet
 {
-	auto lineDataProvider = CreateLineDataProviderFromFile(filepath);
-	if (!lineDataProvider)
-	{
-		errorMessage = strutils::format_string1(_("Failed to read file: %1"), filepath);
-		return _T("");
-	}
 	std::vector<FilterExpression> filterExpressions;
 	std::vector<FilterEvalContext> evalContexts;
+	std::unique_ptr<CDiffContext> diffContext;
+	std::unique_ptr<DIFFITEM> diffItem;
+};
+
+static std::optional<FilterExpressionSet> BuildFilterExpressionSet(const String& filepath, const FileTextEncoding& encoding,
+	const std::vector<String>& expressions, const LineDataProvider& lineDataProvider, String& errorMessage)
+{
+	FilterExpressionSet set;
 	FilterExpression::SetLogger([](int level, const std::string& msg) {
 		if (level == 0)
 			RootLogger::Error(msg);
@@ -895,28 +974,32 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 		else
 			RootLogger::Info(msg);
 	});
-	auto [pctxt, pdi] = CreateDiffItem(filepath, lineDataProvider->GetEncoding());
+	auto [diffContext, diffItem] = CreateDiffItem(filepath, encoding);
+	set.diffContext = std::move(diffContext);
+	set.diffItem = std::move(diffItem);
 	for (const auto& expression : expressions)
 	{
-		filterExpressions.emplace_back(ucr::toUTF8(expression));
-		auto& lastFilterExpression = filterExpressions.back();
-		lastFilterExpression.SetDiffContext(pctxt.get());
+		set.filterExpressions.emplace_back(ucr::toUTF8(expression));
+		auto& lastFilterExpression = set.filterExpressions.back();
+		lastFilterExpression.SetDiffContext(set.diffContext.get());
 		if (!lastFilterExpression.Parse())
 		{
-			errorMessage = ucr::toTString(lastFilterExpression.errorMessage);
-			return _T("");
+			errorMessage = FormatFilterErrorSummary(lastFilterExpression);
+			return std::nullopt;
 		}
-		evalContexts.emplace_back();
-		auto& lastEvalContext = evalContexts.back();
-		lastEvalContext.provider = lineDataProvider.get();
+		set.evalContexts.emplace_back();
+		set.evalContexts.back().provider = &lineDataProvider;
 	}
-	String tempPath = bMayOverwrite ? filepath : env::GetTemporaryFileName(env::GetTemporaryPath(), _T("WM"));
-	UniStdioFile file;
-	file.OpenCreateUtf8(tempPath);
-	int lineCount = lineDataProvider->GetLineCount();
+	return set;
+}
+
+static bool TransformLines(LineDataProvider& lineDataProvider,
+	std::vector<FilterExpression>& filterExpressions, std::vector<FilterEvalContext>& evalContexts, String& errorMessage)
+{
+	int lineCount = lineDataProvider.GetLineCount();
 	for (int i = 0; i < lineCount; ++i)
 	{
-		for (int j = 0; j < filterExpressions.size(); ++j)
+		for (size_t j = 0; j < filterExpressions.size(); ++j)
 		{
 			auto& filterExpression = filterExpressions[j];
 			auto& evalContext = evalContexts[j];
@@ -925,12 +1008,34 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 			if (filterExpression.errorCode != FILTER_ERROR_NO_ERROR)
 			{
 				errorMessage = ucr::toTString(filterExpression.errorMessage);
-				return _T("");
+				return false;
 			}
-			lineDataProvider->SetLine(0, i, line);
+			lineDataProvider.SetLine(0, i, line);
 		}
-		file.WriteString(ucr::toTString(lineDataProvider->GetFullLine(0, i)));
 	}
+	return true;
+}
+
+static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
+{
+	auto lineDataProvider = CreateLineDataProviderFromFile(filepath);
+	if (!lineDataProvider)
+	{
+		errorMessage = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), filepath, GetSysError());
+		return _T("");
+	}
+	auto exprSet = BuildFilterExpressionSet(filepath, lineDataProvider->GetEncoding(), expressions, *lineDataProvider, errorMessage);
+	if (!exprSet)
+		return _T("");
+	if (!TransformLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
+		return _T("");
+
+	String tempPath = bMayOverwrite ? filepath : env::GetTemporaryFileName(env::GetTemporaryPath(), _T("WM"));
+	UniStdioFile file;
+	file.OpenCreateUtf8(tempPath);
+	int lineCount = lineDataProvider->GetLineCount();
+	for (int i = 0; i < lineCount; ++i)
+		file.WriteString(ucr::toTString(lineDataProvider->GetFullLine(0, i)));
 	return tempPath;
 }
 
@@ -939,53 +1044,19 @@ static String ApplyFilterExpressionsToString(const String& text, const std::vect
 	auto lineDataProvider = CreateLineDataProviderFromText(text);
 	if (!lineDataProvider)
 	{
-		errorMessage = _T("Failed to read text");
+		errorMessage = _T("Failed to read text: ") + GetSysError();
 		return _T("");
 	}
-	std::vector<FilterExpression> filterExpressions;
-	std::vector<FilterEvalContext> evalContexts;
-	FilterExpression::SetLogger([](int level, const std::string& msg) {
-		if (level == 0)
-			RootLogger::Error(msg);
-		else if (level == 1)
-			RootLogger::Warn(msg);
-		else
-			RootLogger::Info(msg);
-	});
-	auto [pctxt, pdi] = CreateDiffItem(filepath, lineDataProvider->GetEncoding());
-	for (const auto& expression : expressions)
-	{
-		filterExpressions.emplace_back(ucr::toUTF8(expression));
-		auto& lastFilterExpression = filterExpressions.back();
-		lastFilterExpression.SetDiffContext(pctxt.get());
-		if (!lastFilterExpression.Parse())
-		{
-			errorMessage = ucr::toTString(lastFilterExpression.errorMessage);
-			return _T("");
-		}
-		evalContexts.emplace_back();
-		auto& lastEvalContext = evalContexts.back();
-		lastEvalContext.provider = lineDataProvider.get();
-	}
+	auto exprSet = BuildFilterExpressionSet(filepath, lineDataProvider->GetEncoding(), expressions, *lineDataProvider, errorMessage);
+	if (!exprSet)
+		return _T("");
+	if (!TransformLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
+		return _T("");
+
 	String result;
 	int lineCount = lineDataProvider->GetLineCount();
 	for (int i = 0; i < lineCount; ++i)
-	{
-		for (int j = 0; j < filterExpressions.size(); ++j)
-		{
-			auto& filterExpression = filterExpressions[j];
-			auto& evalContext = evalContexts[j];
-			evalContext.lineIndex = i;
-			std::string line = filterExpression.TransformLine(evalContext);
-			if (filterExpression.errorCode != FILTER_ERROR_NO_ERROR)
-			{
-				errorMessage = ucr::toTString(filterExpression.errorMessage);
-				return _T("");
-			}
-			lineDataProvider->SetLine(0, i, line);
-		}
 		result += ucr::toTString(lineDataProvider->GetFullLine(0, i));
-	}
 	return result;
 }
 
@@ -1037,16 +1108,8 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		if (bWithFile)
 		{
@@ -1132,118 +1195,9 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	int i = 0;
-	for (auto& pipelineItem : result)
-	{
-		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
-		{
-			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
-			if (i == 0 || std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
-				std::get<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]).targetFlags != targetFlags)
-			{
-				pipelineResolved.push_back( PluginForFile::FilterExpressionPipelineItem{ targetFlags, expression });
-				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ nullptr, { expression }, targetFlags, {}, true });
-			}
-			else
-			{
-				auto& lastPlugin = bReverse ? plugins.front() : plugins.back();
-				std::get<1>(lastPlugin).push_back(expression);
-			}
-			i++;
-			continue;
-		}
-		auto& [ targetFlags, pluginName, args, quoteChar] = PluginForFile::GetPluginPipelineItem(pipelineItem);
-		PluginInfo* plugin = nullptr;
-		if (pluginName == _T("<None>") || pluginName == _("<None>"))
-			;
-		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
-		{
-			const auto filenames = strutils::split(filteredFilenames, '|');
-			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
-			for (int j = 0; j < filenames.size(); ++j)
-			{
-				bool bWithFile = true;
-				const String filename{ filenames[j].data(), filenames[j].size() };
-				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filename);
-				if (plugin == nullptr)
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"ALIAS_PREDIFF", filename);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filename);
-					if (plugin)
-						bWithFile = false;
-				}
-				pluginInfos.push_back({ plugin, bWithFile });
-			}
-			if (!filenames.empty() &&
-				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
-					[&](const auto& elem) { return elem == pluginInfos.front(); }))
-			{
-				const auto& pluginInfo = pluginInfos.front();
-				if (pluginInfo.first)
-				{
-					pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, pluginInfo.first->m_name, args, quoteChar });
-					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
-				}
-			}
-			else
-			{
-				for (int j = 0; j < pluginInfos.size(); ++j)
-				{
-					const auto& pluginInfo = pluginInfos[j];
-					if (isTargetInFlags(j, targetFlags) && pluginInfo.first)
-					{
-						uint8_t targetFlags2 = 1 << j;
-						pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags2, pluginInfo.first->m_name, args, quoteChar });
-						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-							{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
-					}
-				}
-			}
-		}
-		else
-		{
-			bool bWithFile = true;
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
-			if (plugin == nullptr)
-			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"ALIAS_PREDIFF", pluginName);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
-					if (plugin == nullptr)
-					{
-						plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
-						if (plugin == nullptr)
-						{
-							errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
-						}
-						else
-						{
-							plugin = nullptr;
-							errorMessage = strutils::format_string1(_("'%1' is not a prediffer plugin"), pluginName);
-						}
-						return false;
-					}
-					bWithFile = false;
-				}
-			}
-			if (plugin)
-			{
-				pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, plugin->m_name, args, quoteChar });
-				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ plugin, {}, targetFlags, args, bWithFile });
-			}
-		}
-		i++;
-	}
-	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
 
-	return ExpandPluginAliases(_T("ALIAS_PREDIFF"), plugins, errorMessage, stack,
+	return ResolvePluginPipeline<PrediffPluginTraits>(result, filteredFilenames, bReverse,
+		plugins, pPluginPipelineResolved, errorMessage, stack,
 		[&](const String& pipeline, auto& newPlugins, String& error, int nextStack)
 		{
 			return PrediffingInfo(pipeline).GetPrediffPlugin(filteredFilenames, bReverse, newPlugins, nullptr, error, nextStack);
@@ -1291,16 +1245,8 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		if (bWithFile)
 		{
@@ -1444,16 +1390,8 @@ bool EditorScriptInfo::TransformText(int target, String& text, const std::vector
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		// execute the transform operation
 		int nChanged = 0;

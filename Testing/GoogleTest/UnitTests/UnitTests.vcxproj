@@ -529,6 +529,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\FilterErrorMessages.cpp" />
     <ClCompile Include="..\..\..\Src\FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -883,6 +884,7 @@
     <ClInclude Include="..\..\..\Src\FileTextEncoding.h" />
     <ClInclude Include="..\..\..\Src\FileTransform.h" />
     <ClInclude Include="..\..\..\Src\FileVersion.h" />
+    <ClInclude Include="..\..\..\Src\FilterErrorMessages.h" />
     <ClInclude Include="..\..\..\Src\FilterList.h" />
     <ClInclude Include="..\..\..\Src\Common\LogFile.h" />
     <ClInclude Include="..\..\..\Src\Common\lwdisp.h" />
