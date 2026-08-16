@@ -431,7 +431,7 @@ static bool ExpandPluginAliases(
 		{
 			if (stack > 20)
 			{
-				errorMessage = strutils::format_string1( _("Circular reference in plugin pipeline: %1"), plugin->m_pipeline);
+				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), plugin->m_pipeline);
 				return false;
 			}
 
@@ -522,9 +522,9 @@ static bool ResolvePluginPipeline(const std::vector<PluginForFile::PipelineItem>
 	String* pPluginPipelineResolved, String& errorMessage, int stack, RecurseFunc&& recurse)
 {
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	int i = 0;
-	for (auto& pipelineItem : result)
+	for (size_t i = 0; i < result.size(); ++i)
 	{
+		auto& pipelineItem = result[i];
 		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
 		{
 			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
@@ -540,7 +540,6 @@ static bool ResolvePluginPipeline(const std::vector<PluginForFile::PipelineItem>
 				auto& lastPlugin = bReverse ? plugins.front() : plugins.back();
 				std::get<1>(lastPlugin).push_back(expression);
 			}
-			i++;
 			continue;
 		}
 		auto& [ targetFlags, pluginName, args, quoteChar] = PluginForFile::GetPluginPipelineItem(pipelineItem);
@@ -617,7 +616,6 @@ static bool ResolvePluginPipeline(const std::vector<PluginForFile::PipelineItem>
 			plugins.insert(bReverse ? plugins.begin() : plugins.end(),
 				{ plugin, {}, targetFlags, args, bWithFile });
 		}
-		++i;
 	}
 	if (pPluginPipelineResolved)
 		*pPluginPipelineResolved = PluginForFile::MakePluginPipeline(pipelineResolved);
@@ -785,8 +783,8 @@ bool PackingInfo::Packing(int target, const String& srcFilepath, const String& d
 class LineDataProvider: public ILineDataProvider
 {
 public:
-	LineDataProvider(const std::vector<std::string> lines, const FileTextEncoding& encoding)
-	 : m_lines(lines), m_encoding(encoding) {}
+	LineDataProvider(std::vector<std::string> lines, const FileTextEncoding& encoding)
+	 : m_lines(std::move(lines)), m_encoding(encoding) {}
 	int GetLineCount() const
 	{
 		return static_cast<int>(m_lines.size());
@@ -868,7 +866,7 @@ private:
 	FileTextEncoding m_encoding;
 };
 
-static std::unique_ptr<LineDataProvider> CreateLineDataProviderFromFile(const String& filepath)
+static std::unique_ptr<LineDataProvider> CreateFileLineDataProvider(const String& filepath)
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(filepath))
@@ -900,10 +898,10 @@ static std::unique_ptr<LineDataProvider> CreateLineDataProviderFromFile(const St
 		linesToRead = file.ReadString(line, eol, &lossy);
 		lines.push_back(ucr::toUTF8(line + eol));
 	} while (linesToRead);
-	return std::make_unique<LineDataProvider>(lines, encoding);
+	return std::make_unique<LineDataProvider>(std::move(lines), encoding);
 }
 
-static std::unique_ptr<LineDataProvider> CreateLineDataProviderFromText(const String& Text)
+static std::unique_ptr<LineDataProvider> CreateTextLineDataProvider(const String& Text)
 {
 	FileTextEncoding encoding;
 	encoding.SetUnicoding(ucr::UTF8);
@@ -931,7 +929,7 @@ static std::unique_ptr<LineDataProvider> CreateLineDataProviderFromText(const St
 	}
 	if (*pLineBegin != 0)
 		lines.push_back(ucr::toUTF8(String(pLineBegin)));
-	return std::make_unique<LineDataProvider>(lines, encoding);
+	return std::make_unique<LineDataProvider>(std::move(lines), encoding);
 }
 
 static std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffItem(const String& filepath, const FileTextEncoding& encoding)
@@ -988,7 +986,10 @@ static std::optional<FilterExpressionSet> BuildFilterExpressionSet(const String&
 			return std::nullopt;
 		}
 		set.evalContexts.emplace_back();
-		set.evalContexts.back().provider = &lineDataProvider;
+		auto& lastEvalContext = set.evalContexts.back();
+		lastEvalContext.provider = &lineDataProvider;
+		lastEvalContext.expr = &lastFilterExpression;
+		lastEvalContext.di = set.diffItem.get();
 	}
 	return set;
 }
@@ -997,6 +998,7 @@ static bool TransformLines(LineDataProvider& lineDataProvider,
 	std::vector<FilterExpression>& filterExpressions, std::vector<FilterEvalContext>& evalContexts, String& errorMessage)
 {
 	int lineCount = lineDataProvider.GetLineCount();
+	FilterSharedContext sharedContext[3];
 	for (int i = 0; i < lineCount; ++i)
 	{
 		for (size_t j = 0; j < filterExpressions.size(); ++j)
@@ -1004,6 +1006,7 @@ static bool TransformLines(LineDataProvider& lineDataProvider,
 			auto& filterExpression = filterExpressions[j];
 			auto& evalContext = evalContexts[j];
 			evalContext.lineIndex = i;
+			evalContext.sharedContext = &sharedContext[j];
 			std::string line = filterExpression.TransformLine(evalContext);
 			if (filterExpression.errorCode != FILTER_ERROR_NO_ERROR)
 			{
@@ -1018,7 +1021,7 @@ static bool TransformLines(LineDataProvider& lineDataProvider,
 
 static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
 {
-	auto lineDataProvider = CreateLineDataProviderFromFile(filepath);
+	auto lineDataProvider = CreateFileLineDataProvider(filepath);
 	if (!lineDataProvider)
 	{
 		errorMessage = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), filepath, GetSysError());
@@ -1041,7 +1044,7 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 
 static String ApplyFilterExpressionsToString(const String& text, const std::vector<String>& expressions, const String& filepath, String& errorMessage)
 {
-	auto lineDataProvider = CreateLineDataProviderFromText(text);
+	auto lineDataProvider = CreateTextLineDataProvider(text);
 	if (!lineDataProvider)
 	{
 		errorMessage = _T("Failed to read text: ") + GetSysError();
@@ -1295,9 +1298,9 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	int i = 0;
-	for (auto& pipelineItem : result)
+	for (size_t i = 0; i < result.size(); ++i)
 	{
+		auto& pipelineItem = result[i];
 		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
 		{
 			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
@@ -1343,7 +1346,6 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 			errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
 			return false;
 		}
-		++i;
 	}
 
 	return ExpandPluginAliases(_T("ALIAS_EDITOR_SCRIPT"), plugins, errorMessage, stack,
