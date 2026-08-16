@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-08-08 23:06+0000\n"
-"PO-Revision-Date: 2026-08-10 00:30+0000\n"
+"POT-Creation-Date: 2026-08-12 09:50+0000\n"
+"PO-Revision-Date: 2026-08-16 15:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5059,7 +5059,7 @@ msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3358
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "Preferuj dekoder WIC"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3359
@@ -8917,7 +8917,7 @@ msgstr "Funkcje konwersji tekstu wspomagane AI"
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
 msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Konwerter tekstu (API kompatybilne z OpenAI).\r\nUżycie: AIConvertText PROMPT"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -9147,15 +9147,15 @@ msgstr "Wpisz prompt"
 #: Strings.rc:326
 #, c-format
 msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
-msgstr ""
+msgstr "Wprowadź klucz API.\r\n- Może być wymagana rejestracja u wybranego dostawcy (mogą obowiązywać opłaty).\r\n- Klucz zostanie zapisany w zmiennej środowiskowej %1."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "Nazwa zmiennej środowiskowej dla klucza API"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "Klucz API"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -9171,8 +9171,8 @@ msgstr "Model"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "Klucz API został zmieniony. Uruchom ponownie, aby zastosować zmiany."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "Usługodawca"
