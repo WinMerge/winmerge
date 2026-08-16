@@ -1032,7 +1032,7 @@ static bool TransformLines(LineDataProvider& lineDataProvider,
 	std::vector<FilterExpression>& filterExpressions, std::vector<FilterEvalContext>& evalContexts, String& errorMessage)
 {
 	int lineCount = lineDataProvider.GetLineCount();
-	FilterSharedContext sharedContext[3];
+	std::vector<FilterSharedContext> sharedContexts(filterExpressions.size());
 	for (int i = 0; i < lineCount; ++i)
 	{
 		for (size_t j = 0; j < filterExpressions.size(); ++j)
@@ -1040,7 +1040,7 @@ static bool TransformLines(LineDataProvider& lineDataProvider,
 			auto& filterExpression = filterExpressions[j];
 			auto& evalContext = evalContexts[j];
 			evalContext.lineIndex = i;
-			evalContext.sharedContext = &sharedContext[j];
+			evalContext.sharedContext = &sharedContexts[j];
 			std::string line = filterExpression.TransformLine(evalContext);
 			if (filterExpression.errorCode != FILTER_ERROR_NO_ERROR)
 			{
