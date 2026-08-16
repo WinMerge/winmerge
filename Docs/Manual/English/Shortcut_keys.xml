@@ -322,6 +322,42 @@
         <row>
           <entry><keycombo>
               <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>1</keycap>
+            </keycombo></entry>
+
+          <entry>Toggle left pane content for current difference (Merge
+          Result pane)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>2</keycap>
+            </keycombo></entry>
+
+          <entry>Toggle middle pane content for current difference (Merge
+          Result pane)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>3</keycap>
+            </keycombo></entry>
+
+          <entry>Toggle right pane content for current difference (Merge
+          Result pane)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
               <keycap>Alt</keycap>
 
               <keycap>G</keycap>

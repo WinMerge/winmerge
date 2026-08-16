@@ -148,7 +148,7 @@ String PluginMenu::GetPluginPipelineByMenuId(const PluginForFile* pluginInfo, un
 	bool bCtrlKey = (::GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0;
 	PluginInfo* pluginFound = nullptr;
 	String pluginName;
-	[[maybe_unused]] auto [_, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
+	const auto& allPlugins = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId).second;
 	for (const auto& [processType, pluginList] : allPlugins)
 	{
 		for (const auto& [caption, name, id, plugin] : pluginList)
