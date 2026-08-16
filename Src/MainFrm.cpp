@@ -465,6 +465,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	Logger::Get().SetOutputFunction([this](Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)
 		{ OutputLog(level, tp, msg, level == Logger::LogLevel::ERR); } );
 
+	FilterExpression::SetLogger([](int level, const std::string& msg) {
+		if (level == 0)
+			RootLogger::Error(msg);
+		else if (level == 1)
+			RootLogger::Warn(msg);
+		else
+			RootLogger::Info(msg);
+		});
+
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
 	if (IsWin10_OrGreater())

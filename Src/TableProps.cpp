@@ -29,7 +29,7 @@ TableProps MakeTablePropertiesByFileName(const String& path)
 	{
 		filterDSV.SetMaskOrExpression(dsvFilePattern);
 		if (filterDSV.includeFile(path))
-			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
+			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote, allowNewlineIQuotes };
 	}
 	return { false, 0, 0, false };
 }

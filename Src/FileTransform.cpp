@@ -781,10 +781,10 @@ bool PackingInfo::Packing(int target, const String& srcFilepath, const String& d
 	}
 }
 
-class LineDataProvider: public ILineDataProvider
+class VectorLineDataProvider: public ILineDataProvider
 {
 public:
-	LineDataProvider(std::vector<std::string> lines, const FileTextEncoding& encoding, const TableProps& tableProps)
+	VectorLineDataProvider(std::vector<std::string> lines, const FileTextEncoding& encoding, const TableProps& tableProps)
 	 : m_lines(std::move(lines)), m_encoding(encoding), m_tableProps(tableProps) {}
 	int GetLineCount() const
 	{
@@ -812,7 +812,7 @@ public:
 			else if (!inQuote && ch == m_tableProps.delimiter)
 				columnCount++;
 		}
-		return columnCount;
+		return columnCount + 1;
 	}
 	std::string GetColumn(int pane, int lineIndex, int columnIndex) const
 	{
@@ -896,7 +896,7 @@ private:
 	TableProps m_tableProps;
 };
 
-static std::unique_ptr<LineDataProvider> CreateFileLineDataProvider(const String& filepath)
+static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(const String& filepath)
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(filepath))
@@ -931,10 +931,10 @@ static std::unique_ptr<LineDataProvider> CreateFileLineDataProvider(const String
 		lines.push_back(ucr::toUTF8(line + eol));
 	} while (linesToRead);
 	auto tableProps = MakeTablePropertiesByFileName(filepath);
-	return std::make_unique<LineDataProvider>(std::move(lines), encoding, tableProps);
+	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
-static std::unique_ptr<LineDataProvider> CreateTextLineDataProvider(const String& Text, const String& filepath)
+static std::unique_ptr<VectorLineDataProvider> CreateTextLineDataProvider(const String& Text, const String& filepath)
 {
 	FileTextEncoding encoding;
 	encoding.SetUnicoding(ucr::UTF8);
@@ -963,7 +963,7 @@ static std::unique_ptr<LineDataProvider> CreateTextLineDataProvider(const String
 	if (*pLineBegin != 0)
 		lines.push_back(ucr::toUTF8(String(pLineBegin)));
 	auto tableProps = MakeTablePropertiesByFileName(filepath);
-	return std::make_unique<LineDataProvider>(std::move(lines), encoding, tableProps);
+	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
 static std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffItem(const String& filepath, const FileTextEncoding& encoding)
@@ -995,17 +995,9 @@ struct FilterExpressionSet
 };
 
 static std::optional<FilterExpressionSet> BuildFilterExpressionSet(const String& filepath, const FileTextEncoding& encoding,
-	const std::vector<String>& expressions, const LineDataProvider& lineDataProvider, String& errorMessage)
+	const std::vector<String>& expressions, const VectorLineDataProvider& lineDataProvider, String& errorMessage)
 {
 	FilterExpressionSet set;
-	FilterExpression::SetLogger([](int level, const std::string& msg) {
-		if (level == 0)
-			RootLogger::Error(msg);
-		else if (level == 1)
-			RootLogger::Warn(msg);
-		else
-			RootLogger::Info(msg);
-	});
 	auto [diffContext, diffItem] = CreateDiffItem(filepath, encoding);
 	set.diffContext = std::move(diffContext);
 	set.diffItem = std::move(diffItem);
@@ -1028,7 +1020,7 @@ static std::optional<FilterExpressionSet> BuildFilterExpressionSet(const String&
 	return set;
 }
 
-static bool TransformLines(LineDataProvider& lineDataProvider,
+static bool ApplyFilterExpressionsToLines(VectorLineDataProvider& lineDataProvider,
 	std::vector<FilterExpression>& filterExpressions, std::vector<FilterEvalContext>& evalContexts, String& errorMessage)
 {
 	int lineCount = lineDataProvider.GetLineCount();
@@ -1064,7 +1056,7 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 	auto exprSet = BuildFilterExpressionSet(filepath, lineDataProvider->GetEncoding(), expressions, *lineDataProvider, errorMessage);
 	if (!exprSet)
 		return _T("");
-	if (!TransformLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
+	if (!ApplyFilterExpressionsToLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
 		return _T("");
 
 	String tempPath = bMayOverwrite ? filepath : (env::GetTemporaryFileName(env::GetTemporaryPath(), _T("WM")) + paths::FindExtension(filepath));
@@ -1087,7 +1079,7 @@ static String ApplyFilterExpressionsToString(const String& text, const std::vect
 	auto exprSet = BuildFilterExpressionSet(filepath, lineDataProvider->GetEncoding(), expressions, *lineDataProvider, errorMessage);
 	if (!exprSet)
 		return _T("");
-	if (!TransformLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
+	if (!ApplyFilterExpressionsToLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
 		return _T("");
 
 	String result;

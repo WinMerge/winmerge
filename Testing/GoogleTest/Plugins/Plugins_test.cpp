@@ -67,6 +67,13 @@ namespace
 
 	TEST_F(PluginsTest, Unpack_FilterExpression)
 	{
+		GetOptionsMgr()->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
+		GetOptionsMgr()->InitOption(OPT_CMP_CSV_DELIM_CHAR, _T(","));
+		GetOptionsMgr()->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T("*.tsv"));
+		GetOptionsMgr()->InitOption(OPT_CMP_DSV_FILEPATTERNS, _T(""));
+		GetOptionsMgr()->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(";"));
+		GetOptionsMgr()->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);
+		GetOptionsMgr()->InitOption(OPT_CMP_TBL_QUOTE_CHAR, _T("\""));
 		GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
 		std::vector<int> subcodes;
 		String filepath[] = { _T("../../selftests/w/t001a.txt"), _T("../../selftests/u/t001a.txt"), _T("../../selftests/m/t001a.txt") };
@@ -75,10 +82,24 @@ namespace
 		PackingInfo pi(String(_T("le:toUpper(Line)")));
 		String file = filepath[0];
 		EXPECT_TRUE(pi.Unpacking(0, &subcodes, file, filepaths, {filepath[0]}));
+	}
 
+	TEST_F(PluginsTest, Unpack_FilterExpression_Invalid)
+	{
+		GetOptionsMgr()->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
+		GetOptionsMgr()->InitOption(OPT_CMP_CSV_DELIM_CHAR, _T(","));
+		GetOptionsMgr()->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T("*.tsv"));
+		GetOptionsMgr()->InitOption(OPT_CMP_DSV_FILEPATTERNS, _T(""));
+		GetOptionsMgr()->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(";"));
+		GetOptionsMgr()->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);
+		GetOptionsMgr()->InitOption(OPT_CMP_TBL_QUOTE_CHAR, _T("\""));
+		GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+		std::vector<int> subcodes;
+		String filepath[] = { _T("../../selftests/w/t001a.txt"), _T("../../selftests/u/t001a.txt"), _T("../../selftests/m/t001a.txt") };
+		String filepaths = filepath[0] + _T("|") + filepath[1] + _T("|") + filepath[2];
 
-		pi.SetPluginPipeline(String(_T("le:toUpper(Line")));
-		file = filepath[0];
+		PackingInfo pi(String(_T("le:toUpper(Line")));
+		String file = filepath[0];
 		EXPECT_FALSE(pi.Unpacking(0, &subcodes, file, filepaths, {filepath[0]}));
 	}
 
@@ -342,21 +363,28 @@ namespace
 		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 		EXPECT_EQ(_T("ExecFilterCommand 'dir  c:\\ '|ExecFilterCommand ' sort '"), pluginPipeline);
 
-		parseResult = PluginForFile::ParsePluginPipeline(_T("le:replace(Line, \"\\s+\", \"\")|le:1:replace(Line, \"\\s+\", \"\")|le:1,3:replace(Line, \"\\s+\", \"\")"), errorMessage);
+		parseResult = PluginForFile::ParsePluginPipeline(_T("le:replace(Line, \"\\s+\", \"\")|le:1:replace(Line, \"|\", \"\")|le:1,3:replace(Line, \"\\s+\", \"\")|SelectLines:1,3 'abc'"), errorMessage);
 		EXPECT_TRUE(errorMessage.empty());
-		EXPECT_EQ(3, parseResult.size());
+		EXPECT_EQ(4, parseResult.size());
 		auto& lineExpressionItem0 = std::get<PluginForFile::FilterExpressionPipelineItem>(parseResult[0]);
 		EXPECT_EQ(_T("replace(Line, \"\\s+\", \"\")"), lineExpressionItem0.expression);
 
 		auto& lineExpressionItem1 = std::get<PluginForFile::FilterExpressionPipelineItem>(parseResult[1]);
 		EXPECT_EQ(0b001, lineExpressionItem1.targetFlags);
-		EXPECT_EQ(_T("replace(Line, \"\\s+\", \"\")"), lineExpressionItem1.expression);
+		EXPECT_EQ(_T("replace(Line, \"|\", \"\")"), lineExpressionItem1.expression);
 
 		auto& lineExpressionItem2 = std::get<PluginForFile::FilterExpressionPipelineItem>(parseResult[2]);
 		EXPECT_EQ(0b101, lineExpressionItem2.targetFlags);
 		EXPECT_EQ(_T("replace(Line, \"\\s+\", \"\")"), lineExpressionItem2.expression);
 		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
-		EXPECT_EQ(_T("le:replace(Line, \"\\s+\", \"\")|le:1:replace(Line, \"\\s+\", \"\")|le:1,3:replace(Line, \"\\s+\", \"\")"), pluginPipeline);
+
+		auto* parseResult3 = &PluginForFile::GetPluginPipelineItem(parseResult[3]);
+		EXPECT_EQ(_T("SelectLines"), parseResult3->name);
+		EXPECT_EQ(_T("abc"), parseResult3->args[0]);
+		EXPECT_EQ('\'', parseResult3->quoteChar);
+
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("le:replace(Line, \"\\s+\", \"\")|le:1:replace(Line, \"|\", \"\")|le:1,3:replace(Line, \"\\s+\", \"\")|SelectLines:1,3 'abc'"), pluginPipeline);
 
 		parseResult = PluginForFile::ParsePluginPipeline(_T("|"), errorMessage);
 		EXPECT_TRUE(!errorMessage.empty());

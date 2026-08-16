@@ -1873,14 +1873,6 @@ void CMergeDoc::HideLines()
 	if (!m_displayFilterHelper.GetStringOrExpression().empty())
 	{
 		FilterExpression& fe = m_displayFilterHelper.GetFilterExpression();
-		FilterExpression::SetLogger([](int level, const std::string& msg) {
-			if (level == 0)
-				RootLogger::Error(msg);
-			else if (level == 1)
-				RootLogger::Warn(msg);
-			else
-				RootLogger::Info(msg);
-		});
 		if (fe.errorCode == 0)
 		{
 			auto sharedContext = std::make_unique<FilterSharedContext>();

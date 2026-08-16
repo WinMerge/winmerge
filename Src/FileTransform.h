@@ -53,6 +53,8 @@ public:
 	static bool IsPluginPipelineItem(const PipelineItem& item) { return std::holds_alternative<PluginPipelineItem>(item); }
 	static const PluginPipelineItem& GetPluginPipelineItem(const PipelineItem& item) { return std::get<PluginPipelineItem>(item); }
 	static PluginPipelineItem& GetPluginPipelineItem(PipelineItem& item) { return std::get<PluginPipelineItem>(item); }
+	static const PluginPipelineItem* GetPluginPipelineItemPtr(const PipelineItem& item) { return !IsPluginPipelineItem(item) ? nullptr : &std::get<PluginPipelineItem>(item); }
+	static PluginPipelineItem* GetPluginPipelineItemPtr(PipelineItem& item) { return !IsPluginPipelineItem(item) ? nullptr : &std::get<PluginPipelineItem>(item); }
 
 	void Initialize(bool automatic)
 	{

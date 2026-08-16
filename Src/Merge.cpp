@@ -1450,8 +1450,8 @@ static bool ContainsPluginArguments(const String& pluginPipeline)
 	auto plugins = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
 	for (const auto& pipelineItem : plugins)
 	{
-		if (PluginForFile::IsPluginPipelineItem(pipelineItem) &&
-			!PluginForFile::GetPluginPipelineItem(pipelineItem).args.empty())
+		const auto* pPluginItem = PluginForFile::GetPluginPipelineItemPtr(pipelineItem);
+		if (pPluginItem && !pPluginItem->args.empty())
 			return true;
 	}
 	return false;

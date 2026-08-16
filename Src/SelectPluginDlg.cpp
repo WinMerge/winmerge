@@ -167,8 +167,7 @@ void CSelectPluginDlg::prepareListbox()
 	PluginInfo* pSelPlugin = nullptr;
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
-	PluginForFile::PluginPipelineItem* pLastItem = (parseResult.empty() || !PluginForFile::IsPluginPipelineItem(parseResult.back())) ?
-		nullptr : &PluginForFile::GetPluginPipelineItem(parseResult.back());
+	PluginForFile::PluginPipelineItem* pLastItem = parseResult.empty() ? nullptr : PluginForFile::GetPluginPipelineItemPtr(parseResult.back());
 	String lastPluginName = !pLastItem ? _T("") : pLastItem->name;
 	uint8_t targetFlags = !pLastItem ? 0xff : pLastItem->targetFlags;
 	INT_PTR nameCount = 0;
@@ -300,8 +299,8 @@ void CSelectPluginDlg::OnClickedAlias()
 		{
 			for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
 			{
-				if (PluginForFile::IsPluginPipelineItem(parseResult.front()) &&
-					name == PluginForFile::GetPluginPipelineItem(parseResult.front()).name)
+				const auto* pPluginItem = PluginForFile::GetPluginPipelineItemPtr(parseResult.front());
+				if (pPluginItem && name == pPluginItem->name)
 					plugin = plugin2;
 			}
 		}
@@ -391,11 +390,10 @@ void CSelectPluginDlg::OnSelchangePluginName()
 					auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
 					if (parseResult.empty())
 						parseResult.push_back(PluginForFile::PluginPipelineItem{ targetFlags, name, {}, '\0' });
-					if (PluginForFile::IsPluginPipelineItem(parseResult.back()))
+					if (auto* pPluginItem = PluginForFile::GetPluginPipelineItemPtr(parseResult.front()))
 					{
-						auto& lastItem = PluginForFile::GetPluginPipelineItem(parseResult.back());
-						lastItem.name = name;
-						lastItem.targetFlags = targetFlags;
+						pPluginItem->name = name;
+						pPluginItem->targetFlags = targetFlags;
 					}
 					m_strPluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 					pPlugin = plugin;
@@ -445,8 +443,8 @@ void CSelectPluginDlg::OnClickedSettings()
 			{
 				for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
 				{
-					if (PluginForFile::IsPluginPipelineItem(parseResult.front())&&
-						name == PluginForFile::GetPluginPipelineItem(parseResult.front()).name)
+					const auto* pPluginItem = PluginForFile::GetPluginPipelineItemPtr(parseResult.front());
+					if (pPluginItem && name == pPluginItem->name)
 					{
 						plugin = plugin2;
 						break;
