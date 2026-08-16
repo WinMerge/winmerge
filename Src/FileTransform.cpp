@@ -1067,7 +1067,7 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 	if (!TransformLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
 		return _T("");
 
-	String tempPath = bMayOverwrite ? filepath : env::GetTemporaryFileName(env::GetTemporaryPath(), _T("WM"));
+	String tempPath = bMayOverwrite ? filepath : (env::GetTemporaryFileName(env::GetTemporaryPath(), _T("WM")) + paths::FindExtension(filepath));
 	UniStdioFile file;
 	file.OpenCreateUtf8(tempPath);
 	int lineCount = lineDataProvider->GetLineCount();
