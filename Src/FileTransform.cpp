@@ -30,6 +30,7 @@
 #include "FilterEngine/FilterExpression.h"
 #include "FilterEngine/ILineDataProvider.h"
 #include "FilterErrorMessages.h"
+#include "TableProps.h"
 
 using Poco::Exception;
 
@@ -783,8 +784,8 @@ bool PackingInfo::Packing(int target, const String& srcFilepath, const String& d
 class LineDataProvider: public ILineDataProvider
 {
 public:
-	LineDataProvider(std::vector<std::string> lines, const FileTextEncoding& encoding)
-	 : m_lines(std::move(lines)), m_encoding(encoding) {}
+	LineDataProvider(std::vector<std::string> lines, const FileTextEncoding& encoding, const TableProps& tableProps)
+	 : m_lines(std::move(lines)), m_encoding(encoding), m_tableProps(tableProps) {}
 	int GetLineCount() const
 	{
 		return static_cast<int>(m_lines.size());
@@ -798,11 +799,40 @@ public:
 	}
 	int GetColumnCount(int pane, int lineIndex) const
 	{
-		return 0;
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return 0;
+		auto& line = m_lines[lineIndex];
+		int columnCount = 0;
+		bool inQuote = false;
+		for (int i = 0; i < line.size(); ++i)
+		{
+			char ch = line[i];
+			if (ch == m_tableProps.quote)
+				inQuote = !inQuote;
+			else if (!inQuote && ch == m_tableProps.delimiter)
+				columnCount++;
+		}
+		return columnCount;
 	}
 	std::string GetColumn(int pane, int lineIndex, int columnIndex) const
 	{
-		return GetLine(pane, lineIndex);
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return {};
+		auto& line = m_lines[lineIndex];
+		int columnCount = 0;
+		bool inQuote = false;
+		std::string column;
+		for (int i = 0; i < static_cast<int>(line.size()) && columnCount <= columnIndex; ++i)
+		{
+			char ch = line[i];
+			if (columnCount == columnIndex && (inQuote || ch != m_tableProps.delimiter))
+				column += ch;
+			if (ch == m_tableProps.quote)
+				inQuote = !inQuote;
+			else if (!inQuote && ch == m_tableProps.delimiter)
+				++columnCount;
+		}
+		return column;
 	}
 	int GetRealLineNumber(int pane, int lineIndex) const
 	{
@@ -819,7 +849,6 @@ public:
 		const std::string& line = m_lines[lineIndex];
 		return GetEolType(line);
 	}
-
 	int GetEolLength(const std::string& line) const
 	{
 		EOLFLAGS eolType = GetEolType(line);
@@ -864,6 +893,7 @@ public:
 private:
 	std::vector<std::string> m_lines;
 	FileTextEncoding m_encoding;
+	TableProps m_tableProps;
 };
 
 static std::unique_ptr<LineDataProvider> CreateFileLineDataProvider(const String& filepath)
@@ -896,12 +926,15 @@ static std::unique_ptr<LineDataProvider> CreateFileLineDataProvider(const String
 		bool lossy;
 		String line, eol;
 		linesToRead = file.ReadString(line, eol, &lossy);
+		if (!linesToRead)
+			break;
 		lines.push_back(ucr::toUTF8(line + eol));
 	} while (linesToRead);
-	return std::make_unique<LineDataProvider>(std::move(lines), encoding);
+	auto tableProps = MakeTablePropertiesByFileName(filepath);
+	return std::make_unique<LineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
-static std::unique_ptr<LineDataProvider> CreateTextLineDataProvider(const String& Text)
+static std::unique_ptr<LineDataProvider> CreateTextLineDataProvider(const String& Text, const String& filepath)
 {
 	FileTextEncoding encoding;
 	encoding.SetUnicoding(ucr::UTF8);
@@ -929,7 +962,8 @@ static std::unique_ptr<LineDataProvider> CreateTextLineDataProvider(const String
 	}
 	if (*pLineBegin != 0)
 		lines.push_back(ucr::toUTF8(String(pLineBegin)));
-	return std::make_unique<LineDataProvider>(std::move(lines), encoding);
+	auto tableProps = MakeTablePropertiesByFileName(filepath);
+	return std::make_unique<LineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
 static std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffItem(const String& filepath, const FileTextEncoding& encoding)
@@ -1044,7 +1078,7 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 
 static String ApplyFilterExpressionsToString(const String& text, const std::vector<String>& expressions, const String& filepath, String& errorMessage)
 {
-	auto lineDataProvider = CreateTextLineDataProvider(text);
+	auto lineDataProvider = CreateTextLineDataProvider(text, filepath);
 	if (!lineDataProvider)
 	{
 		errorMessage = _T("Failed to read text: ") + GetSysError();

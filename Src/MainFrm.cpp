@@ -92,6 +92,7 @@
 #include "ArchiveTool.h"
 #include "DiffImageListUtils.h"
 #include "PluginMenu.h"
+#include "TableProps.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -1073,7 +1074,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	pMergeDoc->SetEnableTableEditing(table);
 	if (pOpenParams && table.value_or(false))
 	{
-		CMergeDoc::TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
+		TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
 			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
 		if (const auto* pOpenTableFileParams = dynamic_cast<const OpenTableFileParams*>(pOpenParams))
 		{

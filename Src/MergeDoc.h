@@ -21,6 +21,7 @@
 #include "FileLoadResult.h"
 #include "FileTransform.h"
 #include "LineFilterHelper.h"
+#include "TableProps.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -130,7 +131,6 @@ class CMergeEditSplitterView;
 class CMergeDoc : public CDocument, public IMergeDoc, public IMDITab, public ILineDataProvider
 {
 public:
-	struct TableProps { bool istable; tchar_t delimiter; tchar_t quote; bool allowNewlinesInQuotes; };
 	// Attributes
 public:
 	static int m_nBuffersTemp;

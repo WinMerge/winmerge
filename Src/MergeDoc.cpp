@@ -58,6 +58,7 @@
 #include "Logger.h"
 #include "SyntaxParserRegistry.h"
 #include "PluginMenu.h"
+#include "TableProps.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2224,32 +2225,11 @@ FileLoadResult::flags_t CMergeDoc::LoadOneFile(int index, const String& filename
 	return loadSuccess;
 }
 
-CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog)
+TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog)
 {
-	const tchar_t quote = strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR));
-	FileFilterHelper filterCSV, filterTSV, filterDSV;
-	bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
-	const String& csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
-	if (!csvFilePattern.empty())
-	{
-		filterCSV.SetMaskOrExpression(csvFilePattern);
-		if (filterCSV.includeFile(path))
-			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_CSV_DELIM_CHAR)), quote, allowNewlineIQuotes };
-	}
-	const String& tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
-	if (!tsvFilePattern.empty())
-	{
-		filterTSV.SetMaskOrExpression(tsvFilePattern);
-		if (filterTSV.includeFile(path))
-			return { true, '\t', quote, allowNewlineIQuotes };
-	}
-	const String& dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
-	if (!dsvFilePattern.empty())
-	{
-		filterDSV.SetMaskOrExpression(dsvFilePattern);
-		if (filterDSV.includeFile(path))
-			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
-	}
+	TableProps props = ::MakeTablePropertiesByFileName(path);
+	if (props.istable)
+		return props;
 	if (enableTableEditing.value_or(false))
 	{
 		if (showDialog)
@@ -2260,7 +2240,7 @@ CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& pat
 		}
 		else
 		{
-			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
+			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), props.quote };
 		}
 	}
 	return { false, 0, 0, false };

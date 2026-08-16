@@ -879,6 +879,12 @@
     <ClCompile Include="MergeTextFormatter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PluginMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableProps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1677,6 +1683,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeTextFormatter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TableProps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
