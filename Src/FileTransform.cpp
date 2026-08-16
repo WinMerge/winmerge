@@ -529,7 +529,7 @@ static bool ResolvePluginPipeline(const std::vector<PluginForFile::PipelineItem>
 		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
 		{
 			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
-			if (i == 0 || std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
+			if (i == 0 || !std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
 				std::get<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]).targetFlags != targetFlags)
 			{
 				pipelineResolved.push_back( PluginForFile::FilterExpressionPipelineItem{ targetFlags, expression });
@@ -1338,12 +1338,11 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
 		{
 			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
-			if (i == 0 || std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
+			if (i == 0 || !std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
 				std::get<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]).targetFlags != targetFlags)
 				plugins.push_back({ nullptr, { expression }, targetFlags, {}, true });
 			else
 				std::get<1>(plugins.back()).push_back(expression);
-			i++;
 			continue;
 		}
 		auto& [ targetFlags, pluginName, args, quoteChar] = PluginForFile::GetPluginPipelineItem(pipelineItem);
