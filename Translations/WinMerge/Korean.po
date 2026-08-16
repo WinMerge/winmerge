@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-07-26 05:09+0900\n"
+"PO-Revision-Date: 2026-08-16 20:33+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -5547,7 +5547,7 @@ msgstr "폴더 비교시 이미지 비교 사용함(&E)"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3358
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "WIC 디코더 선호(&P)"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3359
@@ -9122,7 +9122,7 @@ msgstr "두 번째 및 세번째"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5636
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "(파이프라인에 추가하려면 Ctrl+클릭하세요)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5641
@@ -10253,8 +10253,12 @@ msgstr "AI 지원 텍스트 변환 기능"
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter (OpenAI-compatible API).\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"텍스트 변환기 (OpenAI 호환 API)입니다.\r\n"
+"사용법: AIConvertText 프롬프트"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -10501,16 +10505,22 @@ msgstr "프롬프트 입력"
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
+msgid ""
+"Enter API key.\r\n"
+"- Registration with the selected provider may be required (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
+"API 키를 입력하세요.\r\n"
+"- 선택한 제공자에 등록해야 할 수 있으며 (수수료가 발생할 수 있음).\r\n"
+"- 키는 env var %1에 저장됩니다."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "API 키를 위한 환경 변수 이름"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "API 키"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -10526,8 +10536,8 @@ msgstr "모델"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "API 키가 변경되었습니다. 적용하려면 다시 시작하세요."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "공급자"
