@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-05-27 07:01+0000\n"
-"PO-Revision-Date: 2026-08-10 08:26-0400\n"
+"POT-Creation-Date: 2026-08-12 09:50+0000\n"
+"PO-Revision-Date: 2026-08-15 23:01-0400\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -490,7 +490,7 @@ msgstr "Sa&isie"
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_GOBACKFORWARD
 #: Merge.rc:308 Merge.rc:1299
 msgid "&Go Back/Forward"
-msgstr "&En Arrière/Avant"
+msgstr "&En arrière/avant"
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW
 #: Merge.rc:310
@@ -4245,7 +4245,7 @@ msgstr "Filtres de fichier"
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
 #: Merge.rc:2824
 msgid "&Mask / Filter Expression"
-msgstr "Masque / Filtre Expression"
+msgstr "&Masquer / Filtrer l'expression"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
 #: Merge.rc:2827
@@ -5075,7 +5075,7 @@ msgstr "&Activer la comparaison d'images dans la comparaison de dossiers"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3358
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "&Préférer le décodeur WIC"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3359
@@ -9533,8 +9533,12 @@ msgstr "Fonctions de conversion de texte assistées par l'IA"
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter (OpenAI-compatible API).\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"Convertisseur de texte (API compatible OpenAI).\r\n"
+"Utilisation : Invite de texte de conversion IA"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -9759,7 +9763,7 @@ msgstr "Entrez les arguments de la ligne de commande pour la retouche"
 #: Strings.rc:309
 #, c-format
 msgid "Enter folder name for patch '%1'"
-msgstr "Entrer le nom du dossier pour la retouche \"%1\""
+msgstr "Entrez le nom du dossier pour la retouche \"%1\""
 
 #. IDS_PLUGIN_APPLYPATCH_STR5
 #: Strings.rc:314
@@ -9777,20 +9781,26 @@ msgstr "Options du plug-in AI.sct WinMerge"
 
 #: Strings.rc:324
 msgid "Enter prompt"
-msgstr "Entrer dans l'invite"
+msgstr "Entrez dans l'invite"
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
+msgid ""
+"Enter API key.\r\n"
+"- Registration with the selected provider may be required (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
+"Entrez la clé API.\r\n"
+"- L'inscription auprès du fournisseur sélectionné peut être requise (des frais peuvent s'appliquer).\r\n"
+"- Clé stockée dans la variable d'environnement %1."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "Nom de la variable d'environnement pour la clé API"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "Clé API"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -9806,8 +9816,8 @@ msgstr "Modèle"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "Clé API modifiée. Redémarrez pour appliquer les modifications."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "Fournisseur"
