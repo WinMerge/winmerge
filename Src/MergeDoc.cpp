@@ -2232,10 +2232,14 @@ TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& path, const st
 		}
 		else
 		{
-			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), props.quote };
+			return {
+				true,
+				strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)),
+				props.quote,
+				props.allowNewlinesInQuotes };
 		}
 	}
-	return { false, 0, 0, false };
+	return { false, 0, props.quote, props.allowNewlinesInQuotes };
 };
 
 void CMergeDoc::SetTableProperties()

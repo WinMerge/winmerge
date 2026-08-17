@@ -31,5 +31,5 @@ TableProps MakeTablePropertiesByFileName(const String& path)
 		if (filterDSV.includeFile(path))
 			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote, allowNewlinesInQuotes };
 	}
-	return { false, 0, 0, false };
+	return { false, 0, quote, allowNewlinesInQuotes };
 }
