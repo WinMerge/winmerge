@@ -1062,7 +1062,11 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 
 	String tempPath = bMayOverwrite ? filepath : (env::GetTemporaryFileName(env::GetTemporaryPath(), _T("WM")) + paths::FindExtension(filepath));
 	UniStdioFile file;
-	file.OpenCreateUtf8(tempPath);
+	if (!file.OpenCreateUtf8(tempPath))
+	{
+		errorMessage = strutils::format_string2(_("Cannot create file\n%1\n\n%2"), tempPath, GetSysError());
+		return _T("");
+	}
 	int lineCount = lineDataProvider->GetLineCount();
 	for (int i = 0; i < lineCount; ++i)
 		file.WriteString(ucr::toTString(lineDataProvider->GetFullLine(0, i)));
