@@ -4420,10 +4420,10 @@ TEST_P(FilterExpressionTest, TransformLine)
 	ectxt.lineIndex = 0;
 	pFilterSharedContext = std::make_unique<FilterSharedContext>(); ectxt.sharedContext = pFilterSharedContext.get();
 	EXPECT_TRUE(fe.Parse("replace(Line, \" \", \"\")"));
-	EXPECT_STREQ(_T("Line1"), fe.TransformLine(ectxt).c_str());
+	EXPECT_STREQ("Line1", fe.TransformLine(ectxt).c_str());
 
 	ectxt.lineIndex = 1;
-	EXPECT_STREQ(_T("Line2"), fe.TransformLine(ectxt).c_str());
+	EXPECT_STREQ("Line2", fe.TransformLine(ectxt).c_str());
 }
 
 TEST_P(FilterExpressionTest, StrFindAndRegexFindFunctions)

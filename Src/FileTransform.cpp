@@ -22,6 +22,15 @@
 #include "paths.h"
 #include "Logger.h"
 #include "MergeApp.h"
+#include "DiffContext.h"
+#include "UniFile.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "codepage_detect.h"
+#include "FilterEngine/FilterExpression.h"
+#include "FilterEngine/ILineDataProvider.h"
+#include "FilterErrorMessages.h"
+#include "TableProps.h"
 
 using Poco::Exception;
 
@@ -74,6 +83,31 @@ static inline bool isTargetInFlags(int target, unsigned targetFlags)
 	return ((1 << target) & targetFlags) != 0;
 }
 
+/**
+ * @brief Set the Variables/Arguments properties on a plugin's script dispatch, if it has them
+ *
+ * @note Caller must already hold g_mutex before invoking this
+ *
+ * Shared by PackingInfo::Unpacking(), PackingInfo::pack(), PrediffingInfo::Prediffing()
+ * and EditorScriptInfo::TransformText(), which all set these two properties identically
+ * before invoking the plugin.
+ */
+static bool SetPluginVariablesAndArguments(PluginInfo* plugin, LPDISPATCH piScript,
+	const std::vector<String>& args, const std::vector<StringView>& variables)
+{
+	if (plugin->m_hasVariablesProperty)
+	{
+		if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
+			return false;
+	}
+	if (plugin->m_hasArgumentsProperty)
+	{
+		if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : PluginForFile::MakeArguments(args, variables), piScript))
+			return false;
+	}
+	return true;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // transformations : packing unpacking
 
@@ -86,17 +120,125 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(Stri
 std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(const String& pluginPipeline, String& errorMessage)
 {
 	std::vector<PluginForFile::PipelineItem> result;
+	errorMessage.clear();
+
+	// Split the pipeline into items by '|', ignoring '|' inside quotes.
+	std::vector<String> items;
+	String item;
 	bool inQuotes = false;
 	tchar_t quoteChar = 0;
-	std::vector<String> args;
-	uint8_t targetFlags = 0xff;
-	String token, name;
-	errorMessage.clear();
-	const tchar_t* p = pluginPipeline.c_str();
-	while (tc::istspace(*p)) p++;
-	while (*p)
+
 	{
-		tchar_t sep = 0;
+		const tchar_t* p = pluginPipeline.c_str();
+		while (tc::istspace(*p))
+			++p;
+
+		if (!*p)
+			return result;
+	}
+
+	for (const tchar_t* p = pluginPipeline.c_str(); *p; ++p)
+	{
+		if (inQuotes)
+		{
+			item += *p;
+			if (*p == quoteChar)
+			{
+				if (*(p + 1) == quoteChar)
+					item += *++p;
+				else
+					inQuotes = false;
+			}
+		}
+		else
+		{
+			if (*p == '"' || *p == '\'')
+			{
+				inQuotes = true;
+				quoteChar = *p;
+				item += *p;
+			}
+			else if (*p == '|')
+			{
+				items.push_back(item);
+				item.clear();
+			}
+			else
+			{
+				item += *p;
+			}
+		}
+	}
+
+	if (inQuotes)
+	{
+		errorMessage = strutils::format_string1(_("Missing quote in plugin pipeline: %1"), pluginPipeline);
+		return result;
+	}
+
+	items.push_back(item);
+
+	for (const auto& pipelineItem : items)
+	{
+		const tchar_t* p = pipelineItem.c_str();
+		while (tc::istspace(*p))
+			++p;
+
+		if (!*p)
+		{
+			errorMessage = strutils::format_string1(_("Missing plugin name in pipeline: %1"), pluginPipeline);
+			return result;
+		}
+
+		uint8_t targetFlags = 0xff;
+		String token, name;
+
+		// Line expression:
+		//   le:pane:expression
+		if (tc::tcsncmp(p, _T("le:"), 3) == 0)
+		{
+			const tchar_t* expression = p + 3;
+			p += 3;
+
+			const tchar_t* q = expression;
+			while (*q == '1' || *q == '2' || *q == '3' || *q == ',')
+				++q;
+
+			if (q != expression && *q == ':')
+			{
+				const String target(expression, q);
+
+				targetFlags = 0;
+				for (const tchar_t ch : target)
+				{
+					if (ch >= '1' && ch <= '3')
+						targetFlags |= 1 << (ch - '1');
+				}
+
+				if (targetFlags == 0)
+					targetFlags = 0xff;
+
+				expression = q + 1;
+			}
+
+			while (tc::istspace(*expression))
+				++expression;
+
+			if (!*expression)
+			{
+				errorMessage = strutils::format_string1(_("Missing line expression in pipeline: %1"), pluginPipeline);
+				return result;
+			}
+
+			result.push_back(FilterExpressionPipelineItem{ targetFlags, expression });
+			continue;
+		}
+
+		// Parse a normal plugin pipeline item.
+		inQuotes = false;
+		quoteChar = 0;
+		std::vector<String> args;
+
 		while (*p)
 		{
 			if (!inQuotes)
@@ -108,13 +250,18 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 				}
 				else if (tc::istspace(*p))
 				{
-					sep = *p;
-					break;
-				}
-				else if (*p == '|')
-				{
-					sep = *p;
-					break;
+					if (!token.empty())
+					{
+						if (name.empty())
+							std::tie(name, targetFlags) = parseNameAndTargetFlags(token);
+						else
+							args.push_back(token);
+						token.clear();
+					}
+
+					while (tc::istspace(*p))
+						++p;
+					continue;
 				}
 				else
 					token += *p;
@@ -140,35 +287,34 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 			}
 			++p;
 		}
+
+		if (inQuotes)
+		{
+			errorMessage = strutils::format_string1(_("Missing quote in plugin pipeline: %1"), pluginPipeline);
+			return result;
+		}
+
+		if (!token.empty())
+		{
+			if (name.empty())
+			{
+				std::tie(name, targetFlags) = parseNameAndTargetFlags(token);
+			}
+			else
+			{
+				args.push_back(token);
+			}
+		}
+
 		if (name.empty())
 		{
-			std::tie(name, targetFlags) = parseNameAndTargetFlags(token);
+			errorMessage = strutils::format_string1(_("Missing plugin name in pipeline: %1"), pluginPipeline);
+			return result;
 		}
-		else
-		{
-			args.push_back(token);
-		}
-		while (tc::istspace(*p)) p++;
-		if (*p == '|')
-			sep = *p;
-		if (sep == '|')
-			p++;
-		token.clear();
-		if (sep == '|' || !*p)
-		{
-			if (name.empty() || (sep == '|' && !*p))
-			{
-				errorMessage = strutils::format_string1(_("Missing plugin name in pipeline: %1"), pluginPipeline);
-				break;
-			}
-			result.push_back({ name, targetFlags, args, quoteChar });
-			name.clear();
-			args.clear();
-			quoteChar = 0;
-		}
-	};
-	if (inQuotes)
-		errorMessage = strutils::format_string1(_("Missing quote in plugin pipeline: %1"), pluginPipeline);
+
+		result.push_back(PluginPipelineItem{ targetFlags, name, args, quoteChar });
+	}
+
 	return result;
 }
 
@@ -176,28 +322,37 @@ String PluginForFile::MakePluginPipeline(const std::vector<PluginForFile::Pipeli
 {
 	int i = 0;
 	String pipeline;
-	for (const auto& [name, targetFlags, args, quoteChar] : list)
+	for (const auto& pipelineItem : list)
 	{
-		if (quoteChar && name.find_first_of(_T(" '\"")) != String::npos)
+		if (std::holds_alternative<FilterExpressionPipelineItem>(pipelineItem))
 		{
-			String nameQuoted = name;
-			strutils::replace(nameQuoted, String(1, quoteChar), String(2, quoteChar));
-			pipeline += strutils::format(_T("%c%s%c"), quoteChar, nameQuoted, quoteChar);
+			const auto& lineExpressionItem = std::get<FilterExpressionPipelineItem>(pipelineItem);
+			pipeline += _T("le");
+			if (lineExpressionItem.targetFlags != 0xff)
+				pipeline += makeTargetsPrefix(lineExpressionItem.targetFlags);
+			pipeline += _T(":") + lineExpressionItem.expression;
 		}
 		else
 		{
-			pipeline += name;
-		}
-		pipeline += makeTargetsPrefix(targetFlags);
-		if (!args.empty())
-		{
-			for (const auto& arg : args)
+			const auto& pluginItem = std::get<PluginPipelineItem>(pipelineItem);
+			if (pluginItem.quoteChar && pluginItem.name.find_first_of(_T(" '\"")) != String::npos)
 			{
-				if (quoteChar)
+				String nameQuoted = pluginItem.name;
+				strutils::replace(nameQuoted, String(1, pluginItem.quoteChar), String(2, pluginItem.quoteChar));
+				pipeline += strutils::format(_T("%c%s%c"), pluginItem.quoteChar, nameQuoted, pluginItem.quoteChar);
+			}
+			else
+			{
+				pipeline += pluginItem.name;
+			}
+			pipeline += makeTargetsPrefix(pluginItem.targetFlags);
+			for (const auto& arg : pluginItem.args)
+			{
+				if (pluginItem.quoteChar)
 				{
 					String argQuoted = arg;
-					strutils::replace(argQuoted, String(1, quoteChar), String(2, quoteChar));
-					pipeline += strutils::format(_T(" %c%s%c"), quoteChar, argQuoted, quoteChar);
+					strutils::replace(argQuoted, String(1, pluginItem.quoteChar), String(2, pluginItem.quoteChar));
+					pipeline += strutils::format(_T(" %c%s%c"), pluginItem.quoteChar, argQuoted, pluginItem.quoteChar);
 				}
 				else
 				{
@@ -265,49 +420,215 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 	return newstr;
 }
 
-static std::vector<PluginForFile::PipelineItem>
-ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, const wchar_t* aliasEvent, String& errorMessage, int stack = 0)
+template <typename PluginTuple, typename ExpandFunc>
+static bool ExpandPluginAliases(
+	const String& aliasEvent, std::vector<PluginTuple>& plugins, String& errorMessage, int stack, ExpandFunc&& expandFunc)
 {
-	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
-	if (!errorMessage.empty())
-		return pipelineResolved;
-	for (auto& item : parseResult)
+	std::vector<PluginTuple> plugins2;
+
+	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
-		PluginInfo* plugin = nullptr;
-		if (item.name == _T("<Automatic>") || item.name == _("<Automatic>"))
-			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(aliasEvent, filteredFilenames);
-		else
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(aliasEvent, item.name);
-		if (plugin)
+		if (plugin && plugin->m_event == aliasEvent)
 		{
 			if (stack > 20)
 			{
-				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), pluginPipeline);
-				return pipelineResolved;
+				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), plugin->m_pipeline);
+				return false;
 			}
+
 			String pipeline = plugin->m_pipeline;
 			for (size_t i = 0; i < 9; ++i)
-				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), (i < item.args.size()) ? item.args[i] : _T(""));
-			String args = PluginForFile::MakeArguments(item.args, {});
-			strutils::replace(pipeline, _T("${*}"), args);
-			auto parseResult2 = ExpandAliases(pipeline, filteredFilenames, aliasEvent, errorMessage, stack + 1);
-			if (!errorMessage.empty())
-				return pipelineResolved;
-			for (auto& item2 : parseResult2)
-				pipelineResolved.push_back(item2);
+				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), (i < args.size()) ? args[i] : _T(""));
+
+			String argsStr = PluginForFile::MakeArguments(args, {});
+			strutils::replace(pipeline, _T("${*}"), argsStr);
+
+			std::vector<PluginTuple> newPlugins;
+			if (!expandFunc(pipeline, newPlugins, errorMessage, stack + 1))
+				return false;
+
+			plugins2.insert(plugins2.end(), newPlugins.begin(), newPlugins.end());
 		}
 		else
-			pipelineResolved.push_back(item);
+		{
+			plugins2.push_back({ plugin, expressions, targetFlags, args, bWithFile });
+		}
 	}
-	return pipelineResolved;
+
+	std::swap(plugins, plugins2);
+	return true;
+}
+
+struct PackUnpackPluginTraits
+{
+	// fallback lookup order when resolving a named or <Automatic> plugin;
+	// the "true" entries are BUFFER_* events (bWithFile = false for those)
+	static const std::vector<std::pair<const wchar_t*, bool>>& LookupChain()
+	{
+		static const std::vector<std::pair<const wchar_t*, bool>> chain = {
+			{ L"FILE_PACK_UNPACK", false },
+			{ L"FILE_FOLDER_PACK_UNPACK", false },
+			{ L"ALIAS_PACK_UNPACK", false },
+			{ L"BUFFER_PACK_UNPACK", true },
+		};
+		return chain;
+	}
+	static const String& AliasEvent()
+	{
+		static const String event = _T("ALIAS_PACK_UNPACK");
+		return event;
+	}
+	static String NotThisKindMessage(const String& pluginName)
+	{
+		return strutils::format_string1(_("'%1' is not an unpacker plugin"), pluginName);
+	}
+};
+
+struct PrediffPluginTraits
+{
+	static const std::vector<std::pair<const wchar_t*, bool>>& LookupChain()
+	{
+		static const std::vector<std::pair<const wchar_t*, bool>> chain = {
+			{ L"FILE_PREDIFF", false },
+			{ L"ALIAS_PREDIFF", false },
+			{ L"BUFFER_PREDIFF", true },
+		};
+		return chain;
+	}
+	static const String& AliasEvent()
+	{
+		static const String event = _T("ALIAS_PREDIFF");
+		return event;
+	}
+	static String NotThisKindMessage(const String& pluginName)
+	{
+		return strutils::format_string1(_("'%1' is not a prediffer plugin"), pluginName);
+	}
+};
+
+/**
+ * @brief Resolve an already-parsed plugin pipeline (<None>/<Automatic>/named entries and
+ *        line-expression items) into the concrete plugin list. Shared by PackingInfo and
+ *        PrediffingInfo, which only differ in which plugin events they search (see Traits).
+ *
+ * @note Unlike the two hand-written versions this replaces, the "consecutive line-expression
+ *        merge" below is always bReverse-aware (matches what PrediffingInfo::GetPrediffPlugin
+ *        used to do); the old PackingInfo::GetPackUnpackPlugin unconditionally used
+ *        plugins.back(), which was wrong when bReverse is true (as in PackingInfo::pack()).
+ */
+template <typename Traits, typename RecurseFunc>
+static bool ResolvePluginPipeline(const std::vector<PluginForFile::PipelineItem>& result,
+	const String& filteredFilenames, bool bReverse,
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
+	String* pPluginPipelineResolved, String& errorMessage, int stack, RecurseFunc&& recurse)
+{
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	for (size_t i = 0; i < result.size(); ++i)
+	{
+		auto& pipelineItem = result[i];
+		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
+		{
+			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
+			if (i == 0 || !std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
+				std::get<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]).targetFlags != targetFlags)
+			{
+				pipelineResolved.push_back( PluginForFile::FilterExpressionPipelineItem{ targetFlags, expression });
+				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+					{ nullptr, { expression }, targetFlags, {}, true });
+			}
+			else
+			{
+				auto& lastPlugin = bReverse ? plugins.front() : plugins.back();
+				std::get<1>(lastPlugin).push_back(expression);
+			}
+			continue;
+		}
+		auto& [ targetFlags, pluginName, args, quoteChar] = PluginForFile::GetPluginPipelineItem(pipelineItem);
+		PluginInfo* plugin = nullptr;
+		if (pluginName == _T("<None>") || pluginName == _("<None>"))
+			;
+		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
+		{
+			const auto filenames = strutils::split(filteredFilenames, '|');
+			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
+			for (int j = 0; j < filenames.size(); ++j)
+			{
+				bool bWithFile = true;
+				const String filename{ filenames[j].data(), filenames[j].size() };
+				for (const auto& [eventName, isBufferEvent] : Traits::LookupChain())
+				{
+					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(eventName, filename);
+					if (plugin)
+					{
+						bWithFile = !isBufferEvent;
+						break;
+					}
+				}
+				pluginInfos.push_back({ plugin, bWithFile });
+			}
+			if (!filenames.empty() &&
+				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
+					[&](const auto& elem) { return elem == pluginInfos.front(); }))
+			{
+				const auto& pluginInfo = pluginInfos.front();
+				if (pluginInfo.first)
+				{
+					pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, pluginInfo.first->m_name, args, quoteChar });
+					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+						{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
+				}
+			}
+			else
+			{
+				for (int j = 0; j < pluginInfos.size(); ++j)
+				{
+					const auto& pluginInfo = pluginInfos[j];
+					if (isTargetInFlags(j, targetFlags) && pluginInfo.first)
+					{
+						uint8_t targetFlags2 = 1 << j;
+						pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags2, pluginInfo.first->m_name, args, quoteChar });
+						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+							{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
+					}
+				}
+			}
+		}
+		else
+		{
+			bool bWithFile = true;
+			for (const auto& [eventName, isBufferEvent] : Traits::LookupChain())
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(eventName, pluginName);
+				if (plugin)
+				{
+					bWithFile = !isBufferEvent;
+					break;
+				}
+			}
+			if (!plugin)
+			{
+				if (CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName) == nullptr)
+					errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
+				else
+					errorMessage = Traits::NotThisKindMessage(pluginName);
+				return false;
+			}
+			pipelineResolved.push_back(PluginForFile::PluginPipelineItem{ targetFlags, plugin->m_name, args, quoteChar });
+			plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+				{ plugin, {}, targetFlags, args, bWithFile });
+		}
+	}
+	if (pPluginPipelineResolved)
+		*pPluginPipelineResolved = PluginForFile::MakePluginPipeline(pipelineResolved);
+
+	return ExpandPluginAliases(Traits::AliasEvent(), plugins, errorMessage, stack, std::forward<RecurseFunc>(recurse));
 }
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
-	String *pPluginPipelineResolved, String& errorMessage) const
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
+	String *pPluginPipelineResolved, String& errorMessage, int stack) const
 {
-	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PACK_UNPACK", errorMessage);
+	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	if (bUrl)
@@ -332,7 +653,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 			if (pluginInfo.first)
 			{
 				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ pluginInfo.first, targetFlags, args, pluginInfo.second });
+					{ pluginInfo.first, {}, targetFlags, args, pluginInfo.second });
 			}
 		}
 		else
@@ -344,101 +665,18 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 				{
 					uint8_t targetFlags2 = 1 << i;
 					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, targetFlags2, args, pluginInfo.second });
+						{ pluginInfo.first, {}, targetFlags2, args, pluginInfo.second });
 				}
 			}
 		}
 	}
-	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	for (auto& [pluginName, targetFlags, args, quoteChar] : result)
-	{
-		PluginInfo* plugin = nullptr;
-		if (pluginName == _T("<None>") || pluginName == _("<None>"))
-			;
-		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
+
+	return ResolvePluginPipeline<PackUnpackPluginTraits>(result, filteredFilenames, bReverse,
+		plugins, pPluginPipelineResolved, errorMessage, stack,
+		[&](const String& pipeline, auto& newPlugins, String& error, int nextStack)
 		{
-			const auto filenames = strutils::split(filteredFilenames, '|');
-			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
-			for (int i = 0; i < filenames.size(); ++i)
-			{
-				bool bWithFile = true;
-				const String filename{ filenames[i].data(), filenames[i].size() };
-				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filename);
-				if (plugin == nullptr)
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filename);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filename);
-					if (plugin)
-						bWithFile = false;
-				}
-				pluginInfos.push_back({ plugin, bWithFile });
-			}
-			if (!filenames.empty() &&
-				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
-					[&](const auto& elem) { return elem == pluginInfos.front(); }))
-			{
-				const auto& pluginInfo = pluginInfos.front();
-				if (pluginInfo.first)
-				{
-					pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags, args, quoteChar });
-					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, targetFlags, args, pluginInfo.second });
-				}
-			}
-			else
-			{
-				for (int i = 0; i < pluginInfos.size(); ++i)
-				{
-					const auto& pluginInfo = pluginInfos[i];
-					if (isTargetInFlags(i, targetFlags) && pluginInfo.first)
-					{
-						uint8_t targetFlags2 = 1 << i;
-						pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags2, args, quoteChar });
-						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-							{ pluginInfo.first, targetFlags2, args, pluginInfo.second });
-					}
-				}
-			}
-		}
-		else
-		{
-			bool bWithFile = true;
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
-			if (plugin == nullptr)
-			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
-					if (plugin == nullptr)
-					{
-						plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
-						if (plugin == nullptr)
-						{
-							errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
-						}
-						else
-						{
-							plugin = nullptr;
-							errorMessage = strutils::format_string1(_("'%1' is not an unpacker plugin"), pluginName);
-						}
-						return false;
-					}
-					bWithFile = false;
-				}
-			}
-			if (plugin)
-			{
-				pipelineResolved.push_back({ plugin->m_name, targetFlags, args, quoteChar });
-				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ plugin, targetFlags, args, bWithFile });
-			}
-		}
-	}
-	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
-	return true;
+			return PackingInfo(pipeline).GetPackUnpackPlugin(filteredFilenames, false, bReverse, newPlugins, nullptr, error, nextStack);
+		});
 }
 
 // known handler
@@ -451,7 +689,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins;
 	if (!GetPackUnpackPlugin(_T(""), bUrl, true, plugins, nullptr, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -462,9 +700,12 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 		return true;
 
 	auto itSubcode = handlerSubcodes.rbegin();
-	for (auto& [plugin, targetFlags, args, bWithFile] : plugins)
+	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
+			continue;
+
+		if (!plugin)
 			continue;
 
 		bool bHandled = false;
@@ -474,16 +715,8 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		if (bWithFile)
 		{
@@ -548,6 +781,321 @@ bool PackingInfo::Packing(int target, const String& srcFilepath, const String& d
 	}
 }
 
+class VectorLineDataProvider: public ILineDataProvider
+{
+public:
+	VectorLineDataProvider(std::vector<std::string> lines, const FileTextEncoding& encoding, const TableProps& tableProps)
+	 : m_lines(std::move(lines)), m_encoding(encoding), m_tableProps(tableProps) {}
+	int GetLineCount() const
+	{
+		return static_cast<int>(m_lines.size());
+	}
+	std::string GetLine(int pane, int lineIndex) const
+	{
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return {};
+		auto& line = m_lines[lineIndex];
+		return line.substr(0, line.size() - GetEolLength(line));
+	}
+	int GetColumnCount(int pane, int lineIndex) const
+	{
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return 0;
+		auto& line = m_lines[lineIndex];
+		int columnCount = 0;
+		bool inQuote = false;
+		for (int i = 0; i < line.size(); ++i)
+		{
+			char ch = line[i];
+			if (ch == m_tableProps.quote)
+				inQuote = !inQuote;
+			else if (!inQuote && ch == m_tableProps.delimiter)
+				columnCount++;
+		}
+		return columnCount + 1;
+	}
+	std::string GetColumn(int pane, int lineIndex, int columnIndex) const
+	{
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return {};
+		auto& line = m_lines[lineIndex];
+		int columnCount = 0;
+		bool inQuote = false;
+		std::string column;
+		int length = static_cast<int>(line.size()) - GetEolLength(line);
+		for (int i = 0; i < length && columnCount <= columnIndex; ++i)
+		{
+			char ch = line[i];
+			if (columnCount == columnIndex && (inQuote || ch != m_tableProps.delimiter))
+				column += ch;
+			if (ch == m_tableProps.quote)
+				inQuote = !inQuote;
+			else if (!inQuote && ch == m_tableProps.delimiter)
+				++columnCount;
+		}
+		return column;
+	}
+	int GetRealLineNumber(int pane, int lineIndex) const
+	{
+		return lineIndex;
+	}
+	unsigned GetLineFlags(int pane, int lineIndex) const
+	{
+		return 0;
+	}
+	unsigned GetLineEol(int pane, int lineIndex) const
+	{
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return ILineDataProvider::EOL_NONE;
+		const std::string& line = m_lines[lineIndex];
+		return GetEolType(line);
+	}
+	int GetEolLength(const std::string& line) const
+	{
+		EOLFLAGS eolType = GetEolType(line);
+		if (eolType == EOL_CRLF)
+			return 2;
+		else if (eolType == EOL_LF || eolType == EOL_CR)
+			return 1;
+		else
+			return 0;
+	}
+	ILineDataProvider::EOLFLAGS GetEolType(const std::string& line) const
+	{
+		if (line.empty())
+			return ILineDataProvider::EOL_NONE;
+		if (line.back() == '\n')
+		{
+			if (line.size() >= 2 && line[line.size() - 2] == '\r')
+				return ILineDataProvider::EOL_CRLF;
+			return ILineDataProvider::EOL_LF;
+		}
+		if (line.back() == '\r')
+			return ILineDataProvider::EOL_CR;
+		return ILineDataProvider::EOL_NONE;
+	}
+	const std::string& GetFullLine(int pane, int lineIndex) const
+	{
+		return m_lines[lineIndex];
+	}
+	void SetLine(int pane, int lineIndex, const std::string& line)
+	{
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return;
+		const std::string& oldLine = m_lines[lineIndex];
+		const std::string eol = oldLine.substr(oldLine.size() - GetEolLength(oldLine));
+		m_lines[lineIndex] = line + eol;
+	}
+	const FileTextEncoding& GetEncoding() const
+	{
+		return m_encoding;
+	}
+
+private:
+	std::vector<std::string> m_lines;
+	FileTextEncoding m_encoding;
+	TableProps m_tableProps;
+};
+
+static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(const String& filepath)
+{
+	UniMemFile file;
+	if (!file.OpenReadOnly(filepath))
+		return nullptr;
+	file.ReadBom();
+	FileTextEncoding encoding;
+	if (!file.HasBom())
+	{
+		int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+		int64_t fileSize = file.GetFileSize();
+		encoding = codepage_detect::Guess(
+			paths::FindExtension(filepath), file.GetBase(), static_cast<size_t>(
+				fileSize < static_cast<int64_t>(codepage_detect::BufSize) ?
+				fileSize : static_cast<int64_t>(codepage_detect::BufSize)),
+			iGuessEncodingType);
+		file.SetCodepage(encoding.m_codepage);
+	}
+	else
+	{
+		encoding.SetUnicoding(file.GetUnicoding());
+		encoding.m_bom = true;
+	}
+	std::vector<std::string> lines;
+	bool linesToRead = true;
+	do
+	{
+		bool lossy;
+		String line, eol;
+		linesToRead = file.ReadString(line, eol, &lossy);
+		if (!linesToRead)
+			break;
+		lines.push_back(ucr::toUTF8(line + eol));
+	} while (linesToRead);
+	auto tableProps = MakeTablePropertiesByFileName(filepath);
+	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
+}
+
+static std::unique_ptr<VectorLineDataProvider> CreateTextLineDataProvider(const String& Text, const String& filepath)
+{
+	FileTextEncoding encoding;
+	encoding.SetUnicoding(ucr::UTF8);
+	encoding.m_bom = true;
+	std::vector<std::string> lines;
+	const tchar_t* pLineBegin = Text.c_str();
+	for (const tchar_t* p = pLineBegin; *p; )
+	{
+		if (*p == '\r' && *(p + 1) == '\n')
+		{
+			p += 2;
+			lines.push_back(ucr::toUTF8(String(pLineBegin, p)));
+			pLineBegin = p;
+			continue;
+		}
+		else if (*p == '\r' || *p == '\n')
+		{
+			++p;
+			lines.push_back(ucr::toUTF8(String(pLineBegin, p)));
+			pLineBegin = p;
+			continue;
+		}
+		else
+			++p;
+	}
+	if (*pLineBegin != 0)
+		lines.push_back(ucr::toUTF8(String(pLineBegin)));
+	auto tableProps = MakeTablePropertiesByFileName(filepath);
+	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
+}
+
+static std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffItem(const String& filepath, const FileTextEncoding& encoding)
+{
+	PathContext paths;
+	auto pdi = std::make_unique<DIFFITEM>();
+	pdi->diffcode.diffcode = DIFFCODE::TEXT | DIFFCODE::FILE;
+	pdi->diffcode.setSideFlag(0);
+	paths.SetPath(0, paths::GetParentPath(filepath));
+	pdi->diffFileInfo[0].SetFile(paths::FindFileName(filepath));
+	pdi->diffFileInfo[0].Update(filepath);
+	pdi->diffFileInfo[0].encoding = encoding;
+	auto result = std::make_pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>>(std::make_unique<CDiffContext>(paths, 0), std::move(pdi));
+	return result;
+}
+
+/**
+ * @brief Parsed FilterExpression + FilterEvalContext pairs for one filter pipeline, plus the
+ *        CDiffContext/DIFFITEM they point into. The diff context must outlive the
+ *        FilterExpression objects (they hold a raw pointer to it), so callers keep this alive
+ *        for as long as they keep using the FilterExpression/FilterEvalContext vectors.
+ */
+struct FilterExpressionSet
+{
+	std::vector<FilterExpression> filterExpressions;
+	std::vector<FilterEvalContext> evalContexts;
+	std::unique_ptr<CDiffContext> diffContext;
+	std::unique_ptr<DIFFITEM> diffItem;
+};
+
+static std::optional<FilterExpressionSet> BuildFilterExpressionSet(const String& filepath, const FileTextEncoding& encoding,
+	const std::vector<String>& expressions, const VectorLineDataProvider& lineDataProvider, String& errorMessage)
+{
+	FilterExpressionSet set;
+	set.filterExpressions.reserve(expressions.size());
+	set.evalContexts.reserve(expressions.size());
+	auto [diffContext, diffItem] = CreateDiffItem(filepath, encoding);
+	set.diffContext = std::move(diffContext);
+	set.diffItem = std::move(diffItem);
+	for (const auto& expression : expressions)
+	{
+		set.filterExpressions.emplace_back(ucr::toUTF8(expression));
+		auto& lastFilterExpression = set.filterExpressions.back();
+		lastFilterExpression.SetDiffContext(set.diffContext.get());
+		if (!lastFilterExpression.Parse())
+		{
+			errorMessage = FormatFilterErrorSummary(lastFilterExpression);
+			return std::nullopt;
+		}
+		set.evalContexts.emplace_back();
+		auto& lastEvalContext = set.evalContexts.back();
+		lastEvalContext.provider = &lineDataProvider;
+		lastEvalContext.expr = &lastFilterExpression;
+		lastEvalContext.di = set.diffItem.get();
+	}
+	return set;
+}
+
+static bool ApplyFilterExpressionsToLines(VectorLineDataProvider& lineDataProvider,
+	std::vector<FilterExpression>& filterExpressions, std::vector<FilterEvalContext>& evalContexts, String& errorMessage)
+{
+	int lineCount = lineDataProvider.GetLineCount();
+	std::vector<FilterSharedContext> sharedContexts(filterExpressions.size());
+	for (int i = 0; i < lineCount; ++i)
+	{
+		for (size_t j = 0; j < filterExpressions.size(); ++j)
+		{
+			auto& filterExpression = filterExpressions[j];
+			auto& evalContext = evalContexts[j];
+			evalContext.lineIndex = i;
+			evalContext.sharedContext = &sharedContexts[j];
+			std::string line = filterExpression.TransformLine(evalContext);
+			if (filterExpression.errorCode != FILTER_ERROR_NO_ERROR)
+			{
+				errorMessage = ucr::toTString(filterExpression.errorMessage);
+				return false;
+			}
+			lineDataProvider.SetLine(0, i, line);
+		}
+	}
+	return true;
+}
+
+static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
+{
+	auto lineDataProvider = CreateFileLineDataProvider(filepath);
+	if (!lineDataProvider)
+	{
+		errorMessage = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), filepath, GetSysError());
+		return _T("");
+	}
+	auto exprSet = BuildFilterExpressionSet(filepath, lineDataProvider->GetEncoding(), expressions, *lineDataProvider, errorMessage);
+	if (!exprSet)
+		return _T("");
+	if (!ApplyFilterExpressionsToLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
+		return _T("");
+
+	String tempPath = bMayOverwrite ? filepath : (env::GetTemporaryFileName(env::GetTemporaryPath(), _T("WM")) + paths::FindExtension(filepath));
+	UniStdioFile file;
+	if (!file.OpenCreateUtf8(tempPath))
+	{
+		errorMessage = strutils::format_string2(_("Cannot create file\n%1\n\n%2"), tempPath, GetSysError());
+		return _T("");
+	}
+	int lineCount = lineDataProvider->GetLineCount();
+	for (int i = 0; i < lineCount; ++i)
+		file.WriteString(ucr::toTString(lineDataProvider->GetFullLine(0, i)));
+	return tempPath;
+}
+
+static String ApplyFilterExpressionsToString(const String& text, const std::vector<String>& expressions, const String& filepath, String& errorMessage)
+{
+	auto lineDataProvider = CreateTextLineDataProvider(text, filepath);
+	if (!lineDataProvider)
+	{
+		errorMessage = _T("Failed to read text: ") + GetSysError();
+		return _T("");
+	}
+	auto exprSet = BuildFilterExpressionSet(filepath, lineDataProvider->GetEncoding(), expressions, *lineDataProvider, errorMessage);
+	if (!exprSet)
+		return _T("");
+	if (!ApplyFilterExpressionsToLines(*lineDataProvider, exprSet->filterExpressions, exprSet->evalContexts, errorMessage))
+		return _T("");
+
+	String result;
+	int lineCount = lineDataProvider->GetLineCount();
+	for (int i = 0; i < lineCount; ++i)
+		result += ucr::toTString(lineDataProvider->GetFullLine(0, i));
+	return result;
+}
+
 bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, String& filepath, const String& filteredText, const std::vector<StringView>& variables)
 {
 	if (handlerSubcodes)
@@ -560,7 +1108,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
+	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool >> plugins;
 	if (!GetPackUnpackPlugin(filteredText, bUrl, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -570,10 +1118,21 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 	if (m_bWebBrowser && m_PluginPipeline.empty())
 		return true;
 
-	for (auto& [plugin, targetFlags, args, bWithFile] : plugins)
+	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
 			continue;
+
+		if (!expressions.empty())
+		{
+			filepath = ApplyFilterExpressionsToFile(filepath, false, expressions, errorMessage);
+			if (!errorMessage.empty())
+			{
+				AppErrorMessageBox(errorMessage);
+				return false;
+			}
+			continue;
+		}
 
 		bool bHandled = false;
 		storageForPlugins bufferData;
@@ -585,16 +1144,8 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		if (bWithFile)
 		{
@@ -642,12 +1193,12 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 	preferredWindowType = -1;
 	String ext;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, errorMessage))
 	{
-		for (auto& [plugin, targetFlags, args, bWithFile] : plugins)
+		for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 		{
-			if (target != -1 && !isTargetInFlags(target, targetFlags))
+			if ((target != -1 && !isTargetInFlags(target, targetFlags)) || !plugin)
 				continue;
 
 			ext += plugin->m_ext;
@@ -674,96 +1225,19 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 // transformation prediffing
 
 bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
-	String *pPluginPipelineResolved, String& errorMessage) const
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
+	String *pPluginPipelineResolved, String& errorMessage, int stack) const
 {
-	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PREDIFF", errorMessage);
+	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	for (auto& [pluginName, targetFlags, args, quoteChar] : result)
-	{
-		PluginInfo* plugin = nullptr;
-		if (pluginName == _T("<None>") || pluginName == _("<None>"))
-			;
-		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
+
+	return ResolvePluginPipeline<PrediffPluginTraits>(result, filteredFilenames, bReverse,
+		plugins, pPluginPipelineResolved, errorMessage, stack,
+		[&](const String& pipeline, auto& newPlugins, String& error, int nextStack)
 		{
-			const auto filenames = strutils::split(filteredFilenames, '|');
-			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
-			for (int i = 0; i < filenames.size(); ++i)
-			{
-				bool bWithFile = true;
-				const String filename{ filenames[i].data(), filenames[i].size() };
-				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filename);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filename);
-					if (plugin)
-						bWithFile = false;
-				}
-				pluginInfos.push_back({ plugin, bWithFile });
-			}
-			if (!filenames.empty() &&
-				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
-					[&](const auto& elem) { return elem == pluginInfos.front(); }))
-			{
-				const auto& pluginInfo = pluginInfos.front();
-				if (pluginInfo.first)
-				{
-					pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags, args, quoteChar });
-					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-						{ pluginInfo.first, targetFlags, args, pluginInfo.second });
-				}
-			}
-			else
-			{
-				for (int i = 0; i < pluginInfos.size(); ++i)
-				{
-					const auto& pluginInfo = pluginInfos[i];
-					if (isTargetInFlags(i, targetFlags) && pluginInfo.first)
-					{
-						uint8_t targetFlags2 = 1 << i;
-						pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags2, args, quoteChar });
-						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-							{ pluginInfo.first, targetFlags2, args, pluginInfo.second });
-					}
-				}
-			}
-		}
-		else
-		{
-			bool bWithFile = true;
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
-			if (plugin == nullptr)
-			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
-				if (plugin == nullptr)
-				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
-					if (plugin == nullptr)
-					{
-						errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
-					}
-					else
-					{
-						plugin = nullptr;
-						errorMessage = strutils::format_string1(_("'%1' is not a prediffer plugin"), pluginName);
-					}
-					return false;
-				}
-				bWithFile = false;
-			}
-			if (plugin)
-			{
-				pipelineResolved.push_back({ plugin->m_name, targetFlags, args, quoteChar });
-				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
-					{ plugin, targetFlags, args, bWithFile });
-			}
-		}
-	}
-	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
-	return true;
+			return PrediffingInfo(pipeline).GetPrediffPlugin(filteredFilenames, bReverse, newPlugins, nullptr, error, nextStack);
+		});
 }
 
 bool PrediffingInfo::Prediffing(int target, String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables)
@@ -775,17 +1249,28 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 	// control value
 	bool bHandled = false;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins;
 	if (!GetPrediffPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
 
-	for (const auto& [plugin, targetFlags, args, bWithFile] : plugins)
+	for (const auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
 			continue;
+
+		if (!expressions.empty())
+		{
+			filepath = ApplyFilterExpressionsToFile(filepath, bMayOverwrite, expressions, errorMessage);
+			if (!errorMessage.empty())
+			{
+				AppErrorMessageBox(errorMessage);
+				return false;
+			}
+			continue;
+		}
 
 		storageForPlugins bufferData;
 		// detect Ansi or Unicode file
@@ -796,16 +1281,8 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		if (bWithFile)
 		{
@@ -848,14 +1325,26 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 ////////////////////////////////////////////////////////////////////////////////
 // transformation text
 
-bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>>& plugins,
-	String& errorMessage) const
+bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>>& plugins,
+	String& errorMessage, int stack) const
 {
-	auto result = ExpandAliases(this->m_PluginPipeline, _T(""), L"ALIAS_EDITOR_SCRIPT", errorMessage);
+	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	for (auto& [pluginName, targetFlags, args, quoteChar] : result)
+	for (size_t i = 0; i < result.size(); ++i)
 	{
+		auto& pipelineItem = result[i];
+		if (std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(pipelineItem))
+		{
+			auto& [ targetFlags, expression ] = std::get<PluginForFile::FilterExpressionPipelineItem>(pipelineItem);
+			if (i == 0 || !std::holds_alternative<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]) || 
+				std::get<PluginForFile::FilterExpressionPipelineItem>(result[i - 1]).targetFlags != targetFlags)
+				plugins.push_back({ nullptr, { expression }, targetFlags, {}, true });
+			else
+				std::get<1>(plugins.back()).push_back(expression);
+			continue;
+		}
+		auto& [ targetFlags, pluginName, args, quoteChar] = PluginForFile::GetPluginPipelineItem(pipelineItem);
 		bool found = false;
 		PluginArray *pluginInfoArray = CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"EDITOR_SCRIPT");
 		for (const auto& plugin : *pluginInfoArray)
@@ -863,11 +1352,11 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 			std::vector<String> namesArray;
 			std::vector<int> idArray;
 			int nFunc = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
-			for (int i = 0; i < nFunc; ++i)
+			for (int j = 0; j < nFunc; ++j)
 			{
-				if (namesArray[i] == pluginName)
+				if (namesArray[j] == pluginName)
 				{
-					plugins.push_back({ plugin.get(), targetFlags, args, idArray[i]});
+					plugins.push_back({ plugin.get(), {}, targetFlags, args, idArray[j] });
 					found = true;
 					break;
 				}
@@ -877,11 +1366,25 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 		}
 		if (!found)
 		{
+			PluginInfo* plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"ALIAS_EDITOR_SCRIPT", pluginName);
+			if (plugin)
+			{
+				plugins.push_back({ plugin, {}, targetFlags, args, 0 });
+				found = true;
+			}
+		}
+		if (!found)
+		{
 			errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
 			return false;
 		}
 	}
-	return true;
+
+	return ExpandPluginAliases(_T("ALIAS_EDITOR_SCRIPT"), plugins, errorMessage, stack,
+		[&](const String& pipeline, auto& newPlugins, String& error, int nextStack)
+		{
+			return EditorScriptInfo(pipeline).GetEditorScriptPlugin(newPlugins, error, nextStack);
+		});
 }
 
 bool EditorScriptInfo::TransformText(int target, String& text, const std::vector<StringView>& variables, bool& changed)
@@ -893,31 +1396,36 @@ bool EditorScriptInfo::TransformText(int target, String& text, const std::vector
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>> plugins;
 	if (!GetEditorScriptPlugin(plugins, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
 
-	for (const auto& [plugin, targetFlags, args, fncID] : plugins)
+	for (const auto& [plugin, expressions, targetFlags, args, fncID] : plugins)
 	{
 		if (!isTargetInFlags(target, targetFlags))
 			continue;
 
+		if (!expressions.empty())
+		{
+			String filepath = variables.empty() ? _T("") : String(variables[0].data(), variables[0].size());
+			text = ApplyFilterExpressionsToString(text, expressions, filepath, errorMessage);
+			if (!errorMessage.empty())
+			{
+				AppErrorMessageBox(errorMessage);
+				return false;
+			}
+			changed = true;
+			continue;
+		}
+
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasVariablesProperty)
-		{
-			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
-				return false;
-		}
-		if (plugin->m_hasArgumentsProperty)
-		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
-				return false;
-		}
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+			return false;
 
 		// execute the transform operation
 		int nChanged = 0;

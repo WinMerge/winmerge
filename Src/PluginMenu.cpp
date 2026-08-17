@@ -15,7 +15,8 @@ static std::vector<int> GetPluginPipelineOrder(const std::vector<PluginForFile::
 	std::vector<int> orders;
 	for (size_t i = 0; i < plugins.size(); ++i)
 	{
-		if (plugins[i].name == pluginName)
+		if (PluginForFile::IsPluginPipelineItem(plugins[i]) &&
+			PluginForFile::GetPluginPipelineItem(plugins[i]).name == pluginName)
 			orders.push_back(static_cast<int>(i));
 	}
 	return orders;

@@ -92,6 +92,7 @@
 #include "ArchiveTool.h"
 #include "DiffImageListUtils.h"
 #include "PluginMenu.h"
+#include "TableProps.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -463,6 +464,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	Logger::Get().SetOutputFunction([this](Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)
 		{ OutputLog(level, tp, msg, level == Logger::LogLevel::ERR); } );
+
+	FilterExpression::SetLogger([](int level, const std::string& msg) {
+		if (level == 0)
+			RootLogger::Error(msg);
+		else if (level == 1)
+			RootLogger::Warn(msg);
+		else
+			RootLogger::Info(msg);
+		});
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
@@ -1073,7 +1083,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	pMergeDoc->SetEnableTableEditing(table);
 	if (pOpenParams && table.value_or(false))
 	{
-		CMergeDoc::TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
+		TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
 			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
 		if (const auto* pOpenTableFileParams = dynamic_cast<const OpenTableFileParams*>(pOpenParams))
 		{
