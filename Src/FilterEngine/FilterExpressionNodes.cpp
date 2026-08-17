@@ -585,8 +585,10 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 		if (op == TK_PLUS && lval.index() != rval.index() &&
 		   (std::holds_alternative<std::string>(lval) || std::holds_alternative<std::string>(rval)))
 		{
-			if (std::holds_alternative<std::monostate>(lval) || std::holds_alternative<std::monostate>(rval))
-				return std::monostate{};
+			if (std::holds_alternative<std::string>(lval) && std::holds_alternative<std::monostate>(rval))
+				return ToStringValue(lval);
+			else if (std::holds_alternative<std::monostate>(lval) && std::holds_alternative<std::string>(rval))
+				return ToStringValue(rval);
 			return ToStringValue(lval) + ToStringValue(rval);
 		}
 		else if (auto lvalDouble = std::get_if<double>(&lval))
