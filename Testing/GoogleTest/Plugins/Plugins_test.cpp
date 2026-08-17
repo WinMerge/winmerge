@@ -117,10 +117,78 @@ namespace
 		EXPECT_TRUE(esi.TransformText(0, text, {filepath[0]}, changed));
 		EXPECT_STREQ(_T("TEST"), text.c_str());
 
-
+		// Invalid filter expression
 		esi.SetPluginPipeline(String(_T("le:toUpper(Line")));
 		file = filepath[0];
 		EXPECT_FALSE(esi.TransformText(0, text, {filepath[0]}, changed));
+	}
+
+	TEST_F(PluginsTest, EditorScript_FilterExpression_Column)
+	{
+		GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+		std::vector<int> subcodes;
+		String filepath[] = { _T("../../selftests/w/t005a.csv"), _T("../../selftests/u/t005a.csv"), _T("../../selftests/m/t005a.csv") };
+		String filepaths = filepath[0] + _T("|") + filepath[1] + _T("|") + filepath[2];
+
+		EditorScriptInfo esi(_T("le:Column(1) + Column(2) + Column(3) + Column(4)"));
+		String file = filepath[0];
+		bool changed = false;
+		String text =
+			LR"(Hi,World
+Bye,World
+Hi,World,1
+Bye,World,2
+Hi,,World
+Bye,,World
+,World
+,Earth
+Hi,World,
+Bye,Earth,
+Hi,World
+
+Bye,World
+Hi,"Hello,World"
+Bye,"Goodbye,World"
+Hi,"Hello ""World"""
+Bye,"Goodbye ""World"""
+Hi,"Hello, ""World""",1
+Bye,"Goodbye, ""World""",2
+Hi,"",World
+Bye,"",Earth
+"Hi","World"
+"Bye","World"
+Hi, World
+Bye, World
+)";
+		String expected =
+			LR"(HiWorld
+ByeWorld
+HiWorld1
+ByeWorld2
+HiWorld
+ByeWorld
+World
+Earth
+HiWorld
+ByeEarth
+HiWorld
+
+ByeWorld
+Hi"Hello,World"
+Bye"Goodbye,World"
+Hi"Hello ""World"""
+Bye"Goodbye ""World"""
+Hi"Hello, ""World"""1
+Bye"Goodbye, ""World"""2
+Hi""World
+Bye""Earth
+"Hi""World"
+"Bye""World"
+Hi World
+Bye World
+)";
+		EXPECT_TRUE(esi.TransformText(0, text, {filepath[0]}, changed));
+		EXPECT_STREQ(expected.c_str(), text.c_str());
 	}
 
 	TEST_F(PluginsTest, ParsePluginPipeline)
