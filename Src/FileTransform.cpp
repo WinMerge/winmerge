@@ -822,7 +822,8 @@ public:
 		int columnCount = 0;
 		bool inQuote = false;
 		std::string column;
-		for (int i = 0; i < static_cast<int>(line.size()) && columnCount <= columnIndex; ++i)
+		int length = static_cast<int>(line.size()) - GetEolLength(line);
+		for (int i = 0; i < length && columnCount <= columnIndex; ++i)
 		{
 			char ch = line[i];
 			if (columnCount == columnIndex && (inQuote || ch != m_tableProps.delimiter))
