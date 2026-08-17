@@ -999,6 +999,8 @@ static std::optional<FilterExpressionSet> BuildFilterExpressionSet(const String&
 	const std::vector<String>& expressions, const VectorLineDataProvider& lineDataProvider, String& errorMessage)
 {
 	FilterExpressionSet set;
+	set.filterExpressions.reserve(expressions.size());
+	set.evalContexts.reserve(expressions.size());
 	auto [diffContext, diffItem] = CreateDiffItem(filepath, encoding);
 	set.diffContext = std::move(diffContext);
 	set.diffItem = std::move(diffItem);
