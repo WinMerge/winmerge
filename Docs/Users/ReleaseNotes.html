@@ -28,6 +28,7 @@ vertical-align: middle;
 Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-216582">What Is New in 2.16.58.2?</a></li>
 <li><a href="#what-is-new-in-21658">What Is New in 2.16.58?</a></li>
 <li><a href="#what-is-new-in-21657-beta">What Is New in 2.16.57
 Beta?</a></li>
@@ -35,11 +36,46 @@ Beta?</a></li>
 </ul>
 <p>July 2026</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.58 stable release. This release replaces
+<p>This is a WinMerge 2.16.58.2 stable release. This release replaces
 earlier WinMerge stable releases as a recommended release.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-21658">What Is New in 2.16.58?</h2>
+<h2 id="what-is-new-in-216582">What Is New in 2.16.58.2?</h2>
 <h3 id="file-compare">File compare</h3>
+<ul>
+<li><p>BugFix: Fix word diff calculation for hidden lines
+(#3535)</p></li>
+<li><p>BugFix: Fix a minor word selection issue (#3521)</p></li>
+<li><p>Improve diff view rendering speed for large contiguous hidden
+sections (PR #3517)</p></li>
+</ul>
+<h3 id="filter-expressions">Filter expressions</h3>
+<ul>
+<li>BugFix: Allow <code>none</code> to be ignored when concatenating
+strings with <code>+</code> (#3550)</li>
+</ul>
+<h3 id="archive-generation">Archive generation</h3>
+<ul>
+<li>Allow archive generation for one-sided file comparisons</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li><p>Translation updates:</p>
+<ul>
+<li>Brazilian (PR #3508)</li>
+<li>Chinese Simplified (PR #3493)</li>
+<li>Chinese Traditional (PR #3505)</li>
+<li>Hungarian (PR #3502)</li>
+<li>Polish (PR #3501)</li>
+<li>Russian (PR #3494)</li>
+<li>Turkish (PR #3506)</li>
+</ul></li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>BugFix: Fix syntax errors in the Spanish &quot;Filters&quot; manual page</li>
+</ul>
+<h2 id="what-is-new-in-21658">What Is New in 2.16.58?</h2>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li><p>BugFix: Crash (Access Violation) when file changes externally
 over a given threshold (#3456, PR #3457)</p></li>
@@ -72,7 +108,7 @@ comparisons (PR #3450)</li>
 <li>Add a file list with checkboxes to the Generate Patch dialog (PR
 #3470)</li>
 </ul>
-<h3 id="archive-generation">Archive Generation</h3>
+<h3 id="archive-generation-1">Archive Generation</h3>
 <ul>
 <li>Add support for creating comparison archives (PR #3483)</li>
 </ul>
@@ -81,7 +117,7 @@ comparisons (PR #3450)</li>
 <li>Add /g command line option for single-instance groups (PR
 #3472)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
@@ -105,7 +141,7 @@ comparisons (PR #3450)</li>
 incorrectly trigger a crash (#3412)</p></li>
 <li><p>Add module-relative offsets to crash log stack traces</p></li>
 </ul>
-<h3 id="file-compare-1">File compare</h3>
+<h3 id="file-compare-2">File compare</h3>
 <ul>
 <li><p>BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to
 avoid accessing line EOL directly</p></li>
@@ -151,7 +187,7 @@ dialog</h3>
 <li>Warn user before opening project files containing plugin arguments
 for security reasons (PR #3397, #3396)</li>
 </ul>
-<h3 id="translations-1">Translations</h3>
+<h3 id="translations-2">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>

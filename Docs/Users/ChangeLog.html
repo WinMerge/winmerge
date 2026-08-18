@@ -25,8 +25,44 @@ vertical-align: middle;
 </head>
 <body>
 <h1 id="change-log">Change log</h1>
-<h2 id="winmerge-21658---2026-07-27">WinMerge 2.16.58 - 2026-07-27</h2>
+<h2 id="winmerge-216582---2026-08-27">WinMerge 2.16.58.2 -
+2026-08-27</h2>
 <h3 id="file-compare">File compare</h3>
+<ul>
+<li><p>BugFix: Fix word diff calculation for hidden lines
+(#3535)</p></li>
+<li><p>BugFix: Fix a minor word selection issue (#3521)</p></li>
+<li><p>Improve diff view rendering speed for large contiguous hidden
+sections (PR #3517)</p></li>
+</ul>
+<h3 id="filter-expressions">Filter expressions</h3>
+<ul>
+<li>BugFix: Allow <code>none</code> to be ignored when concatenating
+strings with <code>+</code> (#3550)</li>
+</ul>
+<h3 id="archive-generation">Archive generation</h3>
+<ul>
+<li>Allow archive generation for one-sided file comparisons</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li><p>Translation updates:</p>
+<ul>
+<li>Brazilian (PR #3508)</li>
+<li>Chinese Simplified (PR #3493)</li>
+<li>Chinese Traditional (PR #3505)</li>
+<li>Hungarian (PR #3502)</li>
+<li>Polish (PR #3501)</li>
+<li>Russian (PR #3494)</li>
+<li>Turkish (PR #3506)</li>
+</ul></li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>BugFix: Fix syntax errors in the Spanish &quot;Filters&quot; manual page</li>
+</ul>
+<h2 id="winmerge-21658---2026-07-27">WinMerge 2.16.58 - 2026-07-27</h2>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li><p>BugFix: Crash (Access Violation) when file changes externally
 over a given threshold (#3456, PR #3457)</p></li>
@@ -59,7 +95,7 @@ comparisons (PR #3450)</li>
 <li>Add a file list with checkboxes to the Generate Patch dialog (PR
 #3470)</li>
 </ul>
-<h3 id="archive-generation">Archive Generation</h3>
+<h3 id="archive-generation-1">Archive Generation</h3>
 <ul>
 <li>Add support for creating comparison archives (PR #3483)</li>
 </ul>
@@ -68,7 +104,7 @@ comparisons (PR #3450)</li>
 <li>Add /g command line option for single-instance groups (PR
 #3472)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
@@ -92,7 +128,7 @@ comparisons (PR #3450)</li>
 incorrectly trigger a crash (#3412)</p></li>
 <li><p>Add module-relative offsets to crash log stack traces</p></li>
 </ul>
-<h3 id="file-compare-1">File compare</h3>
+<h3 id="file-compare-2">File compare</h3>
 <ul>
 <li><p>BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to
 avoid accessing line EOL directly</p></li>
@@ -138,7 +174,7 @@ dialog</h3>
 <li>Warn user before opening project files containing plugin arguments
 for security reasons (PR #3397, #3396)</li>
 </ul>
-<h3 id="translations-1">Translations</h3>
+<h3 id="translations-2">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
@@ -160,7 +196,7 @@ for security reasons (PR #3397, #3396)</li>
 </ul>
 <h2 id="winmerge-216562---2026-05-27">WinMerge 2.16.56.2 -
 2026-05-27</h2>
-<h3 id="file-compare-2">File compare</h3>
+<h3 id="file-compare-3">File compare</h3>
 <ul>
 <li><p>BugFix: Fix incorrect copy when selection ends inside a word diff
 (PR #3358)</p></li>
@@ -199,7 +235,7 @@ dialog</li>
 <ul>
 <li>Fixed missing Vietnamese WinMerge translation in installer</li>
 </ul>
-<h3 id="translations-2">Translations</h3>
+<h3 id="translations-3">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
@@ -232,7 +268,7 @@ guessing logic (PR #3323)</p></li>
 <li><p>Prioritize explicitly selected plugins over archive detection (PR
 #3324)</p></li>
 </ul>
-<h3 id="translations-3">Translations</h3>
+<h3 id="translations-4">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -247,7 +283,7 @@ guessing logic (PR #3323)</p></li>
 <li>Turkish (PR #3333)</li>
 </ul></li>
 </ul>
-<h3 id="documentation">Documentation</h3>
+<h3 id="documentation-1">Documentation</h3>
 <ul>
 <li><p>Update Italian documentation (PR #3319)</p></li>
 <li><p>Update French manual (PR #3325)</p></li>
@@ -259,7 +295,7 @@ guessing logic (PR #3323)</p></li>
 (PR #3257)</p></li>
 <li><p>Update POCO C++ Libraries to 1.15.1 (PR #3292)</p></li>
 </ul>
-<h3 id="file-compare-3">File compare</h3>
+<h3 id="file-compare-4">File compare</h3>
 <ul>
 <li><p>BugFix: Fix keyboard input issue after Alt+mouse operations (PR
 #3254)</p></li>
@@ -317,7 +353,7 @@ order number to individual tsv, txt or html files (#3212)</p></li>
 <li><p>Add CFR Java decompiler plugin for .class file comparison (PR
 #3242,#3243)</p></li>
 </ul>
-<h3 id="translations-4">Translations</h3>
+<h3 id="translations-5">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -338,7 +374,7 @@ order number to individual tsv, txt or html files (#3212)</p></li>
 <li>Turkish (PR #3204,#3221,#3227,#3250,#3271,#3286,#3298)</li>
 </ul></li>
 </ul>
-<h3 id="documentation-1">Documentation</h3>
+<h3 id="documentation-2">Documentation</h3>
 <ul>
 <li><p>Added: Community standard files (like issue templates, pr
 template). (PR #3225)</p></li>
@@ -379,7 +415,7 @@ Defaults button</li>
 <li>Removed build-time tools (lemon.exe, re2c.exe) from the installer
 package.</li>
 </ul>
-<h3 id="translations-5">Translations</h3>
+<h3 id="translations-6">Translations</h3>
 <ul>
 <li>New translation: Vietnamese (PR #3142)</li>
 <li>Translation updates:
@@ -404,7 +440,7 @@ package.</li>
 <li>Allow comparing files by editing header path (Ctrl+L / Alt+D) (PR
 #3093)</li>
 </ul>
-<h3 id="file-compare-4">File compare</h3>
+<h3 id="file-compare-5">File compare</h3>
 <ul>
 <li>Async binary comparison for “Selected files are identical” dialog
 (PR #3060)</li>
@@ -448,7 +484,7 @@ inclusive/exclusive range checks (PR #3124)</p></li>
 formulas (PR #3028)</p></li>
 <li><p>Updated jq to 1.8.1</p></li>
 </ul>
-<h3 id="translations-6">Translations</h3>
+<h3 id="translations-7">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
@@ -479,7 +515,7 @@ formulas (PR #3028)</p></li>
 <li>Match title bar text color to Windows using a 190 luminance
 threshold.</li>
 </ul>
-<h3 id="file-compare-5">File compare</h3>
+<h3 id="file-compare-6">File compare</h3>
 <ul>
 <li>BugFix: [Bug] The configuration of tabulations is not working
 correctly (#3015)</li>
@@ -506,7 +542,7 @@ missing after selection.</li>
 <li>Docs: Add comprehensive translation contribution guide (PR
 #3023)</li>
 </ul>
-<h3 id="translations-7">Translations</h3>
+<h3 id="translations-8">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -550,7 +586,7 @@ issue.</li>
 in filter expressions (PR #2974)</li>
 <li>Add &quot;Existence&quot; folder comparison method (PR #2980)</li>
 </ul>
-<h3 id="translations-8">Translations</h3>
+<h3 id="translations-9">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -579,7 +615,7 @@ are identical. Or the text input cursor jumps to unequal lines.
 <li>Initial dark mode support via darkmodelib (PR #2834,#2885)</li>
 <li>Improved header bar to reduce flicker</li>
 </ul>
-<h3 id="file-compare-6">File compare</h3>
+<h3 id="file-compare-7">File compare</h3>
 <ul>
 <li>Add option to ignore line breaks (treat as spaces) (refs #373) (PR
 #2945)</li>
@@ -598,7 +634,7 @@ are identical. Or the text input cursor jumps to unequal lines.
 <ul>
 <li>Allow saving modified colors as new scheme (#1180) (PR #2908)</li>
 </ul>
-<h3 id="translations-9">Translations</h3>
+<h3 id="translations-10">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
 <ul>
@@ -626,7 +662,7 @@ are identical. Or the text input cursor jumps to unequal lines.
 </ul>
 <h2 id="winmerge-216502---2025-08-27">WinMerge 2.16.50.2 -
 2025-08-27</h2>
-<h3 id="file-compare-7">File compare</h3>
+<h3 id="file-compare-8">File compare</h3>
 <ul>
 <li>BugFix: WinMerge 2.16.50 regression: Crashes when doing &quot;Show only
 comparison results (not file contents)&quot; for large binaries. (#2874)</li>
@@ -642,7 +678,7 @@ applied to 1st folder path and not the 2nd and 3th folder paths
 <li>BugFix: Fixed a crash in the Filters dialog&#39;s File Filters tab after
 installing or creating a new filter.</li>
 </ul>
-<h3 id="translations-10">Translations</h3>
+<h3 id="translations-11">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -662,7 +698,7 @@ installing or creating a new filter.</li>
 <li>Treat a mouse click on the very top edge of the title bar while
 maximized as if it&#39;s within the tab button (PR #2828)</li>
 </ul>
-<h3 id="translations-11">Translations</h3>
+<h3 id="translations-12">Translations</h3>
 <ul>
 <li>BugFix: WinMerge - Strings untranslated #2852</li>
 <li>Translation updates:
@@ -687,7 +723,7 @@ maximized as if it&#39;s within the tab button (PR #2828)</li>
 <li>Use themed size grip, use toolbar&#39;s tooltips instead of controls
 bar&#39;s (PR #2769)</li>
 </ul>
-<h3 id="file-compare-8">File compare</h3>
+<h3 id="file-compare-9">File compare</h3>
 <ul>
 <li>BugFix: Fixed crash when copying multiple selected diff hunks</li>
 <li>Syntax parser for Pascal should be extended to support compiler
@@ -725,7 +761,7 @@ WinMerge process</li>
 <ul>
 <li>Installer - Windows &quot;Programs and Features&quot; name (#2798)</li>
 </ul>
-<h3 id="translations-12">Translations</h3>
+<h3 id="translations-13">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -767,7 +803,7 @@ settings. (#2748)</li>
 box (#2705)</li>
 <li>Update Merge.rc (PR #2711)</li>
 </ul>
-<h3 id="file-compare-9">File compare</h3>
+<h3 id="file-compare-10">File compare</h3>
 <ul>
 <li>BugFix: [BUG} Phantom line added when identical blocks of text
 pasted (#2702)</li>
@@ -801,7 +837,7 @@ instead) (#715)</li>
 <li>AIConvertText plugin: Added models gpt-4.1, gpt-4.1-mini, and
 gpt-4.1-nano</li>
 </ul>
-<h3 id="translations-13">Translations</h3>
+<h3 id="translations-14">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -825,7 +861,7 @@ deactivated (#2668)</li>
 <li>Rewrite English.pot, add JXL image extension (PR #2682)</li>
 <li>Add Output Pane for Logs and Messages (PR #2663)</li>
 </ul>
-<h3 id="file-compare-10">File compare</h3>
+<h3 id="file-compare-11">File compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where $ in regular expressions in
 Substitution filters didn&#39;t work correctly with &quot;Ignore carriage return
@@ -863,7 +899,7 @@ admin) user on win 10 x64 (#2638) (PR #2639)</li>
 <ul>
 <li>Help pages -&gt; Appendix A. Shortcut keys (#2659)</li>
 </ul>
-<h3 id="translations-14">Translations</h3>
+<h3 id="translations-15">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -918,7 +954,7 @@ that caused error 0x80048010 when comparing PowerPoint files</p></li>
 <ul>
 <li>BugFix: Typos and minor errors in WinMerge manual (#2597)</li>
 </ul>
-<h3 id="translations-15">Translations</h3>
+<h3 id="translations-16">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -942,7 +978,7 @@ that caused error 0x80048010 when comparing PowerPoint files</p></li>
 <li>Add &quot;Ignore missing trailing EOL&quot; option to Compare settings (PR
 #2573,#203,#989,#2317)</li>
 </ul>
-<h3 id="file-compare-11">File compare</h3>
+<h3 id="file-compare-12">File compare</h3>
 <ul>
 <li>BugFix: The height of the lines connecting moving blocks in the
 location pane may be incorrect (#2543)</li>
@@ -961,7 +997,7 @@ Enabled Confirm Conversions Pop-Up (#2566)</li>
 <ul>
 <li>Update 7-Zip to 24.09</li>
 </ul>
-<h3 id="translations-16">Translations</h3>
+<h3 id="translations-17">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -997,7 +1033,7 @@ when not customized (PR #2505)</li>
 <li>Reduce the contrast of inactive title bar text (PR #2545)</li>
 <li>System Icon turn gray when app inactive (PR #2547)</li>
 </ul>
-<h3 id="file-compare-12">File compare</h3>
+<h3 id="file-compare-13">File compare</h3>
 <ul>
 <li>BugFix: Wrong line gets copied over when selecting text (#2499)</li>
 <li>BugFix: Bug Report: Display Issues When Resizing WinMerge Across
@@ -1048,7 +1084,7 @@ dialog</h3>
 <li>Installer - Run PowerShell hidden and with -NoProfile when
 installing silently (#2515)</li>
 </ul>
-<h3 id="translations-17">Translations</h3>
+<h3 id="translations-18">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1079,7 +1115,7 @@ installing silently (#2515)</li>
 <li>BugFix: Floating-point precision issue in CompareMSExcelFiles.sct
 plugin (#2494)</li>
 </ul>
-<h3 id="translations-18">Translations</h3>
+<h3 id="translations-19">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1098,7 +1134,7 @@ identical&quot; (#2408)</li>
 <li>Add Support for Custom System Color Overrides (PR #2376)</li>
 <li>Easy move small main window when tab on titlebar (PR #2489)</li>
 </ul>
-<h3 id="file-compare-13">File compare</h3>
+<h3 id="file-compare-14">File compare</h3>
 <ul>
 <li>BugFix: Wrong syntax highlighting for TeX files (#2415)</li>
 <li>BugFix: Text replacement result is wrong. (#2422)</li>
@@ -1139,7 +1175,7 @@ issues (#2450)</li>
 <li>Update documentation for &quot;Include unique subfolders contents&quot;
 setting (PR #2396)</li>
 </ul>
-<h3 id="translations-19">Translations</h3>
+<h3 id="translations-20">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1167,7 +1203,7 @@ again</li>
 <ul>
 <li>BugFix: Digital signature was not added to version 2.16.42.</li>
 </ul>
-<h3 id="translations-20">Translations</h3>
+<h3 id="translations-21">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1189,7 +1225,7 @@ again</li>
 <li>BugFix: Status of folder comparison not correctly reflected by tab
 icon after Refresh (F5) (#2383)</li>
 </ul>
-<h3 id="file-compare-14">File compare</h3>
+<h3 id="file-compare-15">File compare</h3>
 <ul>
 <li>Replace - more intelligent choice of replace in (whole file vs
 selection) (#2368)</li>
@@ -1212,7 +1248,7 @@ settings window</li>
 <ul>
 <li>Update 7-Zip to 24.07</li>
 </ul>
-<h3 id="translations-21">Translations</h3>
+<h3 id="translations-22">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1227,7 +1263,7 @@ settings window</li>
 <ul>
 <li>Made the tabs in the tab bar rounded like Firefox.</li>
 </ul>
-<h3 id="file-compare-15">File compare</h3>
+<h3 id="file-compare-16">File compare</h3>
 <ul>
 <li>Added support for F# (FSharp) language syntax highlight (PR
 #2298)</li>
@@ -1270,7 +1306,7 @@ the Select Plugin dialog.</li>
 <li>BugFix; WinMerge 2.16.40 - Installer - Missing version and
 archicteure info (#2300)</li>
 </ul>
-<h3 id="translations-22">Translations</h3>
+<h3 id="translations-23">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1302,7 +1338,7 @@ archicteure info (#2300)</li>
 <ul>
 <li>BugFix: Fixed several Wine-related issues</li>
 </ul>
-<h3 id="file-compare-16">File compare</h3>
+<h3 id="file-compare-17">File compare</h3>
 <ul>
 <li>BugFix: Replace text issue (#2279)</li>
 </ul>
@@ -1333,7 +1369,7 @@ the GUI (PR #2257)</li>
 <li>BugFix: French encoding problem on the end of installation (last
 dialog box) (#2272)</li>
 </ul>
-<h3 id="translations-23">Translations</h3>
+<h3 id="translations-24">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1353,7 +1389,7 @@ dialog box) (#2272)</li>
 <li>BugFix: Fixed an issue where typing only a single character in the
 header bar could cause a crash.</li>
 </ul>
-<h3 id="file-compare-17">File compare</h3>
+<h3 id="file-compare-18">File compare</h3>
 <ul>
 <li>BugFix: Fixed possible crash</li>
 <li>BugFix: Creation of .bak files fails when the original filename
@@ -1410,7 +1446,7 @@ will be displayed in the next installation. (#2206)</li>
 <ul>
 <li>Update codeql-analysis.yml - Version v2 to v3 (PR #2196)</li>
 </ul>
-<h3 id="translations-24">Translations</h3>
+<h3 id="translations-25">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1429,7 +1465,7 @@ will be displayed in the next installation. (#2206)</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21638---2024-01-27">WinMerge 2.16.38 - 2024-01-27</h2>
-<h3 id="file-compare-18">File compare</h3>
+<h3 id="file-compare-19">File compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where changing the BOM in the right pane in
 the Codepage dialog was not reflected.</li>
@@ -1451,7 +1487,7 @@ double quotes is not interpreted correctly when specified to the
 <code>/unpacker</code> command line argument.</p>
 <p><code>/unpacker &quot;Replace &quot;&quot;a&quot;&quot; &quot;&quot;b&quot;&quot;&quot;</code></p></li>
 </ul>
-<h3 id="translations-25">Translations</h3>
+<h3 id="translations-26">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1466,7 +1502,7 @@ double quotes is not interpreted correctly when specified to the
 </ul></li>
 </ul>
 <h2 id="winmerge-21637---2023-12-24">WinMerge 2.16.37 - 2023-12-24</h2>
-<h3 id="file-compare-19">File compare</h3>
+<h3 id="file-compare-20">File compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where the scroll position when clicking on
 Location View may not be as expected when Wrap Lines is enabled.</li>
@@ -1496,7 +1532,7 @@ has updated file ... since WinMerge scanned it last time&quot; is displayed
 when comparing URLs that are file://.</li>
 <li>Improved synchronize events (winmerge/winwebdiff#4)</li>
 </ul>
-<h3 id="translations-26">Translations</h3>
+<h3 id="translations-27">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1522,7 +1558,7 @@ files would cause them to be treated as only one-page images.
 <ul>
 <li>Bugfix: Modify the &quot;File Filters&quot; dialog. (#2118)</li>
 </ul>
-<h3 id="translations-27">Translations</h3>
+<h3 id="translations-28">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1536,7 +1572,7 @@ files would cause them to be treated as only one-page images.
 </ul></li>
 </ul>
 <h2 id="winmerge-21635---2023-11-20">WinMerge 2.16.35 - 2023-11-20</h2>
-<h3 id="file-compare-20">File compare</h3>
+<h3 id="file-compare-21">File compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where &quot;Copy to Left/Right and Advance&quot; would
 sometimes skip differences when comparing 3 files. (#1234)</li>
@@ -1576,7 +1612,7 @@ if no file filter was selected in the Filters dialog.</li>
 <li>BugFix: &quot;Register Windows 11 Shell Extension&quot; fails because
 PowerShell script doesn&#39;t escape special chars correctly (#2109)</li>
 </ul>
-<h3 id="translations-28">Translations</h3>
+<h3 id="translations-29">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1597,7 +1633,7 @@ PowerShell script doesn&#39;t escape special chars correctly (#2109)</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21634---2023-10-27">WinMerge 2.16.34 - 2023-10-27</h2>
-<h3 id="file-compare-21">File compare</h3>
+<h3 id="file-compare-22">File compare</h3>
 <ul>
 <li>Allow NUL and \.\NUL in paths specified as command line arguments
 (PR #2056)</li>
@@ -1625,7 +1661,7 @@ contain any files and/or subfolders folder compare/merge (#2046)</li>
 <ul>
 <li>Modify the &quot;Substitution Filters&quot; dialog. (PR #2068)</li>
 </ul>
-<h3 id="translations-29">Translations</h3>
+<h3 id="translations-30">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1643,7 +1679,7 @@ contain any files and/or subfolders folder compare/merge (#2046)</li>
 <li>Reduce startup time and decrease the usage of Win32 user
 objects.</li>
 </ul>
-<h3 id="file-compare-22">File compare</h3>
+<h3 id="file-compare-23">File compare</h3>
 <ul>
 <li>BugFix: Cannot compare one-line file (#1972)</li>
 <li>BugFix: &quot;Current Difference&quot; specified by double-clicking cannot
@@ -1708,7 +1744,7 @@ fails</li>
 <ul>
 <li>Manual: Use po4a for manual translation (PR #1994) (#499)</li>
 </ul>
-<h3 id="translations-30">Translations</h3>
+<h3 id="translations-31">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1736,7 +1772,7 @@ fails</li>
 <li>BugFix: Export/Import settings bug with Substitution Filters
 (#1925)</li>
 </ul>
-<h3 id="file-compare-23">File compare</h3>
+<h3 id="file-compare-24">File compare</h3>
 <ul>
 <li>BugFix: Save function doesn&#39;t work if the path length exceeds 248
 characters (#1923)</li>
@@ -1764,7 +1800,7 @@ the Options dialog even if the /r command line option is not specified.
 <ul>
 <li>Update 7-Zip to 23.01 (PR #1913)</li>
 </ul>
-<h3 id="translations-31">Translations</h3>
+<h3 id="translations-32">Translations</h3>
 <ul>
 <li>New translation: Tamil (PR #1946)</li>
 <li>Translation updates:
@@ -1787,7 +1823,7 @@ the Options dialog even if the /r command line option is not specified.
 <li>Add tasks to Jump List (PR #1828)</li>
 <li>Update DirCmpReport.cpp (PR #1892)</li>
 </ul>
-<h3 id="file-compare-24">File compare</h3>
+<h3 id="file-compare-25">File compare</h3>
 <ul>
 <li>BugFix: Fix input range check processing in &quot;Go to&quot; dialog. (PR
 #1826)</li>
@@ -1810,7 +1846,7 @@ the Options dialog even if the /r command line option is not specified.
 <ul>
 <li>Silent install blocked (#1852)</li>
 </ul>
-<h3 id="translations-32">Translations</h3>
+<h3 id="translations-33">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1838,7 +1874,7 @@ the Options dialog even if the /r command line option is not specified.
 black sections (#1799)</li>
 <li>Reduced file size of WinMergeU.exe for 32-bit version</li>
 </ul>
-<h3 id="file-compare-25">File compare</h3>
+<h3 id="file-compare-26">File compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where XML format files, such as vcxproj, were
 not being syntax highlighted.</li>
@@ -1893,7 +1929,7 @@ variables in it. (#1793)</li>
 <li>BugFix: Unsuccessful installation, Portable Win32 version
 (#1802)</li>
 </ul>
-<h3 id="translations-33">Translations</h3>
+<h3 id="translations-34">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -1910,7 +1946,7 @@ variables in it. (#1793)</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21629---2023-03-21">WinMerge 2.16.29 - 2023-03-21</h2>
-<h3 id="file-compare-26">File compare</h3>
+<h3 id="file-compare-27">File compare</h3>
 <ul>
 <li>BugFix: 3-way compare does not properly align identical lines when
 resolving conflicts, and show false highlights (#1696)</li>
@@ -1995,7 +2031,7 @@ prevent installation failure when Explorer is loading
 ShellExtension*.dll.</li>
 <li>Added IgnoreLeadingLineNumbers plugin to non-x86 installers</li>
 </ul>
-<h3 id="translations-34">Translations</h3>
+<h3 id="translations-35">Translations</h3>
 <ul>
 <li>BugFix: Fix an issue where some messages are not translated. (PR
 #1712)</li>
@@ -2028,7 +2064,7 @@ compared if they were in a folder with a &#39;.&#39; in the folder name.</li>
 <li>Fixed issue where the program would crash when certain path names
 were set in the file path bar.</li>
 </ul>
-<h3 id="file-compare-27">File compare</h3>
+<h3 id="file-compare-28">File compare</h3>
 <ul>
 <li>Feature request: Allow pasting when editing caption of pages (PR
 #1651)</li>
@@ -2070,7 +2106,7 @@ CompareMSExcelFiles plugin options window</li>
 <li>ApacheTika: If Java is not installed, OpenJDK 19.0.2 will now be
 downloaded and used.</li>
 </ul>
-<h3 id="translations-35">Translations</h3>
+<h3 id="translations-36">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2090,7 +2126,7 @@ downloaded and used.</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21625---2022-12-27">WinMerge 2.16.25 - 2022-12-27</h2>
-<h3 id="file-compare-28">File compare</h3>
+<h3 id="file-compare-29">File compare</h3>
 <ul>
 <li>BugFix: Selection in &quot;Replace&quot; by regular expression doesn&#39;t work
 with <code>\n</code> (#1556)</li>
@@ -2130,7 +2166,7 @@ compare window. (PR #1615)</li>
 <ul>
 <li>Added Auto-reload modified files option (PR #1611)</li>
 </ul>
-<h3 id="translations-36">Translations</h3>
+<h3 id="translations-37">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2171,7 +2207,7 @@ refactoring (PR #1580)</li>
 <li>BugFix: Fixed crash when displaying file menu if jump list contains
 invalid title (osdn.net #45916)</li>
 </ul>
-<h3 id="file-compare-29">File compare</h3>
+<h3 id="file-compare-30">File compare</h3>
 <ul>
 <li>Changed operation of displaying dialogs and context menus from
 status bar from double-click to single-click.</li>
@@ -2217,7 +2253,7 @@ path in project file are URLs.</li>
 <li>BugFix: The command line section in the generated patch file was
 garbled (osdn.net #45935)</li>
 </ul>
-<h3 id="translations-37">Translations</h3>
+<h3 id="translations-38">Translations</h3>
 <ul>
 <li>BugFix: Fix an issue where the following message displayed when two
 files are identical in a 3-way folder comparison is not translated. (PR
@@ -2252,7 +2288,7 @@ displayed properly in the MDI tab bar and its tooltips. (PR #1466)</li>
 <ul>
 <li>Create Midnight.ini (PR #1430)</li>
 </ul>
-<h3 id="file-compare-30">File compare</h3>
+<h3 id="file-compare-31">File compare</h3>
 <ul>
 <li>BugFix: Non existing backup directory should be automatically
 created (#1438)</li>
@@ -2290,7 +2326,7 @@ versions were linked with unfixed freeimage.)</li>
 <ul>
 <li>Update 7-Zip to 22.01 (#1425)</li>
 </ul>
-<h3 id="translations-38">Translations</h3>
+<h3 id="translations-39">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2315,7 +2351,7 @@ versions were linked with unfixed freeimage.)</li>
 <ul>
 <li>Allow renaming of untitled pages (#1395)</li>
 </ul>
-<h3 id="file-compare-31">File compare</h3>
+<h3 id="file-compare-32">File compare</h3>
 <ul>
 <li>BugFix: &quot;Replace All&quot; doesn&#39;t work when Replace in &quot;Selection&quot; and
 the new string contains the old string. (#1376)</li>
@@ -2358,7 +2394,7 @@ file.(PR #1377)</li>
 <li>New setting to decide when to save/restore hidden items when project
 is saved/loaded (PR #1377)</li>
 </ul>
-<h3 id="translations-39">Translations</h3>
+<h3 id="translations-40">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2382,7 +2418,7 @@ is saved/loaded (PR #1377)</li>
 <li>In windows 11 i have error 78 sidebyside with the winmerge manifest
 (#1312)</li>
 </ul>
-<h3 id="file-compare-32">File compare</h3>
+<h3 id="file-compare-33">File compare</h3>
 <ul>
 <li>BugFix: Copy left/right different behavior (#1334)</li>
 <li>BugFix: Line difference coloring in “Word-level” mode does not work
@@ -2470,7 +2506,7 @@ advanced menu, even though the advanced menu is enabled.</li>
 displayed on the taskbar when WinMerge is started from the Windows 11
 context menu.</li>
 </ul>
-<h3 id="translations-40">Translations</h3>
+<h3 id="translations-41">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2501,7 +2537,7 @@ context menu.</li>
 <ul>
 <li>BugFix: New filter (F) display (#1281 a))</li>
 </ul>
-<h3 id="file-compare-33">File compare</h3>
+<h3 id="file-compare-34">File compare</h3>
 <ul>
 <li>BugFix: Fixed a problem where the caret would not display in the
 correct position on lines containing tab characters, depending on the
@@ -2569,7 +2605,7 @@ arguments</li>
 <ul>
 <li>BugFix: Help file: Small issue for plugins (#1309)</li>
 </ul>
-<h3 id="translations-41">Translations</h3>
+<h3 id="translations-42">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2599,7 +2635,7 @@ and lower</li>
 <ul>
 <li>Update Merge.rc (PR #1219,#1227,#1231,#1232)</li>
 </ul>
-<h3 id="file-compare-34">File compare</h3>
+<h3 id="file-compare-35">File compare</h3>
 <ul>
 <li>BugFix: Match similar lines breaks with Ignore whitespace change
 (#1209)</li>
@@ -2665,7 +2701,7 @@ folders that match the pattern specified in <code>f:</code> and
 arguments are deleted by clicking the &quot;Add pipe&quot; button after entering
 them.</li>
 </ul>
-<h3 id="translations-42">Translations</h3>
+<h3 id="translations-43">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2707,7 +2743,7 @@ them.</li>
 selection dialog displayed from View→Select Font menu item is
 displayed.</li>
 </ul>
-<h3 id="file-compare-35">File compare</h3>
+<h3 id="file-compare-36">File compare</h3>
 <ul>
 <li>BugFix: wm 2.16.16.0 crashes with file attached (#1101)</li>
 <li>BugFix: Fix a problem that &#39;Encountered an improper argument&#39; error
@@ -2772,7 +2808,7 @@ version 2.16.16 or earlier</li>
 <li>BugFix: &quot;Quick compare limit&quot; and &quot;Binary compare limit&quot; settings
 don&#39;t have the expected (and documented) purpose (#1100)</li>
 </ul>
-<h3 id="translations-43">Translations</h3>
+<h3 id="translations-44">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2801,7 +2837,7 @@ don&#39;t have the expected (and documented) purpose (#1100)</li>
 <li>Issue with closing WinMerge with Esc keyboard key (#1052)</li>
 <li>Add an &quot;Defaults&quot; section to the ini file (PR #1071)</li>
 </ul>
-<h3 id="file-compare-36">File compare</h3>
+<h3 id="file-compare-37">File compare</h3>
 <ul>
 <li>BugFix: Release 2.16.16 crashes when comparing large files - likely
 a regression (#1036)</li>
@@ -2854,7 +2890,7 @@ does not work.</li>
 <ul>
 <li>ShellExtension for Windows 11: Implemented advanced menu</li>
 </ul>
-<h3 id="translations-44">Translations</h3>
+<h3 id="translations-45">Translations</h3>
 <ul>
 <li>New translation:
 <ul>
@@ -2887,7 +2923,7 @@ does not work.</li>
 <li>Fix a problem where the string in the Windows common dialog would
 not change to the language when switching languages.</li>
 </ul>
-<h3 id="file-compare-37">File compare</h3>
+<h3 id="file-compare-38">File compare</h3>
 <ul>
 <li>BugFix: Fix not getting the proper error message when saving
 failed</li>
@@ -2944,7 +2980,7 @@ Virtualization</li>
 <ul>
 <li>Where to report documentation/help errors? (#1004)</li>
 </ul>
-<h3 id="translations-45">Translations</h3>
+<h3 id="translations-46">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -2978,7 +3014,7 @@ context menu (#808, #908, #913)</li>
 (#903)</li>
 <li>Digitally sign packages (#152)</li>
 </ul>
-<h3 id="file-compare-38">File compare</h3>
+<h3 id="file-compare-39">File compare</h3>
 <ul>
 <li>BugFix: The mouse cursor did not change to an hourglass when the
 files or plugins were taking a long time to load.</li>
@@ -3037,7 +3073,7 @@ context menu of Explorer&#39;s navigation pane. (osdn.net #42702)</li>
 Explorer context menu (currently unstable and not registered by default)
 (PR #954)</li>
 </ul>
-<h3 id="translations-46">Translations</h3>
+<h3 id="translations-47">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3068,7 +3104,7 @@ application (PR #942)</li>
 <li>Fixed an issue where the WinMerge process might not terminate even
 though the WinMerge window was closed.</li>
 </ul>
-<h3 id="file-compare-39">File compare</h3>
+<h3 id="file-compare-40">File compare</h3>
 <ul>
 <li>BugFix: Fixed an infinite loop when &quot;find what&quot; in the substitution
 filters is empty.</li>
@@ -3151,7 +3187,7 @@ option</li>
 <li>Installer integrates with TortoiseGit and TortoiseSVN despite being
 told not to (#878)</li>
 </ul>
-<h3 id="translations-47">Translations</h3>
+<h3 id="translations-48">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3192,7 +3228,7 @@ Windows XP (#780)</li>
 <li>FeatureRequest - Ignoring options - lack in &quot;button menu&quot;
 (#804)</li>
 </ul>
-<h3 id="file-compare-40">File compare</h3>
+<h3 id="file-compare-41">File compare</h3>
 <ul>
 <li>BugFix: Fix PHP syntax highlighting. (PR #782, PR #802)</li>
 <li>BugFix: BS key did not work at the beginning of the line after
@@ -3272,7 +3308,7 @@ excluded in the plugin settings dialog</li>
 </ul></li>
 </ul></li>
 </ul>
-<h3 id="translations-48">Translations</h3>
+<h3 id="translations-49">Translations</h3>
 <ul>
 <li>BugFix: Fix an issue where a message is not translated.(PR
 #763)</li>
@@ -3297,7 +3333,7 @@ safe casts (PR #824)</li>
 <li>GUI textstrings: grammatical corrections (PR #722)</li>
 <li>Added ARM64 support</li>
 </ul>
-<h3 id="file-compare-41">File compare</h3>
+<h3 id="file-compare-42">File compare</h3>
 <ul>
 <li>BugFix: Fix PHP syntax highlighting. (PR #751)</li>
 <li>BugFix: Strings in a multi-line diff block were not be replaced
@@ -3360,7 +3396,7 @@ menu.</li>
 <li>BugFix: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and
 DisplayXMLFiles (#755)</li>
 </ul>
-<h3 id="translations-49">Translations</h3>
+<h3 id="translations-50">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3386,7 +3422,7 @@ DisplayXMLFiles (#755)</li>
 inactive tabs</li>
 <li>Added drop-down menu to Open and Save icon on toolbar</li>
 </ul>
-<h3 id="file-compare-42">File compare</h3>
+<h3 id="file-compare-43">File compare</h3>
 <ul>
 <li>BugFix: Basic syntax highlighter is broken (osdn.net #41440)</li>
 <li>BugFix: File is corrupted while saving differences in changed file
@@ -3443,7 +3479,7 @@ in the &quot;Select Files or Folders&quot; window</li>
 <ul>
 <li>Installer issue with Polish diacritics characters (#589)</li>
 </ul>
-<h3 id="translations-50">Translations</h3>
+<h3 id="translations-51">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3503,7 +3539,7 @@ methods&quot;<br />
 is always executed, ignoring the value of the &#39;Allow only one instance
 to run&#39; option.</li>
 </ul>
-<h3 id="file-compare-43">File compare</h3>
+<h3 id="file-compare-44">File compare</h3>
 <ul>
 <li>BugFix: WinMerge crashes with mouse double click (GitHub #531)</li>
 <li>BugFix: Fixed an issue where the message box &quot;The report has been
@@ -3559,7 +3595,7 @@ option for it (GitHub #537)</li>
 <ul>
 <li>BugFix: Crash when generating patch (GitHub #521)</li>
 </ul>
-<h3 id="translations-51">Translations</h3>
+<h3 id="translations-52">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3605,7 +3641,7 @@ Studio 2019 16.7.7 (GitHub #558)</li>
 <li>Update Merge.rc (GitHub #487)</li>
 <li>Improved startup time</li>
 </ul>
-<h3 id="file-compare-44">File compare</h3>
+<h3 id="file-compare-45">File compare</h3>
 <ul>
 <li>BugFix: [UI] Pane enlargement was reset after changing tab (GitHub
 #403)</li>
@@ -3663,7 +3699,7 @@ comboboxes of the Patch Generator dialog is not applied when the Patch
 Generator dialog is opened by selecting multiple files. (GitHub PR
 #421)</li>
 </ul>
-<h3 id="translations-52">Translations</h3>
+<h3 id="translations-53">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3699,7 +3735,7 @@ Generator dialog is opened by selecting multiple files. (GitHub PR
 #402)</li>
 <li>BugFix: Some improvements (GitHub #405,#411)</li>
 </ul>
-<h3 id="file-compare-45">File compare</h3>
+<h3 id="file-compare-46">File compare</h3>
 <ul>
 <li>BugFix: Ignore case option did not work when Diff algorithm was
 other than default</li>
@@ -3758,7 +3794,7 @@ constant &quot;userdesktop&quot; (GitHub #354)</li>
 <li>New installer for per-user installation
 (WinMerge-2.16.8-x64-PerUser-Setup.exe)</li>
 </ul>
-<h3 id="translations-53">Translations</h3>
+<h3 id="translations-54">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3786,7 +3822,7 @@ WinMerge/frhed PR #2)</li>
 <li>Add Solarized Dark/Light color scheme (GitHub #287)</li>
 <li>Compile WinMerge with ASLR and CFG enabled (GitHub #315)</li>
 </ul>
-<h3 id="file-compare-46">File compare</h3>
+<h3 id="file-compare-47">File compare</h3>
 <ul>
 <li>BugFix: Diff Pane issues (GitHub #307)</li>
 <li>BugFix: Codepage not updated on refresh (GitHub #320)</li>
@@ -3874,7 +3910,7 @@ IgnoreFieldsComma.dll, IgnoreFieldsTab.dll)</li>
 with Inno Setup 6.0.x are identified as malware by multiple virus
 scanning engines</li>
 </ul>
-<h3 id="translations-54">Translations</h3>
+<h3 id="translations-55">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -3911,7 +3947,7 @@ Ctrl+Tab, now the application is behave just like professional editors
 (Visual Studio, Notepad++, etc.) to switch and activate the open tabs.
 (GitHub #247)</li>
 </ul>
-<h3 id="file-compare-47">File compare</h3>
+<h3 id="file-compare-48">File compare</h3>
 <ul>
 <li>BugFix: GhostTextBuffer: Don&#39;t unexpectedly bring back empty lines
 user wants to delete (GitHub #244)</li>
@@ -3949,7 +3985,7 @@ only on one side (GitHub #252)</li>
 <ul>
 <li>BugFix: Fix spelling of Git (GitHub #246)</li>
 </ul>
-<h3 id="translations-55">Translations</h3>
+<h3 id="translations-56">Translations</h3>
 <ul>
 <li>New translation: Arabic (sf.net #3038)</li>
 <li>Translation updates:
@@ -3974,7 +4010,7 @@ only on one side (GitHub #252)</li>
 UTF8 (GitHub #243)</li>
 </ul>
 <h2 id="winmerge-2165---2019-12-09">WinMerge 2.16.5 - 2019-12-09</h2>
-<h3 id="file-compare-48">File compare</h3>
+<h3 id="file-compare-49">File compare</h3>
 <ul>
 <li>BugFix: Suspicious lack of Release() calls in lwdisp.c (GitHub
 #171)</li>
@@ -4024,7 +4060,7 @@ of cursor position (GitHub #211)</li>
 <li>Installer - Proposal - Separate Inno Setup strings from WinMerge
 installer strings (GitHub #167)</li>
 </ul>
-<h3 id="translations-56">Translations</h3>
+<h3 id="translations-57">Translations</h3>
 <ul>
 <li>Update Italian translation (GitHub #164, #165)</li>
 <li>Update Russian translation (GitHub #166)</li>
@@ -4045,7 +4081,7 @@ installer strings (GitHub #167)</li>
 <li>Small Manual tweaks (GitHub #190)</li>
 </ul>
 <h2 id="winmerge-2164---2019-07-28">WinMerge 2.16.4 - 2019-07-28</h2>
-<h3 id="file-compare-49">File compare</h3>
+<h3 id="file-compare-50">File compare</h3>
 <ul>
 <li>BugFix: coretools.cpp: linelen() should not truncate lines with
 embedded NULs (GitHub #156)</li>
@@ -4067,7 +4103,7 @@ counted in the number of diff files</li>
 <li>BugFix: PrediffLineFilter.sct: Wrong encoding for settings dialog
 (Bitbucket #16)</li>
 </ul>
-<h3 id="translations-57">Translations</h3>
+<h3 id="translations-58">Translations</h3>
 <ul>
 <li>Update Russian translation (Bitbucket PR #51)</li>
 <li>Update Italian translation (Bitbucket PR #52)</li>
@@ -4088,7 +4124,7 @@ high-latency network drive (Bitbucket #155)</li>
 #47)</li>
 <li>Reduce the size of the executable file</li>
 </ul>
-<h3 id="file-compare-50">File compare</h3>
+<h3 id="file-compare-51">File compare</h3>
 <ul>
 <li>BugFix: Location and Diff pane visibility broken in 2.16.1 (GitHub
 #138, Bitbucket #163, sf.net #2228)</li>
@@ -4136,7 +4172,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Don&#39;t install Files.txt and don&#39;t add &quot;Uninstall WinMerge&quot; to the
 start menu (Bitbuket #38)</li>
 </ul>
-<h3 id="translations-58">Translations</h3>
+<h3 id="translations-59">Translations</h3>
 <ul>
 <li>Update French translation (GitHub #149, #150)</li>
 <li>Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48,
@@ -4144,7 +4180,7 @@ start menu (Bitbuket #38)</li>
 <li>Update Russian translation (Bitbucket PR #41, #42)</li>
 </ul>
 <h2 id="winmerge-2162---2019-04-04">WinMerge 2.16.2 - 2019-04-04</h2>
-<h3 id="file-compare-51">File compare</h3>
+<h3 id="file-compare-52">File compare</h3>
 <ul>
 <li>BugFix: Edit &gt; Replace &gt; All, Undo: should undo all (sf.net
 #2113)</li>
@@ -4192,7 +4228,7 @@ GitHub #137)</li>
 <ul>
 <li>BugFix: Gibberish language during installation (Bitbucket #147)</li>
 </ul>
-<h3 id="translations-59">Translations</h3>
+<h3 id="translations-60">Translations</h3>
 <ul>
 <li>Update Catalan translation (Bitbucket PR #29)</li>
 <li>Update Italian translation (Bitbucket PR #32)</li>
@@ -4216,7 +4252,7 @@ filetype icons (GitHub #118)</li>
 <li>Avoid retaining bogus filetype icons from previous selections
 (GitHub #122)</li>
 </ul>
-<h3 id="file-compare-52">File compare</h3>
+<h3 id="file-compare-53">File compare</h3>
 <ul>
 <li>BugFix: Extra blank displayed after left/right single/double quotes
 (Bitbucket #134)</li>
@@ -4262,7 +4298,7 @@ install (Bitbucket #137)</li>
 <ul>
 <li>BugFix: CreateTranslatedRcFiles needs an update (GitHub #113)</li>
 </ul>
-<h3 id="translations-60">Translations</h3>
+<h3 id="translations-61">Translations</h3>
 <ul>
 <li>Update Brazilian Portuguese translation (GitHub #108)</li>
 <li>Update Swedish translation (sf.net #3035, GitHub #112, #114)</li>
@@ -4297,7 +4333,7 @@ EscapeControlChars() obsolete) (GitHub #123)</li>
 <li>BugFix: Disabled icon on toolbar not gray out when running on
 XP</li>
 </ul>
-<h3 id="file-compare-53">File compare</h3>
+<h3 id="file-compare-54">File compare</h3>
 <ul>
 <li>BugFix: Copy to X and Advance&quot; not work in 3way-compare (Bitbucket
 #123)</li>
@@ -4317,7 +4353,7 @@ XP</li>
 <ul>
 <li>Drop ClearCase integration (Bitbucket PR #6)</li>
 </ul>
-<h3 id="translations-61">Translations</h3>
+<h3 id="translations-62">Translations</h3>
 <ul>
 <li>Add Lithuanian translation (Bitbucket #124)</li>
 <li>Update Portuguese translation (GitHub #102,#103)</li>
@@ -4336,7 +4372,7 @@ reporting (GitHub #92)</li>
 <li>Improve visual layout of Open dialog (GitHub #97)</li>
 <li>Add icon for &quot;New (3 panes)&quot; menu item (GitHub #97)</li>
 </ul>
-<h3 id="file-compare-54">File compare</h3>
+<h3 id="file-compare-55">File compare</h3>
 <ul>
 <li>Add Window/Split menu item</li>
 <li>Improve handling of last lines in files (GitHub #89,#90,#93)</li>
@@ -4350,7 +4386,7 @@ Plugins are disabled</li>
 <li>BugFix: Various problems reading of files &gt; 2GB (GitHub #81)</li>
 <li>BugFix: Selecting files &quot;From MRU list&quot; again works correctly</li>
 </ul>
-<h3 id="translations-62">Translations</h3>
+<h3 id="translations-63">Translations</h3>
 <ul>
 <li>Update Italian translation (GitHub #86)</li>
 <li>Update Japanese translation (Bitbucket #3)</li>
@@ -4368,7 +4404,7 @@ Plugins are disabled</li>
 <ul>
 <li>BugFix: Dot icon in a drop-down menu is not drawn correctly</li>
 </ul>
-<h3 id="file-compare-55">File compare</h3>
+<h3 id="file-compare-56">File compare</h3>
 <ul>
 <li>BugFix: Crash when reading a file in Google Drive File Stream
 (sf.net#2206)</li>
@@ -4405,7 +4441,7 @@ report on the clipboard (sf.net#2200)</li>
 <li>Add PrediffLineFilter.sct plugin</li>
 <li>Make ignored lines by Prediffer plugin colored</li>
 </ul>
-<h3 id="translations-63">Translations</h3>
+<h3 id="translations-64">Translations</h3>
 <ul>
 <li>Update Slovak translation (sf.net#2902)</li>
 <li>Update Portuguese translation (GitHub #84,#85)</li>
@@ -4415,7 +4451,7 @@ report on the clipboard (sf.net#2200)</li>
 <li>Adapt to VS2017 version 15.6.1 (GitHub #79)</li>
 </ul>
 <h2 id="winmerge-2153---2018-03-04">WinMerge 2.15.3 - 2018-03-04</h2>
-<h3 id="file-compare-56">File compare</h3>
+<h3 id="file-compare-57">File compare</h3>
 <ul>
 <li>Fix assertion error when started on Windows XP</li>
 <li>Fix a problem that moved blocks are sometimes shown as normal diff
@@ -4459,7 +4495,7 @@ to settings dialog (sf.net#2102)</li>
 <li>Add &quot;How to Apply These Terms to Your New Programs&quot; section into
 GPL.rtf (sf.net#2098)</li>
 </ul>
-<h3 id="translations-64">Translations</h3>
+<h3 id="translations-65">Translations</h3>
 <ul>
 <li>Add Finnish translation (sf.net#3031)</li>
 <li>Add Sinhala translation (sf.net#3032)</li>
@@ -4573,7 +4609,7 @@ binary file</li>
 <li>BugFix: Use proper font for View&gt;Use Default Font menu item
 (GitHub #24)</li>
 </ul>
-<h3 id="file-compare-57">File Compare</h3>
+<h3 id="file-compare-58">File Compare</h3>
 <ul>
 <li>Add support for 3-way compare/merge</li>
 <li>Add &quot;Diff Context&quot; menu to View menu to adjust the number of
@@ -4654,7 +4690,7 @@ folder is selected</li>
 <li>64-bit version of WinMerge is available</li>
 <li>Install plugins by default</li>
 </ul>
-<h3 id="translations-65">Translations</h3>
+<h3 id="translations-66">Translations</h3>
 <ul>
 <li>Update Portuguese translation (GitHub #2-17)</li>
 <li>Update Korean translation (GitHub #45)</li>

@@ -1,5 +1,39 @@
 # Change log
 
+## WinMerge 2.16.58.2 - 2026-08-27
+
+### File compare
+
+* BugFix: Fix word diff calculation for hidden lines (#3535)
+
+* BugFix: Fix a minor word selection issue (#3521)
+
+* Improve diff view rendering speed for large contiguous hidden sections (PR #3517)
+
+### Filter expressions
+
+* BugFix: Allow `none` to be ignored when concatenating strings with `+` (#3550)
+
+### Archive generation
+
+* Allow archive generation for one-sided file comparisons
+
+### Translations
+
+* Translation updates:
+
+  * Brazilian (PR #3508)
+  * Chinese Simplified (PR #3493)
+  * Chinese Traditional (PR #3505)
+  * Hungarian (PR #3502)
+  * Polish (PR #3501)
+  * Russian (PR #3494)
+  * Turkish (PR #3506)
+
+### Documentation
+
+* BugFix: Fix syntax errors in the Spanish "Filters" manual page
+
 ## WinMerge 2.16.58 - 2026-07-27
 
 ### File compare
