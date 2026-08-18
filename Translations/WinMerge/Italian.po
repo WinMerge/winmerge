@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 26.07.2026\n"
+"Project-Id-Version: WinMerge - Italian - 18.08.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-07-26 10:40+0100\n"
+"PO-Revision-Date: 2026-08-18 10:38+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -5080,7 +5080,7 @@ msgstr "&Abilita il confronto delle immagini in confronto cartelle"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3358
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "&Preferisci decoder WIC"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3359
@@ -8437,7 +8437,7 @@ msgstr "Secondo e terzo"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5636
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "(Ctrl+clic per aggiungere alla pipeline)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5641
@@ -9553,7 +9553,7 @@ msgstr "Funzioni conversione testo assistite dall'IA"
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
 msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Convertitore testo (API compatibile con OpenAI).\r\nUso: AIConvertText PROMPT"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -9794,15 +9794,15 @@ msgstr "Prompt richiesta"
 #: Strings.rc:326
 #, c-format
 msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
-msgstr ""
+msgstr "Inserisci la chiave API.\r\n- Potrebbe essere richiesta la registrazione presso il provider selezionato (potrebbero essere applicati costi).\r\n- Chiave archiviata in variabile ambiente %1."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "Nome variabile ambiente per la chiave API"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "Chiave API"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -9818,8 +9818,8 @@ msgstr "Modello"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "La chiave API è stata modificata. Per applicare le modifiche riavvia."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "Provider"
