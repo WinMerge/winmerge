@@ -27,6 +27,7 @@ BEGIN_MESSAGE_MAP(CMenuBar, CToolBar)
 	ON_WM_MOUSELEAVE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
+	ON_WM_CONTEXTMENU()
 	ON_MESSAGE(UWM_SHOWPOPUPMENU, OnShowPopupMenu)
 END_MESSAGE_MAP()
 
@@ -44,6 +45,7 @@ CMenuBar::CMenuBar()
 	, m_bShowKeyboardCues(false)
 	, m_bAltUsedWithMouse(false)
 	, m_bAltKeyDown(false)
+	, m_mdiButtonVisibility(MDIButtonVisibility::AutoHide)
 {
 	m_pThis = this;
 }
@@ -84,6 +86,13 @@ BOOL CMenuBar::Create(CWnd* pParentWnd, DWORD dwStyle, UINT nID)
 	toolbar.SetButtonSize(CSize(tm.tmHeight + cy * 2, tm.tmHeight + cy * 2));
 
 	return ret;
+}
+
+void CMenuBar::SetMDIButtonVisibility(MDIButtonVisibility visibility)
+{
+	m_mdiButtonVisibility = visibility;
+	Invalidate();
+	StartMDIButtonCheckTimer();
 }
 
 bool CMenuBar::AttachMenu(CMenu* pMenu)
@@ -204,6 +213,31 @@ void CMenuBar::Show(bool visible)
 	static_cast<CFrameWnd*>(AfxGetMainWnd())->ShowControlBar(this, visible, 0);
 }
 
+void CMenuBar::StartMDIButtonCheckTimer()
+{
+	if (m_mdiButtonVisibility == MDIButtonVisibility::AlwaysShow)
+		SetTimer(MDI_BUTTON_CHECK_TIMER_ID, 300, nullptr);
+	else
+		KillTimer(MDI_BUTTON_CHECK_TIMER_ID);
+}
+
+bool CMenuBar::ShouldDrawMDIButtons() const
+{
+	if (!IsMDIChildMaximized())
+		return false;
+
+	switch (m_mdiButtonVisibility)
+	{
+	case MDIButtonVisibility::AlwaysShow:
+		return true;
+	case MDIButtonVisibility::AlwaysHide:
+		return false;
+	case MDIButtonVisibility::AutoHide:
+	default:
+		return m_bMouseTracking;
+	}
+}
+
 void CMenuBar::OnSetFocus(CWnd* pOldWnd)
 {
 	m_bActive = true;
@@ -224,6 +258,16 @@ void CMenuBar::OnTimer(UINT_PTR nIDEvent)
 		KillTimer(MENUBAR_TIMER_ID);
 		if (!m_bAlwaysVisible)
 			Show(false);
+	}
+	else if (nIDEvent == MDI_BUTTON_CHECK_TIMER_ID)
+	{
+		bool bMaximized = IsMDIChildMaximized();
+		if (bMaximized != m_bLastMDIChildMaximized)
+		{
+			m_bLastMDIChildMaximized = bMaximized;
+			CRect rc = GetMDIButtonsRect();
+			InvalidateRect(&rc, FALSE);
+		}
 	}
 }
 
@@ -249,8 +293,7 @@ void CMenuBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 		*pResult = CDRF_DODEFAULT | TBCDRF_USECDCOLORS | TBCDRF_HILITEHOTTRACK;
 		return;
 	}
-	else if (dwDrawState == CDDS_POSTPAINT &&
-		(m_bMouseTracking && IsMDIChildMaximized()))
+	else if (dwDrawState == CDDS_POSTPAINT && ShouldDrawMDIButtons())
 	{
 		DrawMDIButtons(pNMCD->nmcd.hdc);
 	}
@@ -285,12 +328,15 @@ void CMenuBar::OnMouseLeave()
 
 void CMenuBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	CRect rcButtons = GetMDIButtonsRect();
-	if (rcButtons.PtInRect(point))
+	if (ShouldDrawMDIButtons())
 	{
-		m_nMDIButtonDown = GetMDIButtonIndexFromPoint(point);
-		InvalidateRect(rcButtons);
-		return;
+		CRect rcButtons = GetMDIButtonsRect();
+		if (rcButtons.PtInRect(point))
+		{
+			m_nMDIButtonDown = GetMDIButtonIndexFromPoint(point);
+			InvalidateRect(rcButtons);
+			return;
+		}
 	}
 	__super::OnLButtonDown(nFlags, point);
 }
@@ -376,6 +422,11 @@ LRESULT CMenuBar::OnShowPopupMenu(WPARAM wParam, LPARAM lParam)
 {
 	OnMenuBarMenuItem(static_cast<UINT>(wParam));
 	return 0;
+}
+
+void CMenuBar::OnContextMenu(CWnd* pWnd, CPoint point)
+{
+	AfxGetMainWnd()->SendMessage(UWM_MDI_BUTTON_CONTEXTMENU, 0, MAKELPARAM(point.x, point.y));
 }
 
 BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
