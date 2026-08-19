@@ -365,6 +365,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS, OnUpdateIncludeSubfolders)
 	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnUpdateCompareMethod)
+	ON_MESSAGE(CMenuBar::UWM_MDI_BUTTON_CONTEXTMENU, OnMDIButtonContextMenu)
 	// Status bar
 	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
@@ -3047,6 +3048,7 @@ BOOL CMainFrame::CreateToolbar()
 	{
 		return FALSE;
 	}
+	m_wndMenuBar.SetMDIButtonVisibility(static_cast<MDIButtonVisibility>(GetOptionsMgr()->GetInt(OPT_MDI_BUTTON_VISIBILITY)));
 
 	// Remove TBSTYLE_TOOLTIPS if you don't want tooltips
 	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT | TBSTYLE_TRANSPARENT | TBSTYLE_TOOLTIPS) ||
@@ -3693,6 +3695,44 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetRadio((pCmdUI->m_nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
 	pCmdUI->Enable();
+}
+
+LRESULT CMainFrame::OnMDIButtonContextMenu(WPARAM wParam, LPARAM lParam)
+{
+	CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+	if (pt.x == -1 && pt.y == -1)
+		::GetCursorPos(&pt);
+	CMenu menu;
+	menu.CreatePopupMenu();
+
+	auto visibility = GetOptionsMgr()->GetInt(OPT_MDI_BUTTON_VISIBILITY);
+
+	UINT flagsAuto = MF_STRING | (visibility == static_cast<int>(MDIButtonVisibility::AutoHide) ? MF_CHECKED : 0);
+	UINT flagsShow = MF_STRING | (visibility == static_cast<int>(MDIButtonVisibility::AlwaysShow) ? MF_CHECKED : 0);
+	UINT flagsHide = MF_STRING | (visibility == static_cast<int>(MDIButtonVisibility::AlwaysHide) ? MF_CHECKED : 0);
+
+	menu.AppendMenu(flagsAuto, 1, _("&Auto-hide MDI buttons").c_str());
+	menu.AppendMenu(flagsShow, 2, _("Always &show MDI buttons").c_str());
+	menu.AppendMenu(flagsHide, 3, _("Always &hide MDI buttons").c_str());
+
+	int cmd = menu.TrackPopupMenu(
+		TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD | TPM_NONOTIFY,
+		pt.x, pt.y, this);
+
+	if (cmd == 0)
+		return 0;
+
+	MDIButtonVisibility newVis = MDIButtonVisibility::AutoHide;
+	switch (cmd)
+	{
+	case 2: newVis = MDIButtonVisibility::AlwaysShow; break;
+	case 3: newVis = MDIButtonVisibility::AlwaysHide; break;
+	}
+
+	GetOptionsMgr()->SaveOption(OPT_MDI_BUTTON_VISIBILITY, static_cast<int>(newVis));
+	m_wndMenuBar.SetMDIButtonVisibility(newVis);
+
+	return 0;
 }
 
 void CMainFrame::OnMRUs(UINT nID)

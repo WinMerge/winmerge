@@ -499,6 +499,7 @@ protected:
 	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateMergingStatus(CCmdUI* pCmdUI);
 	afx_msg void OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg LRESULT OnMDIButtonContextMenu(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

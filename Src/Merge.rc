@@ -5802,6 +5802,13 @@ BEGIN
     IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY "Tree-sitter only"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_MDIBUTTONS_AUTOHIDE          "&Auto-hide MDI buttons"
+    IDS_MDIBUTTONS_ALWAYSSHOW        "Always &show MDI buttons"
+    IDS_MDIBUTTONS_ALWAYSHIDE        "Always &hide MDI buttons"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

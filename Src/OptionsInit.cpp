@@ -67,6 +67,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_REBAR_STATE, _T(""));
 	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0, 0, 3);
 	pOptions->InitOption(OPT_RESIZE_PANES, false);
+	pOptions->InitOption(OPT_MDI_BUTTON_VISIBILITY, 0, 0, 2);
 
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT_MODE, 1);

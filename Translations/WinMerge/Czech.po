@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../Src/\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5819
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5826
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CZECH, SUBLANG_DEFAULT"
@@ -9285,6 +9285,21 @@ msgstr ""
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5802
 msgid "Tree-sitter only"
+msgstr ""
+
+#. IDS_MDIBUTTONS_AUTOHIDE
+#: Merge.rc:5807
+msgid "&Auto-hide MDI buttons"
+msgstr ""
+
+#. IDS_MDIBUTTONS_ALWAYSSHOW
+#: Merge.rc:5808
+msgid "Always &show MDI buttons"
+msgstr ""
+
+#. IDS_MDIBUTTONS_ALWAYSHIDE
+#: Merge.rc:5809
+msgid "Always &hide MDI buttons"
 msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1
