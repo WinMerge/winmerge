@@ -3700,7 +3700,8 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 LRESULT CMainFrame::OnMDIButtonContextMenu(WPARAM wParam, LPARAM lParam)
 {
 	CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-
+	if (pt.x == -1 && pt.y == -1)
+		::GetCursorPos(&pt);
 	CMenu menu;
 	menu.CreatePopupMenu();
 
