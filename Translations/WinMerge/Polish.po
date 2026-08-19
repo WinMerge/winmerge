@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-08-12 09:50+0000\n"
-"PO-Revision-Date: 2026-08-16 15:00+0000\n"
+"POT-Creation-Date: 2026-08-19 08:17+0000\n"
+"PO-Revision-Date: 2026-08-19 23:50+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -4372,12 +4372,12 @@ msgstr ""
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2891
 msgid "&Start filter:"
-msgstr ""
+msgstr "Początek filtra:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2894
 msgid "&End filter:"
-msgstr ""
+msgstr "Koniec filtra:"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:2897
@@ -8454,17 +8454,17 @@ msgstr "Tylko Tree-sitter"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5807
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "Automatycznie ukrywaj przyciski MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5808
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "Zawsze pokazuj przyciski MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5809
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "Zawsze ukrywaj przyciski MDI"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
