@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-08-12 19:35+0200\n"
+"PO-Revision-Date: 2026-08-19 23:04+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -9658,17 +9658,17 @@ msgstr "Nur Tree-sitter"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5807
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "MDI-Schaltflächen &automatisch ausblenden"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5808
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "MDI-&Schaltflächen immer anzeigen"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5809
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "MDI-Schaltfläc&hen immer ausblenden"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
