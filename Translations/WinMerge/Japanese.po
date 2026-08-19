@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5819
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5826
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_JAPANESE, SUBLANG_DEFAULT"
 
@@ -8921,6 +8921,20 @@ msgstr "Tree-sitter を優先"
 #: Merge.rc:5802
 msgid "Tree-sitter only"
 msgstr "Tree-sitter のみ使用"
+#. IDS_MDIBUTTONS_AUTOHIDE
+#: Merge.rc:5807
+msgid "&Auto-hide MDI buttons"
+msgstr "MDI ボタンを自動的に隠す(&A)"
+
+#. IDS_MDIBUTTONS_ALWAYSSHOW
+#: Merge.rc:5808
+msgid "Always &show MDI buttons"
+msgstr "MDI ボタンを常に表示する(&S)"
+
+#. IDS_MDIBUTTONS_ALWAYSHIDE
+#: Merge.rc:5809
+msgid "Always &hide MDI buttons"
+msgstr "MDI ボタンを常に隠す(&H)"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43

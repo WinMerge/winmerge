@@ -27,7 +27,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5819
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5826
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED"
 
@@ -8931,6 +8931,21 @@ msgstr "Tree-sitter 优先"
 #: Merge.rc:5802
 msgid "Tree-sitter only"
 msgstr "仅限 Tree-sitter"
+
+#. IDS_MDIBUTTONS_AUTOHIDE
+#: Merge.rc:5807
+msgid "&Auto-hide MDI buttons"
+msgstr ""
+
+#. IDS_MDIBUTTONS_ALWAYSSHOW
+#: Merge.rc:5808
+msgid "Always &show MDI buttons"
+msgstr ""
+
+#. IDS_MDIBUTTONS_ALWAYSHIDE
+#: Merge.rc:5809
+msgid "Always &hide MDI buttons"
+msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
