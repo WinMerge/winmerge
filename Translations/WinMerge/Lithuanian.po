@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-08-12 09:50+0000\n"
-"PO-Revision-Date: 2026-08-13 07:22+0200\n"
+"POT-Creation-Date: 2026-08-19 08:17+0000\n"
+"PO-Revision-Date: 2026-08-20 08:50+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -8453,17 +8453,17 @@ msgstr "Tik „Tree-sitter“"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5807
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "&Automatiškai slėpti MDI mygtukus"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5808
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "Vi&sada rodyti MDI mygtukus"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5809
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "Visada s&lėpti MDI mygtukus"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
