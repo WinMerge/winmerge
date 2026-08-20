@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-08-16 20:33+0900\n"
+"PO-Revision-Date: 2026-08-20 22:35+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -9649,17 +9649,17 @@ msgstr "트리 시터만"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5807
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "MDI 버튼 자동 숨기기(&A)"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5808
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "MDI 버튼 항상 표시(&S)"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5809
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "MDI 버튼 항상 숨기기(&H)"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
