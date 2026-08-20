@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 18.08.2026\n"
+"Project-Id-Version: WinMerge - Italian - 20.08.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-08-18 10:38+0100\n"
+"PO-Revision-Date: 2026-08-20 13:20+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -8946,17 +8946,17 @@ msgstr "Solo tree-sitter"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5807
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "Nascondi &automaticamente pulsanti MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5808
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "Visualizza sempre pulsanti MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5809
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "Nascon&di sempre pulsanti MDI"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
