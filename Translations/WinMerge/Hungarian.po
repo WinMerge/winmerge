@@ -9441,17 +9441,17 @@ msgstr "Tree-sitter csak"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5807
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "MDI gombok &automatikus elrejtése"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5808
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "Mindig &jelenjenek meg az MDI gombok"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5809
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "Mindig legyenek &rejtve az MDI gombok"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
