@@ -150,6 +150,14 @@ BEGIN
         MENUITEM "Use First Line as Headers",   ID_USE_FIRST_LINE_AS_HEADERS
         MENUITEM "Auto-Fit All Columns",        ID_AUTO_FIT_ALL_COLUMNS
         MENUITEM SEPARATOR
+        POPUP "&Ignore This Column"
+        BEGIN
+            MENUITEM "In &All Panes",               ID_IGNORE_COLUMN_IN_COMPARISON
+            MENUITEM "In &This Pane Only (Column Not in Other Files)", ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
+            MENUITEM "(Ctrl+Click to add another column)" ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD
+            MENUITEM SEPARATOR
+            MENUITEM "&Reset All",                  ID_IGNORE_COLUMN_IN_COMPARISON_RESET
+        END
         POPUP "&Filter by This Column"
         BEGIN
             MENUITEM "&Text...",                    ID_FILTERMENU_COLUMN_TEXT

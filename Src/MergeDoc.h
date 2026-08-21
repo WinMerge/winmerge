@@ -200,6 +200,8 @@ public:
 	void SetPrediffer(const PrediffingInfo* infoPrediffer);
 	void GetPrediffer(PrediffingInfo* infoPrediffer) const;
 	const PrediffingInfo* GetPrediffer() const override;
+	void IgnoreColumnInComparison(int column, const String& panePrefix, bool add);
+	void ResetIgnoredColumnsInComparison();
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
@@ -289,6 +291,7 @@ public:
 	std::string GetLine(int pane, int lineIndex) const override;
 	int GetColumnCount(int pane, int lineIndex) const override;
 	std::string GetColumn(int pane, int lineIndex, int columnIndex) const override;
+	std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override;
 	int GetRealLineNumber(int pane, int lineIndex) const override;
 	unsigned GetLineFlags(int pane, int lineIndex) const override;
 	unsigned GetLineEol(int pane, int lineIndex) const override;
@@ -507,4 +510,3 @@ inline bool CMergeDoc::HasSyncPoints()
 {
 	return m_bHasSyncPoints;
 }
-

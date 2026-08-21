@@ -835,6 +835,20 @@ public:
 		}
 		return column;
 	}
+	std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const
+	{
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return {};
+		const std::string delimiter = ucr::toUTF8(String(&m_tableProps.delimiter, 1));
+		std::string result;
+		for (size_t i = 0; i < columns.size(); ++i)
+		{
+			if (i > 0)
+				result += delimiter;
+			result += GetColumn(pane, lineIndex, columns[i]);
+		}
+		return result;
+	}
 	int GetRealLineNumber(int pane, int lineIndex) const
 	{
 		return lineIndex;
@@ -897,7 +911,7 @@ private:
 	TableProps m_tableProps;
 };
 
-static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(const String& filepath)
+static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(int target, const String& filepath, const String& filteredFilenames)
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(filepath))
@@ -931,7 +945,8 @@ static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(const 
 			break;
 		lines.push_back(ucr::toUTF8(line + eol));
 	} while (linesToRead);
-	auto tableProps = MakeTablePropertiesByFileName(filepath);
+	const auto filenames = strutils::split(filteredFilenames, '|');
+	auto tableProps = MakeTablePropertiesByFileName(String(filenames[target].data(), filenames[target].size()));
 	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
@@ -1048,9 +1063,9 @@ static bool ApplyFilterExpressionsToLines(VectorLineDataProvider& lineDataProvid
 	return true;
 }
 
-static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
+static String ApplyFilterExpressionsToFile(int target, const String& filepath, const String& filteredText, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
 {
-	auto lineDataProvider = CreateFileLineDataProvider(filepath);
+	auto lineDataProvider = CreateFileLineDataProvider(target, filepath, filteredText);
 	if (!lineDataProvider)
 	{
 		errorMessage = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), filepath, GetSysError());
@@ -1125,7 +1140,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 
 		if (!expressions.empty())
 		{
-			filepath = ApplyFilterExpressionsToFile(filepath, false, expressions, errorMessage);
+			filepath = ApplyFilterExpressionsToFile(target, filepath, filteredText, false, expressions, errorMessage);
 			if (!errorMessage.empty())
 			{
 				AppErrorMessageBox(errorMessage);
@@ -1263,7 +1278,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 
 		if (!expressions.empty())
 		{
-			filepath = ApplyFilterExpressionsToFile(filepath, bMayOverwrite, expressions, errorMessage);
+			filepath = ApplyFilterExpressionsToFile(target, filepath, filteredText, bMayOverwrite, expressions, errorMessage);
 			if (!errorMessage.empty())
 			{
 				AppErrorMessageBox(errorMessage);

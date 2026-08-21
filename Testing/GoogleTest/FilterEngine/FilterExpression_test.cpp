@@ -1008,6 +1008,18 @@ TEST_P(FilterExpressionTest, LineAttributes)
 			}
 		}
 
+		std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override
+		{
+			std::string result;
+			for (size_t i = 0; i < columns.size(); ++i)
+			{
+				if (i > 0)
+					result += ',';
+				result += GetColumn(pane, lineIndex, columns[i]);
+			}
+			return result;
+		}
+
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
 			return (pane == 0) ? (lineIndex) : (lineIndex + 10);
@@ -1325,6 +1337,25 @@ TEST_P(FilterExpressionTest, LineAttributes)
 	EXPECT_TRUE(fe.Parse("Column(\"Right0_Col1\") = array(none, none, \"Right1_Col1\")"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 	EXPECT_TRUE(fe.Parse("Column(\"Left0_Col5\") = array(\"Left1_Col5\", none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+
+	// Column function tests (by numeric index and name)
+	ectxt.lineIndex = 0;
+	EXPECT_TRUE(fe.Parse("Column(1) = array(\"Left0_Col1\", \"Middle0_Col1\", \"Right0_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Column(\"1\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("Column(\"2026\") = array(none, none, none)"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnRange(\"1, 3, 5-6\") = array(\"Left0_Col1,Left0_Col3,Left0_Col5,Left0_Col6\", \"Middle0_Col1,Middle0_Col3,Middle0_Col5,Middle0_Col6\", \"Right0_Col1,Right0_Col3,Right0_Col5,Right0_Col6\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnRange(\"3, 2, 1\") = array(\"Left0_Col3,Left0_Col2,Left0_Col1\", \"Middle0_Col3,Middle0_Col2,Middle0_Col1\", \"Right0_Col3,Right0_Col2,Right0_Col1\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnRange(\"10-\") = array(\"Left0_Col10,Left0_Col11,Left0_Col12\", \"Middle0_Col10,Middle0_Col11,Middle0_Col12\", \"Right0_Col10,Right0_Col11,Right0_Col12\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnRange(\"!1\") = array(\"Left0_Col2,Left0_Col3,Left0_Col4,Left0_Col5,Left0_Col6,Left0_Col7,Left0_Col8,Left0_Col9,Left0_Col10,Left0_Col11,Left0_Col12\", \"Middle0_Col2,Middle0_Col3,Middle0_Col4,Middle0_Col5,Middle0_Col6,Middle0_Col7,Middle0_Col8,Middle0_Col9,Middle0_Col10,Middle0_Col11,Middle0_Col12\", \"Right0_Col2,Right0_Col3,Right0_Col4,Right0_Col5,Right0_Col6,Right0_Col7,Right0_Col8,Right0_Col9,Right0_Col10,Right0_Col11,Right0_Col12\")"));
+	EXPECT_TRUE(fe.Evaluate(ectxt));
+	EXPECT_TRUE(fe.Parse("ColumnRange(\"1-10,!4-5\") = array(\"Left0_Col1,Left0_Col2,Left0_Col3,Left0_Col6,Left0_Col7,Left0_Col8,Left0_Col9,Left0_Col10\", \"Middle0_Col1,Middle0_Col2,Middle0_Col3,Middle0_Col6,Middle0_Col7,Middle0_Col8,Middle0_Col9,Middle0_Col10\", \"Right0_Col1,Right0_Col2,Right0_Col3,Right0_Col6,Right0_Col7,Right0_Col8,Right0_Col9,Right0_Col10\")"));
 	EXPECT_TRUE(fe.Evaluate(ectxt));
 
 	// LeftColumn, MiddleColumn, RightColumn function tests (by column name)
@@ -3757,6 +3788,18 @@ TEST_P(FilterExpressionTest, StatisticsAndMatchFunctions)
 				return "Col" + std::to_string(columnIndex + 1) + "_" + std::to_string(lineIndex * 30 + columnIndex);
 		}
 
+		std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override
+		{
+			std::string result;
+			for (size_t i = 0; i < columns.size(); ++i)
+			{
+				if (i > 0)
+					result += ',';
+				result += GetColumn(pane, lineIndex, columns[i]);
+			}
+			return result;
+		}
+
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
 			return lineIndex;
@@ -4045,6 +4088,11 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 			return "";
 		}
 
+		std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override
+		{
+			return {};
+		}
+
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
 			return lineIndex;
@@ -4263,6 +4311,11 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 			return "";
 		}
 
+		std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override
+		{
+			return {};
+		}
+
 		int GetRealLineNumber(int pane, int lineIndex) const override
 		{
 			return lineIndex;
@@ -4324,6 +4377,11 @@ TEST_P(FilterExpressionTest, BlockFunctions)
 		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
 		{
 			return "";
+		}
+
+		std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override
+		{
+			return {};
 		}
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
@@ -4396,6 +4454,11 @@ TEST_P(FilterExpressionTest, TransformLine)
 		std::string GetColumn(int pane, int lineIndex, int columnIndex) const override
 		{
 			return "";
+		}
+
+		std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override
+		{
+			return {};
 		}
 
 		int GetRealLineNumber(int pane, int lineIndex) const override
@@ -4543,4 +4606,3 @@ INSTANTIATE_TEST_SUITE_P(
 		FilterTestParam{ false }
 	)
 );
-
