@@ -271,6 +271,103 @@ void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer) const
 	m_diffWrapper.GetPrediffer(infoPrediffer);
 }
 
+void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, bool add)
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+
+	String errorMessage;
+	auto expressions = PluginForFile::ParsePluginPipeline(prediffer.GetPluginPipeline(), errorMessage);
+	if (!errorMessage.empty())
+	{
+		RootLogger::Error(errorMessage);
+		return;
+	}
+
+	uint8_t targetFlags = 0xff;
+	if (!panePrefix.empty())
+	{
+		targetFlags = 0;
+		for (const tchar_t ch : panePrefix)
+		{
+			if (ch >= '1' && ch <= '3')
+				targetFlags |= 1 << (ch - '1');
+		}
+	}
+
+	const String expressionPrefix = _T("ColumnRange(\"");
+	const String columnNumber = strutils::format(_T("%d"), column + 1);
+	const String columnSuffix = _T("\")");
+
+	bool found = false;
+	for (auto& pipelineItem : expressions)
+	{
+		auto* lineExpression = std::get_if<PluginForFile::FilterExpressionPipelineItem>(&pipelineItem);
+		if (!lineExpression || lineExpression->targetFlags != targetFlags ||
+			lineExpression->expression.compare(0, expressionPrefix.size(), expressionPrefix) != 0 ||
+			lineExpression->expression.size() < expressionPrefix.size() + columnSuffix.size() ||
+			lineExpression->expression.compare(lineExpression->expression.size() - columnSuffix.size(),
+				columnSuffix.size(), columnSuffix) != 0)
+			continue;
+		found = true;
+		const size_t specBegin = expressionPrefix.size();
+		const size_t specLength = lineExpression->expression.size() - specBegin - columnSuffix.size();
+		String specification = lineExpression->expression.substr(specBegin, specLength);
+		if (add)
+		{
+			if (specification.empty() || specification[0] != _T('!'))
+				specification = _T("!") + specification;
+				if (specification == _T("!"))
+					specification += columnNumber;
+				else if (specification != _T("!") + columnNumber)
+				{
+					specification += _T(",!");
+					specification += columnNumber;
+				}
+		}
+		else
+			specification = _T("!") + columnNumber;
+		lineExpression->expression = expressionPrefix + specification + columnSuffix;
+		break;
+	}
+	if (!found)
+	{
+		expressions.push_back(PluginForFile::FilterExpressionPipelineItem{
+			targetFlags, expressionPrefix + _T("!") + columnNumber + columnSuffix });
+	}
+
+	prediffer.SetPluginPipeline(PluginForFile::MakePluginPipeline(expressions));
+	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::ResetIgnoredColumnsInComparison()
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	String errorMessage;
+	const auto expressions = PluginForFile::ParsePluginPipeline(prediffer.GetPluginPipeline(), errorMessage);
+	if (!errorMessage.empty())
+	{
+		RootLogger::Error(errorMessage);
+		return;
+	}
+	std::vector<PluginForFile::PipelineItem> updatedExpressions;
+	for (const auto& pipelineItem : expressions)
+	{
+		const auto* lineExpression = std::get_if<PluginForFile::FilterExpressionPipelineItem>(&pipelineItem);
+		if (lineExpression &&
+			lineExpression->expression.find(_T("ColumnRange(\"")) == 0 &&
+			lineExpression->expression.size() >= String(_T("ColumnRange(\"")).size() + 2 &&
+			lineExpression->expression.compare(lineExpression->expression.size() - 2, 2, _T("\")")) == 0)
+			continue;
+		updatedExpressions.push_back(pipelineItem);
+	}
+	prediffer.SetPluginPipeline(PluginForFile::MakePluginPipeline(updatedExpressions));
+	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
+}
+
 const PrediffingInfo* CMergeDoc::GetPrediffer() const
 {
 	static PrediffingInfo infoPrediffer;
@@ -3486,6 +3583,23 @@ std::string CMergeDoc::GetColumn(int pane, int lineIndex, int columnIndex) const
 	return ucr::toUTF8(m_ptBuf[pane]->GetCellText(lineIndex, columnIndex));
 }
 
+std::string CMergeDoc::GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const
+{
+	if (!m_ptBuf[pane]->GetTableEditing())
+		return columns.empty() ? std::string{} : GetLine(pane, lineIndex);
+
+	const tchar_t fieldDelimiter = m_ptBuf[pane]->GetFieldDelimiter();
+	const std::string delimiter = ucr::toUTF8(String(&fieldDelimiter, 1));
+	std::string result;
+	for (size_t i = 0; i < columns.size(); ++i)
+	{
+		if (i > 0)
+			result += delimiter;
+		result += ucr::toUTF8(m_ptBuf[pane]->GetCellText(lineIndex, columns[i]));
+	}
+	return result;
+}
+
 int CMergeDoc::GetRealLineNumber(int pane, int lineIndex) const
 {
 	return m_ptBuf[pane]->ComputeRealLine(lineIndex);
@@ -3507,4 +3621,3 @@ unsigned CMergeDoc::GetLineEol(int pane, int lineIndex) const
 		return eol[1] == 0 ? EOL_CR : EOL_CRLF;
 	return EOL_NONE;
 }
-

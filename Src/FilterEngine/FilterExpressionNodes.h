@@ -124,6 +124,7 @@ struct FunctionNode : public ExprNode
 	void SetPropFunc(int side, int prefixlen, bool singlePane);
 	void SetLineAtFunc(int side, int prefixlen, bool singlePane, ValueType(*func)(int, const FilterEvalContext&, std::vector<ExprNode*>*));
 	void SetColumnFunc(int side, int prefixlen, bool singlePane);
+	void SetColumnRangeFunc(int side, int prefixlen, bool singlePane);
 	void SetColumnAtFunc(int side, int prefixlen, bool singlePane, ValueType(*func)(int, const FilterEvalContext&, std::vector<ExprNode*>*));
 	const FilterExpression* ctxt;
 	std::string functionName;
