@@ -51,11 +51,11 @@ public:
 	BSTR * GetDataBufferUnicode();
 	/// Get data as ansi buffer (safearray of unsigned char)
 	VARIANT * GetDataBufferAnsi();
-	/// Get data as file (saved as Ansi)
+	/// Get data as file
 	const tchar_t *GetDataFile();
 	/// Get a temporary filename, to be used to save the transformed data 
 	const tchar_t *GetDestFileName();
-	/// validation for data retrieved by GetDataFileAnsi/GetDataFileUnicode
+	/// validation for data retrieved by GetDataFile
 	void ValidateNewFile();
 	/// validation for data retrieved by GetDataBufferAnsi/GetDataBufferUnicode
 	void ValidateNewBuffer();
