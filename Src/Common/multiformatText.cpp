@@ -380,7 +380,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	}
 }
 
-const tchar_t *storageForPlugins::GetDataFileAnsi()
+const tchar_t *storageForPlugins::GetDataFileAnsi(bool useFileEncoding)
 {
 	if (m_bCurrentIsFile && !m_bCurrentIsUnicode)
 		return m_filename.c_str();
@@ -430,22 +430,25 @@ const tchar_t *storageForPlugins::GetDataFileAnsi()
 			if (m_bCurrentIsUnicode)
 				textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
 			int textRealSize = textForeseenSize;
+			int bomSize = 0;
 
 			// Init filedata struct and open file as memory mapped (out file)
 			GetDestFileName();
 			TFile fileOut(m_tempFilenameDst);
-			fileOut.setSize(textForeseenSize);
+			constexpr int maxBomSize = 3; // UTF-8 BOM is 3 bytes
+			fileOut.setSize(textForeseenSize + maxBomSize);
 			if (textForeseenSize > 0)
 			{
 				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
 
 				if (m_bCurrentIsUnicode)
 				{
-					int bomSize = m_fileEncoding.m_bom ? ucr::writeBom(shmOut.begin(), m_fileEncoding.m_unicoding) : 0;
+					if (useFileEncoding)
+						bomSize = m_fileEncoding.m_bom ? ucr::writeBom(shmOut.begin(), m_fileEncoding.m_unicoding) : 0;
 					// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
 					bool lossy;
 					textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin() + bomSize,
-						textForeseenSize, m_codepage, m_fileEncoding.m_codepage, &lossy);
+						textForeseenSize, m_codepage, useFileEncoding ? m_fileEncoding.m_codepage : ucr::getDefaultCodepage(), &lossy);
 				}
 				else
 				{
@@ -453,7 +456,7 @@ const tchar_t *storageForPlugins::GetDataFileAnsi()
 				}
 			}
 			// size may have changed
-			fileOut.setSize(textRealSize);
+			fileOut.setSize(bomSize + textRealSize);
 
 			// Release pointers to source data
 			if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
@@ -522,8 +525,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 			{
 				// to Ansi conversion, from unicoder.cpp convertToBuffer
 				bool lossy;
-				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)parrayData,
-					textForeseenSize, m_codepage, m_fileEncoding.m_codepage, &lossy);
+				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)parrayData, textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
 			}
 			else
 			{
@@ -541,6 +543,22 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 	{
 		return nullptr;
 	}
+}
+
+bool storageForPlugins::SaveAsFile(String & filename)
+{
+	const tchar_t *newFilename;
+	if (m_bOriginalIsUnicode)
+		newFilename = GetDataFileUnicode();
+	else
+		newFilename = GetDataFileAnsi(true);
+	if (newFilename == nullptr)
+	{
+		GetLastValidFile(filename);
+		return false;
+	}
+	filename = newFilename;
+	return true;
 }
 
 template<typename T, bool flipbytes>
@@ -655,4 +673,3 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 		return false;
 	}
 }
-

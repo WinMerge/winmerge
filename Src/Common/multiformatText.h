@@ -56,7 +56,7 @@ public:
 	/// Get data as file (saved as UCS-2 with BOM)
 	const tchar_t *GetDataFileUnicode();
 	/// Get data as file (saved as Ansi)
-	const tchar_t *GetDataFileAnsi();
+	const tchar_t *GetDataFileAnsi(bool useFileEncoding = false);
 	/// Get a temporary filename, to be used to save the transformed data 
 	const tchar_t *GetDestFileName();
 	/// validation for data retrieved by GetDataFileAnsi/GetDataFileUnicode
@@ -73,21 +73,7 @@ public:
 	/// Initial load
 	void SetDataFileEncoding(const String& filename, const FileTextEncoding& encoding, bool bOverwrite = false);
 	/// Final save, same format as the original file
-	bool SaveAsFile(String & filename)
-	{
-		const tchar_t *newFilename;
-		if (m_bOriginalIsUnicode)
-			newFilename = GetDataFileUnicode();
-		else
-			newFilename = GetDataFileAnsi();
-		if (newFilename == nullptr)
-		{
-			GetLastValidFile(filename);
-			return false;
-		}
-		filename = newFilename;
-		return true;
-	}
+	bool SaveAsFile(String& filename);
 	/// Get the last valid file after an error
 	/// Warning : the format may be different from the original one
 	void GetLastValidFile(String & filename)
