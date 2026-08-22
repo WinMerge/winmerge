@@ -441,7 +441,7 @@ const tchar_t *storageForPlugins::GetDataFileAnsi()
 
 				if (m_bCurrentIsUnicode)
 				{
-					int bomSize = ucr::writeBom(shmOut.begin(), m_fileEncoding.m_unicoding);
+					int bomSize = m_fileEncoding.m_bom ? ucr::writeBom(shmOut.begin(), m_fileEncoding.m_unicoding) : 0;
 					// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
 					bool lossy;
 					textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin() + bomSize,
