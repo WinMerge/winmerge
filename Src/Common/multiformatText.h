@@ -51,8 +51,6 @@ public:
 	BSTR * GetDataBufferUnicode();
 	/// Get data as ansi buffer (safearray of unsigned char)
 	VARIANT * GetDataBufferAnsi();
-	/// Get data as file (saved as UCS-2 with BOM)
-	const tchar_t *GetDataFileUnicode();
 	/// Get data as file (saved as Ansi)
 	const tchar_t *GetDataFileAnsi();
 	/// Get a temporary filename, to be used to save the transformed data 

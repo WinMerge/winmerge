@@ -48,8 +48,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UTF-8/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileUnicode();
-			filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFileAnsi();
 			bstr = bufferData.GetDataBufferUnicode();
 			}
 
@@ -58,8 +57,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UTF-8-NOBOM/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileUnicode();
-			filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFileAnsi();
 		}
 
 		{
@@ -67,8 +65,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2LE/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileUnicode();
-			filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFileAnsi();
 		}
 
 		{
@@ -76,8 +73,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2BE/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileUnicode();
-			filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFileAnsi();
 		}
 	}
 
@@ -98,7 +94,7 @@ namespace
 			storageForPlugins bufferData;
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2LE/DiffItem.h"), false);
 			String filename;
-			filename = bufferData.GetDataFileUnicode();
+			ASSERT_NE(nullptr, bufferData.GetDataBufferUnicode());
 			EXPECT_TRUE(bufferData.SaveAsFile(filename));
 			auto encoding = codepage_detect::Guess(filename, 0);
 			EXPECT_EQ(ucr::UNICODESET::UCS2LE, encoding.m_unicoding);
