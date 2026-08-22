@@ -585,10 +585,6 @@ bool storageForPlugins::SaveAsFile(String& filename)
 			? ucr::getBomSize(encoding.m_unicoding)
 			: 0;
 
-		const bool needsConversion =
-			m_bCurrentIsUnicode ||
-			encoding.m_codepage != m_codepage;
-
 		const int textForeseenSize =
 			m_bCurrentIsUnicode
 			? static_cast<int>(nchars * 3) + 1
@@ -611,7 +607,7 @@ bool storageForPlugins::SaveAsFile(String& filename)
 			{
 				textRealSize = 0;
 			}
-			else if (!needsConversion)
+			else if (!m_bCurrentIsUnicode)
 			{
 				std::memcpy(dst, pchar, nchars);
 				textRealSize = static_cast<int>(nchars);
