@@ -380,7 +380,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	}
 }
 
-const tchar_t *storageForPlugins::GetDataFileAnsi(bool useFileEncoding)
+const tchar_t *storageForPlugins::GetDataFileAnsi()
 {
 	if (m_bCurrentIsFile && !m_bCurrentIsUnicode)
 		return m_filename.c_str();
@@ -430,25 +430,20 @@ const tchar_t *storageForPlugins::GetDataFileAnsi(bool useFileEncoding)
 			if (m_bCurrentIsUnicode)
 				textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
 			int textRealSize = textForeseenSize;
-			int bomSize = 0;
 
 			// Init filedata struct and open file as memory mapped (out file)
 			GetDestFileName();
 			TFile fileOut(m_tempFilenameDst);
-			constexpr int maxBomSize = 3; // UTF-8 BOM is 3 bytes
-			fileOut.setSize(textForeseenSize + maxBomSize);
+			fileOut.setSize(textForeseenSize);
 			if (textForeseenSize > 0)
 			{
 				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
 
 				if (m_bCurrentIsUnicode)
 				{
-					if (useFileEncoding)
-						bomSize = m_fileEncoding.m_bom ? ucr::writeBom(shmOut.begin(), m_fileEncoding.m_unicoding) : 0;
 					// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
 					bool lossy;
-					textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin() + bomSize,
-						textForeseenSize, m_codepage, useFileEncoding ? m_fileEncoding.m_codepage : ucr::getDefaultCodepage(), &lossy);
+					textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin(), textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
 				}
 				else
 				{
@@ -456,7 +451,7 @@ const tchar_t *storageForPlugins::GetDataFileAnsi(bool useFileEncoding)
 				}
 			}
 			// size may have changed
-			fileOut.setSize(bomSize + textRealSize);
+			fileOut.setSize(textRealSize);
 
 			// Release pointers to source data
 			if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
@@ -547,18 +542,102 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 
 bool storageForPlugins::SaveAsFile(String & filename)
 {
-	const tchar_t *newFilename;
-	if (m_bOriginalIsUnicode)
-		newFilename = GetDataFileUnicode();
-	else
-		newFilename = GetDataFileAnsi(true);
-	if (newFilename == nullptr)
+	unsigned nchars;
+	char* pchar = nullptr;
+
+	try
 	{
-		GetLastValidFile(filename);
+		std::unique_ptr<SharedMemory> pshmIn;
+
+		// Get source data.
+		if (m_bCurrentIsFile)
+		{
+			TFile fileIn(m_filename);
+			try
+			{
+				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+				pchar = pshmIn->begin() + m_nBomSize;
+				nchars = static_cast<unsigned>(pshmIn->end() - pchar);
+			}
+			catch (...)
+			{
+				if (!fileIn.isDevice() && fileIn.getSize() > 0)
+					return false;
+				pchar = "";
+				nchars = 0;
+			}
+		}
+		else if (m_bCurrentIsUnicode)
+		{
+			pchar = reinterpret_cast<char*>(m_bstr);
+			nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
+		}
+		else
+		{
+			pchar = static_cast<char*>(GetVariantArrayData(m_array, nchars));
+		}
+
+		// Reserve enough space for the converted data and BOM.
+		//
+		// CrossConvert() may expand UTF-16 to UTF-8, so 3 bytes per
+		// source byte is used as an upper bound for the buffer.
+		constexpr int maxBomSize = 3;
+		int textForeseenSize = static_cast<int>(nchars * 3);
+		int textRealSize = textForeseenSize;
+		int bomSize = 0;
+
+		GetDestFileName();
+
+		TFile fileOut(m_tempFilenameDst);
+		fileOut.setSize(textForeseenSize + maxBomSize);
+
+		{
+			SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+
+			if (m_fileEncoding.m_bom)
+				bomSize = ucr::writeBom(
+					shmOut.begin(),
+					m_fileEncoding.m_unicoding);
+
+			bool lossy;
+			textRealSize = ucr::CrossConvert(
+				pchar,
+				nchars,
+				static_cast<char*>(shmOut.begin()) + bomSize,
+				textForeseenSize,
+				m_codepage,
+				m_fileEncoding.m_codepage,
+				&lossy);
+		}
+
+		// Shrink to the actual size.
+		fileOut.setSize(bomSize + textRealSize);
+
+		// Release SAFEARRAY data after conversion.
+		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+			SafeArrayUnaccessData(m_array.parray);
+
+		if (textRealSize == 0 && textForeseenSize > 0)
+		{
+			try
+			{
+				TFile(m_tempFilenameDst).remove();
+			}
+			catch (...)
+			{
+			}
+			return false;
+		}
+
+		// Transfer ownership of the temporary file to the caller.
+		filename = m_tempFilenameDst;
+		m_tempFilenameDst.erase();
+		return true;
+	}
+	catch (...)
+	{
 		return false;
 	}
-	filename = newFilename;
-	return true;
 }
 
 template<typename T, bool flipbytes>

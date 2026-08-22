@@ -56,7 +56,7 @@ public:
 	/// Get data as file (saved as UCS-2 with BOM)
 	const tchar_t *GetDataFileUnicode();
 	/// Get data as file (saved as Ansi)
-	const tchar_t *GetDataFileAnsi(bool useFileEncoding = false);
+	const tchar_t *GetDataFileAnsi();
 	/// Get a temporary filename, to be used to save the transformed data 
 	const tchar_t *GetDestFileName();
 	/// validation for data retrieved by GetDataFileAnsi/GetDataFileUnicode
