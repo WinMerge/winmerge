@@ -27,7 +27,6 @@ class storageForPlugins
 public:
 	storageForPlugins()
 	: m_bstr(nullptr)
-	, m_bOriginalIsUnicode(false)
 	, m_bCurrentIsUnicode(false)
 	, m_bCurrentIsFile(false)
 	, m_bOverwriteSourceFile(false)
@@ -95,9 +94,6 @@ private:
 
 // Implementation data
 private:
-	// original data mode ANSI/UNICODE
-	bool m_bOriginalIsUnicode;
-
 	// current format of data : BUFFER/FILE, ANSI/UNICODE
 	bool m_bCurrentIsUnicode;
 	bool m_bCurrentIsFile;
