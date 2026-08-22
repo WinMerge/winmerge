@@ -135,6 +135,7 @@ private:
 	int m_codepage;
 	// BOM size
 	int m_nBomSize;
+	FileTextEncoding m_fileEncoding;
 
 	// temporary number of transformations, transformed by caller
 	int m_nChanged;

@@ -80,6 +80,7 @@ void storageForPlugins::SetDataFileEncoding(const String& filename, const FileTe
 	m_bOverwriteSourceFile = bOverwrite;
 	m_codepage = encoding.m_codepage;
 	m_nBomSize = encoding.m_bom ? ucr::getBomSize(encoding.m_unicoding) : 0;
+	m_fileEncoding = encoding;
 	Initialize();
 }
 void storageForPlugins::SetDataFileUnknown(const String& filename, bool bOverwrite /*= false*/) 
@@ -440,9 +441,11 @@ const tchar_t *storageForPlugins::GetDataFileAnsi()
 
 				if (m_bCurrentIsUnicode)
 				{
+					int bomSize = ucr::writeBom(shmOut.begin(), m_fileEncoding.m_unicoding);
 					// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
 					bool lossy;
-					textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin(), textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
+					textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin() + bomSize,
+						textForeseenSize, m_codepage, m_fileEncoding.m_codepage, &lossy);
 				}
 				else
 				{
@@ -519,7 +522,8 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 			{
 				// to Ansi conversion, from unicoder.cpp convertToBuffer
 				bool lossy;
-				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)parrayData, textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
+				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)parrayData,
+					textForeseenSize, m_codepage, m_fileEncoding.m_codepage, &lossy);
 			}
 			else
 			{
