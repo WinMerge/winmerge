@@ -44,11 +44,11 @@ using Poco::Buffer;
 static void *GetVariantArrayData(VARIANT& array, unsigned& size)
 {
 	char * parrayData;
-	SafeArrayAccessData(array.parray, (void**)&parrayData);
+	SafeArrayAccessData(array.parray, reinterpret_cast<void**>(&parrayData));
 	LONG ubound, lbound;
 	SafeArrayGetLBound(array.parray, 1, &lbound);
 	SafeArrayGetUBound(array.parray, 1, &ubound);
-	size = ubound - lbound;
+	size = static_cast<unsigned>(ubound - lbound + 1);
 	return parrayData;
 }
 
