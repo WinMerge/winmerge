@@ -710,7 +710,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 
 		bool bHandled = false;
 		storageForPlugins bufferData;
-		bufferData.SetDataFileAnsi(filepath);
+		bufferData.SetDataFile(filepath);
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
@@ -733,7 +733,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 		}
 		else
 		{
-			bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
+			bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferBytes(),
 				bufferData.GetNChanged(),
 				piScript, *itSubcode);
 			if (bHandled)
@@ -1136,7 +1136,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 
 		bool bHandled = false;
 		storageForPlugins bufferData;
-		bufferData.SetDataFileAnsi(filepath);
+		bufferData.SetDataFile(filepath);
 
 		// temporary subcode 
 		int subcode = 0;
@@ -1162,7 +1162,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 		}
 		else
 		{
-			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
+			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferBytes(),
 				bufferData.GetNChanged(),
 				piScript, subcode);
 			if (bHandled)

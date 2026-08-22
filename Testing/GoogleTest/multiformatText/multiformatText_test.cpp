@@ -47,8 +47,6 @@ namespace
 			// detect Ansi or Unicode file
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UTF-8/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
-			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFile();
 			bstr = bufferData.GetDataBufferUnicode();
 			}
 
@@ -56,24 +54,19 @@ namespace
 			storageForPlugins bufferData;
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UTF-8-NOBOM/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
-			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFile();
 		}
 
 		{
 			storageForPlugins bufferData;
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2LE/DiffItem.h"), false);
-			BSTR *bstr = bufferData.GetDataBufferUnicode();
-			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFile();
+			VARIANT *var = bufferData.GetDataBufferBytes();
+			var = bufferData.GetDataBufferBytes();
 		}
 
 		{
 			storageForPlugins bufferData;
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2BE/DiffItem.h"), false);
-			BSTR *bstr = bufferData.GetDataBufferUnicode();
-			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFile();
+			VARIANT *var = bufferData.GetDataBufferBytes();
 		}
 	}
 

@@ -27,7 +27,7 @@ class storageForPlugins
 public:
 	storageForPlugins()
 	: m_bstr(nullptr)
-	, m_bCurrentIsUnicode(false)
+	, m_bCurrentBufferIsUnicode(false)
 	, m_bCurrentIsFile(false)
 	, m_bOverwriteSourceFile(false)
 	, m_nChangedValid(0)
@@ -49,8 +49,8 @@ public:
 
 	/// Get data as unicode buffer (BSTR)
 	BSTR * GetDataBufferUnicode();
-	/// Get data as ansi buffer (safearray of unsigned char)
-	VARIANT * GetDataBufferAnsi();
+	/// Get data as byte buffer (safearray of unsigned char)
+	VARIANT * GetDataBufferBytes();
 	/// Get data as file
 	const tchar_t *GetDataFile();
 	/// Get a temporary filename, to be used to save the transformed data 
@@ -65,7 +65,7 @@ public:
 	/// Set codepage to use for ANSI<->UNICODE conversions
 	void SetCodepage(int code) { m_codepage = code; };
 	/// Initial load
-	void SetDataFileAnsi(const String& filename, bool bOverwrite = false);
+	void SetDataFile(const String& filename, bool bOverwrite = false);
 	/// Initial load
 	void SetDataFileEncoding(const String& filename, const FileTextEncoding& encoding, bool bOverwrite = false);
 	/// Final save, same format as the original file
@@ -95,7 +95,7 @@ private:
 // Implementation data
 private:
 	// current format of data : BUFFER/FILE, ANSI/UNICODE
-	bool m_bCurrentIsUnicode;
+	bool m_bCurrentBufferIsUnicode;
 	bool m_bCurrentIsFile;
 	// can we overwrite the current file (different from original file when nChangedValid>=1)
 	bool m_bOverwriteSourceFile;	
