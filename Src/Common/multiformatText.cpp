@@ -73,9 +73,9 @@ void storageForPlugins::SetDataFileEncoding(const String& filename, const FileTe
 	m_nChangedValid = 0;
 	m_nChanged = 0;
 	if (encoding.m_unicoding != ucr::NONE && encoding.m_unicoding != ucr::UTF8)
-		m_bOriginalIsUnicode = m_bCurrentIsUnicode = true;
+		m_bCurrentIsUnicode = true;
 	else
-		m_bOriginalIsUnicode = m_bCurrentIsUnicode = false;
+		m_bCurrentIsUnicode = false;
 	m_bCurrentIsFile = true;
 	m_bOverwriteSourceFile = bOverwrite;
 	m_codepage = encoding.m_codepage;

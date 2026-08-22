@@ -27,12 +27,10 @@ class storageForPlugins
 public:
 	storageForPlugins()
 	: m_bstr(nullptr)
-	, m_bOriginalIsUnicode(false)
 	, m_bCurrentIsUnicode(false)
 	, m_bCurrentIsFile(false)
 	, m_bOverwriteSourceFile(false)
 	, m_nChangedValid(0)
-	, m_bError(false)
 	, m_codepage(0)
 	, m_nBomSize(0)
 	, m_nChanged(0)
@@ -89,7 +87,6 @@ public:
 	/// return number of valid transformation until now
 	int & GetNChangedValid() { return m_nChangedValid; }
 	/// return format of original data
-	bool GetOriginalMode() const { return m_bOriginalIsUnicode; }
 	const String GetDestFileExtension() const { return m_tempFileExtensionDst; }
 	void SetDestFileExtension(const String& ext) { if (!ext.empty() && ext.back() != '/') m_tempFileExtensionDst = ext; }
 
@@ -99,9 +96,6 @@ private:
 
 // Implementation data
 private:
-	// original data mode ANSI/UNICODE
-	bool m_bOriginalIsUnicode;
-
 	// current format of data : BUFFER/FILE, ANSI/UNICODE
 	bool m_bCurrentIsUnicode;
 	bool m_bCurrentIsFile;
@@ -115,8 +109,6 @@ private:
 	VARIANT m_array;
 	// data storage when mode is FILE
 	String m_filename;
-	// error during conversion ?
-	bool m_bError;
 	// codepage for ANSI mode
 	int m_codepage;
 	// BOM size
