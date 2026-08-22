@@ -27,12 +27,10 @@ class storageForPlugins
 public:
 	storageForPlugins()
 	: m_bstr(nullptr)
-	, m_bOriginalIsUnicode(false)
-	, m_bCurrentIsUnicode(false)
+	, m_bCurrentBufferIsUnicode(false)
 	, m_bCurrentIsFile(false)
 	, m_bOverwriteSourceFile(false)
 	, m_nChangedValid(0)
-	, m_bError(false)
 	, m_codepage(0)
 	, m_nBomSize(0)
 	, m_nChanged(0)
@@ -51,15 +49,13 @@ public:
 
 	/// Get data as unicode buffer (BSTR)
 	BSTR * GetDataBufferUnicode();
-	/// Get data as ansi buffer (safearray of unsigned char)
-	VARIANT * GetDataBufferAnsi();
-	/// Get data as file (saved as UCS-2 with BOM)
-	const tchar_t *GetDataFileUnicode();
-	/// Get data as file (saved as Ansi)
-	const tchar_t *GetDataFileAnsi();
+	/// Get data as byte buffer (safearray of unsigned char)
+	VARIANT * GetDataBufferBytes();
+	/// Get data as file
+	const tchar_t *GetDataFile();
 	/// Get a temporary filename, to be used to save the transformed data 
 	const tchar_t *GetDestFileName();
-	/// validation for data retrieved by GetDataFileAnsi/GetDataFileUnicode
+	/// validation for data retrieved by GetDataFile
 	void ValidateNewFile();
 	/// validation for data retrieved by GetDataBufferAnsi/GetDataBufferUnicode
 	void ValidateNewBuffer();
@@ -69,25 +65,11 @@ public:
 	/// Set codepage to use for ANSI<->UNICODE conversions
 	void SetCodepage(int code) { m_codepage = code; };
 	/// Initial load
-	void SetDataFileAnsi(const String& filename, bool bOverwrite = false);
+	void SetDataFile(const String& filename, bool bOverwrite = false);
 	/// Initial load
 	void SetDataFileEncoding(const String& filename, const FileTextEncoding& encoding, bool bOverwrite = false);
 	/// Final save, same format as the original file
-	bool SaveAsFile(String & filename)
-	{
-		const tchar_t *newFilename;
-		if (m_bOriginalIsUnicode)
-			newFilename = GetDataFileUnicode();
-		else
-			newFilename = GetDataFileAnsi();
-		if (newFilename == nullptr)
-		{
-			GetLastValidFile(filename);
-			return false;
-		}
-		filename = newFilename;
-		return true;
-	}
+	bool SaveAsFile(String& filename);
 	/// Get the last valid file after an error
 	/// Warning : the format may be different from the original one
 	void GetLastValidFile(String & filename)
@@ -103,7 +85,6 @@ public:
 	/// return number of valid transformation until now
 	int & GetNChangedValid() { return m_nChangedValid; }
 	/// return format of original data
-	bool GetOriginalMode() const { return m_bOriginalIsUnicode; }
 	const String GetDestFileExtension() const { return m_tempFileExtensionDst; }
 	void SetDestFileExtension(const String& ext) { if (!ext.empty() && ext.back() != '/') m_tempFileExtensionDst = ext; }
 
@@ -113,11 +94,8 @@ private:
 
 // Implementation data
 private:
-	// original data mode ANSI/UNICODE
-	bool m_bOriginalIsUnicode;
-
 	// current format of data : BUFFER/FILE, ANSI/UNICODE
-	bool m_bCurrentIsUnicode;
+	bool m_bCurrentBufferIsUnicode;
 	bool m_bCurrentIsFile;
 	// can we overwrite the current file (different from original file when nChangedValid>=1)
 	bool m_bOverwriteSourceFile;	
@@ -129,12 +107,11 @@ private:
 	VARIANT m_array;
 	// data storage when mode is FILE
 	String m_filename;
-	// error during conversion ?
-	bool m_bError;
 	// codepage for ANSI mode
 	int m_codepage;
 	// BOM size
 	int m_nBomSize;
+	FileTextEncoding m_fileEncoding;
 
 	// temporary number of transformations, transformed by caller
 	int m_nChanged;
