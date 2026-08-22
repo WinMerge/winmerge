@@ -224,6 +224,8 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	if (!m_bCurrentIsFile && m_bCurrentBufferIsUnicode)
 		return &m_bstr;
 
+	assert(m_bCurrentIsFile);
+
 	unsigned nchars;
 	char * pchar;
 
@@ -232,29 +234,22 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 		{
 			std::unique_ptr<SharedMemory> pshmIn;
 			// Get source data
-			if (m_bCurrentIsFile) 
+			// Init filedata struct and open file as memory mapped (in file)
+			TFile fileIn(m_filename);
+			try
 			{
-				// Init filedata struct and open file as memory mapped (in file)
-				TFile fileIn(m_filename);
-				try
-				{
-					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
-					pchar = pshmIn->begin() + m_nBomSize;
-					nchars = static_cast<unsigned>(pshmIn->end() - pchar);
-				}
-				catch (...)
-				{
-					if (!fileIn.isDevice() && fileIn.getSize() > 0)
-						return nullptr;
-					pchar = "";
-					nchars = 0;
-				}			
+				pchar = pshmIn->begin() + m_nBomSize;
+				nchars = static_cast<unsigned>(pshmIn->end() - pchar);
 			}
-			else
+			catch (...)
 			{
-				pchar = (char *)GetVariantArrayData(m_array, nchars);
-			}
+				if (!fileIn.isDevice() && fileIn.getSize() > 0)
+					return nullptr;
+				pchar = "";
+				nchars = 0;
+			}			
 
 			// Compute the dest size (in bytes)
 			int textForeseenSize = nchars * sizeof(wchar_t) + 6; // from unicoder.cpp maketstring
@@ -276,10 +271,6 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 				if (m_bstr == nullptr)
 					bAllocSuccess = false;
 			}
-
-			// Release pointers to source data
-			if (!m_bCurrentIsFile && !m_bCurrentBufferIsUnicode)
-				SafeArrayUnaccessData(m_array.parray);
 
 			if (!bAllocSuccess)
 				return nullptr;
@@ -317,10 +308,20 @@ VARIANT * storageForPlugins::GetDataBufferBytes()
 			// Get source data
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+			try
+			{
+				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
-			pchar = pshmIn->begin();
-			nchars = static_cast<unsigned>(pshmIn->end() - pchar);
+				pchar = pshmIn->begin();
+				nchars = static_cast<unsigned>(pshmIn->end() - pchar);
+			}
+			catch (...)
+			{
+				if (!fileIn.isDevice() && fileIn.getSize() > 0)
+					return nullptr;
+				pchar = "";
+				nchars = 0;
+			}
 
 			// Compute the dest size (in bytes)
 			int textForeseenSize = nchars; 
