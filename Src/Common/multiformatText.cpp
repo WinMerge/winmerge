@@ -433,7 +433,7 @@ bool storageForPlugins::SaveAsFile(String& filename)
 					encoding.m_codepage,
 					&lossy);
 
-				if (textRealSize <= 0)
+				if (textRealSize <= 0 && nchars > 0)
 				{
 					if (arrayAccessed)
 					{
