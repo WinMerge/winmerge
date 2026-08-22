@@ -48,7 +48,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UTF-8/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFile();
 			bstr = bufferData.GetDataBufferUnicode();
 			}
 
@@ -57,7 +57,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UTF-8-NOBOM/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFile();
 		}
 
 		{
@@ -65,7 +65,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2LE/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFile();
 		}
 
 		{
@@ -73,7 +73,7 @@ namespace
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2BE/DiffItem.h"), false);
 			BSTR *bstr = bufferData.GetDataBufferUnicode();
 			VARIANT *var = bufferData.GetDataBufferAnsi();
-			String filename = bufferData.GetDataFileAnsi();
+			String filename = bufferData.GetDataFile();
 		}
 	}
 

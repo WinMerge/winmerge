@@ -295,7 +295,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	}
 }
 
-const tchar_t *storageForPlugins::GetDataFileAnsi()
+const tchar_t *storageForPlugins::GetDataFile()
 {
 	if (m_bCurrentIsFile)
 		return m_filename.c_str();
@@ -308,36 +308,14 @@ const tchar_t *storageForPlugins::GetDataFileAnsi()
 		{
 			std::unique_ptr<SharedMemory> pshmIn;
 			// Get source data
-			if (m_bCurrentIsFile)
+			if (m_bCurrentIsUnicode)
 			{
-				// Init filedata struct and open file as memory mapped (in file)
-				TFile fileIn(m_filename);
-				try
-				{
-					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
-
-					pchar = pshmIn->begin()+m_nBomSize; // pass the BOM
-					nchars = static_cast<unsigned>(pshmIn->end() - pchar);
-				}
-				catch (...)
-				{
-					if (!fileIn.isDevice() && fileIn.getSize() > 0)
-						return nullptr;
-					pchar = "";
-					nchars = 0;
-				}
+				pchar  = (char *)m_bstr;
+				nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
 			}
-			else 
+			else
 			{
-				if (m_bCurrentIsUnicode)
-				{
-					pchar  = (char *)m_bstr;
-					nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
-				}
-				else
-				{
-					pchar = (char *)GetVariantArrayData(m_array, nchars);
-				}
+				pchar = (char *)GetVariantArrayData(m_array, nchars);
 			}
 
 			// Compute the dest size (in bytes)
@@ -369,7 +347,7 @@ const tchar_t *storageForPlugins::GetDataFileAnsi()
 			fileOut.setSize(textRealSize);
 
 			// Release pointers to source data
-			if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+			if (!m_bCurrentIsUnicode)
 				SafeArrayUnaccessData(m_array.parray);
 
 			if ((textRealSize == 0) && (textForeseenSize > 0))
