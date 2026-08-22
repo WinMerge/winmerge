@@ -73,9 +73,9 @@ void storageForPlugins::SetDataFileEncoding(const String& filename, const FileTe
 	m_nChangedValid = 0;
 	m_nChanged = 0;
 	if (encoding.m_unicoding != ucr::NONE && encoding.m_unicoding != ucr::UTF8)
-		m_bCurrentIsUnicode = true;
+		m_bOriginalIsUnicode = m_bCurrentIsUnicode = true;
 	else
-		m_bCurrentIsUnicode = false;
+		m_bOriginalIsUnicode = m_bCurrentIsUnicode = false;
 	m_bCurrentIsFile = true;
 	m_bOverwriteSourceFile = bOverwrite;
 	m_codepage = encoding.m_codepage;
@@ -461,7 +461,7 @@ bool storageForPlugins::SaveAsFile(String& filename)
 
 	try
 	{
-		if (m_bCurrentIsFile)
+		if (m_bCurrentIsFile && !m_bOriginalIsUnicode)
 		{
 			filename = m_filename;
 			return true;
@@ -522,7 +522,7 @@ bool storageForPlugins::SaveAsFile(String& filename)
 			{
 				textRealSize = 0;
 			}
-			else if (!m_bCurrentIsUnicode)
+			else if (!m_bCurrentIsUnicode && !m_bOriginalIsUnicode)
 			{
 				std::memcpy(dst, pchar, nchars);
 				textRealSize = static_cast<int>(nchars);
