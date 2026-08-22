@@ -88,6 +88,7 @@ namespace
 			// detect Ansi or Unicode file
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UTF-8/DiffItem.h"), false);
 			String filename;
+			BSTR* buf = bufferData.GetDataBufferUnicode();
 			bufferData.SaveAsFile(filename);
 			auto encoding = codepage_detect::Guess(filename, 0);
 			EXPECT_EQ(ucr::UNICODESET::UTF8, encoding.m_unicoding);
@@ -97,6 +98,7 @@ namespace
 			storageForPlugins bufferData;
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2LE/DiffItem.h"), false);
 			String filename;
+			filename = bufferData.GetDataFileUnicode();
 			bufferData.SaveAsFile(filename);
 			auto encoding = codepage_detect::Guess(filename, 0);
 			EXPECT_EQ(ucr::UNICODESET::UCS2LE, encoding.m_unicoding);
@@ -106,6 +108,7 @@ namespace
 			storageForPlugins bufferData;
 			bufferData.SetDataFileUnknown(_T("../../Data/Unicode/UCS-2BE/DiffItem.h"), false);
 			String filename;
+			BSTR* buf = bufferData.GetDataBufferUnicode();
 			bufferData.SaveAsFile(filename);
 			auto encoding = codepage_detect::Guess(filename, 0);
 			EXPECT_EQ(ucr::UNICODESET::UCS2BE, encoding.m_unicoding);
