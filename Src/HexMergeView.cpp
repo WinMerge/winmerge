@@ -269,7 +269,8 @@ HRESULT CHexMergeView::LoadFile(const tchar_t* path)
 {
 	CHexMergeDoc *pDoc = static_cast<CHexMergeDoc *>(GetDocument());
 	String strTempFileName = path;
-	if (!pDoc->GetUnpacker()->Unpacking(m_nThisPane, &m_unpackerSubcodes, strTempFileName, path, { strTempFileName }))
+	String filteredFilenames = strutils::join(pDoc->m_filePaths.begin(), pDoc->m_filePaths.end(), _T("|"));
+	if (!pDoc->GetUnpacker()->Unpacking(m_nThisPane, &m_unpackerSubcodes, strTempFileName, filteredFilenames, { strTempFileName }))
 		return E_FAIL;
 	HANDLE h = CreateFile(strTempFileName.c_str(), GENERIC_READ,
 		FILE_SHARE_READ | FILE_SHARE_WRITE,
