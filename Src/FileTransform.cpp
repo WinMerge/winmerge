@@ -946,7 +946,9 @@ static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(int ta
 		lines.push_back(ucr::toUTF8(line + eol));
 	} while (linesToRead);
 	const auto filenames = strutils::split(filteredFilenames, '|');
-	auto tableProps = MakeTablePropertiesByFileName(String(filenames[target].data(), filenames[target].size()));
+	const String tablePropertiesPath = target >= 0 && static_cast<size_t>(target) < filenames.size()
+		? String(filenames[target].data(), filenames[target].size()) : filepath;
+	auto tableProps = MakeTablePropertiesByFileName(tablePropertiesPath);
 	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
