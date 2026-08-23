@@ -4001,7 +4001,7 @@ static auto columnRangeFunc(int index, const FilterEvalContext& ectxt,
 		if (!range.excluded)
 			continue;
 		const int end = range.end == -1 ? columnCount : range.end;
-		for (int column = range.start; column <= end; ++column)
+		for (int column = range.start; column <= end && column <= columnCount; ++column)
 		{
 			if (column <= columnCount)
 				excluded[static_cast<size_t>(column - 1)] = true;
