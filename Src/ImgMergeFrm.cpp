@@ -1205,12 +1205,14 @@ void CImgMergeFrame::UpdateSplitter()
 bool CImgMergeFrame::OpenImages()
 {
 	bool bResult;
-	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
+	PluginPipelineContext ctxt;
+	ctxt.filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, { strTempFileName[pane] }))
+		ctxt.variables = { strTempFileName[pane] };
+		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], ctxt))
 		{
 			//return false;
 		}
@@ -1223,7 +1225,7 @@ bool CImgMergeFrame::OpenImages()
 	{
 		std::error_code ec(m_pImgMergeWindow->GetLastErrorCode(), std::generic_category());
 		String sSysError = ucr::toTString(ec.message());
-		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), filteredFilenames, sSysError);
+		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), ctxt.filteredFilenames, sSysError);
 		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 

@@ -369,7 +369,9 @@ public:
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
 	static TableProps MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog = true);
+	const TableProps* GetPreparedTableProperties() const { return m_pTablePropsPrepared.get(); }
 	void SetPreparedTableProperties(const TableProps& props) { m_pTablePropsPrepared.reset(new TableProps(props)); }
+	TableProps GetCurrentTableProperties() const;
 
 	void SetTextType(int textType);
 	void SetTextType(const String& ext);

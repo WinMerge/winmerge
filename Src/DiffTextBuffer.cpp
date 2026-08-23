@@ -211,7 +211,12 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (!infoUnpacker.Unpacking(m_nThisPane, &m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker, { m_strTempFileName }))
+	PluginPipelineContext ctxt;
+	ctxt.filteredFilenames = sToFindUnpacker;
+	ctxt.variables = { m_strTempFileName };
+	if (m_pOwnerDoc->GetPreparedTableProperties())
+		ctxt.tableProps = *m_pOwnerDoc->GetPreparedTableProperties();
+	if (!infoUnpacker.Unpacking(m_nThisPane, &m_unpackerSubcodes, m_strTempFileName, ctxt))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;

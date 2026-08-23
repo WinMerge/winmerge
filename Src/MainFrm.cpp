@@ -3450,7 +3450,10 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		CWaitCursor wait;
 		copiedFile = file;
 		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
-		if (!infoUnpacker2.Unpacking(0, nullptr, copiedFile, copiedFile, { copiedFile }))
+		PluginPipelineContext ctxt;
+		ctxt.filteredFilenames = copiedFile;
+		ctxt.variables = { copiedFile };
+		if (!infoUnpacker2.Unpacking(0, nullptr, copiedFile, ctxt))
 		{
 			String sError = strutils::format_string1(_("File not unpacked: %1"), file);
 			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);

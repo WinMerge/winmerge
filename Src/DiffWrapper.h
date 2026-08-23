@@ -20,6 +20,7 @@
 #include "TextDefinition.h"
 #include "ITextBuffer.h"
 #include "ISyntaxParser.h"
+#include "TableProps.h"
 
 class CDiffContext;
 class PrediffingInfo;
@@ -177,6 +178,7 @@ public:
 	void SetTextForAutomaticPrediff(const String &text);
 	void SetPrediffer(const PrediffingInfo * prediffer = nullptr);
 	void GetPrediffer(PrediffingInfo * prediffer) const;
+	void SetTableProps(const TableProps& tableProps) { m_tableProps = tableProps; };
 	void SetPatchOptions(const PATCHOPTIONS *options);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool GetDetectMovedBlocks() const { return (m_pMovedLines[0] != nullptr); }
@@ -232,6 +234,7 @@ private:
 	bool m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
 	std::unique_ptr<PrediffingInfo> m_infoPrediffer;
+	std::optional<TableProps> m_tableProps; /**< Table properties for table compare */
 	/// prediffer info are stored only for MergeDoc
 	String m_sToFindPrediffer;
 	bool m_bUseDiffList; /**< Are results returned in difflist? */

@@ -61,7 +61,10 @@ namespace
 		std::vector<int> subcodes;
 		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip);
 		String file = paths::ConcatPath(oldModulePath, _T("..\\..\\Data\\Office\\excel.xls"));
-		iu->Unpacking(0, &subcodes, file, _T(".*\\.xls"), { file });
+		PluginPipelineContext context;
+		context.filteredFilenames = _T(".*\\.xls");
+		context.variables = { file };
+		iu->Unpacking(0, &subcodes, file, context);
 		env::SetProgPath(oldModulePath);
 	}
 
@@ -81,7 +84,10 @@ namespace
 
 		PackingInfo pi(String(_T("le:toUpper(Line)")));
 		String file = filepath[0];
-		EXPECT_TRUE(pi.Unpacking(0, &subcodes, file, filepaths, {filepath[0]}));
+		PluginPipelineContext context;
+		context.filteredFilenames = filepaths;
+		context.variables = { filepath[0] };
+		EXPECT_TRUE(pi.Unpacking(0, &subcodes, file, context));
 	}
 
 	TEST_F(PluginsTest, Unpack_FilterExpression_Invalid)
@@ -100,7 +106,10 @@ namespace
 
 		PackingInfo pi(String(_T("le:toUpper(Line")));
 		String file = filepath[0];
-		EXPECT_FALSE(pi.Unpacking(0, &subcodes, file, filepaths, {filepath[0]}));
+		PluginPipelineContext context;
+		context.filteredFilenames = filepaths;
+		context.variables = { filepath[0] };
+		EXPECT_FALSE(pi.Unpacking(0, &subcodes, file, context));
 	}
 
 	TEST_F(PluginsTest, EditorScript_FilterExpression)
@@ -114,13 +123,16 @@ namespace
 		String file = filepath[0];
 		bool changed = false;
 		String text = _T("test");
-		EXPECT_TRUE(esi.TransformText(0, text, {filepath[0]}, changed));
+		PluginPipelineContext ctxt;
+		ctxt.filteredFilenames = filepaths;
+		ctxt.variables = { filepath[0] };
+		EXPECT_TRUE(esi.TransformText(0, text, ctxt, changed));
 		EXPECT_STREQ(_T("TEST"), text.c_str());
 
 		// Invalid filter expression
 		esi.SetPluginPipeline(String(_T("le:toUpper(Line")));
 		file = filepath[0];
-		EXPECT_FALSE(esi.TransformText(0, text, {filepath[0]}, changed));
+		EXPECT_FALSE(esi.TransformText(0, text, ctxt, changed));
 	}
 
 	TEST_F(PluginsTest, EditorScript_FilterExpression_Column)
@@ -187,7 +199,10 @@ Bye""Earth
 Hi World
 Bye World
 )";
-		EXPECT_TRUE(esi.TransformText(0, text, {filepath[0]}, changed));
+		PluginPipelineContext ctxt;
+		ctxt.filteredFilenames = filepaths;
+		ctxt.variables = { filepath[0] };
+		EXPECT_TRUE(esi.TransformText(0, text, ctxt, changed));
 		EXPECT_STREQ(expected.c_str(), text.c_str());
 	}
 

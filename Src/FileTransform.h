@@ -16,6 +16,7 @@
 #include <memory>
 #include <variant>
 #include "UnicodeString.h"
+#include "TableProps.h"
 
 class PluginInfo;
 struct FilterExpression;
@@ -86,6 +87,13 @@ protected:
 	String m_PluginPipeline;
 };
 
+struct PluginPipelineContext
+{
+	String filteredFilenames;
+	std::vector<StringView> variables;
+	std::optional<TableProps> tableProps;
+};
+
 /**
  * @brief Unpacking/packing information for a given file
  *
@@ -126,7 +134,7 @@ public:
 	 * @note Event FILE_UNPACK
 	 * Apply only the first correct handler
 	 */
-	bool Unpacking(int target, std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText, const std::vector<StringView>& variables);
+	bool Unpacking(int target, std::vector<int> * handlerSubcodes, String & filepath, const PluginPipelineContext& context);
 
 	/**
 	 * @brief Prepare one file for saving, known handler
@@ -140,7 +148,7 @@ public:
 	 */
 	bool pack(int target, String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
-	bool Packing(int target, const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
+	bool Packing(int target, const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const PluginPipelineContext& context) const;
 
 	String GetUnpackedFileExtension(int target, const String& filteredFilenames, int& preferredWindowType) const;
 
@@ -182,7 +190,7 @@ public:
 	 * @note Event FILE_PREDIFF BUFFER_PREDIFF
 	 * Apply only the first correct handler
 	 */
-	bool Prediffing(int target, String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables);
+	bool Prediffing(int target, String & filepath, bool bMayOverwrite, const PluginPipelineContext& context);
 };
 
 /**
@@ -201,7 +209,7 @@ public:
 	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int>>& plugins,
 		String& errorMessage, int stack = 0) const;
 
-	bool TransformText(int target, String & text, const std::vector<StringView>& variables, bool& changed);
+	bool TransformText(int target, String & text, const PluginPipelineContext& context, bool& changed);
 };
 
 namespace FileTransform
