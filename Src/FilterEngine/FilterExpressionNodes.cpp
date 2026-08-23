@@ -4025,11 +4025,11 @@ static auto columnRangeFunc(int index, const FilterEvalContext& ectxt,
 			const int end = range.end == -1 ? columnCount : range.end;
 			for (int column = range.start; column <= end; ++column)
 			{
-				const size_t index = static_cast<size_t>(column - 1);
-				if (column <= columnCount && !excluded[index] && !added[index])
+				const size_t columnIndex = static_cast<size_t>(column - 1);
+				if (column <= columnCount && !excluded[columnIndex] && !added[columnIndex])
 				{
 					columns.push_back(column - 1);
-					added[index] = true;
+					added[columnIndex] = true;
 				}
 			}
 		}
