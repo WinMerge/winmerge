@@ -4466,7 +4466,8 @@ void CMergeEditView::OnIgnoreColumnInComparison(UINT nID)
 
 void CMergeEditView::OnUpdateIgnoreColumnInComparison(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_nClickedColumn >= 0 &&
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) &&
+		m_nClickedColumn >= 0 &&
 		GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
 }
 
