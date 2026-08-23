@@ -710,7 +710,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 
 		bool bHandled = false;
 		storageForPlugins bufferData;
-		bufferData.SetDataFileAnsi(filepath);
+		bufferData.SetDataFile(filepath);
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
@@ -721,7 +721,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 		if (bWithFile)
 		{
 			// use a temporary dest name
-			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+			String srcFileName = bufferData.GetDataFile(); // <-Call order is important
 			String dstFileName = plugin->m_event == L"URL_PACK_UNPACK" ?
 				dstFilepath : bufferData.GetDestFileName(); // <-Call order is important
 			bHandled = plugin::InvokePackFile(srcFileName,
@@ -733,7 +733,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 		}
 		else
 		{
-			bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
+			bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferBytes(),
 				bufferData.GetNChanged(),
 				piScript, *itSubcode);
 			if (bHandled)
@@ -1151,7 +1151,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 
 		bool bHandled = false;
 		storageForPlugins bufferData;
-		bufferData.SetDataFileAnsi(filepath);
+		bufferData.SetDataFile(filepath);
 
 		// temporary subcode 
 		int subcode = 0;
@@ -1166,7 +1166,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 		{
 			// use a temporary dest name
 			bufferData.SetDestFileExtension(!plugin->m_ext.empty() ? plugin->m_ext : paths::FindExtension(filepath));
-			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+			String srcFileName = bufferData.GetDataFile(); // <-Call order is important
 			String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
 			bHandled = plugin::InvokeUnpackFile(srcFileName,
 				dstFileName,
@@ -1177,7 +1177,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 		}
 		else
 		{
-			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
+			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferBytes(),
 				bufferData.GetNChanged(),
 				piScript, subcode);
 			if (bHandled)
@@ -1302,7 +1302,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 		if (bWithFile)
 		{
 			// use a temporary dest name
-			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+			String srcFileName = bufferData.GetDataFile(); // <-Call order is important
 			String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
 			bHandled = plugin::InvokePrediffFile(srcFileName,
 				dstFileName,
