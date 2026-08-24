@@ -395,7 +395,7 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right, bool 
 		case TK_STAR:  result = lDouble->value * rDouble->value; break;
 		case TK_SLASH:
 			if (rDouble->value == 0)
-				throw std::invalid_argument("Division by zero is not allowed.");
+				throw DivisionByZeroError("Division by zero is not allowed.");
 			result = lDouble->value / rDouble->value;
 			break;
 		default: return nullptr; // Invalid operator.
@@ -435,13 +435,13 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right, bool 
 		case TK_STAR:  result = *lInt * *rInt; break;
 		case TK_SLASH:
 			if (*rInt == 0)
-				throw std::invalid_argument("Division by zero is not allowed.");
+				throw DivisionByZeroError("Division by zero is not allowed.");
 			result = *lInt / *rInt;
 			break;
 		case TK_MOD:
 			// Avoid modulo by zero.
 			if (*rInt == 0)
-				throw std::invalid_argument("Division by zero is not allowed.");
+				throw DivisionByZeroError("Division by zero is not allowed.");
 			result = *lInt % *rInt;
 			break;
 		default: return nullptr; // Invalid operator.
@@ -614,7 +614,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 			if (op == TK_SLASH)
 			{
 				if (r == 0.0)
-					throw std::invalid_argument("Division by zero in filter expression");
+					throw DivisionByZeroError("Division by zero in filter expression");
 				return *lvalDouble / r;
 			}
 		}
@@ -635,7 +635,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 				if (op == TK_SLASH)
 				{
 					if (*rvalDouble == 0.0)
-						throw std::invalid_argument("Division by zero in filter expression");
+						throw DivisionByZeroError("Division by zero in filter expression");
 					return l / *rvalDouble;
 				}
 			}
@@ -653,13 +653,13 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 				if (op == TK_SLASH)
 				{
 					if (*rvalInt == 0)
-						throw std::invalid_argument("Division by zero in filter expression");
+						throw DivisionByZeroError("Division by zero in filter expression");
 					return *lvalInt / *rvalInt;
 				}
 				if (op == TK_MOD)
 				{
 					if (*rvalInt == 0)
-						throw std::invalid_argument("Division by zero in filter expression");
+						throw DivisionByZeroError("Division by zero in filter expression");
 					return *lvalInt % *rvalInt;
 				}
 			}
@@ -3912,18 +3912,18 @@ static int ParseColumnNumber(const std::string& text, size_t& pos)
 	while (pos < text.size() && std::isdigit(static_cast<unsigned char>(text[pos])))
 		++pos;
 	if (begin == pos)
-		throw ColumnSpecificationError("invalid column specification");
+		throw InvalidArgumentError("invalid column specification");
 
 	try
 	{
 		const long long value = std::stoll(text.substr(begin, pos - begin));
 		if (value < 1 || value > (std::numeric_limits<int>::max)())
-			throw ColumnSpecificationError("invalid column specification");
+			throw InvalidArgumentError("invalid column specification");
 		return static_cast<int>(value);
 	}
 	catch (const std::out_of_range&)
 	{
-		throw ColumnSpecificationError("invalid column specification");
+		throw InvalidArgumentError("invalid column specification");
 	}
 }
 
@@ -3936,7 +3936,7 @@ static std::vector<ColumnRange> ParseColumnRanges(const std::string& text)
 		while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos])))
 			++pos;
 		if (pos == text.size())
-			throw ColumnSpecificationError("invalid column specification");
+			throw InvalidArgumentError("invalid column specification");
 
 		bool excluded = false;
 		if (text[pos] == '!')
@@ -3957,7 +3957,7 @@ static std::vector<ColumnRange> ParseColumnRanges(const std::string& text)
 			++pos;
 			end = (pos == text.size() || text[pos] == ',') ? -1 : ParseColumnNumber(text, pos);
 			if (end != -1 && end < start)
-				throw ColumnSpecificationError("invalid column specification");
+				throw InvalidArgumentError("invalid column specification");
 		}
 		ranges.push_back({ start, end, excluded });
 
@@ -3966,7 +3966,7 @@ static std::vector<ColumnRange> ParseColumnRanges(const std::string& text)
 		if (pos == text.size())
 			return ranges;
 		if (text[pos] != ',')
-			throw ColumnSpecificationError("invalid column specification");
+			throw InvalidArgumentError("invalid column specification");
 		++pos;
 	}
 }
@@ -3978,12 +3978,12 @@ static auto columnFunc(int index, const FilterEvalContext& ectxt, std::vector<Ex
 	if (auto argInt = std::get_if<int64_t>(&argColumnSpec))
 	{
 		if (*argInt < 1 || *argInt > (std::numeric_limits<int>::max)())
-			throw ColumnSpecificationError("invalid column specification");
+			throw InvalidArgumentError("invalid column specification");
 		return ColumnField(index, static_cast<int>(*argInt) - 1, ectxt);
 	}
 	if (auto argStr = std::get_if<std::string>(&argColumnSpec))
 		return ColumnFieldByName(index, *argStr, ectxt);
-	throw ColumnSpecificationError("invalid column specification");
+	throw InvalidArgumentError("invalid column specification");
 }
 
 static auto columnRangeFunc(int index, const FilterEvalContext& ectxt,
@@ -4042,7 +4042,7 @@ static auto columnRangeFunc(int index, const FilterEvalContext& ectxt, std::vect
 	auto argColumnSpec = (*args)[0]->Evaluate(ectxt);
 	const auto argStr = std::get_if<std::string>(&argColumnSpec);
 	if (!argStr)
-		throw ColumnSpecificationError("ColumnRange requires a string argument");
+		throw InvalidArgumentError("ColumnRange requires a string argument");
 	const auto ranges = ParseColumnRanges(*argStr);
 	return columnRangeFunc(index, ectxt, ranges);
 }
@@ -4130,7 +4130,7 @@ static auto columnOffsetAt(int index, const FilterEvalContext& ectxt, std::vecto
 void FunctionNode::SetLineAtFunc(int side, int prefixlen, bool singlePane, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 argument");
+		throw InvalidArgumentCountError(functionName + " function requires 1 argument");
 	if (prefixlen == 0 && !singlePane)
 		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
@@ -4148,7 +4148,7 @@ void FunctionNode::SetLineAtFunc(int side, int prefixlen, bool singlePane, Value
 void FunctionNode::SetColumnFunc(int side, int prefixlen, bool singlePane)
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 argument");
+		throw InvalidArgumentCountError(functionName + " function requires 1 argument");
 	if (prefixlen == 0 && !singlePane)
 		func = [](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
@@ -4183,7 +4183,7 @@ static auto MakeColumnRangeFunc(int side, int prefixlen, bool singlePane,
 void FunctionNode::SetColumnRangeFunc(int side, int prefixlen, bool singlePane)
 {
 	if (!args || args->size() != 1)
-		throw ColumnSpecificationError(functionName + " function requires 1 argument");
+		throw InvalidArgumentCountError(functionName + " function requires 1 argument");
 	if (prefixlen == 0 && !singlePane)
 		func = [](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
@@ -4201,7 +4201,7 @@ void FunctionNode::SetColumnRangeFunc(int side, int prefixlen, bool singlePane)
 void FunctionNode::SetColumnAtFunc(int side, int prefixlen, bool singlePane, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
 {
 	if (!args || args->size() != 2)
-		throw std::invalid_argument(functionName + " function requires 2 arguments");
+		throw InvalidArgumentCountError(functionName + " function requires 2 arguments");
 	if (prefixlen == 0 && !singlePane)
 		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
@@ -4268,12 +4268,12 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	size_t argCount = args ? args->size() : 0;
 	if (info->minArgs >= 0 && argCount < static_cast<size_t>(info->minArgs))
 	{
-		throw std::invalid_argument(functionName + " function requires at least " + 
+		throw InvalidArgumentCountError(functionName + " function requires at least " +
 			std::to_string(info->minArgs) + " argument" + (info->minArgs != 1 ? "s" : ""));
 	}
 	if (info->maxArgs >= 0 && argCount > static_cast<size_t>(info->maxArgs))
 	{
-		throw std::invalid_argument(functionName + " function requires at most " + 
+		throw InvalidArgumentCountError(functionName + " function requires at most " + 
 			std::to_string(info->maxArgs) + " argument" + (info->maxArgs != 1 ? "s" : ""));
 	}
 
@@ -4523,7 +4523,7 @@ DateTimeLiteral::DateTimeLiteral(const std::string& v)
 {
 	auto timestamp = ParseDateTime(v);
 	if (!timestamp)
-		throw std::invalid_argument("Unrecognized date/time format: " + v);
+		throw InvalidArgumentError("Unrecognized date/time format: " + v);
 	value = *timestamp;
 }
 

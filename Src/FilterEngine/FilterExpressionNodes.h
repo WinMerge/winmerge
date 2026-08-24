@@ -23,14 +23,6 @@ struct FilterEvalContext;
 
 std::string ToStringValue(const ValueType& val);
 
-class InvalidPropertyNameError : public std::invalid_argument
-{
-public:
-	explicit InvalidPropertyNameError(const std::string& name)
-		: std::invalid_argument("unknown property name: " + name), propertyName(name) {}
-	std::string propertyName;
-};
-
 struct ExprNode
 {
 	virtual ~ExprNode() { }
