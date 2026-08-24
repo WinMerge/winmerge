@@ -350,7 +350,9 @@ HRESULT CHexMergeView::SaveFile(const tchar_t* path, bool packing)
 	CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
 	if (packing && !m_unpackerSubcodes.empty())
 	{
-		if (!pDoc->GetUnpacker()->Packing(m_nThisPane, sIntermediateFilename, path, m_unpackerSubcodes, { path }))
+		PluginPipelineContext pipelineContext;
+		pipelineContext.variables = { path };
+		if (!pDoc->GetUnpacker()->Packing(m_nThisPane, sIntermediateFilename, path, m_unpackerSubcodes, pipelineContext))
 		{
 			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, *pDoc->GetUnpacker());
 			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);

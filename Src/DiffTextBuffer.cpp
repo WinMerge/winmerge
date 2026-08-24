@@ -528,7 +528,6 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// we need an unpacker/packer, at least a "do nothing" one
 		// repack the file here, overwrite the temporary file we did save in
 		PluginPipelineContext pipelineContext;
-		pipelineContext.filteredFilenames = strutils::join(m_pOwnerDoc->m_filePaths.begin(), m_pOwnerDoc->m_filePaths.end(), _T("|"));
 		pipelineContext.variables = { pszFileName };
 		pipelineContext.tableProps = m_pOwnerDoc->GetCurrentTableProperties();
 		bSaveSuccess = infoUnpacker.Packing(m_nThisPane, sIntermediateFilename, pszFileName, m_unpackerSubcodes, pipelineContext);
