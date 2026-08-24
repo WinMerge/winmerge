@@ -3534,7 +3534,7 @@ void CMergeEditView::OnScripts(UINT nID)
 	bool bChanged = false;
 	PluginPipelineContext pipelineContext;
 	pipelineContext.variables = { GetDocument()->m_filePaths[m_nThisPane] };
-	pipelineContext.tableProps = GetDocument()->GetCurrentTableProperties();
+	pipelineContext.tableProps = GetDocument()->GetCurrentTableProperties(m_nThisPane);
 	scriptInfo.TransformText(m_nThisPane, text, pipelineContext, bChanged);
 	if (bChanged)
 		// now replace the text
@@ -3555,7 +3555,7 @@ void CMergeEditView::OnTransformWithScript()
 	bool bChanged = false;
 	PluginPipelineContext pipelineContext;
 	pipelineContext.variables = { GetDocument()->m_filePaths[m_nThisPane] };
-	pipelineContext.tableProps = GetDocument()->GetCurrentTableProperties();
+	pipelineContext.tableProps = GetDocument()->GetCurrentTableProperties(m_nThisPane);
 	scriptInfo.TransformText(m_nThisPane, text, pipelineContext, bChanged);
 	if (bChanged)
 		// now replace the text

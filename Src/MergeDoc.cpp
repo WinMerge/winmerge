@@ -341,7 +341,6 @@ void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, b
 
 	prediffer.SetPluginPipeline(PluginForFile::MakePluginPipeline(expressions));
 	SetPrediffer(&prediffer);
-	m_diffWrapper.SetTableProps(GetCurrentTableProperties());
 	FlushAndRescan(true);
 }
 
@@ -2319,13 +2318,13 @@ FileLoadResult::flags_t CMergeDoc::LoadOneFile(int index, const String& filename
 	return loadSuccess;
 }
 
-TableProps CMergeDoc::GetCurrentTableProperties() const
+TableProps CMergeDoc::GetCurrentTableProperties(int pane) const
 {
 	TableProps tableProps;
-	tableProps.istable = m_ptBuf[0]->GetTableEditing();
-	tableProps.delimiter = m_ptBuf[0]->GetFieldDelimiter();
-	tableProps.quote = m_ptBuf[0]->GetFieldEnclosure();
-	tableProps.allowNewlinesInQuotes = m_ptBuf[0]->GetAllowNewlinesInQuotes();
+	tableProps.istable = m_ptBuf[pane]->GetTableEditing();
+	tableProps.delimiter = m_ptBuf[pane]->GetFieldDelimiter();
+	tableProps.quote = m_ptBuf[pane]->GetFieldEnclosure();
+	tableProps.allowNewlinesInQuotes = m_ptBuf[pane]->GetAllowNewlinesInQuotes();
 	return tableProps;
 }
 
@@ -2392,6 +2391,7 @@ void CMergeDoc::SetTableProperties()
 		{
 			m_ptBuf[nBuffer]->SetTableEditing(false);
 		}
+		m_diffWrapper.SetTableProps(nBuffer, GetCurrentTableProperties(nBuffer));
 	}
 }
 
@@ -3037,7 +3037,6 @@ void CMergeDoc::OnApplyPrediffer()
 		return;
 	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());
 	SetPrediffer(&prediffer);
-	m_diffWrapper.SetTableProps(GetCurrentTableProperties());
 	FlushAndRescan(true);
 }
 
@@ -3063,7 +3062,6 @@ void CMergeDoc::OnPrediffer(UINT nID )
 	
 	// update the prediffer and rescan
 	SetPrediffer(&infoPrediffer);
-	m_diffWrapper.SetTableProps(GetCurrentTableProperties());
 
 	FlushAndRescan(true);
 }

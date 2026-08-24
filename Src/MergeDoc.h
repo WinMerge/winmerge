@@ -371,7 +371,7 @@ public:
 	static TableProps MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog = true);
 	const TableProps* GetPreparedTableProperties() const { return m_pTablePropsPrepared.get(); }
 	void SetPreparedTableProperties(const TableProps& props) { m_pTablePropsPrepared.reset(new TableProps(props)); }
-	TableProps GetCurrentTableProperties() const;
+	TableProps GetCurrentTableProperties(int pane) const;
 
 	void SetTextType(int textType);
 	void SetTextType(const String& ext);

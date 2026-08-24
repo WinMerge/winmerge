@@ -777,7 +777,6 @@ bool CDiffWrapper::RunFileDiff()
 
 	PluginPipelineContext pipelineContext;
 	pipelineContext.filteredFilenames = m_sToFindPrediffer;
-	pipelineContext.tableProps = m_tableProps;
 
 	for (file = 0; file < aFiles.GetSize(); file++)
 	{
@@ -791,6 +790,7 @@ bool CDiffWrapper::RunFileDiff()
 			// this can only fail if the data can not be saved back (no more
 			// place on disk ???) What to do then ??
 			pipelineContext.variables = { strFileTemp[file] };
+			pipelineContext.tableProps = m_tableProps[file];
 			if (m_infoPrediffer && !m_infoPrediffer->Prediffing(file, strFileTemp[file], m_bPathsAreTemp, pipelineContext))
 			{
 				// display a message box

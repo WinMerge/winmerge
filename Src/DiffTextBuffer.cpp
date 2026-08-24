@@ -529,7 +529,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// repack the file here, overwrite the temporary file we did save in
 		PluginPipelineContext pipelineContext;
 		pipelineContext.variables = { pszFileName };
-		pipelineContext.tableProps = m_pOwnerDoc->GetCurrentTableProperties();
+		pipelineContext.tableProps = m_pOwnerDoc->GetCurrentTableProperties(m_nThisPane);
 		bSaveSuccess = infoUnpacker.Packing(m_nThisPane, sIntermediateFilename, pszFileName, m_unpackerSubcodes, pipelineContext);
 		if (!bSaveSuccess)
 			sError = GetSysError();
