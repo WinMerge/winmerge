@@ -4001,7 +4001,7 @@ static auto columnRangeFunc(int index, const FilterEvalContext& ectxt,
 		if (!range.excluded)
 			continue;
 		int end = range.end == -1 ? columnCount : range.end;
-		end = (std::min)(range.end, columnCount);
+		end = (std::min)(end, columnCount);
 		for (int column = range.start; column <= end; ++column)
 			excluded[static_cast<size_t>(column - 1)] = true;
 	}
@@ -4020,11 +4020,12 @@ static auto columnRangeFunc(int index, const FilterEvalContext& ectxt,
 		{
 			if (range.excluded)
 				continue;
-			const int end = range.end == -1 ? columnCount : range.end;
+			int end = range.end == -1 ? columnCount : range.end;
+			end = (std::min)(end, columnCount);
 			for (int column = range.start; column <= end; ++column)
 			{
 				const size_t columnIndex = static_cast<size_t>(column - 1);
-				if (column <= columnCount && !excluded[columnIndex] && !added[columnIndex])
+				if (!excluded[columnIndex] && !added[columnIndex])
 				{
 					columns.push_back(column - 1);
 					added[columnIndex] = true;
