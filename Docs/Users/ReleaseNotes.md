@@ -1,4 +1,4 @@
-# WinMerge 2.16.58 Release Notes
+# WinMerge 2.16.58.2 Release Notes
 
 * [About This Release](#about-this-release)
 * [What Is New in 2.16.58.2?](#what-is-new-in-216582)
@@ -32,6 +32,10 @@ Please submit bug reports to our bug-tracker.
 ### Archive generation
 
 * Allow archive generation for one-sided file comparisons
+
+### Plugins
+
+* Fix off-by-one bug losing the last byte of `BUFFER_PACK_UNPACK` plugin output
 
 ### Translations
 

@@ -18,6 +18,10 @@
 
 * Allow archive generation for one-sided file comparisons
 
+### Plugins
+
+* Fix off-by-one bug losing the last byte of `BUFFER_PACK_UNPACK` plugin output
+
 ### Translations
 
 * Translation updates:

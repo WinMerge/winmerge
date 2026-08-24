@@ -44,6 +44,11 @@ strings with <code>+</code> (#3550)</li>
 <ul>
 <li>Allow archive generation for one-sided file comparisons</li>
 </ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li>Fix off-by-one bug losing the last byte of
+<code>BUFFER_PACK_UNPACK</code> plugin output</li>
+</ul>
 <h3 id="translations">Translations</h3>
 <ul>
 <li><p>Translation updates:</p>
@@ -165,7 +170,7 @@ dialog</h3>
 <li>Add support for clipboard URL comparison and clipboard history menu
 (PR #3352)</li>
 </ul>
-<h3 id="plugins">Plugins</h3>
+<h3 id="plugins-1">Plugins</h3>
 <ul>
 <li>Add HandleSchemeClipboard plugin (PR #3352)</li>
 </ul>
@@ -222,7 +227,7 @@ toggle between sessions (#3368)</p></li>
 <li><p>BugFix: [FEATURE] override option for unrestricted Image Compare
 (#3382)</p></li>
 </ul>
-<h3 id="plugins-1">Plugins</h3>
+<h3 id="plugins-2">Plugins</h3>
 <ul>
 <li>BugFix: Fix missing &quot;Unpacked file extension&quot; value in Edit Plugin
 dialog</li>
@@ -344,7 +349,7 @@ results (PR #3284)</p></li>
 <li><p>Enable dynamic increase/decrease of compare threads (PR
 #3304)</p></li>
 </ul>
-<h3 id="plugins-2">Plugins</h3>
+<h3 id="plugins-3">Plugins</h3>
 <ul>
 <li><p>Add PrettifyPO and ValidatePO plugins for .po/.pot files (PR
 #3190)</p></li>
@@ -478,7 +483,7 @@ inclusive/exclusive range checks (PR #3124)</p></li>
 <li>Add option to select user data location (AppData or Documents) (PR
 #3078)</li>
 </ul>
-<h3 id="plugins-3">Plugins</h3>
+<h3 id="plugins-4">Plugins</h3>
 <ul>
 <li><p>CompareMSExcelFiles: Replace line breaks with space in MSExcel
 formulas (PR #3028)</p></li>
@@ -827,7 +832,7 @@ characters were present.</li>
 <li>BugFix: Fixed an issue where differences within &lt;pre&gt; elements
 could appear concatenated instead of on separate lines.</li>
 </ul>
-<h3 id="plugins-4">Plugins</h3>
+<h3 id="plugins-5">Plugins</h3>
 <ul>
 <li>BugFix: ApacheTika and PlantUML plugins: Fixed issue where no error
 message was displayed when execution failed (#715)</li>
@@ -940,7 +945,7 @@ different</p>
 <li><p>Add a Prompt to Copy Only Differences in Folder Comparison (PR
 #2622,#198,#1168,#1350,#1995)</p></li>
 </ul>
-<h3 id="plugins-5">Plugins</h3>
+<h3 id="plugins-6">Plugins</h3>
 <ul>
 <li><p>BugFix: Fixes an issue where the Plugins → Prediffer menu is not
 displayed correctly since version 2.16.43.</p></li>
@@ -988,7 +993,7 @@ location pane may be incorrect (#2543)</li>
 <li>BugFix: Looks like the View Tab Bar &quot;folder icon&quot; is getting a green
 check-mark before the folder compare has even completed. (#2562)</li>
 </ul>
-<h3 id="plugins-6">Plugins</h3>
+<h3 id="plugins-7">Plugins</h3>
 <ul>
 <li>BugFix: WinMerge 2.16.44.0 : CompareMSWordFiles.sct Plugin : Forced
 Enabled Confirm Conversions Pop-Up (#2566)</li>
@@ -1073,7 +1078,7 @@ dialog</h3>
 <ul>
 <li>BugFix: Crash on opening 2 files via drag &amp; drop (#2548)</li>
 </ul>
-<h3 id="plugins-7">Plugins</h3>
+<h3 id="plugins-8">Plugins</h3>
 <ul>
 <li>Apache Tika plugin: Update Apache Tika to 3.0.0</li>
 </ul>
@@ -1110,7 +1115,7 @@ installing silently (#2515)</li>
 <ul>
 <li>BugFix: Differences panel for Webpage mode (winwebdiff#7)</li>
 </ul>
-<h3 id="plugins-8">Plugins</h3>
+<h3 id="plugins-9">Plugins</h3>
 <ul>
 <li>BugFix: Floating-point precision issue in CompareMSExcelFiles.sct
 plugin (#2494)</li>
@@ -1165,7 +1170,7 @@ issues (#2450)</li>
 <li>Add a &quot;Defaults&quot; button to the &quot;Options (General)&quot; dialog. (PR
 #2453)</li>
 </ul>
-<h3 id="plugins-9">Plugins</h3>
+<h3 id="plugins-10">Plugins</h3>
 <ul>
 <li>Create CompareEscapedJavaPropertiesFiles.sct (PR #2455)</li>
 </ul>
@@ -1239,7 +1244,7 @@ appeared white.</li>
 <li>Added the ability to change the blink interval and overlay animation
 interval.</li>
 </ul>
-<h3 id="plugins-10">Plugins</h3>
+<h3 id="plugins-11">Plugins</h3>
 <ul>
 <li>Make the gpt4-o-mini model selectable in the AIConvertText plugin
 settings window</li>
@@ -1289,7 +1294,7 @@ dialog. (PR #2348)</li>
 <li>Add a &quot;Defaults&quot; button to the &quot;Options (Archive Support)&quot; dialog.
 (PR #2362)</li>
 </ul>
-<h3 id="plugins-11">Plugins</h3>
+<h3 id="plugins-12">Plugins</h3>
 <ul>
 <li>BugFix: Fixed the plugin pipeline not being configured correctly in
 the Select Plugin dialog.</li>
@@ -1349,7 +1354,7 @@ dialog. (PR #2283)</li>
 <li>Adjust position of &quot;Defaults&quot; button in &quot;Options &gt; Compare &gt;
 Table&quot; (PR #2295)</li>
 </ul>
-<h3 id="plugins-12">Plugins</h3>
+<h3 id="plugins-13">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles.sct: Fixed the issue where, when the
 &#39;Extract workbook data to multiple files&#39; option was enabled, all sheets
@@ -1420,7 +1425,7 @@ in HTML reports are not equal.</li>
 <li>BugFix: Fixed an issue where the caption set in the header bar was
 not being applied to the HTML report.</li>
 </ul>
-<h3 id="plugins-13">Plugins</h3>
+<h3 id="plugins-14">Plugins</h3>
 <ul>
 <li>BugFix: Fixed crash when error occurs in Unpacker plugin</li>
 <li>Replace the source code written in VBScript with JScript (PR
@@ -1480,7 +1485,7 @@ the Codepage dialog was not reflected.</li>
 <ul>
 <li>Modify the &quot;Display Columns&quot; dialog. (PR #2154)</li>
 </ul>
-<h3 id="plugins-14">Plugins</h3>
+<h3 id="plugins-15">Plugins</h3>
 <ul>
 <li><p>BugFix: Fixed the issue where the following string containing
 double quotes is not interpreted correctly when specified to the
@@ -1734,7 +1739,7 @@ the length of the string matching the pattern is 0</li>
 disappearing if the registration of the ShellExtension for Windows 11
 fails</li>
 </ul>
-<h3 id="plugins-15">Plugins</h3>
+<h3 id="plugins-16">Plugins</h3>
 <ul>
 <li>BugFix: WinMerge cannot successfully disable some of its Plugins
 (#2012)</li>
@@ -1836,7 +1841,7 @@ the Options dialog even if the /r command line option is not specified.
 <li>BugFix: Display problem with Item totals : (#1840)</li>
 <li>BugFix: Bug in ignore whitespace ? (#1882)</li>
 </ul>
-<h3 id="plugins-16">Plugins</h3>
+<h3 id="plugins-17">Plugins</h3>
 <ul>
 <li>PrettifyJSON: Update jq to version 1.6 (#1871)</li>
 <li>Translate some plugin error messages (PR #1873)</li>
@@ -1901,7 +1906,7 @@ the Options dialog was not displaying correctly in version 2.16.29.</li>
 <li>BugFix: Fixed an issue where plugin settings were not exported when
 exporting from the Options dialog.</li>
 </ul>
-<h3 id="plugins-17">Plugins</h3>
+<h3 id="plugins-18">Plugins</h3>
 <ul>
 <li>BugFix: Fixed an issue where the ApplyPatch plugin was not
 functioning correctly when the &#39;Plugins -&gt; Manual Unpacking&#39; menu
@@ -2002,7 +2007,7 @@ columns would not update when deleting files on one side.</li>
 <li>Added Enable Compare As menu option in Shell integration
 category</li>
 </ul>
-<h3 id="plugins-18">Plugins</h3>
+<h3 id="plugins-19">Plugins</h3>
 <ul>
 <li>BugFix: Plugin IgnoreLeadingLineNumbers hangs (#1715)</li>
 </ul>
@@ -2096,7 +2101,7 @@ used.</li>
 <ul>
 <li>Modify the &quot;Options (Compare &gt; Folder)&quot; dialog. (PR #1645)</li>
 </ul>
-<h3 id="plugins-19">Plugins</h3>
+<h3 id="plugins-20">Plugins</h3>
 <ul>
 <li>Add PreviewMarkdown plugin (PR #1641)</li>
 <li>Add PreviewPlantUML plugin (PR #1666)</li>
@@ -2232,7 +2237,7 @@ dialog</h3>
 <ul>
 <li>Made it possible to specify Prediffer plugin</li>
 </ul>
-<h3 id="plugins-20">Plugins</h3>
+<h3 id="plugins-21">Plugins</h3>
 <ul>
 <li>BugFix: Select Plugin dialog: Fixed that &quot;Display all plugins&quot;
 checkbox did not work</li>
@@ -2374,7 +2379,7 @@ folder comparison.</li>
 child items after renaming a directory in the folder compare window. (PR
 #1408)</li>
 </ul>
-<h3 id="plugins-21">Plugins</h3>
+<h3 id="plugins-22">Plugins</h3>
 <ul>
 <li>Modify textbox behavior (CompareMSExcelFiles options dialog) (PR
 #1374)</li>
@@ -2482,7 +2487,7 @@ filename when generating a file compare report. (PR #1319)</li>
 <ul>
 <li>BugFix: [Bug Report] WinMerge does not recognize Win 11 (#1192)</li>
 </ul>
-<h3 id="plugins-22">Plugins</h3>
+<h3 id="plugins-23">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles Plugins did not compare folders when
 opening .xlsx files from Plugins-&gt; Edit with Unpacker menu item even
@@ -2571,7 +2576,7 @@ directories. (PR #1299)</li>
 <ul>
 <li>Allow resizing Options dialog box in both directions (#1265)</li>
 </ul>
-<h3 id="plugins-23">Plugins</h3>
+<h3 id="plugins-24">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles.sct: Date formats interpreted
 inconsistently (#279)</li>
@@ -2695,7 +2700,7 @@ folders that match the pattern specified in <code>f:</code> and
 <li>Improve vertical alignment string (#1200)</li>
 <li>Some improvements (#1212)</li>
 </ul>
-<h3 id="plugins-24">Plugins</h3>
+<h3 id="plugins-25">Plugins</h3>
 <ul>
 <li>BugFix: Select Plugin Dialog: Fix the problem that the plugin
 arguments are deleted by clicking the &quot;Add pipe&quot; button after entering
@@ -2780,7 +2785,7 @@ non-recursive mode.</li>
 <li>BugFix: Fixed the problem that the sort order is different from
 version 2.16.16 or earlier</li>
 </ul>
-<h3 id="plugins-25">Plugins</h3>
+<h3 id="plugins-26">Plugins</h3>
 <ul>
 <li>Fix for <a href="https://github.com/WinMerge/winmerge/discussions/1139">https://github.com/WinMerge/winmerge/discussions/1139</a>
 (#1139,PR #1140)</li>
@@ -2877,7 +2882,7 @@ project file. (PR #1068)</li>
 <ul>
 <li>Put the diff patch to the clipboard rather than to files (#923)</li>
 </ul>
-<h3 id="plugins-26">Plugins</h3>
+<h3 id="plugins-27">Plugins</h3>
 <ul>
 <li>BugFix: Fixed the problem that Plugins-&gt;Reload Plugins menu item
 does not work.</li>
@@ -2956,7 +2961,7 @@ opening a project file containing multiple items with different filters.
 Windows 11 or later&quot; button is not enabled when another user has
 registered ShellExtension for Windows 11.</li>
 </ul>
-<h3 id="plugins-27">Plugins</h3>
+<h3 id="plugins-28">Plugins</h3>
 <ul>
 <li>BugFix: Plugin unpacked file extension problem
 (get_PluginUnpackedFileExtension) (#983)</li>
@@ -3050,7 +3055,7 @@ file.(#498) (PR #915)</li>
 <li>Add a feature to set items saved to or restored from the project
 file. (PR #953)</li>
 </ul>
-<h3 id="plugins-28">Plugins</h3>
+<h3 id="plugins-29">Plugins</h3>
 <ul>
 <li>New unpacker plugins:
 <ul>
@@ -3143,7 +3148,7 @@ dialog</h3>
 <ul>
 <li>BugFix: Fix the Select Files or Folders dialog. (PR #882,#892)</li>
 </ul>
-<h3 id="plugins-29">Plugins</h3>
+<h3 id="plugins-30">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles.sct: &quot;This picture only contains a
 bitmap&quot; was displayed when comparing Excel files that contain
@@ -3261,7 +3266,7 @@ compare</li>
 <li>Made Unpacker plugins available for image compare and binary
 compare</li>
 </ul>
-<h3 id="plugins-30">Plugins</h3>
+<h3 id="plugins-31">Plugins</h3>
 <ul>
 <li>Improve plugin system (PR #797)
 <ul>
@@ -3391,7 +3396,7 @@ menu.</li>
 <ul>
 <li>BugFix: Fixed a rare crash when decompressing an archive file</li>
 </ul>
-<h3 id="plugins-31">Plugins</h3>
+<h3 id="plugins-32">Plugins</h3>
 <ul>
 <li>BugFix: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and
 DisplayXMLFiles (#755)</li>
@@ -3471,7 +3476,7 @@ in the &quot;Select Files or Folders&quot; window</li>
 <li>BugFix: Fix an issue where custom colors are not saved. (PR
 #648)</li>
 </ul>
-<h3 id="plugins-32">Plugins</h3>
+<h3 id="plugins-33">Plugins</h3>
 <ul>
 <li>RCLocalizationHelper: Fix memory leaks (PR #596)</li>
 </ul>
@@ -3887,7 +3892,7 @@ renaming a file</li>
 <li>BugFix: Pressing the [Compare/Binary] category button in the Options
 dialog twice will cause a crash. (osdn.net #40308)</li>
 </ul>
-<h3 id="plugins-33">Plugins</h3>
+<h3 id="plugins-34">Plugins</h3>
 <ul>
 <li>BugFix: Fix handling of line breaks in SortAscending, SortDescending
 (osdn.net PR #40266)</li>
@@ -4098,7 +4103,7 @@ report did not complete (Bitbucket #15)</li>
 <li>BugFix: Compare Statistics dialog: The number of diff folders was
 counted in the number of diff files</li>
 </ul>
-<h3 id="plugins-34">Plugins</h3>
+<h3 id="plugins-35">Plugins</h3>
 <ul>
 <li>BugFix: PrediffLineFilter.sct: Wrong encoding for settings dialog
 (Bitbucket #16)</li>
@@ -4436,7 +4441,7 @@ line</li>
 <li>BugFix: Garbled text was copied to the clipboard when generating a
 report on the clipboard (sf.net#2200)</li>
 </ul>
-<h3 id="plugins-35">Plugins</h3>
+<h3 id="plugins-36">Plugins</h3>
 <ul>
 <li>Add PrediffLineFilter.sct plugin</li>
 <li>Make ignored lines by Prediffer plugin colored</li>
@@ -4483,7 +4488,7 @@ using &#39;Date&#39; compare method</li>
 <ul>
 <li>Add support for HiDPI screens (Github #54)</li>
 </ul>
-<h3 id="plugins-36">Plugins</h3>
+<h3 id="plugins-37">Plugins</h3>
 <ul>
 <li>CompareMSExcelFiles.sct: Add &quot;Compare headers and footers&quot; checkbox
 to settings dialog (sf.net#2102)</li>
@@ -4661,7 +4666,7 @@ UTF-8</li>
 <li>Accept drag&amp;dropped files or folders from various places like:
 Zip folder, FTP folder, Recycle bin, images in Web browser</li>
 </ul>
-<h3 id="plugins-37">Plugins</h3>
+<h3 id="plugins-38">Plugins</h3>
 <ul>
 <li>Introduce new plugin type FILE_FOLDER_PACK_UNPACKER which allows
 unpacking data in a file to multiple files in a folder</li>
