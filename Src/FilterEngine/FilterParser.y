@@ -56,6 +56,12 @@ filter_expr ::= or_expr(A). {
 			pCtx->rootNode.reset(A.node);
 			pCtx->errorMessage = e.message();
 		}
+		catch (const ColumnSpecificationError& e)
+		{
+			pCtx->errorCode = FILTER_ERROR_INVALID_COLUMN_SPECIFICATION;
+			pCtx->rootNode.reset(A.node);
+			pCtx->errorMessage = e.what();
+		}
 		catch (const std::invalid_argument& e)
 		{
 			pCtx->errorCode = FILTER_ERROR_DIVIDE_BY_ZERO;

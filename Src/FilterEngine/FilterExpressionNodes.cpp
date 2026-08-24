@@ -3912,18 +3912,18 @@ static int ParseColumnNumber(const std::string& text, size_t& pos)
 	while (pos < text.size() && std::isdigit(static_cast<unsigned char>(text[pos])))
 		++pos;
 	if (begin == pos)
-		throw std::invalid_argument("invalid column specification");
+		throw ColumnSpecificationError("invalid column specification");
 
 	try
 	{
 		const long long value = std::stoll(text.substr(begin, pos - begin));
 		if (value < 1 || value > (std::numeric_limits<int>::max)())
-			throw std::invalid_argument("invalid column specification");
+			throw ColumnSpecificationError("invalid column specification");
 		return static_cast<int>(value);
 	}
 	catch (const std::out_of_range&)
 	{
-		throw std::invalid_argument("invalid column specification");
+		throw ColumnSpecificationError("invalid column specification");
 	}
 }
 
@@ -3936,7 +3936,7 @@ static std::vector<ColumnRange> ParseColumnRanges(const std::string& text)
 		while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos])))
 			++pos;
 		if (pos == text.size())
-			throw std::invalid_argument("invalid column specification");
+			throw ColumnSpecificationError("invalid column specification");
 
 		bool excluded = false;
 		if (text[pos] == '!')
@@ -3957,7 +3957,7 @@ static std::vector<ColumnRange> ParseColumnRanges(const std::string& text)
 			++pos;
 			end = (pos == text.size() || text[pos] == ',') ? -1 : ParseColumnNumber(text, pos);
 			if (end != -1 && end < start)
-				throw std::invalid_argument("invalid column specification");
+				throw ColumnSpecificationError("invalid column specification");
 		}
 		ranges.push_back({ start, end, excluded });
 
@@ -3966,7 +3966,7 @@ static std::vector<ColumnRange> ParseColumnRanges(const std::string& text)
 		if (pos == text.size())
 			return ranges;
 		if (text[pos] != ',')
-			throw std::invalid_argument("invalid column specification");
+			throw ColumnSpecificationError("invalid column specification");
 		++pos;
 	}
 }
@@ -3978,12 +3978,12 @@ static auto columnFunc(int index, const FilterEvalContext& ectxt, std::vector<Ex
 	if (auto argInt = std::get_if<int64_t>(&argColumnSpec))
 	{
 		if (*argInt < 1 || *argInt > (std::numeric_limits<int>::max)())
-			throw std::invalid_argument("invalid column specification");
+			throw ColumnSpecificationError("invalid column specification");
 		return ColumnField(index, static_cast<int>(*argInt) - 1, ectxt);
 	}
 	if (auto argStr = std::get_if<std::string>(&argColumnSpec))
 		return ColumnFieldByName(index, *argStr, ectxt);
-	throw std::invalid_argument("invalid column specification");
+	throw ColumnSpecificationError("invalid column specification");
 }
 
 static auto columnRangeFunc(int index, const FilterEvalContext& ectxt,
@@ -4042,7 +4042,7 @@ static auto columnRangeFunc(int index, const FilterEvalContext& ectxt, std::vect
 	auto argColumnSpec = (*args)[0]->Evaluate(ectxt);
 	const auto argStr = std::get_if<std::string>(&argColumnSpec);
 	if (!argStr)
-		throw std::invalid_argument("ColumnRange requires a string argument");
+		throw ColumnSpecificationError("ColumnRange requires a string argument");
 	const auto ranges = ParseColumnRanges(*argStr);
 	return columnRangeFunc(index, ectxt, ranges);
 }
@@ -4183,7 +4183,7 @@ static auto MakeColumnRangeFunc(int side, int prefixlen, bool singlePane,
 void FunctionNode::SetColumnRangeFunc(int side, int prefixlen, bool singlePane)
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 argument");
+		throw ColumnSpecificationError(functionName + " function requires 1 argument");
 	if (prefixlen == 0 && !singlePane)
 		func = [](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{

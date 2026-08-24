@@ -4,6 +4,8 @@
  */
 #pragma once
 
+#include <stdexcept>
+
 enum FilterErrorCode
 {
 	FILTER_ERROR_NO_ERROR = 0,
@@ -21,4 +23,10 @@ enum FilterErrorCode
 	FILTER_ERROR_DIVIDE_BY_ZERO = 12,
 	FILTER_ERROR_INVALID_PROPERTY_NAME = 13,
 	FILTER_ERROR_INVALID_DIRECTIVE = 14,
+	FILTER_ERROR_INVALID_COLUMN_SPECIFICATION = 15,
+};
+
+struct ColumnSpecificationError : std::invalid_argument
+{
+	using std::invalid_argument::invalid_argument;
 };
