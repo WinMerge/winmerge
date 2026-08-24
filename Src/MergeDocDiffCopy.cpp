@@ -488,7 +488,10 @@ bool CMergeDoc::TransformText(String& text)
 		return false;
 	const int nActivePane = pwndActiveWindow->m_nThisPane;
 	bool bChanged = false;
-	m_editorScriptInfo.TransformText(nActivePane, text, { m_filePaths[nActivePane] }, bChanged);
+	PluginPipelineContext pipelineContext;
+	pipelineContext.variables = { m_filePaths[nActivePane] };
+	pipelineContext.tableProps = GetCurrentTableProperties(nActivePane);
+	m_editorScriptInfo.TransformText(nActivePane, text, pipelineContext, bChanged);
 	return bChanged;
 }
 

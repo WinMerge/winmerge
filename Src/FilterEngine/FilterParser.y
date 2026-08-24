@@ -147,7 +147,7 @@ term(A) ::= IDENTIFIER(B) LPAREN RPAREN. {
     pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT_COUNT;
 	pCtx->errorMessage = e.what();
   }
-  catch (const InvalidArgumentValueError& e)
+  catch (const InvalidArgumentError& e)
   {
     pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT;
 	pCtx->errorMessage = e.what();
