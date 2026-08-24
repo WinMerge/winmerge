@@ -839,6 +839,8 @@ public:
 	{
 		if (lineIndex < 0 || lineIndex >= m_lines.size())
 			return {};
+		if (!m_tableProps.istable)
+			return columns.empty() ? std::string{} : GetLine(pane, lineIndex);
 		const std::string delimiter = ucr::toUTF8(String(&m_tableProps.delimiter, 1));
 		std::string result;
 		for (size_t i = 0; i < columns.size(); ++i)
