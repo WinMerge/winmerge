@@ -56,9 +56,9 @@ filter_expr ::= or_expr(A). {
 			pCtx->rootNode.reset(A.node);
 			pCtx->errorMessage = e.message();
 		}
-		catch (const InvalidArgumentValueError& e)
+		catch (const InvalidArgumentError& e)
 		{
-			pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT_VALUE;
+			pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT;
 			pCtx->rootNode.reset(A.node);
 			pCtx->errorMessage = e.what();
 		}
@@ -149,7 +149,7 @@ term(A) ::= IDENTIFIER(B) LPAREN RPAREN. {
   }
   catch (const InvalidArgumentValueError& e)
   {
-    pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT_VALUE;
+    pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT;
 	pCtx->errorMessage = e.what();
   }
   catch (const std::runtime_error& e)
@@ -176,9 +176,9 @@ term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
     pCtx->errorMessage = e.what();
     YYSTYPEDestructor(C);
   }
-  catch (const InvalidArgumentValueError& e)
+  catch (const InvalidArgumentError& e)
   {
-    pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT_VALUE;
+    pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT;
     pCtx->errorMessage = e.what();
     YYSTYPEDestructor(C);
   }
