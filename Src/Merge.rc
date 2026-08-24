@@ -154,8 +154,7 @@ BEGIN
         BEGIN
             MENUITEM "In &All Panes",               ID_IGNORE_COLUMN_IN_COMPARISON
             MENUITEM "In &This Pane Only (Column Not in Other Files)", ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
-            MENUITEM "(Ctrl+Click to add another column)", ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD
-
+            MENUITEM "(Ctrl+Click to add another column)", ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
             MENUITEM SEPARATOR
             MENUITEM "&Reset All",                  ID_IGNORE_COLUMN_IN_COMPARISON_RESET
         END

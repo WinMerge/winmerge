@@ -211,12 +211,12 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	PluginPipelineContext ctxt;
-	ctxt.filteredFilenames = sToFindUnpacker;
-	ctxt.variables = { m_strTempFileName };
+	PluginPipelineContext pipelineContext;
+	pipelineContext.filteredFilenames = sToFindUnpacker;
+	pipelineContext.variables = { m_strTempFileName };
 	if (m_pOwnerDoc->GetPreparedTableProperties())
-		ctxt.tableProps = *m_pOwnerDoc->GetPreparedTableProperties();
-	if (!infoUnpacker.Unpacking(m_nThisPane, &m_unpackerSubcodes, m_strTempFileName, ctxt))
+		pipelineContext.tableProps = *m_pOwnerDoc->GetPreparedTableProperties();
+	if (!infoUnpacker.Unpacking(m_nThisPane, &m_unpackerSubcodes, m_strTempFileName, pipelineContext))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -527,7 +527,11 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// If we are saving user files
 		// we need an unpacker/packer, at least a "do nothing" one
 		// repack the file here, overwrite the temporary file we did save in
-		bSaveSuccess = infoUnpacker.Packing(m_nThisPane, sIntermediateFilename, pszFileName, m_unpackerSubcodes, { pszFileName });
+		PluginPipelineContext pipelineContext;
+		pipelineContext.filteredFilenames = strutils::join(m_pOwnerDoc->m_filePaths.begin(), m_pOwnerDoc->m_filePaths.end(), _T("|"));
+		pipelineContext.variables = { pszFileName };
+		pipelineContext.tableProps = m_pOwnerDoc->GetCurrentTableProperties();
+		bSaveSuccess = infoUnpacker.Packing(m_nThisPane, sIntermediateFilename, pszFileName, m_unpackerSubcodes, pipelineContext);
 		if (!bSaveSuccess)
 			sError = GetSysError();
 		try

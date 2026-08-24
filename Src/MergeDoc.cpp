@@ -317,13 +317,13 @@ void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, b
 		{
 			if (specification.empty() || specification[0] != _T('!'))
 				specification = _T("!") + specification;
-				if (specification == _T("!"))
-					specification += columnNumber;
-				else if (specification != _T("!") + columnNumber)
-				{
-					specification += _T(",!");
-					specification += columnNumber;
-				}
+			if (specification == _T("!"))
+				specification += columnNumber;
+			else if (specification != _T("!") + columnNumber)
+			{
+				specification += _T(",!");
+				specification += columnNumber;
+			}
 		}
 		else
 			specification = _T("!") + columnNumber;

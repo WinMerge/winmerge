@@ -137,10 +137,10 @@ bool DiffFileData::Filepath_Transform(int target, bool bForceUTF8,
 	// if a prediffer fails, we consider it is not the good one, that's all
 	// FileTransform_Prediffing returns `false` only if the prediffer works, 
 	// but the data can not be saved to disk (no more place ??)
-	PluginPipelineContext ctxt;
-	ctxt.filteredFilenames = filteredFilenames;
-	ctxt.variables = { filepath };
-	if (!infoPrediffer.Prediffing(target, filepathTransformed, bMayOverwrite, ctxt))
+	PluginPipelineContext pipelineContext;
+	pipelineContext.filteredFilenames = filteredFilenames;
+	pipelineContext.variables = { filepath };
+	if (!infoPrediffer.Prediffing(target, filepathTransformed, bMayOverwrite, pipelineContext))
 		return false;
 
 	if ((encoding.m_unicoding && encoding.m_unicoding != ucr::UTF8) || bForceUTF8)

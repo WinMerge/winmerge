@@ -775,8 +775,9 @@ bool CDiffWrapper::RunFileDiff()
 	if (m_bUseDiffList)
 		m_nDiffs = m_pDiffList->GetSize();
 
-	PluginPipelineContext ctxt;
-	ctxt.filteredFilenames = m_sToFindPrediffer;
+	PluginPipelineContext pipelineContext;
+	pipelineContext.filteredFilenames = m_sToFindPrediffer;
+	pipelineContext.tableProps = m_tableProps;
 
 	for (file = 0; file < aFiles.GetSize(); file++)
 	{
@@ -789,9 +790,8 @@ bool CDiffWrapper::RunFileDiff()
 
 			// this can only fail if the data can not be saved back (no more
 			// place on disk ???) What to do then ??
-			ctxt.variables = { strFileTemp[file] };
-			ctxt.tableProps = m_tableProps;
-			if (m_infoPrediffer && !m_infoPrediffer->Prediffing(file, strFileTemp[file], m_bPathsAreTemp, ctxt))
+			pipelineContext.variables = { strFileTemp[file] };
+			if (m_infoPrediffer && !m_infoPrediffer->Prediffing(file, strFileTemp[file], m_bPathsAreTemp, pipelineContext))
 			{
 				// display a message box
 				String sError = strutils::format_string2(

@@ -88,10 +88,10 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 		// Invoke unpacking plugins
 		if (infoUnpacker && !paths::IsNullDeviceName(filepathUnpacked[nIndex]))
 		{
-			PluginPipelineContext ctxt;
-			ctxt.filteredFilenames = filteredFilenames;
-			ctxt.variables = { tFiles[nIndex] };
-			if (!infoUnpacker->Unpacking(nIndex, nullptr, filepathUnpacked[nIndex], ctxt))
+			PluginPipelineContext pipelineContext;
+			pipelineContext.filteredFilenames = filteredFilenames;
+			pipelineContext.variables = { tFiles[nIndex] };
+			if (!infoUnpacker->Unpacking(nIndex, nullptr, filepathUnpacked[nIndex], pipelineContext))
 				goto exitPrepAndCompare;
 		}
 
