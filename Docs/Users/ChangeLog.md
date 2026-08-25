@@ -2,6 +2,10 @@
 
 ## WinMerge 2.16.58.2 - 2026-08-27
 
+### Appearance
+
+* BugFix: Fix cramped toolbar icon spacing at high DPI
+
 ### File compare
 
 * BugFix: Fix word diff calculation for hidden lines (#3535)

@@ -17,6 +17,10 @@ Please submit bug reports to our bug-tracker.
 
 ## What Is New in 2.16.58.2?
 
+### Appearance
+
+* BugFix: Fix cramped toolbar icon spacing at high DPI
+
 ### File compare
 
 * BugFix: Fix word diff calculation for hidden lines (#3535)
