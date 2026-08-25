@@ -255,14 +255,14 @@ dell'opzione "Consenti l'esecuzione di una sola istanza".</para>
     <varlistentry>
       <indexterm>
         <primary>Finestra WinMerge</primary>
-        <secondary>instance groups</secondary>
+        <secondary>gruppi istanza</secondary>
       </indexterm>
 
-      <term><option>/g</option> <replaceable>group-name</replaceable></term>
+      <term><option>/cp <replaceable>pagina cdice</replaceable></option></term>
       <listitem>
-        <para>Specifies a group name for the WinMerge instance. When used with the
-<option>/s</option> option, instances with the same group name share the
-same window, allowing you to organize multiple single-instance groups.</para>
+        <para>Specifica un nome di gruppo per l'istanza WinMerge. Se usato con l'opzione
+<option>/s</option>, le istanze con lo stesso nome gruppo condividono la
+stessa finestra, che consente di organizzare più gruppi a istanza singola.</para>
       </listitem>
     </varlistentry>
 

@@ -2609,12 +2609,25 @@ RightLineOffsetAt(-1) coinciden con "^//"</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>Column</function>(<replaceable>indexOrName</replaceable>),
-<function>ColumnAt</function>(<replaceable>línea</replaceable>,
+<function>ColumnRange</function>(<replaceable>specification</replaceable>),
+<function>ColumnAt</function>(<replaceable>line</replaceable>,
 <replaceable>indexOrName</replaceable>),
-<function>ColumnOffsetAt</function>(<replaceable>desplazamiento</replaceable>,
-<replaceable>indexOrName</replaceable>)  (solo en modo tabla)</term>
-            <listitem><para>Contenido de una celda por índice o nombre, en la línea actual, absoluta o
-relativa.  Ejemplo: <literal>le:RightColumn("Category") !=
+<function>ColumnOffsetAt</function>(<replaceable>offset</replaceable>,
+<replaceable>indexOrName</replaceable>)  (table mode only)</term>
+            <listitem><para>Cell content by index or name, at the current, absolute, or relative
+line. For <function>Column</function>, a numeric string is always treated as
+a column name. A numeric argument is a 1-based column index. Use
+<function>ColumnRange</function> to specify multiple columns and ranges
+using comma-separated <literal>N</literal>, <literal>N-M</literal>, and
+<literal>N-</literal> items; whitespace is ignored, for example
+<literal>ColumnRange("1, 3, 5-10, 13-")</literal>.  Prefix a range with
+<literal>!</literal> to exclude it; for example
+<literal>ColumnRange("!1")</literal> excludes column 1 and
+<literal>ColumnRange("1-10,!4-5")</literal> selects columns 1-10 except
+columns 4-5. If no included range is specified, all columns are included
+before exclusions are applied.  Existing name and single-index forms return
+one cell; range forms return the selected cell values joined using the table
+delimiter.  Example: <literal>le:RightColumn("Category") !=
 ColumnOffsetAt(-1, "Category")</literal></para></listitem>
           </varlistentry>
         </variablelist>
