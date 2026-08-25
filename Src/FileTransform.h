@@ -81,6 +81,7 @@ public:
 	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
 	static String MakePluginPipeline(const std::vector<PipelineItem>& list);
 	static String MakeArguments(const std::vector<String>& args, const std::vector<StringView>& variables);
+	virtual bool Validate(String& errorMessage) const;
 
 protected:
 	/// plugin name when it is defined
@@ -153,6 +154,8 @@ public:
 	String GetUnpackedFileExtension(int target, const String& filteredFilenames, int& preferredWindowType) const;
 
 	void EnableWebBrowserMode() { m_bWebBrowser = true; }
+
+	bool Validate(String& errorMessage) const override;
 private:
 	bool m_bWebBrowser;
 };
@@ -191,6 +194,8 @@ public:
 	 * Apply only the first correct handler
 	 */
 	bool Prediffing(int target, String & filepath, bool bMayOverwrite, const PluginPipelineContext& context);
+
+	bool Validate(String& errorMessage) const override;
 };
 
 /**
@@ -210,6 +215,8 @@ public:
 		String& errorMessage, int stack = 0) const;
 
 	bool TransformText(int target, String & text, const PluginPipelineContext& context, bool& changed);
+
+	bool Validate(String& errorMessage) const override;
 };
 
 namespace FileTransform
