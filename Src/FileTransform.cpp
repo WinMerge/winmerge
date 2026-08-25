@@ -756,10 +756,10 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 	return true;
 }
 
-bool PackingInfo::Packing(int target, const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
+bool PackingInfo::Packing(int target, const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const PluginPipelineContext& context) const
 {
 	String csTempFileName = srcFilepath;
-	if (!pack(target, csTempFileName, dstFilepath, handlerSubcodes, variables))
+	if (!pack(target, csTempFileName, dstFilepath, handlerSubcodes, context.variables))
 		return false;
 	try
 	{
@@ -835,6 +835,22 @@ public:
 		}
 		return column;
 	}
+	std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const
+	{
+		if (lineIndex < 0 || lineIndex >= m_lines.size())
+			return {};
+		if (!m_tableProps.istable)
+			return columns.empty() ? std::string{} : GetLine(pane, lineIndex);
+		const std::string delimiter = ucr::toUTF8(String(&m_tableProps.delimiter, 1));
+		std::string result;
+		for (size_t i = 0; i < columns.size(); ++i)
+		{
+			if (i > 0)
+				result += delimiter;
+			result += GetColumn(pane, lineIndex, columns[i]);
+		}
+		return result;
+	}
 	int GetRealLineNumber(int pane, int lineIndex) const
 	{
 		return lineIndex;
@@ -897,7 +913,7 @@ private:
 	TableProps m_tableProps;
 };
 
-static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(const String& filepath)
+static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(int target, const String& filepath, const PluginPipelineContext& context)
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(filepath))
@@ -931,11 +947,14 @@ static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(const 
 			break;
 		lines.push_back(ucr::toUTF8(line + eol));
 	} while (linesToRead);
-	auto tableProps = MakeTablePropertiesByFileName(filepath);
+	const auto filenames = strutils::split(context.filteredFilenames, '|');
+	const String tablePropertiesPath = target >= 0 && static_cast<size_t>(target) < filenames.size()
+		? String(filenames[target].data(), filenames[target].size()) : filepath;
+	auto tableProps = context.tableProps.has_value() ? *context.tableProps : MakeTablePropertiesByFileName(tablePropertiesPath);
 	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
-static std::unique_ptr<VectorLineDataProvider> CreateTextLineDataProvider(const String& Text, const String& filepath)
+static std::unique_ptr<VectorLineDataProvider> CreateTextLineDataProvider(const String& Text, const String& filepath, const PluginPipelineContext& context)
 {
 	FileTextEncoding encoding;
 	encoding.SetUnicoding(ucr::UTF8);
@@ -963,7 +982,7 @@ static std::unique_ptr<VectorLineDataProvider> CreateTextLineDataProvider(const 
 	}
 	if (*pLineBegin != 0)
 		lines.push_back(ucr::toUTF8(String(pLineBegin)));
-	auto tableProps = MakeTablePropertiesByFileName(filepath);
+	auto tableProps = context.tableProps.has_value() ? *context.tableProps : MakeTablePropertiesByFileName(filepath);
 	return std::make_unique<VectorLineDataProvider>(std::move(lines), encoding, tableProps);
 }
 
@@ -1048,9 +1067,9 @@ static bool ApplyFilterExpressionsToLines(VectorLineDataProvider& lineDataProvid
 	return true;
 }
 
-static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
+static String ApplyFilterExpressionsToFile(int target, const String& filepath, const PluginPipelineContext& context, bool bMayOverwrite, const std::vector<String>& expressions, String& errorMessage)
 {
-	auto lineDataProvider = CreateFileLineDataProvider(filepath);
+	auto lineDataProvider = CreateFileLineDataProvider(target, filepath, context);
 	if (!lineDataProvider)
 	{
 		errorMessage = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), filepath, GetSysError());
@@ -1075,9 +1094,9 @@ static String ApplyFilterExpressionsToFile(const String& filepath, bool bMayOver
 	return tempPath;
 }
 
-static String ApplyFilterExpressionsToString(const String& text, const std::vector<String>& expressions, const String& filepath, String& errorMessage)
+static String ApplyFilterExpressionsToString(const String& text, const PluginPipelineContext& context, const std::vector<String>& expressions, const String& filepath, String& errorMessage)
 {
-	auto lineDataProvider = CreateTextLineDataProvider(text, filepath);
+	auto lineDataProvider = CreateTextLineDataProvider(text, filepath, context);
 	if (!lineDataProvider)
 	{
 		errorMessage = _T("Failed to read text: ") + GetSysError();
@@ -1096,7 +1115,7 @@ static String ApplyFilterExpressionsToString(const String& text, const std::vect
 	return result;
 }
 
-bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, String& filepath, const String& filteredText, const std::vector<StringView>& variables)
+bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, String& filepath, const PluginPipelineContext& context)
 {
 	if (handlerSubcodes)
 		handlerSubcodes->clear();
@@ -1109,7 +1128,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 	// control value
 	String errorMessage;
 	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool >> plugins;
-	if (!GetPackUnpackPlugin(filteredText, bUrl, false, plugins, &m_PluginPipeline, errorMessage))
+	if (!GetPackUnpackPlugin(context.filteredFilenames, bUrl, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
@@ -1125,7 +1144,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 
 		if (!expressions.empty())
 		{
-			filepath = ApplyFilterExpressionsToFile(filepath, false, expressions, errorMessage);
+			filepath = ApplyFilterExpressionsToFile(target, filepath, context, false, expressions, errorMessage);
 			if (!errorMessage.empty())
 			{
 				AppErrorMessageBox(errorMessage);
@@ -1144,7 +1163,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, context.variables))
 			return false;
 
 		if (bWithFile)
@@ -1240,7 +1259,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 		});
 }
 
-bool PrediffingInfo::Prediffing(int target, String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables)
+bool PrediffingInfo::Prediffing(int target, String & filepath, bool bMayOverwrite, const PluginPipelineContext& context)
 {
 	// no handler : return true
 	if (m_PluginPipeline.empty())
@@ -1250,7 +1269,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 	bool bHandled = false;
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins;
-	if (!GetPrediffPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
+	if (!GetPrediffPlugin(context.filteredFilenames, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
@@ -1263,7 +1282,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 
 		if (!expressions.empty())
 		{
-			filepath = ApplyFilterExpressionsToFile(filepath, bMayOverwrite, expressions, errorMessage);
+			filepath = ApplyFilterExpressionsToFile(target, filepath, context, bMayOverwrite, expressions, errorMessage);
 			if (!errorMessage.empty())
 			{
 				AppErrorMessageBox(errorMessage);
@@ -1281,7 +1300,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, context.variables))
 			return false;
 
 		if (bWithFile)
@@ -1387,7 +1406,7 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 		});
 }
 
-bool EditorScriptInfo::TransformText(int target, String& text, const std::vector<StringView>& variables, bool& changed)
+bool EditorScriptInfo::TransformText(int target, String& text, const PluginPipelineContext& context, bool& changed)
 {
 	changed = false;
 	// no handler : return true
@@ -1410,8 +1429,8 @@ bool EditorScriptInfo::TransformText(int target, String& text, const std::vector
 
 		if (!expressions.empty())
 		{
-			String filepath = variables.empty() ? _T("") : String(variables[0].data(), variables[0].size());
-			text = ApplyFilterExpressionsToString(text, expressions, filepath, errorMessage);
+			String filepath = context.variables.empty() ? _T("") : String(context.variables[0].data(), context.variables[0].size());
+			text = ApplyFilterExpressionsToString(text, context, expressions, filepath, errorMessage);
 			if (!errorMessage.empty())
 			{
 				AppErrorMessageBox(errorMessage);
@@ -1424,7 +1443,7 @@ bool EditorScriptInfo::TransformText(int target, String& text, const std::vector
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (!SetPluginVariablesAndArguments(plugin, piScript, args, variables))
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, context.variables))
 			return false;
 
 		// execute the transform operation

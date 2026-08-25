@@ -248,6 +248,12 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_COMMAND(ID_USE_FIRST_LINE_AS_HEADERS, OnUseFirstLineAsHeaders)
 	ON_UPDATE_COMMAND_UI(ID_USE_FIRST_LINE_AS_HEADERS, OnUpdateUseFirstLineAsHeaders)
 	ON_COMMAND(ID_AUTO_FIT_ALL_COLUMNS, OnAutoFitAllColumns)
+	ON_COMMAND_RANGE(ID_IGNORE_COLUMN_IN_COMPARISON, ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY, OnIgnoreColumnInComparison)
+	ON_UPDATE_COMMAND_UI(ID_IGNORE_COLUMN_IN_COMPARISON, OnUpdateIgnoreColumnInComparison)
+	ON_UPDATE_COMMAND_UI(ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY, OnUpdateIgnoreColumnInComparison)
+	ON_COMMAND(ID_IGNORE_COLUMN_IN_COMPARISON_RESET, OnResetIgnoredColumnsInComparison)
+	ON_UPDATE_COMMAND_UI(ID_IGNORE_COLUMN_IN_COMPARISON_RESET, OnUpdateResetIgnoredColumnsInComparison)
+	ON_UPDATE_COMMAND_UI(ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT, OnUpdateIgnoreColumnInComparisonCtrlClick)
 	ON_COMMAND_RANGE(ID_FILTERMENU_COLUMN_TEXT, ID_FILTERMENU_COLUMN_DATETIME, OnFilterMenuColumn)
 	// Status bar
 	ON_NOTIFY(NM_CLICK, AFX_IDW_CONTROLBAR_FIRST+28, OnStatusBarClick)
@@ -3526,7 +3532,10 @@ void CMergeEditView::OnScripts(UINT nID)
 		PluginMenu::GetPluginPipelineByMenuId(nullptr, nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
 	bool bChanged = false;
-	scriptInfo.TransformText(m_nThisPane, text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
+	PluginPipelineContext pipelineContext;
+	pipelineContext.variables = { GetDocument()->m_filePaths[m_nThisPane] };
+	pipelineContext.tableProps = GetDocument()->GetCurrentTableProperties(m_nThisPane);
+	scriptInfo.TransformText(m_nThisPane, text, pipelineContext, bChanged);
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);
@@ -3544,7 +3553,10 @@ void CMergeEditView::OnTransformWithScript()
 	CString ctext = GetSelectedText();
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 	bool bChanged = false;
-	scriptInfo.TransformText(m_nThisPane, text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
+	PluginPipelineContext pipelineContext;
+	pipelineContext.variables = { GetDocument()->m_filePaths[m_nThisPane] };
+	pipelineContext.tableProps = GetDocument()->GetCurrentTableProperties(m_nThisPane);
+	scriptInfo.TransformText(m_nThisPane, text, pipelineContext, bChanged);
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);
@@ -4445,6 +4457,39 @@ void CMergeEditView::OnUpdateUseFirstLineAsHeaders(CCmdUI* pCmdUI)
 void CMergeEditView::OnAutoFitAllColumns()
 {
 	AutoFitColumn();
+}
+
+void CMergeEditView::OnIgnoreColumnInComparison(UINT nID)
+{
+	if (m_nClickedColumn < 0)
+		return;
+	String panePrefix;
+	if (nID == ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY)
+		panePrefix = strutils::format(_T("%d"), m_nThisPane + 1);
+	GetDocument()->IgnoreColumnInComparison(m_nClickedColumn, panePrefix,
+		(GetKeyState(VK_CONTROL) & 0x8000) != 0);
+}
+
+void CMergeEditView::OnUpdateIgnoreColumnInComparison(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) &&
+		m_nClickedColumn >= 0 &&
+		GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
+}
+
+void CMergeEditView::OnResetIgnoredColumnsInComparison()
+{
+	GetDocument()->ResetIgnoredColumnsInComparison();
+}
+
+void CMergeEditView::OnUpdateResetIgnoredColumnsInComparison(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
+}
+
+void CMergeEditView::OnUpdateIgnoreColumnInComparisonCtrlClick(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(false);
 }
 
 void CMergeEditView::OnFilterMenuColumn(UINT nID)
