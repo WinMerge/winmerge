@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-08-19 08:17+0000\n"
-"PO-Revision-Date: 2026-08-20 08:50+0200\n"
+"POT-Creation-Date: 2026-08-25 07:38+0000\n"
+"PO-Revision-Date: 2026-08-25 08:25+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -232,27 +232,27 @@ msgstr "Automatiškai talpinti visus stulpelius"
 #. IDR_POPUP_MERGEVIEWHEADER
 #: Merge.rc:153
 msgid "&Ignore This Column"
-msgstr ""
+msgstr "&Ignoruoti šį stulpelį"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON
 #: Merge.rc:155
 msgid "In &All Panes"
-msgstr ""
+msgstr "Visuose pol&angiuose"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
 #: Merge.rc:156
 msgid "In &This Pane Only (Column Not in Other Files)"
-msgstr ""
+msgstr "&Tik šiame polangyje (stulpelio nėra kituose failuose)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
 #: Merge.rc:157
 msgid "(Ctrl+Click to add another column)"
-msgstr ""
+msgstr "(„Ctrl“ ir spustelėkite, kad pridėti kitą stulpelį)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_RESET
 #: Merge.rc:159
 msgid "&Reset All"
-msgstr ""
+msgstr "Atku&rti viską"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:161 Merge.rc:5655
@@ -8029,7 +8029,7 @@ msgstr "2-ą ir 3-ą"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5644
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr "(„Ctrl“ ir spustelėkite, kad pridėtumėte į srautą)"
+msgstr "(„Ctrl“ ir spustelėkite, kad pridėti į srautą)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5649
@@ -8342,7 +8342,7 @@ msgstr "Netinkama direktyva"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
 #: Merge.rc:5760
 msgid "Invalid argument"
-msgstr ""
+msgstr "Netinkamas argumentas"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5765
