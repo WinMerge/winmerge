@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-08-19 22:30-0300\n"
+"PO-Revision-Date: 2026-08-24 22:15-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -234,27 +234,27 @@ msgstr "Ajustar Automaticamente Todas as Colunas"
 #. IDR_POPUP_MERGEVIEWHEADER
 #: Merge.rc:153
 msgid "&Ignore This Column"
-msgstr ""
+msgstr "&Ignorar Esta Coluna"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON
 #: Merge.rc:155
 msgid "In &All Panes"
-msgstr ""
+msgstr "Em Tod&os os Painéis"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
 #: Merge.rc:156
 msgid "In &This Pane Only (Column Not in Other Files)"
-msgstr ""
+msgstr "Apenas Nes&te Painel (Coluna Não Presente em Outros Arquivos)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
 #: Merge.rc:157
 msgid "(Ctrl+Click to add another column)"
-msgstr ""
+msgstr "(Ctrl+Click para adicionar outra coluna)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_RESET
 #: Merge.rc:159
 msgid "&Reset All"
-msgstr ""
+msgstr "&Resetar Todos"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:161 Merge.rc:5655
@@ -8345,7 +8345,7 @@ msgstr "Diretiva inválida"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
 #: Merge.rc:5760
 msgid "Invalid argument"
-msgstr ""
+msgstr "Argumento inválido"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5765
