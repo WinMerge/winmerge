@@ -3090,12 +3090,12 @@ BOOL CMainFrame::CreateToolbar()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	const int toolbarNewImgSize = MulDiv(8, GetSystemMetrics(SM_CXSMICON), 16) * 
+	const int cxSMICON = GetSystemMetrics(SM_CXSMICON);
+	const int toolbarNewImgSize = MulDiv(8, cxSMICON, 16) * 
 		(2 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
 	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 	CImageList imgEnabled, imgDisabled;
-	CSize sizeButton(0, 0);
 
 	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
 		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
@@ -3104,15 +3104,16 @@ void CMainFrame::LoadToolbarImages()
 		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
 		true, imgDisabled);
 
-	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
-
-	BarCtrl.SetButtonSize(sizeButton);
 	if (CImageList* pImgList = BarCtrl.SetImageList(&imgEnabled))
 		pImgList->DeleteImageList();
 	if (CImageList* pImgList = BarCtrl.SetDisabledImageList(&imgDisabled))
 		pImgList->DeleteImageList();
 	imgEnabled.Detach();
 	imgDisabled.Detach();
+
+	const int toolbarPadding = MulDiv(8, cxSMICON, 16);
+	CSize sizeButton = CSize(toolbarNewImgSize + toolbarPadding, toolbarNewImgSize + toolbarPadding);
+	BarCtrl.SetButtonSize(sizeButton);
 
 	// resize the rebar.
 	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
