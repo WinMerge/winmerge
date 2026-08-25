@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 20.08.2026\n"
+"Project-Id-Version: WinMerge - Italian - 25.08.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-08-20 13:20+0100\n"
+"PO-Revision-Date: 2026-08-25 07:50+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -233,27 +233,27 @@ msgstr "Adatta tutte le colonne"
 #. IDR_POPUP_MERGEVIEWHEADER
 #: Merge.rc:153
 msgid "&Ignore This Column"
-msgstr ""
+msgstr "&Ignora questa colonna"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON
 #: Merge.rc:155
 msgid "In &All Panes"
-msgstr ""
+msgstr "In tutti i p&annelli"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
 #: Merge.rc:156
 msgid "In &This Pane Only (Column Not in Other Files)"
-msgstr ""
+msgstr "Solo in ques&to pannello (colonna non in altri file)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
 #: Merge.rc:157
 msgid "(Ctrl+Click to add another column)"
-msgstr ""
+msgstr "(Ctrl+clic per aggiungere un'altra colonna)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_RESET
 #: Merge.rc:159
 msgid "&Reset All"
-msgstr ""
+msgstr "&Ripristina tutto"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:161 Merge.rc:5655
@@ -8835,7 +8835,7 @@ msgstr "Direttiva non valida"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
 #: Merge.rc:5760
 msgid "Invalid argument"
-msgstr ""
+msgstr "Argomento non valido"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5765
