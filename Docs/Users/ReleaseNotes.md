@@ -6,7 +6,7 @@
 * [What Is New in 2.16.57 Beta?](#what-is-new-in-21657-beta)
 * [Known issues](#known-issues)
 
-July 2026
+August 2026
 
 ## About This Release
 
