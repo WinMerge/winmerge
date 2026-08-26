@@ -102,7 +102,7 @@ msgstr "Copier la différence sélectionnée (Gauche) dans le presse-papiers\tCt
 #. IDR_POPUP_MERGEVIEW, ID_SEL_DIFF_COPY_2ND
 #: Merge.rc:106
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr "Copier la différence sélectionnée (Droite) dans le presse-papiers\tCtrl+&2"
+msgstr "Copier la différence sélectionnée (Droit) dans le presse-papiers\tCtrl+&2"
 
 #. IDR_POPUP_MERGEVIEW, ID_SEL_DIFF_COPY_2ND_3WAY
 #: Merge.rc:107
@@ -112,7 +112,7 @@ msgstr "Copier la différence sélectionnée (Milieu) dans le presse-papiers\tCt
 #. IDR_POPUP_MERGEVIEW, ID_SEL_DIFF_COPY_3RD
 #: Merge.rc:108
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr "Copier la différence sélectionnée (Droite) dans le presse-papiers\tCtrl+&3"
+msgstr "Copier la différence sélectionnée (Droit) dans le presse-papiers\tCtrl+&3"
 
 #. IDR_MERGEDOCTYPE, ID_SELECTLINEDIFF
 #: Merge.rc:110 Merge.rc:700
@@ -905,32 +905,32 @@ msgstr "Comparaison &3 voies"
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTLEFTONLY
 #: Merge.rc:493
 msgid "Show &Left Only Different Items"
-msgstr "Afficher les éléments différents [Gauche] uniquement"
+msgstr "Afficher les éléments différents, [Gauche] uniquement"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY
 #: Merge.rc:494
 msgid "Show &Middle Only Different Items"
-msgstr "Afficher les éléments différents [Milieu] uniquement"
+msgstr "Afficher les éléments différents, [Milieu] uniquement"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTRIGHTONLY
 #: Merge.rc:495
 msgid "Show &Right Only Different Items"
-msgstr "Afficher les éléments différents [Droit] uniquement"
+msgstr "Afficher les éléments différents, [Droit] uniquement"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGLEFTONLY
 #: Merge.rc:497
 msgid "Show L&eft Only Missing Items"
-msgstr "Afficher les éléments manquants [Gauche] uniquement"
+msgstr "Afficher les éléments manquants, [Gauche] uniquement"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGMIDDLEONLY
 #: Merge.rc:498
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "Afficher les éléments manquants [Milieu] uniquement"
+msgstr "Afficher les éléments manquants, [Milieu] uniquement"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGRIGHTONLY
 #: Merge.rc:499
 msgid "Show Rig&ht Only Missing Items"
-msgstr "Afficher les éléments manquants [Droit] uniquement"
+msgstr "Afficher les éléments manquants, [Droit] uniquement"
 
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOWHIDDENITEMS
 #: Merge.rc:502
@@ -4951,7 +4951,7 @@ msgstr "Désinscrire l'extension d&u Shell"
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION_PERUSER
 #: Merge.rc:3273
 msgid "Register Shell Extension for Current User &Only"
-msgstr "Inscrire l'extension du menu contextuel Windows pour l'utilisateur en c&ours"
+msgstr "Inscrire l'extension du menu contextuel Windows pour l'utilisateur ac&tuel"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION_PERUSER
 #: Merge.rc:3274
