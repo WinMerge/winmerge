@@ -1510,7 +1510,7 @@ bool EditorScriptInfo::Validate(String& errorMessage) const
 	String pipelineResolved;
 	if (!GetEditorScriptPlugin(plugins, errorMessage))
 		return false;
-	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
+	for (auto& [plugin, expressions, targetFlags, args, fncID] : plugins)
 	{
 		String errorMessage2;
 		if (!ValidateExpressions(expressions, errorMessage2))
