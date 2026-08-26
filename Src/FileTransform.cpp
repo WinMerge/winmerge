@@ -420,6 +420,12 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 	return newstr;
 }
 
+bool PluginForFile::Validate(String& errorMessage) const
+{
+	ParsePluginPipeline(errorMessage);
+	return errorMessage.empty();
+}
+
 template <typename PluginTuple, typename ExpandFunc>
 static bool ExpandPluginAliases(
 	const String& aliasEvent, std::vector<PluginTuple>& plugins, String& errorMessage, int stack, ExpandFunc&& expandFunc)
@@ -1240,6 +1246,31 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 	return ext;
 }
 
+static bool ValidateExpressions(const std::vector<String>& expressions, String& errorMessage)
+{
+	if (!expressions.empty())
+	{
+		VectorLineDataProvider lineDataProvider({}, FileTextEncoding(), TableProps());
+		String filepath;
+		BuildFilterExpressionSet(filepath, lineDataProvider.GetEncoding(), expressions, lineDataProvider, errorMessage);
+	}
+	return errorMessage.empty();
+}
+
+bool PackingInfo::Validate(String& errorMessage) const
+{
+	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool >> plugins;
+	if (!GetPackUnpackPlugin(_T(""), false, false, plugins, nullptr, errorMessage))
+		return false;
+	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
+	{
+		String errorMessage2;
+		if (!ValidateExpressions(expressions, errorMessage2))
+			errorMessage += (errorMessage.empty() ? _T("") : _T("\n")) + errorMessage2;
+	}
+	return errorMessage.empty();
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
 
@@ -1339,6 +1370,20 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, bool bMayOverwrit
 		}
 	}
 	return true;
+}
+
+bool PrediffingInfo::Validate(String& errorMessage) const
+{
+	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool >> plugins;
+	if (!GetPrediffPlugin(_T(""), false, plugins, nullptr, errorMessage))
+		return false;
+	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
+	{
+		String errorMessage2;
+		if (!ValidateExpressions(expressions, errorMessage2))
+			errorMessage += (errorMessage.empty() ? _T("") : _T("\n")) + errorMessage2;
+	}
+	return errorMessage.empty();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1454,6 +1499,20 @@ bool EditorScriptInfo::TransformText(int target, String& text, const PluginPipel
 			changed = (nChanged != 0);
 	}
 	return true;
+}
+
+bool EditorScriptInfo::Validate(String& errorMessage) const
+{
+	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int >> plugins;
+	if (!GetEditorScriptPlugin(plugins, errorMessage))
+		return false;
+	for (auto& [plugin, expressions, targetFlags, args, fncID] : plugins)
+	{
+		String errorMessage2;
+		if (!ValidateExpressions(expressions, errorMessage2))
+			errorMessage += (errorMessage.empty() ? _T("") : _T("\n")) + errorMessage2;
+	}
+	return errorMessage.empty();
 }
 
 namespace FileTransform
