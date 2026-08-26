@@ -1322,16 +1322,18 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CDirView::SortColumnsAppropriately()
 {
-	// Do not sort while comparing.
-	// Compare-result columns are updated asynchronously and may
-	// violate strict weak ordering required by std::sort.
-	if (GetDocument()->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
-		return;
-	
 	int sortCol = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
 	if (sortCol < 0 || sortCol >= m_pColItems->GetColCount())
 		return;
 
+	const bool comparing =
+		GetDocument()->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING;
+
+	// Do not sort by columns whose values are updated asynchronously,
+	// as this may violate the strict weak ordering required by std::stable_sort.
+	if (comparing && !m_pColItems->IsColSortableWhileComparing(sortCol))
+		return;
+	
 	bool bSortAscending = GetOptionsMgr()->GetBool(OPT_DIRVIEW_SORT_ASCENDING);
 	m_ctlSortHeader.SetSortImage(m_pColItems->ColLogToPhys(sortCol), bSortAscending);
 	//sort using static CompareFunc comparison function
