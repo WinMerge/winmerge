@@ -1332,7 +1332,7 @@ void CDirView::SortColumnsAppropriately()
 		GetDocument()->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING;
 
 	// Do not sort by columns whose values are updated asynchronously,
-	// as this may violate the strict weak ordering required by std::sort.
+	// as this may violate the strict weak ordering required by std::stable_sort.
 	if (comparing && !m_pColItems->IsColSortableWhileComparing(sortCol))
 		return;
 	

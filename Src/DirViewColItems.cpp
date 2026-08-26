@@ -1823,7 +1823,10 @@ DirViewColItems::IsColStatusAbbr(int col) const
 bool
 DirViewColItems::IsColSortableWhileComparing(int col) const
 {
-	decltype(ColFileNameSort) *sortFuncs[] = { ColFileNameSort, ColPathSort, ColTimeSort, ColExtSort, ColSizeSort, ColNewerSort, ColAttrSort, ColPropertySort, ColAllPropertySort };
+	if (col < 0 || col >= m_numcols)
+		return false;
+
+	decltype(ColFileNameSort) *sortFuncs[] = { ColFileNameSort, ColPathSort, ColTimeSort, ColExtSort, ColSizeSort, ColNewerSort, ColAttrSort };
 	for (auto sortFunc : sortFuncs)
 	{
 		if (m_cols[col].sortfnc == sortFunc)
