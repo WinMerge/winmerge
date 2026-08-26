@@ -81,6 +81,7 @@ public:
 	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
 	static String MakePluginPipeline(const std::vector<PipelineItem>& list);
 	static String MakeArguments(const std::vector<String>& args, const std::vector<StringView>& variables);
+	virtual ~PluginForFile() = default;
 	virtual bool Validate(String& errorMessage) const;
 
 protected:
