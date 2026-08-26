@@ -1253,6 +1253,7 @@ static bool ValidateExpressions(const std::vector<String>& expressions, String& 
 		VectorLineDataProvider lineDataProvider({}, FileTextEncoding(), TableProps());
 		String filepath;
 		BuildFilterExpressionSet(filepath, lineDataProvider.GetEncoding(), expressions, lineDataProvider, errorMessage);
+	}
 	return errorMessage.empty();
 }
 
