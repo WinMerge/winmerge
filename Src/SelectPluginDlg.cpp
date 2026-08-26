@@ -142,26 +142,29 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	m_strPluginPipeline = pipeline;
 	UpdateData(FALSE);
 
-	m_ctlPluginPipelineEdit.SubclassWindow(m_ctlPluginPipeline.GetEditCtrl()->m_hWnd);
-	m_ctlPluginPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
-		{
-			if (text.IsEmpty())
-				return true;
-			String pipeline = text;
-			std::unique_ptr<PluginForFile> pPluginPipeline;
-			if (m_pluginType == PluginType::Unpacker)
-				pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
-			else if (m_pluginType == PluginType::Prediffer)
-				pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
-			else
-				pPluginPipeline = std::make_unique<EditorScriptInfo>(pipeline);
-			String errorMessage;
-			bool result = pPluginPipeline->Validate(errorMessage);
-			error = errorMessage.c_str();
-			return result;
-		};
-	m_ctlPluginPipelineEdit.Validate();
-	m_ctlPluginPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	if (m_ctlPluginPipeline.GetEditCtrl()->GetSafeHwnd())
+	{
+		m_ctlPluginPipelineEdit.SubclassWindow(m_ctlPluginPipeline.GetEditCtrl()->m_hWnd);
+		m_ctlPluginPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
+			{
+				if (text.IsEmpty())
+					return true;
+				String pipeline = text;
+				std::unique_ptr<PluginForFile> pPluginPipeline;
+				if (m_pluginType == PluginType::Unpacker)
+					pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
+				else if (m_pluginType == PluginType::Prediffer)
+					pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
+				else
+					pPluginPipeline = std::make_unique<EditorScriptInfo>(pipeline);
+				String errorMessage;
+				bool result = pPluginPipeline->Validate(errorMessage);
+				error = errorMessage.c_str();
+				return result;
+			};
+		m_ctlPluginPipelineEdit.Validate();
+		m_ctlPluginPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	}
 
 	const std::array<String, 3> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
 	String pluginTypeStr = pluginTypes[static_cast<int>(m_pluginType)];

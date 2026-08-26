@@ -337,35 +337,41 @@ void COpenView::OnInitialUpdate()
 	m_ctlExtEdit.Validate();
 	m_ctlExtEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("*.txt|fe:Size > 100KB")).c_str());
 
-	m_ctlUnpackerPipelineEdit.SubclassWindow(m_ctlUnpackerPipeline.GetEditCtrl()->m_hWnd);
-	m_ctlUnpackerPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
-		{
-			if (text.IsEmpty())
-				return true;
-			String pipeline = text;
-			auto pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
-			String errorMessage;
-			bool result = pPluginPipeline->Validate(errorMessage);
-			error = errorMessage.c_str();
-			return result;
-		};
-	m_ctlUnpackerPipelineEdit.Validate();
-	m_ctlUnpackerPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	if (m_ctlUnpackerPipeline.GetEditCtrl()->GetSafeHwnd())
+	{
+		m_ctlUnpackerPipelineEdit.SubclassWindow(m_ctlUnpackerPipeline.GetEditCtrl()->m_hWnd);
+		m_ctlUnpackerPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
+			{
+				if (text.IsEmpty())
+					return true;
+				String pipeline = text;
+				auto pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
+				String errorMessage;
+				bool result = pPluginPipeline->Validate(errorMessage);
+				error = errorMessage.c_str();
+				return result;
+			};
+		m_ctlUnpackerPipelineEdit.Validate();
+		m_ctlUnpackerPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	}
 
-	m_ctlPredifferPipelineEdit.SubclassWindow(m_ctlPredifferPipeline.GetEditCtrl()->m_hWnd);
-	m_ctlPredifferPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
-		{
-			if (text.IsEmpty())
-				return true;
-			String pipeline = text;
-			auto pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
-			String errorMessage;
-			bool result = pPluginPipeline->Validate(errorMessage);
-			error = errorMessage.c_str();
-			return result;
-		};
-	m_ctlPredifferPipelineEdit.Validate();
-	m_ctlPredifferPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	if (m_ctlPredifferPipeline.GetEditCtrl()->GetSafeHwnd())
+	{
+		m_ctlPredifferPipelineEdit.SubclassWindow(m_ctlPredifferPipeline.GetEditCtrl()->m_hWnd);
+		m_ctlPredifferPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
+			{
+				if (text.IsEmpty())
+					return true;
+				String pipeline = text;
+				auto pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
+				String errorMessage;
+				bool result = pPluginPipeline->Validate(errorMessage);
+				error = errorMessage.c_str();
+				return result;
+			};
+		m_ctlPredifferPipelineEdit.Validate();
+		m_ctlPredifferPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
@@ -1588,8 +1594,8 @@ void COpenView::OnSelectPlugin(UINT nID)
 		else
 			m_strPredifferPipeline = dlg.GetPluginPipeline();
 		UpdateData(FALSE);
+		OnSelchangePlugin(nID == IDC_SELECT_UNPACKER ? IDC_UNPACKER_COMBO : IDC_PREDIFFER_COMBO);
 	}
-	OnSelchangePlugin(nID == IDC_SELECT_UNPACKER ? IDC_UNPACKER_COMBO : IDC_PREDIFFER_COMBO);
 }
 
 LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
