@@ -1529,8 +1529,14 @@ void COpenView::OnEditEvent(UINT nID)
 
 void COpenView::OnSelchangePlugin(UINT nID)
 {
-	CValidatingEdit& edit = (nID == IDC_UNPACKER_COMBO) ? m_ctlUnpackerPipelineEdit : m_ctlPredifferPipelineEdit;
-	edit.OnEnChange();
+	CValidatingEdit* edit = nullptr;
+	switch (nID)
+	{
+	case IDC_UNPACKER_COMBO: edit = &m_ctlUnpackerPipelineEdit; break;
+	case IDC_PREDIFFER_COMBO: edit = &m_ctlPredifferPipelineEdit; break;
+	default: return;
+	}
+	edit->OnEnChange();
 }
 
 /**
