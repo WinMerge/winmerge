@@ -12,19 +12,27 @@
 
 * BugFix: Fix a minor word selection issue (#3521)
 
-* Improve diff view rendering speed for large contiguous hidden sections (PR #3517)
+* Improve diff view rendering speed for large contiguous hidden sections
+    (PR #3517)
+
+### Folder compare
+
+* BugFix: [BUG] Sorting of files is temporarily wrong while diff is running
+    (#3579)(PR #3581)
 
 ### Filter expressions
 
-* BugFix: Allow `none` to be ignored when concatenating strings with `+` (#3550)
+* BugFix: Allow `none` to be ignored when concatenating strings with `+`
+    (#3550)
 
 ### Archive generation
 
-* Allow archive generation for one-sided file comparisons
+* BugFix: Allow archive generation for one-sided file comparisons
 
 ### Plugins
 
-* Fix off-by-one bug losing the last byte of `BUFFER_PACK_UNPACK` plugin output
+* BugFix: Fix off-by-one bug losing the last byte of `BUFFER_PACK_UNPACK`
+    plugin output
 
 ### Translations
 
