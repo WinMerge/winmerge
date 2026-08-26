@@ -529,6 +529,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\FilterErrorMessages.cpp" />
     <ClCompile Include="..\..\..\Src\FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -580,6 +581,9 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\SyntaxParserHelper.cpp" />
+    <ClCompile Include="..\..\..\Src\TableProps.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\..\Src\TempFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -883,6 +887,7 @@
     <ClInclude Include="..\..\..\Src\FileTextEncoding.h" />
     <ClInclude Include="..\..\..\Src\FileTransform.h" />
     <ClInclude Include="..\..\..\Src\FileVersion.h" />
+    <ClInclude Include="..\..\..\Src\FilterErrorMessages.h" />
     <ClInclude Include="..\..\..\Src\FilterList.h" />
     <ClInclude Include="..\..\..\Src\Common\LogFile.h" />
     <ClInclude Include="..\..\..\Src\Common\lwdisp.h" />
@@ -911,6 +916,7 @@
     <ClInclude Include="..\..\..\Src\SubstitutionFiltersList.h" />
     <ClInclude Include="..\..\..\Src\SubstitutionList.h" />
     <ClInclude Include="..\..\..\Src\SyntaxParserHelper.h" />
+    <ClInclude Include="..\..\..\Src\TableProps.h" />
     <ClInclude Include="..\..\..\Src\TempFile.h" />
     <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h" />
     <ClInclude Include="pch.h" />

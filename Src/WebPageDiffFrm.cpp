@@ -910,13 +910,15 @@ void CWebPageDiffFrame::UpdateSplitter()
 bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 {
 	bool bResult;
-	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
+	PluginPipelineContext pipelineContext;
+	pipelineContext.filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
 	m_infoUnpacker.EnableWebBrowserMode();
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
+		pipelineContext.variables = { strTempFileName[pane] };
+		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], pipelineContext))
 		{
 //			return false;
 		}

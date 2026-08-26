@@ -96,10 +96,10 @@ static auto propary(const String& name, const FilterEvalContext& ectxt) -> Value
 void FunctionNode::SetPropFunc(int side, int prefixlen, bool singlePane)
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 argument");
+		throw InvalidArgumentCountError(functionName + " function requires 1 argument");
 	auto strLit = dynamic_cast<StringLiteral*>((*args)[0]);
 	if (!strLit)
-		throw std::invalid_argument(functionName + " function requires a string literal as argument");
+		throw InvalidArgumentError(functionName + " function requires a string literal as argument");
 	String propName = ucr::toTString(strLit->value);
 	PropertySystem propSys({ propName });
 	const int propindex = propSys.GetPropertyIndex(propName);

@@ -784,7 +784,9 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				m_filePaths[pane] = m_strSaveAsPath;
 			if (filename != m_filePaths[pane])
 			{
-				if (!m_infoUnpacker.Packing(pane, filename, m_filePaths[pane], m_unpackerSubcodes[pane], { m_filePaths[pane] }))
+				PluginPipelineContext pipelineContext;
+				pipelineContext.variables = { m_filePaths[pane] };
+				if (!m_infoUnpacker.Packing(pane, filename, m_filePaths[pane], m_unpackerSubcodes[pane], pipelineContext))
 				{
 					// Restore save point
 					m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -846,7 +848,9 @@ RETRY:
 		}
 		if (filename != strPath)
 		{
-			if (!m_infoUnpacker.Packing(pane, filename, strPath, m_unpackerSubcodes[pane], { strPath }))
+			PluginPipelineContext pipelineContext;
+			pipelineContext.variables = { strPath };
+			if (!m_infoUnpacker.Packing(pane, filename, strPath, m_unpackerSubcodes[pane], pipelineContext))
 			{
 				// Restore save point
 				m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -1205,12 +1209,14 @@ void CImgMergeFrame::UpdateSplitter()
 bool CImgMergeFrame::OpenImages()
 {
 	bool bResult;
-	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
+	PluginPipelineContext pipelineContext;
+	pipelineContext.filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, { strTempFileName[pane] }))
+		pipelineContext.variables = { strTempFileName[pane] };
+		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], pipelineContext))
 		{
 			//return false;
 		}
@@ -1223,7 +1229,7 @@ bool CImgMergeFrame::OpenImages()
 	{
 		std::error_code ec(m_pImgMergeWindow->GetLastErrorCode(), std::generic_category());
 		String sSysError = ucr::toTString(ec.message());
-		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), filteredFilenames, sSysError);
+		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), pipelineContext.filteredFilenames, sSysError);
 		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 

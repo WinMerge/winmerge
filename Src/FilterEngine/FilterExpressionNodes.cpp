@@ -18,6 +18,8 @@
 #include "FileTransform.h"
 #include <string>
 #include <variant>
+#include <cctype>
+#include <limits>
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
 #include <Poco/LocalDateTime.h>
@@ -393,7 +395,7 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right, bool 
 		case TK_STAR:  result = lDouble->value * rDouble->value; break;
 		case TK_SLASH:
 			if (rDouble->value == 0)
-				throw std::invalid_argument("Division by zero is not allowed.");
+				throw DivisionByZeroError("Division by zero is not allowed.");
 			result = lDouble->value / rDouble->value;
 			break;
 		default: return nullptr; // Invalid operator.
@@ -433,13 +435,13 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right, bool 
 		case TK_STAR:  result = *lInt * *rInt; break;
 		case TK_SLASH:
 			if (*rInt == 0)
-				throw std::invalid_argument("Division by zero is not allowed.");
+				throw DivisionByZeroError("Division by zero is not allowed.");
 			result = *lInt / *rInt;
 			break;
 		case TK_MOD:
 			// Avoid modulo by zero.
 			if (*rInt == 0)
-				throw std::invalid_argument("Division by zero is not allowed.");
+				throw DivisionByZeroError("Division by zero is not allowed.");
 			result = *lInt % *rInt;
 			break;
 		default: return nullptr; // Invalid operator.
@@ -585,8 +587,10 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 		if (op == TK_PLUS && lval.index() != rval.index() &&
 		   (std::holds_alternative<std::string>(lval) || std::holds_alternative<std::string>(rval)))
 		{
-			if (std::holds_alternative<std::monostate>(lval) || std::holds_alternative<std::monostate>(rval))
-				return std::monostate{};
+			if (std::holds_alternative<std::string>(lval) && std::holds_alternative<std::monostate>(rval))
+				return ToStringValue(lval);
+			else if (std::holds_alternative<std::monostate>(lval) && std::holds_alternative<std::string>(rval))
+				return ToStringValue(rval);
 			return ToStringValue(lval) + ToStringValue(rval);
 		}
 		else if (auto lvalDouble = std::get_if<double>(&lval))
@@ -610,7 +614,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 			if (op == TK_SLASH)
 			{
 				if (r == 0.0)
-					throw std::invalid_argument("Division by zero in filter expression");
+					throw DivisionByZeroError("Division by zero in filter expression");
 				return *lvalDouble / r;
 			}
 		}
@@ -631,7 +635,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 				if (op == TK_SLASH)
 				{
 					if (*rvalDouble == 0.0)
-						throw std::invalid_argument("Division by zero in filter expression");
+						throw DivisionByZeroError("Division by zero in filter expression");
 					return l / *rvalDouble;
 				}
 			}
@@ -649,13 +653,13 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 				if (op == TK_SLASH)
 				{
 					if (*rvalInt == 0)
-						throw std::invalid_argument("Division by zero in filter expression");
+						throw DivisionByZeroError("Division by zero in filter expression");
 					return *lvalInt / *rvalInt;
 				}
 				if (op == TK_MOD)
 				{
 					if (*rvalInt == 0)
-						throw std::invalid_argument("Division by zero in filter expression");
+						throw DivisionByZeroError("Division by zero in filter expression");
 					return *lvalInt % *rvalInt;
 				}
 			}
@@ -3895,23 +3899,151 @@ static auto lineOffsetAt(int index, const FilterEvalContext& ectxt, std::vector<
 	return ectxt.provider->GetLine(index, lineNumber - 1);
 }
 
+struct ColumnRange
+{
+	int start;
+	int end;
+	bool excluded;
+};
+
+static int ParseColumnNumber(const std::string& text, size_t& pos)
+{
+	const size_t begin = pos;
+	while (pos < text.size() && std::isdigit(static_cast<unsigned char>(text[pos])))
+		++pos;
+	if (begin == pos)
+		throw InvalidArgumentError("invalid column specification");
+
+	try
+	{
+		const long long value = std::stoll(text.substr(begin, pos - begin));
+		if (value < 1 || value > (std::numeric_limits<int>::max)())
+			throw InvalidArgumentError("invalid column specification");
+		return static_cast<int>(value);
+	}
+	catch (const std::out_of_range&)
+	{
+		throw InvalidArgumentError("invalid column specification");
+	}
+}
+
+static std::vector<ColumnRange> ParseColumnRanges(const std::string& text)
+{
+	std::vector<ColumnRange> ranges;
+	size_t pos = 0;
+	while (true)
+	{
+		while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos])))
+			++pos;
+		if (pos == text.size())
+			throw InvalidArgumentError("invalid column specification");
+
+		bool excluded = false;
+		if (text[pos] == '!')
+		{
+			excluded = true;
+			++pos;
+			while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos])))
+				++pos;
+		}
+		const int start = ParseColumnNumber(text, pos);
+		while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos])))
+			++pos;
+		int end = start;
+		if (pos < text.size() && text[pos] == '-')
+		{
+			++pos;
+			while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos])))
+			++pos;
+			end = (pos == text.size() || text[pos] == ',') ? -1 : ParseColumnNumber(text, pos);
+			if (end != -1 && end < start)
+				throw InvalidArgumentError("invalid column specification");
+		}
+		ranges.push_back({ start, end, excluded });
+
+		while (pos < text.size() && std::isspace(static_cast<unsigned char>(text[pos])))
+			++pos;
+		if (pos == text.size())
+			return ranges;
+		if (text[pos] != ',')
+			throw InvalidArgumentError("invalid column specification");
+		++pos;
+	}
+}
+
 static auto columnFunc(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto argColumnSpec = (*args)[0]->Evaluate(ectxt);
 
-	// Integer: treat as column index (1-based)
 	if (auto argInt = std::get_if<int64_t>(&argColumnSpec))
 	{
-		int columnIndex = static_cast<int>(*argInt) - 1;
-		return ColumnField(index, columnIndex, ectxt);
+		if (*argInt < 1 || *argInt > (std::numeric_limits<int>::max)())
+			throw InvalidArgumentError("invalid column specification");
+		return ColumnField(index, static_cast<int>(*argInt) - 1, ectxt);
 	}
-	// String: treat as column name (case-sensitivity respects @cs directive)
-	else if (auto argStr = std::get_if<std::string>(&argColumnSpec))
-	{
+	if (auto argStr = std::get_if<std::string>(&argColumnSpec))
 		return ColumnFieldByName(index, *argStr, ectxt);
-	}
+	throw InvalidArgumentError("invalid column specification");
+}
 
-	return std::monostate{};
+static auto columnRangeFunc(int index, const FilterEvalContext& ectxt,
+	const std::vector<ColumnRange>& ranges) -> ValueType
+{
+	const int columnCount = ectxt.provider ? ectxt.provider->GetColumnCount(index, ectxt.lineIndex) : 0;
+	std::vector<int> columns;
+	columns.reserve(static_cast<size_t>(columnCount));
+	const bool hasIncludedRange = std::any_of(ranges.begin(), ranges.end(), [](const ColumnRange& range) {
+		return !range.excluded;
+		});
+	std::vector<bool> excluded(static_cast<size_t>(columnCount));
+	for (const auto& range : ranges)
+	{
+		if (!range.excluded)
+			continue;
+		int end = range.end == -1 ? columnCount : range.end;
+		end = (std::min)(end, columnCount);
+		for (int column = range.start; column <= end; ++column)
+			excluded[static_cast<size_t>(column - 1)] = true;
+	}
+	if (!hasIncludedRange)
+	{
+		for (int column = 1; column <= columnCount; ++column)
+		{
+			if (!excluded[static_cast<size_t>(column - 1)])
+				columns.push_back(column - 1);
+		}
+	}
+	else
+	{
+		std::vector<bool> added(static_cast<size_t>(columnCount));
+		for (const auto& range : ranges)
+		{
+			if (range.excluded)
+				continue;
+			int end = range.end == -1 ? columnCount : range.end;
+			end = (std::min)(end, columnCount);
+			for (int column = range.start; column <= end; ++column)
+			{
+				const size_t columnIndex = static_cast<size_t>(column - 1);
+				if (!excluded[columnIndex] && !added[columnIndex])
+				{
+					columns.push_back(column - 1);
+					added[columnIndex] = true;
+				}
+			}
+		}
+	}
+	return ectxt.provider ? ectxt.provider->GetColumns(index, ectxt.lineIndex, columns) : std::string{};
+}
+
+static auto columnRangeFunc(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto argColumnSpec = (*args)[0]->Evaluate(ectxt);
+	const auto argStr = std::get_if<std::string>(&argColumnSpec);
+	if (!argStr)
+		throw InvalidArgumentError("ColumnRange requires a string argument");
+	const auto ranges = ParseColumnRanges(*argStr);
+	return columnRangeFunc(index, ectxt, ranges);
 }
 
 static auto columnAt(int index, const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
@@ -3997,7 +4129,7 @@ static auto columnOffsetAt(int index, const FilterEvalContext& ectxt, std::vecto
 void FunctionNode::SetLineAtFunc(int side, int prefixlen, bool singlePane, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 argument");
+		throw InvalidArgumentCountError(functionName + " function requires 1 argument");
 	if (prefixlen == 0 && !singlePane)
 		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
@@ -4015,7 +4147,7 @@ void FunctionNode::SetLineAtFunc(int side, int prefixlen, bool singlePane, Value
 void FunctionNode::SetColumnFunc(int side, int prefixlen, bool singlePane)
 {
 	if (!args || args->size() != 1)
-		throw std::invalid_argument(functionName + " function requires 1 argument");
+		throw InvalidArgumentCountError(functionName + " function requires 1 argument");
 	if (prefixlen == 0 && !singlePane)
 		func = [](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
@@ -4030,10 +4162,45 @@ void FunctionNode::SetColumnFunc(int side, int prefixlen, bool singlePane)
 			{ return columnFunc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, args); };
 }
 
+static auto MakeColumnRangeFunc(int side, int prefixlen, bool singlePane,
+	std::shared_ptr<const std::vector<ColumnRange>> ranges)
+	-> std::function<ValueType(const FilterEvalContext&, std::vector<ExprNode*>*)>
+{
+	if (prefixlen == 0 && !singlePane)
+		return [ranges](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
+		{
+			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+			const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+			for (int i = 0; i < dirs; ++i)
+				values->emplace_back(ValueType2{ columnRangeFunc(i, ectxt, *ranges) });
+			return values;
+		};
+	return [side, ranges](const FilterEvalContext& ectxt, std::vector<ExprNode*>*) -> ValueType
+		{ return columnRangeFunc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, *ranges); };
+}
+
+void FunctionNode::SetColumnRangeFunc(int side, int prefixlen, bool singlePane)
+{
+	if (!args || args->size() != 1)
+		throw InvalidArgumentCountError(functionName + " function requires 1 argument");
+	if (prefixlen == 0 && !singlePane)
+		func = [](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+		{
+			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+			const int dirs = ectxt.expr->ctxt->GetCompareDirs();
+			for (int i = 0; i < dirs; ++i)
+				values->emplace_back(ValueType2{ columnRangeFunc(i, ectxt, args) });
+			return values;
+		};
+	else
+		func = [side](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
+			{ return columnRangeFunc((side < 0) ? (ectxt.expr->ctxt->GetCompareDirs() - 1) : side, ectxt, args); };
+}
+
 void FunctionNode::SetColumnAtFunc(int side, int prefixlen, bool singlePane, ValueType (*proc)(int, const FilterEvalContext&, std::vector<ExprNode*>*))
 {
 	if (!args || args->size() != 2)
-		throw std::invalid_argument(functionName + " function requires 2 arguments");
+		throw InvalidArgumentCountError(functionName + " function requires 2 arguments");
 	if (prefixlen == 0 && !singlePane)
 		func = [side, proc](const FilterEvalContext& ectxt, std::vector<ExprNode*>* args) -> ValueType
 		{
@@ -4085,6 +4252,11 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		SetColumnFunc(side, prefixlen, singlePane);
 		return;
 	}
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "columnrange") == 0)
+	{
+		SetColumnRangeFunc(side, prefixlen, singlePane);
+		return;
+	}
 
 	// Look up function in table
 	const FunctionInfo* info = findFunction(functionName);
@@ -4095,12 +4267,12 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	size_t argCount = args ? args->size() : 0;
 	if (info->minArgs >= 0 && argCount < static_cast<size_t>(info->minArgs))
 	{
-		throw std::invalid_argument(functionName + " function requires at least " + 
+		throw InvalidArgumentCountError(functionName + " function requires at least " +
 			std::to_string(info->minArgs) + " argument" + (info->minArgs != 1 ? "s" : ""));
 	}
 	if (info->maxArgs >= 0 && argCount > static_cast<size_t>(info->maxArgs))
 	{
-		throw std::invalid_argument(functionName + " function requires at most " + 
+		throw InvalidArgumentCountError(functionName + " function requires at most " + 
 			std::to_string(info->maxArgs) + " argument" + (info->maxArgs != 1 ? "s" : ""));
 	}
 
@@ -4155,6 +4327,20 @@ ExprNode* FunctionNode::Optimize()
 			result->emplace_back(ExprNodeToValueType2(arg));
 		delete this;
 		return new ArrayLiteral(result);
+	}
+
+	// Cache constant ColumnRange specifications in the evaluation closure.
+	auto [side, prefixlen] = ParseAttributeName(functionName);
+	if (functionName.compare(prefixlen, functionName.length() - prefixlen, "columnrange") == 0 &&
+		args && args->size() == 1)
+	{
+		if (auto stringLiteral = dynamic_cast<StringLiteral*>((*args)[0]))
+		{
+			const bool singlePane = ctxt->ctxt && ctxt->ctxt->GetCompareDirs() == 1;
+			auto ranges = std::make_shared<const std::vector<ColumnRange>>(
+				ParseColumnRanges(stringLiteral->value));
+			func = MakeColumnRangeFunc(side, prefixlen, singlePane, std::move(ranges));
+		}
 	}
 
 	// Array element access
@@ -4336,7 +4522,7 @@ DateTimeLiteral::DateTimeLiteral(const std::string& v)
 {
 	auto timestamp = ParseDateTime(v);
 	if (!timestamp)
-		throw std::invalid_argument("Unrecognized date/time format: " + v);
+		throw InvalidArgumentError("Unrecognized date/time format: " + v);
 	value = *timestamp;
 }
 
@@ -4383,4 +4569,3 @@ RegularExpressionLiteral::RegularExpressionLiteral(const std::string& v, bool ca
 	const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
 	value.reset(new Poco::RegularExpression(v, flags));
 }
-

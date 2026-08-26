@@ -10,13 +10,22 @@
 #include <afxext.h>
 #include <vector>
 
+enum class MDIButtonVisibility : int
+{
+	AutoHide,
+	AlwaysShow,
+	AlwaysHide
+};
+
 class CMenuBar : public CToolBar
 {
 	DECLARE_DYNAMIC(CMenuBar)
 public:
 	constexpr static int FIRST_MENUID = 10000;
 	constexpr static UINT UWM_SHOWPOPUPMENU = WM_APP + 1;
+	constexpr static UINT UWM_MDI_BUTTON_CONTEXTMENU = WM_APP + 2;
 	constexpr static UINT MENUBAR_TIMER_ID = 100;
+	constexpr static UINT MDI_BUTTON_CHECK_TIMER_ID = 101;
 
 	CMenuBar();
 
@@ -26,6 +35,7 @@ public:
 	void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
 	BOOL PreTranslateMessage(MSG* pMsg);
 	void SetAlwaysVisible(bool visible) { m_bAlwaysVisible = visible; }
+	void SetMDIButtonVisibility(MDIButtonVisibility visibility);
 
 protected:
 	//{{AFX_MSG(CMenuBar)
@@ -38,6 +48,7 @@ protected:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg LRESULT OnShowPopupMenu(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -46,6 +57,8 @@ protected:
 	int GetMDIButtonIndexFromPoint(CPoint pt) const;
 	CRect GetMDIButtonsRect() const;
 	CRect GetMDIButtonRect(int nItem) const;
+	void StartMDIButtonCheckTimer();
+	bool ShouldDrawMDIButtons() const;
 	void ShowKeyboardCues(bool show);
 	void LoseFocus();
 	void Show(bool visible);
@@ -64,6 +77,8 @@ protected:
 	UINT m_nCurrentMenuItemFlags;
 	HMENU m_hCurrentPopupMenu;
 	CPoint m_ptCurrentCursor;
+	MDIButtonVisibility m_mdiButtonVisibility;
+	bool m_bLastMDIChildMaximized = false;
 	static HHOOK m_hHook;
 	static CMenuBar* m_pThis;
 };

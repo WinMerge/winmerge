@@ -4,6 +4,8 @@
  */
 #pragma once
 
+#include <stdexcept>
+
 enum FilterErrorCode
 {
 	FILTER_ERROR_NO_ERROR = 0,
@@ -21,4 +23,25 @@ enum FilterErrorCode
 	FILTER_ERROR_DIVIDE_BY_ZERO = 12,
 	FILTER_ERROR_INVALID_PROPERTY_NAME = 13,
 	FILTER_ERROR_INVALID_DIRECTIVE = 14,
+	FILTER_ERROR_INVALID_ARGUMENT = 15,
+};
+
+class InvalidPropertyNameError : public std::invalid_argument
+{
+public:
+	explicit InvalidPropertyNameError(const std::string& name)
+		: std::invalid_argument("unknown property name: " + name), propertyName(name) {}
+	std::string propertyName;
+};
+class DivisionByZeroError : public std::invalid_argument
+{
+	using std::invalid_argument::invalid_argument;
+};
+class InvalidArgumentCountError : public std::invalid_argument
+{
+	using std::invalid_argument::invalid_argument;
+};
+class InvalidArgumentError : public std::invalid_argument
+{
+	using std::invalid_argument::invalid_argument;
 };

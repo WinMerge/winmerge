@@ -39,6 +39,7 @@ inline const String OPT_SHOW_OUTPUTBAR {_T("Settings/ShowOutputbar"s)};
 inline const String OPT_REBAR_STATE {_T("Settings/ReBarState"s)};
 inline const String OPT_TOOLBAR_SIZE {_T("Settings/ToolbarSize"s)};
 inline const String OPT_RESIZE_PANES {_T("Settings/AutoResizePanes"s)};
+inline const String OPT_MDI_BUTTON_VISIBILITY {_T("Settings/MDIButtonVisibility"s)};
 
 inline const String OPT_SYNTAX_HIGHLIGHT {_T("Settings/HiliteSyntax"s)};
 inline const String OPT_SYNTAX_HIGHLIGHT_MODE {_T("Settings/HiliteSyntaxMode"s)};

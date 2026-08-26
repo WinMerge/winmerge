@@ -1,5 +1,6 @@
 #pragma once
 #include <string_view>
+#include <vector>
 
 struct ILineDataProvider
 {
@@ -36,6 +37,7 @@ struct ILineDataProvider
 	virtual std::string GetLine(int pane, int lineIndex) const = 0;
 	virtual int GetColumnCount(int pane, int lineIndex) const = 0;
 	virtual std::string GetColumn(int pane, int lineIndex, int columnIndex) const = 0;
+	virtual std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const = 0;
 	virtual int GetRealLineNumber(int pane, int lineIndex) const = 0;
 	virtual unsigned GetLineFlags(int pane, int lineIndex) const = 0;
 	virtual unsigned GetLineEol(int pane, int lineIndex) const = 0;

@@ -74,6 +74,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_CONTROL_RANGE(CBN_SELCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSelchangePathCombo)
 	ON_CONTROL_RANGE(CBN_EDITCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnEditEvent)
 	ON_CONTROL_RANGE(BN_CLICKED, IDC_SELECT_UNPACKER, IDC_SELECT_PREDIFFER, OnSelectPlugin)
+	ON_CONTROL_RANGE(CBN_SELCHANGE, IDC_UNPACKER_COMBO, IDC_PREDIFFER_COMBO, OnSelchangePlugin)
+	ON_CONTROL_RANGE(CBN_EDITCHANGE, IDC_UNPACKER_COMBO, IDC_PREDIFFER_COMBO, OnSelchangePlugin)
 	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH2_COMBO, UpdateButtonStates)
@@ -334,6 +336,42 @@ void COpenView::OnInitialUpdate()
 		};
 	m_ctlExtEdit.Validate();
 	m_ctlExtEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("*.txt|fe:Size > 100KB")).c_str());
+
+	if (m_ctlUnpackerPipeline.GetEditCtrl()->GetSafeHwnd())
+	{
+		m_ctlUnpackerPipelineEdit.SubclassWindow(m_ctlUnpackerPipeline.GetEditCtrl()->m_hWnd);
+		m_ctlUnpackerPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
+			{
+				if (text.IsEmpty())
+					return true;
+				String pipeline = text;
+				auto pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
+				String errorMessage;
+				bool result = pPluginPipeline->Validate(errorMessage);
+				error = errorMessage.c_str();
+				return result;
+			};
+		m_ctlUnpackerPipelineEdit.Validate();
+		m_ctlUnpackerPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	}
+
+	if (m_ctlPredifferPipeline.GetEditCtrl()->GetSafeHwnd())
+	{
+		m_ctlPredifferPipelineEdit.SubclassWindow(m_ctlPredifferPipeline.GetEditCtrl()->m_hWnd);
+		m_ctlPredifferPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
+			{
+				if (text.IsEmpty())
+					return true;
+				String pipeline = text;
+				auto pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
+				String errorMessage;
+				bool result = pPluginPipeline->Validate(errorMessage);
+				error = errorMessage.c_str();
+				return result;
+			};
+		m_ctlPredifferPipelineEdit.Validate();
+		m_ctlPredifferPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
@@ -1495,6 +1533,18 @@ void COpenView::OnEditEvent(UINT nID)
 		UpdateButtonStates();
 }
 
+void COpenView::OnSelchangePlugin(UINT nID)
+{
+	CValidatingEdit* edit = nullptr;
+	switch (nID)
+	{
+	case IDC_UNPACKER_COMBO: edit = &m_ctlUnpackerPipelineEdit; break;
+	case IDC_PREDIFFER_COMBO: edit = &m_ctlPredifferPipelineEdit; break;
+	default: return;
+	}
+	edit->OnEnChange();
+}
+
 /**
  * @brief Handle timer events.
  * Checks if paths are valid and sets control states accordingly.
@@ -1544,6 +1594,7 @@ void COpenView::OnSelectPlugin(UINT nID)
 		else
 			m_strPredifferPipeline = dlg.GetPluginPipeline();
 		UpdateData(FALSE);
+		OnSelchangePlugin(nID == IDC_SELECT_UNPACKER ? IDC_UNPACKER_COMBO : IDC_PREDIFFER_COMBO);
 	}
 }
 

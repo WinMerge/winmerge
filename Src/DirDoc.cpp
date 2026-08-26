@@ -323,14 +323,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_piPluginInfos = pOptions->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
 	CheckFilter();
-	FilterExpression::SetLogger([](int level, const std::string& msg) {
-		if (level == 0)
-			RootLogger::Error(msg);
-		else if (level == 1)
-			RootLogger::Warn(msg);
-		else
-			RootLogger::Info(msg);
-		});
 }
 
 void CDirDoc::CheckFilter()

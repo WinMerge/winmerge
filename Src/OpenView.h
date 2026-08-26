@@ -51,6 +51,8 @@ public:
 	CSuperComboBox	m_ctlPath[3];
 	CSuperComboBox	m_ctlUnpackerPipeline;
 	CSuperComboBox	m_ctlPredifferPipeline;
+	CValidatingEdit	m_ctlUnpackerPipelineEdit;
+	CValidatingEdit	m_ctlPredifferPipelineEdit;
 	CFileFilterHelperMenu m_menu;
 	String m_strPath[3];
 	bool m_bReadOnly[3];
@@ -137,6 +139,7 @@ protected:
 	afx_msg void OnExtEditChange();
 	afx_msg void OnSelectFilterDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSelchangePathCombo(UINT nID);
+	afx_msg void OnSelchangePlugin(UINT nID);
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnSwapButton(int id1, int id2);
