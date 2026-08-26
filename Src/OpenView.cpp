@@ -358,7 +358,7 @@ void COpenView::OnInitialUpdate()
 			if (text.IsEmpty())
 				return true;
 			String pipeline = text;
-			auto pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
+			auto pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
 			String errorMessage;
 			bool result = pPluginPipeline->Validate(errorMessage);
 			error = errorMessage.c_str();
