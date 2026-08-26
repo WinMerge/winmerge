@@ -1816,6 +1816,22 @@ DirViewColItems::IsColStatusAbbr(int col) const
 {
 	return IsColById(col, COLHDR_RESULT_ABBR);
 }
+/**
+ * @brief Return whether the column can be sorted while comparison results are being updated.
+ * Such columns must not depend on values that are updated asynchronously.
+ */
+bool
+DirViewColItems::IsColSortableWhileComparing(int col) const
+{
+	decltype(ColFileNameSort) *sortFuncs[] = { ColFileNameSort, ColPathSort, ColTimeSort, ColExtSort, ColSizeSort, ColNewerSort, ColAttrSort, ColPropertySort, ColAllPropertySort };
+	for (auto sortFunc : sortFuncs)
+	{
+		if (m_cols[col].sortfnc == sortFunc)
+			return true;
+	}
+	return false;
+}
+
 
 /**
  * @brief return whether column normally sorts ascending (dates do not)
