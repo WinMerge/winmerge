@@ -1260,8 +1260,7 @@ static bool ValidateExpressions(const std::vector<String>& expressions, String& 
 bool PackingInfo::Validate(String& errorMessage) const
 {
 	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool >> plugins;
-	String pipelineResolved;
-	if (!GetPackUnpackPlugin(_T(""), false, false, plugins, &pipelineResolved, errorMessage))
+	if (!GetPackUnpackPlugin(_T(""), false, false, plugins, nullptr, errorMessage))
 		return false;
 	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
@@ -1376,8 +1375,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, bool bMayOverwrit
 bool PrediffingInfo::Validate(String& errorMessage) const
 {
 	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool >> plugins;
-	String pipelineResolved;
-	if (!GetPrediffPlugin(_T(""), false, plugins, &pipelineResolved, errorMessage))
+	if (!GetPrediffPlugin(_T(""), false, plugins, nullptr, errorMessage))
 		return false;
 	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
 	{
@@ -1506,7 +1504,6 @@ bool EditorScriptInfo::TransformText(int target, String& text, const PluginPipel
 bool EditorScriptInfo::Validate(String& errorMessage) const
 {
 	std::vector < std::tuple < PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, int >> plugins;
-	String pipelineResolved;
 	if (!GetEditorScriptPlugin(plugins, errorMessage))
 		return false;
 	for (auto& [plugin, expressions, targetFlags, args, fncID] : plugins)
