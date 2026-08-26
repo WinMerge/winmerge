@@ -1589,6 +1589,7 @@ void COpenView::OnSelectPlugin(UINT nID)
 			m_strPredifferPipeline = dlg.GetPluginPipeline();
 		UpdateData(FALSE);
 	}
+	OnSelchangePlugin(nID == IDC_SELECT_UNPACKER ? IDC_UNPACKER_COMBO : IDC_PREDIFFER_COMBO);
 }
 
 LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
