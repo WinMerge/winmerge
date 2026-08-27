@@ -9449,7 +9449,7 @@ msgid ""
 "Arguments: SQL statement/q command line options."
 msgstr ""
 "Requêteur CSV (q).\r\n"
-"Arguments : options de ligne de commande pour \" instruction SQL /q"."
+"Arguments : instruction SQL / options de ligne de commande pour q."
 
 #: Strings.rc:156
 msgid ""
