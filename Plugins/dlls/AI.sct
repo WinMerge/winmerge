@@ -177,9 +177,13 @@ function getApiKey() {
         setEnvVal(keyEnvName, apiKey);
     }
   }
-  // Local providers don't need an API key; use a dummy value.
   if (apiKey === "" || apiKey === "%" + keyEnvName + "%") {
-    apiKey = "local";
+    if (provider.requiresApiKey === false) {
+      // Local providers don't need an API key; use a dummy value.
+      apiKey = "local";
+    } else {
+      throw new Error(30001, "Canceled");
+    }
   }
   return apiKey;
 }
