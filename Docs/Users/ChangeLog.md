@@ -38,6 +38,8 @@
 
 * Add MiniMax provider support to AI plugin (PR #3499)
 
+* Add local LLM and custom OpenAI-compatible API support (#3589)
+
 ### Translations
 
 * Translation updates:
