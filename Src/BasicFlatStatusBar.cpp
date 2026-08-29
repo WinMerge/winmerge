@@ -90,6 +90,16 @@ void CBasicFlatStatusBar::GetSubPaneButtonRects(int nIndex, std::vector<CRect>& 
 	CRect rcPart;
 	GetStatusBarCtrl().GetRect(nIndex, &rcPart);
 
+	auto itIcon = m_paneIcons.find(nIndex);
+	if (itIcon != m_paneIcons.end() && itIcon->second)
+	{
+		const int iconSize = GetSystemMetrics(SM_CXSMICON);
+		const int iconWidth = iconSize + MulDiv(4, iconSize, 16);
+
+		// Reserve space for the pane icon.
+		rcPart.left += iconWidth;
+	}
+
 	const int n = static_cast<int>(it->second.size());
 	const int w = rcPart.Width() / n;
 	int x = rcPart.left;
@@ -109,6 +119,19 @@ int CBasicFlatStatusBar::HitTestSubPaneButton(int nIndex, const CPoint& pt) cons
 		if (rects[i].PtInRect(pt))
 			return static_cast<int>(i);
 	return -1;
+}
+
+void CBasicFlatStatusBar::DrawPaneIcon(CDC& dc, int nIndex, const CRect& rcPart, CRect& rcText) const
+{
+	auto itIcon = m_paneIcons.find(nIndex);
+	if (itIcon != m_paneIcons.end() && itIcon->second)
+	{
+		const int iconSize = GetSystemMetrics(SM_CXSMICON);
+		const int iconY = rcPart.top + (rcPart.Height() - iconSize) / 2;
+		::DrawIconEx(dc.m_hDC, rcText.left, iconY, itIcon->second,
+			iconSize, iconSize, 0, nullptr, DI_NORMAL);
+		rcText.left += iconSize + MulDiv(4, iconSize, 16);
+	}
 }
 
 void CBasicFlatStatusBar::OnPaint()
@@ -147,40 +170,49 @@ void CBasicFlatStatusBar::OnPaint()
 		auto it = m_subPaneButtons.find(i);
 		const bool bShowSubButtons = (i == m_nTrackingPane) && it != m_subPaneButtons.end() && !it->second.empty();
 
+		// Calculate SubPane button rectangles once and reuse them
+		// for both background and text drawing.
+		std::vector<CRect> subPaneRects;
+		if (bShowSubButtons)
+			GetSubPaneButtonRects(i, subPaneRects);
+
+		// Draw pane/subpane background.
 		if (bShowSubButtons)
 		{
-			std::vector<CRect> rects;
-			GetSubPaneButtonRects(i, rects);
-			for (size_t b = 0; b < rects.size(); ++b)
+			for (size_t b = 0; b < subPaneRects.size(); ++b)
 			{
-				const bool bHot = (m_nHotSubButton == static_cast<int>(b));
-				if (bHot)
-					DrawRoundedRect(memDC.m_hDC, rects[b].left, rects[b].top,
-						rects[b].Width(), rects[b].Height(), radius, clr3DFaceLight, clr3DFace);
-				memDC.DrawText(it->second[b].text.c_str(), rects[b], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+				if (m_nHotSubButton == static_cast<int>(b))
+				{
+					DrawRoundedRect(memDC.m_hDC, subPaneRects[b].left, subPaneRects[b].top,
+						subPaneRects[b].Width(), subPaneRects[b].Height(), radius, clr3DFaceLight, clr3DFace);
+				}
 			}
-			continue;
+		}
+		else if (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane)
+		{
+			DrawRoundedRect(memDC.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
 		}
 
-		if (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane)
-			DrawRoundedRect(memDC.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
+		if ((style & SBPS_DISABLED) != 0)
+			continue;
 
-		const bool disabled = (style & SBPS_DISABLED) != 0;
-		if (!disabled)
+		// Draw one icon per pane.
+		CRect rcText = rcPart;
+		rcText.left += radius;
+		DrawPaneIcon(memDC, i, rcPart, rcText);
+
+		if (bShowSubButtons)
 		{
-			CRect rcText = rcPart;
-			rcText.left += radius;
-
-			auto itIcon = m_paneIcons.find(i);
-			if (itIcon != m_paneIcons.end() && itIcon->second)
+			for (size_t b = 0; b < subPaneRects.size(); ++b)
 			{
-				const int iconSize = GetSystemMetrics(SM_CXSMICON);
-				const int iconY = rcPart.top + (rcPart.Height() - iconSize) / 2;
-				::DrawIconEx(memDC.m_hDC, rcText.left, iconY, itIcon->second,
-					iconSize, iconSize, 0, nullptr, DI_NORMAL);
-				rcText.left += iconSize + 4;
-			}
+				CRect rcButtonText = subPaneRects[b];
+				rcButtonText.left += radius;
 
+				memDC.DrawText(it->second[b].text.c_str(), rcButtonText, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+			}
+		}
+		else
+		{
 			CString text = ctrl.GetText(i);
 			if (text.Find('\t') >= 0)
 			{
