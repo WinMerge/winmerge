@@ -10166,7 +10166,7 @@ msgstr "A(z) '%1' mappa nem létezik"
 
 #: Strings.rc:316
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr "Ne add meg a '-p0' parancssori paramétert az abszolút elérési utakat tartalmazó patchfájlhoz"
+msgstr "Ne használd a '-p0' parancssori paramétert az abszolút elérési utakat tartalmazó patchfájlhoz"
 
 #: Strings.rc:322
 msgid "AI.sct WinMerge Plugin Options"
@@ -10179,15 +10179,15 @@ msgstr "Írd be a promptot"
 #: Strings.rc:326
 #, c-format
 msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
-msgstr ""
+msgstr "Add meg az API-kulcsot.\r\n- Lehet, hogy regisztráció kell a kiválasztott szolgáltatónál (díjköteles lehet).\r\n- A kulcs a(z) %1 környezeti változóban van tárolva."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "API-kulcs környezeti változójának neve"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "API-kulcs"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -10203,16 +10203,16 @@ msgstr "Modell"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "Az API-kulcs megváltozott. Indítsd újra az alkalmazásához."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "Szolgáltató"
 
 #: Strings.rc:342
 msgid "Base URL"
-msgstr ""
+msgstr "Alap URL"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr ""
+msgstr "(válassz egy előbeállítást a fenti mező kitöltéséhez)"
