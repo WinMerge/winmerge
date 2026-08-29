@@ -395,7 +395,7 @@ function getProviderConfig(providerName) {
     "LM Studio": { "baseUrl": "http://localhost:1234/v1", "defaultModel": "local-model", "apiKeyEnvName": "LMSTUDIO_API_KEY", "requiresApiKey": false },
     "LocalAI": { "baseUrl": "http://localhost:8080/v1", "defaultModel": "gpt-oss-20b", "apiKeyEnvName": "LOCALAI_API_KEY", "requiresApiKey": false },
     "vLLM": { "baseUrl": "http://localhost:8000/v1", "defaultModel": "Qwen/Qwen3-8B-Instruct", "apiKeyEnvName": "VLLM_API_KEY", "requiresApiKey": false },
-    "Custom (OpenAI-compatible)": { "baseUrl": "http://localhost:8080/v1", "defaultModel": "default", "apiKeyEnvName": "CUSTOM_API_KEY", "requiresApiKey": false }
+    "Custom (OpenAI-compatible)": { "baseUrl": "http://localhost:8080/v1", "defaultModel": "default", "apiKeyEnvName": "CUSTOM_API_KEY", "requiresApiKey": true }
   };
   return configs[providerName] || configs["OpenAI"];
 }
