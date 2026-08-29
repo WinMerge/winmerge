@@ -10586,3 +10586,11 @@ msgstr "API 키가 변경되었습니다. 적용하려면 다시 시작하세요
 #: Strings.rc:340
 msgid "Provider"
 msgstr "공급자"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

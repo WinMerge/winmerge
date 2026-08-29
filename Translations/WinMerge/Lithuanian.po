@@ -9220,3 +9220,11 @@ msgstr "Pakeistas API raktas. Paleiskite iš naujo, kad pakeitimai įsigaliotų.
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Tiekėjas"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

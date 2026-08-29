@@ -9223,3 +9223,11 @@ msgstr "Chave da API alterada. Reinicie para aplicar."
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Fornecedor"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

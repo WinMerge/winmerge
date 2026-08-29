@@ -9875,3 +9875,11 @@ msgstr "API anahtarı değiştirildi. Uygulamak için yeniden başlatın."
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Sağlayıcı"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

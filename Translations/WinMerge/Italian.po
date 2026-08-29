@@ -9868,3 +9868,11 @@ msgstr "La chiave API è stata modificata. Per applicare le modifiche riavvia."
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Provider"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

@@ -9861,4 +9861,12 @@ msgstr "APIキーが変更されました。 変更を適用するには、WinMe
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "プロバイダ"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr "ベースURL"
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr "(上のフィールドに設定するプリセットを選択)"

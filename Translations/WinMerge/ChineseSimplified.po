@@ -9872,3 +9872,11 @@ msgstr "API 密钥已更改。请重启以使更改生效。"
 #: Strings.rc:340
 msgid "Provider"
 msgstr "提供商"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""
