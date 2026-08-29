@@ -12,13 +12,21 @@
 
 * Add an option to prefer the WIC decoder when loading images for image comparison (PR #3537)
 
+* BugFix: Fix Shift+Insert paste going to file instead of Filter Bar (#3585)
+
 ### Filter expressions
 
 * Add the FilterExpression support required by the upcoming ApplyLineFilter plugin (PR #3530)
 
+* BugFix: Fix case-insensitive contains in filter expressions (#3586)
+
 ### Status bar
 
 * Make merge mode indicator clickable and reduce its width (PR #3529)
+
+### Archive support
+
+* BugFix: Fix issue #3588: Cannot compare folders inside zip files
 
 ### Plugins
 
