@@ -274,6 +274,7 @@ inline const String OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL {_T("Settings/ImageOver
 inline const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP {_T("Settings/EnableImageCompareInFolderCompare"s)};
 inline const String OPT_CMP_IMG_OCR_RESULT_TYPE {_T("Settings/ImageOcrResultType"s)};
 inline const String OPT_CMP_IMG_PREFER_WIC_DECODER {_T("Settings/ImagePreferWICDecoder"s)};
+inline const String OPT_CMP_IMG_SPLITTER_POS {_T("Settings/ImageSplitterPosition"s)};
 
 // WebPage Compare options
 inline const String OPT_CMP_WEB_USERDATAFOLDER_TYPE {_T("Settings/WebPageUserDataFolderType"s)};
