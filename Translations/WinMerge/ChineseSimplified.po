@@ -9875,8 +9875,8 @@ msgstr "提供商"
 
 #: Strings.rc:342
 msgid "Base URL"
-msgstr ""
+msgstr "基础网址"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr ""
+msgstr "（选择一个预设来填充上面的字段）"
