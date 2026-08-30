@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-08-30 18:48+0900\n"
-"PO-Revision-Date: 2026-06-25 08:05+0900\n"
+"PO-Revision-Date: 2026-08-31 08:22+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -19023,8 +19023,8 @@ msgid ""
 "(the first difference line)."
 msgstr ""
 "マッチするすべての行の中での現在行の 1 基底インデックス。行がマッチしない場合"
-"は undefined を返します。例: <literal>le:matchNumber(Different) = 1</"
-"literal> はマッチする最初の行（最初の差異行）のみを表示します。"
+"は none を返します。例: <literal>le:matchNumber(Different) = 1</literal> は"
+"マッチする最初の行（最初の差異行）のみを表示します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:2432
@@ -19075,9 +19075,9 @@ msgid ""
 "only the first line of each difference block."
 msgstr ""
 "マッチングブロック内での現在行の 1 基底オフセットを返します。現在行がいずれの"
-"マッチングブロックにも含まれない場合は <literal>undefined</literal> を返しま"
-"す。例: <literal>le:matchBlockOffset(Different) = 1</literal> は各差異ブロッ"
-"クの最初の行のみを表示します。"
+"マッチングブロックにも含まれない場合は <literal>none</literal> を返します。"
+"例: <literal>le:matchBlockOffset(Different) = 1</literal> は各差異ブロックの"
+"最初の行のみを表示します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:2455
@@ -19093,9 +19093,9 @@ msgid ""
 "literal> shows only lines in difference blocks larger than 5 lines."
 msgstr ""
 "現在行を含むマッチングブロックのサイズ（行数）を返します。現在行がいずれの"
-"マッチングブロックにも含まれない場合は <literal>undefined</literal> を返しま"
-"す。例: <literal>le:matchBlockSize(Different) &gt; 5</literal> は 5 行より大"
-"きい差異ブロック内の行のみを表示します。"
+"マッチングブロックにも含まれない場合は <literal>none</literal> を返します。"
+"例: <literal>le:matchBlockSize(Different) &gt; 5</literal> は 5 行より大きい"
+"差異ブロック内の行のみを表示します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:2463
@@ -19186,7 +19186,7 @@ msgstr ""
 "れる数値の平均（算術平均）を計算します。<replaceable>condition</replaceable> "
 "が指定された場合、<replaceable>condition</replaceable> が true と評価される行"
 "のみが計算に含まれます。数値でない結果は無視されます。数値が見つからない場合"
-"は undefined を返します。例: <literal>le:toInt(Column(\"Price\")) &gt; "
+"は none を返します。例: <literal>le:toInt(Column(\"Price\")) &gt; "
 "average(toInt(Column(\"Price\")))</literal> は価格が平均価格を超える行を表示"
 "します。条件付きの例: <literal>le:average(toInt(Column(\"Score\")), "
 "Column(\"Status\") = \"PASS\")</literal> はステータスが \"PASS\" の行の平均ス"
@@ -19220,7 +19220,7 @@ msgstr ""
 "れるすべての結果の中の最大値を返します。<replaceable>condition</replaceable> "
 "が指定された場合、<replaceable>condition</replaceable> が true と評価される行"
 "のみが考慮されます。数値、文字列（アルファベット順比較）、タイムスタンプで動"
-"作します。値が見つからない場合は undefined を返します。例: <literal>le:"
+"作します。値が見つからない場合は none を返します。例: <literal>le:"
 "toInt(Column(\"Quantity\")) = maximum(toInt(Column(\"Quantity\")))</literal> "
 "は最大数量の行を表示します。"
 
@@ -19284,7 +19284,7 @@ msgstr ""
 "れるすべての数値の合計を計算します。<replaceable>condition</replaceable> が指"
 "定された場合、<replaceable>condition</replaceable> が true と評価される行のみ"
 "が計算に含まれます。数値でない結果は無視されます。数値が見つからない場合は "
-"undefined を返します。例: <literal>le:toInt(Column(\"Quantity\")) / "
+"none を返します。例: <literal>le:toInt(Column(\"Quantity\")) / "
 "sum(toInt(Column(\"Quantity\"))) * 100</literal> は各行の合計数量に対するパー"
 "センテージを計算します。条件付きの例: <literal>le:"
 "sum(toInt(Column(\"Sales\")), Column(\"Region\") = \"East\")</literal> は "
@@ -24339,7 +24339,7 @@ msgstr "プラグインは名前で指定します。例えば、次のように
 #: English/Plugins.xml:383
 #, no-wrap
 msgid "MakeUpper|SortAscending|Replace \"AAA\" \"BBB\""
-msgstr ""
+msgstr "MakeUpper|SortAscending|Replace \"AAA\" \"BBB\""
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:385
