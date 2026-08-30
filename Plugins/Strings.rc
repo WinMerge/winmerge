@@ -338,6 +338,10 @@ BEGIN
                             "API key changed. Restart to apply."
     IDS_PLUGIN_EDITORADDIN_STR10
                             "Provider"
+    IDS_PLUGIN_EDITORADDIN_STR11
+                            "Base URL"
+    IDS_PLUGIN_EDITORADDIN_STR12
+                            "(pick a preset to fill in the field above)"
 END
 
 #endif    // English (United States) resources

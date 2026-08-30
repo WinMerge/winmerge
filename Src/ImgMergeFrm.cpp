@@ -651,6 +651,8 @@ void CImgMergeFrame::LoadOptions()
 	RefreshOptions();
 
 	m_pImgMergeWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
+	// After SetHorizontalSplit(): changing the orientation discards the position.
+	m_pImgMergeWindow->SetSplitterPosition(GetOptionsMgr()->GetInt(OPT_CMP_IMG_SPLITTER_POS));
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetBlinkDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_BLINKDIFFERENCES));
 	m_pImgMergeWindow->SetOverlayMode(static_cast<IImgMergeWindow::OVERLAY_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYMODE)));
@@ -673,6 +675,7 @@ void CImgMergeFrame::LoadOptions()
 
 void CImgMergeFrame::SaveOptions()
 {
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SPLITTER_POS, m_pImgMergeWindow->GetSplitterPosition());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pImgMergeWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BLINKDIFFERENCES, m_pImgMergeWindow->GetBlinkDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYMODE, m_pImgMergeWindow->GetOverlayMode());
@@ -784,7 +787,9 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				m_filePaths[pane] = m_strSaveAsPath;
 			if (filename != m_filePaths[pane])
 			{
-				if (!m_infoUnpacker.Packing(pane, filename, m_filePaths[pane], m_unpackerSubcodes[pane], { m_filePaths[pane] }))
+				PluginPipelineContext pipelineContext;
+				pipelineContext.variables = { m_filePaths[pane] };
+				if (!m_infoUnpacker.Packing(pane, filename, m_filePaths[pane], m_unpackerSubcodes[pane], pipelineContext))
 				{
 					// Restore save point
 					m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -846,7 +851,9 @@ RETRY:
 		}
 		if (filename != strPath)
 		{
-			if (!m_infoUnpacker.Packing(pane, filename, strPath, m_unpackerSubcodes[pane], { strPath }))
+			PluginPipelineContext pipelineContext;
+			pipelineContext.variables = { strPath };
+			if (!m_infoUnpacker.Packing(pane, filename, strPath, m_unpackerSubcodes[pane], pipelineContext))
 			{
 				// Restore save point
 				m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -1205,12 +1212,14 @@ void CImgMergeFrame::UpdateSplitter()
 bool CImgMergeFrame::OpenImages()
 {
 	bool bResult;
-	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
+	PluginPipelineContext pipelineContext;
+	pipelineContext.filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, { strTempFileName[pane] }))
+		pipelineContext.variables = { strTempFileName[pane] };
+		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], pipelineContext))
 		{
 			//return false;
 		}
@@ -1223,7 +1232,7 @@ bool CImgMergeFrame::OpenImages()
 	{
 		std::error_code ec(m_pImgMergeWindow->GetLastErrorCode(), std::generic_category());
 		String sSysError = ucr::toTString(ec.message());
-		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), filteredFilenames, sSysError);
+		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), pipelineContext.filteredFilenames, sSysError);
 		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 

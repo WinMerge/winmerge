@@ -1,5 +1,109 @@
 # Change log
 
+## WinMerge 2.16.59 - 2026-10-04
+
+### Appearance
+
+* Migrate toolbar and margin icons from BMP to PNG (GDI+ decoding) (PR #3510)
+
+* [BUG] MDI window controls (Minimize/Maximize/Close) are completely hidden unless hoveredbug (#3511)
+
+### File compare
+
+* Add an option to prefer the WIC decoder when loading images for image comparison (PR #3537)
+
+* BugFix: Fix Shift+Insert paste going to file instead of Filter Bar (#3585)
+
+### Filter expressions
+
+* Add the FilterExpression support required by the upcoming ApplyLineFilter plugin (PR #3530)
+
+* BugFix: Fix case-insensitive contains in filter expressions (#3586)
+
+### Status bar
+
+* Make merge mode indicator clickable and reduce its width (PR #3529)
+
+### Archive support
+
+* BugFix: Fix issue #3588: Cannot compare folders inside zip files
+
+### Plugins
+
+* Add plugin selection buttons to the status bar (PR #3518)
+
+* Support adding plugins to pipelines from menus (PR #3523)
+
+* Add filter expressions to plugin pipelines (PR #3540)
+
+* Add MiniMax provider support to AI plugin (PR #3499)
+
+* Add local LLM and custom OpenAI-compatible API support (#3589)
+
+### Translations
+
+* Translation updates:
+
+  * Brazilian (PR #3526, PR #3528, PR #3536, PR #3538)
+  * Chinese Simplified (PR #3531, PR #3542)
+  * French (PR #3534, PR #3547)
+  * German (PR #3524, PR #3541)
+  * Korean (PR #3548)
+  * Lithuanian (PR #3543)
+  * Polish (PR #3527, PR #3549)
+  * Russian (PR #3546)
+  * Turkish (PR #3532, PR #3544)
+
+## WinMerge 2.16.58.2 - 2026-08-27
+
+### Appearance
+
+* BugFix: Fix cramped toolbar icon spacing at high DPI
+
+### File compare
+
+* BugFix: Fix word diff calculation for hidden lines (#3535)
+
+* BugFix: Fix a minor word selection issue (#3521)
+
+* Improve diff view rendering speed for large contiguous hidden sections
+    (PR #3517)
+
+### Folder compare
+
+* BugFix: [BUG] Sorting of files is temporarily wrong while diff is running
+    (#3579)(PR #3581)
+
+### Filter expressions
+
+* BugFix: Allow `none` to be ignored when concatenating strings with `+`
+    (#3550)
+
+### Archive generation
+
+* BugFix: Allow archive generation for one-sided file comparisons
+
+### Plugins
+
+* BugFix: Fix off-by-one bug losing the last byte of `BUFFER_PACK_UNPACK`
+    plugin output
+
+### Translations
+
+* Translation updates:
+
+  * Brazilian (PR #3508)
+  * Chinese Simplified (PR #3493)
+  * Chinese Traditional (PR #3505)
+  * Hungarian (PR #3502)
+  * Polish (PR #3501)
+  * Russian (PR #3494)
+  * Turkish (PR #3506)
+
+### Documentation
+
+* BugFix: Fix syntax errors in the Spanish "Filters" manual page
+
 ## WinMerge 2.16.58 - 2026-07-27
 
 ### File compare

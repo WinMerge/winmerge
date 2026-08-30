@@ -94,6 +94,7 @@
 #include "ArchiveTool.h"
 #include "DiffImageListUtils.h"
 #include "PluginMenu.h"
+#include "TableProps.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -367,6 +368,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS, OnUpdateIncludeSubfolders)
 	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnUpdateCompareMethod)
+	ON_MESSAGE(CMenuBar::UWM_MDI_BUTTON_CONTEXTMENU, OnMDIButtonContextMenu)
 	// Status bar
 	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
@@ -466,6 +468,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	Logger::Get().SetOutputFunction([this](Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)
 		{ OutputLog(level, tp, msg, level == Logger::LogLevel::ERR); } );
+
+	FilterExpression::SetLogger([](int level, const std::string& msg) {
+		if (level == 0)
+			RootLogger::Error(msg);
+		else if (level == 1)
+			RootLogger::Warn(msg);
+		else
+			RootLogger::Info(msg);
+		});
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
@@ -1076,7 +1087,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	pMergeDoc->SetEnableTableEditing(table);
 	if (pOpenParams && table.value_or(false))
 	{
-		CMergeDoc::TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
+		TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
 			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
 		if (const auto* pOpenTableFileParams = dynamic_cast<const OpenTableFileParams*>(pOpenParams))
 		{
@@ -2613,6 +2624,21 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 {
 	if (m_wndMenuBar.PreTranslateMessage(pMsg))
 		return TRUE;
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_INSERT)
+	{
+		CWnd* pFocus = GetFocus();
+		if (pFocus != nullptr)
+		{
+			tchar_t szClassName[32];
+			::GetClassName(pFocus->m_hWnd, szClassName, _countof(szClassName));
+			if (tc::tcscmp(szClassName, WC_EDIT) == 0)
+			{
+				// Let Edit/ComboBox controls handle Shift+Insert/Ctrl+Insert themselves
+				// instead of intercepting via the accelerator table (#3585)
+				return CWnd::PreTranslateMessage(pMsg);
+			}
+		}
+	}
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
@@ -3056,6 +3082,7 @@ BOOL CMainFrame::CreateToolbar()
 	{
 		return FALSE;
 	}
+	m_wndMenuBar.SetMDIButtonVisibility(static_cast<MDIButtonVisibility>(GetOptionsMgr()->GetInt(OPT_MDI_BUTTON_VISIBILITY)));
 
 	// Remove TBSTYLE_TOOLTIPS if you don't want tooltips
 	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT | TBSTYLE_TRANSPARENT | TBSTYLE_TOOLTIPS) ||
@@ -3199,12 +3226,11 @@ void CMainFrame::OnIdleUpdateCmdUI()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	const int toolbarNewImgSize = MulDiv(8, GetSystemMetrics(SM_CXSMICON), 16) * 
+	const int cxSMICON = GetSystemMetrics(SM_CXSMICON);
+	const int toolbarNewImgSize = MulDiv(8, cxSMICON, 16) * 
 		(2 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 	CImageList imgEnabled, imgDisabled;
-	CSize sizeButton(0, 0);
-
 	if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), IDR_TOOLBAR_ENABLED32_PNG, TOOLBAR_IMAGE_COUNT,
 		toolbarNewImgSize, toolbarNewImgSize - 1, imgEnabled, &imgDisabled))
 	{
@@ -3212,15 +3238,16 @@ void CMainFrame::LoadToolbarImages()
 		return;
 	}
 	
-	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
-
-	BarCtrl.SetButtonSize(sizeButton);
 	if (CImageList* pImgList = BarCtrl.SetImageList(&imgEnabled))
 		pImgList->DeleteImageList();
 	if (CImageList* pImgList = BarCtrl.SetDisabledImageList(&imgDisabled))
 		pImgList->DeleteImageList();
 	imgEnabled.Detach();
 	imgDisabled.Detach();
+
+	const int toolbarPadding = MulDiv(8, cxSMICON, 16);
+	CSize sizeButton = CSize(toolbarNewImgSize + toolbarPadding, toolbarNewImgSize + toolbarPadding);
+	BarCtrl.SetButtonSize(sizeButton);
 
 	// resize the rebar.
 	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
@@ -3546,7 +3573,10 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		CWaitCursor wait;
 		copiedFile = file;
 		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
-		if (!infoUnpacker2.Unpacking(0, nullptr, copiedFile, copiedFile, { copiedFile }))
+		PluginPipelineContext pipelineContext;
+		pipelineContext.filteredFilenames = copiedFile;
+		pipelineContext.variables = { copiedFile };
+		if (!infoUnpacker2.Unpacking(0, nullptr, copiedFile, pipelineContext))
 		{
 			String sError = strutils::format_string1(_("File not unpacked: %1"), file);
 			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
@@ -3791,6 +3821,44 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetRadio((pCmdUI->m_nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
 	pCmdUI->Enable();
+}
+
+LRESULT CMainFrame::OnMDIButtonContextMenu(WPARAM wParam, LPARAM lParam)
+{
+	CPoint pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+	if (pt.x == -1 && pt.y == -1)
+		::GetCursorPos(&pt);
+	CMenu menu;
+	menu.CreatePopupMenu();
+
+	auto visibility = GetOptionsMgr()->GetInt(OPT_MDI_BUTTON_VISIBILITY);
+
+	UINT flagsAuto = MF_STRING | (visibility == static_cast<int>(MDIButtonVisibility::AutoHide) ? MF_CHECKED : 0);
+	UINT flagsShow = MF_STRING | (visibility == static_cast<int>(MDIButtonVisibility::AlwaysShow) ? MF_CHECKED : 0);
+	UINT flagsHide = MF_STRING | (visibility == static_cast<int>(MDIButtonVisibility::AlwaysHide) ? MF_CHECKED : 0);
+
+	menu.AppendMenu(flagsAuto, 1, _("&Auto-hide MDI buttons").c_str());
+	menu.AppendMenu(flagsShow, 2, _("Always &show MDI buttons").c_str());
+	menu.AppendMenu(flagsHide, 3, _("Always &hide MDI buttons").c_str());
+
+	int cmd = menu.TrackPopupMenu(
+		TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD | TPM_NONOTIFY,
+		pt.x, pt.y, this);
+
+	if (cmd == 0)
+		return 0;
+
+	MDIButtonVisibility newVis = MDIButtonVisibility::AutoHide;
+	switch (cmd)
+	{
+	case 2: newVis = MDIButtonVisibility::AlwaysShow; break;
+	case 3: newVis = MDIButtonVisibility::AlwaysHide; break;
+	}
+
+	GetOptionsMgr()->SaveOption(OPT_MDI_BUTTON_VISIBILITY, static_cast<int>(newVis));
+	m_wndMenuBar.SetMDIButtonVisibility(newVis);
+
+	return 0;
 }
 
 void CMainFrame::OnMRUs(UINT nID)

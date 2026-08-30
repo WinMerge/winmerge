@@ -39,6 +39,7 @@ inline const String OPT_SHOW_OUTPUTBAR {_T("Settings/ShowOutputbar"s)};
 inline const String OPT_REBAR_STATE {_T("Settings/ReBarState"s)};
 inline const String OPT_TOOLBAR_SIZE {_T("Settings/ToolbarSize"s)};
 inline const String OPT_RESIZE_PANES {_T("Settings/AutoResizePanes"s)};
+inline const String OPT_MDI_BUTTON_VISIBILITY {_T("Settings/MDIButtonVisibility"s)};
 
 inline const String OPT_SYNTAX_HIGHLIGHT {_T("Settings/HiliteSyntax"s)};
 inline const String OPT_SYNTAX_HIGHLIGHT_MODE {_T("Settings/HiliteSyntaxMode"s)};
@@ -273,6 +274,7 @@ inline const String OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL {_T("Settings/ImageOver
 inline const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP {_T("Settings/EnableImageCompareInFolderCompare"s)};
 inline const String OPT_CMP_IMG_OCR_RESULT_TYPE {_T("Settings/ImageOcrResultType"s)};
 inline const String OPT_CMP_IMG_PREFER_WIC_DECODER {_T("Settings/ImagePreferWICDecoder"s)};
+inline const String OPT_CMP_IMG_SPLITTER_POS {_T("Settings/ImageSplitterPosition"s)};
 
 // WebPage Compare options
 inline const String OPT_CMP_WEB_USERDATAFOLDER_TYPE {_T("Settings/WebPageUserDataFolderType"s)};

@@ -22,6 +22,7 @@
 #include "FileTransform.h"
 #include "LineFilterHelper.h"
 #include "MergeResultPane.h"
+#include "TableProps.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -132,7 +133,6 @@ class CMergeResultView;
 class CMergeDoc : public CDocument, public IMergeDoc, public IMDITab, public ILineDataProvider
 {
 public:
-	struct TableProps { bool istable; tchar_t delimiter; tchar_t quote; bool allowNewlinesInQuotes; };
 	// Attributes
 public:
 	static int m_nBuffersTemp;
@@ -202,6 +202,8 @@ public:
 	void SetPrediffer(const PrediffingInfo* infoPrediffer);
 	void GetPrediffer(PrediffingInfo* infoPrediffer) const;
 	const PrediffingInfo* GetPrediffer() const override;
+	void IgnoreColumnInComparison(int column, const String& panePrefix, bool add);
+	void ResetIgnoredColumnsInComparison();
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
@@ -291,6 +293,7 @@ public:
 	std::string GetLine(int pane, int lineIndex) const override;
 	int GetColumnCount(int pane, int lineIndex) const override;
 	std::string GetColumn(int pane, int lineIndex, int columnIndex) const override;
+	std::string GetColumns(int pane, int lineIndex, const std::vector<int>& columns) const override;
 	int GetRealLineNumber(int pane, int lineIndex) const override;
 	unsigned GetLineFlags(int pane, int lineIndex) const override;
 	unsigned GetLineEol(int pane, int lineIndex) const override;
@@ -456,7 +459,9 @@ public:
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
 	static TableProps MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog = true);
+	const TableProps* GetPreparedTableProperties() const { return m_pTablePropsPrepared.get(); }
 	void SetPreparedTableProperties(const TableProps& props) { m_pTablePropsPrepared.reset(new TableProps(props)); }
+	TableProps GetCurrentTableProperties(int pane) const;
 
 	void SetTextType(int textType);
 	void SetTextType(const String& ext);
@@ -617,4 +622,3 @@ inline bool CMergeDoc::HasSyncPoints()
 {
 	return m_bHasSyncPoints;
 }
-

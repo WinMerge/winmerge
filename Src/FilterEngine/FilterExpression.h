@@ -80,7 +80,7 @@ struct FilterExpression
 	bool Evaluate(const DIFFITEM& di) { FilterEvalContext ectxt{ this, &di }; return Evaluate(ectxt); }
 	bool Evaluate(const FilterEvalContext& ectxt);
 	std::vector<String> EvaluateKeys(const DIFFITEM& di);
-	String TransformLine(const FilterEvalContext& ectxt);
+	std::string TransformLine(const FilterEvalContext& ectxt);
 	void UpdateTimestamp();
 	void Clear();
 	std::vector<std::string> GetPropertyNames() const;

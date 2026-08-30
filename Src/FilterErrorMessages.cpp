@@ -38,6 +38,8 @@ String GetFilterErrorMessage(FilterErrorCode code)
 		return _("Invalid property name");
 	case FILTER_ERROR_INVALID_DIRECTIVE:
 		return _("Invalid directive");
+	case FILTER_ERROR_INVALID_ARGUMENT:
+		return _("Invalid argument");
 	default:
 		return _("Unknown error");
 	}

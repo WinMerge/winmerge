@@ -363,6 +363,11 @@ protected:
 	afx_msg void OnUseFirstLineAsHeaders();
 	afx_msg void OnUpdateUseFirstLineAsHeaders(CCmdUI* pCmdUI);
 	afx_msg void OnAutoFitAllColumns();
+	afx_msg void OnIgnoreColumnInComparison(UINT nID);
+	afx_msg void OnUpdateIgnoreColumnInComparison(CCmdUI* pCmdUI);
+	afx_msg void OnResetIgnoredColumnsInComparison();
+	afx_msg void OnUpdateResetIgnoredColumnsInComparison(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateIgnoreColumnInComparisonCtrlClick(CCmdUI* pCmdUI);
 	afx_msg void OnFilterMenuColumn(UINT nID);
 	afx_msg void OnUpdateViewChangeScheme(CCmdUI *pCmdUI);
 	afx_msg void OnChangeScheme(UINT nID);
@@ -393,4 +398,3 @@ inline bool CMergeEditView::IsCursorInDiff() const
 {
 	return m_bCurrentLineIsDiff;
 }
-

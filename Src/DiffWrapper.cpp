@@ -40,6 +40,7 @@
 #include "cio.h"
 #include "SyntaxParserRegistry.h"
 #include "SyntaxParserHelper.h"
+#include "TableProps.h"
 
 using Poco::Exception;
 
@@ -774,6 +775,9 @@ bool CDiffWrapper::RunFileDiff()
 	if (m_bUseDiffList)
 		m_nDiffs = m_pDiffList->GetSize();
 
+	PluginPipelineContext pipelineContext;
+	pipelineContext.filteredFilenames = m_sToFindPrediffer;
+
 	for (file = 0; file < aFiles.GetSize(); file++)
 	{
 		if (m_bPluginsEnabled)
@@ -785,7 +789,9 @@ bool CDiffWrapper::RunFileDiff()
 
 			// this can only fail if the data can not be saved back (no more
 			// place on disk ???) What to do then ??
-			if (m_infoPrediffer && !m_infoPrediffer->Prediffing(file, strFileTemp[file], m_sToFindPrediffer, m_bPathsAreTemp, { strFileTemp[file] }))
+			pipelineContext.variables = { strFileTemp[file] };
+			pipelineContext.tableProps = m_tableProps[file];
+			if (m_infoPrediffer && !m_infoPrediffer->Prediffing(file, strFileTemp[file], m_bPathsAreTemp, pipelineContext))
 			{
 				// display a message box
 				String sError = strutils::format_string2(

@@ -98,6 +98,7 @@ BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_PLUGIN_ALIAS, OnClickedAlias)
 	ON_BN_CLICKED(IDC_PLUGIN_ADDPIPE, OnClickedAddPipe)
 	ON_CBN_EDITCHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
+	ON_CBN_SELCHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnClickedSettings)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -141,6 +142,32 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	m_strPluginPipeline = pipeline;
 	UpdateData(FALSE);
 
+	if (m_ctlPluginPipeline.GetEditCtrl()->GetSafeHwnd())
+	{
+		m_ctlPluginPipelineEdit.SubclassWindow(m_ctlPluginPipeline.GetEditCtrl()->m_hWnd);
+		m_ctlPluginPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
+			{
+				if (text.IsEmpty())
+					return true;
+				String pipeline = text;
+				std::unique_ptr<PluginForFile> pPluginPipeline;
+				if (m_pluginType == PluginType::Unpacker)
+					pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
+				else if (m_pluginType == PluginType::Prediffer)
+					pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
+				else
+					pPluginPipeline = std::make_unique<EditorScriptInfo>(pipeline);
+				String errorMessage;
+				bool result = pPluginPipeline->Validate(errorMessage);
+				error = errorMessage.c_str();
+				return result;
+			};
+		m_ctlPluginPipelineEdit.Validate();
+		String cueBanner = strutils::format_string1(_("e.g. %1"),
+			(m_pluginType == PluginType::Prediffer) ? _T("le:toUpper(Line)|IgnoreLeadingLineNumbers") : _T("le:toUpper(Line)|SortAscending"));
+		m_ctlPluginPipelineEdit.SetCueBanner(cueBanner.c_str());
+	}
+
 	const std::array<String, 3> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
 	String pluginTypeStr = pluginTypes[static_cast<int>(m_pluginType)];
 
@@ -167,8 +194,9 @@ void CSelectPluginDlg::prepareListbox()
 	PluginInfo* pSelPlugin = nullptr;
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
-	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
-	uint8_t targetFlags = parseResult.empty() ? 0xff : parseResult.back().targetFlags;
+	PluginForFile::PluginPipelineItem* pLastItem = parseResult.empty() ? nullptr : PluginForFile::GetPluginPipelineItemPtr(parseResult.back());
+	String lastPluginName = !pLastItem ? _T("") : pLastItem->name;
+	uint8_t targetFlags = !pLastItem ? 0xff : pLastItem->targetFlags;
 	INT_PTR nameCount = 0;
 
 	// Target files combobox
@@ -298,7 +326,8 @@ void CSelectPluginDlg::OnClickedAlias()
 		{
 			for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
 			{
-				if (name == parseResult.front().name)
+				const auto* pPluginItem = PluginForFile::GetPluginPipelineItemPtr(parseResult.front());
+				if (pPluginItem && name == pPluginItem->name)
 					plugin = plugin2;
 			}
 		}
@@ -341,6 +370,7 @@ void CSelectPluginDlg::OnClickedAddPipe()
 
 void CSelectPluginDlg::OnChangePipeline()
 {
+	m_ctlPluginPipelineEdit.OnEnChange();
 	UpdateData(TRUE);
 }
 
@@ -387,9 +417,12 @@ void CSelectPluginDlg::OnSelchangePluginName()
 					String errorMessage;
 					auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
 					if (parseResult.empty())
-						parseResult.push_back({ name, targetFlags, {}, '\0' });
-					parseResult.back().name = name;
-					parseResult.back().targetFlags = targetFlags;
+						parseResult.push_back(PluginForFile::PluginPipelineItem{ targetFlags, name, {}, '\0' });
+					if (auto* pPluginItem = PluginForFile::GetPluginPipelineItemPtr(parseResult.front()))
+					{
+						pPluginItem->name = name;
+						pPluginItem->targetFlags = targetFlags;
+					}
 					m_strPluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 					pPlugin = plugin;
 					break;
@@ -438,7 +471,8 @@ void CSelectPluginDlg::OnClickedSettings()
 			{
 				for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
 				{
-					if (name == parseResult.front().name)
+					const auto* pPluginItem = PluginForFile::GetPluginPipelineItemPtr(parseResult.front());
+					if (pPluginItem && name == pPluginItem->name)
 					{
 						plugin = plugin2;
 						break;

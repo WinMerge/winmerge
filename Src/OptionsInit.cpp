@@ -67,6 +67,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_REBAR_STATE, _T(""));
 	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0, 0, 3);
 	pOptions->InitOption(OPT_RESIZE_PANES, false);
+	pOptions->InitOption(OPT_MDI_BUTTON_VISIBILITY, 0, 0, 2);
 
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT_MODE, 1);
@@ -191,6 +192,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL, 1000, 200, 8000);
 	pOptions->InitOption(OPT_CMP_IMG_OCR_RESULT_TYPE, 0, 0, 2);
 	pOptions->InitOption(OPT_CMP_IMG_PREFER_WIC_DECODER, false);
+	pOptions->InitOption(OPT_CMP_IMG_SPLITTER_POS, 0, -65535, 65535);
 
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_TYPE, 0, 0, 1);
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_PERPANE, true);

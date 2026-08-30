@@ -2209,12 +2209,22 @@ and not RightExists</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>Column</function>(<replaceable>indexOrName</replaceable>),
+<function>ColumnRange</function>(<replaceable>specification</replaceable>),
 <function>ColumnAt</function>(<replaceable>line</replaceable>,
 <replaceable>indexOrName</replaceable>),
 <function>ColumnOffsetAt</function>(<replaceable>offset</replaceable>,
 <replaceable>indexOrName</replaceable>)  (テーブルモードのみ)</term>
-            <listitem><para>現在行、絶対行、または相対行のインデックスまたは名前によるセル内容。例: <literal>le:RightColumn("Category") !=
-ColumnOffsetAt(-1, "Category")</literal></para></listitem>
+            <listitem><para>現在行、絶対行、または相対行における、インデックスまたは名前で指定したセルの内容。<function>Column</function>
+では、数値文字列は常に列名として扱われます。数値引数は、1 から始まる列インデックスを表します。複数の列や範囲を指定するには
+<function>ColumnRange</function>
+を使用し、<literal>N</literal>、<literal>N-M</literal>、<literal>N-</literal>
+をカンマで区切って指定します。空白は無視されます。たとえば、<literal>ColumnRange("1, 3, 5-10,
+13-")</literal> のように指定できます。範囲の先頭に <literal>!</literal>
+を付けると、その範囲を除外できます。たとえば、<literal>ColumnRange("!1")</literal> は列 1
+を除外し、<literal>ColumnRange("1-10,!4-5")</literal> は列 4～5 を除く列 1～10
+を選択します。含める範囲が指定されていない場合は、除外を適用する前にすべての列が対象となります。既存の名前指定および単一インデックス指定の形式では 1
+つのセルを返します。範囲指定の形式では、選択したセルの値をテーブルの区切り文字で連結して返します。例：<literal>le:RightColumn("Category")
+!= ColumnOffsetAt(-1, "Category")</literal></para></listitem>
           </varlistentry>
         </variablelist>
       </section>
