@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-08-25 16:55+0200\n"
+"PO-Revision-Date: 2026-08-30 16:45+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -10598,8 +10598,8 @@ msgstr "Anbieter"
 
 #: Strings.rc:342
 msgid "Base URL"
-msgstr ""
+msgstr "Basis-URL"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr ""
+msgstr "(Wählen Sie eine Voreinstellung, um das obige Feld auszufüllen)"
