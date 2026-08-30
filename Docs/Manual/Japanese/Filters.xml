@@ -2463,6 +2463,22 @@ linkend="Filters_DisplayLineFilter"/> を参照してください。</para></lis
     </itemizedlist>
   </section>
 
+  <section id="Filters_LineFilterPluginPipeline">
+    <title>プラグインパイプラインでのフィルター式の使用</title>
+
+    <para>バージョン2.16.59以降では、フィルター式の前に<literal>le:</literal>を付けることで、プラグインパイプラインの項目としてフィルター式を使用できます。例えば、次のように指定します。</para>
+
+    <synopsis>le:toUpper(Line)|SortAscending</synopsis>
+
+    <para>使用できるフィルター式の関数と演算子については、<xref linkend="FilterExpression_Syntax" />
+を参照してください。</para>
+
+    <para>プラグインパイプラインでフィルター式を使用する場合、フィルター式は一度に1行ずつ（スカラー値として）処理されます。これは表示行フィルターとは異なります。表示行フィルターでは、<literal>Line</literal>
+などの属性は、比較対象となる左右の行の値の組を表し、通常は <literal>[Left, Right]</literal>
+のような配列として表現されます。一方、プラグインパイプラインでは、<literal>Line</literal>
+などの同じ属性が、現在処理している1行を表すスカラー値になります。</para>
+  </section>
+
   <section id="Filters_SubstitutionFilter">
     <title>置換フィルタの使用<indexterm>
         <primary>フィルター</primary>

@@ -218,14 +218,14 @@
       linkend="EditorAddin" /> and <xref linkend="Plugins_datetime" />
       plugins.</para>
 
-      <note>
-        <para>Editor complement plugins are not available in the Folder Compare
-        window.</para>
-      </note>
-    </section>
+        <note>
+          <para>Editor complement plugins are not available in the Folder Compare
+          window.</para>
+        </note>
+      </section>
 
-    <section>
-      <title>Applying unpacker plugins in the Folder Compare window</title>
+      <section>
+        <title>Applying unpacker plugins in the Folder Compare window</title>
 
       <para>Before applying unpacker plugins, you can set its mode to either
       automatic or manual mode.</para>
@@ -362,12 +362,40 @@
 
       <para>In the File Compare window, you can apply a prediffer plugin by
       clicking <menuchoice>
-          <guimenu>Plugins</guimenu>
+           <guimenu>Plugins</guimenu>
 
-          <guisubmenu>Prediffer</guisubmenu>
-        </menuchoice> and choosing one of the plugins in the list. Suggested
+           <guisubmenu>Prediffer</guisubmenu>
+         </menuchoice> and choosing one of the plugins in the list. Suggested
       plugins are indicated at the top of the list. The files are compared again
       after the plugin is applied, so you don't need to rescan the files.</para>
+    </section>
+
+    <section>
+      <title>Using plugin pipelines</title>
+
+      <para>Plugin pipelines allow you to chain multiple plugins and filter 
+      expressions using the pipe character (<keycap>|</keycap>) as a separator. 
+      Plugin pipelines can be used with all plugin types: unpacker, prediffer, 
+      and editor complement plugins.</para>
+
+      <para>Plugins are specified by their names. For example:</para>
+
+      <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
+
+      <para>Filter expressions can also be used in plugin pipelines by prefixing 
+      them with <literal>le:</literal>. For example:</para>
+
+      <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
+
+      <para>See <xref linkend="FilterExpression_Syntax" /> for available filter 
+      expression functions and operators.</para>
+
+      <para>You can specify a plugin pipeline in the <guibutton>Select Plugin</guibutton> 
+      dialog by entering the pipeline expression.</para>
+
+      <para>When a plugin pipeline is already selected, you can append a plugin to 
+      it by holding down the <keycap>Ctrl</keycap> key while clicking the plugin in 
+      a plugin selection menu.</para>
     </section>
   </section>
 

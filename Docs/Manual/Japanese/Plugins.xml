@@ -187,13 +187,13 @@ class="registered">Microsoft</trademark> <application>Excel</application>
       <para><guisubmenu>スクリプト</guisubmenu> メニューのこの機能は、<xref linkend="EditorAddin" /> と
 <xref linkend="Plugins_datetime" /> プラグイン によるものです。</para>
 
-      <note>
-        <para>エディター補完プラグインは、フォルダー比較ウィンドウでは使用できません。</para>
-      </note>
-    </section>
+        <note>
+          <para>エディター補完プラグインは、フォルダー比較ウィンドウでは使用できません。</para>
+        </note>
+      </section>
 
-    <section>
-      <title>フォルダー比較ウィンドウでの展開プラグインの適用</title>
+      <section>
+        <title>フォルダー比較ウィンドウでの展開プラグインの適用</title>
 
       <para>展開プラグインを適用する前に、 モードを自動モードまたは手動モードに設定できます。</para>
 
@@ -304,6 +304,27 @@ class="registered">Microsoft</trademark> <application>Excel</application>
 </menuchoice>をクリックして、リスト内のプラグインの1つを選択することにより、
 比較前処理プラグインを適用できます。推奨されるプラグインはリストの上部に示されています。
 プラグインが適用された後にファイルが再度比較されるため、ファイルを再スキャンする必要はありません。</para>
+    </section>
+
+    <section>
+      <title>プラグインパイプラインの使用</title>
+
+      <para>プラグインパイプラインを使用すると、パイプ文字（<keycap>|</keycap>）を区切り文字として、複数のプラグインやフィルター式を連結できます。プラグインパイプラインは、展開プラグイン、比較前処理プラグイン、エディター補完プラグインのすべてのプラグインタイプで使用できます。</para>
+
+      <para>プラグインは名前で指定します。例えば、次のように指定します。</para>
+
+      <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
+
+      <para>プラグインパイプラインでは、フィルター式の前に<literal>le:</literal>を付けることで、フィルター式も使用できます。例えば、次のように指定します。</para>
+
+      <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
+
+      <para>使用できるフィルター式の関数と演算子については、<xref linkend="FilterExpression_Syntax" />
+を参照してください。</para>
+
+      <para><guibutton>プラグインの選択</guibutton>ダイアログでパイプライン式を入力することで、プラグインパイプラインを指定できます。</para>
+
+      <para>プラグインパイプラインがすでに選択されている場合は、プラグイン選択メニューで<keycap>Ctrl</keycap>キーを押しながらプラグインをクリックすることで、そのプラグインをパイプラインの末尾に追加できます。</para>
     </section>
   </section>
 

@@ -2660,6 +2660,26 @@ Pekka Himanen</screen></para>
     </itemizedlist>
   </section>
 
+  <section id="Filters_LineFilterPluginPipeline">
+    <title>Using filter expressions in plugin pipelines</title>
+
+    <para>Starting with version 2.16.59, filter expressions can be used as items 
+    in plugin pipelines by prefixing them with <literal>le:</literal>. For example:</para>
+
+    <synopsis>le:toUpper(Line)|SortAscending</synopsis>
+
+    <para>See <xref linkend="FilterExpression_Syntax" /> for available filter 
+    expression functions and operators.</para>
+
+    <para>When filter expressions are used in plugin pipelines, they operate on a 
+    single line at a time (a scalar value), which differs from display line filters. 
+    In display line filters, attributes like <literal>Line</literal> represent pairs 
+    of values (left and right sides being compared), typically expressed as arrays 
+    like <literal>[Left, Right]</literal>. In plugin pipelines, the same attributes 
+    like <literal>Line</literal> are scalar values representing the current line being 
+    processed.</para>
+  </section>
+
   <section id="Filters_SubstitutionFilter">
     <title>Using substitution filters<indexterm>
         <primary>filters</primary>
