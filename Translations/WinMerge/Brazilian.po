@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-08-24 22:15-0300\n"
+"PO-Revision-Date: 2026-08-29 14:45-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -9223,3 +9223,11 @@ msgstr "Chave da API alterada. Reinicie para aplicar."
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Fornecedor"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr "URL Base"
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr "(escolha um valor predeterminado para preeencher no campo acima)"

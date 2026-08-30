@@ -163,7 +163,9 @@ BOOL CSelectPluginDlg::OnInitDialog()
 				return result;
 			};
 		m_ctlPluginPipelineEdit.Validate();
-		m_ctlPluginPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+		String cueBanner = strutils::format_string1(_("e.g. %1"),
+			(m_pluginType == PluginType::Prediffer) ? _T("le:toUpper(Line)|IgnoreLeadingLineNumbers") : _T("le:toUpper(Line)|SortAscending"));
+		m_ctlPluginPipelineEdit.SetCueBanner(cueBanner.c_str());
 	}
 
 	const std::array<String, 3> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };

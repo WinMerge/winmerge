@@ -651,6 +651,8 @@ void CImgMergeFrame::LoadOptions()
 	RefreshOptions();
 
 	m_pImgMergeWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
+	// After SetHorizontalSplit(): changing the orientation discards the position.
+	m_pImgMergeWindow->SetSplitterPosition(GetOptionsMgr()->GetInt(OPT_CMP_IMG_SPLITTER_POS));
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetBlinkDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_BLINKDIFFERENCES));
 	m_pImgMergeWindow->SetOverlayMode(static_cast<IImgMergeWindow::OVERLAY_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYMODE)));
@@ -673,6 +675,7 @@ void CImgMergeFrame::LoadOptions()
 
 void CImgMergeFrame::SaveOptions()
 {
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SPLITTER_POS, m_pImgMergeWindow->GetSplitterPosition());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pImgMergeWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BLINKDIFFERENCES, m_pImgMergeWindow->GetBlinkDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYMODE, m_pImgMergeWindow->GetOverlayMode());

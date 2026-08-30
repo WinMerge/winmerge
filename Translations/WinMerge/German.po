@@ -10595,3 +10595,11 @@ msgstr "Der API-Schlüssel wurde geändert. Bitte starten Sie die Anwendung neu,
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Anbieter"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

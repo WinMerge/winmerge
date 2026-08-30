@@ -2605,6 +2605,21 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 {
 	if (m_wndMenuBar.PreTranslateMessage(pMsg))
 		return TRUE;
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_INSERT)
+	{
+		CWnd* pFocus = GetFocus();
+		if (pFocus != nullptr)
+		{
+			tchar_t szClassName[32];
+			::GetClassName(pFocus->m_hWnd, szClassName, _countof(szClassName));
+			if (tc::tcscmp(szClassName, WC_EDIT) == 0)
+			{
+				// Let Edit/ComboBox controls handle Shift+Insert/Ctrl+Insert themselves
+				// instead of intercepting via the accelerator table (#3585)
+				return CWnd::PreTranslateMessage(pMsg);
+			}
+		}
+	}
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{

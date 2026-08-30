@@ -10094,3 +10094,11 @@ msgstr ""
 #: Strings.rc:340
 msgid "Provider"
 msgstr ""
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

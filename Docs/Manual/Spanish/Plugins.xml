@@ -222,14 +222,14 @@ comandos</guisubmenu> </menuchoice>y seleccione una de estas funciones:</para>
 <xref linkend="EditorAddin" /> y los complementos <xref
 linkend="Plugins_datetime" />.</para>
 
-      <note>
-        <para>Los complementos del editor no están disponibles en la ventana de
+        <note>
+          <para>Los complementos del editor no están disponibles en la ventana de
 comparación de carpetas.</para>
-      </note>
-    </section>
+        </note>
+      </section>
 
-    <section>
-      <title>Aplicación de complementos de descompresión en la ventana de comparación de
+      <section>
+        <title>Aplicación de complementos de descompresión en la ventana de comparación de
 carpetas</title>
 
       <para>Antes de aplicar los complementos de descompresión, puede configurar su modo
@@ -371,6 +371,34 @@ prediferenciador haciendo clic en <menuchoice>
 complementos recomendados aparecen en la parte superior de la lista. Los
 archivos se vuelven a comparar una vez aplicado el complemento, por lo que
 no es necesario volver a analizarlos.</para>
+    </section>
+
+    <section>
+      <title>Using plugin pipelines</title>
+
+      <para>Plugin pipelines allow you to chain multiple plugins and filter expressions
+using the pipe character (<keycap>|</keycap>) as a separator.  Plugin
+pipelines can be used with all plugin types: unpacker, prediffer, and editor
+complement plugins.</para>
+
+      <para>Plugins are specified by their names. For example:</para>
+
+      <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
+
+      <para>Filter expressions can also be used in plugin pipelines by prefixing them
+with <literal>le:</literal>. For example:</para>
+
+      <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
+
+      <para>See <xref linkend="FilterExpression_Syntax" /> for available filter
+expression functions and operators.</para>
+
+      <para>You can specify a plugin pipeline in the <guibutton>Select
+Plugin</guibutton> dialog by entering the pipeline expression.</para>
+
+      <para>When a plugin pipeline is already selected, you can append a plugin to it by
+holding down the <keycap>Ctrl</keycap> key while clicking the plugin in a
+plugin selection menu.</para>
     </section>
   </section>
 

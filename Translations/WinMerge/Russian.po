@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-08-14 00:00+0000\n"
+"PO-Revision-Date: 2026-08-27 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -234,27 +234,27 @@ msgstr "Автоширина столбцов"
 #. IDR_POPUP_MERGEVIEWHEADER
 #: Merge.rc:153
 msgid "&Ignore This Column"
-msgstr ""
+msgstr "Игнорировать этот столбец"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON
 #: Merge.rc:155
 msgid "In &All Panes"
-msgstr ""
+msgstr "Во всех панелях"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
 #: Merge.rc:156
 msgid "In &This Pane Only (Column Not in Other Files)"
-msgstr ""
+msgstr "Только в этой панели (столбец отсутствует в других файлах)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
 #: Merge.rc:157
 msgid "(Ctrl+Click to add another column)"
-msgstr ""
+msgstr "(Ctrl+щелчок для добавления еще одного столбца)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_RESET
 #: Merge.rc:159
 msgid "&Reset All"
-msgstr ""
+msgstr "Сбросить все"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:161 Merge.rc:5655
@@ -8344,7 +8344,7 @@ msgstr "Неверная директива"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
 #: Merge.rc:5760
 msgid "Invalid argument"
-msgstr ""
+msgstr "Неверный аргумент"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5765
@@ -8485,17 +8485,17 @@ msgstr "Только Tree-sitter"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5816
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "Автоматически скрывать кнопки MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5817
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "Всегда показывать кнопки MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5818
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "Всегда скрывать кнопки MDI"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
@@ -9222,3 +9222,11 @@ msgstr "Изменен ключ API. Для применения изменен�
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Поставщик"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr ""
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr ""

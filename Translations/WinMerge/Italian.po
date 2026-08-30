@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 25.08.2026\n"
+"Project-Id-Version: WinMerge - Italian - 30.08.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-08-25 07:50+0100\n"
+"PO-Revision-Date: 2026-08-30 10:54+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -9868,3 +9868,11 @@ msgstr "La chiave API è stata modificata. Per applicare le modifiche riavvia."
 #: Strings.rc:340
 msgid "Provider"
 msgstr "Provider"
+
+#: Strings.rc:342
+msgid "Base URL"
+msgstr "URL base"
+
+#: Strings.rc:344
+msgid "(pick a preset to fill in the field above)"
+msgstr "(per compilare il campo sopra scegli un profilo)"
