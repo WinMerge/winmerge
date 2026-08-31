@@ -1045,6 +1045,9 @@
     </ClInclude>
     <ClCompile Include="MenuBar.cpp" />
     <ClCompile Include="MergeDocDiffCopy.cpp" />
+    <ClCompile Include="MergeDocResultPane.cpp" />
+    <ClCompile Include="MergeResultBar.cpp" />
+    <ClCompile Include="MergeResultView.cpp" />
     <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="MyColorDialog.cpp" />
     <ClCompile Include="MyFontDialog.cpp" />
@@ -1641,6 +1644,9 @@
     <ClInclude Include="DiffTextBuffer.h" />
     <ClInclude Include="DiffThread.h" />
     <ClInclude Include="DiffViewBar.h" />
+    <ClInclude Include="MergeResultBar.h" />
+    <ClInclude Include="MergeResultPane.h" />
+    <ClInclude Include="MergeResultView.h" />
     <ClInclude Include="DiffWrapper.h" />
     <ClInclude Include="DirCmpReport.h" />
     <ClInclude Include="DirCmpReportDlg.h" />

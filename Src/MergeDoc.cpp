@@ -22,6 +22,7 @@
 #include "MovedLines.h"
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
+#include "MergeResultView.h"
 #include "MergeLogger.h"
 #include "MergeTextFormatter.h"
 #include "IDirDoc.h"
@@ -137,6 +138,21 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND_RANGE(ID_FILTERMENU_FIRST, ID_FILTERMENU_LAST, OnFilterMenuCommand)
 	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR, OnViewDisplayFilterBar)
 	ON_COMMAND(ID_APPLY_NOW, OnViewDisplayFilterBarApply)
+	// Merge result pane (kdiff3-style)
+	ON_COMMAND_RANGE(ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_RIGHT, OnMergeChooseSource)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_RIGHT, OnUpdateMergeChooseSource)
+	ON_COMMAND_RANGE(ID_MERGE_CHOOSE_ALL_LEFT, ID_MERGE_CHOOSE_ALL_RIGHT, OnMergeChooseAllConflicts)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_CHOOSE_ALL_LEFT, ID_MERGE_CHOOSE_ALL_RIGHT, OnUpdateMergeChooseAllConflicts)
+	ON_COMMAND(ID_MERGE_RESULT_SAVE, OnMergeResultSave)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SAVE, OnUpdateMergeResultSave)
+	ON_COMMAND(ID_MERGE_RESULT_SAVEAS, OnMergeResultSaveAs)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SAVEAS, OnUpdateMergeResultSave)
+	ON_COMMAND(ID_MERGE_START_SESSION, OnMergeStartSession)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_START_SESSION, OnUpdateMergeStartSession)
+	ON_COMMAND_RANGE(ID_MERGE_RESULT_EOL_ASIS, ID_MERGE_RESULT_EOL_MAC, OnMergeResultEolStyle)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_RESULT_EOL_ASIS, ID_MERGE_RESULT_EOL_MAC, OnUpdateMergeResultEolStyle)
+	ON_COMMAND(ID_MERGE_RESULT_SHOW_SECTIONS, OnMergeResultShowSections)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SHOW_SECTIONS, OnUpdateMergeResultShowSections)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -160,11 +176,20 @@ CMergeDoc::CMergeDoc()
 , m_bAutomaticRescan(false)
 , m_bChangedSchemeManually(false)
 , m_editorScriptInfo(_T(""))
+, m_pMergeResultView(nullptr)
+, m_bResultBuilt(false)
+, m_bResultSaved(false)
+, m_bResultAutoMerge(false)
+, m_bResultROForced(false)
+, m_bResultSavedRO{ false, false, false }
 {
 	DIFFOPTIONS options = {0};
 
 	m_nBuffers = m_nBuffersTemp;
 	m_filePaths.SetSize(m_nBuffers);
+
+	if (m_nBuffers == 3)
+		m_ptResultBuf.reset(new CMergeResultTextBuffer(this));
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -217,6 +242,15 @@ void CMergeDoc::DeleteContents ()
 		m_ptBuf[nBuffer]->FreeAll ();
 		m_tempFiles[nBuffer].Delete();
 	}
+	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized())
+		m_ptResultBuf->FreeAll();
+	m_resultSegments.clear();
+	m_resultDiffToSegment.clear();
+	m_resultSegUndo.clear();
+	m_resultSegRedo.clear();
+	m_resultDiffSnapshot.clear();
+	m_bResultBuilt = false;
+	m_bResultResumeAttempted = false;
 }
 
 /**
@@ -682,6 +716,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		{
 			m_bEditAfterRescan[nBuffer] = false;
 		}
+
+		// Keep the kdiff3-style merge result pane in sync with the new diff list
+		UpdateMergeResultAfterRescan();
 	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE) &&
@@ -1334,6 +1371,12 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
  */
 void CMergeDoc::OnFileSave() 
 {
+	// With the merge result pane active it is the (only) editable pane,
+	// so Save must cover it: version control tools rely on Ctrl+S
+	// writing the merge output path (-o)
+	if (IsMergeResultPaneActive() && IsMergeResultUnsaved())
+		SaveMergeResult(false);
+
 	// We will need to know if either of the originals actually changed
 	// so we know whether to update the diff status
 	bool bChangedOriginal = false;
@@ -1438,7 +1481,8 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(IsModified());
+	pCmdUI->Enable(IsModified() ||
+		(IsMergeResultPaneActive() && IsMergeResultUnsaved()));
 }
 
 /**
@@ -2050,6 +2094,40 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bSaveSuccess[3] = { false, false, false };
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
+
+	// Merge result pane: deal with the merge before the source files.
+	// A hidden result pane still holds the user's merge work: hiding the
+	// bar must not turn closing the window into silent data loss, so the
+	// prompt is also shown when the pane is hidden but the result was
+	// modified by the user.
+	if (HasMergeResultPane() && m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		(IsMergeResultPaneActive() || IsMergeResultModified()))
+	{
+		const int nUnresolved = GetResultUnresolvedCount();
+		if (nUnresolved > 0 && bAllowCancel)
+		{
+			// The merge is unfinished, so there is nothing worth saving:
+			// ask whether to abandon it rather than whether to save
+			const String msg = strutils::format_string1(
+				_("The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"),
+				strutils::format(_T("%d"), nUnresolved));
+			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING) != IDYES)
+				return false;
+		}
+		else if (IsMergeResultUnsaved())
+		{
+			int nAnswer = ShowMessageBox(
+				_("The merge result has not been saved.\n\nSave the merge result?"),
+				bAllowCancel ? (MB_YESNOCANCEL | MB_ICONWARNING) : (MB_YESNO | MB_ICONWARNING));
+			if (nAnswer == IDCANCEL)
+				return false;
+			if (nAnswer == IDYES && !SaveMergeResult(false))
+			{
+				if (bAllowCancel)
+					return false;
+			}
+		}
+	}
 
 	for (int i = 0; i < m_nBuffers; ++i)
 	{
@@ -2771,6 +2849,8 @@ void CMergeDoc::RefreshOptions()
 	ForEachView(GetActiveMergeView()->m_nThisPane, [](auto& pView) {
 		pView->UpdateSiblingScrollPos(false);
 	});
+	if (m_pMergeResultView != nullptr)
+		m_pMergeResultView->RefreshOptions();
 	UpdateAllViews(nullptr);
 }
 
