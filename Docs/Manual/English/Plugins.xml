@@ -2200,6 +2200,8 @@
 
         <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
 
+        <arg><option>-F</option> <replaceable>literal string</replaceable></arg>
+
       </cmdsynopsis>
 
       <variablelist>
@@ -2242,6 +2244,13 @@
           <term><option>-e</option></term>
           <listitem>
             <para>use <replaceable>patterns</replaceable> for matching</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use literal string for matching</para>
           </listitem>
         </varlistentry>
 
@@ -2300,6 +2309,8 @@
 
         <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
 
+        <arg><option>-F</option> <replaceable>literal string</replaceable></arg>
+
       </cmdsynopsis>
 
       <variablelist>
@@ -2335,6 +2346,13 @@
           <term><option>-e</option></term>
           <listitem>
             <para>use <replaceable>patterns</replaceable> for matching</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use literal string for matching</para>
           </listitem>
         </varlistentry>
 

@@ -88,24 +88,30 @@ function get_PluginExtendedProperties() {
   "Trim.Description=Trim spaces;" +
   "SelectColumns.MenuCaption=Select Columns...;" +
   "SelectColumns.Description=Select columns.\r\n" +
-    "Usage: SelectColumns RANGES\r\n" +
+      "Usage: SelectColumns RANGES\r\n" +
     " or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n" +
+    " or: SelectColumns [-v] [-i] -F STRING\r\n" +
     " RANGES - column ranges (-3,5-10,30-)\r\n" +
-    " PATTERNS - regex\r\n" +  
-    " -v - select non-matching\r\n" +  
+    " PATTERNS - regex\r\n" +
+    " STRING - literal string\r\n" +
+    " -v - select non-matching\r\n" +
     " -i - ignore case\r\n" +  
-    " -g - enable global flag\r\n" +  
-    " -e - use PATTERNS;" +
+    " -g - enable global flag\r\n" +
+    " -e - use PATTERNS\r\n" +
+    " -F - use literal string;" +
   "SelectColumns.ArgumentsRequired;" +
   "SelectLines.MenuCaption=Select Lines...;" +
-  "SelectLines.Description=Select lines.\r\n" +  
+  "SelectLines.Description=Select lines.\r\n" +
     "Usage: SelectLines RANGES\r\n" +  
-    " or: SelectLines [-v] [-i] -e PATTERNS\r\n" +  
-    " RANGES - line ranges (-3,5-10,30-)\r\n" +  
-    " PATTERNS - regex\r\n" +  
-    " -v - select non-matching\r\n" +  
+    " or: SelectLines [-v] [-i] -e PATTERNS\r\n" +
+    " or: SelectLines [-v] [-i] -F STRING\r\n" +
+    " RANGES - line ranges (-3,5-10,30-)\r\n" +
+    " PATTERNS - regex\r\n" +
+    " STRING - literal string\r\n" +
+    " -v - select non-matching\r\n" +
     " -i - ignore case\r\n" +  
-    " -e - use PATTERNS;" +
+    " -e - use PATTERNS\r\n" +
+    " -F - use literal string;" +
   "SelectLines.ArgumentsRequired;" +
   "ReverseColumns.MenuCaption=Reverse Columns;" +
   "ReverseColumns.Description=Reverse columns;" +
@@ -251,6 +257,8 @@ function ParseSelectColumnsLinesArguments(args) {
   var invert = false;
   var flags = "";
   var isRegExp = false;
+  var isLiteral = false;
+  var ignoreCase = false;
   for (var i = 0; i < argAry.length; i++) {
     var isOption = false;
     if (argAry[i].length >= 2) {
@@ -261,13 +269,18 @@ function ParseSelectColumnsLinesArguments(args) {
         case "e":
         case "i":
         case "g":
-          isRegExp = true;
+        case "F":
+          if (argAry[i].charAt(1) == "e")
+            isRegExp = true;
+          else if (argAry[i].charAt(1) == "F")
+            isLiteral = true;
           isOption = true;
           if (argAry[i].indexOf("g") >= 0) {
             flags += "g";
           }
           if (argAry[i].indexOf("i") >= 0) {
             flags += "i";
+            ignoreCase = true;
           }
           break;
         case "v":
@@ -279,7 +292,11 @@ function ParseSelectColumnsLinesArguments(args) {
       }
     }
     if (!isOption) {
-      if (isRegExp) {
+      if (isLiteral) {
+        rangesOrRegExps.push({ "literal": argAry[i], "ignoreCase": ignoreCase });
+        isLiteral = false;
+        ignoreCase = false;
+      } else if (isRegExp) {
         rangesOrRegExps.push(new RegExp(argAry[i], flags));
         isRegExp = false;
       } else {
@@ -525,6 +542,52 @@ function SelectColumns(Text) {
             line += lines[i].substring(rangesOrRegExps[j][k][0] - 1, rangesOrRegExps[j][k][1]);
           }
         }
+      } else if (typeof rangesOrRegExps[j] === "object" && rangesOrRegExps[j].literal !== undefined) {
+        // Handle literal string matching
+        var literalStr = rangesOrRegExps[j].literal;
+        var ignoreCase = rangesOrRegExps[j].ignoreCase;
+        if (!invert) {
+          if (ignoreCase) {
+            var lineUpper = lines[i].toUpperCase();
+            var literalUpper = literalStr.toUpperCase();
+            var index = lineUpper.indexOf(literalUpper);
+            if (index >= 0) {
+              line += lines[i].substring(index, index + literalStr.length);
+            }
+          } else {
+            var index = lines[i].indexOf(literalStr);
+            if (index >= 0) {
+              line += lines[i].substring(index, index + literalStr.length);
+            }
+          }
+        } else {
+          // Inverted: select everything except the literal string
+          if (ignoreCase) {
+            var lineUpper = lines[i].toUpperCase();
+            var literalUpper = literalStr.toUpperCase();
+            var result = "";
+            var lastIndex = 0;
+            var index = lineUpper.indexOf(literalUpper);
+            while (index >= 0) {
+              result += lines[i].substring(lastIndex, index);
+              lastIndex = index + literalStr.length;
+              index = lineUpper.indexOf(literalUpper, lastIndex);
+            }
+            result += lines[i].substring(lastIndex);
+            line += result;
+          } else {
+            var result = "";
+            var lastIndex = 0;
+            var index = lines[i].indexOf(literalStr);
+            while (index >= 0) {
+              result += lines[i].substring(lastIndex, index);
+              lastIndex = index + literalStr.length;
+              index = lines[i].indexOf(literalStr, lastIndex);
+            }
+            result += lines[i].substring(lastIndex);
+            line += result;
+          }
+        }
       } else {
         if (!invert) {
           var matches = lines[i].match(rangesOrRegExps[j]);
@@ -572,6 +635,22 @@ function SelectLines(Text) {
           if (k < lines.length) {
             newlines.push(lines[k]);
           }
+        }
+      }
+    } else if (typeof rangesOrRegExps[i] === "object" && rangesOrRegExps[i].literal !== undefined) {
+      // Handle literal string matching
+      var literalStr = rangesOrRegExps[i].literal;
+      var ignoreCase = rangesOrRegExps[i].ignoreCase;
+      for (var j = 0; j < lines.length; j++) {
+        var matched = false;
+        if (ignoreCase) {
+          matched = (lines[j].toUpperCase().indexOf(literalStr.toUpperCase()) >= 0);
+        } else {
+          matched = (lines[j].indexOf(literalStr) >= 0);
+        }
+        if (invert) { matched = !matched; }
+        if (matched) {
+          newlines.push(lines[j]);
         }
       }
     } else {
