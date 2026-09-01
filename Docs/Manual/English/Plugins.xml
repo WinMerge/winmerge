@@ -2200,7 +2200,7 @@
 
         <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
 
-        <arg><option>-F</option> <replaceable>literal string</replaceable></arg>
+        <arg><option>-F</option> <replaceable>fixed string</replaceable></arg>
 
       </cmdsynopsis>
 
@@ -2309,7 +2309,7 @@
 
         <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
 
-        <arg><option>-F</option> <replaceable>literal string</replaceable></arg>
+        <arg><option>-F</option> <replaceable>fixed string</replaceable></arg>
 
       </cmdsynopsis>
 
