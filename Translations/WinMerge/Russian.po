@@ -9225,8 +9225,8 @@ msgstr "Поставщик"
 
 #: Strings.rc:342
 msgid "Base URL"
-msgstr ""
+msgstr "Базовый URL"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr ""
+msgstr "(выберите заданный вариант, чтобы заполнить поле выше)"
