@@ -2250,7 +2250,7 @@
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>use literal string for matching</para>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 
@@ -2352,7 +2352,7 @@
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>use literal string for matching</para>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 
