@@ -2039,7 +2039,8 @@ rep="norepeat"><replaceable>טווחים</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>דפוסים</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+<arg><option>-F</option> <replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2081,6 +2082,13 @@ rep="norepeat"><replaceable>טווחים</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>השתמש ב-<replaceable>דפוסים</replaceable> להתאמה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 
@@ -2129,7 +2137,8 @@ rep="norepeat"><replaceable>טווחים</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>דפוסים</replaceable></arg></cmdsynopsis>
+<replaceable>patterns</replaceable></arg> <arg><option>-F</option>
+<replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2164,6 +2173,13 @@ rep="norepeat"><replaceable>טווחים</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>השתמש ב-<replaceable>דפוסים</replaceable> להתאמה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 

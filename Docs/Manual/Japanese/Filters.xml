@@ -2247,7 +2247,7 @@ and not RightExists</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchNumber</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>マッチするすべての行の中での現在行の 1 基底インデックス。行がマッチしない場合は undefined を返します。例:
+            <listitem><para>マッチするすべての行の中での現在行の 1 基底インデックス。行がマッチしない場合は none を返します。例:
 <literal>le:matchNumber(Different) = 1</literal> はマッチする最初の行（最初の差異行）のみを表示します。</para></listitem>
           </varlistentry>
           <varlistentry>
@@ -2265,14 +2265,14 @@ and not RightExists</literal></para></listitem>
           <varlistentry>
             <term><function>matchBlockOffset</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>マッチングブロック内での現在行の 1 基底オフセットを返します。現在行がいずれのマッチングブロックにも含まれない場合は
-<literal>undefined</literal> を返します。例:
-<literal>le:matchBlockOffset(Different) = 1</literal> は各差異ブロックの最初の行のみを表示します。</para></listitem>
+<literal>none</literal> を返します。例: <literal>le:matchBlockOffset(Different) =
+1</literal> は各差異ブロックの最初の行のみを表示します。</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockSize</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>現在行を含むマッチングブロックのサイズ（行数）を返します。現在行がいずれのマッチングブロックにも含まれない場合は
-<literal>undefined</literal> を返します。例: <literal>le:matchBlockSize(Different)
-&gt; 5</literal> は 5 行より大きい差異ブロック内の行のみを表示します。</para></listitem>
+<literal>none</literal> を返します。例: <literal>le:matchBlockSize(Different) &gt;
+5</literal> は 5 行より大きい差異ブロック内の行のみを表示します。</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockCount</function>(<replaceable>expr</replaceable>)</term>
@@ -2301,7 +2301,7 @@ matchBlockCount(Different)</literal> は最後の差異ブロック内の行の�
             <listitem><para>ファイル内のすべての行に対して <replaceable>expr</replaceable>
 を評価して得られる数値の平均（算術平均）を計算します。<replaceable>condition</replaceable>
 が指定された場合、<replaceable>condition</replaceable> が true
-と評価される行のみが計算に含まれます。数値でない結果は無視されます。数値が見つからない場合は undefined を返します。例:
+と評価される行のみが計算に含まれます。数値でない結果は無視されます。数値が見つからない場合は none を返します。例:
 <literal>le:toInt(Column("Price")) &gt;
 average(toInt(Column("Price")))</literal> は価格が平均価格を超える行を表示します。条件付きの例:
 <literal>le:average(toInt(Column("Score")), Column("Status") =
@@ -2314,8 +2314,8 @@ average(toInt(Column("Price")))</literal> は価格が平均価格を超える�
             <listitem><para>ファイル内のすべての行に対して <replaceable>expr</replaceable>
 を評価して得られるすべての結果の中の最大値を返します。<replaceable>condition</replaceable>
 が指定された場合、<replaceable>condition</replaceable> が true
-と評価される行のみが考慮されます。数値、文字列（アルファベット順比較）、タイムスタンプで動作します。値が見つからない場合は undefined
-を返します。例: <literal>le:toInt(Column("Quantity")) =
+と評価される行のみが考慮されます。数値、文字列（アルファベット順比較）、タイムスタンプで動作します。値が見つからない場合は none を返します。例:
+<literal>le:toInt(Column("Quantity")) =
 maximum(toInt(Column("Quantity")))</literal> は最大数量の行を表示します。</para></listitem>
           </varlistentry>
           <varlistentry>
@@ -2336,7 +2336,7 @@ maximum(toInt(Column("Quantity")))</literal> は最大数量の行を表示し�
             <listitem><para>ファイル内のすべての行に対して <replaceable>expr</replaceable>
 を評価して得られるすべての数値の合計を計算します。<replaceable>condition</replaceable>
 が指定された場合、<replaceable>condition</replaceable> が true
-と評価される行のみが計算に含まれます。数値でない結果は無視されます。数値が見つからない場合は undefined を返します。例:
+と評価される行のみが計算に含まれます。数値でない結果は無視されます。数値が見つからない場合は none を返します。例:
 <literal>le:toInt(Column("Quantity")) / sum(toInt(Column("Quantity"))) *
 100</literal> は各行の合計数量に対するパーセンテージを計算します。条件付きの例:
 <literal>le:sum(toInt(Column("Sales")), Column("Region") = "East")</literal>
