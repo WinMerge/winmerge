@@ -274,6 +274,8 @@ function ParseSelectColumnsLinesArguments(args) {
             isRegExp = true;
           else if (argAry[i].charAt(1) == "F")
             isLiteral = true;
+          else if (!isRegExp && !isLiteral)
+            isRegExp = true;
           isOption = true;
           if (argAry[i].indexOf("g") >= 0) {
             flags += "g";
@@ -299,6 +301,7 @@ function ParseSelectColumnsLinesArguments(args) {
       } else if (isRegExp) {
         rangesOrRegExps.push(new RegExp(argAry[i], flags));
         isRegExp = false;
+        ignoreCase = false;
       } else {
         rangesOrRegExps.push(ParseRanges(argAry[i]));
       }
