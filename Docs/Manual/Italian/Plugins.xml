@@ -2070,9 +2070,10 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
-<command>Selezionacolonne</command> <arg><option>-v</option></arg>
+<command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>modelli</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+<arg><option>-F</option> <replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2114,6 +2115,13 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>usare <replaceable>modelli</replaceable> per la corrispondenza</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 
@@ -2162,7 +2170,8 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>modelli</replaceable></arg></cmdsynopsis>
+<replaceable>patterns</replaceable></arg> <arg><option>-F</option>
+<replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2197,6 +2206,13 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>usare <replaceable>modelli</replaceable> per la corrispondenza</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 

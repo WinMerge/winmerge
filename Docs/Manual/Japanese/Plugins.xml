@@ -2012,7 +2012,8 @@ rep="norepeat"><replaceable>範囲</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>パターン</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>パターン</replaceable></arg>
+<arg><option>-F</option><replaceable>固定文字列</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2054,6 +2055,13 @@ rep="norepeat"><replaceable>範囲</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>パターンマッチングに<replaceable>patterns</replaceable>を使用します</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>固定文字列でマッチングする</para>
           </listitem>
         </varlistentry>
 
@@ -2101,8 +2109,9 @@ rep="norepeat"><replaceable>範囲</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
-<arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>パターン</replaceable></arg></cmdsynopsis>
+<arg><option>-i</option></arg> <arg><option>-g</option></arg>
+<arg><option>-e</option> <replaceable>パターン</replaceable></arg>
+<arg><option>-F</option> <replaceable>文字列リテラル</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2137,6 +2146,13 @@ rep="norepeat"><replaceable>範囲</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>パターンマッチングに<replaceable>patterns</replaceable>を使用します</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>固定文字列でマッチングする</para>
           </listitem>
         </varlistentry>
 

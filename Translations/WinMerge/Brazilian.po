@@ -8813,12 +8813,12 @@ msgid "Trim spaces"
 msgstr "Aparar espaços"
 
 #: Strings.rc:130
-msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
-msgstr "Selecionar colunas.\r\nUso: SelectColumns RANGES\r\n ou: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - intervalos de colunas (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - selecionar não correspondentes\r\n -i - ignorar maiúsculas/minúsculas\r\n -g - habilitar sinalizador global\r\n -e - usar PATTERNS"
+msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n or: SelectColumns [-v] [-i] -F STRING\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgstr ""
 
 #: Strings.rc:132
-msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
-msgstr "Selecionar linhas.\r\nUso: SelectLines RANGES\r\n ou: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - intervalos de linhas (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - selecionar não correspondentes\r\n -i - ignorar maiúsculas/minúsculas\r\n -e - usar PATTERNS"
+msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n or: SelectLines [-v] [-i] -F STRING\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgstr ""
 
 #: Strings.rc:138
 msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."

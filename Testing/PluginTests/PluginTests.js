@@ -303,6 +303,20 @@ function EditorAddinTest() {
   p.PluginArguments = "1-3 -e ab 2-3";
   assertEquals("abcabbc\r\ndefef", p.SelectColumns("abc\r\ndef"));
 
+  p.PluginArguments = "-F ab";
+  assertEquals("", p.SelectColumns(""));
+  assertEquals("ab\r\n", p.SelectColumns("abc\r\ndef"));
+  p.PluginArguments = "-i -F AB";
+  assertEquals("ab\r\n", p.SelectColumns("abc\r\ndef"));
+  p.PluginArguments = "-F .";
+  assertEquals("\r\n", p.SelectColumns("abc\r\ndef"));
+  assertEquals(".\r\n\r\n", p.SelectColumns("a.a\r\ndef\r\n"));
+  p.PluginArguments = "-F a.";
+  assertEquals("\r\n", p.SelectColumns("abc\r\ndef"));
+  assertEquals("a.\r\n\r\n", p.SelectColumns("a.a\r\ndef\r\n"));
+  p.PluginArguments = "-v -F ab";
+  assertEquals("c\r\ndef", p.SelectColumns("abc\r\ndef"));
+
   // SelectLines
   setTestName("SelectLines");
   p.PluginArguments = "1";
@@ -348,6 +362,25 @@ function EditorAddinTest() {
 
   p.PluginArguments = "1 -e c$";
   assertEquals("aaa\r\nccc", p.SelectLines("aaa\r\nbbb\r\nccc"));
+
+  p.PluginArguments = "-F aa";
+  assertEquals("", p.SelectLines(""));
+  assertEquals("aaa", p.SelectLines("aaa\r\nbbb"));
+  assertEquals("aaa\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
+  p.PluginArguments = "-i -F AA";
+  assertEquals("aaa", p.SelectLines("aaa\r\nbbb"));
+  assertEquals("aaa\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
+  p.PluginArguments = "-F .";
+  assertEquals("", p.SelectLines("aaa\r\nbbb"));
+  assertEquals("", p.SelectLines("aaa\r\nbbb\r\n"));
+  assertEquals("a.a\r\n", p.SelectLines("a.a\r\nbbb\r\n"));
+  p.PluginArguments = "-F a.";
+  assertEquals("", p.SelectLines("aaa\r\nbbb"));
+  assertEquals("", p.SelectLines("aaa\r\nbbb\r\n"));
+  assertEquals("a.a\r\n", p.SelectLines("a.a\r\nbbb\r\n"));
+  p.PluginArguments = "-v -F aa";
+  assertEquals("bbb", p.SelectLines("aaa\r\nbbb"));
+  assertEquals("bbb\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
 
   // Replace
   setTestName("Replace");
