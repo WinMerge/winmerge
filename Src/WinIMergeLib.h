@@ -192,8 +192,9 @@ struct IImgMergeWindow
 	virtual int GetLastErrorCode() const = 0;
 	virtual bool GetPreferWICDecoder() const = 0;
 	virtual void SetPreferWICDecoder(bool preferWICDecoder) = 0;
-	virtual int  GetSplitterPosition() const = 0;
-	virtual void SetSplitterPosition(int position) = 0;
+	virtual double GetSplitterRatio(int pane) const = 0;
+	virtual void SetSplitterRatios(const double* ratio, int count) = 0;
+	virtual void ResetSplitterRatios() = 0;
 };
 
 struct IImgToolWindow

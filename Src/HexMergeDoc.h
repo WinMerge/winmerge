@@ -37,7 +37,9 @@ public:
 // Attributes
 public:
 	static int m_nBuffersTemp;
+	static inline IMergeDoc::DocumentType m_documentTypeTemp;
 	int m_nBuffers;
+	IMergeDoc::DocumentType m_documentType;
 	PathContext m_filePaths; /**< Filepaths for this document */
 
 // Begin declaration of CHexMergeDoc

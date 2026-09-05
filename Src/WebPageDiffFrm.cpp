@@ -132,6 +132,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
+	ON_COMMAND(ID_WINDOW_REMEMBER_SPLITTER_POSITION, OnWindowRememberSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_REMEMBER_SPLITTER_POSITION, OnUpdateWindowRememberSplitterPosition)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Status bar
@@ -625,6 +627,9 @@ BOOL CWebPageDiffFrame::DestroyWindow()
 void CWebPageDiffFrame::LoadOptions()
 {
 	m_pWebDiffWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
+	LoadSplitterPositionsSettings(OPT_CMP_WEB_SPLITTER_POS,
+		m_filePaths.GetSize(),
+		[this](const double* positions, int count) { return m_pWebDiffWindow->SetSplitterRatios(positions, count); });
 	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_WEB_ZOOM) / 1000.0);
 	SIZE size{ GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_WIDTH), GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_HEIGHT) };
 	m_pWebDiffWindow->SetSize(size);
@@ -668,6 +673,9 @@ void CWebPageDiffFrame::LoadOptions()
 
 void CWebPageDiffFrame::SaveOptions()
 {
+	if (!GetOptionsMgr()->GetString(OPT_CMP_WEB_SPLITTER_POS).empty())
+		SaveSplitterPositionsSettings(OPT_CMP_WEB_SPLITTER_POS, m_pWebDiffWindow->GetPaneCount(),
+			[this](int i) { return m_pWebDiffWindow->GetSplitterRatio(i); });
 	SIZE size = m_pWebDiffWindow->GetSize();
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_WIDTH, size.cx);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_HEIGHT, size.cy);
@@ -800,6 +808,23 @@ void  CWebPageDiffFrame::OnWindowChangePane(UINT nID)
 	int pane = m_pWebDiffWindow->GetActivePane();
 	pane = (nID == ID_NEXT_PANE) ? ((pane + 1) % npanes) : ((pane + npanes - 1) % npanes);
 	m_pWebDiffWindow->SetActivePane(pane);
+}
+
+void CWebPageDiffFrame::OnWindowRememberSplitterPosition()
+{
+	if (!GetOptionsMgr()->GetString(OPT_CMP_WEB_SPLITTER_POS).empty())
+	{
+		GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SPLITTER_POS, _T(""));
+		m_pWebDiffWindow->ResetSplitterRatios();
+		return;
+	}
+	SaveSplitterPositionsSettings(OPT_CMP_WEB_SPLITTER_POS, m_pWebDiffWindow->GetPaneCount(),
+		[this](int i) { return m_pWebDiffWindow->GetSplitterRatio(i); });
+}
+
+void CWebPageDiffFrame::OnUpdateWindowRememberSplitterPosition(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(OPT_CMP_WEB_SPLITTER_POS).empty());
 }
 
 /**

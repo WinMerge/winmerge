@@ -1791,7 +1791,9 @@
     <ClInclude Include="WindowListCtrl.h" />
     <ClInclude Include="WindowsManager.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
+    <ClInclude Include="WinIMergeLib.h" />
     <ClInclude Include="WinMergePluginBase.h" />
+    <ClInclude Include="WinWebDiffLib.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="MergeAppCOMClass.h" />

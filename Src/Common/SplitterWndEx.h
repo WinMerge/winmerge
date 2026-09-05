@@ -29,6 +29,11 @@ public:
 	void EqualizeRows(); 
 	void EqualizeCols(); 
 
+	// Splitter ratio methods for persistence
+	double GetSplitterRatio(int index, bool horizontal) const;
+	void SetSplitterRatios(const double* ratios, int count, bool horizontal);
+	void ResetSplitterRatios(bool horizontal);
+
 	virtual void RecalcLayout() override;
 	virtual void TrackRowSize(int y, int row) override;
 	virtual void TrackColumnSize(int x, int col) override;

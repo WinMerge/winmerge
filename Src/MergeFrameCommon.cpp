@@ -131,6 +131,49 @@ void CMergeFrameCommon::SaveWindowState()
 	}
 }
 
+void CMergeFrameCommon::LoadSplitterPositionsSettings(const String& name, int nPanes, std::function<void(const double*, int)> func)
+{
+	std::array<double, 3> positions{};
+	auto positionsStr = strutils::split(GetOptionsMgr()->GetString(name), ',');
+	for (int i = 0; i < 3; ++i)
+	{
+		if (i < positionsStr.size())
+			positions[i] = tc::tcstod(String(positionsStr[i].data(), positionsStr[i].size()).c_str(), nullptr);
+	}
+	if (nPanes < 3)
+	{
+		if (positions[0] > 0.0)
+			func(positions.data(), 1);
+	}
+	else
+	{
+		if (positions[1] > 0.0 && positions[2] > 0.0)
+			func(positions.data() + 1, 2);
+	}
+}
+
+void CMergeFrameCommon::SaveSplitterPositionsSettings(const String& name, int nPanes, std::function<double(int)> func)
+{
+	std::array<double, 3> positions{};
+	auto positionsStr = strutils::split(GetOptionsMgr()->GetString(name), ',');
+	for (int i = 0; i < 3; ++i)
+	{
+		if (i < positionsStr.size())
+			positions[i] = tc::tcstod(String(positionsStr[i].data(), positionsStr[i].size()).c_str(), nullptr);
+	}
+	if (nPanes < 3)
+	{
+		positions[0] = func(0);
+	}
+	else
+	{
+		positions[1] = func(0);
+		positions[2] = func(1);
+	}
+	GetOptionsMgr()->SaveOption(name,
+		(positions[0] == 0.0 && positions[1] == 0.0) ? _T("") : strutils::format(_T("%.6g,%.6g,%.6g"), positions[0], positions[1], positions[2]));
+}
+
 /**
  * @brief Reflect comparison result in window's icon.
  * @param nResult [in] Last comparison result which the application returns.

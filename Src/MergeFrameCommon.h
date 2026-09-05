@@ -30,6 +30,8 @@ public:
 	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);
 	static std::pair<int, int> MenuIDtoXY(UINT nID, int nActivePane, int nBuffers);
 	void SaveWindowState();
+	void LoadSplitterPositionsSettings(const String& name, int nPanes, std::function<void(const double*, int)> func);
+	void SaveSplitterPositionsSettings(const String& name, int nPanes, std::function<double(int)> func);
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	virtual BOOL IsTabbedMDIChild()
 	{
