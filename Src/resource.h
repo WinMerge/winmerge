@@ -936,7 +936,7 @@
 #define ID_WINDOW_CLOSEALL              32889
 #define ID_WINDOW_NEXT                  32890
 #define ID_WINDOW_PREV                  32891
-#define ID_WINDOW_REMEMBER_SPLITTER_POSITION 32892
+#define ID_WINDOW_PRESERVE_SPLITTER_POSITION 32892
 #define ID_HELP_CONTENTS                32912
 #define ID_HELP_GETCONFIG               32913
 #define ID_HELP_GNULICENSE              32914

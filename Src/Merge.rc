@@ -931,7 +931,7 @@ BEGIN
         MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
         MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
         MENUITEM SEPARATOR
-        MENUITEM "&Remember Splitter Position", ID_WINDOW_REMEMBER_SPLITTER_POSITION
+        MENUITEM "P&reserve Splitter Position", ID_WINDOW_PRESERVE_SPLITTER_POSITION
     END
     POPUP "&Help"
     BEGIN
