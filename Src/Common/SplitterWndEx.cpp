@@ -339,7 +339,7 @@ void CSplitterWndEx::SetSplitterRatios(const double* ratios, int count, bool hor
 		ratiosVec.push_back(ratio);
 		sumRatio += ratio;
 	}
-	ratiosVec.push_back(10000 - sumRatio)
+	ratiosVec.push_back(10000 - sumRatio);
 
 	if (horizontal)
 		EqualizeCols();
