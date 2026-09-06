@@ -13,6 +13,10 @@
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/param.xsl  parameters
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
-<xsl:param name="htmlhelp.title">WinMerge Help</xsl:param>
+<xsl:param name="chunker.output.encoding" select="'iso-8859-1'"/>
+<xsl:param name="l10n.gentext.language" select="'es'"/>
+<xsl:param name="l10n.gentext.default.language" select="'es'"/>
+<xsl:param name="htmlhelp.encoding" select="'iso-8859-1'"/>
+<xsl:param name="htmlhelp.title">Ayuda de WinMerge</xsl:param>
 
 </xsl:stylesheet>
