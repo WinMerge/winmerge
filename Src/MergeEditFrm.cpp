@@ -55,8 +55,8 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	ON_COMMAND(IDCANCEL, OnDisplayFilterBarClose)
 	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnDisplayFilterBarMenu)
 	// [Window] menu
-	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnWindowPreserveSplitterPosition)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnUpdateWindowPreserveSplitterPosition)
+	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_RATIOSITION, OnWindowPreserveSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_RATIOSITION, OnUpdateWindowPreserveSplitterPosition)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -381,7 +381,7 @@ void CMergeEditFrame::UpdateSplitter()
 
 void CMergeEditFrame::LoadOptions()
 {
-	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_POS : OPT_CMP_TEXT_SPLITTER_POS;
+	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_RATIOS : OPT_CMP_TEXT_SPLITTER_RATIOS;
 	auto& splitterWnd = GetMergeEditSplitterWnd(0);
 	// Text compare uses horizontal (columns) splitting
 	const bool horizontal = splitterWnd.GetColumnCount() != 1;
@@ -396,7 +396,7 @@ void CMergeEditFrame::LoadOptions()
 
 void CMergeEditFrame::SaveOptions()
 {
-	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_POS : OPT_CMP_TEXT_SPLITTER_POS;
+	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_RATIOS : OPT_CMP_TEXT_SPLITTER_RATIOS;
 	const auto& splitterWnd = GetMergeEditSplitterWnd(0);
 	// Text compare uses horizontal (columns) splitting
 	const bool horizontal = splitterWnd.GetColumnCount() != 1;
@@ -590,7 +590,7 @@ void CMergeEditFrame::HideFilterBar()
  */
 void CMergeEditFrame::OnWindowPreserveSplitterPosition()
 {
-	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_POS : OPT_CMP_TEXT_SPLITTER_POS;
+	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_RATIOS : OPT_CMP_TEXT_SPLITTER_RATIOS;
 	auto& splitterWnd = GetMergeEditSplitterWnd(0);
 	if (!GetOptionsMgr()->GetString(optname).empty())
 	{
@@ -609,7 +609,7 @@ void CMergeEditFrame::OnWindowPreserveSplitterPosition()
 
 void CMergeEditFrame::OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI)
 {
-	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_POS : OPT_CMP_TEXT_SPLITTER_POS;
+	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_RATIOS : OPT_CMP_TEXT_SPLITTER_RATIOS;
 	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(optname).empty());
 }
 

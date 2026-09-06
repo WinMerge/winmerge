@@ -45,8 +45,8 @@ BEGIN_MESSAGE_MAP(CHexMergeFrame, CMergeFrameCommon)
 	//ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	//ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	// [Window] menu
-	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnWindowPreserveSplitterPosition)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnUpdateWindowPreserveSplitterPosition)
+	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_RATIOSITION, OnWindowPreserveSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_RATIOSITION, OnUpdateWindowPreserveSplitterPosition)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -261,7 +261,7 @@ void CHexMergeFrame::OnSize(UINT nType, int cx, int cy)
 void CHexMergeFrame::LoadOptions()
 {
 	const bool horizontal = m_wndSplitter.GetColumnCount() != 1;
-	SplitterPositions::LoadPaneRatio(OPT_CMP_BIN_SPLITTER_POS, 0, m_pMergeDoc->m_nBuffers,
+	SplitterPositions::LoadPaneRatio(OPT_CMP_BIN_SPLITTER_RATIOS, 0, m_pMergeDoc->m_nBuffers,
 		[this, horizontal](const double* positions, int count) {
 			m_wndSplitter.SetSplitterRatios(positions, count, horizontal);
 		});
@@ -270,8 +270,8 @@ void CHexMergeFrame::LoadOptions()
 void CHexMergeFrame::SaveOptions()
 {
 	const bool horizontal = m_wndSplitter.GetColumnCount() != 1;
-	if (!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_POS).empty())
-		SplitterPositions::SavePaneRatios(OPT_CMP_BIN_SPLITTER_POS, 0, m_pMergeDoc->m_nBuffers,
+	if (!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_RATIOS).empty())
+		SplitterPositions::SavePaneRatios(OPT_CMP_BIN_SPLITTER_RATIOS, 0, m_pMergeDoc->m_nBuffers,
 			[this, horizontal](int i) {
 				return m_wndSplitter.GetSplitterRatio(i, horizontal);
 			});
@@ -494,20 +494,20 @@ void CHexMergeFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI)
 void CHexMergeFrame::OnWindowPreserveSplitterPosition()
 {
 	auto& splitterWnd = m_wndSplitter;
-	if (!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_POS).empty())
+	if (!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_RATIOS).empty())
 	{
-		GetOptionsMgr()->SaveOption(OPT_CMP_BIN_SPLITTER_POS, _T(""));
+		GetOptionsMgr()->SaveOption(OPT_CMP_BIN_SPLITTER_RATIOS, _T(""));
 		splitterWnd.ResetSplitterRatios(splitterWnd.GetColumnCount() != 1);
 		return;
 	}
 	const bool horizontal = splitterWnd.GetColumnCount() != 1;
-	SplitterPositions::SavePaneRatios(OPT_CMP_BIN_SPLITTER_POS, 0, m_pMergeDoc->m_nBuffers,
+	SplitterPositions::SavePaneRatios(OPT_CMP_BIN_SPLITTER_RATIOS, 0, m_pMergeDoc->m_nBuffers,
 		[&splitterWnd, horizontal](int i) { return splitterWnd.GetSplitterRatio(i, horizontal); });
 }
 
 void CHexMergeFrame::OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_POS).empty());
+	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_RATIOS).empty());
 }
 
 

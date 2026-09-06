@@ -4836,7 +4836,7 @@ void CMergeEditView::OnWindowSplit()
 		wndSplitter.SplitRow(1);
 		auto& splitterWnd = static_cast<CMergeEditSplitterView*>(wndSplitter.GetPane(1, 0))->m_wndSplitter;
 		const bool horizontal = splitterWnd.GetColumnCount() != 1;
-		const String& optname = pDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_POS : OPT_CMP_TEXT_SPLITTER_POS;
+		const String& optname = pDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_RATIOS : OPT_CMP_TEXT_SPLITTER_RATIOS;
 		SplitterPositions::LoadPaneRatio(optname, 1, pDoc->m_nBuffers,
 			[this, horizontal, &splitterWnd](const double* positions, int count) {
 				splitterWnd.SetSplitterRatios(positions, count, horizontal);
