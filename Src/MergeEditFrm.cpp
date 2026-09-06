@@ -595,7 +595,10 @@ void CMergeEditFrame::OnWindowPreserveSplitterPosition()
 	if (!GetOptionsMgr()->GetString(optname).empty())
 	{
 		GetOptionsMgr()->SaveOption(optname, _T(""));
-		splitterWnd.ResetSplitterRatios(splitterWnd.GetColumnCount() != 1);
+		const bool horizontal = splitterWnd.GetColumnCount() != 1;
+		for (int r = 0; r < m_wndSplitter.GetRowCount(); ++r)
+			GetMergeEditSplitterWnd(r).ResetSplitterRatios(horizontal);
+		m_wndSplitter.ResetSplitterRatios(false);
 		return;
 	}
 	const bool horizontal = splitterWnd.GetColumnCount() != 1;
