@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-08-25 07:38+0000\n"
-"PO-Revision-Date: 2026-08-25 22:00+0000\n"
+"POT-Creation-Date: 2026-09-05 20:56+0000\n"
+"PO-Revision-Date: 2026-09-06 23:40+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1560,7 +1560,7 @@ msgstr "Podzie&lone"
 #. IDR_MERGEDOCTYPE, ID_WINDOW_PRESERVE_SPLITTER_RATIOS
 #: Merge.rc:934
 msgid "P&reserve Splitter Position"
-msgstr ""
+msgstr "Zapamiętaj położenie paska podziału"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE
 #: Merge.rc:953
@@ -8348,7 +8348,7 @@ msgstr "Nieprawidłowa dyrektywa"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
 #: Merge.rc:5762
 msgid "Invalid argument"
-msgstr ""
+msgstr "Nieprawidłowy argument"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5767
@@ -9229,8 +9229,8 @@ msgstr "Usługodawca"
 
 #: Strings.rc:342
 msgid "Base URL"
-msgstr ""
+msgstr "Bazowy adres URL"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr ""
+msgstr "(wybierz predefiniowane ustawienia, aby wypełnić powyższe pole)"
