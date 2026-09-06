@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.30.0\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2026-06-21 20:58+0200\n"
+"PO-Revision-Date: 2026-09-06 17:23+0200\n"
 "Last-Translator: P0rsche-911\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_ES\n"
@@ -180,7 +180,7 @@ msgstr "Ir &a...\tCtrl+G"
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_GOTO_DEFINITION
 #: Merge.rc:131 Merge.rc:719 Merge.rc:1116
 msgid "Go to &Definition\tF12"
-msgstr ""
+msgstr "Ir a la &definición\tF12"
 
 #. IDR_POPUP_MERGEVIEW, ID_GOTO_MOVED_LINE_LM
 #: Merge.rc:132
@@ -235,27 +235,27 @@ msgstr "Autoajustar todas las columnas"
 #. IDR_POPUP_MERGEVIEWHEADER
 #: Merge.rc:153
 msgid "&Ignore This Column"
-msgstr ""
+msgstr "&Ignorar esta columna"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON
 #: Merge.rc:155
 msgid "In &All Panes"
-msgstr ""
+msgstr "En todos los p&aneles"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
 #: Merge.rc:156
 msgid "In &This Pane Only (Column Not in Other Files)"
-msgstr ""
+msgstr "Solo en es&te panel (columna que no aparece en otros archivos)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
 #: Merge.rc:157
 msgid "(Ctrl+Click to add another column)"
-msgstr ""
+msgstr "(Pulse Ctrl + clic para añadir otra columna)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_RESET
 #: Merge.rc:159
 msgid "&Reset All"
-msgstr ""
+msgstr "&Restablecer todo"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:161 Merge.rc:5657
@@ -1522,7 +1522,7 @@ msgstr "Borrar puntos de sincroni&zación"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEARCHIVE
 #: Merge.rc:881
 msgid "Generate &Archive..."
-msgstr ""
+msgstr "Generar &archivo..."
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:893
@@ -1562,7 +1562,7 @@ msgstr "&Dividir"
 #. IDR_MERGEDOCTYPE, ID_WINDOW_PRESERVE_SPLITTER_RATIOS
 #: Merge.rc:934
 msgid "P&reserve Splitter Position"
-msgstr ""
+msgstr "Mantene&r la posición del separador"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE
 #: Merge.rc:953
@@ -3969,7 +3969,7 @@ msgstr "Resaltar sinta&xis"
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
 #: Merge.rc:2632
 msgid "Highlight &mode:"
-msgstr ""
+msgstr "&Modo de resaltado:"
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
 #: Merge.rc:2634
@@ -4054,7 +4054,7 @@ msgstr "Generador de corrección"
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:2684 Merge.rc:2996 Merge.rc:3014
 msgid "Comparisons to include:"
-msgstr ""
+msgstr "Las comparaciones deben incluir:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2686
@@ -4562,47 +4562,47 @@ msgstr "&Incluir informe de comparación de archivos"
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
 #: Merge.rc:2986 Merge.rc:3002
 msgid "Open report after &generating"
-msgstr ""
+msgstr "Abrir el informe una vez &generado"
 
 #. IDD_FILECMP_REPORT
 #: Merge.rc:2993
 msgid "File Compare Report"
-msgstr ""
+msgstr "Informe de comparación de archivos"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
 #: Merge.rc:3003
 msgid "&Include all image pages"
-msgstr ""
+msgstr "&Incluir todas las páginas con imágenes"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
 #: Merge.rc:3004
 msgid "\\u24D8 The report uses the current comparison settings."
-msgstr ""
+msgstr "\\u24D8 El informe utiliza los parámetros de comparación actuales."
 
 #. IDD_ARCHIVE
 #: Merge.rc:3011
 msgid "Archive Generator"
-msgstr ""
+msgstr "Generador de archivos"
 
 #. IDD_ARCHIVE, IDC_STATIC
 #: Merge.rc:3016
 msgid "Archive &file:"
-msgstr ""
+msgstr "Archivo de registro:"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
 #: Merge.rc:3019
 msgid "Include &report"
-msgstr ""
+msgstr "Incluir info&rme"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
 #: Merge.rc:3020
 msgid "Include &patch"
-msgstr ""
+msgstr "Incluir &corrección"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
 #: Merge.rc:3021
 msgid "Include pro&ject"
-msgstr ""
+msgstr "Incluir pro&yecto"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
 #: Merge.rc:3029
@@ -5099,7 +5099,7 @@ msgstr "Activar la comparación de imág&enes en la comparación de carpetas"
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
 #: Merge.rc:3368
 msgid "&Prefer WIC Decoder"
-msgstr ""
+msgstr "&Preferir el descodificador WIC"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
 #: Merge.rc:3369
@@ -5594,7 +5594,7 @@ msgstr "Valores separados por tabulaciones (*.tsv;*.txt)|*.tsv;*.txt|All Files (
 #. IDS_ARCHIVEFILES
 #: Merge.rc:4629
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
 
 #. IDS_TEXT_REPORT_FILES
 #: Merge.rc:4635
@@ -6342,8 +6342,12 @@ msgstr "Diferencias a... (%1)"
 
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:4880
-msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Process only items with differences?"
 msgstr ""
+"Algunos elementos seleccionados son idénticos o se han omitido.\n"
+"¿Procesar solo los elementos que presentan diferencias?"
 
 #. IDS_DEL_LEFT_FMT
 #: Merge.rc:4886
@@ -7547,12 +7551,18 @@ msgstr "La carpeta no existe."
 #. IDS_ARCHIVE_SUCCEEDED
 #: Merge.rc:5288
 msgid "Archive file written."
-msgstr ""
+msgstr "Archivo de registro creado."
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5289
-msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
+msgid ""
+"Save all files first.\n"
+"\n"
+"Creating an archive requires no unsaved changes."
 msgstr ""
+"Guarda primero todos los archivos.\n"
+"\n"
+"Para crear un archivo, no puede haber cambios sin guardar."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5294
@@ -8428,7 +8438,7 @@ msgstr "2.º y 3.º"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5646
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr ""
+msgstr "(Ctrl+clic para añadirlo al proceso)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5651
@@ -8797,7 +8807,7 @@ msgstr "Directiva no válida"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
 #: Merge.rc:5762
 msgid "Invalid argument"
-msgstr ""
+msgstr "Argumento no válido"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5767
@@ -8940,37 +8950,37 @@ msgstr ""
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
 #: Merge.rc:5810
 msgid "Built-in only"
-msgstr ""
+msgstr "Solo el integrado"
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
 #: Merge.rc:5811
 msgid "Built-in first"
-msgstr ""
+msgstr "Primero el integrado"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
 #: Merge.rc:5812
 msgid "Tree-sitter first"
-msgstr ""
+msgstr "Tree-sitter primero"
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
 #: Merge.rc:5813
 msgid "Tree-sitter only"
-msgstr ""
+msgstr "Solo Tree-sitter"
 
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5818
 msgid "&Auto-hide MDI buttons"
-msgstr ""
+msgstr "Ocultar &automáticamente los botones MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5819
 msgid "Always &show MDI buttons"
-msgstr ""
+msgstr "Mostrar &siempre los botones MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5820
 msgid "Always &hide MDI buttons"
-msgstr ""
+msgstr "Ocultar siem&pre los botones MDI"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
@@ -9315,12 +9325,58 @@ msgid "Trim spaces"
 msgstr "Eliminar espacios"
 
 #: Strings.rc:130
-msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n or: SelectColumns [-v] [-i] -F STRING\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgid ""
+"Select columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+" or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+" or: SelectColumns [-v] [-i] -F STRING\r\n"
+" RANGES - column ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" STRING - string to match literally\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -g - enable global flag\r\n"
+" -e - use PATTERNS\r\n"
+" -F - use fixed string for matching"
 msgstr ""
+"Seleccionar columnas.\n"
+"Uso: SelectColumns RANGOS\n"
+" o: SelectColumns [-v] [-i] [-g] -e PATRONES\n"
+" o: SelectColumns [-v] [-i] -F CADENA\n"
+" RANGOS - rangos de columnas (-3,5-10,30-)\n"
+" PATRONES - regex\n"
+" CADENA - cadena que coincida exactamente\n"
+" -v - seleccionar los que no coinciden\n"
+" -i - distinguir entre mayúsculas y minúsculas\n"
+" -g - activar el indicador global\n"
+" -e - usar PATRONES\n"
+" -F - utilizar una cadena fija para la búsqueda"
 
 #: Strings.rc:132
-msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n or: SelectLines [-v] [-i] -F STRING\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgid ""
+"Select lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+" or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+" or: SelectLines [-v] [-i] -F STRING\r\n"
+" RANGES - line ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" STRING - string to match literally\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -e - use PATTERNS\r\n"
+" -F - use fixed string for matching"
 msgstr ""
+"Seleccionar líneas.\n"
+"Uso: SelectLines RANGOS\n"
+" o: SelectLines [-v] [-i] -e PATRONES\n"
+" o: SelectLines [-v] [-i] -F CADENA\n"
+" RANGOS - rangos de columnas (-3,5-10,30-)\n"
+" PATRONES - regex\n"
+" CADENA - cadena que coincida exactamente\n"
+" -v - seleccionar los que no coinciden\n"
+" -i - distinguir entre mayúsculas y minúsculas\n"
+" -e - usar PATRONES\n"
+" -F - utilizar una cadena fija para la búsqueda"
 
 #: Strings.rc:138
 msgid ""
@@ -9545,8 +9601,12 @@ msgstr "Conversión de texto asistida por IA"
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter (OpenAI-compatible API).\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"Convertidor de texto (API compatible con OpenAI).\r\n"
+"Uso: AIConvertText PROMPT"
 
 #. IDS_PLUGIN_DESCRIPTION57
 #: Strings.rc:203
@@ -9794,16 +9854,22 @@ msgstr "Introduzca el comando"
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
+msgid ""
+"Enter API key.\r\n"
+"- Registration with the selected provider may be required (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
+"Introduzca la clave API.\r\n"
+"- Es posible que sea necesario registrarse con el proveedor seleccionado (pueden aplicarse tarifas).\r\n"
+"- La clave se guarda en la variable de entorno %1."
 
 #: Strings.rc:328
 msgid "Environment variable name for API key"
-msgstr ""
+msgstr "Nombre de la variable de entorno para la clave de API"
 
 #: Strings.rc:330
 msgid "API key"
-msgstr ""
+msgstr "Clave API"
 
 #: Strings.rc:332
 msgid "Temperature"
@@ -9819,16 +9885,16 @@ msgstr "Modelo"
 
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
-msgstr ""
+msgstr "Se ha cambiado la clave API. Reinicie para aplicar los cambios."
 
 #: Strings.rc:340
 msgid "Provider"
-msgstr ""
+msgstr "Proveedor"
 
 #: Strings.rc:342
 msgid "Base URL"
-msgstr ""
+msgstr "URL base"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr ""
+msgstr "(seleccione un valor predefinido para rellenar el campo de arriba)"
