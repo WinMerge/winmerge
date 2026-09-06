@@ -22,7 +22,7 @@
   <para>
 La apertura de los archivos en formato hexadecimal depende de si el nombre
 del archivo coincide con los patrones definidos. De forma predeterminada, si
-la extensión del archivo es .bin o .frx, se abrirá en formato
-hexadecimal. Si desea modificar los patrones, especifíquelos en la página
-"Comparar/Binario" del cuadro de diálogo "Opciones".</para>
+la extensión del archivo es .bin o .frx se abrirá en formato hexadecimal. Si
+desea modificar los patrones, especifíquelos en la página "Comparar/Binario"
+del cuadro de diálogo "Opciones".</para>
 </article>

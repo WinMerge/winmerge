@@ -37,6 +37,7 @@
 #include "Environment.h"
 #include "MyColorDialog.h"
 #include "PluginMenu.h"
+#include "SplitterPositions.h"
 #include <cmath>
 
 #ifdef _DEBUG
@@ -177,6 +178,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
+	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_RATIOS, OnWindowPreserveSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_RATIOS, OnUpdateWindowPreserveSplitterPosition)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Status bar
@@ -651,8 +654,8 @@ void CImgMergeFrame::LoadOptions()
 	RefreshOptions();
 
 	m_pImgMergeWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
-	// After SetHorizontalSplit(): changing the orientation discards the position.
-	m_pImgMergeWindow->SetSplitterPosition(GetOptionsMgr()->GetInt(OPT_CMP_IMG_SPLITTER_POS));
+	SplitterPositions::LoadPaneRatio(OPT_CMP_IMG_SPLITTER_RATIOS, 0, m_filePaths.GetSize(),
+		[this](const double* positions, int count) { return m_pImgMergeWindow->SetSplitterRatios(positions, count); });
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetBlinkDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_BLINKDIFFERENCES));
 	m_pImgMergeWindow->SetOverlayMode(static_cast<IImgMergeWindow::OVERLAY_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYMODE)));
@@ -675,7 +678,9 @@ void CImgMergeFrame::LoadOptions()
 
 void CImgMergeFrame::SaveOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SPLITTER_POS, m_pImgMergeWindow->GetSplitterPosition());
+	if (!GetOptionsMgr()->GetString(OPT_CMP_IMG_SPLITTER_RATIOS).empty())
+		SplitterPositions::SavePaneRatios(OPT_CMP_IMG_SPLITTER_RATIOS, 0, m_pImgMergeWindow->GetPaneCount(),
+			[this](int i) { return m_pImgMergeWindow->GetSplitterRatio(i); });
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pImgMergeWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BLINKDIFFERENCES, m_pImgMergeWindow->GetBlinkDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYMODE, m_pImgMergeWindow->GetOverlayMode());
@@ -1100,6 +1105,23 @@ void  CImgMergeFrame::OnWindowChangePane(UINT nID)
 	int pane = m_pImgMergeWindow->GetActivePane();
 	pane = (nID == ID_NEXT_PANE) ? ((pane + 1) % npanes) : ((pane + npanes - 1) % npanes);
 	m_pImgMergeWindow->SetActivePane(pane);
+}
+
+void CImgMergeFrame::OnWindowPreserveSplitterPosition()
+{
+	if (!GetOptionsMgr()->GetString(OPT_CMP_IMG_SPLITTER_RATIOS).empty())
+	{
+		GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SPLITTER_RATIOS, _T(""));
+		m_pImgMergeWindow->ResetSplitterRatios();
+		return;
+	}
+	SplitterPositions::SavePaneRatios(OPT_CMP_IMG_SPLITTER_RATIOS, 0, m_pImgMergeWindow->GetPaneCount(),
+		[this](int i) { return m_pImgMergeWindow->GetSplitterRatio(i); });
+}
+
+void CImgMergeFrame::OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(OPT_CMP_IMG_SPLITTER_RATIOS).empty());
 }
 
 /**

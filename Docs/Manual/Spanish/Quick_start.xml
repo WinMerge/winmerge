@@ -9,14 +9,14 @@
         <primary>seleccionar archivos y carpetas</primary>
 
         <secondary>primeros pasos</secondary>
-      </indexterm>Selecting files and folders to compare</title>
+      </indexterm>Seleccione archivos y carpetas para comparar</title>
 
     <para>Una vez instalado WinMerge, siga paso a paso el procedimiento y las
 explicaciones de este tema para familiarizarse con las operaciones y los
 conceptos básicos de WinMerge. Los métodos que se muestran no son los
 únicos: normalmente hay varias formas de realizar cada tarea. Cuando haya
 terminado, puede continuar aprendiendo otros métodos y técnicas más
-avanzadas, que se tratan en otros temas de ayuda.</para>
+avanzadas, tratados en otros temas de ayuda.</para>
 
     <section>
       <title><indexterm><primary>Ventana WinMerge</primary></indexterm>Abrir la ventana de WinMerge</title>
@@ -45,11 +45,11 @@ escriba <command>winmerge</command>.</para>
     </section>
 
     <section>
-      <title>Abra el cuadro de diálogo <guilabel>Seleccione archivos o
+      <title>Abrir el cuadro de diálogo <guilabel>Seleccione archivos o
 carpetas</guilabel></title>
 
       <para>En la ventana de WinMerge, utilice los siguientes métodos para abrir el
-cuadro de diálogo <guilabel>eleccione archivos o carpetas</guilabel>:</para>
+cuadro de diálogo <guilabel>Seleccione archivos o carpetas</guilabel>:</para>
 
       <itemizedlist>
         <listitem>
@@ -58,9 +58,9 @@ cuadro de diálogo <guilabel>eleccione archivos o carpetas</guilabel>:</para>
         </listitem>
 
         <listitem>
-          <para>Haga clic en el icono <inlinemediaobject>
+          <para>Haga clic en el botón <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
-fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>botón para abrir WinMerge</phrase></textobject>
+fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>Botón para abrir WinMerge</phrase></textobject>
             </inlinemediaobject> de la
 barra de herramientas.</para>
         </listitem>
@@ -72,7 +72,7 @@ barra de herramientas.</para>
     </section>
 
     <section>
-      <title><indexterm><primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary></indexterm> Cuadro de diálogo
+      <title><indexterm><primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary></indexterm> Cuadro de diálogo
 <guilabel>Seleccione archivos o carpetas</guilabel></title>
 
       <para>
@@ -129,23 +129,23 @@ anteriormente.</para>
 
               <tip>
                 <para>Para facilitar la selección de rutas de uso frecuente, le recomendamos que
-active la opción <guilabel>Autocompletar en el diálogo Opciones -
-General</guilabel>.  Con esta opción, WinMerge muestra una lista de rutas
-disponibles a medida que escribe en los campos. Consulte <xref
-linkend="Configuration" /> para obtener más detalles.</para>
+active la opción <guilabel>Autocompletar</guilabel> en el diálogo
+<guilabel>Opciones - General</guilabel>. Con esta opción, WinMerge muestra
+una lista de rutas disponibles a medida que escribe en los campos. Consulte
+<xref linkend="Configuration" /> para obtener más detalles.</para>
               </tip>
               <para></para>
             </listitem>
 
             <listitem>
-              <para>Arrastre y suelte un archivo o una carpeta en el cuadro de diálogo
+              <para>Arrastre y suelte un archivo o una carpeta en el cuadro de diálogo del
 <guilabel>1er</guilabel> o <guilabel>2º</guilabel> campo.</para>
             </listitem>
           </itemizedlist></para>
 
         <para><note><para>Solo puede seleccionar un par de archivos o un par de carpetas para
-comparar.  Si selecciona un archivo y una carpeta o si no se encuentra
-alguno de los archivos o carpetas, WinMerge desactiva el botón
+comparar. Si selecciona un archivo y una carpeta o si no se encuentra alguno
+de los archivos o carpetas, WinMerge desactiva el botón
 <guibutton>Comparar</guibutton> en el cuadro de diálogo.</para>
 
             <para>El mensaje de estado que aparece en la parte inferior del cuadro de diálogo
@@ -174,8 +174,8 @@ máscaras de archivo: haga clic en el botón
 <guibutton>Seleccionar</guibutton> situado junto al campo
 <guilabel>Filtros</guilabel> para elegir entre una lista de filtros
 disponibles. Los filtros de archivos contienen cualquier número de reglas
-para incluir o excluir archivos.  WinMerge instala un conjunto de archivos
-de filtro, que puede editar o ampliar con sus propios archivos.</para>
+para incluir o excluir archivos. WinMerge instala un conjunto de archivos de
+filtro, que puede editar o ampliar con sus propios archivos.</para>
 
         <para>Consulte <xref linkend="Filters" /> para obtener información detallada sobre
 las máscaras de archivo y los archivos de filtro.</para>
@@ -185,11 +185,11 @@ otra forma de controlar el alcance de las comparaciones de carpetas. Si
 marca esta opción, WinMerge compara las subcarpetas de forma recursiva y
 muestra todos los archivos y carpetas que encuentra en una sola vista. Si
 desactiva la opción, solo se compara la carpeta actual y las subcarpetas se
-enumeran por nombre (sin su contenido)  para que pueda explorarlas.</para>
+enumeran por nombre (sin su contenido) para que pueda explorarlas.</para>
       </section>
 
       <section>
-        <title>Utilizar complementos de descompresión (Unpacker)</title>
+        <title>Utilizar complementos de desempaquetado (Unpacker)</title>
         <para>El campo Unpacker le permite realizar operaciones de comparación en los
 complementos.</para>
       </section>
@@ -246,9 +246,9 @@ o sobre el acceso directo de WinMerge en el Escritorio.</simpara>
     <para>Si ha seleccionado dos carpetas en el cuadro de diálogo "Abrir..." se abrirá
 la ventana de comparación de carpetas. La ventana de comparación de carpetas
 es una lista en forma de tabla con los elementos encontrados en las carpetas
-comparadas.  Cada fila muestra información sobre un archivo encontrado con
-el nombre del archivo en la columna de la izquierda e información adicional
-en las demás columnas:</para>
+comparadas. Cada fila muestra información sobre un archivo encontrado con el
+nombre del archivo en la columna de la izquierda e información adicional en
+las demás columnas:</para>
 
     <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -258,10 +258,10 @@ fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject><textobject>
     </mediaobject>
 
     <para>WinMerge no distingue entre el lado <wordasword>original</wordasword> y el
-lado <wordasword>modificado</wordasword> En su lugar, simplemente muestra
+lado <wordasword>modificado</wordasword>. En su lugar, simplemente muestra
 las diferencias entre las dos carpetas seleccionadas. Un archivo o carpeta
 que solo se encuentra en uno de los lados se muestra simplemente como un
-elemento único en ese lado y no como añadido o eliminado Por ejemplo, en la
+elemento único en ese lado y no como añadido o eliminado. Por ejemplo, en la
 columna <guilabel>Resultado de la comparación</guilabel> de la figura
 anterior, <filename>Merge.aps</filename> y <filename>Merge.rc.bak</filename>
 solo se encuentran en una de las carpetas comparadas.</para>
@@ -270,7 +270,7 @@ solo se encuentran en una de las carpetas comparadas.</para>
 <guimenu>Combinar</guimenu>, los botones de la barra de herramientas o el
 menú contextual (clic con el botón derecho). La acción más importante
 consiste en hacer que los archivos o carpetas sean idénticos en ambos lados
-seleccionando una de las opciones de "Copiar".  Cuando se copia un archivo o
+seleccionando una de las opciones de "Copiar". Cuando se copia un archivo o
 una carpeta al otro lado, el valor del "Resultado de la comparación" cambia
 a <literal>Idéntico</literal>.</para>
 
@@ -278,8 +278,8 @@ a <literal>Idéntico</literal>.</para>
 archivo binario), se puede abrir para comparar los archivos utilizando uno
 de estos métodos:<itemizedlist>
         <listitem>
-          <simpara>Haga clic en<menuchoice> <guimenuitem>Comparar</guimenuitem>
-<guimenuitem>Combinar</guimenuitem> </menuchoice>en el menú de WinMerge.</simpara>
+          <simpara>Haga clic en <menuchoice> <guimenuitem>Comparar</guimenuitem>
+<guimenuitem>Combinar</guimenuitem> </menuchoice> en el menú de WinMerge.</simpara>
         </listitem>
 
         <listitem>
@@ -297,12 +297,12 @@ directo <guimenuitem>Comparar</guimenuitem>.</simpara>
       </itemizedlist>Si compara una subcarpeta, la tabla de comparación de la nueva carpeta se
 carga en la ventana de comparación de la carpeta actual. Cuando haya
 terminado de comparar esa carpeta, puede volver a la carpeta principal
-haciendo doble clic en el botón<inlinemediaobject>
+haciendo doble clic en el botón <inlinemediaobject>
 <imageobject> <imagedata contentwidth="23"
 fileref="screenshots/nav_uparrow_btn.png" /> </imageobject><textobject>
-          <phrase>Botón de flecha hacia arriba del Navegador</phrase>
+          <phrase>Botón de flecha hacia arriba del navegador</phrase>
         </textobject>
-      </inlinemediaobject>situado en la parte superior de la columna "Nombre de archivo".</para>
+      </inlinemediaobject> situado en la parte superior de la columna "Nombre de archivo".</para>
 
     <para>Si compara un archivo, WinMerge abre la ventana de comparación de archivos,
 que se describe en la siguiente sección. Si modifica un archivo en la
@@ -330,13 +330,13 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
     </mediaobject>
 
     <para>La ventana de comparación de archivos muestra los dos archivos seleccionados
-uno al lado del otro, en paneles de archivo independientes.  Las líneas
+uno al lado del otro en paneles de archivo independientes. Las líneas
 diferentes se resaltan con un color de fondo. Una o más líneas diferentes
-consecutivas forman una diferencia (o <glossterm>diff</glossterm>).  En el
+consecutivas forman una diferencia (o <glossterm>diff</glossterm>). En el
 ejemplo anterior, se ha seleccionado una sola diferencia en los paneles de
 archivo y se muestra por sí sola en el panel de diferencias. WinMerge
-trabaja principalmente con estas diferencias, no con líneas individuales.
-Al combinar una diferencia se copian todas sus líneas de un lado al otro.</para>
+trabaja principalmente con estas diferencias, no con líneas individuales. Al
+combinar una diferencia se copian todas sus líneas de un lado al otro.</para>
 
     <para><important>
         <para>Observe cómo WinMerge rellena las líneas que faltan, de modo que las líneas
@@ -350,14 +350,14 @@ copiar, cortar y pegar texto. Si la opción <guilabel>Volver a comparar
 automáticamente</guilabel> está activada, WinMerge actualiza las diferencias
 entre los archivos mientras edita un archivo. Si <guilabel>Volver a comparar
 automáticamente</guilabel> está desactivada, puede actualizar los archivos
-seleccionando <menuchoice> <guimenu>Editar</guimenu>
-<guimenuitem>Actualizar</guimenuitem> </menuchoice>, haciendo clic en el
+seleccionando <menuchoice> <guimenu>Ver</guimenu>
+<guimenuitem>Actualizar</guimenuitem> </menuchoice> haciendo clic en el
 botón <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
           <phrase>Botón Actualizar</phrase>
         </textobject>
-      </inlinemediaobject>de la barra de
+      </inlinemediaobject> de la barra de
 herramientas o pulsando la tecla <keycap>F5</keycap>.</para>
   </section>
 </article>

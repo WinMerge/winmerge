@@ -136,6 +136,8 @@ public:
 	// Attributes
 public:
 	static int m_nBuffersTemp;
+	static inline IMergeDoc::DocumentType m_documentTypeTemp;
+	IMergeDoc::DocumentType m_documentType;
 
 	// Begin declaration of CMergeDoc
 
@@ -438,7 +440,7 @@ public:
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
 	bool GenerateReport(ReportContext& reportContext) const override;
-	IMergeDoc::DocumentType GetDocumentType() const override;
+	IMergeDoc::DocumentType GetDocumentType() const override { return m_documentType; }
 	void SetAutoMerged(bool bAutoMerged) { m_bAutoMerged = bAutoMerged; }
 	bool GetAutoMerged() const { return m_bAutoMerged; };
 	bool IsModified() const

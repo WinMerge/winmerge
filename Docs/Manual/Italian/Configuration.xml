@@ -1293,10 +1293,10 @@ impostato sul metodo di confronto <guilabel>Contenuti completi</guilabel>.</para
 
           <para>
 Dimensione soglia per passare al metodo di confronto <guilabel>Contenuti
-rapidi</guilabel>. Quando è selezionato il metodo di confronto <guilabel
->Contenuti completi</guilabel>, i file più grandi (in mega byte) di questo
-valore vengono confrontati usando il metodo di confronto <guilabel>Contenuti
-rapidi</guilabel>.</para>
+rapidi</guilabel>. Quando è selezionato il metodo di confronto
+<guilabel>Contenuti completi</guilabel>, i file più grandi (in mega byte) di
+questo valore vengono confrontati usando il metodo di confronto
+<guilabel>Contenuti rapidi</guilabel>.</para>
         </listitem>
       </itemizedlist>
     </section>

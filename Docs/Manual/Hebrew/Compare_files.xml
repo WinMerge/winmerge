@@ -1209,7 +1209,7 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
         <para>אם <guilabel>סריקה חוזרת אוטומטית</guilabel> מושבתת, או אם אתה חושד שקובץ
 עשוי להשתנות, אנו ממליצים בחום להפעיל <guimenuitem>רענן</guimenuitem>
 <emphasis>לפני</emphasis> ביצוע פעולת מיזוג כלשהי: לחץ על <menuchoice>
-<guimenu>עריכה</guimenu> <guimenuitem>רענן</guimenuitem> </menuchoice> או על
+<guimenu>תצוגה</guimenu> <guimenuitem>רענן</guimenuitem> </menuchoice> או על
 לחצן סרגל הכלים <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>

@@ -164,7 +164,10 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_RENAME_MOVE_KEY, _T(""));
 	pOptions->InitOption(OPT_CMP_RENAME_MOVE_MERGE_MODE, 0);
 
+	pOptions->InitOption(OPT_CMP_TEXT_SPLITTER_RATIOS, _T(""));
+
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
+	pOptions->InitOption(OPT_CMP_BIN_SPLITTER_RATIOS, _T(""));
 
 	pOptions->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
 	pOptions->InitOption(OPT_CMP_CSV_DELIM_CHAR, _T(","));
@@ -173,6 +176,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(";"));
 	pOptions->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);
 	pOptions->InitOption(OPT_CMP_TBL_QUOTE_CHAR, _T("\""));
+	pOptions->InitOption(OPT_CMP_TBL_SPLITTER_RATIOS, _T(""));
 
 	pOptions->InitOption(OPT_CMP_IMG_FILEPATTERNS, _T("*.bmp;*.cut;*.dds;*.dng;*.exr;*.g3;*.gif;*.heic;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxl;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"));
 	pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
@@ -192,7 +196,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL, 1000, 200, 8000);
 	pOptions->InitOption(OPT_CMP_IMG_OCR_RESULT_TYPE, 0, 0, 2);
 	pOptions->InitOption(OPT_CMP_IMG_PREFER_WIC_DECODER, false);
-	pOptions->InitOption(OPT_CMP_IMG_SPLITTER_POS, 0, -65535, 65535);
+	pOptions->InitOption(OPT_CMP_IMG_SPLITTER_RATIOS, _T(""));
 
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_TYPE, 0, 0, 1);
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_PERPANE, true);
@@ -206,6 +210,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE, _T(""));
 	pOptions->InitOption(OPT_CMP_WEB_SYNC_EVENTS, true);
 	pOptions->InitOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, 0xff);
+	pOptions->InitOption(OPT_CMP_WEB_SPLITTER_RATIOS, _T(""));
 
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);

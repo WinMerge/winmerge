@@ -176,6 +176,8 @@ CMergeDoc::CMergeDoc()
 , m_bAutomaticRescan(false)
 , m_bChangedSchemeManually(false)
 , m_editorScriptInfo(_T(""))
+, m_nBuffers(m_nBuffersTemp)
+, m_documentType(m_documentTypeTemp)
 , m_pMergeResultView(nullptr)
 , m_bResultBuilt(false)
 , m_bResultSaved(false)
@@ -185,7 +187,6 @@ CMergeDoc::CMergeDoc()
 {
 	DIFFOPTIONS options = {0};
 
-	m_nBuffers = m_nBuffersTemp;
 	m_filePaths.SetSize(m_nBuffers);
 
 	if (m_nBuffers == 3)
@@ -2471,6 +2472,7 @@ void CMergeDoc::SetTableProperties()
 		}
 		m_diffWrapper.SetTableProps(nBuffer, GetCurrentTableProperties(nBuffer));
 	}
+	m_documentType = m_ptBuf[0]->GetTableEditing() ? IMergeDoc::DocumentType::Table : IMergeDoc::DocumentType::Text;
 }
 
 void CMergeDoc::SetTextType(int textType)
@@ -3494,13 +3496,6 @@ bool CMergeDoc::GenerateReport(ReportContext& reportContext) const
 	}
 
 	return true;
-}
-
-IMergeDoc::DocumentType CMergeDoc::GetDocumentType() const
-{
-	if (m_ptBuf[0]->GetTableEditing())
-		return IMergeDoc::DocumentType::Table;
-	return IMergeDoc::DocumentType::Text;
 }
 
 /**

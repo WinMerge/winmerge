@@ -21,19 +21,19 @@
               <secondary>Soporte de WinMerge</secondary>
             </indexterm>A partir de la versión 2.14,
 WinMerge dejó de ser compatible con los antiguos sistemas Windows de 32
-bits, incluidos Windows 9x, ME y NT4.  Además, la versión 2.16 de WinMerge
-no es compatible con Windows 2000.</para>
+bits, incluidos Windows 9x, ME y NT4. Además, la versión 2.16 de WinMerge no
+es compatible con Windows 2000.</para>
           <para>Anteriormente, WinMerge ofrecía un ejecutable ANSI (8 bits),
 <filename>WinMerge.exe</filename>, diseñado en función de las antiguas
 páginas de códigos de Windows. <filename>WinMerge.exe</filename> solo
 guardaba internamente los caracteres ANSI compatibles con la página de
-códigos de Windows. Este ejecutable tenía graves limitaciones a la hora de
+códigos de Windows.  Este ejecutable tenía graves limitaciones a la hora de
 trabajar con Unicode: si se abría un archivo Unicode, los caracteres se
 convertían a la página de códigos ANSI de Windows. Dado que hay más de
 100000 caracteres Unicode y solo se pueden representar 256 en el juego de
-caracteres ANSI, podría producirse una pérdida de datos. La conversión puede
-ser aproximada (por ejemplo, se pierden los acentos) o imposible: los
-caracteres se sustituyeron por signos de interrogación (
+caracteres ANSI, podría producirse una pérdida de datos. La conversión podía
+ser aproximada (por ejemplo, se perdían los acentos) o imposible: los
+caracteres eran sustituidos por signos de interrogación (
 <literal>?</literal> ).</para>
           <para><filename>WinMerge.exe</filename> tampoco podía abrir archivos cuyos nombres
 no estuvieran dentro de la página de códigos ANSI actual. Por ejemplo, en un
@@ -45,8 +45,8 @@ recientes basados en Unicode. <filename>WinMergeU.exe</filename> no presenta
 ninguna de la limitaciones del ejecutable ANSI.</para>
           <para><filename>WinMergeU.exe</filename> lleva ya algún tiempo instalado de forma
 predeterminada y, dado que quedan muy pocos sistemas Windows basados en
-ANSI, el interés de mantener <filename>WinMerge.exe</filename> es mínimo.  A
-partir de la versión 2.14, WinMerge ya no incluye
+ANSI, el interés de mantener <filename>WinMerge.exe</filename> es mínimo. A
+partir de la versión 2.14, WinMerge ya no se incluye
 <filename>WinMerge.exe</filename> en el instalador.</para>
         </answer>
       </qandaentry>
@@ -118,10 +118,10 @@ linkend="ResolveConflictFiles" />).</para>
         </question>
 
         <answer>
-          <para>MRU es la abreviatura de <quote>Most Recently Used</quote> (utilizados más
-recientemente) y hace referencia a las listas del historial del cuadro de
-diálogo "Seleccione archivos o carpetas". La lista contiene las últimas
-veinte rutas utilizadas en cada lado.</para>
+          <para>MRU es la abreviatura de "Most Recently Used" (utilizados más recientemente)
+y hace referencia a las listas del historial del cuadro de diálogo
+"Seleccione archivos o carpetas". La lista contiene las últimas veinte rutas
+utilizadas en cada lado.</para>
         </answer>
       </qandaentry>
 
@@ -138,11 +138,10 @@ WinMerge, debe configurar la compatibilidad con archivos comprimidos:</para>
 
           <itemizedlist>
             <listitem>
-              <para>En WinMerge, haga clic en el botón <guibutton>Opciones</guibutton> (o
-use<menuchoice> <guimenu>Editar</guimenu>
-<guimenuitem>Opciones</guimenuitem> </menuchoice>). En la página "Soporte de
-archivos", active la opción <guilabel>Detectar tipo de archivo por su
-firma.</guilabel></para>
+              <para>En WinMerge, haga clic en el botón <guibutton>Opciones</guibutton> (o use
+<menuchoice> <guimenu>Editar</guimenu> <guimenuitem>Opciones</guimenuitem>
+</menuchoice>). En la página "Compatibilidad con archivos" active la opción
+<guilabel>Detectar tipo de archivo por su firma.</guilabel></para>
             </listitem>
           </itemizedlist>
         </answer>
@@ -186,7 +185,8 @@ botón derecho sobre el que desee comparar a la izquierda.</para>
 comandos de Windows, consulte: <ulink
 url="https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406">Lo
 viejo y lo nuevo: ¿Cómo determina el Explorador qué programa debe utilizar
-para abrir un archivo si no se le indica explícitamente?</ulink>.</para>
+para abrir un archivo si no se le indica explícitamente?</ulink> (en
+inglés).</para>
         </answer>
       </qandaentry>
 
@@ -288,7 +288,7 @@ que solo se vean las líneas diferentes?</para>
         </question>
 
         <answer>
-          <para>Sí, puede mostrar solo las líneas diferentes haciendo clic en<menuchoice>
+          <para>Sí, puede mostrar solo las líneas diferentes haciendo clic en <menuchoice>
 <guimenu>Ver</guimenu><guimenuitem>Contexto de diferencias</guimenuitem>
 <guimenuitem>0 líneas</guimenuitem> </menuchoice>.</para>
         </answer>
@@ -315,7 +315,7 @@ haya terminado?</para>
       <qandaentry>
         <question>
           <para>No quiero que aparezca el mensaje <guilabel>Los archivos son
-idénticos</guilabel> cuando comparo archivos idénticos; solo quiero que
+idénticos</guilabel> cuando comparo archivos idénticos. Solo quiero que
 WinMerge se cierre.</para>
         </question>
 
@@ -363,7 +363,7 @@ comandos!</para>
   </section>
 
   <section>
-    <title>Soporte de archivos</title>
+    <title>Compatibilidad con archivos</title>
 
     <qandaset>
       <qandaentry>
@@ -379,7 +379,7 @@ los desarrolladores de WinMerge al enviar correcciones?<indexterm>
 originales y modificados en diferentes directorios. WinMerge es compatible
 de forma nativa (¡sorpresa!) con estos archivos: solo tiene que iniciar una
 operación de comparación y seleccionar el archivo ZIP tanto para el lado
-izquierdo como para el derecho.  WinMerge abre el contenido del archivo ZIP
+izquierdo como para el derecho. WinMerge abre el contenido del archivo ZIP
 en una ventana de comparación de carpetas, donde compara los archivos
 originales y los modificados.</para>
         </answer>
@@ -394,7 +394,7 @@ ejemplo, archivos .jar como si fueran archivos zip).</para>
         <answer>
           <para>Sí: haga clic en el botón <guibutton>Opciones</guibutton> (o seleccione
 <menuchoice> <guimenu>Editar</guimenu> <guimenuitem>Opciones</guimenuitem>
-</menuchoice>). En la página "Soporte de archivos", active la opción
+</menuchoice>). En la página "Compatibilidad con archivos", active la opción
 <guilabel>Detectar tipo de archivo por su firma</guilabel>.</para>
         </answer>
       </qandaentry>
@@ -416,13 +416,13 @@ local de Windows (ANSI)?</para>
         </question>
 
         <answer>
-          <para>Abre el archivo en el Bloc de notas de Windows (por ejemplo, haga clic
-en<menuchoice> <guimenu>Inicio</guimenu> <guisubmenu>(Todos)
+          <para>Abra el archivo en el Bloc de notas de Windows (por ejemplo, haga clic en
+<menuchoice> <guimenu>Inicio</guimenu> <guisubmenu>(Todos)
 Programas</guisubmenu> <guisubmenu>Accesorios</guisubmenu> <guimenuitem>Bloc
 de notas</guimenuitem> </menuchoice>). Haga clic en <menuchoice>
 <guimenu>Archivo</guimenu> <guimenuitem>Guardar como</guimenuitem>
 </menuchoice> y, en el cuadro de diálogo, busque la opción
-<guilabel>Codificación</guilabel> y usar la lista desplegable.  Los valores
+<guilabel>Codificación</guilabel> y use la lista desplegable. Los valores
 posibles son:</para>
 
           <itemizedlist>
@@ -489,7 +489,7 @@ https://sourceforge.net/projects/gnuwin32</ulink>.</para>
 
         <answer>
           <para>Puede aplicar correcciones utilizando el complemento experimental
-ApplyPatch.sct.  Las extensiones de los archivos de corrección compatibles
+ApplyPatch.sct. Las extensiones de los archivos de corrección compatibles
 con el complemento son .diff o .patch.</para>
         </answer>
       </qandaentry>

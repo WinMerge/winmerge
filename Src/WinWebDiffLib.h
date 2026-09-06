@@ -200,6 +200,9 @@ struct IWebDiffWindow
 	virtual void SetLogCallback(LogCallback logCallback) = 0;
 	virtual bool IsDarkBackgroundEnabled() const = 0;
 	virtual void SetDarkBackgroundEnabled(bool enabled) = 0;
+	virtual double GetSplitterRatio(int pane) const = 0;
+	virtual void SetSplitterRatios(const double* ratio, int count) = 0;
+	virtual void ResetSplitterRatios() = 0;
 };
 
 struct IWebToolWindow

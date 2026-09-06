@@ -212,14 +212,14 @@ file</title>
       <para>Le funzioni vengono fornite al menu <guisubmenu>Script</guisubmenu> dai
 plugin <xref linkend="EditorAddin" /> e <xref linkend="Plugins_datetime" />.</para>
 
-      <note>
-        <para>I plugin di complemento dell'editor non sono disponibili nella finestra
+        <note>
+          <para>I plugin di complemento dell'editor non sono disponibili nella finestra
 Confronto cartelle.</para>
-      </note>
-    </section>
+        </note>
+      </section>
 
-    <section>
-      <title>Applicazione dei plugin di decompressione nella finestra Confronto cartelle</title>
+      <section>
+        <title>Applicazione dei plugin di decompressione nella finestra Confronto cartelle</title>
 
       <para>Prima di applicare i plugin di decompressione, puoi impostarne la modalità
 su automatica o manuale.</para>
@@ -355,6 +355,35 @@ clic su <menuchoice> <guimenu>Plugin</guimenu>
 nell'elenco. I plugin suggeriti sono indicati in cima all'elenco. I file
 vengono confrontati nuovamente dopo l'applicazione del plug-in, quindi non è
 necessario ripetere la scansione dei file.</para>
+    </section>
+
+    <section>
+      <title>Uso pipeline plug-in</title>
+
+      <para>Le pipeline plugin consentono di concatenare più plugin e filtrare
+espressioni usando il carattere pipe (<keycap>|</keycap>) come
+separatore. Le pipeline plug-in possono essere usate con tutti i tipi di
+plug-in: plug-in decompressione,, prediffer e complemento editor.</para>
+
+      <para>I plugin sono specificati dai loro nomi. Esempio:</para>
+
+      <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
+
+      <para>Le espressioni di filtro possono essere usate anche nelle pipeline plugin
+prefissandole con <literal>le:</literal>. Eesempio:</para>
+
+      <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
+
+      <para>Per le funzioni e gli operatori delle espressioni di filtro disponibili vedi
+<xref linkend="FilterExpression_Syntax" />.</para>
+
+      <para>Puoi specificare nella finestra di dialogo <guibutton>Seleziona
+plugin</guibutton> una pipeline plugin inserendo l'espressione della
+pipeline.</para>
+
+      <para>Quando è già selezionata una pipeline plugin, puoi aggiungervi un plugin
+tenendo premuto il tasto <keycap>Ctrl</keycap> mentre fai clic sul plugin
+nel menu di selezione di un plugin.</para>
     </section>
   </section>
 
@@ -2042,9 +2071,10 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
-<command>Selezionacolonne</command> <arg><option>-v</option></arg>
+<command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>modelli</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>modelli</replaceable></arg>
+<arg><option>-F</option> <replaceable>stringa fissa</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2086,6 +2116,13 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>usare <replaceable>modelli</replaceable> per la corrispondenza</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>per la corrispondenza usa una stringa fissa</para>
           </listitem>
         </varlistentry>
 
@@ -2134,7 +2171,8 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>modelli</replaceable></arg></cmdsynopsis>
+<replaceable>modelli</replaceable></arg> <arg><option>-F</option>
+<replaceable>stringa fissa</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2169,6 +2207,13 @@ rep="norepeat"><replaceable>intervalli</replaceable></arg></cmdsynopsis>
           <term><option>-e</option></term>
           <listitem>
             <para>usare <replaceable>modelli</replaceable> per la corrispondenza</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>per la corrispondenza usa una stringa fissa</para>
           </listitem>
         </varlistentry>
 

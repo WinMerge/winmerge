@@ -274,7 +274,10 @@ inline const String OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL {_T("Settings/ImageOver
 inline const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP {_T("Settings/EnableImageCompareInFolderCompare"s)};
 inline const String OPT_CMP_IMG_OCR_RESULT_TYPE {_T("Settings/ImageOcrResultType"s)};
 inline const String OPT_CMP_IMG_PREFER_WIC_DECODER {_T("Settings/ImagePreferWICDecoder"s)};
-inline const String OPT_CMP_IMG_SPLITTER_POS {_T("Settings/ImageSplitterPosition"s)};
+inline const String OPT_CMP_IMG_SPLITTER_RATIOS {_T("Settings/ImageSplitterRatios"s)};
+
+// Text file Compare options
+inline const String OPT_CMP_TEXT_SPLITTER_RATIOS {_T("Settings/TextSplitterRatios"s)};
 
 // WebPage Compare options
 inline const String OPT_CMP_WEB_USERDATAFOLDER_TYPE {_T("Settings/WebPageUserDataFolderType"s)};
@@ -284,6 +287,7 @@ inline const String OPT_CMP_WEB_SHOWDIFFERENCES {_T("Settings/WebPageShowDiffere
 inline const String OPT_CMP_WEB_VIEW_WIDTH {_T("Settings/WebPageViewWidth"s)};
 inline const String OPT_CMP_WEB_VIEW_HEIGHT {_T("Settings/WebPageViewHeight"s)};
 inline const String OPT_CMP_WEB_ZOOM {_T("Settings/WebZoom"s)};
+inline const String OPT_CMP_WEB_SPLITTER_RATIOS {_T("Settings/WebPageSplitterRatios"s)};
 inline const String OPT_CMP_WEB_USER_AGENT {_T("Settings/WebUserAgent"s)};
 inline const String OPT_CMP_WEB_SYNC_EVENTS {_T("Settings/WebSyncEvents"s)};
 inline const String OPT_CMP_WEB_SYNC_EVENT_FLAGS {_T("Settings/WebSyncEventFlags"s)};
@@ -292,6 +296,7 @@ inline const String OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE {_T("Settings/WebPageURLP
 
 // Binary options
 inline const String OPT_CMP_BIN_FILEPATTERNS {_T("Settings/BinaryFilePatterns"s)};
+inline const String OPT_CMP_BIN_SPLITTER_RATIOS {_T("Settings/BinarySplitterRatios"s)};
 
 // Table options
 inline const String OPT_CMP_CSV_FILEPATTERNS {_T("Settings/CSVFilePatterns"s)};
@@ -301,6 +306,7 @@ inline const String OPT_CMP_DSV_FILEPATTERNS {_T("Settings/DSVFilePatterns"s)};
 inline const String OPT_CMP_DSV_DELIM_CHAR   {_T("Settings/DSVDelimiterCharacter"s)};
 inline const String OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES {_T("Settings/TableAllowNewlinesInQuotes"s)};
 inline const String OPT_CMP_TBL_QUOTE_CHAR   {_T("Settings/TableQuoteCharacter"s)};
+inline const String OPT_CMP_TBL_SPLITTER_RATIOS {_T("Settings/TableSplitterRatios"s)};
 
 /// Are regular expression linefilters enabled?
 inline const String OPT_LINEFILTER_ENABLED {_T("Settings/IgnoreRegExp"s)};

@@ -1350,7 +1350,7 @@ travailler avec la version du fichier chargée précédemment.</para>
 soupçonnez qu'un fichier a pu changer, nous vous conseillons vivement
 d'exécuter <guimenuitem>Actualiser</guimenuitem> <emphasis>avant</emphasis>
 toute opération de fusion : cliquez sur <menuchoice>
-<guimenu>Édition</guimenu> <guimenuitem>Actualiser</guimenuitem>
+<guimenu>Affichage</guimenu> <guimenuitem>Actualiser</guimenuitem>
 </menuchoice> ou sur le bouton <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>

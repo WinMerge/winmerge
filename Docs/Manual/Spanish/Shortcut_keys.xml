@@ -106,13 +106,13 @@ pantalla)</entry>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha izquierda</keycap>
 </keycombo></entry>
 
-          <entry>Copy selected items from right to left</entry>
+          <entry>Copiar los elementos seleccionados del derecho al izquierdo</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>Flecha derecha</keycap> </keycombo></entry>
 
-          <entry>Copia los elementos seleccionados del derecho al izquierdo</entry>
+          <entry>Copia los elementos seleccionados del izquierdo al derecho</entry>
         </row>
       </tbody>
     </tgroup>
@@ -218,7 +218,7 @@ pantalla)</entry>
         <row>
           <entry><keycap>F12</keycap></entry>
 
-          <entry>Go to definition</entry>
+          <entry>Ir a la definición</entry>
         </row>
 
         <row>
@@ -461,7 +461,7 @@ siguiente</entry>
   </table>
 
   <table>
-    <title>Find and Replace</title>
+    <title>Buscar y sustituir</title>
 
     <tgroup cols="2">
       <thead>
