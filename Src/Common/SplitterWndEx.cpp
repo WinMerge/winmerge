@@ -316,11 +316,30 @@ void CSplitterWndEx::SetSplitterRatios(const double* ratios, int count, bool hor
 	int sumRatio = 0;
 	for (int i = 0; i < count; ++i)
 	{
-		const int ratio = static_cast<int>(ratios[i] * 10000);
+		const double d = ratios[i];
+		if (!(d > 0.0 && d < 1.0))
+		{
+			initializeRatios(ratiosVec, nPanes);
+			if (horizontal)
+				EqualizeCols();
+			else
+				EqualizeRows();
+			return;
+		}
+		const int ratio = static_cast<int>(d * 10000);
+		if (ratio <= 0 || sumRatio + ratio >= 10000)
+		{
+			initializeRatios(ratiosVec, nPanes);
+			if (horizontal)
+				EqualizeCols();
+			else
+				EqualizeRows();
+			return;
+		}
 		ratiosVec.push_back(ratio);
 		sumRatio += ratio;
 	}
-	ratiosVec.push_back(10000 - sumRatio);
+	ratiosVec.push_back(10000 - sumRatio)
 
 	if (horizontal)
 		EqualizeCols();
