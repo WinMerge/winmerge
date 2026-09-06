@@ -931,6 +931,10 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="PluginMenu.cpp" />
+    <ClCompile Include="SplitterPositions.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="SyntaxParserHelper.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1603,6 +1607,7 @@
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="PropSysColors.h" />
     <ClInclude Include="ReplaceListHelper.h" />
+    <ClInclude Include="SplitterPositions.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
@@ -1791,7 +1796,9 @@
     <ClInclude Include="WindowListCtrl.h" />
     <ClInclude Include="WindowsManager.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
+    <ClInclude Include="WinIMergeLib.h" />
     <ClInclude Include="WinMergePluginBase.h" />
+    <ClInclude Include="WinWebDiffLib.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="MergeAppCOMClass.h" />

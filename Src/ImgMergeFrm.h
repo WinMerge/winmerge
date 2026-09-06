@@ -164,6 +164,8 @@ protected:
 	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
 	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnWindowChangePane(UINT nID);
+	afx_msg void OnWindowPreserveSplitterPosition();
+	afx_msg void OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
@@ -256,7 +258,7 @@ protected:
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	afx_msg void OnHelp();
-    afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
+	afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -114,7 +114,7 @@ static constexpr int TOOLBAR_IMAGE_COUNT = 26;
 static void LoadToolbarImageList(int newImageWidth, HBITMAP hBitmap, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
-DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, IMergeDoc::DocumentType documentType, bool bMakeVisible = true);
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -1052,7 +1052,8 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	CMultiDocTemplate* pDiffTemplate = theApp.GetDiffTemplate();
 	if (m_pMenus[MENU_MERGEVIEW] == nullptr)
 		pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
-	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(pDiffTemplate, pDirDoc, nFiles, false);
+	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(pDiffTemplate, pDirDoc, nFiles,
+		table.value_or(false) ? IMergeDoc::DocumentType::Table : IMergeDoc::DocumentType::Text, false);
 
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
@@ -1169,7 +1170,7 @@ bool CMainFrame::ShowHexMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocati
 	CMultiDocTemplate* pHexMergeTemplate = theApp.GetHexMergeTemplate();
 	if (m_pMenus[MENU_HEXMERGEVIEW] == nullptr)
 		pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
-	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(pHexMergeTemplate, pDirDoc, nFiles);
+	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(pHexMergeTemplate, pDirDoc, nFiles, IMergeDoc::DocumentType::Binary);
 	if (pHexMergeDoc == nullptr)
 		return false;
 
@@ -2213,10 +2214,11 @@ void CMainFrame::OnToolsGenerateReport()
  * @return Pointer to CMergeDoc to use. 
  */
 template<class DocClass>
-DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, bool bMakeVisible)
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, IMergeDoc::DocumentType documentType, bool bMakeVisible)
 {
 	// Create a new merge doc
 	DocClass::m_nBuffersTemp = nFiles;
+	DocClass::m_documentTypeTemp = documentType;
 	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(nullptr, bMakeVisible));
 	if (pMergeDoc != nullptr && pDirDoc != nullptr)
 	{

@@ -36,6 +36,7 @@
 #include "MouseHook.h"
 #include "TreeSitterParser.h"
 #include "PluginMenu.h"
+#include "SplitterPositions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -4826,14 +4827,22 @@ void CMergeEditView::OnDropFiles(const std::vector<String>& tFiles)
 
 void CMergeEditView::OnWindowSplit()
 {
-
-	auto& wndSplitter = dynamic_cast<CMergeEditFrame *>(GetParentFrame())->GetSplitter();
+	CMergeEditFrame* pFrame = dynamic_cast<CMergeEditFrame*>(GetParentFrame());
+	auto& wndSplitter = pFrame->GetSplitter();
 	CMergeDoc *pDoc = GetDocument();
 	int nBuffer = m_nThisPane;
 	if (pDoc->m_nGroups <= 2)
 	{
 		wndSplitter.SplitRow(1);
-		wndSplitter.EqualizeRows();
+		auto& splitterWnd = static_cast<CMergeEditSplitterView*>(wndSplitter.GetPane(1, 0))->m_wndSplitter;
+		const bool horizontal = splitterWnd.GetColumnCount() != 1;
+		const String& optname = pDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_RATIOS : OPT_CMP_TEXT_SPLITTER_RATIOS;
+		SplitterPositions::LoadPaneRatio(optname, 1, pDoc->m_nBuffers,
+			[this, horizontal, &splitterWnd](const double* positions, int count) {
+				splitterWnd.SetSplitterRatios(positions, count, horizontal);
+			});
+		const double ratio = SplitterPositions::LoadRowRatio(optname);
+		wndSplitter.SetSplitterRatios(&ratio, 1, false);
 	}
 	else
 	{
