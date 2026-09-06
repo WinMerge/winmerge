@@ -178,8 +178,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
-	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_RATIOSITION, OnWindowPreserveSplitterPosition)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_RATIOSITION, OnUpdateWindowPreserveSplitterPosition)
+	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_RATIOS, OnWindowPreserveSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_RATIOS, OnUpdateWindowPreserveSplitterPosition)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Status bar
