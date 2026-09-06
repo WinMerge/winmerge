@@ -42,10 +42,11 @@ static std::vector<double> ParseSplitterRatios(const String& name, int index, in
 		return {};
 	std::vector<double> positions;
 	positions.reserve(expected);
+	double sum = 0.0;
 	for (const auto& part : parts)
 	{
 		const double v = tc::tcstod(String(part.data(), part.size()).c_str(), nullptr);
-		if (v <= 0.0 || v >= 1.0)
+		if (!(v > 0.0 && v < 1.0) || (sum += v) >= 1.0)
 			return {};
 		positions.push_back(v);
 	}
