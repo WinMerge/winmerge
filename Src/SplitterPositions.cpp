@@ -68,7 +68,7 @@ static String FormatSplitterPositions(const std::vector<double>& positions)
 
 namespace SplitterPositions
 {
-	void Load(const String& name, int nRow, int nPanes,
+	void LoadPaneRatio(const String& name, int nRow, int nPanes,
 		std::function<void(const double*, int)> func)
 	{
 		const auto positions = ParseSplitterPosition(name, nRow, nPanes);
@@ -76,7 +76,7 @@ namespace SplitterPositions
 			func(positions.data(), static_cast<int>(positions.size()));
 	}
 
-	void Save(const String& name, int nRow, int nPanes,
+	void SavePaneRatios(const String& name, int nRow, int nPanes,
 		std::function<double(int)> func)
 	{
 		std::map<String, String> map = ParseSettingString(name);
@@ -90,7 +90,7 @@ namespace SplitterPositions
 		SaveSettingString(name, map);
 	}
 
-	double LoadRowPosition(const String& name)
+	double LoadRowRatio(const String& name)
 	{
 		std::map<String, String> map = ParseSettingString(name);
 		String value = map[_T("row")];
@@ -99,7 +99,7 @@ namespace SplitterPositions
 		return tc::tcstod(value.c_str(), nullptr);
 	}
 
-	void SaveRowPosition(const String& name, const double* ratio)
+	void SaveRowRatio(const String& name, const double* ratio)
 	{
 		std::map<String, String> map = ParseSettingString(name);
 		if (ratio)
@@ -110,7 +110,7 @@ namespace SplitterPositions
 		SaveSettingString(name, map);
 	}
 
-	int GetRowCount(const String& name)
+	int GetSplitterRowCount(const String& name)
 	{
 		std::map<String, String> map = ParseSettingString(name);
 		String rowCount = map[_T("rowCount")];

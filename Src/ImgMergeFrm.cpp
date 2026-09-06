@@ -178,8 +178,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
-	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnWindowRememberSplitterPosition)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnUpdateWindowRememberSplitterPosition)
+	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnWindowPreserveSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnUpdateWindowPreserveSplitterPosition)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Status bar
@@ -654,7 +654,7 @@ void CImgMergeFrame::LoadOptions()
 	RefreshOptions();
 
 	m_pImgMergeWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
-	SplitterPositions::Load(OPT_CMP_IMG_SPLITTER_POS, 0, m_filePaths.GetSize(),
+	SplitterPositions::LoadPaneRatio(OPT_CMP_IMG_SPLITTER_POS, 0, m_filePaths.GetSize(),
 		[this](const double* positions, int count) { return m_pImgMergeWindow->SetSplitterRatios(positions, count); });
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetBlinkDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_BLINKDIFFERENCES));
@@ -679,7 +679,7 @@ void CImgMergeFrame::LoadOptions()
 void CImgMergeFrame::SaveOptions()
 {
 	if (!GetOptionsMgr()->GetString(OPT_CMP_IMG_SPLITTER_POS).empty())
-		SplitterPositions::Save(OPT_CMP_IMG_SPLITTER_POS, 0, m_pImgMergeWindow->GetPaneCount(),
+		SplitterPositions::SavePaneRatios(OPT_CMP_IMG_SPLITTER_POS, 0, m_pImgMergeWindow->GetPaneCount(),
 			[this](int i) { return m_pImgMergeWindow->GetSplitterRatio(i); });
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pImgMergeWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BLINKDIFFERENCES, m_pImgMergeWindow->GetBlinkDifferences());
@@ -1107,7 +1107,7 @@ void  CImgMergeFrame::OnWindowChangePane(UINT nID)
 	m_pImgMergeWindow->SetActivePane(pane);
 }
 
-void CImgMergeFrame::OnWindowRememberSplitterPosition()
+void CImgMergeFrame::OnWindowPreserveSplitterPosition()
 {
 	if (!GetOptionsMgr()->GetString(OPT_CMP_IMG_SPLITTER_POS).empty())
 	{
@@ -1115,11 +1115,11 @@ void CImgMergeFrame::OnWindowRememberSplitterPosition()
 		m_pImgMergeWindow->ResetSplitterRatios();
 		return;
 	}
-	SplitterPositions::Save(OPT_CMP_IMG_SPLITTER_POS, 1, m_pImgMergeWindow->GetPaneCount(),
+	SplitterPositions::SavePaneRatios(OPT_CMP_IMG_SPLITTER_POS, 0, m_pImgMergeWindow->GetPaneCount(),
 		[this](int i) { return m_pImgMergeWindow->GetSplitterRatio(i); });
 }
 
-void CImgMergeFrame::OnUpdateWindowRememberSplitterPosition(CCmdUI* pCmdUI)
+void CImgMergeFrame::OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(OPT_CMP_IMG_SPLITTER_POS).empty());
 }

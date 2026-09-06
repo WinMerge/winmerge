@@ -55,8 +55,8 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	ON_COMMAND(IDCANCEL, OnDisplayFilterBarClose)
 	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnDisplayFilterBarMenu)
 	// [Window] menu
-	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnWindowRememberSplitterPosition)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnUpdateWindowRememberSplitterPosition)
+	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnWindowPreserveSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_POSITION, OnUpdateWindowPreserveSplitterPosition)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -385,11 +385,11 @@ void CMergeEditFrame::LoadOptions()
 	auto& splitterWnd = GetMergeEditSplitterWnd(0);
 	// Text compare uses horizontal (columns) splitting
 	const bool horizontal = splitterWnd.GetColumnCount() != 1;
-	SplitterPositions::Load(optname, 0, m_pMergeDoc->m_nBuffers,
+	SplitterPositions::LoadPaneRatio(optname, 0, m_pMergeDoc->m_nBuffers,
 		[this, horizontal](const double* positions, int count) {
 			GetMergeEditSplitterWnd(0).SetSplitterRatios(positions, count, horizontal);
 		});
-	int rowCount = SplitterPositions::GetRowCount(optname);
+	int rowCount = SplitterPositions::GetSplitterRowCount(optname);
 	if (rowCount > 1)
 		PostMessage(WM_COMMAND, ID_WINDOW_SPLIT);
 }
@@ -405,13 +405,13 @@ void CMergeEditFrame::SaveOptions()
 	{
 		for (int r = 0; r < nRows; ++r)
 		{
-			SplitterPositions::Save(optname, r, m_pMergeDoc->m_nBuffers,
+			SplitterPositions::SavePaneRatios(optname, r, m_pMergeDoc->m_nBuffers,
 				[this, r, horizontal](int i) {
 					return GetMergeEditSplitterWnd(r).GetSplitterRatio(i, horizontal);
 				});
 		}
 		double ratio = m_wndSplitter.GetSplitterRatio(0, false);
-		SplitterPositions::SaveRowPosition(optname, nRows > 1 ? &ratio : nullptr);
+		SplitterPositions::SaveRowRatio(optname, nRows > 1 ? &ratio : nullptr);
 	}
 }
 
@@ -588,7 +588,7 @@ void CMergeEditFrame::HideFilterBar()
 /**
  * @brief Remember/restore splitter position
  */
-void CMergeEditFrame::OnWindowRememberSplitterPosition()
+void CMergeEditFrame::OnWindowPreserveSplitterPosition()
 {
 	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_POS : OPT_CMP_TEXT_SPLITTER_POS;
 	auto& splitterWnd = GetMergeEditSplitterWnd(0);
@@ -602,12 +602,12 @@ void CMergeEditFrame::OnWindowRememberSplitterPosition()
 	const int nRows = m_wndSplitter.GetRowCount();
 	for (int r = 0; r < nRows; ++r)
 	{
-		SplitterPositions::Save(optname, r, m_pMergeDoc->m_nBuffers,
+		SplitterPositions::SavePaneRatios(optname, r, m_pMergeDoc->m_nBuffers,
 			[this, r, horizontal](int i) { return GetMergeEditSplitterWnd(r).GetSplitterRatio(i, horizontal); });
 	}
 }
 
-void CMergeEditFrame::OnUpdateWindowRememberSplitterPosition(CCmdUI* pCmdUI)
+void CMergeEditFrame::OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI)
 {
 	const String& optname = m_pMergeDoc->GetDocumentType() == IMergeDoc::DocumentType::Table ? OPT_CMP_TBL_SPLITTER_POS : OPT_CMP_TEXT_SPLITTER_POS;
 	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(optname).empty());

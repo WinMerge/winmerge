@@ -93,8 +93,8 @@ private:
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	afx_msg void OnViewSplitVertically();
 	afx_msg void OnUpdateViewSplitVertically(CCmdUI* pCmdUI);
-	afx_msg void OnWindowRememberSplitterPosition();
-	afx_msg void OnUpdateWindowRememberSplitterPosition(CCmdUI* pCmdUI);
+	afx_msg void OnWindowPreserveSplitterPosition();
+	afx_msg void OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
