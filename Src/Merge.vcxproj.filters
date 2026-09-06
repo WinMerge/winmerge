@@ -885,6 +885,9 @@
     <ClCompile Include="TableProps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SplitterPositions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1695,6 +1698,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WinWebDiffLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitterPositions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

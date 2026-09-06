@@ -37,6 +37,7 @@
 #include "Environment.h"
 #include "MyColorDialog.h"
 #include "PluginMenu.h"
+#include "SplitterPositions.h"
 #include <cmath>
 
 #ifdef _DEBUG
@@ -653,8 +654,7 @@ void CImgMergeFrame::LoadOptions()
 	RefreshOptions();
 
 	m_pImgMergeWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
-	LoadSplitterPositionsSettings(OPT_CMP_IMG_SPLITTER_POS,
-		m_filePaths.GetSize(),
+	SplitterPositions::Load(OPT_CMP_IMG_SPLITTER_POS, 0, m_filePaths.GetSize(),
 		[this](const double* positions, int count) { return m_pImgMergeWindow->SetSplitterRatios(positions, count); });
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetBlinkDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_BLINKDIFFERENCES));
@@ -679,7 +679,7 @@ void CImgMergeFrame::LoadOptions()
 void CImgMergeFrame::SaveOptions()
 {
 	if (!GetOptionsMgr()->GetString(OPT_CMP_IMG_SPLITTER_POS).empty())
-		SaveSplitterPositionsSettings(OPT_CMP_IMG_SPLITTER_POS, m_pImgMergeWindow->GetPaneCount(),
+		SplitterPositions::Save(OPT_CMP_IMG_SPLITTER_POS, 0, m_pImgMergeWindow->GetPaneCount(),
 			[this](int i) { return m_pImgMergeWindow->GetSplitterRatio(i); });
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pImgMergeWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BLINKDIFFERENCES, m_pImgMergeWindow->GetBlinkDifferences());
@@ -1115,7 +1115,7 @@ void CImgMergeFrame::OnWindowRememberSplitterPosition()
 		m_pImgMergeWindow->ResetSplitterRatios();
 		return;
 	}
-	SaveSplitterPositionsSettings(OPT_CMP_IMG_SPLITTER_POS, m_pImgMergeWindow->GetPaneCount(),
+	SplitterPositions::Save(OPT_CMP_IMG_SPLITTER_POS, 1, m_pImgMergeWindow->GetPaneCount(),
 		[this](int i) { return m_pImgMergeWindow->GetSplitterRatio(i); });
 }
 

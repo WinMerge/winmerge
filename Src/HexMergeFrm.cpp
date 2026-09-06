@@ -17,6 +17,7 @@
 #include "HexMergeView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "SplitterPositions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -259,19 +260,20 @@ void CHexMergeFrame::OnSize(UINT nType, int cx, int cy)
 
 void CHexMergeFrame::LoadOptions()
 {
-	LoadSplitterPositionsSettings(OPT_CMP_BIN_SPLITTER_POS,
-		m_pMergeDoc->m_nBuffers,
-		[this](const double* positions, int count) {
-			m_wndSplitter.SetSplitterRatios(positions, count, m_wndSplitter.GetColumnCount() != 1);
+	const bool horizontal = m_wndSplitter.GetColumnCount() != 1;
+	SplitterPositions::Load(OPT_CMP_BIN_SPLITTER_POS, 0, m_pMergeDoc->m_nBuffers,
+		[this, horizontal](const double* positions, int count) {
+			m_wndSplitter.SetSplitterRatios(positions, count, horizontal);
 		});
 }
 
 void CHexMergeFrame::SaveOptions()
 {
+	const bool horizontal = m_wndSplitter.GetColumnCount() != 1;
 	if (!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_POS).empty())
-		SaveSplitterPositionsSettings(OPT_CMP_BIN_SPLITTER_POS, m_pMergeDoc->m_nBuffers,
-			[this](int i) {
-				return m_wndSplitter.GetSplitterRatio(i, m_wndSplitter.GetColumnCount() != 1);
+		SplitterPositions::Save(OPT_CMP_BIN_SPLITTER_POS, 0, m_pMergeDoc->m_nBuffers,
+			[this, horizontal](int i) {
+				return m_wndSplitter.GetSplitterRatio(i, horizontal);
 			});
 }
 
@@ -498,8 +500,9 @@ void CHexMergeFrame::OnWindowRememberSplitterPosition()
 		splitterWnd.ResetSplitterRatios(splitterWnd.GetColumnCount() != 1);
 		return;
 	}
-	SaveSplitterPositionsSettings(OPT_CMP_BIN_SPLITTER_POS, m_pMergeDoc->m_nBuffers,
-		[&splitterWnd](int i) { return splitterWnd.GetSplitterRatio(i, splitterWnd.GetColumnCount() != 1); });
+	const bool horizontal = splitterWnd.GetColumnCount() != 1;
+	SplitterPositions::Save(OPT_CMP_BIN_SPLITTER_POS, 0, m_pMergeDoc->m_nBuffers,
+		[&splitterWnd, horizontal](int i) { return splitterWnd.GetSplitterRatio(i, horizontal); });
 }
 
 void CHexMergeFrame::OnUpdateWindowRememberSplitterPosition(CCmdUI* pCmdUI)

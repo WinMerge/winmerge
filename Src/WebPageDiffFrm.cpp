@@ -30,6 +30,7 @@
 #include "Logger.h"
 #include "DarkModeLib.h"
 #include "PluginMenu.h"
+#include "SplitterPositions.h"
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
 
@@ -627,8 +628,7 @@ BOOL CWebPageDiffFrame::DestroyWindow()
 void CWebPageDiffFrame::LoadOptions()
 {
 	m_pWebDiffWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
-	LoadSplitterPositionsSettings(OPT_CMP_WEB_SPLITTER_POS,
-		m_filePaths.GetSize(),
+	SplitterPositions::Load(OPT_CMP_WEB_SPLITTER_POS, 0, m_filePaths.GetSize(),
 		[this](const double* positions, int count) { return m_pWebDiffWindow->SetSplitterRatios(positions, count); });
 	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_WEB_ZOOM) / 1000.0);
 	SIZE size{ GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_WIDTH), GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_HEIGHT) };
@@ -674,7 +674,7 @@ void CWebPageDiffFrame::LoadOptions()
 void CWebPageDiffFrame::SaveOptions()
 {
 	if (!GetOptionsMgr()->GetString(OPT_CMP_WEB_SPLITTER_POS).empty())
-		SaveSplitterPositionsSettings(OPT_CMP_WEB_SPLITTER_POS, m_pWebDiffWindow->GetPaneCount(),
+		SplitterPositions::Save(OPT_CMP_WEB_SPLITTER_POS, 0, m_pWebDiffWindow->GetPaneCount(),
 			[this](int i) { return m_pWebDiffWindow->GetSplitterRatio(i); });
 	SIZE size = m_pWebDiffWindow->GetSize();
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_WIDTH, size.cx);
@@ -818,7 +818,7 @@ void CWebPageDiffFrame::OnWindowRememberSplitterPosition()
 		m_pWebDiffWindow->ResetSplitterRatios();
 		return;
 	}
-	SaveSplitterPositionsSettings(OPT_CMP_WEB_SPLITTER_POS, m_pWebDiffWindow->GetPaneCount(),
+	SplitterPositions::Save(OPT_CMP_WEB_SPLITTER_POS, 0, m_pWebDiffWindow->GetPaneCount(),
 		[this](int i) { return m_pWebDiffWindow->GetSplitterRatio(i); });
 }
 
