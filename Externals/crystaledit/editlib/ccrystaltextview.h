@@ -265,8 +265,8 @@ protected :
     virtual void GetPrintHeaderText (int nPageNum, CString & text);
     virtual void GetPrintFooterText (int nPageNum, CString & text);
 
-    int GetPreviousVisibleLine(int y) const;
-    int GetNextVisibleLine(int y) const;
+    int GetPreviousVisibleLine (int y) const;
+    int GetNextVisibleLine (int y) const;
 
     //  Keyboard handlers
     void MoveLeft (bool bSelect);
