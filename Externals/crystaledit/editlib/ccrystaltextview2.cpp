@@ -71,8 +71,12 @@ static const UINT_PTR CRYSTAL_RECALC_HSCROLLBAR = 1003;
 int CCrystalTextView::
 GetPreviousVisibleLine (int y) const
 {
-  if (y < 0)
+  const int nLineCount = GetLineCount ();
+  if (y <= 0)
     return -1;
+  if (y > nLineCount)
+    y = nLineCount;
+
   do { --y; } while (y > 0 && !GetLineVisible (y));
   return GetLineVisible (y) ? y : -1;
 }
@@ -83,6 +87,9 @@ GetNextVisibleLine (int y) const
   const int nLineCount = GetLineCount ();
   if (y >= nLineCount - 1)
     return -1;
+  if (y < -1)
+    y = -1;
+
   do { ++y; } while (y < nLineCount - 1 && !GetLineVisible (y));
   return GetLineVisible (y) ? y : -1;
 }
