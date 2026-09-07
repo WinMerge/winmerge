@@ -3240,6 +3240,14 @@ void CMainFrame::LoadToolbarImages()
 		return;
 	}
 	
+	// Images for the merge result pane's choose buttons (1/2/3) are
+	// drawn at runtime and appended after the strip images
+	for (auto text : { _T("1"), _T("2"), _T("3") })
+	{
+		AppendGlyphImage(imgEnabled, toolbarNewImgSize, toolbarNewImgSize - 1, text, false);
+		AppendGlyphImage(imgDisabled, toolbarNewImgSize, toolbarNewImgSize - 1, text, true);
+	}
+
 	if (CImageList* pImgList = BarCtrl.SetImageList(&imgEnabled))
 		pImgList->DeleteImageList();
 	if (CImageList* pImgList = BarCtrl.SetDisabledImageList(&imgDisabled))
