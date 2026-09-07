@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-08-20 22:35+0900\n"
+"PO-Revision-Date: 2026-09-07 17:29+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -249,27 +249,27 @@ msgstr "모든 열 자동 맞춤"
 #. IDR_POPUP_MERGEVIEWHEADER
 #: Merge.rc:153
 msgid "&Ignore This Column"
-msgstr ""
+msgstr "이 열 무시(&I)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON
 #: Merge.rc:155
 msgid "In &All Panes"
-msgstr ""
+msgstr "모든 창에서(&A)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
 #: Merge.rc:156
 msgid "In &This Pane Only (Column Not in Other Files)"
-msgstr ""
+msgstr "이 창에서만 (다른 파일에는 열이 없음)(&T)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
 #: Merge.rc:157
 msgid "(Ctrl+Click to add another column)"
-msgstr ""
+msgstr "(다른 열을 추가하려면 Ctrl+클릭)"
 
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_RESET
 #: Merge.rc:159
 msgid "&Reset All"
-msgstr ""
+msgstr "모두 재설정(&R)"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:161 Merge.rc:5657
@@ -1748,7 +1748,7 @@ msgstr "분할(&L)"
 #. IDR_MERGEDOCTYPE, ID_WINDOW_PRESERVE_SPLITTER_RATIOS
 #: Merge.rc:934
 msgid "P&reserve Splitter Position"
-msgstr ""
+msgstr "분할 위치 유지(&R)"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE
 #: Merge.rc:953
@@ -9521,7 +9521,7 @@ msgstr "잘못된 지침"
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
 #: Merge.rc:5762
 msgid "Invalid argument"
-msgstr ""
+msgstr "잘못된 인수"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5767
@@ -10039,12 +10039,58 @@ msgid "Trim spaces"
 msgstr "공백 제거"
 
 #: Strings.rc:130
-msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n or: SelectColumns [-v] [-i] -F STRING\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgid ""
+"Select columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+" or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+" or: SelectColumns [-v] [-i] -F STRING\r\n"
+" RANGES - column ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" STRING - string to match literally\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -g - enable global flag\r\n"
+" -e - use PATTERNS\r\n"
+" -F - use fixed string for matching"
 msgstr ""
+"열을 선택합니다.\n"
+"사용법: SelectColumns RANGES\n"
+"또는: SelectColumns [-v] [-i] [-g] -e PATTERNS\n"
+"또는: SelectColumns [-v] [-i] -F STRING\n"
+" RANGES - 열 법위 (-3,5-10,30-)\n"
+" PATTERNS - 정규 표현식\n"
+" STRING - 문자 그대로 일치시킬 문자열\n"
+" -v - 일치하지 않는 항목 선택\n"
+" -i - 대소문자 무시\n"
+" -g - 전역 플래그 사용\n"
+" -e - PATTERNS 사용\n"
+" -F - 일치를 위해 고정 문자열 사용"
 
 #: Strings.rc:132
-msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n or: SelectLines [-v] [-i] -F STRING\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgid ""
+"Select lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+" or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+" or: SelectLines [-v] [-i] -F STRING\r\n"
+" RANGES - line ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" STRING - string to match literally\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -e - use PATTERNS\r\n"
+" -F - use fixed string for matching"
 msgstr ""
+"줄을 선택합니다.\n"
+"사용법: SelectLines RANGES\n"
+"또는: SelectLines [-v] [-i] -e PATTERNS\n"
+"또는: SelectLines [-v] [-i] -F STRING\n"
+" RANGES - 줄 범위 (-3,5-10,30-)\n"
+" PATTERNS - 정규 표현식\n"
+" STRING - 문자 그대로 일치시킬 문자열\n"
+" -v - 일치하지 않는 항목 선택\n"
+" -i - 대소문자 무시\n"
+" -e - PATTERNS 사용\n"
+" -F - 일치를 위해 고정 문자열 사용"
 
 #: Strings.rc:138
 msgid ""
@@ -10560,8 +10606,8 @@ msgstr "공급자"
 
 #: Strings.rc:342
 msgid "Base URL"
-msgstr ""
+msgstr "기본 URL"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr ""
+msgstr "(위 필드를 채우려면 프리셋을 선택하세요)"
