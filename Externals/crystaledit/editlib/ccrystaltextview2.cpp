@@ -68,6 +68,32 @@ static const UINT_PTR CRYSTAL_RECALC_HSCROLLBAR = 1003;
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView
 
+int CCrystalTextView::
+GetPreviousVisibleLine (int y) const
+{
+  const int nLineCount = GetLineCount ();
+  if (y <= 0)
+    return -1;
+  if (y > nLineCount)
+    y = nLineCount;
+
+  do { --y; } while (y > 0 && !GetLineVisible (y));
+  return GetLineVisible (y) ? y : -1;
+}
+
+int CCrystalTextView::
+GetNextVisibleLine (int y) const
+{
+  const int nLineCount = GetLineCount ();
+  if (y >= nLineCount - 1)
+    return -1;
+  if (y < -1)
+    y = -1;
+
+  do { ++y; } while (y < nLineCount - 1 && !GetLineVisible (y));
+  return GetLineVisible (y) ? y : -1;
+}
+
 void CCrystalTextView::
 MoveLeft (bool bSelect)
 {
@@ -80,9 +106,10 @@ MoveLeft (bool bSelect)
     {
       if (m_ptCursorPos.x == 0)
         {
-          if (m_ptCursorPos.y > 0)
+          const int y = GetPreviousVisibleLine (m_ptCursorPos.y);
+          if (y >= 0)
             {
-              m_ptCursorPos.y--;
+              m_ptCursorPos.y = y;
               m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
             }
         }
@@ -113,9 +140,10 @@ MoveRight (bool bSelect)
     {
       if (m_ptCursorPos.x == nLineLength)
         {
-          if (m_ptCursorPos.y < GetLineCount () - 1)
+          const int y = GetNextVisibleLine (m_ptCursorPos.y);
+          if (y >= 0)
             {
-              m_ptCursorPos.y++;
+              m_ptCursorPos.y = y;
               m_ptCursorPos.x = 0;
             }
         }
@@ -418,8 +446,11 @@ MovePgDn (bool bSelect)
 void CCrystalTextView::
 MoveCtrlHome (bool bSelect)
 {
+  int y = !GetLineVisible (0) ? GetNextVisibleLine (0) : 0;
+  if (y < 0)
+    return;
   m_ptCursorPos.x = 0;
-  m_ptCursorPos.y = 0;
+  m_ptCursorPos.y = y;
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
   if (!bSelect)
@@ -431,7 +462,11 @@ MoveCtrlHome (bool bSelect)
 void CCrystalTextView::
 MoveCtrlEnd (bool bSelect)
 {
-  m_ptCursorPos.y = GetLineCount () - 1;
+  int y = GetLineCount () - 1;
+  y = !GetLineVisible (y) ? GetPreviousVisibleLine (y) : y;
+  if (y < 0)
+    return;
+  m_ptCursorPos.y = y;
   m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
@@ -446,7 +481,10 @@ ScrollUp ()
 {
   if (m_nTopLine > 0)
     {
-      ScrollToLine (m_nTopLine - 1);
+      const int nTopLine = GetPreviousVisibleLine (m_nTopLine);
+      if (nTopLine < 0)
+        return;
+      ScrollToLine (nTopLine);
       UpdateCaret ();
       UpdateSiblingScrollPos (false);
     }
@@ -457,7 +495,10 @@ ScrollDown ()
 {
   if (m_nTopLine < GetLineCount () - 1)
     {
-      ScrollToLine (m_nTopLine + 1);
+      const int nTopLine = GetNextVisibleLine (m_nTopLine);
+      if (nTopLine < 0)
+        return;
+      ScrollToLine (nTopLine);
       UpdateCaret ();
       UpdateSiblingScrollPos (false);
     }
