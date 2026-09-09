@@ -29,6 +29,9 @@ Localization:
 * Arabic:
   Downzen team <https://downzen.com>
 
+* Azerbaijani
+  Jamal Ali
+
 * Basque:
   Xabier Aramendi <Azpidatziak@gmail.com>
 
