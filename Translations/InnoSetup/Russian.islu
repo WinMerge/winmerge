@@ -24,6 +24,7 @@ ShellExtension32bit=32-битное расширение оболочки WinMer
 ;Localization Components
 Languages=Языки интерфейса (меню и диалоги)
 ArabicLanguage=Арабский
+AzerbaijaniLanguage=Азербайджанский
 BasqueLanguage=Баскский
 BulgarianLanguage=Болгарский
 CatalanLanguage=Каталанский

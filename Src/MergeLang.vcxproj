@@ -220,6 +220,7 @@ popd
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Translations\ShellExtension\Arabic.po" />
+    <None Include="..\Translations\ShellExtension\Azerbaijani.po" />
     <None Include="..\Translations\ShellExtension\Basque.po" />
     <None Include="..\Translations\ShellExtension\Brazilian.po" />
     <None Include="..\Translations\ShellExtension\Bulgarian.po" />
@@ -263,6 +264,7 @@ popd
     <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1" />
     <None Include="..\Translations\StripPoComments.ps1" />
     <None Include="..\Translations\WinMerge\Arabic.po" />
+    <None Include="..\Translations\WinMerge\Azerbaijani.po" />
     <None Include="..\Translations\WinMerge\Basque.po" />
     <None Include="..\Translations\WinMerge\Brazilian.po" />
     <None Include="..\Translations\WinMerge\Bulgarian.po" />
