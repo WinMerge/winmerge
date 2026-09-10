@@ -19,16 +19,8 @@
 #endif
 
 /**
- * @brief Statusbar pane indexes
+ * @brief Statusbar pane indexes (see CDirFrame::PANE_*)
  */
-enum
-{
-	PANE_FILTER = 1,
-	PANE_COMPMETHOD,
-	PANE_LEFT_RO,
-	PANE_MIDDLE_RO,
-	PANE_RIGHT_RO,
-};
 
 /**
  * @brief Width of compare method name pane in statusbar
@@ -44,7 +36,8 @@ const int FILTER_PANEL_WIDTH = 200;
  */
 static UINT indicators[] =
 {
-	ID_SEPARATOR,           // status line indicator
+	ID_SEPARATOR,           // left / classic status
+	ID_SEPARATOR,           // right status (hidden in classic layout)
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
@@ -115,7 +108,8 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	String sText = _("RO");
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
+	m_wndStatusBar.SetPaneInfo(PANE_LEFT_STATUS, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
+	m_wndStatusBar.SetPaneInfo(PANE_RIGHT_STATUS, 0, SBPS_DISABLED | SBPS_NOBORDERS, 0);
 	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, SBPS_CLICKABLE, pointToPixel(FILTER_PANEL_WIDTH));
 	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, SBPS_CLICKABLE, pointToPixel(COMPMETHOD_PANEL_WIDTH));
 	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, SBPS_CLICKABLE, pointToPixel(RO_PANEL_WIDTH));
@@ -138,7 +132,36 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
  */
 void CDirFrame::SetStatus(const tchar_t* szStatus)
 {
-	m_wndStatusBar.SetPaneText(0, szStatus);
+	m_wndStatusBar.SetPaneText(PANE_LEFT_STATUS, szStatus);
+}
+
+void CDirFrame::SetSideStatus(int side, const tchar_t* szStatus)
+{
+	const int pane = (side == 0) ? PANE_LEFT_STATUS : PANE_RIGHT_STATUS;
+	m_wndStatusBar.SetPaneText(pane, szStatus);
+}
+
+void CDirFrame::SetSplitPaneMode(bool split)
+{
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	if (split)
+	{
+		m_wndStatusBar.SetPaneInfo(PANE_LEFT_STATUS, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
+		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_STATUS, 0, SBPS_STRETCH, 0);
+	}
+	else
+	{
+		m_wndStatusBar.SetPaneInfo(PANE_LEFT_STATUS, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
+		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_STATUS, 0, SBPS_DISABLED | SBPS_NOBORDERS, 0);
+		m_wndStatusBar.SetPaneText(PANE_RIGHT_STATUS, _T(""));
+	}
+	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, SBPS_CLICKABLE, pointToPixel(FILTER_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, SBPS_CLICKABLE, pointToPixel(COMPMETHOD_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, SBPS_CLICKABLE, pointToPixel(RO_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, SBPS_CLICKABLE, pointToPixel(RO_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTDIR_RO, SBPS_CLICKABLE, pointToPixel(RO_PANEL_WIDTH));
+	RecalcLayout();
 }
 
 /**

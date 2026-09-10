@@ -81,6 +81,9 @@ public:
 	String ResetColumnWidths(int defcolwidth);
 	void LoadColumnOrders(const String& colOrders);
 	String SaveColumnOrders();
+	int FindColByRegName(const tchar_t* regName) const;
+	bool ApplySplitPaneColumnOrder();
+	bool IsColSideName(int col) const;
 	const std::vector<String>& GetAdditionalPropertyNames() const { return m_additionalPropertyNames; }
 	void SetAdditionalPropertyNames(const std::vector<String>& propertyNames);
 
