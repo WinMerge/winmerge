@@ -481,6 +481,13 @@ BEGIN
     END
     POPUP "&View"
     BEGIN
+        POPUP "&Display"
+        BEGIN
+            MENUITEM "&All Items",                  ID_VIEW_SHOW_ALL_ITEMS
+            MENUITEM "&Different Items",            ID_VIEW_SHOW_DIFF_ITEMS
+            MENUITEM "&Identical Items",            ID_VIEW_SHOW_SAME_ITEMS
+        END
+        MENUITEM SEPARATOR
         MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT

@@ -953,6 +953,9 @@
 #define ID_FILE_OPEN_WITH               32946
 #define ID_FILE_OPEN_PARENT_FOLDER      32947
 #define ID_VIEW_SPLIT_PANE_LAYOUT       32948
+#define ID_VIEW_SHOW_ALL_ITEMS          32949
+#define ID_VIEW_SHOW_DIFF_ITEMS         32950
+#define ID_VIEW_SHOW_SAME_ITEMS         32951
 #define ID_STATUS_MERGINGMODE           32960
 #define ID_STATUS_DIFFNUM               32961
 #define ID_STATUS_RIGHTDIR_RO           32962
