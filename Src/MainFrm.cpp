@@ -109,12 +109,101 @@ using boost::end;
 #define new DEBUG_NEW
 #endif
 
-static constexpr int TOOLBAR_IMAGE_COUNT = 26;
-
-static void LoadToolbarImageList(int newImageWidth, HBITMAP hBitmap, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, IMergeDoc::DocumentType documentType, bool bMakeVisible = true);
+
+static constexpr int TOOLBAR_IMAGE_COUNT = 26;
+
+static constexpr UINT g_toolbarImageOrder[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN,
+	ID_FILE_SAVE, ID_EDIT_UNDO, ID_EDIT_REDO,
+	ID_SELECTLINEDIFF,
+	ID_NEXTDIFF, ID_PREVDIFF,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF,
+	ID_L2R, ID_R2L, ID_L2RNEXT, ID_R2LNEXT,
+	ID_ALL_RIGHT, ID_ALL_LEFT,
+	ID_AUTO_MERGE,
+	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE,
+	ID_OPTIONS, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarEmpty[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, 0, ID_OPTIONS,
+};
+
+static constexpr UINT g_toolbarOpenView[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, 0,
+	ID_FILE_SAVE, 0, ID_EDIT_UNDO, 0, ID_OPTIONS,
+};
+
+static constexpr UINT g_toolbarFileCmp2[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_SELECTLINEDIFF, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarFileCmp2WithDirDoc[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_SELECTLINEDIFF, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarFileCmp3[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_SELECTLINEDIFF, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_AUTO_MERGE, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarFileCmp3WithDirDoc[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_SELECTLINEDIFF, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_AUTO_MERGE, 0,
+	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarDirCmp[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -3068,8 +3157,7 @@ BOOL CMainFrame::CreateToolbar()
 	m_wndMenuBar.SetMDIButtonVisibility(static_cast<MDIButtonVisibility>(GetOptionsMgr()->GetInt(OPT_MDI_BUTTON_VISIBILITY)));
 
 	// Remove TBSTYLE_TOOLTIPS if you don't want tooltips
-	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT | TBSTYLE_TRANSPARENT | TBSTYLE_TOOLTIPS) ||
-		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
+	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT | TBSTYLE_TRANSPARENT | TBSTYLE_TOOLTIPS))
 	{
 		return FALSE;
 	}
@@ -3089,16 +3177,6 @@ BOOL CMainFrame::CreateToolbar()
 	m_wndReBar.AddBar(&m_wndToolBar, nullptr, nullptr, RBBS_GRIPPERALWAYS | RBBS_FIXEDBMP | RBBS_BREAK);
 
 	LoadToolbarImages();
-
-	UINT nID, nStyle;
-	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE })
-	{
-		int iImage;
-		int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(cmd);
-		m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
-		nStyle |= TBSTYLE_DROPDOWN;
-		m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
-	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
@@ -3148,6 +3226,115 @@ void CMainFrame::LoadToolbarImages()
 	rbbi.fMask = RBBIM_CHILDSIZE;
 	rbbi.cyMinChild = sizeButton.cy;
 	m_wndReBar.GetReBarCtrl().SetBandInfo(1, &rbbi);
+}
+
+std::vector<UINT> CMainFrame::GetToolbarButtons()
+{
+	const UINT* toolbarIcons = nullptr;
+	size_t toolbarIconCount = 0;
+	auto* pFrame = GetActiveFrame();
+	if (!pFrame || GetWindowsManager().GetChildCount() == 0)
+	{
+		toolbarIcons = g_toolbarEmpty;
+		toolbarIconCount = _countof(g_toolbarEmpty);
+	}
+	else
+	{
+		FRAMETYPE frame = GetFrameType(pFrame);
+		if (frame == FRAME_FOLDER)
+		{
+			toolbarIcons = g_toolbarDirCmp;
+			toolbarIconCount = _countof(g_toolbarDirCmp);
+		}
+		else if (frame == FRAME_OTHER)
+		{
+			toolbarIcons = g_toolbarOpenView;
+			toolbarIconCount = _countof(g_toolbarOpenView);
+		}
+		else
+		{
+			if (auto* pMergeDoc = GetActiveIMergeDoc())
+			{
+				auto* pDirDoc = pMergeDoc->GetDirDoc();
+				if (pMergeDoc->GetFileCount() == 3)
+				{
+					toolbarIcons = pDirDoc ? g_toolbarFileCmp3WithDirDoc : g_toolbarFileCmp3;
+					toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp3WithDirDoc) : _countof(g_toolbarFileCmp3);
+				}
+				else
+				{
+					toolbarIcons = pDirDoc ? g_toolbarFileCmp2WithDirDoc : g_toolbarFileCmp2;
+					toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp2WithDirDoc) : _countof(g_toolbarFileCmp2);
+				}
+			}
+			else
+			{
+				toolbarIcons = g_toolbarEmpty;
+				toolbarIconCount = _countof(g_toolbarEmpty);
+			}
+		}
+	}
+	return std::vector<UINT>(toolbarIcons, toolbarIcons + toolbarIconCount);
+}
+
+void CMainFrame::UpdateToolbar()
+{
+	auto toolbarIcons = GetToolbarButtons();
+	int toolbarIconCount = static_cast<int>(toolbarIcons.size());
+
+	// Update toolbar buttons
+	if (toolbarIconCount == 0)
+		return;
+
+	CToolBarCtrl& barCtrl = m_wndToolBar.GetToolBarCtrl();
+
+	barCtrl.SetRedraw(FALSE);
+
+	// Remove all existing buttons
+	int buttonCount = barCtrl.GetButtonCount();
+	while (buttonCount > 0)
+		barCtrl.DeleteButton(--buttonCount);
+
+	// Add buttons with correct image indices
+	std::vector<TBBUTTON> buttons(toolbarIconCount);
+	for (int i = 0; i < toolbarIconCount; i++)
+	{
+		TBBUTTON& btn = buttons[i];
+		UINT cmdID = toolbarIcons[i];
+		if (cmdID == 0)
+		{
+			// Separator - create a button with specific separator properties
+			btn.idCommand = 0;
+			btn.fsState = TBSTATE_ENABLED;
+			btn.fsStyle = TBSTYLE_SEP;
+			btn.iBitmap = 0;
+		}
+		else
+		{
+			// Get the image index for this command
+			int iImage = 0;
+			auto it = std::find(std::begin(g_toolbarImageOrder), std::end(g_toolbarImageOrder), cmdID);
+			if (it != std::end(g_toolbarImageOrder))
+				iImage = static_cast<int>(std::distance(std::begin(g_toolbarImageOrder), it));
+
+			btn.idCommand = cmdID;
+			btn.iBitmap = iImage;
+			btn.fsState = TBSTATE_ENABLED;
+			btn.fsStyle = TBSTYLE_BUTTON;
+
+			// Check if this button should have dropdown style
+			if (cmdID == ID_OPTIONS || cmdID == ID_FILE_NEW || 
+				cmdID == ID_FILE_OPEN || cmdID == ID_FILE_SAVE)
+			{
+				btn.fsStyle |= TBSTYLE_DROPDOWN;
+			}
+		}
+	}
+	barCtrl.AddButtons(static_cast<int>(buttons.size()), buttons.data());
+	// Required to keep this in sync with MFC's internal button count (m_nCount)
+	m_wndToolBar.m_nCount = static_cast<int>(toolbarIconCount);
+
+	barCtrl.SetRedraw(TRUE);
 }
 
 /**
