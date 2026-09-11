@@ -113,8 +113,6 @@ static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, IMergeDoc::DocumentType documentType, bool bMakeVisible = true);
 
-static constexpr int TOOLBAR_IMAGE_COUNT = 26;
-
 static constexpr UINT g_toolbarImageOrder[] =
 {
 	ID_FILE_NEW, ID_FILE_OPEN,
@@ -129,6 +127,8 @@ static constexpr UINT g_toolbarImageOrder[] =
 	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE,
 	ID_OPTIONS, ID_REFRESH
 };
+
+static constexpr int TOOLBAR_IMAGE_COUNT = static_cast<int>(std::size(g_toolbarImageOrder));
 
 static constexpr UINT g_toolbarEmpty[] =
 {
@@ -195,10 +195,77 @@ static constexpr UINT g_toolbarFileCmp3WithDirDoc[] =
 	ID_OPTIONS, 0, ID_REFRESH
 };
 
+static constexpr UINT g_toolbarBinaryImageCmp2[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_FIRSTDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarBinaryImageCmp2WithDirDoc[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_FIRSTDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarBinaryImageCmp3[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
+	ID_FIRSTDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_AUTO_MERGE, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarBinaryImageCmp3WithDirDoc[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
+	ID_FIRSTDIFF, ID_LASTDIFF, 0,
+	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
+	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
+	ID_AUTO_MERGE, 0,
+	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarWebpageCmp[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_FIRSTDIFF, ID_LASTDIFF, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarWebpageCmpWithDirDoc[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_FIRSTDIFF, ID_LASTDIFF, 0,
+	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
+	ID_OPTIONS, 0, ID_REFRESH
+};
+
 static constexpr UINT g_toolbarDirCmp[] =
 {
 	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-ID_EDIT_UNDO, 0,
+	ID_EDIT_UNDO, 0,
 	ID_NEXTDIFF, ID_PREVDIFF, 0,
 	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
 	ID_L2R, ID_R2L, 0,
@@ -210,6 +277,7 @@ ID_EDIT_UNDO, 0,
  */
 const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_FILE_OPENCONFLICT,			IDB_FILE_OPENCONFLICT,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW,					IDB_FILE_NEW,					CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW_TABLE,			IDB_FILE_NEW_TABLE,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW_HEX,				IDB_FILE_NEW_HEX,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW_IMAGE,			IDB_FILE_NEW_IMAGE,				CMainFrame::MENU_ALL },
@@ -221,9 +289,13 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_FILE_NEW3_IMAGE,			IDB_FILE_NEW3_IMAGE,			CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3_WEBPAGE,			IDB_FILE_NEW3_WEBPAGE,			CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3_FOLDER,			IDB_FILE_NEW_FOLDER,			CMainFrame::MENU_ALL },
+	{ ID_FILE_OPEN,					IDB_FILE_OPEN,					CMainFrame::MENU_ALL },
+	{ ID_FILE_SAVE,					IDB_FILE_SAVE,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_COPY,					IDB_EDIT_COPY,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_CUT,					IDB_EDIT_CUT,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_PASTE,				IDB_EDIT_PASTE,					CMainFrame::MENU_ALL },
+	{ ID_EDIT_UNDO,					IDB_EDIT_UNDO,					CMainFrame::MENU_ALL },
+	{ ID_EDIT_REDO,					IDB_EDIT_REDO,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_FIND,					IDB_EDIT_SEARCH,				CMainFrame::MENU_ALL },
 	{ ID_WINDOW_CASCADE,			IDB_WINDOW_CASCADE,				CMainFrame::MENU_ALL },
 	{ ID_WINDOW_TILE_HORZ,			IDB_WINDOW_HORIZONTAL,			CMainFrame::MENU_ALL },
@@ -240,6 +312,23 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_TOOLS_CUSTOMIZECOLUMNS,	IDB_TOOLS_COLUMNS,				CMainFrame::MENU_ALL },
 	{ ID_TOOLS_GENERATEPATCH,		IDB_TOOLS_GENERATEPATCH,		CMainFrame::MENU_ALL },
 	{ ID_PLUGINS_LIST,				IDB_PLUGINS_LIST,				CMainFrame::MENU_ALL },
+	{ ID_SELECTLINEDIFF,			IDB_SELECTLINEDIFF,				CMainFrame::MENU_ALL },
+	{ ID_CURDIFF,					IDB_CURDIFF,					CMainFrame::MENU_ALL },
+	{ ID_FIRSTDIFF,					IDB_FIRSTDIFF,					CMainFrame::MENU_ALL },
+	{ ID_LASTDIFF,					IDB_LASTTDIFF,					CMainFrame::MENU_ALL },
+	{ ID_NEXTDIFF,					IDB_NEXTDIFF,					CMainFrame::MENU_ALL },
+	{ ID_PREVDIFF,					IDB_PREVDIFF,					CMainFrame::MENU_ALL },
+	{ ID_NEXTCONFLICT,				IDB_NEXTCONFLICT,				CMainFrame::MENU_ALL },
+	{ ID_PREVCONFLICT,				IDB_PREVCONFLICT,				CMainFrame::MENU_ALL },
+	{ ID_L2R,						IDB_L2R,						CMainFrame::MENU_ALL },
+	{ ID_R2L,						IDB_R2L,						CMainFrame::MENU_ALL },
+	{ ID_L2RNEXT,					IDB_L2RNEXT,					CMainFrame::MENU_ALL },
+	{ ID_R2LNEXT,					IDB_R2LNEXT,					CMainFrame::MENU_ALL },
+	{ ID_ALL_LEFT,					IDB_ALL_LEFT,					CMainFrame::MENU_ALL },
+	{ ID_ALL_RIGHT,					IDB_ALL_RIGHT,					CMainFrame::MENU_ALL },
+	{ ID_AUTO_MERGE,				IDB_AUTO_MERGE,					CMainFrame::MENU_ALL },
+	{ ID_OPTIONS,					IDB_OPTIONS,					CMainFrame::MENU_ALL },
+	{ ID_REFRESH,					IDB_REFRESH,					CMainFrame::MENU_ALL },
 	{ ID_FILE_PRINT,				IDB_FILE_PRINT,					CMainFrame::MENU_FILECMP },
 	{ ID_TOOLS_GENERATEREPORT,		IDB_TOOLS_GENERATEREPORT,		CMainFrame::MENU_FILECMP },
 	{ ID_TOOLS_GENERATEARCHIVE,		IDB_TOOLS_GENERATEARCHIVE,		CMainFrame::MENU_FILECMP },
@@ -727,8 +816,6 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		if (menu_view == (menu_icon.menusToApply & menu_view))
 			m_pMenus[view]->ModifyODMenu(nullptr, menu_icon.menuitemID, menu_icon.iconResID);
 	}
-
-	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME, &m_wndToolBar);
 
 	I18n::TranslateMenu(m_pMenus[view]->m_hMenu);
 
@@ -3258,13 +3345,49 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 				auto* pDirDoc = pMergeDoc->GetDirDoc();
 				if (pMergeDoc->GetFileCount() == 3)
 				{
-					toolbarIcons = pDirDoc ? g_toolbarFileCmp3WithDirDoc : g_toolbarFileCmp3;
-					toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp3WithDirDoc) : _countof(g_toolbarFileCmp3);
+					if (frame == FRAME_FILE)
+					{
+						toolbarIcons = pDirDoc ? g_toolbarFileCmp3WithDirDoc : g_toolbarFileCmp3;
+						toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp3WithDirDoc) : _countof(g_toolbarFileCmp3);
+					}
+					else if (frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
+					{
+						toolbarIcons = pDirDoc ? g_toolbarBinaryImageCmp3WithDirDoc : g_toolbarBinaryImageCmp3;
+						toolbarIconCount = pDirDoc ? _countof(g_toolbarBinaryImageCmp3WithDirDoc) : _countof(g_toolbarBinaryImageCmp3);
+					}
+					else if (frame == FRAME_WEBPAGE)
+					{
+						toolbarIcons = pDirDoc ? g_toolbarWebpageCmpWithDirDoc : g_toolbarWebpageCmp;
+						toolbarIconCount = pDirDoc ? _countof(g_toolbarWebpageCmpWithDirDoc) : _countof(g_toolbarWebpageCmp);
+					}
+					else
+					{
+						toolbarIcons = g_toolbarEmpty;
+						toolbarIconCount = _countof(g_toolbarEmpty);
+					}
 				}
 				else
 				{
-					toolbarIcons = pDirDoc ? g_toolbarFileCmp2WithDirDoc : g_toolbarFileCmp2;
-					toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp2WithDirDoc) : _countof(g_toolbarFileCmp2);
+					if (frame == FRAME_FILE)
+					{
+						toolbarIcons = pDirDoc ? g_toolbarFileCmp2WithDirDoc : g_toolbarFileCmp2;
+						toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp2WithDirDoc) : _countof(g_toolbarFileCmp2);
+					}
+					else if (frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
+					{
+						toolbarIcons = pDirDoc ? g_toolbarBinaryImageCmp2WithDirDoc : g_toolbarBinaryImageCmp2;
+						toolbarIconCount = pDirDoc ? _countof(g_toolbarBinaryImageCmp2WithDirDoc) : _countof(g_toolbarBinaryImageCmp2);
+					}
+					else if (frame == FRAME_WEBPAGE)
+					{
+						toolbarIcons = pDirDoc ? g_toolbarWebpageCmpWithDirDoc : g_toolbarWebpageCmp;
+						toolbarIconCount = pDirDoc ? _countof(g_toolbarWebpageCmpWithDirDoc) : _countof(g_toolbarWebpageCmp);
+					}
+					else
+					{
+						toolbarIcons = g_toolbarEmpty;
+						toolbarIconCount = _countof(g_toolbarEmpty);
+					}
 				}
 			}
 			else
