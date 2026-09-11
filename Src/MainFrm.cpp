@@ -198,7 +198,7 @@ static constexpr UINT g_toolbarFileCmp3WithDirDoc[] =
 static constexpr UINT g_toolbarDirCmp[] =
 {
 	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+ID_EDIT_UNDO, 0,
 	ID_NEXTDIFF, ID_PREVDIFF, 0,
 	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
 	ID_L2R, ID_R2L, 0,
