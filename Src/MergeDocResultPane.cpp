@@ -1899,7 +1899,7 @@ void CMergeDoc::OnUpdateMergeResultShowSections(CCmdUI* pCmdUI)
 void CMergeDoc::OnMergeStartSession()
 {
 	if (auto* pView = GetActiveMergeView())
-		StartMergeSession(pView->m_nThisPane, false);
+		StartMergeSession(2 - pView->m_nThisPane, false);
 	else
 		StartMergeSession(1, false);
 }
