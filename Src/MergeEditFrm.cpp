@@ -17,6 +17,7 @@
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "MergeResultView.h"
+#include "MainFrm.h"
 #include "LocationView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -312,7 +313,10 @@ BOOL CMergeEditFrame::OnBarCheck(UINT nID)
 void CMergeEditFrame::ShowMergeResultPane()
 {
 	if (m_wndResultBar.m_hWnd != nullptr && !m_wndResultBar.IsWindowVisible())
+	{
 		ShowControlBar(&m_wndResultBar, TRUE, FALSE);
+		GetMainFrame()->UpdateToolbar();
+	}
 }
 
 /**

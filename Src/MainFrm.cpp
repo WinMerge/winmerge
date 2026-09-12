@@ -274,7 +274,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_CLOSE()
 	ON_WM_CREATE()
 	ON_WM_TIMER()
-	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_WM_DESTROY()
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
@@ -3144,95 +3143,6 @@ BOOL CMainFrame::CreateToolbar()
 	return TRUE;
 }
 
-/**
- * @brief Append a drawn text glyph (e.g. "1") to a toolbar image list.
- * Used for the merge result pane's choose buttons, which have no bitmap
- * in the toolbar image strip.
- */
-static void AppendGlyphImage(CImageList& ImgList, int nWidth, int nHeight,
-	const tchar_t* text, bool bGrayscale)
-{
-	BITMAPINFO bi = {};
-	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-	bi.bmiHeader.biWidth = nWidth;
-	bi.bmiHeader.biHeight = -nHeight; // top-down
-	bi.bmiHeader.biPlanes = 1;
-	bi.bmiHeader.biBitCount = 32;
-	void* pBits = nullptr;
-	HDC hdcScreen = ::GetDC(nullptr);
-	HDC hdc = ::CreateCompatibleDC(hdcScreen);
-	HBITMAP hbm = ::CreateDIBSection(hdc, &bi, DIB_RGB_COLORS, &pBits, nullptr, 0);
-	if (hbm == nullptr)
-	{
-		::DeleteDC(hdc);
-		::ReleaseDC(nullptr, hdcScreen);
-		return;
-	}
-	HGDIOBJ hbmOld = ::SelectObject(hdc, hbm);
-	// magenta background = transparent, like the toolbar image strips
-	RECT rc = { 0, 0, nWidth, nHeight };
-	::SetBkColor(hdc, RGB(0xff, 0, 0xff));
-	::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, _T(""), 0, nullptr);
-	LOGFONT lf = {};
-	lf.lfHeight = -MulDiv(nHeight, 3, 4);
-	lf.lfWeight = FW_BOLD;
-	lf.lfQuality = NONANTIALIASED_QUALITY; // no fringe against the color key
-	_tcscpy_s(lf.lfFaceName, _T("Segoe UI"));
-	HFONT hFont = ::CreateFontIndirect(&lf);
-	HGDIOBJ hFontOld = ::SelectObject(hdc, hFont);
-	::SetBkMode(hdc, TRANSPARENT);
-	COLORREF clrText;
-	if (DarkMode::isEnabled())
-		clrText = bGrayscale ? RGB(0x80, 0x80, 0x80) : RGB(0xE0, 0xE0, 0xE0);
-	else
-		clrText = ::GetSysColor(bGrayscale ? COLOR_GRAYTEXT : COLOR_BTNTEXT);
-	::SetTextColor(hdc, clrText);
-	::DrawText(hdc, text, -1, &rc, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-	::SelectObject(hdc, hFontOld);
-	::DeleteObject(hFont);
-	::SelectObject(hdc, hbmOld);
-	::GdiFlush();
-	DWORD* pPixels = static_cast<DWORD*>(pBits);
-	for (int i = 0; i < nWidth * nHeight; ++i)
-	{
-		if ((pPixels[i] & 0xFFFFFF) == 0xFF00FF)
-			pPixels[i] = 0; // transparent
-		else
-			pPixels[i] |= 0xFF000000; // opaque
-	}
-	CBitmap bm;
-	bm.Attach(hbm);
-	ImgList.Add(&bm, static_cast<CBitmap*>(nullptr));
-	::DeleteDC(hdc);
-	::ReleaseDC(nullptr, hdcScreen);
-}
-
-/**
- * @brief Show the toolbar's choose buttons (1/2/3) only while the active
- * document has the merge result pane, and keep the rest of the idle
- * command UI updating as usual.
- */
-void CMainFrame::OnIdleUpdateCmdUI()
-{
-	if (m_wndToolBar.m_hWnd != nullptr)
-	{
-		bool bMergeResultMode = false;
-		if (CMergeEditFrame* pFrame = dynamic_cast<CMergeEditFrame*>(GetActiveFrame()))
-		{
-			CMergeDoc* pDoc = pFrame->GetMergeDoc();
-			bMergeResultMode = pDoc != nullptr && pDoc->IsMergeResultPaneVisible();
-		}
-		if (m_bMergeChooseButtonsShown != bMergeResultMode)
-		{
-			m_bMergeChooseButtonsShown = bMergeResultMode;
-			CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
-			for (UINT nID : { ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_MIDDLE, ID_MERGE_CHOOSE_RIGHT })
-				BarCtrl.HideButton(nID, !bMergeResultMode);
-		}
-	}
-	CMDIFrameWnd::OnIdleUpdateCmdUI();
-}
-
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
@@ -3248,14 +3158,6 @@ void CMainFrame::LoadToolbarImages()
 		return;
 	}
 	
-	// Images for the merge result pane's choose buttons (1/2/3) are
-	// drawn at runtime and appended after the strip images
-	for (auto text : { _T("1"), _T("2"), _T("3") })
-	{
-		AppendGlyphImage(imgEnabled, toolbarNewImgSize, toolbarNewImgSize - 1, text, false);
-		AppendGlyphImage(imgDisabled, toolbarNewImgSize, toolbarNewImgSize - 1, text, true);
-	}
-
 	if (CImageList* pImgList = BarCtrl.SetImageList(&imgEnabled))
 		pImgList->DeleteImageList();
 	if (CImageList* pImgList = BarCtrl.SetDisabledImageList(&imgDisabled))
@@ -3278,16 +3180,22 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 {
 	auto* pFrame = GetActiveFrame();
 	if (!pFrame || GetWindowsManager().GetChildCount() == 0)
-		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false);
+		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false, false);
 	int nFiles = 0;
 	FRAMETYPE frame = GetFrameType(pFrame);
-	bool bDirDoc = false;
+	bool bHasDirDoc = false;
+	bool bHasMergeResultPane = false;
 	if (auto* pMergeDoc = GetActiveIMergeDoc())
 	{
 		nFiles = pMergeDoc->GetFileCount();
-		bDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		bHasDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		if (auto* pMergeDoc2 = dynamic_cast<CMergeDoc*>(pMergeDoc))
+		{
+			if (auto* pMergeResultView = pMergeDoc2->GetMergeResultView())
+				bHasMergeResultPane = pMergeResultView->IsWindowVisible();
+		}
 	}
-	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bDirDoc);
+	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bHasDirDoc, bHasMergeResultPane);
 }
 
 void CMainFrame::UpdateToolbar()

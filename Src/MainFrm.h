@@ -218,6 +218,7 @@ public:
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo* infoPrediffer = nullptr,
 		const OpenFolderParams* pOpenParams = nullptr, CTempPathContext* pTempPathContext = nullptr);
 
+	void UpdateToolbar();
 	void UpdateTitleBarAndTabBar();
 	void UpdateResources();
 	void ApplyDiffOptions();
@@ -275,7 +276,6 @@ protected:
 	CWindowsManager m_wndManager;
 	Poco::Channel::Ptr m_pLogChannel;
 	int m_logging;
-	bool m_bMergeChooseButtonsShown = true; /**< Toolbar 1/2/3 buttons currently visible? */
 
 	// Tweak MDI client window behavior
 	class CMDIClient : public CWnd
@@ -488,7 +488,6 @@ protected:
 	afx_msg void OnLastFile();
 	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
 	afx_msg void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
@@ -516,7 +515,6 @@ private:
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
 	std::vector<UINT> GetToolbarButtons();
-	void UpdateToolbar();
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();
