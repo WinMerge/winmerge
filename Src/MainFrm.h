@@ -28,6 +28,7 @@
 #include "DarkModeLib.h"
 #include "WindowsManager.h"
 #include "TempFile.h"
+#include "FrameType.h"
 
 class BCMenu;
 class CDirView;
@@ -76,15 +77,7 @@ public:
 	/**
 	 * @brief Frame/View/Document types.
 	 */
-	enum FRAMETYPE
-	{
-		FRAME_FOLDER, /**< Folder compare frame. */
-		FRAME_FILE, /**< File compare frame. */
-		FRAME_HEXFILE, /**< Hex file compare frame. */
-		FRAME_IMGFILE, /**< Image file compare frame. */
-		FRAME_WEBPAGE, /**< Web page compare frame. */
-		FRAME_OTHER, /**< No frame? */
-	};
+	using FRAMETYPE = ::FRAMETYPE;
 
 	struct OpenParams
 	{
@@ -313,7 +306,7 @@ protected:
 					SetRedraw(FALSE);
 				}
 				LRESULT result = CWnd::WindowProc(message, wParam, lParam);
-				if (CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd())
+				if (auto* pMainFrame = GetMainFrame())
 				{
 					if (message == WM_MDICREATE)
 						pMainFrame->GetWindowsManager().AddChildFrame((CMDIChildWnd*)CWnd::FromHandle(reinterpret_cast<HWND>(result)));
@@ -324,13 +317,20 @@ protected:
 			}
 			case WM_MDIDESTROY:
 			{
-				CMDIChildWnd* pChild = (CMDIChildWnd*)CWnd::FromHandle(reinterpret_cast<HWND>(wParam));
-				((CMainFrame*)AfxGetMainWnd())->GetWindowsManager().RemoveChildFrame(pChild);
+				if (auto* pMainFrame = GetMainFrame())
+				{
+					CMDIChildWnd* pChild = (CMDIChildWnd*)CWnd::FromHandle(reinterpret_cast<HWND>(wParam));
+					pMainFrame->GetWindowsManager().RemoveChildFrame(pChild);
+				}
 				break;
 			}
 			case WM_MDISETMENU:
-				GetMainFrame()->SetMenuBarState(AFX_MBS_HIDDEN);
-				GetMainFrame()->GetMenuBar()->AttachMenu(CMenu::FromHandle(reinterpret_cast<HMENU>(wParam)));
+				if (auto* pMainFrame = GetMainFrame())
+				{
+					pMainFrame->SetMenuBarState(AFX_MBS_HIDDEN);
+					pMainFrame->GetMenuBar()->AttachMenu(CMenu::FromHandle(reinterpret_cast<HMENU>(wParam)));
+					pMainFrame->UpdateToolbar();
+				}
 				return TRUE;
 				break;
 			case WM_TIMER:
@@ -512,6 +512,8 @@ private:
 	BOOL CreateToolbar();
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
+	std::vector<UINT> GetToolbarButtons();
+	void UpdateToolbar();
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();
@@ -521,4 +523,5 @@ private:
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
 	HICON m_hIconPlugin;
+	std::vector<UINT> m_toolbarButtons;
 };

@@ -58,55 +58,6 @@ IDI_PLUGINS             ICON                    "res\\plugins.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Toolbar
-//
-
-IDR_MAINFRAME TOOLBAR  16, 15
-BEGIN
-    BUTTON      ID_FILE_NEW
-    BUTTON      ID_FILE_OPEN
-    BUTTON      ID_FILE_SAVE
-    SEPARATOR
-    BUTTON      ID_EDIT_UNDO
-    BUTTON      ID_EDIT_REDO
-    SEPARATOR
-    BUTTON      ID_SELECTLINEDIFF
-    SEPARATOR
-    BUTTON      ID_NEXTDIFF
-    BUTTON      ID_PREVDIFF
-    SEPARATOR
-    BUTTON      ID_NEXTCONFLICT
-    BUTTON      ID_PREVCONFLICT
-    SEPARATOR
-    BUTTON      ID_FIRSTDIFF
-    BUTTON      ID_CURDIFF
-    BUTTON      ID_LASTDIFF
-    SEPARATOR
-    BUTTON      ID_L2R
-    BUTTON      ID_R2L
-    SEPARATOR
-    BUTTON      ID_L2RNEXT
-    BUTTON      ID_R2LNEXT
-    SEPARATOR
-    BUTTON      ID_ALL_RIGHT
-    BUTTON      ID_ALL_LEFT
-    SEPARATOR
-    BUTTON      ID_AUTO_MERGE
-    SEPARATOR
-    BUTTON      ID_FIRSTFILE
-    BUTTON      ID_PREVFILE
-    BUTTON      ID_NEXTFILE
-    BUTTON      ID_LASTFILE
-    SEPARATOR
-    BUTTON      ID_OPTIONS
-    SEPARATOR
-    BUTTON      ID_REFRESH
-    SEPARATOR
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Image
 //
 
@@ -200,6 +151,28 @@ IDB_FILE_NEW3_HEX       BITMAP                  "res\\new3_hex.bmp"
 IDB_FILE_NEW3_IMAGE     BITMAP                  "res\\new3_image.bmp"
 IDB_FILE_NEW3_WEBPAGE   BITMAP                  "res\\new3_webpage.bmp"
 IDB_FILE_NEW_FOLDER     BITMAP                  "res\\new_folder.bmp"
+IDB_FILE_NEW            BITMAP                  "res\\new.bmp"
+IDB_FILE_OPEN           BITMAP                  "res\\open.bmp"
+IDB_FILE_SAVE           BITMAP                  "res\\save.bmp"
+IDB_EDIT_UNDO           BITMAP                  "res\\undo.bmp"
+IDB_EDIT_REDO           BITMAP                  "res\\redo.bmp"
+IDB_SELECTLINEDIFF      BITMAP                  "res\\select_line_diff.bmp"
+IDB_CURDIFF             BITMAP                  "res\\cur_diff.bmp"
+IDB_FIRSTDIFF           BITMAP                  "res\\first_diff.bmp"
+IDB_LASTTDIFF           BITMAP                  "res\\last_diff.bmp"
+IDB_NEXTDIFF            BITMAP                  "res\\next_diff.bmp"
+IDB_PREVDIFF            BITMAP                  "res\\prev_diff.bmp"
+IDB_NEXTCONFLICT        BITMAP                  "res\\next_conflict.bmp"
+IDB_PREVCONFLICT        BITMAP                  "res\\prev_conflict.bmp"
+IDB_L2R                 BITMAP                  "res\\l2r.bmp"
+IDB_R2L                 BITMAP                  "res\\r2l.bmp"
+IDB_L2RNEXT             BITMAP                  "res\\l2r_next.bmp"
+IDB_R2LNEXT             BITMAP                  "res\\r2l_next.bmp"
+IDB_ALL_LEFT            BITMAP                  "res\\all_left.bmp"
+IDB_ALL_RIGHT           BITMAP                  "res\\all_right.bmp"
+IDB_AUTO_MERGE          BITMAP                  "res\\auto_merge.bmp"
+IDB_OPTIONS             BITMAP                  "res\\options.bmp"
+IDB_REFRESH             BITMAP                  "res\\refresh.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

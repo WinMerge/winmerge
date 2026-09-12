@@ -888,6 +888,9 @@
     <ClCompile Include="SplitterPositions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ToolbarButtons.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">
@@ -1701,6 +1704,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SplitterPositions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolbarButtons.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
