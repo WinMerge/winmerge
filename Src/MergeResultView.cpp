@@ -215,6 +215,7 @@ void CMergeResultView::DrawMargin(const CRect & rect, int nLineIndex, int nLineN
 		return;
 	m_pCrystalRenderer->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
 	int nWidth = GetCharWidth();
+	m_pCrystalRenderer->SwitchFont(false, false);
 	m_pCrystalRenderer->DrawText(rect.left + 2, rect.top, rect, &marker, 1, &nWidth);
 }
 
