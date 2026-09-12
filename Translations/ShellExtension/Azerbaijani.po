@@ -1,0 +1,70 @@
+# This file is from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge Shell Extension\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Azerbaijani <winmerge-translate@lists.sourceforge.net>\n"
+"Language: si\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"X-Generator: Poedit 3.9\n"
+
+#. AFX_TARG_*
+#: ShellExtension.rc:19
+#, c-format
+msgid "AFX_TARG_ENU"
+msgstr "AFX_TARG_AZE"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtension.rc:20
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_AZERI, SUBLANG_AZERI_LATIN"
+
+#: ShellExtension.rc:111
+#, c-format
+msgid "ShellExtension"
+msgstr ""
+
+#: ShellExtension.rc:112
+#, c-format
+msgid "Win&Merge"
+msgstr ""
+
+#: ShellExtension.rc:113
+#, c-format
+msgid "Compare &As"
+msgstr ""
+
+#: ShellExtension.rc:114
+#, c-format
+msgid "&Compare"
+msgstr ""
+
+#: ShellExtension.rc:115
+#, c-format
+msgid "Compare&..."
+msgstr ""
+
+#: ShellExtension.rc:116
+#, c-format
+msgid "Select &Left"
+msgstr ""
+
+#: ShellExtension.rc:117
+#, c-format
+msgid "Select &Middle"
+msgstr ""
+
+#: ShellExtension.rc:118
+#, c-format
+msgid "Re-select &Left"
+msgstr ""

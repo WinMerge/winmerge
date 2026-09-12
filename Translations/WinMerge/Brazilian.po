@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Wender Firmino <wender at pta.com.br>, 
+# * Wender Firmino <wender at pta.com.br>,
 # * Leonardo Peixoto <ljpeixoto at gmail.com>
 # * Felipe Periard Lopes <felipefplzx at gmail.com>
 # * Marcello Oliveira <marcello.mco at gmail.com>
