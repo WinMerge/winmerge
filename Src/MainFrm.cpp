@@ -93,6 +93,7 @@
 #include "DiffImageListUtils.h"
 #include "PluginMenu.h"
 #include "TableProps.h"
+#include "ToolbarButtons.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -112,165 +113,6 @@ using boost::end;
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, IMergeDoc::DocumentType documentType, bool bMakeVisible = true);
-
-static constexpr UINT g_toolbarImageOrder[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN,
-	ID_FILE_SAVE, ID_EDIT_UNDO, ID_EDIT_REDO,
-	ID_SELECTLINEDIFF,
-	ID_NEXTDIFF, ID_PREVDIFF,
-	ID_NEXTCONFLICT, ID_PREVCONFLICT,
-	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF,
-	ID_L2R, ID_R2L, ID_L2RNEXT, ID_R2LNEXT,
-	ID_ALL_RIGHT, ID_ALL_LEFT,
-	ID_AUTO_MERGE,
-	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE,
-	ID_OPTIONS, ID_REFRESH
-};
-
-static constexpr int TOOLBAR_IMAGE_COUNT = static_cast<int>(std::size(g_toolbarImageOrder));
-
-static constexpr UINT g_toolbarEmpty[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, 0, ID_OPTIONS,
-};
-
-static constexpr UINT g_toolbarOpenView[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, 0,
-	ID_FILE_SAVE, 0, ID_EDIT_UNDO, 0, ID_OPTIONS,
-};
-
-static constexpr UINT g_toolbarFileCmp2[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_SELECTLINEDIFF, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarFileCmp2WithDirDoc[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_SELECTLINEDIFF, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarFileCmp3[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_SELECTLINEDIFF, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
-	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_AUTO_MERGE, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarFileCmp3WithDirDoc[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_SELECTLINEDIFF, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
-	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_AUTO_MERGE, 0,
-	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarBinaryImageCmp2[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_FIRSTDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarBinaryImageCmp2WithDirDoc[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_FIRSTDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarBinaryImageCmp3[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
-	ID_FIRSTDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_AUTO_MERGE, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarBinaryImageCmp3WithDirDoc[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
-	ID_FIRSTDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0, ID_L2RNEXT, ID_R2LNEXT, 0,
-	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
-	ID_AUTO_MERGE, 0,
-	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarWebpageCmp[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_FIRSTDIFF, ID_LASTDIFF, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarWebpageCmpWithDirDoc[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_FIRSTDIFF, ID_LASTDIFF, 0,
-	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
-
-static constexpr UINT g_toolbarDirCmp[] =
-{
-	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
-	ID_EDIT_UNDO, 0,
-	ID_NEXTDIFF, ID_PREVDIFF, 0,
-	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
-	ID_L2R, ID_R2L, 0,
-	ID_OPTIONS, 0, ID_REFRESH
-};
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -3290,7 +3132,7 @@ void CMainFrame::LoadToolbarImages()
 		(2 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 	CImageList imgEnabled, imgDisabled;
-	if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), IDR_TOOLBAR_ENABLED32_PNG, TOOLBAR_IMAGE_COUNT,
+	if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), IDR_TOOLBAR_ENABLED32_PNG, ::GetToolbarImageCount(),
 		toolbarNewImgSize, toolbarNewImgSize - 1, imgEnabled, &imgDisabled))
 	{
 		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), IDR_TOOLBAR_ENABLED32_PNG);
@@ -3317,87 +3159,18 @@ void CMainFrame::LoadToolbarImages()
 
 std::vector<UINT> CMainFrame::GetToolbarButtons()
 {
-	const UINT* toolbarIcons = nullptr;
-	size_t toolbarIconCount = 0;
 	auto* pFrame = GetActiveFrame();
 	if (!pFrame || GetWindowsManager().GetChildCount() == 0)
+		return ::GetToolbarButtons(FRAME_NONE, 0, false);
+	int nFiles = 0;
+	FRAMETYPE frame = GetFrameType(pFrame);
+	bool bDirDoc = false;
+	if (auto* pMergeDoc = GetActiveIMergeDoc())
 	{
-		toolbarIcons = g_toolbarEmpty;
-		toolbarIconCount = _countof(g_toolbarEmpty);
+		nFiles = pMergeDoc->GetFileCount();
+		bDirDoc = pMergeDoc->GetDirDoc() != nullptr;
 	}
-	else
-	{
-		FRAMETYPE frame = GetFrameType(pFrame);
-		if (frame == FRAME_FOLDER)
-		{
-			toolbarIcons = g_toolbarDirCmp;
-			toolbarIconCount = _countof(g_toolbarDirCmp);
-		}
-		else if (frame == FRAME_OTHER)
-		{
-			toolbarIcons = g_toolbarOpenView;
-			toolbarIconCount = _countof(g_toolbarOpenView);
-		}
-		else
-		{
-			if (auto* pMergeDoc = GetActiveIMergeDoc())
-			{
-				auto* pDirDoc = pMergeDoc->GetDirDoc();
-				if (pMergeDoc->GetFileCount() == 3)
-				{
-					if (frame == FRAME_FILE)
-					{
-						toolbarIcons = pDirDoc ? g_toolbarFileCmp3WithDirDoc : g_toolbarFileCmp3;
-						toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp3WithDirDoc) : _countof(g_toolbarFileCmp3);
-					}
-					else if (frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
-					{
-						toolbarIcons = pDirDoc ? g_toolbarBinaryImageCmp3WithDirDoc : g_toolbarBinaryImageCmp3;
-						toolbarIconCount = pDirDoc ? _countof(g_toolbarBinaryImageCmp3WithDirDoc) : _countof(g_toolbarBinaryImageCmp3);
-					}
-					else if (frame == FRAME_WEBPAGE)
-					{
-						toolbarIcons = pDirDoc ? g_toolbarWebpageCmpWithDirDoc : g_toolbarWebpageCmp;
-						toolbarIconCount = pDirDoc ? _countof(g_toolbarWebpageCmpWithDirDoc) : _countof(g_toolbarWebpageCmp);
-					}
-					else
-					{
-						toolbarIcons = g_toolbarEmpty;
-						toolbarIconCount = _countof(g_toolbarEmpty);
-					}
-				}
-				else
-				{
-					if (frame == FRAME_FILE)
-					{
-						toolbarIcons = pDirDoc ? g_toolbarFileCmp2WithDirDoc : g_toolbarFileCmp2;
-						toolbarIconCount = pDirDoc ? _countof(g_toolbarFileCmp2WithDirDoc) : _countof(g_toolbarFileCmp2);
-					}
-					else if (frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
-					{
-						toolbarIcons = pDirDoc ? g_toolbarBinaryImageCmp2WithDirDoc : g_toolbarBinaryImageCmp2;
-						toolbarIconCount = pDirDoc ? _countof(g_toolbarBinaryImageCmp2WithDirDoc) : _countof(g_toolbarBinaryImageCmp2);
-					}
-					else if (frame == FRAME_WEBPAGE)
-					{
-						toolbarIcons = pDirDoc ? g_toolbarWebpageCmpWithDirDoc : g_toolbarWebpageCmp;
-						toolbarIconCount = pDirDoc ? _countof(g_toolbarWebpageCmpWithDirDoc) : _countof(g_toolbarWebpageCmp);
-					}
-					else
-					{
-						toolbarIcons = g_toolbarEmpty;
-						toolbarIconCount = _countof(g_toolbarEmpty);
-					}
-				}
-			}
-			else
-			{
-				toolbarIcons = g_toolbarEmpty;
-				toolbarIconCount = _countof(g_toolbarEmpty);
-			}
-		}
-	}
-	return std::vector<UINT>(toolbarIcons, toolbarIcons + toolbarIconCount);
+	return ::GetToolbarButtons(frame, nFiles, bDirDoc);
 }
 
 void CMainFrame::UpdateToolbar()
@@ -3435,13 +3208,8 @@ void CMainFrame::UpdateToolbar()
 		else
 		{
 			// Get the image index for this command
-			int iImage = 0;
-			auto it = std::find(std::begin(g_toolbarImageOrder), std::end(g_toolbarImageOrder), cmdID);
-			if (it != std::end(g_toolbarImageOrder))
-				iImage = static_cast<int>(std::distance(std::begin(g_toolbarImageOrder), it));
-
 			btn.idCommand = cmdID;
-			btn.iBitmap = iImage;
+			btn.iBitmap = GetToolbarImageIndex(cmdID);
 			btn.fsState = TBSTATE_ENABLED;
 			btn.fsStyle = TBSTYLE_BUTTON;
 

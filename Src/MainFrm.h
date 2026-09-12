@@ -28,6 +28,7 @@
 #include "DarkModeLib.h"
 #include "WindowsManager.h"
 #include "TempFile.h"
+#include "FrameType.h"
 
 class BCMenu;
 class CDirView;
@@ -76,15 +77,7 @@ public:
 	/**
 	 * @brief Frame/View/Document types.
 	 */
-	enum FRAMETYPE
-	{
-		FRAME_FOLDER, /**< Folder compare frame. */
-		FRAME_FILE, /**< File compare frame. */
-		FRAME_HEXFILE, /**< Hex file compare frame. */
-		FRAME_IMGFILE, /**< Image file compare frame. */
-		FRAME_WEBPAGE, /**< Web page compare frame. */
-		FRAME_OTHER, /**< No frame? */
-	};
+	using FRAMETYPE = ::FRAMETYPE;
 
 	struct OpenParams
 	{
