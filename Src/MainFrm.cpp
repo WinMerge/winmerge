@@ -3133,7 +3133,7 @@ void CMainFrame::LoadToolbarImages()
 		(2 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 	CImageList imgEnabled, imgDisabled;
-	if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), IDR_TOOLBAR_ENABLED32_PNG, ::GetToolbarImageCount(),
+	if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), IDR_TOOLBAR_ENABLED32_PNG, ToolbarButtons::GetToolbarImageCount(),
 		toolbarNewImgSize, toolbarNewImgSize - 1, imgEnabled, &imgDisabled))
 	{
 		TRACE(_T("LoadToolbarImages: failed to load toolbar resource %u\n"), IDR_TOOLBAR_ENABLED32_PNG);
@@ -3162,7 +3162,7 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 {
 	auto* pFrame = GetActiveFrame();
 	if (!pFrame || GetWindowsManager().GetChildCount() == 0)
-		return ::GetToolbarButtons(FRAME_NONE, 0, false);
+		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false);
 	int nFiles = 0;
 	FRAMETYPE frame = GetFrameType(pFrame);
 	bool bDirDoc = false;
@@ -3171,7 +3171,7 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 		nFiles = pMergeDoc->GetFileCount();
 		bDirDoc = pMergeDoc->GetDirDoc() != nullptr;
 	}
-	return ::GetToolbarButtons(frame, nFiles, bDirDoc);
+	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bDirDoc);
 }
 
 void CMainFrame::UpdateToolbar()
@@ -3209,7 +3209,7 @@ void CMainFrame::UpdateToolbar()
 		{
 			// Get the image index for this command
 			btn.idCommand = cmdID;
-			btn.iBitmap = GetToolbarImageIndex(cmdID);
+			btn.iBitmap = ToolbarButtons::GetToolbarImageIndex(cmdID);
 			btn.fsState = TBSTATE_ENABLED;
 			btn.fsStyle = TBSTYLE_BUTTON;
 

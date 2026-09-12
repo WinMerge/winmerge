@@ -165,6 +165,9 @@ static constexpr UINT g_toolbarDirCmp[] =
 	ID_OPTIONS, 0, ID_REFRESH
 };
 
+namespace ToolbarButtons
+{
+
 std::vector<UINT> GetToolbarButtons(FRAMETYPE frameType, int nFiles, bool hasDirDoc)
 {
 	const UINT* toolbarIcons = nullptr;
@@ -230,4 +233,6 @@ int GetToolbarImageIndex(UINT nID)
 int GetToolbarImageCount()
 {
 	return TOOLBAR_IMAGE_COUNT;
+}
+
 }
