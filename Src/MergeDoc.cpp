@@ -182,6 +182,7 @@ CMergeDoc::CMergeDoc()
 , m_bResultBuilt(false)
 , m_bResultSaved(false)
 , m_bResultAutoMerge(false)
+, m_nMergeBasePane(1)
 , m_bResultROForced(false)
 , m_bResultSavedRO{ false, false, false }
 {

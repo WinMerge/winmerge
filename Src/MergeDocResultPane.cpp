@@ -30,6 +30,35 @@
 #define new DEBUG_NEW
 #endif
 
+struct Panes
+{
+	int nBasePane;
+	int nTheirsPane;
+	int nOursPane;
+};
+
+static Panes GetPanes(int nBasePane)
+{
+	Panes panes;
+	panes.nBasePane = nBasePane;
+	if (nBasePane == 0)
+	{
+		panes.nTheirsPane = 1;
+		panes.nOursPane = 2;
+	}
+	else if (nBasePane == 1)
+	{
+		panes.nTheirsPane = 0;
+		panes.nOursPane = 2;
+	}
+	else if (nBasePane == 2)
+	{
+		panes.nTheirsPane = 1;
+		panes.nOursPane = 0;
+	}
+	return panes;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeResultTextBuffer
 
@@ -571,20 +600,21 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 	};
 	int nLines = 4;
 	int nPaneLines = 0;
-	String text = _T("<<<<<<< ") + label(0);
+	auto [nBasePane, nTheirsPane, nOursPane] = GetPanes(m_nMergeBasePane);
+	String text = _T("<<<<<<< ") + label(nTheirsPane);
 	if (bWhiteSpaceOnly)
 		text += _T(" (whitespace only)");
 	text += pszEol;
-	text += GetPaneApparentLinesText(0, pdi->dbegin, pdi->dend, &nPaneLines);
+	text += GetPaneApparentLinesText(nTheirsPane, pdi->dbegin, pdi->dend, &nPaneLines);
 	nLines += nPaneLines;
-	text += _T("||||||| ") + label(1) + pszEol;
-	text += GetPaneApparentLinesText(1, pdi->dbegin, pdi->dend, &nPaneLines);
+	text += _T("||||||| ") + label(nBasePane) + pszEol;
+	text += GetPaneApparentLinesText(nBasePane, pdi->dbegin, pdi->dend, &nPaneLines);
 	nLines += nPaneLines;
 	text += _T("=======");
 	text += pszEol;
-	text += GetPaneApparentLinesText(2, pdi->dbegin, pdi->dend, &nPaneLines);
+	text += GetPaneApparentLinesText(nOursPane, pdi->dbegin, pdi->dend, &nPaneLines);
 	nLines += nPaneLines;
-	text += _T(">>>>>>> ") + label(2) + pszEol;
+	text += _T(">>>>>>> ") + label(nOursPane) + pszEol;
 	if (pnLines != nullptr)
 		*pnLines = nLines;
 	return text;
@@ -812,8 +842,9 @@ bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
 		}
 		return stripped;
 	};
-	const String sMiddle = strippedText(1);
-	return strippedText(0) == sMiddle && sMiddle == strippedText(2);
+	auto [nBasePane, nTheirsPane, nOursPane] = GetPanes(m_nMergeBasePane);
+	const String sBase = strippedText(m_nMergeBasePane);
+	return strippedText(nTheirsPane) == sBase && sBase == strippedText(nOursPane);
 }
 
 /**
@@ -973,35 +1004,6 @@ String CMergeDoc::BuildExpandedResultText() const
 	text += GetResultBufferLinesText(nCovered,
 		m_ptResultBuf->GetLineCount() - nCovered);
 	return text;
-}
-
-struct Panes
-{
-	int nBasePane;
-	int nTheirsPane;
-	int nOursPane;
-};
-
-static Panes GetPanes(int nBasePane)
-{
-	Panes panes;
-	panes.nBasePane = nBasePane;
-	if (nBasePane == 0)
-	{
-		panes.nTheirsPane = 1;
-		panes.nOursPane = 2;
-	}
-	else if (nBasePane == 1)
-	{
-		panes.nTheirsPane = 0;
-		panes.nOursPane = 2;
-	}
-	else if (nBasePane == 2)
-	{
-		panes.nTheirsPane = 1;
-		panes.nOursPane = 0;
-	}
-	return panes;
 }
 
 /**
@@ -1480,7 +1482,8 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	String strPath = m_strSaveAsPath;
 	if (bSaveAs || strPath.empty())
 	{
-		String sDefault = !m_strSaveAsPath.empty() ? m_strSaveAsPath : m_filePaths.GetMiddle();
+		auto panes = GetPanes(m_nMergeBasePane);
+		String sDefault = !m_strSaveAsPath.empty() ? m_strSaveAsPath : m_filePaths.GetPath(panes.nOursPane);
 		HWND hwndParent = (m_pMergeResultView != nullptr) ? m_pMergeResultView->GetSafeHwnd() : nullptr;
 		String strSelected;
 		if (!SelectFile(hwndParent, strSelected, false, sDefault.c_str(),
