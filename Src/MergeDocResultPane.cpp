@@ -236,7 +236,7 @@ void CMergeDoc::ShowMergeResultPaneForOutput()
  * and by the Auto Merge command (with auto-merge), which switches a
  * plain 3-way comparison to the 4-pane merge view.
  */
-void CMergeDoc::StartMergeSession(bool bAutoMerge)
+void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 {
 	if (!HasMergeResultPane())
 		return;
@@ -253,6 +253,7 @@ void CMergeDoc::StartMergeSession(bool bAutoMerge)
 		m_bResultBuilt = false; // rebuild with the new auto-merge mode
 	}
 	m_bResultAutoMerge = bAutoMerge;
+	m_nMergeBasePane = nBasePane;
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 		pFrame->ShowMergeResultPane();
 	SetMergeResultPaneVisible(true);
@@ -298,7 +299,7 @@ String CMergeDoc::GetPaneApparentLinesText(int nPane, int nApparentBegin,
  */
 void CMergeDoc::BuildMergeResult()
 {
-	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || !m_ptBuf[1]->IsInitialized())
+	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || !m_ptBuf[m_nMergeBasePane]->IsInitialized())
 		return;
 
 	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
@@ -349,82 +350,82 @@ void CMergeDoc::BuildMergeResult()
 	}
 	if (!bResumed)
 	{
-	int nCurLine = 0;
-	int nApparent = 0;
-	const int nApparentCount = m_ptBuf[1]->GetLineCount();
+		int nCurLine = 0;
+		int nApparent = 0;
+		const int nApparentCount = m_ptBuf[m_nMergeBasePane]->GetLineCount();
 
-	auto appendCommon = [&](int nBegin, int nEndExcl)
-	{
-		if (nBegin >= nEndExcl)
-			return;
-		int nLines = 0;
-		text += GetPaneApparentLinesText(1, nBegin, nEndExcl - 1, &nLines);
-		if (nLines > 0)
+		auto appendCommon = [&](int nBegin, int nEndExcl)
 		{
+			if (nBegin >= nEndExcl)
+				return;
+			int nLines = 0;
+			text += GetPaneApparentLinesText(m_nMergeBasePane, nBegin, nEndExcl - 1, &nLines);
+			if (nLines > 0)
+			{
+				MergeResultSegment seg;
+				seg.diffIdx = -1;
+				seg.state = ResultSegmentState::Common;
+				seg.srcPanes.push_back(m_nMergeBasePane);
+				seg.srcPaneLines.push_back(nLines);
+				seg.nStartLine = nCurLine;
+				seg.nLines = nLines;
+				m_resultSegments.push_back(seg);
+				nCurLine += nLines;
+			}
+		};
+
+		for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
+		{
+			const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
+			appendCommon(nApparent, pdi->dbegin);
+
 			MergeResultSegment seg;
-			seg.diffIdx = -1;
-			seg.state = ResultSegmentState::Common;
-			seg.srcPanes.push_back(1);
-			seg.srcPaneLines.push_back(nLines);
+			seg.diffIdx = nDiff;
 			seg.nStartLine = nCurLine;
-			seg.nLines = nLines;
-			m_resultSegments.push_back(seg);
-			nCurLine += nLines;
-		}
-	};
-
-	for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
-	{
-		const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
-		appendCommon(nApparent, pdi->dbegin);
-
-		MergeResultSegment seg;
-		seg.diffIdx = nDiff;
-		seg.nStartLine = nCurLine;
-		// Without auto-merge every significant difference starts
-		// unresolved; with it only true 3-way conflicts do. A difference
-		// where the sides agree (or only one side changed) is not a
-		// conflict even while it is still unresolved.
-		const bool bConflict = (pdi->op == OP_DIFF);
-		if (bConflict || (!m_bResultAutoMerge && pdi->op != OP_TRIVIAL))
-		{
-			seg.state = bConflict ?
-				ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
-			seg.bWhiteSpaceOnly = bConflict && IsResultDiffWhiteSpaceOnly(pdi);
-			if (bConflict)
-				seg.blockText = GetResultConflictBlockText(nDiff, seg.bWhiteSpaceOnly,
-					&seg.nBlockLines);
+			// Without auto-merge every significant difference starts
+			// unresolved; with it only true 3-way conflicts do. A difference
+			// where the sides agree (or only one side changed) is not a
+			// conflict even while it is still unresolved.
+			const bool bConflict = (pdi->op == OP_DIFF);
+			if (bConflict || (!m_bResultAutoMerge && pdi->op != OP_TRIVIAL))
+			{
+				seg.state = bConflict ?
+					ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
+				seg.bWhiteSpaceOnly = bConflict && IsResultDiffWhiteSpaceOnly(pdi);
+				if (bConflict)
+					seg.blockText = GetResultConflictBlockText(nDiff, seg.bWhiteSpaceOnly,
+						&seg.nBlockLines);
+				else
+				{
+					// A non-conflicting difference must never put conflict
+					// markers into the output; its stashed (and saved) form is
+					// the content an automatic merge would pick for it
+					int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, m_nMergeBasePane);
+					if (srcPane == -1)
+						srcPane = m_nMergeBasePane;
+					seg.blockText = GetPaneApparentLinesText(srcPane, pdi->dbegin,
+						pdi->dend, &seg.nBlockLines);
+				}
+				text += GetResultSegmentDisplayText(seg, &seg.nLines);
+			}
 			else
 			{
-				// A non-conflicting difference must never put conflict
-				// markers into the output; its stashed (and saved) form is
-				// the content an automatic merge would pick for it
-				int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, 1);
+				int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, m_nMergeBasePane);
 				if (srcPane == -1)
-					srcPane = 1;
-				seg.blockText = GetPaneApparentLinesText(srcPane, pdi->dbegin,
-					pdi->dend, &seg.nBlockLines);
+					srcPane = 1; // trivial/ignored difference: keep base text
+				int nLines = 0;
+				text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
+				seg.state = ResultSegmentState::Auto;
+				seg.srcPanes.push_back(srcPane);
+				seg.srcPaneLines.push_back(nLines);
+				seg.nLines = nLines;
 			}
-			text += GetResultSegmentDisplayText(seg, &seg.nLines);
+			m_resultDiffToSegment[nDiff] = static_cast<int>(m_resultSegments.size());
+			m_resultSegments.push_back(seg);
+			nCurLine += seg.nLines;
+			nApparent = pdi->dend + 1;
 		}
-		else
-		{
-			int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, 1);
-			if (srcPane == -1)
-				srcPane = 1; // trivial/ignored difference: keep base text
-			int nLines = 0;
-			text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
-			seg.state = ResultSegmentState::Auto;
-			seg.srcPanes.push_back(srcPane);
-			seg.srcPaneLines.push_back(nLines);
-			seg.nLines = nLines;
-		}
-		m_resultDiffToSegment[nDiff] = static_cast<int>(m_resultSegments.size());
-		m_resultSegments.push_back(seg);
-		nCurLine += seg.nLines;
-		nApparent = pdi->dend + 1;
-	}
-	appendCommon(nApparent, nApparentCount);
+		appendCommon(nApparent, nApparentCount);
 	} // if (!bResumed)
 
 	if (!text.empty())
@@ -974,6 +975,35 @@ String CMergeDoc::BuildExpandedResultText() const
 	return text;
 }
 
+struct Panes
+{
+	int nBasePane;
+	int nTheirsPane;
+	int nOursPane;
+};
+
+static Panes GetPanes(int nBasePane)
+{
+	Panes panes;
+	panes.nBasePane = nBasePane;
+	if (nBasePane == 0)
+	{
+		panes.nTheirsPane = 1;
+		panes.nOursPane = 2;
+	}
+	else if (nBasePane == 1)
+	{
+		panes.nTheirsPane = 0;
+		panes.nOursPane = 2;
+	}
+	else if (nBasePane == 2)
+	{
+		panes.nTheirsPane = 1;
+		panes.nOursPane = 0;
+	}
+	return panes;
+}
+
 /**
  * @brief Initialize the merge result from an existing output file that
  * contains conflict sections — one written by a version control system
@@ -1115,15 +1145,16 @@ bool CMergeDoc::TryResumeMergeResultFromOutput(String& text)
 	const int nDiffCount = m_diffList.GetSize();
 	std::vector<int> sectionDiff(sections.size(), -1);
 	int nSearchFrom = 0;
+	auto [ nBasePane, nTheirsPane, nOursPane ] = GetPanes(m_nMergeBasePane);
 	for (size_t i = 0; i < sections.size(); ++i)
 	{
 		for (int nDiff = nSearchFrom; nDiff < nDiffCount; ++nDiff)
 		{
 			const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
-			if (sections[i].ours == normalizeEols(GetPaneApparentLinesText(0, pdi->dbegin, pdi->dend, nullptr)) &&
-				sections[i].theirs == normalizeEols(GetPaneApparentLinesText(2, pdi->dbegin, pdi->dend, nullptr)) &&
+			if (sections[i].ours == normalizeEols(GetPaneApparentLinesText(nOursPane, pdi->dbegin, pdi->dend, nullptr)) &&
+				sections[i].theirs == normalizeEols(GetPaneApparentLinesText(nTheirsPane, pdi->dbegin, pdi->dend, nullptr)) &&
 				(!sections[i].bHasBase ||
-				 sections[i].base == normalizeEols(GetPaneApparentLinesText(1, pdi->dbegin, pdi->dend, nullptr))))
+				 sections[i].base == normalizeEols(GetPaneApparentLinesText(nBasePane, pdi->dbegin, pdi->dend, nullptr))))
 			{
 				sectionDiff[i] = nDiff;
 				nSearchFrom = nDiff + 1;
@@ -1303,9 +1334,9 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		else
 		{
 			// non-conflict: never conflict markers, see BuildMergeResult
-			int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, 1);
+			int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, m_nMergeBasePane);
 			if (srcPane == -1)
-				srcPane = 1;
+				srcPane = m_nMergeBasePane;
 			seg.blockText = GetPaneApparentLinesText(srcPane, pdi->dbegin,
 				pdi->dend, &seg.nBlockLines);
 		}
@@ -1867,7 +1898,10 @@ void CMergeDoc::OnUpdateMergeResultShowSections(CCmdUI* pCmdUI)
 
 void CMergeDoc::OnMergeStartSession()
 {
-	StartMergeSession(false);
+	if (auto* pView = GetActiveMergeView())
+		StartMergeSession(pView->m_nThisPane, false);
+	else
+		StartMergeSession(1, false);
 }
 
 void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)

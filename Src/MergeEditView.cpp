@@ -2440,7 +2440,8 @@ void CMergeEditView::OnAutoMerge()
 	if (GetDocument()->HasMergeResultPane())
 	{
 		CWaitCursor waitstatus;
-		GetDocument()->StartMergeSession(true);
+		int nMergeBasePane = 2 - m_nThisPane;
+		GetDocument()->StartMergeSession(nMergeBasePane, true);
 		return;
 	}
 

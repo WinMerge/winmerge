@@ -343,8 +343,8 @@ public:
 	bool IsMergeResultPaneVisible() const;
 	void SetMergeResultPaneVisible(bool bVisible);
 	void ShowMergeResultPaneForOutput();
-	void SetResultAutoMerge(bool bAutoMerge) { m_bResultAutoMerge = bAutoMerge; }
-	void StartMergeSession(bool bAutoMerge);
+	void SetResultAutoMerge(int nBasePane, bool bAutoMerge) { m_nMergeBasePane = nBasePane; m_bResultAutoMerge = bAutoMerge; }
+	void StartMergeSession(int nBasePane, bool bAutoMerge);
 	void BuildMergeResult();
 	void UpdateMergeResultAfterRescan();
 	bool IsMergeResultModified() const;
@@ -417,6 +417,7 @@ private:
 	bool m_bResultBuilt; /**< Result buffer has been generated */
 	bool m_bResultSaved; /**< Result has been written to the output since it was built */
 	bool m_bResultAutoMerge; /**< Auto-resolve non-conflicting differences when building */
+	int  m_nMergeBasePane; /**< Pane to use as the base for auto-merging */
 	bool m_bResultROForced; /**< Source buffers forced read-only by result pane */
 	bool m_bResultSavedRO[3]; /**< Read-only states before the result pane forced them */
 // End MergeDocResultPane.cpp

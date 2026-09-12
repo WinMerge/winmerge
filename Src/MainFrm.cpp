@@ -1148,7 +1148,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 				// is the merge target: /al /am /ar request an automatic
 				// merge there instead of changing a source pane
 				if (nFiles == 3 && pOpenParams != nullptr && !pOpenParams->m_strSaveAsPath.empty())
-					pMergeDoc->SetResultAutoMerge(true);
+					pMergeDoc->SetResultAutoMerge(2 - pane, true);
 				else
 					pMergeDoc->DoAutoMerge(pane);
 			}
