@@ -523,4 +523,5 @@ private:
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
 	HICON m_hIconPlugin;
+	std::vector<UINT> m_toolbarButtons;
 };

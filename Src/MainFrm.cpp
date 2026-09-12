@@ -3106,6 +3106,7 @@ BOOL CMainFrame::CreateToolbar()
 	m_wndReBar.AddBar(&m_wndToolBar, nullptr, nullptr, RBBS_GRIPPERALWAYS | RBBS_FIXEDBMP | RBBS_BREAK);
 
 	LoadToolbarImages();
+	UpdateToolbar();
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
@@ -3178,8 +3179,7 @@ void CMainFrame::UpdateToolbar()
 	auto toolbarIcons = GetToolbarButtons();
 	int toolbarIconCount = static_cast<int>(toolbarIcons.size());
 
-	// Update toolbar buttons
-	if (toolbarIconCount == 0)
+	if (m_toolbarButtons == toolbarIcons)
 		return;
 
 	CToolBarCtrl& barCtrl = m_wndToolBar.GetToolBarCtrl();
@@ -3226,6 +3226,8 @@ void CMainFrame::UpdateToolbar()
 	m_wndToolBar.m_nCount = static_cast<int>(toolbarIconCount);
 
 	barCtrl.SetRedraw(TRUE);
+
+	m_toolbarButtons = std::move(toolbarIcons);
 }
 
 /**
