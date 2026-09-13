@@ -1312,6 +1312,7 @@ bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fi
 	auto guard = make_scope_exit([&bOldArchiveEnable, &bOldArchiveProbeType]() {
 			GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, bOldArchiveEnable);
 			GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, bOldArchiveProbeType);
+			Merge7zInitFlags();
 		});
 
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
