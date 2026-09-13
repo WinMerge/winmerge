@@ -286,6 +286,26 @@ void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 		pFrame->ShowMergeResultPane();
 	SetMergeResultPaneVisible(true);
+
+	// Give the compared buffers a descriptive name for the merge result
+	auto [_, nTheirsPane, nOursPane] = GetPanes(m_nMergeBasePane);
+	const String descs[3] = { _("Base"), _("Theirs"), _("Ours") };
+	int i = 0;
+	for (auto pane : { m_nMergeBasePane, nTheirsPane, nOursPane })
+	{
+		if (m_strDesc[pane].empty())
+		{
+			m_strDesc[pane] = m_filePaths[pane] + _T(" - ") + descs[i];
+			m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
+			UpdateHeaderPath(pane);
+		}
+		else if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED)
+		{
+			m_strDesc[pane] += _T(" - ") + descs[i];
+			UpdateHeaderPath(pane);
+		}
+		++i;
+	}
 }
 
 /**

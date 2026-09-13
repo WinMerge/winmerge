@@ -107,7 +107,7 @@ BEGIN
             MENUITEM "&As in Sources",              ID_MERGE_RESULT_EOL_ASIS
             MENUITEM "&Windows (CRLF)",             ID_MERGE_RESULT_EOL_DOS
             MENUITEM "&Unix (LF)",                  ID_MERGE_RESULT_EOL_UNIX
-            MENUITEM "Classic &Mac (CR)",           ID_MERGE_RESULT_EOL_MAC
+            MENUITEM "&Mac (CR)",                   ID_MERGE_RESULT_EOL_MAC
         END
         MENUITEM SEPARATOR
         MENUITEM "Save Merge Result",           ID_MERGE_RESULT_SAVE
