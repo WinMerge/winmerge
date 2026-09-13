@@ -1511,7 +1511,7 @@
         suspect that a file might have changed, we strongly advise that you run
         <guimenuitem>Refresh</guimenuitem> <emphasis>before</emphasis>
         performing any merge operation: click <menuchoice>
-            <guimenu>Edit</guimenu>
+            <guimenu>View</guimenu>
 
             <guimenuitem>Refresh</guimenuitem>
           </menuchoice> or the <inlinemediaobject>

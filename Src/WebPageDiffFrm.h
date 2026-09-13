@@ -154,6 +154,8 @@ protected:
 	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
 	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnWindowChangePane(UINT nID);
+	afx_msg void OnWindowPreserveSplitterPosition();
+	afx_msg void OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);

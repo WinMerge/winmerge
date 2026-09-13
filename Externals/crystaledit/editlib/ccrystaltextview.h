@@ -201,7 +201,7 @@ public :
     };
 
     virtual void ResetView ();
-    virtual int GetLineCount ();
+    virtual int GetLineCount () const;
     virtual void OnUpdateCaret ();
     bool IsTextBufferInitialized () const;
     CString GetTextBufferEol (int nLine) const;
@@ -264,6 +264,9 @@ protected :
     virtual void PrintFooter (CDC * pdc, int nPageNum);
     virtual void GetPrintHeaderText (int nPageNum, CString & text);
     virtual void GetPrintFooterText (int nPageNum, CString & text);
+
+    int GetPreviousVisibleLine (int y) const;
+    int GetNextVisibleLine (int y) const;
 
     //  Keyboard handlers
     void MoveLeft (bool bSelect);

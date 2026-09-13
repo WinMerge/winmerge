@@ -1130,7 +1130,7 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
         <para><guilabel>自動再スキャン</guilabel>
 が無効になっている場合、またはファイルが変更された可能性があると思われる場合は、マージ操作を実行する<emphasis>前</emphasis> に
 <guimenuitem>更新</guimenuitem> を実行することを強くお勧めします。<menuchoice>
-<guimenu>編集</guimenu> <guimenuitem>更新</guimenuitem> </menuchoice> または
+<guimenu>表示</guimenu> <guimenuitem>更新</guimenuitem> </menuchoice> または
 <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>

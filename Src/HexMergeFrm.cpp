@@ -17,6 +17,7 @@
 #include "HexMergeView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "SplitterPositions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -43,6 +44,9 @@ BEGIN_MESSAGE_MAP(CHexMergeFrame, CMergeFrameCommon)
 	//ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	//ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	//ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
+	// [Window] menu
+	ON_COMMAND(ID_WINDOW_PRESERVE_SPLITTER_RATIOS, OnWindowPreserveSplitterPosition)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_PRESERVE_SPLITTER_RATIOS, OnUpdateWindowPreserveSplitterPosition)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -189,6 +193,9 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_pMergeDoc->SetMergeViews(pView);
 	m_pMergeDoc->RefreshOptions();
 
+	// Load splitter positions
+	LoadOptions();
+
 	return TRUE;
 }
 
@@ -203,7 +210,7 @@ void CHexMergeFrame::ActivateFrame(int nCmdShow)
 /**
  * @brief Save the window's position, free related resources, and destroy the window
  */
-BOOL CHexMergeFrame::DestroyWindow() 
+BOOL CHexMergeFrame::DestroyWindow()
 {
 	SavePosition();
 	SaveActivePane();
@@ -223,6 +230,8 @@ BOOL CHexMergeFrame::DestroyWindow()
  */
 void CHexMergeFrame::SavePosition()
 {
+	// Save splitter positions
+	SaveOptions();
 }
 
 void CHexMergeFrame::SaveActivePane()
@@ -247,6 +256,25 @@ void CHexMergeFrame::OnSize(UINT nType, int cx, int cy)
 {
 	CMDIChildWnd::OnSize(nType, cx, cy);
 	UpdateHeaderSizes();
+}
+
+void CHexMergeFrame::LoadOptions()
+{
+	const bool horizontal = m_wndSplitter.GetColumnCount() != 1;
+	SplitterPositions::LoadPaneRatio(OPT_CMP_BIN_SPLITTER_RATIOS, 0, m_pMergeDoc->m_nBuffers,
+		[this, horizontal](const double* positions, int count) {
+			m_wndSplitter.SetSplitterRatios(positions, count, horizontal);
+		});
+}
+
+void CHexMergeFrame::SaveOptions()
+{
+	const bool horizontal = m_wndSplitter.GetColumnCount() != 1;
+	if (!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_RATIOS).empty())
+		SplitterPositions::SavePaneRatios(OPT_CMP_BIN_SPLITTER_RATIOS, 0, m_pMergeDoc->m_nBuffers,
+			[this, horizontal](int i) {
+				return m_wndSplitter.GetSplitterRatio(i, horizontal);
+			});
 }
 
 /// update splitting position for panels 1/2 and headerbar and statusbar 
@@ -459,4 +487,27 @@ void CHexMergeFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI)
 	pCmdUI->Enable(TRUE);
 	pCmdUI->SetCheck((m_wndSplitter.GetColumnCount() != 1));
 }
+
+/**
+ * @brief Remember/restore splitter position
+ */
+void CHexMergeFrame::OnWindowPreserveSplitterPosition()
+{
+	auto& splitterWnd = m_wndSplitter;
+	if (!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_RATIOS).empty())
+	{
+		GetOptionsMgr()->SaveOption(OPT_CMP_BIN_SPLITTER_RATIOS, _T(""));
+		splitterWnd.ResetSplitterRatios(splitterWnd.GetColumnCount() != 1);
+		return;
+	}
+	const bool horizontal = splitterWnd.GetColumnCount() != 1;
+	SplitterPositions::SavePaneRatios(OPT_CMP_BIN_SPLITTER_RATIOS, 0, m_pMergeDoc->m_nBuffers,
+		[&splitterWnd, horizontal](int i) { return splitterWnd.GetSplitterRatio(i, horizontal); });
+}
+
+void CHexMergeFrame::OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(!GetOptionsMgr()->GetString(OPT_CMP_BIN_SPLITTER_RATIOS).empty());
+}
+
 

@@ -362,7 +362,7 @@
     rescan</guilabel> is enabled, WinMerge updates file differences while you
     edit a file. If <guilabel>Automatic rescan</guilabel> is disabled, you can
     update files by selecting <menuchoice>
-        <guimenu>Edit</guimenu>
+        <guimenu>View</guimenu>
 
         <guimenuitem>Refresh</guimenuitem>
       </menuchoice>, clicking the <inlinemediaobject>

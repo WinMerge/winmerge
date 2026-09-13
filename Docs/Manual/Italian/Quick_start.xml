@@ -343,13 +343,14 @@ tagliare e incollare testo di base. Se la <guilabel>Riscansione
 automatica</guilabel> è abilitata, WinMerge aggiorna le differenze tra i
 file mentre modifichi un file. Se la <guilabel>Riscansione
 automatica</guilabel> è disabilitata, puoi aggiornare i file selezionando
-<menuchoice> <guimenu>Modifica</guimenu> <guimenuitem>Aggiorna</guimenuitem>
-</menuchoice>, facendo clic sul pulsante <inlinemediaobject>
+<menuchoice> <guimenu>Visualizza</guimenu>
+<guimenuitem>Aggiorna</guimenuitem> </menuchoice>, facendo clic sul pulsante
+<inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
           <phrase>Pulsante Aggiorna</phrase>
         </textobject>
-      </inlinemediaobject> nella barra degli strumenti, o premendo
-<keycap>F5</keycap>.</para>
+      </inlinemediaobject> nella barra degli strumenti,
+o premendo <keycap>F5</keycap>.</para>
   </section>
 </article>

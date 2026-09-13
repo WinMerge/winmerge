@@ -931,6 +931,10 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="PluginMenu.cpp" />
+    <ClCompile Include="SplitterPositions.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="SyntaxParserHelper.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1028,6 +1032,7 @@
     <ClInclude Include="FilterConditionDlg.h" />
     <ClInclude Include="FilterHelperMenuBase.h" />
     <ClInclude Include="FilterMenuHelpers.h" />
+    <ClInclude Include="FrameType.h" />
     <ClInclude Include="MatchInsideDlg.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />
@@ -1520,6 +1525,7 @@
     </ClCompile>
     <ClCompile Include="TestMain.cpp" />
     <ClCompile Include="TitleBarHelper.cpp" />
+    <ClCompile Include="ToolbarButtons.cpp" />
     <ClCompile Include="TrDialogs.cpp" />
     <ClCompile Include="Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -1603,6 +1609,7 @@
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="PropSysColors.h" />
     <ClInclude Include="ReplaceListHelper.h" />
+    <ClInclude Include="SplitterPositions.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
@@ -1782,6 +1789,7 @@
     <ClInclude Include="Common\UnicodeString.h" />
     <ClInclude Include="Common\UniFile.h" />
     <ClInclude Include="TitleBarHelper.h" />
+    <ClInclude Include="ToolbarButtons.h" />
     <ClInclude Include="TrDialogs.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
@@ -1791,7 +1799,9 @@
     <ClInclude Include="WindowListCtrl.h" />
     <ClInclude Include="WindowsManager.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
+    <ClInclude Include="WinIMergeLib.h" />
     <ClInclude Include="WinMergePluginBase.h" />
+    <ClInclude Include="WinWebDiffLib.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="MergeAppCOMClass.h" />

@@ -930,6 +930,8 @@ BEGIN
         MENUITEM "Tile &Horizontally",          ID_WINDOW_TILE_HORZ
         MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
         MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM SEPARATOR
+        MENUITEM "P&reserve Splitter Position", ID_WINDOW_PRESERVE_SPLITTER_RATIOS
     END
     POPUP "&Help"
     BEGIN

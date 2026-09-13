@@ -296,6 +296,68 @@ void CSplitterWndEx::EqualizeCols()
 	}
 }
 
+double CSplitterWndEx::GetSplitterRatio(int index, bool horizontal) const
+{
+	const auto& ratios = horizontal ? m_colRatios : m_rowRatios;
+	if (index < 0 || static_cast<size_t>(index) >= ratios.size())
+		return 0.0;
+	return static_cast<double>(ratios[index]) / 10000.0;
+}
+
+void CSplitterWndEx::SetSplitterRatios(const double* ratios, int count, bool horizontal)
+{
+	const int nPanes = horizontal ? m_nCols : m_nRows;
+	if (count != nPanes - 1)
+		return;
+
+	auto& ratiosVec = horizontal ? m_colRatios : m_rowRatios;
+	ratiosVec.clear();
+
+	int sumRatio = 0;
+	for (int i = 0; i < count; ++i)
+	{
+		const double d = ratios[i];
+		if (!(d > 0.0 && d < 1.0))
+		{
+			initializeRatios(ratiosVec, nPanes);
+			if (horizontal)
+				EqualizeCols();
+			else
+				EqualizeRows();
+			return;
+		}
+		const int ratio = static_cast<int>(d * 10000);
+		if (ratio <= 0 || sumRatio + ratio >= 10000)
+		{
+			initializeRatios(ratiosVec, nPanes);
+			if (horizontal)
+				EqualizeCols();
+			else
+				EqualizeRows();
+			return;
+		}
+		ratiosVec.push_back(ratio);
+		sumRatio += ratio;
+	}
+	ratiosVec.push_back(10000 - sumRatio);
+
+	if (horizontal)
+		EqualizeCols();
+	else
+		EqualizeRows();
+}
+
+void CSplitterWndEx::ResetSplitterRatios(bool horizontal)
+{
+	auto& ratios = horizontal ? m_colRatios : m_rowRatios;
+	initializeRatios(ratios, horizontal ? m_nCols : m_nRows);
+
+	if (horizontal)
+		EqualizeCols();
+	else
+		EqualizeRows();
+}
+
 void CSplitterWndEx::RecalcLayout()
 {
 	if (m_nCols == 2 && m_bAutoResizePanes)

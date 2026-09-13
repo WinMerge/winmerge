@@ -464,6 +464,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{02828B8D-E4B9-41FE-84C4-D5CDA7761627}"
 	ProjectSection(SolutionItems) = preProject
 		Translations\InnoSetup\Arabic.islu = Translations\InnoSetup\Arabic.islu
+		Translations\InnoSetup\Azerbaijani.islu = Translations\InnoSetup\Azerbaijani.islu
 		Translations\InnoSetup\Basque.islu = Translations\InnoSetup\Basque.islu
 		Translations\InnoSetup\Brazilian.islu = Translations\InnoSetup\Brazilian.islu
 		Translations\InnoSetup\Bulgarian.islu = Translations\InnoSetup\Bulgarian.islu

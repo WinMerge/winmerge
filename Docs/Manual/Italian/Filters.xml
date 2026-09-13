@@ -1412,7 +1412,7 @@ un numero intero o in virgola mobile a seconda del formato sorgente;
 <function>toDouble</function> restituisce solo numeri a virgola mobile. Le
 virgole nel dato sorgente vengono ignorate. In caso di errore di analisi
 restituisce <literal>none</literal>. Esempio:
-<literal>le:toInt(Column("Count")) > 100</literal></para></listitem>
+<literal>le:toInt(Column("Count")) &gt; 100</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>toDateTime</function>(<replaceable>str</replaceable>)</term>
@@ -1420,7 +1420,7 @@ restituisce <literal>none</literal>. Esempio:
                 <para>
 Converte una stringa in un valore timestamp. Supporta più formati
 data/ora. Se la stringa non può essere analizzata restituisce
-<literal>none</literal>. Esempio: <literal>toDateTime("2025-01-15") >
+<literal>none</literal>. Esempio: <literal>toDateTime("2025-01-15") &gt;
 today()</literal></para>
               </listitem>
             </varlistentry>
@@ -2409,11 +2409,11 @@ barra filtri</guimenuitem> </menuchoice>, o premi
         </listitem>
         <listitem>
           <para>Fai clic con il pulsante destro del mouse sul testo selezionato nella
-finestra Confronta file e scegli <menuchoice> <guimenu >Aggiungi ai
-filtri</guimenu > <guimenuitem >Aggiungi ai filtri di
-visualizzazione</guimenuitem > </menuchoice >. WinMerge creerà
-automaticamente un'espressione <literal>La riga contiene "..."</literal> dal
-testo selezionato e apre la barra filtri.</para>
+finestra Confronta file e scegli <menuchoice> <guimenu>Aggiungi ai
+filtri</guimenu> <guimenuitem>Aggiungi ai filtri di
+visualizzazione</guimenuitem> </menuchoice>. WinMerge creerà automaticamente
+un'espressione <literal>La riga contiene "..."</literal> dal testo
+selezionato e apre la barra filtri.</para>
         </listitem>
       </itemizedlist>
 
@@ -2577,26 +2577,28 @@ corrisponde a "^//"</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>Column</function>(<replaceable>indexOrName</replaceable>),
-<function>ColumnRange</function>(<replaceable>specification</replaceable>),
-<function>ColumnAt</function>(<replaceable>line</replaceable>,
-<replaceable>indexOrName</replaceable>),
+<function>ColumnRange</function>(<replaceable>specifica</replaceable>),
+<function>ColumnAt</function>(<replaceable>riga</replaceable>,
+<replaceable>indiceONome</replaceable>),
 <function>ColumnOffsetAt</function>(<replaceable>offset</replaceable>,
-<replaceable>indexOrName</replaceable>)  (table mode only)</term>
-            <listitem><para>Cell content by index or name, at the current, absolute, or relative
-line. For <function>Column</function>, a numeric string is always treated as
-a column name. A numeric argument is a 1-based column index. Use
-<function>ColumnRange</function> to specify multiple columns and ranges
-using comma-separated <literal>N</literal>, <literal>N-M</literal>, and
-<literal>N-</literal> items; whitespace is ignored, for example
-<literal>ColumnRange("1, 3, 5-10, 13-")</literal>.  Prefix a range with
-<literal>!</literal> to exclude it; for example
-<literal>ColumnRange("!1")</literal> excludes column 1 and
-<literal>ColumnRange("1-10,!4-5")</literal> selects columns 1-10 except
-columns 4-5. If no included range is specified, all columns are included
-before exclusions are applied.  Existing name and single-index forms return
-one cell; range forms return the selected cell values joined using the table
-delimiter.  Example: <literal>le:RightColumn("Category") !=
-ColumnOffsetAt(-1, "Category")</literal></para></listitem>
+<replaceable>indiceONome</replaceable>) (solo modalità tabella)</term>
+            <listitem><para>Contenuto della cella per indice o nome, alla riga attuale, assoluta o
+relativa. Per <function>Column</function>, una stringa numerica viene sempre
+trattata come un nome di colonna. Un argomento numerico è un indice di
+colonna in base 1. Usa <function>ColumnRange</function> per specificare più
+colonne e intervalli usando elementi <literal>N</literal>,
+<literal>N-M</literal> e <literal>N-</literal> separati da virgole; gli
+spazi bianchi vengono ignorati, ad esempio <literal>ColumnRange("1, 3, 5-10,
+13-")</literal>. Prefissa un intervallo con <literal>!</literal> per
+escluderlo; ad esempio <literal>ColumnRange("!1")</literal> esclude la
+colonna 1 e <literal>ColumnRange("1-10,!4-5")</literal> seleziona le colonne
+1-10 eccetto le colonne 4-5. Se non viene specificato alcun intervallo
+incluso, tutte le colonne vengono incluse prima che vengano applicate le
+esclusioni. Il nome esistente e i moduli a indice singolo restituiscono una
+cella; i moduli intervallo restituiscono i valori delle celle selezionate
+unite usando il delimitatore della tabella. Esempio:
+<literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
+"Category")</literal></para></listitem>
           </varlistentry>
         </variablelist>
       </section>
@@ -2654,8 +2656,8 @@ prima riga di ciascun blocco differenza.</para></listitem>
             <listitem><para>Restituisce la dimensione (numero di righe) del blocco corrispondente
 contenente la riga attuale. Se la riga attuale on si trova in nessun blocco
 corrispondente restituisce <literal>none</literal>. Esempio:
-<literal>le:matchBlockSize(Different) > 5</literal> visualizza solo le righe
-nei blocchi di differenza più grandi di 5 righe.</para></listitem>
+<literal>le:matchBlockSize(Different) &gt; 5</literal> visualizza solo le
+righe nei blocchi di differenza più grandi di 5 righe.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockCount</function>(<replaceable>expr</replaceable>)</term>
@@ -2870,6 +2872,28 @@ modificati nell'ultima settimana</para></listitem>
     </itemizedlist>
   </section>
 
+  <section id="Filters_LineFilterPluginPipeline">
+    <title>Uso espressioni filtro nelle pipeline plugin</title>
+
+    <para>A partire dalla versione 2.16.59, le espressioni filtro possono essere usate
+come elementi nelle pipeline plugin prefissandole con
+<literal>le:</literal>. Esempio:</para>
+
+    <synopsis>le:toUpper(Line)|SortAscending</synopsis>
+
+    <para>Per le funzioni e gli operatori delle espressioni di filtro disponibili vedi
+<xref linkend="FilterExpression_Syntax" />.</para>
+
+    <para>Quando le espressioni di filtro vengono usate nelle pipeline plug-in,
+operano su una singola riga alla volta (un valore scalare), che differisce
+dai filtri di riga di visualizzazione. Nei filtri di riga di
+visualizzazione, attributi come <literal>Line</literal> rappresentano coppie
+di valori (lato sinistro e destro confrontati), tipicamente espressi come
+array come <literal>[Left, Right]</literal>. Nelle pipeline dei plugin, gli
+stessi attributi come <literal>Line</literal> sono valori scalari che
+rappresentano la riga attuale in fase di elaborazione.</para>
+  </section>
+
   <section id="Filters_SubstitutionFilter">
     <title>Uso dei filtri di sostituzione<indexterm>
         <primary>filtri</primary>
@@ -2902,7 +2926,7 @@ per creare e gestire filtri di file e filtri di linea.</para>
       <listitem>
         <para>Nella finestra di dialogo Seleziona file o cartelle, seleziona
 <guibutton>Seleziona</guibutton> a destra del campo
-<guilabel>Filtro</guilabel >. Usa questo metodo quando vuoi applicare un
+<guilabel>Filtro</guilabel>. Usa questo metodo quando vuoi applicare un
 filtro di file a un'operazione di confronto di cartelle.</para>
       </listitem>
 
@@ -3141,9 +3165,9 @@ filtro file rilevabile ovunque sul tuo sistema:</para>
 
               <listitem>
                 <para>Nella finestra di dialogo Individua il file del filtro da installare, vai al
-file <filename>flt</filename> sul tuo sistema e seleziona <guibutton
->Apri</guibutton>. L'elenco Filtri file ora dovrebbe includere il filtro
-file installato.</para>
+file <filename>flt</filename> sul tuo sistema e seleziona
+<guibutton>Apri</guibutton>. L'elenco Filtri file ora dovrebbe includere il
+filtro file installato.</para>
               </listitem>
             </orderedlist>
           </listitem>

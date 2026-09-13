@@ -33,6 +33,7 @@ protected:
 	CPoint GetClientCursorPos() const;
 	int GetIndexFromPoint(const CPoint& pt) const;
 	static COLORREF LightenColor(COLORREF color, double amount);
+	void DrawPaneIcon(CDC& dc, int nIndex, const CRect& rcPart, CRect& rcText) const;
 
 	afx_msg void OnPaint();
 	afx_msg BOOL OnEraseBkgnd(CDC *pDC);

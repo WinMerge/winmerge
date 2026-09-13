@@ -20,8 +20,8 @@ class="extension">sct</filename>)</para>
     </listitem>
 
     <listitem>
-      <para>Instalado en la subcarpeta <filename
-class="directory">MergePlugins</filename> WinMerge puede instalar varios
+      <para>Se instala en la subcarpeta <filename
+class="directory">MergePlugins</filename>. WinMerge puede instalar varios
 complementos automáticamente.</para>
     </listitem>
 
@@ -41,7 +41,7 @@ encontrará más complementos creados por otros desarrolladores.</para>
 
     <variablelist>
       <varlistentry>
-        <term>Complemento del editor<indexterm>
+        <term>Complemento de edición<indexterm>
             <primary>complementos para el editor</primary>
           </indexterm></term>
 
@@ -53,34 +53,34 @@ comparación de archivos.</para>
       </varlistentry>
 
       <varlistentry>
-        <term>Descompresor: convierte un archivo a formato de texto<indexterm>
-            <primary>complementos para descompresión</primary>
+        <term>Desempaquetador: convierte un archivo a formato de texto<indexterm>
+            <primary>complementos desempaquetadores</primary>
           </indexterm></term>
 
         <listitem>
-          <para>Este tipo de complemento transforma un archivo comprimido a un formato
-visible descomprimiéndolo. El archivo original no se modifica: se crea un
+          <para>Este tipo de complemento transforma un archivo empaquetado a un formato
+visible desempaquetándolo. El archivo original no se modifica: se crea un
 archivo transformado temporal y se carga en WinMerge.</para>
 
-          <para>Los complementos de descompresión actúan sobre archivos completos, no sobre
+          <para>Los complementos desempaquetadores actúan sobre archivos completos, no sobre
 texto seleccionado ni sobre diferencias dentro de los archivos. Por lo
 tanto, solo están disponibles cuando se inician comparaciones de archivos,
 ya sea desde la ventana de comparación de carpetas o desde el cuadro de
-diálogo "Seleccione archivos o carpetas". Los complementos de descompresión
+diálogo "Seleccione archivos o carpetas". Los complementos desempaquetadores
 no están disponibles en la ventana de comparación de archivos.</para>
 
-          <para>En ocasiones, el archivo descomprimido se puede volver a comprimir (consulte
-los detalles en <xref linkend="Plugins_available" /> para comprobar si un
-complemento admite la recompresión). A continuación, puede combinar y
-guardar el archivo transformado. En este caso, la compresión se realiza
-automáticamente. Por seguridad, le recomendamos que cambie el nombre del
-archivo transformado al guardarlo.</para>
+          <para>En ocasiones, el archivo desempaquetado se puede volver a empaquetar
+(consulte los detalles en <xref linkend="Plugins_available" /> para
+comprobar si un complemento admite de nuevo el empaquetado). A continuación,
+puede combinar y guardar el archivo transformado. En este caso, el
+empaquetado se realiza automáticamente. Por seguridad, le recomendamos que
+cambie el nombre del archivo transformado al guardarlo.</para>
 
           <note>
             <para>Al comparar carpetas, WinMerge puede mostrar resultados diferentes para los
 archivos comprimidos y los no comprimidos. Por ejemplo, unos archivos que
-son idénticos cuando están descomprimidos pueden resultar diferentes si se
-tiene en cuenta la fecha de creación. WinMerge aplica el descompresor en
+son idénticos cuando están desempaquetados pueden resultar diferentes si se
+tiene en cuenta la fecha de creación. WinMerge aplica el desempaquetador en
 todos los casos, por lo que tendrá el mismo resultado tanto si compara una
 carpeta como si combina dos versiones de un archivo.</para>
           </note>
@@ -123,17 +123,17 @@ complemento: cuando la extensión de un archivo comparado coincide con una
 extensión de la lista del complemento, este se considera un
 <firstterm>complemento sugerido.</firstterm></para>
 
-    <para>Existen opciones independientes de WinMerge para los tipos de descompresión
-y prediferencia que se describen más adelante en este tema y que permiten
-aplicar los complementos de forma manual o automática. No hay modo
-automático para los complementos de complementación del editor.</para>
+    <para>Existen opciones independientes de WinMerge para los tipos de desempaquetado
+y prediferenciación que se describen más adelante en este tema y que
+permiten aplicar los complementos de forma manual o automática. No existe un
+modo automático para los complementos de edición complementarios.</para>
 
     <para>Cuando se aplican complementos a un archivo seleccionado mediante el modo
 automático, WinMerge busca en su lista de complementos sugeridos para ese
 tipo de archivo y aplica el primer complemento cuyo nombre coincida. La
 búsqueda se realiza por orden alfabético, por lo que si hay varios
-complementos sugeridos para un tipo de archivo, solo se aplica el primero
-que se encuentre.</para>
+complementos sugeridos para un tipo de archivo, solo aplica el primero que
+encuentre.</para>
   </section>
 
   <section>
@@ -144,13 +144,13 @@ complemento. Los métodos varían según el tipo de complemento y también
 dependen de si se comparan carpetas o archivos.</para>
 
     <section>
-      <title>Aplicación de complementos del editor en la ventana de comparación de
+      <title>Aplicación de complementos de edición en la ventana de comparación de
 archivos</title>
 
       <para>Con el cursor situado en cualesquiera de los paneles de archivos de la
 ventana de comparación de archivos, haga clic en <menuchoice>
 <guimenu>Complementos</guimenu> <guisubmenu>Conjunto de
-comandos</guisubmenu> </menuchoice>y seleccione una de estas funciones:</para>
+comandos</guisubmenu> </menuchoice> y seleccione una de estas funciones:</para>
 
       <itemizedlist>
         <listitem>
@@ -222,29 +222,29 @@ comandos</guisubmenu> </menuchoice>y seleccione una de estas funciones:</para>
 <xref linkend="EditorAddin" /> y los complementos <xref
 linkend="Plugins_datetime" />.</para>
 
-      <note>
-        <para>Los complementos del editor no están disponibles en la ventana de
+        <note>
+          <para>Los complementos de edición no están disponibles en la ventana de
 comparación de carpetas.</para>
-      </note>
-    </section>
+        </note>
+      </section>
 
-    <section>
-      <title>Aplicación de complementos de descompresión en la ventana de comparación de
+      <section>
+        <title>Aplicación de complementos desempaquetadores en la ventana de comparación de
 carpetas</title>
 
-      <para>Antes de aplicar los complementos de descompresión, puede configurar su modo
+      <para>Antes de aplicar los complementos desempaquetadores puede configurar su modo
 en automático o manual.</para>
 
       <itemizedlist>
         <listitem>
           <para>Para configurar el modo automático para este tipo de complemento, haga clic
-en<menuchoice> <guimenu>Complementos</guimenu> <guimenuitem>Descompresión
-automática</guimenuitem> </menuchoice>.</para>
+en <menuchoice> <guimenu>Complementos</guimenu> <guimenuitem>Desempaquetador
+automático</guimenuitem> </menuchoice>.</para>
         </listitem>
 
         <listitem>
-          <para>Para activar el modo manual, haga clic en<menuchoice>
-<guimenu>Complementos</guimenu> <guimenuitem>Descompresión
+          <para>Para activar el modo manual, haga clic en <menuchoice>
+<guimenu>Complementos</guimenu> <guimenuitem>Desempaquetador
 manual</guimenuitem> </menuchoice>.</para>
         </listitem>
       </itemizedlist>
@@ -255,9 +255,9 @@ comparación de carpetas con la nueva configuración.</para>
       <section>
         <title>Uso del modo automático</title>
 
-        <para>Para aplicar complementos cuando la descompresión automática está activada,
+        <para>Para aplicar complementos cuando el desempaquetado automático está activado,
 basta con iniciar una operación de comparación con un archivo en la ventana
-de comparación de carpetas. Si el complemento de descompresión sugerido para
+de comparación de carpetas. Si el complemento desempaquetador sugerido para
 el tipo de archivo (en caso de que exista) lo preprocesa, WinMerge lo abrirá
 en la ventana de comparación de archivos.</para>
 
@@ -272,11 +272,11 @@ formato y lo abre en la ventana de comparación de archivos.</para>
       <section>
         <title>Uso del modo manual</title>
 
-        <para>El modo manual le permite elegir un complemento de descompresión distinto al
-que se selecciona automáticamente en el modo automático.  También puede
+        <para>El modo manual le permite elegir un complemento desempaquetador distinto al
+que se selecciona automáticamente en el modo automático. También puede
 iniciar la comparación sin utilizar ningún complemento.</para>
 
-        <para>Para aplicar los complementos cuando se ha configurado la descompresión
+        <para>Para aplicar los complementos cuando se ha configurado el desempaquetado
 manual:</para>
 
         <orderedlist>
@@ -285,15 +285,15 @@ manual:</para>
           </listitem>
 
           <listitem>
-            <para>Haga clic en<menuchoice> <guimenu>Complementos</guimenu> <guimenuitem>Editar
-con descompresor...</guimenuitem> </menuchoice>.</para>
+            <para>Haga clic en <menuchoice> <guimenu>Complementos</guimenu>
+<guimenuitem>Editar con desempaquetador...</guimenuitem> </menuchoice>.</para>
 
             <para>Esta opción del menú solo está disponible si el tipo de archivo seleccionado
-es compatible con algún complemento de descompresión disponible.</para>
+es compatible con algún complemento desempaquetador disponible.</para>
           </listitem>
 
           <listitem>
-            <para>En el cuadro de diálogo "Seleccionar descompresor":</para>
+            <para>En el cuadro de diálogo "Seleccionar desempaquetador":</para>
 
             <xi:include href="select_unpacker.xml"
                         xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -301,21 +301,21 @@ es compatible con algún complemento de descompresión disponible.</para>
           </listitem>
 
           <listitem>
-            <para>Haga clic en<guibutton>Aceptar</guibutton> para cerrar el cuadro de diálogo
-"Seleccionar descompresor" e iniciar la comparación de archivos.</para>
+            <para>Haga clic en <guibutton>Aceptar</guibutton> para cerrar el cuadro de diálogo
+"Seleccionar desempaquetador" e iniciar la comparación de archivos.</para>
           </listitem>
         </orderedlist>
       </section>
     </section>
 
     <section>
-      <title>Aplicación de complementos de descompresión en el cuadro de diálogo
-"Seleccionar archivos o carpetas"</title>
+      <title>Aplicación de complementos desempaquetadores en el cuadro de diálogo
+"Seleccione archivos o carpetas"</title>
 
-      <para>Puede utilizar el cuadro de diálogo "Seleccionar descompresor" para aplicar
-un complemento al iniciar una comparación de archivos desde el cuadro de
-diálogo "Seleccione archivos o carpetas".  Consulte <xref
-linkend="Open_paths_unpacker" />para obtener más información.</para>
+      <para>Puede utilizar el cuadro de diálogo "Seleccionar desempaquetador" para
+aplicar un complemento al iniciar una comparación de archivos desde el
+cuadro de diálogo "Seleccione archivos o carpetas". Consulte <xref
+linkend="Open_paths_unpacker" /> para obtener más información.</para>
     </section>
 
     <section>
@@ -323,10 +323,10 @@ linkend="Open_paths_unpacker" />para obtener más información.</para>
 de carpetas</title>
 
       <para>Con los complementos de prediferenciación se configura el modo
-(<firstterm>&lt;Automático&gt;</firstterm> o
-<firstterm>&lt;Ninguno&gt;</firstterm>) o el nombre del complemento para
-cada archivo individual. (A diferencia de los complementos de descompresión,
-en los que se configura el modo para todos los archivos). Es decir, algunos
+<firstterm>&lt;Automático&gt;</firstterm> o
+<firstterm>&lt;Ninguno&gt;</firstterm> o el nombre del complemento para cada
+archivo individual (a diferencia de los complementos desempaquetadores, en
+los que se configura el modo para todos los archivos). Es decir, algunos
 archivos de la misma carpeta pueden tener modos de prediferenciación
 diferentes.</para>
 
@@ -343,8 +343,8 @@ prediferenciador disponible para ese tipo de archivo.</para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu>&lt;Ninguno&gt;</guisubmenu> significa que no se utiliza ningún
-complemento prediferenciador.</para>
+          <para><guisubmenu>&lt;Ninguno&gt;</guisubmenu> significa que no se utilizará
+ningún complemento prediferenciador.</para>
         </listitem>
       </itemizedlist>
 
@@ -367,10 +367,38 @@ comparación de archivos</title>
       <para>En la ventana de comparación de archivos, puede aplicar un complemento
 prediferenciador haciendo clic en <menuchoice>
 <guimenu>Complementos</guimenu> <guisubmenu>Prediferenciador</guisubmenu>
-</menuchoice>y seleccionando uno de los complementos de la lista. Los
+</menuchoice> y seleccionando uno de los complementos de la lista. Los
 complementos recomendados aparecen en la parte superior de la lista. Los
 archivos se vuelven a comparar una vez aplicado el complemento, por lo que
 no es necesario volver a analizarlos.</para>
+    </section>
+
+    <section>
+      <title>Using plugin pipelines</title>
+
+      <para>Plugin pipelines allow you to chain multiple plugins and filter expressions
+using the pipe character (<keycap>|</keycap>) as a separator.  Plugin
+pipelines can be used with all plugin types: unpacker, prediffer, and editor
+complement plugins.</para>
+
+      <para>Plugins are specified by their names. For example:</para>
+
+      <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
+
+      <para>Filter expressions can also be used in plugin pipelines by prefixing them
+with <literal>le:</literal>. For example:</para>
+
+      <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
+
+      <para>See <xref linkend="FilterExpression_Syntax" /> for available filter
+expression functions and operators.</para>
+
+      <para>You can specify a plugin pipeline in the <guibutton>Select
+Plugin</guibutton> dialog by entering the pipeline expression.</para>
+
+      <para>When a plugin pipeline is already selected, you can append a plugin to it by
+holding down the <keycap>Ctrl</keycap> key while clicking the plugin in a
+plugin selection menu.</para>
     </section>
   </section>
 
@@ -385,7 +413,7 @@ no es necesario volver a analizarlos.</para>
 
     <section id="CompareEscapedJavaPropertiesFiles">
       <title><filename>CompareEscapedJavaPropertiesFiles<indexterm>
-          <primary>archivo del complemento CompareEscapedJavaPropertiesFiles</primary>
+          <primary>Archivo del complemento CompareEscapedJavaPropertiesFiles</primary>
         </indexterm></filename></title>
 
       <para>Este complemento elimina los caracteres de escape de los archivos
@@ -399,12 +427,12 @@ vuelve a aplicarle los caracteres de escape al guardarlos.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.properties</filename></seg>
 
@@ -419,10 +447,10 @@ vuelve a aplicarle los caracteres de escape al guardarlos.</para>
 
     <section id="CompareMSExcelFiles">
       <title><filename>CompareMSExcelFiles<indexterm>
-          <primary>archivo del complemento CompareMSExcelFiles</primary>
+          <primary>Archivo del complemento CompareMSExcelFiles</primary>
         </indexterm></filename></title>
 
-      <para>Muestra el contenido de texto de un archivo de<trademark
+      <para>Muestra el contenido de texto de un archivo de <trademark
 class="registered">Microsoft</trademark> <application>Excel</application>
 eliminando todo el formato y los objetos incrustados.</para>
 
@@ -433,14 +461,14 @@ eliminando todo el formato y los objetos incrustados.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.xls</filename>, <filename
 class="extension">*.xlsx</filename>, <filename
@@ -465,10 +493,10 @@ class="extension">*.xltm</filename></seg>
 
     <section id="Plugins_powerpnt">
       <title><filename>CompareMSPowerPointFiles<indexterm>
-          <primary>archivo del complemento CompareMSPowerPointFiles</primary>
+          <primary>Archivo del complemento CompareMSPowerPointFiles</primary>
         </indexterm></filename></title>
 
-      <para>Muestra el contenido de texto de un archivo de<trademark
+      <para>Muestra el contenido de texto de un archivo de <trademark
 class="registered">Microsoft</trademark>
 <application>PowerPoint</application> eliminando todo el formato y los
 objetos incrustados.</para>
@@ -480,14 +508,14 @@ objetos incrustados.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.ppt</filename>, <filename
 class="extension">*.pptx</filename>, <filename
@@ -512,10 +540,10 @@ class="extension">*.potm</filename></seg>
 
     <section id="Plugins_visio">
       <title><filename>CompareMSVisioFiles<indexterm>
-          <primary>archivo del complemento CompareMSVisioFiles</primary>
+          <primary>Archivo del complemento CompareMSVisioFiles</primary>
         </indexterm></filename></title>
 
-      <para>Muestra el contenido de texto de un archivo de<trademark
+      <para>Muestra el contenido de texto de un archivo de <trademark
 class="registered">Microsoft</trademark> <application>Visio</application>
 eliminando todo el formato y los objetos incrustados.</para>
 
@@ -526,14 +554,14 @@ eliminando todo el formato y los objetos incrustados.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.vsd</filename>, <filename
 class="extension">*.vsdx</filename>, <filename
@@ -559,10 +587,10 @@ class="extension">*.vstm</filename></seg>
 
     <section id="Plugins_msword">
       <title><filename>CompareMSWordFiles<indexterm>
-          <primary>archivo del complemento CompareMSWordFiles</primary>
+          <primary>Archivo del complemento CompareMSWordFiles</primary>
         </indexterm></filename></title>
 
-      <para>Muestra el contenido de texto de un archivo de<trademark
+      <para>Muestra el contenido de texto de un archivo de <trademark
 class="registered">Microsoft</trademark> <application>Word</application>
 eliminando todo el formato y los objetos incrustados.</para>
 
@@ -573,14 +601,14 @@ eliminando todo el formato y los objetos incrustados.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
 	    <seg><filename class="extension">*.doc</filename>, <filename
 class="extension">*.docx</filename>, <filename
@@ -603,7 +631,7 @@ class="extension">*.dotm</filename></seg>
 
     <section id="Plugins_PrettifyHTML">
       <title><filename>PrettifyHTML<indexterm>
-          <primary>archivo del complemento PrettifyHTML</primary>
+          <primary>Archivo del complemento PrettifyHTML</primary>
         </indexterm></filename></title>
 
       <para>Mejorar HTML con tidy-html5</para>
@@ -628,14 +656,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.html</filename>, <filename
 class="extension">*.htm</filename></seg>
@@ -678,14 +706,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.xml</filename></seg>
 
@@ -727,14 +755,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.json</filename></seg>
 
@@ -776,14 +804,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.yaml</filename>, <filename
 class="extension">*.yml</filename></seg>
@@ -828,14 +856,14 @@ class="extension">*.yml</filename></seg>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg>
 <filename class="extension">*.po</filename> <filename
@@ -881,14 +909,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.csv</filename></seg>
 
@@ -930,14 +958,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.tsv</filename></seg>
 
@@ -979,14 +1007,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.json</filename></seg>
 
@@ -1028,14 +1056,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.yaml</filename>, <filename
 class="extension">*.yml</filename></seg>
@@ -1078,14 +1106,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.html</filename>, <filename
 class="extension">*.htm</filename></seg>
@@ -1130,14 +1158,14 @@ class="extension">*.htm</filename></seg>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg>
 <filename class="extension">*.po</filename> <filename
@@ -1161,7 +1189,7 @@ class="extension">*.pot</filename></seg>
           <primary>Archivo del complemento PreviewGraphviz</primary>
         </indexterm></filename></title>
 
-      <para>Graphviz Previewer</para>
+      <para>Previsualizador Graphviz</para>
 
       <cmdsynopsis sepchar=" ">
 <command>PreviewGraphviz</command> <arg choice="opt"
@@ -1183,14 +1211,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.gv</filename>, <filename
 class="extension">,*.dot</filename></seg>
@@ -1233,14 +1261,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.md</filename>, <filename
 class="extension">,*.markdown</filename></seg>
@@ -1283,14 +1311,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.pu</filename>, <filename
 class="extension">,*.puml</filename></seg>
@@ -1335,14 +1363,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.*</filename></seg>
 
@@ -1385,14 +1413,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.class</filename></seg>
 
@@ -1435,14 +1463,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.class</filename></seg>
 
@@ -1485,14 +1513,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.obj</filename>, <filename
 class="extension">*.lib</filename>, <filename
@@ -1537,14 +1565,14 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.obj</filename>, <filename
 class="extension">*.lib</filename>, <filename
@@ -1589,7 +1617,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
@@ -1638,7 +1666,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
@@ -1687,7 +1715,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
@@ -1736,14 +1764,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -1772,14 +1800,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -1808,14 +1836,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -1844,14 +1872,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -1880,14 +1908,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -1916,14 +1944,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -1952,14 +1980,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -1988,14 +2016,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -2024,14 +2052,14 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -2060,7 +2088,8 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>patrones</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+<arg><option>-F</option> <replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2105,6 +2134,13 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
           </listitem>
         </varlistentry>
 
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use fixed string for matching</para>
+          </listitem>
+        </varlistentry>
+
       </variablelist>
 
       <para><segmentedlist>
@@ -2114,14 +2150,14 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -2150,7 +2186,8 @@ rep="norepeat"><replaceable>rangos</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>patrones</replaceable></arg></cmdsynopsis>
+<replaceable>patterns</replaceable></arg> <arg><option>-F</option>
+<replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2188,6 +2225,13 @@ rep="norepeat"><replaceable>rangos</replaceable></arg></cmdsynopsis>
           </listitem>
         </varlistentry>
 
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>use fixed string for matching</para>
+          </listitem>
+        </varlistentry>
+
       </variablelist>
 
       <para><segmentedlist>
@@ -2197,14 +2241,14 @@ rep="norepeat"><replaceable>rangos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -2271,14 +2315,14 @@ rep="norepeat"><replaceable>texto_a_sustituir</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -2321,14 +2365,14 @@ rep="norepeat"><replaceable>patrones</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -2357,14 +2401,14 @@ rep="norepeat"><replaceable>patrones</replaceable></arg></cmdsynopsis>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Comprimiendo</segtitle>
+          <segtitle>Empaquetador</segtitle>
 
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
           <seglistitem>
-            <seg>Descompresor</seg>
+            <seg>Desempaquetador</seg>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
@@ -2384,7 +2428,7 @@ rep="norepeat"><replaceable>patrones</replaceable></arg></cmdsynopsis>
           <primary>Archivo del complemento IgnoreColumns</primary>
         </indexterm></filename></title>
 
-      <para>Este complemento ignora los caracteres de las columnas especificadas.  La
+      <para>Este complemento ignora los caracteres de las columnas especificadas. La
 primera columna es la número 1.</para>
 
       <para>Tenga en cuenta que este complemento no admite archivos con tabulaciones: el
@@ -2536,8 +2580,8 @@ utilizan para <xref linkend="IgnoreColumns" />.</para>
       <para>Este complemento está pensado para archivos que utilizan campos y
 tabulaciones como delimitadores (<application>por ejemplo, archivos de
 Excel</application> guardados en formato <filename
-class="extension">*.txt</filename>).  Ignora los caracteres
-delimitadores. El primer campo es el número 1.</para>
+class="extension">*.txt</filename>). Ignora los caracteres delimitadores. El
+primer campo es el número 1.</para>
 
       <para>Para especificar los delimitadores, utilice el cuadro de diálogo de
 configuración del complemento o cambie el nombre del archivo
@@ -2601,80 +2645,80 @@ texto (por ejemplo, archivos NC y BASIC).</para>
           <primary>Archivo del complemento editor addin</primary>
         </indexterm></filename></title>
 
-      <para>Añade algunas funciones al menú<menuchoice> <guimenu>Complementos</guimenu>
+      <para>Añade algunas funciones al menú <menuchoice> <guimenu>Complementos</guimenu>
 <guisubmenu>Guiones</guisubmenu> </menuchoice>:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>Convertir a mayúsculas</guimenuitem> convierte el texto
+          <simpara><guimenuitem>Convertir a mayúsculas</guimenuitem> - Convierte el texto
 seleccionado a mayúsculas.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Convertir a minúsculas</guimenuitem> convierte el texto
+          <simpara><guimenuitem>Convertir a minúsculas</guimenuitem> - Convierte el texto
 seleccionado a minúsculas.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Eliminar líneas duplicadas</guimenuitem> elimina las líneas
+          <simpara><guimenuitem>Eliminar líneas duplicadas</guimenuitem> - Elimina las líneas
 duplicadas de la selección.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Contar líneas duplicadas</guimenuitem> elimina las líneas
+          <simpara><guimenuitem>Contar líneas duplicadas</guimenuitem> - Elimina las líneas
 duplicadas de la selección e inserta el número de líneas duplicadas al
 derecho.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Ordenar líneas en orden ascendente</guimenuitem> ordena la
+          <simpara><guimenuitem>Ordenar líneas en orden ascendente</guimenuitem> - Ordena la
 selección en orden ascendente.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Ordenar líneas en orden descendente</guimenuitem> ordena la
+          <simpara><guimenuitem>Ordenar líneas en orden descendente</guimenuitem> - Ordena la
 selección en orden descendente.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Invertir columnas</guimenuitem> invierte las columnas de la
+          <simpara><guimenuitem>Invertir columnas</guimenuitem> - Invierte las columnas de la
 selección.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Invertir líneas</guimenuitem> invierte las líneas de la
+          <simpara><guimenuitem>Invertir líneas</guimenuitem> - Invierte las líneas de la
 selección.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Seleccionar columnas...</guimenuitem> selecciona algunas
+          <simpara><guimenuitem>Seleccionar columnas...</guimenuitem> - Selecciona algunas
 columnas de la lista.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Seleccionar líneas...</guimenuitem> selecciona algunas líneas
+          <simpara><guimenuitem>Seleccionar líneas...</guimenuitem> - Selecciona algunas líneas
 de la selección.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Sustituir...</guimenuitem> sustituye el texto seleccionado por
-otro texto.</simpara>
+          <simpara><guimenuitem>Sustituir...</guimenuitem> - Sustituye el texto seleccionado
+por otro texto.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Aplicar comando de filtro...</guimenuitem> sustituye la
+          <simpara><guimenuitem>Aplicar comando de filtro...</guimenuitem> - Sustituye la
 selección por el resultado del comando de filtro especificado. Si se
 especifica %1 en el argumento del comando de filtro, este se sustituye por
 el nombre del archivo del panel activo.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Tokenizar...</guimenuitem> sustituye el delimitador de tokens
+          <simpara><guimenuitem>Tokenizar...</guimenuitem> - Sustituye el delimitador de tokens
 por un salto de línea en la selección.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Eliminar espacios</guimenuitem> elimina los espacios al
+          <simpara><guimenuitem>Eliminar espacios</guimenuitem> - Elimina los espacios al
 principio y al final de las líneas de la selección.</simpara>
         </listitem>
       </itemizedlist>
@@ -2685,7 +2729,7 @@ principio y al final de las líneas de la selección.</simpara>
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <seglistitem>
-            <seg>Complemento del editor</seg>
+            <seg>Complemento de edición</seg>
             <seg>*</seg>
             <seg>No</seg>
           </seglistitem>
@@ -2697,17 +2741,17 @@ principio y al final de las líneas de la selección.</simpara>
           <primary>Archivo del complemento insert datetime</primary>
         </indexterm></filename></title>
 
-      <para>Añade dos opciones al menú<menuchoice> <guimenu>Complementos</guimenu>
+      <para>Añade dos opciones al menú <menuchoice> <guimenu>Complementos</guimenu>
 <guisubmenu>Guiones</guisubmenu> </menuchoice>:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>Introducir fecha</guimenuitem> inserta la fecha en el formato
+          <simpara><guimenuitem>Introducir fecha</guimenuitem> - Inserta la fecha en el formato
 local actual.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Introducir hora</guimenuitem> inserta la hora en el formato
+          <simpara><guimenuitem>Introducir hora</guimenuitem> - Inserta la hora en el formato
 local actual.</simpara>
         </listitem>
       </itemizedlist>
@@ -2720,7 +2764,7 @@ local actual.</simpara>
           <segtitle>Soporte para el diálogo Configuración</segtitle>
 
           <seglistitem>
-            <seg>Complemento del editor</seg>
+            <seg>Complemento de edición</seg>
 
             <seg>*</seg>
 

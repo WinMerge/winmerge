@@ -34,14 +34,14 @@ carpetas:<indexterm>
   </itemizedlist>
 
   <section id="OpenPaths_opendialog">
-    <title>Cuadro de diálogo "Seleccionar archivos o carpetas"<indexterm>
-        <primary>Cuadro de diálogo "Seleccionar archivos o carpetas"</primary>
+    <title>Cuadro de diálogo "Seleccione archivos o carpetas"<indexterm>
+        <primary>Cuadro de diálogo "Seleccione archivos o carpetas"</primary>
       </indexterm></title>
 
-    <para><xref linkend="Quick_start" /> describe el cuadro de diálogo "Seleccionar
+    <para><xref linkend="Quick_start" /> describe el cuadro de diálogo "Seleccione
 archivos o carpetas". En esta sección se ofrecen más detalles y algunos
-consejos para utilizar el cuadro de diálogo "Seleccionar archivos o
-carpetas" de forma más eficaz.</para>
+consejos para utilizar el cuadro de diálogo "Seleccione archivos o carpetas"
+de forma más eficaz.</para>
 
     <section>
       <title>Uso de variables de entorno<indexterm>
@@ -74,7 +74,7 @@ el formato del archivo comprimido, abrirá el contenido de los archivos
 comprimidos en la ventana de comparación de carpetas.</para>
 
       <para>El tema <xref linkend="Compare_dirs" /> describe cómo trabajar con archivos
-comprimidos.  Por ejemplo, si un archivo comprimido contiene dos subcarpetas
+comprimidos. Por ejemplo, si un archivo comprimido contiene dos subcarpetas
 llamadas <filename class="directory">Original/</filename> y <filename
 class="directory">Modificado/</filename>, puede comparar el contenido de
 ambas subcarpetas especificando el mismo archivo comprimido en ambos lados
@@ -110,7 +110,7 @@ excluidos de la selección cuando se inicia la operación de comparación:</para
       <para>Las máscaras de archivo son útiles para realizar filtrados sencillos. Para
 selecciones más avanzadas, utilice archivos de filtro. Los archivos de
 filtro son conjuntos de expresiones regulares que pueden incluir o excluir
-archivos.  WinMerge instala varios archivos de filtro predefinidos en su
+archivos. WinMerge instala varios archivos de filtro predefinidos en su
 carpeta <filename>Filtros</filename> y usted también puede crear los suyos
 propios.</para>
 
@@ -125,30 +125,31 @@ archivos de filtro, consulte <xref linkend="Filters" />.</para>
     </section>
 
     <section id="Open_paths_unpacker">
-      <title>Selección de un descomprensor para comparaciones de archivos<indexterm>
-          <primary>complementos para descompresión</primary>
+      <title>Selección de un desempaquetador para comparaciones de archivos<indexterm>
+          <primary>complementos desempaquetadores</primary>
         </indexterm></title>
 
-      <para>Los descompresores son complementos que se instalan junto con WinMerge para
-proporcionar funcionalidades que no están disponibles de forma
-predeterminada.  Son complementos que permiten preprocesar determinados
-tipos de archivos antes de compararlos. Por ejemplo, WinMerge no suele poder
-comparar archivos doc de MS Word, pero al descomprimirlos se puede comparar
-únicamente el contenido de texto.  Consulte la sección <xref
+      <para>Los desempaquetadores son complementos que se instalan junto con WinMerge
+para proporcionar funcionalidades que no están disponibles de forma
+predeterminada. Son complementos que permiten preprocesar determinados tipos
+de archivos antes de compararlos. Por ejemplo, WinMerge no suele poder
+comparar archivos .doc de MS Word, pero al desempaquetarlos se puede
+comparar únicamente el contenido de texto. Consulte la sección <xref
 linkend="Plugins" /> para obtener más información.</para>
 
       <para>Para aplicar un complemento a la comparación de archivos, haga clic en el
 botón <guibutton>Seleccionar</guibutton> de la opción
-<guilabel>Descompresor</guilabel> En el cuadro de diálogo "Seleccionar
-descompresor":</para>
+<guilabel>Desempaquetador</guilabel>. En el cuadro de diálogo "Seleccionar
+desempaquetador":</para>
 
       <xi:include href="select_unpacker.xml"
                   xmlns:xi="http://www.w3.org/2001/XInclude"
                   xpointer="element(select-unpacker-proc)" />
 
-      <para>Su elección aparecerá en el campo <guilabel>Descompresor</guilabel>.  Tenga
-en cuenta que no puede seleccionar un descompresor al iniciar una operación
-de comparación de carpetas.</para>
+      <para>Su elección aparecerá en el campo
+<guilabel>Desempaquetador</guilabel>. Tenga en cuenta que no puede
+seleccionar un desempaquetador al iniciar una operación de comparación de
+carpetas.</para>
     </section>
   </section>
 
@@ -157,7 +158,8 @@ de comparación de carpetas.</para>
         <primary>Integración con el intérprete de órdenes de Windows</primary>
       </indexterm><indexterm>
         <primary>menú contextual, atajos de WinMerge en el Explorador de Windows</primary>
-      </indexterm>Iniciar operaciones de WinMerge en el Explorador de Windows</title>
+      </indexterm>Iniciar operaciones de comparación de WinMerge en el Explorador de
+Windows</title>
 
     <para>La integración opcional con el intérprete de órdenes de Windows le permite
 ejecutar operaciones de comparación de WinMerge directamente desde el
@@ -204,16 +206,16 @@ archivos o de carpetas.</para>
       <para>Los lados izquierdo y derecho vienen determinados por el orden de
 clasificación del Explorador de Windows. En la captura de pantalla anterior,
 la lista de archivos del Explorador de Windows está ordenada de forma
-ascendente, por lo que WinMerge semabre con el archivo
-<filename>Archivo2</filename> en el primer lado y el archivo
-<filename>Archivo1</filename> en el segundo.</para>
+ascendente, por lo que WinMerge se abre con el archivo
+<filename>Fichero2</filename> en el primer lado y el archivo
+<filename>Fichero1</filename> en el segundo.</para>
 
       <note>
         <para>Si por cualquier motivo no se puede abrir ninguna de las dos rutas, WinMerge
-abre el cuadro de diálogo «Seleccionar archivos o carpetas», donde puede
-especificar nuevas rutas. Del mismo modo, si selecciona una sola ruta, el
-cuadro de diálogo "Seleccionar archivos o carpetas" se abre con el archivo o
-la carpeta seleccionados en el <guilabel>1º</guilabel> campo, dejando el
+abre el cuadro de diálogo "Seleccione archivos o carpetas" donde puede
+especificar nuevas rutas.  Del mismo modo, si selecciona una sola ruta, el
+cuadro de diálogo "Seleccione archivos o carpetas" se abre con el archivo o
+la carpeta seleccionados en el <guilabel>1er</guilabel> campo, dejando el
 <guilabel>2º</guilabel> campo libre para que usted especifique la ruta.</para>
       </note>
 
@@ -273,9 +275,9 @@ panel, respectivamente.</para>
       <note>
         <para>Si hace clic en <guimenuitem>Comparar</guimenuitem> antes de indicar la
 primera ruta, se abrirá el cuadro de diálogo "Seleccione archivos o
-carpetas" con su selección como primera ruta (<guilabel>1ª</guilabel>).
-Indique la segunda ruta <guilabel>2ª</guilabel> en el segundo campo para
-continuar con la comparación.</para>
+carpetas" con su selección como primera ruta
+(<guilabel>1ª</guilabel>). Indique la segunda ruta <guilabel>2ª</guilabel>
+en el segundo campo para continuar con la comparación.</para>
       </note>
 
 <!--              <tip>
@@ -347,14 +349,15 @@ comparación. Para no incluirlas, mantenga pulsada la tecla
 arrastrar rutas es la tecla <keycap>Mayús</keycap>: para abrir la misma ruta
 en ambos lados de una ventana de comparación, mantenga pulsada la tecla
 <keycap>Mayús</keycap> mientras arrastra solo una ruta. Esta es una forma
-práctica de abrir archivos comprimidos <xref linkend="OpeningArchives" />).</para>
+práctica de abrir archivos comprimidos (consulte <xref
+linkend="OpeningArchives" />).</para>
 
     <para>Puede soltar rutas en el cuadro de diálogo "Seleccione archivos o
 carpetas". Un procedimiento habitual consiste en arrastrar y soltar la
 primera ruta en la ventana de WinMerge y, a continuación, arrastrar y soltar
-la segunda ruta en el cuadro de diálogo "Seleccione archivos o
-carpetas". Cuando se suelta una ruta en dicho cuadro de diálogo se carga en
-el campo de la primera o la segunda ruta:</para>
+la segunda ruta en el cuadro de diálogo "Seleccione archivos o carpetas".
+Cuando se suelta una ruta en dicho cuadro de diálogo se carga en el campo de
+la primera o la segunda ruta:</para>
 
     <variablelist>
       <varlistentry>
@@ -385,7 +388,7 @@ el campo de la primera o la segunda ruta:</para>
       </indexterm>Archivos de proyecto</title>
 
     <para>Puede guardar las rutas y los filtros que tiene abiertos actualmente en un
-archivo de proyecto.  Así, podrá abrir fácilmente el proyecto más adelante
+archivo de proyecto. Así, podrá abrir fácilmente el proyecto más adelante
 para comparar los mismos archivos. Los archivos de proyecto resultan muy
 útiles si compara los mismos archivos repetidamente.</para>
 
@@ -393,7 +396,7 @@ para comparar los mismos archivos. Los archivos de proyecto resultan muy
       <title>Uso de archivos de proyecto</title>
 
       <para>Para utilizar un archivo de proyecto, en la ventana de WinMerge, haga clic
-en<menuchoice> <guimenu>Archivo</guimenu> <guimenuitem>Abrir
+en <menuchoice> <guimenu>Archivo</guimenu> <guimenuitem>Abrir
 proyecto...</guimenuitem> </menuchoice>. WinMerge lee las rutas del archivo
 de proyecto. Si el archivo de proyecto contiene dos o tres rutas, se abrirán
 dos o tres rutas. Si solo se indica una ruta o si alguna de las rutas no es
@@ -429,7 +432,7 @@ introducir la ruta completa del archivo.</para>
     <section>
       <title>Edición y guardado de archivos de proyecto</title>
 
-      <para>Para guardar un archivo de proyecto, haga clic en<menuchoice>
+      <para>Para guardar un archivo de proyecto, haga clic en <menuchoice>
 <guimenu>Archivo</guimenu> <guimenuitem>Guardar proyecto...</guimenuitem>
 </menuchoice>. El cuadro de diálogo <guilabel>Archivo de proyecto</guilabel>
 ofrece campos y opciones que puede editar fácilmente para crear un archivo
@@ -562,7 +565,7 @@ puede incluir uno de cada de estos elementos:</para>
         </varlistentry>
 
         <varlistentry>
-          <term><sgmltag>subfolders</sgmltag></term>
+          <term><sgmltag>subcarpetas</sgmltag></term>
 
           <listitem>
             <para>0 = Subcarpetas no incluidas</para>
@@ -575,7 +578,7 @@ puede incluir uno de cada de estos elementos:</para>
           <term><sgmltag>unpacker</sgmltag></term>
 
           <listitem>
-            <para>Nombre del complemento descompresor o conjunto de procesos</para>
+            <para>Nombre del complemento desempaquetador o conjunto de procesos</para>
           </listitem>
         </varlistentry>
 
@@ -627,9 +630,9 @@ puede incluir uno de cada de estos elementos:</para>
           <term><sgmltag>ignore-blank-lines</sgmltag></term>
 
           <listitem>
-            <para>0 = No ignorar líneas en blanco</para>
+            <para>0 = No ignorar líneas vacías</para>
 
-            <para>1 = Ignorar líneas en blanco</para>
+            <para>1 = Ignorar líneas vacías</para>
           </listitem>
         </varlistentry>
 
@@ -679,7 +682,7 @@ puede incluir uno de cada de estos elementos:</para>
           <listitem>
             <para>0 = No ignorar diferencias en los comentarios</para>
 
-            <para>1 = Ignorar las diferencias en los comentarios</para>
+            <para>1 = Ignorar diferencias en los comentarios</para>
           </listitem>
         </varlistentry>
 
@@ -722,8 +725,9 @@ puede incluir uno de cada de estos elementos:</para>
         </varlistentry>
       </variablelist>
 
-      <para>Ninguno de los campos es obligatorio y pueden dejarse en blanco
-(<literal>por ejemplo, &lt;left&gt;&lt;/left&gt; o &lt;left/&gt;</literal>).</para>
+      <para>Ninguno de los campos es obligatorio y pueden dejarse en blanco (por
+ejemplo, <literal>&lt;left&gt;&lt;/left&gt;</literal> o
+<literal>&lt;left/&gt;</literal>).</para>
     </section>
   </section>
 </article>

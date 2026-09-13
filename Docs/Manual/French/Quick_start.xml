@@ -322,12 +322,14 @@ de WinMerge qui nécessite un petit temps d'adaptation.</para>
 
     <para>WinMerge possède un éditeur intégré simple. Si le <guilabel>Rescan
 automatique</guilabel> est activé, les différences se mettent à jour pendant
-l'édition. Sinon, rafraîchissez via <menuchoice> <guimenu>Édition</guimenu>
-<guimenuitem>Rafraîchir</guimenuitem> </menuchoice>, le bouton <inlinemediaobject>
+l'édition. Sinon, rafraîchissez via <menuchoice>
+<guimenu>Affichage</guimenu> <guimenuitem>Rafraîchir</guimenuitem>
+</menuchoice>, le bouton <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
           <phrase>Bouton Actualiser</phrase>
         </textobject>
-      </inlinemediaobject> ou <keycap>F5</keycap>.</para>
+      </inlinemediaobject> ou
+<keycap>F5</keycap>.</para>
   </section>
 </article>

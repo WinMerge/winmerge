@@ -39,6 +39,8 @@ public:
 
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
+	void LoadOptions();
+	void SaveOptions();
 	CSplitterWndEx& GetSplitter() { return m_wndSplitter; };
 	void ShowFilterBar();
 	void HideFilterBar();
@@ -91,6 +93,8 @@ private:
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	afx_msg void OnViewSplitVertically();
 	afx_msg void OnUpdateViewSplitVertically(CCmdUI* pCmdUI);
+	afx_msg void OnWindowPreserveSplitterPosition();
+	afx_msg void OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();

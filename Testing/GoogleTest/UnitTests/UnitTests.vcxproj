@@ -615,7 +615,9 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp" />
-    <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp" />
+    <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp">
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="..\FullQuickCompare\FullQuickCompare_test.cpp" />
     <ClCompile Include="..\ImageCompare\ImageCompare_test.cpp" />
     <ClCompile Include="..\MoveDetection\RenameMoveDetection_test.cpp" />

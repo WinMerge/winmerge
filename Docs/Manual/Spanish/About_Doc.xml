@@ -35,9 +35,9 @@ ubicado en la carpeta de instalación de WinMerge\Docs.</para>
         <term>Menú Ayuda de WinMerge</term>
 
         <listitem>
-          <para>Mientras utiliza WinMerge, menú <menuchoice> <guimenu>Ayuda</guimenu>
-<guimenuitem>Ayuda de WinMerge</guimenuitem> </menuchoice>. La Ayuda HTML al
-inicio abre este tema.</para>
+          <para>Mientras utiliza WinMerge, haga clic en <menuchoice>
+<guimenu>Ayuda</guimenu> <guimenuitem>Ayuda de WinMerge</guimenuitem>
+</menuchoice>. Se abrirá la ayuda HTML por el principio (este tema).</para>
         </listitem>
       </varlistentry>
 
@@ -47,7 +47,7 @@ inicio abre este tema.</para>
         <listitem>
           <para>Mientras está en cualquier ventana de WinMerge, pulse
 <keycap>F1</keycap>. Si hay un tema específico disponible para la ventana
-actual, se abre la Ayuda en ese tema. Si no es así, la Ayuda se abrirá por
+actual, se abre la ayuda en ese tema. Si no es así, la ayuda se abrirá por
 el principio.</para>
         </listitem>
       </varlistentry>
@@ -57,7 +57,7 @@ el principio.</para>
 
         <listitem>
           <para>Utilice el modificador /? o -? al ejecutar WinMerge desde la línea de
-comandos.  Abrirá la ayuda HTML por el principio.</para>
+comandos. Abrirá la ayuda HTML por el principio.</para>
         </listitem>
       </varlistentry>
 
@@ -67,9 +67,9 @@ comandos.  Abrirá la ayuda HTML por el principio.</para>
         <listitem>
           <para>Abra su navegador web en <ulink
 url="https://winmerge.org/">winmerge.org</ulink>. En <ulink
-url="https://winmerge.org/docs/">Documentation</ulink>, use el enlace a
-<ulink url="https://manual.winmerge.org/">Manual</ulink> para acceder a la
-última versión de la ayuda.</para>
+url="https://winmerge.org/docs/">Documentación</ulink> use el enlace al
+<ulink url="https://manual.winmerge.org/">manual</ulink> para acceder a la
+última versión de la ayuda (en inglés).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -103,7 +103,7 @@ cómo personalizar la visualización de los resultados.</para>
         <term><xref linkend="Compare_files" /></term>
 
         <listitem>
-          <para>Explica la ventana de comparación/fusión de archivos, las operaciones
+          <para>Explica la ventana de comparación/combinación de archivos, las operaciones
 disponibles, los métodos de navegación y los modos.</para>
         </listitem>
       </varlistentry>
@@ -112,7 +112,7 @@ disponibles, los métodos de navegación y los modos.</para>
         <term><xref linkend="Compare_images" /></term>
 
         <listitem>
-          <para>Explica la ventana de comparación/fusión de imágenes.</para>
+          <para>Explica la ventana de comparación/combinación de imágenes.</para>
         </listitem>
       </varlistentry>
 
@@ -120,7 +120,7 @@ disponibles, los métodos de navegación y los modos.</para>
         <term><xref linkend="Compare_bin" /></term>
 
         <listitem>
-          <para>Explica la ventana de comparación/fusión hexadecimal.</para>
+          <para>Explica la ventana de comparación/combinación hexadecimal.</para>
         </listitem>
       </varlistentry>
 
@@ -128,7 +128,7 @@ disponibles, los métodos de navegación y los modos.</para>
         <term><xref linkend="Compare_table" /></term>
 
         <listitem>
-          <para>Explica la ventana de comparación/fusión de tablas.</para>
+          <para>Explica la ventana de comparación/combinación de tablas.</para>
         </listitem>
       </varlistentry>
 
@@ -164,7 +164,7 @@ del intérprete de órdenes en modo avanzado?</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="Plugins" /></term>
+        <term><xref linkend="Complementos" /></term>
 
         <listitem>
           <para>Describe las funciones opcionales y adicionales que se pueden añadir a
@@ -173,7 +173,7 @@ WinMerge mediante su mecanismo de complementos.</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="Filters" /></term>
+        <term><xref linkend="Filtros" /></term>
 
         <listitem>
           <para>Explica cómo controlar lo que se compara en la ventana de comparación de
@@ -182,7 +182,7 @@ carpetas o archivos.</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="Command_line" /></term>
+        <term><xref linkend="Línea_de_comandos" /></term>
 
         <listitem>
           <para>Enumera los parámetros de la línea de comandos para utilizar WinMerge con
@@ -191,16 +191,15 @@ otras herramientas o desde un secuencia de comandos.</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="Faq" /></term>
+        <term><xref linkend="FAQ" /></term>
 
         <listitem>
           <para>Contiene respuestas a muchas preguntas frecuentes que se hacen a los
 desarrolladores.</para>
 
-          <para>Antes de enviar preguntas, <ulink
-url="https://github.com/WinMerge/winmerge/">GitHub</ulink>, compruebe
-primero el tema en <xref linkend="Faq" /> para ver si su pregunta ya está
-respondida.</para>
+          <para>Antes de realizar consultas en <ulink
+url="https://github.com/WinMerge/winmerge/">GitHub</ulink> busque primero en
+las <xref linkend="FAQ" /> para comprobar si su duda ya fue respondida.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -242,23 +241,23 @@ ruta.</para><para>Pulse una vez la tecla <keycap>F5</keycap> para actualizar la 
 
             <entry><wordasword>Pulsar</wordasword> indica una acción del teclado.  En este
 ejemplo, pulse la combinación de teclas <keycap>Ctrl</keycap> y
-<keycap>O</keycap> .</entry>
+<keycap>O</keycap>.</entry>
           </row>
 
           <row>
             <entry><para>Haga clic en <guibutton>Aceptar</guibutton>.</para></entry>
 
             <entry>Hacer clic indica un clic con el botón izquierdo del ratón sobre un objeto,
-como un elemento del menú o un botón.</entry>
+como en una opción de un menú o en un botón.</entry>
           </row>
 
           <row>
-            <entry>Haga clic <menuchoice> <guimenu>Archivo</guimenu>
+            <entry>Haga clic en <menuchoice> <guimenu>Archivo</guimenu>
 <guimenuitem>Abrir</guimenuitem> </menuchoice>.</entry>
 
             <entry>La flecha indica la navegación por el menú. En el ejemplo, seleccione la
 opción <guimenuitem>Abrir</guimenuitem> en el menú
-<guimenu>Archivo</guimenu> de WinMerge .</entry>
+<guimenu>Archivo</guimenu> de WinMerge.</entry>
           </row>
 
           <row>
@@ -296,7 +295,7 @@ escrita.</para>
           <row>
             <entry>La ruta <envar>%WORKDIR%\project1</envar> se expande a <filename
 class="directory">C:\workfiles\project1</filename>.<para><screen
-            format="linespecific">TwoWords</screen></para></entry>
+            format="linespecific">DosPalabras</screen></para></entry>
 
             <entry>El texto monoespaciado puede indicar:<itemizedlist>
                 <listitem>
@@ -320,11 +319,11 @@ class="directory">C:\workfiles\project1</filename>.<para><screen
           <row>
             <entry><cmdsynopsis sepchar=" ">
 <command moreinfo="none">comando</command> <arg choice="plain"
-rep="norepeat"><replaceable>inputpath</replaceable></arg> <arg choice="opt"
-rep="norepeat"><replaceable>outputpath</replaceable></arg></cmdsynopsis></entry>
+rep="norepeat"><replaceable>ruta_entrada</replaceable></arg> <arg
+choice="opt" rep="norepeat"><replaceable>ruta_salida</replaceable></arg></cmdsynopsis></entry>
 
-            <entry>En las líneas de sintaxis, los corchetes indican elementos opcionales.  En
-este ejemplo, debe introducir una ruta de entrada con el comando; puede
+            <entry>En las líneas de sintaxis, los corchetes indican elementos opcionales. En
+este ejemplo, debe introducir una ruta de entrada con el comando. Puede
 introducir una ruta de salida, pero el comando es válido sin ella.</entry>
           </row>
         </tbody>

@@ -38,6 +38,8 @@ public:
 
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
+	void LoadOptions();
+	void SaveOptions();
 	int GetActivePane();
 	void SetActivePane(int nPane);
 	CWnd* GetView(int nPane);
@@ -77,6 +79,8 @@ private:
 	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnViewSplitVertically();
 	afx_msg void OnUpdateViewSplitVertically(CCmdUI* pCmdUI);
+	afx_msg void OnWindowPreserveSplitterPosition();
+	afx_msg void OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

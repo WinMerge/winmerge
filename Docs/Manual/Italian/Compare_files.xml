@@ -1015,8 +1015,8 @@ questa viene sempre selezionata in entrambi o in tutti e tre i riquadri
 File.</para>
 
     <tip>
-      <para>Per risparmiare tempo, abilita <guilabel >Scorri automaticamente alla prima
-differenza</guilabel > nella pagina Generale delle opzioni di
+      <para>Per risparmiare tempo, abilita <guilabel>Scorri automaticamente alla prima
+differenza</guilabel> nella pagina Generale delle opzioni di
 WinMerge. Quindi non è necessario passare manualmente alla prima differenza
 e selezionarla.</para>
     </tip>
@@ -1331,7 +1331,7 @@ lavorare con la versione del file caricata in precedenza.</para>
 sospetti che un file possa essere cambiato, ti consigliamo vivamente di
 eseguire <guimenuitem>Aggiorna</guimenuitem> <emphasis>prima</emphasis> di
 eseguire qualsiasi operazione di unione: seleziona <menuchoice>
-<guimenu>Modifica</guimenu> <guimenuitem>Aggiorna</guimenuitem>
+<guimenu>Visualizza</guimenu> <guimenuitem>Aggiorna</guimenuitem>
 </menuchoice> o su <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>

@@ -709,13 +709,16 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval, bool c
 				{
 					if (!caseSensitive)
 					{
+						auto hash = [](char c) {
+							return std::hash<char>{}(
+								static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
+							};
+						auto equal = [](char a, char b) {
+							return std::tolower(static_cast<unsigned char>(a)) ==
+								std::tolower(static_cast<unsigned char>(b));
+							};
 						auto searcher = std::boyer_moore_horspool_searcher(
-							rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
-							[](char a, char b) {
-								return std::tolower(static_cast<unsigned char>(a)) ==
-									std::tolower(static_cast<unsigned char>(b));
-							}
-						);
+							rvalString->cbegin(), rvalString->cend(), hash, equal);
 						using iterator = std::string::const_iterator;
 						std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
 						return (result.first != result.second);

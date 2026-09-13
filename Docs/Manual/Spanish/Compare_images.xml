@@ -23,9 +23,9 @@ ventana de WinMerge como desde una ventana de la línea de comandos.</para>
         <term>Desde la ventana de WinMerge</term>
 
         <listitem>
-          <para>Haga clic en<menuchoice> <guimenu>Archivo</guimenu>
+          <para>Haga clic en <menuchoice> <guimenu>Archivo</guimenu>
 <guimenuitem>Abrir</guimenuitem> </menuchoice>. Utilice el cuadro de diálogo
-"Seleccionar archivos o carpetas" para especificar las imágenes de origen
+"Seleccione archivos o carpetas" para especificar las imágenes de origen
 para los paneles izquierdo y derecho que desea comparar. Para obtener más
 información sobre este cuadro de diálogo consulte la sección <xref
 linkend="Open_paths" />.</para>
@@ -112,7 +112,7 @@ diferencias de color.</para>
         <varlistentry>
           <term>Detectar Ins/Borrar</term>
           <listitem>
-            <para>Por determinar</para>
+            <para>Por desarrollar</para>
             <itemizedlist>
               <listitem><guilabel>Ninguna</guilabel></listitem>
               <listitem><guilabel>Vertical</guilabel></listitem>

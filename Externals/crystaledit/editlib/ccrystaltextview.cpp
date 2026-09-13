@@ -3642,7 +3642,7 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
 // CCrystalTextView message handlers
 
 int CCrystalTextView::
-GetLineCount ()
+GetLineCount () const
 {
   if (m_pTextBuffer == nullptr)
     return 1;                   //  Single empty line

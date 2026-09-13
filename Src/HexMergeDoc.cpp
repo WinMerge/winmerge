@@ -108,6 +108,7 @@ END_MESSAGE_MAP()
 CHexMergeDoc::CHexMergeDoc()
 : m_pDirDoc(nullptr)
 , m_nBuffers(m_nBuffersTemp)
+, m_documentType(m_documentTypeTemp)
 , m_pView{}
 , m_nBufferType{BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL}
 {

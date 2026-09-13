@@ -370,7 +370,7 @@ void COpenView::OnInitialUpdate()
 				return result;
 			};
 		m_ctlPredifferPipelineEdit.Validate();
-		m_ctlPredifferPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|SortAscending")).c_str());
+		m_ctlPredifferPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|IgnoreLeadingLineNumbers")).c_str());
 	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))

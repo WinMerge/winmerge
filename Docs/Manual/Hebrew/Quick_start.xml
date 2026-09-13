@@ -306,17 +306,17 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
 זו לצד זו. זה שונה מרוב תוכניות ההשוואה/מיזוג האחרות, ועלול לקחת זמן ללמוד.</para>
       </important></para>
 
-    <para>ל-WinMerge יש עורך משולב פשוט הכולל הקלדה בסיסית, העתקה, גזירה והדבקה של
-טקסט. אם <guilabel>סריקה חוזרת אוטומטית</guilabel> מופעלת, WinMerge מעדכן את
-הבדלי הקבצים בזמן שאתה עורך קובץ. אם <guilabel>סריקה חוזרת
-אוטומטית</guilabel> מושבתת, אתה יכול לעדכן קבצים על ידי בחירה ב-<menuchoice>
-<guimenu>ערוך</guimenu> <guimenuitem>רענן</guimenuitem> </menuchoice>, לחיצה
-על כפתור סרגל הכלים <inlinemediaobject>
+    <para>WinMerge has a simple integrated editor that features basic typing, copying,
+cutting and pasting of text. If <guilabel>Automatic rescan</guilabel> is
+enabled, WinMerge updates file differences while you edit a file. If
+<guilabel>Automatic rescan</guilabel> is disabled, you can update files by
+selecting <menuchoice> <guimenu>View</guimenu>
+<guimenuitem>Refresh</guimenuitem> </menuchoice>, clicking the <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
           <phrase>לחצן רענן</phrase>
         </textobject>
-      </inlinemediaobject> או לחיצה
-על <keycap>F5</keycap>.</para>
+      </inlinemediaobject> toolbar button, or pressing
+<keycap>F5</keycap>.</para>
   </section>
 </article>

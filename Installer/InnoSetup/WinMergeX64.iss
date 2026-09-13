@@ -132,6 +132,7 @@ Name: English; MessagesFile: compiler:Default.isl,..\..\Translations\InnoSetup\E
 
 ;Localizations:
 Name: Arabic; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Arabic.isl,..\..\Translations\InnoSetup\Arabic.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Arabic.txt
+Name: Azerbaijani; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Azerbaijani.islu,..\..\Translations\InnoSetup\Azerbaijani.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Azerbaijani.txt
 Name: Basque; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Basque.isl,..\..\Translations\InnoSetup\Basque.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Basque.txt
 Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Bulgarian.isl,..\..\Translations\InnoSetup\Bulgarian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt
 Name: Catalan; MessagesFile: compiler:Languages\Catalan.isl,..\..\Translations\InnoSetup\Catalan.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt
@@ -194,6 +195,9 @@ Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Type
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
 Name: Languages\Arabic; Description: {cm:ArabicLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Arabic
 Name: Languages\Arabic; Description: {cm:ArabicLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Arabic
+
+Name: Languages\Azerbaijani; Description: {cm:AzerbaijaniLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Azerbaijani
+Name: Languages\Azerbaijani; Description: {cm:AzerbaijaniLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Azerbaijani
 
 Name: Languages\Basque; Description: {cm:BasqueLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Basque
 Name: Languages\Basque; Description: {cm:BasqueLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Basque
@@ -455,6 +459,8 @@ Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\L
 ; Language files
 Source: {#TranslationsDir}\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Arabic.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Azerbaijani.po; DestDir: {app}\Languages; Components: Languages\Azerbaijani; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Azerbaijani.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Azerbaijani; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\WinMerge\Basque.po; DestDir: {app}\Languages; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Basque.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Basque.txt; DestDir: {app}\Docs; Components: Languages\Basque
@@ -761,6 +767,7 @@ Root: HKU; SubKey: {code:GetOriginalUserSID}\Software\TortoiseSVN; ValueType: st
 ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
 ;(unless the user already has a startup language specified)
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00001401; Flags: deletevalue; Languages: Arabic
+Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00001401; Flags: deletevalue; Languages: Azerbaijani
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000042d; Flags: deletevalue; Languages: Basque
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000402; Flags: deletevalue; Languages: Bulgarian
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000403; Flags: deletevalue; Languages: Catalan
