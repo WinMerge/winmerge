@@ -1061,6 +1061,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			pOpenTextFileParams->m_char = cmdInfo.m_nCharIndex;
 			pOpenTextFileParams->m_fileExt = cmdInfo.m_sFileExt;
 			pOpenTextFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
+			pOpenTextFileParams->m_bSetFocusToOutputPane = cmdInfo.m_bSetFocusToOutputPane;
 		}
 		if (auto* pOpenTableFileParams = dynamic_cast<CMainFrame::OpenTableFileParams*>(pOpenParams.get()))
 		{

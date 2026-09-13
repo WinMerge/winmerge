@@ -160,6 +160,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const tchar_t* q)
 	, m_dwLeftFlags(FFILEOPEN_NONE)
 	, m_dwMiddleFlags(FFILEOPEN_NONE)
 	, m_dwRightFlags(FFILEOPEN_NONE)
+	, m_bSetFocusToOutputPane(false)
 	, m_nLineIndex(-1)
 	, m_nCharIndex(-1)
 	, m_bEnableExitCode(false)
@@ -478,6 +479,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 		{
 			// -fr to set focus to the right pane
 			m_dwRightFlags |= FFILEOPEN_SETFOCUS;
+		}
+		else if (param == _T("fb"))
+		{
+			// -fb to set focus to the bottom (merge result/output) pane
+			m_bSetFocusToOutputPane = true;
 		}
 		else if (param == _T("l"))
 		{

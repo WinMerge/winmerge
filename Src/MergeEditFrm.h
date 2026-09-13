@@ -16,11 +16,13 @@
 #include "MergeStatusBar.h"
 #include "EditorFilepathBar.h"
 #include "DiffViewBar.h"
+#include "MergeResultBar.h"
 #include "LocationBar.h"
 #include "LineFilterBar.h"
 #include "MergeFrameCommon.h"
 
 class CMergeDoc;
+class CMergeResultView;
 
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
@@ -45,6 +47,7 @@ public:
 	void ShowFilterBar();
 	void HideFilterBar();
 	CLineFilterBar* GetFilterBar() { return m_pFilterBar.get(); }
+	void ShowMergeResultPane();
 
 // Attributes
 protected:
@@ -52,6 +55,9 @@ protected:
 	CEditorFilePathBar m_wndFilePathBar;
 	CDiffViewBar m_wndDetailBar;
 	CMergeEditSplitterView *m_pwndDetailMergeEditSplitterView;
+	CMergeResultBar m_wndResultBar;
+	CMergeResultView *m_pMergeResultView;
+	bool m_bResultBarVisible; /**< Last seen visibility of the merge result bar */
 	CMergeStatusBar m_wndStatusBar;
 	CLocationBar m_wndLocationBar;
 	std::unique_ptr<CLineFilterBar> m_pFilterBar;
@@ -95,6 +101,7 @@ private:
 	afx_msg void OnUpdateViewSplitVertically(CCmdUI* pCmdUI);
 	afx_msg void OnWindowPreserveSplitterPosition();
 	afx_msg void OnUpdateWindowPreserveSplitterPosition(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateViewMergeResultBar(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();

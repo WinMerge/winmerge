@@ -807,6 +807,112 @@
     </section>
 
     <section>
+      <title>Merge Result pane</title>
+
+      <indexterm>
+        <primary>Merge Result pane, File Compare window</primary>
+      </indexterm>
+
+      <indexterm>
+        <primary>three-way merge</primary>
+      </indexterm>
+
+      <para>When you compare three text files and specify a merge output path
+      (for example, when a version control tool starts WinMerge with the
+      <option>/o</option> command-line option), the Merge Result pane opens at
+      the bottom of the File Compare window. It works like the merge output
+      window in KDiff3: the three File panes show the compared files
+      read-only, and the Merge Result pane contains the merge result, which
+      you can edit freely.</para>
+
+      <para>When the pane opens, every difference initially starts
+      unresolved, shown as a compact
+      <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or
+      <computeroutput>&lt;Unresolved Difference&gt;</computeroutput>
+      placeholder line. <guimenuitem>Show Full Conflict
+      Sections</guimenuitem> in the pane's context menu switches to showing
+      conflicts as full sections in the familiar version-control format
+      (<computeroutput>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</computeroutput> /
+      <computeroutput>|||||||</computeroutput> /
+      <computeroutput>=======</computeroutput> /
+      <computeroutput>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</computeroutput>)
+      containing the left, middle (base) and right versions of the lines.
+      If an automatic merge is requested — with the
+      <option>/al</option>, <option>/am</option> or <option>/ar</option>
+      command-line option, or with the <guimenuitem>Auto
+      Merge</guimenuitem> command — non-conflicting differences are resolved
+      automatically, treating the middle file as the common ancestor, and
+      only true conflicts, where both sides changed the same lines, remain
+      unresolved.</para>
+
+      <para>To resolve a difference, select it and choose
+      <guimenuitem>Choose Left</guimenuitem>,
+      <guimenuitem>Choose Middle</guimenuitem> or
+      <guimenuitem>Choose Right</guimenuitem> from the
+      <menuchoice><guimenu>Merge</guimenu><guisubmenu>Merge
+      Result</guisubmenu></menuchoice> submenu, the Merge Result pane context
+      menu, or the <guibutton>1</guibutton> / <guibutton>2</guibutton> /
+      <guibutton>3</guibutton> toolbar buttons. Each command toggles that
+      pane's lines for the current difference: selecting several panes
+      combines their lines in the order you select them (useful when both
+      sides added something and the merge should keep both), and deselecting
+      all panes makes the difference unresolved again. You can also type
+      corrections directly into the Merge Result pane, except on unresolved
+      differences: those must be resolved with a Choose command before
+      their text can be edited. Conflicts whose sides differ only in white
+      space are marked as
+      <computeroutput>(whitespace only)</computeroutput>.</para>
+
+      <para>The pane's margin shows where every line came from:
+      <computeroutput>1</computeroutput>, <computeroutput>2</computeroutput>
+      or <computeroutput>3</computeroutput> for a line taken from the left,
+      middle or right pane (matching the toolbar buttons),
+      <computeroutput>?</computeroutput> for an unresolved conflict section, and
+      <computeroutput>m</computeroutput> for a difference modified by hand.
+      The pane's title bar shows how many differences are still unresolved.
+      While the pane is open, <guimenuitem>Next Conflict</guimenuitem> and
+      <guimenuitem>Previous Conflict</guimenuitem>
+      (<keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo> /
+      <keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Up</keycap></keycombo>)
+      jump to the next or previous difference that still needs a decision,
+      skipping the ones already resolved.</para>
+
+      <para>Use <guimenuitem>Save Merge Result</guimenuitem> in the same menus
+      to save the result to the output path. WinMerge warns if unresolved
+      differences remain. Unresolved conflicts are saved as standard
+      conflict sections — never as placeholder text — so the file keeps all
+      versions of the disputed lines and can be finished later in any
+      editor or merge tool; unresolved non-conflicting differences are
+      saved with their automatic merge content, keeping the output free of
+      conflict markers that no version control system would produce.
+      When such a file is opened again as the merge output (for example,
+      restarting the merge tool, or when the version control system has
+      pre-populated the output file with conflict sections), WinMerge
+      offers to continue the merge from it: resolved text is kept, and the
+      remaining conflict sections become unresolved differences again.
+      WinMerge also prompts
+      about an unsaved merge result when the window is closed — also when
+      the pane itself has been hidden in the meantime. By default every line is saved with its own original line
+      ending, so the output differs from the sources as little as possible
+      (for example, producing minimal diffs in version control); the
+      <guisubmenu>Line Endings for Saving</guisubmenu> submenu of the pane's
+      context menu can normalize the output to Windows, Unix or classic Mac
+      style instead. The encoding follows the side that changed it (the
+      middle file is the base), and the save honors the backup-file option
+      and any file packer plugin the files were opened with.</para>
+
+      <para>You can also start a merge in any three-way text comparison with
+      <menuchoice><guimenu>Merge</guimenu><guimenuitem>Start Merge
+      Session</guimenuitem></menuchoice> (differences start unresolved) or
+      <menuchoice><guimenu>Merge</guimenu><guimenuitem>Auto
+      Merge</guimenuitem></menuchoice> (non-conflicting differences are
+      resolved automatically), or show and hide the pane with
+      <menuchoice><guimenu>View</guimenu><guimenuitem>Merge Result
+      Pane</guimenuitem></menuchoice>. Hiding the pane restores the normal
+      editable three-pane behavior.</para>
+    </section>
+
+    <section>
       <title>Location pane</title>
 
       <indexterm>

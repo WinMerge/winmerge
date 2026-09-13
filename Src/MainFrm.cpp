@@ -12,6 +12,8 @@
 
 #include "StdAfx.h"
 #include "MainFrm.h"
+#include "DarkModeLib.h"
+#include "MergeResultView.h"
 #include "EditorFilepathBar.h"
 #include <vector>
 #include <unordered_set>
@@ -1142,7 +1144,13 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 			}
 			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
 			{
-				pMergeDoc->DoAutoMerge(pane);
+				// When a merge output path is given the merge result pane
+				// is the merge target: /al /am /ar request an automatic
+				// merge there instead of changing a source pane
+				if (nFiles == 3 && pOpenParams != nullptr && !pOpenParams->m_strSaveAsPath.empty())
+					pMergeDoc->SetResultAutoMerge(2 - pane, true);
+				else
+					pMergeDoc->DoAutoMerge(pane);
 			}
 		}
 	}
@@ -1155,6 +1163,16 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 
 	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
 		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+
+	// -fb: focus the merge result (output) pane; applied after
+	// MoveOnLoad so it takes precedence over -fl/-fm/-fr
+	if (pOpenParams && pOpenParams->m_bSetFocusToOutputPane)
+	{
+		CMergeResultView* pResultView = pMergeDoc->GetMergeResultView();
+		if (pResultView != nullptr && pResultView->GetSafeHwnd() != nullptr &&
+			pMergeDoc->IsMergeResultPaneVisible())
+			pResultView->TakeFocus();
+	}
 
 	if (!sReportFile.empty())
 		GenerateDocumentReport({ pMergeDoc }, sReportFile);
@@ -3162,16 +3180,19 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 {
 	auto* pFrame = GetActiveFrame();
 	if (!pFrame || GetWindowsManager().GetChildCount() == 0)
-		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false);
+		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false, false);
 	int nFiles = 0;
 	FRAMETYPE frame = GetFrameType(pFrame);
-	bool bDirDoc = false;
+	bool bHasDirDoc = false;
+	bool bHasMergeResultPane = false;
 	if (auto* pMergeDoc = GetActiveIMergeDoc())
 	{
 		nFiles = pMergeDoc->GetFileCount();
-		bDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		bHasDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		if (auto* pMergeDoc2 = dynamic_cast<CMergeDoc*>(pMergeDoc))
+			bHasMergeResultPane = pMergeDoc2->IsMergeResultPaneVisible();
 	}
-	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bDirDoc);
+	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bHasDirDoc, bHasMergeResultPane);
 }
 
 void CMainFrame::UpdateToolbar()
