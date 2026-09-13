@@ -1147,7 +1147,8 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 				// When a merge output path is given the merge result pane
 				// is the merge target: /al /am /ar request an automatic
 				// merge there instead of changing a source pane
-				if (nFiles == 3 && pOpenParams != nullptr && !pOpenParams->m_strSaveAsPath.empty())
+				if (nFiles == 3 && pOpenParams != nullptr && !pOpenParams->m_strSaveAsPath.empty() && 
+					GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED))
 					pMergeDoc->SetResultAutoMerge(2 - pane, true);
 				else
 					pMergeDoc->DoAutoMerge(pane);

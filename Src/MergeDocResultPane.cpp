@@ -30,16 +30,16 @@
 #define new DEBUG_NEW
 #endif
 
-struct Panes
+struct MergePanes
 {
 	int nBasePane;
 	int nTheirsPane;
 	int nOursPane;
 };
 
-static Panes GetPanes(int nBasePane)
+static MergePanes GetMergePaneMapping(int nBasePane)
 {
-	Panes panes;
+	MergePanes panes;
 	panes.nBasePane = nBasePane;
 	if (nBasePane == 0)
 	{
@@ -288,7 +288,7 @@ void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 	SetMergeResultPaneVisible(true);
 
 	// Give the compared buffers a descriptive name for the merge result
-	auto [_, nTheirsPane, nOursPane] = GetPanes(m_nMergeBasePane);
+	auto [_, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
 	const String descs[3] = { _("Base"), _("Theirs"), _("Ours") };
 	int i = 0;
 	for (auto pane : { m_nMergeBasePane, nTheirsPane, nOursPane })
@@ -461,7 +461,7 @@ void CMergeDoc::BuildMergeResult()
 			{
 				int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, m_nMergeBasePane);
 				if (srcPane == -1)
-					srcPane = 1; // trivial/ignored difference: keep base text
+					srcPane = m_nMergeBasePane; // trivial/ignored difference: keep base text
 				int nLines = 0;
 				text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
 				seg.state = ResultSegmentState::Auto;
@@ -620,7 +620,7 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 	};
 	int nLines = 4;
 	int nPaneLines = 0;
-	auto [nBasePane, nTheirsPane, nOursPane] = GetPanes(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
 	String text = _T("<<<<<<< ") + label(nTheirsPane);
 	if (bWhiteSpaceOnly)
 		text += _T(" (whitespace only)");
@@ -862,31 +862,32 @@ bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
 		}
 		return stripped;
 	};
-	auto [nBasePane, nTheirsPane, nOursPane] = GetPanes(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
 	const String sBase = strippedText(m_nMergeBasePane);
 	return strippedText(nTheirsPane) == sBase && sBase == strippedText(nOursPane);
 }
 
 /**
  * @brief Line-ending style for the result, kdiff3 style: prefer the style
- * of the side that changed it (base = middle pane).
+ * of the side that changed it (base = m_nMergeBasePane).
  */
 CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
 {
-	const CRLFSTYLE s0 = m_ptBuf[0]->GetCRLFMode();
-	const CRLFSTYLE s1 = m_ptBuf[1]->GetCRLFMode();
-	const CRLFSTYLE s2 = m_ptBuf[2]->GetCRLFMode();
+	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
+	const CRLFSTYLE sBase = m_ptBuf[nBasePane]->GetCRLFMode();
+	const CRLFSTYLE sTheirs = m_ptBuf[nTheirsPane]->GetCRLFMode();
+	const CRLFSTYLE sOurs = m_ptBuf[nOursPane]->GetCRLFMode();
 	CRLFSTYLE crlfStyle;
-	if (s0 == s1)
-		crlfStyle = s2; // right side changed the style (or nobody did)
-	else if (s1 == s2)
-		crlfStyle = s0; // left side changed the style
-	else if (s0 == s2)
-		crlfStyle = s0; // both sides agree against the base
+	if (sBase == sTheirs)
+		crlfStyle = sOurs;   // ours changed the style (or nobody did)
+	else if (sBase == sOurs)
+		crlfStyle = sTheirs; // theirs changed the style
+	else if (sTheirs == sOurs)
+		crlfStyle = sTheirs; // both sides agree against the base
 	else
-		crlfStyle = s1; // undecidable: keep the base style
+		crlfStyle = sBase;   // undecidable: keep the base style
 	if (crlfStyle == CRLFSTYLE::AUTOMATIC || crlfStyle == CRLFSTYLE::MIXED)
-		crlfStyle = s1;
+		crlfStyle = sBase;
 	if (crlfStyle == CRLFSTYLE::AUTOMATIC || crlfStyle == CRLFSTYLE::MIXED)
 		crlfStyle = CRLFSTYLE::DOS;
 	return crlfStyle;
@@ -894,23 +895,24 @@ CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
 
 /**
  * @brief Encoding for the result, kdiff3 style: prefer the encoding of
- * the side that changed it (base = middle pane).
+ * the side that changed it (base = m_nMergeBasePane).
  */
 void CMergeDoc::PickResultEncoding()
 {
-	const FileTextEncoding& e0 = m_ptBuf[0]->getEncoding();
-	const FileTextEncoding& e1 = m_ptBuf[1]->getEncoding();
-	const FileTextEncoding& e2 = m_ptBuf[2]->getEncoding();
+	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
+	const FileTextEncoding& eBase = m_ptBuf[nBasePane]->getEncoding();
+	const FileTextEncoding& eTheirs = m_ptBuf[nTheirsPane]->getEncoding();
+	const FileTextEncoding& eOurs = m_ptBuf[nOursPane]->getEncoding();
 	auto sameEncoding = [](const FileTextEncoding& a, const FileTextEncoding& b)
-	{
-		return a.m_unicoding == b.m_unicoding && a.m_codepage == b.m_codepage;
-	};
-	if (sameEncoding(e0, e1) && !sameEncoding(e1, e2))
-		m_ptResultBuf->setEncoding(e2); // right side changed the encoding
-	else if (sameEncoding(e1, e2) && !sameEncoding(e0, e1))
-		m_ptResultBuf->setEncoding(e0); // left side changed the encoding
+		{
+			return a.m_unicoding == b.m_unicoding && a.m_codepage == b.m_codepage;
+		};
+	if (sameEncoding(eBase, eTheirs) && !sameEncoding(eTheirs, eOurs))
+		m_ptResultBuf->setEncoding(eOurs);   // ours changed the encoding
+	else if (sameEncoding(eTheirs, eOurs) && !sameEncoding(eBase, eTheirs))
+		m_ptResultBuf->setEncoding(eTheirs); // theirs changed the encoding
 	else
-		m_ptResultBuf->setEncoding(e1); // agreement or undecidable: keep base
+		m_ptResultBuf->setEncoding(eBase);   // agreement or undecidable: keep base
 }
 
 /**
@@ -1167,7 +1169,7 @@ bool CMergeDoc::TryResumeMergeResultFromOutput(String& text)
 	const int nDiffCount = m_diffList.GetSize();
 	std::vector<int> sectionDiff(sections.size(), -1);
 	int nSearchFrom = 0;
-	auto [ nBasePane, nTheirsPane, nOursPane ] = GetPanes(m_nMergeBasePane);
+	auto [ nBasePane, nTheirsPane, nOursPane ] = GetMergePaneMapping(m_nMergeBasePane);
 	for (size_t i = 0; i < sections.size(); ++i)
 	{
 		for (int nDiff = nSearchFrom; nDiff < nDiffCount; ++nDiff)
@@ -1502,7 +1504,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	String strPath = m_strSaveAsPath;
 	if (bSaveAs || strPath.empty())
 	{
-		auto panes = GetPanes(m_nMergeBasePane);
+		auto panes = GetMergePaneMapping(m_nMergeBasePane);
 		String sDefault = !m_strSaveAsPath.empty() ? m_strSaveAsPath : m_filePaths.GetPath(panes.nOursPane);
 		HWND hwndParent = (m_pMergeResultView != nullptr) ? m_pMergeResultView->GetSafeHwnd() : nullptr;
 		String strSelected;
