@@ -34,7 +34,7 @@ struct MergePanes
 {
 	int nBasePane;
 	int nTheirsPane;
-	int nOursPane;
+	int nMinePane;
 };
 
 static MergePanes GetMergePaneMapping(int nBasePane)
@@ -44,17 +44,17 @@ static MergePanes GetMergePaneMapping(int nBasePane)
 	if (nBasePane == 0)
 	{
 		panes.nTheirsPane = 1;
-		panes.nOursPane = 2;
+		panes.nMinePane = 2;
 	}
 	else if (nBasePane == 1)
 	{
 		panes.nTheirsPane = 0;
-		panes.nOursPane = 2;
+		panes.nMinePane = 2;
 	}
 	else if (nBasePane == 2)
 	{
 		panes.nTheirsPane = 1;
-		panes.nOursPane = 0;
+		panes.nMinePane = 0;
 	}
 	return panes;
 }
@@ -288,23 +288,39 @@ void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 	SetMergeResultPaneVisible(true);
 
 	// Give the compared buffers a descriptive name for the merge result
-	auto [_, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
-	const String descs[3] = { _("Base"), _("Theirs"), _("Ours") };
-	int i = 0;
-	for (auto pane : { m_nMergeBasePane, nTheirsPane, nOursPane })
+	auto [basePane, theirsPane, minePane] = GetMergePaneMapping(m_nMergeBasePane);
+	const String labels[] = { _("Base File"), _("Theirs File"), _("Mine File") };
+
+	const int panes[] = { basePane, theirsPane, minePane };
+	for (int i = 0; i < 3; ++i)
 	{
+		const int pane = panes[i];
+		const String suffix = _T(" - ") + labels[i];
+
 		if (m_strDesc[pane].empty())
 		{
-			m_strDesc[pane] = m_filePaths[pane] + _T(" - ") + descs[i];
+			m_strDesc[pane] = m_filePaths[pane] + suffix;
 			m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
 			UpdateHeaderPath(pane);
 		}
 		else if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED)
 		{
-			m_strDesc[pane] += _T(" - ") + descs[i];
+			m_strDesc[pane] += suffix;
 			UpdateHeaderPath(pane);
 		}
-		++i;
+		else
+		{
+			for (const auto& label : labels)
+			{
+				const String oldSuffix = _T(" - ") + label;
+				if (m_strDesc[pane].length() >= oldSuffix.length() &&
+					m_strDesc[pane].substr(m_strDesc[pane].length() - oldSuffix.length()) == oldSuffix)
+				{
+					m_strDesc[pane].replace(m_strDesc[pane].length() - oldSuffix.length(), oldSuffix.length(), suffix);
+					break;
+				}
+			}
+		}
 	}
 }
 
@@ -620,7 +636,7 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 	};
 	int nLines = 4;
 	int nPaneLines = 0;
-	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
 	String text = _T("<<<<<<< ") + label(nTheirsPane);
 	if (bWhiteSpaceOnly)
 		text += _T(" (whitespace only)");
@@ -632,9 +648,9 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 	nLines += nPaneLines;
 	text += _T("=======");
 	text += pszEol;
-	text += GetPaneApparentLinesText(nOursPane, pdi->dbegin, pdi->dend, &nPaneLines);
+	text += GetPaneApparentLinesText(nMinePane, pdi->dbegin, pdi->dend, &nPaneLines);
 	nLines += nPaneLines;
-	text += _T(">>>>>>> ") + label(nOursPane) + pszEol;
+	text += _T(">>>>>>> ") + label(nMinePane) + pszEol;
 	if (pnLines != nullptr)
 		*pnLines = nLines;
 	return text;
@@ -862,9 +878,9 @@ bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
 		}
 		return stripped;
 	};
-	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
 	const String sBase = strippedText(m_nMergeBasePane);
-	return strippedText(nTheirsPane) == sBase && sBase == strippedText(nOursPane);
+	return strippedText(nTheirsPane) == sBase && sBase == strippedText(nMinePane);
 }
 
 /**
@@ -873,16 +889,16 @@ bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
  */
 CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
 {
-	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
 	const CRLFSTYLE sBase = m_ptBuf[nBasePane]->GetCRLFMode();
 	const CRLFSTYLE sTheirs = m_ptBuf[nTheirsPane]->GetCRLFMode();
-	const CRLFSTYLE sOurs = m_ptBuf[nOursPane]->GetCRLFMode();
+	const CRLFSTYLE sMine = m_ptBuf[nMinePane]->GetCRLFMode();
 	CRLFSTYLE crlfStyle;
 	if (sBase == sTheirs)
-		crlfStyle = sOurs;   // ours changed the style (or nobody did)
-	else if (sBase == sOurs)
+		crlfStyle = sMine;   // mine changed the style (or nobody did)
+	else if (sBase == sMine)
 		crlfStyle = sTheirs; // theirs changed the style
-	else if (sTheirs == sOurs)
+	else if (sTheirs == sMine)
 		crlfStyle = sTheirs; // both sides agree against the base
 	else
 		crlfStyle = sBase;   // undecidable: keep the base style
@@ -899,17 +915,17 @@ CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
  */
 void CMergeDoc::PickResultEncoding()
 {
-	auto [nBasePane, nTheirsPane, nOursPane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
 	const FileTextEncoding& eBase = m_ptBuf[nBasePane]->getEncoding();
 	const FileTextEncoding& eTheirs = m_ptBuf[nTheirsPane]->getEncoding();
-	const FileTextEncoding& eOurs = m_ptBuf[nOursPane]->getEncoding();
+	const FileTextEncoding& eMine = m_ptBuf[nMinePane]->getEncoding();
 	auto sameEncoding = [](const FileTextEncoding& a, const FileTextEncoding& b)
 		{
 			return a.m_unicoding == b.m_unicoding && a.m_codepage == b.m_codepage;
 		};
-	if (sameEncoding(eBase, eTheirs) && !sameEncoding(eTheirs, eOurs))
-		m_ptResultBuf->setEncoding(eOurs);   // ours changed the encoding
-	else if (sameEncoding(eTheirs, eOurs) && !sameEncoding(eBase, eTheirs))
+	if (sameEncoding(eBase, eTheirs) && !sameEncoding(eTheirs, eMine))
+		m_ptResultBuf->setEncoding(eMine);   // mine changed the encoding
+	else if (sameEncoding(eTheirs, eMine) && !sameEncoding(eBase, eTheirs))
 		m_ptResultBuf->setEncoding(eTheirs); // theirs changed the encoding
 	else
 		m_ptResultBuf->setEncoding(eBase);   // agreement or undecidable: keep base
@@ -1069,14 +1085,14 @@ bool CMergeDoc::TryResumeMergeResultFromOutput(String& text)
 
 	// Parse the conflict sections (git format; the ||||||| base block of
 	// diff3-style sections is optional)
-	struct Section { size_t nBegin = 0, nEnd = 0; String ours, base, theirs; bool bHasBase = false; };
+	struct Section { size_t nBegin = 0, nEnd = 0; String mine, base, theirs; bool bHasBase = false; };
 	std::vector<Section> sections;
 	auto isMarker = [](const String& s, const tchar_t* pszMarker)
 	{
 		return s.compare(0, 7, pszMarker) == 0 &&
 			(s.length() == 7 || s[7] == _T(' '));
 	};
-	enum class ParseState { Outside, Ours, Base, Theirs };
+	enum class ParseState { Outside, Mine, Base, Theirs };
 	ParseState state = ParseState::Outside;
 	Section cur;
 	for (size_t i = 0; i < lines.size(); ++i)
@@ -1089,10 +1105,10 @@ bool CMergeDoc::TryResumeMergeResultFromOutput(String& text)
 			{
 				cur = Section();
 				cur.nBegin = i;
-				state = ParseState::Ours;
+				state = ParseState::Mine;
 			}
 			break;
-		case ParseState::Ours:
+		case ParseState::Mine:
 			if (isMarker(s, _T("|||||||")))
 			{
 				cur.bHasBase = true;
@@ -1102,8 +1118,8 @@ bool CMergeDoc::TryResumeMergeResultFromOutput(String& text)
 				state = ParseState::Theirs;
 			else
 			{
-				cur.ours += s;
-				cur.ours += _T('\n');
+				cur.mine += s;
+				cur.mine += _T('\n');
 			}
 			break;
 		case ParseState::Base:
@@ -1169,13 +1185,13 @@ bool CMergeDoc::TryResumeMergeResultFromOutput(String& text)
 	const int nDiffCount = m_diffList.GetSize();
 	std::vector<int> sectionDiff(sections.size(), -1);
 	int nSearchFrom = 0;
-	auto [ nBasePane, nTheirsPane, nOursPane ] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [ nBasePane, nTheirsPane, nMinePane ] = GetMergePaneMapping(m_nMergeBasePane);
 	for (size_t i = 0; i < sections.size(); ++i)
 	{
 		for (int nDiff = nSearchFrom; nDiff < nDiffCount; ++nDiff)
 		{
 			const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
-			if (sections[i].ours == normalizeEols(GetPaneApparentLinesText(nOursPane, pdi->dbegin, pdi->dend, nullptr)) &&
+			if (sections[i].mine == normalizeEols(GetPaneApparentLinesText(nMinePane, pdi->dbegin, pdi->dend, nullptr)) &&
 				sections[i].theirs == normalizeEols(GetPaneApparentLinesText(nTheirsPane, pdi->dbegin, pdi->dend, nullptr)) &&
 				(!sections[i].bHasBase ||
 				 sections[i].base == normalizeEols(GetPaneApparentLinesText(nBasePane, pdi->dbegin, pdi->dend, nullptr))))
@@ -1505,7 +1521,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	if (bSaveAs || strPath.empty())
 	{
 		auto panes = GetMergePaneMapping(m_nMergeBasePane);
-		String sDefault = !m_strSaveAsPath.empty() ? m_strSaveAsPath : m_filePaths.GetPath(panes.nOursPane);
+		String sDefault = !m_strSaveAsPath.empty() ? m_strSaveAsPath : m_filePaths.GetPath(panes.nMinePane);
 		HWND hwndParent = (m_pMergeResultView != nullptr) ? m_pMergeResultView->GetSafeHwnd() : nullptr;
 		String strSelected;
 		if (!SelectFile(hwndParent, strSelected, false, sDefault.c_str(),

@@ -826,24 +826,24 @@
       you can edit freely.</para>
 
       <para>When the pane opens, every difference initially starts
-      unresolved, shown as a compact
-      <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or
-      <computeroutput>&lt;Unresolved Difference&gt;</computeroutput>
-      placeholder line. <guimenuitem>Show Full Conflict
-      Sections</guimenuitem> in the pane's context menu switches to showing
-      conflicts as full sections in the familiar version-control format
-      (<computeroutput>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</computeroutput> /
-      <computeroutput>|||||||</computeroutput> /
-      <computeroutput>=======</computeroutput> /
-      <computeroutput>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</computeroutput>)
-      containing the left, middle (base) and right versions of the lines.
-      If an automatic merge is requested — with the
-      <option>/al</option>, <option>/am</option> or <option>/ar</option>
-      command-line option, or with the <guimenuitem>Auto
-      Merge</guimenuitem> command — non-conflicting differences are resolved
-      automatically, treating the middle file as the common ancestor, and
-      only true conflicts, where both sides changed the same lines, remain
-      unresolved.</para>
+       unresolved, shown as a compact
+       <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or
+       <computeroutput>&lt;Unresolved Difference&gt;</computeroutput>
+       placeholder line. <guimenuitem>Show Full Conflict
+       Sections</guimenuitem> in the pane's context menu switches to showing
+       conflicts as full sections in the familiar version-control format
+       (<computeroutput>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</computeroutput> /
+       <computeroutput>|||||||</computeroutput> /
+       <computeroutput>=======</computeroutput> /
+       <computeroutput>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</computeroutput>)
+       containing the three versions of the lines.
+       If an automatic merge is requested — with the
+       <option>/al</option>, <option>/am</option> or <option>/ar</option>
+       command-line option, or with the <guimenuitem>Auto
+       Merge</guimenuitem> command — non-conflicting differences are resolved
+       automatically according to the selected merge target, and only true
+       conflicts, where both sides changed the same lines relative to the base,
+       remain unresolved.</para>
 
       <para>To resolve a difference, select it and choose
       <guimenuitem>Choose Left</guimenuitem>,
@@ -908,9 +908,73 @@
       Merge</guimenuitem></menuchoice> (non-conflicting differences are
       resolved automatically), or show and hide the pane with
       <menuchoice><guimenu>View</guimenu><guimenuitem>Merge Result
-      Pane</guimenuitem></menuchoice>. Hiding the pane restores the normal
-      editable three-pane behavior.</para>
-    </section>
+         Pane</guimenuitem></menuchoice>. Hiding the pane restores the normal
+         editable three-pane behavior.</para>
+
+        <para>
+          <indexterm>
+            <primary>merge target pane</primary>
+            <secondary>determining base pane</secondary>
+          </indexterm>
+          The base pane (common ancestor) for automatic merge resolution is
+          determined by either command-line options or the keyboard focus:
+        </para>
+
+        <para>
+          <emphasis>When using command-line options:</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para>
+              <option>Merge to left pane (/al)</option>:
+              left = merge target, middle = theirs, right = base
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <option>Merge to middle pane (/am)</option>:
+              left = base, middle = merge target, right = theirs
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <option>Merge to right pane (/ar)</option>:
+              left = base, middle = theirs, right = merge target
+            </para>
+          </listitem>
+        </itemizedlist>
+
+        <para>
+          <emphasis>When using UI-based merge operations (Start Merge Session or Auto Merge):</emphasis>
+          The base pane is determined by the current keyboard focus:
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis>Left pane focused</emphasis>:
+              left = mine, middle = theirs, right = base
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <emphasis>Middle pane focused</emphasis>:
+              left = theirs, middle = base, right = mine
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <emphasis>Right pane focused</emphasis>:
+              left = base, middle = theirs, right = mine
+            </para>
+          </listitem>
+        </itemizedlist>
+      </section>
 
     <section>
       <title>Location pane</title>

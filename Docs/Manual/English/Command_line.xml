@@ -532,23 +532,44 @@
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /al option</secondary>
+      </indexterm>
       <term><option>/al</option></term>
       <listitem>
-        <para>Auto-merges at the left side at startup.</para>
+        <para>
+          Auto-merges at startup with pane arrangement: left (merge target)
+          - middle (theirs) - right (base).
+        </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /am option</secondary>
+      </indexterm>
       <term><option>/am</option></term>
       <listitem>
-        <para>Auto-merges at the middle side at startup.</para>
+        <para>
+          Auto-merges at startup with pane arrangement: left (base)
+          - middle (merge target) - right (theirs).
+        </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /ar option</secondary>
+      </indexterm>
       <term><option>/ar</option></term>
       <listitem>
-        <para>Auto-merges at the right side at startup.</para>
+        <para>
+          Auto-merges at startup with pane arrangement: left (base)
+          - middle (theirs) - right (merge target).
+        </para>
       </listitem>
     </varlistentry>
 
