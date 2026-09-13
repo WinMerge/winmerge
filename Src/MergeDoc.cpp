@@ -1376,7 +1376,7 @@ void CMergeDoc::OnFileSave()
 	// With the merge result pane active it is the (only) editable pane,
 	// so Save must cover it: version control tools rely on Ctrl+S
 	// writing the merge output path (-o)
-if (IsMergeResultUnsaved())
+	if (IsMergeResultUnsaved())
 		SaveMergeResult(false);
 
 	// We will need to know if either of the originals actually changed
