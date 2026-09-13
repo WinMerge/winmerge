@@ -71,6 +71,9 @@ inline const String OPT_DIRVIEW_COLUMN_ORDERS {_T("DirView/ColumnOrders"s)};
 inline const String OPT_DIRVIEW_COLUMN_WIDTHS {_T("DirView/ColumnWidths"s)};
 inline const String OPT_DIRVIEW3_COLUMN_ORDERS {_T("DirView3/ColumnOrders"s)};
 inline const String OPT_DIRVIEW3_COLUMN_WIDTHS {_T("DirView3/ColumnWidths"s)};
+inline const String OPT_DIRVIEW_SPLIT_LAYOUT {_T("DirView/SplitPaneLayout"s)};
+inline const String OPT_DIRVIEW_SPLIT_COLUMN_ORDERS {_T("DirView/SplitColumnOrders"s)};
+inline const String OPT_DIRVIEW_SPLIT_COLUMN_WIDTHS {_T("DirView/SplitColumnWidths"s)};
 
 inline const String OPT_ADDITIONAL_PROPERTIES {_T("Settings/AdditionalProperties"s)};
 
