@@ -481,6 +481,13 @@ BEGIN
     END
     POPUP "&View"
     BEGIN
+        POPUP "&Display"
+        BEGIN
+            MENUITEM "&All Items",                  ID_VIEW_SHOW_ALL_ITEMS
+            MENUITEM "&Different Items",            ID_VIEW_SHOW_DIFF_ITEMS
+            MENUITEM "&Identical Items",            ID_VIEW_SHOW_SAME_ITEMS
+        END
+        MENUITEM SEPARATOR
         MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
@@ -502,6 +509,7 @@ BEGIN
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
         MENUITEM "Tree &Mode",                  ID_VIEW_TREEMODE
+        MENUITEM "S&plit Pane Layout",          ID_VIEW_SPLIT_PANE_LAYOUT
         POPUP "E&xpand Subfolders"
         BEGIN
             MENUITEM "&All Subfolders",             ID_VIEW_EXPAND_ALLSUBDIRS

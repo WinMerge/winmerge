@@ -29,6 +29,8 @@ using std::swap;
 namespace
 {
 const char *COLHDR_FILENAME     = N_("Filename");
+const char *COLHDR_LFILENAME    = N_("Left Filename");
+const char *COLHDR_RFILENAME    = N_("Right Filename");
 const char *COLHDR_DIR          = NC_("DirView|ColumnHeader", "Folder");
 const char *COLHDR_RESULT       = N_("Comparison Result");
 const char *COLHDR_LTIMEM       = N_("Left Date");
@@ -74,6 +76,8 @@ const char *COLHDR_DEBUG_BLINK       = N_("[Debug]Blink");
 #endif // SHOW_DIFFITEM_DEBUG_INFO
 
 const char *COLDESC_FILENAME    = N_("Filename or folder name.");
+const char *COLDESC_LFILENAME   = N_("Left side filename or folder name.");
+const char *COLDESC_RFILENAME   = N_("Right side filename or folder name.");
 const char *COLDESC_DIR         = N_("Subfolder name when subfolders are included.");
 const char *COLDESC_RESULT      = N_("Comparison result, long form.");
 const char *COLDESC_LTIMEM      = N_("Left side modification date.");
@@ -234,6 +238,17 @@ static Type ColFileNameGet(const CDiffContext * pCtxt, const void *p, int) //sfi
 				+ (bExist[2] ? pDiffFileInfo[2].filename.get() : none));
 		}
 	}
+}
+
+/**
+ * @brief Filename for one compare side; empty if that side does not exist.
+ */
+static String ColSideFileNameGet(const CDiffContext *, const void *p, int pane)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	if (pane < 0 || pane > 2 || !di.diffcode.exists(pane))
+		return _T("");
+	return di.diffFileInfo[pane].filename.get();
 }
 
 /**
@@ -1135,6 +1150,17 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 	return strutils::compare_logical(ColFileNameGet<boost::flyweight<String>>(pCtxt, p, 0), ColFileNameGet<boost::flyweight<String>>(pCtxt, q, 0));
 }
 
+static int ColSideFileNameSort(const CDiffContext *pCtxt, const void *p, const void *q, int pane)
+{
+	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
+	if (ldi.diffcode.isDirectory() && !rdi.diffcode.isDirectory())
+		return -1;
+	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
+		return 1;
+	return strutils::compare_logical(ColSideFileNameGet(pCtxt, p, pane), ColSideFileNameGet(pCtxt, q, pane));
+}
+
 /**
  * @brief Compare file name extensions.
  * @param [in] pCtxt Pointer to compare context.
@@ -1463,6 +1489,8 @@ static DirColInfo f_cols[] =
 	{ _T("Reoltype"), nullptr, COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("Lname"), nullptr, COLHDR_LFILENAME, COLDESC_LFILENAME, &ColSideFileNameGet, &ColSideFileNameSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("Rname"), nullptr, COLHDR_RFILENAME, COLDESC_RFILENAME, &ColSideFileNameGet, &ColSideFileNameSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 #ifdef SHOW_DIFFITEM_DEBUG_INFO
 	{ _T("diffcode"), nullptr, COLHDR_DEBUG_DIFFCODE, COLDESC_DEBUG_DIFFCODE, &ColDebugDiffCodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("customFlags"), nullptr, COLHDR_DEBUG_CUSTOMFLAGS, COLDESC_DEBUG_CUSTOMFLAGS, &ColDebugCustomFlagsGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
@@ -1774,7 +1802,13 @@ DirViewColItems::IsColById(int col, const char *idname) const
 bool
 DirViewColItems::IsColName(int col) const
 {
-	return IsColById(col, COLHDR_FILENAME);
+	return IsColById(col, COLHDR_FILENAME) || IsColSideName(col);
+}
+
+bool
+DirViewColItems::IsColSideName(int col) const
+{
+	return IsColById(col, COLHDR_LFILENAME) || IsColById(col, COLHDR_RFILENAME);
 }
 /**
  * @brief Is specified physical column the left modification time column?
@@ -1895,9 +1929,12 @@ DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
 	size_t offset = pColInfo->offset;
 	String s = (*fnc)(pCtxt, reinterpret_cast<const char *>(&di) + offset, pColInfo->opt);
 
-	// Add '*' to newer time field
+	// Add '*' to newer time field (skip sides that do not exist)
 	if (IsColLmTime(col) || IsColMmTime(col) || IsColRmTime(col))
 	{
+		int pane = IsColLmTime(col) ? 0 : (IsColMmTime(col) ? 1 : (m_nDirs < 3 ? 1 : 2));
+		if (!di.diffcode.exists(pane))
+			return s;
 		if (m_nDirs < 3)
 		{
 			if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0)
@@ -2152,4 +2189,37 @@ String DirViewColItems::SaveColumnOrders()
 	assert(static_cast<int>(m_colorder.size()) == m_numcols);
 	assert(static_cast<int>(m_invcolorder.size()) == m_numcols);
 	return strutils::join<String (*)(int)>(m_colorder.begin(), m_colorder.end(), _T(" "), strutils::to_str);
+}
+
+int DirViewColItems::FindColByRegName(const tchar_t* regName) const
+{
+	if (regName == nullptr)
+		return -1;
+	for (int i = 0; i < m_numcols; ++i)
+	{
+		if (m_cols[i].regName != nullptr && tc::tcscmp(m_cols[i].regName, regName) == 0)
+			return i;
+	}
+	return -1;
+}
+
+bool DirViewColItems::ApplySplitPaneColumnOrder()
+{
+	static const tchar_t* names[] =
+	{
+		_T("Lname"), _T("LsizeShort"), _T("Lmtime"), _T("StatusAbbr"),
+		_T("Rname"), _T("RsizeShort"), _T("Rmtime")
+	};
+	ClearColumnOrders();
+	m_dispcols = 0;
+	for (int phy = 0; phy < static_cast<int>(std::size(names)); ++phy)
+	{
+		const int log = FindColByRegName(names[phy]);
+		if (log < 0)
+			return false;
+		m_colorder[log] = phy;
+		m_invcolorder[phy] = log;
+		++m_dispcols;
+	}
+	return m_dispcols > 1;
 }
