@@ -345,6 +345,7 @@ public:
 	void ShowMergeResultPaneForOutput();
 	void SetResultAutoMerge(int nBasePane, bool bAutoMerge) { m_nMergeBasePane = nBasePane; m_bResultAutoMerge = bAutoMerge; }
 	void StartMergeSession(int nBasePane, bool bAutoMerge);
+	void UpdateMergePaneHeaders(int nBasePane);
 	void BuildMergeResult();
 	void UpdateMergeResultAfterRescan();
 	bool IsMergeResultModified() const;

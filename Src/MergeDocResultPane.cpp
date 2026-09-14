@@ -265,6 +265,49 @@ void CMergeDoc::ShowMergeResultPaneForOutput()
  * and by the Auto Merge command (with auto-merge), which switches a
  * plain 3-way comparison to the 4-pane merge view.
  */
+/**
+ * @brief Update pane headers with merge-related labels
+ * Assigns descriptive labels to panes based on their merge role (Base, Theirs, Mine)
+ * and updates header text accordingly.
+ */
+void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
+{
+	// Give the compared buffers a descriptive name for the merge result
+	auto [basePane, theirsPane, minePane] = GetMergePaneMapping(nBasePane);
+	const String labels[] = { _("Base File"), _("Theirs File"), _("Mine File") };
+
+	const int panes[] = { basePane, theirsPane, minePane };
+	for (int i = 0; i < 3; ++i)
+	{
+		const int pane = panes[i];
+		const String suffix = _T(" - ") + labels[i];
+
+		if (m_strDesc[pane].empty())
+		{
+			m_strDesc[pane] = m_filePaths[pane] + suffix;
+			m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
+		}
+		else if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED)
+		{
+			m_strDesc[pane] += suffix;
+		}
+		else
+		{
+			for (const auto& label : labels)
+			{
+				const String oldSuffix = _T(" - ") + label;
+				if (m_strDesc[pane].length() >= oldSuffix.length() &&
+					m_strDesc[pane].substr(m_strDesc[pane].length() - oldSuffix.length()) == oldSuffix)
+				{
+					m_strDesc[pane].replace(m_strDesc[pane].length() - oldSuffix.length(), oldSuffix.length(), suffix);
+					break;
+				}
+			}
+		}
+		UpdateHeaderPath(pane);
+	}
+}
+
 void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 {
 	if (!HasMergeResultPane())
@@ -287,41 +330,8 @@ void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 		pFrame->ShowMergeResultPane();
 	SetMergeResultPaneVisible(true);
 
-	// Give the compared buffers a descriptive name for the merge result
-	auto [basePane, theirsPane, minePane] = GetMergePaneMapping(m_nMergeBasePane);
-	const String labels[] = { _("Base File"), _("Theirs File"), _("Mine File") };
-
-	const int panes[] = { basePane, theirsPane, minePane };
-	for (int i = 0; i < 3; ++i)
-	{
-		const int pane = panes[i];
-		const String suffix = _T(" - ") + labels[i];
-
-		if (m_strDesc[pane].empty())
-		{
-			m_strDesc[pane] = m_filePaths[pane] + suffix;
-			m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
-			UpdateHeaderPath(pane);
-		}
-		else if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED)
-		{
-			m_strDesc[pane] += suffix;
-			UpdateHeaderPath(pane);
-		}
-		else
-		{
-			for (const auto& label : labels)
-			{
-				const String oldSuffix = _T(" - ") + label;
-				if (m_strDesc[pane].length() >= oldSuffix.length() &&
-					m_strDesc[pane].substr(m_strDesc[pane].length() - oldSuffix.length()) == oldSuffix)
-				{
-					m_strDesc[pane].replace(m_strDesc[pane].length() - oldSuffix.length(), oldSuffix.length(), suffix);
-					break;
-				}
-			}
-		}
-	}
+	// Update pane headers with merge-related labels
+	UpdateMergePaneHeaders(nBasePane);
 }
 
 /**
@@ -418,6 +428,7 @@ void CMergeDoc::BuildMergeResult()
 		int nCurLine = 0;
 		int nApparent = 0;
 		const int nApparentCount = m_ptBuf[m_nMergeBasePane]->GetLineCount();
+		const int nMergeDestPane = 2 - m_nMergeBasePane;
 
 		auto appendCommon = [&](int nBegin, int nEndExcl)
 		{
@@ -465,9 +476,9 @@ void CMergeDoc::BuildMergeResult()
 					// A non-conflicting difference must never put conflict
 					// markers into the output; its stashed (and saved) form is
 					// the content an automatic merge would pick for it
-					int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, m_nMergeBasePane);
+					int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, nMergeDestPane);
 					if (srcPane == -1)
-						srcPane = m_nMergeBasePane;
+						srcPane = nMergeDestPane;
 					seg.blockText = GetPaneApparentLinesText(srcPane, pdi->dbegin,
 						pdi->dend, &seg.nBlockLines);
 				}
@@ -475,9 +486,9 @@ void CMergeDoc::BuildMergeResult()
 			}
 			else
 			{
-				int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, m_nMergeBasePane);
+				int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, nMergeDestPane);
 				if (srcPane == -1)
-					srcPane = m_nMergeBasePane; // trivial/ignored difference: keep base text
+					srcPane = nMergeDestPane; // No mergeable source: use the merge destination pane.
 				int nLines = 0;
 				text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
 				seg.state = ResultSegmentState::Auto;
@@ -1353,6 +1364,7 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		return;
 	}
 
+	const int nMergeDestPane = 2 - m_nMergeBasePane;
 	int nNewLines = 0;
 	String text;
 	bool bBackToConflict = false;
@@ -1374,9 +1386,9 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		else
 		{
 			// non-conflict: never conflict markers, see BuildMergeResult
-			int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, m_nMergeBasePane);
+			int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, nMergeDestPane);
 			if (srcPane == -1)
-				srcPane = m_nMergeBasePane;
+				srcPane = nMergeDestPane;
 			seg.blockText = GetPaneApparentLinesText(srcPane, pdi->dbegin,
 				pdi->dend, &seg.nBlockLines);
 		}
@@ -1601,6 +1613,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 		return false;
 	}
 	m_ptResultBuf->SetModified(false);
+	m_strSaveAsPath = strPath;
 	m_bResultSaved = true;
 	return true;
 }

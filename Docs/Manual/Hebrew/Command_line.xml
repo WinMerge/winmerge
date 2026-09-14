@@ -46,6 +46,7 @@ rep="norepeat"><option>/clipboard-compare</option></arg>
 <arg choice="opt" rep="norepeat"><option>/fl</option></arg> <arg
 choice="opt" rep="norepeat"><option>/fm</option></arg> <arg choice="opt"
 rep="norepeat"><option>/fr</option></arg> <arg choice="opt"
+rep="norepeat"><option>/fb</option></arg> <arg choice="opt"
 rep="norepeat"><option>/l</option>
 <replaceable>linenumber</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/c</option> <replaceable>charpos</replaceable></arg>
@@ -384,6 +385,15 @@ same window, allowing you to organize multiple single-instance groups.</para>
     </varlistentry>
 
     <varlistentry>
+      <term><option>/fb</option></term>
+      <listitem>
+        <para>Sets focus to the bottom (Merge Result) pane at startup. Applies to
+three-way text comparisons where the Merge Result pane is shown (see the
+<option>/o</option> option).</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/l <replaceable>linenumber</replaceable></option></term>
       <listitem>
         <para>מציין מספר שורה לקפיצה אליה לאחר טעינת הקבצים.</para>
@@ -428,23 +438,41 @@ WorkingCopy</userinput>. השתמש בסימני ציטוט סביב תיאור�
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /al option</secondary>
+      </indexterm>
       <term><option>/al</option></term>
       <listitem>
-        <para>ממזג אוטומטית בצד שמאל בעת ההפעלה.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (merge target)  - middle
+(theirs) - right (base).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /am option</secondary>
+      </indexterm>
       <term><option>/am</option></term>
       <listitem>
-        <para>ממזג אוטומטית בצד האמצעי בעת ההפעלה.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (base)  - middle (merge
+target) - right (theirs).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /ar option</secondary>
+      </indexterm>
       <term><option>/ar</option></term>
       <listitem>
-        <para>ממזג אוטומטית בצד ימין בעת ההפעלה.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
+- right (merge target).</para>
       </listitem>
     </varlistentry>
 
@@ -663,6 +691,12 @@ class="directory">C:\Folder2</filename> <emphasis>לא</emphasis> מכילה ק�
 <wordasword>התוצאה</wordasword>. אם אתה מציין נתיב פלט, WinMerge עדיין מציג
 רק שניים או שלושה קבצים בחלון השוואת הקבצים. עם זאת, אם אתה שומר אחד מהקבצים
 האלה, הוא נכתב לנתיב הפלט, ומשאיר את שניים או שלושת קבצי המקור ללא פגע.</para>
+
+        <para>In a three-way text comparison, specifying an output path also opens the
+Merge Result pane at the bottom of the File Compare window, where the merge
+result can be reviewed and edited before it is saved to the output path. See
+the Merge Result pane topic in <citetitle>Comparing and merging text
+files</citetitle>.</para>
 
         <para>מערכות בקרת גרסאות מתייחסות בדרך כלל לקבצי המקור והתוצאה באמצעות מונחים כמו
 <glossterm>שלהם</glossterm>, <glossterm>שלי</glossterm>,
