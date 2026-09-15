@@ -484,6 +484,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translation
 		Translations\InnoSetup\Greek.islu = Translations\InnoSetup\Greek.islu
 		Translations\InnoSetup\Hebrew.islu = Translations\InnoSetup\Hebrew.islu
 		Translations\InnoSetup\Hungarian.islu = Translations\InnoSetup\Hungarian.islu
+		Translations\InnoSetup\Indonesian.islu = Translations\InnoSetup\Indonesian.islu
 		Translations\InnoSetup\Italian.islu = Translations\InnoSetup\Italian.islu
 		Translations\InnoSetup\Japanese.islu = Translations\InnoSetup\Japanese.islu
 		Translations\InnoSetup\Korean.islu = Translations\InnoSetup\Korean.islu

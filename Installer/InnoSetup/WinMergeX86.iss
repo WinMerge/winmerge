@@ -149,6 +149,7 @@ Name: Greek; MessagesFile: compiler:Languages\Greek.isl,..\..\Translations\InnoS
 Name: Hebrew; MessagesFile: compiler:Languages\Hebrew.isl,..\..\Translations\InnoSetup\Hebrew.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Hebrew.txt
 Name: Hungarian; MessagesFile: compiler:Languages\Hungarian.isl,..\..\Translations\InnoSetup\Hungarian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Hungarian.txt
 Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Italian.isl,..\..\Translations\InnoSetup\Italian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
+Name: Indonesian; MessagesFile: ..\\..\\Translations\\InnoSetup\\Unbundled.is5\\Indonesian.islu,..\\..\\Translations\\InnoSetup\\Indonesian.islu; InfoAfterFile: ..\\..\\Translations\\Docs\\Readme\\ReadMe-Indonesian.txt
 Name: Japanese; MessagesFile: compiler:Languages\Japanese.isl,..\..\Translations\InnoSetup\Japanese.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Korean.isl,..\..\Translations\InnoSetup\Korean.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Korean.txt
 Name: Lithuanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Lithuanian.isl,..\..\Translations\InnoSetup\Lithuanian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt
@@ -249,6 +250,9 @@ Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disableno
 
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Italian
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Italian
+
+Name: Languages\Indonesian; Description: {cm:IndonesianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Indonesian
+Name: Languages\Indonesian; Description: {cm:IndonesianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Indonesian
 
 Name: Languages\Japanese; Description: {cm:JapaneseLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Japanese
 Name: Languages\Japanese; Description: {cm:JapaneseLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Japanese
@@ -541,6 +545,9 @@ Source: {#TranslationsDir}\WinMerge\Italian.po; DestDir: {app}\Languages; Compon
 Source: {#TranslationsDir}\ShellExtension\Italian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt; DestDir: {app}\Docs; Components: Languages\Italian
 Source: ..\..\Build\Manual\htmlhelp\WinMergeItalian.chm; DestDir: {app}\Docs; Components: Languages\Italian
+Source: {#TranslationsDir}\WinMerge\Indonesian.po; DestDir: {app}\Languages; Components: Languages\Indonesian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Indonesian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Indonesian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-Indonesian.txt; DestDir: {app}\Docs; Components: Languages\Indonesian
 Source: {#TranslationsDir}\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: {#TranslationsDir}\ShellExtension\Japanese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese

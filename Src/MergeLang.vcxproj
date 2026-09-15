@@ -285,6 +285,7 @@ popd
     <None Include="..\Translations\WinMerge\Greek.po" />
     <None Include="..\Translations\WinMerge\Hebrew.po" />
     <None Include="..\Translations\WinMerge\Hungarian.po" />
+    <None Include="..\Translations\WinMerge\Indonesian.po" />
     <None Include="..\Translations\WinMerge\Italian.po" />
     <None Include="..\Translations\WinMerge\Japanese.po" />
     <None Include="..\Translations\WinMerge\Korean.po" />

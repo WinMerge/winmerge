@@ -1,4 +1,4 @@
-[Messages]
+﻿[Messages]
 
 WizardInfoBefore=Acuerdo de licencia
 InfoBeforeLabel=GNU General Public License
@@ -43,6 +43,7 @@ GreekLanguage=Menús y diálogos en griego
 HebrewLanguage=Menús y diálogos en hebreo
 HungarianLanguage=Menús y diálogos en húngaro
 ItalianLanguage=Menús y diálogos en italiano
+IndonesianLanguage=Indonesian menus and dialogs
 JapaneseLanguage=Menús y diálogos en japonés
 KoreanLanguage=Menús y diálogos en coreano
 LithuanianLanguage=Menús y diálogos en lituano
