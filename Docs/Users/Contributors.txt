@@ -120,6 +120,9 @@ Localization:
   Egyed Ferenc <efi99 at freemail.hu>
   boglarkla
 
+* Indonesian:
+  Yoruxyv
+
 * Italian:
   Andrea Decorte <deco1985@hotmail.com>
   Antonio Angelo <antonio.angelo@gmail.com>
