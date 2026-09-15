@@ -370,31 +370,35 @@ vous n'avez donc pas besoin de réanalyser les fichiers.</para>
     </section>
 
     <section>
-      <title>Using plugin pipelines</title>
+      <title>Utilisation de pipelines de plug-ins</title>
 
-      <para>Plugin pipelines allow you to chain multiple plugins and filter expressions
-using the pipe character (<keycap>|</keycap>) as a separator.  Plugin
-pipelines can be used with all plugin types: unpacker, prediffer, and editor
-complement plugins.</para>
+      <para>Les pipelines de plug-ins permettent d'enchaîner plusieurs plug-ins et
+expressions de filtre en utilisant le caractère « pipe »
+(<keycap>|</keycap>) comme séparateur. Ces pipelines peuvent être utilisés
+avec tous les types de plug-ins : plug-ins de décompression (unpacker), de
+pré-différenciation (prediffer) et de complément d'édition (editor
+complement).</para>
 
-      <para>Plugins are specified by their names. For example:</para>
+      <para>Les plug-ins sont spécifiés par leur nom. Par exemple :</para>
 
       <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
 
-      <para>Filter expressions can also be used in plugin pipelines by prefixing them
-with <literal>le:</literal>. For example:</para>
+      <para>Les expressions de filtre peuvent également être utilisées dans les
+pipelines de plug-ins en les faisant précéder du préfixe
+<literal>le:</literal>. Par exemple :</para>
 
       <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
 
-      <para>See <xref linkend="FilterExpression_Syntax" /> for available filter
-expression functions and operators.</para>
+      <para>Consultez <xref linkend="Filter Expression Syntax" /> pour connaître les
+fonctions et opérateurs d'expression de filtre disponibles.</para>
 
-      <para>You can specify a plugin pipeline in the <guibutton>Select
-Plugin</guibutton> dialog by entering the pipeline expression.</para>
+      <para>Vous pouvez spécifier un pipeline de plug-ins dans la boîte de dialogue
+<guibutton>Sélectionner un plug-in</guibutton> en saisissant l'expression du
+pipeline.</para>
 
-      <para>When a plugin pipeline is already selected, you can append a plugin to it by
-holding down the <keycap>Ctrl</keycap> key while clicking the plugin in a
-plugin selection menu.</para>
+      <para>Lorsqu'une chaîne de plug-ins est déjà sélectionnée, vous pouvez y ajouter
+un plug-in en maintenant la touche <keycap>Ctrl</keycap> enfoncée tout en
+cliquant sur le plug-in dans un menu de sélection.</para>
     </section>
   </section>
 
@@ -2083,8 +2087,8 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>patterns</replaceable></arg>
-<arg><option>-F</option> <replaceable>fixed string</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>motifs</replaceable></arg>
+<arg><option>-F</option> <replaceable>chaîne fixe</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2132,7 +2136,7 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>use fixed string for matching</para>
+            <para>utiliser une chaîne fixe pour la correspondance</para>
           </listitem>
         </varlistentry>
 
@@ -2181,8 +2185,8 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>patterns</replaceable></arg> <arg><option>-F</option>
-<replaceable>fixed string</replaceable></arg></cmdsynopsis>
+<replaceable>motifs</replaceable></arg> <arg><option>-F</option>
+<replaceable>chaîne fixe</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2223,7 +2227,7 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>use fixed string for matching</para>
+            <para>utiliser une chaîne fixe pour la correspondance</para>
           </listitem>
         </varlistentry>
 

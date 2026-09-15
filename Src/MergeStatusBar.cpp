@@ -84,6 +84,8 @@ CMergeStatusBar::CMergeStatusBar() : m_nPanes(2), m_bDiff{}
 		m_status[pane].m_pWndStatusBar = this;
 		m_status[pane].m_base = PANE_PANE0_INFO + pane * nColumnsPerPane;
 	}
+	m_resultStatus.m_pWndStatusBar = this;
+	m_resultStatus.m_base = 0; // Will be set by CMergeResultBar
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
@@ -353,4 +355,68 @@ void CMergeStatusBar::MergeStatus::SetLineInfo(const tchar_t* szLine, int nColum
 		m_bHasBom = bHasBom;
 		Update();
 	}
+}
+
+/// Constructor for MergeResultStatus
+CMergeStatusBar::MergeResultStatus::MergeResultStatus()
+: m_nConflicts(0)
+, m_nUnresolved(0)
+, m_nWhiteSpaceOnly(0)
+, m_pWndStatusBar(nullptr)
+, m_base(0)
+{
+}
+
+/// Update result status display
+void CMergeStatusBar::MergeResultStatus::Update()
+{
+	if (IsWindow(m_pWndStatusBar->m_hWnd))
+	{
+		CString strInfo;
+		if (m_nConflicts == 0)
+		{
+			strInfo = _("All resolved").c_str();
+		}
+		else if (m_nUnresolved == 0)
+		{
+			strInfo.Format(_("%d Conflicts (all resolved)").c_str(), m_nConflicts);
+		}
+		else
+		{
+			strInfo.Format(_("%d Conflicts / %d Unresolved").c_str(), m_nConflicts, m_nUnresolved);
+			if (m_nWhiteSpaceOnly > 0)
+			{
+				CString strWs;
+				strWs.Format(_(" (%d whitespace-only)").c_str(), m_nWhiteSpaceOnly);
+				strInfo += strWs;
+			}
+		}
+		m_pWndStatusBar->SetPaneText(m_base, strInfo);
+	}
+}
+
+/// Set conflict information for display
+void CMergeStatusBar::MergeResultStatus::SetConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
+{
+	if (m_nConflicts != nConflicts || m_nUnresolved != nUnresolved || m_nWhiteSpaceOnly != nWhiteSpaceOnly)
+	{
+		m_nConflicts = nConflicts;
+		m_nUnresolved = nUnresolved;
+		m_nWhiteSpaceOnly = nWhiteSpaceOnly;
+		Update();
+	}
+}
+
+/// SetLineInfo - not used for result pane but required by interface
+void CMergeStatusBar::MergeResultStatus::SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
+	int nChar, int nChars, int nSelectedLines, int nSelectedChars, const tchar_t* szEol, int nCodepage, bool bHasBom)
+{
+	// Result pane doesn't use this info, but we keep it for interface compliance
+	m_sLine = szLine;
+}
+
+/// Update any resources necessary after a GUI language change
+void CMergeStatusBar::MergeResultStatus::UpdateResources()
+{
+	Update();
 }
