@@ -83,9 +83,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
-        MENUITEM "Choose Left\tCtrl+Shift+1",   ID_MERGE_CHOOSE_LEFT
-        MENUITEM "Choose Middle\tCtrl+Shift+2", ID_MERGE_CHOOSE_MIDDLE
-        MENUITEM "Choose Right\tCtrl+Shift+3",  ID_MERGE_CHOOSE_RIGHT
+        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_CHOOSE_LEFT
+        MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_CHOOSE_MIDDLE
+        MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_CHOOSE_RIGHT
         POPUP "Choose for All Unresolved Conflicts"
         BEGIN
             MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
@@ -920,9 +920,9 @@ BEGIN
         MENUITEM "Start Merge Sess&ion",        ID_MERGE_START_SESSION
         POPUP "Merge Resul&t"
         BEGIN
-            MENUITEM "Choose Left\tCtrl+Shift+1",   ID_MERGE_CHOOSE_LEFT
-            MENUITEM "Choose Middle\tCtrl+Shift+2", ID_MERGE_CHOOSE_MIDDLE
-            MENUITEM "Choose Right\tCtrl+Shift+3",  ID_MERGE_CHOOSE_RIGHT
+            MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_CHOOSE_LEFT
+            MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_CHOOSE_MIDDLE
+            MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_CHOOSE_RIGHT
             POPUP "Choose for All Unresolved Conflicts"
             BEGIN
                 MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
@@ -5425,9 +5425,9 @@ BEGIN
     ID_ALL_RIGHT            "\nCopy All to Right"
     ID_ALL_LEFT             "\nCopy All to Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
-    ID_MERGE_CHOOSE_LEFT    "Select or deselect left pane content for current difference; selected blocks are combined in selection order\nChoose Left (Ctrl+Shift+1)"
-    ID_MERGE_CHOOSE_MIDDLE  "Select or deselect middle pane content for current difference; selected blocks are combined in selection order\nChoose Middle (Ctrl+Shift+2)"
-    ID_MERGE_CHOOSE_RIGHT   "Select or deselect right pane content for current difference; selected blocks are combined in selection order\nChoose Right (Ctrl+Shift+3)"
+    ID_MERGE_CHOOSE_LEFT    "Select or deselect left pane content for current difference; selected blocks are combined in selection order\nChoose Left (Ctrl+Shift+&1)"
+    ID_MERGE_CHOOSE_MIDDLE  "Select or deselect middle pane content for current difference; selected blocks are combined in selection order\nChoose Middle (Ctrl+Shift+&2)"
+    ID_MERGE_CHOOSE_RIGHT   "Select or deselect right pane content for current difference; selected blocks are combined in selection order\nChoose Right (Ctrl+Shift+&3)"
     ID_MERGE_CHOOSE_ALL_LEFT "Resolve all unresolved conflicts using left pane content\nChoose Left for All"
     ID_MERGE_CHOOSE_ALL_MIDDLE "Resolve all unresolved conflicts using middle pane content\nChoose Middle for All"
     ID_MERGE_CHOOSE_ALL_RIGHT "Resolve all unresolved conflicts using right pane content\nChoose Right for All"

@@ -50,6 +50,7 @@ protected:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg UINT OnGetDlgCode();
+	afx_msg void OnAutoMerge();
 	afx_msg void OnForwardToMergeView(UINT nID);
 	afx_msg void OnUpdateForwardToMergeView(CCmdUI* pCmdUI);
 	//}}AFX_MSG

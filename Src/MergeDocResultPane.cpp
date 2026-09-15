@@ -206,7 +206,8 @@ bool CMergeDoc::IsMergeResultPaneVisible() const
 {
 	if (m_pMergeResultView == nullptr || m_pMergeResultView->GetSafeHwnd() == nullptr)
 		return false;
-	const CWnd* pBar = m_pMergeResultView->GetParent();
+	const CWnd* pWndParent = m_pMergeResultView->GetParent();
+	const CWnd* pBar = pWndParent != nullptr ? pWndParent->GetParent() : nullptr;
 	return pBar != nullptr && (pBar->GetStyle() & WS_VISIBLE) != 0;
 }
 
