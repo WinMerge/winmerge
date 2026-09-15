@@ -139,18 +139,12 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	if (m_pMergeDoc->m_nBuffers == 3 && GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED))
 	{
 		sCaption = _("Merge Result Pane");
-		if (!m_wndResultBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_MERGE_RESULT_BAR))
+		if (!m_wndResultBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_MERGE_RESULT_BAR, pContext, m_pMergeDoc))
 		{
 			TRACE0("Failed to create MergeResultBar\n");
 			return FALSE;
 		}
-		m_pMergeResultView = new CMergeResultView();
-		if (!m_pMergeResultView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), &m_wndResultBar, 154, pContext))
-		{
-			TRACE0("Failed to create CMergeResultView\n");
-			return FALSE;
-		}
-		m_pMergeDoc->SetMergeResultView(m_pMergeResultView);
+		// Store frame window handle for notification
 		m_wndResultBar.SetFrameHwnd(GetSafeHwnd());
 	}
 
@@ -507,6 +501,13 @@ void CMergeEditFrame::OnIdleUpdateCmdUI()
 		{
 			m_bResultBarVisible = bVisible;
 			m_pMergeDoc->SetMergeResultPaneVisible(bVisible);
+		}
+		// Update merge result conflict statistics in status bar
+		if (bVisible)
+		{
+			int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
+			m_pMergeDoc->GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
+			m_wndResultBar.UpdateConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly);
 		}
 	}
 	CMergeFrameCommon::OnIdleUpdateCmdUI();

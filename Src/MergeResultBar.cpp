@@ -7,6 +7,9 @@
 
 #include "stdafx.h"
 #include "MergeResultBar.h"
+#include "MergeResultContainer.h"
+#include "MergeResultView.h"
+#include "MergeDoc.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -16,6 +19,9 @@ IMPLEMENT_DYNAMIC(CMergeResultBar, TViewBarBase);
 
 CMergeResultBar::CMergeResultBar()
 : m_hwndFrame(nullptr)
+, m_pCreateContext(nullptr)
+, m_pDoc(nullptr)
+, m_pContainer(nullptr)
 {
 }
 
@@ -41,8 +47,15 @@ BOOL CMergeResultBar::Create(
 	CWnd* pParentWnd,
 	LPCTSTR lpszWindowName /*= nullptr*/,
 	DWORD dwStyle /*= WS_CHILD | WS_VISIBLE | CBRS_TOP*/,
-	UINT nID /*= AFX_IDW_PANE_FIRST*/)
+	UINT nID /*= AFX_IDW_PANE_FIRST*/,
+	CCreateContext* pContext /*= nullptr*/,
+	CMergeDoc* pDoc /*= nullptr*/)
 {
+	// Store context and document before calling TViewBarBase::Create
+	// This ensures they're available in OnCreate()
+	m_pCreateContext = pContext;
+	m_pDoc = pDoc;
+
 	return TViewBarBase::Create(
 		lpszWindowName,
 		pParentWnd,
@@ -56,6 +69,30 @@ int CMergeResultBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	SetSCBStyle(SCBS_EDGETOP | SCBS_EDGEBOTTOM | SCBS_SIZECHILD);
+
+	// Create the container that holds both the result view and status bar
+	m_pContainer = new CMergeResultContainer();
+	if (!m_pContainer->Create(this, m_pDoc))
+	{
+		TRACE0("Failed to create merge result container\n");
+		delete m_pContainer;
+		m_pContainer = nullptr;
+		return -1;
+	}
+
+	// Create the result view inside the container
+	if (m_pCreateContext != nullptr && m_pDoc != nullptr)
+	{
+		CMergeResultView* pView = new CMergeResultView();
+		DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
+		if (!pView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), m_pContainer, 154, m_pCreateContext))
+		{
+			TRACE0("Failed to create CMergeResultView\n");
+			delete pView;
+			return -1;
+		}
+		m_pDoc->SetMergeResultView(pView);
+	}
 
 	return 0;
 }
@@ -101,10 +138,43 @@ void CMergeResultBar::SetFrameHwnd(HWND hwndFrame)
 }
 
 /**
+ * @brief Stores create context for MFC view creation.
+ */
+void CMergeResultBar::SetCreateContext(CCreateContext* pContext)
+{
+	m_pCreateContext = pContext;
+}
+
+/**
+ * @brief Stores reference to merge document.
+ */
+void CMergeResultBar::SetMergeDoc(CMergeDoc* pDoc)
+{
+	m_pDoc = pDoc;
+}
+
+/**
  * @brief Update any resources necessary after a GUI language change
  */
 void CMergeResultBar::UpdateResources()
 {
 	String sCaption = _("Merge Result Pane");
 	SetWindowText(sCaption.c_str());
+	if (m_pContainer != nullptr)
+	{
+		m_pContainer->UpdateResources();
+	}
 }
+
+/**
+ * @brief Update conflict statistics information in status bar
+ */
+void CMergeResultBar::UpdateConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
+{
+	if (m_pContainer != nullptr)
+	{
+		m_pContainer->UpdateConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly);
+	}
+}
+
+

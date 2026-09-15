@@ -926,6 +926,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="MergeResultContainer.cpp" />
     <ClCompile Include="MergeTextFormatter.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1041,6 +1042,7 @@
     <ClInclude Include="LineFilterHelper.h" />
     <ClInclude Include="LineFilterHelperMenu.h" />
     <ClInclude Include="MergeLogger.h" />
+    <ClInclude Include="MergeResultContainer.h" />
     <ClInclude Include="MergeTextFormatter.h" />
     <ClInclude Include="MruHelper.h" />
     <ClInclude Include="I18n.h" />

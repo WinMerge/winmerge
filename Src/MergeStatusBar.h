@@ -27,6 +27,11 @@ public :
 	void SetPaneCount(int nPanes) { m_nPanes = nPanes; }
 	void UpdateResources();
 	IMergeEditStatus* GetIMergeEditStatus(int nPane) { return &m_status[nPane]; }
+	IMergeEditStatus* GetResultStatus() { return &m_resultStatus; }
+	void SetResultConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly) 
+	{ 
+		m_resultStatus.SetConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly); 
+	}
 
 protected:
     afx_msg void OnPaint();
@@ -70,4 +75,30 @@ protected:
 	};
 	friend class MergeStatus; // MergeStatus accesses status bar
 	MergeStatus m_status[3];
+
+	// Object that displays merge result conflict statistics
+	class MergeResultStatus : public IMergeEditStatus
+	{
+	public:
+		// Constructor
+		MergeResultStatus();
+		// Implement IMergeEditStatus (not used for result pane, but required by interface)
+		void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
+			int nChar, int nChars, int nSelectedLines, int nSelectedChars, const tchar_t* szEol, int nCodepage, bool bHasBom) override;
+		void UpdateResources();
+		// Set conflict statistics
+		void SetConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
+	protected:
+		void Update();
+	public:
+		CMergeStatusBar* m_pWndStatusBar;
+		int m_base; /**< Base pane index for result status */
+	private:
+		String m_sLine; /**< Current line info */
+		int m_nConflicts; /**< Total number of conflicts */
+		int m_nUnresolved; /**< Unresolved differences */
+		int m_nWhiteSpaceOnly; /**< White space only conflicts */
+	};
+	friend class MergeResultStatus; // MergeResultStatus accesses status bar
+	MergeResultStatus m_resultStatus;
 };
