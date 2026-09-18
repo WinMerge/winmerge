@@ -1910,34 +1910,6 @@ void CMergeDoc::OnUpdateMergeResultSave(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Select the line-ending style for saving the merge result.
- * "As in Sources" (the default) keeps each line's own EOL; a fixed style
- * normalizes the whole output and becomes the EOL for newly typed lines.
- */
-void CMergeDoc::OnMergeResultEolStyle(UINT nID)
-{
-	static const CRLFSTYLE styles[] = { CRLFSTYLE::AUTOMATIC,
-		CRLFSTYLE::DOS, CRLFSTYLE::UNIX, CRLFSTYLE::MAC };
-	const UINT nIndex = nID - ID_MERGE_RESULT_EOL_ASIS;
-	if (nIndex >= _countof(styles))
-		return;
-	m_resultSaveEolStyle = styles[nIndex];
-	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized())
-		m_ptResultBuf->SetCRLFMode(m_resultSaveEolStyle != CRLFSTYLE::AUTOMATIC ?
-			m_resultSaveEolStyle : PickResultCRLFStyle());
-}
-
-void CMergeDoc::OnUpdateMergeResultEolStyle(CCmdUI* pCmdUI)
-{
-	static const CRLFSTYLE styles[] = { CRLFSTYLE::AUTOMATIC,
-		CRLFSTYLE::DOS, CRLFSTYLE::UNIX, CRLFSTYLE::MAC };
-	const UINT nIndex = pCmdUI->m_nID - ID_MERGE_RESULT_EOL_ASIS;
-	pCmdUI->Enable(IsMergeResultPaneActive());
-	if (nIndex < _countof(styles))
-		pCmdUI->SetRadio(styles[nIndex] == m_resultSaveEolStyle);
-}
-
-/**
  * @brief Toggle between compact placeholders and full conflict sections.
  */
 void CMergeDoc::OnMergeResultShowSections()

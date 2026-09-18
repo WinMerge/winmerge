@@ -7,6 +7,8 @@
 #include "stdafx.h"
 #include "MergeResultView.h"
 #include "MergeResultPane.h"
+#include "MergeResultContainer.h"
+#include "MergeResultStatusBar.h"
 #include "Merge.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
@@ -15,6 +17,7 @@
 #include "SyntaxColors.h"
 #include "BCMenu.h"
 #include "I18nGUI.h"
+#include "../Externals/crystaledit/editlib/dialogs/gotodlg.h"
 #include <algorithm>
 
 #ifdef _DEBUG
@@ -49,6 +52,7 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnUpdateForwardToMergeView)
 	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
+	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -104,7 +108,10 @@ void CMergeResultView::RefreshOptions()
 	}
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 	if (m_hWnd != nullptr)
+	{
 		Invalidate();
+		UpdateStatusbar();
+	}
 }
 
 /**
@@ -363,4 +370,55 @@ bool CMergeResultView::IsResultPaneVisible() const
 {
 	const CWnd* pParent = GetParent();
 	return pParent != nullptr && !!pParent->IsWindowVisible();
+}
+
+void CMergeResultView::UpdateStatusbar()
+{
+	OnUpdateCaret();
+}
+
+void CMergeResultView::OnUpdateCaret()
+{
+	if (m_bCursorHidden || !IsTextBufferInitialized())
+		return;
+
+	CMergeResultContainer* pContainer = dynamic_cast<CMergeResultContainer*>(GetParent());
+	if (pContainer == nullptr)
+		return;
+
+	CMergeResultStatusBar* pStatusBar = pContainer->GetStatusBar();
+	if (pStatusBar == nullptr)
+		return;
+
+	CEPoint cursorPos = GetCursorPos();
+	int nScreenLine = cursorPos.y;
+	CString sLine;
+	sLine.Format(_T("%d"), nScreenLine + 1);
+	int curChar = cursorPos.x + 1;
+	int chars = GetLineLength(nScreenLine);
+	int column = CalculateActualOffset(nScreenLine, cursorPos.x, true) + 1;
+	int columns = CalculateActualOffset(nScreenLine, chars, true) + 1;
+	chars++;
+
+	auto [selectedLines, selectedChars] = GetSelectedLineAndCharacterCount();
+
+	pStatusBar->SetLineInfo(sLine, column, columns, curChar, chars, selectedLines, selectedChars);
+
+	// Update encoding and EOL info if available
+	CMergeDoc* pDoc = GetDocument();
+	if (pDoc != nullptr)
+	{
+		CMergeResultTextBuffer* pBuf = pDoc->GetMergeResultBuffer();
+		if (pBuf != nullptr && pBuf->IsInitialized())
+		{
+			pStatusBar->SetEncodingAndEol(pBuf->getCodepage(), pBuf->getHasBom(), pBuf->GetDefaultEol());
+			pStatusBar->SetReadOnly(pBuf->GetReadOnly());
+		}
+	}
+}
+
+void CMergeResultView::OnWMGoto()
+{
+	CGotoDlg dlg(this);
+	dlg.DoModal();
 }

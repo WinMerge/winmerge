@@ -7,7 +7,7 @@
  */
 #pragma once
 
-#include "MergeStatusBar.h"
+#include "MergeResultStatusBar.h"
 
 class CMergeDoc;
 
@@ -31,13 +31,16 @@ public:
 	void UpdateConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
 	void UpdateResources();
 
+	CMergeDoc* GetDocument() const { return m_pDoc; }
+	CMergeResultStatusBar* GetStatusBar() { return &m_statusBar; }
+
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	DECLARE_MESSAGE_MAP()
 
 private:
-	CMergeStatusBar m_statusBar; /**< Status bar for conflict info */
+	CMergeResultStatusBar m_statusBar; /**< Dedicated status bar for merge result */
 	CMergeDoc* m_pDoc; /**< Associated document */
 
 	static const int STATUS_BAR_HEIGHT = 20; /**< Height in pixels for status bar */

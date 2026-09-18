@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "MergeResultContainer.h"
 #include "MergeDoc.h"
-#include "MergeStatusBar.h"
+#include "MergeResultStatusBar.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -89,17 +89,13 @@ void CMergeResultContainer::OnSize(UINT nType, int cx, int cy)
 
 	// Position the status bar at the bottom
 	m_statusBar.MoveWindow(0, cy - nStatusBarHeight, cx, nStatusBarHeight);
-
-	// Resize status bar panes
-	int widths[] = { cx - 100, 100 };
-	m_statusBar.Resize(widths);
 }
 
 void CMergeResultContainer::UpdateConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
 {
 	if (IsWindow(m_statusBar.m_hWnd))
 	{
-		m_statusBar.SetResultConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly);
+		m_statusBar.SetConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly);
 	}
 }
 

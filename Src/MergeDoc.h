@@ -577,8 +577,6 @@ protected:
 	afx_msg void OnUpdateMergeResultSave(CCmdUI* pCmdUI);
 	afx_msg void OnMergeStartSession();
 	afx_msg void OnUpdateMergeStartSession(CCmdUI* pCmdUI);
-	afx_msg void OnMergeResultEolStyle(UINT nID);
-	afx_msg void OnUpdateMergeResultEolStyle(CCmdUI* pCmdUI);
 	afx_msg void OnMergeResultShowSections();
 	afx_msg void OnUpdateMergeResultShowSections(CCmdUI* pCmdUI);
 	afx_msg void OnOK();

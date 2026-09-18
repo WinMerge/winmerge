@@ -34,6 +34,8 @@ public:
 	virtual void OnInitialUpdate() override;
 	virtual BOOL PreTranslateMessage(MSG* pMsg) override;
 	virtual void DrawMargin(const CRect & rect, int nLineIndex, int nLineNumber) override;
+	virtual void OnUpdateCaret() override;
+	void UpdateStatusbar();
 
 	void RefreshOptions();
 	/** @brief Scroll view so that the segment of the given diff is visible. */
@@ -53,6 +55,7 @@ protected:
 	afx_msg void OnAutoMerge();
 	afx_msg void OnForwardToMergeView(UINT nID);
 	afx_msg void OnUpdateForwardToMergeView(CCmdUI* pCmdUI);
+	afx_msg void OnWMGoto();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
