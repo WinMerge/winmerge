@@ -102,9 +102,6 @@ BEGIN
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "Show &Full Conflict Sections", ID_MERGE_RESULT_SHOW_SECTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "Save Merge Result",           ID_MERGE_RESULT_SAVE
-        MENUITEM "Save Merge Result &As...",    ID_MERGE_RESULT_SAVEAS
     END
 END
 
@@ -679,12 +676,14 @@ BEGIN
             MENUITEM "Save &Left",                  ID_FILE_SAVE_LEFT
             MENUITEM "Save &Middle",                ID_FILE_SAVE_MIDDLE
             MENUITEM "Save &Right",                 ID_FILE_SAVE_RIGHT
+            MENUITEM "&Save Merge Result",          ID_FILE_SAVE_MERGE_RESULT
         END
         POPUP "Save &As"
         BEGIN
             MENUITEM "Save &Left As...",            ID_FILE_SAVEAS_LEFT
             MENUITEM "Save &Middle As...",          ID_FILE_SAVEAS_MIDDLE
             MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
+            MENUITEM "Save Merge Result &As...",    ID_FILE_SAVEAS_MERGE_RESULT
         END
         MENUITEM SEPARATOR
         MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
@@ -922,9 +921,6 @@ BEGIN
                 MENUITEM "Middle",                      ID_MERGE_CHOOSE_ALL_MIDDLE
                 MENUITEM "Right",                       ID_MERGE_CHOOSE_ALL_RIGHT
             END
-            MENUITEM SEPARATOR
-            MENUITEM "Save Merge Result",           ID_MERGE_RESULT_SAVE
-            MENUITEM "Save Merge Result &As...",    ID_MERGE_RESULT_SAVEAS
         END
         MENUITEM SEPARATOR
         MENUITEM "Add &Synchronization Point\tAlt+S", ID_ADD_SYNCPOINT
@@ -1303,10 +1299,12 @@ BEGIN
         MENUITEM "Save &Left",                  ID_FILE_SAVE_LEFT
         MENUITEM "Save &Middle",                ID_FILE_SAVE_MIDDLE
         MENUITEM "Save &Right",                 ID_FILE_SAVE_RIGHT
+        MENUITEM "&Save Merge Result",          ID_FILE_SAVE_MERGE_RESULT
         MENUITEM SEPARATOR
         MENUITEM "Save &Left As...",            ID_FILE_SAVEAS_LEFT
         MENUITEM "Save &Middle As...",          ID_FILE_SAVEAS_MIDDLE
         MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
+        MENUITEM "Save Merge Result &As...",    ID_FILE_SAVEAS_MERGE_RESULT
     END
 END
 
@@ -2378,14 +2376,14 @@ BEGIN
 END
 
 IDD_EDIT_GOTO DIALOGEX 0, 0, 167, 47
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Go to"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-    LTEXT           "&Line number:",-1,5,5,42,10,SS_CENTERIMAGE
-    EDITTEXT        IDC_NUMBER,55,5,45,12,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "&Ok",IDOK,110,5,50,15,WS_GROUP
-    PUSHBUTTON      "&Cancel",IDCANCEL,110,25,50,15
+    LTEXT           "&Line number:",IDC_STATIC,7,7,52,10,SS_CENTERIMAGE
+    EDITTEXT        IDC_NUMBER,65,7,45,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&Ok",IDOK,55,25,50,15,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,110,25,50,15
 END
 
 IDD_FILTERS_LINEFILTERS DIALOGEX 0, 0, 530, 176
@@ -5435,8 +5433,8 @@ BEGIN
     ID_MERGE_CHOOSE_ALL_LEFT "Resolve all unresolved conflicts using left pane content\nChoose Left for All"
     ID_MERGE_CHOOSE_ALL_MIDDLE "Resolve all unresolved conflicts using middle pane content\nChoose Middle for All"
     ID_MERGE_CHOOSE_ALL_RIGHT "Resolve all unresolved conflicts using right pane content\nChoose Right for All"
-    ID_MERGE_RESULT_SAVE    "Save merge result\nSave Merge Result"
-    ID_MERGE_RESULT_SAVEAS  "Save merge result to selected path\nSave Merge Result As"
+    ID_FILE_SAVE_MERGE_RESULT    "Save merge result\nSave Merge Result"
+    ID_FILE_SAVEAS_MERGE_RESULT  "Save merge result to selected path\nSave Merge Result As"
     ID_MERGE_START_SESSION  "Open the Merge Result pane to merge the compared files; differences start unresolved\nStart Merge Session"
     ID_MERGE_CHOOSE_THIS    "Put this pane's lines for the difference at the cursor into the Merge Result pane; choosing it again removes them\nChoose for This Difference"
     ID_MERGE_COPY_LINES_TO_RESULT "Put this pane's lines into the Merge Result pane for every difference the selection covers\nChoose for Selected Differences"
@@ -5446,7 +5444,23 @@ BEGIN
     ID_NEXTFILE             "\nNext File (Ctrl+F8)"
     ID_LASTFILE             "\nLast File"
     ID_PREVFILE             "\nPrevious File (Ctrl+F7)"
+END
 
+STRINGTABLE
+BEGIN
+    IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
+    IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE "The merge result has not been saved.\n\nSave the merge result?"
+    IDS_MERGE_RESULT_CONFIRM_REBUILD "Rebuilding the merge result discards the changes made in the Merge Result pane.\n\nContinue?"
+    IDS_MERGE_RESULT_RECALCULATED "The differences were recalculated and no longer match the Merge Result pane.\n\nYour result text is kept, but the Choose commands are disabled until a new merge session is started from the Merge menu. Remaining conflicts are shown as full conflict sections and can be edited directly."
+    IDS_MERGE_RESULT_CONFLICT_WHITESPACE "<Merge Conflict (Whitespace only)>"
+    IDS_MERGE_RESULT_CONFLICT "<Merge Conflict>"
+    IDS_MERGE_RESULT_UNRESOLVED "<Unresolved Difference>"
+    IDS_MERGE_RESULT_ALL_RESOLVED "All differences resolved"
+    IDS_MERGE_RESULT_STATUS "%1 unresolved difference(s), %2 conflict(s)"
+    IDS_MERGE_RESULT_WHITESPACE_ONLY " (%1 whitespace only)"
+    IDS_MERGE_RESULT_SAVE_AS "Save Merge Result As"
+    IDS_MERGE_RESULT_SAVE_FAILED "Saving the merge result to\n%1\nfailed.\n%2"
+    IDS_MERGE_RESULT_SAVE_MERGE_RESULT "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
 END
 
 // PLUGINS MENU
