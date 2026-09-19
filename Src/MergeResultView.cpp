@@ -63,6 +63,8 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_EOL, ID_VIEW_EOL, OnUpdateForwardToMergeView)
 	ON_COMMAND_RANGE(ID_VIEW_TOPMARGIN, ID_VIEW_TOPMARGIN, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_TOPMARGIN, ID_VIEW_TOPMARGIN, OnUpdateForwardToMergeView)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -439,3 +441,16 @@ void CMergeResultView::OnWMGoto()
 	CGotoDlg dlg(this);
 	dlg.DoModal();
 }
+
+void CMergeResultView::OnUpdateEditUndo(CCmdUI* pCmdUI)
+{
+	__super::OnUpdateEditUndo(pCmdUI);
+	pCmdUI->SetText(_("&Undo\tCtrl+Z").c_str());
+}
+
+void CMergeResultView::OnUpdateEditRedo(CCmdUI* pCmdUI)
+{
+	__super::OnUpdateEditUndo(pCmdUI);
+	pCmdUI->SetText(_("&Redo\tCtrl+Y").c_str());
+}
+

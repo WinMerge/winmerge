@@ -56,6 +56,8 @@ protected:
 	afx_msg void OnForwardToMergeView(UINT nID);
 	afx_msg void OnUpdateForwardToMergeView(CCmdUI* pCmdUI);
 	afx_msg void OnWMGoto();
+	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
