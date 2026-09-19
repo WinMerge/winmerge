@@ -6,6 +6,7 @@
 #pragma once
 
 #include "scbarcf.h"
+#include <memory>
 
 // You must #define this for viewbar to compile properly
 #define TViewBarBase CSizingControlBarCF
@@ -36,7 +37,7 @@ public:
 	void SetMergeDoc(CMergeDoc* pDoc);
 	void UpdateResources();
 	void UpdateConflictInfo(const String& sOutputPath, int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
-	CMergeResultContainer* GetContainer() { return m_pContainer; }
+	CMergeResultContainer* GetContainer() { return m_pContainer.get(); }
 
 	//{{AFX_MSG(CMergeResultBar)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -49,7 +50,7 @@ private:
 	HWND m_hwndFrame; /**< Frame window handle */
 	CCreateContext* m_pCreateContext; /**< Create context for MFC view creation */
 	CMergeDoc* m_pDoc; /**< Associated merge document */
-	CMergeResultContainer* m_pContainer; /**< Container for view and status bar */
+	std::unique_ptr<CMergeResultContainer> m_pContainer; /**< Container for view and status bar */
 };
 
 

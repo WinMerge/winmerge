@@ -27,6 +27,11 @@ CMergeResultContainer::CMergeResultContainer()
 
 CMergeResultContainer::~CMergeResultContainer()
 {
+	// Destroy the window if it still exists
+	if (IsWindow(m_hWnd))
+	{
+		DestroyWindow();
+	}
 }
 
 BOOL CMergeResultContainer::Create(CWnd* pParentWnd, CMergeDoc* pDoc)

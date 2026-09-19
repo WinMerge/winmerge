@@ -71,12 +71,11 @@ int CMergeResultBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetSCBStyle(SCBS_EDGETOP | SCBS_EDGEBOTTOM | SCBS_SIZECHILD);
 
 	// Create the container that holds both the result view and status bar
-	m_pContainer = new CMergeResultContainer();
+	m_pContainer.reset(new CMergeResultContainer());
 	if (!m_pContainer->Create(this, m_pDoc))
 	{
 		TRACE0("Failed to create merge result container\n");
-		delete m_pContainer;
-		m_pContainer = nullptr;
+		m_pContainer.reset();
 		return -1;
 	}
 
@@ -85,7 +84,7 @@ int CMergeResultBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	{
 		CMergeResultView* pView = new CMergeResultView();
 		DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
-		if (!pView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), m_pContainer, 154, m_pCreateContext))
+		if (!pView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), m_pContainer.get(), 154, m_pCreateContext))
 		{
 			TRACE0("Failed to create CMergeResultView\n");
 			delete pView;
