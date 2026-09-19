@@ -53,6 +53,16 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND_RANGE(ID_VIEW_WORDWRAP, ID_VIEW_WORDWRAP, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_WORDWRAP, ID_VIEW_WORDWRAP, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_VIEW_LINENUMBERS, ID_VIEW_LINENUMBERS, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_LINENUMBERS, ID_VIEW_LINENUMBERS, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_VIEW_WHITESPACE, ID_VIEW_WHITESPACE, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_WHITESPACE, ID_VIEW_WHITESPACE, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_VIEW_EOL, ID_VIEW_EOL, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_EOL, ID_VIEW_EOL, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_VIEW_TOPMARGIN, ID_VIEW_TOPMARGIN, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_TOPMARGIN, ID_VIEW_TOPMARGIN, OnUpdateForwardToMergeView)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -100,6 +110,8 @@ void CMergeResultView::RefreshOptions()
 		// The margin always stays on: it carries the per-line provenance
 		// markers (which pane each result line was taken from)
 		SetSelectionMargin(true);
+		SetTopMargin(GetOptionsMgr()->GetBool(
+		GetDocument()->m_ptBuf[0]->GetTableEditing() ? OPT_VIEW_TOPMARGIN_TABLE : OPT_VIEW_TOPMARGIN));
 		SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 		SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 		SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL),
