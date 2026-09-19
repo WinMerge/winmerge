@@ -114,7 +114,6 @@ public:
 	void GetSelectedDiffs(int & firstDiff, int & lastDiff);
 	std::map<int, std::vector<int>> GetColumnSelectedWordDiffIndice();
 	CString GetSelectedText();
-	std::pair<int, int> GetSelectedLineAndCharacterCount();
 	CString GetLineText(int idx);
 	CMergeDoc* GetDocument();
 	const CMergeDoc *GetDocument() const { return const_cast<CMergeEditView *>(this)->GetDocument(); }

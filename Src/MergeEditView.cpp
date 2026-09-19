@@ -338,35 +338,6 @@ CString CMergeEditView::GetSelectedText()
 /**
  * @brief Return number of selected characters
  */
-std::pair<int, int> CMergeEditView::GetSelectedLineAndCharacterCount()
-{
-	auto [ptStart, ptEnd] = GetSelection();
-	int nCharsOrColumns =0;
-	int nSelectedLines = 0;
-	for (int nLine = ptStart.y; nLine <= ptEnd.y; ++nLine)
-	{
-		if ((GetLineFlags(nLine) & (LF_GHOST | LF_INVISIBLE)) == 0)
-		{
-			int nLineLength = GetLineLength(nLine);
-			if (nLineLength < GetFullLineLength(nLine))
-				nLineLength++; // Add 1 for the EOL char
-			nCharsOrColumns += (nLine == ptEnd.y) ? ptEnd.x : nLineLength;
-			if (nLine == ptStart.y)
-				nCharsOrColumns -= ptStart.x;
-			if (nLine < ptEnd.y || (ptStart != ptEnd && ptEnd.x > 0))
-				++nSelectedLines;
-		}
-	}
-	if (m_bRectangularSelection)
-	{
-		int nStartLeft, nStartRight, nEndLeft, nEndRight;
-		GetColumnSelection(ptStart.y, nStartLeft, nStartRight);
-		GetColumnSelection(ptEnd.y, nEndLeft, nEndRight);
-		nCharsOrColumns = (std::max)(nStartRight, nEndRight) - (std::min)(nStartLeft, nEndLeft);
-	}
-	return { nSelectedLines, nCharsOrColumns };
-}
-
 /**
  * @brief Get diffs inside selection.
  * @param [out] firstDiff First diff inside selection
