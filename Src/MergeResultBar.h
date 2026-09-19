@@ -35,7 +35,7 @@ public:
 	void SetCreateContext(CCreateContext* pContext);
 	void SetMergeDoc(CMergeDoc* pDoc);
 	void UpdateResources();
-	void UpdateConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
+	void UpdateConflictInfo(const String& sOutputPath, int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
 	CMergeResultContainer* GetContainer() { return m_pContainer; }
 
 	//{{AFX_MSG(CMergeResultBar)

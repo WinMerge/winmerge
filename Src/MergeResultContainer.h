@@ -28,7 +28,7 @@ public:
 	virtual ~CMergeResultContainer();
 
 	BOOL Create(CWnd* pParentWnd, CMergeDoc* pDoc);
-	void UpdateConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
+	void UpdateConflictInfo(const String& sOutputPath, int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
 	void UpdateResources();
 
 	CMergeDoc* GetDocument() const { return m_pDoc; }

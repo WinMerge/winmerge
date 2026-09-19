@@ -169,11 +169,11 @@ void CMergeResultBar::UpdateResources()
 /**
  * @brief Update conflict statistics information in status bar
  */
-void CMergeResultBar::UpdateConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
+void CMergeResultBar::UpdateConflictInfo(const String& sOutputPath, int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
 {
 	if (m_pContainer != nullptr)
 	{
-		m_pContainer->UpdateConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly);
+		m_pContainer->UpdateConflictInfo(sOutputPath, nConflicts, nUnresolved, nWhiteSpaceOnly);
 	}
 }
 

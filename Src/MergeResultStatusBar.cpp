@@ -31,9 +31,11 @@ static const UINT RO_PANEL_WIDTH = 20;
 static const UINT ENCODING_PANEL_WIDTH = 90;
 static const UINT EOL_PANEL_WIDTH = 30;
 static const UINT LINEINFO_PANEL_WIDTH = 160;
+static const UINT CONFLICT_PANEL_WIDTH = 200;
 
 static UINT indicatorsResult[] =
 {
+	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
@@ -90,14 +92,17 @@ BOOL CMergeResultStatusBar::Create(CWnd* pParentWnd)
 	int eolWidth = pointToPixel(EOL_PANEL_WIDTH);
 	int encodingWidth = pointToPixel(ENCODING_PANEL_WIDTH);
 	int lineInfoWidth = pointToPixel(LINEINFO_PANEL_WIDTH);
+	int conflictWidth = pointToPixel(CONFLICT_PANEL_WIDTH);
 
-	SetPaneInfo(PANE_CONFLICT, ID_SEPARATOR, SBPS_STRETCH | SBPS_NOBORDERS, 0);
+	SetPaneInfo(PANE_CONFLICT, ID_SEPARATOR, SBPS_NOBORDERS, conflictWidth);
+	SetPaneInfo(PANE_PATH, ID_SEPARATOR, SBPS_STRETCH | SBPS_NOBORDERS, 0);
 	SetPaneInfo(PANE_LINEINFO, ID_SEPARATOR, SBPS_CLICKABLE, lineInfoWidth);
 	SetPaneInfo(PANE_ENCODING, ID_SEPARATOR, SBPS_CLICKABLE, encodingWidth);
 	SetPaneInfo(PANE_EOL,      ID_SEPARATOR, SBPS_CLICKABLE, eolWidth);
 	SetPaneInfo(PANE_RO,       ID_SEPARATOR, SBPS_CLICKABLE, roWidth);
 
 	UpdateConflictText();
+	UpdatePathText();
 	UpdateLineText();
 	UpdateEncodingText();
 	UpdateEolText();
@@ -114,6 +119,15 @@ void CMergeResultStatusBar::SetConflictInfo(int nConflicts, int nUnresolved, int
 		m_nUnresolved = nUnresolved;
 		m_nWhiteSpaceOnly = nWhiteSpaceOnly;
 		UpdateConflictText();
+	}
+}
+
+void CMergeResultStatusBar::SetPath(const String& sOutputPath)
+{
+	if (m_sOutputPath != sOutputPath)
+	{
+		m_sOutputPath = sOutputPath;
+		UpdatePathText();
 	}
 }
 
@@ -173,26 +187,36 @@ void CMergeResultStatusBar::UpdateConflictText()
 	if (!IsWindow(m_hWnd))
 		return;
 
-	CString strInfo;
+	String strInfo;
 	if (m_nConflicts == 0)
 	{
-		strInfo = _("All resolved").c_str();
+		strInfo = _("No Conflicts");
 	}
 	else if (m_nUnresolved == 0)
 	{
-		strInfo.Format(_("%d Conflicts (all resolved)").c_str(), m_nConflicts);
+		strInfo = strutils::format_string1(_("Conflicts: %1 (all resolved)"),
+			strutils::to_str(m_nConflicts));
+	}
+	else if (m_nWhiteSpaceOnly == 0)
+	{
+		strInfo = strutils::format_string2(_("Conflicts: %1, Unresolved: %2"), 
+			strutils::to_str(m_nConflicts), strutils::to_str(m_nUnresolved));
 	}
 	else
 	{
-		strInfo.Format(_("%d Conflicts / %d Unresolved").c_str(), m_nConflicts, m_nUnresolved);
-		if (m_nWhiteSpaceOnly > 0)
-		{
-			CString strWs;
-			strWs.Format(_(" (%d whitespace-only)").c_str(), m_nWhiteSpaceOnly);
-			strInfo += strWs;
-		}
+		strInfo = strutils::format_string3(_("Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"),
+			strutils::to_str(m_nConflicts), strutils::to_str(m_nUnresolved),
+			strutils::to_str(m_nWhiteSpaceOnly));
 	}
-	SetPaneText(PANE_CONFLICT, strInfo);
+	SetPaneText(PANE_CONFLICT, strInfo.c_str());
+}
+
+void CMergeResultStatusBar::UpdatePathText()
+{
+	if (!IsWindow(m_hWnd))
+		return;
+
+	SetPaneText(PANE_PATH, (m_sOutputPath.empty() ? _("<Untitled>") : m_sOutputPath).c_str());
 }
 
 void CMergeResultStatusBar::UpdateLineText()

@@ -73,7 +73,7 @@ void CMergeResultContainer::OnSize(UINT nType, int cx, int cy)
 		return;
 
 	// Calculate layout: status bar at bottom
-	int nStatusBarHeight = STATUS_BAR_HEIGHT;
+	int nStatusBarHeight = MulDiv(STATUS_BAR_HEIGHT, GetSystemMetrics(SM_CXSMICON), 16);
 	if (cy < nStatusBarHeight)
 		nStatusBarHeight = cy / 2;
 
@@ -91,10 +91,11 @@ void CMergeResultContainer::OnSize(UINT nType, int cx, int cy)
 	m_statusBar.MoveWindow(0, cy - nStatusBarHeight, cx, nStatusBarHeight);
 }
 
-void CMergeResultContainer::UpdateConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
+void CMergeResultContainer::UpdateConflictInfo(const String& sOutputPath, int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
 {
 	if (IsWindow(m_statusBar.m_hWnd))
 	{
+		m_statusBar.SetPath(sOutputPath);
 		m_statusBar.SetConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly);
 	}
 }

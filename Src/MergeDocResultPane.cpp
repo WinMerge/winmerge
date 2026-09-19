@@ -358,7 +358,7 @@ String CMergeDoc::GetPaneApparentLinesText(int nPane, int nApparentBegin,
 		if (nLength > 0)
 			text.append(pBuf->GetLineChars(nLine), nLength);
 		const tchar_t* pszEol = pBuf->GetLineEol(nLine);
-		text += (pszEol != nullptr && *pszEol != _T('\0')) ? pszEol : pszDefaultEol;
+		text += (pszEol != nullptr && *pszEol != _T('\0')) ? pszEol : _T("");
 		++nLines;
 	}
 	if (pnLines != nullptr)

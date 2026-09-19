@@ -507,7 +507,7 @@ void CMergeEditFrame::OnIdleUpdateCmdUI()
 		{
 			int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
 			m_pMergeDoc->GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
-			m_wndResultBar.UpdateConflictInfo(nConflicts, nUnresolved, nWhiteSpaceOnly);
+			m_wndResultBar.UpdateConflictInfo(m_pMergeDoc->GetSaveAsPath(), nConflicts, nUnresolved, nWhiteSpaceOnly);
 		}
 	}
 	CMergeFrameCommon::OnIdleUpdateCmdUI();

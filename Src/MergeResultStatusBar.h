@@ -27,6 +27,7 @@ public:
 	enum PaneIndex
 	{
 		PANE_CONFLICT = 0,
+		PANE_PATH,
 		PANE_LINEINFO,
 		PANE_ENCODING,
 		PANE_EOL,
@@ -41,6 +42,8 @@ public:
 
 	// Conflict statistics
 	void SetConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
+
+	void SetPath(const String& sOutputPath);
 
 	// Caret / line info from CMergeResultView
 	void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
@@ -60,6 +63,7 @@ protected:
 
 private:
 	void UpdateConflictText();
+	void UpdatePathText();
 	void UpdateLineText();
 	void UpdateEncodingText();
 	void UpdateEolText();
@@ -71,6 +75,7 @@ private:
 	int m_nConflicts;
 	int m_nUnresolved;
 	int m_nWhiteSpaceOnly;
+	String m_sOutputPath;
 
 	// Caret info
 	String m_sLine;

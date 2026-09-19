@@ -5455,12 +5455,13 @@ BEGIN
     IDS_MERGE_RESULT_CONFLICT_WHITESPACE "<Merge Conflict (Whitespace only)>"
     IDS_MERGE_RESULT_CONFLICT "<Merge Conflict>"
     IDS_MERGE_RESULT_UNRESOLVED "<Unresolved Difference>"
-    IDS_MERGE_RESULT_ALL_RESOLVED "All differences resolved"
-    IDS_MERGE_RESULT_STATUS "%1 unresolved difference(s), %2 conflict(s)"
-    IDS_MERGE_RESULT_WHITESPACE_ONLY " (%1 whitespace only)"
     IDS_MERGE_RESULT_SAVE_AS "Save Merge Result As"
     IDS_MERGE_RESULT_SAVE_FAILED "Saving the merge result to\n%1\nfailed.\n%2"
     IDS_MERGE_RESULT_SAVE_MERGE_RESULT "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
+    IDS_MERGE_RESULT_STATUS_CONFLICTS0 "No Conflicts"
+    IDS_MERGE_RESULT_STATUS_CONFLICTS1 "Conflicts: %1 (all resolved)"
+    IDS_MERGE_RESULT_STATUS_CONFLICTS2 "Conflicts: %1, Unresolved: %2"
+    IDS_MERGE_RESULT_STATUS_CONFLICTS3 "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
 END
 
 // PLUGINS MENU
