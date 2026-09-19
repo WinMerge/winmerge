@@ -119,4 +119,6 @@ public:
 	int ComputeRealLine (int nApparentLine) const;
 	virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber) override;
 
+	std::pair<int, int> GetSelectedLineAndCharacterCount();
+
 };

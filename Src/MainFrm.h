@@ -102,6 +102,7 @@ public:
 		int m_char = -1;
 		String m_fileExt;
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
+		bool m_bSetFocusToOutputPane = false; /**< Focus the merge result pane after opening */
 	};
 
 	struct OpenTableFileParams : public OpenTextFileParams
@@ -217,6 +218,7 @@ public:
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo* infoPrediffer = nullptr,
 		const OpenFolderParams* pOpenParams = nullptr, CTempPathContext* pTempPathContext = nullptr);
 
+	void UpdateToolbar();
 	void UpdateTitleBarAndTabBar();
 	void UpdateResources();
 	void ApplyDiffOptions();
@@ -513,7 +515,6 @@ private:
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
 	std::vector<UINT> GetToolbarButtons();
-	void UpdateToolbar();
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();
