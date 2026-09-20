@@ -59,6 +59,16 @@ static MergePanes GetMergePaneMapping(int nBasePane)
 	return panes;
 }
 
+std::array<String, 3> GetMergePaneMappingString(int nBasePane)
+{
+	if (nBasePane == 0)
+		return { _("Base File"), _("Theirs File"), _("Mine File") };
+	else if (nBasePane == 1)
+		return { _("Theirs File"), _("Base File"), _("Mine File") };
+	else
+		return { _("Mine File"), _("Theirs File"), _("Base File") };
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeResultTextBuffer
 
@@ -1923,12 +1933,22 @@ void CMergeDoc::OnUpdateMergeResultShowSections(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bResultShowFullConflicts);
 }
 
+String CMergeDoc::GetMergePaneRoles() const
+{
+	std::array<String, 3> str = GetMergePaneMappingString(m_nMergeBasePane);
+	return strutils::format_string3(_("Pane roles: Left=%1, Middle=%2, Right=%3"), str[0], str[1], str[2]);
+}
+
 void CMergeDoc::OnMergeStartSession()
 {
 	if (auto* pView = GetActiveMergeView())
 		StartMergeSession(2 - pView->m_nThisPane, false);
 	else
 		StartMergeSession(1, false);
+
+	String paneRoles = GetMergePaneRoles();
+	String msg = strutils::format_string1(_("Merge session started.\n\n%1"), paneRoles);
+	ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
 }
 
 void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)

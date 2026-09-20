@@ -5319,7 +5319,9 @@ END
 // EDITOR : AUTO MERGE
 STRINGTABLE
 BEGIN
-    IDS_AUTO_MERGE          "Automatic merges: %1\nUnresolved conflicts: %2"
+    IDS_AUTO_MERGE          "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
+    IDS_MERGE_SESSION_STARTED "Merge session started.\n\n%1"
+    IDS_PANE_ROLES          "Pane roles: Left=%1, Middle=%2, Right=%3"
     IDS_CODEPAGE_MERGED     "Codepage change merged."
     IDS_CODEPAGE_CONFLICT   "Codepage changes are conflicting."
     IDS_EOL_MERGED          "EOL change merged."

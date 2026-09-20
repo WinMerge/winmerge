@@ -616,6 +616,7 @@ private:
 	void FlagMovedLines();
 	String GetFileExt(const tchar_t* sFileName, const tchar_t* sDescription) const;
 	void DoFileSave(int pane);
+	String GetMergePaneRoles() const;
 };
 
 /**

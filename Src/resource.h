@@ -2119,6 +2119,8 @@
 #define IDS_AUTOCOMPLETE_MRU            43144
 #define IDS_NOTINSTALLED                43229
 #define IDS_AUTO_MERGE                  43241
+#define IDS_MERGE_SESSION_STARTED       43242
+#define IDS_PANE_ROLES                  43243
 #define IDS_CODEPAGE_MERGED             43244
 #define IDS_CODEPAGE_CONFLICT           43245
 #define IDS_EOL_MERGED                  43246

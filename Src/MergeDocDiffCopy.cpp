@@ -309,6 +309,9 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 {
 	if (m_nBuffers < 3)
 		return;
+
+	m_nMergeBasePane = 2 - dstPane;
+
 	const int lastDiff = m_diffList.GetSize() - 1;
 	const int firstDiff = 0;
 	bool bGroupWithPrevious = false;
@@ -399,8 +402,9 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 		pViewDst->SelectDiff(nDiff, true, false);
 
 	ShowMessageBox(
-		strutils::format_string2(
-			_("Automatic merges: %1\nUnresolved conflicts: %2"),
+		strutils::format_string3(
+			_("Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"),
+			GetMergePaneRoles(),
 			strutils::format(_T("%d"), autoMergedCount),
 			strutils::format(_T("%d"), unresolvedConflictCount)),
 		MB_ICONINFORMATION);
