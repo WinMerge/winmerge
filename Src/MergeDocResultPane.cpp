@@ -23,6 +23,8 @@
 #include "Environment.h"
 #include "paths.h"
 #include "Merge.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
 #include "resource.h"
 #include <algorithm>
 
@@ -1956,6 +1958,6 @@ void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)
 	// Available when the pane is not shown yet, and as the recovery path
 	// when the segment <-> diff links were severed by a rescan
 	const bool bLinksSevered = m_bResultBuilt && m_resultDiffSnapshot.empty();
-	pCmdUI->Enable(HasMergeResultPane() &&
-		(!IsMergeResultPaneVisible() || bLinksSevered));
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) &&
+		HasMergeResultPane() && (!IsMergeResultPaneVisible() || bLinksSevered));
 }

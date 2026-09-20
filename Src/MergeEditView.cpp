@@ -2408,7 +2408,7 @@ void CMergeEditView::OnAutoMerge()
 	// With a merge result pane available, Auto Merge switches to the
 	// 4-pane merge view and auto-merges into the result pane, leaving
 	// the compared files untouched
-	if (GetDocument()->HasMergeResultPane())
+	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && GetDocument()->HasMergeResultPane())
 	{
 		CWaitCursor waitstatus;
 		int nMergeBasePane = 2 - m_nThisPane;

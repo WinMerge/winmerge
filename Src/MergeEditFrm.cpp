@@ -136,7 +136,7 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	// kdiff3-style merge result pane (3-way compare only): a dockable
 	// bar at the bottom with a full-width editable result view
-	if (m_pMergeDoc->m_nBuffers == 3 && GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED))
+	if (m_pMergeDoc->m_nBuffers == 3)
 	{
 		sCaption = _("Merge Result Pane");
 		if (!m_wndResultBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_MERGE_RESULT_BAR, pContext, m_pMergeDoc))
