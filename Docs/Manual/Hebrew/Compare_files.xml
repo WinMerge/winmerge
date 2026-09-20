@@ -656,7 +656,7 @@ WinMerge 1.7.1 עבור פונקציות מיזוג וניווט בהבדלים:
       </indexterm>
 
       <indexterm>
-        <primary>three-way merge</primary>
+        <primary>3-way merge</primary>
       </indexterm>
 
       <para>When you compare three text files and specify a merge output path (for

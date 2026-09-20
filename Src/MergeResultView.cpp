@@ -452,7 +452,7 @@ void CMergeResultView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 
 void CMergeResultView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
-	__super::OnUpdateEditUndo(pCmdUI);
+	__super::OnUpdateEditRedo(pCmdUI);
 	pCmdUI->SetText(_("&Redo\tCtrl+Y").c_str());
 }
 

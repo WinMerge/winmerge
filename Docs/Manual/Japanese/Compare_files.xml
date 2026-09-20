@@ -606,7 +606,7 @@ linkend="Compare_files_merge" /> で説明します。 <xref linkend="Quick_star
       </indexterm>
 
       <indexterm>
-        <primary>three-way merge</primary>
+        <primary>3方向マージ</primary>
       </indexterm>
 
       <para>When you compare three text files and specify a merge output path (for

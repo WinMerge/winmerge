@@ -400,7 +400,7 @@ WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー�
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
+        <primary>3方向マージ</primary>
         <secondary>auto-merge with /al option</secondary>
       </indexterm>
       <term><option>/al</option></term>
@@ -413,7 +413,7 @@ Auto-merges at startup with pane arrangement: left (merge target)  - middle
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
+        <primary>3方向マージ</primary>
         <secondary>auto-merge with /am option</secondary>
       </indexterm>
       <term><option>/am</option></term>
@@ -426,7 +426,7 @@ target) - right (theirs).</para>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
+        <primary>3方向マージ</primary>
         <secondary>auto-merge with /ar option</secondary>
       </indexterm>
       <term><option>/ar</option></term>
