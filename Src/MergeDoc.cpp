@@ -716,9 +716,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		{
 			m_bEditAfterRescan[nBuffer] = false;
 		}
-
-		// Keep the kdiff3-style merge result pane in sync with the new diff list
-		UpdateMergeResultAfterRescan();
 	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE) &&

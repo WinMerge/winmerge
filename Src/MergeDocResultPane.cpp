@@ -360,7 +360,6 @@ String CMergeDoc::GetPaneApparentLinesText(int nPane, int nApparentBegin,
 	String text;
 	int nLines = 0;
 	const CDiffTextBuffer* pBuf = m_ptBuf[nPane].get();
-	const tchar_t* pszDefaultEol = m_ptResultBuf->GetDefaultEol();
 	const int nLineCount = pBuf->GetLineCount();
 	for (int nLine = nApparentBegin; nLine <= nApparentEnd && nLine < nLineCount; ++nLine)
 	{
@@ -553,66 +552,6 @@ void CMergeDoc::BuildMergeResult()
 		m_pMergeResultView->Invalidate();
 	}
 	UpdateMergeResultPaneCaption();
-}
-
-/**
- * @brief Called at the end of Rescan() to keep the result pane in sync.
- */
-void CMergeDoc::UpdateMergeResultAfterRescan()
-{
-	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || m_pMergeResultView == nullptr)
-		return;
-	if (!m_bResultBuilt)
-		return; // nothing generated yet, it will be built from the new diffs
-	if (!IsMergeResultPaneVisible() && !m_ptResultBuf->IsModified())
-	{
-		// Hidden and untouched: throw the stale result away so that showing
-		// the pane again rebuilds it from the current differences
-		m_bResultBuilt = false;
-		return;
-	}
-	if (m_ptResultBuf->IsModified())
-	{
-		// The user already changed the result: don't discard their work.
-		if (ResultDiffListUnchanged())
-			return; // same differences as before: all links stay valid
-		if (m_resultDiffSnapshot.empty())
-		{
-			// Links already severed by an earlier rescan: the segment
-			// table is diff-independent now. Only keep the (unused)
-			// lookup table sized to the current list.
-			m_resultDiffToSegment.assign(m_diffList.GetSize(), -1);
-			return;
-		}
-		// The diff list changed, so the segment <-> diff links are no
-		// longer valid; drop them (Choose commands become unavailable).
-		for (auto& seg : m_resultSegments)
-		{
-			if (seg.diffIdx >= 0)
-			{
-				seg.diffIdx = -1;
-				if (seg.state != ResultSegmentState::Conflict &&
-					seg.state != ResultSegmentState::Unresolved)
-					seg.state = ResultSegmentState::Edited;
-			}
-		}
-		m_resultDiffToSegment.assign(m_diffList.GetSize(), -1);
-		m_resultDiffSnapshot.clear();
-		// Unlinked unresolved segments can only be fixed by hand, so their
-		// compact placeholders are expanded to the full conflict sections
-		ReRenderResultConflictSegments();
-		UpdateMergeResultPaneCaption();
-		if (!m_bResultLinksDropNotified)
-		{
-			m_bResultLinksDropNotified = true;
-			ShowMessageBox(
-				_("The differences were recalculated and no longer match the Merge Result pane.\n\nYour result text is kept, but the Choose commands are disabled until a new merge session is started from the Merge menu. Remaining conflicts are shown as full conflict sections and can be edited directly."),
-				MB_OK | MB_ICONINFORMATION);
-		}
-		return;
-	}
-	m_bResultBuilt = false;
-	SetMergeResultPaneVisible(true);
 }
 
 bool CMergeDoc::IsMergeResultModified() const
