@@ -50,6 +50,8 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	// compare views; forward them so they also work while this view is active
 	ON_COMMAND_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnUpdateForwardToMergeView)
 	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)

@@ -82,8 +82,6 @@
 
       <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/fb</option></arg>
-
       <arg choice="opt" rep="norepeat"><option>/l</option>
       <replaceable>linenumber</replaceable></arg>
 
@@ -471,15 +469,6 @@
       <term><option>/fr</option></term>
       <listitem>
         <para>Sets focus to the right side at startup.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/fb</option></term>
-      <listitem>
-        <para>Sets focus to the bottom (Merge Result) pane at startup. Applies
-        to three-way text comparisons where the Merge Result pane is shown
-        (see the <option>/o</option> option).</para>
       </listitem>
     </varlistentry>
 

@@ -342,8 +342,6 @@ public:
 	bool IsMergeResultPaneActive() const;
 	bool IsMergeResultPaneVisible() const;
 	void SetMergeResultPaneVisible(bool bVisible);
-	void ShowMergeResultPaneForOutput();
-	void SetResultAutoMerge(int nBasePane, bool bAutoMerge) { m_nMergeBasePane = nBasePane; m_bResultAutoMerge = bAutoMerge; }
 	int GetMergeBasePane() const { return m_nMergeBasePane; }
 	void StartMergeSession(int nBasePane, bool bAutoMerge);
 	void UpdateMergePaneHeaders(int nBasePane);
@@ -473,14 +471,7 @@ public:
 
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	const String& GetSaveAsPath() const { return m_strSaveAsPath; }
-	void SetSaveAsPath(const String& strSaveAsPath)
-	{
-		m_strSaveAsPath = strSaveAsPath;
-		// A merge output path means the user wants the merge result:
-		// bring up the result pane even if it was last hidden
-		if (!strSaveAsPath.empty())
-			ShowMergeResultPaneForOutput();
-	}
+	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
 
 // implementation methods
 private:

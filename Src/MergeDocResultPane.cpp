@@ -246,6 +246,11 @@ void CMergeDoc::SetMergeResultPaneVisible(bool bVisible)
 			}
 			m_bResultROForced = true;
 		}
+
+		// Update pane headers with merge-related labels
+		UpdateMergePaneHeaders(m_nMergeBasePane);
+
+		m_pMergeResultView->TakeFocus();
 	}
 	else if (m_bResultROForced)
 	{
@@ -253,21 +258,6 @@ void CMergeDoc::SetMergeResultPaneVisible(bool bVisible)
 			m_ptBuf[nBuffer]->SetReadOnly(m_bResultSavedRO[nBuffer]);
 		m_bResultROForced = false;
 	}
-}
-
-/**
- * @brief Show and populate the result pane because the document has a
- * merge output path (opened with -o, or from a conflict file).
- */
-void CMergeDoc::ShowMergeResultPaneForOutput()
-{
-	if (!HasMergeResultPane())
-		return;
-	CMergeEditFrame* pFrame = GetParentFrame();
-	if (pFrame == nullptr)
-		return;
-	pFrame->ShowMergeResultPane();
-	SetMergeResultPaneVisible(true);
 }
 
 /**
@@ -342,9 +332,6 @@ void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 		pFrame->ShowMergeResultPane();
 	SetMergeResultPaneVisible(true);
-
-	// Update pane headers with merge-related labels
-	UpdateMergePaneHeaders(nBasePane);
 }
 
 /**

@@ -44,7 +44,6 @@ rep="norepeat"><option>/clipboard-compare</option></arg>
 <arg choice="opt" rep="norepeat"><option>/fl</option></arg> <arg
 choice="opt" rep="norepeat"><option>/fm</option></arg> <arg choice="opt"
 rep="norepeat"><option>/fr</option></arg> <arg choice="opt"
-rep="norepeat"><option>/fb</option></arg> <arg choice="opt"
 rep="norepeat"><option>/l</option>
 <replaceable>linenumber</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/c</option> <replaceable>charpos</replaceable></arg>
@@ -352,15 +351,6 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
       <term><option>/fr</option></term>
       <listitem>
         <para>起動時、右側にフォーカスを当てます。</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/fb</option></term>
-      <listitem>
-        <para>Sets focus to the bottom (Merge Result) pane at startup. Applies to
-three-way text comparisons where the Merge Result pane is shown (see the
-<option>/o</option> option).</para>
       </listitem>
     </varlistentry>
 

@@ -12,8 +12,6 @@
 
 #include "StdAfx.h"
 #include "MainFrm.h"
-#include "DarkModeLib.h"
-#include "MergeResultView.h"
 #include "EditorFilepathBar.h"
 #include <vector>
 #include <unordered_set>
@@ -1132,6 +1130,10 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	if (pOpenParams && !pOpenParams->m_fileExt.empty())
 		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
+	bool bShowMergeResultPane = false;
+	bool bAutoMerge = false;
+	int nMergeBasePane = 1;
+
 	for (int pane = 0; pane < nFiles; pane++)
 	{
 		if (dwFlags)
@@ -1142,38 +1144,32 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 				pMergeDoc->m_ptBuf[pane]->SetModified(true);
 				pMergeDoc->UpdateHeaderPath(pane);
 			}
-			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+			if (nFiles == 3 && ((dwFlags[pane] & FFILEOPEN_AUTOMERGE) || (dwFlags[pane] & FFILEOPEN_SETFOCUS)))
 			{
-				// When a merge output path is given the merge result pane
-				// is the merge target: /al /am /ar request an automatic
-				// merge there instead of changing a source pane
-				if (nFiles == 3 && pOpenParams != nullptr && !pOpenParams->m_strSaveAsPath.empty() && 
-					GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED))
-					pMergeDoc->SetResultAutoMerge(2 - pane, true);
-				else
-					pMergeDoc->DoAutoMerge(pane);
+				nMergeBasePane = 2 - pane;
+				bAutoMerge = (dwFlags[pane] & FFILEOPEN_AUTOMERGE) != 0;
+				bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 			}
 		}
 	}
+
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+	{
+		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+		if (nFiles == 3 && !bShowMergeResultPane)
+			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
+	}
+
+	if (bShowMergeResultPane)
+		pMergeDoc->StartMergeSession(nMergeBasePane, bAutoMerge);
+	else if (bAutoMerge)
+		pMergeDoc->DoAutoMerge(2 - nMergeBasePane);
 
 	pMergeDoc->MoveOnLoad(
 		GetActivePaneFromFlags(nFiles, dwFlags),
 		pOpenParams ? pOpenParams->m_line : -1,
 		true,
 		pOpenParams ? pOpenParams->m_char: -1);
-
-	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
-		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
-
-	// -fb: focus the merge result (output) pane; applied after
-	// MoveOnLoad so it takes precedence over -fl/-fm/-fr
-	if (pOpenParams && pOpenParams->m_bSetFocusToOutputPane)
-	{
-		CMergeResultView* pResultView = pMergeDoc->GetMergeResultView();
-		if (pResultView != nullptr && pResultView->GetSafeHwnd() != nullptr &&
-			pMergeDoc->IsMergeResultPaneVisible())
-			pResultView->TakeFocus();
-	}
 
 	if (!sReportFile.empty())
 		GenerateDocumentReport({ pMergeDoc }, sReportFile);
