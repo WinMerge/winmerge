@@ -828,9 +828,9 @@ bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
 		}
 		return stripped;
 	};
-	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
+	const MergePanes panes = GetMergePaneMapping(m_nMergeBasePane);
 	const String sBase = strippedText(m_nMergeBasePane);
-	return strippedText(nTheirsPane) == sBase && sBase == strippedText(nMinePane);
+	return strippedText(panes.nTheirsPane) == sBase && sBase == strippedText(panes.nMinePane);
 }
 
 /**
