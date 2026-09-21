@@ -54,7 +54,7 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnUpdateForwardToMergeView)
 	ON_COMMAND_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnUpdateForwardToMergeView)
-	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
+	ON_COMMAND_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
 	ON_COMMAND_RANGE(ID_VIEW_WORDWRAP, ID_VIEW_WORDWRAP, OnForwardToMergeView)
@@ -302,12 +302,6 @@ void CMergeResultView::OnLButtonDown(UINT nFlags, CPoint point)
 	pView->SelectDiff(pSegment->diffIdx, true, false);
 	m_bSyncingCurrentDiff = false;
 	Invalidate();
-}
-
-void CMergeResultView::OnAutoMerge()
-{
-	CWaitCursor waitstatus;
-	GetDocument()->StartMergeSession(GetDocument()->GetMergeBasePane(), true);
 }
 
 /**

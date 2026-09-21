@@ -462,7 +462,7 @@ void CMergeDoc::BuildMergeResult()
 			// where the sides agree (or only one side changed) is not a
 			// conflict even while it is still unresolved.
 			const bool bConflict = (pdi->op == OP_DIFF);
-			if (bConflict || (!m_bResultAutoMerge && pdi->op != OP_TRIVIAL))
+			if (bConflict || pdi->op != OP_TRIVIAL)
 			{
 				seg.state = bConflict ?
 					ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
@@ -490,7 +490,7 @@ void CMergeDoc::BuildMergeResult()
 					srcPane = nMergeDestPane; // No mergeable source: use the merge destination pane.
 				int nLines = 0;
 				text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
-				seg.state = ResultSegmentState::Auto;
+				seg.state = ResultSegmentState::Common;
 				seg.srcPanes.push_back(srcPane);
 				seg.srcPaneLines.push_back(nLines);
 				seg.nLines = nLines;
@@ -508,6 +508,8 @@ void CMergeDoc::BuildMergeResult()
 		int nEndLine = 0, nEndChar = 0;
 		m_ptResultBuf->InsertText(nullptr, 0, 0, text.c_str(), text.length(),
 			nEndLine, nEndChar, CE_ACTION_UNKNOWN, false /* no history */);
+		for (int i = 0; i < m_ptResultBuf->GetLineCount(); ++i)
+			m_ptResultBuf->m_aLines[i].m_dwRevisionNumber = 0;
 	}
 	m_ptResultBuf->SetModified(false);
 	// the generated content is the baseline: no change markers on it
@@ -539,6 +541,64 @@ void CMergeDoc::BuildMergeResult()
 		m_pMergeResultView->Invalidate();
 	}
 	UpdateMergeResultPaneCaption();
+
+	if (m_bResultAutoMerge && !bResumed)
+		ApplyAutoMergeToResult();
+}
+
+void CMergeDoc::ApplyAutoMergeToResult()
+{
+	if (!m_ptResultBuf || !m_bResultBuilt)
+		return;
+
+	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
+
+	const int nMergeDestPane = 2 - m_nMergeBasePane;
+
+	m_ptResultBuf->BeginUndoGroup(false);
+
+	for (int i = static_cast<int>(m_resultSegments.size()) - 1; i >= 0; --i)
+	{
+		MergeResultSegment& seg = m_resultSegments[i];
+		if (seg.state != ResultSegmentState::Unresolved)
+			continue;
+
+		const DIFFRANGE* pdi = m_diffList.DiffRangeAt(seg.diffIdx);
+		if (!pdi || pdi->op == OP_DIFF)
+			continue;
+
+		int srcPane = m_diffList.GetMergeableSrcIndex(seg.diffIdx, nMergeDestPane);
+		if (srcPane == -1)
+			srcPane = nMergeDestPane;
+
+		int nLines = 0;
+		String resolvedText = GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
+
+		const int nStartLine = seg.nStartLine;
+		const int nEndLine = nStartLine + seg.nLines;   // exclusive
+
+		int nEndLineAfter = 0, nEndCharAfter = 0;
+		m_ptResultBuf->DeleteText(m_pMergeResultView, nStartLine, 0, nEndLine, 0, CE_ACTION_MERGE);
+		m_ptResultBuf->InsertText(m_pMergeResultView, nStartLine, 0, resolvedText.c_str(), resolvedText.length(), nEndLineAfter, nEndCharAfter, CE_ACTION_MERGE, true /* history */);
+
+		seg.state = ResultSegmentState::Auto;
+		seg.srcPanes.clear();
+		seg.srcPaneLines.clear();
+		seg.srcPanes.push_back(srcPane);
+		seg.srcPaneLines.push_back(nLines);
+		seg.nLines = nLines;
+		seg.blockText.clear();
+		seg.nBlockLines = 0;
+
+		const int nDelta = nLines - (nEndLine - nStartLine);
+		for (size_t j = i + 1; j < m_resultSegments.size(); ++j)
+			m_resultSegments[j].nStartLine += nDelta;
+	}
+
+	m_ptResultBuf->FlushUndoGroup(m_pMergeResultView);
+
+	if (m_pMergeResultView && m_pMergeResultView->GetSafeHwnd())
+		m_pMergeResultView->Invalidate();
 }
 
 bool CMergeDoc::IsMergeResultModified() const

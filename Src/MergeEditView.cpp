@@ -2409,21 +2409,29 @@ void CMergeEditView::OnAutoMerge()
 	// With a merge result pane available, Auto Merge switches to the
 	// 4-pane merge view and auto-merges into the result pane, leaving
 	// the compared files untouched
-	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && GetDocument()->HasMergeResultPane())
+	CMergeDoc* pDoc = GetDocument();
+	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->HasMergeResultPane())
 	{
 		CWaitCursor waitstatus;
-		int nMergeBasePane = 2 - m_nThisPane;
-		GetDocument()->StartMergeSession(nMergeBasePane, true);
+		if (!pDoc->IsMergeResultPaneVisible())
+		{
+			int nMergeBasePane = 2 - m_nThisPane;
+			pDoc->StartMergeSession(nMergeBasePane, true);
+		}
+		else
+		{
+			pDoc->ApplyAutoMergeToResult();
+		}
 		return;
 	}
 
 	// Check current pane is not readonly
-	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || !QueryEditable())
+	if (pDoc->IsModified() || pDoc->GetAutoMerged() || !QueryEditable())
 		return;
 
 	CWaitCursor waitstatus;
 
-	GetDocument()->DoAutoMerge(m_nThisPane);
+	pDoc->DoAutoMerge(m_nThisPane);
 }
 
 /**
@@ -2431,14 +2439,24 @@ void CMergeEditView::OnAutoMerge()
  */
 void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 {
-	if (GetDocument()->HasMergeResultPane())
+	CMergeDoc* pDoc = GetDocument();
+	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->HasMergeResultPane())
 	{
-		pCmdUI->Enable(TRUE);
+		if (!pDoc->IsMergeResultPaneVisible())
+		{
+			// Auto Merge is always available when the merge result pane is not visible
+			pCmdUI->Enable(TRUE);
+			return;
+		}
+
+		int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
+		pDoc->GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
+		pCmdUI->Enable(nUnresolved - nConflicts > 0);
 		return;
 	}
-	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 && 
-		!GetDocument()->IsModified() && 
-		!GetDocument()->GetAutoMerged() && 
+	pCmdUI->Enable(pDoc->m_nBuffers == 3 && 
+		!pDoc->IsModified() && 
+		!pDoc->GetAutoMerged() && 
 		QueryEditable());
 }
 
