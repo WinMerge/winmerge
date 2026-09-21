@@ -90,6 +90,7 @@ int CMergeResultBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			delete pView;
 			return -1;
 		}
+		m_pContainer->SetResultView(pView);
 		m_pDoc->SetMergeResultView(pView);
 	}
 

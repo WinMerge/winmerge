@@ -297,6 +297,8 @@ BOOL CMergeEditFrame::OnBarCheck(UINT nID)
 	// The merge result pane's own state follows the bar's visibility, which
 	// is synchronized in OnIdleUpdateCmdUI (the bar can also be closed with
 	// its close button, which does not come through here)
+	if (nID == ID_VIEW_MERGE_RESULT_BAR)
+		GetMainFrame()->UpdateToolbar();
 	return result;
 }
 

@@ -46,6 +46,8 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_CONTEXTMENU()
 	ON_WM_GETDLGCODE()
+	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEHWHEEL()
 	// Difference/conflict navigation and Auto Merge are implemented by the
 	// compare views; forward them so they also work while this view is active
 	ON_COMMAND_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnForwardToMergeView)
@@ -64,7 +66,8 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_COMMAND_RANGE(ID_VIEW_EOL, ID_VIEW_EOL, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_EOL, ID_VIEW_EOL, OnUpdateForwardToMergeView)
 	ON_COMMAND_RANGE(ID_VIEW_TOPMARGIN, ID_VIEW_TOPMARGIN, OnForwardToMergeView)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_TOPMARGIN, ID_VIEW_TOPMARGIN, OnUpdateForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_EOL, ID_VIEW_EOL, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_VIEW_ZOOMIN, ID_VIEW_ZOOMNORMAL, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	//}}AFX_MSG_MAP
@@ -454,5 +457,63 @@ void CMergeResultView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
 	__super::OnUpdateEditRedo(pCmdUI);
 	pCmdUI->SetText(_("&Redo\tCtrl+Y").c_str());
+}
+
+/**
+ * @brief Called when mouse's wheel is scrolled.
+ */
+BOOL CMergeResultView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	if (nFlags == MK_CONTROL)
+	{
+		CMergeEditView* pView = GetDocument()->GetActiveMergeView();
+		if (pView != nullptr && pView->GetSafeHwnd() != nullptr)
+			return (BOOL)pView->SendMessage(WM_MOUSEWHEEL, MAKELONG(nFlags, zDelta), MAKELONG(pt.x, pt.y));
+	}
+	if (nFlags == MK_SHIFT)
+	{
+		SCROLLINFO si = { sizeof SCROLLINFO };
+		si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
+
+		VERIFY(GetScrollInfo(SB_HORZ, &si));
+
+		// new horz pos
+		si.nPos -= zDelta / 40;
+		if (si.nPos > si.nMax) si.nPos = si.nMax;
+		if (si.nPos < si.nMin) si.nPos = si.nMin;
+
+		SetScrollInfo(SB_HORZ, &si);
+
+		// for update
+		SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+
+		// no default CCrystalTextView
+		return CView::OnMouseWheel(nFlags, zDelta, pt);
+	}
+	return CGhostTextView::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+/**
+ * @brief Called when mouse's horizontal wheel is scrolled.
+ */
+void CMergeResultView::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	SCROLLINFO si = { sizeof SCROLLINFO };
+	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
+
+	VERIFY(GetScrollInfo(SB_HORZ, &si));
+
+	// new horz pos
+	si.nPos += zDelta / 40;
+	if (si.nPos > si.nMax) si.nPos = si.nMax;
+	if (si.nPos < si.nMin) si.nPos = si.nMin;
+
+	SetScrollInfo(SB_HORZ, &si);
+
+	// for update
+	SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+
+	// no default CCrystalTextView
+	CView::OnMouseHWheel(nFlags, zDelta, pt);
 }
 

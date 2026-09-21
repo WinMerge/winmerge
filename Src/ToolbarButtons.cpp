@@ -167,7 +167,7 @@ static constexpr UINT g_toolbarBinaryImageCmp3WithDirDoc[] =
 	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
 	ID_OPTIONS, 0, ID_REFRESH, 0,
 	ID_AUTO_MERGE, 0,
-	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT
 };
 
 static constexpr UINT g_toolbarWebpageCmp[] =

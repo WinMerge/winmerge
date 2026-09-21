@@ -46,11 +46,11 @@ static UINT indicatorsResult[] =
 static String ResultEolString(const String& sEol)
 {
 	if (sEol == _T("\r\n"))
-		return _("CRLF");
+		return _T("Win");
 	if (sEol == _T("\n"))
-		return _("LF");
+		return _T("Unix");
 	if (sEol == _T("\r"))
-		return _("CR");
+		return _T("Mac");
 	if (sEol.empty())
 		return _("None");
 	if (sEol == _T("hidden"))
@@ -188,16 +188,7 @@ void CMergeResultStatusBar::UpdateConflictText()
 		return;
 
 	String strInfo;
-	if (m_nConflicts == 0)
-	{
-		strInfo = _("No Conflicts");
-	}
-	else if (m_nUnresolved == 0)
-	{
-		strInfo = strutils::format_string1(_("Conflicts: %1 (all resolved)"),
-			strutils::to_str(m_nConflicts));
-	}
-	else if (m_nWhiteSpaceOnly == 0)
+	if (m_nWhiteSpaceOnly == 0)
 	{
 		strInfo = strutils::format_string2(_("Conflicts: %1, Unresolved: %2"), 
 			strutils::to_str(m_nConflicts), strutils::to_str(m_nUnresolved));

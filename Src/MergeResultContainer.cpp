@@ -7,6 +7,7 @@
 #include "stdafx.h"
 #include "MergeResultContainer.h"
 #include "MergeDoc.h"
+#include "MergeResultView.h"
 #include "MergeResultStatusBar.h"
 
 #ifdef _DEBUG
@@ -22,6 +23,7 @@ END_MESSAGE_MAP()
 
 CMergeResultContainer::CMergeResultContainer()
 	: m_pDoc(nullptr)
+	, m_pResultView(nullptr)
 {
 }
 
@@ -83,14 +85,8 @@ void CMergeResultContainer::OnSize(UINT nType, int cx, int cy)
 		nStatusBarHeight = cy / 2;
 
 	// Position the result view - look for first child and position it
-	CWnd* pView = GetWindow(GW_CHILD);
-	while (pView != nullptr && pView->m_hWnd == m_statusBar.m_hWnd)
-		pView = pView->GetWindow(GW_HWNDNEXT);
-
-	if (pView != nullptr)
-	{
-		pView->MoveWindow(0, 0, cx, cy - nStatusBarHeight);
-	}
+	if (m_pResultView != nullptr)
+		m_pResultView->MoveWindow(0, 0, cx, cy - nStatusBarHeight);
 
 	// Position the status bar at the bottom
 	m_statusBar.MoveWindow(0, cy - nStatusBarHeight, cx, nStatusBarHeight);

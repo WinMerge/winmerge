@@ -261,14 +261,6 @@ void CMergeDoc::SetMergeResultPaneVisible(bool bVisible)
 }
 
 /**
- * @brief Start (or re-run) a merge session in the result pane.
- * @param [in] bAutoMerge Auto-resolve the non-conflicting differences.
- *
- * Used by the Merge menu's Start Merge Session command (no auto-merge)
- * and by the Auto Merge command (with auto-merge), which switches a
- * plain 3-way comparison to the 4-pane merge view.
- */
-/**
  * @brief Update pane headers with merge-related labels
  * Assigns descriptive labels to panes based on their merge role (Base, Theirs, Mine)
  * and updates header text accordingly.
@@ -311,6 +303,14 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
 	}
 }
 
+/**
+ * @brief Start (or re-run) a merge session in the result pane.
+ * @param [in] bAutoMerge Auto-resolve the non-conflicting differences.
+ *
+ * Used by the Merge menu's Start Merge Session command (no auto-merge)
+ * and by the Auto Merge command (with auto-merge), which switches a
+ * plain 3-way comparison to the 4-pane merge view.
+ */
 void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 {
 	if (!HasMergeResultPane())
@@ -368,7 +368,7 @@ String CMergeDoc::GetPaneApparentLinesText(int nPane, int nApparentBegin,
  * @brief (Re)generate the merge result buffer from the three compared
  * buffers, auto-resolving all non-conflicting differences.
  *
- * The middle pane is treated as the common ancestor (base), matching
+ * m_nMergeBasePane is treated as the common ancestor (base), matching
  * the semantics of WinMerge's existing 3-way auto-merge.
  */
 void CMergeDoc::BuildMergeResult()
@@ -587,20 +587,20 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 	int nLines = 4;
 	int nPaneLines = 0;
 	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
-	String text = _T("<<<<<<< ") + label(nTheirsPane);
+	String text = _T("<<<<<<< ") + label(nMinePane);
 	if (bWhiteSpaceOnly)
 		text += _T(" (whitespace only)");
 	text += pszEol;
-	text += GetPaneApparentLinesText(nTheirsPane, pdi->dbegin, pdi->dend, &nPaneLines);
+	text += GetPaneApparentLinesText(nMinePane, pdi->dbegin, pdi->dend, &nPaneLines);
 	nLines += nPaneLines;
 	text += _T("||||||| ") + label(nBasePane) + pszEol;
 	text += GetPaneApparentLinesText(nBasePane, pdi->dbegin, pdi->dend, &nPaneLines);
 	nLines += nPaneLines;
 	text += _T("=======");
 	text += pszEol;
-	text += GetPaneApparentLinesText(nMinePane, pdi->dbegin, pdi->dend, &nPaneLines);
+	text += GetPaneApparentLinesText(nTheirsPane, pdi->dbegin, pdi->dend, &nPaneLines);
 	nLines += nPaneLines;
-	text += _T(">>>>>>> ") + label(nMinePane) + pszEol;
+	text += _T(">>>>>>> ") + label(nTheirsPane) + pszEol;
 	if (pnLines != nullptr)
 		*pnLines = nLines;
 	return text;
@@ -1306,7 +1306,7 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 	const int nMergeDestPane = 2 - m_nMergeBasePane;
 	int nNewLines = 0;
 	String text;
-	bool bBackToConflict = false;
+	bool bBackToUnresolved = false;
 	std::vector<int> srcPaneLines;
 	srcPaneLines.reserve(srcPanes.size());
 	for (int srcPane : srcPanes)
@@ -1336,7 +1336,7 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		tmpSeg.state = (pdi->op == OP_DIFF) ?
 			ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
 		text = GetResultSegmentDisplayText(tmpSeg, &nNewLines);
-		bBackToConflict = true;
+		bBackToUnresolved = true;
 	}
 
 	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
@@ -1373,12 +1373,12 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 	m_ptResultBuf->FlushUndoGroup(pSource);
 
 	const int nDelta = nNewLines - seg.nLines;
-	seg.state = !bBackToConflict ? ResultSegmentState::Chosen :
+	seg.state = !bBackToUnresolved ? ResultSegmentState::Chosen :
 		(pdi->op == OP_DIFF ? ResultSegmentState::Conflict : ResultSegmentState::Unresolved);
 	seg.srcPanes = srcPanes;
 	seg.srcPaneLines = std::move(srcPaneLines);
 	seg.nLines = nNewLines;
-	if (!bBackToConflict)
+	if (!bBackToUnresolved)
 	{
 		seg.blockText.clear();
 		seg.nBlockLines = 0;

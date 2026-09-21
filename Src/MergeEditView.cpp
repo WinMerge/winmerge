@@ -37,6 +37,7 @@
 #include "TreeSitterParser.h"
 #include "PluginMenu.h"
 #include "SplitterPositions.h"
+#include "MergeResultView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -4888,6 +4889,8 @@ void CMergeEditView::ZoomText(short amount)
 				pView->SetFont(lf);
 			}
 		}
+		if (CMergeResultView* pView = pDoc->GetMergeResultView())
+			pView->SetFont(lf);
 	}
 	RepaintLocationPane();
 
