@@ -2704,7 +2704,10 @@ void CMergeEditView::UpdateStatusbar()
  */
 void CMergeEditView::OnUpdateCaret()
 {
-	if (m_bCursorHidden || m_piMergeEditStatus == nullptr || !IsTextBufferInitialized() || m_nThisGroup != GetActiveGroup())
+	if (m_bCursorHidden || m_piMergeEditStatus == nullptr || !IsTextBufferInitialized())
+		return;
+
+	if (m_nThisGroup != GetActiveGroup() && m_piMergeEditStatus->HasLineInfo())
 		return;
 
 	CEPoint cursorPos = GetCursorPos();
