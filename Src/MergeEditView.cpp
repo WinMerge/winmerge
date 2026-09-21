@@ -2410,10 +2410,10 @@ void CMergeEditView::OnAutoMerge()
 	// 4-pane merge view and auto-merges into the result pane, leaving
 	// the compared files untouched
 	CMergeDoc* pDoc = GetDocument();
-	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->HasMergeResultPane())
+	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->m_nBuffers == 3)
 	{
 		CWaitCursor waitstatus;
-		if (!pDoc->IsMergeResultPaneVisible())
+		if (!pDoc->IsMergeResultPaneActive())
 		{
 			int nMergeBasePane = 2 - m_nThisPane;
 			pDoc->StartMergeSession(nMergeBasePane, true);
@@ -2440,9 +2440,9 @@ void CMergeEditView::OnAutoMerge()
 void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->HasMergeResultPane())
+	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->m_nBuffers == 3)
 	{
-		if (!pDoc->IsMergeResultPaneVisible())
+		if (!pDoc->IsMergeResultPaneActive())
 		{
 			// Auto Merge is always available when the merge result pane is not visible
 			pCmdUI->Enable(TRUE);
@@ -5116,7 +5116,12 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMMouse->hdr.hwndFrom)))
 		return;
 
-	switch (pNMMouse->dwItemSpec % 4)
+	const int statusBarPane = pNMMouse->dwItemSpec % 4;
+
+	if (statusBarPane != 0 && pDoc->IsMergeResultPaneActive())
+		return;
+
+	switch (statusBarPane)
 	{
 	case 0:
 		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);

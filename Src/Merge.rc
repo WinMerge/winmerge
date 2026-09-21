@@ -5439,14 +5439,13 @@ STRINGTABLE
 BEGIN
     IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
     IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE "The merge result has not been saved.\n\nSave the merge result?"
-    IDS_MERGE_RESULT_CONFIRM_REBUILD "Rebuilding the merge result discards the changes made in the Merge Result pane.\n\nContinue?"
-    IDS_MERGE_RESULT_RECALCULATED "The differences were recalculated and no longer match the Merge Result pane.\n\nYour result text is kept, but the Choose commands are disabled until a new merge session is started from the Merge menu. Remaining conflicts are shown as full conflict sections and can be edited directly."
+    IDS_MERGE_RESULT_CONFIRM_CONTINUE "The merge output file\n%1\nalready contains a merge with %2 conflict section(s).\n\nContinue from it? Choosing No starts a new merge from the compared files."
+    IDS_MERGE_RESULT_SAVE_FAILED "Saving the merge result to\n%1\nfailed.\n%2"
+    IDS_MERGE_RESULT_SAVE_MERGE_RESULT "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
     IDS_MERGE_RESULT_CONFLICT_WHITESPACE "<Merge Conflict (Whitespace only)>"
     IDS_MERGE_RESULT_CONFLICT "<Merge Conflict>"
     IDS_MERGE_RESULT_UNRESOLVED "<Unresolved Difference>"
     IDS_MERGE_RESULT_SAVE_AS "Save Merge Result As"
-    IDS_MERGE_RESULT_SAVE_FAILED "Saving the merge result to\n%1\nfailed.\n%2"
-    IDS_MERGE_RESULT_SAVE_MERGE_RESULT "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
     IDS_MERGE_RESULT_STATUS_CONFLICTS2 "Conflicts: %1, Unresolved: %2"
     IDS_MERGE_RESULT_STATUS_CONFLICTS3 "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
 END

@@ -313,20 +313,9 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
  */
 void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 {
-	if (!HasMergeResultPane())
+	if (IsMergeResultPaneActive())
 		return;
-	// Rebuild when the auto-merge mode changes, and also when the
-	// segment <-> diff links were severed by a rescan: starting a new
-	// session is the recovery path the sever notification promises
-	const bool bLinksSevered = m_bResultBuilt && m_resultDiffSnapshot.empty();
-	if (m_bResultBuilt && (bAutoMerge != m_bResultAutoMerge || bLinksSevered))
-	{
-		if (IsMergeResultModified() &&
-			ShowMessageBox(_("Rebuilding the merge result discards the changes made in the Merge Result pane.\n\nContinue?"),
-				MB_YESNO | MB_ICONWARNING) != IDYES)
-			return;
-		m_bResultBuilt = false; // rebuild with the new auto-merge mode
-	}
+	m_bResultBuilt = false;
 	m_bResultAutoMerge = bAutoMerge;
 	m_nMergeBasePane = nBasePane;
 	if (CMergeEditFrame* pFrame = GetParentFrame())

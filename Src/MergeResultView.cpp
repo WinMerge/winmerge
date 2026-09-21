@@ -340,10 +340,13 @@ void CMergeResultView::OnContextMenu(CWnd* pWnd, CPoint point)
 		point = ptClient;
 	}
 
-	CPoint pointClient = point;
-	ScreenToClient(&pointClient);
-	OnLButtonDown(0, pointClient);
-	OnLButtonUp(0, pointClient);
+	if (!IsSelection())
+	{
+		CPoint pointClient = point;
+		ScreenToClient(&pointClient);
+		OnLButtonDown(0, pointClient);
+		OnLButtonUp(0, pointClient);
+	}
 
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGERESULTVIEW));

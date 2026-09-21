@@ -3188,7 +3188,7 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 		nFiles = pMergeDoc->GetFileCount();
 		bHasDirDoc = pMergeDoc->GetDirDoc() != nullptr;
 		if (auto* pMergeDoc2 = dynamic_cast<CMergeDoc*>(pMergeDoc))
-			bHasMergeResultPane = pMergeDoc2->IsMergeResultPaneVisible();
+			bHasMergeResultPane = pMergeDoc2->IsMergeResultPaneActive();
 	}
 	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bHasDirDoc, bHasMergeResultPane);
 }
@@ -3543,7 +3543,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
-			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, 
+				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
 	}
