@@ -7520,9 +7520,6 @@ msgstr ""
 #: Merge.rc:5322
 #, c-format
 msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-msgstr ""
-
-msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
 msgstr "自動マージが完了しました。\n\n%1\n\n自動マージ: %2\n未解決の競合: %3"
 
 #. IDS_MERGE_SESSION_STARTED
