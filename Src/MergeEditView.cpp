@@ -4547,20 +4547,7 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 	if (nFlags == MK_SHIFT)
 	{
-		SCROLLINFO si = { sizeof SCROLLINFO };
-		si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
-
-		VERIFY(GetScrollInfo(SB_HORZ, &si));
-
-		// new horz pos
-		si.nPos -= zDelta / 40;
-		if (si.nPos > si.nMax) si.nPos = si.nMax;
-		if (si.nPos < si.nMin) si.nPos = si.nMin;
-
-		SetScrollInfo(SB_HORZ, &si);
-
-		// for update
-		SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+		HandleHorizontalScrollWheel(-zDelta);
 
 		// no default CCrystalTextView
 		return CView::OnMouseWheel(nFlags, zDelta, pt);
@@ -4574,20 +4561,7 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
  */
 void CMergeEditView::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	SCROLLINFO si = { sizeof SCROLLINFO };
-	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
-
-	VERIFY(GetScrollInfo(SB_HORZ, &si));
-
-	// new horz pos
-	si.nPos += zDelta / 40;
-	if (si.nPos > si.nMax) si.nPos = si.nMax;
-	if (si.nPos < si.nMin) si.nPos = si.nMin;
-
-	SetScrollInfo(SB_HORZ, &si);
-
-	// for update
-	SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+	HandleHorizontalScrollWheel(zDelta);
 
 	// no default CCrystalTextView
 	CView::OnMouseHWheel(nFlags, zDelta, pt);

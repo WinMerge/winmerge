@@ -322,3 +322,25 @@ std::pair<int, int> CGhostTextView::GetSelectedLineAndCharacterCount()
 	}
 	return { nSelectedLines, nCharsOrColumns };
 }
+
+/**
+ * @brief Helper method to handle horizontal scrolling via mouse wheel
+ */
+void CGhostTextView::HandleHorizontalScrollWheel(short zDelta)
+{
+	SCROLLINFO si = { sizeof SCROLLINFO };
+	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
+
+	VERIFY(GetScrollInfo(SB_HORZ, &si));
+
+	// new horz pos
+	si.nPos += zDelta / 40;
+	if (si.nPos > si.nMax) si.nPos = si.nMax;
+	if (si.nPos < si.nMin) si.nPos = si.nMin;
+
+	SetScrollInfo(SB_HORZ, &si);
+
+	// for update
+	SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos), NULL);
+}
+
