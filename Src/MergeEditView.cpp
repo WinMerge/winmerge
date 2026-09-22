@@ -2416,7 +2416,7 @@ void CMergeEditView::OnAutoMerge()
 		if (!pDoc->IsMergeResultPaneActive())
 		{
 			int nMergeBasePane = 2 - m_nThisPane;
-			pDoc->StartMergeSession(nMergeBasePane, true);
+			pDoc->StartMergeSessionWithMessage(nMergeBasePane, true);
 		}
 		else
 		{

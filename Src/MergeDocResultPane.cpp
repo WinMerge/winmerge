@@ -303,6 +303,15 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
 	}
 }
 
+void CMergeDoc::StartMergeSessionWithMessage(int nBasePane, bool bAutoMerge)
+{
+	if (!StartMergeSession(nBasePane, bAutoMerge))
+		return;
+	String paneRoles = GetMergePaneRoles();
+	String msg = strutils::format_string1(_("Merge session started.\n\n%1"), paneRoles);
+	ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
+}
+
 /**
  * @brief Start (or re-run) a merge session in the result pane.
  * @param [in] bAutoMerge Auto-resolve the non-conflicting differences.
@@ -311,16 +320,17 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
  * and by the Auto Merge command (with auto-merge), which switches a
  * plain 3-way comparison to the 4-pane merge view.
  */
-void CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
+bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 {
 	if (IsMergeResultPaneActive())
-		return;
+		return false;
 	m_bResultBuilt = false;
 	m_bResultAutoMerge = bAutoMerge;
 	m_nMergeBasePane = nBasePane;
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 		pFrame->ShowMergeResultPane();
 	SetMergeResultPaneVisible(true);
+	return true;
 }
 
 /**
@@ -1919,13 +1929,9 @@ String CMergeDoc::GetMergePaneRoles() const
 void CMergeDoc::OnMergeStartSession()
 {
 	if (auto* pView = GetActiveMergeView())
-		StartMergeSession(2 - pView->m_nThisPane, false);
+		StartMergeSessionWithMessage(2 - pView->m_nThisPane, false);
 	else
-		StartMergeSession(1, false);
-
-	String paneRoles = GetMergePaneRoles();
-	String msg = strutils::format_string1(_("Merge session started.\n\n%1"), paneRoles);
-	ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
+		StartMergeSessionWithMessage(1, false);
 }
 
 void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)

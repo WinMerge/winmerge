@@ -3188,7 +3188,7 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 		nFiles = pMergeDoc->GetFileCount();
 		bHasDirDoc = pMergeDoc->GetDirDoc() != nullptr;
 		if (auto* pMergeDoc2 = dynamic_cast<CMergeDoc*>(pMergeDoc))
-			bHasMergeResultPane = pMergeDoc2->IsMergeResultPaneActive();
+			bHasMergeResultPane = pMergeDoc2->IsMergeResultPaneVisible();
 	}
 	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bHasDirDoc, bHasMergeResultPane);
 }
