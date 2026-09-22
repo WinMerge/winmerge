@@ -47,20 +47,19 @@ CMergeResultView::~CMergeResultView()
 
 BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	//{{AFX_MSG_MAP(CMergeResultView)
-	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_LBUTTONDBLCLK()
 	ON_WM_CONTEXTMENU()
 	ON_WM_GETDLGCODE()
 	ON_WM_MOUSEWHEEL()
 	ON_WM_MOUSEHWHEEL()
 	// Difference/conflict navigation and Auto Merge are implemented by the
 	// compare views; forward them so they also work while this view is active
-	ON_COMMAND_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnForwardToMergeView)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnUpdateForwardToMergeView)
-	ON_COMMAND_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnForwardToMergeView)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnUpdateForwardToMergeView)
-	ON_COMMAND_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnForwardToMergeView)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
+	// [Edit] menu
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
+	// [View] menu
 	ON_COMMAND_RANGE(ID_VIEW_WORDWRAP, ID_VIEW_WORDWRAP, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_WORDWRAP, ID_VIEW_WORDWRAP, OnUpdateForwardToMergeView)
 	ON_COMMAND_RANGE(ID_VIEW_LINENUMBERS, ID_VIEW_LINENUMBERS, OnForwardToMergeView)
@@ -72,8 +71,13 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_COMMAND_RANGE(ID_VIEW_TOPMARGIN, ID_VIEW_TOPMARGIN, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_EOL, ID_VIEW_EOL, OnUpdateForwardToMergeView)
 	ON_COMMAND_RANGE(ID_VIEW_ZOOMIN, ID_VIEW_ZOOMNORMAL, OnForwardToMergeView)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
+	// [Merge] menu
+	ON_COMMAND_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREVDIFF, ID_NEXTCONFLICT, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_FIRSTDIFF, ID_LASTDIFF, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -281,14 +285,32 @@ void CMergeResultView::TakeFocus()
 		SetFocus();
 }
 
+void CMergeResultView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	__super::OnLButtonUp(nFlags, point);
+	CMergeDoc *pDoc = GetDocument();
+	// If we have a selected diff, deselect it
+	int nCurrentDiff = pDoc->GetCurrentDiff();
+	if (nCurrentDiff != -1)
+	{
+		CEPoint pos = GetCursorPos();
+		const MergeResultSegment* pSegment = pDoc->GetResultSegmentByLine(pos.y);
+		if (pSegment == nullptr || pSegment->diffIdx != nCurrentDiff)
+		{
+			pDoc->SetCurrentDiff(-1);
+			Invalidate();
+			pDoc->UpdateAllViews(this);
+		}
+	}
+}
+
 /**
  * @brief Clicking a resolved/conflict segment selects the matching diff
  * in the compare panes.
  */
-void CMergeResultView::OnLButtonDown(UINT nFlags, CPoint point)
+void CMergeResultView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	TakeFocus();
-	CGhostTextView::OnLButtonDown(nFlags, point);
+	__super::OnLButtonDblClk(nFlags, point);
 
 	CMergeDoc* pDoc = GetDocument();
 	if (pDoc == nullptr || m_pTextBuffer == nullptr)
@@ -333,8 +355,6 @@ void CMergeResultView::OnUpdateForwardToMergeView(CCmdUI* pCmdUI)
  */
 void CMergeResultView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-	TakeFocus();
-
 	if (point.x == -1 && point.y == -1)
 	{
 		// Keyboard invocation: pop up at the caret
@@ -378,6 +398,41 @@ void CMergeResultView::ScrollToDiff(int nDiff)
 	SetSelection(pt, pt);
 	EnsureVisible(pt);
 	Invalidate();
+}
+
+void CMergeResultView::GetSelectedDiffs(int& firstDiff, int& lastDiff)
+{
+	firstDiff = -1;
+	lastDiff = -1;
+
+	CMergeDoc* pDoc = GetDocument();
+	const int nSegments = pDoc->GetResultSegmenCount();
+	if (nSegments == 0)
+		return;
+
+	int firstLine, lastLine;
+	auto [ptStart, ptEnd] = GetSelection();
+	firstLine = ptStart.y;
+	lastLine = ptEnd.y;
+
+	for (int i = 0; i < nSegments; ++i)
+	{
+		const MergeResultSegment* seg = pDoc->GetResultSegmentByDiff(i);
+		if (!seg || seg->nLines <= 0)
+			continue;
+		const int nSegEnd = seg->nStartLine + seg->nLines - 1;
+		if (nSegEnd < firstLine)
+			continue; // segment fully before selection
+		if (seg->nStartLine > lastLine)
+			break; // segment fully after selection
+		if (seg->diffIdx >= 0)
+		{
+			if (firstDiff == -1 || seg->diffIdx < firstDiff)
+				firstDiff = seg->diffIdx;
+			if (lastDiff == -1 || seg->diffIdx > lastDiff)
+				lastDiff = seg->diffIdx;
+		}
+	}
 }
 
 /**

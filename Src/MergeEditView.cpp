@@ -187,8 +187,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI(ID_AUTO_MERGE, OnUpdateAutoMerge)
 	ON_COMMAND(ID_MERGE_CHOOSE_THIS, OnMergeChooseThis)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_CHOOSE_THIS, OnUpdateMergeChooseThis)
-	ON_COMMAND(ID_MERGE_COPY_LINES_TO_RESULT, OnMergeCopyLinesToResult)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_COPY_LINES_TO_RESULT, OnUpdateMergeCopyLinesToResult)
 	ON_WM_RBUTTONDOWN()
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
@@ -2504,49 +2502,10 @@ int CMergeEditView::GetMergeTargetDiff()
 }
 
 /**
- * @brief Use this pane's content of the difference under the cursor in
- * the merge result (toggles, like the Choose Left/Middle/Right commands).
- */
-void CMergeEditView::OnMergeChooseThis()
-{
-	CMergeDoc* pDoc = GetDocument();
-	const int nDiff = GetMergeTargetDiff();
-	if (nDiff >= 0)
-		pDoc->ResultToggleSource(nDiff, m_nThisPane);
-}
-
-/**
- * @brief Name of this pane as the merge commands refer to it.
- */
-String CMergeEditView::GetPaneNameForMergeMenu() const
-{
-	if (GetDocument()->m_nBuffers < 3)
-		return (m_nThisPane == 0) ? _("Left") : _("Right");
-	return (m_nThisPane == 0) ? _("Left") :
-		(m_nThisPane == 1) ? _("Middle") : _("Right");
-}
-
-void CMergeEditView::OnUpdateMergeChooseThis(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pDoc = GetDocument();
-	const int nDiff = GetMergeTargetDiff();
-	const MergeResultSegment* pSegment =
-		(pDoc->IsMergeResultPaneActive() && nDiff >= 0) ? pDoc->GetResultSegmentByDiff(nDiff) : nullptr;
-	pCmdUI->Enable(pSegment != nullptr);
-	pCmdUI->SetCheck(pSegment != nullptr &&
-		(pSegment->state == ResultSegmentState::Auto ||
-		 pSegment->state == ResultSegmentState::Chosen) &&
-		std::find(pSegment->srcPanes.begin(), pSegment->srcPanes.end(), m_nThisPane) != pSegment->srcPanes.end());
-	// Name the pane, so it is clear which side is chosen
-	pCmdUI->SetText(strutils::format_string1(
-		_("Choose %1 for This Difference"), GetPaneNameForMergeMenu()).c_str());
-}
-
-/**
  * @brief Use this pane's content for every difference touched by the
  * selection in the merge result.
  */
-void CMergeEditView::OnMergeCopyLinesToResult()
+void CMergeEditView::OnMergeChooseThis()
 {
 	CMergeDoc* pDoc = GetDocument();
 	int firstDiff, lastDiff;
@@ -2563,7 +2522,18 @@ void CMergeEditView::OnMergeCopyLinesToResult()
 	}
 }
 
-void CMergeEditView::OnUpdateMergeCopyLinesToResult(CCmdUI* pCmdUI)
+/**
+ * @brief Name of this pane as the merge commands refer to it.
+ */
+String CMergeEditView::GetPaneNameForMergeMenu() const
+{
+	if (GetDocument()->m_nBuffers < 3)
+		return (m_nThisPane == 0) ? _("Left") : _("Right");
+	return (m_nThisPane == 0) ? _("Left") :
+		(m_nThisPane == 1) ? _("Middle") : _("Right");
+}
+
+void CMergeEditView::OnUpdateMergeChooseThis(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
 	if (!pDoc->IsMergeResultPaneActive())
@@ -2571,11 +2541,30 @@ void CMergeEditView::OnUpdateMergeCopyLinesToResult(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 		return;
 	}
-	int firstDiff, lastDiff;
-	GetSelectedDiffs(firstDiff, lastDiff);
-	pCmdUI->Enable(firstDiff != -1 && lastDiff != -1);
+
 	pCmdUI->SetText(strutils::format_string1(
 		_("Choose %1 for Selected Differences"), GetPaneNameForMergeMenu()).c_str());
+
+	int firstDiff, lastDiff;
+	GetSelectedDiffs(firstDiff, lastDiff);
+	if (firstDiff == -1 || lastDiff == -1)
+	{
+		pCmdUI->Enable(FALSE);
+		return;
+	}
+
+	if (firstDiff == lastDiff)
+	{
+		const int nDiff = firstDiff;
+		const MergeResultSegment* pSegment =
+			(pDoc->IsMergeResultPaneActive() && nDiff >= 0) ? pDoc->GetResultSegmentByDiff(nDiff) : nullptr;
+		pCmdUI->SetCheck(pSegment != nullptr &&
+			(pSegment->state == ResultSegmentState::Auto ||
+			 pSegment->state == ResultSegmentState::Chosen) &&
+			std::find(pSegment->srcPanes.begin(), pSegment->srcPanes.end(), m_nThisPane) != pSegment->srcPanes.end());
+		// Name the pane, so it is clear which side is chosen
+	}
+	pCmdUI->Enable(firstDiff != -1 && lastDiff != -1);
 }
 
 /**
@@ -3173,7 +3162,6 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (BCMenu* pMergeSub = static_cast<BCMenu*>(menu.GetSubMenu(0)))
 		{
 			pMergeSub->RemoveMenu(ID_MERGE_CHOOSE_THIS, MF_BYCOMMAND);
-			pMergeSub->RemoveMenu(ID_MERGE_COPY_LINES_TO_RESULT, MF_BYCOMMAND);
 			if ((pMergeSub->GetMenuState(0, MF_BYPOSITION) & MF_SEPARATOR) != 0)
 				pMergeSub->RemoveMenu(0, MF_BYPOSITION); // separator they left behind
 		}

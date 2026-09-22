@@ -81,11 +81,10 @@ BEGIN
         MENUITEM "Ne&xt Unresolved Difference\tAlt+Shift+Down", ID_NEXTCONFLICT
         MENUITEM "Pre&vious Unresolved Difference\tAlt+Shift+Up", ID_PREVCONFLICT
         MENUITEM SEPARATOR
-        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
-        MENUITEM SEPARATOR
         MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_CHOOSE_LEFT
         MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_CHOOSE_MIDDLE
         MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_CHOOSE_RIGHT
+        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         POPUP "Choose for All Unresolved Conflicts"
         BEGIN
             MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
@@ -109,8 +108,7 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Choose %1 for This Difference", ID_MERGE_CHOOSE_THIS
-        MENUITEM "Choose %1 for Selected Differences", ID_MERGE_COPY_LINES_TO_RESULT
+        MENUITEM "Choose %1 for Selected Differences", ID_MERGE_CHOOSE_THIS
         MENUITEM SEPARATOR
         MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_L
         MENUITEM "C&opy to Right\tAlt+Right",   ID_COPY_TO_RIGHT_L
@@ -907,9 +905,8 @@ BEGIN
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
-        MENUITEM SEPARATOR
         MENUITEM "Start Merge Sess&ion",        ID_MERGE_START_SESSION
+        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         POPUP "Merge Resul&t"
         BEGIN
             MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_CHOOSE_LEFT

@@ -1859,25 +1859,53 @@ void CMergeDoc::OnResultBufferDeletedLines(int nStartLine, int nCount)
 void CMergeDoc::OnMergeChooseSource(UINT nID)
 {
 	const int srcPane = nID - ID_MERGE_CHOOSE_LEFT;
-	const int nDiff = GetCurrentDiff();
-	if (nDiff < 0)
+	int firstDiff = -1, lastDiff = -1;
+	m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
+	if (firstDiff < 0 || lastDiff < 0)
 		return;
-	ResultToggleSource(nDiff, srcPane);
+
+	for (int nDiff = firstDiff; nDiff <= lastDiff; ++nDiff)
+		ResultToggleSource(nDiff, srcPane);
 }
 
 void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 {
-	const int nDiff = GetCurrentDiff();
-	const MergeResultSegment* pSegment =
-		(IsMergeResultPaneActive() && nDiff >= 0) ? GetResultSegmentByDiff(nDiff) : nullptr;
-	pCmdUI->Enable(pSegment != nullptr);
-	// show which panes are currently selected for this difference
-	const int srcPane = pCmdUI->m_nID - ID_MERGE_CHOOSE_LEFT;
-	const bool bChecked = pSegment != nullptr &&
-		(pSegment->state == ResultSegmentState::Auto ||
-		 pSegment->state == ResultSegmentState::Chosen) &&
-		std::find(pSegment->srcPanes.begin(), pSegment->srcPanes.end(), srcPane) != pSegment->srcPanes.end();
-	pCmdUI->SetCheck(bChecked);
+	if (!IsMergeResultPaneActive())
+	{
+		pCmdUI->Enable(FALSE);
+		pCmdUI->SetCheck(FALSE);
+		return;
+	}
+
+	int firstDiff = -1, lastDiff = -1;
+	m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
+
+	if (firstDiff == -1 || lastDiff == -1)
+	{
+		pCmdUI->Enable(FALSE);
+		pCmdUI->SetCheck(FALSE);
+		return;
+	}
+
+	pCmdUI->Enable(TRUE);
+
+	// For single diff, show which panes are currently selected
+	if (firstDiff == lastDiff)
+	{
+		const int nDiff = firstDiff;
+		const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
+		const int srcPane = pCmdUI->m_nID - ID_MERGE_CHOOSE_LEFT;
+		const bool bChecked = pSegment != nullptr &&
+			(pSegment->state == ResultSegmentState::Auto ||
+			 pSegment->state == ResultSegmentState::Chosen) &&
+			std::find(pSegment->srcPanes.begin(), pSegment->srcPanes.end(), srcPane) != pSegment->srcPanes.end();
+		pCmdUI->SetCheck(bChecked);
+	}
+	else
+	{
+		// For multiple selection, don't show a specific checkbox state
+		pCmdUI->SetCheck(FALSE);
+	}
 }
 
 void CMergeDoc::OnMergeChooseAllConflicts(UINT nID)
