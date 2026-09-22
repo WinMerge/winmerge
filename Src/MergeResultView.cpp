@@ -24,6 +24,10 @@
 #define new DEBUG_NEW
 #endif
 
+#ifndef WM_MOUSEHWHEEL
+#  define WM_MOUSEHWHEEL 0x20e
+#endif
+
 IMPLEMENT_DYNCREATE(CMergeResultView, CGhostTextView)
 
 CMergeResultView::CMergeResultView()
@@ -340,14 +344,6 @@ void CMergeResultView::OnContextMenu(CWnd* pWnd, CPoint point)
 		point = ptClient;
 	}
 
-	if (!IsSelection())
-	{
-		CPoint pointClient = point;
-		ScreenToClient(&pointClient);
-		OnLButtonDown(0, pointClient);
-		OnLButtonUp(0, pointClient);
-	}
-
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGERESULTVIEW));
 	I18n::TranslateMenu(menu.m_hMenu);
@@ -469,21 +465,7 @@ BOOL CMergeResultView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	}
 	if (nFlags == MK_SHIFT)
 	{
-		SCROLLINFO si = { sizeof SCROLLINFO };
-		si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
-
-		VERIFY(GetScrollInfo(SB_HORZ, &si));
-
-		// new horz pos
-		si.nPos -= zDelta / 40;
-		if (si.nPos > si.nMax) si.nPos = si.nMax;
-		if (si.nPos < si.nMin) si.nPos = si.nMin;
-
-		SetScrollInfo(SB_HORZ, &si);
-
-		// for update
-		SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
-
+		HandleHorizontalScrollWheel(-zDelta);
 		// no default CCrystalTextView
 		return CView::OnMouseWheel(nFlags, zDelta, pt);
 	}
@@ -495,20 +477,7 @@ BOOL CMergeResultView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
  */
 void CMergeResultView::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	SCROLLINFO si = { sizeof SCROLLINFO };
-	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
-
-	VERIFY(GetScrollInfo(SB_HORZ, &si));
-
-	// new horz pos
-	si.nPos += zDelta / 40;
-	if (si.nPos > si.nMax) si.nPos = si.nMax;
-	if (si.nPos < si.nMin) si.nPos = si.nMin;
-
-	SetScrollInfo(SB_HORZ, &si);
-
-	// for update
-	SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+	HandleHorizontalScrollWheel(zDelta);
 
 	// no default CCrystalTextView
 	CView::OnMouseHWheel(nFlags, zDelta, pt);
