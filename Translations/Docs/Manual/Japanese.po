@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-09-22 08:02+0900\n"
-"PO-Revision-Date: 2026-08-31 08:22+0900\n"
+"PO-Revision-Date: 2026-09-22 11:58+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -1360,7 +1360,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:540
 msgid "auto-merge with /am option"
-msgstr "起動時に自動マージする"
+msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:542
@@ -1377,7 +1377,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:554
 msgid "auto-merge with /ar option"
-msgstr "起動時に自動マージする"
+msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:556
