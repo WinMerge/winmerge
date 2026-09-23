@@ -1041,6 +1041,7 @@
     <ClInclude Include="LineFilterBar.h" />
     <ClInclude Include="LineFilterHelper.h" />
     <ClInclude Include="LineFilterHelperMenu.h" />
+    <ClInclude Include="MergeDiffNavigation.h" />
     <ClInclude Include="MergeLogger.h" />
     <ClInclude Include="MergeResultContainer.h" />
     <ClInclude Include="MergeTextFormatter.h" />

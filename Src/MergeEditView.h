@@ -40,6 +40,7 @@ class CLocationView;
 class CMergeDoc;
 struct DIFFRANGE;
 class CTreeSitterParser;
+class CMergeDiffNavigation;
 
 /**
 This class is the base class for WinMerge editor panels.
@@ -57,6 +58,8 @@ Maybe in the future...
 */
 class CMergeEditView : public CGhostTextView
 {
+	friend class CMergeDiffNavigation;
+
 protected:
 	CMergeEditView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CMergeEditView)
@@ -112,6 +115,8 @@ public:
 	int LineToDiff(int nLine) const;
 	int NextSignificantDiffFromLine(int nLine) const;
 	int PrevSignificantDiffFromLine(int nLine) const;
+	int NextSignificant3wayDiffFromLine(int line, int nDiffType) const;
+	int PrevSignificant3wayDiffFromLine(int line, int nDiffType) const;
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CEPoint *pptStart = nullptr, const CEPoint *ppEnd = nullptr);
 	void GetSelectedDiffs(int & firstDiff, int & lastDiff);

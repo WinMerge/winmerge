@@ -10,6 +10,7 @@
 
 class CMergeDoc;
 struct DIFFRANGE;
+class CMergeDiffNavigation;
 
 /**
  * @brief Editable view showing the 3-way merge result.
@@ -21,6 +22,8 @@ struct DIFFRANGE;
  */
 class CMergeResultView : public CGhostTextView
 {
+	friend class CMergeDiffNavigation;
+
 public:
 	CMergeResultView();
 	virtual ~CMergeResultView();
@@ -50,21 +53,12 @@ private:
 	int LineToDiff(int nLine) const;
 	int NextSignificantDiffFromLine(int nLine) const;
 	int PrevSignificantDiffFromLine(int nLine) const;
+	int NextSignificant3wayDiffFromLine(int line, int nDiffType) const;
+	int PrevSignificant3wayDiffFromLine(int line, int nDiffType) const;
 
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
 	bool IsDiffVisible(int nDiff);
-	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
 	bool IsDiffFiltered(int nDiff);
-	bool IsDiffFiltered(const DIFFRANGE& diff);
-	int FindFirstNonFilteredDiff();
-	int FindLastNonFilteredDiff();
-	int FindNextNonFilteredDiff(int startDiff);
-	int FindPrevNonFilteredDiff(int startDiff);
-	bool HasNextNonFilteredDiff();
-	bool HasPrevNonFilteredDiff();
-	int FindPendingResultDiff(bool bNext);
-	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType);
-	void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType);
 
 protected:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
@@ -96,6 +90,10 @@ protected:
 	afx_msg void OnUpdateNextConflict(CCmdUI* pCmdUI);
 	afx_msg void OnPrevConflict();
 	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
+	afx_msg void OnNext3wayDiff(int nDiffType);
+	afx_msg void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType);
+	afx_msg void OnPrev3wayDiff(int nDiffType);
+	afx_msg void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

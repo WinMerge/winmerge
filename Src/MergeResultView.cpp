@@ -9,6 +9,7 @@
 #include "MergeResultPane.h"
 #include "MergeResultContainer.h"
 #include "MergeResultStatusBar.h"
+#include "MergeDiffNavigation.h"
 #include "Merge.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
@@ -115,9 +116,9 @@ int CMergeResultView::NextSignificantDiffFromLine(int nLine) const
 {
 	const CMergeDoc* pDoc = GetDocument();
 	int nDiff = -1;
-	const int size = (int) pDoc->GetResultSegmentCount();
+	const int size = (int)pDoc->m_diffList.GetSize();
 
-	for (int i = 0; i < size - 1; i++)
+	for (int i = 0; i < size; i++)
 	{
 		const auto* seg = pDoc->GetResultSegmentByDiff(i);
 		if (seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
@@ -133,7 +134,7 @@ int CMergeResultView::PrevSignificantDiffFromLine(int nLine) const
 {
 	const CMergeDoc* pDoc = GetDocument();
 	int nDiff = -1;
-	const int size = (int) pDoc->GetResultSegmentCount();
+	const int size = (int)pDoc->m_diffList.GetSize();
 
 	for (int i = size - 1; i >= 0 ; i--)
 	{
@@ -145,6 +146,34 @@ int CMergeResultView::PrevSignificantDiffFromLine(int nLine) const
 		}
 	}
 	return nDiff;
+}
+
+int CMergeResultView::NextSignificant3wayDiffFromLine(int line, int nDiffType) const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	const MergeResultSegment* seg = pDoc->GetResultSegmentByLine(line);
+	while (seg != nullptr && seg->diffIdx >= 0)
+	{
+		line += seg->nLines;
+		seg = pDoc->GetResultSegmentByLine(line);
+	}
+	if (!seg || seg->diffIdx == -1)
+		return -1;
+	return pDoc->m_diffList.NextSignificant3wayDiff(seg->diffIdx, nDiffType);
+}
+
+int CMergeResultView::PrevSignificant3wayDiffFromLine(int line, int nDiffType) const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	const MergeResultSegment* seg = pDoc->GetResultSegmentByLine(line);
+	while (seg != nullptr && seg->diffIdx >= 0)
+	{
+		line = seg->nStartLine - 1;
+		seg = pDoc->GetResultSegmentByLine(line);
+	}
+	if (!seg || seg->diffIdx == -1)
+		return -1;
+	return pDoc->m_diffList.PrevSignificant3wayDiff(seg->diffIdx, nDiffType);
 }
 
 bool CMergeResultView::QueryEditable()
@@ -456,8 +485,8 @@ void CMergeResultView::GetSelectedDiffs(int& firstDiff, int& lastDiff)
 	lastDiff = -1;
 
 	CMergeDoc* pDoc = GetDocument();
-	const int nSegments = pDoc->GetResultSegmentCount();
-	if (nSegments == 0)
+	const int nDiffCount = pDoc->m_diffList.GetSize();
+	if (nDiffCount == 0)
 		return;
 
 	int firstLine, lastLine;
@@ -465,7 +494,7 @@ void CMergeResultView::GetSelectedDiffs(int& firstDiff, int& lastDiff)
 	firstLine = ptStart.y;
 	lastLine = ptEnd.y;
 
-	for (int i = 0; i < nSegments; ++i)
+	for (int i = 0; i < nDiffCount; ++i)
 	{
 		const MergeResultSegment* seg = pDoc->GetResultSegmentByDiff(i);
 		if (!seg || seg->nLines <= 0)
@@ -613,22 +642,6 @@ void CMergeResultView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSele
 */
 bool CMergeResultView::IsDiffVisible(int nDiff)
 {
-	const CMergeDoc *pd = GetDocument();
-
-	DIFFRANGE diff;
-	pd->m_diffList.GetDiff(nDiff, diff);
-
-	return IsDiffVisible(diff);
-}
-
-/**
- * @brief Determine if difference is visible on screen.
- * @param [in] diff diff to check.
- * @param [in] nLinesBelow Allow "minimizing" the number of visible lines.
- * @return true if difference is visible, false otherwise.
- */
-bool CMergeResultView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/)
-{
 	return true;
 }
 
@@ -639,489 +652,87 @@ bool CMergeResultView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0
  */
 bool CMergeResultView::IsDiffFiltered(int nDiff)
 {
-	DIFFRANGE diff;
-	GetDocument()->m_diffList.GetDiff(nDiff, diff);
-	return IsDiffFiltered(diff);
+	return false;
 }
 
-/**
- * @brief Check if difference is hidden by line filter.
- * @param [in] diff diff to check.
- * @return true if all lines in the diff block are hidden by filter.
- */
-bool CMergeResultView::IsDiffFiltered(const DIFFRANGE& diff)
-{
-	int nLineCount = GetLineCount();
-	if (diff.dbegin >= nLineCount || diff.dend >= nLineCount)
-		return false; // Invalid diff range
-
-	// Check if all lines in the diff range have the LF_INVISIBLE flag
-	for (int line = diff.dbegin; line <= diff.dend; ++line)
-	{
-		lineflags_t dwLineFlags = GetLineFlags(line);
-		if (!(dwLineFlags & LF_INVISIBLE))
-			return false;
-	}
-	return true;
-}
-
-/**
- * @brief Find the first non-filtered diff
- * @return Index of first non-filtered diff, or -1 if none found
- */
-int CMergeResultView::FindFirstNonFilteredDiff()
-{
-	const CMergeDoc *pd = GetDocument();
-	int nDiff = pd->m_diffList.FirstSignificantDiff();
-	int lastDiff = pd->m_diffList.LastSignificantDiff();
-
-	while (nDiff >= 0 && nDiff <= lastDiff && IsDiffFiltered(nDiff))
-	{
-		if (nDiff < pd->m_diffList.GetSize() - 1)
-			nDiff = pd->m_diffList.NextSignificantDiff(nDiff);
-		else
-			return -1;
-	}
-
-	return (nDiff >= 0 && nDiff <= lastDiff) ? nDiff : -1;
-}
-
-/**
- * @brief Find the last non-filtered diff
- * @return Index of last non-filtered diff, or -1 if none found
- */
-int CMergeResultView::FindLastNonFilteredDiff()
-{
-	const CMergeDoc *pd = GetDocument();
-	int nDiff = pd->m_diffList.LastSignificantDiff();
-	int firstDiff = pd->m_diffList.FirstSignificantDiff();
-
-	while (nDiff >= 0 && nDiff >= firstDiff && IsDiffFiltered(nDiff))
-	{
-		if (nDiff > 0)
-			nDiff = pd->m_diffList.PrevSignificantDiff(nDiff);
-		else
-			return -1;
-	}
-
-	return (nDiff >= 0 && nDiff >= firstDiff) ? nDiff : -1;
-}
-
-/**
- * @brief Find next non-filtered diff from current position or given diff
- * @param [in] startDiff Current diff index (-1 for search from cursor position)
- * @return Index of next non-filtered diff, or -1 if none found
- */
-int CMergeResultView::FindNextNonFilteredDiff(int startDiff)
-{
-	const CMergeDoc *pd = GetDocument();
-	int nextDiff = -1;
-	int lastDiff = pd->m_diffList.LastSignificantDiff();
-
-	if (startDiff != -1)
-	{
-		// We're on a diff
-		if (!IsDiffVisible(startDiff))
-		{
-			// Selected difference not visible, select next from cursor
-			int line = GetCursorPos().y;
-			// Make sure we aren't in the first line of the diff
-			++line;
-			if (!IsValidTextPosY(CEPoint(0, line)))
-				line = m_nTopLine;
-			nextDiff = NextSignificantDiffFromLine(line);
-		}
-		else if (startDiff < pd->m_diffList.GetSize() - 1)
-		{
-			nextDiff = pd->m_diffList.NextSignificantDiff(startDiff);
-		}
-	}
-	else
-	{
-		// No selected diff, search from cursor
-		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CEPoint(0, line)))
-			line = m_nTopLine;
-		nextDiff = NextSignificantDiffFromLine(line);
-	}
-
-	// Skip filtered (hidden) diffs
-	while (nextDiff >= 0 && nextDiff <= lastDiff && IsDiffFiltered(nextDiff))
-	{
-		if (nextDiff < pd->m_diffList.GetSize() - 1)
-			nextDiff = pd->m_diffList.NextSignificantDiff(nextDiff);
-		else
-			return -1;
-	}
-
-	return (nextDiff >= 0 && nextDiff <= lastDiff) ? nextDiff : -1;
-}
-
-/**
- * @brief Find previous non-filtered diff from current position or given diff
- * @param [in] startDiff Current diff index (-1 for search from cursor position)
- * @return Index of previous non-filtered diff, or -1 if none found
- */
-int CMergeResultView::FindPrevNonFilteredDiff(int startDiff)
-{
-	const CMergeDoc *pd = GetDocument();
-	int prevDiff = -1;
-	int firstDiff = pd->m_diffList.FirstSignificantDiff();
-
-	if (startDiff != -1)
-	{
-		// We're on a diff
-		if (!IsDiffVisible(startDiff))
-		{
-			// Selected difference not visible, select previous from cursor
-			int line = GetCursorPos().y;
-			// Make sure we aren't in the last line of the diff
-			--line;
-			if (!IsValidTextPosY(CEPoint(0, line)))
-				line = m_nTopLine;
-			prevDiff = PrevSignificantDiffFromLine(line);
-		}
-		else if (startDiff > 0)
-		{
-			prevDiff = pd->m_diffList.PrevSignificantDiff(startDiff);
-		}
-	}
-	else
-	{
-		// No selected diff, search from cursor
-		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CEPoint(0, line)))
-			line = m_nTopLine;
-		prevDiff = PrevSignificantDiffFromLine(line);
-	}
-
-	// Skip filtered (hidden) diffs
-	while (prevDiff >= 0 && prevDiff >= firstDiff && IsDiffFiltered(prevDiff))
-	{
-		if (prevDiff > 0)
-			prevDiff = pd->m_diffList.PrevSignificantDiff(prevDiff);
-		else
-			return -1;
-	}
-
-	return (prevDiff >= 0 && prevDiff >= firstDiff) ? prevDiff : -1;
-}
-
-/**
- * @brief Check if there is a next non-filtered diff.
- * @return true if there is a next non-filtered diff available.
- */
-bool CMergeResultView::HasNextNonFilteredDiff()
-{
-	const CMergeDoc *pd = GetDocument();
-	int curDiff = pd->GetCurrentDiff();
-	return FindNextNonFilteredDiff(curDiff) != -1;
-}
-
-/**
- * @brief Check if there is a previous non-filtered diff.
- * @return true if there is a previous non-filtered diff available.
- */
-bool CMergeResultView::HasPrevNonFilteredDiff()
-{
-	const CMergeDoc *pd = GetDocument();
-	int curDiff = pd->GetCurrentDiff();
-	return FindPrevNonFilteredDiff(curDiff) != -1;
-}
-
-/**
- * @brief Called when user selects "Current Difference".
- * Goes to active diff. If no active diff, selects diff under cursor
- * @sa CMergeResultView::SelectDiff()
- * @sa CMergeDoc::GetCurrentDiff()
- * @sa CMergeDoc::LineToDiff()
- */
 void CMergeResultView::OnCurdiff()
 {
-	CMergeDoc *pd = GetDocument();
-
-	// If no diffs, nothing to select
-	if (!pd->m_diffList.HasSignificantDiffs())
-		return;
-
-	// GetCurrentDiff() returns -1 if no diff selected
-	int nDiff = pd->GetCurrentDiff();
-	if (nDiff != -1)
-	{
-		// Scroll to the first line of the currently selected diff
-		SelectDiff(nDiff, true, false);
-	}
-	else
-	{
-		// If cursor is inside diff, select that diff
-		CEPoint pos = GetCursorPos();
-		nDiff = LineToDiff(pos.y);
-		if (nDiff != -1 && pd->m_diffList.IsDiffSignificant(nDiff))
-			SelectDiff(nDiff, true, false);
-	}
+	CMergeDiffNavigation::OnCurdiff(this);
 }
 
-/**
- * @brief Called when "Current diff" item is updated
- */
 void CMergeResultView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 {
-	CMergeDoc *pd = GetDocument();
-	int nCurrentDiff = pd->GetCurrentDiff();
-	if (nCurrentDiff == -1)
-	{
-		CEPoint pos = GetCursorPos();
-		int nNewDiff = LineToDiff(pos.y);
-		pCmdUI->Enable(nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff));
-	}
-	else
-		pCmdUI->Enable(true);
+	CMergeDiffNavigation::OnUpdateCurdiff(this, pCmdUI);
 }
 
-/**
- * @brief Go to first diff
- *
- * Called when user selects "First Difference"
- * @sa CMergeResultView::SelectDiff()
- */
 void CMergeResultView::OnFirstdiff()
 {
-	CMergeDoc *pd = GetDocument();
-	if (pd->m_diffList.HasSignificantDiffs())
-	{
-		int nDiff = FindFirstNonFilteredDiff();
-		if (nDiff >= 0)
-			SelectDiff(nDiff, true, false);
-	}
+	CMergeDiffNavigation::OnFirstdiff(this);
 }
 
-/**
- * @brief Update "First diff" UI items
- */
 void CMergeResultView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 {
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd->m_diffList.HasSignificantDiffs() && FindFirstNonFilteredDiff() >= 0);
+	CMergeDiffNavigation::OnUpdateFirstdiff(this, pCmdUI);
 }
 
-/**
- * @brief Go to last diff
- */
 void CMergeResultView::OnLastdiff()
 {
-	CMergeDoc *pd = GetDocument();
-	if (pd->m_diffList.HasSignificantDiffs())
-	{
-		int nDiff = FindLastNonFilteredDiff();
-		if (nDiff >= 0)
-			SelectDiff(nDiff, true, false);
-	}
+	CMergeDiffNavigation::OnLastdiff(this);
 }
 
-/**
- * @brief Update "Last diff" UI items
- */
 void CMergeResultView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 {
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd->m_diffList.HasSignificantDiffs() && FindLastNonFilteredDiff() >= 0);
+	CMergeDiffNavigation::OnUpdateLastdiff(this, pCmdUI);
 }
 
-/**
- * @brief Go to next diff and select it.
- *
- * Finds and selects next difference. There are several cases:
- * - if there is selected difference, and that difference is visible
- * on screen, next found difference is selected.
- * - if there is selected difference but it is not visible, next
- * difference from cursor position is selected. This is what user
- * expects to happen and is natural thing to do. Also reduces
- * needless scrolling.
- * - if there is no selected difference, next difference from cursor
- * position is selected.
- */
 void CMergeResultView::OnNextdiff()
 {
-	CMergeDoc *pd = GetDocument();
-	int cnt = LocateTextBuffer()->GetLineCount();
-	if (cnt <= 0)
-		return;
-
-	// Returns -1 if no diff selected
-	int curDiff = pd->GetCurrentDiff();
-	int nextDiff = FindNextNonFilteredDiff(curDiff);
-
-	if (nextDiff >= 0)
-		SelectDiff(nextDiff, true, false);
-	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
-	{
-		if (pDirDoc->MoveableToNextDiff())
-			pDirDoc->MoveToNextDiff(pd);
-	}
+	CMergeDiffNavigation::OnNextdiff(this);
 }
 
-/**
- * @brief Update "Next diff" UI items
- */
 void CMergeResultView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
-	CMergeDoc *pd = GetDocument();
-	bool enabled = HasNextNonFilteredDiff();
-
-	if (!enabled && pd->GetDirDoc())
-		enabled = pd->GetDirDoc()->MoveableToNextDiff();
-
-	pCmdUI->Enable(enabled);
+	CMergeDiffNavigation::OnUpdateNextdiff(this, pCmdUI);
 }
 
-/**
- * @brief Go to previous diff and select it.
- *
- * Finds and selects previous difference. There are several cases:
- * - if there is selected difference, and that difference is visible
- * on screen, previous found difference is selected.
- * - if there is selected difference but it is not visible, previous
- * difference from cursor position is selected. This is what user
- * expects to happen and is natural thing to do. Also reduces
- * needless scrolling.
- * - if there is no selected difference, previous difference from cursor
- * position is selected.
- */
 void CMergeResultView::OnPrevdiff()
 {
-	CMergeDoc *pd = GetDocument();
-	int cnt = LocateTextBuffer()->GetLineCount();
-	if (cnt <= 0)
-		return;
-
-	// GetCurrentDiff() returns -1 if no diff selected
-	int curDiff = pd->GetCurrentDiff();
-	int prevDiff = FindPrevNonFilteredDiff(curDiff);
-
-	if (prevDiff >= 0)
-		SelectDiff(prevDiff, true, false);
-	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
-	{
-		if (pDirDoc->MoveableToPrevDiff())
-			pDirDoc->MoveToPrevDiff(pd);
-	}
+	CMergeDiffNavigation::OnPrevdiff(this);
 }
 
-/**
- * @brief Update "Previous diff" UI items
- */
 void CMergeResultView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
-	CMergeDoc *pd = GetDocument();
-	bool enabled = HasPrevNonFilteredDiff();
-
-	if (!enabled && pd->GetDirDoc())
-		enabled = pd->GetDirDoc()->MoveableToPrevDiff();
-
-	pCmdUI->Enable(enabled);
-}
-
-/**
- * @brief Find the next/previous difference that still needs a decision in
- * the merge result pane (kdiff3's "unsolved conflict" navigation).
- * @return Diff index, or -1 when there is none in that direction.
- */
-int CMergeResultView::FindPendingResultDiff(bool bNext)
-{
-	CMergeDoc* pd = GetDocument();
-	const int nDiffCount = pd->m_diffList.GetSize();
-	const int nCurDiff = pd->GetCurrentDiff();
-	int nBegin;
-	if (nCurDiff != -1)
-		nBegin = bNext ? nCurDiff + 1 : nCurDiff - 1;
-	else
-	{
-		// No selected difference: anchor the scan on the cursor line
-		// (the difference at the cursor counts as "next"/"previous")
-		const int nLine = GetCursorPos().y;
-		nBegin = bNext ? nDiffCount : -1;
-		if (bNext)
-		{
-			nBegin = NextSignificantDiffFromLine(nLine);
-		}
-		else
-		{
-			nBegin = PrevSignificantDiffFromLine(nLine);
-		}
-	}
-	const int nStep = bNext ? 1 : -1;
-	for (int i = nBegin; i >= 0 && i < nDiffCount; i += nStep)
-	{
-		if (pd->m_diffList.IsDiffSignificant(i) && !IsDiffFiltered(i) &&
-			pd->IsResultDiffPending(i))
-			return i;
-	}
-	return -1;
+	CMergeDiffNavigation::OnUpdatePrevdiff(this, pCmdUI);
 }
 
 void CMergeResultView::OnNextConflict()
 {
-	// While merging, "next conflict" means the next difference that still
-	// needs a decision, skipping the ones already resolved
-	const int nDiff = FindPendingResultDiff(true);
-	if (nDiff >= 0)
-	{
-		SelectDiff(nDiff, true, false);
-		return;
-	}
-	// Nothing linked and pending. When unresolved segments remain the
-	// segment <-> diff links were severed by a rescan: fall back to
-	// plain conflict navigation instead of leaving the command dead
-	if (GetDocument()->GetResultUnresolvedCount() == 0)
-		return;
+	CMergeDiffNavigation::OnNextConflict(this);
 }
 
-/**
- * @brief Update "Next Conflict" UI items
- */
 void CMergeResultView::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
-	if (FindPendingResultDiff(true) >= 0)
-	{
-		pCmdUI->Enable(TRUE);
-		return;
-	}
-	if (GetDocument()->GetResultUnresolvedCount() == 0)
-	{
-		pCmdUI->Enable(FALSE);
-		return;
-	}
-	OnUpdateNext3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
+	CMergeDiffNavigation::OnUpdateNextConflict(this, pCmdUI);
 }
 
 void CMergeResultView::OnPrevConflict()
 {
-	const int nDiff = FindPendingResultDiff(false);
-	if (nDiff >= 0)
-	{
-		SelectDiff(nDiff, true, false);
-		return;
-	}
-	if (GetDocument()->GetResultUnresolvedCount() == 0)
-		return;
+	CMergeDiffNavigation::OnPrevConflict(this);
 }
 
-/**
- * @brief Update "Prev Conflict" UI items
- */
 void CMergeResultView::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
-	if (FindPendingResultDiff(false) >= 0)
-	{
-		pCmdUI->Enable(TRUE);
-		return;
-	}
-	if (GetDocument()->GetResultUnresolvedCount() == 0)
-	{
-		pCmdUI->Enable(FALSE);
-		return;
-	}
-	OnUpdatePrev3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
+	CMergeDiffNavigation::OnUpdatePrevConflict(this, pCmdUI);
+}
+
+void CMergeResultView::OnNext3wayDiff(int nDiffType)
+{
+	CMergeDiffNavigation::OnNext3wayDiff(this, nDiffType);
+}
+
+void CMergeResultView::OnPrev3wayDiff(int nDiffType)
+{
+	CMergeDiffNavigation::OnPrev3wayDiff(this, nDiffType);
 }
 
 /**

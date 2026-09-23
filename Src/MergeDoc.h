@@ -370,7 +370,6 @@ public:
 	void UpdateMergeResultPaneCaption();
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
 	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
-	int GetResultSegmentCount() const { return static_cast<int>(m_resultSegments.size()); }
 
 	void ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious = false);
 	void ResultChooseSources(int nDiff, const std::vector<int>& srcPanes, bool bGroupWithPrevious = false);
