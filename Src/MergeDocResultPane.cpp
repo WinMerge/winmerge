@@ -1306,64 +1306,6 @@ const MergeResultSegment* CMergeDoc::GetResultSegmentByDiff(int nDiff) const
 	return &m_resultSegments[nSegment];
 }
 
-int CMergeDoc::LineToDiff(int nLineIndex, bool bMergeResult /* = true */)
-{
-	if (bMergeResult)
-	{
-		const MergeResultSegment* pSeg = GetResultSegmentByLine(nLineIndex);
-		return (pSeg != nullptr) ? pSeg->diffIdx : -1;
-	}
-	return m_diffList.LineToDiff(nLineIndex);
-}
-
-int CMergeDoc::PrevSignificantDiffFromLine(bool bMergeResult, int line) const
-{
-	if (bMergeResult)
-	{
-		int nDiff = -1;
-		const int size = (int) m_resultSegments.size();
-
-		for (int i = size - 1; i >= 0 ; i--)
-		{
-			const auto& seg = m_resultSegments[i];
-			if (seg.diffIdx >= 0 && seg.nStartLine + seg.nLines - 1 <= static_cast<int>(line))
-			{
-				nDiff = seg.diffIdx;
-				break;
-			}
-		}
-		return nDiff;
-	}
-	return m_diffList.PrevSignificantDiffFromLine(line);
-}
-
-int CMergeDoc::NextSignificantDiffFromLine(bool bMergeResult, int line) const
-{
-	if (bMergeResult)
-	{
-		int nDiff = -1;
-		const int size = (int) m_resultSegments.size();
-
-		for (int i = 0; i < size - 1; i++)
-		{
-			const auto& seg = m_resultSegments[i];
-			if (seg.diffIdx >= 0 && seg.nStartLine >= static_cast<int>(line))
-			{
-				nDiff = seg.diffIdx;
-				break;
-			}
-		}
-	}
-	return m_diffList.NextSignificantDiffFromLine(line);
-}
-
-CDiffTextBuffer* CMergeDoc::GetTextBuffer(bool bMergeResult, int nPane) const
-{
-	if (bMergeResult)
-		return m_ptResultBuf.get();
-	return (nPane >= 0 && nPane < m_nBuffers) ? m_ptBuf[nPane].get() : nullptr;
-}
-
 /**
  * @brief Replace the result segment of nDiff with the content of the
  * given source pane.

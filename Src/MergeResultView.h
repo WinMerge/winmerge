@@ -47,6 +47,10 @@ public:
 	void GetSelectedDiffs(int& firstDiff, int& lastDiff);
 
 private:
+	int LineToDiff(int nLine) const;
+	int NextSignificantDiffFromLine(int nLine) const;
+	int PrevSignificantDiffFromLine(int nLine) const;
+
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
 	bool IsDiffVisible(int nDiff);
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);

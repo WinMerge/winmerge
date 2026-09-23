@@ -105,6 +105,48 @@ CCrystalTextBuffer *CMergeResultView::LocateTextBuffer()
 	return GetDocument()->GetMergeResultBuffer();
 }
 
+int CMergeResultView::LineToDiff(int nLine) const
+{
+	const MergeResultSegment* pSeg = GetDocument()->GetResultSegmentByLine(nLine);
+	return (pSeg != nullptr) ? pSeg->diffIdx : -1;
+}
+
+int CMergeResultView::NextSignificantDiffFromLine(int nLine) const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	int nDiff = -1;
+	const int size = (int) pDoc->GetResultSegmentCount();
+
+	for (int i = 0; i < size - 1; i++)
+	{
+		const auto* seg = pDoc->GetResultSegmentByDiff(i);
+		if (seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
+		{
+			nDiff = seg->diffIdx;
+			break;
+		}
+	}
+	return nDiff;
+}
+
+int CMergeResultView::PrevSignificantDiffFromLine(int nLine) const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	int nDiff = -1;
+	const int size = (int) pDoc->GetResultSegmentCount();
+
+	for (int i = size - 1; i >= 0 ; i--)
+	{
+		const auto* seg = pDoc->GetResultSegmentByDiff(i);
+		if (seg->diffIdx >= 0 && seg->nStartLine + seg->nLines - 1 <= static_cast<int>(nLine))
+		{
+			nDiff = seg->diffIdx;
+			break;
+		}
+	}
+	return nDiff;
+}
+
 bool CMergeResultView::QueryEditable()
 {
 	CCrystalTextBuffer* pBuf = m_pTextBuffer;
@@ -414,7 +456,7 @@ void CMergeResultView::GetSelectedDiffs(int& firstDiff, int& lastDiff)
 	lastDiff = -1;
 
 	CMergeDoc* pDoc = GetDocument();
-	const int nSegments = pDoc->GetResultSegmenCount();
+	const int nSegments = pDoc->GetResultSegmentCount();
 	if (nSegments == 0)
 		return;
 
@@ -687,7 +729,7 @@ int CMergeResultView::FindNextNonFilteredDiff(int startDiff)
 			++line;
 			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
-			nextDiff = pd->NextSignificantDiffFromLine(true, line);
+			nextDiff = NextSignificantDiffFromLine(line);
 		}
 		else if (startDiff < pd->m_diffList.GetSize() - 1)
 		{
@@ -700,7 +742,7 @@ int CMergeResultView::FindNextNonFilteredDiff(int startDiff)
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
-		nextDiff = pd->NextSignificantDiffFromLine(true, line);
+		nextDiff = NextSignificantDiffFromLine(line);
 	}
 
 	// Skip filtered (hidden) diffs
@@ -737,7 +779,7 @@ int CMergeResultView::FindPrevNonFilteredDiff(int startDiff)
 			--line;
 			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
-			prevDiff = pd->PrevSignificantDiffFromLine(true, line);
+			prevDiff = PrevSignificantDiffFromLine(line);
 		}
 		else if (startDiff > 0)
 		{
@@ -750,7 +792,7 @@ int CMergeResultView::FindPrevNonFilteredDiff(int startDiff)
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
-		prevDiff = pd->PrevSignificantDiffFromLine(true, line);
+		prevDiff = PrevSignificantDiffFromLine(line);
 	}
 
 	// Skip filtered (hidden) diffs
@@ -813,7 +855,7 @@ void CMergeResultView::OnCurdiff()
 	{
 		// If cursor is inside diff, select that diff
 		CEPoint pos = GetCursorPos();
-		nDiff = pd->LineToDiff(pos.y, true);
+		nDiff = LineToDiff(pos.y);
 		if (nDiff != -1 && pd->m_diffList.IsDiffSignificant(nDiff))
 			SelectDiff(nDiff, true, false);
 	}
@@ -829,7 +871,7 @@ void CMergeResultView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 	if (nCurrentDiff == -1)
 	{
 		CEPoint pos = GetCursorPos();
-		int nNewDiff = pd->LineToDiff(pos.y, true);
+		int nNewDiff = LineToDiff(pos.y);
 		pCmdUI->Enable(nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff));
 	}
 	else
@@ -901,7 +943,7 @@ void CMergeResultView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 void CMergeResultView::OnNextdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	int cnt = pd->GetTextBuffer(true, 0)->GetLineCount();
+	int cnt = LocateTextBuffer()->GetLineCount();
 	if (cnt <= 0)
 		return;
 
@@ -948,7 +990,7 @@ void CMergeResultView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 void CMergeResultView::OnPrevdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	int cnt = pd->GetTextBuffer(true, 0)->GetLineCount();
+	int cnt = LocateTextBuffer()->GetLineCount();
 	if (cnt <= 0)
 		return;
 
@@ -1000,11 +1042,11 @@ int CMergeResultView::FindPendingResultDiff(bool bNext)
 		nBegin = bNext ? nDiffCount : -1;
 		if (bNext)
 		{
-			nBegin = pd->NextSignificantDiffFromLine(true, nLine);
+			nBegin = NextSignificantDiffFromLine(nLine);
 		}
 		else
 		{
-			nBegin = pd->PrevSignificantDiffFromLine(true, nLine);
+			nBegin = PrevSignificantDiffFromLine(nLine);
 		}
 	}
 	const int nStep = bNext ? 1 : -1;

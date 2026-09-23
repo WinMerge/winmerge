@@ -365,8 +365,8 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 	if (lastLine < firstLine)
 		return;
 
-	firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
-	lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+	firstDiff = NextSignificantDiffFromLine(firstLine);
+	lastDiff = PrevSignificantDiffFromLine(lastLine);
 	if (firstDiff != -1 && lastDiff != -1)
 	{
 		DIFFRANGE di;
@@ -394,6 +394,24 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 			lastDiff = -1;
 		}
 	}
+}
+
+int CMergeEditView::LineToDiff(int nLine) const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	return pDoc->m_diffList.LineToDiff(nLine);
+}
+
+int CMergeEditView::NextSignificantDiffFromLine(int nLine) const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	return pDoc->m_diffList.NextSignificantDiffFromLine(nLine);
+}
+
+int CMergeEditView::PrevSignificantDiffFromLine(int nLine) const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	return pDoc->m_diffList.PrevSignificantDiffFromLine(nLine);
 }
 
 /**
@@ -427,19 +445,19 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 	firstLine = ptStart.y;
 	lastLine = ptEnd.y;
 
-	firstDiff = pd->m_diffList.LineToDiff(firstLine);
+	firstDiff = LineToDiff(firstLine);
 	bool firstLineIsNotInDiff = firstDiff == -1;
 	if (firstDiff == -1)
 	{
-		firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
+		firstDiff = NextSignificantDiffFromLine(firstLine);
 		if (firstDiff == -1)
 			return;
 		firstWordDiff = 0;
 	}
-	lastDiff = pd->m_diffList.LineToDiff(lastLine);
+	lastDiff = LineToDiff(lastLine);
 	bool lastLineIsNotInDiff = lastDiff == -1;	
 	if (lastDiff == -1)
-		lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+		lastDiff = PrevSignificantDiffFromLine(lastLine);
 	if (lastDiff < firstDiff)
 	{
 		firstDiff = -1;
@@ -547,16 +565,16 @@ void CMergeEditView::GetSelectedDiffs(int & firstDiff, int & lastDiff)
 	firstLine = ptStart.y;
 	lastLine = ptEnd.y;
 
-	firstDiff = pd->m_diffList.LineToDiff(firstLine);
+	firstDiff = LineToDiff(firstLine);
 	if (firstDiff == -1)
 	{
-		firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
+		firstDiff = NextSignificantDiffFromLine(firstLine);
 		if (firstDiff == -1)
 			return;
 	}
-	lastDiff = pd->m_diffList.LineToDiff(lastLine);
+	lastDiff = LineToDiff(lastLine);
 	if (lastDiff == -1)
-		lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+		lastDiff = PrevSignificantDiffFromLine(lastLine);
 	if (lastDiff < firstDiff)
 	{
 		firstDiff = -1;
@@ -575,7 +593,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 	auto [ptStart, ptEnd] = GetSelection();
 	for (int nLine = ptStart.y; nLine <= ptEnd.y; ++nLine)
 	{
-		if (pDoc->m_diffList.LineToDiff(nLine) != -1)
+		if (LineToDiff(nLine) != -1)
 		{
 			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 			int nLeft, nRight;
@@ -656,7 +674,7 @@ std::vector<LangServices::TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (in
 	if (pDoc->IsEditedAfterRescan(-1))
 		return emptyBlocks;
 	
-	int nDiff = pDoc->m_diffList.LineToDiff(nLineIndex);
+	int nDiff = LineToDiff(nLineIndex);
 	if (nDiff == -1)
 		return emptyBlocks;
 
@@ -1136,7 +1154,7 @@ void CMergeEditView::OnCurdiff()
 	{
 		// If cursor is inside diff, select that diff
 		CEPoint pos = GetCursorPos();
-		nDiff = pd->m_diffList.LineToDiff(pos.y);
+		nDiff = LineToDiff(pos.y);
 		if (nDiff != -1 && pd->m_diffList.IsDiffSignificant(nDiff))
 			SelectDiff(nDiff, true, false);
 	}
@@ -1152,7 +1170,7 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 	if (nCurrentDiff == -1)
 	{
 		CEPoint pos = GetCursorPos();
-		int nNewDiff = pd->m_diffList.LineToDiff(pos.y);
+		int nNewDiff = LineToDiff(pos.y);
 		pCmdUI->Enable(nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff));
 	}
 	else
@@ -1393,7 +1411,7 @@ void CMergeEditView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 void CMergeEditView::OnNextdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	int cnt = pd->m_ptBuf[0]->GetLineCount();
+	int cnt = LocateTextBuffer()->GetLineCount();
 	if (cnt <= 0)
 		return;
 
@@ -1440,7 +1458,7 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 void CMergeEditView::OnPrevdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	int cnt = pd->m_ptBuf[0]->GetLineCount();
+	int cnt = LocateTextBuffer()->GetLineCount();
 	if (cnt <= 0)
 		return;
 
@@ -1971,7 +1989,7 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CMergeDoc *pd = GetDocument();
 	CEPoint pos = GetCursorPos();
 
-	int diff = pd->m_diffList.LineToDiff(pos.y);
+	int diff = LineToDiff(pos.y);
 	if (diff != -1 && pd->m_diffList.IsDiffSignificant(diff))
 		SelectDiff(diff, false, false);
 
@@ -2022,7 +2040,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		if (m_bCurrentLineIsDiff)
 		{
 			CEPoint pt = GetCursorPos();
-			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
+			currentDiff = LineToDiff(pt.y);
 		}
 	}
 
@@ -2171,7 +2189,7 @@ void CMergeEditView::SelDiffCopy(int actPane)
 	if (currentDiff == -1 && m_bCurrentLineIsDiff)
 	{
 		CEPoint pt = GetCursorPos();
-		currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
+		currentDiff = LineToDiff(pt.y);
 	}
 
 	DIFFRANGE di;
@@ -2498,7 +2516,7 @@ int CMergeEditView::GetMergeTargetDiff()
 	GetSelectedDiffs(firstDiff, lastDiff);
 	if (firstDiff != -1 && lastDiff != -1)
 		return firstDiff;
-	return GetDocument()->m_diffList.LineToDiff(GetCursorPos().y);
+	return LineToDiff(GetCursorPos().y);
 }
 
 /**
@@ -3348,7 +3366,7 @@ void CMergeEditView::OnX2YNext(int srcPane, int dstPane)
 	{
 		int currentDiff = pDoc->GetCurrentDiff();
 		if (currentDiff == -1 && m_bCurrentLineIsDiff)
-			currentDiff = pDoc->m_diffList.LineToDiff(GetCursorPos().y);
+			currentDiff = LineToDiff(GetCursorPos().y);
 		if (currentDiff != -1)
 		{
 			int nNextDiff = -1;
@@ -3372,7 +3390,7 @@ void CMergeEditView::OnX2YNext(int srcPane, int dstPane)
 
 				OnX2Y(srcPane, dstPane);
 
-				nNextDiff = pDoc->m_diffList.LineToDiff(pDoc->m_ptBuf[nPane]->ComputeApparentLine(nRealLine));
+				nNextDiff = LineToDiff(pDoc->m_ptBuf[nPane]->ComputeApparentLine(nRealLine));
 				if (nNextDiff != -1)
 					SelectDiff(nNextDiff, true, false);
 				else
@@ -4449,7 +4467,7 @@ int CMergeEditView::FindNextNonFilteredDiff(int startDiff)
 			++line;
 			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
-			nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
+			nextDiff = NextSignificantDiffFromLine(line);
 		}
 		else if (startDiff < pd->m_diffList.GetSize() - 1)
 		{
@@ -4462,7 +4480,7 @@ int CMergeEditView::FindNextNonFilteredDiff(int startDiff)
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
-		nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
+		nextDiff = NextSignificantDiffFromLine(line);
 	}
 
 	// Skip filtered (hidden) diffs
@@ -4499,7 +4517,7 @@ int CMergeEditView::FindPrevNonFilteredDiff(int startDiff)
 			--line;
 			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
-			prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
+			prevDiff = PrevSignificantDiffFromLine(line);
 		}
 		else if (startDiff > 0)
 		{
@@ -4512,7 +4530,7 @@ int CMergeEditView::FindPrevNonFilteredDiff(int startDiff)
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
-		prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
+		prevDiff = PrevSignificantDiffFromLine(line);
 	}
 
 	// Skip filtered (hidden) diffs

@@ -109,6 +109,9 @@ public:
 	void DeselectDiffIfCursorNotInCurrentDiff();
 	virtual CCrystalTextBuffer *LocateTextBuffer () override;
 	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
+	int LineToDiff(int nLine) const;
+	int NextSignificantDiffFromLine(int nLine) const;
+	int PrevSignificantDiffFromLine(int nLine) const;
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CEPoint *pptStart = nullptr, const CEPoint *ppEnd = nullptr);
 	void GetSelectedDiffs(int & firstDiff, int & lastDiff);
