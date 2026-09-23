@@ -121,7 +121,7 @@ int CMergeResultView::NextSignificantDiffFromLine(int nLine) const
 	for (int i = 0; i < size; i++)
 	{
 		const auto* seg = pDoc->GetResultSegmentByDiff(i);
-		if (seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
+		if (seg && seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
 		{
 			nDiff = seg->diffIdx;
 			break;
@@ -139,7 +139,7 @@ int CMergeResultView::PrevSignificantDiffFromLine(int nLine) const
 	for (int i = size - 1; i >= 0 ; i--)
 	{
 		const auto* seg = pDoc->GetResultSegmentByDiff(i);
-		if (seg->diffIdx >= 0 && seg->nStartLine + seg->nLines - 1 <= static_cast<int>(nLine))
+		if (seg && seg->diffIdx >= 0 && seg->nStartLine + seg->nLines - 1 <= static_cast<int>(nLine))
 		{
 			nDiff = seg->diffIdx;
 			break;
@@ -152,7 +152,7 @@ int CMergeResultView::NextSignificant3wayDiffFromLine(int line, int nDiffType) c
 {
 	const CMergeDoc* pDoc = GetDocument();
 	const MergeResultSegment* seg = pDoc->GetResultSegmentByLine(line);
-	while (seg != nullptr && seg->diffIdx >= 0)
+	while (seg != nullptr && seg->diffIdx < 0)
 	{
 		line += seg->nLines;
 		seg = pDoc->GetResultSegmentByLine(line);
@@ -166,7 +166,7 @@ int CMergeResultView::PrevSignificant3wayDiffFromLine(int line, int nDiffType) c
 {
 	const CMergeDoc* pDoc = GetDocument();
 	const MergeResultSegment* seg = pDoc->GetResultSegmentByLine(line);
-	while (seg != nullptr && seg->diffIdx >= 0)
+	while (seg != nullptr && seg->diffIdx < 0)
 	{
 		line = seg->nStartLine - 1;
 		seg = pDoc->GetResultSegmentByLine(line);

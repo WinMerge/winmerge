@@ -4,7 +4,8 @@
  */
 #pragma once
 
-struct DIFFRANGE;
+#include "MergeDoc.h"
+
 class CCmdUI;
 
 class CMergeDiffNavigation

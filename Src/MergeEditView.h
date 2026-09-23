@@ -170,12 +170,6 @@ public:
 	bool IsCursorInDiff() const;
 	bool IsDiffVisible(int nDiff);
 	bool IsDiffFiltered(int nDiff);
-	int FindFirstNonFilteredDiff();
-	int FindLastNonFilteredDiff();
-	int FindNextNonFilteredDiff(int startDiff = -1);
-	int FindPrevNonFilteredDiff(int startDiff = -1);
-	bool HasNextNonFilteredDiff();
-	bool HasPrevNonFilteredDiff();
 	void ZoomText(short amount);
 	virtual bool QueryEditable() override;
 	virtual void EnsureVisible(CEPoint pt) override;
@@ -275,7 +269,6 @@ protected:
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
 	int GetMergeTargetDiff();
 	String GetPaneNameForMergeMenu() const;
-	int FindPendingResultDiff(bool bNext);
 	afx_msg void OnMergeChooseThis();
 	afx_msg void OnUpdateMergeChooseThis(CCmdUI* pCmdUI);
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
