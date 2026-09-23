@@ -9,6 +9,7 @@
 #include "OptionsDiffColors.h"
 
 class CMergeDoc;
+struct DIFFRANGE;
 
 /**
  * @brief Editable view showing the 3-way merge result.
@@ -45,6 +46,22 @@ public:
 	void TakeFocus();
 	void GetSelectedDiffs(int& firstDiff, int& lastDiff);
 
+private:
+	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
+	bool IsDiffVisible(int nDiff);
+	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
+	bool IsDiffFiltered(int nDiff);
+	bool IsDiffFiltered(const DIFFRANGE& diff);
+	int FindFirstNonFilteredDiff();
+	int FindLastNonFilteredDiff();
+	int FindNextNonFilteredDiff(int startDiff);
+	int FindPrevNonFilteredDiff(int startDiff);
+	bool HasNextNonFilteredDiff();
+	bool HasPrevNonFilteredDiff();
+	int FindPendingResultDiff(bool bNext);
+	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType);
+	void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType);
+
 protected:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bSyncingCurrentDiff; /**< true while this view drives diff selection */
@@ -61,6 +78,20 @@ protected:
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt);
+	afx_msg void OnCurdiff();
+	afx_msg void OnUpdateCurdiff(CCmdUI* pCmdUI);
+	afx_msg void OnFirstdiff();
+	afx_msg void OnUpdateFirstdiff(CCmdUI* pCmdUI);
+	afx_msg void OnLastdiff();
+	afx_msg void OnUpdateLastdiff(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiff();
+	afx_msg void OnUpdateNextdiff(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiff();
+	afx_msg void OnUpdatePrevdiff(CCmdUI* pCmdUI);
+	afx_msg void OnNextConflict();
+	afx_msg void OnUpdateNextConflict(CCmdUI* pCmdUI);
+	afx_msg void OnPrevConflict();
+	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

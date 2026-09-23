@@ -371,9 +371,14 @@ public:
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
 	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
 	int GetResultSegmenCount() const { return static_cast<int>(m_resultSegments.size()); }
+	int LineToDiff(int nLineIndex, bool bMergeResult = true);
+	CDiffTextBuffer* GetTextBuffer(bool bMergeResult, int nPane) const;
+	int PrevSignificantDiffFromLine(bool bMergeResult, int line) const;
+	int NextSignificantDiffFromLine(bool bMergeResult, int line) const;
+
 	void ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious = false);
 	void ResultChooseSources(int nDiff, const std::vector<int>& srcPanes, bool bGroupWithPrevious = false);
-	void ResultToggleSource(int nDiff, int srcPane);
+	void ResultToggleSource(int nDiff, int srcPane, bool bGroupWithPrevious = false);
 	void ResultChooseAllConflicts(int srcPane);
 	bool SaveMergeResult(bool bSaveAs);
 	void OnResultPaneCurrentDiffChanged(int nDiff);
