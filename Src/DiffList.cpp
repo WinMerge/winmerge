@@ -727,7 +727,7 @@ int DiffList::LastSignificant3wayDiff(int nDiffType) const
 	case THREEWAYDIFFTYPE_RIGHTONLY:
 		return m_lastSignificantRightOnly;
 	case THREEWAYDIFFTYPE_CONFLICT:
-		return m_lastSignificantRightOnly;
+		return m_lastSignificantConflict;
 	}
 	return -1;
 }
