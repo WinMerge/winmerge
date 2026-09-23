@@ -1860,6 +1860,13 @@ bool BCMenu::SetMenuText(UINT id, CString string, UINT nFlags/*= MF_BYPOSITION*/
 		if(pMenu != nullptr) 
 			returnflag = pMenu->SetMenuText(uiLoc,string);
 	}
+	if (!m_bEnableOwnerDraw)
+	{
+		MENUITEMINFO mii{ sizeof(MENUITEMINFOW) };
+		mii.fMask = MIIM_STRING;
+		mii.dwTypeData = const_cast<LPTSTR>(static_cast<LPCTSTR>(string));
+		CMenu::SetMenuItemInfoW(id, &mii, nFlags);
+	}
 	return returnflag;
 }
 
