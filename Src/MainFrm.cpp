@@ -1161,7 +1161,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	}
 
 	if (bShowMergeResultPane)
-		pMergeDoc->StartMergeSession(nMergeBasePane, bAutoMerge);
+		pMergeDoc->StartMergeSession(nMergeBasePane, bAutoMerge, false);
 	else if (bAutoMerge)
 		pMergeDoc->DoAutoMerge(2 - nMergeBasePane);
 

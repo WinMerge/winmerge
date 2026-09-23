@@ -24,6 +24,7 @@
 #include "Merge.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "Logger.h"
 #include "resource.h"
 #include <algorithm>
 
@@ -302,15 +303,6 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
 	}
 }
 
-void CMergeDoc::StartMergeSessionWithMessage(int nBasePane, bool bAutoMerge)
-{
-	if (!StartMergeSession(nBasePane, bAutoMerge))
-		return;
-	String paneRoles = GetMergePaneRoles();
-	String msg = strutils::format_string1(_("Merge session started.\n\n%1"), paneRoles);
-	ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
-}
-
 /**
  * @brief Start (or re-run) a merge session in the result pane.
  * @param [in] bAutoMerge Auto-resolve the non-conflicting differences.
@@ -319,7 +311,7 @@ void CMergeDoc::StartMergeSessionWithMessage(int nBasePane, bool bAutoMerge)
  * and by the Auto Merge command (with auto-merge), which switches a
  * plain 3-way comparison to the 4-pane merge view.
  */
-bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
+bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage)
 {
 	if (IsMergeResultPaneActive())
 		return false;
@@ -329,6 +321,12 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge)
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 		pFrame->ShowMergeResultPane();
 	SetMergeResultPaneVisible(true);
+	String paneRoles = GetMergePaneRoles();
+	String msg = strutils::format_string1(_("Merge session started.\n\n%1"), paneRoles);
+	if (bWithMessage)
+		ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
+	else
+		RootLogger::Info(msg);
 	return true;
 }
 
@@ -1960,9 +1958,9 @@ String CMergeDoc::GetMergePaneRoles() const
 void CMergeDoc::OnMergeStartSession()
 {
 	if (auto* pView = GetActiveMergeView())
-		StartMergeSessionWithMessage(2 - pView->m_nThisPane, false);
+		StartMergeSession(2 - pView->m_nThisPane, false, true);
 	else
-		StartMergeSessionWithMessage(1, false);
+		StartMergeSession(1, false, true);
 }
 
 void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)

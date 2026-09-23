@@ -121,6 +121,8 @@ int CMergeResultView::NextSignificantDiffFromLine(int nLine) const
 	for (int i = 0; i < size; i++)
 	{
 		const auto* seg = pDoc->GetResultSegmentByDiff(i);
+		if (seg == nullptr)
+			continue;
 		if (seg && seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
 		{
 			nDiff = seg->diffIdx;
@@ -139,7 +141,10 @@ int CMergeResultView::PrevSignificantDiffFromLine(int nLine) const
 	for (int i = size - 1; i >= 0 ; i--)
 	{
 		const auto* seg = pDoc->GetResultSegmentByDiff(i);
-		if (seg && seg->diffIdx >= 0 && seg->nStartLine + seg->nLines - 1 <= static_cast<int>(nLine))
+		if (seg == nullptr)
+			continue;
+		const int nSegEnd = seg->nStartLine + ((seg->nLines > 0) ? (seg->nLines - 1) : 0);
+		if (seg && seg->diffIdx >= 0 && nSegEnd <= static_cast<int>(nLine))
 		{
 			nDiff = seg->diffIdx;
 			break;
@@ -499,7 +504,7 @@ void CMergeResultView::GetSelectedDiffs(int& firstDiff, int& lastDiff)
 		const MergeResultSegment* seg = pDoc->GetResultSegmentByDiff(i);
 		if (!seg || seg->nLines <= 0)
 			continue;
-		const int nSegEnd = seg->nStartLine + seg->nLines - 1;
+		const int nSegEnd = seg->nStartLine + ((seg->nLines > 0) ? (seg->nLines - 1) : 0);
 		if (nSegEnd < firstLine)
 			continue; // segment fully before selection
 		if (seg->nStartLine > lastLine)
@@ -789,9 +794,10 @@ void CMergeResultView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 	else
 	{
 		// Enable if the end of the first significant difference is before caret
-		CEPoint pos = GetCursorPos();
-		pCmdUI->Enable((pd->GetCurrentDiff() < 0 && pos.y >= (long)pSegment->nStartLine + pSegment->nLines - 1)
-			|| (pos.y > (long)pSegment->nStartLine + pSegment->nLines - 1));
+		const CEPoint pos = GetCursorPos();
+		const int nSegEnd = pSegment->nStartLine + ((pSegment->nLines > 0) ? (pSegment->nLines - 1) : 0);
+		pCmdUI->Enable((pd->GetCurrentDiff() < 0 && pos.y >= (long)nSegEnd)
+			|| (pos.y > (long)nSegEnd));
 	}
 }
 

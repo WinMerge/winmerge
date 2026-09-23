@@ -326,6 +326,8 @@ void CMergeEditFrame::OnUpdateViewMergeResultBar(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(FALSE);
 		return;
 	}
+	CMergeDoc* pMergeDoc = GetMergeDoc();
+	pCmdUI->Enable(pMergeDoc->GetMergeResultBuildState());
 	OnUpdateControlBarMenu(pCmdUI);
 }
 
@@ -493,25 +495,6 @@ void CMergeEditFrame::SaveOptions()
 void CMergeEditFrame::OnIdleUpdateCmdUI()
 {
 	UpdateHeaderSizes();
-	// Follow the merge result bar however it was shown or hidden (View menu,
-	// its close button, docking state), so that closing it always gives the
-	// compared files back their normal editable state
-	if (m_wndResultBar.m_hWnd != nullptr && m_pMergeDoc != nullptr)
-	{
-		const bool bVisible = !!m_wndResultBar.IsVisible();
-		if (bVisible != m_bResultBarVisible)
-		{
-			m_bResultBarVisible = bVisible;
-			m_pMergeDoc->SetMergeResultPaneVisible(bVisible);
-		}
-		// Update merge result conflict statistics in status bar
-		if (bVisible)
-		{
-			int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
-			m_pMergeDoc->GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
-			m_wndResultBar.UpdateConflictInfo(m_pMergeDoc->GetSaveAsPath(), nConflicts, nUnresolved, nWhiteSpaceOnly);
-		}
-	}
 	CMergeFrameCommon::OnIdleUpdateCmdUI();
 }
 
