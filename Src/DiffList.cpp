@@ -498,7 +498,6 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 }
 
 /**
-<<<<<<< .mine
  * @brief Return previous diff index from given line.
  * @param [in] nLine First line searched.
  * @return Index for next difference or -1 if no difference is found.
