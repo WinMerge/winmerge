@@ -24,3 +24,6 @@ hhh
 
 // 9. Mine deletion
 iii
+
+// 10. Comment
+// base

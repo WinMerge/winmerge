@@ -24,3 +24,6 @@ ggg-mine
 hhh
 
 // 9. Mine deletion
+
+// 10. Comment
+// mine

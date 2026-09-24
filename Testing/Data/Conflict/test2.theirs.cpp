@@ -24,3 +24,6 @@ ggg
 
 // 9. Mine deletion
 iii
+
+// 10. Comment
+// theirs
