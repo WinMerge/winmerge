@@ -1265,7 +1265,13 @@ void CMergeEditView::OnEditUndo()
 {
 	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
-	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo-1));
+	const int nTargetPane = *(pDoc->curUndo - 1);
+	if (nTargetPane == -1)
+	{
+		pDoc->GetMergeResultView()->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+		return;
+	}
+	CMergeEditView* tgt = pDoc->GetView(m_nThisGroup, nTargetPane);
 	if(tgt==this)
 	{
 		if (!QueryEditable())
@@ -1303,7 +1309,13 @@ void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 	CMergeDoc* pDoc = GetDocument();
 	if (pDoc->curUndo!=pDoc->undoTgt.begin())
 	{
-		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo-1));
+		const int nTargetPane = *(pDoc->curUndo - 1);
+		if (nTargetPane == -1)
+		{
+			pCmdUI->Enable(pDoc->GetMergeResultBuffer()->CanUndo());
+			return;
+		}
+		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, nTargetPane);
 		pCmdUI->Enable( !IsReadOnly(tgt->m_nThisPane));
 	}
 	else
@@ -2321,7 +2333,13 @@ void CMergeEditView::OnEditRedo()
 {
 	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
-	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo));
+	const int nTargetPane = *(pDoc->curUndo);
+	if (nTargetPane == -1)
+	{
+		pDoc->GetMergeResultView()->SendMessage(WM_COMMAND, ID_EDIT_REDO);
+		return;
+	}
+	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, nTargetPane);
 	if(tgt==this)
 	{
 		if (!QueryEditable())
@@ -2351,7 +2369,13 @@ void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 	CMergeDoc* pDoc = GetDocument();
 	if (pDoc->curUndo!=pDoc->undoTgt.end())
 	{
-		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo));
+		const int nTargetPane = *(pDoc->curUndo);
+		if (nTargetPane == -1)
+		{
+			pCmdUI->Enable(pDoc->GetMergeResultBuffer()->CanRedo());
+			return;
+		}
+		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, nTargetPane);
 		pCmdUI->Enable( !IsReadOnly(tgt->m_nThisPane));
 	}
 	else

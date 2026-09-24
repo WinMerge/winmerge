@@ -59,7 +59,9 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	// compare views; forward them so they also work while this view is active
 	// [Edit] menu
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	// [View] menu
 	ON_COMMAND_RANGE(ID_VIEW_WORDWRAP, ID_VIEW_WORDWRAP, OnForwardToMergeView)
@@ -579,16 +581,28 @@ void CMergeResultView::OnWMGoto()
 	dlg.DoModal();
 }
 
+void CMergeResultView::OnEditUndo()
+{
+	__super::OnEditUndo();
+	--GetDocument()->curUndo;
+}
+
 void CMergeResultView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 {
-	__super::OnUpdateEditUndo(pCmdUI);
-	pCmdUI->SetText(_("&Undo\tCtrl+Z").c_str());
+	bool bCanUndo = m_pTextBuffer != nullptr && m_pTextBuffer->CanUndo();
+	pCmdUI->Enable(bCanUndo);
+}
+
+void CMergeResultView::OnEditRedo()
+{
+	__super::OnEditRedo();
+	++GetDocument()->curUndo;
 }
 
 void CMergeResultView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
-	__super::OnUpdateEditRedo(pCmdUI);
-	pCmdUI->SetText(_("&Redo\tCtrl+Y").c_str());
+	bool bCanRedo = m_pTextBuffer != nullptr && m_pTextBuffer->CanRedo();
+	pCmdUI->Enable(bCanRedo);
 }
 
 /**

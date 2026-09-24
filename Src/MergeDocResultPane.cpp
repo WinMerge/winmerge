@@ -1664,6 +1664,10 @@ void CMergeDoc::OnResultUndoGroupStart(int nUndoPos)
 	m_resultSegUndo.erase(m_resultSegUndo.lower_bound(nUndoPos), m_resultSegUndo.end());
 	m_resultSegRedo.erase(m_resultSegRedo.lower_bound(nUndoPos), m_resultSegRedo.end());
 	m_resultSegUndo[nUndoPos] = m_resultSegments;
+
+	undoTgt.erase(curUndo, undoTgt.end());
+	undoTgt.push_back(-1);
+	curUndo = undoTgt.end();
 }
 
 /**

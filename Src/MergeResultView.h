@@ -72,7 +72,9 @@ protected:
 	afx_msg void OnForwardToMergeView(UINT nID);
 	afx_msg void OnUpdateForwardToMergeView(CCmdUI* pCmdUI);
 	afx_msg void OnWMGoto();
+	afx_msg void OnEditUndo();
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt);
