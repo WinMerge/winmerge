@@ -30,6 +30,7 @@
 
 class CLineFilterHelperMenu;
 class CMainFrame;
+class CMergeResultTextBuffer;
 typedef CTypedPtrList<CPtrList, CMergeDoc*> MergeDocList;
 
 /**

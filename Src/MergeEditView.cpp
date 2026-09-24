@@ -38,6 +38,7 @@
 #include "PluginMenu.h"
 #include "SplitterPositions.h"
 #include "MergeResultView.h"
+#include "MergeResultTextBuffer.h"
 #include "MergeDiffNavigation.h"
 
 #ifdef _DEBUG

@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "MergeResultStatusBar.h"
 #include "MergeDoc.h"
-#include "MergeResultPane.h"
+#include "MergeResultTextBuffer.h"
 #include "MergeResultView.h"
 #include "MergeResultContainer.h"
 #include "charsets.h"

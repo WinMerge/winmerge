@@ -926,7 +926,9 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="MergeResultBar.cpp" />
     <ClCompile Include="MergeResultContainer.cpp" />
+    <ClCompile Include="MergeResultTextBuffer.cpp" />
     <ClCompile Include="MergeTextFormatter.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1043,7 +1045,9 @@
     <ClInclude Include="LineFilterHelperMenu.h" />
     <ClInclude Include="MergeDiffNavigation.h" />
     <ClInclude Include="MergeLogger.h" />
+    <ClInclude Include="MergeResultBar.h" />
     <ClInclude Include="MergeResultContainer.h" />
+    <ClInclude Include="MergeResultTextBuffer.h" />
     <ClInclude Include="MergeTextFormatter.h" />
     <ClInclude Include="MruHelper.h" />
     <ClInclude Include="I18n.h" />
@@ -1054,7 +1058,6 @@
     <ClCompile Include="MenuBar.cpp" />
     <ClCompile Include="MergeDocDiffCopy.cpp" />
     <ClCompile Include="MergeDocResultPane.cpp" />
-    <ClCompile Include="MergeResultBar.cpp" />
     <ClCompile Include="MergeResultStatusBar.cpp" />
     <ClCompile Include="MergeResultView.cpp" />
     <ClCompile Include="MouseHook.cpp" />
@@ -1655,7 +1658,6 @@
     <ClInclude Include="DiffTextBuffer.h" />
     <ClInclude Include="DiffThread.h" />
     <ClInclude Include="DiffViewBar.h" />
-    <ClInclude Include="MergeResultBar.h" />
     <ClInclude Include="MergeResultPane.h" />
     <ClInclude Include="MergeResultStatusBar.h" />
     <ClInclude Include="MergeResultView.h" />

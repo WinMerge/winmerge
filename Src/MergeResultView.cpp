@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "MergeResultView.h"
+#include "MergeResultTextBuffer.h"
 #include "MergeResultPane.h"
 #include "MergeResultContainer.h"
 #include "MergeResultStatusBar.h"

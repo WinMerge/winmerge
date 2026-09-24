@@ -23,6 +23,7 @@
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
 #include "MergeResultView.h"
+#include "MergeResultTextBuffer.h"
 #include "MergeLogger.h"
 #include "MergeTextFormatter.h"
 #include "IDirDoc.h"
