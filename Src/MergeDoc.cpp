@@ -180,9 +180,7 @@ CMergeDoc::CMergeDoc()
 , m_pMergeResultView(nullptr)
 , m_bResultBuilt(false)
 , m_bResultSaved(false)
-, m_bResultAutoMerge(false)
 , m_nMergeBasePane(1)
-, m_bResultROForced(false)
 , m_bResultSavedRO{ false, false, false }
 {
 	DIFFOPTIONS options = {0};
@@ -251,7 +249,6 @@ void CMergeDoc::DeleteContents ()
 	m_resultSegRedo.clear();
 	m_resultDiffSnapshot.clear();
 	m_bResultBuilt = false;
-	m_bResultResumeAttempted = false;
 }
 
 /**

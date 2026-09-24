@@ -342,7 +342,7 @@ public:
 	bool HasMergeResultPane() const;
 	bool IsMergeResultPaneActive() const;
 	bool IsMergeResultPaneVisible() const;
-	void SetMergeResultPaneVisible(bool bVisible);
+	void SetMergeResultPaneVisible();
 	int GetMergeBasePane() const { return m_nMergeBasePane; }
 	bool StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage);
 	bool GetMergeResultBuildState() const { return m_bResultBuilt; }
@@ -394,20 +394,17 @@ private:
 	bool IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const;
 	CRLFSTYLE PickResultCRLFStyle() const;
 	void PickResultEncoding();
-	bool TryResumeMergeResultFromOutput(String& text);
 	String GetResultBufferLinesText(int nStartLine, int nLines) const;
 	String BuildExpandedResultText() const;
 	void ReRenderResultConflictSegments();
 	/** One entry per diff: {dbegin, dend, op} when the result was built */
 	struct ResultDiffSnapshot { int dbegin; int dend; int op; };
-	bool ResultDiffListUnchanged() const;
 	std::unique_ptr<CMergeResultTextBuffer> m_ptResultBuf; /**< Merge result buffer (not part of the diff) */
 	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
 	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */
 	std::vector<int> m_resultDiffToSegment; /**< diff index -> segment index or -1 */
 	std::vector<ResultDiffSnapshot> m_resultDiffSnapshot; /**< diff list as it was when the result was built */
 	bool m_bResultLinksDropNotified = false; /**< told the user the segment<->diff links were dropped */
-	bool m_bResultResumeAttempted = false; /**< already looked at the existing output file once */
 	bool m_bResultShowFullConflicts = false; /**< show full conflict sections instead of compact placeholders */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegUndo; /**< table before undo group (key: group start) */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegRedo; /**< table after undo group (key: group start) */
@@ -419,9 +416,7 @@ private:
 	CRLFSTYLE m_resultSaveEolStyle = CRLFSTYLE::AUTOMATIC;
 	bool m_bResultBuilt; /**< Result buffer has been generated */
 	bool m_bResultSaved; /**< Result has been written to the output since it was built */
-	bool m_bResultAutoMerge; /**< Auto-resolve non-conflicting differences when building */
 	int  m_nMergeBasePane; /**< Pane to use as the base for auto-merging */
-	bool m_bResultROForced; /**< Source buffers forced read-only by result pane */
 	bool m_bResultSavedRO[3]; /**< Read-only states before the result pane forced them */
 // End MergeDocResultPane.cpp
 

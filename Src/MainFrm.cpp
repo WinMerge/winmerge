@@ -1155,9 +1155,17 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 
 	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
 	{
-		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+		const String& strSaveAsPath = pOpenParams->m_strSaveAsPath;
+		pMergeDoc->SetSaveAsPath(strSaveAsPath);
 		if (nFiles == 3 && !bShowMergeResultPane)
 			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
+		if (bShowMergeResultPane && ConflictFileParser::IsConflictFile(strSaveAsPath))
+		{
+			const String msg = strutils::format_string1(_("The merge output file\n%1\nalready contains merge conflict markers.\n\n"
+				"If you want to continue working on this conflict file, select\n"
+				"File > Open Conflict File."), strSaveAsPath);
+			AfxMessageBox(msg.c_str(), MB_OK | MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_RESULT_CONFLICT_FILE_WARNING);
+		}
 	}
 
 	if (bShowMergeResultPane)
