@@ -57,6 +57,7 @@
 #include "PluginMenu.h"
 #include <numeric>
 #include <functional>
+#include <Shlwapi.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -115,7 +116,7 @@ CDirView::CDirView()
 	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_OWNERDATA;
 
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
-	m_nExpandSubdirs = static_cast<eExpandSubfoldersType>(GetOptionsMgr()->GetInt(OPT_DIRVIEW_EXPAND_SUBDIRS));
+	m_nExpandSubdirs = GetExpandSubdirsSetting();
 	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
@@ -193,11 +194,19 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_VIEW_SHOW_EMPTY_FOLDERS, OnViewShowEmptyFolders)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_EMPTY_FOLDERS, OnUpdateViewShowEmptyFolders)
 	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
+	ON_COMMAND(ID_VIEW_SPLIT_PANE_LAYOUT, OnViewSplitPaneLayout)
+	ON_COMMAND(ID_VIEW_SHOW_ALL_ITEMS, OnViewShowAllItems)
+	ON_COMMAND(ID_VIEW_SHOW_DIFF_ITEMS, OnViewShowDiffItems)
+	ON_COMMAND(ID_VIEW_SHOW_SAME_ITEMS, OnViewShowSameItems)
 	ON_COMMAND(ID_VIEW_EXPAND_ALLSUBDIRS, OnViewExpandAllSubdirs)
 	ON_COMMAND(ID_VIEW_EXPAND_DIFFERENT_SUBDIRS, OnViewExpandDifferentSubdirs)
 	ON_COMMAND(ID_VIEW_EXPAND_IDENTICAL_SUBDIRS, OnViewExpandIdenticalSubdirs)
 	ON_COMMAND(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnViewCollapseAllSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TREEMODE, OnUpdateViewTreeMode)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLIT_PANE_LAYOUT, OnUpdateViewSplitPaneLayout)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_ALL_ITEMS, OnUpdateViewShowPreset)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_DIFF_ITEMS, OnUpdateViewShowPreset)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_SAME_ITEMS, OnUpdateViewShowPreset)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_ALLSUBDIRS, OnUpdateViewExpandSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_DIFFERENT_SUBDIRS, OnUpdateViewExpandSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_IDENTICAL_SUBDIRS, OnUpdateViewExpandSubdirs)
@@ -469,11 +478,12 @@ void CDirView::OnInitialUpdate()
 	}
 
 	// Restore column orders as they had them last time they ran
-	m_pColItems->LoadColumnOrders(
-		GetOptionsMgr()->GetString(pDoc->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
+	LoadColumnLayout();
+	EnsureSplitPaneTreeMode();
 
 	// Display column headers (in appropriate order)
 	ReloadColumns();
+	GetParentFrame()->SetSplitPaneMode(UseSplitPaneLayout());
 
 	// Show selection across entire row.u
 	// Also allow user to rearrange columns via drag&drop of headers.
@@ -505,6 +515,7 @@ BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
 	m_elapsed = 0;
+	EnsureSplitPaneTreeMode();
 }
 
 /**
@@ -549,7 +560,7 @@ void CDirView::ReloadColumns()
 
 	UpdateColumnNames();
 	m_pColItems->LoadColumnWidths(
-		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
+		GetOptionsMgr()->GetString(GetColumnWidthsOption()),
 		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 	SetColAlignments();
 
@@ -689,7 +700,7 @@ void CDirView::Redisplay()
 
 	DeleteAllDisplayItems();
 
-	m_pList->SetImageList((m_bTreeMode && ctxt.m_bRecursive) ? &m_imageState : &emptyImageList, LVSIL_STATE);
+	m_pList->SetImageList((m_bTreeMode && ctxt.m_bRecursive && !UseSplitPaneLayout()) ? &m_imageState : &emptyImageList, LVSIL_STATE);
 
 	// If non-recursive compare, add special item(s)
 	if (!ctxt.m_bRecursive ||
@@ -708,6 +719,7 @@ void CDirView::Redisplay()
 	SetRedraw(TRUE);
 	m_pList->SetItemCount(static_cast<int>(m_listViewItems.size()));
 	m_pList->Invalidate();
+	UpdateSplitPaneFooters();
 }
 
 /**
@@ -1354,15 +1366,7 @@ void CDirView::OnDestroy()
 {
 	DeleteAllDisplayItems();
 
-	{
-		const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS;
-		GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
-	}
-	{
-		const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
-		GetOptionsMgr()->SaveOption(keyname,
-			m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)));
-	}
+	SaveColumnLayout();
 
 	__super::OnDestroy();
 }
@@ -1403,6 +1407,20 @@ void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 	LVHITTESTINFO lvhti;
 	lvhti.pt = pNM->ptAction;
 	m_pList->SubItemHitTest(&lvhti);
+	if (pNM->iItem >= 0 && IsSplitTreeActive())
+	{
+		const int pane = GetSplitTreeNamePane(lvhti.iSubItem);
+		if (pane >= 0 && HitTestSplitTreeExpander(pNM->iItem, pane, pNM->ptAction))
+		{
+			const DIFFITEM& di = GetDiffItem(pNM->iItem);
+			if (di.customFlags & ViewCustomFlags::EXPANDED)
+				CollapseSubdir(pNM->iItem);
+			else
+				ExpandSubdir(pNM->iItem);
+			*pResult = 0;
+			return;
+		}
+	}
 	if (lvhti.flags == LVHT_ONITEMSTATEICON)
 	{
 		const DIFFITEM &di = GetDiffItem(pNM->iItem);
@@ -1454,6 +1472,7 @@ void CDirView::CollapseSubdir(int sel)
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 	m_pList->Invalidate();
+	UpdateSplitPaneFooters();
 }
 
 /**
@@ -1495,6 +1514,7 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 	m_pList->Invalidate();
+	UpdateSplitPaneFooters();
 }
 
 /**
@@ -2999,7 +3019,7 @@ bool CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	// save column widths before user reorders them
 	// so we can reload them on the end drag
-	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+	const String keyname = GetColumnWidthsOption();
 	GetOptionsMgr()->SaveOption(keyname,
 		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
 	return true;
@@ -3090,7 +3110,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		// Now redraw screen
 		UpdateColumnNames();
 		m_pColItems->LoadColumnWidths(
-			GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
+			GetOptionsMgr()->GetString(GetColumnWidthsOption()),
 			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 		Redisplay();
 	}
@@ -3108,7 +3128,10 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		{
 			msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
 		}
-		GetParentFrame()->SetStatus(msg.c_str());
+		if (UseSplitPaneLayout())
+			UpdateSplitPaneFooters();
+		else
+			GetParentFrame()->SetStatus(msg.c_str());
 	}
 	else if (nIDEvent == TIMER_ID_DBLCLICK_OPEN)
 	{
@@ -3201,8 +3224,7 @@ void CDirView::OnCustomizeColumns()
 {
 	// Located in DirViewColHandler.cpp
 	OnEditColumns();
-	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS;
-	GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
+	GetOptionsMgr()->SaveOption(GetColumnOrdersOption(), m_pColItems->SaveColumnOrders());
 }
 
 void CDirView::OnOpenWithUnpacker()
@@ -3653,7 +3675,7 @@ void CDirView::OnUpdatePluginMode(CCmdUI* pCmdUI)
 void CDirView::RefreshOptions()
 {
 	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
-	m_nExpandSubdirs = static_cast<eExpandSubfoldersType>(GetOptionsMgr()->GetInt(OPT_DIRVIEW_EXPAND_SUBDIRS));
+	m_nExpandSubdirs = GetExpandSubdirsSetting();
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
 	m_pList->SetBkColor(m_bUseColors ? m_cachedColors.clrDirMargin : GetSysColor(COLOR_WINDOW));
@@ -4166,13 +4188,74 @@ void CDirView::OnUpdateViewTreeMode(CCmdUI* pCmdUI)
 {
 	// Don't show Tree Mode as 'checked' if the
 	// menu item is greyed out (disabled).  Its very confusing.
-	if( GetDocument()->GetDiffContext().m_bRecursive ) {
+	const CDirDoc* pDoc = GetDocument();
+	if (pDoc != nullptr && pDoc->HasDiffs() && pDoc->GetDiffContext().m_bRecursive) {
 		pCmdUI->SetCheck(m_bTreeMode);
 		pCmdUI->Enable(TRUE);
 	} else {
 		pCmdUI->SetCheck(FALSE);
 		pCmdUI->Enable(FALSE);
 	}
+}
+
+/**
+ * @brief Toggle split-pane (left/right block) folder compare layout.
+ */
+void CDirView::OnViewSplitPaneLayout()
+{
+	if (GetDocument()->m_nDirs >= 3)
+		return;
+	SaveColumnLayout();
+	const bool split = !GetOptionsMgr()->GetBool(OPT_DIRVIEW_SPLIT_LAYOUT);
+	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_SPLIT_LAYOUT, split);
+	if (split)
+		EnsureSplitPaneTreeMode();
+	else
+		m_nExpandSubdirs = GetExpandSubdirsSetting();
+	LoadColumnLayout();
+	ReloadColumns();
+	Redisplay();
+	GetParentFrame()->SetSplitPaneMode(UseSplitPaneLayout());
+	UpdateSplitPaneFooters();
+}
+
+/**
+ * @brief Check/Uncheck 'Split Pane Layout' menuitem.
+ */
+void CDirView::OnUpdateViewSplitPaneLayout(CCmdUI* pCmdUI)
+{
+	const bool enable = GetDocument()->m_nDirs < 3;
+	pCmdUI->Enable(enable);
+	pCmdUI->SetCheck(enable && UseSplitPaneLayout());
+}
+
+void CDirView::OnViewShowAllItems()
+{
+	ApplyDirViewShowPreset(0);
+}
+
+void CDirView::OnViewShowDiffItems()
+{
+	ApplyDirViewShowPreset(1);
+}
+
+void CDirView::OnViewShowSameItems()
+{
+	ApplyDirViewShowPreset(2);
+}
+
+void CDirView::OnUpdateViewShowPreset(CCmdUI* pCmdUI)
+{
+	const int preset = GetDirViewShowPreset();
+	int wanted = -1;
+	if (pCmdUI->m_nID == ID_VIEW_SHOW_ALL_ITEMS)
+		wanted = 0;
+	else if (pCmdUI->m_nID == ID_VIEW_SHOW_DIFF_ITEMS)
+		wanted = 1;
+	else if (pCmdUI->m_nID == ID_VIEW_SHOW_SAME_ITEMS)
+		wanted = 2;
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetRadio(preset == wanted);
 }
 
 /**
@@ -4191,7 +4274,8 @@ void CDirView::OnViewShowEmptyFolders()
 void CDirView::OnUpdateViewShowEmptyFolders(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_dirfilter.show_empty_folders);
-	pCmdUI->Enable(GetDocument()->GetDiffContext().m_bRecursive && m_bTreeMode);
+	const CDirDoc* pDoc = GetDocument();
+	pCmdUI->Enable(pDoc != nullptr && pDoc->HasDiffs() && pDoc->GetDiffContext().m_bRecursive && m_bTreeMode);
 }
 
 /**
@@ -4226,7 +4310,8 @@ void CDirView::OnViewExpandIdenticalSubdirs()
  */
 void CDirView::OnUpdateViewExpandSubdirs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_bTreeMode && GetDiffContext().m_bRecursive);
+	const CDirDoc* pDoc = GetDocument();
+	pCmdUI->Enable(m_bTreeMode && pDoc != nullptr && pDoc->HasDiffs() && pDoc->GetDiffContext().m_bRecursive);
 }
 
 /**
@@ -4243,7 +4328,8 @@ void CDirView::OnViewCollapseAllSubdirs()
  */
 void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_bTreeMode && GetDiffContext().m_bRecursive);
+	const CDirDoc* pDoc = GetDocument();
+	pCmdUI->Enable(m_bTreeMode && pDoc != nullptr && pDoc->HasDiffs() && pDoc->GetDiffContext().m_bRecursive);
 }
 
 void CDirView::OnViewSwapPanes(int pane1, int pane2)
@@ -4886,34 +4972,47 @@ LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
  */
 void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	if (!m_bUseColors) {
+	LPNMLVCUSTOMDRAW lpC = reinterpret_cast<LPNMLVCUSTOMDRAW>(pNMHDR);
+	*pResult = CDRF_DODEFAULT;
+
+	const bool split = UseSplitPaneLayout();
+	const bool splitTree = IsSplitTreeActive();
+	if (!m_bUseColors && !split)
+		return;
+
+	if (lpC->nmcd.dwDrawStage == CDDS_PREPAINT)
+	{
+		*pResult = CDRF_NOTIFYITEMDRAW;
 		return;
 	}
 
-	LPNMLISTVIEW pNM = (LPNMLISTVIEW)pNMHDR;
-	*pResult = CDRF_DODEFAULT;
-
-	if (pNM->hdr.code == NM_CUSTOMDRAW)
+	if (lpC->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
 	{
-		LPNMLVCUSTOMDRAW lpC = (LPNMLVCUSTOMDRAW)pNMHDR;
-
-		if (lpC->nmcd.dwDrawStage == CDDS_PREPAINT)
-		{
-			*pResult =  CDRF_NOTIFYITEMDRAW;
-			return;
-		}
-
-		if (lpC->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
-		{
-			*pResult = CDRF_NOTIFYITEMDRAW;
-			return;
-		}
-
-		if (lpC->nmcd.dwDrawStage == (CDDS_ITEMPREPAINT | CDDS_SUBITEM ))
-		{
-			GetColors (static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
-		}
+		*pResult = CDRF_NOTIFYSUBITEMDRAW;
+		if (split)
+			*pResult |= CDRF_NOTIFYPOSTPAINT;
+		return;
 	}
+
+	if (lpC->nmcd.dwDrawStage == (CDDS_ITEMPREPAINT | CDDS_SUBITEM))
+	{
+		if (m_bUseColors)
+			GetColors(static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
+		if (splitTree)
+		{
+			const int pane = GetSplitTreeNamePane(lpC->iSubItem);
+			if (pane >= 0)
+			{
+				DrawSplitTreeNameCell(lpC, pane);
+				*pResult = CDRF_SKIPDEFAULT;
+				return;
+			}
+		}
+		return;
+	}
+
+	if (split && lpC->nmcd.dwDrawStage == CDDS_ITEMPOSTPAINT)
+		DrawSplitPaneDivider(lpC);
 }
 
 /**
@@ -4985,14 +5084,15 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	int index = static_cast<int>(pNMMouse->dwItemSpec);
 	switch (index)
 	{
-	case 0:
+	case CDirFrame::PANE_LEFT_STATUS:
+	case CDirFrame::PANE_RIGHT_STATUS:
 		break;
-	case 1:
+	case CDirFrame::PANE_FILTER:
 	{
 		GetMainFrame()->SelectFilter();
 		break;
 	}
-	case 2:
+	case CDirFrame::PANE_COMPMETHOD:
 	{
 		CPoint point;
 		::GetCursorPos(&point);
@@ -5011,11 +5111,11 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		}
 		break;
 	}
-	case 3:
-	case 4:
-	case 5:
+	case CDirFrame::PANE_LEFT_RO:
+	case CDirFrame::PANE_MIDDLE_RO:
+	case CDirFrame::PANE_RIGHT_RO:
 	{
-		const int idx = std::clamp(index - 3, 0, GetDocument()->m_nDirs - 1);
+		const int idx = std::clamp(index - CDirFrame::PANE_LEFT_RO, 0, GetDocument()->m_nDirs - 1);
 		GetDocument()->SetReadOnly(idx, !GetDocument()->GetReadOnly(idx));
 		break;
 	}
@@ -5053,6 +5153,15 @@ void CDirView::NameColumn(const DirColInfo *col, int subitem)
 	if (phys>=0)
 	{
 		String s = col->GetDisplayName();
+		if (UseSplitPaneLayout() && col->regName != nullptr)
+		{
+			if (tc::tcscmp(col->regName, _T("Lname")) == 0 || tc::tcscmp(col->regName, _T("Rname")) == 0)
+				s = _("Name");
+			else if (tc::tcscmp(col->regName, _T("LsizeShort")) == 0 || tc::tcscmp(col->regName, _T("RsizeShort")) == 0)
+				s = _("Size");
+			else if (tc::tcscmp(col->regName, _T("Lmtime")) == 0 || tc::tcscmp(col->regName, _T("Rmtime")) == 0)
+				s = _("Modified");
+		}
 		LV_COLUMN lvc;
 		lvc.mask = LVCF_TEXT;
 		lvc.pszText = const_cast<tchar_t*>(s.c_str());
@@ -5219,12 +5328,12 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	}
 	if (pParam->item.mask & LVIF_INDENT)
 	{
-		pParam->item.iIndent = m_listViewItems[nIdx].iIndent;
+		pParam->item.iIndent = IsSplitTreeActive() ? 0 : m_listViewItems[nIdx].iIndent;
 	}
 	if (pParam->item.mask & LVIF_STATE)
 	{
 		pParam->item.stateMask |= LVIS_STATEIMAGEMASK;
-		if (di.HasChildren())
+		if (di.HasChildren() && !IsSplitTreeActive())
 			pParam->item.state |= INDEXTOSTATEIMAGEMASK((di.customFlags & ViewCustomFlags::EXPANDED) ? 2 : 1);
 	}
 }
@@ -5261,6 +5370,27 @@ void CDirView::OnEditColumns()
 		for (l = 0; l < m_pColItems->GetColCount(); ++l)
 		{
 			int phy = m_pColItems->GetColDefaultOrder(l);
+			if (UseSplitPaneLayout())
+			{
+				phy = -1;
+				const DirColInfo* info = m_pColItems->GetDirColInfo(l);
+				if (info != nullptr && info->regName != nullptr)
+				{
+					static const tchar_t* splitNames[] =
+					{
+						_T("Lname"), _T("LsizeShort"), _T("Lmtime"), _T("StatusAbbr"),
+						_T("Rname"), _T("RsizeShort"), _T("Rmtime")
+					};
+					for (int i = 0; i < static_cast<int>(std::size(splitNames)); ++i)
+					{
+						if (tc::tcscmp(info->regName, splitNames[i]) == 0)
+						{
+							phy = i;
+							break;
+						}
+					}
+				}
+			}
 			dlg.AddDefColumn(m_pColItems->GetColDisplayName(l), l, phy);
 		}
 
@@ -5288,7 +5418,7 @@ void CDirView::OnEditColumns()
 		}
 	} 
 
-	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+	const String keyname = GetColumnWidthsOption();
 	GetOptionsMgr()->SaveOption(keyname,
 		(bReset ? m_pColItems->ResetColumnWidths(GetDefColumnWidth()) :
 		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))));
@@ -5318,9 +5448,408 @@ void CDirView::OnEditColumns()
 	{
 		// Set them back to default if they didn't leave a column showing
 		// (However, if none of the items are checked, this process will not be executed because the "OK" button in the "Display Columns" dialog cannot be pressed.)
-		m_pColItems->ResetColumnOrdering();
+		if (UseSplitPaneLayout())
+			m_pColItems->ApplySplitPaneColumnOrder();
+		else
+			m_pColItems->ResetColumnOrdering();
 	}
 	ReloadColumns();
+	Redisplay();
+}
+
+bool CDirView::UseSplitPaneLayout() const
+{
+	const CDirDoc *pDoc = GetDocument();
+	return pDoc != nullptr && pDoc->m_nDirs < 3 && GetOptionsMgr()->GetBool(OPT_DIRVIEW_SPLIT_LAYOUT);
+}
+
+const String& CDirView::GetColumnOrdersOption() const
+{
+	if (GetDocument()->m_nDirs >= 3)
+		return OPT_DIRVIEW3_COLUMN_ORDERS;
+	return UseSplitPaneLayout() ? OPT_DIRVIEW_SPLIT_COLUMN_ORDERS : OPT_DIRVIEW_COLUMN_ORDERS;
+}
+
+const String& CDirView::GetColumnWidthsOption() const
+{
+	if (GetDocument()->m_nDirs >= 3)
+		return OPT_DIRVIEW3_COLUMN_WIDTHS;
+	return UseSplitPaneLayout() ? OPT_DIRVIEW_SPLIT_COLUMN_WIDTHS : OPT_DIRVIEW_COLUMN_WIDTHS;
+}
+
+void CDirView::LoadColumnLayout()
+{
+	const String orders = GetOptionsMgr()->GetString(GetColumnOrdersOption());
+	m_pColItems->LoadColumnOrders(orders);
+	if (UseSplitPaneLayout() && orders.empty())
+		m_pColItems->ApplySplitPaneColumnOrder();
+}
+
+void CDirView::SaveColumnLayout()
+{
+	if (m_pColItems == nullptr || m_pList == nullptr)
+		return;
+	GetOptionsMgr()->SaveOption(GetColumnOrdersOption(), m_pColItems->SaveColumnOrders());
+	GetOptionsMgr()->SaveOption(GetColumnWidthsOption(),
+		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)));
+}
+
+static String FormatDirViewByteSize(uint64_t size)
+{
+	tchar_t buffer[48]{};
+	StrFormatByteSize64(size, buffer, static_cast<unsigned>(std::size(buffer)));
+	return buffer;
+}
+
+static String FormatSplitPaneFooter(int nFiles, int nFolders, uint64_t nBytes, const String& path)
+{
+	const String sizeStr = FormatDirViewByteSize(nBytes);
+	String text;
+	if (nFolders > 0)
+		text = strutils::format(_("%d file(s), %d folder(s), %s"), nFiles, nFolders, sizeStr);
+	else
+		text = strutils::format(_("%d file(s), %s"), nFiles, sizeStr);
+
+	ULARGE_INTEGER avail{};
+	if (!path.empty() && GetDiskFreeSpaceEx(path.c_str(), &avail, nullptr, nullptr) != 0)
+	{
+		String root = path;
+		if (root.length() >= 2 && root[1] == ':')
+			root = root.substr(0, 2) + _T("\\");
+		text += _T("  ");
+		text += strutils::format(_("%s free on %s"), FormatDirViewByteSize(avail.QuadPart), root);
+	}
+	return text;
+}
+
+void CDirView::UpdateSplitPaneFooters()
+{
+	if (!UseSplitPaneLayout())
+		return;
+
+	int nFiles[2] = {};
+	int nFolders[2] = {};
+	uint64_t nBytes[2] = {};
+	const int nItems = m_pList->GetItemCount();
+	for (int i = 0; i < nItems; ++i)
+	{
+		DIFFITEM *key = GetItemKey(i);
+		if (key == nullptr || IsDiffItemSpecial(key))
+			continue;
+		const DIFFITEM& di = *key;
+		for (int pane = 0; pane < 2; ++pane)
+		{
+			if (!di.diffcode.exists(pane))
+				continue;
+			if (di.diffcode.isDirectory())
+				++nFolders[pane];
+			else
+			{
+				++nFiles[pane];
+				if (di.diffFileInfo[pane].size != DirItem::FILE_SIZE_NONE)
+					nBytes[pane] += static_cast<uint64_t>(di.diffFileInfo[pane].size);
+			}
+		}
+	}
+
+	const CDiffContext& ctxt = GetDiffContext();
+	GetParentFrame()->SetSideStatus(0, FormatSplitPaneFooter(nFiles[0], nFolders[0], nBytes[0], ctxt.GetPath(0)).c_str());
+	GetParentFrame()->SetSideStatus(1, FormatSplitPaneFooter(nFiles[1], nFolders[1], nBytes[1], ctxt.GetPath(1)).c_str());
+}
+
+void CDirView::DrawSplitPaneDivider(NMLVCUSTOMDRAW* lpC)
+{
+	if (m_pColItems == nullptr)
+		return;
+	const int log = m_pColItems->FindColByRegName(_T("Rname"));
+	if (log < 0)
+		return;
+	const int phys = m_pColItems->ColLogToPhys(log);
+	if (phys < 0)
+		return;
+
+	CRect rc;
+	if (!m_pList->GetSubItemRect(static_cast<int>(lpC->nmcd.dwItemSpec), phys, LVIR_BOUNDS, rc))
+		return;
+
+	CDC* pDC = CDC::FromHandle(lpC->nmcd.hdc);
+	if (pDC == nullptr)
+		return;
+	const COLORREF clr = GetSysColor(COLOR_3DSHADOW);
+	CPen pen(PS_SOLID, 1, clr);
+	CPen* pOld = pDC->SelectObject(&pen);
+	pDC->MoveTo(rc.left, rc.top);
+	pDC->LineTo(rc.left, rc.bottom);
+	pDC->SelectObject(pOld);
+}
+
+bool CDirView::IsSplitTreeActive() const
+{
+	if (!UseSplitPaneLayout() || !m_bTreeMode)
+		return false;
+	const CDirDoc* pDoc = GetDocument();
+	return pDoc != nullptr && pDoc->HasDiffs() && pDoc->GetDiffContext().m_bRecursive;
+}
+
+eExpandSubfoldersType CDirView::GetExpandSubdirsSetting() const
+{
+	const String& key = UseSplitPaneLayout() ? OPT_DIRVIEW_SPLIT_EXPAND_SUBDIRS : OPT_DIRVIEW_EXPAND_SUBDIRS;
+	return static_cast<eExpandSubfoldersType>(GetOptionsMgr()->GetInt(key));
+}
+
+void CDirView::EnsureSplitPaneTreeMode()
+{
+	m_nExpandSubdirs = GetExpandSubdirsSetting();
+	const CDirDoc* pDoc = GetDocument();
+	if (pDoc == nullptr || !pDoc->HasDiffs())
+		return;
+	if (UseSplitPaneLayout() && pDoc->GetDiffContext().m_bRecursive)
+	{
+		m_bTreeMode = true;
+		m_dirfilter.tree_mode = true;
+	}
+}
+
+int CDirView::GetSplitTreeNamePane(int physCol) const
+{
+	if (m_pColItems == nullptr || physCol < 0)
+		return -1;
+	const int log = m_pColItems->ColPhysToLog(physCol);
+	const DirColInfo* col = m_pColItems->GetDirColInfo(log);
+	if (col == nullptr || col->regName == nullptr)
+		return -1;
+	if (tc::tcscmp(col->regName, _T("Lname")) == 0)
+		return 0;
+	if (tc::tcscmp(col->regName, _T("Rname")) == 0)
+		return 1;
+	return -1;
+}
+
+int CDirView::GetTreeIndentPx() const
+{
+	IMAGEINFO ii{};
+	if (m_imageState.GetSafeHandle() != nullptr && m_imageState.GetImageCount() > 0 && m_imageState.GetImageInfo(0, &ii))
+		return (std::max)(16, static_cast<int>(ii.rcImage.right - ii.rcImage.left));
+	return 16;
+}
+
+CRect CDirView::GetItemCellRect(int nRow, int nCol) const
+{
+	CRect rc;
+	m_pList->GetSubItemRect(nRow, nCol, LVIR_BOUNDS, rc);
+	if (nCol == 0)
+	{
+		CHeaderCtrl* pHeader = m_pList->GetHeaderCtrl();
+		if (pHeader != nullptr && pHeader->GetItemCount() > 1)
+		{
+			CRect rcNext;
+			m_pList->GetSubItemRect(nRow, 1, LVIR_BOUNDS, rcNext);
+			rc.right = rcNext.left;
+		}
+		else if (pHeader != nullptr)
+		{
+			CRect rcHdr;
+			pHeader->GetItemRect(0, rcHdr);
+			pHeader->MapWindowPoints(m_pList, rcHdr);
+			rc.left = rcHdr.left;
+			rc.right = rcHdr.right;
+		}
+	}
+	return rc;
+}
+
+bool CDirView::ShouldDrawSplitTreeExpander(int nRow, int pane) const
+{
+	if (nRow < 0 || nRow >= static_cast<int>(m_listViewItems.size()))
+		return false;
+	DIFFITEM* key = GetItemKey(nRow);
+	if (key == nullptr || IsDiffItemSpecial(key))
+		return false;
+	return key->diffcode.isDirectory() && key->HasChildren() && key->diffcode.exists(pane);
+}
+
+CRect CDirView::GetSplitTreeExpanderRect(int nRow, int pane, const CRect& cell) const
+{
+	if (!ShouldDrawSplitTreeExpander(nRow, pane))
+		return CRect();
+	const int indentPx = GetTreeIndentPx();
+	IMAGEINFO ii{};
+	int expanderSize = indentPx;
+	if (m_imageState.GetSafeHandle() != nullptr && m_imageState.GetImageCount() > 0 && m_imageState.GetImageInfo(0, &ii))
+		expanderSize = ii.rcImage.right - ii.rcImage.left;
+	const int indent = m_listViewItems[nRow].iIndent;
+	const int x = cell.left + indent * indentPx;
+	const int y = cell.top + (cell.Height() - expanderSize) / 2;
+	return CRect(x, y, x + expanderSize, y + expanderSize);
+}
+
+bool CDirView::HitTestSplitTreeExpander(int nRow, int pane, CPoint pt) const
+{
+	if (m_pColItems == nullptr)
+		return false;
+	const int log = m_pColItems->FindColByRegName(pane == 0 ? _T("Lname") : _T("Rname"));
+	const int phys = m_pColItems->ColLogToPhys(log);
+	if (phys < 0)
+		return false;
+	const CRect cell = GetItemCellRect(nRow, phys);
+	CRect rc = GetSplitTreeExpanderRect(nRow, pane, cell);
+	if (rc.IsRectEmpty())
+		return false;
+	rc.InflateRect(2, 2);
+	return rc.PtInRect(pt) != FALSE;
+}
+
+void CDirView::DrawSplitTreeLines(CDC* pDC, int nRow, int pane, const CRect& cell, int indentPx, int expanderSize)
+{
+	UNREFERENCED_PARAMETER(pane);
+	if (nRow < 0 || nRow >= static_cast<int>(m_listViewItems.size()))
+		return;
+	const int indent = m_listViewItems[nRow].iIndent;
+	if (indent <= 0)
+		return;
+
+	const COLORREF clr = GetSysColor(COLOR_GRAYTEXT);
+	CPen pen(PS_DOT, 1, clr);
+	CPen* pOld = pDC->SelectObject(&pen);
+	const int oldBk = pDC->SetBkMode(TRANSPARENT);
+	const int midY = (cell.top + cell.bottom) / 2;
+
+	for (int depth = 0; depth < indent; ++depth)
+	{
+		const int x = cell.left + depth * indentPx + expanderSize / 2;
+		bool continues = false;
+		const int n = static_cast<int>(m_listViewItems.size());
+		for (int i = nRow + 1; i < n; ++i)
+		{
+			DIFFITEM* key = GetItemKey(i);
+			if (key == nullptr || IsDiffItemSpecial(key))
+				continue;
+			const int ind = m_listViewItems[i].iIndent;
+			if (ind == depth)
+			{
+				continues = true;
+				break;
+			}
+			if (ind < depth)
+				break;
+		}
+		pDC->MoveTo(x, cell.top);
+		pDC->LineTo(x, continues ? cell.bottom : midY);
+		if (depth == indent - 1)
+		{
+			pDC->MoveTo(x, midY);
+			pDC->LineTo(cell.left + indent * indentPx, midY);
+		}
+	}
+
+	pDC->SetBkMode(oldBk);
+	pDC->SelectObject(pOld);
+}
+
+void CDirView::DrawSplitTreeNameCell(NMLVCUSTOMDRAW* lpC, int pane)
+{
+	const int nRow = static_cast<int>(lpC->nmcd.dwItemSpec);
+	CDC* pDC = CDC::FromHandle(lpC->nmcd.hdc);
+	if (pDC == nullptr || nRow < 0 || nRow >= static_cast<int>(m_listViewItems.size()))
+		return;
+
+	const CRect cell = GetItemCellRect(nRow, lpC->iSubItem);
+	COLORREF clrBk = lpC->clrTextBk;
+	COLORREF clrText = lpC->clrText;
+	if (m_bUseColors)
+		GetColors(nRow, lpC->iSubItem, clrBk, clrText);
+	else
+	{
+		clrBk = m_pList->GetBkColor();
+		clrText = m_pList->GetTextColor();
+	}
+
+	pDC->FillSolidRect(cell, clrBk);
+	CFont* pOldFont = pDC->SelectObject(m_pList->GetFont());
+	const int oldBk = pDC->SetBkMode(TRANSPARENT);
+	const COLORREF oldText = pDC->SetTextColor(clrText);
+
+	DIFFITEM* key = GetItemKey(nRow);
+	const int indentPx = GetTreeIndentPx();
+	IMAGEINFO ii{};
+	int expanderSize = indentPx;
+	if (m_imageState.GetSafeHandle() != nullptr && m_imageState.GetImageCount() > 0 && m_imageState.GetImageInfo(0, &ii))
+		expanderSize = ii.rcImage.right - ii.rcImage.left;
+	int iconCx = expanderSize, iconCy = expanderSize;
+	if (m_imageList.GetSafeHandle() != nullptr && m_imageList.GetImageCount() > 0 && m_imageList.GetImageInfo(0, &ii))
+	{
+		iconCx = ii.rcImage.right - ii.rcImage.left;
+		iconCy = ii.rcImage.bottom - ii.rcImage.top;
+	}
+
+	if (IsDiffItemSpecial(key))
+	{
+		CRect rcText = cell;
+		rcText.left += 4;
+		pDC->DrawText(_T(".."), &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS | DT_NOPREFIX);
+	}
+	else if (key != nullptr && key->diffcode.exists(pane))
+	{
+		DrawSplitTreeLines(pDC, nRow, pane, cell, indentPx, expanderSize);
+
+		const int indent = m_listViewItems[nRow].iIndent;
+		int x = cell.left + indent * indentPx;
+		if (ShouldDrawSplitTreeExpander(nRow, pane))
+		{
+			const bool expanded = (key->customFlags & ViewCustomFlags::EXPANDED) != 0;
+			const int y = cell.top + (cell.Height() - expanderSize) / 2;
+			m_imageState.Draw(pDC, expanded ? 1 : 0, CPoint(x, y), ILD_TRANSPARENT);
+			x += expanderSize;
+		}
+
+		const int iconY = cell.top + (cell.Height() - iconCy) / 2;
+		m_imageList.Draw(pDC, GetColImage(*key), CPoint(x, iconY), ILD_TRANSPARENT);
+		x += iconCx + 4;
+
+		CRect rcText(x, cell.top, cell.right - 2, cell.bottom);
+		const String name = key->diffFileInfo[pane].filename.get();
+		pDC->DrawText(name.c_str(), &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS | DT_NOPREFIX);
+	}
+
+	if ((m_pList->GetItemState(nRow, LVIS_FOCUSED) & LVIS_FOCUSED) && GetFocus() == m_pList)
+	{
+		CRect rcFocus = cell;
+		rcFocus.DeflateRect(1, 1);
+		pDC->DrawFocusRect(rcFocus);
+	}
+
+	pDC->SetTextColor(oldText);
+	pDC->SetBkMode(oldBk);
+	pDC->SelectObject(pOldFont);
+}
+
+int CDirView::GetDirViewShowPreset() const
+{
+	const bool identical = m_dirfilter.show_identical;
+	const bool different = m_dirfilter.show_different;
+	const bool uniqueLeft = m_dirfilter.show_unique_left;
+	const bool uniqueRight = m_dirfilter.show_unique_right;
+	if (identical && different && uniqueLeft && uniqueRight)
+		return 0;
+	if (!identical && different && uniqueLeft && uniqueRight)
+		return 1;
+	if (identical && !different && !uniqueLeft && !uniqueRight)
+		return 2;
+	return -1;
+}
+
+void CDirView::ApplyDirViewShowPreset(int preset)
+{
+	const bool showIdentical = (preset == 0 || preset == 2);
+	const bool showDiffOrUnique = (preset == 0 || preset == 1);
+	m_dirfilter.show_identical = showIdentical;
+	m_dirfilter.show_different = showDiffOrUnique;
+	m_dirfilter.show_unique_left = showDiffOrUnique;
+	m_dirfilter.show_unique_right = showDiffOrUnique;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_IDENTICAL, m_dirfilter.show_identical);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT, m_dirfilter.show_different);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_LEFT, m_dirfilter.show_unique_left);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_RIGHT, m_dirfilter.show_unique_right);
 	Redisplay();
 }
 
