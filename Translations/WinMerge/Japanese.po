@@ -7918,11 +7918,11 @@ msgstr "マージが完了していません。%1個の差異が未解決です�
 msgid "The merge result has not been saved.\n\nSave the merge result?"
 msgstr "マージ結果が保存されていません。\n\nマージ結果を保存しますか？"
 
-#. IDS_MERGE_RESULT_CONFIRM_CONTINUE
+#. IDS_MERGE_RESULT_CONFLICT_FILE_WARNING
 #: Merge.rc:5439
 #, c-format
-msgid "The merge output file\n%1\nalready contains a merge with %2 conflict section(s).\n\nContinue from it? Choosing No starts a new merge from the compared files."
-msgstr "マージ出力ファイル\n%1\nには、すでに %2 個の競合セクションを含むマージ結果があります。\n\nここからマージを続行しますか？「いいえ」を選択すると、比較したファイルから新しいマージを開始します。"
+msgid "The merge output file\n%1\nalready contains merge conflict markers.\n\nIf you want to continue working on this conflict file, select\nFile > Open Conflict File."
+msgstr "マージ出力ファイル\n%1\nには、すでにマージコンフリクトマーカーが含まれています。\n\nこのコンフリクトファイルで作業を続ける場合は、\n［ファイル］>［コンフリクトファイルを開く］を選択してください。"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5440
