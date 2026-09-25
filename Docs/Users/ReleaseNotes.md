@@ -1,18 +1,69 @@
-# WinMerge 2.16.58 Release Notes
+# WinMerge 2.16.58.2 Release Notes
 
 * [About This Release](#about-this-release)
+* [What Is New in 2.16.58.2?](#what-is-new-in-216582)
 * [What Is New in 2.16.58?](#what-is-new-in-21658)
 * [What Is New in 2.16.57 Beta?](#what-is-new-in-21657-beta)
 * [Known issues](#known-issues)
 
-July 2026
+August 2026
 
 ## About This Release
 
-This is a WinMerge 2.16.58 stable release.
+This is a WinMerge 2.16.58.2 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.58.2?
+
+### Appearance
+
+* BugFix: Fix cramped toolbar icon spacing at high DPI
+
+### File compare
+
+* BugFix: Fix word diff calculation for hidden lines (#3535)
+
+* BugFix: Fix a minor word selection issue (#3521)
+
+* Improve diff view rendering speed for large contiguous hidden sections
+    (PR #3517)
+
+### Folder compare
+
+* BugFix: [BUG] Sorting of files is temporarily wrong while diff is running
+    (#3579)(PR #3581)
+
+### Filter expressions
+
+* BugFix: Allow `none` to be ignored when concatenating strings with `+`
+    (#3550)
+
+### Archive generation
+
+* BugFix: Allow archive generation for one-sided file comparisons
+
+### Plugins
+
+* BugFix: Fix off-by-one bug losing the last byte of `BUFFER_PACK_UNPACK`
+    plugin output
+
+### Translations
+
+* Translation updates:
+
+  * Brazilian (PR #3508)
+  * Chinese Simplified (PR #3493)
+  * Chinese Traditional (PR #3505)
+  * Hungarian (PR #3502)
+  * Polish (PR #3501)
+  * Russian (PR #3494)
+  * Turkish (PR #3506)
+
+### Documentation
+
+* BugFix: Fix syntax errors in the Spanish "Filters" manual page
 
 ## What Is New in 2.16.58?
 
