@@ -2905,7 +2905,7 @@ utilisées comme éléments dans les pipelines de plug-ins en les préfixant par
 
     <synopsis>le:toUpper(Ligne)|SortAscending</synopsis>
 
-    <para>Consultez <xref linkend="Filter Expression Syntax" /> pour connaître les
+    <para>Consultez <xref linkend="FilterExpression_Syntax" /> pour connaître les
 fonctions et opérateurs d'expression de filtre disponibles.</para>
 
     <para>Lorsque des expressions de filtre sont utilisées dans des pipelines de

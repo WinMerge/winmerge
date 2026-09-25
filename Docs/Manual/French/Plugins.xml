@@ -389,7 +389,7 @@ pipelines de plug-ins en les faisant précéder du préfixe
 
       <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
 
-      <para>Consultez <xref linkend="Filter Expression Syntax" /> pour connaître les
+      <para>Consultez <xref linkend="FilterExpression_Syntax" /> pour connaître les
 fonctions et opérateurs d'expression de filtre disponibles.</para>
 
       <para>Vous pouvez spécifier un pipeline de plug-ins dans la boîte de dialogue
