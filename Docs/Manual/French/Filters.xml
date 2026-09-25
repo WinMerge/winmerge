@@ -2896,21 +2896,23 @@ de 10 éléments</para></listitem>
   <section id="Filters_LineFilterPluginPipeline">
     <title>Using filter expressions in plugin pipelines</title>
 
-    <para>Starting with version 2.16.59, filter expressions can be used as items in
-plugin pipelines by prefixing them with <literal>le:</literal>. For example:</para>
+    <para>À partir de la version 2.16.59, les expressions de filtre peuvent être
+utilisées comme éléments dans les pipelines de plug-ins en les préfixant par
+<literal>le:</literal>. Par exemple :</para>
 
-    <synopsis>le:toUpper(Line)|SortAscending</synopsis>
+    <synopsis>le:toUpper(Ligne)|SortAscending</synopsis>
 
-    <para>See <xref linkend="FilterExpression_Syntax" /> for available filter
-expression functions and operators.</para>
+    <para>Consultez <xref linkend="FilterExpression_Syntax" /> pour connaître les
+fonctions et opérateurs d'expression de filtre disponibles.</para>
 
-    <para>When filter expressions are used in plugin pipelines, they operate on a
-single line at a time (a scalar value), which differs from display line
-filters.  In display line filters, attributes like <literal>Line</literal>
-represent pairs of values (left and right sides being compared), typically
-expressed as arrays like <literal>[Left, Right]</literal>. In plugin
-pipelines, the same attributes like <literal>Line</literal> are scalar
-values representing the current line being processed.</para>
+    <para>Lorsque des expressions de filtre sont utilisées dans des pipelines de
+plug-ins, elles opèrent sur une seule ligne à la fois (une valeur scalaire),
+contrairement aux filtres de lignes d'affichage. Dans ces derniers, des
+attributs tels que <literal>Line</literal> représentent des paires de
+valeurs (les côtés gauche et droit étant comparés), généralement exprimées
+sous forme de tableaux comme <literal>[Left, Right]</literal>. Dans les
+pipelines de plug-ins, ces mêmes attributs, comme <literal>Line</literal>,
+sont des valeurs scalaires représentant la ligne en cours de traitement.</para>
   </section>
 
   <section id="Filters_SubstitutionFilter">

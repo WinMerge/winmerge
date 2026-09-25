@@ -386,8 +386,8 @@ with <literal>le:</literal>. For example:</para>
 
       <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
 
-      <para>See <xref linkend="FilterExpression_Syntax" /> for available filter
-expression functions and operators.</para>
+      <para>Consultez <xref linkend="FilterExpression_Syntax" /> pour connaître les
+fonctions et opérateurs d'expression de filtre disponibles.</para>
 
       <para>You can specify a plugin pipeline in the <guibutton>Select
 Plugin</guibutton> dialog by entering the pipeline expression.</para>

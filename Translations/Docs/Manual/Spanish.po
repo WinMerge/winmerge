@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-09-07 07:24+0900\n"
+"POT-Creation-Date: 2026-09-26 08:18+0900\n"
 "PO-Revision-Date: 2026-09-06 16:12+0200\n"
 "Last-Translator: P0rsche-911\n"
 "Language-Team: \n"
@@ -262,7 +262,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:169
 msgid "<xref linkend=\"Plugins\" />"
-msgstr "<xref linkend=\"Complementos\" />"
+msgstr "<xref linkend=\"Plugins\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:172
@@ -276,7 +276,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:178
 msgid "<xref linkend=\"Filters\" />"
-msgstr "<xref linkend=\"Filtros\" />"
+msgstr "<xref linkend=\"Filters\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:181
@@ -290,7 +290,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:187
 msgid "<xref linkend=\"Command_line\" />"
-msgstr "<xref linkend=\"Línea_de_comandos\" />"
+msgstr "<xref linkend=\"Command_line\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:190
@@ -304,7 +304,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:196
 msgid "<xref linkend=\"Faq\" />"
-msgstr "<xref linkend=\"FAQ\" />"
+msgstr "<xref linkend=\"Faq\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:199
@@ -321,7 +321,7 @@ msgid ""
 "first to see if your question is answered there."
 msgstr ""
 "Antes de realizar consultas en <ulink url=\"https://github.com/WinMerge/"
-"winmerge/\">GitHub</ulink> busque primero en las <xref linkend=\"FAQ\" /> "
+"winmerge/\">GitHub</ulink> busque primero en las <xref linkend=\"Faq\" /> "
 "para comprobar si su duda ya fue respondida."
 
 #. type: Content of: <article><section><title><indexterm><primary>

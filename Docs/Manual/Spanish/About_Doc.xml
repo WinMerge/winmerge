@@ -164,7 +164,7 @@ del intérprete de órdenes en modo avanzado?</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="Complementos" /></term>
+        <term><xref linkend="Plugins" /></term>
 
         <listitem>
           <para>Describe las funciones opcionales y adicionales que se pueden añadir a
@@ -173,7 +173,7 @@ WinMerge mediante su mecanismo de complementos.</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="Filtros" /></term>
+        <term><xref linkend="Filters" /></term>
 
         <listitem>
           <para>Explica cómo controlar lo que se compara en la ventana de comparación de
@@ -182,7 +182,7 @@ carpetas o archivos.</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="Línea_de_comandos" /></term>
+        <term><xref linkend="Command_line" /></term>
 
         <listitem>
           <para>Enumera los parámetros de la línea de comandos para utilizar WinMerge con
@@ -191,7 +191,7 @@ otras herramientas o desde un secuencia de comandos.</para>
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="FAQ" /></term>
+        <term><xref linkend="Faq" /></term>
 
         <listitem>
           <para>Contiene respuestas a muchas preguntas frecuentes que se hacen a los
@@ -199,7 +199,7 @@ desarrolladores.</para>
 
           <para>Antes de realizar consultas en <ulink
 url="https://github.com/WinMerge/winmerge/">GitHub</ulink> busque primero en
-las <xref linkend="FAQ" /> para comprobar si su duda ya fue respondida.</para>
+las <xref linkend="Faq" /> para comprobar si su duda ya fue respondida.</para>
         </listitem>
       </varlistentry>
     </variablelist>
