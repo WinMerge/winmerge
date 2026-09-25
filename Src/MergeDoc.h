@@ -408,12 +408,6 @@ private:
 	bool m_bResultShowFullConflicts = false; /**< show full conflict sections instead of compact placeholders */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegUndo; /**< table before undo group (key: group start) */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegRedo; /**< table after undo group (key: group start) */
-	/**
-	 * Line-ending style used when saving the merge result.
-	 * AUTOMATIC = keep each line's own EOL as it came from the sources
-	 * (minimal difference against the inputs); DOS/UNIX/MAC = normalize.
-	 */
-	CRLFSTYLE m_resultSaveEolStyle = CRLFSTYLE::AUTOMATIC;
 	bool m_bResultBuilt; /**< Result buffer has been generated */
 	bool m_bResultSaved; /**< Result has been written to the output since it was built */
 	int  m_nMergeBasePane; /**< Pane to use as the base for auto-merging */

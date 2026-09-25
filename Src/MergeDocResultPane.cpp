@@ -257,8 +257,7 @@ void CMergeDoc::BuildMergeResult()
 	// The buffer's nominal style only provides the default EOL for typed
 	// and placeholder lines; generated lines keep their source EOLs, and
 	// saving preserves them per line unless the user chose a fixed style
-	m_ptResultBuf->InitNew(m_resultSaveEolStyle != CRLFSTYLE::AUTOMATIC ?
-		m_resultSaveEolStyle : PickResultCRLFStyle());
+	m_ptResultBuf->InitNew(PickResultCRLFStyle());
 	PickResultEncoding();
 	m_ptResultBuf->SetReadOnly(false);
 	m_ptResultBuf->SetTempPath(env::GetTemporaryPath()); // needed by SaveToFile
@@ -1179,21 +1178,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	String sError;
 	auto saveBuffer = [&](CDiffTextBuffer& buf) -> int
 	{
-		if (m_resultSaveEolStyle == CRLFSTYLE::AUTOMATIC)
-		{
-			// Keep each line's own EOL, so the output differs from the
-			// inputs as little as possible (e.g. minimal diffs in version
-			// control). SaveToFile writes per-line EOLs when the buffer
-			// reports MIXED; flip the mode only for the duration of the
-			// write, keeping the nominal style as the default for typing.
-			const CRLFSTYLE nOldMode = buf.GetCRLFMode();
-			buf.SetCRLFMode(CRLFSTYLE::MIXED);
-			const int nResult = buf.SaveToFile(strPath, false, sError, infoTempUnpacker);
-			buf.SetCRLFMode(nOldMode);
-			return nResult;
-		}
-		return buf.SaveToFile(strPath, false, sError, infoTempUnpacker,
-			m_resultSaveEolStyle);
+		return buf.SaveToFile(strPath, false, sError, infoTempUnpacker);
 	};
 
 	// Compact placeholders are display-only: the file gets the full
