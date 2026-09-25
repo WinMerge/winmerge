@@ -897,8 +897,8 @@
       (for example, producing minimal diffs in version control); the
       <guisubmenu>Line Endings for Saving</guisubmenu> submenu of the pane's
       context menu can normalize the output to Windows, Unix or classic Mac
-      style instead. The encoding follows the side that changed it (the
-      middle file is the base), and the save honors the backup-file option
+      style instead. The encoding follows the side that changed it,
+      and the save honors the backup-file option
       and any file packer plugin the files were opened with.</para>
 
       <para>You can also start a merge in any three-way text comparison with
@@ -910,7 +910,7 @@
       <menuchoice><guimenu>View</guimenu><guimenuitem>Merge Result
          Pane</guimenuitem></menuchoice>. Hiding the pane restores the normal
          editable three-pane behavior.</para>
-
+      <section>
         <para>
           <indexterm>
             <primary>merge target pane</primary>
@@ -975,6 +975,7 @@
           </listitem>
         </itemizedlist>
       </section>
+    </section>
 
     <section>
       <title>Location pane</title>

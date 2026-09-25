@@ -19,6 +19,7 @@
 #include "SyntaxColors.h"
 #include "BCMenu.h"
 #include "I18nGUI.h"
+#include "DarkModeLib.h"
 #include "IDirDoc.h"
 #include "../Externals/crystaledit/editlib/dialogs/gotodlg.h"
 #include <algorithm>
@@ -56,6 +57,7 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_WM_GETDLGCODE()
 	ON_WM_MOUSEWHEEL()
 	ON_WM_MOUSEHWHEEL()
+	ON_WM_SETTINGCHANGE()
 	// Difference/conflict navigation and Auto Merge are implemented by the
 	// compare views; forward them so they also work while this view is active
 	// [Edit] menu
@@ -201,6 +203,9 @@ void CMergeResultView::OnInitialUpdate()
 	// All documents & views share one set of syntax colors and markers
 	SetColorContext(theApp.GetMainSyntaxColors());
 	SetMarkersContext(theApp.GetMainMarkers());
+
+	if (HWND hSelf = GetSafeHwnd())
+		DarkMode::setDarkScrollBar(hSelf);
 }
 
 void CMergeResultView::RefreshOptions()
@@ -337,7 +342,7 @@ void CMergeResultView::DrawMargin(const CRect & rect, int nLineIndex, int nLineN
 	const tchar_t marker = pDoc->GetResultLineMarker(nLineIndex);
 	if (marker == 0)
 		return;
-	m_pCrystalRenderer->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
+	m_pCrystalRenderer->SetTextColor(RGB(0x55, 0x55, 0x55));
 	int nWidth = GetCharWidth();
 	m_pCrystalRenderer->SwitchFont(false, false);
 	m_pCrystalRenderer->DrawText(rect.left + 2, rect.top, rect, &marker, 1, &nWidth);
@@ -814,5 +819,12 @@ void CMergeResultView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 		pCmdUI->Enable((pd->GetCurrentDiff() < 0 && pos.y >= (long)nSegEnd)
 			|| (pos.y > (long)nSegEnd));
 	}
+}
+
+void CMergeResultView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+		DarkMode::setDarkScrollBar(GetSafeHwnd());
+	__super::OnSettingChange(uFlags, lpszSection);
 }
 

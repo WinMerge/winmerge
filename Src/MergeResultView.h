@@ -96,6 +96,7 @@ protected:
 	afx_msg void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType);
 	afx_msg void OnPrev3wayDiff(int nDiffType);
 	afx_msg void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType);
+	afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
