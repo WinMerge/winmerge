@@ -1236,7 +1236,10 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 		ShowMessageBox(msg, MB_OK | MB_ICONERROR);
 		return false;
 	}
+	m_ptResultBuf->AdoptCurrentRevision();
+	m_ptResultBuf->m_nSyncPosition = m_ptResultBuf->m_nUndoPosition;
 	m_ptResultBuf->SetModified(false);
+	m_pMergeResultView->Invalidate(false);
 	m_strSaveAsPath = strPath;
 	m_bResultSaved = true;
 	return true;

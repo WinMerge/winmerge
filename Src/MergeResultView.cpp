@@ -208,6 +208,13 @@ void CMergeResultView::OnInitialUpdate()
 		DarkMode::setDarkScrollBar(hSelf);
 }
 
+void CMergeResultView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+		DarkMode::setDarkScrollBar(GetSafeHwnd());
+	__super::OnSettingChange(uFlags, lpszSection);
+}
+
 void CMergeResultView::RefreshOptions()
 {
 	// Apply the same view options as the compare panes. Layout-affecting
@@ -820,11 +827,3 @@ void CMergeResultView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 			|| (pos.y > (long)nSegEnd));
 	}
 }
-
-void CMergeResultView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
-{
-	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
-		DarkMode::setDarkScrollBar(GetSafeHwnd());
-	__super::OnSettingChange(uFlags, lpszSection);
-}
-

@@ -43,7 +43,7 @@ public:
 	// Conflict statistics
 	void SetConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
 
-	void SetPath(const String& sOutputPath);
+	void SetPath(const String& sOutputPath, bool bModified);
 
 	// Caret / line info from CMergeResultView
 	void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
@@ -76,6 +76,7 @@ private:
 	int m_nUnresolved;
 	int m_nWhiteSpaceOnly;
 	String m_sOutputPath;
+	bool m_bModified;
 
 	// Caret info
 	String m_sLine;

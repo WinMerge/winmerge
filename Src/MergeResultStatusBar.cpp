@@ -71,6 +71,7 @@ CMergeResultStatusBar::CMergeResultStatusBar()
 	, m_nCodepage(-1)
 	, m_bHasBom(false)
 	, m_bReadOnly(false)
+	, m_bModified(false)
 {
 }
 
@@ -122,13 +123,21 @@ void CMergeResultStatusBar::SetConflictInfo(int nConflicts, int nUnresolved, int
 	}
 }
 
-void CMergeResultStatusBar::SetPath(const String& sOutputPath)
+void CMergeResultStatusBar::SetPath(const String& sOutputPath, bool bModified)
 {
+	bool bUpdateNeeded = false;
 	if (m_sOutputPath != sOutputPath)
 	{
 		m_sOutputPath = sOutputPath;
-		UpdatePathText();
+		bUpdateNeeded = true;
 	}
+	if (m_bModified != bModified)
+	{
+		m_bModified = bModified;
+		bUpdateNeeded = true;
+	}
+	if (bUpdateNeeded)
+		UpdatePathText();
 }
 
 void CMergeResultStatusBar::SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
@@ -207,7 +216,9 @@ void CMergeResultStatusBar::UpdatePathText()
 	if (!IsWindow(m_hWnd))
 		return;
 
-	SetPaneText(PANE_PATH, (m_sOutputPath.empty() ? _("<Untitled>") : m_sOutputPath).c_str());
+	String path = m_bModified ? _T("* ") : _T("");
+	path += m_sOutputPath.empty() ? _("<Untitled>") : m_sOutputPath;
+	SetPaneText(PANE_PATH, path.c_str());
 }
 
 void CMergeResultStatusBar::UpdateLineText()
