@@ -1159,7 +1159,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 		pMergeDoc->SetSaveAsPath(strSaveAsPath);
 		if (nFiles == 3 && !bShowMergeResultPane)
 			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
-		if (bShowMergeResultPane && ConflictFileParser::IsConflictFile(strSaveAsPath))
+		if (bShowMergeResultPane && !pOpenParams->m_bResolveConflict && ConflictFileParser::IsConflictFile(strSaveAsPath))
 		{
 			const String msg = strutils::format_string1(_("The merge output file\n%1\nalready contains merge conflict markers.\n\n"
 				"If you want to continue working on this conflict file, select\n"
@@ -3535,6 +3535,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 		// save over original file (given as third filename).
 		OpenTextFileParams openParams;
 		openParams.m_strSaveAsPath = conflictFile;
+		openParams.m_bResolveConflict = true;
 		if (!threeWay)
 		{
 			String strDesc2[2] = { 
