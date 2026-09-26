@@ -339,8 +339,6 @@ public:
 	CMergeResultView* GetMergeResultView() const { return m_pMergeResultView; }
 	void SetMergeResultView(CMergeResultView* pView) { m_pMergeResultView = pView; }
 	CMergeResultTextBuffer* GetMergeResultBuffer() const { return m_ptResultBuf.get(); }
-	bool HasMergeResultPane() const;
-	bool IsMergeResultPaneActive() const;
 	bool IsMergeResultPaneVisible() const;
 	void SetMergeResultPaneVisible();
 	int GetMergeBasePane() const { return m_nMergeBasePane; }

@@ -1479,7 +1479,7 @@ void CMergeDoc::OnFileSaveRight()
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(IsModified() ||
-		(IsMergeResultPaneActive() && IsMergeResultUnsaved()));
+		(m_bResultBuilt && IsMergeResultUnsaved()));
 }
 
 /**
@@ -2097,8 +2097,8 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	// bar must not turn closing the window into silent data loss, so the
 	// prompt is also shown when the pane is hidden but the result was
 	// modified by the user.
-	if (HasMergeResultPane() && m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
-		(IsMergeResultPaneActive() || IsMergeResultModified()))
+	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		(m_bResultBuilt || IsMergeResultModified()))
 	{
 		const int nUnresolved = GetResultUnresolvedCount();
 		if (nUnresolved > 0 && bAllowCancel)
@@ -2785,6 +2785,9 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine, int nCharI
 		}
 	}
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane, true, nCharIndex);
+
+	if (m_bResultBuilt)
+		m_pMergeResultView->TakeFocus();
 }
 
 bool CMergeDoc::ChangeFile(int nBuffer, const String& path, const String& description, int nLineIndex)

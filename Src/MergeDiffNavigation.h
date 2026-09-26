@@ -421,7 +421,7 @@ public:
 	{
 		// While merging, "next conflict" means the next difference that still
 		// needs a decision, skipping the ones already resolved
-		if (pView->GetDocument()->IsMergeResultPaneActive())
+		if (pView->GetDocument()->GetMergeResultBuildState())
 		{
 			const int nDiff = FindPendingResultDiff(pView, true);
 			if (nDiff >= 0)
@@ -444,7 +444,7 @@ public:
 	template <typename View>
 	static void OnUpdateNextConflict(View* pView, CCmdUI* pCmdUI)
 	{
-		if (pView->GetDocument()->IsMergeResultPaneActive())
+		if (pView->GetDocument()->GetMergeResultBuildState())
 		{
 			if (FindPendingResultDiff(pView, true) >= 0)
 			{
@@ -467,7 +467,7 @@ public:
 	template <typename View>
 	static void OnPrevConflict(View* pView)
 	{
-		if (pView->GetDocument()->IsMergeResultPaneActive())
+		if (pView->GetDocument()->GetMergeResultBuildState())
 		{
 			const int nDiff = FindPendingResultDiff(pView, false);
 			if (nDiff >= 0)
@@ -487,7 +487,7 @@ public:
 	template <typename View>
 	static void OnUpdatePrevConflict(View* pView, CCmdUI* pCmdUI)
 	{
-		if (pView->GetDocument()->IsMergeResultPaneActive())
+		if (pView->GetDocument()->GetMergeResultBuildState())
 		{
 			if (FindPendingResultDiff(pView, false) >= 0)
 			{

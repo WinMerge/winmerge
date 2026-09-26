@@ -2064,7 +2064,7 @@ void CMergeEditView::OnAutoMerge()
 	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->m_nBuffers == 3)
 	{
 		CWaitCursor waitstatus;
-		if (!pDoc->IsMergeResultPaneActive())
+		if (!pDoc->GetMergeResultBuildState())
 		{
 			int nMergeBasePane = 2 - m_nThisPane;
 			pDoc->StartMergeSession(nMergeBasePane, true, true);
@@ -2093,7 +2093,7 @@ void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 	CMergeDoc* pDoc = GetDocument();
 	if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && pDoc->m_nBuffers == 3)
 	{
-		if (!pDoc->IsMergeResultPaneActive())
+		if (!pDoc->GetMergeResultBuildState())
 		{
 			// Auto Merge is always available when the merge result pane is not visible
 			pCmdUI->Enable(TRUE);
@@ -2109,33 +2109,6 @@ void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 		!pDoc->IsModified() && 
 		!pDoc->GetAutoMerged() && 
 		QueryEditable());
-}
-
-/**
- * @brief Make this pane the active one, so that commands shown in its
- * context menu act on it.
- *
- * Without this, right-clicking a pane while another view (for example the
- * merge result pane) is active would leave that other view active, and
- * the pane commands in the menu would be disabled.
- */
-void CMergeEditView::OnRButtonDown(UINT nFlags, CPoint point)
-{
-	if (!m_bDetailView && GetParentFrame() != nullptr &&
-		GetParentFrame()->GetActiveView() != this)
-		SetActivePane();
-	// While merging, put the caret where the user clicked so the menu acts
-	// on that difference. An existing selection is kept: the merge commands
-	// work on the selected lines. Outside merging the caret is left alone,
-	// keeping the behavior of a normal compare unchanged.
-	if (GetDocument()->IsMergeResultPaneActive() && !IsSelection())
-	{
-		const CEPoint pt = ClientToText(point);
-		SetCursorPos(pt);
-		SetAnchor(pt);
-		SetSelection(pt, pt);
-	}
-	__super::OnRButtonDown(nFlags, point);
 }
 
 /**
@@ -2189,7 +2162,7 @@ String CMergeEditView::GetPaneNameForMergeMenu() const
 void CMergeEditView::OnUpdateMergeChooseThis(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	if (!pDoc->IsMergeResultPaneActive())
+	if (!pDoc->GetMergeResultBuildState())
 	{
 		pCmdUI->Enable(FALSE);
 		return;
@@ -2210,7 +2183,7 @@ void CMergeEditView::OnUpdateMergeChooseThis(CCmdUI* pCmdUI)
 	{
 		const int nDiff = firstDiff;
 		const MergeResultSegment* pSegment =
-			(pDoc->IsMergeResultPaneActive() && nDiff >= 0) ? pDoc->GetResultSegmentByDiff(nDiff) : nullptr;
+			(pDoc->GetMergeResultBuildState() && nDiff >= 0) ? pDoc->GetResultSegmentByDiff(nDiff) : nullptr;
 		pCmdUI->SetCheck(pSegment != nullptr &&
 			(pSegment->state == ResultSegmentState::Auto ||
 			 pSegment->state == ResultSegmentState::Chosen) &&
@@ -2820,7 +2793,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 
 	// Merge result commands only make sense while merging
 	// (their text names the pane and is set in the update handlers)
-	if (!GetDocument()->IsMergeResultPaneActive())
+	if (!GetDocument()->GetMergeResultBuildState())
 	{
 		// Remove within the popup: removing by position from the menu
 		// itself would take out the whole popup
@@ -4584,7 +4557,7 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 
 	const int statusBarPane = pNMMouse->dwItemSpec % 4;
 
-	if (statusBarPane != 0 && pDoc->IsMergeResultPaneActive())
+	if (statusBarPane != 0 && pDoc->GetMergeResultBuildState())
 		return;
 
 	switch (statusBarPane)

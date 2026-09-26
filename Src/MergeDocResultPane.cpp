@@ -76,21 +76,6 @@ std::array<String, 3> GetMergePaneMappingString(int nBasePane)
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc merge result pane implementation
 
-bool CMergeDoc::HasMergeResultPane() const
-{
-	return m_nBuffers == 3 && m_pMergeResultView != nullptr;
-}
-
-/**
- * @brief Is the result pane present, shown and populated?
- */
-bool CMergeDoc::IsMergeResultPaneActive() const
-{
-	if (!HasMergeResultPane() || !m_bResultBuilt)
-		return false;
-	return IsMergeResultPaneVisible();
-}
-
 /**
  * @brief Is the bar hosting the result view shown?
  * Checks the bar's own visible style so this also works while the
@@ -185,7 +170,7 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
  */
 bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage)
 {
-	if (IsMergeResultPaneActive())
+	if (m_bResultBuilt)
 		return false;
 	m_bResultBuilt = false;
 	m_nMergeBasePane = nBasePane;
@@ -864,7 +849,7 @@ void CMergeDoc::SetResultShowFullConflicts(bool bShow)
 	if (bShow == m_bResultShowFullConflicts)
 		return;
 	m_bResultShowFullConflicts = bShow;
-	if (IsMergeResultPaneActive())
+	if (m_bResultBuilt)
 		ReRenderResultConflictSegments();
 }
 
@@ -959,7 +944,7 @@ void CMergeDoc::ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevio
 void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 	bool bGroupWithPrevious /*= false*/)
 {
-	if (!IsMergeResultPaneActive())
+	if (!m_bResultBuilt)
 		return;
 	for (int srcPane : srcPanes)
 	{
@@ -1119,7 +1104,7 @@ void CMergeDoc::ResultToggleSource(int nDiff, int srcPane, bool bGroupWithPrevio
  */
 void CMergeDoc::ResultChooseAllConflicts(int srcPane)
 {
-	if (!IsMergeResultPaneActive())
+	if (!m_bResultBuilt)
 		return;
 	bool bGroupWithPrevious = false;
 	for (int nDiff = 0; nDiff < static_cast<int>(m_resultDiffToSegment.size()); ++nDiff)
@@ -1240,7 +1225,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
  */
 void CMergeDoc::OnResultPaneCurrentDiffChanged(int nDiff)
 {
-	if (!IsMergeResultPaneActive() || nDiff < 0)
+	if (!m_bResultBuilt || nDiff < 0)
 		return;
 	m_pMergeResultView->ScrollToDiff(nDiff);
 }
@@ -1497,7 +1482,7 @@ void CMergeDoc::OnMergeChooseSource(UINT nID)
 
 void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 {
-	if (!IsMergeResultPaneActive())
+	if (!m_bResultBuilt)
 	{
 		pCmdUI->Enable(FALSE);
 		pCmdUI->SetCheck(FALSE);
@@ -1542,7 +1527,7 @@ void CMergeDoc::OnMergeChooseAllConflicts(UINT nID)
 
 void CMergeDoc::OnUpdateMergeChooseAllConflicts(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(IsMergeResultPaneActive() && GetResultUnresolvedCount() > 0);
+	pCmdUI->Enable(m_bResultBuilt && GetResultUnresolvedCount() > 0);
 }
 
 void CMergeDoc::OnMergeResultSave()
@@ -1558,7 +1543,7 @@ void CMergeDoc::OnMergeResultSaveAs()
 void CMergeDoc::OnUpdateMergeResultSave(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
-		IsMergeResultPaneActive());
+		m_bResultBuilt);
 }
 
 /**
@@ -1571,7 +1556,7 @@ void CMergeDoc::OnMergeResultShowSections()
 
 void CMergeDoc::OnUpdateMergeResultShowSections(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(IsMergeResultPaneActive());
+	pCmdUI->Enable(m_bResultBuilt);
 	pCmdUI->SetCheck(m_bResultShowFullConflicts);
 }
 
@@ -1601,7 +1586,7 @@ void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)
  */
 void CMergeDoc::OnMergeEndSession()
 {
-	if (!IsMergeResultPaneActive())
+	if (!m_bResultBuilt)
 		return;
 
 	// Prompt to save if the merge result has unsaved changes
