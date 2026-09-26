@@ -566,6 +566,7 @@ protected:
 	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
+	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnPrediffer(UINT nID);
 	afx_msg void OnScriptsForCopying(UINT nID);

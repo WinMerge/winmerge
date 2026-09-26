@@ -119,6 +119,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
+	ON_UPDATE_COMMAND_UI(ID_REFRESH, OnUpdateRefresh)
 	// [Plugins] menu
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
@@ -1722,6 +1723,11 @@ void CMergeDoc::OnRefresh()
 	FlushAndRescan(true);
 }
 
+void CMergeDoc::OnUpdateRefresh(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!m_bResultBuilt);
+}
+
 /**
  * @brief Build the diff array and prepare buffers accordingly (insert ghost lines, set WinMerge flags)
  *
@@ -3003,7 +3009,6 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 			m_pView[nGroup][nToIndex]->SetDlgCtrlID(nLeftViewId);
 		}
 
-
 		// Swap buffers and so on
 		std::swap(m_ptBuf[nFromIndex], m_ptBuf[nToIndex]);
 		for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
@@ -3013,6 +3018,20 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 		std::swap(m_nBufferType[nFromIndex], m_nBufferType[nToIndex]);
 		std::swap(m_bEditAfterRescan[nFromIndex], m_bEditAfterRescan[nToIndex]);
 		std::swap(m_strDesc[nFromIndex], m_strDesc[nToIndex]);
+		if (m_bResultBuilt)
+		{
+			std::swap(m_bResultSavedRO[nFromIndex], m_bResultSavedRO[nToIndex]);
+			std::swap(m_strResultSavedDesc[nFromIndex], m_strResultSavedDesc[nToIndex]);
+			std::swap(m_nResultSavedBufferType[nFromIndex], m_nResultSavedBufferType[nToIndex]);
+		}
+
+		for (size_t i = 0; i < undoTgt.size(); ++i)
+		{
+			if (undoTgt[i] == nFromIndex)
+				undoTgt[i] = nToIndex;
+			else if (undoTgt[i] == nToIndex)
+				undoTgt[i] = nFromIndex;
+		}
 
 		m_filePaths.Swap(nFromIndex, nToIndex);
 		m_diffList.Swap(nFromIndex, nToIndex);
