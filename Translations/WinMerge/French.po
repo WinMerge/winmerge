@@ -322,7 +322,6 @@ msgstr "&Horizontale"
 msgid "&Previous Page"
 msgstr "Page &précédente"
 
-#. Texte court (espace réduit) !
 #. IDS_PREVIEWBAR_NEXTPAGE
 #: Merge.rc:202 Merge.rc:210 Merge.rc:1276 Merge.rc:5690
 msgid "&Next Page"
@@ -488,7 +487,6 @@ msgstr "&Taille"
 msgid "Fit to Window"
 msgstr "Ajuster à la fenêtre"
 
-#. Texte court (espace réduit) !
 #. IDR_POPUP_WEBPAGEDIFFVIEW
 #: Merge.rc:309
 msgid "&Event Sync"
@@ -4907,7 +4905,6 @@ msgstr "&Type de plug-in :"
 msgid "File filters:"
 msgstr "Filtres de fichier :"
 
-#. Texte court (espace réduit) !
 #. IDD_PLUGINS_LIST, IDC_STATIC
 #: Merge.rc:3250
 msgid "&Plugin arguments:"
@@ -6557,67 +6554,56 @@ msgstr "Taille Gauche (abrégé)"
 msgid "Middle Size (Short)"
 msgstr "Taille Milieu (abrégé)"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_LTIMEC
 #: Merge.rc:4974
 msgid "Left Creation Time"
 msgstr "Heure créa. Gauche"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_RTIMEC
 #: Merge.rc:4975
 msgid "Right Creation Time"
 msgstr "Heure créa. Droite"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_MTIMEC
 #: Merge.rc:4976
 msgid "Middle Creation Time"
 msgstr "Heure créa. Milieu"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_NEWER
 #: Merge.rc:4977
 msgid "Newer File"
 msgstr "Le + récent"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_LVERSION
 #: Merge.rc:4978
 msgid "Left File Version"
 msgstr "Version Gauche"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_RVERSION
 #: Merge.rc:4979
 msgid "Right File Version"
 msgstr "Version Droite"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_MVERSION
 #: Merge.rc:4980
 msgid "Middle File Version"
 msgstr "Version Milieu"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_RESULT_ABBR
 #: Merge.rc:4981
 msgid "Short Result"
 msgstr "Résultat court"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_LATTRIBUTES
 #: Merge.rc:4982
 msgid "Left Attributes"
 msgstr "Attrib. Gauche"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_RATTRIBUTES
 #: Merge.rc:4983
 msgid "Right Attributes"
 msgstr "Attrib. Droite"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_MATTRIBUTES
 #: Merge.rc:4984
 msgid "Middle Attributes"
@@ -6638,25 +6624,21 @@ msgstr "EOL Milieu"
 msgid "Right EOL"
 msgstr "EOL Droite"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_LENCODING
 #: Merge.rc:4997
 msgid "Left Encoding"
 msgstr "Encod. Gauche"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_RENCODING
 #: Merge.rc:4998
 msgid "Right Encoding"
 msgstr "Encod. Droite"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_MENCODING
 #: Merge.rc:4999
 msgid "Middle Encoding"
 msgstr "Encod. Milieu"
 
-#. Texte court (espace réduit) !
 #. IDS_COLHDR_NIDIFFS
 #: Merge.rc:5000
 msgid "Ignored Diff"
@@ -6937,7 +6919,6 @@ msgstr " (Gauche et Droite sont identiques)"
 msgid " (Left and middle are identical)"
 msgstr " (Gauche et Milieu sont identiques)"
 
-#. Texte court (espace réduit) !
 #. IDS_PATH_MISMATCH
 #: Merge.rc:5075
 msgid " (paths differ)"
@@ -8539,7 +8520,6 @@ msgstr "Comparer le presse-papiers"
 msgid "&Print..."
 msgstr "Im&primer..."
 
-#. Texte court (espace réduit) !
 #. IDS_PREVIEWBAR_PREVPAGE
 #: Merge.rc:5691
 msgid "Pre&v Page"
@@ -8555,13 +8535,11 @@ msgstr "&Deux pages"
 msgid "&One Page"
 msgstr "&Une page"
 
-#. Texte court (espace réduit) !
 #. IDS_PREVIEWBAR_ZOOMIN
 #: Merge.rc:5694
 msgid "Zoom &In"
 msgstr "&Zoom +"
 
-#. Texte court (espace réduit) !
 #. IDS_PREVIEWBAR_ZOOMOUT
 #: Merge.rc:5695
 msgid "Zoom &Out"
