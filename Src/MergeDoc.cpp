@@ -465,6 +465,9 @@ static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nS
 int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		bool bForced /* =false */)
 {
+	if (m_bResultBuilt)
+		return RESCAN_SUPPRESSED;
+
 	DIFFOPTIONS diffOptions = {0};
 	DiffFileInfo fileInfo;
 	bool diffSuccess = false;
