@@ -512,7 +512,9 @@ private:
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	CMergeEditView * GetActiveMergeEditView();
+	CSize GetToolbarButtonSize() const;
 	void LoadToolbarImages();
+	void UpdateToolbarBandSize();
 	std::vector<UINT> GetToolbarButtons();
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
