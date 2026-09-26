@@ -463,7 +463,21 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		bool bForced /* =false */)
 {
 	if (m_bResultBuilt)
+	{
+		for (int file = 0; file < m_nBuffers; file++)
+		{
+			for (int nLine = 0; nLine < m_ptBuf[file]->GetLineCount(); nLine++)
+				m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
+		}
+		HideLines();
 		return RESCAN_SUPPRESSED;
+	}
+
+	if (!bForced)
+	{
+		if (!m_bEnableRescan)
+			return RESCAN_SUPPRESSED;
+	}
 
 	DIFFOPTIONS diffOptions = {0};
 	DiffFileInfo fileInfo;
@@ -471,12 +485,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	int nResult = RESCAN_OK;
 	FileChange Changed[3] = {FileChange::NoChange, FileChange::NoChange, FileChange::NoChange};
 	int nBuffer;
-
-	if (!bForced)
-	{
-		if (!m_bEnableRescan)
-			return RESCAN_SUPPRESSED;
-	}
 
 	ClearWordDiffCache();
 
