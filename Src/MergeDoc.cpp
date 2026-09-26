@@ -3023,6 +3023,16 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 			std::swap(m_bResultSavedRO[nFromIndex], m_bResultSavedRO[nToIndex]);
 			std::swap(m_strResultSavedDesc[nFromIndex], m_strResultSavedDesc[nToIndex]);
 			std::swap(m_nResultSavedBufferType[nFromIndex], m_nResultSavedBufferType[nToIndex]);
+			for (auto& seg : m_resultSegments)
+			{
+				for (auto& srcPane : seg.srcPanes)
+				{
+					if (srcPane == nFromIndex)
+						srcPane = nToIndex;
+					else if (srcPane == nToIndex)
+						srcPane = nFromIndex;
+				}
+			}
 		}
 
 		for (size_t i = 0; i < undoTgt.size(); ++i)
