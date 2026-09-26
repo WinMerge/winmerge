@@ -117,6 +117,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_GOTO_DEFINITION, OnUpdateGotoDefinition)
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
+	ON_COMMAND(ID_EDIT_TOGGLE_BOOKMARK, OnEditToggleBookmark)
 	// [View] menu
 	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
 	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
@@ -3595,6 +3596,13 @@ void CMergeEditView::OnEditCopyLineNumbers()
 void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
 {
 	CCrystalEditView::OnUpdateEditCopy(pCmdUI);
+}
+
+void CMergeEditView::OnEditToggleBookmark()
+{
+	if (!GetSelectionMargin())
+		GetDocument()->ForEachView([](auto& pView) { pView->SetSelectionMargin(true); });
+	CCrystalEditView::OnToggleBookmark();
 }
 
 /**
