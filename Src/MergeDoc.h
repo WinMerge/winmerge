@@ -340,7 +340,6 @@ public:
 	void SetMergeResultView(CMergeResultView* pView) { m_pMergeResultView = pView; }
 	CMergeResultTextBuffer* GetMergeResultBuffer() const { return m_ptResultBuf.get(); }
 	bool IsMergeResultPaneVisible() const;
-	void SetMergeResultPaneVisible();
 	int GetMergeBasePane() const { return m_nMergeBasePane; }
 	bool StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage);
 	bool GetMergeResultBuildState() const { return m_bResultBuilt; }

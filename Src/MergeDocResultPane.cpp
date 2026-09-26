@@ -91,33 +91,6 @@ bool CMergeDoc::IsMergeResultPaneVisible() const
 }
 
 /**
- * @brief Called when the result pane is shown or hidden.
- *
- * While the result pane is active the three compared buffers are forced
- * read-only (kdiff3 model: sources are inputs, result is the output).
- */
-void CMergeDoc::SetMergeResultPaneVisible()
-{
-	if (m_nBuffers < 3 || m_ptResultBuf == nullptr)
-		return;
-	if (!m_bResultBuilt)
-		BuildMergeResult();
-
-	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-	{
-		m_bResultSavedRO[nBuffer] = m_ptBuf[nBuffer]->GetReadOnly();
-		m_strResultSavedDesc[nBuffer] = m_strDesc[nBuffer];
-		m_nResultSavedBufferType[nBuffer] = m_nBufferType[nBuffer];
-		m_ptBuf[nBuffer]->SetReadOnly(true);
-	}
-
-	// Update pane headers with merge-related labels
-	UpdateMergePaneHeaders(m_nMergeBasePane);
-
-	m_pMergeResultView->TakeFocus();
-}
-
-/**
  * @brief Update pane headers with merge-related labels
  * Assigns descriptive labels to panes based on their merge role (Base, Theirs, Mine)
  * and updates header text accordingly.
@@ -170,13 +143,29 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
  */
 bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage)
 {
-	if (m_bResultBuilt)
+	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || m_bResultBuilt)
 		return false;
+
 	m_bResultBuilt = false;
 	m_nMergeBasePane = nBasePane;
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 		pFrame->ShowMergeResultPane();
-	SetMergeResultPaneVisible();
+
+	BuildMergeResult();
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_bResultSavedRO[nBuffer] = m_ptBuf[nBuffer]->GetReadOnly();
+		m_strResultSavedDesc[nBuffer] = m_strDesc[nBuffer];
+		m_nResultSavedBufferType[nBuffer] = m_nBufferType[nBuffer];
+		m_ptBuf[nBuffer]->SetReadOnly(true);
+	}
+
+	// Update pane headers with merge-related labels
+	UpdateMergePaneHeaders(m_nMergeBasePane);
+
+	m_pMergeResultView->TakeFocus();
+
 	if (bAutoMerge)
 		ApplyAutoMergeToResult();
 	String paneRoles = GetMergePaneRoles();
