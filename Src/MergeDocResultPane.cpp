@@ -354,18 +354,6 @@ void CMergeDoc::BuildMergeResult()
 	// edits nothing. A resumed result IS the output file's content.
 	m_bResultSaved = false;
 
-	// Remember the diff list this result was generated from, so that a
-	// rescan producing the identical list keeps the segment <-> diff links
-	m_resultDiffSnapshot.clear();
-	m_resultDiffSnapshot.reserve(nDiffCount);
-	for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
-	{
-		const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
-		m_resultDiffSnapshot.push_back({ static_cast<int>(pdi->dbegin),
-			static_cast<int>(pdi->dend), static_cast<int>(pdi->op) });
-	}
-	m_bResultLinksDropNotified = false;
-
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 	{
 		m_pMergeResultView->AttachToBuffer(m_ptResultBuf.get());
@@ -523,7 +511,7 @@ String CMergeDoc::GetResultPlaceholderText(ResultSegmentState state, bool bWhite
 String CMergeDoc::GetResultSegmentDisplayText(const MergeResultSegment& seg,
 	int* pnLines) const
 {
-	if (m_bResultShowFullConflicts || seg.diffIdx < 0)
+	if (seg.diffIdx < 0)
 	{
 		if (pnLines != nullptr)
 			*pnLines = seg.nBlockLines;
@@ -777,72 +765,6 @@ void CMergeDoc::PickResultEncoding()
 }
 
 /**
- * @brief Rewrite every unresolved segment's buffer lines to match its
- * current display form: compact placeholder, or the full conflict section
- * (always full for segments without a linked difference).
- *
- * The rewrites are history-less, so the undo history is dropped — the
- * positions recorded in it no longer match the text.
- */
-void CMergeDoc::ReRenderResultConflictSegments()
-{
-	if (m_ptResultBuf == nullptr || !m_ptResultBuf->IsInitialized())
-		return;
-	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
-	CCrystalTextView* pSource = (m_pMergeResultView != nullptr &&
-		m_pMergeResultView->GetSafeHwnd() != nullptr) ? m_pMergeResultView : nullptr;
-	int nDelta = 0;
-	for (auto& seg : m_resultSegments)
-	{
-		seg.nStartLine += nDelta;
-		if (seg.state != ResultSegmentState::Conflict &&
-			seg.state != ResultSegmentState::Unresolved)
-			continue;
-		int nNewLines = 0;
-		const String newText = GetResultSegmentDisplayText(seg, &nNewLines);
-		const int nLineCount = m_ptResultBuf->GetLineCount();
-		if (seg.nStartLine < 0 || seg.nStartLine >= nLineCount || seg.nLines < 0 ||
-			seg.nStartLine + seg.nLines > nLineCount)
-			continue; // defensive: leave inconsistent segments alone
-		if (seg.nLines > 0)
-		{
-			if (seg.nStartLine + seg.nLines < nLineCount)
-				m_ptResultBuf->DeleteText(pSource, seg.nStartLine, 0,
-					seg.nStartLine + seg.nLines, 0, CE_ACTION_UNKNOWN, false, false);
-			else
-				m_ptResultBuf->DeleteText(pSource, seg.nStartLine, 0,
-					nLineCount - 1, m_ptResultBuf->GetLineLength(nLineCount - 1),
-					CE_ACTION_UNKNOWN, false, false);
-		}
-		if (!newText.empty())
-		{
-			int nEndLine = 0, nEndChar = 0;
-			m_ptResultBuf->InsertText(pSource, seg.nStartLine, 0, newText.c_str(),
-				newText.length(), nEndLine, nEndChar, CE_ACTION_UNKNOWN, false);
-		}
-		nDelta += nNewLines - seg.nLines;
-		seg.nLines = nNewLines;
-	}
-	m_ptResultBuf->ClearUndoBuffer();
-	OnResultUndoStackCleared();
-	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
-		m_pMergeResultView->Invalidate();
-}
-
-/**
- * @brief Switch between compact placeholders and full conflict sections
- * in the result pane.
- */
-void CMergeDoc::SetResultShowFullConflicts(bool bShow)
-{
-	if (bShow == m_bResultShowFullConflicts)
-		return;
-	m_bResultShowFullConflicts = bShow;
-	if (m_bResultBuilt)
-		ReRenderResultConflictSegments();
-}
-
-/**
  * @brief Text of the given result buffer lines, with each line's own EOL
  * (nothing is appended to a line that has none, i.e. the very last line).
  */
@@ -878,7 +800,7 @@ String CMergeDoc::BuildExpandedResultText() const
 			text += GetResultBufferLinesText(nCovered, seg.nStartLine - nCovered);
 		const bool bPlaceholder = (seg.state == ResultSegmentState::Conflict ||
 			seg.state == ResultSegmentState::Unresolved);
-		if (bPlaceholder && seg.diffIdx >= 0 && !m_bResultShowFullConflicts)
+		if (bPlaceholder && seg.diffIdx >= 0)
 			text += seg.blockText; // buffer shows the compact placeholder
 		else
 			text += GetResultBufferLinesText(seg.nStartLine, seg.nLines);
@@ -1168,7 +1090,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	{
 		if ((seg.state == ResultSegmentState::Conflict ||
 			 seg.state == ResultSegmentState::Unresolved) &&
-			seg.diffIdx >= 0 && !m_bResultShowFullConflicts)
+			seg.diffIdx >= 0)
 		{
 			bNeedExpansion = true;
 			break;
@@ -1533,20 +1455,6 @@ void CMergeDoc::OnUpdateMergeResultSave(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
 		m_bResultBuilt);
-}
-
-/**
- * @brief Toggle between compact placeholders and full conflict sections.
- */
-void CMergeDoc::OnMergeResultShowSections()
-{
-	SetResultShowFullConflicts(!m_bResultShowFullConflicts);
-}
-
-void CMergeDoc::OnUpdateMergeResultShowSections(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(m_bResultBuilt);
-	pCmdUI->SetCheck(m_bResultShowFullConflicts);
 }
 
 String CMergeDoc::GetMergePaneRoles() const

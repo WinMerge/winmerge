@@ -1189,7 +1189,6 @@
 #define ID_MERGE_START_SESSION          33387
 #define ID_MERGE_CHOOSE_THIS            33388
 #define ID_MERGE_END_SESSION            33389
-#define ID_MERGE_RESULT_SHOW_SECTIONS   33394
 #define ID_TABBAR_AUTO_MAXWIDTH         33451
 #define ID_IMG_VIEWDIFFERENCES          33453
 #define ID_IMG_ZOOM_25                  33454

@@ -152,8 +152,6 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_START_SESSION, OnUpdateMergeStartSession)
 	ON_COMMAND(ID_MERGE_END_SESSION, OnMergeEndSession)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_END_SESSION, OnUpdateMergeEndSession)
-	ON_COMMAND(ID_MERGE_RESULT_SHOW_SECTIONS, OnMergeResultShowSections)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_RESULT_SHOW_SECTIONS, OnUpdateMergeResultShowSections)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -249,7 +247,6 @@ void CMergeDoc::DeleteContents ()
 	m_resultDiffToSegment.clear();
 	m_resultSegUndo.clear();
 	m_resultSegRedo.clear();
-	m_resultDiffSnapshot.clear();
 	m_bResultBuilt = false;
 }
 

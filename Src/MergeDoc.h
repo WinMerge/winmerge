@@ -354,8 +354,6 @@ public:
 	String GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly, int* pnLines) const;
 	static String GetResultPlaceholderText(ResultSegmentState state, bool bWhiteSpaceOnly);
 	String GetResultSegmentDisplayText(const MergeResultSegment& seg, int* pnLines) const;
-	void SetResultShowFullConflicts(bool bShow);
-	bool GetResultShowFullConflicts() const { return m_bResultShowFullConflicts; }
 	/** @brief Difference still waiting for a decision in the result pane? */
 	bool IsResultDiffPending(int nDiff) const;
 	/** @brief Is the line an unresolved-difference placeholder (not editable)? */
@@ -393,16 +391,11 @@ private:
 	void PickResultEncoding();
 	String GetResultBufferLinesText(int nStartLine, int nLines) const;
 	String BuildExpandedResultText() const;
-	void ReRenderResultConflictSegments();
 	/** One entry per diff: {dbegin, dend, op} when the result was built */
-	struct ResultDiffSnapshot { int dbegin; int dend; int op; };
 	std::unique_ptr<CMergeResultTextBuffer> m_ptResultBuf; /**< Merge result buffer (not part of the diff) */
 	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
 	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */
 	std::vector<int> m_resultDiffToSegment; /**< diff index -> segment index or -1 */
-	std::vector<ResultDiffSnapshot> m_resultDiffSnapshot; /**< diff list as it was when the result was built */
-	bool m_bResultLinksDropNotified = false; /**< told the user the segment<->diff links were dropped */
-	bool m_bResultShowFullConflicts = false; /**< show full conflict sections instead of compact placeholders */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegUndo; /**< table before undo group (key: group start) */
 	std::map<int, std::vector<MergeResultSegment>> m_resultSegRedo; /**< table after undo group (key: group start) */
 	bool m_bResultBuilt; /**< Result buffer has been generated */
@@ -561,8 +554,6 @@ protected:
 	afx_msg void OnUpdateMergeStartSession(CCmdUI* pCmdUI);
 	afx_msg void OnMergeEndSession();
 	afx_msg void OnUpdateMergeEndSession(CCmdUI* pCmdUI);
-	afx_msg void OnMergeResultShowSections();
-	afx_msg void OnUpdateMergeResultShowSections(CCmdUI* pCmdUI);
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
 	afx_msg void OnFileRecompareAsTable();
