@@ -214,7 +214,7 @@ bool CMergeDoc::EndMergeSession()
 	{
 		if (undoTgt[i] == -1)
 		{
-			if (i < curUndo - undoTgt.begin())
+			if (i < curUndo)
 				curUndo--;
 			undoTgt.erase(undoTgt.begin() + i);
 			i--;
@@ -1230,9 +1230,9 @@ void CMergeDoc::OnResultUndoGroupStart(int nUndoPos)
 	m_resultSegRedo.erase(m_resultSegRedo.lower_bound(nUndoPos), m_resultSegRedo.end());
 	m_resultSegUndo[nUndoPos] = m_resultSegments;
 
-	undoTgt.erase(curUndo, undoTgt.end());
+	undoTgt.erase(undoTgt.begin() + curUndo, undoTgt.end());
 	undoTgt.push_back(-1);
-	curUndo = undoTgt.end();
+	curUndo = undoTgt.size();
 }
 
 /**

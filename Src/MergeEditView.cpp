@@ -1266,7 +1266,7 @@ void CMergeEditView::OnEditUndo()
 {
 	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
-	const int nTargetPane = *(pDoc->curUndo - 1);
+	const int nTargetPane = pDoc->undoTgt[pDoc->curUndo-1];
 	if (nTargetPane == -1)
 	{
 		pDoc->GetMergeResultView()->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
@@ -1308,9 +1308,9 @@ void CMergeEditView::OnEditUndo()
 void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	if (pDoc->curUndo!=pDoc->undoTgt.begin())
+	if (pDoc->curUndo != 0)
 	{
-		const int nTargetPane = *(pDoc->curUndo - 1);
+		const int nTargetPane = pDoc->undoTgt[pDoc->curUndo-1];
 		if (nTargetPane == -1)
 		{
 			pCmdUI->Enable(pDoc->GetMergeResultBuffer()->CanUndo());
@@ -2307,7 +2307,7 @@ void CMergeEditView::OnEditRedo()
 {
 	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
-	const int nTargetPane = *(pDoc->curUndo);
+	const int nTargetPane = pDoc->undoTgt[pDoc->curUndo];
 	if (nTargetPane == -1)
 	{
 		pDoc->GetMergeResultView()->SendMessage(WM_COMMAND, ID_EDIT_REDO);
@@ -2341,9 +2341,9 @@ void CMergeEditView::OnEditRedo()
 void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	if (pDoc->curUndo!=pDoc->undoTgt.end())
+	if (pDoc->curUndo!=pDoc->undoTgt.size())
 	{
-		const int nTargetPane = *(pDoc->curUndo);
+		const int nTargetPane = pDoc->undoTgt[pDoc->curUndo];
 		if (nTargetPane == -1)
 		{
 			pCmdUI->Enable(pDoc->GetMergeResultBuffer()->CanRedo());
