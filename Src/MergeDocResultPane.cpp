@@ -1609,8 +1609,8 @@ void CMergeDoc::OnMergeEndSession()
 	{
 		String msg = _("Merge result has unsaved changes.\n\nDo you want to save before closing the merge session?");
 		int nResult = ShowMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION);
-		if (nResult == IDYES)
-			SaveMergeResult(false);
+		if (nResult == IDYES && !SaveMergeResult(false))
+			return;
 		else if (nResult == IDCANCEL)
 			return;
 	}
