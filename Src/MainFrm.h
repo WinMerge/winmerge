@@ -102,7 +102,6 @@ public:
 		int m_char = -1;
 		String m_fileExt;
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
-		bool m_bResolveConflict = false; /**< Opened via conflict file resolver */
 	};
 
 	struct OpenTableFileParams : public OpenTextFileParams

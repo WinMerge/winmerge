@@ -5437,7 +5437,6 @@ STRINGTABLE
 BEGIN
     IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
     IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE "The merge result has not been saved.\n\nSave the merge result?"
-    IDS_MERGE_RESULT_CONFLICT_FILE_WARNING "The merge output file\n%1\nalready contains merge conflict markers.\n\nIf you want to continue working on this conflict file, select\nFile > Open Conflict File."
     IDS_MERGE_RESULT_SAVE_FAILED "Saving the merge result to\n%1\nfailed.\n%2"
     IDS_MERGE_RESULT_SAVE_MERGE_RESULT "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
     IDS_MERGE_RESULT_CONFLICT_WHITESPACE "<Merge Conflict (Whitespace only)>"
