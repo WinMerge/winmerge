@@ -84,13 +84,13 @@ BEGIN
         MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_CHOOSE_LEFT
         MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_CHOOSE_MIDDLE
         MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_CHOOSE_RIGHT
-        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         POPUP "Choose for All Unresolved Conflicts"
         BEGIN
             MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
             MENUITEM "Middle",                      ID_MERGE_CHOOSE_ALL_MIDDLE
             MENUITEM "Right",                       ID_MERGE_CHOOSE_ALL_RIGHT
         END
+        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
@@ -906,6 +906,7 @@ BEGIN
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Start Merge Sess&ion",        ID_MERGE_START_SESSION
+        MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         POPUP "Merge Resul&t"
         BEGIN

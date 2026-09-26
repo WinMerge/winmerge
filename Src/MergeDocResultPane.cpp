@@ -121,6 +121,8 @@ void CMergeDoc::SetMergeResultPaneVisible()
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		m_bResultSavedRO[nBuffer] = m_ptBuf[nBuffer]->GetReadOnly();
+		m_strResultSavedDesc[nBuffer] = m_strDesc[nBuffer];
+		m_nResultSavedBufferType[nBuffer] = m_nBufferType[nBuffer];
 		m_ptBuf[nBuffer]->SetReadOnly(true);
 	}
 
@@ -252,7 +254,10 @@ void CMergeDoc::BuildMergeResult()
 	if (bViewAttached)
 		m_pMergeResultView->DetachFromBuffer();
 	if (m_ptResultBuf->IsInitialized())
+	{
 		m_ptResultBuf->FreeAll();
+		m_ptResultBuf->m_aUndoBuf.clear();
+	}
 
 	// The buffer's nominal style only provides the default EOL for typed
 	// and placeholder lines; generated lines keep their source EOLs, and
@@ -1586,9 +1591,52 @@ void CMergeDoc::OnMergeStartSession()
 
 void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)
 {
-	// Available when the pane is not shown yet, and as the recovery path
-	// when the segment <-> diff links were severed by a rescan
-	const bool bLinksSevered = m_bResultBuilt && m_resultDiffSnapshot.empty();
-	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) &&
-		HasMergeResultPane() && (!IsMergeResultPaneVisible() || bLinksSevered));
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && !m_bResultBuilt);
+}
+
+/**
+ * @brief End the current merge session by closing the result pane.
+ * Prompts to save if the merge result has unsaved changes.
+ * Restores the original read-only states and pane descriptions.
+ */
+void CMergeDoc::OnMergeEndSession()
+{
+	if (!IsMergeResultPaneActive())
+		return;
+
+	// Prompt to save if the merge result has unsaved changes
+	if (IsMergeResultUnsaved())
+	{
+		String msg = _("Merge result has unsaved changes.\n\nDo you want to save before closing the merge session?");
+		int nResult = ShowMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION);
+		if (nResult == IDYES)
+			SaveMergeResult(false);
+		else if (nResult == IDCANCEL)
+			return;
+	}
+
+	// Restore original read-only states
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_ptBuf[nBuffer]->SetReadOnly(m_bResultSavedRO[nBuffer]);
+		m_strDesc[nBuffer] = m_strResultSavedDesc[nBuffer];
+		m_nBufferType[nBuffer] = m_nResultSavedBufferType[nBuffer];
+		UpdateHeaderPath(nBuffer);
+	}
+
+	// Hide the merge result pane
+	if (CMergeEditFrame* pFrame = GetParentFrame())
+		pFrame->ShowMergeResultPane(false);
+
+	// Reset merge session state
+	m_bResultBuilt = false;
+}
+
+/**
+ * @brief Update UI for End Merge Session command.
+ * Enable only when a merge session is active.
+ */
+void CMergeDoc::OnUpdateMergeEndSession(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_bResultBuilt);
 }

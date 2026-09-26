@@ -47,7 +47,7 @@ public:
 	void ShowFilterBar();
 	void HideFilterBar();
 	CLineFilterBar* GetFilterBar() { return m_pFilterBar.get(); }
-	void ShowMergeResultPane();
+	void ShowMergeResultPane(bool bVisible = true);
 
 // Attributes
 protected:

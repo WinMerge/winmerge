@@ -412,6 +412,8 @@ private:
 	bool m_bResultSaved; /**< Result has been written to the output since it was built */
 	int  m_nMergeBasePane; /**< Pane to use as the base for auto-merging */
 	bool m_bResultSavedRO[3]; /**< Read-only states before the result pane forced them */
+	String m_strResultSavedDesc[3]; /**< Pane descriptions before the result pane added merge labels */
+	BUFFERTYPE m_nResultSavedBufferType[3]; /**< Buffer types before the result pane forced them */
 // End MergeDocResultPane.cpp
 
 // Implementation
@@ -560,6 +562,8 @@ protected:
 	afx_msg void OnUpdateMergeResultSave(CCmdUI* pCmdUI);
 	afx_msg void OnMergeStartSession();
 	afx_msg void OnUpdateMergeStartSession(CCmdUI* pCmdUI);
+	afx_msg void OnMergeEndSession();
+	afx_msg void OnUpdateMergeEndSession(CCmdUI* pCmdUI);
 	afx_msg void OnMergeResultShowSections();
 	afx_msg void OnUpdateMergeResultShowSections(CCmdUI* pCmdUI);
 	afx_msg void OnOK();

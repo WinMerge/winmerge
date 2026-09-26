@@ -306,11 +306,11 @@ BOOL CMergeEditFrame::OnBarCheck(UINT nID)
  * @brief Make the merge result pane visible (used when the document was
  * opened with an output path, e.g. as a merge tool or for conflict files).
  */
-void CMergeEditFrame::ShowMergeResultPane()
+void CMergeEditFrame::ShowMergeResultPane(bool bVisible)
 {
-	if (m_wndResultBar.m_hWnd != nullptr && !m_wndResultBar.IsWindowVisible())
+	if (m_wndResultBar.m_hWnd != nullptr && bVisible != !!m_wndResultBar.IsWindowVisible())
 	{
-		ShowControlBar(&m_wndResultBar, TRUE, FALSE);
+		ShowControlBar(&m_wndResultBar, bVisible , FALSE);
 		GetMainFrame()->UpdateToolbar();
 	}
 }
