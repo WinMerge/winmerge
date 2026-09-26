@@ -337,7 +337,7 @@ public:
 		bool bSave, int nBuffer);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	std::vector<int> undoTgt;
-	std::vector<int>::iterator curUndo;
+	size_t curUndo;
 	void FlushAndRescan(bool bForced = false);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() const { return m_nCurDiff; }

@@ -1278,7 +1278,7 @@ void CMergeEditView::OnEditUndo()
 {
 	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
-	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo-1));
+	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, pDoc->undoTgt[pDoc->curUndo-1]);
 	if(tgt==this)
 	{
 		if (!QueryEditable())
@@ -1314,9 +1314,9 @@ void CMergeEditView::OnEditUndo()
 void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	if (pDoc->curUndo!=pDoc->undoTgt.begin())
+	if (pDoc->curUndo != 0)
 	{
-		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo-1));
+		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, pDoc->undoTgt[pDoc->curUndo-1]);
 		pCmdUI->Enable( !IsReadOnly(tgt->m_nThisPane));
 	}
 	else
@@ -2431,7 +2431,7 @@ void CMergeEditView::OnEditRedo()
 {
 	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
-	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo));
+	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, pDoc->undoTgt[pDoc->curUndo]);
 	if(tgt==this)
 	{
 		if (!QueryEditable())
@@ -2459,9 +2459,9 @@ void CMergeEditView::OnEditRedo()
 void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	if (pDoc->curUndo!=pDoc->undoTgt.end())
+	if (pDoc->curUndo!=pDoc->undoTgt.size())
 	{
-		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo));
+		CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, pDoc->undoTgt[pDoc->curUndo]);
 		pCmdUI->Enable( !IsReadOnly(tgt->m_nThisPane));
 	}
 	else

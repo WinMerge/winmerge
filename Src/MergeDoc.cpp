@@ -162,6 +162,7 @@ CMergeDoc::CMergeDoc()
 , m_editorScriptInfo(_T(""))
 , m_nBuffers(m_nBuffersTemp)
 , m_documentType(m_documentTypeTemp)
+, curUndo(0)
 {
 	DIFFOPTIONS options = {0};
 
@@ -179,8 +180,6 @@ CMergeDoc::CMergeDoc()
 	m_bEnableRescan = true;
 	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
 
-	// COleDateTime m_LastRescan
-	curUndo = undoTgt.begin();
 	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
 	m_bInvertDiffContext = GetOptionsMgr()->GetBool(OPT_INVERT_DIFF_CONTEXT);
 
@@ -2446,7 +2445,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 	// clear undo stack
 	undoTgt.clear();
-	curUndo = undoTgt.begin();
+	curUndo = 0;
 
 	// Prevent displaying views during LoadFile
 	// Note : attach buffer again only if both loads succeed
