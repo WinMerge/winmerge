@@ -2430,17 +2430,17 @@ Use Merge Result Pane for 3-way merge<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option> (default): When performing a 3-way merge, the
-merge result is written to the target pane (left, center, or right),
-updating its content.</para>
+<option>Disabled</option>: When performing a 3-way merge, the merge result
+is written to the target pane (left, middle, or right), updating its
+content.</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>: When performing a 3-way merge, the merge result is
-created in a separate Merge Result Pane instead of modifying the target
-pane. The result can be reviewed and edited in the Merge Result Pane before
-it is saved to the target file.</para>
+<option>Enabled</option> (default): When performing a 3-way merge, the merge
+result is created in a separate Merge Result Pane instead of modifying the
+target pane. The result can be reviewed and edited in the Merge Result Pane
+before it is saved to the target file.</para>
         </listitem>
       </itemizedlist>
 

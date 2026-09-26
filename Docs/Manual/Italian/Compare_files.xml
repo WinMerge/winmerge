@@ -763,7 +763,7 @@ and the merge should keep both), and deselecting all panes makes the
 difference unresolved again. You can also type corrections directly into the
 Merge Result pane, except on unresolved differences: those must be resolved
 with a Choose command before their text can be edited. Conflicts whose sides
-differ only in white space are marked as <computeroutput>(whitespace
+differ only in white space are marked as <computeroutput>(Whitespace
 only)</computeroutput>.</para>
 
       <para>The pane's margin shows where every line came from:
@@ -772,8 +772,8 @@ only)</computeroutput>.</para>
 right pane (matching the toolbar buttons),
 <computeroutput>?</computeroutput> for an unresolved conflict section, and
 <computeroutput>m</computeroutput> for a difference modified by hand.  The
-pane's title bar shows how many differences are still unresolved.  While the
-pane is open, <guimenuitem>Next Conflict</guimenuitem> and
+pane's status bar shows how many differences are still unresolved.  While
+the pane is open, <guimenuitem>Next Conflict</guimenuitem> and
 <guimenuitem>Previous Conflict</guimenuitem>
 (<keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>
 /
@@ -797,11 +797,10 @@ prompts about an unsaved merge result when the window is closed — also when
 the pane itself has been hidden in the meantime. By default every line is
 saved with its own original line ending, so the output differs from the
 sources as little as possible (for example, producing minimal diffs in
-version control); the <guisubmenu>Line Endings for Saving</guisubmenu>
-submenu of the pane's context menu can normalize the output to Windows, Unix
-or classic Mac style instead. The encoding follows the side that changed it,
-and the save honors the backup-file option and any file packer plugin the
-files were opened with.</para>
+version control); you can change the output line endings to Windows, Unix,
+or classic Mac style from the Merge Result pane's status bar.  The encoding
+follows the side that changed it, and the save honors the backup-file option
+and any file packer plugin the files were opened with.</para>
 
       <para>You can also start a merge in any three-way text comparison with
 <menuchoice><guimenu>Merge</guimenu><guimenuitem>Start Merge
@@ -833,8 +832,8 @@ theirs, right = base</para>
 
           <listitem>
             <para>
-<option>Merge to middle pane (/am)</option>: left = base, middle = merge
-target, right = theirs</para>
+<option>Merge to middle pane (/am)</option>: left = theirs, middle = merge
+target, right = mine</para>
           </listitem>
 
           <listitem>
