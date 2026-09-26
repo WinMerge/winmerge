@@ -399,23 +399,41 @@ WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー�
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3方向マージ</primary>
+        <secondary>auto-merge with /al option</secondary>
+      </indexterm>
       <term><option>/al</option></term>
       <listitem>
-        <para>起動時、左側で自動マージします。</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (merge target)  - middle
+(theirs) - right (base).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3方向マージ</primary>
+        <secondary>auto-merge with /am option</secondary>
+      </indexterm>
       <term><option>/am</option></term>
       <listitem>
-        <para>起動時、中央で自動マージします。</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (base)  - middle (merge
+target) - right (theirs).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3方向マージ</primary>
+        <secondary>auto-merge with /ar option</secondary>
+      </indexterm>
       <term><option>/ar</option></term>
       <listitem>
-        <para>起動時、右側で自動マージします。</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
+- right (merge target).</para>
       </listitem>
     </varlistentry>
 
@@ -617,6 +635,12 @@ class="directory">C:\Folder2</filename>がファイル名<filename>File.txt</fil
         <para>マージした結果のファイルを保存するオプションの出力ファイルパスを指定します。</para>
 
         <para>出力パスはコマンドラインからWinMergeを開始する時まれにしか必要となりません。それはバージョンコントロールツールとともに使用されることになります。結果ファイルとして出力パスを指定する必要があるかもしれません。もし、出力パスを指定した場合、あるペインを変更後保存すると、変更は出力パスのファイルに保存され、元ファイルは前の状態のままになります。</para>
+
+        <para>In a three-way text comparison, specifying an output path also opens the
+Merge Result pane at the bottom of the File Compare window, where the merge
+result can be reviewed and edited before it is saved to the output path. See
+the Merge Result pane topic in <citetitle>Comparing and merging text
+files</citetitle>.</para>
 
         <para>バージョンコントロールシステムは一般的に<glossterm>theirs</glossterm>や<glossterm>mine</glossterm>、<glossterm>merged</glossterm>かまたは<glossterm>resolved</glossterm>のような用語を使用し元と結果ファイルを参照します。もし、WinMergeコマンドラインに出力パスを指定し、バージョンコントロールシステムと連携するならば、この順番でファイルを並べるべきです。</para>
       </listitem>

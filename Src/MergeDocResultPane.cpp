@@ -1,0 +1,1545 @@
+/**
+ * @file  MergeDocResultPane.cpp
+ *
+ * @brief Implementation of the kdiff3-style merge result pane
+ *        (CMergeDoc part + CMergeResultTextBuffer).
+ *
+ * The merge result is a 4th text buffer that is not part of the 3-way
+ * diff: its content is generated from the three compared buffers and a
+ * per-difference resolution state (see MergeResultSegment). The result
+ * segment table maps result buffer lines back to differences.
+ */
+
+#include "StdAfx.h"
+#include "MergeResultPane.h"
+#include "MergeDoc.h"
+#include "MergeResultView.h"
+#include "MergeResultTextBuffer.h"
+#include "MergeEditView.h"
+#include "MergeEditFrm.h"
+#include "FileOrFolderSelect.h"
+#include "FileTransform.h"
+#include "UniFile.h"
+#include "Environment.h"
+#include "paths.h"
+#include "Merge.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "Logger.h"
+#include "ConflictFileParser.h"
+#include "resource.h"
+#include <algorithm>
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+struct MergePanes
+{
+	int nBasePane;
+	int nTheirsPane;
+	int nMinePane;
+};
+
+static MergePanes GetMergePaneMapping(int nBasePane)
+{
+	MergePanes panes;
+	panes.nBasePane = nBasePane;
+	if (nBasePane == 0)
+	{
+		panes.nTheirsPane = 1;
+		panes.nMinePane = 2;
+	}
+	else if (nBasePane == 1)
+	{
+		panes.nTheirsPane = 0;
+		panes.nMinePane = 2;
+	}
+	else if (nBasePane == 2)
+	{
+		panes.nTheirsPane = 1;
+		panes.nMinePane = 0;
+	}
+	return panes;
+}
+
+std::array<String, 3> GetMergePaneMappingString(int nBasePane)
+{
+	if (nBasePane == 0)
+		return { _("Base File"), _("Theirs File"), _("Mine File") };
+	else if (nBasePane == 1)
+		return { _("Theirs File"), _("Base File"), _("Mine File") };
+	else
+		return { _("Mine File"), _("Theirs File"), _("Base File") };
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// CMergeDoc merge result pane implementation
+
+/**
+ * @brief Is the bar hosting the result view shown?
+ * Checks the bar's own visible style so this also works while the
+ * frame itself is not visible yet.
+ */
+bool CMergeDoc::IsMergeResultPaneVisible() const
+{
+	if (m_pMergeResultView == nullptr || m_pMergeResultView->GetSafeHwnd() == nullptr)
+		return false;
+	const CWnd* pWndParent = m_pMergeResultView->GetParent();
+	const CWnd* pBar = pWndParent != nullptr ? pWndParent->GetParent() : nullptr;
+	return pBar != nullptr && (pBar->GetStyle() & WS_VISIBLE) != 0;
+}
+
+/**
+ * @brief Update pane headers with merge-related labels
+ * Assigns descriptive labels to panes based on their merge role (Base, Theirs, Mine)
+ * and updates header text accordingly.
+ */
+void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
+{
+	// Give the compared buffers a descriptive name for the merge result
+	auto [basePane, theirsPane, minePane] = GetMergePaneMapping(nBasePane);
+	const String labels[] = { _("Base File"), _("Theirs File"), _("Mine File") };
+
+	const int panes[] = { basePane, theirsPane, minePane };
+	for (int i = 0; i < 3; ++i)
+	{
+		const int pane = panes[i];
+		const String suffix = _T(" - ") + labels[i];
+
+		if (m_strDesc[pane].empty())
+		{
+			m_strDesc[pane] = m_filePaths[pane] + suffix;
+			m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
+		}
+		else if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED)
+		{
+			m_strDesc[pane] += suffix;
+		}
+		else
+		{
+			for (const auto& label : labels)
+			{
+				const String oldSuffix = _T(" - ") + label;
+				if (m_strDesc[pane].length() >= oldSuffix.length() &&
+					m_strDesc[pane].substr(m_strDesc[pane].length() - oldSuffix.length()) == oldSuffix)
+				{
+					m_strDesc[pane].replace(m_strDesc[pane].length() - oldSuffix.length(), oldSuffix.length(), suffix);
+					break;
+				}
+			}
+		}
+		UpdateHeaderPath(pane);
+	}
+}
+
+/**
+ * @brief Start (or re-run) a merge session in the result pane.
+ * @param [in] bAutoMerge Auto-resolve the non-conflicting differences.
+ *
+ * Used by the Merge menu's Start Merge Session command (no auto-merge)
+ * and by the Auto Merge command (with auto-merge), which switches a
+ * plain 3-way comparison to the 4-pane merge view.
+ */
+bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage)
+{
+	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || m_bResultBuilt)
+		return false;
+
+	m_bResultBuilt = false;
+	m_nMergeBasePane = nBasePane;
+	if (CMergeEditFrame* pFrame = GetParentFrame())
+		pFrame->ShowMergeResultPane();
+
+	BuildMergeResult();
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_bResultSavedRO[nBuffer] = m_ptBuf[nBuffer]->GetReadOnly();
+		m_strResultSavedDesc[nBuffer] = m_strDesc[nBuffer];
+		m_nResultSavedBufferType[nBuffer] = m_nBufferType[nBuffer];
+		m_ptBuf[nBuffer]->SetReadOnly(true);
+	}
+
+	// Update pane headers with merge-related labels
+	UpdateMergePaneHeaders(m_nMergeBasePane);
+
+	m_pMergeResultView->TakeFocus();
+
+	if (bAutoMerge)
+		ApplyAutoMergeToResult();
+	String paneRoles = GetMergePaneRoles();
+	String msg = strutils::format_string1(_("Merge session started.\n\n%1"), paneRoles);
+	if (bWithMessage)
+		ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
+	else
+		RootLogger::Info(msg);
+	return true;
+}
+
+bool CMergeDoc::EndMergeSession()
+{
+	if (!m_bResultBuilt)
+		return false;
+
+	// Prompt to save if the merge result has unsaved changes
+	if (IsMergeResultUnsaved())
+	{
+		String msg = _("Merge result has unsaved changes.\n\nDo you want to save before closing the merge session?");
+		int nResult = ShowMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION);
+		if (nResult == IDYES && !SaveMergeResult(false))
+			return false;
+		else if (nResult == IDCANCEL)
+			return false;
+	}
+
+	// Restore original read-only states
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_ptBuf[nBuffer]->SetReadOnly(m_bResultSavedRO[nBuffer]);
+		m_strDesc[nBuffer] = m_strResultSavedDesc[nBuffer];
+		m_nBufferType[nBuffer] = m_nResultSavedBufferType[nBuffer];
+		UpdateHeaderPath(nBuffer);
+	}
+
+	// Hide the merge result pane
+	if (CMergeEditFrame* pFrame = GetParentFrame())
+		pFrame->ShowMergeResultPane(false);
+
+	// Reset merge session state
+	m_bResultBuilt = false;
+
+	// Clear undo/redo targets for the result buffer, since the buffer is being closed
+	for (int i = 0; i < undoTgt.size(); ++i)
+	{
+		if (undoTgt[i] == -1)
+		{
+			if (i < curUndo)
+				curUndo--;
+			undoTgt.erase(undoTgt.begin() + i);
+			i--;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * @brief Extract the text of pane nPane for apparent lines
+ * [nApparentBegin, nApparentEnd], skipping ghost lines.
+ * Every extracted line is terminated with an EOL (the line's own EOL,
+ * or the result buffer's default EOL if the line has none).
+ * @return Text; *pnLines receives the number of extracted lines.
+ */
+String CMergeDoc::GetPaneApparentLinesText(int nPane, int nApparentBegin,
+	int nApparentEnd, int* pnLines) const
+{
+	String text;
+	int nLines = 0;
+	const CDiffTextBuffer* pBuf = m_ptBuf[nPane].get();
+	const int nLineCount = pBuf->GetLineCount();
+	for (int nLine = nApparentBegin; nLine <= nApparentEnd && nLine < nLineCount; ++nLine)
+	{
+		if (pBuf->GetLineFlags(nLine) & LF_GHOST)
+			continue;
+		const int nLength = pBuf->GetLineLength(nLine);
+		if (nLength > 0)
+			text.append(pBuf->GetLineChars(nLine), nLength);
+		const tchar_t* pszEol = pBuf->GetLineEol(nLine);
+		text += (pszEol != nullptr && *pszEol != _T('\0')) ? pszEol : _T("");
+		++nLines;
+	}
+	if (pnLines != nullptr)
+		*pnLines = nLines;
+	return text;
+}
+
+/**
+ * @brief (Re)generate the merge result buffer from the three compared
+ * buffers, auto-resolving all non-conflicting differences.
+ *
+ * m_nMergeBasePane is treated as the common ancestor (base), matching
+ * the semantics of WinMerge's existing 3-way auto-merge.
+ */
+void CMergeDoc::BuildMergeResult()
+{
+	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || !m_ptBuf[m_nMergeBasePane]->IsInitialized())
+		return;
+
+	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
+
+	const bool bViewAttached = m_pMergeResultView != nullptr &&
+		m_pMergeResultView->GetSafeHwnd() != nullptr &&
+		m_pMergeResultView->LocateTextBuffer() != nullptr &&
+		m_ptResultBuf->IsInitialized();
+	if (bViewAttached)
+		m_pMergeResultView->DetachFromBuffer();
+	if (m_ptResultBuf->IsInitialized())
+	{
+		m_ptResultBuf->FreeAll();
+		m_ptResultBuf->m_aUndoBuf.clear();
+	}
+
+	// The buffer's nominal style only provides the default EOL for typed
+	// and placeholder lines; generated lines keep their source EOLs, and
+	// saving preserves them per line unless the user chose a fixed style
+	m_ptResultBuf->InitNew(PickResultCRLFStyle());
+	PickResultEncoding();
+	m_ptResultBuf->SetReadOnly(false);
+	m_ptResultBuf->SetTempPath(env::GetTemporaryPath()); // needed by SaveToFile
+
+	m_resultSegments.clear();
+	OnResultUndoStackCleared(); // buffer undo history is gone as well
+	m_resultDiffToSegment.assign(m_diffList.GetSize(), -1);
+
+	String text;
+
+	// The resume prompt is modal and pumps messages, so a rescan can have
+	// replaced the diff list while it was open: size everything below off
+	// the list as it is NOW
+	const int nDiffCount = m_diffList.GetSize();
+
+	// also discards anything a failed resume attempt filled in
+	m_resultSegments.clear();
+	m_resultDiffToSegment.assign(nDiffCount, -1);
+	text.clear();
+
+	int nCurLine = 0;
+	int nApparent = 0;
+	const int nApparentCount = m_ptBuf[m_nMergeBasePane]->GetLineCount();
+	const int nMergeDestPane = 2 - m_nMergeBasePane;
+
+	auto appendCommon = [&](int nBegin, int nEndExcl)
+	{
+		if (nBegin >= nEndExcl)
+			return;
+		int nLines = 0;
+		text += GetPaneApparentLinesText(m_nMergeBasePane, nBegin, nEndExcl - 1, &nLines);
+		if (nLines > 0)
+		{
+			MergeResultSegment seg;
+			seg.diffIdx = -1;
+			seg.state = ResultSegmentState::Common;
+			seg.srcPanes.push_back(m_nMergeBasePane);
+			seg.srcPaneLines.push_back(nLines);
+			seg.nStartLine = nCurLine;
+			seg.nLines = nLines;
+			m_resultSegments.push_back(seg);
+			nCurLine += nLines;
+		}
+	};
+
+	for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
+	{
+		const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
+		appendCommon(nApparent, pdi->dbegin);
+
+		MergeResultSegment seg;
+		seg.diffIdx = nDiff;
+		seg.nStartLine = nCurLine;
+		// Without auto-merge every significant difference starts
+		// unresolved; with it only true 3-way conflicts do. A difference
+		// where the sides agree (or only one side changed) is not a
+		// conflict even while it is still unresolved.
+		const bool bConflict = (pdi->op == OP_DIFF);
+		if (bConflict || pdi->op != OP_TRIVIAL)
+		{
+			seg.state = bConflict ?
+				ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
+			seg.bWhiteSpaceOnly = bConflict && IsResultDiffWhiteSpaceOnly(pdi);
+			if (bConflict)
+				seg.blockText = GetResultConflictBlockText(nDiff, seg.bWhiteSpaceOnly,
+					&seg.nBlockLines);
+			else
+			{
+				// A non-conflicting difference must never put conflict
+				// markers into the output; its stashed (and saved) form is
+				// the content an automatic merge would pick for it
+				int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, nMergeDestPane);
+				if (srcPane == -1)
+					srcPane = nMergeDestPane;
+				seg.blockText = GetPaneApparentLinesText(srcPane, pdi->dbegin,
+					pdi->dend, &seg.nBlockLines);
+			}
+			text += GetResultSegmentDisplayText(seg, &seg.nLines);
+		}
+		else
+		{
+			int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, nMergeDestPane);
+			if (srcPane == -1)
+				srcPane = nMergeDestPane; // No mergeable source: use the merge destination pane.
+			int nLines = 0;
+			text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
+			seg.state = ResultSegmentState::Common;
+			seg.srcPanes.push_back(srcPane);
+			seg.srcPaneLines.push_back(nLines);
+			seg.nLines = nLines;
+		}
+		m_resultDiffToSegment[nDiff] = static_cast<int>(m_resultSegments.size());
+		m_resultSegments.push_back(seg);
+		nCurLine += seg.nLines;
+		nApparent = pdi->dend + 1;
+	}
+	appendCommon(nApparent, nApparentCount);
+
+	if (!text.empty())
+	{
+		int nEndLine = 0, nEndChar = 0;
+		m_ptResultBuf->InsertText(nullptr, 0, 0, text.c_str(), text.length(),
+			nEndLine, nEndChar, CE_ACTION_UNKNOWN, false /* no history */);
+		for (int i = 0; i < m_ptResultBuf->GetLineCount(); ++i)
+			m_ptResultBuf->m_aLines[i].m_dwRevisionNumber = 0;
+	}
+	m_ptResultBuf->SetModified(false);
+	// the generated content is the baseline: no change markers on it
+	m_ptResultBuf->AdoptCurrentRevision();
+	for (auto& seg : m_resultSegments)
+		seg.nBaseRevision = m_ptResultBuf->GetCurrentRevisionNumber();
+	m_bResultBuilt = true;
+	// A generated result has not been written to the output path yet: an
+	// automatically merged result still has to be saved even if the user
+	// edits nothing. A resumed result IS the output file's content.
+	m_bResultSaved = false;
+
+	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+	{
+		m_pMergeResultView->AttachToBuffer(m_ptResultBuf.get());
+		m_pMergeResultView->RefreshOptions();
+		m_pMergeResultView->Invalidate();
+	}
+	UpdateMergeResultPaneCaption();
+}
+
+void CMergeDoc::ApplyAutoMergeToResult()
+{
+	if (!m_ptResultBuf || !m_bResultBuilt)
+		return;
+
+	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
+
+	const int nMergeDestPane = 2 - m_nMergeBasePane;
+
+	m_ptResultBuf->BeginUndoGroup(false);
+
+	for (int i = static_cast<int>(m_resultSegments.size()) - 1; i >= 0; --i)
+	{
+		MergeResultSegment& seg = m_resultSegments[i];
+		if (seg.state != ResultSegmentState::Unresolved)
+			continue;
+
+		const DIFFRANGE* pdi = m_diffList.DiffRangeAt(seg.diffIdx);
+		if (!pdi || pdi->op == OP_DIFF)
+			continue;
+
+		int srcPane = m_diffList.GetMergeableSrcIndex(seg.diffIdx, nMergeDestPane);
+		if (srcPane == -1)
+			srcPane = nMergeDestPane;
+
+		int nLines = 0;
+		String resolvedText = GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
+
+		const int nStartLine = seg.nStartLine;
+		const int nEndLine = nStartLine + seg.nLines;   // exclusive
+
+		int nEndLineAfter = 0, nEndCharAfter = 0;
+		m_ptResultBuf->DeleteText(m_pMergeResultView, nStartLine, 0, nEndLine, 0, CE_ACTION_MERGE);
+		m_ptResultBuf->InsertText(m_pMergeResultView, nStartLine, 0, resolvedText.c_str(), resolvedText.length(), nEndLineAfter, nEndCharAfter, CE_ACTION_MERGE, true /* history */);
+
+		seg.state = ResultSegmentState::Auto;
+		seg.srcPanes.clear();
+		seg.srcPaneLines.clear();
+		seg.srcPanes.push_back(srcPane);
+		seg.srcPaneLines.push_back(nLines);
+		seg.nLines = nLines;
+		seg.blockText.clear();
+		seg.nBlockLines = 0;
+
+		const int nDelta = nLines - (nEndLine - nStartLine);
+		for (size_t j = i + 1; j < m_resultSegments.size(); ++j)
+			m_resultSegments[j].nStartLine += nDelta;
+	}
+
+	m_ptResultBuf->FlushUndoGroup(m_pMergeResultView);
+
+	if (m_pMergeResultView && m_pMergeResultView->GetSafeHwnd())
+		m_pMergeResultView->Invalidate();
+}
+
+bool CMergeDoc::IsMergeResultModified() const
+{
+	return m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		m_ptResultBuf->IsModified();
+}
+
+/**
+ * @brief Is there merge result content that has not been written out?
+ *
+ * True also for a freshly built result that the user has not edited: an
+ * automatic merge produces the content, and it is still lost if the
+ * window is closed without saving.
+ */
+bool CMergeDoc::IsMergeResultUnsaved() const
+{
+	if (m_ptResultBuf == nullptr || !m_ptResultBuf->IsInitialized() || !m_bResultBuilt)
+		return false;
+	return !m_bResultSaved || m_ptResultBuf->IsModified();
+}
+
+/**
+ * @brief Conflict section shown (and saved) for a difference that has no
+ * content chosen for it yet, in the familiar version-control format:
+ *
+ *   <<<<<<< left
+ *   ||||||| middle (diff3 style: the base version is included)
+ *   =======
+ *   >>>>>>> right
+ *
+ * All three versions are preserved in the output, so a merge saved with
+ * unresolved differences can be finished later in any editor, and other
+ * tools recognize the file as conflicted.
+ */
+String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
+	int* pnLines) const
+{
+	const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
+	const tchar_t* pszEol = m_ptResultBuf->GetDefaultEol();
+	auto label = [&](int nPane)
+	{
+		return !m_strDesc[nPane].empty() ?
+			m_strDesc[nPane] : paths::FindFileName(m_filePaths[nPane]);
+	};
+	int nLines = 4;
+	int nPaneLines = 0;
+	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
+	String text = _T("<<<<<<< ") + label(nMinePane);
+	if (bWhiteSpaceOnly)
+		text += _T(" (whitespace only)");
+	text += pszEol;
+	text += GetPaneApparentLinesText(nMinePane, pdi->dbegin, pdi->dend, &nPaneLines);
+	if (text.back() != _T('\n') && text.back() != _T('\r'))
+		text += pszEol;
+	nLines += nPaneLines;
+	text += _T("||||||| ") + label(nBasePane) + pszEol;
+	text += GetPaneApparentLinesText(nBasePane, pdi->dbegin, pdi->dend, &nPaneLines);
+	if (text.back() != _T('\n') && text.back() != _T('\r'))
+		text += pszEol;
+	nLines += nPaneLines;
+	text += _T("=======");
+	text += pszEol;
+	text += GetPaneApparentLinesText(nTheirsPane, pdi->dbegin, pdi->dend, &nPaneLines);
+	if (text.back() != _T('\n') && text.back() != _T('\r'))
+		text += pszEol;
+	nLines += nPaneLines;
+	text += _T(">>>>>>> ") + label(nTheirsPane) + pszEol;
+	if (pnLines != nullptr)
+		*pnLines = nLines;
+	return text;
+}
+
+/**
+ * @brief Compact placeholder line shown for an unresolved difference when
+ * full conflict sections are not displayed. Display only: the saved file
+ * always contains the full conflict section (see BuildExpandedResultText).
+ */
+String CMergeDoc::GetResultPlaceholderText(ResultSegmentState state, bool bWhiteSpaceOnly)
+{
+	if (state == ResultSegmentState::Conflict)
+		return bWhiteSpaceOnly ?
+			_("<Merge Conflict (Whitespace only)>") : _("<Merge Conflict>");
+	return _("<Unresolved Difference>");
+}
+
+/**
+ * @brief Text an unresolved segment displays in the result buffer: the
+ * full conflict section, or a one-line placeholder in compact mode.
+ * Segments without a linked difference always display the full section:
+ * Choose commands cannot resolve them, so their content must be editable.
+ */
+String CMergeDoc::GetResultSegmentDisplayText(const MergeResultSegment& seg,
+	int* pnLines) const
+{
+	if (seg.diffIdx < 0)
+	{
+		if (pnLines != nullptr)
+			*pnLines = seg.nBlockLines;
+		return seg.blockText;
+	}
+	if (pnLines != nullptr)
+		*pnLines = 1;
+	return GetResultPlaceholderText(seg.state, seg.bWhiteSpaceOnly) +
+		m_ptResultBuf->GetDefaultEol();
+}
+
+/**
+ * @brief Number of differences with nothing chosen for them yet
+ * (both real conflicts and non-conflicting differences).
+ */
+int CMergeDoc::GetResultUnresolvedCount() const
+{
+	int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
+	GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
+	return nUnresolved;
+}
+
+/**
+ * @brief Counts of pending differences: all, true 3-way conflicts, and
+ * conflicts where the sides differ only in white space.
+ */
+void CMergeDoc::GetResultUnresolvedCounts(int& nUnresolved, int& nConflicts,
+	int& nWhiteSpaceOnly) const
+{
+	nUnresolved = nConflicts = nWhiteSpaceOnly = 0;
+	for (const auto& seg : m_resultSegments)
+	{
+		if (seg.state == ResultSegmentState::Conflict)
+		{
+			++nUnresolved;
+			++nConflicts;
+			if (seg.bWhiteSpaceOnly)
+				++nWhiteSpaceOnly;
+		}
+		else if (seg.state == ResultSegmentState::Unresolved)
+			++nUnresolved;
+	}
+}
+
+/**
+ * @brief Difference that is still waiting for a decision?
+ */
+bool CMergeDoc::IsResultDiffPending(int nDiff) const
+{
+	const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
+	return pSegment != nullptr &&
+		(pSegment->state == ResultSegmentState::Conflict ||
+		 pSegment->state == ResultSegmentState::Unresolved);
+}
+
+/**
+ * @brief Is the line a placeholder for an unresolved difference?
+ * Placeholder lines are not editable: the difference must be resolved
+ * with a Choose command first.
+ */
+bool CMergeDoc::IsResultPlaceholderLine(int nLine) const
+{
+	const MergeResultSegment* pSegment = GetResultSegmentByLine(nLine);
+	// Only differences that can be resolved with a Choose command are
+	// edit-protected. A segment without a linked difference (severed
+	// links, or a resumed conflict section not matching any difference)
+	// must stay editable: hand-editing is its only resolution path.
+	return pSegment != nullptr && pSegment->diffIdx >= 0 &&
+		(pSegment->state == ResultSegmentState::Conflict ||
+		 pSegment->state == ResultSegmentState::Unresolved);
+}
+
+/**
+ * @brief Does deleting the given range destroy or join a placeholder line?
+ *
+ * Deleting whole lines that merely end at a placeholder's start (col 0 to
+ * col 0) leaves the placeholder itself untouched and is allowed.
+ */
+bool CMergeDoc::IsResultDeleteTouchingPlaceholder(int nStartLine, int nStartPos,
+	int nEndLine, int nEndPos) const
+{
+	for (int nLine = nStartLine; nLine <= nEndLine; ++nLine)
+	{
+		if (!IsResultPlaceholderLine(nLine))
+			continue;
+		if (nLine == nEndLine && nEndPos == 0 && nStartPos == 0 && nStartLine < nEndLine)
+			continue; // whole preceding lines removed, placeholder intact
+		return true;
+	}
+	return false;
+}
+
+/**
+ * @brief Margin provenance marker for a result line, kdiff3 style:
+ * '1'/'2'/'3' = taken from that pane (matching the toolbar buttons),
+ * '?' = unresolved placeholder, 'm' = modified by hand, 0 = common text.
+ */
+tchar_t CMergeDoc::GetResultLineMarker(int nLine) const
+{
+	const MergeResultSegment* pSegment = GetResultSegmentByLine(nLine);
+	// Common text carries no marker; everything else does, including
+	// segments without a linked difference (severed or resumed sections)
+	if (pSegment == nullptr || pSegment->state == ResultSegmentState::Common)
+		return 0;
+
+	// attribute the line to the source pane its block came from
+	auto srcPaneMarker = [&]() -> tchar_t
+	{
+		int nRel = nLine - pSegment->nStartLine;
+		const size_t nSrcCount = (std::min)(pSegment->srcPanes.size(),
+			pSegment->srcPaneLines.size());
+		for (size_t i = 0; i < nSrcCount; ++i)
+		{
+			if (nRel < pSegment->srcPaneLines[i])
+				return static_cast<tchar_t>(_T('1') + pSegment->srcPanes[i]);
+			nRel -= pSegment->srcPaneLines[i];
+		}
+		return pSegment->srcPanes.empty() ? 0 :
+			static_cast<tchar_t>(_T('1') + pSegment->srcPanes[0]);
+	};
+
+	switch (pSegment->state)
+	{
+	case ResultSegmentState::Conflict:
+	case ResultSegmentState::Unresolved:
+		return _T('?');
+	case ResultSegmentState::Edited:
+	{
+		// Only the lines the user actually touched are marked 'm'
+		// (kdiff3 behavior); the rest keep their source attribution.
+		// A line edited after the segment's content was generated has a
+		// newer revision than the segment's baseline.
+		if (m_ptResultBuf != nullptr &&
+			m_ptResultBuf->GetLineRevisionNumber(nLine) > pSegment->nBaseRevision)
+			return _T('m');
+		const tchar_t marker = srcPaneMarker();
+		return marker != 0 ? marker : _T('m');
+	}
+	case ResultSegmentState::Auto:
+	case ResultSegmentState::Chosen:
+		return srcPaneMarker();
+	default:
+		return 0;
+	}
+}
+
+/**
+ * @brief Show the merge progress in the result bar's caption.
+ */
+void CMergeDoc::UpdateMergeResultPaneCaption()
+{
+	if (m_pMergeResultView == nullptr || m_pMergeResultView->GetSafeHwnd() == nullptr)
+		return;
+	CWnd* pBar = m_pMergeResultView->GetParent();
+	if (pBar == nullptr)
+		return;
+	String sCaption = _("Merge Result Pane");
+	if (m_bResultBuilt)
+	{
+		int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
+		GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
+		if (nUnresolved == 0)
+			sCaption += _T(" - ") + _("All differences resolved");
+		else
+		{
+			sCaption += _T(" - ") + strutils::format_string2(
+				_("%1 unresolved difference(s), %2 conflict(s)"),
+				strutils::format(_T("%d"), nUnresolved),
+				strutils::format(_T("%d"), nConflicts));
+			if (nWhiteSpaceOnly > 0)
+				sCaption += strutils::format_string1(
+					_(" (%1 whitespace only)"),
+					strutils::format(_T("%d"), nWhiteSpaceOnly));
+		}
+	}
+	pBar->SetWindowText(sCaption.c_str());
+	// the bar draws its caption in the non-client area, which a plain
+	// WM_SETTEXT does not repaint
+	pBar->SetWindowPos(nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE |
+		SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+}
+
+/**
+ * @brief Conflict where left, middle and right differ only in white space?
+ */
+bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
+{
+	auto strippedText = [&](int nPane)
+	{
+		const String text = GetPaneApparentLinesText(nPane, pdi->dbegin, pdi->dend, nullptr);
+		String stripped;
+		stripped.reserve(text.length());
+		for (const tchar_t ch : text)
+		{
+			if (ch != _T(' ') && ch != _T('\t') && ch != _T('\r') && ch != _T('\n'))
+				stripped += ch;
+		}
+		return stripped;
+	};
+	const MergePanes panes = GetMergePaneMapping(m_nMergeBasePane);
+	const String sBase = strippedText(m_nMergeBasePane);
+	return strippedText(panes.nTheirsPane) == sBase && sBase == strippedText(panes.nMinePane);
+}
+
+/**
+ * @brief Line-ending style for the result, kdiff3 style: prefer the style
+ * of the side that changed it (base = m_nMergeBasePane).
+ */
+CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
+{
+	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
+	const CRLFSTYLE sBase = m_ptBuf[nBasePane]->GetCRLFMode();
+	const CRLFSTYLE sTheirs = m_ptBuf[nTheirsPane]->GetCRLFMode();
+	const CRLFSTYLE sMine = m_ptBuf[nMinePane]->GetCRLFMode();
+	CRLFSTYLE crlfStyle;
+	if (sBase == sTheirs)
+		crlfStyle = sMine;   // mine changed the style (or nobody did)
+	else if (sBase == sMine)
+		crlfStyle = sTheirs; // theirs changed the style
+	else if (sTheirs == sMine)
+		crlfStyle = sTheirs; // both sides agree against the base
+	else
+		crlfStyle = sBase;   // undecidable: keep the base style
+	if (crlfStyle == CRLFSTYLE::AUTOMATIC || crlfStyle == CRLFSTYLE::MIXED)
+		crlfStyle = sBase;
+	if (crlfStyle == CRLFSTYLE::AUTOMATIC || crlfStyle == CRLFSTYLE::MIXED)
+		crlfStyle = CRLFSTYLE::DOS;
+	return crlfStyle;
+}
+
+/**
+ * @brief Encoding for the result, kdiff3 style: prefer the encoding of
+ * the side that changed it (base = m_nMergeBasePane).
+ */
+void CMergeDoc::PickResultEncoding()
+{
+	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
+	const FileTextEncoding& eBase = m_ptBuf[nBasePane]->getEncoding();
+	const FileTextEncoding& eTheirs = m_ptBuf[nTheirsPane]->getEncoding();
+	const FileTextEncoding& eMine = m_ptBuf[nMinePane]->getEncoding();
+	auto sameEncoding = [](const FileTextEncoding& a, const FileTextEncoding& b)
+		{
+			return a.m_unicoding == b.m_unicoding && a.m_codepage == b.m_codepage;
+		};
+	if (sameEncoding(eBase, eTheirs) && !sameEncoding(eTheirs, eMine))
+		m_ptResultBuf->setEncoding(eMine);   // mine changed the encoding
+	else if (sameEncoding(eTheirs, eMine) && !sameEncoding(eBase, eTheirs))
+		m_ptResultBuf->setEncoding(eTheirs); // theirs changed the encoding
+	else
+		m_ptResultBuf->setEncoding(eBase);   // agreement or undecidable: keep base
+}
+
+/**
+ * @brief Text of the given result buffer lines, with each line's own EOL
+ * (nothing is appended to a line that has none, i.e. the very last line).
+ */
+String CMergeDoc::GetResultBufferLinesText(int nStartLine, int nLines) const
+{
+	String text;
+	const int nEndExcl = (std::min)(nStartLine + nLines, m_ptResultBuf->GetLineCount());
+	for (int nLine = (std::max)(nStartLine, 0); nLine < nEndExcl; ++nLine)
+	{
+		if (m_ptResultBuf->GetLineFlags(nLine) & LF_GHOST)
+			continue;
+		const int nLength = m_ptResultBuf->GetLineLength(nLine);
+		if (nLength > 0)
+			text.append(m_ptResultBuf->GetLineChars(nLine), nLength);
+		const tchar_t* pszEol = m_ptResultBuf->GetLineEol(nLine);
+		if (pszEol != nullptr && *pszEol != _T('\0'))
+			text += pszEol;
+	}
+	return text;
+}
+
+/**
+ * @brief The text that saving writes: the result buffer's content, with
+ * every compact placeholder replaced by its full conflict section.
+ */
+String CMergeDoc::BuildExpandedResultText() const
+{
+	String text;
+	int nCovered = 0;
+	for (const auto& seg : m_resultSegments)
+	{
+		if (seg.nStartLine > nCovered) // defensive: uncovered gap
+			text += GetResultBufferLinesText(nCovered, seg.nStartLine - nCovered);
+		const bool bPlaceholder = (seg.state == ResultSegmentState::Conflict ||
+			seg.state == ResultSegmentState::Unresolved);
+		if (bPlaceholder && seg.diffIdx >= 0)
+			text += seg.blockText; // buffer shows the compact placeholder
+		else
+			text += GetResultBufferLinesText(seg.nStartLine, seg.nLines);
+		nCovered = (std::max)(nCovered, seg.nStartLine + seg.nLines);
+	}
+	text += GetResultBufferLinesText(nCovered,
+		m_ptResultBuf->GetLineCount() - nCovered);
+	return text;
+}
+
+/**
+ * @brief Find the segment containing the given result buffer line.
+ */
+const MergeResultSegment* CMergeDoc::GetResultSegmentByLine(int nLine) const
+{
+	const int nSegment = GetResultSegmentIndexByLine(nLine);
+	return nSegment >= 0 ? &m_resultSegments[nSegment] : nullptr;
+}
+
+/**
+ * @brief Find the segment belonging to the given difference.
+ */
+const MergeResultSegment* CMergeDoc::GetResultSegmentByDiff(int nDiff) const
+{
+	if (nDiff < 0 || nDiff >= static_cast<int>(m_resultDiffToSegment.size()))
+		return nullptr;
+	const int nSegment = m_resultDiffToSegment[nDiff];
+	if (nSegment < 0 || nSegment >= static_cast<int>(m_resultSegments.size()))
+		return nullptr;
+	return &m_resultSegments[nSegment];
+}
+
+/**
+ * @brief Replace the result segment of nDiff with the content of the
+ * given source pane.
+ */
+void CMergeDoc::ResultChooseSource(int nDiff, int srcPane, bool bGroupWithPrevious /*= false*/)
+{
+	ResultChooseSources(nDiff, { srcPane }, bGroupWithPrevious);
+}
+
+/**
+ * @brief Replace the result segment of nDiff with the concatenated
+ * content of the given source panes, in order.
+ *
+ * Like KDiff3, several panes may be selected for one difference: the
+ * typical case is a conflict where both sides added something (e.g. a
+ * new function each) and the merge should keep both. An empty selection
+ * restores the unresolved conflict placeholder (or removes the block
+ * for a non-conflicting difference).
+ */
+void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
+	bool bGroupWithPrevious /*= false*/)
+{
+	if (!m_bResultBuilt)
+		return;
+	for (int srcPane : srcPanes)
+	{
+		if (srcPane < 0 || srcPane >= m_nBuffers)
+			return;
+	}
+	if (nDiff < 0 || nDiff >= static_cast<int>(m_resultDiffToSegment.size()))
+		return;
+	const int nSegment = m_resultDiffToSegment[nDiff];
+	if (nSegment < 0)
+		return;
+	MergeResultSegment& seg = m_resultSegments[nSegment];
+	// A failed rescan (file error, files turned binary) empties the diff
+	// list without running the sever logic, leaving the links stale:
+	// never trust nDiff against the current list
+	const DIFFRANGE* pdi = (nDiff < m_diffList.GetSize()) ?
+		m_diffList.DiffRangeAt(nDiff) : nullptr;
+	if (pdi == nullptr)
+		return;
+
+	// Validate the segment against the buffer before touching it: the
+	// buffer is freely editable, so never trust the segment table enough
+	// to run an out-of-range delete (buffer bounds are only ASSERTed).
+	const int nLineCount = m_ptResultBuf->GetLineCount();
+	if (seg.nStartLine < 0 || seg.nLines < 0 ||
+		seg.nStartLine + seg.nLines > nLineCount ||
+		seg.nStartLine >= nLineCount)
+	{
+		seg.state = ResultSegmentState::Edited;
+		return;
+	}
+
+	const int nMergeDestPane = 2 - m_nMergeBasePane;
+	int nNewLines = 0;
+	String text;
+	bool bBackToUnresolved = false;
+	std::vector<int> srcPaneLines;
+	srcPaneLines.reserve(srcPanes.size());
+	for (int srcPane : srcPanes)
+	{
+		int nPaneLines = 0;
+		text += GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nPaneLines);
+		srcPaneLines.push_back(nPaneLines);
+		nNewLines += nPaneLines;
+	}
+	if (srcPanes.empty())
+	{
+		// deselected everything: the difference is unresolved again
+		if (pdi->op == OP_DIFF)
+			seg.blockText = GetResultConflictBlockText(nDiff, seg.bWhiteSpaceOnly,
+				&seg.nBlockLines);
+		else
+		{
+			// non-conflict: never conflict markers, see BuildMergeResult
+			int srcPane = m_diffList.GetMergeableSrcIndex(nDiff, nMergeDestPane);
+			if (srcPane == -1)
+				srcPane = nMergeDestPane;
+			seg.blockText = GetPaneApparentLinesText(srcPane, pdi->dbegin,
+				pdi->dend, &seg.nBlockLines);
+		}
+		// state is updated below; only the state matters for the display
+		MergeResultSegment tmpSeg = seg;
+		tmpSeg.state = (pdi->op == OP_DIFF) ?
+			ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
+		text = GetResultSegmentDisplayText(tmpSeg, &nNewLines);
+		bBackToUnresolved = true;
+	}
+
+	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
+	CCrystalTextView* pSource = (m_pMergeResultView != nullptr &&
+		m_pMergeResultView->GetSafeHwnd() != nullptr) ? m_pMergeResultView : nullptr;
+
+	m_ptResultBuf->BeginUndoGroup(bGroupWithPrevious);
+	if (seg.nLines > 0)
+	{
+		if (seg.nStartLine + seg.nLines < nLineCount)
+		{
+			// Normal case: a line exists after the segment (the generated
+			// text ends every line with an EOL)
+			m_ptResultBuf->DeleteText(pSource, seg.nStartLine, 0,
+				seg.nStartLine + seg.nLines, 0, CE_ACTION_UNKNOWN, true, false);
+		}
+		else
+		{
+			// The segment reaches the physical end of the buffer (the
+			// user removed the trailing newline): delete to the end of
+			// the last line instead. The inserted text below ends with
+			// an EOL, restoring the trailing empty line.
+			m_ptResultBuf->DeleteText(pSource, seg.nStartLine, 0,
+				nLineCount - 1, m_ptResultBuf->GetLineLength(nLineCount - 1),
+				CE_ACTION_UNKNOWN, true, false);
+		}
+	}
+	if (!text.empty())
+	{
+		int nEndLine = 0, nEndChar = 0;
+		m_ptResultBuf->InsertText(pSource, seg.nStartLine, 0, text.c_str(),
+			text.length(), nEndLine, nEndChar, CE_ACTION_UNKNOWN, true);
+	}
+	m_ptResultBuf->FlushUndoGroup(pSource);
+
+	const int nDelta = nNewLines - seg.nLines;
+	seg.state = !bBackToUnresolved ? ResultSegmentState::Chosen :
+		(pdi->op == OP_DIFF ? ResultSegmentState::Conflict : ResultSegmentState::Unresolved);
+	seg.srcPanes = srcPanes;
+	seg.srcPaneLines = std::move(srcPaneLines);
+	seg.nLines = nNewLines;
+	if (!bBackToUnresolved)
+	{
+		seg.blockText.clear();
+		seg.nBlockLines = 0;
+	}
+	// the freshly written content is this segment's baseline: only later
+	// hand edits should show as modified in the margin
+	seg.nBaseRevision = m_ptResultBuf->GetCurrentRevisionNumber();
+	if (nDelta != 0)
+	{
+		for (size_t i = nSegment + 1; i < m_resultSegments.size(); ++i)
+			m_resultSegments[i].nStartLine += nDelta;
+	}
+
+	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+		m_pMergeResultView->Invalidate();
+	UpdateMergeResultPaneCaption();
+}
+
+/**
+ * @brief Toggle a source pane for the given difference (KDiff3 style).
+ *
+ * Pressing 1/2/3 adds that pane's block to the difference's selection,
+ * or removes it when already selected. Blocks are concatenated in the
+ * order they were selected. Removing the last selection restores the
+ * unresolved conflict placeholder.
+ */
+void CMergeDoc::ResultToggleSource(int nDiff, int srcPane, bool bGroupWithPrevious /*= false*/)
+{
+	const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
+	if (pSegment == nullptr)
+		return;
+	std::vector<int> srcPanes;
+	if (pSegment->state == ResultSegmentState::Auto ||
+		pSegment->state == ResultSegmentState::Chosen)
+		srcPanes = pSegment->srcPanes;
+	// (a hand-edited or unresolved segment starts a fresh selection)
+	const auto it = std::find(srcPanes.begin(), srcPanes.end(), srcPane);
+	if (it != srcPanes.end())
+		srcPanes.erase(it);
+	else
+		srcPanes.push_back(srcPane);
+	ResultChooseSources(nDiff, srcPanes, bGroupWithPrevious);
+}
+
+/**
+ * @brief Resolve every difference that has nothing chosen for it yet by
+ * taking the given pane. Covers both real conflicts and differences that
+ * are simply still unresolved (the usual case without auto-merge).
+ */
+void CMergeDoc::ResultChooseAllConflicts(int srcPane)
+{
+	if (!m_bResultBuilt)
+		return;
+	bool bGroupWithPrevious = false;
+	for (int nDiff = 0; nDiff < static_cast<int>(m_resultDiffToSegment.size()); ++nDiff)
+	{
+		const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
+		if (pSegment != nullptr &&
+			(pSegment->state == ResultSegmentState::Conflict ||
+			 pSegment->state == ResultSegmentState::Unresolved))
+		{
+			ResultChooseSource(nDiff, srcPane, bGroupWithPrevious);
+			bGroupWithPrevious = true;
+		}
+	}
+}
+
+/**
+ * @brief Save the merge result.
+ *
+ * The default target path is the "save as" path given when the document
+ * was opened (conflict file or /o output path). Otherwise (or when
+ * bSaveAs) the user is prompted for a path.
+ */
+bool CMergeDoc::SaveMergeResult(bool bSaveAs)
+{
+	if (m_ptResultBuf == nullptr || !m_ptResultBuf->IsInitialized())
+		return false;
+
+	const int nUnresolved = GetResultUnresolvedCount();
+	if (nUnresolved > 0)
+	{
+		const String msg = strutils::format_string1(
+			_("There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"),
+			strutils::format(_T("%d"), nUnresolved));
+		if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING) != IDYES)
+			return false;
+	}
+
+	String strPath = m_strSaveAsPath;
+	if (bSaveAs || strPath.empty())
+	{
+		auto panes = GetMergePaneMapping(m_nMergeBasePane);
+		String sDefault = !m_strSaveAsPath.empty() ? m_strSaveAsPath : m_filePaths.GetPath(panes.nMinePane);
+		HWND hwndParent = (m_pMergeResultView != nullptr) ? m_pMergeResultView->GetSafeHwnd() : nullptr;
+		String strSelected;
+		if (!SelectFile(hwndParent, strSelected, false, sDefault.c_str(),
+				_("Save Merge Result As")))
+			return false;
+		strPath = strSelected;
+	}
+
+	// Same guards as DoSave for the compared files: offer to clear a
+	// read-only target, honor the backup option, and repack the result
+	// with the unpacker the files were opened with
+	bool bApplyToAll = false;
+	if (CMergeApp::HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
+		return false;
+	if (!CMergeApp::CreateBackup(false, strPath))
+		return false;
+
+	PackingInfo infoTempUnpacker = m_infoUnpacker;
+	String sError;
+	auto saveBuffer = [&](CDiffTextBuffer& buf) -> int
+	{
+		return buf.SaveToFile(strPath, false, sError, infoTempUnpacker);
+	};
+
+	// Compact placeholders are display-only: the file gets the full
+	// conflict sections, written through a temporary buffer so the
+	// visible one is not disturbed
+	bool bNeedExpansion = false;
+	for (const auto& seg : m_resultSegments)
+	{
+		if ((seg.state == ResultSegmentState::Conflict ||
+			 seg.state == ResultSegmentState::Unresolved) &&
+			seg.diffIdx >= 0)
+		{
+			bNeedExpansion = true;
+			break;
+		}
+	}
+	int nRetVal;
+	if (bNeedExpansion)
+	{
+		CDiffTextBuffer expandedBuf(this, 1);
+		expandedBuf.InitNew(m_ptResultBuf->GetCRLFMode());
+		expandedBuf.setEncoding(m_ptResultBuf->getEncoding());
+		expandedBuf.SetTempPath(env::GetTemporaryPath());
+		const String expanded = BuildExpandedResultText();
+		if (!expanded.empty())
+		{
+			int nEndLine = 0, nEndChar = 0;
+			expandedBuf.InsertText(nullptr, 0, 0, expanded.c_str(),
+				expanded.length(), nEndLine, nEndChar, CE_ACTION_UNKNOWN, false);
+		}
+		nRetVal = saveBuffer(expandedBuf);
+		expandedBuf.FreeAll();
+	}
+	else
+		nRetVal = saveBuffer(*m_ptResultBuf);
+	if (nRetVal != SAVE_DONE)
+	{
+		const String msg = strutils::format_string2(
+			_("Saving the merge result to\n%1\nfailed.\n%2"), strPath, sError);
+		ShowMessageBox(msg, MB_OK | MB_ICONERROR);
+		return false;
+	}
+	m_ptResultBuf->AdoptCurrentRevision();
+	m_ptResultBuf->m_nSyncPosition = m_ptResultBuf->m_nUndoPosition;
+	m_ptResultBuf->SetModified(false);
+	m_pMergeResultView->Invalidate(false);
+	m_strSaveAsPath = strPath;
+	m_bResultSaved = true;
+	return true;
+}
+
+/**
+ * @brief Current difference changed: scroll the result pane to it.
+ */
+void CMergeDoc::OnResultPaneCurrentDiffChanged(int nDiff)
+{
+	if (!m_bResultBuilt || nDiff < 0)
+		return;
+	m_pMergeResultView->ScrollToDiff(nDiff);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Result buffer edit tracking (called from CMergeResultTextBuffer)
+
+/**
+ * @brief Index of segment containing the line, -1 if none.
+ *
+ * The segment table is sorted by start line (segments cover the buffer
+ * contiguously; empty segments share their start line with the next
+ * segment), so a binary search finds the candidate. This is called from
+ * the paint path for every visible line, so it must not scan linearly.
+ */
+int CMergeDoc::GetResultSegmentIndexByLine(int nLine) const
+{
+	if (nLine < 0 || m_resultSegments.empty())
+		return -1;
+	// first segment starting after nLine
+	auto it = std::upper_bound(m_resultSegments.begin(), m_resultSegments.end(), nLine,
+		[](int nLine2, const MergeResultSegment& seg) { return nLine2 < seg.nStartLine; });
+	// walk back over empty segments to the nearest non-empty candidate
+	while (it != m_resultSegments.begin())
+	{
+		--it;
+		if (it->nLines > 0)
+		{
+			if (nLine >= it->nStartLine && nLine < it->nStartLine + it->nLines)
+				return static_cast<int>(it - m_resultSegments.begin());
+			return -1;
+		}
+	}
+	return -1;
+}
+
+/**
+ * @brief A new undo group begins: snapshot the segment table (state
+ * before the group's operations) and drop any stale redo snapshots.
+ */
+void CMergeDoc::OnResultUndoGroupStart(int nUndoPos)
+{
+	m_resultSegUndo.erase(m_resultSegUndo.lower_bound(nUndoPos), m_resultSegUndo.end());
+	m_resultSegRedo.erase(m_resultSegRedo.lower_bound(nUndoPos), m_resultSegRedo.end());
+	m_resultSegUndo[nUndoPos] = m_resultSegments;
+
+	undoTgt.erase(undoTgt.begin() + curUndo, undoTgt.end());
+	undoTgt.push_back(-1);
+	curUndo = undoTgt.size();
+}
+
+/**
+ * @brief An undo group was undone: restore the table from before the
+ * group, keeping the current table for redo.
+ */
+void CMergeDoc::OnResultUndone(int nUndoPos)
+{
+	const auto it = m_resultSegUndo.find(nUndoPos);
+	if (it == m_resultSegUndo.end())
+		return;
+	m_resultSegRedo[nUndoPos] = m_resultSegments;
+	m_resultSegments = it->second;
+	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+		m_pMergeResultView->Invalidate();
+	UpdateMergeResultPaneCaption();
+}
+
+/**
+ * @brief An undo group was redone: restore the table from after the group.
+ */
+void CMergeDoc::OnResultRedone(int nUndoPos)
+{
+	const auto it = m_resultSegRedo.find(nUndoPos);
+	if (it == m_resultSegRedo.end())
+		return;
+	m_resultSegments = it->second;
+	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+		m_pMergeResultView->Invalidate();
+	UpdateMergeResultPaneCaption();
+}
+
+void CMergeDoc::OnResultUndoStackCleared()
+{
+	m_resultSegUndo.clear();
+	m_resultSegRedo.clear();
+}
+
+void CMergeDoc::OnResultLineEdited(int nLine)
+{
+	const int nSegment = GetResultSegmentIndexByLine(nLine);
+	if (nSegment < 0)
+		return;
+	MergeResultSegment& seg = m_resultSegments[nSegment];
+	// Linked placeholder segments cannot get here (their lines reject
+	// edits); editing an unlinked conflict section is its resolution.
+	const bool bTracked = seg.diffIdx >= 0 ||
+		seg.state == ResultSegmentState::Conflict ||
+		seg.state == ResultSegmentState::Unresolved;
+	if (bTracked && seg.state != ResultSegmentState::Edited)
+	{
+		seg.state = ResultSegmentState::Edited;
+		if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+			m_pMergeResultView->Invalidate();
+		UpdateMergeResultPaneCaption();
+	}
+}
+
+/**
+ * @brief nCount lines were inserted after position nLine by a user edit.
+ */
+void CMergeDoc::OnResultBufferInsertedLines(int nLine, int nCount)
+{
+	const int nSegment = GetResultSegmentIndexByLine(nLine);
+	if (nSegment >= 0)
+	{
+		MergeResultSegment& seg = m_resultSegments[nSegment];
+		seg.nLines += nCount;
+		if (seg.diffIdx >= 0)
+			seg.state = ResultSegmentState::Edited;
+		for (size_t i = nSegment + 1; i < m_resultSegments.size(); ++i)
+			m_resultSegments[i].nStartLine += nCount;
+	}
+	else
+	{
+		for (auto& seg : m_resultSegments)
+		{
+			if (seg.nStartLine > nLine)
+				seg.nStartLine += nCount;
+		}
+	}
+}
+
+/**
+ * @brief Lines [nFirstLine, nFirstLine + nCount) were removed whole by a
+ * user edit (column-0-to-column-0 deletion); the following line survived
+ * unchanged, so no line merge happened.
+ */
+void CMergeDoc::OnResultBufferDeletedWholeLines(int nFirstLine, int nCount)
+{
+	const int nRemovedBegin = nFirstLine;
+	const int nRemovedEnd = nFirstLine + nCount - 1;
+	bool bStateChanged = false;
+	for (auto& seg : m_resultSegments)
+	{
+		const int nSegEnd = seg.nStartLine + seg.nLines - 1;
+		if (seg.nLines > 0 && nSegEnd < nRemovedBegin)
+			continue; // fully before the removed range
+		if (seg.nStartLine > nRemovedEnd)
+		{
+			seg.nStartLine -= nCount; // fully after the removed range
+			continue;
+		}
+		if (seg.nLines <= 0)
+		{
+			// empty segment inside the removed range
+			if (seg.nStartLine >= nRemovedBegin)
+				seg.nStartLine = nRemovedBegin;
+			continue;
+		}
+		// overlaps the removed range
+		const int nOverlapBegin = (std::max)(seg.nStartLine, nRemovedBegin);
+		const int nOverlapEnd = (std::min)(nSegEnd, nRemovedEnd);
+		const int nOverlap = nOverlapEnd - nOverlapBegin + 1;
+		if (nOverlap > 0)
+		{
+			seg.nLines -= nOverlap;
+			const bool bTracked = seg.diffIdx >= 0 ||
+				seg.state == ResultSegmentState::Conflict ||
+				seg.state == ResultSegmentState::Unresolved;
+			if (bTracked && seg.state != ResultSegmentState::Edited)
+			{
+				seg.state = ResultSegmentState::Edited;
+				bStateChanged = true;
+			}
+		}
+		// the surviving tail of a segment starting inside the removed
+		// range now begins at the first line after the deletion point
+		if (seg.nStartLine >= nRemovedBegin)
+			seg.nStartLine = nRemovedBegin;
+	}
+	if (bStateChanged)
+	{
+		if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
+			m_pMergeResultView->Invalidate();
+		UpdateMergeResultPaneCaption();
+	}
+}
+
+/**
+ * @brief Lines (nStartLine, nStartLine + nCount] were removed by a user edit.
+ */
+void CMergeDoc::OnResultBufferDeletedLines(int nStartLine, int nCount)
+{
+	// Line indices [nRemovedBegin, nRemovedEnd] no longer exist; the text
+	// of lines nStartLine and nRemovedEnd merged into line nStartLine.
+	const int nRemovedBegin = nStartLine + 1;
+	const int nRemovedEnd = nStartLine + nCount;
+	for (auto& seg : m_resultSegments)
+	{
+		const int nSegEnd = seg.nStartLine + seg.nLines - 1;
+		if (seg.nLines > 0 && nSegEnd < nRemovedBegin)
+			continue; // fully before the removed range
+		if (seg.nStartLine > nRemovedEnd)
+		{
+			seg.nStartLine -= nCount; // fully after the removed range
+			continue;
+		}
+		if (seg.nLines <= 0)
+		{
+			// empty segment inside the removed range
+			if (seg.nStartLine >= nRemovedBegin)
+				seg.nStartLine = nRemovedBegin;
+			continue;
+		}
+		// overlaps the removed range
+		const int nOverlapBegin = (std::max)(seg.nStartLine, nRemovedBegin);
+		const int nOverlapEnd = (std::min)(nSegEnd, nRemovedEnd);
+		const int nOverlap = nOverlapEnd - nOverlapBegin + 1;
+		if (nOverlap > 0)
+		{
+			seg.nLines -= nOverlap;
+			if (seg.diffIdx >= 0 ||
+				seg.state == ResultSegmentState::Conflict ||
+				seg.state == ResultSegmentState::Unresolved)
+				seg.state = ResultSegmentState::Edited;
+		}
+		// a segment that started inside the removed range now starts at
+		// the first surviving line after the merge point
+		if (seg.nStartLine >= nRemovedBegin)
+			seg.nStartLine = nRemovedBegin;
+	}
+	// The segment containing the merge point was edited as well
+	OnResultLineEdited(nStartLine);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Command handlers
+
+void CMergeDoc::OnMergeChooseSource(UINT nID)
+{
+	const int srcPane = nID - ID_MERGE_CHOOSE_LEFT;
+	int firstDiff = -1, lastDiff = -1;
+	m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
+	if (firstDiff < 0 || lastDiff < 0)
+		return;
+
+	bool bGroupWithPrevious = false;
+	for (int nDiff = firstDiff; nDiff <= lastDiff; ++nDiff)
+	{
+		ResultToggleSource(nDiff, srcPane, bGroupWithPrevious);
+		bGroupWithPrevious = true;
+	}
+}
+
+void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
+{
+	if (!m_bResultBuilt)
+	{
+		pCmdUI->Enable(FALSE);
+		pCmdUI->SetCheck(FALSE);
+		return;
+	}
+
+	int firstDiff = -1, lastDiff = -1;
+	m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
+
+	if (firstDiff == -1 || lastDiff == -1)
+	{
+		pCmdUI->Enable(FALSE);
+		pCmdUI->SetCheck(FALSE);
+		return;
+	}
+
+	pCmdUI->Enable(TRUE);
+
+	// For single diff, show which panes are currently selected
+	if (firstDiff == lastDiff)
+	{
+		const int nDiff = firstDiff;
+		const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
+		const int srcPane = pCmdUI->m_nID - ID_MERGE_CHOOSE_LEFT;
+		const bool bChecked = pSegment != nullptr &&
+			(pSegment->state == ResultSegmentState::Auto ||
+			 pSegment->state == ResultSegmentState::Chosen) &&
+			std::find(pSegment->srcPanes.begin(), pSegment->srcPanes.end(), srcPane) != pSegment->srcPanes.end();
+		pCmdUI->SetCheck(bChecked);
+	}
+	else
+	{
+		// For multiple selection, don't show a specific checkbox state
+		pCmdUI->SetCheck(FALSE);
+	}
+}
+
+void CMergeDoc::OnMergeChooseAllConflicts(UINT nID)
+{
+	ResultChooseAllConflicts(nID - ID_MERGE_CHOOSE_ALL_LEFT);
+}
+
+void CMergeDoc::OnUpdateMergeChooseAllConflicts(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_bResultBuilt && GetResultUnresolvedCount() > 0);
+}
+
+void CMergeDoc::OnMergeResultSave()
+{
+	SaveMergeResult(false);
+}
+
+void CMergeDoc::OnMergeResultSaveAs()
+{
+	SaveMergeResult(true);
+}
+
+void CMergeDoc::OnUpdateMergeResultSave(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		m_bResultBuilt);
+}
+
+String CMergeDoc::GetMergePaneRoles() const
+{
+	std::array<String, 3> str = GetMergePaneMappingString(m_nMergeBasePane);
+	return strutils::format_string3(_("Pane roles: Left=%1, Middle=%2, Right=%3"), str[0], str[1], str[2]);
+}
+
+void CMergeDoc::OnMergeStartSession()
+{
+	FlushAndRescan(true);
+
+	if (auto* pView = GetActiveMergeView())
+		StartMergeSession(2 - pView->m_nThisPane, false, true);
+	else
+		StartMergeSession(1, false, true);
+}
+
+void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) && !m_bResultBuilt);
+}
+
+/**
+ * @brief End the current merge session by closing the result pane.
+ * Prompts to save if the merge result has unsaved changes.
+ * Restores the original read-only states and pane descriptions.
+ */
+void CMergeDoc::OnMergeEndSession()
+{
+	EndMergeSession();
+}
+
+/**
+ * @brief Update UI for End Merge Session command.
+ * Enable only when a merge session is active.
+ */
+void CMergeDoc::OnUpdateMergeEndSession(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_bResultBuilt);
+}

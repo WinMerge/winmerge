@@ -521,23 +521,44 @@
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /al option</secondary>
+      </indexterm>
       <term><option>/al</option></term>
       <listitem>
-        <para>Auto-merges at the left side at startup.</para>
+        <para>
+          Auto-merges at startup with pane arrangement: left (merge target)
+          - middle (theirs) - right (base).
+        </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /am option</secondary>
+      </indexterm>
       <term><option>/am</option></term>
       <listitem>
-        <para>Auto-merges at the middle side at startup.</para>
+        <para>
+          Auto-merges at startup with pane arrangement: left (base)
+          - middle (merge target) - right (theirs).
+        </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /ar option</secondary>
+      </indexterm>
       <term><option>/ar</option></term>
       <listitem>
-        <para>Auto-merges at the right side at startup.</para>
+        <para>
+          Auto-merges at startup with pane arrangement: left (base)
+          - middle (theirs) - right (merge target).
+        </para>
       </listitem>
     </varlistentry>
 
@@ -761,6 +782,12 @@
         WinMerge still shows only two or three files in the File Compare window. However,
         if you save either of these files, it is written to the output path,
         leaving the two or three source files intact.</para>
+
+        <para>In a three-way text comparison, specifying an output path also
+        opens the Merge Result pane at the bottom of the File Compare window,
+        where the merge result can be reviewed and edited before it is saved
+        to the output path. See the Merge Result pane topic in
+        <citetitle>Comparing and merging text files</citetitle>.</para>
 
         <para>Version control systems typically refer to the source and result
         files using terms like <glossterm>theirs</glossterm>,

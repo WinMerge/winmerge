@@ -455,23 +455,41 @@ que <option>/dl</option>.</para>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /al option</secondary>
+      </indexterm>
       <term><option>/al</option></term>
       <listitem>
-        <para>Se combina automáticamente en el lado izquierdo al iniciar.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (merge target)  - middle
+(theirs) - right (base).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /am option</secondary>
+      </indexterm>
       <term><option>/am</option></term>
       <listitem>
-        <para>Se combina automáticamente en el central al iniciar.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (base)  - middle (merge
+target) - right (theirs).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /ar option</secondary>
+      </indexterm>
       <term><option>/ar</option></term>
       <listitem>
-        <para>Se combina automáticamente en el lado derecho al iniciar.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
+- right (merge target).</para>
       </listitem>
     </varlistentry>
 
@@ -717,6 +735,12 @@ ruta de salida, WinMerge seguirá mostrando solo dos o tres archivos en la
 ventana Comparación de archivos. Sin embargo, si guarda cualesquiera de
 estos archivos, se escribirá en la ruta de salida, dejando intactos los dos
 o tres archivos de origen.</para>
+
+        <para>In a three-way text comparison, specifying an output path also opens the
+Merge Result pane at the bottom of the File Compare window, where the merge
+result can be reviewed and edited before it is saved to the output path. See
+the Merge Result pane topic in <citetitle>Comparing and merging text
+files</citetitle>.</para>
 
         <para>Los sistemas de control de versiones suelen referirse a los archivos fuente
 y resultado utilizando términos como <glossterm>theirs</glossterm> (los

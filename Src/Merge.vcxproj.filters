@@ -729,6 +729,12 @@
     <ClCompile Include="MergeDocDiffCopy.cpp">
       <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MergeDocResultPane.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeResultView.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="EditPluginDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
@@ -890,6 +896,18 @@
     </ClCompile>
     <ClCompile Include="ToolbarButtons.cpp">
       <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeResultTextBuffer.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeResultBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeResultContainer.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeResultStatusBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1415,6 +1433,12 @@
     <ClInclude Include="DiffTextBuffer.h">
       <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MergeResultPane.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultView.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="DiffViewBar.h">
       <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
     </ClInclude>
@@ -1711,6 +1735,21 @@
     </ClInclude>
     <ClInclude Include="FrameType.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeDiffNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultTextBuffer.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultStatusBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultContainer.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeResultBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

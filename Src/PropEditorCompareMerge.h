@@ -31,6 +31,7 @@ public:
 	bool    m_bViewLineDifferences;
 	bool    m_bBreakOnWords;
 	int     m_nBreakType;
+	bool    m_bMergeResultPaneEnabled;
 	String m_breakChars;
 	//}}AFX_DATA
 

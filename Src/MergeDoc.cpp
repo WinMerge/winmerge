@@ -22,6 +22,8 @@
 #include "MovedLines.h"
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
+#include "MergeResultView.h"
+#include "MergeResultTextBuffer.h"
 #include "MergeLogger.h"
 #include "MergeTextFormatter.h"
 #include "IDirDoc.h"
@@ -90,6 +92,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MIDDLE, OnUpdateFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
+	ON_COMMAND(ID_FILE_SAVE_MERGE_RESULT, OnMergeResultSave)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MERGE_RESULT, OnUpdateMergeResultSave)
+	ON_COMMAND(ID_FILE_SAVEAS_MERGE_RESULT, OnMergeResultSaveAs)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MERGE_RESULT, OnUpdateMergeResultSave)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnFileReadOnlyLeft)
 	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateFileReadOnlyLeft)
 	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnFileReadOnlyMiddle)
@@ -137,6 +143,15 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND_RANGE(ID_FILTERMENU_FIRST, ID_FILTERMENU_LAST, OnFilterMenuCommand)
 	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR, OnViewDisplayFilterBar)
 	ON_COMMAND(ID_APPLY_NOW, OnViewDisplayFilterBarApply)
+	// Merge result pane (kdiff3-style)
+	ON_COMMAND_RANGE(ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_RIGHT, OnMergeChooseSource)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_RIGHT, OnUpdateMergeChooseSource)
+	ON_COMMAND_RANGE(ID_MERGE_CHOOSE_ALL_LEFT, ID_MERGE_CHOOSE_ALL_RIGHT, OnMergeChooseAllConflicts)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_CHOOSE_ALL_LEFT, ID_MERGE_CHOOSE_ALL_RIGHT, OnUpdateMergeChooseAllConflicts)
+	ON_COMMAND(ID_MERGE_START_SESSION, OnMergeStartSession)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_START_SESSION, OnUpdateMergeStartSession)
+	ON_COMMAND(ID_MERGE_END_SESSION, OnMergeEndSession)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_END_SESSION, OnUpdateMergeEndSession)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -162,11 +177,19 @@ CMergeDoc::CMergeDoc()
 , m_editorScriptInfo(_T(""))
 , m_nBuffers(m_nBuffersTemp)
 , m_documentType(m_documentTypeTemp)
+, m_pMergeResultView(nullptr)
+, m_bResultBuilt(false)
+, m_bResultSaved(false)
+, m_nMergeBasePane(1)
+, m_bResultSavedRO{ false, false, false }
 , curUndo(0)
 {
 	DIFFOPTIONS options = {0};
 
 	m_filePaths.SetSize(m_nBuffers);
+
+	if (m_nBuffers == 3)
+		m_ptResultBuf.reset(new CMergeResultTextBuffer(this));
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -217,6 +240,13 @@ void CMergeDoc::DeleteContents ()
 		m_ptBuf[nBuffer]->FreeAll ();
 		m_tempFiles[nBuffer].Delete();
 	}
+	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized())
+		m_ptResultBuf->FreeAll();
+	m_resultSegments.clear();
+	m_resultDiffToSegment.clear();
+	m_resultSegUndo.clear();
+	m_resultSegRedo.clear();
+	m_bResultBuilt = false;
 }
 
 /**
@@ -431,6 +461,9 @@ static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nS
 int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		bool bForced /* =false */)
 {
+	if (m_bResultBuilt)
+		return RESCAN_SUPPRESSED;
+
 	DIFFOPTIONS diffOptions = {0};
 	DiffFileInfo fileInfo;
 	bool diffSuccess = false;
@@ -1334,6 +1367,12 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
  */
 void CMergeDoc::OnFileSave() 
 {
+	// With the merge result pane active it is the (only) editable pane,
+	// so Save must cover it: version control tools rely on Ctrl+S
+	// writing the merge output path (-o)
+	if (IsMergeResultUnsaved())
+		SaveMergeResult(false);
+
 	// We will need to know if either of the originals actually changed
 	// so we know whether to update the diff status
 	bool bChangedOriginal = false;
@@ -1438,7 +1477,8 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(IsModified());
+	pCmdUI->Enable(IsModified() ||
+		(m_bResultBuilt && IsMergeResultUnsaved()));
 }
 
 /**
@@ -2050,6 +2090,40 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bSaveSuccess[3] = { false, false, false };
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
+
+	// Merge result pane: deal with the merge before the source files.
+	// A hidden result pane still holds the user's merge work: hiding the
+	// bar must not turn closing the window into silent data loss, so the
+	// prompt is also shown when the pane is hidden but the result was
+	// modified by the user.
+	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		(m_bResultBuilt || IsMergeResultModified()))
+	{
+		const int nUnresolved = GetResultUnresolvedCount();
+		if (nUnresolved > 0 && bAllowCancel)
+		{
+			// The merge is unfinished, so there is nothing worth saving:
+			// ask whether to abandon it rather than whether to save
+			const String msg = strutils::format_string1(
+				_("The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"),
+				strutils::format(_T("%d"), nUnresolved));
+			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING) != IDYES)
+				return false;
+		}
+		else if (IsMergeResultUnsaved())
+		{
+			int nAnswer = ShowMessageBox(
+				_("The merge result has not been saved.\n\nSave the merge result?"),
+				bAllowCancel ? (MB_YESNOCANCEL | MB_ICONWARNING) : (MB_YESNO | MB_ICONWARNING));
+			if (nAnswer == IDCANCEL)
+				return false;
+			if (nAnswer == IDYES && !SaveMergeResult(false))
+			{
+				if (bAllowCancel)
+					return false;
+			}
+		}
+	}
 
 	for (int i = 0; i < m_nBuffers; ++i)
 	{
@@ -2710,6 +2784,9 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine, int nCharI
 		}
 	}
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane, true, nCharIndex);
+
+	if (m_bResultBuilt)
+		m_pMergeResultView->TakeFocus();
 }
 
 bool CMergeDoc::ChangeFile(int nBuffer, const String& path, const String& description, int nLineIndex)
@@ -2772,6 +2849,8 @@ void CMergeDoc::RefreshOptions()
 	ForEachView(GetActiveMergeView()->m_nThisPane, [](auto& pView) {
 		pView->UpdateSiblingScrollPos(false);
 	});
+	if (m_pMergeResultView != nullptr)
+		m_pMergeResultView->RefreshOptions();
 	UpdateAllViews(nullptr);
 }
 

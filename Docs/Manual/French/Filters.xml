@@ -765,9 +765,9 @@ prediffer a été utilisé.</para>
               <term><varname>EOL</varname></term>
               <listitem>
                 <para>Renvoie le style de fin de ligne (EOL) sous forme d'entier. Pour les
-fichiers, renvoie le style EOL prédominant ; pour les lignes, renvoie le
+fichiers, renvoie le style EOL prédominant ; pour les lignes, renvoie le
 style EOL de la ligne concernée.</para>
-                <para>Valeurs : 0 = Aucun, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 =
+                <para>Valeurs : 0 = Aucun, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 =
 Mixte (plusieurs styles de fin de ligne dans le fichier)</para>
               </listitem>
             </varlistentry>
@@ -1181,12 +1181,12 @@ d'expressions régulières au nom du fichier</para></listitem>
 Capture le texte correspondant à un motif d'expression régulière dans la
 chaîne. Le paramètre optionnel <replaceable>group</replaceable> spécifie le
 groupe de capture à extraire (indexé à partir de 0). Le groupe 0 (par
-défaut) renvoie la correspondance complète ; les groupes 1, 2,
+défaut) renvoie la correspondance complète ; les groupes 1, 2,
 etc. renvoient les groupes de capture correspondants définis entre
 parenthèses dans le motif. Le paramètre optionnel
 <replaceable>offset</replaceable> spécifie l'occurrence du motif à capturer
 (indexé à partir de 0). L'offset 0 (par défaut) renvoie la première
-occurrence ; l'offset 1 renvoie la deuxième, etc. Ceci est utile pour
+occurrence ; l'offset 1 renvoie la deuxième, etc. Ceci est utile pour
 capturer la Nième occurrence dans une ligne, comme le deuxième chiffre d'une
 chaîne. Renvoie <literal>none</literal> si le motif ne correspond à aucune
 occurrence, si l'index du groupe est hors limites ou si l'offset dépasse le
@@ -1532,14 +1532,14 @@ vérifie si un fichier a été modifié ce mois-ci (aujourd'hui exclu)</para></l
             <varlistentry>
               <term><function>array</function>(<replaceable>value1</replaceable>,
 <replaceable>value2</replaceable>, ...)</term>
-              <listitem><para>Crée un tableau à partir des valeurs données. Exemple : <literal>array(1, 2,
+              <listitem><para>Crée un tableau à partir des valeurs données. Exemple : <literal>array(1, 2,
 3)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>at</function>(<replaceable>array</replaceable>,
 <replaceable>index</replaceable>)</term>
               <listitem><para>Renvoie l'élément à l'index spécifié (à partir de 0). Les indices négatifs
-sont numérotés à partir de la fin. Exemple : <literal>at(array(1, 2, 3),
+sont numérotés à partir de la fin. Exemple : <literal>at(array(1, 2, 3),
 -1)</literal> renvoie 3</para></listitem>
             </varlistentry>
             <varlistentry>
@@ -2100,7 +2100,7 @@ depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des fichiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
-        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre appliquée aux fichiers et aux dossiers (par exemple :
+        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre appliquée aux fichiers et aux dossiers (par exemple :
 e:Name like "Common*.*") (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
         <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre permettant d'exclure à la fois les fichiers et les
 dossiers (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
@@ -2412,7 +2412,7 @@ filtre sont masquées, mais le résultat de la comparaison reste inchangé.</par
       <title>Ouverture de la barre de filtre d'affichage</title>
 
       <para>Utilisez l'une des méthodes suivantes pour ouvrir la barre de filtre
-d'affichage :</para>
+d'affichage :</para>
 
       <itemizedlist>
         <listitem>
@@ -2440,7 +2440,7 @@ conservant le filtre actif, cliquez sur le bouton Fermer.</para>
       <title>Saisie d'un filtre</title>
 
       <para>La barre de filtre d'affichage accepte les entrées sous deux formes, selon
-que l'entrée commence ou non par le préfixe <literal>le:</literal> :</para>
+que l'entrée commence ou non par le préfixe <literal>le:</literal> :</para>
 
       <variablelist>
         <varlistentry>
@@ -2450,18 +2450,18 @@ que l'entrée commence ou non par le préfixe <literal>le:</literal> :</para>
 comme une chaîne littérale. WinMerge n'affiche que les lignes contenant
 cette chaîne. En interne, la saisie est équivalente à <literal>le:La ligne
 contient "<replaceable>entrée</replaceable>"</literal>.</para>
-            <para>Exemple : la saisie de <userinput>TODO</userinput> affiche toutes les lignes
+            <para>Exemple : la saisie de <userinput>TODO</userinput> affiche toutes les lignes
 contenant le texte <literal>TODO</literal>.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term><literal>le:</literal> prefix (filtre d'expression)</term>
+          <term><literal>le:</literal> prefix (expression de filtre)</term>
           <listitem>
             <para>Si l'entrée commence par <literal>le:</literal>, le reste est interprété
 comme une expression de filtre. La syntaxe complète de l'expression, décrite
 dans <xref linkend="Filters_DisplayLineFilter_Syntax"/>, est disponible.</para>
-            <para>Exemple : <userinput>le:Différent et la ligne contient « ERROR »</userinput></para>
+            <para>Exemple : <userinput>le:Différent et la ligne contient « ERROR »</userinput></para>
 
             <important>
               <para>Le préfixe <literal>le:</literal> doit figurer au tout début de la chaîne de
@@ -2530,7 +2530,7 @@ global. Exemple : <literal>Different</literal></para></listitem>
           <varlistentry>
             <term><varname>Trivial</varname></term>
             <listitem><para>Vrai si la ligne ne diffère que par des espaces ou d'autres éléments
-ignorés. Attribut global. Exemple : <literal>Different or Trivial</literal></para></listitem>
+ignorés. Attribut global. Exemple : <literal>Different or Trivial</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Exists</varname></term>
@@ -2566,7 +2566,7 @@ DifferentMiddleRight</literal></para></listitem>
           <varlistentry>
             <term><varname>EOL</varname></term>
             <listitem><para>Style de fin de ligne pour la ligne courante (valeur entière). Prend en
-charge les préfixes spécifiques à chaque côté. Valeur  : 0 = Aucun, 1 = LF,
+charge les préfixes spécifiques à chaque côté. Valeur  : 0 = Aucun, 1 = LF,
 2 = CR, 3 = CRLF. Exemple : <literal>le:EOL = 3</literal> affiche uniquement
 les lignes se terminant par CRLF</para></listitem>
           </varlistentry>
@@ -2590,7 +2590,7 @@ charge des préfixes spécifiques au côté. Exemple : <literal>Column("Status")
             <listitem><para>Texte de la ligne à un numéro de ligne absolu ou à un décalage relatif par
 rapport à la ligne courante. Prend en charge les fonctions de préfixe
 spécifiques au côté. Exemple : <literal>le:Different and
-RightLineOffsetAt(-1)` matches « ^// » `</literal></para></listitem>
+RightLineOffsetAt(-1)` matches « ^// » `</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>Column</function>(<replaceable>indexOrName</replaceable>),
@@ -2598,22 +2598,25 @@ RightLineOffsetAt(-1)` matches « ^// » `</literal></para></listitem>
 <function>ColumnAt</function>(<replaceable>line</replaceable>,
 <replaceable>indexOrName</replaceable>),
 <function>ColumnOffsetAt</function>(<replaceable>offset</replaceable>,
-<replaceable>indexOrName</replaceable>)  (table mode only)</term>
-            <listitem><para>Cell content by index or name, at the current, absolute, or relative
-line. For <function>Column</function>, a numeric string is always treated as
-a column name. A numeric argument is a 1-based column index. Use
-<function>ColumnRange</function> to specify multiple columns and ranges
-using comma-separated <literal>N</literal>, <literal>N-M</literal>, and
-<literal>N-</literal> items; whitespace is ignored, for example
-<literal>ColumnRange("1, 3, 5-10, 13-")</literal>.  Prefix a range with
-<literal>!</literal> to exclude it; for example
-<literal>ColumnRange("!1")</literal> excludes column 1 and
-<literal>ColumnRange("1-10,!4-5")</literal> selects columns 1-10 except
-columns 4-5. If no included range is specified, all columns are included
-before exclusions are applied.  Existing name and single-index forms return
-one cell; range forms return the selected cell values joined using the table
-delimiter.  Example: <literal>le:RightColumn("Category") !=
-ColumnOffsetAt(-1, "Category")</literal></para></listitem>
+<replaceable>indexOrName</replaceable>)  (mode tableau uniquement)</term>
+            <listitem><para>Contenu de la cellule désignée par son index ou son nom, à la ligne
+actuelle, absolue ou relative. Pour <function>Column</function>, une chaîne
+numérique est toujours considérée comme un nom de colonne. Un argument
+numérique correspond à un index de colonne commençant à 1. Utilisez
+<function>ColumnRange</function> pour spécifier plusieurs colonnes et plages
+en utilisant des éléments de type <literal>N</literal>,
+<literal>N-M</literal> et <literal>N-</literal> séparés par des virgules ;
+les espaces sont ignorés (par exemple : <literal>ColumnRange("1, 3, 5-10,
+13-")</literal>). Faites précéder une plage de <literal>!</literal> pour
+l'exclure ; par exemple, <literal>ColumnRange("!1")</literal> exclut la
+colonne 1 et <literal>ColumnRange("1-10,!4-5")</literal> sélectionne les
+colonnes 1 à 10 à l'exception des colonnes 4 et 5. Si aucune plage
+d'inclusion n'est spécifiée, toutes les colonnes sont incluses avant
+l'application des exclusions. Les formes utilisant un nom ou un index unique
+renvoient une seule cellule ; les formes utilisant des plages renvoient les
+valeurs des cellules sélectionnées, concaténées à l'aide du délimiteur de
+tableau. Exemple : <literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
+"Category")</literal></para></listitem>
           </varlistentry>
         </variablelist>
       </section>
@@ -2640,7 +2643,7 @@ les fonctions décrites dans <xref linkend="FilterExpression_Functions"/>.</para
             <term><function>matchNumber</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Indice de la ligne courante (à partir de 1) parmi toutes les lignes
 correspondantes. Renvoie <literal>none</literal> si la ligne ne correspond à
-aucune correspondance. Exemple : <literal>le:matchNumber(Different) =
+aucune correspondance. Exemple : <literal>le:matchNumber(Different) =
 1</literal> affiche uniquement la première ligne correspondante (la première
 ligne différente).</para></listitem>
           </varlistentry>
@@ -2655,7 +2658,7 @@ correspondante (la dernière ligne de différence).</para></listitem>
             <term><function>matchBlockNumber</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Renvoie le numéro du bloc correspondant (à partir de 1) contenant la ligne
 courante. Renvoie <literal>none</literal> si la ligne courante ne se trouve
-dans aucun bloc correspondant. Exemple :
+dans aucun bloc correspondant. Exemple :
 <literal>le:matchBlockNumber(Different) = 1</literal> affiche uniquement les
 lignes du premier bloc de différence.</para></listitem>
           </varlistentry>
@@ -2815,7 +2818,7 @@ ERREUR ».</entry>
               </row>
               <row>
                 <entry><userinput>le:strFind(Line, "TODO") &lt; 10</userinput></entry>
-                <entry>Affiche les lignes où « TODO » apparaît dans les 10 premiers caractères</entry>
+                <entry>Affiche les lignes où « TODO » apparaît dans les 10 premiers caractères</entry>
               </row>
               <row>
                 <entry><userinput>le:regexFind(Line, "\d{4}") != none</userinput></entry>
@@ -2843,7 +2846,7 @@ ERREUR ».</entry>
               </row>
               <row>
                 <entry><userinput>le:toInt(Column("Count")) &gt; 100</userinput></entry>
-                <entry>Affiche les lignes où la valeur de la colonne « Nombre » dépasse 100 (mode
+                <entry>Affiche les lignes où la valeur de la colonne « Nombre » dépasse 100 (mode
 tableau)</entry>
               </row>
             </tbody>
@@ -2894,7 +2897,7 @@ de 10 éléments</para></listitem>
   </section>
 
   <section id="Filters_LineFilterPluginPipeline">
-    <title>Using filter expressions in plugin pipelines</title>
+    <title>Utilisation d'expressions de filtre dans les pipelines de plug-ins</title>
 
     <para>À partir de la version 2.16.59, les expressions de filtre peuvent être
 utilisées comme éléments dans les pipelines de plug-ins en les préfixant par

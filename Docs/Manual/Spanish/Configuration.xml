@@ -2450,6 +2450,42 @@ más detalle cómo WinMerge detecta y marca las diferencias entre líneas.</para
       </note>
     </section>
 
+    <section>
+      <title>
+Use Merge Result Pane for 3-way merge<indexterm>
+          <primary>Merge Result Pane</primary>
+
+          <secondary>3-way merge configuration</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option>: When performing a 3-way merge, the merge result
+is written to the target pane (left, middle, or right), updating its
+content.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option> (default): When performing a 3-way merge, the merge
+result is created in a separate Merge Result Pane instead of modifying the
+target pane. The result can be reviewed and edited in the Merge Result Pane
+before it is saved to the target file.</para>
+        </listitem>
+      </itemizedlist>
+
+      <note>
+        <title>Note about merge target pane selection</title>
+
+        <para>
+The merge target pane is determined by either the currently focused pane
+(for UI-based operations) or by the command-line options (/al, /am, /ar).
+This setting controls whether the results are written directly to the target
+pane or displayed in a separate Merge Result Pane for review.</para>
+      </note>
+    </section>
+
   </section>
 
   <section id="Configuration_editor_syntax">

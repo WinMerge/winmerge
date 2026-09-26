@@ -1130,6 +1130,10 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	if (pOpenParams && !pOpenParams->m_fileExt.empty())
 		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
+	bool bShowMergeResultPane = false;
+	bool bAutoMerge = false;
+	int nMergeBasePane = 1;
+
 	for (int pane = 0; pane < nFiles; pane++)
 	{
 		if (dwFlags)
@@ -1140,21 +1144,33 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 				pMergeDoc->m_ptBuf[pane]->SetModified(true);
 				pMergeDoc->UpdateHeaderPath(pane);
 			}
-			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+			if (nFiles == 3 && ((dwFlags[pane] & FFILEOPEN_AUTOMERGE) || (dwFlags[pane] & FFILEOPEN_SETFOCUS)))
 			{
-				pMergeDoc->DoAutoMerge(pane);
+				nMergeBasePane = 2 - pane;
+				bAutoMerge = (dwFlags[pane] & FFILEOPEN_AUTOMERGE) != 0;
+				bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 			}
 		}
 	}
+
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+	{
+		const String& strSaveAsPath = pOpenParams->m_strSaveAsPath;
+		pMergeDoc->SetSaveAsPath(strSaveAsPath);
+		if (nFiles == 3 && !bShowMergeResultPane)
+			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
+	}
+
+	if (bShowMergeResultPane)
+		pMergeDoc->StartMergeSession(nMergeBasePane, bAutoMerge, false);
+	else if (bAutoMerge)
+		pMergeDoc->DoAutoMerge(2 - nMergeBasePane);
 
 	pMergeDoc->MoveOnLoad(
 		GetActivePaneFromFlags(nFiles, dwFlags),
 		pOpenParams ? pOpenParams->m_line : -1,
 		true,
 		pOpenParams ? pOpenParams->m_char: -1);
-
-	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
-		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
 		GenerateDocumentReport({ pMergeDoc }, sReportFile);
@@ -3174,16 +3190,19 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 {
 	auto* pFrame = GetActiveFrame();
 	if (!pFrame || GetWindowsManager().GetChildCount() == 0)
-		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false);
+		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false, false);
 	int nFiles = 0;
 	FRAMETYPE frame = GetFrameType(pFrame);
-	bool bDirDoc = false;
+	bool bHasDirDoc = false;
+	bool bHasMergeResultPane = false;
 	if (auto* pMergeDoc = GetActiveIMergeDoc())
 	{
 		nFiles = pMergeDoc->GetFileCount();
-		bDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		bHasDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		if (auto* pMergeDoc2 = dynamic_cast<CMergeDoc*>(pMergeDoc))
+			bHasMergeResultPane = pMergeDoc2->IsMergeResultPaneVisible();
 	}
-	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bDirDoc);
+	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bHasDirDoc, bHasMergeResultPane);
 }
 
 void CMainFrame::UpdateToolbar()
@@ -3537,7 +3556,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
-			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, 
+				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
 	}
