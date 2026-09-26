@@ -3103,11 +3103,11 @@ BOOL CMainFrame::CreateToolbar()
 		CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
-	m_wndReBar.AddBar(&m_wndMenuBar);
-	m_wndReBar.AddBar(&m_wndToolBar, nullptr, nullptr, RBBS_GRIPPERALWAYS | RBBS_FIXEDBMP | RBBS_BREAK);
-
 	LoadToolbarImages();
 	UpdateToolbar();
+
+	m_wndReBar.AddBar(&m_wndMenuBar);
+	m_wndReBar.AddBar(&m_wndToolBar, nullptr, nullptr, RBBS_GRIPPERALWAYS | RBBS_FIXEDBMP | RBBS_BREAK);
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
@@ -3124,6 +3124,15 @@ BOOL CMainFrame::CreateToolbar()
 	if (HWND hTip = m_wndToolBar.GetToolBarCtrl().GetToolTips()->GetSafeHwnd())
 		DarkMode::setDarkTooltips(hTip, static_cast<int>(DarkMode::ToolTipsType::tooltip));
 	return TRUE;
+}
+
+CSize CMainFrame::GetToolbarButtonSize() const
+{
+	const int toolbarUnit = MulDiv(8, GetSystemMetrics(SM_CXSMICON), 16);
+	const int imageSize = toolbarUnit *
+		(2 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE),
+			0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
+	return CSize(imageSize + toolbarUnit, imageSize + toolbarUnit);
 }
 
 /** @brief Load toolbar images from the resource. */
@@ -3148,12 +3157,14 @@ void CMainFrame::LoadToolbarImages()
 	imgEnabled.Detach();
 	imgDisabled.Detach();
 
-	const int toolbarPadding = MulDiv(8, cxSMICON, 16);
-	CSize sizeButton = CSize(toolbarNewImgSize + toolbarPadding, toolbarNewImgSize + toolbarPadding);
+	const CSize sizeButton = GetToolbarButtonSize();
 	BarCtrl.SetButtonSize(sizeButton);
+}
 
-	// resize the rebar.
-	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
+void CMainFrame::UpdateToolbarBandSize()
+{
+	const CSize sizeButton = GetToolbarButtonSize();
+	REBARBANDINFO rbbi{ sizeof rbbi };
 	rbbi.fMask = RBBIM_CHILDSIZE;
 	rbbi.cyMinChild = sizeButton.cy;
 	m_wndReBar.GetReBarCtrl().SetBandInfo(1, &rbbi);
@@ -3256,6 +3267,7 @@ void CMainFrame::OnToolbarSize(UINT id)
 		GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, id - ID_TOOLBAR_SMALL);
 
 		LoadToolbarImages();
+		UpdateToolbarBandSize();
 
 		__super::ShowControlBar(&m_wndToolBar, true, 0);
 	}
