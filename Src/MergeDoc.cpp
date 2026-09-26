@@ -2924,7 +2924,6 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 			m_pView[nGroup][nToIndex]->SetDlgCtrlID(nLeftViewId);
 		}
 
-
 		// Swap buffers and so on
 		std::swap(m_ptBuf[nFromIndex], m_ptBuf[nToIndex]);
 		for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
@@ -2934,6 +2933,14 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 		std::swap(m_nBufferType[nFromIndex], m_nBufferType[nToIndex]);
 		std::swap(m_bEditAfterRescan[nFromIndex], m_bEditAfterRescan[nToIndex]);
 		std::swap(m_strDesc[nFromIndex], m_strDesc[nToIndex]);
+
+		for (size_t i = 0; i < undoTgt.size(); ++i)
+		{
+			if (undoTgt[i] == nFromIndex)
+				undoTgt[i] = nToIndex;
+			else if (undoTgt[i] == nToIndex)
+				undoTgt[i] = nFromIndex;
+		}
 
 		m_filePaths.Swap(nFromIndex, nToIndex);
 		m_diffList.Swap(nFromIndex, nToIndex);
