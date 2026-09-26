@@ -342,6 +342,7 @@ public:
 	bool IsMergeResultPaneVisible() const;
 	int GetMergeBasePane() const { return m_nMergeBasePane; }
 	bool StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage);
+	bool EndMergeSession();
 	bool GetMergeResultBuildState() const { return m_bResultBuilt; }
 	void UpdateMergePaneHeaders(int nBasePane);
 	void BuildMergeResult();

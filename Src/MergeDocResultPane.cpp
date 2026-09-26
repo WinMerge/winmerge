@@ -177,6 +177,53 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMess
 	return true;
 }
 
+bool CMergeDoc::EndMergeSession()
+{
+	if (!m_bResultBuilt)
+		return false;
+
+	// Prompt to save if the merge result has unsaved changes
+	if (IsMergeResultUnsaved())
+	{
+		String msg = _("Merge result has unsaved changes.\n\nDo you want to save before closing the merge session?");
+		int nResult = ShowMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION);
+		if (nResult == IDYES && !SaveMergeResult(false))
+			return false;
+		else if (nResult == IDCANCEL)
+			return false;
+	}
+
+	// Restore original read-only states
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		m_ptBuf[nBuffer]->SetReadOnly(m_bResultSavedRO[nBuffer]);
+		m_strDesc[nBuffer] = m_strResultSavedDesc[nBuffer];
+		m_nBufferType[nBuffer] = m_nResultSavedBufferType[nBuffer];
+		UpdateHeaderPath(nBuffer);
+	}
+
+	// Hide the merge result pane
+	if (CMergeEditFrame* pFrame = GetParentFrame())
+		pFrame->ShowMergeResultPane(false);
+
+	// Reset merge session state
+	m_bResultBuilt = false;
+
+	// Clear undo/redo targets for the result buffer, since the buffer is being closed
+	for (int i = 0; i < undoTgt.size(); ++i)
+	{
+		if (undoTgt[i] == -1)
+		{
+			if (i < curUndo - undoTgt.begin())
+				curUndo--;
+			undoTgt.erase(undoTgt.begin() + i);
+			i--;
+		}
+	}
+
+	return true;
+}
+
 /**
  * @brief Extract the text of pane nPane for apparent lines
  * [nApparentBegin, nApparentEnd], skipping ghost lines.
@@ -1465,6 +1512,8 @@ String CMergeDoc::GetMergePaneRoles() const
 
 void CMergeDoc::OnMergeStartSession()
 {
+	FlushAndRescan(true);
+
 	if (auto* pView = GetActiveMergeView())
 		StartMergeSession(2 - pView->m_nThisPane, false, true);
 	else
@@ -1483,35 +1532,7 @@ void CMergeDoc::OnUpdateMergeStartSession(CCmdUI* pCmdUI)
  */
 void CMergeDoc::OnMergeEndSession()
 {
-	if (!m_bResultBuilt)
-		return;
-
-	// Prompt to save if the merge result has unsaved changes
-	if (IsMergeResultUnsaved())
-	{
-		String msg = _("Merge result has unsaved changes.\n\nDo you want to save before closing the merge session?");
-		int nResult = ShowMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION);
-		if (nResult == IDYES && !SaveMergeResult(false))
-			return;
-		else if (nResult == IDCANCEL)
-			return;
-	}
-
-	// Restore original read-only states
-	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-	{
-		m_ptBuf[nBuffer]->SetReadOnly(m_bResultSavedRO[nBuffer]);
-		m_strDesc[nBuffer] = m_strResultSavedDesc[nBuffer];
-		m_nBufferType[nBuffer] = m_nResultSavedBufferType[nBuffer];
-		UpdateHeaderPath(nBuffer);
-	}
-
-	// Hide the merge result pane
-	if (CMergeEditFrame* pFrame = GetParentFrame())
-		pFrame->ShowMergeResultPane(false);
-
-	// Reset merge session state
-	m_bResultBuilt = false;
+	EndMergeSession();
 }
 
 /**
