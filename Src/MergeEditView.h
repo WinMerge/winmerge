@@ -331,6 +331,7 @@ protected:
 	afx_msg void OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnEditCopyLineNumbers();
 	afx_msg void OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI);
+	afx_msg void OnEditToggleBookmark();
 	afx_msg void OnViewLineDiffs();
 	afx_msg void OnUpdateViewLineDiffs(CCmdUI* pCmdUI);
 	afx_msg void OnViewLineNumbers();
