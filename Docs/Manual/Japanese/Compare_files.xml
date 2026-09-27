@@ -606,7 +606,7 @@ linkend="Compare_files_merge" /> で説明します。 <xref linkend="Quick_star
       </indexterm>
 
       <indexterm>
-        <primary>3方向マージ</primary>
+        <primary>3-way merge</primary>
       </indexterm>
 
       <para>

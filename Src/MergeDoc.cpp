@@ -123,6 +123,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	// [Plugins] menu
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_APPLY_PREDIFFER, OnUpdateApplyPrediffer)
 	ON_COMMAND_RANGE(ID_NO_PREDIFFER, ID_NO_PREDIFFER, OnPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
@@ -1564,7 +1565,7 @@ void CMergeDoc::OnFileReadOnlyLeft()
 void CMergeDoc::OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI)
 {
 	bool bReadOnly = m_ptBuf[0]->GetReadOnly();
-	pCmdUI->Enable(true);
+	pCmdUI->Enable(!m_bResultBuilt);
 	pCmdUI->SetCheck(bReadOnly);
 }
 
@@ -1592,7 +1593,7 @@ void CMergeDoc::OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI)
 	else
 	{
 		bool bReadOnly = m_ptBuf[1]->GetReadOnly();
-		pCmdUI->Enable(true);
+		pCmdUI->Enable(!m_bResultBuilt);
 		pCmdUI->SetCheck(bReadOnly);
 	}
 }
@@ -1612,7 +1613,7 @@ void CMergeDoc::OnFileReadOnlyRight()
 void CMergeDoc::OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI)
 {
 	bool bReadOnly = m_ptBuf[m_nBuffers - 1]->GetReadOnly();
-	pCmdUI->Enable(true);
+	pCmdUI->Enable(!m_bResultBuilt);
 	pCmdUI->SetCheck(bReadOnly);
 }
 
@@ -3165,12 +3166,18 @@ void CMergeDoc::OnApplyPrediffer()
 	FlushAndRescan(true);
 }
 
+void CMergeDoc::OnUpdateApplyPrediffer(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!m_bResultBuilt);
+}
+
 /**
  * @brief Called when an editor script item is updated
  */
 void CMergeDoc::OnUpdatePrediffer(CCmdUI* pCmdUI)
 {
 	PluginMenu::UpdateMenu(pCmdUI);
+	pCmdUI->Enable(!m_bResultBuilt);
 }
 
 /**

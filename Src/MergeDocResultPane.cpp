@@ -398,7 +398,7 @@ void CMergeDoc::BuildMergeResult()
 	m_bResultBuilt = true;
 	// A generated result has not been written to the output path yet: an
 	// automatically merged result still has to be saved even if the user
-	// edits nothing. A resumed result IS the output file's content.
+	// edits nothing.
 	m_bResultSaved = false;
 
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)

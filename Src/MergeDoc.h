@@ -541,6 +541,7 @@ protected:
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnApplyPrediffer();
+	afx_msg void OnUpdateApplyPrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnBnClickedFileEncoding();
 	afx_msg void OnBnClickedPlugin();
 	afx_msg void OnBnClickedHexView();

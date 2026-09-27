@@ -298,6 +298,7 @@ protected:
 	afx_msg void OnSelDiffCopyThird();
 	afx_msg void OnUpdateSelDiffCopyThird(CCmdUI* pCmdUI);
 	afx_msg void OnAddSyncPoint();
+	afx_msg void OnUpdateAddSyncPoint(CCmdUI* pCmdUI);
 	afx_msg void OnClearSyncPoints();
 	afx_msg void OnUpdateClearSyncPoints(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);

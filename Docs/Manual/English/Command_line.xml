@@ -543,7 +543,7 @@
       <listitem>
         <para>
           Auto-merges at startup with pane arrangement: left (base)
-          - middle (merge target) - right (theirs).
+          - middle (merge target) - right (mine).
         </para>
       </listitem>
     </varlistentry>

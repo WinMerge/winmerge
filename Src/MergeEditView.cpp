@@ -212,6 +212,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
 	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
+	ON_UPDATE_COMMAND_UI(ID_ADD_SYNCPOINT, OnUpdateAddSyncPoint)
 	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
 	ON_COMMAND_RANGE(ID_COPY_TO_MIDDLE_L, ID_COPY_FROM_LEFT_R, OnCopyX2Y)
@@ -2203,6 +2204,14 @@ void CMergeEditView::OnAddSyncPoint()
 }
 
 /**
+ * @brief Called when "Add Synchronization Point" item is updated
+ */
+void CMergeEditView::OnUpdateAddSyncPoint(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!GetDocument()->GetMergeResultBuildState());
+}
+
+/**
  * @brief Clear synchronization points
  */
 void CMergeEditView::OnClearSyncPoints()
@@ -2215,7 +2224,7 @@ void CMergeEditView::OnClearSyncPoints()
  */
 void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->HasSyncPoints());
+	pCmdUI->Enable(GetDocument()->HasSyncPoints() && !GetDocument()->GetMergeResultBuildState());
 }
 
 /**
