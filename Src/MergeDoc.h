@@ -405,6 +405,7 @@ private:
 	bool m_bResultSavedRO[3]; /**< Read-only states before the result pane forced them */
 	String m_strResultSavedDesc[3]; /**< Pane descriptions before the result pane added merge labels */
 	BUFFERTYPE m_nResultSavedBufferType[3]; /**< Buffer types before the result pane forced them */
+	std::optional<DIFFOPTIONS> m_mergeSessionDiffOptions;
 // End MergeDocResultPane.cpp
 
 // Implementation

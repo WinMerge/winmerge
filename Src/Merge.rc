@@ -5437,6 +5437,7 @@ BEGIN
     IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE "The merge result has not been saved.\n\nSave the merge result?"
     IDS_MERGE_RESULT_SAVE_FAILED "Saving the merge result to\n%1\nfailed.\n%2"
     IDS_MERGE_RESULT_SAVE_MERGE_RESULT "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
+    IDS_MERGE_RESULT_OPTIONS_CHANGED "Comparison settings changed. They will take effect after the merge session ends."
     IDS_MERGE_RESULT_CONFLICT_WHITESPACE "<Merge Conflict (Whitespace only)>"
     IDS_MERGE_RESULT_CONFLICT "<Merge Conflict>"
     IDS_MERGE_RESULT_UNRESOLVED "<Unresolved Difference>"

@@ -2867,6 +2867,14 @@ void CMergeDoc::RefreshOptions()
 	if (m_pMergeResultView != nullptr)
 		m_pMergeResultView->RefreshOptions();
 	UpdateAllViews(nullptr);
+
+	if (m_bResultBuilt &&
+		memcmp(&m_mergeSessionDiffOptions, &options, sizeof(options)) != 0)
+	{
+		ShowMessageBox(
+			_("Comparison settings changed. They will take effect after the merge session ends."),
+			MB_OK | MB_ICONWARNING);
+	}
 }
 
 /**

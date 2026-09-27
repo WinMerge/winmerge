@@ -27,6 +27,7 @@
 #include "OptionsDef.h"
 #include "Logger.h"
 #include "ConflictFileParser.h"
+#include "OptionsDiffOptions.h"
 #include "resource.h"
 #include <algorithm>
 
@@ -146,6 +147,10 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMess
 	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || m_bResultBuilt)
 		return false;
 
+	DIFFOPTIONS options = {};
+	Options::DiffOptions::Load(GetOptionsMgr(), options);
+	m_mergeSessionDiffOptions = options;
+
 	m_bResultBuilt = false;
 	m_nMergeBasePane = nBasePane;
 	if (CMergeEditFrame* pFrame = GetParentFrame())
@@ -208,6 +213,8 @@ bool CMergeDoc::EndMergeSession()
 
 	// Reset merge session state
 	m_bResultBuilt = false;
+
+	m_mergeSessionDiffOptions.reset();
 
 	// Clear undo/redo targets for the result buffer, since the buffer is being closed
 	size_t i = 0;
