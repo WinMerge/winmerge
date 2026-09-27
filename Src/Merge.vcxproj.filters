@@ -1739,6 +1739,9 @@
     <ClInclude Include="MergeDiffNavigation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MergeConflictNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="MergeResultTextBuffer.h">
       <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
     </ClInclude>

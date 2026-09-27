@@ -40,6 +40,7 @@
 #include "MergeResultView.h"
 #include "MergeResultTextBuffer.h"
 #include "MergeDiffNavigation.h"
+#include "MergeConflictNavigation.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1376,22 +1377,22 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnNextConflict()
 {
-	CMergeDiffNavigation::OnNextConflict(this);
+	CMergeConflictNavigation::OnConflict(this, true);
 }
 
 void CMergeEditView::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
-	CMergeDiffNavigation::OnUpdateNextConflict(this, pCmdUI);
+	CMergeConflictNavigation::OnUpdateConflict(this, pCmdUI, true);
 }
 
 void CMergeEditView::OnPrevConflict()
 {
-	CMergeDiffNavigation::OnPrevConflict(this);
+	CMergeConflictNavigation::OnConflict(this, false);
 }
 
 void CMergeEditView::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
-	CMergeDiffNavigation::OnUpdatePrevConflict(this, pCmdUI);
+	CMergeConflictNavigation::OnUpdateConflict(this, pCmdUI, false);
 }
 
 void CMergeEditView::OnNext3wayDiff(int nDiffType)

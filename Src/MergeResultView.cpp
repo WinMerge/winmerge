@@ -11,6 +11,7 @@
 #include "MergeResultContainer.h"
 #include "MergeResultStatusBar.h"
 #include "MergeDiffNavigation.h"
+#include "MergeConflictNavigation.h"
 #include "Merge.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
@@ -771,22 +772,22 @@ void CMergeResultView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 
 void CMergeResultView::OnNextConflict()
 {
-	CMergeDiffNavigation::OnNextConflict(this);
+	CMergeConflictNavigation::OnConflict(this, true);
 }
 
 void CMergeResultView::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
-	CMergeDiffNavigation::OnUpdateNextConflict(this, pCmdUI);
+	CMergeConflictNavigation::OnUpdateConflict(this, pCmdUI, true);
 }
 
 void CMergeResultView::OnPrevConflict()
 {
-	CMergeDiffNavigation::OnPrevConflict(this);
+	CMergeConflictNavigation::OnConflict(this, false);
 }
 
 void CMergeResultView::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
-	CMergeDiffNavigation::OnUpdatePrevConflict(this, pCmdUI);
+	CMergeConflictNavigation::OnUpdateConflict(this, pCmdUI, false);
 }
 
 void CMergeResultView::OnNext3wayDiff(int nDiffType)

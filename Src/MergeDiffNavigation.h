@@ -182,39 +182,6 @@ public:
 	}
 
 	/**
-	 * @brief Find the next/previous difference that still needs a decision in
-	 * the merge result pane (kdiff3's "unsolved conflict" navigation).
-	 * @return Diff index, or -1 when there is none in that direction.
-	 */
-	template <typename View>
-	static int FindPendingResultDiff(View* pView, bool bNext)
-	{
-		CMergeDoc* pd = pView->GetDocument();
-		const int nDiffCount = pd->m_diffList.GetSize();
-		const int nCurDiff = pd->GetCurrentDiff();
-		int nBegin;
-		if (nCurDiff != -1)
-			nBegin = bNext ? nCurDiff + 1 : nCurDiff - 1;
-		else
-		{
-			// No selected difference: anchor the scan on the cursor line
-			// (the difference at the cursor counts as "next"/"previous")
-			const int nLine = pView->GetCursorPos().y;
-			nBegin = bNext ? pView->NextSignificantDiffFromLine(nLine) : pView->PrevSignificantDiffFromLine(nLine);
-			if (nBegin == -1)
-				nBegin = bNext ? nDiffCount : -1;
-		}
-		const int nStep = bNext ? 1 : -1;
-		for (int i = nBegin; i >= 0 && i < nDiffCount; i += nStep)
-		{
-			if (pd->m_diffList.IsDiffSignificant(i) && !pView->IsDiffFiltered(i) &&
-				pd->IsResultDiffPending(i))
-				return i;
-		}
-		return -1;
-	}
-
-	/**
 	 * @brief Called when user selects "Current Difference".
 	 * Goes to active diff. If no active diff, selects diff under cursor
 	 * @sa CMergeEditView::SelectDiff()
@@ -414,93 +381,6 @@ public:
 			enabled = pd->GetDirDoc()->MoveableToPrevDiff();
 
 		pCmdUI->Enable(enabled);
-	}
-
-	template <typename View>
-	static void OnNextConflict(View* pView)
-	{
-		// While merging, "next conflict" means the next difference that still
-		// needs a decision, skipping the ones already resolved
-		if (pView->GetDocument()->GetMergeResultBuildState())
-		{
-			const int nDiff = FindPendingResultDiff(pView, true);
-			if (nDiff >= 0)
-			{
-				pView->SelectDiff(nDiff, true, false);
-				return;
-			}
-			// Nothing linked and pending. When unresolved segments remain the
-			// segment <-> diff links were severed by a rescan: fall back to
-			// plain conflict navigation instead of leaving the command dead
-			if (pView->GetDocument()->GetResultUnresolvedCount() == 0)
-				return;
-		}
-		OnNext3wayDiff(pView, THREEWAYDIFFTYPE_CONFLICT);
-	}
-
-	/**
-	 * @brief Update "Next Conflict" UI items
-	 */
-	template <typename View>
-	static void OnUpdateNextConflict(View* pView, CCmdUI* pCmdUI)
-	{
-		if (pView->GetDocument()->GetMergeResultBuildState())
-		{
-			if (FindPendingResultDiff(pView, true) >= 0)
-			{
-				pCmdUI->Enable(TRUE);
-				return;
-			}
-			if (pView->GetDocument()->GetResultUnresolvedCount() == 0)
-			{
-				pCmdUI->Enable(FALSE);
-				return;
-			}
-			// severed links: use the plain conflict enablement below
-		}
-		pView->OnUpdateNext3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
-	}
-
-	/**
-	 * @brief Update "Prev Conflict" UI items
-	 */
-	template <typename View>
-	static void OnPrevConflict(View* pView)
-	{
-		if (pView->GetDocument()->GetMergeResultBuildState())
-		{
-			const int nDiff = FindPendingResultDiff(pView, false);
-			if (nDiff >= 0)
-			{
-				pView->SelectDiff(nDiff, true, false);
-				return;
-			}
-			if (pView->GetDocument()->GetResultUnresolvedCount() == 0)
-				return;
-		}
-		OnPrev3wayDiff(pView, THREEWAYDIFFTYPE_CONFLICT);
-	}
-
-	/**
-	 * @brief Update "Prev Conflict" UI items
-	 */
-	template <typename View>
-	static void OnUpdatePrevConflict(View* pView, CCmdUI* pCmdUI)
-	{
-		if (pView->GetDocument()->GetMergeResultBuildState())
-		{
-			if (FindPendingResultDiff(pView, false) >= 0)
-			{
-				pCmdUI->Enable(TRUE);
-				return;
-			}
-			if (pView->GetDocument()->GetResultUnresolvedCount() == 0)
-			{
-				pCmdUI->Enable(FALSE);
-				return;
-			}
-		}
-		pView->OnUpdatePrev3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
 	}
 
 	/**
