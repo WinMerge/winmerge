@@ -210,14 +210,18 @@ bool CMergeDoc::EndMergeSession()
 	m_bResultBuilt = false;
 
 	// Clear undo/redo targets for the result buffer, since the buffer is being closed
-	for (int i = 0; i < undoTgt.size(); ++i)
+	size_t i = 0;
+	while (i < undoTgt.size())
 	{
 		if (undoTgt[i] == -1)
 		{
-			if (i < curUndo)
+			if (i < static_cast<size_t>(curUndo))
 				curUndo--;
 			undoTgt.erase(undoTgt.begin() + i);
-			i--;
+		}
+		else
+		{
+			++i;
 		}
 	}
 
