@@ -30,6 +30,13 @@
 * BugFix: Fix issue [BUG] Keyboard shortcut to "Copy to right" does not work in
     3-way merge (#3645)
 
+* BugFix: Fix undo/redo after swapping panes and avoid invalid undo target
+    tracking (PR #3646, PR #3647)
+
+* BugFix: Flush undo groups when deleting text fails
+
+* Show the selection margin when adding a bookmark
+
 * Add an option to prefer the WIC decoder when loading images for image
     comparison (PR #3537)
 
