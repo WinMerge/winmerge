@@ -21,6 +21,7 @@
 #include "I18nGUI.h"
 #include "DarkModeLib.h"
 #include "IDirDoc.h"
+#include "MouseHook.h"
 #include "../Externals/crystaledit/editlib/dialogs/gotodlg.h"
 #include <algorithm>
 
@@ -53,6 +54,7 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	//{{AFX_MSG_MAP(CMergeResultView)
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONDBLCLK()
+	ON_WM_RBUTTONUP()
 	ON_WM_CONTEXTMENU()
 	ON_WM_GETDLGCODE()
 	ON_WM_MOUSEWHEEL()
@@ -387,9 +389,8 @@ void CMergeResultView::TakeFocus()
 		SetFocus();
 }
 
-void CMergeResultView::OnLButtonUp(UINT nFlags, CPoint point)
+void CMergeResultView::DeselectDiffIfCursorNotInCurrentDiff()
 {
-	__super::OnLButtonUp(nFlags, point);
 	CMergeDoc *pDoc = GetDocument();
 	// If we have a selected diff, deselect it
 	int nCurrentDiff = pDoc->GetCurrentDiff();
@@ -404,6 +405,18 @@ void CMergeResultView::OnLButtonUp(UINT nFlags, CPoint point)
 			pDoc->UpdateAllViews(this);
 		}
 	}
+}
+
+/**
+ * @brief Called when mouse left button is released.
+ *
+ * If button is released outside diffs, current diff
+ * is deselected.
+ */
+void CMergeResultView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	__super::OnLButtonUp(nFlags, point);
+	DeselectDiffIfCursorNotInCurrentDiff();
 }
 
 /**
@@ -427,6 +440,22 @@ void CMergeResultView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	SelectDiff(pSegment->diffIdx, true, false);
 	m_bSyncingCurrentDiff = false;
 	Invalidate();
+}
+
+/**
+ * @brief Called when mouse right button is pressed.
+ *
+ * If right button is pressed outside diffs, and it is not
+ * right button + wheel scrolling combination, current diff
+ * is deselected.
+ */
+void CMergeResultView::OnRButtonUp(UINT nFlags, CPoint point)
+{
+	if (!CMouseHook::IsRightWheelScrolling())
+	{
+		DeselectDiffIfCursorNotInCurrentDiff();
+	}
+	CCrystalTextView::OnRButtonUp(nFlags, point);
 }
 
 /**
@@ -454,6 +483,9 @@ void CMergeResultView::OnUpdateForwardToMergeView(CCmdUI* pCmdUI)
  */
 void CMergeResultView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
+	if (CMouseHook::IsRightWheelScrolling())
+		return;
+
 	if (point.x == -1 && point.y == -1)
 	{
 		// Keyboard invocation: pop up at the caret

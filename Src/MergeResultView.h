@@ -57,6 +57,7 @@ private:
 	int PrevSignificant3wayDiffFromLine(int line, int nDiffType) const;
 
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
+	void DeselectDiffIfCursorNotInCurrentDiff();
 	bool IsDiffVisible(int nDiff);
 	bool IsDiffFiltered(int nDiff);
 
@@ -67,6 +68,7 @@ protected:
 	//{{AFX_MSG(CMergeResultView)
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg UINT OnGetDlgCode();
 	afx_msg void OnForwardToMergeView(UINT nID);
