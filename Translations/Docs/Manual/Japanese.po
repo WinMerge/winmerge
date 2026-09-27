@@ -1343,7 +1343,7 @@ msgstr "3方向マージ"
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:526
 msgid "auto-merge with /al option"
-msgstr ""
+msgstr "/al オプションによる自動マージ"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:528
@@ -1356,11 +1356,13 @@ msgid ""
 "Auto-merges at startup with pane arrangement: left (merge target)  - middle "
 "(theirs) - right (base)."
 msgstr ""
+"起動時に、ペインを左（マージ先）- 中央（相手側）- 右（ベース）の配置にして自"
+"動マージします。"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:540
 msgid "auto-merge with /am option"
-msgstr ""
+msgstr "/am オプションによる自動マージ"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:542
@@ -1373,11 +1375,13 @@ msgid ""
 "Auto-merges at startup with pane arrangement: left (base)  - middle (merge "
 "target) - right (mine)."
 msgstr ""
+"起動時に、ペインを左（ベース）- 中央（マージ先）- 右（自分側）の配置にして自"
+"動マージします。"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:554
 msgid "auto-merge with /ar option"
-msgstr ""
+msgstr "/ar オプションによる自動マージ"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:556
@@ -1390,6 +1394,8 @@ msgid ""
 "Auto-merges at startup with pane arrangement: left (base)  - middle (theirs) "
 "- right (merge target)."
 msgstr ""
+"起動時に、ペインを左（ベース）- 中央（相手側）- 右（マージ先）の配置にして自"
+"動マージします。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:566
@@ -1820,6 +1826,10 @@ msgid ""
 "the Merge Result pane topic in <citetitle>Comparing and merging text files</"
 "citetitle>."
 msgstr ""
+"3方向のテキスト比較では、出力先を指定すると、ファイル比較ウィンドウの下部に"
+"マージ結果ペインも開きます。ここでは、マージ結果を確認・編集してから出力先に"
+"保存できます。<citetitle>テキストファイルの比較とマージ</citetitle>の「マージ"
+"結果ペイン」を参照してください。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:792
@@ -5697,7 +5707,7 @@ msgstr "マージ結果ペイン"
 #. type: Content of: <article><section><section><indexterm><primary>
 #: English/Compare_files.xml:813
 msgid "Merge Result pane, File Compare window"
-msgstr ""
+msgstr "マージ結果ペイン、ファイル比較ウィンドウ"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:821
@@ -5709,6 +5719,12 @@ msgid ""
 "the three File panes show the compared files read-only, and the Merge Result "
 "pane contains the merge result, which you can edit freely."
 msgstr ""
+"3つのテキストファイルを比較してマージ出力先を指定すると（たとえば、バージョン"
+"管理ツールが<option>/o</option>コマンドラインオプションを指定してWinMergeを起"
+"動した場合）、ファイル比較ウィンドウの下部にマージ結果ペインが開きます。これ"
+"はKDiff3のマージ出力ウィンドウと同様に動作します。3つのファイルペインには比較"
+"対象のファイルが読み取り専用で表示され、マージ結果ペインにはマージ結果が表示"
+"され、自由に編集できます。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:831
@@ -5723,6 +5739,14 @@ msgid ""
 "target, and only true conflicts, where both sides changed the same lines "
 "relative to the base, remain unresolved."
 msgstr ""
+"ペインを開くと、すべての差異は最初は未解決の状態になり、簡略化された"
+"<computeroutput>&lt;マージコンフリクト&gt;</computeroutput>または"
+"<computeroutput>&lt;未解決の差異&gt;</computeroutput>というプレースホルダー行"
+"で表示されます。<option>/al</option>、<option>/am</option>、<option>/ar</"
+"option>コマンドラインオプション、または<guimenuitem>自動マージ</guimenuitem>"
+"コマンドで自動マージを実行すると、コンフリクトしていない差異は選択したマージ"
+"先に従って自動的に解決され、ベースに対して両側で同じ行が変更された真のコンフ"
+"リクトだけが未解決のまま残ります。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:848
@@ -5743,6 +5767,20 @@ msgid ""
 "can be edited. Conflicts whose sides differ only in white space are marked "
 "as <computeroutput>(Whitespace only)</computeroutput>."
 msgstr ""
+"差異を解決するには、その差異を選択し、<menuchoice><guimenu>マージ</"
+"guimenu><guisubmenu>マージ結果</guisubmenu></menuchoice>サブメニュー、マージ"
+"結果ペインのコンテキストメニュー、または<guibutton>1</guibutton>／"
+"<guibutton>2</guibutton>／<guibutton>3</guibutton>ツールバーボタンから、"
+"<guimenuitem>左を選択</guimenuitem>、<guimenuitem>中央を選択</guimenuitem>、"
+"または<guimenuitem>右を選択</guimenuitem>を選びます。各コマンドは、現在の差異"
+"（または現在の選択範囲に含まれるすべての差異）について、そのペインの行の選択"
+"と選択解除を切り替えます。複数のペインを選択すると、選択した順序でそれらの行"
+"が結合されます（両側で何かが追加され、両方をマージ結果に残したい場合に便利で"
+"す）。すべてのペインの選択を解除すると、その差異は再び未解決になります。ま"
+"た、未解決の差異を除き、マージ結果ペインに直接入力して修正することもできま"
+"す。未解決の差異は、テキストを編集する前にChooseコマンドで解決する必要があり"
+"ます。両側の違いが空白文字だけであるコンフリクトには、"
+"<computeroutput>(Whitespace only)</computeroutput>と表示されます。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:874
@@ -5760,6 +5798,18 @@ msgid ""
 "<keycap>Up</keycap> </keycombo>)  jump to the next or previous difference "
 "that still needs a decision, skipping the ones already resolved."
 msgstr ""
+"ペインのマージンには各行の出所が表示されます。左、中央、右のペインから取得し"
+"た行には、それぞれ<computeroutput>1</computeroutput>、<computeroutput>2</"
+"computeroutput>、<computeroutput>3</computeroutput>（ツールバーボタンに対応）"
+"が表示され、未解決のコンフリクトセクションには<computeroutput>?</"
+"computeroutput>、手動で変更された差異には<computeroutput>m</computeroutput>が"
+"表示されます。ペインのステータスバーには、まだ未解決の差異の数が表示されま"
+"す。ペインを開いている間は、<guimenuitem>次のコンフリクト</guimenuitem>および"
+"<guimenuitem>前のコンフリクト</guimenuitem>（<keycombo><keycap>Alt</"
+"keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>／"
+"<keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Up</keycap></"
+"keycombo>）を使用すると、すでに解決された差異を飛ばして、まだ判断が必要な次ま"
+"たは前の差異に移動できます。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:898
@@ -5793,6 +5843,35 @@ msgid ""
 "honors the backup-file option and any file packer plugin the files were "
 "opened with."
 msgstr ""
+"<menuchoice><guimenu>ファイル</guimenu><guisubmenu>保存</"
+"guisubmenu><guimenuitem>マージ結果を保存</guimenuitem></menuchoice>、保存ツー"
+"ルバーボタン、または<keycombo><keycap>Ctrl</keycap><keycap>S</keycap></"
+"keycombo>を使用して、結果を出力先に保存します。未解決の差異が残っている場合、"
+"WinMergeは警告を表示します。未解決のコンフリクトはプレースホルダーテキストで"
+"はなく、標準的なコンフリクトセクションとして保存されます。そのため、ファイル"
+"にはコンフリクトしている行のすべてのバージョンが保持され、後で任意のエディ"
+"ターやマージツールで処理を完了できます。コンフリクトしていない未解決の差異"
+"は、自動マージされた内容で保存されるため、どのバージョン管理システムも生成し"
+"ないようなコンフリクトマーカーが出力に含まれることはありません。出力先のファ"
+"イルをそのまま再度開いても、これらのコンフリクトセクションからマージを再開す"
+"ることはありません。他の3方向マージツール（KDiff3やMeldなど）と同様に、"
+"WinMergeは常に比較対象の3つのファイルからマージ結果を再構築します。そのため、"
+"バージョン管理ツールが<option>/o</option>コマンドラインオプション（たとえば"
+"<command>git mergetool</command>）を指定してWinMergeを再度起動すると、出力"
+"ファイルにすでに何が含まれているかにかかわらず、毎回新しいマージが実行されま"
+"す。以前に部分的に解決したコンフリクトファイルから作業を再開するには、"
+"<menuchoice><guimenu>ファイル</guimenu><guimenuitem>コンフリクトファイルを開"
+"く</guimenuitem></menuchoice>を使用します。WinMergeはそのコンフリクトセクショ"
+"ンを解析し、未解決の差異として復元するとともに、すでに解決されていたテキスト"
+"を保持します。ウィンドウを閉じるときには、マージ結果が未保存の場合にも"
+"WinMergeは保存を確認します。これは、その時点でマージ結果ペイン自体が非表示に"
+"なっている場合も同様です。デフォルトでは、各行は元の改行コードを保持して保存"
+"されるため、出力は元のファイルとの差異ができるだけ少なくなります（たとえば、"
+"バージョン管理での差分を最小限にできます）。出力の改行コードは、マージ結果ペ"
+"インのステータスバーからWindows、Unix、またはクラシックMac形式に変更できま"
+"す。エンコーディングは変更を行った側に従い、保存時にはバックアップファイルの"
+"オプションと、ファイルを開く際に使用したファイルパッカープラグインが適用され"
+"ます。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:937
@@ -5810,16 +5889,28 @@ msgid ""
 "merge result has unsaved changes, and restores the panes' original read-only "
 "states and headers."
 msgstr ""
+"3方向のテキスト比較では、<menuchoice><guimenu>マージ</guimenu><guimenuitem>"
+"マージセッションを開始</guimenuitem></menuchoice>（差異は未解決の状態で開始）"
+"または<menuchoice><guimenu>マージ</guimenu><guimenuitem>自動マージ</"
+"guimenuitem></menuchoice>（コンフリクトしていない差異は自動的に解決）を使用し"
+"て、マージを開始することもできます。マージセッションがアクティブな間は、"
+"<menuchoice><guimenu>表示</guimenu><guimenuitem>マージ結果ペイン</"
+"guimenuitem></menuchoice>を使用してペインを表示または非表示にできます。マージ"
+"セッションを終了して通常の3ペインの編集可能な状態に戻すには、"
+"<menuchoice><guimenu>マージ</guimenu><guimenuitem>マージセッションを終了</"
+"guimenuitem></menuchoice>を選択します。マージ結果に未保存の変更がある場合、"
+"WinMergeは保存を確認し、各ペインの元の読み取り専用状態とヘッダーを復元しま"
+"す。"
 
 #. type: Content of: <article><section><section><section><para><indexterm><primary>
 #: English/Compare_files.xml:970
 msgid "merge target pane"
-msgstr ""
+msgstr "マージ先ペイン"
 
 #. type: Content of: <article><section><section><section><para><indexterm><secondary>
 #: English/Compare_files.xml:971
 msgid "determining base pane"
-msgstr ""
+msgstr "ベースペインの決定"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:969
@@ -5828,11 +5919,14 @@ msgid ""
 "for automatic merge resolution is determined by either command-line options "
 "or the keyboard focus:"
 msgstr ""
+"<placeholder type=\"indexterm\" id=\"0\"/> 自動マージで解決に使用するベースペ"
+"イン（共通の祖先）は、コマンドラインオプションまたはキーボードフォーカスに"
+"よって決まります。"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:978
 msgid "<emphasis>When using command-line options:</emphasis>"
-msgstr ""
+msgstr "<emphasis>コマンドラインオプションを使用する場合：</emphasis>"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:984
@@ -5840,6 +5934,8 @@ msgid ""
 "<option>Merge to left pane (/al)</option>: left = merge target, middle = "
 "theirs, right = base"
 msgstr ""
+"<option>左ペインにマージ（/al）</option>：左 = マージ先、中央 = 相手側、右 = "
+"ベース"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:991
@@ -5847,6 +5943,8 @@ msgid ""
 "<option>Merge to middle pane (/am)</option>: left = theirs, middle = merge "
 "target, right = mine"
 msgstr ""
+"<option>中央ペインにマージ（/am）</option>：左 = 相手側、中央 = マージ先、右 "
+"= 自分側"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:998
@@ -5854,6 +5952,8 @@ msgid ""
 "<option>Merge to right pane (/ar)</option>: left = base, middle = theirs, "
 "right = merge target"
 msgstr ""
+"<option>右ペインにマージ（/ar）</option>：左 = ベース、中央 = 相手側、右 = "
+"マージ先"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:1005
@@ -5861,6 +5961,8 @@ msgid ""
 "<emphasis>When using UI-based merge operations (Start Merge Session or Auto "
 "Merge):</emphasis> The base pane is determined by the current keyboard focus:"
 msgstr ""
+"<emphasis>UIからマージ操作（マージセッションを開始または自動マージ）を行う場"
+"合：</emphasis> ベースペインは現在のキーボードフォーカスによって決まります。"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:1012
@@ -5868,6 +5970,8 @@ msgid ""
 "<emphasis>Left pane focused</emphasis>: left = mine, middle = theirs, right "
 "= base"
 msgstr ""
+"<emphasis>左ペインにフォーカスがある場合</emphasis>：左 = 自分側、中央 = 相手"
+"側、右 = ベース"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:1019
@@ -5875,6 +5979,8 @@ msgid ""
 "<emphasis>Middle pane focused</emphasis>: left = theirs, middle = base, "
 "right = mine"
 msgstr ""
+"<emphasis>中央ペインにフォーカスがある場合</emphasis>：左 = 相手側、中央 = "
+"ベース、右 = 自分側"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:1026
@@ -5882,6 +5988,8 @@ msgid ""
 "<emphasis>Right pane focused</emphasis>: left = base, middle = theirs, right "
 "= mine"
 msgstr ""
+"<emphasis>右ペインにフォーカスがある場合</emphasis>：左 = ベース、中央 = 相手"
+"側、右 = 自分側"
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
 #: English/Compare_files.xml:1035 English/Compare_files.xml:1172
@@ -7372,12 +7480,12 @@ msgid ""
 "merge functions to resolve the conflicts and save the merged result file."
 msgstr ""
 "WinMerge を使用すると、一部のバージョン管理システムがマージ操作中に生成する競"
-"合ファイルを解決できます。競合ファイルは、マージで自動的に解決できない差異が"
-"発生した場合に作成されます。これは、2 つのファイルの不完全にマージされたコン"
-"テンツを含む 1 つのファイルです。 WinMerge は競合ファイルを個別のファイルに分"
-"割し、それらのファイルをファイル比較ウィンドウで開きます。その後、WinMerge の"
-"比較およびマージ機能を使用して競合を解決し、マージされた結果ファイルを保存で"
-"きます。"
+"合ファイルを解決できます。コンフリクトファイルは、マージで自動的に解決できな"
+"い差異が発生した場合に作成されます。これは、2 つのファイルの不完全にマージさ"
+"れたコンテンツを含む 1 つのファイルです。 WinMerge はコンフリクトファイルを個"
+"別のファイルに分割し、それらのファイルをファイル比較ウィンドウで開きます。そ"
+"の後、WinMerge の比較およびマージ機能を使用してコンフリクトを解決し、マージさ"
+"れた結果ファイルを保存できます。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/Compare_files.xml:2044
@@ -7386,10 +7494,10 @@ msgid ""
 "guimenuitem> </menuchoice>, and use the Open dialog to select the conflict "
 "file in your file system. The conflict file opens in the File Compare window:"
 msgstr ""
-"<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>競合ファイルを開く</"
-"guimenuitem> </menuchoice> をクリックし、開くダイアログを使用してファイル シ"
-"ステム内の競合ファイルを選択します。 [ファイル比較] ウィンドウで競合ファイル"
-"が開きます。"
+"<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>コンフリクトファイルを"
+"開く</guimenuitem> </menuchoice> をクリックし、開くダイアログを使用してファイ"
+"ル システム内のコンフリクトファイルを選択します。 [ファイル比較] ウィンドウで"
+"コンフリクトファイルが開きます。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><itemizedlist><listitem><para>
 #: English/Compare_files.xml:2054
@@ -7426,11 +7534,11 @@ msgid ""
 "It also ensures that you do not forget to resolve the files. If you choose "
 "not to save the file, the original conflict file is not modified."
 msgstr ""
-"<guilabel>Mine File</guilabel> 側は、競合ファイルを開いた後に変更されるように"
-"設定されます (ファイル ペインのヘッダーにアスタリスクが表示されます)。これに"
-"より、変更が必要ない場合は、ファイルをすばやく保存できます。また、ファイルの"
-"解決を忘れることがなくなります。ファイルを保存しないことを選択した場合、元の"
-"競合ファイルは変更されません。"
+"<guilabel>Mine File</guilabel> 側は、コンフリクトファイルを開いた後に変更され"
+"るように設定されます (ファイル ペインのヘッダーにアスタリスクが表示されま"
+"す)。これにより、変更が必要ない場合は、ファイルをすばやく保存できます。また、"
+"ファイルの解決を忘れることがなくなります。ファイルを保存しないことを選択した"
+"場合、元のコンフリクトファイルは変更されません。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/Compare_files.xml:2079
@@ -7439,7 +7547,7 @@ msgid ""
 "topic to resolve the conflicts in the Mine File pane."
 msgstr ""
 "このトピックで前述した通常の比較およびマージ機能をすべて使用して、[Mine "
-"File] ペインの競合を解決します。"
+"File] ペインのコンフリクトを解決します。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/Compare_files.xml:2084
@@ -7453,8 +7561,8 @@ msgid ""
 msgstr ""
 "完了したら、<keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> "
 "をクリックして、<guilabel>Mine File</guilabel> 側を結果ファイルとして保存しま"
-"す。デフォルトでは、新しいバージョンは元の競合ファイルを上書きします。また"
-"は、<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>右に保存</"
+"す。デフォルトでは、新しいバージョンは元のコンフリクトファイルを上書きしま"
+"す。または、<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>右に保存</"
 "guimenuitem> <guimenuitem>名前を付けて保存</guimenuitem> </menuchoice> をク"
 "リックし、別のファイル名を選択することもできます。"
 
@@ -7466,8 +7574,8 @@ msgid ""
 "WinMerge automatically when a merge conflict occurs."
 msgstr ""
 "多くのバージョン管理システムでは、外部マージ ツールを構成できます。そうであれ"
-"ば、マージ競合が発生したときにバージョン管理システムで WinMerge を自動的に起"
-"動できる可能性があります。"
+"ば、マージコンフリクトが発生したときにバージョン管理システムで WinMerge を自"
+"動的に起動できる可能性があります。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:2104
@@ -7479,12 +7587,12 @@ msgid ""
 "linkend=\"Command_line\" />. Single path to the conflict file is also "
 "accepted in command line."
 msgstr ""
-"また、WinMerge コマンド ラインから競合ファイルを開くこともできます。このコマ"
-"ンド ラインでは、<option>Theirs</option>、<option>Mine</option>、およびオプ"
-"ションで <option>Resolved</option> (競合ファイルとは異なる結果ファイルが必要"
-"な場合) の 3 つのファイル名パラメータを受け入れます。詳細については、「<xref "
-"linkend=\"Command_line\" />」を参照してください。競合ファイルへの単一パスもコ"
-"マンド ラインで受け入れられます。"
+"また、WinMerge コマンド ラインからコンフリクトファイルを開くこともできます。"
+"このコマンド ラインでは、<option>Theirs</option>、<option>Mine</option>、およ"
+"びオプションで <option>Resolved</option> (コンフリクトファイルとは異なる結果"
+"ファイルが必要な場合) の 3 つのファイル名パラメータを受け入れます。詳細につい"
+"ては、「<xref linkend=\"Command_line\" />」を参照してください。コンフリクト"
+"ファイルへの単一パスもコマンド ラインで受け入れられます。"
 
 #. type: Content of: <article><title>
 #: English/Compare_images.xml:5
@@ -11915,6 +12023,7 @@ msgid ""
 "Use Merge Result Pane for 3-way merge<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
+"3方向マージにマージ結果ペインを使用<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2595
@@ -11922,6 +12031,8 @@ msgid ""
 "<option>Disabled</option>: When performing a 3-way merge, the merge result "
 "is written to the target pane (left, middle, or right), updating its content."
 msgstr ""
+"<option>無効</option>：3方向マージを実行すると、マージ結果がマージ先ペイン"
+"（左、中央、または右）に書き込まれ、その内容が更新されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2603
@@ -11931,11 +12042,14 @@ msgid ""
 "target pane. The result can be reviewed and edited in the Merge Result Pane "
 "before it is saved to the target file."
 msgstr ""
+"<option>有効</option>（デフォルト）：3方向マージを実行すると、マージ先ペイン"
+"を変更する代わりに、独立したマージ結果ペインにマージ結果が作成されます。結果"
+"をマージ結果ペインで確認・編集してから、マージ先ファイルに保存できます。"
 
 #. type: Content of: <article><section><section><note><title>
 #: English/Configuration.xml:2612
 msgid "Note about merge target pane selection"
-msgstr ""
+msgstr "マージ先ペインの選択についての注意"
 
 #. type: Content of: <article><section><section><note><para>
 #: English/Configuration.xml:2615
@@ -11945,6 +12059,10 @@ msgid ""
 "This setting controls whether the results are written directly to the target "
 "pane or displayed in a separate Merge Result Pane for review."
 msgstr ""
+"マージ先ペインは、現在フォーカスされているペイン（UIからの操作の場合）または"
+"コマンドラインオプション（/al、/am、/ar）によって決まります。この設定では、"
+"マージ結果をマージ先ペインに直接書き込むか、確認用に独立したマージ結果ペイン"
+"に表示するかを指定します。"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2627
@@ -21826,11 +21944,11 @@ msgstr ""
 "があります。 例えば、お使いのバージョン管理システムが、マージ・コンフリクトに"
 "より、リポジトリへのコミットを妨害するかもしれません。 あなたが自分のバージョ"
 "ンで作業中に、他の誰かが、同じファイルの異なるバージョンをチェックインして、 "
-"バージョン管理システムが差異を自動マージできなかった場合、競合が発生します。 "
-"競合が発生した場合、あなたのバージョンをコミットする前に、 競合しているバー"
-"ジョンをマージする必要があるかもしれません。 多くのシステムには、差異とマージ"
-"ツールが統合されています。 しかし、あなたは、代わりにWinMergeを使いたいかもし"
-"れません。"
+"バージョン管理システムが差異を自動マージできなかった場合、コンフリクトが発生"
+"します。 コンフリクトが発生した場合、あなたのバージョンをコミットする前に、 "
+"コンフリクトしているバージョンをマージする必要があるかもしれません。 多くのシ"
+"ステムには、差異とマージツールが統合されています。 しかし、あなたは、代わりに"
+"WinMergeを使いたいかもしれません。"
 
 #. type: Content of: <article><section><para>
 #: English/Intro_diffs.xml:284
@@ -22008,8 +22126,8 @@ msgstr ""
 "どちらか一方のソースファイルの代わりに、別のファイルに書き込むには、 "
 "<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>名前を付けて保存</"
 "guimenuitem> </menuchoice>を使用してください。例えば、ターゲットファイルが、"
-"バージョン管理システムによって作成された、 差異ファイル、または、競合ファイル"
-"などの場合です。"
+"バージョン管理システムによって作成された、 差異ファイル、または、コンフリクト"
+"ファイルなどの場合です。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Intro_diffs.xml:444
@@ -27908,6 +28026,8 @@ msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>1</keycap> </"
 "keycombo>"
 msgstr ""
+"<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>1</keycap> </"
+"keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:330
@@ -27915,6 +28035,7 @@ msgid ""
 "Toggle left pane content for current or selected differences (Merge Result "
 "pane)"
 msgstr ""
+"現在の差異または選択した差異の左ペインの内容を切り替え（マージ結果ペイン）"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:335
@@ -27922,6 +28043,8 @@ msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>2</keycap> </"
 "keycombo>"
 msgstr ""
+"<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>2</keycap> </"
+"keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:342
@@ -27929,6 +28052,7 @@ msgid ""
 "Toggle middle pane content for current or selected differences (Merge Result "
 "pane)"
 msgstr ""
+"現在の差異または選択した差異の中央ペインの内容を切り替え（マージ結果ペイン）"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:347
@@ -27936,6 +28060,8 @@ msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>3</keycap> </"
 "keycombo>"
 msgstr ""
+"<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>3</keycap> </"
+"keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:354
@@ -27943,6 +28069,7 @@ msgid ""
 "Toggle right pane content for current or selected differences (Merge Result "
 "pane)"
 msgstr ""
+"現在の差異または選択した差異の右ペインの内容を切り替え（マージ結果ペイン）"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:359

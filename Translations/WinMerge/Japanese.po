@@ -7933,12 +7933,12 @@ msgstr "マージ結果には、まだ%1個の未解決の差異があります�
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5440
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr "<マージの競合（空白のみ）>"
+msgstr "<マージコンフリクト（空白のみ）>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5441
 msgid "<Merge Conflict>"
-msgstr "<マージの競合>"
+msgstr "<マージコンフリクト>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5442

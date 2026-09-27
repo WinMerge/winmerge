@@ -400,40 +400,37 @@ WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー�
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /al option</secondary>
+        <primary>3方向マージ</primary>
+        <secondary>/al オプションによる自動マージ</secondary>
       </indexterm>
       <term><option>/al</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (merge target)  - middle
-(theirs) - right (base).</para>
+起動時に、ペインを左（マージ先）- 中央（相手側）- 右（ベース）の配置にして自動マージします。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /am option</secondary>
+        <primary>3方向マージ</primary>
+        <secondary>/am オプションによる自動マージ</secondary>
       </indexterm>
       <term><option>/am</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (base)  - middle (merge
-target) - right (mine).</para>
+起動時に、ペインを左（ベース）- 中央（マージ先）- 右（自分側）の配置にして自動マージします。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /ar option</secondary>
+        <primary>3方向マージ</primary>
+        <secondary>/ar オプションによる自動マージ</secondary>
       </indexterm>
       <term><option>/ar</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
-- right (merge target).</para>
+起動時に、ペインを左（ベース）- 中央（相手側）- 右（マージ先）の配置にして自動マージします。</para>
       </listitem>
     </varlistentry>
 
@@ -636,11 +633,7 @@ class="directory">C:\Folder2</filename>がファイル名<filename>File.txt</fil
 
         <para>出力パスはコマンドラインからWinMergeを開始する時まれにしか必要となりません。それはバージョンコントロールツールとともに使用されることになります。結果ファイルとして出力パスを指定する必要があるかもしれません。もし、出力パスを指定した場合、あるペインを変更後保存すると、変更は出力パスのファイルに保存され、元ファイルは前の状態のままになります。</para>
 
-        <para>In a three-way text comparison, specifying an output path also opens the
-Merge Result pane at the bottom of the File Compare window, where the merge
-result can be reviewed and edited before it is saved to the output path. See
-the Merge Result pane topic in <citetitle>Comparing and merging text
-files</citetitle>.</para>
+        <para>3方向のテキスト比較では、出力先を指定すると、ファイル比較ウィンドウの下部にマージ結果ペインも開きます。ここでは、マージ結果を確認・編集してから出力先に保存できます。<citetitle>テキストファイルの比較とマージ</citetitle>の「マージ結果ペイン」を参照してください。</para>
 
         <para>バージョンコントロールシステムは一般的に<glossterm>theirs</glossterm>や<glossterm>mine</glossterm>、<glossterm>merged</glossterm>かまたは<glossterm>resolved</glossterm>のような用語を使用し元と結果ファイルを参照します。もし、WinMergeコマンドラインに出力パスを指定し、バージョンコントロールシステムと連携するならば、この順番でファイルを並べるべきです。</para>
       </listitem>
