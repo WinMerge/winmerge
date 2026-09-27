@@ -41,6 +41,7 @@ class CMergeDoc;
 struct DIFFRANGE;
 class CTreeSitterParser;
 class CMergeDiffNavigation;
+class CMergeConflictNavigation;
 
 /**
 This class is the base class for WinMerge editor panels.
@@ -59,6 +60,7 @@ Maybe in the future...
 class CMergeEditView : public CGhostTextView
 {
 	friend class CMergeDiffNavigation;
+	friend class CMergeConflictNavigation;
 
 protected:
 	CMergeEditView();           // protected constructor used by dynamic creation

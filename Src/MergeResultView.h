@@ -11,6 +11,7 @@
 class CMergeDoc;
 struct DIFFRANGE;
 class CMergeDiffNavigation;
+class CMergeConflictNavigation;
 
 /**
  * @brief Editable view showing the 3-way merge result.
@@ -23,6 +24,7 @@ class CMergeDiffNavigation;
 class CMergeResultView : public CGhostTextView
 {
 	friend class CMergeDiffNavigation;
+	friend class CMergeConflictNavigation;
 
 public:
 	CMergeResultView();

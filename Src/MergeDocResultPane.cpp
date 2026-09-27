@@ -141,7 +141,7 @@ bool CMergeDoc::IsMergeResultPaneVisible() const
 void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
 {
 	// Give the compared buffers a descriptive name for the merge result
-	auto [basePane, theirsPane, minePane] = GetMergePaneMapping(nBasePane);
+	auto [basePane, theirsPane, minePane, destPane] = GetMergePaneMapping(nBasePane);
 	const String labels[] = { _("Base File"), _("Theirs File"), _("Mine File") };
 
 	const int panes[] = { basePane, theirsPane, minePane };
@@ -563,7 +563,7 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 	};
 	int nLines = 4;
 	int nPaneLines = 0;
-	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
 	String text = _T("<<<<<<< ") + label(nMinePane);
 	if (bWhiteSpaceOnly)
 		text += _T(" (whitespace only)");
@@ -822,7 +822,7 @@ bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
  */
 CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
 {
-	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
 	const CRLFSTYLE sBase = m_ptBuf[nBasePane]->GetCRLFMode();
 	const CRLFSTYLE sTheirs = m_ptBuf[nTheirsPane]->GetCRLFMode();
 	const CRLFSTYLE sMine = m_ptBuf[nMinePane]->GetCRLFMode();
@@ -848,7 +848,7 @@ CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
  */
 void CMergeDoc::PickResultEncoding()
 {
-	auto [nBasePane, nTheirsPane, nMinePane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
 	const FileTextEncoding& eBase = m_ptBuf[nBasePane]->getEncoding();
 	const FileTextEncoding& eTheirs = m_ptBuf[nTheirsPane]->getEncoding();
 	const FileTextEncoding& eMine = m_ptBuf[nMinePane]->getEncoding();
