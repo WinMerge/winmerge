@@ -64,6 +64,58 @@ static MergePanes GetMergePaneMapping(int nBasePane)
 	return panes;
 }
 
+static bool IsTrackedResultSegment(const MergeResultSegment& seg)
+{
+	return seg.diffIdx >= 0 || seg.state == ResultSegmentState::Conflict ||
+		seg.state == ResultSegmentState::Unresolved;
+}
+
+/**
+ * @brief Adjust result segment ranges after deleting a contiguous line range.
+ * @return true if a segment's resolution state changed to Edited.
+ */
+static bool AdjustResultSegmentsAfterLineDeletion(
+	std::vector<MergeResultSegment>& segments, int nRemovedBegin, int nCount)
+{
+	const int nRemovedEnd = nRemovedBegin + nCount - 1;
+	bool bStateChanged = false;
+	for (auto& seg : segments)
+	{
+		const int nSegEnd = seg.nStartLine + seg.nLines - 1;
+		if (seg.nLines > 0 && nSegEnd < nRemovedBegin)
+			continue; // fully before the removed range
+		if (seg.nStartLine > nRemovedEnd)
+		{
+			seg.nStartLine -= nCount; // fully after the removed range
+			continue;
+		}
+		if (seg.nLines <= 0)
+		{
+			// Empty segment inside the removed range
+			if (seg.nStartLine >= nRemovedBegin)
+				seg.nStartLine = nRemovedBegin;
+			continue;
+		}
+
+		const int nOverlapBegin = (std::max)(seg.nStartLine, nRemovedBegin);
+		const int nOverlapEnd = (std::min)(nSegEnd, nRemovedEnd);
+		const int nOverlap = nOverlapEnd - nOverlapBegin + 1;
+		if (nOverlap > 0)
+		{
+			seg.nLines -= nOverlap;
+			if (IsTrackedResultSegment(seg) && seg.state != ResultSegmentState::Edited)
+			{
+				seg.state = ResultSegmentState::Edited;
+				bStateChanged = true;
+			}
+		}
+		// A surviving tail now begins at the first line after the deletion point.
+		if (seg.nStartLine >= nRemovedBegin)
+			seg.nStartLine = nRemovedBegin;
+	}
+	return bStateChanged;
+}
+
 std::array<String, 3> GetMergePaneMappingString(int nBasePane)
 {
 	if (nBasePane == 0)
@@ -1334,47 +1386,8 @@ void CMergeDoc::OnResultBufferInsertedLines(int nLine, int nCount)
  */
 void CMergeDoc::OnResultBufferDeletedWholeLines(int nFirstLine, int nCount)
 {
-	const int nRemovedBegin = nFirstLine;
-	const int nRemovedEnd = nFirstLine + nCount - 1;
-	bool bStateChanged = false;
-	for (auto& seg : m_resultSegments)
-	{
-		const int nSegEnd = seg.nStartLine + seg.nLines - 1;
-		if (seg.nLines > 0 && nSegEnd < nRemovedBegin)
-			continue; // fully before the removed range
-		if (seg.nStartLine > nRemovedEnd)
-		{
-			seg.nStartLine -= nCount; // fully after the removed range
-			continue;
-		}
-		if (seg.nLines <= 0)
-		{
-			// empty segment inside the removed range
-			if (seg.nStartLine >= nRemovedBegin)
-				seg.nStartLine = nRemovedBegin;
-			continue;
-		}
-		// overlaps the removed range
-		const int nOverlapBegin = (std::max)(seg.nStartLine, nRemovedBegin);
-		const int nOverlapEnd = (std::min)(nSegEnd, nRemovedEnd);
-		const int nOverlap = nOverlapEnd - nOverlapBegin + 1;
-		if (nOverlap > 0)
-		{
-			seg.nLines -= nOverlap;
-			const bool bTracked = seg.diffIdx >= 0 ||
-				seg.state == ResultSegmentState::Conflict ||
-				seg.state == ResultSegmentState::Unresolved;
-			if (bTracked && seg.state != ResultSegmentState::Edited)
-			{
-				seg.state = ResultSegmentState::Edited;
-				bStateChanged = true;
-			}
-		}
-		// the surviving tail of a segment starting inside the removed
-		// range now begins at the first line after the deletion point
-		if (seg.nStartLine >= nRemovedBegin)
-			seg.nStartLine = nRemovedBegin;
-	}
+	const bool bStateChanged = AdjustResultSegmentsAfterLineDeletion(
+		m_resultSegments, nFirstLine, nCount);
 	if (bStateChanged)
 	{
 		if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
@@ -1391,41 +1404,7 @@ void CMergeDoc::OnResultBufferDeletedLines(int nStartLine, int nCount)
 	// Line indices [nRemovedBegin, nRemovedEnd] no longer exist; the text
 	// of lines nStartLine and nRemovedEnd merged into line nStartLine.
 	const int nRemovedBegin = nStartLine + 1;
-	const int nRemovedEnd = nStartLine + nCount;
-	for (auto& seg : m_resultSegments)
-	{
-		const int nSegEnd = seg.nStartLine + seg.nLines - 1;
-		if (seg.nLines > 0 && nSegEnd < nRemovedBegin)
-			continue; // fully before the removed range
-		if (seg.nStartLine > nRemovedEnd)
-		{
-			seg.nStartLine -= nCount; // fully after the removed range
-			continue;
-		}
-		if (seg.nLines <= 0)
-		{
-			// empty segment inside the removed range
-			if (seg.nStartLine >= nRemovedBegin)
-				seg.nStartLine = nRemovedBegin;
-			continue;
-		}
-		// overlaps the removed range
-		const int nOverlapBegin = (std::max)(seg.nStartLine, nRemovedBegin);
-		const int nOverlapEnd = (std::min)(nSegEnd, nRemovedEnd);
-		const int nOverlap = nOverlapEnd - nOverlapBegin + 1;
-		if (nOverlap > 0)
-		{
-			seg.nLines -= nOverlap;
-			if (seg.diffIdx >= 0 ||
-				seg.state == ResultSegmentState::Conflict ||
-				seg.state == ResultSegmentState::Unresolved)
-				seg.state = ResultSegmentState::Edited;
-		}
-		// a segment that started inside the removed range now starts at
-		// the first surviving line after the merge point
-		if (seg.nStartLine >= nRemovedBegin)
-			seg.nStartLine = nRemovedBegin;
-	}
+	AdjustResultSegmentsAfterLineDeletion(m_resultSegments, nRemovedBegin, nCount);
 	// The segment containing the merge point was edited as well
 	OnResultLineEdited(nStartLine);
 }
