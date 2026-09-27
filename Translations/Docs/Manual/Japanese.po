@@ -1337,17 +1337,13 @@ msgstr "<option>/dl</option>と同様に右側タイトルバーの説明を指�
 #. type: Content of: <article><section><section><indexterm><primary>
 #: English/Command_line.xml:525 English/Command_line.xml:539
 #: English/Command_line.xml:553 English/Compare_files.xml:817
-#, fuzzy
-#| msgid "3-way merge tool"
 msgid "3-way merge"
-msgstr "3方向マージツール"
+msgstr "3方向マージ"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:526
-#, fuzzy
-#| msgid "Auto-merge at startup time"
 msgid "auto-merge with /al option"
-msgstr "起動時に自動マージする"
+msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:528
@@ -1363,10 +1359,8 @@ msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:540
-#, fuzzy
-#| msgid "Auto-merge at startup time"
 msgid "auto-merge with /am option"
-msgstr "起動時に自動マージする"
+msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:542
@@ -1382,10 +1376,8 @@ msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:554
-#, fuzzy
-#| msgid "Auto-merge at startup time"
 msgid "auto-merge with /ar option"
-msgstr "起動時に自動マージする"
+msgstr ""
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:556
@@ -5699,17 +5691,13 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_files.xml:810
-#, fuzzy
-#| msgid "Merge at left pane"
 msgid "Merge Result pane"
-msgstr "左側ペインでマージ"
+msgstr "マージ結果ペイン"
 
 #. type: Content of: <article><section><section><indexterm><primary>
 #: English/Compare_files.xml:813
-#, fuzzy
-#| msgid "Diff pane, File Compare window"
 msgid "Merge Result pane, File Compare window"
-msgstr "Diff ペイン, ファイル比較ウィンドウ"
+msgstr ""
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:821
@@ -5808,14 +5796,6 @@ msgstr ""
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:937
-#, fuzzy
-#| msgid ""
-#| "To protect the files and folders on either side of a compare from "
-#| "changes, enable the <menuchoice> <guimenu>File</guimenu> "
-#| "<guimenuitem>Left Read-only</guimenuitem> </menuchoice>, <menuchoice> "
-#| "<guimenu>File</guimenu> <guimenuitem>Middle Read-only</guimenuitem> </"
-#| "menuchoice> or <menuchoice> <guimenu>File</guimenu> <guimenuitem>Right "
-#| "Read-only</guimenuitem> </menuchoice> check box."
 msgid ""
 "You can also start a merge in any three-way text comparison with "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Start Merge Session </"
@@ -5830,19 +5810,11 @@ msgid ""
 "merge result has unsaved changes, and restores the panes' original read-only "
 "states and headers."
 msgstr ""
-"どちらか片側のファイルとフォルダーを変更から保護するには、 <menuchoice> "
-"<guimenu>ファイル</guimenu> <guimenuitem>左側を読み取り専用</guimenuitem> </"
-"menuchoice>, <menuchoice> <guimenu>File</guimenu> <guimenuitem>中央を読み取り"
-"専用</guimenuitem> </menuchoice>、または、<menuchoice> <guimenu>ファイル</"
-"guimenu> <guimenuitem>右側を読み取り専用</guimenuitem> </menuchoice>のチェッ"
-"クボックスを有効にします。"
 
 #. type: Content of: <article><section><section><section><para><indexterm><primary>
 #: English/Compare_files.xml:970
-#, fuzzy
-#| msgid "Merge at right pane"
 msgid "merge target pane"
-msgstr "右側ペインでマージ"
+msgstr ""
 
 #. type: Content of: <article><section><section><section><para><indexterm><secondary>
 #: English/Compare_files.xml:971
@@ -5859,10 +5831,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:978
-#, fuzzy
-#| msgid "<emphasis>Revision &ManualRevision;</emphasis>"
 msgid "<emphasis>When using command-line options:</emphasis>"
-msgstr "<emphasis>リビジョン &ManualRevision;</emphasis>"
+msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:984
@@ -11931,30 +11901,20 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:2586
-#, fuzzy
-#| msgid "Merge at left pane"
 msgid "Merge Result Pane"
-msgstr "左側ペインでマージ"
+msgstr "マージ結果ペイン"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:2588
-#, fuzzy
-#| msgid "3-way merge tool"
 msgid "3-way merge configuration"
-msgstr "3方向マージツール"
+msgstr "3方向マージ設定"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2585
-#, fuzzy
-#| msgid ""
-#| "Register WinMerge as a 3-way merge tool<placeholder type=\"indexterm\" "
-#| "id=\"0\"/>"
 msgid ""
 "Use Merge Result Pane for 3-way merge<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
-"WinMerge を 3-way マージ ツールとして登録します<placeholder "
-"type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2595
@@ -22553,7 +22513,7 @@ msgstr "アラビア語"
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: English/Locales.xml:126
 msgid "Azerbaijani"
-msgstr ""
+msgstr "アゼルバイジャン語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: English/Locales.xml:130
@@ -22638,7 +22598,7 @@ msgstr "ハンガリー語"
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: English/Locales.xml:194
 msgid "Indonesian"
-msgstr ""
+msgstr "インドネシア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: English/Locales.xml:198
@@ -27944,16 +27904,10 @@ msgstr "左側と中央の間の移動した行に移動します (3 つのペ�
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:323
-#, fuzzy
-#| msgid ""
-#| "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>G</"
-#| "keycap> </keycombo>"
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>1</keycap> </"
 "keycombo>"
 msgstr ""
-"<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>G</keycap> </"
-"keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:330
@@ -27964,16 +27918,10 @@ msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:335
-#, fuzzy
-#| msgid ""
-#| "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F2</"
-#| "keycap> </keycombo>"
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>2</keycap> </"
 "keycombo>"
 msgstr ""
-"<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F2</keycap> "
-"</keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:342
@@ -27984,16 +27932,10 @@ msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:347
-#, fuzzy
-#| msgid ""
-#| "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F3</"
-#| "keycap> </keycombo>"
 msgid ""
 "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>3</keycap> </"
 "keycombo>"
 msgstr ""
-"<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F3</keycap> "
-"</keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:354
@@ -28774,12 +28716,3 @@ msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "<guibutton>OK</guibutton>をクリックして、展開プラグインの選択ダイアログを閉じ"
 "てください。"
-
-#~ msgid "Auto-merges at the left side at startup."
-#~ msgstr "起動時、左側で自動マージします。"
-
-#~ msgid "Auto-merges at the middle side at startup."
-#~ msgstr "起動時、中央で自動マージします。"
-
-#~ msgid "Auto-merges at the right side at startup."
-#~ msgstr "起動時、右側で自動マージします。"
