@@ -40,28 +40,18 @@ struct MergePanes
 	int nBasePane;
 	int nTheirsPane;
 	int nMinePane;
+	int nMergeDestPane;
 };
 
-static MergePanes GetMergePaneMapping(int nBasePane)
+static const MergePanes& GetMergePaneMapping(int nBasePane)
 {
-	MergePanes panes;
-	panes.nBasePane = nBasePane;
-	if (nBasePane == 0)
-	{
-		panes.nTheirsPane = 1;
-		panes.nMinePane = 2;
-	}
-	else if (nBasePane == 1)
-	{
-		panes.nTheirsPane = 0;
-		panes.nMinePane = 2;
-	}
-	else if (nBasePane == 2)
-	{
-		panes.nTheirsPane = 1;
-		panes.nMinePane = 0;
-	}
-	return panes;
+	static constexpr std::array<MergePanes, 3> mappings = {{
+		{ 0, 1, 2, 2 },
+		{ 1, 0, 2, 1 },
+		{ 2, 1, 0, 0 },
+	}};
+	ASSERT(nBasePane >= 0 && nBasePane < static_cast<int>(mappings.size()));
+	return mappings[(nBasePane >= 0 && nBasePane < static_cast<int>(mappings.size())) ? nBasePane : 1];
 }
 
 static bool IsTrackedResultSegment(const MergeResultSegment& seg)
@@ -118,12 +108,12 @@ static bool AdjustResultSegmentsAfterLineDeletion(
 
 std::array<String, 3> GetMergePaneMappingString(int nBasePane)
 {
-	if (nBasePane == 0)
-		return { _("Base File"), _("Theirs File"), _("Mine File") };
-	else if (nBasePane == 1)
-		return { _("Theirs File"), _("Base File"), _("Mine File") };
-	else
-		return { _("Mine File"), _("Theirs File"), _("Base File") };
+	const auto& panes = GetMergePaneMapping(nBasePane);
+	std::array<String, 3> labels;
+	labels[panes.nBasePane] = _("Base File");
+	labels[panes.nTheirsPane] = _("Theirs File");
+	labels[panes.nMinePane] = _("Mine File");
+	return labels;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -370,7 +360,7 @@ void CMergeDoc::BuildMergeResult()
 	int nCurLine = 0;
 	int nApparent = 0;
 	const int nApparentCount = m_ptBuf[m_nMergeBasePane]->GetLineCount();
-	const int nMergeDestPane = 2 - m_nMergeBasePane;
+	const int nMergeDestPane = GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
 
 	auto appendCommon = [&](int nBegin, int nEndExcl)
 	{
@@ -480,7 +470,7 @@ void CMergeDoc::ApplyAutoMergeToResult()
 
 	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
 
-	const int nMergeDestPane = 2 - m_nMergeBasePane;
+	const int nMergeDestPane = GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
 
 	m_ptResultBuf->BeginUndoGroup(false);
 
@@ -998,7 +988,7 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		return;
 	}
 
-	const int nMergeDestPane = 2 - m_nMergeBasePane;
+	const int nMergeDestPane = GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
 	int nNewLines = 0;
 	String text;
 	bool bBackToUnresolved = false;
