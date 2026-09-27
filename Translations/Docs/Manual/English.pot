@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-09-27 10:00+0900\n"
+"POT-Creation-Date: 2026-09-27 12:32+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3577,27 +3577,27 @@ msgstr ""
 
 #. type: Content of: <article><section><section><para>
 #: ./English/Compare_files.xml:831
-msgid "When the pane opens, every difference initially starts unresolved, shown as a compact <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or <computeroutput>&lt;Unresolved Difference&gt;</computeroutput> placeholder line. <guimenuitem> Show Full Conflict Sections </guimenuitem> in the pane's context menu switches to showing conflicts as full sections in the familiar version-control format (<computeroutput>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</computeroutput> / <computeroutput>|||||||</computeroutput> / <computeroutput>=======</computeroutput> / <computeroutput>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</computeroutput>)  containing the three versions of the lines.  If an automatic merge is requested — with the <option>/al</option>, <option>/am</option> or <option>/ar</option> command-line option, or with the <guimenuitem> Auto Merge </guimenuitem> command — non-conflicting differences are resolved automatically according to the selected merge target, and only true conflicts, where both sides changed the same lines relative to the base, remain unresolved."
+msgid "When the pane opens, every difference initially starts unresolved, shown as a compact <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or <computeroutput>&lt;Unresolved Difference&gt;</computeroutput> placeholder line.  If an automatic merge is requested — with the <option>/al</option>, <option>/am</option> or <option>/ar</option> command-line option, or with the <guimenuitem> Auto Merge </guimenuitem> command — non-conflicting differences are resolved automatically according to the selected merge target, and only true conflicts, where both sides changed the same lines relative to the base, remain unresolved."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Compare_files.xml:857
-msgid "To resolve a difference, select it and choose <guimenuitem>Choose Left</guimenuitem>, <guimenuitem>Choose Middle</guimenuitem> or <guimenuitem>Choose Right</guimenuitem> from the <menuchoice> <guimenu>Merge</guimenu> <guisubmenu> Merge Result </guisubmenu> </menuchoice> submenu, the Merge Result pane context menu, or the <guibutton>1</guibutton> / <guibutton>2</guibutton> / <guibutton>3</guibutton> toolbar buttons. Each command toggles that pane's lines for the current difference: selecting several panes combines their lines in the order you select them (useful when both sides added something and the merge should keep both), and deselecting all panes makes the difference unresolved again. You can also type corrections directly into the Merge Result pane, except on unresolved differences: those must be resolved with a Choose command before their text can be edited. Conflicts whose sides differ only in white space are marked as <computeroutput>(Whitespace only)</computeroutput>."
+#: ./English/Compare_files.xml:848
+msgid "To resolve a difference, select it and choose <guimenuitem>Choose Left</guimenuitem>, <guimenuitem>Choose Middle</guimenuitem> or <guimenuitem>Choose Right</guimenuitem> from the <menuchoice> <guimenu>Merge</guimenu> <guisubmenu> Merge Result </guisubmenu> </menuchoice> submenu, the Merge Result pane context menu, or the <guibutton>1</guibutton> / <guibutton>2</guibutton> / <guibutton>3</guibutton> toolbar buttons. Each command toggles that pane's lines for the current difference (or all differences covered by the current selection): selecting several panes combines their lines in the order you select them (useful when both sides added something and the merge should keep both), and deselecting all panes makes the difference unresolved again. You can also type corrections directly into the Merge Result pane, except on unresolved differences: those must be resolved with a Choose command before their text can be edited. Conflicts whose sides differ only in white space are marked as <computeroutput>(Whitespace only)</computeroutput>."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Compare_files.xml:882
+#: ./English/Compare_files.xml:874
 msgid "The pane's margin shows where every line came from: <computeroutput>1</computeroutput>, <computeroutput>2</computeroutput> or <computeroutput>3</computeroutput> for a line taken from the left, middle or right pane (matching the toolbar buttons), <computeroutput>?</computeroutput> for an unresolved conflict section, and <computeroutput>m</computeroutput> for a difference modified by hand.  The pane's status bar shows how many differences are still unresolved.  While the pane is open, <guimenuitem>Next Conflict</guimenuitem> and <guimenuitem>Previous Conflict</guimenuitem> (<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down</keycap> </keycombo> / <keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Up</keycap> </keycombo>)  jump to the next or previous difference that still needs a decision, skipping the ones already resolved."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Compare_files.xml:906
-msgid "Use <guimenuitem>Save Merge Result</guimenuitem> in the same menus to save the result to the output path. WinMerge warns if unresolved differences remain. Unresolved conflicts are saved as standard conflict sections — never as placeholder text — so the file keeps all versions of the disputed lines and can be finished later in any editor or merge tool; unresolved non-conflicting differences are saved with their automatic merge content, keeping the output free of conflict markers that no version control system would produce.  Reopening the output path itself does not resume from these conflict sections: like other three-way merge tools (for example KDiff3 or Meld), WinMerge always rebuilds the merge result from the three compared files, so a version control tool that starts WinMerge again with the <option>/o</option> command-line option (for example <command>git mergetool</command>) gets a fresh merge every time, regardless of what the output file already contains. To pick up an earlier, partially resolved conflict file instead, use <menuchoice> <guimenu>File</guimenu> <guimenuitem> Open Conflict File </guimenuitem> </menuchoice>: WinMerge parses its conflict sections and restores them as unresolved differences, keeping any text that was already resolved. WinMerge also prompts about an unsaved merge result when the window is closed — also when the pane itself has been hidden in the meantime. By default every line is saved with its own original line ending, so the output differs from the sources as little as possible (for example, producing minimal diffs in version control); you can change the output line endings to Windows, Unix, or classic Mac style from the Merge Result pane's status bar. The encoding follows the side that changed it, and the save honors the backup-file option and any file packer plugin the files were opened with."
+#: ./English/Compare_files.xml:898
+msgid "Use <menuchoice><guimenu>File</guimenu><guisubmenu>Save</guisubmenu> <guimenuitem>Save Merge Result</guimenuitem> </menuchoice>, the Save toolbar button, or <keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> to save the result to the output path. WinMerge warns if unresolved differences remain. Unresolved conflicts are saved as standard conflict sections — never as placeholder text — so the file keeps all versions of the disputed lines and can be finished later in any editor or merge tool; unresolved non-conflicting differences are saved with their automatic merge content, keeping the output free of conflict markers that no version control system would produce.  Reopening the output path itself does not resume from these conflict sections: like other three-way merge tools (for example KDiff3 or Meld), WinMerge always rebuilds the merge result from the three compared files, so a version control tool that starts WinMerge again with the <option>/o</option> command-line option (for example <command>git mergetool</command>) gets a fresh merge every time, regardless of what the output file already contains. To pick up an earlier, partially resolved conflict file instead, use <menuchoice> <guimenu>File</guimenu> <guimenuitem> Open Conflict File </guimenuitem> </menuchoice>: WinMerge parses its conflict sections and restores them as unresolved differences, keeping any text that was already resolved. WinMerge also prompts about an unsaved merge result when the window is closed — also when the pane itself has been hidden in the meantime. By default every line is saved with its own original line ending, so the output differs from the sources as little as possible (for example, producing minimal diffs in version control); you can change the output line endings to Windows, Unix, or classic Mac style from the Merge Result pane's status bar. The encoding follows the side that changed it, and the save honors the backup-file option and any file packer plugin the files were opened with."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Compare_files.xml:942
-msgid "You can also start a merge in any three-way text comparison with <menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Start Merge Session </guimenuitem> </menuchoice> (differences start unresolved) or <menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Auto Merge </guimenuitem> </menuchoice> (non-conflicting differences are resolved automatically), or show and hide the pane with <menuchoice> <guimenu>View</guimenu> <guimenuitem> Merge Result Pane </guimenuitem> </menuchoice>. Hiding the pane restores the normal editable three-pane behavior."
+#: ./English/Compare_files.xml:937
+msgid "You can also start a merge in any three-way text comparison with <menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Start Merge Session </guimenuitem> </menuchoice> (differences start unresolved) or <menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Auto Merge </guimenuitem> </menuchoice> (non-conflicting differences are resolved automatically).  While a merge session is active, you can show and hide the pane with <menuchoice> <guimenu>View</guimenu> <guimenuitem> Merge Result Pane </guimenuitem> </menuchoice>.  To end the merge session and restore the normal editable three-pane behavior, choose <menuchoice> <guimenu>Merge</guimenu> <guimenuitem>End Merge Session</guimenuitem> </menuchoice>. WinMerge prompts to save if the merge result has unsaved changes, and restores the panes' original read-only states and headers."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para><indexterm><primary>
@@ -18025,7 +18025,7 @@ msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: ./English/Shortcut_keys.xml:330
-msgid "Toggle left pane content for current difference (Merge Result pane)"
+msgid "Toggle left pane content for current or selected differences (Merge Result pane)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
@@ -18035,7 +18035,7 @@ msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: ./English/Shortcut_keys.xml:342
-msgid "Toggle middle pane content for current difference (Merge Result pane)"
+msgid "Toggle middle pane content for current or selected differences (Merge Result pane)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
@@ -18045,7 +18045,7 @@ msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: ./English/Shortcut_keys.xml:354
-msgid "Toggle right pane content for current difference (Merge Result pane)"
+msgid "Toggle right pane content for current or selected differences (Merge Result pane)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>

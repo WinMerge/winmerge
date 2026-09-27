@@ -746,19 +746,12 @@ Merge Result pane contains the merge result, which you can edit freely.</para>
 When the pane opens, every difference initially starts unresolved, shown as
 a compact <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or
 <computeroutput>&lt;Unresolved Difference&gt;</computeroutput> placeholder
-line. <guimenuitem> Show Full Conflict Sections </guimenuitem> in the pane's
-context menu switches to showing conflicts as full sections in the familiar
-version-control format
-(<computeroutput>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</computeroutput> /
-<computeroutput>|||||||</computeroutput> /
-<computeroutput>=======</computeroutput> /
-<computeroutput>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</computeroutput>)  containing
-the three versions of the lines.  If an automatic merge is requested — with
-the <option>/al</option>, <option>/am</option> or <option>/ar</option>
-command-line option, or with the <guimenuitem> Auto Merge </guimenuitem>
-command — non-conflicting differences are resolved automatically according
-to the selected merge target, and only true conflicts, where both sides
-changed the same lines relative to the base, remain unresolved.</para>
+line.  If an automatic merge is requested — with the <option>/al</option>,
+<option>/am</option> or <option>/ar</option> command-line option, or with
+the <guimenuitem> Auto Merge </guimenuitem> command — non-conflicting
+differences are resolved automatically according to the selected merge
+target, and only true conflicts, where both sides changed the same lines
+relative to the base, remain unresolved.</para>
 
       <para>
 To resolve a difference, select it and choose <guimenuitem>Choose
@@ -768,13 +761,14 @@ Left</guimenuitem>, <guimenuitem>Choose Middle</guimenuitem> or
 </menuchoice> submenu, the Merge Result pane context menu, or the
 <guibutton>1</guibutton> / <guibutton>2</guibutton> /
 <guibutton>3</guibutton> toolbar buttons. Each command toggles that pane's
-lines for the current difference: selecting several panes combines their
-lines in the order you select them (useful when both sides added something
-and the merge should keep both), and deselecting all panes makes the
-difference unresolved again. You can also type corrections directly into the
-Merge Result pane, except on unresolved differences: those must be resolved
-with a Choose command before their text can be edited. Conflicts whose sides
-differ only in white space are marked as <computeroutput>(Whitespace
+lines for the current difference (or all differences covered by the current
+selection): selecting several panes combines their lines in the order you
+select them (useful when both sides added something and the merge should
+keep both), and deselecting all panes makes the difference unresolved
+again. You can also type corrections directly into the Merge Result pane,
+except on unresolved differences: those must be resolved with a Choose
+command before their text can be edited. Conflicts whose sides differ only
+in white space are marked as <computeroutput>(Whitespace
 only)</computeroutput>.</para>
 
       <para>
@@ -793,8 +787,10 @@ the pane is open, <guimenuitem>Next Conflict</guimenuitem> and
 that still needs a decision, skipping the ones already resolved.</para>
 
       <para>
-Use <guimenuitem>Save Merge Result</guimenuitem> in the same menus to save
-the result to the output path. WinMerge warns if unresolved differences
+Use <menuchoice><guimenu>File</guimenu><guisubmenu>Save</guisubmenu>
+<guimenuitem>Save Merge Result</guimenuitem> </menuchoice>, the Save toolbar
+button, or <keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> to
+save the result to the output path. WinMerge warns if unresolved differences
 remain. Unresolved conflicts are saved as standard conflict sections — never
 as placeholder text — so the file keeps all versions of the disputed lines
 and can be finished later in any editor or merge tool; unresolved
@@ -825,10 +821,14 @@ You can also start a merge in any three-way text comparison with
 <menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Start Merge Session
 </guimenuitem> </menuchoice> (differences start unresolved) or <menuchoice>
 <guimenu>Merge</guimenu> <guimenuitem> Auto Merge </guimenuitem>
-</menuchoice> (non-conflicting differences are resolved automatically), or
-show and hide the pane with <menuchoice> <guimenu>View</guimenu>
-<guimenuitem> Merge Result Pane </guimenuitem> </menuchoice>. Hiding the
-pane restores the normal editable three-pane behavior.</para>
+</menuchoice> (non-conflicting differences are resolved automatically).
+While a merge session is active, you can show and hide the pane with
+<menuchoice> <guimenu>View</guimenu> <guimenuitem> Merge Result Pane
+</guimenuitem> </menuchoice>.  To end the merge session and restore the
+normal editable three-pane behavior, choose <menuchoice>
+<guimenu>Merge</guimenu> <guimenuitem>End Merge Session</guimenuitem>
+</menuchoice>. WinMerge prompts to save if the merge result has unsaved
+changes, and restores the panes' original read-only states and headers.</para>
       <section>
         <para>
 <indexterm>
