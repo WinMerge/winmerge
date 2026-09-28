@@ -12020,7 +12020,7 @@ msgstr "3方向マージ設定"
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2585
 msgid ""
-"Use Merge Result Pane for 3-way merge<placeholder type=\"indexterm\" "
+"Use Merge Result Pane for 2/3-way merge<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
 "3方向マージにマージ結果ペインを使用<placeholder type=\"indexterm\" id=\"0\"/>"

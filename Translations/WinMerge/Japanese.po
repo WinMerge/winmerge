@@ -42,7 +42,7 @@ msgid "Choose Left for All Unresolved Conflicts"
 msgstr "すべての未解決の競合に左側を適用"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
-#: Merge.rc:82 Merge.rc:106 Merge.rc:143
+#: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:143
 msgid "Choose Right for All Unresolved Conflicts"
 msgstr "すべての未解決の競合に右側を適用"
 
@@ -97,7 +97,7 @@ msgid "Choose Right\tCtrl+Shift+&3"
 msgstr "右側を選択\tCtrl+Shift+&3"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
-#: Merge.rc:105 Merge.rc:128 Merge.rc:142
+#: Merge.rc:105 Merge.rc:142
 msgid "Choose Middle for All Unresolved Conflicts"
 msgstr "すべての未解決の競合に中央を適用"
 
@@ -4114,8 +4114,8 @@ msgstr "単語区切り文字(&O)"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2755
-msgid "&Use Merge Result Pane for 3-way merge"
-msgstr "3方向マージにマージ結果ペインを使用(&U)"
+msgid "&Use Merge Result Pane for 2/3-way merge"
+msgstr "2/3方向マージにマージ結果ペインを使用(&U)"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2771

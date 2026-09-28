@@ -7450,7 +7450,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:2585
-msgid "Use Merge Result Pane for 3-way merge<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Use Merge Result Pane for 2/3-way merge<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
