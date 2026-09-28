@@ -232,7 +232,7 @@ bool CMergeDoc::EndMergeSession()
 	// Prompt to save if the merge result has unsaved changes
 	if (IsMergeResultUnsaved())
 	{
-		String msg = _("Merge result has unsaved changes.\n\nDo you want to save before closing the merge session?");
+		String msg = _("The merge result has not been saved.\n\nSave the merge result?");
 		int nResult = ShowMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION);
 		if (nResult == IDYES && !SaveMergeResult(false))
 			return false;
@@ -275,14 +275,14 @@ bool CMergeDoc::EndMergeSession()
 		}
 	}
 
+	FlushAndRescan(true);
+
 	return true;
 }
 
 /**
  * @brief Extract the text of pane nPane for apparent lines
  * [nApparentBegin, nApparentEnd], skipping ghost lines.
- * Every extracted line is terminated with an EOL (the line's own EOL,
- * or the result buffer's default EOL if the line has none).
  * @return Text; *pnLines receives the number of extracted lines.
  */
 String CMergeDoc::GetPaneApparentLinesText(int nPane, int nApparentBegin,

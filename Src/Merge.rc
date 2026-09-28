@@ -126,6 +126,7 @@ BEGIN
         MENUITEM "Choose Right\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
         MENUITEM "Choose Left for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_1ST
         MENUITEM "Choose Right for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
+        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
     END
@@ -141,6 +142,7 @@ BEGIN
         MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
         MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD
+        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
     END

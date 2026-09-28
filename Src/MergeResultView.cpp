@@ -550,7 +550,7 @@ void CMergeResultView::GetSelectedDiffs(int& firstDiff, int& lastDiff)
 	for (int i = 0; i < nDiffCount; ++i)
 	{
 		const MergeResultSegment* seg = pDoc->GetResultSegmentByDiff(i);
-		if (!seg || seg->nLines <= 0)
+		if (!seg)
 			continue;
 		const int nSegEnd = seg->nStartLine + ((seg->nLines > 0) ? (seg->nLines - 1) : 0);
 		if (nSegEnd < firstLine)
