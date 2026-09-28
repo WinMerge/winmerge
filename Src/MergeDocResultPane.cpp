@@ -4,8 +4,8 @@
  * @brief Implementation of the kdiff3-style merge result pane
  *        (CMergeDoc part + CMergeResultTextBuffer).
  *
- * The merge result is a 4th text buffer that is not part of the 3-way
- * diff: its content is generated from the three compared buffers and a
+ * The merge result is a separate text buffer that is not part of the
+ * comparison: its content is generated from the compared buffers and a
  * per-difference resolution state (see MergeResultSegment). The result
  * segment table maps result buffer lines back to differences.
  */
@@ -17,6 +17,7 @@
 #include "MergeResultTextBuffer.h"
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
+#include "MainFrm.h"
 #include "FileOrFolderSelect.h"
 #include "FileTransform.h"
 #include "UniFile.h"
@@ -182,11 +183,11 @@ void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
  *
  * Used by the Merge menu's Start Merge Session command (no auto-merge)
  * and by the Auto Merge command (with auto-merge), which switches a
- * plain 3-way comparison to the 4-pane merge view.
+ * comparison to the merge result view.
  */
 bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage)
 {
-	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || m_bResultBuilt)
+	if (m_nBuffers < 2 || m_ptResultBuf == nullptr || m_bResultBuilt)
 		return false;
 
 	DIFFOPTIONS options = {};
@@ -194,11 +195,12 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMess
 	m_mergeSessionDiffOptions = options;
 
 	m_bResultBuilt = false;
-	m_nMergeBasePane = nBasePane;
+	m_nMergeBasePane = m_nBuffers == 2 ? 0 : nBasePane;
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 		pFrame->ShowMergeResultPane();
 
 	BuildMergeResult();
+	CMainFrame::ReloadMenu();
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
@@ -209,14 +211,14 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMess
 	}
 
 	// Update pane headers with merge-related labels
-	UpdateMergePaneHeaders(m_nMergeBasePane);
+	if (m_nBuffers >= 3)
+		UpdateMergePaneHeaders(m_nMergeBasePane);
 
 	m_pMergeResultView->TakeFocus();
 
 	if (bAutoMerge)
 		ApplyAutoMergeToResult();
-	String paneRoles = GetMergePaneRoles();
-	String msg = strutils::format_string1(_("Merge session started.\n\n%1"), paneRoles);
+	const String msg = _("Merge session started.") + (m_nBuffers == 2 ? _T("") : (_T("\n\n") + GetMergePaneRoles()));
 	if (bWithMessage)
 		ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
 	else
@@ -255,6 +257,7 @@ bool CMergeDoc::EndMergeSession()
 
 	// Reset merge session state
 	m_bResultBuilt = false;
+	CMainFrame::ReloadMenu();
 
 	m_mergeSessionDiffOptions.reset();
 
@@ -308,15 +311,16 @@ String CMergeDoc::GetPaneApparentLinesText(int nPane, int nApparentBegin,
 }
 
 /**
- * @brief (Re)generate the merge result buffer from the three compared
- * buffers, auto-resolving all non-conflicting differences.
+ * @brief (Re)generate the merge result buffer from the compared buffers,
+ * auto-resolving all non-conflicting differences.
  *
- * m_nMergeBasePane is treated as the common ancestor (base), matching
- * the semantics of WinMerge's existing 3-way auto-merge.
+ * Three-way comparisons use m_nMergeBasePane as their common ancestor.
+ * Two-way conflict files instead use the left pane only to anchor common
+ * text; every difference is left unresolved for explicit selection.
  */
 void CMergeDoc::BuildMergeResult()
 {
-	if (m_nBuffers < 3 || m_ptResultBuf == nullptr || !m_ptBuf[m_nMergeBasePane]->IsInitialized())
+	if (m_nBuffers < 2 || m_ptResultBuf == nullptr || !m_ptBuf[m_nMergeBasePane]->IsInitialized())
 		return;
 
 	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
@@ -360,7 +364,8 @@ void CMergeDoc::BuildMergeResult()
 	int nCurLine = 0;
 	int nApparent = 0;
 	const int nApparentCount = m_ptBuf[m_nMergeBasePane]->GetLineCount();
-	const int nMergeDestPane = GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
+	const int nMergeDestPane = m_nBuffers == 2 ? 1 :
+		GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
 
 	auto appendCommon = [&](int nBegin, int nEndExcl)
 	{
@@ -390,6 +395,24 @@ void CMergeDoc::BuildMergeResult()
 		MergeResultSegment seg;
 		seg.diffIdx = nDiff;
 		seg.nStartLine = nCurLine;
+		if (m_nBuffers == 2)
+		{
+			// Two-way conflict files have no common ancestor. Keep the two
+			// compared panes intact and leave each differing block for the
+			// user to resolve in the result pane.
+			seg.state = pdi->op == OP_DIFF ?
+				ResultSegmentState::Conflict : ResultSegmentState::Unresolved;
+			seg.bWhiteSpaceOnly = seg.state == ResultSegmentState::Conflict &&
+				IsResultDiffWhiteSpaceOnly(pdi);
+			seg.blockText = GetResultConflictBlockText(nDiff, seg.bWhiteSpaceOnly,
+				&seg.nBlockLines);
+			text += GetResultSegmentDisplayText(seg, &seg.nLines);
+			m_resultDiffToSegment[nDiff] = static_cast<int>(m_resultSegments.size());
+			m_resultSegments.push_back(seg);
+			nCurLine += seg.nLines;
+			nApparent = pdi->dend + 1;
+			continue;
+		}
 		// Without auto-merge every significant difference starts
 		// unresolved; with it only true 3-way conflicts do. A difference
 		// where the sides agree (or only one side changed) is not a
@@ -470,7 +493,8 @@ void CMergeDoc::ApplyAutoMergeToResult()
 
 	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
 
-	const int nMergeDestPane = GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
+	const int nMergeDestPane = m_nBuffers == 2 ? 1 :
+		GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
 
 	m_ptResultBuf->BeginUndoGroup(false);
 
@@ -547,9 +571,9 @@ bool CMergeDoc::IsMergeResultUnsaved() const
  *   =======
  *   >>>>>>> right
  *
- * All three versions are preserved in the output, so a merge saved with
- * unresolved differences can be finished later in any editor, and other
- * tools recognize the file as conflicted.
+ * For three-way merges all versions are preserved; two-way merges use the
+ * ordinary two-sided conflict format. Saved unresolved sections can be
+ * finished later in an editor or recognized by other merge tools.
  */
 String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 	int* pnLines) const
@@ -561,8 +585,28 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 		return !m_strDesc[nPane].empty() ?
 			m_strDesc[nPane] : paths::FindFileName(m_filePaths[nPane]);
 	};
-	int nLines = 4;
+	int nLines = m_nBuffers == 2 ? 3 : 4;
 	int nPaneLines = 0;
+	if (m_nBuffers == 2)
+	{
+		String text = _T("<<<<<<< ") + label(1);
+		if (bWhiteSpaceOnly)
+			text += _T(" (whitespace only)");
+		text += pszEol;
+		text += GetPaneApparentLinesText(1, pdi->dbegin, pdi->dend, &nPaneLines);
+		if (text.back() != _T('\n') && text.back() != _T('\r'))
+			text += pszEol;
+		nLines += nPaneLines;
+		text += _T("=======") + String(pszEol);
+		text += GetPaneApparentLinesText(0, pdi->dbegin, pdi->dend, &nPaneLines);
+		if (text.back() != _T('\n') && text.back() != _T('\r'))
+			text += pszEol;
+		nLines += nPaneLines;
+		text += _T(">>>>>>> ") + label(0) + pszEol;
+		if (pnLines != nullptr)
+			*pnLines = nLines;
+		return text;
+	}
 	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
 	String text = _T("<<<<<<< ") + label(nMinePane);
 	if (bWhiteSpaceOnly)
@@ -635,8 +679,8 @@ int CMergeDoc::GetResultUnresolvedCount() const
 }
 
 /**
- * @brief Counts of pending differences: all, true 3-way conflicts, and
- * conflicts where the sides differ only in white space.
+ * @brief Counts of pending differences, conflicts, and whitespace-only
+ * conflicts.
  */
 void CMergeDoc::GetResultUnresolvedCounts(int& nUnresolved, int& nConflicts,
 	int& nWhiteSpaceOnly) const
@@ -795,7 +839,7 @@ void CMergeDoc::UpdateMergeResultPaneCaption()
 }
 
 /**
- * @brief Conflict where left, middle and right differ only in white space?
+ * @brief Do the compared versions of this difference only differ in white space?
  */
 bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
 {
@@ -811,17 +855,28 @@ bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
 		}
 		return stripped;
 	};
+	if (m_nBuffers == 2)
+		return strippedText(0) == strippedText(1);
 	const MergePanes panes = GetMergePaneMapping(m_nMergeBasePane);
 	const String sBase = strippedText(m_nMergeBasePane);
 	return strippedText(panes.nTheirsPane) == sBase && sBase == strippedText(panes.nMinePane);
 }
 
 /**
- * @brief Line-ending style for the result, kdiff3 style: prefer the style
- * of the side that changed it (base = m_nMergeBasePane).
+ * @brief Line-ending style for the result. For three-way merges, prefer
+ * the style of the side that changed it (base = m_nMergeBasePane).
  */
 CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
 {
+	if (m_nBuffers == 2)
+	{
+		CRLFSTYLE style = m_ptBuf[1]->GetCRLFMode();
+		if (style == CRLFSTYLE::AUTOMATIC || style == CRLFSTYLE::MIXED)
+			style = m_ptBuf[0]->GetCRLFMode();
+		if (style == CRLFSTYLE::AUTOMATIC || style == CRLFSTYLE::MIXED)
+			style = CRLFSTYLE::DOS;
+		return style;
+	}
 	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
 	const CRLFSTYLE sBase = m_ptBuf[nBasePane]->GetCRLFMode();
 	const CRLFSTYLE sTheirs = m_ptBuf[nTheirsPane]->GetCRLFMode();
@@ -843,11 +898,16 @@ CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
 }
 
 /**
- * @brief Encoding for the result, kdiff3 style: prefer the encoding of
- * the side that changed it (base = m_nMergeBasePane).
+ * @brief Encoding for the result. For three-way merges, prefer the
+ * encoding of the side that changed it (base = m_nMergeBasePane).
  */
 void CMergeDoc::PickResultEncoding()
 {
+	if (m_nBuffers == 2)
+	{
+		m_ptResultBuf->setEncoding(m_ptBuf[1]->getEncoding());
+		return;
+	}
 	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
 	const FileTextEncoding& eBase = m_ptBuf[nBasePane]->getEncoding();
 	const FileTextEncoding& eTheirs = m_ptBuf[nTheirsPane]->getEncoding();
@@ -988,7 +1048,8 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		return;
 	}
 
-	const int nMergeDestPane = GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
+	const int nMergeDestPane = m_nBuffers == 2 ? 1 :
+		GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
 	int nNewLines = 0;
 	String text;
 	bool bBackToUnresolved = false;
@@ -1156,8 +1217,13 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	String strPath = m_strSaveAsPath;
 	if (bSaveAs || strPath.empty())
 	{
-		auto panes = GetMergePaneMapping(m_nMergeBasePane);
-		String sDefault = !m_strSaveAsPath.empty() ? m_strSaveAsPath : m_filePaths.GetPath(panes.nMinePane);
+		String sDefault = m_strSaveAsPath;
+		if (sDefault.empty())
+		{
+			const int nDefaultPane = m_nBuffers == 2 ? 1 :
+				GetMergePaneMapping(m_nMergeBasePane).nMinePane;
+			sDefault = m_filePaths.GetPath(nDefaultPane);
+		}
 		HWND hwndParent = (m_pMergeResultView != nullptr) ? m_pMergeResultView->GetSafeHwnd() : nullptr;
 		String strSelected;
 		if (!SelectFile(hwndParent, strSelected, false, sDefault.c_str(),
@@ -1404,7 +1470,12 @@ void CMergeDoc::OnResultBufferDeletedLines(int nStartLine, int nCount)
 
 void CMergeDoc::OnMergeChooseSource(UINT nID)
 {
-	const int srcPane = nID - ID_MERGE_CHOOSE_LEFT;
+	const int srcPane = m_nBuffers == 2 ?
+		(nID == ID_MERGE_RESULT_CHOOSE_1ST ? 0 :
+		 nID == ID_MERGE_RESULT_CHOOSE_2ND ? 1 : -1) :
+		nID - ID_MERGE_RESULT_CHOOSE_1ST;
+	if (srcPane < 0 || srcPane >= m_nBuffers)
+		return;
 	int firstDiff = -1, lastDiff = -1;
 	m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
 	if (firstDiff < 0 || lastDiff < 0)
@@ -1420,7 +1491,10 @@ void CMergeDoc::OnMergeChooseSource(UINT nID)
 
 void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 {
-	if (!m_bResultBuilt)
+	const bool bValidSource = m_nBuffers != 2 ||
+		pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_1ST ||
+		pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_2ND;
+	if (!m_bResultBuilt || !bValidSource)
 	{
 		pCmdUI->Enable(FALSE);
 		pCmdUI->SetCheck(FALSE);
@@ -1444,7 +1518,16 @@ void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 	{
 		const int nDiff = firstDiff;
 		const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
-		const int srcPane = pCmdUI->m_nID - ID_MERGE_CHOOSE_LEFT;
+		const int srcPane = m_nBuffers == 2 ?
+			(pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_1ST ? 0 :
+			 pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_2ND ? 1 : -1) :
+			pCmdUI->m_nID - ID_MERGE_RESULT_CHOOSE_1ST;
+		if (srcPane < 0 || srcPane >= m_nBuffers)
+		{
+			pCmdUI->Enable(FALSE);
+			pCmdUI->SetCheck(FALSE);
+			return;
+		}
 		const bool bChecked = pSegment != nullptr &&
 			(pSegment->state == ResultSegmentState::Auto ||
 			 pSegment->state == ResultSegmentState::Chosen) &&
@@ -1460,12 +1543,20 @@ void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 
 void CMergeDoc::OnMergeChooseAllConflicts(UINT nID)
 {
-	ResultChooseAllConflicts(nID - ID_MERGE_CHOOSE_ALL_LEFT);
+	const int srcPane = m_nBuffers == 2 ?
+		(nID == ID_MERGE_RESULT_CHOOSE_ALL_1ST ? 0 :
+		 nID == ID_MERGE_RESULT_CHOOSE_ALL_2ND ? 1 : -1) :
+		nID - ID_MERGE_RESULT_CHOOSE_ALL_1ST;
+	if (srcPane >= 0 && srcPane < m_nBuffers)
+		ResultChooseAllConflicts(srcPane);
 }
 
 void CMergeDoc::OnUpdateMergeChooseAllConflicts(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_bResultBuilt && GetResultUnresolvedCount() > 0);
+	const bool bValidSource = m_nBuffers != 2 ||
+		pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_ALL_1ST ||
+		pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_ALL_2ND;
+	pCmdUI->Enable(bValidSource && m_bResultBuilt && GetResultUnresolvedCount() > 0);
 }
 
 void CMergeDoc::OnMergeResultSave()
@@ -1486,6 +1577,8 @@ void CMergeDoc::OnUpdateMergeResultSave(CCmdUI* pCmdUI)
 
 String CMergeDoc::GetMergePaneRoles() const
 {
+	if (m_nBuffers == 2)
+		return _T("");
 	std::array<String, 3> str = GetMergePaneMappingString(m_nMergeBasePane);
 	return strutils::format_string3(_("Pane roles: Left=%1, Middle=%2, Right=%3"), str[0], str[1], str[2]);
 }

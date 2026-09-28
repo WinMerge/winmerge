@@ -72,24 +72,14 @@ END
 // Menu
 //
 
-IDR_POPUP_MERGERESULTVIEW MENU
+IDR_POPUP_MERGERESULTVIEW_2WAY MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
-        MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
-        MENUITEM "Ne&xt Unresolved Difference\tAlt+Shift+Down", ID_NEXTCONFLICT
-        MENUITEM "Pre&vious Unresolved Difference\tAlt+Shift+Up", ID_PREVCONFLICT
-        MENUITEM SEPARATOR
-        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_CHOOSE_LEFT
-        MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_CHOOSE_MIDDLE
-        MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_CHOOSE_RIGHT
-        POPUP "Choose for All Unresolved Conflicts"
-        BEGIN
-            MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
-            MENUITEM "Middle",                      ID_MERGE_CHOOSE_ALL_MIDDLE
-            MENUITEM "Right",                       ID_MERGE_CHOOSE_ALL_RIGHT
-        END
+        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Right\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
@@ -99,6 +89,60 @@ BEGIN
         MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
+    END
+END
+
+IDR_POPUP_MERGERESULTVIEW_3WAY MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_RESULT_CHOOSE_3RD
+        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
+        MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD
+        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
+    END
+END
+
+IDR_POPUP_MERGERESULT_2WAY MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Choose Left\tCtrl+Shift+&1", ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Right\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
+        MENUITEM SEPARATOR
+        MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
+    END
+END
+
+IDR_POPUP_MERGERESULT_3WAY MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_RESULT_CHOOSE_3RD
+        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
+        MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD
+        MENUITEM SEPARATOR
+        MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
     END
 END
 
@@ -904,20 +948,7 @@ BEGIN
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Start Merge Sess&ion",        ID_MERGE_START_SESSION
-        MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
-        POPUP "Merge Resul&t"
-        BEGIN
-            MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_CHOOSE_LEFT
-            MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_CHOOSE_MIDDLE
-            MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_CHOOSE_RIGHT
-            POPUP "Choose for All Unresolved Conflicts"
-            BEGIN
-                MENUITEM "Left",                        ID_MERGE_CHOOSE_ALL_LEFT
-                MENUITEM "Middle",                      ID_MERGE_CHOOSE_ALL_MIDDLE
-                MENUITEM "Right",                       ID_MERGE_CHOOSE_ALL_RIGHT
-            END
-        END
         MENUITEM SEPARATOR
         MENUITEM "Add &Synchronization Point\tAlt+S", ID_ADD_SYNCPOINT
         MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
@@ -2153,9 +2184,9 @@ BEGIN
     "2",            ID_PREVDIFFLR,          VIRTKEY, SHIFT, ALT, NOINVERT
     "3",            ID_NEXTDIFFMR,          VIRTKEY, ALT, NOINVERT
     "3",            ID_PREVDIFFMR,          VIRTKEY, SHIFT, ALT, NOINVERT
-    "1",            ID_MERGE_CHOOSE_LEFT,   VIRTKEY, SHIFT, CONTROL, NOINVERT
-    "2",            ID_MERGE_CHOOSE_MIDDLE, VIRTKEY, SHIFT, CONTROL, NOINVERT
-    "3",            ID_MERGE_CHOOSE_RIGHT,  VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "1",            ID_MERGE_RESULT_CHOOSE_1ST, VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "2",            ID_MERGE_RESULT_CHOOSE_2ND, VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "3",            ID_MERGE_RESULT_CHOOSE_3RD, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "7",            ID_NEXTDIFFLO,          VIRTKEY, ALT, NOINVERT
     "7",            ID_PREVDIFFLO,          VIRTKEY, SHIFT, ALT, NOINVERT
     "8",            ID_NEXTDIFFMO,          VIRTKEY, ALT, NOINVERT
@@ -5316,7 +5347,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_AUTO_MERGE          "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-    IDS_MERGE_SESSION_STARTED "Merge session started.\n\n%1"
+    IDS_MERGE_SESSION_STARTED "Merge session started."
     IDS_PANE_ROLES          "Pane roles: Left=%1, Middle=%2, Right=%3"
     IDS_CODEPAGE_MERGED     "Codepage change merged."
     IDS_CODEPAGE_CONFLICT   "Codepage changes are conflicting."
@@ -5564,6 +5595,11 @@ BEGIN
     IDS_CLOSE_RIGHT_TABS    "Close R&ight Tabs"
     IDS_CLOSE_OTHER_TABS    "Close &Other Tabs"
     IDS_TABBAR_AUTO_MAXWIDTH "Enable &Auto Max Width"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MERGERESULT_MENU    "Merge &Result"
 END
 
 STRINGTABLE

@@ -134,9 +134,9 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	});
 	m_pMergeDoc->SetLocationView(pLocationView);
 
-	// kdiff3-style merge result pane (3-way compare only): a dockable
+	// kdiff3-style merge result pane: a dockable
 	// bar at the bottom with a full-width editable result view
-	if (m_pMergeDoc->m_nBuffers == 3)
+	if (m_pMergeDoc->m_nBuffers >= 2)
 	{
 		sCaption = _("Merge Result Pane");
 		if (!m_wndResultBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_MERGE_RESULT_BAR, pContext, m_pMergeDoc))
@@ -247,7 +247,7 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndDetailBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
 	DockControlBar(&m_wndDetailBar, AFX_IDW_DOCKBAR_BOTTOM, &rc);
 
-	// Merge result pane bar (3-way compare only), docked at the bottom
+	// Merge result pane bar, docked at the bottom
 	if (m_wndResultBar.m_hWnd != nullptr)
 	{
 		m_wndResultBar.SetBarStyle(m_wndResultBar.GetBarStyle() |
@@ -276,9 +276,9 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	{
 		m_wndResultBar.LoadState(_T("Settings"));
 		// The merge result pane is opt-in per document: it is shown only
-		// when the compare was opened with a merge output path, or when
-		// the user turns it on in the View menu. Plain 3-way compares
-		// always start without it, whatever the saved docking state says.
+		// when the compare was opened with a merge output path or conflict
+		// file, or when the user turns it on in the View menu. Compare
+		// sessions otherwise start without it, regardless of saved state.
 		ShowControlBar(&m_wndResultBar, FALSE, FALSE);
 	}
 
@@ -316,7 +316,7 @@ void CMergeEditFrame::ShowMergeResultPane(bool bVisible)
 }
 
 /**
- * @brief Enable the Merge Result Pane menu item only for 3-way compares.
+ * @brief Enable the Merge Result Pane menu item when a merge session is active.
  */
 void CMergeEditFrame::OnUpdateViewMergeResultBar(CCmdUI* pCmdUI)
 {
@@ -570,7 +570,7 @@ void CMergeEditFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pD
 
 	CMergeDoc *pDoc = GetMergeDoc();
 	if (bActivate && pDoc != nullptr)
-		this->GetParentFrame()->PostMessage(WM_USER+1);
+		this->GetParentFrame()->PostMessage(WM_USER+1, 1);
 	return;
 }
 

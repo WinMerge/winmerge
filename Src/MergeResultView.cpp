@@ -497,7 +497,7 @@ void CMergeResultView::OnContextMenu(CWnd* pWnd, CPoint point)
 	}
 
 	BCMenu menu;
-	VERIFY(menu.LoadMenu(IDR_POPUP_MERGERESULTVIEW));
+	VERIFY(menu.LoadMenu(GetDocument()->GetFileCount() < 3 ? IDR_POPUP_MERGERESULTVIEW_2WAY : IDR_POPUP_MERGERESULTVIEW_3WAY));
 	I18n::TranslateMenu(menu.m_hMenu);
 	BCMenu* pSub = static_cast<BCMenu*>(menu.GetSubMenu(0));
 	if (pSub != nullptr)

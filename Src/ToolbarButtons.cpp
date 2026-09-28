@@ -19,7 +19,8 @@ static constexpr UINT g_toolbarImageOrder[] =
 	ID_AUTO_MERGE,
 	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE,
 	ID_OPTIONS, ID_REFRESH,
-	ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_MIDDLE, ID_MERGE_CHOOSE_RIGHT
+	ID_MERGE_RESULT_CHOOSE_1ST, ID_MERGE_RESULT_CHOOSE_2ND,
+	ID_MERGE_RESULT_CHOOSE_3RD
 };
 
 static constexpr int TOOLBAR_IMAGE_COUNT = static_cast<int>(std::size(g_toolbarImageOrder));
@@ -47,6 +48,18 @@ static constexpr UINT g_toolbarFileCmp2[] =
 	ID_OPTIONS, 0, ID_REFRESH
 };
 
+static constexpr UINT g_toolbarFileCmp2WithMergeResultPane[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_SELECTLINEDIFF, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
+	ID_MERGE_RESULT_CHOOSE_1ST, ID_MERGE_RESULT_CHOOSE_2ND, 0,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
+	ID_OPTIONS
+};
+
 static constexpr UINT g_toolbarFileCmp2WithDirDoc[] =
 {
 	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
@@ -58,6 +71,19 @@ static constexpr UINT g_toolbarFileCmp2WithDirDoc[] =
 	ID_ALL_RIGHT, ID_ALL_LEFT, 0,
 	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
 	ID_OPTIONS, 0, ID_REFRESH
+};
+
+static constexpr UINT g_toolbarFileCmp2WithDirDocAndMergeResultPane[] =
+{
+	ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE, 0,
+	ID_EDIT_UNDO, ID_EDIT_REDO, 0,
+	ID_SELECTLINEDIFF, 0,
+	ID_NEXTDIFF, ID_PREVDIFF, 0,
+	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
+	ID_MERGE_RESULT_CHOOSE_1ST, ID_MERGE_RESULT_CHOOSE_2ND, 0,
+	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
+	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
+	ID_OPTIONS
 };
 
 static constexpr UINT g_toolbarFileCmp3[] =
@@ -96,7 +122,8 @@ static constexpr UINT g_toolbarFileCmp4[] =
 	ID_SELECTLINEDIFF, 0,
 	ID_NEXTDIFF, ID_PREVDIFF, 0,
 	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
-	ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_MIDDLE, ID_MERGE_CHOOSE_RIGHT, 0,
+	ID_MERGE_RESULT_CHOOSE_1ST, ID_MERGE_RESULT_CHOOSE_2ND,
+	ID_MERGE_RESULT_CHOOSE_3RD, 0,
 	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
 	ID_AUTO_MERGE, 0,
 	ID_OPTIONS
@@ -109,7 +136,8 @@ static constexpr UINT g_toolbarFileCmp4WithDirDoc[] =
 	ID_SELECTLINEDIFF, 0,
 	ID_NEXTDIFF, ID_PREVDIFF, 0,
 	ID_NEXTCONFLICT, ID_PREVCONFLICT, 0,
-	ID_MERGE_CHOOSE_LEFT, ID_MERGE_CHOOSE_MIDDLE, ID_MERGE_CHOOSE_RIGHT, 0,
+	ID_MERGE_RESULT_CHOOSE_1ST, ID_MERGE_RESULT_CHOOSE_2ND,
+	ID_MERGE_RESULT_CHOOSE_3RD, 0,
 	ID_FIRSTDIFF, ID_CURDIFF, ID_LASTDIFF, 0,
 	ID_AUTO_MERGE, 0,
 	ID_FIRSTFILE, ID_PREVFILE, ID_NEXTFILE, ID_LASTFILE, 0,
@@ -214,8 +242,20 @@ std::vector<UINT> GetToolbarButtons(FRAMETYPE frameType, int nFiles, bool hasDir
 	{
 		if (nFiles < 3)
 		{
-			toolbarIcons = hasDirDoc ? g_toolbarFileCmp2WithDirDoc : g_toolbarFileCmp2;
-			toolbarIconCount = hasDirDoc ? _countof(g_toolbarFileCmp2WithDirDoc) : _countof(g_toolbarFileCmp2);
+			if (hasMergeResultPane)
+			{
+				toolbarIcons = hasDirDoc ? g_toolbarFileCmp2WithDirDocAndMergeResultPane :
+					g_toolbarFileCmp2WithMergeResultPane;
+				toolbarIconCount = hasDirDoc ?
+					_countof(g_toolbarFileCmp2WithDirDocAndMergeResultPane) :
+					_countof(g_toolbarFileCmp2WithMergeResultPane);
+			}
+			else
+			{
+				toolbarIcons = hasDirDoc ? g_toolbarFileCmp2WithDirDoc : g_toolbarFileCmp2;
+				toolbarIconCount = hasDirDoc ? _countof(g_toolbarFileCmp2WithDirDoc) :
+					_countof(g_toolbarFileCmp2);
+			}
 		}
 		else if (!hasMergeResultPane)
 		{

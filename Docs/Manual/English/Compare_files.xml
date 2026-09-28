@@ -828,6 +828,21 @@
       </para>
 
       <para>
+        When you open a two-way conflict file with
+        <menuchoice><guimenu>File</guimenu><guimenuitem>Open Conflict File</guimenuitem></menuchoice>,
+        WinMerge keeps the two source panes side by side and opens the Merge
+        Result pane when it is enabled. Each differing block starts unresolved
+        because a two-way conflict file has no common base. Choose the left or
+        right source to resolve a block. In this mode the toolbar buttons are
+        numbered <guibutton>1</guibutton> and <guibutton>2</guibutton>, and
+        <keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo>
+        and
+        <keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></keycombo>
+        choose the left and right source, respectively. Unresolved blocks are
+        saved using the standard two-sided conflict markers.
+      </para>
+
+      <para>
         When the pane opens, every difference initially starts
         unresolved, shown as a compact
         <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or
@@ -845,17 +860,12 @@
       </para>
 
       <para>
-        To resolve a difference, select it and choose
-        <guimenuitem>Choose Left</guimenuitem>,
-        <guimenuitem>Choose Middle</guimenuitem> or
-        <guimenuitem>Choose Right</guimenuitem> from the
-        <menuchoice>
-          <guimenu>Merge</guimenu>
-          <guisubmenu>
-            Merge
-            Result
-          </guisubmenu>
-        </menuchoice> submenu, the Merge Result pane context
+        To resolve a difference, select it and choose the desired source from
+        the top-level <guimenu>Merge Result</guimenu> menu. Two-way merge
+        sessions offer <guimenuitem>Choose Left</guimenuitem> and
+        <guimenuitem>Choose Right</guimenuitem>; three-way sessions also offer
+        <guimenuitem>Choose Middle</guimenuitem>. You can also use the Merge
+        Result pane context
         menu, or the <guibutton>1</guibutton> / <guibutton>2</guibutton> /
         <guibutton>3</guibutton> toolbar buttons. Each command toggles that
         pane's lines for the current difference (or all differences covered

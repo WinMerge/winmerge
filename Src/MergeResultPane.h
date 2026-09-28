@@ -20,7 +20,7 @@ enum class ResultSegmentState
 	Auto,       /**< Difference resolved automatically (non-conflicting change) */
 	Chosen,     /**< Difference resolved by an explicit Choose Left/Middle/Right */
 	Unresolved, /**< Difference not resolved yet, but the sides do not conflict */
-	Conflict,   /**< Unresolved 3-way conflict: all three sides differ */
+	Conflict,   /**< Unresolved conflict between compared sides */
 	Edited,     /**< Segment has been edited by hand in the result pane */
 };
 
@@ -36,7 +36,8 @@ struct MergeResultSegment
 	int diffIdx = -1; /**< Index in diff list, or -1 for common text */
 	ResultSegmentState state = ResultSegmentState::Common;
 	/**
-	 * Source panes (0/1/2) of the content for Auto/Chosen, in order.
+	 * Source panes (0/1/2) of the content for Auto/Chosen, in order;
+	 * two-way sessions use panes 0 and 1.
 	 * Like KDiff3, several sources may be selected for one difference
 	 * (their blocks are concatenated); empty for unresolved conflicts.
 	 */

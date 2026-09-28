@@ -613,6 +613,9 @@ linkend="Compare_files_merge" /> で説明します。 <xref linkend="Quick_star
 3つのテキストファイルを比較してマージ出力先を指定すると（たとえば、バージョン管理ツールが<option>/o</option>コマンドラインオプションを指定してWinMergeを起動した場合）、ファイル比較ウィンドウの下部にマージ結果ペインが開きます。これはKDiff3のマージ出力ウィンドウと同様に動作します。3つのファイルペインには比較対象のファイルが読み取り専用で表示され、マージ結果ペインにはマージ結果が表示され、自由に編集できます。</para>
 
       <para>
+2-wayのコンフリクトファイルを<menuchoice><guimenu>ファイル</guimenu><guimenuitem>コンフリクトファイルを開く</guimenuitem></menuchoice>で開くと、左右2つのソースペインを維持したまま、マージ結果ペインが有効な場合に結果ペインが開きます。2-wayのコンフリクトファイルには共通のベースがないため、各差異は未解決の状態で開始します。差異ごとに左または右のソースを選択して解決します。このモードでは、ツールバーボタンは<guibutton>1</guibutton>と<guibutton>2</guibutton>になり、<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo>と<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></keycombo>でそれぞれ左と右のソースを選択します。未解決の差異は、標準的な2-wayコンフリクトマーカーを使って保存されます。</para>
+
+      <para>
 ペインを開くと、すべての差異は最初は未解決の状態になり、簡略化された<computeroutput>&lt;マージコンフリクト&gt;</computeroutput>または<computeroutput>&lt;未解決の差異&gt;</computeroutput>というプレースホルダー行で表示されます。<option>/al</option>、<option>/am</option>、<option>/ar</option>コマンドラインオプション、または<guimenuitem>自動マージ</guimenuitem>コマンドで自動マージを実行すると、コンフリクトしていない差異は選択したマージ先に従って自動的に解決され、ベースに対して両側で同じ行が変更された真のコンフリクトだけが未解決のまま残ります。</para>
 
       <para>

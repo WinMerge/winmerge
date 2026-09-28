@@ -638,6 +638,23 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		return nullptr;
 	}
 
+	// The Merge Result menu is present only while the active text comparison
+	// has a merge session. Keep the source menu alive because its submenu is
+	// attached to the shared File Compare menu.
+	if (view == MENU_MERGEVIEW)
+	{
+		const CMergeDoc* pMergeDoc = dynamic_cast<const CMergeDoc*>(GetActiveIMergeDoc());
+		if (pMergeDoc != nullptr && pMergeDoc->GetMergeResultBuildState())
+		{
+			const UINT mergeResultMenuId = pMergeDoc->GetFileCount() == 2 ?
+				IDR_POPUP_MERGERESULT_2WAY : IDR_POPUP_MERGERESULT_3WAY;
+			m_pMergeResultMenu.reset(new BCMenu);
+			m_pMergeResultMenu->LoadMenu(MAKEINTRESOURCE(mergeResultMenuId));
+			m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pMergeResultMenu->GetSubMenu(0)->m_hMenu, 
+				const_cast<tchar_t*>(I18n::LoadString(IDS_MERGERESULT_MENU).c_str()));
+		}
+	}
+
 	if (view == MENU_IMGMERGEVIEW)
 	{
 		m_pImageMenu.reset(new BCMenu);
@@ -1157,12 +1174,11 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	{
 		const String& strSaveAsPath = pOpenParams->m_strSaveAsPath;
 		pMergeDoc->SetSaveAsPath(strSaveAsPath);
-		if (nFiles == 3 && !bShowMergeResultPane)
+		if (!bShowMergeResultPane)
 			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 	}
-
 	if (bShowMergeResultPane)
-		pMergeDoc->StartMergeSession(nMergeBasePane, bAutoMerge, false);
+		pMergeDoc->StartMergeSession(nFiles == 2 ? 0 : nMergeBasePane, bAutoMerge, false);
 	else if (bAutoMerge)
 		pMergeDoc->DoAutoMerge(2 - nMergeBasePane);
 
@@ -2854,6 +2870,10 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
+	// The active comparison may have changed, so select its 2-way/3-way
+	// Merge Result menu resource before the next menu interaction.
+	if (wParam == 1)
+		ReloadMenu();
 	IMergeDoc* pMergeDoc = GetActiveIMergeDoc();
 	if (pMergeDoc)
 		pMergeDoc->CheckFileChanged();
@@ -3536,16 +3556,18 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 
 	if (success)
 	{
-		// Open two parsed files to WinMerge, telling WinMerge to
-		// save over original file (given as third filename).
+		// Open parsed conflict sides. The result pane, when requested, saves
+		// its merged text over the original conflict file.
 		OpenTextFileParams openParams;
 		openParams.m_strSaveAsPath = conflictFile;
+			GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 		if (!threeWay)
 		{
 			String strDesc2[2] = { 
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
-			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU,
+				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			PathContext tmpPathContext(revFile, workFile);
 			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
