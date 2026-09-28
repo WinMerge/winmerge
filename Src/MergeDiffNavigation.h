@@ -460,7 +460,7 @@ public:
 	}
 
 	/**
-	 * @brief Update "Next 3-way diff" UI items
+	 * @brief Update "Previous 3-way diff" UI items
 	 */
 	template <typename View>
 	static void OnPrev3wayDiff(View* pView, int nDiffType)

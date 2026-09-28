@@ -3560,14 +3560,13 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 		// its merged text over the original conflict file.
 		OpenTextFileParams openParams;
 		openParams.m_strSaveAsPath = conflictFile;
-			GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 		if (!threeWay)
 		{
 			String strDesc2[2] = { 
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU,
-				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU | FFILEOPEN_SETFOCUS : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			PathContext tmpPathContext(revFile, workFile);
 			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
@@ -3579,7 +3578,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
 			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, 
-				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU | FFILEOPEN_SETFOCUS : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
 	}

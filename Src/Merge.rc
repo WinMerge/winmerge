@@ -124,8 +124,8 @@ BEGIN
     BEGIN
         MENUITEM "Choose Left\tCtrl+Shift+&1", ID_MERGE_RESULT_CHOOSE_1ST
         MENUITEM "Choose Right\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
-        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
-        MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
+        MENUITEM "Choose Left for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Right for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM SEPARATOR
         MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
     END
@@ -2752,7 +2752,7 @@ BEGIN
     COMBOBOX        IDC_BREAK_TYPE,36,94,274,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
     LTEXT           "W&ord break characters:",IDC_STATIC,24,112,286,10
     EDITTEXT        IDC_BREAK_CHARS,24,124,286,14,ES_AUTOHSCROLL
-    CONTROL         "&Use Merge Result Pane for 3-way merge",IDC_MERGE_RESULT_PANE_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,309,10
+    CONTROL         "&Use Merge Result Pane for 2/3-way merge",IDC_MERGE_RESULT_PANE_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,309,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 

@@ -392,7 +392,6 @@ private:
 	void PickResultEncoding();
 	String GetResultBufferLinesText(int nStartLine, int nLines) const;
 	String BuildExpandedResultText() const;
-	/** One entry per diff: {dbegin, dend, op} when the result was built */
 	std::unique_ptr<CMergeResultTextBuffer> m_ptResultBuf; /**< Merge result buffer (not part of the diff) */
 	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
 	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */

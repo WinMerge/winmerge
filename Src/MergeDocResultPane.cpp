@@ -20,14 +20,12 @@
 #include "MainFrm.h"
 #include "FileOrFolderSelect.h"
 #include "FileTransform.h"
-#include "UniFile.h"
 #include "Environment.h"
 #include "paths.h"
 #include "Merge.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "Logger.h"
-#include "ConflictFileParser.h"
 #include "OptionsDiffOptions.h"
 #include "resource.h"
 #include <algorithm>
@@ -355,11 +353,6 @@ void CMergeDoc::BuildMergeResult()
 	// replaced the diff list while it was open: size everything below off
 	// the list as it is NOW
 	const int nDiffCount = m_diffList.GetSize();
-
-	// also discards anything a failed resume attempt filled in
-	m_resultSegments.clear();
-	m_resultDiffToSegment.assign(nDiffCount, -1);
-	text.clear();
 
 	int nCurLine = 0;
 	int nApparent = 0;
@@ -720,8 +713,7 @@ bool CMergeDoc::IsResultPlaceholderLine(int nLine) const
 {
 	const MergeResultSegment* pSegment = GetResultSegmentByLine(nLine);
 	// Only differences that can be resolved with a Choose command are
-	// edit-protected. A segment without a linked difference (severed
-	// links, or a resumed conflict section not matching any difference)
+	// edit-protected. A segment without a linked difference
 	// must stay editable: hand-editing is its only resolution path.
 	return pSegment != nullptr && pSegment->diffIdx >= 0 &&
 		(pSegment->state == ResultSegmentState::Conflict ||
@@ -757,7 +749,7 @@ tchar_t CMergeDoc::GetResultLineMarker(int nLine) const
 {
 	const MergeResultSegment* pSegment = GetResultSegmentByLine(nLine);
 	// Common text carries no marker; everything else does, including
-	// segments without a linked difference (severed or resumed sections)
+	// segments without a linked difference
 	if (pSegment == nullptr || pSegment->state == ResultSegmentState::Common)
 		return 0;
 

@@ -3059,14 +3059,6 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 				undoTgt[i] = nFromIndex;
 		}
 
-		for (size_t i = 0; i < undoTgt.size(); ++i)
-		{
-			if (undoTgt[i] == nFromIndex)
-				undoTgt[i] = nToIndex;
-			else if (undoTgt[i] == nToIndex)
-				undoTgt[i] = nFromIndex;
-		}
-
 		m_filePaths.Swap(nFromIndex, nToIndex);
 		m_diffList.Swap(nFromIndex, nToIndex);
 		for (int nGroup = 0; nGroup < m_nGroups; nGroup++)

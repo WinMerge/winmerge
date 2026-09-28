@@ -2251,7 +2251,7 @@ WinMerge מזהה ומסמן הבדלי שורות.</para>
 
     <section>
       <title>
-Use Merge Result Pane for 3-way merge<indexterm>
+Use Merge Result Pane for 2/3-way merge<indexterm>
           <primary>Merge Result Pane</primary>
 
           <secondary>3-way merge configuration</secondary>
