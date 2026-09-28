@@ -35,6 +35,8 @@
 
 * BugFix: Flush undo groups when deleting text fails
 
+* BugFix: Fix blank line handling in comment difference filtering (PR #3651)
+
 * Show the selection margin when adding a bookmark
 
 * Add an option to prefer the WIC decoder when loading images for image
