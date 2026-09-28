@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-09-27 12:32+0900\n"
+"POT-Creation-Date: 2026-09-29 08:53+0900\n"
 "PO-Revision-Date: 2026-09-02 08:42+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: \n"
@@ -1393,7 +1393,7 @@ msgstr "<option>/am</option>"
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:545
 msgid ""
-"Auto-merges at startup with pane arrangement: left (base)  - middle (merge "
+"Auto-merges at startup with pane arrangement: left (theirs)  - middle (merge "
 "target) - right (mine)."
 msgstr ""
 
@@ -1825,7 +1825,7 @@ msgstr ""
 "<filename>File.txt</filename>."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:769 English/Compare_files.xml:1706
+#: English/Command_line.xml:769 English/Compare_files.xml:1716
 #: English/Intro_diffs.xml:253 English/Intro_diffs.xml:407
 msgid "merging differences"
 msgstr "fondere le differenze"
@@ -2001,7 +2001,7 @@ msgstr ""
 "confronto file."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:834 English/Compare_files.xml:2030
+#: English/Command_line.xml:834 English/Compare_files.xml:2040
 msgid "conflict files"
 msgstr "file in conflitto"
 
@@ -2936,7 +2936,7 @@ msgid "Navigating the Folder Compare window"
 msgstr "Navigazione nella finestra Confronto cartelle"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:443 English/Compare_files.xml:1363
+#: English/Compare_dirs.xml:443 English/Compare_files.xml:1373
 msgid "navigation functions"
 msgstr "funzioni di navigazione"
 
@@ -2946,7 +2946,7 @@ msgid "folder compare"
 msgstr "confronto cartelle"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
-#: English/Compare_dirs.xml:452 English/Compare_files.xml:1432
+#: English/Compare_dirs.xml:452 English/Compare_files.xml:1442
 #: English/Intro_diffs.xml:225 English/Intro_diffs.xml:344
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
@@ -2956,7 +2956,7 @@ msgstr ""
 "nextdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_dirs.xml:457 English/Compare_files.xml:1438
+#: English/Compare_dirs.xml:457 English/Compare_files.xml:1448
 #: English/Intro_diffs.xml:231 English/Intro_diffs.xml:350
 msgid "Next Difference button"
 msgstr "Pulsante Differenza successiva"
@@ -3161,7 +3161,7 @@ msgid "Toolbar and menu Copy commands"
 msgstr "Barra degli strumenti e menu Copia comandi"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
-#: English/Compare_dirs.xml:574 English/Compare_files.xml:1801
+#: English/Compare_dirs.xml:574 English/Compare_files.xml:1811
 #: English/Intro_diffs.xml:326
 msgid ""
 "<imageobject> <imagedata contentwidth=\"17\" fileref=\"screenshots/"
@@ -3171,13 +3171,13 @@ msgstr ""
 "copyr_button.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_dirs.xml:580 English/Compare_files.xml:1807
+#: English/Compare_dirs.xml:580 English/Compare_files.xml:1817
 #: English/Intro_diffs.xml:332
 msgid "Copy Right button"
 msgstr "Copia pulsante destro"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
-#: English/Compare_dirs.xml:584 English/Compare_files.xml:1833
+#: English/Compare_dirs.xml:584 English/Compare_files.xml:1843
 #: English/Intro_diffs.xml:360
 msgid ""
 "<imageobject> <imagedata contentwidth=\"17\" fileref=\"screenshots/"
@@ -3187,7 +3187,7 @@ msgstr ""
 "copyl_button.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_dirs.xml:590 English/Compare_files.xml:1839
+#: English/Compare_dirs.xml:590 English/Compare_files.xml:1849
 #: English/Intro_diffs.xml:366
 msgid "Copy Left button"
 msgstr "Copia pulsante sinistro"
@@ -4638,7 +4638,7 @@ msgstr ""
 "riga di comando, vedi <xref linkend=\"Command_line\" />."
 
 #. type: Content of: <article><section><mediaobject><textobject><phrase>
-#: English/Compare_files.xml:52 English/Compare_files.xml:1343
+#: English/Compare_files.xml:52 English/Compare_files.xml:1353
 #: English/Quick_start.xml:329 English/Quick_start.xml:341
 msgid "File Compare window"
 msgstr "Finestra Confronta file"
@@ -4959,7 +4959,7 @@ msgid "Difference block colors with ignored diff"
 msgstr "Colori dei blocchi di differenza con differenza ignorata"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:238 English/Compare_files.xml:1142
+#: English/Compare_files.xml:238 English/Compare_files.xml:1152
 #: English/Configuration.xml:906
 msgid "moved differences"
 msgstr "spostato le differenze"
@@ -5923,6 +5923,22 @@ msgstr ""
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:831
 msgid ""
+"When you open a two-way conflict file with <menuchoice><guimenu>File</"
+"guimenu><guimenuitem>Open Conflict File</guimenuitem></menuchoice>, WinMerge "
+"keeps the two source panes side by side and opens the Merge Result pane when "
+"it is enabled. Each differing block starts unresolved because a two-way "
+"conflict file has no common base. Choose the left or right source to resolve "
+"a block. In this mode the toolbar buttons are numbered <guibutton>1</"
+"guibutton> and <guibutton>2</guibutton>, and <keycombo><keycap>Ctrl</"
+"keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo> and "
+"<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></"
+"keycombo> choose the left and right source, respectively. Unresolved blocks "
+"are saved using the standard two-sided conflict markers."
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: English/Compare_files.xml:846
+msgid ""
 "When the pane opens, every difference initially starts unresolved, shown as "
 "a compact <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or "
 "<computeroutput>&lt;Unresolved Difference&gt;</computeroutput> placeholder "
@@ -5935,13 +5951,13 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:848
+#: English/Compare_files.xml:863
 msgid ""
-"To resolve a difference, select it and choose <guimenuitem>Choose Left</"
-"guimenuitem>, <guimenuitem>Choose Middle</guimenuitem> or "
-"<guimenuitem>Choose Right</guimenuitem> from the <menuchoice> "
-"<guimenu>Merge</guimenu> <guisubmenu> Merge Result </guisubmenu> </"
-"menuchoice> submenu, the Merge Result pane context menu, or the "
+"To resolve a difference, select it and choose the desired source from the "
+"top-level <guimenu>Merge Result</guimenu> menu. Two-way merge sessions offer "
+"<guimenuitem>Choose Left</guimenuitem> and <guimenuitem>Choose Right</"
+"guimenuitem>; three-way sessions also offer <guimenuitem>Choose Middle</"
+"guimenuitem>. You can also use the Merge Result pane context menu, or the "
 "<guibutton>1</guibutton> / <guibutton>2</guibutton> / <guibutton>3</"
 "guibutton> toolbar buttons. Each command toggles that pane's lines for the "
 "current difference (or all differences covered by the current selection): "
@@ -5955,7 +5971,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:874
+#: English/Compare_files.xml:884
 msgid ""
 "The pane's margin shows where every line came from: <computeroutput>1</"
 "computeroutput>, <computeroutput>2</computeroutput> or <computeroutput>3</"
@@ -5972,7 +5988,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:898
+#: English/Compare_files.xml:908
 msgid ""
 "Use <menuchoice><guimenu>File</guimenu><guisubmenu>Save</guisubmenu> "
 "<guimenuitem>Save Merge Result</guimenuitem> </menuchoice>, the Save toolbar "
@@ -6005,7 +6021,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:937
+#: English/Compare_files.xml:947
 #, fuzzy
 #| msgid ""
 #| "To protect the files and folders on either side of a compare from "
@@ -6036,19 +6052,19 @@ msgstr ""
 "lettura destra</guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><section><para><indexterm><primary>
-#: English/Compare_files.xml:970
+#: English/Compare_files.xml:980
 #, fuzzy
 #| msgid "Merge at right pane"
 msgid "merge target pane"
 msgstr "Unisci nel riquadro destro"
 
 #. type: Content of: <article><section><section><section><para><indexterm><secondary>
-#: English/Compare_files.xml:971
+#: English/Compare_files.xml:981
 msgid "determining base pane"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Compare_files.xml:969
+#: English/Compare_files.xml:979
 msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/> The base pane (common ancestor) "
 "for automatic merge resolution is determined by either command-line options "
@@ -6056,78 +6072,78 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Compare_files.xml:978
+#: English/Compare_files.xml:988
 #, fuzzy
 #| msgid "<emphasis>Revision &ManualRevision;</emphasis>"
 msgid "<emphasis>When using command-line options:</emphasis>"
 msgstr "<emphasis>Revisione &ManualRevision;</emphasis>"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:984
+#: English/Compare_files.xml:994
 msgid ""
 "<option>Merge to left pane (/al)</option>: left = merge target, middle = "
 "theirs, right = base"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:991
+#: English/Compare_files.xml:1001
 msgid ""
 "<option>Merge to middle pane (/am)</option>: left = theirs, middle = merge "
 "target, right = mine"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:998
+#: English/Compare_files.xml:1008
 msgid ""
 "<option>Merge to right pane (/ar)</option>: left = base, middle = theirs, "
 "right = merge target"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Compare_files.xml:1005
+#: English/Compare_files.xml:1015
 msgid ""
 "<emphasis>When using UI-based merge operations (Start Merge Session or Auto "
 "Merge):</emphasis> The base pane is determined by the current keyboard focus:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1012
+#: English/Compare_files.xml:1022
 msgid ""
 "<emphasis>Left pane focused</emphasis>: left = mine, middle = theirs, right "
 "= base"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1019
+#: English/Compare_files.xml:1029
 msgid ""
 "<emphasis>Middle pane focused</emphasis>: left = theirs, middle = base, "
 "right = mine"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1026
+#: English/Compare_files.xml:1036
 msgid ""
 "<emphasis>Right pane focused</emphasis>: left = base, middle = theirs, right "
 "= mine"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
-#: English/Compare_files.xml:1035 English/Compare_files.xml:1172
+#: English/Compare_files.xml:1045 English/Compare_files.xml:1182
 msgid "Location pane"
 msgstr "Riquadro Posizione"
 
 #. type: Content of: <article><section><section><indexterm><primary>
-#: English/Compare_files.xml:1038
+#: English/Compare_files.xml:1048
 msgid "Location pane, File Compare window"
 msgstr "Riquadro Posizione, finestra Confronta file"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_files.xml:1042 English/Compare_files.xml:1341
+#: English/Compare_files.xml:1052 English/Compare_files.xml:1351
 msgid "difference navigation"
 msgstr "navigazione differenziale"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1045
+#: English/Compare_files.xml:1055
 msgid ""
 "The Location pane, to the left of the File panes, maps the entire length of "
 "the compared files into two vertical bars (corresponding to the left and "
@@ -6140,12 +6156,12 @@ msgstr ""
 "file troppo lunghi per essere spostati facilmente nei riquadri File."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1050
+#: English/Compare_files.xml:1060
 msgid "The Location pane shows several kinds of items:"
 msgstr "Il riquadro Posizionevisualizza diversi tipi di elementi:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject>
-#: English/Compare_files.xml:1055
+#: English/Compare_files.xml:1065
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_diffs.png\" /> </imageobject>"
@@ -6154,18 +6170,18 @@ msgstr ""
 "locpane_diffs.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1061
+#: English/Compare_files.xml:1071
 msgid "Location pane diff lines"
 msgstr "Linee di differenza del riquadro Posizione"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1054
+#: English/Compare_files.xml:1064
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Difference blocks"
 msgstr ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Blocchi di differenza"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1066
+#: English/Compare_files.xml:1076
 msgid ""
 "Each difference block in the File panes is indicated in the Location pane by "
 "a horizontal line across each vertical bar. The thickness, color , and "
@@ -6185,7 +6201,7 @@ msgstr ""
 "differenze vuoti (grigio)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject>
-#: English/Compare_files.xml:1079
+#: English/Compare_files.xml:1089
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_currentdiff.png\" /> </imageobject>"
@@ -6194,17 +6210,17 @@ msgstr ""
 "locpane_currentdiff.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1085
+#: English/Compare_files.xml:1095
 msgid "Location pane current diff pointer"
 msgstr "Puntatore di differenza attuale nel riquadro 'Posizione'"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1078
+#: English/Compare_files.xml:1088
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Current difference"
 msgstr "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Differenza attuale"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1090
+#: English/Compare_files.xml:1100
 msgid ""
 "If you have selected a difference, the Location pane marks the current "
 "difference line with a pair of small triangles on either side of the "
@@ -6221,7 +6237,7 @@ msgstr ""
 "differenza (o delle linee di differenza) nel riquadro della posizione."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject>
-#: English/Compare_files.xml:1101
+#: English/Compare_files.xml:1111
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_viewbar.png\" /> </imageobject>"
@@ -6230,18 +6246,18 @@ msgstr ""
 "locpane_viewbar.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1107
+#: English/Compare_files.xml:1117
 msgid "Location pane view area bar"
 msgstr "Barra dell'area di visualizzazione del riquadro posizione"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1100
+#: English/Compare_files.xml:1110
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> View area"
 msgstr ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Area di visualizzazione"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1112
+#: English/Compare_files.xml:1122
 msgid ""
 "The area of the files currently visible in the File panes is indicated by a "
 "shaded (translucent) view bar over the Location pane.  The area bar's height "
@@ -6261,7 +6277,7 @@ msgstr ""
 "alcune azioni utili:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1122
+#: English/Compare_files.xml:1132
 msgid ""
 "When you scroll the File panes, the view area in the Location pane moves "
 "with it."
@@ -6270,7 +6286,7 @@ msgstr ""
 "Posizione si sposta con esso."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1127
+#: English/Compare_files.xml:1137
 msgid ""
 "Conversely, you can drag the view area bar in the Location pane up or down "
 "to scroll the File panes. This scrollbar thumb action is very handy for "
@@ -6282,7 +6298,7 @@ msgstr ""
 "navigare in file lunghi."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1133
+#: English/Compare_files.xml:1143
 msgid ""
 "Click anywhere in the Location pane to jump to the corresponding location in "
 "the File panes."
@@ -6291,12 +6307,12 @@ msgstr ""
 "posizione corrispondente nei riquadri File."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1141
+#: English/Compare_files.xml:1151
 msgid "Moved differences<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Differenze spostate<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1146
+#: English/Compare_files.xml:1156
 msgid ""
 "Moved differences are identical lines in different locations.  They are "
 "shown only if the Enable moved block detection is checked in the Options "
@@ -6314,7 +6330,7 @@ msgstr ""
 "destra. Per esempio:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject>
-#: English/Compare_files.xml:1155
+#: English/Compare_files.xml:1165
 msgid ""
 "<imageobject> <imagedata contentwidth=\"576\" fileref=\"screenshots/"
 "locpane_moved_diffs.png\" format=\"PNG\" /> </imageobject>"
@@ -6323,22 +6339,22 @@ msgstr ""
 "locpane_moved_diffs.png\" format=\"PNG\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject><textobject><phrase>
-#: English/Compare_files.xml:1162
+#: English/Compare_files.xml:1172
 msgid "Location pane with moved diff"
 msgstr "Riquadro posizione con differenziale spostato"
 
 #. type: Content of: <article><section><section><para><indexterm><primary>
-#: English/Compare_files.xml:1170
+#: English/Compare_files.xml:1180
 msgid "context menu"
 msgstr "menu contestuale"
 
 #. type: Content of: <article><section><section><para><indexterm><primary>
-#: English/Compare_files.xml:1174
+#: English/Compare_files.xml:1184
 msgid "Moved Blocks functions"
 msgstr "Funzioni Blocchi spostati"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1169
+#: English/Compare_files.xml:1179
 msgid ""
 "The Location pane's context menu contains these shortcuts:<placeholder "
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -6348,7 +6364,7 @@ msgstr ""
 "id=\"1\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1179
+#: English/Compare_files.xml:1189
 msgid ""
 "<guimenuitem>Go to Line 1</guimenuitem>: Moves the cursor to the top of the "
 "file."
@@ -6357,7 +6373,7 @@ msgstr ""
 "file."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1184
+#: English/Compare_files.xml:1194
 msgid ""
 "<guimenuitem>Go to</guimenuitem>: Moves the cursor to a line you specify "
 "(described in <xref linkend=\"Compare_files_nav_functions\" />)."
@@ -6366,7 +6382,7 @@ msgstr ""
 "(descritta in <xref linkend=\"Compare_files_nav_functions\" />)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1190
+#: English/Compare_files.xml:1200
 msgid ""
 "<guimenuitem>No Moved Blocks</guimenuitem>: Turns off moved difference color "
 "for moved blocks."
@@ -6375,7 +6391,7 @@ msgstr ""
 "differenza spostata per i blocchi spostati."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1195
+#: English/Compare_files.xml:1205
 msgid ""
 "<guimenuitem>All Moved Blocks</guimenuitem>: Turns on moved difference color "
 "for all moved blocks."
@@ -6384,7 +6400,7 @@ msgstr ""
 "colori diversi per tutti i blocchi spostati."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1200
+#: English/Compare_files.xml:1210
 msgid ""
 "<guimenuitem>Moved Block for Current Diff</guimenuitem>: Turns on moved "
 "difference color only for current selected moved difference."
@@ -6394,17 +6410,17 @@ msgstr ""
 "selezionata."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1209
+#: English/Compare_files.xml:1219
 msgid "Diff pane, File Compare window"
 msgstr "Riquadro Diff, finestra Confronta file"
 
 #. type: Content of: <article><section><section><title>
-#: English/Compare_files.xml:1208
+#: English/Compare_files.xml:1218
 msgid "Diff pane<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Riquadro differenze<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1212
+#: English/Compare_files.xml:1222
 msgid ""
 "The Diff pane shows the contents of the two sides of a selected difference."
 msgstr ""
@@ -6412,7 +6428,7 @@ msgstr ""
 "selezionata."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1215
+#: English/Compare_files.xml:1225
 msgid ""
 "When you select a difference, the two versions are loaded in the upper and "
 "lower sides of the Diff pane. In this way, the Diff pane confirms which "
@@ -6425,7 +6441,7 @@ msgstr ""
 "separatamente dal resto del file."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1220
+#: English/Compare_files.xml:1230
 msgid ""
 "You can merge differences directly in the Diff pane by right-clicking in "
 "either the top or bottom side and choosing <guimenuitem>Copy to Right</"
@@ -6437,27 +6453,27 @@ msgstr ""
 "guimenuitem>."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1228
+#: English/Compare_files.xml:1238
 msgid "status bars"
 msgstr "barre di stato"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Compare_files.xml:1230
+#: English/Compare_files.xml:1240
 msgid "for File Compare window"
 msgstr "per la finestra Confronta file"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1232 English/Configuration.xml:2306
+#: English/Compare_files.xml:1242 English/Configuration.xml:2306
 msgid "tabs"
 msgstr "schede"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Compare_files.xml:1234
+#: English/Compare_files.xml:1244
 msgid "character encoding"
 msgstr "codifica dei caratteri"
 
 #. type: Content of: <article><section><section><title>
-#: English/Compare_files.xml:1227
+#: English/Compare_files.xml:1237
 msgid ""
 "Status bars<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -6466,7 +6482,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1237
+#: English/Compare_files.xml:1247
 msgid ""
 "Each File pane contains a status bar at the bottom. The status bar contains "
 "several panes with different types of information about the document and "
@@ -6477,17 +6493,17 @@ msgstr ""
 "sul documento e sulla tua posizione al suo interno:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1243
+#: English/Compare_files.xml:1253
 msgid "Line status"
 msgstr "Stato della linea"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1248
+#: English/Compare_files.xml:1258
 msgid "<guilabel>Ln</guilabel>: Line number in the source file."
 msgstr "<guilabel>Ln</guilabel>: numero di riga nel file sorgente."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1253
+#: English/Compare_files.xml:1263
 msgid ""
 "<guilabel>Col</guilabel>: Column location of the cursor and the total number "
 "of columns in the line."
@@ -6496,7 +6512,7 @@ msgstr ""
 "totale di colonne nella riga."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1256
+#: English/Compare_files.xml:1266
 msgid ""
 "<guilabel>Col</guilabel> counts tabs as <replaceable>n</replaceable> spaces, "
 "where <replaceable>n</replaceable> is the number of characters defined as "
@@ -6510,7 +6526,7 @@ msgstr ""
 "predefinita)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1264
+#: English/Compare_files.xml:1274
 msgid ""
 "<guilabel>Ch</guilabel>: Character location of cursor and the total number "
 "of chars in the line."
@@ -6519,14 +6535,14 @@ msgstr ""
 "di caratteri nella riga."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1267
+#: English/Compare_files.xml:1277
 msgid "<guilabel>Ch</guilabel> counts tabs as single tab characters."
 msgstr ""
 "<guilabel>Ch</guilabel> conta le tabulazioni come singoli caratteri di "
 "tabulazione."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1272
+#: English/Compare_files.xml:1282
 msgid ""
 "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only "
 "when the <guilabel>Preserve original EOL </guilabel> option is enabled in "
@@ -6537,12 +6553,12 @@ msgstr ""
 "è abilitata nella pagina Editor delle opzioni di WinMerge)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1282
+#: English/Compare_files.xml:1292
 msgid "Read-only status"
 msgstr "Stato di sola lettura"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1285
+#: English/Compare_files.xml:1295
 msgid ""
 "<guilabel>RO</guilabel> is shown in the pane if the file is set to read-only "
 "(as described in <xref linkend=\"protectingfiles\" />). Otherwise the pane "
@@ -6553,12 +6569,12 @@ msgstr ""
 "linkend=\"protectingfiles\" />). Altrimenti il riquadro è vuoto."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1292
+#: English/Compare_files.xml:1302
 msgid "File encoding"
 msgstr "Codifica dei file"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1295
+#: English/Compare_files.xml:1305
 msgid ""
 "Codepage number for ANSI files, Unicode encoding type for Unicode files."
 msgstr ""
@@ -6566,12 +6582,12 @@ msgstr ""
 "Unicode."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1301
+#: English/Compare_files.xml:1311
 msgid "EOL style"
 msgstr "Stile EOL"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1304
+#: English/Compare_files.xml:1314
 msgid ""
 "EOL style of the file: <guilabel>Win</guilabel> for Windows/DOS files "
 "(CRLF), <guilabel>Unix</guilabel> (LF), <guilabel>Mac</guilabel> (CR), or "
@@ -6582,7 +6598,7 @@ msgstr ""
 "<guilabel>Misto</guilabel>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><note><para>
-#: English/Compare_files.xml:1309
+#: English/Compare_files.xml:1319
 msgid ""
 "When the per-line EOL style is used, the file EOL style is not shown (this "
 "pane is blank)."
@@ -6591,7 +6607,7 @@ msgstr ""
 "visualizzato (questo riquadro è vuoto)."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1316
+#: English/Compare_files.xml:1326
 msgid ""
 "When a File Compare window is open, the WinMerge window status bar shows one "
 "of these messages about the compared files:"
@@ -6600,12 +6616,12 @@ msgstr ""
 "finestra WinMergevisualizza uno di questi messaggi sui file confrontati:"
 
 #. type: Content of: <article><section><section><para><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1319
+#: English/Compare_files.xml:1329
 msgid "<guilabel>Identical</guilabel>: The files contain no differences"
 msgstr "<guilabel>Identici</guilabel>: i file non contengono differenze"
 
 #. type: Content of: <article><section><section><para><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1324
+#: English/Compare_files.xml:1334
 msgid ""
 "<guilabel><replaceable>n</replaceable> Differences Found</guilabel>: The "
 "number of differences detected, displayed only when no difference is "
@@ -6616,7 +6632,7 @@ msgstr ""
 "alcuna differenza."
 
 #. type: Content of: <article><section><section><para><itemizedlist><listitem><para>
-#: English/Compare_files.xml:1330
+#: English/Compare_files.xml:1340
 msgid ""
 "<guilabel>Difference <replaceable>x</replaceable> of <replaceable>n</"
 "replaceable></guilabel>: The selected difference's sequence number in the "
@@ -6627,13 +6643,13 @@ msgstr ""
 "nel numero totale di differenze, a partire da 1."
 
 #. type: Content of: <article><section><title>
-#: English/Compare_files.xml:1340
+#: English/Compare_files.xml:1350
 msgid "Navigating differences<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Esplorazione delle differenze<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Compare_files.xml:1346
+#: English/Compare_files.xml:1356
 msgid ""
 "This section describes how to navigate and select differences in the File "
 "Compare window. Note that when you select a difference, it is always "
@@ -6644,7 +6660,7 @@ msgstr ""
 "questa viene sempre selezionata in entrambi o in tutti e tre i riquadri File."
 
 #. type: Content of: <article><section><tip><para>
-#: English/Compare_files.xml:1351
+#: English/Compare_files.xml:1361
 msgid ""
 "To save time, enable <guilabel>Automatically scroll to first difference</"
 "guilabel> in the General page of WinMerge options. Then you don't have to "
@@ -6656,22 +6672,22 @@ msgstr ""
 "selezionarla."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1359 English/Compare_files.xml:1768
+#: English/Compare_files.xml:1369 English/Compare_files.xml:1778
 msgid "WinMerge functions"
 msgstr "Funzioni WinMerge"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Compare_files.xml:1361
+#: English/Compare_files.xml:1371
 msgid "difference navigation in File Compare window"
 msgstr "navigazione delle differenze nella finestra Confronta file"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Compare_files.xml:1365
+#: English/Compare_files.xml:1375
 msgid "file compare"
 msgstr "confronto file"
 
 #. type: Content of: <article><section><section><title>
-#: English/Compare_files.xml:1358
+#: English/Compare_files.xml:1368
 msgid ""
 "Navigation functions<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -6680,7 +6696,7 @@ msgstr ""
 ">><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1368
+#: English/Compare_files.xml:1378
 msgid ""
 "Here are the functions for navigating differences in the File Compare "
 "window, and their shortcuts in the toolbar and menus:"
@@ -6689,17 +6705,17 @@ msgstr ""
 "le relative scorciatoie nella barra degli strumenti e nei menu:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1374
+#: English/Compare_files.xml:1384
 msgid "Difference in the Current Line function"
 msgstr "Differenza nella funzione 'Riga attuale'"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1376
+#: English/Compare_files.xml:1386
 msgid "Select Line Difference function"
 msgstr "Selezionare la funzione Differenza di linea"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1373
+#: English/Compare_files.xml:1383
 msgid ""
 "Difference in the Current Line/Select Line Difference<placeholder "
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -6708,7 +6724,7 @@ msgstr ""
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1380
+#: English/Compare_files.xml:1390
 msgid ""
 "Enabled if you have clicked in (or selected) text within a difference in a "
 "File pane. Selects the word differences within the line. For example:"
@@ -6718,7 +6734,7 @@ msgstr ""
 "all'interno della riga. Per esempio:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject>
-#: English/Compare_files.xml:1385
+#: English/Compare_files.xml:1395
 msgid ""
 "<imageobject> <imagedata contentwidth=\"562\" fileref=\"screenshots/linediff."
 "png\" format=\"PNG\" /> </imageobject>"
@@ -6727,12 +6743,12 @@ msgstr ""
 "png\" format=\"PNG\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject><textobject><phrase>
-#: English/Compare_files.xml:1391
+#: English/Compare_files.xml:1401
 msgid "Select Line Difference example"
 msgstr "Selezionare l'esempio di differenza di linea"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1396
+#: English/Compare_files.xml:1406
 msgid ""
 "If you want to select the difference block itself, use <command>Current "
 "Difference</command> instead."
@@ -6741,7 +6757,7 @@ msgstr ""
 "<command>Differenza attuale</command>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1400
+#: English/Compare_files.xml:1410
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "diff_inline_btn.png\" /> </imageobject>"
@@ -6750,12 +6766,12 @@ msgstr ""
 "diff_inline_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1406
+#: English/Compare_files.xml:1416
 msgid "Difference in the Current Line button"
 msgstr "Differenza nel pulsante 'Linea attuale'"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1399
+#: English/Compare_files.xml:1409
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Select Line Difference</"
@@ -6768,24 +6784,24 @@ msgstr ""
 "nel pannello File all'interno di una differenza."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1419
+#: English/Compare_files.xml:1429
 msgid "Next Difference function"
 msgstr "Funzione Differenza successiva"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><secondary>
-#: English/Compare_files.xml:1421 English/Compare_files.xml:1456
-#: English/Compare_files.xml:1490 English/Compare_files.xml:1524
-#: English/Compare_files.xml:1571
+#: English/Compare_files.xml:1431 English/Compare_files.xml:1466
+#: English/Compare_files.xml:1500 English/Compare_files.xml:1534
+#: English/Compare_files.xml:1581
 msgid "with Compare Files"
 msgstr "con Confronta file"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1418
+#: English/Compare_files.xml:1428
 msgid "Next Difference<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Differenza successiva<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1425
+#: English/Compare_files.xml:1435
 msgid ""
 "Selects the next difference below your current cursor location in the "
 "document (not necessarily relative to the current difference). Use to step "
@@ -6798,7 +6814,7 @@ msgstr ""
 "tranne quando è attualmente selezionata l'ultima differenza."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1431
+#: English/Compare_files.xml:1441
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Next Difference</"
@@ -6811,17 +6827,17 @@ msgstr ""
 "keycap> </keycombo> (o <keycap>Giù</keycap> in modalità unione)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1454
+#: English/Compare_files.xml:1464
 msgid "Previous Difference function"
 msgstr "Funzione Differenza precedente"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1453
+#: English/Compare_files.xml:1463
 msgid "Previous Difference<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Differenza precedente<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1460
+#: English/Compare_files.xml:1470
 msgid ""
 "Selects the previous difference above your current cursor location (not "
 "necessarily relative to the current difference). Use to step backwards "
@@ -6834,7 +6850,7 @@ msgstr ""
 "attualmente selezionata la prima differenza."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1466
+#: English/Compare_files.xml:1476
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "prevdiff_btn.png\" /> </imageobject>"
@@ -6843,12 +6859,12 @@ msgstr ""
 "prevdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1472
+#: English/Compare_files.xml:1482
 msgid "Previous Difference button"
 msgstr "Pulsante Differenza precedente"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1465
+#: English/Compare_files.xml:1475
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Previous Difference</"
@@ -6861,17 +6877,17 @@ msgstr ""
 "keycap> </keycombo> (o <keycap>Su</keycap> in modalità unione)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1488
+#: English/Compare_files.xml:1498
 msgid "First Difference function"
 msgstr "Funzione Prima Differenza"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1487
+#: English/Compare_files.xml:1497
 msgid "First Difference<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Prima differenza<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1494
+#: English/Compare_files.xml:1504
 msgid ""
 "Use this to begin comparing or merging differences, or to locate the first "
 "difference from any other location. Available except when the first "
@@ -6884,7 +6900,7 @@ msgstr ""
 "differenza facendo doppio clic sul suo testo."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1500 English/Intro_diffs.xml:191
+#: English/Compare_files.xml:1510 English/Intro_diffs.xml:191
 #: English/Intro_diffs.xml:312
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
@@ -6894,13 +6910,13 @@ msgstr ""
 "firstdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1506 English/Intro_diffs.xml:197
+#: English/Compare_files.xml:1516 English/Intro_diffs.xml:197
 #: English/Intro_diffs.xml:318
 msgid "First Difference button"
 msgstr "Pulsante Prima differenza"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1499
+#: English/Compare_files.xml:1509
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>First Difference</"
@@ -6913,22 +6929,22 @@ msgstr ""
 "keycap> </keycombo>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1522
+#: English/Compare_files.xml:1532
 msgid "Current Difference function"
 msgstr "Funzione Differenza attuale"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1521
+#: English/Compare_files.xml:1531
 msgid "Current Difference<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Differenza attuale<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1528
+#: English/Compare_files.xml:1538
 msgid "This function has two modes of action:"
 msgstr "Questa funzione ha due modalità di azione:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><itemizedlist><listitem><simpara>
-#: English/Compare_files.xml:1532
+#: English/Compare_files.xml:1542
 msgid ""
 "If your cursor is inside a difference but no difference is selected, this "
 "function selects the entire difference. This is a very handy way to select a "
@@ -6939,7 +6955,7 @@ msgstr ""
 "un modo molto pratico per selezionare una differenza usando la tastiera."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><itemizedlist><listitem><simpara>
-#: English/Compare_files.xml:1539
+#: English/Compare_files.xml:1549
 msgid ""
 "When there is a current difference, the function jumps to that location. "
 "This is handy if you have scrolled the selected difference out of view, and "
@@ -6950,7 +6966,7 @@ msgstr ""
 "vuoi tornare rapidamente alla sua posizione."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1547 English/Intro_diffs.xml:176
+#: English/Compare_files.xml:1557 English/Intro_diffs.xml:176
 #: English/Intro_diffs.xml:301
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
@@ -6960,13 +6976,13 @@ msgstr ""
 "currentdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1553 English/Intro_diffs.xml:182
+#: English/Compare_files.xml:1563 English/Intro_diffs.xml:182
 #: English/Intro_diffs.xml:307
 msgid "Current Difference button"
 msgstr "Pulsante Differenza attuale"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1546
+#: English/Compare_files.xml:1556
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Current Difference</"
@@ -6979,22 +6995,22 @@ msgstr ""
 "keycap> </keycombo>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1569
+#: English/Compare_files.xml:1579
 msgid "Last Difference function"
 msgstr "Funzione Ultima differenza"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1568
+#: English/Compare_files.xml:1578
 msgid "Last Difference<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Ultima differenza<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1575
+#: English/Compare_files.xml:1585
 msgid "Enabled except when the last difference is currently selected."
 msgstr "Abilitato tranne quando è attualmente selezionata l'ultima differenza."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1579
+#: English/Compare_files.xml:1589
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "lastdiff_btn.png\" /> </imageobject>"
@@ -7003,12 +7019,12 @@ msgstr ""
 "lastdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1585
+#: English/Compare_files.xml:1595
 msgid "Last Difference button"
 msgstr "Pulsante Ultima differenza"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1578
+#: English/Compare_files.xml:1588
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Last Difference</"
@@ -7021,18 +7037,18 @@ msgstr ""
 "keycap> </keycombo>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1601 English/Compare_files.xml:1634
-#: English/Compare_files.xml:1652 English/Compare_files.xml:1670
+#: English/Compare_files.xml:1611 English/Compare_files.xml:1644
+#: English/Compare_files.xml:1662 English/Compare_files.xml:1680
 msgid "Go to function"
 msgstr "Vai alla funzione"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1600
+#: English/Compare_files.xml:1610
 msgid "Go to<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Vai a<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1605
+#: English/Compare_files.xml:1615
 msgid ""
 "Enables you to jump to either a line number or a difference number (for "
 "example, difference 2 is the second difference). Opens the Go to dialog, "
@@ -7045,7 +7061,7 @@ msgstr ""
 "destro) e il tipo di posizione (riga o differenza)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
-#: English/Compare_files.xml:1612
+#: English/Compare_files.xml:1622
 msgid ""
 "The Go to line number can be useful when you need to merge the same change "
 "from one file to several target files. Jumping to a particular difference "
@@ -7058,7 +7074,7 @@ msgstr ""
 "per cercare testo o scorrere le differenze."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1620
+#: English/Compare_files.xml:1630
 msgid ""
 "Shortcuts: <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Go to</"
 "guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap> <keycap>G</"
@@ -7070,12 +7086,12 @@ msgstr ""
 "Posizione."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1633
+#: English/Compare_files.xml:1643
 msgid "Go to Moved Line<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Vai a Linea spostata<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1638
+#: English/Compare_files.xml:1648
 msgid ""
 "Enables to jump to the moved from/to of current diff on the other panel (2 "
 "panes)."
@@ -7084,7 +7100,7 @@ msgstr ""
 "sull'altro pannello (2 riquadri)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1640 English/Compare_files.xml:1658
+#: English/Compare_files.xml:1650 English/Compare_files.xml:1668
 msgid ""
 "Shortcuts: <keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> "
 "<keycap>G</keycap> </keycombo>, context menu in File pane and Diff pane."
@@ -7094,7 +7110,7 @@ msgstr ""
 "riquadro Diff."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1651
+#: English/Compare_files.xml:1661
 msgid ""
 "Go to Moved Line Between Left and Middle<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -7103,7 +7119,7 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1656 English/Compare_files.xml:1674
+#: English/Compare_files.xml:1666 English/Compare_files.xml:1684
 msgid ""
 "Enables to jump to the moved from/to of current diff on the other panel (3 "
 "panes)."
@@ -7112,7 +7128,7 @@ msgstr ""
 "sull'altro pannello (3 riquadri)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1669
+#: English/Compare_files.xml:1679
 msgid ""
 "Go to Moved Line Between Middle and Right<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -7121,7 +7137,7 @@ msgstr ""
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1676
+#: English/Compare_files.xml:1686
 msgid ""
 "Shortcuts: <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>G</"
 "keycap> </keycombo>, context menu in File pane and Diff pane."
@@ -7131,27 +7147,27 @@ msgstr ""
 "riquadro Diff."
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: English/Compare_files.xml:1687 English/Shortcut_keys.xml:190
+#: English/Compare_files.xml:1697 English/Shortcut_keys.xml:190
 msgid "Refresh"
 msgstr "Aggiorna"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1690
+#: English/Compare_files.xml:1700
 msgid "See <xref linkend=\"Compare_files_merge_functions\" />."
 msgstr "Vedi <xref linkend=\"Compare_files_merge_functions\" />."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_files.xml:1699
+#: English/Compare_files.xml:1709
 msgid "synchronization points"
 msgstr "punti di sincronizzazione"
 
 #. type: Content of: <article><section><title>
-#: English/Compare_files.xml:1698
+#: English/Compare_files.xml:1708
 msgid "Synchronization points<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Punti di sincronizzazione<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Compare_files.xml:1701 English/Compare_images.xml:117
+#: English/Compare_files.xml:1711 English/Compare_images.xml:117
 #: English/Configuration.xml:2635 English/Configuration.xml:2801
 #: English/Configuration.xml:2920 English/Configuration.xml:3349
 #: English/Filters.xml:2694 English/Filters.xml:3136 English/Filters.xml:3141
@@ -7160,12 +7176,12 @@ msgid "TBD"
 msgstr "Da definire"
 
 #. type: Content of: <article><section><title>
-#: English/Compare_files.xml:1705
+#: English/Compare_files.xml:1715
 msgid "Merging differences<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Unione delle differenze<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Compare_files.xml:1709
+#: English/Compare_files.xml:1719
 msgid ""
 "Merging copies differences from one File pane to the other: either left to "
 "right, or right to left. This is different from directly editing text using "
@@ -7177,18 +7193,18 @@ msgstr ""
 "questo argomento)."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1716 English/Compare_files.xml:2001
+#: English/Compare_files.xml:1726 English/Compare_files.xml:2011
 #: English/Configuration.xml:2392
 msgid "rescanning files"
 msgstr "nuova scansione dei file"
 
 #. type: Content of: <article><section><section><title>
-#: English/Compare_files.xml:1715
+#: English/Compare_files.xml:1725
 msgid "Rescanning files<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Nuova scansione dei file<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1719
+#: English/Compare_files.xml:1729
 msgid ""
 "By default, the <guilabel>Automatic rescan</guilabel> option is enabled in "
 "the Editor page of WinMerge options. Rescanning keeps your compare and merge "
@@ -7204,7 +7220,7 @@ msgstr ""
 "editor esterno."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1725
+#: English/Compare_files.xml:1735
 msgid ""
 "Rescanning occurs when you perform certain actions (like merging a "
 "difference or editing a file) during a file compare. If a file has changed, "
@@ -7218,7 +7234,7 @@ msgstr ""
 "file."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1730
+#: English/Compare_files.xml:1740
 msgid ""
 "Click <guibutton>Yes</guibutton> to reload the file before proceeding, or "
 "<guibutton>No</guibutton> to ignore the changes and work with the earlier "
@@ -7229,7 +7245,7 @@ msgstr ""
 "lavorare con la versione del file caricata in precedenza."
 
 #. type: Content of: <article><section><para><inlinemediaobject>
-#: English/Compare_files.xml:1743 English/Compare_files.xml:2010
+#: English/Compare_files.xml:1753 English/Compare_files.xml:2020
 #: English/Quick_start.xml:369
 msgid ""
 "<imageobject> <imagedata contentwidth=\"16\" fileref=\"screenshots/"
@@ -7239,13 +7255,13 @@ msgstr ""
 "refresh_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1748 English/Compare_files.xml:1937
-#: English/Compare_files.xml:2016 English/Quick_start.xml:374
+#: English/Compare_files.xml:1758 English/Compare_files.xml:1947
+#: English/Compare_files.xml:2026 English/Quick_start.xml:374
 msgid "Refresh button"
 msgstr "Pulsante Aggiorna"
 
 #. type: Content of: <article><section><section><important><para>
-#: English/Compare_files.xml:1735
+#: English/Compare_files.xml:1745
 msgid ""
 "If <guilabel>Automatic rescan</guilabel> is disabled, or if you suspect that "
 "a file might have changed, we strongly advise that you run "
@@ -7264,7 +7280,7 @@ msgstr ""
 "della barra degli strumenti oppure premi <keycap>F5</keycap>."
 
 #. type: Content of: <article><section><section><important><para>
-#: English/Compare_files.xml:1753
+#: English/Compare_files.xml:1763
 msgid ""
 "If a merge result looks incorrect, click <menuchoice> <guimenu>Edit</"
 "guimenu> <guimenuitem>Undo</guimenuitem> </menuchoice> or press <keycombo> "
@@ -7278,17 +7294,17 @@ msgstr ""
 "unirli nuovamente."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Compare_files.xml:1770
+#: English/Compare_files.xml:1780
 msgid "merging"
 msgstr "fusione"
 
 #. type: Content of: <article><section><section><title>
-#: English/Compare_files.xml:1767
+#: English/Compare_files.xml:1777
 msgid "Merge functions<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Unisci funzioni<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1773
+#: English/Compare_files.xml:1783
 msgid ""
 "The merging functions can implicitly select differences based on a cursor "
 "location or text selection. For example, if you click anywhere in a "
@@ -7308,7 +7324,7 @@ msgstr ""
 "unico comando di unione."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1781
+#: English/Compare_files.xml:1791
 msgid ""
 "If the result of a merge operation is not what you expected, you can click "
 "<guibutton>Undo</guibutton> to reverse the operation."
@@ -7317,7 +7333,7 @@ msgstr ""
 "per invertire l'operazione puoi selezionare <guibutton>Annulla</guibutton> ."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:1784
+#: English/Compare_files.xml:1794
 msgid ""
 "Here are the merge functions and their shortcuts in the toolbar and menus:"
 msgstr ""
@@ -7325,17 +7341,17 @@ msgstr ""
 "strumenti e nei menu:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1790
+#: English/Compare_files.xml:1800
 msgid "Copy Right function"
 msgstr "Funzione Copia a destra"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1789
+#: English/Compare_files.xml:1799
 msgid "Copy Right<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Copia a destra<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1794
+#: English/Compare_files.xml:1804
 msgid ""
 "Copies one or more difference from left to right. Note that differences do "
 "not need to be fully selected: At its simplest, this means replacing text in "
@@ -7351,7 +7367,7 @@ msgstr ""
 "create o rimosse nuove righe."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1800
+#: English/Compare_files.xml:1810
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Copy to Right</"
@@ -7367,17 +7383,17 @@ msgstr ""
 "Diff."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1824
+#: English/Compare_files.xml:1834
 msgid "Copy Left function"
 msgstr "Funzione Copia a sinistra"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1823
+#: English/Compare_files.xml:1833
 msgid "Copy Left<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Copia a sinistra<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1828
+#: English/Compare_files.xml:1838
 msgid ""
 "Copies the current difference from the right to the left File pane. See "
 "<command>Copy Right</command> description for details."
@@ -7386,7 +7402,7 @@ msgstr ""
 "sinistra. Per i dettagli vedi la descrizione <command>Copy Right</command>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1832
+#: English/Compare_files.xml:1842
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</"
@@ -7402,17 +7418,17 @@ msgstr ""
 "undifferenza e nel riquadro Diff."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1856
+#: English/Compare_files.xml:1866
 msgid "Copy Right and Advance function"
 msgstr "Copyright e funzione avanzata"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1855
+#: English/Compare_files.xml:1865
 msgid "Copy Right and Advance<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Copia a destra e avanza<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1860
+#: English/Compare_files.xml:1870
 msgid ""
 "Merges the current difference from the right to the left File pane, then "
 "selects the next difference (if one exists). Equivalent to <command>Copy "
@@ -7424,7 +7440,7 @@ msgstr ""
 "successiva</command> in un unico passaggio."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1866
+#: English/Compare_files.xml:1876
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "copyr_adv_btn.png\" /> </imageobject>"
@@ -7433,12 +7449,12 @@ msgstr ""
 "copyr_adv_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1872
+#: English/Compare_files.xml:1882
 msgid "Copy Right and Advance button"
 msgstr "Pulsante Copyright e Avanzamento"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1865
+#: English/Compare_files.xml:1875
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</"
@@ -7453,17 +7469,17 @@ msgstr ""
 "File all'interno di una differenza."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1890
+#: English/Compare_files.xml:1900
 msgid "Copy Left and Advance function"
 msgstr "Funzione Copia a sinistra e Avanza"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1889
+#: English/Compare_files.xml:1899
 msgid "Copy Left and Advance<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Copia a sinistra e avanza<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1894
+#: English/Compare_files.xml:1904
 msgid ""
 "Merges the current difference from left to right, then selects the next "
 "difference (if one exists). Equivalent to <command>Copy Left</command> and "
@@ -7475,7 +7491,7 @@ msgstr ""
 "passaggio."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1900
+#: English/Compare_files.xml:1910
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "copyl_adv_btn.png\" /> </imageobject>"
@@ -7484,12 +7500,12 @@ msgstr ""
 "copyl_adv_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1906
+#: English/Compare_files.xml:1916
 msgid "Copy Left and Advance button"
 msgstr "Pulsante Copia sinistra e Avanza"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1899
+#: English/Compare_files.xml:1909
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</"
@@ -7504,17 +7520,17 @@ msgstr ""
 "File all'interno di una differenza."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1924
+#: English/Compare_files.xml:1934
 msgid "All Right function"
 msgstr "Funzione Tutto bene"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1923
+#: English/Compare_files.xml:1933
 msgid "All Right<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Va bene<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1931
+#: English/Compare_files.xml:1941
 msgid ""
 "<imageobject> <imagedata contentdepth=\"11\" fileref=\"screenshots/undo_btn."
 "png\" /> </imageobject>"
@@ -7523,7 +7539,7 @@ msgstr ""
 "png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1928
+#: English/Compare_files.xml:1938
 msgid ""
 "Copies all differences from the left to the right File pane.  Use to "
 "synchronize two files with one command. Similarly, you can back out the "
@@ -7538,7 +7554,7 @@ msgstr ""
 "keycap> </keycombo>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1946
+#: English/Compare_files.xml:1956
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "allright_btn.png\" /> </imageobject>"
@@ -7547,12 +7563,12 @@ msgstr ""
 "allright_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1952
+#: English/Compare_files.xml:1962
 msgid "All Right button"
 msgstr "Pulsante Tutto a destra"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1945 English/Compare_files.xml:1976
+#: English/Compare_files.xml:1955 English/Compare_files.xml:1986
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</"
@@ -7566,17 +7582,17 @@ msgstr ""
 "all'interno di una differenza."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1968
+#: English/Compare_files.xml:1978
 msgid "All Left function"
 msgstr "Funzione Tutto a sinistra"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1967
+#: English/Compare_files.xml:1977
 msgid "All Left<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Tutto a sinistra<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:1972
+#: English/Compare_files.xml:1982
 msgid ""
 "Copies all differences from the right to the left File pane.  Effectively, "
 "replaces the content of the left File pane. See similar to <command>All "
@@ -7587,7 +7603,7 @@ msgstr ""
 "<command>Tutto bene</command>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
-#: English/Compare_files.xml:1977
+#: English/Compare_files.xml:1987
 msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "allleft_btn.png\" /> </imageobject>"
@@ -7596,22 +7612,22 @@ msgstr ""
 "allleft_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
-#: English/Compare_files.xml:1983
+#: English/Compare_files.xml:1993
 msgid "All Left button"
 msgstr "Pulsante Tutto a sinistra"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Compare_files.xml:1999
+#: English/Compare_files.xml:2009
 msgid "Refresh function"
 msgstr "Funzione di aggiornamento"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Compare_files.xml:1998
+#: English/Compare_files.xml:2008
 msgid "Refresh<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Aggiorna<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:2005
+#: English/Compare_files.xml:2015
 msgid ""
 "Rescans files to update differences. Use after changes are made to files, if "
 "automatic scanning is disabled (see <xref linkend=\"Compare_files_scan\" /> "
@@ -7622,7 +7638,7 @@ msgstr ""
 "disabilitata (per i dettagli vedi <xref linkend=\"Compare_files_scan\" />)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Compare_files.xml:2009
+#: English/Compare_files.xml:2019
 msgid ""
 "Shortcuts: <placeholder type=\"inlinemediaobject\" id=\"0\"/> button, "
 "<menuchoice> <guimenu>View</guimenu> <guimenuitem>Refresh</guimenuitem> </"
@@ -7633,13 +7649,13 @@ msgstr ""
 "guimenuitem> </menuchoice>, <keycap>F5</keycap>."
 
 #. type: Content of: <article><section><section><title>
-#: English/Compare_files.xml:2029
+#: English/Compare_files.xml:2039
 msgid "Resolving conflict files<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Risoluzione dei file in conflitto<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:2033
+#: English/Compare_files.xml:2043
 msgid ""
 "You can use WinMerge to resolve conflict files that some version control "
 "systems produce during their merge operations. A conflict file is created "
@@ -7659,7 +7675,7 @@ msgstr ""
 "per risolvere i conflitti e salvare il file dei risultati uniti."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
-#: English/Compare_files.xml:2044
+#: English/Compare_files.xml:2054
 msgid ""
 "Click <menuchoice> <guimenu>File</guimenu> <guimenuitem>Open Conflict File</"
 "guimenuitem> </menuchoice>, and use the Open dialog to select the conflict "
@@ -7671,7 +7687,7 @@ msgstr ""
 "si apre nella finestra Confronta file:"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:2054
+#: English/Compare_files.xml:2064
 msgid ""
 "The left File pane file header is titled, <guilabel>Theirs File</guilabel>. "
 "This side represents the file that is usually in the version control "
@@ -7687,7 +7703,7 @@ msgstr ""
 "possono essere unite solo da questo file all'altro file."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:2063
+#: English/Compare_files.xml:2073
 msgid ""
 "The right File pane is titled, <guilabel>Mine File</guilabel>. This side is "
 "the working copy of the file. All changes should be done to this file, which "
@@ -7698,7 +7714,7 @@ msgstr ""
 "essere apportate a questo file, che è il file dei risultati."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Compare_files.xml:2068
+#: English/Compare_files.xml:2078
 msgid ""
 "The <guilabel>Mine File</guilabel> side is set to modified after opening "
 "conflict file (you will notice the asterisk in the File pane header). This "
@@ -7714,7 +7730,7 @@ msgstr ""
 "originale non verrà modificato."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
-#: English/Compare_files.xml:2079
+#: English/Compare_files.xml:2089
 msgid ""
 "Use all the normal compare and merge functions described earlier in this "
 "topic to resolve the conflicts in the Mine File pane."
@@ -7723,7 +7739,7 @@ msgstr ""
 "in questo argomento per risolvere i conflitti nel riquadro File di miniera."
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
-#: English/Compare_files.xml:2084
+#: English/Compare_files.xml:2094
 msgid ""
 "When you are done, click <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> "
 "</keycombo> to save the <guilabel>Mine File</guilabel> side as the result "
@@ -7741,7 +7757,7 @@ msgstr ""
 "scegliere un nome file diverso."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:2100
+#: English/Compare_files.xml:2110
 msgid ""
 "Many version control systems allow you to configure an external merge tool. "
 "If yours does, you might be able to have your version control system launch "
@@ -7753,7 +7769,7 @@ msgstr ""
 "automaticamente quando si verifica un conflitto di unione."
 
 #. type: Content of: <article><section><section><para>
-#: English/Compare_files.xml:2104
+#: English/Compare_files.xml:2114
 msgid ""
 "You can also open a conflict file from the WinMerge command line, which "
 "accepts three filename parameters: <option>Theirs</option>, <option>Mine</"

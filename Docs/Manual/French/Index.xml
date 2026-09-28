@@ -33,7 +33,7 @@
   Please do not delete xml files in this directory unless you know for sure 
   that they are not used. -->
   <bookinfo>
-    <title>WinMerge &WinMergeVersion; Aide</title>
+    <title>Aide de WinMerge &WinMergeVersion;</title>
 
 <productname>WinMerge</productname><releaseinfo><emphasis>Révision &ManualRevision;</emphasis></releaseinfo>
 

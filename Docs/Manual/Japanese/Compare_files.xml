@@ -613,14 +613,40 @@ linkend="Compare_files_merge" /> で説明します。 <xref linkend="Quick_star
 3つのテキストファイルを比較してマージ出力先を指定すると（たとえば、バージョン管理ツールが<option>/o</option>コマンドラインオプションを指定してWinMergeを起動した場合）、ファイル比較ウィンドウの下部にマージ結果ペインが開きます。これはKDiff3のマージ出力ウィンドウと同様に動作します。3つのファイルペインには比較対象のファイルが読み取り専用で表示され、マージ結果ペインにはマージ結果が表示され、自由に編集できます。</para>
 
       <para>
-2-wayのコンフリクトファイルを<menuchoice><guimenu>ファイル</guimenu><guimenuitem>コンフリクトファイルを開く</guimenuitem></menuchoice>で開くと、左右2つのソースペインを維持したまま、マージ結果ペインが有効な場合に結果ペインが開きます。2-wayのコンフリクトファイルには共通のベースがないため、各差異は未解決の状態で開始します。差異ごとに左または右のソースを選択して解決します。このモードでは、ツールバーボタンは<guibutton>1</guibutton>と<guibutton>2</guibutton>になり、<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo>と<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></keycombo>でそれぞれ左と右のソースを選択します。未解決の差異は、標準的な2-wayコンフリクトマーカーを使って保存されます。</para>
+When you open a two-way conflict file with
+<menuchoice><guimenu>File</guimenu><guimenuitem>Open Conflict
+File</guimenuitem></menuchoice>, WinMerge keeps the two source panes side by
+side and opens the Merge Result pane when it is enabled. Each differing
+block starts unresolved because a two-way conflict file has no common
+base. Choose the left or right source to resolve a block. In this mode the
+toolbar buttons are numbered <guibutton>1</guibutton> and
+<guibutton>2</guibutton>, and
+<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo>
+and
+<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></keycombo>
+choose the left and right source, respectively. Unresolved blocks are saved
+using the standard two-sided conflict markers.</para>
 
       <para>
 ペインを開くと、すべての差異は最初は未解決の状態になり、簡略化された<computeroutput>&lt;マージコンフリクト&gt;</computeroutput>または<computeroutput>&lt;未解決の差異&gt;</computeroutput>というプレースホルダー行で表示されます。<option>/al</option>、<option>/am</option>、<option>/ar</option>コマンドラインオプション、または<guimenuitem>自動マージ</guimenuitem>コマンドで自動マージを実行すると、コンフリクトしていない差異は選択したマージ先に従って自動的に解決され、ベースに対して両側で同じ行が変更された真のコンフリクトだけが未解決のまま残ります。</para>
 
       <para>
-差異を解決するには、その差異を選択し、<menuchoice><guimenu>マージ</guimenu><guisubmenu>マージ結果</guisubmenu></menuchoice>サブメニュー、マージ結果ペインのコンテキストメニュー、または<guibutton>1</guibutton>／<guibutton>2</guibutton>／<guibutton>3</guibutton>ツールバーボタンから、<guimenuitem>左を選択</guimenuitem>、<guimenuitem>中央を選択</guimenuitem>、または<guimenuitem>右を選択</guimenuitem>を選びます。各コマンドは、現在の差異（または現在の選択範囲に含まれるすべての差異）について、そのペインの行の選択と選択解除を切り替えます。複数のペインを選択すると、選択した順序でそれらの行が結合されます（両側で何かが追加され、両方をマージ結果に残したい場合に便利です）。すべてのペインの選択を解除すると、その差異は再び未解決になります。また、未解決の差異を除き、マージ結果ペインに直接入力して修正することもできます。未解決の差異は、テキストを編集する前にChooseコマンドで解決する必要があります。両側の違いが空白文字だけであるコンフリクトには、<computeroutput>(Whitespace
-only)</computeroutput>と表示されます。</para>
+To resolve a difference, select it and choose the desired source from the
+top-level <guimenu>Merge Result</guimenu> menu. Two-way merge sessions offer
+<guimenuitem>Choose Left</guimenuitem> and <guimenuitem>Choose
+Right</guimenuitem>; three-way sessions also offer <guimenuitem>Choose
+Middle</guimenuitem>. You can also use the Merge Result pane context menu,
+or the <guibutton>1</guibutton> / <guibutton>2</guibutton> /
+<guibutton>3</guibutton> toolbar buttons. Each command toggles that pane's
+lines for the current difference (or all differences covered by the current
+selection): selecting several panes combines their lines in the order you
+select them (useful when both sides added something and the merge should
+keep both), and deselecting all panes makes the difference unresolved
+again. You can also type corrections directly into the Merge Result pane,
+except on unresolved differences: those must be resolved with a Choose
+command before their text can be edited. Conflicts whose sides differ only
+in white space are marked as <computeroutput>(Whitespace
+only)</computeroutput>.</para>
 
       <para>
 ペインのマージンには各行の出所が表示されます。左、中央、右のペインから取得した行には、それぞれ<computeroutput>1</computeroutput>、<computeroutput>2</computeroutput>、<computeroutput>3</computeroutput>（ツールバーボタンに対応）が表示され、未解決のコンフリクトセクションには<computeroutput>?</computeroutput>、手動で変更された差異には<computeroutput>m</computeroutput>が表示されます。ペインのステータスバーには、まだ未解決の差異の数が表示されます。ペインを開いている間は、<guimenuitem>次のコンフリクト</guimenuitem>および<guimenuitem>前のコンフリクト</guimenuitem>（<keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>／<keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Up</keycap></keycombo>）を使用すると、すでに解決された差異を飛ばして、まだ判断が必要な次または前の差異に移動できます。</para>

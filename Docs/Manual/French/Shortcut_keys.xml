@@ -72,7 +72,7 @@ sont pas inclus)</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>Origine</keycap> </keycombo></entry>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Début</keycap> </keycombo></entry>
 
           <entry>Aller au premier fichier ou dossier différent</entry>
         </row>
@@ -104,13 +104,13 @@ sont pas inclus)</entry>
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>Flèche gauche</keycap> </keycombo></entry>
 
-          <entry>Copier les éléments sélectionnés de droite à gauche</entry>
+          <entry>Copier les éléments sélectionnés de droite vers la gauche</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>Flèche droite</keycap> </keycombo></entry>
 
-          <entry>Copier les éléments sélectionnés de gauche à droite</entry>
+          <entry>Copier les éléments sélectionnés de gauche vers la droite</entry>
         </row>
       </tbody>
     </tgroup>
@@ -351,7 +351,7 @@ pane)</entry>
 
       <tbody>
         <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>Origine</keycap> </keycombo></entry>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Début</keycap> </keycombo></entry>
 
           <entry>Aller à la première différence</entry>
         </row>
@@ -365,7 +365,7 @@ pane)</entry>
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>Entrée</keycap> </keycombo></entry>
 
-          <entry>Aller à la différence actuelle ou sélectionner la différence</entry>
+          <entry>Aller à la différence courante ou sélectionner la différence</entry>
         </row>
 
         <row>
@@ -397,27 +397,27 @@ bas</keycap> </keycombo></entry>
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>Flèche gauche</keycap> </keycombo></entry>
 
-          <entry>Copier la différence de droite à gauche</entry>
+          <entry>Copier la différence de droite vers la gauche</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>Flèche droite</keycap> </keycombo></entry>
 
-          <entry>Copier la différence de gauche à droite</entry>
+          <entry>Copier la différence de gauche vers la droite</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flèche
 gauche</keycap> </keycombo></entry>
 
-          <entry>Copier la différence de droite à gauche et sélectionner la suivante</entry>
+          <entry>Copier la différence de droite vers la gauche et sélectionner la suivante</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flèche
 droite</keycap> </keycombo></entry>
 
-          <entry>Copier la différence de gauche à droite et sélectionner la suivante</entry>
+          <entry>Copier la différence de gauche vers la droite et sélectionner la suivante</entry>
         </row>
       </tbody>
     </tgroup>
@@ -451,27 +451,27 @@ droite</keycap> </keycombo></entry>
         <row>
           <entry><keycap>Flèche gauche</keycap></entry>
 
-          <entry>Copier la différence de droite à gauche</entry>
+          <entry>Copier la différence de droite vers la gauche</entry>
         </row>
 
         <row>
           <entry><keycap>Flèche droite</keycap></entry>
 
-          <entry>Copier la différence de gauche à droite</entry>
+          <entry>Copier la différence de gauche vers la droite</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flèche
 gauche</keycap> </keycombo></entry>
 
-          <entry>Copier la différence de droite à gauche et sélectionner la suivante</entry>
+          <entry>Copier la différence de droite vers la gauche et sélectionner la suivante</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Flèche
 droite</keycap> </keycombo></entry>
 
-          <entry>Copier la différence de gauche à droite et sélectionner la suivante</entry>
+          <entry>Copier la différence de gauche vers la droite et sélectionner la suivante</entry>
         </row>
       </tbody>
     </tgroup>
@@ -558,7 +558,7 @@ droite</keycap> </keycombo></entry>
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo></entry>
 
-          <entry>Activer/désactiver le signet</entry>
+          <entry>Placer/retirer un signet</entry>
         </row>
 
         <row>

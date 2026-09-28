@@ -15,7 +15,7 @@ documente ses capacités et ses limites.</para>
   <section>
     <title>Comment accéder à l'aide</title>
 
-    <para>Les rubriques d'aide de WinMerge sont fournies sous deux formes :</para>
+    <para>Les rubriques d'aide de WinMerge sont fournies sous deux formes :</para>
 
     <itemizedlist>
       <listitem>
@@ -28,7 +28,7 @@ répertoire d'installation WinMerge\Docs.</para>
       </listitem>
     </itemizedlist>
 
-    <para>Vous pouvez accéder à l'aide de WinMerge de plusieurs manières :</para>
+    <para>Vous pouvez accéder à l'aide de WinMerge de plusieurs manières :</para>
 
     <variablelist>
       <varlistentry>
@@ -36,7 +36,7 @@ répertoire d'installation WinMerge\Docs.</para>
 
         <listitem>
           <para>Tout en utilisant WinMerge, cliquez sur <menuchoice> <guimenu>Aide</guimenu>
-<guimenuitem>Aide de WinMerge</guimenuitem> </menuchoice>. L'aide HTML
+<guimenuitem>Aide pour WinMerge</guimenuitem> </menuchoice>. L'aide HTML
 s'ouvre au début (cette rubrique).</para>
         </listitem>
       </varlistentry>
@@ -145,13 +145,13 @@ disponibles, les méthodes de navigation et les modes.</para>
         <term><xref linkend="Configuration" /></term>
 
         <listitem>
-          <para>Explique comment personnaliser WinMerge, y compris la gestion des espaces
-blancs, des couleurs et de l'encodage du texte.</para>
+          <para>Explique comment personnaliser WinMerge, y compris la gestion des caractères
+d'espacement, des couleurs et de l'encodage du texte.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Pour en savoir plus sur WinMerge en détail, lisez ces rubriques :</para>
+    <para>Pour en savoir plus sur WinMerge en détail, lisez ces rubriques :</para>
 
     <variablelist>
       <varlistentry>
@@ -224,10 +224,10 @@ déjà apportée.</para>
 
         <tbody>
           <row>
-            <entry>Saisissez <userinput>UTF-8</userinput> dans le champ.<para>Cliquez sur le bouton <guibutton>Parcourir</guibutton> pour naviguer vers le
-chemin.</para><para>Appuyez une fois sur <keycap>F5</keycap> pour actualiser la fenêtre.</para></entry>
+            <entry>Saisissez <userinput>UTF-8</userinput> dans le champ.<para>Cliquez sur le bouton <guibutton>Parcourir...</guibutton> pour naviguer vers
+le chemin.</para><para>Appuyez une fois sur <keycap>F5</keycap> pour actualiser la fenêtre.</para></entry>
 
-            <entry>La police grasse dans le texte descriptif peut indiquer :<itemizedlist>
+            <entry>La police grasse dans le texte descriptif peut indiquer :<itemizedlist>
                 <listitem>
                   <para>Une valeur ou une chaîne que vous devez saisir</para>
                 </listitem>
@@ -255,10 +255,10 @@ de menu ou un bouton.</entry>
 
           <row>
             <entry>Cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Ouvrir</guimenuitem> </menuchoice>.</entry>
+<guimenuitem>Ouvrir...</guimenuitem> </menuchoice>.</entry>
 
             <entry>La flèche indique la navigation dans les menus. Dans l'exemple, vous
-choisissez l'élément <guimenuitem>Ouvrir</guimenuitem> dans le menu
+choisissez l'élément <guimenuitem>Ouvrir...</guimenuitem> dans le menu
 <guimenu>Fichier</guimenu> de WinMerge.</entry>
           </row>
 
@@ -272,11 +272,11 @@ indiqué dans le menu contextuel.</entry>
           </row>
 
           <row>
-            <entry>Saisissez <replaceable>fichier d'options</replaceable>.ini<para>Utilisez le champ <guilabel>Filtre</guilabel> pour éliminer des fichiers de
+            <entry>Saisissez <replaceable>fichier de préférences</replaceable>.ini<para>Utilisez le champ <guilabel>Filtre</guilabel> pour éliminer des fichiers de
 l'opération.</para><para>Une ou plusieurs lignes différentes consécutives forment une différence (ou
 <glossterm>diff</glossterm>).</para></entry>
 
-            <entry>Le texte en italique peut représenter :<itemizedlist>
+            <entry>Le texte en italique peut représenter :<itemizedlist>
                 <listitem>
                   <para>Une valeur ou une chaîne remplaçable. Dans le premier exemple, vous
 substitueriez un nom de fichier réel au terme en italique, mais vous
@@ -295,11 +295,11 @@ italique, telle qu'elle est écrite.</para>
           </row>
 
           <row>
-            <entry>Le chemin <envar>%WORKDIR%\projet1</envar> est étendu en <filename
-class="directory">C:\fichiers_travail\projet1</filename>.<para><screen
+            <entry>Le chemin <envar>%WORKDIR%\project1</envar> est développé en <filename
+class="directory">C:\workfiles\project1</filename>.<para><screen
             format="linespecific">DeuxMots</screen></para></entry>
 
-            <entry>Le texte à espacement fixe (monospacé) peut indiquer :<itemizedlist>
+            <entry>Le texte à espacement fixe (monospacé) peut indiquer :<itemizedlist>
                 <listitem>
                   <para>Un chemin ou le nom d'un fichier ou d'un autre élément du système</para>
                 </listitem>

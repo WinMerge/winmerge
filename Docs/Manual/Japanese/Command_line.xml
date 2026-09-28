@@ -418,7 +418,7 @@ WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー�
       <term><option>/am</option></term>
       <listitem>
         <para>
-起動時に、ペインを左（ベース）- 中央（マージ先）- 右（自分側）の配置にして自動マージします。</para>
+起動時に、ペインを左（相手側）- 中央（マージ先）- 右（自分側）の配置にして自動マージします。</para>
       </listitem>
     </varlistentry>
 

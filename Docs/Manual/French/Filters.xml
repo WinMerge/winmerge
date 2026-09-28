@@ -30,18 +30,18 @@ Expressions).<indexterm>
       <see>expressions régulières</see>
     </indexterm></para>
 
-  <para>Le fonctionnement de base du filtrage est simple : chaque élément qui serait
+  <para>Le fonctionnement de base du filtrage est simple : chaque élément qui serait
 normalement comparé (dossier, fichier ou ligne d'un fichier) est évalué, et
 si l'expression du filtre correspond à l'élément cible, le filtre est
 appliqué. Selon le type de filtre, l'élément est soit inclus, soit exclu de
 la comparaison.</para>
 
   <para>Il existe différents filtres WinMerge pour les opérations de comparaison de
-dossiers et de fichiers :</para>
+dossiers et de fichiers :</para>
 
   <variablelist>
     <varlistentry>
-      <term>Comparaison de dossiers : masques de fichiers et filtres de
+      <term>Comparaison de dossiers : masques de fichiers et filtres de
 fichiers<indexterm>
           <primary>comparaison de dossiers</primary>
 
@@ -64,14 +64,14 @@ fichier texte ou un fichier binaire.</para>
 
         <para>Le filtre d'affichage des fichiers/dossiers est également disponible pour
 les opérations de comparaison de dossiers. Contrairement aux filtres de
-fichiers, il n'affecte pas le résultat de la comparaison; il contrôle
+fichiers, il n'affecte pas le résultat de la comparaison ; il contrôle
 uniquement les éléments visibles dans la fenêtre de comparaison de
 dossiers. Voir <xref linkend="Filters_DisplayFileFolderFilter"/>.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term>Comparaisons de fichiers : filtres de lignes et filtres de
+      <term>Comparaisons de fichiers : filtres de lignes et filtres de
 substitution<indexterm>
           <primary>comparaison de fichiers</primary>
 
@@ -89,7 +89,7 @@ de diff si les résultats du remplacement correspondent. Ils sont utiles pour
 ignorer un grand nombre de changements sans intérêt.</para>
         <para>Le filtre d'affichage des lignes s'applique uniquement aux opérations de
 comparaison de fichiers. Contrairement aux filtres de lignes, il n'affecte
-pas le résultat de la comparaison; il contrôle uniquement les lignes
+pas le résultat de la comparaison ; il contrôle uniquement les lignes
 visibles dans la fenêtre de comparaison de fichiers. Voir <xref
 linkend="Filters_DisplayLineFilter"/>.</para>
       </listitem>
@@ -122,7 +122,7 @@ sélection.</para>
         </indexterm></title>
 
       <para>Définissez et appliquez un masque de fichier au moment où vous lancez votre
-opération de comparaison de dossiers :</para>
+opération de comparaison de dossiers :</para>
 
       <itemizedlist>
         <listitem>
@@ -157,7 +157,7 @@ dans la section suivante).</para>
         </indexterm></title>
 
       <para>Vous pouvez spécifier des masques de fichiers et des filtres étendus en
-utilisant ce format :</para>
+utilisant ce format :</para>
 
       <synopsis>
         <replaceable>Filtre1 du Groupe1</replaceable>;<replaceable>Filtre2</replaceable> ...|<replaceable>Filtre1 du Groupe2</replaceable>;<replaceable>Filtre2</replaceable> ...|...
@@ -175,14 +175,14 @@ chaque groupe.</para></listitem>
 dans une expression régulière qui n'est pas entourée de guillemets doubles
 (comme dans les filtres <filename>f:</filename> ou
 <filename>f!:</filename>), utilisez <filename>||</filename> à la place.</para>
-          <para>Exemple : <userinput>f:(abc||def)\.txt$</userinput></para>
+          <para>Exemple : <userinput>f:(abc||def)\.txt$</userinput></para>
         </listitem>
         <listitem>
           <para>Chaque filtre (par ex., Filtre1, Filtre2) peut être de l'un des types
-suivants :</para>
+suivants :</para>
           <variablelist>
-            <varlistentry><term><replaceable>*.ext</replaceable></term><listitem><para>Masque de fichier par extension (ex: *.txt)</para></listitem></varlistentry>
-            <varlistentry><term><replaceable>*.</replaceable></term><listitem><para>Fichiers sans extension (ex: README)</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>*.ext</replaceable></term><listitem><para>Masque de fichier par extension (p. ex. *.txt)</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>*.</replaceable></term><listitem><para>Fichiers sans extension (p. ex. README)</para></listitem></varlistentry>
             <varlistentry><term>!<replaceable>*.ext</replaceable></term><listitem><para>Exclure les fichiers correspondant à l'extension (disponible depuis 2.16.19)</para></listitem></varlistentry>
             <varlistentry><term><replaceable>dossier</replaceable>\</term><listitem><para>Dossiers cibles (doit se terminer par \) (disponible depuis 2.16.19)</para></listitem></varlistentry>
             <varlistentry><term>!<replaceable>dossier</replaceable>\</term><listitem><para>Exclure les dossiers correspondants (disponible depuis 2.16.19)</para></listitem></varlistentry>
@@ -191,7 +191,7 @@ suivants :</para>
             <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Exclure les fichiers correspondant à la regex (disponible depuis 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Fait correspondre les noms de dossiers par regex (disponible depuis 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Exclure les dossiers correspondant à la regex (disponible depuis 2.16.49)</para></listitem></varlistentry>
-            <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les fichiers (ex: fe:Size &lt; 1KB) (disponible
+            <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les fichiers (p. ex. fe:Size &lt; 1KB) (disponible
 depuis 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des fichiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
             <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
@@ -207,7 +207,7 @@ depuis 2.16.49)</para></listitem></varlistentry>
         <para>Dans cet exemple en ligne de commande, l'opération de comparaison de
 dossiers inclut uniquement les fichiers avec les extensions
 <filename>xml</filename> ou <filename>txt</filename>. Tous les autres
-fichiers sont omis :</para>
+fichiers sont omis :</para>
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f *.xml;*.txt</userinput></para>
       </example>
@@ -217,7 +217,7 @@ fichiers sont omis :</para>
 
         <para>Dans cet exemple en ligne de commande, l'opération de comparaison de
 dossiers exclut les dossiers <filename>.git</filename> et
-<filename>.vs</filename> :</para>
+<filename>.vs</filename> :</para>
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f !.git\;!.vs\</userinput></para>
       </example>
@@ -228,7 +228,7 @@ dossiers exclut les dossiers <filename>.git</filename> et
         <para>Dans cet exemple en ligne de commande, l'opération de comparaison de
 dossiers inclut uniquement les fichiers ayant les extensions
 <filename>cpp</filename> ou <filename>h</filename> et dont la taille est
-inférieure à 1 Ko :</para>
+inférieure à 1 Ko :</para>
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f "*.cpp;*.h|fe:Size &lt;
 1KB"</userinput></para>
@@ -247,29 +247,29 @@ règles d'évaluation pris en charge.</para>
       <section id="FilterExpression_Literals">
         <title>Littéraux et types</title>
 
-        <para>Les types de littéraux pris en charge incluent :</para>
+        <para>Les types de littéraux pris en charge incluent :</para>
         <itemizedlist>
-          <listitem><para><emphasis>Booléen</emphasis> : <literal>true</literal>,
+          <listitem><para><emphasis>Booléen</emphasis> : <literal>true</literal>,
 <literal>false</literal></para></listitem>
-          <listitem><para><emphasis>Nul</emphasis> : <literal>none</literal> (représente une valeur
+          <listitem><para><emphasis>Nul</emphasis> : <literal>none</literal> (représente une valeur
 nulle ou manquante)</para></listitem>
-          <listitem><para><emphasis>Entier</emphasis> : entiers signés 64 bits (ex :
+          <listitem><para><emphasis>Entier</emphasis> : entiers signés 64 bits (ex :
 <literal>1024</literal>, ou avec des unités comme <literal>100KB</literal>,
 <literal>7days</literal>)</para></listitem>
-          <listitem><para><emphasis>Réel (Double)</emphasis> : nombres à virgule flottante avec
-décimale ou exposant facultatifs (ex : <literal>3.14</literal>,
+          <listitem><para><emphasis>Réel (Double)</emphasis> : nombres à virgule flottante avec
+décimale ou exposant facultatifs (ex : <literal>3.14</literal>,
 <literal>.5</literal>, <literal>1e6</literal>)</para></listitem>
-          <listitem><para><emphasis>Chaîne de caractères</emphasis> : entourée de guillemets doubles
+          <listitem><para><emphasis>Chaîne de caractères</emphasis> : entourée de guillemets doubles
 (p. ex. <literal>"exemple"</literal>)</para></listitem>
-          <listitem><para><emphasis>Date/Heure</emphasis> : Préfixée par <literal>d</literal> et
+          <listitem><para><emphasis>Date/Heure</emphasis> : Préfixée par <literal>d</literal> et
 entourée de guillemets doubles (p. ex. <literal>d"2026-05-21
 07:16:33"</literal>, <literal>d"2026-05-21"</literal>)</para></listitem>
         </itemizedlist>
 
         <para>
-En interne, les valeurs peuvent être des types suivants : Booléen, Entier,
+En interne, les valeurs peuvent être des types suivants : Booléen, Entier,
 Réel, Horodatage, Chaîne de caractères, Contenu de fichier, Tableau ou
-<literal>Aucun</literal>.</para>
+<literal>none</literal>.</para>
       </section>
 
       <section id="FilterExpression_Directives">
@@ -291,7 +291,7 @@ Par défaut, tous les opérateurs de comparaison de chaînes
 <literal>contains</literal>, <literal>recontains</literal>,
 <literal>like</literal>, <literal>matches</literal>) sont insensibles à la
 casse. Vous pouvez contrôler ce comportement en utilisant les directives
-suivantes :</para>
+suivantes :</para>
 
           <variablelist>
             <varlistentry>
@@ -317,10 +317,10 @@ considérés comme identiques.</para>
 
           <example>
             <title>Exemples de sensibilité à la casse</title>
-<programlisting>@cs Name = "README.txt"           ## Sensible à la casse : correspond uniquement à "README.txt"
-@ci Name = "readme.txt"           ## Insensible à la casse : correspond à "README.txt", "readme.txt", "ReadMe.TXT", etc.
-@casesensitive Extension = "TXT"  ## Sensible à la casse : correspond uniquement aux fichiers avec l'extension ".TXT"
-@caseinsensitive Content contains "error"  ## Insensible à la casse : correspond à "Error", "ERROR", "error", etc.</programlisting></example>
+<programlisting>@cs Name = "README.txt"           ## Sensible à la casse : correspond uniquement à "README.txt"
+@ci Name = "readme.txt"           ## Insensible à la casse : correspond à "README.txt", "readme.txt", "ReadMe.TXT", etc.
+@casesensitive Extension = "TXT"  ## Sensible à la casse : correspond uniquement aux fichiers avec l'extension ".TXT"
+@caseinsensitive Content contains "error"  ## Insensible à la casse : correspond à "Error", "ERROR", "error", etc.</programlisting></example>
         </section>
 
         <section id="FilterExpression_Optimize">
@@ -329,7 +329,7 @@ considérés comme identiques.</para>
           <para>
 Par défaut, les expressions de filtre sont optimisées pour améliorer les
 performances. Vous pouvez contrôler ce comportement en utilisant les
-directives suivantes :</para>
+directives suivantes :</para>
 
           <variablelist>
             <varlistentry>
@@ -476,7 +476,7 @@ C:\Project\src\main.cpp », RelPath renvoie « src\main.cpp ».</para></listitem
             <varlistentry>
               <term><varname>AttrStr</varname></term>
               <listitem>
-                <para>Retourne la chaîne des attributs de fichier. Exemples :
+                <para>Retourne la chaîne des attributs de fichier. Exemples :
 <literal>"R"</literal> pour Lecture seule, <literal>"H"</literal> pour
 Caché, <literal>"A"</literal> pour Archive, <literal>"S"</literal> pour
 fichier Système.</para>
@@ -545,13 +545,13 @@ les sous-dossiers, en octets.</para></listitem>
         <section>
           <title>Préfixes spécifiques au côté</title>
           <para>
-Des préfixes peuvent être ajoutés pour spécifier le côté de la comparaison :</para>
+Des préfixes peuvent être ajoutés pour spécifier le côté de la comparaison :</para>
           <itemizedlist>
-            <listitem><para><emphasis>Left</emphasis> : S'applique au fichier du côté gauche (par ex.,
+            <listitem><para><emphasis>Left</emphasis> : S'applique au fichier du côté gauche (par ex.,
 <literal>LeftSize</literal>)</para></listitem>
-            <listitem><para><emphasis>Right</emphasis> : S'applique au fichier du côté droit (par ex.,
+            <listitem><para><emphasis>Right</emphasis> : S'applique au fichier du côté droit (par ex.,
 <literal>RightDate</literal>)</para></listitem>
-            <listitem><para><emphasis>Middle</emphasis> : S'applique au fichier du milieu dans une
+            <listitem><para><emphasis>Middle</emphasis> : S'applique au fichier du milieu dans une
 comparaison à 3 voies (par ex., <literal>MiddleName</literal>)</para></listitem>
           </itemizedlist>
 
@@ -575,7 +575,7 @@ propriétés Windows (par ex. <literal>System.Title</literal>,
               <listitem>
                 <para>
 Renvoie un tableau de valeurs de propriété (Gauche, Milieu, Droite) pour le
-nom de propriété canonique spécifié. Exemple :
+nom de propriété canonique spécifié. Exemple :
 <literal>prop("System.Title")</literal></para>
               </listitem>
             </varlistentry>
@@ -584,7 +584,7 @@ nom de propriété canonique spécifié. Exemple :
               <term><varname>LeftProp</varname></term>
               <listitem>
                 <para>
-Valeur de propriété du fichier du côté gauche. Exemple :
+Valeur de propriété du fichier du côté gauche. Exemple :
 <literal>leftprop("System.FileOwner")</literal></para>
               </listitem>
             </varlistentry>
@@ -625,7 +625,7 @@ conduire à un comportement inattendu.</para>
                 <para>
 Renvoie <literal>true</literal> si le résultat de la comparaison indique que
 les éléments sont identiques, <literal>false</literal> sinon. Il s'agit d'un
-attribut global (ne prend pas en charge les préfixes de côté). Exemple :
+attribut global (ne prend pas en charge les préfixes de côté). Exemple :
 <literal>Identical</literal> pour n'afficher que les fichiers identiques.</para>
               </listitem>
             </varlistentry>
@@ -636,7 +636,7 @@ attribut global (ne prend pas en charge les préfixes de côté). Exemple :
                 <para>
 Renvoie <literal>true</literal> si le résultat de la comparaison indique que
 les éléments sont différents, <literal>false</literal> sinon. Il s'agit d'un
-attribut global (ne prend pas en charge les préfixes de côté). Exemple :
+attribut global (ne prend pas en charge les préfixes de côté). Exemple :
 <literal>Different</literal> pour n'afficher que les fichiers différents.</para>
               </listitem>
             </varlistentry>
@@ -648,7 +648,7 @@ attribut global (ne prend pas en charge les préfixes de côté). Exemple :
 Renvoie <literal>true</literal> si la comparaison a été ignorée en raison
 d'une erreur ou d'une règle de filtrage, <literal>false</literal> sinon. Il
 s'agit d'un attribut global (ne prend pas en charge les préfixes de
-côté). Exemple : <literal>Skipped</literal> pour n'afficher que les éléments
+côté). Exemple : <literal>Skipped</literal> pour n'afficher que les éléments
 ignorés.</para>
               </listitem>
             </varlistentry>
@@ -660,10 +660,10 @@ ignorés.</para>
 Renvoie <literal>true</literal> si le fichier est détecté comme binaire,
 <literal>false</literal> s'il s'agit d'un fichier texte, ou
 <literal>none</literal> si le fichier n'existe pas. Cet attribut prend en
-charge les préfixes spécifiques au type de codage
+charge les préfixes spécifiques au côté
 (p. ex. <literal>LeftBinary</literal>,
-<literal>RightBinary</literal>). Exemple : <literal>allof(Binary)</literal>
-pour afficher les fichiers binaires des deux côtés.</para>
+<literal>RightBinary</literal>). Exemple : <literal>allof(Binary)</literal>
+pour afficher les fichiers qui sont binaires de tous les côtés.</para>
               </listitem>
             </varlistentry>
 
@@ -675,7 +675,7 @@ Renvoie <literal>true</literal> si les fichiers de gauche et du milieu
 diffèrent lors d'une comparaison à trois voies, <literal>false</literal>
 sinon. Renvoie <literal>none</literal> lors d'une comparaison à deux
 voies. Il s'agit d'un attribut global (ne prend pas en charge les préfixes
-spécifiques à un côté). Exemple : <literal>DifferentLeftMiddle and not
+spécifiques à un côté). Exemple : <literal>DifferentLeftMiddle and not
 DifferentMiddleRight</literal> pour trouver les fichiers où seul le fichier
 de gauche diffère de celui du milieu.</para>
               </listitem>
@@ -689,7 +689,7 @@ Renvoie <literal>true</literal> si les fichiers du milieu et de droite
 diffèrent lors d'une comparaison à trois voies, <literal>false</literal>
 sinon. Renvoie <literal>none</literal> lors d'une comparaison à deux
 voies. Il s'agit d'un attribut global (ne prend pas en charge les préfixes
-spécifiques à un côté). Exemple : <literal>DifferentMiddleRight</literal>
+spécifiques à un côté). Exemple : <literal>DifferentMiddleRight</literal>
 pour afficher les fichiers où les fichiers du milieu et de droite diffèrent.</para>
               </listitem>
             </varlistentry>
@@ -702,7 +702,7 @@ Dans les comparaisons à 3 voies, renvoie <literal>true</literal> si les
 fichiers de gauche et de droite sont différents, <literal>false</literal>
 sinon. Dans les comparaisons à 2 voies, renvoie <literal>true</literal> si
 les deux fichiers existent et sont différents. Il s'agit d'un attribut
-global. Exemple : <literal>DifferentLeftRight</literal> pour afficher les
+global. Exemple : <literal>DifferentLeftRight</literal> pour afficher les
 fichiers où la gauche et la droite diffèrent.</para>
               </listitem>
             </varlistentry>
@@ -713,7 +713,7 @@ fichiers où la gauche et la droite diffèrent.</para>
                 <para>
 Renvoie le nombre de différences de texte dans la comparaison de
 fichiers. Cet attribut n'est significatif que pour les fichiers texte qui
-ont été comparés. Il s'agit d'un attribut global. Exemple :
+ont été comparés. Il s'agit d'un attribut global. Exemple :
 <literal>Differences &gt; 0</literal> pour afficher les fichiers présentant
 des différences, ou <literal>Differences &gt; 10</literal> pour les fichiers
 avec plus de 10 différences.</para>
@@ -728,7 +728,7 @@ Renvoie le nombre de différences ignorées lors de la comparaison de fichiers
 (différences filtrées par les filtres de ligne ou les paramètres
 d'espaces). Cet attribut n'est significatif que pour les fichiers texte qui
 ont été comparés. Il s'agit d'un attribut global (ne prend pas en charge les
-préfixes de côté). Exemple : <literal>IgnoredDiffs &gt; 0</literal> pour
+préfixes de côté). Exemple : <literal>IgnoredDiffs &gt; 0</literal> pour
 afficher les fichiers avec des différences ignorées, ou <literal>Differences
 = 0 and IgnoredDiffs &gt; 0</literal> pour afficher les fichiers identiques
 à l'exception des différences ignorées.</para>
@@ -741,7 +741,7 @@ afficher les fichiers avec des différences ignorées, ou <literal>Differences
                 <para>
 Renvoie le nom du plug-in de décompression utilisé pour la comparaison de
 fichiers, ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un
-attribut global. Exemple : <literal>Unpacker =
+attribut global. Exemple : <literal>Unpacker =
 "CompareMSExcelFiles"</literal> pour afficher les fichiers comparés via le
 décompresseur Excel, ou <literal>Unpacker != ""</literal> pour afficher tous
 les fichiers où un décompresseur a été utilisé.</para>
@@ -752,12 +752,12 @@ les fichiers où un décompresseur a été utilisé.</para>
               <term><varname>Prediffer</varname></term>
               <listitem>
                 <para>
-Renvoie le nom du plug-in prediffer utilisé pour la comparaison de fichiers,
-ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un attribut
-global. Exemple : <literal>Prediffer = "IgnoreColumns"</literal> pour
-afficher les fichiers comparés avec le prediffer IgnoreColumns, ou
+Renvoie le nom du plug-in précomparateur utilisé pour la comparaison de
+fichiers, ou une chaîne vide si aucun n'a été utilisé. Il s'agit d'un
+attribut global. Exemple : <literal>Prediffer = "IgnoreColumns"</literal>
+pour afficher les fichiers comparés avec le précomparateur IgnoreColumns, ou
 <literal>Prediffer != ""</literal> pour afficher tous les fichiers où un
-prediffer a été utilisé.</para>
+précomparateur a été utilisé.</para>
               </listitem>
             </varlistentry>
 
@@ -767,8 +767,8 @@ prediffer a été utilisé.</para>
                 <para>Renvoie le style de fin de ligne (EOL) sous forme d'entier. Pour les
 fichiers, renvoie le style EOL prédominant ; pour les lignes, renvoie le
 style EOL de la ligne concernée.</para>
-                <para>Valeurs : 0 = Aucun, 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows), 4 =
-Mixte (plusieurs styles de fin de ligne dans le fichier)</para>
+                <para>Valeurs : 0 = None (aucun), 1 = LF (Unix), 2 = CR (Mac), 3 = CRLF (Windows),
+4 = Mixed (mixte) (plusieurs styles de fin de ligne dans le fichier)</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -777,7 +777,7 @@ Mixte (plusieurs styles de fin de ligne dans le fichier)</para>
                 <para>Renvoie le style de fin de ligne (EOL) sous forme de chaîne de
 caractères. Pour les fichiers, renvoie le style EOL prédominant; pour les
 lignes, renvoie le style EOL de la ligne concernée.</para>
-                <para>Valeurs : « Aucun », « LF », « CR », « CRLF », « Mixte »</para>
+                <para>Valeurs : "None" (aucun), "LF", "CR", "CRLF", "Mixed" (mixte)</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -787,7 +787,7 @@ lignes, renvoie le style EOL de la ligne concernée.</para>
 Renvoie la page de code du fichier (encodage des caractères) sous forme
 d'entier. Cet attribut prend en charge les préfixes spécifiques au côté
 (ex. <literal>LeftCodepage</literal>,
-<literal>RightCodepage</literal>). Exemple : <literal>Codepage =
+<literal>RightCodepage</literal>). Exemple : <literal>Codepage =
 65001</literal> pour afficher les fichiers UTF-8, ou <literal>allof(Codepage
 = 65001)</literal> pour afficher les fichiers qui sont en UTF-8 de tous les
 côtés.</para>
@@ -800,7 +800,7 @@ côtés.</para>
                 <para>
 Renvoie <literal>true</literal> si le fichier possède une marque d'ordre des
 octets (BOM), <literal>false</literal> sinon. Cet attribut prend en charge
-les préfixes spécifiques au côté. Exemple : <literal>HasBOM</literal> pour
+les préfixes spécifiques au côté. Exemple : <literal>HasBOM</literal> pour
 afficher les fichiers avec BOM, ou <literal>not HasBOM</literal> pour
 afficher les fichiers sans BOM.</para>
               </listitem>
@@ -836,11 +836,11 @@ l'expression globale est évaluée à <literal>true</literal>. Sinon, elle est
             <title>Tableau vs Tableau</title>
             <para>
 Lors de la comparaison de deux tableaux, le comportement dépend de
-l'opérateur :</para>
+l'opérateur :</para>
             <itemizedlist>
               <listitem>
                 <para>
-Pour <literal>=</literal> et <literal>!=</literal> : Les tableaux doivent
+Pour <literal>=</literal> et <literal>!=</literal> : Les tableaux doivent
 avoir la même longueur. Le résultat est une valeur booléenne unique, pas un
 tableau. <literal>=</literal> renvoie <literal>true</literal> uniquement si
 tous les éléments sont égaux. <literal>!=</literal> renvoie
@@ -849,7 +849,7 @@ tous les éléments sont égaux. <literal>!=</literal> renvoie
               <listitem>
                 <para>
 Pour tous les autres opérateurs (par ex. <literal>&gt;</literal>,
-<literal>&lt;</literal>) : l'opération est appliquée élément par élément,
+<literal>&lt;</literal>) : l'opération est appliquée élément par élément,
 produisant un tableau de booléens. Le résultat final de l'expression est
 <literal>true</literal> si n'importe quel élément du tableau booléen est
 <literal>true</literal>, et <literal>false</literal> si tous les éléments
@@ -981,7 +981,7 @@ catégorie pour faciliter leur consultation.</para>
               <term><function>strlen</function>(<replaceable>source</replaceable>)</term>
               <listitem><para>Renvoie la longueur de la chaîne sous forme d'un
 <literal>Integer</literal>. Si <replaceable>source</replaceable> est un
-tableau de chaînes, le résultat est un tableau d'entiers. Exemple :
+tableau de chaînes, le résultat est un tableau d'entiers. Exemple :
 <literal>strlen(Name)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
@@ -997,7 +997,7 @@ recherche est insensible à la casse par défaut (respecte les directives
 d'entiers contenant le nombre d'occurrences de chaque élément. Les
 correspondances qui se chevauchent sont comptées séparément
 (p. ex. <literal>strCount("aaaa", "aa")</literal> renvoie 2).</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>strCount("hello hello world", "hello")</literal> renvoie 2</para></listitem>
                   <listitem><para><literal>strCount("Test TEST test", "test")</literal> renvoie 3 (sans tenir
@@ -1022,7 +1022,7 @@ défaut (respecte les directives <literal>@cs</literal> et
 le résultat est un tableau d'entiers contenant le nombre d'occurrences de
 chaque élément. Les correspondances vides sont gérées de manière élégante
 afin d'éviter les boucles infinies.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>regexCount("test123abc456", "\d+")</literal> renvoie 2</para></listitem>
                   <listitem><para><literal>regexCount("AAA BBB CCC", "[A-Z]+")</literal> renvoie 3</para></listitem>
@@ -1042,11 +1042,11 @@ Trouve la position (à partir de 0) de la Nième occurrence de la sous-chaîne
 paramètre optionnel <replaceable>occurrence</replaceable> spécifie
 l'occurrence à rechercher (à partir de 0, par défaut 0 pour la première
 occurrence). La recherche est insensible à la casse par défaut (respecte les
-directives `@cs` et `@ci`). Renvoie `none` si la sous-chaîne est introuvable
-ou si l'indice d'occurrence est hors limites. Si
-<replaceable>str</replaceable> est un tableau, le résultat est un tableau de
-positions (ou la valeur `none`).</para>
-                <para>Exemples :</para>
+directives <literal>@cs</literal> et <literal>@ci</literal>). Renvoie
+<literal>none</literal> si la sous-chaîne est introuvable ou si l'indice
+d'occurrence est hors limites. Si <replaceable>str</replaceable> est un
+tableau, le résultat est un tableau de positions (ou de valeurs none).</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>strFind("hello world", "o")</literal> renvoie 4 (premier 'o')</para></listitem>
                   <listitem><para><literal>strFind("hello world", "o", 1)</literal> renvoie 7 (deuxième 'o')</para></listitem>
@@ -1076,7 +1076,7 @@ la première occurrence). La recherche est insensible à la casse par défaut
 correspond pas, si l'index du groupe ou l'index de l'occurrence est hors
 limites. Si <replaceable>str</replaceable> est un tableau, le résultat est
 un tableau de positions (ou la valeur « none »).</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>regexFind("test123abc456", "\d+")</literal> renvoie 4 (position de
 « 123 »)</para></listitem>
@@ -1097,7 +1097,7 @@ un tableau de positions (ou la valeur « none »).</para>
               <listitem><para>Renvoie une plage de texte spécifique de la <emphasis>chaîne ou du tableau
 de chaînes</emphasis> sous forme d'une <literal>String</literal>. Si
 <replaceable>source</replaceable> est un tableau de chaînes, le résultat est
-un tableau de chaînes. Exemple : <literal>substr(Name, 0, 3)</literal></para></listitem>
+un tableau de chaînes. Exemple : <literal>substr(Name, 0, 3)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>replace</function>(str, from, to)</term>
@@ -1106,7 +1106,7 @@ un tableau de chaînes. Exemple : <literal>substr(Name, 0, 3)</literal></para></
 Remplace toutes les occurrences de la chaîne <replaceable>from</replaceable>
 par <replaceable>to</replaceable>. Si <replaceable>str</replaceable> est un
 tableau, le résultat est un tableau de chaînes avec les remplacements
-appliqués. Exemple : <literal>replace(name, ".bak", ".txt")</literal></para>
+appliqués. Exemple : <literal>replace(name, ".bak", ".txt")</literal></para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1117,7 +1117,7 @@ Remplace toutes les correspondances du motif d'expression régulière par la
 chaîne de remplacement. Prend en charge les références arrière ($1, $2,
 etc.) dans la chaîne de remplacement. Si <replaceable>str</replaceable> est
 un tableau, le résultat est un tableau de chaînes avec les remplacements
-appliqués. Exemple : <literal>regexReplace(name, "^(\w+)_(\w+)$",
+appliqués. Exemple : <literal>regexReplace(name, "^(\w+)_(\w+)$",
 "$2_$1")</literal> permute des mots séparés par un souligné.</para>
               </listitem>
             </varlistentry>
@@ -1127,19 +1127,19 @@ appliqués. Exemple : <literal>regexReplace(name, "^(\w+)_(\w+)$",
                 <para>
 Remplace plusieurs chaînes de caractères dans <replaceable>str</replaceable>
 en utilisant des règles de remplacement chargées depuis un fichier séparé
-par des tabulations. Le format du fichier est le suivant : une règle de
-remplacement par ligne :
+par des tabulations. Le format du fichier est le suivant : une règle de
+remplacement par ligne :
 <literal>search_string&lt;TAB&gt;replacement_string</literal>. Les lignes
 commençant par <literal>#</literal> sont considérées comme des commentaires
 et ignorées. Les lignes vides sont également ignorées. Si
 <replaceable>str</replaceable> est un tableau, le résultat est un tableau de
 chaînes avec les remplacements appliqués.</para>
-                <para>Exemple de format de fichier :</para>
+                <para>Exemple de format de fichier :</para>
                 <screen># Ligne de commentaire
 pomme	orange
 chat	chien
 ancien	nouveau</screen>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> -
 applique les remplacements du fichier au nom du fichier</para></listitem>
@@ -1152,19 +1152,19 @@ applique les remplacements du fichier au nom du fichier</para></listitem>
                 <para>
 Remplace les chaînes de caractères dans <replaceable>str</replaceable> à
 l'aide d'expressions régulières chargées depuis un fichier séparé par des
-tabulations. Le format du fichier est le suivant : une expression régulière
-par ligne :
+tabulations. Le format du fichier est le suivant : une expression régulière
+par ligne :
 <literal>regex_pattern&lt;TAB&gt;replacement_string</literal>. La chaîne de
 remplacement peut inclure des références arrière ($1, $2, etc.) vers des
 groupes capturés. Les lignes commençant par <literal>#</literal> sont
 considérées comme des commentaires et ignorées. Les lignes vides sont
 également ignorées. Si <replaceable>str</replaceable> est un tableau, le
 résultat est un tableau de chaînes avec les remplacements appliqués.</para>
-                <para>Exemple de format de fichier :</para>
+                <para>Exemple de format de fichier :</para>
                 <screen># Ligne de commentaire
 \d+	NOMBRE
 (\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>regexReplaceWithList(Name,
 "C:\Filters\regex_replacements.txt")</literal> - applique des remplacements
@@ -1194,7 +1194,7 @@ nombre d'occurrences. Si <replaceable>str</replaceable> est un tableau, le
 résultat est un tableau contenant les captures pour chaque élément. La
 recherche est insensible à la casse par défaut (respecte les directives
 <literal>@cs</literal>/<literal>@ci</literal>).</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>regexExtract("abc123", "[a-z]+\d+")</literal> renvoie
 <literal>"abc123"</literal> (correspondance complète)</para></listitem>
@@ -1218,11 +1218,11 @@ occurrence)</para></listitem>
                   <listitem><para><literal>regexExtract("test", "\d+")</literal> renvoie
 <literal>none</literal> (aucune correspondance)</para></listitem>
                   <listitem><para><literal>regexExtract("abc", "([a-z])", 5)</literal> renvoie
-<literal>aucun</literal> (groupe hors limites)</para></listitem>
+<literal>none</literal> (groupe hors limites)</para></listitem>
                   <listitem><para><literal>regexExtract(array("abc123", "def456"), "([a-z]+)(\d+)",
 1)</literal> renvoie <literal>array("abc", "def")</literal></para></listitem>
-                  <listitem><para>L'expression régulière `@cs regexExtract("ABC123", "([a-z]+)", 1)` renvoie
-`none` (sensible à la casse, aucune correspondance).</para></listitem>
+                  <listitem><para><literal>@cs regexExtract("ABC123", "([a-z]+)", 1)</literal> renvoie
+<literal>none</literal> (sensible à la casse, aucune correspondance)</para></listitem>
                   <listitem><para><literal>le:regexExtract(Line, "error:\s+(\w+)", 1)</literal> extrait le
 type d'erreur des lignes de journal</para></listitem>
                   <listitem><para><literal>fe:regexExtract(Name, "v(\d+)\.(\d+)\.(\d+)", 1) = "2"</literal>
@@ -1235,10 +1235,10 @@ filtre les fichiers dont la version majeure est 2</para></listitem>
               <listitem>
                 <para>
 Normalise la chaîne Unicode. Le paramètre optionnel 'form' spécifie la forme
-de normalisation : "NFC" ou "C" (par défaut), "NFD" ou "D", "NFKC" ou "KC",
-"NFKD" ou "KD". On peut aussi utiliser les formes numériques : 1=NFC, 2=NFD,
+de normalisation : "NFC" ou "C" (par défaut), "NFD" ou "D", "NFKC" ou "KC",
+"NFKD" ou "KD". On peut aussi utiliser les formes numériques : 1=NFC, 2=NFD,
 5=NFKC, 6=NFKD. Si <replaceable>str</replaceable> est un tableau, le
-résultat est un tableau de chaînes normalisées. Exemple :
+résultat est un tableau de chaînes normalisées. Exemple :
 <literal>normalizeUnicode(name, "NFC")</literal></para>
               </listitem>
             </varlistentry>
@@ -1249,7 +1249,7 @@ résultat est un tableau de chaînes normalisées. Exemple :
                 <para>
 Convertit tous les caractères de la chaîne en minuscules. Si
 <replaceable>str</replaceable> est un tableau, le résultat est un tableau de
-chaînes en minuscules. Exemple : <literal>toLower("Hello World")</literal>
+chaînes en minuscules. Exemple : <literal>toLower("Hello World")</literal>
 renvoie <literal>"hello world"</literal></para>
               </listitem>
             </varlistentry>
@@ -1260,7 +1260,7 @@ renvoie <literal>"hello world"</literal></para>
                 <para>
 Convertit tous les caractères de la chaîne en majuscules. Si
 <replaceable>str</replaceable> est un tableau, le résultat est un tableau de
-chaînes en majuscules. Exemple : <literal>toUpper("Hello World")</literal>
+chaînes en majuscules. Exemple : <literal>toUpper("Hello World")</literal>
 renvoie <literal>"HELLO WORLD"</literal></para>
               </listitem>
             </varlistentry>
@@ -1338,9 +1338,9 @@ un tableau de chaînes converties.</para>
 Supprime les espaces en début et en fin de chaîne (espace, tabulation, saut
 de ligne, retour chariot). Si <replaceable>str</replaceable> est un tableau,
 le résultat est un tableau de chaînes tronquées.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
-                  <listitem><para><literal>trim("hello ")</literal> renvoie <literal>"hello"</literal></para></listitem>
+                  <listitem><para><literal>trim(" hello ")</literal> renvoie <literal>"hello"</literal></para></listitem>
                   <listitem><para><literal>trim(array(" test ", " data "))</literal> renvoie
 <literal>array("test", "data")</literal></para></listitem>
                 </itemizedlist>
@@ -1355,10 +1355,9 @@ Supprime les espaces de début (espace, tabulation, saut de ligne, retour
 chariot) de la chaîne. Les espaces de fin sont conservés. Si
 <replaceable>str</replaceable> est un tableau, le résultat est un tableau de
 chaînes tronquées à gauche.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
-                  <listitem><para><literal>trimLeft(" bonjour ")</literal> renvoie <literal>"bonjour
-"</literal></para></listitem>
+                  <listitem><para><literal>trimLeft(" hello ")</literal> renvoie <literal>"hello "</literal></para></listitem>
                 </itemizedlist>
               </listitem>
             </varlistentry>
@@ -1371,7 +1370,7 @@ Supprime les espaces de fin de chaîne (espace, tabulation, saut de ligne,
 retour chariot). Les espaces de début sont conservés. Si
 <replaceable>str</replaceable> est un tableau, le résultat est un tableau de
 chaînes tronquées à droite.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>trimRight(" hello ")</literal> renvoie <literal>" hello"</literal></para></listitem>
                 </itemizedlist>
@@ -1388,7 +1387,7 @@ chaînes tronquées à droite.</para>
               <listitem><para>Renvoie le nombre de lignes dans le contenu du fichier ou le tableau de
 contenu de fichier sous forme d'un <literal>Integer</literal>. Si
 <replaceable>content</replaceable> est un tableau, le résultat est un
-tableau d'entiers. Exemple : <literal>lineCount(Content)</literal></para></listitem>
+tableau d'entiers. Exemple : <literal>lineCount(Content)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>sublines</function>(<replaceable>content</replaceable>,
@@ -1414,11 +1413,11 @@ tableau de chaînes.</para>
 <function>toDouble</function>(<replaceable>str</replaceable>)</term>
               <listitem><para>Convertit une chaîne de caractères en nombre. La fonction
 <function>toNumber</function> renvoie un entier ou un nombre à virgule
-flottante selon le format d'entrée; la fonction <function>toInt</function>
+flottante selon le format d'entrée ; la fonction <function>toInt</function>
 renvoie uniquement des entiers; la fonction <function>toDouble</function>
 renvoie uniquement des nombres à virgule flottante. Les virgules dans
 l'entrée sont ignorées. En cas d'échec de l'analyse syntaxique, la fonction
-renvoie <literal>none</literal>. Exemple :
+renvoie <literal>none</literal>. Exemple :
 <literal>le:toInt(Column("Count")) &gt; 100</literal></para></listitem>
             </varlistentry>
             <varlistentry>
@@ -1427,7 +1426,7 @@ renvoie <literal>none</literal>. Exemple :
                 <para>
 Convertit une chaîne de caractères en une valeur d'horodatage. Prend en
 charge plusieurs formats de date et d'heure. Renvoie <literal>none</literal>
-si la chaîne ne peut pas être analysée. Exemple :
+si la chaîne ne peut pas être analysée. Exemple :
 <literal>toDateTime("2025-01-15") &gt; today()</literal></para>
               </listitem>
             </varlistentry>
@@ -1489,7 +1488,7 @@ extrémités). Prend en charge les entiers, les nombres à virgule flottante,
 les horodatages et les chaînes (comparaison insensible à la casse). Si
 <replaceable>value</replaceable> est un tableau, le résultat est un tableau
 de booléens où chaque élément est vérifié individuellement.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>isWithin(5, 1, 10)</literal> renvoie <literal>true</literal></para></listitem>
                   <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> vérifie si la taille de l'un
@@ -1512,7 +1511,7 @@ supérieure exclue). Prend en charge les entiers, les nombres à virgule
 flottante, les horodatages et les chaînes (comparaison insensible à la
 casse). Si <replaceable>value</replaceable> est un tableau, le résultat est
 un tableau de booléens où chaque élément est vérifié individuellement.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>inRange(5, 1, 10)</literal> renvoie <literal>true</literal></para></listitem>
                   <listitem><para><literal>inRange(10, 1, 10)</literal> renvoie <literal>false</literal></para></listitem>
@@ -1527,19 +1526,19 @@ vérifie si un fichier a été modifié ce mois-ci (aujourd'hui exclu)</para></l
         </section>
 
         <section id="FilterExpression_ArrayFunctions">
-          <title>Fonctions de chaînes de caractères</title>
+          <title>Fonctions de tableaux</title>
           <variablelist>
             <varlistentry>
               <term><function>array</function>(<replaceable>value1</replaceable>,
 <replaceable>value2</replaceable>, ...)</term>
-              <listitem><para>Crée un tableau à partir des valeurs données. Exemple : <literal>array(1, 2,
+              <listitem><para>Crée un tableau à partir des valeurs données. Exemple : <literal>array(1, 2,
 3)</literal></para></listitem>
             </varlistentry>
             <varlistentry>
               <term><function>at</function>(<replaceable>array</replaceable>,
 <replaceable>index</replaceable>)</term>
               <listitem><para>Renvoie l'élément à l'index spécifié (à partir de 0). Les indices négatifs
-sont numérotés à partir de la fin. Exemple : <literal>at(array(1, 2, 3),
+sont numérotés à partir de la fin. Exemple : <literal>at(array(1, 2, 3),
 -1)</literal> renvoie 3</para></listitem>
             </varlistentry>
             <varlistentry>
@@ -1561,16 +1560,16 @@ satisfont à la condition.</para></listitem>
               <term><function>len</function>(<replaceable>value</replaceable>)</term>
               <listitem>
                 <para>Renvoie la longueur de la valeur sous forme d'un <literal>Integer</literal>.</para>
-                <para>Comportement :</para>
+                <para>Comportement :</para>
                 <itemizedlist>
-                  <listitem><para><emphasis>Tableau</emphasis> : Renvoie le nombre d'éléments du tableau</para></listitem>
-                  <listitem><para><emphasis>Chaîne de caractères</emphasis> : Renvoie le nombre de caractères
+                  <listitem><para><emphasis>Tableau</emphasis> : Renvoie le nombre d'éléments du tableau</para></listitem>
+                  <listitem><para><emphasis>Chaîne de caractères</emphasis> : Renvoie le nombre de caractères
 UTF-8</para></listitem>
-                  <listitem><para><emphasis>Aucun (monostate)</emphasis> : Renvoie 0</para></listitem>
+                  <listitem><para><emphasis>Aucun (monostate)</emphasis> : Renvoie 0</para></listitem>
                   <listitem><para><emphasis>Autres valeurs scalaires</emphasis> (Entier, Réel, Booléen,
-Horodatage, etc.) : Renvoie 1</para></listitem>
+Horodatage, etc.) : Renvoie 1</para></listitem>
                 </itemizedlist>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>len(array(1, 2, 3))</literal> - renvoie 3</para></listitem>
                   <listitem><para><literal>len("hello")</literal> - renvoie 5</para></listitem>
@@ -1596,7 +1595,7 @@ Renvoie <replaceable>trueValue</replaceable> si la
 <replaceable>falseValue</replaceable>. Cette fonction effectue une
 évaluation en court-circuit (elle n'évalue que la branche qui sera
 renvoyée).</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - renvoie "large" ou
 "small" selon la taille du fichier</para></listitem>
@@ -1619,7 +1618,7 @@ renvoie l'élément correspondant de <replaceable>falseValue</replaceable>. Si
 <replaceable>trueValue</replaceable> ou
 <replaceable>falseValue</replaceable> est un scalaire, il est diffusé à tous
 les éléments.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - renvoie un
 tableau d'étiquettes "large"/"small" pour chaque fichier</para></listitem>
@@ -1640,7 +1639,7 @@ l'index est 0, renvoie <replaceable>value0</replaceable> ; s'il est 1,
 renvoie <replaceable>value1</replaceable>, etc. Les indices négatifs sont
 ramenés à 0. Les indices au-delà de la dernière valeur renvoient la dernière
 valeur.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>choose(0, "first", "second", "third")</literal> - renvoie "first"</para></listitem>
                   <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> -
@@ -1659,7 +1658,7 @@ Sélection de valeurs par élément. Pour chaque index de
 <replaceable>indexArray</replaceable>, sélectionne la valeur correspondante
 dans les arguments restants. Si <replaceable>indexArray</replaceable> est un
 scalaire, se comporte comme <literal>choose</literal>.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> - renvoie
 <literal>array("a", "b", "c")</literal></para></listitem>
@@ -1685,7 +1684,7 @@ renvoie <literal>array("third", "first", "second")</literal></para></listitem>
               <listitem>
                 <para>
 Opérations logiques par élément. Ces fonctions opèrent sur des booléens, des
-tableaux de booléens ou une combinaison des deux :</para>
+tableaux de booléens ou une combinaison des deux :</para>
                 <itemizedlist>
                   <listitem><para><literal>andEach</literal> - Opération ET logique</para></listitem>
                   <listitem><para><literal>orEach</literal> - Opération OU logique</para></listitem>
@@ -1696,7 +1695,7 @@ Lorsque les arguments sont des scalaires, renvoie un résultat booléen
 scalaire. Lorsqu'un argument est un tableau et l'autre un scalaire, le
 scalaire est diffusé à tous les éléments. Lorsque les deux arguments sont
 des tableaux, effectue l'opération élément par élément.</para>
-                <para>Exemples :</para>
+                <para>Exemples :</para>
                 <itemizedlist>
                   <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - fichiers entre 1
 Ko et 1 Mo</para></listitem>
@@ -1729,7 +1728,7 @@ Envoie la représentation sous forme de chaîne concaténée de tous les
 arguments dans le journal (respectivement au niveau erreur, avertissement ou
 information), séparés par des espaces, et renvoie la valeur du dernier
 argument. Ces fonctions sont utiles pour déboguer les expressions de filtre.</para>
-                <para>Exemples (utilisant la valeur de retour) :</para>
+                <para>Exemples (utilisant la valeur de retour) :</para>
                 <itemizedlist>
                   <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - consigne la/les
 taille(s) de fichier et vérifie si elle est supérieure à 1 Mo</para></listitem>
@@ -1747,21 +1746,21 @@ vérifie le nom</para></listitem>
 
       <section id="FilterExpression_Units">
         <title>Unités</title>
-        <para>Les tailles de fichiers prennent en charge ces suffixes :</para>
+        <para>Les tailles de fichiers prennent en charge ces suffixes :</para>
         <simplelist type="inline">
           <member>Ko</member>
           <member>Mo</member>
           <member>Go</member>
           <member>To</member>
         </simplelist>
-        <para>Les durées prennent en charge ces suffixes :</para>
+        <para>Les durées prennent en charge ces suffixes :</para>
         <simplelist type="inline">
-          <member>semaines</member><member>semaine</member><member>s</member>
-          <member>jours</member><member>jour</member><member>j</member>
-          <member>heures</member><member>heure</member><member>hr</member><member>h</member>
+          <member>weeks (semaines)</member><member>week (semaine)</member><member>w</member>
+          <member>days (jours)</member><member>day (jour)</member><member>d</member>
+          <member>hours (heures)</member><member>hour (heure)</member><member>hr</member><member>h</member>
           <member>minutes</member><member>minute</member><member>min</member><member>m</member>
-          <member>secondes</member><member>seconde</member><member>sec</member><member>s</member>
-          <member>millisecondes</member><member>milliseconde</member><member>msec</member><member>ms</member>
+          <member>seconds (secondes)</member><member>second (seconde)</member><member>sec</member><member>s</member>
+          <member>milliseconds (millisecondes)</member><member>millisecond (milliseconde)</member><member>msec</member><member>ms</member>
         </simplelist>
       </section>
 
@@ -1827,7 +1826,7 @@ après suppression des espaces en début et en fin de fichier</para></listitem>
           <listitem><para><literal>trimLeft(Column("Value")) = "123"</literal> - Correspond à la
 valeur de la colonne après suppression des espaces en début de colonne (mode
 tableau)</para></listitem>
-          <listitem><para><literal>trimRight(Line) contient "end"</literal> - Vérifie si la ligne
+          <listitem><para><literal>trimRight(Line) contains "end"</literal> - Vérifie si la ligne
 (sans espace final) contient "end"</para></listitem>
           <listitem><para><literal>EOL = 3</literal> - Fichiers avec des fins de ligne CRLF (Windows)</para></listitem>
           <listitem><para><literal>EOLStr = "LF"</literal> - Fichiers avec des fins de ligne LF (Unix)</para></listitem>
@@ -1895,7 +1894,7 @@ et gérer les filtres.</para>
         </indexterm></title>
 
       <para>WinMerge détecte automatiquement les filtres de fichiers dans ces
-emplacements :</para>
+emplacements :</para>
 
       <variablelist>
         <varlistentry>
@@ -1939,12 +1938,12 @@ dossier, vous devez d'abord les installer.</para>
         </indexterm></title>
 
       <para>Vous pouvez appliquer un filtre de fichier en utilisant l'une de ces
-méthodes :</para>
+méthodes :</para>
 
       <itemizedlist>
         <listitem>
           <para>Lorsque vous lancez une comparaison de dossiers à partir de la boîte de
-dialogue Sélectionner des fichiers ou des dossiers :</para>
+dialogue Sélectionner des fichiers ou des dossiers :</para>
 
           <orderedlist>
             <listitem>
@@ -1975,7 +1974,7 @@ déjà chargé dans le champ <guilabel>Filtre</guilabel>.</para>
         <listitem>
           <para>Pour modifier le filtrage des fichiers après avoir déjà lancé une opération
 de comparaison de dossiers (par exemple, pour appliquer un filtre différent
-ou désactiver le filtrage) :</para>
+ou désactiver le filtrage) :</para>
 
           <orderedlist>
             <listitem>
@@ -1990,7 +1989,7 @@ filtre de fichier, puis cliquez sur <guibutton>OK</guibutton>.</para>
 
             <listitem>
               <para>Le nouveau filtrage n'est pas appliqué automatiquement à la fermeture de la
-boîte de dialogue Filtres : appuyez sur <keycap>F5</keycap> pour voir les
+boîte de dialogue Filtres : appuyez sur <keycap>F5</keycap> pour voir les
 nouveaux résultats dans la fenêtre de comparaison de dossiers.</para>
             </listitem>
           </orderedlist>
@@ -2029,7 +2028,7 @@ commentaire doit toujours être précédé d'un ou plusieurs caractères
 d'espacement (espace ou tabulation). Pour utiliser <code>##</code> comme
 caractères dans une règle, omettez le préfixe d'espace.</para>
 
-      <para>Les deux premières lignes requises d'un filtre de fichier sont :</para>
+      <para>Les deux premières lignes requises d'un filtre de fichier sont :</para>
 
       <variablelist>
         <varlistentry>
@@ -2044,7 +2043,7 @@ caractères dans une règle, omettez le préfixe d'espace.</para>
           <term>def</term>
 
           <listitem>
-            <para>Le type de filtrage à appliquer. Spécifiez l'une de ces valeurs :</para>
+            <para>Le type de filtrage à appliquer. Spécifiez l'une de ces valeurs :</para>
 
             <variablelist>
               <varlistentry>
@@ -2064,7 +2063,7 @@ caractères dans une règle, omettez le préfixe d'espace.</para>
                   <para>Lorsque vous choisissez la méthode d'exclusion (exclude), vous devez
 également ajouter une règle <guilabel>d</guilabel> (répertoire) qui spécifie
 les sous-dossiers. C'est généralement une bonne idée de spécifier tous les
-sous-dossiers, comme ceci :</para>
+sous-dossiers, comme ceci :</para>
 
                   <screen>d: \\*$ ## Sous-dossiers</screen>
                 </listitem>
@@ -2087,28 +2086,28 @@ filtrage. Vous pouvez ajouter autant de règles que vous le souhaitez. Il
 doit y avoir une règle par ligne, et chaque règle doit tenir sur une seule
 ligne (aucun saut de ligne n'est autorisé dans une règle). Une règle
 commence par un indicateur de type, suivi soit d'une expression régulière,
-soit d'une expression de filtre. Les indicateurs de type pris en charge sont
-:</para>
+soit d'une expression de filtre. Les indicateurs de type pris en charge
+sont :</para>
 
       <variablelist>
         <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Faire correspondre les noms de fichiers à l'aide d'expressions régulières</para></listitem></varlistentry>
         <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Exclure les fichiers correspondant à la regex (Disponible depuis la 2.16.19)</para></listitem></varlistentry>
         <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Faire correspondre les noms de dossiers à l'aide d'une regex</para></listitem></varlistentry>
         <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Exclure les dossiers correspondant à la regex (Disponible depuis la 2.16.19)</para></listitem></varlistentry>
-        <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les fichiers (ex: fe:Size &lt; 1KB) (disponible
+        <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les fichiers (p. ex. fe:Size &lt; 1KB) (disponible
 depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des fichiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
-        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre appliquée aux fichiers et aux dossiers (par exemple :
+        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre appliquée aux fichiers et aux dossiers (par exemple :
 e:Name like "Common*.*") (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
         <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre permettant d'exclure à la fois les fichiers et les
 dossiers (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
       </variablelist>
 
       <para>Parmi les nombreux caractères spéciaux de regex, les suivants sont
-particulièrement importants dans les règles de filtrage de fichiers
-:<indexterm>
+particulièrement importants dans les règles de filtrage de
+fichiers :<indexterm>
           <primary>expressions régulières</primary>
 
           <secondary>caractères spéciaux dans les filtres</secondary>
@@ -2132,7 +2131,7 @@ particulièrement importants dans les règles de filtrage de fichiers
 
           <listitem>
             <para>Fréquemment requis pour que les règles fonctionnent correctement. Par
-exemple :</para>
+exemple :</para>
 
             <screen>\.c$ ## ne correspond qu'aux noms de fichiers ayant l'extension <filename>c</filename>.
 \.c  ## correspond à toute extension commençant par <filename>c</filename>, comme <filename>cpp</filename> et <filename>com</filename>.</screen>
@@ -2163,7 +2162,7 @@ correspond à <filename>winmerge.bat</filename> et à
       <example>
         <title>Exemples de règles de filtrage de fichiers</title>
 
-        <para>Quelques règles de filtrage de fichiers simples :</para>
+        <para>Quelques règles de filtrage de fichiers simples :</para>
 
 <screen>f: \.cpp$ ## Correspond aux fichiers <filename>*.cpp</filename>
 f: \.h$ ## Correspond aux fichiers <filename>*.h</filename>
@@ -2172,7 +2171,7 @@ f: Dlg\. ## Correspond aux fichiers <filename>*Dlg.*</filename>
 d: \\test$ ## Correspond aux dossiers <filename>test</filename>
 d: ^\\Build$ ## Correspond aux dossiers <filename>Build</filename>
 d: Temp$ ## Correspond aux dossiers <filename>*Temp</filename> (par exemple, <filename>FirstTemp</filename>)
-d: Src ## Correspond aux dossiers <filename>*Src*</filename></screen><para>Quelques règles avec des expressions régulières plus complexes :</para>
+d: Src ## Correspond aux dossiers <filename>*Src*</filename></screen><para>Quelques règles avec des expressions régulières plus complexes :</para>
 
 <screen format="linespecific">f: ^\.#.*$ ## fichiers <filename>.#nom_fichier.version</filename>
 f: Dlg\.c(pp)?$ ## fichiers <filename>*Dlg.c</filename> et <filename>*Dlg.cpp</filename>
@@ -2207,7 +2206,7 @@ linkend="Filters_dlg" />.</para>
       <title>Application des filtres de lignes</title>
 
       <para>Vous pouvez appliquer des filtres de lignes en utilisant l'une de ces
-méthodes :</para>
+méthodes :</para>
 
       <itemizedlist>
         <listitem>
@@ -2242,7 +2241,7 @@ activés sont appliqués au démarrage de l'opération.</para>
 
         <listitem>
           <para>Après avoir déjà lancé une opération de comparaison de fichiers (par
-exemple, pour appliquer des filtres différents ou désactiver le filtrage) :</para>
+exemple, pour appliquer des filtres différents ou désactiver le filtrage) :</para>
 
           <orderedlist>
             <listitem>
@@ -2265,7 +2264,7 @@ en utilisant les boutons <guibutton>Nouveau</guibutton>,
 
             <listitem>
               <para>Pour activer le filtrage de lignes, cochez <guilabel>Activer les filtres de
-lignes</guilabel>. Pour le désactiver, décochez l'option.</para>
+ligne</guilabel>. Pour le désactiver, décochez l'option.</para>
             </listitem>
 
             <listitem>
@@ -2308,23 +2307,23 @@ définie dans la page Couleurs des options de WinMerge). Cela vous permet de
 distinguer les différences ignorées des autres types. Cependant, vous ne
 pouvez pas sélectionner ni fusionner une différence ignorée.</para>
 
-      <para>La correspondance des filtres de lignes peut être décrite en deux points :</para>
+      <para>La correspondance des filtres de lignes peut être décrite en deux points :</para>
 
       <itemizedlist>
         <listitem>
           <para>Lorsqu'une règle correspond à n'importe quelle partie de la ligne, la
 différence entière est ignorée. Par conséquent, vous ne pouvez pas filtrer
 uniquement une partie d'une ligne. Par exemple, supposons que deux fichiers
-présentent la différence suivante sur une seule ligne :</para>
+présentent la différence suivante sur une seule ligne :</para>
 
           <formalpara>
-            <title>Fichier1 :</title>
+            <title>Fichier1 :</title>
 
             <para><screen># Jean Sibelius</screen></para>
           </formalpara>
 
           <formalpara>
-            <title>Fichier2 :</title>
+            <title>Fichier2 :</title>
 
             <para><screen># Janne Sibelius</screen></para>
           </formalpara>
@@ -2338,17 +2337,17 @@ le premier caractère, qui correspond dans les deux fichiers.</para>
         <listitem>
           <para>Une règle ne s'applique à une différence de plusieurs lignes que si toutes
 les lignes correspondent. Par exemple, considérons cette différence de deux
-lignes :</para>
+lignes :</para>
 
           <formalpara>
-            <title>Fichier1 :</title>
+            <title>Fichier1 :</title>
 
             <para><screen># Jean Sibelius
 # Pekka Himanen</screen></para>
           </formalpara>
 
           <formalpara>
-            <title>Fichier2 :</title>
+            <title>Fichier2 :</title>
 
             <para><screen># Janne Sibelius
 Pekka Himanen</screen></para>
@@ -2382,26 +2381,26 @@ et se terminant par <literal>*/</literal></para>
       <example>
         <title>Règle de filtrage de ligne correspondant aux lignes d'ID CVS</title>
 
-        <para>Les lignes d'ID CVS ressemblent à ceci :</para>
+        <para>Les lignes d'ID CVS ressemblent à ceci :</para>
 
-<screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen><para>... et peuvent être filtrées avec cette règle :</para>
+<screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen><para>... et peuvent être filtrées avec cette règle :</para>
 
 <screen>^// \WId: .*\$</screen></example>
 
       <example>
         <title>Filtrer les commentaires de numéro de ligne dans les fichiers po</title>
 
-        <para>les commentaires de numéro de ligne po ressemblent à ceci :</para>
+        <para>les commentaires de numéro de ligne po ressemblent à ceci :</para>
 
-<screen>#: src/filename.c:766</screen><para>... et peuvent être filtrées avec cette règle :</para>
+<screen>#: src/filename.c:766</screen><para>... et peuvent être filtrées avec cette règle :</para>
 
 <screen>^#</screen></example>
     </section>
   </section>
 
   <section id="Filters_DisplayLineFilter">
-    <title>Utilisation du filtre de ligne d'affichage<indexterm>
-        <primary>filtre de ligne d'affichage</primary>
+    <title>Utilisation du filtre d'affichage des lignes<indexterm>
+        <primary>filtre d'affichage des lignes</primary>
       </indexterm></title>
 
     <para>Le filtre d'affichage des lignes détermine les lignes visibles dans la
@@ -2412,12 +2411,12 @@ filtre sont masquées, mais le résultat de la comparaison reste inchangé.</par
       <title>Ouverture de la barre de filtre d'affichage</title>
 
       <para>Utilisez l'une des méthodes suivantes pour ouvrir la barre de filtre
-d'affichage :</para>
+d'affichage :</para>
 
       <itemizedlist>
         <listitem>
-          <para>Cliquez sur <menuchoice> <guimenu>Afficher</guimenu> <guimenuitem>Afficher
-la barre de filtre</guimenuitem> </menuchoice>, ou appuyez sur
+          <para>Cliquez sur <menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Afficher
+la barre de filtrage</guimenuitem> </menuchoice>, ou appuyez sur
 <keycombo><keycap>Ctrl</keycap><keycap>Maj</keycap>
 <keycap>L</keycap></keycombo>.</para>
         </listitem>
@@ -2425,9 +2424,9 @@ la barre de filtre</guimenuitem> </menuchoice>, ou appuyez sur
           <para>Dans la fenêtre Comparaison de fichiers, cliquez avec le bouton droit sur le
 texte sélectionné et choisissez <menuchoice> <guimenu>Ajouter aux
 filtres</guimenu> <guimenuitem>Ajouter aux filtres d'affichage</guimenuitem>
-</menuchoice>. WinMerge construit automatiquement une expression <literal>La
-ligne contient "..."</literal> à partir du texte sélectionné et ouvre la
-barre de filtre.</para>
+</menuchoice>. WinMerge construit automatiquement une expression
+<literal>Line contains "..."</literal> à partir du texte sélectionné et
+ouvre la barre de filtre.</para>
         </listitem>
       </itemizedlist>
 
@@ -2440,7 +2439,7 @@ conservant le filtre actif, cliquez sur le bouton Fermer.</para>
       <title>Saisie d'un filtre</title>
 
       <para>La barre de filtre d'affichage accepte les entrées sous deux formes, selon
-que l'entrée commence ou non par le préfixe <literal>le:</literal> :</para>
+que l'entrée commence ou non par le préfixe <literal>le:</literal> :</para>
 
       <variablelist>
         <varlistentry>
@@ -2448,9 +2447,9 @@ que l'entrée commence ou non par le préfixe <literal>le:</literal> :</para>
           <listitem>
             <para>Les données saisies sans le préfixe <literal>le:</literal> sont traitées
 comme une chaîne littérale. WinMerge n'affiche que les lignes contenant
-cette chaîne. En interne, la saisie est équivalente à <literal>le:La ligne
-contient "<replaceable>entrée</replaceable>"</literal>.</para>
-            <para>Exemple : la saisie de <userinput>TODO</userinput> affiche toutes les lignes
+cette chaîne. En interne, la saisie est équivalente à <literal>le:Line
+contains "<replaceable>entrée</replaceable>"</literal>.</para>
+            <para>Exemple : la saisie de <userinput>TODO</userinput> affiche toutes les lignes
 contenant le texte <literal>TODO</literal>.</para>
           </listitem>
         </varlistentry>
@@ -2461,7 +2460,7 @@ contenant le texte <literal>TODO</literal>.</para>
             <para>Si l'entrée commence par <literal>le:</literal>, le reste est interprété
 comme une expression de filtre. La syntaxe complète de l'expression, décrite
 dans <xref linkend="Filters_DisplayLineFilter_Syntax"/>, est disponible.</para>
-            <para>Exemple : <userinput>le:Différent et la ligne contient « ERROR »</userinput></para>
+            <para>Exemple : <userinput>le:Different and Line contains "ERROR"</userinput></para>
 
             <important>
               <para>Le préfixe <literal>le:</literal> doit figurer au tout début de la chaîne de
@@ -2480,8 +2479,8 @@ le:Line contains "Hello"</literal>.</para>
     <section id="Filters_DisplayLineFilter_Syntax">
       <title>Syntaxe des expressions de filtre</title>
 
-      <para>Les expressions de filtre de ligne d'affichage utilisent le même moteur que
-les expressions de filtre de comparaison de dossiers (voir <xref
+      <para>Les expressions de filtre d'affichage des lignes utilisent le même moteur
+que les expressions de filtre de comparaison de dossiers (voir <xref
 linkend="FilterExpression_Syntax"/>), avec les attributs et fonctions
 supplémentaires suivants qui opèrent sur les lignes individuelles.</para>
 
@@ -2499,29 +2498,29 @@ sur tous les panneaux.</para>
           <varlistentry>
             <term><varname>Line</varname></term>
             <listitem><para>Contenu textuel de la ligne courante. Prend en charge les préfixes
-spécifiques au côté. Exemple : <literal>La ligne contient « TODO »</literal></para></listitem>
+spécifiques au côté. Exemple : <literal>Line contains "TODO"</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>LineLength</varname></term>
             <listitem><para>Longueur de la ligne courante en caractères. Prend en charge les préfixes
-spécifiques au côté. Exemple : <literal>LineLength > 120</literal></para></listitem>
+spécifiques au côté. Exemple : <literal>LineLength > 120</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>LineNumber</varname></term>
             <listitem><para>Numéro de ligne réel dans le fichier (à partir de 1), sans compter les
-lignes fantômes. Prend en charge les préfixes spécifiques au côté. Exemple :
+lignes fantômes. Prend en charge les préfixes spécifiques au côté. Exemple :
 <literal>LineNumber &lt;= 50</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>ViewLineNumber</varname></term>
             <listitem><para>Afficher le numéro de ligne, y compris les lignes fantômes (numérotation à
-partir de 1). Attribut global (sans préfixe latéral). Exemple :
+partir de 1). Attribut global (sans préfixe latéral). Exemple :
 <literal>ViewLineNumber &lt;= 100</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Different</varname></term>
             <listitem><para>Vrai si la ligne fait partie d'un bloc de différence. Attribut
-global. Exemple : <literal>Different</literal></para></listitem>
+global. Exemple : <literal>Different</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Identical</varname></term>
@@ -2530,12 +2529,12 @@ global. Exemple : <literal>Different</literal></para></listitem>
           <varlistentry>
             <term><varname>Trivial</varname></term>
             <listitem><para>Vrai si la ligne ne diffère que par des espaces ou d'autres éléments
-ignorés. Attribut global. Exemple : <literal>Different or Trivial</literal></para></listitem>
+ignorés. Attribut global. Exemple : <literal>Different or Trivial</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Exists</varname></term>
             <listitem><para>Vrai si la ligne existe dans le volet (et non une ligne fantôme). Prend en
-charge les préfixes spécifiques au côté. Exemple : <literal>LeftExists and
+charge les préfixes spécifiques au côté. Exemple : <literal>LeftExists and
 not RightExists</literal></para></listitem>
           </varlistentry>
           <varlistentry>
@@ -2560,28 +2559,29 @@ spécifiques au côté.</para></listitem>
             <listitem><para>Vrai si la paire de panneaux indiquée diffère sur cette ligne. Comparaisons
 à trois voies uniquement (sauf <varname>DifferentLeftRight</varname> qui
 fonctionne également en comparaison à deux voies). Attributs
-globaux. Exemple : <literal>DifferentLeftMiddle and not
+globaux. Exemple : <literal>DifferentLeftMiddle and not
 DifferentMiddleRight</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>EOL</varname></term>
             <listitem><para>Style de fin de ligne pour la ligne courante (valeur entière). Prend en
-charge les préfixes spécifiques à chaque côté. Valeur  : 0 = Aucun, 1 = LF,
-2 = CR, 3 = CRLF. Exemple : <literal>le:EOL = 3</literal> affiche uniquement
+charge les préfixes spécifiques à chaque côté. Valeurs : 0 = Aucun, 1 = LF,
+2 = CR, 3 = CRLF. Exemple : <literal>le:EOL = 3</literal> affiche uniquement
 les lignes se terminant par CRLF</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>EOLStr</varname></term>
             <listitem><para>Style de fin de ligne pour la ligne courante (sous forme de chaîne de
-caractères). Prend en charge les préfixes spécifiques à chaque côté. Valeurs
-: "None", "LF", "CR", "CRLF". Exemple : <literal>le:EOLStr = "LF"</literal>
-affiche uniquement les lignes se terminant par un saut de ligne (LF)</para></listitem>
+caractères). Prend en charge les préfixes spécifiques à chaque
+côté. Valeurs : "None", "LF", "CR", "CRLF". Exemple : <literal>le:EOLStr =
+"LF"</literal> affiche uniquement les lignes se terminant par un saut de
+ligne (LF)</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Column</varname>, <varname>ColumnCount</varname> (mode tableau
 uniquement)</term>
             <listitem><para>Contenu des cellules et nombre de colonnes en mode CSV/tableau. Prise en
-charge des préfixes spécifiques au côté. Exemple : <literal>Column("Status")
+charge des préfixes spécifiques au côté. Exemple : <literal>Column("Status")
 = "FAIL"</literal></para></listitem>
           </varlistentry>
           <varlistentry>
@@ -2589,8 +2589,8 @@ charge des préfixes spécifiques au côté. Exemple : <literal>Column("Status")
 <function>LineOffsetAt</function>(<replaceable>offset</replaceable>)</term>
             <listitem><para>Texte de la ligne à un numéro de ligne absolu ou à un décalage relatif par
 rapport à la ligne courante. Prend en charge les fonctions de préfixe
-spécifiques au côté. Exemple : <literal>le:Different and
-RightLineOffsetAt(-1)` matches « ^// » `</literal></para></listitem>
+spécifiques au côté. Exemple : <literal>le:Different and
+RightLineOffsetAt(-1) matches "^//"</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>Column</function>(<replaceable>indexOrName</replaceable>),
@@ -2606,7 +2606,7 @@ numérique correspond à un index de colonne commençant à 1. Utilisez
 <function>ColumnRange</function> pour spécifier plusieurs colonnes et plages
 en utilisant des éléments de type <literal>N</literal>,
 <literal>N-M</literal> et <literal>N-</literal> séparés par des virgules ;
-les espaces sont ignorés (par exemple : <literal>ColumnRange("1, 3, 5-10,
+les espaces sont ignorés (par exemple : <literal>ColumnRange("1, 3, 5-10,
 13-")</literal>). Faites précéder une plage de <literal>!</literal> pour
 l'exclure ; par exemple, <literal>ColumnRange("!1")</literal> exclut la
 colonne 1 et <literal>ColumnRange("1-10,!4-5")</literal> sélectionne les
@@ -2615,7 +2615,7 @@ d'inclusion n'est spécifiée, toutes les colonnes sont incluses avant
 l'application des exclusions. Les formes utilisant un nom ou un index unique
 renvoient une seule cellule ; les formes utilisant des plages renvoient les
 valeurs des cellules sélectionnées, concaténées à l'aide du délimiteur de
-tableau. Exemple : <literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
+tableau. Exemple : <literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
 "Category")</literal></para></listitem>
           </varlistentry>
         </variablelist>
@@ -2625,7 +2625,7 @@ tableau. Exemple : <literal>le:RightColumn("Category") != ColumnOffsetAt(-1,
         <title>Fonctions de ligne</title>
 
         <para>
-Les expressions de filtre de ligne d'affichage peuvent également utiliser
+Les expressions de filtre d'affichage des lignes peuvent également utiliser
 les fonctions décrites dans <xref linkend="FilterExpression_Functions"/>.</para>
 
         <variablelist>
@@ -2636,21 +2636,20 @@ les fonctions décrites dans <xref linkend="FilterExpression_Functions"/>.</para
             <listitem><para>Vrai si la ligne actuelle se situe entre
 <replaceable>linesBefore</replaceable> lignes avant et
 <replaceable>linesAfter</replaceable> lignes après toute ligne correspondant
-à <replaceable>expr</replaceable>. Exemple :
+à <replaceable>expr</replaceable>. Exemple :
 <literal>le:matchContext(Different, 3, 3)</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchNumber</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Indice de la ligne courante (à partir de 1) parmi toutes les lignes
-correspondantes. Renvoie <literal>none</literal> si la ligne ne correspond à
-aucune correspondance. Exemple : <literal>le:matchNumber(Different) =
-1</literal> affiche uniquement la première ligne correspondante (la première
-ligne différente).</para></listitem>
+correspondantes. Renvoie <literal>none</literal> si la ligne ne correspond
+pas. Exemple : <literal>le:matchNumber(Different) = 1</literal> affiche
+uniquement la première ligne correspondante (la première ligne différente).</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchCount</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Nombre total de lignes correspondant à <replaceable>expr</replaceable> dans
-l'ensemble du fichier. Exemple : <literal>le:matchNumber(Different) =
+l'ensemble du fichier. Exemple : <literal>le:matchNumber(Different) =
 matchCount(Different)</literal> affiche uniquement la dernière ligne
 correspondante (la dernière ligne de différence).</para></listitem>
           </varlistentry>
@@ -2658,7 +2657,7 @@ correspondante (la dernière ligne de différence).</para></listitem>
             <term><function>matchBlockNumber</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Renvoie le numéro du bloc correspondant (à partir de 1) contenant la ligne
 courante. Renvoie <literal>none</literal> si la ligne courante ne se trouve
-dans aucun bloc correspondant. Exemple :
+dans aucun bloc correspondant. Exemple :
 <literal>le:matchBlockNumber(Different) = 1</literal> affiche uniquement les
 lignes du premier bloc de différence.</para></listitem>
           </varlistentry>
@@ -2666,7 +2665,7 @@ lignes du premier bloc de différence.</para></listitem>
             <term><function>matchBlockOffset</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Renvoie le décalage (à partir de 1) de la ligne courante dans le bloc
 correspondant. Renvoie <literal>none</literal> si la ligne courante ne se
-trouve dans aucun bloc correspondant. Exemple :
+trouve dans aucun bloc correspondant. Exemple :
 <literal>le:matchBlockOffset(Different) = 1</literal> affiche uniquement la
 première ligne de chaque bloc de différence.</para></listitem>
           </varlistentry>
@@ -2674,13 +2673,13 @@ première ligne de chaque bloc de différence.</para></listitem>
             <term><function>matchBlockSize</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Renvoie la taille (nombre de lignes) du bloc correspondant contenant la
 ligne courante. Renvoie <literal>none</literal> si la ligne courante ne se
-trouve dans aucun bloc correspondant. Exemple :
+trouve dans aucun bloc correspondant. Exemple :
 <literal>le:matchBlockSize(Different) &gt; 5</literal> affiche uniquement
 les lignes des blocs de différence de plus de 5 lignes.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>matchBlockCount</function>(<replaceable>expr</replaceable>)</term>
-            <listitem><para>Nombre total de blocs correspondants dans le fichier. Exemple :
+            <listitem><para>Nombre total de blocs correspondants dans le fichier. Exemple :
 <literal>le:matchBlockNumber(Different) =
 matchBlockCount(Different)</literal> affiche uniquement les lignes du
 dernier bloc de différence.</para></listitem>
@@ -2690,7 +2689,7 @@ dernier bloc de différence.</para></listitem>
 <function>matchDistanceBefore</function>(<replaceable>expr</replaceable>),
 <function>matchDistanceAfter</function>(<replaceable>expr</replaceable>)</term>
             <listitem><para>Distance en lignes à la plage correspondante la plus proche (dans les deux
-sens, avant uniquement ou après uniquement). Exemple :
+sens, avant uniquement ou après uniquement). Exemple :
 <literal>le:matchDistance(Different) &lt;= 5</literal></para></listitem>
           </varlistentry>
           <varlistentry>
@@ -2698,26 +2697,26 @@ sens, avant uniquement ou après uniquement). Exemple :
 <replaceable>endExpr</replaceable>)</term>
             <listitem><para>Vrai si la ligne actuelle se situe entre une ligne correspondant à
 <replaceable>beginExpr</replaceable> et la ligne suivante correspondant à
-<replaceable>endExpr</replaceable> (incluse). Exemple :
+<replaceable>endExpr</replaceable> (incluse). Exemple :
 <literal>le:matchInside(Line matches "^#ifdef", Line matches
 "^#endif")</literal></para></listitem>
           </varlistentry>
           <varlistentry>
-            <term><function>moyenne</function>(<replaceable>expr</replaceable>),
-<function>moyenne</function>(<replaceable>expr</replaceable>,
+            <term><function>average</function>(<replaceable>expr</replaceable>),
+<function>average</function>(<replaceable>expr</replaceable>,
 <replaceable>condition</replaceable>)</term>
             <listitem><para>Calcule la moyenne arithmétique des valeurs numériques obtenues en évaluant
 <replaceable>expr</replaceable> sur toutes les lignes du fichier. Si une
 condition est fournie, seules les lignes où
-<replaceable>condition</replaceable> est vrai sont prises en compte. Les
+<replaceable>condition</replaceable> est vraie sont prises en compte. Les
 résultats non numériques sont ignorés. Renvoie <literal>none</literal> si
-aucune valeur numérique n'est trouvée. Exemple :
+aucune valeur numérique n'est trouvée. Exemple :
 <literal>le:toInt(Column("Price")) &gt;
 average(toInt(Column("Price")))</literal> affiche les lignes où le prix est
-supérieur au prix moyen. Exemple avec condition :
+supérieur au prix moyen. Exemple avec condition :
 <literal>le:average(toInt(Column("Score")), Column("Status") =
-"PASS")</literal> calcule le score moyen des lignes dont le statut est «
-PASS ».</para></listitem>
+"PASS")</literal> calcule le score moyen des lignes avec le statut
+<literal>"PASS"</literal>.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><function>maximum</function>(<replaceable>expr</replaceable>),
@@ -2725,11 +2724,11 @@ PASS ».</para></listitem>
 <replaceable>condition</replaceable>)</term>
             <listitem><para>Renvoie la valeur maximale parmi tous les résultats obtenus en évaluant
 <replaceable>expr</replaceable> sur toutes les lignes du fichier. Si
-<replaceable>condition</replaceable> est fourni, seules les lignes où
-<replaceable>condition</replaceable> est vrai sont prises en
+<replaceable>condition</replaceable> est fournie, seules les lignes où
+<replaceable>condition</replaceable> est vraie sont prises en
 compte. Fonctionne avec les valeurs numériques, les chaînes de caractères
 (comparaison alphabétique) et les horodatages. Renvoie
-<literal>none</literal> si aucune valeur n'est trouvée. Exemple :
+<literal>none</literal> si aucune valeur n'est trouvée. Exemple :
 <literal>le:toInt(Column("Quantity")) =
 maximum(toInt(Column("Quantity")))</literal> affiche les lignes avec la
 quantité la plus élevée.</para></listitem>
@@ -2740,11 +2739,11 @@ quantité la plus élevée.</para></listitem>
 <replaceable>condition</replaceable>)</term>
             <listitem><para>Renvoie la valeur minimale parmi tous les résultats obtenus en évaluant
 <replaceable>expr</replaceable> sur toutes les lignes du fichier. Si
-<replaceable>condition</replaceable> est fourni, seules les lignes où
-<replaceable>condition</replaceable> est vrai sont prises en
+<replaceable>condition</replaceable> est fournie, seules les lignes où
+<replaceable>condition</replaceable> est vraie sont prises en
 compte. Fonctionne avec les valeurs numériques, les chaînes de caractères
 (comparaison alphabétique) et les horodatages. Renvoie
-<literal>none</literal> si aucune valeur n'est trouvée. Exemple :
+<literal>none</literal> si aucune valeur n'est trouvée. Exemple :
 <literal>le:Column("Status") = minimum(Column("Status"))</literal> affiche
 les lignes dont la valeur de statut est la première par ordre alphabétique.</para></listitem>
           </varlistentry>
@@ -2754,13 +2753,13 @@ les lignes dont la valeur de statut est la première par ordre alphabétique.</p
 <replaceable>condition</replaceable>)</term>
             <listitem><para>Calcule la somme de toutes les valeurs numériques obtenues en évaluant
 <replaceable>expr</replaceable> pour chaque ligne du fichier. Si
-<replaceable>condition</replaceable> est fourni, seules les lignes où
-<replaceable>condition</replaceable> est vrai sont prises en compte dans le
+<replaceable>condition</replaceable> est fournie, seules les lignes où
+<replaceable>condition</replaceable> est vraie sont prises en compte dans le
 calcul. Les résultats non numériques sont ignorés. Renvoie
-<literal>none</literal> si aucune valeur numérique n'est trouvée. Exemple :
+<literal>none</literal> si aucune valeur numérique n'est trouvée. Exemple :
 <literal>le:toInt(Column("Quantity")) / sum(toInt(Column("Quantity"))) *
 100</literal> calcule le pourcentage de chaque ligne par rapport à la
-quantité totale. Exemple avec condition :
+quantité totale. Exemple avec condition :
 <literal>le:sum(toInt(Column("Sales")), Column("Region") = "East")</literal>
 calcule le total des ventes pour la région « East ».</para></listitem>
           </varlistentry>
@@ -2813,8 +2812,8 @@ calcule le total des ventes pour la région « East ».</para></listitem>
               </row>
               <row>
                 <entry><userinput>le:Different and Line contains "ERROR"</userinput></entry>
-                <entry>Affiche les lignes qui sont à la fois différentes et qui contiennent «
-ERREUR ».</entry>
+                <entry>Affiche les lignes qui sont à la fois différentes et qui contiennent « ERROR
+»</entry>
               </row>
               <row>
                 <entry><userinput>le:strFind(Line, "TODO") &lt; 10</userinput></entry>
@@ -2846,7 +2845,7 @@ ERREUR ».</entry>
               </row>
               <row>
                 <entry><userinput>le:toInt(Column("Count")) &gt; 100</userinput></entry>
-                <entry>Affiche les lignes où la valeur de la colonne « Nombre » dépasse 100 (mode
+                <entry>Affiche les lignes où la valeur de la colonne « Count » dépasse 100 (mode
 tableau)</entry>
               </row>
             </tbody>
@@ -2868,8 +2867,8 @@ s'applique aux fichiers et aux dossiers au lieu des lignes. Il détermine les
 éléments visibles sans affecter le résultat de la comparaison.</para>
 
     <para>Pour ouvrir la barre de filtre d'affichage, cliquez sur <menuchoice>
-<guimenu>Affichage</guimenu> <guimenuitem>Barre de filtre
-d'affichage</guimenuitem> </menuchoice>, ou appuyez sur
+<guimenu>Affichage</guimenu> <guimenuitem>Afficher la barre de
+filtrage</guimenuitem> </menuchoice>, ou appuyez sur
 <keycombo><keycap>Ctrl</keycap><keycap>Maj</keycap>
 <keycap>L</keycap></keycombo>.</para>
 
@@ -2882,17 +2881,17 @@ fichiers ou des dossiers. Consultez <xref linkend="Filters_MaskSyntax"/> et
 touche <keycap>Entrée</keycap>. Pour masquer la barre de filtre tout en
 conservant le filtre actif, cliquez sur le bouton Fermer.</para>
 
-    <para>Exemples :</para>
+    <para>Exemples :</para>
     <itemizedlist>
       <listitem><para><userinput>*.cpp;*.h</userinput> - affiche les fichiers sources et d'en-tête
 C++</para></listitem>
       <listitem><para><userinput>!.git\;!.vs\</userinput> - exclut les dossiers .git et .vs</para></listitem>
-      <listitem><para><userinput>for:Different</userinput> - affiche uniquement les fichiers
+      <listitem><para><userinput>fe:Different</userinput> - affiche uniquement les fichiers
 différents</para></listitem>
       <listitem><para><userinput>de:Items > 10</userinput> - affiche les dossiers contenant plus
 de 10 éléments</para></listitem>
-      <listitem><para><userinput>a:Date > aujourd'hui() - 7 jours</userinput> - affiche les
-éléments modifiés au cours de la dernière semaine</para></listitem>
+      <listitem><para><userinput>e:Date &gt; today() - 7days</userinput> - affiche les éléments
+modifiés au cours de la dernière semaine</para></listitem>
     </itemizedlist>
   </section>
 
@@ -2901,16 +2900,16 @@ de 10 éléments</para></listitem>
 
     <para>À partir de la version 2.16.59, les expressions de filtre peuvent être
 utilisées comme éléments dans les pipelines de plug-ins en les préfixant par
-<literal>le:</literal>. Par exemple :</para>
+<literal>le:</literal>. Par exemple :</para>
 
-    <synopsis>le:toUpper(Ligne)|SortAscending</synopsis>
+    <synopsis>le:toUpper(Line)|SortAscending</synopsis>
 
     <para>Consultez <xref linkend="FilterExpression_Syntax" /> pour connaître les
 fonctions et opérateurs d'expression de filtre disponibles.</para>
 
     <para>Lorsque des expressions de filtre sont utilisées dans des pipelines de
 plug-ins, elles opèrent sur une seule ligne à la fois (une valeur scalaire),
-contrairement aux filtres de lignes d'affichage. Dans ces derniers, des
+contrairement aux filtres d'affichage des lignes. Dans ces derniers, des
 attributs tels que <literal>Line</literal> représentent des paires de
 valeurs (les côtés gauche et droit étant comparés), généralement exprimées
 sous forme de tableaux comme <literal>[Left, Right]</literal>. Dans les
@@ -2945,7 +2944,7 @@ sont des valeurs scalaires représentant la ligne en cours de traitement.</para>
 pour créer et gérer les filtres de fichiers et les filtres de lignes.</para>
 
     <para>Pour ouvrir la boîte de dialogue Filtres, utilisez l'une ou l'autre de ces
-méthodes :</para>
+méthodes :</para>
 
     <itemizedlist>
       <listitem>
@@ -2965,7 +2964,7 @@ fichiers ou des dossiers est ouverte.</para>
     </itemizedlist>
 
     <para>La boîte de dialogue Filtres possède un onglet pour chaque type de filtre
-WinMerge :</para>
+WinMerge :</para>
 
     <variablelist>
       <varlistentry>
@@ -2996,12 +2995,12 @@ les opérations de comparaison de fichiers.</para>
       </varlistentry>
 
       <varlistentry>
-        <term>Afficher le filtre de ligne</term>
+        <term>Filtre d'affichage des lignes</term>
 
         <listitem>
-          <para>Le filtre de ligne d'affichage n'est pas configurable via cette boîte de
+          <para>Le filtre d'affichage des lignes n'est pas configurable via cette boîte de
 dialogue. Ouvrez-la via <menuchoice><guimenu>Affichage</guimenu>
-<guimenuitem>Barre de filtre d'affichage</guimenuitem></menuchoice>. Voir
+<guimenuitem>Afficher la barre de filtrage</guimenuitem></menuchoice>. Voir
 <xref linkend="Filters_DisplayLineFilter"/>.</para>
         </listitem>
       </varlistentry>
@@ -3024,7 +3023,7 @@ connaît, comme décrit dans <xref linkend="Filters_FileFilterLoc" />.</para>
 
         <para>Vous devez activer un filtre de fichier pour le rendre disponible dans une
 opération de comparaison de dossiers, ou désactiver un filtre actuel pour
-qu'il ne soit plus utilisé :</para>
+qu'il ne soit plus utilisé :</para>
 
         <orderedlist>
           <listitem>
@@ -3051,7 +3050,7 @@ linkend="Filters_FileFilterApply" />.</para>
         <title>Configuration des filtres de fichiers</title>
 
         <para>Utilisez ces boutons pour gérer votre liste de <guilabel>Filtres de
-fichiers</guilabel> et en créer de nouveaux :</para>
+fichiers</guilabel> et en créer de nouveaux :</para>
 
         <variablelist>
           <varlistentry>
@@ -3116,7 +3115,7 @@ filtres de lignes sont stockés dans le registre Windows.</para>
         <title>Créer un filtre de fichier</title>
 
         <para>Si les filtres installés avec WinMerge ne fournissent pas le filtrage dont
-vous avez besoin, vous pouvez créer les vôtres :</para>
+vous avez besoin, vous pouvez créer les vôtres :</para>
 
         <orderedlist>
           <listitem>
@@ -3149,7 +3148,7 @@ filtre, saisissez un nouveau nom de fichier et cliquez sur
 <guibutton>Enregistrer</guibutton>.</para>
 
             <note>
-              <para>Ne choisissez pas un nom de fichier existant : pour modifier un fichier
+              <para>Ne choisissez pas un nom de fichier existant : pour modifier un fichier
 existant, revenez à l'étape <xref linkend="Filters_New_step" /> et cliquez
 sur Modifier au lieu de Nouveau.</para>
             </note>
@@ -3185,7 +3184,7 @@ maintenant inclure le nouveau filtre.</para>
             <para>Si vous avez enregistré le fichier dans un autre emplacement sur votre
 système, WinMerge ne pourra pas le détecter à moins que vous ne
 l'installiez. Pour rendre un filtre de fichier détectable n'importe où sur
-votre système :</para>
+votre système :</para>
 
             <orderedlist numeration="loweralpha">
               <listitem>
@@ -3219,7 +3218,7 @@ de nouvelles règles ou à comprendre le fonctionnement des règles
 existantes. Cela peut être plus facile que de lancer une opération de
 comparaison complète.</para>
 
-        <para>À partir de la boîte de dialogue Filtres :</para>
+        <para>À partir de la boîte de dialogue Filtres :</para>
 
         <orderedlist>
           <listitem>
@@ -3239,7 +3238,7 @@ pouvoir le consulter pendant les étapes suivantes.</para>
 
           <listitem>
             <para>Dans la boîte de dialogue Tester le filtre, choisissez le type de règle à
-tester :</para>
+tester :</para>
 
             <itemizedlist>
               <listitem>
@@ -3262,7 +3261,7 @@ si vous avez coché l'option <guilabel>Nom du dossier</guilabel>, vous
 voudrez probablement saisir un nom de dossier, tel que \temp.</para>
 
             <para>La zone <guilabel>Résultat</guilabel> affiche votre saisie, suivie de son
-état : soit <computeroutput>réussi (passed)</computeroutput>, soit
+état : soit <computeroutput>réussi (passed)</computeroutput>, soit
 <computeroutput>échoué (failed)</computeroutput>.</para>
           </listitem>
         </orderedlist>
@@ -3289,7 +3288,7 @@ comparaison de fichiers.</para>
 zone d'édition et des boutons que vous pouvez utiliser pour mettre à jour la
 liste à tout moment en ajoutant, modifiant et supprimant des règles.</para>
 
-        <para>Pour ajouter une nouvelle règle :</para>
+        <para>Pour ajouter une nouvelle règle :</para>
 
         <orderedlist>
           <listitem>
@@ -3308,7 +3307,7 @@ dans une nouvelle ligne de la liste.</para>
           </listitem>
         </orderedlist>
 
-        <para>Pour modifier une règle existante :</para>
+        <para>Pour modifier une règle existante :</para>
 
         <orderedlist>
           <listitem>
@@ -3320,7 +3319,8 @@ dans une nouvelle ligne de la liste.</para>
           </listitem>
 
           <listitem>
-            <para>Cliquez sur <guibutton>Enregistrer</guibutton> quand vous avez terminé.</para>
+            <para>Cliquez sur <guibutton>Enregistrer</guibutton><guibutton> </guibutton> quand
+vous avez terminé.</para>
           </listitem>
         </orderedlist>
 
@@ -3344,7 +3344,7 @@ vous ne souhaitez pas appliquer.</para>
 
           <listitem>
             <para>Cochez ou décochez l'option <guilabel>Activer les filtres de
-lignes</guilabel>. Si vous activez le filtrage, toutes les règles
+ligne</guilabel>. Si vous activez le filtrage, toutes les règles
 actuellement cochées dans la liste <guilabel>Expressions
 régulières</guilabel> seront utilisées. Si le filtrage est désactivé, aucune
 règle n'est utilisée, même si elle est cochée.</para>
@@ -3404,11 +3404,11 @@ fichiers de filtres installés avec WinMerge comprennent de nombreux autres
 exemples utiles.</para>
 
     <para>Enfin, il existe de nombreuses ressources sur le Web pour vous aider avec
-les regex, notamment ces sites :</para>
+les regex, notamment ces sites :</para>
 
     <variablelist>
       <varlistentry>
-        <term>Un bon site consacré aux regex :</term>
+        <term>Un bon site consacré aux regex :</term>
 
         <listitem>
           <simpara><ulink
@@ -3417,7 +3417,7 @@ url="https://www.regular-expressions.info/">https://www.regular-expressions.info
       </varlistentry>
 
       <varlistentry>
-        <term>Tutoriel :</term>
+        <term>Tutoriel :</term>
 
         <listitem>
           <simpara><ulink
@@ -3426,7 +3426,7 @@ url="http://www.zvon.org/comp/r/tut-Regexp.html">http://www.zvon.org/comp/r/tut-
       </varlistentry>
 
       <varlistentry>
-        <term>Référence rapide PDF :</term>
+        <term>Référence rapide PDF :</term>
 
         <listitem>
           <simpara><ulink

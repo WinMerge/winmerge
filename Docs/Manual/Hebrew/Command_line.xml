@@ -448,7 +448,7 @@ Auto-merges at startup with pane arrangement: left (merge target)  - middle
       <term><option>/am</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (base)  - middle (merge
+Auto-merges at startup with pane arrangement: left (theirs)  - middle (merge
 target) - right (mine).</para>
       </listitem>
     </varlistentry>
