@@ -634,7 +634,7 @@ BEGIN
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "&Save All\tCtrl+S",               ID_FILE_SAVE
         POPUP "Sav&e"
         BEGIN
             MENUITEM "Save &Left",                  ID_FILE_SAVE_LEFT
