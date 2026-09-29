@@ -1088,6 +1088,7 @@ BEGIN
         MENUITEM "Edit &Path\tCtrl+L",          ID_EDITOR_EDIT_PATH
         MENUITEM "Open C&lipboard",             ID_EDITOR_OPEN_CLIPBOARD
         MENUITEM "&Open...",                    ID_EDITOR_SELECT_FILE
+        MENUITEM "&Save",                       ID_EDITOR_SAVE_FILE
     END
 END
 
