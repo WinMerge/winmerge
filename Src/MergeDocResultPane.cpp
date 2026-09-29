@@ -140,13 +140,12 @@ bool CMergeDoc::IsMergeResultPaneVisible() const
 void CMergeDoc::UpdateMergePaneHeaders(int nBasePane)
 {
 	// Give the compared buffers a descriptive name for the merge result
-	auto [basePane, theirsPane, minePane, destPane] = GetMergePaneMapping(nBasePane);
+	const auto& panes = GetMergePaneMapping(nBasePane);
+	const int panes2[] = { panes.nBasePane, panes.nTheirsPane, panes.nMinePane };
 	const String labels[] = { _("Base File"), _("Theirs File"), _("Mine File") };
-
-	const int panes[] = { basePane, theirsPane, minePane };
 	for (int i = 0; i < 3; ++i)
 	{
-		const int pane = panes[i];
+		const int pane = panes2[i];
 		const String suffix = _T(" - ") + labels[i];
 
 		if (m_strDesc[pane].empty())
@@ -198,7 +197,7 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMess
 		pFrame->ShowMergeResultPane();
 
 	BuildMergeResult();
-	CMainFrame::ReloadMenu();
+	CMainFrame::UpdateMergeViewMenu(GetParentFrame());
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
@@ -255,7 +254,7 @@ bool CMergeDoc::EndMergeSession()
 
 	// Reset merge session state
 	m_bResultBuilt = false;
-	CMainFrame::ReloadMenu();
+	CMainFrame::UpdateMergeViewMenu(GetParentFrame());
 
 	m_mergeSessionDiffOptions.reset();
 
@@ -600,7 +599,8 @@ String CMergeDoc::GetResultConflictBlockText(int nDiff, bool bWhiteSpaceOnly,
 			*pnLines = nLines;
 		return text;
 	}
-	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
+	const auto& panes = GetMergePaneMapping(m_nMergeBasePane);
+	int nBasePane = panes.nBasePane, nTheirsPane = panes.nTheirsPane, nMinePane = panes.nMinePane;
 	String text = _T("<<<<<<< ") + label(nMinePane);
 	if (bWhiteSpaceOnly)
 		text += _T(" (whitespace only)");
@@ -869,7 +869,8 @@ CRLFSTYLE CMergeDoc::PickResultCRLFStyle() const
 			style = CRLFSTYLE::DOS;
 		return style;
 	}
-	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto panes = GetMergePaneMapping(m_nMergeBasePane);
+	int nBasePane = panes.nBasePane, nTheirsPane = panes.nTheirsPane, nMinePane = panes.nMinePane;
 	const CRLFSTYLE sBase = m_ptBuf[nBasePane]->GetCRLFMode();
 	const CRLFSTYLE sTheirs = m_ptBuf[nTheirsPane]->GetCRLFMode();
 	const CRLFSTYLE sMine = m_ptBuf[nMinePane]->GetCRLFMode();
@@ -900,7 +901,8 @@ void CMergeDoc::PickResultEncoding()
 		m_ptResultBuf->setEncoding(m_ptBuf[1]->getEncoding());
 		return;
 	}
-	auto [nBasePane, nTheirsPane, nMinePane, nDestPane] = GetMergePaneMapping(m_nMergeBasePane);
+	auto panes = GetMergePaneMapping(m_nMergeBasePane);
+	int nBasePane = panes.nBasePane, nTheirsPane = panes.nTheirsPane, nMinePane = panes.nMinePane;
 	const FileTextEncoding& eBase = m_ptBuf[nBasePane]->getEncoding();
 	const FileTextEncoding& eTheirs = m_ptBuf[nTheirsPane]->getEncoding();
 	const FileTextEncoding& eMine = m_ptBuf[nMinePane]->getEncoding();

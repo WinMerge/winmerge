@@ -570,7 +570,7 @@ void CMergeEditFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pD
 
 	CMergeDoc *pDoc = GetMergeDoc();
 	if (bActivate && pDoc != nullptr)
-		this->GetParentFrame()->PostMessage(WM_USER+1, 1);
+		this->GetParentFrame()->PostMessage(WM_USER+1);
 	return;
 }
 
