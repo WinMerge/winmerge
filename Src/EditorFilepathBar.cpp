@@ -546,6 +546,12 @@ void CEditorFilePathBar::OnMenuItemSelected(UINT id, NMHDR* pNMHDR, LRESULT* pRe
 		// Open the most recent clipboard item (index 0)
 		OnClipboardItemSelected(pane, 0);
 	}
+	else if (menuId == ID_EDITOR_SAVE_FILE)
+	{
+		// Notify parent to save the current file
+		if (m_saveFileCallbackfunc)
+			m_saveFileCallbackfunc(pane);
+	}
 
 	*pResult = 0;
 }
