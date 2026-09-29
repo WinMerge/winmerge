@@ -39,12 +39,12 @@ msgstr "右側を選択\tCtrl+Shift+&2"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr "すべての未解決の競合に左側を適用"
+msgstr "すべての未解決のコンフリクトに左側を適用"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr "すべての未解決の競合に右側を適用"
+msgstr "すべての未解決のコンフリクトに右側を適用"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -99,7 +99,7 @@ msgstr "右側を選択\tCtrl+Shift+&3"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr "すべての未解決の競合に中央を適用"
+msgstr "すべての未解決のコンフリクトに中央を適用"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
@@ -7514,7 +7514,7 @@ msgstr ""
 #: Merge.rc:5351
 #, c-format
 msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-msgstr "自動マージが完了しました。\n\n%1\n\n自動マージ: %2\n未解決の競合: %3"
+msgstr "自動マージが完了しました。\n\n%1\n\n自動マージ: %2\n未解決のコンフリクト: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5352
@@ -7927,7 +7927,7 @@ msgstr "マージ結果を\n%1\nに保存できませんでした。\n%2"
 #: Merge.rc:5472
 #, c-format
 msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr "マージ結果には、まだ%1個の未解決の差異があります。\n\n未解決の競合は、すべてのバージョンを保持する競合セクション（<<<<<<<）として保存され、後で任意のエディターで解決できます。それ以外の未解決の差異は、自動マージされた内容で保存されます。\n\nこのまま結果を保存しますか？"
+msgstr "マージ結果には、まだ%1個の未解決の差異があります。\n\n未解決のコンフリクトは、すべてのバージョンを保持するコンフリクトセクション（<<<<<<<）として保存され、後で任意のエディターで解決できます。それ以外の未解決の差異は、自動マージされた内容で保存されます。\n\nこのまま結果を保存しますか？"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5473
