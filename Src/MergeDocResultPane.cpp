@@ -1208,10 +1208,10 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 			return false;
 	}
 
-	String strPath = m_strSaveAsPath;
+	String strPath = m_strMergeResultSavePath;
 	if (bSaveAs || strPath.empty())
 	{
-		String sDefault = m_strSaveAsPath;
+		String sDefault = m_strMergeResultSavePath;
 		if (sDefault.empty())
 		{
 			const int nDefaultPane = m_nBuffers == 2 ? 1 :
@@ -1286,7 +1286,7 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	m_ptResultBuf->m_nSyncPosition = m_ptResultBuf->m_nUndoPosition;
 	m_ptResultBuf->SetModified(false);
 	m_pMergeResultView->Invalidate(false);
-	m_strSaveAsPath = strPath;
+	m_strMergeResultSavePath = strPath;
 	m_bResultSaved = true;
 	return true;
 }

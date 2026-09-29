@@ -1197,7 +1197,10 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
 	{
 		const String& strSaveAsPath = pOpenParams->m_strSaveAsPath;
-		pMergeDoc->SetSaveAsPath(strSaveAsPath);
+		if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED))
+			pMergeDoc->SetMergeResultSavePath(strSaveAsPath);
+		else
+			pMergeDoc->SetSaveAsPath(strSaveAsPath);
 		if (!bShowMergeResultPane)
 			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 	}

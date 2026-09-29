@@ -458,6 +458,8 @@ public:
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	const String& GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
+	const String& GetMergeResultSavePath() const { return m_strMergeResultSavePath; }
+	void SetMergeResultSavePath(const String& strSaveAsPath) { m_strMergeResultSavePath = strSaveAsPath; }
 
 // implementation methods
 private:
@@ -486,6 +488,7 @@ protected:
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
+	String m_strMergeResultSavePath; /**< Save path for the merge result pane */
 	int m_nDiffContext;
 	bool m_bInvertDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
