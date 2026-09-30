@@ -1162,6 +1162,18 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
+          <para><guimenuitem>Show Left Newer Items</guimenuitem>: Files and
+          directories that exist on both sides and are newer on the left (2-way
+          compare)</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Show Right Newer Items</guimenuitem>: Files and
+          directories that exist on both sides and are newer on the right (2-way
+          compare)</para>
+        </listitem>
+
+        <listitem>
           <para><guimenuitem>Show Skipped Items</guimenuitem>: Files and
           directories omitted by file filters</para>
         </listitem>
@@ -1169,6 +1181,14 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         <listitem>
           <para><guimenuitem>Show Binary Files</guimenuitem>: Files detected as
           binaries</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Show Presets</guimenuitem>: One-click combinations
+          aligned with Beyond Compare display filters (for example Show All,
+          Show Differences, Show Same, Show Orphans, Show Left Newer, and Show
+          Right Newer). Applying a preset updates the individual Show toggles
+          above.</para>
         </listitem>
       </itemizedlist>
     </section>

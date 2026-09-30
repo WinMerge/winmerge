@@ -39,6 +39,9 @@
 
 * Show the selection margin when adding a bookmark
 
+* Add Beyond Compare-style View → Show presets (Show All / Differences / Same)
+    mapped to Diff Context
+
 * Add an option to prefer the WIC decoder when loading images for image
     comparison (PR #3537)
 
@@ -54,6 +57,9 @@
 
 * Preserve the sort order for columns that can be safely sorted while folder
     comparison is running. (#3579)(PR #3581)
+
+* Add Show Left/Right Newer Items filters and Beyond Compare-style Show Presets
+    for the folder compare View menu
 
 ### Filter expressions
 

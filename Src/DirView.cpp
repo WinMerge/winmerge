@@ -175,6 +175,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_OPTIONS_SHOWMISSINGLEFTONLY, OnOptionsShowMissingLeftOnly)
 	ON_COMMAND(ID_OPTIONS_SHOWMISSINGMIDDLEONLY, OnOptionsShowMissingMiddleOnly)
 	ON_COMMAND(ID_OPTIONS_SHOWMISSINGRIGHTONLY, OnOptionsShowMissingRightOnly)
+	ON_COMMAND(ID_OPTIONS_SHOWLEFTNEWER, OnOptionsShowLeftNewer)
+	ON_COMMAND(ID_OPTIONS_SHOWRIGHTNEWER, OnOptionsShowRightNewer)
+	ON_COMMAND_RANGE(ID_OPTIONS_SHOWPRESET_ALL, ID_OPTIONS_SHOWPRESET_RIGHT_NEWER_ORPHANS, OnOptionsShowPreset)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
@@ -188,6 +191,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWMISSINGLEFTONLY, OnUpdateOptionsShowMissingLeftOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWMISSINGMIDDLEONLY, OnUpdateOptionsShowMissingMiddleOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWMISSINGRIGHTONLY, OnUpdateOptionsShowMissingRightOnly)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWLEFTNEWER, OnUpdateOptionsShowLeftNewer)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWRIGHTNEWER, OnUpdateOptionsShowRightNewer)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_OPTIONS_SHOWPRESET_ALL, ID_OPTIONS_SHOWPRESET_RIGHT_NEWER_ORPHANS, OnUpdateOptionsShowPreset)
 	ON_COMMAND(ID_VIEW_SHOWHIDDENITEMS, OnViewShowHiddenItems)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
 	ON_COMMAND(ID_VIEW_SHOW_EMPTY_FOLDERS, OnViewShowEmptyFolders)
@@ -4458,6 +4464,132 @@ void CDirView::OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
 	pCmdUI->SetCheck(m_dirfilter.show_missing_right_only);
+}
+
+/**
+ * @brief Show/Hide left-newer files/directories (2-way)
+ */
+void CDirView::OnOptionsShowLeftNewer()
+{
+	m_dirfilter.show_left_newer = !m_dirfilter.show_left_newer;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_LEFT_NEWER, m_dirfilter.show_left_newer);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide right-newer files/directories (2-way)
+ */
+void CDirView::OnOptionsShowRightNewer()
+{
+	m_dirfilter.show_right_newer = !m_dirfilter.show_right_newer;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_RIGHT_NEWER, m_dirfilter.show_right_newer);
+	Redisplay();
+}
+
+void CDirView::OnUpdateOptionsShowLeftNewer(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs < 3);
+	pCmdUI->SetCheck(m_dirfilter.show_left_newer);
+}
+
+void CDirView::OnUpdateOptionsShowRightNewer(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs < 3);
+	pCmdUI->SetCheck(m_dirfilter.show_right_newer);
+}
+
+/**
+ * @brief Apply Beyond Compare-style Show preset by batching View filter toggles.
+ */
+void CDirView::OnOptionsShowPreset(UINT nID)
+{
+	bool show_identical = true;
+	bool show_different = true;
+	bool show_unique_left = true;
+	bool show_unique_right = true;
+	bool show_left_newer = true;
+	bool show_right_newer = true;
+
+	switch (nID)
+	{
+	case ID_OPTIONS_SHOWPRESET_ALL:
+		break;
+	case ID_OPTIONS_SHOWPRESET_DIFFERENCES:
+		show_identical = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_SAME:
+		show_different = false;
+		show_unique_left = false;
+		show_unique_right = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_ORPHANS:
+		show_identical = false;
+		show_different = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_NO_ORPHANS:
+		show_unique_left = false;
+		show_unique_right = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_DIFF_NO_ORPHANS:
+		show_identical = false;
+		show_unique_left = false;
+		show_unique_right = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_LEFT_NEWER:
+		show_unique_left = false;
+		show_unique_right = false;
+		show_right_newer = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_RIGHT_NEWER:
+		show_unique_left = false;
+		show_unique_right = false;
+		show_left_newer = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_LEFT_NEWER_ORPHANS:
+		show_unique_right = false;
+		show_right_newer = false;
+		break;
+	case ID_OPTIONS_SHOWPRESET_RIGHT_NEWER_ORPHANS:
+		show_unique_left = false;
+		show_left_newer = false;
+		break;
+	default:
+		return;
+	}
+
+	m_dirfilter.show_identical = show_identical;
+	m_dirfilter.show_different = show_different;
+	m_dirfilter.show_unique_left = show_unique_left;
+	m_dirfilter.show_unique_right = show_unique_right;
+	m_dirfilter.show_left_newer = show_left_newer;
+	m_dirfilter.show_right_newer = show_right_newer;
+	// Keep 3-way unique/middle aligned with left/right when 2-way presets run
+	m_dirfilter.show_unique_middle = show_unique_left;
+	m_dirfilter.show_different_left_only = show_different;
+	m_dirfilter.show_different_middle_only = show_different;
+	m_dirfilter.show_different_right_only = show_different;
+
+	GetOptionsMgr()->SaveOption(OPT_SHOW_IDENTICAL, m_dirfilter.show_identical);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT, m_dirfilter.show_different);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_LEFT, m_dirfilter.show_unique_left);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_MIDDLE, m_dirfilter.show_unique_middle);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_RIGHT, m_dirfilter.show_unique_right);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_LEFT_NEWER, m_dirfilter.show_left_newer);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_RIGHT_NEWER, m_dirfilter.show_right_newer);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT_LEFT_ONLY, m_dirfilter.show_different_left_only);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT_MIDDLE_ONLY, m_dirfilter.show_different_middle_only);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT_RIGHT_ONLY, m_dirfilter.show_different_right_only);
+	Redisplay();
+}
+
+void CDirView::OnUpdateOptionsShowPreset(CCmdUI* pCmdUI)
+{
+	const bool isNewerPreset =
+		pCmdUI->m_nID == ID_OPTIONS_SHOWPRESET_LEFT_NEWER ||
+		pCmdUI->m_nID == ID_OPTIONS_SHOWPRESET_RIGHT_NEWER ||
+		pCmdUI->m_nID == ID_OPTIONS_SHOWPRESET_LEFT_NEWER_ORPHANS ||
+		pCmdUI->m_nID == ID_OPTIONS_SHOWPRESET_RIGHT_NEWER_ORPHANS;
+	pCmdUI->Enable(!isNewerPreset || GetDocument()->m_nDirs < 3);
 }
 
 /**

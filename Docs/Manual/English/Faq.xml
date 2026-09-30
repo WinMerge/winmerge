@@ -282,9 +282,17 @@
         </question>
 
         <answer>
-          <para>Yes, you can show only different lines by clicking <menuchoice>
+          <para>Yes. Use <menuchoice>
+              <guimenu>View</guimenu><guimenuitem>Show</guimenuitem>
+              <guimenuitem>Show Differences</guimenuitem>
+            </menuchoice>, or the equivalent
+            <menuchoice>
               <guimenu>View</guimenu><guimenuitem>Diff Context</guimenuitem>
               <guimenuitem>0 lines</guimenuitem>
+            </menuchoice>. To show only identical lines, choose
+            <menuchoice>
+              <guimenu>View</guimenu><guimenuitem>Show</guimenuitem>
+              <guimenuitem>Show Same</guimenuitem>
             </menuchoice>.</para>
         </answer>
       </qandaentry>

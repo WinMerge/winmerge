@@ -721,6 +721,27 @@ bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM &di)
 
 
 /**
+ * @brief Filter by which side is newer (2-way only; Beyond Compare-style).
+ * Orphans and items missing timestamps are not affected.
+ */
+static bool PassesNewerFilter(const CDiffContext& ctxt, const DIFFITEM& di, const DirViewFilterSettings& filter)
+{
+	if (ctxt.GetCompareDirs() >= 3)
+		return true;
+	if (!di.diffcode.existsFirst() || !di.diffcode.existsSecond())
+		return true;
+	const auto& t0 = di.diffFileInfo[0].mtime;
+	const auto& t1 = di.diffFileInfo[1].mtime;
+	if (t0 == 0 || t1 == 0)
+		return true;
+	if (t0 > t1 && !filter.show_left_newer)
+		return false;
+	if (t1 > t0 && !filter.show_right_newer)
+		return false;
+	return true;
+}
+
+/**
  * @brief Determines if the user wants to see given item.
  * This function determines what items to show and what items to hide. There
  * are lots of combinations, but basically we check if menuitem is enabled or
@@ -744,14 +765,15 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 
 		if (!filter.displayFilterHelper.IsEmpty())
 		{
-			return di.diffcode.isDirectory() ? 
+			const bool included = di.diffcode.isDirectory() ?
 				filter.displayFilterHelper.includeDir(di) :
 				filter.displayFilterHelper.includeFile(di);
+			return included && PassesNewerFilter(ctxt, di, filter);
 		}
 
 		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
 		// wants to see skipped items show item regardless of other flags
-		return true;
+		return PassesNewerFilter(ctxt, di, filter);
 	}
 
 	if (di.diffcode.isDirectory())
@@ -946,7 +968,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 		if (!filter.displayFilterHelper.IsEmpty() && !filter.displayFilterHelper.includeFile(di))
 			return false;
 	}
-	return true;
+	return PassesNewerFilter(ctxt, di, filter);
 }
 
 /**
