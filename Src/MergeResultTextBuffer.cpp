@@ -99,12 +99,22 @@ bool CMergeResultTextBuffer::InsertText(CCrystalTextView * pSource, int nLine, i
 	// Without this, editing the placeholder would silently remove the
 	// difference from the unresolved count while its text remains.
 	if (!IsInternalOp() && m_pResultOwnerDoc->IsResultPlaceholderLine(nLine))
+	{
+		nEndLine = nLine;
+		nEndChar = nPos;
 		return false;
+	}
 	const bool bResult = CGhostTextBuffer::InsertText(pSource, nLine, nPos,
 		pszText, cchText, nEndLine, nEndChar, nAction, bHistory);
 	if (bResult && !IsInternalOp() && nEndLine > nLine)
 		m_pResultOwnerDoc->OnResultBufferInsertedLines(nLine, nEndLine - nLine);
-	return bResult;
+	if (!bResult)
+	{
+		nEndLine = nLine;
+		nEndChar = nPos;
+		return false;
+	}
+	return true;
 }
 
 bool CMergeResultTextBuffer::DeleteText2(CCrystalTextView * pSource, int nStartLine,
