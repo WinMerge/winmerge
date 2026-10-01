@@ -25,8 +25,8 @@ This file lists versions of the external components we are using.
 - darkmodelib: 0.75.1
 - StackWalker: 7af4024 on Aug 4, 2025 (https://github.com/JochenKalmbach/StackWalker)
 - tree-sitter: 0.25.10 (https://github.com/tree-sitter/tree-sitter)
-- tree-sitter-grammars: 0.2.0
-  - tree-sitter-fsharp:      0.3.1  (https://github.com/ionide/tree-sitter-fsharp)
+- tree-sitter-grammars: 0.2.1
+  - tree-sitter-fsharp:      0.3.12 (https://github.com/ionide/tree-sitter-fsharp)
   - tree-sitter-ini:        v1.4.0  (https://github.com/justinmk/tree-sitter-ini)
   - tree-sitter-markdown:   v0.5.3  (https://github.com/tree-sitter-grammars/tree-sitter-markdown)
   - tree-sitter-properties: v0.3.0  (https://github.com/tree-sitter-grammars/tree-sitter-properties)
@@ -47,4 +47,4 @@ This file lists versions of the external components we are using.
   - tree-sitter-css:        v0.25.0 (https://github.com/tree-sitter/tree-sitter-css)
   - tree-sitter-bash:       v0.25.1 (https://github.com/tree-sitter/tree-sitter-bash)
   - tree-sitter-ruby:       v0.23.1 (https://github.com/tree-sitter/tree-sitter-ruby)
-  - tree-sitter-php:        v0.24.2 (https://github.com/tree-sitter/tree-sitter-php)
+  - tree-sitter-php:        v0.25.0 (https://github.com/tree-sitter/tree-sitter-php)
