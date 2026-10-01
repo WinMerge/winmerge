@@ -1,195 +1,148 @@
-# WinMerge 2.16.58.2 Release Notes
+# WinMerge 2.16.59 Beta Release Notes
 
 * [About This Release](#about-this-release)
-* [What Is New in 2.16.58.2?](#what-is-new-in-216582)
-* [What Is New in 2.16.58?](#what-is-new-in-21658)
-* [What Is New in 2.16.57 Beta?](#what-is-new-in-21657-beta)
+* [What Is New in 2.16.59 Beta?](#what-is-new-in-21659-beta)
 * [Known issues](#known-issues)
 
-August 2026
+October 2026
 
 ## About This Release
 
-This is a WinMerge 2.16.58.2 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.58.2?
+## What Is New in 2.16.59 Beta?
+
+### General
+
+* [BUG] MDI window controls (Minimize/Maximize/Close) are completely hidden
+    unless hoveredbug (#3511)(PR #3552)
+
+* Add an option to remember and restore splitter positions for text, image,
+    web page, and binary comparisons. (PR #3611)
 
 ### Appearance
 
 * BugFix: Fix cramped toolbar icon spacing at high DPI
 
+* Migrate toolbar and margin icons from BMP to PNG (GDI+ decoding) (PR #3510)
+
+* Rebuild toolbar buttons based on active window (PR #3631)
+
 ### File compare
 
-* BugFix: Fix word diff calculation for hidden lines (#3535)
+* BugFix: Fix Shift+Insert paste going to file instead of Filter Bar (#3585)
 
-* BugFix: Fix a minor word selection issue (#3521)
+* BugFix: Fix cursor movement and scrolling across gaps created by the display
+    filter (#3601)(PR #3622)
 
-* Improve diff view rendering speed for large contiguous hidden sections
-    (PR #3517)
+* BugFix: Fix initial status bar display for file comparisons (PR #3644)
+
+* BugFix: Fix issue [BUG] Keyboard shortcut to "Copy to right" does not work in
+    3-way merge (#3645)
+
+* BugFix: Fix undo/redo after swapping panes and avoid invalid undo target
+    tracking (PR #3646, PR #3647)
+
+* BugFix: Flush undo groups when deleting text fails
+
+* BugFix: Fix blank line handling in comment difference filtering (PR #3651)
+
+* BugFix: Fix ignored diff ranges with missing trailing EOL (#3653)(PR #3657)
+
+* Show the selection margin when adding a bookmark
+
+* Add an option to prefer the WIC decoder when loading images for image
+    comparison (PR #3537)
+
+* Add Save command to filepath bar context menuheader bar (PR #3654)
+
+* tree-sitter: php and f-sharp grammars update (PR #3656)
+
+### Table compare
+
+* Add column range filtering and ignore columns in comparison (PR #3565)
+
+### Image compare
+
+* Remember the image compare splitter position (PR #3593)
 
 ### Folder compare
 
-* BugFix: [BUG] Sorting of files is temporarily wrong while diff is running
-    (#3579)(PR #3581)
+* Preserve the sort order for columns that can be safely sorted while folder
+    comparison is running. (#3579)(PR #3581)
 
 ### Filter expressions
 
-* BugFix: Allow `none` to be ignored when concatenating strings with `+`
-    (#3550)
+* Add the FilterExpression support required by the upcoming ApplyLineFilter
+    plugin (PR #3530)
 
-### Archive generation
+* BugFix: Fix case-insensitive contains in filter expressions (#3586)
 
-* BugFix: Allow archive generation for one-sided file comparisons
+### Status bar
 
-### Plugins
-
-* BugFix: Fix off-by-one bug losing the last byte of `BUFFER_PACK_UNPACK`
-    plugin output
-
-### Translations
-
-* Translation updates:
-
-  * Brazilian (PR #3508)
-  * Chinese Simplified (PR #3493)
-  * Chinese Traditional (PR #3505)
-  * Hungarian (PR #3502)
-  * Polish (PR #3501)
-  * Russian (PR #3494)
-  * Turkish (PR #3506)
-
-### Documentation
-
-* BugFix: Fix syntax errors in the Spanish "Filters" manual page
-
-## What Is New in 2.16.58?
-
-### File compare
-
-* BugFix: Crash (Access Violation) when file changes externally over a given
-    threshold (#3456, PR #3457)
-
-* BugFix: Parts of the panes become black text on a black background after
-    copying changes in 3-way merge mode (#3468, #3469)
-
-### Folder compare
-
-* BugFix: Fix archive vs folder comparison selecting the wrong source
-    (#3449, PR #3458)
-
-* BugFix: Fix HICON resource leaks in image list initialization
-
-### Select files or folders dialog
-
-* BugFix: Handle exceptions raised while creating the common file dialog
-    (#3462, PR #3464)
-
-* BugFix: Fix MRU handling for three-way comparisons. (#3452)
-
-### File Compare Report
-
-* Add support for generating a single HTML report from multiple file
-    comparisons (PR #3450)
-
-### Patch Generation
-
-* Add a file list with checkboxes to the Generate Patch dialog (PR #3470)
-
-### Archive Generation
-
-* Add support for creating comparison archives (PR #3483)
-
-### Command line
-
-* Add /g command line option for single-instance groups (PR #3472)
-
-### Translations
-
-* Translation updates:
-
-  * Brazilian (PR #3459, PR #3476, PR #3489)
-  * Chinese Simplified (PR #3460, PR #3479)
-  * French (PR #3478, PR #3491)
-  * German (PR #3480, PR #3486)
-  * Italian (PR #3455, PR #3473, PR #3477, PR #3488)
-  * Japanese
-  * Korean (PR #3447, PR #3481, PR #3487)
-  * Lithuanian (PR #3461, PR #3471, PR #3492)
-  * Polish (PR #3463, PR #3490)
-  * Turkish (PR #3465, PR #3474)
-  * Russian (PR #3448, PR #3484)
-
-## What Is New in 2.16.57 Beta?
-
-### General
-
-* BugFix: Fixed an issue where file mapping failures could incorrectly trigger a crash (#3412)
-
-* Add module-relative offsets to crash log stack traces
-
-### File compare
-
-* BugFix: Avoid crash (issue #3402) by using GetFullLineLength() to avoid accessing line EOL directly
-
-* BugFix: Fix incorrect caret position in status bar
-
-* BugFix: Clear sync points before reloading compare files
-
-* BugFix: Fix assertion failure on empty buffer access when all lines are deleted from a pane
-
-* Add display line filter bar for file compare window (PR #3374)
-
-* Improve syntax highlighting with Tree-sitter integration for better support of multiple languages (PR #3306, PR #3337, PR #3338, PR #3350, PR #3415, PR #3427, PR #3440)
-
-* Refactor syntax parsing behind ISyntaxParser interface (PR #3415)
-
-### Folder compare
-
-* BugFix: Crash when trying to delete a "left-only" or "right-only" file during renaming (#3411)
-
-* BugFix: ZIP export includes unchanged files in subfolders (#3444, PR#3445)
-
-* Refactor filter evaluation parameters with new EvalContext for better code maintainability (PR #3353)
+* Make merge mode indicator clickable and reduce its width (PR #3529)
 
 ### Archive support
 
-* BugFix: Fix error dialogs when comparing two Rar4 files (#3392)
+* BugFix: Fix issue #3588: Cannot compare folders inside zip files
 
-* Update 7-Zip to 26.02
+* BugFix: [BUG] Comparing 7z-archives: file cannot be accessed by the system
+    settings are restored. (#3633)
 
-### Select Files or Folders dialog
-
-* Add support for clipboard URL comparison and clipboard history menu (PR #3352)
+* Update 7-Zp to 26.03 (PR #3613)
 
 ### Plugins
 
-* Add HandleSchemeClipboard plugin (PR #3352)
+* BugFix: Fix off-by-one bug losing the last byte of pack/unpack plugin buffer
+    output
+* BugFix: Special UTF-8 characters not compared correctly (#3071)(PR #3568)
 
-### Project files
+* Add plugin selection buttons to the status bar (PR #3518)
 
-* Warn user before opening project files containing plugin arguments for security reasons (PR #3397, #3396)
+* Support adding plugins to pipelines from menus (PR #3523)
+
+* Add filter expressions to plugin pipelines (PR #3540)
+
+* Add MiniMax provider support to AI plugin (PR #3499)
+
+* Add local LLM and custom OpenAI-compatible API support (PR #3589)
+
+* Validate plugin pipeline filter expressions (PR #3578)
+
+* SelectLines plugin: Add literal string matching with -F option.
+    (#3500)(PR #3598)
 
 ### Translations
 
-* Translation updates:
+* New translation:
+  * Azerbaijani (PR #3624)
+  * Indonesian (PR #3636)
 
-  * Brazilian (PR #3431)
-  * Chinese Simplified (PR #3429, PR #3438)
-  * Chinese Traditional (PR #3426)
-  * Corsican (PR #3420)
-  * French (PR #3393, PR #3406, PR #3408, PR #3435)
-  * German (PR #3432)
-  * Italian (PR #3399, PR #3434, PR #3446)
-  * Korean (PR #3422, PR #3433)
-  * Lithuanian (PR #3405, PR #3439)
-  * Polish (PR #3418, PR #3430)
-  * Portuguese (PR #3391, PR #3414)
-  * Russian (PR #3395, PR #3428)
-  * Spanish (PR #3421, PR #3423, PR #3424, PR #3425)
-  * Turkish (PR #3403, PR #3436)
+* Translation updates:
+  * Brazilian (PR #3526, PR #3528, PR #3536, PR #3538, PR #3558, PR #3571, PR #3592, PR #3605, PR #3618)
+  * Chinese Simplified (PR #3531, PR #3542, PR #3554, PR #3572, PR #3595, PR #3604, PR #3619, PR #3637)
+  * Chinese Traditional (PR #3642)
+  * French (PR #3534, PR #3547, PR #3569, PR #3580, PR #3634)
+  * German (PR #3524, PR #3541, PR #3555, PR #3576, PR #3597, PR #3603, PR #3612)
+  * Hungarian (PR #3564, PR #3590)
+  * Korean (PR #3548, PR #3563, PR #3621)
+  * Italian (PR #3551, PR #3561, PR #3573, PR #3594, PR #3607, PR #3623)
+  * Lithuanian (PR #3543, PR #3574, PR #3608, PR #3620)
+  * Polish (PR #3527, PR #3549, PR #3556, PR #3577, PR #3616)
+  * Spanish (PR #3614, PR #3615)
+  * Russian (PR #3546, PR #3583, PR #3600, PR #3626)
+  * Turkish (PR #3532, PR #3544, PR #3562, PR #3575, PR #3596, PR #3627)
+
+### Manual
+
+* BugFix: [BUG] Spanish help is in French (#3658)
+
+* Set localization parameters for French, Italian, and Spanish manuals
+    (PR #3617)
+
 
 ## Known issues
 
