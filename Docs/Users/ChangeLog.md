@@ -37,10 +37,16 @@
 
 * BugFix: Fix blank line handling in comment difference filtering (PR #3651)
 
+* BugFix: Fix ignored diff ranges with missing trailing EOL (#3653)(PR #3657)
+
 * Show the selection margin when adding a bookmark
 
 * Add an option to prefer the WIC decoder when loading images for image
     comparison (PR #3537)
+    
+* Add Save command to filepath bar context menuheader bar (PR #3654)
+
+* tree-sitter: php and f-sharp grammars update (PR #3656)
 
 ### Table compare
 
@@ -119,8 +125,11 @@
 
 ### Manual
 
+* BugFix: [BUG] Spanish help is in French (#3658)
+
 * Set localization parameters for French, Italian, and Spanish manuals
     (PR #3617)
+    
 
 ## WinMerge 2.16.58.2 - 2026-08-27
 
