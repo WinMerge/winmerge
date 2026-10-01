@@ -142,6 +142,72 @@ TEST(DiffWrapper, RunFileDiff_IgnoreBlankLinesAndWhitespaceWithMovedBlocks)
 	EXPECT_EQ(3, dr.end[1]);
 }
 
+TEST(DiffWrapper, RunFileDiff_IgnoreCommentsWithMissingNewline)
+{
+	CDiffWrapper dw;
+	DIFFOPTIONS options{};
+	DIFFRANGE dr;
+	options.bFilterCommentsLines = true;
+	options.bCompletelyBlankOutIgnoredChanges = true;
+
+	LangServices::SyntaxParserRegistry::GetInstance().RegisterFactory(&CrystalLineSyntaxParserFactory::GetInstance());
+	dw.SetFilterCommentsSourceDef(_T("cpp"));
+
+	{
+		// The filtered comment is the final sub-hunk produced by PostFilter,
+		// but a common suffix means that this sub-hunk does not reach EOF.
+		DiffList diffList;
+		const TempFile left = WriteToTempFile(_T("a\nb1\nc\n;"));
+		const TempFile right = WriteToTempFile(_T("a\nb2\n/* ignored */\nc\n;"));
+		dw.SetCreateDiffList(&diffList);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.SetOptions(&options);
+		dw.RunFileDiff();
+
+		EXPECT_EQ(2, diffList.GetSize());
+		if (diffList.GetSize() == 2)
+		{
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(OP_DIFF, dr.op);
+			EXPECT_EQ(1, dr.begin[0]);
+			EXPECT_EQ(1, dr.begin[1]);
+			EXPECT_EQ(1, dr.end[0]);
+			EXPECT_EQ(1, dr.end[1]);
+			diffList.GetDiff(1, dr);
+			EXPECT_EQ(OP_TRIVIAL, dr.op);
+			EXPECT_EQ(2, dr.begin[0]);
+			EXPECT_EQ(2, dr.begin[1]);
+			EXPECT_EQ(1, dr.end[0]);
+			EXPECT_EQ(2, dr.end[1]);
+		}
+	}
+
+	{
+		// When the filtered comment itself reaches EOF, the missing-newline
+		// adjustment still removes it from the ignored-difference range.
+		DiffList diffList;
+		const TempFile left = WriteToTempFile(_T("a\nb1"));
+		const TempFile right = WriteToTempFile(_T("a\nb2\n/* ignored */"));
+		dw.SetCreateDiffList(&diffList);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.SetOptions(&options);
+		dw.RunFileDiff();
+
+		EXPECT_EQ(1, diffList.GetSize());
+		if (diffList.GetSize() == 1)
+		{
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(OP_DIFF, dr.op);
+			EXPECT_EQ(1, dr.begin[0]);
+			EXPECT_EQ(1, dr.begin[1]);
+			EXPECT_EQ(1, dr.end[0]);
+			EXPECT_EQ(1, dr.end[1]);
+		}
+	}
+
+	LangServices::SyntaxParserRegistry::GetInstance().UnregisterFactory(&CrystalLineSyntaxParserFactory::GetInstance());
+}
+
 TEST(DiffWrapper, RunFileDiff_IgnoreMissingTrailingEol)
 {
 	CDiffWrapper dw;
