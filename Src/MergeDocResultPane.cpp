@@ -475,7 +475,6 @@ void CMergeDoc::BuildMergeResult()
 		m_pMergeResultView->RefreshOptions();
 		m_pMergeResultView->Invalidate();
 	}
-	UpdateMergeResultPaneCaption();
 }
 
 void CMergeDoc::ApplyAutoMergeToResult()
@@ -795,42 +794,6 @@ tchar_t CMergeDoc::GetResultLineMarker(int nLine) const
 }
 
 /**
- * @brief Show the merge progress in the result bar's caption.
- */
-void CMergeDoc::UpdateMergeResultPaneCaption()
-{
-	if (m_pMergeResultView == nullptr || m_pMergeResultView->GetSafeHwnd() == nullptr)
-		return;
-	CWnd* pBar = m_pMergeResultView->GetParent();
-	if (pBar == nullptr)
-		return;
-	String sCaption = _("Merge Result Pane");
-	if (m_bResultBuilt)
-	{
-		int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
-		GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
-		if (nUnresolved == 0)
-			sCaption += _T(" - ") + _("All differences resolved");
-		else
-		{
-			sCaption += _T(" - ") + strutils::format_string2(
-				_("%1 unresolved difference(s), %2 conflict(s)"),
-				strutils::format(_T("%d"), nUnresolved),
-				strutils::format(_T("%d"), nConflicts));
-			if (nWhiteSpaceOnly > 0)
-				sCaption += strutils::format_string1(
-					_(" (%1 whitespace only)"),
-					strutils::format(_T("%d"), nWhiteSpaceOnly));
-		}
-	}
-	pBar->SetWindowText(sCaption.c_str());
-	// the bar draws its caption in the non-client area, which a plain
-	// WM_SETTEXT does not repaint
-	pBar->SetWindowPos(nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE |
-		SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
-}
-
-/**
  * @brief Do the compared versions of this difference only differ in white space?
  */
 bool CMergeDoc::IsResultDiffWhiteSpaceOnly(const DIFFRANGE* pdi) const
@@ -1134,7 +1097,6 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 		m_pMergeResultView->Invalidate();
-	UpdateMergeResultPaneCaption();
 }
 
 /**
@@ -1361,7 +1323,6 @@ void CMergeDoc::OnResultUndone(int nUndoPos)
 	m_resultSegments = it->second;
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 		m_pMergeResultView->Invalidate();
-	UpdateMergeResultPaneCaption();
 }
 
 /**
@@ -1375,7 +1336,6 @@ void CMergeDoc::OnResultRedone(int nUndoPos)
 	m_resultSegments = it->second;
 	if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 		m_pMergeResultView->Invalidate();
-	UpdateMergeResultPaneCaption();
 }
 
 void CMergeDoc::OnResultUndoStackCleared()
@@ -1400,7 +1360,6 @@ void CMergeDoc::OnResultLineEdited(int nLine)
 		seg.state = ResultSegmentState::Edited;
 		if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 			m_pMergeResultView->Invalidate();
-		UpdateMergeResultPaneCaption();
 	}
 }
 
@@ -1442,7 +1401,6 @@ void CMergeDoc::OnResultBufferDeletedWholeLines(int nFirstLine, int nCount)
 	{
 		if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
 			m_pMergeResultView->Invalidate();
-		UpdateMergeResultPaneCaption();
 	}
 }
 

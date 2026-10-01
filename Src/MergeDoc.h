@@ -364,7 +364,6 @@ public:
 		int nEndLine, int nEndPos) const;
 	/** @brief Margin provenance marker for a result line ('1'..'3', 'm', '?'), 0 for none */
 	tchar_t GetResultLineMarker(int nLine) const;
-	void UpdateMergeResultPaneCaption();
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
 	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
 
