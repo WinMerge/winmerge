@@ -1476,7 +1476,7 @@ void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 			(pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_1ST ? 0 :
 			 pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_2ND ? 1 : -1) :
 			pCmdUI->m_nID - ID_MERGE_RESULT_CHOOSE_1ST;
-		if (srcPane < 0 || srcPane >= m_nBuffers)
+		if (srcPane < 0 || srcPane >= m_nBuffers || !m_diffList.IsDiffSignificant(nDiff))
 		{
 			pCmdUI->Enable(FALSE);
 			pCmdUI->SetCheck(FALSE);
