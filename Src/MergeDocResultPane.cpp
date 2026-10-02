@@ -1436,6 +1436,8 @@ void CMergeDoc::OnMergeChooseSource(UINT nID)
 	bool bGroupWithPrevious = false;
 	for (int nDiff = firstDiff; nDiff <= lastDiff; ++nDiff)
 	{
+		if (!m_diffList.IsDiffSignificant(nDiff))
+			continue;
 		ResultToggleSource(nDiff, srcPane, bGroupWithPrevious);
 		bGroupWithPrevious = true;
 	}

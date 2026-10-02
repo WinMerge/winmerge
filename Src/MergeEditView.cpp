@@ -2143,7 +2143,7 @@ void CMergeEditView::OnMergeChooseThis()
 	bool bGroupWithPrevious = false;
 	for (int nDiff = firstDiff; nDiff <= lastDiff; ++nDiff)
 	{
-		if (pDoc->GetResultSegmentByDiff(nDiff) == nullptr)
+		if (!pDoc->m_diffList.IsDiffSignificant(nDiff) || pDoc->GetResultSegmentByDiff(nDiff) == nullptr)
 			continue;
 		pDoc->ResultChooseSource(nDiff, m_nThisPane, bGroupWithPrevious);
 		bGroupWithPrevious = true;
