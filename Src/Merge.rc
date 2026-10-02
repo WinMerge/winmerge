@@ -486,6 +486,8 @@ BEGIN
         MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Show Midd&le Unique Items",   ID_OPTIONS_SHOWUNIQUEMIDDLE
         MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show Left &Newer Items",      ID_OPTIONS_SHOWLEFTNEWER
+        MENUITEM "Show Righ&t Newer Items",     ID_OPTIONS_SHOWRIGHTNEWER
         MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         POPUP "&3-way Compare"
@@ -497,6 +499,20 @@ BEGIN
             MENUITEM "Show L&eft Only Missing Items", ID_OPTIONS_SHOWMISSINGLEFTONLY
             MENUITEM "Show Mi&ddle Only Missing Items", ID_OPTIONS_SHOWMISSINGMIDDLEONLY
             MENUITEM "Show Rig&ht Only Missing Items", ID_OPTIONS_SHOWMISSINGRIGHTONLY
+        END
+        POPUP "Show &Presets"
+        BEGIN
+            MENUITEM "Show &All",                   ID_OPTIONS_SHOWPRESET_ALL
+            MENUITEM "Show &Differences",           ID_OPTIONS_SHOWPRESET_DIFFERENCES
+            MENUITEM "Show &Same",                  ID_OPTIONS_SHOWPRESET_SAME
+            MENUITEM "Show &Orphans",               ID_OPTIONS_SHOWPRESET_ORPHANS
+            MENUITEM "Show &No Orphans",            ID_OPTIONS_SHOWPRESET_NO_ORPHANS
+            MENUITEM "Show Differences but No Or&phans", ID_OPTIONS_SHOWPRESET_DIFF_NO_ORPHANS
+            MENUITEM SEPARATOR
+            MENUITEM "Show &Left Newer",            ID_OPTIONS_SHOWPRESET_LEFT_NEWER
+            MENUITEM "Show &Right Newer",           ID_OPTIONS_SHOWPRESET_RIGHT_NEWER
+            MENUITEM "Show Left Newer and Left Orphans", ID_OPTIONS_SHOWPRESET_LEFT_NEWER_ORPHANS
+            MENUITEM "Show Right Newer and Right Orphans", ID_OPTIONS_SHOWPRESET_RIGHT_NEWER_ORPHANS
         END
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
@@ -736,6 +752,12 @@ BEGIN
             MENUITEM "<PlaceHolder>",               ID_VIEW_CHANGESCHEME
         END
         MENUITEM SEPARATOR
+        POPUP "&Show"
+        BEGIN
+            MENUITEM "Show &All",                   ID_VIEW_SHOW_ALL
+            MENUITEM "Show &Differences",           ID_VIEW_SHOW_DIFFERENCES
+            MENUITEM "Show &Same",                  ID_VIEW_SHOW_SAME
+        END
         POPUP "&Diff Context"
         BEGIN
             MENUITEM "&All Lines",                  ID_VIEW_DIFFCONTEXT_ALL
