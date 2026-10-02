@@ -2148,6 +2148,7 @@ void CMergeEditView::OnMergeChooseThis()
 		pDoc->ResultChooseSource(nDiff, m_nThisPane, bGroupWithPrevious);
 		bGroupWithPrevious = true;
 	}
+	pDoc->GetMergeResultView()->ScrollToDiff(firstDiff);
 }
 
 /**
