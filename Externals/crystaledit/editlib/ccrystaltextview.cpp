@@ -5088,7 +5088,11 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       CEPoint ptTopLine (0, m_nTopLine);
       pContext->RecalcPoint (ptTopLine);
       ASSERT_VALIDTEXTPOS (ptTopLine);
-      m_nTopLine = ptTopLine.y;
+      if (m_nTopLine != ptTopLine.y)
+        {
+          m_nTopLine = ptTopLine.y;
+          m_nTopSubLine = GetSubLineIndex (m_nTopLine);
+        }
       UpdateCaret ();
     }
 
