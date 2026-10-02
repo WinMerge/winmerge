@@ -149,7 +149,7 @@ int CMergeResultView::PrevSignificantDiffFromLine(int nLine) const
 	for (int i = size - 1; i >= 0 ; i--)
 	{
 		const auto* seg = pDoc->GetResultSegmentByDiff(i);
-		if (seg == nullptr)
+		if (seg == nullptr || seg->state == ResultSegmentState::Common)
 			continue;
 		const int nSegEnd = seg->nStartLine + ((seg->nLines > 0) ? (seg->nLines - 1) : 0);
 		if (seg && seg->diffIdx >= 0 && nSegEnd <= static_cast<int>(nLine))
