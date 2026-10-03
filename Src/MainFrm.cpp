@@ -1204,16 +1204,16 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 		if (!bShowMergeResultPane)
 			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 	}
-	if (bShowMergeResultPane)
-		pMergeDoc->StartMergeSession(nFiles == 2 ? 0 : nMergeBasePane, bAutoMerge, false);
-	else if (bAutoMerge)
-		pMergeDoc->DoAutoMerge(2 - nMergeBasePane);
-
 	pMergeDoc->MoveOnLoad(
 		GetActivePaneFromFlags(nFiles, dwFlags),
 		pOpenParams ? pOpenParams->m_line : -1,
 		true,
 		pOpenParams ? pOpenParams->m_char: -1);
+
+	if (bShowMergeResultPane)
+		pMergeDoc->StartMergeSession(nFiles == 2 ? 0 : nMergeBasePane, bAutoMerge, false);
+	else if (bAutoMerge)
+		pMergeDoc->DoAutoMerge(2 - nMergeBasePane);
 
 	if (!sReportFile.empty())
 		GenerateDocumentReport({ pMergeDoc }, sReportFile);
