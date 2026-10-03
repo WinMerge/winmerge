@@ -39,6 +39,7 @@ IMPLEMENT_DYNCREATE(CMergeResultView, CGhostTextView)
 CMergeResultView::CMergeResultView()
 : m_bSyncingCurrentDiff(false)
 {
+	SetParser(&m_xParser);
 	memset(&m_cachedColors, 0, sizeof(m_cachedColors));
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }

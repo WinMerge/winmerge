@@ -66,6 +66,7 @@ private:
 protected:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bSyncingCurrentDiff; /**< true while this view drives diff selection */
+	CCrystalParser m_xParser; /**< Syntax parser used for syntax highlighting. */
 
 	//{{AFX_MSG(CMergeResultView)
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
