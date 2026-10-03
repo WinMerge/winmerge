@@ -283,43 +283,9 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 	switch (pSegment->state)
 	{
 	case ResultSegmentState::Conflict:
-		if (bCurrent)
-		{
-			crBkgnd = m_cachedColors.clrSelWordDiff;
-			crText = m_cachedColors.clrSelWordDiffText;
-		}
-		else
-		{
-			crBkgnd = m_cachedColors.clrWordDiff;
-			crText = m_cachedColors.clrWordDiffText;
-		}
-		break;
 	case ResultSegmentState::Unresolved:
-		// not decided yet, but the sides do not conflict
-		if (bCurrent)
-		{
-			crBkgnd = m_cachedColors.clrSelDiff;
-			crText = m_cachedColors.clrSelDiffText;
-		}
-		else
-		{
-			crBkgnd = m_cachedColors.clrDiff;
-			crText = m_cachedColors.clrDiffText;
-		}
-		break;
 	case ResultSegmentState::Auto:
 	case ResultSegmentState::Chosen:
-		if (bCurrent)
-		{
-			crBkgnd = m_cachedColors.clrSelDiff;
-			crText = m_cachedColors.clrSelDiffText;
-		}
-		else
-		{
-			crBkgnd = m_cachedColors.clrDiff;
-			crText = m_cachedColors.clrDiffText;
-		}
-		break;
 	case ResultSegmentState::Edited:
 		if (bCurrent)
 		{
@@ -328,8 +294,8 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 		}
 		else
 		{
-			crBkgnd = m_cachedColors.clrTrivial;
-			crText = m_cachedColors.clrTrivialText;
+			crBkgnd = m_cachedColors.clrDiff;
+			crText = m_cachedColors.clrDiffText;
 		}
 		break;
 	default:
