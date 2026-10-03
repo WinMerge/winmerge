@@ -529,9 +529,12 @@ void CMergeResultView::ScrollToDiff(int nDiff)
 	SetAnchor(pt);
 	SetSelection(pt, pt);
 	CEPoint ptBefore = pt, ptAfter = pt;
-	ptBefore.y -= CONTEXT_LINES_ABOVE;
-	if (ptBefore.y < 0)
-		ptBefore.y = 0;
+	if (GetScreenLines() > CONTEXT_LINES_ABOVE)
+	{
+		ptBefore.y -= CONTEXT_LINES_ABOVE;
+		if (ptBefore.y < 0)
+			ptBefore.y = 0;
+	}
 	ptAfter.y += CONTEXT_LINES_BELOW;
 	if (ptAfter.y >= m_pTextBuffer->GetLineCount())
 		ptAfter.y = m_pTextBuffer->GetLineCount() - 1;
