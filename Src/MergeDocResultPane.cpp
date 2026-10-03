@@ -254,6 +254,7 @@ bool CMergeDoc::EndMergeSession()
 
 	// Reset merge session state
 	m_bResultBuilt = false;
+	m_ptResultBuf->SetModified(false);
 	CMainFrame::UpdateMergeViewMenu(GetParentFrame());
 
 	m_mergeSessionDiffOptions.reset();

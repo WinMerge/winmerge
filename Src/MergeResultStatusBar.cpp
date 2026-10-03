@@ -10,6 +10,7 @@
 #include "MergeResultTextBuffer.h"
 #include "MergeResultView.h"
 #include "MergeResultContainer.h"
+#include "FileTextEncoding.h"
 #include "charsets.h"
 #include "unicoder.h"
 #include "resource.h"
@@ -335,33 +336,45 @@ void CMergeResultStatusBar::OnLButtonDown(UINT nFlags, CPoint point)
 
 			struct EncodingItem
 			{
-				UINT nID;
 				int codepage;
 				bool bom;
-				const tchar_t* label;
+				String label;
 			};
-			static const EncodingItem items[] =
+			std::vector<EncodingItem> items =
 			{
-				{ 1, ucr::CP_UTF_8, false, _T("UTF-8") },
-				{ 2, ucr::CP_UTF_8, true,  _T("UTF-8 with BOM") },
-				{ 3, ucr::CP_UCS2LE, true, _T("UTF-16 LE") },
-				{ 4, ucr::CP_UCS2BE, true, _T("UTF-16 BE") },
-				{ 5, 0, false,              _T("ANSI / System default") },
+				{ ucr::CP_UTF_8, false, _T("UTF-8") },
+				{ ucr::CP_UTF_8, true,  _T("UTF-8 with BOM") },
+				{ ucr::CP_UCS2LE, true, _T("UTF-16 LE") },
+				{ ucr::CP_UCS2BE, true, _T("UTF-16 BE") },
 			};
 
+			for (int pane = 0; pane < pDoc->m_nBuffers; ++pane)
+			{
+				const FileTextEncoding& encoding = pDoc->m_ptBuf[pane]->getEncoding();
+				auto it = std::find_if(items.begin(), items.end(), [&](const EncodingItem& e) {
+					return e.codepage == encoding.m_codepage && e.bom == encoding.m_bom;
+				});
+				if (it == items.end())
+				{
+					items.push_back({ encoding.m_codepage, encoding.m_bom, ucr::toTString(
+						GetEncodingNameFromCodePage(encoding.m_codepage))});
+				}
+			}
+
+			int nID = 1;
 			for (const auto& item : items)
 			{
 				UINT flags = MF_STRING;
 				int itemCP = item.codepage == 0 ? static_cast<int>(::GetACP()) : item.codepage;
 				if (curCodepage == itemCP && curBom == item.bom)
 					flags |= MF_CHECKED;
-				menu.AppendMenu(flags, item.nID, item.label);
+				menu.AppendMenu(flags, nID++, item.label.c_str());
 			}
 
 			int cmd = menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD,
 				ptScreen.x, ptScreen.y, this);
 
-			if (cmd >= 1 && cmd <= static_cast<int>(_countof(items)))
+			if (cmd >= 1 && cmd <= static_cast<int>(items.size()))
 			{
 				const auto& selected = items[cmd - 1];
 				int targetCP = selected.codepage == 0 ? static_cast<int>(::GetACP()) : selected.codepage;
@@ -382,6 +395,8 @@ void CMergeResultStatusBar::OnLButtonDown(UINT nFlags, CPoint point)
 			CMenu menu;
 			VERIFY(menu.LoadMenu(IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL));
 			I18n::TranslateMenu(menu.m_hMenu);
+
+			menu.GetSubMenu(0)->CheckMenuItem(ID_EOL_TO_DOS + static_cast<int>(pBuf->GetCRLFMode()), MF_CHECKED);
 
 			int cmd = menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD,
 				ptScreen.x, ptScreen.y, this);
