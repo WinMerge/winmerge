@@ -1429,10 +1429,7 @@ void CMergeDoc::OnResultBufferDeletedLines(int nStartLine, int nCount)
 
 void CMergeDoc::OnMergeChooseSource(UINT nID)
 {
-	const int srcPane = m_nBuffers == 2 ?
-		(nID == ID_MERGE_RESULT_CHOOSE_1ST ? 0 :
-		 nID == ID_MERGE_RESULT_CHOOSE_2ND ? 1 : -1) :
-		nID - ID_MERGE_RESULT_CHOOSE_1ST;
+	const int srcPane = nID - ID_MERGE_RESULT_CHOOSE_1ST;
 	if (srcPane < 0 || srcPane >= m_nBuffers)
 		return;
 
@@ -1498,10 +1495,7 @@ void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 	{
 		const int nDiff = firstDiff;
 		const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff);
-		const int srcPane = m_nBuffers == 2 ?
-			(pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_1ST ? 0 :
-			 pCmdUI->m_nID == ID_MERGE_RESULT_CHOOSE_2ND ? 1 : -1) :
-			pCmdUI->m_nID - ID_MERGE_RESULT_CHOOSE_1ST;
+		const int srcPane = pCmdUI->m_nID - ID_MERGE_RESULT_CHOOSE_1ST;
 		if (srcPane < 0 || srcPane >= m_nBuffers || !m_diffList.IsDiffSignificant(nDiff))
 		{
 			pCmdUI->Enable(FALSE);
@@ -1523,10 +1517,7 @@ void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 
 void CMergeDoc::OnMergeChooseAllConflicts(UINT nID)
 {
-	const int srcPane = m_nBuffers == 2 ?
-		(nID == ID_MERGE_RESULT_CHOOSE_ALL_1ST ? 0 :
-		 nID == ID_MERGE_RESULT_CHOOSE_ALL_2ND ? 1 : -1) :
-		nID - ID_MERGE_RESULT_CHOOSE_ALL_1ST;
+	const int srcPane = nID - ID_MERGE_RESULT_CHOOSE_ALL_1ST;
 	if (srcPane >= 0 && srcPane < m_nBuffers)
 		ResultChooseAllConflicts(srcPane);
 }
