@@ -1435,10 +1435,18 @@ void CMergeDoc::OnMergeChooseSource(UINT nID)
 		nID - ID_MERGE_RESULT_CHOOSE_1ST;
 	if (srcPane < 0 || srcPane >= m_nBuffers)
 		return;
+
 	int firstDiff = -1, lastDiff = -1;
-	m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
-	if (firstDiff < 0 || lastDiff < 0)
-		return;
+	if (!m_pMergeResultView->IsSelection() && GetCurrentDiff() != -1)
+	{
+		firstDiff = lastDiff = GetCurrentDiff();
+	}
+	else
+	{
+		m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
+		if (firstDiff < 0 || lastDiff < 0)
+			return;
+	}
 
 	m_pMergeResultView->HideCursor();
 
@@ -1467,13 +1475,20 @@ void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
 	}
 
 	int firstDiff = -1, lastDiff = -1;
-	m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
-
-	if (firstDiff == -1 || lastDiff == -1)
+	if (!m_pMergeResultView->IsSelection() && GetCurrentDiff() != -1)
 	{
-		pCmdUI->Enable(FALSE);
-		pCmdUI->SetCheck(FALSE);
-		return;
+		firstDiff = lastDiff = GetCurrentDiff();
+	}
+	else
+	{
+		m_pMergeResultView->GetSelectedDiffs(firstDiff, lastDiff);
+
+		if (firstDiff == -1 || lastDiff == -1)
+		{
+			pCmdUI->Enable(FALSE);
+			pCmdUI->SetCheck(FALSE);
+			return;
+		}
 	}
 
 	pCmdUI->Enable(TRUE);

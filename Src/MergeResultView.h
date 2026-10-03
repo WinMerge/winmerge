@@ -32,6 +32,7 @@ public:
 	DECLARE_DYNCREATE(CMergeResultView)
 
 	CMergeDoc* GetDocument() const;
+	using CCrystalTextView::IsSelection;
 
 	virtual CCrystalTextBuffer *LocateTextBuffer() override;
 	virtual void GetLineColors(int nLineIndex, CEColor & crBkgnd,

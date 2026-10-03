@@ -76,8 +76,8 @@ IDR_POPUP_MERGERESULTVIEW_2WAY MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_RESULT_CHOOSE_1ST
-        MENUITEM "Choose Right\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Left\tCtrl+Shift+&1/Alt+&1",          ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Right\tCtrl+Shift+&2/Alt+&2",         ID_MERGE_RESULT_CHOOSE_2ND
         MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
         MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
@@ -98,9 +98,9 @@ IDR_POPUP_MERGERESULTVIEW_3WAY MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_RESULT_CHOOSE_1ST
-        MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
-        MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_RESULT_CHOOSE_3RD
+        MENUITEM "Choose Left\tCtrl+Shift+&1/Alt+&1",          ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Middle\tCtrl+Shift+&2/Alt+&2",        ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Right\tCtrl+Shift+&3/Alt+&3",         ID_MERGE_RESULT_CHOOSE_3RD
         MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
         MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD

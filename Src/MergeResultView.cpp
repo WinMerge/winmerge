@@ -258,6 +258,21 @@ BOOL CMergeResultView::PreTranslateMessage(MSG* pMsg)
 			GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
 		return false;
 	}
+	if (pMsg->message == WM_SYSKEYDOWN)
+	{
+		switch (pMsg->wParam)
+		{
+		case '1':
+			PostMessage(WM_COMMAND, ID_MERGE_RESULT_CHOOSE_1ST);
+			return TRUE;
+		case '2':
+			PostMessage(WM_COMMAND, ID_MERGE_RESULT_CHOOSE_2ND);
+			return TRUE;
+		case '3':
+			PostMessage(WM_COMMAND, ID_MERGE_RESULT_CHOOSE_3RD);
+			return TRUE;
+		}
+	}
 	return CGhostTextView::PreTranslateMessage(pMsg);
 }
 
