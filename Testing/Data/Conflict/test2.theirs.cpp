@@ -16,6 +16,7 @@ eee-changed
 // 6. Theirs insertion
 fff
 fff-theirs
+---
 
 // 7. Mine insertion
 ggg

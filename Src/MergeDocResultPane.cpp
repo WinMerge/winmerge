@@ -483,6 +483,8 @@ void CMergeDoc::ApplyAutoMergeToResult()
 		return;
 
 	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
+	if (m_pMergeResultView != nullptr)
+		m_pMergeResultView->HideCursor();
 
 	const int nMergeDestPane = m_nBuffers == 2 ? 1 :
 		GetMergePaneMapping(m_nMergeBasePane).nMergeDestPane;
@@ -530,7 +532,10 @@ void CMergeDoc::ApplyAutoMergeToResult()
 	m_ptResultBuf->FlushUndoGroup(m_pMergeResultView);
 
 	if (m_pMergeResultView && m_pMergeResultView->GetSafeHwnd())
+	{
+		m_pMergeResultView->ShowCursor();
 		m_pMergeResultView->Invalidate();
+	}
 }
 
 bool CMergeDoc::IsMergeResultModified() const
@@ -1134,6 +1139,8 @@ void CMergeDoc::ResultChooseAllConflicts(int srcPane)
 {
 	if (!m_bResultBuilt)
 		return;
+	if (m_pMergeResultView != nullptr)
+		m_pMergeResultView->HideCursor();
 	bool bGroupWithPrevious = false;
 	for (int nDiff = 0; nDiff < static_cast<int>(m_resultDiffToSegment.size()); ++nDiff)
 	{
@@ -1146,6 +1153,8 @@ void CMergeDoc::ResultChooseAllConflicts(int srcPane)
 			bGroupWithPrevious = true;
 		}
 	}
+	if (m_pMergeResultView != nullptr)
+		m_pMergeResultView->ShowCursor();
 }
 
 /**
@@ -1433,6 +1442,8 @@ void CMergeDoc::OnMergeChooseSource(UINT nID)
 	if (firstDiff < 0 || lastDiff < 0)
 		return;
 
+	m_pMergeResultView->HideCursor();
+
 	bool bGroupWithPrevious = false;
 	for (int nDiff = firstDiff; nDiff <= lastDiff; ++nDiff)
 	{
@@ -1441,6 +1452,7 @@ void CMergeDoc::OnMergeChooseSource(UINT nID)
 		ResultToggleSource(nDiff, srcPane, bGroupWithPrevious);
 		bGroupWithPrevious = true;
 	}
+	m_pMergeResultView->ShowCursor();
 }
 
 void CMergeDoc::OnUpdateMergeChooseSource(CCmdUI* pCmdUI)
