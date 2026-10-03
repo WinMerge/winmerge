@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-09-30 20:05+0000\n"
+"POT-Creation-Date: 2026-10-03 21:18+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -21,14 +21,14 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr ""
 
-#. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
-#: Merge.rc:79 Merge.rc:101 Merge.rc:125 Merge.rc:139
-msgid "Choose Left\tCtrl+Shift+&1"
+#. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
+#: Merge.rc:79 Merge.rc:101
+msgid "Choose Left\tCtrl+Shift+&1/Alt+&1"
 msgstr ""
 
-#. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
-#: Merge.rc:80 Merge.rc:126
-msgid "Choose Right\tCtrl+Shift+&2"
+#. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
+#: Merge.rc:80
+msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
 msgstr ""
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
@@ -81,19 +81,39 @@ msgstr ""
 msgid "&End Merge Session"
 msgstr ""
 
-#. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
-#: Merge.rc:102 Merge.rc:140
-msgid "Choose Middle\tCtrl+Shift+&2"
+#. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
+#: Merge.rc:102
+msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
 msgstr ""
 
-#. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
-#: Merge.rc:103 Merge.rc:141
-msgid "Choose Right\tCtrl+Shift+&3"
+#. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
+#: Merge.rc:103
+msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
 msgstr ""
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
+msgstr ""
+
+#. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
+#: Merge.rc:125 Merge.rc:139
+msgid "Choose Left\tCtrl+Shift+&1"
+msgstr ""
+
+#. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
+#: Merge.rc:126
+msgid "Choose Right\tCtrl+Shift+&2"
+msgstr ""
+
+#. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
+#: Merge.rc:140
+msgid "Choose Middle\tCtrl+Shift+&2"
+msgstr ""
+
+#. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
+#: Merge.rc:141
+msgid "Choose Right\tCtrl+Shift+&3"
 msgstr ""
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
