@@ -134,10 +134,9 @@ int CMergeResultView::NextSignificantDiffFromLine(int nLine) const
 	for (int i = 0; i < size; i++)
 	{
 		const auto* seg = pDoc->GetResultSegmentByDiff(i);
-		if (seg == nullptr)
+		if (seg == nullptr || seg->state == ResultSegmentState::Common)
 			continue;
-		if (seg && seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
-		{
+		if (seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
 			nDiff = seg->diffIdx;
 			break;
 		}
