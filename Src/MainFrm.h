@@ -393,8 +393,6 @@ protected:
 	static const MENUITEM_ICON m_MenuIcons[];
 
 	BCMenu* m_pMenus[MENU_COUNT] = {}; /**< Current menus for different views */
-	std::unique_ptr<BCMenu> m_pMergeResult2WayMenu;
-	std::unique_ptr<BCMenu> m_pMergeResult3WayMenu;
 	std::unique_ptr<BCMenu> m_pImageMenu;
 	std::unique_ptr<BCMenu> m_pWebPageMenu;
 	std::vector<std::unique_ptr<BCMenu>> m_ownedMenus; /**< Keep menus alive while frames may reference their handles */

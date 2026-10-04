@@ -637,24 +637,48 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		return nullptr;
 	}
 
+	auto insertMergeResultMenu = [pMenu](int resourceId)
+	{
+		BCMenu mergeResultMenu;
+		if (!mergeResultMenu.LoadMenu(resourceId))
+			return false;
+
+		auto* sourceMenu = static_cast<BCMenu*>(mergeResultMenu.GetSubMenu(0));
+		if (sourceMenu == nullptr)
+			return false;
+
+		auto submenu = std::make_unique<BCMenu>();
+		if (!submenu->CreatePopupMenu())
+			return false;
+
+		for (int i = 0; i < sourceMenu->GetMenuItemCount(); ++i)
+		{
+			const UINT state = sourceMenu->GetMenuState(i, MF_BYPOSITION);
+			if ((state & MF_SEPARATOR) != 0)
+			{
+				submenu->AppendMenu(MF_SEPARATOR);
+				continue;
+			}
+
+			CString text;
+			if (!sourceMenu->GetMenuText(i, text, MF_BYPOSITION) ||
+				!submenu->AppendMenu(MF_STRING, sourceMenu->GetMenuItemID(i), text))
+				return false;
+		}
+
+		BCMenu* ownedSubmenu = submenu.release();
+		return pMenu->InsertMenu(4, MF_BYPOSITION | MF_POPUP, reinterpret_cast<UINT_PTR>(ownedSubmenu->m_hMenu),
+			const_cast<tchar_t*>(I18n::LoadString(IDS_MERGERESULT_MENU).c_str()));
+	};
+
 	if (view == MENU_MERGEVIEW_RESULTVIEW_2WAY)
 	{
-		if (m_pMergeResult2WayMenu == nullptr)
-		{
-			m_pMergeResult2WayMenu.reset(new BCMenu);
-			m_pMergeResult2WayMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_MERGERESULT_2WAY));
-		}
-		pMenu->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pMergeResult2WayMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_MERGERESULT_MENU).c_str()));
+		insertMergeResultMenu(IDR_POPUP_MERGERESULT_2WAY);
 	}
 
 	if (view == MENU_MERGEVIEW_RESULTVIEW_3WAY)
 	{
-		if (m_pMergeResult3WayMenu == nullptr)
-		{
-			m_pMergeResult3WayMenu.reset(new BCMenu);
-			m_pMergeResult3WayMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_MERGERESULT_3WAY));
-		}
-		pMenu->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pMergeResult3WayMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_MERGERESULT_MENU).c_str()));
+		insertMergeResultMenu(IDR_POPUP_MERGERESULT_3WAY);
 	}
 
 	if (view == MENU_IMGMERGEVIEW)
