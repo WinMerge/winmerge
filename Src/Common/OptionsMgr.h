@@ -164,6 +164,15 @@ public:
 
 	virtual int FlushOptions() = 0;
 
+	/**
+	 * @brief Read the string values stored under a section from the storage itself (registry or ini file)
+	 * rather than from the options loaded in this process, after this process's pending writes.
+	 * For data that several WinMerge processes update, such as the recent comparison list.
+	 * @param [in] section Section path without the trailing '/', e.g. "Recent Compare List"
+	 * @return Value name (without the section) and value of each stored string value
+	 */
+	virtual std::map<String, String> ReadStoredSection(const String& section) = 0;
+
 	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const;
 	virtual int ImportOptions(const String& filename);
 	

@@ -1692,6 +1692,9 @@ static bool AddToRecentDocs(const PathContext& paths,
 		AppendComparisonCommandLineParams(params, nID, pOpenParams, infoUnpacker, infoPrediffer);
 	}
 
+	// Stored only where Windows keeps no jump list history (see MruHelper::GetRecentCompares)
+	MruHelper::AddRecentCompare({ title, params }, GetOptionsMgr()->GetInt(OPT_RECENT_COMPARE_MAX));
+
 	Concurrent::CreateTask([params, title](){
 			if (SUCCEEDED(CoInitialize(nullptr)))
 			{
@@ -3916,11 +3919,12 @@ LRESULT CMainFrame::OnMDIButtonContextMenu(WPARAM wParam, LPARAM lParam)
 
 void CMainFrame::OnMRUs(UINT nID)
 {
-	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
+	std::vector<MruHelper::RecentCompare> mrus = MruHelper::GetRecentCompares(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
 	const size_t idx = static_cast<size_t>(nID) - ID_MRU_FIRST;
 	if (idx < mrus.size())
 	{
-		MergeCmdLineInfo cmdInfo((_T("\"") + mrus[idx].path + _T("\" ") + mrus[idx].params).c_str());
+		// The first token is the program name, which MergeCmdLineInfo skips
+		MergeCmdLineInfo cmdInfo((_T("WinMergeU.exe ") + mrus[idx].params).c_str());
 		theApp.ParseArgsAndDoOpen(cmdInfo, this);
 	}
 }
@@ -3938,7 +3942,10 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 	while (i --)
 		::DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
-	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
+	std::vector<MruHelper::RecentCompare> mrus = MruHelper::GetRecentCompares(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
+	// Menu IDs are limited to ID_MRU_FIRST..ID_MRU_LAST (OPT_MRU_MAX allows more items)
+	if (mrus.size() > ID_MRU_LAST - ID_MRU_FIRST + 1)
+		mrus.resize(ID_MRU_LAST - ID_MRU_FIRST + 1);
 
 	if (mrus.size() == 0)
 	{
