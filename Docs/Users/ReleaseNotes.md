@@ -33,6 +33,9 @@ Please submit bug reports to our bug-tracker.
 
 ### File compare
 
+* Add a Merge Result pane for reviewing and resolving 2-way conflicts and
+    3-way merges. (PR #3515)
+
 * BugFix: Fix Shift+Insert paste going to file instead of Filter Bar (#3585)
 
 * BugFix: Fix cursor movement and scrolling across gaps created by the display
