@@ -52,6 +52,12 @@ struct MergeResultSegment
 	int nLines = 0;   /**< Number of lines in segment (can be 0) */
 	bool bWhiteSpaceOnly = false; /**< Conflict where the sides differ only in white space */
 	/**
+	 * The chosen source(s) contribute no lines. The buffer then holds one
+	 * display-only "<No Lines>" line (nLines == 1) that is not
+	 * editable and is left out when the result is saved.
+	 */
+	bool bNoSrc = false;
+	/**
 	 * Buffer revision when this segment's content was last generated
 	 * (build or Choose). Lines with a higher revision were edited by
 	 * hand afterwards; the margin marks exactly those with 'm'.

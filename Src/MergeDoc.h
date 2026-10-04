@@ -391,6 +391,8 @@ private:
 	void PickResultEncoding();
 	String GetResultBufferLinesText(int nStartLine, int nLines) const;
 	String BuildExpandedResultText() const;
+	bool AdjustResultSegmentsAfterLineDeletion(int nRemovedBegin, int nCount);
+	void EnsureNoLinesPlaceholder(int nSegment);
 	std::unique_ptr<CMergeResultTextBuffer> m_ptResultBuf; /**< Merge result buffer (not part of the diff) */
 	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
 	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */

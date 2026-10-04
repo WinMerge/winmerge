@@ -5475,6 +5475,7 @@ BEGIN
     IDS_MERGE_RESULT_CONFLICT_WHITESPACE "<Merge Conflict (Whitespace only)>"
     IDS_MERGE_RESULT_CONFLICT "<Merge Conflict>"
     IDS_MERGE_RESULT_UNRESOLVED "<Unresolved Difference>"
+    IDS_MERGE_RESULT_NOLINES "<No Lines>"
     IDS_MERGE_RESULT_SAVE_AS "Save Merge Result As"
     IDS_MERGE_RESULT_STATUS_CONFLICTS2 "Conflicts: %1, Unresolved: %2"
     IDS_MERGE_RESULT_STATUS_CONFLICTS3 "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"

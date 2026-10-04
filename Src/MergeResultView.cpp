@@ -293,7 +293,8 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 	if (pDoc == nullptr)
 		return;
 	const MergeResultSegment* pSegment = pDoc->GetResultSegmentByLine(nLineIndex);
-	if (pSegment == nullptr || pSegment->state == ResultSegmentState::Common)
+	if (pSegment == nullptr ||
+		(pSegment->state == ResultSegmentState::Common && !pSegment->bNoSrc))
 		return;
 
 	const bool bCurrent = pSegment->diffIdx >= 0 &&
@@ -301,6 +302,7 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 	bDrawWhitespace = true;
 	switch (pSegment->state)
 	{
+	case ResultSegmentState::Common:
 	case ResultSegmentState::Conflict:
 	case ResultSegmentState::Unresolved:
 	case ResultSegmentState::Auto:
@@ -308,12 +310,18 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 	case ResultSegmentState::Edited:
 		if (bCurrent)
 		{
-			crBkgnd = m_cachedColors.clrSelDiff;
+			if (pSegment->bNoSrc)
+				crBkgnd = m_cachedColors.clrSelDiffDeleted;
+			else
+				crBkgnd = m_cachedColors.clrSelDiff;
 			crText = m_cachedColors.clrSelDiffText;
 		}
 		else
 		{
-			crBkgnd = m_cachedColors.clrDiff;
+			if (pSegment->bNoSrc)
+				crBkgnd = m_cachedColors.clrDiffDeleted;
+			else
+				crBkgnd = m_cachedColors.clrDiff;
 			crText = m_cachedColors.clrDiffText;
 		}
 		break;

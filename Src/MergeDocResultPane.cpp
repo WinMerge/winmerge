@@ -60,49 +60,14 @@ static bool IsTrackedResultSegment(const MergeResultSegment& seg)
 }
 
 /**
- * @brief Adjust result segment ranges after deleting a contiguous line range.
- * @return true if a segment's resolution state changed to Edited.
+ * @brief Display-only line for a segment whose source has no lines
+ * (kdiff3: "<No Lines>"). Like the compact conflict placeholders it
+ * lives in the buffer as real text, so Undo/Redo and the segment table
+ * snapshots need no special handling; it is omitted when saving.
  */
-static bool AdjustResultSegmentsAfterLineDeletion(
-	std::vector<MergeResultSegment>& segments, int nRemovedBegin, int nCount)
+static String GetResultNoSrcLineText(const tchar_t * pszEol)
 {
-	const int nRemovedEnd = nRemovedBegin + nCount - 1;
-	bool bStateChanged = false;
-	for (auto& seg : segments)
-	{
-		const int nSegEnd = seg.nStartLine + seg.nLines - 1;
-		if (seg.nLines > 0 && nSegEnd < nRemovedBegin)
-			continue; // fully before the removed range
-		if (seg.nStartLine > nRemovedEnd)
-		{
-			seg.nStartLine -= nCount; // fully after the removed range
-			continue;
-		}
-		if (seg.nLines <= 0)
-		{
-			// Empty segment inside the removed range
-			if (seg.nStartLine >= nRemovedBegin)
-				seg.nStartLine = nRemovedBegin;
-			continue;
-		}
-
-		const int nOverlapBegin = (std::max)(seg.nStartLine, nRemovedBegin);
-		const int nOverlapEnd = (std::min)(nSegEnd, nRemovedEnd);
-		const int nOverlap = nOverlapEnd - nOverlapBegin + 1;
-		if (nOverlap > 0)
-		{
-			seg.nLines -= nOverlap;
-			if (IsTrackedResultSegment(seg) && seg.state != ResultSegmentState::Edited)
-			{
-				seg.state = ResultSegmentState::Edited;
-				bStateChanged = true;
-			}
-		}
-		// A surviving tail now begins at the first line after the deletion point.
-		if (seg.nStartLine >= nRemovedBegin)
-			seg.nStartLine = nRemovedBegin;
-	}
-	return bStateChanged;
+	return String(_("<No Lines>")) + pszEol;
 }
 
 std::array<String, 3> GetMergePaneMappingString(int nBasePane)
@@ -448,6 +413,12 @@ void CMergeDoc::BuildMergeResult()
 			seg.srcPanes.push_back(srcPane);
 			seg.srcPaneLines.push_back(nLines);
 			seg.nLines = nLines;
+			if (nLines == 0)
+			{
+				text += GetResultNoSrcLineText(m_ptResultBuf->GetDefaultEol());
+				seg.bNoSrc = true;
+				seg.nLines = 1;
+			}
 		}
 		m_resultDiffToSegment[nDiff] = static_cast<int>(m_resultSegments.size());
 		m_resultSegments.push_back(seg);
@@ -513,6 +484,10 @@ void CMergeDoc::ApplyAutoMergeToResult()
 
 		int nLines = 0;
 		String resolvedText = GetPaneApparentLinesText(srcPane, pdi->dbegin, pdi->dend, &nLines);
+		const bool bNoSrc = (nLines == 0);
+		const int nNewLines = bNoSrc ? 1 : nLines;
+		if (bNoSrc)
+			resolvedText = GetResultNoSrcLineText(m_ptResultBuf->GetDefaultEol());
 
 		const int nStartLine = seg.nStartLine;
 		const int nEndLine = nStartLine + seg.nLines;   // exclusive
@@ -526,11 +501,12 @@ void CMergeDoc::ApplyAutoMergeToResult()
 		seg.srcPaneLines.clear();
 		seg.srcPanes.push_back(srcPane);
 		seg.srcPaneLines.push_back(nLines);
-		seg.nLines = nLines;
+		seg.nLines = nNewLines;
+		seg.bNoSrc = bNoSrc;
 		seg.blockText.clear();
 		seg.nBlockLines = 0;
 
-		const int nDelta = nLines - (nEndLine - nStartLine);
+		const int nDelta = nNewLines - (nEndLine - nStartLine);
 		for (size_t j = i + 1; j < m_resultSegments.size(); ++j)
 			m_resultSegments[j].nStartLine += nDelta;
 	}
@@ -722,6 +698,8 @@ bool CMergeDoc::IsResultPlaceholderLine(int nLine) const
 	// Only differences that can be resolved with a Choose command are
 	// edit-protected. A segment without a linked difference
 	// must stay editable: hand-editing is its only resolution path.
+	if (pSegment != nullptr && pSegment->bNoSrc)
+		return true; // "<No Lines>": choose a source to change it
 	return pSegment != nullptr && pSegment->diffIdx >= 0 &&
 		(pSegment->state == ResultSegmentState::Conflict ||
 		 pSegment->state == ResultSegmentState::Unresolved);
@@ -927,7 +905,7 @@ String CMergeDoc::BuildExpandedResultText() const
 			seg.state == ResultSegmentState::Unresolved);
 		if (bPlaceholder && seg.diffIdx >= 0)
 			text += seg.blockText; // buffer shows the compact placeholder
-		else
+		else if (!seg.bNoSrc) // "<No Lines>" is display only
 			text += GetResultBufferLinesText(seg.nStartLine, seg.nLines);
 		nCovered = (std::max)(nCovered, seg.nStartLine + seg.nLines);
 	}
@@ -1027,6 +1005,14 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 		srcPaneLines.push_back(nPaneLines);
 		nNewLines += nPaneLines;
 	}
+	// The selected source(s) have no lines for this difference: show the
+	// display-only "<No Lines>" line instead of an empty segment
+	const bool bNoSrc = !srcPanes.empty() && nNewLines == 0;
+	if (bNoSrc)
+	{
+		text = GetResultNoSrcLineText(m_ptResultBuf->GetDefaultEol());
+		nNewLines = 1;
+	}
 	if (srcPanes.empty())
 	{
 		// deselected everything: the difference is unresolved again
@@ -1089,6 +1075,7 @@ void CMergeDoc::ResultChooseSources(int nDiff, const std::vector<int>& srcPanes,
 	seg.srcPanes = srcPanes;
 	seg.srcPaneLines = std::move(srcPaneLines);
 	seg.nLines = nNewLines;
+	seg.bNoSrc = bNoSrc;
 	if (!bBackToUnresolved)
 	{
 		seg.blockText.clear();
@@ -1223,9 +1210,10 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 	bool bNeedExpansion = false;
 	for (const auto& seg : m_resultSegments)
 	{
-		if ((seg.state == ResultSegmentState::Conflict ||
-			 seg.state == ResultSegmentState::Unresolved) &&
-			seg.diffIdx >= 0)
+		if (seg.bNoSrc ||
+			((seg.state == ResultSegmentState::Conflict ||
+				seg.state == ResultSegmentState::Unresolved) &&
+				seg.diffIdx >= 0))
 		{
 			bNeedExpansion = true;
 			break;
@@ -1401,6 +1389,131 @@ void CMergeDoc::OnResultBufferInsertedLines(int nLine, int nCount)
 	}
 }
 
+bool CMergeDoc::AdjustResultSegmentsAfterLineDeletion(
+	int nRemovedBegin, int nCount)
+{
+	if (nCount <= 0)
+		return false;
+
+	const int nRemovedEnd = nRemovedBegin + nCount - 1;
+	bool bStateChanged = false;
+	std::vector<int> emptySegments;
+
+	// Adjust segment positions and sizes after the deletion.
+	for (int i = 0; i < static_cast<int>(m_resultSegments.size()); ++i)
+	{
+		auto& seg = m_resultSegments[i];
+
+		if (seg.nLines > 0)
+		{
+			const int nSegEnd = seg.nStartLine + seg.nLines - 1;
+
+			if (nSegEnd < nRemovedBegin)
+				continue;
+
+			if (seg.nStartLine > nRemovedEnd)
+			{
+				seg.nStartLine -= nCount;
+				continue;
+			}
+
+			const int nOverlapBegin =
+				(std::max)(seg.nStartLine, nRemovedBegin);
+			const int nOverlapEnd =
+				(std::min)(nSegEnd, nRemovedEnd);
+			const int nOverlap = nOverlapEnd - nOverlapBegin + 1;
+
+			if (nOverlap > 0)
+			{
+				seg.nLines -= nOverlap;
+
+				if (IsTrackedResultSegment(seg) &&
+					seg.state != ResultSegmentState::Edited)
+				{
+					seg.state = ResultSegmentState::Edited;
+					bStateChanged = true;
+				}
+
+				if (seg.nLines == 0 &&
+					seg.diffIdx >= 0 &&
+					seg.state != ResultSegmentState::Conflict &&
+					seg.state != ResultSegmentState::Unresolved &&
+					!seg.bNoSrc)
+				{
+					emptySegments.push_back(i);
+				}
+			}
+
+			if (seg.nStartLine >= nRemovedBegin)
+				seg.nStartLine = nRemovedBegin;
+		}
+		else
+		{
+			if (seg.nStartLine >= nRemovedBegin)
+				seg.nStartLine = nRemovedBegin;
+		}
+	}
+
+	if (emptySegments.empty())
+		return bStateChanged;
+
+	CMergeResultTextBuffer::InternalOpGuard guard(*m_ptResultBuf);
+
+	CCrystalTextView* pView =
+		(m_pMergeResultView != nullptr &&
+			m_pMergeResultView->GetSafeHwnd() != nullptr)
+		? m_pMergeResultView : nullptr;
+
+	const String text =
+		GetResultNoSrcLineText(m_ptResultBuf->GetDefaultEol());
+
+	// Insert GHOST lines from top to bottom.
+	//
+	// Each empty result segment gets its own GHOST line.  Inserting
+	// from top to bottom is important when multiple segments became
+	// empty at the same deletion position:
+	//
+	//   m|<No Lines>       <- segment A
+	//   m|<No Lines>       <- segment B
+	//    |0123456789
+	//
+	// Inserting from bottom to top would reverse the relationship
+	// between the physical lines and the result segments.
+	for (const int i : emptySegments)
+	{
+		auto& seg = m_resultSegments[i];
+		const int nInsertLine = seg.nStartLine;
+
+		int nEndLine = 0;
+		int nEndChar = 0;
+
+		m_ptResultBuf->InsertText(
+			pView,
+			nInsertLine,
+			0,
+			text.c_str(),
+			text.length(),
+			nEndLine,
+			nEndChar,
+			CE_ACTION_UNKNOWN,
+			true);
+
+		seg.nStartLine = nInsertLine;
+		seg.nLines = 1;
+		seg.bNoSrc = true;
+
+		// The inserted line shifts all subsequent result segments.
+		for (size_t j = static_cast<size_t>(i) + 1;
+			j < m_resultSegments.size();
+			++j)
+		{
+			++m_resultSegments[j].nStartLine;
+		}
+	}
+
+	return bStateChanged;
+}
+
 /**
  * @brief Lines [nFirstLine, nFirstLine + nCount) were removed whole by a
  * user edit (column-0-to-column-0 deletion); the following line survived
@@ -1409,7 +1522,8 @@ void CMergeDoc::OnResultBufferInsertedLines(int nLine, int nCount)
 void CMergeDoc::OnResultBufferDeletedWholeLines(int nFirstLine, int nCount)
 {
 	const bool bStateChanged = AdjustResultSegmentsAfterLineDeletion(
-		m_resultSegments, nFirstLine, nCount);
+		nFirstLine, nCount);
+
 	if (bStateChanged)
 	{
 		if (m_pMergeResultView != nullptr && m_pMergeResultView->GetSafeHwnd() != nullptr)
@@ -1425,7 +1539,8 @@ void CMergeDoc::OnResultBufferDeletedLines(int nStartLine, int nCount)
 	// Line indices [nRemovedBegin, nRemovedEnd] no longer exist; the text
 	// of lines nStartLine and nRemovedEnd merged into line nStartLine.
 	const int nRemovedBegin = nStartLine + 1;
-	AdjustResultSegmentsAfterLineDeletion(m_resultSegments, nRemovedBegin, nCount);
+	AdjustResultSegmentsAfterLineDeletion(nRemovedBegin, nCount);
+
 	// The segment containing the merge point was edited as well
 	OnResultLineEdited(nStartLine);
 }
