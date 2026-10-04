@@ -17,16 +17,16 @@ doivent être traitées de la manière conventionnelle de Windows en utilisant
 les paramètres régionaux du Panneau de configuration.)</para>
 
   <para>La localisation de votre installation WinMerge implique ces deux étapes de
-base :</para>
+base :</para>
 
   <orderedlist>
     <listitem>
-      <para><xref linkend="Locales_config_files" /> : rendre un ou plusieurs fichiers de
+      <para><xref linkend="Locales_config_files" /> : rendre un ou plusieurs fichiers de
 langue disponibles pour WinMerge.</para>
     </listitem>
 
     <listitem>
-      <para><xref linkend="Locales_changing" /> : choisir l'un des fichiers de langue
+      <para><xref linkend="Locales_changing" /> : choisir l'un des fichiers de langue
 configurés.</para>
     </listitem>
   </orderedlist>
@@ -51,7 +51,7 @@ traduction.</para>
         <para>Si vous n'avez pas configuré de fichier de langue lors de l'installation de
 WinMerge (ou si vous n'avez pas utilisé l'installateur du tout), il n'est
 pas nécessaire de réinstaller WinMerge. Vous pouvez obtenir les derniers
-fichiers de traduction sur le site de WinMerge et le configurer vous-même :</para>
+fichiers de traduction sur le site de WinMerge et le configurer vous-même :</para>
 
         <orderedlist>
           <listitem>
@@ -88,7 +88,7 @@ exécution de WinMerge.</para>
 
     <para>Si vous avez configuré un ou plusieurs fichiers de traduction, comme décrit
 dans la section précédente, vous pouvez changer la localisation de WinMerge
-pour l'un d'entre eux :</para>
+pour l'un d'entre eux :</para>
 
     <orderedlist>
       <listitem>
@@ -116,11 +116,15 @@ jour.</para>
       </indexterm></title>
 
     <para>Les localisations WinMerge fournies à ce jour incluent les traductions
-suivantes :</para>
+suivantes :</para>
 
     <itemizedlist>
       <listitem>
         <simpara>Arabe</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Azerbaijani</simpara>
       </listitem>
 
       <listitem>
@@ -185,6 +189,10 @@ suivantes :</para>
 
       <listitem>
         <simpara>Hongrois</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Indonesian</simpara>
       </listitem>
 
       <listitem>

@@ -316,6 +316,9 @@ inline const String OPT_FILTER_USERPATH {_T("Settings/UserFilterPath"s)};
 inline const String OPT_FILEFILTER_SHARED {_T("Settings/Filters/Shared"s)};
 inline const String OPT_USERDATA_LOCATION {_T("Settings/UserDataLocation"s)};
 
+// Merge Result Pane
+inline const String OPT_MERGE_RESULT_PANE_ENABLED {_T("Settings/MergeResultPaneEnabled"s)};
+
 /// Substitution Filters
 inline const String OPT_SUBSTITUTION_FILTERS_ENABLED {_T("Settings/SubstitutionFiltersEnabled"s)};
 

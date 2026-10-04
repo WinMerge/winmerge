@@ -9,7 +9,7 @@
 
 namespace ToolbarButtons
 {
-	std::vector<UINT> GetToolbarButtons(FRAMETYPE frameType, int nFiles, bool hasDirDoc);
+	std::vector<UINT> GetToolbarButtons(FRAMETYPE frameType, int nFiles, bool hasDirDoc, bool hasMergeResultPane);
 	int GetToolbarImageIndex(UINT nID);
 	int GetToolbarImageCount();
 }
