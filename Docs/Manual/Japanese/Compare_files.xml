@@ -599,6 +599,116 @@ linkend="Compare_files_merge" /> で説明します。 <xref linkend="Quick_star
     </section>
 
     <section>
+      <title>マージ結果ペイン</title>
+
+      <indexterm>
+        <primary>マージ結果ペイン、ファイル比較ウィンドウ</primary>
+      </indexterm>
+
+      <indexterm>
+        <primary>3方向マージ</primary>
+      </indexterm>
+
+      <para>
+3つのテキストファイルを比較してマージ出力先を指定すると（たとえば、バージョン管理ツールが<option>/o</option>コマンドラインオプションを指定してWinMergeを起動した場合）、ファイル比較ウィンドウの下部にマージ結果ペインが開きます。これはKDiff3のマージ出力ウィンドウと同様に動作します。3つのファイルペインには比較対象のファイルが読み取り専用で表示され、マージ結果ペインにはマージ結果が表示され、自由に編集できます。</para>
+
+      <para>
+When you open a two-way conflict file with
+<menuchoice><guimenu>File</guimenu><guimenuitem>Open Conflict
+File</guimenuitem></menuchoice>, WinMerge keeps the two source panes side by
+side and opens the Merge Result pane when it is enabled. Each differing
+block starts unresolved because a two-way conflict file has no common
+base. Choose the left or right source to resolve a block. In this mode the
+toolbar buttons are numbered <guibutton>1</guibutton> and
+<guibutton>2</guibutton>, and
+<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo>
+and
+<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></keycombo>
+choose the left and right source, respectively. Unresolved blocks are saved
+using the standard two-sided conflict markers.</para>
+
+      <para>
+ペインを開くと、すべての差異は最初は未解決の状態になり、簡略化された<computeroutput>&lt;マージコンフリクト&gt;</computeroutput>または<computeroutput>&lt;未解決の差異&gt;</computeroutput>というプレースホルダー行で表示されます。<option>/al</option>、<option>/am</option>、<option>/ar</option>コマンドラインオプション、または<guimenuitem>自動マージ</guimenuitem>コマンドで自動マージを実行すると、コンフリクトしていない差異は選択したマージ先に従って自動的に解決され、ベースに対して両側で同じ行が変更された真のコンフリクトだけが未解決のまま残ります。</para>
+
+      <para>
+To resolve a difference, select it and choose the desired source from the
+top-level <guimenu>Merge Result</guimenu> menu. Two-way merge sessions offer
+<guimenuitem>Choose Left</guimenuitem> and <guimenuitem>Choose
+Right</guimenuitem>; three-way sessions also offer <guimenuitem>Choose
+Middle</guimenuitem>. You can also use the Merge Result pane context menu,
+or the <guibutton>1</guibutton> / <guibutton>2</guibutton> /
+<guibutton>3</guibutton> toolbar buttons. Each command toggles that pane's
+lines for the current difference (or all differences covered by the current
+selection): selecting several panes combines their lines in the order you
+select them (useful when both sides added something and the merge should
+keep both), and deselecting all panes makes the difference unresolved
+again. You can also type corrections directly into the Merge Result pane,
+except on unresolved differences: those must be resolved with a Choose
+command before their text can be edited. Conflicts whose sides differ only
+in white space are marked as <computeroutput>(Whitespace
+only)</computeroutput>.</para>
+
+      <para>
+ペインのマージンには各行の出所が表示されます。左、中央、右のペインから取得した行には、それぞれ<computeroutput>1</computeroutput>、<computeroutput>2</computeroutput>、<computeroutput>3</computeroutput>（ツールバーボタンに対応）が表示され、未解決のコンフリクトセクションには<computeroutput>?</computeroutput>、手動で変更された差異には<computeroutput>m</computeroutput>が表示されます。ペインのステータスバーには、まだ未解決の差異の数が表示されます。ペインを開いている間は、<guimenuitem>次のコンフリクト</guimenuitem>および<guimenuitem>前のコンフリクト</guimenuitem>（<keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Down</keycap></keycombo>／<keycombo><keycap>Alt</keycap><keycap>Shift</keycap><keycap>Up</keycap></keycombo>）を使用すると、すでに解決された差異を飛ばして、まだ判断が必要な次または前の差異に移動できます。</para>
+
+      <para>
+<menuchoice><guimenu>ファイル</guimenu><guisubmenu>保存</guisubmenu><guimenuitem>マージ結果を保存</guimenuitem></menuchoice>、保存ツールバーボタン、または<keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo>を使用して、結果を出力先に保存します。未解決の差異が残っている場合、WinMergeは警告を表示します。未解決のコンフリクトはプレースホルダーテキストではなく、標準的なコンフリクトセクションとして保存されます。そのため、ファイルにはコンフリクトしている行のすべてのバージョンが保持され、後で任意のエディターやマージツールで処理を完了できます。コンフリクトしていない未解決の差異は、自動マージされた内容で保存されるため、どのバージョン管理システムも生成しないようなコンフリクトマーカーが出力に含まれることはありません。出力先のファイルをそのまま再度開いても、これらのコンフリクトセクションからマージを再開することはありません。他の3方向マージツール（KDiff3やMeldなど）と同様に、WinMergeは常に比較対象の3つのファイルからマージ結果を再構築します。そのため、バージョン管理ツールが<option>/o</option>コマンドラインオプション（たとえば<command>git
+mergetool</command>）を指定してWinMergeを再度起動すると、出力ファイルにすでに何が含まれているかにかかわらず、毎回新しいマージが実行されます。以前に部分的に解決したコンフリクトファイルから作業を再開するには、<menuchoice><guimenu>ファイル</guimenu><guimenuitem>コンフリクトファイルを開く</guimenuitem></menuchoice>を使用します。WinMergeはそのコンフリクトセクションを解析し、未解決の差異として復元するとともに、すでに解決されていたテキストを保持します。ウィンドウを閉じるときには、マージ結果が未保存の場合にもWinMergeは保存を確認します。これは、その時点でマージ結果ペイン自体が非表示になっている場合も同様です。デフォルトでは、各行は元の改行コードを保持して保存されるため、出力は元のファイルとの差異ができるだけ少なくなります（たとえば、バージョン管理での差分を最小限にできます）。出力の改行コードは、マージ結果ペインのステータスバーからWindows、Unix、またはクラシックMac形式に変更できます。エンコーディングは変更を行った側に従い、保存時にはバックアップファイルのオプションと、ファイルを開く際に使用したファイルパッカープラグインが適用されます。</para>
+
+      <para>
+3方向のテキスト比較では、<menuchoice><guimenu>マージ</guimenu><guimenuitem>マージセッションを開始</guimenuitem></menuchoice>（差異は未解決の状態で開始）または<menuchoice><guimenu>マージ</guimenu><guimenuitem>自動マージ</guimenuitem></menuchoice>（コンフリクトしていない差異は自動的に解決）を使用して、マージを開始することもできます。マージセッションがアクティブな間は、<menuchoice><guimenu>表示</guimenu><guimenuitem>マージ結果ペイン</guimenuitem></menuchoice>を使用してペインを表示または非表示にできます。マージセッションを終了して通常の3ペインの編集可能な状態に戻すには、<menuchoice><guimenu>マージ</guimenu><guimenuitem>マージセッションを終了</guimenuitem></menuchoice>を選択します。マージ結果に未保存の変更がある場合、WinMergeは保存を確認し、各ペインの元の読み取り専用状態とヘッダーを復元します。</para>
+      <section>
+        <para>
+<indexterm>
+            <primary>マージ先ペイン</primary>
+            <secondary>ベースペインの決定</secondary>
+          </indexterm>
+自動マージで解決に使用するベースペイン（共通の祖先）は、コマンドラインオプションまたはキーボードフォーカスによって決まります。</para>
+
+        <para>
+<emphasis>コマンドラインオプションを使用する場合：</emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para>
+<option>左ペインにマージ（/al）</option>：左 = マージ先、中央 = 相手側、右 = ベース</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<option>中央ペインにマージ（/am）</option>：左 = 相手側、中央 = マージ先、右 = 自分側</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<option>右ペインにマージ（/ar）</option>：左 = ベース、中央 = 相手側、右 = マージ先</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>
+<emphasis>UIからマージ操作（マージセッションを開始または自動マージ）を行う場合：</emphasis>
+ベースペインは現在のキーボードフォーカスによって決まります。</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>
+<emphasis>左ペインにフォーカスがある場合</emphasis>：左 = 自分側、中央 = 相手側、右 = ベース</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<emphasis>中央ペインにフォーカスがある場合</emphasis>：左 = 相手側、中央 = ベース、右 = 自分側</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<emphasis>右ペインにフォーカスがある場合</emphasis>：左 = ベース、中央 = 相手側、右 = 自分側</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+    </section>
+
+    <section>
       <title>ロケーションペイン</title>
 
       <indexterm>
@@ -1328,16 +1438,17 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
         </indexterm></title>
 
       <para>WinMerge
-を使用すると、一部のバージョン管理システムがマージ操作中に生成する競合ファイルを解決できます。競合ファイルは、マージで自動的に解決できない差異が発生した場合に作成されます。これは、2
+を使用すると、一部のバージョン管理システムがマージ操作中に生成する競合ファイルを解決できます。コンフリクトファイルは、マージで自動的に解決できない差異が発生した場合に作成されます。これは、2
 つのファイルの不完全にマージされたコンテンツを含む 1 つのファイルです。 WinMerge
-は競合ファイルを個別のファイルに分割し、それらのファイルをファイル比較ウィンドウで開きます。その後、WinMerge
-の比較およびマージ機能を使用して競合を解決し、マージされた結果ファイルを保存できます。</para>
+はコンフリクトファイルを個別のファイルに分割し、それらのファイルをファイル比較ウィンドウで開きます。その後、WinMerge
+の比較およびマージ機能を使用してコンフリクトを解決し、マージされた結果ファイルを保存できます。</para>
 
       <orderedlist>
         <listitem>
-          <para><menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>競合ファイルを開く</guimenuitem>
-</menuchoice> をクリックし、開くダイアログを使用してファイル システム内の競合ファイルを選択します。 [ファイル比較]
-ウィンドウで競合ファイルが開きます。</para>
+          <para><menuchoice> <guimenu>ファイル</guimenu>
+<guimenuitem>コンフリクトファイルを開く</guimenuitem> </menuchoice>
+をクリックし、開くダイアログを使用してファイル システム内のコンフリクトファイルを選択します。 [ファイル比較]
+ウィンドウでコンフリクトファイルが開きます。</para>
 
           <itemizedlist>
             <listitem>
@@ -1350,34 +1461,34 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
               <para>右側のファイル ペインには、<guilabel>Mine File</guilabel>
 というタイトルが付いています。この側はファイルの作業コピーです。すべての変更は、結果ファイルであるこのファイルに対して行う必要があります。</para>
 
-              <para><guilabel>Mine File</guilabel> 側は、競合ファイルを開いた後に変更されるように設定されます (ファイル
-ペインのヘッダーにアスタリスクが表示されます)。これにより、変更が必要ない場合は、ファイルをすばやく保存できます。また、ファイルの解決を忘れることがなくなります。ファイルを保存しないことを選択した場合、元の競合ファイルは変更されません。</para>
+              <para><guilabel>Mine File</guilabel> 側は、コンフリクトファイルを開いた後に変更されるように設定されます (ファイル
+ペインのヘッダーにアスタリスクが表示されます)。これにより、変更が必要ない場合は、ファイルをすばやく保存できます。また、ファイルの解決を忘れることがなくなります。ファイルを保存しないことを選択した場合、元のコンフリクトファイルは変更されません。</para>
             </listitem>
           </itemizedlist>
         </listitem>
 
         <listitem>
-          <para>このトピックで前述した通常の比較およびマージ機能をすべて使用して、[Mine File] ペインの競合を解決します。</para>
+          <para>このトピックで前述した通常の比較およびマージ機能をすべて使用して、[Mine File] ペインのコンフリクトを解決します。</para>
         </listitem>
 
         <listitem>
           <para>完了したら、<keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo>
 をクリックして、<guilabel>Mine File</guilabel>
-側を結果ファイルとして保存します。デフォルトでは、新しいバージョンは元の競合ファイルを上書きします。または、<menuchoice>
+側を結果ファイルとして保存します。デフォルトでは、新しいバージョンは元のコンフリクトファイルを上書きします。または、<menuchoice>
 <guimenu>ファイル</guimenu> <guimenuitem>右に保存</guimenuitem>
 <guimenuitem>名前を付けて保存</guimenuitem> </menuchoice>
 をクリックし、別のファイル名を選択することもできます。</para>
         </listitem>
       </orderedlist>
 
-      <para>多くのバージョン管理システムでは、外部マージ ツールを構成できます。そうであれば、マージ競合が発生したときにバージョン管理システムで WinMerge
-を自動的に起動できる可能性があります。</para>
+      <para>多くのバージョン管理システムでは、外部マージ ツールを構成できます。そうであれば、マージコンフリクトが発生したときにバージョン管理システムで
+WinMerge を自動的に起動できる可能性があります。</para>
 
-      <para>また、WinMerge コマンド ラインから競合ファイルを開くこともできます。このコマンド
+      <para>また、WinMerge コマンド ラインからコンフリクトファイルを開くこともできます。このコマンド
 ラインでは、<option>Theirs</option>、<option>Mine</option>、およびオプションで
-<option>Resolved</option> (競合ファイルとは異なる結果ファイルが必要な場合) の 3
+<option>Resolved</option> (コンフリクトファイルとは異なる結果ファイルが必要な場合) の 3
 つのファイル名パラメータを受け入れます。詳細については、「<xref linkend="Command_line"
-/>」を参照してください。競合ファイルへの単一パスもコマンド ラインで受け入れられます。</para>
+/>」を参照してください。コンフリクトファイルへの単一パスもコマンド ラインで受け入れられます。</para>
     </section>
   </section>
 </article>

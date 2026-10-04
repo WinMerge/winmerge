@@ -2062,6 +2062,34 @@ Rendering Modes</ulink>を参照してください。</para>
       </note>
     </section>
 
+    <section>
+      <title>
+3方向マージにマージ結果ペインを使用<indexterm>
+          <primary>マージ結果ペイン</primary>
+
+          <secondary>3方向マージ設定</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>無効</option>：3方向マージを実行すると、マージ結果がマージ先ペイン（左、中央、または右）に書き込まれ、その内容が更新されます。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>有効</option>（デフォルト）：3方向マージを実行すると、マージ先ペインを変更する代わりに、独立したマージ結果ペインにマージ結果が作成されます。結果をマージ結果ペインで確認・編集してから、マージ先ファイルに保存できます。</para>
+        </listitem>
+      </itemizedlist>
+
+      <note>
+        <title>マージ先ペインの選択についての注意</title>
+
+        <para>
+マージ先ペインは、現在フォーカスされているペイン（UIからの操作の場合）またはコマンドラインオプション（/al、/am、/ar）によって決まります。この設定では、マージ結果をマージ先ペインに直接書き込むか、確認用に独立したマージ結果ペインに表示するかを指定します。</para>
+      </note>
+    </section>
+
   </section>
 
   <section id="Configuration_editor_syntax">

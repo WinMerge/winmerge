@@ -257,6 +257,27 @@
         </row>
 
         <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>1</keycap>
+</keycombo></entry>
+
+          <entry>現在の差異または選択した差異の左ペインの内容を切り替え（マージ結果ペイン）</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>2</keycap>
+</keycombo></entry>
+
+          <entry>現在の差異または選択した差異の中央ペインの内容を切り替え（マージ結果ペイン）</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>3</keycap>
+</keycombo></entry>
+
+          <entry>現在の差異または選択した差異の右ペインの内容を切り替え（マージ結果ペイン）</entry>
+        </row>
+
+        <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>G</keycap>
 </keycombo></entry>
 

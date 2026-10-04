@@ -212,6 +212,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, 0xff);
 	pOptions->InitOption(OPT_CMP_WEB_SPLITTER_RATIOS, _T(""));
 
+	pOptions->InitOption(OPT_MERGE_RESULT_PANE_ENABLED, true);
+
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
 	pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));

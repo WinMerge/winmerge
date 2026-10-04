@@ -22,6 +22,8 @@
 #include "MovedLines.h"
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
+#include "MergeResultView.h"
+#include "MergeResultTextBuffer.h"
 #include "MergeLogger.h"
 #include "MergeTextFormatter.h"
 #include "IDirDoc.h"
@@ -90,6 +92,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MIDDLE, OnUpdateFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
+	ON_COMMAND(ID_FILE_SAVE_MERGE_RESULT, OnMergeResultSave)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MERGE_RESULT, OnUpdateMergeResultSave)
+	ON_COMMAND(ID_FILE_SAVEAS_MERGE_RESULT, OnMergeResultSaveAs)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MERGE_RESULT, OnUpdateMergeResultSave)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnFileReadOnlyLeft)
 	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateFileReadOnlyLeft)
 	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnFileReadOnlyMiddle)
@@ -113,9 +119,11 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
+	ON_UPDATE_COMMAND_UI(ID_REFRESH, OnUpdateRefresh)
 	// [Plugins] menu
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_APPLY_PREDIFFER, OnUpdateApplyPrediffer)
 	ON_COMMAND_RANGE(ID_NO_PREDIFFER, ID_NO_PREDIFFER, OnPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
@@ -137,6 +145,15 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND_RANGE(ID_FILTERMENU_FIRST, ID_FILTERMENU_LAST, OnFilterMenuCommand)
 	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR, OnViewDisplayFilterBar)
 	ON_COMMAND(ID_APPLY_NOW, OnViewDisplayFilterBarApply)
+	// Merge result pane (kdiff3-style)
+	ON_COMMAND_RANGE(ID_MERGE_RESULT_CHOOSE_1ST, ID_MERGE_RESULT_CHOOSE_3RD, OnMergeChooseSource)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_RESULT_CHOOSE_1ST, ID_MERGE_RESULT_CHOOSE_3RD, OnUpdateMergeChooseSource)
+	ON_COMMAND_RANGE(ID_MERGE_RESULT_CHOOSE_ALL_1ST, ID_MERGE_RESULT_CHOOSE_ALL_3RD, OnMergeChooseAllConflicts)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_RESULT_CHOOSE_ALL_1ST, ID_MERGE_RESULT_CHOOSE_ALL_3RD, OnUpdateMergeChooseAllConflicts)
+	ON_COMMAND(ID_MERGE_START_SESSION, OnMergeStartSession)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_START_SESSION, OnUpdateMergeStartSession)
+	ON_COMMAND(ID_MERGE_END_SESSION, OnMergeEndSession)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_END_SESSION, OnUpdateMergeEndSession)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -162,11 +179,19 @@ CMergeDoc::CMergeDoc()
 , m_editorScriptInfo(_T(""))
 , m_nBuffers(m_nBuffersTemp)
 , m_documentType(m_documentTypeTemp)
+, m_pMergeResultView(nullptr)
+, m_bResultBuilt(false)
+, m_bResultSaved(false)
+, m_nMergeBasePane(1)
+, m_bResultSavedRO{ false, false, false }
 , curUndo(0)
 {
 	DIFFOPTIONS options = {0};
 
 	m_filePaths.SetSize(m_nBuffers);
+
+	if (m_nBuffers >= 2)
+		m_ptResultBuf.reset(new CMergeResultTextBuffer(this));
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -217,6 +242,13 @@ void CMergeDoc::DeleteContents ()
 		m_ptBuf[nBuffer]->FreeAll ();
 		m_tempFiles[nBuffer].Delete();
 	}
+	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized())
+		m_ptResultBuf->FreeAll();
+	m_resultSegments.clear();
+	m_resultDiffToSegment.clear();
+	m_resultSegUndo.clear();
+	m_resultSegRedo.clear();
+	m_bResultBuilt = false;
 }
 
 /**
@@ -431,18 +463,29 @@ static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nS
 int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		bool bForced /* =false */)
 {
-	DIFFOPTIONS diffOptions = {0};
-	DiffFileInfo fileInfo;
-	bool diffSuccess = false;
-	int nResult = RESCAN_OK;
-	FileChange Changed[3] = {FileChange::NoChange, FileChange::NoChange, FileChange::NoChange};
-	int nBuffer;
+	if (m_bResultBuilt)
+	{
+		for (int file = 0; file < m_nBuffers; file++)
+		{
+			for (int nLine = 0; nLine < m_ptBuf[file]->GetLineCount(); nLine++)
+				m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
+		}
+		HideLines();
+		return RESCAN_SUPPRESSED;
+	}
 
 	if (!bForced)
 	{
 		if (!m_bEnableRescan)
 			return RESCAN_SUPPRESSED;
 	}
+
+	DIFFOPTIONS diffOptions = {0};
+	DiffFileInfo fileInfo;
+	bool diffSuccess = false;
+	int nResult = RESCAN_OK;
+	FileChange Changed[3] = {FileChange::NoChange, FileChange::NoChange, FileChange::NoChange};
+	int nBuffer;
 
 	ClearWordDiffCache();
 
@@ -1334,6 +1377,12 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
  */
 void CMergeDoc::OnFileSave() 
 {
+	// With the merge result pane active it is the (only) editable pane,
+	// so Save must cover it: version control tools rely on Ctrl+S
+	// writing the merge output path (-o)
+	if (IsMergeResultUnsaved())
+		SaveMergeResult(false);
+
 	// We will need to know if either of the originals actually changed
 	// so we know whether to update the diff status
 	bool bChangedOriginal = false;
@@ -1438,7 +1487,8 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(IsModified());
+	pCmdUI->Enable(IsModified() ||
+		(m_bResultBuilt && IsMergeResultUnsaved()));
 }
 
 /**
@@ -1515,7 +1565,7 @@ void CMergeDoc::OnFileReadOnlyLeft()
 void CMergeDoc::OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI)
 {
 	bool bReadOnly = m_ptBuf[0]->GetReadOnly();
-	pCmdUI->Enable(true);
+	pCmdUI->Enable(!m_bResultBuilt);
 	pCmdUI->SetCheck(bReadOnly);
 }
 
@@ -1543,7 +1593,7 @@ void CMergeDoc::OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI)
 	else
 	{
 		bool bReadOnly = m_ptBuf[1]->GetReadOnly();
-		pCmdUI->Enable(true);
+		pCmdUI->Enable(!m_bResultBuilt);
 		pCmdUI->SetCheck(bReadOnly);
 	}
 }
@@ -1563,7 +1613,7 @@ void CMergeDoc::OnFileReadOnlyRight()
 void CMergeDoc::OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI)
 {
 	bool bReadOnly = m_ptBuf[m_nBuffers - 1]->GetReadOnly();
-	pCmdUI->Enable(true);
+	pCmdUI->Enable(!m_bResultBuilt);
 	pCmdUI->SetCheck(bReadOnly);
 }
 
@@ -1680,6 +1730,11 @@ void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
 void CMergeDoc::OnRefresh()
 {
 	FlushAndRescan(true);
+}
+
+void CMergeDoc::OnUpdateRefresh(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!m_bResultBuilt);
 }
 
 /**
@@ -2051,6 +2106,40 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
+	// Merge result pane: deal with the merge before the source files.
+	// A hidden result pane still holds the user's merge work: hiding the
+	// bar must not turn closing the window into silent data loss, so the
+	// prompt is also shown when the pane is hidden but the result was
+	// modified by the user.
+	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		(m_bResultBuilt || IsMergeResultModified()))
+	{
+		const int nUnresolved = GetResultUnresolvedCount();
+		if (nUnresolved > 0 && bAllowCancel)
+		{
+			// The merge is unfinished, so there is nothing worth saving:
+			// ask whether to abandon it rather than whether to save
+			const String msg = strutils::format_string1(
+				_("The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"),
+				strutils::format(_T("%d"), nUnresolved));
+			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING) != IDYES)
+				return false;
+		}
+		else if (IsMergeResultUnsaved())
+		{
+			int nAnswer = ShowMessageBox(
+				_("The merge result has not been saved.\n\nSave the merge result?"),
+				bAllowCancel ? (MB_YESNOCANCEL | MB_ICONWARNING) : (MB_YESNO | MB_ICONWARNING));
+			if (nAnswer == IDCANCEL)
+				return false;
+			if (nAnswer == IDYES && !SaveMergeResult(false))
+			{
+				if (bAllowCancel)
+					return false;
+			}
+		}
+	}
+
 	for (int i = 0; i < m_nBuffers; ++i)
 	{
 		bModified[i] = m_ptBuf[i]->IsModified();
@@ -2403,6 +2492,11 @@ void CMergeDoc::SetTextType(int textType)
 		pView->SetDisableBSAtSOL(false);
 		m_bChangedSchemeManually = true;
 	});
+	if (m_pMergeResultView)
+	{
+		m_pMergeResultView->SetTextType(LangServices::LanguageId(textType));
+		m_pMergeResultView->SetDisableBSAtSOL(false);
+	}
 }
 
 void CMergeDoc::SetTextType(const String& ext)
@@ -2414,6 +2508,11 @@ void CMergeDoc::SetTextType(const String& ext)
 		pView->SetDisableBSAtSOL(false);
 		m_bChangedSchemeManually = true;
 	});
+	if (m_pMergeResultView)
+	{
+		m_pMergeResultView->SetTextType(ext2.c_str());
+		m_pMergeResultView->SetDisableBSAtSOL(false);
+	}
 }
 
 /**
@@ -2710,6 +2809,9 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine, int nCharI
 		}
 	}
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane, true, nCharIndex);
+
+	if (m_bResultBuilt)
+		m_pMergeResultView->TakeFocus();
 }
 
 bool CMergeDoc::ChangeFile(int nBuffer, const String& path, const String& description, int nLineIndex)
@@ -2772,7 +2874,16 @@ void CMergeDoc::RefreshOptions()
 	ForEachView(GetActiveMergeView()->m_nThisPane, [](auto& pView) {
 		pView->UpdateSiblingScrollPos(false);
 	});
+	if (m_pMergeResultView != nullptr)
+		m_pMergeResultView->RefreshOptions();
 	UpdateAllViews(nullptr);
+
+	if (m_bResultBuilt && !(*m_mergeSessionDiffOptions == options))
+	{
+		ShowMessageBox(
+			_("Comparison settings changed. They will take effect after the merge session ends."),
+			MB_OK | MB_ICONWARNING);
+	}
 }
 
 /**
@@ -2933,6 +3044,22 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 		std::swap(m_nBufferType[nFromIndex], m_nBufferType[nToIndex]);
 		std::swap(m_bEditAfterRescan[nFromIndex], m_bEditAfterRescan[nToIndex]);
 		std::swap(m_strDesc[nFromIndex], m_strDesc[nToIndex]);
+		if (m_bResultBuilt)
+		{
+			std::swap(m_bResultSavedRO[nFromIndex], m_bResultSavedRO[nToIndex]);
+			std::swap(m_strResultSavedDesc[nFromIndex], m_strResultSavedDesc[nToIndex]);
+			std::swap(m_nResultSavedBufferType[nFromIndex], m_nResultSavedBufferType[nToIndex]);
+			for (auto& seg : m_resultSegments)
+			{
+				for (auto& srcPane : seg.srcPanes)
+				{
+					if (srcPane == nFromIndex)
+						srcPane = nToIndex;
+					else if (srcPane == nToIndex)
+						srcPane = nFromIndex;
+				}
+			}
+		}
 
 		for (size_t i = 0; i < undoTgt.size(); ++i)
 		{
@@ -3048,12 +3175,18 @@ void CMergeDoc::OnApplyPrediffer()
 	FlushAndRescan(true);
 }
 
+void CMergeDoc::OnUpdateApplyPrediffer(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!m_bResultBuilt);
+}
+
 /**
  * @brief Called when an editor script item is updated
  */
 void CMergeDoc::OnUpdatePrediffer(CCmdUI* pCmdUI)
 {
 	PluginMenu::UpdateMenu(pCmdUI);
+	pCmdUI->Enable(!m_bResultBuilt);
 }
 
 /**

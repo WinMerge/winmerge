@@ -608,16 +608,15 @@ void CMainFrame::OnDestroy(void)
 HMENU CMainFrame::NewMenu(int view, int ID)
 {
 	int menu_view;
-	if (m_pMenus[view] == nullptr)
-	{
-		m_pMenus[view].reset(new BCMenu());
-		if (m_pMenus[view] == nullptr)
-			return nullptr;
-	}
+	auto pMenu = std::make_unique<BCMenu>();
+	if (pMenu == nullptr)
+		return nullptr;
 
 	switch (view)
 	{
 	case MENU_MERGEVIEW:
+	case MENU_MERGEVIEW_RESULTVIEW_2WAY:
+	case MENU_MERGEVIEW_RESULTVIEW_3WAY:
 	case MENU_HEXMERGEVIEW:
 	case MENU_IMGMERGEVIEW:
 	case MENU_WEBPAGEDIFFVIEW:
@@ -632,36 +631,65 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		break;
 	};
 
-	if (!m_pMenus[view]->LoadMenu(ID))
+	if (!pMenu->LoadMenu(ID))
 	{
 		ASSERT(false);
 		return nullptr;
 	}
 
+	if (view == MENU_MERGEVIEW_RESULTVIEW_2WAY)
+	{
+		if (m_pMergeResult2WayMenu == nullptr)
+		{
+			m_pMergeResult2WayMenu.reset(new BCMenu);
+			m_pMergeResult2WayMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_MERGERESULT_2WAY));
+		}
+		pMenu->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pMergeResult2WayMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_MERGERESULT_MENU).c_str()));
+	}
+
+	if (view == MENU_MERGEVIEW_RESULTVIEW_3WAY)
+	{
+		if (m_pMergeResult3WayMenu == nullptr)
+		{
+			m_pMergeResult3WayMenu.reset(new BCMenu);
+			m_pMergeResult3WayMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_MERGERESULT_3WAY));
+		}
+		pMenu->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pMergeResult3WayMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_MERGERESULT_MENU).c_str()));
+	}
+
 	if (view == MENU_IMGMERGEVIEW)
 	{
-		m_pImageMenu.reset(new BCMenu);
-		m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_IMAGE_MENU).c_str())); 
+		if (m_pImageMenu == nullptr)
+		{
+			m_pImageMenu.reset(new BCMenu);
+			m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
+		}
+		pMenu->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_IMAGE_MENU).c_str()));
 	}
 
 	if (view == MENU_WEBPAGEDIFFVIEW)
 	{
-		m_pWebPageMenu.reset(new BCMenu);
-		m_pWebPageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGEDIFFVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_WEBPAGE_MENU).c_str())); 
+		if (m_pWebPageMenu == nullptr)
+		{
+			m_pWebPageMenu.reset(new BCMenu);
+			m_pWebPageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGEDIFFVIEW));
+		}
+		pMenu->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_WEBPAGE_MENU).c_str()));
 	}
 
 	// Load bitmaps to menuitems
 	for (auto& menu_icon: m_MenuIcons)
 	{
 		if (menu_view == (menu_icon.menusToApply & menu_view))
-			m_pMenus[view]->ModifyODMenu(nullptr, menu_icon.menuitemID, menu_icon.iconResID);
+			pMenu->ModifyODMenu(nullptr, menu_icon.menuitemID, menu_icon.iconResID);
 	}
 
-	I18n::TranslateMenu(m_pMenus[view]->m_hMenu);
+	I18n::TranslateMenu(pMenu->m_hMenu);
 
-	return (m_pMenus[view]->Detach());
+	const HMENU hMenu = pMenu->GetSafeHmenu();
+	m_pMenus[view] = pMenu.get();
+	m_ownedMenus.push_back(std::move(pMenu));
+	return hMenu;
 
 }
 /** 
@@ -679,7 +707,20 @@ HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
  */
 HMENU CMainFrame::NewMergeViewMenu()
 {
-	return NewMenu( MENU_MERGEVIEW, IDR_MERGEDOCTYPE);
+	m_hMenuMergeView = NewMenu(MENU_MERGEVIEW, IDR_MERGEDOCTYPE);
+	return m_hMenuMergeView;
+}
+
+HMENU CMainFrame::NewMergeViewResultView2WayMenu()
+{
+	m_hMenuMergeViewResult2Way = NewMenu(MENU_MERGEVIEW_RESULTVIEW_2WAY, IDR_MERGEDOCTYPE);
+	return m_hMenuMergeViewResult2Way;
+}
+
+HMENU CMainFrame::NewMergeViewResultView3WayMenu()
+{
+	m_hMenuMergeViewResult3Way = NewMenu(MENU_MERGEVIEW_RESULTVIEW_3WAY, IDR_MERGEDOCTYPE);
+	return m_hMenuMergeViewResult3Way;
 }
 
 /**
@@ -1130,6 +1171,10 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	if (pOpenParams && !pOpenParams->m_fileExt.empty())
 		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
+	bool bShowMergeResultPane = false;
+	bool bAutoMerge = false;
+	int nMergeBasePane = 1;
+
 	for (int pane = 0; pane < nFiles; pane++)
 	{
 		if (dwFlags)
@@ -1140,21 +1185,35 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 				pMergeDoc->m_ptBuf[pane]->SetModified(true);
 				pMergeDoc->UpdateHeaderPath(pane);
 			}
-			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+			if (nFiles == 3 && ((dwFlags[pane] & FFILEOPEN_AUTOMERGE) || (dwFlags[pane] & FFILEOPEN_SETFOCUS)))
 			{
-				pMergeDoc->DoAutoMerge(pane);
+				nMergeBasePane = 2 - pane;
+				bAutoMerge = (dwFlags[pane] & FFILEOPEN_AUTOMERGE) != 0;
+				bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
 			}
 		}
 	}
 
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+	{
+		const String& strSaveAsPath = pOpenParams->m_strSaveAsPath;
+		if (GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED))
+			pMergeDoc->SetMergeResultSavePath(strSaveAsPath);
+		else
+			pMergeDoc->SetSaveAsPath(strSaveAsPath);
+		if (!bShowMergeResultPane)
+			bShowMergeResultPane = GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
+	}
 	pMergeDoc->MoveOnLoad(
 		GetActivePaneFromFlags(nFiles, dwFlags),
 		pOpenParams ? pOpenParams->m_line : -1,
 		true,
 		pOpenParams ? pOpenParams->m_char: -1);
 
-	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
-		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+	if (bShowMergeResultPane)
+		pMergeDoc->StartMergeSession(nFiles == 2 ? 0 : nMergeBasePane, bAutoMerge, false);
+	else if (bAutoMerge)
+		pMergeDoc->DoAutoMerge(2 - nMergeBasePane);
 
 	if (!sReportFile.empty())
 		GenerateDocumentReport({ pMergeDoc }, sReportFile);
@@ -2838,6 +2897,8 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
+	UNREFERENCED_PARAMETER(wParam);
+	UNREFERENCED_PARAMETER(lParam);
 	IMergeDoc* pMergeDoc = GetActiveIMergeDoc();
 	if (pMergeDoc)
 		pMergeDoc->CheckFileChanged();
@@ -3174,16 +3235,19 @@ std::vector<UINT> CMainFrame::GetToolbarButtons()
 {
 	auto* pFrame = GetActiveFrame();
 	if (!pFrame || GetWindowsManager().GetChildCount() == 0)
-		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false);
+		return ToolbarButtons::GetToolbarButtons(FRAME_NONE, 0, false, false);
 	int nFiles = 0;
 	FRAMETYPE frame = GetFrameType(pFrame);
-	bool bDirDoc = false;
+	bool bHasDirDoc = false;
+	bool bHasMergeResultPane = false;
 	if (auto* pMergeDoc = GetActiveIMergeDoc())
 	{
 		nFiles = pMergeDoc->GetFileCount();
-		bDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		bHasDirDoc = pMergeDoc->GetDirDoc() != nullptr;
+		if (auto* pMergeDoc2 = dynamic_cast<CMergeDoc*>(pMergeDoc))
+			bHasMergeResultPane = pMergeDoc2->IsMergeResultPaneVisible();
 	}
-	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bDirDoc);
+	return ToolbarButtons::GetToolbarButtons(frame, nFiles, bHasDirDoc, bHasMergeResultPane);
 }
 
 void CMainFrame::UpdateToolbar()
@@ -3517,8 +3581,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 
 	if (success)
 	{
-		// Open two parsed files to WinMerge, telling WinMerge to
-		// save over original file (given as third filename).
+		// Open parsed conflict sides. The result pane, when requested, saves
+		// its merged text over the original conflict file.
 		OpenTextFileParams openParams;
 		openParams.m_strSaveAsPath = conflictFile;
 		if (!threeWay)
@@ -3526,7 +3590,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 			String strDesc2[2] = { 
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
-			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU,
+				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU | FFILEOPEN_SETFOCUS : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			PathContext tmpPathContext(revFile, workFile);
 			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
@@ -3537,7 +3602,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
-			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, 
+				GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED) ? FFILEOPEN_READONLY | FFILEOPEN_NOMRU | FFILEOPEN_SETFOCUS : FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", nullptr, nullptr, nullptr, 0, &openParams);
 		}
 	}
@@ -4116,14 +4182,19 @@ void CMainFrame::ReloadMenu()
 	CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)pApp->m_pMainWnd);
 	HMENU hNewDefaultMenu = pMainFrame->NewDefaultMenu(idMenu);
 	HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
+	HMENU hNewMergeResult2WayMenu = pMainFrame->NewMergeViewResultView2WayMenu();
+	HMENU hNewMergeResult3WayMenu = pMainFrame->NewMergeViewResultView3WayMenu();
 	HMENU hNewImgMergeMenu = pMainFrame->NewImgMergeViewMenu();
 	HMENU hNewWebPageDiffMenu = pMainFrame->NewWebPageDiffViewMenu();
 	HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
-	if (hNewDefaultMenu != nullptr && hNewMergeMenu != nullptr && hNewDirMenu != nullptr)
+	if (hNewDefaultMenu != nullptr && hNewMergeMenu != nullptr && hNewMergeResult2WayMenu != nullptr &&
+		hNewMergeResult3WayMenu != nullptr && hNewDirMenu != nullptr)
 	{
 		// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
 		CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
 		CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);
+		CMenu * pNewMergeResult2WayMenu = CMenu::FromHandle(hNewMergeResult2WayMenu);
+		CMenu * pNewMergeResult3WayMenu = CMenu::FromHandle(hNewMergeResult3WayMenu);
 		CMenu * pNewImgMergeMenu = CMenu::FromHandle(hNewImgMergeMenu);
 		CMenu * pNewWebPageDiffMenu = CMenu::FromHandle(hNewWebPageDiffMenu);
 		CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
@@ -4132,7 +4203,13 @@ void CMainFrame::ReloadMenu()
 		while (pFrame != nullptr)
 		{
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)))
-				static_cast<CMergeEditFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
+			{
+				CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(static_cast<CFrameWnd*>(pFrame)->GetActiveDocument());
+				HMENU hMenu = hNewMergeMenu;
+				if (pDoc != nullptr && pDoc->GetMergeResultBuildState())
+					hMenu = pDoc->GetFileCount() == 2 ? hNewMergeResult2WayMenu : hNewMergeResult3WayMenu;
+				static_cast<CMergeEditFrame *>(pFrame)->SetSharedMenu(hMenu);
+			}
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
 				static_cast<CHexMergeFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
@@ -4150,7 +4227,13 @@ void CMainFrame::ReloadMenu()
 		if (pActiveFrame != nullptr)
 		{
 			if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)))
-				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);
+			{
+				CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pActiveFrame->GetActiveDocument());
+				CMenu *pMenu = pNewMergeMenu;
+				if (pDoc != nullptr && pDoc->GetMergeResultBuildState())
+					pMenu = pDoc->GetFileCount() == 2 ? pNewMergeResult2WayMenu : pNewMergeResult3WayMenu;
+				pMainFrame->MDISetMenu(pMenu, nullptr);
+			}
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
 				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
@@ -4183,6 +4266,53 @@ void CMainFrame::ReloadMenu()
 		pApp->GetDirTemplate()->m_hMenuShared = hNewDirMenu;
 
 		// force redrawing the menu bar
+		pMainFrame->DrawMenuBar();
+	}
+}
+
+/**
+ * @brief Update only the shared menu for a text comparison frame.
+ */
+void CMainFrame::UpdateMergeViewMenu(CMergeEditFrame* pFrame)
+{
+	if (pFrame == nullptr)
+		return;
+
+	CMergeApp* pApp = dynamic_cast<CMergeApp*>(AfxGetApp());
+	CMainFrame* pMainFrame = pApp != nullptr ? dynamic_cast<CMainFrame*>(pApp->m_pMainWnd) : nullptr;
+	if (pMainFrame == nullptr)
+		return;
+
+	CMergeDoc* pDoc = pFrame->GetMergeDoc();
+	int view = MENU_MERGEVIEW;
+	if (pDoc != nullptr && pDoc->GetMergeResultBuildState())
+		view = pDoc->GetFileCount() == 2 ? MENU_MERGEVIEW_RESULTVIEW_2WAY : MENU_MERGEVIEW_RESULTVIEW_3WAY;
+
+	HMENU& hCachedMenu = view == MENU_MERGEVIEW_RESULTVIEW_2WAY ? pMainFrame->m_hMenuMergeViewResult2Way :
+		view == MENU_MERGEVIEW_RESULTVIEW_3WAY ? pMainFrame->m_hMenuMergeViewResult3Way : pMainFrame->m_hMenuMergeView;
+	if (hCachedMenu == nullptr)
+	{
+		switch (view)
+		{
+		case MENU_MERGEVIEW_RESULTVIEW_2WAY:
+			pMainFrame->NewMergeViewResultView2WayMenu();
+			break;
+		case MENU_MERGEVIEW_RESULTVIEW_3WAY:
+			pMainFrame->NewMergeViewResultView3WayMenu();
+			break;
+		default:
+			pMainFrame->NewMergeViewMenu();
+			break;
+		}
+	}
+	const HMENU hMenu = hCachedMenu;
+	if (hMenu == nullptr)
+		return;
+
+	pFrame->SetSharedMenu(hMenu);
+	if (pMainFrame->GetActiveFrame() == pFrame)
+	{
+		pMainFrame->MDISetMenu(CMenu::FromHandle(hMenu), nullptr);
 		pMainFrame->DrawMenuBar();
 	}
 }
