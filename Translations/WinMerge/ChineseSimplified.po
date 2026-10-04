@@ -1,4 +1,4 @@
-# This file is from WinMerge <https://winmerge.org/>
+﻿# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -8,6 +8,7 @@
 # * CharlesMengCA <CharlesMeng at outlook.com>
 # * YFdyh000 <yfdyh000 at gmail.com>
 # * Yin Gang <zenith.yin at gmail.com>
+# * zuoyuanchun <zuoyuanchun at gmail.com>
 #
 msgid ""
 msgstr ""
@@ -34,22 +35,22 @@ msgstr "LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED"
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:79 Merge.rc:101
 msgid "Choose Left\tCtrl+Shift+&1/Alt+&1"
-msgstr ""
+msgstr "选择左侧\tCtrl+Shift+&1/Alt+&1"
 
 #. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:80
 msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "选择右侧\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr ""
+msgstr "对所有未解决冲突选择左侧"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr ""
+msgstr "对所有未解决冲突选择右侧"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -89,48 +90,48 @@ msgstr "全选(&A)\tCtrl+A"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_END_SESSION
 #: Merge.rc:93 Merge.rc:117 Merge.rc:131 Merge.rc:147
 msgid "&End Merge Session"
-msgstr ""
+msgstr "结束合并会话(&E)"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:102
 msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "选择中间\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:103
 msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
-msgstr ""
+msgstr "选择右侧\tCtrl+Shift+&3/Alt+&3"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr ""
+msgstr "对所有未解决冲突选择中间"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
 msgid "Choose Left\tCtrl+Shift+&1"
-msgstr ""
+msgstr "选择左侧\tCtrl+Shift+&1"
 
 #. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:126
 msgid "Choose Right\tCtrl+Shift+&2"
-msgstr ""
+msgstr "选择右侧\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:140
 msgid "Choose Middle\tCtrl+Shift+&2"
-msgstr ""
+msgstr "选择中间\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:141
 msgid "Choose Right\tCtrl+Shift+&3"
-msgstr ""
+msgstr "选择右侧\tCtrl+Shift+&3"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
 #, c-format
 msgid "Choose %1 for Selected Differences"
-msgstr ""
+msgstr "为选定差异选择 %1"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
 #: Merge.rc:157 Merge.rc:165
@@ -1201,7 +1202,7 @@ msgstr "保存右侧(&R)"
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MERGE_RESULT
 #: Merge.rc:721 Merge.rc:1332
 msgid "&Save Merge Result"
-msgstr ""
+msgstr "保存合并结果(&S)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:723
@@ -1226,7 +1227,7 @@ msgstr "另存为右侧(&R)..."
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MERGE_RESULT
 #: Merge.rc:728 Merge.rc:1337
 msgid "Save Merge Result &As..."
-msgstr ""
+msgstr "合并结果另存为(&A)..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_PRINT
 #: Merge.rc:731
@@ -1431,7 +1432,7 @@ msgstr "定位窗格(&C)"
 #. IDR_MERGEDOCTYPE, ID_VIEW_MERGE_RESULT_BAR
 #: Merge.rc:870
 msgid "Merge Result Pane"
-msgstr ""
+msgstr "合并结果窗格"
 
 #. IDS_OUTPUTBAR_CAPTION
 #: Merge.rc:871 Merge.rc:5366
@@ -1594,7 +1595,7 @@ msgstr "全部复制到左侧(&Y)"
 #. IDR_MERGEDOCTYPE, ID_MERGE_START_SESSION
 #: Merge.rc:952
 msgid "Start Merge Sess&ion"
-msgstr ""
+msgstr "开始合并会话(&I)"
 
 #. IDR_MERGEDOCTYPE, ID_ADD_SYNCPOINT
 #: Merge.rc:955
@@ -1931,7 +1932,7 @@ msgstr "打开(&O)..."
 #. IDR_POPUP_EDITOR_HEADERBAR, ID_EDITOR_SAVE_FILE
 #: Merge.rc:1173
 msgid "&Save"
-msgstr ""
+msgstr "保存(&S)"
 
 #. IDR_POPUP_PLUGINS_SETTINGS
 #: Merge.rc:1179
@@ -3557,7 +3558,7 @@ msgstr "转到"
 #. IDD_EDIT_GOTO, IDC_STATIC
 #: Merge.rc:2413
 msgid "&Line number:"
-msgstr ""
+msgstr "行号(&L):"
 
 #. IDD_FILTERS_LINEFILTERS
 #: Merge.rc:2421
@@ -4141,7 +4142,7 @@ msgstr "单词分隔字符："
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2758
 msgid "&Use Merge Result Pane for 2/3-way merge"
-msgstr ""
+msgstr "二路/三路合并使用合并结果窗格(&U)"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2774
@@ -7547,18 +7548,18 @@ msgstr "您正在进入合并模式。如果您想关闭合并模式，请按 F9
 #: Merge.rc:5352
 #, c-format
 msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-msgstr ""
+msgstr "自动合并完成.\n\n%1\n\n自动合并数量: %2\n未解决冲突数量: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5353
 msgid "Merge session started."
-msgstr ""
+msgstr "合并会话已开始."
 
 #. IDS_PANE_ROLES
 #: Merge.rc:5354
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
-msgstr ""
+msgstr "窗格角色: 左侧=%1, 中间=%2, 右侧=%3"
 
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5355
@@ -7945,66 +7946,66 @@ msgstr ""
 #: Merge.rc:5470
 #, c-format
 msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
-msgstr ""
+msgstr "合并尚未完成: %1 个差异未解决.\n\n放弃合并并关闭而不保存结果?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5471
 msgid "The merge result has not been saved.\n\nSave the merge result?"
-msgstr ""
+msgstr "合并结果尚未保存. \n\n保存合并结果?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5472
 #, c-format
 msgid "Saving the merge result to\n%1\nfailed.\n%2"
-msgstr ""
+msgstr "将合并结果保存到\n%1\n失败.\n%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5473
 #, c-format
 msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr ""
+msgstr "合并结果中仍有 %1 个未解决差异.\n\n未解决冲突将作为冲突区域（<<<<<<<）保存, 其中保留所有版本, 可稍后在任意编辑器中解决;其他未解决差异将保存其自动合并内容.\n\n仍然保存结果?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5474
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr ""
+msgstr "比较设置已更改. 将在合并会话结束后生效."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5475
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr ""
+msgstr "<合并冲突 (仅空白字符)>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5476
 msgid "<Merge Conflict>"
-msgstr ""
+msgstr "<合并冲突>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5477
 msgid "<Unresolved Difference>"
-msgstr ""
+msgstr "<未解决差异>"
 
 #. IDS_MERGE_RESULT_NOLINES
 #: Merge.rc:5478
 msgid "<No Lines>"
-msgstr ""
+msgstr "<无行>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5479
 msgid "Save Merge Result As"
-msgstr ""
+msgstr "合并结果另存为"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
 #: Merge.rc:5480
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
-msgstr ""
+msgstr "冲突: %1, 未解决: %2"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
 #: Merge.rc:5481
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
-msgstr ""
+msgstr "冲突: %1,未解决: %2 (其中 %3 个仅包含空白字符)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5487
@@ -8117,7 +8118,7 @@ msgstr "启用自动最大宽度(&A)"
 #. IDS_MERGERESULT_MENU
 #: Merge.rc:5606
 msgid "Merge &Result"
-msgstr ""
+msgstr "合并结果(&R)"
 
 #. IDS_WEBPAGE_MENU
 #: Merge.rc:5616
