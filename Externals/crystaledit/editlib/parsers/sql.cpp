@@ -490,16 +490,46 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLi
     }
 }
 
+//  Ends a pending identifier at I, so that a block starting at I does not hide the identifier color
+static inline void
+FlushIdentifierBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int &nIdentBegin, int I)
+{
+  if (nIdentBegin >= 0)
+    {
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
+      nIdentBegin = -1;
+    }
+}
+
+//  MySQL/MariaDB executable comment marker: "/*!" or "/*M!" (MariaDB only) followed by an optional
+//  version of exactly 5 or 6 digits, as accepted by the server lexer (e.g. /*!50003, /*M!100100).
+//  I is the index of the '*' of "/*". Returns the index after the marker, or -1 for a plain comment.
+static int
+GetExecutableCommentMarkerEnd(const tchar_t *pszChars, int nLength, int I)
+{
+  int nPos = I + 1;
+  if (nPos < nLength && pszChars[nPos] == 'M')
+    nPos++;
+  if (nPos >= nLength || pszChars[nPos] != '!')
+    return -1;
+  nPos++;
+  int nDigits = 0;
+  while (nDigits < 6 && nPos + nDigits < nLength && tc::istdigit(pszChars[nPos + nDigits]))
+    nDigits++;
+  return nDigits >= 5 ? nPos + nDigits : nPos;
+}
+
 unsigned
 CrystalLineParser::ParseLineSql (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
   if (nLength == 0)
-    return dwCookie & COOKIE_EXT_COMMENT;
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT);
 
   const tchar_t *pszCommentBegin = nullptr;
   const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
+  bool bQuotedIdent = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
@@ -578,6 +608,17 @@ out:
           continue;
         }
 
+      //  Quoted identifier `....`: comment and string delimiters inside belong to the name
+      if (bQuotedIdent)
+        {
+          if (pszChars[I] == '`')
+            {
+              bQuotedIdent = false;
+              bRedefineBlock = true;
+            }
+          continue;
+        }
+
       //  Extended comment /*....*/
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
@@ -590,6 +631,17 @@ out:
           continue;
         }
 
+      //  End of executable comment /*!....*/ (the first "*/" outside strings and comments, as in the server lexer)
+      if ((dwCookie & COOKIE_EXT_EXECUTABLE_COMMENT) && I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*')
+        {
+          DEFINE_BLOCK (nPrevI, COLORINDEX_PREPROCESSOR);
+          dwCookie &= ~COOKIE_EXT_EXECUTABLE_COMMENT;
+          bRedefineBlock = true;
+          bDecIndex = false;
+          pszCommentEnd = pszChars + I + 1;
+          continue;
+        }
+
       if ((pszCommentEnd < pszChars + I) && I > 0 && (
           (pszChars[I] == '/' && pszChars[nPrevI] == '/') ||
           (pszChars[I] == '-' && pszChars[nPrevI] == '-')))
@@ -599,9 +651,19 @@ out:
           break;
         }
 
+      //  MySQL/MariaDB comment #....
+      if (pszChars[I] == '#')
+        {
+          FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
+          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
+          dwCookie |= COOKIE_COMMENT;
+          break;
+        }
+
       //  Normal text
       if (pszChars[I] == '"')
         {
+          FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
           DEFINE_BLOCK (I, COLORINDEX_STRING);
           dwCookie |= COOKIE_STRING;
           continue;
@@ -611,13 +673,35 @@ out:
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
           if (!I || !xisalnum (pszChars[nPrevI]))
             {
+              FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               dwCookie |= COOKIE_CHAR;
               continue;
             }
         }
+      if (pszChars[I] == '`')
+        {
+          FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
+          DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
+          bQuotedIdent = true;
+          bRedefineBlock = false;
+          bDecIndex = false;
+          continue;
+        }
       if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
         {
+          //  Executable comment /*!....*/: only the markers are highlighted, the content is parsed as SQL.
+          //  A nested marker keeps the state, so the first "*/" ends it (flat, like the server lexer).
+          const int nMarkerEnd = GetExecutableCommentMarkerEnd (pszChars, nLength, I);
+          if (nMarkerEnd >= 0)
+            {
+              DEFINE_BLOCK (nPrevI, COLORINDEX_PREPROCESSOR);
+              dwCookie |= COOKIE_EXT_EXECUTABLE_COMMENT;
+              bRedefineBlock = true;
+              bDecIndex = false;
+              I = nMarkerEnd - 1;
+              continue;
+            }
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
@@ -651,6 +735,6 @@ out:
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-    dwCookie &= COOKIE_EXT_COMMENT;
+    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT);
   return dwCookie;
 }
