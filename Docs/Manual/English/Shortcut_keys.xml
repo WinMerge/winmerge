@@ -339,8 +339,8 @@
               <keycap>2</keycap>
             </keycombo></entry>
 
-          <entry>Toggle middle pane content for current or selected differences
-          (Merge Result pane)</entry>
+          <entry>Toggle pane 2 content (right in two-way, middle in three-way)
+          for current or selected differences (Merge Result pane)</entry>
         </row>
 
         <row>

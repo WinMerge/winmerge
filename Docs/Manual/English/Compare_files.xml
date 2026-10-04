@@ -824,7 +824,8 @@
         the bottom of the File Compare window. It works like the merge output
         window in KDiff3: the three File panes show the compared files
         read-only, and the Merge Result pane contains the merge result, which
-        you can edit freely.
+        you can edit freely. This requires the Merge Result pane option to be
+        enabled in the Compare/Merge page of the Options dialog.
       </para>
 
       <para>
