@@ -2492,6 +2492,11 @@ void CMergeDoc::SetTextType(int textType)
 		pView->SetDisableBSAtSOL(false);
 		m_bChangedSchemeManually = true;
 	});
+	if (m_pMergeResultView)
+	{
+		m_pMergeResultView->SetTextType(LangServices::LanguageId(textType));
+		m_pMergeResultView->SetDisableBSAtSOL(false);
+	}
 }
 
 void CMergeDoc::SetTextType(const String& ext)
@@ -2503,6 +2508,11 @@ void CMergeDoc::SetTextType(const String& ext)
 		pView->SetDisableBSAtSOL(false);
 		m_bChangedSchemeManually = true;
 	});
+	if (m_pMergeResultView)
+	{
+		m_pMergeResultView->SetTextType(ext2.c_str());
+		m_pMergeResultView->SetDisableBSAtSOL(false);
+	}
 }
 
 /**
