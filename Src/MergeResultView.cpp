@@ -137,6 +137,7 @@ int CMergeResultView::NextSignificantDiffFromLine(int nLine) const
 		if (seg == nullptr || seg->state == ResultSegmentState::Common)
 			continue;
 		if (seg->diffIdx >= 0 && seg->nStartLine >= static_cast<int>(nLine))
+		{
 			nDiff = seg->diffIdx;
 			break;
 		}

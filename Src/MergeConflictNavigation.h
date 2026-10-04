@@ -52,14 +52,8 @@ public:
 		{
 			const int nDiff = FindPendingResultDiff(pView, bNext);
 			if (nDiff >= 0)
-			{
 				pView->SelectDiff(nDiff, true, false);
-				return;
-			}
-			// A rescan may have severed result-to-diff links. Keep navigation
-			// available while unresolved result segments still exist.
-			if (pDoc->GetResultUnresolvedCount() == 0)
-				return;
+			return;
 		}
 		if (bNext)
 			CMergeDiffNavigation::OnNext3wayDiff(pView, THREEWAYDIFFTYPE_CONFLICT);
@@ -73,16 +67,8 @@ public:
 		CMergeDoc* pDoc = pView->GetDocument();
 		if (pDoc->GetMergeResultBuildState())
 		{
-			if (FindPendingResultDiff(pView, bNext) >= 0)
-			{
-				pCmdUI->Enable(TRUE);
-				return;
-			}
-			if (pDoc->GetResultUnresolvedCount() == 0)
-			{
-				pCmdUI->Enable(FALSE);
-				return;
-			}
+			pCmdUI->Enable(FindPendingResultDiff(pView, bNext) >= 0);
+			return;
 		}
 		if (bNext)
 			pView->OnUpdateNext3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
