@@ -329,8 +329,6 @@ DoSetTextType (LangServices::TextDefinition *def)
 bool CCrystalTextView::
 SetTextType (const tchar_t* pszExt)
 {
-  m_CurSourceDef = LangServices::GetTextType (LangServices::LanguageId::SRC_PLAIN);
-
   LangServices::TextDefinition *def = LangServices::GetTextType (pszExt);
 
   return SetTextType (def);
@@ -339,10 +337,7 @@ SetTextType (const tchar_t* pszExt)
 bool CCrystalTextView::
 SetTextType (LangServices::LanguageId enuType)
 {
-  LangServices::TextDefinition *def;
-
-  m_CurSourceDef = def = LangServices::GetTextType (LangServices::LanguageId::SRC_PLAIN);
-  def = LangServices::GetTextType(enuType);
+  LangServices::TextDefinition *def = LangServices::GetTextType(enuType);
   if (def)
     return SetTextType (def);
   return false;
