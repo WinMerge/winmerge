@@ -111,6 +111,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_DIRVIEW_COLUMN_WIDTHS, _T(""));
 	pOptions->InitOption(OPT_DIRVIEW3_COLUMN_ORDERS, _T(""));
 	pOptions->InitOption(OPT_DIRVIEW3_COLUMN_WIDTHS, _T(""));
+	pOptions->InitOption(OPT_DIRVIEW_SPLIT_LAYOUT, true);
+	pOptions->InitOption(OPT_DIRVIEW_SPLIT_COLUMN_ORDERS, _T(""));
+	pOptions->InitOption(OPT_DIRVIEW_SPLIT_COLUMN_WIDTHS, _T(""));
 
 	pOptions->InitOption(OPT_ADDITIONAL_PROPERTIES, _T(""));
 

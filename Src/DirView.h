@@ -371,6 +371,8 @@ protected:
 	afx_msg void OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI);
 	afx_msg void OnViewTreeMode();
 	afx_msg void OnUpdateViewTreeMode(CCmdUI* pCmdUI);
+	afx_msg void OnViewSplitPaneLayout();
+	afx_msg void OnUpdateViewSplitPaneLayout(CCmdUI* pCmdUI);
 	afx_msg void OnViewShowEmptyFolders();
 	afx_msg void OnUpdateViewShowEmptyFolders(CCmdUI* pCmdUI);
 	afx_msg void OnViewExpandAllSubdirs();
@@ -471,6 +473,13 @@ private:
 	void ShowShellContextMenu(UINT id);
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
+	bool UseSplitPaneLayout() const;
+	const String& GetColumnOrdersOption() const;
+	const String& GetColumnWidthsOption() const;
+	void LoadColumnLayout();
+	void SaveColumnLayout();
+	void UpdateSplitPaneFooters();
+	void DrawSplitPaneDivider(NMLVCUSTOMDRAW* lpC);
 	bool IsLabelEdit() const;
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
