@@ -278,7 +278,7 @@ void CMergeResultStatusBar::UpdateRoText()
 
 void CMergeResultStatusBar::UpdateResources()
 {
-	m_sEolDisplay = ResultEolString(m_sEol);
+	UpdatePathText();
 	UpdateConflictText();
 	UpdateLineText();
 	UpdateEncodingText();
