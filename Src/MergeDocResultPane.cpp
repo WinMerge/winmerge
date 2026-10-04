@@ -207,6 +207,11 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMess
 		m_ptBuf[nBuffer]->SetReadOnly(true);
 	}
 
+	auto& panes = GetMergePaneMapping(m_nMergeBasePane);
+	int nMergeDestPane = m_nBuffers == 2 ? 0 : panes.nMergeDestPane;
+	auto* def = GetView(0, nMergeDestPane)->m_CurSourceDef;
+	m_pMergeResultView->SetTextType(def);
+
 	// Update pane headers with merge-related labels
 	if (m_nBuffers >= 3)
 		UpdateMergePaneHeaders(m_nMergeBasePane);

@@ -852,3 +852,4 @@ void CMergeResultView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 			|| (pos.y > (long)nSegEnd));
 	}
 }
+
