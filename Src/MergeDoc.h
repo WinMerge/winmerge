@@ -586,6 +586,7 @@ private:
 	void PrimeTextBuffers();
 	std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CreateDiffItem() const;
 	void HideLines();
+	void IndicateIgnoredChanges();
 	void AdjustDiffBlocks();
 	void AdjustDiffBlocks3way();
 	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange,

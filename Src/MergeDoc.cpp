@@ -682,6 +682,12 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			m_ptBuf[nBuffer]->prepareForRescan();
 
+		// Show lines that are equal only because of ignore options as ignored differences.
+		// "Completely unhighlight the ignored differences" takes precedence.
+		if (GetOptionsMgr()->GetBool(OPT_CMP_INDICATE_IGNORED_CHANGES) &&
+			!GetOptionsMgr()->GetBool(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES))
+			IndicateIgnoredChanges();
+
 		// Divide diff blocks to align similar lines.
 		if (GetOptionsMgr()->GetBool(OPT_CMP_ALIGN_SIMILAR_LINES))
 		{

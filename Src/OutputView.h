@@ -34,6 +34,7 @@ public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs) override;
 	virtual BOOL PreTranslateMessage (MSG * pMsg) override;
 	virtual void OnInitialUpdate() override;
+	virtual CEColor GetColor(int nColorIndex) const override;
 	//}}AFX_VIRTUAL
 
 // Implementation

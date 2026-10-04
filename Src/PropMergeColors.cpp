@@ -49,6 +49,7 @@ PropMergeColors::PropMergeColors(COptionsMgr *optionsMgr)
  , m_clrSelWordDiff()
  , m_clrSelWordDiffDeleted()
  , m_clrSelWordDiffText()
+ , m_bHatchMissingLines(false)
 {
 	BindOption(OPT_CLR_DIFF, m_clrDiff, IDC_DIFFERENCE_COLOR, DDX_ColorButton);
 	BindOption(OPT_CLR_DIFF_DELETED, m_clrDiffDeleted, IDC_DIFFERENCE_DELETED_COLOR, DDX_ColorButton);
@@ -85,6 +86,8 @@ PropMergeColors::PropMergeColors(COptionsMgr *optionsMgr)
 	BindOption(OPT_CLR_SELECTED_WORDDIFF, m_clrSelWordDiff, IDC_SEL_WORDDIFF_COLOR, DDX_ColorButton);
 	BindOption(OPT_CLR_SELECTED_WORDDIFF_DELETED, m_clrSelWordDiffDeleted, IDC_SEL_WORDDIFF_DELETED_COLOR, DDX_ColorButton);
 	BindOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, m_clrSelWordDiffText, IDC_SEL_WORDDIFF_TEXT_COLOR, DDX_ColorButton);
+
+	BindOption(OPT_HATCH_MISSING_LINES, m_bHatchMissingLines, IDC_HATCH_MISSING_LINES, DDX_Check);
 }
 
 void PropMergeColors::DoDataExchange(CDataExchange* pDX)

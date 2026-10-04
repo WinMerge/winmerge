@@ -69,6 +69,9 @@ CMergeEditView::CMergeEditView()
 , m_nThisPane(0)
 , m_nThisGroup(0)
 , m_bDetailView(false)
+, m_bHatchMissingLines(false)
+, m_clrLineNumberText(CLR_NONE)
+, m_bDiffPaneFollowsCursor(false)
 , m_piMergeEditStatus(nullptr)
 , fTimerWaitingForIdle(0)
 , m_lineBegin(0)
@@ -911,6 +914,15 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor &
 					crText = m_cachedColors.clrDiffText;
 				}
 			}
+			// A line that has only ghost lines on the other panes differs as a whole (no word diff is computed
+			// for it), so draw its text with the word difference text color when one is set.
+			if (IsLineOnlyInThisPane(nLineIndex))
+			{
+				const CEColor clrWordDiffText = lineInCurrentDiff ?
+					m_cachedColors.clrSelWordDiffText : m_cachedColors.clrWordDiffText;
+				if (clrWordDiffText != CLR_NONE)
+					crText = clrWordDiffText;
+			}
 			return;
 		}
 		else if (dwLineFlags & LF_TRIVIAL)
@@ -958,6 +970,135 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor &
 			CCrystalEditView::GetLineColors(nLineIndex, crBkgnd,
 				crText, bDrawWhitespace);
 	}
+}
+
+/**
+ * @brief Cache drawing options read in DrawSingleLine / GetMarginTextColor.
+ * Called from DocumentsLoaded (document open) and RefreshOptions (options changed).
+ */
+void CMergeEditView::LoadDrawingOptions()
+{
+	m_bHatchMissingLines = GetOptionsMgr()->GetBool(OPT_HATCH_MISSING_LINES);
+	m_clrLineNumberText = static_cast<COLORREF>(GetOptionsMgr()->GetInt(OPT_CLR_LINE_NUMBER_TEXT));
+	m_bDiffPaneFollowsCursor = GetOptionsMgr()->GetBool(OPT_DIFF_PANE_FOLLOWS_CURSOR);
+	SetLineCursorBox(GetOptionsMgr()->GetBool(OPT_LINE_CURSOR_BOX));
+}
+
+/**
+ * @brief Show the cursor line in the diff pane (OPT_DIFF_PANE_FOLLOWS_CURSOR).
+ * A cursor inside the current difference keeps the whole difference displayed, so navigating
+ * between differences still shows complete blocks.
+ */
+void CMergeEditView::ShowCursorLineInDiffPane(int nLine)
+{
+	CMergeDoc* pDoc = GetDocument();
+	const int nCurDiff = pDoc->GetCurrentDiff();
+	if (nCurDiff >= 0)
+	{
+		DIFFRANGE dr;
+		if (pDoc->m_diffList.GetDiff(nCurDiff, dr) && dr.dbegin <= nLine && nLine <= dr.dend)
+			return;
+	}
+	pDoc->ForEachView([nLine](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayLines(nLine, nLine); });
+}
+
+/**
+ * @brief Display the given line range in this diff pane view.
+ */
+void CMergeEditView::OnDisplayLines(int nLineBegin, int nLineEnd)
+{
+	const int nLineCount = GetLineCount();
+	nLineBegin = (std::min)(nLineBegin, nLineCount - 1);
+	nLineEnd = (std::min)(nLineEnd, nLineCount - 1);
+	if (m_lineBegin == nLineBegin && m_lineEnd == nLineEnd)
+		return;
+	m_lineBegin = nLineBegin;
+	m_lineEnd = nLineEnd;
+	ScrollToLine(m_lineBegin);
+	InvalidateHorzScrollBar();
+	Invalidate();
+}
+
+/**
+ * @brief Line number text color: OPT_CLR_LINE_NUMBER_TEXT when set, otherwise the normal text color.
+ */
+CEColor CMergeEditView::GetMarginTextColor() const
+{
+	if (m_clrLineNumberText != CLR_NONE)
+		return m_clrLineNumberText;
+	return CGhostTextView::GetMarginTextColor();
+}
+
+/**
+ * @brief Check whether every other pane has a ghost line at this (aligned) line index.
+ */
+bool CMergeEditView::IsLineOnlyInThisPane(int nLineIndex)
+{
+	const int nBuffers = GetDocument()->m_nBuffers;
+	for (int nPane = 0; nPane < nBuffers; nPane++)
+	{
+		if (nPane == m_nThisPane)
+			continue;
+		CMergeEditView* pView = GetGroupView(nPane);
+		if (pView == nullptr || nLineIndex >= pView->GetLineCount() ||
+			(pView->GetLineFlags(nLineIndex) & LF_GHOST) == 0)
+			return false;
+	}
+	return nBuffers > 1;
+}
+
+/**
+ * @brief Draw a line, hatching missing (ghost) lines when OPT_HATCH_MISSING_LINES is set.
+ *
+ * A hatched ghost line is filled with the normal background and crossed by 45 degree lines
+ * drawn in the line's "Deleted" color, so the Deleted color keeps its meaning with or without
+ * hatching. The lines lie on a fixed client-coordinate grid (x + y = k * step), so the pattern
+ * continues across consecutive ghost lines. Ghost lines inside the selection keep the solid fill
+ * so that the selection stays visible.
+ */
+void CMergeEditView::DrawSingleLine(const CRect & rect, int nLineIndex)
+{
+	auto isLineInSelection = [this](int nLine)
+	{
+		if (!IsSelection())
+			return false;
+		CEPoint ptStart, ptEnd;
+		GetSelection(ptStart, ptEnd);
+		return ptStart.y <= nLine && nLine <= ptEnd.y;
+	};
+	if (!m_bHatchMissingLines || nLineIndex < 0 || nLineIndex >= GetLineCount() ||
+		(GetLineFlags(nLineIndex) & LF_GHOST) == 0 || isLineInSelection(nLineIndex))
+	{
+		CGhostTextView::DrawSingleLine(rect, nLineIndex);
+		return;
+	}
+
+	CEColor crBkgnd, crText;
+	bool bDrawWhitespace = false;
+	GetLineColors(nLineIndex, crBkgnd, crText, bDrawWhitespace);
+	if (crBkgnd == CLR_NONE)
+	{
+		CGhostTextView::DrawSingleLine(rect, nLineIndex);
+		return;
+	}
+
+	m_pCrystalRenderer->FillSolidRectangle(rect, GetColor(COLORINDEX_BKGND));
+	m_pCrystalRenderer->SetLineColor(crBkgnd);
+	const int step = (std::max)(4, GetLineHeight() * 3 / 8);
+	const int left = rect.left, top = rect.top, right = rect.right - 1, bottom = rect.bottom - 1;
+	int c = (left + top) / step * step;
+	if (c < left + top)
+		c += step;
+	for (; c <= right + bottom; c += step)
+	{
+		// Clip the line x + y = c to the rectangle
+		const int y0 = (std::max)(top, c - right);
+		const int y1 = (std::min)(bottom, c - left);
+		if (y0 <= y1)
+			m_pCrystalRenderer->DrawGridLine(c - y1, y1, c - y0, y0, 255);
+	}
+	// OnDraw sets the line color once per paint; restore it for the line cursor and grid lines
+	m_pCrystalRenderer->SetLineColor(GetColor(COLORINDEX_NORMALTEXT));
 }
 
 /**
@@ -2609,6 +2750,9 @@ void CMergeEditView::OnUpdateCaret()
 	if (m_nThisGroup != GetActiveGroup() && m_piMergeEditStatus->HasLineInfo())
 		return;
 
+	if (!m_bDetailView && m_bDiffPaneFollowsCursor)
+		ShowCursorLineInDiffPane(GetCursorPos().y);
+
 	CEPoint cursorPos = GetCursorPos();
 	int nScreenLine = cursorPos.y;
 	const int nRealLine = ComputeRealLine(nScreenLine);
@@ -3378,6 +3522,7 @@ void CMergeEditView::RefreshOptions()
 		SetInsertTabs(false);
 
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
+	LoadDrawingOptions();
 	SetTopMargin(GetOptionsMgr()->GetBool(
 		GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing() ? OPT_VIEW_TOPMARGIN_TABLE : OPT_VIEW_TOPMARGIN));
 	SetLineUsedAsHeaders(GetOptionsMgr()->GetInt(OPT_LINE_NUMBER_USED_AS_HEADERS));
@@ -4076,6 +4221,7 @@ void CMergeEditView::DocumentsLoaded()
 		OPT_WORDWRAP_TABLE : OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
+	LoadDrawingOptions();
 
 	// Enable Backspace at beginning of line
 	SetDisableBSAtSOL(false);

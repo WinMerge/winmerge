@@ -77,6 +77,9 @@ public:
 	int m_nThisPane;
 	int m_nThisGroup;
 	bool m_bDetailView;
+	bool m_bHatchMissingLines; /**< Cached OPT_HATCH_MISSING_LINES */
+	COLORREF m_clrLineNumberText; /**< Cached OPT_CLR_LINE_NUMBER_TEXT (CLR_NONE = normal text color) */
+	bool m_bDiffPaneFollowsCursor; /**< Cached OPT_DIFF_PANE_FOLLOWS_CURSOR */
 	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
 
 protected:
@@ -141,6 +144,12 @@ public:
 			CEColor & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
+	virtual void DrawSingleLine (const CRect & rect, int nLineIndex) override;
+	bool IsLineOnlyInThisPane(int nLineIndex);
+	void LoadDrawingOptions();
+	void ShowCursorLineInDiffPane(int nLine);
+	void OnDisplayLines(int nLineBegin, int nLineEnd);
+	virtual CEColor GetMarginTextColor() const override;
 	void WMGoto() { OnWMGoto(); };
 	CTreeSitterParser* GetTreeSitterParser();
 	void GotoTreeSitterDefinition();

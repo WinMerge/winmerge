@@ -164,6 +164,9 @@ static bool IsColorDark(COLORREF clrBackground)
 
 COLORREF CLocationView::GetBackgroundColor()
 {
+	const COLORREF clrCustom = static_cast<COLORREF>(GetOptionsMgr()->GetInt(OPT_CLR_LOCATION_PANE_BKGND));
+	if (clrCustom != CLR_NONE)
+		return clrCustom;
 	COLORREF clrBackground = GetDocument()->GetView(0, 0)->GetColor(COLORINDEX_WHITESPACE);
 	if (!IsColorDark(clrBackground))
 	{

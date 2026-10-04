@@ -6,6 +6,9 @@
 #include "OutputDoc.h"
 #include "MainFrm.h"
 #include "Merge.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
+#include "SyntaxColors.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -99,6 +102,28 @@ void COutputView::OnInitialUpdate()
 	SetMarkersContext(GetDocument()->m_pMarkers.get());
 	if (HWND hSelf = GetSafeHwnd())
 		DarkMode::setDarkScrollBar(hSelf);
+}
+
+/**
+ * @brief In dark mode the output pane uses the system window colors (dark through the color scheme's
+ * system color hook) like the rest of the frame, even when the scheme keeps a light text area.
+ */
+CEColor COutputView::GetColor(int nColorIndex) const
+{
+	if (GetOptionsMgr()->GetInt(OPT_COLOR_MODE_EFFECTIVE) == 1)
+	{
+		switch (nColorIndex & ~COLORINDEX_MASK)
+		{
+		case COLORINDEX_WHITESPACE:
+		case COLORINDEX_BKGND:
+			return GetSysColor(COLOR_WINDOW);
+		case COLORINDEX_NORMALTEXT:
+			return GetSysColor(COLOR_WINDOWTEXT);
+		case COLORINDEX_SELMARGIN:
+			return GetSysColor(COLOR_BTNFACE);
+		}
+	}
+	return __super::GetColor(nColorIndex);
 }
 
 void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)

@@ -364,6 +364,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_bTopMargin(false)
 , m_bSelMargin(true)
 , m_bViewLineNumbers(false)
+, m_bLineCursorBox(false)
 , m_bWordWrap(false)
 , m_bHideLines(false)
 , m_bLastSearch(false)
@@ -2404,6 +2405,32 @@ GetColor (int nColorIndex) const
     return { 0, 0, 0 };
 }
 
+/**
+ * @brief Draw the current line marker as a 1px box around the line (margin included).
+ * The color is halfway between the text and background colors; the renderer line color
+ * is restored to the normal text color that OnDraw sets for the paint.
+ */
+void CCrystalTextView::
+DrawLineCursorBox (const CRect & rc)
+{
+  m_pCrystalRenderer->SetLineColor (CEColor::GetIntermediateColor (GetColor (COLORINDEX_NORMALTEXT), GetColor (COLORINDEX_BKGND), 0.5f));
+  const int l = rc.left, t = rc.top, r = rc.right - 1, b = rc.bottom - 1;
+  m_pCrystalRenderer->DrawGridLine (l, t, r, t, 255);
+  m_pCrystalRenderer->DrawGridLine (l, b, r, b, 255);
+  m_pCrystalRenderer->DrawGridLine (l, t, l, b, 255);
+  m_pCrystalRenderer->DrawGridLine (r, t, r, b, 255);
+  m_pCrystalRenderer->SetLineColor (GetColor (COLORINDEX_NORMALTEXT));
+}
+
+/**
+ * @brief Text color of the line numbers and the ruler drawn on the selection margin color.
+ */
+CEColor CCrystalTextView::
+GetMarginTextColor () const
+{
+  return GetColor (COLORINDEX_NORMALTEXT);
+}
+
 lineflags_t CCrystalTextView::
 GetLineFlags (int nLineIndex) const
 {
@@ -2475,7 +2502,7 @@ DrawTopMargin (const CRect& rect)
     return;
   m_pCrystalRenderer->SetBkColor (GetColor (COLORINDEX_SELMARGIN));
   m_pCrystalRenderer->FillRectangle (rect);
-  m_pCrystalRenderer->SetTextColor (GetColor (COLORINDEX_NORMALTEXT));
+  m_pCrystalRenderer->SetTextColor (GetMarginTextColor ());
   if (m_pTextBuffer->GetTableEditing ())
     {
       CString columnNames;
@@ -2506,7 +2533,7 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
 
   if (m_bViewLineNumbers && nLineNumber > 0)
     {
-      m_pCrystalRenderer->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
+      m_pCrystalRenderer->SetTextColor(GetMarginTextColor());
       m_pCrystalRenderer->DrawMarginLineNumber(rect.right, rect.top, nLineNumber);
     }
 
@@ -2719,8 +2746,13 @@ OnDraw (CDC * pdc)
               if (m_pTextBuffer->GetTableEditing ())
                 m_pCrystalRenderer->DrawGridLine (rcMargin.left, rcMargin.top + nSubLines * nLineHeight - 1, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1, 24);
               if (nCurrentLine == m_ptCursorPos.y)
-                m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right, 
-                  nCursorY + nLineHeight - 1, 1);
+                {
+                  if (m_bLineCursorBox)
+                    DrawLineCursorBox (CRect (rcMargin.left, rcMargin.top, rcLine.right, rcMargin.top + nSubLines * nLineHeight));
+                  else
+                    m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right,
+                      nCursorY + nLineHeight - 1, 1);
+                }
               nLastLineBottom = rcMargin.bottom;
             }
         }
