@@ -918,8 +918,7 @@
         saved with their automatic merge content, keeping the output free of
         conflict markers that no version control system would produce.
         Reopening the output path itself does not resume from these conflict
-        sections: like other three-way merge tools (for example KDiff3 or
-        Meld), WinMerge always rebuilds the merge result from the three
+        sections: WinMerge always rebuilds the merge result from the three
         compared files, so a version control tool that starts WinMerge again
         with the <option>/o</option> command-line option (for example
         <command>git mergetool</command>) gets a fresh merge every time,
