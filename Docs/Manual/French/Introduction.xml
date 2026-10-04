@@ -19,7 +19,7 @@ de fichiers bénéficient de la coloration syntaxique.</para>
 
   <para>WinMerge n'est pas un éditeur hexadécimal. WinMerge peut afficher le contenu
 des fichiers binaires et les différences entre eux. Mais ces informations
-sont destinées à la visualisation uniquement : l'édition de fichiers
+sont destinées à la visualisation uniquement : l'édition de fichiers
 binaires avec WinMerge peut endommager les fichiers.</para>
 
   <para>L'objectif du développement de WinMerge est de rendre la comparaison, la
@@ -32,7 +32,7 @@ stable et fiable à utiliser.</para>
 
   <note>
     <para>WinMerge n'est pas un gratuiciel (comme l'ont affirmé de nombreux sites sur
-le Web) : il est sous licence <ulink
+le Web) : il est sous licence <ulink
 url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink>.</para>
     <para>Nous vous fournissons gratuitement un bon outil, alors veuillez honorer
 votre contrat de licence et nous soumettre des améliorations. Nous sommes
@@ -91,7 +91,7 @@ stable...</para>
 bogues</title>
 
     <para>Les <emphasis>forums de discussion</emphasis> sont le moyen le plus rapide
-d'obtenir de l'aide :</para>
+d'obtenir de l'aide :</para>
     <itemizedlist>
       <listitem>
         <ulink url="https://github.com/WinMerge/winmerge/discussions">Discussions WinMerge</ulink>
@@ -106,7 +106,7 @@ d'obtenir de l'aide :</para>
 
     <para>Si vous trouvez un bogue, veuillez le soumettre sous forme de <ulink
 url="https://github.com/WinMerge/winmerge/issues">rapport de
-bogue</ulink>. Veuillez joindre autant d'informations que possible : au
+bogue</ulink>. Veuillez joindre autant d'informations que possible : au
 minimum, le numéro de version de WinMerge que vous utilisez. Si vous le
 pouvez, joignez également un journal de configuration, que vous pouvez
 afficher en cliquant sur <menuchoice> <guimenu>Aide</guimenu>
@@ -137,7 +137,7 @@ nous soumettre vos modifications sous forme de correctifs ou de demandes de
 tirage (pull requests) et aidez-nous à améliorer ce produit ! Si vous
 publiez votre version modifiée, vous êtes tenu de publier également les
 modifications du code source. C'est l'objet de la licence <ulink
-url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> : veuillez la
+url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> : veuillez la
 respecter.</para>
 
     <para>Le travail de développement de WinMerge est effectué par des personnes sur

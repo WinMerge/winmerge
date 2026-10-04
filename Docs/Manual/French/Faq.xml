@@ -27,12 +27,12 @@ prend pas en charge Windows 2000.</para>
 <filename>WinMerge.exe</filename>, conçu autour des anciennes pages de codes
 Windows. <filename>WinMerge.exe</filename> ne stockait en interne que les
 caractères ANSI pris en charge par la page de code Windows. Cet exécutable
-présentait de graves limites pour le travail avec l'Unicode : si vous
+présentait de graves limites pour le travail avec l'Unicode : si vous
 ouvriez un fichier Unicode, les caractères étaient convertis vers la page de
 code ANSI de Windows. Comme il existe plus de 100 000 caractères Unicode et
 que seuls 256 peuvent être représentés dans le jeu de caractères ANSI, des
 pertes de données pouvaient survenir. La conversion pouvait être
-approximative (par exemple, perte d'accents) ou impossible : les caractères
+approximative (par exemple, perte d'accents) ou impossible : les caractères
 étaient alors remplacés par des points d'interrogation (
 <literal>?</literal> ).</para>
           <para><filename>WinMerge.exe</filename> ne pouvait pas non plus ouvrir de fichiers
@@ -137,13 +137,13 @@ vingt derniers chemins utilisés de chaque côté.</para>
 
         <answer>
           <para>Les fichiers OpenOffice sont des archives. Pour pouvoir les ouvrir dans
-WinMerge, vous devez configurer la prise en charge des archives :</para>
+WinMerge, vous devez configurer la prise en charge des archives :</para>
 
           <itemizedlist>
             <listitem>
-              <para>Dans WinMerge, cliquez sur le bouton <guibutton>Préférences</guibutton> (ou
+              <para>Dans WinMerge, cliquez sur le bouton <guibutton>Options</guibutton> (ou
 cliquez sur <menuchoice> <guimenu>Édition</guimenu>
-<guimenuitem>Préférences</guimenuitem> </menuchoice>). Dans la page Prise en
+<guimenuitem>Options</guimenuitem> </menuchoice>). Dans la page Prise en
 charge des archives, activez l'option <guilabel>Détecter le type d'archive à
 partir de la signature du fichier</guilabel></para>
             </listitem>
@@ -186,7 +186,7 @@ premier). Les autres éléments suivent dans l'ordre où ils ont été
 sélectionnés. Par conséquent, pour qu'un fichier apparaisse à gauche dans
 WinMerge, sélectionnez plusieurs fichiers et faites un clic droit sur celui
 que vous souhaitez comparer à gauche.</para>
-          <para>Pour plus d'informations sur ce comportement du shell Windows, voir : <ulink
+          <para>Pour plus d'informations sur ce comportement du shell Windows, voir : <ulink
 url="https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406">The
 Old New Thing: How does Explorer determine which program to use to open a
 file if an explicit command is not provided?</ulink>.</para>
@@ -212,7 +212,7 @@ différentes (colorées), alors que je sais qu'elles ne le sont pas toutes ?</pa
 fin de ligne. Pour désactiver cela, cliquez sur <menuchoice>
 <guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
 </menuchoice>. Dans la page Comparer, activez (cochez) l'option
-<guilabel>Ignorer les différences d'EOL (Windows/Unix/Mac)</guilabel>.</para>
+<guilabel>Ignorer les différences de retour chariot</guilabel>.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -256,15 +256,15 @@ fixe (non proportionnelles).</para>
 
       <qandaentry>
         <question>
-          <para>Qu'est-ce que le <glossterm>délai d'actualisation automatique</glossterm> ?
+          <para>Qu'est-ce que le <glossterm>délai de réanalyse automatique</glossterm> ?
 Pourquoi est-il nécessaire ?</para>
         </question>
 
         <answer>
-          <para>Lorsque <guilabel>Actualiser automatiquement</guilabel> est activé (dans la
-page Éditeur sous Préférences), WinMerge retarde la réanalyse pendant que
-vous éditez des fichiers. C'est-à-dire qu'aucune réanalyse ne se produit
-avant un court instant après l'arrêt de la frappe. Sans ce délai, WinMerge
+          <para>Lorsque la <guilabel>Réanalyse automatique</guilabel> est activée (dans la
+page Éditeur des Options), WinMerge retarde la réanalyse pendant que vous
+éditez des fichiers. C'est-à-dire qu'aucune réanalyse ne se produit avant un
+court instant après l'arrêt de la frappe. Sans ce délai, WinMerge
 réanalyserait après chaque caractère tapé, ce qui ralentirait trop le
 processus d'édition. Ce délai améliore particulièrement l'édition de
 fichiers volumineux, dont la réanalyse peut prendre plusieurs secondes.</para>
@@ -278,7 +278,7 @@ de comparaison de fichiers ?</para>
         </question>
 
         <answer>
-          <para>Oui, il existe un support d'impression de base : cliquez sur <menuchoice>
+          <para>Oui, il existe un support d'impression de base : cliquez sur <menuchoice>
 <guimenu>Fichier</guimenu> <guimenuitem>Imprimer</guimenuitem>
 </menuchoice>.</para>
         </answer>
@@ -292,8 +292,8 @@ que seules les lignes différentes soient visibles ?</para>
 
         <answer>
           <para>Oui, vous pouvez n'afficher que les lignes différentes en cliquant sur
-<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Contexte de
-différences</guimenuitem> <guimenuitem>0 ligne</guimenuitem> </menuchoice>.</para>
+<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Contexte
+Diff</guimenuitem> <guimenuitem>0 ligne</guimenuitem> </menuchoice>.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -306,7 +306,7 @@ différences</guimenuitem> <guimenuitem>0 ligne</guimenuitem> </menuchoice>.</pa
       <qandaentry>
         <question>
           <para>Je veux que WinMerge se ferme avec une seule pression sur
-<keycap>Échap</keycap> quand j'ai fini ?</para>
+<keycap>Echap</keycap> quand j'ai fini ?</para>
         </question>
 
         <answer>
@@ -348,7 +348,7 @@ commande !</para>
 
         <answer>
           <para>Créez un fichier batch (.bat) qui contient l'une de ces lignes (mais pas les
-deux) :</para>
+deux) :</para>
 
           <itemizedlist>
             <listitem>
@@ -382,7 +382,7 @@ correctifs ?<indexterm>
         <answer>
           <para>Les patchs de style Perry sont des fichiers zip contenant les fichiers
 originaux et modifiés dans différents répertoires. WinMerge possède une
-prise en charge interne pour gérer ces fichiers : lancez simplement une
+prise en charge interne pour gérer ces fichiers : lancez simplement une
 opération de comparaison en sélectionnant le fichier zip pour les deux côtés
 (gauche et droit). WinMerge ouvrira le contenu du fichier zip dans une
 fenêtre de comparaison de dossiers, comparant les fichiers originaux et les
@@ -397,7 +397,7 @@ standard ? (Par exemple, des fichiers .jar en tant que fichiers zip)</para>
         </question>
 
         <answer>
-          <para>Oui : cliquez sur le bouton <guibutton>Options</guibutton> (ou cliquez sur
+          <para>Oui : cliquez sur le bouton <guibutton>Options</guibutton> (ou cliquez sur
 <menuchoice> <guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
 </menuchoice>). Dans la page Prise en charge des archives, activez l'option
 <guilabel>Détecter le type d'archive à partir de la signature du
@@ -429,27 +429,27 @@ Programmes</guisubmenu> <guisubmenu>Accessoires</guisubmenu>
 <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer
 sous</guimenuitem> </menuchoice>, et dans la boîte de dialogue, regardez
 l'élément <guilabel>Encodage</guilabel> dans la liste déroulante. Les
-valeurs possibles incluent :</para>
+valeurs possibles incluent :</para>
 
           <itemizedlist>
             <listitem>
-              <para><guilabel>ANSI</guilabel> : le fichier est apparemment dans la page de code
+              <para><guilabel>ANSI</guilabel> : le fichier est apparemment dans la page de code
 locale de Windows. Si le fichier est entièrement en anglais avec une
 ponctuation normale, alors le fichier est également en ASCII.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel>Unicode</guilabel> : le fichier est probablement dans l'encodage
+              <para><guilabel>Unicode</guilabel> : le fichier est probablement dans l'encodage
 Unicode par défaut de Windows, UCS-2LE.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel>UTF-8</guilabel> : le fichier est dans l'encodage Unicode
+              <para><guilabel>UTF-8</guilabel> : le fichier est dans l'encodage Unicode
 multiplateforme, UTF-8.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel>Unicode big endian</guilabel> : le fichier est dans un encodage
+              <para><guilabel>Unicode big endian</guilabel> : le fichier est dans un encodage
 Unicode différent qui est peu utilisé ou supporté par Windows, probablement
 UCS-2BE.</para>
             </listitem>
@@ -482,7 +482,7 @@ ligne de commande ?</para>
 vous pouvez utiliser le portage Win32 de <filename>diffutils</filename>. La
 version la plus récente de <filename>diffutils</filename> (et de patch) peut
 être téléchargée sur la page du projet <application>SourceForge
-GnuWin32</application> : <ulink
+GnuWin32</application> : <ulink
 url="https://sourceforge.net/projects/gnuwin32/">https://sourceforge.net/projects/gnuwin32</ulink>.</para>
         </answer>
       </qandaentry>

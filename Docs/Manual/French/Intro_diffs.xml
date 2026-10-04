@@ -18,7 +18,7 @@ informations connexes sur les fichiers hexadécimaux.</para>
 comme deux versions éditées à des moments différents ou par des personnes
 différentes. Si vous examinez deux fichiers de ce type, vous pouvez
 généralement voir des zones similaires, mais aussi identifier plusieurs
-types de différences : caractères et mots différents, lignes différentes,
+types de différences : caractères et mots différents, lignes différentes,
 voire des blocs entiers de texte différents. Mais essayer de comprendre
 toutes les différences entre deux fichiers en les parcourant dans votre
 éditeur favori peut s'avérer fastidieux et source d'erreurs. Les outils
@@ -26,7 +26,7 @@ spécialisés de différence/fusion comme WinMerge sont conçus pour rendre ce
 travail plus systématique et efficace.</para>
 
     <para>Un utilitaire de différence simple que la plupart des gens ont utilisé est
-le correcteur orthographique : il vous fait parcourir systématiquement un
+le correcteur orthographique : il vous fait parcourir systématiquement un
 document, met en évidence les mots qui diffèrent de ceux de son dictionnaire
 et vous aide à résoudre chaque problème d'orthographe. Cependant, s'arrêter
 aux caractères et aux mots n'est pas un moyen efficace de comprendre les
@@ -52,25 +52,25 @@ détection de différences sur plusieurs lignes rend la fusion plus efficace
       <title>Opération de comparaison simple</title>
 
       <para>Cette section propose un exemple simple qui démontre comment comparer les
-différences de lignes entre deux fichiers dans WinMerge :</para>
+différences de lignes entre deux fichiers dans WinMerge :</para>
 
       <orderedlist>
         <listitem>
           <para>À l'aide d'un éditeur de texte, créez deux fichiers avec les noms et
 contenus indiqués ici, en veillant à préserver exactement les mots et les
-sauts de ligne :</para>
+sauts de ligne :</para>
 
           <formalpara>
-            <title>Fichier1 :</title>
+            <title>Fichier1 :</title>
 
             <para><screen>Comparer les mots est lent 
 et les caractères. À la place,  
 WinMerge compare les lignes.
-Croyez-le ou bien.</screen></para>
+Croyez-le ou non.</screen></para>
           </formalpara>
 
           <formalpara>
-            <title>Fichier2 :</title>
+            <title>Fichier2 :</title>
 
             <para><screen>Comparer les mots est lent.
 WinMerge compare les lignes.
@@ -94,7 +94,7 @@ spécifiez <filename>Fichier1</filename> comme <guilabel>1er</guilabel>
 fichier et <filename>Fichier2</filename> comme <guilabel>2e</guilabel>
 fichier, puis cliquez sur <guibutton>Comparer</guibutton>. La fenêtre de
 comparaison de fichiers affiche les deux fichiers dans les volets Fichier
-gauche et droit, comme ceci :</para>
+gauche et droit, comme ceci :</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -105,7 +105,7 @@ fileref="screenshots/missing_lines.png" /> </imageobject><textobject>
 
           <para>Les éléments sont décrits plus en détail dans <xref linkend="Compare_files"
 />. Voici quelques caractéristiques que vous devriez remarquer dans cet
-exemple :</para>
+exemple :</para>
 
           <variablelist>
             <varlistentry>
@@ -128,7 +128,7 @@ différence (doré, par défaut).</para>
 modifié à l'intérieur des blocs de différences, en utilisant la couleur
 d'arrière-plan des mots (jaune clair, par défaut).</para>
 
-                <para>Les lignes identiques ne sont pas marquées : elles ont un fond blanc, comme
+                <para>Les lignes identiques ne sont pas marquées : elles ont un fond blanc, comme
 la troisième ligne de l'exemple.</para>
               </listitem>
             </varlistentry>
@@ -172,10 +172,10 @@ comme le montrent les étapes suivantes.</para>
           <para>Cliquez sur <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
-                <phrase>Bouton Différence courante</phrase>
+                <phrase>Bouton Différence actuelle</phrase>
               </textobject>
             </inlinemediaobject>
-<guibutton>Différence courante</guibutton> dans la barre d'outils (ou
+<guibutton>Différence actuelle</guibutton> dans la barre d'outils (ou
 appuyez sur <keycombo> <keycap>Alt</keycap> <keycap>Entrée</keycap>
 </keycombo>). Si ce bouton n'est pas activé (par exemple, si votre curseur
 se trouve sur une ligne différente), cliquez sur <inlinemediaobject>
@@ -184,7 +184,7 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
                 <phrase>Bouton Première différence</phrase>
               </textobject>
             </inlinemediaobject> Première différence (ou appuyez sur
-<keycombo> <keycap>Alt</keycap> <keycap>Début</keycap> </keycombo>) à la
+<keycombo> <keycap>Alt</keycap> <keycap>Origine</keycap> </keycombo>) à la
 place.</para>
 
           <para>Lorsque vous sélectionnez une différence, les deux versions sont chargées
@@ -233,7 +233,7 @@ navigation de WinMerge.</para>
 
     <para>Le but de la fusion est de combiner les modifications de deux fichiers en un
 seul. La fusion étend les concepts et fonctions utilisés dans l'opération de
-comparaison : veuillez lire la section précédente avant de commencer
+comparaison : veuillez lire la section précédente avant de commencer
 celle-ci. En plus de détecter les différences entre deux versions de
 fichiers, nous résolvons les différences et enregistrons le résultat dans
 une version <glossterm>cible</glossterm> unique.</para>
@@ -272,17 +272,17 @@ identiques), et vous avez terminé la fusion.</para>
 
       <para>Ce court exercice démontre comment utiliser les commandes de la fenêtre de
 comparaison de fichiers de manière systématique pour fusionner les fichiers
-simples présentés précédemment :</para>
+simples présentés précédemment :</para>
 
       <orderedlist>
         <listitem>
           <para>Cliquez sur <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
-                <phrase>Bouton Différence courante</phrase>
+                <phrase>Bouton Différence actuelle</phrase>
               </textobject>
             </inlinemediaobject>
-<guibutton>Différence courante</guibutton> dans la barre d'outils pour
+<guibutton>Différence actuelle</guibutton> dans la barre d'outils pour
 sélectionner la première différence. Si ce bouton n'est pas activé, cliquez
 plutôt sur <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -297,10 +297,10 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
           <para>Cliquez sur <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
-                <phrase>Bouton Copier vers la droite</phrase>
+                <phrase>Bouton Copier à droite</phrase>
               </textobject>
             </inlinemediaobject> <guibutton>Copier
-vers la droite</guibutton> pour fusionner la différence 1 de
+à droite</guibutton> pour fusionner la différence 1 de
 <filename>Fichier1</filename> vers <filename>Fichier2</filename>. Dans
 <filename>Fichier</filename>2, notez que la ligne de différence unique est
 remplacée par les deux lignes de <filename>Fichier1</filename>, et que la
@@ -324,14 +324,14 @@ les différences sans en oublier accidentellement.</para>
           <para>Cliquez sur <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
-                <phrase>Bouton Copier vers la gauche</phrase>
+                <phrase>Bouton Copier à gauche</phrase>
               </textobject>
             </inlinemediaobject> <guibutton>Copier
-vers la gauche</guibutton> pour fusionner la différence 2 de
+à gauche</guibutton> pour fusionner la différence 2 de
 <filename>Fichier2</filename> vers <filename>Fichier1</filename>.</para>
 
           <para>Le message indiquant que les fichiers sont identiques vous signale que la
-fusion est terminée :</para>
+fusion est terminée :</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="600"

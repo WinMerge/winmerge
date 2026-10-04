@@ -13,7 +13,7 @@
 
     <para>Après avoir installé WinMerge, suivez la procédure et les explications de ce
 chapitre pour apprendre les opérations et concepts de base de WinMerge. Les
-méthodes présentées ne sont pas les seules façons de procéder : il existe
+méthodes présentées ne sont pas les seules façons de procéder : il existe
 généralement plusieurs manières d'accomplir chaque tâche. Une fois terminé,
 vous pourrez apprendre d'autres méthodes et des compétences plus avancées
 traitées dans d'autres rubriques d'aide.</para>
@@ -21,7 +21,7 @@ traitées dans d'autres rubriques d'aide.</para>
     <section>
       <title><indexterm><primary>Fenêtre WinMerge</primary></indexterm>Ouvrir la fenêtre WinMerge</title>
 
-      <para>Voici quelques-unes des méthodes que vous pouvez utiliser :</para>
+      <para>Voici quelques-unes des méthodes que vous pouvez utiliser :</para>
 
       <itemizedlist>
         <listitem>
@@ -45,12 +45,11 @@ et saisissez <command>winmerge</command>.</para>
     </section>
 
     <section>
-      <title>Ouvrir la boîte de dialogue <guilabel>Sélectionner des fichiers ou
+      <title>Ouvrir la boîte de dialogue <guilabel>Ouvrir des fichiers ou
 dossiers</guilabel></title>
 
       <para>Dans la fenêtre WinMerge, utilisez les méthodes suivantes pour ouvrir la
-boîte de dialogue <guilabel>Sélectionner des fichiers ou
-dossiers</guilabel> :</para>
+boîte de dialogue <guilabel>Ouvrir des fichiers ou dossiers</guilabel> :</para>
 
       <itemizedlist>
         <listitem>
@@ -72,14 +71,14 @@ fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>Bouton 
     </section>
 
     <section>
-      <title><indexterm><primary>Boîte de dialogue Sélectionner des fichiers ou des dossiers</primary></indexterm> La boîte de dialogue
-<guilabel>Sélectionner des fichiers ou dossiers</guilabel></title>
+      <title><indexterm><primary>Boîte de dialogue Sélectionner des fichiers ou des dossiers</primary></indexterm> La boîte de dialogue <guilabel>Ouvrir
+des fichiers ou dossiers</guilabel></title>
 
       <para>
 <mediaobject>
 <imageobject> <imagedata fileref="screenshots/OpenDlg1.png" format="PNG" />
 </imageobject><textobject>
-            <phrase>Fenêtre Sélectionner des fichiers ou dossiers</phrase>
+            <phrase>Fenêtre Sélectionner des fichiers ou des dossiers</phrase>
           </textobject>
         </mediaobject></para>
 
@@ -88,7 +87,7 @@ fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>Bouton 
 
         <para>Dans les champs <guilabel>1er</guilabel> et <guilabel>2e</guilabel>,
 spécifiez les fichiers et dossiers à comparer. Utilisez l'une de ces
-méthodes :</para>
+méthodes :</para>
 
         <para><itemizedlist>
             <listitem>
@@ -101,7 +100,7 @@ le chemin souhaité.</para>
 
               <para>Dans la boîte de dialogue Ouvrir, le texte <literal>Folder
 Selection</literal> s'affiche initialement dans le champ <guilabel>Nom du
-fichier</guilabel>. Votre sélection dépend du type de comparaison souhaité :</para>
+fichier</guilabel>. Votre sélection dépend du type de comparaison souhaité :</para>
 
               <itemizedlist>
                 <listitem>
@@ -165,7 +164,7 @@ C et C++ ; tous les autres types sont éliminés.</para>
 
         <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
 
-        <para>Pour un filtrage plus robuste, utilisez un fichier de filtre : cliquez sur
+        <para>Pour un filtrage plus robuste, utilisez un fichier de filtre : cliquez sur
 le bouton <guibutton>Sélectionner...</guibutton> à côté du champ
 <guilabel>Filtre</guilabel>. Les fichiers de filtres contiennent des règles
 pour inclure ou exclure des fichiers. WinMerge installe un ensemble de
@@ -197,9 +196,8 @@ des plug-ins.</para>
           <secondary>ouvrir des fichiers et des dossiers</secondary>
         </indexterm></title>
 
-      <para>La boîte de dialogue <guilabel>Sélectionner des fichiers ou
-dossiers</guilabel> est l'interface principale, mais il existe d'autres
-moyens :</para>
+      <para>La boîte de dialogue <guilabel>Ouvrir des fichiers ou dossiers</guilabel>
+est l'interface principale, mais il existe d'autres moyens :</para>
 
       <itemizedlist>
         <listitem>
@@ -238,7 +236,7 @@ WinMerge.</simpara>
     <para>Si vous avez sélectionné deux dossiers, la fenêtre de comparaison de
 dossiers s'ouvre. Il s'agit d'une liste sous forme de tableau. Chaque ligne
 affiche des informations sur un fichier trouvé, avec son nom à gauche et des
-détails dans les autres colonnes :</para>
+détails dans les autres colonnes :</para>
 
     <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -259,7 +257,7 @@ les éléments identiques en les copiant d'un côté vers l'autre. Le résultat
 devient alors <literal>Identique</literal>.</para>
 
     <para>Si un fichier existe des deux côtés (et n'est pas binaire), il peut être
-ouvert pour comparaison via ces méthodes :<itemizedlist>
+ouvert pour comparaison via ces méthodes :<itemizedlist>
         <listitem>
           <simpara>Cliquez sur <menuchoice> <guimenuitem>Comparer</guimenuitem>
 <guimenuitem>Fusionner</guimenuitem> </menuchoice> dans le menu WinMerge.</simpara>
@@ -322,11 +320,10 @@ similaires soient toujours alignées verticalement. C'est une particularité
 de WinMerge qui nécessite un petit temps d'adaptation.</para>
       </important></para>
 
-    <para>WinMerge possède un éditeur intégré simple permettant la saisie, la copie,
-le coupage et le collage de texte de base. Si l'option <guilabel>Actualiser
-automatiquement</guilabel> est activée, les différences se mettent à jour
-pendant l'édition. Sinon, rafraîchissez via <menuchoice>
-<guimenu>Affichage</guimenu> <guimenuitem>Actualiser</guimenuitem>
+    <para>WinMerge possède un éditeur intégré simple. Si le <guilabel>Rescan
+automatique</guilabel> est activé, les différences se mettent à jour pendant
+l'édition. Sinon, rafraîchissez via <menuchoice>
+<guimenu>Affichage</guimenu> <guimenuitem>Rafraîchir</guimenuitem>
 </menuchoice>, le bouton <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>

@@ -9,7 +9,7 @@
 exemple, vous pouvez utiliser un plug-in pour extraire les données
 textuelles de fichiers MS Word afin que WinMerge puisse les comparer.</para>
   
-  <para>Chaque plug-in est :<indexterm>
+  <para>Chaque plug-in est :<indexterm>
       <primary>installer des plug-ins</primary>
     </indexterm></para>
 
@@ -26,7 +26,7 @@ peuvent être installés pour vous par WinMerge.</para>
     </listitem>
 
     <listitem>
-      <para>Facile à installer : pour installer un plug-in non inclus dans
+      <para>Facile à installer : pour installer un plug-in non inclus dans
 l'installation de WinMerge, il suffit de copier le fichier du plug-in dans
 <filename class="directory">MergePlugins</filename>. Le plug-in sera
 disponible à la prochaine ouverture de WinMerge. Vous pouvez trouver
@@ -37,7 +37,7 @@ d'autres plug-ins sur le Web, écrits par d'autres développeurs.</para>
   <section>
     <title>Types de plug-ins</title>
 
-    <para>Les plug-ins sont regroupés en trois catégories principales :</para>
+    <para>Les plug-ins sont regroupés en trois catégories principales :</para>
 
     <variablelist>
       <varlistentry>
@@ -53,13 +53,13 @@ comparaison de fichiers.</para>
       </varlistentry>
 
       <varlistentry>
-        <term>Décompresseur : transforme un fichier en format texte<indexterm>
+        <term>Décompresseur : transforme un fichier en format texte<indexterm>
             <primary>plug-ins de décompression</primary>
           </indexterm></term>
 
         <listitem>
           <para>Ce type de plug-in transforme un fichier compressé en un format visualisable
-en le décompressant. Le fichier original n'est pas modifié : un fichier
+en le décompressant. Le fichier original n'est pas modifié : un fichier
 temporaire transformé est créé et chargé dans WinMerge.</para>
 
           <para>Les plug-ins décompresseurs opèrent sur des fichiers entiers, et non sur du
@@ -86,16 +86,16 @@ les situations, et vous êtes sûr d'avoir le même résultat lorsque vous
 comparez un dossier ou lorsque vous fusionnez deux versions d'un fichier.</para>
           </note>
 
-          <para>Exemple de plug-in : <xref linkend="CompareMSExcelFiles" /> affiche le
+          <para>Exemple de plug-in : <xref linkend="CompareMSExcelFiles" /> affiche le
 contenu textuel d'un fichier <trademark
 class="registered">Microsoft</trademark> <application>Excel</application>.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Prediffer : précompare les fichiers pour masquer certaines
+        <term>Prediffer : prétraite les fichiers pour masquer certaines
 différences<indexterm>
-            <primary>plug-ins précomparateur</primary>
+            <primary>plug-ins prediffer</primary>
           </indexterm></term>
 
         <listitem>
@@ -104,7 +104,7 @@ fenêtre de comparaison. Il opère à la place sur des copies temporaires des
 fichiers, lesquelles sont ensuite analysées pour créer la liste des
 différences.</para>
 
-          <para>Exemple de plug-in : <xref linkend="IgnoreColumns" /> ignore les différences
+          <para>Exemple de plug-in : <xref linkend="IgnoreColumns" /> ignore les différences
 à l'intérieur de colonnes spécifiées, tout en affichant les caractères dans
 ces colonnes.</para>
         </listitem>
@@ -119,16 +119,15 @@ ces colonnes.</para>
 donné ? Chaque plug-in spécifie une liste d'extensions de fichiers
 (également répertoriée dans la section <xref linkend="Plugins_available" />
 de chaque plug-in, sous <citetitle>Filtre de fichier</citetitle>). Les
-extensions servent à associer un ou plusieurs types de fichiers au plug-in :
+extensions servent à associer un ou plusieurs types de fichiers au plug-in :
 lorsqu'une extension de fichier comparé correspond à une extension de la
 liste du plug-in, le plug-in est considéré comme un <firstterm>plug-in
 suggéré</firstterm></para>
 
-    <para>Il existe des options WinMerge distinctes pour les types de décompression et
-de précomparaison, décrites plus loin dans cette rubrique, qui vous
-permettent d'appliquer les plug-ins soit manuellement, soit
-automatiquement. Il n'y a pas de mode automatique pour les plug-ins de
-complément d'éditeur.</para>
+    <para>Il existe des options WinMerge distinctes pour les types de décompactage et
+de de prediffer, décrites plus loin dans cette rubrique, qui vous permettent
+d'appliquer les plug-ins soit manuellement, soit automatiquement. Il n'y a
+pas de mode automatique pour les plug-ins de complément d'éditeur.</para>
 
     <para>Lorsque vous appliquez des plug-ins à un fichier sélectionné en utilisant le
 mode automatique, WinMerge recherche dans sa liste de plug-ins suggérés pour
@@ -151,12 +150,12 @@ comparaison de fichiers</title>
 
       <para>Le curseur étant placé dans l'un des volets de la fenêtre de comparaison de
 fichiers, cliquez sur <menuchoice> <guimenu>Plug-ins</guimenu>
-<guisubmenu>Appliquer un script</guisubmenu> </menuchoice> et choisissez
-l'une de ces fonctions :</para>
+<guisubmenu>Scripts</guisubmenu> </menuchoice> et choisissez l'une de ces
+fonctions :</para>
 
       <itemizedlist>
         <listitem>
-          <para><function>Mettre en MAJUSCULES</function></para>
+          <para><function>Mettre en majuscules</function></para>
         </listitem>
 
         <listitem>
@@ -204,11 +203,11 @@ l'une de ces fonctions :</para>
         </listitem>
 
         <listitem>
-          <para><function>Tokeniser...</function></para>
+          <para><function>Découper en jetons...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Rogner les espaces</function></para>
+          <para><function>Supprimer les espaces</function></para>
         </listitem>
 
         <listitem>
@@ -240,14 +239,14 @@ sur automatique ou manuel.</para>
       <itemizedlist>
         <listitem>
           <para>Pour définir le mode automatique pour ce type de plug-in, cliquez sur
-<menuchoice> <guimenu>Plug-ins</guimenu> <guimenuitem>Décompression
+<menuchoice> <guimenu>Plug-ins</guimenu> <guimenuitem>Décompactage
 automatique</guimenuitem> </menuchoice>.</para>
         </listitem>
 
         <listitem>
           <para>Pour définir le mode manuel, cliquez sur <menuchoice>
-<guimenu>Plug-ins</guimenu> <guimenuitem>Décompression
-manuelle</guimenuitem> </menuchoice>.</para>
+<guimenu>Plug-ins</guimenu> <guimenuitem>Décompactage manuel</guimenuitem>
+</menuchoice>.</para>
         </listitem>
       </itemizedlist>
 
@@ -257,11 +256,11 @@ comparaison de dossiers en utilisant le nouveau paramètre.</para>
       <section>
         <title>Utiliser le mode automatique</title>
 
-        <para>Pour appliquer des plug-ins lorsque la décompression automatique est
-activée, lancez simplement une opération de comparaison sur un fichier dans
-la fenêtre de comparaison de dossiers. Si un plug-in décompresseur est
-suggéré pour le type de fichier, il prétraite le fichier avant que WinMerge
-ne l'ouvre dans la fenêtre de comparaison de fichiers.</para>
+        <para>Pour appliquer des plug-ins lorsque le décompactage automatique est activé,
+lancez simplement une opération de comparaison sur un fichier dans la
+fenêtre de comparaison de dossiers. Si un plug-in décompresseur est suggéré
+pour le type de fichier, il prétraite le fichier avant que WinMerge ne
+l'ouvre dans la fenêtre de comparaison de fichiers.</para>
 
         <para>Par exemple, supposons que vous fassiez un clic droit sur un fichier MS Word
 <filename>doc</filename> et que vous choisissiez
@@ -278,7 +277,7 @@ l'ouvre dans la fenêtre de comparaison de fichiers.</para>
 celui sélectionné pour vous en mode automatique. Vous pouvez également
 lancer la comparaison sans utiliser de plug-in.</para>
 
-        <para>Pour appliquer des plug-ins lorsque la décompression manuelle est activée :</para>
+        <para>Pour appliquer des plug-ins lorsque le décompactage manuel est activé :</para>
 
         <orderedlist>
           <listitem>
@@ -290,11 +289,11 @@ lancer la comparaison sans utiliser de plug-in.</para>
 avec le décompresseur</guimenuitem> </menuchoice>.</para>
 
             <para>Cet élément de menu n'est activé que si le type du fichier sélectionné est
-pris en charge par un plug-in de décompression disponible.</para>
+pris en charge par un plug-in de décompactage disponible.</para>
           </listitem>
 
           <listitem>
-            <para>Dans la boîte de dialogue Sélectionner un décompresseur :</para>
+            <para>Dans la boîte de dialogue Sélectionner un décompresseur :</para>
 
             <xi:include href="select_unpacker.xml"
                         xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -320,31 +319,30 @@ dossiers. Voir <xref linkend="Open_paths_unpacker" /> pour plus de détails.</pa
     </section>
 
     <section>
-      <title>Appliquer des plug-ins précomparateur dans la fenêtre de comparaison de
-dossiers</title>
+      <title>Appliquer des plug-ins prediffer dans la fenêtre de comparaison de dossiers</title>
 
-      <para>Avec les plug-ins précomparateur, vous réglez le mode
+      <para>Avec les plug-ins prediffer, vous réglez le mode
 (<firstterm>&lt;Automatique&gt;</firstterm> ou
 <firstterm>&lt;Aucun&gt;</firstterm>) ou le nom du plug-in pour des fichiers
 individuels. (Contrairement aux plug-ins décompresseurs, où vous réglez le
 mode pour tous les fichiers.) C'est-à-dire que certains fichiers d'un même
-dossier peuvent avoir des modes précomparateur différents.</para>
+dossier peuvent avoir des modes prediffer différents.</para>
 
       <para>Pour régler le mode pour un ou plusieurs fichiers dans la fenêtre de
 comparaison de dossiers, faites un clic droit sur les fichiers et choisissez
 <menuchoice> <guimenu>Paramètres des plug-ins</guimenu>
-<guisubmenu>Paramètres de précomparaison</guisubmenu> </menuchoice>, puis
-choisissez l'une des options du sous-menu :</para>
+<guisubmenu>Paramètres Prediffer</guisubmenu> </menuchoice>, puis choisissez
+l'une des options du sous-menu :</para>
 
       <itemizedlist>
         <listitem>
           <para><guisubmenu>&lt;Automatique&gt;</guisubmenu> sélectionne le premier plug-in
-précomparateur disponible pour le type de fichier.</para>
+prediffer disponible pour le type de fichier.</para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu>&lt;Aucun&gt;</guisubmenu> signifie qu'aucun plug-in
-précomparateur n'est utilisé.</para>
+          <para><guisubmenu>&lt;Aucun&gt;</guisubmenu> signifie qu'aucun plug-in prediffer
+n'est utilisé.</para>
         </listitem>
       </itemizedlist>
 
@@ -356,51 +354,47 @@ mode est toujours réinitialisé sur <guimenuitem>&lt;Aucun&gt;</guimenuitem>.</
       </note>
 
       <para>Lorsque vous ouvrez un fichier à partir de la fenêtre de comparaison de
-dossiers, votre paramètre précomparateur pour ce fichier est appliqué avant
+dossiers, votre paramètre prediffer pour ce fichier est appliqué avant
 l'ouverture de la fenêtre de comparaison de fichiers.</para>
     </section>
 
     <section>
-      <title>Appliquer des plug-ins précomparateur dans la fenêtre de comparaison de
-fichiers</title>
+      <title>Appliquer des plug-ins prediffer dans la fenêtre de comparaison de fichiers</title>
 
       <para>Dans la fenêtre de comparaison de fichiers, vous pouvez appliquer un plug-in
-précomparateur en cliquant sur <menuchoice> <guimenu>Plug-ins</guimenu>
-<guisubmenu>Précomparateur</guisubmenu> </menuchoice> et en choisissant l'un
-des plug-ins de la liste. Les plug-ins suggérés sont indiqués en haut de la
+prediffer en cliquant sur <menuchoice> <guimenu>Plug-ins</guimenu>
+<guisubmenu>Prediffer</guisubmenu> </menuchoice> et en choisissant l'un des
+plug-ins de la liste. Les plug-ins suggérés sont indiqués en haut de la
 liste. Les fichiers sont comparés à nouveau après l'application du plug-in,
 vous n'avez donc pas besoin de réanalyser les fichiers.</para>
     </section>
 
     <section>
-      <title>Utilisation de pipelines de plug-ins</title>
+      <title>Using plugin pipelines</title>
 
-      <para>Les pipelines de plug-ins permettent d'enchaîner plusieurs plug-ins et
-expressions de filtre en utilisant le caractère « pipe »
-(<keycap>|</keycap>) comme séparateur. Ces pipelines peuvent être utilisés
-avec tous les types de plug-ins : plug-ins de décompression (unpacker), de
-précomparaison (prediffer) et de complément d'édition (editor complement).</para>
+      <para>Plugin pipelines allow you to chain multiple plugins and filter expressions
+using the pipe character (<keycap>|</keycap>) as a separator.  Plugin
+pipelines can be used with all plugin types: unpacker, prediffer, and editor
+complement plugins.</para>
 
-      <para>Les plug-ins sont spécifiés par leur nom. Par exemple :</para>
+      <para>Plugins are specified by their names. For example:</para>
 
       <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
 
-      <para>Les expressions de filtre peuvent également être utilisées dans les
-pipelines de plug-ins en les faisant précéder du préfixe
-<literal>le:</literal>. Par exemple :</para>
+      <para>Filter expressions can also be used in plugin pipelines by prefixing them
+with <literal>le:</literal>. For example:</para>
 
       <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
 
       <para>Consultez <xref linkend="FilterExpression_Syntax" /> pour connaître les
 fonctions et opérateurs d'expression de filtre disponibles.</para>
 
-      <para>Vous pouvez spécifier un pipeline de plug-ins dans la boîte de dialogue
-<guibutton>Sélectionner un plug-in</guibutton> en saisissant l'expression du
-pipeline.</para>
+      <para>You can specify a plugin pipeline in the <guibutton>Select
+Plugin</guibutton> dialog by entering the pipeline expression.</para>
 
-      <para>Lorsqu'une chaîne de plug-ins est déjà sélectionnée, vous pouvez y ajouter
-un plug-in en maintenant la touche <keycap>Ctrl</keycap> enfoncée tout en
-cliquant sur le plug-in dans un menu de sélection.</para>
+      <para>When a plugin pipeline is already selected, you can append a plugin to it by
+holding down the <keycap>Ctrl</keycap> key while clicking the plugin in a
+plugin selection menu.</para>
     </section>
   </section>
 
@@ -888,7 +882,7 @@ class="extension">*.pot</filename></seg>
           <primary>Fichier du plug-in QueryCSV</primary>
         </indexterm></filename></title>
 
-      <para>Requêteur CSV avec la commande q</para>
+      <para>Requêtes CSV avec la commande q</para>
 
       <cmdsynopsis sepchar=" ">
 <command>QueryCSV</command> <arg choice="opt"
@@ -937,7 +931,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <primary>Fichier du plug-in QueryTSV</primary>
         </indexterm></filename></title>
 
-      <para>Requêteur TSV avec la commande q</para>
+      <para>Requêtes TSV avec la commande q</para>
 
       <cmdsynopsis sepchar=" ">
 <command>QueryTSV</command> <arg choice="opt"
@@ -986,7 +980,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <primary>Fichier du plug-in QueryJSON</primary>
         </indexterm></filename></title>
 
-      <para>Requêteur JSON avec la commande jq</para>
+      <para>Requêtes JSON avec la commande jq</para>
 
       <cmdsynopsis sepchar=" ">
 <command>QueryJSON</command> <arg choice="opt"
@@ -1035,7 +1029,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <primary>Fichier du plug-in QueryYAML</primary>
         </indexterm></filename></title>
 
-      <para>Requêteur YAML avec la commande yq</para>
+      <para>Requêtes YAML avec la commande yq</para>
 
       <cmdsynopsis sepchar=" ">
 <command>QueryYAML</command> <arg choice="opt"
@@ -1625,7 +1619,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dépendance</segtitle>
 
           <seglistitem>
-            <seg>Gestionnaire de protocoles d'URL</seg>
+            <seg>Gestionnaire de protocoles d’URL</seg>
 
             <seg>^http://.*$, ^https://.*$</seg>
 
@@ -1645,7 +1639,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <primary>Fichier du plugin HandleSchemeReg</primary>
         </indexterm></filename></title>
 
-      <para>Gestionnaire de schéma d'URL dans le Registre Windows utilisant reg.exe</para>
+      <para>Gestionnaire de schéma d’URL dans le Registre Windows utilisant reg.exe</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeReg</command> <arg choice="opt"
@@ -1674,7 +1668,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dépendance</segtitle>
 
           <seglistitem>
-            <seg>Gestionnaire de protocoles d'URL</seg>
+            <seg>Gestionnaire de protocoles d’URL</seg>
 
             <seg>^reg:.*$</seg>
 
@@ -1694,7 +1688,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <primary>Fichier du plug-in HandleSchemeClipboard</primary>
         </indexterm></filename></title>
 
-      <para>Gestionnaire de schéma d'URL pour le presse‑papiers utilisant cliphcat</para>
+      <para>Gestionnaire de schéma d’URL pour le presse‑papiers utilisant cliphcat</para>
 
       <cmdsynopsis sepchar=" ">
 <command>HandleSchemeClipboard</command> <arg choice="opt"
@@ -1704,7 +1698,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Options de ligne de commande transmises à la commande cliphcat</para>
+            <para>Options de ligne de commande transmises à la commande msgcat</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1723,7 +1717,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <segtitle>Dépendance</segtitle>
 
           <seglistitem>
-            <seg>Gestionnaire de protocoles d'URL</seg>
+            <seg>Gestionnaire de protocoles d’URL</seg>
 
             <seg>^clip://.*$, ^clipboard://.*$</seg>
 
@@ -2089,8 +2083,8 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>motifs</replaceable></arg>
-<arg><option>-F</option> <replaceable>chaîne fixe</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+<arg><option>-F</option> <replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2138,7 +2132,7 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>utiliser une chaîne fixe pour la correspondance</para>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 
@@ -2187,14 +2181,14 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>motifs</replaceable></arg> <arg><option>-F</option>
-<replaceable>chaîne fixe</replaceable></arg></cmdsynopsis>
+<replaceable>patterns</replaceable></arg> <arg><option>-F</option>
+<replaceable>fixed string</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
           <term><option><replaceable>plages</replaceable></option></term>
           <listitem>
-            <para>liste des plages de lignes à sélectionner (p. ex. -3,5-10,30-)</para>
+            <para>liste des plages de lignes à sélectionner (ex: -3,5-10,30-)</para>
           </listitem>
         </varlistentry>
 
@@ -2229,7 +2223,7 @@ rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>utiliser une chaîne fixe pour la correspondance</para>
+            <para>use fixed string for matching</para>
           </listitem>
         </varlistentry>
 
@@ -2353,7 +2347,7 @@ rep="norepeat"><replaceable>motifs</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option><replaceable>motifs</replaceable></option></term>
           <listitem>
-            <para>expression régulière pour la segmentation (p. ex. [^\w]+)</para>
+            <para>expression régulière pour la segmentation (ex: [^\w]+)</para>
           </listitem>
         </varlistentry>
 
@@ -2393,7 +2387,7 @@ rep="norepeat"><replaceable>motifs</replaceable></arg></cmdsynopsis>
           <primary>Fichier du plug-in Trim</primary>
         </indexterm></filename></title>
 
-      <para>Rogner les espaces</para>
+      <para>Supprimer les espaces</para>
 
       <para><segmentedlist>
           <segtitle>Catégorie</segtitle>
@@ -2432,21 +2426,21 @@ rep="norepeat"><replaceable>motifs</replaceable></arg></cmdsynopsis>
       <para>Ce plug-in ignore les caractères aux colonnes spécifiées. La première
 colonne est la numéro 1.</para>
 
-      <para>Notez que ce plug-in ne supporte pas les fichiers contenant des
-tabulations : le plug-in n'échouera pas, mais toutes les tabulations seront
-traitées comme des caractères normaux.</para>
+      <para>Notez que ce plug-in ne supporte pas les fichiers contenant des tabulations
+: le plug-in n'échouera pas, mais toutes les tabulations seront traitées
+comme des caractères normaux.</para>
 
       <para>Pour spécifier les colonnes, utilisez la boîte de dialogue des paramètres du
 plug-in ou renommez la <filename>dll</filename> en utilisant les champs
-suivants comme paramètres :</para>
+suivants comme paramètres :</para>
 
       <itemizedlist>
         <listitem>
-          <simpara>Délimiteurs entre les plages : _ ou ,</simpara>
+          <simpara>Délimiteurs entre les plages : _ ou ,</simpara>
         </listitem>
 
         <listitem>
-          <simpara>Délimiteurs entre min et max : <emphasis>n'importe quoi d'autre</emphasis></simpara>
+          <simpara>Délimiteurs entre min et max : <emphasis>n'importe quoi d'autre</emphasis></simpara>
         </listitem>
 
         <listitem>
@@ -2490,7 +2484,7 @@ suivants comme paramètres :</para>
           <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
 
           <seglistitem>
-            <seg>Précomparateur</seg>
+            <seg>Pré-différenciateur</seg>
 
             <seg><filename class="extension">*.txt</filename></seg>
 
@@ -2518,7 +2512,7 @@ les fichiers C, C++, PHP et JavaScript.</para>
           <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
 
           <seglistitem>
-            <seg>Précomparateur</seg>
+            <seg>Pré-différenciateur</seg>
 
             <seg><filename class="extension">*.cpp</filename>, <filename
 class="extension">*.cxx</filename>, <filename
@@ -2560,7 +2554,7 @@ champs de paramètres que pour <xref linkend="IgnoreColumns" />.</para>
           <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
 
           <seglistitem>
-            <seg>Précomparateur</seg>
+            <seg>Pré-différenciateur</seg>
 
             <seg><filename class="extension">*.csv</filename></seg>
 
@@ -2596,7 +2590,7 @@ champs de paramètres que pour <xref linkend="IgnoreColumns" />.</para>
           <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
 
           <seglistitem>
-            <seg>Précomparateur</seg>
+            <seg>Pré-différenciateur</seg>
 
             <seg><filename class="extension">*.txt</filename></seg>
 
@@ -2627,7 +2621,7 @@ exemple, les fichiers NC et BASIC).</para>
           <segtitle>Exigence</segtitle>
 
           <seglistitem>
-            <seg>Précomparateur</seg>
+            <seg>Pré-différenciateur</seg>
 
             <seg><filename class="extension">*.nc</filename></seg>
 
@@ -2644,11 +2638,11 @@ exemple, les fichiers NC et BASIC).</para>
         </indexterm></filename></title>
 
       <para>Ajoute certaines fonctions au menu <menuchoice> <guimenu>Plug-ins</guimenu>
-<guisubmenu>Appliquer un script</guisubmenu> </menuchoice> :</para>
+<guisubmenu>Scripts</guisubmenu> </menuchoice> :</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>Mettre en MAJUSCULES</guimenuitem> convertit la sélection en
+          <simpara><guimenuitem>Mettre en majuscules</guimenuitem> convertit la sélection en
 MAJUSCULES.</simpara>
         </listitem>
 
@@ -2668,13 +2662,13 @@ dupliquées dans la sélection et insère le nombre de doublons sur la droite.</
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Trier les lignes par ordre croissant</guimenuitem> trie la
-sélection par ordre croissant.</simpara>
+          <simpara><guimenuitem>Trier les lignes (croissant)</guimenuitem> trie la sélection
+par ordre croissant.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Trier les lignes par ordre décroissant</guimenuitem> trie la
-sélection par ordre décroissant.</simpara>
+          <simpara><guimenuitem>Trier les lignes (décroissant)</guimenuitem> trie la sélection
+par ordre décroissant.</simpara>
         </listitem>
 
         <listitem>
@@ -2709,13 +2703,13 @@ dans l'argument remplace celui-ci par le nom du fichier du volet actif.</simpara
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Tokeniser...</guimenuitem> remplace le délimiteur de jeton par
-un saut de ligne dans la sélection.</simpara>
+          <simpara><guimenuitem>Segmenter (Tokenize)...</guimenuitem> remplace le délimiteur de
+jeton par un saut de ligne dans la sélection.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Rogner les espaces</guimenuitem> supprime les espaces au début
-et à la fin des lignes de la sélection.</simpara>
+          <simpara><guimenuitem>Supprimer les espaces</guimenuitem> supprime les espaces au
+début et à la fin des lignes de la sélection.</simpara>
         </listitem>
       </itemizedlist>
 
@@ -2738,7 +2732,7 @@ et à la fin des lignes de la sélection.</simpara>
         </indexterm></filename></title>
 
       <para>Ajoute deux fonctions au menu <menuchoice> <guimenu>Plug-ins</guimenu>
-<guisubmenu>Scripts</guisubmenu> </menuchoice> :</para>
+<guisubmenu>Scripts</guisubmenu> </menuchoice> :</para>
 
       <itemizedlist>
         <listitem>

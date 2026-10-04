@@ -20,19 +20,19 @@ de commandes, des scripts ou un autre programme. En résumé, tout programme
 permettant d'appeler un exécutable externe avec au moins un chemin peut
 lancer WinMerge.</para>
 
-    <para>En voici quelques exemples :</para>
+    <para>En voici quelques exemples :</para>
 
     <itemizedlist>
       <listitem>
         <para>Un fichier batch peut lancer WinMerge et permettre aux utilisateurs de
-spécifier des paramètres de manière interactive :</para>
+spécifier des paramètres de manière interactive :</para>
 
         <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
       </listitem>
 
       <listitem>
         <para>Le client Subversion vous permet d'appeler un programme de diff externe et
-de lui passer des paramètres, comme ceci :</para>
+de lui passer des paramètres, comme ceci :</para>
 
         <literallayout>$ svn diff --diff-cmd "C:\Program Files\WinMerge\WinMergeU.exe" -x "-dl -dr" monfichier </literallayout>
       </listitem>
@@ -104,7 +104,7 @@ du fichier chargées.</para>
           </listitem>
         </orderedlist><para>L'option <menuchoice> <guimenu>TortoiseSVN</guimenu>
 <guimenuitem>Diff</guimenuitem> </menuchoice> fonctionne pour n'importe
-quelle paire de fichiers. Pour illustrer :</para>
+quelle paire de fichiers. Pour illustrer :</para>
 
 <orderedlist>
           <listitem>
@@ -129,7 +129,7 @@ Visual Studio pour TFS. La procédure est similaire pour d'autres systèmes.</pa
 <orderedlist>
           <listitem>
             <para>Dans Visual Studio, allez dans le menu <menuchoice>
-<guimenu>Outils</guimenu> <guimenuitem>Préférences...</guimenuitem>
+<guimenu>Outils</guimenu> <guimenuitem>Options...</guimenuitem>
 </menuchoice>.</para>
           </listitem>
 		  
@@ -169,7 +169,7 @@ format="PNG" /> </imageobject></mediaobject>
                 <para>Arguments: /e /u /dl %6 /dr %7 %1 %2</para>
               </listitem>
             </itemizedlist>
-			<para>Où {Path to WinMerge} est le dossier d'installation. Par défaut : C:\Program
+			<para>Où {Path to WinMerge} est le dossier d'installation. Par défaut : C:\Program
 Files (x86)\WinMerge\WinMergeU.exe</para>
 			<para>Les arguments sont décrits dans la section <xref linkend="Command_line" />.</para>
           </listitem>

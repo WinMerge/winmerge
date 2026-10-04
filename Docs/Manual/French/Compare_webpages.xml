@@ -29,14 +29,14 @@ de la fenêtre de WinMerge, soit à partir d'une fenêtre d'invite de commande.<
         <listitem>
           <para>
 Cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Ouvrir...</guimenuitem> </menuchoice>. Spécifiez les deux ou
-trois URL que vous souhaitez comparer dans la boîte de dialogue «
-Sélectionner des fichiers ou dossiers » et sélectionnez l'élément de menu
+<guimenuitem>Ouvrir</guimenuitem> </menuchoice>. Spécifiez les deux ou trois
+URL que vous souhaitez comparer dans la boîte de dialogue « Sélectionner des
+fichiers ou des dossiers » et sélectionnez l'élément de menu
 <guimenuitem>Page Web</guimenuitem> dans le menu déroulant du bouton
 <guibutton>Comparer</guibutton>. <mediaobject>
 <imageobject> <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
 </imageobject><textobject>
-                <phrase>Fenêtre Sélectionner des fichiers ou dossiers</phrase>
+                <phrase>Fenêtre Sélectionner des fichiers ou des dossiers</phrase>
               </textobject>
             </mediaobject></para>
         </listitem>
@@ -58,7 +58,7 @@ plus d'informations sur l'utilisation de la ligne de commande, consultez
 
             <para>
 <userinput> "C:\Program Files\WinMerge\WinMergeU.exe" /t webpage
-https://example.net https://example.com </userinput></para>
+https://exemple.net https://exemple.com </userinput></para>
           </example>
 
         </listitem>
@@ -83,7 +83,7 @@ https://example.net https://example.com </userinput></para>
 Lorsque la fenêtre de comparaison de pages Web s'affiche, le menu Page Web
 est ajouté à la barre de menus. Les éléments de ce menu sont les
 suivants. Une partie des fonctionnalités de ces éléments est également
-disponible dans le volet de localisation.</para>
+disponible dans le volet Emplacement.</para>
 
     <section>
       <title>
@@ -93,7 +93,7 @@ Menu Page Web<indexterm>
 
       <variablelist>
         <varlistentry>
-          <term>Voir les différences</term>
+          <term>Afficher les différences</term>
           <listitem>
             <para>
 Active ou désactive la coloration des différences de texte pour les pages
@@ -121,7 +121,7 @@ compare dans la fenêtre de comparaison d'images.</para>
    
         <variablelist>
           <varlistentry>
-            <term>Captures d'écran en taille réelle</term>
+            <term>Captures d'écran pleine taille</term>
             <listitem>
               <para>
 Crée des images de toute la zone des pages Web et les compare dans la
@@ -132,7 +132,7 @@ fenêtre de comparaison d'images.</para>
    
         <variablelist>
           <varlistentry>
-            <term>HTMLs</term>
+            <term>HTML</term>
             <listitem>
               <para>
 Compare le contenu HTML des pages Web dans la fenêtre de comparaison de
@@ -154,7 +154,7 @@ de comparaison de fichiers.</para>
    
         <variablelist>
           <varlistentry>
-            <term>Arborescences de ressources</term>
+            <term>Arborescences des ressources</term>
             <listitem>
               <para>
 Compare les arborescences de ressources des pages Web dans la fenêtre de
@@ -195,13 +195,13 @@ Modifie la taille d'affichage de la page Web à la taille spécifiée.</para>
    
       <section>
         <title>
-Menu Synchro. événements<indexterm>
-            <primary>Menu Synchro. événements</primary>
+Menu Synchro d'événements<indexterm>
+            <primary>Menu Synchro d'événements</primary>
           </indexterm></title>
    
         <variablelist>
           <varlistentry>
-            <term>Activée</term>
+            <term>Activé</term>
             <listitem>
               <para>
 Active ou désactive la fonction de synchronisation d'événements tels que le
@@ -235,14 +235,14 @@ Active ou désactive la synchronisation du clic.</para>
             <term>Saisie</term>
             <listitem>
               <para>
-Active ou désactive la synchronisation de la saisie.</para>
+Active ou désactive la synchronisation de la saisie (Input).</para>
             </listitem>
           </varlistentry>
         </variablelist>
    
         <variablelist>
           <varlistentry>
-            <term>En arrière/avant</term>
+            <term>Précédent/Suivant</term>
             <listitem>
               <para>
 Active ou désactive la synchronisation du retour à la page précédente ou du
@@ -261,10 +261,10 @@ Menu Effacer les données de navigation<indexterm>
    
         <variablelist>
           <varlistentry>
-            <term>Cache du disque</term>
+            <term>Cache disque</term>
             <listitem>
               <para>
-Efface uniquement le cache du disque des données de navigation.</para>
+Efface uniquement le cache disque des données de navigation.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -291,7 +291,7 @@ Efface uniquement l'historique de navigation des données de navigation.</para>
    
         <variablelist>
           <varlistentry>
-            <term>Tous les profils</term>
+            <term>Tout le profil</term>
             <listitem>
               <para>
 Efface toutes les données de navigation.</para>

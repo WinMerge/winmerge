@@ -24,7 +24,7 @@ fenêtre de WinMerge, soit à partir d'une fenêtre d'invite de commande.</para>
 
         <listitem>
           <para>Cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Ouvrir...</guimenuitem> </menuchoice>. Utilisez la boîte de
+<guimenuitem>Ouvrir</guimenuitem> </menuchoice>. Utilisez la boîte de
 dialogue Sélectionner des fichiers ou des dossiers pour spécifier les images
 sources de gauche et de droite à comparer. Pour plus de détails sur la boîte
 de dialogue Sélectionner des fichiers ou des dossiers, consultez <xref
@@ -50,7 +50,7 @@ linkend="Command_line" />.</para>
     <title>Fenêtre de comparaison d'images</title>
 
     <para>WinMerge prend en charge de nombreux types d'images et peut mettre en
-évidence les différences avec des blocs. Le recouvrement des images est
+évidence les différences avec des blocs. La superposition des images est
 également possible.</para>
 
     <mediaobject>
@@ -60,27 +60,27 @@ linkend="Command_line" />.</para>
       </textobject>
     </mediaobject>
 
-    <para>Vous pouvez définir la plupart des options dans le <guilabel>Volet de
-localisation</guilabel> :</para>
+    <para>Vous pouvez définir la plupart des options dans le <guilabel>Volet
+Emplacement</guilabel> :</para>
 
     <section>
       <title>Différence<indexterm>
-        <primary>Différences</primary>
+        <primary>Diff</primary>
       </indexterm></title>
 
       <variablelist>
         <varlistentry>
-          <term>Surbrillance</term>
+          <term>Mettre en évidence</term>
           <listitem>
-            <para>Avec la case à cocher <guilabel>Surbrillance</guilabel>, vous pouvez activer
-ou désactiver la mise en évidence des différences d'image.</para>
+            <para>Avec la case à cocher <guilabel>Mettre en évidence</guilabel>, vous pouvez
+activer ou désactiver la mise en évidence des différences d'image.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>Clignotement</term>
           <listitem>
-            <para>Si la surbrillance est activée, vous pouvez même la faire clignoter en
+            <para>Si la mise en évidence est activée, vous pouvez même la faire clignoter en
 cochant la case <guilabel>Clignotement</guilabel>.</para>
           </listitem>
         </varlistentry>
@@ -102,20 +102,20 @@ alpha (transparence) des blocs.</para>
         </varlistentry>
 
         <varlistentry>
-          <term>Seuil CD</term>
+          <term>Seuil de distance de couleur</term>
           <listitem>
-            <para>Le curseur <guilabel>CD</guilabel> règle le <emphasis>Seuil CD</emphasis>
-(distance de couleur), ce qui aide à ignorer les légères différences de
+            <para>Le curseur <guilabel>CD</guilabel> règle le <emphasis>Seuil de distance de
+couleur</emphasis>, ce qui aide à ignorer les légères différences de
 couleur.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Détection Inser/Suppr</term>
+          <term>Détection Insertion/Suppression</term>
           <listitem>
             <para>À déterminer</para>
             <itemizedlist>
-              <listitem><guilabel>Aucun</guilabel></listitem>
+              <listitem><guilabel>Aucune</guilabel></listitem>
               <listitem><guilabel>Verticale</guilabel></listitem>
               <listitem><guilabel>Horizontale</guilabel></listitem>
             </itemizedlist>
@@ -127,21 +127,21 @@ couleur.</para>
     </section>
 
     <section>
-      <title>Recouvrement<indexterm>
-        <primary>Recouvrement</primary>
+      <title>Superposition<indexterm>
+        <primary>Superposition</primary>
       </indexterm></title>
 
       <variablelist>
         <varlistentry>
           <term>Mode</term>
           <listitem>
-            <para>Actuellement, les <emphasis>Modes de recouvrement</emphasis> suivants sont
-possibles :</para>
+            <para>Actuellement, les <emphasis>Modes de superposition</emphasis> suivants sont
+possibles :</para>
             <itemizedlist>
-              <listitem><guilabel>Aucun</guilabel></listitem>
+              <listitem><guilabel>Aucune</guilabel></listitem>
               <listitem><guilabel>XOR</guilabel></listitem>
-              <listitem><guilabel>Mélange alpha</guilabel></listitem>
-              <listitem><guilabel>Animation alpha</guilabel></listitem>
+              <listitem><guilabel>Mélange alpha (Alpha Blend)</guilabel></listitem>
+              <listitem><guilabel>Animation de mélange alpha</guilabel></listitem>
             </itemizedlist>
             <para></para>
           </listitem>
@@ -151,8 +151,8 @@ possibles :</para>
           <term>Alpha</term>
           <listitem>
             <para>Le curseur <guilabel>Alpha</guilabel> définit l'intensité du mélange alpha
-pour les modes de recouvrement <guilabel>Mélange alpha</guilabel> ou
-<guilabel>Animation alpha</guilabel>.</para>
+pour les modes de superposition <guilabel>Mélange alpha</guilabel> ou
+<guilabel>Animation de mélange alpha</guilabel>.</para>
           </listitem>
         </varlistentry>
       </variablelist>

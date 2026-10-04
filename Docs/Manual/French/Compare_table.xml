@@ -31,12 +31,12 @@ fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
     <para>L'ouverture des fichiers au format tableau dépend de la correspondance du
 nom de fichier avec les modèles définis. Par défaut, si l'extension du
 fichier est .csv ou .tsv, il sera ouvert au format tableau. Si vous
-souhaitez modifier les modèles, spécifiez-les sur la page Comparer > Tableau
-dans la boîte de dialogue Préférences.</para>
+souhaitez modifier les modèles, spécifiez-les sur la page Comparer/Tableau
+dans la boîte de dialogue Options.</para>
 
     <para>Si vous souhaitez l'ouvrir temporairement au format tableau après l'avoir
 ouvert en texte brut, cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Recomparer comme un(e)</guimenuitem>
+<guimenuitem>Recomparer comme</guimenuitem>
 <guimenuitem>Tableau</guimenuitem> </menuchoice>. Si la boîte de dialogue
 Tableau apparaît, sélectionnez le type de fichier et cliquez sur
 <guilabel>OK</guilabel>.</para>
@@ -44,7 +44,7 @@ Tableau apparaît, sélectionnez le type de fichier et cliquez sur
     <para>
 Si vous souhaitez ouvrir temporairement des fichiers qui ont été ouverts au
 format tableau en tant que fichiers texte normaux, cliquez sur <menuchoice>
-<guimenu>Fichier</guimenu> <guimenuitem>Recomparer comme un(e)</guimenuitem>
+<guimenu>Fichier</guimenu> <guimenuitem>Recomparer comme</guimenuitem>
 <guimenuitem>Texte</guimenuitem> </menuchoice>.</para>
   </section>
 
@@ -58,7 +58,7 @@ Par défaut, les données dans les fichiers texte de valeurs séparées par un
 délimiteur sont traitées comme suit<itemizedlist>
         <listitem>
           <para>Les fichiers CSV sont séparés par des virgules et les fichiers TSV par des
-tabulations. Les valeurs sont affichées par colonnes.</para>
+tabulations, et les valeurs sont affichées par colonnes.</para>
         </listitem>
         <listitem>
           <para>Toutefois, les caractères délimiteurs se trouvant dans une plage entre
@@ -73,9 +73,9 @@ guillemets sont traités comme des valeurs.</para>
 
     <para>
 Si vous souhaitez modifier les paramètres ci-dessus, vous pouvez le faire
-dans la page Comparer > Tableau de la boîte de dialogue Préférences ou dans
-la boîte de dialogue Tableau qui apparaît lors d'un clic sur <menuchoice>
-<guimenu>Fichier</guimenu> <guimenuitem>Recomparer comme un(e)</guimenuitem>
+dans la page Comparer/Tableau de la boîte de dialogue Options ou dans la
+boîte de dialogue Tableau qui apparaît lors d'un clic sur <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Recomparer comme</guimenuitem>
 <guimenuitem>Tableau</guimenuitem> </menuchoice>. Voir <xref
 linkend="Configuration_compare_table" /> pour plus de détails.</para>
 
