@@ -3922,11 +3922,18 @@ void CMainFrame::OnMRUs(UINT nID)
 	std::vector<MruHelper::RecentCompare> mrus = MruHelper::GetRecentCompares(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
 	const size_t idx = static_cast<size_t>(nID) - ID_MRU_FIRST;
 	if (idx < mrus.size())
-	{
-		// The first token is the program name, which MergeCmdLineInfo skips
-		MergeCmdLineInfo cmdInfo((_T("WinMergeU.exe ") + mrus[idx].params).c_str());
-		theApp.ParseArgsAndDoOpen(cmdInfo, this);
-	}
+		OpenRecentCompare(mrus[idx].params);
+}
+
+/**
+ * @brief Open a comparison of the recent comparison list (MruHelper::GetRecentCompares)
+ * @param [in] params Command line parameters of the entry (without the program name)
+ */
+void CMainFrame::OpenRecentCompare(const String& params)
+{
+	// The first token is the program name, which MergeCmdLineInfo skips
+	MergeCmdLineInfo cmdInfo((_T("WinMergeU.exe ") + params).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo, this);
 }
 
 void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
