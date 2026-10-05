@@ -36,17 +36,17 @@ msgstr ""
 #. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:80
 msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Válassza a Jobb\tCtrl+Shift+&2/Alt+&2 billentyűkombinációt"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr ""
+msgstr "Válassza a Balt az összes fel nem oldott ütközéshez"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr ""
+msgstr "Válassza a Jobbot az összes fel nem oldott ütközéshez"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -92,48 +92,48 @@ msgstr "Összes kijelölése\tCtrl+A"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_END_SESSION
 #: Merge.rc:93 Merge.rc:117 Merge.rc:131 Merge.rc:147
 msgid "&End Merge Session"
-msgstr ""
+msgstr "&Egyesítési munkamenet vége"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:102
 msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Válassza a Középső\tCtrl+Shift+&2/Alt+&2 billentyűkombinációt"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:103
 msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
-msgstr ""
+msgstr "Válassza a Jobb\tCtrl+Shift+&3/Alt+&3 billentyűkombinációt"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr ""
+msgstr "Válassza a Középsőt az összes fel nem oldott ütközéshez"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
 msgid "Choose Left\tCtrl+Shift+&1"
-msgstr ""
+msgstr "Válassza a Bal\tCtrl+Shift+&1 billentyűkombinációt"
 
 #. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:126
 msgid "Choose Right\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Válassza a Jobb\tCtrl+Shift+&2 billentyűkombinációt"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:140
 msgid "Choose Middle\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Válassza a Középső\tCtrl+Shift+&2 billentyűkombinációt"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:141
 msgid "Choose Right\tCtrl+Shift+&3"
-msgstr ""
+msgstr "Válassza a Jobb\tCtrl+Shift+&3 billentyűkombinációt"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
 #, c-format
 msgid "Choose %1 for Selected Differences"
-msgstr ""
+msgstr "Válassza a kiválasztott különbségekhez ezt: %1"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
 #: Merge.rc:157 Merge.rc:165
