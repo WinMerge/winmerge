@@ -3324,6 +3324,15 @@ String CMergeDoc::GetFileExt(const tchar_t* sFileName, const tchar_t* sDescripti
 {
 	String sExt;
 	paths::SplitFilename(sFileName, nullptr, nullptr, &sExt);
+	// Merge tool temp files (file.cs.LOCAL, .BASE, .REMOTE) take the type of the inner extension
+	if (strutils::compare_nocase(sExt, _T("LOCAL")) == 0 ||
+		strutils::compare_nocase(sExt, _T("BASE")) == 0 ||
+		strutils::compare_nocase(sExt, _T("REMOTE")) == 0)
+	{
+		String sInner(sFileName);
+		sInner.erase(sInner.length() - sExt.length() - 1);
+		paths::SplitFilename(sInner, nullptr, nullptr, &sExt);
+	}
 	return sExt;
 }
 

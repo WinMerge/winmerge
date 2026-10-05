@@ -454,6 +454,7 @@ public:
 
 	void SetTextType(int textType);
 	void SetTextType(const String& ext);
+	String GetFileExt(const tchar_t* sFileName, const tchar_t* sDescription) const;
 	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
 
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
@@ -596,7 +597,6 @@ private:
 		const DIFFRANGE& diffrange, const DIFFOPTIONS& diffOptions);
 	void FlagTrivialLines();
 	void FlagMovedLines();
-	String GetFileExt(const tchar_t* sFileName, const tchar_t* sDescription) const;
 	void DoFileSave(int pane);
 	String GetMergePaneRoles() const;
 };

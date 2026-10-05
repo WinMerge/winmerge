@@ -3388,8 +3388,7 @@ void CMergeEditView::RefreshOptions()
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
 		String fileName = GetDocument()->m_ptBuf[m_nThisPane]->GetTempFileName();
-		String sExt;
-		paths::SplitFilename(fileName, nullptr, nullptr, &sExt);
+		String sExt = GetDocument()->GetFileExt(fileName.c_str(), nullptr);
 		LangServices::TextDefinition* def = LangServices::GetTextType(sExt.c_str());
 		if (def != nullptr)
 			SetTextType(def->type);
