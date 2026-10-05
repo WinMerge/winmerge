@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-09-05 20:56+0000\n"
-"PO-Revision-Date: 2026-09-07 07:25+0200\n"
+"POT-Creation-Date: 2026-10-04 13:26+0000\n"
+"PO-Revision-Date: 2026-10-05 10:05+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -30,27 +30,27 @@ msgstr "LANG_LITHUANIAN, SUBLANG_DEFAULT"
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:79 Merge.rc:101
 msgid "Choose Left\tCtrl+Shift+&1/Alt+&1"
-msgstr ""
+msgstr "Pasirinkti kairę\tCtrl+Shift+&1/Alt+&1"
 
 #. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:80
 msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Pasirinkti dešinę\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr ""
+msgstr "Pasirinkti kairę visiems neišspręstiems konfliktams"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr ""
+msgstr "Pasirinkti dešinę visiems neišspręstiems konfliktams"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr "A&utomatiškai sulieti\tCtrl+Alt+M"
+msgstr "A&utomatiškai apjungti\tCtrl+Alt+M"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_UNDO
 #: Merge.rc:85 Merge.rc:109 Merge.rc:773
@@ -85,48 +85,48 @@ msgstr "P&ažymėti viską\tCtrl+A"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_END_SESSION
 #: Merge.rc:93 Merge.rc:117 Merge.rc:131 Merge.rc:147
 msgid "&End Merge Session"
-msgstr ""
+msgstr "Baigti apjungimo s&esiją"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:102
 msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Pasirinkti vidurį\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:103
 msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
-msgstr ""
+msgstr "Pasirinkti dešinę\tCtrl+Shift+&3/Alt+&3"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr ""
+msgstr "Pasirinkti vidurį visiems neišspręstiems konfliktams"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
 msgid "Choose Left\tCtrl+Shift+&1"
-msgstr ""
+msgstr "Pasirinkti kairę\tCtrl+Shift+&1"
 
 #. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:126
 msgid "Choose Right\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Pasirinkti dešinę\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:140
 msgid "Choose Middle\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Pasirinkti vidurį\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:141
 msgid "Choose Right\tCtrl+Shift+&3"
-msgstr ""
+msgstr "Pasirinkti dešinę\tCtrl+Shift+&3"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
 #, c-format
 msgid "Choose %1 for Selected Differences"
-msgstr ""
+msgstr "Pasirinkti %1 atrinktiems skirtumams"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
 #: Merge.rc:157 Merge.rc:165
@@ -1107,7 +1107,7 @@ msgstr "&Atnaujinti pažymėtą\tCtrl+F5"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:625 Merge.rc:875
 msgid "&Merge"
-msgstr "&Sulieti"
+msgstr "Apju&ngti"
 
 #. IDR_DIRDOCTYPE, ID_MERGE_COMPARE
 #: Merge.rc:627
@@ -1197,7 +1197,7 @@ msgstr "Išsaugoti &dešinįjį"
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MERGE_RESULT
 #: Merge.rc:721 Merge.rc:1332
 msgid "&Save Merge Result"
-msgstr ""
+msgstr "Iš&saugoti apjungimo rezultatą"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:723
@@ -1222,7 +1222,7 @@ msgstr "Išsaugoti &dešinįjį kaip..."
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MERGE_RESULT
 #: Merge.rc:728 Merge.rc:1337
 msgid "Save Merge Result &As..."
-msgstr ""
+msgstr "Išsaugoti apjungimo rezultatą k&aip..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_PRINT
 #: Merge.rc:731
@@ -1247,7 +1247,7 @@ msgstr "Keisti eilučių pabaigos formatą į"
 #. IDR_MERGEDOCTYPE, ID_FILE_MERGINGMODE
 #: Merge.rc:749
 msgid "Mer&ge Mode\tF9"
-msgstr "Sulieji&mo režimas\tF9"
+msgstr "Apjun&gimo režimas\tF9"
 
 #. IDR_MERGEDOCTYPE, ID_RESCAN
 #: Merge.rc:751
@@ -1427,7 +1427,7 @@ msgstr "Vi&etos polangis"
 #. IDR_MERGEDOCTYPE, ID_VIEW_MERGE_RESULT_BAR
 #: Merge.rc:870
 msgid "Merge Result Pane"
-msgstr ""
+msgstr "Apjungimo rezultatų polangis"
 
 #. IDS_OUTPUTBAR_CAPTION
 #: Merge.rc:871 Merge.rc:5366
@@ -1590,7 +1590,7 @@ msgstr "Kop&ijuoti viską į kairę"
 #. IDR_MERGEDOCTYPE, ID_MERGE_START_SESSION
 #: Merge.rc:952
 msgid "Start Merge Sess&ion"
-msgstr ""
+msgstr "Pradėti apjungimo ses&iją"
 
 #. IDR_MERGEDOCTYPE, ID_ADD_SYNCPOINT
 #: Merge.rc:955
@@ -1927,7 +1927,7 @@ msgstr "&Atverti..."
 #. IDR_POPUP_EDITOR_HEADERBAR, ID_EDITOR_SAVE_FILE
 #: Merge.rc:1173
 msgid "&Save"
-msgstr ""
+msgstr "Iš&saugoti"
 
 #. IDR_POPUP_PLUGINS_SETTINGS
 #: Merge.rc:1179
@@ -3553,7 +3553,7 @@ msgstr "Pereiti į"
 #. IDD_EDIT_GOTO, IDC_STATIC
 #: Merge.rc:2413
 msgid "&Line number:"
-msgstr ""
+msgstr "Ei&lutės numeris:"
 
 #. IDD_FILTERS_LINEFILTERS
 #: Merge.rc:2421
@@ -4137,7 +4137,7 @@ msgstr "Ž&odžių skirtukų simboliai:"
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2758
 msgid "&Use Merge Result Pane for 2/3-way merge"
-msgstr ""
+msgstr "Naudoti apjungimo rezultatų polangį 2/3 krypčių apjungimui"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2774
@@ -5499,7 +5499,7 @@ msgstr "Kad šis pranešimas būtų matomas, paspauskite „Nuostatų“ ekrano 
 #. IDS_OPTIONSPG_EDITOR_COMPAREMERGE
 #: Merge.rc:4664
 msgid "Compare/Merge"
-msgstr "Lyginimo/Suliejimo"
+msgstr "Lyginimo/Apjungimo"
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
 #: Merge.rc:4665 Merge.rc:4669
@@ -6109,7 +6109,7 @@ msgstr "Failas\n% 1\nnerastas. Norėdami tęsti, įrašykite kopiją."
 #. IDS_VIEWS_OUTOFSYNC
 #: Merge.rc:4929
 msgid "Cannot merge unsynched documents.\n\nRefresh before continuing."
-msgstr "Negalima sulieti nesinchronizuotų dokumentų.\n\nAtnaujinkite prieš tęsiant."
+msgstr "Negalima apjungti nesinchronizuotų dokumentų.\n\nAtnaujinkite prieš tęsiant."
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4934
@@ -6834,12 +6834,12 @@ msgstr "Aptikti pervardijimą ir perkėlimą"
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
 #: Merge.rc:5185
 msgid "Merge renames"
-msgstr "Sulieti pervardijimus"
+msgstr "Apjungti pervardijimus"
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
 #: Merge.rc:5186
 msgid "Merge renames and moves"
-msgstr "Sulieti pervardijimus ir perkėlimus"
+msgstr "Apjungti pervardijimus ir perkėlimus"
 
 #. IDS_RENAMED
 #: Merge.rc:5187
@@ -6866,7 +6866,7 @@ msgstr "%1 (nust. %2): "
 #. IDS_SWITCH_FLAT_MODE
 #: Merge.rc:5192
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr "Kai kurie perkelti elementai buvo sujungti.\nMedžio režimu šie elementai gali būti rodomi pozicijose, neatspindinčiose tikrosios aplanko struktūros, kas gali kelti painiavą.\nPerjungti į plokščiąjį režimą?"
+msgstr "Kai kurie perkelti elementai buvo apjungti.\nMedžio režimu šie elementai gali būti rodomi pozicijose, neatspindinčiose tikrosios aplanko struktūros, kas gali kelti painiavą.\nPerjungti į plokščiąjį režimą?"
 
 #. IDS_ELAPSED_TIME
 #: Merge.rc:5198
@@ -7038,7 +7038,7 @@ msgstr "Vidurinės pusės koduotė."
 #. IDS_COLDESC_NIDIFFS
 #: Merge.rc:5254
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
-msgstr "Ignoruotų skirtumų skaičius faile. Šie skirtumai yra „WinMerge“ ignoruoti ir negali būti sulieti."
+msgstr "Ignoruotų skirtumų skaičius faile. Šie skirtumai yra „WinMerge“ ignoruoti ir negali būti apjungti."
 
 #. IDS_COLDESC_NSDIFFS
 #: Merge.rc:5255
@@ -7211,7 +7211,7 @@ msgstr "Pereiti prie paskutinio failo?"
 #: Merge.rc:5318
 #, c-format
 msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
-msgstr "Skiriasi failų koduotės: kairiojo (cp%d), dešiniojo (cp%d).\nKiekvieno failo rodymas savoje koduotėje duos geresnį vaizdą, bet gali būti pavojingas suliejant ar kopijuojant.\nNorite, kad abu failai būtų rodomi numatytoje „Windows“ koduotėje (rekomenduojama)?"
+msgstr "Skiriasi failų koduotės: kairiojo (cp%d), dešiniojo (cp%d).\nKiekvieno failo rodymas savoje koduotėje duos geresnį vaizdą, bet gali būti pavojingas apjungiant ar kopijuojant.\nNorite, kad abu failai būtų rodomi numatytoje „Windows“ koduotėje (rekomenduojama)?"
 
 #: Merge.rc:5320
 msgid "Information lost due to encoding errors: both files"
@@ -7254,29 +7254,29 @@ msgstr "Nerasta eilutė \"%s\"."
 #. IDS_MERGE_MODE
 #: Merge.rc:5346
 msgid "Entering Merge Mode. Press F9 to turn off."
-msgstr "Dabar įeinate į Suliejimo režimą. Paspauskite F9 klavišą, jei norite išjungti."
+msgstr "Dabar įeinate į apjungimo režimą. Paspauskite F9 klavišą, jei norite išjungti."
 
 #. IDS_AUTO_MERGE
 #: Merge.rc:5352
 #, c-format
 msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-msgstr ""
+msgstr "Baigtas automatinis apjungimas.\n\n%1\n\nAutomatiškai apjungta: %2\nNeišpręsta kondfliktų: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5353
 msgid "Merge session started."
-msgstr ""
+msgstr "Pradėta apjungimo sesija."
 
 #. IDS_PANE_ROLES
 #: Merge.rc:5354
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
-msgstr ""
+msgstr "Polangių vaidmenys: Kairio=%1, Vidurinio=%2, Dešinio=%3"
 
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5355
 msgid "Codepage change merged."
-msgstr "Koduotės pasikeitimas buvo sulietas."
+msgstr "Koduotės pasikeitimas buvo apjungtas."
 
 #. IDS_CODEPAGE_CONFLICT
 #: Merge.rc:5356
@@ -7286,7 +7286,7 @@ msgstr "Koduotės pakeitimai yra prieštaringi."
 #. IDS_EOL_MERGED
 #: Merge.rc:5357
 msgid "EOL change merged."
-msgstr "Eilučių pabaigos formato pasikeitimas buvo sulietas."
+msgstr "Eilučių pabaigos formato pasikeitimas buvo apjungtas."
 
 #. IDS_EOL_CONFLICT
 #: Merge.rc:5358
@@ -7525,7 +7525,7 @@ msgstr "\nKopijuoti viską į kairę"
 #. ID_AUTO_MERGE
 #: Merge.rc:5461
 msgid "\nAuto Merge (Ctrl+Alt+M)"
-msgstr "\nAutomatinis suliejimas (Ctrl+Alt+M)"
+msgstr "\nAutomatinis apjungimas (Ctrl+Alt+M)"
 
 #. ID_FIRSTFILE
 #: Merge.rc:5462
@@ -7551,66 +7551,66 @@ msgstr "\nPraeitas failas (Ctrl+F7)"
 #: Merge.rc:5470
 #, c-format
 msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
-msgstr ""
+msgstr "Apjungimas nėra baigtas: %1 skirtumas (-ai) nebuvo išspręstas (-i).\n\nAtšaukti apjungimą ir uždaryti neišsaugojant rezultato?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5471
 msgid "The merge result has not been saved.\n\nSave the merge result?"
-msgstr ""
+msgstr "Apjungimo rezultatas nebuvo išsaugotas.\n\nIšsaugoti apjungimo rezultatą?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5472
 #, c-format
 msgid "Saving the merge result to\n%1\nfailed.\n%2"
-msgstr ""
+msgstr "Apjungimo rezultato išsaugojimas į\n%1\nnepavyko.\n%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5473
 #, c-format
 msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr ""
+msgstr "Apjungimo rezultate vis dar yra %1 neišspręstas (-ų) skirtumas (-ų).\n\nNeišspręsti konfliktai išsaugomi kaip konfliktų sekcijos (<<<<<<<), kuriose išsaugomos visos versijos ir kurias vėliau galima išspręsti bet kuriame redaktoriuje; kiti neišspręsti skirtumai išsaugomi kartu su jų automatinio sujungimo turiniu.\n\nVis tiek išsaugoti rezultatą?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5474
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr ""
+msgstr "Pasikeitė lyginimo parametrai. Jie įsigalios pasibaigus apjungimo sesijai."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5475
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr ""
+msgstr "<Apjungimo konfliktas (tik tarpai)>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5476
 msgid "<Merge Conflict>"
-msgstr ""
+msgstr "<Apjungimo konfliktas>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5477
 msgid "<Unresolved Difference>"
-msgstr ""
+msgstr "<Neišspręstas skirtumas>"
 
 #. IDS_MERGE_RESULT_NOLINES
 #: Merge.rc:5478
 msgid "<No Lines>"
-msgstr ""
+msgstr "<Nėra eilučių>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5479
 msgid "Save Merge Result As"
-msgstr ""
+msgstr "Išsaugoti apjungimo rezultatą kaip"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
 #: Merge.rc:5480
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
-msgstr ""
+msgstr "Konfliktų (-as): %1, Neišspręstų (-as)"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
 #: Merge.rc:5481
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
-msgstr ""
+msgstr "Konfliktų (-as): %1, Neišspręstų (-as): %2 (%3 tik tarpai)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5487
@@ -7723,7 +7723,7 @@ msgstr "Įjungti &Automatinį maks. plotį"
 #. IDS_MERGERESULT_MENU
 #: Merge.rc:5606
 msgid "Merge &Result"
-msgstr ""
+msgstr "Apjungimo &rezultatas"
 
 #. IDS_WEBPAGE_MENU
 #: Merge.rc:5616
