@@ -220,6 +220,26 @@ HWND execWinMerge(const std::string& args)
 	return hwndWinMerge;
 }
 
+/**
+ * @brief Run WinMerge and wait for it to exit.
+ * @return false if it could not be started or was still running after the
+ *         given time (it is terminated then).
+ */
+bool execWinMergeAndWait(const std::wstring& args, DWORD dwMilliseconds)
+{
+	std::wstring command = L"\"" + getExecutablePath().wstring() + L"\" " + args;
+	STARTUPINFOW si{ sizeof(si) };
+	PROCESS_INFORMATION pi{};
+	if (!CreateProcessW(nullptr, command.data(), nullptr, nullptr, FALSE, 0, nullptr, nullptr, &si, &pi))
+		return false;
+	const bool exited = WaitForSingleObject(pi.hProcess, dwMilliseconds) == WAIT_OBJECT_0;
+	if (!exited)
+		TerminateProcess(pi.hProcess, 1);
+	CloseHandle(pi.hThread);
+	CloseHandle(pi.hProcess);
+	return exited;
+}
+
 HWND execInstaller(const std::string& args)
 {
 	HWND hwndInstaller = nullptr;

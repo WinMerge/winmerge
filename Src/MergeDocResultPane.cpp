@@ -1161,7 +1161,9 @@ bool CMergeDoc::SaveMergeResult(bool bSaveAs)
 		return false;
 
 	const int nUnresolved = GetResultUnresolvedCount();
-	if (nUnresolved > 0)
+	// (an unattended run cannot be asked; its unresolved conflicts are
+	// written as conflict sections)
+	if (nUnresolved > 0 && !theApp.GetNonInteractive())
 	{
 		const String msg = strutils::format_string1(
 			_("There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"),
