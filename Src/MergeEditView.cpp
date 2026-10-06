@@ -2607,7 +2607,7 @@ bool CMergeEditView::DoSetTextType(LangServices::TextDefinition* def)
 	return bResult;
 }
 
-/** @brief Name of the syntax type "Auto Syntax": the types the file extensions give */
+/** @brief Name of the syntax type "Auto Syntax": the types the file extensions give, no variation chosen */
 static String AutoSyntaxName()
 {
 	return _("Auto Syntax");
@@ -2628,11 +2628,13 @@ void CMergeEditView::UpdateSyntaxStatus()
 }
 
 /**
- * @brief Whether the syntax type is in the auto state: not chosen manually for these files.
+ * @brief Whether the syntax type is in the auto state: not chosen manually for these files, and not a variation
+ * chosen for their extension earlier (e.g. SQL (Postgre) chosen for .sql files).
  */
 bool CMergeEditView::IsSyntaxTypeAuto()
 {
-	return !GetDocument()->GetChangedSchemeManually();
+	const int nTextType = m_CurSourceDef ? static_cast<int>(m_CurSourceDef->type) : 0;
+	return !GetDocument()->GetChangedSchemeManually() && !LangServices::IsChosenTextTypeVariation(nTextType);
 }
 
 /**
@@ -2646,7 +2648,11 @@ void CMergeEditView::ChangeSyntaxType(int nTextType)
 	if (nTextType == SYNTAX_TYPE_AUTO)
 		pDoc->SetTextTypeAuto();
 	else
+	{
 		pDoc->SetTextType(nTextType);
+		// A variation chosen here (e.g. SQL (Postgre) for a .sql file) is kept for the files of its base type
+		pDoc->SaveTextTypeVariation(nTextType);
+	}
 	pDoc->FlushAndRescan(true);
 	GetParentFrame()->RedrawWindow(nullptr, nullptr, RDW_UPDATENOW | RDW_ALLCHILDREN);
 }
@@ -4289,6 +4295,32 @@ void CMergeEditView::OnFilterMenuColumn(UINT nID)
 }
 
 /**
+ * @brief The syntax type commands of [nFirstID, nLastID] that this build has (IsTextTypeAvailable).
+ */
+static std::vector<UINT> GetSchemeCommands(UINT nFirstID, UINT nLastID)
+{
+	std::vector<UINT> ids;
+	for (UINT nID = nFirstID; nID <= nLastID; ++nID)
+	{
+		if (LangServices::IsTextTypeAvailable(nID - ID_COLORSCHEME_FIRST))
+			ids.push_back(nID);
+	}
+	return ids;
+}
+
+/**
+ * @brief Append the syntax type commands of [nFirstID, nLastID] that this build has.
+ */
+static void AppendSchemeMenuItems(HMENU hMenu, UINT nFirstID, UINT nLastID)
+{
+	for (UINT nID : GetSchemeCommands(nFirstID, nLastID))
+	{
+		const String name = I18n::LoadString(nID);
+		AppendMenu(hMenu, MF_STRING, nID, name.c_str());
+	}
+}
+
+/**
 * @brief Create the "Change Scheme" sub menu.
 * @param [in] pCmdUI Pointer to UI item to update.
 */
@@ -4302,16 +4334,8 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 	const HMENU hSubMenuA_L = CreatePopupMenu();
 	const HMENU hSubMenuM_Z = CreatePopupMenu();
 
-	for (int i = ID_COLORSCHEME_FIRST + 1; i < ID_COLORSCHEME_SECOND; ++i)
-	{
-		const String name = I18n::LoadString(i);
-		AppendMenu(hSubMenuA_L, MF_STRING, i, name.c_str());
-	}
-	for (int i = ID_COLORSCHEME_SECOND; i <= ID_COLORSCHEME_LAST; ++i)
-	{
-		const String name = I18n::LoadString(i);
-		AppendMenu(hSubMenuM_Z, MF_STRING, i, name.c_str());
-	}
+	AppendSchemeMenuItems(hSubMenuA_L, ID_COLORSCHEME_FIRST + 1, ID_COLORSCHEME_SECOND - 1);
+	AppendSchemeMenuItems(hSubMenuM_Z, ID_COLORSCHEME_SECOND, ID_COLORSCHEME_LAST);
 
 	const String name = I18n::LoadString(ID_COLORSCHEME_FIRST);
 	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
@@ -4839,7 +4863,7 @@ void CMergeEditView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
 	std::vector<String> names{ AutoSyntaxName() };
 	int nSel = 0;
 	bool bEnabled = true;
-	for (UINT nID = ID_COLORSCHEME_FIRST; nID <= ID_COLORSCHEME_LAST; ++nID)
+	for (UINT nID : GetSchemeCommands(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST))
 	{
 		CStateCmdUI state;
 		state.m_nID = nID;

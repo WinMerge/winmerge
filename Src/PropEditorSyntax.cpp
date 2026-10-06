@@ -57,9 +57,11 @@ void PropEditorSyntax::ReadOptions()
 void PropEditorSyntax::WriteOptions()
 {
 	if (m_init)
-		for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
+		for (int row = 0; row < m_listSyntax.GetItemCount(); ++row)
 		{
-			m_Extension[i-1] = m_listSyntax.GetItemText(i-1, 1);
+			// Rows hold only the available text types; the item data is the text type index
+			const int i = static_cast<int>(m_listSyntax.GetItemData(row));
+			m_Extension[i-1] = m_listSyntax.GetItemText(row, 1);
 			WildcardRemoveDuplicatePatterns(m_Extension[i-1]);
 		}
 
@@ -107,13 +109,14 @@ void PropEditorSyntax::InitList()
 	for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
 	{
 		LangServices::TextDefinition* def = LangServices::GetTextType(i);
-		
+
 		ASSERT(def != nullptr);
-		if (def != nullptr)
+		if (def != nullptr && LangServices::IsTextTypeAvailable(i))
 		{
-			m_listSyntax.InsertItem(i-1, def->name);
-			m_listSyntax.SetItemText(i-1, 1, m_Extension[i-1].c_str());
-			m_listSyntax.SetDropListFixedPattern(i-1, 1, fixedPattern[i-1]);
+			const int row = m_listSyntax.InsertItem(m_listSyntax.GetItemCount(), def->name);
+			m_listSyntax.SetItemData(row, static_cast<DWORD_PTR>(i));
+			m_listSyntax.SetItemText(row, 1, m_Extension[i-1].c_str());
+			m_listSyntax.SetDropListFixedPattern(row, 1, fixedPattern[i-1]);
 		}
 	}
 }
@@ -124,6 +127,9 @@ void PropEditorSyntax::InitList()
 void PropEditorSyntax::OnDefaults()
 {
 	Options::EditorSyntax::GetDefaults(GetOptionsMgr(), m_Extension);
-	for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
-		m_listSyntax.SetItemText(i-1, 1, m_Extension[i-1].c_str());
+	for (int row = 0; row < m_listSyntax.GetItemCount(); ++row)
+	{
+		const int i = static_cast<int>(m_listSyntax.GetItemData(row));
+		m_listSyntax.SetItemText(row, 1, m_Extension[i-1].c_str());
+	}
 }
