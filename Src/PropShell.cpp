@@ -16,6 +16,7 @@
 #include "Win_VersionHelper.h"
 #include "MergeCmdLineInfo.h"
 #include "JumpList.h"
+#include "MruHelper.h"
 #include "SuperComboBox.h"
 #include "Logger.h"
 #include "Merge.h"
@@ -449,6 +450,7 @@ void PropShell::OnUnregisterWinMergeContextMenu()
 void PropShell::OnClearAllRecentItems()
 {
 	JumpList::RemoveRecentDocs();
+	MruHelper::ClearRecentCompares();
 	for (const auto& name : {
 		_T("ReportFiles"),
 		_T("Files\\Left"),

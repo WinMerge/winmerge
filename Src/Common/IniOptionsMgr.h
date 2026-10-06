@@ -38,6 +38,8 @@ public:
 
 	virtual int FlushOptions() override;
 
+	virtual std::map<String, String> ReadStoredSection(const String& section) override;
+
 	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const override;
 	virtual int ImportOptions(const String& filename) override;
 
