@@ -27,6 +27,8 @@ inline const String OPT_SHOW_DIFFERENT_RIGHT_ONLY {_T("Settings/ShowDifferentRig
 inline const String OPT_SHOW_MISSING_LEFT_ONLY {_T("Settings/ShowMissingLeftOnly"s)};
 inline const String OPT_SHOW_MISSING_MIDDLE_ONLY {_T("Settings/ShowMissingMiddleOnly"s)};
 inline const String OPT_SHOW_MISSING_RIGHT_ONLY {_T("Settings/ShowMissingRightOnly"s)};
+inline const String OPT_SHOW_LEFT_NEWER {_T("Settings/ShowLeftNewer"s)};
+inline const String OPT_SHOW_RIGHT_NEWER {_T("Settings/ShowRightNewer"s)};
 inline const String OPT_SHOW_EMPTY_FOLDERS {_T("Settings/ShowEmptyFolders"s)};
 inline const String OPT_TREE_MODE {_T("Settings/TreeMode"s)};
 

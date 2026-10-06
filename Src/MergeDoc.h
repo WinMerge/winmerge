@@ -543,6 +543,12 @@ protected:
 	afx_msg void OnUpdateStatusRO(CCmdUI* pCmdUI);
 	afx_msg void OnDiffContext(UINT nID);
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
+	afx_msg void OnViewShowAll();
+	afx_msg void OnViewShowDifferences();
+	afx_msg void OnViewShowSame();
+	afx_msg void OnUpdateViewShowAll(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateViewShowDifferences(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateViewShowSame(CCmdUI* pCmdUI);
 	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnApplyPrediffer();
 	afx_msg void OnUpdateApplyPrediffer(CCmdUI* pCmdUI);

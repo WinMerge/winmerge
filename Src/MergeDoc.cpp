@@ -114,6 +114,12 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	// [View] menu
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
+	ON_COMMAND(ID_VIEW_SHOW_ALL, OnViewShowAll)
+	ON_COMMAND(ID_VIEW_SHOW_DIFFERENCES, OnViewShowDifferences)
+	ON_COMMAND(ID_VIEW_SHOW_SAME, OnViewShowSame)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_ALL, OnUpdateViewShowAll)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_DIFFERENCES, OnUpdateViewShowDifferences)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_SAME, OnUpdateViewShowSame)
 	ON_COMMAND(ID_SWAPPANES_SWAP12, (OnViewSwapPanes<0, 1>))
 	ON_COMMAND(ID_SWAPPANES_SWAP23, (OnViewSwapPanes<1, 2>))
 	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
@@ -1721,6 +1727,61 @@ void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
 	}
 	pCmdUI->SetCheck(bCheck);
 	pCmdUI->Enable(!(pCmdUI->m_nID == ID_VIEW_DIFFCONTEXT_INVERT && (m_nDiffContext < 0)));
+}
+
+/**
+ * @brief Beyond Compare-style Show All (all lines, no invert)
+ */
+void CMergeDoc::OnViewShowAll()
+{
+	if (m_nDiffContext >= 0)
+		m_nDiffContext = -m_nDiffContext - 1;
+	m_bInvertDiffContext = false;
+	GetOptionsMgr()->SaveOption(OPT_DIFF_CONTEXT, m_nDiffContext);
+	GetOptionsMgr()->SaveOption(OPT_INVERT_DIFF_CONTEXT, m_bInvertDiffContext);
+	FlushAndRescan(true);
+	ForEachView([](auto& pView) { if (pView->m_bDetailView) pView->EnsureVisible(pView->GetCursorPos()); });
+}
+
+/**
+ * @brief Beyond Compare-style Show Differences (0 context, no invert)
+ */
+void CMergeDoc::OnViewShowDifferences()
+{
+	m_nDiffContext = 0;
+	m_bInvertDiffContext = false;
+	GetOptionsMgr()->SaveOption(OPT_DIFF_CONTEXT, m_nDiffContext);
+	GetOptionsMgr()->SaveOption(OPT_INVERT_DIFF_CONTEXT, m_bInvertDiffContext);
+	FlushAndRescan(true);
+	ForEachView([](auto& pView) { if (pView->m_bDetailView) pView->EnsureVisible(pView->GetCursorPos()); });
+}
+
+/**
+ * @brief Beyond Compare-style Show Same (0 context + invert)
+ */
+void CMergeDoc::OnViewShowSame()
+{
+	m_nDiffContext = 0;
+	m_bInvertDiffContext = true;
+	GetOptionsMgr()->SaveOption(OPT_DIFF_CONTEXT, m_nDiffContext);
+	GetOptionsMgr()->SaveOption(OPT_INVERT_DIFF_CONTEXT, m_bInvertDiffContext);
+	FlushAndRescan(true);
+	ForEachView([](auto& pView) { if (pView->m_bDetailView) pView->EnsureVisible(pView->GetCursorPos()); });
+}
+
+void CMergeDoc::OnUpdateViewShowAll(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_nDiffContext < 0 && !m_bInvertDiffContext);
+}
+
+void CMergeDoc::OnUpdateViewShowDifferences(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_nDiffContext == 0 && !m_bInvertDiffContext);
+}
+
+void CMergeDoc::OnUpdateViewShowSame(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_nDiffContext == 0 && m_bInvertDiffContext);
 }
 
 /**
