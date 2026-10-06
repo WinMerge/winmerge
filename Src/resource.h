@@ -997,6 +997,9 @@
 #define ID_STATUS_PANE2FILE_ENCODING    32981
 #define ID_STATUS_FILTER                32982
 #define ID_STATUS_PLUGIN                32983
+#define ID_STATUS_PANE0FILE_SYNTAX      32984
+#define ID_STATUS_PANE1FILE_SYNTAX      32985
+#define ID_STATUS_PANE2FILE_SYNTAX      32986
 #define ID_DIR_ZIP_LEFT                 32991
 #define ID_DIR_ZIP_MIDDLE               32992
 #define ID_DIR_ZIP_RIGHT                32993
