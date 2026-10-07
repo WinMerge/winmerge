@@ -351,6 +351,11 @@ inline const String OPT_TABBAR_AUTO_MAXWIDTH {_T("Settings/TabBarAutoMaxWidth"s)
 
 // MRU
 inline const String OPT_MRU_MAX {_T("Settings/MRUMax"s)};
+// Number of comparisons kept in WinMerge's own recent comparison list (used where Windows keeps no jump list history);
+// the menu shows the first OPT_MRU_MAX, the Open view list up to this number
+inline const String OPT_RECENT_COMPARE_MAX {_T("Settings/RecentCompareMax"s)};
+// Open view: the recent comparison list is expanded (collapsed by default)
+inline const String OPT_SHOW_RECENT_COMPARES {_T("Settings/ShowRecentCompares"s)};
 
 // Experimentals
 inline const String OPT_MOUSE_HOOK_ENABLED {_T("Settings/MouseHookEnabled"s)};

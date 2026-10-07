@@ -266,6 +266,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_LOCBAR_MOVECURSOR_ONCLICK, true);
 
 	pOptions->InitOption(OPT_MRU_MAX, 15, 0, 128);
+	pOptions->InitOption(OPT_SHOW_RECENT_COMPARES, false);
 
 	pOptions->InitOption(OPT_COLOR_MODE, 0, 0, 2);
 	pOptions->InitOption(OPT_COLOR_MODE_EFFECTIVE, 0, 0, 1);

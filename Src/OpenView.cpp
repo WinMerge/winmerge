@@ -136,6 +136,9 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_WM_WINDOWPOSCHANGED()
 	ON_WM_NCHITTEST()
 	ON_WM_DESTROY()
+	ON_WM_SIZE()
+	ON_BN_CLICKED(IDC_RECENT_COMPARES_SHOW, OnRecentComparesShow)
+	ON_NOTIFY(NM_DBLCLK, IDC_RECENT_COMPARES_LIST, OnDblclkRecentCompares)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -164,6 +167,9 @@ COpenView::COpenView()
 	, m_nCompareMethod(0)
 	, m_nLastDropDownButton(0)
 	, m_hTheme(nullptr)
+	, m_bRecentComparesShown(false)
+	, m_nRecentComparesHeight(0)
+	, m_nStatusTop(0)
 {
 	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
 	// Therefore, set m_bInsideUpdate = TRUE so that CScrollView::UpdateBars() does almost nothing.
@@ -185,6 +191,7 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PATH2_COMBO, m_ctlPath[2]);
 	DDX_Control(pDX, IDC_UNPACKER_COMBO, m_ctlUnpackerPipeline);
 	DDX_Control(pDX, IDC_PREDIFFER_COMBO, m_ctlPredifferPipeline);
+	DDX_Control(pDX, IDC_RECENT_COMPARES_LIST, m_ctlRecentCompares);
 	DDX_CBStringExact(pDX, IDC_PATH0_COMBO, m_strPath[0]);
 	DDX_CBStringExact(pDX, IDC_PATH1_COMBO, m_strPath[1]);
 	DDX_CBStringExact(pDX, IDC_PATH2_COMBO, m_strPath[2]);
@@ -248,6 +255,25 @@ void COpenView::OnInitialUpdate()
 		GetDlgItem(ids[i])->SetFont(&m_fontSwapButton);
 		SetDlgItemText(ids[i], _T("\xf4"));
 	}
+
+	// Recent comparison list, collapsed by default (the view then has its original size). Expanded, it lies
+	// between the buttons and the status line, which moves down by the added height.
+	CRect rcList, rcOK;
+	m_ctlRecentCompares.GetWindowRect(&rcList);
+	ScreenToClient(&rcList);
+	GetDlgItem(IDOK)->GetWindowRect(&rcOK);
+	ScreenToClient(&rcOK);
+	m_nRecentComparesHeight = rcList.bottom - rcOK.bottom;
+	CRect rcStatus;
+	GetDlgItem(IDC_OPEN_STATUS)->GetWindowRect(&rcStatus);
+	ScreenToClient(&rcStatus);
+	m_nStatusTop = rcStatus.top;
+	m_ctlRecentCompares.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_DOUBLEBUFFER | LVS_EX_INFOTIP);
+	m_ctlRecentCompares.InsertColumn(0, _("Comparison").c_str());
+	m_ctlRecentCompares.InsertColumn(1, _("Command line").c_str());
+	const bool bShowRecentCompares = GetOptionsMgr()->GetBool(OPT_SHOW_RECENT_COMPARES);
+	CheckDlgButton(IDC_RECENT_COMPARES_SHOW, bShowRecentCompares ? BST_CHECKED : BST_UNCHECKED);
+	ShowRecentCompares(bShowRecentCompares);
 
 	m_constraint.InitializeCurrentSize(this);
 	m_constraint.InitializeSpecificSize(this, m_sizeOrig.cx, m_sizeOrig.cy);
@@ -600,7 +626,7 @@ void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 			CRect rc;
 			pFrameWnd->GetClientRect(&rc);
 			lpwndpos->flags |= SWP_FRAMECHANGED | SWP_SHOWWINDOW;
-			lpwndpos->cy = m_sizeOrig.cy;
+			lpwndpos->cy = GetFormHeight();
 			if (lpwndpos->flags & SWP_NOOWNERZORDER)
 			{
 				lpwndpos->x = rc.right - (lpwndpos->x + lpwndpos->cx);
@@ -650,6 +676,7 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		}
 	}
 	__super::OnWindowPosChanged(lpwndpos);
+	ResizeRecentComparesColumns();
 }
 
 void COpenView::OnDestroy()
@@ -932,8 +959,14 @@ void COpenView::OnUpdateCompare(CCmdUI *pCmdUI)
  *
  * Checks that paths are valid and sets filters.
  */
-void COpenView::OnOK() 
+void COpenView::OnOK()
 {
+	// Enter in the recent comparison list opens the selected comparison instead of the paths above
+	if (::GetFocus() == m_ctlRecentCompares.GetSafeHwnd() && m_ctlRecentCompares.GetSelectedCount() > 0)
+	{
+		OpenRecentCompare(m_ctlRecentCompares.GetNextItem(-1, LVNI_SELECTED));
+		return;
+	}
 	OnCompare(IDOK);
 }
 
@@ -1888,6 +1921,113 @@ void COpenView::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 
 	if (nState == WA_ACTIVE || nState == WA_CLICKACTIVE)
 		UpdateButtonStates();
+}
+
+/**
+ * @brief Refresh the recent comparison list when the view becomes active,
+ * since comparisons opened in other windows change the list.
+ */
+void COpenView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
+{
+	__super::OnActivateView(bActivate, pActivateView, pDeactiveView);
+	if (bActivate && m_bRecentComparesShown)
+		UpdateRecentCompares();
+}
+
+/**
+ * @brief Height of the view: the dialog template height, plus the recent comparison list when it is expanded
+ */
+int COpenView::GetFormHeight() const
+{
+	return m_sizeOrig.cy + (m_bRecentComparesShown ? m_nRecentComparesHeight : 0);
+}
+
+/**
+ * @brief Expand or collapse the recent comparison list.
+ * The status line is not in the dynamic layout, so moving it here is not undone when the view is resized.
+ */
+void COpenView::ShowRecentCompares(bool bShow)
+{
+	m_bRecentComparesShown = bShow;
+	if (bShow)
+		UpdateRecentCompares();
+	m_ctlRecentCompares.ShowWindow(bShow ? SW_SHOW : SW_HIDE);
+	CWnd* pStatus = GetDlgItem(IDC_OPEN_STATUS);
+	CRect rcStatus;
+	pStatus->GetWindowRect(&rcStatus);
+	ScreenToClient(&rcStatus);
+	pStatus->SetWindowPos(nullptr, rcStatus.left, m_nStatusTop + (bShow ? m_nRecentComparesHeight : 0), 0, 0,
+		SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+	// The frame lays out the view again, which takes the height of GetFormHeight() (OnWindowPosChanging)
+	GetParentFrame()->RecalcLayout();
+	Invalidate();
+}
+
+/**
+ * @brief Fill the recent comparison list (newest first)
+ */
+void COpenView::UpdateRecentCompares()
+{
+	m_recentCompares = MruHelper::GetRecentCompares(GetOptionsMgr()->GetInt(OPT_RECENT_COMPARE_MAX));
+	m_ctlRecentCompares.SetRedraw(FALSE);
+	m_ctlRecentCompares.DeleteAllItems();
+	for (int i = 0; i < static_cast<int>(m_recentCompares.size()); ++i)
+	{
+		m_ctlRecentCompares.InsertItem(i, m_recentCompares[i].title.c_str());
+		m_ctlRecentCompares.SetItemText(i, 1, m_recentCompares[i].params.c_str());
+	}
+	m_ctlRecentCompares.SetRedraw(TRUE);
+	ResizeRecentComparesColumns();
+}
+
+/**
+ * @brief Title column takes 30% of the list width, the command line column the rest
+ */
+void COpenView::ResizeRecentComparesColumns()
+{
+	if (m_ctlRecentCompares.GetSafeHwnd() == nullptr)
+		return;
+	CHeaderCtrl* pHeader = m_ctlRecentCompares.GetHeaderCtrl();
+	if (pHeader == nullptr || pHeader->GetItemCount() < 2)
+		return;
+	CRect rc;
+	m_ctlRecentCompares.GetClientRect(&rc);
+	const int nTitleWidth = rc.Width() * 3 / 10;
+	m_ctlRecentCompares.SetColumnWidth(0, nTitleWidth);
+	m_ctlRecentCompares.SetColumnWidth(1, (std::max)(rc.Width() - nTitleWidth, 0));
+}
+
+/**
+ * @brief Open the comparison of the given list item, with the paths and options it was opened with
+ */
+void COpenView::OpenRecentCompare(int nItem)
+{
+	if (nItem < 0 || nItem >= static_cast<int>(m_recentCompares.size()))
+		return;
+	// Copy: this view can be closed before the comparison opens
+	const String params = m_recentCompares[nItem].params;
+	if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK))
+		GetParentFrame()->PostMessage(WM_CLOSE);
+	GetMainFrame()->OpenRecentCompare(params);
+}
+
+void COpenView::OnSize(UINT nType, int cx, int cy)
+{
+	__super::OnSize(nType, cx, cy);
+	ResizeRecentComparesColumns();
+}
+
+void COpenView::OnRecentComparesShow()
+{
+	const bool bShow = IsDlgButtonChecked(IDC_RECENT_COMPARES_SHOW) == BST_CHECKED;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_RECENT_COMPARES, bShow);
+	ShowRecentCompares(bShow);
+}
+
+void COpenView::OnDblclkRecentCompares(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	OpenRecentCompare(reinterpret_cast<NMITEMACTIVATE*>(pNMHDR)->iItem);
+	*pResult = 0;
 }
 
 void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
