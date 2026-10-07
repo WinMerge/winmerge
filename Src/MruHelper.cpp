@@ -180,8 +180,13 @@ namespace MruHelper
 	 */
 	void AddRecentCompare(const RecentCompare& item, unsigned nMaxItems)
 	{
-		if (item.params.empty() || JumpList::IsRecentDocsTrackingEnabled())
+		if (item.params.empty())
 			return;
+		if (JumpList::IsRecentDocsTrackingEnabled())
+		{
+			JumpList::AddToRecentDocs(_T(""), item.params, item.title, item.params, _T(""), 0);
+			return;
+		}
 		FILETIME ft;
 		GetSystemTimeAsFileTime(&ft);
 		const long long time = (static_cast<long long>(ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
@@ -200,6 +205,7 @@ namespace MruHelper
 	 */
 	void ClearRecentCompares()
 	{
+		JumpList::RemoveRecentDocs();
 		AfxGetApp()->WriteProfileString(RecentCompareSection, nullptr, nullptr);
 	}
 }

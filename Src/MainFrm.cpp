@@ -70,7 +70,6 @@
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
 #include "OptionsFont.h"
-#include "JumpList.h"
 #include "DropHandler.h"
 #include "LanguageSelect.h"
 #include "Bitmap.h"
@@ -1698,7 +1697,7 @@ static bool AddToRecentDocs(const PathContext& paths,
 	Concurrent::CreateTask([params, title](){
 			if (SUCCEEDED(CoInitialize(nullptr)))
 			{
-				JumpList::AddToRecentDocs(_T(""), params, title, params, _T(""), 0);
+				MruHelper::AddRecentCompare({ title, params }, GetOptionsMgr()->GetInt(OPT_MRU_MAX));
 				CoUninitialize();
 			}
 			return 0;

@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 08.09.2026\n"
+"Project-Id-Version: WinMerge - Italian - 05.10.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-09-08 12:59+0100\n"
+"PO-Revision-Date: 2026-10-05 13:16+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -31,22 +31,22 @@ msgstr "LANG_ITALIAN, SUBLANG_ITALIAN"
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:79 Merge.rc:101
 msgid "Choose Left\tCtrl+Shift+&1/Alt+&1"
-msgstr ""
+msgstr "Scegli sinistra\tCtrl+Maiusc+&1/Alt+&1"
 
 #. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:80
 msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Scegli destra\tCtrl+Maiusc+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr ""
+msgstr "Scegli sinistra per tutti i conflitti irrisolti"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr ""
+msgstr "Scegli destra per tutti i conflitti irrisolti"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -86,48 +86,48 @@ msgstr "Se&leziona tutto\tCtrl+A"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_END_SESSION
 #: Merge.rc:93 Merge.rc:117 Merge.rc:131 Merge.rc:147
 msgid "&End Merge Session"
-msgstr ""
+msgstr "Fin&e sessione unione"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:102
 msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Scegli centro\tCtrl+Maiusc+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:103
 msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
-msgstr ""
+msgstr "Scegli destra\tCtrl+Maiusc+&3/Alt+&3"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr ""
+msgstr "Scegli centro per tutti i conflitti irrisolti"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
 msgid "Choose Left\tCtrl+Shift+&1"
-msgstr ""
+msgstr "Scegli sinistra\tCtrl+Maiusc+&1"
 
 #. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:126
 msgid "Choose Right\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Scegli destra\tCtrl+Maiusc+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:140
 msgid "Choose Middle\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Scegli centro\tCtrl+Maiusc+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:141
 msgid "Choose Right\tCtrl+Shift+&3"
-msgstr ""
+msgstr "Scegli destra\tCtrl+Maiusc+&3"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
 #, c-format
 msgid "Choose %1 for Selected Differences"
-msgstr ""
+msgstr "Scegli '%1' per le differenze selezionate"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
 #: Merge.rc:157 Merge.rc:165
@@ -1198,7 +1198,7 @@ msgstr "Salva dest&ro"
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MERGE_RESULT
 #: Merge.rc:721 Merge.rc:1332
 msgid "&Save Merge Result"
-msgstr ""
+msgstr "&Salva risultato unione"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:723
@@ -1223,7 +1223,7 @@ msgstr "Salva &destro con nome..."
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MERGE_RESULT
 #: Merge.rc:728 Merge.rc:1337
 msgid "Save Merge Result &As..."
-msgstr ""
+msgstr "S&alva risultato unione come..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_PRINT
 #: Merge.rc:731
@@ -1428,7 +1428,7 @@ msgstr "Pannello posi&zione"
 #. IDR_MERGEDOCTYPE, ID_VIEW_MERGE_RESULT_BAR
 #: Merge.rc:870
 msgid "Merge Result Pane"
-msgstr ""
+msgstr "Pannello risultati unione"
 
 #. IDS_OUTPUTBAR_CAPTION
 #: Merge.rc:871 Merge.rc:5366
@@ -1591,7 +1591,7 @@ msgstr "C&opia tutto a sinistra"
 #. IDR_MERGEDOCTYPE, ID_MERGE_START_SESSION
 #: Merge.rc:952
 msgid "Start Merge Sess&ion"
-msgstr ""
+msgstr "Avv&ia sessione unione"
 
 #. IDR_MERGEDOCTYPE, ID_ADD_SYNCPOINT
 #: Merge.rc:955
@@ -1928,7 +1928,7 @@ msgstr "&Apri..."
 #. IDR_POPUP_EDITOR_HEADERBAR, ID_EDITOR_SAVE_FILE
 #: Merge.rc:1173
 msgid "&Save"
-msgstr ""
+msgstr "&Salva"
 
 #. IDR_POPUP_PLUGINS_SETTINGS
 #: Merge.rc:1179
@@ -3554,7 +3554,7 @@ msgstr "Vai a"
 #. IDD_EDIT_GOTO, IDC_STATIC
 #: Merge.rc:2413
 msgid "&Line number:"
-msgstr ""
+msgstr "Numero &linea:"
 
 #. IDD_FILTERS_LINEFILTERS
 #: Merge.rc:2421
@@ -4145,7 +4145,7 @@ msgstr "Caratteri terminatori &parola:"
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2758
 msgid "&Use Merge Result Pane for 2/3-way merge"
-msgstr ""
+msgstr "&Usa riquadro risultati unione per l'unione a 2/3 vie"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2774
@@ -7570,18 +7570,18 @@ msgstr ""
 #: Merge.rc:5352
 #, c-format
 msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-msgstr ""
+msgstr "Unione automatica completata.\n\n%1\n\nUnioni automatiche: %2\nConflitti non risolti: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5353
 msgid "Merge session started."
-msgstr ""
+msgstr "Sessione unione avviata."
 
 #. IDS_PANE_ROLES
 #: Merge.rc:5354
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
-msgstr ""
+msgstr "Ruoli pannello: sinistra=%1, centro=%2, destra=%3"
 
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5355
@@ -7967,66 +7967,66 @@ msgstr ""
 #: Merge.rc:5470
 #, c-format
 msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
-msgstr ""
+msgstr "L'unione non è stata completata: %1 differenze non sono state risolte.\n\nVuoi annullare l'operazione di unione e chiudere senza salvare il risultato?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5471
 msgid "The merge result has not been saved.\n\nSave the merge result?"
-msgstr ""
+msgstr "Il risultato dell'unione non è stato salvato.\n\nVuoi salvare il risultato dell'unione?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5472
 #, c-format
 msgid "Saving the merge result to\n%1\nfailed.\n%2"
-msgstr ""
+msgstr "Salvataggio risultato unione in\n%1\nnon riuscito.\n%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5473
 #, c-format
 msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr ""
+msgstr "Nell'unione ci sono '1' differenze non risolte.\n\nI conflitti non risolti vengono salvati come sezioni di conflitto (<<<<<<<), che preservano tutte le versioni e possono essere risolte successivamente in qualsiasi editor; altre differenze non risolte vengono salvate con il relativo contenuto unione automatica.\n\nVuoi salvare comunque il risultato?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5474
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr ""
+msgstr "Le impostazioni di confronto sono state modificate. Avranno effetto al termine della sessione di unione."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5475
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr ""
+msgstr "<Conflitto unione (solo spazi bianchi)>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5476
 msgid "<Merge Conflict>"
-msgstr ""
+msgstr "<Conflitto unione>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5477
 msgid "<Unresolved Difference>"
-msgstr ""
+msgstr "<Differenze non risolte>"
 
 #. IDS_MERGE_RESULT_NOLINES
 #: Merge.rc:5478
 msgid "<No Lines>"
-msgstr ""
+msgstr "<Nessuna linea>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5479
 msgid "Save Merge Result As"
-msgstr ""
+msgstr "Salva risultato unione come"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
 #: Merge.rc:5480
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
-msgstr ""
+msgstr "Conflitti: %1, non risolte: %2"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
 #: Merge.rc:5481
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
-msgstr ""
+msgstr "Conflitti: %1, non risolte: %2 (%3 solo spazi bianchi)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5487
@@ -8141,7 +8141,7 @@ msgstr "Abilita altezza massima &automatica"
 #. IDS_MERGERESULT_MENU
 #: Merge.rc:5606
 msgid "Merge &Result"
-msgstr ""
+msgstr "&Risultati unione"
 
 #. IDS_WEBPAGE_MENU
 #: Merge.rc:5616
