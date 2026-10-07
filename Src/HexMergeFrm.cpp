@@ -148,6 +148,10 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 				MruHelper::addToMru(pane, sFilepath);
 		}
 	});
+	m_wndFilePathBar.SetOnFileSaveCallback([&](int pane) {
+		const int id = (m_pMergeDoc->m_nBuffers < 3 && pane == 1) ? ID_FILE_SAVE_RIGHT : ID_FILE_SAVE_LEFT + pane;
+		PostMessage(WM_COMMAND, id);
+	});
 	m_wndFilePathBar.SetDefaultHistoryCallbacks();
 
 	// Set filename bars inactive so colors get initialized

@@ -71,6 +71,7 @@ BOOL CGotoDlg::
 OnInitDialog ()
 {
   CDialog::OnInitDialog ();
+  LangTranslateDialog(m_hWnd);
 
   GetDlgItem (IDOK)->EnableWindow (!m_sNumber.IsEmpty ());
 

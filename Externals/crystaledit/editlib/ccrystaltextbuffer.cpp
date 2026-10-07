@@ -1706,6 +1706,7 @@ bool CCrystalTextBuffer::			/* virtual base */
 DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction, bool bHistory /*= true*/, bool bExcludeInvisibleLines /*= true*/)
 {
+  bool bResult = true;
   bool bGroupFlag = false;
   if (bHistory)
     {
@@ -1740,20 +1741,23 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
                   nEndLine2++;
                 }
               if (!DeleteText2 (pSource, nStartLine2, nStartChar2, nEndLine2, nEndChar2, nAction, bHistory))
-                return false;
+                {
+                  bResult = false;
+                  break;
+                }
             }
         }
     }
   else
     {
       if (!DeleteText2 (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
-        return false;
+        bResult = false;
     }
 
   if (bGroupFlag)
     FlushUndoGroup (pSource);
 
-  return true;
+  return bResult;
 }
 
 std::vector<uint32_t> *CCrystalTextBuffer::

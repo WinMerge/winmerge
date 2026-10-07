@@ -119,4 +119,13 @@ public:
 	int ComputeRealLine (int nApparentLine) const;
 	virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber) override;
 
+	std::pair<int, int> GetSelectedLineAndCharacterCount();
+
+protected:
+	/**
+	 * @brief Helper method to handle horizontal scrolling via mouse wheel
+	 * @param [in] zDelta The mouse wheel delta (positive/negative for scroll direction)
+	 */
+	void HandleHorizontalScrollWheel(short zDelta);
+
 };

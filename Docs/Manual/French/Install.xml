@@ -12,7 +12,7 @@ recommandée.</para>
     <title>Obtenir les fichiers</title>
 
     <para>La dernière version peut toujours être téléchargée sur la page d'accueil de
-WinMerge : <ulink url="https://winmerge.org/">WinMerge.org</ulink>. Notez
+WinMerge : <ulink url="https://winmerge.org/">WinMerge.org</ulink>. Notez
 que des délais peuvent survenir dans la mise à jour des pages d'accueil pour
 les dernières versions, mais la page d'état du projet sur <ulink
 url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
@@ -70,7 +70,7 @@ décompressant un fichier archive (voir <xref linkend="InstallFromArchive"
     <para>L'utilisation de l'installateur est recommandée pour la plupart des
 utilisateurs. L'installateur demande l'emplacement où WinMerge doit être
 installé. Il installe ensuite les fichiers, configure l'intégration au shell
-et ajoute WinMerge au menu Démarrer. Pour installer WinMerge :</para>
+et ajoute WinMerge au menu Démarrer. Pour installer WinMerge :</para>
 
     <orderedlist>
       <listitem>
@@ -182,7 +182,7 @@ menu Démarrer</guilabel>.</para>
 
       <listitem>
         <para>Dans la page Sélectionner des tâches supplémentaires, spécifiez toutes les
-tâches additionnelles :<indexterm>
+tâches additionnelles :<indexterm>
             <primary>intégration</primary>
 
             <secondary>avec un système de contrôle de version</secondary>

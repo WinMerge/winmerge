@@ -40,6 +40,8 @@ class CLocationView;
 class CMergeDoc;
 struct DIFFRANGE;
 class CTreeSitterParser;
+class CMergeDiffNavigation;
+class CMergeConflictNavigation;
 
 /**
 This class is the base class for WinMerge editor panels.
@@ -57,6 +59,9 @@ Maybe in the future...
 */
 class CMergeEditView : public CGhostTextView
 {
+	friend class CMergeDiffNavigation;
+	friend class CMergeConflictNavigation;
+
 protected:
 	CMergeEditView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CMergeEditView)
@@ -109,12 +114,16 @@ public:
 	void DeselectDiffIfCursorNotInCurrentDiff();
 	virtual CCrystalTextBuffer *LocateTextBuffer () override;
 	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
+	int LineToDiff(int nLine) const;
+	int NextSignificantDiffFromLine(int nLine) const;
+	int PrevSignificantDiffFromLine(int nLine) const;
+	int NextSignificant3wayDiffFromLine(int line, int nDiffType) const;
+	int PrevSignificant3wayDiffFromLine(int line, int nDiffType) const;
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CEPoint *pptStart = nullptr, const CEPoint *ppEnd = nullptr);
 	void GetSelectedDiffs(int & firstDiff, int & lastDiff);
 	std::map<int, std::vector<int>> GetColumnSelectedWordDiffIndice();
 	CString GetSelectedText();
-	std::pair<int, int> GetSelectedLineAndCharacterCount();
 	CString GetLineText(int idx);
 	CMergeDoc* GetDocument();
 	const CMergeDoc *GetDocument() const { return const_cast<CMergeEditView *>(this)->GetDocument(); }
@@ -163,12 +172,6 @@ public:
 	bool IsCursorInDiff() const;
 	bool IsDiffVisible(int nDiff);
 	bool IsDiffFiltered(int nDiff);
-	int FindFirstNonFilteredDiff();
-	int FindLastNonFilteredDiff();
-	int FindNextNonFilteredDiff(int startDiff = -1);
-	int FindPrevNonFilteredDiff(int startDiff = -1);
-	bool HasNextNonFilteredDiff();
-	bool HasPrevNonFilteredDiff();
 	void ZoomText(short amount);
 	virtual bool QueryEditable() override;
 	virtual void EnsureVisible(CEPoint pt) override;
@@ -266,6 +269,10 @@ protected:
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
 	afx_msg void OnAutoMerge();
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
+	int GetMergeTargetDiff();
+	String GetPaneNameForMergeMenu() const;
+	afx_msg void OnMergeChooseThis();
+	afx_msg void OnUpdateMergeChooseThis(CCmdUI* pCmdUI);
 	afx_msg void OnCopyX2Y(UINT nID);
 	afx_msg void OnCopyLinesX2Y(UINT nID);
 	afx_msg void OnX2Y(int srcPane, int dstPane, bool selectedLineOnly = false);
@@ -293,6 +300,7 @@ protected:
 	afx_msg void OnSelDiffCopyThird();
 	afx_msg void OnUpdateSelDiffCopyThird(CCmdUI* pCmdUI);
 	afx_msg void OnAddSyncPoint();
+	afx_msg void OnUpdateAddSyncPoint(CCmdUI* pCmdUI);
 	afx_msg void OnClearSyncPoints();
 	afx_msg void OnUpdateClearSyncPoints(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
@@ -332,6 +340,7 @@ protected:
 	afx_msg void OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnEditCopyLineNumbers();
 	afx_msg void OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI);
+	afx_msg void OnEditToggleBookmark();
 	afx_msg void OnViewLineDiffs();
 	afx_msg void OnUpdateViewLineDiffs(CCmdUI* pCmdUI);
 	afx_msg void OnViewLineNumbers();

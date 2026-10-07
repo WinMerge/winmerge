@@ -168,7 +168,9 @@ int xdl_blankline(const char *line, long size, long flags)
 	long i;
 
 	if (!(flags & XDF_WHITESPACE_FLAGS))
-		return (size <= 1);
+		return size == 0 ||
+		       (size == 1 && (line[0] == '\n' || line[0] == '\r')) ||
+		       (size == 2 && line[0] == '\r' && line[1] == '\n');
 
 	for (i = 0; i < size && XDL_ISSPACE(line[i]); i++)
 		;

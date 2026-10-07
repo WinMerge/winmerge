@@ -46,6 +46,7 @@ protected:
 		// ctr
 		MergeStatus();
 		// Implement MergeEditStatus
+		bool HasLineInfo() const override { return m_nCodepage != -1; } // -1 means not initialized
 		void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
 			int nChar, int nChars, int nSelectedLines, int nSelectedChars, const tchar_t* szEol, int nCodepage, bool bHasBom) override;
 		void UpdateResources();

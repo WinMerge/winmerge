@@ -589,6 +589,10 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 				MruHelper::addToMru(pane, sFilepath);
 		}
 	});
+	m_wndFilePathBar.SetOnFileSaveCallback([&](int pane) {
+		const int id = (m_pImgMergeWindow->GetPaneCount() < 3 && pane == 1) ? ID_FILE_SAVE_RIGHT : ID_FILE_SAVE_LEFT + pane;
+		PostMessage(WM_COMMAND, id);
+	});
 	m_wndFilePathBar.SetOnGetRecentItemsCallback([](int pane, unsigned maxCount, MruHelper::RecentItemType type) {
 		return MruHelper::GetRecentFiles(pane, maxCount, type);
 	});

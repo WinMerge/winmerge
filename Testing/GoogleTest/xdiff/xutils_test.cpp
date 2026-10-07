@@ -7,6 +7,17 @@ extern "C"
 
 #define sl(x) x, static_cast<long>(strlen(x))
 
+TEST(xutils, xdl_blankline)
+{
+	EXPECT_TRUE(xdl_blankline("", 0, XDF_IGNORE_BLANK_LINES));
+	EXPECT_FALSE(xdl_blankline("A", 1, XDF_IGNORE_BLANK_LINES));
+	EXPECT_FALSE(xdl_blankline("B", 1, XDF_IGNORE_BLANK_LINES));
+	EXPECT_TRUE(xdl_blankline("\n", 1, XDF_IGNORE_BLANK_LINES));
+	EXPECT_TRUE(xdl_blankline("\r", 1, XDF_IGNORE_BLANK_LINES));
+	EXPECT_TRUE(xdl_blankline("\r\n", 2, XDF_IGNORE_BLANK_LINES));
+	EXPECT_FALSE(xdl_blankline("A\n", 2, XDF_IGNORE_BLANK_LINES));
+}
+
 TEST(xutils, xdl_recmatch)
 {
 	auto comp = [](const char* data1, const char* data2, int flags)

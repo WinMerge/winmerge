@@ -241,6 +241,7 @@ popd
     <None Include="..\Translations\ShellExtension\Greek.po" />
     <None Include="..\Translations\ShellExtension\Hebrew.po" />
     <None Include="..\Translations\ShellExtension\Hungarian.po" />
+    <None Include="..\Translations\ShellExtension\Indonesian.po" />
     <None Include="..\Translations\ShellExtension\Italian.po" />
     <None Include="..\Translations\ShellExtension\Japanese.po" />
     <None Include="..\Translations\ShellExtension\Korean.po" />

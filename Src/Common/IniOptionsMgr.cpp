@@ -387,6 +387,19 @@ int CIniOptionsMgr::FlushOptions()
 	return m_pIOHandler->WaitForQueueFlush();
 }
 
+std::map<String, String> CIniOptionsMgr::ReadStoredSection(const String& section)
+{
+	m_pIOHandler->WaitForQueueFlush();
+	const String prefix = section + _T("/");
+	std::map<String, String> values;
+	for (const auto& [key, value] : ReadIniFile(m_pIOHandler->GetPath(), lpAppName))
+	{
+		if (key.compare(0, prefix.length(), prefix) == 0)
+			values.insert_or_assign(key.substr(prefix.length()), value);
+	}
+	return values;
+}
+
 int CIniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
 {
 	for (auto& [key, value] : m_iniFileKeyValues)

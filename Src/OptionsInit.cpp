@@ -212,6 +212,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, 0xff);
 	pOptions->InitOption(OPT_CMP_WEB_SPLITTER_RATIOS, _T(""));
 
+	pOptions->InitOption(OPT_MERGE_RESULT_PANE_ENABLED, true);
+
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
 	pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));
@@ -263,7 +265,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_ACTIVE_PANE, 0, 0, 2);
 	pOptions->InitOption(OPT_LOCBAR_MOVECURSOR_ONCLICK, true);
 
-	pOptions->InitOption(OPT_MRU_MAX, 9, 0, 128);
+	pOptions->InitOption(OPT_MRU_MAX, 15, 0, 128);
 
 	pOptions->InitOption(OPT_COLOR_MODE, 0, 0, 2);
 	pOptions->InitOption(OPT_COLOR_MODE_EFFECTIVE, 0, 0, 1);

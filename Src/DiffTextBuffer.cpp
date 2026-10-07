@@ -127,9 +127,9 @@ AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
 		cchText, nActionType, paSavedRevisionNumbers);
 	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
 	{
-		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
+		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->undoTgt.begin() + m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
 		m_pOwnerDoc->undoTgt.push_back(m_nThisPane);
-		m_pOwnerDoc->curUndo = m_pOwnerDoc->undoTgt.end();
+		m_pOwnerDoc->curUndo = m_pOwnerDoc->undoTgt.size();
 	}
 }
 

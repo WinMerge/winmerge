@@ -5,7 +5,7 @@
     </indexterm></title>
 
   <para>WinMerge propose plusieurs façons de spécifier des chemins et d'ouvrir des
-fichiers ou des dossiers :<indexterm>
+fichiers ou des dossiers :<indexterm>
       <primary>dossiers</primary>
 
       <secondary>sélection dans la boîte de dialogue Sélectionner des fichiers ou des
@@ -69,7 +69,7 @@ class="directory">c:\workfiles\project1</filename>.</para>
 7-Zip. Voir <xref linkend="Install" /> pour installer ce plug-in.</para>
 
       <para>L'ouverture de deux fichiers d'archives est similaire à l'ouverture de
-fichiers normaux : spécifiez deux fichiers d'archives dans les champs
+fichiers normaux : spécifiez deux fichiers d'archives dans les champs
 <guilabel>1er</guilabel> et <guilabel>2e</guilabel> de la boîte de dialogue
 d'ouverture. Si WinMerge reconnaît le format d'archive, il ouvre le contenu
 des fichiers d'archives dans la fenêtre de comparaison de dossiers.</para>
@@ -84,7 +84,7 @@ dossiers ou dans la ligne de commande WinMerge.</para>
 
       <tip>
         <para>Lorsque vous faites glisser un fichier d'archive vers la fenêtre WinMerge,
-appuyez sur <keycap>Maj</keycap> en déposant le fichier : WinMerge copie
+appuyez sur <keycap>Maj</keycap> en déposant le fichier : WinMerge copie
 automatiquement le même nom de fichier des deux côtés et ouvre le fichier
 d'archive.</para>
       </tip>
@@ -106,7 +106,7 @@ spécifier un ou plusieurs masques de fichiers, ou un seul filtre de fichiers
       <para>Un masque est une expression simple basée sur les extensions de
 fichiers. Par exemple, cette liste de masques de fichiers n'inclut que les
 fichiers ayant les extensions spécifiées ; tous les autres sont exclus de la
-sélection au démarrage de l'opération de comparaison :</para>
+sélection au démarrage de l'opération de comparaison :</para>
 
       <screen>*.h;*.cpp;*.txt,*.ini</screen>
 
@@ -143,7 +143,7 @@ détails.</para>
       <para>Pour appliquer un plug-in à votre comparaison de fichiers, cliquez sur le
 bouton <guibutton>Sélectionner</guibutton> de l'option
 <guilabel>Décompresseur</guilabel>. Dans la boîte de dialogue Sélectionner
-un décompresseur :</para>
+un décompresseur :</para>
 
       <xi:include href="select_unpacker.xml"
                   xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -187,11 +187,11 @@ contextuel</option>, y compris ses sous-options si vous le souhaitez.</para>
 
       <para>Si vous activez <option>Ajouter au menu contextuel</option> sans la
 sous-option de menu avancé, le raccourci <guimenuitem>WinMerge</guimenuitem>
-est ajouté au menu contextuel de l'Explorateur. Par exemple :</para>
+est ajouté au menu contextuel de l'Explorateur. Par exemple :</para>
 
       <para>Pour utiliser l'intégration de base au shell, commencez par sélectionner
 deux chemins dans l'Explorateur Windows. Ensuite, faites un clic droit et
-choisissez WinMerge dans le menu contextuel. Par exemple :</para>
+choisissez WinMerge dans le menu contextuel. Par exemple :</para>
 
       <mediaobject>
 <imageobject> <imagedata fileref="screenshots/ctx_menu_simple.png"
@@ -230,7 +230,7 @@ avancé, décrit dans la section suivante.</para>
 
       <para>Si vous choisissez <option>Activer le menu avancé</option>, le raccourci
 <guimenuitem>WinMerge</guimenuitem> est remplacé par deux raccourcis
-<guimenuitem>Comparer</guimenuitem> :</para>
+<guimenuitem>Comparer</guimenuitem> :</para>
 
       <mediaobject>
 <imageobject> <imagedata fileref="screenshots/ctx_menu_advanced.png"
@@ -239,7 +239,7 @@ format="PNG" /> </imageobject><textobject>
         </textobject>
       </mediaobject>
 
-      <para>Utilisez les raccourcis <guimenuitem>Comparer</guimenuitem> dans cet ordre :</para>
+      <para>Utilisez les raccourcis <guimenuitem>Comparer</guimenuitem> dans cet ordre :</para>
 
       <orderedlist>
         <listitem>
@@ -250,7 +250,7 @@ jusqu'à ce que vous sélectionniez le second chemin.</para>
 
         <listitem>
           <para>Si vous décidez que vous avez choisi le mauvais premier chemin, vous pouvez
-le modifier avant de choisir le second chemin :</para>
+le modifier avant de choisir le second chemin :</para>
 
           <para>Faites un clic droit sur le nouveau chemin et choisissez le raccourci
 <guimenuitem>Re-sélectionner le premier</guimenuitem>. La nouvelle sélection
@@ -286,7 +286,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
       <para>Le chemin de <guimenuitem>Comparer à</guimenuitem> est stocké en mémoire
 jusqu'à ce que WinMerge soit ouvert. Par conséquent, vous n'avez pas besoin
 de sélectionner les deux fichiers en même temps ni même d'utiliser la même
-vue de l'Explorateur Windows : vous pouvez en choisir un, ouvrir un
+vue de l'Explorateur Windows : vous pouvez en choisir un, ouvrir un
 répertoire différent et choisir l'autre. Les deux chemins sont effacés de la
 mémoire après une opération de comparaison. Cela signifie que vous ne pouvez
 pas sélectionner un chemin <guimenuitem>Comparer à</guimenuitem> et le
@@ -310,7 +310,7 @@ dossiers</secondary>
 raccourci <guimenuitem>WinMerge</guimenuitem> ou
 <guimenuitem>Comparer</guimenuitem> sont récursives. Il existe un moyen de
 lancer des comparaisons non récursives avec l'intégration à l'Explorateur
-Windows :</para>
+Windows :</para>
 
       <itemizedlist>
         <listitem>
@@ -344,7 +344,7 @@ fichier projet est ouvert.</para>
     <para>Par défaut, WinMerge inclut les sous-dossiers dans les opérations de
 comparaison. Pour ne pas inclure les sous-dossiers, maintenez la touche
 <keycap>Ctrl</keycap> enfoncée lors du dépôt des chemins. Une autre touche
-utile lors du dépôt de chemins est <keycap>Maj</keycap> : pour ouvrir le
+utile lors du dépôt de chemins est <keycap>Maj</keycap> : pour ouvrir le
 même chemin des deux côtés d'une fenêtre de comparaison, maintenez la touche
 <keycap>Maj</keycap> enfoncée en ne déposant qu'un seul chemin. C'est un
 moyen pratique d'ouvrir des fichiers d'archives (voir <xref
@@ -355,7 +355,7 @@ fichiers ou des dossiers. Une procédure typique consiste à faire glisser et
 déposer le premier chemin dans la fenêtre WinMerge, puis à faire glisser et
 déposer le second chemin dans la boîte de dialogue de sélection. Lorsqu'un
 chemin est déposé dans la boîte de dialogue Sélectionner des fichiers ou des
-dossiers, il est chargé dans le champ du 1er ou du 2e chemin :</para>
+dossiers, il est chargé dans le champ du 1er ou du 2e chemin :</para>
 
     <variablelist>
       <varlistentry>
@@ -401,7 +401,7 @@ projet. Si le fichier projet possède deux ou trois chemins, deux ou trois
 chemins sont ouverts. Si un seul chemin est donné ou si l'un des chemins est
 invalide, WinMerge ouvre la boîte de dialogue Sélectionner des fichiers ou
 des dossiers, où vous pouvez ajouter ou corriger les informations de
-chemin. Voici quelques points à considérer :</para>
+chemin. Voici quelques points à considérer :</para>
 
       <itemizedlist>
         <listitem>
@@ -458,7 +458,7 @@ format="PNG" /> </imageobject><textobject>
       <title>Format de fichier projet</title>
 
       <para>Les fichiers projet sont de simples fichiers XML avec une extension
-<filename class="extension">.WinMerge</filename>. Par exemple :</para>
+<filename class="extension">.WinMerge</filename>. Par exemple :</para>
 
       <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;project&gt;
@@ -475,7 +475,7 @@ format="PNG" /> </imageobject><textobject>
 &lt;/project&gt;</screen>
 
       <para>Un fichier projet contient un élément <sgmltag>paths</sgmltag> qui peut
-contenir chacun de ces éléments :</para>
+contenir chacun de ces éléments :</para>
 
       <variablelist>
         <varlistentry>
@@ -586,7 +586,7 @@ contenir chacun de ces éléments :</para>
           <term><sgmltag>prediffer</sgmltag></term>
 
           <listitem>
-            <para>Nom du plug-in prediffer ou pipeline de plug-ins</para>
+            <para>Nom du plug-in précomparateur ou pipeline du plug-in</para>
           </listitem>
         </varlistentry>
 

@@ -19,13 +19,12 @@ de la fenêtre de WinMerge, soit à partir d'une fenêtre d'invite de commande.<
 
         <listitem>
           <para>Cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Ouvrir</guimenuitem> </menuchoice>. Utilisez la boîte de
-dialogue Sélectionner des fichiers ou des dossiers pour spécifier les
+<guimenuitem>Ouvrir...</guimenuitem> </menuchoice>. Utilisez la boîte de
+dialogue « Sélectionner des fichiers ou dossiers » pour spécifier les
 dossiers de gauche et de droite à comparer. Par défaut, la comparaison
 inclut tous les fichiers des dossiers et est récursive (inclut les
 sous-dossiers). Pour modifier l'une de ces options et pour plus de détails
-sur la boîte de dialogue Sélectionner des fichiers ou des dossiers,
-consultez <xref linkend="Open_paths" />.</para>
+sur cette boîte de dialogue, consultez <xref linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -81,9 +80,9 @@ de comparaison de dossiers. Cela ne devrait pas avoir d'importance dans la
 plupart des cas, car ces fichiers volumineux sont généralement binaires.</para>
 
             <para>Pour utiliser cette méthode, configurez-la avant votre opération de
-comparaison : dans la page Comparer des options de WinMerge, cliquez sur le
-menu déroulant <guilabel>Méthode de comparaison de fichiers</guilabel> et
-choisissez <guimenuitem>Contenu rapide</guimenuitem>.</para>
+comparaison : dans la page Comparer des Préférences de WinMerge, cliquez sur
+le menu déroulant <guilabel>Méthode de comparaison</guilabel> et choisissez
+<guimenuitem>Contenu rapide</guimenuitem>.</para>
           </listitem>
         </varlistentry>
 
@@ -95,7 +94,7 @@ choisissez <guimenuitem>Contenu rapide</guimenuitem>.</para>
 <guilabel>Comparaison par contenu rapide</guilabel>, par exemple si vous
 avez beaucoup de fichiers texte très volumineux. Pour ce faire, lancez la
 commande Windows <command>regedit</command>, accédez à cette clé et modifiez
-sa valeur : <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>Comme d'habitude, soyez
+sa valeur : <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>Comme d'habitude, soyez
 prudent lors de l'édition du registre !</para>
           </listitem>
         </varlistentry>
@@ -108,7 +107,7 @@ prudent lors de l'édition du registre !</para>
         </indexterm></title>
 
       <para>Lorsque vous lancez une opération de comparaison de dossiers, WinMerge
-affiche cette fenêtre d'état :</para>
+affiche cette fenêtre d'état :</para>
 
       <mediaobject>
 <imageobject> <imagedata fileref="screenshots/foldercmp_progress.png"
@@ -127,7 +126,7 @@ les éléments comparés.</para>
       <note>
         <para>Étant donné que les fichiers comparés sont généralement de tailles
 différentes, les données d'état n'indiquent pas le temps utilisé ou
-restant. Pour exemple, un ratio de 50/100 ne signifie pas nécessairement que
+restant. Par exemple, un ratio de 50/100 ne signifie pas nécessairement que
 la moitié du temps de l'opération de comparaison est écoulée.</para>
       </note>
 
@@ -156,7 +155,7 @@ moment-là, en omettant tout résultat non terminé.</para>
       </indexterm></title>
 
     <para>La fenêtre de comparaison de dossiers affiche le résultat d'une comparaison
-de dossiers. Deux vues différentes sont disponibles :</para>
+de dossiers. Deux vues différentes sont disponibles :</para>
 
     <variablelist>
       <varlistentry id="Compare_dirs_tabview">
@@ -166,7 +165,7 @@ de dossiers. Deux vues différentes sont disponibles :</para>
 
         <listitem>
           <para>En vue tabulaire, chaque fichier ou dossier du résultat est répertorié dans
-une ligne. C'est la vue par défaut. Voici un exemple :</para>
+une ligne. C'est la vue par défaut. Voici un exemple :</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="600"
@@ -183,7 +182,7 @@ fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject></mediaobjec
         <listitem>
           <para>Dans la vue en arborescence, les dossiers sont extensibles et réductibles,
 contenant des fichiers et des sous-dossiers. La vue en arborescence n'est
-disponible que pour les comparaisons récursives. Par exemple :</para>
+disponible que pour les comparaisons récursives. Par exemple :</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="599"
@@ -199,11 +198,11 @@ ligne.</para>
 
             <listitem>
               <para>Pour développer ou réduire tous les dossiers de la vue, cliquez sur
-<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Développer les
-sous-dossiers</guimenuitem> <guimenuitem>Tous les
+<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Développer
+l'arborescence</guimenuitem> <guimenuitem>Tous les
 sous-dossiers</guimenuitem> </menuchoice> ou <menuchoice>
-<guimenu>Affichage</guimenu> <guimenuitem>Réduire tous les
-sous-dossiers</guimenuitem> </menuchoice> dans le menu.</para>
+<guimenu>Affichage</guimenu> <guimenuitem>Réduire
+l'arborescence</guimenuitem> </menuchoice> dans le menu.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -212,8 +211,8 @@ sous-dossiers</guimenuitem> </menuchoice> dans le menu.</para>
 
     <para>Pendant une comparaison récursive (c'est-à-dire si vous avez activé l'option
 <option>Inclure les sous-dossiers</option> dans la boîte de dialogue
-Sélectionner des fichiers ou des dossiers lors du lancement de la
-comparaison), vous pouvez cliquer sur la commande <menuchoice>
+Sélectionner des fichiers ou dossiers lors du lancement de la comparaison),
+vous pouvez cliquer sur la commande <menuchoice>
 <guimenu>Affichage</guimenu> <guimenuitem>Mode arborescence</guimenuitem>
 </menuchoice> pour basculer entre les deux vues. La commande <menuchoice>
 <guimenu>Affichage</guimenu> <guimenuitem>Mode arborescence</guimenuitem>
@@ -222,7 +221,7 @@ comparaison), vous pouvez cliquer sur la commande <menuchoice>
     <para>Dans les deux vues, les colonnes affichent différents types de données pour
 chaque élément de résultat. Vous pouvez contrôler le tri des éléments dans
 la vue en cliquant sur un en-tête de colonne. Cela modifie le tri de deux
-manières :</para>
+manières :</para>
 
     <itemizedlist>
       <listitem>
@@ -246,7 +245,7 @@ manières :</para>
         </indexterm></title>
 
       <para>La fenêtre de comparaison de dossiers se présente et se comporte légèrement
-différemment pour les comparaisons récursives et non récursives :</para>
+différemment pour les comparaisons récursives et non récursives :</para>
 
       <variablelist>
         <varlistentry>
@@ -255,16 +254,16 @@ différemment pour les comparaisons récursives et non récursives :</para>
           <listitem>
             <para>Le résultat de la comparaison inclut tous les sous-dossiers. Vous pouvez
 contrôler les types d'éléments affichés dans les dossiers en choisissant les
-options du menu <guimenu>Affichage</guimenu> (par exemple,
+options dans le menu <guimenu>Affichage</guimenu> (par exemple,
 <guimenuitem>Afficher les éléments identiques</guimenuitem>). La colonne
-Dossier est toujours vide : seuls les fichiers à l'intérieur des dossiers
+Dossier est toujours vide : seuls les fichiers à l'intérieur des dossiers
 sont affichés. Pour voir le sous-dossier d'un élément, regardez son chemin
 dans la colonne Résultat de la comparaison. Les dossiers qui n'existent que
 d'un seul côté sont affichés si l'une des options du menu
-<guimenu>Affichage</guimenu>, <guimenuitem>Afficher les fichiers uniques à
-gauche</guimenuitem>, <guimenuitem>Afficher les fichiers uniques au
-milieu</guimenuitem> ou <guimenuitem>Afficher les fichiers uniques à
-droite</guimenuitem>, est activée.</para>
+<guimenu>Affichage</guimenu>, <guimenuitem>Afficher les éléments uniquement
+à Gauche</guimenuitem>, <guimenuitem>Afficher les éléments uniquement au
+Milieu</guimenuitem> ou <guimenuitem>Afficher les éléments uniquement à
+Droite</guimenuitem>, est activée.</para>
           </listitem>
         </varlistentry>
 
@@ -289,8 +288,8 @@ vers n'importe quel sous-dossier que vous souhaitez comparer.</para>
 
       <para>Dans la fenêtre de comparaison de dossiers, les fichiers et dossiers sont
 comparés et divisés en plusieurs catégories. Dans chaque ligne, la catégorie
-est clairement identifiée dans la colonne de gauche par l'une de ces icônes
-:</para>
+est clairement identifiée dans la colonne de gauche par l'une de ces
+icônes :</para>
 
       <simplelist>
         <member><inlinemediaobject>
@@ -322,12 +321,12 @@ indéterminé)</member>
         <member><inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/foldersame.png" format="PNG" /> </imageobject></inlinemediaobject> Dossiers identiques
-(uniquement en vue arborescente)</member>
+(uniquement en mode arborescence)</member>
 
         <member><inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
 fileref="screenshots/folderdiff.png" format="PNG" /> </imageobject></inlinemediaobject> Dossiers différents
-(uniquement en vue arborescente)</member>
+(uniquement en mode arborescence)</member>
 
         <member><inlinemediaobject>
 <imageobject> <imagedata contentwidth="16" fileref="screenshots/lfolder.png"
@@ -451,17 +450,17 @@ menu contextuel, où toutes les opérations sur les fichiers sont disponibles.</
 
       <para>L'opération de fichier la plus courante dans la fenêtre de comparaison de
 dossiers consiste à copier des fichiers d'un côté vers l'autre. Il existe
-plusieurs formes de la fonction de copie de WinMerge : toutes ne copient que
+plusieurs formes de la fonction de copie de WinMerge : toutes ne copient que
 les fichiers différents, car copier des fichiers identiques ne sert à rien
 lors de la fusion. Les fonctions de copie sont disponibles dans le menu
-contextuel, dans le menu WinMerge et dans la barre d'outils :</para>
+contextuel, dans le menu WinMerge et dans la barre d'outils :</para>
 
       <section>
         <title>Raccourcis de copie du menu contextuel</title>
 
         <para>Dans le menu contextuel de la fenêtre de comparaison de dossiers, l'élément
 <guimenuitem>Copier</guimenuitem> possède un sous-menu avec quatre
-raccourcis :</para>
+raccourcis :</para>
 
         <mediaobject>
 <imageobject> <imagedata contentwidth="526"
@@ -472,18 +471,18 @@ fileref="screenshots/ctx_menu_copy1.png" format="PNG" /> </imageobject><textobje
 
         <itemizedlist>
           <listitem>
-            <para><guimenuitem>De gauche à droite</guimenuitem> et <guimenuitem>De droite à
-gauche</guimenuitem> copient la sélection (ou uniquement les éléments de la
+            <para><guimenuitem>Gauche vers Droite</guimenuitem> et <guimenuitem>Droite vers
+Gauche</guimenuitem> copient la sélection (ou uniquement les éléments de la
 sélection qui peuvent être copiés) d'un côté vers l'autre. Dans l'exemple,
 le suffixe <guilabel>(2 sur 4)</guilabel> indique que seuls les deux
 fichiers différents seront copiés ; les fichiers identiques ne le seront
 pas. Ces raccourcis ne sont disponibles que si l'un des fichiers que vous
-sélectionnez est différent : si vous ne sélectionnez que des fichiers
+sélectionnez est différent : si vous ne sélectionnez que des fichiers
 identiques, les raccourcis ne sont pas disponibles.</para>
           </listitem>
 
           <listitem>
-            <para><guimenuitem>Gauche vers...</guimenuitem> et <guimenuitem>Droite
+            <para><guimenuitem>De Gauche vers...</guimenuitem> et <guimenuitem>De Droite
 vers...</guimenuitem> vous permettent de spécifier un répertoire cible de
 copie dans votre système, au lieu d'un dossier comparé. Lorsque la boîte de
 dialogue Rechercher un dossier s'ouvre, accédez au répertoire cible sur
@@ -492,8 +491,8 @@ votre système (ou créez un nouveau dossier cible) et cliquez sur
           </listitem>
         </itemizedlist>
         <para>Dans la fenêtre de comparaison de dossiers à trois dossiers, l'élément
-<guimenuitem>Copier</guimenuitem> comporte un sous-menu avec neuf raccourcis
-:</para>
+<guimenuitem>Copier</guimenuitem> comporte un sous-menu avec neuf
+raccourcis :</para>
 
         <mediaobject>
 <imageobject> <imagedata contentwidth="410"
@@ -510,28 +509,29 @@ fileref="screenshots/ctx_menu_copy2.png" format="PNG" /> </imageobject><textobje
         <para>Dans la barre d'outils Comparaison de dossiers, <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
-              <phrase>Bouton Copier à droite</phrase>
+              <phrase>Bouton Copier vers la droite</phrase>
             </textobject>
-          </inlinemediaobject> <guibutton>Copier à droite</guibutton> et
-<inlinemediaobject>
+          </inlinemediaobject> <guibutton>Copier vers la
+droite</guibutton> et <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
-              <phrase>Bouton Copier à gauche</phrase>
+              <phrase>Bouton Copier vers la gauche</phrase>
             </textobject>
-          </inlinemediaobject> <guibutton>Copier à
-gauche</guibutton> accomplissent la même tâche que les raccourcis du menu
-contextuel <guimenuitem>De gauche à droite</guimenuitem> et <guimenuitem>De
-droite à gauche</guimenuitem> : ils ne copient d'un côté vers l'autre que
-les fichiers qu'il est possible de copier. Cependant, ces commandes
-n'affichent pas directement le nombre de fichiers à copier ; à la place,
-elles affichent une boîte de dialogue de confirmation où vous pouvez
-vérifier une liste de chemins de fichiers source et cible.</para>
+          </inlinemediaobject>
+<guibutton>Copier vers la gauche</guibutton> accomplissent la même tâche que
+les raccourcis du menu contextuel <guimenuitem>Gauche vers
+Droite</guimenuitem> et <guimenuitem>Droite vers Gauche</guimenuitem> : ils
+ne copient d'un côté vers l'autre que les fichiers qu'il est possible de
+copier. Cependant, ces commandes n'affichent pas directement le nombre de
+fichiers à copier ; à la place, elles affichent une boîte de dialogue de
+confirmation où vous pouvez vérifier une liste de chemins de fichiers source
+et cible.</para>
 
         <para>Dans le menu WinMerge, <menuchoice> <guimenu>Fusionner</guimenu>
-<guimenuitem>Copier à droite</guimenuitem> </menuchoice> et <menuchoice>
-<guimenu>Fusionner</guimenu> <guimenuitem>Copier à gauche</guimenuitem>
-</menuchoice> se comportent de la même manière que les commandes Copier de
-la barre d'outils.</para>
+<guimenuitem>Copier vers la Droite</guimenuitem> </menuchoice> et
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier vers la
+Gauche</guimenuitem> </menuchoice> se comportent de la même manière que les
+commandes Copier de la barre d'outils.</para>
       </section>
     </section>
 
@@ -552,14 +552,13 @@ sous-menu avec des raccourcis <guimenuitem>Gauche</guimenuitem>,
 
       <warning>
         <para>Nous vous recommandons vivement de laisser activée l'option
-<guilabel>Envoyer les fichiers supprimés à la corbeille</guilabel> (voir
-<xref linkend="Configuration" />), afin de pouvoir annuler les suppressions
-en cas d'accident. De plus, vous devez garder la Corbeille activée :
-l'option WinMerge ne fonctionne pas si vous désactivez la Corbeille dans
-Windows. Une fois de plus, vous ne pouvez pas annuler la suppression d'un
-fichier ou d'un dossier à moins d'utiliser à la fois l'option
-<guilabel>Envoyer les fichiers supprimés à la corbeille</guilabel> de
-WinMerge et la Corbeille de Windows !</para>
+<guilabel>Utiliser la Corbeille</guilabel> (voir <xref
+linkend="Configuration" />), afin de pouvoir annuler les suppressions en cas
+d'accident. De plus, vous devez garder la Corbeille activée : l'option
+WinMerge ne fonctionne pas si vous désactivez la Corbeille dans Windows. Une
+fois de plus, vous ne pouvez pas annuler la suppression d'un fichier ou d'un
+dossier à moins d'utiliser à la fois l'option <guilabel>Utiliser la
+Corbeille</guilabel> de WinMerge et la Corbeille de Windows !</para>
       </warning>
     </section>
 
@@ -573,9 +572,9 @@ WinMerge et la Corbeille de Windows !</para>
       <para>Pour renommer un fichier ou un dossier, choisissez
 <guimenuitem>Renommer</guimenuitem> dans son menu contextuel ou appuyez sur
 <keycap>F2</keycap>. Changez ensuite le nom dans la zone de saisie et
-appuyez sur <keycap>Entrée</keycap>, ou sur <keycap>Echap</keycap> pour
+appuyez sur <keycap>Entrée</keycap>, ou sur <keycap>Échap</keycap> pour
 annuler. Vous ne pouvez renommer qu'un seul fichier ou dossier à la
-fois. Notez que le renommage modifie les éléments des deux ou trois côtés :
+fois. Notez que le renommage modifie les éléments des deux ou trois côtés :
 il n'est pas possible actuellement de renommer un élément d'un seul côté.</para>
     </section>
 
@@ -586,15 +585,15 @@ il n'est pas possible actuellement de renommer un élément d'un seul côté.</p
           <secondary>dans la fenêtre de comparaison de dossiers</secondary>
         </indexterm></title>
 
-      <para>Dans le menu contextuel, vous pouvez utiliser <guimenuitem>Ouvrir à
-gauche</guimenuitem>, <guimenuitem>Ouvrir au milieu</guimenuitem> ou
-<guimenuitem>Ouvrir à droite</guimenuitem>, selon le côté sur lequel vous
+      <para>Dans le menu contextuel, vous pouvez utiliser <guimenuitem>Ouvrir
+Gauche</guimenuitem>, <guimenuitem>Ouvrir Milieu</guimenuitem> ou
+<guimenuitem>Ouvrir Droite</guimenuitem>, selon le côté sur lequel vous
 souhaitez opérer. Chaque élément de menu <guimenuitem>Ouvrir</guimenuitem>
-comporte un sous-menu avec ces raccourcis :</para>
+comporte un sous-menu avec ces raccourcis :</para>
 
       <variablelist>
         <varlistentry>
-          <term>Avec l'application enregistrée</term>
+          <term>Avec l'application désignée</term>
 
           <listitem>
             <para>Ouvre le fichier avec l'application (le cas échéant) qui est enregistrée
@@ -614,12 +613,12 @@ l'Explorateur Windows.</para>
           <listitem>
             <para>Ouvre le fichier avec un éditeur externe. L'éditeur par défaut est le
 Bloc-notes (Notepad), mais vous pouvez en configurer un autre dans les
-options de WinMerge.</para>
+préférences de WinMerge.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Avec...</term>
+          <term>Avec une application du PC...</term>
 
           <listitem>
             <para>Ouvre la boîte de dialogue <guilabel>Ouvrir avec</guilabel>, dans laquelle
@@ -640,11 +639,11 @@ vous pouvez spécifier une application pour ouvrir votre fichier.</para>
           <secondary>copie depuis la fenêtre de comparaison de dossiers</secondary>
         </indexterm></title>
 
-      <para>Les raccourcis du menu contextuel <guimenuitem>Copier le
-chemin</guimenuitem> et <guimenuitem>Copier les noms de
+      <para>Les raccourcis du menu contextuel <guimenuitem>Copier les
+chemins</guimenuitem> et <guimenuitem>Copier les noms de
 fichiers</guimenuitem> copient le chemin ou le nom du fichier des éléments
 sélectionnés dans le presse-papiers de Windows. Vous pouvez ensuite coller
-les informations courantes dans un fichier ou une application, par exemple
+les informations copiées dans un fichier ou une application, par exemple
 pour créer une liste de fichiers modifiés ou un journal des modifications.</para>
 
       <itemizedlist>
@@ -677,11 +676,11 @@ noms de fichiers sans les chemins.</para>
 
       <para>Pour protéger les fichiers et les dossiers de l'un des côtés d'une
 comparaison contre les modifications, cochez la case <menuchoice>
-<guimenu>Fichier</guimenu> <guimenuitem>Gauche en lecture
+<guimenu>Fichier</guimenu> <guimenuitem>Panneau Gauche en lecture
 seule</guimenuitem> </menuchoice>, <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Milieu en lecture seule</guimenuitem> </menuchoice> ou
-<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Droite en lecture
-seule</guimenuitem> </menuchoice>.</para>
+<guimenuitem>Panneau Milieu en lecture seule</guimenuitem> </menuchoice> ou
+<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Panneau Droite en
+lecture seule</guimenuitem> </menuchoice>.</para>
 
       <important>
         <para>L'activation de l'option de lecture seule protège les fichiers et les
@@ -696,7 +695,7 @@ les comparer, le fichier ouvert du côté protégé sera protégé en écriture.
 même, vous ne pouvez pas copier un fichier du côté non protégé vers le côté
 protégé.</para>
 
-      <para>Le code <guilabel>RO</guilabel> dans le panneau du côté gauche, du milieu ou
+      <para>Le code <guilabel>LS</guilabel> dans le panneau du côté gauche, du milieu ou
 du côté droit de la barre d'état (près du coin inférieur droit de la
 fenêtre) indique que le côté est actuellement en lecture seule.</para>
     </section>
@@ -710,10 +709,10 @@ fenêtre) indique que le côté est actuellement en lecture seule.</para>
 temps. Dans WinMerge 2.2 et les versions antérieures, vous deviez toujours
 effectuer une actualisation complète pour mettre à jour les fichiers après
 les avoir modifiés en dehors de WinMerge. À partir de la version 2.4,
-WinMerge peut actualiser uniquement les éléments sélectionnés : choisissez
+WinMerge peut actualiser uniquement les éléments sélectionnés : choisissez
 <guimenuitem>Actualiser</guimenuitem> dans le menu contextuel ou
-<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Actualiser les
-éléments sélectionnés</guimenuitem> </menuchoice> dans le menu principal.</para>
+<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Actualiser la
+sélection</guimenuitem> </menuchoice> dans le menu principal.</para>
     </section>
 
     <section>
@@ -723,16 +722,17 @@ WinMerge peut actualiser uniquement les éléments sélectionnés : choisissez
           <secondary>dans la fenêtre de comparaison de dossiers</secondary>
         </indexterm></title>
 
-      <para>Utilisez l'élément de menu contextuel <guimenu>Zip</guimenu> pour créer un
-nouveau fichier d'archive contenant les éléments que vous sélectionnez.</para>
+      <para>Utilisez l'élément de menu contextuel <guimenu>Compresser</guimenu> pour
+créer un nouveau fichier d'archive contenant les éléments que vous
+sélectionnez.</para>
 
       <note>
         <para>La prise en charge des archives nécessite que vous ayez installé le plug-in
 WinMerge 7-Zip.</para>
       </note>
 
-      <para>L'élément de menu <guimenu>Zip</guimenu> possède un sous-menu avec cinq
-raccourcis :</para>
+      <para>L'élément de menu <guimenu>Compresser</guimenu> possède un sous-menu avec
+cinq raccourcis :</para>
 
       <variablelist>
         <varlistentry>
@@ -770,7 +770,7 @@ fichier d'archive</para>
 fichier d'archive. Étant donné que les noms de fichiers sont les mêmes, ils
 sont ajoutés dans des sous-dossiers différents, nommés <filename
 class="directory">Original</filename> et <filename
-class="directory">Altered</filename>, à l'intérieur de l'archive : les
+class="directory">Altered</filename>, à l'intérieur de l'archive : les
 fichiers du côté gauche sont placés dans <filename
 class="directory">Original</filename>, et les fichiers du côté droit sont
 placés dans <filename class="directory">Altered</filename>.</para>
@@ -785,7 +785,7 @@ placés dans <filename class="directory">Altered</filename>.</para>
 fichier d'archive. Étant donné que les noms de fichiers sont les mêmes, ils
 sont ajoutés dans des sous-dossiers différents, nommés <filename
 class="directory">Original</filename> et <filename
-class="directory">Altered</filename>, à l'intérieur de l'archive : les
+class="directory">Altered</filename>, à l'intérieur de l'archive : les
 fichiers du côté gauche sont placés dans <filename
 class="directory">Original</filename>, et les fichiers du côté droit sont
 placés dans <filename class="directory">Altered</filename>.</para>
@@ -802,10 +802,10 @@ différents (y compris les fichiers uniques) des deux côtés.</para>
         </varlistentry>
       </variablelist>
 
-      <para>Lorsque vous sélectionnez l'un des raccourcis <guimenu>Zip</guimenu>, la
-boîte de dialogue Enregistrer sous vous demande le nom et le type du fichier
-d'archive. WinMerge ne peut pas ajouter de fichiers à des fichiers d'archive
-existants : il crée toujours un nouveau fichier d'archive.</para>
+      <para>Lorsque vous sélectionnez l'un des raccourcis <guimenu>Compresser</guimenu>,
+la boîte de dialogue Enregistrer sous vous demande le nom et le type du
+fichier d'archive. WinMerge ne peut pas ajouter de fichiers à des fichiers
+d'archive existants : il crée toujours un nouveau fichier d'archive.</para>
 
 <!--Original:
 WinMerge looks for subfolders Original/ and Altered/ in archive files. If archive file contains these 
@@ -819,7 +819,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <tip>
         <para>WinMerge peut comparer le contenu de fichiers d'archives portant le même nom
-des deux côtés : WinMerge recherche les sous-dossiers <filename
+des deux côtés : WinMerge recherche les sous-dossiers <filename
 class="directory">Original</filename> et <filename
 class="directory">Altered</filename>, et compare le contenu de ces deux
 dossiers.</para>
@@ -834,7 +834,7 @@ jour le contenu de l'archive en utilisant les opérations de fichier
 <guimenuitem>Copier</guimenuitem>, <guimenuitem>Déplacer</guimenuitem> ou
 <guimenuitem>Supprimer</guimenuitem> de WinMerge. À la place, créez un
 nouveau fichier d'archive en utilisant l'un des raccourcis
-<guimenuitem>Zip</guimenuitem>.</para>
+<guimenuitem>Compresser</guimenuitem>.</para>
     </section>
   </section>
 
@@ -876,7 +876,7 @@ ligne, ou sélectionnez la ligne et appuyez sur <keycap>Entrée</keycap>.</para>
 
             <para>Parfois, le dossier parent ne peut pas être ouvert (par exemple si vous
 n'avez pas les permissions d'y accéder). Ces deux icônes indiquent si un
-dossier parent peut être ouvert :</para>
+dossier parent peut être ouvert :</para>
 
             <simplelist type="vert">
               <member><inlinemediaobject>
@@ -927,7 +927,7 @@ deux lignes) lorsque les sous-dossiers de chaque côté sont différents. Vous
 ne pouvez comparer deux sous-dossiers que si vous avez déjà comparé des
 dossiers identiques (par exemple, en parcourant un seul sous-dossier dans un
 résultat de comparaison). Sélectionnez d'abord les deux dossiers dans la
-fenêtre de comparaison de dossiers, comme le montre la figure suivante :</para>
+fenêtre de comparaison de dossiers, comme le montre la figure suivante :</para>
 
             <mediaobject>
 <imageobject> <imagedata contentwidth="572"
@@ -937,7 +937,7 @@ fileref="screenshots/foldercomp_2same.png" format="PNG" /> </imageobject><textob
             </mediaobject>
             <para></para>
 
-            <para>L'ordre de sélection est important : le dossier que vous sélectionnez en
+            <para>L'ordre de sélection est important : le dossier que vous sélectionnez en
 premier est le dossier de gauche dans le résultat ; le deuxième dossier
 sélectionné devient le dossier de droite dans le résultat.</para>
 
@@ -976,13 +976,13 @@ la structure du dossier.</para>
 dossier. À partir de la version 2.8, WinMerge propose une autre méthode
 consistant à créer un nouveau dossier vide à la place. Cela vous permet de
 ne copier que les éléments que vous souhaitez du dossier unique d'origine
-vers le dossier vide créé. Cette procédure le démontre :</para>
+vers le dossier vide créé. Cette procédure le démontre :</para>
 
       <orderedlist>
         <listitem>
           <para>Naviguez vers le dossier unique (sélectionnez le dossier et appuyez sur
 <keycap>Entrée,</keycap> double-cliquez dessus, ou faites un clic droit
-dessus et choisissez <guimenuitem>Comparer</guimenuitem>). Par exemple :</para>
+dessus et choisissez <guimenuitem>Comparer</guimenuitem>). Par exemple :</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="590"
@@ -1001,7 +1001,7 @@ l'autre côté du résultat de la comparaison.</para>
           <para>Cliquez sur <guibutton>Oui</guibutton> pour confirmer
 (<guibutton>Non</guibutton> annule la comparaison). Dans le nouveau résultat
 de comparaison, le dossier unique est ouvert sur le côté gauche, et le
-nouveau dossier vide créé est sur la droite :</para>
+nouveau dossier vide créé est sur la droite :</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="590"
@@ -1043,37 +1043,37 @@ afficher l'élément ; désactivez-la pour le masquer.</para>
 
       <itemizedlist>
         <listitem>
-          <para><guimenuitem>Afficher les éléments identiques</guimenuitem> : Fichiers
+          <para><guimenuitem>Afficher les éléments identiques</guimenuitem> : Fichiers
 détectés comme identiques</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Afficher les éléments différents</guimenuitem> : Fichiers
+          <para><guimenuitem>Afficher les éléments différents</guimenuitem> : Fichiers
 détectés comme différents</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Afficher les éléments uniques à gauche</guimenuitem> : Fichiers
-et répertoires présents uniquement du côté gauche</para>
+          <para><guimenuitem>Afficher les éléments uniquement à Gauche</guimenuitem> :
+Fichiers et répertoires présents uniquement du côté gauche</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Afficher les éléments uniques au milieu</guimenuitem> :
+          <para><guimenuitem>Afficher les éléments uniquement au Milieu</guimenuitem> :
 Fichiers et répertoires présents uniquement au milieu</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Afficher les éléments uniques à droite</guimenuitem> : Fichiers
-et répertoires présents uniquement du côté droit</para>
+          <para><guimenuitem>Afficher les éléments uniquement à Droite</guimenuitem> :
+Fichiers et répertoires présents uniquement du côté droit</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Afficher les éléments ignorés</guimenuitem> : Fichiers et
+          <para><guimenuitem>Afficher les éléments ignorés</guimenuitem> : Fichiers et
 répertoires omis par les filtres de fichiers</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Afficher les fichiers binaires</guimenuitem> : Fichiers
+          <para><guimenuitem>Afficher les fichiers binaires</guimenuitem> : Fichiers
 détectés comme binaires</para>
         </listitem>
       </itemizedlist>
@@ -1087,7 +1087,7 @@ l'ordre de tri d'une colonne particulière. Cette colonne de tri est indiquée
 par une petite flèche dans son en-tête. La flèche pointe vers le haut si la
 colonne est triée par ordre croissant, vers le bas si elle est
 décroissante. L'exemple de comparaison de dossiers en haut de cette rubrique
-est trié par la colonne Nom de fichier, par ordre croissant.</para>
+est trié par la colonne Nom du fichier, par ordre croissant.</para>
 
       <para>Pour choisir une autre colonne d'ordre, cliquez simplement dans l'en-tête de
 cette colonne. La colonne sélectionnée est définie sur son ordre de tri par
@@ -1104,20 +1104,20 @@ décroissant).</para>
       <title>Ajout, suppression et réorganisation de colonnes</title>
 
       <para>Pour modifier les colonnes affichées dans la fenêtre de comparaison de
-dossiers :</para>
+dossiers :</para>
 
       <orderedlist>
         <listitem>
           <para>Cliquez avec le bouton droit sur n'importe quel en-tête de colonne et
-choisissez <guimenuitem>Personnaliser les colonnes</guimenuitem>. Ou bien,
-cliquez sur <menuchoice> <guimenu>Outils</guimenu>
-<guimenuitem>Personnaliser les colonnes</guimenuitem> </menuchoice></para>
+choisissez <guimenuitem>Personnaliser les colonnes...</guimenuitem>. Ou
+bien, cliquez sur <menuchoice> <guimenu>Outils</guimenu>
+<guimenuitem>Personnaliser les colonnes...</guimenuitem> </menuchoice></para>
         </listitem>
 
         <listitem>
           <para>La boîte de dialogue d'affichage des colonnes contient une liste de tous les
 noms de colonnes disponibles, chacun muni d'une case à cocher. Configurez
-les colonnes en utilisant n'importe quelle combinaison de ces actions :</para>
+les colonnes en utilisant n'importe quelle combinaison de ces actions :</para>
 
           <itemizedlist>
             <listitem>
@@ -1152,113 +1152,110 @@ configuration personnalisée.</para>
           <primary>Boîte de dialogue d'affichage des colonnes</primary>
         </indexterm>Les colonnes suivantes de la boîte de
 dialogue d'affichage des colonnes sont affichées par défaut dans la fenêtre
-de comparaison de dossiers :</para>
+de comparaison de dossiers :</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Nom de fichier</guilabel> : Nom de l'élément comparé. Dans une
+          <para><guilabel>Nom du fichier</guilabel> : Nom de l'élément comparé. Dans une
 comparaison non récursive, cette colonne comprend à la fois les fichiers et
 les dossiers ; dans une comparaison récursive, elle ne comprend pas les
-dossiers : à la place, les dossiers sont répertoriés dans la colonne
+dossiers : à la place, les dossiers sont répertoriés dans la colonne
 Dossier.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Dossier</guilabel> : Chemin du sous-dossier comparé, par rapport
+          <para><guilabel>Dossier</guilabel> : Chemin du sous-dossier comparé, par rapport
 au dossier comparé. Pour une comparaison non récursive, cette colonne est
-toujours vide : les dossiers sont répertoriés dans la colonne <guilabel>Nom
-de fichier</guilabel> à la place.</para>
+toujours vide : les dossiers sont répertoriés dans la colonne <guilabel>Nom
+du fichier</guilabel> à la place.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Résultat de la comparaison</guilabel> : Résultat de la comparaison
+          <para><guilabel>Résultat de la comparaison</guilabel> : Résultat de la comparaison
 détaillé (voir aussi <guilabel>Résultat court</guilabel>).</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Date gauche</guilabel>, <guilabel>Date milieu</guilabel>,
-<guilabel>Date droite</guilabel> : Dates de modification de l'élément de
+          <para><guilabel>Date Gauche</guilabel>, <guilabel>Date Milieu</guilabel>,
+<guilabel>Date Droite</guilabel> : Dates de modification de l'élément de
 chaque côté. La plus récente des deux dates (ou la date de tout élément
 unique) est précédée d'un astérisque ( * ).</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Extension</guilabel> : Extension de fichier, pratique pour le tri.</para>
+          <para><guilabel>Extension</guilabel> : Extension de fichier, pratique pour le tri.</para>
         </listitem>
       </itemizedlist>
 
       <para>Les colonnes supplémentaires suivantes sont disponibles dans la boîte de
-dialogue d'affichage des colonnes :</para>
+dialogue d'affichage des colonnes :</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Résultat court</guilabel> : Affiche la colonne <guilabel>Résultat
-de la comparaison</guilabel> sous une forme brève (par exemple : Droite
+          <para><guilabel>Résultat court</guilabel> : Affiche la colonne <guilabel>Résultat
+de la comparaison</guilabel> sous une forme brève (par exemple : À Droite
 uniquement).</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Binaire</guilabel> : La colonne contient un astérisque ( * )
+          <para><guilabel>Binaire</guilabel> : La colonne contient un astérisque ( * )
 lorsque le fichier est un fichier binaire. C'est pratique pour le tri et
 pour une utilisation avec la colonne <guilabel>Résultat court</guilabel>.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Attributs gauche</guilabel>, <guilabel>Attributs
-milieu</guilabel>, <guilabel>Attributs droite</guilabel> : Affiche les
-attributs des fichiers.</para>
+          <para><guilabel>Attrib. Gauche</guilabel>, <guilabel>Attrib. Milieu</guilabel>,
+<guilabel>Attrib. Droite</guilabel> : Affiche les attributs des fichiers.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Date de création gauche</guilabel>, <guilabel>Date de création
-milieu</guilabel>, <guilabel>Date de création droite</guilabel> : Date de
-création de l'élément.</para>
+          <para><guilabel>Heure créa. Gauche</guilabel>, <guilabel>Heure
+créa. Milieu</guilabel>, <guilabel>Heure créa. Droite</guilabel> : Date et
+heure de création de l'élément.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Encodage gauche</guilabel>, <guilabel>Encodage milieu</guilabel>,
-<guilabel>Encodage droite</guilabel> : Encodage du fichier. Affiche le
-numéro de la page de code pour les fichiers ANSI et l'encodage Unicode pour
-les fichiers Unicode.</para>
+          <para><guilabel>Encod. Gauche</guilabel>, <guilabel>Encod. Milieu</guilabel>,
+<guilabel>Encod. Droite</guilabel> : Encodage du fichier. Affiche le numéro
+de la page de code pour les fichiers ANSI et l'encodage Unicode pour les
+fichiers Unicode.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Version fichier gauche</guilabel>, <guilabel>Version fichier
-milieu</guilabel>, <guilabel>Version fichier droite</guilabel> : Numéro de
-version du fichier, s'il est présent. Notez que la version n'est lue que
-pour certains types de fichiers binaires connus pour avoir habituellement
-une ressource de version.</para>
+          <para><guilabel>Version Gauche</guilabel>, <guilabel>Version Milieu</guilabel>,
+<guilabel>Version Droite</guilabel> : Numéro de version du fichier, s'il est
+présent. Notez que la version n'est lue que pour certains types de fichiers
+binaires connus pour avoir habituellement une ressource de version.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Taille gauche</guilabel>, <guilabel>Taille milieu</guilabel>,
-<guilabel>Taille droite</guilabel> : Taille du fichier en octets.</para>
+          <para><guilabel>Taille Gauche</guilabel>, <guilabel>Taille Milieu</guilabel>,
+<guilabel>Taille Droite</guilabel> : Taille du fichier en octets.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Taille gauche (courte)</guilabel>, <guilabel>Taille milieu
-(courte)</guilabel>, <guilabel>Taille droite (courte)</guilabel> : Versions
+          <para><guilabel>Taille Gauche (abrégé)</guilabel>, <guilabel>Taille Milieu
+(abrégé)</guilabel>, <guilabel>Taille Droite (abrégé)</guilabel> : Versions
 courtes des tailles de fichiers, arrondies en Ko, Mo ou Go.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Fichier le plus récent</guilabel> : Indique quel côté est le plus
-récent.</para>
+          <para><guilabel>Le + récent</guilabel> : Indique quel côté est le plus récent.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Différences</guilabel> : Nombre de différences trouvées entre les
+          <para><guilabel>Différences</guilabel> : Nombre de différences trouvées entre les
 fichiers, à l'exclusion des différences éventuellement ignorées.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Diff ignorées</guilabel> : Nombre de différences ignorées dans les
-fichiers. Il s'agit de différences ignorées par les filtres de lignes.</para>
+          <para><guilabel>Diff. ignorées</guilabel> : Nombre de différences ignorées dans
+les fichiers. Il s'agit de différences ignorées par les filtres de lignes.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>EOL gauche</guilabel>, <guilabel>EOL milieu</guilabel>,
-<guilabel>EOL droite</guilabel> : Affiche le style EOL (fin de ligne) des
+          <para><guilabel>EOL Gauche</guilabel>, <guilabel>EOL Milieu</guilabel>,
+<guilabel>EOL Droite</guilabel> : Affiche le style EOL (fin de ligne) des
 fichiers.</para>
         </listitem>
       </itemizedlist>
@@ -1272,10 +1269,10 @@ utilisant le raccourci du menu contextuel <guimenuitem>Masquer les
 éléments</guimenuitem>. Les éléments restent masqués jusqu'à ce que vous
 actualisiez la vue (appuyez sur <keycap>F5</keycap>) ou que vous cliquiez
 sur <menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Afficher les
-éléments masqués</guimenuitem> </menuchoice>.</para>
+éléments cachés</guimenuitem> </menuchoice>.</para>
 
       <tip>
-        <para>Apprenez à utiliser <guimenuitem>Masquer les éléments</guimenuitem> : cela
+        <para>Apprenez à utiliser <guimenuitem>Masquer les éléments</guimenuitem> : cela
 peut vous faire gagner beaucoup de temps en éliminant de la vue les éléments
 que vous avez déjà traités ou qui ne présentent pas d'intérêt immédiat. Par
 exemple, vous pouvez masquer des fichiers après les avoir fusionnés, ce qui
@@ -1293,12 +1290,12 @@ comparaison de dossiers et lancer des commandes du Shell Windows directement
 à partir du menu contextuel.</para>
 
     <para>Si la sélection est présente des deux côtés, vous pouvez choisir le
-<guimenu>Menu Shell de gauche</guimenu> ou le <guimenu>Menu Shell de
-droite</guimenu>. Si la sélection est présente de tous les côtés, vous
-pouvez choisir le <guimenu>Menu Shell de gauche</guimenu>, le <guimenu>Menu
-Shell du milieu</guimenu> ou le <guimenu>Menu Shell de droite</guimenu>. Si
-l'élément n'apparaît que d'un côté, seul le menu Shell de ce côté est
-disponible.</para>
+<guimenu>Menu contextuel Windows Gauche</guimenu> ou le <guimenu>Menu
+contextuel Windows Droite</guimenu>. Si la sélection est présente de tous
+les côtés, vous pouvez choisir le <guimenu>Menu contextuel Windows
+Gauche</guimenu>, le <guimenu>Menu contextuel Windows Milieu</guimenu> ou le
+<guimenu>Menu contextuel Windows Droite</guimenu>. Si l'élément n'apparaît
+que d'un côté, seul le menu contextuel Windows de ce côté est disponible.</para>
 
     <caution>
       <para>Veuillez noter que les commandes du menu Shell s'exécutent entièrement en

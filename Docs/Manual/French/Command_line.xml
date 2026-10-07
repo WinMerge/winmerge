@@ -13,7 +13,7 @@ chemins à comparer. La plupart de ces paramètres sont destinés à utiliser
 WinMerge en tant qu'application de comparaison externe ou à démarrer une
 opération de comparaison à partir d'un fichier séquentiel (batch).</para>
 
-  <para>Utilisez l'un de ces formats pour la commande WinMerge :</para>
+  <para>Utilisez l'un de ces formats pour la commande WinMerge :</para>
 
   <para><cmdsynopsis sepchar=" ">
 <command>WinMergeU</command> <arg choice="opt"
@@ -40,16 +40,16 @@ rep="norepeat"><option>/ur</option></arg> <arg choice="opt"
 rep="norepeat"><option>/u</option></arg> <arg choice="opt"
 rep="norepeat"><option>/wl</option></arg> <arg choice="opt"
 rep="norepeat"><option>/wm</option></arg> <arg choice="opt"
-rep="norepeat"><option>/wr</option></arg> <arg choix="opt"
-rep="norepeat"><option>/new</option></arg> <arg choix="opt"
-rep="norepeat"><option>/self-compare</option></arg> <arg choix="opt"
+rep="norepeat"><option>/wr</option></arg> <arg choice="opt"
+rep="norepeat"><option>/new</option></arg> <arg choice="opt"
+rep="norepeat"><option>/self-compare</option></arg> <arg choice="opt"
 rep="norepeat"><option>/clipboard-compare</option></arg>
 <arg><option>/minimize</option></arg> <arg><option>/maximize</option></arg>
-<arg choix="opt" rep="norepeat"><option>/fl</option></arg> <arg choix="opt"
-rep="norepeat"><option>/fm</option></arg> <arg choix="opt"
-rep="norepeat"><option>/fr</option></arg> <arg choix="opt"
+<arg choice="opt" rep="norepeat"><option>/fl</option></arg> <arg
+choice="opt" rep="norepeat"><option>/fm</option></arg> <arg choice="opt"
+rep="norepeat"><option>/fr</option></arg> <arg choice="opt"
 rep="norepeat"><option>/l</option>
-<replaceable>numéro-de-ligne</replaceable></arg> <arg choix="opt"
+<replaceable>numéro-de-ligne</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/c</option>
 <replaceable>position-du-caractère</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/table-delimiter</option>
@@ -70,28 +70,28 @@ rep="norepeat"><option>/ignorews</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ignoreblanklines</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ignorecase</option></arg> <arg choice="opt"
 rep="norepeat"><option>/ignoreeol</option></arg> <arg choice="opt"
-rep="norepeat"><option>/ignorecodepage</option></arg> <arg choix="opt"
-rep="norepeat"><option>/ignorecomments</option></arg> <arg choix="opt"
+rep="norepeat"><option>/ignorecodepage</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecomments</option></arg> <arg choice="opt"
 rep="norepeat"><option>/unpacker</option>
-<replaceable>nom-du-décompilateur</replaceable></arg> <arg choix="opt"
+<replaceable>nom-du-décompresseur</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/prediffer</option>
-<replaceable>nom-du-prediffer</replaceable></arg> <arg choix="opt"
+<replaceable>nom-du-précomparateur</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/cp</option>
-<replaceable>page-de-code</replaceable></arg> <arg choix="opt"
+<replaceable>page-de-code</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/fileext</option>
-<replaceable>extension-du-fichier</replaceable></arg> <arg choix="opt"
+<replaceable>extension-du-fichier</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/cfg</option>
-<replaceable>nom=valeur</replaceable></arg> <arg choix="opt"
+<replaceable>nom=valeur</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/inifile</option>
 <replaceable>fichier-ini</replaceable></arg> <arg choice="plain"
-rep="norepeat"><replaceable>chemin-gauche</replaceable></arg> <arg
-cchoice="opt" rep="norepeat"><replaceable>chemin-milieu</replaceable></arg>
+rep="norepeat"><replaceable>chemin_gauche</replaceable></arg> <arg
+cchoice="opt" rep="norepeat"><replaceable>chemin_milieu</replaceable></arg>
 <arg choice="plain"
-rep="norepeat"><replaceable>chemin-droite</replaceable></arg> <arg
+rep="norepeat"><replaceable>chemin_droite</replaceable></arg> <arg
 choice="opt" rep="norepeat"><option>/o</option>
-<replaceable>chemin-sortie</replaceable></arg> <arg choice="opt"
+<replaceable>chemin_sortie</replaceable></arg> <arg choice="opt"
 rep="norepeat"><option>/or</option>
-<replaceable>chemin-rapport</replaceable></arg></cmdsynopsis></para>
+<replaceable>chemin_rapport</replaceable></arg></cmdsynopsis></para>
 
   <cmdsynopsis sepchar=" ">
 <command>WinMergeU</command> <arg choice="plain"
@@ -133,7 +133,7 @@ compare pas les sous-dossiers.</para>
       <term><option>/r-</option></term>
       <listitem>
         <para>Compare tous les fichiers dans les dossiers spécifiés, mais exclut les
-fichiers et sous-dossiers situés dans ses sous-dossiers. Cela permet un
+fichiers et sous-dossiers situés dans leurs sous-dossiers. Cela permet un
 temps de comparaison plus court.</para>
       </listitem>
     </varlistentry>
@@ -147,10 +147,10 @@ temps de comparaison plus court.</para>
       <term><option>/e</option></term>
       <listitem>
         <para>Permet de fermer WinMerge d'une seule pression sur la touche
-<keycap>Echap</keycap>. C'est utile lorsque vous utilisez WinMerge comme
-application de comparaison externe : vous pouvez fermer WinMerge rapidement,
+<keycap>Échap</keycap>. C'est utile lorsque vous utilisez WinMerge comme
+application de comparaison externe : vous pouvez fermer WinMerge rapidement,
 comme une boîte de dialogue. Sans ce paramètre, vous devrez peut-être
-appuyer sur <keycap>Echap</keycap> plusieurs fois pour fermer toutes ses
+appuyer sur <keycap>Échap</keycap> plusieurs fois pour fermer toutes ses
 fenêtres.</para>
       </listitem>
     </varlistentry>
@@ -180,9 +180,10 @@ masque de filtre ou d'un nom contenant des espaces.</para>
       <term><option>/m <replaceable>méthode-comparaison</replaceable></option></term>
       <listitem>
         <para>Définit la méthode de comparaison à utiliser pour la comparaison. Cela peut
-être l'un des mots-clés <userinput>Full</userinput> (Complet),
-<userinput>Quick</userinput> (Rapide), <userinput>Binary</userinput>
-(Binaire), <userinput>Date</userinput>, <userinput>SizeDate</userinput>,
+être l'un des mots-clés <userinput>Full</userinput> (Contenu complet),
+<userinput>Quick</userinput> (Contenu rapide), <userinput>Binary</userinput>
+(Contenu binaire), <userinput>Date</userinput> (Date modifiée),
+<userinput>SizeDate</userinput> (Date et taille modifiées),
 <userinput>Size</userinput> (Taille) ou <userinput>Existence</userinput>.</para>
       </listitem>
     </varlistentry>
@@ -199,7 +200,7 @@ masque de filtre ou d'un nom contenant des espaces.</para>
 être l'un des mots-clés <userinput>Text</userinput> (Texte),
 <userinput>Table</userinput> (Tableau), <userinput>Binary</userinput>
 (Binaire), <userinput>Image</userinput>, <userinput>Webpage</userinput>
-(Page Web) ou <userinput>Folder</userinput>.</para>
+(Page Web) ou <userinput>Folder</userinput> (Dossier).</para>
       </listitem>
     </varlistentry>
 
@@ -234,7 +235,7 @@ les fichiers identiques.</para>
       <listitem>
         <para>Limite les fenêtres WinMerge à une seule instance. Par exemple, si WinMerge
 est déjà en cours d'exécution, une nouvelle comparaison s'ouvre dans la même
-instance. Sans ce paramètre, plusieurs fenêtres sont autorisées : selon
+instance. Sans ce paramètre, plusieurs fenêtres sont autorisées : selon
 d'autres paramètres, une nouvelle comparaison peut s'ouvrir dans la fenêtre
 existante ou dans une nouvelle fenêtre.</para>
       </listitem>
@@ -252,7 +253,7 @@ existante ou dans une nouvelle fenêtre.</para>
       <term><option>/s-</option></term>
       <listitem>
         <para>Garantit qu'une autre instance est toujours exécutée, en ignorant la valeur
-de l'option « N'autoriser qu'une seule instance à s'exécuter ».</para>
+de l'option « Permettre une seule instance en exécution ».</para>
       </listitem>
     </varlistentry>
 
@@ -281,7 +282,7 @@ groupes d'instances uniques.</para>
         <para>Empêche WinMerge d'ajouter le chemin de gauche à la liste des éléments les
 plus récemment utilisés (MRU). Les applications externes ne devraient pas
 ajouter de chemins à la liste MRU dans la boîte de dialogue Sélectionner des
-fichiers ou des dossiers.</para>
+fichiers ou dossiers.</para>
       </listitem>
     </varlistentry>
 
@@ -291,7 +292,7 @@ fichiers ou des dossiers.</para>
         <para>Empêche WinMerge d'ajouter le chemin du milieu à la liste des éléments les
 plus récemment utilisés (MRU). Les applications externes ne devraient pas
 ajouter de chemins à la liste MRU dans la boîte de dialogue Sélectionner des
-fichiers ou des dossiers.</para>
+fichiers ou dossiers.</para>
       </listitem>
     </varlistentry>
 
@@ -301,17 +302,17 @@ fichiers ou des dossiers.</para>
         <para>Empêche WinMerge d'ajouter le chemin de droite à la liste des éléments les
 plus récemment utilisés (MRU). Les applications externes ne devraient pas
 ajouter de chemins à la liste MRU dans la boîte de dialogue Sélectionner des
-fichiers ou des dossiers.</para>
+fichiers ou dossiers.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/u</option></term>
       <listitem>
-        <para>Empêche WinMerge d'ajouter l'un ou l'autre chemin (gauche ou droite) à la
+        <para>Empêche WinMerge d'ajouter l'un ou l'autre chemin (gauche ou droit) à la
 liste des éléments les plus récemment utilisés (MRU). Les applications
 externes ne devraient pas ajouter de chemins à la liste MRU dans la boîte de
-dialogue Sélectionner des fichiers ou des dossiers.</para>
+dialogue Sélectionner des fichiers ou dossiers.</para>
       </listitem>
     </varlistentry>
 
@@ -330,8 +331,9 @@ souhaitez pas modifier les éléments du côté gauche lors de la comparaison.</
     <varlistentry>
       <term><option>/wm</option></term>
       <listitem>
-        <para>Ouvre le côté du milieu en lecture seule. Utilisez cette option lorsque vous
-ne souhaitez pas modifier les éléments du côté droit lors de la comparaison.</para>
+        <para>Ouvre le panneau du milieu en lecture seule. Utilisez cette option lorsque
+vous ne souhaitez pas modifier les éléments du milieu lors de la
+comparaison.</para>
       </listitem>
     </varlistentry>
 
@@ -395,7 +397,7 @@ lors de comparaisons de longue durée.</para>
     <varlistentry>
       <term><option>/fm</option></term>
       <listitem>
-        <para>Place le focus sur le côté du milieu au démarrage.</para>
+        <para>Place le focus sur le panneau du milieu au démarrage.</para>
       </listitem>
     </varlistentry>
 
@@ -434,7 +436,7 @@ une tabulation, indiquez « tab », « \t » ou « \x09 ».</para>
       <term><option>/dl</option></term>
       <listitem>
         <para>Spécifie une description dans la barre de titre du côté gauche, remplaçant
-le texte par défaut du dossier ou du nom de fichier. Par exemple :
+le texte par défaut du dossier ou du nom de fichier. Par exemple :
 <userinput>/dl "Version 1.0"</userinput> ou <userinput>/dl
 WorkingCopy</userinput>. Utilisez des guillemets autour des descriptions
 contenant des espaces.</para>
@@ -458,23 +460,41 @@ contenant des espaces.</para>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /al option</secondary>
+      </indexterm>
       <term><option>/al</option></term>
       <listitem>
-        <para>Fusionne automatiquement sur le côté gauche au démarrage.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (merge target)  - middle
+(theirs) - right (base).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /am option</secondary>
+      </indexterm>
       <term><option>/am</option></term>
       <listitem>
-        <para>Fusionne automatiquement sur le côté milieu au démarrage.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (theirs)  - middle (merge
+target) - right (mine).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>3-way merge</primary>
+        <secondary>auto-merge with /ar option</secondary>
+      </indexterm>
       <term><option>/ar</option></term>
       <listitem>
-        <para>Fusionne automatiquement sur le côté droit au démarrage.</para>
+        <para>
+Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
+- right (merge target).</para>
       </listitem>
     </varlistentry>
 
@@ -502,21 +522,19 @@ défaut.</para>
     <varlistentry>
       <term><option>/enableexitcode</option></term>
       <listitem>
-        <para>Définit le résultat de la comparaison comme code de sortie du processus. 0 :
-identique, 1 : différent, 2 : erreur</para>
+        <para>Définit le résultat de la comparaison comme code de sortie du processus. 0 :
+identique, 1 : différent, 2 : erreur</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignorews</option></term>
       <listitem>
-        <para>Contrôle l'option « Espaces » (paramètres de comparaison des espaces blancs)
-de manière persistante :</para>
+        <para>Contrôle l'option « Caractères d'espacement » de manière persistante :</para>
         <itemizedlist>
-          <listitem><para><option>/ignorews:0</option> - n'ignore pas les différences d'espaces
-blancs.</para></listitem>
+          <listitem><para><option>/ignorews:0</option> - n'ignore pas les différences d'espacement.</para></listitem>
           <listitem><para><option>/ignorews</option> ou <option>/ignorews:1</option> - ignore les
-différences de quantité d'espaces blancs.</para></listitem>
+changements dans les espaces blancs.</para></listitem>
           <listitem><para><option>/ignorews:2</option> - ignore tous les caractères d'espacement.</para></listitem>
         </itemizedlist>
       </listitem>
@@ -525,12 +543,12 @@ différences de quantité d'espaces blancs.</para></listitem>
     <varlistentry>
       <term><option>/ignoreblanklines</option></term>
       <listitem>
-        <para>Contrôle l'option « Ignorer les lignes vides » de manière persistante :</para>
+        <para>Contrôle l'option « Ignorer les lignes vides » de manière persistante :</para>
         <itemizedlist>
-          <listitem><para><option>/ignoreblanklines:0</option> - désactive l'ignorance des lignes
-vides.</para></listitem>
+          <listitem><para><option>/ignoreblanklines:0</option> - désactive l'option permettant
+d'ignorer les lignes vides.</para></listitem>
           <listitem><para><option>/ignoreblanklines</option> ou <option>/ignoreblanklines:1</option> -
-active l'ignorance des lignes vides.</para></listitem>
+active l'option permettant d'ignorer les lignes vides.</para></listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
@@ -538,12 +556,12 @@ active l'ignorance des lignes vides.</para></listitem>
     <varlistentry>
       <term><option>/ignorecase</option></term>
       <listitem>
-        <para>Contrôle l'option « Ignorer la casse » de manière persistante :</para>
+        <para>Contrôle l'option « Ignorer la casse » de manière persistante :</para>
         <itemizedlist>
-          <listitem><para><option>/ignorecase:0</option> - désactive l'ignorance des différences de
-casse.</para></listitem>
+          <listitem><para><option>/ignorecase:0</option> - désactive l'option permettant d'ignorer les
+différences de casse.</para></listitem>
           <listitem><para><option>/ignorecase</option> ou <option>/ignorecase:1</option> - active
-l'ignorance des différences de casse.</para></listitem>
+l'option permettant d'ignorer les différences de casse.</para></listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
@@ -551,12 +569,13 @@ l'ignorance des différences de casse.</para></listitem>
     <varlistentry>
       <term><option>/ignoreeol</option></term>
       <listitem>
-        <para>Contrôle l'option « Ignorer les différences EOL » de manière persistante :</para>
+        <para>Contrôle l'option « Ignorer les différences d'EOL (Windows/Unix/Mac) » de
+manière persistante :</para>
         <itemizedlist>
-          <listitem><para><option>/ignoreeol:0</option> - désactive l'ignorance des différences EOL
-(fin de ligne).</para></listitem>
+          <listitem><para><option>/ignoreeol:0</option> - désactive l'option permettant d'ignorer les
+différences d'EOL.</para></listitem>
           <listitem><para><option>/ignoreeol</option> ou <option>/ignoreeol:1</option> - active
-l'ignorance des différences EOL (fin de ligne).</para></listitem>
+l'option permettant d'ignorer les différences d'EOL.</para></listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
@@ -565,12 +584,12 @@ l'ignorance des différences EOL (fin de ligne).</para></listitem>
       <term><option>/ignorecodepage</option></term>
       <listitem>
         <para>Contrôle l'option « Ignorer les différences de page de code » de manière
-persistante :</para>
+persistante :</para>
         <itemizedlist>
-          <listitem><para><option>/ignorecodepage:0</option> - désactive l'ignorance des différences
-de page de code.</para></listitem>
+          <listitem><para><option>/ignorecodepage:0</option> - désactive l'option permettant d'ignorer
+les différences de page de code.</para></listitem>
           <listitem><para><option>/ignorecodepage</option> ou <option>/ignorecodepage:1</option> -
-active l'ignorance des différences de page de code.</para></listitem>
+active l'option permettant d'ignorer les différences de page de code.</para></listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
@@ -578,30 +597,31 @@ active l'ignorance des différences de page de code.</para></listitem>
     <varlistentry>
       <term><option>/ignorecomments</option></term>
       <listitem>
-        <para>Contrôle l'option « Ignorer les différences de commentaires » de manière
-persistante :</para>
+        <para>Contrôle l'option « Ignorer les différences de commentaire » de manière
+persistante :</para>
         <itemizedlist>
-          <listitem><para><option>/ignorecomments:0</option> - désactive l'ignorance des commentaires.</para></listitem>
+          <listitem><para><option>/ignorecomments:0</option> - désactive l'option permettant d'ignorer
+les différences de commentaire.</para></listitem>
           <listitem><para><option>/ignorecomments</option> ou <option>/ignorecomments:1</option> -
-active l'ignorance des commentaires.</para></listitem>
+active l'option permettant d'ignorer les différences de commentaire.</para></listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/unpacker <replaceable>pipeline de plug-ins</replaceable></option></term>
+      <term><option>/unpacker <replaceable>canal de plug-ins</replaceable></option></term>
       <listitem>
         <para>
-Spécifie le pipeline de plug-ins pour le plug-in Unpacker. Exemple :
+Spécifie le canal de plug-ins pour le plug-in Décompresseur. Exemple :
 <option>/unpacker "SortAscending|SelectLines 1-10"</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/prediffer <replaceable>pipeline de plug-ins</replaceable></option></term>
+      <term><option>/prediffer <replaceable>canal de plug-ins</replaceable></option></term>
       <listitem>
         <para>
-Spécifie le pipeline de plug-ins pour le plug-in Prediffer. Exemple :
+Spécifie le canal de plug-ins pour le plug-in Précomparateur. Exemple :
 <option>/prediffer "IgnoreColumns 1-10"</option></para>
       </listitem>
     </varlistentry>
@@ -610,15 +630,16 @@ Spécifie le pipeline de plug-ins pour le plug-in Prediffer. Exemple :
       <term><option>/cp <replaceable>page-de-code</replaceable></option></term>
       <listitem>
         <para>
-Spécifie la page de code à utiliser pour la comparaison de fichiers. Exemple
-: <option>/cp 65001</option></para>
+Spécifie la page de code à utiliser pour la comparaison de
+fichiers. Exemple : <option>/cp 65001</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fileext <replaceable>extension-fichier</replaceable></option></term>
       <listitem>
-        <para>Spécifie une extension de fichier pour déterminer la coloration syntaxique.</para>
+        <para>Spécifie une extension de fichier pour déterminer la surbrillance
+syntaxique.</para>
       </listitem>
     </varlistentry>
 
@@ -629,14 +650,14 @@ Spécifie la page de code à utiliser pour la comparaison de fichiers. Exemple
 Définit une valeur de configuration dans le registre WinMerge ou dans le
 fichier INI.</para>
         <para>
-Exemple : <option>/cfg Settings/DiffAlgorithm=3</option></para>
+Exemple : <option>/cfg Settings/DiffAlgorithm=3</option></para>
         <para>
 Si le nom de la section est sans ambiguïté et n'entre pas en conflit avec
-d'autres noms de paramètres, il peut être omis :</para>
+d'autres noms de paramètres, il peut être omis :</para>
         <para>
 <option>/cfg DiffAlgo=3</option></para>
         <para>
-Remarque : Cette entrée n'explique pas quels noms de configuration sont
+Remarque : Cette entrée n'explique pas quels noms de configuration sont
 disponibles. Pour une liste des paramètres, reportez-vous à
 <filename>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge</filename>
 dans regedit.</para>
@@ -671,7 +692,7 @@ chemin (<option><replaceable>chemin_gauche</replaceable></option>,
 <option><replaceable>chemin_droite</replaceable></option>) doivent donc
 pointer vers le même type de cible (soit des dossiers, soit des
 fichiers). Si WinMerge ne trouve pas l'un des chemins spécifiés, il ouvre la
-boîte de dialogue Sélectionner des fichiers ou des dossiers, où vous pouvez
+boîte de dialogue Sélectionner des fichiers ou dossiers, où vous pouvez
 rechercher les chemins corrects.</para>
 
         <tip>
@@ -680,13 +701,13 @@ dans l'un des paramètres de chemin, à condition que le dossier contienne un
 fichier portant le même nom que celui spécifié dans l'autre chemin de
 fichier.</para>
 
-          <para>Par exemple, considérez cette commande :</para>
+          <para>Par exemple, considérez cette commande :</para>
 
           <para><userinput>WinMergeU <filename>C:\Dossier\Fichier.txt</filename> <filename
 class="directory">C:\Dossier2</filename> </userinput></para>
 
           <para>Si <filename class="directory">C:\Dossier2</filename> contient un fichier
-nommé <filename>Fichier.txt</filename> : WinMerge résout implicitement le
+nommé <filename>Fichier.txt</filename> : WinMerge résout implicitement le
 deuxième chemin comme une spécification de fichier et compare les deux
 fichiers. Bien entendu, la commande n'est pas valide si <filename
 class="directory">C:\Dossier2</filename> ne contient
@@ -716,10 +737,16 @@ fichiers dans la fenêtre de comparaison de fichiers. Cependant, si vous
 enregistrez l'un de ces fichiers, il est écrit sur le chemin de sortie,
 laissant les deux ou trois fichiers sources intacts.</para>
 
+        <para>In a three-way text comparison, specifying an output path also opens the
+Merge Result pane at the bottom of the File Compare window, where the merge
+result can be reviewed and edited before it is saved to the output path. See
+the Merge Result pane topic in <citetitle>Comparing and merging text
+files</citetitle>.</para>
+
         <para>Les systèmes de contrôle de version font généralement référence aux fichiers
 sources et résultats à l'aide de termes tels que
-<glossterm>theirs</glossterm> (le leur), <glossterm>mine</glossterm> (le
-mien), et soit <glossterm>merged</glossterm> (fusionné) soit
+<glossterm>theirs</glossterm> (Leurs fichiers), <glossterm>mine</glossterm>
+(Mes fichiers), et soit <glossterm>merged</glossterm> (fusionné) soit
 <glossterm>resolved</glossterm> (résolu). Si vous spécifiez un chemin de
 sortie sur la ligne de commande WinMerge et que vous travaillez avec un
 système de contrôle de version, vous devez lister les fichiers dans cet
@@ -728,12 +755,13 @@ ordre.</para>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/or <replaceable>cheminsortie</replaceable></option></term>
+      <term><option>/or <replaceable>chemin_rapport</replaceable></option></term>
       <listitem>
         <para>
-Génère un rapport de comparaison pour les fichiers ou les dossiers. Exemple
-: <option>WinMergeU chemin1 chemin2 /or c:\tmp\rapport.html</option></para>
-        <para>Il est souvent utile de combiner cette option avec :</para>
+Génère un rapport de comparaison pour les fichiers ou les
+dossiers. Exemple : <option>WinMergeU chemin1 chemin2 /or
+c:\tmp\rapport.html</option></para>
+        <para>Il est souvent utile de combiner cette option avec :</para>
         <itemizedlist>
           <listitem><para><option>/noninteractive</option> - quitte WinMerge après avoir produit le
 rapport.</para></listitem>
@@ -745,21 +773,21 @@ enregistrées.</para></listitem>
         </itemizedlist>
         <para>
 Les paramètres <option>/cfg</option> suivants peuvent également être utiles
-(les noms des paramètres peuvent changer à l'avenir) :</para>
-        <para>Pour les comparaisons de fichiers :</para>
+(les noms des paramètres peuvent changer à l'avenir) :</para>
+        <para>Pour les comparaisons de fichiers :</para>
         <itemizedlist>
           <listitem><para><option>/cfg Settings/DiffContextV2=0</option> - masque les lignes
-correspondantes dans le rapport (équivalent à Vue -> Contexte Diff -> 0
-lignes).</para></listitem>
+correspondantes dans le rapport (équivalent à Affichage -> Contexte de
+différences -> 0 ligne).</para></listitem>
           <listitem><para><option>/cfg Settings/ViewLineNumbers=1</option> - affiche les numéros de
 ligne (définir sur 0 pour désactiver).</para></listitem>
         </itemizedlist>
-        <para>Pour les comparaisons de dossiers :</para>
+        <para>Pour les comparaisons de dossiers :</para>
         <itemizedlist>
           <listitem><para><option>/cfg Settings/DirViewExpandSubdirs=1</option> - développe
 automatiquement tous les sous-dossiers.</para></listitem>
-          <listitem><para><option>/cfg ReportFiles/ReportType=2</option> - style de rapport : HTML
-Simple.</para></listitem>
+          <listitem><para><option>/cfg ReportFiles/ReportType=2</option> - style de rapport : HTML
+simple.</para></listitem>
           <listitem><para><option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - inclut les
 rapports de comparaison de fichiers.</para></listitem>
         </itemizedlist>

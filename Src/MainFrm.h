@@ -36,6 +36,7 @@ class COpenDoc;
 struct IDirDoc;
 class CDirDoc;
 class CMergeDoc;
+class CMergeEditFrame;
 class CHexMergeDoc;
 class CMergeEditView;
 class SyntaxColors;
@@ -148,12 +149,13 @@ public:
 public:
 	HMENU NewDirViewMenu();
 	HMENU NewMergeViewMenu();
+	HMENU NewMergeViewResultView2WayMenu();
+	HMENU NewMergeViewResultView3WayMenu();
 	HMENU NewHexMergeViewMenu();
 	HMENU NewImgMergeViewMenu();
 	HMENU NewWebPageDiffViewMenu();
 	HMENU NewOpenViewMenu();
 	HMENU NewDefaultMenu(int ID = 0);
-	void UpdatePrediffersMenu(CMenu* pPredifferMenu);
 
 	static void GenerateDocumentReport(const std::vector<IMergeDoc*>& docs, const String& sReportFile);
 
@@ -217,6 +219,7 @@ public:
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo* infoPrediffer = nullptr,
 		const OpenFolderParams* pOpenParams = nullptr, CTempPathContext* pTempPathContext = nullptr);
 
+	void UpdateToolbar();
 	void UpdateTitleBarAndTabBar();
 	void UpdateResources();
 	void ApplyDiffOptions();
@@ -226,6 +229,7 @@ public:
 	static FRAMETYPE GetFrameType(const CFrameWnd * pFrame);
 	static void UpdateDocTitle();
 	static void ReloadMenu();
+	static void UpdateMergeViewMenu(CMergeEditFrame* pFrame);
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	CWindowsManager& GetWindowsManager() { return m_wndManager; }
 	IMergeDoc* GetActiveIMergeDoc();
@@ -350,6 +354,8 @@ protected:
 	{
 		MENU_DEFAULT,
 		MENU_MERGEVIEW,
+		MENU_MERGEVIEW_RESULTVIEW_2WAY,
+		MENU_MERGEVIEW_RESULTVIEW_3WAY,
 		MENU_DIRVIEW,
 		MENU_HEXMERGEVIEW,
 		MENU_IMGMERGEVIEW,
@@ -386,9 +392,15 @@ protected:
 
 	static const MENUITEM_ICON m_MenuIcons[];
 
-	std::unique_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
+	BCMenu* m_pMenus[MENU_COUNT] = {}; /**< Current menus for different views */
+	std::unique_ptr<BCMenu> m_pMergeResult2WayMenu;
+	std::unique_ptr<BCMenu> m_pMergeResult3WayMenu;
 	std::unique_ptr<BCMenu> m_pImageMenu;
 	std::unique_ptr<BCMenu> m_pWebPageMenu;
+	std::vector<std::unique_ptr<BCMenu>> m_ownedMenus; /**< Keep menus alive while frames may reference their handles */
+	HMENU m_hMenuMergeView = nullptr;
+	HMENU m_hMenuMergeViewResult2Way = nullptr;
+	HMENU m_hMenuMergeViewResult3Way = nullptr;
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	std::vector<std::shared_ptr<TempFolder>> m_tempFolders; /**< Temp folders for "New Folder" comparisons. */
 	DropHandler *m_pDropHandler;
@@ -511,9 +523,10 @@ private:
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	CMergeEditView * GetActiveMergeEditView();
+	CSize GetToolbarButtonSize() const;
 	void LoadToolbarImages();
+	void UpdateToolbarBandSize();
 	std::vector<UINT> GetToolbarButtons();
-	void UpdateToolbar();
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();

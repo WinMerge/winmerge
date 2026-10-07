@@ -293,3 +293,54 @@ void CGhostTextView::DrawMargin (const CRect & rect, int nLineIndex, int nLineNu
 		nRealLineNumber = ComputeRealLine(nLineIndex) + 1;
 	CCrystalTextView::DrawMargin(rect, nLineIndex, nRealLineNumber);
 }
+
+std::pair<int, int> CGhostTextView::GetSelectedLineAndCharacterCount()
+{
+	auto [ptStart, ptEnd] = GetSelection();
+	int nCharsOrColumns =0;
+	int nSelectedLines = 0;
+	for (int nLine = ptStart.y; nLine <= ptEnd.y; ++nLine)
+	{
+		if ((GetLineFlags(nLine) & (LF_GHOST | LF_INVISIBLE)) == 0)
+		{
+			int nLineLength = GetLineLength(nLine);
+			if (nLineLength < GetFullLineLength(nLine))
+				nLineLength++; // Add 1 for the EOL char
+			nCharsOrColumns += (nLine == ptEnd.y) ? ptEnd.x : nLineLength;
+			if (nLine == ptStart.y)
+				nCharsOrColumns -= ptStart.x;
+			if (nLine < ptEnd.y || (ptStart != ptEnd && ptEnd.x > 0))
+				++nSelectedLines;
+		}
+	}
+	if (m_bRectangularSelection)
+	{
+		int nStartLeft, nStartRight, nEndLeft, nEndRight;
+		GetColumnSelection(ptStart.y, nStartLeft, nStartRight);
+		GetColumnSelection(ptEnd.y, nEndLeft, nEndRight);
+		nCharsOrColumns = (std::max)(nStartRight, nEndRight) - (std::min)(nStartLeft, nEndLeft);
+	}
+	return { nSelectedLines, nCharsOrColumns };
+}
+
+/**
+ * @brief Helper method to handle horizontal scrolling via mouse wheel
+ */
+void CGhostTextView::HandleHorizontalScrollWheel(short zDelta)
+{
+	SCROLLINFO si = { sizeof SCROLLINFO };
+	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
+
+	VERIFY(GetScrollInfo(SB_HORZ, &si));
+
+	// new horz pos
+	si.nPos += zDelta / 40;
+	if (si.nPos > si.nMax) si.nPos = si.nMax;
+	if (si.nPos < si.nMin) si.nPos = si.nMin;
+
+	SetScrollInfo(SB_HORZ, &si);
+
+	// for update
+	SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos), NULL);
+}
+

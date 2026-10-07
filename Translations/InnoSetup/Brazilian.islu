@@ -74,11 +74,11 @@ AddToPath=&Adicionar a pasta do WinMerge no seu caminho do sistema
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=União tripla
-ThreeWayMergeWizardPageDescription=Você usa o WinMerge como uma ferramenta de união tripla pro TortoiseSVN/Git?
+ThreeWayMergeWizardPageDescription=Escolha o painel onde unir as mudanças:
 RegisterWinMergeAs3WayMergeTool=Registra o WinMerge como uma ferramenta de união tripla
-MergeAtRightPane=Unir no painel direito
-MergeAtCenterPane=Unir no painel do centro
-MergeAtLeftPane=Unir no painel esquerdo
+MergeAtRightPane=Unir para o painel direito
+MergeAtCenterPane=Unir para o painel do centro
+MergeAtLeftPane=Unir para o painel esquerdo
 AutoMergeAtStartup=Auto-unir no tempo da inicialização
 
 ;Icon Labels

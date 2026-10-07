@@ -265,6 +265,9 @@
     <None Include="..\Translations\WinMerge\Indonesian.po">
       <Filter>Translations\WinMerge</Filter>
     </None>
+    <None Include="..\Translations\ShellExtension\Indonesian.po">
+      <Filter>Translations\ShellExtension</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource FIles">

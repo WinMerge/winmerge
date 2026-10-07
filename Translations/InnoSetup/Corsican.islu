@@ -2,6 +2,7 @@
 ;
 ;     History of Corsican translations:
 ;
+;     - Updated on October 6th, 2026 for version 2.16.60 by Patriccollu di Santa Maria è Sichè
 ;     - Updated on March 14th, 2025 for version 2.16.47 by Patriccollu di Santa Maria è Sichè
 ;     - Updated on January 27th, 2025 for version 2.16.47 by Patriccollu di Santa Maria è Sichè
 ;     - Updated on February 15th, 2023 for version 2.16.28 by Patriccollu di Santa Maria è Sichè
@@ -53,7 +54,7 @@ GreekLanguage=Listini è dialoghi grechi
 HebrewLanguage=Listini è dialoghi ebrei
 HungarianLanguage=Listini è dialoghi ungaresi
 ItalianLanguage=Listini è dialoghi taliani
-IndonesianLanguage=Indonesian menus and dialogs
+IndonesianLanguage=Listini è dialoghi indunesiani
 JapaneseLanguage=Listini è dialoghi giappunesi
 KoreanLanguage=Listini è dialoghi cureani
 LithuanianLanguage=Listini è dialoghi lituani
@@ -73,7 +74,7 @@ SwedishLanguage=Listini è dialoghi svedesi
 TamilLanguage=Listini è dialoghi tamili
 TurkishLanguage=Listini è dialoghi turchi
 UkrainianLanguage=Listini è dialoghi ucraniani
-VietnameseLanguage=Vietnamese menus and dialogs
+VietnameseLanguage=Listini è dialoghi vietnamiani
 
 ;Tasks
 ExplorerContextMenu=&Permette l’integrazione di u listinu cuntestuale in l’espluratore
@@ -84,7 +85,7 @@ AddToPath=&Aghjunghje u cartulare WinMerge à u vostru chjassu di u sistema
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=Fusione à 3
-ThreeWayMergeWizardPageDescription=Impiegate WinMerge cum’è attrezzu di fusione à 3 per TortoiseSVN/Git ?
+ThreeWayMergeWizardPageDescription=Sceglie u pannellu induve si ferà a fusione di i cambiamenti :
 RegisterWinMergeAs3WayMergeTool=Arregistrà WinMerge cum’è attrezzu di fusione à 3
 MergeAtRightPane=Fusione à u pannellu di diritta
 MergeAtCenterPane=Fusione à u pannellu di u centru
