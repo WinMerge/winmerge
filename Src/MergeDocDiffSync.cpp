@@ -328,6 +328,74 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 }
 
 /**
+ * @brief Add ignored-difference (OP_TRIVIAL) ranges for lines that are equal only because of
+ * the ignore options (whitespace, case, EOL, numbers, ...).
+ *
+ * The diff engine aligns such lines as equal, so they are normally shown as identical.
+ * This compares the buffer text of every line pair between two diff ranges and inserts an
+ * OP_TRIVIAL range for each run of pairs whose text differs. The alignment is kept and the
+ * lines are drawn with the ignored-difference colors. Ranges between diffs are 1:1 by
+ * construction; a region whose line counts differ (only possible at the end of the files,
+ * e.g. a missing trailing EOL) is compared up to the shorter side. 2-way comparison only.
+ */
+void CMergeDoc::IndicateIgnoredChanges()
+{
+	if (m_nBuffers != 2)
+		return;
+
+	auto isSameLine = [this](int nLine0, int nLine1)
+	{
+		const int nLength = m_ptBuf[0]->GetLineLength(nLine0);
+		return nLength == m_ptBuf[1]->GetLineLength(nLine1) &&
+			memcmp(m_ptBuf[0]->GetLineChars(nLine0), m_ptBuf[1]->GetLineChars(nLine1), nLength * sizeof(tchar_t)) == 0;
+	};
+
+	DiffList newDiffList;
+	newDiffList.Clear();
+	// Equal region [begin0, end0) x [begin1, end1)
+	auto addTrivialRanges = [&](int begin0, int begin1, int end0, int end1)
+	{
+		const int nLines = (std::min)(end0 - begin0, end1 - begin1);
+		int nRunStart = -1;
+		for (int i = 0; i <= nLines; ++i)
+		{
+			const bool bDiffer = i < nLines && !isSameLine(begin0 + i, begin1 + i);
+			if (bDiffer && nRunStart < 0)
+				nRunStart = i;
+			else if (!bDiffer && nRunStart >= 0)
+			{
+				DIFFRANGE dr;
+				dr.begin[0] = begin0 + nRunStart;
+				dr.end[0] = begin0 + i - 1;
+				dr.begin[1] = begin1 + nRunStart;
+				dr.end[1] = begin1 + i - 1;
+				dr.op = OP_TRIVIAL;
+				newDiffList.AddDiff(dr);
+				nRunStart = -1;
+			}
+		}
+	};
+
+	int nNext0 = 0, nNext1 = 0;
+	const int nDiffCount = m_diffList.GetSize();
+	for (int nDiff = 0; nDiff < nDiffCount; nDiff++)
+	{
+		const DIFFRANGE& dr = *m_diffList.DiffRangeAt(nDiff);
+		addTrivialRanges(nNext0, nNext1, dr.begin[0], dr.begin[1]);
+		newDiffList.AddDiff(dr);
+		nNext0 = dr.end[0] + 1;
+		nNext1 = dr.end[1] + 1;
+	}
+	addTrivialRanges(nNext0, nNext1, m_ptBuf[0]->GetLineCount(), m_ptBuf[1]->GetLineCount());
+
+	if (newDiffList.GetSize() == nDiffCount)
+		return;
+	m_diffList.Clear();
+	for (int nDiff = 0; nDiff < newDiffList.GetSize(); nDiff++)
+		m_diffList.AddDiff(*newDiffList.DiffRangeAt(nDiff));
+}
+
+/**
  * @brief Divide diff blocks to align similar lines in diff blocks.
  */
 void CMergeDoc::AdjustDiffBlocks()

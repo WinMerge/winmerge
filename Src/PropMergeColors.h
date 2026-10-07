@@ -79,6 +79,7 @@ private:
 	unsigned	m_clrSelWordDiff;
 	unsigned	m_clrSelWordDiffDeleted;
 	unsigned	m_clrSelWordDiffText;
+	bool	m_bHatchMissingLines;
 	//}}AFX_DATA
 
 	// Overrides

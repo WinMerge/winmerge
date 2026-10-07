@@ -112,6 +112,7 @@ private :
     bool m_bTopMargin;
     bool m_bSelMargin;
     bool m_bViewLineNumbers;
+    bool m_bLineCursorBox; // draw the current line as a box instead of an underline
     int  m_nLineNumberUsedAsHeaders;
     DWORD m_dwFlags;
 
@@ -475,6 +476,7 @@ protected:
     bool IsDraggingText () const;
 
     virtual CEColor GetColor (int nColorIndex) const;
+    virtual CEColor GetMarginTextColor () const;
     virtual void GetLineColors (int nLineIndex, CEColor & crBkgnd,
                                 CEColor & crText, bool & bDrawWhitespace);
     virtual bool GetItalic (int nColorIndex);
@@ -708,6 +710,8 @@ public :
     void SetRevisionMarkWidth(int width) { m_nRevMarkWidth = width; };
     bool GetViewLineNumbers() const { return m_bViewLineNumbers; }
     void SetViewLineNumbers(bool bViewLineNumbers);
+    void SetLineCursorBox(bool bLineCursorBox) { m_bLineCursorBox = bLineCursorBox; }
+    void DrawLineCursorBox (const CRect & rc);
     int  GetLineUsedAsHeaders () const { return m_nLineNumberUsedAsHeaders; }
     void SetLineUsedAsHeaders(int nLineNumberUsedAsHeaders) { m_nLineNumberUsedAsHeaders = nLineNumberUsedAsHeaders; }
     void GetFont (LOGFONT & lf) const { lf = m_lfBaseFont; }

@@ -51,6 +51,15 @@ inline const String OPT_RENDERING_MODE {_T("Settings/RenderingMode"s)};
 
 // Difference (in-line) highlight
 inline const String OPT_WORDDIFF_HIGHLIGHT {_T("Settings/HiliteWordDiff"s)};
+// Draw missing (ghost) lines as a hatch pattern instead of a solid fill
+inline const String OPT_HATCH_MISSING_LINES {_T("Settings/HatchMissingLines"s)};
+// Optional colors (CLR_NONE = derived from the text colors as before)
+inline const String OPT_CLR_LINE_NUMBER_TEXT {_T("Settings/LineNumberTextColor"s)};
+inline const String OPT_CLR_LOCATION_PANE_BKGND {_T("Settings/LocationPaneBackColor"s)};
+// Draw the current line as a box instead of an underline
+inline const String OPT_LINE_CURSOR_BOX {_T("Settings/LineCursorBox"s)};
+// The diff pane shows the cursor line when the cursor is outside the current difference
+inline const String OPT_DIFF_PANE_FOLLOWS_CURSOR {_T("Settings/DiffPaneFollowsCursor"s)};
 inline const String OPT_BREAK_ON_WORDS {_T("Settings/BreakOnWords"s)};
 inline const String OPT_BREAK_TYPE {_T("Settings/BreakType"s)};
 inline const String OPT_BREAK_SEPARATORS {_T("Settings/HiliteBreakSeparators"s)};
@@ -246,6 +255,8 @@ inline const String OPT_CMP_INCLUDE_SUBDIRS {_T("Settings/Recurse"s)};
 inline const String OPT_CMP_DIFF_ALGORITHM {_T("Settings/DiffAlgorithm"s)};
 inline const String OPT_CMP_INDENT_HEURISTIC {_T("Settings/IndentHeuristic"s)};
 inline const String OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES {_T("Settings/CompletelyBlankOutIgnoredChanges"s)};
+// Show lines that are equal only because of ignore options (whitespace, case, ...) as ignored differences
+inline const String OPT_CMP_INDICATE_IGNORED_CHANGES {_T("Settings/IndicateIgnoredChanges"s)};
 inline const String OPT_CMP_ADDITIONAL_CONDITION {_T("Settings/AdditionalCompareCondition"s)};
 
 // Renamed/moved detection options

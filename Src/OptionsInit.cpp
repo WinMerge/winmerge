@@ -93,6 +93,12 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_AUTO_RELOAD_MODIFIED_FILES, 1);
 
 	pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
+	pOptions->InitOption(OPT_HATCH_MISSING_LINES, false);
+	// -1 = CLR_NONE (not set)
+	pOptions->InitOption(OPT_CLR_LINE_NUMBER_TEXT, -1);
+	pOptions->InitOption(OPT_CLR_LOCATION_PANE_BKGND, -1);
+	pOptions->InitOption(OPT_LINE_CURSOR_BOX, false);
+	pOptions->InitOption(OPT_DIFF_PANE_FOLLOWS_CURSOR, false);
 	pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<=>`'!\"#$%&^~\\|@+-*/"));
 
 	pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
@@ -149,6 +155,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT, 0, CMP_EXISTENCE);
 	pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
 	pOptions->InitOption(OPT_CMP_ALIGN_SIMILAR_LINES, false);
+	pOptions->InitOption(OPT_CMP_INDICATE_IGNORED_CHANGES, false);
 	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
 	pOptions->InitOption(OPT_CMP_BINARY_LIMIT, 64 * 1024 * 1024); // 64 Megs
