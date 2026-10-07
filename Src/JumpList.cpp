@@ -21,6 +21,21 @@ namespace
 
 std::wstring g_appid;
 wchar_t g_exe_path[260];
+volatile LONG g_exe_path_initialized = 0;
+
+void EnsureExePathInitialized()
+{
+	if (InterlockedCompareExchange(&g_exe_path_initialized, 1, 0) == 0)
+	{
+		GetModuleFileNameW(nullptr, g_exe_path, ARRAYSIZE(g_exe_path));
+		InterlockedExchange(&g_exe_path_initialized, 2);
+	}
+	else
+	{
+		while (InterlockedCompareExchange(&g_exe_path_initialized, 2, 2) != 2)
+			Sleep(0);
+	}
+}
 
 bool ReadRegistryDword(HKEY hRootKey, const wchar_t* subKey, const wchar_t* valueName, DWORD& value)
 {
@@ -44,15 +59,13 @@ IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& p
 	std::wstring app_path2(app_path);
 	if (app_path.empty())
 	{
-		if (g_exe_path[0] == '\0')
-			GetModuleFileNameW(nullptr, g_exe_path, sizeof(g_exe_path)/sizeof(g_exe_path[0]));
+		EnsureExePathInitialized();
 		app_path2 = g_exe_path;
 	}
 	std::wstring icon_path2(icon_path);
 	if (icon_path.empty())
 	{
-		if (g_exe_path[0] == '\0')
-			GetModuleFileNameW(nullptr, g_exe_path, sizeof(g_exe_path)/sizeof(g_exe_path[0]));
+		EnsureExePathInitialized();
 		icon_path2 = g_exe_path;
 	}
 	pShellLink->SetPath(app_path2.c_str());

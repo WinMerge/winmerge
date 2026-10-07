@@ -449,7 +449,6 @@ void PropShell::OnUnregisterWinMergeContextMenu()
 
 void PropShell::OnClearAllRecentItems()
 {
-	JumpList::RemoveRecentDocs();
 	MruHelper::ClearRecentCompares();
 	for (const auto& name : {
 		_T("ReportFiles"),
