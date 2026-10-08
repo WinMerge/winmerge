@@ -12,6 +12,7 @@
 
 #include "stdafx.h"
 #include "OpenView.h"
+#include "OpenFrm.h"
 #include <vector>
 #include "UnicodeString.h"
 #include "Logger.h"
@@ -282,10 +283,10 @@ void COpenView::OnInitialUpdate()
 	m_constraint.DisallowHeightGrowth();
 	//m_constraint.SubclassWnd(); // install subclassing
 
+	ShowRecentCompares(bShowRecentCompares);
+
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenView"), false); // persist size via registry
 	m_constraint.UpdateSizes();
-
-	ShowRecentCompares(bShowRecentCompares);
 
 	COpenDoc* pDoc = GetDocument();
 
@@ -1959,7 +1960,7 @@ void COpenView::ShowRecentCompares(bool bShow)
 	pStatus->SetWindowPos(nullptr, rcStatus.left, m_nStatusTop + (bShow ? m_nRecentComparesHeight : 0), 0, 0,
 		SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
 	// The frame lays out the view again, which takes the height of GetFormHeight() (OnWindowPosChanging)
-	GetParentFrame()->RecalcLayout();
+	static_cast<COpenFrame*>(GetParentFrame())->ResizeToView();
 	Invalidate();
 }
 

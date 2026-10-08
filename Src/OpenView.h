@@ -120,6 +120,7 @@ protected:
 // Implementation
 public:
 	virtual ~COpenView();
+	int GetFormHeight() const;
 
 protected:
 	void SetStatus(UINT msgID);
@@ -129,7 +130,6 @@ protected:
 	void SaveComboboxStates();
 	String AskProjectFileName(bool bOpen);
 	void DropDown(NMHDR *pNMHDR, LRESULT *pResult, UINT nID, UINT nPopupID);
-	int GetFormHeight() const;
 	void ShowRecentCompares(bool bShow);
 	void UpdateRecentCompares();
 	void ResizeRecentComparesColumns();
