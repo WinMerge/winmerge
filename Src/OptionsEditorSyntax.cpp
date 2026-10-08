@@ -10,6 +10,15 @@ namespace Options { namespace EditorSyntax
 const tchar_t Section[] = _T("FileTypes");
 
 /**
+ * @brief Name of the setting holding the variation chosen last for a base text type, e.g. FileTypes/SQL.type
+ * holds SQL, PostgreSQL or MySQL, or nothing when none was chosen ("Auto Syntax").
+ */
+static String VariationOptionName(const LangServices::TextDefinition* base)
+{
+	return strutils::format(_T("%s/%s.type"), Section, base->name);
+}
+
+/**
  * @brief Get the default value of the extension settings from OptionsMgr.
  * @param [in] pOptionsMgr Pointer to OptionsMgr
  * @param [out] pExtension Default value for extension settings
@@ -56,6 +65,54 @@ void Init(COptionsMgr *pOptionsMgr)
 			LangServices::SetExtension(i, exts.c_str());
 		}
 	}
+
+	// The variation chosen last for each base type that has variations, stored by name (empty for none)
+	for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; i++)
+	{
+		LangServices::TextDefinition* base = LangServices::GetTextType(i);
+		if (base == nullptr || LangServices::GetTextTypeVariationBase(i) != i)
+			continue;
+		const String option = VariationOptionName(base);
+		pOptionsMgr->InitOption(option, String());
+		const String variationName = pOptionsMgr->GetString(option);
+		for (int j = LangServices::LanguageId::SRC_ABAP; !variationName.empty() && j < LangServices::LanguageId::SRC_MAX_ENTRY; j++)
+		{
+			LangServices::TextDefinition* def = LangServices::GetTextType(j);
+			if (def != nullptr && LangServices::GetTextTypeVariationBase(j) == i && variationName == def->name)
+				LangServices::SetTextTypeVariation(j);
+		}
+	}
+}
+
+/**
+ * @brief Keep a text type variation for the files the extensions of its base type match (see Init).
+ * Types without a variation group are ignored.
+ * @param [in] pOptionsMgr Pointer to OptionsMgr
+ * @param [in] nTextType Text type index
+ */
+void SaveTextTypeVariation(COptionsMgr *pOptionsMgr, int nTextType)
+{
+	LangServices::TextDefinition* def = LangServices::GetTextType(nTextType);
+	LangServices::TextDefinition* base = LangServices::GetTextType(LangServices::GetTextTypeVariationBase(nTextType));
+	if (pOptionsMgr == nullptr || def == nullptr || base == nullptr)
+		return;
+	LangServices::SetTextTypeVariation(nTextType);
+	pOptionsMgr->SaveOption(VariationOptionName(base), String(def->name));
+}
+
+/**
+ * @brief Forget the variation chosen for a base text type: its files get the base type again ("Auto Syntax").
+ * Types without variations are ignored.
+ * @param [in] pOptionsMgr Pointer to OptionsMgr
+ * @param [in] nBase Base text type index
+ */
+void ResetTextTypeVariation(COptionsMgr *pOptionsMgr, int nBase)
+{
+	LangServices::TextDefinition* base = LangServices::GetTextType(nBase);
+	if (pOptionsMgr == nullptr || base == nullptr || LangServices::GetTextTypeVariationBase(nBase) != nBase)
+		return;
+	LangServices::ResetTextTypeVariation(nBase);
+	pOptionsMgr->SaveOption(VariationOptionName(base), String());
 }
 
 /**

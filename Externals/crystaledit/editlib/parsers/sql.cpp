@@ -490,16 +490,111 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLi
     }
 }
 
-unsigned
-CrystalLineParser::ParseLineSql (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
+//  Ends a pending identifier at I, so that a block starting at I does not hide the identifier color
+static inline void
+FlushIdentifierBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int &nIdentBegin, int I)
+{
+  if (nIdentBegin >= 0)
+    {
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
+      nIdentBegin = -1;
+    }
+}
+
+//  MySQL/MariaDB executable comment marker: "/*!" or "/*M!" (MariaDB only) followed by an optional
+//  version of exactly 5 or 6 digits, as accepted by the server lexer (e.g. /*!50003, /*M!100100).
+//  I is the index of the '*' of "/*". Returns the index after the marker, or -1 for a plain comment.
+static int
+GetExecutableCommentMarkerEnd(const tchar_t *pszChars, int nLength, int I)
+{
+  int nPos = I + 1;
+  if (nPos < nLength && pszChars[nPos] == 'M')
+    nPos++;
+  if (nPos >= nLength || pszChars[nPos] != '!')
+    return -1;
+  nPos++;
+  int nDigits = 0;
+  while (nDigits < 6 && nPos + nDigits < nLength && tc::istdigit(pszChars[nPos + nDigits]))
+    nDigits++;
+  return nDigits >= 5 ? nPos + nDigits : nPos;
+}
+
+//  SQL syntax types: SQL (T-SQL) uses the default rules, SQL (Postgre) and SQL (mysql/mariadb) follow those
+//  servers where they differ, see IsHashComment and the string state carried at the line end.
+enum class SqlDialect { Default, PostgreSql, MySql };
+
+#ifdef USE_SQL_HASH_LINE_COMMENT
+//  MySQL/MariaDB comment "#...", recognized only where it cannot be code of the other dialects that share
+//  this parser: '#' (or a run of them) is the first non-blank character of the line and is followed by a
+//  blank or the line end ("# comment", "## section", "#####"). Elsewhere '#' starts T-SQL temporary names
+//  (#tmp, ##tmp, always followed by the name) or belongs to PostgreSQL operators (#, ##, #>, #>>, #-).
+//  I is the index of the '#'.
+static bool
+IsHashLineComment(const tchar_t *pszChars, int nLength, int I)
+{
+  for (int nPos = 0; nPos < I; nPos++)
+    {
+      if (!xisspace (pszChars[nPos]))
+        return false;
+    }
+  int nEnd = I;
+  while (nEnd < nLength && pszChars[nEnd] == '#')
+    nEnd++;
+  return nEnd >= nLength || xisspace (pszChars[nEnd]);
+}
+#endif // USE_SQL_HASH_LINE_COMMENT
+
+//  Whether the '#' at I, outside strings, quoted names and other comments, starts a comment up to the line end.
+//  MySQL/MariaDB: always, as in the server lexer. PostgreSQL: never, '#' belongs to operators there.
+//  Default: only as a line of its own, see IsHashLineComment.
+static bool
+IsHashComment(SqlDialect dialect, const tchar_t *pszChars, int nLength, int I)
+{
+#ifdef USE_SQL_HASH_LINE_COMMENT
+  switch (dialect)
+    {
+    case SqlDialect::MySql:
+      return true;
+    case SqlDialect::PostgreSql:
+      return false;
+    default:
+      return IsHashLineComment (pszChars, nLength, I);
+    }
+#else
+  return false;
+#endif // USE_SQL_HASH_LINE_COMMENT
+}
+
+//  Whether the quote at I starts a string. Directly after a name it does only after a string prefix:
+//  N'...', X'...', B'...', E'...' (PostgreSQL) or a charset introducer such as _utf8mb4'...' (MySQL/MariaDB).
+//  After other names it does not (e.g. an apostrophe in a word of text the parser does not know as a comment).
+static bool
+IsStringStart(const tchar_t *pszChars, int I)
+{
+  int nBegin = I;
+  while (nBegin > 0 && xisalnum (pszChars[nBegin - 1]))
+    nBegin--;
+  if (nBegin == I || pszChars[nBegin] == '_')
+    return true;
+  if (I - nBegin != 1)
+    return false;
+  const tchar_t c = pszChars[nBegin];
+  return c == 'N' || c == 'n' || c == 'X' || c == 'x' || c == 'B' || c == 'b' || c == 'E' || c == 'e';
+}
+
+static unsigned
+ParseLineSqlDialect (SqlDialect dialect, unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf)
 {
   if (nLength == 0)
-    return dwCookie & COOKIE_EXT_COMMENT;
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT | COOKIE_STRING | COOKIE_CHAR);
 
   const tchar_t *pszCommentBegin = nullptr;
   const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
+  bool bEscapedQuote = false;
+  bool bQuotedIdent = false;
+  tchar_t chQuotedIdentEnd = 0;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
@@ -564,6 +659,8 @@ out:
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
             }
+          else if (pszChars[I] == '"')
+            bEscapedQuote = true;
           continue;
         }
 
@@ -573,6 +670,25 @@ out:
           if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
+              bRedefineBlock = true;
+            }
+          else if (pszChars[I] == '\'')
+            bEscapedQuote = true;
+          continue;
+        }
+
+      //  Quoted identifier `....` or [....]: comment and string delimiters inside belong to the name.
+      //  A doubled closing character (`` or ]]) is part of the name.
+      if (bQuotedIdent)
+        {
+          if (pszChars[I] == chQuotedIdentEnd)
+            {
+              if (I + 1 < nLength && pszChars[I + 1] == chQuotedIdentEnd)
+                {
+                  I++;
+                  continue;
+                }
+              bQuotedIdent = false;
               bRedefineBlock = true;
             }
           continue;
@@ -590,6 +706,17 @@ out:
           continue;
         }
 
+      //  End of executable comment /*!....*/ (the first "*/" outside strings and comments, as in the server lexer)
+      if ((dwCookie & COOKIE_EXT_EXECUTABLE_COMMENT) && I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*')
+        {
+          DEFINE_BLOCK (nPrevI, COLORINDEX_PREPROCESSOR);
+          dwCookie &= ~COOKIE_EXT_EXECUTABLE_COMMENT;
+          bRedefineBlock = true;
+          bDecIndex = false;
+          pszCommentEnd = pszChars + I + 1;
+          continue;
+        }
+
       if ((pszCommentEnd < pszChars + I) && I > 0 && (
           (pszChars[I] == '/' && pszChars[nPrevI] == '/') ||
           (pszChars[I] == '-' && pszChars[nPrevI] == '-')))
@@ -599,9 +726,19 @@ out:
           break;
         }
 
+      //  '#' comment of the syntax type (see IsHashComment)
+      if (pszChars[I] == '#' && IsHashComment (dialect, pszChars, nLength, I))
+        {
+          FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
+          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
+          dwCookie |= COOKIE_COMMENT;
+          break;
+        }
+
       //  Normal text
       if (pszChars[I] == '"')
         {
+          FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
           DEFINE_BLOCK (I, COLORINDEX_STRING);
           dwCookie |= COOKIE_STRING;
           continue;
@@ -609,15 +746,40 @@ out:
       if (pszChars[I] == '\'')
         {
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
-          if (!I || !xisalnum (pszChars[nPrevI]))
+          if (IsStringStart (pszChars, I))
             {
+              FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               dwCookie |= COOKIE_CHAR;
               continue;
             }
         }
+      //  `name` (MySQL/MariaDB) or [name] (T-SQL); '[' directly after a name, ')' or ']' is a subscript (PostgreSQL arr[1], ARRAY[1])
+      if (pszChars[I] == '`' ||
+          pszChars[I] == '[' && (!I || !(xisalnum (pszChars[nPrevI]) || pszChars[nPrevI] == ')' || pszChars[nPrevI] == ']')))
+        {
+          FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
+          DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
+          chQuotedIdentEnd = pszChars[I] == '`' ? '`' : ']';
+          bQuotedIdent = true;
+          bRedefineBlock = false;
+          bDecIndex = false;
+          continue;
+        }
       if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
         {
+          //  Executable comment /*!....*/: only the markers are highlighted, the content is parsed as SQL.
+          //  A nested marker keeps the state, so the first "*/" ends it (flat, like the server lexer).
+          const int nMarkerEnd = GetExecutableCommentMarkerEnd (pszChars, nLength, I);
+          if (nMarkerEnd >= 0)
+            {
+              DEFINE_BLOCK (nPrevI, COLORINDEX_PREPROCESSOR);
+              dwCookie |= COOKIE_EXT_EXECUTABLE_COMMENT;
+              bRedefineBlock = true;
+              bDecIndex = false;
+              I = nMarkerEnd - 1;
+              continue;
+            }
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
@@ -650,7 +812,32 @@ out:
       DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
     }
 
+  //  A string still open at the line end continues on the next line (SQL strings may contain line breaks),
+  //  unless a quote on this line was taken as escaped by a backslash: T-SQL has no backslash escapes, so
+  //  there 'C:\' is a complete string, and carrying the state would turn the following lines into a string.
+  //  MySQL/MariaDB escape quotes with a backslash, so there the state is always carried.
+  unsigned dwCarried = COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT;
+  if (!bEscapedQuote || dialect == SqlDialect::MySql)
+    dwCarried |= COOKIE_STRING | COOKIE_CHAR;
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-    dwCookie &= COOKIE_EXT_COMMENT;
+    dwCookie &= dwCarried;
   return dwCookie;
+}
+
+unsigned
+CrystalLineParser::ParseLineSql (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
+{
+  return ParseLineSqlDialect (SqlDialect::Default, dwCookie, pszChars, nLength, pBuf);
+}
+
+unsigned
+CrystalLineParser::ParseLineSqlPostgreSql (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
+{
+  return ParseLineSqlDialect (SqlDialect::PostgreSql, dwCookie, pszChars, nLength, pBuf);
+}
+
+unsigned
+CrystalLineParser::ParseLineSqlMySql (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
+{
+  return ParseLineSqlDialect (SqlDialect::MySql, dwCookie, pszChars, nLength, pBuf);
 }

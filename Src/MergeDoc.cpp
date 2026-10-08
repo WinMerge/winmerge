@@ -40,6 +40,7 @@
 #include "paths.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffOptions.h"
+#include "OptionsEditorSyntax.h"
 #include "MergeLineFlags.h"
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
@@ -2487,10 +2488,11 @@ void CMergeDoc::SetTableProperties()
 
 void CMergeDoc::SetTextType(int textType)
 {
-	ForEachView([textType, this](auto& pView) {
+	// Set before the views change, which show it in the status bar (CMergeEditView::UpdateSyntaxStatus)
+	m_bChangedSchemeManually = true;
+	ForEachView([textType](auto& pView) {
 		pView->SetTextType(LangServices::LanguageId(textType));
 		pView->SetDisableBSAtSOL(false);
-		m_bChangedSchemeManually = true;
 	});
 	if (m_pMergeResultView)
 	{
@@ -2503,15 +2505,100 @@ void CMergeDoc::SetTextType(const String& ext)
 {
 	String ext2 = ext;
 	strutils::replace(ext2, _T("."), _T(""));
-	ForEachView([&ext2, this](auto& pView) {
+	m_bChangedSchemeManually = true;
+	ForEachView([&ext2](auto& pView) {
 		pView->SetTextType(ext2.c_str());
 		pView->SetDisableBSAtSOL(false);
-		m_bChangedSchemeManually = true;
 	});
 	if (m_pMergeResultView)
 	{
 		m_pMergeResultView->SetTextType(ext2.c_str());
 		m_pMergeResultView->SetDisableBSAtSOL(false);
+	}
+}
+
+/**
+ * @brief The text type the extension of a pane's file matches, before a variation is chosen, or -1 for none.
+ */
+int CMergeDoc::GetFileBaseTextType(int nBuffer)
+{
+	const String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
+	const LangServices::TextDefinition* def = LangServices::GetBaseTextType(sExt.c_str());
+	return def ? static_cast<int>(def->type) : -1;
+}
+
+/**
+ * @brief Set the text types the file extensions give, or the first line when no extension is known.
+ * Used when the files are loaded and for the syntax type "Auto Syntax" (SetTextTypeAuto).
+ */
+void CMergeDoc::SetTextTypesByFileType()
+{
+	// Note: If option enabled, and another side type is not recognized,
+	// we use recognized type for unrecognized side too.
+	String sext[3];
+	bool bTyped[3]{};
+	int paneTyped = -1;
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
+		bTyped[nBuffer] = m_pView[0][nBuffer]->SetTextType(sext[nBuffer].c_str());
+		if (bTyped[nBuffer])
+			paneTyped = nBuffer;
+	}
+
+	if (paneTyped == -1)
+	{
+		String sFirstLine;
+		m_ptBuf[0]->GetLine(0, sFirstLine);
+		ForEachGroupView(0, [&bTyped, &sFirstLine](auto& pView) {
+			bTyped[pView->m_nThisPane] = pView->SetTextTypeByContent(sFirstLine.c_str());
+		});
+	}
+	else
+	{
+		LangServices::TextDefinition *enuType = LangServices::GetTextType(sext[paneTyped].c_str());
+		ForEachGroupView(0, [&bTyped, enuType](auto& pView) {
+			if (!bTyped[pView->m_nThisPane])
+				pView->SetTextType(enuType);
+		});
+	}
+
+	ForEachView([&](auto& pView) {
+		auto* pMaster = m_pView[0][pView->m_nThisPane];
+		if (pView != pMaster)
+			pView->ShareSyntaxParser(pMaster);
+	});
+}
+
+/**
+ * @brief Syntax type "Auto Syntax": undo a manual syntax type choice, forget the variations chosen for the
+ * extensions of these files and set the types the extensions give, as when the files were loaded.
+ */
+void CMergeDoc::SetTextTypeAuto()
+{
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		Options::EditorSyntax::ResetTextTypeVariation(GetOptionsMgr(), GetFileBaseTextType(nBuffer));
+	m_bChangedSchemeManually = false;
+	SetTextTypesByFileType();
+}
+
+/**
+ * @brief Keep a text type variation chosen for these files (e.g. SQL (Postgre)) when the extension of one of them
+ * matches its base type (e.g. .sql), see Options::EditorSyntax::SaveTextTypeVariation.
+ */
+void CMergeDoc::SaveTextTypeVariation(int textType)
+{
+	const int nBase = LangServices::GetTextTypeVariationBase(textType);
+	if (nBase < 0)
+		return;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		if (GetFileBaseTextType(nBuffer) == nBase)
+		{
+			Options::EditorSyntax::SaveTextTypeVariation(GetOptionsMgr(), textType);
+			return;
+		}
 	}
 }
 
@@ -2690,42 +2777,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			// set the document types
 			// Warning : it is the first thing to do (must be done before UpdateView,
 			// or any function that calls UpdateView, like SelectDiff)
-			// Note: If option enabled, and another side type is not recognized,
-			// we use recognized type for unrecognized side too.
-			String sext[3];
-			bool bTyped[3]{};
-			int paneTyped = -1;
-
-			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-			{
-				sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-				bTyped[nBuffer] = m_pView[0][nBuffer]->SetTextType(sext[nBuffer].c_str());
-				if (bTyped[nBuffer])
-					paneTyped = nBuffer;
-			}
-
-			if (paneTyped == -1)
-			{
-				String sFirstLine;
-				m_ptBuf[0]->GetLine(0, sFirstLine);
-				ForEachGroupView(0, [&bTyped, &sFirstLine](auto& pView) {
-					bTyped[pView->m_nThisPane] = pView->SetTextTypeByContent(sFirstLine.c_str());
-				});
-			}
-			else
-			{
-				LangServices::TextDefinition *enuType = LangServices::GetTextType(sext[paneTyped].c_str());
-				ForEachGroupView(0, [&bTyped, enuType](auto& pView) {
-					if (!bTyped[pView->m_nThisPane])
-						pView->SetTextType(enuType);
-				});
-			}
-
-			ForEachView([&](auto& pView) {
-				auto* pMaster = m_pView[0][pView->m_nThisPane];
-				if (pView != pMaster)
-					pView->ShareSyntaxParser(pMaster);
-			});
+			SetTextTypesByFileType();
 		}
 
 		int nNormalBuffer = 0;
