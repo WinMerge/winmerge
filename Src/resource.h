@@ -744,6 +744,8 @@
 #define IDC_COLOR_SCHEME_SAVE           1693
 #define IDC_COLOR_SCHEME_DELETE         1694
 #define IDC_USERDATA_LOCATION           1695
+#define IDC_RECENT_COMPARES_SHOW        1698
+#define IDC_RECENT_COMPARES_LIST        1699
 #define IDC_RADIO_INCLUDE               1700
 #define IDC_RADIO_EXCLUDE               1701
 #define IDC_CHECK_IDENTICAL             1702
@@ -2395,7 +2397,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        290
 #define _APS_NEXT_COMMAND_VALUE         38931
-#define _APS_NEXT_CONTROL_VALUE         1696
+#define _APS_NEXT_CONTROL_VALUE         1700
 #define _APS_NEXT_SYMED_VALUE           134
 #endif
 #endif
