@@ -49,18 +49,6 @@ bool ReadRegistryDword(HKEY hRootKey, const wchar_t* subKey, const wchar_t* valu
 	return result == ERROR_SUCCESS && type == REG_DWORD;
 }
 
-bool ReadRegistryDword(HKEY hRootKey, const wchar_t* subKey, const wchar_t* valueName, DWORD& value)
-{
-	HKEY hKey = nullptr;
-	if (RegOpenKeyExW(hRootKey, subKey, 0, KEY_QUERY_VALUE | KEY_WOW64_64KEY, &hKey) != ERROR_SUCCESS)
-		return false;
-	DWORD type = 0;
-	DWORD size = sizeof(value);
-	const LONG result = RegQueryValueExW(hKey, valueName, nullptr, &type, reinterpret_cast<BYTE*>(&value), &size);
-	RegCloseKey(hKey);
-	return result == ERROR_SUCCESS && type == REG_DWORD;
-}
-
 IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& params, const std::wstring& title, const std::wstring& desc, const std::wstring& icon_path, int icon_index)
 {
 	IShellLinkW *pShellLink = nullptr;

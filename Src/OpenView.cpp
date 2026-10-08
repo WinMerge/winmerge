@@ -273,7 +273,6 @@ void COpenView::OnInitialUpdate()
 	m_ctlRecentCompares.InsertColumn(1, _("Command line").c_str());
 	const bool bShowRecentCompares = GetOptionsMgr()->GetBool(OPT_SHOW_RECENT_COMPARES);
 	CheckDlgButton(IDC_RECENT_COMPARES_SHOW, bShowRecentCompares ? BST_CHECKED : BST_UNCHECKED);
-	ShowRecentCompares(bShowRecentCompares);
 
 	m_constraint.InitializeCurrentSize(this);
 	m_constraint.InitializeSpecificSize(this, m_sizeOrig.cx, m_sizeOrig.cy);
@@ -285,6 +284,8 @@ void COpenView::OnInitialUpdate()
 
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenView"), false); // persist size via registry
 	m_constraint.UpdateSizes();
+
+	ShowRecentCompares(bShowRecentCompares);
 
 	COpenDoc* pDoc = GetDocument();
 
@@ -676,7 +677,6 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		}
 	}
 	__super::OnWindowPosChanged(lpwndpos);
-	ResizeRecentComparesColumns();
 }
 
 void COpenView::OnDestroy()
@@ -1968,7 +1968,7 @@ void COpenView::ShowRecentCompares(bool bShow)
  */
 void COpenView::UpdateRecentCompares()
 {
-	m_recentCompares = MruHelper::GetRecentCompares(GetOptionsMgr()->GetInt(OPT_RECENT_COMPARE_MAX));
+	m_recentCompares = MruHelper::GetRecentCompares(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
 	m_ctlRecentCompares.SetRedraw(FALSE);
 	m_ctlRecentCompares.DeleteAllItems();
 	for (int i = 0; i < static_cast<int>(m_recentCompares.size()); ++i)
@@ -1977,7 +1977,6 @@ void COpenView::UpdateRecentCompares()
 		m_ctlRecentCompares.SetItemText(i, 1, m_recentCompares[i].params.c_str());
 	}
 	m_ctlRecentCompares.SetRedraw(TRUE);
-	ResizeRecentComparesColumns();
 }
 
 /**
