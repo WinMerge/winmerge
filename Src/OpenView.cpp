@@ -170,7 +170,6 @@ COpenView::COpenView()
 	, m_hTheme(nullptr)
 	, m_bRecentComparesShown(false)
 	, m_nRecentComparesHeight(0)
-	, m_nStatusTop(0)
 {
 	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
 	// Therefore, set m_bInsideUpdate = TRUE so that CScrollView::UpdateBars() does almost nothing.
@@ -259,16 +258,7 @@ void COpenView::OnInitialUpdate()
 
 	// Recent comparison list, collapsed by default (the view then has its original size). Expanded, it lies
 	// between the buttons and the status line, which moves down by the added height.
-	CRect rcList, rcOK;
-	m_ctlRecentCompares.GetWindowRect(&rcList);
-	ScreenToClient(&rcList);
-	GetDlgItem(IDOK)->GetWindowRect(&rcOK);
-	ScreenToClient(&rcOK);
-	m_nRecentComparesHeight = rcList.bottom - rcOK.bottom;
-	CRect rcStatus;
-	GetDlgItem(IDC_OPEN_STATUS)->GetWindowRect(&rcStatus);
-	ScreenToClient(&rcStatus);
-	m_nStatusTop = rcStatus.top;
+	m_nRecentComparesHeight = 0;
 	m_ctlRecentCompares.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_DOUBLEBUFFER | LVS_EX_INFOTIP);
 	m_ctlRecentCompares.InsertColumn(0, _("Comparison").c_str());
 	m_ctlRecentCompares.InsertColumn(1, _("Command line").c_str());
@@ -289,10 +279,7 @@ void COpenView::OnInitialUpdate()
 	m_constraint.UpdateSizes();
 
 	COpenDoc* pDoc = GetDocument();
-
-	CString strTitle;
-	GetWindowText(strTitle);
-	pDoc->SetTitle(strTitle);
+	pDoc->SetTitle(_("Select Files or Folders").c_str());
 
 	m_files = pDoc->m_files;
 	m_bRecurse = pDoc->m_bRecurse;
@@ -1945,20 +1932,35 @@ int COpenView::GetFormHeight() const
 
 /**
  * @brief Expand or collapse the recent comparison list.
- * The status line is not in the dynamic layout, so moving it here is not undone when the view is resized.
+ * Dynamic Layout resizes the list and moves the status line with the view.
  */
 void COpenView::ShowRecentCompares(bool bShow)
 {
 	m_bRecentComparesShown = bShow;
+	m_nRecentComparesHeight = 0;
+	if (bShow)
+	{
+		// Prefer a 90-point list, but keep the expanded view within the MDI client.
+		const int nPreferredHeight = MulDiv(90, CClientDC(this).GetDeviceCaps(LOGPIXELSY), 72);
+		CFrameWnd* pFrame = GetParentFrame();
+		CWnd* pMdiClient = pFrame != nullptr ? pFrame->GetParent() : nullptr;
+		if (pMdiClient != nullptr)
+		{
+			CRect rcMdiClient, rcFrame, rcFrameClient;
+			pMdiClient->GetClientRect(&rcMdiClient);
+			pFrame->GetWindowRect(&rcFrame);
+			pMdiClient->ScreenToClient(&rcFrame);
+			pFrame->GetClientRect(&rcFrameClient);
+			const int nNonClientHeight = rcFrame.Height() - rcFrameClient.Height();
+			const int nAvailableHeight = (std::max)(0L, rcMdiClient.bottom - rcFrame.top - nNonClientHeight - m_sizeOrig.cy);
+			m_nRecentComparesHeight = (std::min)(nPreferredHeight, nAvailableHeight);
+		}
+		else
+			m_nRecentComparesHeight = nPreferredHeight;
+	}
 	if (bShow)
 		UpdateRecentCompares();
 	m_ctlRecentCompares.ShowWindow(bShow ? SW_SHOW : SW_HIDE);
-	CWnd* pStatus = GetDlgItem(IDC_OPEN_STATUS);
-	CRect rcStatus;
-	pStatus->GetWindowRect(&rcStatus);
-	ScreenToClient(&rcStatus);
-	pStatus->SetWindowPos(nullptr, rcStatus.left, m_nStatusTop + (bShow ? m_nRecentComparesHeight : 0), 0, 0,
-		SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
 	// The frame lays out the view again, which takes the height of GetFormHeight() (OnWindowPosChanging)
 	static_cast<COpenFrame*>(GetParentFrame())->ResizeToView();
 	Invalidate();

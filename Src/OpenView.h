@@ -107,7 +107,6 @@ private:
 	std::vector<MruHelper::RecentCompare> m_recentCompares; /**< Entries shown in m_ctlRecentCompares, same order */
 	bool m_bRecentComparesShown; /**< The recent comparison list is expanded (OPT_SHOW_RECENT_COMPARES) */
 	int m_nRecentComparesHeight; /**< Height added to the view when the list is expanded */
-	int m_nStatusTop; /**< Top of the status line while the list is collapsed */
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
