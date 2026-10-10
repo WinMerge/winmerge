@@ -1295,6 +1295,20 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!bModified[0] && !bModified[1] && !bModified[2])
 		 return true;
 
+	// An unattended run has nobody to answer a prompt and must end on its
+	// own: it writes what it merged to the output path it was given
+	if (theApp.GetNonInteractive())
+	{
+		// the output path can take the changes of one image only
+		// (and saving an unnamed image would ask for a name)
+		const int nModifiedCount = static_cast<int>(std::count(bModified, bModified + 3, true));
+		const int nModified = static_cast<int>(std::find(bModified, bModified + 3, true) - bModified);
+		if (!m_strSaveAsPath.empty() && nModifiedCount == 1 &&
+			m_nBufferType[nModified] != BUFFERTYPE::UNNAMED && m_pImgMergeWindow->IsSaveSupported(nModified))
+			DoFileSave(nModified);
+		return true;
+	}
+
 	bool result = SaveClosingDlg::ShowAndSave(
 		nPaneCount,
 		bModified,

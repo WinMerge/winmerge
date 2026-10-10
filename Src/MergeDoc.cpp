@@ -2106,6 +2106,32 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
+	// An unattended run has nobody to answer a prompt and must end on its
+	// own: it writes what it merged to the output path it was given
+	if (theApp.GetNonInteractive())
+	{
+		if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() && m_bResultBuilt &&
+			IsMergeResultUnsaved() && !m_strMergeResultSavePath.empty())
+			SaveMergeResult(false);
+		if (!m_strSaveAsPath.empty())
+		{
+			// the output path can take the changes of one file only
+			int nModified = -1, nModifiedCount = 0;
+			for (int i = 0; i < m_nBuffers; ++i)
+			{
+				if (m_ptBuf[i]->IsModified())
+				{
+					nModified = i;
+					++nModifiedCount;
+				}
+			}
+			// (saving an unnamed file would ask for a name)
+			if (nModifiedCount == 1 && m_nBufferType[nModified] != BUFFERTYPE::UNNAMED)
+				DoSave(m_filePaths[nModified].c_str(), bSaveSuccess[nModified], nModified);
+		}
+		return true;
+	}
+
 	// Merge result pane: deal with the merge before the source files.
 	// A hidden result pane still holds the user's merge work: hiding the
 	// bar must not turn closing the window into silent data loss, so the
