@@ -695,9 +695,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// this operation does not change the modified flag
 		PrimeTextBuffers();
 
-		// Hide identical lines if diff-context is not 'All'
-		HideLines();
-
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
@@ -707,6 +704,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
 		if (m_diffWrapper.GetDetectMovedBlocks())
 			FlagMovedLines();
+
+		// Hide identical lines if diff-context is not 'All'
+		HideLines();
 		
 		// After PrimeTextBuffers() we know amount of real diffs
 		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
