@@ -2111,7 +2111,7 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (theApp.GetNonInteractive())
 	{
 		if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() && m_bResultBuilt &&
-			IsMergeResultModified() && !m_strMergeResultSavePath.empty())
+			IsMergeResultUnsaved() && !m_strMergeResultSavePath.empty())
 			SaveMergeResult(false);
 		if (!m_strSaveAsPath.empty())
 		{
