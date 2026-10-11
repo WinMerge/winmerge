@@ -1550,6 +1550,12 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
     }
 }
 
+void CCrystalTextView::SetEnableHideLines(bool bHideLines)
+{
+  m_bHideLines = bHideLines;
+  InvalidateScreenRect();
+}
+
 void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
          const std::vector<TEXTBLOCK>& blocks, int &nActualItem, 
          CEColor crText, CEColor crBkgnd, bool bDrawWhitespace,
