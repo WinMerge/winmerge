@@ -1552,8 +1552,11 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
 
 void CCrystalTextView::SetEnableHideLines(bool bHideLines)
 {
-  m_bHideLines = bHideLines;
-  InvalidateScreenRect();
+  if (m_bHideLines != bHideLines || bHideLines)
+  {
+      m_bHideLines = bHideLines;
+      InvalidateScreenRect();
+  }
 }
 
 void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
