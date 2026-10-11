@@ -440,6 +440,7 @@ void CMergeDoc::BuildMergeResult()
 	m_ptResultBuf->AdoptCurrentRevision();
 	for (auto& seg : m_resultSegments)
 		seg.nBaseRevision = m_ptResultBuf->GetCurrentRevisionNumber();
+	m_ptResultBuf->FinishLoading();
 	m_bResultBuilt = true;
 	// A generated result has not been written to the output path yet: an
 	// automatically merged result still has to be saved even if the user
