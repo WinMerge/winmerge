@@ -1909,6 +1909,15 @@
 #define IDS_COLHDR_RSIZE_SHORT          41761
 #define IDS_COLHDR_LSIZE_SHORT          41762
 #define IDS_COLHDR_MSIZE_SHORT          41763
+#define IDS_COLHDR_LFILENAME            41764
+#define IDS_COLHDR_MFILENAME            41765
+#define IDS_COLHDR_RFILENAME            41766
+#define IDS_COLHDR_LDIR                 41767
+#define IDS_COLHDR_MDIR                 41768
+#define IDS_COLHDR_RDIR                 41769
+#define IDS_COLHDR_LEXTENSION           41770
+#define IDS_COLHDR_MEXTENSION           41771
+#define IDS_COLHDR_REXTENSION           41772
 #define IDS_COLHDR_LTIMEC               41781
 #define IDS_COLHDR_RTIMEC               41782
 #define IDS_COLHDR_MTIMEC               41783

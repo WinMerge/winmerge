@@ -655,6 +655,9 @@ std::unique_ptr<CFileFilterHelperMenu> CFileFilterHelperMenu::AppendColumnFilter
 		{ _T("eoltype"), IDR_POPUP_FILTERMENU_EOL, -1 },
 		{ _T("Unpacker"), -1, ID_FILTERMENU_UNPACKER },
 		{ _T("Prediffer"), -1, ID_FILTERMENU_PREDIFFER },
+		{ _T("name"), -1, ID_FILTERMENU_FILENAME },
+		{ _T("path"), -1, ID_FILTERMENU_RELATIVEFOLDER },
+		{ _T("ext"), -1, ID_FILTERMENU_EXTENSION },
 	};
 
 	for (const auto& mapping : mappings)

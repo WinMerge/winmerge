@@ -5055,12 +5055,21 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filename"
+    IDS_COLHDR_LFILENAME    "Left Filename"
+    IDS_COLHDR_MFILENAME    "Middle Filename"
+    IDS_COLHDR_RFILENAME    "Right Filename"
     IDS_COLHDR_DIR          NC_("DirView|ColumnHeader", "Folder")
+    IDS_COLHDR_LDIR         NC_("DirView|ColumnHeader", "Left Folder")
+    IDS_COLHDR_MDIR         NC_("DirView|ColumnHeader", "Middle Folder")
+    IDS_COLHDR_RDIR         NC_("DirView|ColumnHeader", "Right Folder")
     IDS_COLHDR_RESULT       "Comparison Result"
     IDS_COLHDR_LTIMEM       "Left Date"
     IDS_COLHDR_RTIMEM       "Right Date"
     IDS_COLHDR_MTIMEM       "Middle Date"
     IDS_COLHDR_EXTENSION    "Extension"
+    IDS_COLHDR_LEXTENSION   "Left Extension"
+    IDS_COLHDR_MEXTENSION   "Middle Extension"
+    IDS_COLHDR_REXTENSION   "Right Extension"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
 END
