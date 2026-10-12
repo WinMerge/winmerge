@@ -1206,6 +1206,12 @@ static int ColSidePathSort(const CDiffContext *pCtxt, const void *p, const void 
 
 static int ColSideExtensionSort(const CDiffContext *pCtxt, const void *p, const void *q, int pane)
 {
+	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
+	if (ldi.diffcode.isDirectory() && !rdi.diffcode.isDirectory())
+		return -1;
+	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
+		return 1;
 	return strutils::compare_logical(ColSideExtensionGet(pCtxt, p, pane), ColSideExtensionGet(pCtxt, q, pane));
 }
 
