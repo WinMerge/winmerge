@@ -255,6 +255,17 @@ static Type ColFileNameGet(const CDiffContext * pCtxt, const void *p, int) //sfi
 }
 
 /**
+ * @brief Filename for one compare side; empty if that side does not exist.
+ */
+static String ColSideFileNameGet(const CDiffContext *, const void *p, int pane)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	if (pane < 0 || pane > 2 || !di.diffcode.exists(pane))
+		return _T("");
+	return di.diffFileInfo[pane].filename.get();
+}
+
+/**
  * @brief Format Extension column data.
  * @param [in] p Pointer to DIFFITEM.
  * @return String to show in the column.
@@ -2284,7 +2295,7 @@ void DirViewColItems::LoadColumnOrders(const String& colOrders)
 	// Must have at least one column
 	if (m_dispcols<=1)
 		ResetColumnOrdering();
-}
+	}
 
 /// store current column orders into registry
 String DirViewColItems::SaveColumnOrders()
@@ -2299,4 +2310,37 @@ String DirViewColItems::SaveColumnOrders()
 		result += m_cols[m_invcolorder[i]].regName;
 	}
 	return result;
+}
+
+int DirViewColItems::FindColByRegName(const tchar_t* regName) const
+{
+	if (regName == nullptr)
+		return -1;
+	for (int i = 0; i < m_numcols; ++i)
+	{
+		if (m_cols[i].regName != nullptr && tc::tcscmp(m_cols[i].regName, regName) == 0)
+			return i;
+	}
+	return -1;
+}
+
+bool DirViewColItems::ApplySplitPaneColumnOrder()
+{
+	static const tchar_t* names[] =
+	{
+		_T("Lname"), _T("LsizeShort"), _T("Lmtime"), _T("StatusAbbr"),
+		_T("Rname"), _T("RsizeShort"), _T("Rmtime")
+	};
+	ClearColumnOrders();
+	m_dispcols = 0;
+	for (int phy = 0; phy < static_cast<int>(std::size(names)); ++phy)
+	{
+		const int log = FindColByRegName(names[phy]);
+		if (log < 0)
+			return false;
+		m_colorder[log] = phy;
+		m_invcolorder[phy] = log;
+		++m_dispcols;
+	}
+	return m_dispcols > 1;
 }

@@ -32,12 +32,22 @@ protected:
 
 // Attributes
 public:
-
-private:
+	enum
+	{
+		PANE_LEFT_STATUS = 0,
+		PANE_RIGHT_STATUS,
+		PANE_FILTER,
+		PANE_COMPMETHOD,
+		PANE_LEFT_RO,
+		PANE_MIDDLE_RO,
+		PANE_RIGHT_RO,
+	};
 
 // Operations
 public:
 	void SetStatus(const tchar_t* szStatus);
+	void SetSideStatus(int side, const tchar_t* szStatus);
+	void SetSplitPaneMode(bool split);
 	void SetCompareMethodStatusDisplay(int nCompMethod);
 	void SetFilterStatusDisplay(const tchar_t* szFilter);
 	CBasicFlatStatusBar m_wndStatusBar;
