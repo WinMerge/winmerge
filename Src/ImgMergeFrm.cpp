@@ -337,6 +337,29 @@ bool CImgMergeFrame::IsModified() const
 	return false;
 }
 
+static String GetMergePaneRoles(int basePane)
+{
+	int theirsPane;
+	int minePane;
+	std::array<String, 3> labels;
+	if (basePane == 2)
+	{
+		theirsPane = 1; minePane = 0;
+	}
+	else if (basePane == 1)
+	{
+		theirsPane = 0; minePane = 2;
+	}
+	else
+	{
+		theirsPane = 1; minePane = 2;
+	}
+	labels[basePane] = _("Base File");
+	labels[theirsPane] = _("Theirs File");
+	labels[minePane] = _("Mine File");
+	return strutils::format_string3(_("Pane roles: Left=%1, Middle=%2, Right=%3"), labels[0], labels[1], labels[2]);
+}
+
 void CImgMergeFrame::DoAutoMerge(int dstPane)
 {
 	int autoMergedCount = m_pImgMergeWindow->CopyDiff3Way(dstPane);
@@ -347,8 +370,9 @@ void CImgMergeFrame::DoAutoMerge(int dstPane)
 	m_pImgMergeWindow->FirstConflict();
 
 	AfxMessageBox(
-		strutils::format_string2(
-			_("Automatic merges: %1\nUnresolved conflicts: %2"), 
+		strutils::format_string3(
+			_("Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"),
+			GetMergePaneRoles(2 - dstPane),
 			strutils::format(_T("%d"), autoMergedCount),
 			strutils::format(_T("%d"), m_pImgMergeWindow->GetConflictCount())).c_str(),
 		MB_ICONINFORMATION);
