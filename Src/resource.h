@@ -2009,6 +2009,15 @@
 #define IDS_COLDESC_LEOL_TYPE           41925
 #define IDS_COLDESC_REOL_TYPE           41926
 #define IDS_COLDESC_MEOL_TYPE           41927
+#define IDS_COLDESC_LFILENAME           41928
+#define IDS_COLDESC_MFILENAME           41929
+#define IDS_COLDESC_RFILENAME           41930
+#define IDS_COLDESC_LDIR                41931
+#define IDS_COLDESC_MDIR                41932
+#define IDS_COLDESC_RDIR                41933
+#define IDS_COLDESC_LEXTENSION          41934
+#define IDS_COLDESC_MEXTENSION          41935
+#define IDS_COLDESC_REXTENSION          41936
 #define IDS_COLDESC_LENCODING           41941
 #define IDS_COLDESC_RENCODING           41942
 #define IDS_COLDESC_MENCODING           41943

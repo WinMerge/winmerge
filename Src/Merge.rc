@@ -5217,7 +5217,13 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or folder name."
+    IDS_COLDESC_LFILENAME   "Left side filename or folder name."
+    IDS_COLDESC_MFILENAME   "Middle side filename or folder name."
+    IDS_COLDESC_RFILENAME   "Right side filename or folder name."
     IDS_COLDESC_DIR         "Subfolder name when subfolders are included."
+    IDS_COLDESC_LDIR        "Folder path in the left pane."
+    IDS_COLDESC_MDIR        "Folder path in the middle pane."
+    IDS_COLDESC_RDIR        "Folder path in the right pane."
     IDS_COLDESC_RESULT      "Comparison result, long form."
 END
 
@@ -5227,6 +5233,9 @@ BEGIN
     IDS_COLDESC_RTIMEM      "Right side modification date."
     IDS_COLDESC_MTIMEM      "Middle side modification date."
     IDS_COLDESC_EXTENSION   "File's extension."
+    IDS_COLDESC_LEXTENSION  "File extension in the left pane."
+    IDS_COLDESC_MEXTENSION  "File extension in the middle pane."
+    IDS_COLDESC_REXTENSION  "File extension in the right pane."
     IDS_COLDESC_LSIZE       "Left file size in bytes."
     IDS_COLDESC_RSIZE       "Right file size in bytes."
     IDS_COLDESC_MSIZE       "Middle file size in bytes."
