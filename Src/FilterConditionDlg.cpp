@@ -287,8 +287,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	// Initialize the value combo boxes
 	if (m_sField == _T("Size") || m_sField == _T("TotalSize"))
 	{
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _T("0B"), _T("1B"), _T("10B"), _T("100B"), _T("1KB"), _T("10KB"), _T("100KB"), _T("1MB"), _T("10MB"), _T("100MB"), _T("1GB") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _T("0B"), _T("1B"), _T("10B"), _T("100B"), _T("1KB"), _T("10KB"), _T("100KB"), _T("1MB"), _T("10MB"), _T("100MB"), _T("1GB") });
 		m_sValue1 = _T("0B");
 		m_sValue2 = _T("0B");
 	}
@@ -298,8 +298,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	         m_sField == _T("Files") || m_sField == _T("Items") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
 	         m_sField == _T("LineLength") || m_sField == _T("LineNumber"))
 	{
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _T("0"), _T("1"), _T("10"), _T("100"),_T("1000"), _T("10000"), _T("100000") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _T("0"), _T("1"), _T("10"), _T("100"),_T("1000"), _T("10000"), _T("100000") });
 		m_sValue1 = _T("0");
 		m_sValue2 = _T("0");
 	}
@@ -312,8 +312,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 	else if (m_sField == _T("Date"))
 	{
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0second"), _("1second"), _("1minute"), _("1hour"), _("1day"), _("1week") });
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0second"), _("1second"), _("1minute"), _("1hour"), _("1day"), _("1week") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _T("0second"), _T("1second"), _T("1minute"), _T("1hour"), _T("1day"), _T("1week") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _T("0second"), _T("1second"), _T("1minute"), _T("1hour"), _T("1day"), _T("1week") });
 		m_sValue1 = _T("0second");
 		m_sValue2 = _T("0second");
 	}
@@ -323,8 +323,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 	else if (m_sField == _T("Content"))
 	{
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("") });
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _T("") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _T("") });
 	}
 	else if (m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8 || m_vt == VT_R8)
 	{

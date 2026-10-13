@@ -126,7 +126,7 @@ public:
 			else if (command == ID_RENAME_MOVE_KEY_MENU_PROPS)
 			{
 				CPropertySystemMenu menuProps;
-				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_RENAME_MOVE_KEY_MENU_PROPS_FIRST, _("%1"));
+				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_RENAME_MOVE_KEY_MENU_PROPS_FIRST, _T("%1"));
 				if (resultProp.has_value())
 				{
 					String newExpr = _T("if(IsFolder, Name, prop(\"") + *resultProp + _T("\"))");

@@ -367,19 +367,19 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command == ID_FILTERMENU_LINE_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 contains %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _T("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
 	else if (command == ID_FILTERMENU_LINE_LENGTH_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("LineLength"), _T(""), _("%1 = %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("LineLength"), _T(""), _T("%1 = %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
 	else if (command == ID_FILTERMENU_WORD_COUNT_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _("%1 = %2"), _T("regexCount(%1, \"\\S+\")"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Line"), _T(""), _T("%1 = %2"), _T("regexCount(%1, \"\\S+\")"));
 		if (dlg.DoModal() == IDOK)
 			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
@@ -402,7 +402,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command == ID_FILTERMENU_LINE_NUMBER_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("LineNumber"), _T(""), _("%1 > %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("LineNumber"), _T(""), _T("%1 > %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}
@@ -451,7 +451,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 		auto [filterDirectives, filterBody] = NormalizeAndSplit(filterExpr);
 		const tchar_t* funcName = m_byBlock ? _T("matchBlockNumber") : _T("matchNumber");
 		String propName = strutils::format(_T("%s(%s)"), funcName, filterBody.c_str());
-		CFilterConditionDlg dlg(false, m_targetSide, filterBody, _T(""), _("%1 > %2"), propName);
+		CFilterConditionDlg dlg(false, m_targetSide, filterBody, _T(""), _T("%1 > %2"), propName);
 		if (dlg.DoModal() == IDOK)
 		{
 			auto [dlgDirectives, expr] = FilterExpression::SplitDirectivesAndExpr(dlg.m_sExpression);
@@ -585,7 +585,7 @@ std::optional<String> CLineFilterHelperMenu::OnCommand(const String& filterExpr,
 	}
 	else if (command == ID_FILTERMENU_DIFF_LINE_LENGTH_RANGE)
 	{
-		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("LineLength"), _T(""), _("%1 = %2"), _T("abs(%1 - %2)"));
+		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("LineLength"), _T(""), _T("%1 = %2"), _T("abs(%1 - %2)"));
 		if (dlg.DoModal() == IDOK)
 			result = LineFilterHelper::AddToExpression(filterExpr, dlg.m_sExpression, op());
 	}

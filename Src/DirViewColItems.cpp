@@ -1008,7 +1008,7 @@ static String ColPropertyDuplicateCountGet(const CDiffContext *pCtxt, const void
 	const DiffFileInfo &dfi = *static_cast<const DiffFileInfo *>(p);
 	const DuplicateInfo *info = GetDuplicateInfo(pCtxt, dfi, index);
 	return (!info || info->count[pane] <= 1) ? _T("") :
-		strutils::format(_("%s: %d"), strutils::format(_("Group%d"), info->groupid), info->count[pane] - 1);
+		strutils::format(_T("%s: %d"), strutils::format(_("Group%d"), info->groupid), info->count[pane] - 1);
 }
 
 static String ColAllPropertyGet(const CDiffContext *pCtxt, const void *p, int opt)
