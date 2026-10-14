@@ -114,6 +114,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rsrc.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rtf.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\ruby.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>

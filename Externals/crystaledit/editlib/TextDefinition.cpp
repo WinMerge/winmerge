@@ -62,6 +62,7 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_VHDL, _T("VHDL"), _T("vhd;vhdl;vho"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(""), _T(""), _T("--"), (unsigned)-1,
 	SRC_XML, _T("XML"), _T("xml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("<!--"), _T("-->"), _T(""), (unsigned)-1,
 	SRC_YAML, _T("YAML"), _T("yaml;yml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
+	SRC_RTF, _T("RTF"), _T("rtf"), false, SRCOPT_AUTOINDENT, /*2,*/ _T(""), _T(""), _T(""), (unsigned)-1,
 };
 
 static bool

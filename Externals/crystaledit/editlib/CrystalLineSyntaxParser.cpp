@@ -55,6 +55,7 @@ static const std::pair<LanguageId, ParseFunc> m_ParseXDef[] =
 { LanguageId::SRC_VERILOG, CrystalLineParser::ParseLineVerilog },
 { LanguageId::SRC_VHDL, CrystalLineParser::ParseLineVhdl },
 { LanguageId::SRC_XML, CrystalLineParser::ParseLineXml },
+{ LanguageId::SRC_RTF, CrystalLineParser::ParseLineRtf },
 };
 
 bool CrystalLineSyntaxParserFactory::IsSupported(LanguageId textType) const
