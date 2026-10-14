@@ -4884,6 +4884,10 @@ BEGIN
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
     IDS_OPEN_UNPACKERDISABLED "Only enabled for file comparisons"
     IDS_OPEN_MISMATCH       "Cannot compare file and folder!"
+    IDS_COLHDR_RECENT_COMPARISON
+                            "Comparison"
+    IDS_COLHDR_RECENT_COMMAND_LINE
+                            "Command line"
 END
 
 // LOADING FILE
@@ -4909,6 +4913,16 @@ BEGIN
     IDS_ERROR_BACKUP        "Error backing up file"
     IDS_BACKUP_FAILED_PROMPT 
                             "Unable to backup original file:\n%1\n\nContinue anyway?"
+    IDS_BACKUP_CREATE_FOLDER_FAILED
+                            "Unable to create backup folder"
+    IDS_BACKUP_UNKNOWN_LOCATION
+                            "Unknown backup location"
+    IDS_BACKUP_PATH_TOO_LONG
+                            "Backup path too long"
+    IDS_BACKUP_ORIGINAL_FAILED
+                            "Unable to backup original file"
+    IDS_BACKUP_CHECK_STATUS_FAILED
+                            "Unable to check file status"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
     IDS_FILEPACK_FAILED_LEFT 
                             "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
@@ -4933,6 +4947,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_VIEWS_OUTOFSYNC     "Cannot merge unsynched documents.\n\nRefresh before continuing."
+    IDS_MERGE_ERROR_HIDDEN_LINES_UNSUPPORTED
+                            "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
 END
 
 STRINGTABLE
@@ -5298,6 +5314,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
+    IDS_REPORT_COPY_CLIPBOARD_FAILED
+                            "Failed to copy to clipboard."
     IDS_REPORT_SUCCESS      "Report created successfully."
 END
 
@@ -5414,6 +5432,7 @@ STRINGTABLE
 BEGIN
     IDS_ARCHIVE_SUCCEEDED   "Archive file written."
     IDS_ARCHIVE_SAVEFILES 	"Save all files first.\n\nCreating an archive requires no unsaved changes."
+    IDS_ARCHIVE_NO_FILES    "No files are available for packaging."
 END
 
 STRINGTABLE
@@ -5500,6 +5519,7 @@ BEGIN
     IDS_MERGE_RESULT_CONFLICT "<Merge Conflict>"
     IDS_MERGE_RESULT_UNRESOLVED "<Unresolved Difference>"
     IDS_MERGE_RESULT_NOLINES "<No Lines>"
+    IDS_MERGE_RESULT_UNTITLED "<Untitled>"
     IDS_MERGE_RESULT_SAVE_AS "Save Merge Result As"
     IDS_MERGE_RESULT_STATUS_CONFLICTS2 "Conflicts: %1, Unresolved: %2"
     IDS_MERGE_RESULT_STATUS_CONFLICTS3 "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
@@ -5765,6 +5785,8 @@ BEGIN
                             "Missing plugin name in pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
                             "Missing quote in plugin pipeline: %1"
+    IDS_PLUGIN_MISSING_LINE_EXPR
+                            "Missing line expression in pipeline: %1"
     IDS_PLUGIN_NAME_ALREADY_EXISTS "Plugin name '%1' already exists."
     IDS_PLUGIN_TITLE1       "Specify plugin arguments"
     IDS_PLUGIN_NOTFOUND_INVALID
