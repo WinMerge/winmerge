@@ -41,6 +41,7 @@
 #include "MergeResultTextBuffer.h"
 #include "MergeDiffNavigation.h"
 #include "MergeConflictNavigation.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2596,6 +2597,67 @@ void CMergeEditView::UpdateStatusbar()
 }
 
 /**
+ * @brief Set the text type, then show it in the status bar (see UpdateSyntaxStatus).
+ * Every SetTextType variant comes here when the text type changes.
+ */
+bool CMergeEditView::DoSetTextType(LangServices::TextDefinition* def)
+{
+	const bool bResult = __super::DoSetTextType(def);
+	UpdateSyntaxStatus();
+	return bResult;
+}
+
+/** @brief Name of the syntax type "Auto Syntax": the types the file extensions give, no variation chosen */
+static String AutoSyntaxName()
+{
+	return _("Auto Syntax");
+}
+
+/**
+ * @brief Show the syntax type in the syntax column of the status bar: "Auto Syntax" in the auto state
+ * (IsSyntaxTypeAuto), otherwise the name of the type in use. A click on the column shows all types
+ * (ShowSyntaxTypeMenu).
+ */
+void CMergeEditView::UpdateSyntaxStatus()
+{
+	if (m_piMergeEditStatus == nullptr || m_pDocument == nullptr)
+		return;
+	const int nTextType = m_CurSourceDef ? static_cast<int>(m_CurSourceDef->type) : 0;
+	m_piMergeEditStatus->SetSyntaxName(IsSyntaxTypeAuto() ?
+		AutoSyntaxName().c_str() : I18n::LoadString(ID_COLORSCHEME_FIRST + nTextType).c_str());
+}
+
+/**
+ * @brief Whether the syntax type is in the auto state: not chosen manually for these files, and not a variation
+ * chosen for their extension earlier (e.g. SQL (Postgre) chosen for .sql files).
+ */
+bool CMergeEditView::IsSyntaxTypeAuto()
+{
+	const int nTextType = m_CurSourceDef ? static_cast<int>(m_CurSourceDef->type) : 0;
+	return !GetDocument()->GetChangedSchemeManually() && !LangServices::IsChosenTextTypeVariation(nTextType);
+}
+
+/**
+ * @brief Change the syntax type of the files (nTextType, or SYNTAX_TYPE_AUTO for "Auto Syntax") under the wait
+ * cursor, which stays until the files are rescanned and repainted with the new syntax.
+ */
+void CMergeEditView::ChangeSyntaxType(int nTextType)
+{
+	CWaitCursor waitstatus;
+	CMergeDoc *pDoc = GetDocument();
+	if (nTextType == SYNTAX_TYPE_AUTO)
+		pDoc->SetTextTypeAuto();
+	else
+	{
+		pDoc->SetTextType(nTextType);
+		// A variation chosen here (e.g. SQL (Postgre) for a .sql file) is kept for the files of its base type
+		pDoc->SaveTextTypeVariation(nTextType);
+	}
+	pDoc->FlushAndRescan(true);
+	GetParentFrame()->RedrawWindow(nullptr, nullptr, RDW_UPDATENOW | RDW_ALLCHILDREN);
+}
+
+/**
  * @brief Update statusbar info, Override from CCrystalTextView
  * @note we tab-expand column, but we don't tab-expand char count,
  * since we want to show how many chars there are and tab is just one
@@ -2646,6 +2708,7 @@ void CMergeEditView::OnUpdateCaret()
 		else
 			sEol = _T("hidden");
 	}
+	UpdateSyntaxStatus();
 	m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
 		curChar, chars, selectedLines, selectedChars,
 		sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage(), GetDocument()->m_ptBuf[m_nThisPane]->getHasBom());
@@ -4232,6 +4295,32 @@ void CMergeEditView::OnFilterMenuColumn(UINT nID)
 }
 
 /**
+ * @brief The syntax type commands of [nFirstID, nLastID] that this build has (IsTextTypeAvailable).
+ */
+static std::vector<UINT> GetSchemeCommands(UINT nFirstID, UINT nLastID)
+{
+	std::vector<UINT> ids;
+	for (UINT nID = nFirstID; nID <= nLastID; ++nID)
+	{
+		if (LangServices::IsTextTypeAvailable(nID - ID_COLORSCHEME_FIRST))
+			ids.push_back(nID);
+	}
+	return ids;
+}
+
+/**
+ * @brief Append the syntax type commands of [nFirstID, nLastID] that this build has.
+ */
+static void AppendSchemeMenuItems(HMENU hMenu, UINT nFirstID, UINT nLastID)
+{
+	for (UINT nID : GetSchemeCommands(nFirstID, nLastID))
+	{
+		const String name = I18n::LoadString(nID);
+		AppendMenu(hMenu, MF_STRING, nID, name.c_str());
+	}
+}
+
+/**
 * @brief Create the "Change Scheme" sub menu.
 * @param [in] pCmdUI Pointer to UI item to update.
 */
@@ -4245,16 +4334,8 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 	const HMENU hSubMenuA_L = CreatePopupMenu();
 	const HMENU hSubMenuM_Z = CreatePopupMenu();
 
-	for (int i = ID_COLORSCHEME_FIRST + 1; i < ID_COLORSCHEME_SECOND; ++i)
-	{
-		const String name = I18n::LoadString(i);
-		AppendMenu(hSubMenuA_L, MF_STRING, i, name.c_str());
-	}
-	for (int i = ID_COLORSCHEME_SECOND; i <= ID_COLORSCHEME_LAST; ++i)
-	{
-		const String name = I18n::LoadString(i);
-		AppendMenu(hSubMenuM_Z, MF_STRING, i, name.c_str());
-	}
+	AppendSchemeMenuItems(hSubMenuA_L, ID_COLORSCHEME_FIRST + 1, ID_COLORSCHEME_SECOND - 1);
+	AppendSchemeMenuItems(hSubMenuM_Z, ID_COLORSCHEME_SECOND, ID_COLORSCHEME_LAST);
 
 	const String name = I18n::LoadString(ID_COLORSCHEME_FIRST);
 	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
@@ -4270,10 +4351,8 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 */
 void CMergeEditView::OnChangeScheme(UINT nID)
 {
-	CMergeDoc *pDoc = GetDocument();
-	ASSERT(pDoc != nullptr);
-	pDoc->SetTextType(nID - ID_COLORSCHEME_FIRST);
-	pDoc->FlushAndRescan(true);
+	ASSERT(GetDocument() != nullptr);
+	ChangeSyntaxType(nID - ID_COLORSCHEME_FIRST);
 }
 
 /**
@@ -4564,29 +4643,275 @@ void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(GetDocument()->m_nGroups > 2);
 }
 
+namespace
+{
+
+/**
+ * @brief Collects the state an ON_UPDATE_COMMAND_UI handler sets, for a command shown outside a menu
+ */
+class CStateCmdUI : public CCmdUI
+{
+public:
+	bool m_bEnabled = true;
+	bool m_bChecked = false;
+	void Enable(BOOL bOn = TRUE) override { m_bEnabled = !!bOn; m_bEnableChanged = TRUE; }
+	void SetCheck(int nCheck = 1) override { m_bChecked = (nCheck != 0); }
+	void SetRadio(BOOL bOn = TRUE) override { m_bChecked = !!bOn; }
+	void SetText(LPCTSTR) override {}
+};
+
+/**
+ * @brief Show a popup list at ptScreen and run a modal loop like TrackPopupMenu.
+ * The list is at most half the work area of the monitor at ptScreen high and has a scroll bar when the items
+ * do not fit. The selection follows the mouse pointer and moves one item per mouse wheel notch wherever the
+ * pointer is. A click chooses the item under the pointer, Enter the selected one; Esc, Alt, a click outside
+ * (not passed on) or another active window closes it.
+ * @param [in] pFont Font of the list, nullptr for the default
+ * @return Index of the chosen item, -1 for none (always -1 when bEnabled is false)
+ */
+int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items, int nSel, bool bEnabled,
+	CPoint ptScreen)
+{
+	MONITORINFO monitorInfo{ sizeof(monitorInfo) };
+	GetMonitorInfo(MonitorFromPoint(ptScreen, MONITOR_DEFAULTTONEAREST), &monitorInfo);
+	const CRect rcWork(monitorInfo.rcWork);
+	const int cyMax = rcWork.Height() / 2;
+
+	CWnd wndPopup;
+	if (!wndPopup.CreateEx(WS_EX_TOOLWINDOW, AfxRegisterWndClass(CS_DROPSHADOW), nullptr,
+			WS_POPUP | WS_BORDER, CRect(0, 0, 0, 0), pOwner, 0))
+		return -1;
+	CListBox list;
+	if (!list.Create(WS_CHILD | WS_VISIBLE | WS_VSCROLL | LBS_NOINTEGRALHEIGHT, CRect(0, 0, 0, 0), &wndPopup, 1))
+	{
+		wndPopup.DestroyWindow();
+		return -1;
+	}
+	if (DarkMode::isEnabled())
+	{
+		// colors the list like a dialog control
+		DarkMode::setWindowCtlColorSubclass(wndPopup.m_hWnd);
+		DarkMode::setChildCtrlsSubclassAndThemeEx(wndPopup.m_hWnd, true, true);
+	}
+	if (pFont != nullptr)
+		list.SetFont(pFont);
+
+	// Size: the widest item plus a margin, rows up to cyMax, plus the scroll bar the list then shows
+	int cxText = 0, cxMargin = 0;
+	{
+		CClientDC dc(&list);
+		const HFONT hFont = reinterpret_cast<HFONT>(list.SendMessage(WM_GETFONT));
+		const HGDIOBJ hOldFont = hFont ? dc.SelectObject(hFont) : nullptr;
+		for (const auto& item : items)
+		{
+			list.AddString(item.c_str());
+			cxText = (std::max)(cxText, static_cast<int>(dc.GetTextExtent(item.c_str()).cx));
+		}
+		cxMargin = dc.GetTextExtent(_T("  ")).cx;
+		if (hOldFont)
+			dc.SelectObject(hOldFont);
+	}
+	const int nItems = static_cast<int>(items.size());
+	const int cyItem = (std::max)(1, list.GetItemHeight(0));
+	const int nRows = (std::max)(1, (std::min)(nItems, cyMax / cyItem));
+	list.MoveWindow(0, 0, cxText + cxMargin, nRows * cyItem);
+	CRect rcWindow, rcClient;
+	list.GetWindowRect(&rcWindow);
+	list.GetClientRect(&rcClient);
+	const CSize sizeList(cxText + cxMargin + rcWindow.Width() - rcClient.Width(), nRows * cyItem);
+	list.MoveWindow(0, 0, sizeList.cx, sizeList.cy);
+
+	// Place it like a popup menu: above the point, below it when the work area has no room above,
+	// and inside the work area
+	CRect rcPopup(CPoint(0, 0), sizeList);
+	::AdjustWindowRectEx(&rcPopup, WS_POPUP | WS_BORDER, FALSE, WS_EX_TOOLWINDOW);
+	const CSize sizePopup = rcPopup.Size();
+	CPoint ptPopup(ptScreen.x, ptScreen.y - sizePopup.cy);
+	if (ptPopup.y < rcWork.top)
+		ptPopup.y = ptScreen.y;
+	ptPopup.x = (std::max)(rcWork.left, (std::min)(ptPopup.x, rcWork.right - sizePopup.cx));
+	ptPopup.y = (std::max)(rcWork.top, (std::min)(ptPopup.y, rcWork.bottom - sizePopup.cy));
+	list.SetCurSel(nSel);
+	list.EnableWindow(bEnabled);
+	wndPopup.SetWindowPos(&CWnd::wndTop, ptPopup.x, ptPopup.y, sizePopup.cx, sizePopup.cy, SWP_SHOWWINDOW);
+	if (bEnabled)
+		list.SetFocus();
+	wndPopup.SetTimer(1, 100, nullptr); // wakes the loop to notice another active window
+
+	int nResult = -1;
+	auto itemAt = [&list](CPoint ptClient) {
+		CRect rcClient;
+		list.GetClientRect(&rcClient);
+		BOOL bOutside = TRUE;
+		const int nItem = static_cast<int>(list.ItemFromPoint(ptClient, bOutside));
+		return (bOutside || !rcClient.PtInRect(ptClient)) ? -1 : nItem;
+	};
+	// The selection follows the item under the mouse pointer (hover)
+	auto selectAt = [&list, &itemAt](CPoint ptClient) {
+		const int nItem = itemAt(ptClient);
+		if (nItem >= 0 && nItem != list.GetCurSel())
+			list.SetCurSel(nItem);
+	};
+	// Whether message is the button up (client or non-client) of the button of downMessage
+	auto isButtonUp = [](UINT message, UINT downMessage) {
+		switch (downMessage)
+		{
+		case WM_LBUTTONDOWN: case WM_NCLBUTTONDOWN: return message == WM_LBUTTONUP || message == WM_NCLBUTTONUP;
+		case WM_RBUTTONDOWN: case WM_NCRBUTTONDOWN: return message == WM_RBUTTONUP || message == WM_NCRBUTTONUP;
+		case WM_MBUTTONDOWN: case WM_NCMBUTTONDOWN: return message == WM_MBUTTONUP || message == WM_NCMBUTTONUP;
+		}
+		return false;
+	};
+	UINT nOutsideDown = 0; // button down of a click outside, which closes the list
+	int nWheelDelta = 0; // wheel rotation not yet turned into selection steps
+	for (bool bDone = false; !bDone; )
+	{
+		if (::GetActiveWindow() != wndPopup.m_hWnd || (nOutsideDown != 0 && ::GetCapture() != wndPopup.m_hWnd))
+			break;
+		MSG msg;
+		if (!::GetMessage(&msg, nullptr, 0, 0))
+		{
+			::PostQuitMessage(static_cast<int>(msg.wParam));
+			break;
+		}
+		if (nOutsideDown != 0)
+		{
+			// Closing after a click outside: its mouse input up to the button up is dropped, not passed on
+			if (isButtonUp(msg.message, nOutsideDown))
+				bDone = true;
+			if ((msg.message >= WM_MOUSEFIRST && msg.message <= WM_MOUSELAST) ||
+				(msg.message >= WM_NCMOUSEMOVE && msg.message <= WM_NCMBUTTONDBLCLK))
+				continue;
+		}
+		bool bDispatch = true;
+		switch (msg.message)
+		{
+		case WM_KEYDOWN:
+			if (msg.wParam == VK_ESCAPE)
+				bDone = true;
+			else if (msg.wParam == VK_RETURN)
+			{
+				nResult = bEnabled ? list.GetCurSel() : -1;
+				bDone = true;
+			}
+			break;
+		case WM_SYSKEYDOWN:
+			bDone = true;
+			break;
+		case WM_MOUSEWHEEL:
+			// The wheel moves the selection one item per notch (wherever the pointer is); the list scrolls
+			// only to keep it visible
+			bDispatch = false;
+			if (bEnabled)
+			{
+				nWheelDelta += GET_WHEEL_DELTA_WPARAM(msg.wParam);
+				const int nSteps = nWheelDelta / WHEEL_DELTA;
+				nWheelDelta %= WHEEL_DELTA;
+				if (nSteps != 0)
+					list.SetCurSel((std::max)(0, (std::min)(nItems - 1, list.GetCurSel() - nSteps)));
+			}
+			break;
+		case WM_MOUSEMOVE:
+			if (msg.hwnd == list.m_hWnd && bEnabled)
+				selectAt(CPoint(GET_X_LPARAM(msg.lParam), GET_Y_LPARAM(msg.lParam)));
+			break;
+		case WM_LBUTTONUP:
+			if (msg.hwnd == list.m_hWnd && bEnabled)
+			{
+				const int nItem = itemAt(CPoint(GET_X_LPARAM(msg.lParam), GET_Y_LPARAM(msg.lParam)));
+				if (nItem >= 0)
+				{
+					nResult = nItem;
+					bDone = true;
+				}
+			}
+			break;
+		case WM_LBUTTONDOWN: case WM_RBUTTONDOWN: case WM_MBUTTONDOWN:
+		case WM_NCLBUTTONDOWN: case WM_NCRBUTTONDOWN: case WM_NCMBUTTONDOWN:
+			if (msg.hwnd != list.m_hWnd && msg.hwnd != wndPopup.m_hWnd)
+			{
+				// A click outside closes the list and is not passed on, like for a menu: the popup takes the
+				// mouse until the button up, which is dropped as well
+				nOutsideDown = msg.message;
+				wndPopup.SetCapture();
+				bDispatch = false;
+			}
+			break;
+		}
+		if (bDispatch && !bDone)
+		{
+			::TranslateMessage(&msg);
+			::DispatchMessage(&msg);
+		}
+	}
+	wndPopup.DestroyWindow();
+	return nResult;
+}
+
+}
+
+/**
+ * @brief Show "Auto Syntax" and all syntax types of this build as a scrollable popup list at ptScreen
+ * (status bar syntax column), in the status bar font. The selection starts at the state the column shows.
+ * The types get their enabled and current state from OnUpdateChangeScheme, the same as View > Syntax highlight;
+ * the choice runs ChangeSyntaxType.
+ */
+void CMergeEditView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
+{
+	const bool bAuto = IsSyntaxTypeAuto();
+	std::vector<int> types{ SYNTAX_TYPE_AUTO };
+	std::vector<String> names{ AutoSyntaxName() };
+	int nSel = 0;
+	bool bEnabled = true;
+	for (UINT nID : GetSchemeCommands(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST))
+	{
+		CStateCmdUI state;
+		state.m_nID = nID;
+		state.DoUpdate(this, FALSE);
+		bEnabled = state.m_bEnabled;
+		if (state.m_bChecked && !bAuto)
+			nSel = static_cast<int>(types.size());
+		types.push_back(static_cast<int>(nID - ID_COLORSCHEME_FIRST));
+		names.push_back(I18n::LoadString(nID));
+	}
+
+	const int nChosen = TrackPopupList(this, pFont, names, nSel, bEnabled, ptScreen);
+	if (nChosen >= 0)
+		ChangeSyntaxType(types[nChosen]);
+}
+
 void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = 0;
 	LPNMMOUSE pNMMouse = reinterpret_cast<LPNMMOUSE>(pNMHDR);
-	const int pane = static_cast<int>(pNMMouse->dwItemSpec) / 4;
+	const DWORD_PTR nPart = pNMMouse->dwItemSpec;
 	CMergeDoc* pDoc = GetDocument();
-	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMMouse->hdr.hwndFrom)))
+	if (nPart >= static_cast<DWORD_PTR>(pDoc->m_nBuffers) * CMergeStatusBar::COLUMN_COUNT ||
+		!GetParentFrame()->IsChild(CWnd::FromHandle(pNMMouse->hdr.hwndFrom)))
+		return;
+	const int pane = static_cast<int>(nPart / CMergeStatusBar::COLUMN_COUNT);
+
+	const int nColumn = static_cast<int>(nPart % CMergeStatusBar::COLUMN_COUNT);
+
+	if (nColumn != CMergeStatusBar::COLUMN_INFO && pDoc->GetMergeResultBuildState())
 		return;
 
-	const int statusBarPane = pNMMouse->dwItemSpec % 4;
-
-	if (statusBarPane != 0 && pDoc->GetMergeResultBuildState())
-		return;
-
-	switch (statusBarPane)
+	switch (nColumn)
 	{
-	case 0:
+	case CMergeStatusBar::COLUMN_INFO:
 		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
 		break;
-	case 1:
+	case CMergeStatusBar::COLUMN_SYNTAX:
+	{
+		CPoint point = pNMMouse->pt; // status bar client coordinates of the click
+		::ClientToScreen(pNMMouse->hdr.hwndFrom, &point);
+		pDoc->GetView(0, pane)->ShowSyntaxTypeMenu(point, CWnd::FromHandle(pNMMouse->hdr.hwndFrom)->GetFont());
+		break;
+	}
+	case CMergeStatusBar::COLUMN_ENCODING:
 		pDoc->DoFileEncodingDialog(pane);
 		break;
-	case 2:
+	case CMergeStatusBar::COLUMN_EOL:
 	{
 		CPoint point;
 		::GetCursorPos(&point);
@@ -4597,7 +4922,7 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));
 		break;
 	}
-	case 3:
+	case CMergeStatusBar::COLUMN_RO:
 		pDoc->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
 		break;
 	default:

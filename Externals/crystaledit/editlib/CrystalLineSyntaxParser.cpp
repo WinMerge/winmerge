@@ -50,6 +50,8 @@ static const std::pair<LanguageId, ParseFunc> m_ParseXDef[] =
 { LanguageId::SRC_SIOD, CrystalLineParser::ParseLineSiod },
 { LanguageId::SRC_SMARTY, CrystalLineParser::ParseLineSmarty },
 { LanguageId::SRC_SQL, CrystalLineParser::ParseLineSql },
+{ LanguageId::SRC_SQL_POSTGRESQL, CrystalLineParser::ParseLineSqlPostgreSql },
+{ LanguageId::SRC_SQL_MYSQL, CrystalLineParser::ParseLineSqlMySql },
 { LanguageId::SRC_TCL, CrystalLineParser::ParseLineTcl },
 { LanguageId::SRC_TEX, CrystalLineParser::ParseLineTex },
 { LanguageId::SRC_VERILOG, CrystalLineParser::ParseLineVerilog },

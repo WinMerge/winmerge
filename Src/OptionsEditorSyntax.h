@@ -10,5 +10,7 @@ void GetDefaults(COptionsMgr* pOptionsMgr, String* pExtension);
 void Init(COptionsMgr *pOptionsMgr);
 void Load(COptionsMgr *pOptionsMgr, String* pExtension);
 void Save(COptionsMgr *pOptionsMgr, const String* const pExtension);
+void SaveTextTypeVariation(COptionsMgr *pOptionsMgr, int nTextType);
+void ResetTextTypeVariation(COptionsMgr *pOptionsMgr, int nBase);
 
 }}

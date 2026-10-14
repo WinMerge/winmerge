@@ -53,6 +53,8 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_SIOD, _T("SIOD"), _T("scm"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU, /*2,*/ _T(";|"), _T("|;"), _T(";"), (unsigned)-1,
 	SRC_SMARTY, _T("Smarty"), _T("tpl"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU, /*2,*/ _T("{*"), _T("*}"), _T(""), (unsigned)-1,
 	SRC_SQL, _T("SQL"), _T("sql"), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_SQL_POSTGRESQL, _T("PostgreSQL"), _T(""), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_SQL_MYSQL, _T("MySQL"), _T(""), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_TCL, _T("TCL"), _T("tcl"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU | SRCOPT_EOLNUNIX, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
 	SRC_TEX, _T("TEX"), _T("tex;sty;clo;ltx;fd;dtx"), false, SRCOPT_AUTOINDENT, /*4,*/ _T(""), _T(""), _T("%"), (unsigned)-1,
 	SRC_TOML, _T("TOML"), _T("toml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
@@ -63,6 +65,29 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_XML, _T("XML"), _T("xml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("<!--"), _T("-->"), _T(""), (unsigned)-1,
 	SRC_YAML, _T("YAML"), _T("yaml;yml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
 };
+
+//  Syntax type variations: types that share the extensions of their base type. A file the base type's
+//  extensions match gets the variation chosen last (SetTextTypeVariation). Add rows to give a type variations.
+static const struct
+{
+  LanguageId variation;
+  LanguageId base;
+} s_TextTypeVariations[] =
+{
+  { SRC_SQL_POSTGRESQL, SRC_SQL },
+  { SRC_SQL_MYSQL, SRC_SQL },
+};
+
+//  Variation chosen last per base type, index of m_SourceDefs; -1 for none: the files get the base type itself
+//  ("Auto Syntax"), see SetTextTypeVariation and ResetTextTypeVariation
+static std::array<int, static_cast<size_t>(SRC_MAX_ENTRY)> s_nChosenVariation = []
+{
+  std::array<int, static_cast<size_t>(SRC_MAX_ENTRY)> chosen;
+  chosen.fill(-1);
+  return chosen;
+}();
+
+static int GetChosenTextTypeVariation(int index);
 
 static bool
 MatchType(const std::basic_string<tchar_t>& pattern, const tchar_t* lpszExt)
@@ -94,8 +119,22 @@ MatchType(const std::basic_string<tchar_t>& pattern, const tchar_t* lpszExt)
   return false;
 }
 
+/**
+ * @brief Get the text type for a file extension: the type whose extensions match, or the variation of it chosen
+ * last (see SetTextTypeVariation).
+ */
 TextDefinition*
 GetTextType(const tchar_t* pszExt)
+{
+  TextDefinition* def = GetBaseTextType(pszExt);
+  return def ? &m_SourceDefs[GetChosenTextTypeVariation(static_cast<int>(def->type))] : nullptr;
+}
+
+/**
+ * @brief Get the text type whose extensions match a file extension, before a variation is chosen (see GetTextType).
+ */
+TextDefinition*
+GetBaseTextType(const tchar_t* pszExt)
 {
   TextDefinition* def;
   std::basic_string<tchar_t> sExt = pszExt;
@@ -103,7 +142,7 @@ GetTextType(const tchar_t* pszExt)
   def = &m_SourceDefs[1];
   std::transform(sExt.begin(), sExt.end(), sExt.begin(), tc::totlower);
   for (size_t i = 1; i < m_SourceDefs.size(); i++, def++)
-	if (MatchType(def->exts, sExt.c_str()))
+	if (IsTextTypeAvailable(static_cast<int>(i)) && MatchType(def->exts, sExt.c_str()))
 	  return def;
 
   // Check if the extension matches the text type "Plain" at the end.
@@ -134,6 +173,87 @@ GetTextType(LanguageId type)
   if (index < 0 || index >= SRC_MAX_ENTRY)
 	return nullptr;
   return &m_SourceDefs[index];
+}
+
+/**
+ * @brief Whether the text type of the specified index is offered in the syntax menu, the syntax options
+ * and the extension lookup. The SQL dialect types exist only with USE_SQL_HASH_LINE_COMMENT.
+ * @param [in] index Index of m_SourceDefs
+ */
+bool
+IsTextTypeAvailable(int index)
+{
+  if (index < 0 || index >= SRC_MAX_ENTRY)
+	return false;
+#ifndef USE_SQL_HASH_LINE_COMMENT
+  if (index == SRC_SQL_POSTGRESQL || index == SRC_SQL_MYSQL)
+	return false;
+#endif
+  return true;
+}
+
+/**
+ * @brief Base type of the variation group of a text type (s_TextTypeVariations): the base type for itself and for
+ * its variations, -1 for a type without available variations (e.g. SQL without USE_SQL_HASH_LINE_COMMENT).
+ * @param [in] index Index of m_SourceDefs
+ */
+int
+GetTextTypeVariationBase(int index)
+{
+  if (!IsTextTypeAvailable(index))
+	return -1;
+  for (const auto& v : s_TextTypeVariations)
+	if ((index == v.variation || index == v.base) && IsTextTypeAvailable(v.variation))
+	  return v.base;
+  return -1;
+}
+
+/**
+ * @brief Use a text type variation for the files the extensions of its base type match.
+ * Types without a variation group are ignored.
+ * @param [in] index Index of m_SourceDefs
+ */
+void
+SetTextTypeVariation(int index)
+{
+  const int base = GetTextTypeVariationBase(index);
+  if (base >= 0)
+	s_nChosenVariation[base] = index;
+}
+
+/**
+ * @brief Forget the variation chosen for a base type: the files its extensions match get the base type again.
+ * @param [in] base Index of m_SourceDefs
+ */
+void
+ResetTextTypeVariation(int base)
+{
+  if (base >= 0 && base < SRC_MAX_ENTRY)
+	s_nChosenVariation[base] = -1;
+}
+
+/**
+ * @brief Whether a text type is the variation chosen for its base type (see SetTextTypeVariation).
+ * @param [in] index Index of m_SourceDefs
+ */
+bool
+IsChosenTextTypeVariation(int index)
+{
+  const int base = GetTextTypeVariationBase(index);
+  return base >= 0 && s_nChosenVariation[base] == index;
+}
+
+/**
+ * @brief The variation chosen last for a base type, otherwise the type itself.
+ * @param [in] index Index of m_SourceDefs
+ */
+static int
+GetChosenTextTypeVariation(int index)
+{
+  if (index < 0 || index >= SRC_MAX_ENTRY)
+	return index;
+  const int chosen = s_nChosenVariation[index];
+  return (chosen >= 0 && GetTextTypeVariationBase(chosen) == index) ? chosen : index;
 }
 
 /**
