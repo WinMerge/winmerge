@@ -497,10 +497,9 @@ static bool
 IsAutoItDirective (const tchar_t *pszChars, int nLength, int nPos,
                    const tchar_t *pszDirective, int nDirectiveLength)
 {
-  const int nEnd = nPos + nDirectiveLength;
-  return nEnd <= nLength &&
-         tc::tcsnicmp(pszChars + nPos, pszDirective, nDirectiveLength) == 0 &&
-         (nEnd == nLength || xisspace(pszChars[nEnd]) || pszChars[nEnd] == ';');
+  // AutoIt accepts suffixes such as #csExtra, #ceExtra and #comments-endless.
+  return nPos + nDirectiveLength <= nLength &&
+         tc::tcsnicmp(pszChars + nPos, pszDirective, nDirectiveLength) == 0;
 }
 
 static constexpr unsigned AUTOIT_COMMENT_DEPTH_SHIFT = 16;
