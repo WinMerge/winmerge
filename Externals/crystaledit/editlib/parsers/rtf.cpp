@@ -141,3 +141,12 @@ unsigned CrystalLineParser::ParseLineRtf(unsigned dwCookie, const tchar_t* pszCh
 
   return dwCookie;
 }
+
+unsigned CrystalLineParser::SkipRtfLineEnding(unsigned dwCookie, int nEolLength)
+{
+  // \binN counts the physical CR/LF bytes, although line text excludes them.
+  if (nEolLength <= 0)
+    return dwCookie;
+  const unsigned eolLength = static_cast<unsigned>(nEolLength);
+  return dwCookie > eolLength ? dwCookie - eolLength : 0;
+}

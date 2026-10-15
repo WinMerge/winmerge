@@ -38,6 +38,7 @@ private:
 	 * @return The cookie value for this line.
 	 */
 	unsigned GetLineCookie(int nLineIndex);
+	unsigned ParseLineAndEol(unsigned dwCookie, int nLineIndex, std::vector<LangServices::TEXTBLOCK>* pBlocks) const;
 
 	/**
 	 * @brief Invalidate cached parse state from a specific line onward.

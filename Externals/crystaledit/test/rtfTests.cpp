@@ -76,13 +76,58 @@ public:
     Assert::AreEqual(static_cast<int>(COLORINDEX_NORMALTEXT), ColorAt(blocks, 2));
   }
 
-  TEST_METHOD(EmptyLinePreservesBinaryState)
+  TEST_METHOD(EmptyContentPreservesBinaryState)
   {
     std::vector<CrystalLineParser::TEXTBLOCK> blocks;
     const unsigned cookie = Parse(0, LR"(\bin4 a)", blocks);
     Assert::AreEqual(3u, cookie);
     blocks.clear();
     Assert::AreEqual(cookie, Parse(cookie, _T(""), blocks));
+  }
+
+  TEST_METHOD(BinaryDataConsumesCrLfBetweenLines)
+  {
+    const tchar_t* document = _T("\\bin4 ab\r\n{\\b x}");
+    std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+    unsigned cookie = CrystalLineParser::ParseLineRtf(0, document, 8, &blocks);
+    Assert::AreEqual(2u, cookie);
+    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 2);
+    Assert::AreEqual(0u, cookie);
+    blocks.clear();
+    Assert::AreEqual(0u, Parse(cookie, document + 10, blocks));
+    Assert::AreEqual(static_cast<int>(COLORINDEX_OPERATOR), ColorAt(blocks, 0));
+    Assert::AreEqual(static_cast<int>(COLORINDEX_KEYWORD), ColorAt(blocks, 1));
+  }
+
+  TEST_METHOD(BinaryDataConsumesLfBetweenLines)
+  {
+    const tchar_t* document = _T("\\bin3 ab\n{\\b x}");
+    std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+    unsigned cookie = CrystalLineParser::ParseLineRtf(0, document, 8, &blocks);
+    Assert::AreEqual(1u, cookie);
+    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 1);
+    Assert::AreEqual(0u, cookie);
+    blocks.clear();
+    Assert::AreEqual(0u, Parse(cookie, document + 9, blocks));
+    Assert::AreEqual(static_cast<int>(COLORINDEX_OPERATOR), ColorAt(blocks, 0));
+  }
+
+  TEST_METHOD(BinaryDataConsumesEmptyLineEnding)
+  {
+    const tchar_t* document = _T("\\bin5 a\r\n\r\n{\\b x}");
+    std::vector<CrystalLineParser::TEXTBLOCK> blocks;
+    unsigned cookie = CrystalLineParser::ParseLineRtf(0, document, 7, &blocks);
+    Assert::AreEqual(4u, cookie);
+    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 2);
+    Assert::AreEqual(2u, cookie);
+    blocks.clear();
+    cookie = CrystalLineParser::ParseLineRtf(cookie, document + 9, 0, &blocks);
+    Assert::AreEqual(2u, cookie);
+    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 2);
+    Assert::AreEqual(0u, cookie);
+    blocks.clear();
+    Assert::AreEqual(0u, Parse(cookie, document + 11, blocks));
+    Assert::AreEqual(static_cast<int>(COLORINDEX_OPERATOR), ColorAt(blocks, 0));
   }
 };
 
