@@ -1112,7 +1112,8 @@
 #define IDS_COLORSCHEME_VHDL            33201
 #define IDS_COLORSCHEME_XML             33202
 #define IDS_COLORSCHEME_YAML            33203
-#define ID_COLORSCHEME_LAST             33203
+#define IDS_COLORSCHEME_RTF             33204
+#define ID_COLORSCHEME_LAST             33204
 #define ID_TOOLBAR_NONE                 33300
 #define ID_TOOLBAR_SMALL                33301
 #define ID_TOOLBAR_MEDIUM               33302
