@@ -62,6 +62,7 @@ enum LanguageId
 	SRC_PYTHON,
 	SRC_REXX,
 	SRC_RSRC,
+	SRC_RTF,
 	SRC_RUBY,
 	SRC_RUST,
 	SRC_SGML,
@@ -78,7 +79,6 @@ enum LanguageId
 	SRC_VHDL,
 	SRC_XML,
 	SRC_YAML,
-	SRC_RTF,
 	SRC_MAX_ENTRY, /* always last entry, used for bound checking */
 };
 

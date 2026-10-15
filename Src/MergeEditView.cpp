@@ -4250,13 +4250,8 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 		const String name = I18n::LoadString(i);
 		AppendMenu(hSubMenuA_L, MF_STRING, i, name.c_str());
 	}
-	for (int i = ID_COLORSCHEME_SECOND; i < ID_COLORSCHEME_LAST; ++i)
+	for (int i = ID_COLORSCHEME_SECOND; i <= ID_COLORSCHEME_LAST; ++i)
 	{
-		if (i == IDS_COLORSCHEME_RUBY)
-		{
-			const String rtfName = I18n::LoadString(IDS_COLORSCHEME_RTF);
-			AppendMenu(hSubMenuM_Z, MF_STRING, IDS_COLORSCHEME_RTF, rtfName.c_str());
-		}
 		const String name = I18n::LoadString(i);
 		AppendMenu(hSubMenuM_Z, MF_STRING, i, name.c_str());
 	}
