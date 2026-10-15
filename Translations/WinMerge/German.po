@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-10-04 16:55+0200\n"
+"PO-Revision-Date: 2026-10-15 20:50+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 
@@ -3673,7 +3673,7 @@ msgstr "Auswählen..."
 #. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
 #: Merge.rc:2338
 msgid "Show recent &comparisons"
-msgstr ""
+msgstr "Letzte &Vergleiche anzeigen"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
@@ -6663,11 +6663,11 @@ msgstr "Datei und Ordner können nicht verglichen werden!"
 
 #: Merge.rc:4888
 msgid "Comparison"
-msgstr ""
+msgstr "Vergleich"
 
 #: Merge.rc:4890
 msgid "Command line"
-msgstr ""
+msgstr "Befehlszeile"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4896
@@ -6690,14 +6690,30 @@ msgstr "Datei nicht entpackt: %1"
 #. IDS_ERROR_FILECREATE
 #: Merge.rc:4899
 #, c-format
-msgid "Cannot create file\n%1\n\n%2"
+msgid ""
+"Cannot create file\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"Datei kann nicht erstellt werden\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4900
 #, c-format
-msgid "Cannot open file(s)\n%1\n\n%2"
+msgid ""
+"Cannot open file(s)\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"Datei(en) können nicht geöffnet werden\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4901
@@ -6779,23 +6795,23 @@ msgstr ""
 
 #: Merge.rc:4917
 msgid "Unable to create backup folder"
-msgstr ""
+msgstr "Der Sicherungsordner kann nicht erstellt werden"
 
 #: Merge.rc:4919
 msgid "Unknown backup location"
-msgstr ""
+msgstr "Unbekannter Sicherungsspeicherort"
 
 #: Merge.rc:4921
 msgid "Backup path too long"
-msgstr ""
+msgstr "Der Sicherungspfad ist zu lang"
 
 #: Merge.rc:4923
 msgid "Unable to backup original file"
-msgstr ""
+msgstr "Die Originaldatei kann nicht gesichert werden"
 
 #: Merge.rc:4925
 msgid "Unable to check file status"
-msgstr ""
+msgstr "Der Dateistatus kann nicht überprüft werden"
 
 #. IDS_FILESAVE_FAILED
 #: Merge.rc:4926
@@ -6938,8 +6954,14 @@ msgstr ""
 "Aktualisieren Sie die Dokumente, bevor Sie fortfahren."
 
 #: Merge.rc:4951
-msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
+msgid ""
+"Merging/copying differences that contain hidden lines is not currently supported.\n"
+"\n"
+"Please clear the display filter or adjust the filter settings to show all lines before merging."
 msgstr ""
+"Das Zusammenführen/Kopieren von Unterschieden, die ausgeblendete Zeilen enthalten, wird derzeit nicht unterstützt.\n"
+"\n"
+"Bitte deaktivieren Sie den Anzeigefilter oder passen Sie die Filtereinstellungen so an, dass alle Zeilen angezeigt werden, bevor Sie die Unterschiede zusammenführen."
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4956
@@ -7234,17 +7256,17 @@ msgstr "Dateiname"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5076
 msgid "Left Filename"
-msgstr ""
+msgstr "Linker Dateiname"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5077
 msgid "Middle Filename"
-msgstr ""
+msgstr "Mittlerer Dateiname"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5078
 msgid "Right Filename"
-msgstr ""
+msgstr "Rechter Dateiname"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5079
@@ -7256,19 +7278,19 @@ msgstr "Ordner"
 #: Merge.rc:5080
 msgctxt "DirView|ColumnHeader"
 msgid "Left Folder"
-msgstr ""
+msgstr "Linker Ordner"
 
 #. IDS_COLHDR_MDIR
 #: Merge.rc:5081
 msgctxt "DirView|ColumnHeader"
 msgid "Middle Folder"
-msgstr ""
+msgstr "Mittlerer Ordner"
 
 #. IDS_COLHDR_RDIR
 #: Merge.rc:5082
 msgctxt "DirView|ColumnHeader"
 msgid "Right Folder"
-msgstr ""
+msgstr "Rechter Ordner"
 
 #. IDS_COLHDR_RESULT
 #: Merge.rc:5083
@@ -7297,17 +7319,17 @@ msgstr "Mittleres Datum"
 #. IDS_COLHDR_LEXTENSION
 #: Merge.rc:5088
 msgid "Left Extension"
-msgstr ""
+msgstr "Linke Dateiendung"
 
 #. IDS_COLHDR_MEXTENSION
 #: Merge.rc:5089
 msgid "Middle Extension"
-msgstr ""
+msgstr "Mittlere Dateiendung"
 
 #. IDS_COLHDR_REXTENSION
 #: Merge.rc:5090
 msgid "Right Extension"
-msgstr ""
+msgstr "Rechte Dateiendung"
 
 #. IDS_COLHDR_LSIZE
 #: Merge.rc:5091
@@ -7864,17 +7886,17 @@ msgstr "Datei- oder Ordnername."
 #. IDS_COLDESC_LFILENAME
 #: Merge.rc:5238
 msgid "Left side filename or folder name."
-msgstr ""
+msgstr "Dateiname oder Ordnername auf der linken Seite."
 
 #. IDS_COLDESC_MFILENAME
 #: Merge.rc:5239
 msgid "Middle side filename or folder name."
-msgstr ""
+msgstr "Dateiname oder Ordnername in der Mitte."
 
 #. IDS_COLDESC_RFILENAME
 #: Merge.rc:5240
 msgid "Right side filename or folder name."
-msgstr ""
+msgstr "Dateiname oder Ordnername auf der rechten Seite."
 
 #. IDS_COLDESC_DIR
 #: Merge.rc:5241
@@ -7885,17 +7907,17 @@ msgstr "Unterordnername, wenn Unterordner vorhanden sind."
 #. IDS_COLDESC_LDIR
 #: Merge.rc:5242
 msgid "Folder path in the left pane."
-msgstr ""
+msgstr "Ordnerpfad im linken Fensterbereich."
 
 #. IDS_COLDESC_MDIR
 #: Merge.rc:5243
 msgid "Folder path in the middle pane."
-msgstr ""
+msgstr "Ordnerpfad im mittleren Fensterbereich."
 
 #. IDS_COLDESC_RDIR
 #: Merge.rc:5244
 msgid "Folder path in the right pane."
-msgstr ""
+msgstr "Ordnerpfad im rechten Fensterbereich."
 
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5245
@@ -7930,17 +7952,17 @@ msgstr "Dateierweiterung."
 #. IDS_COLDESC_LEXTENSION
 #: Merge.rc:5254
 msgid "File extension in the left pane."
-msgstr ""
+msgstr "Dateiendung im linken Fensterbereich."
 
 #. IDS_COLDESC_MEXTENSION
 #: Merge.rc:5255
 msgid "File extension in the middle pane."
-msgstr ""
+msgstr "Dateiendung im mittleren Fensterbereich."
 
 #. IDS_COLDESC_REXTENSION
 #: Merge.rc:5256
 msgid "File extension in the right pane."
-msgstr ""
+msgstr "Dateiendung im rechten Fensterbereich."
 
 #. IDS_COLDESC_LSIZE
 #: Merge.rc:5257
@@ -8155,7 +8177,7 @@ msgstr ""
 
 #: Merge.rc:5318
 msgid "Failed to copy to clipboard."
-msgstr ""
+msgstr "Das Kopieren in die Zwischenablage ist fehlgeschlagen."
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5319
@@ -8520,7 +8542,7 @@ msgstr ""
 #. IDS_ARCHIVE_NO_FILES
 #: Merge.rc:5435
 msgid "No files are available for packaging."
-msgstr ""
+msgstr "Es sind keine Dateien zum Paketieren verfügbar."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5440
@@ -8891,7 +8913,7 @@ msgstr "<Keine Zeilen>"
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5522
 msgid "<Untitled>"
-msgstr ""
+msgstr "<Ohne Titel>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5523
@@ -9422,7 +9444,7 @@ msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
 #: Merge.rc:5789
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr ""
+msgstr "Fehlender Zeilenausdruck in der Pipeline: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5790
