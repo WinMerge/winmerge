@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-10-04 13:26+0000\n"
-"PO-Revision-Date: 2026-10-05 10:05+0200\n"
+"POT-Creation-Date: 2026-10-15 07:00+0000\n"
+"PO-Revision-Date: 2026-10-16 10:16+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.9.1\n"
+"X-Generator: Poedit 3.10\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:26 Merge.rc:59 Merge.rc:6006
@@ -3414,7 +3414,7 @@ msgstr "Pa&rinkti..."
 #. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
 #: Merge.rc:2338
 msgid "Show recent &comparisons"
-msgstr ""
+msgstr "Rodyti naujausius palyginimus"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
@@ -5986,11 +5986,11 @@ msgstr "Negalima lyginti failo ir katalogo!"
 
 #: Merge.rc:4888
 msgid "Comparison"
-msgstr ""
+msgstr "Palyginimas"
 
 #: Merge.rc:4890
 msgid "Command line"
-msgstr ""
+msgstr "Komandų eilutė"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4896
@@ -6014,13 +6014,13 @@ msgstr "Failas %1 neišpakuotas"
 #: Merge.rc:4899
 #, c-format
 msgid "Cannot create file\n%1\n\n%2"
-msgstr ""
+msgstr "Negalima sukurti failo\n%1\n\n%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4900
 #, c-format
 msgid "Cannot open file(s)\n%1\n\n%2"
-msgstr ""
+msgstr "Negalima atidaryti failo (-ų)\n%1\n\n%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4901
@@ -6069,27 +6069,27 @@ msgstr "Klaida kuriant rezervinį failą"
 #: Merge.rc:4915
 #, c-format
 msgid "Unable to backup original file:\n%1\n\nContinue anyway?"
-msgstr "Nepavyko sukurti rezervinės kopijos failui:\n%1\n\nVis tiek tęsti?"
+msgstr "Nepavyko sukurti rezervinės kopijos pradiniam failui:\n%1\n\nVis tiek tęsti?"
 
 #: Merge.rc:4917
 msgid "Unable to create backup folder"
-msgstr ""
+msgstr "Nepavyko sukurti katalogo rezervinėms kopijoms"
 
 #: Merge.rc:4919
 msgid "Unknown backup location"
-msgstr ""
+msgstr "Nežinoma rezervinės kopijos saugojimo vieta"
 
 #: Merge.rc:4921
 msgid "Backup path too long"
-msgstr ""
+msgstr "Kelias iki rezervinės kopijos per ilgas"
 
 #: Merge.rc:4923
 msgid "Unable to backup original file"
-msgstr ""
+msgstr "Nepavyko sukurti rezervinės kopijos pradiniam failui"
 
 #: Merge.rc:4925
 msgid "Unable to check file status"
-msgstr ""
+msgstr "Nepavyko patikrinti failo statuso"
 
 #. IDS_FILESAVE_FAILED
 #: Merge.rc:4926
@@ -6100,17 +6100,17 @@ msgstr "Failo įrašyti nepavyko.\n%1\n%2\n\t- panaudoti kitą failo vardą („
 #: Merge.rc:4928
 #, c-format
 msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas. Išsaugoti išpakuotą versiją?"
+msgstr "Papildinys „%2“ negali supakuoti pakeitimų kairiajame faile atgal į „%1“.\n\nPradinis failas nebus pakeistas. Išsaugoti išpakuotą versiją?"
 
 #: Merge.rc:4930
 #, c-format
 msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų viduriniame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas. Išsaugoti išpakuotą versiją?"
+msgstr "Papildinys „%2“ negali supakuoti pakeitimų viduriniame faile atgal į „%1“.\n\nPradinis failas nebus pakeistas. Išsaugoti išpakuotą versiją?"
 
 #: Merge.rc:4932
 #, c-format
 msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų dešiniajame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas. Išsaugoti išpakuotą versiją?"
+msgstr "Papildinys „%2“ negali supakuoti pakeitimų dešiniajame faile atgal į „%1“.\n\nPradinis failas nebus pakeistas. Išsaugoti išpakuotą versiją?"
 
 #. IDS_FILECHANGED_ONDISK
 #: Merge.rc:4933
@@ -6158,7 +6158,7 @@ msgstr "Negalima apjungti nesinchronizuotų dokumentų.\n\nAtnaujinkite prieš t
 
 #: Merge.rc:4951
 msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
-msgstr ""
+msgstr "Skirtumų, kuriuose yra paslėptų linijų, apjungimas/kopijavimas šiuo metu nepalaikomas.\n\nPrieš apjungiant, išvalykite rodymo filtrą arba pakoreguokite filtro nustatymus, kad būtų rodomos visos eilutės."
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4956
@@ -6414,17 +6414,17 @@ msgstr "Failas"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5076
 msgid "Left Filename"
-msgstr ""
+msgstr "Failas kairėje"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5077
 msgid "Middle Filename"
-msgstr ""
+msgstr "Failas viduryje"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5078
 msgid "Right Filename"
-msgstr ""
+msgstr "Failas dešinėje"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5079
@@ -6436,19 +6436,19 @@ msgstr "Katalogas"
 #: Merge.rc:5080
 msgctxt "DirView|ColumnHeader"
 msgid "Left Folder"
-msgstr ""
+msgstr "Katalogas kairėje"
 
 #. IDS_COLHDR_MDIR
 #: Merge.rc:5081
 msgctxt "DirView|ColumnHeader"
 msgid "Middle Folder"
-msgstr ""
+msgstr "Katalogas viduryje"
 
 #. IDS_COLHDR_RDIR
 #: Merge.rc:5082
 msgctxt "DirView|ColumnHeader"
 msgid "Right Folder"
-msgstr ""
+msgstr "Katalogas dešinėje"
 
 #. IDS_COLHDR_RESULT
 #: Merge.rc:5083
@@ -6473,17 +6473,17 @@ msgstr "Vidurinio data"
 #. IDS_COLHDR_LEXTENSION
 #: Merge.rc:5088
 msgid "Left Extension"
-msgstr ""
+msgstr "Kairiojo plėtinys"
 
 #. IDS_COLHDR_MEXTENSION
 #: Merge.rc:5089
 msgid "Middle Extension"
-msgstr ""
+msgstr "Vidurinio plėtinys"
 
 #. IDS_COLHDR_REXTENSION
 #: Merge.rc:5090
 msgid "Right Extension"
-msgstr ""
+msgstr "Dešiniojo plėtinys"
 
 #. IDS_COLHDR_LSIZE
 #: Merge.rc:5091
@@ -6990,17 +6990,17 @@ msgstr "Failo arba katalogo vardas."
 #. IDS_COLDESC_LFILENAME
 #: Merge.rc:5238
 msgid "Left side filename or folder name."
-msgstr ""
+msgstr "Kairiojo failo arba katalogo vardas."
 
 #. IDS_COLDESC_MFILENAME
 #: Merge.rc:5239
 msgid "Middle side filename or folder name."
-msgstr ""
+msgstr "Vidurinio failo arba katalogo vardas."
 
 #. IDS_COLDESC_RFILENAME
 #: Merge.rc:5240
 msgid "Right side filename or folder name."
-msgstr ""
+msgstr "Dešiniojo failo arba katalogo vardas."
 
 #. IDS_COLDESC_DIR
 #: Merge.rc:5241
@@ -7010,17 +7010,17 @@ msgstr "Pakatalogio pavadinimas, jei įtraukiami pakatalogiai."
 #. IDS_COLDESC_LDIR
 #: Merge.rc:5242
 msgid "Folder path in the left pane."
-msgstr ""
+msgstr "Kelias iki katalogo kairiajame polangyje."
 
 #. IDS_COLDESC_MDIR
 #: Merge.rc:5243
 msgid "Folder path in the middle pane."
-msgstr ""
+msgstr "Kelias iki katalogo viduriniame polangyje."
 
 #. IDS_COLDESC_RDIR
 #: Merge.rc:5244
 msgid "Folder path in the right pane."
-msgstr ""
+msgstr "Kelias iki katalogo dešiniajame polangyje."
 
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5245
@@ -7050,17 +7050,17 @@ msgstr "Failo plėtinys."
 #. IDS_COLDESC_LEXTENSION
 #: Merge.rc:5254
 msgid "File extension in the left pane."
-msgstr ""
+msgstr "Failo plėtinys kairiajame polangyje."
 
 #. IDS_COLDESC_MEXTENSION
 #: Merge.rc:5255
 msgid "File extension in the middle pane."
-msgstr ""
+msgstr "Failo plėtinys viduriniame polangyje."
 
 #. IDS_COLDESC_REXTENSION
 #: Merge.rc:5256
 msgid "File extension in the right pane."
-msgstr ""
+msgstr "Failo plėtinys dešiniajame polangyje."
 
 #. IDS_COLDESC_LSIZE
 #: Merge.rc:5257
@@ -7246,7 +7246,7 @@ msgstr "Klaida kuriant ataskaitą:\n%1"
 
 #: Merge.rc:5318
 msgid "Failed to copy to clipboard."
-msgstr ""
+msgstr "Nepavyko nukopijuoti į mainų sritį."
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5319
@@ -7524,7 +7524,7 @@ msgstr "Pirmiausia išsaugokite visus failus.\n\nKuriant archyvą reikia, kad ne
 #. IDS_ARCHIVE_NO_FILES
 #: Merge.rc:5435
 msgid "No files are available for packaging."
-msgstr ""
+msgstr "Nėra pakavimui prieinamų failų."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5440
@@ -7749,7 +7749,7 @@ msgstr "<Nėra eilučių>"
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5522
 msgid "<Untitled>"
-msgstr ""
+msgstr "<Bevardis>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5523
@@ -8257,13 +8257,13 @@ msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
 #: Merge.rc:5789
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr ""
+msgstr "Trūksta eilutės išraiškos komandų grandinėje: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5790
 #, c-format
 msgid "Plugin name '%1' already exists."
-msgstr "Papildinys '%1' vardu jau yra."
+msgstr "Papildinys „%1“ vardu jau yra."
 
 #. IDS_PLUGIN_TITLE1
 #: Merge.rc:5791
@@ -8279,18 +8279,18 @@ msgstr "Nerastas arba netinkamas papildinys: %1"
 #: Merge.rc:5794
 #, c-format
 msgid "'%1' is not an unpacker plugin"
-msgstr "'%1' nėra išpakuotojas"
+msgstr "„%1“ nėra išpakuotojas"
 
 #. IDS_PLUGIN_NOT_PREDIFF
 #: Merge.rc:5795
 #, c-format
 msgid "'%1' is not a prediffer plugin"
-msgstr "'%1' nėra parengėjas"
+msgstr "„%1“ nėra parengėjas"
 
 #: Merge.rc:5797
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
-msgstr "Parengimo papildiniui '%2' apdorojant failą '%1' įvyko klaida. Parengimas išjungtas."
+msgstr "Parengimo papildiniui „%2“ apdorojant failą „%1“ įvyko klaida. Parengimas išjungtas."
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
 #: Merge.rc:5798
@@ -8332,7 +8332,7 @@ msgstr "Redaktoriaus skripto pseudonimas"
 #: Merge.rc:5806
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr "Papildinio komandų grandinės '%1' pseudonimas"
+msgstr "Papildinio komandų grandinės „%1“ pseudonimas"
 
 #. IDS_PLUGIN_NEW_DESC
 #: Merge.rc:5807
@@ -8377,7 +8377,7 @@ msgstr "2-ą ir 3-ą"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5815
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr "(„Ctrl“ ir spustelėkite, kad pridėti į srautą)"
+msgstr "(„Ctrl“ ir spustelėkite, kad pridėti į komandų grandinę)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5820
@@ -9501,13 +9501,13 @@ msgstr "Nepaisomų stulpelių diapazonai:\npvz.) 3,10-20,32-33\n"
 #: Strings.rc:304
 #, c-format
 msgid "Enter filename for patch '%1'"
-msgstr "Įveskite failo, kuriam bus taikoma pataisa '%1', pavadinimą"
+msgstr "Įveskite failo, kuriam bus taikoma pataisa „%1“, pavadinimą"
 
 #. IDS_PLUGIN_APPLYPATCH_STR2
 #: Strings.rc:305
 #, c-format
 msgid "File '%1' does not exist"
-msgstr "Failas '%1' nerastas"
+msgstr "Failas „%1“ nerastas"
 
 #: Strings.rc:307
 msgid "Enter command line arguments for patch"
@@ -9516,13 +9516,13 @@ msgstr "Įveskite pataisos komandinės eilutės argumentus"
 #: Strings.rc:309
 #, c-format
 msgid "Enter folder name for patch '%1'"
-msgstr "Įveskite katalogo, kuriam bus taikoma pataisa '%1', pavadinimą"
+msgstr "Įveskite katalogo, kuriam bus taikoma pataisa „%1“, pavadinimą"
 
 #. IDS_PLUGIN_APPLYPATCH_STR5
 #: Strings.rc:314
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr "Katalogas '%1' nerastas"
+msgstr "Katalogas „%1“ nerastas"
 
 #: Strings.rc:316
 msgid "Do not use '-p0' for patch files with absolute paths"
