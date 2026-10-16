@@ -3415,7 +3415,7 @@ msgstr "Wybierz..."
 #. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
 #: Merge.rc:2338
 msgid "Show recent &comparisons"
-msgstr ""
+msgstr "Pokaż ostatnie porównania"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
@@ -5987,11 +5987,11 @@ msgstr "Nie można porównać pliku i folderu!"
 
 #: Merge.rc:4888
 msgid "Comparison"
-msgstr ""
+msgstr "Porównanie"
 
 #: Merge.rc:4890
 msgid "Command line"
-msgstr ""
+msgstr "Wiersz poleceń"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4896
@@ -6015,13 +6015,13 @@ msgstr "Nie rozpakowano pliku: %1"
 #: Merge.rc:4899
 #, c-format
 msgid "Cannot create file\n%1\n\n%2"
-msgstr ""
+msgstr "Nie można utworzyć pliku\n%1\n\n%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4900
 #, c-format
 msgid "Cannot open file(s)\n%1\n\n%2"
-msgstr ""
+msgstr "Nie można otworzyć pliku lub plików\n%1\n\n%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4901
@@ -6074,23 +6074,23 @@ msgstr "Nie można wykonać kopii zapasowej oryginalnego pliku:\n%1\n\nKontynuow
 
 #: Merge.rc:4917
 msgid "Unable to create backup folder"
-msgstr ""
+msgstr "Nie można utworzyć folderu kopii zapasowej"
 
 #: Merge.rc:4919
 msgid "Unknown backup location"
-msgstr ""
+msgstr "Nieznana lokalizacja kopii zapasowej"
 
 #: Merge.rc:4921
 msgid "Backup path too long"
-msgstr ""
+msgstr "Ścieżka kopii zapasowej jest zbyt długa"
 
 #: Merge.rc:4923
 msgid "Unable to backup original file"
-msgstr ""
+msgstr "Nie można utworzyć kopii zapasowej oryginalnego pliku"
 
 #: Merge.rc:4925
 msgid "Unable to check file status"
-msgstr ""
+msgstr "Nie można sprawdzić stanu pliku"
 
 #. IDS_FILESAVE_FAILED
 #: Merge.rc:4926
@@ -6159,7 +6159,7 @@ msgstr "Nie można połączyć różnic, jeśli dokumenty nie są zsynchronizowa
 
 #: Merge.rc:4951
 msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
-msgstr ""
+msgstr "Scalanie lub kopiowanie różnic zawierających ukryte wiersze nie jest obecnie obsługiwane.\n\nPrzed scaleniem wyłącz filtr wyświetlania lub zmień jego ustawienia tak, aby pokazać wszystkie wiersze."
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4956
@@ -6415,17 +6415,17 @@ msgstr "Nazwa pliku"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5076
 msgid "Left Filename"
-msgstr ""
+msgstr "Nazwa lewego pliku"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5077
 msgid "Middle Filename"
-msgstr ""
+msgstr "Nazwa środkowego pliku"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5078
 msgid "Right Filename"
-msgstr ""
+msgstr "Nazwa prawego pliku"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5079
@@ -6437,19 +6437,19 @@ msgstr "Folder"
 #: Merge.rc:5080
 msgctxt "DirView|ColumnHeader"
 msgid "Left Folder"
-msgstr ""
+msgstr "Lewy folder"
 
 #. IDS_COLHDR_MDIR
 #: Merge.rc:5081
 msgctxt "DirView|ColumnHeader"
 msgid "Middle Folder"
-msgstr ""
+msgstr "Środkowy folder"
 
 #. IDS_COLHDR_RDIR
 #: Merge.rc:5082
 msgctxt "DirView|ColumnHeader"
 msgid "Right Folder"
-msgstr ""
+msgstr "Prawy folder"
 
 #. IDS_COLHDR_RESULT
 #: Merge.rc:5083
@@ -6474,17 +6474,17 @@ msgstr "Data środkowego pliku"
 #. IDS_COLHDR_LEXTENSION
 #: Merge.rc:5088
 msgid "Left Extension"
-msgstr ""
+msgstr "Rozszerzenie lewego pliku"
 
 #. IDS_COLHDR_MEXTENSION
 #: Merge.rc:5089
 msgid "Middle Extension"
-msgstr ""
+msgstr "Rozszerzenie środkowego pliku"
 
 #. IDS_COLHDR_REXTENSION
 #: Merge.rc:5090
 msgid "Right Extension"
-msgstr ""
+msgstr "Rozszerzenie prawego pliku"
 
 #. IDS_COLHDR_LSIZE
 #: Merge.rc:5091
@@ -6991,17 +6991,17 @@ msgstr "Nazwa pliku lub nazwa folderu."
 #. IDS_COLDESC_LFILENAME
 #: Merge.rc:5238
 msgid "Left side filename or folder name."
-msgstr ""
+msgstr "Nazwa pliku lub folderu po lewej stronie."
 
 #. IDS_COLDESC_MFILENAME
 #: Merge.rc:5239
 msgid "Middle side filename or folder name."
-msgstr ""
+msgstr "Nazwa pliku lub folderu pośrodku."
 
 #. IDS_COLDESC_RFILENAME
 #: Merge.rc:5240
 msgid "Right side filename or folder name."
-msgstr ""
+msgstr "Nazwa pliku lub folderu po prawej stronie."
 
 #. IDS_COLDESC_DIR
 #: Merge.rc:5241
@@ -7011,17 +7011,17 @@ msgstr "Nazwa podfolderu, gdy podfoldery są przetwarzane."
 #. IDS_COLDESC_LDIR
 #: Merge.rc:5242
 msgid "Folder path in the left pane."
-msgstr ""
+msgstr "Ścieżka folderu w lewym panelu."
 
 #. IDS_COLDESC_MDIR
 #: Merge.rc:5243
 msgid "Folder path in the middle pane."
-msgstr ""
+msgstr "Ścieżka folderu w środkowym panelu."
 
 #. IDS_COLDESC_RDIR
 #: Merge.rc:5244
 msgid "Folder path in the right pane."
-msgstr ""
+msgstr "Ścieżka folderu w prawym panelu."
 
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5245
@@ -7051,17 +7051,17 @@ msgstr "Rozszerzenie pliku."
 #. IDS_COLDESC_LEXTENSION
 #: Merge.rc:5254
 msgid "File extension in the left pane."
-msgstr ""
+msgstr "Rozszerzenie pliku w lewym panelu."
 
 #. IDS_COLDESC_MEXTENSION
 #: Merge.rc:5255
 msgid "File extension in the middle pane."
-msgstr ""
+msgstr "Rozszerzenie pliku w środkowym panelu."
 
 #. IDS_COLDESC_REXTENSION
 #: Merge.rc:5256
 msgid "File extension in the right pane."
-msgstr ""
+msgstr "Rozszerzenie pliku w prawym panelu."
 
 #. IDS_COLDESC_LSIZE
 #: Merge.rc:5257
@@ -7247,7 +7247,7 @@ msgstr "Błąd przy tworzeniu raportu:\n%1"
 
 #: Merge.rc:5318
 msgid "Failed to copy to clipboard."
-msgstr ""
+msgstr "Nie udało się skopiować do schowka."
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5319
@@ -7525,7 +7525,7 @@ msgstr "Najpierw zapisz wszystkie pliki.\n\nAby utworzyć archiwum, wszystkie zm
 #. IDS_ARCHIVE_NO_FILES
 #: Merge.rc:5435
 msgid "No files are available for packaging."
-msgstr ""
+msgstr "Brak plików do spakowania."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5440
@@ -7750,7 +7750,7 @@ msgstr "<Brak wierszy>"
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5522
 msgid "<Untitled>"
-msgstr ""
+msgstr "<Bez tytułu>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5523
@@ -8258,7 +8258,7 @@ msgstr "Brakujący cudzysłów we wtyczce pipeline: %1"
 #: Merge.rc:5789
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr ""
+msgstr "Brak wyrażenia dotyczącego wierszy w potoku: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5790
