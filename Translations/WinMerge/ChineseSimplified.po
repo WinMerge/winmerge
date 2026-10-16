@@ -3419,7 +3419,7 @@ msgstr "选择(&L)..."
 #. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
 #: Merge.rc:2338
 msgid "Show recent &comparisons"
-msgstr ""
+msgstr "显示最近的比较信息(&C)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
@@ -6103,11 +6103,11 @@ msgstr "不能比较一个文件与一个文件夹！"
 
 #: Merge.rc:4888
 msgid "Comparison"
-msgstr ""
+msgstr "比较"
 
 #: Merge.rc:4890
 msgid "Command line"
-msgstr ""
+msgstr "命令行"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4896
@@ -6130,14 +6130,30 @@ msgstr "文件未解包：%1"
 #. IDS_ERROR_FILECREATE
 #: Merge.rc:4899
 #, c-format
-msgid "Cannot create file\n%1\n\n%2"
+msgid ""
+"Cannot create file\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"无法创建文件\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4900
 #, c-format
-msgid "Cannot open file(s)\n%1\n\n%2"
+msgid ""
+"Cannot open file(s)\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"无法打开文件\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4901
@@ -6216,23 +6232,23 @@ msgstr ""
 
 #: Merge.rc:4917
 msgid "Unable to create backup folder"
-msgstr ""
+msgstr "无法创建备份文件夹"
 
 #: Merge.rc:4919
 msgid "Unknown backup location"
-msgstr ""
+msgstr "备份位置未知"
 
 #: Merge.rc:4921
 msgid "Backup path too long"
-msgstr ""
+msgstr "备份路径过长"
 
 #: Merge.rc:4923
 msgid "Unable to backup original file"
-msgstr ""
+msgstr "无法备份原始文件"
 
 #: Merge.rc:4925
 msgid "Unable to check file status"
-msgstr ""
+msgstr "无法检查文件状态"
 
 #. IDS_FILESAVE_FAILED
 #: Merge.rc:4926
@@ -6370,8 +6386,14 @@ msgstr ""
 "请刷新文档后再继续。"
 
 #: Merge.rc:4951
-msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
+msgid ""
+"Merging/copying differences that contain hidden lines is not currently supported.\n"
+"\n"
+"Please clear the display filter or adjust the filter settings to show all lines before merging."
 msgstr ""
+"目前不支持合并/复制包含隐藏行的差异。\n"
+"\n"
+"请在合并前清除显示过滤器或调整过滤器设置，以显示所有行。"
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4956
@@ -6656,17 +6678,17 @@ msgstr "文件名称"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5076
 msgid "Left Filename"
-msgstr ""
+msgstr "左侧文件名"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5077
 msgid "Middle Filename"
-msgstr ""
+msgstr "中间文件名"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5078
 msgid "Right Filename"
-msgstr ""
+msgstr "右侧文件名"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5079
@@ -6678,19 +6700,19 @@ msgstr "文件夹"
 #: Merge.rc:5080
 msgctxt "DirView|ColumnHeader"
 msgid "Left Folder"
-msgstr ""
+msgstr "左侧文件夹"
 
 #. IDS_COLHDR_MDIR
 #: Merge.rc:5081
 msgctxt "DirView|ColumnHeader"
 msgid "Middle Folder"
-msgstr ""
+msgstr "中间文件夹"
 
 #. IDS_COLHDR_RDIR
 #: Merge.rc:5082
 msgctxt "DirView|ColumnHeader"
 msgid "Right Folder"
-msgstr ""
+msgstr "右侧文件夹"
 
 #. IDS_COLHDR_RESULT
 #: Merge.rc:5083
@@ -6715,17 +6737,17 @@ msgstr "中间日期"
 #. IDS_COLHDR_LEXTENSION
 #: Merge.rc:5088
 msgid "Left Extension"
-msgstr ""
+msgstr "左侧扩展名"
 
 #. IDS_COLHDR_MEXTENSION
 #: Merge.rc:5089
 msgid "Middle Extension"
-msgstr ""
+msgstr "中间扩展名"
 
 #. IDS_COLHDR_REXTENSION
 #: Merge.rc:5090
 msgid "Right Extension"
-msgstr ""
+msgstr "右侧扩展名"
 
 #. IDS_COLHDR_LSIZE
 #: Merge.rc:5091
@@ -7238,17 +7260,17 @@ msgstr "文件名或文件夹名。"
 #. IDS_COLDESC_LFILENAME
 #: Merge.rc:5238
 msgid "Left side filename or folder name."
-msgstr ""
+msgstr "左侧的文件或文件夹名称。"
 
 #. IDS_COLDESC_MFILENAME
 #: Merge.rc:5239
 msgid "Middle side filename or folder name."
-msgstr ""
+msgstr "中间的文件或文件夹名称。"
 
 #. IDS_COLDESC_RFILENAME
 #: Merge.rc:5240
 msgid "Right side filename or folder name."
-msgstr ""
+msgstr "右侧的文件或文件夹名称。"
 
 #. IDS_COLDESC_DIR
 #: Merge.rc:5241
@@ -7258,17 +7280,17 @@ msgstr "所处子文件夹名称。"
 #. IDS_COLDESC_LDIR
 #: Merge.rc:5242
 msgid "Folder path in the left pane."
-msgstr ""
+msgstr "左侧窗格的文件路径。"
 
 #. IDS_COLDESC_MDIR
 #: Merge.rc:5243
 msgid "Folder path in the middle pane."
-msgstr ""
+msgstr "中间窗格的文件路径。"
 
 #. IDS_COLDESC_RDIR
 #: Merge.rc:5244
 msgid "Folder path in the right pane."
-msgstr ""
+msgstr "右侧窗格的文件路径。"
 
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5245
@@ -7298,17 +7320,17 @@ msgstr "文件的扩展名。"
 #. IDS_COLDESC_LEXTENSION
 #: Merge.rc:5254
 msgid "File extension in the left pane."
-msgstr ""
+msgstr "左侧窗格的文件扩展名。"
 
 #. IDS_COLDESC_MEXTENSION
 #: Merge.rc:5255
 msgid "File extension in the middle pane."
-msgstr ""
+msgstr "中间窗格的文件扩展名。"
 
 #. IDS_COLDESC_REXTENSION
 #: Merge.rc:5256
 msgid "File extension in the right pane."
-msgstr ""
+msgstr "右侧窗格的文件扩展名。"
 
 #. IDS_COLDESC_LSIZE
 #: Merge.rc:5257
@@ -7498,7 +7520,7 @@ msgstr ""
 
 #: Merge.rc:5318
 msgid "Failed to copy to clipboard."
-msgstr ""
+msgstr "无法复制到剪切板。"
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5319
@@ -7693,8 +7715,20 @@ msgstr "您正在进入合并模式。如果您想关闭合并模式，请按 F9
 #. IDS_AUTO_MERGE
 #: Merge.rc:5394
 #, c-format
-msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-msgstr "自动合并完成.\n\n%1\n\n自动合并数量: %2\n未解决冲突数量: %3"
+msgid ""
+"Automatic merge completed.\n"
+"\n"
+"%1\n"
+"\n"
+"Automatic merges: %2\n"
+"Unresolved conflicts: %3"
+msgstr ""
+"自动合并完成.\n"
+"\n"
+"%1\n"
+"\n"
+"自动合并数量: %2\n"
+"未解决冲突数量: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5395
@@ -7824,7 +7858,7 @@ msgstr ""
 #. IDS_ARCHIVE_NO_FILES
 #: Merge.rc:5435
 msgid "No files are available for packaging."
-msgstr ""
+msgstr "没有文件可进行打包。"
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5440
@@ -8096,25 +8130,55 @@ msgstr ""
 #. IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE
 #: Merge.rc:5513
 #, c-format
-msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
-msgstr "合并尚未完成: %1 个差异未解决.\n\n放弃合并并关闭而不保存结果?"
+msgid ""
+"The merge is not finished: %1 difference(s) have not been resolved.\n"
+"\n"
+"Abandon the merge and close without saving the result?"
+msgstr ""
+"合并尚未完成: %1 个差异未解决.\n"
+"\n"
+"放弃合并并关闭而不保存结果?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5514
-msgid "The merge result has not been saved.\n\nSave the merge result?"
-msgstr "合并结果尚未保存. \n\n保存合并结果?"
+msgid ""
+"The merge result has not been saved.\n"
+"\n"
+"Save the merge result?"
+msgstr ""
+"合并结果尚未保存. \n"
+"\n"
+"保存合并结果?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5515
 #, c-format
-msgid "Saving the merge result to\n%1\nfailed.\n%2"
-msgstr "将合并结果保存到\n%1\n失败.\n%2"
+msgid ""
+"Saving the merge result to\n"
+"%1\n"
+"failed.\n"
+"%2"
+msgstr ""
+"将合并结果保存到\n"
+"%1\n"
+"失败.\n"
+"%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5516
 #, c-format
-msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr "合并结果中仍有 %1 个未解决差异.\n\n未解决冲突将作为冲突区域（<<<<<<<）保存, 其中保留所有版本, 可稍后在任意编辑器中解决;其他未解决差异将保存其自动合并内容.\n\n仍然保存结果?"
+msgid ""
+"There are still %1 unresolved difference(s) in the merge result.\n"
+"\n"
+"Unresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n"
+"\n"
+"Save the result anyway?"
+msgstr ""
+"合并结果中仍有 %1 个未解决差异.\n"
+"\n"
+"未解决冲突将作为冲突区域（<<<<<<<）保存, 其中保留所有版本, 可稍后在任意编辑器中解决;其他未解决差异将保存其自动合并内容.\n"
+"\n"
+"仍然保存结果?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5517
@@ -8144,7 +8208,7 @@ msgstr "<无行>"
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5522
 msgid "<Untitled>"
-msgstr ""
+msgstr "<未命名>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5523
@@ -8658,7 +8722,7 @@ msgstr "插件流水线中缺少引号：%1"
 #: Merge.rc:5789
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr ""
+msgstr "流水线中缺少行表达式：%1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5790
