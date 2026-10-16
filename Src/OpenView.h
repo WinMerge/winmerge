@@ -107,7 +107,6 @@ private:
 	std::vector<MruHelper::RecentCompare> m_recentCompares; /**< Entries shown in m_ctlRecentCompares, same order */
 	bool m_bRecentComparesShown; /**< The recent comparison list is expanded (OPT_SHOW_RECENT_COMPARES) */
 	int m_nRecentComparesHeight; /**< Height added to the view when the list is expanded */
-	int m_nStatusTop; /**< Top of the status line while the list is collapsed */
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -120,6 +119,7 @@ protected:
 // Implementation
 public:
 	virtual ~COpenView();
+	int GetFormHeight() const;
 
 protected:
 	void SetStatus(UINT msgID);
@@ -129,7 +129,6 @@ protected:
 	void SaveComboboxStates();
 	String AskProjectFileName(bool bOpen);
 	void DropDown(NMHDR *pNMHDR, LRESULT *pResult, UINT nID, UINT nPopupID);
-	int GetFormHeight() const;
 	void ShowRecentCompares(bool bShow);
 	void UpdateRecentCompares();
 	void ResizeRecentComparesColumns();
@@ -200,6 +199,7 @@ protected:
 	afx_msg void OnDestroy();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnRecentComparesShow();
+	afx_msg void OnClickRecentCompares(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDblclkRecentCompares(NMHDR *pNMHDR, LRESULT *pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
