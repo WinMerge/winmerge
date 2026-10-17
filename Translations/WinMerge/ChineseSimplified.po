@@ -8313,7 +8313,7 @@ msgstr "资源文件"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5618
 msgid "Rich Text Format"
-msgstr ""
+msgstr "富文本格式"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5622
