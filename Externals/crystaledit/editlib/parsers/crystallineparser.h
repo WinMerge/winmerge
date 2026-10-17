@@ -108,7 +108,6 @@ unsigned ParseLinePython(unsigned dwCookie, const tchar_t *pszChars, int nLength
 unsigned ParseLineRexx(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineRsrc(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineRtf(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
-unsigned SkipRtfLineEnding(unsigned dwCookie, int nEolLength);
 unsigned ParseLineRuby(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineRust(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineSgml(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);

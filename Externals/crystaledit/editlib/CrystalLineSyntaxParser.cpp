@@ -43,6 +43,7 @@ static const std::pair<LanguageId, ParseFunc> m_ParseXDef[] =
 { LanguageId::SRC_PYTHON, CrystalLineParser::ParseLinePython },
 { LanguageId::SRC_REXX, CrystalLineParser::ParseLineRexx },
 { LanguageId::SRC_RSRC, CrystalLineParser::ParseLineRsrc },
+{ LanguageId::SRC_RTF, CrystalLineParser::ParseLineRtf },
 { LanguageId::SRC_RUBY, CrystalLineParser::ParseLineRuby },
 { LanguageId::SRC_RUST, CrystalLineParser::ParseLineRust },
 { LanguageId::SRC_SGML, CrystalLineParser::ParseLineSgml },
@@ -55,7 +56,6 @@ static const std::pair<LanguageId, ParseFunc> m_ParseXDef[] =
 { LanguageId::SRC_VERILOG, CrystalLineParser::ParseLineVerilog },
 { LanguageId::SRC_VHDL, CrystalLineParser::ParseLineVhdl },
 { LanguageId::SRC_XML, CrystalLineParser::ParseLineXml },
-{ LanguageId::SRC_RTF, CrystalLineParser::ParseLineRtf },
 };
 
 bool CrystalLineSyntaxParserFactory::IsSupported(LanguageId textType) const
@@ -113,29 +113,21 @@ std::vector<LangServices::TEXTBLOCK> CrystalLineSyntaxParser::ParseLine(int nLin
 	if (static_cast<int>(m_ParseCookies.size()) < nLineCount)
 		m_ParseCookies.resize(nLineCount, static_cast<unsigned>(-1));
 
+	// Get the line text
+	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex);
+	int nLength = m_pTextBuffer->GetLineLength(nLineIndex);
+
 	// Get the cookie from the previous line
 	unsigned dwCookie = GetLineCookie(nLineIndex - 1);
 
 	// Call the legacy parser function
-	unsigned dwNewCookie = ParseLineAndEol(dwCookie, nLineIndex, &blocks);
+	unsigned dwNewCookie = m_ParseLineX(dwCookie, pszChars, nLength, &blocks);
 
 	// Cache the result cookie for the next line
 	if (nLineIndex < nLineCount)
 		m_ParseCookies[nLineIndex] = dwNewCookie;
 
 	return blocks;
-}
-
-unsigned CrystalLineSyntaxParser::ParseLineAndEol(unsigned dwCookie, int nLineIndex,
-	std::vector<LangServices::TEXTBLOCK>* pBlocks) const
-{
-	const tchar_t* pszChars = m_pTextBuffer->GetLineChars(nLineIndex);
-	const int nLength = m_pTextBuffer->GetLineLength(nLineIndex);
-	dwCookie = m_ParseLineX(dwCookie, pszChars, nLength, pBlocks);
-	if (m_textType == LangServices::SRC_RTF)
-		dwCookie = CrystalLineParser::SkipRtfLineEnding(dwCookie,
-			m_pTextBuffer->GetFullLineLength(nLineIndex) - nLength);
-	return dwCookie;
 }
 
 /**
@@ -183,7 +175,9 @@ unsigned CrystalLineSyntaxParser::GetLineCookie(int nLineIndex)
 		unsigned cookie = (start < 0) ? 0 : m_ParseCookies[start];
 		for (int i = start + 1; i <= nLineIndex; ++i)
 		{
-			m_ParseCookies[i] = cookie = ParseLineAndEol(cookie, i, nullptr);
+			const tchar_t* pszChars = m_pTextBuffer->GetLineChars(i);
+			int nLength = m_pTextBuffer->GetLineLength(i);
+			m_ParseCookies[i] = cookie = m_ParseLineX(cookie, pszChars, nLength, nullptr);
 		}
 	}
 

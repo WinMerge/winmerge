@@ -90,8 +90,6 @@ public:
     const tchar_t* document = _T("\\bin4 ab\r\n{\\b x}");
     std::vector<CrystalLineParser::TEXTBLOCK> blocks;
     unsigned cookie = CrystalLineParser::ParseLineRtf(0, document, 8, &blocks);
-    Assert::AreEqual(2u, cookie);
-    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 2);
     Assert::AreEqual(0u, cookie);
     blocks.clear();
     Assert::AreEqual(0u, Parse(cookie, document + 10, blocks));
@@ -104,8 +102,6 @@ public:
     const tchar_t* document = _T("\\bin3 ab\n{\\b x}");
     std::vector<CrystalLineParser::TEXTBLOCK> blocks;
     unsigned cookie = CrystalLineParser::ParseLineRtf(0, document, 8, &blocks);
-    Assert::AreEqual(1u, cookie);
-    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 1);
     Assert::AreEqual(0u, cookie);
     blocks.clear();
     Assert::AreEqual(0u, Parse(cookie, document + 9, blocks));
@@ -117,13 +113,9 @@ public:
     const tchar_t* document = _T("\\bin5 a\r\n\r\n{\\b x}");
     std::vector<CrystalLineParser::TEXTBLOCK> blocks;
     unsigned cookie = CrystalLineParser::ParseLineRtf(0, document, 7, &blocks);
-    Assert::AreEqual(4u, cookie);
-    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 2);
     Assert::AreEqual(2u, cookie);
     blocks.clear();
     cookie = CrystalLineParser::ParseLineRtf(cookie, document + 9, 0, &blocks);
-    Assert::AreEqual(2u, cookie);
-    cookie = CrystalLineParser::SkipRtfLineEnding(cookie, 2);
     Assert::AreEqual(0u, cookie);
     blocks.clear();
     Assert::AreEqual(0u, Parse(cookie, document + 11, blocks));

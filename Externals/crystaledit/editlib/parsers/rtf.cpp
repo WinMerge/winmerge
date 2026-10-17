@@ -33,16 +33,26 @@ void ColorToken(std::vector<CrystalLineParser::TEXTBLOCK>* pBuf,
     CrystalLineParser::defineBlock(pBuf, end, COLORINDEX_NORMALTEXT);
 }
 
+unsigned SkipRtfLineEnding(unsigned dwCookie, int nEolLength)
+{
+  // \binN counts the physical CR/LF bytes, although line text excludes them.
+  if (nEolLength <= 0)
+    return dwCookie;
+  const unsigned eolLength = static_cast<unsigned>(nEolLength);
+  return dwCookie > eolLength ? dwCookie - eolLength : 0;
+}
+
 } // namespace
 
 unsigned CrystalLineParser::ParseLineRtf(unsigned dwCookie, const tchar_t* pszChars,
                                         int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
+  const int nEolLength = pszChars ? static_cast<int>(tc::tcslen(pszChars + nLength)) : 0;
   // The cookie is the number of unconsumed raw characters following \binN.
   // Reserve UINT_MAX for the syntax parser's "not cached" sentinel.
-  constexpr unsigned maxBinaryLength = std::numeric_limits<unsigned>::max() - 1;
+  constexpr unsigned maxBinaryLength = (std::numeric_limits<unsigned>::max)() - 1;
   if (nLength <= 0)
-    return dwCookie;
+    return SkipRtfLineEnding(dwCookie, nEolLength);
 
   DEFINE_BLOCK(0, COLORINDEX_NORMALTEXT);
 
@@ -139,14 +149,5 @@ unsigned CrystalLineParser::ParseLineRtf(unsigned dwCookie, const tchar_t* pszCh
         ++i;
     }
 
-  return dwCookie;
-}
-
-unsigned CrystalLineParser::SkipRtfLineEnding(unsigned dwCookie, int nEolLength)
-{
-  // \binN counts the physical CR/LF bytes, although line text excludes them.
-  if (nEolLength <= 0)
-    return dwCookie;
-  const unsigned eolLength = static_cast<unsigned>(nEolLength);
-  return dwCookie > eolLength ? dwCookie - eolLength : 0;
+  return SkipRtfLineEnding(dwCookie, nEolLength);
 }
