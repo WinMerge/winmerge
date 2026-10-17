@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-10-15 20:50+0200\n"
+"PO-Revision-Date: 2026-10-17 12:15+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -9027,7 +9027,7 @@ msgstr "Ressourcen"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5618
 msgid "Rich Text Format"
-msgstr ""
+msgstr "Rich Text Format"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5622
