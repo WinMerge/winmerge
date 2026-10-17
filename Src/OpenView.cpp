@@ -2064,6 +2064,9 @@ void COpenView::OnClickRecentCompares(NMHDR *pNMHDR, LRESULT *pResult)
 				m_bRecurse = *cmdInfo.m_bRecurse;
 			UpdateData(FALSE);
 			UpdateButtonStates();
+
+			for (int i = 0; i < 3; ++i)
+				GetDlgItem(IDC_PATH0_COMBO + i)->Invalidate();
 		}
 	}
 	*pResult = 0;
