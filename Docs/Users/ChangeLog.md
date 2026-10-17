@@ -1,5 +1,54 @@
 # Change log
 
+## WinMerge 2.16.60 - 2026-10-27
+
+### General
+
+* Keep an own recent comparison list (PR #3663)
+
+### File compare
+
+* BugFix: Did not get line filter with Moved working (#3680, PR #3681)
+
+* BugFix: 2 fixes for 3-way-merge (PR #3671)
+
+* BugFix: Fix AutoIt syntax highlighting for identifiers and nested comments
+    (PR #3685)
+
+* Add RTF syntax highlighting (PR #3686)
+
+### Open view
+
+* Open view: collapsible recent comparison list (PR #3673)
+
+* Add side-specific filename, folder, and extension columns to folder
+  comparison views. (PR #3682)
+
+* Keep an internal recent-comparison list when the Windows jump list has no
+  history. (PR #3663)
+
+### Folder compare
+
+* Add side-specific filename, folder, and extension columns to folder
+  comparison views. (PR #3682)
+
+### Archive support
+
+* Update 7-Zip to 26.04.
+
+### Translations
+
+* Translation updates:
+  * Brazilian (PR #3665, PR #3687, PR #3672)
+  * Chinese Simplified (PR #3660, PR #3691, PR #3694)
+  * Corsican (PR #3676)
+  * French (PR #3670, PR #3693)
+  * German (PR #3659, PR #3679, PR #3689, PR #3695)
+  * Hungarian (PR #3669)
+  * Italian (PR #3666, PR #3688)
+  * Lithuanian (PR #3667, PR #3690)
+  * Polish (PR #3661, PR #3684, PR #3692)
+
 ## WinMerge 2.16.59 - 2026-10-04
 
 ### General
