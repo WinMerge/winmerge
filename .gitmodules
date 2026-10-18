@@ -7,9 +7,6 @@
 [submodule "Externals/patch"]
 	path = Externals/patch
 	url = https://github.com/WinMerge/patch.git
-[submodule "Externals/freeimage"]
-	path = Externals/freeimage
-	url = https://github.com/WinMerge/freeimage.git
 [submodule "Externals/tidy-html5"]
 	path = Externals/tidy-html5
 	url = https://github.com/htacg/tidy-html5

@@ -86,7 +86,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinIMerge", "Externals\wini
 		{C9101B3C-4CFE-4D3E-9708-5C0F55AC909A} = {C9101B3C-4CFE-4D3E-9708-5C0F55AC909A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\FreeImage\Source\FreeImageLib\FreeImageLib.vcxproj", "{9E219DF2-315D-478E-8A07-8960C377CE1E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\winimerge\FreeImage\Source\FreeImageLib\FreeImageLib.vcxproj", "{9E219DF2-315D-478E-8A07-8960C377CE1E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{07F662C1-1323-42AB-B6AF-FBFD34A7437A} = {07F662C1-1323-42AB-B6AF-FBFD34A7437A}
 		{097D9F6C-FD0E-4CBC-9676-009012AAECA8} = {097D9F6C-FD0E-4CBC-9676-009012AAECA8}
@@ -99,28 +99,28 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\F
 		{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27} = {EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "Externals\FreeImage\Source\LibJPEG\LibJPEG.vcxproj", "{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "Externals\winimerge\FreeImage\Source\LibJPEG\LibJPEG.vcxproj", "{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJXR", "Externals\FreeImage\Source\LibJXR\LibJXR.vcxproj", "{244455E0-5F25-4451-9540-F317883E52A8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJXR", "Externals\winimerge\FreeImage\Source\LibJXR\LibJXR.vcxproj", "{244455E0-5F25-4451-9540-F317883E52A8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibOpenJPEG", "Externals\FreeImage\Source\LibOpenJPEG\LibOpenJPEG.vcxproj", "{E3536C28-A7F1-4B53-8E52-7D2232F9E098}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibOpenJPEG", "Externals\winimerge\FreeImage\Source\LibOpenJPEG\LibOpenJPEG.vcxproj", "{E3536C28-A7F1-4B53-8E52-7D2232F9E098}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibPNG", "Externals\FreeImage\Source\LibPNG\LibPNG.vcxproj", "{7DB10B50-CE00-4D7A-B322-6824F05D2FCB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibPNG", "Externals\winimerge\FreeImage\Source\LibPNG\LibPNG.vcxproj", "{7DB10B50-CE00-4D7A-B322-6824F05D2FCB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{33134F61-C1AD-4B6F-9CEA-503A9F140C52} = {33134F61-C1AD-4B6F-9CEA-503A9F140C52}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibRaw", "Externals\FreeImage\Source\LibRawLite\LibRawLite.vcxproj", "{07F662C1-1323-42AB-B6AF-FBFD34A7437A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibRaw", "Externals\winimerge\FreeImage\Source\LibRawLite\LibRawLite.vcxproj", "{07F662C1-1323-42AB-B6AF-FBFD34A7437A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTIFF4", "Externals\FreeImage\Source\LibTIFF4\LibTIFF4.vcxproj", "{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTIFF4", "Externals\winimerge\FreeImage\Source\LibTIFF4\LibTIFF4.vcxproj", "{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibWebP", "Externals\FreeImage\Source\LibWebP\LibWebP.vcxproj", "{097D9F6C-FD0E-4CBC-9676-009012AAECA8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibWebP", "Externals\winimerge\FreeImage\Source\LibWebP\LibWebP.vcxproj", "{097D9F6C-FD0E-4CBC-9676-009012AAECA8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenEXR", "Externals\FreeImage\Source\OpenEXR\OpenEXR.vcxproj", "{17A4874B-0606-4687-90B6-F91F8CB3B8AF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenEXR", "Externals\winimerge\FreeImage\Source\OpenEXR\OpenEXR.vcxproj", "{17A4874B-0606-4687-90B6-F91F8CB3B8AF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZLib", "Externals\FreeImage\Source\ZLib\ZLib.vcxproj", "{33134F61-C1AD-4B6F-9CEA-503A9F140C52}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZLib", "Externals\winimerge\FreeImage\Source\ZLib\ZLib.vcxproj", "{33134F61-C1AD-4B6F-9CEA-503A9F140C52}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImagePlus", "Externals\FreeImage\Wrapper\FreeImagePlus\FreeImagePlus.vcxproj", "{94F36908-A4E2-4533-939D-64FF6EADA5A1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImagePlus", "Externals\winimerge\FreeImage\Wrapper\FreeImagePlus\FreeImagePlus.vcxproj", "{94F36908-A4E2-4533-939D-64FF6EADA5A1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9E219DF2-315D-478E-8A07-8960C377CE1E} = {9E219DF2-315D-478E-8A07-8960C377CE1E}
 	EndProjectSection
@@ -497,6 +497,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tree-sitter", "Externals\tree-sitter\tree-sitter.vcxitems", "{07127EEC-6A5B-4FB4-89E8-4E21A2978773}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic", "Externals\crystaledit\Sample\SampleStatic.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibDeflate", "Externals\winimerge\FreeImage\Source\LibDeflate\LibDeflate.vcxproj", "{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -1354,6 +1356,30 @@ Global
 		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|ARM64.ActiveCfg = Debug|ARM64
 		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|x64.ActiveCfg = Debug|x64
 		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Test|x86.ActiveCfg = Debug|Win32
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|ARM.Build.0 = Debug|ARM
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|ARM64.Build.0 = Debug|ARM64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|x64.ActiveCfg = Debug|x64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|x64.Build.0 = Debug|x64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|x86.ActiveCfg = Debug|Win32
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Debug|x86.Build.0 = Debug|Win32
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|ARM.ActiveCfg = Release|ARM
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|ARM.Build.0 = Release|ARM
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|ARM64.ActiveCfg = Release|ARM64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|ARM64.Build.0 = Release|ARM64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|x64.ActiveCfg = Release|x64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|x64.Build.0 = Release|x64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|x86.ActiveCfg = Release|Win32
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Release|x86.Build.0 = Release|Win32
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|ARM.ActiveCfg = Release|ARM
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|ARM.Build.0 = Release|ARM
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|ARM64.ActiveCfg = Release|ARM64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|ARM64.Build.0 = Release|ARM64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|x64.ActiveCfg = Release|x64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|x64.Build.0 = Release|x64
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|x86.ActiveCfg = Release|Win32
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21}.Test|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1436,6 +1462,7 @@ Global
 		{02828B8D-E4B9-41FE-84C4-D5CDA7761627} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
 		{07127EEC-6A5B-4FB4-89E8-4E21A2978773} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
+		{5F82F6E8-BE52-41B1-AE55-FCD29C5DAC21} = {AD6E6E47-0363-409F-8B7A-48341147E632}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}

@@ -7,7 +7,7 @@ This file lists versions of the external components we are using.
 - boost: 1.88.0
 - frhed: 0.10904.2017.22
 - WinIMerge: 1.0.54.0
-  - freeimage: 3.19.12+ (https://github.com/danoli3/FreeImage)
+  - freeimage: 3.19.25 (https://github.com/WinMerge/freeimage)
   - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
 - WinWebDiff: 1.0.21.0
   - WebView2: 1.0.1518.46
