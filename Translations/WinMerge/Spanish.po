@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.30.0\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2026-09-06 17:23+0200\n"
+"PO-Revision-Date: 2026-10-18 15:18+0200\n"
 "Last-Translator: P0rsche-911\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_ES\n"
@@ -33,22 +33,22 @@ msgstr "LANG_SPANISH, SUBLANG_SPANISH_MODERN"
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:79 Merge.rc:101
 msgid "Choose Left\tCtrl+Shift+&1/Alt+&1"
-msgstr ""
+msgstr "Seleccionar izquierdo\tCtrl+Mayús+&1/Alt+&1"
 
 #. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:80
 msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Seleccionar derecho\tCtrl+Mayús+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr ""
+msgstr "Seleccione el izquierdo para todos los conflictos sin resolver"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr ""
+msgstr "Seleccione el derecho para todos los conflictos sin resolver"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -88,48 +88,48 @@ msgstr "Seleccion&ar todo\tCtrl+A"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_END_SESSION
 #: Merge.rc:93 Merge.rc:117 Merge.rc:131 Merge.rc:147
 msgid "&End Merge Session"
-msgstr ""
+msgstr "Finalizar s&esión de combinación"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:102
 msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Seleccionar central\tCtrl+Mayús+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:103
 msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
-msgstr ""
+msgstr "Seleccionar derecho\tCtrl+Mayús+&3/Alt+&3"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr ""
+msgstr "Seleccione el central para todos los conflictos sin resolver"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
 msgid "Choose Left\tCtrl+Shift+&1"
-msgstr ""
+msgstr "Seleccionar izquierdo\tCtrl+Mayús+&1"
 
 #. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:126
 msgid "Choose Right\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Seleccionar derecho\tCtrl+Mayús+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:140
 msgid "Choose Middle\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Seleccionar central\tCtrl+Mayús+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:141
 msgid "Choose Right\tCtrl+Shift+&3"
-msgstr ""
+msgstr "Seleccionar derecho\tCtrl+Mayús+&3"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
 #, c-format
 msgid "Choose %1 for Selected Differences"
-msgstr ""
+msgstr "Seleccione %1 para las diferencias seleccionadas"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
 #: Merge.rc:157 Merge.rc:165
@@ -1200,7 +1200,7 @@ msgstr "Gua&rdar lado derecho"
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MERGE_RESULT
 #: Merge.rc:721 Merge.rc:1332
 msgid "&Save Merge Result"
-msgstr ""
+msgstr "Guardar el re&sultado de la combinación"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:723
@@ -1225,7 +1225,7 @@ msgstr "Gua&rdar lado derecho como..."
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MERGE_RESULT
 #: Merge.rc:728 Merge.rc:1337
 msgid "Save Merge Result &As..."
-msgstr ""
+msgstr "Gu&ardar el resultado de la combinación como..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_PRINT
 #: Merge.rc:731
@@ -1430,7 +1430,7 @@ msgstr "Panel de lo&calización"
 #. IDR_MERGEDOCTYPE, ID_VIEW_MERGE_RESULT_BAR
 #: Merge.rc:870
 msgid "Merge Result Pane"
-msgstr ""
+msgstr "Panel de resultados de la combinación"
 
 #. IDS_OUTPUTBAR_CAPTION
 #: Merge.rc:871 Merge.rc:5408
@@ -1593,7 +1593,7 @@ msgstr "Co&piar todo al lado izquierdo"
 #. IDR_MERGEDOCTYPE, ID_MERGE_START_SESSION
 #: Merge.rc:952
 msgid "Start Merge Sess&ion"
-msgstr ""
+msgstr "&Iniciar sesión de combinación"
 
 #. IDR_MERGEDOCTYPE, ID_ADD_SYNCPOINT
 #: Merge.rc:955
@@ -1930,7 +1930,7 @@ msgstr "&Abrir..."
 #. IDR_POPUP_EDITOR_HEADERBAR, ID_EDITOR_SAVE_FILE
 #: Merge.rc:1173
 msgid "&Save"
-msgstr ""
+msgstr "&Guardar"
 
 #. IDR_POPUP_PLUGINS_SETTINGS
 #: Merge.rc:1179
@@ -3417,7 +3417,7 @@ msgstr "Se&leccionar..."
 #. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
 #: Merge.rc:2338
 msgid "Show recent &comparisons"
-msgstr ""
+msgstr "Mostrar &comparaciones recientes"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
@@ -3556,7 +3556,7 @@ msgstr "Ir a"
 #. IDD_EDIT_GOTO, IDC_STATIC
 #: Merge.rc:2415
 msgid "&Line number:"
-msgstr ""
+msgstr "&Número de línea:"
 
 #. IDD_FILTERS_LINEFILTERS
 #: Merge.rc:2423
@@ -4140,7 +4140,7 @@ msgstr "Caracteres de separaci&ón de palabras:"
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2760
 msgid "&Use Merge Result Pane for 2/3-way merge"
-msgstr ""
+msgstr "&Use el panel de resultados de la combinación para una combinación de dos o tres elementos"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2776
@@ -4365,7 +4365,7 @@ msgstr "&Ir a"
 #. IDS_PROJECT_ITEM_FILE_FILTER
 #: Merge.rc:2933 Merge.rc:4787
 msgid "File Filters"
-msgstr "Archivos de filtros"
+msgstr "Filtros de archivo"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
 #: Merge.rc:2936
@@ -4998,7 +4998,7 @@ msgstr "&Tipo de complemento:"
 #. IDD_PLUGINS_LIST, IDC_STATIC
 #: Merge.rc:3350
 msgid "File filters:"
-msgstr "Archivos de filtros:"
+msgstr "Filtros de archivo:"
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
 #: Merge.rc:3352
@@ -5854,7 +5854,7 @@ msgid ""
 "\n"
 "Select filter folder in Options/System."
 msgstr ""
-"¡La carpeta de archivos de filtros de usuario no está definida!\n"
+"¡La carpeta de filtros de archivo de usuario no está definida!\n"
 "\n"
 "Seleccione la carpeta de filtros en Opciones/Sistema."
 
@@ -6102,11 +6102,11 @@ msgstr "¡No se puede comparar un archivo con una carpeta!"
 
 #: Merge.rc:4888
 msgid "Comparison"
-msgstr ""
+msgstr "Comparación"
 
 #: Merge.rc:4890
 msgid "Command line"
-msgstr ""
+msgstr "Línea de comandos"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4896
@@ -6129,14 +6129,30 @@ msgstr "Archivo no descomprimido: %1"
 #. IDS_ERROR_FILECREATE
 #: Merge.rc:4899
 #, c-format
-msgid "Cannot create file\n%1\n\n%2"
+msgid ""
+"Cannot create file\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"No se puede crear el archivo\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4900
 #, c-format
-msgid "Cannot open file(s)\n%1\n\n%2"
+msgid ""
+"Cannot open file(s)\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"No se pueden abrir los archivos\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4901
@@ -6215,23 +6231,23 @@ msgstr ""
 
 #: Merge.rc:4917
 msgid "Unable to create backup folder"
-msgstr ""
+msgstr "No se puede crear la carpeta de copia de seguridad"
 
 #: Merge.rc:4919
 msgid "Unknown backup location"
-msgstr ""
+msgstr "Ubicación de copia de seguridad desconocida"
 
 #: Merge.rc:4921
 msgid "Backup path too long"
-msgstr ""
+msgstr "La ruta de copia de seguridad es demasiado larga"
 
 #: Merge.rc:4923
 msgid "Unable to backup original file"
-msgstr ""
+msgstr "No es posible realizar una copia de seguridad del archivo original"
 
 #: Merge.rc:4925
 msgid "Unable to check file status"
-msgstr ""
+msgstr "No se puede comprobar el estado del archivo"
 
 #. IDS_FILESAVE_FAILED
 #: Merge.rc:4926
@@ -6370,8 +6386,14 @@ msgstr ""
 "Actualícelos antes de continuar."
 
 #: Merge.rc:4951
-msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
+msgid ""
+"Merging/copying differences that contain hidden lines is not currently supported.\n"
+"\n"
+"Please clear the display filter or adjust the filter settings to show all lines before merging."
 msgstr ""
+"Actualmente no es posible combinar/copiar diferencias que contengan líneas ocultas.\n"
+"\n"
+"Desactive el filtro de visualización o ajuste la configuración del filtro para que se muestren todas las líneas antes de combinarlas."
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4956
@@ -6655,17 +6677,17 @@ msgstr "Nombre de archivo"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5076
 msgid "Left Filename"
-msgstr ""
+msgstr "Nombre del archivo izquierdo"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5077
 msgid "Middle Filename"
-msgstr ""
+msgstr "Nombre del archivo central"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5078
 msgid "Right Filename"
-msgstr ""
+msgstr "Nombre del archivo derecho"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5079
@@ -6677,19 +6699,19 @@ msgstr "Carpeta"
 #: Merge.rc:5080
 msgctxt "DirView|ColumnHeader"
 msgid "Left Folder"
-msgstr ""
+msgstr "Carpeta del izquierdo"
 
 #. IDS_COLHDR_MDIR
 #: Merge.rc:5081
 msgctxt "DirView|ColumnHeader"
 msgid "Middle Folder"
-msgstr ""
+msgstr "Carpeta del central"
 
 #. IDS_COLHDR_RDIR
 #: Merge.rc:5082
 msgctxt "DirView|ColumnHeader"
 msgid "Right Folder"
-msgstr ""
+msgstr "Carpeta del derecho"
 
 #. IDS_COLHDR_RESULT
 #: Merge.rc:5083
@@ -6714,17 +6736,17 @@ msgstr "Fecha del central"
 #. IDS_COLHDR_LEXTENSION
 #: Merge.rc:5088
 msgid "Left Extension"
-msgstr ""
+msgstr "Extensión del izquierdo"
 
 #. IDS_COLHDR_MEXTENSION
 #: Merge.rc:5089
 msgid "Middle Extension"
-msgstr ""
+msgstr "Extensión del central"
 
 #. IDS_COLHDR_REXTENSION
 #: Merge.rc:5090
 msgid "Right Extension"
-msgstr ""
+msgstr "Extensión del derecho"
 
 #. IDS_COLHDR_LSIZE
 #: Merge.rc:5091
@@ -7237,17 +7259,17 @@ msgstr "Nombre de archivo o carpeta."
 #. IDS_COLDESC_LFILENAME
 #: Merge.rc:5238
 msgid "Left side filename or folder name."
-msgstr ""
+msgstr "Nombre del archivo o de la carpeta en el panel izquierdo."
 
 #. IDS_COLDESC_MFILENAME
 #: Merge.rc:5239
 msgid "Middle side filename or folder name."
-msgstr ""
+msgstr "Nombre del archivo o de la carpeta en el panel central."
 
 #. IDS_COLDESC_RFILENAME
 #: Merge.rc:5240
 msgid "Right side filename or folder name."
-msgstr ""
+msgstr "Nombre del archivo o de la carpeta en el panel derecho."
 
 #. IDS_COLDESC_DIR
 #: Merge.rc:5241
@@ -7257,17 +7279,17 @@ msgstr "Nombre de subcarpeta cuando se incluyen las subcarpetas."
 #. IDS_COLDESC_LDIR
 #: Merge.rc:5242
 msgid "Folder path in the left pane."
-msgstr ""
+msgstr "Ruta de la carpeta en el panel izquierdo."
 
 #. IDS_COLDESC_MDIR
 #: Merge.rc:5243
 msgid "Folder path in the middle pane."
-msgstr ""
+msgstr "Ruta de la carpeta en el panel central."
 
 #. IDS_COLDESC_RDIR
 #: Merge.rc:5244
 msgid "Folder path in the right pane."
-msgstr ""
+msgstr "Ruta de la carpeta en el panel derecho."
 
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5245
@@ -7297,17 +7319,17 @@ msgstr "Extensión del archivo."
 #. IDS_COLDESC_LEXTENSION
 #: Merge.rc:5254
 msgid "File extension in the left pane."
-msgstr ""
+msgstr "Extensión de archivo en el panel izquierdo."
 
 #. IDS_COLDESC_MEXTENSION
 #: Merge.rc:5255
 msgid "File extension in the middle pane."
-msgstr ""
+msgstr "Extensión de archivo en el panel central."
 
 #. IDS_COLDESC_REXTENSION
 #: Merge.rc:5256
 msgid "File extension in the right pane."
-msgstr ""
+msgstr "Extensión de archivo en el panel derecho."
 
 #. IDS_COLDESC_LSIZE
 #: Merge.rc:5257
@@ -7497,7 +7519,7 @@ msgstr ""
 
 #: Merge.rc:5318
 msgid "Failed to copy to clipboard."
-msgstr ""
+msgstr "No se ha podido copiar al Portapapeles."
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5319
@@ -7690,19 +7712,31 @@ msgstr "Va a activar el modo de combinación. Si desea desactivarlo presione la 
 #. IDS_AUTO_MERGE
 #: Merge.rc:5394
 #, c-format
-msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
+msgid ""
+"Automatic merge completed.\n"
+"\n"
+"%1\n"
+"\n"
+"Automatic merges: %2\n"
+"Unresolved conflicts: %3"
 msgstr ""
+"Combinación automática completada.\n"
+"\n"
+"%1\n"
+"\n"
+"Combinaciones automáticas: %2\n"
+"Conflictos sin resolver: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5395
 msgid "Merge session started."
-msgstr ""
+msgstr "Sesión de combinación iniciada."
 
 #. IDS_PANE_ROLES
 #: Merge.rc:5396
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
-msgstr ""
+msgstr "Funciones del panel: izquierdo=%1, central=%2, derecho=%3"
 
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5397
@@ -7821,7 +7855,7 @@ msgstr ""
 #. IDS_ARCHIVE_NO_FILES
 #: Merge.rc:5435
 msgid "No files are available for packaging."
-msgstr ""
+msgstr "No hay archivos disponibles para empaquetar."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5440
@@ -8094,72 +8128,101 @@ msgstr ""
 #. IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE
 #: Merge.rc:5513
 #, c-format
-msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
+msgid ""
+"The merge is not finished: %1 difference(s) have not been resolved.\n"
+"\n"
+"Abandon the merge and close without saving the result?"
 msgstr ""
+"La combinación no ha finalizado: quedan %1 diferencias sin resolver.\n"
+"\n"
+"¿Prefiere cancelar la combinación y cerrar sin guardar el resultado?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5514
-msgid "The merge result has not been saved.\n\nSave the merge result?"
+msgid ""
+"The merge result has not been saved.\n"
+"\n"
+"Save the merge result?"
 msgstr ""
+"El resultado de la combinación no ha sido guardada.\n"
+"\n"
+"¿Quiere guardar el resultado de la combinación?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5515
 #, c-format
-msgid "Saving the merge result to\n%1\nfailed.\n%2"
+msgid ""
+"Saving the merge result to\n"
+"%1\n"
+"failed.\n"
+"%2"
 msgstr ""
+"No se ha podido guardar el resultado de la combinación en\n"
+"%1.\n"
+"%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5516
 #, c-format
-msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
+msgid ""
+"There are still %1 unresolved difference(s) in the merge result.\n"
+"\n"
+"Unresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n"
+"\n"
+"Save the result anyway?"
 msgstr ""
+"Todavía hay %1 de diferencias sin resolver en el resultado de la combinación.\n"
+"\n"
+"Los conflictos sin resolver se guardan como secciones de conflicto (<<<<<<<), que conservan todas las versiones y pueden resolverse más tarde en cualquier editor. El resto de diferencias sin resolver se guardan con su contenido combinado automáticamente.\n"
+"\n"
+"¿Guardar el resultado de todos modos?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5517
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr ""
+msgstr "Se han modificado los ajustes de comparación. Se aplicarán una vez finalizada la sesión de combinación."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5518
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr ""
+msgstr "<Conflicto de combinación (solo espacios en blanco)>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5519
 msgid "<Merge Conflict>"
-msgstr ""
+msgstr "<Conflicto de combinación>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5520
 msgid "<Unresolved Difference>"
-msgstr ""
+msgstr "<Diferencia sin resolver>"
 
 #. IDS_MERGE_RESULT_NOLINES
 #: Merge.rc:5521
 msgid "<No Lines>"
-msgstr ""
+msgstr "<Sin líneas>"
 
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5522
 msgid "<Untitled>"
-msgstr ""
+msgstr "<Sin título>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5523
 msgid "Save Merge Result As"
-msgstr ""
+msgstr "Guardar el resultado de la combinación como"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
 #: Merge.rc:5524
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
-msgstr ""
+msgstr "Conflictos: %1, sin resolver: %2"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
 #: Merge.rc:5525
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
-msgstr ""
+msgstr "Conflictos: %1, sin resolver: %2 (%3 solo espacios en blanco)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5531
@@ -8247,7 +8310,7 @@ msgstr "Recursos"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5618
 msgid "Rich Text Format"
-msgstr ""
+msgstr "Formato de texto enriquecido"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5622
@@ -8277,7 +8340,7 @@ msgstr "Habilitar ancho máximo &automático"
 #. IDS_MERGERESULT_MENU
 #: Merge.rc:5651
 msgid "Merge &Result"
-msgstr ""
+msgstr "&Resultado de la combinación"
 
 #. IDS_WEBPAGE_MENU
 #: Merge.rc:5661
@@ -8662,7 +8725,7 @@ msgstr "Faltan comillas en el conjunto de procesos: %1"
 #: Merge.rc:5790
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr ""
+msgstr "Falta una expresión de línea en la cadena de procesamiento: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5791
