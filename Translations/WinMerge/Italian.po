@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 14.10.2026\n"
+"Project-Id-Version: WinMerge - Italian - 18.10.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-10-14 14:29+0100\n"
+"PO-Revision-Date: 2026-10-18 10:33+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -8272,7 +8272,7 @@ msgstr "Risorse"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5618
 msgid "Rich Text Format"
-msgstr ""
+msgstr "Formato Rich text"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5622
