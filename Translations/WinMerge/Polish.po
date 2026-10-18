@@ -9577,3 +9577,28 @@ msgstr "Bazowy adres URL"
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
 msgstr "(wybierz predefiniowane ustawienia, aby wypełnić powyższe pole)"
+
+#. IDS_LOG_COPY_DIFF
+#: Merge.rc:5995
+#, c-format
+msgid "Copy diff: pane %d to %d (hunk %d)"
+msgstr "Skopiowano różnicę: z panelu %d do panelu %d (blok różnic %d)"
+
+#. IDS_LOG_COPY_LINES
+#: Merge.rc:5996
+#, c-format
+msgid "Copy lines: pane %d to %d (vline %d-%d)"
+msgstr "Skopiowano wiersze: z panelu %d do panelu %d (widoczne wiersze %d-%d)"
+
+#. IDS_LOG_COPY_INLINE_DIFFS
+#: Merge.rc:5997
+#, c-format
+msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
+msgstr "Skopiowano różnice w obrębie wiersza: z panelu %d do panelu %d (blok różnic %d, różnice w słowach %d-%d)"
+
+#. IDS_LOG_COPY_CHARS
+#: Merge.rc:5998
+#, c-format
+msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
+msgstr "Skopiowano znaki: z panelu %d do panelu %d (blok różnic %d, pozycje (widoczny wiersz, kolumna) %d,%d-%d,%d)"
+
