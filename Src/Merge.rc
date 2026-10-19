@@ -5994,6 +5994,14 @@ BEGIN
     IDS_MDIBUTTONS_ALWAYSHIDE        "Always &hide MDI buttons"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_LOG_COPY_DIFF           "Copy diff: pane %d to %d (hunk %d)"
+    IDS_LOG_COPY_LINES          "Copy lines: pane %d to %d (vline %d-%d)"
+    IDS_LOG_COPY_INLINE_DIFFS   "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
+    IDS_LOG_COPY_CHARS          "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

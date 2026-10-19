@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-09-07 17:29+0900\n"
+"PO-Revision-Date: 2026-10-19 20:08+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -38,22 +38,22 @@ msgstr "LANG_KOREAN, SUBLANG_DEFAULT"
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:79 Merge.rc:101
 msgid "Choose Left\tCtrl+Shift+&1/Alt+&1"
-msgstr ""
+msgstr "왼쪽 선택\tCtrl+Shift+&1/Alt+&1"
 
 #. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:80
 msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "오른쪽 선택\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr ""
+msgstr "해결되지 않은 모든 충돌에 대해 왼쪽 선택"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr ""
+msgstr "해결되지 않은 모든 충돌에 대해 오른쪽 선택"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -99,48 +99,48 @@ msgstr "전체 선택(&A)\tCtrl+A"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_END_SESSION
 #: Merge.rc:93 Merge.rc:117 Merge.rc:131 Merge.rc:147
 msgid "&End Merge Session"
-msgstr ""
+msgstr "병합 세션 종료(&E)"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:102
 msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "가운데 선택\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:103
 msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
-msgstr ""
+msgstr "오른쪽 선택\tCtrl+Shift+&3/Alt+&3"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr ""
+msgstr "해결되지 않은 모든 충돌에 대해 중간 선택"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
 msgid "Choose Left\tCtrl+Shift+&1"
-msgstr ""
+msgstr "왼쪽 선택\tCtrl+Shift+&1"
 
 #. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:126
 msgid "Choose Right\tCtrl+Shift+&2"
-msgstr ""
+msgstr "오른쪽 선택\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:140
 msgid "Choose Middle\tCtrl+Shift+&2"
-msgstr ""
+msgstr "가운데 선택\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:141
 msgid "Choose Right\tCtrl+Shift+&3"
-msgstr ""
+msgstr "오른쪽 선택\tCtrl+Shift+&3"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
 #, c-format
 msgid "Choose %1 for Selected Differences"
-msgstr ""
+msgstr "선택한 차이점에 대해 %1 선택"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
 #: Merge.rc:157 Merge.rc:165
@@ -1324,7 +1324,7 @@ msgstr "오른쪽 저장(&R)"
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MERGE_RESULT
 #: Merge.rc:721 Merge.rc:1332
 msgid "&Save Merge Result"
-msgstr ""
+msgstr "병합 결과 저장(&S)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:723
@@ -1353,7 +1353,7 @@ msgstr "오른쪽 저장(&R)..."
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MERGE_RESULT
 #: Merge.rc:728 Merge.rc:1337
 msgid "Save Merge Result &As..."
-msgstr ""
+msgstr "병합 결과를 다른 이름으로 저장(&A)..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_PRINT
 #: Merge.rc:731
@@ -1590,7 +1590,7 @@ msgstr "위치 창(&C)"
 #. IDR_MERGEDOCTYPE, ID_VIEW_MERGE_RESULT_BAR
 #: Merge.rc:870
 msgid "Merge Result Pane"
-msgstr ""
+msgstr "병합 결과 창"
 
 #. IDS_OUTPUTBAR_CAPTION
 #: Merge.rc:871 Merge.rc:5408
@@ -1775,7 +1775,7 @@ msgstr "모두 왼쪽으로 복사(&Y)"
 #. IDR_MERGEDOCTYPE, ID_MERGE_START_SESSION
 #: Merge.rc:952
 msgid "Start Merge Sess&ion"
-msgstr ""
+msgstr "병합 세션 시작(&I)"
 
 #. IDR_MERGEDOCTYPE, ID_ADD_SYNCPOINT
 #: Merge.rc:955
@@ -2142,7 +2142,7 @@ msgstr "열기(&O)..."
 #. IDR_POPUP_EDITOR_HEADERBAR, ID_EDITOR_SAVE_FILE
 #: Merge.rc:1173
 msgid "&Save"
-msgstr ""
+msgstr "저장(&S)"
 
 #. IDR_POPUP_PLUGINS_SETTINGS
 #: Merge.rc:1179
@@ -3676,7 +3676,7 @@ msgstr "선택(&L)..."
 #. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
 #: Merge.rc:2338
 msgid "Show recent &comparisons"
-msgstr ""
+msgstr "최근 비교 표시(&C)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
@@ -3848,7 +3848,7 @@ msgstr "이동"
 #. IDD_EDIT_GOTO, IDC_STATIC
 #: Merge.rc:2415
 msgid "&Line number:"
-msgstr ""
+msgstr "줄 번호(&L):"
 
 #. IDD_FILTERS_LINEFILTERS
 #: Merge.rc:2423
@@ -4508,7 +4508,7 @@ msgstr "단어 분리 문자(&O):"
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2760
 msgid "&Use Merge Result Pane for 2/3-way merge"
-msgstr ""
+msgstr "2/3 방식 병합용 결과 창 병합 사용(&U)"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2776
@@ -6669,11 +6669,11 @@ msgstr "파일 및 폴더를 비교할 수 없습니다!"
 
 #: Merge.rc:4888
 msgid "Comparison"
-msgstr ""
+msgstr "비교"
 
 #: Merge.rc:4890
 msgid "Command line"
-msgstr ""
+msgstr "명령줄"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4896
@@ -6696,14 +6696,30 @@ msgstr "파일의 자료 변환을 하지 않았습니다: %1"
 #. IDS_ERROR_FILECREATE
 #: Merge.rc:4899
 #, c-format
-msgid "Cannot create file\n%1\n\n%2"
+msgid ""
+"Cannot create file\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"파일을 생성할 수 없습니다\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4900
 #, c-format
-msgid "Cannot open file(s)\n%1\n\n%2"
+msgid ""
+"Cannot open file(s)\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"파일을 열 수 없습니다\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4901
@@ -6785,23 +6801,23 @@ msgstr ""
 
 #: Merge.rc:4917
 msgid "Unable to create backup folder"
-msgstr ""
+msgstr "백업 폴더를 만들 수 없습니다"
 
 #: Merge.rc:4919
 msgid "Unknown backup location"
-msgstr ""
+msgstr "알 수 없는 백업 위치"
 
 #: Merge.rc:4921
 msgid "Backup path too long"
-msgstr ""
+msgstr "백업 경로가 너무 깁니다"
 
 #: Merge.rc:4923
 msgid "Unable to backup original file"
-msgstr ""
+msgstr "원본 파일을 백업할 수 없습니다"
 
 #: Merge.rc:4925
 msgid "Unable to check file status"
-msgstr ""
+msgstr "파일 상태를 확인할 수 없습니다"
 
 #. IDS_FILESAVE_FAILED
 #: Merge.rc:4926
@@ -6944,8 +6960,14 @@ msgstr ""
 "계속하기 전에 문서를 새로 고침하세요."
 
 #: Merge.rc:4951
-msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
+msgid ""
+"Merging/copying differences that contain hidden lines is not currently supported.\n"
+"\n"
+"Please clear the display filter or adjust the filter settings to show all lines before merging."
 msgstr ""
+"숨은 줄이 포함된 차이를 병합/복사하는 기능은 현재 지원되지 않습니다.\n"
+"\n"
+"병합하기 전에 모든 선이 표시되도록 디스플레이 필터를 해제하거나 필터 설정을 조정해 주세요."
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4956
@@ -7235,17 +7257,17 @@ msgstr "파일 이름"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5076
 msgid "Left Filename"
-msgstr ""
+msgstr "왼쪽 파일 이름왼쪽 확장자"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5077
 msgid "Middle Filename"
-msgstr ""
+msgstr "가운데 파일 이름"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5078
 msgid "Right Filename"
-msgstr ""
+msgstr "오른쪽 파일 이름"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5079
@@ -7257,19 +7279,19 @@ msgstr "폴더"
 #: Merge.rc:5080
 msgctxt "DirView|ColumnHeader"
 msgid "Left Folder"
-msgstr ""
+msgstr "왼쪽 폴더"
 
 #. IDS_COLHDR_MDIR
 #: Merge.rc:5081
 msgctxt "DirView|ColumnHeader"
 msgid "Middle Folder"
-msgstr ""
+msgstr "가운데 폴더"
 
 #. IDS_COLHDR_RDIR
 #: Merge.rc:5082
 msgctxt "DirView|ColumnHeader"
 msgid "Right Folder"
-msgstr ""
+msgstr "오른쪽 폴더"
 
 #. IDS_COLHDR_RESULT
 #: Merge.rc:5083
@@ -7298,17 +7320,17 @@ msgstr "가운데 날짜"
 #. IDS_COLHDR_LEXTENSION
 #: Merge.rc:5088
 msgid "Left Extension"
-msgstr ""
+msgstr "왼쪽 확장"
 
 #. IDS_COLHDR_MEXTENSION
 #: Merge.rc:5089
 msgid "Middle Extension"
-msgstr ""
+msgstr "가운데 확장자"
 
 #. IDS_COLHDR_REXTENSION
 #: Merge.rc:5090
 msgid "Right Extension"
-msgstr ""
+msgstr "오른쪽 확장자"
 
 #. IDS_COLHDR_LSIZE
 #: Merge.rc:5091
@@ -7865,17 +7887,17 @@ msgstr "파일 이름 또는 폴더 이름."
 #. IDS_COLDESC_LFILENAME
 #: Merge.rc:5238
 msgid "Left side filename or folder name."
-msgstr ""
+msgstr "왼쪽 파일 이름 또는 폴더 이름입니다."
 
 #. IDS_COLDESC_MFILENAME
 #: Merge.rc:5239
 msgid "Middle side filename or folder name."
-msgstr ""
+msgstr "가운데 측의 파일 이름 또는 폴더 이름입니다."
 
 #. IDS_COLDESC_RFILENAME
 #: Merge.rc:5240
 msgid "Right side filename or folder name."
-msgstr ""
+msgstr "오른쪽 파일 이름 또는 폴더 이름입니다."
 
 #. IDS_COLDESC_DIR
 #: Merge.rc:5241
@@ -7886,17 +7908,17 @@ msgstr "하위 폴더를 포함할 때 하위 폴더 이름."
 #. IDS_COLDESC_LDIR
 #: Merge.rc:5242
 msgid "Folder path in the left pane."
-msgstr ""
+msgstr "왼쪽 창의 폴더 경로입니다."
 
 #. IDS_COLDESC_MDIR
 #: Merge.rc:5243
 msgid "Folder path in the middle pane."
-msgstr ""
+msgstr "가운데 창의 폴더 경로입니다."
 
 #. IDS_COLDESC_RDIR
 #: Merge.rc:5244
 msgid "Folder path in the right pane."
-msgstr ""
+msgstr "오른쪽 창의 폴더 경로입니다."
 
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5245
@@ -7931,17 +7953,17 @@ msgstr "파일 확장자."
 #. IDS_COLDESC_LEXTENSION
 #: Merge.rc:5254
 msgid "File extension in the left pane."
-msgstr ""
+msgstr "왼쪽 창의 파일 확장자입니다."
 
 #. IDS_COLDESC_MEXTENSION
 #: Merge.rc:5255
 msgid "File extension in the middle pane."
-msgstr ""
+msgstr "가운데 창의 파일 확장자입니다."
 
 #. IDS_COLDESC_REXTENSION
 #: Merge.rc:5256
 msgid "File extension in the right pane."
-msgstr ""
+msgstr "오른쪽 창의 파일 확장자입니다."
 
 #. IDS_COLDESC_LSIZE
 #: Merge.rc:5257
@@ -8156,7 +8178,7 @@ msgstr ""
 
 #: Merge.rc:5318
 msgid "Failed to copy to clipboard."
-msgstr ""
+msgstr "클립보드로 복사하는 데 실패했습니다."
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5319
@@ -8368,19 +8390,31 @@ msgstr "지금 병합 모드에 진입 중입니다. 병합 모드를 끄고 싶
 #. IDS_AUTO_MERGE
 #: Merge.rc:5394
 #, c-format
-msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
+msgid ""
+"Automatic merge completed.\n"
+"\n"
+"%1\n"
+"\n"
+"Automatic merges: %2\n"
+"Unresolved conflicts: %3"
 msgstr ""
+"자동 병합이 완료되었습니다.\n"
+"\n"
+"%1\n"
+"\n"
+"자동 병합: 2%\n"
+"해결되지 않은 충돌: 3%"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5395
 msgid "Merge session started."
-msgstr ""
+msgstr "병합 세션이 시작되었습니다."
 
 #. IDS_PANE_ROLES
 #: Merge.rc:5396
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
-msgstr ""
+msgstr "패널 역할: 왼쪽=%1, 가운데=%2, 오른쪽=%3"
 
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5397
@@ -8509,7 +8543,7 @@ msgstr ""
 #. IDS_ARCHIVE_NO_FILES
 #: Merge.rc:5435
 msgid "No files are available for packaging."
-msgstr ""
+msgstr "패키징에 사용할 파일이 없습니다."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5440
@@ -8807,72 +8841,102 @@ msgstr ""
 #. IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE
 #: Merge.rc:5513
 #, c-format
-msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
+msgid ""
+"The merge is not finished: %1 difference(s) have not been resolved.\n"
+"\n"
+"Abandon the merge and close without saving the result?"
 msgstr ""
+"병합이 완료되지 않았습니다: %1개의 차이점이 해결되지 않았습니다.\n"
+"\n"
+"병합을 취소하고 결과를 저장하지 않은 채 닫으시겠습니까?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5514
-msgid "The merge result has not been saved.\n\nSave the merge result?"
+msgid ""
+"The merge result has not been saved.\n"
+"\n"
+"Save the merge result?"
 msgstr ""
+"병합 결과가 저장되지 않았습니다.\n"
+"\n"
+"병합 결과를 저장하시겠습니까?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5515
 #, c-format
-msgid "Saving the merge result to\n%1\nfailed.\n%2"
+msgid ""
+"Saving the merge result to\n"
+"%1\n"
+"failed.\n"
+"%2"
 msgstr ""
+"병합 결과를 저장할 경로\n"
+"%1\n"
+"실패했습니다.\n"
+"%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5516
 #, c-format
-msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
+msgid ""
+"There are still %1 unresolved difference(s) in the merge result.\n"
+"\n"
+"Unresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n"
+"\n"
+"Save the result anyway?"
 msgstr ""
+"병합 결과에 아직 %1개의 미해결 차이가 있습니다.\n"
+"\n"
+"해결되지 않은 충돌은 모든 버전을 보존하고 나중에 어떤 편집기에서든 해결할 수 있도록 충돌 섹션 (<<<<<<<)으로 저장됩니다. 그 밖의 해결되지 않은 차이점은 자동 병합 내용과 함께 저장됩니다.\n"
+"\n"
+"어쨌든 결과를 저장하시겠습니까?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5517
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr ""
+msgstr "비교 설정이 변경되었습니다. 병합 세션이 종료된 후 적용됩니다."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5518
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr ""
+msgstr "<병합 충돌 (공백만 해당>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5519
 msgid "<Merge Conflict>"
-msgstr ""
+msgstr "<병합 충돌>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5520
 msgid "<Unresolved Difference>"
-msgstr ""
+msgstr "미해결 차이>"
 
 #. IDS_MERGE_RESULT_NOLINES
 #: Merge.rc:5521
 msgid "<No Lines>"
-msgstr ""
+msgstr "<줄 없음>"
 
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5522
 msgid "<Untitled>"
-msgstr ""
+msgstr "<제목 없음>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5523
 msgid "Save Merge Result As"
-msgstr ""
+msgstr "병합 결과를 다른 이름으로 저장"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
 #: Merge.rc:5524
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
-msgstr ""
+msgstr "충돌: %1, 미해결: %2"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
 #: Merge.rc:5525
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
-msgstr ""
+msgstr "충돌: %1, 미해결: %2 (공백만 포함: %3)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5531
@@ -8969,7 +9033,7 @@ msgstr "리소스"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5618
 msgid "Rich Text Format"
-msgstr ""
+msgstr "리치 텍스트 형식"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5622
@@ -9004,7 +9068,7 @@ msgstr "자동 최대 너비 사용(&A)"
 #. IDS_MERGERESULT_MENU
 #: Merge.rc:5651
 msgid "Merge &Result"
-msgstr ""
+msgstr "병합 결과(&R)"
 
 #. IDS_WEBPAGE_MENU
 #: Merge.rc:5661
@@ -9391,7 +9455,7 @@ msgstr "플러그인 파이프라인에 따옴표가 없습니다: %1"
 #: Merge.rc:5790
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr ""
+msgstr "파이프라인의 누락된 줄 표현식: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5791
@@ -10059,6 +10123,30 @@ msgstr "MDI 버튼 항상 숨기기(&H)"
 #: Strings.rc:43
 msgid "Prettification"
 msgstr "꾸미기"
+
+#. IDS_LOG_COPY_DIFF
+#: Merge.rc:5995
+#, c-format
+msgid "Copy diff: pane %d to %d (hunk %d)"
+msgstr "차이점 복사: 패널 %d에서 %d로 (청크 %d)"
+
+#. IDS_LOG_COPY_LINES
+#: Merge.rc:5996
+#, c-format
+msgid "Copy lines: pane %d to %d (vline %d-%d)"
+msgstr "줄 복사: 패널 %d에서 %d로 (수직 범위 %d-%d)"
+
+#. IDS_LOG_COPY_INLINE_DIFFS
+#: Merge.rc:5997
+#, c-format
+msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
+msgstr "인라인 차이점 복사: 패널 %d에서 %d로 (청크 %d, 단어 단위 차이 %d-%d)"
+
+#. IDS_LOG_COPY_CHARS
+#: Merge.rc:5998
+#, c-format
+msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
+msgstr "문자 복사: 패널 %d에서 %d로 (청크 %d, 수직 범위 %d,%d-%d,%d)"
 
 #. IDS_PLUGIN_PROCESS_TYPE2
 #: Strings.rc:44

@@ -2426,6 +2426,10 @@
 #define IDS_MERGE_RESULT_UNTITLED        44761
 #define IDS_COLHDR_RECENT_COMPARISON     44762
 #define IDS_COLHDR_RECENT_COMMAND_LINE   44763
+#define IDS_LOG_COPY_DIFF                44764
+#define IDS_LOG_COPY_LINES               44765
+#define IDS_LOG_COPY_INLINE_DIFFS        44766
+#define IDS_LOG_COPY_CHARS               44767
 
 // Next default values for new objects
 // 
