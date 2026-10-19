@@ -3744,6 +3744,16 @@ msgstr "Traži &slijedeći"
 msgid "Find &Prev"
 msgstr ""
 
+#. IDD_EDIT_FIND, IDC_EDIT_MARK_ALL
+#: Merge.rc:2363
+msgid "&Mark All"
+msgstr ""
+
+#. IDD_EDIT_FIND, IDC_EDIT_CLEAR_MARKS
+#: Merge.rc:2364
+msgid "&Clear Marks"
+msgstr ""
+
 #. IDD_EDIT_REPLACE
 #: Merge.rc:2367
 #, c-format
@@ -8442,6 +8452,11 @@ msgstr ""
 #. IDS_MARKER_NEW_PATTERN
 #: Merge.rc:5463
 msgid "New Pattern"
+msgstr ""
+
+#. IDS_FIND_TAB_MARK
+#: Merge.rc:5467
+msgid "Mark"
 msgstr ""
 
 #. IDS_PLUGINSLIST_TYPE

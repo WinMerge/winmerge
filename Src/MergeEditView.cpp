@@ -667,7 +667,18 @@ std::vector<LangServices::TEXTBLOCK> CMergeEditView::GetMarkerTextBlocks(int nLi
 		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
 			return std::vector<LangServices::TEXTBLOCK>();
 	}
-	return CCrystalTextView::GetMarkerTextBlocks(nLineIndex);
+	auto blocks = CCrystalTextView::GetMarkerTextBlocks(nLineIndex);
+	return MergeTextBlocks(blocks, CCrystalTextView::GetMarkerTextBlocks(nLineIndex, &GetDocument()->GetTemporaryMarkers()));
+}
+
+void CMergeEditView::MarkAll(const CString& text, findtext_flags_t flags)
+{
+	GetDocument()->SetTemporaryMarker(_T("FIND_MARK"), text, flags, COLORINDEX_MARKERBKGND1);
+}
+
+void CMergeEditView::ClearAllMarks()
+{
+	GetDocument()->ClearTemporaryMarker(_T("FIND_MARK"));
 }
 
 std::vector<LangServices::TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
@@ -1623,6 +1634,7 @@ bool CMergeEditView::IsLineInCurrentDiff(int nLine) const
  */
 void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
+	const bool textArea = point.x >= GetMarginWidth() && point.y >= GetTopMarginHeight();
 	CMergeDoc *pd = GetDocument();
 	CEPoint pos = GetCursorPos();
 
@@ -1631,6 +1643,17 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		SelectDiff(diff, false, false);
 
 	CCrystalEditView::OnLButtonDblClk(nFlags, point);
+	if (textArea)
+	{
+		auto [start, end] = GetSelection();
+		if (start.y == end.y && start != end)
+		{
+			CString word;
+			GetText(start, end, word);
+			pd->SetAutoMarkerSourcePane(m_nThisPane);
+			pd->SetTemporaryMarker(_T("AUTO_SELECTION"), word, FIND_WHOLE_WORD, COLORINDEX_MARKERBKGND0);
+		}
+	}
 }
 
 /**
@@ -4445,6 +4468,12 @@ void CMergeEditView::SetSelection(const CEPoint& ptStart, const CEPoint& ptEnd, 
 		// ensure we remain in diff
 		EnsureInDiff(ptStartNew);
 		EnsureInDiff(ptEndNew);
+	}
+	if (m_pDocument && GetDocument()->GetAutoMarkerSourcePane() == m_nThisPane &&
+		GetSelection() != std::make_pair(ptStartNew, ptEndNew))
+	{
+		GetDocument()->SetAutoMarkerSourcePane(-1);
+		GetDocument()->ClearTemporaryMarker(_T("AUTO_SELECTION"));
 	}
 	CCrystalTextView::SetSelection(ptStartNew, ptEndNew, bUpdateView);
 }
