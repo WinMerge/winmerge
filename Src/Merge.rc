@@ -4849,6 +4849,7 @@ BEGIN
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_LINE_STATUS_INFO_SEL "  Sel: %d | %d"
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
+    IDS_DIFF_NUMBER_STATUS_IGNORED_FMT "Difference %1 of %2 (%3 ign.)"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
     IDS_1_DIFF_FOUND        "1 Difference Found"
     IDS_NO_ERR_SEL_FMT      "%1 Errors Found"

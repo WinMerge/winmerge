@@ -10,7 +10,7 @@
 #include "IDirDoc.h"
 #include "I18n.h"
 
-String MergeTextFormatter::GetDiffStatusString(int curDiffIndex, int diffCount)
+String MergeTextFormatter::GetDiffStatusString(int curDiffIndex, int diffCount, int ignoredDiffCount)
 {
 	if (diffCount == 0)
 		return _("Identical");
@@ -21,6 +21,9 @@ String MergeTextFormatter::GetDiffStatusString(int curDiffIndex, int diffCount)
 		return diffCount == 1 ? _("1 Difference Found") :
 			  strutils::format_string1(_("%1 Differences Found"), strutils::to_str(diffCount));
 
+	if (ignoredDiffCount > 0)
+		return strutils::format_string3(_("Difference %1 of %2 (%3 ign.)"),
+			strutils::to_str(curDiffIndex + 1), strutils::to_str(diffCount + ignoredDiffCount), strutils::to_str(ignoredDiffCount));
 	return strutils::format_string2(_("Difference %1 of %2"),
 		strutils::to_str(curDiffIndex + 1), strutils::to_str(diffCount));
 }

@@ -1630,13 +1630,14 @@ void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
  * @brief Update diff-number pane text in file compare.
  * The diff number pane shows selected difference/amount of differences when
  * there is difference selected. If there is no difference selected, then
- * the panel shows amount of differences. If there are ignored differences,
- * those are not count into numbers.
+ * the panel shows amount of differences. 
+ * If there are ignored differences, they are included in the total
+ * difference count, and their number is displayed separately.
  * @param [in] pCmdUI UI component to update.
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	const String s = MergeTextFormatter::GetDiffStatusString(GetCurrentDiff(), m_diffList.GetSignificantDiffs());
+	const String s = MergeTextFormatter::GetDiffStatusString(GetCurrentDiff(), m_diffList.GetSignificantDiffs(), m_nTrivialDiffs);
 	pCmdUI->SetText(s.c_str());
 }
 
