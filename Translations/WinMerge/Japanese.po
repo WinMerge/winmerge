@@ -9321,6 +9321,30 @@ msgstr "MDI ボタンを常に隠す(&H)"
 msgid "Prettification"
 msgstr "整形"
 
+#. IDS_LOG_COPY_DIFF
+#: Merge.rc:5995
+#, c-format
+msgid "Copy diff: pane %d to %d (hunk %d)"
+msgstr ""
+
+#. IDS_LOG_COPY_LINES
+#: Merge.rc:5996
+#, c-format
+msgid "Copy lines: pane %d to %d (vline %d-%d)"
+msgstr ""
+
+#. IDS_LOG_COPY_INLINE_DIFFS
+#: Merge.rc:5997
+#, c-format
+msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
+msgstr ""
+
+#. IDS_LOG_COPY_CHARS
+#: Merge.rc:5998
+#, c-format
+msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
+msgstr ""
+
 #. IDS_PLUGIN_PROCESS_TYPE2
 #: Strings.rc:44
 msgid "Content Extraction"
