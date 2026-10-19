@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-09-05 20:56+0000\n"
-"PO-Revision-Date: 2026-10-16 16:55-0400\n"
+"PO-Revision-Date: 2026-10-19 14:10-0400\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -218,7 +218,7 @@ msgstr "Copier la différence sélectionnée (Droite) dans le presse-papiers\tCt
 #. IDR_MERGEDOCTYPE, ID_SELECTLINEDIFF
 #: Merge.rc:188 Merge.rc:780
 msgid "Select Line &Difference\tF4"
-msgstr "&Sélectionner la différence suivante\tF4"
+msgstr "Sélectionner la &différence de ligne\tF4"
 
 #. IDR_POPUP_MERGEVIEW
 #: Merge.rc:189
@@ -268,7 +268,7 @@ msgstr "Co&ller"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:203 Merge.rc:987 Merge.rc:994
 msgid "&Scripts"
-msgstr "Appli&quer un script"
+msgstr "&Scripts"
 
 #. IDS_NO_EDIT_SCRIPTS
 #: Merge.rc:205 Merge.rc:438 Merge.rc:549 Merge.rc:761 Merge.rc:766
@@ -764,7 +764,7 @@ msgstr "&Afficher la barre d'onglets"
 #. IDR_MERGEDOCTYPE, ID_VIEW_TAB_BAR_ON_TITLE_BAR
 #: Merge.rc:454 Merge.rc:605 Merge.rc:855
 msgid "&On Title Bar"
-msgstr "&Sur la barre de titres"
+msgstr "&Sur la barre de titre"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:456 Merge.rc:607 Merge.rc:857
@@ -1264,7 +1264,7 @@ msgstr "Re&charger\tCtrl+F5"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:753
 msgid "Reco&mpare As"
-msgstr "Reco&mparer comme un(e)"
+msgstr "Reco&mparer en tant que"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_FOLDER
 #: Merge.rc:760 Merge.rc:1054 Merge.rc:1295
@@ -1702,7 +1702,7 @@ msgstr "&Deuxième élément Gauche avec premier élément Droite"
 #. IDR_POPUP_DIRVIEW
 #: Merge.rc:1047
 msgid "Co&mpare As"
-msgstr "Co&mparer comme un(e)"
+msgstr "Co&mparer en tant que"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
 #: Merge.rc:1060 Merge.rc:1072 Merge.rc:4986
@@ -4296,7 +4296,7 @@ msgstr "&Ouvrir les fichiers dans le même type de fenêtre après la décompres
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
 #: Merge.rc:2869 Merge.rc:3564
 msgid "&Plugin pipeline:"
-msgstr "&Canal du plug-in :"
+msgstr "&Pipeline du plug-in :"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALIAS
 #: Merge.rc:2872
@@ -5965,7 +5965,7 @@ msgstr "Ln : %s  Col : %d/%d  Ch : %d/%d  EOL : %s"
 #: Merge.rc:4848
 #, c-format
 msgid "Line: %s"
-msgstr "Ligne: %s"
+msgstr "Ligne : %s"
 
 #. IDS_LINE_STATUS_INFO
 #: Merge.rc:4849
@@ -6000,7 +6000,7 @@ msgstr "1 différence trouvée"
 #: Merge.rc:4854
 #, c-format
 msgid "%1 Errors Found"
-msgstr "%1 Erreurs trouvées"
+msgstr "%1 erreurs trouvées"
 
 #. IDS_1_ERR_FOUND
 #: Merge.rc:4855
@@ -6493,7 +6493,7 @@ msgstr "De Droite vers... (%1)"
 #: Merge.rc:4994
 #, c-format
 msgid "Both to... (%1)"
-msgstr "Les deux vers… (%1)"
+msgstr "Les deux vers... (%1)"
 
 #. IDS_COPY_ALL_TO
 #: Merge.rc:4995
@@ -7459,12 +7459,12 @@ msgstr "Affiche un astérisque (*) si le fichier est binaire."
 #. IDS_COLDESC_UNPACKER
 #: Merge.rc:5297
 msgid "Unpacker plugin name or pipeline."
-msgstr "Nom ou canal du plug-in décompresseur."
+msgstr "Nom ou pipeline du plug-in décompresseur."
 
 #. IDS_COLDESC_PREDIFFER
 #: Merge.rc:5298
 msgid "Prediffer plugin name or pipeline."
-msgstr "Nom ou canal du plug-in précomparateur."
+msgstr "Nom ou pipeline du plug-in précomparateur."
 
 #. IDS_DIRECTORY_REPORT_TITLE
 #: Merge.rc:5304
@@ -7813,7 +7813,7 @@ msgstr "Indiquer un fichier de sortie."
 
 #: Merge.rc:5425
 msgid "Cannot create patch from binary files."
-msgstr "Impossible de créer un fichier de correctif depuis un fichier binaire."
+msgstr "Impossible de créer un correctif à partir de fichiers binaires."
 
 #. IDS_SAVEFILES_FORPATCH
 #: Merge.rc:5426
@@ -8306,7 +8306,7 @@ msgstr "Ressources"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5618
 msgid "Rich Text Format"
-msgstr ""
+msgstr "Format texte enrichi"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5622
@@ -8711,12 +8711,12 @@ msgstr "&Autres"
 #: Merge.rc:5786
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
-msgstr "Il manque le nom du plug-in dans le canal : %1"
+msgstr "Il manque le nom du plug-in dans le pipeline : %1"
 
 #: Merge.rc:5788
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
-msgstr "Il manque des guillemets dans le canal du plug-in : %1"
+msgstr "Il manque des guillemets dans le pipeline du plug-in : %1"
 
 #: Merge.rc:5790
 #, c-format
@@ -8760,7 +8760,7 @@ msgstr "Erreur lors de la précomparaison de \"%1\" avec \"%2\". Précomparaison
 #: Merge.rc:5799
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr "Référence circulaire dans le canal du plug-in : %1"
+msgstr "Référence circulaire dans le pipeline du plug-in : %1"
 
 #. IDS_PLUGIN_TYPE1
 #: Merge.rc:5800
@@ -8796,7 +8796,7 @@ msgstr "Alias pour l'éditeur de script"
 #: Merge.rc:5807
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr "Alias pour le canal du plug-in \"%1\""
+msgstr "Alias pour le pipeline du plug-in \"%1\""
 
 #. IDS_PLUGIN_NEW_DESC
 #: Merge.rc:5808
@@ -8841,7 +8841,7 @@ msgstr "2ème et 3ème"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5816
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr "(Ctrl+Clic pour ajouter au canal)"
+msgstr "(Ctrl+Clic pour ajouter au pipeline)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5821
@@ -9394,25 +9394,25 @@ msgstr "Embellissement"
 #: Merge.rc:5995
 #, c-format
 msgid "Copy diff: pane %d to %d (hunk %d)"
-msgstr ""
+msgstr "Copier diff : volet %d vers %d (bloc %d)"
 
 #. IDS_LOG_COPY_LINES
 #: Merge.rc:5996
 #, c-format
 msgid "Copy lines: pane %d to %d (vline %d-%d)"
-msgstr ""
+msgstr "Copier les lignes : volet %d vers %d (lignev %d-%d)"
 
 #. IDS_LOG_COPY_INLINE_DIFFS
 #: Merge.rc:5997
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr ""
+msgstr "Copier diff en ligne : volet %d vers %d (bloc %d, wdiff %d-%d)"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:5998
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr ""
+msgstr "Copier les caractères : volet %d vers %d (bloc %d, lignev %d,%d-%d,%d)"
 
 #. IDS_PLUGIN_PROCESS_TYPE2
 #: Strings.rc:44
@@ -10127,7 +10127,7 @@ msgstr ""
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR14
 #: Strings.rc:228
 msgid "Replace line breaks in formulas with spaces"
-msgstr "Remplacez les sauts de ligne dans les formules par des espaces"
+msgstr "Remplacer les sauts de ligne dans les formules par des espaces"
 
 #. IDS_PLUGIN_COMPAREMSEXCELFILES_STR15
 #: Strings.rc:229
@@ -10258,7 +10258,7 @@ msgstr "Entrez les arguments de la ligne de commande pour le correctif"
 #: Strings.rc:309
 #, c-format
 msgid "Enter folder name for patch '%1'"
-msgstr "Entrer le nom du dossier pour le correctif \"%1\""
+msgstr "Entrez le nom du dossier pour le correctif \"%1\""
 
 #. IDS_PLUGIN_APPLYPATCH_STR5
 #: Strings.rc:314
@@ -10276,7 +10276,7 @@ msgstr "Options du plug-in AI.sct WinMerge"
 
 #: Strings.rc:324
 msgid "Enter prompt"
-msgstr "Invite à entrer"
+msgstr "Entrez l'invite"
 
 #: Strings.rc:326
 #, c-format
@@ -10312,7 +10312,7 @@ msgstr "Modèle"
 #: Strings.rc:338
 msgid "API key changed. Restart to apply."
 msgstr ""
-"Clé API modifiée. \n"
+"Clé API modifiée.\n"
 "Redémarrez pour appliquer les modifications."
 
 #: Strings.rc:340
