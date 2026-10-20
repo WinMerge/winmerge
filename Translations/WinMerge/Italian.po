@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 18.10.2026\n"
+"Project-Id-Version: WinMerge - Italian - 20.10.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-10-18 10:33+0100\n"
+"PO-Revision-Date: 2026-10-20 14:46+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -9346,25 +9346,25 @@ msgstr "Abbellimento"
 #: Merge.rc:5995
 #, c-format
 msgid "Copy diff: pane %d to %d (hunk %d)"
-msgstr ""
+msgstr "Copia diff: riquadro %d a %d (pezzo %d)"
 
 #. IDS_LOG_COPY_LINES
 #: Merge.rc:5996
 #, c-format
 msgid "Copy lines: pane %d to %d (vline %d-%d)"
-msgstr ""
+msgstr "Copia righe: riquadro %d a %d (vline %d-%d)"
 
 #. IDS_LOG_COPY_INLINE_DIFFS
 #: Merge.rc:5997
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr ""
+msgstr "Copia le differenze in linea: riquadro %d a %d (pezzo %d, wdiff %d-%d)"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:5998
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr ""
+msgstr "Copia caratteri: riquadro %d a %d (pezzo %d,vline %d,%d-%d,%d)"
 
 #. IDS_PLUGIN_PROCESS_TYPE2
 #: Strings.rc:44
