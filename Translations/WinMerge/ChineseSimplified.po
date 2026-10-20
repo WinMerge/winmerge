@@ -9400,25 +9400,25 @@ msgstr "格式美化"
 #: Merge.rc:5995
 #, c-format
 msgid "Copy diff: pane %d to %d (hunk %d)"
-msgstr ""
+msgstr "复制差异：窗格 %d 到 %d（块 %d）"
 
 #. IDS_LOG_COPY_LINES
 #: Merge.rc:5996
 #, c-format
 msgid "Copy lines: pane %d to %d (vline %d-%d)"
-msgstr ""
+msgstr "复制行：窗格 %d 到 %d（行 %d-%d）"
 
 #. IDS_LOG_COPY_INLINE_DIFFS
 #: Merge.rc:5997
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr ""
+msgstr "复制行内差异：窗格 %d 到 %d（块 %d，词 %d-%d）"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:5998
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr ""
+msgstr "复制字符：窗格 %d 到 %d（块 %d，行 %d、%d-%d、%d）"
 
 #. IDS_PLUGIN_PROCESS_TYPE2
 #: Strings.rc:44
