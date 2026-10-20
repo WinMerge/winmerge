@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-08-27 15:32+0000\n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2026-10-20 23:25+0000\n"
 "Last-Translator: zuoyuanchun <zuoyuanchun@gmail.com>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
 "Language: zh_CN\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -9400,25 +9400,25 @@ msgstr "格式美化"
 #: Merge.rc:5995
 #, c-format
 msgid "Copy diff: pane %d to %d (hunk %d)"
-msgstr ""
+msgstr "复制差异：窗格 %d 到 %d（差异块 %d）"
 
 #. IDS_LOG_COPY_LINES
 #: Merge.rc:5996
 #, c-format
 msgid "Copy lines: pane %d to %d (vline %d-%d)"
-msgstr ""
+msgstr "复制行：窗格 %d 到 %d（虚拟行 %d-%d）"
 
 #. IDS_LOG_COPY_INLINE_DIFFS
 #: Merge.rc:5997
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr ""
+msgstr "复制行内差异：窗格 %d 到 %d（差异块 %d，词差异 %d-%d）"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:5998
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr ""
+msgstr "复制字符：窗格 %d 到 %d（差异块 %d，虚拟行 %d,%d-%d,%d）"
 
 #. IDS_PLUGIN_PROCESS_TYPE2
 #: Strings.rc:44
