@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-10-15 07:00+0000\n"
-"PO-Revision-Date: 2026-10-16 10:16+0200\n"
+"POT-Creation-Date: 2026-10-17 15:09+0000\n"
+"PO-Revision-Date: 2026-10-20 10:20+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -7854,7 +7854,7 @@ msgstr "Resources"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5618
 msgid "Rich Text Format"
-msgstr ""
+msgstr "Rich Text formatas"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5622
@@ -8857,25 +8857,25 @@ msgstr "Sutvarkymas"
 #: Merge.rc:5995
 #, c-format
 msgid "Copy diff: pane %d to %d (hunk %d)"
-msgstr ""
+msgstr "Nukopijuoti skirtumai: iš %d į %d polangį (skirtumų blokas %d)"
 
 #. IDS_LOG_COPY_LINES
 #: Merge.rc:5996
 #, c-format
 msgid "Copy lines: pane %d to %d (vline %d-%d)"
-msgstr ""
+msgstr "Nukopijuotos eilutės: iš %d į %d polangį (matomos eilutės %d-%d)"
 
 #. IDS_LOG_COPY_INLINE_DIFFS
 #: Merge.rc:5997
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr ""
+msgstr "Nukopijuoti skirtumai eilutėje: iš %d į %d polangį (skirtumų blokas %d, skirtumai žodžiuose %d-%d)"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:5998
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr ""
+msgstr "Nukopijuoti simboliai: iš %d į %d polangį (skirtumų blokas %d, pozicijos (matoma eilutė, stulpelis) %d, %d–%d, %d)"
 
 #. IDS_PLUGIN_PROCESS_TYPE2
 #: Strings.rc:44
