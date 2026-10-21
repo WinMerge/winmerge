@@ -108,10 +108,18 @@ struct DiffRangeInfo: public DIFFRANGE
 class DiffList
 {
 public:
+	struct DiffCounts
+	{
+		int significant = 0;
+		int ignored = 0;
+		int currentSignificantIndex = -1;
+	};
+
 	DiffList();
 	void Clear();
 	int GetSize() const;
 	int GetSignificantDiffs() const;
+	DiffCounts GetDiffCounts(int currentDiff) const;
 	void AddDiff(const DIFFRANGE & di);
 	bool IsDiffSignificant(int nDiff) const;
 	int GetSignificantIndex(int nDiff) const;
