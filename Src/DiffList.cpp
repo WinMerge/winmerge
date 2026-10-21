@@ -103,6 +103,32 @@ int DiffList::GetSignificantDiffs() const
 }
 
 /**
+ * @brief Returns significant and ignored diff counts and the selected diff's
+ * significant index.
+ * @param [in] currentDiff Index of the selected diff in the full diff list,
+ * or -1 when no diff is selected.
+ * @return Counts and the selected diff's zero-based significant index.
+ */
+DiffList::DiffCounts DiffList::GetDiffCounts(int currentDiff) const
+{
+	DiffCounts counts;
+	for (int i = 0; i < GetSize(); ++i)
+	{
+		if (DiffRangeAt(i)->op == OP_TRIVIAL)
+		{
+			++counts.ignored;
+		}
+		else
+		{
+			if (i == currentDiff)
+				counts.currentSignificantIndex = counts.significant;
+			++counts.significant;
+		}
+	}
+	return counts;
+}
+
+/**
  * @brief Adds given diff to end of the list.
  * Adds given difference to end of the list (append).
  * @param [in] di Difference to add.

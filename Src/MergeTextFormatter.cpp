@@ -12,18 +12,27 @@
 
 String MergeTextFormatter::GetDiffStatusString(int curDiffIndex, int diffCount, int ignoredDiffCount)
 {
-	if (diffCount == 0)
-		return _("Identical");
 	if (diffCount < 0)
 		return _("Different");
 
 	if (curDiffIndex < 0)
+	{
+		if (ignoredDiffCount > 0)
+		{
+			if (diffCount == 1)
+				return strutils::format_string1(_("1 Difference (%1 ign.)"), strutils::to_str(ignoredDiffCount));
+			return strutils::format_string2(_("%1 Differences (%2 ign.)"),
+				strutils::to_str(diffCount), strutils::to_str(ignoredDiffCount));
+		}
+		if (diffCount == 0)
+			return _("Identical");
 		return diffCount == 1 ? _("1 Difference Found") :
 			  strutils::format_string1(_("%1 Differences Found"), strutils::to_str(diffCount));
+	}
 
 	if (ignoredDiffCount > 0)
-		return strutils::format_string3(_("Difference %1 of %2 (%3 ign.)"),
-			strutils::to_str(curDiffIndex + 1), strutils::to_str(diffCount + ignoredDiffCount), strutils::to_str(ignoredDiffCount));
+		return strutils::format_string3(_("Diff. %1 of %2 (%3 ign.)"),
+			strutils::to_str(curDiffIndex + 1), strutils::to_str(diffCount), strutils::to_str(ignoredDiffCount));
 	return strutils::format_string2(_("Difference %1 of %2"),
 		strutils::to_str(curDiffIndex + 1), strutils::to_str(diffCount));
 }

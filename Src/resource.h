@@ -1802,6 +1802,8 @@
 #define IDS_DIRVIEW_STATUS_COMPARING    40843
 #define IDS_NO_ERR_SEL_FMT              40844
 #define IDS_1_ERR_FOUND                 40845
+#define IDS_DIFFS_FOUND_IGNORED_FMT     40846
+#define IDS_1_DIFF_FOUND_IGNORED_FMT    40847
 #define IDS_ERROR_INCOMPARABLE          41200
 #define IDS_DIRSEL_TAG                  41201
 #define IDS_OPEN_FILESDIRS              41202
