@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-09-09 21:18+0300\n"
+"PO-Revision-Date: 2026-10-22 16:04+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -31,22 +31,22 @@ msgstr "LANG_TURKISH, SUBLANG_DEFAULT"
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:79 Merge.rc:101
 msgid "Choose Left\tCtrl+Shift+&1/Alt+&1"
-msgstr ""
+msgstr "Soldakini seç\tCtrl+Shift+&1/Alt+&1"
 
 #. IDR_POPUP_MERGERESULTVIEW_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:80
 msgid "Choose Right\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Sağdakini seç\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr ""
+msgstr "Çözülmemiş tüm çakışmalar için solu seç"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr ""
+msgstr "Çözülmemiş tüm çakışmalar için sağı seç"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -86,48 +86,48 @@ msgstr "&Tümünü seç\tCtrl+A"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_END_SESSION
 #: Merge.rc:93 Merge.rc:117 Merge.rc:131 Merge.rc:147
 msgid "&End Merge Session"
-msgstr ""
+msgstr "Birleştirmeyi &bitir"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:102
 msgid "Choose Middle\tCtrl+Shift+&2/Alt+&2"
-msgstr ""
+msgstr "Ortadakini Seç\tCtrl+Shift+&2/Alt+&2"
 
 #. IDR_POPUP_MERGERESULTVIEW_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:103
 msgid "Choose Right\tCtrl+Shift+&3/Alt+&3"
-msgstr ""
+msgstr "Sağdakini seç\tCtrl+Shift+&3/Alt+&3"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr ""
+msgstr "Çözülmemiş tüm çakışmalar için ortadakini seç"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
 msgid "Choose Left\tCtrl+Shift+&1"
-msgstr ""
+msgstr "Soldakini seç\tCtrl+Shift+&1"
 
 #. IDR_POPUP_MERGERESULT_2WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:126
 msgid "Choose Right\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Sağdakini seç\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_2ND
 #: Merge.rc:140
 msgid "Choose Middle\tCtrl+Shift+&2"
-msgstr ""
+msgstr "Ortadakini seç\tCtrl+Shift+&2"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_3RD
 #: Merge.rc:141
 msgid "Choose Right\tCtrl+Shift+&3"
-msgstr ""
+msgstr "Sağdakini seç\tCtrl+Shift+&3"
 
 #. IDR_POPUP_MERGEVIEW, ID_MERGE_CHOOSE_THIS
 #: Merge.rc:155
 #, c-format
 msgid "Choose %1 for Selected Differences"
-msgstr ""
+msgstr "Seçilen farklar için %1 seç"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
 #: Merge.rc:157 Merge.rc:165
@@ -1198,7 +1198,7 @@ msgstr "&Sağı kaydet"
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MERGE_RESULT
 #: Merge.rc:721 Merge.rc:1332
 msgid "&Save Merge Result"
-msgstr ""
+msgstr "Birleştirme sonucunu &kaydet"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:723
@@ -1223,7 +1223,7 @@ msgstr "Sağı fa&rklı kaydet..."
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MERGE_RESULT
 #: Merge.rc:728 Merge.rc:1337
 msgid "Save Merge Result &As..."
-msgstr ""
+msgstr "Birleştirme sonucunu f&arklı kaydet..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_PRINT
 #: Merge.rc:731
@@ -1428,7 +1428,7 @@ msgstr "&Konum panosu"
 #. IDR_MERGEDOCTYPE, ID_VIEW_MERGE_RESULT_BAR
 #: Merge.rc:870
 msgid "Merge Result Pane"
-msgstr ""
+msgstr "Merge Result Pane"
 
 #. IDS_OUTPUTBAR_CAPTION
 #: Merge.rc:871 Merge.rc:5411
@@ -1591,7 +1591,7 @@ msgstr "&Tümünü sola kopyala"
 #. IDR_MERGEDOCTYPE, ID_MERGE_START_SESSION
 #: Merge.rc:952
 msgid "Start Merge Sess&ion"
-msgstr ""
+msgstr "Birleştirme oturumunu ba&şlat"
 
 #. IDR_MERGEDOCTYPE, ID_ADD_SYNCPOINT
 #: Merge.rc:955
@@ -1928,7 +1928,7 @@ msgstr "&Aç..."
 #. IDR_POPUP_EDITOR_HEADERBAR, ID_EDITOR_SAVE_FILE
 #: Merge.rc:1173
 msgid "&Save"
-msgstr ""
+msgstr "&Kaydet"
 
 #. IDR_POPUP_PLUGINS_SETTINGS
 #: Merge.rc:1179
@@ -3415,7 +3415,7 @@ msgstr "&Seç..."
 #. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
 #: Merge.rc:2338
 msgid "Show recent &comparisons"
-msgstr ""
+msgstr "Son karşılaştırmaları &göster"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
 #: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
@@ -3554,7 +3554,7 @@ msgstr "Git"
 #. IDD_EDIT_GOTO, IDC_STATIC
 #: Merge.rc:2415
 msgid "&Line number:"
-msgstr ""
+msgstr "Satı&r numarası:"
 
 #. IDD_FILTERS_LINEFILTERS
 #: Merge.rc:2423
@@ -4138,7 +4138,7 @@ msgstr "&Sözcük kesme karakterleri:"
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2760
 msgid "&Use Merge Result Pane for 2/3-way merge"
-msgstr ""
+msgstr "2/3 yönlü birleştirme için birleştirme sonucu panosunu &kullan"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2776
@@ -5984,7 +5984,7 @@ msgstr "Fark %1 / %2"
 #: Merge.rc:4852
 #, c-format
 msgid "Diff. %1 of %2 (%3 ign.)"
-msgstr ""
+msgstr "Fark: %1 / %2 (%3 yok sayılan)"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4853
@@ -6001,13 +6001,13 @@ msgstr "1 fark bulundu"
 #: Merge.rc:4855
 #, c-format
 msgid "%1 Differences (%2 ign.)"
-msgstr ""
+msgstr "%1 fark (%2 yok sayılan)"
 
 #. IDS_1_DIFF_FOUND_IGNORED_FMT
 #: Merge.rc:4856
 #, c-format
 msgid "1 Difference (%1 ign.)"
-msgstr ""
+msgstr "1 fark (%1 yok sayılan)"
 
 #. IDS_NO_ERR_SEL_FMT
 #: Merge.rc:4857
@@ -6118,11 +6118,11 @@ msgstr "Dosya ile klasör karşılaştırılamaz!"
 
 #: Merge.rc:4891
 msgid "Comparison"
-msgstr ""
+msgstr "Karşılaştırma"
 
 #: Merge.rc:4893
 msgid "Command line"
-msgstr ""
+msgstr "Komut satırı"
 
 #. IDS_ERROR_FILE_NOT_FOUND
 #: Merge.rc:4899
@@ -6145,14 +6145,30 @@ msgstr "%1 dosyası ayıklanamadı"
 #. IDS_ERROR_FILECREATE
 #: Merge.rc:4902
 #, c-format
-msgid "Cannot create file\n%1\n\n%2"
+msgid ""
+"Cannot create file\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"Dosya oluşturulamıyor\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4903
 #, c-format
-msgid "Cannot open file(s)\n%1\n\n%2"
+msgid ""
+"Cannot open file(s)\n"
+"%1\n"
+"\n"
+"%2"
 msgstr ""
+"Dosyalar açılamıyor\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4904
@@ -6231,23 +6247,23 @@ msgstr ""
 
 #: Merge.rc:4920
 msgid "Unable to create backup folder"
-msgstr ""
+msgstr "Yedekleme klasörü oluşturulamıyor"
 
 #: Merge.rc:4922
 msgid "Unknown backup location"
-msgstr ""
+msgstr "Bilinmeyen yedekleme konumu"
 
 #: Merge.rc:4924
 msgid "Backup path too long"
-msgstr ""
+msgstr "Yedekleme yolu çok uzun"
 
 #: Merge.rc:4926
 msgid "Unable to backup original file"
-msgstr ""
+msgstr "Unable to backup original file"
 
 #: Merge.rc:4928
 msgid "Unable to check file status"
-msgstr ""
+msgstr "Dosya durumu denetlenemiyor"
 
 #. IDS_FILESAVE_FAILED
 #: Merge.rc:4929
@@ -6386,8 +6402,14 @@ msgstr ""
 "Devam etmeden önce belgeleri yenileyin."
 
 #: Merge.rc:4954
-msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
+msgid ""
+"Merging/copying differences that contain hidden lines is not currently supported.\n"
+"\n"
+"Please clear the display filter or adjust the filter settings to show all lines before merging."
 msgstr ""
+"Gizli satırlar içeren değişikliklerin birleştirilmesi veya kopyalanması şu anda desteklenmiyor. \n"
+"\n"
+"Lütfen birleştirmeden önce tüm satırları göstermek için görüntü filtresini temizleyin veya filtre ayarlarını düzenleyin."
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4959
@@ -6671,17 +6693,17 @@ msgstr "Dosya adı"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5079
 msgid "Left Filename"
-msgstr ""
+msgstr "Sol dosya adı"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5080
 msgid "Middle Filename"
-msgstr ""
+msgstr "Orta dosya adı"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5081
 msgid "Right Filename"
-msgstr ""
+msgstr "Sağ dosya adı"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5082
@@ -6693,19 +6715,19 @@ msgstr "Klasör"
 #: Merge.rc:5083
 msgctxt "DirView|ColumnHeader"
 msgid "Left Folder"
-msgstr ""
+msgstr "Sol klasör"
 
 #. IDS_COLHDR_MDIR
 #: Merge.rc:5084
 msgctxt "DirView|ColumnHeader"
 msgid "Middle Folder"
-msgstr ""
+msgstr "Orta klasör"
 
 #. IDS_COLHDR_RDIR
 #: Merge.rc:5085
 msgctxt "DirView|ColumnHeader"
 msgid "Right Folder"
-msgstr ""
+msgstr "Sağ klasör"
 
 #. IDS_COLHDR_RESULT
 #: Merge.rc:5086
@@ -6730,17 +6752,17 @@ msgstr "Orta dosya tarihi"
 #. IDS_COLHDR_LEXTENSION
 #: Merge.rc:5091
 msgid "Left Extension"
-msgstr ""
+msgstr "Sol uzantı"
 
 #. IDS_COLHDR_MEXTENSION
 #: Merge.rc:5092
 msgid "Middle Extension"
-msgstr ""
+msgstr "Orta uzantı"
 
 #. IDS_COLHDR_REXTENSION
 #: Merge.rc:5093
 msgid "Right Extension"
-msgstr ""
+msgstr "Sağ uzantı"
 
 #. IDS_COLHDR_LSIZE
 #: Merge.rc:5094
@@ -7253,17 +7275,17 @@ msgstr "Dosya ya da klasör adı."
 #. IDS_COLDESC_LFILENAME
 #: Merge.rc:5241
 msgid "Left side filename or folder name."
-msgstr ""
+msgstr "Sol taraftaki dosya adı veya klasör adı."
 
 #. IDS_COLDESC_MFILENAME
 #: Merge.rc:5242
 msgid "Middle side filename or folder name."
-msgstr ""
+msgstr "Orta taraftaki dosya adı veya klasör adı."
 
 #. IDS_COLDESC_RFILENAME
 #: Merge.rc:5243
 msgid "Right side filename or folder name."
-msgstr ""
+msgstr "Sağ taraftaki dosya adı veya klasör adı."
 
 #. IDS_COLDESC_DIR
 #: Merge.rc:5244
@@ -7273,17 +7295,17 @@ msgstr "Alt klasörler katıldığında alt klasör adı."
 #. IDS_COLDESC_LDIR
 #: Merge.rc:5245
 msgid "Folder path in the left pane."
-msgstr ""
+msgstr "Sol panodaki klasör yolu."
 
 #. IDS_COLDESC_MDIR
 #: Merge.rc:5246
 msgid "Folder path in the middle pane."
-msgstr ""
+msgstr "Orta panodaki klasör yolu."
 
 #. IDS_COLDESC_RDIR
 #: Merge.rc:5247
 msgid "Folder path in the right pane."
-msgstr ""
+msgstr "Sağ panodaki klasör yolu."
 
 #. IDS_COLDESC_RESULT
 #: Merge.rc:5248
@@ -7313,17 +7335,17 @@ msgstr "Dosya uzantısı."
 #. IDS_COLDESC_LEXTENSION
 #: Merge.rc:5257
 msgid "File extension in the left pane."
-msgstr ""
+msgstr "Sol panodaki dosya uzantısı."
 
 #. IDS_COLDESC_MEXTENSION
 #: Merge.rc:5258
 msgid "File extension in the middle pane."
-msgstr ""
+msgstr "Orta panodaki dosya uzantısı."
 
 #. IDS_COLDESC_REXTENSION
 #: Merge.rc:5259
 msgid "File extension in the right pane."
-msgstr ""
+msgstr "Sağ panodaki dosya uzantısı."
 
 #. IDS_COLDESC_LSIZE
 #: Merge.rc:5260
@@ -7513,7 +7535,7 @@ msgstr ""
 
 #: Merge.rc:5321
 msgid "Failed to copy to clipboard."
-msgstr ""
+msgstr "Panoya kopyalanamadı."
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5322
@@ -7708,19 +7730,31 @@ msgstr "Birleştirme kipine geçiyorsunuz. Birleştirme kipinden çıkmak için 
 #. IDS_AUTO_MERGE
 #: Merge.rc:5397
 #, c-format
-msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
+msgid ""
+"Automatic merge completed.\n"
+"\n"
+"%1\n"
+"\n"
+"Automatic merges: %2\n"
+"Unresolved conflicts: %3"
 msgstr ""
+"Otomatik birleştirme tamamlandı.\n"
+"\n"
+"%1\n"
+"\n"
+"Otomatik birleştirmeler: %2\n"
+"Çözümlenmeyen çakışmalar: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5398
 msgid "Merge session started."
-msgstr ""
+msgstr "Birleştirme oturumu başlatıldı."
 
 #. IDS_PANE_ROLES
 #: Merge.rc:5399
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
-msgstr ""
+msgstr "Pano rolleri: Sol=%1, Orta=%2, Sağ=%3"
 
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5400
@@ -7839,7 +7873,7 @@ msgstr ""
 #. IDS_ARCHIVE_NO_FILES
 #: Merge.rc:5438
 msgid "No files are available for packaging."
-msgstr ""
+msgstr "Paketleme için kullanılabilir dosya yok."
 
 #. IDS_NO_ZIP_SUPPORT
 #: Merge.rc:5443
@@ -8112,72 +8146,100 @@ msgstr ""
 #. IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE
 #: Merge.rc:5516
 #, c-format
-msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
+msgid ""
+"The merge is not finished: %1 difference(s) have not been resolved.\n"
+"\n"
+"Abandon the merge and close without saving the result?"
 msgstr ""
+"Birleştirme tamamlanmadı: %1 fark henüz çözülmedi.\n"
+"\n"
+"Birleştirmeden vazgeçilsin ve sonuç kaydedilmeden kapatılsın mı?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5517
-msgid "The merge result has not been saved.\n\nSave the merge result?"
+msgid ""
+"The merge result has not been saved.\n"
+"\n"
+"Save the merge result?"
 msgstr ""
+"Birleştirme sonucu kaydedilmedi.\n"
+"\n"
+"Birleştirme sonucu kaydedilsin mi?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5518
 #, c-format
-msgid "Saving the merge result to\n%1\nfailed.\n%2"
+msgid ""
+"Saving the merge result to\n"
+"%1\n"
+"failed.\n"
+"%2"
 msgstr ""
+"Birleştirme sonucu %1 konumuna kaydedilemedi.\n"
+"%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5519
 #, c-format
-msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
+msgid ""
+"There are still %1 unresolved difference(s) in the merge result.\n"
+"\n"
+"Unresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n"
+"\n"
+"Save the result anyway?"
 msgstr ""
+"Birleştirme sonucunda hâlâ %1 çözülmemiş fark var.\n"
+"\n"
+"Çözülmeyen çakışmalar çakışma bölümleri (<<<<<<<) olarak kaydedilir; bu bölümler tüm sürümleri korur ve daha sonra herhangi bir düzenleyicide çözülebilir. Diğer çözülmemiş farklar ise otomatik birleştirme içerikleriyle kaydedilir.\n"
+"\n"
+"Yine de sonuç kaydedilsin mi?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5520
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr ""
+msgstr "Karşılaştırma ayarları değiştirildi. Ayarlar, birleştirme oturumu sona erdikten sonra geçerli olacak."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5521
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr ""
+msgstr "<Birleştirme çakışması (Yalnızca boşluklar)>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5522
 msgid "<Merge Conflict>"
-msgstr ""
+msgstr "<Birleştirme çakışması>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5523
 msgid "<Unresolved Difference>"
-msgstr ""
+msgstr "<Çözülmeyen fark>"
 
 #. IDS_MERGE_RESULT_NOLINES
 #: Merge.rc:5524
 msgid "<No Lines>"
-msgstr ""
+msgstr "<Satır yok>"
 
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5525
 msgid "<Untitled>"
-msgstr ""
+msgstr "<Adsız>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5526
 msgid "Save Merge Result As"
-msgstr ""
+msgstr "Birleştirme sonucunu farklı kaydet"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
 #: Merge.rc:5527
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
-msgstr ""
+msgstr "Çakışmalar: %1, Çözülmeyen: %2"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
 #: Merge.rc:5528
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
-msgstr ""
+msgstr "Çakışmalar: %1, Çözülmeyen: %2 (%3 yalnızca boşluk)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5534
@@ -8265,7 +8327,7 @@ msgstr "Kaynaklar"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5621
 msgid "Rich Text Format"
-msgstr ""
+msgstr "Zengin metin biçimi"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5625
@@ -8295,7 +8357,7 @@ msgstr "Otom&atik en fazla genişlik"
 #. IDS_MERGERESULT_MENU
 #: Merge.rc:5654
 msgid "Merge &Result"
-msgstr ""
+msgstr "Birleştirme &sonucu"
 
 #. IDS_WEBPAGE_MENU
 #: Merge.rc:5664
@@ -8680,7 +8742,7 @@ msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
 #: Merge.rc:5793
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr ""
+msgstr "İşlem hattındaki eksik satır ifadesi: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5794
@@ -9348,25 +9410,25 @@ msgstr "MDI düğmeleri her zaman &gizlensin"
 #: Merge.rc:5998
 #, c-format
 msgid "Copy diff: pane %d to %d (hunk %d)"
-msgstr ""
+msgstr "Farkı kopyala: %d -> %d panosu (parça %d)"
 
 #. IDS_LOG_COPY_LINES
 #: Merge.rc:5999
 #, c-format
 msgid "Copy lines: pane %d to %d (vline %d-%d)"
-msgstr ""
+msgstr "Satırları kopyala: %d -> %d panosu (dikey satır %d-%d)"
 
 #. IDS_LOG_COPY_INLINE_DIFFS
 #: Merge.rc:6000
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr ""
+msgstr "Satır içi farkları kopyala: %d -> %d panosu (parça %d, kelime farkı %d-%d)"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:6001
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr ""
+msgstr "Karakterleri kopyala: %d -> %d panosu (parça %d, dikey satır %d,%d-%d,%d)"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
