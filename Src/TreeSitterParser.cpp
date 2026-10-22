@@ -1343,10 +1343,14 @@ void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 
 void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 {
-	// Resolve overlapping highlight intervals into the final color at each span.
+	// Convert the overlapping highlight intervals collected for each line into
+	// non-overlapping color transitions that ParseLine() can consume.
 	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
 	{
 		auto& intervals = m_lineBlocks[i];
+		// Each interval contributes a start and an end event. The active set at
+		// any position therefore contains exactly the intervals covering the
+		// text from that position up to the next event.
 		struct Event
 		{
 			int position;
@@ -1365,13 +1369,13 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 				if (a.position != b.position)
 					return a.position < b.position;
 				if (a.starts != b.starts)
-					return !a.starts; // End old intervals before starting new ones.
+					return !a.starts; // Process intervals ending here before intervals starting here.
 				return a.intervalIndex < b.intervalIndex;
 			});
 
-		// The input records are highlight intervals. The output records are
-		// color transition points consumed by ParseLine(); nEndCharPos keeps
-		// the resolved span end for cache inspection and adjacent-span merging.
+		// Order active intervals from lowest to highest precedence: layer first,
+		// then earlier start position, color rank, capture priority, and query
+		// order. The greatest element wins at the current span.
 		auto lowerPriority = [&intervals](size_t a, size_t b)
 		{
 			const auto& lhs = intervals[a];
@@ -1391,12 +1395,17 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 			return a < b;
 		};
 		std::set<size_t, decltype(lowerPriority)> active(lowerPriority);
+		// The input records are intervals; the output records are color
+		// transitions. Keep each output span's end position so adjacent spans
+		// with the same color can be merged.
 		std::vector<TreeSitterLineBlock> blocks;
 		blocks.reserve(events.size());
 		int currentColor = COLORINDEX_NORMALTEXT;
 		for (size_t e = 0; e < events.size();)
 		{
 			const int pos = events[e].position;
+			// Gather all events at this position. Apply endings first, then
+			// beginnings, so the active set describes the following span [pos, next).
 			size_t nextEvent = e;
 			while (nextEvent < events.size() && events[nextEvent].position == pos)
 				++nextEvent;
@@ -1411,6 +1420,8 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 
 			if (nextEvent == events.size())
 				break;
+			// Select the highest-precedence interval, or normal text if none is
+			// active. Emit a transition only when the visible color changes.
 			const TreeSitterLineBlock* best = active.empty() ? nullptr : &intervals[*active.rbegin()];
 			const int color = best ? best->nColorIndex : COLORINDEX_NORMALTEXT;
 			if (color != currentColor)
@@ -1428,6 +1439,8 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 		}
 		if (!events.empty() && currentColor != COLORINDEX_NORMALTEXT)
 		{
+			// Restore the default color after the final interval, since ParseLine()
+			// treats each emitted block as the color extending to the next block.
 			TreeSitterLineBlock block = intervals.front();
 			block.nCharPos = events.back().position;
 			block.nEndCharPos = events.back().position;
