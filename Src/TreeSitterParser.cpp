@@ -1378,6 +1378,8 @@ void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 			const auto& rhs = intervals[b];
 			if (lhs.nLayerPriority != rhs.nLayerPriority)
 				return lhs.nLayerPriority < rhs.nLayerPriority;
+			if (lhs.nCharPos != rhs.nCharPos)
+				return lhs.nCharPos < rhs.nCharPos;
 			const int lhsColorPriority = GetColorPriority(lhs.nColorIndex);
 			const int rhsColorPriority = GetColorPriority(rhs.nColorIndex);
 			if (lhsColorPriority != rhsColorPriority)
