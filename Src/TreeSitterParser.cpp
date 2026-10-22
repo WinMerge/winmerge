@@ -1209,7 +1209,7 @@ void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entrie
 			const int endChar = (row < h.endRow)
 				? m_pTextBuffer->GetLineLength(static_cast<int>(row))
 				: static_cast<int>(h.endCol / sizeof(wchar_t));
-			if (endChar <= startChar)
+			if (endChar <= startChar || m_cachedChunks[row / kCacheChunkSize])
 				continue;
 
 			TreeSitterLineBlock block;
