@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-10-17 15:09+0000\n"
-"PO-Revision-Date: 2026-10-20 10:20+0200\n"
+"POT-Creation-Date: 2026-10-22 06:46+0000\n"
+"PO-Revision-Date: 2026-10-22 07:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -5870,7 +5870,7 @@ msgstr "Skirtumas %1 iš %2"
 #: Merge.rc:4852
 #, c-format
 msgid "Diff. %1 of %2 (%3 ign.)"
-msgstr ""
+msgstr "Skirt. %1 iš %2 (%3 ign.)"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4853
@@ -5887,13 +5887,13 @@ msgstr "Rastas 1 skirtumas"
 #: Merge.rc:4855
 #, c-format
 msgid "%1 Differences (%2 ign.)"
-msgstr ""
+msgstr "%1 skirtumai (-ų) (%2 ign.)"
 
 #. IDS_1_DIFF_FOUND_IGNORED_FMT
 #: Merge.rc:4856
 #, c-format
 msgid "1 Difference (%1 ign.)"
-msgstr ""
+msgstr "1 skirtumas (%1 ign.)"
 
 #. IDS_NO_ERR_SEL_FMT
 #: Merge.rc:4857
