@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-10-19 22:30-0300\n"
+"PO-Revision-Date: 2026-10-22 09:45-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -5872,7 +5872,7 @@ msgstr "Diferença %1 de %2"
 #: Merge.rc:4852
 #, c-format
 msgid "Diff. %1 of %2 (%3 ign.)"
-msgstr ""
+msgstr "Dif. %1 de %2 (%3 ign.)"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4853
@@ -5889,13 +5889,13 @@ msgstr "1 Diferença Encontrada"
 #: Merge.rc:4855
 #, c-format
 msgid "%1 Differences (%2 ign.)"
-msgstr ""
+msgstr "%1 Diferenças (%2 ign.)"
 
 #. IDS_1_DIFF_FOUND_IGNORED_FMT
 #: Merge.rc:4856
 #, c-format
 msgid "1 Difference (%1 ign.)"
-msgstr ""
+msgstr "1 Diferença (%1 ign.)"
 
 #. IDS_NO_ERR_SEL_FMT
 #: Merge.rc:4857
