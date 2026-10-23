@@ -5981,13 +5981,13 @@ msgstr "  选中：%d | %d"
 #: Merge.rc:4851
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "第 %1 处差异(共 %2 处)"
+msgstr "第 %1 处差异（共 %2 处）"
 
 #. IDS_DIFF_NUMBER_STATUS_IGNORED_FMT
 #: Merge.rc:4852
 #, c-format
 msgid "Diff. %1 of %2 (%3 ign.)"
-msgstr ""
+msgstr "第 %1 处差异（共 %2 处，已忽略 %3 处）"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4853
@@ -6004,13 +6004,13 @@ msgstr "找到 1 处差异"
 #: Merge.rc:4855
 #, c-format
 msgid "%1 Differences (%2 ign.)"
-msgstr ""
+msgstr "%1 处差异（已忽略 %2 处）"
 
 #. IDS_1_DIFF_FOUND_IGNORED_FMT
 #: Merge.rc:4856
 #, c-format
 msgid "1 Difference (%1 ign.)"
-msgstr ""
+msgstr "1 处差异（已忽略 %1 处）"
 
 #. IDS_NO_ERR_SEL_FMT
 #: Merge.rc:4857
@@ -9419,19 +9419,19 @@ msgstr "复制差异：窗格 %d 到 %d（块 %d）"
 #: Merge.rc:5999
 #, c-format
 msgid "Copy lines: pane %d to %d (vline %d-%d)"
-msgstr "复制行：窗格 %d 到 %d（行 %d-%d）"
+msgstr "复制行：窗格 %d 到 %d（虚拟行 %d-%d）"
 
 #. IDS_LOG_COPY_INLINE_DIFFS
 #: Merge.rc:6000
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr "复制行内差异：窗格 %d 到 %d（块 %d，词 %d-%d）"
+msgstr "复制行内差异：窗格 %d 到 %d（块 %d，词差异 %d-%d）"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:6001
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr "复制字符：窗格 %d 到 %d（块 %d，行 %d、%d-%d、%d）"
+msgstr "复制字符：窗格 %d 到 %d（块 %d，虚拟行 %d、%d-%d、%d）"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43
