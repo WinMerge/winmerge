@@ -31,7 +31,7 @@ https://manual.winmerge.org/.
 Suporte do WinMerge
 ================
 Perguntas ou sugestões sobre o WinMerge? Um bom lugar pra iniciar é o fórum	da comunidade
-do Winmerge em https://forums.winmerge.org/. Os desenvolvedores frequentemente lêem e
+do Winmerge em https://github.com/WinMerge/winmerge/discussions. Os desenvolvedores frequentemente lêem e
 respondem a perguntas em ambos os fóruns. Use o fórum da discussão aberta pra
 problemas gerais do WinMerge tais como perguntas sobre o uso. Use o fórum dos
 desenvolvedores pra problemas do desenvolvimento do WinMerge.
@@ -39,7 +39,7 @@ desenvolvedores pra problemas do desenvolvimento do WinMerge.
 Bugs e pedidos pra novas funções
 =========================
 Se um problema não é resolvido nos fóruns do WinMerge, verifique os rastreadores do projeto:
-vá em https://project.winmerge.org/ e clique num link no menus dos rastreadores tipo o dos
+vá em https://github.com/WinMerge/winmerge/issues e clique num link no menus dos rastreadores tipo o dos
 Bugs e Pedidos pra Novas Funções aonde você pode navegar ou submeter itens.
 
 Se você submeter um bug por favor inclua o número da versão do WinMerge no seu relatório.

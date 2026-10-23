@@ -26,15 +26,15 @@ https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
 
 Поддръжка:
 Разработчиците отговарят на въпроси във форума на WinMerge на сървъра на
-Sourceforge.net на адрес:
-https://sourceforge.net/forum/?group_id=13216
+GitHub на адрес:
+https://github.com/WinMerge/winmerge/discussions
 
 Грешки и функционалност:
 Грешки и предложения за нови възможности може да се изпращат в 
-системите за следене на грешки и RFE на сървъра на sourceforge.net.
+системите за следене на грешки и RFE на сървъра на GitHub.
 
 Система за следене на грешки:
-https://sourceforge.net/tracker/?group_id=13216&atid=113216
+https://github.com/WinMerge/winmerge/issues
 Когато съобщавате за грешка, моля споменете версията на WinMerge!
 WinMerge версия 2.2.0 и следващите могат да генерират текстов файл с
 'Отчет за програмата' от менюто Помощ/Настройки... Моля добавете тази
@@ -42,7 +42,7 @@ WinMerge версия 2.2.0 и следващите могат да генери
 съдържа много полезна информация за разработчиците на програмата.
 
 Система за следене на RFE (предложения):
-https://sourceforge.net/tracker/?group_id=13216&atid=363216
+https://github.com/WinMerge/winmerge/issues
 
 
 - Разработчиците на WinMerge

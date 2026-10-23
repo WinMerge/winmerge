@@ -30,7 +30,7 @@ https://manual.winmerge.org/.
 WinMerge támogatás
 ================
 Kérdés vagy javaslat a WinMerge-rel kapcsolatban? Egy jó kiindulási pont a WinMerge
-közösségi faliújság a https://forums.winmerge.org/ oldalon. A fejlesztők gyakran
+közösségi faliújság a https://github.com/WinMerge/winmerge/discussions oldalon. A fejlesztők gyakran
 olvassák és válaszolnak a kérdésekre mindkét alábbi fórumon. Használja a nyílt vitafórumot
 általános WinMerge témákhoz, például a használattal kapcsolatos kérdésekhez. Használja a fejlesztői fórumot
 a WinMerge fejlesztésével kapcsolatos kérdésekhez.
@@ -38,7 +38,7 @@ a WinMerge fejlesztésével kapcsolatos kérdésekhez.
 Hibák és funkciókérések
 =========================
 Ha egy probléma nem oldódik meg a WinMerge fórumokon, ellenőrizze a projektkövetést: 
-lépjen a https://project.winmerge.org/ oldalra, és kattintson a Trackers (Nyomon követők) linkre,
+lépjen a https://github.com/WinMerge/winmerge/issues oldalra, és kattintson a Trackers (Nyomon követők) linkre,
 mint például a Bugs and Feature Requests (Hibák és funkciókérések), ahol böngészhet vagy küldhet be elemeket.
 
 Ha hibát küld be, kérjük, adja meg a WinMerge verziószámát a
