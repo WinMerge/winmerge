@@ -5867,6 +5867,11 @@ msgstr "  Zaznaczono: %d | %d"
 msgid "Difference %1 of %2"
 msgstr "Różnica %1 z %2"
 
+#: MergeDoc.cpp:1656
+#, c-format
+msgid " (Word %1 of %2)"
+msgstr " (Słowo %1 z %2)"
+
 #. IDS_DIFF_NUMBER_STATUS_IGNORED_FMT
 #: Merge.rc:4852
 #, c-format

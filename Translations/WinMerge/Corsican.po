@@ -5981,6 +5981,11 @@ msgstr "  Sel : %d | %d"
 msgid "Difference %1 of %2"
 msgstr "Sfarenza %1 nant’à %2"
 
+#: MergeDoc.cpp:1656
+#, c-format
+msgid " (Word %1 of %2)"
+msgstr ""
+
 #. IDS_DIFF_NUMBER_STATUS_IGNORED_FMT
 #: Merge.rc:4852
 #, c-format
