@@ -20,6 +20,8 @@ Please submit bug reports to our bug-tracker.
 
 * Keep an own recent comparison list (PR #3663)
 
+* Update darkmodelib to 0.77.1 and enable ARM64 support
+
 ### File compare
 
 * BugFix: Did not get line filter with Moved working (#3680, PR #3681)
@@ -31,7 +33,19 @@ Please submit bug reports to our bug-tracker.
 
 * Add RTF syntax highlighting (PR #3686)
 
-### Open view
+* BugFix: Fix overlapping Tree-sitter highlight captures (PR #3718)
+
+* Localize merge copy messages in the Output Pane (#2927, PR #3701)
+
+### Image compare
+
+* BugFix: WinIMerge x86 crashes with FreeImage plugins (winimerge/#43)
+
+### Status bar
+
+* BugFix: Fix difference count in the status bar (#3649, PR #3707)
+
+### Select files or folders dialog
 
 * Open view: collapsible recent comparison list (PR #3673)
 
@@ -46,22 +60,44 @@ Please submit bug reports to our bug-tracker.
 * Add side-specific filename, folder, and extension columns to folder
   comparison views. (PR #3682)
 
+### Image compare
+
+* BugFix: Fix image paste and undo handling (winimerge/#41)
+
+* Update FreeImage to 3.19.25
+
+* Extend destination canvas when copying image differences (winimerge/#42)
+
 ### Archive support
 
-* Update 7-Zip to 26.04.
+* Update 7-Zip to 26.05.
+
+### Plugins
+
+* Set MiniMax presets to M3.1 Flash by default (PR #3709)
 
 ### Translations
 
 * Translation updates:
-  * Brazilian (PR #3665, PR #3687, PR #3672)
-  * Chinese Simplified (PR #3660, PR #3691, PR #3694)
+  * Brazilian (PR #3665, PR #3687, PR #3672, PR #3697, PR #3708, PR #3717)
+  * Chinese Simplified (PR #3660, PR #3691, PR #3694, PR #3712, PR #3721)
   * Corsican (PR #3676)
-  * French (PR #3670, PR #3693)
-  * German (PR #3659, PR #3679, PR #3689, PR #3695)
+  * French (PR #3670, PR #3693, PR #3705, PR #3722)
+  * German (PR #3659, PR #3679, PR #3689, PR #3695, PR #3713, PR #3720)
   * Hungarian (PR #3669)
-  * Italian (PR #3666, PR #3688)
-  * Lithuanian (PR #3667, PR #3690)
-  * Polish (PR #3661, PR #3684, PR #3692)
+  * Italian (PR #3666, PR #3688, PR #3698, PR #3711, PR #3728)
+  * Korean (PR #3703, PR #3704)
+  * Lithuanian (PR #3667, PR #3690, PR #3710, PR #3715)
+  * Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727)
+  * Spanish (PR #3699, PR #3700)
+  * Turkish (PR #3719)
+
+### Manual
+
+* Refresh untranslated ReadMe files and update support links (PR #3723,
+  PR #3725)
+
+* Fix the ReadMe template path in the translation status script (PR #3724)
 
 ## What Is New in 2.16.59 Beta?
 

@@ -32,7 +32,7 @@ https://manual.winmerge.org/.
 WinMerge-ondersteuning
 ======================
 Vragen over WinMerge of suggesties? Een goeie plaats om te beginnen is het WinMerge
-community bulletin board op https://forums.winmerge.org/. Ontwikkelaars lezen en beantwoorden
+community bulletin board op https://github.com/WinMerge/winmerge/discussions. Ontwikkelaars lezen en beantwoorden
 frequent vragen op beide forums. Gebruik het "Open Discussion"-forum voor algemene
 WinMerge-problemen, zoals gebruiksvragen. Gebruik het "Developers"-forum voor
 WinMerge-ontwikkelingsproblemen.
@@ -40,7 +40,7 @@ WinMerge-ontwikkelingsproblemen.
 Bugs en functie-aanvragen
 =========================
 Indien een probleem niet opgelost raakt op de WinMerge-forums, kan u de project-trackers
-natrekken: ga naar https://project.winmerge.org/ en klik op een link in het "Trackers"-menu,
+natrekken: ga naar https://github.com/WinMerge/winmerge/issues en klik op een link in het "Trackers"-menu,
 zoals "Bugs and Feature Requests", waar u kan browsen of items inzenden.
 
 Indien u een bug rapporteert, gelieve dan het WinMerge-versienummer in uw rapport bij te 

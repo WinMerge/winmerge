@@ -28,7 +28,8 @@ vertical-align: middle;
 <h2 id="winmerge-21660---2026-10-27">WinMerge 2.16.60 - 2026-10-27</h2>
 <h3 id="general">General</h3>
 <ul>
-<li>Keep an own recent comparison list (PR #3663)</li>
+<li><p>Keep an own recent comparison list (PR #3663)</p></li>
+<li><p>Update darkmodelib to 0.77.1 and enable ARM64 support</p></li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
@@ -38,8 +39,23 @@ vertical-align: middle;
 <li><p>BugFix: Fix AutoIt syntax highlighting for identifiers and nested
 comments (PR #3685)</p></li>
 <li><p>Add RTF syntax highlighting (PR #3686)</p></li>
+<li><p>BugFix: Fix overlapping Tree-sitter highlight captures (PR
+#3718)</p></li>
+<li><p>Localize merge copy messages in the Output Pane (#2927, PR
+#3701)</p></li>
 </ul>
-<h3 id="open-view">Open view</h3>
+<h3 id="image-compare">Image compare</h3>
+<ul>
+<li>BugFix: WinIMerge x86 crashes with FreeImage plugins
+(winimerge/#43)</li>
+</ul>
+<h3 id="status-bar">Status bar</h3>
+<ul>
+<li>BugFix: Fix difference count in the status bar (#3649, PR
+#3707)</li>
+</ul>
+<h3 id="select-files-or-folders-dialog">Select files or folders
+dialog</h3>
 <ul>
 <li><p>Open view: collapsible recent comparison list (PR #3673)</p></li>
 <li><p>Add side-specific filename, folder, and extension columns to
@@ -52,24 +68,49 @@ list has no history. (PR #3663)</p></li>
 <li>Add side-specific filename, folder, and extension columns to folder
 comparison views. (PR #3682)</li>
 </ul>
+<h3 id="image-compare-1">Image compare</h3>
+<ul>
+<li><p>BugFix: Fix image paste and undo handling
+(winimerge/#41)</p></li>
+<li><p>Update FreeImage to 3.19.25</p></li>
+<li><p>Extend destination canvas when copying image differences
+(winimerge/#42)</p></li>
+</ul>
 <h3 id="archive-support">Archive support</h3>
 <ul>
-<li>Update 7-Zip to 26.04.</li>
+<li>Update 7-Zip to 26.05.</li>
+</ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li>Set MiniMax presets to M3.1 Flash by default (PR #3709)</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
-<li>Brazilian (PR #3665, PR #3687, PR #3672)</li>
-<li>Chinese Simplified (PR #3660, PR #3691, PR #3694)</li>
+<li>Brazilian (PR #3665, PR #3687, PR #3672, PR #3697, PR #3708, PR
+#3717)</li>
+<li>Chinese Simplified (PR #3660, PR #3691, PR #3694, PR #3712, PR
+#3721)</li>
 <li>Corsican (PR #3676)</li>
-<li>French (PR #3670, PR #3693)</li>
-<li>German (PR #3659, PR #3679, PR #3689, PR #3695)</li>
+<li>French (PR #3670, PR #3693, PR #3705, PR #3722)</li>
+<li>German (PR #3659, PR #3679, PR #3689, PR #3695, PR #3713, PR
+#3720)</li>
 <li>Hungarian (PR #3669)</li>
-<li>Italian (PR #3666, PR #3688)</li>
-<li>Lithuanian (PR #3667, PR #3690)</li>
-<li>Polish (PR #3661, PR #3684, PR #3692)</li>
+<li>Italian (PR #3666, PR #3688, PR #3698, PR #3711, PR #3728)</li>
+<li>Korean (PR #3703, PR #3704)</li>
+<li>Lithuanian (PR #3667, PR #3690, PR #3710, PR #3715)</li>
+<li>Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727)</li>
+<li>Spanish (PR #3699, PR #3700)</li>
+<li>Turkish (PR #3719)</li>
 </ul></li>
+</ul>
+<h3 id="manual">Manual</h3>
+<ul>
+<li><p>Refresh untranslated ReadMe files and update support links (PR
+#3723, PR #3725)</p></li>
+<li><p>Fix the ReadMe template path in the translation status script (PR
+#3724)</p></li>
 </ul>
 <h2 id="winmerge-21659---2026-10-04">WinMerge 2.16.59 - 2026-10-04</h2>
 <h3 id="general-1">General</h3>
@@ -118,7 +159,7 @@ image comparison (PR #3537)</p></li>
 <li>Add column range filtering and ignore columns in comparison (PR
 #3565)</li>
 </ul>
-<h3 id="image-compare">Image compare</h3>
+<h3 id="image-compare-2">Image compare</h3>
 <ul>
 <li>Remember the image compare splitter position (PR #3593)</li>
 </ul>
@@ -134,7 +175,7 @@ ApplyLineFilter plugin (PR #3530)</p></li>
 <li><p>BugFix: Fix case-insensitive contains in filter expressions
 (#3586)</p></li>
 </ul>
-<h3 id="status-bar">Status bar</h3>
+<h3 id="status-bar-1">Status bar</h3>
 <ul>
 <li>Make merge mode indicator clickable and reduce its width (PR
 #3529)</li>
@@ -147,7 +188,7 @@ files</p></li>
 the system settings are restored. (#3633)</p></li>
 <li><p>Update 7-Zp to 26.03 (PR #3613)</p></li>
 </ul>
-<h3 id="plugins">Plugins</h3>
+<h3 id="plugins-1">Plugins</h3>
 <ul>
 <li><p>BugFix: Fix off-by-one bug losing the last byte of pack/unpack
 plugin buffer output</p></li>
@@ -194,7 +235,7 @@ PR #3612)</li>
 #3627)</li>
 </ul></li>
 </ul>
-<h3 id="manual">Manual</h3>
+<h3 id="manual-1">Manual</h3>
 <ul>
 <li><p>BugFix: [BUG] Spanish help is in French (#3658)</p></li>
 <li><p>Set localization parameters for French, Italian, and Spanish
@@ -228,7 +269,7 @@ strings with <code>+</code> (#3550)</li>
 <ul>
 <li>BugFix: Allow archive generation for one-sided file comparisons</li>
 </ul>
-<h3 id="plugins-1">Plugins</h3>
+<h3 id="plugins-2">Plugins</h3>
 <ul>
 <li>BugFix: Fix off-by-one bug losing the last byte of
 <code>BUFFER_PACK_UNPACK</code> plugin output</li>
@@ -266,7 +307,7 @@ source (#3449, PR #3458)</p></li>
 <li><p>BugFix: Fix HICON resource leaks in image list
 initialization</p></li>
 </ul>
-<h3 id="select-files-or-folders-dialog">Select files or folders
+<h3 id="select-files-or-folders-dialog-1">Select files or folders
 dialog</h3>
 <ul>
 <li><p>BugFix: Handle exceptions raised while creating the common file
@@ -348,13 +389,13 @@ better code maintainability (PR #3353)</p></li>
 (#3392)</p></li>
 <li><p>Update 7-Zip to 26.02</p></li>
 </ul>
-<h3 id="select-files-or-folders-dialog-1">Select Files or Folders
+<h3 id="select-files-or-folders-dialog-2">Select Files or Folders
 dialog</h3>
 <ul>
 <li>Add support for clipboard URL comparison and clipboard history menu
 (PR #3352)</li>
 </ul>
-<h3 id="plugins-2">Plugins</h3>
+<h3 id="plugins-3">Plugins</h3>
 <ul>
 <li>Add HandleSchemeClipboard plugin (PR #3352)</li>
 </ul>
@@ -404,14 +445,14 @@ to <code>C:\</code> (PR #3373)</p></li>
 <li><p>BugFix: &quot;Right only files&quot; missing when showing left/right only
 (#3378)</p></li>
 </ul>
-<h3 id="image-compare-1">Image compare</h3>
+<h3 id="image-compare-3">Image compare</h3>
 <ul>
 <li><p>BugFix: Image compare does not remember the state of the &quot;Blink&quot;
 toggle between sessions (#3368)</p></li>
 <li><p>BugFix: [FEATURE] override option for unrestricted Image Compare
 (#3382)</p></li>
 </ul>
-<h3 id="plugins-3">Plugins</h3>
+<h3 id="plugins-4">Plugins</h3>
 <ul>
 <li>BugFix: Fix missing &quot;Unpacked file extension&quot; value in Edit Plugin
 dialog</li>
@@ -494,7 +535,7 @@ parameter buil… (PR #3266)</p></li>
 SaveClosingDlg::ShowAndSave (PR #3256)</p></li>
 <li><p>Enable IME text reconversion in editor view (PR #3214)</p></li>
 </ul>
-<h3 id="image-compare-2">Image compare</h3>
+<h3 id="image-compare-4">Image compare</h3>
 <ul>
 <li><p>BugFix: Fix crash caused by OnClose being called twice in image
 compare window (PR #3255)</p></li>
@@ -533,7 +574,7 @@ results (PR #3284)</p></li>
 <li><p>Enable dynamic increase/decrease of compare threads (PR
 #3304)</p></li>
 </ul>
-<h3 id="plugins-4">Plugins</h3>
+<h3 id="plugins-5">Plugins</h3>
 <ul>
 <li><p>Add PrettifyPO and ValidatePO plugins for .po/.pot files (PR
 #3190)</p></li>
@@ -639,7 +680,7 @@ package.</li>
 <li>BugFix: Fixed crash when an error occurs while opening files in the
 binary comparison window.</li>
 </ul>
-<h3 id="image-compare-3">Image compare</h3>
+<h3 id="image-compare-5">Image compare</h3>
 <ul>
 <li><p>[ImageCompare] Problems with unsupported formats (#3044)</p></li>
 <li><p>Update freeimage to 3.19.10</p></li>
@@ -667,7 +708,7 @@ inclusive/exclusive range checks (PR #3124)</p></li>
 <li>Add option to select user data location (AppData or Documents) (PR
 #3078)</li>
 </ul>
-<h3 id="plugins-5">Plugins</h3>
+<h3 id="plugins-6">Plugins</h3>
 <ul>
 <li><p>CompareMSExcelFiles: Replace line breaks with space in MSExcel
 formulas (PR #3028)</p></li>
@@ -692,7 +733,7 @@ formulas (PR #3028)</p></li>
 <li>Turkish (PR #3043,#3063,#3083,#3102,#3111,#3117)</li>
 </ul></li>
 </ul>
-<h3 id="manual-1">Manual</h3>
+<h3 id="manual-2">Manual</h3>
 <ul>
 <li>Added FAQ about file selection order in Windows Explorer.
 (#3090,#3094)</li>
@@ -725,7 +766,7 @@ missing after selection.</li>
 <ul>
 <li>Request to resize text boxes and button (#3017)</li>
 </ul>
-<h3 id="manual-2">Manual</h3>
+<h3 id="manual-3">Manual</h3>
 <ul>
 <li>Typo in Help/FAQ (#3016)</li>
 <li>Docs: Add comprehensive translation contribution guide (PR
@@ -1016,7 +1057,7 @@ characters were present.</li>
 <li>BugFix: Fixed an issue where differences within &lt;pre&gt; elements
 could appear concatenated instead of on separate lines.</li>
 </ul>
-<h3 id="plugins-6">Plugins</h3>
+<h3 id="plugins-7">Plugins</h3>
 <ul>
 <li>BugFix: ApacheTika and PlantUML plugins: Fixed issue where no error
 message was displayed when execution failed (#715)</li>
@@ -1063,7 +1104,7 @@ status bar when using both Unpacker and Prediffer plugins.</li>
 (#2678)</li>
 <li>Update C syntax highlighting keyword list. (PR #2669)</li>
 </ul>
-<h3 id="image-compare-4">Image compare</h3>
+<h3 id="image-compare-6">Image compare</h3>
 <ul>
 <li>Rewrite English.pot, add JXL image extension (PR #2682)</li>
 </ul>
@@ -1084,7 +1125,7 @@ Shell Integration options. (#2419)</li>
 <li>BugFix: Context menu not working if installed from non-elevated (non
 admin) user on win 10 x64 (#2638) (PR #2639)</li>
 </ul>
-<h3 id="manual-3">Manual</h3>
+<h3 id="manual-4">Manual</h3>
 <ul>
 <li>Help pages -&gt; Appendix A. Shortcut keys (#2659)</li>
 </ul>
@@ -1129,7 +1170,7 @@ different</p>
 <li><p>Add a Prompt to Copy Only Differences in Folder Comparison (PR
 #2622,#198,#1168,#1350,#1995)</p></li>
 </ul>
-<h3 id="plugins-7">Plugins</h3>
+<h3 id="plugins-8">Plugins</h3>
 <ul>
 <li><p>BugFix: Fixes an issue where the Plugins → Prediffer menu is not
 displayed correctly since version 2.16.43.</p></li>
@@ -1139,7 +1180,7 @@ that caused error 0x80048010 when comparing PowerPoint files</p></li>
 (PR #2598)</p></li>
 <li><p>Some Plugins window fixes (PR #2621)</p></li>
 </ul>
-<h3 id="manual-4">Manual</h3>
+<h3 id="manual-5">Manual</h3>
 <ul>
 <li>BugFix: Typos and minor errors in WinMerge manual (#2597)</li>
 </ul>
@@ -1177,7 +1218,7 @@ location pane may be incorrect (#2543)</li>
 <li>BugFix: Looks like the View Tab Bar &quot;folder icon&quot; is getting a green
 check-mark before the folder compare has even completed. (#2562)</li>
 </ul>
-<h3 id="plugins-8">Plugins</h3>
+<h3 id="plugins-9">Plugins</h3>
 <ul>
 <li>BugFix: WinMerge 2.16.44.0 : CompareMSWordFiles.sct Plugin : Forced
 Enabled Confirm Conversions Pop-Up (#2566)</li>
@@ -1257,12 +1298,12 @@ Fields (#2539)</li>
 category of the Options dialog now clears combobox history as well as
 jump lists. (#2555)</li>
 </ul>
-<h3 id="select-files-or-folders-dialog-2">Select Files or Folders
+<h3 id="select-files-or-folders-dialog-3">Select Files or Folders
 dialog</h3>
 <ul>
 <li>BugFix: Crash on opening 2 files via drag &amp; drop (#2548)</li>
 </ul>
-<h3 id="plugins-9">Plugins</h3>
+<h3 id="plugins-10">Plugins</h3>
 <ul>
 <li>Apache Tika plugin: Update Apache Tika to 3.0.0</li>
 </ul>
@@ -1299,7 +1340,7 @@ installing silently (#2515)</li>
 <ul>
 <li>BugFix: Differences panel for Webpage mode (winwebdiff#7)</li>
 </ul>
-<h3 id="plugins-10">Plugins</h3>
+<h3 id="plugins-11">Plugins</h3>
 <ul>
 <li>BugFix: Floating-point precision issue in CompareMSExcelFiles.sct
 plugin (#2494)</li>
@@ -1354,11 +1395,11 @@ issues (#2450)</li>
 <li>Add a &quot;Defaults&quot; button to the &quot;Options (General)&quot; dialog. (PR
 #2453)</li>
 </ul>
-<h3 id="plugins-11">Plugins</h3>
+<h3 id="plugins-12">Plugins</h3>
 <ul>
 <li>Create CompareEscapedJavaPropertiesFiles.sct (PR #2455)</li>
 </ul>
-<h3 id="manual-5">Manual</h3>
+<h3 id="manual-6">Manual</h3>
 <ul>
 <li>BugFix: 2 mistakes about default values in manual (#2456)</li>
 <li>Update documentation for &quot;Include unique subfolders contents&quot;
@@ -1419,7 +1460,7 @@ icon after Refresh (F5) (#2383)</li>
 <li>Replace - more intelligent choice of replace in (whole file vs
 selection) (#2368)</li>
 </ul>
-<h3 id="image-compare-5">Image compare</h3>
+<h3 id="image-compare-7">Image compare</h3>
 <ul>
 <li>BugFix: Image Comparison : In Alpha Animation, dialogs hang winmerge
 (#2370)</li>
@@ -1428,7 +1469,7 @@ appeared white.</li>
 <li>Added the ability to change the blink interval and overlay animation
 interval.</li>
 </ul>
-<h3 id="plugins-12">Plugins</h3>
+<h3 id="plugins-13">Plugins</h3>
 <ul>
 <li>Make the gpt4-o-mini model selectable in the AIConvertText plugin
 settings window</li>
@@ -1478,7 +1519,7 @@ dialog. (PR #2348)</li>
 <li>Add a &quot;Defaults&quot; button to the &quot;Options (Archive Support)&quot; dialog.
 (PR #2362)</li>
 </ul>
-<h3 id="plugins-13">Plugins</h3>
+<h3 id="plugins-14">Plugins</h3>
 <ul>
 <li>BugFix: Fixed the plugin pipeline not being configured correctly in
 the Select Plugin dialog.</li>
@@ -1538,7 +1579,7 @@ dialog. (PR #2283)</li>
 <li>Adjust position of &quot;Defaults&quot; button in &quot;Options &gt; Compare &gt;
 Table&quot; (PR #2295)</li>
 </ul>
-<h3 id="plugins-14">Plugins</h3>
+<h3 id="plugins-15">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles.sct: Fixed the issue where, when the
 &#39;Extract workbook data to multiple files&#39; option was enabled, all sheets
@@ -1596,7 +1637,7 @@ using a plugin. (PR #2238)</li>
 <ul>
 <li>BugFix: Make event sync settings persistent (#2248)</li>
 </ul>
-<h3 id="select-files-or-folders-dialog-3">Select Files or Folders
+<h3 id="select-files-or-folders-dialog-4">Select Files or Folders
 dialog</h3>
 <ul>
 <li>BugFix: Fixed the issue when the compare button could not be clicked
@@ -1609,7 +1650,7 @@ in HTML reports are not equal.</li>
 <li>BugFix: Fixed an issue where the caption set in the header bar was
 not being applied to the HTML report.</li>
 </ul>
-<h3 id="plugins-15">Plugins</h3>
+<h3 id="plugins-16">Plugins</h3>
 <ul>
 <li>BugFix: Fixed crash when error occurs in Unpacker plugin</li>
 <li>Replace the source code written in VBScript with JScript (PR
@@ -1669,7 +1710,7 @@ the Codepage dialog was not reflected.</li>
 <ul>
 <li>Modify the &quot;Display Columns&quot; dialog. (PR #2154)</li>
 </ul>
-<h3 id="plugins-16">Plugins</h3>
+<h3 id="plugins-17">Plugins</h3>
 <ul>
 <li><p>BugFix: Fixed the issue where the following string containing
 double quotes is not interpreted correctly when specified to the
@@ -1709,7 +1750,7 @@ search</li>
 <ul>
 <li>BugFix: Could not replace data at the end of the file</li>
 </ul>
-<h3 id="image-compare-6">Image compare</h3>
+<h3 id="image-compare-8">Image compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where the file name was not displayed in the
 header even after saving a newly created pane with a name.</li>
@@ -1733,7 +1774,7 @@ when comparing URLs that are file://.</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21636---2023-11-27">WinMerge 2.16.36 - 2023-11-27</h2>
-<h3 id="image-compare-7">Image compare</h3>
+<h3 id="image-compare-9">Image compare</h3>
 <ul>
 <li>BugFix: Fix an issue where opening read-only and multi-page image
 files would cause them to be treated as only one-page images.
@@ -1774,7 +1815,7 @@ restored when the window is resized.</li>
 <ul>
 <li>BugFix: V2.16.34 &quot;X86&quot; wired action (#2081)</li>
 </ul>
-<h3 id="image-compare-8">Image compare</h3>
+<h3 id="image-compare-10">Image compare</h3>
 <ul>
 <li>BugFix: Close main window with &#39;Esc&#39; if there is only one MDI child
 window (#2084)</li>
@@ -1832,7 +1873,7 @@ the Current Line&quot;. (#2050)</li>
 other than default and one file does not have an EOL of the last line
 and the other file has an EOL of the last line.</li>
 </ul>
-<h3 id="image-compare-9">Image compare</h3>
+<h3 id="image-compare-11">Image compare</h3>
 <ul>
 <li>BugFix: Fixed the issue where .png is added when saving even if the
 file format does not use a converter such as jpg or png file.</li>
@@ -1923,13 +1964,13 @@ the length of the string matching the pattern is 0</li>
 disappearing if the registration of the ShellExtension for Windows 11
 fails</li>
 </ul>
-<h3 id="plugins-17">Plugins</h3>
+<h3 id="plugins-18">Plugins</h3>
 <ul>
 <li>BugFix: WinMerge cannot successfully disable some of its Plugins
 (#2012)</li>
 <li>Update jq to version 1.7</li>
 </ul>
-<h3 id="manual-6">Manual</h3>
+<h3 id="manual-7">Manual</h3>
 <ul>
 <li>Manual: Use po4a for manual translation (PR #1994) (#499)</li>
 </ul>
@@ -2025,7 +2066,7 @@ the Options dialog even if the /r command line option is not specified.
 <li>BugFix: Display problem with Item totals : (#1840)</li>
 <li>BugFix: Bug in ignore whitespace ? (#1882)</li>
 </ul>
-<h3 id="plugins-18">Plugins</h3>
+<h3 id="plugins-19">Plugins</h3>
 <ul>
 <li>PrettifyJSON: Update jq to version 1.6 (#1871)</li>
 <li>Translate some plugin error messages (PR #1873)</li>
@@ -2071,7 +2112,7 @@ not being syntax highlighted.</li>
 displayed in the ARM64 version.</li>
 <li>Modify the &quot;Go to&quot; dialog. (PR #1779)</li>
 </ul>
-<h3 id="image-compare-10">Image compare</h3>
+<h3 id="image-compare-12">Image compare</h3>
 <ul>
 <li>BugFix: Middle Click to close image tab crash (#1785)</li>
 <li>BugFix: Fixed an issue where the changed Color distance threshold
@@ -2090,7 +2131,7 @@ the Options dialog was not displaying correctly in version 2.16.29.</li>
 <li>BugFix: Fixed an issue where plugin settings were not exported when
 exporting from the Options dialog.</li>
 </ul>
-<h3 id="plugins-19">Plugins</h3>
+<h3 id="plugins-20">Plugins</h3>
 <ul>
 <li>BugFix: Fixed an issue where the ApplyPatch plugin was not
 functioning correctly when the &#39;Plugins -&gt; Manual Unpacking&#39; menu
@@ -2167,7 +2208,7 @@ for the memory address your cursor is at (WinMerge/frhed #13)</li>
 <li>BugFix: Fixed an issue where an infinite loop occurred when the file
 size was truncated during file loading.</li>
 </ul>
-<h3 id="image-compare-11">Image compare</h3>
+<h3 id="image-compare-13">Image compare</h3>
 <ul>
 <li>BugFix: Fixed issue preventing saving image comparison reports to a
 network share</li>
@@ -2191,7 +2232,7 @@ columns would not update when deleting files on one side.</li>
 <li>Added Enable Compare As menu option in Shell integration
 category</li>
 </ul>
-<h3 id="plugins-20">Plugins</h3>
+<h3 id="plugins-21">Plugins</h3>
 <ul>
 <li>BugFix: Plugin IgnoreLeadingLineNumbers hangs (#1715)</li>
 </ul>
@@ -2285,7 +2326,7 @@ used.</li>
 <ul>
 <li>Modify the &quot;Options (Compare &gt; Folder)&quot; dialog. (PR #1645)</li>
 </ul>
-<h3 id="plugins-21">Plugins</h3>
+<h3 id="plugins-22">Plugins</h3>
 <ul>
 <li>Add PreviewMarkdown plugin (PR #1641)</li>
 <li>Add PreviewPlantUML plugin (PR #1666)</li>
@@ -2416,12 +2457,12 @@ for image comparison.</li>
 <ul>
 <li>Improved translation regarding CPU cores (PR #1513)</li>
 </ul>
-<h3 id="select-files-or-folders-dialog-4">Select Files or Folders
+<h3 id="select-files-or-folders-dialog-5">Select Files or Folders
 dialog</h3>
 <ul>
 <li>Made it possible to specify Prediffer plugin</li>
 </ul>
-<h3 id="plugins-22">Plugins</h3>
+<h3 id="plugins-23">Plugins</h3>
 <ul>
 <li>BugFix: Select Plugin dialog: Fixed that &quot;Display all plugins&quot;
 checkbox did not work</li>
@@ -2563,7 +2604,7 @@ folder comparison.</li>
 child items after renaming a directory in the folder compare window. (PR
 #1408)</li>
 </ul>
-<h3 id="plugins-23">Plugins</h3>
+<h3 id="plugins-24">Plugins</h3>
 <ul>
 <li>Modify textbox behavior (CompareMSExcelFiles options dialog) (PR
 #1374)</li>
@@ -2624,7 +2665,7 @@ highlighting&quot; (PR #1340)</li>
 <ul>
 <li>Allow the &quot;Split Vertically&quot; menu item to be unchecked.</li>
 </ul>
-<h3 id="image-compare-12">Image compare</h3>
+<h3 id="image-compare-14">Image compare</h3>
 <ul>
 <li>BugFix: Fix an issue where the pane was split vertically the next
 time the window was displayed, even though the &quot;Split Vertically&quot; menu
@@ -2671,7 +2712,7 @@ filename when generating a file compare report. (PR #1319)</li>
 <ul>
 <li>BugFix: [Bug Report] WinMerge does not recognize Win 11 (#1192)</li>
 </ul>
-<h3 id="plugins-24">Plugins</h3>
+<h3 id="plugins-25">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles Plugins did not compare folders when
 opening .xlsx files from Plugins-&gt; Edit with Unpacker menu item even
@@ -2760,7 +2801,7 @@ directories. (PR #1299)</li>
 <ul>
 <li>Allow resizing Options dialog box in both directions (#1265)</li>
 </ul>
-<h3 id="plugins-25">Plugins</h3>
+<h3 id="plugins-26">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles.sct: Date formats interpreted
 inconsistently (#279)</li>
@@ -2790,7 +2831,7 @@ arguments</li>
 <ul>
 <li>Added <code>/t webpage</code> command line option</li>
 </ul>
-<h3 id="manual-7">Manual</h3>
+<h3 id="manual-8">Manual</h3>
 <ul>
 <li>BugFix: Help file: Small issue for plugins (#1309)</li>
 </ul>
@@ -2884,7 +2925,7 @@ folders that match the pattern specified in <code>f:</code> and
 <li>Improve vertical alignment string (#1200)</li>
 <li>Some improvements (#1212)</li>
 </ul>
-<h3 id="plugins-26">Plugins</h3>
+<h3 id="plugins-27">Plugins</h3>
 <ul>
 <li>BugFix: Select Plugin Dialog: Fix the problem that the plugin
 arguments are deleted by clicking the &quot;Add pipe&quot; button after entering
@@ -2969,7 +3010,7 @@ non-recursive mode.</li>
 <li>BugFix: Fixed the problem that the sort order is different from
 version 2.16.16 or earlier</li>
 </ul>
-<h3 id="plugins-27">Plugins</h3>
+<h3 id="plugins-28">Plugins</h3>
 <ul>
 <li>Fix for <a href="https://github.com/WinMerge/winmerge/discussions/1139">https://github.com/WinMerge/winmerge/discussions/1139</a>
 (#1139,PR #1140)</li>
@@ -2992,7 +3033,7 @@ version 2.16.16 or earlier</li>
 <li>Re-enabled the process of installing ShellExtension for Windows
 11.</li>
 </ul>
-<h3 id="manual-8">Manual</h3>
+<h3 id="manual-9">Manual</h3>
 <ul>
 <li>BugFix: &quot;Quick compare limit&quot; and &quot;Binary compare limit&quot; settings
 don&#39;t have the expected (and documented) purpose (#1100)</li>
@@ -3043,7 +3084,7 @@ a regression (#1036)</li>
 #1051,#510)</li>
 <li>Please add a huge icon for &quot;Filter is active&quot; (#1056)</li>
 </ul>
-<h3 id="image-compare-13">Image compare</h3>
+<h3 id="image-compare-15">Image compare</h3>
 <ul>
 <li>Added support for creating multi-page image compare report (osdn.net
 #43374)</li>
@@ -3066,7 +3107,7 @@ project file. (PR #1068)</li>
 <ul>
 <li>Put the diff patch to the clipboard rather than to files (#923)</li>
 </ul>
-<h3 id="plugins-28">Plugins</h3>
+<h3 id="plugins-29">Plugins</h3>
 <ul>
 <li>BugFix: Fixed the problem that Plugins-&gt;Reload Plugins menu item
 does not work.</li>
@@ -3123,7 +3164,7 @@ failed</li>
 <li>Reloading a file that was changed by another application does not
 preserve column widths (#951)</li>
 </ul>
-<h3 id="image-compare-14">Image compare</h3>
+<h3 id="image-compare-16">Image compare</h3>
 <ul>
 <li>BugFix: Fix an issue where drag-and-drop of file would only work
 once.</li>
@@ -3145,7 +3186,7 @@ opening a project file containing multiple items with different filters.
 Windows 11 or later&quot; button is not enabled when another user has
 registered ShellExtension for Windows 11.</li>
 </ul>
-<h3 id="plugins-29">Plugins</h3>
+<h3 id="plugins-30">Plugins</h3>
 <ul>
 <li>BugFix: Plugin unpacked file extension problem
 (get_PluginUnpackedFileExtension) (#983)</li>
@@ -3165,7 +3206,7 @@ did not have MSVCP140.dll VCRUNTIME140*.dll installed.</li>
 <li>ShellExtension for Windows11: Disable Registry Write
 Virtualization</li>
 </ul>
-<h3 id="manual-9">Manual</h3>
+<h3 id="manual-10">Manual</h3>
 <ul>
 <li>Where to report documentation/help errors? (#1004)</li>
 </ul>
@@ -3224,7 +3265,7 @@ the Diff pane was not appropriate. (osdn.net #42862)</li>
 <li>Make &quot;Do not close this box&quot; checkbox in search window On by default
 (#941)</li>
 </ul>
-<h3 id="image-compare-15">Image compare</h3>
+<h3 id="image-compare-17">Image compare</h3>
 <ul>
 <li>BugFix: Duplicate menu shortcut in translations (#905)</li>
 <li>BugFix: Image comparison (winimerge #24)</li>
@@ -3239,7 +3280,7 @@ file.(#498) (PR #915)</li>
 <li>Add a feature to set items saved to or restored from the project
 file. (PR #953)</li>
 </ul>
-<h3 id="plugins-30">Plugins</h3>
+<h3 id="plugins-31">Plugins</h3>
 <ul>
 <li>New unpacker plugins:
 <ul>
@@ -3310,7 +3351,7 @@ double-clicking the file in the folder compare window. (PR #857)</li>
 <ul>
 <li>BugFix: Fixed an issue where window titles may not be updated</li>
 </ul>
-<h3 id="image-compare-16">Image compare</h3>
+<h3 id="image-compare-18">Image compare</h3>
 <ul>
 <li>winmerge shows (differences) rotated image (winmerge/winimerge
 #20)</li>
@@ -3327,12 +3368,12 @@ double-clicking the file in the folder compare window. (PR #857)</li>
 <li>Add preference option to clear &quot;Don&#39;t ask this question again&quot;
 CompareLargeFiles choice (#772, PR #859)</li>
 </ul>
-<h3 id="select-files-or-folders-dialog-5">Select Files or Folders
+<h3 id="select-files-or-folders-dialog-6">Select Files or Folders
 dialog</h3>
 <ul>
 <li>BugFix: Fix the Select Files or Folders dialog. (PR #882,#892)</li>
 </ul>
-<h3 id="plugins-31">Plugins</h3>
+<h3 id="plugins-32">Plugins</h3>
 <ul>
 <li>BugFix: CompareMSExcelFiles.sct: &quot;This picture only contains a
 bitmap&quot; was displayed when comparing Excel files that contain
@@ -3443,14 +3484,14 @@ because it referred to the uninitialized memory.)</li>
 <li>Made Unpacker plugins available for image compare and binary
 compare</li>
 </ul>
-<h3 id="image-compare-17">Image compare</h3>
+<h3 id="image-compare-19">Image compare</h3>
 <ul>
 <li>BugFix: Error on try to show differences between two different gif
 (#784)</li>
 <li>Made Unpacker plugins available for image compare and binary
 compare</li>
 </ul>
-<h3 id="plugins-32">Plugins</h3>
+<h3 id="plugins-33">Plugins</h3>
 <ul>
 <li>Improve plugin system (PR #797)
 <ul>
@@ -3563,7 +3604,7 @@ work if the active window was a binary compare window or an image
 compare window.</li>
 <li>BugFix: Only one pane was zoomed in/out in Ctrl+Mouse Wheel</li>
 </ul>
-<h3 id="image-compare-18">Image compare</h3>
+<h3 id="image-compare-20">Image compare</h3>
 <ul>
 <li>BugFix: Next File or Previous File button on the toolbar did not
 work if the active window was a binary compare window or an image
@@ -3580,7 +3621,7 @@ menu.</li>
 <ul>
 <li>BugFix: Fixed a rare crash when decompressing an archive file</li>
 </ul>
-<h3 id="plugins-33">Plugins</h3>
+<h3 id="plugins-34">Plugins</h3>
 <ul>
 <li>BugFix: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and
 DisplayXMLFiles (#755)</li>
@@ -3641,7 +3682,7 @@ Zip file.</li>
 <li>BugFix: The codepage specified in the Codepage dialog did not affect
 the files to be opened.</li>
 </ul>
-<h3 id="image-compare-19">Image compare</h3>
+<h3 id="image-compare-21">Image compare</h3>
 <ul>
 <li>BugFix: The image on the right does not open if the file exists only
 on the right (osdn.net #41721)</li>
@@ -3660,7 +3701,7 @@ in the &quot;Select Files or Folders&quot; window</li>
 <li>BugFix: Fix an issue where custom colors are not saved. (PR
 #648)</li>
 </ul>
-<h3 id="plugins-34">Plugins</h3>
+<h3 id="plugins-35">Plugins</h3>
 <ul>
 <li>RCLocalizationHelper: Fix memory leaks (PR #596)</li>
 </ul>
@@ -3764,7 +3805,7 @@ option for it (GitHub #537)</li>
 <ul>
 <li>Added File -&gt; New -&gt; Binary menu item</li>
 </ul>
-<h3 id="image-compare-20">Image compare</h3>
+<h3 id="image-compare-22">Image compare</h3>
 <ul>
 <li>Implement copy and paste images (GitHub PR #524)</li>
 <li>Added File -&gt; New -&gt; Image menu item</li>
@@ -3798,7 +3839,7 @@ option for it (GitHub #537)</li>
 <li>Russian (GitHub PR #494)</li>
 </ul></li>
 </ul>
-<h3 id="manual-10">Manual</h3>
+<h3 id="manual-11">Manual</h3>
 <ul>
 <li>Update manual (GitHub PR #497,#513,#546)</li>
 <li>Small tweaks for the Manual (GitHub PR #508)</li>
@@ -3905,7 +3946,7 @@ Generator dialog is opened by selecting multiple files. (GitHub PR
 <li>Turkish (GitHub PR #425)</li>
 </ul></li>
 </ul>
-<h3 id="manual-11">Manual</h3>
+<h3 id="manual-12">Manual</h3>
 <ul>
 <li>Update Shortcut_keys.xml (GitHub PR #430)</li>
 <li>Update manual (GitHub PR #485,#492)</li>
@@ -3947,7 +3988,7 @@ properly in 3-way folder compare (osdn.net #40672)</li>
 <li>CTRL+Drag folders now has the opposite behavior of the current
 Include Subfolders option</li>
 </ul>
-<h3 id="image-compare-21">Image compare</h3>
+<h3 id="image-compare-23">Image compare</h3>
 <ul>
 <li>BugFix: Fix scrolling glitches (GitHub WinMerge/winimerge PR
 #8)</li>
@@ -3996,7 +4037,7 @@ WinMerge/frhed PR #2)</li>
 <li>Russian (GitHub PR #387)</li>
 </ul></li>
 </ul>
-<h3 id="manual-12">Manual</h3>
+<h3 id="manual-13">Manual</h3>
 <ul>
 <li>Update manual for IgnoreCommentsC change (GitHub PR #384)</li>
 <li>Update Shortcut_keys.xml (GitHub PR #410)</li>
@@ -4059,7 +4100,7 @@ renaming a file</li>
 #331)</li>
 <li>added bin and obj directories to C# filter (GitHub PR #365)</li>
 </ul>
-<h3 id="image-compare-22">Image compare</h3>
+<h3 id="image-compare-24">Image compare</h3>
 <ul>
 <li>BugFix: Scrolling behavior when dragging images is wrong (osdn.net
 #40205)</li>
@@ -4076,7 +4117,7 @@ renaming a file</li>
 <li>BugFix: Pressing the [Compare/Binary] category button in the Options
 dialog twice will cause a crash. (osdn.net #40308)</li>
 </ul>
-<h3 id="plugins-35">Plugins</h3>
+<h3 id="plugins-36">Plugins</h3>
 <ul>
 <li>BugFix: Fix handling of line breaks in SortAscending, SortDescending
 (osdn.net PR #40266)</li>
@@ -4117,7 +4158,7 @@ scanning engines</li>
 <li>Turkish (GitHub PR #335,#336,#337,#338)</li>
 </ul></li>
 </ul>
-<h3 id="manual-13">Manual</h3>
+<h3 id="manual-14">Manual</h3>
 <ul>
 <li>Minor changes to translations README.md file (GitHub #289)</li>
 <li>Update winmerge.org URL to HTTPS, many small improvements (GitHub PR
@@ -4151,7 +4192,7 @@ pane (osdn.net #39924)</li>
 #39851)</li>
 <li>Add support for touchpad horizontal scroll (GitHub #254)</li>
 </ul>
-<h3 id="image-compare-23">Image compare</h3>
+<h3 id="image-compare-25">Image compare</h3>
 <ul>
 <li>BugFix: Support 16-bit images (GitHub WinMerge/winimerge issue
 #6)</li>
@@ -4187,7 +4228,7 @@ only on one side (GitHub #252)</li>
 <li>Spanish (GitHub #266)</li>
 </ul></li>
 </ul>
-<h3 id="manual-14">Manual</h3>
+<h3 id="manual-15">Manual</h3>
 <ul>
 <li>BugFix: Fix spelling of Git (GitHub #246)</li>
 <li>Update Configuration.xml (GitHub #262)</li>
@@ -4230,7 +4271,7 @@ Show Different Items menu item</li>
 #197)</li>
 <li>Limit the window flashing count. (GitHub #206)</li>
 </ul>
-<h3 id="image-compare-24">Image compare</h3>
+<h3 id="image-compare-26">Image compare</h3>
 <ul>
 <li>BugFix: Image compare breaks when zoomed too much with large
 pictures (GitHub #188)</li>
@@ -4265,7 +4306,7 @@ installer strings (GitHub #167)</li>
 <li>Update English.pot (#216)</li>
 <li>Add Japanese manual (GitHub #183)</li>
 </ul>
-<h3 id="manual-15">Manual</h3>
+<h3 id="manual-16">Manual</h3>
 <ul>
 <li>Small Manual tweaks (GitHub #190)</li>
 </ul>
@@ -4287,7 +4328,7 @@ report did not complete (Bitbucket #15)</li>
 <li>BugFix: Compare Statistics dialog: The number of diff folders was
 counted in the number of diff files</li>
 </ul>
-<h3 id="plugins-36">Plugins</h3>
+<h3 id="plugins-37">Plugins</h3>
 <ul>
 <li>BugFix: PrediffLineFilter.sct: Wrong encoding for settings dialog
 (Bitbucket #16)</li>
@@ -4344,7 +4385,7 @@ applications</li>
 <li>Supporting relative path in project file (Bitbucket #158)</li>
 <li>Allow multiple &lt;paths&gt; in project file</li>
 </ul>
-<h3 id="image-compare-25">Image compare</h3>
+<h3 id="image-compare-27">Image compare</h3>
 <ul>
 <li>BugFix: no message was displayed when file saving failed</li>
 <li>Implement Insertion/Deletion Detection<br />
@@ -4398,7 +4439,7 @@ behavior</li>
 <ul>
 <li>Improve icon display at 120DPI</li>
 </ul>
-<h3 id="image-compare-26">Image compare</h3>
+<h3 id="image-compare-28">Image compare</h3>
 <ul>
 <li>BugFix: Zoom In/Out shortcuts don&#39;t update zoom level in location
 pane (Bitbucket #149)</li>
@@ -4409,7 +4450,7 @@ pane (Bitbucket #149)</li>
 <li>Allow quoted filenames in &quot;Select Files or Folders&quot; (sf.net #1240,
 GitHub #137)</li>
 </ul>
-<h3 id="manual-16">Manual</h3>
+<h3 id="manual-17">Manual</h3>
 <ul>
 <li>Some tweaks for the manual (Bitbucket PR #35)</li>
 </ul>
@@ -4498,7 +4539,7 @@ install (Bitbucket #137)</li>
 <li>Update Japanese translation</li>
 <li>Remove now unneeded MergeLang.dll</li>
 </ul>
-<h3 id="manual-17">Manual</h3>
+<h3 id="manual-18">Manual</h3>
 <ul>
 <li>BugFix: Some fixes in the manual (GitHub #116)</li>
 <li>Bugifx: end of line documentation (sf.net #2211)</li>
@@ -4625,7 +4666,7 @@ line</li>
 <li>BugFix: Garbled text was copied to the clipboard when generating a
 report on the clipboard (sf.net#2200)</li>
 </ul>
-<h3 id="plugins-37">Plugins</h3>
+<h3 id="plugins-38">Plugins</h3>
 <ul>
 <li>Add PrediffLineFilter.sct plugin</li>
 <li>Make ignored lines by Prediffer plugin colored</li>
@@ -4672,7 +4713,7 @@ using &#39;Date&#39; compare method</li>
 <ul>
 <li>Add support for HiDPI screens (Github #54)</li>
 </ul>
-<h3 id="plugins-38">Plugins</h3>
+<h3 id="plugins-39">Plugins</h3>
 <ul>
 <li>CompareMSExcelFiles.sct: Add &quot;Compare headers and footers&quot; checkbox
 to settings dialog (sf.net#2102)</li>
@@ -4828,7 +4869,7 @@ files).(Bitbucket #1)</li>
 <li>Install binary file editor (frhed) component again by default</li>
 <li>Make binary file editor undoable</li>
 </ul>
-<h3 id="image-compare-27">Image Compare</h3>
+<h3 id="image-compare-29">Image Compare</h3>
 <ul>
 <li>Add image file compare/merge support</li>
 </ul>
@@ -4850,7 +4891,7 @@ UTF-8</li>
 <li>Accept drag&amp;dropped files or folders from various places like:
 Zip folder, FTP folder, Recycle bin, images in Web browser</li>
 </ul>
-<h3 id="plugins-39">Plugins</h3>
+<h3 id="plugins-40">Plugins</h3>
 <ul>
 <li>Introduce new plugin type FILE_FOLDER_PACK_UNPACKER which allows
 unpacking data in a file to multiple files in a folder</li>

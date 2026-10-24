@@ -32,14 +32,14 @@ WinMerge Help.
 WinMerge podrška
 ================
 Pitanja i sugestije o WinMerge? Pravo mjesto za to je WinMerge zajednički forum
-na https://forums.winmerge.org/. Programeri često čitaju i odgovaraju na pitanja.
+na https://github.com/WinMerge/winmerge/discussions. Programeri često čitaju i odgovaraju na pitanja.
 Koristite Open Discussion forum za opća WinMerge pitanja, kao npr., pitanja o
 korištenju. Koristite programerski forum za WinMerge programerska pitanja.
 
 Bugovi i željena svojstva
 =========================
 Kad nešto primijetite, pođite na Internet WinMerge forums, odaberite trackers:
-na https://project.winmerge.org/, i kliknite željeno s izbornika, npr. Bugs ili
+na https://github.com/WinMerge/winmerge/issues, i kliknite željeno s izbornika, npr. Bugs ili
 Feature Requests, i pregledajte već postojeća javljanja.
 
 Ako šaljete bug, molimo vas navedite broj WinMerge inačice koju koristite.

@@ -18,11 +18,11 @@ Voit myös selata WinMerge ohjeen HTML-versiota sivuilla https://manual.winmerge
 
 WinMerge tuki
 =============
-Kysymyksiä tai ehdotuksia WinMergestä? Hyvä paikka aloittaa on WinMerge yhteisön ilmoitustaulu https://forums.winmerge.org/. Kehittäjät lukevat ja vastaavat kysymyksiin molemmilla foorumeilla. Käytä avointa keskustelufoorumia yleisiin WinMerge-kysymyksiin, kuten kysymyksiä käytöstä. Käytä kehittäjien foorumia WinMergen tuotekehityskysymyksiin.
+Kysymyksiä tai ehdotuksia WinMergestä? Hyvä paikka aloittaa on WinMerge yhteisön ilmoitustaulu https://github.com/WinMerge/winmerge/discussions. Kehittäjät lukevat ja vastaavat kysymyksiin molemmilla foorumeilla. Käytä avointa keskustelufoorumia yleisiin WinMerge-kysymyksiin, kuten kysymyksiä käytöstä. Käytä kehittäjien foorumia WinMergen tuotekehityskysymyksiin.
 
 Viat ja ominaisuuspyynnöt
 =========================
-Jos ongelma ei ratkennut WinMerge-foorumeilla, tarkista projektin seuraajista: Siirry https://project.winmerge.org/ ja klikkaa linkkiä Trackers-valikosta ->Viat ja pyynnöt, jossa voit selata tai lähettää yksityiskohtia.
+Jos ongelma ei ratkennut WinMerge-foorumeilla, tarkista projektin seuraajista: Siirry https://github.com/WinMerge/winmerge/issues ja klikkaa linkkiä Trackers-valikosta ->Viat ja pyynnöt, jossa voit selata tai lähettää yksityiskohtia.
 
 Jos lähetät vikailmoituksen, ilmoita WinMergen versionumero raportissasi. Voit luoda kokoonpanolokin valitsemalla Ohje->Kokoonpano. Liitä kokoonpanoloki vikailmoitukseen; siinä on paljon hyödyllistä tietoa sovelluskehittäjille.
 

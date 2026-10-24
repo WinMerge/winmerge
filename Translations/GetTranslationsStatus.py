@@ -638,7 +638,7 @@ def main():
     status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.islu', 'InnoSetup'))
-    status.addProject(ReadmeProject('Docs/Readme', 'Docs/ReadMe.txt', 'Docs/Readme'))
+    status.addProject(ReadmeProject('Docs/Readme', '../Docs/Users/ReadMe.txt', 'Docs/Readme'))
     if 'xml' in args.format:
       status.writeToXmlFile('TranslationsStatus.xml')
     if 'html' in args.format:
