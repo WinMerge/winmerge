@@ -23,19 +23,19 @@ https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
 para ter a certeza que o Scripting Host está atualizado e não corrompido. 
 
 Suporte:
-Os programadores estão a responder às questões nos fóruns do WinMerge em Sourceforge.net:
-https://sourceforge.net/forum/?group_id=13216
+Os programadores estão a responder às questões nos fóruns do WinMerge em GitHub:
+https://github.com/WinMerge/winmerge/discussions
  
 Erros e pedidos de novos recursos: 
-Erros e pedidos de novos recursos devem ser enviados para a lista de erros e solicitações (RFE) em sourceforge.net.
+Erros e pedidos de novos recursos devem ser enviados para a lista de erros e solicitações (RFE) em GitHub.
  
 Lista de registo de erros (Bug tracker):
-https://sourceforge.net/tracker/?group_id=13216&atid=113216 
+https://github.com/WinMerge/winmerge/issues 
 Ao ser reportado um erro, por favor indique-nos a versão do WinMerge! 
 As versões do WinMerge 2.2.0 e posteriores podem criar um registo das configurações no menu Ajuda/Configurações. 
 Por favor, anexe o registo de configurações (como anexo de ficheiro) ao relatório de erros.
 
 Pedidos de novos recursos (RFE tracker):
-https://sourceforge.net/tracker/?group_id=13216&atid=363216
+https://github.com/WinMerge/winmerge/issues
 
 - A equipa do WinMerge!

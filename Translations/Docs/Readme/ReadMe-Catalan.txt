@@ -25,22 +25,22 @@ https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
 per tal d'assegurar-vos que el vostre Scripting Host està actualitzat i no corromput.
 
 Suport:
-Els desenvolupadors miren de respondre questions als forums del WinMerge a Sourceforge.net:
-https://sourceforge.net/forum/?group_id=13216
+Els desenvolupadors miren de respondre questions als forums del WinMerge a GitHub:
+https://github.com/WinMerge/winmerge/discussions
 
 Errors i peticions de característiques:
 Es recomana que envieu els errors i els suggeriments per a noves caracteristiques 
-als seguidors (trackers) d'errors i peticions de millores (RFE) a sourceforge.net.
+als seguidors (trackers) d'errors i peticions de millores (RFE) a GitHub.
 
 Seguidor d'errors (Bug tracker):
-https://sourceforge.net/tracker/?group_id=13216&atid=113216
+https://github.com/WinMerge/winmerge/issues
 En reportar un error, si us plau digueu-nos el número de versió del WinMerge!
 Les versions del WinMerge 2.2.0 i posteriors poden generar un registre de 
 configuració 'Configuration Log' des del menú Ajuda/Configuració. Adjunteu (com a 
 fitxer adjunt) a l'informe de l'error, conté molta informació util per als desenvolupadors.
 
 Seguidor de petició de millores (RFE tracker):
-https://sourceforge.net/tracker/?group_id=13216&atid=363216
+https://github.com/WinMerge/winmerge/issues
 
 
 Els desenvolupadors del WinMerge

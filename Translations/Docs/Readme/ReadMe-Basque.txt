@@ -29,7 +29,7 @@ https://manual.winmerge.org/.
 WinMerge Sostengua
 ================
 Galderarik edo iradokizunik WinMergeri buruz? Hasteko toki on bat WinMerge
-herkidego boletina da: https://forums.winmerge.org/. Garatzaileek sarri irakurtzen
+herkidego boletina da: https://github.com/WinMerge/winmerge/discussions. Garatzaileek sarri irakurtzen
 eta erantzuten dizkiete galderei bi eztabaidaguneetan. Erabili Ireki Eztabaida gunea
 WinMergeri buruzko galdera orokorrak egiteko. Erabili Garatzaile eztabaidagunea
 WinMergeren garapenari buruzko galderentzat.
@@ -37,7 +37,7 @@ WinMergeren garapenari buruzko galderentzat.
 Akatsak eta Eginkizun Eskabideak
 =========================
 Gairen bat konpondu gabe badago WinMerge eztabaidagunetan, egiaztatu egitasmo
-aztarnariak hona joz: https://project.winmerge.org/, eta klikatu Aztarnarien menuko 
+aztarnariak hona joz: https://github.com/WinMerge/winmerge/issues, eta klikatu Aztarnarien menuko 
 loturan, Akatsak eta Eginkizun Eskabideak, non gaiak bilatu edo aurkeztu ahal izango dituzun.
 
 Akats bat aurkezten baduzu, mesedez barneratu WinMerge bertsio zenbakia zure jakinarazpenean.
