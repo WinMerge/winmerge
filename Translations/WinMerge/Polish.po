@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-10-04 13:26+0000\n"
-"PO-Revision-Date: 2026-10-04 23:40+0000\n"
+"POT-Creation-Date: 2026-10-22 06:46+0000\n"
+"PO-Revision-Date: 2026-10-24 18:40+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -41,12 +41,12 @@ msgstr "Wybierz prawy\tCtrl+Shift+&2/Alt+&2"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_1ST
 #: Merge.rc:81 Merge.rc:104 Merge.rc:127 Merge.rc:142
 msgid "Choose Left for All Unresolved Conflicts"
-msgstr "Wybierz lewą wersję dla wszystkich nierozwiązanych konfliktów"
+msgstr "Wybierz lewy dla wszystkich nierozwiązanych konfliktów"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_3RD
 #: Merge.rc:82 Merge.rc:106 Merge.rc:128 Merge.rc:144
 msgid "Choose Right for All Unresolved Conflicts"
-msgstr "Wybierz prawą wersję dla wszystkich nierozwiązanych konfliktów"
+msgstr "Wybierz prawy dla wszystkich nierozwiązanych konfliktów"
 
 #. IDR_MERGEDOCTYPE, ID_AUTO_MERGE
 #: Merge.rc:83 Merge.rc:107 Merge.rc:129 Merge.rc:145 Merge.rc:953
@@ -101,7 +101,7 @@ msgstr "Wybierz prawy\tCtrl+Shift+&3/Alt+&3"
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_ALL_2ND
 #: Merge.rc:105 Merge.rc:143
 msgid "Choose Middle for All Unresolved Conflicts"
-msgstr "Wybierz środkową wersję dla wszystkich nierozwiązanych konfliktów"
+msgstr "Wybierz środkowy dla wszystkich nierozwiązanych konfliktów"
 
 #. IDR_POPUP_MERGERESULT_3WAY, ID_MERGE_RESULT_CHOOSE_1ST
 #: Merge.rc:125 Merge.rc:139
@@ -5871,7 +5871,7 @@ msgstr "Różnica %1 z %2"
 #: Merge.rc:4852
 #, c-format
 msgid "Diff. %1 of %2 (%3 ign.)"
-msgstr ""
+msgstr "Różnica %1 z %2 (%3 zignorowano)"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4853
@@ -5888,13 +5888,13 @@ msgstr "Znaleziono 1 różnicę"
 #: Merge.rc:4855
 #, c-format
 msgid "%1 Differences (%2 ign.)"
-msgstr ""
+msgstr "%1 Różnice (%2 zignorowano)"
 
 #. IDS_1_DIFF_FOUND_IGNORED_FMT
 #: Merge.rc:4856
 #, c-format
 msgid "1 Difference (%1 ign.)"
-msgstr ""
+msgstr "1 Różnica (%1 zignorowano)"
 
 #. IDS_NO_ERR_SEL_FMT
 #: Merge.rc:4857
@@ -7873,7 +7873,7 @@ msgstr "Zasoby"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5621
 msgid "Rich Text Format"
-msgstr ""
+msgstr "Format RTF"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5625
