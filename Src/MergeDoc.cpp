@@ -1638,7 +1638,26 @@ void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	const DiffList::DiffCounts counts = m_diffList.GetDiffCounts(GetCurrentDiff());
-	const String s = MergeTextFormatter::GetDiffStatusString(counts.currentSignificantIndex, counts.significant, counts.ignored);
+	String s = MergeTextFormatter::GetDiffStatusString(counts.currentSignificantIndex, counts.significant, counts.ignored);
+	const CurrentWordDiff& wordDiff = GetCurrentWordDiff();
+	if (wordDiff.nDiff == GetCurrentDiff() && counts.currentSignificantIndex >= 0 &&
+		wordDiff.nGroup >= 0 && wordDiff.nGroup < m_nGroups &&
+		wordDiff.nPane >= 0 && wordDiff.nPane < m_nBuffers &&
+		wordDiff.nWordDiffCount > 0)
+	{
+		CMergeEditView* pView = m_pView[wordDiff.nGroup][wordDiff.nPane];
+		if (pView != nullptr)
+		{
+			auto [ptStart, ptEnd] = pView->GetSelection();
+			if (EqualCurrentWordDiff(wordDiff.nPane, ptStart, ptEnd))
+			{
+				const size_t index = wordDiff.nWordDiff == static_cast<size_t>(-1) ? 0 : wordDiff.nWordDiff;
+				if (index < wordDiff.nWordDiffCount)
+					s += strutils::format_string2(_(" (Word %1 of %2)"),
+						strutils::to_str(index + 1), strutils::to_str(wordDiff.nWordDiffCount));
+			}
+		}
+	}
 	pCmdUI->SetText(s.c_str());
 }
 

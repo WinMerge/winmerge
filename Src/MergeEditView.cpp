@@ -1116,6 +1116,7 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 		_RPTF2(_CRT_ERROR, "Selected diff > diffcount (%d >= %d)",
 			nDiff, pd->m_diffList.GetSize());
 
+	pd->ClearCurrentWordDiffSelection();
 	SelectNone();
 	pd->SetCurrentDiff(nDiff);
 	ShowDiff(bScroll, bSelectText);
