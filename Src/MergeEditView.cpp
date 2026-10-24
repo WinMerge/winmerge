@@ -1126,6 +1126,11 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 	// notify either side, as it will notify the other one
 	pd->ForEachView ([&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
 	pd->OnResultPaneCurrentDiffChanged(nDiff);
+
+	// Select the first inline difference after block navigation, including
+	// the automatic selection on load and Alt+Up/Down navigation.
+	if (bScroll && !bSelectText && !pd->GetWordDiffArrayInDiffBlock(nDiff).empty())
+		pd->Showlinediff(this, false);
 }
 
 void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()
