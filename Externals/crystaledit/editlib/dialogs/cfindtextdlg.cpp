@@ -60,6 +60,7 @@ DoDataExchange (CDataExchange * pDX)
   CDialog::DoDataExchange (pDX);
   //{{AFX_DATA_MAP(CFindTextDlg)
   DDX_Control (pDX, IDC_EDIT_FINDTEXT, m_ctlFindText);
+  DDX_Control (pDX, IDC_EDIT_FIND_TABS, m_ctlTabs);
   DDX_Control (pDX, IDC_EDIT_WHOLE_WORD, m_ctlWholeWord);
   DDX_Check (pDX, IDC_EDIT_MATCH_CASE, m_bMatchCase);
   DDX_CBStringExact (pDX, IDC_EDIT_FINDTEXT, m_sText);
@@ -126,6 +127,9 @@ ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
 ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeSelected)
 ON_BN_CLICKED (IDC_EDIT_REGEXP, OnRegExp)
 ON_BN_CLICKED (IDC_EDIT_FINDPREV, OnFindPrev)
+ON_NOTIFY(TCN_SELCHANGE, IDC_EDIT_FIND_TABS, OnTabChanged)
+ON_BN_CLICKED(IDC_EDIT_MARK_ALL, OnMarkAll)
+ON_BN_CLICKED(IDC_EDIT_CLEAR_MARKS, OnClearMarks)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
 
@@ -134,7 +138,10 @@ END_MESSAGE_MAP ()
 
 void CFindTextDlg::OnOK ()
 {
-  FindText (1);
+  if (m_ctlTabs.GetCurSel() == 1)
+    OnMarkAll();
+  else
+    FindText (1);
 }
 
 void CFindTextDlg::OnFindPrev ()
@@ -169,6 +176,12 @@ OnInitDialog ()
 {
   LangTranslateDialog(m_hWnd);
   CDialog::OnInitDialog ();
+
+  m_ctlTabs.InsertItem(0, I18n::tr("Find").c_str());
+  if (m_pBuddy->CanMarkAll())
+    m_ctlTabs.InsertItem(1, LoadResString(IDS_FIND_TAB_MARK).c_str());
+  m_ctlTabs.SetCurSel(0);
+  UpdateTab();
 
   CMemComboBox::LoadSettings();
 
@@ -210,6 +223,39 @@ OnRegExp ()
   UpdateData (false);
 }
 
+void CFindTextDlg::UpdateTab()
+{
+  const bool marking = m_ctlTabs.GetCurSel() == 1;
+  GetDlgItem(IDOK)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
+  GetDlgItem(IDC_EDIT_FINDPREV)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
+  GetDlgItem(IDC_EDIT_MARK_ALL)->ShowWindow(marking ? SW_SHOW : SW_HIDE);
+  GetDlgItem(IDC_EDIT_CLEAR_MARKS)->ShowWindow(marking ? SW_SHOW : SW_HIDE);
+  GetDlgItem(IDC_FINDDLG_DONTWRAP)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
+  GetDlgItem(IDC_FINDDLG_DONTCLOSE)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
+}
+
+void CFindTextDlg::OnTabChanged(NMHDR*, LRESULT* pResult)
+{
+  UpdateTab();
+  *pResult = 0;
+}
+
+void CFindTextDlg::OnMarkAll()
+{
+  if (!UpdateData() || m_sText.IsEmpty())
+    return;
+  m_ctlFindText.FillCurrent();
+  const findtext_flags_t flags = (m_bMatchCase ? FIND_MATCH_CASE : 0) |
+    (m_bWholeWord ? FIND_WHOLE_WORD : 0) | (m_bRegExp ? FIND_REGEXP : 0);
+  m_pBuddy->MarkAll(m_sText, flags);
+  CMemComboBox::SaveSettings();
+}
+
+void CFindTextDlg::OnClearMarks()
+{
+  m_pBuddy->ClearAllMarks();
+}
+
 
 //
 // Update controls, enabling/disabling according to what's appropriate
@@ -219,6 +265,7 @@ UpdateControls()
 {
   GetDlgItem(IDOK)->EnableWindow( !m_sText.IsEmpty() );
   GetDlgItem(IDC_EDIT_FINDPREV)->EnableWindow( !m_sText.IsEmpty() );
+  GetDlgItem(IDC_EDIT_MARK_ALL)->EnableWindow(!m_sText.IsEmpty());
   
   UpdateRegExp();
 }

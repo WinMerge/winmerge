@@ -3487,6 +3487,16 @@ msgstr "&Suivant"
 msgid "Find &Prev"
 msgstr "&Précédent"
 
+#. IDD_EDIT_FIND, IDC_EDIT_MARK_ALL
+#: Merge.rc:2363
+msgid "&Mark All"
+msgstr ""
+
+#. IDD_EDIT_FIND, IDC_EDIT_CLEAR_MARKS
+#: Merge.rc:2364
+msgid "&Clear Marks"
+msgstr ""
+
 #. IDD_EDIT_REPLACE
 #: Merge.rc:2367
 msgid "Replace"
@@ -7938,6 +7948,11 @@ msgstr "Couleur du marqueur %d"
 #: Merge.rc:5466
 msgid "New Pattern"
 msgstr "Nouveau modèle"
+
+#. IDS_FIND_TAB_MARK
+#: Merge.rc:5467
+msgid "Mark"
+msgstr ""
 
 #. IDS_PLUGINSLIST_TYPE
 #: Merge.rc:5472
