@@ -177,7 +177,9 @@ OnInitDialog ()
   LangTranslateDialog(m_hWnd);
   CDialog::OnInitDialog ();
 
-  m_ctlTabs.InsertItem(0, I18n::tr("Find").c_str());
+  CString findTabTitle;
+  GetWindowText(findTabTitle);
+  m_ctlTabs.InsertItem(0, findTabTitle);
   if (m_pBuddy->CanMarkAll())
     m_ctlTabs.InsertItem(1, LoadResString(IDS_FIND_TAB_MARK).c_str());
   m_ctlTabs.SetCurSel(0);
