@@ -3885,6 +3885,16 @@ msgstr "Margines:"
 msgid "Search Marker:"
 msgstr "Znaleziony marker:"
 
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER4_COLOR_LABEL
+#: Merge.rc:2630
+msgid "Double Click Quick Search Marker:"
+msgstr "Marker po dwukrotnym kliknięciu:"
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER5_COLOR_LABEL
+#: Merge.rc:2631
+msgid "Temporary Tab Search Mark:"
+msgstr "Tymczasowy marker z karty Oznacz:"
+
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER1_COLOR_LABEL
 #: Merge.rc:2627
 msgid "User Defined Marker 1:"

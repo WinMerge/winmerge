@@ -3889,6 +3889,16 @@ msgstr "边缘："
 msgid "Search Marker:"
 msgstr "搜索标记："
 
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER4_COLOR_LABEL
+#: Merge.rc:2630
+msgid "Double Click Quick Search Marker:"
+msgstr ""
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER5_COLOR_LABEL
+#: Merge.rc:2631
+msgid "Temporary Tab Search Mark:"
+msgstr ""
+
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER1_COLOR_LABEL
 #: Merge.rc:2627
 msgid "User Defined Marker 1:"
