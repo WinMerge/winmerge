@@ -20,6 +20,8 @@ Please submit bug reports to our bug-tracker.
 
 * Keep an own recent comparison list (PR #3663)
 
+* Update darkmodelib to 0.77.1 and enable ARM64 support
+
 ### File compare
 
 * BugFix: Did not get line filter with Moved working (#3680, PR #3681)
@@ -58,6 +60,14 @@ Please submit bug reports to our bug-tracker.
 * Add side-specific filename, folder, and extension columns to folder
   comparison views. (PR #3682)
 
+### Image compare
+
+* BugFix: Fix image paste and undo handling (winimerge/#41)
+
+* Update FreeImage to 3.19.25
+
+* Extend destination canvas when copying image differences (winimerge/#42)
+
 ### Archive support
 
 * Update 7-Zip to 26.05.
@@ -75,10 +85,10 @@ Please submit bug reports to our bug-tracker.
   * French (PR #3670, PR #3693, PR #3705, PR #3722)
   * German (PR #3659, PR #3679, PR #3689, PR #3695, PR #3713, PR #3720)
   * Hungarian (PR #3669)
-  * Italian (PR #3666, PR #3688, PR #3698, PR #3711)
+  * Italian (PR #3666, PR #3688, PR #3698, PR #3711, PR #3728)
   * Korean (PR #3703, PR #3704)
   * Lithuanian (PR #3667, PR #3690, PR #3710, PR #3715)
-  * Polish (PR #3661, PR #3684, PR #3692, PR #3723)
+  * Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727)
   * Spanish (PR #3699, PR #3700)
   * Turkish (PR #3719)
 

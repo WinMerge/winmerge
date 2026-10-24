@@ -28,7 +28,8 @@ vertical-align: middle;
 <h2 id="winmerge-21660---2026-10-27">WinMerge 2.16.60 - 2026-10-27</h2>
 <h3 id="general">General</h3>
 <ul>
-<li>Keep an own recent comparison list (PR #3663)</li>
+<li><p>Keep an own recent comparison list (PR #3663)</p></li>
+<li><p>Update darkmodelib to 0.77.1 and enable ARM64 support</p></li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
@@ -67,6 +68,14 @@ list has no history. (PR #3663)</p></li>
 <li>Add side-specific filename, folder, and extension columns to folder
 comparison views. (PR #3682)</li>
 </ul>
+<h3 id="image-compare-1">Image compare</h3>
+<ul>
+<li><p>BugFix: Fix image paste and undo handling
+(winimerge/#41)</p></li>
+<li><p>Update FreeImage to 3.19.25</p></li>
+<li><p>Extend destination canvas when copying image differences
+(winimerge/#42)</p></li>
+</ul>
 <h3 id="archive-support">Archive support</h3>
 <ul>
 <li>Update 7-Zip to 26.05.</li>
@@ -88,10 +97,10 @@ comparison views. (PR #3682)</li>
 <li>German (PR #3659, PR #3679, PR #3689, PR #3695, PR #3713, PR
 #3720)</li>
 <li>Hungarian (PR #3669)</li>
-<li>Italian (PR #3666, PR #3688, PR #3698, PR #3711)</li>
+<li>Italian (PR #3666, PR #3688, PR #3698, PR #3711, PR #3728)</li>
 <li>Korean (PR #3703, PR #3704)</li>
 <li>Lithuanian (PR #3667, PR #3690, PR #3710, PR #3715)</li>
-<li>Polish (PR #3661, PR #3684, PR #3692, PR #3723)</li>
+<li>Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727)</li>
 <li>Spanish (PR #3699, PR #3700)</li>
 <li>Turkish (PR #3719)</li>
 </ul></li>
@@ -150,7 +159,7 @@ image comparison (PR #3537)</p></li>
 <li>Add column range filtering and ignore columns in comparison (PR
 #3565)</li>
 </ul>
-<h3 id="image-compare-1">Image compare</h3>
+<h3 id="image-compare-2">Image compare</h3>
 <ul>
 <li>Remember the image compare splitter position (PR #3593)</li>
 </ul>
@@ -436,7 +445,7 @@ to <code>C:\</code> (PR #3373)</p></li>
 <li><p>BugFix: &quot;Right only files&quot; missing when showing left/right only
 (#3378)</p></li>
 </ul>
-<h3 id="image-compare-2">Image compare</h3>
+<h3 id="image-compare-3">Image compare</h3>
 <ul>
 <li><p>BugFix: Image compare does not remember the state of the &quot;Blink&quot;
 toggle between sessions (#3368)</p></li>
@@ -526,7 +535,7 @@ parameter buil… (PR #3266)</p></li>
 SaveClosingDlg::ShowAndSave (PR #3256)</p></li>
 <li><p>Enable IME text reconversion in editor view (PR #3214)</p></li>
 </ul>
-<h3 id="image-compare-3">Image compare</h3>
+<h3 id="image-compare-4">Image compare</h3>
 <ul>
 <li><p>BugFix: Fix crash caused by OnClose being called twice in image
 compare window (PR #3255)</p></li>
@@ -671,7 +680,7 @@ package.</li>
 <li>BugFix: Fixed crash when an error occurs while opening files in the
 binary comparison window.</li>
 </ul>
-<h3 id="image-compare-4">Image compare</h3>
+<h3 id="image-compare-5">Image compare</h3>
 <ul>
 <li><p>[ImageCompare] Problems with unsupported formats (#3044)</p></li>
 <li><p>Update freeimage to 3.19.10</p></li>
@@ -1095,7 +1104,7 @@ status bar when using both Unpacker and Prediffer plugins.</li>
 (#2678)</li>
 <li>Update C syntax highlighting keyword list. (PR #2669)</li>
 </ul>
-<h3 id="image-compare-5">Image compare</h3>
+<h3 id="image-compare-6">Image compare</h3>
 <ul>
 <li>Rewrite English.pot, add JXL image extension (PR #2682)</li>
 </ul>
@@ -1451,7 +1460,7 @@ icon after Refresh (F5) (#2383)</li>
 <li>Replace - more intelligent choice of replace in (whole file vs
 selection) (#2368)</li>
 </ul>
-<h3 id="image-compare-6">Image compare</h3>
+<h3 id="image-compare-7">Image compare</h3>
 <ul>
 <li>BugFix: Image Comparison : In Alpha Animation, dialogs hang winmerge
 (#2370)</li>
@@ -1741,7 +1750,7 @@ search</li>
 <ul>
 <li>BugFix: Could not replace data at the end of the file</li>
 </ul>
-<h3 id="image-compare-7">Image compare</h3>
+<h3 id="image-compare-8">Image compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where the file name was not displayed in the
 header even after saving a newly created pane with a name.</li>
@@ -1765,7 +1774,7 @@ when comparing URLs that are file://.</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21636---2023-11-27">WinMerge 2.16.36 - 2023-11-27</h2>
-<h3 id="image-compare-8">Image compare</h3>
+<h3 id="image-compare-9">Image compare</h3>
 <ul>
 <li>BugFix: Fix an issue where opening read-only and multi-page image
 files would cause them to be treated as only one-page images.
@@ -1806,7 +1815,7 @@ restored when the window is resized.</li>
 <ul>
 <li>BugFix: V2.16.34 &quot;X86&quot; wired action (#2081)</li>
 </ul>
-<h3 id="image-compare-9">Image compare</h3>
+<h3 id="image-compare-10">Image compare</h3>
 <ul>
 <li>BugFix: Close main window with &#39;Esc&#39; if there is only one MDI child
 window (#2084)</li>
@@ -1864,7 +1873,7 @@ the Current Line&quot;. (#2050)</li>
 other than default and one file does not have an EOL of the last line
 and the other file has an EOL of the last line.</li>
 </ul>
-<h3 id="image-compare-10">Image compare</h3>
+<h3 id="image-compare-11">Image compare</h3>
 <ul>
 <li>BugFix: Fixed the issue where .png is added when saving even if the
 file format does not use a converter such as jpg or png file.</li>
@@ -2103,7 +2112,7 @@ not being syntax highlighted.</li>
 displayed in the ARM64 version.</li>
 <li>Modify the &quot;Go to&quot; dialog. (PR #1779)</li>
 </ul>
-<h3 id="image-compare-11">Image compare</h3>
+<h3 id="image-compare-12">Image compare</h3>
 <ul>
 <li>BugFix: Middle Click to close image tab crash (#1785)</li>
 <li>BugFix: Fixed an issue where the changed Color distance threshold
@@ -2199,7 +2208,7 @@ for the memory address your cursor is at (WinMerge/frhed #13)</li>
 <li>BugFix: Fixed an issue where an infinite loop occurred when the file
 size was truncated during file loading.</li>
 </ul>
-<h3 id="image-compare-12">Image compare</h3>
+<h3 id="image-compare-13">Image compare</h3>
 <ul>
 <li>BugFix: Fixed issue preventing saving image comparison reports to a
 network share</li>
@@ -2656,7 +2665,7 @@ highlighting&quot; (PR #1340)</li>
 <ul>
 <li>Allow the &quot;Split Vertically&quot; menu item to be unchecked.</li>
 </ul>
-<h3 id="image-compare-13">Image compare</h3>
+<h3 id="image-compare-14">Image compare</h3>
 <ul>
 <li>BugFix: Fix an issue where the pane was split vertically the next
 time the window was displayed, even though the &quot;Split Vertically&quot; menu
@@ -3075,7 +3084,7 @@ a regression (#1036)</li>
 #1051,#510)</li>
 <li>Please add a huge icon for &quot;Filter is active&quot; (#1056)</li>
 </ul>
-<h3 id="image-compare-14">Image compare</h3>
+<h3 id="image-compare-15">Image compare</h3>
 <ul>
 <li>Added support for creating multi-page image compare report (osdn.net
 #43374)</li>
@@ -3155,7 +3164,7 @@ failed</li>
 <li>Reloading a file that was changed by another application does not
 preserve column widths (#951)</li>
 </ul>
-<h3 id="image-compare-15">Image compare</h3>
+<h3 id="image-compare-16">Image compare</h3>
 <ul>
 <li>BugFix: Fix an issue where drag-and-drop of file would only work
 once.</li>
@@ -3256,7 +3265,7 @@ the Diff pane was not appropriate. (osdn.net #42862)</li>
 <li>Make &quot;Do not close this box&quot; checkbox in search window On by default
 (#941)</li>
 </ul>
-<h3 id="image-compare-16">Image compare</h3>
+<h3 id="image-compare-17">Image compare</h3>
 <ul>
 <li>BugFix: Duplicate menu shortcut in translations (#905)</li>
 <li>BugFix: Image comparison (winimerge #24)</li>
@@ -3342,7 +3351,7 @@ double-clicking the file in the folder compare window. (PR #857)</li>
 <ul>
 <li>BugFix: Fixed an issue where window titles may not be updated</li>
 </ul>
-<h3 id="image-compare-17">Image compare</h3>
+<h3 id="image-compare-18">Image compare</h3>
 <ul>
 <li>winmerge shows (differences) rotated image (winmerge/winimerge
 #20)</li>
@@ -3475,7 +3484,7 @@ because it referred to the uninitialized memory.)</li>
 <li>Made Unpacker plugins available for image compare and binary
 compare</li>
 </ul>
-<h3 id="image-compare-18">Image compare</h3>
+<h3 id="image-compare-19">Image compare</h3>
 <ul>
 <li>BugFix: Error on try to show differences between two different gif
 (#784)</li>
@@ -3595,7 +3604,7 @@ work if the active window was a binary compare window or an image
 compare window.</li>
 <li>BugFix: Only one pane was zoomed in/out in Ctrl+Mouse Wheel</li>
 </ul>
-<h3 id="image-compare-19">Image compare</h3>
+<h3 id="image-compare-20">Image compare</h3>
 <ul>
 <li>BugFix: Next File or Previous File button on the toolbar did not
 work if the active window was a binary compare window or an image
@@ -3673,7 +3682,7 @@ Zip file.</li>
 <li>BugFix: The codepage specified in the Codepage dialog did not affect
 the files to be opened.</li>
 </ul>
-<h3 id="image-compare-20">Image compare</h3>
+<h3 id="image-compare-21">Image compare</h3>
 <ul>
 <li>BugFix: The image on the right does not open if the file exists only
 on the right (osdn.net #41721)</li>
@@ -3796,7 +3805,7 @@ option for it (GitHub #537)</li>
 <ul>
 <li>Added File -&gt; New -&gt; Binary menu item</li>
 </ul>
-<h3 id="image-compare-21">Image compare</h3>
+<h3 id="image-compare-22">Image compare</h3>
 <ul>
 <li>Implement copy and paste images (GitHub PR #524)</li>
 <li>Added File -&gt; New -&gt; Image menu item</li>
@@ -3979,7 +3988,7 @@ properly in 3-way folder compare (osdn.net #40672)</li>
 <li>CTRL+Drag folders now has the opposite behavior of the current
 Include Subfolders option</li>
 </ul>
-<h3 id="image-compare-22">Image compare</h3>
+<h3 id="image-compare-23">Image compare</h3>
 <ul>
 <li>BugFix: Fix scrolling glitches (GitHub WinMerge/winimerge PR
 #8)</li>
@@ -4091,7 +4100,7 @@ renaming a file</li>
 #331)</li>
 <li>added bin and obj directories to C# filter (GitHub PR #365)</li>
 </ul>
-<h3 id="image-compare-23">Image compare</h3>
+<h3 id="image-compare-24">Image compare</h3>
 <ul>
 <li>BugFix: Scrolling behavior when dragging images is wrong (osdn.net
 #40205)</li>
@@ -4183,7 +4192,7 @@ pane (osdn.net #39924)</li>
 #39851)</li>
 <li>Add support for touchpad horizontal scroll (GitHub #254)</li>
 </ul>
-<h3 id="image-compare-24">Image compare</h3>
+<h3 id="image-compare-25">Image compare</h3>
 <ul>
 <li>BugFix: Support 16-bit images (GitHub WinMerge/winimerge issue
 #6)</li>
@@ -4262,7 +4271,7 @@ Show Different Items menu item</li>
 #197)</li>
 <li>Limit the window flashing count. (GitHub #206)</li>
 </ul>
-<h3 id="image-compare-25">Image compare</h3>
+<h3 id="image-compare-26">Image compare</h3>
 <ul>
 <li>BugFix: Image compare breaks when zoomed too much with large
 pictures (GitHub #188)</li>
@@ -4376,7 +4385,7 @@ applications</li>
 <li>Supporting relative path in project file (Bitbucket #158)</li>
 <li>Allow multiple &lt;paths&gt; in project file</li>
 </ul>
-<h3 id="image-compare-26">Image compare</h3>
+<h3 id="image-compare-27">Image compare</h3>
 <ul>
 <li>BugFix: no message was displayed when file saving failed</li>
 <li>Implement Insertion/Deletion Detection<br />
@@ -4430,7 +4439,7 @@ behavior</li>
 <ul>
 <li>Improve icon display at 120DPI</li>
 </ul>
-<h3 id="image-compare-27">Image compare</h3>
+<h3 id="image-compare-28">Image compare</h3>
 <ul>
 <li>BugFix: Zoom In/Out shortcuts don&#39;t update zoom level in location
 pane (Bitbucket #149)</li>
@@ -4860,7 +4869,7 @@ files).(Bitbucket #1)</li>
 <li>Install binary file editor (frhed) component again by default</li>
 <li>Make binary file editor undoable</li>
 </ul>
-<h3 id="image-compare-28">Image Compare</h3>
+<h3 id="image-compare-29">Image Compare</h3>
 <ul>
 <li>Add image file compare/merge support</li>
 </ul>
