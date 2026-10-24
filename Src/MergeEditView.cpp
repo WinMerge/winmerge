@@ -673,7 +673,7 @@ std::vector<LangServices::TEXTBLOCK> CMergeEditView::GetMarkerTextBlocks(int nLi
 
 void CMergeEditView::MarkAll(const CString& text, findtext_flags_t flags)
 {
-	GetDocument()->SetTemporaryMarker(_T("FIND_MARK"), text, flags, COLORINDEX_MARKERBKGND1);
+	GetDocument()->SetTemporaryMarker(_T("FIND_MARK"), text, flags, COLORINDEX_MARKERBKGND5);
 }
 
 void CMergeEditView::ClearAllMarks()
@@ -1651,7 +1651,7 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 			CString word;
 			GetText(start, end, word);
 			pd->SetAutoMarkerSourcePane(m_nThisPane);
-			pd->SetTemporaryMarker(_T("AUTO_SELECTION"), word, FIND_WHOLE_WORD, COLORINDEX_MARKERBKGND0);
+			pd->SetTemporaryMarker(_T("AUTO_SELECTION"), word, FIND_WHOLE_WORD, COLORINDEX_MARKERBKGND4);
 		}
 	}
 }
