@@ -17,6 +17,8 @@
 * BugFix: Fix AutoIt syntax highlighting for identifiers and nested comments
     (PR #3685)
 
+* BugFix: [BUG] Adjust the height of OutputPane will crash (#3733)
+
 * Add RTF syntax highlighting (PR #3686)
 
 * BugFix: Fix overlapping Tree-sitter highlight captures (PR #3718)
@@ -74,7 +76,7 @@
   * Italian (PR #3666, PR #3688, PR #3698, PR #3711, PR #3728)
   * Korean (PR #3703, PR #3704)
   * Lithuanian (PR #3667, PR #3690, PR #3710, PR #3715)
-  * Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727)
+  * Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727, PR #3730, PR #3731)
   * Spanish (PR #3699, PR #3700)
   * Turkish (PR #3719)
 
