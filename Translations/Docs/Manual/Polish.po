@@ -1,9 +1,7 @@
 # Polish translation of the WinMerge manual.
-# TŁUMACZENIE MASZYNOWE PRZEZ AI — WYMAGA WERYFIKACJI PRZEZ POLSKIEGO TŁUMACZA PRZED PUBLIKACJĄ.
-# MACHINE-TRANSLATED AI DRAFT — REQUIRES HUMAN REVIEW BEFORE PUBLICATION.
 # Copyright (C) WinMerge contributors
 # This file is distributed under the same license as the WinMerge package.
-# AI-generated draft, 2026. Human translator review required.
+# mLipok, 2026.
 #
 msgid ""
 msgstr ""
@@ -11,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-10-04 19:37+0900\n"
 "PO-Revision-Date: 2026-10-25 02:05+0100\n"
-"Last-Translator: AI-generated draft (human review required)\n"
+"Last-Translator: mLipok\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
