@@ -321,7 +321,7 @@ Status from **2026-10-25**:
    - [Skiff](mailto:skiffatsf%20at%20users.sourceforge.net)
    - [Michał Trzebiatowski](mailto:hippie_1968%20at%20hotmail.com)
    - Mirosław Żylewicz
-   - Michał Lipok
+   - [Michał Lipok](https://github.com/mlipok)
 
  * Portuguese
    - Nelson Simão
