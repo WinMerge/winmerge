@@ -1,3 +1,5 @@
+# This file is from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * Koko <kokokoko at giga.net.tw>
