@@ -61,9 +61,20 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 		return;
 	}
 
-	// Actually display selection areas on screen in both edit panels
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
+	const int nDiff = m_CurWordDiff.nDiff;
+	if (nDiff != GetCurrentDiff())
+	{
+		SetCurrentDiff(nDiff);
+		UpdateAllViews(pView);
+		OnResultPaneCurrentDiffChanged(nDiff);
+	}
+
+	// Keep the file panes and the Diff pane on the same inline difference.
+	ForEachView([&](auto& view) {
+		if (view->m_bDetailView)
+			view->OnDisplayDiff(nDiff);
+		HighlightDiffRect(view, rc[view->m_nThisPane]);
+	});
 }
 
 void CMergeDoc::AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed)
@@ -157,7 +168,8 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, std::pair<CEPoint, CEPoin
 	if (!worddiffs.empty())
 	{
 		bool bGoToNextWordDiff = true;
-		if (EqualCurrentWordDiff(nActivePane, ptStart, ptEnd))
+		if (m_CurWordDiff.nGroup == pView->m_nThisGroup &&
+			EqualCurrentWordDiff(nActivePane, ptStart, ptEnd))
 		{
 			nWordDiff = m_CurWordDiff.nWordDiff;
 		}
@@ -292,10 +304,12 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, std::pair<CEPoint, CEPoin
 	}
 
 	m_CurWordDiff.nPane = nActivePane;
+	m_CurWordDiff.nGroup = pView->m_nThisGroup;
 	m_CurWordDiff.ptStart = rc[nActivePane].first;
 	m_CurWordDiff.ptEnd = rc[nActivePane].second;
 	m_CurWordDiff.nDiff = nDiff;
 	m_CurWordDiff.nWordDiff = nWordDiff;
+	m_CurWordDiff.nWordDiffCount = worddiffs.empty() ? 1 : worddiffs.size();
 }
 
 void CMergeDoc::ClearWordDiffCache(int nDiff/* = -1 */)

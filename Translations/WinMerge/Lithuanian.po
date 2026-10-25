@@ -3627,13 +3627,13 @@ msgstr "Bendros"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
 #: Merge.rc:2467
-msgid "Automatically &scroll to first difference"
-msgstr "Automatiškai pa&slinkti prie pirmo skirtumo"
+msgid "Automatically &scroll to first difference (ALT + DOWN is used)"
+msgstr "Automatiškai pa&slinkti prie pirmo skirtumo (ALT + DOWN is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
 #: Merge.rc:2469
-msgid "Automatically s&croll to first inline difference"
-msgstr "Automatiškai pas&linkti prie pirmo skirtumo eilutėje"
+msgid "Automatically s&croll to first inline difference (F4 is used)"
+msgstr "Automatiškai pas&linkti prie pirmo skirtumo eilutėje (F4 is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2471
@@ -5865,6 +5865,11 @@ msgstr "  Paž: %d | %d"
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "Skirtumas %1 iš %2"
+
+#: MergeDoc.cpp:1656
+#, c-format
+msgid " (Word %1 of %2)"
+msgstr ""
 
 #. IDS_DIFF_NUMBER_STATUS_IGNORED_FMT
 #: Merge.rc:4852

@@ -115,6 +115,8 @@ struct CurrentWordDiff
 	int nPane;
 	CEPoint ptStart;
 	CEPoint ptEnd;
+	int nGroup = -1;
+	size_t nWordDiffCount = 0;
 };
 
 struct IDirDoc;
@@ -419,6 +421,7 @@ public:
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() const { return m_nCurDiff; }
 	const CurrentWordDiff& GetCurrentWordDiff() const { return m_CurWordDiff; }
+	void ClearCurrentWordDiffSelection() { m_CurWordDiff = { -1, static_cast<size_t>(-1), -1 }; }
 	bool EqualCurrentWordDiff(int nBuffer, const CEPoint& ptStart, const CEPoint& ptEnd) const
 	{
 		return (m_CurWordDiff.nPane == nBuffer && m_CurWordDiff.ptStart == ptStart && m_CurWordDiff.ptEnd == ptEnd);
