@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2026-10-25**:
+Status from **2026-10-26**:
 
 ## WinMerge
 
@@ -30,7 +30,7 @@ Status from **2026-10-25**:
 | Indonesian           |  1897 |       1820 |     0 |           77 |     95 % |  2026-09-15 |
 | Italian              |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-24 |
 | Japanese             |  1897 |       1897 |     0 |            0 |    100 % |  2026-05-25 |
-| Korean               |  1897 |       1894 |     0 |            3 |     99 % |  2026-10-19 |
+| Korean               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-25 |
 | Lithuanian           |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
 | Norwegian            |  1897 |        731 |     0 |         1166 |     38 % |             |
 | Persian              |  1897 |        642 |     0 |         1255 |     33 % |  2013-08-15 |
@@ -321,7 +321,7 @@ Status from **2026-10-25**:
    - [Skiff](mailto:skiffatsf%20at%20users.sourceforge.net)
    - [Michał Trzebiatowski](mailto:hippie_1968%20at%20hotmail.com)
    - Mirosław Żylewicz
-   - Michał Lipok
+   - [Michał Lipok](https://github.com/mlipok)
 
  * Portuguese
    - Nelson Simão

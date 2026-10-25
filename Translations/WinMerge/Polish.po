@@ -6,7 +6,7 @@
 # * Skiff <skiffatsf at users.sourceforge.net>
 # * Michał Trzebiatowski <hippie_1968 at hotmail.com>
 # * Mirosław Żylewicz
-# * Michał Lipok
+# * [Michał Lipok](https://github.com/mlipok)
 #
 msgid ""
 msgstr ""
