@@ -3627,13 +3627,13 @@ msgstr "Umum"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
 #: Merge.rc:2467
-msgid "Automatically &scroll to first difference"
-msgstr "Gulir otomati&s ke perbedaan pertama"
+msgid "Automatically &scroll to first difference (ALT + DOWN is used)"
+msgstr "Gulir otomati&s ke perbedaan pertama (ALT + DOWN is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
 #: Merge.rc:2469
-msgid "Automatically s&croll to first inline difference"
-msgstr "&Gulir otomatis ke perbedaan inline pertama"
+msgid "Automatically s&croll to first inline difference (F4 is used)"
+msgstr "&Gulir otomatis ke perbedaan inline pertama (F4 is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2471

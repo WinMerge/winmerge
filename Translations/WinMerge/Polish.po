@@ -3628,13 +3628,13 @@ msgstr "Ogólne"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
 #: Merge.rc:2467
-msgid "Automatically &scroll to first difference"
-msgstr "Przewiń automatycznie do pierw&szej różnicy"
+msgid "Automatically &scroll to first difference (ALT + DOWN is used)"
+msgstr "Przewiń automatycznie do pierw&szej różnicy (używany jest skrót Alt+↓)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
 #: Merge.rc:2469
-msgid "Automatically s&croll to first inline difference"
-msgstr "Przewiń automatycznie do pierwszej różnicy w wierszu"
+msgid "Automatically s&croll to first inline difference (F4 is used)"
+msgstr "Przewiń automatycznie do pierwszej różnicy w wierszu (używany jest klawisz F4)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2471

@@ -2464,9 +2464,9 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "General"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-    CONTROL         "Automatically &scroll to first difference",IDC_SCROLL_CHECK,
+    CONTROL         "Automatically &scroll to first difference (ALT + DOWN is used)",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,310,10
-    CONTROL         "Automatically s&croll to first inline difference",IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK,
+    CONTROL         "Automatically s&croll to first inline difference (F4 is used)",IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,310,10
     LTEXT           "Cl&ose windows with 'Esc':",IDC_STATIC,7,28,310,10
     COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,39,310,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP

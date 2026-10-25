@@ -3631,13 +3631,13 @@ msgstr "Yleinen"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
 #: Merge.rc:2467
-msgid "Automatically &scroll to first difference"
-msgstr "Siirry automaattisesti ensimmäiseen eroavuuteen"
+msgid "Automatically &scroll to first difference (ALT + DOWN is used)"
+msgstr "Siirry automaattisesti ensimmäiseen eroavuuteen (ALT + DOWN is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
 #: Merge.rc:2469
-msgid "Automatically s&croll to first inline difference"
-msgstr "Rullaa automaattisesti en&simmäiseen rivin sisäiseen eroon"
+msgid "Automatically s&croll to first inline difference (F4 is used)"
+msgstr "Rullaa automaattisesti en&simmäiseen rivin sisäiseen eroon (F4 is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2471

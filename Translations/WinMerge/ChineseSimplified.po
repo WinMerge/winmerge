@@ -3632,13 +3632,13 @@ msgstr "常规"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
 #: Merge.rc:2467
-msgid "Automatically &scroll to first difference"
-msgstr "自动滚动到第一处差异(&S)"
+msgid "Automatically &scroll to first difference (ALT + DOWN is used)"
+msgstr "自动滚动到第一处差异(&S) (ALT + DOWN is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
 #: Merge.rc:2469
-msgid "Automatically s&croll to first inline difference"
-msgstr "自动滚动到第一处行内差异(&C)"
+msgid "Automatically s&croll to first inline difference (F4 is used)"
+msgstr "自动滚动到第一处行内差异(&C) (F4 is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2471

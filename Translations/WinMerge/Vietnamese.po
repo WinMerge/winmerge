@@ -3631,13 +3631,13 @@ msgstr "Tổng quát"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
 #: Merge.rc:2467
-msgid "Automatically &scroll to first difference"
-msgstr "Tự động cuộn đến điểm khác biệt đầu tiên"
+msgid "Automatically &scroll to first difference (ALT + DOWN is used)"
+msgstr "Tự động cuộn đến điểm khác biệt đầu tiên (ALT + DOWN is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
 #: Merge.rc:2469
-msgid "Automatically s&croll to first inline difference"
-msgstr "Tự động cuộn đến khác biệt nội dòng đầu tiên"
+msgid "Automatically s&croll to first inline difference (F4 is used)"
+msgstr "Tự động cuộn đến khác biệt nội dòng đầu tiên (F4 is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2471
