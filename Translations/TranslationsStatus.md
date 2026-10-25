@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2026-10-25**:
+Status from **2026-10-26**:
 
 Last Update is the date of the latest Git commit affecting each file (or its PO metadata when Git history is unavailable).
 
@@ -24,14 +24,14 @@ Last Update is the date of the latest Git commit affecting each file (or its PO 
 | English              |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
 | Finnish              |  1897 |       1175 |     0 |          722 |     61 % |  2026-10-22 |
 | French               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-23 |
-| Galician             |  1897 |       1310 |     0 |          587 |     69 % |  2026-10-22 |
-| German               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-23 |
-| Greek                |  1897 |        607 |     0 |         1290 |     31 % |  2026-10-22 |
-| Hebrew               |  1897 |       1303 |     0 |          594 |     68 % |  2026-10-22 |
-| Hungarian            |  1897 |       1820 |     0 |           77 |     95 % |  2026-10-22 |
-| Indonesian           |  1897 |       1820 |     0 |           77 |     95 % |  2026-10-22 |
-| Italian              |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-25 |
-| Japanese             |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
+| Galician             |  1897 |       1310 |     0 |          587 |     69 % |  2023-11-24 |
+| German               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
+| Greek                |  1897 |        607 |     0 |         1290 |     31 % |             |
+| Hebrew               |  1897 |       1303 |     0 |          594 |     68 % |             |
+| Hungarian            |  1897 |       1820 |     0 |           77 |     95 % |  2021-03-15 |
+| Indonesian           |  1897 |       1820 |     0 |           77 |     95 % |  2026-09-15 |
+| Italian              |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-24 |
+| Japanese             |  1897 |       1897 |     0 |            0 |    100 % |  2026-05-25 |
 | Korean               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-25 |
 | Lithuanian           |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
 | Norwegian            |  1897 |        731 |     0 |         1166 |     38 % |  2026-10-22 |
