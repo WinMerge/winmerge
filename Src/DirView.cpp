@@ -4902,8 +4902,13 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 		if (lpC->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
 		{
 			*pResult = CDRF_NOTIFYPOSTPAINT;
-			if (m_bUseColors)
+			const int nRow = static_cast<int>(lpC->nmcd.dwItemSpec);
+			const bool selectedWithoutFocus = m_pList->GetItemState(nRow, LVIS_SELECTED) == LVIS_SELECTED
+				&& ::GetFocus() != m_pList->GetSafeHwnd();
+			if (m_bUseColors || selectedWithoutFocus)
 				*pResult |= CDRF_NOTIFYSUBITEMDRAW;
+			if (selectedWithoutFocus)
+				lpC->nmcd.uItemState &= ~CDIS_SELECTED;
 			return;
 		}
 
@@ -4911,6 +4916,19 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			if (m_bUseColors)
 				GetColors (static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
+			const int nRow = static_cast<int>(lpC->nmcd.dwItemSpec);
+			if (m_pList->GetItemState(nRow, LVIS_SELECTED) == LVIS_SELECTED
+				&& ::GetFocus() != m_pList->GetSafeHwnd())
+			{
+				const COLORREF highlight = ::GetSysColor(COLOR_HIGHLIGHT);
+				const COLORREF background = ::GetSysColor(COLOR_WINDOW);
+				lpC->clrTextBk = RGB((GetRValue(highlight) + 3 * GetRValue(background)) / 4,
+					(GetGValue(highlight) + 3 * GetGValue(background)) / 4,
+					(GetBValue(highlight) + 3 * GetBValue(background)) / 4);
+				lpC->clrText = ::GetSysColor(COLOR_WINDOWTEXT);
+				lpC->nmcd.uItemState &= ~CDIS_SELECTED;
+				*pResult = CDRF_NEWFONT;
+			}
 			return;
 		}
 
