@@ -69,6 +69,7 @@ BOOL PropGeneral::OnInitDialog()
 		{ I18n::tr("Options dialog|General|Auto-reload modified files","Disabled"), _("Only on window activated"), _("Immediately") });
 
 	OptionsPanel::OnInitDialog();
+	UpdateScrollToFirstInlineDiffEnabled();
 
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);
@@ -93,6 +94,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropGeneral, OptionsPanel)
 	//{{AFX_MSG_MAP(PropGeneral)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_BN_CLICKED(IDC_SCROLL_CHECK, OnScrollToFirstChanged)
 	ON_MESSAGE(WM_APP, OnLoadLanguages)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -123,6 +125,18 @@ void PropGeneral::OnDefaults()
 	SetCursorSelectForLanguage(lang);
 
 	UpdateData(FALSE);
+	UpdateScrollToFirstInlineDiffEnabled();
+}
+
+void PropGeneral::OnScrollToFirstChanged()
+{
+	UpdateScrollToFirstInlineDiffEnabled();
+}
+
+void PropGeneral::UpdateScrollToFirstInlineDiffEnabled()
+{
+	GetDlgItem(IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK)->EnableWindow(
+		IsDlgButtonChecked(IDC_SCROLL_CHECK) == BST_CHECKED);
 }
 
 LRESULT PropGeneral::OnLoadLanguages(WPARAM, LPARAM)

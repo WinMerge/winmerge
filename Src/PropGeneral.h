@@ -44,6 +44,7 @@ public:
 private:
 	// Implementation methods
 	void SetCursorSelectForLanguage(LANGID lang);
+	void UpdateScrollToFirstInlineDiffEnabled();
 
 // Overrides
 	// ClassWizard generate virtual function overrides
@@ -59,6 +60,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropGeneral)
 	afx_msg void OnDefaults() override;
+	afx_msg void OnScrollToFirstChanged();
 	afx_msg LRESULT OnLoadLanguages(WPARAM, LPARAM);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

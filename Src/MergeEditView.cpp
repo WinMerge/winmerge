@@ -1129,7 +1129,9 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 
 	// Select the first inline difference after block navigation, including
 	// the automatic selection on load and Alt+Up/Down navigation.
-	if (bScroll && !bSelectText && !pd->GetWordDiffArrayInDiffBlock(nDiff).empty())
+	if (bScroll && !bSelectText && GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST)
+		&& GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF)
+		&& !pd->GetWordDiffArrayInDiffBlock(nDiff).empty())
 		pd->Showlinediff(this, false);
 }
 
