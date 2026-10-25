@@ -4886,10 +4886,6 @@ LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
  */
 void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	if (!m_bUseColors) {
-		return;
-	}
-
 	LPNMLISTVIEW pNM = (LPNMLISTVIEW)pNMHDR;
 	*pResult = CDRF_DODEFAULT;
 
@@ -4905,13 +4901,28 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 
 		if (lpC->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
 		{
-			*pResult = CDRF_NOTIFYITEMDRAW;
+			*pResult = CDRF_NOTIFYPOSTPAINT;
+			if (m_bUseColors)
+				*pResult |= CDRF_NOTIFYSUBITEMDRAW;
 			return;
 		}
 
 		if (lpC->nmcd.dwDrawStage == (CDDS_ITEMPREPAINT | CDDS_SUBITEM ))
 		{
-			GetColors (static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
+			if (m_bUseColors)
+				GetColors (static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
+			return;
+		}
+
+		if (lpC->nmcd.dwDrawStage == CDDS_ITEMPOSTPAINT)
+		{
+			const int nRow = static_cast<int>(lpC->nmcd.dwItemSpec);
+			if (m_pList->GetItemState(nRow, LVIS_SELECTED) == LVIS_SELECTED)
+			{
+				CRect rect;
+				if (m_pList->GetItemRect(nRow, &rect, LVIR_BOUNDS))
+					CDC::FromHandle(lpC->nmcd.hdc)->Draw3dRect(rect, GetSysColor(COLOR_HIGHLIGHT), GetSysColor(COLOR_HIGHLIGHT));
+			}
 		}
 	}
 }
