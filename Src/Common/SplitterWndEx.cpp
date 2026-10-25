@@ -212,6 +212,7 @@ static void updateRatios(CSplitterWnd& wnd, int pane, int newpos, std::vector<in
 			wnd.GetRowInfo(i, sizes[i], min);
 		sum += sizes[i];
 	}
+	sum = std::max(sum, 1);
 	int sumratio = 0;
 	int i;
 	for (i = 0; i < pane; i++)
