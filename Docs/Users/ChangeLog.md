@@ -4,7 +4,8 @@
 
 ### General
 
-* Keep an own recent comparison list (PR #3663)
+* Keep an internal recent-comparison list when the Windows jump list has no
+  history. (PR #3663)
 
 * Update darkmodelib to 0.77.1 and enable ARM64 support
 
@@ -33,15 +34,14 @@
 
 * BugFix: Fix difference count in the status bar (#3649, PR #3707)
 
+* Fix status bar flickering by suppressing background erasure
+
 ### Select files or folders dialog
 
 * Open view: collapsible recent comparison list (PR #3673)
 
 * Add side-specific filename, folder, and extension columns to folder
   comparison views. (PR #3682)
-
-* Keep an internal recent-comparison list when the Windows jump list has no
-  history. (PR #3663)
 
 ### Folder compare
 
