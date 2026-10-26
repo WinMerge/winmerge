@@ -64,19 +64,25 @@
 
 * Set MiniMax presets to M3.1 Flash by default (PR #3709)
 
+### Installer
+
+* BugFix: Align Inno Setup 5 translations and fix Indonesian installer paths
+    (#3737)
+
 ### Translations
 
 * Translation updates:
   * Brazilian (PR #3665, PR #3687, PR #3672, PR #3697, PR #3708, PR #3717)
   * Chinese Simplified (PR #3660, PR #3691, PR #3694, PR #3712, PR #3721)
+  * Chinese Traditional (PR #3738)
   * Corsican (PR #3676)
   * French (PR #3670, PR #3693, PR #3705, PR #3722)
   * German (PR #3659, PR #3679, PR #3689, PR #3695, PR #3713, PR #3720)
   * Hungarian (PR #3669)
   * Italian (PR #3666, PR #3688, PR #3698, PR #3711, PR #3728)
-  * Korean (PR #3703, PR #3704)
+  * Korean (PR #3703, PR #3704, PR #3734)
   * Lithuanian (PR #3667, PR #3690, PR #3710, PR #3715)
-  * Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727, PR #3730, PR #3731)
+  * Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727, PR #3730, PR #3731, PR #3735)
   * Spanish (PR #3699, PR #3700)
   * Turkish (PR #3719)
 
@@ -86,6 +92,8 @@
   PR #3725)
 
 * Fix the ReadMe template path in the translation status script (PR #3724)
+
+* Show Git update dates and Inno Setup translation coverage (PR #3739)
 
 ## WinMerge 2.16.59 - 2026-10-04
 
@@ -133,7 +141,7 @@
 
 * Add an option to prefer the WIC decoder when loading images for image
     comparison (PR #3537)
-    
+
 * Add Save command to filepath bar context menuheader bar (PR #3654)
 
 * tree-sitter: php and f-sharp grammars update (PR #3656)
