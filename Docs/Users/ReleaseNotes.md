@@ -44,6 +44,12 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: WinIMerge x86 crashes with FreeImage plugins (winimerge/#43)
 
+* BugFix: Fix image paste and undo handling (winimerge/#41)
+
+* Update FreeImage to 3.19.25
+
+* Extend destination canvas when copying image differences (winimerge/#42)
+
 ### Status bar
 
 * BugFix: Fix difference count in the status bar (#3649, PR #3707)
@@ -61,14 +67,6 @@ Please submit bug reports to our bug-tracker.
 
 * Add side-specific filename, folder, and extension columns to folder
   comparison views. (PR #3682)
-
-### Image compare
-
-* BugFix: Fix image paste and undo handling (winimerge/#41)
-
-* Update FreeImage to 3.19.25
-
-* Extend destination canvas when copying image differences (winimerge/#42)
 
 ### Archive support
 
