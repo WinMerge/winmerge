@@ -151,9 +151,6 @@ Please submit bug reports to our bug-tracker.
 
 * Show the selection margin when adding a bookmark
 
-* Add an option to prefer the WIC decoder when loading images for image
-    comparison (PR #3537)
-
 * Add Save command to filepath bar context menuheader bar (PR #3654)
 
 * tree-sitter: php and f-sharp grammars update (PR #3656)
@@ -163,6 +160,9 @@ Please submit bug reports to our bug-tracker.
 * Add column range filtering and ignore columns in comparison (PR #3565)
 
 ### Image compare
+
+* Add an option to prefer the WIC decoder when loading images for image
+    comparison (PR #3537)
 
 * Remember the image compare splitter position (PR #3593)
 
