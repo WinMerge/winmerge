@@ -331,7 +331,7 @@ souhaitez pas modifier les éléments du côté gauche lors de la comparaison.</
     <varlistentry>
       <term><option>/wm</option></term>
       <listitem>
-        <para>Ouvre le panneau du milieu en lecture seule. Utilisez cette option lorsque
+        <para>Ouvre le volet du milieu en lecture seule. Utilisez cette option lorsque
 vous ne souhaitez pas modifier les éléments du milieu lors de la
 comparaison.</para>
       </listitem>
@@ -397,7 +397,7 @@ lors de comparaisons de longue durée.</para>
     <varlistentry>
       <term><option>/fm</option></term>
       <listitem>
-        <para>Place le focus sur le panneau du milieu au démarrage.</para>
+        <para>Place le focus sur le volet du milieu au démarrage.</para>
       </listitem>
     </varlistentry>
 
@@ -446,8 +446,8 @@ contenant des espaces.</para>
     <varlistentry>
       <term><option>/dm</option></term>
       <listitem>
-        <para>Spécifie une description dans la barre de titre du côté milieu, tout comme
-<option>/dl</option>.</para>
+        <para>Spécifie une description dans la barre de titre du volet du milieu, tout
+comme <option>/dl</option>.</para>
       </listitem>
     </varlistentry>
 
@@ -461,40 +461,40 @@ contenant des espaces.</para>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /al option</secondary>
+        <primary>Fusion à 3 voies</primary>
+        <secondary>fusion automatique avec l'option /al</secondary>
       </indexterm>
       <term><option>/al</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (merge target)  - middle
-(theirs) - right (base).</para>
+Fusion automatique au démarrage avec la disposition des volets : gauche
+(cible de la fusion) - milieu (leurs fichiers) - droite (base).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /am option</secondary>
+        <primary>Fusion à 3 voies</primary>
+        <secondary>fusion automatique avec l'option /am</secondary>
       </indexterm>
       <term><option>/am</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (theirs)  - middle (merge
-target) - right (mine).</para>
+Fusion automatique au démarrage avec une disposition des volets : gauche
+(leurs fichiers) – milieu (cible de la fusion) – droite (mes fichiers).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /ar option</secondary>
+        <primary>Fusion à 3 voies</primary>
+        <secondary>fusion automatique avec l'option /ar</secondary>
       </indexterm>
       <term><option>/ar</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
-- right (merge target).</para>
+Fusion automatique au démarrage avec disposition des volets : gauche (base)
+- milieu (leurs fichiers) - droite (cible de la fusion).</para>
       </listitem>
     </varlistentry>
 
@@ -534,7 +534,7 @@ identique, 1 : différent, 2 : erreur</para>
         <itemizedlist>
           <listitem><para><option>/ignorews:0</option> - n'ignore pas les différences d'espacement.</para></listitem>
           <listitem><para><option>/ignorews</option> ou <option>/ignorews:1</option> - ignore les
-changements dans les espaces blancs.</para></listitem>
+changements d'espacement.</para></listitem>
           <listitem><para><option>/ignorews:2</option> - ignore tous les caractères d'espacement.</para></listitem>
         </itemizedlist>
       </listitem>
@@ -675,8 +675,8 @@ gauche.</para>
     <varlistentry>
       <term><option><replaceable>chemin_milieu</replaceable></option></term>
       <listitem>
-        <para>Spécifie le dossier, le fichier ou le fichier de projet à ouvrir sur le côté
-milieu.</para>
+        <para>Spécifie le dossier, le fichier ou le fichier de projet à ouvrir dans le
+volet du milieu.</para>
       </listitem>
     </varlistentry>
 
@@ -737,11 +737,12 @@ fichiers dans la fenêtre de comparaison de fichiers. Cependant, si vous
 enregistrez l'un de ces fichiers, il est écrit sur le chemin de sortie,
 laissant les deux ou trois fichiers sources intacts.</para>
 
-        <para>In a three-way text comparison, specifying an output path also opens the
-Merge Result pane at the bottom of the File Compare window, where the merge
-result can be reviewed and edited before it is saved to the output path. See
-the Merge Result pane topic in <citetitle>Comparing and merging text
-files</citetitle>.</para>
+        <para>Lors d'une comparaison de texte à trois voies, la spécification d'un chemin
+de sortie ouvre également le volet Résultat de la fusion au bas de la
+fenêtre de comparaison de fichiers ; ce volet permet de vérifier et de
+modifier le résultat de la fusion avant de l'enregistrer à l'emplacement
+indiqué. Consultez la rubrique consacrée au volet Résultat de la fusion dans
+<citetitle>Comparaison et fusion de fichiers texte</citetitle>.</para>
 
         <para>Les systèmes de contrôle de version font généralement référence aux fichiers
 sources et résultats à l'aide de termes tels que

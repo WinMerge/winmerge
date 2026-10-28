@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_table">
+  <?target dbhh topicname="IDH_Compare_table" topicid ="004"?>
+
+  <title>Porównanie w formie tabeli</title>
+
+  <indexterm>
+    <primary>porównywanie plików</primary>
+
+    <secondary>stół</secondary>
+  </indexterm>
+
+  <para>W wersji 2.16.7 lub nowszej możliwe jest wyświetlanie i edytowanie plików
+wartości oddzielonych ogranicznikami, takich jak CSV i TSV, w formacie
+tabeli, takim jak arkusz kalkulacyjny.  Operacje edycyjne, przechodzenie do
+różnic i operacje łączenia w tym formacie są takie same, jak w normalnym
+oknie pliku tekstowego.</para>
+
+  <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
+      <phrase>Porównanie w formie tabeli</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <section id="Compare_files_in_table_format">
+    <title>Porównanie w formie tabeli<indexterm>
+        <primary>porównanie w formie tabeli</primary>
+      </indexterm></title>
+
+    <para>To, czy pliki będą otwierane w formacie tabeli, zależy od tego, czy nazwa
+pliku odpowiada zdefiniowanym wzorcom.  Domyślnie, jeśli plik ma
+rozszerzenie .csv lub .tsv, zostanie on otwarty w formacie tabeli.  Jeśli
+chcesz zmienić wzorce, określ to na stronie Porównanie/Tabela w oknie
+dialogowym Opcje.</para>
+
+    <para>Jeśli chcesz tymczasowo otworzyć go w formacie tabeli po otwarciu jako
+zwykły tekst, kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Porównaj ponownie jako</guimenuitem>
+<guimenuitem>Stół</guimenuitem> </menuchoice>.  Jeśli pojawi się okno
+dialogowe Tabela, wybierz typ pliku i kliknij <guilabel>OK</guilabel>.</para>
+    
+    <para>
+Jeśli chcesz tymczasowo otworzyć pliki otwarte w formacie tabeli jako zwykłe
+pliki tekstowe, kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Porównaj ponownie jako</guimenuitem>
+<guimenuitem>Tekst</guimenuitem> </menuchoice>.</para>
+  </section>
+
+  <section id="Table_settings">
+    <title>Ustawienia formatu tabeli<indexterm>
+        <primary>ustawienia formatu tabeli</primary>
+      </indexterm></title>
+
+    <para>
+Domyślnie dane w plikach tekstowych z wartościami oddzielonymi
+ogranicznikami są traktowane w następujący sposób<itemizedlist>
+        <listitem>
+          <para>Pliki CSV oddzielane są przecinkami, pliki TSV oddzielane są tabulatorami, a
+wartości są wyświetlane w kolumnach.</para>
+        </listitem>
+        <listitem>
+          <para>Jednakże znaki ogranicznika w cudzysłowie (podwójne cudzysłowy) są
+traktowane jako wartości.</para>
+        </listitem>
+        <listitem>
+          <para>Również znaki EOL (CR lub LF) w podanym zakresie są traktowane jako
+wartości.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <para>
+Jeśli chcesz zmienić powyższe ustawienia, możesz to zrobić na stronie
+Porównaj/Tabela w oknie dialogowym Opcje lub w oknie dialogowym tabeli,
+które pojawia się po kliknięciu <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Porównaj ponownie jako</guimenuitem>
+<guimenuitem>Stół</guimenuitem> </menuchoice>.  Zobacz <xref
+linkend="Configuration_compare_table" /> po szczegóły.</para>
+
+  </section>
+
+  <section id="Table_operations">
+    <title>Operacje specyficzne dla formatu tabeli<indexterm>
+        <primary>operacje specyficzne dla formatu tabeli</primary>
+      </indexterm></title>
+
+    <para>
+      <itemizedlist>
+        <listitem>
+          <para>Szerokość kolumny można zmienić, przeciągając granicę kolumny nagłówka
+kolumny.</para>
+        </listitem>
+        <listitem>
+          <para>Dwukrotne kliknięcie granicy kolumny w nagłówku kolumny automatycznie
+dostosowuje szerokość kolumny zgodnie z zawartością kolumny.</para>
+        </listitem>
+        <listitem>
+          <para>Tekst zaznacza się pionowo, przeciągając kolumnę w nagłówku kolumny.</para>
+        </listitem>
+        <listitem>
+          <para>
+Kiedy <menuchoice> <guimenu>Zobacz</guimenu> <guimenuitem>Zawijaj
+linie</guimenuitem> </menuchoice> element menu jest zaznaczony, tekst
+zostanie zawinięty w każdej kolumnie.  Zaznacz tę opcję menu, jeśli chcesz
+zobaczyć wartości pól wielowierszowych.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+  </section>
+
+</article>

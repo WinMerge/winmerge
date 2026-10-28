@@ -259,27 +259,28 @@ sont pas inclus)</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>1</keycap>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Maj</keycap> <keycap>1</keycap>
 </keycombo></entry>
 
-          <entry>Toggle left pane content for current or selected differences (Merge Result
-pane)</entry>
+          <entry>Basculer l'affichage du contenu du volet de gauche pour les différences
+actuelles ou sélectionnées (volet résultat de la fusion)</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>2</keycap>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Maj</keycap> <keycap>2</keycap>
 </keycombo></entry>
 
-          <entry>Toggle pane 2 content (right in two-way, middle in three-way)  for current
-or selected differences (Merge Result pane)</entry>
+          <entry>Basculer le contenu du volet 2 (à droite en mode bidirectionnel, au milieu
+en mode tridirectionnel) pour les différences actuelles ou sélectionnées
+(volet résultat de la fusion)</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>3</keycap>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Maj</keycap> <keycap>3</keycap>
 </keycombo></entry>
 
-          <entry>Toggle right pane content for current or selected differences (Merge Result
-pane)</entry>
+          <entry>Basculer l'affichage du contenu du volet de droite pour les différences
+actuelles ou sélectionnées (volet résultat de la fusion)</entry>
         </row>
 
         <row>

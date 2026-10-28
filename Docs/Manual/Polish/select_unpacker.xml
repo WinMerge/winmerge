@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "../Tools/dtd/docbookx.dtd">
+<section id="select-unpacker">
+  <title>Korzystanie z okna dialogowego Wybierz program rozpakowujący</title>
+
+  <orderedlist id="select-unpacker-proc">
+    <listitem>
+      <para>Skonfiguruj automatyczny wybór wtyczki lub wybierz wtyczkę ręcznie:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Aby użyć trybu automatycznego (który stosuje pierwszą dostępną wtyczkę),
+sprawdź to <guilabel>&lt;Automatyczny&gt;</guilabel> jest wyświetlany w
+<guilabel>Rozpakowywanie plików</guilabel> kontrola.</para>
+        </listitem>
+
+        <listitem>
+          <para>Aby wybrać inną wtyczkę (jeśli jest dostępna), użyj opcji
+<guilabel>Rozpakowywanie plików</guilabel> kontrolę nad wyborem wtyczki.</para>
+
+          <para>Domyślnie ta kontrolka wyświetla tylko sugerowane wtyczki dla typu pliku
+wybranego do porównania. Aby zobaczyć wszystkie dostępne wtyczki należy
+włączyć opcję, <guilabel>Wyświetl wszystkie programy pakujące, nie sprawdzaj
+rozszerzenia</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Aby uruchomić porównanie bez użycia wtyczki, wybierz
+<guimenuitem>&lt;Żadne&gt;</guimenuitem> w <guilabel>Rozpakowywanie
+plików</guilabel> kontrola.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>Kliknij <guibutton>OK</guibutton> aby zamknąć okno dialogowe Wybierz program
+rozpakowujący.</para>
+    </listitem>
+  </orderedlist>
+</section>

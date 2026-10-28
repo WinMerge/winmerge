@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Version_control">
+  <title>Używanie WinMerge z innymi narzędziami<indexterm>
+      <primary>integracja</primary>
+    </indexterm></title>
+
+  <para>Porównywanie i łączenie plików to często podzadania w większym procesie
+zarządzania zmianami. Z tego powodu WinMerge jest często używany nie tylko
+samodzielnie, ale także w połączeniu z innymi narzędziami. Ponadto narzędzia
+diff i merge zapewniają różne funkcje, dlatego czasami przydatne jest
+połączenie różnych narzędzi. W tym temacie opisano podstawowe metody
+używania WinMerge z innymi narzędziami.</para>
+
+  <section>
+    <title>Korzystanie z interfejsu wiersza poleceń (CLI)</title>
+
+    <para>Interfejs wiersza poleceń WinMerge (CLI), opisany w <xref
+linkend="Command_line" />, umożliwia uruchomienie WinMerge z okna wiersza
+poleceń, ze skryptów lub z innego narzędzia lub programu. Zasadniczo do
+uruchomienia operacji WinMerge można użyć dowolnego programu umożliwiającego
+wywołanie zewnętrznego pliku wykonywalnego z co najmniej jedną ścieżką.</para>
+
+    <para>Oto tylko kilka przykładów:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Plik wsadowy może uruchomić WinMerge i umożliwić użytkownikom interaktywne
+określanie parametrów:</para>
+
+        <literallayout>uruchom „WinMerge” /B „C:\Program Files\WinMerge\WinMergeU.exe” /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
+      </listitem>
+
+      <listitem>
+        <para>Klient Subversion umożliwia wywołanie zewnętrznego programu różnicowego i
+przekazanie parametrów, takich jak ten:</para>
+
+        <literallayout>$ svn diff --diff-cmd "C:\Program Files\WinMerge\WinMergeU.exe" -x "-dl -dr" mójplik </literallayout>
+      </listitem>
+    </itemizedlist>
+
+    <tip>
+      <para>Podobnie wiele narzędzi GUI (takich jak klienci kontroli wersji i IDE),
+które zawierają wbudowane narzędzia do porównywania, umożliwia zamiast tego
+skonfigurowanie WinMerge jako domyślnego narzędzia do porównywania. Następna
+sekcja opisuje, jak używać WinMerge w ten sposób z TortoiseSVN i Visual
+Studio Team Foundation Server. W przypadku innych narzędzi, takich jak
+Eclipse i Perforce, sprawdź ich dokumentację lub przeszukaj Internet w celu
+uzyskania szczegółów i przykładów.</para>
+    </tip>
+  </section>
+
+  <section id="VersionControl_vcs">
+    <title>Używanie WinMerge z systemami kontroli wersji<indexterm>
+        <primary>systemy kontroli wersji</primary>
+
+        <secondary>integracja z</secondary>
+      </indexterm></title>
+
+    <para>Możesz skonfigurować WinMerge do interakcji z kilkoma obsługiwanymi
+systemami kontroli wersji (VCS). W tej sekcji opisano integrację VCS i
+podano kilka przykładów.</para>
+
+    <section>
+      <title>Używanie WinMerge jako narzędzia różnicowego systemu kontroli wersji</title>
+
+      <indexterm>
+        <primary>Integracja z TortoiseSVN</primary>
+      </indexterm>
+
+      <para>Kiedy porównujesz pliki w TortoiseCVS, TortoiseSVN lub TortoiseGit, możesz
+sprawić, że VCS uruchomi WinMerge zamiast jego natywnego narzędzia
+porównywania. Niektóre z tych integracji możesz skonfigurować w trakcie
+<link linkend="Installing_usinginstaller">Instalacja WinMerge</link>.</para>
+
+      <example>
+        <title>Integracja z TortoiseSVN</title>
+
+        <para>Oto przykładowa operacja różnicowania w TortoiseSVN, która wykorzystuje
+integrację WinMerge. Integracja z TortoiseCVS i TortoiseGit jest podobna.</para>
+
+<orderedlist>
+          <listitem>
+            <para>W Eksploratorze Windows przejdź do kopii roboczej Subversion, którą
+pobrałeś.</para>
+          </listitem>
+
+          <listitem>
+            <para>Kliknij prawym przyciskiem myszy plik podlegający zarządzaniu Subversion
+(zwykle oznaczony wyraźną ikoną TortoiseSVN) i kliknij
+<guimenu>ŻółwSVN</guimenu> w menu kontekstowym.</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>Jeżeli plik nie został zmodyfikowany, menu kontekstowe zawiera skrót,
+<guimenuitem>Porównaj z poprzednią wersją</guimenuitem>. Polecenie to
+porównuje wyewidencjonowaną wersję pliku z poprzednią wersją, która została
+wpisana do repozytorium.</para>
+              </listitem>
+
+              <listitem>
+                <para>Jeśli zmodyfikowałeś plik, menu kontekstowe zawiera to samo
+<guimenuitem>Porównaj z poprzednią wersją</guimenuitem> skrót, plus
+<guimenuitem>Różnica</guimenuitem> skrót.  To polecenie porównuje Twoją
+wersję z wersją bieżącą (tą, którą pobrałeś). Jest to przydatne do
+przeglądania wprowadzonych zmian.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Wybierz albo <guimenuitem>Porównaj z poprzednią wersją</guimenuitem> lub
+<guimenuitem>Różnica</guimenuitem> skrót.  Otworzy się okno WinMerge z
+docelowymi wersjami plików załadowanymi w oknie Porównywanie plików.</para>
+          </listitem>
+        </orderedlist><para>The <menuchoice> <guimenu>ŻółwSVN</guimenu>
+<guimenuitem>Różnica</guimenuitem> </menuchoice> skrót jest dostępny do
+porównywania dowolnych dwóch plików w systemie plików, a nie tylko plików
+zarządzanych przez Subversion. Aby zilustrować, jak działa integracja
+WinMerge w tym przypadku:</para>
+
+<orderedlist>
+          <listitem>
+            <para>W Eksploratorze Windows przytrzymaj <keycap>Ctrl</keycap>, wybierz dowolne
+dwa pliki i kliknij prawym przyciskiem myszy.</para>
+          </listitem>
+
+          <listitem>
+            <para>Wybierz <menuchoice> <guimenu>ŻółwSVN</guimenu>
+<guimenuitem>Różnica</guimenuitem> </menuchoice> w menu kontekstowym.</para>
+
+            <para>Otworzy się okno WinMerge z wybranymi plikami załadowanymi w oknie
+Porównywanie plików.</para>
+          </listitem>
+        </orderedlist></example>
+
+      <example>
+        <title>Integracja z serwerem Visual Studio Team Foundation Server</title>
+
+        <para>Można ręcznie skonfigurować WinMerge jako domyślne narzędzie do użycia w
+programie Visual Studio w celu pokazania różnic w Team Foundation Server
+(TFS).  Inne systemy kontroli wersji można skonfigurować w bardzo podobny
+sposób.</para>
+
+<orderedlist>
+          <listitem>
+            <para>W programie Visual Studio przejdź do <menuchoice>
+<guimenu>Narzędzia</guimenu> <guimenuitem>Opcje...</guimenuitem>
+</menuchoice> menu.</para>
+          </listitem>
+		  
+          <listitem>
+            <para>Pod <menuchoice> <guimenu>Kontrola źródła</guimenu> </menuchoice>,
+znajdź<menuchoice> <guimenu> Serwer podstawowy zespołu Visual
+Studio</guimenu> </menuchoice> opcje.</para>
+          </listitem>
+		  
+          <listitem>
+            <para>Kliknij <guimenuitem>Skonfiguruj narzędzia użytkownika...</guimenuitem>
+przycisk.</para>
+          </listitem>
+
+          <listitem>
+            <para>Kliknij <guimenuitem>Dodaj...</guimenuitem> przycisk.</para>
+          </listitem>
+		  
+		  <listitem>
+            <mediaobject>
+<imageobject> <imagedata fileref="screenshots/tfs_configure.png"
+format="PNG" /> </imageobject></mediaobject>
+			<para>Wpisz następujące opcje w narzędziu konfiguracyjnym.</para>
+			<itemizedlist>
+              <listitem>
+                <para>Rozszerzenie: .*</para>
+              </listitem>
+
+              <listitem>
+                <para>Operacja: Porównaj</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>Polecenie: {Ścieżka do WinMerge}\WinMergeU.exe</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>Argumenty: /e /u /dl %6 /dr %7 %1 %2</para>
+              </listitem>
+            </itemizedlist>
+			<para>Gdzie {Path to WinMerge} to ścieżka, w której zainstalowano WinMerge.  Na
+powyższym zrzucie ekranu jest on zainstalowany w domyślnej ścieżce
+instalacyjnej C:\Program Files (x86)\WinMerge\WinMergeU.exe</para>
+			<para>Argumenty opisano poniżej <xref linkend="Command_line" />.</para>
+          </listitem>
+        </orderedlist><para>Za każdym razem, gdy powiesz TFS, aby porównał dwa pliki, użyje on teraz
+WinMerge.</para>
+      </example>
+    </section>
+  </section>
+</article>

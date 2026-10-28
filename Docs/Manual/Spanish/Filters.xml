@@ -1406,10 +1406,11 @@ matriz de enteros. Ejemplo: <literal>lineCount(Content)</literal></para></listit
 <replaceable>inicio</replaceable>, <replaceable>recuento</replaceable>)</term>
               <listitem>
                 <para>
-Extracts the specified number of lines starting from the given line index in
-the file content or file content array, and returns them as a single
-concatenated string.  If <replaceable>content</replaceable> is an array, the
-result is an array of strings.</para>
+Extrae el número especificado de líneas a partir del índice de línea
+indicado en el contenido del archivo o en la matriz de contenido del archivo
+y las devuelve como una única cadena concatenada. Si
+<replaceable>contenido</replaceable> es una matriz, el resultado es una
+matriz de cadenas.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -2419,7 +2420,7 @@ línea coincide con la expresión.</para>
   </section>
 
   <section id="Filters_DisplayLineFilter">
-    <title>Uso de la pestaña "Filtros de línea"<indexterm>
+    <title>Uso del filtro de líneas de visualización<indexterm>
         <primary>filtros de línea de muestra</primary>
       </indexterm></title>
 
@@ -2910,23 +2911,26 @@ modificados durante la última semana</para></listitem>
   </section>
 
   <section id="Filters_LineFilterPluginPipeline">
-    <title>Using filter expressions in plugin pipelines</title>
+    <title>Uso de expresiones de filtro en los flujos de trabajo de los complementos</title>
 
-    <para>Starting with version 2.16.59, filter expressions can be used as items in
-plugin pipelines by prefixing them with <literal>le:</literal>. For example:</para>
+    <para>A partir de la versión 2.16.59, las expresiones de filtro pueden utilizarse
+como elementos en las secuencias de procesamiento de los complementos
+añadiéndoles el prefijo <literal>le:</literal>. Por ejemplo:</para>
 
     <synopsis>le:toUpper(Line)|SortAscending</synopsis>
 
-    <para>See <xref linkend="FilterExpression_Syntax" /> for available filter
-expression functions and operators.</para>
+    <para>Consulte <xref linkend="FilterExpression_Syntax" /> para conocer las
+funciones y los operadores disponibles para las expresiones de filtro.</para>
 
-    <para>When filter expressions are used in plugin pipelines, they operate on a
-single line at a time (a scalar value), which differs from display line
-filters.  In display line filters, attributes like <literal>Line</literal>
-represent pairs of values (left and right sides being compared), typically
-expressed as arrays like <literal>[Left, Right]</literal>. In plugin
-pipelines, the same attributes like <literal>Line</literal> are scalar
-values representing the current line being processed.</para>
+    <para>Cuando se utilizan expresiones de filtro en las secuencias de procesamiento
+de complementos, estas actúan sobre una sola línea cada vez (un valor
+escalar), lo que difiere de los filtros de línea de visualización.  En los
+filtros de línea de visualización, atributos como <literal>Line</literal>
+representan pares de valores (se comparan los lados izquierdo y derecho),
+que suelen expresarse como matrices del tipo <literal>[Left,
+Right]</literal>. En las cadenas de procesamiento de complementos, los
+mismos atributos, como <literal>Line</literal>, son valores escalares que
+representan la línea actual que se está procesando.</para>
   </section>
 
   <section id="Filters_SubstitutionFilter">
@@ -3017,7 +3021,7 @@ diálogo. Ábralo mediante <menuchoice><guimenu>Ver</guimenu>
     </variablelist>
 
     <section id="Filters_FileFiltersTab">
-      <title>Uso de la pestaña "Filtros de archivos"<indexterm>
+      <title>Uso de la pestaña "Filtros de archivo"<indexterm>
           <primary>filtros de archivos</primary>
 
           <secondary>habilitar</secondary>
@@ -3281,7 +3285,7 @@ su estado: <computeroutput>passed</computeroutput> o
     </section>
 
     <section id="Filters_LineFiltersTab">
-      <title>Uso de la pestaña "Filtros de líneas"<indexterm>
+      <title>Uso de la pestaña "Filtros de línea"<indexterm>
           <primary>filtros de línea</primary>
 
           <secondary>habilitar</secondary>

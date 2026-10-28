@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Quick_start">
+  <title>Szybki start</title>
+
+  <section>
+    <title><indexterm>
+        <primary>Rozpoczęcie pracy z WinMerge</primary>
+      </indexterm><indexterm>
+        <primary>wybieranie plików i folderów</primary>
+
+        <secondary>zaczynać</secondary>
+      </indexterm>Wybieranie plików i folderów do porównania</title>
+
+    <para>Po zainstalowaniu WinMerge przejdź przez procedurę i dyskusje w tym temacie,
+aby poznać podstawowe operacje i koncepcje WinMerge.  Przedstawione metody
+nie są jedynymi sposobami wykonania danej czynności: zazwyczaj każde zadanie
+można wykonać na kilka sposobów. Kiedy skończysz, możesz przejść do poznania
+innych metod i bardziej zaawansowanych umiejętności, które są omówione w
+innych tematach pomocy.</para>
+
+    <section>
+      <title><indexterm><primary>Okno WinMerge</primary></indexterm>Otwórz okno WinMerge</title>
+
+      <para>Oto niektóre metody, których możesz użyć:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Kliknij dwukrotnie skrót na pulpicie WinMerge.</para>
+        </listitem>
+
+        <listitem>
+          <para>Przejdź do programu uruchamiającego WinMerge w menu Start.</para>
+        </listitem>
+
+        <listitem>
+          <para>W oknie wiersza poleceń przejdź do folderu instalacyjnego WinMerge i
+wprowadź <command>WinMergeU</command>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Naciśnij <keycombo><keycap>Okna</keycap><keycap>R</keycap></keycombo> i
+wejdź <command>winmerge</command>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Otwórz <guilabel>Wybierz Pliki lub Foldery</guilabel> okno dialogowe</title>
+
+      <para>W oknie WinMerge użyj następujących metod, aby otworzyć plik
+<guilabel>Wybierz Pliki lub Foldery</guilabel> okno dialogowe:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Kliknij
+<menuchoice><guimenu>Plik</guimenu><guimenuitem>Otwórz</guimenuitem></menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>Przycisk otwierania WinMerge</phrase></textobject>
+            </inlinemediaobject> Przycisk Otwórz pasek
+narzędzi.</para>
+        </listitem>
+
+        <listitem>
+          <para>Naciśnij <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title><indexterm><primary>Wybierz okno dialogowe Pliki lub Foldery</primary></indexterm> The <guilabel>Wybierz Pliki lub
+Foldery</guilabel> okno dialogowe</title>
+
+      <para>
+<mediaobject>
+<imageobject> <imagedata fileref="screenshots/OpenDlg1.png" format="PNG" />
+</imageobject><textobject>
+            <phrase>Wybierz okno Pliki lub Foldery</phrase>
+          </textobject>
+        </mediaobject></para>
+
+      <section>
+        <title>Określ pliki i foldery</title>
+
+        <para>w <guilabel>1</guilabel> i <guilabel>2</guilabel> pola, określ pliki i
+foldery do porównania. Użyj dowolnej z tych metod:</para>
+
+        <para><itemizedlist>
+            <listitem>
+              <para>Wprowadź nazwy ścieżek bezpośrednio w polach.</para>
+            </listitem>
+
+            <listitem>
+              <para>Kliknij <guibutton>Przeglądaj</guibutton> przycisk, aby przejść do żądanej
+ścieżki.</para>
+
+              <para>W oknie dialogowym Otwórz tekst <literal>Folder Selection</literal>, jest
+początkowo wyświetlany w <guilabel>Nazwa pliku</guilabel> pole. Twój wybór
+zależy od rodzaju porównania, które chcesz przeprowadzić:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Jeśli porównujesz pliki, wybierz plik docelowy. The <literal>Folder
+Selection</literal> tekst zostanie nadpisany wybranym przez Ciebie tekstem.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Jeśli porównujesz foldery, otwórz folder docelowy; nie wybieraj pliku. The
+<literal>Folder Selection</literal> tekst pozostaje na swoim miejscu.</para>
+                </listitem>
+              </itemizedlist>
+
+              <para>Kliknij <guibutton>Otwórz</guibutton> aby zamknąć okno dialogowe Otwórz i
+załadować swój wybór do pliku <guilabel>1</guilabel> lub
+<guilabel>2</guilabel> pole. Jeśli określono foldery, pole zawiera ukośnik
+odwrotny ( \ ) na końcu ścieżki.</para>
+            </listitem>
+
+            <listitem>
+              <para>Kliknij pole kombi i wybierz poprzednio używaną ścieżkę.</para>
+
+              <tip>
+                <para>Aby ułatwić wybieranie często używanych ścieżek, rozważ włączenie opcji
+<guilabel>Automatyczne uzupełnianie w otwartym oknie dialogowym</guilabel>
+opcja. Dzięki tej opcji WinMerge wyświetla listę dostępnych ścieżek podczas
+wpisywania w polach. Widzieć <xref linkend="Configuration" /> po szczegóły.</para>
+              </tip>
+              <para></para>
+            </listitem>
+
+            <listitem>
+              <para>Przeciągnij i upuść plik lub folder do okna dialogowego lub pliku
+<guilabel>1</guilabel> lub <guilabel>2</guilabel> pole.</para>
+            </listitem>
+          </itemizedlist></para>
+
+        <para><note><para>Do porównania możesz wybrać tylko jedną parę plików lub jedną parę
+folderów. Jeśli wybierzesz plik i folder lub jeśli jeden z plików lub
+folderów nie zostanie znaleziony, WinMerge wyłączy tę opcję
+<guibutton>Porównaj</guibutton> przycisk w oknie dialogowym.</para>
+
+            <para>Komunikat o statusie na dole okna dialogowego informuje również, jeśli jedna
+ze ścieżek jest nieprawidłowa.</para>
+</note></para>
+      </section>
+
+      <section>
+        <title>Kontroluj zakres porównań folderów</title>
+
+        <para>Jeśli porównujesz foldery, możesz użyć metody <guilabel>Filtruj</guilabel>
+pole, aby wyeliminować niektóre pliki z operacji. Pole określa podzbiór
+plików w wybranych ścieżkach, które mają zostać uwzględnione; wszystkie
+nieokreślone pliki są wykluczone.</para>
+
+        <para>Możesz wprowadzić maski plików, aby filtrować pliki z określonymi
+rozszerzeniami.  Na przykład to wyrażenie obejmuje tylko pliki źródłowe C i
+C++; wszystkie inne typy plików zostaną wyeliminowane z Twojego wyboru.</para>
+
+        <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
+
+        <para>Aby uzyskać bardziej niezawodne filtrowanie, wprowadź plik filtra zamiast
+masek plików: kliknij <guibutton>Wybierz</guibutton> przycisk obok
+<guilabel>Filtry</guilabel> pole do wyboru z listy dostępnych
+filtrów. Filtry plików zawierają dowolną liczbę reguł umożliwiających
+uwzględnianie lub wykluczanie plików. WinMerge instaluje zestaw plików
+filtrów, które możesz edytować lub rozszerzać o własne pliki.</para>
+
+        <para>Zobacz <xref linkend="Filters" /> aby uzyskać szczegółowe informacje na
+temat masek plików i plików filtrów.</para>
+
+        <para>The <guilabel>Uwzględnij podfoldery</guilabel> pole wyboru zapewnia inny
+sposób kontrolowania zakresu porównań folderów. Jeśli zaznaczysz tę opcję,
+WinMerge rekurencyjnie porównuje podfoldery i wyświetla wszystkie znalezione
+pliki i foldery w jednym widoku. Jeśli wyłączysz tę opcję, porównywany
+będzie tylko bieżący folder, a podfoldery będą wyświetlane według nazw (bez
+ich zawartości), dzięki czemu będziesz mógł je przeglądać.</para>
+      </section>
+
+      <section>
+        <title>Użyj wtyczek Unpacker</title>
+        <para>Pole Unpacker umożliwia wykonywanie operacji porównywania na wtyczkach.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Inne sposoby otwierania plików i folderów<indexterm>
+          <primary>pliki projektu</primary>
+        </indexterm><indexterm>
+          <primary>wiersz poleceń</primary>
+
+          <secondary>otwieranie plików i folderów</secondary>
+        </indexterm></title>
+
+      <para>The <guilabel>Wybierz Pliki lub Foldery</guilabel> okno dialogowe to główny
+interfejs do otwierania plików i folderów. Ale możesz też użyć wielu innych
+sposobów:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><xref linkend="OpenPaths_project" /> to najłatwiejszy i najszybszy sposób
+otwierania często używanych ścieżek.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><xref linkend="OpenPaths_shell-integ" />.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Skorzystaj z <xref linkend="Command_line" /> interfejs umożliwiający
+uruchomienie WinMerge z innych aplikacji, z wiersza poleceń, z pliku
+wsadowego lub skryptu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Przeciągnij i upuść pliki i foldery bezpośrednio do okna WinMerge lub na
+skrót na pulpicie WinMerge.</simpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section>
+    <title><indexterm>
+        <primary>porównywanie folderów</primary>
+
+        <secondary>zaczynać</secondary>
+      </indexterm><indexterm>
+        <primary>Okno porównywania folderów</primary>
+
+        <secondary>zaczynać</secondary>
+      </indexterm>Porównywanie folderów</title>
+
+    <para>Jeśli w oknie dialogowym Otwórz wybrałeś dwa foldery, zostanie otwarte okno
+Porównaj foldery. Okno Porównanie folderów to tabelaryczna lista elementów
+znalezionych w porównywanych folderach. W każdym wierszu wyświetlane są
+informacje o znalezionym pliku, z nazwą pliku w lewej kolumnie i dodatkowymi
+informacjami w pozostałych kolumnach:</para>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>Okno porównywania folderów</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>WinMerge nie ma koncepcji <wordasword>oryginał</wordasword> i
+<wordasword>zmieniony</wordasword> strony. Zamiast tego po prostu pokazuje
+różnicę między dwoma wybranymi folderami. Plik lub folder znaleziony tylko
+po jednej stronie jest po prostu pokazywany na tej stronie jako unikalny
+element, a nie jako dodany lub usunięty. Na przykład w <guilabel>Wynik
+porównania </guilabel>kolumna poprzedniego rysunku,
+<filename>Merge.aps</filename> i <filename>Merge.rc.bak</filename> znajdują
+się tylko w jednym z porównywanych folderów.</para>
+
+    <para>Za pomocą narzędzia możesz zarządzać plikami i folderami na wiele sposobów
+<guimenu>Połącz</guimenu> menu, przyciski paska narzędzi lub menu
+kontekstowe (kliknięcie prawym przyciskiem myszy). Najważniejszą czynnością
+jest uczynienie plików lub folderów identycznymi po obu stronach poprzez
+wybranie jednego z kilku elementów Kopiuj. Po skopiowaniu pliku lub folderu
+na drugą stronę wartość Wynik porównania zmienia się na
+<literal>Identical</literal>.</para>
+
+    <para>Jeśli plik lub folder istnieje po obu stronach (i nie jest to plik binarny),
+można go otworzyć w celu porównania plików, korzystając z jednej z
+następujących metod:<itemizedlist>
+        <listitem>
+          <simpara>Kliknij <menuchoice> <guimenuitem>Porównaj</guimenuitem>
+<guimenuitem>Połącz</guimenuitem> </menuchoice> w menu WinMerge.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Kliknij wiersz prawym przyciskiem myszy i wybierz
+<guimenuitem>Porównaj</guimenuitem> skrót.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Kliknij dwukrotnie wiersz.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Wybierz wiersz i naciśnij <keycap>Wejdź</keycap>.</simpara>
+        </listitem>
+      </itemizedlist>Jeśli porównujesz podfolder, tabela porównawcza nowego folderu zostanie
+załadowana w bieżącym oknie porównywania folderów. Po zakończeniu
+porównywania folderu możesz wrócić do jego folderu nadrzędnego, klikając
+dwukrotnie plik <inlinemediaobject>
+<imageobject> <imagedata contentwidth="23"
+fileref="screenshots/nav_uparrow_btn.png" /> </imageobject><textobject>
+          <phrase>Przycisk strzałki w górę nawigatora</phrase>
+        </textobject>
+      </inlinemediaobject> strzałka w
+górę u góry kolumny Nazwa pliku.</para>
+
+    <para>Jeśli porównujesz plik, WinMerge otwiera okno Porównywanie plików opisane w
+następnej sekcji. Jeśli zmienisz plik w oknie Porównywanie plików, a
+następnie wrócisz do okna Porównywanie folderów, zobaczysz, że dane pliku
+zostały tam zaktualizowane.</para>
+  </section>
+
+  <section id="QuickStart_comparingfiles">
+    <title><indexterm>
+        <primary>porównywanie plików</primary>
+
+        <secondary>zaczynać</secondary>
+      </indexterm><indexterm>
+        <primary>Okno porównywania plików</primary>
+
+        <secondary>zaczynać</secondary>
+      </indexterm>Porównywanie plików</title>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>Okno porównywania plików</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>Okno Porównaj pliki pokazuje dwa wybrane pliki obok siebie, w oddzielnych
+panelach plików. Różne linie są wyróżnione kolorem tła. Jedna lub więcej
+kolejnych różnych linii tworzy jedną różnicę (lub
+<glossterm>różnica</glossterm>). W poprzednim przykładzie w panelach plików
+zaznaczona została pojedyncza różnica, która następnie została wyświetlona w
+panelu różnic.  WinMerge działa głównie z tymi różnicami, a nie z
+oddzielnymi liniami. Kiedy łączysz różnicę, kopiujesz wszystkie jej linie z
+jednej strony na drugą.</para>
+
+    <para><important>
+        <para>Zwróć uwagę, jak WinMerge wypełnia brakujące linie, dzięki czemu podobne
+linie są zawsze ułożone pionowo, obok siebie. Różni się to od większości
+innych programów do porównywania/scalania i nauczenie się tego może zająć
+trochę czasu.</para>
+      </important></para>
+
+    <para>WinMerge posiada prosty, zintegrowany edytor umożliwiający podstawowe
+pisanie, kopiowanie, wycinanie i wklejanie tekstu. Jeśli
+<guilabel>Automatyczne ponowne skanowanie</guilabel> jest włączona, WinMerge
+aktualizuje różnice w plikach podczas edycji pliku. Jeśli
+<guilabel>Automatyczne ponowne skanowanie</guilabel> jest wyłączona, możesz
+zaktualizować pliki, wybierając <menuchoice> <guimenu>Zobacz</guimenu>
+<guimenuitem>Odśwież</guimenuitem> </menuchoice>, klikając <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+          <phrase>Przycisk Odśwież</phrase>
+        </textobject>
+      </inlinemediaobject> przycisk paska narzędzi lub naciśnięcie
+<keycap>F5</keycap>.</para>
+  </section>
+</article>

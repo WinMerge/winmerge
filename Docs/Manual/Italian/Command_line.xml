@@ -454,40 +454,40 @@ come <option>/dl</option>.</para>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /al option</secondary>
+        <primary>Unione a 3 vie</primary>
+        <secondary>unione automatica con l'opzione /al</secondary>
       </indexterm>
       <term><option>/al</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (merge target)  - middle
-(theirs) - right (base).</para>
+Unione automatica all'avvio con la disposizione riquadri: sinistra (base)  -
+centro (loro) - destra (unisci destinazione).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /am option</secondary>
+        <primary>Unione a 3 vie</primary>
+        <secondary>unione automatica all'avvio con l'opzione /am</secondary>
       </indexterm>
       <term><option>/am</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (theirs)  - middle (merge
-target) - right (mine).</para>
+Unione automatica all'avvio con la disposizione riquadri: sinistra (loro)  -
+centro (unione destinazione) - destra (mio).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /ar option</secondary>
+        <primary>Unione a 3 vie</primary>
+        <secondary>unione automatica all'avvio con l'opzione /ar</secondary>
       </indexterm>
       <term><option>/ar</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
-- right (merge target).</para>
+Unione automatica all'avvio con la disposizione riquadri: sinistra (base)  -
+centro (loro) - destra (unisci destinazione).</para>
       </listitem>
     </varlistentry>
 
@@ -721,11 +721,12 @@ output, WinMergevisualizza comunque solo due o tre file nella finestra
 Confronta file. Tuttavia, se si salva uno di questi file, verrà scritto nel
 percorso di output, lasciando intatti i due o tre file di origine.</para>
 
-        <para>In a three-way text comparison, specifying an output path also opens the
-Merge Result pane at the bottom of the File Compare window, where the merge
-result can be reviewed and edited before it is saved to the output path. See
-the Merge Result pane topic in <citetitle>Comparing and merging text
-files</citetitle>.</para>
+        <para>In un confronto di testo a tre vie, specificando un percorso destinazione si
+apre anche il riquadro 'Risultati unione' nella parte inferiore della
+finestra 'Confronto file', dove il risultato dell'unione può essere rivisto
+e modificato prima di essere salvato nel percorso destinazione. Consulta
+l'argomento del riquadro 'Risultati unione' in <citetitle>Confronto e unione
+file testo</citetitle>.</para>
 
         <para>I sistemi di controllo della versione in genere si riferiscono ai file
 sorgente e di risultato usando termini come <glossterm>loro</glossterm>,

@@ -337,7 +337,7 @@ désactiver les différences de ligne.</para>
         </itemizedlist>
 
         <note>
-          <para>Rappelez-vous que les fonctions de navigation et de fusion de WinMerge
+          <para>Rappelez-vous que les fonctions de navigation et de la fusion de WinMerge
 (comme Différence suivante ou Copier vers la gauche) travaillent sur des
 blocs de différences, et non sur les différences de ligne à l'intérieur de
 ceux-ci.</para>
@@ -661,7 +661,7 @@ signifie qu'une fonction n'est disponible que lorsque son opération est
 possible pour un emplacement donné ou une autre condition de votre
 environnement WinMerge. Par exemple, si vous cliquez dans une ligne de texte
 à l'intérieur d'une différence, vous remarquerez peut-être que plusieurs
-boutons de navigation et de fusion s'activent dans la barre d'outils. Si
+boutons de navigation et de la fusion s'activent dans la barre d'outils. Si
 vous cliquez dans une autre zone de texte qui n'est pas à l'intérieur d'une
 différence, ces fonctions deviennent indisponibles.</para>
 
@@ -686,7 +686,7 @@ faites un clic droit sur le texte)</para>
       <para>Les fonctions de différence sont décrites dans <xref
 linkend="Compare_files_nav" /> et <xref linkend="Compare_files_merge" />,
 plus loin dans cette rubrique. <xref linkend="Quick_start" /> et <xref
-linkend="Intro_diffs" /> fournissent des exemples de comparaison et de
+linkend="Intro_diffs" /> fournissent des exemples de comparaison et de la
 fusion.</para>
 
       <section>
@@ -726,191 +726,216 @@ qu'en mode normal.</para>
     </section>
 
     <section>
-      <title>Merge Result pane</title>
+      <title>Volet du résultat de la fusion</title>
 
       <indexterm>
-        <primary>Merge Result pane, File Compare window</primary>
+        <primary>Volet du résultat de la fusion, fenêtre de comparaison de fichiers</primary>
       </indexterm>
 
       <indexterm>
-        <primary>3-way merge</primary>
+        <primary>Fusion à 3 voies</primary>
       </indexterm>
 
       <para>
-When you compare three text files and specify a merge output path (for
-example, when a version control tool starts WinMerge with the
-<option>/o</option> command-line option), the Merge Result pane opens at the
-bottom of the File Compare window. It works like the merge output window in
-KDiff3: the three File panes show the compared files read-only, and the
-Merge Result pane contains the merge result, which you can edit freely. This
-requires the Merge Result pane option to be enabled in the Compare/Merge
-page of the Options dialog.</para>
+Lorsque vous comparez trois fichiers texte et spécifiez un chemin de sortie
+pour la fusion (par exemple, lorsqu'un outil de gestion de versions lance
+WinMerge avec l'option de ligne de commande <option>/o</option>), le volet
+Résultat de la fusion s'ouvre en bas de la fenêtre de comparaison de
+fichiers. Il fonctionne de la même manière que la fenêtre de sortie de la
+fusion de KDiff3 : les trois volets de fichiers affichent les fichiers
+comparés en lecture seule, tandis que le volet Résultat de la fusion
+contient le résultat de l'opération, que vous pouvez modifier
+librement. Cette fonctionnalité nécessite que l'option relative au volet
+Résultat de la fusion soit activée dans la page Comparer/Fusionner de la
+boîte de dialogue Préférences.</para>
 
       <para>
-When you open a two-way conflict file with
-<menuchoice><guimenu>File</guimenu><guimenuitem>Open Conflict
-File</guimenuitem></menuchoice>, WinMerge keeps the two source panes side by
-side and opens the Merge Result pane when it is enabled. Each differing
-block starts unresolved because a two-way conflict file has no common
-base. Choose the left or right source to resolve a block. In this mode the
-toolbar buttons are numbered <guibutton>1</guibutton> and
-<guibutton>2</guibutton>, and
-<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo>
-and
-<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></keycombo>
-choose the left and right source, respectively. Unresolved blocks are saved
-using the standard two-sided conflict markers.</para>
+Lorsque vous ouvrez un fichier de conflit bidirectionnel via
+<menuchoice><guimenu>Fichier</guimenu><guimenuitem>Ouvrir le fichier en
+conflit...</guimenuitem></menuchoice>, WinMerge affiche côte à côte les deux
+volets sources et ouvre le volet du résultat de la fusion s'il est
+activé. Chaque bloc divergent est initialement considéré comme non résolu,
+car un fichier de conflit bidirectionnel ne dispose pas de base
+commune. Choisissez la source de gauche ou de droite pour résoudre un
+bloc. Dans ce mode, les boutons de la barre d'outils sont numérotés
+<guibutton>1</guibutton> et <guibutton>2</guibutton>, et les raccourcis
+<keycombo><keycap>Ctrl</keycap><keycap>Maj</keycap><keycap>1</keycap></keycombo>
+et
+<keycombo><keycap>Ctrl</keycap><keycap>Maj</keycap><keycap>2</keycap></keycombo>
+permettent de sélectionner respectivement la source de gauche et celle de
+droite. Les blocs non résolus sont enregistrés en utilisant les marqueurs de
+conflit bidirectionnels standard.</para>
 
       <para>
-When the pane opens, every difference initially starts unresolved, shown as
-a compact <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or
-<computeroutput>&lt;Unresolved Difference&gt;</computeroutput> placeholder
-line.  If an automatic merge is requested — with the <option>/al</option>,
-<option>/am</option> or <option>/ar</option> command-line option, or with
-the <guimenuitem> Auto Merge </guimenuitem> command — non-conflicting
-differences are resolved automatically according to the selected merge
-target, and only true conflicts, where both sides changed the same lines
-relative to the base, remain unresolved.</para>
+Lorsque le volet s'ouvre, chaque différence apparaît initialement comme non
+résolue, sous la forme d'une ligne d'espace réservé compacte indiquant
+<computeroutput>&lt;Conflit de fusion&gt;</computeroutput> ou
+<computeroutput>&lt;Différence non résolue&gt;</computeroutput>. Si une
+fusion automatique est demandée — via l'option de ligne de commande
+<option>/al</option>, <option>/am</option> ou <option>/ar</option>, ou via
+la commande <guimenuitem>Fusion automatique</guimenuitem> — les différences
+ne présentant pas de conflit sont résolues automatiquement en fonction de la
+cible de la fusion sélectionnée ; seuls les conflits réels, où les deux
+versions ont modifié les mêmes lignes par rapport à la base, demeurent non
+résolus.</para>
 
       <para>
-To resolve a difference, select it and choose the desired source from the
-top-level <guimenu>Merge Result</guimenu> menu. Two-way merge sessions offer
-<guimenuitem>Choose Left</guimenuitem> and <guimenuitem>Choose
-Right</guimenuitem>; three-way sessions also offer <guimenuitem>Choose
-Middle</guimenuitem>. You can also use the Merge Result pane context menu,
-or the <guibutton>1</guibutton> / <guibutton>2</guibutton> /
-<guibutton>3</guibutton> toolbar buttons. Each command toggles that pane's
-lines for the current difference (or all differences covered by the current
-selection): selecting several panes combines their lines in the order you
-select them (useful when both sides added something and the merge should
-keep both), and deselecting all panes makes the difference unresolved
-again. You can also type corrections directly into the Merge Result pane,
-except on unresolved differences: those must be resolved with a Choose
-command before their text can be edited. Conflicts whose sides differ only
-in white space are marked as <computeroutput>(Whitespace
-only)</computeroutput>.</para>
+Pour résoudre une différence, sélectionnez-la et choisissez la source
+souhaitée dans le menu de niveau supérieur <guimenu>Résultat de la
+fusion</guimenu>. Les sessions de fusion à deux sources proposent les
+options <guimenuitem>Choisir Gauche</guimenuitem> et <guimenuitem>Choisir
+Droite</guimenuitem> ; les sessions à trois sources proposent également
+<guimenuitem>Choisir Milieu</guimenuitem>. Vous pouvez aussi utiliser le
+menu contextuel du volet Résultat de la fusion ou les boutons de la barre
+d'outils <guibutton>1</guibutton> / <guibutton>2</guibutton> /
+<guibutton>3</guibutton>. Chaque commande bascule l'état des lignes de ce
+volet pour la différence actuelle (ou pour toutes les différences incluses
+dans la sélection en cours) : la sélection de plusieurs volets combine leurs
+lignes dans l'ordre de sélection (utile lorsque les deux côtés ont ajouté du
+contenu et que la fusion doit conserver les deux), tandis que la désélection
+de tous les volets ramène la différence à un état non résolu. Vous pouvez
+également saisir des corrections directement dans le volet Résultat de la
+fusion, sauf pour les différences non résolues : celles-ci doivent d'abord
+être résolues à l'aide d'une commande de choix avant que leur texte ne
+puisse être modifié. Les conflits dont les versions ne diffèrent que par les
+espaces sont signalés par la mention <computeroutput>(Espaces
+uniquement)</computeroutput>.</para>
 
       <para>
-The pane's margin shows where every line came from:
-<computeroutput>1</computeroutput>, <computeroutput>2</computeroutput> or
-<computeroutput>3</computeroutput> for a line taken from the left, middle or
-right pane (matching the toolbar buttons),
-<computeroutput>?</computeroutput> for an unresolved conflict section, and
-<computeroutput>m</computeroutput> for a difference modified by hand.  The
-pane's status bar shows how many differences are still unresolved.  While
-the pane is open, <guimenuitem>Next Conflict</guimenuitem> and
-<guimenuitem>Previous Conflict</guimenuitem> (<keycombo>
-<keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down</keycap>
-</keycombo> / <keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap>
-<keycap>Up</keycap> </keycombo>)  jump to the next or previous difference
-that still needs a decision, skipping the ones already resolved.</para>
+La marge du volet indique l'origine de chaque ligne :
+<computeroutput>1</computeroutput>, <computeroutput>2</computeroutput> ou
+<computeroutput>3</computeroutput> pour une ligne provenant respectivement
+du volet de gauche, du volet du milieu ou du volet de droite (correspondant
+aux boutons de la barre d'outils), <computeroutput>?</computeroutput> pour
+une section en conflit non résolu, et <computeroutput>m</computeroutput>
+pour une différence modifiée manuellement. La barre d'état du volet indique
+le nombre de différences restant à résoudre. Tant que le volet est ouvert,
+les commandes <guimenuitem>Conflit suivant</guimenuitem> et
+<guimenuitem>Conflit précédent</guimenuitem> (<keycombo>
+<keycap>Alt</keycap> <keycap>Maj</keycap> <keycap>Bas</keycap> </keycombo> /
+<keycombo> <keycap>Alt</keycap> <keycap>Maj</keycap> <keycap>Haut</keycap>
+</keycombo>) permettent de passer à la différence suivante ou précédente
+nécessitant une décision, en ignorant celles qui sont déjà résolues.</para>
 
       <para>
-Use <menuchoice><guimenu>File</guimenu><guisubmenu>Save</guisubmenu>
-<guimenuitem>Save Merge Result</guimenuitem> </menuchoice>, the Save toolbar
-button, or <keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> to
-save the result to the output path. WinMerge warns if unresolved differences
-remain. Unresolved conflicts are saved as standard conflict sections — never
-as placeholder text — so the file keeps all versions of the disputed lines
-and can be finished later in any editor or merge tool; unresolved
-non-conflicting differences are saved with their automatic merge content,
-keeping the output free of conflict markers that no version control system
-would produce.  Reopening the output path itself does not resume from these
-conflict sections: WinMerge always rebuilds the merge result from the three
-compared files, so a version control tool that starts WinMerge again with
-the <option>/o</option> command-line option (for example <command>git
-mergetool</command>) gets a fresh merge every time, regardless of what the
-output file already contains. To pick up an earlier, partially resolved
-conflict file instead, use <menuchoice> <guimenu>File</guimenu>
-<guimenuitem> Open Conflict File </guimenuitem> </menuchoice>: WinMerge
-parses its conflict sections and restores them as unresolved differences,
-keeping any text that was already resolved. WinMerge also prompts about an
-unsaved merge result when the window is closed — also when the pane itself
-has been hidden in the meantime. By default every line is saved with its own
-original line ending, so the output differs from the sources as little as
-possible (for example, producing minimal diffs in version control); you can
-change the output line endings to Windows, Unix, or classic Mac style from
-the Merge Result pane's status bar. The encoding follows the side that
-changed it, and the save honors the backup-file option and any file packer
-plugin the files were opened with.</para>
+Utilisez
+<menuchoice><guimenu>Fichier</guimenu><guisubmenu>Enregistrer</guisubmenu>
+<guimenuitem>Enregistrer le résultat de la fusion</guimenuitem>
+</menuchoice>, le bouton Enregistrer de la barre d'outils ou le raccourci
+<keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> pour
+enregistrer le résultat à l'emplacement de sortie. WinMerge affiche un
+avertissement s'il reste des différences non résolues. Les conflits non
+résolus sont enregistrés sous forme de sections de conflit standard — et non
+de texte d'espace réservé — afin que le fichier conserve toutes les versions
+des lignes en conflit et puisse être traité ultérieurement dans n'importe
+quel éditeur ou outil de fusion ; les différences non conflictuelles non
+résolues sont enregistrées avec leur contenu issu de la fusion automatique,
+évitant ainsi la présence de marqueurs de conflit que ne produirait aucun
+système de gestion de versions. La réouverture du fichier de sortie ne
+reprend pas le traitement à partir de ces sections de conflit : WinMerge
+reconstruit systématiquement le résultat de la fusion à partir des trois
+fichiers comparés ; ainsi, un outil de gestion de versions relançant
+WinMerge avec l'option de ligne de commande <option>/o</option> (par exemple
+<command>git mergetool</command>) obtient une fusion actualisée à chaque
+fois, quel que soit le contenu préalable du fichier de sortie. Pour
+reprendre un fichier de conflit partiellement résolu, utilisez <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem> Ouvrir le fichier en
+conflit... </guimenuitem> </menuchoice> : WinMerge analyse les sections de
+conflit et les rétablit comme des différences non résolues, tout en
+conservant le texte déjà résolu. WinMerge signale également la présence d'un
+résultat de la fusion non enregistré lors de la fermeture de la fenêtre, y
+compris si le volet correspondant a été masqué entre-temps. Par défaut,
+chaque ligne est enregistrée avec sa propre fin de ligne d'origine, afin que
+le fichier de sortie diffère le moins possible des sources (ce qui permet,
+par exemple, de minimiser les différences détectées par les outils de
+gestion de versions) ; vous pouvez modifier le format des fins de ligne
+(Windows, Unix ou Mac classique) depuis le volet du résultat de la
+fusion. L'encodage utilisé est celui du côté ayant modifié le fichier, et
+l'enregistrement respecte l'option de création de fichier de sauvegarde
+ainsi que tout plug-in de compression utilisé lors de l'ouverture des
+fichiers.</para>
 
       <para>
-You can also start a merge in any three-way text comparison with
-<menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Start Merge Session
-</guimenuitem> </menuchoice> (differences start unresolved) or <menuchoice>
-<guimenu>Merge</guimenu> <guimenuitem> Auto Merge </guimenuitem>
-</menuchoice> (non-conflicting differences are resolved automatically).
-While a merge session is active, you can show and hide the pane with
-<menuchoice> <guimenu>View</guimenu> <guimenuitem> Merge Result Pane
-</guimenuitem> </menuchoice>.  To end the merge session and restore the
-normal editable three-pane behavior, choose <menuchoice>
-<guimenu>Merge</guimenu> <guimenuitem>End Merge Session</guimenuitem>
-</menuchoice>. WinMerge prompts to save if the merge result has unsaved
-changes, and restores the panes' original read-only states and headers.</para>
+Vous pouvez également lancer une fusion lors de toute comparaison de texte à
+trois volets via <menuchoice> <guimenu>Fusionner</guimenu>
+<guimenuitem>Démarrer la session de fusion</guimenuitem> </menuchoice> (les
+différences sont initialement non résolues) ou <menuchoice>
+<guimenu>Fusionner</guimenu> <guimenuitem>Fusion automatique</guimenuitem>
+</menuchoice> (les différences sans conflit sont résolues
+automatiquement). Tant qu'une session de fusion est active, vous pouvez
+afficher ou masquer le volet correspondant via <menuchoice>
+<guimenu>Affichage</guimenu> <guimenuitem>Volet du résultat de
+fusion</guimenuitem> </menuchoice>. Pour terminer la session de fusion et
+rétablir le mode d'édition standard à trois volets, choisissez <menuchoice>
+<guimenu>Fusionner</guimenu> <guimenuitem>Terminer la session de
+fusion</guimenuitem> </menuchoice>. WinMerge vous invite à enregistrer les
+modifications si le résultat de la fusion en contient de non sauvegardées,
+puis rétablit l'état (lecture seule ou non) et les en-têtes d'origine des
+volets.</para>
       <section>
         <para>
 <indexterm>
-            <primary>merge target pane</primary>
-            <secondary>determining base pane</secondary>
-          </indexterm> The base pane (common ancestor) for
-automatic merge resolution is determined by either command-line options or
-the keyboard focus:</para>
+            <primary>volet cible de la fusion</primary>
+            <secondary>détermination du volet de base</secondary>
+          </indexterm> Le volet de base (ancêtre commun)
+pour la résolution automatique de la fusion est déterminé soit par des
+options de ligne de commandes, soit par le focus clavier :</para>
 
         <para>
-<emphasis>When using command-line options:</emphasis></para>
+<emphasis>Lors de l'utilisation d'options de ligne de commandes :</emphasis></para>
 
         <itemizedlist>
           <listitem>
             <para>
-<option>Merge to left pane (/al)</option>: left = merge target, middle =
-theirs, right = base</para>
+<option>Fusionner vers le volet de gauche (/al)</option> : gauche = cible de
+la fusion, milieu = leurs fichiers, droite = base</para>
           </listitem>
 
           <listitem>
             <para>
-<option>Merge to middle pane (/am)</option>: left = theirs, middle = merge
-target, right = mine</para>
+<option>Fusionner vers le volet du milieu (/am)</option> : gauche = leurs
+fichiers, milieu = cible de la fusion, droite = mes fichiers</para>
           </listitem>
 
           <listitem>
             <para>
-<option>Merge to right pane (/ar)</option>: left = base, middle = theirs,
-right = merge target</para>
+<option>Fusionner vers le volet de droite (/ar)</option> : gauche = base,
+milieu = leurs fichiers, droite = cible de la fusion</para>
           </listitem>
         </itemizedlist>
 
         <para>
-<emphasis>When using UI-based merge operations (Start Merge Session or Auto
-Merge):</emphasis> The base pane is determined by the current keyboard
-focus:</para>
+<emphasis>Lors de l'utilisation d'opérations de fusion via l'interface
+utilisateur (Démarrer une session de fusion ou Fusion automatique)
+:</emphasis> le volet de base est déterminé par le focus clavier actuel :</para>
 
         <itemizedlist>
           <listitem>
             <para>
-<emphasis>Left pane focused</emphasis>: left = mine, middle = theirs, right
-= base</para>
+<emphasis>Volet de gauche actif</emphasis> : gauche = mes fichiers, milieu =
+leurs fichiers, droite = base</para>
           </listitem>
 
           <listitem>
             <para>
-<emphasis>Middle pane focused</emphasis>: left = theirs, middle = base,
-right = mine</para>
+<emphasis>Volet du milieu actif</emphasis> : gauche = leurs fichiers, milieu
+= base, droite = mes fichiers</para>
           </listitem>
 
           <listitem>
             <para>
-<emphasis>Right pane focused</emphasis>: left = base, middle = theirs, right
-= mine</para>
+<emphasis>Volet de droite actif</emphasis> : gauche = base, milieu = leurs
+fichiers, droite = mes fichiers</para>
           </listitem>
         </itemizedlist>
       </section>
     </section>
 
     <section>
-      <title>Volet Emplacement</title>
+      <title>Volet de localisation</title>
 
       <indexterm>
-        <primary>Volet Emplacement, fenêtre de comparaison de fichiers</primary>
+        <primary>Volet de localisation, fenêtre de comparaison de fichiers</primary>
       </indexterm>
 
       <indexterm>
@@ -1033,7 +1058,7 @@ fileref="screenshots/locpane_moved_diffs.png" format="PNG" /> </imageobject><tex
 raccourcis :<indexterm>
           <primary>menu contextuel</primary>
 
-          <secondary>Volet Emplacement</secondary>
+          <secondary>Volet de localisation</secondary>
         </indexterm><indexterm>
           <primary>Fonctions de Blocs Déplacés</primary>
         </indexterm></para>
@@ -1051,7 +1076,7 @@ que vous spécifiez (décrit dans <xref linkend="Compare_files_nav_functions"
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Aucun blocs déplacés</guimenuitem> : désactive la couleur des
+          <para><guimenuitem>Aucun bloc déplacé</guimenuitem> : désactive la couleur des
 différences de déplacement pour les blocs déplacés.</para>
         </listitem>
 
@@ -1443,7 +1468,7 @@ le volet Fichier et le volet de localisation.</para>
 
           <listitem>
             <para>Permet de sauter vers l'origine/la destination du déplacement de la diff
-actuelle sur l'autre panneau (2 volets).</para>
+actuelle sur l'autre volet (2 volets).</para>
 
             <para>Raccourcis : <keycombo> <keycap>Ctrl</keycap> <keycap>Maj</keycap>
 <keycap>G</keycap> </keycombo>, menu contextuel dans le volet Fichier et le
@@ -1458,7 +1483,7 @@ volet des différences.</para>
 
           <listitem>
             <para>Permet de sauter vers l'origine/la destination du déplacement de la diff
-actuelle sur l'autre panneau (3 volets).</para>
+actuelle sur l'autre volet (3 volets).</para>
 
             <para>Raccourcis : <keycombo> <keycap>Ctrl</keycap> <keycap>Maj</keycap>
 <keycap>G</keycap> </keycombo>, menu contextuel dans le volet Fichier et le
@@ -1473,7 +1498,7 @@ volet des différences.</para>
 
           <listitem>
             <para>Permet de sauter vers l'origine/la destination du déplacement de la diff
-actuelle sur l'autre panneau (3 volets).</para>
+actuelle sur l'autre volet (3 volets).</para>
 
             <para>Raccourcis : <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
 <keycap>G</keycap> </keycombo>, menu contextuel dans le volet Fichier et le
@@ -1632,7 +1657,7 @@ différence, et dans le volet des différences.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Fusionne la différence courante du volet Fichier droit vers le volet gauche,
+            <para>Fusionne la différence courante du volet de gauche vers le volet de droite,
 puis sélectionne la différence suivante (si elle existe). Équivaut à
 <command>Copier vers la droite</command> et <command>Différence
 suivante</command> en une seule étape.</para>
@@ -1643,8 +1668,8 @@ fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
                   <phrase>Bouton Copier vers la droite et avancer</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier vers la
-Gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier vers la Droite
+et Avancer</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
 <keycap>Alt</keycap> <keycap>Droite</keycap> </keycombo>, menu contextuel
 dans le volet Fichier à l'intérieur d'une différence.</para>
           </listitem>
@@ -1656,10 +1681,10 @@ dans le volet Fichier à l'intérieur d'une différence.</para>
             </indexterm></term>
 
           <listitem>
-            <para>Fusionne la différence courante de gauche vers la droite, puis sélectionne
-la différence suivante (si elle existe). Équivaut à <command>Copier vers la
-gauche</command> et <command>Différence suivante</command> en une seule
-étape.</para>
+            <para>Fusionne la différence courante du volet de droite vers le volet de gauche,
+puis sélectionne la différence suivante (si elle existe). Équivaut à
+<command>Copier vers la gauche</command> et <command>Différence
+suivante</command> en une seule étape.</para>
 
             <para>Raccourcis : bouton <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -1667,8 +1692,8 @@ fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
                   <phrase>Bouton Copier vers la gauche et avancer</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier vers la
-Gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier vers la Gauche
+et Avancer</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
 <keycap>Alt</keycap> <keycap>Gauche</keycap> </keycombo>, menu contextuel
 dans le volet Fichier à l'intérieur d'une différence.</para>
           </listitem>
@@ -1697,8 +1722,8 @@ fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
                   <phrase>Bouton Tout copier vers la droite</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier vers la
-Gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Tout copier vers la
+gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
 <keycap>Gauche</keycap> </keycombo>, menu contextuel dans le volet Fichier à
 l'intérieur d'une différence.</para>
           </listitem>
@@ -1720,8 +1745,8 @@ fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
                   <phrase>Bouton Tout copier vers la gauche</phrase>
                 </textobject>
               </inlinemediaobject>,
-<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier vers la
-Gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Tout copier vers la
+gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
 <keycap>Gauche</keycap> </keycombo>, menu contextuel dans le volet Fichier à
 l'intérieur d'une différence.</para>
           </listitem>

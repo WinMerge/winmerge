@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Command_line">
+  <title>Linia poleceń<indexterm>
+      <primary>wiersz poleceń</primary>
+    </indexterm><indexterm>
+      <primary>Wiersz poleceń WinMerge</primary>
+
+      <see>wiersz poleceń</see>
+    </indexterm></title>
+
+  <para>Oprócz ścieżek do porównania wiersz poleceń WinMerge akceptuje kilka
+parametrów. Większość tych parametrów jest przeznaczona do używania WinMerge
+jako zewnętrznej aplikacji porównującej lub rozpoczynania operacji
+porównywania z pliku wsadowego.</para>
+
+  <para>Użyj jednego z następujących formatów dla polecenia WinMerge:</para>
+
+  <para><cmdsynopsis sepchar=" ">
+<command>WinMergeU</command> <arg choice="opt"
+rep="norepeat"><option>/?</option></arg></cmdsynopsis></para>
+
+  <para><cmdsynopsis sepchar=" ">
+<command>WinMergeU</command> <arg choice="opt"
+rep="norepeat"><option>/r</option></arg> <arg choice="opt"
+rep="norepeat"><option>/r-</option></arg> <arg choice="opt"
+rep="norepeat"><option>/e</option></arg> <arg choice="opt"
+rep="norepeat"><option>/f</option> <replaceable>filter</replaceable></arg>
+<arg choice="opt" rep="norepeat"><option>/m</option>
+<replaceable>compare-method</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/t</option>
+<replaceable>window-type</replaceable></arg> <arg><option>/x</option></arg>
+<arg><option>/xq</option></arg> <arg><option>/s</option></arg>
+<arg><option>/sw</option></arg> <arg><option>/s-</option></arg> <arg
+choice="opt" rep="norepeat"><option>/g</option>
+<replaceable>group-name</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/ul</option></arg> <arg choice="opt"
+rep="norepeat"><option>/um</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ur</option></arg> <arg choice="opt"
+rep="norepeat"><option>/u</option></arg> <arg choice="opt"
+rep="norepeat"><option>/wl</option></arg> <arg choice="opt"
+rep="norepeat"><option>/wm</option></arg> <arg choice="opt"
+rep="norepeat"><option>/wr</option></arg> <arg choice="opt"
+rep="norepeat"><option>/new</option></arg> <arg choice="opt"
+rep="norepeat"><option>/self-compare</option></arg> <arg choice="opt"
+rep="norepeat"><option>/clipboard-compare</option></arg>
+<arg><option>/minimize</option></arg> <arg><option>/maximize</option></arg>
+<arg choice="opt" rep="norepeat"><option>/fl</option></arg> <arg
+choice="opt" rep="norepeat"><option>/fm</option></arg> <arg choice="opt"
+rep="norepeat"><option>/fr</option></arg> <arg choice="opt"
+rep="norepeat"><option>/l</option>
+<replaceable>linenumber</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/c</option> <replaceable>charpos</replaceable></arg>
+<arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
+<replaceable>delimiter</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/dl</option>
+<replaceable>leftdesc</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/dm</option>
+<replaceable>middledesc</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/dr</option>
+<replaceable>rightdesc</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/al</option></arg> <arg choice="opt"
+rep="norepeat"><option>/am</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ar</option></arg> <arg choice="opt"
+rep="norepeat"><option>/noninteractive</option></arg> <arg choice="opt"
+rep="norepeat"><option>/noprefs</option></arg> <arg choice="opt"
+rep="norepeat"><option>/enableexitcode</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorews</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignoreblanklines</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecase</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignoreeol</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecodepage</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecomments</option></arg> <arg choice="opt"
+rep="norepeat"><option>/unpacker</option>
+<replaceable>unpacker-name</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/prediffer</option>
+<replaceable>prediffer-name</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/cp</option>
+<replaceable>codepage</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/fileext</option>
+<replaceable>file-extension</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/cfg</option>
+<replaceable>name=value</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/inifile</option>
+<replaceable>inifile</replaceable></arg> <arg choice="plain"
+rep="norepeat"><replaceable>leftpath</replaceable></arg> <arg cchoice="opt"
+rep="norepeat"><replaceable>middlepath</replaceable></arg> <arg
+choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
+<arg choice="opt" rep="norepeat"><option>/o</option>
+<replaceable>outputpath</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/or</option>
+<replaceable>reportpath</replaceable></arg></cmdsynopsis></para>
+
+  <cmdsynopsis sepchar=" ">
+<command>WinMergeU</command> <arg choice="plain"
+rep="norepeat"><replaceable>conflictfile</replaceable></arg></cmdsynopsis>
+
+  <para>Wprowadzenie polecenia bez parametrów i nazw ścieżek po prostu otwiera okno
+WinMerge. Parametry są poprzedzone ukośnikiem ( <literal>/</literal> ) lub
+myślnik ( <literal>-</literal> ) charakter. Nazwy ścieżek nie mają znaku
+przedrostka.</para>
+
+  <variablelist>
+    <varlistentry>
+      <term><option>/?</option></term>
+      <listitem>
+        <para>Otwiera pomoc WinMerge w tym temacie.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>porównanie folderów rekurencyjnych</primary>
+      </indexterm>
+      <term><option>/r</option></term>
+      <listitem>
+        <para>Porównuje wszystkie pliki we wszystkich podfolderach (porównanie
+rekurencyjne). Unikalne foldery (występujące tylko po jednej stronie) są
+wyświetlane w wyniku porównania jako osobne pozycje. Należy pamiętać, że
+uwzględnienie podfolderów może znacznie wydłużyć czas porównywania. Bez tego
+parametru WinMerge wyświetla tylko pliki i podfoldery na najwyższym poziomie
+dwóch folderów docelowych. Nie porównuje podfolderów.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>porównanie folderów nierekursywnych</primary>
+      </indexterm>
+      <term><option>/r-</option></term>
+      <listitem>
+        <para>Porównuje wszystkie pliki w określonych folderach, ale wyklucza pliki i
+podfoldery w swoich podfolderach.  Pozwala to na skrócenie czasu porównania.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Okno WinMerge</primary>
+        <secondary>zamykanie</secondary>
+      </indexterm>
+
+      <term><option>/e</option></term>
+      <listitem>
+        <para>Umożliwia zamknięcie WinMerge za pomocą jednego pliku
+<keycap>Wyjście</keycap> naciśnięcie klawisza. Jest to przydatne, gdy
+używasz WinMerge jako zewnętrznej aplikacji porównującej: możesz szybko
+zamknąć WinMerge, jak okno dialogowe. Bez tego parametru konieczne może być
+naciśnięcie przycisku <keycap>Wyjście</keycap> kilka razy, aby zamknąć
+wszystkie okna.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>filtry</primary>
+        <secondary>zastosowanie w wierszu poleceń</secondary>
+      </indexterm>
+
+      <term><option>/f</option></term>
+      <listitem>
+        <para>Stosuje określony filtr, aby ograniczyć porównanie. Filtrem może być maska
+pliku <filename><userinput>*.h *.cpp</userinput></filename>lub nazwa filtra
+plików, np <userinput>XML/HTML Devel</userinput>. Dodaj cudzysłów wokół
+maski filtra lub nazwy zawierającej spacje.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>porównaj metodę</primary>
+        <secondary>zastosowanie w wierszu poleceń</secondary>
+      </indexterm>
+
+      <term><option>/m <replaceable>compare-method</replaceable></option></term>
+      <listitem>
+        <para>Ustawia metodę porównania, która ma być używana do porównania.  Może to być
+jedno ze słów kluczowych <userinput>Full</userinput>,
+<userinput>Quick</userinput>, <userinput>Binary</userinput>,
+<userinput>Date</userinput>, <userinput>SizeDate</userinput>,
+<userinput>Size</userinput> lub <userinput>Existence</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>typ okna</primary>
+        <secondary>zastosowanie w wierszu poleceń</secondary>
+      </indexterm>
+
+      <term><option>/t <replaceable>window-type</replaceable></option></term>
+      <listitem>
+        <para>Określa typ okna, w którym mają być wyświetlane pliki.  Może to być jedno ze
+słów kluczowych <userinput>Text</userinput>, <userinput>Table</userinput>,
+<userinput>Binary</userinput>, <userinput>Image</userinput>,
+<userinput>Webpage</userinput> lub <userinput>Folder</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/x</option></term>
+      <listitem>
+        <para>Zamyka WinMerge (po wyświetleniu okna informacyjnego), gdy rozpoczniesz
+porównywanie identycznych plików. Parametr nie ma żadnego wpływu po
+porównaniu, jeśli np. pliki staną się identyczne w wyniku połączenia lub
+edycji. Ten parametr jest przydatny, gdy używasz WinMerge jako zewnętrznej
+aplikacji porównującej lub gdy chcesz wyeliminować niepotrzebne kroki,
+ignorując pliki, które nie różnią się między sobą.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/xq</option></term>
+      <listitem>
+        <para>Jest podobny do <option>/x</option> ale nie wyświetla komunikatu o
+identycznych plikach.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Okno WinMerge</primary>
+        <secondary>ograniczające przypadki</secondary>
+      </indexterm>
+
+      <term><option>/s</option></term>
+      <listitem>
+        <para>Ogranicza okna WinMerge do pojedynczej instancji.  Na przykład, jeśli
+WinMerge jest już uruchomiony, w tej samej instancji zostanie otwarte nowe
+porównanie. Bez tego parametru dozwolonych jest wiele okien: w zależności od
+innych ustawień nowe porównanie może otworzyć się w istniejącym oknie lub w
+nowym oknie.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>Ogranicz okno WinMerge do jednej instancji oraz opcji /s.  Jednakże oczekuje
+na zakończenie instancji wyświetlającej okno.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>Upewnij się, że zawsze wykonywana jest inna instancja, ignorując wartość
+opcji „Pozwól na uruchomienie tylko jednej instancji”.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Okno WinMerge</primary>
+        <secondary>grupy instancji</secondary>
+      </indexterm>
+
+      <term><option>/g</option> <replaceable>group-name</replaceable></term>
+      <listitem>
+        <para>Określa nazwę grupy dla instancji WinMerge. W przypadku użycia z
+<option>/s</option> opcja, instancje o tej samej nazwie grupy współdzielą to
+samo okno, co pozwala na organizowanie wielu grup z pojedynczą instancją.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Lista MRU</primary>
+      </indexterm>
+
+      <term><option>/ul</option></term>
+      <listitem>
+        <para>Uniemożliwia programowi WinMerge dodanie lewej ścieżki do listy Ostatnio
+używane (MRU). Aplikacje zewnętrzne nie powinny dodawać ścieżek do listy MRU
+w oknie dialogowym Wybierz pliki lub foldery.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/um</option></term>
+      <listitem>
+        <para>Uniemożliwia programowi WinMerge dodanie środkowej ścieżki do listy Ostatnio
+używane (MRU). Aplikacje zewnętrzne nie powinny dodawać ścieżek do listy MRU
+w oknie dialogowym Wybierz pliki lub foldery.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ur</option></term>
+      <listitem>
+        <para>Uniemożliwia programowi WinMerge dodanie właściwej ścieżki do listy Ostatnio
+używane (MRU). Aplikacje zewnętrzne nie powinny dodawać ścieżek do listy MRU
+w oknie dialogowym Wybierz pliki lub foldery.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/u</option></term>
+      <listitem>
+        <para>Uniemożliwia programowi WinMerge dodanie dowolnej ścieżki (lewej lub prawej)
+do listy Ostatnio używane (MRU). Aplikacje zewnętrzne nie powinny dodawać
+ścieżek do listy MRU w oknie dialogowym Wybierz pliki lub foldery.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>ochrona plików</primary>
+      </indexterm>
+
+      <term><option>/wl</option></term>
+      <listitem>
+        <para>Otwiera lewą stronę w trybie tylko do odczytu. Użyj tej opcji, jeśli nie
+chcesz zmieniać elementów po lewej stronie w porównaniu.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/wm</option></term>
+      <listitem>
+        <para>Otwiera środkową stronę w trybie tylko do odczytu. Użyj tej opcji, jeśli nie
+chcesz zmieniać elementów po prawej stronie w porównaniu.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/wr</option></term>
+      <listitem>
+        <para>Otwiera prawą stronę w trybie tylko do odczytu. Użyj tej opcji, jeśli nie
+chcesz zmieniać elementów po prawej stronie w porównaniu.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/new</option></term>
+      <listitem>
+        <para>Otwiera nowe, puste okno.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>Porównuje określony plik z kopią pliku.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/clipboard-compare</option></term>
+      <listitem>
+        <para>Porównuje dwie najnowsze treści historii schowka.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Okno WinMerge</primary>
+        <secondary>otwarcie zminimalizowane lub zmaksymalizowane</secondary>
+      </indexterm>
+
+      <term><option>/minimize</option></term>
+      <listitem>
+        <para>Uruchamia WinMerge jako zminimalizowane okno.  Ta opcja może być przydatna
+podczas długich porównań.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/maximize</option></term>
+      <listitem>
+        <para>Uruchamia WinMerge jako zmaksymalizowane okno.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fl</option></term>
+      <listitem>
+        <para>Przy uruchomieniu ustawia fokus na lewą stronę.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fm</option></term>
+      <listitem>
+        <para>Przy uruchomieniu ustawia fokus na środkową stronę.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fr</option></term>
+      <listitem>
+        <para>Przy uruchomieniu ustawia fokus na prawą stronę.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/l <replaceable>linenumber</replaceable></option></term>
+      <listitem>
+        <para>Określa numer linii, do której należy przejść po załadowaniu plików.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/c <replaceable>charpos</replaceable></option></term>
+      <listitem>
+        <para>Określa pozycję znaku, do której należy przejść po załadowaniu plików.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
+      <listitem>
+        <para>Określa znak ogranicznika do edycji tabeli. Aby określić znak tabulacji,
+określ „tab”, „\t” lub „\x09”.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/dl</option></term>
+      <listitem>
+        <para>Określa opis na lewym pasku tytułu, zastępując domyślny tekst nazwy folderu
+lub pliku. Na przykład: <userinput>/dl "Version 1.0</userinput>„lub
+<userinput>/dl WorkingCopy</userinput>. Używaj cudzysłowów wokół opisów
+zawierających spacje.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/dm</option></term>
+      <listitem>
+        <para>Określa opis na środkowym pasku tytułu, podobnie jak <option>/dl</option>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/dr</option></term>
+      <listitem>
+        <para>Określa opis na prawym pasku tytułu, podobnie jak <option>/dl</option>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Połączenie trójstronne</primary>
+        <secondary>automatyczne łączenie z opcją /al</secondary>
+      </indexterm>
+      <term><option>/al</option></term>
+      <listitem>
+        <para>
+Automatyczne łączenie przy uruchomieniu z układem paneli: lewy (cel
+scalania) - środkowy (ich) - prawy (podstawowy).</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Połączenie trójstronne</primary>
+        <secondary>automatyczne łączenie z opcją /am</secondary>
+      </indexterm>
+      <term><option>/am</option></term>
+      <listitem>
+        <para>
+Automatyczne łączenie przy uruchomieniu z układem paneli: lewy (ich) -
+środkowy (cel scalania) - prawy (moje).</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>Połączenie trójstronne</primary>
+        <secondary>automatyczne łączenie z opcją /ar</secondary>
+      </indexterm>
+      <term><option>/ar</option></term>
+      <listitem>
+        <para>
+Automatyczne łączenie przy uruchomieniu z układem paneli: lewy (podstawowy)
+- środkowy (ich) - prawy (cel scalania).</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noninteractive</option></term>
+      <listitem>
+        <para>
+Uruchamia WinMerge bez wyświetlania okien komunikatów podczas porównywania
+lub generowania raportu.  Proces kończy się automatycznie po zakończeniu
+operacji, dzięki czemu nadaje się do wykonywania wsadowego lub skryptowego.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noprefs</option></term>
+      <listitem>
+        <para>
+Uruchamia WinMerge bez ładowania lub zapisywania ustawień z rejestru.  We
+wszystkich porównaniach wykorzystywane są wyłącznie preferencje domyślne.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/enableexitcode</option></term>
+      <listitem>
+        <para>Ustawia wynik porównania na kod zakończenia procesu. 0: identyczny, 1: inny,
+2: błąd</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorews</option></term>
+      <listitem>
+        <para>Trwale kontroluje opcję „Odstępy” (ustawienia porównania białych znaków):</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorews:0</option> - nie ignoruj różnic w białych znakach.</para></listitem>
+          <listitem><para><option>/ignorews</option> lub <option>/ignorews:1</option> - zignorować
+różnice w ilości białych znaków.</para></listitem>
+          <listitem><para><option>/ignorews:2</option> - zignoruj wszystkie białe znaki.</para></listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreblanklines</option></term>
+      <listitem>
+        <para>Trwale kontroluje opcję „Ignoruj ​​puste linie”:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignoreblanklines:0</option> - wyłącza ignorowanie pustych linii.</para></listitem>
+          <listitem><para><option>/ignoreblanklines</option> lub <option>/ignoreblanklines:1</option>
+- umożliwia ignorowanie pustych linii.</para></listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecase</option></term>
+      <listitem>
+        <para>Trwale kontroluje opcję „Ignoruj wielkość liter”:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorecase:0</option> - wyłącza ignorowanie różnic w wielkości
+liter.</para></listitem>
+          <listitem><para><option>/ignorecase</option> lub <option>/ignorecase:1</option> - umożliwia
+ignorowanie różnic w wielkości liter.</para></listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreeol</option></term>
+      <listitem>
+        <para>Trwale kontroluje opcję „Ignoruj różnice EOL”:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignoreeol:0</option> - wyłącza ignorowanie różnic EOL.</para></listitem>
+          <listitem><para><option>/ignoreeol</option> lub <option>/ignoreeol:1</option> - umożliwia
+ignorowanie różnic EOL.</para></listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecodepage</option></term>
+      <listitem>
+        <para>Trwale kontroluje opcję „Ignoruj różnice stron kodowych”:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorecodepage:0</option> - wyłącza ignorowanie różnic stron
+kodowych.</para></listitem>
+          <listitem><para><option>/ignorecodepage</option> lub <option>/ignorecodepage:1</option> -
+umożliwia ignorowanie różnic w stronach kodowych.</para></listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecomments</option></term>
+      <listitem>
+        <para>Trwale kontroluje opcję „Ignoruj różnice w komentarzach”:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorecomments:0</option> - wyłącza ignorowanie komentarzy.</para></listitem>
+          <listitem><para><option>/ignorecomments</option> lub <option>/ignorecomments:1</option> -
+umożliwia ignorowanie komentarzy.</para></listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/unpacker <replaceable>plugin pipeline</replaceable></option></term>
+      <listitem>
+        <para>
+Określa potok wtyczki dla wtyczki Unpacker.  Przykład: <option>/unpacker
+"SortAscending|SelectLines 1-10"</option></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/prediffer <replaceable>plugin pipeline</replaceable></option></term>
+      <listitem>
+        <para>
+Określa potok wtyczki dla wtyczki Prediffer.  Przykład: <option>/prediffer
+"IgnoreColumns 1-10"</option></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cp <replaceable>codepage</replaceable></option></term>
+      <listitem>
+        <para>
+Określa stronę kodową używaną do porównywania plików.  Przykład: <option>/cp
+65001</option></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <listitem>
+        <para>Określa rozszerzenie pliku służące do określania podświetlenia składni.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cfg <replaceable>name=value</replaceable></option></term>
+      <listitem>
+        <para>
+Ustawia wartość konfiguracyjną w rejestrze WinMerge lub pliku INI.</para>
+        <para>
+Przykład: <option>/cfg Settings/DiffAlgorithm=3</option></para>
+        <para>
+Jeżeli nazwa sekcji jest jednoznaczna i nie koliduje z innymi nazwami
+ustawień, można ją pominąć:</para>
+        <para>
+<option>/cfg DiffAlgo=3</option></para>
+        <para>
+Uwaga: ten wpis nie wyjaśnia, które nazwy konfiguracji są dostępne.  Aby
+zapoznać się z listą ustawień, zobacz
+<filename>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge</filename> w
+regedit.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option><replaceable>leftpath</replaceable></option></term>
+      <listitem>
+        <para>Określa folder, plik lub plik projektu do otwarcia po lewej stronie.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option><replaceable>middlepath</replaceable></option></term>
+      <listitem>
+        <para>Określa folder, plik lub plik projektu do otwarcia na środkowej stronie.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option><replaceable>rightpath</replaceable></option></term>
+      <listitem>
+        <para>Określa folder, plik lub plik projektu do otwarcia po prawej stronie.</para>
+
+        <para>WinMerge nie może porównywać plików z folderami, więc parametry ścieżki
+(<option><replaceable>leftpath</replaceable></option>,
+<option><replaceable>middlepath</replaceable></option> i
+<option><replaceable>rightpath</replaceable></option>) musi wskazywać ten
+sam typ docelowy (foldery lub pliki). Jeśli WinMerge nie może znaleźć żadnej
+z określonych ścieżek, otwiera okno dialogowe Wybierz pliki lub foldery, w
+którym możesz przeglądać w poszukiwaniu prawidłowych ścieżek.</para>
+
+        <tip>
+          <para>Podczas porównywania plików można określić nazwę folderu w jednym z
+parametrów ścieżki, o ile folder zawiera plik o tej samej nazwie, co
+określony w drugiej ścieżce pliku.</para>
+
+          <para>Rozważmy na przykład to polecenie:</para>
+
+          <para><userinput>WinMergeU <filename>C:\Folder\File.txt</filename> <filename
+class="directory">C:\Folder2</filename> </userinput></para>
+
+          <para>Jeśli <filename class="directory">C:\Folder2</filename> zawiera plik o
+nazwie <filename>File.txt</filename>: WinMerge domyślnie rozpoznaje drugą
+ścieżkę jako specyfikację pliku i porównuje dwa pliki. Oczywiście polecenie
+jest nieprawidłowe, jeśli <filename class="directory">C:\Folder2</filename>
+robi <emphasis>nie</emphasis> zawierają plik o nazwie
+<filename>File.txt</filename>.</para>
+        </tip>
+        <para></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>łączenie różnic</primary>
+        <secondary>plik wynikowy</secondary>
+      </indexterm>
+
+      <term><option>/o <replaceable>outputpath</replaceable></option></term>
+      <listitem>
+        <para>Określa opcjonalną ścieżkę pliku wyjściowego, w której mają być zapisywane
+scalone pliki wynikowe.</para>
+
+        <para>Ścieżka wyjściowa jest rzadko potrzebna, gdy uruchamiasz WinMerge z wiersza
+poleceń. Jest przeznaczony do stosowania z narzędziami kontroli wersji, w
+których może być konieczne określenie ścieżki wyjściowej pliku
+<wordasword>wynik</wordasword> plik. Jeśli określisz ścieżkę wyjściową,
+WinMerge nadal będzie wyświetlać tylko dwa lub trzy pliki w oknie Porównaj
+pliki. Jeśli jednak zapiszesz którykolwiek z tych plików, zostanie on
+zapisany w ścieżce wyjściowej, pozostawiając dwa lub trzy pliki źródłowe
+nienaruszone.</para>
+
+        <para>W przypadku trójstronnego porównania tekstu określenie ścieżki wyjściowej
+powoduje również otwarcie panelu Wynik scalania u dołu okna Porównywanie
+plików, gdzie można przejrzeć i edytować wynik scalania przed zapisaniem go
+w ścieżce wyjściowej. Zobacz temat panelu Wynik scalania w
+<citetitle>Porównywanie i łączenie plików tekstowych</citetitle>.</para>
+
+        <para>Systemy kontroli wersji zazwyczaj odnoszą się do plików źródłowych i
+wynikowych za pomocą terminów takich jak <glossterm>ich</glossterm>,
+<glossterm>moje</glossterm>, i albo <glossterm>połączone</glossterm> lub
+<glossterm>rozwiązany</glossterm>. Jeśli określisz ścieżkę wyjściową w
+wierszu poleceń WinMerge i pracujesz z systemem kontroli wersji, powinieneś
+wyświetlić pliki w tej kolejności.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/or <replaceable>outputpath</replaceable></option></term>
+      <listitem>
+        <para>
+Generuje raport porównawczy dla plików lub folderów.  Przykład:
+<option>WinMergeU path1 path2 /or c:\tmp\report.html</option></para>
+        <para>Często warto połączyć tę opcję z:</para>
+        <itemizedlist>
+          <listitem><para><option>/noninteractive</option> - opuszcza WinMerge po utworzeniu raportu.</para></listitem>
+          <listitem><para><option>/minimize</option> - uruchamia WinMerge w stanie zminimalizowanym.</para></listitem>
+          <listitem><para><option>/noprefs</option> - ignoruje bieżące preferencje i używa ustawień
+domyślnych.  Wszelkie zmiany dokonane za pomocą <option>/cfg</option> będą
+wówczas tymczasowe i nie zostaną zapisane.</para></listitem>
+        </itemizedlist>
+        <para>
+Następujące <option>/cfg</option> ustawienia też mogą się przydać (nazwy
+parametrów mogą w przyszłości ulec zmianie):</para>
+        <para>Dla porównania plików:</para>
+        <itemizedlist>
+          <listitem><para><option>/cfg Settings/DiffContextV2=0</option> - ukrywa pasujące linie w
+raporcie (odpowiednik Widok -> Kontekst różnicowy -> 0 linii).</para></listitem>
+          <listitem><para><option>/cfg Settings/ViewLineNumbers=1</option> - wyprowadza numery linii
+(ustawione na 0, aby wyłączyć).</para></listitem>
+        </itemizedlist>
+        <para>Dla porównania folderów:</para>
+        <itemizedlist>
+          <listitem><para><option>/cfg Settings/DirViewExpandSubdirs=1</option> - automatycznie
+rozwijaj wszystkie podfoldery.</para></listitem>
+          <listitem><para><option>/cfg ReportFiles/ReportType=2</option> - styl raportu: Prosty HTML.</para></listitem>
+          <listitem><para><option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - dołącz raporty
+porównawcze plików.</para></listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>pliki konfliktowe</primary>
+        <secondary>określenie w wierszu poleceń</secondary>
+      </indexterm>
+
+      <term><option><replaceable>conflictfile</replaceable></option></term>
+      <listitem>
+        <para>Określa plik konfliktu, zwykle generowany przez system kontroli wersji. Plik
+konfliktu otwiera się w oknie Porównywanie plików, w którym można łączyć i
+rozwiązywać konflikty, jak opisano w <xref linkend="ResolveConflictFiles"
+/>. Należy pamiętać, że w przypadku pliku konfliktu nie można używać żadnych
+innych ścieżek.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>plik ini</primary>
+        <secondary>określenie w wierszu poleceń</secondary>
+      </indexterm>
+
+      <term><option>/inifile <replaceable>inifile</replaceable></option></term>
+      <listitem>
+        <para>określa plik INI używany do ładowania i zapisywania ustawień zamiast
+rejestru.</para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+</article>

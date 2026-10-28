@@ -188,10 +188,10 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
 place.</para>
 
           <para>Lorsque vous sélectionnez une différence, les deux versions sont chargées
-dans le volet Diff. Le volet Diff confirme quelles lignes sont incluses dans
-une différence et vous permet de les examiner isolément du reste du
-fichier. Dans notre exemple, la Différence 1 comporte clairement deux
-lignes.</para>
+dans le volet des différences. Le volet des différences confirme quelles
+lignes sont incluses dans une différence et vous permet de les examiner
+isolément du reste du fichier. Dans notre exemple, la Différence 1 comporte
+clairement deux lignes.</para>
 
           <mediaobject>
 <imageobject> <imagedata contentwidth="588"
@@ -250,7 +250,7 @@ modifications de chaque contributeur.</para>
     <para>La fusion peut être suggérée (ou même initiée) par des systèmes de contrôle
 de version comme Subversion et Git. Par exemple, votre système de contrôle
 de version pourrait vous empêcher de soumettre des modifications à son dépôt
-en raison de conflits de fusion. Un conflit peut survenir si quelqu'un
+en raison de conflits de la fusion. Un conflit peut survenir si quelqu'un
 d'autre a enregistré une version différente du même fichier pendant que vous
 travailliez sur la vôtre, et que le système de contrôle de version n'a pas
 pu fusionner automatiquement les différences. Lorsque cela arrive, vous
@@ -358,7 +358,7 @@ souhaité.</para>
     </section>
 
     <section>
-      <title>Choisir un fichier de résultat de fusion <indexterm>
+      <title>Choisir un fichier de résultat de la fusion <indexterm>
           <primary>fusion des différences</primary>
 
           <secondary>fichier résultat</secondary>
@@ -366,18 +366,18 @@ souhaité.</para>
           <primary>fichier résultat, lors de la fusion</primary>
         </indexterm></title>
 
-      <para>Vous contrôlez l'endroit où votre résultat de fusion est conservé. La
+      <para>Vous contrôlez l'endroit où votre résultat de la fusion est conservé. La
 fenêtre de comparaison de fichiers de WinMerge n'a pas de volet de résultat
 distinct, contrairement à certains outils de fusion. La stratégie la plus
 simple consiste donc à enregistrer vos modifications dans un, deux ou trois
 fichiers sources. Appuyez sur <keycap>Ctrl</keycap> + <keycap>S</keycap> à
 tout moment pour enregistrer les modifications actuelles dans tous les
 fichiers ; alternativement, cliquez sur <menuchoice>
-<guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à gauche</guimenuitem>
+<guimenu>Fichier</guimenu> <guimenuitem>Enregistrer Gauche</guimenuitem>
 </menuchoice>, <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Enregistrer au milieu</guimenuitem> </menuchoice> ou
-<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à
-droite</guimenuitem> </menuchoice> pour n'enregistrer qu'un seul fichier.</para>
+<guimenuitem>Enregistrer Milieu</guimenuitem> </menuchoice> ou <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Enregistrer Droite</guimenuitem>
+</menuchoice> pour n'enregistrer qu'un seul fichier.</para>
 
       <para>Pour écrire dans un troisième fichier au lieu de l'un des fichiers sources,
 utilisez <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer

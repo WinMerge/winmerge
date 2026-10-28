@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Faq">
+  <title>Często zadawane pytania</title>
+
+  <section>
+    <title>Pytania ogólne</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Czy WinMerge działa na starszych wersjach systemu Windows?</para>
+        </question>
+        <answer>
+          <para><indexterm>
+              <primary>Pliki wykonywalne WinMerge, Unicode i ANSI</primary>
+            </indexterm><indexterm>
+              <primary>Unikod</primary>
+              <secondary>Obsługa WinMerge</secondary>
+            </indexterm><indexterm>
+              <primary>ANSI</primary>
+              <secondary>Obsługa WinMerge</secondary>
+            </indexterm>Począwszy od wersji 2.14,
+WinMerge zakończyło obsługę starszych 32-bitowych systemów Windows, w tym
+Windows 9x, ME i NT4.  Ponadto wersja WinMerge 2.16 nie obsługuje systemu
+Windows 2000.</para>
+          <para>Wcześniej WinMerge udostępniało plik wykonywalny ANSI (8-bitowy),
+<filename>WinMerge.exe</filename>, który został zaprojektowany w oparciu o
+stare strony kodowe systemu Windows. <filename>WinMerge.exe</filename>
+wewnętrznie przechowywane tylko znaki ANSI obsługiwane przez stronę kodową
+systemu Windows.  Ten plik wykonywalny miał poważne ograniczenia w pracy z
+Unicode: jeśli otworzyłeś plik Unicode, znaki zostały przekonwertowane na
+stronę kodową Windows ANSI. Ponieważ istnieje ponad 100 000 znaków Unicode,
+a w zestawie znaków ANSI można reprezentować tylko 256, może nastąpić utrata
+danych. Konwersja może być przybliżona (np. utrata akcentów) lub niemożliwa:
+znaki zastąpiono znakami zapytania ( <literal>?</literal> ).</para>
+          <para><filename>WinMerge.exe</filename> również nie można było otworzyć plików o
+nazwach spoza bieżącej strony kodowej ANSI. Na przykład w systemie
+angielskim <filename>WinMerge.exe</filename> nie można otworzyć pliku o
+nazwie hebrajskiej.</para>
+          <para>WinMerge opracowało obsługę Unicode <filename>WinMergeU.exe</filename>
+wykonywalny do pracy z nowszymi systemami Windows opartymi na
+Unicode. <filename>WinMergeU.exe</filename> nie ma żadnych ograniczeń pliku
+wykonywalnego ANSI.</para>
+          <para><filename>WinMergeU.exe</filename> był instalowany domyślnie przez jakiś
+czas, a ponieważ pozostało niewiele systemów Windows opartych na ANSI, warto
+go utrzymać <filename>WinMerge.exe</filename> jest minimalne.  Począwszy od
+wersji 2.14, WinMerge nie zawiera już <filename>WinMerge.exe</filename> w
+instalatorze.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Chcę porównać foldery, ale nie mogę wybrać folderu w oknie dialogowym
+Przeglądaj.<indexterm>
+              <primary>foldery</primary>
+
+              <secondary>wybierając w oknie dialogowym Wybierz pliki lub foldery</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Przeglądaj zawartość folderu i znajdź folder, który chcesz porównać.  Nie
+zaznaczaj żadnego z plików ani podfolderów, po prostu kliknij
+<guibutton>Otwórz</guibutton> kiedy <literal>Folder Selection</literal> jest
+wyświetlany w <guilabel>Nazwa pliku</guilabel> pole. Jeśli wybrałeś już
+pliki lub podfoldery, po prostu wpisz losowy ciąg znaków w polu
+<guilabel>Nazwa pliku</guilabel> pole i kliknij
+<guibutton>Otwórz</guibutton>. Jeśli wprowadzona nazwa pliku nie zostanie
+znaleziona, WinMerge otworzy folder.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Czy planujecie obsługę innych systemów operacyjnych oprócz Windows?</para>
+        </question>
+
+        <answer>
+          <para>Obecnie nie ma planów obsługi wielu platform, ale możesz wypróbować
+nieoficjalną wersję <ulink url="https://github.com/datadiode/winmerge2011">
+WinMerge 2011</ulink> autorstwa Jochena Neubecka. Ta wersja powinna
+współpracować z Wine także pod Linuksem.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Dlaczego nie ma integracji z CVS?<indexterm>
+              <primary>systemy kontroli wersji</primary>
+
+              <secondary>integracja z</secondary>
+            </indexterm><indexterm>
+              <primary>integracja</primary>
+
+              <secondary>z systemami kontroli wersji</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Zapewnienie integracji z CVS ma wątpliwą wartość, ponieważ jest już tak
+wielu dobrych klientów CVS. Jednakże WinMerge zapewnia integrację z funkcją
+różnicową jednego z tych klientów, TortoiseCVS (jak opisano w <xref
+linkend="Version_control" />). Ponadto WinMerge może rozwiązać pliki
+konfliktowe (patrz <xref linkend="ResolveConflictFiles" />).</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Co to jest lista MRU?<indexterm>
+              <primary>Lista MRU</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>MRU to skrót od <quote>Ostatnio używane</quote>i odnosi się do list historii
+w oknie dialogowym Wybierz pliki lub foldery.  Lista zawiera dwadzieścia
+ostatnich ścieżek używanych po każdej stronie.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Czy WinMerge może otwierać pliki OpenOffice?<indexterm>
+              <primary>OpenOffice, otwieranie plików w WinMerge</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Pliki OpenOffice są archiwami. Aby móc je otwierać w WinMerge, musisz
+skonfigurować obsługę archiwów:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>W WinMerge kliknij <guibutton>Opcje</guibutton> przycisk (lub kliknij
+<menuchoice> <guimenu>Edytuj</guimenu> <guimenuitem>Opcje</guimenuitem>
+</menuchoice>). Na stronie wsparcia archiwum włącz opcję <guilabel>Wykryj
+typ archiwum na podstawie podpisu pliku</guilabel> opcja</para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Dlaczego duże pliki czasami są wyświetlane jako różne w oknie Porównywanie
+folderów, ale identyczne w oknie Porównywanie plików?</para>
+        </question>
+
+        <answer>
+          <para>Dzieje się tak, ponieważ WinMerge zawsze używa pliku <guilabel>Szybka
+zawartość</guilabel> metoda porównywania plików dla dużych plików. Ta metoda
+umożliwia WinMerge skuteczniejsze porównywanie dużych plików. Aby sprawdzić,
+czy jest to przyczyną obserwowanego zachowania, możesz spróbować podnieść
+<guilabel>Szybka zawartość</guilabel> próg dla dużych plików. Zobacz
+dyskusję na temat tej metody w <xref linkend="Compare_dirs_starting" /> żeby
+dowiedzieć się jak.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Jak mogę kontrolować, który plik pojawia się po lewej stronie, porównując
+wiele plików w Eksploratorze Windows?<indexterm>
+              <primary>Eksplorator Windows</primary>
+              <secondary>kolejność wyboru plików</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Jeśli w Eksploratorze Windows zostanie wybranych wiele plików, plik
+kliknięty prawym przyciskiem myszy stanie się pierwszym (podstawowym)
+elementem. Pozostałe elementy są wyświetlane w kolejności, w jakiej zostały
+wybrane. Dlatego, aby plik pojawił się po lewej stronie w WinMerge, wybierz
+wiele plików i kliknij prawym przyciskiem myszy ten, który chcesz porównać
+po lewej stronie.</para>
+          <para>Aby uzyskać więcej informacji na temat tego zachowania powłoki systemu
+Windows, zobacz: <ulink
+url="https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406">Stara
+nowa rzecz: w jaki sposób Eksplorator określa, jakiego programu użyć do
+otwarcia pliku, jeśli nie podano wyraźnego polecenia?</ulink>.</para>
+        </answer>
+      </qandaentry>
+
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Porównywanie plików</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Dlaczego w moich plikach wszystkie linie są oznaczone jako różne (kolorowe),
+mimo że wiem, że wszystkie linie nie są różne?</para>
+        </question>
+
+        <answer>
+          <para>Być może Twoje pliki mają różne style zakończenia linii (na przykład Windows
+i Unix). Domyślnie WinMerge porównuje style zakończeń linii.  Aby to
+wyłączyć, kliknij <menuchoice> <guimenu>Edytuj</guimenu>
+<guimenuitem>Opcje</guimenuitem> </menuchoice>. Na stronie Porównaj włącz
+(zaznacz) opcję, <guilabel>Ignoruj różnice w powrocie karetki</guilabel>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Pytania dotyczące redaktora</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>W plikach zamiast liter widzę znaki zapytania.</para>
+        </question>
+
+        <answer>
+          <para>To jest to, co nazywamy <glossterm>konwersja stratna</glossterm>.</para>
+<!--<para>
+For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>-->
+          
+
+          <para>W przypadku plików ANSI jest to prawdopodobnie spowodowane problemami ze
+stroną kodową. Aby rozwiązać problem, kliknij <menuchoice>
+<guimenu>Edytuj</guimenu> <guimenuitem>Opcje</guimenuitem>
+</menuchoice>. Następnie na stronie Strony kodowe sprawdź, czy opcja jest
+dostępna <guilabel>Wykryj informacje o stronie kodowej</guilabel> jest
+sprawdzane. Jeśli tak, odznacz opcję, kliknij <guibutton>OK</guibutton>i
+zobacz, czy to pomoże.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Nie mogę wybrać czcionek proporcjonalnych dla edytora.</para>
+        </question>
+
+        <answer>
+          <para>Niestety WinMerge obsługuje tylko czcionki nieproporcjonalne.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Co jest <glossterm>opóźnienie automatycznego ponownego
+skanowania</glossterm>? Dlaczego jest to potrzebne?</para>
+        </question>
+
+        <answer>
+          <para>Kiedy <guilabel>Automatyczne ponowne skanowanie</guilabel> jest włączona (na
+stronie Edytor w Opcjach), WinMerge opóźnia ponowne skanowanie podczas
+edycji plików. Oznacza to, że ponowne skanowanie nie nastąpi wcześniej niż
+wkrótce po zakończeniu pisania. Bez tego opóźnienia WinMerge skanowałby
+ponownie po każdym wprowadzonym znaku, co spowodowałoby, że proces edycji
+byłby zbyt powolny. Opóźnienie szczególnie poprawia edycję większych plików,
+których ponowne skanowanie może zająć kilka sekund.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Czy mogę drukować pliki z okienek plików w oknie Porównaj pliki?</para>
+        </question>
+
+        <answer>
+          <para>Tak, istnieje podstawowa obsługa drukowania: kliknij <menuchoice>
+<guimenu>Plik</guimenu> <guimenuitem>Wydrukuj</guimenuitem> </menuchoice>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Czy mogę ukryć podobne linie w porównaniu plików, tak aby widoczne były
+tylko różne linie?</para>
+        </question>
+
+        <answer>
+          <para>Tak, klikając możesz wyświetlić tylko różne linie <menuchoice>
+<guimenu>Zobacz</guimenu><guimenuitem>Kontekst różnicowy</guimenuitem>
+<guimenuitem>0 linii</guimenuitem> </menuchoice>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>WinMerge jako zewnętrzne narzędzie do porównywania lub porównywania</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Chcę, aby WinMerge zakończyło się pojedynczym plikiem
+<keycap>Wyjście</keycap> nacisnąć, gdy skończę?</para>
+        </question>
+
+        <answer>
+          <para>Otwórz WinMerge z wiersza poleceń i dołącz plik <option>-e</option>
+przełącznik.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Nie chcę widzieć <guilabel>Pliki są identyczne</guilabel> komunikat, gdy
+porównuję identyczne pliki, chcę po prostu zakończyć działanie WinMerge.</para>
+        </question>
+
+        <answer>
+          <para>Skorzystaj z <option>-x</option> przełącznik wiersza poleceń.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Jak mogę uniknąć wypełniania list historii okna dialogowego Wybierz pliki
+lub foldery ścieżkami tymczasowymi?</para>
+        </question>
+
+        <answer>
+          <para>Niech twój program zewnętrzny wywoła WinMerge za pomocą <option>/ub</option>
+opcję, która mówi WinMerge, aby nie dodawał plików do MRU.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Ale program, którego używam, nie pozwala na parametry wiersza poleceń!</para>
+        </question>
+
+        <answer>
+          <para>Utwórz plik wsadowy zawierający jedną z tych linii (ale nie obie):</para>
+
+          <itemizedlist>
+            <listitem>
+              <screen>ZADZWOŃ”<replaceable>&lt;winmerge path&gt;\WinMerge</replaceable>" /e /u %1 %2 %3</screen>
+            </listitem>
+
+            <listitem>
+              <screen>uruchom „WinMerge” „<replaceable>&lt;winmerge path&gt;</replaceable>" /e /u %1 %2 %3</screen>
+            </listitem>
+          </itemizedlist>
+
+          <para>Wywołaj ten plik wsadowy ze swojego programu.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Wsparcie archiwalne</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Jak mogę otworzyć pliki poprawek w stylu Perry, których programiści WinMerge
+używają podczas przesyłania poprawek?<indexterm>
+              <primary>pliki poprawek, w stylu Perry'ego</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Poprawki w stylu Perry'ego to pliki zip zawierające oryginalne i zmienione
+pliki w różnych katalogach. WinMerge ma wewnętrzne wsparcie (niespodzianka!)
+do obsługi tych plików: wystarczy uruchomić operację porównywania,
+wybierając plik zip zarówno dla lewej, jak i prawej strony. WinMerge otwiera
+zawartość pliku ZIP w oknie Porównaj foldery, porównując pliki oryginalne i
+zmienione.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Czy WinMerge może otwierać pliki archiwów z niestandardowymi rozszerzeniami?
+(Na przykład pliki .jar jako pliki zip)</para>
+        </question>
+
+        <answer>
+          <para>Tak: kliknij <guibutton>Opcje</guibutton> przycisk (lub kliknij <menuchoice>
+<guimenu>Edytuj</guimenu> <guimenuitem>Opcje</guimenuitem>
+</menuchoice>). Na stronie wsparcia archiwum włącz opcję <guilabel>Wykryj
+typ archiwum na podstawie podpisu pliku</guilabel> opcja.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section id="Faq_encoding">
+    <title>Kodowanie tekstu (strony kodowe)<indexterm>
+        <primary>ANSI</primary>
+
+        <secondary>wykrywanie w plikach za pomocą Notatnika</secondary>
+      </indexterm></title>
+
+    <qandaset>
+      <qandaentry>
+        <question id="Faq_detectencoding">
+          <para id="Faq_detectencoding_text">Jak sprawdzić, czy mój plik jest zakodowany na lokalnej stronie kodowej
+systemu Windows (ANSI)?</para>
+        </question>
+
+        <answer>
+          <para>Otwórz plik w Notatniku systemu Windows (na przykład kliknij <menuchoice>
+<guimenu>Zacznij</guimenu> <guisubmenu>(Wszystkie) programy</guisubmenu>
+<guisubmenu>Akcesoria</guisubmenu> <guimenuitem>Notatnik</guimenuitem>
+</menuchoice>). Kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Zapisz jako</guimenuitem> </menuchoice>i w oknie dialogowym
+Zapisz jako przewiń do <guilabel>Kodowanie</guilabel> element na liście
+rozwijanej. Możliwe wartości obejmują:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>ANSI</guilabel>: Plik najwyraźniej znajduje się na lokalnej
+stronie kodowej systemu Windows. Jeśli plik jest w całości w języku
+angielskim i ma normalną interpunkcję, to plik jest również w formacie
+ASCII.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Unikod</guilabel>: Plik jest prawdopodobnie zapisany w domyślnym
+kodowaniu Windows Unicode, UCS-2LE.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>UTF-8</guilabel>: Plik jest w wieloplatformowym kodowaniu Unicode,
+UTF-8.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Big Endian Unicode</guilabel>: Plik ma inne kodowanie Unicode,
+które jest rzadko używane lub obsługiwane w systemie Windows, prawdopodobnie
+UCS-2BE.</para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Pliki poprawek<indexterm>
+        <primary>pliki poprawek</primary>
+
+        <secondary>tworzenie za pomocą diffutils</secondary>
+      </indexterm><indexterm>
+        <primary>diffutils</primary>
+
+        <secondary>Poprawki WinMerge kompatybilne z</secondary>
+      </indexterm></title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Czy istnieje sposób na utworzenie plików poprawek z wiersza poleceń?</para>
+        </question>
+
+        <answer>
+          <para>Nie. Może zostać dodany w późniejszych wersjach. Do tego czasu możesz
+korzystać z portu Win32 <filename>diffutils</filename>. Najnowsza wersja
+<filename>diffutils</filename> (i łatkę) można pobrać z
+<application>SourceForge GnuWin32</application> strona projektu: <ulink
+url="https://sourceforge.net/projects/gnuwin32/">
+https://sourceforge.net/projects/gnuwin32</ulink>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Czy poprawki można stosować za pomocą WinMerge?</para>
+        </question>
+
+        <answer>
+          <para>Możesz zastosować łatki za pomocą eksperymentalnej wtyczki ApplyPatch.sct.
+Rozszerzenia łatek obsługiwanych przez wtyczkę to .diff lub .patch.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+    <para></para>
+  </section>
+</article>

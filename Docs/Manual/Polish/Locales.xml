@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Locales">
+  <title>Wsparcie lokalne<indexterm>
+      <primary>lokalizowanie WinMerge</primary>
+    </indexterm></title>
+
+  <para>Interfejs użytkownika WinMerge jest domyślnie w języku angielskim, ale
+możesz zlokalizować swoją instalację na inne języki, dla których dodano
+tłumaczenia. Lokalizowanie WinMerge zmienia ciągi tekstowe wyświetlane w
+interfejsie, w tym menu, okna dialogowe, podpowiedzi i komunikaty, na
+wybrany język.</para>
+
+  <para>Należy pamiętać, że lokalizacja nie wykracza poza tłumaczenie ciągów
+znaków. Na przykład nie ma to wpływu na sposób podziału liczb ani na
+alfabetyczną kolejność słów. (Te problemy należy rozwiązać w konwencjonalny
+sposób w systemie Windows, korzystając z ustawień regionalnych w Panelu
+sterowania).</para>
+
+  <para>Lokalizowanie instalacji WinMerge obejmuje dwa podstawowe kroki:</para>
+
+  <orderedlist>
+    <listitem>
+      <para><xref linkend="Locales_config_files" />: Udostępnij jeden lub więcej plików
+językowych WinMerge.</para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="Locales_changing" />: Wybierz jeden ze skonfigurowanych
+plików językowych.</para>
+    </listitem>
+  </orderedlist>
+
+  <section id="Locales_config_files">
+    <title>Konfiguracja lokalizacji</title>
+
+    <para>Konfigurowanie lokalizacji polega po prostu na udostępnieniu pliku
+tłumaczenia WinMerge podczas lub po instalacji.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Najłatwiej jest skonfigurować plik językowy podczas instalacji
+WinMerge. Instrukcje w <xref linkend="Installing_usinginstaller" /> opisz,
+jak używać strony Wybierz komponenty do instalowania jednego lub większej
+liczby plików tłumaczeń.</para>
+      </listitem>
+
+      <listitem>
+        <para>Jeśli nie skonfigurowałeś pliku językowego podczas instalacji WinMerge (lub
+w ogóle nie korzystałeś z instalatora), nie ma potrzeby ponownej instalacji
+WinMerge. Możesz pobrać najnowsze pliki tłumaczeń ze strony WinMerge i
+skonfigurować je samodzielnie:</para>
+
+        <orderedlist>
+          <listitem>
+            <simpara>Utwórz folder o nazwie <filename class="directory" >Languages</filename> w
+katalogu instalacyjnym WinMerge (gdzie <filename>WinMergeU.exe</filename>
+znajduje się), jeśli jeszcze nie istnieje.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Idź do <ulink url="https://winmerge.org/downloads/">Pobierz WinMerge</ulink>
+witryna.  Pobierz jeden z zarchiwizowanych plików binarnych (w formacie Zip
+lub 7z) dla bieżącej wersji WinMerge i zapisz go w swoim systemie plików.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Otwórz pobrane archiwum i zlokalizuj plik <filename>*.po</filename> pliki,
+gdzie * to język (na przykład <filename>Swedish.po</filename> dla
+tłumaczenia szwedzkiego).  Wyodrębnij pliki językowe, które chcesz
+<filename>Languages</filename> podfolder w katalogu instalacyjnym WinMerge.</simpara>
+          </listitem>
+        </orderedlist>
+
+        <para>Pliki językowe będą teraz dostępne przy następnym uruchomieniu WinMerge.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="Locales_changing">
+    <title>Zmiana języka interfejsu WinMerge</title>
+
+    <para>Jeśli skonfigurowałeś jeden lub więcej plików tłumaczeń, jak opisano w
+poprzedniej sekcji, możesz zmienić lokalizację WinMerge na dowolny z nich:</para>
+
+    <orderedlist>
+      <listitem>
+        <simpara>Uruchom WinMerge.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Wybierz <guimenuitem>Opcje</guimenuitem> z <guimenu>Edytuj</guimenu> menu.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Wybierz swój język i kliknij <guibutton>OK</guibutton> w oknie dialogowym
+Opcje na stronie Ogólne.</simpara>
+      </listitem>
+    </orderedlist>
+
+    <para>Język interfejsu użytkownika WinMerge jest natychmiast aktualizowany.</para>
+  </section>
+
+  <section>
+    <title>Dostępne lokalizacje WinMerge<indexterm>
+        <primary>lokalizacje, dostępne</primary>
+      </indexterm></title>
+
+    <para>Dotychczas przesłane lokalizacje WinMerge obejmują następujące tłumaczenia:</para>
+
+    <itemizedlist>
+      <listitem>
+        <simpara>Arabski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Azerbejdżan</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>baskijski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>bułgarski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>kataloński</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Chiński (zarówno uproszczony, jak i tradycyjny)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>korsykański</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>chorwacki</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>czeski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>duński</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>holenderski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>fiński</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Francuski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>galicyjski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>niemiecki</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>grecki</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>hebrajski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>węgierski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Indonezyjski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>włoski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Japoński</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>koreański</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>litewski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>norweski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>perski</simpara>
+      </listitem>
+	  
+      <listitem>
+        <simpara>Polski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>portugalski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>portugalski (brazylijski)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>rumuński</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Rosyjski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>serbski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>syngaleski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>słowacki</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>słoweński</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Hiszpański</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>szwedzki</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>tamilski</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>turecki</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>ukraiński</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>wietnamski</simpara>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Zgłaszanie błędów w tłumaczeniu<indexterm>
+        <primary>tłumaczenia, raportowanie błędów</primary>
+      </indexterm></title>
+
+    <para>Wszelkie błędy znalezione w tłumaczeniach prosimy zgłaszać do naszego
+serwisu jako błędy <ulink
+url="https://github.com/WinMerge/winmerge/issues">lista błędów</ulink>.
+Byłoby wspaniale, gdybyś dostarczył również poprawioną wersję
+przetłumaczonego tekstu.</para>
+  </section>
+
+  <section>
+    <title>Przesyłanie nowego tłumaczenia<indexterm>
+        <primary>przesyłanie tłumaczeń</primary>
+      </indexterm></title>
+
+    <para>Jeśli chcesz dodać swój język do listy, prosimy o zapoznanie się z <ulink
+url="https://winmerge.org/translations/">dokumentacja tłumaczeniowa</ulink>
+w witrynie internetowej WinMerge, aby dowiedzieć się, jak to
+zrobić. Większość tłumaczeń jest niekompletna, dlatego będziemy wdzięczni za
+pomoc w ich ulepszeniu. Tłumaczenie (lub ulepszanie tłumaczenia) nie wymaga
+posiadania wszystkich narzędzi do kompilacji ani znajomości wewnętrznych
+elementów WinMerge. Wystarczy postępować zgodnie z instrukcjami podanymi w
+poprzednim linku. A jeśli masz problemy, poproś nas o pomoc w jednym z
+<ulink url="https://forums.winmerge.org/">Fora WinMerge</ulink>.</para>
+  </section>
+</article>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
@@ -157,8 +157,8 @@
     <NMakeOutput>
     </NMakeOutput>
     <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_fr.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_fr.bat &amp; build_htmlhelp_he.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_fr.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_all.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_all.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -403,6 +403,32 @@
     <Xml Include="Japanese\xsl\htmlhelp.xsl" />
     <Xml Include="Japanese\_Copyrights.xml" />
     <Xml Include="Japanese\_VersionNumbers.xml" />
+    <Xml Include="Polish\About_Doc.xml" />
+    <Xml Include="Polish\Command_line.xml" />
+    <Xml Include="Polish\Compare_bin.xml" />
+    <Xml Include="Polish\Compare_dirs.xml" />
+    <Xml Include="Polish\Compare_files.xml" />
+    <Xml Include="Polish\Compare_images.xml" />
+    <Xml Include="Polish\Compare_table.xml" />
+    <Xml Include="Polish\Compare_webpages.xml" />
+    <Xml Include="Polish\Configuration.xml" />
+    <Xml Include="Polish\Faq.xml" />
+    <Xml Include="Polish\Filters.xml" />
+    <Xml Include="Polish\Index.xml" />
+    <Xml Include="Polish\Install.xml" />
+    <Xml Include="Polish\Introduction.xml" />
+    <Xml Include="Polish\Intro_diffs.xml" />
+    <Xml Include="Polish\Locales.xml" />
+    <Xml Include="Polish\Open_paths.xml" />
+    <Xml Include="Polish\Plugins.xml" />
+    <Xml Include="Polish\Quick_start.xml" />
+    <Xml Include="Polish\select_unpacker.xml" />
+    <Xml Include="Polish\Shortcut_keys.xml" />
+    <Xml Include="Polish\Version_control.xml" />
+    <Xml Include="Polish\xsl\html.xsl" />
+    <Xml Include="Polish\xsl\htmlhelp.xsl" />
+    <Xml Include="Polish\_Copyrights.xml" />
+    <Xml Include="Polish\_VersionNumbers.xml" />
     <Xml Include="Shared\xsl\common.xsl" />
     <Xml Include="Shared\xsl\html.xsl" />
     <Xml Include="Shared\xsl\htmlhelp.xsl" />
@@ -833,6 +859,87 @@
     <Image Include="Japanese\screenshots\word-diff-allwhite.png" />
     <Image Include="Japanese\screenshots\word-diff-nochange.png" />
     <Image Include="Japanese\screenshots\word-diff-nowhite.png" />
+    <Image Include="Polish\screenshots\aborted.png" />
+    <Image Include="Polish\screenshots\allleft_btn.png" />
+    <Image Include="Polish\screenshots\allright_btn.png" />
+    <Image Include="Polish\screenshots\binary.png" />
+    <Image Include="Polish\screenshots\binarydiff.png" />
+    <Image Include="Polish\screenshots\char-diff-01.png" />
+    <Image Include="Polish\screenshots\copyl_adv_btn.png" />
+    <Image Include="Polish\screenshots\copyl_button.png" />
+    <Image Include="Polish\screenshots\copyr_adv_btn.png" />
+    <Image Include="Polish\screenshots\copyr_button.png" />
+    <Image Include="Polish\screenshots\ctx_menu_advanced.png" />
+    <Image Include="Polish\screenshots\ctx_menu_copy1.png" />
+    <Image Include="Polish\screenshots\ctx_menu_copy2.png" />
+    <Image Include="Polish\screenshots\ctx_menu_simple.png" />
+    <Image Include="Polish\screenshots\currentdiff_btn.png" />
+    <Image Include="Polish\screenshots\diff-blocks-01.png" />
+    <Image Include="Polish\screenshots\diff_inline_btn.png" />
+    <Image Include="Polish\screenshots\equal.png" />
+    <Image Include="Polish\screenshots\equaltextfile.png" />
+    <Image Include="Polish\screenshots\error.png" />
+    <Image Include="Polish\screenshots\filecomp1.png" />
+    <Image Include="Polish\screenshots\filecomp_context1.png" />
+    <Image Include="Polish\screenshots\filecomp_diffpane1.png" />
+    <Image Include="Polish\screenshots\filecomp_inlinediff.png" />
+    <Image Include="Polish\screenshots\filecomp_margin1.png" />
+    <Image Include="Polish\screenshots\filecomp_margin2.png" />
+    <Image Include="Polish\screenshots\filemerged1.png" />
+    <Image Include="Polish\screenshots\fileskip.png" />
+    <Image Include="Polish\screenshots\file_headerbar1.png" />
+    <Image Include="Polish\screenshots\firstdiff_btn.png" />
+    <Image Include="Polish\screenshots\foldercmp_progress.png" />
+    <Image Include="Polish\screenshots\foldercmp_unique1.png" />
+    <Image Include="Polish\screenshots\foldercmp_unique2.png" />
+    <Image Include="Polish\screenshots\foldercomp1.png" />
+    <Image Include="Polish\screenshots\foldercomp_2same.png" />
+    <Image Include="Polish\screenshots\folderdiff.png" />
+    <Image Include="Polish\screenshots\foldersame.png" />
+    <Image Include="Polish\screenshots\folderskip.png" />
+    <Image Include="Polish\screenshots\folderup.png" />
+    <Image Include="Polish\screenshots\folderup_disable.png" />
+    <Image Include="Polish\screenshots\hexcmp1.png" />
+    <Image Include="Polish\screenshots\ignore-blank-lines.png" />
+    <Image Include="Polish\screenshots\imgcmp1.png" />
+    <Image Include="Polish\screenshots\lastdiff_btn.png" />
+    <Image Include="Polish\screenshots\lfile.png" />
+    <Image Include="Polish\screenshots\lfolder.png" />
+    <Image Include="Polish\screenshots\line-diff-punctuation.png" />
+    <Image Include="Polish\screenshots\linediff.png" />
+    <Image Include="Polish\screenshots\locpane_currentdiff.png" />
+    <Image Include="Polish\screenshots\locpane_diffs.png" />
+    <Image Include="Polish\screenshots\locpane_moved_diffs.png" />
+    <Image Include="Polish\screenshots\locpane_viewbar.png" />
+    <Image Include="Polish\screenshots\merge_menu.png" />
+    <Image Include="Polish\screenshots\mfile.png" />
+    <Image Include="Polish\screenshots\mfolder.png" />
+    <Image Include="Polish\screenshots\missing_lines.png" />
+    <Image Include="Polish\screenshots\moved-01.png" />
+    <Image Include="Polish\screenshots\nav_uparrow_btn.png" />
+    <Image Include="Polish\screenshots\nextdiff_btn.png" />
+    <Image Include="Polish\screenshots\notequal.png" />
+    <Image Include="Polish\screenshots\notequaltextfile.png" />
+    <Image Include="Polish\screenshots\OpenDlg1.png" />
+    <Image Include="Polish\screenshots\OpenDlg2.png" />
+    <Image Include="Polish\screenshots\open_icon.png" />
+    <Image Include="Polish\screenshots\options_btn.png" />
+    <Image Include="Polish\screenshots\prevdiff_btn.png" />
+    <Image Include="Polish\screenshots\projfile_save.png" />
+    <Image Include="Polish\screenshots\refresh_btn.png" />
+    <Image Include="Polish\screenshots\rfile.png" />
+    <Image Include="Polish\screenshots\rfolder.png" />
+    <Image Include="Polish\screenshots\simlines-diffs-off.png" />
+    <Image Include="Polish\screenshots\simlines-diffs-on.png" />
+    <Image Include="Polish\screenshots\tblcomp1.png" />
+    <Image Include="Polish\screenshots\tfs_configure.png" />
+    <Image Include="Polish\screenshots\treeview-01.png" />
+    <Image Include="Polish\screenshots\undo_btn.png" />
+    <Image Include="Polish\screenshots\webcmp1.png" />
+    <Image Include="Polish\screenshots\wm_icon.png" />
+    <Image Include="Polish\screenshots\word-diff-allwhite.png" />
+    <Image Include="Polish\screenshots\word-diff-nochange.png" />
+    <Image Include="Polish\screenshots\word-diff-nowhite.png" />
     <Image Include="Shared\images\head.gif" />
     <Image Include="Spanish\screenshots\aborted.png" />
     <Image Include="Spanish\screenshots\allleft_btn.png" />

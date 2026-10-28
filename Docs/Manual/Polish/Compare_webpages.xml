@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_webpages">
+  <?target dbhh topicname="IDH_Compare_webpages" topicid ="005"?>
+
+  <title>Porównywanie stron internetowych</title>
+
+  <indexterm>
+    <primary>porównywanie plików</primary>
+    <secondary>Strony internetowe</secondary>
+  </indexterm>
+
+  <para>
+W tym temacie opisano sposób porównywania stron internetowych przy użyciu
+okna Porównywanie stron internetowych.  <note><para>
+Ta funkcja jest wciąż w fazie eksperymentalnej i może działać niestabilnie i
+bardzo wolno.</para>
+</note></para>
+
+  <section id="Compare_webpage_starting">
+    <title>Rozpoczynanie operacji porównywania stron internetowych</title>
+
+    <para>Operację porównywania stron internetowych można rozpocząć z okna WinMerge
+lub okna wiersza poleceń.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z okna WinMerge</term>
+
+        <listitem>
+          <para>
+Kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Otwórz</guimenuitem> </menuchoice>. W oknie dialogowym „Wybierz
+plik lub folder” określ dwa lub trzy adresy URL, które chcesz porównać, i
+wybierz <guimenuitem>Strona internetowa</guimenuitem> pozycja menu z
+<guibutton>Porównaj</guibutton> rozwijane menu przycisku.  <mediaobject>
+<imageobject> <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
+</imageobject><textobject>
+                <phrase>Wybierz okno Pliki lub Foldery</phrase>
+              </textobject>
+            </mediaobject></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z okna wiersza poleceń</term>
+
+        <listitem>
+          <para>Biegnij <command>WinMergeU.exe</command>, który znajduje się w katalogu
+instalacyjnym WinMerge. W argumentach poleceń podaj dwa lub trzy adresy URL
+stron internetowych, które chcesz porównać, i określ <option>/t
+webpage</option> opcja wiersza poleceń.  Aby uzyskać więcej informacji na
+temat korzystania z wiersza poleceń, zobacz <xref linkend="Command_line" />.</para>
+
+          <example>
+            <title>Linia poleceń</title>
+
+            <para>
+<userinput> "C:\Program Files\WinMerge\WinMergeU.exe" /t webpage
+https://example.net https://example.com </userinput></para>
+          </example>
+
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_webpage_window">
+    <title>Okno porównania stron internetowych</title>
+
+    <para>
+    </para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/webcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>Okno porównania stron internetowych</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>
+Po wyświetleniu okna porównania stron internetowych menu strony internetowej
+zostanie dodane do paska menu.  Elementy menu strony internetowej są
+następujące.  Niektóre z tych samych funkcji, co te elementy menu, są
+dostępne w okienku lokalizacji.</para>
+
+    <section>
+      <title>
+Menu strony internetowej<indexterm>
+          <primary>menu strony internetowej</primary>
+        </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Zobacz różnice</term>
+          <listitem>
+            <para>
+Włącza lub wyłącza kolorowanie różnicowe tekstu na stronach internetowych.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <section>
+        <title>
+Porównaj menu<indexterm>
+            <primary>Porównaj menu</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Zrzuty ekranu</term>
+            <listitem>
+              <para>
+Konwertuje aktualnie wyświetlany zakres stron internetowych na obrazy i
+porównuje je w oknie porównania obrazów.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Zrzuty ekranu w pełnym rozmiarze</term>
+            <listitem>
+              <para>
+Tworzy obrazy całego obszaru stron internetowych i porównuje je w oknie
+porównania obrazów.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>HTML</term>
+            <listitem>
+              <para>
+Porównaj zawartość HTML stron internetowych w oknie porównywania plików.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Teksty</term>
+            <listitem>
+              <para>
+Wyodrębnia części tekstowe stron internetowych i porównuje je w oknie
+porównywania plików.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Drzewa zasobów</term>
+            <listitem>
+              <para>
+Porównaj drzewa zasobów stron internetowych w oknie porównywania folderów.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Menu rozmiaru<indexterm>
+            <primary>Menu rozmiaru</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Dopasuj do okna</term>
+            <listitem>
+              <para>
+Dopasowuje rozmiar wyświetlanej strony internetowej do rozmiaru każdego
+panelu.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Szerokość x wysokość</term>
+            <listitem>
+              <para>
+Zmienia rozmiar wyświetlanej strony internetowej na określony rozmiar.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Menu synchronizacji zdarzeń<indexterm>
+            <primary>Menu synchronizacji zdarzeń</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Włączone</term>
+            <listitem>
+              <para>
+Włącz lub wyłącz funkcję synchronizacji zdarzeń, takich jak przewijanie i
+klikanie.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Przewiń</term>
+            <listitem>
+              <para>
+Włącz lub wyłącz synchronizację przewijania.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Kliknij</term>
+            <listitem>
+              <para>
+Włącz lub wyłącz synchronizację kliknięć.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Wejście</term>
+            <listitem>
+              <para>
+Włącz lub wyłącz synchronizację wejścia.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Przejdź do tyłu/do przodu</term>
+            <listitem>
+              <para>
+Włącz lub wyłącz synchronizację powrotu do poprzedniej strony lub przejścia
+do następnej strony.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Wyczyść menu Dane przeglądania<indexterm>
+            <primary>Wyczyść menu Dane przeglądania</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Pamięć podręczna dysku</term>
+            <listitem>
+              <para>
+Czyści tylko pamięć podręczną dysku w danych przeglądania.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Pliki cookie</term>
+            <listitem>
+              <para>
+Wyczyść tylko pliki cookie w danych przeglądania.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Historia przeglądania</term>
+            <listitem>
+              <para>
+Czyści tylko historię przeglądania w danych przeglądania.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Cały profil</term>
+            <listitem>
+              <para>
+Usuwa wszystkie dane przeglądania.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <para>
+        </para>
+   
+      </section>
+
+    </section>
+
+    <section>
+      <title>
+Aktualne ograniczenia<indexterm>
+          <primary>ograniczenia porównywania stron internetowych</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+Nie można porównywać stron internetowych, które korzystają z obecnie
+przestarzałego elementu FRAMESET.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+Nie można porównywać zawartości elementu IFRAME ani synchronizować zdarzeń.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+Porównywanie stron internetowych o bardzo różnej zawartości może zająć dużo
+czasu.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+  </section>
+
+</article>

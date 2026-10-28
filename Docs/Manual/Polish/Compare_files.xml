@@ -1,0 +1,1767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_files">
+  <?target dbhh topicname="IDH_Compare_files" topicid ="001"?>
+
+  <title>Porównywanie i łączenie plików tekstowych<indexterm>
+      <primary>porównywanie plików</primary>
+    </indexterm></title>
+
+  <para>W tym temacie opisano, jak używać okna Porównywanie plików WinMerge do
+porównywania i scalania plików tekstowych. Aby zrozumieć podstawowe pojęcia
+dotyczące omawianych tutaj różnic, sugerujemy przeczytanie <xref
+linkend="Intro_diffs" /> pierwszy. Zobacz <xref linkend="Compare_bin" /> aby
+uzyskać powiązane informacje na temat plików hex.</para>
+
+  <section id="Compare_files_starting">
+    <title>Rozpoczynanie operacji porównywania plików</title>
+
+    <para>Operację porównywania plików można rozpocząć w oknie WinMerge lub w oknie
+wiersza poleceń.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z okna WinMerge</term>
+
+        <listitem>
+          <para>Kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Otwórz</guimenuitem> </menuchoice>. Użyj okna dialogowego
+Wybierz pliki lub foldery, aby określić lewy i prawy plik źródłowy do
+porównania. Aby uzyskać więcej informacji na temat okna dialogowego Wybierz
+pliki lub folder, zobacz <xref linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z okna wiersza poleceń</term>
+
+        <listitem>
+          <para>Biegnij <command>WinMergeU.exe</command>, który znajduje się w katalogu
+instalacyjnym WinMerge. W argumentach poleceń uwzględnij lewy i prawy plik
+do porównania. Aby uzyskać więcej informacji na temat korzystania z wiersza
+poleceń, zobacz <xref linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_files_window">
+    <title>Okno porównywania plików<indexterm>
+        <primary>Okno porównywania plików</primary>
+
+        <seealso>Porównaj okno</seealso>
+      </indexterm><indexterm>
+        <primary>Porównaj okno</primary>
+
+        <secondary>Plik</secondary>
+      </indexterm></title>
+
+    <para>Okno Porównaj pliki wyświetla porównane pliki w dwóch panelach plików, obok
+siebie. Pasek narzędzi WinMerge i menu kontekstowe udostępniają funkcje
+przeglądania, nawigacji i łączenia różnic. Poniższy zrzut ekranu przedstawia
+porównanie dwóch wersji pliku.</para>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>Okno porównywania plików</phrase>
+      </textobject>
+    </mediaobject>
+
+    <section>
+      <title>Panele plików<indexterm>
+          <primary>Panele plików</primary>
+        </indexterm></title>
+
+      <para>Lewy i prawy panel Plik pokazuje zawartość tekstową i różnice pomiędzy dwoma
+porównywanymi plikami. Panele plików to główny obszar nawigacji i łączenia
+różnic, a także umożliwiają bezpośrednią edycję tekstu. W tej sekcji opisano
+funkcje obsługujące te akcje oraz sposoby dostosowywania okienek plików.</para>
+
+      <section>
+        <title>Nagłówek panelu plików</title>
+
+        <para>Nagłówek u góry każdego panelu Plik pokazuje pełną ścieżkę pliku
+źródłowego. Nazwy lewego i prawego pliku są także oznaczone w nagłówku okna
+Porównaj, nad panelami plików.</para>
+
+        <para>Jedno z okienek Plik jest zawsze aktywne (na co wskazuje ciemne tło
+nagłówka); drugi jest nieaktywny i ma jaśniejszy pasek nagłówka.  Możesz
+edytować tylko w aktywnym panelu (zgodnie z opisem w <xref
+linkend="CompareFiles_editing" />). Kliknij dowolną stronę, aby ją
+aktywować, a drugą stronę dezaktywować.</para>
+
+        <para>Gwiazdka (*) przed nazwą pliku w nagłówku oznacza, że w pliku znajdują się
+niezapisane zmiany.</para>
+
+        <para>Menu kontekstowe paska nagłówka zawiera skróty przydatne do kopiowania i
+wklejania informacji o plikach:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Skopiuj pełną ścieżkę<indexterm>
+                <primary>Funkcja kopiowania pełnej ścieżki</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Kopiuje pełną ścieżkę pliku źródłowego do schowka systemowego.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Skopiuj nazwę pliku<indexterm>
+                <primary>Kopiuj funkcję nazwy pliku</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Kopiuje samą nazwę pliku źródłowego do schowka systemowego.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_diffcolors">
+        <title>Podkreślenie różnic<indexterm>
+            <primary>różnica kolorów</primary>
+
+            <secondary>w okienkach plików</secondary>
+          </indexterm></title>
+
+        <para>WinMerge wyróżnia kilka typów różnic w okienkach plików. Strona Kolory w
+oknie dialogowym Opcje definiuje zestaw kolorów tła i tekstu dla większości
+typów różnic, z odmianami wskazującymi ich stan: niezaznaczony, wybrany lub
+usunięty. W tej sekcji opisano sposób wykrywania i wyświetlania każdego z
+podstawowych typów różnic.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Różnica</term>
+
+            <listitem>
+              <para>Blok różnicowy zawiera jedną lub więcej sąsiadujących linii, które są
+różne. Domyślnym kolorem tła różnicy jest złoty, ale puste linie są
+zaznaczane usuniętym kolorem.</para>
+
+              <para>Dla tego i innych ekranów w tej sekcji włączyliśmy tę funkcję <option>View
+line numbers</option> aby pokazać, które linie w plikach źródłowych są
+porównywane.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="489"
+fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Kolory tła bloku różnicowego</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <para>To porównanie wykrywa trzy bloki różnicowe:</para>
+
+              <orderedlist>
+                <listitem>
+                  <para>Pierwszą różnicą jest pojedyncza linia.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Pusta linia w <filename>file2</filename> nie ma odpowiadającej pustej linii
+<filename>file1</filename>.  WinMerge traktuje brakującą pustą linię jako
+usuniętą różnicę, oznaczoną tutaj domyślnym szarym kolorem.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Ostatni blok różnicowy zawiera dwie linie.</para>
+                </listitem>
+              </orderedlist>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Ignorowana różnica<indexterm>
+                <primary>ignorowane różnice</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Ten kolor oznacza zawartość, którą skonfigurowałeś w programie WinMerge do
+ignorowania. W przeciwieństwie do bloków różnicowych, ignorowana treść nie
+jest porównywana, a jedynie podświetlana, aby pomóc Ci zobaczyć, co zostało
+zignorowane. Ignorowane różnice obejmują:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Puste linie, jeśli zostały włączone <option>Ignore blank lines</option> w
+oknie dialogowym Opcje, na stronie Porównaj.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Różnice pasujące do wzorców w zdefiniowanych filtrach liniowych (patrz <xref
+linkend="Filters" /> aby dowiedzieć się jak).</para>
+                </listitem>
+              </itemizedlist>
+
+              <para>Następny przykład powtarza poprzednie porównanie, tym razem z <option>Ignore
+blank lines</option> włączone. Teraz są tylko dwie różnice. Pusta linia po
+prawej stronie jest oznaczona kolorem Ignorowane różnice.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="492"
+fileref="screenshots/ignore-blank-lines.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Kolory bloków różnicowych z ignorowaną różnicą</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Przeniesiony<indexterm>
+                <primary>przesunięte różnice</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Przesunięte różnice to identyczne linie znajdujące się w różnych miejscach
+porównywanych plików, jeśli <option>Moved block detection</option> jest
+włączona w oknie dialogowym Opcje, na stronie Porównaj.  Następny zrzut
+ekranu powtarza poprzednie porównanie, tym razem z włączoną funkcją
+wykrywania przesuniętych bloków.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="490"
+fileref="screenshots/moved-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Różnica kolorów bloków z wykrywaniem przesuniętych bloków</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <para>Zauważ, że dwie identyczne linie (zawierające <literal>a</literal> i
+<literal>c</literal>) znajdujące się w różnych lokalizacjach są oznaczone
+domyślnym, przesuniętym pomarańczowym kolorem. Innym skutkiem wykrywania
+przesuniętych bloków w tym przypadku jest to, że dwie ostatnie linie są
+teraz dwiema oddzielnymi różnicami, a nie pojedynczym blokiem różnicowym.</para>
+
+              <para>W niektórych przypadkach pokazanie przeniesionych różnic może ułatwić
+wizualizację zmian w plikach. Jednak zbyt wiele przesuniętych linii może
+utrudnić nawigację po porównaniu. Kieruj się własnym osądem!</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Różnica słów</term>
+
+            <listitem>
+              <para>WinMerge może zaznaczyć zmieniony tekst za pomocą bloków
+różnicowych. Różnice w liniach są oznaczone kolorem różnicy linii. Zobacz
+<xref linkend="CompareFiles_linediff-highlight" /> po szczegóły.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Podobne linie<indexterm>
+                <primary>podobne linie, w różnicach</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Po włączeniu WinMerge próbuje wyrównać podobne linie w obrębie bloków różnic
+<option>Align similar lines</option> w oknie dialogowym Opcje, na stronie
+Porównaj. Co robi <quote>podobne</quote> znaczy? Ogólnie rzecz biorąc, ta
+funkcja działa najlepiej w prostych przypadkach, na przykład gdy linie
+wykazują duże podobieństwa. Po wykryciu podobne linie są dostosowywane w
+celu wyrównania w panelu Plik. Następny rysunek pokazuje porównania tych
+samych dwóch plików, przed i po włączeniu <option>Align similar
+lines</option> opcja:</para>
+
+              <simplelist columns="2" type="horiz">
+                <member><emphasis role="strong">Niepełnosprawny</emphasis>: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="273"
+fileref="screenshots/simlines-diffs-off.png" /> </imageobject><textobject>
+                      <phrase>Porównaj bez dopasowywania podobnych linii</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+
+                <member><emphasis role="strong">Włączone</emphasis>: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="273"
+fileref="screenshots/simlines-diffs-on.png" /> </imageobject><textobject>
+                      <phrase>Porównaj pasujące podobne linie</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+              </simplelist>
+
+              <para>W drugim porównaniu linie <quote>myszy</quote> i <quote>myszy i A</quote> są
+wykrywane jako podobne. WinMerge dodaje puste linie na wyświetlaczu, aby
+linie te pojawiały się na tym samym poziomie w bloku różnic.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_linediff-highlight">
+        <title>Podkreślenie różnicy linii<indexterm>
+            <primary>różnice liniowe</primary>
+
+            <secondary>wykrywanie</secondary>
+          </indexterm><indexterm>
+            <primary>białe znaki</primary>
+
+            <secondary>w różnicach liniowych</secondary>
+          </indexterm></title>
+
+        <para>Czasami przydatne jest wyróżnienie nie tylko bloków różnicowych, ale także
+tekstu w nich, który został zmieniony. Możesz je wyłączyć lub włączyć na dwa
+sposoby:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Ustaw wszystko <option>View line differences</option> opcje na stronie
+Edytor okna dialogowego Opcje.</para>
+          </listitem>
+
+          <listitem>
+            <para>Kliknij <menuchoice> <guimenu>Zobacz</guimenu> <guimenuitem>Zobacz różnice w
+liniach</guimenuitem> </menuchoice> aby włączyć lub wyłączyć różnicę linii.</para>
+          </listitem>
+        </itemizedlist>
+
+        <note>
+          <para>Pamiętaj, że funkcje nawigacji i łączenia w WinMerge (takie jak Następna
+różnica lub Kopiuj w lewo) działają na blokach różnic, a nie na różnicach
+linii w ich obrębie.</para>
+        </note>
+
+        <para>W tej sekcji opisano sposób wykrywania i oznaczania różnic w liniach. Należy
+pamiętać, że na działanie tych opcji wpływają także bieżące ustawienia
+białych znaków w oknie dialogowym Opcje, na stronie Porównaj.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term id="wordlevel-linediffs">Różnice liniowe na poziomie słów<indexterm>
+                <primary>różnice słów</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Poniższe przykłady pokazują, jak różnice w wierszach na poziomie wyrazów są
+wyświetlane przy każdym z ustawień białych znaków:</para>
+
+              <example>
+                <title>Różnice w liniach ze spacjami: porównaj</title>
+
+                <para>WinMerge wykrywa wszystkie różne słowa i spacje:</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-allwhite.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>Różnica linii na poziomie słowa porównująca białe znaki</phrase>
+                  </textobject>
+                </mediaobject></example>
+
+              <example>
+                <title>Różnice w liniach ze spacjami: Ignoruj zmiany</title>
+
+                <para>Wiele spacji i tabulatorów jest traktowanych tak samo jak pojedyncza
+spacja. W przykładzie dodatkowa spacja między dwoma ostatnimi słowami nie
+jest zaznaczona:</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-nochange.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>Różnica linii na poziomie słowa porównująca brak zmian białych znaków</phrase>
+                  </textobject>
+                </mediaobject></example>
+
+              <example>
+                <title>Różnice w liniach z białymi znakami: Ignorowanie wszystkiego</title>
+
+                <para>Nie są porównywane żadne spacje między słowami, więc te linie są traktowane
+jako identyczne:</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-nowhite.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>Różnica linii na poziomie słowa porównująca brak białych znaków</phrase>
+                  </textobject>
+                </mediaobject></example>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Różnice w liniach na poziomie postaci<indexterm>
+                <primary>różnica linii na poziomie znaku</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Różnica linii na poziomie znaku obejmuje pierwszy i ostatni inny znak w
+słowie oraz wszystkie znaki pomiędzy nimi. Pojedyncza różnica poziomów
+znaków może obejmować sąsiednie słowa. Poniższy przykład ilustruje:</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="485"
+fileref="screenshots/char-diff-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Różnica linii na poziomie znaku porównująca brak białych znaków</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <note>
+                <para>Podobnie jak w przypadku różnic w wierszach na poziomie wyrazów, wyróżnianie
+znaków różni się w zależności od konfiguracji programu WinMerge do
+wykrywania łamania wyrazów. W przykładzie dodatkowa spacja po słowie
+<literal>cure</literal> w <filename>file2</filename> jest podświetlany tylko
+w przypadku porównywania białych znaków.</para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Przerwy na słowa lub znaki<indexterm>
+                <primary>podziały wyrazów w różnicach w wierszach</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Wyrazy i znaki w różnicach między wierszami można oddzielić białymi znakami
+lub kombinacją białych znaków i znaków interpunkcyjnych.  Białe znaki
+(domyślne) to typowy wybór do porównywania większości plików
+tekstowych. Wszystkie powyższe przykłady różnic między wierszami używają
+białych znaków do dzielenia słów i znaków.</para>
+
+              <para>W niektórych przypadkach przydatne jest łamanie znaków interpunkcyjnych. Na
+przykład następny zrzut ekranu porównuje listę rozdzieloną przecinkami. Aby
+podkreślić znaczące różnice w liniach, włączyliśmy opcję <option>Break at
+whitespace or punctuation</option> na stronie Edytor okna dialogowego Opcje.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="494"
+fileref="screenshots/line-diff-punctuation.png" format="PNG" />
+</imageobject><textobject>
+                  <phrase>Różnica linii na poziomie znaku porównująca brak białych znaków</phrase>
+                </textobject>
+              </mediaobject>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_editing">
+        <title>Funkcje edycji panelu plików<indexterm>
+            <primary>edycja</primary>
+
+            <secondary>funkcje w oknie Porównaj pliki</secondary>
+          </indexterm></title>
+
+        <para>Chociaż WinMerge nie jest w pełni funkcjonalnym edytorem ani IDE, zapewnia
+podstawowe funkcje edycyjne, takie jak <guilabel>Cofnij</guilabel> i
+<guilabel>Powtórz</guilabel>, <guilabel>Znajdź</guilabel> i
+<guilabel>Wymień</guilabel>, i <guilabel>Idź do</guilabel>. Te podstawowe
+zadania edycyjne są często potrzebne podczas scalania (na przykład w celu
+zmiany tekstu w ramach różnic). Możesz edytować w aktywnym panelu Plik
+(pamiętaj, że kliknij panel, aby go uaktywnić). Zmiany nie są zapisywane w
+pliku, dopóki nie zapiszesz panelu w pliku wynikowym.</para>
+
+        <para>Funkcje edycji WinMerge obejmują także podświetlanie składni. Ta opcjonalna
+funkcja obsługuje kilka formatów plików i umożliwia skonfigurowanie
+używanych kolorów. Należy pamiętać, że podświetlanie składni nie jest
+stosowane w przypadku różnic, jak pokazano na powyższym zrzucie ekranu.</para>
+
+        <tip>
+          <para>Upewnij się, że <guilabel>Automatyczne ponowne skanowanie</guilabel> jest
+włączony, jak opisano w <xref linkend="Compare_files_scan" />. Jeśli tak nie
+jest, ręcznie odśwież widok (naciśnij F5) przed i po edycji pliku, aby mieć
+pewność, że wykrywanie różnic w programie WinMerge jest aktualne.</para>
+        </tip>
+      </section>
+
+      <section id="CompareFiles_fonts">
+        <title>Czcionki okienka plików<indexterm>
+            <primary>czcionki</primary>
+
+            <secondary>wybierając w oknie Porównywanie plików</secondary>
+          </indexterm></title>
+
+        <para>Możesz wybrać czcionki dla panelu Plik, klikając <menuchoice>
+<guimenu>Zobacz</guimenu> <guimenuitem>Wybierz Czcionka</guimenuitem>
+</menuchoice>. WinMerge obsługuje tylko czcionki o stałej szerokości.</para>
+
+        <para>Oto sugestie czcionek do używania WinMerge z językami wschodnioazjatyckimi:</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>Uproszczony chiński: <guilabel>SimSun</guilabel> lub
+<guilabel>SimHei</guilabel> czcionki o stałej szerokości</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Tradycyjny chiński: <guilabel>MingLiU</guilabel> czcionka o stałej
+szerokości</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>japoński: <guilabel>MS Gothic</guilabel> lub <guilabel>MS Mincho</guilabel>
+czcionki o stałej szerokości</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>koreański: <guilabel>GulimChe</guilabel> czcionka o stałej szerokości (nie
+<guilabel>Gulim</guilabel>, ponieważ w tym wariancie zastosowano glify o
+proporcjonalnych odstępach, które nie są wyśrodkowane w komórkach siatki i
+słabo wyrównane w trybie o stałej szerokości).</simpara>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>Marginesy panelu plików<indexterm>
+            <primary>marginesy</primary>
+
+            <secondary>w okienkach plików</secondary>
+          </indexterm></title>
+
+        <para>Panele plików mają opcjonalne szare marginesy, na których widoczne są numery
+wierszy i niektóre symbole. Aby pokazać lub ukryć marginesy, kliknij
+<menuchoice> <guimenu>Zobacz</guimenu> <guimenuitem>Wyświetl
+marginesy</guimenuitem> </menuchoice>. Jeśli używasz wielu okien
+porównywania plików, możesz niezależnie kontrolować marginesy dla każdego
+okna. Margines może pokazywać dowolną lub wszystkie z tych funkcji:</para>
+
+        <indexterm>
+          <primary>numery linii</primary>
+
+          <secondary>w okienkach plików</secondary>
+        </indexterm>
+
+        <indexterm>
+          <primary>zakładki</primary>
+        </indexterm>
+
+        <indexterm>
+          <primary>zawijanie słów</primary>
+
+          <secondary>w okienkach plików</secondary>
+        </indexterm>
+
+        <itemizedlist>
+          <listitem>
+            <para>Numery linii, jeśli <menuchoice> <guimenu>Zobacz</guimenu>
+<guimenuitem>Wyświetl numery linii</guimenuitem> </menuchoice> jest
+włączony.</para>
+          </listitem>
+
+          <listitem>
+            <para>Zakładki, jeśli <menuchoice> <guimenu>Edytuj</guimenu>
+<guisubmenu>Zakładki</guisubmenu> </menuchoice> jest włączony. Zakładka to
+niebieskie kółko na marginesie obok linii, które możesz zapamiętać w
+WinMerge i do którego możesz wrócić.</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>Aby ustawić zakładkę na linii, kliknij dwukrotnie jej margines (lub naciśnij
+<keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>). Ta sama
+czynność usuwa istniejącą zakładkę.</para>
+              </listitem>
+
+              <listitem>
+                <para>Aby poruszać się po zakładkach, kliknij <menuchoice>
+<guimenu>Edytuj</guimenu> <guimenuitem>Zakładki</guimenuitem> </menuchoice>
+i wybierz <guimenuitem>Następny</guimenuitem> lub
+<guimenuitem>Poprzedni</guimenuitem>.</para>
+              </listitem>
+
+              <listitem>
+                <para>Kliknij dwukrotnie pojedynczą zakładkę, aby ją usunąć (lub naciśnij
+<keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>).</para>
+              </listitem>
+
+              <listitem>
+                <para>Kliknij <menuchoice> <guimenu>Edytuj</guimenu>
+<guimenuitem>Zakładki</guimenuitem> <guimenuitem>Wyczyść wszystkie
+zakładki</guimenuitem> </menuchoice> , aby usunąć wszystkie zakładki.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Symbole strzałek zawijania słów, jeśli <menuchoice>
+<guimenu>Zobacz</guimenu> <guimenuitem>Zawijaj linie</guimenuitem>
+</menuchoice> jest włączony.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Poniższy zrzut ekranu przedstawia margines z włączonymi zakładkami i
+zawijaniem słów. Bez numeracji linii szerokość marginesu jest minimalna.</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="384"
+fileref="screenshots/filecomp_margin1.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Plik Porównanie marginesu okna z zakładką i zawijaniem słów</phrase>
+          </textobject>
+        </mediaobject>
+
+        <para>Następny zrzut ekranu pokazuje margines z włączonymi zakładkami i numerami
+linii. Zwróć uwagę, że margines jest szerszy. W rzeczywistości margines jest
+wystarczająco szeroki, aby pomieścić największy numer wiersza. Dlatego
+marginesy w przypadku dużych plików z wieloma liniami mogą być dość
+szerokie.</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentdepth="77" contentwidth="384"
+fileref="screenshots/filecomp_margin2.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Plik Porównaj margines okna z numerami zakładek i linii</phrase>
+          </textobject>
+        </mediaobject>
+      </section>
+    </section>
+
+    <section id="Compare_files_functions">
+      <title>Pasek narzędzi i menu<indexterm>
+          <primary>pasek narzędzi z oknem porównywania plików</primary>
+        </indexterm><indexterm>
+          <primary>menu, z oknem porównywania plików</primary>
+        </indexterm></title>
+
+      <para>Pasek narzędzi i menu WinMerge udostępniają szereg funkcji umożliwiających
+nawigację, zaznaczanie i łączenie różnic w plikach.</para>
+
+      <note>
+        <para>Skróty WinMerge mają te same nazwy i przyciski, niezależnie od tego, czy
+otworzysz okno Porównania folderów, czy Porównania plików. Jednakże funkcje
+zachowują się inaczej: w oknie Porównaj pliki funkcje działają na różnicach
+w plikach, a nie na różnicach w folderach.</para>
+      </note>
+
+      <para>Funkcje różnicowe, których możesz użyć, zależą od kontekstu, który często
+zmienia się w trakcie pracy. Oznacza to, że funkcja jest dostępna tylko
+wtedy, gdy jej działanie jest możliwe dla danej lokalizacji lub innych
+warunków w Twoim środowisku WinMerge. Na przykład, jeśli klikniesz wiersz
+tekstu znajdujący się w różnicy, możesz zauważyć, że na pasku narzędzi
+włącza się kilka przycisków nawigacji i scalania. Jeśli klikniesz inny
+obszar tekstu, który nie znajduje się w obrębie różnicy, funkcje te staną
+się niedostępne.</para>
+
+      <para>Funkcje różnicowe są dostępne na pasku narzędzi WinMerge, a także poprzez
+następujące alternatywne mechanizmy:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Zwłaszcza menu WinMerge <guimenu>Połącz</guimenu></para>
+        </listitem>
+
+        <listitem>
+          <para>Menu kontekstowe w oknie Porównaj pliki (po kliknięciu tekstu prawym
+przyciskiem myszy)</para>
+        </listitem>
+
+        <listitem>
+          <para>Skróty klawiaturowe</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Funkcje różnicowe opisano w <xref linkend="Compare_files_nav" /> i <xref
+linkend="Compare_files_merge" />, w dalszej części tego tematu. <xref
+linkend="Quick_start" /> i <xref linkend="Intro_diffs" /> podaj przykłady
+porównywania i łączenia.</para>
+
+      <section>
+        <title>Tryb scalania<indexterm>
+            <primary>tryb scalania</primary>
+          </indexterm></title>
+
+        <para><menuchoice> <guimenu>Plik</guimenu> <guimenuitem>Tryb
+scalania</guimenuitem> </menuchoice> (lub naciśnij <keycap>F9</keycap>)
+przywraca te pojedyncze skróty klawiaturowe WinMerge 1.7.1 umożliwiające
+łączenie różnic i funkcje nawigacji:</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara><keycap>W górę</keycap> i <keycap>W dół</keycap> klucze do
+<function>Previous Difference</function> i <function>Next
+Difference</function> funkcje.</simpara>
+            <para></para>
+          </listitem>
+
+          <listitem>
+            <simpara><keycap>Lewy</keycap> i <keycap>Jasne</keycap> klucze do <function>Copy
+Left</function> i <function>Copy Right</function> funkcje.</simpara>
+          </listitem>
+        </itemizedlist>
+
+        <para>Tryb scalania pomija <keycap>Alt</keycap> klawisz dla tych typowych operacji
+(dzięki czemu są one szybsze w użyciu niż w trybie normalnym). Należy
+pamiętać, że <keycap>Przesunięcie</keycap> i <keycap>Alt</keycap>
+<keycap>Strzałka</keycap> Kombinacje klawiszy działają w trybie scalania w
+taki sam sposób, jak w trybie normalnym.</para>
+
+        <para>Tryb scalania jest oznaczony tekstem na pasku stanu
+<guilabel>Połącz</guilabel>.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Panel wyników scalania</title>
+
+      <indexterm>
+        <primary>Okienko Wynik scalania, okno Porównaj pliki</primary>
+      </indexterm>
+
+      <indexterm>
+        <primary>Połączenie trójstronne</primary>
+      </indexterm>
+
+      <para>
+Kiedy porównujesz trzy pliki tekstowe i określasz ścieżkę wyjściową scalania
+(na przykład, gdy narzędzie kontroli wersji uruchamia WinMerge z
+rozszerzeniem <option>/o</option> opcji wiersza poleceń), w dolnej części
+okna Porównywanie plików otwiera się panel Wynik scalania. Działa to jak
+okno wyników scalania w KDiff3: trzy panele Plik pokazują porównane pliki
+tylko do odczytu, a panel Wynik scalania zawiera wynik scalania, który
+możesz dowolnie edytować. Wymaga to włączenia opcji panelu Wynik scalania na
+stronie Porównaj/Scal w oknie dialogowym Opcje.</para>
+
+      <para>
+Kiedy otwierasz plik konfliktu dwukierunkowego za pomocą
+<menuchoice><guimenu>Plik</guimenu><guimenuitem>Otwórz plik
+konfliktu</guimenuitem></menuchoice>, WinMerge utrzymuje dwa panele źródłowe
+obok siebie i otwiera panel Wynik scalania, jeśli jest włączony. Każdy inny
+blok zaczyna się jako nierozwiązany, ponieważ plik konfliktu dwukierunkowego
+nie ma wspólnej podstawy. Wybierz lewe lub prawe źródło, aby rozwiązać
+blok. W tym trybie przyciski paska narzędzi są ponumerowane
+<guibutton>1</guibutton> i <guibutton>2</guibutton>, i
+<keycombo><keycap>Ctrl</keycap><keycap>Przesunięcie</keycap><keycap>1</keycap></keycombo>
+i
+<keycombo><keycap>Ctrl</keycap><keycap>Przesunięcie</keycap><keycap>2</keycap></keycombo>
+wybierz odpowiednio lewe i prawe źródło. Nierozwiązane bloki są zapisywane
+przy użyciu standardowych dwustronnych znaczników konfliktów.</para>
+
+      <para>
+Po otwarciu panelu każda różnica początkowo jest nierozwiązana i pokazana w
+formie kompaktowej <computeroutput>&lt;Merge Conflict&gt;</computeroutput>
+lub <computeroutput>&lt;Unresolved Difference&gt;</computeroutput> linia
+zastępcza.  Jeśli wymagane jest automatyczne scalanie — za pomocą
+<option>/al</option>, <option>/am</option> lub <option>/ar</option> opcję
+wiersza poleceń lub za pomocą <guimenuitem> Automatyczne scalanie
+</guimenuitem> polecenie — różnice nie powodujące konfliktu są rozwiązywane
+automatycznie zgodnie z wybranym celem scalania, a jedynie prawdziwe
+konflikty, w których obie strony zmieniły te same linie względem podstawy,
+pozostają nierozwiązane.</para>
+
+      <para>
+Aby rozwiązać różnicę, zaznacz ją i wybierz żądane źródło z najwyższego
+poziomu <guimenu>Wynik połączenia</guimenu> menu. Oferta dwukierunkowych
+sesji łączenia <guimenuitem>Wybierz lewy</guimenuitem> i
+<guimenuitem>Wybierz dobrze</guimenuitem>; oferują również sesje trójstronne
+<guimenuitem>Wybierz środek</guimenuitem>. Można także skorzystać z menu
+kontekstowego panelu Wynik scalania lub <guibutton>1</guibutton> /
+<guibutton>2</guibutton> / <guibutton>3</guibutton> przyciski paska
+narzędzi. Każde polecenie przełącza linie tego panelu dla bieżącej różnicy
+(lub wszystkich różnic objętych bieżącym zaznaczeniem): wybranie kilku
+paneli łączy ich linie w kolejności, w jakiej je zaznaczasz (przydatne, gdy
+obie strony coś dodały, a połączenie powinno zachować oba), a odznaczenie
+wszystkich paneli powoduje, że różnica ponownie pozostaje
+nierozwiązana. Możesz także wpisać poprawki bezpośrednio w panelu Wynik
+połączenia, z wyjątkiem nierozwiązanych różnic: należy je rozwiązać za
+pomocą polecenia Wybierz, zanim będzie można edytować ich tekst. Konflikty,
+których strony różnią się jedynie białą przestrzenią, są oznaczone jako
+<computeroutput>(Whitespace only)</computeroutput>.</para>
+
+      <para>
+Margines panelu pokazuje, skąd pochodzi każda linia:
+<computeroutput>1</computeroutput>, <computeroutput>2</computeroutput> lub
+<computeroutput>3</computeroutput> dla linii pobranej z lewego, środkowego
+lub prawego panelu (pasującego do przycisków paska narzędzi),
+<computeroutput>?</computeroutput> dla nierozwiązanej sekcji konfliktu oraz
+<computeroutput>m</computeroutput> dla różnicy zmodyfikowanej ręcznie.
+Pasek stanu panelu pokazuje, ile różnic jest jeszcze nierozwiązanych.  Gdy
+okienko jest otwarte, <guimenuitem>Następny konflikt</guimenuitem> i
+<guimenuitem>Poprzedni konflikt</guimenuitem> (<keycombo>
+<keycap>Alt</keycap> <keycap>Przesunięcie</keycap> <keycap>W dół</keycap>
+</keycombo> / <keycombo> <keycap>Alt</keycap> <keycap>Przesunięcie</keycap>
+<keycap>W górę</keycap> </keycombo>) przejdź do następnej lub poprzedniej
+różnicy, która nadal wymaga decyzji, pomijając te, które zostały już
+rozwiązane.</para>
+
+      <para>
+Użyj <menuchoice><guimenu>Plik</guimenu><guisubmenu>Zapisz</guisubmenu>
+<guimenuitem>Zapisz wynik scalania</guimenuitem> </menuchoice>, przycisk
+Zapisz na pasku narzędzi lub
+<keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> aby zapisać
+wynik w ścieżce wyjściowej. WinMerge ostrzega, jeśli pozostają nierozwiązane
+różnice. Nierozwiązane konflikty są zapisywane jako standardowe sekcje
+konfliktów — nigdy jako tekst zastępczy — więc w pliku przechowywane są
+wszystkie wersje spornych wierszy i można je później dokończyć w dowolnym
+edytorze lub narzędziu do łączenia; nierozwiązane różnice, które nie
+powodują konfliktów, są zapisywane wraz z treścią automatycznego scalania,
+dzięki czemu dane wyjściowe są wolne od znaczników konfliktów, których nie
+wygenerowałby żaden system kontroli wersji.  Ponowne otwarcie samej ścieżki
+wyjściowej nie jest wznawiane od tych sekcji będących w konflikcie: WinMerge
+zawsze odbudowuje wynik scalania z trzech porównywanych plików, więc
+narzędzie kontroli wersji, które ponownie uruchamia WinMerge z
+<option>/o</option> opcja wiersza poleceń (np <command>git
+mergetool</command>) za każdym razem otrzymuje nowe połączenie, niezależnie
+od tego, co zawiera już plik wyjściowy. Aby zamiast tego pobrać
+wcześniejszy, częściowo rozwiązany plik konfliktu, użyj <menuchoice>
+<guimenu>Plik</guimenu> <guimenuitem> Otwórz plik konfliktu </guimenuitem>
+</menuchoice>: WinMerge analizuje sekcje powodujące konflikty i przywraca je
+jako nierozwiązane różnice, zachowując tekst, który został już
+rozwiązany. WinMerge wyświetla również monit o niezapisany wynik scalania,
+gdy okno jest zamknięte — także wtedy, gdy w międzyczasie samo okienko
+zostało ukryte. Domyślnie każda linia jest zapisywana z własnym, oryginalnym
+zakończeniem, więc dane wyjściowe różnią się od źródeł w jak najmniejszym
+stopniu (na przykład powodując minimalne różnice w kontroli wersji); możesz
+zmienić zakończenie linii wyjściowej na styl Windows, Unix lub klasyczny Mac
+z paska stanu panelu Wyników scalania. Kodowanie jest zgodne ze stroną,
+która je zmieniła, a zapis honoruje opcję pliku kopii zapasowej i dowolną
+wtyczkę pakującą pliki, za pomocą której pliki zostały otwarte.</para>
+
+      <para>
+Możesz także rozpocząć scalanie w dowolnym trójstronnym porównaniu tekstu za
+pomocą <menuchoice> <guimenu>Połącz</guimenu> <guimenuitem> Rozpocznij sesję
+scalania </guimenuitem> </menuchoice> (różnice zaczynają się nierozwiązane)
+lub <menuchoice> <guimenu>Połącz</guimenu> <guimenuitem> Automatyczne
+scalanie </guimenuitem> </menuchoice> (różnice nie powodujące konfliktu są
+rozwiązywane automatycznie).  Gdy sesja scalania jest aktywna, możesz
+wyświetlać i ukrywać panel za pomocą <menuchoice> <guimenu>Zobacz</guimenu>
+<guimenuitem> Panel wyników scalania </guimenuitem> </menuchoice>.  Aby
+zakończyć sesję scalania i przywrócić normalne edytowalne zachowanie trzech
+okienek, wybierz <menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Zakończ
+sesję scalania</guimenuitem> </menuchoice>. WinMerge monituje o zapisanie,
+jeśli wynik scalania zawiera niezapisane zmiany, i przywraca oryginalne
+stany i nagłówki okienek tylko do odczytu.</para>
+      <section>
+        <para>
+<indexterm>
+            <primary>scalić panel docelowy</primary>
+            <secondary>określenie szyby bazowej</secondary>
+          </indexterm> Panel podstawowy (wspólny przodek)
+automatycznego rozwiązywania scalania jest określany albo przez opcje
+wiersza poleceń, albo przez fokus klawiatury:</para>
+
+        <para>
+<emphasis>Podczas korzystania z opcji wiersza poleceń:</emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para>
+<option>Merge to left pane (/al)</option>: po lewej = cel scalony, środkowy
+= ich, po prawej = baza</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<option>Merge to middle pane (/am)</option>: po lewej = ich, pośrodku =
+scalony cel, po prawej = mój</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<option>Merge to right pane (/ar)</option>: lewy = baza, środkowy = ich,
+prawy = scalony cel</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>
+<emphasis>Podczas korzystania z operacji scalania opartych na interfejsie
+użytkownika (Rozpocznij sesję scalania lub Automatyczne
+scalanie):</emphasis> Okienko bazowe jest określane na podstawie bieżącego
+fokusu klawiatury:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>
+<emphasis>Lewe okienko jest aktywne</emphasis>: lewy = mój, środkowy = ich,
+prawy = podstawa</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<emphasis>Środkowe okienko skupione</emphasis>: lewy = ich, środkowy =
+podstawa, prawy = mój</para>
+          </listitem>
+
+          <listitem>
+            <para>
+<emphasis>Prawe okienko skupione</emphasis>: lewy = podstawa, środkowy =
+ich, prawy = mój</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+    </section>
+
+    <section>
+      <title>Panel lokalizacji</title>
+
+      <indexterm>
+        <primary>Panel lokalizacji, okno Porównywanie plików</primary>
+      </indexterm>
+
+      <indexterm>
+        <primary>nawigacja różnicowa</primary>
+      </indexterm>
+
+      <para>Panel Lokalizacja, znajdujący się po lewej stronie okienka Plik, odwzorowuje
+całą długość porównywanych plików na dwa pionowe paski (odpowiadające lewemu
+i prawemu okienkowi Plik). Jest to szczególnie przydatne podczas pracy z
+plikami, które są zbyt długie, aby można było łatwo nawigować w okienkach
+plików.</para>
+
+      <para>W panelu Lokalizacja wyświetlanych jest kilka rodzajów elementów:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
+                <phrase>Linie różnicowe w okienku lokalizacji</phrase>
+              </textobject>
+            </inlinemediaobject> Bloki różnicowe</term>
+
+          <listitem>
+            <para>Każdy blok różnic w panelach plików jest oznaczony w panelu lokalizacji
+poziomą linią przechodzącą przez każdy pionowy pasek. Grubość, kolor i
+położenie tych linii są wskazówkami dotyczącymi rozmiaru (liczby linii),
+typów i rozmieszczenia wszystkich różnic w plikach. Na przykład kolor linii
+jest taki sam, jak kolor odpowiedniego bloku różnicowego. Panel lokalizacji
+na powyższym zrzucie ekranu pokazuje wiele podstawowych różnic (złoto) i
+kilka pustych bloków różnic (szary).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
+                <phrase>Aktualny wskaźnik różnicowy panelu lokalizacji</phrase>
+              </textobject>
+            </inlinemediaobject> Aktualna różnica</term>
+
+          <listitem>
+            <para>Jeśli wybrałeś różnicę, w panelu Lokalizacja oznaczona zostanie linia
+bieżącej różnicy za pomocą pary małych trójkątów po obu stronach pionowych
+pasków. Jeśli przejdziesz do innej różnicy, wskaźnik przesuwa się w górę lub
+w dół wraz z lokalizacją. Przewijanie panelu Plik nie powoduje zmiany
+położenia wskaźnika różnicy (ani żadnej linii różnicy) w panelu lokalizacji.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_viewbar.png" /> </imageobject><textobject>
+                <phrase>Pasek obszaru widoku panelu lokalizacji</phrase>
+              </textobject>
+            </inlinemediaobject> Zobacz obszar</term>
+
+          <listitem>
+            <para>Obszar plików aktualnie widoczny w okienkach plików jest wskazywany przez
+zacieniony (półprzezroczysty) pasek widoku nad okienkiem lokalizacji.
+Wysokość i położenie paska obszaru odpowiadają części plików widocznej w
+obszarze przewijania. Na przykład pasek może się rozszerzać lub zmniejszać,
+jeśli zmienisz wysokość okienek plików. Ta synchronizacja paska widoku
+panelu lokalizacji i okienek plików umożliwia szybką nawigację i wykonanie
+kilku przydatnych działań:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>Podczas przewijania paneli plików obszar widoku w panelu lokalizacji
+przesuwa się wraz z nimi.</para>
+              </listitem>
+
+              <listitem>
+                <para>I odwrotnie, możesz przeciągać pasek obszaru widoku w panelu lokalizacji w
+górę lub w dół, aby przewijać panele plików. Ta czynność kciuka na pasku
+przewijania jest bardzo przydatna do nawigacji po długich plikach.</para>
+              </listitem>
+
+              <listitem>
+                <para>Kliknij dowolne miejsce w panelu Lokalizacja, aby przejść do odpowiedniej
+lokalizacji w okienkach plików.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Przeniesione różnice<indexterm>
+              <primary>przesunięte różnice</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Przesunięte różnice to identyczne linie w różnych lokalizacjach.  Są one
+wyświetlane tylko wtedy, gdy w oknie dialogowym Opcje na stronie Porównaj
+jest zaznaczona opcja Włącz wykrywanie przesuniętych bloków. Zobacz <xref
+linkend="CompareFiles_diffcolors" /> aby uzyskać więcej informacji na temat
+przeniesionych różnic w panelu Plik. Panel Lokalizacja rysuje linię łączącą
+przesunięte różnice w lewym i prawym pasku lokalizacji.  Na przykład:</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="576"
+fileref="screenshots/locpane_moved_diffs.png" format="PNG" /> </imageobject><textobject>
+                <phrase>Okienko lokalizacji z przesuniętą różnicą</phrase>
+              </textobject>
+            </mediaobject>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Menu kontekstowe panelu lokalizacji zawiera następujące skróty:<indexterm>
+          <primary>menu kontekstowe</primary>
+
+          <secondary>Panel lokalizacji</secondary>
+        </indexterm><indexterm>
+          <primary>Funkcje przeniesionych bloków</primary>
+        </indexterm></para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Przejdź do linii 1</guimenuitem>: przesuwa kursor na górę
+pliku.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Idź do</guimenuitem>: Przesuwa kursor do określonej linii
+(opisanej w <xref linkend="Compare_files_nav_functions" />).</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Brak przesuniętych bloków</guimenuitem>: Wyłącza kolor różnicy
+przesuniętych bloków.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Wszystkie przesunięte bloki</guimenuitem>: Włącza kolor
+różnicowy dla wszystkich przesuniętych bloków.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Przeniesiono blok dla aktualnej różnicy</guimenuitem>: Włącza
+kolor przesuniętej różnicy tylko dla aktualnie wybranej przesuniętej
+różnicy.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Panel różnic<indexterm>
+          <primary>Panel Porównaj, okno Porównaj pliki</primary>
+        </indexterm></title>
+
+      <para>Panel Różn. pokazuje zawartość obu stron wybranej różnicy.</para>
+
+      <para>Po wybraniu różnicy obie wersje zostaną załadowane w górnej i dolnej części
+panelu Porównanie. W ten sposób panel Porównanie potwierdza, które linie są
+uwzględnione w różnicy, i pozwala sprawdzić je w oderwaniu od reszty pliku.</para>
+
+      <para>Możesz scalić różnice bezpośrednio w panelu Porównaj, klikając prawym
+przyciskiem myszy górną lub dolną część i wybierając <guimenuitem>Kopiuj w
+prawo</guimenuitem> lub <guimenuitem>Kopiuj do lewej</guimenuitem>.</para>
+    </section>
+
+    <section>
+      <title>Paski stanu<indexterm>
+          <primary>paski stanu</primary>
+
+          <secondary>w oknie Porównaj pliki</secondary>
+        </indexterm><indexterm>
+          <primary>zakładki</primary>
+
+          <secondary>kodowanie znaków</secondary>
+        </indexterm></title>
+
+      <para>Każde okienko Plik zawiera pasek stanu na dole. Pasek stanu zawiera kilka
+okienek z różnymi rodzajami informacji o dokumencie i Twojej lokalizacji w
+nim:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Stan linii</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Ln</guilabel>: Numer wiersza w pliku źródłowym.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>płk</guilabel>: Położenie kolumny kursora i całkowita liczba
+kolumn w linii.</para>
+
+                <para><guilabel>płk</guilabel> liczy karty jako <replaceable>n</replaceable>
+przestrzenie, gdzie <replaceable>n</replaceable> to liczba znaków
+zdefiniowana jako <guilabel>Rozmiar zakładki</guilabel> na stronie Edytor
+opcji WinMerge (domyślnie 4).</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Ch</guilabel>: Lokalizacja znaku kursora i całkowita liczba znaków
+w linii.</para>
+
+                <para><guilabel>Ch</guilabel> liczy tabulatory jako pojedyncze znaki tabulacji.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>EOL</guilabel>: Styl wysuwu bieżącego wiersza (pokazany tylko
+wtedy, gdy <guilabel>Zachowaj oryginalny EOL </guilabel> opcja jest włączona
+na stronie Edytor opcji WinMerge).</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Stan tylko do odczytu</term>
+
+          <listitem>
+            <para><guilabel>RO</guilabel> jest wyświetlana w panelu, jeśli plik jest ustawiony
+jako tylko do odczytu (zgodnie z opisem w <xref linkend="protectingfiles"
+/>). W przeciwnym razie okienko jest puste.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Kodowanie plików</term>
+
+          <listitem>
+            <para>Numer strony kodowej dla plików ANSI, typ kodowania Unicode dla plików
+Unicode.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Styl EOL</term>
+
+          <listitem>
+            <para>Styl EOL pliku: <guilabel>Wygraj</guilabel> dla plików Windows/DOS (CRLF),
+<guilabel>Uniksa</guilabel> (LF), <guilabel>Mac</guilabel> (CR) lub
+<guilabel>Mieszane</guilabel>.</para>
+
+            <note>
+              <para>Jeśli używany jest styl EOL dla wiersza, styl EOL pliku nie jest wyświetlany
+(to okienko jest puste).</para>
+            </note>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Kiedy okno porównywania plików jest otwarte, na pasku stanu okna WinMerge
+wyświetlany jest jeden z następujących komunikatów na temat porównywanych
+plików:<itemizedlist>
+          <listitem>
+            <para><guilabel>Identyczne</guilabel>: Pliki nie zawierają żadnych różnic</para>
+          </listitem>
+
+          <listitem>
+            <para><guilabel><replaceable>n</replaceable> Znaleziono różnice</guilabel>: Liczba
+wykrytych różnic, wyświetlana tylko wtedy, gdy nie wybrano żadnej różnicy.</para>
+          </listitem>
+
+          <listitem>
+            <para><guilabel>Różnica <replaceable>x</replaceable> z
+<replaceable>n</replaceable></guilabel>: Numer kolejny wybranej różnicy w
+całkowitej liczbie różnic, zaczynając od 1.</para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+  </section>
+
+  <section id="Compare_files_nav">
+    <title>Poruszanie się po różnicach<indexterm>
+        <primary>nawigacja różnicowa</primary>
+
+        <secondary>Okno porównywania plików</secondary>
+      </indexterm></title>
+
+    <para>W tej sekcji opisano, jak nawigować i wybierać różnice w oknie Porównywanie
+plików. Należy pamiętać, że wybranie różnicy jest zawsze zaznaczane w obu
+lub we wszystkich trzech okienkach Plik.</para>
+
+    <tip>
+      <para>Aby zaoszczędzić czas, włącz <guilabel>Automatycznie przewiń do pierwszej
+różnicy</guilabel> na stronie Ogólne opcji WinMerge. Wtedy nie musisz
+ręcznie przechodzić do pierwszej różnicy i ją wybierać.</para>
+    </tip>
+
+    <section id="Compare_files_nav_functions">
+      <title>Funkcje nawigacji<indexterm>
+          <primary>Funkcje WinMerge</primary>
+
+          <secondary>nawigacja różnic w oknie porównywania plików</secondary>
+        </indexterm><indexterm>
+          <primary>funkcje nawigacji</primary>
+
+          <secondary>porównanie plików</secondary>
+        </indexterm></title>
+
+      <para>Oto funkcje umożliwiające nawigację po różnicach w oknie Porównywanie plików
+oraz ich skróty na pasku narzędzi i w menu:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Różnica w bieżącej linii/wybranej linii<indexterm>
+              <primary>Różnica w funkcji Current Line</primary>
+            </indexterm><indexterm>
+              <primary>Wybierz funkcję różnicy linii</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Włączone, jeśli kliknąłeś (lub zaznaczyłeś) tekst w ramach różnicy w okienku
+Plik. Zaznacza różnice między wyrazami w wierszu. Na przykład:</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="562"
+fileref="screenshots/linediff.png" format="PNG" /> </imageobject><textobject>
+                <phrase>Wybierz przykład różnicy linii</phrase>
+              </textobject>
+            </mediaobject>
+            <para></para>
+
+            <para>Jeśli chcesz wybrać sam blok różnicowy, użyj <command>Current
+Difference</command> zamiast tego.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/diff_inline_btn.png" /> </imageobject><textobject>
+                  <phrase>Różnica w przycisku Bieżąca linia</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Edytuj</guimenu> <guimenuitem>Wybierz opcję Różnica
+linii</guimenuitem> </menuchoice>, <keycap>F4</keycap>, menu kontekstowe w
+panelu Plik w ramach różnicy.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Następna różnica<indexterm>
+              <primary>Następna funkcja różnicowa</primary>
+
+              <secondary>z Porównaj pliki</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Wybiera następną różnicę poniżej bieżącego położenia kursora w dokumencie
+(niekoniecznie w odniesieniu do bieżącej różnicy). Użyj, aby przechodzić
+przez różnice sekwencyjnie z dowolnego punktu. Dostępne z wyjątkiem
+sytuacji, gdy aktualnie wybrana jest ostatnia różnica.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Następna różnica</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Następna
+różnica</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>W dół</keycap> </keycombo> (lub <keycap>W dół</keycap> w trybie
+scalania).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Poprzednia różnica<indexterm>
+              <primary>Poprzednia funkcja różnicowa</primary>
+
+              <secondary>z Porównaj pliki</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Wybiera poprzednią różnicę nad bieżącą lokalizacją kursora (niekoniecznie w
+odniesieniu do bieżącej różnicy). Służy do sekwencyjnego cofania się
+pomiędzy różnicami. Dostępne z wyjątkiem sytuacji, gdy aktualnie wybrana
+jest pierwsza różnica.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/prevdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Poprzednia różnica</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Poprzednia
+różnica</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>W górę</keycap> </keycombo> (lub <keycap>W górę</keycap> w trybie
+scalania).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Pierwsza różnica<indexterm>
+              <primary>Funkcja pierwszej różnicy</primary>
+
+              <secondary>z Porównaj pliki</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Użyj tego, aby rozpocząć porównywanie lub łączenie różnic lub zlokalizować
+pierwszą różnicę w dowolnej innej lokalizacji. Dostępne z wyjątkiem
+sytuacji, gdy aktualnie wybrana jest pierwsza różnica. Różnicę można także
+zaznaczyć, klikając dwukrotnie jej tekst.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Pierwsza różnica</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Pierwsza
+różnica</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Dom</keycap> </keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Aktualna różnica<indexterm>
+              <primary>Funkcja różnicy prądu</primary>
+
+              <secondary>z Porównaj pliki</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Funkcja ta ma dwa tryby działania:</para>
+
+            <para><itemizedlist>
+                <listitem>
+                  <simpara>Jeśli kursor znajduje się wewnątrz różnicy, ale nie jest wybrana żadna
+różnica, ta funkcja zaznacza całą różnicę. Jest to bardzo przydatny sposób
+wybierania różnicy za pomocą klawiatury.</simpara>
+                </listitem>
+
+                <listitem>
+                  <simpara>Gdy występuje różnica prądów, funkcja przeskakuje do tej lokalizacji. Jest
+to przydatne, jeśli przewinąłeś wybraną różnicę poza pole widzenia i chcesz
+szybko wrócić do jej lokalizacji.</simpara>
+                </listitem>
+              </itemizedlist></para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Aktualna różnica</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Aktualna
+różnica</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Wejdź</keycap> </keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Ostatnia różnica<indexterm>
+              <primary>Funkcja ostatniej różnicy</primary>
+
+              <secondary>z Porównaj pliki</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Włączone, chyba że aktualnie wybrana jest ostatnia różnica.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Ostatnia różnica</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Ostatnia
+różnica</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Koniec</keycap> </keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Idź do<indexterm>
+              <primary>Przejdź do funkcji</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Umożliwia przejście do numeru wiersza lub numeru różnicy (na przykład
+różnica 2 jest drugą różnicą). Otwiera okno dialogowe Przejdź do, w którym
+możesz określić numer, który plik ma zostać użyty (lewy lub prawy) oraz typ
+lokalizacji (linia lub różnica).</para>
+
+            <tip>
+              <para>Numer linii Przejdź do może być przydatny, gdy trzeba scalić tę samą zmianę
+z jednego pliku do kilku plików docelowych. Przeskoczenie do konkretnej
+różnicy może być szybsze niż użycie <guimenuitem>Znajdź</guimenuitem> do
+wyszukiwania tekstu lub przeglądania różnic.</para>
+            </tip>
+            <para></para>
+
+            <para>Skróty: <menuchoice> <guimenu>Edytuj</guimenu> <guimenuitem>Idź
+do</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>G</keycap> </keycombo>, menu kontekstowe w okienku Plik i okienku
+Lokalizacja.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Przejdź do Przeniesionej linii<indexterm>
+              <primary>Przejdź do funkcji</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Umożliwia przejście do przesuniętej z/do aktualnej różnicy na drugim panelu
+(2 panele).</para>
+
+            <para>Skróty: <keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>G</keycap> </keycombo>, menu kontekstowe w panelu Plik i panelu
+Porównaj.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Przejdź do opcji Przeniesiona linia między lewą i środkową
+częścią<indexterm>
+              <primary>Przejdź do funkcji</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Umożliwia przejście do przesuniętej z/do aktualnej różnicy na drugim panelu
+(3 panele).</para>
+
+            <para>Skróty: <keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>G</keycap> </keycombo>, menu kontekstowe w panelu Plik i panelu
+Porównaj.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Przejdź do opcji Przeniesiona linia między środkiem a prawą<indexterm>
+              <primary>Przejdź do funkcji</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Umożliwia przejście do przesuniętej z/do aktualnej różnicy na drugim panelu
+(3 panele).</para>
+
+            <para>Skróty: <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
+<keycap>G</keycap> </keycombo>, menu kontekstowe w panelu Plik i panelu
+Porównaj.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Odśwież</term>
+
+          <listitem>
+            <para>Zobacz <xref linkend="Compare_files_merge_functions" />.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
+  <section id="Compare_files_syncpoints">
+    <title>Punkty synchronizacji<indexterm>
+        <primary>punkty synchronizacji</primary>
+      </indexterm></title>
+    <para>do ustalenia</para>
+  </section>
+
+  <section id="Compare_files_merge">
+    <title>Łączenie różnic<indexterm>
+        <primary>łączenie różnic</primary>
+      </indexterm></title>
+
+    <para>Scalanie kopiuje różnice z jednego okienka pliku do drugiego: od lewej do
+prawej lub od prawej do lewej. Różni się to od bezpośredniej edycji tekstu
+przy użyciu funkcji edycyjnych WinMerge (opisanych wcześniej w tym temacie).</para>
+
+    <section id="Compare_files_scan">
+      <title>Ponowne skanowanie plików<indexterm>
+          <primary>ponowne skanowanie plików</primary>
+        </indexterm></title>
+
+      <para>Domyślnie <guilabel>Automatyczne ponowne skanowanie</guilabel> opcja jest
+włączona na stronie Edytor opcji WinMerge. Ponowne skanowanie pozwala
+zachować aktualność operacji porównywania i łączenia. Bez ponownego
+skanowania różnice WinMerge nie wykrywają zmian, które mogą wystąpić w
+plikach podczas ich porównywania, na przykład w edytorze zewnętrznym.</para>
+
+      <para>Ponowne skanowanie ma miejsce, gdy wykonujesz określone czynności (takie jak
+scalanie różnic lub edytowanie pliku) podczas porównywania plików. Jeśli
+plik się zmienił, WinMerge wyświetla okno dialogowe z informacją, że inna
+aplikacja zaktualizowała plik i pyta, czy chcesz ponownie załadować plik.</para>
+
+      <para>Kliknij <guibutton>Tak</guibutton> aby ponownie załadować plik przed
+kontynuowaniem, lub <guibutton>Nie</guibutton> aby zignorować zmiany i
+pracować z wcześniej załadowaną wersją pliku.</para>
+
+      <important>
+        <para>Jeśli <guilabel>Automatyczne ponowne skanowanie</guilabel> jest wyłączony
+lub jeśli podejrzewasz, że plik mógł się zmienić, zdecydowanie zalecamy
+uruchomienie <guimenuitem>Odśwież</guimenuitem>
+<emphasis>wcześniej</emphasis> wykonanie dowolnej operacji scalania: kliknij
+<menuchoice> <guimenu>Zobacz</guimenu> <guimenuitem>Odśwież</guimenuitem>
+</menuchoice> lub <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+              <phrase>Przycisk Odśwież</phrase>
+            </textobject>
+          </inlinemediaobject> przycisk
+paska narzędzi lub naciśnij <keycap>F5</keycap>.</para>
+
+        <para>Jeśli wynik scalania wygląda niepoprawnie, kliknij <menuchoice>
+<guimenu>Edytuj</guimenu> <guimenuitem>Cofnij</guimenuitem> </menuchoice>
+lub naciśnij <keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo>
+aby cofnąć połączenie. Następnie ponownie przeskanuj pliki i spróbuj
+ponownie połączyć.</para>
+      </important>
+    </section>
+
+    <section id="Compare_files_merge_functions">
+      <title>Połącz funkcje<indexterm>
+          <primary>Funkcje WinMerge</primary>
+
+          <secondary>łączenie</secondary>
+        </indexterm></title>
+
+      <para>Funkcje scalające mogą niejawnie wybierać różnice na podstawie położenia
+kursora lub zaznaczenia tekstu. Na przykład, jeśli klikniesz w dowolnym
+miejscu różnicy, a następnie klikniesz <guibutton>Kopiuj w prawo</guibutton>
+na pasku narzędzi, cały blok różnic zostanie scalony. Ułatwia to łączenie
+wielu małych różnic. Podobnie, jeśli zaznaczony zostanie tekst obejmujący
+całość lub część wielu różnic, wszystkie uwzględnione różnice zostaną
+scalone za pomocą jednego polecenia scalania.</para>
+
+      <para>Jeśli wynik operacji scalania nie jest zgodny z oczekiwaniami, możesz
+kliknąć <guibutton>Cofnij</guibutton> aby odwrócić tę operację.</para>
+
+      <para>Oto funkcje scalania i ich skróty na pasku narzędzi i menu:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Kopiuj w prawo<indexterm>
+              <primary>Funkcja Kopiuj w prawo</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Kopiuje jedną lub więcej różnic od lewej do prawej. Należy pamiętać, że
+różnice nie muszą być zaznaczone w całości: w najprostszym przypadku oznacza
+to zastąpienie tekstu w różnicy docelowej tekstem w różnicy
+źródłowej. Ponieważ jednak różnice mogą również zawierać puste linie, nowe
+linie mogą zostać utworzone lub usunięte.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+                  <phrase>Kopiuj prawy przycisk</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Kopiuj w
+prawo</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Jasne</keycap> </keycombo> (lub <keycap>Jasne</keycap> w trybie
+scalania), menu kontekstowe w panelu Plik w ramach różnicy oraz w panelu
+Porównaj.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Kopiuj w lewo<indexterm>
+              <primary>Funkcja Kopiuj w lewo</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Kopiuje bieżącą różnicę z prawego do lewego panelu Plik. Zobacz
+<command>Copy Right</command> opis szczegółów.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+                  <phrase>Kopiuj lewy przycisk</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Kopiuj do
+lewej</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Lewy</keycap> </keycombo> (lub <keycap>Lewy</keycap> w trybie
+scalania), menu kontekstowe w panelu Plik w ramach różnicy oraz w panelu
+Porównaj.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Kopiuj w prawo i z wyprzedzeniem<indexterm>
+              <primary>Funkcja kopiowania w prawo i zaliczki</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Łączy bieżącą różnicę z prawego do lewego panelu Plik, a następnie wybiera
+następną różnicę (jeśli istnieje). Odpowiednik <command>Copy Right</command>
+i <command>Next Difference</command> w jednym kroku.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Kopiuj w prawo i Przejdź dalej</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Kopiuj do
+lewej</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>Alt</keycap> <keycap>Jasne</keycap> </keycombo>, menu kontekstowe w
+panelu Plik w ramach różnicy.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Kopiuj w lewo i do przodu<indexterm>
+              <primary>Funkcja kopiowania w lewo i w przód</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Łączy bieżącą różnicę od lewej do prawej, a następnie wybiera następną
+różnicę (jeśli istnieje). Odpowiednik <command>Copy Left</command> i
+<command>Next Difference</command> w jednym kroku.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Kopiuj w lewo i Dalej</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Kopiuj do
+lewej</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>Alt</keycap> <keycap>Lewy</keycap> </keycombo>, menu kontekstowe w
+panelu Plik w ramach różnicy.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>W porządku<indexterm>
+              <primary>Funkcja Wszystko w porządku</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Kopiuje wszystkie różnice z lewego do prawego panelu Plik.  Służy do
+synchronizowania dwóch plików za pomocą jednego polecenia. Podobnie możesz
+wycofać całe scalanie, klikając <inlinemediaobject>
+<imageobject> <imagedata contentdepth="11"
+fileref="screenshots/undo_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Odśwież</phrase>
+                </textobject>
+              </inlinemediaobject> Cofnij lub naciśnięcie <keycombo> <keycap>Ctrl</keycap>
+<keycap>Z</keycap> </keycombo>.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Wszystko w porządku</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Kopiuj do
+lewej</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Lewy</keycap> </keycombo>, menu kontekstowe w panelu Plik w ramach
+różnicy.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Wszyscy w lewo<indexterm>
+              <primary>Funkcja Wszystkie lewe</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Kopiuje wszystkie różnice z prawego do lewego panelu Plik.  Skutecznie
+zastępuje zawartość lewego panelu Plik. Zobacz podobne do <command>All
+Right</command>.</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Wszystko w lewo</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Kopiuj do
+lewej</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Lewy</keycap> </keycombo>, menu kontekstowe w panelu Plik w ramach
+różnicy.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Odśwież<indexterm>
+              <primary>Funkcja odświeżania</primary>
+
+              <seealso>ponowne skanowanie plików</seealso>
+            </indexterm></term>
+
+          <listitem>
+            <para>Ponownie skanuje pliki, aby zaktualizować różnice. Użyj po wprowadzeniu
+zmian w plikach, jeśli automatyczne skanowanie jest wyłączone (patrz <xref
+linkend="Compare_files_scan" /> aby poznać szczegóły).</para>
+
+            <para>Skróty: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+                  <phrase>Przycisk Odśwież</phrase>
+                </textobject>
+              </inlinemediaobject> przycisk,
+<menuchoice> <guimenu>Zobacz</guimenu> <guimenuitem>Odśwież</guimenuitem>
+</menuchoice>, <keycap>F5</keycap>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="ResolveConflictFiles">
+      <title>Rozwiązywanie konfliktów plików<indexterm>
+          <primary>pliki konfliktowe</primary>
+        </indexterm></title>
+
+      <para>Możesz użyć WinMerge do rozwiązania plików konfliktowych generowanych przez
+niektóre systemy kontroli wersji podczas operacji scalania. Plik konfliktu
+tworzony jest, gdy podczas scalania napotkane zostaną różnice, których nie
+można automatycznie rozwiązać. Jest to pojedynczy plik zawierający
+niecałkowicie połączoną zawartość obu plików. WinMerge dzieli plik konfliktu
+na osobne pliki i otwiera te pliki w oknie porównywania plików. Następnie
+możesz użyć funkcji porównywania i scalania programu WinMerge, aby rozwiązać
+konflikty i zapisać scalony plik wynikowy.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Kliknij <menuchoice> <guimenu>Plik</guimenu> <guimenuitem>Otwórz plik
+konfliktu</guimenuitem> </menuchoice>i użyj okna dialogowego Otwórz, aby
+wybrać plik powodujący konflikt w systemie plików. Plik konfliktu otwiera
+się w oknie Porównaj pliki:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Nagłówek pliku w lewym panelu plików ma tytuł: <guilabel>Ich
+plik</guilabel>. Ta strona reprezentuje plik, który zwykle znajduje się w
+repozytorium systemu kontroli wersji. Zwykle nie można edytować tego pliku,
+więc WinMerge ustawia lewe okienko Plik jako tylko do odczytu.  Oznacza to,
+że różnice można łączyć tylko z tego pliku do innego pliku.</para>
+            </listitem>
+
+            <listitem>
+              <para>Prawy panel Plik ma tytuł: <guilabel>Mój plik</guilabel>. Ta strona jest
+roboczą kopią pliku. Wszelkie zmiany należy wprowadzać w tym pliku, który
+jest plikiem wynikowym.</para>
+
+              <para>The <guilabel>Mój plik</guilabel> side jest ustawione na zmodyfikowane po
+otwarciu pliku konfliktu (zauważysz gwiazdkę w nagłówku panelu Plik). Dzięki
+temu można szybko zapisać plik, jeśli nie wymaga on żadnych zmian. Zapewnia
+również, że nie zapomnisz rozwiązać plików. Jeśli zdecydujesz się nie
+zapisywać pliku, oryginalny plik konfliktu nie zostanie zmodyfikowany.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Użyj wszystkich normalnych funkcji porównywania i scalania opisanych
+wcześniej w tym temacie, aby rozwiązać konflikty w panelu Kopiuj plik.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kiedy skończysz, kliknij <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap>
+</keycombo> aby zapisać <guilabel>Mój plik</guilabel> side jako plik
+wynikowy. Domyślnie nowa wersja zastępuje oryginalny plik
+konfliktu. Alternatywnie możesz kliknąć <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Zapisz dobrze</guimenuitem> <guimenuitem>Zapisz
+jako</guimenuitem> </menuchoice>i wybierz inną nazwę pliku.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Wiele systemów kontroli wersji umożliwia skonfigurowanie zewnętrznego
+narzędzia scalającego. Jeśli tak jest w Twoim przypadku, być może uda Ci się
+automatycznie uruchomić WinMerge w systemie kontroli wersji, gdy wystąpi
+konflikt scalania.</para>
+
+      <para>Możesz także otworzyć plik konfliktu z wiersza poleceń WinMerge, który
+akceptuje trzy parametry nazwy pliku: <option>Theirs</option>,
+<option>Mine</option>i opcjonalnie, <option>Resolved</option> (jeśli chcesz
+inny plik wynikowy niż plik konfliktu). Aby uzyskać więcej informacji,
+zobacz <xref linkend="Command_line" />. Pojedyncza ścieżka do pliku
+konfliktu jest również akceptowana w wierszu poleceń.</para>
+    </section>
+  </section>
+</article>

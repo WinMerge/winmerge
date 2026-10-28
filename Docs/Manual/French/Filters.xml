@@ -2455,7 +2455,7 @@ contenant le texte <literal>TODO</literal>.</para>
         </varlistentry>
 
         <varlistentry>
-          <term><literal>le:</literal> prefix (expression de filtre)</term>
+          <term><literal>le :</literal> préfixe (expression de filtre)</term>
           <listitem>
             <para>Si l'entrée commence par <literal>le:</literal>, le reste est interprété
 comme une expression de filtre. La syntaxe complète de l'expression, décrite
@@ -2492,7 +2492,7 @@ côté acceptent les préfixes <literal>Left</literal>,
 <literal>Middle</literal> et <literal>Right</literal>
 (p. ex. <literal>LeftLine</literal>,
 <literal>RightLineLength</literal>). Les attributs sans préfixe sont évalués
-sur tous les panneaux.</para>
+sur tous les volets.</para>
 
         <variablelist>
           <varlistentry>
@@ -2524,7 +2524,7 @@ global. Exemple : <literal>Different</literal></para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Identical</varname></term>
-            <listitem><para>Vrai si la ligne est identique sur tous les panneaux. Attribut global.</para></listitem>
+            <listitem><para>Vrai si la ligne est identique sur tous les volets. Attribut global.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term><varname>Trivial</varname></term>
@@ -2556,8 +2556,8 @@ spécifiques au côté.</para></listitem>
             <term><varname>DifferentLeftMiddle</varname>,
 <varname>DifferentMiddleRight</varname>,
 <varname>DifferentLeftRight</varname></term>
-            <listitem><para>Vrai si la paire de panneaux indiquée diffère sur cette ligne. Comparaisons
-à trois voies uniquement (sauf <varname>DifferentLeftRight</varname> qui
+            <listitem><para>Vrai si la paire de volets indiquée diffère sur cette ligne. Comparaisons à
+trois voies uniquement (sauf <varname>DifferentLeftRight</varname> qui
 fonctionne également en comparaison à deux voies). Attributs
 globaux. Exemple : <literal>DifferentLeftMiddle and not
 DifferentMiddleRight</literal></para></listitem>
@@ -2841,7 +2841,7 @@ calcule le total des ventes pour la région « East ».</para></listitem>
               </row>
               <row>
                 <entry><userinput>le:allof(EOL = 1)</userinput></entry>
-                <entry>Affiche les lignes où tous les panneaux utilisent des fins de ligne LF</entry>
+                <entry>Affiche les lignes où tous les volets utilisent des fins de ligne LF</entry>
               </row>
               <row>
                 <entry><userinput>le:toInt(Column("Count")) &gt; 100</userinput></entry>

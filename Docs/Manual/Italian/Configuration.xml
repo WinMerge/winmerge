@@ -2421,36 +2421,39 @@ dettagliato come WinMerge rileva e contrassegna le differenze di linea.</para>
 
     <section>
       <title>
-Use Merge Result Pane for 2/3-way merge<indexterm>
-          <primary>Merge Result Pane</primary>
+Usa il riquadro risultati unione per l'unione a 2/3 vie<indexterm>
+          <primary>Pannello risultato unione</primary>
 
-          <secondary>3-way merge configuration</secondary>
+          <secondary>configurazione unione a 3-vie</secondary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option>: Three-way merges write the result to the target
-pane. Two-way conflict files open in the regular editable two-pane view.</para>
+<option>Disabilitato</option>: le unioni a tre vie scrivono il risultato nel
+riquadro destinazione. I file di conflitto bidirezionale si aprono nella
+normale visualizzazione modificabile a due riquadri.</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option> (default): Three-way merges use a separate Merge
-Result pane instead of modifying the target pane. Two-way conflict files
-also open with a separate Merge Result pane. Review and edit the result
-there before saving it to the target file.</para>
+<option>Abilitato</option> (impostazione predefinita): le unioni a tre vie
+usano un riquadro dei risultati dell'unione separato invece di modificare il
+riquadro destinazione. I file in conflitto bidirezionale si aprono anche con
+un riquadro 'risultato unione' separato. Prima di salvarlo nel file
+destinazione rivedi e modifica il risultato.</para>
         </listitem>
       </itemizedlist>
 
       <note>
-        <title>Note about merge target pane selection</title>
+        <title>Nota sulla selezione del riquadro destinazione unione</title>
 
         <para>
-The merge target pane is determined by either the currently focused pane
-(for UI-based operations) or by the command-line options (/al, /am, /ar).
-This setting controls whether the results are written directly to the target
-pane or displayed in a separate Merge Result Pane for review.</para>
+Il riquadro destinazione unione è determinato dal riquadro attualmente
+attivo (per operazioni basate sull'interfaccia utente) o dalle opzioni della
+riga di comando (/al, /am, /ar).  Questa impostazione controlla se i
+risultati vengono scritti direttamente nel riquadro destinazione o
+visualizzati in un riquadro risultati unione separato per la revisione.</para>
       </note>
     </section>
 

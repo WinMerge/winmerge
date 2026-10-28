@@ -127,10 +127,10 @@ utilisé.</para>
 
               <tip>
                 <para>Pour faciliter la sélection de chemins fréquents, activez l'option
-<guilabel>Auto-complétion de la boîte de dialogue
-d'ouverture</guilabel>. WinMerge affichera une liste de chemins disponibles
-au fur et à mesure de votre saisie. Voir <xref linkend="Configuration" />
-pour plus de détails.</para>
+<guilabel>Remplissage automatique de la boîte de dialogue
+Ouvrir</guilabel>. WinMerge affichera une liste de chemins disponibles au
+fur et à mesure de votre saisie. Voir <xref linkend="Configuration" /> pour
+plus de détails.</para>
               </tip>
               <para></para>
             </listitem>

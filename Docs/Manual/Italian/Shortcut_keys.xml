@@ -261,27 +261,28 @@ schermo)</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>1</keycap>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Maiusc</keycap> <keycap>1</keycap>
 </keycombo></entry>
 
-          <entry>Toggle left pane content for current or selected differences (Merge Result
-pane)</entry>
+          <entry>Attiva/disattiva il contenuto del riquadro sinistro per le differenze
+attuali o selezionate (riquadro 'Unisci risultati')</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>2</keycap>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Maiusc</keycap> <keycap>2</keycap>
 </keycombo></entry>
 
-          <entry>Toggle pane 2 content (right in two-way, middle in three-way)  for current
-or selected differences (Merge Result pane)</entry>
+          <entry>Attiva/disattiva il contenuto del riquadro 2 (a destra in bidirezionale, al
+centro in tre vie) per le differenze attuali o selezionate (riquadro 'Unisci
+risultati')</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>3</keycap>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Maiusc</keycap> <keycap>3</keycap>
 </keycombo></entry>
 
-          <entry>Toggle right pane content for current or selected differences (Merge Result
-pane)</entry>
+          <entry>Attiva/disattiva il contenuto del riquadro destro per le differenze attuali
+o selezionate (riquadro 'Unisci risultati')</entry>
         </row>
 
         <row>

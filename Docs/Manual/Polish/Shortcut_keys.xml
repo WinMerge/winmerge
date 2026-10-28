@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="Shortcut_keys">
+  <title>Klawisze skrótów<indexterm>
+      <primary>klawisze skrótów</primary>
+    </indexterm></title>
+
+  <para>WinMerge zawiera większość znanych klawiszy skrótów powszechnie używanych w
+innych aplikacjach Windows.</para>
+
+  <table>
+    <title>Generał</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Zakładka</keycap> </keycombo></entry>
+
+          <entry>Przejdź do następnej zakładki</entry>
+
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>Zakładka</keycap> </keycombo></entry>
+
+          <entry>Przejdź do poprzedniej karty</entry>
+
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Porównanie folderów</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Wejdź</keycap></entry>
+
+          <entry>Otwórz wybrany plik lub folder</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Backspace</keycap></entry>
+
+          <entry>Jeśli to możliwe, otwórz folder nadrzędny (dostępne tylko wtedy, gdy
+porównanie nie obejmuje podfolderów)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F5</keycap></entry>
+
+          <entry>Przeskanuj ponownie foldery</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Dom</keycap> </keycombo></entry>
+
+          <entry>Przejdź do pierwszego innego pliku lub folderu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Koniec</keycap> </keycombo></entry>
+
+          <entry>Przejdź do ostatniego innego pliku lub folderu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Wejdź</keycap> </keycombo></entry>
+
+          <entry>Przejdź do aktualnie wybranego elementu (jeśli przewinięty poza ekran)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w górę</keycap> </keycombo></entry>
+
+          <entry>Przejdź do poprzedniego innego pliku lub folderu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w dół</keycap> </keycombo></entry>
+
+          <entry>Przejdź do następnego innego pliku lub folderu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w lewo</keycap> </keycombo></entry>
+
+          <entry>Skopiuj wybrane elementy od prawej do lewej</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w prawo</keycap>
+</keycombo></entry>
+
+          <entry>Skopiuj wybrane elementy od lewej do prawej</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Porównanie plików</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Wyjście</keycap></entry>
+
+          <entry>Zamknij okno (jeśli włączona w opcjach)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F4</keycap></entry>
+
+          <entry>Pokaż różnicę w następnej linii</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Przesunięcie</keycap>+<keycap>F4</keycap></entry>
+
+          <entry>Pokaż różnicę w poprzedniej linii</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F5</keycap></entry>
+
+          <entry>Odśwież</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F5</keycap></entry>
+
+          <entry>Załaduj ponownie</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F6</keycap></entry>
+
+          <entry>Przejdź do następnego panelu (aktywny plik)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Przesunięcie</keycap>+<keycap>F6</keycap></entry>
+
+          <entry>Przejdź do poprzedniego panelu (aktywny plik)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F7</keycap></entry>
+
+          <entry>Przejdź do poprzedniej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Przesunięcie</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>Przejdź do poprzedniego konfliktu</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>Przejdź do poprzedniego pliku</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F8</keycap></entry>
+
+          <entry>Przejdź do następnej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Przesunięcie</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>Przejdź do następnego konfliktu</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>Przejdź do następnego pliku</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F9</keycap></entry>
+
+          <entry>Włączanie lub wyłączanie trybu scalania (przełącznik)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F12</keycap></entry>
+
+          <entry>Przejdź do definicji</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo></entry>
+
+          <entry>Rozpocznij wybór kolumny</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo></entry>
+
+          <entry>Przełącz tryb kontekstowy różnicowania</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>E</keycap>
+</keycombo></entry>
+
+          <entry>Otwórz za pomocą zewnętrznego edytora</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> </keycombo></entry>
+
+          <entry>Przejdź do różnicy lub linii</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>G</keycap> </keycombo></entry>
+
+          <entry>Przejdź do przeniesionej linii (2 panele)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>G</keycap> </keycombo></entry>
+
+          <entry>Przejdź do przeniesionej linii pomiędzy lewą stroną a środkiem (3 panele)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>1</keycap> </keycombo></entry>
+
+          <entry>Przełącz zawartość lewego panelu dla bieżących lub wybranych różnic (panel
+Wynik scalania)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>2</keycap> </keycombo></entry>
+
+          <entry>Przełącz zawartość panelu 2 (prawy w trybie dwukierunkowym, środkowy w
+trybie trójstronnym) dla bieżących lub wybranych różnic (panel wyników
+scalania)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>3</keycap> </keycombo></entry>
+
+          <entry>Przełącz zawartość prawego panelu dla bieżących lub wybranych różnic (panel
+Wynik scalania)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>G</keycap>
+</keycombo></entry>
+
+          <entry>Przejdź do przeniesionej linii pomiędzy środkową i prawą stroną (3 panele)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>M</keycap> </keycombo></entry>
+
+          <entry>Dodaj znacznik</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>M</keycap>
+</keycombo></entry>
+
+          <entry>Wykonaj automatyczne scalanie</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>S</keycap> </keycombo></entry>
+
+          <entry>Dodaj punkt synchronizacji</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>U</keycap> </keycombo></entry>
+
+          <entry>Konwertuj zaznaczony tekst na małe litery</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>U</keycap> </keycombo></entry>
+
+          <entry>Konwertuj zaznaczony tekst na wielkie litery</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Y</keycap> </keycombo></entry>
+
+          <entry>Wykonaj ponownie cofniętą wcześniej akcję</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo></entry>
+
+          <entry>Cofnij ostatnią akcję</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Nawigacja różnicowa i łączenie (tryb normalny)</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Dom</keycap> </keycombo></entry>
+
+          <entry>Przejdź do pierwszej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Koniec</keycap> </keycombo></entry>
+
+          <entry>Przejdź do ostatniej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Wejdź</keycap> </keycombo></entry>
+
+          <entry>Przejdź do bieżącej różnicy lub wybierz różnicę</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w górę</keycap> </keycombo></entry>
+
+          <entry>Przejdź do poprzedniej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w dół</keycap> </keycombo></entry>
+
+          <entry>Przejdź do następnej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Przesunięcie</keycap>
+<keycap>Strzałka w górę</keycap> </keycombo></entry>
+
+          <entry>Przejdź do poprzedniego konfliktu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Przesunięcie</keycap>
+<keycap>Strzałka w dół</keycap> </keycombo></entry>
+
+          <entry>Przejdź do następnego konfliktu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w lewo</keycap> </keycombo></entry>
+
+          <entry>Skopiuj różnicę z prawej strony na lewą</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Strzałka w prawo</keycap>
+</keycombo></entry>
+
+          <entry>Skopiuj różnicę z lewej strony na prawą</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Strzałka w
+lewo</keycap> </keycombo></entry>
+
+          <entry>Skopiuj różnicę z prawej strony na lewą i wybierz następną różnicę</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Strzałka w
+prawo</keycap> </keycombo></entry>
+
+          <entry>Skopiuj różnicę z lewej strony na prawą i wybierz następną różnicę</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Nawigacja różnicowa i łączenie (tryb scalania)</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Strzałka w górę</keycap></entry>
+
+          <entry>Przejdź do poprzedniej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Strzałka w dół</keycap></entry>
+
+          <entry>Przejdź do następnej różnicy</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Strzałka w lewo</keycap></entry>
+
+          <entry>Skopiuj różnicę z prawej strony na lewą</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Strzałka w prawo</keycap></entry>
+
+          <entry>Skopiuj różnicę z lewej strony na prawą</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Strzałka w
+lewo</keycap> </keycombo></entry>
+
+          <entry>Skopiuj różnicę z prawej strony na lewą i wybierz następną różnicę</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Strzałka w
+prawo</keycap> </keycombo></entry>
+
+          <entry>Skopiuj różnicę z lewej strony na prawą i wybierz następną różnicę</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Znajdź i zamień</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F</keycap> </keycombo></entry>
+
+          <entry>Znajdź tekst (otwiera okno dialogowe Znajdź)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>H</keycap> </keycombo></entry>
+
+          <entry>Zamień tekst (otwiera okno dialogowe Zamień)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F3</keycap></entry>
+
+          <entry>Znajdź następny</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Przesunięcie</keycap> <keycap>F3</keycap> </keycombo></entry>
+
+          <entry>Znajdź poprzednie</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F3</keycap> </keycombo></entry>
+
+          <entry>Znajdź zaznaczony tekst w pliku</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>F3</keycap> </keycombo></entry>
+
+          <entry>Znajdź zaznaczony tekst w górę w pliku</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Zakładki</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>Następna zakładka</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Przesunięcie</keycap> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>Poprzednia zakładka</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>Przełącz zakładkę</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Przesunięcie</keycap>
+<keycap>F2</keycap> </keycombo></entry>
+
+          <entry>Wyczyść wszystkie zakładki</entry>
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>Powiększ</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Klucze</entry>
+
+          <entry>Funkcja</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>+</keycap> </keycombo></entry>
+
+          <entry>Zwiększ rozmiar tekstu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>-</keycap> </keycombo></entry>
+
+          <entry>Zmniejsz rozmiar tekstu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>*</keycap> </keycombo></entry>
+
+          <entry>Zresetuj powiększenie tekstu do rozmiaru domyślnego</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <mousebutton>Kółko myszy w
+górę</mousebutton> </keycombo></entry>
+
+          <entry>Zwiększ rozmiar tekstu</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <mousebutton>Kółko myszy w
+dół</mousebutton> </keycombo></entry>
+
+          <entry>Zmniejsz rozmiar tekstu</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</appendix>

@@ -863,7 +863,7 @@ ligne. Afficher les blocs déplacés peut faciliter la visualisation des
 changements dans les fichiers, s'ils ne sont pas trop nombreux.</para>
 
           <para>
-Pour un exemple, voir la description du volet Emplacement dans <xref
+Pour un exemple, voir la description du volet de localisation dans <xref
 linkend="Compare_files" />.</para>
         </listitem>
       </itemizedlist>
@@ -2043,7 +2043,7 @@ recommandé.</para>
 
     <section>
       <title>
-Séparer les dossiers de données utilisateur pour chaque panneau<indexterm>
+Séparer les dossiers de données utilisateur pour chaque volet<indexterm>
         </indexterm></title>
       <para>Crée des dossiers de données distincts pour chaque volet, empêchant le
 chevauchement des données entre eux.</para>
@@ -2377,8 +2377,8 @@ lignes des blocs de différences) :</para>
                 <para>
 <option>Activé</option> (par défaut) : WinMerge met en évidence les
 différences à l'intérieur des lignes. Active également l'élément de menu
-<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Voir les différences
-de ligne</guimenuitem> </menuchoice>.</para>
+<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Afficher les
+différences de ligne</guimenuitem> </menuchoice>.</para>
 
                 <para>Choisissez l'une de ces sous-options :</para>
 
@@ -2452,36 +2452,40 @@ comment WinMerge détecte et marque les différences de ligne.</para>
 
     <section>
       <title>
-Use Merge Result Pane for 2/3-way merge<indexterm>
-          <primary>Merge Result Pane</primary>
+Utiliser le volet du résultat de la fusion pour une fusion à 2/3
+voies<indexterm>
+          <primary>Volet du résultat de la fusion</primary>
 
-          <secondary>3-way merge configuration</secondary>
+          <secondary>configuration de la fusion à 3 voies</secondary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option>: Three-way merges write the result to the target
-pane. Two-way conflict files open in the regular editable two-pane view.</para>
+<option>Désactivé</option> : Les fusions à trois voies écrivent le résultat
+dans le volet cible. Les fichiers présentant un conflit à deux voies
+s'ouvrent dans la vue standard à deux volets modifiables.</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option> (default): Three-way merges use a separate Merge
-Result pane instead of modifying the target pane. Two-way conflict files
-also open with a separate Merge Result pane. Review and edit the result
-there before saving it to the target file.</para>
+<option>Activé</option> (par défaut) : les fusions à trois voies utilisent
+un volet résultat de la fusion distinct au lieu de modifier le volet
+cible. Les fichiers de conflit à deux voies s'ouvrent également avec un
+volet résultat de la fusion distinct. Examinez et modifiez le résultat dans
+ce volet avant de l'enregistrer dans le fichier cible.</para>
         </listitem>
       </itemizedlist>
 
       <note>
-        <title>Note about merge target pane selection</title>
+        <title>Remarque concernant la sélection du volet cible de la fusion</title>
 
         <para>
-The merge target pane is determined by either the currently focused pane
-(for UI-based operations) or by the command-line options (/al, /am, /ar).
-This setting controls whether the results are written directly to the target
-pane or displayed in a separate Merge Result Pane for review.</para>
+Le volet cible de la fusion est déterminé soit par le volet actuellement
+actif (pour les opérations via l'interface utilisateur), soit par les
+options de ligne de commande (/al, /am, /ar). Ce paramètre détermine si les
+résultats sont écrits directement dans le volet cible ou affichés dans un
+volet de résultats de la fusion distinct pour examen.</para>
       </note>
     </section>
 
@@ -2969,11 +2973,11 @@ beaucoup de travail.</para>
 
         <listitem>
           <para>
-<guilabel>Dossier d'archive global</guilabel> (désactivé par défaut) : tous
-les fichiers de sauvegarde sont créés dans un dossier global unique. Cela
-les rend faciles à nettoyer. Cependant, s'il existe plusieurs fichiers
-sources portant le même nom, le fichier de sauvegarde le plus récent
-écrasera le précédent portant le même nom.</para>
+<guilabel>Dossier de sauvegarde global</guilabel> (désactivé par défaut) :
+tous les fichiers de sauvegarde sont créés dans un dossier global
+unique. Cela les rend faciles à nettoyer. Cependant, s'il existe plusieurs
+fichiers sources portant le même nom, le fichier de sauvegarde le plus
+récent écrasera le précédent portant le même nom.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -2996,7 +3000,7 @@ exemple, le fichier <filename>fichier.txt</filename> est sauvegardé sous
 
         <listitem>
           <para>
-<guilabel>Ajouter l'horodatage</guilabel> (activé par défaut) : les
+<guilabel>Ajouter un horodatage</guilabel> (activé par défaut) : les
 horodatages sont presque toujours uniques, cette option permet donc
 généralement d'éviter les doublons de noms de fichiers de sauvegarde lorsque
 les fichiers sources portent le même nom.</para>

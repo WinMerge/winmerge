@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Intro_diffs">
+  <title>Omówienie porównywania i łączenia plików</title>
+
+  <para>W tym temacie opisano, w jaki sposób WinMerge wykrywa i wyświetla różnice w
+plikach tekstowych oraz demonstruje proste operacje porównywania i scalania
+plików. Zobacz <xref linkend="Compare_bin" /> aby uzyskać powiązane
+informacje na temat plików hex.</para>
+
+  <section id="Intro_diffs_comparing">
+    <title>Porównywanie plików<indexterm>
+        <primary>porównywanie plików</primary>
+
+        <secondary>przegląd</secondary>
+      </indexterm></title>
+
+    <para>Zwykle porównujemy dwa pliki, które są w jakiś sposób powiązane, na przykład
+dwie wersje edytowane w różnym czasie lub przez różne osoby. Jeśli
+przeanalizujesz dwa takie pliki, zazwyczaj możesz zobaczyć podobne obszary,
+a także zidentyfikować kilka typów różnic: różne znaki i słowa, różne linie,
+a nawet całe bloki tekstu, które się różnią. Jednak próba zrozumienia
+wszystkich różnic między dwoma plikami poprzez skanowanie ich w ulubionym
+edytorze może być żmudna i podatna na błędy. Zaprojektowano wyspecjalizowane
+narzędzia do różnicowania/łączenia, takie jak WinMerge, dzięki którym praca
+ta jest bardziej systematyczna i wydajna.</para>
+
+    <para>Prostym narzędziem różnicującym, z którego korzysta większość ludzi, jest
+moduł sprawdzania pisowni: systematycznie przeprowadza Cię przez dokument,
+podkreśla słowa różniące się od tych w słowniku i pomaga rozwiązać każdy
+problem z pisownią. Jednak patrzenie tylko na znaki i słowa nie jest
+skutecznym sposobem zrozumienia różnic między wieloma plikami. Z tego powodu
+wiele przedsiębiorstw użyteczności publicznej używa zamiast tego linii jako
+podstawowej jednostki porównania.</para>
+
+    <para>WinMerge wykorzystuje również linie jako podstawową jednostkę różnicy. Słowa
+i znaki nie są traktowane indywidualnie podczas operacji porównywania i
+łączenia.  Aby to zilustrować, rozważ dwa identyczne pliki, z wyjątkiem
+jednej linii, która jest inna. Jeśli dwie wersje linii zawierają cztery
+różne słowa, a jedna wersja ma dodatkową spację, wówczas mówimy, że plik
+różni się jedną, a nie pięcioma.</para>
+
+    <para>Jeśli szybciej jest porównywać linie niż słowa, czasami warto potraktować
+cały blok linii jako pojedynczą różnicę, zamiast porównywać jedną linię na
+raz. Jak zobaczymy później, wykrywanie różnic wieloliniowych sprawia, że
+​​łączenie jest również bardziej wydajne.</para>
+
+    <section>
+      <title>Prosta operacja porównywania</title>
+
+      <para>W tej sekcji przedstawiono prosty przykład pokazujący, jak porównać różnice
+w liniach między dwoma plikami w programie WinMerge:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Używając edytora tekstu, utwórz dwa pliki o pokazanych tutaj nazwach i
+zawartości, uważając, aby dokładnie zachować słowa i podziały wierszy:</para>
+
+          <formalpara>
+            <title>Plik1:</title>
+
+            <para><screen>Porównywanie słów jest powolne 
+i postacie. Zamiast tego  
+WinMerge porównuje linie.
+Uwierz w to, bo inaczej.</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>Plik2:</title>
+
+            <para><screen>Porównywanie słów jest powolne.
+WinMerge porównuje linie.
+Wierz lub nie.</screen></para>
+          </formalpara>
+        </listitem>
+
+        <listitem>
+          <para>Uruchom WinMerge. Na przykład kliknij dwukrotnie plik <inlinemediaobject>
+<imageobject> <imagedata contentwidth="32" fileref="screenshots/wm_icon.png"
+/> </imageobject><textobject>
+                <phrase>Skrót na pulpicie WinMerge</phrase>
+              </textobject>
+            </inlinemediaobject> Skrót na pulpicie WinMerge.</para>
+        </listitem>
+
+        <listitem>
+          <para>W oknie dialogowym Wybierz pliki i foldery określ <filename>File1</filename>
+jako <guilabel>1</guilabel> plik i <filename>File2</filename> jako
+<guilabel>2</guilabel> plik, a następnie kliknij
+<guibutton>Porównaj</guibutton>. Okno Porównaj pliki wyświetla dwa pliki w
+lewym i prawym panelu Plik, w następujący sposób:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/missing_lines.png" /> </imageobject><textobject>
+              <phrase>Zrzut ekranu Porównaj pliki</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>Elementy opisano bardziej szczegółowo w <xref linkend="Compare_files"
+/>. Oto kilka funkcji, na które warto zwrócić uwagę w tym przykładzie:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Liczba różnic</term>
+
+              <listitem>
+                <para>Komunikat na pasku stanu u dołu okna WinMerge informuje, że wykryto dwie
+różnice.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Różnica kolorów</term>
+
+              <listitem>
+                <para>Bloki różnicowe są oznaczone kolorem tła różnicy (domyślnie złotym).</para>
+
+                <para>Można włączyć różnice w liniach, aby zaznaczyć zmieniony tekst w blokach
+różnic, używając koloru tła słowa (domyślnie jasnożółty).</para>
+
+                <para>Identyczne linie są nieoznaczone: mają białe tło, jak trzecia linia w
+przykładzie.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Puste linie</term>
+
+              <listitem>
+                <para>Zwróć uwagę, że w lewym okienku porównania w drugim wierszu znajduje się
+tekst, a w drugim okienku w tym samym miejscu znajduje się pusta szara
+linia. Ta pusta linia nie istnieje w pliku <filename>File2</filename>
+źródłowy, więc co robi w WinMerge?</para>
+
+                <para>WinMerge wstawia jedną lub więcej szarych pustych linii w jednej wersji
+różnicy, gdy druga wersja ma więcej linii.  Te puste szare linie nie
+reprezentują pustych linii w pliku źródłowym; są one jedynie symbolami
+zastępczymi na wyświetlaczu. Celem linii zastępczych jest wyrównanie w
+pionie lewej i prawej wersji różnic. Zatem w naszym przykładzie tekst
+<computeroutput>WinMerge compares lines</computeroutput>, pojawiają się obok
+siebie w oknie porównania, mimo że znajdują się w różnych wierszach w
+plikach źródłowych. Ułatwia to porównywanie różnic w WinMerge niż w
+konwencjonalnym edytorze.</para>
+
+                <tip>
+                  <para>Jedną z konsekwencji pustych linii jest to, że w obu okienkach okna Porównaj
+pliki zawsze wyświetlana jest ta sama całkowita liczba wierszy, nawet jeśli
+ich pliki źródłowe tego nie robią.</para>
+                </tip>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>Teraz, gdy rozumiesz, w jaki sposób WinMerge wykrywa i wyświetla różnice,
+możesz efektywnie korzystać z funkcji porównywania, jak pokazano w kolejnych
+krokach.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Przycisk Aktualna różnica</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Aktualna
+różnica</guibutton> na pasku narzędzi (lub naciśnij <keycombo>
+<keycap>Alt</keycap> <keycap>Wejdź</keycap> </keycombo>). Jeśli ten przycisk
+nie jest włączony (na przykład, jeśli kursor znajduje się w innej linii),
+kliknij <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Przycisk Pierwsza różnica</phrase>
+              </textobject>
+            </inlinemediaobject> Pierwsza różnica (lub
+naciśnij <keycombo> <keycap>Alt</keycap> <keycap>Dom</keycap> </keycombo>)
+zamiast tego.</para>
+
+          <para>Po wybraniu różnicy obie wersje zostaną wczytane w panelu Porównanie. Panel
+Porównanie potwierdza, które linie są uwzględnione w różnicy, i umożliwia
+sprawdzenie ich w oderwaniu od reszty pliku. W naszym przykładzie Różnica 1
+ma wyraźnie dwie linie.</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="588"
+fileref="screenshots/filecomp_diffpane1.png" /> </imageobject><textobject>
+              <phrase>Okienko Porównaj pliki</phrase>
+            </textobject>
+          </mediaobject>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Przycisk Następna różnica</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Następna
+różnica</guibutton> na pasku narzędzi (lub kliknij <keycombo>
+<keycap>Alt</keycap> <keycap>Wejdź</keycap> </keycombo>). Spowoduje to
+przeskoczenie identycznej linii (co nie stanowi różnicy) i wybranie
+ostatniej linii.</para>
+
+          <para>Dotarłeś do końca pliku i miałeś okazję sprawdzić każdą różnicę. To był
+trywialny przykład — były tylko dwie różnice — a istnieją inne sposoby
+porównywania różnic w WinMerge. Ale pokazuje efektywność korzystania z
+elementów sterujących nawigacją WinMerge.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section id="Intro_diffs_merging">
+    <title>Łączenie plików<indexterm>
+        <primary>łączenie różnic</primary>
+
+        <secondary>przegląd i przykład</secondary>
+      </indexterm></title>
+
+    <para>Celem scalania jest połączenie zmian z dwóch plików w jeden. Łączenie
+rozszerza koncepcje i funkcje używane w operacjach porównywania: proszę
+przeczytać poprzednią sekcję przed rozpoczęciem tej sekcji.  Oprócz
+wykrywania różnic pomiędzy dwiema wersjami pliku, rozwiązujemy różnice i
+zapisujemy wynik w jednym <glossterm>cel</glossterm> wersja.</para>
+
+    <para>Łączenie plików umożliwia współbieżny rozwój i jest częstym zadaniem w
+środowiskach zespołowych. Załóżmy na przykład, że ty i inna osoba chcecie
+jednocześnie dodać kod do tego samego pliku programu. Oboje zaczynacie od
+identycznej kopii pliku, ale podczas programowania tworzycie osobne wersje,
+które nie są identyczne. W pewnym momencie obie wersje muszą zostać
+połączone w jedną wersję, która zachowuje zmiany wprowadzone przez każdego
+współautora.</para>
+
+    <para>Łączenie może zostać zainicjowane (lub nawet zainicjowane) przez systemy
+kontroli wersji, takie jak Subversion i Git. Na przykład Twój system
+kontroli wersji może uniemożliwiać przesyłanie zmian do repozytorium z
+powodu konfliktów scalania. Konflikt może wystąpić, jeśli ktoś inny zapisał
+inną wersję tego samego pliku podczas pracy nad Twoją wersją, a system
+kontroli wersji nie był w stanie automatycznie scalić różnic.  Kiedy tak się
+stanie, może być konieczne połączenie sprzecznych wersji przed ponowną próbą
+przesłania wersji. Wiele systemów ma zintegrowane narzędzia do różnicowania
+i łączenia, ale zamiast tego możesz preferować użycie WinMerge.</para>
+
+    <para>Podobnie jak w przypadku porównywania, używasz elementów sterujących paska
+narzędzi WinMerge (lub skrótów klawiaturowych), aby systematycznie
+przeglądać różnice. Rozwiąż każdą różnicę, kopiując jej lewą lub prawą
+stronę <glossterm>kandydat</glossterm> na drugą stronę. Kiedy rozwiążesz
+wszystkie różnice, WinMerge poinformuje Cię, że wszystkie różnice zostały
+rozwiązane (wersje są identyczne) i łączenie zostało zakończone.</para>
+
+    <section>
+      <title>Prosta operacja scalania</title>
+
+      <para>To krótkie ćwiczenie pokazuje, jak w systematyczny sposób używać elementów
+sterujących w oknie Porównaj pliki, aby scalić proste pliki pokazane
+wcześniej:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Kliknij <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Przycisk Aktualna różnica</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Aktualna
+różnica</guibutton> na pasku narzędzi, aby wybrać pierwszą różnicę. Jeśli
+ten przycisk nie jest włączony, kliknij <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Przycisk Pierwsza różnica</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Pierwsza różnica</guibutton>
+zamiast tego.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+                <phrase>Kopiuj prawy przycisk</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Kopiuj w
+prawo</guibutton> scalić Różnica 1 z <filename>File1</filename> do
+<filename>File2</filename>. w <filename>File</filename>2, zauważ, że linia
+pojedynczej różnicy została zastąpiona dwiema liniami z
+<filename>File1</filename>, a szara pusta linia zniknęła.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Przycisk Następna różnica</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Następna
+różnica</guibutton> aby wybrać różnicę 2. Jest to łatwiejsze niż samodzielne
+znalezienie i wybranie różnicy. Jest to szczególnie przydatne, jeśli chcesz
+przejrzeć wszystkie różnice, nie pomijając ich przypadkowo.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+                <phrase>Kopiuj lewy przycisk</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Kopiuj w
+lewo</guibutton> scalić Różnica 2 z <filename>File2</filename> do
+<filename>File1</filename>.</para>
+
+          <para>Komunikat o identyczności plików informuje o zakończeniu scalania:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filemerged1.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <guibutton>OK</guibutton> aby odrzucić wiadomość. Komunikat o
+różnicy stanu zmienia się z <computeroutput>Difference 1 of
+1</computeroutput> do <computeroutput>identical</computeroutput>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Naciśnij <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> aby
+zapisać zmiany.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Choć jest to bardzo proste, ten przykład ilustruje podstawową metodologię,
+której można użyć do przeprowadzenia porównania dowolnej długości, łącząc
+każdą różnicę jedna po drugiej, aż do uzyskania pożądanego rezultatu.</para>
+    </section>
+
+    <section>
+      <title>Wybieranie pliku wyników scalania <indexterm>
+          <primary>łączenie różnic</primary>
+
+          <secondary>plik wynikowy</secondary>
+        </indexterm><indexterm>
+          <primary>plik wynikowy w procesie scalania</primary>
+        </indexterm></title>
+
+      <para>Masz kontrolę nad miejscem zachowania wyniku scalania. Okno porównywania
+plików WinMerge nie ma osobnego panelu wyników, jak ma to miejsce w
+przypadku niektórych narzędzi do scalania. Zatem najprostszą strategią jest
+zapisanie zmian w jednym, dwóch lub trzech plikach źródłowych. Naciśnij
+<keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> w każdej
+chwili zapisać aktualne zmiany we wszystkich plikach; alternatywnie kliknij
+<menuchoice> <guimenu>Plik</guimenu> <guimenuitem>Zapisz w
+lewo</guimenuitem> </menuchoice>, <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Zapisz środek</guimenuitem> </menuchoice> lub <menuchoice>
+<guimenu>Plik</guimenu> <guimenuitem>Zapisz dobrze</guimenuitem>
+</menuchoice> aby zapisać tylko jeden plik.</para>
+
+      <para>Aby zapisać do trzeciego pliku zamiast do któregokolwiek pliku źródłowego,
+użyj <menuchoice> <guimenu>Plik</guimenu> <guimenuitem>Zapisz
+jako</guimenuitem> </menuchoice>. Na przykład plik docelowy może być plikiem
+różnic lub konfliktów wygenerowanym przez system kontroli wersji.</para>
+
+      <para>Podobnie w wierszu poleceń WinMerge możesz pozostawić obie lub wszystkie
+trzy wersje źródłowe bez zmian, używając opcji opcjonalnej
+<option>outputfile </option> argument, jak opisano w <xref
+linkend="Command_line" />.</para>
+    </section>
+  </section>
+</article>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_bin">
+  <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
+
+  <title>Porównywanie w formacie szesnastkowym</title>
+
+  <indexterm>
+    <primary>porównywanie plików</primary>
+
+    <secondary>binarny</secondary>
+  </indexterm>
+
+  <para>WinMerge może przeglądać i edytować pliki w formacie szesnastkowym.</para>
+  
+  <mediaobject>
+<imageobject> <imagedata fileref="screenshots/hexcmp1.png" format="PNG" />
+</imageobject><textobject>
+      <phrase>Okno porównania HEX</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <para>
+To, czy pliki będą otwierane w formacie szesnastkowym, zależy od tego, czy
+nazwa pliku odpowiada zdefiniowanym wzorcom. Domyślnie, jeśli rozszerzenie
+pliku to .bin lub .frx, zostanie ono otwarte w formacie szesnastkowym. Jeśli
+chcesz zmienić wzorce, określ to na stronie Porównanie/Binarne w oknie
+dialogowym Opcje.</para>
+</article>

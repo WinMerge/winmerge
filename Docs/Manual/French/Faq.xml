@@ -210,7 +210,7 @@ différentes (colorées), alors que je sais qu'elles ne le sont pas toutes ?</pa
           <para>Il est possible que vos fichiers aient des styles de fin de ligne différents
 (par exemple, Windows et Unix). Par défaut, WinMerge compare les styles de
 fin de ligne. Pour désactiver cela, cliquez sur <menuchoice>
-<guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
+<guimenu>Édition</guimenu> <guimenuitem>Préférences</guimenuitem>
 </menuchoice>. Dans la page Comparer, activez (cochez) l'option
 <guilabel>Ignorer les différences d'EOL (Windows/Unix/Mac)</guilabel>.</para>
         </answer>
@@ -235,7 +235,7 @@ For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>
 
           <para>Pour les fichiers ANSI, c'est probablement dû à des problèmes de page de
 code. Pour résoudre le problème, cliquez sur <menuchoice>
-<guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
+<guimenu>Édition</guimenu> <guimenuitem>Préférences</guimenuitem>
 </menuchoice>. Ensuite, dans la page Pages de code, vérifiez si l'option
 <guilabel>Détecter les infos de page de code</guilabel> est cochée. Si c'est
 le cas, décochez-la, cliquez sur <guibutton>OK</guibutton>, et voyez si cela
@@ -398,10 +398,10 @@ standard ? (Par exemple, des fichiers .jar en tant que fichiers zip)</para>
 
         <answer>
           <para>Oui : cliquez sur le bouton <guibutton>Options</guibutton> (ou cliquez sur
-<menuchoice> <guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
-</menuchoice>). Dans la page Prise en charge des archives, activez l'option
-<guilabel>Détecter le type d'archive à partir de la signature du
-fichier</guilabel>.</para>
+<menuchoice> <guimenu>Édition</guimenu>
+<guimenuitem>Préférences</guimenuitem> </menuchoice>). Dans la page Prise en
+charge des archives, activez l'option <guilabel>Détecter le type d'archive à
+partir de la signature du fichier</guilabel>.</para>
         </answer>
       </qandaentry>
     </qandaset>

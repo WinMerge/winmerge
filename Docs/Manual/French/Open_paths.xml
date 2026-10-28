@@ -315,7 +315,7 @@ Windows :</para>
       <itemizedlist>
         <listitem>
           <para>Désactivez <guilabel>Inclure les sous-dossiers</guilabel> dans la page
-Dossier de la boîte de dialogue Options de WinMerge.</para>
+Dossier de la boîte de dialogue Préférences de WinMerge.</para>
         </listitem>
       </itemizedlist>
 
@@ -618,11 +618,11 @@ contenir chacun de ces éléments :</para>
           <term><sgmltag>white-spaces</sgmltag></term>
 
           <listitem>
-            <para>0 = Comparer les espaces blancs</para>
+            <para>0 = Comparer les caractères d'espacement</para>
 
-            <para>1 = Ignorer les modifications d'espaces blancs</para>
+            <para>1 = Ignorer les changements d'espacement</para>
 
-            <para>2 = Ignorer tous les espaces blancs</para>
+            <para>2 = Ignorer tous les caractères d'espacement</para>
           </listitem>
         </varlistentry>
 

@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Open_paths">
+  <title>Otwieranie plików i folderów<indexterm>
+      <primary>otwieranie plików i folderów</primary>
+    </indexterm></title>
+
+  <para>WinMerge udostępnia kilka sposobów określania ścieżek i otwierania plików
+lub folderów:<indexterm>
+      <primary>foldery</primary>
+
+      <secondary>wybierając w oknie dialogowym Wybierz pliki lub foldery</secondary>
+    </indexterm><indexterm>
+      <primary>pliki</primary>
+
+      <secondary>wybierając w oknie dialogowym Wybierz pliki lub foldery</secondary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para><xref linkend="OpenPaths_opendialog" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_shell-integ" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_dragndrop" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_project" /></para>
+    </listitem>
+  </itemizedlist>
+
+  <section id="OpenPaths_opendialog">
+    <title>Wybierz okno dialogowe Pliki lub Foldery<indexterm>
+        <primary>Wybierz okno dialogowe Pliki lub Foldery</primary>
+      </indexterm></title>
+
+    <para><xref linkend="Quick_start" /> opisuje okno dialogowe Wybierz pliki lub
+foldery. Ta sekcja zawiera więcej szczegółów i kilka wskazówek dotyczących
+efektywniejszego korzystania z okna dialogowego Wybierz pliki lub foldery.</para>
+
+    <section>
+      <title>Używanie zmiennych środowiskowych<indexterm>
+          <primary>zmienne środowiskowe, w porównaniu ścieżek docelowych</primary>
+        </indexterm></title>
+
+      <para>W swoich ścieżkach możesz używać zmiennych środowiskowych. System Windows
+rozszerza nazwę zmiennej między ogranicznikami % (procentowymi). Na
+przykład, jeśli zmienna środowiskowa o nazwie <envar>KATALOG PRACY</envar>
+ma wartość <filename class="directory">c:\workfiles</filename>, potem
+ścieżka <envar>%WORKDIR%\project1</envar> jest rozszerzony do <filename
+class="directory">c:\workfiles\project1</filename> .</para>
+    </section>
+
+    <section id="OpeningArchives">
+      <title>Otwieranie plików archiwalnych<indexterm>
+          <primary>Archiwa 7-Zip</primary>
+
+          <secondary>otwarcie</secondary>
+        </indexterm></title>
+
+      <para>Obsługa archiwów WinMerge jest zapewniona we wtyczce 7-Zip. Zobacz <xref
+linkend="Install" /> aby zainstalować tę wtyczkę.</para>
+
+      <para>Otwieranie dwóch plików archiwalnych jest podobne do otwierania zwykłych
+plików: w oknie dialogowym Otwórz określ dwa pliki archiwalne
+<guilabel>1</guilabel> i <guilabel>2</guilabel> pola. Jeśli WinMerge
+rozpoznaje format archiwum, otwiera zawartość plików archiwum w oknie
+Porównywanie folderów.</para>
+
+      <para>The <xref linkend="Compare_dirs" /> temat opisuje sposób pracy z plikami
+archiwalnymi. Na przykład, jeśli plik archiwum zawiera dwa podfoldery o
+nazwach <filename class="directory">Original/</filename> i <filename
+class="directory">Altered/</filename>, możesz porównać zawartość dwóch
+podfolderów, określając ten sam plik archiwum po obu stronach w oknie
+dialogowym Wybierz pliki lub foldery lub w wierszu poleceń programu
+WinMerge.</para>
+
+      <tip>
+        <para>Kiedy przeciągasz plik archiwum do okna WinMerge, naciśnij
+<keycap>Przesunięcie</keycap> podczas upuszczania pliku: WinMerge
+automatycznie kopiuje tę samą nazwę pliku na obie strony i otwiera plik
+archiwum.</para>
+      </tip>
+    </section>
+
+    <section id="Open_paths_filters">
+      <title>Stosowanie filtrów<indexterm>
+          <primary>filtry</primary>
+
+          <secondary>zastosowanie w oknie dialogowym Wybierz pliki lub foldery</secondary>
+        </indexterm></title>
+
+      <para>The <guilabel>Filtruj</guilabel> pole edycji umożliwia ograniczenie plików,
+które mają być uwzględnione w porównaniu do folderu. Można określić jedną
+lub więcej masek plików albo pojedynczy filtr plików (nie oba).</para>
+
+      <para>Maska to proste wyrażenie oparte na rozszerzeniach plików. Na przykład ta
+lista masek plików zawiera tylko pliki z określonymi rozszerzeniami;
+wszystkie pozostałe są wykluczone z wyboru po rozpoczęciu operacji
+porównywania:</para>
+
+      <screen>*.h;*.cpp;*.txt,*.ini</screen>
+
+      <para>Maski plików są praktyczne do prostego filtrowania; w celu bardziej
+zaawansowanego wybierania użyj plików filtrów. Pliki filtrów to zbiory
+wyrażeń regularnych, które mogą uwzględniać lub wykluczać pliki. WinMerge
+instaluje w swoim pliku wiele predefiniowanych plików filtrów
+<filename>Filters</filename> folder, ale możesz także utworzyć własny.</para>
+
+      <para>Aby określić filtr, kliknij <guibutton>Wybierz</guibutton> przycisk obok
+<guilabel>Filtry</guilabel> pole do wyboru z listy dostępnych
+filtrów. Możesz też kliknąć listę rozwijaną Filtr i wybrać ostatnio używany
+plik filtra.</para>
+
+      <para>Pełne informacje na temat masek filtrów i plików filtrów można znaleźć w
+artykule <xref linkend="Filters" />.</para>
+    </section>
+
+    <section id="Open_paths_unpacker">
+      <title>Wybór programu rozpakowującego do porównań plików<indexterm>
+          <primary>wtyczki do rozpakowywania</primary>
+        </indexterm></title>
+
+      <para>Rozpakowujące to wtyczki instalowane z WinMerge w celu zapewnienia
+funkcjonalności, która nie jest używana domyślnie. Wtyczki, których można
+używać do wstępnego przetwarzania niektórych typów plików przed ich
+porównaniem. Na przykład program WinMerge nie może normalnie porównywać
+plików dokumentów MS Word, ale rozpakowując je, można porównać tylko
+zawartość tekstową. Zobacz <xref linkend="Plugins" /> po szczegóły.</para>
+
+      <para>Aby zastosować wtyczkę do porównywania plików, kliknij przycisk
+<guibutton>Wybierz</guibutton> przycisk dla
+<guilabel>Rozpakowujący</guilabel> opcja. W oknie dialogowym Wybierz program
+rozpakowujący:</para>
+
+      <xi:include href="select_unpacker.xml"
+                  xmlns:xi="http://www.w3.org/2001/XInclude"
+                  xpointer="element(select-unpacker-proc)" />
+
+      <para>Twój wybór zostanie wyświetlony w <guilabel>Rozpakowujący</guilabel> pole.
+Należy pamiętać, że nie można wybrać programu rozpakowującego podczas
+uruchamiania operacji porównywania folderów.</para>
+    </section>
+  </section>
+
+  <section id="OpenPaths_shell-integ">
+    <title><indexterm>
+        <primary>Integracja powłoki systemu Windows</primary>
+      </indexterm><indexterm>
+        <primary>menu kontekstowe, skróty WinMerge w Eksploratorze Windows</primary>
+      </indexterm>Uruchamianie operacji WinMerge w Eksploratorze Windows</title>
+
+    <para>Opcjonalna integracja z powłoką systemu Windows umożliwia uruchamianie
+operacji porównywania WinMerge bezpośrednio z Eksploratora Windows przy
+użyciu skrótów WinMerge w menu kontekstowym.</para>
+
+<!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
+    
+
+    <section>
+      <title>Włączenie integracji Eksploratora Windows</title>
+
+      <para>Integracja z powłoką Eksploratora Windows jest dostępna tylko wtedy, gdy
+jest włączona.  Możesz to też włączyć <link
+linkend="Installing_usinginstaller">podczas instalacji WinMerge</link> lub
+później, korzystając z <xref linkend="Configuration_shell-integ" /> w oknie
+Opcje. W oknie Opcje skonfiguruj <option>Add to context menu</option> opcję,
+łącznie z jej podopcjami, jeśli chcesz.</para>
+    </section>
+
+    <section>
+      <title>Korzystanie ze skrótu WinMerge</title>
+
+      <para>Jeśli włączysz <option>Add to context menu</option> bez podopcji menu
+zaawansowanego, <guimenuitem>WinMerge</guimenuitem> skrót został dodany do
+menu kontekstowego Eksploratora. Na przykład:</para>
+
+      <para>Aby skorzystać z podstawowej integracji z powłoką, zacznij od wybrania dwóch
+ścieżek w Eksploratorze Windows. Następnie kliknij prawym przyciskiem myszy
+i wybierz WinMerge z menu kontekstowego. Na przykład:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_simple.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Polecenie WinMerge w menu kontekstowym Eksploratora Windows</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>WinMerge otwiera ścieżki bezpośrednio w oknie Porównaj pliki lub Porównaj
+foldery.</para>
+
+      <para>Lewa i prawa strona są określane na podstawie kolejności sortowania w
+Eksploratorze Windows. Na powyższym zrzucie ekranu lista plików Eksploratora
+Windows jest ułożona rosnąco, więc program WinMerge otwiera się za pomocą
+<filename>File2</filename> po 1. stronie i <filename>File1</filename> na 2..</para>
+
+      <note>
+        <para>Jeśli z jakiegoś powodu nie można otworzyć żadnej ścieżki, WinMerge otwiera
+okno dialogowe Wybierz pliki lub foldery, w którym możesz określić nowe
+ścieżki.  Podobnie, jeśli wybierzesz tylko jedną ścieżkę, otworzy się okno
+dialogowe Wybierz pliki lub foldery z wybranym plikiem lub folderem w
+<guilabel>1</guilabel> pole, pozostawiając <guilabel>2</guilabel> ścieżkę do
+określenia.</para>
+      </note>
+
+      <para>The <guimenuitem>WinMerge</guimenuitem> skrót jest szybki i łatwy w użyciu,
+ale można porównywać tylko pliki i foldery, które można jednocześnie wybrać
+w Eksploratorze Windows. Aby uzyskać bardziej elastyczny wybór, rozważ
+włączenie menu zaawansowanego opisanego w następnej sekcji.</para>
+    </section>
+
+    <section>
+      <title>Korzystanie z menu zaawansowanego</title>
+
+      <para>Jeśli wybierzesz <option>Enable advanced menu</option>,
+<guimenuitem>WinMerge</guimenuitem> skrót zostaje zastąpiony dwoma
+<guimenuitem>Porównaj</guimenuitem> skróty:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_advanced.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Zaawansowane menu kontekstowe WinMerge</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>Skorzystaj z <guimenuitem>Porównaj</guimenuitem> skróty w tej kolejności:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Kliknij prawym przyciskiem myszy pierwszą ścieżkę i wybierz
+<guimenuitem>Porównaj z</guimenuitem>. WinMerge przechowuje ścieżkę w
+pamięci, dopóki nie wybierzesz drugiej ścieżki.</para>
+        </listitem>
+
+        <listitem>
+          <para>Jeśli uznasz, że wybrałeś niewłaściwą pierwszą ścieżkę, możesz ją zmienić
+przed wybraniem drugiej ścieżki:</para>
+
+          <para>Kliknij prawym przyciskiem myszy nową ścieżkę i wybierz <guimenuitem>Wybierz
+ponownie opcję Najpierw</guimenuitem> skrót. Nowy wybór zastępuje poprzednią
+ścieżkę i możesz przejść do następnego kroku.</para>
+        </listitem>
+
+        <listitem>
+          <para>Przejdź do drugiego pliku lub folderu, który chcesz porównać.  Druga ścieżka
+może znajdować się w dowolnym folderze lub nawet w innym oknie Eksploratora
+Windows niż pierwsza ścieżka. Kliknij prawym przyciskiem myszy drugą ścieżkę
+i wybierz <guimenuitem>Porównaj</guimenuitem>.</para>
+
+          <para>WinMerge otwiera okno Porównywanie plików lub Porównywanie folderów, ładując
+pierwszą i drugą ścieżkę odpowiednio po pierwszej i drugiej stronie.</para>
+        </listitem>
+      </orderedlist>
+
+      <note>
+        <para>Jeśli klikniesz <guimenuitem>Porównaj</guimenuitem> przed wyznaczeniem
+pierwszej ścieżki otwiera się okno dialogowe Wybierz pliki lub foldery, w
+którym na pierwszym miejscu znajduje się Twój wybór (<guilabel>1</guilabel>)
+ścieżka. Określ drugą ścieżkę w pliku <guilabel>2</guilabel> pole, aby
+kontynuować porównanie.</para>
+      </note>
+
+<!--              <tip>
+<para>When you use this method, take advantage 
+of the Select Files or Folders dialog's MRU list. This is very handy when you need 
+to compare one file/folder against several files/folders.</para> </tip> -->
+      
+
+      <para>The <guimenuitem>Porównaj z</guimenuitem> ścieżki są przechowywane w pamięci
+do momentu otwarcia WinMerge. W rezultacie nie musisz wybierać obu plików
+jednocześnie ani nawet korzystać z tego samego widoku Eksploratora Windows:
+możesz wybrać jeden, otworzyć inny katalog i wybrać drugi. Obie ścieżki są
+usuwane z pamięci po operacji porównania. Oznacza to, że nie możesz wybrać
+jednego <guimenuitem>Porównaj z</guimenuitem> path i porównaj ją z kilkoma
+ścieżkami.</para>
+    </section>
+
+    <section>
+      <title>Uwzględnianie podfolderów podczas korzystania z integracji Eksploratora
+Windows<indexterm>
+          <primary>porównanie folderów rekurencyjnych</primary>
+
+          <secondary>określając w oknie dialogowym Wybierz pliki lub foldery</secondary>
+        </indexterm><indexterm>
+          <primary>podfoldery</primary>
+
+          <seealso>porównanie folderów rekurencyjnych</seealso>
+        </indexterm></title>
+
+      <para>Domyślnie folder porównuje to, co robisz przy użyciu
+<guimenuitem>WinMerge</guimenuitem> lub <guimenuitem>Porównaj</guimenuitem>
+skróty są rekurencyjne.  Istnieje sposób na uruchomienie porównań
+nierekurencyjnych za pomocą integracji z Eksploratorem Windows:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Wyłącz <guilabel>Uwzględnij podfoldery</guilabel> na stronie Folder okna
+dialogowego Opcje WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+
+      <tip>
+        <para>Naciśnij <keycap>Ctrl</keycap> podczas wybierania
+<guimenuitem>WinMerge</guimenuitem> lub <guimenuitem>Porównaj</guimenuitem>
+skrót w menu kontekstowym Eksploratora Windows, aby wymusić odwrotne
+porównanie z bieżącymi ustawieniami „Uwzględnij podfoldery”.</para>
+      </tip>
+    </section>
+  </section>
+
+  <section id="OpenPaths_dragndrop">
+    <title><indexterm>
+        <primary>przeciągnij i upuść w oknie WinMerge</primary>
+      </indexterm>Korzystanie z metody „przeciągnij i
+upuść”.</title>
+
+    <para>Z dowolnego źródła systemu Windows, które umożliwia przeciąganie obiektów,
+takiego jak Eksplorator Windows lub Pulpit, możesz przeciągnąć i upuścić
+jedną lub dwie ścieżki do okna WinMerge. Jeśli upuścisz tylko jedną ścieżkę
+do WinMerge, otworzy się okno dialogowe Wybierz pliki lub foldery, w którym
+możesz wybrać drugą ścieżkę. Jeśli pojedyncza ścieżka określa plik projektu,
+plik projektu zostanie otwarty.</para>
+
+    <para>Domyślnie WinMerge uwzględnia podfoldery w operacjach porównywania. Aby nie
+uwzględniać podfolderów, naciśnij i przytrzymaj <keycap>Ctrl</keycap>
+podczas opuszczania ścieżek. Kolejnym przydatnym klawiszem podczas
+upuszczania ścieżek jest <keycap>Przesunięcie</keycap>: Aby otworzyć tę samą
+ścieżkę po obu stronach okna Porównaj, naciśnij i przytrzymaj
+<keycap>Przesunięcie</keycap> jednocześnie opuszczając tylko jedną ścieżkę.
+Jest to wygodny sposób otwierania plików archiwalnych (patrz <xref
+linkend="OpeningArchives" />).</para>
+
+    <para>Możesz upuścić ścieżki do okna dialogowego Wybierz pliki lub foldery. Typowa
+procedura polega na przeciągnięciu i upuszczeniu pierwszej ścieżki do okna
+WinMerge, a następnie przeciągnięciu i upuszczeniu drugiej ścieżki do okna
+dialogowego Wybierz pliki lub foldery.  Kiedy ścieżka zostanie upuszczona do
+okna dialogowego Wybierz pliki lub foldery, zostanie wczytana do pierwszego
+lub drugiego pola ścieżki:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>1</term>
+
+        <listitem>
+          <para>Jeśli pierwsze pole jest puste lub oba pola ścieżki zawierają już ścieżki</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>2</term>
+
+        <listitem>
+          <para>Jeśli pierwsza ścieżka nie jest pusta, a druga ścieżka jest pusta</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="OpenPaths_project">
+    <title><indexterm>
+        <primary>pliki projektu</primary>
+      </indexterm><indexterm>
+        <primary>wiersz poleceń</primary>
+
+        <secondary>określenie plików projektu</secondary>
+      </indexterm>Pliki projektu</title>
+
+    <para>Możesz zapisać aktualnie otwarte ścieżki i filtry w pliku projektu.
+Następnie możesz łatwo otworzyć projekt później, aby porównać te same
+pliki.  Pliki projektu są przydatne, jeśli wielokrotnie porównujesz te same
+pliki.</para>
+
+    <section>
+      <title>Korzystanie z plików projektu</title>
+
+      <para>Aby użyć pliku projektu W oknie WinMerge kliknij <menuchoice>
+<guimenu>Plik</guimenu> <guimenuitem>Otwórz projekt</guimenuitem>
+</menuchoice>. WinMerge odczytuje ścieżki z pliku projektu. Jeśli plik
+projektu ma dwie lub trzy ścieżki, otwierane są dwie lub trzy ścieżki. Jeśli
+podana jest tylko jedna ścieżka lub jedna ze ścieżek jest nieprawidłowa,
+WinMerge otwiera okno dialogowe Wybierz pliki lub foldery, w którym możesz
+dodać lub poprawić informacje o ścieżce. Oto kilka rzeczy do rozważenia:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Jeśli określisz dwa pliki projektu, porównywane będą same pliki projektu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Jeśli określisz plik projektu jako lewy plik, ale nie określisz prawego
+pliku, pojedynczy plik projektu zostanie otwarty tak, jakbyś użył
+<menuchoice> <guimenu>Plik</guimenu> <guimenuitem>Otwórz
+projekt</guimenuitem> </menuchoice> polecenie.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Jeśli określisz plik projektu jako lewy plik i dowolny inny plik po prawej
+stronie, zawartość pliku projektu i drugiego pliku zostanie porównana.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para>Aby określić plik projektu w wierszu poleceń, po prostu wprowadź go jako
+pojedynczą ścieżkę pliku.</para>
+    </section>
+
+    <section>
+      <title>Edycja i zapisywanie plików projektu</title>
+
+      <para>Aby zapisać plik projektu, kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Zapisz projekt</guimenuitem> </menuchoice>. The <guilabel>Plik
+projektu</guilabel> Okno zawiera pola i opcje, które można łatwo edytować w
+celu zbudowania pliku projektu. Jeśli okno porównania jest aktualnie
+otwarte, plik <guilabel>Plik projektu</guilabel> inicjowane jest okno
+dialogowe z wartościami z bieżącego porównania; w przeciwnym razie sam
+podajesz wartości. Aby skorzystać z istniejącego projektu, kliknij
+<guibutton>Otwórz</guibutton> i wybierz projekt, aby wczytać jego wartości
+(w oknie dialogowym istniejące wartości zostaną nadpisane).</para>
+
+      <para>Po zakończeniu edycji kliknij <guibutton>Zapisz</guibutton> do
+przechowywania pliku.</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/projfile_save.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Okno dialogowe Plik projektu</phrase>
+        </textobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>Format pliku projektu</title>
+
+      <para>Pliki projektu to proste pliki XML z <filename class="extension">a
+.WinMerge</filename> przedłużenie. Na przykład:</para>
+
+      <screen>&lt;?wersja xml='1.0' kodowanie='UTF-8'?&gt;
+&lt;projekt&gt;
+   &lt;ścieżki&gt;
+      &lt;lewo&gt;c:\praca\projekt1&lt;/w lewo&gt;
+      &lt;tylko do odczytu po lewej stronie&gt;1&lt;/left-tylko do odczytu&gt;
+      &lt;środek&gt;c:\praca\projekt2&lt;/środek&gt;
+      &lt;tylko do odczytu w środku&gt;1&lt;/middle-tylko do odczytu&gt;
+      &lt;prawda&gt;c:\praca\projekt3&lt;/ prawda&gt;
+      &lt;tylko do odczytu po prawej stronie&gt;0&lt;/right-tylko do odczytu&gt;
+      &lt;filtr&gt;Wizualizacja C++ luźna&lt;/filtr&gt;
+      &lt;podfoldery&gt;0&lt;/podfoldery&gt;
+   &lt;/ścieżki&gt;
+&lt;/projekt&gt;</screen>
+
+      <para>Plik projektu zawiera plik <sgmltag>ścieżki</sgmltag> element, który może
+zawierać jeden z każdego z tych elementów:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><sgmltag>lewo</sgmltag></term>
+
+          <listitem>
+            <para>Lewa ścieżka do otwarcia</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>lewy desc</sgmltag></term>
+
+          <listitem>
+            <para>Lewy opis</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>tylko do odczytu po lewej stronie</sgmltag></term>
+
+          <listitem>
+            <para>1 = Otwórz tylko do odczytu</para>
+
+            <para>0 = Otwórz normalnie</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>środek</sgmltag></term>
+
+          <listitem>
+            <para>Środkowa ścieżka do otwarcia</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>środkowy opis</sgmltag></term>
+
+          <listitem>
+            <para>Opis środkowy</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>tylko do odczytu w środku</sgmltag></term>
+
+          <listitem>
+            <para>1 = Otwórz tylko do odczytu</para>
+
+            <para>0 = Otwórz normalnie</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>prawda</sgmltag></term>
+
+          <listitem>
+            <para>Właściwa ścieżka do otwarcia</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>prawy opis</sgmltag></term>
+
+          <listitem>
+            <para>Właściwy opis</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>tylko do odczytu po prawej stronie</sgmltag></term>
+
+          <listitem>
+            <para>1 = Otwórz tylko do odczytu</para>
+
+            <para>0 = Otwórz normalnie</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>filtr</sgmltag></term>
+
+          <listitem>
+            <para>Nazwa filtra plików lub lista rozszerzeń</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>podfoldery</sgmltag></term>
+
+          <listitem>
+            <para>0 = Podfoldery nie są uwzględnione</para>
+
+            <para>1 = Uwzględniono podfoldery</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>rozpakowujący</sgmltag></term>
+
+          <listitem>
+            <para>Nazwa wtyczki rozpakowującej lub potok wtyczki</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>preferuję</sgmltag></term>
+
+          <listitem>
+            <para>Preferuj nazwę wtyczki lub potok wtyczki</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>typu okiennego</sgmltag></term>
+
+          <listitem>
+            <para>1 = okno porównywania tekstu</para>
+
+            <para>2 = Okno porównania tabeli</para>
+
+            <para>3 = Okno porównania binarnego</para>
+
+            <para>4 = Okno porównywania obrazów</para>
+
+            <para>5 = Okno porównywania stron internetowych</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ogranicznik tabeli</sgmltag></term>
+
+          <listitem>
+            <para>Separator do edycji tabeli</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>spacje</sgmltag></term>
+
+          <listitem>
+            <para>0 = Porównaj białe znaki</para>
+
+            <para>1 = Ignoruj ​​zmiany białych znaków</para>
+
+            <para>2 = Ignoruj wszystkie białe znaki</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignoruj \u200b\u200bpuste linie</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj pustych linii</para>
+
+            <para>1 = Ignoruj ​​puste linie</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignorować wielkość liter</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj wielkości liter</para>
+
+            <para>1 = Ignoruj wielkość liter</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>różnica-powrotu-karetki-różnica</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj różnic w powrocie karetki</para>
+
+            <para>1 = Ignoruj różnice w powrocie karetki</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignorować numery</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj liczb</para>
+
+            <para>1 = Ignoruj liczby</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignoruj ​​stronę kodową-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj różnic w stronach kodowych</para>
+
+            <para>1 = Ignoruj różnice w stronach kodowych</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignoruj-komentarz-różnica</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj różnic w komentarzach</para>
+
+            <para>1 = Ignoruj różnice w komentarzach</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignoruj-brakujący-trailing-eol</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj ​​brakującego końcowego eolu</para>
+
+            <para>1 = Ignoruj brakujący końcowy eol</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignorować podziały linii</sgmltag></term>
+
+          <listitem>
+            <para>0 = Nie ignoruj podziałów wierszy (traktuj jak spacje)</para>
+
+            <para>1 = Ignoruj podziały wierszy (traktuj jak spacje)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>metoda porównawcza</sgmltag></term>
+
+          <listitem>
+            <para>0 = Pełna zawartość</para>
+
+            <para>1 = Szybka zawartość</para>
+
+            <para>2 = Zawartość binarna</para>
+
+            <para>3 = Data modyfikacji</para>
+
+            <para>4 = Data i rozmiar modyfikacji</para>
+
+            <para>5 = Rozmiar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Żadne z pól nie jest wymagane i mogą być puste (<literal>for example,
+&lt;left&gt;&lt;/left&gt; or &lt;left/&gt;</literal>).</para>
+    </section>
+  </section>
+</article>

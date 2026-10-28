@@ -374,31 +374,34 @@ no es necesario volver a analizarlos.</para>
     </section>
 
     <section>
-      <title>Using plugin pipelines</title>
+      <title>Uso de flujos de trabajo de complementos</title>
 
-      <para>Plugin pipelines allow you to chain multiple plugins and filter expressions
-using the pipe character (<keycap>|</keycap>) as a separator.  Plugin
-pipelines can be used with all plugin types: unpacker, prediffer, and editor
-complement plugins.</para>
+      <para>Las cadenas de complementos le permiten encadenar varios complementos y
+expresiones de filtro utilizando el carácter de barra vertical
+(<keycap>|</keycap>) como separador. Las cadenas de complementos se pueden
+utilizar con todos los tipos de complementos: complementos desempaquetador,
+prediferenciador y complemento de editor.</para>
 
-      <para>Plugins are specified by their names. For example:</para>
+      <para>Los complementos se especifican por su nombre. Por ejemplo:</para>
 
       <synopsis>MakeUpper|SortAscending|Replace "AAA" "BBB"</synopsis>
 
-      <para>Filter expressions can also be used in plugin pipelines by prefixing them
-with <literal>le:</literal>. For example:</para>
+      <para>Las expresiones de filtro también se pueden utilizar en los flujos de
+trabajo de los complementos añadiéndoles el prefijo
+<literal>le:</literal>. Por ejemplo:</para>
 
       <synopsis>MakeUpper|le:toUpper(Line)|SortAscending</synopsis>
 
-      <para>See <xref linkend="FilterExpression_Syntax" /> for available filter
-expression functions and operators.</para>
+      <para>Consulte <xref linkend="FilterExpression_Syntax" /> para conocer las
+funciones y los operadores disponibles para las expresiones de filtro.</para>
 
-      <para>You can specify a plugin pipeline in the <guibutton>Select
-Plugin</guibutton> dialog by entering the pipeline expression.</para>
+      <para>Puede especificar una secuencia de complementos en el cuadro de diálogo
+<guibutton>Seleccionar complemento</guibutton> introduciendo la expresión de
+la secuencia.</para>
 
-      <para>When a plugin pipeline is already selected, you can append a plugin to it by
-holding down the <keycap>Ctrl</keycap> key while clicking the plugin in a
-plugin selection menu.</para>
+      <para>Cuando ya hay una secuencia de complementos seleccionada, puede añadirle un
+complemento manteniendo pulsada la tecla <keycap>Ctrl</keycap> mientras hace
+clic en el complemento en el menú de selección de complementos.</para>
     </section>
   </section>
 
@@ -429,7 +432,7 @@ vuelve a aplicarle los caracteres de escape al guardarlos.</para>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <seglistitem>
             <seg>Desempaquetador</seg>
@@ -463,7 +466,7 @@ eliminando todo el formato y los objetos incrustados.</para>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -510,7 +513,7 @@ objetos incrustados.</para>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -556,7 +559,7 @@ eliminando todo el formato y los objetos incrustados.</para>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -603,7 +606,7 @@ eliminando todo el formato y los objetos incrustados.</para>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -658,7 +661,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -708,7 +711,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -757,7 +760,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -806,7 +809,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -858,7 +861,7 @@ class="extension">*.yml</filename></seg>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -911,7 +914,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -960,7 +963,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1009,7 +1012,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1058,7 +1061,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1108,7 +1111,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1160,7 +1163,7 @@ class="extension">*.htm</filename></seg>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1213,7 +1216,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1263,7 +1266,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1313,7 +1316,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1365,7 +1368,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1415,7 +1418,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1465,7 +1468,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1515,7 +1518,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1567,7 +1570,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1619,7 +1622,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1668,7 +1671,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1717,7 +1720,7 @@ rep="repeat"><replaceable>argumentos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1766,7 +1769,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1802,7 +1805,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1838,7 +1841,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1874,7 +1877,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1910,7 +1913,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1946,7 +1949,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -1982,7 +1985,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2018,7 +2021,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2054,7 +2057,7 @@ rep="norepeat"><replaceable>comando</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2088,8 +2091,7 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>patterns</replaceable></arg>
-<arg><option>-F</option> <replaceable>fixed string</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>cadena fija</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2137,7 +2139,7 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>use fixed string for matching</para>
+            <para>utilizar una cadena fija para la coincidencia</para>
           </listitem>
         </varlistentry>
 
@@ -2152,7 +2154,7 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2184,10 +2186,9 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
 rep="norepeat"><replaceable>rangos</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
-<command>SelectLines</command> <arg><option>-v</option></arg>
-<arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>patterns</replaceable></arg> <arg><option>-F</option>
-<replaceable>fixed string</replaceable></arg></cmdsynopsis>
+<command>SelectColumns</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-g</option></arg>
+<arg><option>-e</option> <replaceable>cadena fija</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -2228,7 +2229,7 @@ rep="norepeat"><replaceable>rangos</replaceable></arg></cmdsynopsis>
         <varlistentry>
           <term><option>-F</option></term>
           <listitem>
-            <para>use fixed string for matching</para>
+            <para>utilizar una cadena fija para la coincidencia</para>
           </listitem>
         </varlistentry>
 
@@ -2243,7 +2244,7 @@ rep="norepeat"><replaceable>rangos</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2317,7 +2318,7 @@ rep="norepeat"><replaceable>texto_a_sustituir</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2367,7 +2368,7 @@ rep="norepeat"><replaceable>patrones</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2403,7 +2404,7 @@ rep="norepeat"><replaceable>patrones</replaceable></arg></cmdsynopsis>
 
           <segtitle>Empaquetador</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Dependencia</segtitle>
 
@@ -2487,7 +2488,7 @@ carácter</emphasis></simpara>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <seglistitem>
             <seg>Prediferenciación</seg>
@@ -2515,7 +2516,7 @@ archivos de C, C++, PHP y JavaScript.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <seglistitem>
             <seg>Prediferenciación</seg>
@@ -2558,7 +2559,7 @@ utilizan para <xref linkend="IgnoreColumns" />.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <seglistitem>
             <seg>Prediferenciación</seg>
@@ -2595,7 +2596,7 @@ utilizan para <xref linkend="IgnoreColumns" />.</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <seglistitem>
             <seg>Prediferenciación</seg>
@@ -2624,7 +2625,7 @@ texto (por ejemplo, archivos NC y BASIC).</para>
 
           <segtitle>Argumentos del complemento</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <segtitle>Requisito</segtitle>
 
@@ -2726,7 +2727,7 @@ principio y al final de las líneas de la selección.</simpara>
       <para><segmentedlist>
           <segtitle>Categoría</segtitle>
           <segtitle>Filtro de archivos</segtitle>
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <seglistitem>
             <seg>Complemento de edición</seg>
@@ -2761,7 +2762,7 @@ local actual.</simpara>
 
           <segtitle>Filtro de archivos</segtitle>
 
-          <segtitle>Soporte para el diálogo Configuración</segtitle>
+          <segtitle>Compatibilidad con el cuadro de diálogo Configuración</segtitle>
 
           <seglistitem>
             <seg>Complemento de edición</seg>

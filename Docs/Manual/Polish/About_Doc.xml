@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="About_Doc">
+  <title>Informacje o pomocy programu WinMerge</title>
+
+  <para>To jest Pomoc dla WinMerge &WinMergeVersion;.</para>
+
+  <section>
+    <title>Publiczność i zakres</title>
+
+    <para>Pomoc WinMerge jest przeznaczona zarówno dla nowych, jak i doświadczonych
+użytkowników. Wyjaśnia, jak korzystać z WinMerge oraz dokumentuje jego
+możliwości i ograniczenia.</para>
+  </section>
+
+  <section>
+    <title>Jak uzyskać dostęp do Pomocy</title>
+
+    <para>Tematy Pomocy WinMerge są dostępne w dwóch formach:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Pomoc HTML firmy Microsoft (<filename>WinMerge.chm</filename>), znajdujący
+się w katalogu instalacyjnym WinMerge\Docs.</para>
+      </listitem>
+
+      <listitem>
+        <para>Podręcznik HTML w witrynie internetowej WinMerge.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Dostęp do pomocy WinMerge można uzyskać na kilka sposobów:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Menu pomocy WinMerge</term>
+
+        <listitem>
+          <para>Podczas korzystania z WinMerge kliknij <menuchoice> <guimenu>Pomoc</guimenu>
+<guimenuitem>Pomoc WinMerge</guimenuitem> </menuchoice>. Pomoc HTML otwiera
+się na początku (ten temat).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Pomoc kontekstowa</term>
+
+        <listitem>
+          <para>Podczas korzystania z dowolnego okna WinMerge naciśnij
+<keycap>F1</keycap>. Jeśli dla bieżącego okna jest dostępny określony temat,
+Pomoc zostanie otwarta w tym temacie. Jeśli nie, na początku zostanie
+otwarta Pomoc.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Wiersz poleceń WinMerge</term>
+
+        <listitem>
+          <para>Użyj /? Lub -? przełącznik podczas uruchamiania WinMerge z wiersza
+poleceń. Pomoc HTML otwiera się na początku.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Witryna internetowa WinMerge</term>
+
+        <listitem>
+          <para>Otwórz przeglądarkę internetową, aby <ulink
+url="https://winmerge.org/">winmerge.org</ulink>. Pod <ulink
+url="https://winmerge.org/docs/">Dokumentacja</ulink>, postępuj zgodnie z
+<ulink url="https://manual.winmerge.org/">Instrukcja</ulink> łącze do
+najnowszej wersji Pomocy.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Jak korzystać z Pomocy</title>
+
+    <para>Przeczytaj następujące tematy, aby poznać podstawowe podstawy WinMerge,</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="Quick_start" /></term>
+
+        <listitem>
+          <para>Umożliwia szybkie rozpoczęcie pracy z WinMerge i pokazuje jego podstawowe
+użycie.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_dirs" /></term>
+
+        <listitem>
+          <para>Wyjaśnia okno porównywania folderów, dostępne operacje i dostosowywanie
+wyświetlania wyników.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_files" /></term>
+
+        <listitem>
+          <para>Wyjaśnia okno porównywania/scalania plików, dostępne operacje, metody
+nawigacji i tryby.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_images" /></term>
+
+        <listitem>
+          <para>Wyjaśnia okno porównywania/scalania obrazów.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_bin" /></term>
+
+        <listitem>
+          <para>Wyjaśnia okno porównania/scalania szesnastkowego.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_table" /></term>
+
+        <listitem>
+          <para>Wyjaśnia okno porównywania/scalania tabel.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_webpages" /></term>
+
+        <listitem>
+          <para>Objaśnienie okna porównania stron internetowych.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Configuration" /></term>
+
+        <listitem>
+          <para>Wyjaśnia, jak dostosować WinMerge, w tym obsługę białych znaków, kolorów i
+kodowania tekstu.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Aby dowiedzieć się więcej o WinMerge, przeczytaj następujące tematy:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="Open_paths" /></term>
+
+        <listitem>
+          <para>Wprowadza kilka sposobów otwierania plików i folderów w WinMerge - jest ich
+wiele! Na przykład, czy wiesz, jak korzystać z menu kontekstowego
+rozszerzenia powłoki w trybie zaawansowanym?</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Plugins" /></term>
+
+        <listitem>
+          <para>Opisuje opcjonalne, dodatkowe funkcje, które możesz dodać do WinMerge za
+pomocą mechanizmu wtyczek.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Filters" /></term>
+
+        <listitem>
+          <para>Wyjaśnia, jak kontrolować zawartość porównywaną w oknie porównywania
+folderów lub plików.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Command_line" /></term>
+
+        <listitem>
+          <para>Wyświetla parametry wiersza poleceń umożliwiające używanie WinMerge z innymi
+narzędziami lub ze skryptu.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Faq" /></term>
+
+        <listitem>
+          <para>Zawiera odpowiedzi na wiele częstych pytań zadawanych programistom.</para>
+
+          <para>Przed przesłaniem pytań do <ulink
+url="https://github.com/WinMerge/winmerge/">GitHub</ulink>, sprawdź <xref
+linkend="Faq" /> najpierw temat, żeby sprawdzić, czy nie ma tam odpowiedzi
+na Twoje pytanie.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Konwencje dokumentacyjne<indexterm>
+        <primary>konwencje, dokumentacja</primary>
+      </indexterm></title>
+    <para></para>
+    <informaltable>
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry>Przykład</entry>
+
+            <entry>Wskazuje</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>Wejdź <userinput>UTF-8</userinput> w polu.<para>Kliknij <guibutton>Przeglądaj</guibutton> przycisk, aby przejść do ścieżki.</para><para>Naciśnij <keycap>F5</keycap> raz, aby odświeżyć okno.</para></entry>
+
+            <entry>Pogrubiona czcionka w tekście opisowym może oznaczać:<itemizedlist>
+                <listitem>
+                  <para>Wartość lub ciąg znaków, który należy wprowadzić</para>
+                </listitem>
+
+                <listitem>
+                  <para>Nazwa przycisku GUI lub klawisza</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry>Naciśnij <keycombo> <keycap>Ctrl</keycap> <keycap>O</keycap> </keycombo></entry>
+
+            <entry><wordasword>Naciśnij</wordasword> wskazuje działanie klawiatury.  W tym
+przykładzie naciśnij <keycap>Ctrl</keycap> i <keycap>O</keycap> klucze w
+kombinacji.</entry>
+          </row>
+
+          <row>
+            <entry><para>Kliknij <guibutton>OK</guibutton>.</para></entry>
+
+            <entry>Kliknięcie oznacza kliknięcie lewym przyciskiem myszy obiektu, takiego jak
+element menu lub przycisk.</entry>
+          </row>
+
+          <row>
+            <entry>Kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Otwórz</guimenuitem> </menuchoice>.</entry>
+
+            <entry>Strzałka wskazuje nawigację w menu. W przykładzie wybierasz
+<guimenuitem>Otwórz</guimenuitem> element w WinMerge <guimenu>Plik</guimenu>
+menu.</entry>
+          </row>
+
+          <row>
+            <entry>Kliknij wiersz prawym przyciskiem myszy i wybierz
+<guimenuitem>Porównaj</guimenuitem> skrót.</entry>
+
+            <entry>Kliknij prawym przyciskiem myszy na obiekcie, aby otworzyć jego menu
+kontekstowe, a następnie kliknij lewym lub prawym przyciskiem myszy wskazany
+element w menu kontekstowym.</entry>
+          </row>
+
+          <row>
+            <entry>Wejdź <replaceable>options file</replaceable>.ini<para>Skorzystaj z <guilabel>Filtruj</guilabel> pole umożliwiające wyeliminowanie
+plików z operacji.</para><para>Jedna lub więcej kolejnych różnych linii tworzy jedną różnicę (lub
+<glossterm>różnica</glossterm>).</para></entry>
+
+            <entry>Tekst kursywą może reprezentować:<itemizedlist>
+                <listitem>
+                  <para>Wartość lub ciąg, który można zastąpić. W pierwszym przykładzie zamiast
+słowa zapisanego kursywą zastąpisz prawdziwą nazwę pliku, ale wpisz
+<filename>ini</filename> rozszerzenie pliku, które nie jest zapisane
+kursywą, tak jak napisano.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Nazwa pola, menu lub kontrolki w oknie WinMerge.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Znaczące słowo lub fraza, które zostały wprowadzone.</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry>Ścieżka <envar>%WORKDIR%\project1</envar> jest rozszerzony do <filename
+class="directory">C:\workfiles\project1</filename>.<para><screen
+            format="linespecific">Dwa słowa</screen></para></entry>
+
+            <entry>Tekst o stałej szerokości może oznaczać:<itemizedlist>
+                <listitem>
+                  <para>Ścieżka lub nazwa pliku lub innego elementu systemowego</para>
+                </listitem>
+
+                <listitem>
+                  <para>Przykładowe fragmenty kodu</para>
+                </listitem>
+
+                <listitem>
+                  <para>Przykładowe wyjście</para>
+                </listitem>
+
+                <listitem>
+                  <para>Informacje wprowadzane w formularzu lub w wierszu poleceń</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry><cmdsynopsis sepchar=" ">
+<command moreinfo="none">command</command> <arg choice="plain"
+rep="norepeat"><replaceable>inputpath</replaceable></arg> <arg choice="opt"
+rep="norepeat"><replaceable>outputpath</replaceable></arg></cmdsynopsis></entry>
+
+            <entry>W liniach składni nawiasy wskazują elementy opcjonalne. W tym przykładzie
+musisz wprowadzić ścieżkę wejściową za pomocą polecenia; możesz wprowadzić
+ścieżkę wyjściową, ale polecenie będzie ważne bez niej.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <para></para>
+  </section>
+</article>

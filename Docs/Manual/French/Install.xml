@@ -290,10 +290,10 @@ outil de fusion à 3 voies pour TortoiseSVN/Git.</simpara>
 
 
           <varlistentry>
-            <term>Fusionner dans le volet central</term>
+            <term>Fusionner dans le volet du milieu</term>
 
             <listitem>
-              <para>Fusionner dans le volet central.</para>
+              <para>Fusionner dans le volet du milieu.</para>
             </listitem>
           </varlistentry>
 
@@ -379,7 +379,7 @@ d'utilisateur administrateur.</para>
 
     <para>Ouvrez WinMerge et utilisez <xref linkend="Configuration_shell-integ" />
 dans la fenêtre Options. Dans la fenêtre Options, utilisez les boutons
-<guibutton>Enregistrer l'extension du shell</guibutton> ou
-<guibutton>Désenregistrer l'extension du shell</guibutton>.</para>
+<guibutton>Inscrire l'extension du menu contextuel Windows</guibutton> ou
+<guibutton>Désinscrire l'extension du menu contextuel Windows</guibutton>.</para>
   </section>
 </article>

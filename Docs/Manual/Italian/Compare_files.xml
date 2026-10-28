@@ -716,181 +716,196 @@ funzionano in modalità unione allo stesso modo della modalità normale.</para>
     </section>
 
     <section>
-      <title>Merge Result pane</title>
+      <title>Pannello risultati unione</title>
 
       <indexterm>
-        <primary>Merge Result pane, File Compare window</primary>
+        <primary>Pannello risultati unione, finestra confronta file</primary>
       </indexterm>
 
       <indexterm>
-        <primary>3-way merge</primary>
+        <primary>Unione a 3 vie</primary>
       </indexterm>
 
       <para>
-When you compare three text files and specify a merge output path (for
-example, when a version control tool starts WinMerge with the
-<option>/o</option> command-line option), the Merge Result pane opens at the
-bottom of the File Compare window. It works like the merge output window in
-KDiff3: the three File panes show the compared files read-only, and the
-Merge Result pane contains the merge result, which you can edit freely. This
-requires the Merge Result pane option to be enabled in the Compare/Merge
-page of the Options dialog.</para>
+Quando confronti tre file di testo e specifichi un percorso destinazione
+dell'unione (ad esempio, quando uno strumento di controllo della versione
+avvia WinMerge con l'opzione della riga di comando <option>/o</option>), il
+riquadro 'Risultati unione' si apre nella parte inferiore della finestra
+'Confronto file'. Funziona come la finestra di output dell'unione in KDiff3:
+i tre pannelli file visualizzano i file confrontati in sola lettura e il
+pannello 'Risultati unione' contiene il risultato dell'unione, che puoi
+modificare liberamente. Ciò richiede che l'opzione del riquadro 'Risultati
+unione' sia abilitata nella pagina 'Confronta/unisci' della finestra di
+dialogo 'Opzioni'.</para>
 
       <para>
-When you open a two-way conflict file with
-<menuchoice><guimenu>File</guimenu><guimenuitem>Open Conflict
-File</guimenuitem></menuchoice>, WinMerge keeps the two source panes side by
-side and opens the Merge Result pane when it is enabled. Each differing
-block starts unresolved because a two-way conflict file has no common
-base. Choose the left or right source to resolve a block. In this mode the
-toolbar buttons are numbered <guibutton>1</guibutton> and
-<guibutton>2</guibutton>, and
-<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>1</keycap></keycombo>
-and
-<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>2</keycap></keycombo>
-choose the left and right source, respectively. Unresolved blocks are saved
-using the standard two-sided conflict markers.</para>
+Quando apri un file conflitto bidirezionale con
+<menuchoice><guimenu>File</guimenu><guimenuitem>Apri file
+conflitto</guimenuitem></menuchoice>, WinMerge mantiene i due pannelli
+sorgente affiancati e apre quando è abilitato il pannello 'Risultati
+unione'. Ogni blocco diverso inizia non risolto perché un file conflitto
+bidirezionale non ha una base comune. Per risolvere un blocco scegli la
+sorgente sinistra o destra. In questa modalità i pulsanti della barra
+strumenti sono numerati <guibutton>1</guibutton> e <guibutton>2</guibutton>,
+e
+<keycombo><keycap>Ctrl</keycap><keycap>Maiusc</keycap><keycap>1</keycap></keycombo>
+e
+<keycombo><keycap>Ctrl</keycap><keycap>Maiusc</keycap><keycap>2</keycap></keycombo>
+scelgono rispettivamente la sorgente sinistra e destra. I blocchi non
+risolti vengono salvati usando i segnalini di conflitto bilaterali standard.</para>
 
       <para>
-When the pane opens, every difference initially starts unresolved, shown as
-a compact <computeroutput>&lt;Merge Conflict&gt;</computeroutput> or
-<computeroutput>&lt;Unresolved Difference&gt;</computeroutput> placeholder
-line.  If an automatic merge is requested — with the <option>/al</option>,
-<option>/am</option> or <option>/ar</option> command-line option, or with
-the <guimenuitem> Auto Merge </guimenuitem> command — non-conflicting
-differences are resolved automatically according to the selected merge
-target, and only true conflicts, where both sides changed the same lines
-relative to the base, remain unresolved.</para>
+Quando il riquadro si apre, ogni differenza inizialmente non è risolta,
+visualizzata come una riga segnaposto compatta <computeroutput>&lt;Conflitto
+unione&gt;</computeroutput> o <computeroutput>&lt;Differenza non
+risolta&gt;></computeroutput>.  Se viene richiesta un'unione automatica —
+con l'opzione della riga di comando <option>/al</option>,
+<option>/am</option> o <option>/ar</option>, o con il comando <guimenuitem>
+Unione automatica </guimenuitem> — le differenze non in conflitto vengono
+risolte automaticamente in base alla destinazione dell'unione selezionata, e
+solo i veri conflitti, dove entrambe le parti hanno cambiato le stesse righe
+rispetto alla base, rimangono non risolti.</para>
 
       <para>
-To resolve a difference, select it and choose the desired source from the
-top-level <guimenu>Merge Result</guimenu> menu. Two-way merge sessions offer
-<guimenuitem>Choose Left</guimenuitem> and <guimenuitem>Choose
-Right</guimenuitem>; three-way sessions also offer <guimenuitem>Choose
-Middle</guimenuitem>. You can also use the Merge Result pane context menu,
-or the <guibutton>1</guibutton> / <guibutton>2</guibutton> /
-<guibutton>3</guibutton> toolbar buttons. Each command toggles that pane's
-lines for the current difference (or all differences covered by the current
-selection): selecting several panes combines their lines in the order you
-select them (useful when both sides added something and the merge should
-keep both), and deselecting all panes makes the difference unresolved
-again. You can also type corrections directly into the Merge Result pane,
-except on unresolved differences: those must be resolved with a Choose
-command before their text can be edited. Conflicts whose sides differ only
-in white space are marked as <computeroutput>(Whitespace
-only)</computeroutput>.</para>
+Per risolvere una differenza, selezionala e scegli la sorgente desiderata
+dal menu <guimenu>Unisci risultati</guimenu> di livello superiore. Le
+sessioni di unione bidirezionale offrono <guimenuitem>Scegli a
+sinistra</guimenuitem> e <guimenuitem>Scegli destra</guimenuitem>; le
+sessioni a tre offrono anche <guimenuitem>Scegli centro</guimenuitem>. Puoi
+anche usare il menu contestuale del pannello 'Unisci risultati' o i pulsanti
+<guibutton>1</guibutton> / <guibutton>2</guibutton> /
+<guibutton>3</guibutton> della barra strumenti. Ogni comando
+attiva/disattiva le righe di quel riquadro per la differenza attuale (o
+tutte le differenze coperte dalla selezione corrente): selezionando più
+riquadri si combinano le loro righe nell'ordine in cui le si seleziona
+(utile quando entrambe le parti hanno aggiunto qualcosa e l'unione dovrebbe
+mantenerle entrambe), e deselezionando tutti i riquadri si rende nuovamente
+irrisolta la differenza. Puoi anche digitare le correzioni direttamente nel
+riquadro 'Risultati unione', ad eccezione delle differenze non risolte:
+queste devono essere risolte con un comando 'Scegli' prima che il testo
+possa essere modificato. I conflitti i cui lati differiscono solo per lo
+spazio bianco sono contrassegnati come <computeroutput>(solo spazi
+bianchi)</computeroutput>.</para>
 
       <para>
-The pane's margin shows where every line came from:
-<computeroutput>1</computeroutput>, <computeroutput>2</computeroutput> or
-<computeroutput>3</computeroutput> for a line taken from the left, middle or
-right pane (matching the toolbar buttons),
-<computeroutput>?</computeroutput> for an unresolved conflict section, and
-<computeroutput>m</computeroutput> for a difference modified by hand.  The
-pane's status bar shows how many differences are still unresolved.  While
-the pane is open, <guimenuitem>Next Conflict</guimenuitem> and
-<guimenuitem>Previous Conflict</guimenuitem> (<keycombo>
-<keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down</keycap>
-</keycombo> / <keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap>
-<keycap>Up</keycap> </keycombo>)  jump to the next or previous difference
-that still needs a decision, skipping the ones already resolved.</para>
+Il margine del riquadro visualizza da dove proviene ogni riga:
+<computeroutput>1</computeroutput>, <computeroutput>2</computeroutput> o
+<computeroutput>3</computeroutput> per una riga presa dal riquadro sinistro,
+centrale o destro (corrispondente ai pulsanti della barra degli strumenti),
+<computeroutput>?</computeroutput> per una sezione conflitto non risolto e
+<computeroutput>m</computeroutput> per una differenza modificata
+manualmente.  La barra di stato del riquadro visualizza quante differenze
+non sono ancora risolte.  Mentre il pannello è aperto,
+<guimenuitem>Conflitto successivo</guimenuitem> e <guimenuitem>Conflitto
+precedente</guimenuitem> (<keycombo> <keycap>Alt</keycap>
+<keycap>Maiusc</keycap> <keycap>Giù</keycap> </keycombo> / <keycombo>
+<keycap>Alt</keycap> <keycap>Maiusc</keycap> <keycap>Su</keycap>
+</keycombo>) passa alla differenza successiva o precedente che necessita
+ancora di una decisione, saltando quelle già risolte.</para>
 
       <para>
-Use <menuchoice><guimenu>File</guimenu><guisubmenu>Save</guisubmenu>
-<guimenuitem>Save Merge Result</guimenuitem> </menuchoice>, the Save toolbar
-button, or <keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> to
-save the result to the output path. WinMerge warns if unresolved differences
-remain. Unresolved conflicts are saved as standard conflict sections — never
-as placeholder text — so the file keeps all versions of the disputed lines
-and can be finished later in any editor or merge tool; unresolved
-non-conflicting differences are saved with their automatic merge content,
-keeping the output free of conflict markers that no version control system
-would produce.  Reopening the output path itself does not resume from these
-conflict sections: WinMerge always rebuilds the merge result from the three
-compared files, so a version control tool that starts WinMerge again with
-the <option>/o</option> command-line option (for example <command>git
-mergetool</command>) gets a fresh merge every time, regardless of what the
-output file already contains. To pick up an earlier, partially resolved
-conflict file instead, use <menuchoice> <guimenu>File</guimenu>
-<guimenuitem> Open Conflict File </guimenuitem> </menuchoice>: WinMerge
-parses its conflict sections and restores them as unresolved differences,
-keeping any text that was already resolved. WinMerge also prompts about an
-unsaved merge result when the window is closed — also when the pane itself
-has been hidden in the meantime. By default every line is saved with its own
-original line ending, so the output differs from the sources as little as
-possible (for example, producing minimal diffs in version control); you can
-change the output line endings to Windows, Unix, or classic Mac style from
-the Merge Result pane's status bar. The encoding follows the side that
-changed it, and the save honors the backup-file option and any file packer
-plugin the files were opened with.</para>
+Usa <menuchoice><guimenu>File</guimenu><guisubmenu>Salva</guisubmenu>
+<guimenuitem>Salva risultato unione</guimenuitem> </menuchoice>, il pulsante
+'Salva' della barra strumenti, o
+<keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> per salvare il
+risultato nel percorso destinazione. WinMerge avvisa se rimangono differenze
+non risolte. I conflitti non risolti vengono salvati come sezioni di
+conflitto standard, mai come testo segnaposto, in modo che il file conservi
+tutte le versioni delle righe contestate e possa essere completato in
+seguito in qualsiasi editor o strumento di unione; le differenze non risolte
+e non in conflitto vengono salvate con il loro contenuto unione automatica,
+mantenendo l'output libero da indicatori di conflitto che nessun sistema di
+controllo della versione produrrebbe.  La riapertura del percorso
+destinazione stesso non riprende da queste sezioni di conflitto: WinMerge
+ricostruisce sempre il risultato dell'unione dai tre file confrontati,
+quindi uno strumento di controllo della versione che avvia nuovamente
+WinMerge con l'opzione della riga di comando <option>/o</option> (ad esempio
+<command>git mergetool</command>) ottiene ogni volta una nuova unione,
+indipendentemente da ciò che contiene già il file destinazione. Per
+recuperare invece un file conflitto precedente, parzialmente risolto, usa
+<menuchoice> <guimenu>File</guimenu> <guimenuitem>Apri file
+conflitto</guimenuitem> </menuchoice>: WinMerge analizza le sezioni di
+conflitto e le ripristina come differenze non risolte, mantenendo qualsiasi
+testo che era già stato risolto. WinMerge quando la finestra viene chiusa
+avvisa anche di un risultato unione non salvato, anche quando nel frattempo
+il riquadro stesso è stato nascosto. Per impostazione predefinita ogni riga
+viene salvata con la propria fine riga originale, quindi l'output differisce
+dalle sorgenti il ​​mno possibile (ad esempio, producendo differenze minime
+nel controllo della versione); puoi modificare le terminazioni linea
+destinazione in stile Windows, Unix o Mac classico dalla barra di stato del
+riquadro 'Risultati unione'. La codifica segue la parte che l'ha modificata
+e il salvataggio rispetta l'opzione file backup e qualsiasi plug-in di
+compressione file con cui i file sono stati aperti.</para>
 
       <para>
-You can also start a merge in any three-way text comparison with
-<menuchoice> <guimenu>Merge</guimenu> <guimenuitem> Start Merge Session
-</guimenuitem> </menuchoice> (differences start unresolved) or <menuchoice>
-<guimenu>Merge</guimenu> <guimenuitem> Auto Merge </guimenuitem>
-</menuchoice> (non-conflicting differences are resolved automatically).
-While a merge session is active, you can show and hide the pane with
-<menuchoice> <guimenu>View</guimenu> <guimenuitem> Merge Result Pane
-</guimenuitem> </menuchoice>.  To end the merge session and restore the
-normal editable three-pane behavior, choose <menuchoice>
-<guimenu>Merge</guimenu> <guimenuitem>End Merge Session</guimenuitem>
-</menuchoice>. WinMerge prompts to save if the merge result has unsaved
-changes, and restores the panes' original read-only states and headers.</para>
+Puoi anche avviare un'unione in qualsiasi confronto testo a tre vie con
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem> Avvia sessione unione
+</guimenuitem> </menuchoice> (le differenze iniziano non risolte) o
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem> Unione automatica
+</guimenuitem> </menuchoice> (le differenze non in conflitto vengono risolte
+automaticamente).  Mentre è attiva una sessione unione, puoi
+visualizzare/nascondere il riquadro con <menuchoice>
+<guimenu>Visualizza</guimenu> <guimenuitem> Riquadro risultati unione
+</guimenuitem> </menuchoice>.  Per chiudere la sessione unione e
+ripristinare il normale comportamento modificabile a tre riquadri, scegli
+<menuchoice> <guimenu>Unisci</guimenu> <guimenuitem>Chiudi sessione
+unione</guimenuitem> </menuchoice>. WinMerge chiede di salvare il risultato
+unione se contiene modifiche non salvate e ripristina gli stati e le
+intestazioni di sola lettura originali dei riquadri.</para>
       <section>
         <para>
 <indexterm>
-            <primary>merge target pane</primary>
-            <secondary>determining base pane</secondary>
-          </indexterm> The base pane (common ancestor) for
-automatic merge resolution is determined by either command-line options or
-the keyboard focus:</para>
+            <primary>pannello destinazione unione</primary>
+            <secondary>determinazione riquadro base</secondary>
+          </indexterm> Il riquadro di base (antenato comune)
+per la risoluzione automatica dell'unione è determinato dalle opzioni della
+riga di comando o dal focus della tastiera:</para>
 
         <para>
-<emphasis>When using command-line options:</emphasis></para>
+<emphasis>Quando usi le opzioni riga di comando:</emphasis></para>
 
         <itemizedlist>
           <listitem>
             <para>
-<option>Merge to left pane (/al)</option>: left = merge target, middle =
-theirs, right = base</para>
+<option>Unisci nel riquadro sinistro (/al)</option>: sinistra = unisci
+destinazione, centro = loro, destra = base</para>
           </listitem>
 
           <listitem>
             <para>
-<option>Merge to middle pane (/am)</option>: left = theirs, middle = merge
-target, right = mine</para>
+<option>Unisci nel riquadro centrale (/am)</option>: sinistra = loro, centro
+= unisci destinazione, destra = mia</para>
           </listitem>
 
           <listitem>
             <para>
-<option>Merge to right pane (/ar)</option>: left = base, middle = theirs,
-right = merge target</para>
+<option>Unisci nel riquadro destro (/ar)</option>: sinistra = base, centro =
+loro, destra = unisci destinazione</para>
           </listitem>
         </itemizedlist>
 
         <para>
-<emphasis>When using UI-based merge operations (Start Merge Session or Auto
-Merge):</emphasis> The base pane is determined by the current keyboard
-focus:</para>
+<emphasis>Quando si usa operazioni di unione basate sull'interfaccia utente
+(avvia sessione unione o unione automatica):</emphasis> Il riquadro di base
+è determinato dal focus attuale della tastiera:</para>
 
         <itemizedlist>
           <listitem>
             <para>
-<emphasis>Left pane focused</emphasis>: left = mine, middle = theirs, right
-= base</para>
+<emphasis>Riquadro sinistro focalizzato</emphasis>: sinistra = mio, centro =
+loro, destra = base</para>
           </listitem>
 
           <listitem>
             <para>
-<emphasis>Middle pane focused</emphasis>: left = theirs, middle = base,
-right = mine</para>
+<emphasis>Riquadro centrale focalizzato</emphasis>: sinistra = loro, centro
+= base, destra = mio</para>
           </listitem>
 
           <listitem>
             <para>
-<emphasis>Right pane focused</emphasis>: left = base, middle = theirs, right
-= mine</para>
+<emphasis>Riquadro destro focalizzato</emphasis>: sinistra = base, centro =
+loro, destra = mio</para>
           </listitem>
         </itemizedlist>
       </section>

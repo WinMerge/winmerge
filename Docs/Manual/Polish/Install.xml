@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Install">
+  <title>Pobieranie i instalowanie WinMerge<indexterm>
+      <primary>instalując WinMerge</primary>
+    </indexterm></title>
+
+  <para>WinMerge można zainstalować za pomocą instalatora lub rozpakowując pliki z
+archiwum. Zalecaną metodą jest użycie instalatora.</para>
+
+  <section>
+    <title>Pobieranie plików</title>
+
+    <para>Najnowszą wersję można zawsze pobrać ze strony głównej WinMerge: <ulink
+url="https://winmerge.org/">WinMerge.org</ulink>. Należy pamiętać, że mogą
+wystąpić opóźnienia w aktualizowaniu stron głównych w celu uzyskania
+najnowszych wersji, ale strona stanu projektu pod adresem <ulink
+url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
+pokazuje najnowsze pliki. Wersje stabilne są również dostępne w kilku
+witrynach pobierania plików.</para>
+  </section>
+
+  <section>
+    <title>Kompatybilność</title>
+	
+    <itemizedlist>
+      <listitem>
+        <para>WinMerge 2.16.8 i nowsze (64-bitowe) wymagają systemu Windows 7 lub
+nowszego.</para>
+      </listitem>
+      <listitem>
+        <para>WinMerge (32-bitowy) obsługuje system Windows XP SP3 i nowsze wersje, w tym
+najnowsze wersje.  Działa zarówno w 32-bitowym, jak i 64-bitowym systemie
+Windows.</para>
+      </listitem>
+      <listitem>
+        <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.16.6/">WinMerge
+2.16.6 (64-bitowy)</ulink> była ostatnią wersją 64-bitową obsługującą
+64-bitowy system Windows XP.</para>
+      </listitem>
+      <listitem>
+        <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge
+2.14.0</ulink> była ostatnią wersją obsługującą system Windows 2000.</para>
+      </listitem>
+      <listitem>
+        <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge
+2.12.4</ulink> była ostatnią wersją obsługującą Windows 95, 98, ME i NT.</para>
+      </listitem>
+      <listitem>
+        <para>WinMerge nie jest obsługiwany w systemie Windows RT.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  
+  <section id="Installing_usinginstaller">
+    <title>Korzystanie z instalatora (zalecane)</title>
+    <para></para>
+    <note>
+      <para>Instalator wymaga uprawnień administratora. Jeśli nie masz uprawnień
+administratora, możesz zainstalować WinMerge, rozpakowując plik archiwum
+(zobacz <xref linkend="InstallFromArchive" />) lub używając instalatora dla
+poszczególnych użytkowników (WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
+    </note>
+
+    <para>W przypadku większości użytkowników zalecane jest użycie
+instalatora. Instalator zapyta o lokalizację, w której zainstalowano
+WinMerge. Następnie instaluje pliki, konfiguruje integrację z powłoką i
+dodaje WinMerge do menu Start. Aby zainstalować WinMerge:</para>
+
+    <orderedlist>
+      <listitem>
+        <simpara>Uruchom plik wykonywalny instalatora (zwykle o nazwie
+<filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>).</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Kliknij <guibutton>Następny</guibutton> na ekranie Umowa licencyjna.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Na stronie Wybierz lokalizację docelową zaakceptuj lokalizację WinMerge lub,
+jeśli wybierzesz inną lokalizację, zalecamy zainstalowanie WinMerge w jego
+własnym folderze. Kliknij <guibutton>Następny</guibutton>.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Na stronie Wybierz komponenty wybierz jedną ze wstępnie skonfigurowanych
+instalacji w górnej kontrolce. Polecamy <guilabel>Typowe</guilabel>
+konfiguracja dla większości użytkowników. Dolne pole pokazuje wszystkie
+dostępne komponenty. Możesz modyfikować domyślną konfigurację, zaznaczając
+lub odznaczając komponenty. Na przykład, jeśli chcesz użyć lokalizacji
+WinMerge dla innego języka niż angielski, wybierz opcję
+<guilabel>Języki</guilabel> komponent.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>Podstawowe pliki WinMerge<indexterm>
+                <primary>Pliki wykonywalne WinMerge</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Plik wykonywalny WinMerge, pomoc i inne potrzebne pliki. Nie można
+odznaczyć.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>32-bitowe rozszerzenie powłoki WinMerge<indexterm>
+                <primary>Przedłużenie powłoki</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Opcja umożliwia uruchomienie programu WinMerge bezpośrednio z Eksploratora
+Windows w celu porównania elementów tam wybranych.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Filtry</term>
+
+            <listitem>
+              <para>Pliki filtrów plików umożliwiają zawężenie zakresu porównań.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Wtyczki</term>
+
+            <listitem>
+              <para>Wtyczki WinMerge to niestandardowe biblioteki DLL lub skryptlety napisane w
+interfejsie API COM, których można używać do wstępnego przetwarzania danych
+przed porównaniem.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Języki</term>
+
+            <listitem>
+              <para>Pliki tłumaczeń WinMerge. Jeśli chcesz skonfigurować WinMerge tak, aby
+używał innego języka niż angielski, rozwiń ten element i wybierz jedno lub
+więcej dostępnych tłumaczeń. Instalator tworzy podfolder Języki w folderze
+WinMerge, zawierający plik tłumaczenia *.po dla każdego wybranego
+elementu. Po instalacji możesz otworzyć WinMerge i zmienić jego lokalizację
+na jeden z języków plików tłumaczeń. Zobacz <xref linkend="Locales" /> po
+szczegóły.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Kliknij <guibutton>Następny</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>Na stronie Wybierz folder menu Start skonfiguruj skróty WinMerge.</simpara>
+
+        <itemizedlist>
+          <listitem>
+            <para>Zaakceptuj ustawienie domyślne, aby utworzyć skrót do programu, lub określ
+inny folder.</para>
+          </listitem>
+
+          <listitem>
+            <para>Opcjonalnie zaznacz opcję <guilabel>Nie twórz folderu menu Start</guilabel>.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Kliknij <guibutton>Następny</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Na stronie Wybierz dodatkowe zadania określ dodatkowe zadania:<indexterm>
+            <primary>integracja</primary>
+
+            <secondary>z systemem kontroli wersji</secondary>
+          </indexterm><indexterm>
+            <primary>VCS</primary>
+
+            <see>systemy kontroli wersji</see>
+          </indexterm></para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Włącz integrację menu kontekstowego Eksploratora</term>
+
+            <listitem>
+              <indexterm>
+                <primary>integracja</primary>
+
+                <secondary>z powłoką Windows</secondary>
+              </indexterm>
+
+              <indexterm>
+                <primary>Integracja powłoki systemu Windows</primary>
+              </indexterm>
+
+              <para>Umożliwia <link linkend="OpenPaths_shell-integ">uruchom operacje
+porównywania WinMerge z Eksploratora Windows</link> (tę integrację można
+włączyć lub wyłączyć później w opcjach WinMerge).</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Dodaj folder WinMerge do ścieżki systemowej</term>
+
+            <listitem>
+              <para>Dodaje folder instalacyjny WinMerge do zmiennej środowiskowej Path systemu.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Zintegruj z TortoiseCVS<indexterm>
+                <primary>Integracja z TortoiseCVS</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Ustawia WinMerge jako aplikację różnicową TortoiseCVS.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Zintegruj z TortoiseSVN<indexterm>
+                <primary>Integracja z TortoiseSVN</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Ustawia WinMerge jako aplikację różnicową TortoiseSVN.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Zintegruj z TortoiseGit<indexterm>
+                <primary>Integracja z TortoiseGit</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Ustawia WinMerge jako aplikację różnicową TortoiseGit.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Utwórz skrót na pulpicie</term>
+
+            <listitem>
+              <para>Dodaje skrót WinMerge do pulpitu systemu Windows.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Kliknij <guibutton>Następny</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>Na stronie kreatora łączenia trójstronnego zarejestruj WinMerge jako
+narzędzie łączenia trójstronnego dla TortoiseSVN/Git.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>Zarejestruj WinMerge jako narzędzie do łączenia trójstronnego<indexterm>
+                <primary>Narzędzie do łączenia 3-kierunkowego</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Zarejestruj WinMerge jako narzędzie do 3-kierunkowego scalania dla
+TortoiseSVN/Git.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Scal w prawym okienku</term>
+
+            <listitem>
+              <para>Scal w prawym okienku.</para>
+            </listitem>
+          </varlistentry>
+
+
+          <varlistentry>
+            <term>Scal w środkowym panelu</term>
+
+            <listitem>
+              <para>Scal w środkowym panelu.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Scal w lewym okienku</term>
+
+            <listitem>
+              <para>Scal w lewym okienku.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Automatyczne łączenie przy uruchomieniu</term>
+
+            <listitem>
+              <para>Opcjonalnie wyłącz tę opcję <guilabel>Automatyczne łączenie przy
+uruchomieniu</guilabel>.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Kliknij <guibutton>Następny</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>Na stronie Gotowy do instalacji sprawdź wybrane opcje instalacji.  Jeśli to
+konieczne, kliknij <guibutton>Powrót</guibutton> aby zmienić cokolwiek na
+poprzedniej stronie. Gdy będziesz pewien, że jesteś gotowy, aby kontynuować,
+kliknij <guibutton>Zainstaluj</guibutton>.</simpara>
+      <para></para>
+      </listitem>
+
+      <listitem>
+        <simpara>Po skopiowaniu plików przez instalatora pojawi się ekran końcowy.  Za pomocą
+dwóch pól wyboru potwierdź, czy utworzony folder menu Start WinMerge ma
+zostać otwarty i czy ma zostać uruchomiona aplikacja WinMerge.</simpara>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <section id="InstallFromArchive">
+    <title>Instalacja z archiwum<indexterm>
+        <primary>archiwum, instalowanie WinMerge z</primary>
+      </indexterm></title>
+
+    <para>WinMerge jest w dużej mierze niezależny od innych komponentów systemu. Nie
+jest ściśle zintegrowany z systemem Windows i nie korzysta z wielu bibliotek
+DLL.</para>
+
+    <para>Pliki archiwum mają prawidłową strukturę folderów. WinMerge należy
+rozpakować, zachowując strukturę folderów w folderze docelowym. Na przykład
+folder główny utworzony w <filename class="directory">C:\Program
+Files\</filename> ma imię, <filename
+class="directory">WinMerge-<replaceable>version</replaceable></filename> (na
+przykład <filename class="directory">WinMerge-2.6.0</filename>). Możesz
+zmienić nazwę tego folderu lub skopiować jego pliki do innego folderu
+(zachowując strukturę folderów!).</para>
+
+    <para>Po rozpakowaniu plików WinMerge jest gotowy do uruchomienia! Integracja
+powłoki i integracja archiwum mogą wymagać dodatkowych kroków, jak opisano w
+następnej sekcji.</para>
+  </section>
+
+  <section>
+    <title>Włączanie integracji powłoki Eksploratora Windows bez instalatora
+<indexterm>
+        <primary>integracja</primary>
+
+        <secondary>z powłoką Windows</secondary>
+      </indexterm><indexterm>
+        <primary>Integracja powłoki systemu Windows</primary>
+      </indexterm></title>
+
+    <para>Jeśli nie korzystasz z programu instalacyjnego i chcesz włączyć integrację z
+powłoką Eksploratora Windows, musisz zarejestrować bibliotekę DLL integracji
+powłoki (<filename>ShellExtension*.dll</filename>) osobno.</para>
+
+    <note>
+      <para>Zainstalowanie integracji z powłoką wymaga uprawnień administratora.</para>
+    </note>
+
+    <para>Otwórz WinMerge i użyj pliku <xref linkend="Configuration_shell-integ" /> w
+oknie Opcje. W oknie Opcje użyj opcji <guibutton>Zarejestruj rozszerzenie
+powłoki</guibutton> lub <guibutton>Wyrejestruj rozszerzenie
+powłoki</guibutton> przyciski.</para>
+  </section>
+</article>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_images">
+  <?target dbhh topicname="IDH_Compare_images" topicid ="003"?>
+
+  <title>Porównywanie plików obrazów</title>
+
+  <indexterm>
+    <primary>porównywanie plików</primary>
+    <secondary>obrazy</secondary>
+  </indexterm>
+
+  <para>W tym temacie opisano sposób porównywania obrazów przy użyciu okna
+Porównywanie obrazów.</para>
+
+  <section id="Compare_images_starting">
+    <title>Rozpoczynanie operacji porównywania obrazów</title>
+
+    <para>Operację porównywania obrazów można rozpocząć w oknie WinMerge lub w oknie
+wiersza poleceń.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z okna WinMerge</term>
+
+        <listitem>
+          <para>Kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Otwórz</guimenuitem> </menuchoice>. Użyj okna dialogowego
+Wybierz pliki lub foldery, aby określić lewy i prawy obraz źródłowy do
+porównania. Aby uzyskać więcej informacji na temat okna dialogowego Wybierz
+pliki lub folder, zobacz <xref linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z okna wiersza poleceń</term>
+
+        <listitem>
+          <para>Biegnij <command>WinMergeU.exe</command>, który znajduje się w katalogu
+instalacyjnym WinMerge. W argumentach poleceń uwzględnij lewy i prawy obraz
+do porównania. Aby uzyskać więcej informacji na temat korzystania z wiersza
+poleceń, zobacz <xref linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_images_window">
+    <title>Okno porównania obrazów</title>
+
+    <para>WinMerge obsługuje wiele typów obrazów i może podkreślać różnice za pomocą
+bloków. Możliwe jest również nakładanie zdjęć.</para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>Okno porównywania obrazów</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>Najwięcej opcji możesz ustawić w <guilabel>Okienko lokalizacji</guilabel>:</para>
+
+    <section>
+      <title>Różnica<indexterm>
+        <primary>Różnica</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Zaznacz</term>
+          <listitem>
+            <para>Z polem wyboru <guilabel>Zaznacz</guilabel> możesz włączyć lub wyłączyć
+wyróżnianie różnic w obrazach.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Mrugnij</term>
+          <listitem>
+            <para>Jeśli podświetlenie jest włączone, możesz nawet sprawić, że będzie migać,
+zaznaczając pole wyboru <guilabel>Mrugnij</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Rozmiar bloku</term>
+          <listitem>
+            <para>Suwak <guilabel>Rozmiar bloku</guilabel> określa wielkość bloków
+podkreślających różnice w obrazie.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Blok Alfa</term>
+          <listitem>
+            <para>The <guilabel>Blok Alfa</guilabel> suwak określa, jak silne jest mieszanie
+alfa bloków.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Próg odległości kolorów</term>
+          <listitem>
+            <para>Suwak <guilabel>Płyta CD</guilabel> ustawia <emphasis>Próg odległości
+kolorów</emphasis> co pomaga ignorować różnice kolorystyczne.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Wykrywanie wejścia/usunięcia</term>
+          <listitem>
+            <para>do ustalenia</para>
+            <itemizedlist>
+              <listitem><guilabel>Żadne</guilabel></listitem>
+              <listitem><guilabel>Pionowe</guilabel></listitem>
+              <listitem><guilabel>Poziomy</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Nakładanie się<indexterm>
+        <primary>Nakładka</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Tryb</term>
+          <listitem>
+            <para>Obecnie następujące <emphasis>Tryby nakładki</emphasis> są możliwe:</para>
+            <itemizedlist>
+              <listitem><guilabel>Żadne</guilabel></listitem>
+              <listitem><guilabel>XOR</guilabel></listitem>
+              <listitem><guilabel>Mieszanka Alfa</guilabel></listitem>
+              <listitem><guilabel>Animacja mieszanki alfa</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Alfa</term>
+          <listitem>
+            <para>The <guilabel>Alfa</guilabel> suwak określa, jak silne jest mieszanie alfa
+węzłów nakładki <guilabel>Mieszanka Alfa</guilabel> lub <guilabel>Animacja
+mieszanki alfa</guilabel> jest.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Powiększanie<indexterm>
+        <primary>Powiększ</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Powiększ</term>
+          <listitem>
+            <para>Z <guilabel>Powiększ</guilabel> suwak, dzięki któremu możesz powiększać lub
+pomniejszać obrazy.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Strona</term>
+          <listitem>
+            <para>Jeśli format obrazu obsługuje wiele stron, możesz wybrać bieżącą stronę za
+pomocą <guilabel>Strona</guilabel> pole numeryczne.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+  </section>
+
+</article>

@@ -2452,36 +2452,43 @@ más detalle cómo WinMerge detecta y marca las diferencias entre líneas.</para
 
     <section>
       <title>
-Use Merge Result Pane for 2/3-way merge<indexterm>
-          <primary>Merge Result Pane</primary>
+Use el panel "Resultado de la combinación" para la combinación de dos o tres
+bandas<indexterm>
+          <primary>Panel "Resultado de la combinación"</primary>
 
-          <secondary>3-way merge configuration</secondary>
+          <secondary>configuración de combinación de tres bandas</secondary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option>: Three-way merges write the result to the target
-pane. Two-way conflict files open in the regular editable two-pane view.</para>
+<option>Desactivado</option>: las combinaciones de tres bandas escriben el
+resultado en el panel de destino. Los archivos con conflictos de dos bandas
+se abren en la vista habitual de dos paneles, en la que se puede editar el
+contenido.</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option> (default): Three-way merges use a separate Merge
-Result pane instead of modifying the target pane. Two-way conflict files
-also open with a separate Merge Result pane. Review and edit the result
-there before saving it to the target file.</para>
+<option>Habilitado</option> (por defecto): las combinaciones de tres bandas
+utilizan un panel de "Resultado de la combinación" independiente, en lugar
+de modificar el panel de destino. Los archivos con conflictos de dos bandas
+también se abren con un panel de "Resultado de la combinación"
+independiente. Revise y edite el resultado en ese panel antes de guardarlo
+en el archivo de destino.</para>
         </listitem>
       </itemizedlist>
 
       <note>
-        <title>Note about merge target pane selection</title>
+        <title>Nota sobre la selección del panel de destino de la combinación</title>
 
         <para>
-The merge target pane is determined by either the currently focused pane
-(for UI-based operations) or by the command-line options (/al, /am, /ar).
-This setting controls whether the results are written directly to the target
-pane or displayed in a separate Merge Result Pane for review.</para>
+El panel de destino de la combinación se determina en función del panel que
+tenga el foco en ese momento (para operaciones basadas en la interfaz de
+usuario) o mediante las opciones de la línea de comandos (/al, /am,
+/ar). Esta configuración controla si los resultados se escriben directamente
+en el panel de destino o se muestran en un panel de resultados de la
+combinación independiente para su revisión.</para>
       </note>
     </section>
 

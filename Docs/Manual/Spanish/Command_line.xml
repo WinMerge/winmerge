@@ -456,40 +456,43 @@ que <option>/dl</option>.</para>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /al option</secondary>
+        <primary>combinación de tres bandas</primary>
+        <secondary>combinación automática con la opción /al</secondary>
       </indexterm>
       <term><option>/al</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (merge target)  - middle
-(theirs) - right (base).</para>
+Se combina automáticamente al iniciar la aplicación con la siguiente
+disposición de paneles: izquierdo (objetivo de combinación)  - central (el
+suyo) - derecho (base).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /am option</secondary>
+        <primary>combinación de tres bandas</primary>
+        <secondary>combinación automática con la opción /am</secondary>
       </indexterm>
       <term><option>/am</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (theirs)  - middle (merge
-target) - right (mine).</para>
+Se combina automáticamente al iniciar la aplicación con la siguiente
+disposición de paneles: izquierdo (el suyo)  - central (objetivo de
+combinación) - derecho (el mío).</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <indexterm>
-        <primary>3-way merge</primary>
-        <secondary>auto-merge with /ar option</secondary>
+        <primary>combinación de tres bandas</primary>
+        <secondary>combinación automática con la opción /ar</secondary>
       </indexterm>
       <term><option>/ar</option></term>
       <listitem>
         <para>
-Auto-merges at startup with pane arrangement: left (base)  - middle (theirs)
-- right (merge target).</para>
+Se combina automáticamente al iniciar la aplicación con la siguiente
+disposición de paneles: izquierdo (base)  - central (el suyo) - derecho
+(destino de la combinación).</para>
       </listitem>
     </varlistentry>
 
@@ -736,11 +739,12 @@ ventana Comparación de archivos. Sin embargo, si guarda cualesquiera de
 estos archivos, se escribirá en la ruta de salida, dejando intactos los dos
 o tres archivos de origen.</para>
 
-        <para>In a three-way text comparison, specifying an output path also opens the
-Merge Result pane at the bottom of the File Compare window, where the merge
-result can be reviewed and edited before it is saved to the output path. See
-the Merge Result pane topic in <citetitle>Comparing and merging text
-files</citetitle>.</para>
+        <para>En una comparación de texto de tres paneles, al especificar una ruta de
+salida también se abre el panel "Resultado de la combinación" en la parte
+inferior de la ventana de comparación de archivos, donde se puede revisar y
+editar el resultado de la combinación antes de guardarlo en la ruta de
+salida. Consulte el tema sobre el panel "Resultados de la combinación" en
+<citetitle>Comparación y combinación de archivos de texto</citetitle>.</para>
 
         <para>Los sistemas de control de versiones suelen referirse a los archivos fuente
 y resultado utilizando términos como <glossterm>theirs</glossterm> (los

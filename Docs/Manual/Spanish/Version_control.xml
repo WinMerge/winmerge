@@ -29,7 +29,7 @@ iniciar una operación de WinMerge.</para>
         <para>Un archivo por lotes puede iniciar WinMerge y permitir a los usuarios
 especificar parámetros de forma interactiva:</para>
 
-        <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
+        <literallayout>iniciar "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
       </listitem>
 
       <listitem>

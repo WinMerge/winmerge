@@ -1,0 +1,2761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Plugins">
+  <title>Wtyczki<indexterm>
+      <primary>wtyczki</primary>
+    </indexterm></title>
+
+  <para>Wtyczki WinMerge to niestandardowe biblioteki DLL lub skryptlety napisane w
+interfejsie API COM, które wstępnie przetwarzają dane przed porównaniem. Na
+przykład możesz użyć wtyczki, aby wyodrębnić dane tekstowe z plików MS Word,
+aby WinMerge mógł je porównać.</para>
+  
+  <para>Każda wtyczka to:<indexterm>
+      <primary>instalowanie wtyczek</primary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para>Pojedyncza biblioteka dll lub skryptlet (<filename
+class="extension">sct</filename>) plik</para>
+    </listitem>
+
+    <listitem>
+      <para>Zainstalowany w <filename class="directory">MergePlugins</filename>
+podfolder. WinMerge może zainstalować wiele wtyczek.</para>
+    </listitem>
+
+    <listitem>
+      <para>Łatwa instalacja: Aby zainstalować wtyczkę, która nie jest uwzględniona w
+instalacji WinMerge, po prostu skopiuj plik wtyczki do <filename
+class="directory">MergePlugins</filename>. Wtyczka będzie dostępna przy
+następnym otwarciu WinMerge. W sieci można znaleźć więcej wtyczek napisanych
+przez innych programistów.</para>
+    </listitem>
+  </itemizedlist>
+
+  <section>
+    <title>Typy wtyczek</title>
+
+    <para>Wtyczki są podzielone na trzy główne kategorie:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Uzupełnienie redaktora<indexterm>
+            <primary>wtyczki uzupełniające edytora</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Ten typ wtyczki wykonuje niestandardowe operacje na zaznaczonym tekście w
+aktywnym edytorze (panelu Plik) okna Porównaj pliki.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Unpacker: przekształć plik do formatu tekstowego<indexterm>
+            <primary>wtyczki do rozpakowywania</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Ten typ wtyczki przekształca skompresowany plik do widocznego formatu
+poprzez jego dekompresję. Oryginalny plik nie ulega zmianie: tworzony jest
+tymczasowy przekształcony plik, który ładowany jest do WinMerge.</para>
+
+          <para>Wtyczki rozpakowujące działają na całych plikach, a nie na zaznaczonym
+tekście lub różnicach w plikach. Dlatego są one dostępne tylko po
+uruchomieniu porównywania plików w oknie Porównywanie folderów lub w oknie
+dialogowym Wybierz pliki lub foldery. Wtyczki rozpakowujące nie są dostępne
+w oknie Porównaj pliki.</para>
+
+          <para>Czasami rozpakowany plik można przepakować (szczegóły w <xref
+linkend="Plugins_available" /> aby sprawdzić, czy wtyczka obsługuje
+przepakowywanie). Następnie możesz scalić i zapisać przekształcony
+plik. Pakowanie odbywa się w tym przypadku automatycznie. Dla bezpieczeństwa
+sugerujemy zmianę nazwy przekształconego pliku podczas jego zapisywania.</para>
+
+          <note>
+            <para>Kiedy porównujesz foldery, WinMerge może dawać różne wyniki dla plików
+skompresowanych i nieskompresowanych. Na przykład pliki, które są identyczne
+po zdekompresowaniu, mogą się różnić, jeśli zawierają datę
+utworzenia. WinMerge stosuje narzędzie rozpakowujące we wszystkich
+sytuacjach i możesz mieć pewność, że uzyskasz ten sam wynik, porównując
+folder lub łącząc dwie wersje pliku.</para>
+          </note>
+
+          <para>Przykładowa wtyczka: <xref linkend="CompareMSExcelFiles" /> wyświetla
+zawartość tekstową a <trademark class="registered">Microsoftu</trademark>
+<application>Excela</application> plik.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Prediffer: wstępne przetwarzanie plików, aby ukryć pewne różnice<indexterm>
+            <primary>preferuj wtyczki</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Wtyczka tego typu nie działa na plikach źródłowych wyświetlanych w oknie
+Porównaj. Zamiast tego działa na tymczasowych kopiach plików, a kopie są
+następnie skanowane w celu utworzenia listy różnic.</para>
+
+          <para>Przykładowa wtyczka: <xref linkend="IgnoreColumns" /> ignoruje różnice
+wewnątrz określonych kolumn podczas wyświetlania znaków w tych kolumnach.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Sugerowane wtyczki i tryby automatyczne</title>
+
+    <para>W jaki sposób WinMerge może zastosować odpowiednią wtyczkę dla danego pliku?
+Każda wtyczka określa listę rozszerzeń plików (również wymienioną w pliku
+każdej wtyczki <xref linkend="Plugins_available" /> sekcja, pod
+<citetitle>Filtr plików</citetitle>). Rozszerzenia służą do skojarzenia
+jednego lub więcej typów plików z wtyczką: jeśli rozszerzenie porównywanego
+pliku pasuje do rozszerzenia na liście wtyczki, wtyczka jest uważana za
+<firstterm>sugerowana wtyczka. </firstterm></para>
+
+    <para>Istnieją oddzielne opcje WinMerge dla typów rozpakowywania i predyferowania,
+opisane w dalszej części tego tematu, które umożliwiają ręczne lub
+automatyczne stosowanie wtyczek. Nie ma trybu automatycznego dla wtyczek
+uzupełniających edytora.</para>
+
+    <para>Gdy zastosujesz wtyczki do wybranego pliku w trybie automatycznym, WinMerge
+przeszukuje listę sugerowanych wtyczek pod kątem tego typu pliku i stosuje
+pierwszą wtyczkę, której nazwa pasuje. Wyszukiwanie odbywa się w kolejności
+alfabetycznej, więc jeśli dla danego typu pliku sugerowanych jest wiele
+wtyczek, zastosowana zostanie tylko pierwsza znaleziona.</para>
+  </section>
+
+  <section>
+    <title>Stosowanie wtyczek</title>
+
+    <para>Poniższe podrozdziały opisują, jak zastosować każdy typ wtyczki.  Metody są
+różne dla każdego typu wtyczki, a także różnią się w zależności od tego, czy
+porównujesz foldery czy pliki.</para>
+
+    <section>
+      <title>Stosowanie wtyczek uzupełniających edytora w oknie Porównywanie plików</title>
+
+      <para>Trzymając kursor w dowolnym panelu Plik w oknie Porównaj pliki, kliknij
+<menuchoice> <guimenu>Wtyczki</guimenu> <guisubmenu>Skrypty</guisubmenu>
+</menuchoice> i wybierz jedną z tych funkcji:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><function>Make Uppercase</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Make Lowercase</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Remove Duplicate Lines</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Count Duplicate Lines</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Sort Lines Ascending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Sort Lines Descending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Reverse Columns</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Reverse Lines</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Select Columns...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Select Lines...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Replace...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Apply Filter Command...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Tokenize...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Trim Spaces</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insert Date</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insert Time</function></para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Funkcje są dodawane do <guisubmenu>Skrypty</guisubmenu> menu wg <xref
+linkend="EditorAddin" /> i <xref linkend="Plugins_datetime" /> wtyczki.</para>
+
+        <note>
+          <para>Wtyczki uzupełniające edytora nie są dostępne w oknie Porównywanie folderów.</para>
+        </note>
+      </section>
+
+      <section>
+        <title>Stosowanie wtyczek rozpakowujących w oknie Porównywanie folderów</title>
+
+      <para>Przed zastosowaniem wtyczek rozpakowujących możesz ustawić jego tryb na tryb
+automatyczny lub ręczny.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Aby ustawić tryb automatyczny dla tego typu wtyczki, kliknij <menuchoice>
+<guimenu>Wtyczki</guimenu> <guimenuitem>Automatyczne
+rozpakowywanie</guimenuitem> </menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Aby ustawić tryb ręczny, kliknij <menuchoice> <guimenu>Wtyczki</guimenu>
+<guimenuitem>Ręczne rozpakowywanie</guimenuitem> </menuchoice>.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Pamiętaj o kliknięciu <keycap>F5</keycap> , aby ponownie załadować okno
+Porównania folderów przy użyciu nowego ustawienia.</para>
+
+      <section>
+        <title>Korzystanie z trybu automatycznego</title>
+
+        <para>Aby zastosować wtyczki, gdy ustawione jest automatyczne rozpakowywanie, po
+prostu uruchom operację porównywania na pliku w oknie Porównaj
+foldery. Jeśli typ pliku sugerowany przez wtyczkę rozpakowującą (jeśli
+istnieje) wstępnie przetwarza plik, zanim WinMerge otworzy go w oknie
+Porównaj pliki.</para>
+
+        <para>Załóżmy na przykład, że klikniesz prawym przyciskiem myszy plik MS Word
+<filename>doc</filename> plik i wybierz <guimenuitem>Porównaj</guimenuitem>
+(Załóżmy również, że <xref linkend="Plugins_msword" /> wtyczka jest
+dostępna). WinMerge konwertuje plik doc (a raczej jego kopię) na zwykły plik
+tekstowy i otwiera go w oknie Porównaj pliki.</para>
+      </section>
+
+      <section>
+        <title>Korzystanie z trybu ręcznego</title>
+
+        <para>Tryb ręczny umożliwia wybranie innej wtyczki rozpakowującej niż ta, która
+została wybrana w trybie automatycznym. Możesz także uruchomić porównanie
+bez wtyczki.</para>
+
+        <para>Aby zastosować wtyczki, gdy ustawione jest ręczne rozpakowywanie:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Wybierz plik, który chcesz porównać.</para>
+          </listitem>
+
+          <listitem>
+            <para>Kliknij <menuchoice> <guimenu>Wtyczki</guimenu> <guimenuitem>Edytuj za
+pomocą Unpackera</guimenuitem> </menuchoice>.</para>
+
+            <para>Ta pozycja menu jest aktywna tylko wtedy, gdy typ wybranego pliku jest
+obsługiwany przez dostępną wtyczkę rozpakowującą.</para>
+          </listitem>
+
+          <listitem>
+            <para>W oknie dialogowym Wybierz program rozpakowujący:</para>
+
+            <xi:include href="select_unpacker.xml"
+                        xmlns:xi="http://www.w3.org/2001/XInclude"
+                        xpointer="element(select-unpacker-proc)" />
+          </listitem>
+
+          <listitem>
+            <para>Kliknij <guibutton>OK</guibutton> aby zamknąć okno dialogowe Wybierz program
+rozpakowujący i uruchomić porównywanie plików.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section>
+      <title>Stosowanie wtyczek rozpakowujących w oknie dialogowym Wybierz pliki lub
+foldery</title>
+
+      <para>Możesz użyć okna dialogowego Wybierz program rozpakowujący, aby zastosować
+wtyczkę po uruchomieniu porównywania plików w oknie dialogowym Wybierz pliki
+lub foldery. Zobacz <xref linkend="Open_paths_unpacker" /> po szczegóły.</para>
+    </section>
+
+    <section>
+      <title>Stosowanie wtyczek prediferujących w oknie Porównywanie folderów</title>
+
+      <para>W przypadku wtyczek prediffer ustawiasz tryb
+(<firstterm>&lt;Automatyczny&gt; </firstterm> lub
+<firstterm>&lt;Żadne&gt;</firstterm>) lub nazwę wtyczki dla poszczególnych
+plików. (Porównaj to z wtyczkami rozpakowującymi, w których ustawiasz tryb
+dla wszystkich plików.) Oznacza to, że niektóre pliki w tym samym folderze
+mają różne tryby preróżnicowania.</para>
+
+      <para>Aby ustawić tryb dla jednego lub większej liczby plików w oknie Porównywanie
+folderów, kliknij pliki prawym przyciskiem myszy i wybierz <menuchoice>
+<guimenu>Ustawienia wtyczki</guimenu> <guisubmenu>Ustawienia
+preferencji</guisubmenu> </menuchoice>, a następnie wybierz jedną z opcji
+podmenu:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guisubmenu>&lt;Automatyczny&gt;</guisubmenu> wybiera pierwszą wtyczkę
+predyferującą dostępną dla danego typu pliku.</para>
+        </listitem>
+
+        <listitem>
+          <para><guisubmenu>&lt;Żadne&gt;</guisubmenu> oznacza, że nie jest używana żadna
+wtyczka prediffera.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Kliknij <keycap>F5</keycap> aby zaktualizować okno.</para>
+
+      <note>
+        <para>Gdy otworzysz podfolder podczas porównania nierekurencyjnego, tryb jest
+zawsze resetowany do <guimenuitem>&lt;Żadne&gt;</guimenuitem>.</para>
+      </note>
+
+      <para>Kiedy otwierasz plik w oknie Porównywanie folderów, ustawienie wstępne dla
+tego pliku zostaje zastosowane przed otwarciem okna Porównywanie plików.</para>
+    </section>
+
+    <section>
+      <title>Stosowanie wtyczek prediferujących w oknie Porównywanie plików</title>
+
+      <para>W oknie Porównywanie plików możesz zastosować wtyczkę prediffera, klikając
+<menuchoice> <guimenu>Wtyczki</guimenu> <guisubmenu>Preferuj</guisubmenu>
+</menuchoice> i wybierając jedną z wtyczek na liście. Sugerowane wtyczki są
+wskazane na górze listy. Po zastosowaniu wtyczki pliki są ponownie
+porównywane, więc nie ma potrzeby ich ponownego skanowania.</para>
+    </section>
+
+    <section>
+      <title>Korzystanie z potoków wtyczek</title>
+
+      <para>Potoki wtyczek umożliwiają łączenie wielu wtyczek i wyrażeń filtrujących
+przy użyciu znaku potoku (<keycap>|</keycap>) jako separator.  Potoki
+wtyczek mogą być używane ze wszystkimi typami wtyczek: rozpakowującymi,
+prediferującymi i uzupełniającymi wtyczki edytora.</para>
+
+      <para>Wtyczki są określone poprzez ich nazwy. Na przykład:</para>
+
+      <synopsis>MakeUpper|Sortuj rosnąco|Zamień „AAA” „BBB”</synopsis>
+
+      <para>Wyrażenia filtrujące mogą być również używane w potokach wtyczek,
+poprzedzając je znakiem <literal>le:</literal>. Na przykład:</para>
+
+      <synopsis>MakeUpper|le:toUpper(Linia)|Sortujrosnąco</synopsis>
+
+      <para>Zobacz <xref linkend="FilterExpression_Syntax" /> dla dostępnych funkcji i
+operatorów wyrażeń filtrów.</para>
+
+      <para>Możesz określić potok wtyczki w pliku <guibutton>Wybierz Wtyczka</guibutton>
+dialogowe, wprowadzając wyrażenie potoku.</para>
+
+      <para>Gdy potok wtyczek jest już wybrany, możesz dołączyć do niego wtyczkę,
+przytrzymując klawisz <keycap>Ctrl</keycap> podczas klikania wtyczki w menu
+wyboru wtyczki.</para>
+    </section>
+  </section>
+
+  <section id="Plugins_available">
+    <title>Dostępne wtyczki<indexterm>
+        <primary>Biblioteki Visual Basic dla wtyczek</primary>
+      </indexterm><indexterm>
+        <primary>wtyczki</primary>
+
+        <secondary>Biblioteki Visual Basic</secondary>
+      </indexterm></title>
+
+    <section id="CompareEscapedJavaPropertiesFiles">
+      <title><filename>CompareEscapedJavaPropertiesFiles<indexterm>
+          <primary>Plik wtyczki CompareEscapedJavaPropertiesFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Ta wtyczka usuwa pliki Java .properties w celu łatwego przeglądania, a
+następnie ponownie je otwiera podczas zapisywania.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.properties</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="CompareMSExcelFiles">
+      <title><filename>CompareMSExcelFiles<indexterm>
+          <primary>Plik wtyczki CompareMSExcelFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Wyświetla zawartość tekstową pliku a <trademark
+class="registered">Microsoftu</trademark> <application>Excela</application>
+plik, usuwając całe formatowanie i osadzone obiekty.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.xls</filename>, <filename
+class="extension">*.xlsx</filename>, <filename
+class="extension">*.xlsm</filename>, <filename
+class="extension">*.xlsb</filename>, <filename
+class="extension">*.xla</filename>, <filename
+class="extension">*.xlax</filename>, <filename
+class="extension">*.xltx</filename>, <filename
+class="extension">*.xltm</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Tak</seg>
+
+            <seg><trademark class="registered">Microsoftu</trademark>
+<application>Excela</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_powerpnt">
+      <title><filename>CompareMSPowerPointFiles<indexterm>
+          <primary>Plik wtyczki CompareMSPowerPointFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Wyświetla zawartość tekstową pliku a <trademark
+class="registered">Microsoftu</trademark>
+<application>PowerPoint</application> plik, usuwając całe formatowanie i
+osadzone obiekty.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.ppt</filename>, <filename
+class="extension">*.pptx</filename>, <filename
+class="extension">*.pptm</filename>, <filename
+class="extension">*.ppa</filename>, <filename
+class="extension">*.ppam</filename>, <filename
+class="extension">*.pot</filename>, <filename
+class="extension">*.potx</filename>, <filename
+class="extension">*.potm</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Tak</seg>
+
+            <seg><trademark class="registered">Microsoftu</trademark>
+<application>PowerPoint</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_visio">
+      <title><filename>CompareMSVisioFiles<indexterm>
+          <primary>Porównaj plik wtyczki MSVisioFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Wyświetla zawartość tekstową pliku a <trademark
+class="registered">Microsoftu</trademark> <application>Visio</application>
+plik, usuwając całe formatowanie i osadzone obiekty.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.vsd</filename>, <filename
+class="extension">*.vsdx</filename>, <filename
+class="extension">*.vsdm</filename>, <filename
+class="extension">*.vss</filename>, <filename
+class="extension">*.vssx</filename>, <filename
+class="extension">*.vssm</filename>, <filename
+class="extension">*.vst</filename>, <filename
+class="extension">*.vstx</filename>, <filename
+class="extension">*.vstm</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Tak</seg>
+
+            <seg><trademark class="registered">Microsoftu</trademark>
+<application>Visio</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles<indexterm>
+          <primary>Plik wtyczki CompareMSWordFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Wyświetla zawartość tekstową pliku a <trademark
+class="registered">Microsoftu</trademark> <application>Słowo</application>
+plik, usuwając całe formatowanie i osadzone obiekty.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+class="extension">*.docx</filename>, <filename
+class="extension">*.docm</filename>, <filename
+class="extension">*.dot</filename>, <filename
+class="extension">*.dotx</filename>, <filename
+class="extension">*.dotm</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Tak</seg>
+
+            <seg><trademark class="registered">Microsoftu</trademark>
+<application>Słowo</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyHTML">
+      <title><filename>PrettifyHTML<indexterm>
+          <primary>Plik wtyczki PrettifyHTML</primary>
+        </indexterm></filename></title>
+
+      <para>Ładniejszy HTML dzięki schludnemu-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">schludny-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyXML">
+      <title><filename>PrettifyXML<indexterm>
+          <primary>Plik wtyczki PrettifyXML</primary>
+        </indexterm></filename></title>
+
+      <para>Ładniejszy XML z schludnym-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyXML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.xml</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">schludny-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyJSON">
+      <title><filename>PrettifyJSON<indexterm>
+          <primary>Plik wtyczki PrettifyJSON</primary>
+        </indexterm></filename></title>
+
+      <para>JSON Ładniejszy z poleceniem jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje filtra lub wiersza poleceń przekazywane do polecenia jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>Plik wtyczki PrettifyYAML</primary>
+        </indexterm></filename></title>
+
+      <para>YAML Ładniejszy z poleceniem yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje filtra lub wiersza poleceń przekazywane do polecenia yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">t.j</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyPO">
+      <title>
+<filename>PrettifyPO<indexterm>
+            <primary>Plik wtyczki PrettifyPO</primary></indexterm></filename></title>
+
+      <para>PO Ładniejsze z gettext msgcat</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyPO</command> <arg choice="opt" rep="repeat">
+<replaceable>arguments</replaceable> </arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+<option> <replaceable>arguments</replaceable> </option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia msgcat</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg>
+<filename class="extension">*.po</filename> <filename
+class="extension">*.pot</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>
+<ulink url="https://www.gnu.org/software/gettext/">pobierztekst</ulink></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </section>
+
+    <section id="Plugins_QueryCSV">
+      <title><filename>QueryCSV<indexterm>
+          <primary>Plik wtyczki QueryCSV</primary>
+        </indexterm></filename></title>
+
+      <para>Zapytanie CSV z poleceniem q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryCSV</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryTSV">
+      <title><filename>QueryTSV<indexterm>
+          <primary>Plik wtyczki QueryTSV</primary>
+        </indexterm></filename></title>
+
+      <para>Zapytanie TSV z poleceniem q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryTSV</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.tsv</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryJSON">
+      <title><filename>QueryJSON<indexterm>
+          <primary>Plik wtyczki QueryJSON</primary>
+        </indexterm></filename></title>
+
+      <para>Zapytanie JSON z poleceniem jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje filtra lub wiersza poleceń przekazywane do polecenia jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>Plik wtyczki QueryYAML</primary>
+        </indexterm></filename></title>
+
+      <para>Zapytanie YAML z poleceniem yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje filtra lub wiersza poleceń przekazywane do polecenia yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">t.j</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidateHTML">
+      <title><filename>ValidateHTML<indexterm>
+          <primary>Sprawdź poprawność pliku wtyczki HTML</primary>
+        </indexterm></filename></title>
+
+      <para>Walidator HTML z schludnym-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ValidateHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">schludny-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidatePO">
+      <title>
+<filename>ValidatePO<indexterm>
+            <primary>Sprawdź plik wtyczki ValidatePO</primary></indexterm></filename></title>
+
+      <para>Walidator PO z gettext msgfmt</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ValidatePO</command> <arg choice="opt" rep="repeat">
+<replaceable>arguments</replaceable> </arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+<option> <replaceable>arguments</replaceable> </option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia msgfmt</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg>
+<filename class="extension">*.po</filename> <filename
+class="extension">*.pot</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>
+<ulink url="https://www.gnu.org/software/gettext/">pobierztekst</ulink></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </section>
+
+    <section id="Plugins_PreviewGraphviz">
+      <title><filename>PreviewGraphviz<indexterm>
+          <primary>Plik wtyczki PreviewGraphviz</primary>
+        </indexterm></filename></title>
+
+      <para>Przeglądarka Graphviz</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewGraphviz</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazywane do polecenia kropki</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.gv</filename>, <filename
+class="extension">,*.dot</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://graphviz.org/">Grafwiz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewMarkdown">
+      <title><filename>PreviewMarkdown<indexterm>
+          <primary>Podgląd pliku wtyczki Markdown</primary>
+        </indexterm></filename></title>
+
+      <para>Przeglądarka Markdown</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewMarkdown</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia md2html</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.md</filename>, <filename
+class="extension">,*.markdown</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://github.com/mity/md4c">md4c</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewPlantUML">
+      <title><filename>PreviewPlantUML<indexterm>
+          <primary>Podgląd pliku wtyczki PlantUML</primary>
+        </indexterm></filename></title>
+
+      <para>Przeglądarka PlantUML</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewPlantUML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia plantuml.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.pu</filename>, <filename
+class="extension">,*.puml</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Jawa</ulink>,
+<ulink url="https://plantuml.com/">RoślinUML</ulink>, <ulink
+url="https://graphviz.org/">Grafwiz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ApacheTika">
+      <title><filename>ApacheTika<indexterm>
+          <primary>Plik wtyczki ApacheTika</primary>
+        </indexterm></filename></title>
+
+      <para>Ogólny ekstraktor treści za pomocą Apache Tika</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ApacheTika</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazywane do pliku tika-app.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.*</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Jawa</ulink>,
+<ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleJVM">
+      <title><filename>DisassembleJVM<indexterm>
+          <primary>Zdemontuj plik wtyczki JVM</primary>
+        </indexterm></filename></title>
+
+      <para>Deasembler kodu bajtowego JVM z javap</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazywane do polecenia javap</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Jawa</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DecompileJVM">
+      <title><filename>DecompileJVM<indexterm>
+          <primary>Dekompiluj plik wtyczki JVM</primary>
+        </indexterm></filename></title>
+
+      <para>Dekompilator Java z CFR - dekompiluje pliki .class do czytelnego kodu
+źródłowego Java</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DecompileJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazywane do dekompilatora CFR</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Jawa</ulink>,
+<ulink url="https://github.com/leibnitz27/cfr">CFR</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleIL">
+      <title><filename>DisassembleIL<indexterm>
+          <primary>Zdemontuj plik wtyczkiIL</primary>
+        </indexterm></filename></title>
+
+      <para>Deasembler kodu IL z ildasm</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleIL</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazywane do polecenia ildasm</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Studio wizualne</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleNative">
+      <title><filename>DisassembleNative<indexterm>
+          <primary>Plik wtyczki DisassembleNative</primary>
+        </indexterm></filename></title>
+
+      <para>Natywny deasembler kodu z dumpbinem</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleNative</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia dumpbin</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Studio wizualne</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeHTTP">
+      <title><filename>HandleSchemeHTTP<indexterm>
+          <primary>Plik wtyczki HandleSchemeHTTP</primary>
+        </indexterm></filename></title>
+
+      <para>Obsługa schematu adresu URL HTTP/HTTPS przy użyciu curl</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeHTTP</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazane do polecenia curl</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Obsługa adresów URL</seg>
+
+            <seg>^http://.*$, ^https://.*$</seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg><ulink url="https://curl.se/">zwijać się</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeReg">
+      <title><filename>HandleSchemeReg<indexterm>
+          <primary>Plik wtyczki HandleSchemeReg</primary>
+        </indexterm></filename></title>
+
+      <para>Program obsługi schematu adresu URL rejestru systemu Windows przy użyciu
+programu reg.exe</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeReg</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazywane do polecenia reg.exe</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Obsługa adresów URL</seg>
+
+            <seg>^rej:.*$</seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Okna</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_HandleSchemeClipboard">
+      <title><filename>HandleSchemeClipboard<indexterm>
+          <primary>Plik wtyczki HandleSchemeClipboard</primary>
+        </indexterm></filename></title>
+
+      <para>Obsługa schematu URL schowka przy użyciu Cliphcat</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>HandleSchemeClipboard</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Opcje wiersza poleceń przekazywane do polecenia kliphcat</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Obsługa adresów URL</seg>
+
+            <seg>^clip://.*$, ^schowek://.*$</seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>klipcat</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ExecFilterCommand">
+      <title><filename>ExecFilterCommand<indexterm>
+          <primary>Plik wtyczki ExecFilterCommand</primary>
+        </indexterm></filename></title>
+
+      <para>Stosuje polecenie filtra</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ExecFilterCommand</command> <arg choice="opt"
+rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>command</replaceable></option></term>
+          <listitem>
+            <para>polecenie do wykonania. %1 w poleceniu zostaje zastąpione nazwą pliku</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeUpper">
+      <title><filename>MakeUpper<indexterm>
+          <primary>Plik wtyczki MakeUpper</primary>
+        </indexterm></filename></title>
+
+      <para>Tworzy wielkie litery</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeLower">
+      <title><filename>MakeLower<indexterm>
+          <primary>Plik wtyczki MakeLower</primary>
+        </indexterm></filename></title>
+
+      <para>Tworzy małe litery</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_RemoveDuplicates">
+      <title><filename>RemoveDuplicates<indexterm>
+          <primary>Plik wtyczki RemoveDuplicates</primary>
+        </indexterm></filename></title>
+
+      <para>Usuwa zduplikowane linie</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_CountDuplicates">
+      <title><filename>CountDuplicates<indexterm>
+          <primary>CountDuplicates plik wtyczki</primary>
+        </indexterm></filename></title>
+
+      <para>Zlicza zduplikowane linie</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortAscending">
+      <title><filename>SortAscending<indexterm>
+          <primary>SortujAscending plik wtyczki</primary>
+        </indexterm></filename></title>
+
+      <para>Sortuje linie rosnąco</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortDescending">
+      <title><filename>SortDescending<indexterm>
+          <primary>SortujDescending plik wtyczki</primary>
+        </indexterm></filename></title>
+
+      <para>Sortuje linie malejąco</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseColumns">
+      <title><filename>ReverseColumns<indexterm>
+          <primary>Plik wtyczki ReverseColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Odwraca kolumny</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseLines">
+      <title><filename>ReverseLines<indexterm>
+          <primary>Plik wtyczki ReverseLines</primary>
+        </indexterm></filename></title>
+
+      <para>Odwraca linie</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectColumns">
+      <title><filename>SelectColumns<indexterm>
+          <primary>Plik wtyczki SelectColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Wybiera niektóre kolumny</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg choice="opt"
+rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-g</option></arg>
+<arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+<arg><option>-F</option> <replaceable>fixed string</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>lista zakresów kolumn do wyboru. (np. -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>wyrażenie regularne</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>wybierz niepasujące kolumny</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>zignoruj wielkość liter</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-g</option></term>
+          <listitem>
+            <para>włącz flagę globalną</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>używać <replaceable>patterns</replaceable> do dopasowania</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>użyj stałego ciągu do dopasowania</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectLines">
+      <title><filename>SelectLines<indexterm>
+          <primary>Plik wtyczki SelectLines</primary>
+        </indexterm></filename></title>
+
+      <para>Wybiera niektóre linie</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg choice="opt"
+rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-e</option>
+<replaceable>patterns</replaceable></arg> <arg><option>-F</option>
+<replaceable>fixed string</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>lista zakresów linii do wyboru. (np. -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>wyrażenie regularne</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>wybierz niepasujące linie</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>zignoruj wielkość liter</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>używać <replaceable>patterns</replaceable> do dopasowania</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-F</option></term>
+          <listitem>
+            <para>użyj stałego ciągu do dopasowania</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Replace">
+      <title><filename>Replace<indexterm>
+          <primary>Zastąp plik wtyczki</primary>
+        </indexterm></filename></title>
+
+      <para>Zastępuje tekst innym tekstem</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Replace</command> <arg><option>-i</option></arg>
+<arg><option>-e</option></arg> <arg
+rep="norepeat"><replaceable>text_to_find</replaceable></arg> <arg
+rep="norepeat"><replaceable>text_to_replace</replaceable></arg></cmdsynopsis>
+
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>text_to_find</replaceable></option></term>
+          <listitem>
+            <para>tekst do znalezienia</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>text_to_replace</replaceable></option></term>
+          <listitem>
+            <para>tekst do zastąpienia</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>zignoruj wielkość liter (tylko dla -e)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>potraktuj określony tekst jako wyrażenie regularne</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Tokenize">
+      <title><filename>Tokenize<indexterm>
+          <primary>Tokenizuj plik wtyczki</primary>
+        </indexterm></filename></title>
+
+      <para>Tokenizuje wybór</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Tokenize</command> <arg
+rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>wyrażenie regularne do tokenizacji. (np. [^\w]+)</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Trim">
+      <title><filename>Trim<indexterm>
+          <primary>Przytnij plik wtyczki</primary>
+        </indexterm></filename></title>
+
+      <para>Przytnij spacje</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Pakowanie</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Zależność</segtitle>
+
+          <seglistitem>
+            <seg>Rozpakowujący</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+
+            <seg>Host skryptów systemu Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="IgnoreColumns">
+      <title><filename>IgnoreColumns<indexterm>
+          <primary>Plik wtyczki IgnoreColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Ta wtyczka ignoruje znaki w określonych kolumnach. Pierwsza kolumna ma numer
+1.</para>
+
+      <para>Pamiętaj, że ta wtyczka nie obsługuje plików z tabulatorami: wtyczka nie
+zawodzi, ale wszystkie tabulatory są traktowane jak normalne znaki.</para>
+
+      <para>Aby określić kolumny, użyj okna ustawień wtyczki lub zmień nazwę
+<filename>dll</filename> używając następujących pól jako parametrów:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Separatory pomiędzy zakresami: _ lub ,</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Ograniczniki między wartością minimalną i maksymalną: <emphasis>cokolwiek
+innego</emphasis></simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Min. i maks. są uwzględnione.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Gdy max = min, max można pominąć.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <example>
+        <title><filename>IgnoreColumns</filename> przykłady</title>
+
+<variablelist>
+          <varlistentry>
+            <term><filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename></term>
+
+            <listitem>
+              <simpara>Zignoruj wszystkie znaki w kolumnie 3 oraz w kolumnach od 10 do 20 i od 32
+do 33.</simpara>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
+
+            <listitem>
+              <simpara>Zignoruj wszystkie znaki w kolumnie 1 i kolumnach od 30 do 40.</simpara>
+            </listitem>
+          </varlistentry>
+        </variablelist></example>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <seglistitem>
+            <seg>Preferuj</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Tak</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreCommentsC<indexterm>
+          <primary>Plik wtyczki IgnoreCommentsC</primary>
+        </indexterm></filename></title>
+
+      <para>Wtyczka ignoruje komentarze wewnątrz<constant> //</constant>... i
+<constant>/*</constant> ... <constant>*/</constant> ograniczniki w plikach
+C, C++, PHP i JavaScript.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <seglistitem>
+            <seg>Preferuj</seg>
+
+            <seg><filename class="extension">*.cpp</filename>, <filename
+class="extension">*.cxx</filename>, <filename
+class="extension">*.h</filename>, <filename
+class="extension">*.hxx</filename>, <filename
+class="extension">*.c</filename>, <filename
+class="extension">*.php</filename>, <filename
+class="extension">*.js</filename>, <filename
+class="extension">*.cs</filename>, <filename
+class="extension">*.ts</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsComma<indexterm>
+          <primary>Plik wtyczki IgnoreFieldsComma</primary>
+        </indexterm></filename></title>
+
+      <para>Ta wtyczka jest przeznaczona dla plików z polami i przecinkami jako
+ogranicznikami (na przykład pliki CSV). Ignoruje znaki
+rozdzielające. Pierwsze pole ma numer 1.</para>
+
+      <para>Aby określić ograniczniki, użyj okna ustawień wtyczki lub zmień nazwę pliku
+<filename>dll</filename> przy użyciu tych samych pól parametrów, które są
+używane <xref linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <seglistitem>
+            <seg>Preferuj</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Tak</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsTab<indexterm>
+          <primary>Plik wtyczki IgnoreFieldsTab</primary>
+        </indexterm></filename></title>
+
+      <para>Ta wtyczka jest przeznaczona dla plików, które używają pól i tabulatorów
+jako ograniczników (<application>na przykład Excela</application> pliki
+zapisane w formacie <filename class="extension">*.txt</filename>
+formacie). Ignoruje znaki rozdzielające. Pierwsze pole ma numer 1.</para>
+
+      <para>Aby określić ograniczniki, użyj okna ustawień wtyczki lub zmień nazwę pliku
+<filename>dll</filename> przy użyciu tych samych pól parametrów, które są
+używane <xref linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <seglistitem>
+            <seg>Preferuj</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Tak</seg>
+
+            <seg>Tak</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreLeadingLineNumbers<indexterm>
+          <primary>Plik wtyczki IgnoreLeadingLineNumbers</primary>
+        </indexterm></filename></title>
+
+      <para>Ta wtyczka ignoruje numery wiodących linii w plikach tekstowych (na przykład
+plikach NC i BASIC).</para>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Argumenty wtyczki</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <segtitle>Wymaganie</segtitle>
+
+          <seglistitem>
+            <seg>Preferuj</seg>
+
+            <seg><filename class="extension">*.nc</filename></seg>
+
+            <seg>Nie</seg>
+
+            <seg>Nie</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="EditorAddin">
+      <title><filename>editor addin<indexterm>
+          <primary>plik wtyczki dodatku edytora</primary>
+        </indexterm></filename></title>
+
+      <para>Dodaje pewne funkcje do <menuchoice> <guimenu>Wtyczki</guimenu>
+<guisubmenu>Skrypty</guisubmenu> </menuchoice> menu:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>Zrób wielkie litery</guimenuitem> przekonwertuj zaznaczenie na
+WIELKIE LITERY.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Utwórz małe litery</guimenuitem> przekonwertuj zaznaczenie na
+małe litery.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Usuń zduplikowane linie</guimenuitem> usuń zduplikowane linie w
+zaznaczeniu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Policz zduplikowane linie</guimenuitem> usuń zduplikowane linie
+w zaznaczeniu i wstaw liczbę zduplikowanych linii po prawej stronie.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Sortuj linie rosnąco</guimenuitem> posortuj zaznaczenie w
+kolejności rosnącej.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Sortuj linie malejąco</guimenuitem> posortuj zaznaczenie w
+kolejności malejącej.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Odwrócone kolumny</guimenuitem> odwróć kolumny w zaznaczeniu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Linie odwrotne</guimenuitem> odwróć linie w zaznaczeniu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Wybierz kolumny...</guimenuitem> wybierz niektóre kolumny w
+zaznaczeniu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Wybierz linie...</guimenuitem> wybierz kilka linii w
+zaznaczeniu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Wymień...</guimenuitem> zastąp tekst w zaznaczeniu innym
+tekstem.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Zastosuj polecenie filtra...</guimenuitem> zastąp zaznaczenie
+danymi wyjściowymi określonego polecenia filtrującego.  Określanie %1 w
+argumencie polecenia filter zastępuje go nazwą pliku aktywnego panelu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Tokenizuj...</guimenuitem> zastępuje ogranicznik tokenu znakiem
+nowej linii w zaznaczeniu.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Przytnij spacje</guimenuitem> usuń spacje na początku i na
+końcu linii w zaznaczeniu.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+          <segtitle>Filtr plików</segtitle>
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <seglistitem>
+            <seg>Uzupełnienie redaktora</seg>
+            <seg>*</seg>
+            <seg>Nie</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_datetime">
+      <title><filename>insert datetime<indexterm>
+          <primary>wstaw plik wtyczki datetime</primary>
+        </indexterm></filename></title>
+
+      <para>Dodaje dwie funkcje do <menuchoice> <guimenu>Wtyczki</guimenu>
+<guisubmenu>Skrypty</guisubmenu> </menuchoice> menu:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>Wstaw datę</guimenuitem> wstaw datę w bieżącym formacie
+ustawień regionalnych.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Wstaw czas</guimenuitem> wstaw czas w bieżącym formacie
+ustawień regionalnych.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>Kategoria</segtitle>
+
+          <segtitle>Filtr plików</segtitle>
+
+          <segtitle>Obsługa okna dialogowego ustawień</segtitle>
+
+          <seglistitem>
+            <seg>Uzupełnienie redaktora</seg>
+
+            <seg>*</seg>
+
+            <seg>Nie</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+  </section>
+
+  <section>
+    <title>Wymagania<indexterm>
+        <primary>wtyczki</primary>
+
+        <secondary>Wymagania dotyczące hosta skryptów systemu Windows</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>Host skryptów systemu Windows</title>
+
+      <para>Niektóre wtyczki uzupełniające edytora wymagają tego opcjonalnego komponentu
+<trademark class="registered">Microsoftu</trademark>.</para>
+
+      <para>Powinien być już zawarty w twojej wersji systemu Windows, chyba że używasz
+naprawdę starej wersji sprzed systemu Windows XP.</para>
+    </section>
+  </section>
+</article>

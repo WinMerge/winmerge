@@ -676,11 +676,11 @@ noms de fichiers sans les chemins.</para>
 
       <para>Pour protéger les fichiers et les dossiers de l'un des côtés d'une
 comparaison contre les modifications, cochez la case <menuchoice>
-<guimenu>Fichier</guimenu> <guimenuitem>Panneau Gauche en lecture
+<guimenu>Fichier</guimenu> <guimenuitem>Volet Gauche en lecture
 seule</guimenuitem> </menuchoice>, <menuchoice> <guimenu>Fichier</guimenu>
-<guimenuitem>Panneau Milieu en lecture seule</guimenuitem> </menuchoice> ou
-<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Panneau Droite en
-lecture seule</guimenuitem> </menuchoice>.</para>
+<guimenuitem>Volet Milieu en lecture seule</guimenuitem> </menuchoice> ou
+<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Volet Droite en lecture
+seule</guimenuitem> </menuchoice>.</para>
 
       <important>
         <para>L'activation de l'option de lecture seule protège les fichiers et les
@@ -695,7 +695,7 @@ les comparer, le fichier ouvert du côté protégé sera protégé en écriture.
 même, vous ne pouvez pas copier un fichier du côté non protégé vers le côté
 protégé.</para>
 
-      <para>Le code <guilabel>LS</guilabel> dans le panneau du côté gauche, du milieu ou
+      <para>Le code <guilabel>LS</guilabel> dans le volet du côté gauche, du milieu ou
 du côté droit de la barre d'état (près du coin inférieur droit de la
 fenêtre) indique que le côté est actuellement en lecture seule.</para>
     </section>

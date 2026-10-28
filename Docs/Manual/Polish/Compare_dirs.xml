@@ -1,0 +1,1263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_dirs">
+  <title>Porównywanie i łączenie folderów<indexterm>
+      <primary>porównywanie folderów</primary>
+    </indexterm></title>
+
+  <para>W tym temacie opisano sposób porównywania i scalania folderów przy użyciu
+okna Porównywanie folderów.</para>
+
+  <section id="Compare_dirs_starting">
+    <title>Rozpoczynanie operacji porównywania folderów</title>
+
+    <para>Operację porównywania folderów można rozpocząć w oknie WinMerge lub w oknie
+wiersza poleceń.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z okna WinMerge</term>
+
+        <listitem>
+          <para>Kliknij <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Otwórz</guimenuitem> </menuchoice>. Użyj okna dialogowego
+Wybierz pliki lub foldery, aby określić lewy i prawy folder do
+porównania. Domyślnie porównanie obejmuje wszystkie pliki w folderach i jest
+rekurencyjne (obejmuje podfoldery). Aby zmienić dowolną z tych opcji i
+uzyskać więcej informacji na temat okna dialogowego Wybierz pliki lub
+folder, zobacz <xref linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z okna wiersza poleceń</term>
+
+        <listitem>
+          <para>Biegnij <command>WinMergeU.exe</command>, który znajduje się w katalogu
+instalacyjnym WinMerge. W argumentach poleceń uwzględnij lewy i prawy folder
+do porównania. Domyślnie porównanie obejmuje wszystkie pliki w folderach i
+nie jest rekurencyjne. Aby zmienić dowolną z tych opcji i uzyskać informacje
+na temat innych opcji poleceń, zobacz <xref linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <tip>
+      <title>Wskazówki</title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Tryb rekurencyjny<indexterm>
+              <primary>porównanie folderów rekurencyjnych</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Tryb rekurencyjny jest przydatny do wykrywania i manipulowania różnymi
+plikami w całej strukturze folderów. Jednak może to być powolne, jeśli
+istnieje wiele podfolderów i plików. W przypadku głęboko zagnieżdżonych
+struktur katalogów rozważ włączenie opcji <xref
+linkend="Compare_dirs_treeview" /> dla łatwiejszej nawigacji w oknie
+Porównaj.</para>
+
+            <para>Tryb nierekurencyjny ma tę zaletę, że jest szybki, gdy istnieje wiele
+podfolderów, których nie trzeba sprawdzać. Ponadto wyświetlacz może być
+łatwiejszy w zarządzaniu, ponieważ pokazuje elementy tylko w wybranych
+folderach.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Szybkie porównania treści</term>
+
+          <listitem>
+            <para>The <guilabel>Szybka zawartość</guilabel> metoda porównywania plików opisana
+w <xref linkend="Configuration" />, może być przydatny przy porównywaniu
+dużych plików binarnych; i jest automatycznie używany do porównywania plików
+większych niż 4 MB. Możliwą wadą jest to, że filtry liniowe nie działają, a
+w oknie porównywania folderów nie ma informacji o liczbie różnic. W
+większości przypadków nie powinno to mieć znaczenia, ponieważ tak duże pliki
+są zwykle binarne.</para>
+
+            <para>Aby użyć tej metody, skonfiguruj ją przed operacją porównywania: na stronie
+Porównaj opcji WinMerge kliknij <guilabel>Metoda porównywania
+plików</guilabel> menu rozwijane i wybierz <guimenuitem>Szybka
+zawartość</guimenuitem>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Dla zaawansowanych użytkowników</term>
+
+          <listitem>
+            <para>Możesz zmienić limit rozmiaru pliku 4 MB dla <guilabel>Porównaj według
+szybkiej zawartości</guilabel>, na przykład jeśli masz dużo bardzo dużych
+plików tekstowych. Aby to zrobić, uruchom plik Windows
+<command>regedit</command> polecenie, przejdź do tego słowa kluczowego i
+zmodyfikuj jego wartość: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>Jak zwykle
+zachowaj ostrożność podczas edycji rejestru!</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </tip>
+
+    <section>
+      <title>Okno postępu porównywania folderów<indexterm>
+          <primary>Okno postępu porównywania folderów</primary>
+        </indexterm></title>
+
+      <para>Po rozpoczęciu operacji porównywania folderów WinMerge wyświetla następujące
+okno stanu:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/foldercmp_progress.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Okno postępu porównywania folderów</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>Jeśli operacja porównywania jest szybka, możesz nie zauważyć okna Postępu,
+które zamyka się natychmiast po wyświetleniu przez WinMerge wyniku
+porównania folderów. Okno Postęp pokazuje liczbę plików i folderów, które
+mają zostać uwzględnione w operacji, oraz liczbę porównaną do tej
+pory. Pasek postępu graficznie przedstawia porównywane elementy.</para>
+
+      <note>
+        <para>Ponieważ porównywane pliki mają zazwyczaj różne rozmiary, dane o statusie
+nie wskazują czasu wykorzystanego ani pozostałego. Na przykład stosunek
+50/100 nie musi koniecznie oznaczać, że upłynęła połowa czasu operacji
+porównywania.</para>
+      </note>
+
+      <para><!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
+I get the partial list, but no Abort indicator.-->
+Możesz kliknąć <guibutton>Zatrzymaj się</guibutton> aby zakończyć operację w
+dowolnym momencie przed zakończeniem operacji porównywania. Wyświetlone
+zostanie okno Porównywanie folderów z wynikami obliczonymi w tym czasie, z
+pominięciem wszelkich nieukończonych wyników.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_window">
+    <title>Okno porównywania folderów<indexterm>
+        <primary>Okno porównywania folderów</primary>
+
+        <seealso>Porównaj okno</seealso>
+      </indexterm><indexterm>
+        <primary>Porównaj okno</primary>
+
+        <secondary>Folder</secondary>
+      </indexterm><indexterm>
+        <primary>podfoldery</primary>
+
+        <secondary>w oknie Porównywanie folderów</secondary>
+      </indexterm></title>
+
+    <para>Okno Porównywanie folderów pokazuje wynik porównania folderów. Dostępne są
+dwa różne widoki:</para>
+
+    <variablelist>
+      <varlistentry id="Compare_dirs_tabview">
+        <term>Widok tabelaryczny<indexterm>
+            <primary>widok tabelaryczny, okno Porównaj</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>W widoku tabelarycznym każdy plik lub folder w wynikach jest wyświetlany w
+wierszu. To jest widok domyślny. Oto przykład:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="Compare_dirs_treeview">
+        <term remap="" xreflabel="widok na drzewo">Widok na drzewo<indexterm>
+            <primary>widok drzewa, okno Porównaj</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>W widoku drzewa foldery można rozwijać i zwijać, a zawierają one pliki i
+podfoldery. Widok drzewa jest dostępny tylko w przypadku porównań
+rekurencyjnych. Na przykład:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="599"
+fileref="screenshots/treeview-01.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Aby rozwinąć lub zwinąć pojedynczy folder, kliknij kontrolkę plusa lub
+minusa obok ikony folderu lub kliknij dwukrotnie dowolne miejsce w wierszu.</para>
+            </listitem>
+
+            <listitem>
+              <para>Aby rozwinąć lub zwinąć wszystkie foldery w widoku, kliknij <menuchoice>
+<guimenu>Zobacz</guimenu> <guimenuitem>Rozwiń podfoldery</guimenuitem>
+<guimenuitem>Wszystkie podfoldery</guimenuitem> </menuchoice> lub
+<menuchoice> <guimenu>Zobacz</guimenu> <guimenuitem>Zwiń wszystkie
+podfoldery</guimenuitem> </menuchoice> w menu.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Podczas porównania rekurencyjnego (to znaczy, jeśli włączyłeś opcję
+<option>Include subfolders</option> opcję w oknie dialogowym Wybierz pliki
+lub foldery po uruchomieniu porównania), możesz kliknąć <menuchoice>
+<guimenu>Zobacz</guimenu> <guimenuitem>Tryb drzewa</guimenuitem>
+</menuchoice> polecenie przełączania pomiędzy dwoma widokami. The
+<menuchoice> <guimenu>Zobacz</guimenu> <guimenuitem>Tryb
+drzewa</guimenuitem> </menuchoice> polecenie jest wyłączone dla porównań
+nierekurencyjnych.</para>
+
+    <para>W obu widokach kolumny pokazują różne typy danych dla każdego elementu
+wyniku. Możesz kontrolować sortowanie elementów w widoku, klikając nagłówek
+kolumny. Zmienia to sortowanie na dwa sposoby:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Przełącza (odwraca) porządek sortowania kolumny.</para>
+      </listitem>
+
+      <listitem>
+        <para>Odwołuje wszystkie wiersze w widoku według kolumny.</para>
+      </listitem>
+    </itemizedlist>
+
+    <section>
+      <title>Wyniki porównania rekurencyjnego i nierekurencyjnego<indexterm>
+          <primary>porównanie folderów rekurencyjnych</primary>
+
+          <secondary>widok wyników</secondary>
+        </indexterm><indexterm>
+          <primary>porównanie folderów nierekurencyjnych</primary>
+
+          <secondary>widok wyników</secondary>
+        </indexterm></title>
+
+      <para>Okno Porównywanie folderów wygląda i zachowuje się nieco inaczej w przypadku
+porównań rekurencyjnych i nierekurencyjnych:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Porównanie folderów rekurencyjnych</term>
+
+          <listitem>
+            <para>Wynik porównania uwzględnia wszystkie podfoldery. Możesz kontrolować typy
+elementów wyświetlanych w folderach, wybierając opcje w menu
+<guimenu>Zobacz</guimenu> menu (np. <guimenuitem>Pokaż identyczne
+elementy</guimenuitem>). Kolumna Folder jest zawsze pusta: wyświetlane są
+tylko pliki znajdujące się w folderach. Aby zobaczyć podfolder elementu,
+spójrz na jego ścieżkę w kolumnie Wynik porównania. Foldery istniejące tylko
+po jednej stronie zostaną wyświetlone, jeśli jeden z nich
+<guimenu>Zobacz</guimenu> opcje menu, <guimenuitem>Pokaż lewe unikalne
+pliki</guimenuitem>, <guimenuitem>Pokaż środkowe unikalne pliki
+</guimenuitem> lub <guimenuitem>Pokaż odpowiednie unikalne
+pliki</guimenuitem>, jest włączone.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Porównanie folderów nierekursywnych</term>
+
+          <listitem>
+            <para>Wynik zawiera tylko pliki i podfoldery znajdujące się na najwyższym poziomie
+wybranych folderów. Możesz jednak przejść do dowolnego podfolderu, który
+chcesz porównać.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Ikony plików i folderów<indexterm>
+          <primary>ikony</primary>
+
+          <secondary>Okno porównywania folderów</secondary>
+        </indexterm></title>
+
+      <para>W oknie Porównaj foldery pliki i foldery są porównywane i dzielone na kilka
+kategorii. W każdym wierszu kategoria jest wyraźnie oznaczona w lewej
+kolumnie za pomocą jednej z następujących ikon:</para>
+
+      <simplelist>
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/equaltextfile.png" format="PNG" /> </imageobject></inlinemediaobject> Identyczne pliki tekstowe</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/binary.png"
+format="PNG" /> </imageobject></inlinemediaobject> Identyczne pliki binarne</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/equal.png"
+format="PNG" /> </imageobject></inlinemediaobject> Identyczne pliki (typ
+nieokreślony)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/notequaltextfile.png" format="PNG" /> </imageobject></inlinemediaobject> Różne pliki tekstowe</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/binarydiff.png" format="PNG" /> </imageobject></inlinemediaobject> Różne pliki binarne</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/notequal.png" format="PNG" /> </imageobject></inlinemediaobject> Różne pliki (typ
+nieokreślony)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/foldersame.png" format="PNG" /> </imageobject></inlinemediaobject> Identyczne foldery (tylko w
+widoku drzewa)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/folderdiff.png" format="PNG" /> </imageobject></inlinemediaobject> Różne foldery (tylko w widoku
+drzewa)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/lfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject> Foldery tylko po lewej
+stronie</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/mfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject> Foldery tylko środkowe</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/rfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject> Foldery tylko po prawej
+stronie</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/lfile.png"
+format="PNG" /> </imageobject></inlinemediaobject> Pliki tylko po lewej stronie</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/mfile.png"
+format="PNG" /> </imageobject></inlinemediaobject> Pliki tylko środkowe</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/rfile.png"
+format="PNG" /> </imageobject></inlinemediaobject> Pliki tylko po prawej stronie</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/folderskip.png" format="PNG" /> </imageobject></inlinemediaobject> Pominięte (filtrowane)
+katalogi</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/fileskip.png" format="PNG" /> </imageobject></inlinemediaobject> Pominięte (filtrowane) pliki</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/error.png"
+format="PNG" /> </imageobject></inlinemediaobject> Przedmioty, których nie można
+porównać; na przykład, gdy inny program zablokował plik.</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/aborted.png"
+format="PNG" /> </imageobject></inlinemediaobject> Przerwany element. WinMerge
+nie zakończył porównywania tego elementu, gdy porównanie zostało
+zatrzymane. Wynik jest nieznany.</member>
+      </simplelist>
+    </section>
+
+    <section>
+      <title>Poruszanie się po oknie Porównywanie folderów</title>
+
+      <indexterm>
+        <primary>funkcje nawigacji</primary>
+
+        <secondary>porównanie folderów</secondary>
+      </indexterm>
+
+      <para>Możesz także używać myszy <link linkend="Shortcut_keys">klawiatura</link> i
+skróty menu kontekstowego umożliwiające nawigację w oknie Porównywanie
+folderów. Można także używać przycisków paska narzędzi.  Na przykład
+<inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+            <phrase>Przycisk Następna różnica</phrase>
+          </textobject>
+        </inlinemediaobject> <guimenuitem>Następna
+różnica</guimenuitem> przycisk znajduje następny inny plik lub folder i
+wybiera go.</para>
+
+      <note>
+        <para>Nawigacja po unikalnych plikach i folderach odbywa się w taki sam sposób,
+jak po innych.</para>
+      </note>
+
+      <para>Możesz wybrać wiele plików i folderów. Jednak niektóre operacje (np
+<command>Rename</command>) nie są dostępne w przypadku wielokrotnego wyboru.</para>
+
+      <para>Użyj przycisków nawigacyjnych (<guibutton>Następna różnica</guibutton>,
+<guibutton>Poprzednia różnica</guibutton>itd.), aby przejrzeć różnice w
+porównywanych plikach. Użyj funkcji WinMerge do łączenia zawartości poprzez
+kopiowanie, przenoszenie lub usuwanie jednego lub większej liczby plików lub
+podfolderów.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_fileops">
+    <title>Operacje na plikach w porównaniu folderów<indexterm>
+        <primary>operacje na plikach</primary>
+
+        <secondary>w oknie Porównywanie folderów</secondary>
+      </indexterm><indexterm>
+        <primary>Okno porównywania folderów</primary>
+
+        <secondary>operacje na plikach</secondary>
+      </indexterm></title>
+
+    <para>Okno Porównywanie folderów obsługuje typowe operacje na plikach, takie jak
+edycja, kopiowanie, usuwanie, przenoszenie i zmiana nazwy (przenoszenie jest
+równoznaczne z operacją kopiowania, po której następuje usunięcie). Możesz
+użyć tych operacji na plikach i niektórych specjalnych funkcji WinMerge, aby
+scalić zawartość folderów. Pliki można także otwierać za pomocą powiązanych
+programów lub zewnętrznych edytorów.</para>
+
+    <para>Najwygodniejszym sposobem wykonania większości tych zadań jest kliknięcie
+prawym przyciskiem myszy jednego lub większej liczby elementów i
+skorzystanie z menu kontekstowego, w którym dostępne są wszystkie operacje
+na plikach.</para>
+
+    <section>
+      <title>Kopiowanie plików<indexterm>
+          <primary>kopiowanie plików</primary>
+
+          <secondary>w oknie Porównywanie folderów</secondary>
+        </indexterm></title>
+
+      <para>Najczęstszą operacją na plikach w oknie Porównywanie folderów jest
+kopiowanie plików z boku na bok. Istnieje kilka form funkcji kopiowania
+WinMerge: wszystkie kopiują tylko różne pliki, ponieważ kopiowanie
+identycznych plików nie ma sensu podczas scalania. Funkcje kopiowania
+dostępne są w menu kontekstowym, w menu WinMerge oraz na pasku narzędzi:</para>
+
+      <section>
+        <title>Menu kontekstowe Kopiuj skróty</title>
+
+        <para>W menu kontekstowym okna Porównywanie folderów plik
+<guimenuitem>Kopiuj</guimenuitem> pozycja posiada podmenu z czterema
+skrótami:</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="526"
+fileref="screenshots/ctx_menu_copy1.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Okno Porównaj foldery Kopiuj menu kontekstowe</phrase>
+          </textobject>
+        </mediaobject>
+
+        <itemizedlist>
+          <listitem>
+            <para><guimenuitem>Od lewej do prawej</guimenuitem> i <guimenuitem>Od prawej do
+lewej</guimenuitem> skopiuj zaznaczenie (lub tylko elementy zaznaczenia,
+które można skopiować) z jednej strony na drugą. W przykładzie przyrostek
+<guilabel>(2 z 4)</guilabel> wskazuje, że skopiowane zostaną tylko dwa różne
+pliki; identyczne pliki nie będą. Skróty te są dostępne tylko wtedy, gdy
+którykolwiek z wybranych plików jest inny: jeśli wybierzesz tylko identyczne
+pliki, skróty będą niedostępne.</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenuitem>Pozostało do...</guimenuitem> i <guimenuitem>Prawo
+do...</guimenuitem> umożliwiają określenie docelowego katalogu kopii w
+systemie zamiast porównywanego folderu. Po otwarciu okna dialogowego
+Przeglądaj w poszukiwaniu folderu przejdź do katalogu docelowego w systemie
+(lub utwórz nowy folder docelowy) i kliknij <guibutton>OK</guibutton>.</para>
+          </listitem>
+        </itemizedlist>
+        <para>W oknie Porównanie folderów z trzema folderami plik
+<guimenuitem>Kopiuj</guimenuitem> pozycja posiada podmenu z dziewięcioma
+skrótami:</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="410"
+fileref="screenshots/ctx_menu_copy2.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Okno Porównaj foldery Kopiuj menu kontekstowe</phrase>
+          </textobject>
+        </mediaobject>
+
+      </section>
+
+      <section>
+        <title>Pasek narzędzi i menu Kopiuj polecenia</title>
+
+        <para>Na pasku narzędzi Porównaj foldery, <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+              <phrase>Kopiuj prawy przycisk</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>Kopiuj w prawo</guibutton> i <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+              <phrase>Kopiuj lewy przycisk</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>Kopiuj w lewo</guibutton>
+wykonać to samo zadanie co <guimenuitem>Od lewej do prawej</guimenuitem> i
+<guimenuitem>Od prawej do lewej</guimenuitem> skróty menu kontekstowego:
+kopiują na boki tylko te pliki, które można skopiować. Jednakże te polecenia
+nie wyświetlają bezpośrednio liczby plików do skopiowania; zamiast tego
+wyświetlają okno dialogowe potwierdzenia, w którym można sprawdzić listę
+ścieżek plików źródłowych i docelowych.</para>
+
+        <para>W menu WinMerge <menuchoice> <guimenu>Połącz</guimenu> <guimenuitem>Kopiuj w
+prawo</guimenuitem> </menuchoice> i <menuchoice> <guimenu>Połącz</guimenu>
+<guimenuitem>Kopiuj do lewej</guimenuitem> </menuchoice> zachowują się w
+taki sam sposób, jak polecenia Kopiuj na pasku narzędzi.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Usuwanie plików<indexterm>
+          <primary>usuwanie plików</primary>
+
+          <secondary>w oknie Porównywanie folderów</secondary>
+        </indexterm></title>
+
+      <para>Możesz skorzystać z <guimenuitem>Usuń</guimenuitem> element menu
+kontekstowego, aby usunąć wybrane elementy z jednej lub wszystkich
+stron. Podobnie jak inne operacje na plikach,
+<guimenuitem>Usuń</guimenuitem> ma podmenu z
+<guimenuitem>Lewy</guimenuitem>, <guimenuitem>Środkowy</guimenuitem>,
+<guimenuitem>Jasne</guimenuitem>, i <guimenuitem>Wszystko</guimenuitem>
+skróty.</para>
+
+      <warning>
+        <para>Zdecydowanie zalecamy zachowanie pliku <guilabel>Wyślij usunięte pliki do
+Kosza</guilabel> opcja włączona Zobacz <xref linkend="Configuration" />),
+aby w razie wypadku móc cofnąć usunięcia. Ponadto należy pozostawić włączony
+Kosz: opcja WinMerge nie będzie działać, jeśli wyłączysz Kosz w systemie
+Windows.  Ponownie nie można cofnąć usunięcia pliku lub folderu, chyba że
+użyjesz zarówno narzędzia WinMerge <guilabel>Wyślij usunięte pliki do
+Kosza</guilabel> opcję i Kosz systemu Windows!</para>
+      </warning>
+    </section>
+
+    <section>
+      <title>Zmiana nazw plików<indexterm>
+          <primary>zmiana nazw plików</primary>
+
+          <secondary>w oknie Porównywanie folderów</secondary>
+        </indexterm></title>
+
+      <para>Aby zmienić nazwę pliku lub folderu, wybierz <guimenuitem>Zmień
+nazwę</guimenuitem> w menu kontekstowym lub naciśnij
+<keycap>F2</keycap>. Następnie zmień nazwę w polu edycji i naciśnij
+<keycap>Wejdź</keycap>lub naciśnij <keycap>Wyjście</keycap> anulować. Można
+zmienić nazwę tylko jednego pliku lub folderu. Należy pamiętać, że zmiana
+nazwy zmienia elementy po obu lub wszystkich trzech stronach: obecnie nie
+jest możliwa zmiana nazwy elementu tylko po jednej stronie.</para>
+    </section>
+
+    <section>
+      <title>Otwieranie plików<indexterm>
+          <primary>otwieranie plików</primary>
+
+          <secondary>w oknie Porównywanie folderów</secondary>
+        </indexterm></title>
+
+      <para>W menu kontekstowym możesz użyć <guimenuitem>Otwórz w lewo</guimenuitem>,
+<guimenuitem>Otwarty środek</guimenuitem> lub <guimenuitem>Otwórz w
+prawo</guimenuitem>, w zależności od tego, po której stronie chcesz
+operować. Każdy <guimenuitem>Otwórz</guimenuitem> element menu ma podmenu z
+następującymi skrótami:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Z zarejestrowaną aplikacją</term>
+
+          <listitem>
+            <para>Otwiera plik za pomocą aplikacji (jeśli istnieje) zarejestrowanej w systemie
+Windows dla typu pliku.</para>
+
+            <tip>
+              <para>Ten skrót zwykle otwiera folder w nowym Eksploratorze Windows.</para>
+            </tip>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Z redaktorem zewnętrznym</term>
+
+          <listitem>
+            <para>Otwiera plik za pomocą zewnętrznego edytora. Domyślnym edytorem jest
+Notatnik, ale możesz skonfigurować inny w opcjach WinMerge.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Z...</term>
+
+          <listitem>
+            <para>Otwiera <guilabel>Otwórz za pomocą</guilabel> dialogowe, w którym możesz
+określić aplikację, w której chcesz otworzyć plik.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Kopiowanie nazw ścieżek lub plików<indexterm>
+          <primary>nazwy ścieżek</primary>
+
+          <secondary>kopiowanie z okna porównywania folderów</secondary>
+        </indexterm><indexterm>
+          <primary>nazwy plików</primary>
+
+          <secondary>kopiowanie z okna porównywania folderów</secondary>
+        </indexterm></title>
+
+      <para>Menu kontekstowe <guimenuitem>Skopiuj nazwę ścieżki</guimenuitem> i
+<guimenuitem>Skopiuj nazwy plików</guimenuitem> skróty kopiują ścieżkę lub
+nazwę pliku wybranych elementów do schowka Windows. Następnie możesz wkleić
+skopiowane informacje do pliku lub aplikacji, na przykład w celu utworzenia
+listy zmienionych plików lub dziennika zmian.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Skopiuj nazwy ścieżek</guimenuitem> posiada menu z trzema
+skrótami, podobne do innych operacji na plikach. Kopiuje pełne nazwy ścieżek
+jednego lub więcej wybranych elementów do schowka, po jednej w linii.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Skopiuj nazwy plików</guimenuitem> kopiuje tylko nazwy plików
+bez ścieżek.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="protectingfiles">
+      <title>Ochrona plików<indexterm>
+          <primary>Okno porównywania folderów</primary>
+
+          <secondary>ochrona plików w</secondary>
+        </indexterm><indexterm>
+          <primary>ochrona plików</primary>
+        </indexterm><indexterm>
+          <primary>pliki tylko do odczytu</primary>
+
+          <see>ochrona plików</see>
+        </indexterm></title>
+
+      <para>Aby chronić pliki i foldery po obu stronach porównania przed zmianami, włącz
+opcję <menuchoice> <guimenu>Plik</guimenu> <guimenuitem>Lewy tylko do
+odczytu</guimenuitem> </menuchoice>, <menuchoice> <guimenu>Plik</guimenu>
+<guimenuitem>Środkowy Tylko do odczytu</guimenuitem> </menuchoice> lub
+<menuchoice> <guimenu>Plik</guimenu> <guimenuitem>Prawo Tylko do
+odczytu</guimenuitem> </menuchoice> pole wyboru.</para>
+
+      <important>
+        <para>Ustawienie opcji tylko do odczytu chroni pliki i foldery tylko w bieżącym
+widoku porównania; nie ma to wpływu na atrybuty plików systemu Windows.</para>
+      </important>
+
+      <para>Ten chroniony status jest dziedziczony przez pliki otwierane w folderze
+porównania. Na przykład, jeśli porównujesz dwa foldery, ustaw jedną stronę
+jako tylko do odczytu i otwórz dwa pliki do porównania, otwarty plik po
+stronie chronionej będzie chroniony przed zapisem. Podobnie nie można
+skopiować pliku ze strony niechronionej na stronę chronioną.</para>
+
+      <para>The <guilabel>RO</guilabel> kod w panelu po lewej, środkowej lub prawej
+stronie na pasku stanu (w prawym dolnym rogu okna) wskazuje, że strona jest
+aktualnie tylko do odczytu.</para>
+    </section>
+
+    <section>
+      <title>Odświeżanie wybranych elementów w widoku<indexterm>
+          <primary>odświeżający widok</primary>
+        </indexterm></title>
+
+      <para>Pełne odświeżenie dużych folderów może zająć dużo czasu. W WinMerge 2.2 i
+wcześniejszych wersjach zawsze trzeba było wykonać pełne odświeżenie, aby
+zaktualizować pliki po edycji ich poza WinMerge. Począwszy od wersji 2.4,
+WinMerge może odświeżać tylko wybrane elementy: wybierz
+<guimenuitem>Odśwież</guimenuitem> z menu kontekstowego lub <menuchoice>
+<guimenu>Zobacz</guimenu> <guimenuitem>Odśwież wybrane</guimenuitem>
+</menuchoice> z menu głównego.</para>
+    </section>
+
+    <section>
+      <title>Archiwizacja plików<indexterm>
+          <primary>archiwizacja plików</primary>
+
+          <secondary>w oknie Porównywanie folderów</secondary>
+        </indexterm></title>
+
+      <para>Skorzystaj z menu kontekstowego <guimenu>Zamek błyskawiczny</guimenu>
+element menu, aby utworzyć nowy plik archiwum zawierający wybrane elementy.</para>
+
+      <note>
+        <para>Obsługa archiwów wymaga zainstalowania wtyczki WinMerge 7-Zip.</para>
+      </note>
+
+      <para>The <guimenu>Zamek błyskawiczny</guimenu> Pozycja menu posiada podmenu z
+pięcioma skrótami:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Lewy</term>
+
+          <listitem>
+            <para>Dodaje rekursywnie pliki i foldery po lewej stronie do pliku archiwum</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Środkowy</term>
+
+          <listitem>
+            <para>Dodaje rekurencyjnie środkowe pliki i foldery do pliku archiwum</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Jasne</term>
+
+          <listitem>
+            <para>Dodaje rekurencyjnie pliki i foldery po prawej stronie do pliku archiwum</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Obydwa</term>
+
+          <listitem>
+            <para>Dodaje pliki i foldery rekurencyjnie z obu stron do pliku archiwum. Ponieważ
+nazwy plików są takie same, są one dodawane do różnych podfolderów o nazwach
+<filename class="directory">Original</filename> i <filename
+class="directory">Altered</filename>, wewnątrz archiwum: umieszczane są
+pliki po lewej stronie <filename class="directory">Original</filename>i
+umieszczane są pliki po prawej stronie <filename
+class="directory">Altered</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Wszystko</term>
+
+          <listitem>
+            <para>Dodaje pliki i foldery rekurencyjnie ze wszystkich stron do pliku
+archiwum. Ponieważ nazwy plików są takie same, są one dodawane do różnych
+podfolderów o nazwach <filename class="directory">Original</filename> i
+<filename class="directory">Altered</filename>, wewnątrz archiwum:
+umieszczane są pliki po lewej stronie <filename
+class="directory">Original</filename>i umieszczane są pliki po prawej
+stronie <filename class="directory">Altered</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Różnice</term>
+
+          <listitem>
+            <para>Jak <guimenuitem>Obydwa</guimenuitem>, ale dodaje tylko różne pliki (w tym
+unikalne pliki) z obu stron.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Po wybraniu jednego z <guimenu>Zamek błyskawiczny</guimenu> skrótów, w oknie
+dialogowym Zapisz jako zostanie wyświetlony monit o podanie nazwy i typu
+pliku archiwum. WinMerge nie może dodawać plików do istniejących plików
+archiwum: zawsze tworzy nowy plik archiwum.</para>
+
+<!--Original:
+WinMerge looks for subfolders Original/ and Altered/ in archive files. If archive file contains these 
+subfolders and same filename is given to both sides WinMerge compares contents of those two folders.
+ 
+If directory compare shows contents of archive files WinMerge updates changes done to files in file 
+compare into original archive file. But WinMerge does not update archive contents for files 
+added/deleted/copied. User can create a new archive file using above menuitems instead. 
+-->
+      
+
+      <tip>
+        <para>WinMerge może porównywać zawartość plików archiwalnych, które mają tę samą
+nazwę po obu stronach: WinMerge szuka <filename
+class="directory">Original</filename> i <filename
+class="directory">Altered</filename> podfolderów i porównuje zawartość tych
+dwóch folderów.</para>
+      </tip>
+
+      <para>Jeśli porównanie folderów obejmuje zawartość pliku archiwum, wszelkie zmiany
+wprowadzone w dołączonych plikach w programie WinMerge (na przykład przy
+użyciu <guimenuitem>Otwórz</guimenuitem> operacja na pliku w celu edycji
+pliku) są zapisywane w pliku archiwum. Nie można jednak zaktualizować
+zawartości archiwum za pomocą narzędzia WinMerge
+<guimenuitem>Kopiuj</guimenuitem>, <guimenuitem>Rusz się</guimenuitem>lub
+<guimenuitem>Usuń</guimenuitem> operacje na plikach. Zamiast tego utwórz
+nowy plik archiwum, korzystając z jednego z <guimenuitem>Zamek
+błyskawiczny</guimenuitem> skróty.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_browsing">
+    <title>Przeglądanie folderów w oknie Porównywanie folderów<indexterm>
+        <primary>foldery</primary>
+
+        <secondary>przeglądanie w oknie porównywania folderów</secondary>
+      </indexterm></title>
+
+    <para>W tej sekcji omówiono sposoby przeglądania folderów wyświetlonych w oknie
+porównywania folderów. Przeglądając folder, wykonujesz zupełnie nową
+operację porównywania. Jego wynik zastępuje bieżący wynik w oknie.</para>
+
+    <section>
+      <title>Przeglądanie folderów w porównaniu nierekurencyjnym</title>
+
+      <para>Mimo że nierekurencyjne porównanie folderów nie uwzględnia zawartości
+podfolderów, w rezultacie same podfoldery są wyświetlane jako
+pliki. Podobnie folder nadrzędny porównywanego folderu jest wyświetlany jako
+plik na górze tabeli. Otwierając te foldery bezpośrednio w oknie
+Porównywanie folderów, możesz selektywnie przeglądać drzewo katalogów. To
+podejście — porównywanie tylko podkatalogów, które Cię interesują — może być
+bardziej efektywne niż przeprowadzanie porównania rekurencyjnego na całym
+drzewie katalogów.</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Przeglądanie folderu nadrzędnego</term>
+
+          <listitem>
+            <para>Aby porównać <inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup.png" format="PNG" />
+</imageobject></inlinemediaobject> folder nadrzędny
+( <guilabel>..</guilabel> ścieżka na górze), kliknij dwukrotnie jej wiersz
+lub wybierz wiersz i naciśnij <keycap>Wejdź</keycap>.</para>
+
+            <para>Czasami nie można otworzyć folderu nadrzędnego (na przykład, jeśli nie masz
+uprawnień dostępu do niego). Te dwie ikony wskazują, czy można otworzyć
+folder nadrzędny:</para>
+
+            <simplelist type="vert">
+              <member><inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup.png" format="PNG" />
+</imageobject></inlinemediaobject> Można otworzyć folder
+nadrzędny.</member>
+
+              <member><inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup_disable.png"
+format="PNG" /> </imageobject></inlinemediaobject> Nie można otworzyć folderu
+nadrzędnego.</member>
+            </simplelist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Przeglądanie pojedynczego podfolderu, który istnieje po obu lub wszystkich
+trzech stronach</term>
+
+          <listitem>
+            <para>Aby porównać pojedynczy podfolder istniejący po obu stronach lub na
+wszystkich trzech stronach, kliknij dwukrotnie folder w oknie porównywania
+folderów.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Przeglądanie pojedynczego podfolderu, który istnieje tylko z jednej strony</term>
+
+          <listitem>
+            <para>Jeśli przejdziesz do podfolderu, który istnieje tylko z jednej strony,
+WinMerge może utworzyć nowy, pasujący folder po drugiej stronie, odpowiednio
+po obu stronach. Zobacz <xref linkend="CompareDirs_browse_unique" /> po
+szczegóły.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Przeglądanie dwóch różnych podfolderów</term>
+
+          <listitem>
+            <para>Nie można porównać dwóch podfolderów (tzn. wybrać dwóch wierszy), jeśli
+podfoldery po obu stronach są różne. Tylko jeśli wcześniej porównałeś
+identyczne foldery (na przykład przeglądając pojedynczy podfolder w wyniku
+porównania), możesz porównać dwa podfoldery. Najpierw wybierz dwa foldery w
+oknie Porównaj foldery, jak pokazano na poniższym rysunku:</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="572"
+fileref="screenshots/foldercomp_2same.png" format="PNG" /> </imageobject><textobject>
+                <phrase>Okno porównywania folderów, wybrane dwa foldery</phrase>
+              </textobject>
+            </mediaobject>
+            <para></para>
+
+            <para>Kolejność wyboru jest istotna: folder, który wybierzesz jako pierwszy,
+będzie w rezultacie lewym folderem; drugi wybrany folder stanie się w
+rezultacie właściwym folderem.</para>
+
+            <para>Po zaznaczeniu dwóch folderów kliknij prawym przyciskiem myszy i wybierz
+<guimenuitem>Porównaj</guimenuitem> (lub kliknij <menuchoice>
+<guimenu>Połącz</guimenu> <guimenuitem>Porównaj</guimenuitem> </menuchoice>
+w menu).</para>
+
+            <tip>
+              <para>Ponownie, <guimenuitem>Porównaj</guimenuitem> operacja jest dostępna tylko
+wtedy, gdy bieżące ścieżki lewego i prawego folderu są identyczne w oknie
+Porównywanie folderów, jak pokazano na poprzednim zrzucie ekranu. Na
+przykład nie jest dostępna, jeśli w bieżącym oknie porównywane są dwa różne
+foldery.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="CompareDirs_browse_unique">
+      <title>Przeglądanie unikalnych folderów<indexterm>
+          <primary>unikalne foldery</primary>
+
+          <secondary>porównanie</secondary>
+        </indexterm></title>
+
+      <para>W WinMerge 2.6 i wcześniejszych wersjach nie można było przeglądać
+unikalnych folderów (folderów, które istnieją tylko po jednej stronie wyniku
+porównania), ponieważ WinMerge nie może porównać istniejącego folderu z
+nieistniejącym folderem. Aby skopiować cokolwiek z unikalnego folderu w
+WinMerge, trzeba było najpierw utworzyć kopię całej struktury folderów.</para>
+
+      <para>Możesz jednak nie kopiować całej struktury folderów.  Począwszy od wersji
+2.8, WinMerge udostępnia alternatywny sposób tworzenia nowego, pustego
+folderu. Dzięki temu możesz skopiować tylko te elementy, które chcesz z
+oryginalnego, unikalnego folderu do utworzonego pustego folderu. Ta
+procedura pokazuje:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Przejdź do unikalnego folderu (wybierz folder i naciśnij
+<keycap>Wejdź,</keycap> kliknij go dwukrotnie lub kliknij prawym przyciskiem
+myszy i wybierz <guimenuitem>Porównaj</guimenuitem>). Na przykład:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="590"
+fileref="screenshots/foldercmp_unique1.png" format="PNG" /> </imageobject><textobject>
+              <phrase>Okno Porównaj foldery, porównujące unikalny folder</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>Komunikat WinMerge informuje, że folder istnieje tylko po jednej stronie i
+nie można go otworzyć. Następnie zostanie wyświetlony komunikat z prośbą o
+potwierdzenie, czy chcesz utworzyć pasujący folder i otworzyć go jako drugą
+stronę wyniku porównania.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <guibutton>Tak</guibutton> potwierdzić (<guibutton>Nie</guibutton>
+anuluje porównanie). W nowym wyniku porównania po lewej stronie zostanie
+otwarty unikalny folder, a po prawej stronie nowo utworzony, pusty folder:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="590"
+fileref="screenshots/foldercmp_unique2.png" format="PNG" /> </imageobject><textobject>
+              <phrase>Okno Porównaj foldery po przejrzeniu unikalnych i utworzonych folderów</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>W wyniku porównania możesz kopiować lub przenosić elementy (na przykład za
+pomocą menu kontekstowego wyświetlanego po kliknięciu prawym przyciskiem
+myszy) z folderu unikalnego do folderu utworzonego.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_customizing">
+    <title>Dostosowywanie okna porównywania folderów<indexterm>
+        <primary>Okno porównywania folderów</primary>
+
+        <secondary>dostosowywanie</secondary>
+      </indexterm></title>
+
+    <para>W tej sekcji opisano sposób kontrolowania sposobu wyświetlania wyników w
+oknie Porównanie folderów. Możesz dostosować widok, pokazując, ukrywając i
+zmieniając kolejność kolumn tabeli.</para>
+
+    <section>
+      <title>Pokazywanie i ukrywanie typów plików<indexterm>
+          <primary>Zobacz menu</primary>
+
+          <secondary>Okno porównywania folderów</secondary>
+        </indexterm></title>
+
+      <para>The <guimenu>Zobacz</guimenu> menu zawiera te skróty umożliwiające pokazanie
+lub ukrycie typów elementów. Włącz (zaznacz) opcję menu, aby wyświetlić
+element; wyłącz go, aby ukryć element.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Pokaż identyczne elementy</guimenuitem>: Pliki wykryte jako
+identyczne</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Pokaż różne elementy</guimenuitem>: Pliki wykryte jako różne</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Pokaż pozostawione unikalne przedmioty</guimenuitem>: Pliki i
+katalogi obecne tylko po lewej stronie</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Pokaż środkowe unikalne przedmioty</guimenuitem>: Pliki i
+katalogi obecne tylko w środku</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Pokaż odpowiednie unikalne przedmioty</guimenuitem>: Pliki i
+katalogi obecne tylko po prawej stronie</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Pokaż pominięte elementy</guimenuitem>: Pliki i katalogi
+pomijane przez filtry plików</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Pokaż pliki binarne</guimenuitem>: Pliki wykryte jako pliki
+binarne</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Zmiana sortowania kolumn</title>
+
+      <para>Wiersze w oknie Porównywanie folderów są uporządkowane zgodnie z porządkiem
+sortowania określonej kolumny. Ta kolumna sortowania jest oznaczona małą
+strzałką w jej nagłówku. Strzałka wskazuje w górę, jeśli kolumna jest
+posortowana w porządku rosnącym, lub w dół, jeśli kolumna jest posortowana w
+porządku malejącym. Przykład porównania folderów znajdujący się na początku
+tego tematu jest posortowany rosnąco według kolumny Nazwa pliku.</para>
+
+      <para>Aby wybrać inną kolumnę zamówienia, po prostu kliknij nagłówek tej
+kolumny. Wybrana kolumna zostanie ustawiona na domyślny porządek sortowania,
+a kolejność wszystkich wierszy zostanie zmieniona zgodnie z porządkiem
+sortowania tej kolumny.</para>
+
+      <para>Aby zmienić kierunek sortowania kolumny, która jest już kolumną sortowania,
+kliknij ponownie jej nagłówek. Oznacza to, że kliknięcie nagłówka kolumny
+sortowania odwraca jej kolejność (przełączanie między kolejnością rosnącą i
+malejącą).</para>
+    </section>
+
+    <section>
+      <title>Dodawanie, usuwanie i zmiana kolejności kolumn</title>
+
+      <para>Aby zmodyfikować kolumny wyświetlane w oknie Porównywanie folderów:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Kliknij prawym przyciskiem myszy nagłówek dowolnej kolumny i wybierz
+<guimenuitem>Dostosuj kolumny</guimenuitem>. Możesz też kliknąć <menuchoice>
+<guimenu>Narzędzia</guimenu> <guimenuitem>Dostosuj kolumny</guimenuitem>
+</menuchoice></para>
+        </listitem>
+
+        <listitem>
+          <para>Okno dialogowe Wyświetl kolumny zawiera listę wszystkich dostępnych nazw
+kolumn, każda z polem wyboru. Skonfiguruj kolumny, korzystając z dowolnej
+kombinacji tych działań:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Zaznacz kolumny, które chcesz wyświetlić (pamiętaj, że wybranie pozycji na
+liście nie wystarczy)</para>
+            </listitem>
+
+            <listitem>
+              <para>Odznacz kolumny, które chcesz ukryć.</para>
+            </listitem>
+
+            <listitem>
+              <para>Aby zmienić kolejność kolumn, wybierz jeden lub więcej elementów i kliknij
+<guibutton>Przesuń w górę</guibutton> lub <guibutton>Przesuń w
+dół</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Kliknij <guibutton>Domyślne</guibutton> jeśli chcesz przywrócić domyślną
+konfigurację kolumny WinMerge, zastępując konfigurację niestandardową.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Kliknij <guibutton>OK</guibutton>.</para>
+        </listitem>
+      </orderedlist>
+
+      <para><indexterm>
+          <primary>Wyświetl okno dialogowe Kolumny</primary>
+        </indexterm>W oknie Porównanie folderów domyślnie
+wyświetlane są następujące kolumny w oknie dialogowym Wyświetl kolumny:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Nazwa pliku</guilabel>: Nazwa porównywanego elementu.  W
+porównaniu nierekurencyjnym ta kolumna zawiera zarówno pliki, jak i foldery;
+w porównaniu rekurencyjnym nie uwzględnia folderów: zamiast tego foldery są
+wyświetlane w kolumnie Folder.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Folder</guilabel>: Ścieżka porównywanego podfolderu względem
+porównywanego folderu. W przypadku porównania nierekurencyjnego ta kolumna
+jest zawsze pusta: foldery są wymienione w <guilabel>Nazwa pliku</guilabel>
+zamiast tego kolumna.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Wynik porównania</guilabel>: Szczegółowy wynik porównania (patrz
+także <guilabel>Krótki wynik</guilabel>).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Lewa data</guilabel>, <guilabel>Środkowa data</guilabel>,
+<guilabel>Właściwa data</guilabel>: Daty modyfikacji elementu po każdej
+stronie. Nowsza z dwóch dat (lub data dowolnego unikalnego elementu) jest
+poprzedzona gwiazdką ( * ).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Rozszerzenie</guilabel>: Rozszerzenie pliku, przydatne do
+sortowania.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>W oknie dialogowym Wyświetl kolumny dostępne są następujące dodatkowe
+kolumny:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Krótki wynik</guilabel>: Wyświetla <guilabel>Wynik
+porównania</guilabel> kolumna w krótkiej formie (tylko po prawej).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Binarny</guilabel>: Kolumna zawiera gwiazdkę (*), jeśli plik jest
+plikiem binarnym. Jest to przydatne do sortowania i użycia z
+<guilabel>Krótki wynik</guilabel> kolumna.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Lewe atrybuty</guilabel>, <guilabel>Środkowe atrybuty</guilabel>,
+<guilabel>Właściwe atrybuty</guilabel>: Pokazuje atrybuty pliku.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Pozostały czas tworzenia</guilabel>, <guilabel>Środkowy czas
+tworzenia</guilabel>, <guilabel>Właściwy czas tworzenia</guilabel>: Czas
+utworzenia przedmiotu.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Lewe kodowanie</guilabel>, <guilabel>Kodowanie
+środkowe</guilabel>, <guilabel>Prawe kodowanie</guilabel>: Kodowanie
+plików. Pokazuje numer strony kodowej dla plików ANSI i kodowanie Unicode
+dla plików Unicode.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Wersja lewego pliku</guilabel>, <guilabel>Wersja pliku
+środkowego</guilabel>, <guilabel>Właściwa wersja pliku</guilabel>: Numer
+wersji pliku, jeśli istnieje. Należy pamiętać, że wersja jest przeznaczona
+tylko do odczytu w przypadku niektórych typów plików binarnych, o których
+wiadomo, że zwykle mają zasób wersji.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Lewy rozmiar</guilabel>, <guilabel>Średni rozmiar</guilabel>,
+<guilabel>Odpowiedni rozmiar</guilabel>: Rozmiar pliku w bajtach.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Lewy rozmiar (krótki)</guilabel>, <guilabel>Rozmiar średni
+(krótki)</guilabel>, <guilabel>Odpowiedni rozmiar (krótki)</guilabel>:
+Krótsze wersje rozmiarów plików, zaokrąglone do KB, MB lub GB.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Nowszy plik</guilabel>: Pokazuje, która strona jest nowsza.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Różnice</guilabel>: Liczba różnic znalezionych pomiędzy plikami, z
+wyłączeniem potencjalnie zignorowanych różnic.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Ignorowana różnica</guilabel>: Liczba ignorowanych różnic w
+plikach. Są to różnice ignorowane przez filtry liniowe.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Opuścił EOL</guilabel>, <guilabel>Środkowy EOL</guilabel>,
+<guilabel>Prawo EOL</guilabel>: Pokazuje styl plików EOL (linefeed).</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Ukrywanie przedmiotów</title>
+
+      <para>Możesz szybko ukryć jeden lub więcej wybranych elementów, używając przycisku
+<guimenuitem>Ukryj elementy</guimenuitem> skrót menu kontekstowego. Elementy
+pozostają ukryte do momentu odświeżenia widoku (naciśnij
+<keycap>F5</keycap>) lub kliknij <menuchoice> <guimenu>Zobacz</guimenu>
+<guimenuitem>Pokaż ukryte elementy</guimenuitem> </menuchoice>.</para>
+
+      <tip>
+        <para>Poznaj <guimenuitem>Ukryj elementy</guimenuitem>: może zaoszczędzić dużo
+czasu, eliminując z widoku elementy, które już obsługiwałeś lub które nie są
+obecnie interesujące. Na przykład możesz ukryć pliki po ich połączeniu,
+dzięki czemu łatwiej będzie zobaczyć, jakie elementy pozostały do
+​​połączenia.</para>
+      </tip>
+    </section>
+  </section>
+
+  <section id="CompareDirs_winshell">
+    <title>Korzystanie z poleceń powłoki systemu Windows z okna Porównywanie folderów</title>
+
+    <para>Możesz kliknąć prawym przyciskiem myszy zaznaczenie w oknie Porównywanie
+folderów i uruchomić polecenia powłoki systemu Windows bezpośrednio z menu
+kontekstowego.</para>
+
+    <para>Jeżeli zaznaczenie następuje po obu stronach, możesz wybrać albo
+<guimenu>Lewe menu powłoki</guimenu> lub <guimenu>Prawe menu
+powłoki</guimenu>.  Jeśli zaznaczenie występuje ze wszystkich stron, możesz
+wybrać <guimenu>Lewe menu powłoki</guimenu>, <guimenu>Menu środkowej
+powłoki</guimenu> lub <guimenu>Prawe menu powłoki</guimenu>. Jeśli element
+występuje tylko po jednej stronie, dostępne jest menu powłoki tylko tej
+strony.</para>
+
+    <caution>
+      <para>Proszę wziąć pod uwagę, że polecenia menu powłoki działają całkowicie poza
+WinMerge. W rezultacie WinMerge może nie reagować na niektóre operacje w
+taki sam sposób, jak operacje wykonywane w WinMerge. Na przykład, jeśli
+usuniesz plik poprzez tę integrację zamiast korzystać z narzędzia WinMerge
+<command>Delete</command> polecenia, zmiana nie zostanie automatycznie
+wyświetlona w oknie Porównania folderów (aby zobaczyć zmianę, należy ręcznie
+odświeżyć okno).</para>
+    </caution>
+  </section>
+  <para></para>
+</article>
