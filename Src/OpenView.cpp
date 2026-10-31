@@ -1513,10 +1513,13 @@ void COpenView::OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult)
 {
 	if (!m_bAutoCompleteReady[id - IDC_PATH0_COMBO])
 	{
+		// Set before SetAutoComplete: a CBEN_BEGINEDIT for the same combo that arrives while SHAutoComplete is still
+		// running must not call SHAutoComplete on the same edit again. The second call cleans up the object of the
+		// first call, and the first call then fails with an access violation in shell32 CAutoComplete::Init.
+		m_bAutoCompleteReady[id - IDC_PATH0_COMBO] = true;
 		int nSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 		if (nSource > 0)
 			m_ctlPath[id - IDC_PATH0_COMBO].SetAutoComplete(nSource);
-		m_bAutoCompleteReady[id - IDC_PATH0_COMBO] = true;
 	}
 	*pResult = 0;
 }
