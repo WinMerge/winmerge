@@ -96,6 +96,32 @@ private:
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 	int m_nClickedColumn;
 
+	/**
+	 * Margin copy arrow: while the mouse is over the margin of a difference, an arrow is drawn
+	 * in the line number area of every line of that difference, and clicking the arrow copies the whole
+	 * difference to the neighbouring pane the arrow points to. The difference is the block of joined diffs
+	 * (DiffList::GetJoinedSignificantDiffRange), so one change divided by "Align similar lines" is copied in
+	 * one action and one undo step. A margin click outside the arrow keeps its normal meaning (line selection).
+	 * These two hold the line range of the difference the mouse is over, -1 when the mouse is not over one.
+	 * Selection copy arrow: while the mouse is over the margin of a
+	 * selected line and the selected lines contain a line of a significant diff, the arrow is drawn on every
+	 * selected line instead, and clicking it copies the selected lines, counted in whole lines, to the pane it
+	 * points to. MarginArrow describes either arrow; m_marginArrowHover replaces m_nMarginArrowFirstLine and
+	 * m_nMarginArrowLastLine, which held the line range named in the previous sentence.
+	 */
+	struct MarginArrow
+	{
+		bool bSelection = false; /**< true: the arrow of the selected lines; false: the arrow of the block of joined diffs */
+		int nFirstLine = -1;     /**< First line the arrow is drawn on, -1 when there is no arrow */
+		int nLastLine = -1;      /**< Last line the arrow is drawn on */
+		int nFirstDiff = -1;     /**< First significant diff the copy changes */
+		int nLastDiff = -1;      /**< Last significant diff the copy changes */
+		int nDstPane = -1;       /**< Pane the arrow under the mouse copies to */
+	};
+	MarginArrow m_marginArrowHover; /**< Arrow drawn in the margin now, nFirstLine -1 when none is drawn */
+	/** `true` while WM_MOUSELEAVE has been requested for the margin arrow */
+	bool m_bMarginArrowTracking;
+
 	std::shared_ptr<LangServices::ISyntaxParser> m_pTreeSitterParser;
 
 // Attributes
@@ -141,6 +167,14 @@ public:
 			CEColor & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
+	virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber) override;
+	void DrawMarginArrow(const CRect & rect, bool bPointRight);
+	bool GetSelectedLineRange(int & nFirstLine, int & nLastLine);
+	bool HitTestMarginArrow(const CPoint & point, MarginArrow & arrow);
+	void UpdateMarginArrowHover(const CPoint & point);
+	void ClearMarginArrowHover();
+	void CopyDiffBlockToPane(int nDiff, int nDstPane);
+	void CopySelectedLinesToPane(const MarginArrow & arrow);
 	void WMGoto() { OnWMGoto(); };
 	CTreeSitterParser* GetTreeSitterParser();
 	void GotoTreeSitterDefinition();
@@ -261,6 +295,10 @@ protected:
 	afx_msg void OnPrevdiffRO();
 	afx_msg void OnUpdatePrevdiffRO(CCmdUI* pCmdUI);
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnMouseLeave();
+	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnAllLeft();

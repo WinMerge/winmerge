@@ -268,6 +268,59 @@ bool DiffList::LineInDiff(int nLine, int nDiff) const
 }
 
 /**
+ * @brief Get the run of significant diffs joined to the given diff with no line outside a diff between them.
+ * Two diffs are joined when the second one starts on the synchronised line right after the last line of the
+ * first one (DIFFRANGE::dbegin == previous DIFFRANGE::dend + 1). This happens when one change is divided
+ * into several diffs, for example by "Align similar lines" (CMergeDoc::AdjustDiffBlocks), so the run is the
+ * whole change. Only significant diffs (diffs under the current compare options) are joined; a
+ * non-significant diff ends the run like an equal line, and a non-significant nDiff is a run of its own.
+ * The margin copy arrow (CMergeEditView::CopyDiffBlockToPane) copies a whole run, so one change is copied in
+ * one action.
+ * @param [in] nDiff Index of the diff to start from.
+ * @param [out] firstDiff Index of the first diff of the run.
+ * @param [out] lastDiff Index of the last diff of the run.
+ */
+void DiffList::GetJoinedSignificantDiffRange(int nDiff, int & firstDiff, int & lastDiff) const
+{
+	firstDiff = lastDiff = nDiff;
+	if (!IsDiffSignificant(nDiff))
+		return;
+	while (firstDiff > 0 && IsDiffSignificant(firstDiff - 1) &&
+		m_diffs[firstDiff - 1].dend + 1 == m_diffs[firstDiff].dbegin)
+		--firstDiff;
+	const int nLastIndex = GetSize() - 1;
+	while (lastDiff < nLastIndex && IsDiffSignificant(lastDiff + 1) &&
+		m_diffs[lastDiff].dend + 1 == m_diffs[lastDiff + 1].dbegin)
+		++lastDiff;
+}
+
+/**
+ * @brief Get the first and the last significant diff that have at least one line in the given line range.
+ * Used by the margin copy arrow of a selection (CMergeEditView::HitTestMarginArrow): the arrow is offered only
+ * when the selected lines contain a line of a significant diff, and the copy changes these diffs only.
+ * @param [in] nFirstLine First line of the range, 0-based.
+ * @param [in] nLastLine Last line of the range, 0-based, inclusive.
+ * @param [out] firstDiff Index of the first significant diff in the range, -1 when there is none.
+ * @param [out] lastDiff Index of the last significant diff in the range, -1 when there is none.
+ * @return true when the range contains a line of a significant diff.
+ */
+bool DiffList::GetSignificantDiffRangeInLines(int nFirstLine, int nLastLine, int & firstDiff, int & lastDiff) const
+{
+	firstDiff = LineToDiff(nFirstLine);
+	if (firstDiff == -1 || !IsDiffSignificant(firstDiff))
+		firstDiff = NextSignificantDiffFromLine(nFirstLine);
+	lastDiff = LineToDiff(nLastLine);
+	if (lastDiff == -1 || !IsDiffSignificant(lastDiff))
+		lastDiff = PrevSignificantDiffFromLine(nLastLine);
+	if (firstDiff == -1 || lastDiff == -1 || lastDiff < firstDiff)
+	{
+		firstDiff = lastDiff = -1;
+		return false;
+	}
+	return true;
+}
+
+/**
  * @brief Returns diff index for given line.
  * @param [in] nLine Linenumber, 0-based.
  * @return Index to diff table, -1 if line is not inside any diff.
