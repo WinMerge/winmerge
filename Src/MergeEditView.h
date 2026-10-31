@@ -96,6 +96,19 @@ private:
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 	int m_nClickedColumn;
 
+	/**
+	 * Margin copy arrow: while the mouse is over the margin of a difference, an arrow is drawn
+	 * in the line number area of every line of that difference, and clicking the arrow copies the whole
+	 * difference to the neighbouring pane the arrow points to. The difference is the block of joined diffs
+	 * (DiffList::GetJoinedSignificantDiffRange), so one change divided by "Align similar lines" is copied in
+	 * one action and one undo step. A margin click outside the arrow keeps its normal meaning (line selection).
+	 * These two hold the line range of the difference the mouse is over, -1 when the mouse is not over one.
+	 */
+	int m_nMarginArrowFirstLine;
+	int m_nMarginArrowLastLine;
+	/** `true` while WM_MOUSELEAVE has been requested for the margin arrow */
+	bool m_bMarginArrowTracking;
+
 	std::shared_ptr<LangServices::ISyntaxParser> m_pTreeSitterParser;
 
 // Attributes
@@ -141,6 +154,12 @@ public:
 			CEColor & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
+	virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber) override;
+	void DrawMarginArrow(const CRect & rect, bool bPointRight);
+	bool HitTestMarginArrow(const CPoint & point, int & nDiff, int & nDstPane);
+	void UpdateMarginArrowHover(const CPoint & point);
+	void ClearMarginArrowHover();
+	void CopyDiffBlockToPane(int nDiff, int nDstPane);
 	void WMGoto() { OnWMGoto(); };
 	CTreeSitterParser* GetTreeSitterParser();
 	void GotoTreeSitterDefinition();
@@ -261,6 +280,10 @@ protected:
 	afx_msg void OnPrevdiffRO();
 	afx_msg void OnUpdatePrevdiffRO(CCmdUI* pCmdUI);
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnMouseLeave();
+	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnAllLeft();

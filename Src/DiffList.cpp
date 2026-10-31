@@ -268,6 +268,33 @@ bool DiffList::LineInDiff(int nLine, int nDiff) const
 }
 
 /**
+ * @brief Get the run of significant diffs joined to the given diff with no line outside a diff between them.
+ * Two diffs are joined when the second one starts on the synchronised line right after the last line of the
+ * first one (DIFFRANGE::dbegin == previous DIFFRANGE::dend + 1). This happens when one change is divided
+ * into several diffs, for example by "Align similar lines" (CMergeDoc::AdjustDiffBlocks), so the run is the
+ * whole change. Only significant diffs (diffs under the current compare options) are joined; a
+ * non-significant diff ends the run like an equal line, and a non-significant nDiff is a run of its own.
+ * The margin copy arrow (CMergeEditView::CopyDiffBlockToPane) copies a whole run, so one change is copied in
+ * one action.
+ * @param [in] nDiff Index of the diff to start from.
+ * @param [out] firstDiff Index of the first diff of the run.
+ * @param [out] lastDiff Index of the last diff of the run.
+ */
+void DiffList::GetJoinedSignificantDiffRange(int nDiff, int & firstDiff, int & lastDiff) const
+{
+	firstDiff = lastDiff = nDiff;
+	if (!IsDiffSignificant(nDiff))
+		return;
+	while (firstDiff > 0 && IsDiffSignificant(firstDiff - 1) &&
+		m_diffs[firstDiff - 1].dend + 1 == m_diffs[firstDiff].dbegin)
+		--firstDiff;
+	const int nLastIndex = GetSize() - 1;
+	while (lastDiff < nLastIndex && IsDiffSignificant(lastDiff + 1) &&
+		m_diffs[lastDiff].dend + 1 == m_diffs[lastDiff + 1].dbegin)
+		++lastDiff;
+}
+
+/**
  * @brief Returns diff index for given line.
  * @param [in] nLine Linenumber, 0-based.
  * @return Index to diff table, -1 if line is not inside any diff.

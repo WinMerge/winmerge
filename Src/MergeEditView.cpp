@@ -74,6 +74,9 @@ CMergeEditView::CMergeEditView()
 , m_lineBegin(0)
 , m_lineEnd(-1)
 , m_nClickedColumn(-1)
+, m_nMarginArrowFirstLine(-1)
+, m_nMarginArrowLastLine(-1)
+, m_bMarginArrowTracking(false)
 {
 	SetParser(&m_xParser);
 	
@@ -90,6 +93,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_TIMER()
 	ON_WM_LBUTTONDBLCLK()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_MOUSEMOVE()
+	ON_WM_MOUSELEAVE()
+	ON_WM_SETCURSOR()
 	ON_WM_LBUTTONUP()
 	ON_WM_RBUTTONUP()
 	ON_WM_VSCROLL ()
@@ -1635,6 +1642,241 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		SelectDiff(diff, false, false);
 
 	CCrystalEditView::OnLButtonDblClk(nFlags, point);
+}
+
+/**
+ * @brief Difference the mouse is over in the margin, and the pane the arrow there copies to.
+ *
+ * Margin copy arrow: the arrow area is the line
+ * number area of the margin, that is the margin without the revision mark strip. A pane with a neighbouring
+ * pane on one side only offers one arrow over that whole area; the middle pane of a 3 pane compare offers
+ * two, the left half copying to the pane on its left and the right half to the pane on its right. No arrow is
+ * offered when the destination pane is read only, so there the margin keeps its normal meaning.
+ * @param [in] point Mouse position in client coordinates.
+ * @param [out] nDiff Index of the diff under the mouse.
+ * @param [out] nDstPane Index of the pane the arrow copies to.
+ * @return true when the point is on an arrow.
+ */
+bool CMergeEditView::HitTestMarginArrow(const CPoint & point, int & nDiff, int & nDstPane)
+{
+	nDiff = -1;
+	nDstPane = -1;
+	if (m_bDetailView)
+		return false; // the diff pane shows the current difference only: copying from it would be confusing
+	const int nArrowRight = GetMarginWidth() - m_nRevMarkWidth;
+	if (point.x < 0 || point.x >= nArrowRight || point.y < GetTopMarginHeight())
+		return false;
+	const CEPoint pt = ClientToText(point);
+	if (!IsValidTextPosY(pt))
+		return false;
+	const int nDiffAtLine = LineToDiff(pt.y);
+	if (nDiffAtLine == -1 || !GetDocument()->m_diffList.IsDiffSignificant(nDiffAtLine))
+		return false;
+	const bool bLeftNeighbour = (m_nThisPane > 0);
+	const bool bRightNeighbour = (m_nThisPane < GetDocument()->m_nBuffers - 1);
+	if (bLeftNeighbour && bRightNeighbour)
+		nDstPane = (point.x < nArrowRight / 2) ? m_nThisPane - 1 : m_nThisPane + 1;
+	else if (bRightNeighbour)
+		nDstPane = m_nThisPane + 1;
+	else if (bLeftNeighbour)
+		nDstPane = m_nThisPane - 1;
+	else
+		return false;
+	if (IsReadOnly(nDstPane))
+		return false;
+	nDiff = nDiffAtLine;
+	return true;
+}
+
+/**
+ * @brief Show or hide the margin copy arrow for the difference the mouse is over.
+ * The arrow is drawn on every line of the difference, so the lines it copies are the lines it is drawn on.
+ * @param [in] point Mouse position in client coordinates.
+ */
+void CMergeEditView::UpdateMarginArrowHover(const CPoint & point)
+{
+	int nDiff = -1, nDstPane = -1, nFirstLine = -1, nLastLine = -1;
+	if (HitTestMarginArrow(point, nDiff, nDstPane))
+	{
+		int firstDiff = nDiff, lastDiff = nDiff;
+		GetDocument()->m_diffList.GetJoinedSignificantDiffRange(nDiff, firstDiff, lastDiff);
+		DIFFRANGE diFirst, diLast;
+		if (GetDocument()->m_diffList.GetDiff(firstDiff, diFirst) &&
+			GetDocument()->m_diffList.GetDiff(lastDiff, diLast))
+		{
+			nFirstLine = diFirst.dbegin;
+			nLastLine = diLast.dend;
+		}
+	}
+	if (nFirstLine == m_nMarginArrowFirstLine && nLastLine == m_nMarginArrowLastLine)
+		return;
+
+	const int nOldFirstLine = m_nMarginArrowFirstLine, nOldLastLine = m_nMarginArrowLastLine;
+	m_nMarginArrowFirstLine = nFirstLine;
+	m_nMarginArrowLastLine = nLastLine;
+	if (nOldFirstLine >= 0)
+		InvalidateLines(nOldFirstLine, nOldLastLine, true);
+	if (nFirstLine < 0)
+		return;
+	InvalidateLines(nFirstLine, nLastLine, true);
+	if (!m_bMarginArrowTracking)
+	{
+		// WM_MOUSELEAVE hides the arrow when the mouse leaves the view without passing over the text
+		TRACKMOUSEEVENT tme { sizeof(TRACKMOUSEEVENT), TME_LEAVE, m_hWnd, 0 };
+		m_bMarginArrowTracking = (TrackMouseEvent(&tme) != FALSE);
+	}
+}
+
+/**
+ * @brief Hide the margin copy arrow.
+ */
+void CMergeEditView::ClearMarginArrowHover()
+{
+	if (m_nMarginArrowFirstLine < 0)
+		return;
+	const int nFirstLine = m_nMarginArrowFirstLine, nLastLine = m_nMarginArrowLastLine;
+	m_nMarginArrowFirstLine = -1;
+	m_nMarginArrowLastLine = -1;
+	InvalidateLines(nFirstLine, nLastLine, true);
+}
+
+/**
+ * @brief Copy the whole difference at the given diff to the given pane in one undo step.
+ * The difference is the block of joined diffs (DiffList::GetJoinedSignificantDiffRange), so a change that
+ * "Align similar lines" divided into several diffs is copied as the one change it is.
+ * @param [in] nDiff Index of any diff of the block.
+ * @param [in] nDstPane Index of the pane the block is copied to.
+ */
+void CMergeEditView::CopyDiffBlockToPane(int nDiff, int nDstPane)
+{
+	CMergeDoc *pDoc = GetDocument();
+	if (nDiff < 0 || IsReadOnly(nDstPane))
+		return;
+	int firstDiff = nDiff, lastDiff = nDiff;
+	pDoc->m_diffList.GetJoinedSignificantDiffRange(nDiff, firstDiff, lastDiff);
+	CWaitCursor waitstatus;
+	if (firstDiff == lastDiff)
+		pDoc->ListCopy(m_nThisPane, nDstPane, firstDiff);
+	else
+		pDoc->CopyMultipleList(m_nThisPane, nDstPane, firstDiff, lastDiff);
+}
+
+/**
+ * @brief Called when mouse left button is pressed.
+ * On a margin copy arrow the click copies the difference and nothing else: the cursor does not move and no
+ * selection starts. Everywhere else the click keeps its normal meaning.
+ */
+void CMergeEditView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	int nDiff = -1, nDstPane = -1;
+	if (HitTestMarginArrow(point, nDiff, nDstPane))
+	{
+		ClearMarginArrowHover();
+		CopyDiffBlockToPane(nDiff, nDstPane);
+		return;
+	}
+	CGhostTextView::OnLButtonDown(nFlags, point);
+}
+
+/**
+ * @brief Called when the mouse moves: keeps the margin copy arrow on the difference under the mouse.
+ */
+void CMergeEditView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// While the left button drags a selection the margin is not a button, so no arrow is offered
+	if ((nFlags & MK_LBUTTON) != 0)
+		ClearMarginArrowHover();
+	else
+		UpdateMarginArrowHover(point);
+	CGhostTextView::OnMouseMove(nFlags, point);
+}
+
+/**
+ * @brief Called when the mouse leaves the view: the margin copy arrow is hidden.
+ */
+void CMergeEditView::OnMouseLeave()
+{
+	m_bMarginArrowTracking = false;
+	ClearMarginArrowHover();
+	CGhostTextView::OnMouseLeave();
+}
+
+/**
+ * @brief Called when Windows asks for the cursor shape: the hand cursor shows where a click copies a difference.
+ * Hand cursor on the margin copy arrow. The hand shows exactly where
+ * HitTestMarginArrow is true, the same test OnLButtonDown uses to copy, so the hand means that a click copies.
+ * Windows sends no WM_SETCURSOR while a selection drag holds the mouse capture, so no hand shows during a drag.
+ */
+BOOL CMergeEditView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+{
+	if (nHitTest == HTCLIENT)
+	{
+		CPoint point;
+		::GetCursorPos(&point);
+		ScreenToClient(&point);
+		int nDiff = -1, nDstPane = -1;
+		if (HitTestMarginArrow(point, nDiff, nDstPane))
+		{
+			::SetCursor(::LoadCursor(nullptr, IDC_HAND));
+			return TRUE;
+		}
+	}
+	return CGhostTextView::OnSetCursor(pWnd, nHitTest, message);
+}
+
+/**
+ * @brief Draw one copy arrow filling the given margin area.
+ * @param [in] rect Area the arrow is centred in.
+ * @param [in] bPointRight true points the arrow at the pane on the right, false at the pane on the left.
+ */
+void CMergeEditView::DrawMarginArrow(const CRect & rect, bool bPointRight)
+{
+	int nSize = rect.Height() - 2;
+	if (rect.Width() - 2 < nSize)
+		nSize = rect.Width() - 2;
+	if (GetMarginIconSize() < nSize)
+		nSize = GetMarginIconSize();
+	if (nSize < 3)
+		return;
+	const int nLeft = (rect.left + rect.right) / 2 - nSize / 2;
+	const int nCenterY = (rect.top + rect.bottom) / 2;
+	const CEColor clrArrow = GetColor(COLORINDEX_NORMALTEXT); // the colour of the line numbers it replaces
+	// The triangle is drawn as vertical slices that get shorter towards the tip
+	for (int i = 0; i < nSize; ++i)
+	{
+		const int nHeightHalf = (nSize - 1 - i) / 2;
+		const int x = bPointRight ? (nLeft + i) : (nLeft + nSize - 1 - i);
+		m_pCrystalRenderer->FillSolidRectangle(CRect(x, nCenterY - nHeightHalf, x + 1, nCenterY + nHeightHalf + 1), clrArrow);
+	}
+}
+
+/**
+ * @brief Draw the margin of one line, with the copy arrow when the mouse is over this difference.
+ * The arrow replaces the line number of the lines of that difference, so the number does not show through it.
+ */
+void CMergeEditView::DrawMargin(const CRect & rect, int nLineIndex, int nLineNumber)
+{
+	CGhostTextView::DrawMargin(rect, nLineIndex, nLineNumber);
+	if (m_nMarginArrowFirstLine < 0 || nLineIndex < m_nMarginArrowFirstLine || nLineIndex > m_nMarginArrowLastLine)
+		return;
+	// The diff list is rebuilt on every change: draw the arrow only while the line really is in a difference
+	const int nDiffAtLine = LineToDiff(nLineIndex);
+	if (nDiffAtLine == -1 || !GetDocument()->m_diffList.IsDiffSignificant(nDiffAtLine))
+		return;
+	const bool bLeftNeighbour = (m_nThisPane > 0);
+	const bool bRightNeighbour = (m_nThisPane < GetDocument()->m_nBuffers - 1);
+	const CRect rcArrows(rect.left, rect.top, rect.right - m_nRevMarkWidth, rect.bottom);
+	m_pCrystalRenderer->FillSolidRectangle(rcArrows, GetColor(COLORINDEX_SELMARGIN));
+	if (bLeftNeighbour && bRightNeighbour)
+	{
+		const int nMiddle = (rcArrows.left + rcArrows.right) / 2;
+		DrawMarginArrow(CRect(rcArrows.left, rcArrows.top, nMiddle, rcArrows.bottom), false);
+		DrawMarginArrow(CRect(nMiddle, rcArrows.top, rcArrows.right, rcArrows.bottom), true);
+	}
+	else if (bRightNeighbour)
+		DrawMarginArrow(rcArrows, true);
+	else if (bLeftNeighbour)
+		DrawMarginArrow(rcArrows, false);
 }
 
 /**

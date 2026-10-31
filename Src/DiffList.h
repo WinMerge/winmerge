@@ -128,6 +128,7 @@ public:
 	int LineRelDiff(int nLine, int nDiff) const;
 	bool LineInDiff(int nLine, int nDiff) const;
 	int LineToDiff(int nLine) const;
+	void GetJoinedSignificantDiffRange(int nDiff, int & firstDiff, int & lastDiff) const;
 	bool GetPrevDiff(int nLine, int & nDiff) const;
 	bool GetNextDiff(int nLine, int & nDiff) const;
 	bool HasSignificantDiffs() const;
