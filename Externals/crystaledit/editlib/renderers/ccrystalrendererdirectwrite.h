@@ -7,6 +7,7 @@
 #include "cecolor.h"
 #include <memory>
 #include <array>
+#include <map>
 #include <afxwin.h>
 
 #pragma once
@@ -41,6 +42,7 @@ public:
 	virtual void PushAxisAlignedClip(const CRect &rc) override;
 	virtual void PopAxisAlignedClip() override;
 	virtual void DrawMarginIcon(int x, int y, int iconIndex, int iconsize) override;
+	virtual void DrawImageStripFrame(UINT nIDResource, int nFrameCount, int nFrame, const CRect &rcDest) override;
 	virtual void DrawMarginLineNumber(int x, int y, int number) override;
 	virtual void DrawBoundaryLine(int left, int right, int y) override;
 	virtual void DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha) override;
@@ -67,6 +69,8 @@ private:
 	std::unique_ptr<CD2DSolidColorBrush> m_pBackgroundBrush;
 	std::unique_ptr<CCustomTextRenderer> m_pTextRenderer;
 	std::unique_ptr<CD2DBitmap> m_pIconBitmap;
+	/** Image strips by resource id; nullptr when the resource could not be loaded */
+	std::map<UINT, std::unique_ptr<CD2DBitmap>> m_mapImageStrips;
 	LOGFONT m_lfBaseFont;
 	std::unique_ptr<CFont> m_pFont;
 	D2D1_SIZE_F m_charSize;

@@ -103,9 +103,22 @@ private:
 	 * (DiffList::GetJoinedSignificantDiffRange), so one change divided by "Align similar lines" is copied in
 	 * one action and one undo step. A margin click outside the arrow keeps its normal meaning (line selection).
 	 * These two hold the line range of the difference the mouse is over, -1 when the mouse is not over one.
+	 * Selection copy arrow: while the mouse is over the margin of a
+	 * selected line and the selected lines contain a line of a significant diff, the arrow is drawn on every
+	 * selected line instead, and clicking it copies the selected lines, counted in whole lines, to the pane it
+	 * points to. MarginArrow describes either arrow; m_marginArrowHover replaces m_nMarginArrowFirstLine and
+	 * m_nMarginArrowLastLine, which held the line range named in the previous sentence.
 	 */
-	int m_nMarginArrowFirstLine;
-	int m_nMarginArrowLastLine;
+	struct MarginArrow
+	{
+		bool bSelection = false; /**< true: the arrow of the selected lines; false: the arrow of the block of joined diffs */
+		int nFirstLine = -1;     /**< First line the arrow is drawn on, -1 when there is no arrow */
+		int nLastLine = -1;      /**< Last line the arrow is drawn on */
+		int nFirstDiff = -1;     /**< First significant diff the copy changes */
+		int nLastDiff = -1;      /**< Last significant diff the copy changes */
+		int nDstPane = -1;       /**< Pane the arrow under the mouse copies to */
+	};
+	MarginArrow m_marginArrowHover; /**< Arrow drawn in the margin now, nFirstLine -1 when none is drawn */
 	/** `true` while WM_MOUSELEAVE has been requested for the margin arrow */
 	bool m_bMarginArrowTracking;
 
@@ -156,10 +169,12 @@ public:
 		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
 	virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber) override;
 	void DrawMarginArrow(const CRect & rect, bool bPointRight);
-	bool HitTestMarginArrow(const CPoint & point, int & nDiff, int & nDstPane);
+	bool GetSelectedLineRange(int & nFirstLine, int & nLastLine);
+	bool HitTestMarginArrow(const CPoint & point, MarginArrow & arrow);
 	void UpdateMarginArrowHover(const CPoint & point);
 	void ClearMarginArrowHover();
 	void CopyDiffBlockToPane(int nDiff, int nDstPane);
+	void CopySelectedLinesToPane(const MarginArrow & arrow);
 	void WMGoto() { OnWMGoto(); };
 	CTreeSitterParser* GetTreeSitterParser();
 	void GotoTreeSitterDefinition();

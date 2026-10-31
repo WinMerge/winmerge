@@ -295,6 +295,32 @@ void DiffList::GetJoinedSignificantDiffRange(int nDiff, int & firstDiff, int & l
 }
 
 /**
+ * @brief Get the first and the last significant diff that have at least one line in the given line range.
+ * Used by the margin copy arrow of a selection (CMergeEditView::HitTestMarginArrow): the arrow is offered only
+ * when the selected lines contain a line of a significant diff, and the copy changes these diffs only.
+ * @param [in] nFirstLine First line of the range, 0-based.
+ * @param [in] nLastLine Last line of the range, 0-based, inclusive.
+ * @param [out] firstDiff Index of the first significant diff in the range, -1 when there is none.
+ * @param [out] lastDiff Index of the last significant diff in the range, -1 when there is none.
+ * @return true when the range contains a line of a significant diff.
+ */
+bool DiffList::GetSignificantDiffRangeInLines(int nFirstLine, int nLastLine, int & firstDiff, int & lastDiff) const
+{
+	firstDiff = LineToDiff(nFirstLine);
+	if (firstDiff == -1 || !IsDiffSignificant(firstDiff))
+		firstDiff = NextSignificantDiffFromLine(nFirstLine);
+	lastDiff = LineToDiff(nLastLine);
+	if (lastDiff == -1 || !IsDiffSignificant(lastDiff))
+		lastDiff = PrevSignificantDiffFromLine(nLastLine);
+	if (firstDiff == -1 || lastDiff == -1 || lastDiff < firstDiff)
+	{
+		firstDiff = lastDiff = -1;
+		return false;
+	}
+	return true;
+}
+
+/**
  * @brief Returns diff index for given line.
  * @param [in] nLine Linenumber, 0-based.
  * @return Index to diff table, -1 if line is not inside any diff.
