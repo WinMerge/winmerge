@@ -1008,24 +1008,18 @@ void CDirDoc::MoveToNextFile(IMergeDoc* pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Move to next file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTFILE) == IDYES)
-	{
-		pMergeDoc->CloseNow();
-		m_pDirView->OpenNextFile();
-		GetMainFrame()->OnUpdateFrameTitle(FALSE);
-	}
+	pMergeDoc->CloseNow();
+	m_pDirView->OpenNextFile();
+	GetMainFrame()->OnUpdateFrameTitle(FALSE);
 }
 
 void CDirDoc::MoveToPrevFile(IMergeDoc* pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Move to previous file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVFILE) == IDYES)
-	{
-		pMergeDoc->CloseNow();
-		m_pDirView->OpenPrevFile();
-		GetMainFrame()->OnUpdateFrameTitle(FALSE);
-	}
+	pMergeDoc->CloseNow();
+	m_pDirView->OpenPrevFile();
+	GetMainFrame()->OnUpdateFrameTitle(FALSE);
 }
 
 void CDirDoc::MoveToLastFile(IMergeDoc* pMergeDoc)

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2026-05-25 21:16+0900\n"
+"PO-Revision-Date: 2026-10-26 21:01+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -5452,7 +5452,13 @@ msgstr "プロジェクト ファイルが保存されました。"
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
 #: Merge.rc:4609
 #, c-format
-msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+msgid ""
+"This project file contains plugins with custom arguments:\n"
+"\n"
+"%1\n"
+"These arguments may affect plugin behavior or execute external programs.\n"
+"\n"
+"Do you want to open this project file?"
 msgstr ""
 "このプロジェクトファイルには引数付きのプラグインが含まれています:\n"
 "\n"
@@ -5947,17 +5953,17 @@ msgstr "右無題"
 #. IDS_CONFLICT_BASE_FILE
 #: Merge.rc:4838
 msgid "Base File"
-msgstr "Base File"
+msgstr "ベースファイル"
 
 #. IDS_CONFLICT_THEIRS_FILE
 #: Merge.rc:4839
 msgid "Theirs File"
-msgstr "Theirs File"
+msgstr "他者側ファイル"
 
 #. IDS_CONFLICT_MINE_FILE
 #: Merge.rc:4840
 msgid "Mine File"
-msgstr "Mine File"
+msgstr "自分側ファイル"
 
 #. IDS_SELFCOMPARE_ORIGINAL_FILE
 #: Merge.rc:4841
@@ -6159,14 +6165,30 @@ msgstr "ファイルが展開されていません: %1"
 #. IDS_ERROR_FILECREATE
 #: Merge.rc:4902
 #, c-format
-msgid "Cannot create file\n%1\n\n%2"
-msgstr "ファイルを作成できません\n%1\n\n%2"
+msgid ""
+"Cannot create file\n"
+"%1\n"
+"\n"
+"%2"
+msgstr ""
+"ファイルを作成できません\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILESOPEN
 #: Merge.rc:4903
 #, c-format
-msgid "Cannot open file(s)\n%1\n\n%2"
-msgstr "次のファイルを開けません\n%1\n\n%2"
+msgid ""
+"Cannot open file(s)\n"
+"%1\n"
+"\n"
+"%2"
+msgstr ""
+"次のファイルを開けません\n"
+"%1\n"
+"\n"
+"%2"
 
 #. IDS_ERROR_FILEOPEN
 #: Merge.rc:4904
@@ -6398,8 +6420,14 @@ msgstr ""
 "続行する前にドキュメントを F5 キーで最新にしてください。"
 
 #: Merge.rc:4954
-msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
-msgstr "非表示の行を含む差異のマージ/コピーは現在サポートされていません。\n\nマージする前に、表示フィルターをクリアするか、すべての行が表示されるようフィルター設定を変更してください。"
+msgid ""
+"Merging/copying differences that contain hidden lines is not currently supported.\n"
+"\n"
+"Please clear the display filter or adjust the filter settings to show all lines before merging."
+msgstr ""
+"非表示の行を含む差異のマージ/コピーは現在サポートされていません。\n"
+"\n"
+"マージする前に、表示フィルターをクリアするか、すべての行が表示されるようフィルター設定を変更してください。"
 
 #. IDS_BREAK_ON_WHITESPACE
 #: Merge.rc:4959
@@ -6520,7 +6548,9 @@ msgstr "差異を... (%1)"
 
 #. IDS_ONLYDIFFITEMS_CONFIRM
 #: Merge.rc:5006
-msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Process only items with differences?"
 msgstr ""
 "選択した項目の一部が同一かスキップされた項目です。\n"
 "差異のある項目だけを処理しますか？"
@@ -7722,8 +7752,20 @@ msgstr ""
 #. IDS_AUTO_MERGE
 #: Merge.rc:5397
 #, c-format
-msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
-msgstr "自動マージが完了しました。\n\n%1\n\n自動マージ: %2\n未解決のコンフリクト: %3"
+msgid ""
+"Automatic merge completed.\n"
+"\n"
+"%1\n"
+"\n"
+"Automatic merges: %2\n"
+"Unresolved conflicts: %3"
+msgstr ""
+"自動マージが完了しました。\n"
+"\n"
+"%1\n"
+"\n"
+"自動マージ: %2\n"
+"未解決のコンフリクト: %3"
 
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5398
@@ -7841,7 +7883,10 @@ msgstr "アーカイブファイルが作成されました。"
 
 #. IDS_ARCHIVE_SAVEFILES
 #: Merge.rc:5437
-msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
+msgid ""
+"Save all files first.\n"
+"\n"
+"Creating an archive requires no unsaved changes."
 msgstr ""
 "まず先にすべてのファイルを保存してください。\n"
 "\n"
@@ -8128,25 +8173,55 @@ msgstr ""
 #. IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE
 #: Merge.rc:5516
 #, c-format
-msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
-msgstr "マージが完了していません。%1個の差異が未解決です。\n\nマージを中止し、結果を保存せずに閉じますか？"
+msgid ""
+"The merge is not finished: %1 difference(s) have not been resolved.\n"
+"\n"
+"Abandon the merge and close without saving the result?"
+msgstr ""
+"マージが完了していません。%1個の差異が未解決です。\n"
+"\n"
+"マージを中止し、結果を保存せずに閉じますか？"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5517
-msgid "The merge result has not been saved.\n\nSave the merge result?"
-msgstr "マージ結果が保存されていません。\n\nマージ結果を保存しますか？"
+msgid ""
+"The merge result has not been saved.\n"
+"\n"
+"Save the merge result?"
+msgstr ""
+"マージ結果が保存されていません。\n"
+"\n"
+"マージ結果を保存しますか？"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5518
 #, c-format
-msgid "Saving the merge result to\n%1\nfailed.\n%2"
-msgstr "マージ結果を\n%1\nに保存できませんでした。\n%2"
+msgid ""
+"Saving the merge result to\n"
+"%1\n"
+"failed.\n"
+"%2"
+msgstr ""
+"マージ結果を\n"
+"%1\n"
+"に保存できませんでした。\n"
+"%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5519
 #, c-format
-msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr "マージ結果には、まだ%1個の未解決の差異があります。\n\n未解決のコンフリクトは、すべてのバージョンを保持するコンフリクトセクション（<<<<<<<）として保存され、後で任意のエディターで解決できます。それ以外の未解決の差異は、自動マージされた内容で保存されます。\n\nこのまま結果を保存しますか？"
+msgid ""
+"There are still %1 unresolved difference(s) in the merge result.\n"
+"\n"
+"Unresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n"
+"\n"
+"Save the result anyway?"
+msgstr ""
+"マージ結果には、まだ%1個の未解決の差異があります。\n"
+"\n"
+"未解決のコンフリクトは、すべてのバージョンを保持するコンフリクトセクション（<<<<<<<）として保存され、後で任意のエディターで解決できます。それ以外の未解決の差異は、自動マージされた内容で保存されます。\n"
+"\n"
+"このまま結果を保存しますか？"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5520
@@ -9726,7 +9801,19 @@ msgid "Trim spaces"
 msgstr "行頭行末の空白を削除します"
 
 #: Strings.rc:130
-msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n or: SelectColumns [-v] [-i] -F STRING\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgid ""
+"Select columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+" or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+" or: SelectColumns [-v] [-i] -F STRING\r\n"
+" RANGES - column ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" STRING - string to match literally\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -g - enable global flag\r\n"
+" -e - use PATTERNS\r\n"
+" -F - use fixed string for matching"
 msgstr ""
 "指定した列を抽出します。\r\n"
 "使い方: SelectColumns RANGES\r\n"
@@ -9742,7 +9829,18 @@ msgstr ""
 "  -F - 固定文字列を使用します"
 
 #: Strings.rc:132
-msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n or: SelectLines [-v] [-i] -F STRING\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n STRING - string to match literally\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS\r\n -F - use fixed string for matching"
+msgid ""
+"Select lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+" or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+" or: SelectLines [-v] [-i] -F STRING\r\n"
+" RANGES - line ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" STRING - string to match literally\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -e - use PATTERNS\r\n"
+" -F - use fixed string for matching"
 msgstr ""
 "指定した行を抽出します。\r\n"
 "使い方: SelectLines RANGES\r\n"
@@ -9979,7 +10077,9 @@ msgstr "AIによるテキスト変換機能"
 
 #. IDS_PLUGIN_DESCRIPTION56
 #: Strings.rc:202
-msgid "Text converter (OpenAI-compatible API).\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter (OpenAI-compatible API).\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
 "OpenAI 互換 APIを使用してテキストを変換します。\r\n"
 "使い方: AIConvertText PROMPT"
@@ -10234,7 +10334,10 @@ msgstr "プロンプトを入力してください"
 
 #: Strings.rc:326
 #, c-format
-msgid "Enter API key.\r\n- Registration with the selected provider may be required (fees may apply).\r\n- Key stored in env var %1."
+msgid ""
+"Enter API key.\r\n"
+"- Registration with the selected provider may be required (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
 "API キーを入力してください。\r\n"
 " ※ 選択されたプロバイダーによっては登録が必要であり、料金がかかります。\r\n"

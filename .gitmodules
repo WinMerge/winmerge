@@ -34,3 +34,6 @@
 [submodule "Externals/7zip"]
 	path = Externals/7zip
 	url = https://github.com/WinMerge/7zip
+[submodule "Docs/Manual"]
+	url = ../winmerge-manual
+	path = Docs/Manual
