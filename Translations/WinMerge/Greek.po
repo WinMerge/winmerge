@@ -3743,6 +3743,16 @@ msgstr "Εύρεση &Επομένου"
 msgid "Find &Prev"
 msgstr ""
 
+#. IDD_EDIT_FIND, IDC_EDIT_MARK_ALL
+#: Merge.rc:2363
+msgid "&Mark All"
+msgstr ""
+
+#. IDD_EDIT_FIND, IDC_EDIT_CLEAR_MARKS
+#: Merge.rc:2364
+msgid "&Clear Marks"
+msgstr ""
+
 #. IDD_EDIT_REPLACE
 #: Merge.rc:2367
 #, c-format
@@ -4193,6 +4203,16 @@ msgstr ""
 #: Merge.rc:2626
 #, c-format
 msgid "Search Marker:"
+msgstr ""
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER4_COLOR_LABEL
+#: Merge.rc:2630
+msgid "Double Click Quick Search Marker:"
+msgstr ""
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER5_COLOR_LABEL
+#: Merge.rc:2631
+msgid "Temporary Tab Search Mark:"
 msgstr ""
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER1_COLOR_LABEL
@@ -8443,6 +8463,11 @@ msgstr ""
 #. IDS_MARKER_NEW_PATTERN
 #: Merge.rc:5466
 msgid "New Pattern"
+msgstr ""
+
+#. IDS_FIND_TAB_MARK
+#: Merge.rc:5467
+msgid "Mark"
 msgstr ""
 
 #. IDS_PLUGINSLIST_TYPE

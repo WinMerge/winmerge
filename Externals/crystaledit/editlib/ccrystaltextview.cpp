@@ -1848,13 +1848,19 @@ CCrystalTextView::GetWhitespaceTextBlocks(int nLineIndex) const
 std::vector<TEXTBLOCK>
 CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
 {
+  return GetMarkerTextBlocks(nLineIndex, m_pMarkers);
+}
+
+std::vector<TEXTBLOCK>
+CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers* pMarkers) const
+{
   std::vector<TEXTBLOCK> allblocks;
-  if (!m_pMarkers->GetEnabled())
+  if (pMarkers == nullptr || !pMarkers->GetEnabled())
     return allblocks;
 
   int nLength = GetViewableLineLength (nLineIndex);
 
-  for (const auto& marker : m_pMarkers->GetMarkers())
+  for (const auto& marker : pMarkers->GetMarkers())
     {
       if (!marker.second.bVisible)
         continue;
@@ -1908,10 +1914,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   std::vector<TEXTBLOCK> blocks = ParseLine(nLineIndex);
   std::vector<TEXTBLOCK> additionalBlocks = GetAdditionalTextBlocks(nLineIndex);
   std::vector<TEXTBLOCK> mergedBlocks;
-  if (m_pMarkers && m_pMarkers->GetEnabled() && m_pMarkers->GetMarkers().size() > 0)
-    mergedBlocks = MergeTextBlocks(additionalBlocks, GetMarkerTextBlocks(nLineIndex));
-  else
-    mergedBlocks = std::move(additionalBlocks);
+  mergedBlocks = MergeTextBlocks(additionalBlocks, GetMarkerTextBlocks(nLineIndex));
   std::vector<TEXTBLOCK> mergedBlocks2 = MergeTextBlocks(blocks, mergedBlocks);
   if (m_bViewTabs || m_bViewEols)
       return MergeTextBlocks(mergedBlocks2, GetWhitespaceTextBlocks(nLineIndex));

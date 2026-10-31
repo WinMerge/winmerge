@@ -3480,6 +3480,16 @@ msgstr "Tìm tiếp"
 msgid "Find &Prev"
 msgstr "Tìm trước đó"
 
+#. IDD_EDIT_FIND, IDC_EDIT_MARK_ALL
+#: Merge.rc:2363
+msgid "&Mark All"
+msgstr ""
+
+#. IDD_EDIT_FIND, IDC_EDIT_CLEAR_MARKS
+#: Merge.rc:2364
+msgid "&Clear Marks"
+msgstr ""
+
 #. IDD_EDIT_REPLACE
 #: Merge.rc:2367
 msgid "Replace"
@@ -3877,6 +3887,16 @@ msgstr "Mép:"
 #: Merge.rc:2626
 msgid "Search Marker:"
 msgstr "Tìm kiếm dấu mốc:"
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER4_COLOR_LABEL
+#: Merge.rc:2630
+msgid "Double Click Quick Search Marker:"
+msgstr ""
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER5_COLOR_LABEL
+#: Merge.rc:2631
+msgid "Temporary Tab Search Mark:"
+msgstr ""
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER1_COLOR_LABEL
 #: Merge.rc:2627
@@ -7901,6 +7921,11 @@ msgstr "Màu dấu mốc %d"
 #: Merge.rc:5466
 msgid "New Pattern"
 msgstr "Mẫu mới"
+
+#. IDS_FIND_TAB_MARK
+#: Merge.rc:5467
+msgid "Mark"
+msgstr ""
 
 #. IDS_PLUGINSLIST_TYPE
 #: Merge.rc:5472

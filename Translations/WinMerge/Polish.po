@@ -3481,6 +3481,16 @@ msgstr "Znajdź następny"
 msgid "Find &Prev"
 msgstr "Znajdź poprzedni"
 
+#. IDD_EDIT_FIND, IDC_EDIT_MARK_ALL
+#: Merge.rc:2363
+msgid "&Mark All"
+msgstr "Oznacz &wszystkie"
+
+#. IDD_EDIT_FIND, IDC_EDIT_CLEAR_MARKS
+#: Merge.rc:2364
+msgid "&Clear Marks"
+msgstr "Wyczyść &oznaczenia"
+
 #. IDD_EDIT_REPLACE
 #: Merge.rc:2367
 msgid "Replace"
@@ -3874,6 +3884,16 @@ msgstr "Margines:"
 #: Merge.rc:2626
 msgid "Search Marker:"
 msgstr "Znaleziony marker:"
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER4_COLOR_LABEL
+#: Merge.rc:2630
+msgid "Double Click Quick Search Marker:"
+msgstr "Marker po dwukrotnym kliknięciu:"
+
+#. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER5_COLOR_LABEL
+#: Merge.rc:2631
+msgid "Temporary Tab Search Mark:"
+msgstr "Tymczasowy marker z karty Oznacz:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER1_COLOR_LABEL
 #: Merge.rc:2627
@@ -7601,6 +7621,11 @@ msgstr "Kolor markera %d"
 #: Merge.rc:5466
 msgid "New Pattern"
 msgstr "Nowy szablon"
+
+#. IDS_FIND_TAB_MARK
+#: Merge.rc:5467
+msgid "Mark"
+msgstr "Oznacz"
 
 #. IDS_PLUGINSLIST_TYPE
 #: Merge.rc:5472

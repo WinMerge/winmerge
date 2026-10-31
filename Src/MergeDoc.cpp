@@ -215,6 +215,22 @@ CMergeDoc::CMergeDoc()
 	m_diffWrapper.SetPrediffer(nullptr);
 }
 
+void CMergeDoc::SetTemporaryMarker(const tchar_t* key, const CString& text, findtext_flags_t flags, COLORINDEX color)
+{
+	if (text.IsEmpty())
+		m_temporaryMarkers.DeleteMarker(key);
+	else
+		m_temporaryMarkers.SetMarker(key, text, flags, color, false);
+	ForEachView([](auto* view) { if (view) view->UpdateView(nullptr, nullptr, 0, -1); });
+}
+
+void CMergeDoc::ClearTemporaryMarker(const tchar_t* key)
+{
+	if (m_temporaryMarkers.GetMarkers().erase(key) == 0)
+		return;
+	ForEachView([](auto* view) { if (view) view->UpdateView(nullptr, nullptr, 0, -1); });
+}
+
 /**
  * @brief Destructor.
  *

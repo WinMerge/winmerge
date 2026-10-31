@@ -161,6 +161,12 @@ void SyntaxColors::SetDefaults()
 		case COLORINDEX_MARKERBKGND3:
 			color = { 127, 127, 255 };
 			break;
+		case COLORINDEX_MARKERBKGND4:
+			color = { 155, 255, 155 };
+			break;
+		case COLORINDEX_MARKERBKGND5:
+			color = { 155, 155, 255 };
+			break;
 		default:
 		//  return { 255, 0, 0 };
 			color = { 128, 0, 0 };
