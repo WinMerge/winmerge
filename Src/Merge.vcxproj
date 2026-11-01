@@ -1335,6 +1335,7 @@
     <ClCompile Include="MergeDocLineDiffs.cpp" />
     <ClCompile Include="MergeEditView.cpp" />
     <ClCompile Include="Common\MessageBoxDialog.cpp" />
+    <ClCompile Include="Common\PopupList.cpp" />
     <ClCompile Include="MovedBlocks.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1728,6 +1729,7 @@
     <ClInclude Include="MergeEditView.h" />
     <ClInclude Include="MergeLineFlags.h" />
     <ClInclude Include="Common\MessageBoxDialog.h" />
+    <ClInclude Include="Common\PopupList.h" />
     <ClInclude Include="MovedLines.h" />
     <ClInclude Include="Common\multiformatText.h" />
     <ClInclude Include="OpenDoc.h" />
