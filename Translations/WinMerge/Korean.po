@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-10-19 20:08+0900\n"
+"PO-Revision-Date: 2026-10-25 20:53+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -6549,7 +6549,7 @@ msgstr "차이 %1 / %2"
 #: Merge.rc:4852
 #, c-format
 msgid "Diff. %1 of %2 (%3 ign.)"
-msgstr ""
+msgstr "%2개 중 %1개의 차이점 (%3개 무시)"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4853
@@ -6567,13 +6567,13 @@ msgstr "1개 차이 발견"
 #: Merge.rc:4855
 #, c-format
 msgid "%1 Differences (%2 ign.)"
-msgstr ""
+msgstr "%1개의 차이점 (%2개 무시)"
 
 #. IDS_1_DIFF_FOUND_IGNORED_FMT
 #: Merge.rc:4856
 #, c-format
 msgid "1 Difference (%1 ign.)"
-msgstr ""
+msgstr "1개의 차이점 (%1개 무시)"
 
 #. IDS_NO_ERR_SEL_FMT
 #: Merge.rc:4857
