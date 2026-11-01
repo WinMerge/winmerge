@@ -1870,6 +1870,87 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
       blocks[0].m_nColorIndex = COLORINDEX_NONE;
       blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
       ++nBlocks;
+      CString pattern = marker.second.sFindWhat;
+      if (marker.second.dwFlags & FIND_REGEXP)
+        {
+          pattern.Replace(_T("\\r"), _T("\r"));
+          pattern.Replace(_T("\\n"), _T("\n"));
+        }
+      int newlineCount = 0;
+      bool afterCR = false;
+      for (int i = 0; i < pattern.GetLength(); ++i)
+        {
+          if (pattern[i] == _T('\r'))
+            { ++newlineCount; afterCR = true; }
+          else if (pattern[i] == _T('\n'))
+            { if (!afterCR) ++newlineCount; afterCR = false; }
+          else
+            afterCR = false;
+        }
+      if ((marker.second.dwFlags & FIND_REGEXP) && newlineCount > 0)
+        {
+          std::vector<std::pair<int, int>> ranges;
+          const int firstLine = (std::max)(0, nLineIndex - newlineCount);
+          for (int startLine = firstLine; startLine <= nLineIndex; ++startLine)
+            {
+              CString window;
+              int targetStart = 0;
+              int targetEnd = 0;
+              const int endLine = (std::min)(GetLineCount() - 1, startLine + newlineCount);
+              for (int line = startLine; line <= endLine; ++line)
+                {
+                  if (line != startLine)
+                    window += GetTextBufferEol(line - 1);
+                  if (line == nLineIndex)
+                    targetStart = window.GetLength();
+                  if (GetLineLength(line) > 0)
+                    window.Append(GetLineChars(line), GetLineLength(line));
+                  if (line == nLineIndex)
+                    targetEnd = window.GetLength();
+                }
+              RxNode* node = nullptr;
+              for (int searchPos = 0; searchPos < window.GetLength(); )
+                {
+                  int matchLength = 0;
+                  RxMatchRes matches;
+                  const size_t pos = ::FindStringHelper(window, window.GetLength(),
+                    static_cast<const tchar_t*>(window) + searchPos,
+                    marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP,
+                    matchLength, node, &matches);
+                  if (pos == size_t(-1))
+                    break;
+                  // Matches beginning on later lines are processed from those lines.
+                  if (pos < static_cast<size_t>(GetLineLength(startLine)))
+                    {
+                      const int begin = (std::max)(static_cast<int>(pos), targetStart);
+                      const int end = (std::min)(static_cast<int>(pos) + matchLength, targetEnd);
+                      if (begin < end)
+                        ranges.emplace_back(begin - targetStart, end - targetStart);
+                    }
+                  searchPos = static_cast<int>(pos) + (std::max)(matchLength, 1);
+                }
+              RxFree(node);
+            }
+          std::sort(ranges.begin(), ranges.end());
+          for (const auto& range : ranges)
+            {
+              if (range.first < 0 || range.second > nLength)
+                continue;
+              if (nBlocks > 1 && range.first <= blocks[nBlocks - 1].m_nCharPos)
+                continue;
+              blocks[nBlocks].m_nCharPos = range.first;
+              blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
+              blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
+              ++nBlocks;
+              blocks[nBlocks].m_nCharPos = range.second;
+              blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
+              blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
+              ++nBlocks;
+            }
+          blocks.resize(nBlocks);
+          allblocks = MergeTextBlocks(allblocks, blocks);
+          continue;
+        }
       const tchar_t *pszChars = GetLineChars(nLineIndex);
       int nLineLength = GetLineLength(nLineIndex);
       if (pszChars != nullptr)

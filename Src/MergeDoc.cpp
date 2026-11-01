@@ -3088,6 +3088,10 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 		std::swap(m_nBufferType[nFromIndex], m_nBufferType[nToIndex]);
 		std::swap(m_bEditAfterRescan[nFromIndex], m_bEditAfterRescan[nToIndex]);
 		std::swap(m_strDesc[nFromIndex], m_strDesc[nToIndex]);
+		if (m_autoMarkerSourcePane == nFromIndex)
+			m_autoMarkerSourcePane = nToIndex;
+		else if (m_autoMarkerSourcePane == nToIndex)
+			m_autoMarkerSourcePane = nFromIndex;
 		if (m_bResultBuilt)
 		{
 			std::swap(m_bResultSavedRO[nFromIndex], m_bResultSavedRO[nToIndex]);

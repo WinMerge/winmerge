@@ -781,7 +781,6 @@
 #define IDC_EDIT_SCOPE_WHOLE_FILE       8614
 #define IDC_EDIT_SCOPE_DONT_WRAP        8615
 #define IDC_EDIT_FINDPREV               8616
-#define IDC_EDIT_FIND_TABS              8617
 #define IDC_EDIT_MARK_ALL               8618
 #define IDC_EDIT_CLEAR_MARKS            8619
 #define IDC_EDIT_MARKERS_ENABLED        8819
@@ -2174,7 +2173,6 @@
 #define IDS_EOL_NONE                    43408
 #define IDS_MARKER_COLOR_FMT            43409
 #define IDS_MARKER_NEW_PATTERN          43410
-#define IDS_FIND_TAB_MARK               43411
 #define IDS_PLUGINSLIST_NAME            43432
 #define IDS_PLUGINSLIST_TYPE            43433
 #define IDS_PLUGINSLIST_DESC            43434

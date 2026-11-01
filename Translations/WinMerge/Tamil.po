@@ -7947,11 +7947,6 @@ msgstr "குறிப்பான் நிறம் %d"
 msgid "New Pattern"
 msgstr "புதிய முறை"
 
-#. IDS_FIND_TAB_MARK
-#: Merge.rc:5467
-msgid "Mark"
-msgstr ""
-
 #. IDS_PLUGINSLIST_TYPE
 #: Merge.rc:5472
 msgid "Type"

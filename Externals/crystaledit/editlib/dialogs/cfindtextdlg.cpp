@@ -60,7 +60,6 @@ DoDataExchange (CDataExchange * pDX)
   CDialog::DoDataExchange (pDX);
   //{{AFX_DATA_MAP(CFindTextDlg)
   DDX_Control (pDX, IDC_EDIT_FINDTEXT, m_ctlFindText);
-  DDX_Control (pDX, IDC_EDIT_FIND_TABS, m_ctlTabs);
   DDX_Control (pDX, IDC_EDIT_WHOLE_WORD, m_ctlWholeWord);
   DDX_Check (pDX, IDC_EDIT_MATCH_CASE, m_bMatchCase);
   DDX_CBStringExact (pDX, IDC_EDIT_FINDTEXT, m_sText);
@@ -127,7 +126,7 @@ ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
 ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeSelected)
 ON_BN_CLICKED (IDC_EDIT_REGEXP, OnRegExp)
 ON_BN_CLICKED (IDC_EDIT_FINDPREV, OnFindPrev)
-ON_NOTIFY(TCN_SELCHANGE, IDC_EDIT_FIND_TABS, OnTabChanged)
+ON_NOTIFY(BCN_DROPDOWN, IDC_EDIT_MARK_ALL, OnMarkDropdown)
 ON_BN_CLICKED(IDC_EDIT_MARK_ALL, OnMarkAll)
 ON_BN_CLICKED(IDC_EDIT_CLEAR_MARKS, OnClearMarks)
 //}}AFX_MSG_MAP
@@ -138,10 +137,7 @@ END_MESSAGE_MAP ()
 
 void CFindTextDlg::OnOK ()
 {
-  if (m_ctlTabs.GetCurSel() == 1)
-    OnMarkAll();
-  else
-    FindText (1);
+  FindText (1);
 }
 
 void CFindTextDlg::OnFindPrev ()
@@ -177,13 +173,8 @@ OnInitDialog ()
   LangTranslateDialog(m_hWnd);
   CDialog::OnInitDialog ();
 
-  CString findTabTitle;
-  GetWindowText(findTabTitle);
-  m_ctlTabs.InsertItem(0, findTabTitle);
-  if (m_pBuddy->CanMarkAll())
-    m_ctlTabs.InsertItem(1, LoadResString(IDS_FIND_TAB_MARK).c_str());
-  m_ctlTabs.SetCurSel(0);
-  UpdateTab();
+  GetDlgItem(IDC_EDIT_MARK_ALL)->ShowWindow(m_pBuddy->CanMarkAll() ? SW_SHOW : SW_HIDE);
+  GetDlgItem(IDC_EDIT_CLEAR_MARKS)->ShowWindow(SW_HIDE);
 
   CMemComboBox::LoadSettings();
 
@@ -225,20 +216,19 @@ OnRegExp ()
   UpdateData (false);
 }
 
-void CFindTextDlg::UpdateTab()
+void CFindTextDlg::OnMarkDropdown(NMHDR*, LRESULT* pResult)
 {
-  const bool marking = m_ctlTabs.GetCurSel() == 1;
-  GetDlgItem(IDOK)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
-  GetDlgItem(IDC_EDIT_FINDPREV)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
-  GetDlgItem(IDC_EDIT_MARK_ALL)->ShowWindow(marking ? SW_SHOW : SW_HIDE);
-  GetDlgItem(IDC_EDIT_CLEAR_MARKS)->ShowWindow(marking ? SW_SHOW : SW_HIDE);
-  GetDlgItem(IDC_FINDDLG_DONTWRAP)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
-  GetDlgItem(IDC_FINDDLG_DONTCLOSE)->ShowWindow(marking ? SW_HIDE : SW_SHOW);
-}
-
-void CFindTextDlg::OnTabChanged(NMHDR*, LRESULT* pResult)
-{
-  UpdateTab();
+  CString clearText;
+  GetDlgItem(IDC_EDIT_CLEAR_MARKS)->GetWindowText(clearText);
+  CMenu menu;
+  menu.CreatePopupMenu();
+  menu.AppendMenu(MF_STRING, IDC_EDIT_CLEAR_MARKS, clearText);
+  CRect buttonRect;
+  GetDlgItem(IDC_EDIT_MARK_ALL)->GetWindowRect(&buttonRect);
+  const int command = menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD,
+    buttonRect.left, buttonRect.bottom, this);
+  if (command == IDC_EDIT_CLEAR_MARKS)
+    OnClearMarks();
   *pResult = 0;
 }
 
@@ -267,7 +257,7 @@ UpdateControls()
 {
   GetDlgItem(IDOK)->EnableWindow( !m_sText.IsEmpty() );
   GetDlgItem(IDC_EDIT_FINDPREV)->EnableWindow( !m_sText.IsEmpty() );
-  GetDlgItem(IDC_EDIT_MARK_ALL)->EnableWindow(!m_sText.IsEmpty());
+  // Keep the drop-down available to clear marks even when the search text is empty.
   
   UpdateRegExp();
 }

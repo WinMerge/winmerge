@@ -61,7 +61,6 @@ public :
     //{{AFX_DATA(CFindTextDlg)
   enum { IDD = IDD_EDIT_FIND };
     CMemComboBox m_ctlFindText;
-    CTabCtrl m_ctlTabs;
     CButton m_ctlWholeWord;
     int m_nDirection;
     bool m_bMatchCase;
@@ -95,10 +94,9 @@ protected :
     virtual void OnCancel ();
     afx_msg void OnRegExp ();
     afx_msg void OnFindPrev ();
-    afx_msg void OnTabChanged(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnMarkDropdown(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnMarkAll();
     afx_msg void OnClearMarks();
-    void UpdateTab();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP ()
   };

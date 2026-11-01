@@ -7964,11 +7964,6 @@ msgstr "Color del marcador %d"
 msgid "New Pattern"
 msgstr "Nuevo patrón"
 
-#. IDS_FIND_TAB_MARK
-#: Merge.rc:5467
-msgid "Mark"
-msgstr ""
-
 #. IDS_PLUGINSLIST_TYPE
 #: Merge.rc:5472
 msgid "Type"
