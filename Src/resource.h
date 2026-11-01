@@ -684,6 +684,10 @@
 #define IDC_MARKER1_BKGD_COLOR          1616
 #define IDC_MARKER2_BKGD_COLOR          1617
 #define IDC_MARKER3_BKGD_COLOR          1618
+#define IDC_MARKER4_COLOR_LABEL         1660
+#define IDC_MARKER5_COLOR_LABEL         1661
+#define IDC_MARKER4_BKGD_COLOR          1662
+#define IDC_MARKER5_BKGD_COLOR          1663
 #define IDC_PROPS_TREEVIEW              1619
 #define IDC_PROPS_ADD                   1620
 #define IDC_PROPS_DEL                   1621
@@ -777,6 +781,8 @@
 #define IDC_EDIT_SCOPE_WHOLE_FILE       8614
 #define IDC_EDIT_SCOPE_DONT_WRAP        8615
 #define IDC_EDIT_FINDPREV               8616
+#define IDC_EDIT_MARK_ALL               8618
+#define IDC_EDIT_CLEAR_MARKS            8619
 #define IDC_EDIT_MARKERS_ENABLED        8819
 #define IDC_EDIT_MARKER_LIST            8820
 #define IDC_EDIT_MARKER_BGCOLORIDX      8821

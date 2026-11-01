@@ -46,6 +46,8 @@ enum COLORINDEX
     COLORINDEX_MARKERBKGND1,
     COLORINDEX_MARKERBKGND2,
     COLORINDEX_MARKERBKGND3,
+    COLORINDEX_MARKERBKGND4, // double-click quick search
+    COLORINDEX_MARKERBKGND5, // temporary Find dialog Mark tab
     //  ...
     //  Expandable: custom elements are allowed.
 	COLORINDEX_LAST, // Please keep this as last item (not counting masks or

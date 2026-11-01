@@ -1848,13 +1848,19 @@ CCrystalTextView::GetWhitespaceTextBlocks(int nLineIndex) const
 std::vector<TEXTBLOCK>
 CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
 {
+  return GetMarkerTextBlocks(nLineIndex, m_pMarkers);
+}
+
+std::vector<TEXTBLOCK>
+CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers* pMarkers) const
+{
   std::vector<TEXTBLOCK> allblocks;
-  if (!m_pMarkers->GetEnabled())
+  if (pMarkers == nullptr || !pMarkers->GetEnabled())
     return allblocks;
 
   int nLength = GetViewableLineLength (nLineIndex);
 
-  for (const auto& marker : m_pMarkers->GetMarkers())
+  for (const auto& marker : pMarkers->GetMarkers())
     {
       if (!marker.second.bVisible)
         continue;
@@ -1864,6 +1870,97 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
       blocks[0].m_nColorIndex = COLORINDEX_NONE;
       blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
       ++nBlocks;
+      // Count explicit line breaks in regex patterns, treating CRLF as one break.
+      CString pattern = marker.second.sFindWhat;
+      if (marker.second.dwFlags & FIND_REGEXP)
+        {
+          pattern.Replace(_T("\\r"), _T("\r"));
+          pattern.Replace(_T("\\n"), _T("\n"));
+        }
+      int newlineCount = 0;
+      bool afterCR = false;
+      for (int i = 0; i < pattern.GetLength(); ++i)
+        {
+          if (pattern[i] == _T('\r'))
+            { ++newlineCount; afterCR = true; }
+          else if (pattern[i] == _T('\n'))
+            { if (!afterCR) ++newlineCount; afterCR = false; }
+          else
+            afterCR = false;
+        }
+      if ((marker.second.dwFlags & FIND_REGEXP) && newlineCount > 0)
+        {
+          std::vector<std::pair<int, int>> ranges;
+          // A match starting on an earlier line can still cover the line being drawn.
+          const int firstLine = (std::max)(0, nLineIndex - newlineCount);
+          for (int startLine = firstLine; startLine <= nLineIndex; ++startLine)
+            {
+              CString window;
+              int targetStart = 0;
+              int targetEnd = 0;
+              const int endLine = (std::min)(GetLineCount() - 1, startLine + newlineCount);
+              for (int line = startLine; line <= endLine; ++line)
+                {
+                  // Keep the buffer's actual EOL so matching agrees with FindTextInBlock.
+                  if (line != startLine)
+                    window += GetTextBufferEol(line - 1);
+                  if (line == nLineIndex)
+                    targetStart = window.GetLength();
+                  if (GetLineLength(line) > 0)
+                    window.Append(GetLineChars(line), GetLineLength(line));
+                  if (line == nLineIndex)
+                    targetEnd = window.GetLength();
+                }
+              RxNode* node = nullptr;
+              for (int searchPos = 0; searchPos < window.GetLength(); )
+                {
+                  int matchLength = 0;
+                  RxMatchRes matches;
+                  const size_t pos = ::FindStringHelper(window, window.GetLength(),
+                    static_cast<const tchar_t*>(window) + searchPos,
+                    marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP,
+                    matchLength, node, &matches);
+                  if (pos == size_t(-1))
+                    break;
+                  // Matches beginning on later lines are processed from those lines.
+                  if (pos < static_cast<size_t>(GetLineLength(startLine)))
+                    {
+                      // Clip the match to the visible text of the requested line.
+                      const int begin = (std::max)(static_cast<int>(pos), targetStart);
+                      const int end = (std::min)(static_cast<int>(pos) + matchLength, targetEnd);
+                      if (begin < end)
+                        ranges.emplace_back(begin - targetStart, end - targetStart);
+                    }
+                  searchPos = static_cast<int>(pos) + (std::max)(matchLength, 1);
+                }
+              RxFree(node);
+            }
+          // Convert sorted, overlapping ranges into background-color transitions.
+          std::sort(ranges.begin(), ranges.end());
+          for (const auto& range : ranges)
+            {
+              if (range.first < 0 || range.second > nLength)
+                continue;
+              if (nBlocks > 1 && range.first <= blocks[nBlocks - 1].m_nCharPos)
+                {
+                  blocks[nBlocks - 1].m_nCharPos =
+                    (std::max)(blocks[nBlocks - 1].m_nCharPos, range.second);
+                  continue;
+                }
+              blocks[nBlocks].m_nCharPos = range.first;
+              blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
+              blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
+              ++nBlocks;
+              blocks[nBlocks].m_nCharPos = range.second;
+              blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
+              blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
+              ++nBlocks;
+            }
+          blocks.resize(nBlocks);
+          allblocks = MergeTextBlocks(allblocks, blocks);
+          continue;
+        }
+      // Patterns without explicit newlines use the original per-line matcher.
       const tchar_t *pszChars = GetLineChars(nLineIndex);
       int nLineLength = GetLineLength(nLineIndex);
       if (pszChars != nullptr)
@@ -1908,10 +2005,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   std::vector<TEXTBLOCK> blocks = ParseLine(nLineIndex);
   std::vector<TEXTBLOCK> additionalBlocks = GetAdditionalTextBlocks(nLineIndex);
   std::vector<TEXTBLOCK> mergedBlocks;
-  if (m_pMarkers && m_pMarkers->GetEnabled() && m_pMarkers->GetMarkers().size() > 0)
-    mergedBlocks = MergeTextBlocks(additionalBlocks, GetMarkerTextBlocks(nLineIndex));
-  else
-    mergedBlocks = std::move(additionalBlocks);
+  mergedBlocks = MergeTextBlocks(additionalBlocks, GetMarkerTextBlocks(nLineIndex));
   std::vector<TEXTBLOCK> mergedBlocks2 = MergeTextBlocks(blocks, mergedBlocks);
   if (m_bViewTabs || m_bViewEols)
       return MergeTextBlocks(mergedBlocks2, GetWhitespaceTextBlocks(nLineIndex));

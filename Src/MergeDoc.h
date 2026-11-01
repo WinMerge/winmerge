@@ -23,6 +23,7 @@
 #include "LineFilterHelper.h"
 #include "MergeResultPane.h"
 #include "TableProps.h"
+#include "CCrystalTextMarkers.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -224,6 +225,11 @@ public:
 	int GetTrivialCount() const override { return m_nTrivialDiffs; }
 
 	void SwapFiles(int nFromIndex, int nToIndex);
+	void SetTemporaryMarker(const tchar_t* key, const CString& text, findtext_flags_t flags, COLORINDEX color);
+	void ClearTemporaryMarker(const tchar_t* key);
+	const CCrystalTextMarkers& GetTemporaryMarkers() const { return m_temporaryMarkers; }
+	int GetAutoMarkerSourcePane() const { return m_autoMarkerSourcePane; }
+	void SetAutoMarkerSourcePane(int pane) { m_autoMarkerSourcePane = pane; }
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }
 	CLocationView * GetLocationView() { return m_pLocationView; }
@@ -476,6 +482,8 @@ protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
 	CurrentWordDiff m_CurWordDiff;
 	CMergeEditView * m_pView[3][3]; /**< Pointer to left/middle/right view */
+	CCrystalTextMarkers m_temporaryMarkers; /**< Markers scoped to this comparison */
+	int m_autoMarkerSourcePane = -1;
 	CMergeEditSplitterView * m_pMergeEditSplitterView[3];
 	CLocationView * m_pLocationView; /**< Pointer to locationview */
 	IDirDoc * m_pDirDoc;
