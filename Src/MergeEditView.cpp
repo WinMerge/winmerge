@@ -4631,9 +4631,9 @@ public:
 /**
  * @brief Show a popup list at ptScreen and run a modal loop like TrackPopupMenu.
  * The list is at most half the work area of the monitor at ptScreen high and has a scroll bar when the items
- * do not fit. The selection follows the mouse pointer and moves one item per mouse wheel notch wherever the
- * pointer is. A click chooses the item under the pointer, Enter the selected one; Esc, Alt, a click outside
- * (not passed on) or another active window closes it.
+ * do not fit. The list box handles its normal mouse, wheel, and navigation behavior. A click chooses the item
+ * under the pointer, Enter the selected one; Esc, Alt, a click outside (not passed on) or another active window
+ * closes it.
  * @param [in] pFont Font of the list, nullptr for the default
  * @return Index of the chosen item, -1 for none (always -1 when bEnabled is false)
  */
@@ -4689,8 +4689,8 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 		if (hOldFont)
 			dc.SelectObject(hOldFont);
 	}
-	const int nItems = static_cast<int>(items.size());
 	const int cyItem = (std::max)(1, list.GetItemHeight(0));
+	const int nItems = static_cast<int>(items.size());
 	const int nRows = (std::max)(1, (std::min)(nItems, cyMax / cyItem));
 	CSize sizeCheckText;
 	{
@@ -4731,19 +4731,6 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 	wndPopup.SetTimer(1, 100, nullptr); // wakes the loop to notice another active window
 
 	int nResult = -1;
-	auto itemAt = [&list](CPoint ptClient) {
-		CRect rcClient;
-		list.GetClientRect(&rcClient);
-		BOOL bOutside = TRUE;
-		const int nItem = static_cast<int>(list.ItemFromPoint(ptClient, bOutside));
-		return (bOutside || !rcClient.PtInRect(ptClient)) ? -1 : nItem;
-	};
-	// The selection follows the item under the mouse pointer (hover)
-	auto selectAt = [&list, &itemAt](CPoint ptClient) {
-		const int nItem = itemAt(ptClient);
-		if (nItem >= 0 && nItem != list.GetCurSel())
-			list.SetCurSel(nItem);
-	};
 	// Whether message is the button up (client or non-client) of the button of downMessage
 	auto isButtonUp = [](UINT message, UINT downMessage) {
 		switch (downMessage)
@@ -4755,7 +4742,6 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 		return false;
 	};
 	UINT nOutsideDown = 0; // button down of a click outside, which closes the list
-	int nWheelDelta = 0; // wheel rotation not yet turned into selection steps
 	for (bool bDone = false; !bDone; )
 	{
 		if (::GetActiveWindow() != wndPopup.m_hWnd || (nOutsideDown != 0 && ::GetCapture() != wndPopup.m_hWnd))
@@ -4791,29 +4777,20 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 			bDone = true;
 			break;
 		case WM_MOUSEWHEEL:
-			// The wheel moves the selection one item per notch (wherever the pointer is); the list scrolls
-			// only to keep it visible
+			// Route wheel input to the list box, which applies the Windows wheel settings itself.
 			bDispatch = false;
 			if (bEnabled)
-			{
-				nWheelDelta += GET_WHEEL_DELTA_WPARAM(msg.wParam);
-				const int nSteps = nWheelDelta / WHEEL_DELTA;
-				nWheelDelta %= WHEEL_DELTA;
-				if (nSteps != 0)
-					list.SetCurSel((std::max)(0, (std::min)(nItems - 1, list.GetCurSel() - nSteps)));
-			}
-			break;
-		case WM_MOUSEMOVE:
-			if (msg.hwnd == list.m_hWnd && bEnabled)
-				selectAt(CPoint(GET_X_LPARAM(msg.lParam), GET_Y_LPARAM(msg.lParam)));
+				list.SendMessage(WM_MOUSEWHEEL, msg.wParam, msg.lParam);
 			break;
 		case WM_LBUTTONUP:
 			if (msg.hwnd == list.m_hWnd && bEnabled)
 			{
-				const int nItem = itemAt(CPoint(GET_X_LPARAM(msg.lParam), GET_Y_LPARAM(msg.lParam)));
-				if (nItem >= 0)
+				const CPoint ptClient(GET_X_LPARAM(msg.lParam), GET_Y_LPARAM(msg.lParam));
+				BOOL bOutside = TRUE;
+				list.ItemFromPoint(ptClient, bOutside);
+				if (!bOutside && rcClient.PtInRect(ptClient))
 				{
-					nResult = nItem;
+					nResult = list.GetCurSel();
 					bDone = true;
 				}
 			}
