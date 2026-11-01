@@ -1120,6 +1120,7 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 		_RPTF2(_CRT_ERROR, "Selected diff > diffcount (%d >= %d)",
 			nDiff, pd->m_diffList.GetSize());
 
+	pd->ClearCurrentWordDiffSelection();
 	SelectNone();
 	pd->SetCurrentDiff(nDiff);
 	ShowDiff(bScroll, bSelectText);
@@ -1129,6 +1130,13 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 	// notify either side, as it will notify the other one
 	pd->ForEachView ([&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
 	pd->OnResultPaneCurrentDiffChanged(nDiff);
+
+	// Select the first inline difference after block navigation, including
+	// the automatic selection on load and Alt+Up/Down navigation.
+	if (bScroll && !bSelectText && GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST)
+		&& GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF)
+		&& !pd->GetWordDiffArrayInDiffBlock(nDiff).empty())
+		pd->Showlinediff(this, false);
 }
 
 void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()

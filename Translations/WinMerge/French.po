@@ -3634,13 +3634,13 @@ msgstr "Général"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
 #: Merge.rc:2467
-msgid "Automatically &scroll to first difference"
-msgstr "&Atteindre automatiquement la première différence"
+msgid "Automatically &scroll to first difference (ALT + DOWN is used)"
+msgstr "&Atteindre automatiquement la première différence (ALT + DOWN is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
 #: Merge.rc:2469
-msgid "Automatically s&croll to first inline difference"
-msgstr "&Atteindre automatiquement la première différence en ligne"
+msgid "Automatically s&croll to first inline difference (F4 is used)"
+msgstr "&Atteindre automatiquement la première différence en ligne (F4 is used)"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
 #: Merge.rc:2471
@@ -5984,6 +5984,11 @@ msgstr "  Sél : %d | %d"
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "Différence %1 de %2"
+
+#: MergeDoc.cpp:1656
+#, c-format
+msgid " (Word %1 of %2)"
+msgstr ""
 
 #. IDS_DIFF_NUMBER_STATUS_IGNORED_FMT
 #: Merge.rc:4852

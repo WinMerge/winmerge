@@ -541,7 +541,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE, pointToPixel(285));
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, SBPS_CLICKABLE, pointToPixel(15)); 
-	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112));
+	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(240));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
 		__super::ShowControlBar(&m_wndStatusBar, false, 0);
