@@ -4886,10 +4886,6 @@ LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
  */
 void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	if (!m_bUseColors) {
-		return;
-	}
-
 	LPNMLISTVIEW pNM = (LPNMLISTVIEW)pNMHDR;
 	*pResult = CDRF_DODEFAULT;
 
@@ -4905,13 +4901,46 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 
 		if (lpC->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
 		{
-			*pResult = CDRF_NOTIFYITEMDRAW;
+			*pResult = CDRF_NOTIFYPOSTPAINT;
+			const int nRow = static_cast<int>(lpC->nmcd.dwItemSpec);
+			const bool selectedWithoutFocus = m_pList->GetItemState(nRow, LVIS_SELECTED) == LVIS_SELECTED
+				&& ::GetFocus() != m_pList->GetSafeHwnd();
+			if (m_bUseColors || selectedWithoutFocus)
+				*pResult |= CDRF_NOTIFYSUBITEMDRAW;
+			if (selectedWithoutFocus)
+				lpC->nmcd.uItemState &= ~CDIS_SELECTED;
 			return;
 		}
 
 		if (lpC->nmcd.dwDrawStage == (CDDS_ITEMPREPAINT | CDDS_SUBITEM ))
 		{
-			GetColors (static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
+			if (m_bUseColors)
+				GetColors (static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
+			const int nRow = static_cast<int>(lpC->nmcd.dwItemSpec);
+			if (m_pList->GetItemState(nRow, LVIS_SELECTED) == LVIS_SELECTED
+				&& ::GetFocus() != m_pList->GetSafeHwnd())
+			{
+				const COLORREF highlight = ::GetSysColor(COLOR_HIGHLIGHT);
+				const COLORREF background = ::GetSysColor(COLOR_WINDOW);
+				lpC->clrTextBk = RGB((GetRValue(highlight) + 3 * GetRValue(background)) / 4,
+					(GetGValue(highlight) + 3 * GetGValue(background)) / 4,
+					(GetBValue(highlight) + 3 * GetBValue(background)) / 4);
+				lpC->clrText = ::GetSysColor(COLOR_WINDOWTEXT);
+				lpC->nmcd.uItemState &= ~CDIS_SELECTED;
+				*pResult = CDRF_NEWFONT;
+			}
+			return;
+		}
+
+		if (lpC->nmcd.dwDrawStage == CDDS_ITEMPOSTPAINT)
+		{
+			const int nRow = static_cast<int>(lpC->nmcd.dwItemSpec);
+			if (m_pList->GetItemState(nRow, LVIS_SELECTED) == LVIS_SELECTED)
+			{
+				CRect rect;
+				if (m_pList->GetItemRect(nRow, &rect, LVIR_BOUNDS))
+					CDC::FromHandle(lpC->nmcd.hdc)->Draw3dRect(rect, GetSysColor(COLOR_HIGHLIGHT), GetSysColor(COLOR_HIGHLIGHT));
+			}
 		}
 	}
 }
