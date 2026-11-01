@@ -233,9 +233,7 @@ void CBasicFlatStatusBar::OnPaint()
 
 BOOL CBasicFlatStatusBar::OnEraseBkgnd(CDC* pDC)
 {
-	CRect rc;
-	GetClientRect(&rc);
-	pDC->FillSolidRect(&rc, ::GetSysColor(COLOR_BTNFACE));
+	UNREFERENCED_PARAMETER(pDC);
 	return TRUE;
 }
 

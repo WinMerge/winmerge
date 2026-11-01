@@ -41,7 +41,8 @@ earlier WinMerge stable releases as a recommended release.</p>
 <h2 id="what-is-new-in-21660">What Is New in 2.16.60?</h2>
 <h3 id="general">General</h3>
 <ul>
-<li><p>Keep an own recent comparison list (PR #3663)</p></li>
+<li><p>Keep an internal recent-comparison list when the Windows jump
+list has no history. (PR #3663)</p></li>
 <li><p>Update darkmodelib to 0.77.1 and enable ARM64 support</p></li>
 </ul>
 <h3 id="file-compare">File compare</h3>
@@ -61,13 +62,20 @@ comments (PR #3685)</p></li>
 </ul>
 <h3 id="image-compare">Image compare</h3>
 <ul>
-<li>BugFix: WinIMerge x86 crashes with FreeImage plugins
-(winimerge/#43)</li>
+<li><p>BugFix: WinIMerge x86 crashes with FreeImage plugins
+(winimerge/#43)</p></li>
+<li><p>BugFix: Fix image paste and undo handling
+(winimerge/#41)</p></li>
+<li><p>Update FreeImage to 3.19.25</p></li>
+<li><p>Extend destination canvas when copying image differences
+(winimerge/#42)</p></li>
 </ul>
 <h3 id="status-bar">Status bar</h3>
 <ul>
-<li>BugFix: Fix difference count in the status bar (#3649, PR
-#3707)</li>
+<li><p>BugFix: Fix difference count in the status bar (#3649, PR
+#3707)</p></li>
+<li><p>Fix status bar flickering by suppressing background
+erasure</p></li>
 </ul>
 <h3 id="select-files-or-folders-dialog">Select files or folders
 dialog</h3>
@@ -75,21 +83,11 @@ dialog</h3>
 <li><p>Open view: collapsible recent comparison list (PR #3673)</p></li>
 <li><p>Add side-specific filename, folder, and extension columns to
 folder comparison views. (PR #3682)</p></li>
-<li><p>Keep an internal recent-comparison list when the Windows jump
-list has no history. (PR #3663)</p></li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
 <li>Add side-specific filename, folder, and extension columns to folder
 comparison views. (PR #3682)</li>
-</ul>
-<h3 id="image-compare-1">Image compare</h3>
-<ul>
-<li><p>BugFix: Fix image paste and undo handling
-(winimerge/#41)</p></li>
-<li><p>Update FreeImage to 3.19.25</p></li>
-<li><p>Extend destination canvas when copying image differences
-(winimerge/#42)</p></li>
 </ul>
 <h3 id="archive-support">Archive support</h3>
 <ul>
@@ -99,6 +97,11 @@ comparison views. (PR #3682)</li>
 <ul>
 <li>Set MiniMax presets to M3.1 Flash by default (PR #3709)</li>
 </ul>
+<h3 id="installer">Installer</h3>
+<ul>
+<li>BugFix: Align Inno Setup 5 translations and fix Indonesian installer
+paths (#3737)</li>
+</ul>
 <h3 id="translations">Translations</h3>
 <ul>
 <li>Translation updates:
@@ -107,16 +110,17 @@ comparison views. (PR #3682)</li>
 #3717)</li>
 <li>Chinese Simplified (PR #3660, PR #3691, PR #3694, PR #3712, PR
 #3721)</li>
+<li>Chinese Traditional (PR #3738)</li>
 <li>Corsican (PR #3676)</li>
 <li>French (PR #3670, PR #3693, PR #3705, PR #3722)</li>
 <li>German (PR #3659, PR #3679, PR #3689, PR #3695, PR #3713, PR
 #3720)</li>
 <li>Hungarian (PR #3669)</li>
 <li>Italian (PR #3666, PR #3688, PR #3698, PR #3711, PR #3728)</li>
-<li>Korean (PR #3703, PR #3704)</li>
+<li>Korean (PR #3703, PR #3704, PR #3734)</li>
 <li>Lithuanian (PR #3667, PR #3690, PR #3710, PR #3715)</li>
 <li>Polish (PR #3661, PR #3684, PR #3692, PR #3723, PR #3727, PR #3730,
-PR #3731)</li>
+PR #3731, PR #3735)</li>
 <li>Spanish (PR #3699, PR #3700)</li>
 <li>Turkish (PR #3719)</li>
 </ul></li>
@@ -127,6 +131,8 @@ PR #3731)</li>
 #3723, PR #3725)</p></li>
 <li><p>Fix the ReadMe template path in the translation status script (PR
 #3724)</p></li>
+<li><p>Show Git update dates and Inno Setup translation coverage (PR
+#3739)</p></li>
 </ul>
 <h2 id="what-is-new-in-21659-beta">What Is New in 2.16.59 Beta?</h2>
 <h3 id="general-1">General</h3>
@@ -164,8 +170,6 @@ target tracking (PR #3646, PR #3647)</p></li>
 <li><p>BugFix: Fix ignored diff ranges with missing trailing EOL
 (#3653)(PR #3657)</p></li>
 <li><p>Show the selection margin when adding a bookmark</p></li>
-<li><p>Add an option to prefer the WIC decoder when loading images for
-image comparison (PR #3537)</p></li>
 <li><p>Add Save command to filepath bar context menuheader bar (PR
 #3654)</p></li>
 <li><p>tree-sitter: php and f-sharp grammars update (PR #3656)</p></li>
@@ -175,9 +179,11 @@ image comparison (PR #3537)</p></li>
 <li>Add column range filtering and ignore columns in comparison (PR
 #3565)</li>
 </ul>
-<h3 id="image-compare-2">Image compare</h3>
+<h3 id="image-compare-1">Image compare</h3>
 <ul>
-<li>Remember the image compare splitter position (PR #3593)</li>
+<li><p>Add an option to prefer the WIC decoder when loading images for
+image comparison (PR #3537)</p></li>
+<li><p>Remember the image compare splitter position (PR #3593)</p></li>
 </ul>
 <h3 id="folder-compare-1">Folder compare</h3>
 <ul>

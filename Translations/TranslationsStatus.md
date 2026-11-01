@@ -15,7 +15,7 @@ Last Update is the date of the latest Git commit affecting each file (or its PO 
 | Bulgarian            |  1897 |       1171 |     0 |          726 |     61 % |  2026-10-22 |
 | Catalan              |  1897 |       1321 |     0 |          576 |     69 % |  2026-10-22 |
 | ChineseSimplified    |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-23 |
-| ChineseTraditional   |  1897 |       1820 |     0 |           77 |     95 % |  2026-10-22 |
+| ChineseTraditional   |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-26 |
 | Corsican             |  1897 |       1856 |     0 |           41 |     97 % |  2026-10-22 |
 | Croatian             |  1897 |        630 |     1 |         1266 |     33 % |  2026-10-22 |
 | Czech                |  1897 |        608 |     0 |         1289 |     32 % |  2026-10-22 |
@@ -24,19 +24,19 @@ Last Update is the date of the latest Git commit affecting each file (or its PO 
 | English              |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
 | Finnish              |  1897 |       1175 |     0 |          722 |     61 % |  2026-10-22 |
 | French               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-23 |
-| Galician             |  1897 |       1310 |     0 |          587 |     69 % |  2023-11-24 |
-| German               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
-| Greek                |  1897 |        607 |     0 |         1290 |     31 % |             |
-| Hebrew               |  1897 |       1303 |     0 |          594 |     68 % |             |
-| Hungarian            |  1897 |       1820 |     0 |           77 |     95 % |  2021-03-15 |
-| Indonesian           |  1897 |       1820 |     0 |           77 |     95 % |  2026-09-15 |
-| Italian              |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-24 |
-| Japanese             |  1897 |       1897 |     0 |            0 |    100 % |  2026-05-25 |
+| Galician             |  1897 |       1310 |     0 |          587 |     69 % |  2026-10-22 |
+| German               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-23 |
+| Greek                |  1897 |        607 |     0 |         1290 |     31 % |  2026-10-22 |
+| Hebrew               |  1897 |       1303 |     0 |          594 |     68 % |  2026-10-22 |
+| Hungarian            |  1897 |       1820 |     0 |           77 |     95 % |  2026-10-22 |
+| Indonesian           |  1897 |       1820 |     0 |           77 |     95 % |  2026-10-22 |
+| Italian              |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-25 |
+| Japanese             |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
 | Korean               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-25 |
 | Lithuanian           |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-22 |
 | Norwegian            |  1897 |        731 |     0 |         1166 |     38 % |  2026-10-22 |
 | Persian              |  1897 |        642 |     0 |         1255 |     33 % |  2026-10-22 |
-| Polish               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-25 |
+| Polish               |  1897 |       1897 |     0 |            0 |    100 % |  2026-10-26 |
 | Portuguese           |  1897 |       1777 |     0 |          120 |     93 % |  2026-10-22 |
 | Romanian             |  1897 |       1294 |     0 |          603 |     68 % |  2026-10-22 |
 | Russian              |  1897 |       1820 |     0 |           77 |     95 % |  2026-10-22 |
@@ -234,6 +234,7 @@ Counts show populated keys in the WinMerge-specific `.islu` files compared with 
    - [wck3](mailto:wck3171%20at%20pchome.com.tw)
    - [Calvin Lin](mailto:ylin77%20at%20gmail.com)
    - [Enfeng Tsao](mailto:admin%20at%20siderealart.me)
+   - [昇](mailto:love80312@gmail.com)
 
  * Corsican
    - [Patriccollu di Santa Maria è Sichè](mailto:patriccollu%20at%20gmail.com) *Maintainer*

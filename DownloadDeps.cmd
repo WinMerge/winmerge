@@ -10,7 +10,7 @@ if not %ERRORLEVEL% == 0 (
 
 set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
-https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
+https://github.com/WinMerge/winmerge-manual/releases/latest/download/winmerge-manual.zip!Build\Manual\htmlhelp ^
 https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.8.0/ShellExtension-1.18.8.0.zip!Build ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z/Merge7z2605.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z/Merge7z2605.0-x64.zip!Build\X64\Release ^
@@ -41,14 +41,11 @@ https://github.com/jqlang/jq/archive/refs/tags/jq-1.8.1.zip!Build\jq ^
 https://github.com/WinMerge/cliphcat/releases/download/v0.3.0/cliphcat-0.3.0-exe.zip!Build\ ^
 https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
 https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.5.2-1-any.pkg.tar.zst!Build\md4c ^
-https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
-https://mirror.msys2.org/msys/i686/msys2-runtime-3.2.0-14-i686.pkg.tar.zst!Build\msys2_tmp ^
-https://mirror.msys2.org/msys/i686/patch-2.7.6-1-i686.pkg.tar.xz!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/msys2-runtime-3.3.6-16-i686.pkg.tar.zst!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/patch-2.7.6-3-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/lemon-3.46.1-1-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/re2c-3.1-2-i686.pkg.tar.zst!Build\msys2_tmp ^
-https://mirror.msys2.org/msys/i686/gcc-libs-13.3.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
-http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
-
+https://mirror.msys2.org/msys/i686/gcc-libs-13.3.0-1-i686.pkg.tar.zst!Build\msys2_tmp
 pushd "%~dp0"
 mkdir "%downloadsdir%" 2> NUL
 
