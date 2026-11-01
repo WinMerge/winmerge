@@ -348,6 +348,8 @@ void CBasicFlatStatusBar::SetSubPaneButtons(int nIndex, std::vector<SubPaneButto
 		m_subPaneButtons.erase(nIndex);
 	else
 		m_subPaneButtons[nIndex] = std::move(buttons);
+	if (nIndex == m_nTrackingPane)
+		UpdateAutoPaneWidths();
 }
 
 void CBasicFlatStatusBar::GetSubPaneButtonRects(int nIndex, std::vector<CRect>& rects) const
@@ -521,7 +523,8 @@ void CBasicFlatStatusBar::OnMouseMove(UINT nFlags, CPoint point)
 	if (i >= 0 && m_subPaneButtons.count(i))
 		nNewHotSubButton = HitTestSubPaneButton(i, point);
 
-	for (int pane : {i, m_nTrackingPane})
+	const int previousTrackingPane = m_nTrackingPane;
+	for (int pane : {i, previousTrackingPane})
 	{
 		if (pane >= 0 && ((GetPaneStyle(pane) & SBPS_CLICKABLE) != 0 || m_subPaneButtons.count(pane)))
 		{
@@ -532,6 +535,8 @@ void CBasicFlatStatusBar::OnMouseMove(UINT nFlags, CPoint point)
 	}
 	m_nHotSubButton = nNewHotSubButton;
 	m_nTrackingPane = i;
+	if (m_nTrackingPane != previousTrackingPane)
+		UpdateAutoPaneWidths();
 }
 
 void CBasicFlatStatusBar::OnMouseLeave()
@@ -539,6 +544,7 @@ void CBasicFlatStatusBar::OnMouseLeave()
 	TRACKMOUSEEVENT tme = { sizeof(TRACKMOUSEEVENT), TME_LEAVE | TME_CANCEL, m_hWnd };
 	TrackMouseEvent(&tme);
 	m_bMouseTracking = false;
+	const int previousTrackingPane = m_nTrackingPane;
 	if (m_nTrackingPane >= 0 && (GetPaneStyle(m_nTrackingPane) & SBPS_CLICKABLE) != 0)
 	{
 		CRect rcPart;
@@ -546,6 +552,8 @@ void CBasicFlatStatusBar::OnMouseLeave()
 		InvalidateRect(&rcPart, false);
 	}
 	m_nTrackingPane = -1;
+	if (previousTrackingPane >= 0)
+		UpdateAutoPaneWidths();
 }
 
 BOOL CBasicFlatStatusBar::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
