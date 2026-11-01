@@ -1937,7 +1937,11 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
               if (range.first < 0 || range.second > nLength)
                 continue;
               if (nBlocks > 1 && range.first <= blocks[nBlocks - 1].m_nCharPos)
-                continue;
+                {
+                  blocks[nBlocks - 1].m_nCharPos =
+                    (std::max)(blocks[nBlocks - 1].m_nCharPos, range.second);
+                  continue;
+                }
               blocks[nBlocks].m_nCharPos = range.first;
               blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
