@@ -454,6 +454,8 @@ public:
 
 	void SetTextType(int textType);
 	void SetTextType(const String& ext);
+	void SetTextTypesByFileType();
+	void SetTextTypeAuto();
 	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
 
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
