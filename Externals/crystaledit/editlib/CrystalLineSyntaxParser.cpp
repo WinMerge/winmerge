@@ -43,6 +43,7 @@ static const std::pair<LanguageId, ParseFunc> m_ParseXDef[] =
 { LanguageId::SRC_PYTHON, CrystalLineParser::ParseLinePython },
 { LanguageId::SRC_REXX, CrystalLineParser::ParseLineRexx },
 { LanguageId::SRC_RSRC, CrystalLineParser::ParseLineRsrc },
+{ LanguageId::SRC_RTF, CrystalLineParser::ParseLineRtf },
 { LanguageId::SRC_RUBY, CrystalLineParser::ParseLineRuby },
 { LanguageId::SRC_RUST, CrystalLineParser::ParseLineRust },
 { LanguageId::SRC_SGML, CrystalLineParser::ParseLineSgml },

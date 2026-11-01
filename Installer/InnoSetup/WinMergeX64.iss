@@ -151,7 +151,7 @@ Name: Greek; MessagesFile: compiler:Languages\Greek.isl,..\..\Translations\InnoS
 Name: Hebrew; MessagesFile: compiler:Languages\Hebrew.isl,..\..\Translations\InnoSetup\Hebrew.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Hebrew.txt
 Name: Hungarian; MessagesFile: compiler:Languages\Hungarian.isl,..\..\Translations\InnoSetup\Hungarian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Hungarian.txt
 Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Italian.isl,..\..\Translations\InnoSetup\Italian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
-Name: Indonesian; MessagesFile: ..\\..\\Translations\\InnoSetup\\Unbundled.is5\\Indonesian.islu,..\\..\\Translations\\InnoSetup\\Indonesian.islu; InfoAfterFile: ..\\..\\Translations\\Docs\\Readme\\ReadMe-Indonesian.txt
+Name: Indonesian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Indonesian.islu,..\..\Translations\InnoSetup\Indonesian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Indonesian.txt
 Name: Japanese; MessagesFile: compiler:Languages\Japanese.isl,..\..\Translations\InnoSetup\Japanese.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Korean.isl,..\..\Translations\InnoSetup\Korean.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Korean.txt
 Name: Lithuanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Lithuanian.isl,..\..\Translations\InnoSetup\Lithuanian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt

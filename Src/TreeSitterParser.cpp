@@ -22,6 +22,7 @@
 #include <algorithm>
 #include <climits>
 #include <cstring>
+#include <set>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1204,32 +1205,22 @@ void CTreeSitterParser::EmitLineBlocks(const std::vector<HighlightEntry>& entrie
 	{
 		for (uint32_t row = h.startRow; row <= h.endRow && row < static_cast<uint32_t>(m_nLineCount); ++row)
 		{
-			if (row == h.endRow && h.endCol == 0)
-				break;
-
-			uint32_t byteCol = (row == h.startRow) ? h.startCol : 0;
+			const int startChar = (row == h.startRow) ? static_cast<int>(h.startCol / sizeof(wchar_t)) : 0;
+			const int endChar = (row < h.endRow)
+				? m_pTextBuffer->GetLineLength(static_cast<int>(row))
+				: static_cast<int>(h.endCol / sizeof(wchar_t));
+			if (endChar <= startChar || m_cachedChunks[row / kCacheChunkSize])
+				continue;
 
 			TreeSitterLineBlock block;
-			block.nCharPos = byteCol / sizeof(wchar_t);
+			block.nCharPos = startChar;
+			block.nEndCharPos = endChar;
 			block.nColorIndex = h.colorIndex;
 			block.nPriority = h.priority;
 			block.nLayerPriority = layerPriority;
 			block.nOrder = h.order;
 
 			m_lineBlocks[row].push_back(block);
-		}
-
-		if (h.endRow < static_cast<uint32_t>(m_nLineCount))
-		{
-			TreeSitterLineBlock endBlock;
-
-			endBlock.nCharPos = h.endCol / sizeof(wchar_t);
-			endBlock.nColorIndex = COLORINDEX_NORMALTEXT;
-			endBlock.nLayerPriority = layerPriority;
-			endBlock.nPriority = INT_MIN;
-			endBlock.nOrder = h.order;
-
-			m_lineBlocks[h.endRow].push_back(endBlock);
 		}
 	}
 }
@@ -1352,47 +1343,111 @@ void CTreeSitterParser::RunInjectionQuery(int nStartLine, int nEndLine)
 
 void CTreeSitterParser::BuildLineCache(int nStartLine, int nEndLine)
 {
-	// Sort each line's blocks by character position and deterministic precedence.
-	// For identical start positions, keep the most specific / shortest capture.
+	// Convert the overlapping highlight intervals collected for each line into
+	// non-overlapping color transitions that ParseLine() can consume.
 	for (int i = nStartLine; i <= nEndLine && i < static_cast<int>(m_lineBlocks.size()); i++)
 	{
-		auto& blocks = m_lineBlocks[i];
-		std::sort(blocks.begin(), blocks.end(),
-			[](const TreeSitterLineBlock& a, const TreeSitterLineBlock& b)
+		auto& intervals = m_lineBlocks[i];
+		// Each interval contributes a start and an end event. The active set at
+		// any position therefore contains exactly the intervals covering the
+		// text from that position up to the next event.
+		struct Event
+		{
+			int position;
+			size_t intervalIndex;
+			bool starts;
+		};
+		std::vector<Event> events;
+		events.reserve(intervals.size() * 2);
+		for (size_t j = 0; j < intervals.size(); ++j)
+		{
+			events.push_back({ intervals[j].nCharPos, j, true });
+			events.push_back({ intervals[j].nEndCharPos, j, false });
+		}
+		std::sort(events.begin(), events.end(), [](const Event& a, const Event& b)
 			{
-				if (a.nCharPos != b.nCharPos)
-					return a.nCharPos < b.nCharPos;
-				if (a.nLayerPriority != b.nLayerPriority)
-					return a.nLayerPriority < b.nLayerPriority;
-
-				const int aColorPrio = GetColorPriority(a.nColorIndex);
-				const int bColorPrio = GetColorPriority(b.nColorIndex);
-				if (aColorPrio != bColorPrio)
-					return aColorPrio < bColorPrio;
-
-				if (a.nPriority != b.nPriority)
-					return a.nPriority < b.nPriority;
-
-				// Descending order: higher order (later pattern in highlights.scm)
-				// sorts first, so the lower order (earlier/more specific pattern)
-				// ends up last and is kept by the dedup step below.
-				return a.nOrder > b.nOrder;
+				if (a.position != b.position)
+					return a.position < b.position;
+				if (a.starts != b.starts)
+					return !a.starts; // Process intervals ending here before intervals starting here.
+				return a.intervalIndex < b.intervalIndex;
 			});
 
-		// Remove consecutive entries at the same position (keep the last one,
-		// which is typically the more specific/inner match)
-		if (blocks.size() > 1)
+		// Order active intervals from lowest to highest precedence: layer first,
+		// then earlier start position, color rank, capture priority, and query
+		// order. The greatest element wins at the current span.
+		auto lowerPriority = [&intervals](size_t a, size_t b)
 		{
-			std::vector<TreeSitterLineBlock> deduped;
-			deduped.reserve(blocks.size());
-			for (size_t j = 0; j < blocks.size(); j++)
+			const auto& lhs = intervals[a];
+			const auto& rhs = intervals[b];
+			if (lhs.nLayerPriority != rhs.nLayerPriority)
+				return lhs.nLayerPriority < rhs.nLayerPriority;
+			if (lhs.nCharPos != rhs.nCharPos)
+				return lhs.nCharPos < rhs.nCharPos;
+			const int lhsColorPriority = GetColorPriority(lhs.nColorIndex);
+			const int rhsColorPriority = GetColorPriority(rhs.nColorIndex);
+			if (lhsColorPriority != rhsColorPriority)
+				return lhsColorPriority < rhsColorPriority;
+			if (lhs.nPriority != rhs.nPriority)
+				return lhs.nPriority < rhs.nPriority;
+			if (lhs.nOrder != rhs.nOrder)
+				return lhs.nOrder > rhs.nOrder;
+			return a < b;
+		};
+		std::set<size_t, decltype(lowerPriority)> active(lowerPriority);
+		// The input records are intervals; the output records are color
+		// transitions. Keep each output span's end position so adjacent spans
+		// with the same color can be merged.
+		std::vector<TreeSitterLineBlock> blocks;
+		blocks.reserve(events.size());
+		int currentColor = COLORINDEX_NORMALTEXT;
+		for (size_t e = 0; e < events.size();)
+		{
+			const int pos = events[e].position;
+			// Gather all events at this position. Apply endings first, then
+			// beginnings, so the active set describes the following span [pos, next).
+			size_t nextEvent = e;
+			while (nextEvent < events.size() && events[nextEvent].position == pos)
+				++nextEvent;
+			for (size_t j = e; j < nextEvent; ++j)
 			{
-				if (j + 1 < blocks.size() && blocks[j].nCharPos == blocks[j + 1].nCharPos)
-					continue;  // skip, keep the later one
-				deduped.push_back(blocks[j]);
+				if (!events[j].starts)
+					active.erase(events[j].intervalIndex);
 			}
-			blocks = std::move(deduped);
+			for (size_t j = e; j < nextEvent; ++j)
+				if (events[j].starts)
+					active.insert(events[j].intervalIndex);
+
+			if (nextEvent == events.size())
+				break;
+			// Select the highest-precedence interval, or normal text if none is
+			// active. Emit a transition only when the visible color changes.
+			const TreeSitterLineBlock* best = active.empty() ? nullptr : &intervals[*active.rbegin()];
+			const int color = best ? best->nColorIndex : COLORINDEX_NORMALTEXT;
+			if (color != currentColor)
+			{
+				TreeSitterLineBlock block = best ? *best : intervals.front();
+				block.nCharPos = pos;
+				block.nEndCharPos = events[nextEvent].position;
+				block.nColorIndex = color;
+				blocks.push_back(block);
+				currentColor = color;
+			}
+			else if (!blocks.empty())
+				blocks.back().nEndCharPos = events[nextEvent].position;
+			e = nextEvent;
 		}
+		if (!events.empty() && currentColor != COLORINDEX_NORMALTEXT)
+		{
+			// Restore the default color after the final interval, since ParseLine()
+			// treats each emitted block as the color extending to the next block.
+			TreeSitterLineBlock block = intervals.front();
+			block.nCharPos = events.back().position;
+			block.nEndCharPos = events.back().position;
+			block.nColorIndex = COLORINDEX_NORMALTEXT;
+			blocks.push_back(block);
+		}
+		intervals = std::move(blocks);
 	}
 }
 

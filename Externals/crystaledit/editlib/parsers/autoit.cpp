@@ -310,7 +310,6 @@ static const tchar_t * s_apszAutoItKeywordList[] =
     _T ("ObjCreate"),
     _T ("ObjCreateInterface"),
     _T ("ObjEvent"),
-    _T ("ObjEvent"),
     _T ("ObjGet"),
     _T ("ObjName"),
     _T ("OnAutoItExitRegister"),
@@ -488,6 +487,24 @@ IsAutoItKeyword (const tchar_t *pszChars, int nLength)
   return ISXKEYWORDI (s_apszAutoItKeywordList, pszChars, nLength);
 }
 
+static inline bool
+IsAutoItIdentChar (tchar_t ch)
+{
+  return xisalnum(ch) || ch == '_';
+}
+
+static bool
+IsAutoItDirective (const tchar_t *pszChars, int nLength, int nPos,
+                   const tchar_t *pszDirective, int nDirectiveLength)
+{
+  // AutoIt accepts suffixes such as #csExtra, #ceExtra and #comments-endless.
+  return nPos + nDirectiveLength <= nLength &&
+         tc::tcsnicmp(pszChars + nPos, pszDirective, nDirectiveLength) == 0;
+}
+
+static constexpr unsigned AUTOIT_COMMENT_DEPTH_SHIFT = 16;
+static constexpr unsigned AUTOIT_COMMENT_DEPTH_MASK = 0xFFFF0000u;
+
 static inline void
 DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int nIdentBegin, int I)
 {
@@ -524,10 +541,14 @@ DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLi
 unsigned
 CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-  if (nLength == 0)
-    return dwCookie & COOKIE_EXT_COMMENT;
+  unsigned nCommentDepth = (dwCookie & AUTOIT_COMMENT_DEPTH_MASK) >> AUTOIT_COMMENT_DEPTH_SHIFT;
+  if ((dwCookie & COOKIE_EXT_COMMENT) && nCommentDepth == 0)
+    nCommentDepth = 1;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
+  if (nLength == 0)
+    return (dwCookie & COOKIE_EXT_COMMENT) | (nCommentDepth << AUTOIT_COMMENT_DEPTH_SHIFT);
+
+  bool bFirstChar = (dwCookie & ~(COOKIE_EXT_COMMENT | AUTOIT_COMMENT_DEPTH_MASK)) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -569,7 +590,7 @@ CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const tchar_t *pszChars, 
             }
           else
             {
-              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*tc::tcharprev(pszChars, pszChars + nPos)) && !xisalpha (*tc::tcharnext(pszChars + nPos))))
+               if (IsAutoItIdentChar (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*tc::tcharprev(pszChars, pszChars + nPos)) && !xisalpha (*tc::tcharnext(pszChars + nPos))))
                 {
                   DEFINE_BLOCK (nPos, COLORINDEX_NORMALTEXT);
                 }
@@ -623,15 +644,39 @@ out:
       //  Extended comment #cs .... #ce
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          if (bFirstChar && pszChars[I] == '#' &&
-              ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#ce"),            3 * sizeof(tchar_t)) == 0) ||
-               (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CE"),            3 * sizeof(tchar_t)) == 0) ||
-               (I + 13 <= nLength && memcmp(&pszChars[I], _T("#comments-end"), 13 * sizeof(tchar_t)) == 0)))
+          if (bFirstChar && pszChars[I] == '#')
             {
-              dwCookie &= ~COOKIE_EXT_COMMENT;
-              bRedefineBlock = true;
-              bFirstChar = false;
-              I += ((pszChars[I + 2] == 'e') || (pszChars[I + 2] == 'E')) ? 2 : 12;
+              int nDirectiveLength = 0;
+              if (IsAutoItDirective(pszChars, nLength, I, _T("#cs"), 3))
+                nDirectiveLength = 3;
+              else if (IsAutoItDirective(pszChars, nLength, I, _T("#comments-start"), 15))
+                nDirectiveLength = 15;
+
+              if (nDirectiveLength != 0)
+                {
+                  if (nCommentDepth < 0xFFFFu)
+                    ++nCommentDepth;
+                  I += nDirectiveLength - 1;
+                  bFirstChar = false;
+                  continue;
+                }
+
+              if (IsAutoItDirective(pszChars, nLength, I, _T("#ce"), 3))
+                nDirectiveLength = 3;
+              else if (IsAutoItDirective(pszChars, nLength, I, _T("#comments-end"), 13))
+                nDirectiveLength = 13;
+
+              if (nDirectiveLength != 0)
+                {
+                  if (--nCommentDepth == 0)
+                    {
+                      dwCookie &= ~COOKIE_EXT_COMMENT;
+                      bRedefineBlock = true;
+                    }
+                  I += nDirectiveLength - 1;
+                  bFirstChar = false;
+                  continue;
+                }
             }
           if (!xisspace (pszChars[I]))
             bFirstChar = false;
@@ -651,8 +696,6 @@ out:
           continue;
         }
       // Variable begins
-      
-      // Variable begins
       if (pszChars[I] == '@')
         {
           DEFINE_BLOCK(I, COLORINDEX_USER1);
@@ -663,7 +706,7 @@ out:
       // Variable ends
       if (dwCookie & COOKIE_USER1)
         {
-          if (!xisalnum(pszChars[I]))
+          if (!IsAutoItIdentChar(pszChars[I]))
             {
               dwCookie &= ~COOKIE_USER1;
               bRedefineBlock = true;
@@ -682,7 +725,7 @@ out:
       // Variable ends
       if (dwCookie & COOKIE_VARIABLE)
         {
-          if (!xisalnum(pszChars[I]))
+          if (!IsAutoItIdentChar(pszChars[I]))
             {
               dwCookie &= ~COOKIE_VARIABLE;
               bRedefineBlock = true;
@@ -711,12 +754,12 @@ out:
         {
           if (pszChars[I] == '#')
             {
-              if ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#cs"),              3 * sizeof(tchar_t)) == 0) ||
-                  (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CS"),              3 * sizeof(tchar_t)) == 0) ||
-                  (I + 15 <= nLength && memcmp(&pszChars[I], _T("#comments-start"), 15 * sizeof(tchar_t)) == 0))
+              if (IsAutoItDirective(pszChars, nLength, I, _T("#cs"), 3) ||
+                  IsAutoItDirective(pszChars, nLength, I, _T("#comments-start"), 15))
                 {
                   DEFINE_BLOCK (I, COLORINDEX_COMMENT);
                   dwCookie |= COOKIE_EXT_COMMENT;
+                  nCommentDepth = 1;
                 }
               else
                 {
@@ -734,7 +777,7 @@ out:
         continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
 
-      if (xisalnum (pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha (pszChars[nPrevI]) && !xisalpha (pszChars[I + 1])))
+      if (IsAutoItIdentChar (pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha (pszChars[nPrevI]) && !xisalpha (pszChars[I + 1])))
         {
           if (nIdentBegin == -1)
             nIdentBegin = I;
@@ -754,6 +797,5 @@ out:
   if (nIdentBegin >= 0)
     DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
 
-  dwCookie &= COOKIE_EXT_COMMENT;
-  return dwCookie;
+   return (dwCookie & COOKIE_EXT_COMMENT) | (nCommentDepth << AUTOIT_COMMENT_DEPTH_SHIFT);
 }

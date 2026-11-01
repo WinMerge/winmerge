@@ -16,6 +16,7 @@ public:
 // Operations
 public:
 	void UpdateResources();
+	void ResizeToView();
 
 // Overrides
 	// ClassWizard generated virtual function overrides

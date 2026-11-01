@@ -62,6 +62,7 @@ enum LanguageId
 	SRC_PYTHON,
 	SRC_REXX,
 	SRC_RSRC,
+	SRC_RTF,
 	SRC_RUBY,
 	SRC_RUST,
 	SRC_SGML,

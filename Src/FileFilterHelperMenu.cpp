@@ -123,7 +123,7 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 			if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
 				vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR || vt == (VT_VECTOR|VT_LPWSTR))
 			{
-				CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _("%1 = %2"), _T("%1"));
+				CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _T("%1 = %2"), _T("%1"));
 				if (dlg.DoModal() == IDOK)
 					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
@@ -133,7 +133,7 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 			if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
 				vt == VT_R4 || vt == VT_R8)
 			{
-				CFilterConditionDlg dlg(true, m_targetDiffSide, _T(""), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
+				CFilterConditionDlg dlg(true, m_targetDiffSide, _T(""), m_propName, _T("%1 = %2"), _T("abs(%1 - %2)"));
 				if (dlg.DoModal() == IDOK)
 					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
@@ -223,37 +223,37 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_FILENAME)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Name"), m_propName, _("%1 contains %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Name"), m_propName, _T("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
 	else if (command == ID_FILTERMENU_EXTENSION)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Extension"), m_propName, _("%1 contains %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Extension"), m_propName, _T("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
 	else if (command == ID_FILTERMENU_CODEPAGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Codepage"), m_propName, _("%1 = %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Codepage"), m_propName, _T("%1 = %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
 	else if (command == ID_FILTERMENU_UNPACKER)
 	{
-		CFilterConditionDlg dlg(false, 0, _T("Unpacker"), m_propName, _("%1 contains %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, 0, _T("Unpacker"), m_propName, _T("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
 	else if (command == ID_FILTERMENU_PREDIFFER)
 	{
-		CFilterConditionDlg dlg(false, 0, _T("Prediffer"), m_propName, _("%1 contains %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, 0, _T("Prediffer"), m_propName, _T("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
 	else if (command == ID_FILTERMENU_RELATIVEFOLDER)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Folder"), m_propName, _("%1 contains %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Folder"), m_propName, _T("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -265,13 +265,13 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_DIFFERENCES)
 	{
-		CFilterConditionDlg dlg(false, 0, _T("Differences"), _T(""), _("%1 = %2"), _T("Differences"));
+		CFilterConditionDlg dlg(false, 0, _T("Differences"), _T(""), _T("%1 = %2"), _T("Differences"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
 	else if (command == ID_FILTERMENU_IGNORED_DIFFS)
 	{
-		CFilterConditionDlg dlg(false, 0, _T("IgnoredDiffs"), _T(""), _("%1 = %2"), _T("IgnoredDiffs"));
+		CFilterConditionDlg dlg(false, 0, _T("IgnoredDiffs"), _T(""), _T("%1 = %2"), _T("IgnoredDiffs"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -283,7 +283,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
 			vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR || vt == (VT_VECTOR|VT_LPWSTR))
 		{
-			CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _("%1 = %2"), _T("%1"));
+			CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _T("%1 = %2"), _T("%1"));
 			if (dlg.DoModal() == IDOK)
 				result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 		}
@@ -305,7 +305,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_SIZE_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Size"), m_propName, _("%1 = %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Size"), m_propName, _T("%1 = %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -330,7 +330,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	else if (command == ID_FILTERMENU_DATE_RANGE)
 	{
 		bool isModifiedDate = m_colName.find(_T("ctime")) == String::npos;
-		CFilterConditionDlg dlg(false, m_targetSide, (isModifiedDate ? _T("DateStr") : _T("CreationTime")), m_propName, _("%1 = %2"), isModifiedDate ? _T("%1") : _T("toDateStr(%1)"));
+		CFilterConditionDlg dlg(false, m_targetSide, (isModifiedDate ? _T("DateStr") : _T("CreationTime")), m_propName, _T("%1 = %2"), isModifiedDate ? _T("%1") : _T("toDateStr(%1)"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -374,11 +374,11 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 			_T("sublines(%1, -1)"),    _T("sublines(%1, -1)")
 		};
 		const String OPs[] = {
-			_("%1 contains %2"), _("%1 not contains %2"),
-			_("%1 contains %2"), _("%1 not contains %2"),
-			_("%1 contains %2"), _("%1 not contains %2"),
-			_("%1 contains %2"), _("%1 not contains %2"),
-			_("%1 contains %2"), _("%1 not contains %2")
+			_T("%1 contains %2"), _T("%1 not contains %2"),
+			_T("%1 contains %2"), _T("%1 not contains %2"),
+			_T("%1 contains %2"), _T("%1 not contains %2"),
+			_T("%1 contains %2"), _T("%1 not contains %2"),
+			_T("%1 contains %2"), _T("%1 not contains %2")
 		};
 		CFilterConditionDlg dlg(false, m_targetSide,
 			_T("Content"), m_propName, OPs[command - ID_FILTERMENU_CONTENT_CONTAINS],
@@ -401,7 +401,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_LINES_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _T(""), _("%1 > %2"), _T("lineCount(%1)"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _T(""), _T("%1 > %2"), _T("lineCount(%1)"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -424,7 +424,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_FOLDER_DATE_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("DateStr"), _T(""), _("%1 = %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("DateStr"), _T(""), _T("%1 = %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
 	}
@@ -439,7 +439,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_FOLDER_FILES_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Files"), m_propName, _("%1 = %2"), _T("%1"), m_recursive);
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Files"), m_propName, _T("%1 = %2"), _T("%1"), m_recursive);
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
 	}
@@ -454,7 +454,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_FOLDER_ITEMS_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Items"), _T(""), _("%1 = %2"), _T("%1"), m_recursive);
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Items"), _T(""), _T("%1 = %2"), _T("%1"), m_recursive);
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
 	}
@@ -475,7 +475,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_FOLDER_TOTALSIZE_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("TotalSize"), _T(""), _("%1 = %2"), _T("%1"), m_recursive);
+		CFilterConditionDlg dlg(false, m_targetSide, _T("TotalSize"), _T(""), _T("%1 = %2"), _T("%1"), m_recursive);
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
 	}
@@ -505,7 +505,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_DIFF_SIZE_RANGE)
 	{
-		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Size"), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
+		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Size"), m_propName, _T("%1 = %2"), _T("abs(%1 - %2)"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -537,7 +537,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_DIFF_DATE_RANGE)
 	{
-		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Date"), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
+		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Date"), m_propName, _T("%1 = %2"), _T("abs(%1 - %2)"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -655,6 +655,9 @@ std::unique_ptr<CFileFilterHelperMenu> CFileFilterHelperMenu::AppendColumnFilter
 		{ _T("eoltype"), IDR_POPUP_FILTERMENU_EOL, -1 },
 		{ _T("Unpacker"), -1, ID_FILTERMENU_UNPACKER },
 		{ _T("Prediffer"), -1, ID_FILTERMENU_PREDIFFER },
+		{ _T("name"), -1, ID_FILTERMENU_FILENAME },
+		{ _T("path"), -1, ID_FILTERMENU_RELATIVEFOLDER },
+		{ _T("ext"), -1, ID_FILTERMENU_EXTENSION },
 	};
 
 	for (const auto& mapping : mappings)

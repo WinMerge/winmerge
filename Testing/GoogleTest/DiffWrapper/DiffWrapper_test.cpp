@@ -627,3 +627,90 @@ TEST(DiffWrapper, RunFileDiff_SubstitutionFilters)
 		}
 	}
 }
+
+// Both sides add a block in the same place: that is one difference, and a
+// conflict unless the blocks are the same. The two pairwise comparisons can
+// place a block that ends like the text in front of it one line apart; the
+// additions must not come out as two unrelated one-sided differences, which
+// an automatic merge would take both.
+TEST(DiffWrapper, RunFileDiff_3way_BothSidesAddInTheSamePlace)
+{
+	const String block0 = _T("comment 0\nmember 0\nresult\n\n");
+	const String block1 = _T("comment 1\nmember 1\nresult\n\n");
+	const String block2 = _T("comment 2\nmember 2\nresult\n\n");
+	const String early = _T("comment e\nmember e\n\n");
+	const String blockX = _T("comment x\nmember x\nresult\n\n");
+	const String blockY = _T("comment y\nmember y\nother\n\n");
+
+	for (auto algo : { DIFF_ALGORITHM_DEFAULT, DIFF_ALGORITHM_MINIMAL, DIFF_ALGORITHM_PATIENCE, DIFF_ALGORITHM_HISTOGRAM })
+	for (bool movedBlocks : { false, true })
+	{
+		DIFFOPTIONS options{};
+		options.nDiffAlgorithm = algo;
+
+		{
+			// the left side adds more than the right side: a conflict
+			CDiffWrapper dw;
+			DiffList diffList;
+			DIFFRANGE dr;
+			TempFile left = WriteToTempFile(block0 + early + block1 + blockX + blockY + block2);
+			TempFile middle = WriteToTempFile(block0 + block1 + block2);
+			TempFile right = WriteToTempFile(block0 + block1 + blockX + block2);
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), middle.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.SetDetectMovedBlocks(movedBlocks);
+			dw.RunFileDiff();
+			ASSERT_EQ(2, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(OP_1STONLY, dr.op);
+			diffList.GetDiff(1, dr);
+			EXPECT_EQ(OP_DIFF, dr.op);
+			EXPECT_EQ(8, dr.end[0] - dr.begin[0] + 1);
+			EXPECT_EQ(0, dr.end[1] - dr.begin[1] + 1);
+			EXPECT_EQ(4, dr.end[2] - dr.begin[2] + 1);
+		}
+
+		{
+			// The left block can be at either side of the "}" line, the right
+			// block only in front of it: they are in the same place
+			CDiffWrapper dw;
+			DiffList diffList;
+			DIFFRANGE dr;
+			TempFile left = WriteToTempFile(_T("x\n}\nfoo\n}\ny\n"));
+			TempFile middle = WriteToTempFile(_T("x\n}\ny\n"));
+			TempFile right = WriteToTempFile(_T("x\nbar\n}\ny\n"));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), middle.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.SetDetectMovedBlocks(movedBlocks);
+			dw.RunFileDiff();
+			ASSERT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(OP_DIFF, dr.op);
+		}
+
+		{
+			// both sides add the same block: not a conflict, and not two additions
+			CDiffWrapper dw;
+			DiffList diffList;
+			DIFFRANGE dr;
+			TempFile left = WriteToTempFile(block0 + early + block1 + blockX + block2);
+			TempFile middle = WriteToTempFile(block0 + block1 + block2);
+			TempFile right = WriteToTempFile(block0 + block1 + blockX + block2);
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), middle.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.SetDetectMovedBlocks(movedBlocks);
+			dw.RunFileDiff();
+			ASSERT_EQ(2, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(OP_1STONLY, dr.op);
+			diffList.GetDiff(1, dr);
+			EXPECT_EQ(OP_2NDONLY, dr.op);
+			EXPECT_EQ(4, dr.end[0] - dr.begin[0] + 1);
+			EXPECT_EQ(0, dr.end[1] - dr.begin[1] + 1);
+			EXPECT_EQ(4, dr.end[2] - dr.begin[2] + 1);
+		}
+	}
+}

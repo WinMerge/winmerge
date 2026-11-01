@@ -2299,9 +2299,8 @@ BEGIN
     EDITTEXT        IDC_VERSION,237,155,140,20,ES_MULTILINE | ES_READONLY | NOT WS_BORDER
 END
 
-IDD_OPEN DIALOGEX 0, 0, 465, 266
-STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_CHILD | WS_CAPTION
-CAPTION "Select Files or Folders"
+IDD_OPEN DIALOGEX 0, 0, 466, 288
+STYLE DS_SETFONT | DS_CENTER | WS_CHILD | WS_BORDER
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
 //	LOGO			res\\logo.jpg :: Height = 80px, Width=336px (extended fully to Right)
@@ -2336,6 +2335,9 @@ BEGIN
     CONTROL         "",IDC_UNPACKER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,240,209,140,140
     PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
     CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,100,14
+    CONTROL         "Show recent &comparisons",IDC_RECENT_COMPARES_SHOW,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,116,247,150,10
+    CONTROL         "",IDC_RECENT_COMPARES_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | NOT WS_VISIBLE | WS_BORDER | WS_TABSTOP,6,268,454,0
     CONTROL         "Co&mpare",IDOK,"Button",BS_SPLITBUTTON | WS_TABSTOP,316,245,70,20
     PUSHBUTTON      "Cancel",IDCANCEL,390,245,70,20
     LTEXT           "Status:",IDC_OPEN_STATUS,6,272,440,12
@@ -2360,28 +2362,28 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,257,41,80,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX 36, 44, 344, 96
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 359, 96
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Replace"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     LTEXT           "Fi&nd what:",IDC_STATIC,7,9,70,10
-    COMBOBOX        IDC_EDIT_FINDTEXT,80,7,170,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EDIT_FINDTEXT,80,7,180,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Re&place with:",IDC_STATIC,7,24,70,10
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,80,22,170,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,42,152,10
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,152,10
-    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,152,10
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,80,22,180,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,42,162,10
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,162,10
+    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,162,10
     CONTROL         "&Don't wrap at end of file",IDC_EDIT_SCOPE_DONT_WRAP,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,78,200,16
-    GROUPBOX        "Replace in",IDC_STATIC,159,40,90,36,WS_GROUP
-    CONTROL         "&Selection",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,164,51,80,10
-    CONTROL         "Wh&ole file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,164,61,80,10
-    DEFPUSHBUTTON   "&Find Next",IDC_EDIT_SKIP,257,7,80,14,WS_GROUP
-    PUSHBUTTON      "Find Pre&v",IDC_EDIT_FINDPREV,257,24,80,14,WS_GROUP
-    PUSHBUTTON      "&Replace",IDC_EDIT_REPLACE,257,41,80,14
-    PUSHBUTTON      "Replace &All",IDC_EDIT_REPLACE_ALL,257,58,80,14
-    PUSHBUTTON      "Cancel",IDCANCEL,257,75,80,14
+    GROUPBOX        "Replace in",IDC_STATIC,169,40,90,36,WS_GROUP
+    CONTROL         "&Selection",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,174,51,80,10
+    CONTROL         "Wh&ole file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,174,61,80,10
+    DEFPUSHBUTTON   "&Find Next",IDC_EDIT_SKIP,267,7,85,14,WS_GROUP
+    PUSHBUTTON      "Find Pre&v",IDC_EDIT_FINDPREV,267,24,85,14,WS_GROUP
+    PUSHBUTTON      "&Replace",IDC_EDIT_REPLACE,267,41,85,14
+    PUSHBUTTON      "Replace &All",IDC_EDIT_REPLACE_ALL,267,58,85,14
+    PUSHBUTTON      "Cancel",IDCANCEL,267,75,85,14
 END
 
 IDD_EDIT_MARKER DIALOGEX 30, 73, 296, 174
@@ -3920,9 +3922,11 @@ BEGIN
     50, 0, 50, 0,
     100, 0, 0, 0,
     0, 0, 0, 0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
     0, 0, 0, 0,
+    0, 0, 100, 100,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 100, 0, 0,
     100, 0, 0, 0,
     100, 0, 0, 0
 END
@@ -4845,8 +4849,11 @@ BEGIN
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_LINE_STATUS_INFO_SEL "  Sel: %d | %d"
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
+    IDS_DIFF_NUMBER_STATUS_IGNORED_FMT "Diff. %1 of %2 (%3 ign.)"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
     IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_DIFFS_FOUND_IGNORED_FMT "%1 Differences (%2 ign.)"
+    IDS_1_DIFF_FOUND_IGNORED_FMT "1 Difference (%1 ign.)"
     IDS_NO_ERR_SEL_FMT      "%1 Errors Found"
     IDS_1_ERR_FOUND         "1 Error Found"
     IDS_STATUSBAR_READONLY  "RO" //#. Abbreviation from "Read Only"
@@ -4880,6 +4887,10 @@ BEGIN
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
     IDS_OPEN_UNPACKERDISABLED "Only enabled for file comparisons"
     IDS_OPEN_MISMATCH       "Cannot compare file and folder!"
+    IDS_COLHDR_RECENT_COMPARISON
+                            "Comparison"
+    IDS_COLHDR_RECENT_COMMAND_LINE
+                            "Command line"
 END
 
 // LOADING FILE
@@ -4888,6 +4899,8 @@ BEGIN
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
     IDS_ERROR_FOLDER_NOT_FOUND "Folder not found: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
+    IDS_ERROR_FILECREATE    "Cannot create file\n%1\n\n%2"
+    IDS_ERROR_FILESOPEN     "Cannot open file(s)\n%1\n\n%2"
     IDS_ERROR_FILEOPEN      "Cannot open file\n%1\n\n%2"
     IDS_ERROR_CONF_RESOLVE  "Failed to parse conflict file."
     IDS_NOT_CONFLICT_FILE   "The file\n%1\nis not a conflict file."
@@ -4903,6 +4916,16 @@ BEGIN
     IDS_ERROR_BACKUP        "Error backing up file"
     IDS_BACKUP_FAILED_PROMPT 
                             "Unable to backup original file:\n%1\n\nContinue anyway?"
+    IDS_BACKUP_CREATE_FOLDER_FAILED
+                            "Unable to create backup folder"
+    IDS_BACKUP_UNKNOWN_LOCATION
+                            "Unknown backup location"
+    IDS_BACKUP_PATH_TOO_LONG
+                            "Backup path too long"
+    IDS_BACKUP_ORIGINAL_FAILED
+                            "Unable to backup original file"
+    IDS_BACKUP_CHECK_STATUS_FAILED
+                            "Unable to check file status"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
     IDS_FILEPACK_FAILED_LEFT 
                             "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
@@ -4927,6 +4950,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_VIEWS_OUTOFSYNC     "Cannot merge unsynched documents.\n\nRefresh before continuing."
+    IDS_MERGE_ERROR_HIDDEN_LINES_UNSUPPORTED
+                            "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
 END
 
 STRINGTABLE
@@ -5051,12 +5076,21 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filename"
+    IDS_COLHDR_LFILENAME    "Left Filename"
+    IDS_COLHDR_MFILENAME    "Middle Filename"
+    IDS_COLHDR_RFILENAME    "Right Filename"
     IDS_COLHDR_DIR          NC_("DirView|ColumnHeader", "Folder")
+    IDS_COLHDR_LDIR         NC_("DirView|ColumnHeader", "Left Folder")
+    IDS_COLHDR_MDIR         NC_("DirView|ColumnHeader", "Middle Folder")
+    IDS_COLHDR_RDIR         NC_("DirView|ColumnHeader", "Right Folder")
     IDS_COLHDR_RESULT       "Comparison Result"
     IDS_COLHDR_LTIMEM       "Left Date"
     IDS_COLHDR_RTIMEM       "Right Date"
     IDS_COLHDR_MTIMEM       "Middle Date"
     IDS_COLHDR_EXTENSION    "Extension"
+    IDS_COLHDR_LEXTENSION   "Left Extension"
+    IDS_COLHDR_MEXTENSION   "Middle Extension"
+    IDS_COLHDR_REXTENSION   "Right Extension"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
 END
@@ -5204,7 +5238,13 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or folder name."
+    IDS_COLDESC_LFILENAME   "Left side filename or folder name."
+    IDS_COLDESC_MFILENAME   "Middle side filename or folder name."
+    IDS_COLDESC_RFILENAME   "Right side filename or folder name."
     IDS_COLDESC_DIR         "Subfolder name when subfolders are included."
+    IDS_COLDESC_LDIR        "Folder path in the left pane."
+    IDS_COLDESC_MDIR        "Folder path in the middle pane."
+    IDS_COLDESC_RDIR        "Folder path in the right pane."
     IDS_COLDESC_RESULT      "Comparison result, long form."
 END
 
@@ -5214,6 +5254,9 @@ BEGIN
     IDS_COLDESC_RTIMEM      "Right side modification date."
     IDS_COLDESC_MTIMEM      "Middle side modification date."
     IDS_COLDESC_EXTENSION   "File's extension."
+    IDS_COLDESC_LEXTENSION  "File extension in the left pane."
+    IDS_COLDESC_MEXTENSION  "File extension in the middle pane."
+    IDS_COLDESC_REXTENSION  "File extension in the right pane."
     IDS_COLDESC_LSIZE       "Left file size in bytes."
     IDS_COLDESC_RSIZE       "Right file size in bytes."
     IDS_COLDESC_MSIZE       "Middle file size in bytes."
@@ -5274,6 +5317,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
+    IDS_REPORT_COPY_CLIPBOARD_FAILED
+                            "Failed to copy to clipboard."
     IDS_REPORT_SUCCESS      "Report created successfully."
 END
 
@@ -5390,6 +5435,7 @@ STRINGTABLE
 BEGIN
     IDS_ARCHIVE_SUCCEEDED   "Archive file written."
     IDS_ARCHIVE_SAVEFILES 	"Save all files first.\n\nCreating an archive requires no unsaved changes."
+    IDS_ARCHIVE_NO_FILES    "No files are available for packaging."
 END
 
 STRINGTABLE
@@ -5476,6 +5522,7 @@ BEGIN
     IDS_MERGE_RESULT_CONFLICT "<Merge Conflict>"
     IDS_MERGE_RESULT_UNRESOLVED "<Unresolved Difference>"
     IDS_MERGE_RESULT_NOLINES "<No Lines>"
+    IDS_MERGE_RESULT_UNTITLED "<Untitled>"
     IDS_MERGE_RESULT_SAVE_AS "Save Merge Result As"
     IDS_MERGE_RESULT_STATUS_CONFLICTS2 "Conflicts: %1, Unresolved: %2"
     IDS_MERGE_RESULT_STATUS_CONFLICTS3 "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
@@ -5571,6 +5618,7 @@ BEGIN
     IDS_COLORSCHEME_PYTHON  "Python"
     IDS_COLORSCHEME_REXX    "REXX"
     IDS_COLORSCHEME_RSRC    "Resources"
+    IDS_COLORSCHEME_RTF     "Rich Text Format"
     IDS_COLORSCHEME_RUBY    "Ruby"
     IDS_COLORSCHEME_RUST    "Rust"
     IDS_COLORSCHEME_SGML    "SGML"
@@ -5741,6 +5789,8 @@ BEGIN
                             "Missing plugin name in pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
                             "Missing quote in plugin pipeline: %1"
+    IDS_PLUGIN_MISSING_LINE_EXPR
+                            "Missing line expression in pipeline: %1"
     IDS_PLUGIN_NAME_ALREADY_EXISTS "Plugin name '%1' already exists."
     IDS_PLUGIN_TITLE1       "Specify plugin arguments"
     IDS_PLUGIN_NOTFOUND_INVALID
@@ -5941,6 +5991,14 @@ BEGIN
     IDS_MDIBUTTONS_AUTOHIDE          "&Auto-hide MDI buttons"
     IDS_MDIBUTTONS_ALWAYSSHOW        "Always &show MDI buttons"
     IDS_MDIBUTTONS_ALWAYSHIDE        "Always &hide MDI buttons"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_LOG_COPY_DIFF           "Copy diff: pane %d to %d (hunk %d)"
+    IDS_LOG_COPY_LINES          "Copy lines: pane %d to %d (vline %d-%d)"
+    IDS_LOG_COPY_INLINE_DIFFS   "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
+    IDS_LOG_COPY_CHARS          "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
 END
 
 #endif    // English (United States) resources
