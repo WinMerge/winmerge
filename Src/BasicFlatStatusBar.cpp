@@ -247,7 +247,7 @@ std::vector<int> CBasicFlatStatusBar::BuildPaneEdges(CDC& dc, CStatusBarCtrl& ct
 				fillPane = static_cast<int>(p);
 
 			int wanted = baseWidth;
-			if (autoWidth || (!grouped && !stretch))
+			if (autoWidth || (!grouped && !stretch && baseWidth > 0))
 				wanted = (std::max)(wanted, MeasurePaneWidth(dc, ctrl, pane, textPadding));
 			minWidths[p] = fill ? 0 : (autoWidth ? baseWidth : wanted);
 			paneWidths[p] = wanted;
