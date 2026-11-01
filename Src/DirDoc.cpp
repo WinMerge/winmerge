@@ -401,6 +401,7 @@ void CDirDoc::Rescan()
 
 	auto* pHeaderBar = pf->GetHeaderInterface();
 	pHeaderBar->SetPaneCount(m_nDirs);
+	pf->SetCompareDirs(m_nDirs);
 	pHeaderBar->SetOnSetFocusCallback([this](int pane) {
 		m_pDirView->SetActivePane(pane);
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, pane);

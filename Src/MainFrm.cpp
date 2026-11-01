@@ -539,9 +539,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE, pointToPixel(285));
-	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, SBPS_CLICKABLE, pointToPixel(15)); 
-	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112));
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, SBPS_CLICKABLE | SBPS_AUTOWIDTH, pointToPixel(285));
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, SBPS_CLICKABLE | SBPS_AUTOWIDTH, pointToPixel(15));
+	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, SBPS_AUTOWIDTH, pointToPixel(50));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
 		__super::ShowControlBar(&m_wndStatusBar, false, 0);
