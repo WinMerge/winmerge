@@ -1870,6 +1870,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
       blocks[0].m_nColorIndex = COLORINDEX_NONE;
       blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
       ++nBlocks;
+      // Count explicit line breaks in regex patterns, treating CRLF as one break.
       CString pattern = marker.second.sFindWhat;
       if (marker.second.dwFlags & FIND_REGEXP)
         {
@@ -1890,6 +1891,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
       if ((marker.second.dwFlags & FIND_REGEXP) && newlineCount > 0)
         {
           std::vector<std::pair<int, int>> ranges;
+          // A match starting on an earlier line can still cover the line being drawn.
           const int firstLine = (std::max)(0, nLineIndex - newlineCount);
           for (int startLine = firstLine; startLine <= nLineIndex; ++startLine)
             {
@@ -1899,6 +1901,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
               const int endLine = (std::min)(GetLineCount() - 1, startLine + newlineCount);
               for (int line = startLine; line <= endLine; ++line)
                 {
+                  // Keep the buffer's actual EOL so matching agrees with FindTextInBlock.
                   if (line != startLine)
                     window += GetTextBufferEol(line - 1);
                   if (line == nLineIndex)
@@ -1922,6 +1925,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
                   // Matches beginning on later lines are processed from those lines.
                   if (pos < static_cast<size_t>(GetLineLength(startLine)))
                     {
+                      // Clip the match to the visible text of the requested line.
                       const int begin = (std::max)(static_cast<int>(pos), targetStart);
                       const int end = (std::min)(static_cast<int>(pos) + matchLength, targetEnd);
                       if (begin < end)
@@ -1931,6 +1935,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
                 }
               RxFree(node);
             }
+          // Convert sorted, overlapping ranges into background-color transitions.
           std::sort(ranges.begin(), ranges.end());
           for (const auto& range : ranges)
             {
@@ -1955,6 +1960,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers*
           allblocks = MergeTextBlocks(allblocks, blocks);
           continue;
         }
+      // Patterns without explicit newlines use the original per-line matcher.
       const tchar_t *pszChars = GetLineChars(nLineIndex);
       int nLineLength = GetLineLength(nLineIndex);
       if (pszChars != nullptr)
