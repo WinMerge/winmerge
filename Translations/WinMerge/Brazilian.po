@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Wender Firmino <wender at pta.com.br>,
+# * Wender Firmino <wender at pta.com.br>
 # * Leonardo Peixoto <ljpeixoto at gmail.com>
 # * Felipe Periard Lopes <felipefplzx at gmail.com>
 # * Marcello Oliveira <marcello.mco at gmail.com>
@@ -355,7 +355,7 @@ msgstr "(Ctrl+Click para adicionar outra coluna)"
 #. IDR_POPUP_MERGEVIEWHEADER, ID_IGNORE_COLUMN_IN_COMPARISON_RESET
 #: Merge.rc:237
 msgid "&Reset All"
-msgstr "&Resetar Todos"
+msgstr "&Restaurar Todas"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:239 Merge.rc:5830
@@ -984,7 +984,7 @@ msgstr "M&ostrar Arquivos Binários"
 #. IDR_DIRDOCTYPE
 #: Merge.rc:569
 msgid "&3-way Compare"
-msgstr "&Comparação Tripla"
+msgstr "&Comparação de 3 Caminhos"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTLEFTONLY
 #: Merge.rc:571
@@ -1429,7 +1429,7 @@ msgstr "Pa&inel de Localização"
 #. IDR_MERGEDOCTYPE, ID_VIEW_MERGE_RESULT_BAR
 #: Merge.rc:870
 msgid "Merge Result Pane"
-msgstr "Painel de Resultadp da União"
+msgstr "Painel de Resultado da União"
 
 #. IDS_OUTPUTBAR_CAPTION
 #: Merge.rc:871 Merge.rc:5411
@@ -4139,7 +4139,7 @@ msgstr "C&aracteres de quebra de palavra:"
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
 #: Merge.rc:2760
 msgid "&Use Merge Result Pane for 2/3-way merge"
-msgstr "&Usar Painel de Resultado da União para união de 2/3 fontes"
+msgstr "&Usar Painel de Resultado da União para união de 2/3 caminhos"
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
 #: Merge.rc:2776
@@ -6106,7 +6106,7 @@ msgstr "Localização de backup desconhecida"
 
 #: Merge.rc:4924
 msgid "Backup path too long"
-msgstr "Caminho de backup muito comprido"
+msgstr "Caminho de backup muito longo"
 
 #: Merge.rc:4926
 msgid "Unable to backup original file"
@@ -6439,17 +6439,17 @@ msgstr "Nome de arquivo"
 #. IDS_COLHDR_LFILENAME
 #: Merge.rc:5079
 msgid "Left Filename"
-msgstr "Nome de arquivo da Esquerda"
+msgstr "Nome de Arquivo da Esquerda"
 
 #. IDS_COLHDR_MFILENAME
 #: Merge.rc:5080
 msgid "Middle Filename"
-msgstr "Nome de arquivo do Meio"
+msgstr "Nome de Arquivo do Meio"
 
 #. IDS_COLHDR_RFILENAME
 #: Merge.rc:5081
 msgid "Right Filename"
-msgstr "Nome de arquivo da Direita"
+msgstr "Nome de Arquivo da Direita"
 
 #. IDS_COLHDR_DIR
 #: Merge.rc:5082
@@ -7271,7 +7271,7 @@ msgstr "Erro ao criar o relatório:\n%1"
 
 #: Merge.rc:5321
 msgid "Failed to copy to clipboard."
-msgstr "Erro na cópia para a área de transferência."
+msgstr "Não foi possível copiar para a área de transferência."
 
 #. IDS_REPORT_SUCCESS
 #: Merge.rc:5322
@@ -7436,13 +7436,13 @@ msgstr "União automática completada.\n\n%1\n\nUniões automáticas: %2\nConfli
 #. IDS_MERGE_SESSION_STARTED
 #: Merge.rc:5398
 msgid "Merge session started."
-msgstr "Sessão de União iniciada."
+msgstr "Sessão de união iniciada."
 
 #. IDS_PANE_ROLES
 #: Merge.rc:5399
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
-msgstr "Papéis de painéis: Esquerda=%1, Meio=%2, Direita=%3"
+msgstr "Funções dos painéis: Esquerda=%1, Meio=%2, Direita=%3"
 
 #. IDS_CODEPAGE_MERGED
 #: Merge.rc:5400
@@ -7727,29 +7727,29 @@ msgstr "\nArquivo Anterior (Ctrl+F7)"
 #: Merge.rc:5516
 #, c-format
 msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
-msgstr "A união não foi finalizada: %1 diferença(s) não foram resolvidas.\n\nAbandonar a união e fechar sem salvar os resultados?"
+msgstr "A união não foi finalizada: %1 diferença(s) não foi(foram) resolvida(s).\n\nAbandonar a união e fechar sem salvar o resultado?"
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5517
 msgid "The merge result has not been saved.\n\nSave the merge result?"
-msgstr "O resultado da união não foi salvo.\n\nSavar o resultado da união?"
+msgstr "O resultado da união não foi salvo.\n\nSalvar o resultado da união?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5518
 #, c-format
 msgid "Saving the merge result to\n%1\nfailed.\n%2"
-msgstr "Erro ao salvar o resultado da união para\n%1.\n%2"
+msgstr "Falha ao salvar o resultado da união em\n%1\n.\n%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5519
 #, c-format
 msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr "Ainda há %1 diferença(s) não resolvidas no resultado da união.\n\nConflitos não resolvidos são salvos como seções de conflito (<<<<<<<), que preservam todas as versões e podem ser resolvidos depois em qualquer editor; outras diferenças não resolvidas são salvas com seu conteúdo da união automático.\n\nSalvar o resultado mesmo assim?"
+msgstr "Ainda há %1 diferença(s) não resolvida(s) no resultado da união.\n\nConflitos não resolvidos são salvos como seções de conflito (<<<<<<<), que preservam todas as versões e podem ser resolvidas depois em qualquer editor; outras diferenças não resolvidas são salvas com seu conteúdo da união automática.\n\nSalvar o resultado mesmo assim?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5520
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr "Configurações de comparação alteradas. Elas entrarão em efeito depois que a sessão de união terminar."
+msgstr "Configurações de comparação alteradas. Elas terão efeito depois que a sessão de união terminar."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5521
@@ -7879,7 +7879,7 @@ msgstr "Recursos"
 #. IDS_COLORSCHEME_RTF
 #: Merge.rc:5621
 msgid "Rich Text Format"
-msgstr "Formato de Texto Enriquecido"
+msgstr "Formato de Texto Rico"
 
 #. IDS_COLORSCHEME_SH
 #: Merge.rc:5625
@@ -8288,7 +8288,7 @@ msgstr "Aspas ausentes no pipeline do plugin: %1"
 #: Merge.rc:5793
 #, c-format
 msgid "Missing line expression in pipeline: %1"
-msgstr "Falta expressão de linha no pipeline: %1"
+msgstr "Expressão de linha ausente no pipeline: %1"
 
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
 #: Merge.rc:5794
@@ -8408,7 +8408,7 @@ msgstr "2º e 3º"
 #. IDS_PLUGIN_CTRL_CLICK
 #: Merge.rc:5819
 msgid "(Ctrl+Click to add to pipeline)"
-msgstr "(Ctrl+Click para adicionar à pipeline)"
+msgstr "(Ctrl+Click para adicionar ao pipeline)"
 
 #. IDS_FILTER_APPLIED
 #: Merge.rc:5824
@@ -8862,23 +8862,23 @@ msgstr "Tree-sitter apenas"
 #. IDS_MDIBUTTONS_AUTOHIDE
 #: Merge.rc:5991
 msgid "&Auto-hide MDI buttons"
-msgstr "&Auto-ocultar botões MDI"
+msgstr "Ocultar &automaticamente botões de MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
 #: Merge.rc:5992
 msgid "Always &show MDI buttons"
-msgstr "&Sempre exibir botões MDI"
+msgstr "&Sempre mostrar botões de MDI"
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
 #: Merge.rc:5993
 msgid "Always &hide MDI buttons"
-msgstr "Sempre ocul&tar botões MDI"
+msgstr "Sempre ocul&tar botões de MDI"
 
 #. IDS_LOG_COPY_DIFF
 #: Merge.rc:5998
 #, c-format
 msgid "Copy diff: pane %d to %d (hunk %d)"
-msgstr "Copiar diferença: painel %d para %d (pedaço %d)"
+msgstr "Copiar diferença: painel %d para %d (bloco %d)"
 
 #. IDS_LOG_COPY_LINES
 #: Merge.rc:5999
@@ -8890,13 +8890,13 @@ msgstr "Copiar linhas: painel %d para %d (linha vertical %d-%d)"
 #: Merge.rc:6000
 #, c-format
 msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
-msgstr "Copiar diferenças na linha: painel %d para %d (pedaço %d, palavra %d-%d)"
+msgstr "Copiar diferenças na linha: painel %d para %d (bloco %d, palavra %d-%d)"
 
 #. IDS_LOG_COPY_CHARS
 #: Merge.rc:6001
 #, c-format
 msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
-msgstr "Copiar caracteres: painel %d para %d (pedaço %d, linha vertical %d,%d-%d,%d)"
+msgstr "Copiar caracteres: painel %d para %d (bloco %d, linha vertical %d,%d-%d,%d)"
 
 #. IDS_PLUGIN_PROCESS_TYPE1
 #: Strings.rc:43

@@ -1005,6 +1005,10 @@ void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 			}
 		}
 	}
+
+	CWnd* pWnd = GetFocus();
+	if (!m_bDetailView || (pWnd && pWnd->m_hWnd == this->m_hWnd))
+		UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
 }
 
 /**
@@ -2663,10 +2667,6 @@ void CMergeEditView::OnUpdateCaret()
 		m_bCurrentLineIsDiff = true;
 	else
 		m_bCurrentLineIsDiff = false;
-
-	CWnd* pWnd = GetFocus();
-	if (!m_bDetailView || (pWnd && pWnd->m_hWnd == this->m_hWnd))
-		UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
 }
 /**
  * @brief Select linedifference in the current line.
