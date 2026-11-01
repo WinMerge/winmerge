@@ -30,7 +30,7 @@ static const UINT ENCODING_PANEL_WIDTH = 40;
 /** @brief EOL type status panel width (point) */
 static const UINT EOL_PANEL_WIDTH = 30;
 /** @brief Syntax type status panel width (point) */
-static const UINT SYNTAX_PANEL_WIDTH = 90;
+static const UINT SYNTAX_PANEL_WIDTH = 40;
 
 /**
  * @brief Statusbar pane index of a column of a file pane
@@ -80,8 +80,8 @@ BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 	SetPaneGroupCount(3);
 	for (int pane = 0; pane < 3; ++pane)
 	{
-		for (int column = 0; column < nColumnsPerPane; ++column)
-			SetPaneGroup(pane * nColumnsPerPane + column, pane);
+		for (int column = 0; column < COLUMN_COUNT; ++column)
+			SetPaneGroup(pane * COLUMN_COUNT + column, pane);
 		SetPaneGroupWidth(pane, 0);
 	}
 	EndPaneLayoutUpdate();
@@ -203,15 +203,15 @@ void CMergeStatusBar::Resize(int widths[])
 		const int eolWidth = pointToPixel(EOL_PANEL_WIDTH) - borderWidth;
 		const int roWidth = pointToPixel(RO_PANEL_WIDTH) - borderWidth;
 		const int syntaxWidth = pointToPixel(SYNTAX_PANEL_WIDTH) - borderWidth;
-		SetPaneInfo(PANE_PANE0_INFO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_INFO + pane,
+		SetPaneInfo(PaneIndex(pane, 0), ID_STATUS_PANE0FILE_INFO + pane,
 			SBPS_CLICKABLE, 0);
-		SetPaneInfo(PANE_PANE0_SYNTAX + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_SYNTAX + pane,
+		SetPaneInfo(PaneIndex(pane, 1), ID_STATUS_PANE0FILE_SYNTAX + pane,
 			SBPS_CLICKABLE | SBPS_AUTOWIDTH, syntaxWidth);
-		SetPaneInfo(PANE_PANE0_ENCODING + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_ENCODING + pane,
+		SetPaneInfo(PaneIndex(pane, 2), ID_STATUS_PANE0FILE_ENCODING + pane,
 			SBPS_CLICKABLE | SBPS_AUTOWIDTH, encodingWidth);
-		SetPaneInfo(PANE_PANE0_EOL + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_EOL + pane,
+		SetPaneInfo(PaneIndex(pane, 3), ID_STATUS_PANE0FILE_EOL + pane,
 			SBPS_CLICKABLE | SBPS_AUTOWIDTH, eolWidth);
-		SetPaneInfo(PANE_PANE0_RO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_RO + pane,
+		SetPaneInfo(PaneIndex(pane, 4), ID_STATUS_PANE0FILE_RO + pane,
 			SBPS_CLICKABLE | SBPS_AUTOWIDTH, roWidth);
 	}
 	EndPaneLayoutUpdate();
