@@ -2618,8 +2618,7 @@ static String AutoSyntaxName()
 }
 
 /**
- * @brief Show the syntax type in the syntax column of the status bar: "Auto Syntax" in the auto state
- * (IsSyntaxTypeAuto), otherwise the name of the type in use. A click on the column shows all types
+ * @brief Show the syntax type in the syntax column of the status bar. A click on the column shows all types
  * (ShowSyntaxTypeMenu).
  */
 void CMergeEditView::UpdateSyntaxStatus()
@@ -2631,25 +2630,19 @@ void CMergeEditView::UpdateSyntaxStatus()
 }
 
 /**
- * @brief Whether the syntax type is in the auto state: not chosen manually for these files.
- */
-bool CMergeEditView::IsSyntaxTypeAuto()
-{
-	return !GetDocument()->GetChangedSchemeManually();
-}
-
-/**
  * @brief Change the syntax type of the files (nTextType, or SYNTAX_TYPE_AUTO for "Auto Syntax") under the wait
- * cursor, which stays until the files are rescanned and repainted with the new syntax.
+ * cursor, which stays until the files are rescanned and repainted with the new syntax. If paneOnly, change only
+ * this view's file pane.
  */
-void CMergeEditView::ChangeSyntaxType(int nTextType)
+void CMergeEditView::ChangeSyntaxType(int nTextType, bool paneOnly)
 {
 	CWaitCursor waitstatus;
 	CMergeDoc *pDoc = GetDocument();
+	const int pane = paneOnly ? m_nThisPane : -1;
 	if (nTextType == SYNTAX_TYPE_AUTO)
-		pDoc->SetTextTypeAuto();
+		pDoc->SetTextTypeAuto(pane);
 	else
-		pDoc->SetTextType(nTextType);
+		pDoc->SetTextType(nTextType, pane);
 	pDoc->FlushAndRescan(true);
 	GetParentFrame()->RedrawWindow(nullptr, nullptr, RDW_UPDATENOW | RDW_ALLCHILDREN);
 }
@@ -4327,7 +4320,7 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 void CMergeEditView::OnChangeScheme(UINT nID)
 {
 	ASSERT(GetDocument() != nullptr);
-	ChangeSyntaxType(nID - ID_COLORSCHEME_FIRST);
+	ChangeSyntaxType(nID - ID_COLORSCHEME_FIRST, false);
 }
 
 /**
@@ -4645,7 +4638,7 @@ public:
  * @return Index of the chosen item, -1 for none (always -1 when bEnabled is false)
  */
 int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items, int nSel, bool bEnabled,
-	CPoint ptScreen)
+	bool& bPaneOnly, CPoint ptScreen)
 {
 	MONITORINFO monitorInfo{ sizeof(monitorInfo) };
 	GetMonitorInfo(MonitorFromPoint(ptScreen, MONITOR_DEFAULTTONEAREST), &monitorInfo);
@@ -4653,8 +4646,9 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 	const int cyMax = rcWork.Height() / 2;
 
 	CWnd wndPopup;
-	if (!wndPopup.CreateEx(WS_EX_TOOLWINDOW, AfxRegisterWndClass(CS_DROPSHADOW), nullptr,
-			WS_POPUP | WS_BORDER, CRect(0, 0, 0, 0), pOwner, 0))
+	const HBRUSH hPopupBackground = DarkMode::isEnabled() ? DarkMode::getDlgBackgroundBrush() : nullptr;
+	if (!wndPopup.CreateEx(WS_EX_TOOLWINDOW, AfxRegisterWndClass(CS_DROPSHADOW, nullptr, hPopupBackground), nullptr,
+			WS_POPUP, CRect(0, 0, 0, 0), pOwner, 0))
 		return -1;
 	CListBox list;
 	if (!list.Create(WS_CHILD | WS_VISIBLE | WS_VSCROLL | LBS_NOINTEGRALHEIGHT, CRect(0, 0, 0, 0), &wndPopup, 1))
@@ -4662,6 +4656,15 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 		wndPopup.DestroyWindow();
 		return -1;
 	}
+	CButton paneOnly;
+	const String paneOnlyText = _("Apply to this pane only");
+	if (!paneOnly.Create(paneOnlyText.c_str(), WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX,
+		CRect(0, 0, 0, 0), &wndPopup, 2))
+	{
+		wndPopup.DestroyWindow();
+		return -1;
+	}
+	paneOnly.SetFont(pFont);
 	if (DarkMode::isEnabled())
 	{
 		// colors the list like a dialog control
@@ -4689,17 +4692,30 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 	const int nItems = static_cast<int>(items.size());
 	const int cyItem = (std::max)(1, list.GetItemHeight(0));
 	const int nRows = (std::max)(1, (std::min)(nItems, cyMax / cyItem));
-	list.MoveWindow(0, 0, cxText + cxMargin, nRows * cyItem);
+	CSize sizeCheckText;
+	{
+		CClientDC dc(&paneOnly);
+		const HFONT hFont = reinterpret_cast<HFONT>(paneOnly.SendMessage(WM_GETFONT));
+		const HGDIOBJ hOldFont = hFont ? dc.SelectObject(hFont) : nullptr;
+		sizeCheckText = dc.GetTextExtent(paneOnlyText.c_str());
+		if (hOldFont)
+			dc.SelectObject(hOldFont);
+	}
+	const int cyCheck = (std::max)(GetSystemMetrics(SM_CYMENUCHECK), static_cast<int>(sizeCheckText.cy)) + 6;
+	list.MoveWindow(6, cyCheck, cxText + cxMargin, nRows * cyItem);
 	CRect rcWindow, rcClient;
 	list.GetWindowRect(&rcWindow);
 	list.GetClientRect(&rcClient);
 	const CSize sizeList(cxText + cxMargin + rcWindow.Width() - rcClient.Width(), nRows * cyItem);
-	list.MoveWindow(0, 0, sizeList.cx, sizeList.cy);
+	const int cxPopup = (std::max)(static_cast<int>(sizeList.cx) + 12,
+		static_cast<int>(sizeCheckText.cx) + GetSystemMetrics(SM_CXMENUCHECK) + 20);
+	list.MoveWindow(6, cyCheck, cxPopup - 12, sizeList.cy);
+	paneOnly.MoveWindow(6, 2, cxPopup - 12, cyCheck - 2);
 
 	// Place it like a popup menu: above the point, below it when the work area has no room above,
 	// and inside the work area
-	CRect rcPopup(CPoint(0, 0), sizeList);
-	::AdjustWindowRectEx(&rcPopup, WS_POPUP | WS_BORDER, FALSE, WS_EX_TOOLWINDOW);
+	CRect rcPopup(CPoint(0, 0), CSize(cxPopup, sizeList.cy + cyCheck));
+	::AdjustWindowRectEx(&rcPopup, WS_POPUP, FALSE, WS_EX_TOOLWINDOW);
 	const CSize sizePopup = rcPopup.Size();
 	CPoint ptPopup(ptScreen.x, ptScreen.y - sizePopup.cy);
 	if (ptPopup.y < rcWork.top)
@@ -4707,6 +4723,7 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 	ptPopup.x = (std::max)(rcWork.left, (std::min)(ptPopup.x, rcWork.right - sizePopup.cx));
 	ptPopup.y = (std::max)(rcWork.top, (std::min)(ptPopup.y, rcWork.bottom - sizePopup.cy));
 	list.SetCurSel(nSel);
+	paneOnly.SetCheck(bPaneOnly ? BST_CHECKED : BST_UNCHECKED);
 	list.EnableWindow(bEnabled);
 	wndPopup.SetWindowPos(&CWnd::wndTop, ptPopup.x, ptPopup.y, sizePopup.cx, sizePopup.cy, SWP_SHOWWINDOW);
 	if (bEnabled)
@@ -4803,7 +4820,7 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 			break;
 		case WM_LBUTTONDOWN: case WM_RBUTTONDOWN: case WM_MBUTTONDOWN:
 		case WM_NCLBUTTONDOWN: case WM_NCRBUTTONDOWN: case WM_NCMBUTTONDOWN:
-			if (msg.hwnd != list.m_hWnd && msg.hwnd != wndPopup.m_hWnd)
+			if (msg.hwnd != list.m_hWnd && msg.hwnd != paneOnly.m_hWnd && msg.hwnd != wndPopup.m_hWnd)
 			{
 				// A click outside closes the list and is not passed on, like for a menu: the popup takes the
 				// mouse until the button up, which is dropped as well
@@ -4819,6 +4836,7 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 			::DispatchMessage(&msg);
 		}
 	}
+	bPaneOnly = paneOnly.GetCheck() == BST_CHECKED;
 	wndPopup.DestroyWindow();
 	return nResult;
 }
@@ -4827,16 +4845,16 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 
 /**
  * @brief Show "Auto Syntax" and all syntax types of this build as a scrollable popup list at ptScreen
- * (status bar syntax column), in the status bar font. The selection starts at the state the column shows.
+ * (status bar syntax column), in the status bar font, with a checkbox to limit the choice to this pane.
+ * The selection starts at the syntax type the column shows.
  * The types get their enabled and current state from OnUpdateChangeScheme, the same as View > Syntax highlight;
  * the choice runs ChangeSyntaxType.
  */
 void CMergeEditView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
 {
-	const bool bAuto = IsSyntaxTypeAuto();
 	std::vector<int> types{ SYNTAX_TYPE_AUTO };
 	std::vector<String> names{ AutoSyntaxName() };
-	int nSel = 0;
+	int nSel = 1;
 	bool bEnabled = true;
 	for (UINT nID = ID_COLORSCHEME_FIRST; nID <= ID_COLORSCHEME_LAST; ++nID)
 	{
@@ -4844,15 +4862,16 @@ void CMergeEditView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
 		state.m_nID = nID;
 		state.DoUpdate(this, FALSE);
 		bEnabled = state.m_bEnabled;
-		if (state.m_bChecked && !bAuto)
+		if (state.m_bChecked)
 			nSel = static_cast<int>(types.size());
 		types.push_back(static_cast<int>(nID - ID_COLORSCHEME_FIRST));
 		names.push_back(I18n::LoadString(nID));
 	}
 
-	const int nChosen = TrackPopupList(this, pFont, names, nSel, bEnabled, ptScreen);
+	bool bPaneOnly = false;
+	const int nChosen = TrackPopupList(this, pFont, names, nSel, bEnabled, bPaneOnly, ptScreen);
 	if (nChosen >= 0)
-		ChangeSyntaxType(types[nChosen]);
+		ChangeSyntaxType(types[nChosen], bPaneOnly);
 }
 
 void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)

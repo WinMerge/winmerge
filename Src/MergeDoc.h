@@ -452,10 +452,10 @@ public:
 	void SetPreparedTableProperties(const TableProps& props) { m_pTablePropsPrepared.reset(new TableProps(props)); }
 	TableProps GetCurrentTableProperties(int pane) const;
 
-	void SetTextType(int textType);
+	void SetTextType(int textType, int pane = -1);
 	void SetTextType(const String& ext);
-	void SetTextTypesByFileType();
-	void SetTextTypeAuto();
+	void SetTextTypesByFileType(int pane = -1);
+	void SetTextTypeAuto(int pane = -1);
 	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
 
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
