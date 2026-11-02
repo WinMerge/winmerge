@@ -2626,7 +2626,9 @@ void CMergeEditView::UpdateSyntaxStatus()
 	if (m_piMergeEditStatus == nullptr || m_pDocument == nullptr)
 		return;
 	const int nTextType = m_CurSourceDef ? static_cast<int>(m_CurSourceDef->type) : 0;
-	m_piMergeEditStatus->SetSyntaxName(I18n::LoadString(ID_COLORSCHEME_FIRST + nTextType).c_str());
+	const String syntaxName = (nTextType == 0 && GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT)) ? I18n::LoadString(IDS_SYNTAX_PLAIN_TEXT) : 
+		I18n::LoadString(ID_COLORSCHEME_FIRST + nTextType);
+	m_piMergeEditStatus->SetSyntaxName(syntaxName.c_str());
 }
 
 /**

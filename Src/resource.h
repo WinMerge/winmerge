@@ -1119,6 +1119,7 @@
 #define ID_COLORSCHEME_LAST             33204
 #define IDS_AUTO_SYNTAX                 33205
 #define IDS_APPLY_TO_THIS_PANE_ONLY     33206
+#define IDS_SYNTAX_PLAIN_TEXT           33207
 #define ID_TOOLBAR_NONE                 33300
 #define ID_TOOLBAR_SMALL                33301
 #define ID_TOOLBAR_MEDIUM               33302

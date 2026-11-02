@@ -5645,6 +5645,7 @@ STRINGTABLE
 BEGIN
     IDS_AUTO_SYNTAX         "Auto Syntax"
     IDS_APPLY_TO_THIS_PANE_ONLY "Apply to this pane only"
+    IDS_SYNTAX_PLAIN_TEXT   "Plain Text"
 END
 
 STRINGTABLE

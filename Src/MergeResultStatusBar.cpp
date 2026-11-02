@@ -265,7 +265,11 @@ void CMergeResultStatusBar::UpdateLineText()
 void CMergeResultStatusBar::UpdateSyntaxText()
 {
 	if (IsWindow(m_hWnd))
-		SetPaneText(PANE_SYNTAX, I18n::LoadString(ID_COLORSCHEME_FIRST + m_nSyntaxType).c_str());
+	{
+		const String syntaxName = m_nSyntaxType == 0 ? _("Plain Text") :
+			I18n::LoadString(ID_COLORSCHEME_FIRST + m_nSyntaxType);
+		SetPaneText(PANE_SYNTAX, syntaxName.c_str());
+	}
 }
 
 void CMergeResultStatusBar::UpdateEncodingText()
