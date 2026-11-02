@@ -6,6 +6,27 @@ namespace PopupList
 {
 namespace
 {
+/** @brief List box that moves its highlighted item with the mouse, like a combo box drop-down */
+class CHoverListBox : public CListBox
+{
+protected:
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	DECLARE_MESSAGE_MAP()
+};
+
+BEGIN_MESSAGE_MAP(CHoverListBox, CListBox)
+	ON_WM_MOUSEMOVE()
+END_MESSAGE_MAP()
+
+void CHoverListBox::OnMouseMove(UINT nFlags, CPoint point)
+{
+	BOOL bOutside = TRUE;
+	const int nItem = static_cast<int>(ItemFromPoint(point, bOutside));
+	if (!bOutside && nItem != GetCurSel())
+		SetCurSel(nItem);
+	__super::OnMouseMove(nFlags, point);
+}
+
 /** @brief Popup host with a theme-aware client border */
 class CPopupListWnd : public CWnd
 {
@@ -76,9 +97,9 @@ HBRUSH CPopupListWnd::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 /**
  * @brief Show a popup list at ptScreen and run a modal loop like TrackPopupMenu.
  * The list is at most half the work area of the monitor at ptScreen high and has a scroll bar when the items
- * do not fit. The list box handles its normal mouse, wheel, and navigation behavior. A click chooses the item
- * under the pointer, Enter the selected one; Esc, Alt, a click outside (not passed on) or another active window
- * closes it.
+ * do not fit. The list box handles its normal mouse, wheel, and navigation behavior; hovering an item moves
+ * the highlight like a combo box drop-down. A click chooses the item under the pointer, Enter the selected one;
+ * Esc, Alt, a click outside (not passed on) or another active window closes it.
  * @param [in] pFont Font of the list, nullptr for the default
  * @return Index of the chosen item, -1 for none (always -1 when bEnabled is false)
  */
@@ -95,7 +116,7 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 	if (!wndPopup.CreateEx(WS_EX_TOOLWINDOW, AfxRegisterWndClass(CS_DROPSHADOW, nullptr, hPopupBackground), nullptr,
 			WS_POPUP, CRect(0, 0, 0, 0), pOwner, 0))
 		return -1;
-	CListBox list;
+	CHoverListBox list;
 	if (!list.Create(WS_CHILD | WS_VISIBLE | WS_VSCROLL | LBS_NOINTEGRALHEIGHT, CRect(0, 0, 0, 0), &wndPopup, 1))
 	{
 		wndPopup.DestroyWindow();
