@@ -32,10 +32,12 @@ static const UINT RO_PANEL_WIDTH = 20;
 static const UINT ENCODING_PANEL_WIDTH = 90;
 static const UINT EOL_PANEL_WIDTH = 30;
 static const UINT LINEINFO_PANEL_WIDTH = 160;
+static const UINT SYNTAX_PANEL_WIDTH = 60;
 static const UINT CONFLICT_PANEL_WIDTH = 200;
 
 static UINT indicatorsResult[] =
 {
+	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
@@ -69,6 +71,7 @@ CMergeResultStatusBar::CMergeResultStatusBar()
 	, m_nChars(0)
 	, m_nSelectedLines(0)
 	, m_nSelectedChars(0)
+	, m_nSyntaxType(-1)
 	, m_nCodepage(-1)
 	, m_bHasBom(false)
 	, m_bReadOnly(false)
@@ -99,6 +102,7 @@ BOOL CMergeResultStatusBar::Create(CWnd* pParentWnd)
 	SetPaneInfo(PANE_CONFLICT, ID_SEPARATOR, SBPS_NOBORDERS, conflictWidth);
 	SetPaneInfo(PANE_PATH, ID_SEPARATOR, SBPS_STRETCH | SBPS_NOBORDERS, 0);
 	SetPaneInfo(PANE_LINEINFO, ID_SEPARATOR, SBPS_CLICKABLE, lineInfoWidth);
+	SetPaneInfo(PANE_SYNTAX, ID_SEPARATOR, SBPS_CLICKABLE | SBPS_AUTOWIDTH, pointToPixel(SYNTAX_PANEL_WIDTH));
 	SetPaneInfo(PANE_ENCODING, ID_SEPARATOR, SBPS_CLICKABLE, encodingWidth);
 	SetPaneInfo(PANE_EOL,      ID_SEPARATOR, SBPS_CLICKABLE, eolWidth);
 	SetPaneInfo(PANE_RO,       ID_SEPARATOR, SBPS_CLICKABLE, roWidth);
@@ -156,6 +160,15 @@ void CMergeResultStatusBar::SetLineInfo(const tchar_t* szLine, int nColumn, int 
 		m_nSelectedLines = nSelectedLines;
 		m_nSelectedChars = nSelectedChars;
 		UpdateLineText();
+	}
+}
+
+void CMergeResultStatusBar::SetSyntaxType(int nTextType)
+{
+	if (m_nSyntaxType != nTextType)
+	{
+		m_nSyntaxType = nTextType;
+		UpdateSyntaxText();
 	}
 }
 
@@ -249,6 +262,12 @@ void CMergeResultStatusBar::UpdateLineText()
 	SetPaneText(PANE_LINEINFO, strInfo);
 }
 
+void CMergeResultStatusBar::UpdateSyntaxText()
+{
+	if (IsWindow(m_hWnd))
+		SetPaneText(PANE_SYNTAX, I18n::LoadString(ID_COLORSCHEME_FIRST + m_nSyntaxType).c_str());
+}
+
 void CMergeResultStatusBar::UpdateEncodingText()
 {
 	if (!IsWindow(m_hWnd))
@@ -281,6 +300,7 @@ void CMergeResultStatusBar::UpdateResources()
 	UpdatePathText();
 	UpdateConflictText();
 	UpdateLineText();
+	UpdateSyntaxText();
 	UpdateEncodingText();
 	UpdateEolText();
 	UpdateRoText();
@@ -318,6 +338,15 @@ void CMergeResultStatusBar::OnLButtonDown(UINT nFlags, CPoint point)
 		{
 			pResultView->TakeFocus();
 			pResultView->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
+		}
+		break;
+
+	case PANE_SYNTAX:
+		if (auto* pResultView = pDoc->GetMergeResultView())
+		{
+			CPoint ptScreen = point;
+			ClientToScreen(&ptScreen);
+			pResultView->ShowSyntaxTypeMenu(ptScreen, GetFont());
 		}
 		break;
 

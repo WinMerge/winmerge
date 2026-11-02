@@ -29,6 +29,7 @@ public:
 		PANE_CONFLICT = 0,
 		PANE_PATH,
 		PANE_LINEINFO,
+		PANE_SYNTAX,
 		PANE_ENCODING,
 		PANE_EOL,
 		PANE_RO,
@@ -48,6 +49,7 @@ public:
 	// Caret / line info from CMergeResultView
 	void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
 		int nChar, int nChars, int nSelectedLines, int nSelectedChars);
+	void SetSyntaxType(int nTextType);
 
 	// Encoding and EOL info
 	void SetEncodingAndEol(int nCodepage, bool bHasBom, const tchar_t* szEol);
@@ -65,6 +67,7 @@ private:
 	void UpdateConflictText();
 	void UpdatePathText();
 	void UpdateLineText();
+	void UpdateSyntaxText();
 	void UpdateEncodingText();
 	void UpdateEolText();
 	void UpdateRoText();
@@ -86,6 +89,7 @@ private:
 	int m_nChars;
 	int m_nSelectedLines;
 	int m_nSelectedChars;
+	int m_nSyntaxType;
 
 	// Encoding & EOL info
 	int m_nCodepage;

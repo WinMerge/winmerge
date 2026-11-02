@@ -102,13 +102,15 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 		return -1;
 	}
 	CButton checkBox;
-	if (!checkBox.Create(checkBoxText.c_str(), WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX,
+	const bool hasCheckBox = !checkBoxText.empty();
+	if (hasCheckBox && !checkBox.Create(checkBoxText.c_str(), WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX,
 		CRect(0, 0, 0, 0), &wndPopup, 2))
 	{
 		wndPopup.DestroyWindow();
 		return -1;
 	}
-	checkBox.SetFont(pFont);
+	if (hasCheckBox)
+		checkBox.SetFont(pFont);
 	if (DarkMode::isEnabled())
 	{
 		// colors the list like a dialog control
@@ -137,7 +139,8 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 	const int cyItem = (std::max)(1, list.GetItemHeight(0));
 	const int nItems = static_cast<int>(items.size());
 	const int nRows = (std::max)(1, (std::min)(nItems, cyMax / cyItem));
-	CSize sizeCheckText;
+	CSize sizeCheckText(0, 0);
+	if (hasCheckBox)
 	{
 		CClientDC dc(&checkBox);
 		const HFONT hFont = reinterpret_cast<HFONT>(checkBox.SendMessage(WM_GETFONT));
@@ -146,22 +149,24 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 		if (hOldFont)
 			dc.SelectObject(hOldFont);
 	}
-	const int cyCheck = (std::max)(GetSystemMetrics(SM_CYMENUCHECK), static_cast<int>(sizeCheckText.cy)) + 6;
+	const int cyCheck = hasCheckBox ? (std::max)(GetSystemMetrics(SM_CYMENUCHECK), static_cast<int>(sizeCheckText.cy)) + 6 : 0;
+	const int cyListTop = hasCheckBox ? cyCheck : 1;
 	const int cxLeftMargin = 6;
 	const int cxRightMargin = 1;
-	list.MoveWindow(cxLeftMargin, cyCheck, cxText + cxMargin, nRows * cyItem);
+	list.MoveWindow(cxLeftMargin, cyListTop, cxText + cxMargin, nRows * cyItem);
 	CRect rcWindow, rcClient;
 	list.GetWindowRect(&rcWindow);
 	list.GetClientRect(&rcClient);
 	const CSize sizeList(cxText + cxMargin + rcWindow.Width() - rcClient.Width(), nRows * cyItem);
 	const int cxPopup = (std::max)(static_cast<int>(sizeList.cx) + cxLeftMargin + cxRightMargin,
-		static_cast<int>(sizeCheckText.cx) + GetSystemMetrics(SM_CXMENUCHECK) + 20);
-	list.MoveWindow(cxLeftMargin, cyCheck, cxPopup - cxLeftMargin - cxRightMargin, sizeList.cy);
-	checkBox.MoveWindow(cxLeftMargin, 2, cxPopup - cxLeftMargin - 6, cyCheck - 2);
+		hasCheckBox ? static_cast<int>(sizeCheckText.cx) + GetSystemMetrics(SM_CXMENUCHECK) + 20 : 0);
+	list.MoveWindow(cxLeftMargin, cyListTop, cxPopup - cxLeftMargin - cxRightMargin, sizeList.cy);
+	if (hasCheckBox)
+		checkBox.MoveWindow(cxLeftMargin, 2, cxPopup - cxLeftMargin - 6, cyCheck - 2);
 
 	// Place it like a popup menu: above the point, below it when the work area has no room above,
 	// and inside the work area
-	CRect rcPopup(CPoint(0, 0), CSize(cxPopup, sizeList.cy + cyCheck));
+	CRect rcPopup(CPoint(0, 0), CSize(cxPopup, sizeList.cy + cyListTop + 1));
 	::AdjustWindowRectEx(&rcPopup, WS_POPUP, FALSE, WS_EX_TOOLWINDOW);
 	const CSize sizePopup = rcPopup.Size();
 	CPoint ptPopup(ptScreen.x, ptScreen.y - sizePopup.cy);
@@ -170,7 +175,8 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 	ptPopup.x = (std::max)(rcWork.left, (std::min)(ptPopup.x, rcWork.right - sizePopup.cx));
 	ptPopup.y = (std::max)(rcWork.top, (std::min)(ptPopup.y, rcWork.bottom - sizePopup.cy));
 	list.SetCurSel(nSel);
-	checkBox.SetCheck(bCheckBoxChecked ? BST_CHECKED : BST_UNCHECKED);
+	if (hasCheckBox)
+		checkBox.SetCheck(bCheckBoxChecked ? BST_CHECKED : BST_UNCHECKED);
 	list.EnableWindow(bEnabled);
 	wndPopup.SetWindowPos(&CWnd::wndTop, ptPopup.x, ptPopup.y, sizePopup.cx, sizePopup.cy, SWP_SHOWWINDOW);
 	if (bEnabled)
@@ -262,7 +268,7 @@ int TrackPopupList(CWnd* pOwner, CFont* pFont, const std::vector<String>& items,
 			::DispatchMessage(&msg);
 		}
 	}
-	bCheckBoxChecked = checkBox.GetCheck() == BST_CHECKED;
+	bCheckBoxChecked = hasCheckBox && checkBox.GetCheck() == BST_CHECKED;
 	wndPopup.DestroyWindow();
 	return nResult;
 }

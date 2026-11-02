@@ -10,6 +10,7 @@
 #include "MergeResultPane.h"
 #include "MergeResultContainer.h"
 #include "MergeResultStatusBar.h"
+#include "Common/PopupList.h"
 #include "MergeDiffNavigation.h"
 #include "MergeConflictNavigation.h"
 #include "Merge.h"
@@ -20,11 +21,13 @@
 #include "SyntaxColors.h"
 #include "BCMenu.h"
 #include "I18nGUI.h"
+#include "resource.h"
 #include "DarkModeLib.h"
 #include "IDirDoc.h"
 #include "MouseHook.h"
 #include "../Externals/crystaledit/editlib/dialogs/gotodlg.h"
 #include <algorithm>
+#include <vector>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -109,6 +112,45 @@ END_MESSAGE_MAP()
 CMergeDoc* CMergeResultView::GetDocument() const
 {
 	return static_cast<CMergeDoc*>(m_pDocument);
+}
+
+bool CMergeResultView::DoSetTextType(LangServices::TextDefinition* def)
+{
+	const bool result = __super::DoSetTextType(def);
+	UpdateSyntaxStatus();
+	return result;
+}
+
+void CMergeResultView::UpdateSyntaxStatus()
+{
+	if (m_pDocument == nullptr || m_CurSourceDef == nullptr)
+		return;
+	if (auto* pContainer = dynamic_cast<CMergeResultContainer*>(GetParent()))
+		pContainer->GetStatusBar()->SetSyntaxType(static_cast<int>(m_CurSourceDef->type));
+}
+
+void CMergeResultView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
+{
+	std::vector<int> types;
+	std::vector<String> names;
+	const int currentType = m_CurSourceDef ? static_cast<int>(m_CurSourceDef->type) : 0;
+	int selectedIndex = 0;
+	for (UINT nID = ID_COLORSCHEME_FIRST; nID <= ID_COLORSCHEME_LAST; ++nID)
+	{
+		const int type = static_cast<int>(nID - ID_COLORSCHEME_FIRST);
+		if (type == currentType)
+			selectedIndex = static_cast<int>(types.size());
+		types.push_back(type);
+		names.push_back(I18n::LoadString(nID));
+	}
+	const bool enabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
+	const auto selection = PopupList::Show(this, pFont, names, selectedIndex, enabled, String(), false, ptScreen);
+	if (selection.index >= 0)
+	{
+		CWaitCursor waitstatus;
+		SetTextType(LangServices::LanguageId(types[selection.index]));
+		Invalidate();
+	}
 }
 
 /**

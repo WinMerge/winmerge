@@ -13,7 +13,7 @@ namespace PopupList
 		bool checkBoxChecked = false;
 	};
 
-	/** @brief Show a scrollable popup list with a checkbox. */
+	/** @brief Show a scrollable popup list with an optional checkbox. */
 	Selection Show(CWnd* pOwner, CFont* pFont, const std::vector<String>& items, int selectedIndex,
 		bool enabled, const String& checkBoxText, bool checkBoxChecked, CPoint ptScreen);
 }
