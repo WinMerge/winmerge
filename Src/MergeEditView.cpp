@@ -3138,7 +3138,7 @@ void CMergeEditView::OnWMGoto()
 	dlg.m_nLastLine[0] = nLastLine[0] + 1;
 	dlg.m_nLastLine[1] = (pDoc->m_nBuffers < 3) ? -1 : nLastLine[1] + 1;
 	dlg.m_nLastLine[2] = (pDoc->m_nBuffers < 3) ? nLastLine[1] + 1: nLastLine[2] + 1;
-	dlg.m_nLastDiff = pDoc->m_diffList.GetSize();
+	dlg.m_nLastDiff = pDoc->m_diffList.GetSignificantDiffs();
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -3166,11 +3166,7 @@ void CMergeEditView::OnWMGoto()
 		}
 		else
 		{
-			int diff = num;
-			if (diff < 0)
-				diff = 0;
-			if (diff >= pDoc1->m_diffList.GetSize())
-				diff = pDoc1->m_diffList.GetSize() - 1;
+			int diff = pDoc1->m_diffList.GetDiffFromSignificantIndex(num);
 
 			if (pCurrentView && diff >= 0)
 				pCurrentView->SelectDiff(diff, true, false);
