@@ -1,4 +1,4 @@
-﻿; *** Inno Setup version 6.5.0+ Indonesian messages ***
+﻿; *** Indonesian messages for Inno Setup 5.6.1, adapted from the 6.5.0 translation ***
 ;
 ; Untuk mengunduh terjemahan kontribusi-pengguna dari berkas ini, buka:
 ;   http://www.jrsoftware.org/files/istrans/
@@ -24,7 +24,6 @@ ErrorTitle=Galat
 SetupLdrStartupMessage=Kami akan memasang %1. Teruskan?
 LdrCannotCreateTemp=Tidak dapat membuat berkas sementara. Batal memasang
 LdrCannotExecTemp=Tidak dapat menjalankan berkas di direktori sementara. Batal memasang
-HelpTextNote=
 
 LastErrorMessage=%1.%n%nGalat %2: %3
 SetupFileMissing=Berkas %1 hilang dari direktori instalasi. Silakan koreksi masalah atau dapatkan salinan program yang baru.
@@ -45,14 +44,6 @@ SetupAppRunningError=Kami mendeteksi bahwa %1 sedang berjalan.%n%nSilakan tutup 
 UninstallAppRunningError=Pelepas mendeteksi bahwa %1 sedang berjalan.%n%nSilakan tutup semua instansi bersangkutan, lalu klik OK untuk meneruskan, atau Cancel untuk keluar.
 
 ;Inno6
-PrivilegesRequiredOverrideTitle=Pilih Mode Instalasi
-PrivilegesRequiredOverrideInstruction=Pilih mode instalasi
-PrivilegesRequiredOverrideText1=%1 bisa dipasang untuk semua pengguna (perlu izin administratif), atau hanya Anda.
-PrivilegesRequiredOverrideText2=%1 bisa dipasang hanya untuk Anda, atau semua pengguna (perlu izin administratif).
-PrivilegesRequiredOverrideAllUsers=Pasang untuk &semua pengguna
-PrivilegesRequiredOverrideAllUsersRecommended=Pasang untuk &semua pengguna (disarankan)
-PrivilegesRequiredOverrideCurrentUser=Pasang &hanya untuk saya
-PrivilegesRequiredOverrideCurrentUserRecommended=Pasang &hanya untuk saya (disarankan)
 ;Inno6
 
 ErrorCreatingDir=Kami tidak dapat membuat direktori "%1"
@@ -123,7 +114,6 @@ SelectDirDesc=Di manakah [name] sebaiknya dipasang?
 SelectDirLabel3=Kami akan memasang [name] ke dalam map berikut.
 SelectDirBrowseLabel=Untuk meneruskan, klik Maju. Bila Anda ingin memilih map lain, klik Cari.
 ;Inno6
-DiskSpaceGBLabel=Diperlukan sedikitnya [gb] GB ruang bebas.
 ;Inno6
 DiskSpaceMBLabel=Diperlukan sedikitnya [mb] MB ruang bebas.
 CannotInstallToNetworkDrive=Kami tidak bisa memasang ke diska jaringan.
@@ -151,7 +141,6 @@ NoUninstallWarning=Kami mendeteksi bahwa komponen berikut telah terpasang pada k
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
 ;Inno6
-ComponentsDiskSpaceGBLabel=Pilihan saat ini memerlukan sedikitnya [gb] GB ruang bebas.
 ;Inno6
 ComponentsDiskSpaceMBLabel=Pilihan saat ini memerlukan sedikitnya [mb] MB ruang bebas.
 
@@ -181,32 +170,16 @@ ReadyMemoGroup=Map Menu Start:
 ReadyMemoTasks=Tugas Tambahan:
 
 ;Inno6
-ButtonStopDownload=&Setop Unduhan
-StopDownload=Anda yakin ingin berhenti mengunduh?
-ErrorDownloadAborted=Unduhan dibatalkan
-ErrorDownloadFailed=Gagal mengunduh: %1 %2
-ErrorDownloadSizeFailed=Gagal mendapatkan ukuran: %1 %2
-ErrorProgress=Langkah tidak sah: %1 dari %2
-ErrorFileSize=Ukuran berkas tidak sah: seharusnya %1, yang kami dapatkan %2
 
 ;Inno65
-DownloadingLabel2=Mengunduh berkas...
 ;Inno65
 
 ; *** TExtractionWizardPage wizard page and Extract7ZipArchive
-ButtonStopExtraction=&Hentikan ekstrasi
-StopExtraction=Anda yakin ingin menghentikan ekstrasi?
-ErrorExtractionAborted=Ekstrasi dibatalkan
-ErrorExtractionFailed=Ekstraksi gagal: %1
 ;Inno6
 
 ;Inno65
-ExtractingLabel=Mengekstrak berkas...
 
 ; *** Archive extraction failure details
-ArchiveIncorrectPassword=Kata sandi salah
-ArchiveIsCorrupted=Arsip rusak
-ArchiveUnsupportedFormat=Format arsip tidak didukung
 ;Inno65
 ;Inno6
 
@@ -220,7 +193,6 @@ CloseApplications=&Otomatis tutup aplikasi
 DontCloseApplications=&Jangan tutup aplikasi
 ErrorCloseApplications=Kami tidak dapat menutup semua aplikasi secara otomatis. Disarankan agar Anda menutup semua aplikasi yang memakai berkas-berkas yang perlu kami perbarui sebelum meneruskan.
 ;Inno6
-PrepareToInstallNeedsRestart=Kami perlu memulai ulang komputer Anda. Setelah itu, jalankan Pemandu kembali untuk melengkapi pemasangan [name].%n%nMulai ulang sekarang?
 ;Inno6
 
 WizardInstalling=Memasang
@@ -246,23 +218,15 @@ SelectDirectoryLabel=Silakan tentukan lokasi diska berikutnya.
 
 SetupAborted=Instalasi tidak lengkap.%n%nSilakan koreksi masalah dan jalankan Pemandu kembali.
 ;Inno6
-AbortRetryIgnoreSelectAction=Pilih tindakan
-AbortRetryIgnoreRetry=&Coba lagi
-AbortRetryIgnoreIgnore=&Abaikan galat dan teruskan
-AbortRetryIgnoreCancel=Batalkan pemasangan
 ;Inno6
 
 ;Inno65
-RetryCancelSelectAction=Pilih tindakan
-RetryCancelRetry=&Coba lagi
-RetryCancelCancel=Batal
 ;Inno65
 ;Inno6
 
 StatusClosingApplications=Menutup aplikasi...
 StatusCreateDirs=Membuat direktori...
 StatusExtractFiles=Mengekstrak berkas...
-StatusDownloadFiles=Mengunduh berkas...
 StatusCreateIcons=Membuat pintasan...
 StatusCreateIniEntries=Membuat catatan INI...
 StatusCreateRegistryEntries=Membuat catatan Registry...
@@ -285,41 +249,16 @@ ErrorRegWriteKey=Galat menulis kunci Registry:%n%1\%2
 ErrorIniEntry=Galat membuat catatan INI dalam berkas "%1".
 
 ;Inno6
-FileAbortRetryIgnoreSkipNotRecommended=&Lewati berkas ini (tidak disarankan)
-FileAbortRetryIgnoreIgnoreNotRecommended=&Abaikan galat dan teruskan (tidak disarankan)
 ;Inno6
 
 SourceIsCorrupted=Berkas asal telah rusak
 SourceDoesntExist=Berkas asal "%1" tidak ada
-SourceVerificationFailed=Verifikasi berkas asal gagal: %1
-VerificationSignatureDoesntExist=Berkas tanda tangan "%1" tidak ada
-VerificationSignatureInvalid=Berkas tanda tangan "%1" tidak sah
-VerificationKeyNotFound=Berkas tanda tangan "%1" memakai kunci yang tidak dikenal
-VerificationFileNameIncorrect=Nama berkas tidak sah
-VerificationFileTagIncorrect=Tag berkas tidak sah
-VerificationFileSizeIncorrect=Ukuran berkas tidak sah
-VerificationFileHashIncorrect=Hash berkas tidak sah
 
 ;Inno6
-ExistingFileReadOnly2=Berkas yang sudah ada tidak bisa ditimpa karena telah ditandai hanya-baca.
-ExistingFileReadOnlyRetry=&Hapus atribut hanya-baca dan coba lagi
-ExistingFileReadOnlyKeepExisting=&Pertahankan berkas yang sudah ada
-FileExistsSelectAction=Pilih tindakan
-FileExists2=Berkas sudah ada.
-FileExistsOverwriteExisting=&Timpa berkas yang sudah ada
-FileExistsKeepExisting=&Pertahankan berkas yang sudah ada
-FileExistsOverwriteOrKeepAll=&Lakukan ini untuk konflik (bentrok) berikutnya
-ExistingFileNewerSelectAction=Pilih tindakan
-ExistingFileNewer2=Berkas yang sudah ada lebih baru dari yang akan kami coba pasang.
-ExistingFileNewerOverwriteExisting=&Timpa berkas yang sudah ada
-ExistingFileNewerKeepExisting=&Pertahankan berkas yang sudah ada (disarankan)
-ExistingFileNewerOverwriteOrKeepAll=&Lakukan ini untuk konflik (bentrok) berikutnya
 ;Inno6
 ErrorReadingExistingDest=Terjadi galat saat berusaha membaca berkas yang sudah ada:
 ErrorChangingAttr=Terjadi galat saat berusaha mengubah atribusi berkas yang sudah ada:
 ErrorCreatingTemp=Terjadi galat saat berusaha membuat berkas di direktori tujuan:
-ErrorDownloading=Terjadi galat saat berusaha mengunduh berkas:
-ErrorExtracting=Terjadi galat saat berusaha mengekstrak arsip:
 ErrorReadingSource=Terjadi galat saat berusaha membaca berkas asal:
 ErrorCopying=Terjadi galat saat berusaha menyalin berkas:
 ErrorReplacingExistingFile=Terjadi galat saat berusaha menimpa berkas yang sudah ada:
@@ -330,12 +269,6 @@ ErrorRegSvr32Failed=RegSvr32 gagal dengan kode akhir %1
 ErrorRegisterTypeLib=Tidak dapat meregistrasi berkas referensi: %1
 
 ;Inno6
-UninstallDisplayNameMark=%1 (%2)
-UninstallDisplayNameMarks=%1 (%2, %3)
-UninstallDisplayNameMark32Bit=32-bita
-UninstallDisplayNameMark64Bit=64-bita
-UninstallDisplayNameMarkAllUsers=Semua pengguna
-UninstallDisplayNameMarkCurrentUser=Pengguna saat ini
 ;Inno6
 
 ErrorOpeningReadme=Terjadi galat saat berusaha membuka berkas README.
@@ -363,6 +296,15 @@ StatusUninstalling=Melepas %1...
 
 ShutdownBlockReasonInstallingApp=Memasang %1.
 ShutdownBlockReasonUninstallingApp=Melepas %1.
+
+; Inno Setup 5-only messages from the Inno Setup 5.6.1 Indonesian translation.
+MissingWOW64APIs=Versi Windows yang Anda gunakan secara fungsional tidak memiliki permintaan oleh Program Instalasi untuk berjalan pada instalasi 64-bita. Untuk mengkoreksi masalah ini, harap pasang Service Pack %1
+EntryAbortRetryIgnore=Klik Retry untuk mencoba lagi, Ignore untuk memproses pada lain waktu, atau Abort untuk membatalkan instalasi
+FileAbortRetryIgnore=Klik Retry untuk mencoba lagi, Ignore untuk abaikan berkas (tidak disarankan), atau Abort untuk membatalkan pemasangan
+FileAbortRetryIgnore2=Klik Retry untuk mencoba lagi, Ignore untuk memproses pada lain waktu (tidak disarankan), atau Abort untuk membatalkan pemasangan
+ExistingFileReadOnly=Berkas yang ada disetel menjadi read-only.%n%nKlik Retry untuk menghapus atribusi read-only dan coba lagi, Ignore untuk abaikan berkas, atau Abort untuk membatalkan pemasangan
+FileExists=Berkas sudah ada.%n%nApakah Anda ingin menimpa berkas tersebut?
+ExistingFileNewer=Berkas yang lebih baru dari pemasangan yang lain mencoba memasang. Direkomendasikan untuk tetap mempertahankan berkas tersebut.%n%nApakah Anda ingin mempertahankan berkas tersebut?
 
 [CustomMessages]
 NameAndVersion=%1 versi %2

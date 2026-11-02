@@ -25,22 +25,22 @@ https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
 щоб переконатися, що Ваш Scripting Host є останньої версії і неушкоджений.
 
 Підтримка:
-Розробники відповідають на запитання у форумі WinMerge на Sourceforge.net:
-https://sourceforge.net/forum/?group_id=13216
+Розробники відповідають на запитання у форумі WinMerge на GitHub:
+https://github.com/WinMerge/winmerge/discussions
 
 Баґи та прохання про функції:
 Повідомлення про баґи та прохання про нові фунції можна залишати у відстежувачах
-RFE та баґів на sourceforge.net.
+RFE та баґів на GitHub.
 
 Відстежувач баґів:
-https://sourceforge.net/tracker/?group_id=13216&atid=113216
+https://github.com/WinMerge/winmerge/issues
 При сповіщенні про баґи обов'язково вказуйте свою версію WinMerge!
 WinMerge версії 2.2.0 та новішої може виводити "Журнал конфіґурації" з меню
 Довідка -> Конфіґурація. Долучіть цю інформацію (як файл-долучення) до 
 сповіщення про баґ, бо він містить багато корисної для розробників інформації.
 
 Відстежувач RFE (запит нової фунції):
-https://sourceforge.net/tracker/?group_id=13216&atid=363216
+https://github.com/WinMerge/winmerge/issues
 
 
 - Розробники WinMerge

@@ -324,6 +324,9 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 				crBkgnd = m_cachedColors.clrDiff;
 			crText = m_cachedColors.clrDiffText;
 		}
+		if (pSegment->state == ResultSegmentState::Conflict ||
+			pSegment->state == ResultSegmentState::Unresolved)
+			crText = GetColor(COLORINDEX_NORMALTEXT);
 		break;
 	default:
 		break;

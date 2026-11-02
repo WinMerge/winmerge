@@ -323,6 +323,7 @@ Other Contributors (code, ideas, testing..):
 * Anthony Lee Stark
 * Gaurav Pasi
 * Ikkoru
+* regular-hopper-user
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

@@ -37,8 +37,8 @@ var mergeApp;
 function getProviderConfig(providerName) {
   var configs = {
     "OpenAI": { "baseUrl": "https://api.openai.com/v1", "defaultModel": "gpt-5.6", "apiKeyEnvName": "OPENAI_API_KEY", "requiresApiKey": true },
-    "MiniMax": { "baseUrl": "https://api.minimax.io/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
-    "MiniMax (China)": { "baseUrl": "https://api.minimaxi.com/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
+    "MiniMax": { "baseUrl": "https://api.minimax.io/v1", "defaultModel": "MiniMax-M3.1-Flash", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
+    "MiniMax (China)": { "baseUrl": "https://api.minimax.cn/v1", "defaultModel": "MiniMax-M3.1-Flash", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
     "Ollama": { "baseUrl": "http://localhost:11434/v1", "defaultModel": "llama3.3", "apiKeyEnvName": "OLLAMA_API_KEY", "requiresApiKey": false },
     "LM Studio": { "baseUrl": "http://localhost:1234/v1", "defaultModel": "local-model", "apiKeyEnvName": "LMSTUDIO_API_KEY", "requiresApiKey": false },
     "LocalAI": { "baseUrl": "http://localhost:8080/v1", "defaultModel": "gpt-oss-20b", "apiKeyEnvName": "LOCALAI_API_KEY", "requiresApiKey": false },
@@ -393,8 +393,8 @@ function saveSettingsToXMLFile(filepath, settings) {
 function getProviderConfig(providerName) {
   var configs = {
     "OpenAI": { "baseUrl": "https://api.openai.com/v1", "defaultModel": "gpt-5.6", "apiKeyEnvName": "OPENAI_API_KEY", "requiresApiKey": true },
-    "MiniMax": { "baseUrl": "https://api.minimax.io/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
-    "MiniMax (China)": { "baseUrl": "https://api.minimaxi.com/v1", "defaultModel": "MiniMax-M3", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
+    "MiniMax": { "baseUrl": "https://api.minimax.io/v1", "defaultModel": "MiniMax-M3.1-Flash", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
+    "MiniMax (China)": { "baseUrl": "https://api.minimax.cn/v1", "defaultModel": "MiniMax-M3.1-Flash", "apiKeyEnvName": "MINIMAX_API_KEY", "requiresApiKey": true },
     "Ollama": { "baseUrl": "http://localhost:11434/v1", "defaultModel": "llama3.3", "apiKeyEnvName": "OLLAMA_API_KEY", "requiresApiKey": false },
     "LM Studio": { "baseUrl": "http://localhost:1234/v1", "defaultModel": "local-model", "apiKeyEnvName": "LMSTUDIO_API_KEY", "requiresApiKey": false },
     "LocalAI": { "baseUrl": "http://localhost:8080/v1", "defaultModel": "gpt-oss-20b", "apiKeyEnvName": "LOCALAI_API_KEY", "requiresApiKey": false },
@@ -421,8 +421,8 @@ function getApiKey(keyEnvName) {
 function getModelPresets(providerName) {
   var presets = {
     "OpenAI": ["gpt-5.6", "gpt-5.6-terra", "gpt-5.6-luna", "gpt-5.5", "gpt-5.4", "gpt-5.4-mini", "gpt-5.4-nano", "gpt-5.1-chat-latest", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "gpt-4o", "gpt-4o-mini", "gpt-3.5-turbo"],
-    "MiniMax": ["MiniMax-M3", "MiniMax-M2.7", "MiniMax-M2.7-highspeed"],
-    "MiniMax (China)": ["MiniMax-M3", "MiniMax-M2.7", "MiniMax-M2.7-highspeed"],
+    "MiniMax": ["MiniMax-M3.1-Flash", "MiniMax-M3"],
+    "MiniMax (China)": ["MiniMax-M3.1-Flash", "MiniMax-M3"],
     "Ollama": ["llama3.3", "llama3.2", "qwen3", "qwen3-coder", "qwen2.5", "gemma4", "gemma3", "deepseek-r1", "deepseek-v3.1", "phi4", "phi4-mini", "mistral", "gpt-oss:20b"],
     "LM Studio": ["local-model", "llama3.3", "qwen3", "gemma4", "phi4", "mistral", "gpt-oss-20b"],
     "LocalAI": ["gpt-oss-20b", "llama3.3", "qwen3", "gemma4", "phi4", "mistral"],
@@ -593,8 +593,8 @@ function btnCancel_onclick() {
         <li>
           <select id="cboProvider" onchange="cboProvider_onchange();">
             <option value="OpenAI" defaultmodel="gpt-5.6">OpenAI</option>
-            <option value="MiniMax" defaultmodel="MiniMax-M3">MiniMax</option>
-            <option value="MiniMax (China)" defaultmodel="MiniMax-M3">MiniMax (China)</option>
+            <option value="MiniMax" defaultmodel="MiniMax-M3.1-Flash">MiniMax</option>
+            <option value="MiniMax (China)" defaultmodel="MiniMax-M3.1-Flash">MiniMax (China)</option>
             <option value="Ollama" defaultmodel="llama3.3">Ollama (local)</option>
             <option value="LM Studio" defaultmodel="local-model">LM Studio (local)</option>
             <option value="LocalAI" defaultmodel="gpt-oss-20b">LocalAI (local)</option>

@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Poedit 3.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26 Merge.rc:59 Merge.rc:5960
+#: Merge.rc:26 Merge.rc:59 Merge.rc:6018
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_ROMANIAN, SUBLANG_DEFAULT"
 
@@ -265,7 +265,7 @@ msgstr "&Script-uri"
 #. IDS_NO_EDIT_SCRIPTS
 #: Merge.rc:205 Merge.rc:438 Merge.rc:549 Merge.rc:761 Merge.rc:766
 #: Merge.rc:977 Merge.rc:989 Merge.rc:996 Merge.rc:1055 Merge.rc:1303
-#: Merge.rc:5504
+#: Merge.rc:5551
 msgid "< Empty >"
 msgstr "< Gol >"
 
@@ -355,7 +355,7 @@ msgid "&Reset All"
 msgstr ""
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
-#: Merge.rc:239 Merge.rc:5780
+#: Merge.rc:239 Merge.rc:5830
 msgid "&Filter by This Column"
 msgstr ""
 
@@ -416,7 +416,7 @@ msgid "&Previous Page"
 msgstr "Pagina &precedentă"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:280 Merge.rc:288 Merge.rc:1361 Merge.rc:5813
+#: Merge.rc:280 Merge.rc:288 Merge.rc:1361 Merge.rc:5863
 msgid "&Next Page"
 msgstr "Pagina următoare"
 
@@ -541,7 +541,7 @@ msgid "Compare Extracted &Text from Images"
 msgstr "Compară &textul extras din imagini"
 
 #. IDD_OPEN, IDOK
-#: Merge.rc:370 Merge.rc:2339
+#: Merge.rc:370 Merge.rc:2341
 msgid "Co&mpare"
 msgstr "Co&mpară"
 
@@ -667,7 +667,7 @@ msgstr "&Binar"
 #. IDS_IMAGE_MENU
 #: Merge.rc:415 Merge.rc:424 Merge.rc:518 Merge.rc:527 Merge.rc:695
 #: Merge.rc:704 Merge.rc:758 Merge.rc:1052 Merge.rc:1280 Merge.rc:1293
-#: Merge.rc:5611
+#: Merge.rc:5659
 msgid "&Image"
 msgstr "&Imagine"
 
@@ -709,7 +709,7 @@ msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Deschide pro&iectul...\tCtrl+J"
 
 #. IDD_OPEN, ID_SAVE_PROJECT
-#: Merge.rc:433 Merge.rc:536 Merge.rc:713 Merge.rc:1321 Merge.rc:2338
+#: Merge.rc:433 Merge.rc:536 Merge.rc:713 Merge.rc:1321 Merge.rc:2337
 msgid "Sa&ve Project..."
 msgstr "Sal&vează proiectul..."
 
@@ -784,7 +784,7 @@ msgid "&Huge"
 msgstr "Uriaș"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:464 Merge.rc:615 Merge.rc:865 Merge.rc:5848
+#: Merge.rc:464 Merge.rc:615 Merge.rc:865 Merge.rc:5898
 msgid "Men&u Bar"
 msgstr ""
 
@@ -819,7 +819,7 @@ msgid "&Plugins"
 msgstr "&Plugin-uri"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_SETTINGS
-#: Merge.rc:475 Merge.rc:650 Merge.rc:967 Merge.rc:2869 Merge.rc:3358
+#: Merge.rc:475 Merge.rc:650 Merge.rc:967 Merge.rc:2871 Merge.rc:3360
 msgid "P&lugin Settings..."
 msgstr "Setări p&lugin-uri..."
 
@@ -884,7 +884,7 @@ msgid "&Cascade"
 msgstr "&Cascadă"
 
 #. IDS_MESSAGEBOX_HELP
-#: Merge.rc:496 Merge.rc:673 Merge.rc:1018 Merge.rc:3633 Merge.rc:4650
+#: Merge.rc:496 Merge.rc:673 Merge.rc:1018 Merge.rc:3635 Merge.rc:4654
 msgid "&Help"
 msgstr "A&jutor"
 
@@ -939,7 +939,7 @@ msgid "Ri&ght Read-Only"
 msgstr "Protejat la scriere în dreapta"
 
 #. IDD_ENCODINGERROR, IDC_FILEENCODING
-#: Merge.rc:545 Merge.rc:752 Merge.rc:1153 Merge.rc:3496
+#: Merge.rc:545 Merge.rc:752 Merge.rc:1153 Merge.rc:3498
 msgid "&File Encoding..."
 msgstr "Codar&e caractere fișiere..."
 
@@ -1164,7 +1164,7 @@ msgid "Generate &Report..."
 msgstr "Generare &raport..."
 
 #. IDD_ENCODINGERROR, IDC_PLUGIN
-#: Merge.rc:658 Merge.rc:979 Merge.rc:3497
+#: Merge.rc:658 Merge.rc:979 Merge.rc:3499
 msgid "&Edit with Unpacker..."
 msgstr "&Editează cu dezarhivatorul.."
 
@@ -1429,7 +1429,7 @@ msgid "Merge Result Pane"
 msgstr ""
 
 #. IDS_OUTPUTBAR_CAPTION
-#: Merge.rc:871 Merge.rc:5366
+#: Merge.rc:871 Merge.rc:5411
 msgid "Output Pane"
 msgstr ""
 
@@ -1515,13 +1515,13 @@ msgstr "Copiază din stânga în"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
 #: Merge.rc:909 Merge.rc:920 Merge.rc:925 Merge.rc:936 Merge.rc:1085
-#: Merge.rc:2920 Merge.rc:3249
+#: Merge.rc:2922 Merge.rc:3251
 msgid "&Middle"
 msgstr "&Mijloc"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
 #: Merge.rc:910 Merge.rc:915 Merge.rc:926 Merge.rc:931 Merge.rc:1086
-#: Merge.rc:2921 Merge.rc:3251
+#: Merge.rc:2923 Merge.rc:3253
 msgid "&Right"
 msgstr "D&reapta"
 
@@ -1532,7 +1532,7 @@ msgstr "Copiază din &mijloc în"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
 #: Merge.rc:914 Merge.rc:919 Merge.rc:930 Merge.rc:935 Merge.rc:1084
-#: Merge.rc:2919 Merge.rc:3247
+#: Merge.rc:2921 Merge.rc:3249
 msgid "&Left"
 msgstr "Stâ&nga"
 
@@ -1697,61 +1697,61 @@ msgid "Co&mpare As"
 msgstr "Co&mpară ca"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
-#: Merge.rc:1060 Merge.rc:1072 Merge.rc:4964
+#: Merge.rc:1060 Merge.rc:1072 Merge.rc:4989
 #, c-format
 msgid "Left to Middle (%1 of %2)"
 msgstr "Stânga cu mijlocul (%1 din %2)"
 
 #. IDS_COPY_LEFT_TO_RIGHT2
-#: Merge.rc:1061 Merge.rc:1073 Merge.rc:4963
+#: Merge.rc:1061 Merge.rc:1073 Merge.rc:4988
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "De la stânga la dreapta (%1 din %2)"
 
 #. IDS_MOVE_LEFT_TO2
-#: Merge.rc:1062 Merge.rc:1074 Merge.rc:1137 Merge.rc:4975 Merge.rc:5004
+#: Merge.rc:1062 Merge.rc:1074 Merge.rc:1137 Merge.rc:5000 Merge.rc:5029
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "Stânga la... (%1 din %2)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT2
-#: Merge.rc:1063 Merge.rc:1075 Merge.rc:4961
+#: Merge.rc:1063 Merge.rc:1075 Merge.rc:4986
 #, c-format
 msgid "Middle to Left (%1 of %2)"
 msgstr "Mijlocul cu stânga (%1 din %2)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT2
-#: Merge.rc:1064 Merge.rc:1076 Merge.rc:4962
+#: Merge.rc:1064 Merge.rc:1076 Merge.rc:4987
 #, c-format
 msgid "Middle to Right (%1 of %2)"
 msgstr "Mijlocul cu dreapta (%1 din %2)"
 
 #. IDS_MOVE_MIDDLE_TO2
-#: Merge.rc:1065 Merge.rc:1077 Merge.rc:1138 Merge.rc:4976 Merge.rc:5005
+#: Merge.rc:1065 Merge.rc:1077 Merge.rc:1138 Merge.rc:5001 Merge.rc:5030
 #, c-format
 msgid "Middle to... (%1 of %2)"
 msgstr "Mijlocul cu... (%1 from %2)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE2
-#: Merge.rc:1066 Merge.rc:1078 Merge.rc:4960
+#: Merge.rc:1066 Merge.rc:1078 Merge.rc:4985
 #, c-format
 msgid "Right to Middle (%1 of %2)"
 msgstr "Dreapta cu mijlocul (%1 din %2)"
 
 #. IDS_COPY_RIGHT_TO_LEFT2
-#: Merge.rc:1067 Merge.rc:1079 Merge.rc:4959
+#: Merge.rc:1067 Merge.rc:1079 Merge.rc:4984
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "De la dreapta la stânga (%1 din %2)"
 
 #. IDS_MOVE_RIGHT_TO2
-#: Merge.rc:1068 Merge.rc:1080 Merge.rc:1139 Merge.rc:4977 Merge.rc:5006
+#: Merge.rc:1068 Merge.rc:1080 Merge.rc:1139 Merge.rc:5002 Merge.rc:5031
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Dreapta la... (%1 din %2)"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_MARKER_DELETE
-#: Merge.rc:1082 Merge.rc:2395
+#: Merge.rc:1082 Merge.rc:2397
 msgid "&Delete"
 msgstr "Ș&terge"
 
@@ -1766,7 +1766,7 @@ msgid "&All"
 msgstr "Toate"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_SELECTION
-#: Merge.rc:1089 Merge.rc:2378
+#: Merge.rc:1089 Merge.rc:2380
 msgid "&Selection"
 msgstr "&Selecție"
 
@@ -1801,31 +1801,31 @@ msgid "Cop&y Paths"
 msgstr "Cop&ie căile de fișier"
 
 #. IDS_DEL_LEFT_FMT2
-#: Merge.rc:1118 Merge.rc:1127 Merge.rc:4992
+#: Merge.rc:1118 Merge.rc:1127 Merge.rc:5017
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "Stânga (%1 din %2)"
 
 #. IDS_DEL_MIDDLE_FMT2
-#: Merge.rc:1119 Merge.rc:1128 Merge.rc:4993
+#: Merge.rc:1119 Merge.rc:1128 Merge.rc:5018
 #, c-format
 msgid "Middle (%1 of %2)"
 msgstr "Mijloc (%1 din %2)"
 
 #. IDS_DEL_RIGHT_FMT2
-#: Merge.rc:1120 Merge.rc:1129 Merge.rc:4994
+#: Merge.rc:1120 Merge.rc:1129 Merge.rc:5019
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "Dreapta (%1 din %2)"
 
 #. IDS_DEL_BOTH_FMT2
-#: Merge.rc:1121 Merge.rc:1130 Merge.rc:4995
+#: Merge.rc:1121 Merge.rc:1130 Merge.rc:5020
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "Ambele (%1 din %2)"
 
 #. IDS_DEL_ALL_FMT2
-#: Merge.rc:1122 Merge.rc:1131 Merge.rc:5000
+#: Merge.rc:1122 Merge.rc:1131 Merge.rc:5025
 #, c-format
 msgid "All (%1 of %2)"
 msgstr "Toate (%1 din %2)"
@@ -1851,19 +1851,19 @@ msgid "&Zip"
 msgstr "Arhivea&ză"
 
 #. IDS_COPY_BOTH_TO2
-#: Merge.rc:1140 Merge.rc:4978
+#: Merge.rc:1140 Merge.rc:5003
 #, c-format
 msgid "Both to... (%1 of %2)"
 msgstr "Ambele în... (%1 din %2)"
 
 #. IDS_COPY_ALL_TO2
-#: Merge.rc:1141 Merge.rc:4979
+#: Merge.rc:1141 Merge.rc:5004
 #, c-format
 msgid "All to... (%1 of %2)"
 msgstr "Toate în... (%1 of %2)"
 
 #. IDS_COPY_DIFFERENCES_TO2
-#: Merge.rc:1142 Merge.rc:4980
+#: Merge.rc:1142 Merge.rc:5005
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Diferențele în... (%1 din %2)"
@@ -1935,17 +1935,17 @@ msgstr "Setări dezarhivator"
 
 #. IDS_USERCHOICE_NONE
 #: Merge.rc:1181 Merge.rc:1187 Merge.rc:1931 Merge.rc:1935 Merge.rc:2126
-#: Merge.rc:2130 Merge.rc:5506
+#: Merge.rc:2130 Merge.rc:5553
 msgid "<None>"
 msgstr "<Deloc>"
 
 #. IDS_USERCHOICE_AUTOMATIC
-#: Merge.rc:1182 Merge.rc:1188 Merge.rc:5507
+#: Merge.rc:1182 Merge.rc:1188 Merge.rc:5554
 msgid "<Automatic>"
 msgstr "<Automat>"
 
 #. IDD_OPEN, IDC_SELECT_PREDIFFER
-#: Merge.rc:1183 Merge.rc:1189 Merge.rc:2329 Merge.rc:2333
+#: Merge.rc:1183 Merge.rc:1189 Merge.rc:2328 Merge.rc:2332
 msgid "&Select..."
 msgstr "&Selectează..."
 
@@ -2035,7 +2035,7 @@ msgid "Ignore Line &Breaks (Treat as Spaces)"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_RECURS_CHECK
-#: Merge.rc:1227 Merge.rc:3395
+#: Merge.rc:1227 Merge.rc:3397
 msgid "&Include Subfolders"
 msgstr "&Include subdirectoare"
 
@@ -2045,37 +2045,37 @@ msgid "&Compare Method"
 msgstr "Metoda de &comparare"
 
 #. IDS_COMPMETHOD_FULL_CONTENTS
-#: Merge.rc:1230 Merge.rc:1262 Merge.rc:1458 Merge.rc:4744
+#: Merge.rc:1230 Merge.rc:1262 Merge.rc:1458 Merge.rc:4748
 msgid "Full Contents"
 msgstr "Conținut complet"
 
 #. IDS_COMPMETHOD_QUICK_CONTENTS
-#: Merge.rc:1231 Merge.rc:1263 Merge.rc:1459 Merge.rc:4745
+#: Merge.rc:1231 Merge.rc:1263 Merge.rc:1459 Merge.rc:4749
 msgid "Quick Contents"
 msgstr "Conținut rapid"
 
 #. IDS_COMPMETHOD_BINARY_CONTENTS
-#: Merge.rc:1232 Merge.rc:1264 Merge.rc:1460 Merge.rc:4746
+#: Merge.rc:1232 Merge.rc:1264 Merge.rc:1460 Merge.rc:4750
 msgid "Binary Contents"
 msgstr "Conținut binar"
 
 #. IDS_COMPMETHOD_MODDATE
-#: Merge.rc:1233 Merge.rc:1265 Merge.rc:1461 Merge.rc:4747
+#: Merge.rc:1233 Merge.rc:1265 Merge.rc:1461 Merge.rc:4751
 msgid "Modified Date"
 msgstr "Dată modificare"
 
 #. IDS_COMPMETHOD_DATESIZE
-#: Merge.rc:1234 Merge.rc:1266 Merge.rc:1462 Merge.rc:4748
+#: Merge.rc:1234 Merge.rc:1266 Merge.rc:1462 Merge.rc:4752
 msgid "Modified Date and Size"
 msgstr "Dată modificare și mărime"
 
 #. IDS_COMPMETHOD_SIZE
-#: Merge.rc:1235 Merge.rc:1267 Merge.rc:1463 Merge.rc:4749
+#: Merge.rc:1235 Merge.rc:1267 Merge.rc:1463 Merge.rc:4753
 msgid "Size"
 msgstr "Mărime"
 
 #. IDS_COMPMETHOD_EXISTENCE
-#: Merge.rc:1236 Merge.rc:1268 Merge.rc:1464 Merge.rc:4750
+#: Merge.rc:1236 Merge.rc:1268 Merge.rc:1464 Merge.rc:4754
 msgid "Existence"
 msgstr ""
 
@@ -2870,12 +2870,12 @@ msgid "Text files only"
 msgstr ""
 
 #. IDS_EOL_NONE
-#: Merge.rc:1762 Merge.rc:2013 Merge.rc:5418
+#: Merge.rc:1762 Merge.rc:2013 Merge.rc:5464
 msgid "None"
 msgstr "Nici unul"
 
 #. IDS_EOL_MIXED
-#: Merge.rc:1763 Merge.rc:5413
+#: Merge.rc:1763 Merge.rc:5459
 msgid "Mixed"
 msgstr "Amestecat"
 
@@ -2985,8 +2985,8 @@ msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
-#: Merge.rc:1941 Merge.rc:2169 Merge.rc:2354 Merge.rc:2373 Merge.rc:2401
-#: Merge.rc:2960
+#: Merge.rc:1941 Merge.rc:2169 Merge.rc:2356 Merge.rc:2375 Merge.rc:2403
+#: Merge.rc:2962
 msgid "Match &case"
 msgstr "Respectă minuscule/majuscule"
 
@@ -3146,14 +3146,14 @@ msgid "Line &Status"
 msgstr ""
 
 #. IDS_DIFFERENT
-#: Merge.rc:1999 Merge.rc:2083 Merge.rc:2976 Merge.rc:3146 Merge.rc:3187
-#: Merge.rc:5170
+#: Merge.rc:1999 Merge.rc:2083 Merge.rc:2978 Merge.rc:3148 Merge.rc:3189
+#: Merge.rc:5204
 msgid "Different"
 msgstr "Diferite"
 
 #. IDS_IDENTICAL
-#: Merge.rc:2000 Merge.rc:2084 Merge.rc:2975 Merge.rc:3165 Merge.rc:3226
-#: Merge.rc:5160
+#: Merge.rc:2000 Merge.rc:2084 Merge.rc:2977 Merge.rc:3167 Merge.rc:3228
+#: Merge.rc:5194
 msgid "Identical"
 msgstr "Identice"
 
@@ -3173,7 +3173,7 @@ msgid "Missing"
 msgstr ""
 
 #. IDS_MOVED
-#: Merge.rc:2005 Merge.rc:5188
+#: Merge.rc:2005 Merge.rc:5222
 msgid "Moved"
 msgstr ""
 
@@ -3223,7 +3223,7 @@ msgid "Normalize &Whitespace"
 msgstr ""
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE
-#: Merge.rc:2102 Merge.rc:2382
+#: Merge.rc:2102 Merge.rc:2384
 msgid "&Replace"
 msgstr "Înlocuieș&te"
 
@@ -3313,10 +3313,10 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "Vizitează pagina de bază WinMerge!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:2297 Merge.rc:2450 Merge.rc:2806 Merge.rc:2830 Merge.rc:2844
-#: Merge.rc:2872 Merge.rc:2963 Merge.rc:2992 Merge.rc:3008 Merge.rc:3069
-#: Merge.rc:3087 Merge.rc:3105 Merge.rc:3123 Merge.rc:3135 Merge.rc:3299
-#: Merge.rc:3359 Merge.rc:3495 Merge.rc:3537 Merge.rc:3580 Merge.rc:3630
+#: Merge.rc:2297 Merge.rc:2452 Merge.rc:2808 Merge.rc:2832 Merge.rc:2846
+#: Merge.rc:2874 Merge.rc:2965 Merge.rc:2994 Merge.rc:3010 Merge.rc:3071
+#: Merge.rc:3089 Merge.rc:3107 Merge.rc:3125 Merge.rc:3137 Merge.rc:3301
+#: Merge.rc:3361 Merge.rc:3497 Merge.rc:3539 Merge.rc:3582 Merge.rc:3632
 msgid "OK"
 msgstr "OK"
 
@@ -3325,267 +3325,267 @@ msgstr "OK"
 msgid "Contributors"
 msgstr "Colaboratori"
 
-#. IDD_SELECT_FILES_OR_FOLDERS
-#: Merge.rc:2304 Merge.rc:3503
-msgid "Select Files or Folders"
-msgstr "Selectează fișiere sau directoare"
-
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP0
-#: Merge.rc:2308
+#: Merge.rc:2307
 msgid "&1st File or Folder"
 msgstr "Fișierul sau directorul 1"
 
 #. IDD_OPEN, IDC_PATH0_READONLY
-#: Merge.rc:2310
+#: Merge.rc:2309
 msgid "Re&ad-only"
 msgstr "Num&ai-citire"
 
 #. IDD_OPEN, IDC_SWAP01_STATIC
-#: Merge.rc:2312
+#: Merge.rc:2311
 msgid "Swap 1st | 2nd"
 msgstr "Interschimbă 1 | 2"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_BROWSE
-#: Merge.rc:2313 Merge.rc:2680 Merge.rc:2788 Merge.rc:3100 Merge.rc:3118
+#: Merge.rc:2312 Merge.rc:2682 Merge.rc:2790 Merge.rc:3102 Merge.rc:3120
 msgid "&Browse..."
 msgstr "Răsf&oiește..."
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP1
-#: Merge.rc:2314
+#: Merge.rc:2313
 msgid "&2nd File or Folder"
 msgstr "Fișierul sau directorul 2"
 
 #. IDD_OPEN, IDC_PATH1_READONLY
-#: Merge.rc:2316
+#: Merge.rc:2315
 msgid "Rea&d-only"
 msgstr "Protejat la scriere"
 
 #. IDD_OPEN, IDC_SWAP12_STATIC
-#: Merge.rc:2318
+#: Merge.rc:2317
 msgid "Swap 2nd | 3rd"
 msgstr "Interschimbă 2 | 3"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_FILTER_USER_BROWSE
-#: Merge.rc:2319 Merge.rc:2685
+#: Merge.rc:2318 Merge.rc:2687
 msgid "B&rowse..."
 msgstr "&Răsfoiește..."
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP2
-#: Merge.rc:2320
+#: Merge.rc:2319
 msgid "&3rd File or Folder (Optional)"
 msgstr "Fișierul sau directorul 3 (opțional)"
 
 #. IDD_OPEN, IDC_PATH2_READONLY
-#: Merge.rc:2322
+#: Merge.rc:2321
 msgid "Read-o&nly"
 msgstr "Protejat la scriere"
 
 #. IDD_OPEN, IDC_SWAP02_STATIC
-#: Merge.rc:2324
+#: Merge.rc:2323
 msgid "Swap 1st | 3rd"
 msgstr "Interschimbă 1 | 3"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_BROWSE
-#: Merge.rc:2325 Merge.rc:3080 Merge.rc:3315
+#: Merge.rc:2324 Merge.rc:3082 Merge.rc:3317
 msgid "Browse..."
 msgstr "Răsfoiește..."
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP3
-#: Merge.rc:2327
+#: Merge.rc:2326
 msgid " Folder: Filter"
 msgstr " Director: filtru"
 
 #. IDD_OPEN, IDC_RECURS_CHECK
-#: Merge.rc:2330
+#: Merge.rc:2329
 msgid "&Include subfolders"
 msgstr "&Include subdirectoare"
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP5
-#: Merge.rc:2331
+#: Merge.rc:2330
 msgid " File: Prediffer Plugin"
 msgstr " Fișier: Plugin prediferențiator"
 
 #. IDD_OPEN, IDC_FILES_DIRS_GROUP4
-#: Merge.rc:2335
+#: Merge.rc:2334
 msgid " File: Unpacker Plugin"
 msgstr " Fișier: plugin dezarhivator"
 
 #. IDD_OPEN, IDC_SELECT_UNPACKER
-#: Merge.rc:2337
+#: Merge.rc:2336
 msgid "Se&lect..."
 msgstr "Se&lectează..."
 
+#. IDD_OPEN, IDC_RECENT_COMPARES_SHOW
+#: Merge.rc:2338
+msgid "Show recent &comparisons"
+msgstr ""
+
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:2340 Merge.rc:2360 Merge.rc:2384 Merge.rc:2405 Merge.rc:2416
-#: Merge.rc:2451 Merge.rc:2807 Merge.rc:2831 Merge.rc:2845 Merge.rc:2873
-#: Merge.rc:2926 Merge.rc:2964 Merge.rc:2993 Merge.rc:3009 Merge.rc:3070
-#: Merge.rc:3088 Merge.rc:3106 Merge.rc:3124 Merge.rc:3136 Merge.rc:3300
-#: Merge.rc:3360 Merge.rc:3520 Merge.rc:3538 Merge.rc:3581 Merge.rc:3631
+#: Merge.rc:2342 Merge.rc:2362 Merge.rc:2386 Merge.rc:2407 Merge.rc:2418
+#: Merge.rc:2453 Merge.rc:2809 Merge.rc:2833 Merge.rc:2847 Merge.rc:2875
+#: Merge.rc:2928 Merge.rc:2966 Merge.rc:2995 Merge.rc:3011 Merge.rc:3072
+#: Merge.rc:3090 Merge.rc:3108 Merge.rc:3126 Merge.rc:3138 Merge.rc:3302
+#: Merge.rc:3362 Merge.rc:3522 Merge.rc:3540 Merge.rc:3583 Merge.rc:3633
 msgid "Cancel"
 msgstr "Renunță"
 
 #. IDD_OPEN, IDC_OPEN_STATUS
-#: Merge.rc:2341
+#: Merge.rc:2343
 msgid "Status:"
 msgstr "Stare:"
 
 #. IDD_PLUGINS_LIST, ID_HELP
-#: Merge.rc:2342 Merge.rc:2452 Merge.rc:3361
+#: Merge.rc:2344 Merge.rc:2454 Merge.rc:3363
 msgid "Help"
 msgstr "Ajutor"
 
 #. IDD_OPEN, IDC_OPTIONS
-#: Merge.rc:2343
+#: Merge.rc:2345
 msgid "&Options..."
 msgstr "&Opțiuni..."
 
 #. IDD_EDIT_FIND
-#: Merge.rc:2348
+#: Merge.rc:2350
 msgid "Find"
 msgstr "Găsește"
 
 #. IDD_EDIT_MARKER, IDC_STATIC
-#: Merge.rc:2351 Merge.rc:2368 Merge.rc:2396
+#: Merge.rc:2353 Merge.rc:2370 Merge.rc:2398
 msgid "Fi&nd what:"
 msgstr "Ce a&nume:"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_WHOLE_WORD
-#: Merge.rc:2353 Merge.rc:2372 Merge.rc:2400
+#: Merge.rc:2355 Merge.rc:2374 Merge.rc:2402
 msgid "Match &whole word only"
 msgstr "Potrivește doar cu&vinte întregi"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_REGEXP
-#: Merge.rc:2355 Merge.rc:2374 Merge.rc:2402
+#: Merge.rc:2357 Merge.rc:2376 Merge.rc:2404
 msgid "Regular &expression"
 msgstr "&Expresie regulată"
 
 #. IDD_EDIT_FIND, IDC_FINDDLG_DONTWRAP
-#: Merge.rc:2356
+#: Merge.rc:2358
 msgid "D&on't wrap end of file"
 msgstr "Nu relua de la începutul fișierului"
 
 #. IDD_EDIT_FIND, IDC_FINDDLG_DONTCLOSE
-#: Merge.rc:2357
+#: Merge.rc:2359
 msgid "&Don't close this dialog"
 msgstr "Nu închide această fereastră de dialog"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SKIP
-#: Merge.rc:2358 Merge.rc:2380
+#: Merge.rc:2360 Merge.rc:2382
 msgid "&Find Next"
 msgstr "&Găsește următorul"
 
 #. IDD_EDIT_FIND, IDC_EDIT_FINDPREV
-#: Merge.rc:2359
+#: Merge.rc:2361
 msgid "Find &Prev"
 msgstr "Găsește precedentul"
 
 #. IDD_EDIT_REPLACE
-#: Merge.rc:2365
+#: Merge.rc:2367
 msgid "Replace"
 msgstr "Înlocuiește"
 
 #. IDD_EDIT_REPLACE, IDC_STATIC
-#: Merge.rc:2370
+#: Merge.rc:2372
 msgid "Re&place with:"
 msgstr "C&u ce:"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_DONT_WRAP
-#: Merge.rc:2375
+#: Merge.rc:2377
 msgid "&Don't wrap at end of file"
 msgstr "Nu relua de la începutul &fișierului"
 
 #. IDD_EDIT_REPLACE, IDC_STATIC
-#: Merge.rc:2377
+#: Merge.rc:2379
 msgid "Replace in"
 msgstr "Înlocuiește în"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_WHOLE_FILE
-#: Merge.rc:2379
+#: Merge.rc:2381
 msgid "Wh&ole file"
 msgstr "Între&gul fișier"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_FINDPREV
-#: Merge.rc:2381
+#: Merge.rc:2383
 msgid "Find Pre&v"
 msgstr "Găsește precedentul"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_REPLACE_ALL
-#: Merge.rc:2383
+#: Merge.rc:2385
 msgid "Replace &All"
 msgstr "Înlocuiește t&ot"
 
 #. IDS_OPTIONSPG_MARKERCOLORS
-#: Merge.rc:2389 Merge.rc:4670
+#: Merge.rc:2391 Merge.rc:4674
 msgid "Markers"
 msgstr "Marcatori"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_MARKERS_ENABLED
-#: Merge.rc:2392
+#: Merge.rc:2394
 msgid "Enable &markers"
 msgstr "Activează &marcatorii"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_LFILTER_ADDBTN
-#: Merge.rc:2394 Merge.rc:2427
+#: Merge.rc:2396 Merge.rc:2429
 msgid "New"
 msgstr "Nou"
 
 #. IDD_EDIT_MARKER, IDC_STATIC
-#: Merge.rc:2398
+#: Merge.rc:2400
 msgid "&Background color:"
 msgstr "Culoare fundal:"
 
 #. IDS_MESSAGEBOX_OK
-#: Merge.rc:2403 Merge.rc:2415 Merge.rc:3261 Merge.rc:3519 Merge.rc:4632
+#: Merge.rc:2405 Merge.rc:2417 Merge.rc:3263 Merge.rc:3521 Merge.rc:4636
 msgid "&Ok"
 msgstr "&Ok"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:2404 Merge.rc:2900 Merge.rc:3632
+#: Merge.rc:2406 Merge.rc:2902 Merge.rc:3634
 msgid "&Apply"
 msgstr "&Aplică"
 
 #. IDD_WMGOTO
-#: Merge.rc:2410 Merge.rc:2912
+#: Merge.rc:2412 Merge.rc:2914
 msgid "Go to"
 msgstr "Mergi la"
 
 #. IDD_EDIT_GOTO, IDC_STATIC
-#: Merge.rc:2413
+#: Merge.rc:2415
 msgid "&Line number:"
 msgstr ""
 
 #. IDD_FILTERS_LINEFILTERS
-#: Merge.rc:2421
+#: Merge.rc:2423
 msgid "Line Filters"
 msgstr "Filtre de rând"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_IGNOREREGEXP
-#: Merge.rc:2424
+#: Merge.rc:2426
 msgid "Enable Line Filters"
 msgstr "Activează filtrele de rând"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_STATIC
-#: Merge.rc:2425
+#: Merge.rc:2427
 msgid "Regular Expressions (one per line):"
 msgstr "Expresii regulate (câte una pe rând):"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_EDIT
-#: Merge.rc:2428 Merge.rc:3356
+#: Merge.rc:2430 Merge.rc:3358
 msgid "Edit"
 msgstr "Editează"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_REMOVE
-#: Merge.rc:2429 Merge.rc:2441 Merge.rc:3357
+#: Merge.rc:2431 Merge.rc:2443 Merge.rc:3359
 msgid "Remove"
 msgstr "Înlătură"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS
-#: Merge.rc:2434
+#: Merge.rc:2436
 msgid "Substitution Filters"
 msgstr "Filtre de substituție"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_STATIC
-#: Merge.rc:2437
+#: Merge.rc:2439
 msgid ""
 "Changes to the listed pairs below will be "
 "ignored or marked as insignificant. Patches are unaffected."
@@ -3594,558 +3594,558 @@ msgstr ""
 "ignorate sau marcate ca nesemnificative. Peticele nu sunt afectate."
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_IGNORED_SUSBSTITUTIONS_ENABLED
-#: Merge.rc:2438
+#: Merge.rc:2440
 msgid "Enable"
 msgstr "Activează"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_ADD
-#: Merge.rc:2440 Merge.rc:3355
+#: Merge.rc:2442 Merge.rc:3357
 msgid "Add"
 msgstr "Adaugă"
 
 #. IDD_FILTERS_SUBSTITUTIONFILTERS, IDC_LFILTER_CLEARBTN
-#: Merge.rc:2442
+#: Merge.rc:2444
 msgid "Clear"
 msgstr "Șterge"
 
 #. IDD_PREFERENCES
-#: Merge.rc:2447
+#: Merge.rc:2449
 msgid "Options"
 msgstr "Opțiuni"
 
 #. IDD_PREFERENCES, IDC_TREEOPT_IMPORT
-#: Merge.rc:2456
+#: Merge.rc:2458
 msgid "Import..."
 msgstr "Importă..."
 
 #. IDD_PREFERENCES, IDC_TREEOPT_EXPORT
-#: Merge.rc:2457
+#: Merge.rc:2459
 msgid "Export..."
 msgstr "Exportă..."
 
 #. IDS_OPTIONSPG_GENCOMPARE
-#: Merge.rc:2462 Merge.rc:4660 Merge.rc:4663 Merge.rc:4680
+#: Merge.rc:2464 Merge.rc:4664 Merge.rc:4667 Merge.rc:4684
 msgid "General"
 msgstr "General"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_CHECK
-#: Merge.rc:2465
+#: Merge.rc:2467
 msgid "Automatically &scroll to first difference"
 msgstr "De&sfășoară automat la prima diferență"
 
 #. IDD_PROPPAGE_GENERAL, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK
-#: Merge.rc:2467
+#: Merge.rc:2469
 msgid "Automatically s&croll to first inline difference"
 msgstr "Desfășoară automat la prima diferență în cadrul rândului"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2469
+#: Merge.rc:2471
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Închide ferestrele cu tasta 'Esc':"
 
 #. IDD_PROPPAGE_GENERAL, IDC_VERIFY_OPEN_PATHS
-#: Merge.rc:2471
+#: Merge.rc:2473
 msgid "&Automatically verify paths in Open dialog"
 msgstr "Verifică automat căile în dialogul de deschidere"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2473
+#: Merge.rc:2475
 msgid "Single instance mode:"
 msgstr "Mod instanță unică:"
 
 #. IDD_PROPPAGE_GENERAL, IDC_ASK_MULTIWINDOW_CLOSE
-#: Merge.rc:2475
+#: Merge.rc:2477
 msgid "As&k when closing multiple windows"
 msgstr "Întreabă înainte de a închide fereste multiple"
 
 #. IDD_PROPPAGE_GENERAL, IDC_PRESERVE_FILETIME
-#: Merge.rc:2477
+#: Merge.rc:2479
 msgid "&Preserve file time in file compare"
 msgstr "Păstrează data și ora fișierului pentru compararea fișierelor"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STARTUP_FOLDER_SELECT
-#: Merge.rc:2479
+#: Merge.rc:2481
 msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Afișează la start dialogul \"Selectează fișiere sau directoare\""
 
 #. IDD_PROPPAGE_GENERAL, IDC_CLOSE_WITH_OK
-#: Merge.rc:2481
+#: Merge.rc:2483
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 "Închide dialogul \"Selectează fișiere sau directoare\" la apăsarea butonului "
 "Compară"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2483
+#: Merge.rc:2485
 msgid "Op&en dialog Auto completion:"
 msgstr "Auto-completare în dialogul de deschidere:"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2485
+#: Merge.rc:2487
 msgid "Auto-&reload modified files:"
 msgstr "&Reîncarcă automat fișierele modificate:"
 
 #. IDD_PROPPAGE_GENERAL, IDC_STATIC
-#: Merge.rc:2487
+#: Merge.rc:2489
 msgid "Language:"
 msgstr "Limba:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2489 Merge.rc:2669 Merge.rc:2691 Merge.rc:2722 Merge.rc:2741
-#: Merge.rc:2759 Merge.rc:2767 Merge.rc:2805 Merge.rc:2829 Merge.rc:3028
-#: Merge.rc:3039 Merge.rc:3048 Merge.rc:3319 Merge.rc:3354 Merge.rc:3417
-#: Merge.rc:3442 Merge.rc:3456 Merge.rc:3471 Merge.rc:3487
+#: Merge.rc:2491 Merge.rc:2671 Merge.rc:2693 Merge.rc:2724 Merge.rc:2743
+#: Merge.rc:2761 Merge.rc:2769 Merge.rc:2807 Merge.rc:2831 Merge.rc:3030
+#: Merge.rc:3041 Merge.rc:3050 Merge.rc:3321 Merge.rc:3356 Merge.rc:3419
+#: Merge.rc:3444 Merge.rc:3458 Merge.rc:3473 Merge.rc:3489
 msgid "Defaults"
 msgstr "Implicite"
 
 #. IDS_OPTIONSPG_COLORS
-#: Merge.rc:2494 Merge.rc:2510 Merge.rc:2637 Merge.rc:2662 Merge.rc:4666
+#: Merge.rc:2496 Merge.rc:2512 Merge.rc:2639 Merge.rc:2664 Merge.rc:4670
 msgid "Colors"
 msgstr "Culori"
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2497
+#: Merge.rc:2499
 msgid "Color &mode:"
 msgstr ""
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2499
+#: Merge.rc:2501
 msgid "&Light mode scheme:"
 msgstr ""
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2501
+#: Merge.rc:2503
 msgid "&Dark mode scheme:"
 msgstr ""
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_STATIC
-#: Merge.rc:2503
+#: Merge.rc:2505
 msgid "Your custom schemes"
 msgstr ""
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_COLOR_SCHEME_SAVE
-#: Merge.rc:2504
+#: Merge.rc:2506
 msgid "&Save current scheme..."
 msgstr ""
 
 #. IDD_PROPPAGE_COLOR_SCHEMES, IDC_COLOR_SCHEME_DELETE
-#: Merge.rc:2505
+#: Merge.rc:2507
 msgid "Delete &current scheme..."
 msgstr ""
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_BACKGROUND_COLUMN_LABEL
-#: Merge.rc:2513 Merge.rc:2608 Merge.rc:2628 Merge.rc:2642
+#: Merge.rc:2515 Merge.rc:2610 Merge.rc:2630 Merge.rc:2644
 msgid "Background"
 msgstr "Fundal"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2514
+#: Merge.rc:2516
 msgid "Deleted"
 msgstr "Șters"
 
 #. IDS_OPTIONSPG_TEXTCOLORS
-#: Merge.rc:2515 Merge.rc:2577 Merge.rc:2609 Merge.rc:2643 Merge.rc:4668
+#: Merge.rc:2517 Merge.rc:2579 Merge.rc:2611 Merge.rc:2645 Merge.rc:4672
 msgid "Text"
 msgstr "Text"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2516
+#: Merge.rc:2518
 msgid "Difference:"
 msgstr "Diferență:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2521
+#: Merge.rc:2523
 msgid "Selected Difference:"
 msgstr "Diferență selectată:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2526
+#: Merge.rc:2528
 msgid "Ignored Difference:"
 msgstr "Diferență ignorată:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2531
+#: Merge.rc:2533
 msgid "Moved:"
 msgstr "Mutat:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2536
+#: Merge.rc:2538
 msgid "Selected Moved:"
 msgstr "Selecție mutată:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2541
+#: Merge.rc:2543
 msgid "Same As Next (3 panes):"
 msgstr "La fel ca următorul (3 panouri):"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2546
+#: Merge.rc:2548
 msgid "Same As Next (Selected):"
 msgstr "La fel ca următorul (selectate):"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2551
+#: Merge.rc:2553
 msgid "Word Difference:"
 msgstr "Diferență cuvânt:"
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
-#: Merge.rc:2556
+#: Merge.rc:2558
 msgid "Selected Word Diff:"
 msgstr "Diferență cuvânt selectată:"
 
 #. IDD_INPUTBOX
-#: Merge.rc:2565 Merge.rc:2600 Merge.rc:2621 Merge.rc:3532
+#: Merge.rc:2567 Merge.rc:2602 Merge.rc:2623 Merge.rc:3534
 msgid "Dialog"
 msgstr "Dialog"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2568
+#: Merge.rc:2570
 msgid "Keywords:"
 msgstr "Cuvinte cheie:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2569
+#: Merge.rc:2571
 msgid "Function names:"
 msgstr "Nume de funcții:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2570
+#: Merge.rc:2572
 msgid "Comments:"
 msgstr "Comentarii:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2571
+#: Merge.rc:2573
 msgid "Numbers:"
 msgstr "Numere:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2572
+#: Merge.rc:2574
 msgid "Operators:"
 msgstr "Operatori:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2573
+#: Merge.rc:2575
 msgid "Strings:"
 msgstr "Șiruri de caractere:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2574
+#: Merge.rc:2576
 msgid "Preprocessor:"
 msgstr "Preprocesor:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2575
+#: Merge.rc:2577
 msgid "User 1:"
 msgstr "Utilizator 1:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_STATIC
-#: Merge.rc:2576
+#: Merge.rc:2578
 msgid "User 2:"
 msgstr "Utilizator 2:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2579 Merge.rc:2581 Merge.rc:2583 Merge.rc:2585 Merge.rc:2587
-#: Merge.rc:2589 Merge.rc:2591 Merge.rc:2593 Merge.rc:2595
+#: Merge.rc:2581 Merge.rc:2583 Merge.rc:2585 Merge.rc:2587 Merge.rc:2589
+#: Merge.rc:2591 Merge.rc:2593 Merge.rc:2595 Merge.rc:2597
 msgid "Bold"
 msgstr "Aldine"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_DEFAULT_STANDARD_COLORS
-#: Merge.rc:2603
+#: Merge.rc:2605
 msgid "&Use customized text colors"
 msgstr "Folosește c&ulori ale textului personalizate"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_WHITESPACE_COLOR_LABEL
-#: Merge.rc:2605
+#: Merge.rc:2607
 msgid "Whitespace:"
 msgstr "Blancuri:"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_TEXT_COLOR_LABEL
-#: Merge.rc:2606
+#: Merge.rc:2608
 msgid "Regular text:"
 msgstr "Text normal:"
 
 #. IDD_PROPPAGE_COLORS_TEXT, IDC_SELECTION_COLOR_LABEL
-#: Merge.rc:2607
+#: Merge.rc:2609
 msgid "Selection:"
 msgstr "Selecție:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2615 Merge.rc:2656
+#: Merge.rc:2617 Merge.rc:2658
 msgid "Margin:"
 msgstr "Margine:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER0_COLOR_LABEL
-#: Merge.rc:2624
+#: Merge.rc:2626
 msgid "Search Marker:"
 msgstr "Marcatorul de căutare:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER1_COLOR_LABEL
-#: Merge.rc:2625
+#: Merge.rc:2627
 msgid "User Defined Marker 1:"
 msgstr "Marcatorul definit utilizator 1:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER2_COLOR_LABEL
-#: Merge.rc:2626
+#: Merge.rc:2628
 msgid "User Defined Marker 2:"
 msgstr "Marcatorul definit utilizator 2:"
 
 #. IDD_PROPPAGE_COLORS_MARKER, IDC_MARKER3_COLOR_LABEL
-#: Merge.rc:2627
+#: Merge.rc:2629
 msgid "User Defined Marker 3:"
 msgstr "Marcatorul definit utilizator 3:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_USE_DIR_COMPARE_COLORS
-#: Merge.rc:2640
+#: Merge.rc:2642
 msgid "&Use folder compare colors"
 msgstr "&Utilizează culorile de comparare a directoarelor"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2644
+#: Merge.rc:2646
 msgid "Items equal:"
 msgstr "Elemente egale:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2647
+#: Merge.rc:2649
 msgid "Items different:"
 msgstr "Elemente diferite:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2650
+#: Merge.rc:2652
 msgid "Items missing:"
 msgstr "Elemente nu există toate:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2653
+#: Merge.rc:2655
 msgid "Items filtered:"
 msgstr "Elemente filtrate:"
 
 #. IDD_PROPPAGE_COLORS_SYSTEM, IDC_SYSCOLOR_HOOK_ENABLED
-#: Merge.rc:2665
+#: Merge.rc:2667
 msgid "&Use custom system colors"
 msgstr ""
 
 #. IDS_PRPCAT_SYSTEM
-#: Merge.rc:2674 Merge.rc:4672 Merge.rc:4673 Merge.rc:5119
+#: Merge.rc:2676 Merge.rc:4676 Merge.rc:4677 Merge.rc:5153
 msgid "System"
 msgstr "Sistem"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_USE_RECYCLE_BIN
-#: Merge.rc:2677
+#: Merge.rc:2679
 msgid "&Use Recycle Bin"
 msgstr "Trimite fișierele șterse către Recycle Bin"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2678
+#: Merge.rc:2680
 msgid "&External editor:"
 msgstr "Editor &extern:"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2681
+#: Merge.rc:2683
 msgid "&Store user data in:"
 msgstr ""
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2683
+#: Merge.rc:2685
 msgid "&Filter folder:"
 msgstr "Directorul cu &filtre:"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2686
+#: Merge.rc:2688
 msgid "Temporary files folder"
 msgstr "Directorul cu fișiere temporare"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_TMPFOLDER_SYSTEM
-#: Merge.rc:2687
+#: Merge.rc:2689
 msgid "S&ystem temp folder"
 msgstr "Direc&torul cu fișiere temporare al sistemului"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_STATIC
-#: Merge.rc:2688
+#: Merge.rc:2690
 msgid "C&ustom folder:"
 msgstr "Director personali&zat:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE2
-#: Merge.rc:2690 Merge.rc:2791
+#: Merge.rc:2692 Merge.rc:2793
 msgid "Br&owse..."
 msgstr "Ră&sfoiește..."
 
 #. IDS_OPTIONSPG_COMPARE
-#: Merge.rc:2696 Merge.rc:4661
+#: Merge.rc:2698 Merge.rc:4665
 msgid "Compare"
 msgstr "Comparare"
 
 #. IDD_PROPPAGE_COMPARE, IDC_STATIC
-#: Merge.rc:2699
+#: Merge.rc:2701
 msgid "Whitespaces"
 msgstr "Blanc"
 
 #. IDD_PROPPAGE_COMPARE, IDC_WHITESPACE
-#: Merge.rc:2700
+#: Merge.rc:2702
 msgid "&Compare"
 msgstr "&Compară"
 
 #. IDD_PROPPAGE_COMPARE, IDC_WHITE_CHANGE
-#: Merge.rc:2701
+#: Merge.rc:2703
 msgid "&Ignore change"
 msgstr "&Ignoră schimbare"
 
 #. IDD_PROPPAGE_COMPARE, IDC_ALL_WHITE
-#: Merge.rc:2702
+#: Merge.rc:2704
 msgid "I&gnore all"
 msgstr "I&gnoră tot"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNBLANKS_CHECK
-#: Merge.rc:2703
+#: Merge.rc:2705
 msgid "Ignore blan&k lines"
 msgstr "Ignoră rânduri goale"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNCASE_CHECK
-#: Merge.rc:2704
+#: Merge.rc:2706
 msgid "Ignore &case"
 msgstr "Ignoră minus&cule/majuscule"
 
 #. IDD_PROPPAGE_COMPARE, IDC_EOL_SENSITIVE
-#: Merge.rc:2705
+#: Merge.rc:2707
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNORE_NUMBERS
-#: Merge.rc:2707
+#: Merge.rc:2709
 msgid "Ignore num&bers"
 msgstr "Ignoră numerele"
 
 #. IDD_PROPPAGE_COMPARE, IDC_CP_SENSITIVE
-#: Merge.rc:2708
+#: Merge.rc:2710
 msgid "Ignore codepage &differences"
 msgstr "Ignoră &diferențele de pagină de codare"
 
 #. IDD_PROPPAGE_COMPARE, IDC_FILTERCOMMENTS_CHECK
-#: Merge.rc:2709
+#: Merge.rc:2711
 msgid "Ignore c&omment differences"
 msgstr "Ignoră diferențele de c&omentarii"
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNEOFEOL_CHECK
-#: Merge.rc:2711
+#: Merge.rc:2713
 msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE, IDC_IGNLBRKS_CHECK
-#: Merge.rc:2713
+#: Merge.rc:2715
 msgid "Ignore line &breaks (treat as spaces)"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE, IDC_MOVED_BLOCKS
-#: Merge.rc:2715
+#: Merge.rc:2717
 msgid "E&nable moved block detection"
 msgstr "Activea&ză detecție blocuri mutate"
 
 #. IDD_PROPPAGE_COMPARE, IDC_ALIGN_SIMILAR_LINES
-#: Merge.rc:2716
+#: Merge.rc:2718
 msgid "Align &similar lines"
 msgstr "Aliniază rândurile &similare"
 
 #. IDD_PROPPAGE_COMPARE, IDC_STATIC
-#: Merge.rc:2717
+#: Merge.rc:2719
 msgid "Diff &algorithm:"
 msgstr "&Algoritm de diferențiere:"
 
 #. IDD_PROPPAGE_COMPARE, IDC_INDENT_HEURISTIC
-#: Merge.rc:2719
+#: Merge.rc:2721
 msgid "Enable indent &heuristic"
 msgstr "Activează euristica de indentare"
 
 #. IDD_PROPPAGE_COMPARE, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES
-#: Merge.rc:2720
+#: Merge.rc:2722
 msgid "Completely unhighlight the ignored differences"
 msgstr "Demarchează complet diferențele ignorate"
 
 #. IDS_OPTIONSPG_EDITOR
-#: Merge.rc:2727 Merge.rc:4662
+#: Merge.rc:2729 Merge.rc:4666
 msgid "Editor"
 msgstr "Editor"
 
 #. IDD_PROPPAGE_EDITOR, IDC_HILITE_CHECK
-#: Merge.rc:2730
+#: Merge.rc:2732
 msgid "&Highlight syntax"
 msgstr "E&vidențiere sintaxă"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
-#: Merge.rc:2731
+#: Merge.rc:2733
 msgid "Highlight &mode:"
 msgstr ""
 
 #. IDD_PROPPAGE_EDITOR, IDC_MIXED_EOL
-#: Merge.rc:2733
+#: Merge.rc:2735
 msgid "&Preserve original EOL"
 msgstr "&Păstrează caracterele EOL originale"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
-#: Merge.rc:2734
+#: Merge.rc:2736
 msgid "Tabs"
 msgstr "File"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
-#: Merge.rc:2735
+#: Merge.rc:2737
 msgid "&Tab size:"
 msgstr "Mărime &filă:"
 
 #. IDD_PROPPAGE_EDITOR, IDC_PROP_INSERT_TABS
-#: Merge.rc:2737
+#: Merge.rc:2739
 msgid "&Insert tabs"
 msgstr "&Inserează file"
 
 #. IDD_PROPPAGE_EDITOR, IDC_PROP_INSERT_SPACES
-#: Merge.rc:2738
+#: Merge.rc:2740
 msgid "Insert &spaces"
 msgstr "In&serează blancuri"
 
 #. IDD_PROPPAGE_EDITOR, IDC_STATIC
-#: Merge.rc:2739
+#: Merge.rc:2741
 msgid "&Rendering mode:"
 msgstr "Mod de &randare:"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_AUTOMRESCAN_CHECK
-#: Merge.rc:2748
+#: Merge.rc:2750
 msgid "&Automatic rescan"
 msgstr "Rescanare &automată"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_STATIC
-#: Merge.rc:2749
+#: Merge.rc:2751
 msgid "Copy &granularity for selected differences:"
 msgstr ""
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_LINE_COLORING_GROUP
-#: Merge.rc:2751
+#: Merge.rc:2753
 msgid "Line Difference Coloring"
 msgstr "Colorarea diferențelor din rând"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_VIEW_LINE_DIFFERENCES
-#: Merge.rc:2752
+#: Merge.rc:2754
 msgid "View line differences"
 msgstr "Arată diferențele din rând"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_EDITOR_CHARLEVEL
-#: Merge.rc:2753
+#: Merge.rc:2755
 msgid "&Character-level"
 msgstr "La nivel de &caracter"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_EDITOR_WORDLEVEL
-#: Merge.rc:2754
+#: Merge.rc:2756
 msgid "&Word-level:"
 msgstr "La nivel de cu&vânt:"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_STATIC
-#: Merge.rc:2756
+#: Merge.rc:2758
 msgid "W&ord break characters:"
 msgstr "Caractere de despărțire cuvinte:"
 
 #. IDD_PROPPAGE_EDITOR_COMPAREMERGE, IDC_MERGE_RESULT_PANE_ENABLED
-#: Merge.rc:2758
+#: Merge.rc:2760
 msgid "&Use Merge Result Pane for 2/3-way merge"
 msgstr ""
 
 #. IDD_PROPPAGE_MESSAGEBOXES, IDC_STATIC
-#: Merge.rc:2774
+#: Merge.rc:2776
 msgid ""
 "Some messages can be hidden by the user. Press Reset to "
 "make all messages visible again."
@@ -4154,409 +4154,409 @@ msgstr ""
 "Reinițializare pentru a afișa din nou toate căsuțele de mesaj."
 
 #. IDD_SELECT_FILES_OR_FOLDERS, IDC_RESET
-#: Merge.rc:2775 Merge.rc:3518
+#: Merge.rc:2777 Merge.rc:3520
 msgid "Reset"
 msgstr "Reinițializare"
 
 #. IDD_GENERATE_PATCH
-#: Merge.rc:2781
+#: Merge.rc:2783
 msgid "Patch Generator"
 msgstr "Generator petice"
 
 #. IDD_ARCHIVE, IDC_STATIC
-#: Merge.rc:2784 Merge.rc:3096 Merge.rc:3114
+#: Merge.rc:2786 Merge.rc:3098 Merge.rc:3116
 msgid "Comparisons to include:"
 msgstr ""
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2786
+#: Merge.rc:2788
 msgid "File&1:"
 msgstr "&Fișier 1:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2789
+#: Merge.rc:2791
 msgid "File&2:"
 msgstr "F&ișier 2:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_SWAPFILES
-#: Merge.rc:2792
+#: Merge.rc:2794
 msgid "&Swap"
 msgstr "Interschim&bă"
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_COPYCLIPBOARD
-#: Merge.rc:2793 Merge.rc:3085 Merge.rc:3101 Merge.rc:3122
+#: Merge.rc:2795 Merge.rc:3087 Merge.rc:3103 Merge.rc:3124
 msgid "&Copy to clipboard"
 msgstr "&Copiază în memorie"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_APPENDFILE
-#: Merge.rc:2794
+#: Merge.rc:2796
 msgid "&Append to existing file"
 msgstr "&Adaugă la fișier existent"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2795
+#: Merge.rc:2797
 msgid "&Result:"
 msgstr "&Rezultat:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_RESULT
-#: Merge.rc:2797
+#: Merge.rc:2799
 msgid "Bro&wse..."
 msgstr "Răsf&oiește..."
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2798
+#: Merge.rc:2800
 msgid "&Format"
 msgstr "&Format"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2799
+#: Merge.rc:2801
 msgid "St&yle:"
 msgstr "S&til:"
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
-#: Merge.rc:2801
+#: Merge.rc:2803
 msgid "&Context:"
 msgstr "&Context:"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_INCLCMDLINE
-#: Merge.rc:2803
+#: Merge.rc:2805
 msgid "Inclu&de command line"
 msgstr "Inclu&de linia de comandă"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_OPENTOEDITOR
-#: Merge.rc:2804
+#: Merge.rc:2806
 msgid "Open in e&xternal editor"
 msgstr "Deschide în editor e&xtern"
 
 #. IDD_DIRCOLS
-#: Merge.rc:2821
+#: Merge.rc:2823
 msgid "Display Columns"
 msgstr "Afișează coloanele"
 
 #. IDD_DIRCOLS, IDC_UP
-#: Merge.rc:2825
+#: Merge.rc:2827
 msgid "Move &Up"
 msgstr "Mută mai s&us"
 
 #. IDD_DIRCOLS, IDC_DOWN
-#: Merge.rc:2826
+#: Merge.rc:2828
 msgid "Move &Down"
 msgstr "Mută mai &jos"
 
 #. IDD_DIRCOLS, IDC_COLDLG_ADDITIONAL_PROPERTIES
-#: Merge.rc:2828
+#: Merge.rc:2830
 msgid "&Additional Properties"
 msgstr "Proprietăți suplimentare"
 
 #. IDD_DIRADDITIONALPROPS
-#: Merge.rc:2836
+#: Merge.rc:2838
 msgid "Additional Properties"
 msgstr "Proprietăți suplimentare"
 
 #. IDD_PLUGINS_SELECTPLUGIN
-#: Merge.rc:2850
+#: Merge.rc:2852
 msgid "Select Plugin"
 msgstr "Selectează plugin"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2853 Merge.rc:3548
+#: Merge.rc:2855 Merge.rc:3550
 msgid "Plugin &name:"
 msgstr "&Nume plugin:"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_STATIC
-#: Merge.rc:2855
+#: Merge.rc:2857
 msgid "&Target files:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2857 Merge.rc:3550
+#: Merge.rc:2859 Merge.rc:3552
 msgid "Extensions list:"
 msgstr "Listă extensii:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2859 Merge.rc:3552
+#: Merge.rc:2861 Merge.rc:3554
 msgid "Description:"
 msgstr "Descriere:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2861 Merge.rc:3554
+#: Merge.rc:2863 Merge.rc:3556
 msgid "Default arguments:"
 msgstr "Argumente implicite:"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALLOW_ALL
-#: Merge.rc:2863
+#: Merge.rc:2865
 msgid "Display all plugins (Ignore extension)"
 msgstr "Afișează toate plugin-urile, nu verifica extensia"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE
-#: Merge.rc:2865
+#: Merge.rc:2867
 msgid "&Open files in same window type after unpacking"
 msgstr "Deschide fișierele în același tip de fereastră după dezarhivare"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
-#: Merge.rc:2867 Merge.rc:3562
+#: Merge.rc:2869 Merge.rc:3564
 msgid "&Plugin pipeline:"
 msgstr "Lanțul de &plugin-uri:"
 
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_ALIAS
-#: Merge.rc:2870
+#: Merge.rc:2872
 msgid "&Alias..."
 msgstr ""
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_STOP
-#: Merge.rc:2880
+#: Merge.rc:2882
 msgid "Stop"
 msgstr "Stop"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_PAUSE
-#: Merge.rc:2881
+#: Merge.rc:2883
 msgid "Pause"
 msgstr "Pauză"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_COMPARISON_CONTINUE
-#: Merge.rc:2882
+#: Merge.rc:2884
 msgid "Continue"
 msgstr "Continuă"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2884 Merge.rc:3405
+#: Merge.rc:2886 Merge.rc:3407
 msgid "C&PU cores to use:"
 msgstr "&Numărul de procesoare de utilizat:"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_STATIC
-#: Merge.rc:2885
+#: Merge.rc:2887
 msgid "Items total:"
 msgstr "Elemente total:"
 
 #. IDD_DIRCOMP_PROGRESS, IDC_STATIC
-#: Merge.rc:2886
+#: Merge.rc:2888
 msgid "Items compared:"
 msgstr "Elemente comparate:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2901 Merge.rc:3278 Merge.rc:5819
+#: Merge.rc:2903 Merge.rc:3280 Merge.rc:5869
 msgid "&Close"
 msgstr "În&chide"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2915
+#: Merge.rc:2917
 msgid "G&o to:"
 msgstr "&La:"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2918
+#: Merge.rc:2920
 msgid "File"
 msgstr "Fișier"
 
 #. IDD_WMGOTO, IDC_STATIC
-#: Merge.rc:2922
+#: Merge.rc:2924
 msgid "Go to what"
 msgstr "Mergi la"
 
 #. IDD_WMGOTO, IDC_WMGOTO_TOLINE
-#: Merge.rc:2923
+#: Merge.rc:2925
 msgid "Li&ne"
 msgstr "Râ&nd"
 
 #. IDD_WMGOTO, IDC_WMGOTO_TODIFF
-#: Merge.rc:2924
+#: Merge.rc:2926
 msgid "&Difference"
 msgstr "&Diferență"
 
 #. IDD_WMGOTO, IDOK
-#: Merge.rc:2925
+#: Merge.rc:2927
 msgid "&Go to"
 msgstr "&Mergi la"
 
 #. IDS_PROJECT_ITEM_FILE_FILTER
-#: Merge.rc:2931 Merge.rc:4783
+#: Merge.rc:2933 Merge.rc:4787
 msgid "File Filters"
 msgstr "Filtre de fișiere"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
-#: Merge.rc:2934
+#: Merge.rc:2936
 msgid "&Mask / Filter Expression"
 msgstr ""
 
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
-#: Merge.rc:2937
+#: Merge.rc:2939
 msgid "Preset &Filters"
 msgstr ""
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_TEST_BTN
-#: Merge.rc:2939
+#: Merge.rc:2941
 msgid "Test..."
 msgstr "Testează..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_INSTALL
-#: Merge.rc:2940
+#: Merge.rc:2942
 msgid "Install..."
 msgstr "Instalează..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_NEWBTN
-#: Merge.rc:2941
+#: Merge.rc:2943
 msgid "New..."
 msgstr "Nou..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_EDITBTN
-#: Merge.rc:2942
+#: Merge.rc:2944
 msgid "Edit..."
 msgstr "Editează..."
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_DELETEBTN
-#: Merge.rc:2943
+#: Merge.rc:2945
 msgid "Delete..."
 msgstr "Șterge..."
 
 #. IDD_FILTERS_CONDITION
-#: Merge.rc:2948
+#: Merge.rc:2950
 msgid "Filter Condition"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2951
+#: Merge.rc:2953
 msgid "&Left-hand side:"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2953
+#: Merge.rc:2955
 msgid "&Operator:"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2955
+#: Merge.rc:2957
 msgid "&Right-hand side:"
 msgstr ""
 
 #. IDD_FILTERS_CONDITION, IDC_STATIC
-#: Merge.rc:2961
+#: Merge.rc:2963
 msgid "Expression:"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER
-#: Merge.rc:2969
+#: Merge.rc:2971
 msgid "Filter by Comparison Result"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
-#: Merge.rc:2972
+#: Merge.rc:2974
 msgid "&Include"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
-#: Merge.rc:2973
+#: Merge.rc:2975
 msgid "&Exclude"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
-#: Merge.rc:2974
+#: Merge.rc:2976
 msgid "Comparison Results"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
-#: Merge.rc:2977
+#: Merge.rc:2979
 msgid "Left only"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
-#: Merge.rc:2978
+#: Merge.rc:2980
 msgid "Right only"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
-#: Merge.rc:2979
+#: Merge.rc:2981
 msgid "Skipped"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
-#: Merge.rc:2980
+#: Merge.rc:2982
 msgid "Middle only"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
-#: Merge.rc:2981
+#: Merge.rc:2983
 msgid "Left only (different)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
-#: Merge.rc:2983
+#: Merge.rc:2985
 msgid "Middle only (different)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
-#: Merge.rc:2985
+#: Merge.rc:2987
 msgid "Right only (different)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
-#: Merge.rc:2987
+#: Merge.rc:2989
 msgid "Left only (missing)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
-#: Merge.rc:2988
+#: Merge.rc:2990
 msgid "Middle only (missing)"
 msgstr ""
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
-#: Merge.rc:2990
+#: Merge.rc:2992
 msgid "Right only (missing)"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE
-#: Merge.rc:2998
+#: Merge.rc:3000
 msgid "Match Inside/Outside Filter Expressions"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
-#: Merge.rc:3001
+#: Merge.rc:3003
 msgid "&Start filter:"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
-#: Merge.rc:3004
+#: Merge.rc:3006
 msgid "&End filter:"
 msgstr ""
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
-#: Merge.rc:3007
+#: Merge.rc:3009
 msgid "Lines between start and end filter matches will be included."
 msgstr ""
 
 #. IDS_OPTIONSPG_CODEPAGE
-#: Merge.rc:3014 Merge.rc:3243 Merge.rc:4674
+#: Merge.rc:3016 Merge.rc:3245 Merge.rc:4678
 msgid "Codepage"
 msgstr "Codare caractere"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
-#: Merge.rc:3017
+#: Merge.rc:3019
 msgid "Default Codepage"
 msgstr "Codare caractere implicită"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_STATIC
-#: Merge.rc:3018
+#: Merge.rc:3020
 msgid "Select the default codepage for non-Unicode files:"
 msgstr ""
 "Selectează codarea caracterelor folosită implicit la încărcarea fișierelor "
 "non-Unicode:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_SYSTEM
-#: Merge.rc:3019
+#: Merge.rc:3021
 msgid "System codepage"
 msgstr "Codarea sistemului"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_UI
-#: Merge.rc:3020
+#: Merge.rc:3022
 msgid "According to WinMerge User Interface"
 msgstr "Conform cu interfața WinMerge"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_CP_CUSTOM
-#: Merge.rc:3021
+#: Merge.rc:3023
 msgid "Custom codepage:"
 msgstr "Pagină de codare particularizată:"
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE
-#: Merge.rc:3023
+#: Merge.rc:3025
 msgid ""
 "Detect codepage for: .html, .rc, .xml\n"
 "Restart required."
@@ -4566,7 +4566,7 @@ msgstr ""
 "Sesiunea trebuie restartată."
 
 #. IDD_PROPPAGE_CODEPAGE, IDC_DETECT_CODEPAGE2
-#: Merge.rc:3025
+#: Merge.rc:3027
 msgid ""
 "Detect codepage for files with mlang.dll\n"
 "Restart required."
@@ -4575,819 +4575,824 @@ msgstr ""
 "Sesiunea trebuie restartată."
 
 #. IDS_OPTIONSPG_ARCHIVE
-#: Merge.rc:3033 Merge.rc:4675
+#: Merge.rc:3035 Merge.rc:4679
 msgid "Archive Support"
 msgstr "Suport arhivare"
 
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_ENABLE
-#: Merge.rc:3036
+#: Merge.rc:3038
 msgid "&Enable archive file support"
 msgstr "Activ&ează suportul pentru fișierele arhivă"
 
 #. IDD_PROPPAGE_ARCHIVE, IDC_ARCHIVE_DETECTTYPE
-#: Merge.rc:3037
+#: Merge.rc:3039
 msgid "&Detect archive type from file signature"
 msgstr "&Detectează tipul arhivei după semnătura fișierului"
 
 #. IDD_PROPPAGE_PROJECT, IDC_STATIC
-#: Merge.rc:3046
+#: Merge.rc:3048
 msgid "Items saved to or restored from the project file:"
 msgstr "Elemente salvate sau restaurate din fișierul proiect:"
 
 #. IDD_SAVECLOSING
-#: Merge.rc:3053
+#: Merge.rc:3055
 msgid "Save Modified Files?"
 msgstr "Salvare fișiere modificate?"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_LEFTFRAME
-#: Merge.rc:3056
+#: Merge.rc:3058
 msgid "Left side file"
 msgstr "Fișier stânga"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVELEFT
-#: Merge.rc:3058
+#: Merge.rc:3060
 msgid "&Save changes"
 msgstr "&Salvează modificările"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDLEFT
-#: Merge.rc:3059
+#: Merge.rc:3061
 msgid "&Discard changes"
 msgstr "Renunță la mo&dificări"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_MIDDLEFRAME
-#: Merge.rc:3060
+#: Merge.rc:3062
 msgid "Middle side file"
 msgstr "Fișierul din partea de mijloc"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVEMIDDLE
-#: Merge.rc:3062
+#: Merge.rc:3064
 msgid "Sa&ve changes"
 msgstr "Sal&vează modificările"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDMIDDLE
-#: Merge.rc:3063
+#: Merge.rc:3065
 msgid "Discard c&hanges"
 msgstr "Renunță la modificări"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_RIGHTFRAME
-#: Merge.rc:3064
+#: Merge.rc:3066
 msgid "Right side file"
 msgstr "Fișier dreapta"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_SAVERIGHT
-#: Merge.rc:3066
+#: Merge.rc:3068
 msgid "S&ave changes"
 msgstr "S&alvează modificările"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDRIGHT
-#: Merge.rc:3067
+#: Merge.rc:3069
 msgid "Dis&card changes"
 msgstr "Renunță la s&chimbări"
 
 #. IDD_SAVECLOSING, IDC_SAVECLOSING_DISCARDALL
-#: Merge.rc:3068
+#: Merge.rc:3070
 msgid "Disca&rd All"
 msgstr "&Renunță la toate"
 
 #. IDD_DIRCMP_REPORT
-#: Merge.rc:3075
+#: Merge.rc:3077
 msgid "Folder Compare Report"
 msgstr "Raport comparare directoare"
 
 #. IDD_FILECMP_REPORT, IDC_STATIC
-#: Merge.rc:3078 Merge.rc:3098
+#: Merge.rc:3080 Merge.rc:3100
 msgid "Report &file:"
 msgstr "&Fișier raport:"
 
 #. IDD_DIRCMP_REPORT, IDC_STATIC
-#: Merge.rc:3081
+#: Merge.rc:3083
 msgid "&Style:"
 msgstr "&Stil:"
 
 #. IDD_DIRCMP_REPORT, IDC_REPORT_INCLUDEFILECMPREPORT
-#: Merge.rc:3083
+#: Merge.rc:3085
 msgid "&Include file compare report"
 msgstr "&Include raportul de comparare fișiere"
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_OPENREPORTFILE
-#: Merge.rc:3086 Merge.rc:3102
+#: Merge.rc:3088 Merge.rc:3104
 msgid "Open report after &generating"
 msgstr ""
 
 #. IDD_FILECMP_REPORT
-#: Merge.rc:3093
+#: Merge.rc:3095
 msgid "File Compare Report"
 msgstr ""
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES
-#: Merge.rc:3103
+#: Merge.rc:3105
 msgid "&Include all image pages"
 msgstr ""
 
 #. IDD_FILECMP_REPORT, IDC_REPORT_INFO
-#: Merge.rc:3104
+#: Merge.rc:3106
 msgid "\\u24D8 The report uses the current comparison settings."
 msgstr ""
 
 #. IDD_ARCHIVE
-#: Merge.rc:3111
+#: Merge.rc:3113
 msgid "Archive Generator"
 msgstr ""
 
 #. IDD_ARCHIVE, IDC_STATIC
-#: Merge.rc:3116
+#: Merge.rc:3118
 msgid "Archive &file:"
 msgstr ""
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_REPORT
-#: Merge.rc:3119
+#: Merge.rc:3121
 msgid "Include &report"
 msgstr ""
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PATCH
-#: Merge.rc:3120
+#: Merge.rc:3122
 msgid "Include &patch"
 msgstr ""
 
 #. IDD_ARCHIVE, IDC_ARCHIVE_PROJECT
-#: Merge.rc:3121
+#: Merge.rc:3123
 msgid "Include pro&ject"
 msgstr ""
 
 #. IDD_FILTERS_FILEFILTERS_SHARED
-#: Merge.rc:3129
+#: Merge.rc:3131
 msgid "Shared or Private Filter"
 msgstr "Filtru public sau privat"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_STATIC
-#: Merge.rc:3132
+#: Merge.rc:3134
 msgid "What type of filter do you want?"
 msgstr "Ce tip de filtru doriți să creați?"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_SHARED
-#: Merge.rc:3133
+#: Merge.rc:3135
 msgid "Shared Filter (for all users)"
 msgstr "Filtru public (pentru toți utilizatorii de pe mașina curentă)"
 
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_PRIVATE
-#: Merge.rc:3134
+#: Merge.rc:3136
 msgid "Private Filter (current user only)"
 msgstr "Filtru privat (doar pentru utilizatorul curent)"
 
 #. IDD_COMPARE_STATISTICS3
-#: Merge.rc:3141 Merge.rc:3182
+#: Merge.rc:3143 Merge.rc:3184
 msgid "Compare Statistics"
 msgstr "Statistici ale comparării"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3144 Merge.rc:3185
+#: Merge.rc:3146 Merge.rc:3187
 msgid "Folders:"
 msgstr "Directoare:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3145 Merge.rc:3186
+#: Merge.rc:3147 Merge.rc:3188
 msgid "Files:"
 msgstr "Fișiere:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3151 Merge.rc:3170 Merge.rc:3192 Merge.rc:3231
+#: Merge.rc:3153 Merge.rc:3172 Merge.rc:3194 Merge.rc:3233
 msgid "Binary:"
 msgstr "Binare:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3154 Merge.rc:3195
+#: Merge.rc:3156 Merge.rc:3197
 msgid "Unique"
 msgstr "Unice"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3155 Merge.rc:3196
+#: Merge.rc:3157 Merge.rc:3198
 msgid "Left:"
 msgstr "Stânga:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3160 Merge.rc:3206
+#: Merge.rc:3162 Merge.rc:3208
 msgid "Right:"
 msgstr "Dreapta:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3174 Merge.rc:3235
+#: Merge.rc:3176 Merge.rc:3237
 msgid "Total:"
 msgstr "În total:"
 
 #. IDD_COMPARE_STATISTICS3, IDOK
-#: Merge.rc:3177 Merge.rc:3238
+#: Merge.rc:3179 Merge.rc:3240
 msgid "Close"
 msgstr "Închide"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3201
+#: Merge.rc:3203
 msgid "Middle:"
 msgstr "Mijloc:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3211
+#: Merge.rc:3213
 msgid "Missing Left:"
 msgstr "Lipsă stânga:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3216
+#: Merge.rc:3218
 msgid "Missing Middle:"
 msgstr "Lipsă mijloc:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:3221
+#: Merge.rc:3223
 msgid "Missing Right:"
 msgstr "Lipsă dreapta:"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_GROUP
-#: Merge.rc:3246
+#: Merge.rc:3248
 msgid "Affects"
 msgstr "Afectează"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_RIGHT_FILES_LABEL
-#: Merge.rc:3248 Merge.rc:3250 Merge.rc:3252
+#: Merge.rc:3250 Merge.rc:3252 Merge.rc:3254
 msgid "(Affects)"
 msgstr "(Afectează)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOADING_GROUP
-#: Merge.rc:3253
+#: Merge.rc:3255
 msgid "Select Codepage for"
 msgstr "Selectează codare caractere pentru"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_FILES_LABEL
-#: Merge.rc:3254
+#: Merge.rc:3256
 msgid "&File Loading:"
 msgstr "Încărcare &fișier:"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_SAVE_FILES_LABEL
-#: Merge.rc:3256
+#: Merge.rc:3258
 msgid "File &Saving:"
 msgstr "&Salvare fișier:"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOAD_SAVE_SAME_CODEPAGE
-#: Merge.rc:3259
+#: Merge.rc:3261
 msgid "&Use same codepage for both"
 msgstr "Aceeași codare caractere pentr&u ambele"
 
 #. IDS_MESSAGEBOX_CANCEL
-#: Merge.rc:3262 Merge.rc:4633
+#: Merge.rc:3264 Merge.rc:4637
 msgid "&Cancel"
 msgstr "&Renunță"
 
 #. IDD_FILTERS_FILEFILTERS_TEST
-#: Merge.rc:3267
+#: Merge.rc:3269
 msgid "Test Filter"
 msgstr "Testează filtru"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_HEADER
-#: Merge.rc:3270
+#: Merge.rc:3272
 msgid "Testing filter:"
 msgstr "Testare filtru:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_PROMPT_LABEL
-#: Merge.rc:3272
+#: Merge.rc:3274
 msgid "&Enter text to test:"
 msgstr "Introduc&eți textul pentru testare:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_IS_DIRECTORY
-#: Merge.rc:3274
+#: Merge.rc:3276
 msgid "&Folder Name"
 msgstr "Nu&me director"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_STATIC
-#: Merge.rc:3275
+#: Merge.rc:3277
 msgid "Result:"
 msgstr "Rezultat:"
 
 #. IDD_FILTERS_FILEFILTERS_TEST, IDC_TEST_BTN
-#: Merge.rc:3277
+#: Merge.rc:3279
 msgid "&Test"
 msgstr "&Testează"
 
 #. IDS_OPTIONSPG_TABLECOMPARE
-#: Merge.rc:3283 Merge.rc:3422 Merge.rc:4689
+#: Merge.rc:3285 Merge.rc:3424 Merge.rc:4693
 msgid "Table"
 msgstr "Tabel"
 
 #. IDD_OPEN_TABLE, IDC_STATIC
-#: Merge.rc:3286
+#: Merge.rc:3288
 msgid "File type"
 msgstr "Tip fișier"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_CSV
-#: Merge.rc:3287
+#: Merge.rc:3289
 msgid "&CSV"
 msgstr "&CSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_TSV
-#: Merge.rc:3288
+#: Merge.rc:3290
 msgid "&TSV"
 msgstr "&TSV"
 
 #. IDD_OPEN_TABLE, IDC_COMPARETABLE_DSV
-#: Merge.rc:3289
+#: Merge.rc:3291
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Valori separate cu delimitator personalizat"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3291 Merge.rc:3293 Merge.rc:3428 Merge.rc:3436
+#: Merge.rc:3293 Merge.rc:3295 Merge.rc:3430 Merge.rc:3438
 msgid "D&elimiter character:"
 msgstr "Caracterul d&elimitator:"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_COMPARETABLE_ALLOWNEWLINE
-#: Merge.rc:3295 Merge.rc:3438
+#: Merge.rc:3297 Merge.rc:3440
 msgid "&Allow newlines in quotes"
 msgstr "Permite sfârșituri de rând în ghilimele"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3297 Merge.rc:3440
+#: Merge.rc:3299 Merge.rc:3442
 msgid "&Quote character:"
 msgstr "Caracterul de citare:"
 
 #. IDS_OPTIONSPG_BACKUPS
-#: Merge.rc:3305 Merge.rc:4677
+#: Merge.rc:3307 Merge.rc:4681
 msgid "Backup Files"
 msgstr "Copii de siguranță"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:3308
+#: Merge.rc:3310
 msgid "Create backup files for:"
 msgstr "Crează copii de siguranță pentru:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FOLDERCMP
-#: Merge.rc:3309
+#: Merge.rc:3311
 msgid "&Folder compare"
 msgstr "Comparare &directoare"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_FILECMP
-#: Merge.rc:3310
+#: Merge.rc:3312
 msgid "Fil&e compare"
 msgstr "Comparare fiși&ere"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:3311
+#: Merge.rc:3313
 msgid "Create backup files in:"
 msgstr "Crează copii de siguranță în:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_ORIGFOLD
-#: Merge.rc:3312
+#: Merge.rc:3314
 msgid "&Original file's folder"
 msgstr "Directorul &original al fișierului"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_GLOBALFOLD
-#: Merge.rc:3313
+#: Merge.rc:3315
 msgid "&Global backup folder:"
 msgstr "Directorul de siguranță &global:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_STATIC
-#: Merge.rc:3316
+#: Merge.rc:3318
 msgid "Backup filename:"
 msgstr "Numele fișierului de siguranță:"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_BAK
-#: Merge.rc:3317
+#: Merge.rc:3319
 msgid "&Append .bak extension"
 msgstr "&Adaugă extensia .bak"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_APPEND_TIME
-#: Merge.rc:3318
+#: Merge.rc:3320
 msgid "A&ppend timestamp"
 msgstr "Adaugă ora"
 
 #. IDS_CONFIRM_COPY_CAPTION
-#: Merge.rc:3324 Merge.rc:5027
+#: Merge.rc:3326 Merge.rc:5052
 msgid "Confirm Copy"
 msgstr "Confirmă copierea"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_QUERY
-#: Merge.rc:3328
+#: Merge.rc:3330
 msgid "Are you sure you want to copy XXX items?"
 msgstr "Sunteți sigur că vreți să copiați XXX elemente?"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_FROM_TEXT
-#: Merge.rc:3329
+#: Merge.rc:3331
 msgid "From left"
 msgstr "De la stânga"
 
 #. IDD_CONFIRM_COPY, IDC_FLDCONFIRM_TO_TEXT
-#: Merge.rc:3331
+#: Merge.rc:3333
 msgid "To right"
 msgstr "De la dreapta"
 
 #. IDS_MESSAGEBOX_DONT_ASK_AGAIN
-#: Merge.rc:3333 Merge.rc:4652
+#: Merge.rc:3335 Merge.rc:4656
 msgid "Don't ask this &question again."
 msgstr "Nu î&ntreba din nou."
 
 #. IDD_CONFIRM_COPY, IDYES
-#: Merge.rc:3335
+#: Merge.rc:3337
 msgid "Yes"
 msgstr "Da"
 
 #. IDD_CONFIRM_COPY, IDNO
-#: Merge.rc:3336
+#: Merge.rc:3338
 msgid "No"
 msgstr "Nu"
 
 #. IDS_PROJECT_ITEM_PLUGIN
-#: Merge.rc:3341 Merge.rc:4785
+#: Merge.rc:3343 Merge.rc:4789
 msgid "Plugins"
 msgstr "Plugin-uri"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGINS_ENABLE
-#: Merge.rc:3344
+#: Merge.rc:3346
 msgid "&Enable plugins"
 msgstr "Activ&ează plugin-uri"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:3345 Merge.rc:3546
+#: Merge.rc:3347 Merge.rc:3548
 msgid "Plugin &type:"
 msgstr ""
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
-#: Merge.rc:3348
+#: Merge.rc:3350
 msgid "File filters:"
 msgstr "Filtre fișiere:"
 
 #. IDD_PLUGINS_LIST, IDC_STATIC
-#: Merge.rc:3350
+#: Merge.rc:3352
 msgid "&Plugin arguments:"
 msgstr "Argumente &plugin-uri:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
-#: Merge.rc:3352 Merge.rc:3567
+#: Merge.rc:3354 Merge.rc:3569
 msgid "Enable &automatic unpacking/prediffing"
 msgstr "Acrivează dezarhivarea/prediferențierea &automată pentru plugin"
 
 #. IDS_OPTIONSPG_SHELL
-#: Merge.rc:3366 Merge.rc:4678
+#: Merge.rc:3368 Merge.rc:4682
 msgid "Shell Integration"
 msgstr "Integrare în shell"
 
 #. IDD_PROPPAGE_SHELL, IDC_STATIC
-#: Merge.rc:3369
+#: Merge.rc:3371
 msgid "Explorer"
 msgstr "Explorer"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_CONTEXT
-#: Merge.rc:3370
+#: Merge.rc:3372
 msgid "&Add to context menu"
 msgstr "&Adaugă la meniul contextual"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_ADVANCED
-#: Merge.rc:3371
+#: Merge.rc:3373
 msgid "E&nable advanced menu"
 msgstr "Activează me&niul contextual avansat"
 
 #. IDD_PROPPAGE_SHELL, IDC_EXPLORER_COMPARE_AS
-#: Merge.rc:3372
+#: Merge.rc:3374
 msgid "Enable &Compare As menu"
 msgstr "Activează meniul &Compară ca"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION
-#: Merge.rc:3373
+#: Merge.rc:3375
 msgid "&Register Shell Extension"
 msgstr "În&registrează extensia shell"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION
-#: Merge.rc:3374
+#: Merge.rc:3376
 msgid "&Unregister Shell Extension"
 msgstr "Deînregistrează extensia shell"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_SHELLEXTENSION_PERUSER
-#: Merge.rc:3375
+#: Merge.rc:3377
 msgid "Register Shell Extension for Current User &Only"
 msgstr "Înregistrează extensia shell d&oar pentru utilizatorul curent"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_SHELLEXTENSION_PERUSER
-#: Merge.rc:3376
+#: Merge.rc:3378
 msgid "Unregister Shell Extension for Current User On&ly"
 msgstr "Deînregistrează extensia shell doar pentru uti&lizatorul curent"
 
 #. IDD_PROPPAGE_SHELL, IDC_REGISTER_WINMERGECONTEXTMENU
-#: Merge.rc:3377
+#: Merge.rc:3379
 msgid "Register Shell Extension for &Windows 11"
 msgstr "Înregistrează extensia shell pentru &Windows 11 ori mai nou"
 
 #. IDD_PROPPAGE_SHELL, IDC_UNREGISTER_WINMERGECONTEXTMENU
-#: Merge.rc:3378
+#: Merge.rc:3380
 msgid "Unregister Shell Extension for W&indows 11"
 msgstr "Deînregistrează extensia shell pentru W&indows 11 ori mai nou"
 
 #. IDD_PROPPAGE_SHELL, IDC_STATIC
-#: Merge.rc:3379
+#: Merge.rc:3381
 msgid "Jump List"
 msgstr "Lista de salturi"
 
 #. IDD_PROPPAGE_SHELL, IDC_CLEAR_ALL_RECENT_ITEMS
-#: Merge.rc:3381
+#: Merge.rc:3383
 msgid "Clear all recent items"
 msgstr "Șterge toate elementele recente"
 
 #. IDS_OPTIONSPG_FOLDERCOMPARE
-#: Merge.rc:3386 Merge.rc:4686
+#: Merge.rc:3388 Merge.rc:4690
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Director"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3389
+#: Merge.rc:3391
 msgid "&Compare method:"
 msgstr "Metoda de &comparare:"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_STOPFIRST
-#: Merge.rc:3391
+#: Merge.rc:3393
 msgid "S&top after first difference"
 msgstr "Opreș&te după prima diferență"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_IGNORE_SMALLTIMEDIFF
-#: Merge.rc:3393
+#: Merge.rc:3395
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oră diferențe de timp mai mici de 3 secunde"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3396
+#: Merge.rc:3398
 msgid "Expand subfolders &after comparison:"
 msgstr "Expandează &automat subdirectoarele după comparare:"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_WALKSUBDIRS
-#: Merge.rc:3398
+#: Merge.rc:3400
 msgid "Include &unique subfolders contents"
 msgstr "Include conținutul &unic al subdirectoarelor"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_IGNORE_REPARSEPOINTS
-#: Merge.rc:3400
+#: Merge.rc:3402
 msgid "Ignore &reparse points"
 msgstr "Ignoră punctele de reparsare"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3401
+#: Merge.rc:3403
 msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr "Prag pentru trecerea la compararea rapidă (MB):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3403
+#: Merge.rc:3405
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Prag pentru trecerea la compararea binară (MB):"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3407
+#: Merge.rc:3409
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3410
+#: Merge.rc:3412
 msgid "&Rename/move detection:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3412
+#: Merge.rc:3414
 msgid "Rename/move detection &keys:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:3415
+#: Merge.rc:3417
 msgid "M&erge renames and moves:"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3426 Merge.rc:3431 Merge.rc:3434
+#: Merge.rc:3428 Merge.rc:3433 Merge.rc:3436
 msgid "File patterns:"
 msgstr "Modele de fișiere:"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:3433
+#: Merge.rc:3435
 msgid "Custom Delimiter-Separated Values"
 msgstr "Valori separate cu delimitator personalizat"
 
 #. IDS_OPTIONSPG_BINARYCOMPARE
-#: Merge.rc:3447 Merge.rc:4688
+#: Merge.rc:3449 Merge.rc:4692
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binar"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
-#: Merge.rc:3450
+#: Merge.rc:3452
 msgid "Binary file &patterns:"
 msgstr "Modele de fișiere binare:"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_STATIC
-#: Merge.rc:3452
+#: Merge.rc:3454
 msgid "Frhed settings"
 msgstr "Setări Frhed"
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_VIEWSETTINGS
-#: Merge.rc:3453
+#: Merge.rc:3455
 msgid "View &Settings..."
 msgstr "&Setări vizualizare..."
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_BINARYMODE
-#: Merge.rc:3454
+#: Merge.rc:3456
 msgid "&Binary Mode..."
 msgstr "Mod &binar..."
 
 #. IDD_PROPPAGE_COMPARE_BINARY, IDC_COMPAREBINARY_CHARACTERSET
-#: Merge.rc:3455
+#: Merge.rc:3457
 msgid "&Character Set..."
 msgstr "Set &caractere..."
 
 #. IDS_PRPCAT_IMAGE
-#: Merge.rc:3461 Merge.rc:4687 Merge.rc:5127
+#: Merge.rc:3463 Merge.rc:4691 Merge.rc:5161
 msgid "Image"
 msgstr "Imagine"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
-#: Merge.rc:3464
+#: Merge.rc:3466
 msgid "Image file &patterns:"
 msgstr "Modele fișiere imagine:"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_ENABLE_IMGCMP_IN_DIRCMP
-#: Merge.rc:3466
+#: Merge.rc:3468
 msgid "&Enable image compare in folder compare"
 msgstr "Activ&ează compararea imaginilor la compararea directoarelor"
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_COMPAREIMAGE_PREFER_WIC_DECODER
-#: Merge.rc:3468
+#: Merge.rc:3470
 msgid "&Prefer WIC Decoder"
 msgstr ""
 
 #. IDD_PROPPAGE_COMPARE_IMAGE, IDC_STATIC
-#: Merge.rc:3469
+#: Merge.rc:3471
 msgid "OCR result:"
 msgstr "Rezultat OCR:"
 
 #. IDS_OPTIONSPG_WEBPAGECOMPARE
-#: Merge.rc:3476 Merge.rc:4690
+#: Merge.rc:3478 Merge.rc:4694
 msgid "Webpage"
 msgstr "Pagină web"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3479
+#: Merge.rc:3481
 msgid "URL pattern to &include (Regular expression):"
 msgstr "Model URL de &inclus (expresie regulată):"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3481
+#: Merge.rc:3483
 msgid "URL pattern to &exclude (Regular expression):"
 msgstr "Model URL de &exclus (expresie regulată):"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_STATIC
-#: Merge.rc:3483
+#: Merge.rc:3485
 msgid "&User data folder location:"
 msgstr "Locația directorului de date utilizator:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE
-#: Merge.rc:3485
+#: Merge.rc:3487
 msgid "&Separate user data folders for each pane"
 msgstr "&Separă directoarele de date utilizator pentru fiecare panou"
 
 #. IDD_ENCODINGERROR, IDC_HEXVIEW
-#: Merge.rc:3498
+#: Merge.rc:3500
 msgid "&Hex View"
 msgstr "Afișare &hexadecimală"
 
+#. IDD_SELECT_FILES_OR_FOLDERS
+#: Merge.rc:3505
+msgid "Select Files or Folders"
+msgstr "Selectează fișiere sau directoare"
+
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3543
+#: Merge.rc:3545
 msgid "Edit Plugin"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:3556
+#: Merge.rc:3558
 msgid "&Category:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_MENUCAPTION_STATIC
-#: Merge.rc:3558
+#: Merge.rc:3560
 msgid "&Menu caption:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_WINDOWTYPE_STATIC
-#: Merge.rc:3560
+#: Merge.rc:3562
 msgid "&Window type:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC
-#: Merge.rc:3565
+#: Merge.rc:3567
 msgid "&Unpacked file extension:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_ARGUMENTSREQUIRED
-#: Merge.rc:3569
+#: Merge.rc:3571
 msgid "&Require arguments"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_GENERATESCRIPT
-#: Merge.rc:3570
+#: Merge.rc:3572
 msgid "&Generate editor script"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_COMMAND_LINE_STATIC
-#: Merge.rc:3573
+#: Merge.rc:3575
 msgid "Command &line:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC
-#: Merge.rc:3576
+#: Merge.rc:3578
 msgid "&Script file extension:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_SCRIPT_BODY_STATIC
-#: Merge.rc:3578
+#: Merge.rc:3580
 msgid "Script &body:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3587
+#: Merge.rc:3589
 msgid "Font"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3590
+#: Merge.rc:3592
 msgid "&Font:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3596
+#: Merge.rc:3598
 msgid "Font st&yle:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3602
+#: Merge.rc:3604
 msgid "&Size:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3608
+#: Merge.rc:3610
 msgid "Effects"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3609
+#: Merge.rc:3611
 msgid "Stri&keout"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3610
+#: Merge.rc:3612
 msgid "&Underline"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3612
+#: Merge.rc:3614
 msgid "&Color:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3617
+#: Merge.rc:3619
 msgid "Sample"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3618
+#: Merge.rc:3620
 msgid "AaBbYyZz"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:3622
+#: Merge.rc:3624
 msgid "Sc&ript:"
 msgstr ""
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_MANAGE_LINK
-#: Merge.rc:3627
+#: Merge.rc:3629
 msgid "<A>Show more fonts</A>"
 msgstr ""
 
 #. ID_INDICATOR_EXT
-#: Merge.rc:4578
+#: Merge.rc:4582
 msgid "EXT"
 msgstr "EXT"
 
 #. ID_INDICATOR_CAPS
-#: Merge.rc:4579
+#: Merge.rc:4583
 msgid "CAP"
 msgstr "CAP"
 
 #. ID_INDICATOR_NUM
-#: Merge.rc:4580
+#: Merge.rc:4584
 msgid "NUM"
 msgstr "NUM"
 
 #. ID_INDICATOR_SCRL
-#: Merge.rc:4581
+#: Merge.rc:4585
 msgid "SCRL"
 msgstr "SCRL"
 
 #. ID_INDICATOR_OVR
-#: Merge.rc:4582
+#: Merge.rc:4586
 msgid "OVR"
 msgstr "OVR"
 
 #. ID_INDICATOR_REC
-#: Merge.rc:4583
+#: Merge.rc:4587
 msgid "REC"
 msgstr "REC"
 
 #. ID_FILE_NEW
-#: Merge.rc:4589
+#: Merge.rc:4593
 msgid ""
 "\n"
 "New Documents (Ctrl+N)"
@@ -5396,7 +5401,7 @@ msgstr ""
 "Documente noi (Ctrl+N)"
 
 #. ID_FILE_OPEN
-#: Merge.rc:4590
+#: Merge.rc:4594
 msgid ""
 "\n"
 "Open (Ctrl+O)"
@@ -5405,7 +5410,7 @@ msgstr ""
 "Deschide (Ctrl+O)"
 
 #. ID_FILE_SAVE
-#: Merge.rc:4591
+#: Merge.rc:4595
 msgid ""
 "\n"
 "Save (Ctrl+S)"
@@ -5414,33 +5419,33 @@ msgstr ""
 "Salvează (Ctrl+S)"
 
 #. IDS_UNK_ERROR_READING_PROJECT
-#: Merge.rc:4597
+#: Merge.rc:4601
 msgid "Unknown error opening project file."
 msgstr "Eroare necunoscută la încercarea de deschidere a fișierului proiect."
 
 #. IDS_UNK_ERROR_SAVING_PROJECT
-#: Merge.rc:4598
+#: Merge.rc:4602
 msgid "Unknown error saving project file."
 msgstr "Eroare necunoscută la încercarea de salvare a fișierului proiect."
 
 #. IDS_PROJFILE_LOAD_SUCCESS
-#: Merge.rc:4603
+#: Merge.rc:4607
 msgid "Project file loaded."
 msgstr "Fișierul proiect a fost încărcat cu succes."
 
 #. IDS_PROJFILE_SAVE_SUCCESS
-#: Merge.rc:4604
+#: Merge.rc:4608
 msgid "Project file saved."
 msgstr "Fișierul proiect a fost salvat cu succes."
 
 #. IDS_PROJFILE_CONTAIN_PLUGIN_ARGS
-#: Merge.rc:4605
+#: Merge.rc:4609
 #, c-format
 msgid "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
 msgstr ""
 
 #. ID_EDIT_UNDO
-#: Merge.rc:4611
+#: Merge.rc:4615
 msgid ""
 "\n"
 "Undo (Ctrl+Z)"
@@ -5449,7 +5454,7 @@ msgstr ""
 "Anulează (Ctrl+Z)"
 
 #. ID_EDIT_REDO
-#: Merge.rc:4612
+#: Merge.rc:4616
 msgid ""
 "\n"
 "Redo (Ctrl+Y)"
@@ -5458,7 +5463,7 @@ msgstr ""
 "Refă (Ctrl+Y)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:4619
+#: Merge.rc:4623
 msgid ""
 "\n"
 "FileCompare\n"
@@ -5477,7 +5482,7 @@ msgstr ""
 "WinMerge Comparare fișiere"
 
 #. IDR_DIRDOCTYPE
-#: Merge.rc:4620
+#: Merge.rc:4624
 msgid ""
 "\n"
 "FolderCompare\n"
@@ -5496,7 +5501,7 @@ msgstr ""
 "WinMerge Comparare directoare"
 
 #. IDS_SPLASH_GPLTEXT
-#: Merge.rc:4626
+#: Merge.rc:4630
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 msgstr ""
 "WinMerge vine fără ABSOLUT NICIO GARANȚIE. Acesta este software liber și "
@@ -5504,159 +5509,159 @@ msgstr ""
 "Licența Publică Generală GNU în meniul Ajutor pentru detalii."
 
 #. IDS_MESSAGEBOX_ABORT
-#: Merge.rc:4634
+#: Merge.rc:4638
 msgid "&Abort"
 msgstr "Re&nunță"
 
 #. IDS_MESSAGEBOX_RETRY
-#: Merge.rc:4635
+#: Merge.rc:4639
 msgid "&Retry"
 msgstr "&Reîncearcă"
 
 #. IDS_MESSAGEBOX_IGNORE
-#: Merge.rc:4636
+#: Merge.rc:4640
 msgid "&Ignore"
 msgstr "&Ignoră"
 
 #. IDS_MESSAGEBOX_IGNOREALL
-#: Merge.rc:4637
+#: Merge.rc:4641
 msgid "Ignore &all"
 msgstr "Ignoră to&ate"
 
 #. IDS_MESSAGEBOX_YES
-#: Merge.rc:4638
+#: Merge.rc:4642
 msgid "&Yes"
 msgstr "&Da"
 
 #. IDS_MESSAGEBOX_YES_TO_ALL
-#: Merge.rc:4644
+#: Merge.rc:4648
 msgid "Yes to &all"
 msgstr "D&a la toate"
 
 #. IDS_MESSAGEBOX_NO
-#: Merge.rc:4645
+#: Merge.rc:4649
 msgid "&No"
 msgstr "&Nu"
 
 #. IDS_MESSAGEBOX_NO_TO_ALL
-#: Merge.rc:4646
+#: Merge.rc:4650
 msgid "No to a&ll"
 msgstr "Nu la to&ate"
 
 #. IDS_MESSAGEBOX_CONTINUE
-#: Merge.rc:4647
+#: Merge.rc:4651
 msgid "&Continue"
 msgstr "&Continuă"
 
 #. IDS_MESSAGEBOX_SKIP
-#: Merge.rc:4648
+#: Merge.rc:4652
 msgid "&Skip"
 msgstr "O&mite"
 
 #. IDS_MESSAGEBOX_SKIPALL
-#: Merge.rc:4649
+#: Merge.rc:4653
 msgid "Skip &all"
 msgstr "Omite to&ate"
 
 #. IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN
-#: Merge.rc:4651
+#: Merge.rc:4655
 msgid "Don't display this &message again."
 msgstr "Nu afișa acest &mesaj din nou."
 
-#: Merge.rc:4654
+#: Merge.rc:4658
 msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr ""
 "Pentru a face vizibilă din nou această fereastră de dialog, apăsați butonul "
 "Reinițializare din pagina Ferestre mesaj a dialogului Opțiuni."
 
 #. IDS_OPTIONSPG_EDITOR_COMPAREMERGE
-#: Merge.rc:4664
+#: Merge.rc:4668
 msgid "Compare/Merge"
 msgstr ""
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
-#: Merge.rc:4665 Merge.rc:4669
+#: Merge.rc:4669 Merge.rc:4673
 msgid "Syntax"
 msgstr "Sintaxă"
 
 #. IDS_OPTIONSPG_COLOR_SCHEMES
-#: Merge.rc:4667
+#: Merge.rc:4671
 msgid "Color Schemes"
 msgstr "Scheme culori"
 
 #. IDS_OPTIONSPG_DIRCOLORS
-#: Merge.rc:4671
+#: Merge.rc:4675
 msgid "Folder Compare"
 msgstr "Comparare directoare"
 
 #. IDS_OPTIONSPG_PROJECT
-#: Merge.rc:4676
+#: Merge.rc:4680
 msgid "Project"
 msgstr "Proiect"
 
 #. IDS_COLHDR_NSDIFFS
-#: Merge.rc:4679 Merge.rc:5102
+#: Merge.rc:4683 Merge.rc:5136
 msgid "Differences"
 msgstr "Diferențe"
 
 #. IDS_OPTIONSPG_MESSAGEBOXES
-#: Merge.rc:4681
+#: Merge.rc:4685
 msgid "Message Boxes"
 msgstr "Ferestre mesaj"
 
 #. IDS_TO
-#: Merge.rc:4696
+#: Merge.rc:4700
 msgid "To:"
 msgstr "Către:"
 
 #. IDS_FROM_LEFT
-#: Merge.rc:4697
+#: Merge.rc:4701
 msgid "From left:"
 msgstr "De la stânga:"
 
 #. IDS_TO_LEFT
-#: Merge.rc:4698
+#: Merge.rc:4702
 msgid "To left:"
 msgstr "Către stânga:"
 
 #. IDS_FROM_RIGHT
-#: Merge.rc:4699
+#: Merge.rc:4703
 msgid "From right:"
 msgstr "De la dreapta:"
 
 #. IDS_TO_RIGHT
-#: Merge.rc:4700
+#: Merge.rc:4704
 msgid "To right:"
 msgstr "Către dreapta:"
 
 #. IDS_FROM_MIDDLE
-#: Merge.rc:4701
+#: Merge.rc:4705
 msgid "From middle:"
 msgstr "Din mijloc:"
 
 #. IDS_TO_MIDDLE
-#: Merge.rc:4702
+#: Merge.rc:4706
 msgid "To middle:"
 msgstr "Către mijloc:"
 
 #. IDS_VERSION_FMT
-#: Merge.rc:4708
+#: Merge.rc:4712
 #, c-format
 msgid "Version %1"
 msgstr "Versiunea %1"
 
 #. IDS_OPTIONS_TITLE
-#: Merge.rc:4714
+#: Merge.rc:4718
 #, c-format
 msgid "Options (%1)"
 msgstr "Opțiuni (%1)"
 
 #. IDS_MESSAGE_BOX_ARE_RESET
-#: Merge.rc:4715
+#: Merge.rc:4719
 msgid "All message boxes are now displayed again."
 msgstr "Toate casetele de mesaj vor fi de acum afișate din nou."
 
-#: Merge.rc:4717
+#: Merge.rc:4721
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr ""
@@ -5666,42 +5671,42 @@ msgstr ""
 "Vă rugăm folosiți valorile 1 - %1."
 
 #. IDS_PROJECT_OPEN
-#: Merge.rc:4723 Merge.rc:4780
+#: Merge.rc:4727 Merge.rc:4784
 msgid "Open"
 msgstr "Deschide"
 
 #. IDS_PROGRAMFILES
-#: Merge.rc:4724
+#: Merge.rc:4728
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "Programe|*.exe;*.bat;*.cmd|Toate fișierele (*.*)|*.*||"
 
 #. IDS_ALLFILES
-#: Merge.rc:4725
+#: Merge.rc:4729
 msgid "All Files (*.*)|*.*||"
 msgstr "Toate fișierele (*.*)|*.*||"
 
 #. IDS_PROJECTFILES
-#: Merge.rc:4726
+#: Merge.rc:4730
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "Fișiere proiect WinMerge (*.WinMerge)|*.WinMerge||"
 
 #. IDS_INIFILES
-#: Merge.rc:4728
+#: Merge.rc:4732
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Fișiere opțiuni (*.ini)|*.ini|Toate fișierele (*.*)|*.*||"
 
 #. IDS_REPLACELIST_FILES
-#: Merge.rc:4729
+#: Merge.rc:4733
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 msgstr ""
 
 #. IDS_ARCHIVEFILES
-#: Merge.rc:4730
+#: Merge.rc:4734
 msgid "ZIP Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|TAR Files (*.tar)|*.tar|All Files (*.*)|*.*||"
 msgstr ""
 
 #. IDS_TEXT_REPORT_FILES
-#: Merge.rc:4736
+#: Merge.rc:4740
 msgid ""
 "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
 "*.*||"
@@ -5710,121 +5715,121 @@ msgstr ""
 "fișierele (*.*)|*.*||"
 
 #. IDS_HTML_REPORT_FILES
-#: Merge.rc:4737
+#: Merge.rc:4741
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "Fișiere HTML (*.htm,*.html)|*.htm;*.html|Toate fișierele (*.*)|*.*||"
 
 #. IDS_XML_REPORT_FILES
-#: Merge.rc:4738
+#: Merge.rc:4742
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fișiere XML (*.xml)|*.xml|Toate fișierele (*.*)|*.*||"
 
 #. IDS_EXPANDSUBDIRS_DONOTEXPAND
-#: Merge.rc:4756
+#: Merge.rc:4760
 msgid "Do not expand"
 msgstr "Nu expanda"
 
 #. IDS_EXPANDSUBDIRS_ALL
-#: Merge.rc:4757
+#: Merge.rc:4761
 msgid "Expand all subfolders"
 msgstr "Expandează toate subdirectoarele"
 
 #. IDS_EXPANDSUBDIRS_DIFFERENT
-#: Merge.rc:4758
+#: Merge.rc:4762
 msgid "Expand different subfolders"
 msgstr "Expandează subdirectoarele diferite"
 
 #. IDS_EXPANDSUBDIRS_IDENTICAL
-#: Merge.rc:4759
+#: Merge.rc:4763
 msgid "Expand identical subfolders"
 msgstr "Expandează subdirectoarele identice"
 
 #. IDS_SYNTAXTABLE_FILETYPE
-#: Merge.rc:4765
+#: Merge.rc:4769
 msgid "File Type"
 msgstr "Tip fișier"
 
 #. IDS_COLHDR_EXTENSION
-#: Merge.rc:4766 Merge.rc:5059
+#: Merge.rc:4770 Merge.rc:5090
 msgid "Extension"
 msgstr "Extensie"
 
 #. IDS_PRPCAT_MESSAGE
-#: Merge.rc:4772 Merge.rc:5131
+#: Merge.rc:4776 Merge.rc:5165
 msgid "Message"
 msgstr "Mesaj"
 
 #. IDS_MESSAGEBOX_ANSWER
-#: Merge.rc:4773
+#: Merge.rc:4777
 msgid "Answer"
 msgstr "Răspuns"
 
 #. IDS_PROJECT_ITEM
-#: Merge.rc:4779
+#: Merge.rc:4783
 msgid "Item"
 msgstr "Element"
 
 #. IDS_PROJECT_LOAD
-#: Merge.rc:4781
+#: Merge.rc:4785
 msgid "Load"
 msgstr "Încarcă"
 
 #. IDS_PROJECT_SAVE
-#: Merge.rc:4782
+#: Merge.rc:4786
 msgid "Save"
 msgstr "Salvează"
 
 #. IDS_PROJECT_ITEM_INCLUDE_SUBFOLDERS
-#: Merge.rc:4784
+#: Merge.rc:4788
 msgid "Include Subfolders"
 msgstr "Include subdirectoare"
 
 #. IDS_PROJECT_ITEM_COMPARE_OPTIONS
-#: Merge.rc:4786
+#: Merge.rc:4790
 msgid "Compare Options"
 msgstr "Opțiuni comparare"
 
 #. IDS_PROJECT_ITEM_HIDDEN_ITEMS
-#: Merge.rc:4787
+#: Merge.rc:4791
 msgid "Hidden Items"
 msgstr "Elemente ascunse"
 
 #. IDS_PLUGINSLIST_NAME
-#: Merge.rc:4793 Merge.rc:5425
+#: Merge.rc:4797 Merge.rc:5471
 msgid "Name"
 msgstr "Nume"
 
 #. IDS_FILTERFILE_PATHTITLE
-#: Merge.rc:4794
+#: Merge.rc:4798
 msgid "Location"
 msgstr "Locație"
 
 #. IDS_FILTER_TITLE
-#: Merge.rc:4795
+#: Merge.rc:4799
 msgid "Filters"
 msgstr "Filtre"
 
 #. IDS_FILTER_PREFIX
-#: Merge.rc:4796
+#: Merge.rc:4800
 msgid "[F] "
 msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
-#: Merge.rc:4797 Merge.rc:5427
+#: Merge.rc:4801 Merge.rc:5473
 msgid "Description"
 msgstr "Descriere"
 
 #. IDS_FILEFILTER_SAVENEW
-#: Merge.rc:4798
+#: Merge.rc:4802
 msgid "Select Filename for New Filter"
 msgstr "Selectează numele fișierului pentru noul filtru"
 
 #. IDS_FILEFILTER_FILEMASK
-#: Merge.rc:4799
+#: Merge.rc:4803
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Fișiere filtru (*.flt)|*.flt|Toate fișierele (*.*)|*.*||"
 
-#: Merge.rc:4801
+#: Merge.rc:4805
 #, c-format
 msgid ""
 "Cannot find filter template!\n"
@@ -5837,7 +5842,7 @@ msgstr ""
 "Vă rugăm copiați fișierul %1 în directorul WinMerge/Filters :\n"
 "%2."
 
-#: Merge.rc:4803
+#: Merge.rc:4807
 #, c-format
 msgid ""
 "Cannot copy filter template:\n"
@@ -5850,7 +5855,7 @@ msgstr ""
 "\n"
 "Vă rugăm verificați că fișierul există și este editabil."
 
-#: Merge.rc:4805
+#: Merge.rc:4809
 msgid ""
 "User's filter folder is not defined!\n"
 "\n"
@@ -5860,7 +5865,7 @@ msgstr ""
 "\n"
 "Vă rugăm selectați directorul filtru în Opțiuni.../Sistem."
 
-#: Merge.rc:4807
+#: Merge.rc:4811
 #, c-format
 msgid ""
 "Failed to delete filter:\n"
@@ -5874,11 +5879,11 @@ msgstr ""
 "Este posibil ca fișierul să fie protejat la scriere?"
 
 #. IDS_FILEFILTER_INSTALL
-#: Merge.rc:4808
+#: Merge.rc:4812
 msgid "Locate Filter File to Install"
 msgstr "Selectați fișierul filtru pentru instalare"
 
-#: Merge.rc:4810
+#: Merge.rc:4814
 msgid ""
 "Installing filter file failed.\n"
 "\n"
@@ -5889,17 +5894,17 @@ msgstr ""
 "Nu s-a putut copia noul fișier filtru în directorul filtru."
 
 #. IDS_FILEFILTER_OVERWRITE
-#: Merge.rc:4811
+#: Merge.rc:4815
 msgid "Filter file exists. Overwrite?"
 msgstr "Fișierul filtru deja există. Suprascrie?"
 
 #. IDS_FILTERLINE_REGEXP
-#: Merge.rc:4817
+#: Merge.rc:4821
 msgid "Regular expression"
 msgstr "Expresie regulată"
 
 #. IDS_FILTERCHANGED
-#: Merge.rc:4823
+#: Merge.rc:4827
 msgid "Filters updated. Refresh all open folder compares?\n\nSelect 'No' to refresh later."
 msgstr ""
 "Filtrele au fost actualizate. Doriți să reîmprospătați toate comparările de "
@@ -5909,220 +5914,258 @@ msgstr ""
 "reîmprospătați comparările mai târziu."
 
 #. IDS_DIRECTORY_WINDOW_TITLE
-#: Merge.rc:4829
+#: Merge.rc:4833
 msgid "Folder Comparison Results"
 msgstr "Rezultate comparare directoare"
 
 #. IDS_FILE_COMPARISON_TITLE
-#: Merge.rc:4830
+#: Merge.rc:4834
 msgid "File Comparison"
 msgstr "Comparare fișiere"
 
 #. IDS_EMPTY_LEFT_FILE
-#: Merge.rc:4831
+#: Merge.rc:4835
 msgid "Untitled Left"
 msgstr "Nedenumit stânga"
 
 #. IDS_EMPTY_MIDDLE_FILE
-#: Merge.rc:4832
+#: Merge.rc:4836
 msgid "Untitled Middle"
 msgstr "Nedenumit mijloc"
 
 #. IDS_EMPTY_RIGHT_FILE
-#: Merge.rc:4833
+#: Merge.rc:4837
 msgid "Untitled Right"
 msgstr "Nedenumit dreapta"
 
 #. IDS_CONFLICT_BASE_FILE
-#: Merge.rc:4834
+#: Merge.rc:4838
 msgid "Base File"
 msgstr "Fișierul bază"
 
 #. IDS_CONFLICT_THEIRS_FILE
-#: Merge.rc:4835
+#: Merge.rc:4839
 msgid "Theirs File"
 msgstr "Fișierul lor"
 
 #. IDS_CONFLICT_MINE_FILE
-#: Merge.rc:4836
+#: Merge.rc:4840
 msgid "Mine File"
 msgstr "Fișierul meu"
 
 #. IDS_SELFCOMPARE_ORIGINAL_FILE
-#: Merge.rc:4837
+#: Merge.rc:4841
 msgid "Original File"
 msgstr "Fișierul original"
 
 #. IDS_LINE_STATUS_INFO_EOL
-#: Merge.rc:4843
+#: Merge.rc:4847
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Rd: %s  Col: %d/%d  Car: %d/%d  EOL: %s"
 
 #. IDS_EMPTY_LINE_STATUS_INFO
-#: Merge.rc:4844
+#: Merge.rc:4848
 #, c-format
 msgid "Line: %s"
 msgstr "Rând: %s"
 
 #. IDS_LINE_STATUS_INFO
-#: Merge.rc:4845
+#: Merge.rc:4849
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Rd: %s  Col: %d/%d  Car: %d/%d"
 
 #. IDS_LINE_STATUS_INFO_SEL
-#: Merge.rc:4846
+#: Merge.rc:4850
 #, c-format
 msgid "  Sel: %d | %d"
 msgstr "  Sel: %d | %d"
 
 #. IDS_DIFF_NUMBER_STATUS_FMT
-#: Merge.rc:4847
+#: Merge.rc:4851
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "Deferența %1 din %2"
 
+#. IDS_DIFF_NUMBER_STATUS_IGNORED_FMT
+#: Merge.rc:4852
+#, c-format
+msgid "Diff. %1 of %2 (%3 ign.)"
+msgstr ""
+
 #. IDS_NO_DIFF_SEL_FMT
-#: Merge.rc:4848
+#: Merge.rc:4853
 #, c-format
 msgid "%1 Differences Found"
 msgstr "%1 diferențe găsite"
 
 #. IDS_1_DIFF_FOUND
-#: Merge.rc:4849
+#: Merge.rc:4854
 msgid "1 Difference Found"
 msgstr "O diferență găsită"
 
+#. IDS_DIFFS_FOUND_IGNORED_FMT
+#: Merge.rc:4855
+#, c-format
+msgid "%1 Differences (%2 ign.)"
+msgstr ""
+
+#. IDS_1_DIFF_FOUND_IGNORED_FMT
+#: Merge.rc:4856
+#, c-format
+msgid "1 Difference (%1 ign.)"
+msgstr ""
+
 #. IDS_NO_ERR_SEL_FMT
-#: Merge.rc:4850
+#: Merge.rc:4857
 #, c-format
 msgid "%1 Errors Found"
 msgstr ""
 
 #. IDS_1_ERR_FOUND
-#: Merge.rc:4851
+#: Merge.rc:4858
 msgid "1 Error Found"
 msgstr ""
 
 #. IDS_STATUSBAR_READONLY, Abbreviation from "Read Only"
-#: Merge.rc:4852
+#: Merge.rc:4859
 msgid "RO"
 msgstr "RO"
 
 #. IDS_DIRVIEW_STATUS_FMT_FOCUS
-#: Merge.rc:4858
+#: Merge.rc:4865
 #, c-format
 msgid "Item %1 of %2"
 msgstr "Element %1 din %2"
 
 #. IDS_DIRVIEW_STATUS_FMT_NOFOCUS
-#: Merge.rc:4859
+#: Merge.rc:4866
 #, c-format
 msgid "Items: %1"
 msgstr "Elemente: %1"
 
 #. IDS_DIRVIEW_STATUS_COMPARING
-#: Merge.rc:4860
+#: Merge.rc:4867
 msgid "Comparing items..."
 msgstr "Comparare elemente..."
 
 #. IDS_ITEMS_PER_SEC
-#: Merge.rc:4861
+#: Merge.rc:4868
 #, c-format
 msgid "%.1f[items/sec]"
 msgstr "%.1f[elem/sec]"
 
 #. IDS_ERROR_INCOMPARABLE
-#: Merge.rc:4867
+#: Merge.rc:4874
 msgid "Select two existing folders/files to compare."
 msgstr "Selectați două directoare sau fișiere existente pentru comparare."
 
 #. IDS_DIRSEL_TAG
-#: Merge.rc:4868
+#: Merge.rc:4875
 msgid "Folder Selection"
 msgstr "Selectare directoare"
 
 #. IDS_OPEN_FILESDIRS
-#: Merge.rc:4869
+#: Merge.rc:4876
 msgid "Select two (or three) folders/files to compare."
 msgstr ""
 "Selectați două (sau trei) directoare ori două (sau trei) fișiere pentru "
 "comparare."
 
 #. IDS_OPEN_LEFTINVALID
-#: Merge.rc:4870
+#: Merge.rc:4877
 msgid "Left (1st) path is invalid!"
 msgstr "Calea din stânga (1) este invalidă!"
 
 #. IDS_OPEN_MIDDLEINVALID
-#: Merge.rc:4871
+#: Merge.rc:4878
 msgid "Middle (2nd) path is invalid!"
 msgstr "Calea din mijloc (2) este invalidă!"
 
 #. IDS_OPEN_RIGHTINVALID2
-#: Merge.rc:4872
+#: Merge.rc:4879
 msgid "Right (2nd) path is invalid!"
 msgstr "Calea din dreapta (2) este invalidă!"
 
 #. IDS_OPEN_RIGHTINVALID3
-#: Merge.rc:4873
+#: Merge.rc:4880
 msgid "Right (3rd) path is invalid!"
 msgstr "Calea din dreapta (3) este invalidă!"
 
 #. IDS_OPEN_BOTHINVALID
-#: Merge.rc:4874
+#: Merge.rc:4881
 msgid "Both paths are invalid!"
 msgstr "Ambele căi sunt nevalide!"
 
-#: Merge.rc:4876
+#: Merge.rc:4883
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr "Căile din stânga (1) și mijloc (2) sunt invalide!"
 
 #. IDS_OPEN_LEFTRIGHTINVALID
-#: Merge.rc:4877
+#: Merge.rc:4884
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "Căile din stânga (1) și dreapta (3) sunt invalide!"
 
-#: Merge.rc:4879
+#: Merge.rc:4886
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr "Căile din mijloc (2) și dreapta (3) sunt invalide!"
 
 #. IDS_OPEN_ALLINVALID
-#: Merge.rc:4880
+#: Merge.rc:4887
 msgid "All paths are invalid!"
 msgstr "Toate căile sunt invalide!"
 
 #. IDS_OPEN_UNPACKERDISABLED
-#: Merge.rc:4881
+#: Merge.rc:4888
 msgid "Only enabled for file comparisons"
 msgstr "Activat doar pentru comparare de fișiere"
 
 #. IDS_OPEN_MISMATCH
-#: Merge.rc:4882
+#: Merge.rc:4889
 msgid "Cannot compare file and folder!"
 msgstr "Nu se poate compara un fișier cu un director!"
 
+#: Merge.rc:4891
+msgid "Comparison"
+msgstr ""
+
+#: Merge.rc:4893
+msgid "Command line"
+msgstr ""
+
 #. IDS_ERROR_FILE_NOT_FOUND
-#: Merge.rc:4888
+#: Merge.rc:4899
 #, c-format
 msgid "File not found: %1"
 msgstr "Fișier negăsit: %1"
 
 #. IDS_ERROR_FOLDER_NOT_FOUND
-#: Merge.rc:4889
+#: Merge.rc:4900
 #, c-format
 msgid "Folder not found: %1"
 msgstr ""
 
 #. IDS_ERROR_FILE_NOT_UNPACKED
-#: Merge.rc:4890
+#: Merge.rc:4901
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "Fișier nedezarhivat: %1"
 
+#. IDS_ERROR_FILECREATE
+#: Merge.rc:4902
+#, c-format
+msgid "Cannot create file\n%1\n\n%2"
+msgstr ""
+
+#. IDS_ERROR_FILESOPEN
+#: Merge.rc:4903
+#, c-format
+msgid "Cannot open file(s)\n%1\n\n%2"
+msgstr ""
+
 #. IDS_ERROR_FILEOPEN
-#: Merge.rc:4891
+#: Merge.rc:4904
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -6136,12 +6179,12 @@ msgstr ""
 "%2"
 
 #. IDS_ERROR_CONF_RESOLVE
-#: Merge.rc:4892
+#: Merge.rc:4905
 msgid "Failed to parse conflict file."
 msgstr "Analizarea fișierului de conflicte a eșuat."
 
 #. IDS_NOT_CONFLICT_FILE
-#: Merge.rc:4893
+#: Merge.rc:4906
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
 msgstr ""
@@ -6150,7 +6193,7 @@ msgstr ""
 "nu e un fișier de conflicte."
 
 #. IDS_COMPARE_LARGE_FILES
-#: Merge.rc:4894
+#: Merge.rc:4907
 msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr ""
 "Sunteți pe cale să comparați fișiere foarte mari.\n"
@@ -6160,18 +6203,18 @@ msgstr ""
 "\n"
 
 #. IDS_SAVE_AS_TITLE
-#: Merge.rc:4900
+#: Merge.rc:4913
 msgid "Save As"
 msgstr "Salvează ca"
 
 #. IDS_SAVE_FMT
-#: Merge.rc:4901
+#: Merge.rc:4914
 #, c-format
 msgid "Save changes to %1?"
 msgstr "Salvează schimbările în %1?"
 
 #. IDS_SAVEREADONLY_FMT
-#: Merge.rc:4902
+#: Merge.rc:4915
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr ""
@@ -6179,11 +6222,11 @@ msgstr ""
 "citire? (Apăsați nu ca să forțați redenumirea.)"
 
 #. IDS_ERROR_BACKUP
-#: Merge.rc:4903
+#: Merge.rc:4916
 msgid "Error backing up file"
 msgstr "Eroare la salvarea copiei de siguranță a fișierului"
 
-#: Merge.rc:4905
+#: Merge.rc:4918
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -6196,8 +6239,28 @@ msgstr ""
 "\n"
 "Continuați oricum?"
 
+#: Merge.rc:4920
+msgid "Unable to create backup folder"
+msgstr ""
+
+#: Merge.rc:4922
+msgid "Unknown backup location"
+msgstr ""
+
+#: Merge.rc:4924
+msgid "Backup path too long"
+msgstr ""
+
+#: Merge.rc:4926
+msgid "Unable to backup original file"
+msgstr ""
+
+#: Merge.rc:4928
+msgid "Unable to check file status"
+msgstr ""
+
 #. IDS_FILESAVE_FAILED
-#: Merge.rc:4906
+#: Merge.rc:4929
 #, c-format
 msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
 msgstr ""
@@ -6208,7 +6271,7 @@ msgstr ""
 "\t- folosiți un alt nume de fișier (apăsați OK)\n"
 "\t- renunțați la operația curentă (apăsați Renunță)?"
 
-#: Merge.rc:4908
+#: Merge.rc:4931
 #, c-format
 msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
@@ -6219,7 +6282,7 @@ msgstr ""
 "\n"
 "Doriți să salvați versiunea nearhivată în alt fișier?"
 
-#: Merge.rc:4910
+#: Merge.rc:4933
 #, c-format
 msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
@@ -6230,7 +6293,7 @@ msgstr ""
 "\n"
 "Doriți să salvați versiunea nearhivată în alt fișier?"
 
-#: Merge.rc:4912
+#: Merge.rc:4935
 #, c-format
 msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
@@ -6242,7 +6305,7 @@ msgstr ""
 "Doriți să salvați versiunea nearhivată în alt fișier?"
 
 #. IDS_FILECHANGED_ONDISK
-#: Merge.rc:4913
+#: Merge.rc:4936
 #, c-format
 msgid ""
 "Another application updated\n"
@@ -6258,7 +6321,7 @@ msgstr ""
 "Suprascrieți fișierul modificat?"
 
 #. IDS_SAVEREADONLY_MULTI
-#: Merge.rc:4914
+#: Merge.rc:4937
 #, c-format
 msgid ""
 "%1\n"
@@ -6269,7 +6332,7 @@ msgstr ""
 "protejat la scriere?"
 
 #. IDS_FILECHANGED_RESCAN
-#: Merge.rc:4915
+#: Merge.rc:4938
 #, c-format
 msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
 msgstr ""
@@ -6280,22 +6343,22 @@ msgstr ""
 "Doriți să reîncărcați fișierul?"
 
 #. IDS_SAVE_LEFT_AS
-#: Merge.rc:4916
+#: Merge.rc:4939
 msgid "Save Left File As"
 msgstr "Salvează fișierul din stânga ca"
 
 #. IDS_SAVE_MIDDLE_AS
-#: Merge.rc:4917
+#: Merge.rc:4940
 msgid "Save Middle File As"
 msgstr "Salvează fișierul din mijloc ca"
 
 #. IDS_SAVE_RIGHT_AS
-#: Merge.rc:4918
+#: Merge.rc:4941
 msgid "Save Right File As"
 msgstr "Salvează fișierul din dreapta ca"
 
 #. IDS_FILE_DISAPPEARED
-#: Merge.rc:4923
+#: Merge.rc:4946
 #, c-format
 msgid ""
 "File\n"
@@ -6307,7 +6370,7 @@ msgstr ""
 "a dispărut. Vă rog salvați o copie a fișierului pentru a continua."
 
 #. IDS_VIEWS_OUTOFSYNC
-#: Merge.rc:4929
+#: Merge.rc:4952
 msgid ""
 "Cannot merge unsynched documents.\n"
 "\n"
@@ -6317,187 +6380,191 @@ msgstr ""
 "\n"
 "Reîmprospătați documentele înainte de a continua."
 
+#: Merge.rc:4954
+msgid "Merging/copying differences that contain hidden lines is not currently supported.\n\nPlease clear the display filter or adjust the filter settings to show all lines before merging."
+msgstr ""
+
 #. IDS_BREAK_ON_WHITESPACE
-#: Merge.rc:4934
+#: Merge.rc:4959
 msgid "Break at whitespace"
 msgstr "Întrerupe la blanc"
 
 #. IDS_BREAK_ON_PUNCTUATION
-#: Merge.rc:4935
+#: Merge.rc:4960
 msgid "Break at whitespace or punctuation"
 msgstr "Întrerupe la blanc sau semn de punctuație"
 
 #. IDS_L2M
-#: Merge.rc:4941
+#: Merge.rc:4966
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "Copiază în &mijloc\tAlt+Right"
 
 #. IDS_R2M
-#: Merge.rc:4942
+#: Merge.rc:4967
 msgid "Copy to &Middle\tAlt+Left"
 msgstr "Copiază în &mijloc\tAlt+Left"
 
 #. IDS_COPY_FROM_MIDDLE_R
-#: Merge.rc:4943
+#: Merge.rc:4968
 msgid "Copy from Middle\tAlt+Shift+Right"
 msgstr "Copiază din mijloc\tAlt+Shift+Right"
 
 #. IDS_COPY_FROM_MIDDLE_L
-#: Merge.rc:4944
+#: Merge.rc:4969
 msgid "Copy from Middle\tAlt+Shift+Left"
 msgstr "Copiază din mijloc\tAlt+Shift+Left"
 
 #. IDS_L2MNEXT
-#: Merge.rc:4945
+#: Merge.rc:4970
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr "Copiază în mijloc și avansează\tCtrl+Alt+Right"
 
 #. IDS_R2MNEXT
-#: Merge.rc:4946
+#: Merge.rc:4971
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr "Copiază în mijloc și avansează\tCtrl+Alt+Left"
 
 #. IDS_ALL_MIDDLE
-#: Merge.rc:4947
+#: Merge.rc:4972
 msgid "Copy All to Middle"
 msgstr "Copiază tot în mijloc"
 
 #. IDS_COPY_RIGHT_TO_LEFT
-#: Merge.rc:4953
+#: Merge.rc:4978
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Din dreapta în stânga (%1)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE
-#: Merge.rc:4954
+#: Merge.rc:4979
 #, c-format
 msgid "Right to Middle (%1)"
 msgstr "Din dreapta în mijloc (%1)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT
-#: Merge.rc:4955
+#: Merge.rc:4980
 #, c-format
 msgid "Middle to Left (%1)"
 msgstr "Din mijloc în stânga (%1)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT
-#: Merge.rc:4956
+#: Merge.rc:4981
 #, c-format
 msgid "Middle to Right (%1)"
 msgstr "Din mijloc în dreapta (%1)"
 
 #. IDS_COPY_LEFT_TO_RIGHT
-#: Merge.rc:4957
+#: Merge.rc:4982
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "Din stânga în dreapta (%1)"
 
 #. IDS_COPY_LEFT_TO_MIDDLE
-#: Merge.rc:4958
+#: Merge.rc:4983
 #, c-format
 msgid "Left to Middle (%1)"
 msgstr "Din stânga în mijloc (%1)"
 
 #. IDS_MOVE_LEFT_TO
-#: Merge.rc:4969 Merge.rc:5001
+#: Merge.rc:4994 Merge.rc:5026
 #, c-format
 msgid "Left to... (%1)"
 msgstr "Din stânga în... (%1)"
 
 #. IDS_MOVE_MIDDLE_TO
-#: Merge.rc:4970 Merge.rc:5002
+#: Merge.rc:4995 Merge.rc:5027
 #, c-format
 msgid "Middle to... (%1)"
 msgstr "Din mijloc în... (%1)"
 
 #. IDS_MOVE_RIGHT_TO
-#: Merge.rc:4971 Merge.rc:5003
+#: Merge.rc:4996 Merge.rc:5028
 #, c-format
 msgid "Right to... (%1)"
 msgstr "Din dreapta în... (%1)"
 
 #. IDS_COPY_BOTH_TO
-#: Merge.rc:4972
+#: Merge.rc:4997
 #, c-format
 msgid "Both to... (%1)"
 msgstr "Ambele în... (%1)"
 
 #. IDS_COPY_ALL_TO
-#: Merge.rc:4973
+#: Merge.rc:4998
 #, c-format
 msgid "All to... (%1)"
 msgstr "Toate în... (%1)"
 
 #. IDS_COPY_DIFFERENCES_TO
-#: Merge.rc:4974
+#: Merge.rc:4999
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "Diferențele în... (%1)"
 
 #. IDS_ONLYDIFFITEMS_CONFIRM
-#: Merge.rc:4981
+#: Merge.rc:5006
 msgid "Some selected items are identical or skipped.\nProcess only items with differences?"
 msgstr ""
 
 #. IDS_DEL_LEFT_FMT
-#: Merge.rc:4987
+#: Merge.rc:5012
 #, c-format
 msgid "Left (%1)"
 msgstr "Stânga (%1)"
 
 #. IDS_DEL_MIDDLE_FMT
-#: Merge.rc:4988
+#: Merge.rc:5013
 #, c-format
 msgid "Middle (%1)"
 msgstr "Mijloc (%1)"
 
 #. IDS_DEL_RIGHT_FMT
-#: Merge.rc:4989
+#: Merge.rc:5014
 #, c-format
 msgid "Right (%1)"
 msgstr "Dreapta (%1)"
 
 #. IDS_DEL_BOTH_FMT
-#: Merge.rc:4990
+#: Merge.rc:5015
 #, c-format
 msgid "Both (%1)"
 msgstr "Ambele (%1)"
 
 #. IDS_DEL_ALL_FMT
-#: Merge.rc:4991
+#: Merge.rc:5016
 #, c-format
 msgid "All (%1)"
 msgstr "Tot (%1)"
 
 #. IDS_SELECT_DEST_LEFT
-#: Merge.rc:5007
+#: Merge.rc:5032
 msgid "Left Side - Select Destination Folder:"
 msgstr "Partea stângă - selectare director destinație:"
 
 #. IDS_SELECT_DEST_MIDDLE
-#: Merge.rc:5008
+#: Merge.rc:5033
 msgid "Middle Side - Select Destination Folder:"
 msgstr "Partea din mijloc - selectare director destinație:"
 
 #. IDS_SELECT_DEST_RIGHT
-#: Merge.rc:5009
+#: Merge.rc:5034
 msgid "Right Side - Select Destination Folder:"
 msgstr "Partea dreaptă - selectare director destinație:"
 
 #. IDS_FILES_AFFECTED_FMT
-#: Merge.rc:5010
+#: Merge.rc:5035
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(%1 fișiere afectate)"
 
 #. IDS_FILES_AFFECTED_FMT2
-#: Merge.rc:5011
+#: Merge.rc:5036
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 din %2 fișiere afectate)"
 
 #. IDS_CONFIRM_DELETE_SINGLE
-#: Merge.rc:5017
+#: Merge.rc:5042
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -6509,18 +6576,18 @@ msgstr ""
 "%1 ?"
 
 #. IDS_CONFIRM_SINGLE_COPY
-#: Merge.rc:5018
+#: Merge.rc:5043
 msgid "Are you sure you want to copy?"
 msgstr "Sunteți sigur că vreți să copiați?"
 
 #. IDS_CONFIRM_MULTIPLE_COPY
-#: Merge.rc:5019
+#: Merge.rc:5044
 #, c-format
 msgid "Are you sure you want to copy %d items?"
 msgstr "Sunteți sigur că vreți să copiați %d elemente?"
 
 #. IDS_DIRCMP_NOTSYNC
-#: Merge.rc:5020
+#: Merge.rc:5045
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -6540,48 +6607,48 @@ msgstr ""
 "Vă rugăm reîmprospătați compararea."
 
 #. IDS_CONFIRM_SINGLE_MOVE
-#: Merge.rc:5025
+#: Merge.rc:5050
 msgid "Are you sure you want to move?"
 msgstr "Sunteți sigur că vreți să mutați?"
 
 #. IDS_CONFIRM_MULTIPLE_MOVE
-#: Merge.rc:5026
+#: Merge.rc:5051
 #, c-format
 msgid "Are you sure you want to move %d items?"
 msgstr "Sunteți sigur că vreți să mutați %d elemente?"
 
 #. IDS_CONFIRM_MOVE_CAPTION
-#: Merge.rc:5028
+#: Merge.rc:5053
 msgid "Confirm Move"
 msgstr "Confirmați mutarea"
 
-#: Merge.rc:5030
+#: Merge.rc:5055
 msgid "Close the folder comparison window?"
 msgstr ""
 "Sunteți pe cale să închideți fereastra care compară directoarele. Sunteți "
 "sigur?"
 
-#: Merge.rc:5032
+#: Merge.rc:5057
 msgid "Close the folder comparison window, which took a long time?"
 msgstr ""
 
 #. IDS_ERROR_INVALID_DIR_FILE_NAME
-#: Merge.rc:5033
+#: Merge.rc:5058
 msgid "The file or folder name is invalid."
 msgstr "Numele fișierului sau al directorului este invalid."
 
 #. IDS_ERROR_EXECUTE_FILE
-#: Merge.rc:5039
+#: Merge.rc:5064
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Execuția editorului extern a eșuat: %1"
 
 #. IDS_UNKNOWN_ARCHIVE_FORMAT
-#: Merge.rc:5045
+#: Merge.rc:5070
 msgid "Unknown archive format"
 msgstr "Format arhivă necunoscut"
 
-#: Merge.rc:5047
+#: Merge.rc:5072
 msgid ""
 "Failed to extract archive.\n"
 "Compare as text file?"
@@ -6590,749 +6657,842 @@ msgstr ""
 "Doriți să comparați arhivele ca fișiere text?"
 
 #. IDS_COLHDR_FILENAME
-#: Merge.rc:5053
+#: Merge.rc:5078
 msgid "Filename"
 msgstr "Nume fișier"
 
+#. IDS_COLHDR_LFILENAME
+#: Merge.rc:5079
+msgid "Left Filename"
+msgstr ""
+
+#. IDS_COLHDR_MFILENAME
+#: Merge.rc:5080
+msgid "Middle Filename"
+msgstr ""
+
+#. IDS_COLHDR_RFILENAME
+#: Merge.rc:5081
+msgid "Right Filename"
+msgstr ""
+
 #. IDS_COLHDR_DIR
-#: Merge.rc:5054
+#: Merge.rc:5082
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "Director"
 
+#. IDS_COLHDR_LDIR
+#: Merge.rc:5083
+msgctxt "DirView|ColumnHeader"
+msgid "Left Folder"
+msgstr ""
+
+#. IDS_COLHDR_MDIR
+#: Merge.rc:5084
+msgctxt "DirView|ColumnHeader"
+msgid "Middle Folder"
+msgstr ""
+
+#. IDS_COLHDR_RDIR
+#: Merge.rc:5085
+msgctxt "DirView|ColumnHeader"
+msgid "Right Folder"
+msgstr ""
+
 #. IDS_COLHDR_RESULT
-#: Merge.rc:5055
+#: Merge.rc:5086
 msgid "Comparison Result"
 msgstr "Rezultat comparare"
 
 #. IDS_COLHDR_LTIMEM
-#: Merge.rc:5056
+#: Merge.rc:5087
 msgid "Left Date"
 msgstr "Dată stânga"
 
 #. IDS_COLHDR_RTIMEM
-#: Merge.rc:5057
+#: Merge.rc:5088
 msgid "Right Date"
 msgstr "Dată dreapta"
 
 #. IDS_COLHDR_MTIMEM
-#: Merge.rc:5058
+#: Merge.rc:5089
 msgid "Middle Date"
 msgstr "Dată mijloc"
 
+#. IDS_COLHDR_LEXTENSION
+#: Merge.rc:5091
+msgid "Left Extension"
+msgstr ""
+
+#. IDS_COLHDR_MEXTENSION
+#: Merge.rc:5092
+msgid "Middle Extension"
+msgstr ""
+
+#. IDS_COLHDR_REXTENSION
+#: Merge.rc:5093
+msgid "Right Extension"
+msgstr ""
+
 #. IDS_COLHDR_LSIZE
-#: Merge.rc:5060
+#: Merge.rc:5094
 msgid "Left Size"
 msgstr "Mărime stânga"
 
 #. IDS_COLHDR_RSIZE
-#: Merge.rc:5061
+#: Merge.rc:5095
 msgid "Right Size"
 msgstr "Mărime dreapta"
 
 #. IDS_COLHDR_MSIZE
-#: Merge.rc:5066
+#: Merge.rc:5100
 msgid "Middle Size"
 msgstr "Mărime mijloc"
 
 #. IDS_COLHDR_RSIZE_SHORT
-#: Merge.rc:5067
+#: Merge.rc:5101
 msgid "Right Size (Short)"
 msgstr "Mărime dreapta (scurt)"
 
 #. IDS_COLHDR_LSIZE_SHORT
-#: Merge.rc:5068
+#: Merge.rc:5102
 msgid "Left Size (Short)"
 msgstr "Mărime stânga (scurt)"
 
 #. IDS_COLHDR_MSIZE_SHORT
-#: Merge.rc:5069
+#: Merge.rc:5103
 msgid "Middle Size (Short)"
 msgstr "Mărime mijloc (scurt)"
 
 #. IDS_COLHDR_LTIMEC
-#: Merge.rc:5075
+#: Merge.rc:5109
 msgid "Left Creation Time"
 msgstr "Timp creare stânga"
 
 #. IDS_COLHDR_RTIMEC
-#: Merge.rc:5076
+#: Merge.rc:5110
 msgid "Right Creation Time"
 msgstr "Timp creare dreapta"
 
 #. IDS_COLHDR_MTIMEC
-#: Merge.rc:5077
+#: Merge.rc:5111
 msgid "Middle Creation Time"
 msgstr "Timp creare mijloc"
 
 #. IDS_COLHDR_NEWER
-#: Merge.rc:5078
+#: Merge.rc:5112
 msgid "Newer File"
 msgstr "Fișier mai nou"
 
 #. IDS_COLHDR_LVERSION
-#: Merge.rc:5079
+#: Merge.rc:5113
 msgid "Left File Version"
 msgstr "Versiune fișier stânga"
 
 #. IDS_COLHDR_RVERSION
-#: Merge.rc:5080
+#: Merge.rc:5114
 msgid "Right File Version"
 msgstr "Versiune fișier dreapta"
 
 #. IDS_COLHDR_MVERSION
-#: Merge.rc:5081
+#: Merge.rc:5115
 msgid "Middle File Version"
 msgstr "Versiune fișier mijloc"
 
 #. IDS_COLHDR_RESULT_ABBR
-#: Merge.rc:5082
+#: Merge.rc:5116
 msgid "Short Result"
 msgstr "Rezultat scurt"
 
 #. IDS_COLHDR_LATTRIBUTES
-#: Merge.rc:5083
+#: Merge.rc:5117
 msgid "Left Attributes"
 msgstr "Atribute stânga"
 
 #. IDS_COLHDR_RATTRIBUTES
-#: Merge.rc:5084
+#: Merge.rc:5118
 msgid "Right Attributes"
 msgstr "Atribute dreapta"
 
 #. IDS_COLHDR_MATTRIBUTES
-#: Merge.rc:5085
+#: Merge.rc:5119
 msgid "Middle Attributes"
 msgstr "Atribute mijloc"
 
 #. IDS_COLHDR_LEOL_TYPE
-#: Merge.rc:5090
+#: Merge.rc:5124
 msgid "Left EOL"
 msgstr "EOL stânga"
 
 #. IDS_COLHDR_MEOL_TYPE
-#: Merge.rc:5091
+#: Merge.rc:5125
 msgid "Middle EOL"
 msgstr "EOL mijloc"
 
 #. IDS_COLHDR_REOL_TYPE
-#: Merge.rc:5092
+#: Merge.rc:5126
 msgid "Right EOL"
 msgstr "EOL dreapta"
 
 #. IDS_COLHDR_LENCODING
-#: Merge.rc:5098
+#: Merge.rc:5132
 msgid "Left Encoding"
 msgstr "Set de caractere stânga"
 
 #. IDS_COLHDR_RENCODING
-#: Merge.rc:5099
+#: Merge.rc:5133
 msgid "Right Encoding"
 msgstr "Set de caractere dreapta"
 
 #. IDS_COLHDR_MENCODING
-#: Merge.rc:5100
+#: Merge.rc:5134
 msgid "Middle Encoding"
 msgstr "Set de caractere mijloc"
 
 #. IDS_COLHDR_NIDIFFS
-#: Merge.rc:5101
+#: Merge.rc:5135
 msgid "Ignored Diff"
 msgstr "Diferențe ignorate"
 
 #. IDS_COLHDR_BINARY
-#: Merge.rc:5103
+#: Merge.rc:5137
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binar"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
-#: Merge.rc:5104 Merge.rc:5428
+#: Merge.rc:5138 Merge.rc:5474
 msgid "Unpacker"
 msgstr "Dezarhivator"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:5105 Merge.rc:5429 Merge.rc:5756
+#: Merge.rc:5139 Merge.rc:5475 Merge.rc:5806
 msgid "Prediffer"
 msgstr "Prediferențiator"
 
 #. IDS_COLHDR_LEFT
-#: Merge.rc:5106
+#: Merge.rc:5140
 msgid "Left"
 msgstr "Stânga"
 
 #. IDS_COLHDR_MIDDLE
-#: Merge.rc:5107
+#: Merge.rc:5141
 msgid "Middle"
 msgstr "Mijloc"
 
 #. IDS_COLHDR_RIGHT
-#: Merge.rc:5108
+#: Merge.rc:5142
 msgid "Right"
 msgstr "Dreapta"
 
 #. IDS_COLHDR_DIFF
-#: Merge.rc:5109
+#: Merge.rc:5143
 msgid "Diff"
 msgstr "Diferență"
 
 #. IDS_COLHDR_LEFT_DUPLICATE
-#: Merge.rc:5110
+#: Merge.rc:5144
 msgid "Left Duplicate Count"
 msgstr "Număr duplicate stânga"
 
 #. IDS_COLHDR_RIGHT_DUPLICATE
-#: Merge.rc:5111
+#: Merge.rc:5145
 msgid "Right Duplicate Count"
 msgstr "Număr duplicate dreapta"
 
 #. IDS_COLHDR_MIDDLE_DUPLICATE
-#: Merge.rc:5112
+#: Merge.rc:5146
 msgid "Middle Duplicate Count"
 msgstr "Număr duplicate mijloc"
 
 #. IDS_COLHDR_MOVE
-#: Merge.rc:5113
+#: Merge.rc:5147
 msgid "Move"
 msgstr "Mută"
 
 #. IDS_PRPCAT_AUDIO
-#: Merge.rc:5120
+#: Merge.rc:5154
 msgid "Audio"
 msgstr "Audio"
 
 #. IDS_PRPCAT_CALENDAR
-#: Merge.rc:5121
+#: Merge.rc:5155
 msgid "Calendar"
 msgstr "Calendar"
 
 #. IDS_PRPCAT_COMMUNICATION
-#: Merge.rc:5122
+#: Merge.rc:5156
 msgid "Communication"
 msgstr "Comunicare"
 
 #. IDS_PRPCAT_CONTACT
-#: Merge.rc:5123
+#: Merge.rc:5157
 msgid "Contact"
 msgstr "Contact"
 
 #. IDS_PRPCAT_DEVICES
-#: Merge.rc:5124
+#: Merge.rc:5158
 msgid "Devices"
 msgstr "Dispozitive"
 
 #. IDS_PRPCAT_DOCUMENT
-#: Merge.rc:5125
+#: Merge.rc:5159
 msgid "Document"
 msgstr "Document"
 
 #. IDS_PRPCAT_HOME
-#: Merge.rc:5126
+#: Merge.rc:5160
 msgid "Home"
 msgstr "Acasă"
 
 #. IDS_PRPCAT_JOURNAL
-#: Merge.rc:5128
+#: Merge.rc:5162
 msgid "Journal"
 msgstr "Jurnal"
 
 #. IDS_PRPCAT_LINK
-#: Merge.rc:5129
+#: Merge.rc:5163
 msgid "Link"
 msgstr "Legătură"
 
 #. IDS_PRPCAT_MEDIA
-#: Merge.rc:5130
+#: Merge.rc:5164
 msgid "Media"
 msgstr "Media"
 
 #. IDS_PRPCAT_MUSIC
-#: Merge.rc:5132
+#: Merge.rc:5166
 msgid "Music"
 msgstr "Muzică"
 
 #. IDS_PRPCAT_NOTE
-#: Merge.rc:5133
+#: Merge.rc:5167
 msgid "Note"
 msgstr "Notă"
 
 #. IDS_PRPCAT_PHOTO
-#: Merge.rc:5134
+#: Merge.rc:5168
 msgid "Photo"
 msgstr "Foto"
 
 #. IDS_PRPCAT_RECORDEDTV
-#: Merge.rc:5135
+#: Merge.rc:5169
 msgid "RecordedTV"
 msgstr "RecordedTV"
 
 #. IDS_PRPCAT_SEARCH
-#: Merge.rc:5136
+#: Merge.rc:5170
 msgid "Search"
 msgstr "Căutare"
 
 #. IDS_PRPCAT_SECURITY
-#: Merge.rc:5137
+#: Merge.rc:5171
 msgid "Security"
 msgstr "Securitate"
 
 #. IDS_PRPCAT_SOFTWARE
-#: Merge.rc:5138
+#: Merge.rc:5172
 msgid "Software"
 msgstr "Software"
 
 #. IDS_PRPCAT_TASK
-#: Merge.rc:5139
+#: Merge.rc:5173
 msgid "Task"
 msgstr "Sarcină"
 
 #. IDS_PRPCAT_VIDEO
-#: Merge.rc:5140
+#: Merge.rc:5174
 msgid "Video"
 msgstr "Video"
 
 #. IDS_PRPCAT_HASH
-#: Merge.rc:5141
+#: Merge.rc:5175
 msgid "Hash"
 msgstr "Hash"
 
 #. IDS_CANT_COMPARE_FILES
-#: Merge.rc:5147
+#: Merge.rc:5181
 msgid "Unable to compare files"
 msgstr "Imposibil de comparat fișierele"
 
 #. IDS_ABORTED_ITEM
-#: Merge.rc:5148
+#: Merge.rc:5182
 msgid "Item aborted"
 msgstr "Element întrerupt"
 
 #. IDS_FILE_SKIPPED
-#: Merge.rc:5149
+#: Merge.rc:5183
 msgid "File skipped"
 msgstr "Fișier omis"
 
 #. IDS_DIR_SKIPPED
-#: Merge.rc:5150
+#: Merge.rc:5184
 msgid "Folder skipped"
 msgstr "Director omis"
 
 #. IDS_LEFT_ONLY_IN_FMT
-#: Merge.rc:5151
+#: Merge.rc:5185
 #, c-format
 msgid "Left only: %1"
 msgstr "Numai stânga: %1"
 
 #. IDS_MIDDLE_ONLY_IN_FMT
-#: Merge.rc:5152
+#: Merge.rc:5186
 #, c-format
 msgid "Middle only: %1"
 msgstr "Numai mijloc: %1"
 
 #. IDS_RIGHT_ONLY_IN_FMT
-#: Merge.rc:5153
+#: Merge.rc:5187
 #, c-format
 msgid "Right only: %1"
 msgstr "Numai dreapta: %1"
 
 #. IDS_DOES_NOT_EXIST_IN_FMT
-#: Merge.rc:5154
+#: Merge.rc:5188
 #, c-format
 msgid "Does not exist in %1"
 msgstr "Nu există în %1"
 
 #. IDS_BIN_FILES_SAME
-#: Merge.rc:5155
+#: Merge.rc:5189
 msgid "Binary files are identical"
 msgstr "Fișierele binare sunt identice"
 
 #. IDS_BIN_FILES_DIFF
-#: Merge.rc:5161
+#: Merge.rc:5195
 msgid "Binary files are different"
 msgstr "Fișierele binare sunt diferite"
 
 #. IDS_FILES_ARE_DIFFERENT
-#: Merge.rc:5162
+#: Merge.rc:5196
 msgid "Files are different"
 msgstr "Fișierele sunt diferite"
 
 #. IDS_FOLDERS_ARE_DIFFERENT
-#: Merge.rc:5163
+#: Merge.rc:5197
 msgid "Folders are different"
 msgstr "Directoarele sunt diferite"
 
 #. IDS_LEFTONLY
-#: Merge.rc:5164
+#: Merge.rc:5198
 msgid "Left Only"
 msgstr "Numai stânga"
 
 #. IDS_RIGHTONLY
-#: Merge.rc:5165
+#: Merge.rc:5199
 msgid "Right Only"
 msgstr "Numai dreapta"
 
 #. IDS_MIDDLEONLY
-#: Merge.rc:5166
+#: Merge.rc:5200
 msgid "Middle Only"
 msgstr "Numai mijloc"
 
 #. IDS_NOITEMLEFT
-#: Merge.rc:5167
+#: Merge.rc:5201
 msgid "No item in left"
 msgstr "Niciun element în stânga"
 
 #. IDS_NOITEMRIGHT
-#: Merge.rc:5168
+#: Merge.rc:5202
 msgid "No item in right"
 msgstr "Niciun element în dreapta"
 
 #. IDS_NOITEMMIDDLE
-#: Merge.rc:5169
+#: Merge.rc:5203
 msgid "No item in middle"
 msgstr "Niciun element în mijloc"
 
 #. IDS_CMPRES_ERROR
-#: Merge.rc:5171
+#: Merge.rc:5205
 msgid "Error"
 msgstr "Eroare"
 
 #. IDS_TEXT_FILES_SAME
-#: Merge.rc:5172
+#: Merge.rc:5206
 msgid "Text files are identical"
 msgstr "Fișierele text sunt identice"
 
 #. IDS_LEFTONLY_DIFF
-#: Merge.rc:5173
+#: Merge.rc:5207
 msgid " (Middle and right are identical)"
 msgstr " (Mijlocul și stânga sunt identice)"
 
 #. IDS_MIDDLEONLY_DIFF
-#: Merge.rc:5174
+#: Merge.rc:5208
 msgid " (Left and right are identical)"
 msgstr " (Stânga și dreapta sunt identice)"
 
 #. IDS_RIGHTONLY_DIFF
-#: Merge.rc:5175
+#: Merge.rc:5209
 msgid " (Left and middle are identical)"
 msgstr " (Stânga și mijlocul sunt identice)"
 
 #. IDS_PATH_MISMATCH
-#: Merge.rc:5176
+#: Merge.rc:5210
 msgid " (paths differ)"
 msgstr ""
 
 #. IDS_TEXT_FILES_DIFF
-#: Merge.rc:5177
+#: Merge.rc:5211
 msgid "Text files are different"
 msgstr "Fișierele text sunt diferite"
 
 #. IDS_IMAGE_FILES_SAME
-#: Merge.rc:5178
+#: Merge.rc:5212
 msgid "Image files are identical"
 msgstr "Fișierele imagine sunt identice"
 
 #. IDS_IMAGE_FILES_DIFF
-#: Merge.rc:5179
+#: Merge.rc:5213
 msgid "Image files are different"
 msgstr "Fișierele imagine sunt diferite"
 
 #. IDS_EXPR_DIFF
-#: Merge.rc:5180
+#: Merge.rc:5214
 #, c-format
 msgid "Files are different (expr: %1)"
 msgstr ""
 
 #. IDS_HASH_GROUP
-#: Merge.rc:5181
+#: Merge.rc:5215
 #, c-format
 msgid "Group%d"
 msgstr "Grup%d"
 
 #. IDS_RENAME_MOVE_DETECTION_DISALBED
-#: Merge.rc:5182
+#: Merge.rc:5216
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
 msgstr ""
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME
-#: Merge.rc:5183
+#: Merge.rc:5217
 msgid "Detect renames"
 msgstr ""
 
 #. IDS_RENAME_MOVE_DETECTION_RENAME_MOVE
-#: Merge.rc:5184
+#: Merge.rc:5218
 msgid "Detect renames and moves"
 msgstr ""
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME
-#: Merge.rc:5185
+#: Merge.rc:5219
 msgid "Merge renames"
 msgstr ""
 
 #. IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE
-#: Merge.rc:5186
+#: Merge.rc:5220
 msgid "Merge renames and moves"
 msgstr ""
 
 #. IDS_RENAMED
-#: Merge.rc:5187
+#: Merge.rc:5221
 msgid "Renamed"
 msgstr ""
 
 #. IDS_RENAMED_MOVED
-#: Merge.rc:5189
+#: Merge.rc:5223
 msgid "Renamed/Moved"
 msgstr ""
 
 #. IDS_RENAMED_MOVED_ITEMS
-#: Merge.rc:5190
+#: Merge.rc:5224
 #, c-format
 msgid "(%1 items)"
 msgstr ""
 
 #. IDS_RENAMED_MOVED_RESULT
-#: Merge.rc:5191
+#: Merge.rc:5225
 #, c-format
 msgid "%1 (set %2): "
 msgstr ""
 
 #. IDS_SWITCH_FLAT_MODE
-#: Merge.rc:5192
+#: Merge.rc:5226
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
 msgstr ""
 
 #. IDS_ELAPSED_TIME
-#: Merge.rc:5198
+#: Merge.rc:5232
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Timp scurs: %ld ms"
 
 #. IDS_STATUS_SELITEM1
-#: Merge.rc:5199
+#: Merge.rc:5233
 msgid "1 item selected"
 msgstr "Un element selectat"
 
 #. IDS_STATUS_SELITEMS
-#: Merge.rc:5200
+#: Merge.rc:5234
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 elemente selectate"
 
 #. IDS_COLDESC_FILENAME
-#: Merge.rc:5206
+#: Merge.rc:5240
 msgid "Filename or folder name."
 msgstr "Nume de fișier sau director."
 
+#. IDS_COLDESC_LFILENAME
+#: Merge.rc:5241
+msgid "Left side filename or folder name."
+msgstr ""
+
+#. IDS_COLDESC_MFILENAME
+#: Merge.rc:5242
+msgid "Middle side filename or folder name."
+msgstr ""
+
+#. IDS_COLDESC_RFILENAME
+#: Merge.rc:5243
+msgid "Right side filename or folder name."
+msgstr ""
+
 #. IDS_COLDESC_DIR
-#: Merge.rc:5207
+#: Merge.rc:5244
 msgid "Subfolder name when subfolders are included."
 msgstr "Nume subdirector când subdirectoarele sunt incluse."
 
+#. IDS_COLDESC_LDIR
+#: Merge.rc:5245
+msgid "Folder path in the left pane."
+msgstr ""
+
+#. IDS_COLDESC_MDIR
+#: Merge.rc:5246
+msgid "Folder path in the middle pane."
+msgstr ""
+
+#. IDS_COLDESC_RDIR
+#: Merge.rc:5247
+msgid "Folder path in the right pane."
+msgstr ""
+
 #. IDS_COLDESC_RESULT
-#: Merge.rc:5208
+#: Merge.rc:5248
 msgid "Comparison result, long form."
 msgstr "Rezultate comparare, forma lungă."
 
 #. IDS_COLDESC_LTIMEM
-#: Merge.rc:5213
+#: Merge.rc:5253
 msgid "Left side modification date."
 msgstr "Data modificării părții stângi."
 
 #. IDS_COLDESC_RTIMEM
-#: Merge.rc:5214
+#: Merge.rc:5254
 msgid "Right side modification date."
 msgstr "Data modificării părții drepte."
 
 #. IDS_COLDESC_MTIMEM
-#: Merge.rc:5215
+#: Merge.rc:5255
 msgid "Middle side modification date."
 msgstr "Data modificării părții din mijloc."
 
 #. IDS_COLDESC_EXTENSION
-#: Merge.rc:5216
+#: Merge.rc:5256
 msgid "File's extension."
 msgstr "Extensia fișierului."
 
+#. IDS_COLDESC_LEXTENSION
+#: Merge.rc:5257
+msgid "File extension in the left pane."
+msgstr ""
+
+#. IDS_COLDESC_MEXTENSION
+#: Merge.rc:5258
+msgid "File extension in the middle pane."
+msgstr ""
+
+#. IDS_COLDESC_REXTENSION
+#: Merge.rc:5259
+msgid "File extension in the right pane."
+msgstr ""
+
 #. IDS_COLDESC_LSIZE
-#: Merge.rc:5217
+#: Merge.rc:5260
 msgid "Left file size in bytes."
 msgstr "Dimensiune fișier stânga în octeți."
 
 #. IDS_COLDESC_RSIZE
-#: Merge.rc:5218
+#: Merge.rc:5261
 msgid "Right file size in bytes."
 msgstr "Dimensiune fișier dreapta în octeți."
 
 #. IDS_COLDESC_MSIZE
-#: Merge.rc:5219
+#: Merge.rc:5262
 msgid "Middle file size in bytes."
 msgstr "Dimensiune fișier mijloc în octeți."
 
 #. IDS_COLDESC_LSIZE_SHORT
-#: Merge.rc:5220
+#: Merge.rc:5263
 msgid "Left file size abbreviated."
 msgstr "Dimensiune fișier stânga prescurtată."
 
 #. IDS_COLDESC_RSIZE_SHORT
-#: Merge.rc:5221
+#: Merge.rc:5264
 msgid "Right file size abbreviated."
 msgstr "Dimensiune fișier dreapta prescurtată."
 
 #. IDS_COLDESC_MSIZE_SHORT
-#: Merge.rc:5222
+#: Merge.rc:5265
 msgid "Middle file size abbreviated."
 msgstr "Dimensiune fișier mijloc prescurtată."
 
 #. IDS_COLDESC_LTIMEC
-#: Merge.rc:5228
+#: Merge.rc:5271
 msgid "Left side creation time."
 msgstr "Timp creare stânga."
 
 #. IDS_COLDESC_RTIMEC
-#: Merge.rc:5229
+#: Merge.rc:5272
 msgid "Right side creation time."
 msgstr "Timp creare dreapta."
 
 #. IDS_COLDESC_MTIMEC
-#: Merge.rc:5230
+#: Merge.rc:5273
 msgid "Middle side creation time."
 msgstr "Timp creare mijloc."
 
 #. IDS_COLDESC_NEWER
-#: Merge.rc:5231
+#: Merge.rc:5274
 msgid "Tells which side has newer modification date."
 msgstr "Raportează care parte are o dată a modificării mai recentă."
 
 #. IDS_COLDESC_LVERSION
-#: Merge.rc:5232
+#: Merge.rc:5275
 msgid "Left side file version, only for some file types."
 msgstr "Versiune fișier stânga, numai pentru unele tipuri de fișiere."
 
 #. IDS_COLDESC_RVERSION
-#: Merge.rc:5233
+#: Merge.rc:5276
 msgid "Right side file version, only for some file types."
 msgstr "Versiune fișier dreapta, numai pentru unele tipuri de fișiere."
 
 #. IDS_COLDESC_MVERSION
-#: Merge.rc:5238
+#: Merge.rc:5281
 msgid "Middle side file version, only for some file types."
 msgstr "Versiune fișier mijloc, numai pentru unele tipuri de fișiere."
 
 #. IDS_COLDESC_RESULT_ABBR
-#: Merge.rc:5239
+#: Merge.rc:5282
 msgid "Short comparison result."
 msgstr "Rezultat comparare pe scurt."
 
 #. IDS_COLDESC_LATTRIBUTES
-#: Merge.rc:5240
+#: Merge.rc:5283
 msgid "Left side attributes."
 msgstr "Atribute partea stângă."
 
 #. IDS_COLDESC_RATTRIBUTES
-#: Merge.rc:5241
+#: Merge.rc:5284
 msgid "Right side attributes."
 msgstr "Atribute partea dreaptă."
 
 #. IDS_COLDESC_MATTRIBUTES
-#: Merge.rc:5242
+#: Merge.rc:5285
 msgid "Middle side attributes."
 msgstr "Atribute mijloc."
 
 #. IDS_COLDESC_LEOL_TYPE
-#: Merge.rc:5243
+#: Merge.rc:5286
 msgid "Left side file EOL type."
 msgstr "Tip EOL fișier partea stângă."
 
 #. IDS_COLDESC_REOL_TYPE
-#: Merge.rc:5244
+#: Merge.rc:5287
 msgid "Right side file EOL type."
 msgstr "Tip EOL fișier partea dreaptă."
 
 #. IDS_COLDESC_MEOL_TYPE
-#: Merge.rc:5245
+#: Merge.rc:5288
 msgid "Middle side file EOL type."
 msgstr "Tip EOL fișier mijloc."
 
 #. IDS_COLDESC_LENCODING
-#: Merge.rc:5251
+#: Merge.rc:5294
 msgid "Left side encoding."
 msgstr "Set de caractere partea stângă."
 
 #. IDS_COLDESC_RENCODING
-#: Merge.rc:5252
+#: Merge.rc:5295
 msgid "Right side encoding."
 msgstr "Set de caractere partea dreaptă."
 
 #. IDS_COLDESC_MENCODING
-#: Merge.rc:5253
+#: Merge.rc:5296
 msgid "Middle side encoding."
 msgstr "Set de caractere mijloc."
 
 #. IDS_COLDESC_NIDIFFS
-#: Merge.rc:5254
+#: Merge.rc:5297
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr ""
 "Număr de diferențe ignorate în fișier. Aceste diferențe sunt ignorate de "
 "WinMerge și nu pot fi fuzionate."
 
 #. IDS_COLDESC_NSDIFFS
-#: Merge.rc:5255
+#: Merge.rc:5298
 msgid "Number of differences in file (excluding ignored)."
 msgstr ""
 "Număr de diferențe în fișier. Acest număr nu include diferențele ignorate."
 
 #. IDS_COLDESC_BINARY
-#: Merge.rc:5256
+#: Merge.rc:5299
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Afișează un asterisc (*) dacă fișierul este binar."
 
 #. IDS_COLDESC_UNPACKER
-#: Merge.rc:5257
+#: Merge.rc:5300
 msgid "Unpacker plugin name or pipeline."
 msgstr "Nume sau lanț plugin dezarhivator."
 
 #. IDS_COLDESC_PREDIFFER
-#: Merge.rc:5258
+#: Merge.rc:5301
 msgid "Prediffer plugin name or pipeline."
 msgstr "Nume sau lanț plugin prediferențiator."
 
 #. IDS_DIRECTORY_REPORT_TITLE
-#: Merge.rc:5264
+#: Merge.rc:5307
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Compară %1 cu %2"
 
 #. IDS_DIRECTORY_REPORT_TITLE3
-#: Merge.rc:5265
+#: Merge.rc:5308
 #, c-format
 msgid "Compare %1 with %2 and %3"
 msgstr "Compară %1 cu %2 și %3"
 
 #. IDS_REPORT_COMMALIST
-#: Merge.rc:5266
+#: Merge.rc:5309
 msgid "Comma-separated list"
 msgstr "Listă separată-prin-virgule"
 
 #. IDS_REPORT_TABLIST
-#: Merge.rc:5267
+#: Merge.rc:5310
 msgid "Tab-separated list"
 msgstr "Listă separată-prin-tab-uri"
 
 #. IDS_REPORT_SIMPLEHTML
-#: Merge.rc:5268
+#: Merge.rc:5311
 msgid "Simple HTML"
 msgstr "HTML simplu"
 
 #. IDS_REPORT_SIMPLEXML
-#: Merge.rc:5269
+#: Merge.rc:5312
 msgid "Simple XML"
 msgstr "XML simplu"
 
-#: Merge.rc:5271
+#: Merge.rc:5314
 msgid "Report file already exists. Overwrite?"
 msgstr "Fișierul raport există deja. Doriți să suprascrieți fișierul existent?"
 
 #. IDS_REPORT_ERROR
-#: Merge.rc:5276
+#: Merge.rc:5319
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -7341,53 +7501,57 @@ msgstr ""
 "Eroare la creare raport:\n"
 "%1"
 
+#: Merge.rc:5321
+msgid "Failed to copy to clipboard."
+msgstr ""
+
 #. IDS_REPORT_SUCCESS
-#: Merge.rc:5277
+#: Merge.rc:5322
 msgid "Report created successfully."
 msgstr "Raportul a fost creat cu succes."
 
 #. IDS_SYNCPOINT_LASTBLOCK
-#: Merge.rc:5283
+#: Merge.rc:5328
 msgid "Cannot add a synchronization point at this line."
 msgstr "Nu se poate adăuga un punct de sincronizare la acest rând."
 
 #. IDS_FILE_TO_ITSELF
-#: Merge.rc:5289
+#: Merge.rc:5334
 msgid "Same file is opened in both panes."
 msgstr "Același fișier este deschis în ambele panouri."
 
 #. IDS_FILESSAME
-#: Merge.rc:5290
+#: Merge.rc:5335
 msgid "Selected files are identical."
 msgstr "Fișierele selectate sunt identice."
 
 #. IDS_FILESSAME_CURCFG
-#: Merge.rc:5291
+#: Merge.rc:5336
 msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
 msgstr ""
 
 #. IDS_FILESSAME_BINERROR
-#: Merge.rc:5292
+#: Merge.rc:5337
 msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
 msgstr ""
 
 #. IDS_FILESSAME_BINSAME
-#: Merge.rc:5293
+#: Merge.rc:5338
 msgid "Selected files are identical (binary match)."
 msgstr ""
 
 #. IDS_FILESSAME_BINDIFF
-#: Merge.rc:5294
+#: Merge.rc:5339
 msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
 msgstr ""
 
 #. IDS_FILEERROR
-#: Merge.rc:5295
+#: Merge.rc:5340
 msgid "An error occurred while comparing files."
 msgstr "A fost întâlnită o eroare în timpul comparării fișierelor."
 
 #. IDS_TEMP_FILEERROR
-#: Merge.rc:5296
+#: Merge.rc:5341
 msgid ""
 "Could not create temporary files. Check your temporary path settings."
 msgstr ""
@@ -7395,7 +7559,7 @@ msgstr ""
 "locația temporară."
 
 #. IDS_SUGGEST_IGNOREEOL
-#: Merge.rc:5297
+#: Merge.rc:5342
 msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "Aceste fișiere folosesc caractere de sfârșit de rând (EOL) diferite.\n"
@@ -7409,17 +7573,17 @@ msgstr ""
 "opțiuni (disponibilă sub meniul Editare/Opțiuni)."
 
 #. IDS_INVALID_DIRECTORY
-#: Merge.rc:5298
+#: Merge.rc:5343
 msgid "Selected folder is invalid."
 msgstr "Directorul selectat este invalid."
 
 #. IDS_CANNOT_OPEN_BINARYFILE
-#: Merge.rc:5299
+#: Merge.rc:5344
 msgid "Cannot open a binary file in Editor."
 msgstr "Nu se poate deschide în editor un fișier binar."
 
 #. IDS_CREATE_PAIR_FOLDER
-#: Merge.rc:5300
+#: Merge.rc:5345
 #, c-format
 msgid "Create matching folder:\n%1\non the other side and open?"
 msgstr ""
@@ -7430,42 +7594,42 @@ msgstr ""
 "în partea cealaltă și să deschideți ambele directoare?"
 
 #. IDS_CONFIRM_COPY_ALL_DIFFS
-#: Merge.rc:5301
+#: Merge.rc:5346
 msgid "Copy all differences to other file?"
 msgstr ""
 "Sunteți sigur că doriți să copiați toate diferențele în celelalt fișier?"
 
 #. IDS_MOVE_TO_NEXTFILE
-#: Merge.rc:5306
+#: Merge.rc:5351
 msgid "Move to next file?"
 msgstr "Doriți să treceți la fișierul următor?"
 
 #. IDS_MOVE_TO_PREVFILE
-#: Merge.rc:5307
+#: Merge.rc:5352
 msgid "Move to previous file?"
 msgstr "Doriți să treceți la fișierul precedent?"
 
 #. IDS_MOVE_TO_NEXTPAGE
-#: Merge.rc:5308
+#: Merge.rc:5353
 msgid "Move to next page?"
 msgstr "Doriți să treceți la pagina următoare?"
 
 #. IDS_MOVE_TO_PREVPAGE
-#: Merge.rc:5309
+#: Merge.rc:5354
 msgid "Move to previous page?"
 msgstr "Doriți să treceți la pagina precedentă?"
 
 #. IDS_MOVE_TO_FIRSTFILE
-#: Merge.rc:5310
+#: Merge.rc:5355
 msgid "Move to first file?"
 msgstr "Doriți să treceți la primul fișier?"
 
 #. IDS_MOVE_TO_LASTFILE
-#: Merge.rc:5311
+#: Merge.rc:5356
 msgid "Move to last file?"
 msgstr "Doriți să treceți la ultimul fișier?"
 
-#: Merge.rc:5318
+#: Merge.rc:5363
 #, c-format
 msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
 msgstr ""
@@ -7476,152 +7640,152 @@ msgstr ""
 "Doriți tratarea ambelor fișiere ca și cum ar fi în pagina de codare "
 "implicită din Windows (recomandat)?"
 
-#: Merge.rc:5320
+#: Merge.rc:5365
 msgid "Information lost due to encoding errors: both files"
 msgstr "Pierdere de informație datorită erorilor de codificare: ambele fișiere"
 
-#: Merge.rc:5322
+#: Merge.rc:5367
 msgid "Information lost due to encoding errors: first file"
 msgstr "Pierdere de informație datorită erorilor de codificare: fișierul 1"
 
-#: Merge.rc:5324
+#: Merge.rc:5369
 msgid "Information lost due to encoding errors: second file"
 msgstr "Pierdere de informație datorită erorilor de codificare: fișierul 2"
 
-#: Merge.rc:5326
+#: Merge.rc:5371
 msgid "Information lost due to encoding errors: third file"
 msgstr "Pierdere de informație datorită erorilor de codificare: fișierul 3"
 
 #. IDS_LINEDIFF_NODIFF
-#: Merge.rc:5332
+#: Merge.rc:5377
 msgid "No difference"
 msgstr "Nicio diferență"
 
 #. IDS_LINEDIFF_NODIFF_CAPTION
-#: Merge.rc:5333
+#: Merge.rc:5378
 msgid "Line difference"
 msgstr "Diferență din rând"
 
 #. IDS_NUM_REPLACED
-#: Merge.rc:5339
+#: Merge.rc:5384
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "S-a(u) înlocuit %1 șir(uri)."
 
 #. IDS_EDIT_TEXT_NOT_FOUND
-#: Merge.rc:5340
+#: Merge.rc:5385
 #, c-format
 msgid "Cannot find string \"%s\"."
 msgstr "Nu s-a găsit șirul \"%s\"."
 
 #. IDS_MERGE_MODE
-#: Merge.rc:5346
+#: Merge.rc:5391
 msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr ""
 "Intrați acum în modul fuziune. Dacă doriți să ieșiți din modul fuziune, "
 "apăsați tasta F9."
 
 #. IDS_AUTO_MERGE
-#: Merge.rc:5352
+#: Merge.rc:5397
 #, c-format
 msgid "Automatic merge completed.\n\n%1\n\nAutomatic merges: %2\nUnresolved conflicts: %3"
 msgstr ""
 
 #. IDS_MERGE_SESSION_STARTED
-#: Merge.rc:5353
+#: Merge.rc:5398
 msgid "Merge session started."
 msgstr ""
 
 #. IDS_PANE_ROLES
-#: Merge.rc:5354
+#: Merge.rc:5399
 #, c-format
 msgid "Pane roles: Left=%1, Middle=%2, Right=%3"
 msgstr ""
 
 #. IDS_CODEPAGE_MERGED
-#: Merge.rc:5355
+#: Merge.rc:5400
 msgid "Codepage change merged."
 msgstr "Modificarea paginii de codare a fost fuzionată."
 
 #. IDS_CODEPAGE_CONFLICT
-#: Merge.rc:5356
+#: Merge.rc:5401
 msgid "Codepage changes are conflicting."
 msgstr "Modificările paginii de codare sunt în conflict."
 
 #. IDS_EOL_MERGED
-#: Merge.rc:5357
+#: Merge.rc:5402
 msgid "EOL change merged."
 msgstr "Modificarea EOL a fost fuzionată."
 
 #. IDS_EOL_CONFLICT
-#: Merge.rc:5358
+#: Merge.rc:5403
 msgid "EOL changes are conflicting."
 msgstr "Modificările EOL sunt în conflict."
 
 #. IDS_LOCBAR_CAPTION
-#: Merge.rc:5364
+#: Merge.rc:5409
 msgid "Location Pane"
 msgstr "Panou locație"
 
 #. IDS_DIFFBAR_CAPTION
-#: Merge.rc:5365
+#: Merge.rc:5410
 msgid "Diff Pane"
 msgstr "Panou diferențe"
 
 #. IDS_DIFF_SUCCEEDED
-#: Merge.rc:5372
+#: Merge.rc:5417
 msgid "Patch file written."
 msgstr "Fișierul petic a fost scris cu succes."
 
 #. IDS_DIFF_FILEOVERWRITE
-#: Merge.rc:5373
+#: Merge.rc:5418
 msgid "Patch file already exists. Overwrite?"
 msgstr "Fișierul petic deja există. Doriți suprascrierea lui?"
 
 #. IDS_DIFF_SELECTEDFILES
-#: Merge.rc:5374
+#: Merge.rc:5419
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 fișier(e) selectat(e)]"
 
 #. IDS_DIFF_NORMAL
-#: Merge.rc:5375
+#: Merge.rc:5420
 msgid "Normal"
 msgstr "Normal"
 
 #. IDS_DIFF_CONTEXT
-#: Merge.rc:5376
+#: Merge.rc:5421
 msgid "Context"
 msgstr "Context"
 
 #. IDS_DIFF_UNIFIED
-#: Merge.rc:5377
+#: Merge.rc:5422
 msgid "Unified"
 msgstr "Unificat"
 
 #. IDS_FILEWRITE_ERROR
-#: Merge.rc:5379
+#: Merge.rc:5424
 #, c-format
 msgid "Could not write to file %1."
 msgstr "Nu s-a reușit scrierea în fișierul %1."
 
 #. IDS_PATH_NOT_ABSOLUTE
-#: Merge.rc:5380
+#: Merge.rc:5425
 #, c-format
 msgid "Output path is not absolute: %1"
 msgstr "Calea destinație specificată nu este o cale absolută: %1"
 
 #. IDS_MUST_SPECIFY_OUTPUT
-#: Merge.rc:5381
+#: Merge.rc:5426
 msgid "Specify an output file."
 msgstr "Specificați un fișier destinație."
 
-#: Merge.rc:5383
+#: Merge.rc:5428
 msgid "Cannot create patch from binary files."
 msgstr "Nu s-a reușit crearea unui fișier petic din fișiere binare."
 
 #. IDS_SAVEFILES_FORPATCH
-#: Merge.rc:5384
+#: Merge.rc:5429
 msgid ""
 "Save all files first.\n"
 "\n"
@@ -7632,22 +7796,27 @@ msgstr ""
 "Crearea unui petic necesită ca fișierele să nu aibă modificări nesalvate."
 
 #. IDS_FOLDER_NOTEXIST
-#: Merge.rc:5385
+#: Merge.rc:5430
 msgid "Folder does not exist."
 msgstr "Directorul nu există."
 
 #. IDS_ARCHIVE_SUCCEEDED
-#: Merge.rc:5391
+#: Merge.rc:5436
 msgid "Archive file written."
 msgstr ""
 
 #. IDS_ARCHIVE_SAVEFILES
-#: Merge.rc:5392
+#: Merge.rc:5437
 msgid "Save all files first.\n\nCreating an archive requires no unsaved changes."
 msgstr ""
 
+#. IDS_ARCHIVE_NO_FILES
+#: Merge.rc:5438
+msgid "No files are available for packaging."
+msgstr ""
+
 #. IDS_NO_ZIP_SUPPORT
-#: Merge.rc:5397
+#: Merge.rc:5443
 msgid "Archive support not enabled.\n7-Zip and/or Merge7z*.dll not found.\nSee manual for archive support."
 msgstr ""
 "Suportul de dezarhivare nu este activat.\n"
@@ -7657,37 +7826,37 @@ msgstr ""
 "și despre cum să-l activați."
 
 #. IDS_OPT_EXPORT_CAPTION
-#: Merge.rc:5398
+#: Merge.rc:5444
 msgid "Select file for export"
 msgstr "Selectați fișierul pentru export"
 
 #. IDS_OPT_IMPORT_CAPTION
-#: Merge.rc:5399
+#: Merge.rc:5445
 msgid "Select file for import"
 msgstr "Selectați fișierul pentru import"
 
 #. IDS_OPT_IMPORT_DONE
-#: Merge.rc:5400
+#: Merge.rc:5446
 msgid "Options imported from file."
 msgstr "Opțiuni importate din fișier."
 
 #. IDS_OPT_EXPORT_DONE
-#: Merge.rc:5401
+#: Merge.rc:5447
 msgid "Options exported to file."
 msgstr "Opțiuni exportate către fișier."
 
 #. IDS_OPT_IMPORT_ERR
-#: Merge.rc:5402
+#: Merge.rc:5448
 msgid "Failed to import options from file."
 msgstr "A eșuat importul opțiunilor din fișier."
 
 #. IDS_OPT_EXPORT_ERR
-#: Merge.rc:5403
+#: Merge.rc:5449
 msgid "Failed to write options to file."
 msgstr "A eșuat scrierea opțiunilor către fișier."
 
 #. IDS_CLOSEALL_WINDOWS
-#: Merge.rc:5404
+#: Merge.rc:5450
 msgid ""
 "Close multiple compare windows?\n"
 "\n"
@@ -7698,34 +7867,34 @@ msgstr ""
 "Doriți să continuați?"
 
 #. IDS_EOL_BIN
-#: Merge.rc:5414
+#: Merge.rc:5460
 msgctxt "EOL Type"
 msgid "Binary"
 msgstr "Binar"
 
 #. IDS_MARKER_COLOR_FMT
-#: Merge.rc:5419
+#: Merge.rc:5465
 #, c-format
 msgid "Marker Color %d"
 msgstr "Culoare marcator %d"
 
 #. IDS_MARKER_NEW_PATTERN
-#: Merge.rc:5420
+#: Merge.rc:5466
 msgid "New Pattern"
 msgstr "Model nou"
 
 #. IDS_PLUGINSLIST_TYPE
-#: Merge.rc:5426
+#: Merge.rc:5472
 msgid "Type"
 msgstr "Tip"
 
 #. IDS_PLUGINS_TYPE_EDITSCRIPT
-#: Merge.rc:5430
+#: Merge.rc:5476
 msgid "Editor script"
 msgstr "Script editor"
 
 #. ID_SELECTLINEDIFF
-#: Merge.rc:5436
+#: Merge.rc:5482
 msgid ""
 "\n"
 "Difference in Current Line (F4)"
@@ -7734,7 +7903,7 @@ msgstr ""
 "Diferențe în rândul curent (F4)"
 
 #. ID_OPTIONS
-#: Merge.rc:5437
+#: Merge.rc:5483
 msgid ""
 "\n"
 "Options"
@@ -7743,7 +7912,7 @@ msgstr ""
 "Opțiuni"
 
 #. ID_REFRESH
-#: Merge.rc:5438
+#: Merge.rc:5484
 msgid ""
 "\n"
 "Refresh (F5)"
@@ -7752,7 +7921,7 @@ msgstr ""
 "Reîmprospătare (F5)"
 
 #. ID_PREVDIFF
-#: Merge.rc:5444
+#: Merge.rc:5490
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)"
@@ -7761,7 +7930,7 @@ msgstr ""
 "Diferența precedentă (Alt+Up)"
 
 #. ID_NEXTDIFF
-#: Merge.rc:5445
+#: Merge.rc:5491
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
@@ -7770,7 +7939,7 @@ msgstr ""
 "Diferența următoare (Alt+Down)"
 
 #. ID_PREVCONFLICT
-#: Merge.rc:5446
+#: Merge.rc:5492
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
@@ -7779,7 +7948,7 @@ msgstr ""
 "Conflictul precedent (Alt+Shift+Up)"
 
 #. ID_NEXTCONFLICT
-#: Merge.rc:5447
+#: Merge.rc:5493
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
@@ -7788,7 +7957,7 @@ msgstr ""
 "Conflictul următor (Alt+Shift+Down)"
 
 #. ID_FIRSTDIFF
-#: Merge.rc:5452
+#: Merge.rc:5498
 msgid ""
 "\n"
 "First Difference (Alt+Home)"
@@ -7797,7 +7966,7 @@ msgstr ""
 "Prima diferență (Alt+Home)"
 
 #. ID_CURDIFF
-#: Merge.rc:5453
+#: Merge.rc:5499
 msgid ""
 "\n"
 "Current Difference (Alt+Enter)"
@@ -7806,7 +7975,7 @@ msgstr ""
 "Diferența curentă (Alt+Enter)"
 
 #. ID_LASTDIFF
-#: Merge.rc:5454
+#: Merge.rc:5500
 msgid ""
 "\n"
 "Last Difference (Alt+End)"
@@ -7815,7 +7984,7 @@ msgstr ""
 "Ultima diferență (Alt+End)"
 
 #. ID_L2R
-#: Merge.rc:5455
+#: Merge.rc:5501
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)"
@@ -7824,7 +7993,7 @@ msgstr ""
 "Copiază în dreapta (Alt+Right)"
 
 #. ID_R2L
-#: Merge.rc:5456
+#: Merge.rc:5502
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)"
@@ -7833,7 +8002,7 @@ msgstr ""
 "Copiază în stânga (Alt+Right)"
 
 #. ID_L2RNEXT
-#: Merge.rc:5457
+#: Merge.rc:5503
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)"
@@ -7842,7 +8011,7 @@ msgstr ""
 "Copiază în dreapta și avansează (Ctrl+Alt+Right)"
 
 #. ID_R2LNEXT
-#: Merge.rc:5458
+#: Merge.rc:5504
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)"
@@ -7851,7 +8020,7 @@ msgstr ""
 "Copiază în stânga și avansează (Ctrl+Alt+Left)"
 
 #. ID_ALL_RIGHT
-#: Merge.rc:5459
+#: Merge.rc:5505
 msgid ""
 "\n"
 "Copy All to Right"
@@ -7860,7 +8029,7 @@ msgstr ""
 "Copiază tot la dreapta"
 
 #. ID_ALL_LEFT
-#: Merge.rc:5460
+#: Merge.rc:5506
 msgid ""
 "\n"
 "Copy All to Left"
@@ -7869,7 +8038,7 @@ msgstr ""
 "Copiază tot la stânga"
 
 #. ID_AUTO_MERGE
-#: Merge.rc:5461
+#: Merge.rc:5507
 msgid ""
 "\n"
 "Auto Merge (Ctrl+Alt+M)"
@@ -7878,7 +8047,7 @@ msgstr ""
 "Fuzionează automat (Ctrl+Alt+M)"
 
 #. ID_FIRSTFILE
-#: Merge.rc:5462
+#: Merge.rc:5508
 msgid ""
 "\n"
 "First File"
@@ -7887,7 +8056,7 @@ msgstr ""
 "Primul fișier"
 
 #. ID_NEXTFILE
-#: Merge.rc:5463
+#: Merge.rc:5509
 msgid ""
 "\n"
 "Next File (Ctrl+F8)"
@@ -7896,7 +8065,7 @@ msgstr ""
 "Fișierul următor (Ctrl+F8)"
 
 #. ID_LASTFILE
-#: Merge.rc:5464
+#: Merge.rc:5510
 msgid ""
 "\n"
 "Last File"
@@ -7905,7 +8074,7 @@ msgstr ""
 "Ultimul fișier"
 
 #. ID_PREVFILE
-#: Merge.rc:5465
+#: Merge.rc:5511
 msgid ""
 "\n"
 "Previous File (Ctrl+F7)"
@@ -7914,213 +8083,223 @@ msgstr ""
 "Fișierul precedent (Ctrl+F7)"
 
 #. IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE
-#: Merge.rc:5470
+#: Merge.rc:5516
 #, c-format
 msgid "The merge is not finished: %1 difference(s) have not been resolved.\n\nAbandon the merge and close without saving the result?"
 msgstr ""
 
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
-#: Merge.rc:5471
+#: Merge.rc:5517
 msgid "The merge result has not been saved.\n\nSave the merge result?"
 msgstr ""
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
-#: Merge.rc:5472
+#: Merge.rc:5518
 #, c-format
 msgid "Saving the merge result to\n%1\nfailed.\n%2"
 msgstr ""
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
-#: Merge.rc:5473
+#: Merge.rc:5519
 #, c-format
 msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
 msgstr ""
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
-#: Merge.rc:5474
+#: Merge.rc:5520
 msgid "Comparison settings changed. They will take effect after the merge session ends."
 msgstr ""
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
-#: Merge.rc:5475
+#: Merge.rc:5521
 msgid "<Merge Conflict (Whitespace only)>"
 msgstr ""
 
 #. IDS_MERGE_RESULT_CONFLICT
-#: Merge.rc:5476
+#: Merge.rc:5522
 msgid "<Merge Conflict>"
 msgstr ""
 
 #. IDS_MERGE_RESULT_UNRESOLVED
-#: Merge.rc:5477
+#: Merge.rc:5523
 msgid "<Unresolved Difference>"
 msgstr ""
 
 #. IDS_MERGE_RESULT_NOLINES
-#: Merge.rc:5478
+#: Merge.rc:5524
 msgid "<No Lines>"
 msgstr ""
 
+#. IDS_MERGE_RESULT_UNTITLED
+#: Merge.rc:5525
+msgid "<Untitled>"
+msgstr ""
+
 #. IDS_MERGE_RESULT_SAVE_AS
-#: Merge.rc:5479
+#: Merge.rc:5526
 msgid "Save Merge Result As"
 msgstr ""
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
-#: Merge.rc:5480
+#: Merge.rc:5527
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
 msgstr ""
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
-#: Merge.rc:5481
+#: Merge.rc:5528
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
 msgstr ""
 
 #. IDS_UNPACK_AUTO
-#: Merge.rc:5487
+#: Merge.rc:5534
 msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr ""
 "Dezarhivatorul potrivit este aplicat la ambele fișiere (este suficient ca "
 "doar un fișier să conțină extensie)."
 
 #. IDS_NO_PREDIFFER
-#: Merge.rc:5488
+#: Merge.rc:5535
 msgid "No Prediffer (Normal)"
 msgstr "Nu folosi prediferențiatorul (normal)"
 
 #. IDS_SUGGESTED_PLUGINS
-#: Merge.rc:5489
+#: Merge.rc:5536
 msgid "Suggested Plugins"
 msgstr "Plugin-uri sugerate"
 
 #. IDS_NOT_SUGGESTED_PLUGINS
-#: Merge.rc:5490
+#: Merge.rc:5537
 msgid "All Plugins"
 msgstr "Toate plugin-urile"
 
 #. IDS_PRIVATEBUILD_FMT
-#: Merge.rc:5496
+#: Merge.rc:5543
 #, c-format
 msgid "Private Build: %1"
 msgstr "Număr de asamblare privat: %1"
 
 #. IDS_ALLRIGHTS_RESERVED
-#: Merge.rc:5497
+#: Merge.rc:5544
 msgid " - All rights reserved."
 msgstr ""
 
 #. IDS_TITLE_PLUGINS_SETTINGS
-#: Merge.rc:5503
+#: Merge.rc:5550
 msgid "Plugin Settings"
 msgstr "Setări pentru plugin-uri"
 
 #. IDS_NO_SCT_SCRIPTS
-#: Merge.rc:5505
+#: Merge.rc:5552
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nu s-a găsit WSH - scripturile .sct sunt dezactivate"
 
 #. IDS_LOCBAR_GOTOLINE_FMT
-#: Merge.rc:5513
+#: Merge.rc:5560
 #, c-format
 msgid "G&o to Line %1"
 msgstr "&Mergi la rândul %1"
 
 #. IDS_GOTO_MOVED_LINE
-#: Merge.rc:5519
+#: Merge.rc:5566
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Mergi la rândul mutat\tCtrl+Shift+G"
 
 #. IDS_AUTOCOMPLETE_DISABLED
-#: Merge.rc:5525
+#: Merge.rc:5572
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
 msgstr ""
 
 #. IDS_AUTOCOMPLETE_FILE_SYS
-#: Merge.rc:5526
+#: Merge.rc:5573
 msgid "From file system"
 msgstr "Din sistemul de fișiere"
 
 #. IDS_AUTOCOMPLETE_MRU
-#: Merge.rc:5527
+#: Merge.rc:5574
 msgid "From Most Recently Used list"
 msgstr "Din lista de recent utilizate"
 
 #. IDS_COLORSCHEME_PLAIN
-#: Merge.rc:5533
+#: Merge.rc:5580
 msgid "No Highlighting"
 msgstr "Fără evidențiere"
 
 #. IDS_COLORSCHEME_PO
-#: Merge.rc:5568
+#: Merge.rc:5615
 msgid "Portable Object"
 msgstr "Portable Object"
 
 #. IDS_COLORSCHEME_RSRC
-#: Merge.rc:5573
+#: Merge.rc:5620
 msgid "Resources"
 msgstr "Resurse"
 
+#. IDS_COLORSCHEME_RTF
+#: Merge.rc:5621
+msgid "Rich Text Format"
+msgstr ""
+
 #. IDS_COLORSCHEME_SH
-#: Merge.rc:5577
+#: Merge.rc:5625
 msgid "Shell"
 msgstr "Shell"
 
 #. IDS_CLOSE_LEFT_TABS
-#: Merge.rc:5598
+#: Merge.rc:5646
 msgid "Close &Left Tabs"
 msgstr "Închide filele din stânga"
 
 #. IDS_CLOSE_RIGHT_TABS
-#: Merge.rc:5599
+#: Merge.rc:5647
 msgid "Close R&ight Tabs"
 msgstr "Închide filele din dreapta"
 
 #. IDS_CLOSE_OTHER_TABS
-#: Merge.rc:5600
+#: Merge.rc:5648
 msgid "Close &Other Tabs"
 msgstr "Închide celelalte file"
 
 #. IDS_TABBAR_AUTO_MAXWIDTH
-#: Merge.rc:5601
+#: Merge.rc:5649
 msgid "Enable &Auto Max Width"
 msgstr "Activează mărime maximă &automatp"
 
 #. IDS_MERGERESULT_MENU
-#: Merge.rc:5606
+#: Merge.rc:5654
 msgid "Merge &Result"
 msgstr ""
 
 #. IDS_WEBPAGE_MENU
-#: Merge.rc:5616
+#: Merge.rc:5664
 msgid "We&bpage"
 msgstr "Pagină &web"
 
 #. IDS_VIEW_WRAP_TEXT
-#: Merge.rc:5621
+#: Merge.rc:5669
 msgid "W&rap Text"
 msgstr "Înfășoa&ră textul"
 
 #. IDS_NOTINSTALLED
-#: Merge.rc:5626
+#: Merge.rc:5674
 msgid "%1 is not installed."
 msgstr "%1 nu este instalat."
 
 #. IDS_CREATE_FOLDER
-#: Merge.rc:5631
+#: Merge.rc:5679
 #, c-format
 msgid "%1 does not exist. Create it?"
 msgstr "%1 nu există. Doriți să-l creați?"
 
 #. IDS_CREATE_FOLDER_ERROR
-#: Merge.rc:5632
+#: Merge.rc:5680
 msgid "Failed to create folder."
 msgstr "Eroare creare director."
 
 #. IDC_EXT_EDITOR_PATH
-#: Merge.rc:5637
+#: Merge.rc:5685
 msgid ""
 "Parameters:\n"
 "$file: Current file path\n"
@@ -8131,933 +8310,962 @@ msgstr ""
 "$linenum: Numărul rândului unde se află cursorul"
 
 #. IDS_DIFF_ALGORITHM_DEFAULT
-#: Merge.rc:5642
+#: Merge.rc:5690
 msgid "default"
 msgstr "implicit"
 
 #. IDS_DIFF_ALGORITHM_MINIMAL
-#: Merge.rc:5643
+#: Merge.rc:5691
 msgid "minimal"
 msgstr "minimal"
 
 #. IDS_DIFF_ALGORITHM_PATIENCE
-#: Merge.rc:5644
+#: Merge.rc:5692
 msgid "patience"
 msgstr "patience"
 
 #. IDS_DIFF_ALGORITHM_HISTOGRAM
-#: Merge.rc:5645
+#: Merge.rc:5693
 msgid "histogram"
 msgstr "histogram"
 
 #. IDS_DIFF_ALGORITHM_NONE
-#: Merge.rc:5646
+#: Merge.rc:5694
 msgid "none"
 msgstr "niciunul"
 
 #. IDS_RENDERING_MODE_GDI
-#: Merge.rc:5651
+#: Merge.rc:5699
 msgid "GDI"
 msgstr "GDI"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_DEFAULT
-#: Merge.rc:5652
+#: Merge.rc:5700
 msgid "DirectWrite Default"
 msgstr "DirectWrite implicit"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_ALIASED
-#: Merge.rc:5653
+#: Merge.rc:5701
 msgid "DirectWrite Aliased"
 msgstr "DirectWrite aliasat"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_CLASSIC
-#: Merge.rc:5654
+#: Merge.rc:5702
 msgid "DirectWrite GDI Classic"
 msgstr "DirectWrite GDI clasic"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_GDI_NATURAL
-#: Merge.rc:5655
+#: Merge.rc:5703
 msgid "DirectWrite GDI Natural"
 msgstr "DirectWrite GDI natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL
-#: Merge.rc:5656
+#: Merge.rc:5704
 msgid "DirectWrite Natural"
 msgstr "DirectWrite natural"
 
 #. IDS_RENDERING_MODE_DIRECTWRITE_NATURAL_SYMMETRIC
-#: Merge.rc:5657
+#: Merge.rc:5705
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite natural simetric"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_DISABLED
-#: Merge.rc:5662
+#: Merge.rc:5710
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
 msgstr ""
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_1
-#: Merge.rc:5663
+#: Merge.rc:5711
 msgid "MDI child window or main window"
 msgstr "Fereastră copil MDI sau fereastră principală"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_2
-#: Merge.rc:5664
+#: Merge.rc:5712
 msgid "MDI child window only"
 msgstr "Doar fereastră copil MDI"
 
 #. IDS_CLOSE_WINDOWS_WITH_ESC_3
-#: Merge.rc:5665
+#: Merge.rc:5713
 msgid "Close main window if only one MDI child window"
 msgstr "Închide fereastra principală dacă există doar o fereastră copil MDI"
 
 #. IDS_DIFF_GROUP
-#: Merge.rc:5670
+#: Merge.rc:5718
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Diferență"
 
 #. IDS_DIFF_HIGHLIGHT
-#: Merge.rc:5671
+#: Merge.rc:5719
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
 msgstr "Evidențiere"
 
 #. IDS_DIFF_BLINK
-#: Merge.rc:5672
+#: Merge.rc:5720
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
 msgstr "Clipire"
 
 #. IDS_DIFF_BLOCKSIZE
-#: Merge.rc:5673
+#: Merge.rc:5721
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
 msgstr "Mărime bloc"
 
 #. IDS_DIFF_BLOCKALPHA
-#: Merge.rc:5674
+#: Merge.rc:5722
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
 msgstr "Alpha bloc"
 
 #. IDS_DIFF_CDTHRESHOLD
-#: Merge.rc:5675
+#: Merge.rc:5723
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
 msgstr "Prag CD"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION
-#: Merge.rc:5676
+#: Merge.rc:5724
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
 msgstr "Detectare taste Ins/Del"
 
 #. IDS_OVERLAY_MODE_NONE
-#: Merge.rc:5677 Merge.rc:5682
+#: Merge.rc:5725 Merge.rc:5730
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
 msgstr "Nimic"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_VERTICAL
-#: Merge.rc:5678
+#: Merge.rc:5726
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
 msgstr "Vertical"
 
 #. IDS_DIFF_INSERTION_DELETION_DETECTION_HORIZONTAL
-#: Merge.rc:5679
+#: Merge.rc:5727
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
 msgstr "Horizontal"
 
 #. IDS_OVERLAY_GROUP
-#: Merge.rc:5680
+#: Merge.rc:5728
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
 msgstr "Suprapunere"
 
 #. IDS_OVERLAY_ALPHA
-#: Merge.rc:5681
+#: Merge.rc:5729
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
 msgstr "Alpha"
 
 #. IDS_OVERLAY_MODE_XOR
-#: Merge.rc:5683
+#: Merge.rc:5731
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
 msgstr "XOR"
 
 #. IDS_OVERLAY_MODE_ALPHA
-#: Merge.rc:5684
+#: Merge.rc:5732
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
 msgstr "Amestec Alpha"
 
 #. IDS_OVERLAY_MODE_ALPHA_ANIMATION
-#: Merge.rc:5685
+#: Merge.rc:5733
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
 msgstr "Animație Alpha"
 
 #. IDS_ZOOM
-#: Merge.rc:5686
+#: Merge.rc:5734
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
 msgstr "Mărire"
 
 #. IDS_PAGE
-#: Merge.rc:5687
+#: Merge.rc:5735
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
 msgstr "Pagina:"
 
 #. IDS_IMGCMP_STATUS_PT_RGBA_FMT
-#: Merge.rc:5688
+#: Merge.rc:5736
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #. IDS_IMGCMP_STATUS_DIST1_FMT
-#: Merge.rc:5689
+#: Merge.rc:5737
 #, c-format
 msgid "Dist: %g  "
 msgstr "Dist: %g  "
 
 #. IDS_IMGCMP_STATUS_DIST2_FMT
-#: Merge.rc:5690
+#: Merge.rc:5738
 #, c-format
 msgid "Dist: %g, %g  "
 msgstr "Dist: %g, %g  "
 
 #. IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT
-#: Merge.rc:5691
+#: Merge.rc:5739
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr "Pagină: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 
 #. IDS_IMGCMP_STATUS_RC_FMT
-#: Merge.rc:5692
+#: Merge.rc:5740
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
 
 #. IDS_IMGCMP_STATUS_FLIPPED_FMT
-#: Merge.rc:5693
+#: Merge.rc:5741
 #, c-format
 msgid "Flipped: %s  "
 msgstr "Reflectat: %s  "
 
 #. IDS_IMGCMP_STATUS_ROTATED_FMT
-#: Merge.rc:5694
+#: Merge.rc:5742
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Rotit: %d  "
 
 #. IDS_IMGCMP_REPORT_ALLPAGES
-#: Merge.rc:5695
+#: Merge.rc:5743
 msgid "All pages"
 msgstr "Toate paginile"
 
 #. IDS_IGNSUB_STR1
-#: Merge.rc:5700
+#: Merge.rc:5748
 msgid "<Edit here>"
 msgstr "<Editează aici>"
 
 #. IDS_IGNSUB_STR2
-#: Merge.rc:5701
+#: Merge.rc:5749
 msgid "No differences found to select"
 msgstr "Nu au fost găsite diferențe de selectat"
 
 #. IDS_IGNSUB_STR3
-#: Merge.rc:5702
+#: Merge.rc:5750
 msgid "No differences found to add as substitution filter"
 msgstr "Nu au fost găsite diferențe de adăugat ca filtru de substituție"
 
 #. IDS_IGNSUB_STR4
-#: Merge.rc:5703
+#: Merge.rc:5751
 msgid "The pair is already in the Substitution Filters list"
 msgstr "Perechea se află deja în lista filtrelor de substituție"
 
 #. IDS_IGNSUB_STR5
-#: Merge.rc:5704
+#: Merge.rc:5752
 msgid "Add this change to Substitution Filters?"
 msgstr "Adaug această modificare la filtrele de substituție?"
 
 #. IDS_OCRRESULT_TEXTONLY
-#: Merge.rc:5709
+#: Merge.rc:5757
 msgid "Text only"
 msgstr "Doar text"
 
 #. IDS_OCRRESULT_POS_LINE
-#: Merge.rc:5710
+#: Merge.rc:5758
 msgid "Line-by-line position and text"
 msgstr "Poziție și text rând cu rând"
 
 #. IDS_OCRRESULT_POS_WORD
-#: Merge.rc:5711
+#: Merge.rc:5759
 msgid "Word-by-word position and text"
 msgstr "Poziție și text cuvânt cu cuvânt"
 
 #. IDS_USERDATAFOLDER_APPDATA
-#: Merge.rc:5716
+#: Merge.rc:5764
 msgid "AppData (Roaming) folder"
 msgstr ""
 
 #. IDS_USERDATAFOLDER_INSTALL
-#: Merge.rc:5717
+#: Merge.rc:5765
 msgid "Install folder"
 msgstr "Directorul de instalare"
 
 #. IDS_USERDATAFOLDER_DOCUMENTS
-#: Merge.rc:5718
+#: Merge.rc:5766
 msgid "Documents folder"
 msgstr ""
 
 #. IDS_SINGLEINSTANCE_DISABLED
-#: Merge.rc:5723
+#: Merge.rc:5771
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
 msgstr ""
 
 #. IDS_SINGLEINSTANCE_STR1
-#: Merge.rc:5724
+#: Merge.rc:5772
 msgid "Allow only one instance to run"
 msgstr "Permite rularea unei singure instanțe"
 
 #. IDS_CLIPBOARD_HISTORY
-#: Merge.rc:5725
+#: Merge.rc:5773
 msgid "Clipboard &History"
 msgstr ""
 
 #. IDS_SINGLEINSTANCE_STR2
-#: Merge.rc:5726
+#: Merge.rc:5774
 msgid "Allow only one instance; wait for termination"
 msgstr ""
 "Permite rularea unei singure instanțe și așteaptă ca instanța să se termine"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED
-#: Merge.rc:5731
+#: Merge.rc:5779
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr ""
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
-#: Merge.rc:5732
+#: Merge.rc:5780
 msgid "Only on window activated"
 msgstr "Doar în fereastră activată"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
-#: Merge.rc:5733
+#: Merge.rc:5781
 msgid "Immediately"
 msgstr "Imediat"
 
 #. IDS_PLUGIN_ALL
-#: Merge.rc:5738
+#: Merge.rc:5786
 msgid "Al&l"
 msgstr "Tot"
 
 #. IDS_PLUGIN_OTHERS
-#: Merge.rc:5739
+#: Merge.rc:5787
 msgid "&Others"
 msgstr "Altele"
 
-#: Merge.rc:5741
+#: Merge.rc:5789
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
 msgstr "Numele fișierului plugin lipsește în lanțul de plugin-uri: %1"
 
-#: Merge.rc:5743
+#: Merge.rc:5791
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
 msgstr "Ghilimele lipsă în lanțul de plugin-uri: %1"
 
+#: Merge.rc:5793
+#, c-format
+msgid "Missing line expression in pipeline: %1"
+msgstr ""
+
 #. IDS_PLUGIN_NAME_ALREADY_EXISTS
-#: Merge.rc:5744
+#: Merge.rc:5794
 #, c-format
 msgid "Plugin name '%1' already exists."
 msgstr ""
 
 #. IDS_PLUGIN_TITLE1
-#: Merge.rc:5745
+#: Merge.rc:5795
 msgid "Specify plugin arguments"
 msgstr "Specificați argumente plugin"
 
-#: Merge.rc:5747
+#: Merge.rc:5797
 #, c-format
 msgid "Plugin not found or invalid: %1"
 msgstr "Plugin inexistent sau invalid: %1"
 
 #. IDS_PLUGIN_NOT_UNPACK
-#: Merge.rc:5748
+#: Merge.rc:5798
 #, c-format
 msgid "'%1' is not an unpacker plugin"
 msgstr "'%1' nu este plugin dezarhivator"
 
 #. IDS_PLUGIN_NOT_PREDIFF
-#: Merge.rc:5749
+#: Merge.rc:5799
 #, c-format
 msgid "'%1' is not a prediffer plugin"
 msgstr "'%1' nu este plugin prediferențiator"
 
-#: Merge.rc:5751
+#: Merge.rc:5801
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr ""
 
 #. IDS_PLUGIN_CIRCULAR_REFERENCE
-#: Merge.rc:5752
+#: Merge.rc:5802
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
 #. IDS_PLUGIN_TYPE1
-#: Merge.rc:5753
+#: Merge.rc:5803
 msgid "URL Handler"
 msgstr ""
 
 #. IDS_PLUGIN_TYPE2
-#: Merge.rc:5754
+#: Merge.rc:5804
 msgid "File Unpacker"
 msgstr ""
 
 #. IDS_PLUGIN_TYPE3
-#: Merge.rc:5755
+#: Merge.rc:5805
 msgid "File or Folder Unpacker"
 msgstr ""
 
 #. IDS_PLUGIN_TYPE5
-#: Merge.rc:5757
+#: Merge.rc:5807
 msgid "Alias for Unpacker"
 msgstr ""
 
 #. IDS_PLUGIN_TYPE6
-#: Merge.rc:5758
+#: Merge.rc:5808
 msgid "Alias for Prediffer"
 msgstr ""
 
 #. IDS_PLUGIN_TYPE7
-#: Merge.rc:5759
+#: Merge.rc:5809
 msgid "Alias for Editor script"
 msgstr ""
 
 #. IDS_PLUGIN_ALIAS_DESC
-#: Merge.rc:5760
+#: Merge.rc:5810
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 #. IDS_PLUGIN_NEW_DESC
-#: Merge.rc:5761
+#: Merge.rc:5811
 msgid "New plugin description"
 msgstr ""
 
 #. IDS_PLUGIN_TARGETS_ALL
-#: Merge.rc:5762
+#: Merge.rc:5812
 msgid "All"
 msgstr ""
 
 #. IDS_PLUGIN_TARGETS_1ST
-#: Merge.rc:5763
+#: Merge.rc:5813
 msgid "1st"
 msgstr ""
 
 #. IDS_PLUGIN_TARGETS_2ND
-#: Merge.rc:5764
+#: Merge.rc:5814
 msgid "2nd"
 msgstr ""
 
 #. IDS_PLUGIN_TARGETS_3RD
-#: Merge.rc:5765
+#: Merge.rc:5815
 msgid "3rd"
 msgstr ""
 
 #. IDS_PLUGIN_TARGETS_1ST_2ND
-#: Merge.rc:5766
+#: Merge.rc:5816
 msgid "1st and 2nd"
 msgstr ""
 
 #. IDS_PLUGIN_TARGETS_1ST_3RD
-#: Merge.rc:5767
+#: Merge.rc:5817
 msgid "1st and 3rd"
 msgstr ""
 
 #. IDS_PLUGIN_TARGETS_2ND_3RD
-#: Merge.rc:5768
+#: Merge.rc:5818
 msgid "2nd and 3rd"
 msgstr ""
 
 #. IDS_PLUGIN_CTRL_CLICK
-#: Merge.rc:5769
+#: Merge.rc:5819
 msgid "(Ctrl+Click to add to pipeline)"
 msgstr ""
 
 #. IDS_FILTER_APPLIED
-#: Merge.rc:5774
+#: Merge.rc:5824
 msgid "Filter applied"
 msgstr "Filtru aplicat"
 
 #. IDS_FILTERMENU_COMPARE
-#: Merge.rc:5779
+#: Merge.rc:5829
 #, c-format
 msgid "Compare %1"
 msgstr ""
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
-#: Merge.rc:5781
+#: Merge.rc:5831
 msgid "&Filter by This Column..."
 msgstr ""
 
 #. IDS_CLIPBOARDHISTORY_TIME
-#: Merge.rc:5786
+#: Merge.rc:5836
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Clipboard la %s"
 
 #. IDS_CLIPBOARDHISTORY_DISABLED
-#: Merge.rc:5787
+#: Merge.rc:5837
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr ""
 "Istoricul clipboard-ului este deactivat.\r\n"
 "Pentru a activa istoricul clipboard-ului, apăsați tasta logo Windows + V, "
 "apoi apăsați butonul Porniți."
 
-#: Merge.rc:5789
+#: Merge.rc:5839
 msgid "This system does not support clipboard history."
 msgstr "Acest sistem nu suportă istoricul clipboard-ului."
 
-#: Merge.rc:5791
+#: Merge.rc:5841
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "Versiunea pe 32 biți WinMerge nu suportă Comparare clipboard"
 
 #. IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED
-#: Merge.rc:5796
+#: Merge.rc:5846
 msgid "WebView2 runtime not installed. Download it?"
 msgstr "Runtime-ul WebView2 nu este instalat. Doriți să-l descărcați?"
 
 #. IDS_JUMPLIST_NEW_TEXT_COMPARE
-#: Merge.rc:5801
+#: Merge.rc:5851
 msgid "New Text Compare"
 msgstr "Comparare text nouă"
 
 #. IDS_JUMPLIST_NEW_TABLE_COMPARE
-#: Merge.rc:5802
+#: Merge.rc:5852
 msgid "New Table Compare"
 msgstr "Comparare tabel nouă"
 
 #. IDS_JUMPLIST_NEW_BINARY_COMPARE
-#: Merge.rc:5803
+#: Merge.rc:5853
 msgid "New Binary Compare"
 msgstr "Comparare binară nouă"
 
 #. IDS_JUMPLIST_NEW_IMAGE_COMPARE
-#: Merge.rc:5804
+#: Merge.rc:5854
 msgid "New Image Compare"
 msgstr "Comparare imagine nouă"
 
 #. IDS_JUMPLIST_NEW_WEBPAGE_COMPARE
-#: Merge.rc:5805
+#: Merge.rc:5855
 msgid "New Webpage Compare"
 msgstr "Comparare pagină web nouă"
 
 #. IDS_JUMPLIST_NEW_FOLDER_COMPARE
-#: Merge.rc:5806
+#: Merge.rc:5856
 msgid "New Folder Compare"
 msgstr ""
 
 #. IDS_JUMPLIST_CLIPBOARD_COMPARE
-#: Merge.rc:5807
+#: Merge.rc:5857
 msgid "Clipboard Compare"
 msgstr "Comparare clipboard"
 
 #. IDS_PREVIEWBAR_PRINT
-#: Merge.rc:5812
+#: Merge.rc:5862
 msgid "&Print..."
 msgstr ""
 
 #. IDS_PREVIEWBAR_PREVPAGE
-#: Merge.rc:5814
+#: Merge.rc:5864
 msgid "Pre&v Page"
 msgstr ""
 
 #. IDS_PREVIEWBAR_TWOPAGE
-#: Merge.rc:5815
+#: Merge.rc:5865
 msgid "&Two Page"
 msgstr ""
 
 #. IDS_PREVIEWBAR_ONEPAGE
-#: Merge.rc:5816
+#: Merge.rc:5866
 msgid "&One Page"
 msgstr ""
 
 #. IDS_PREVIEWBAR_ZOOMIN
-#: Merge.rc:5817
+#: Merge.rc:5867
 msgid "Zoom &In"
 msgstr ""
 
 #. IDS_PREVIEWBAR_ZOOMOUT
-#: Merge.rc:5818
+#: Merge.rc:5868
 msgid "Zoom &Out"
 msgstr ""
 
 #. IDS_WEBPAGE_COMPARING
-#: Merge.rc:5824
+#: Merge.rc:5874
 msgid "Comparing..."
 msgstr ""
 
 #. IDS_WEBPAGE_ZOOM
-#: Merge.rc:5825
+#: Merge.rc:5875
 msgid "Zoom:"
 msgstr ""
 
 #. IDS_COPY_GRANULARITY_DIFFHUNK
-#: Merge.rc:5830
+#: Merge.rc:5880
 msgid "Diff hunk"
 msgstr ""
 
 #. IDS_COPY_GRANULARITY_INLINE
-#: Merge.rc:5831
+#: Merge.rc:5881
 msgid "Inline diff"
 msgstr ""
 
 #. IDS_COPY_GRANULARITY_LINE
-#: Merge.rc:5832
+#: Merge.rc:5882
 msgid "Line"
 msgstr ""
 
-#: Merge.rc:5833
+#: Merge.rc:5883
 msgid "Character"
 msgstr ""
 
 #. ID_MICE_PREVDIFF
-#: Merge.rc:5838
+#: Merge.rc:5888
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr ""
 
 #. ID_MICE_NEXTDIFF
-#: Merge.rc:5839
+#: Merge.rc:5889
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
 msgstr ""
 
 #. ID_MICE_L2R
-#: Merge.rc:5840
+#: Merge.rc:5890
 msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
 msgstr ""
 
 #. ID_MICE_R2L
-#: Merge.rc:5841
+#: Merge.rc:5891
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
 msgstr ""
 
 #. ID_MICE_L2RNEXT
-#: Merge.rc:5842
+#: Merge.rc:5892
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
 msgstr ""
 
 #. ID_MICE_R2LNEXT
-#: Merge.rc:5843
+#: Merge.rc:5893
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr ""
 
 #. IDS_LOG_COMPARING_2
-#: Merge.rc:5853
+#: Merge.rc:5903
 #, c-format
 msgid "Comparing %1 with %2"
 msgstr ""
 
 #. IDS_LOG_COMPARING_3
-#: Merge.rc:5854
+#: Merge.rc:5904
 #, c-format
 msgid "Comparing %1 with %2 and %3"
 msgstr ""
 
 #. IDS_LOG_COMPARE_COMPLETED
-#: Merge.rc:5855
+#: Merge.rc:5905
 msgid "Comparison completed"
 msgstr ""
 
 #. IDS_LOG_COMPARE_ERROR_2
-#: Merge.rc:5856
+#: Merge.rc:5906
 #, c-format
 msgid "Failed to compare %1 with %2: "
 msgstr ""
 
 #. IDS_LOG_COMPARE_ERROR_3
-#: Merge.rc:5857
+#: Merge.rc:5907
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
 msgstr ""
 
 #. IDS_LOG_FILE_SAVED
-#: Merge.rc:5858
+#: Merge.rc:5908
 msgid "File saved"
 msgstr ""
 
 #. IDS_LOG_COPYING_FILES
-#: Merge.rc:5859
+#: Merge.rc:5909
 msgid "Copying files..."
 msgstr ""
 
 #. IDS_LOG_MOVING_FILES
-#: Merge.rc:5860
+#: Merge.rc:5910
 msgid "Moving files..."
 msgstr ""
 
 #. IDS_LOG_DELETING_FILES
-#: Merge.rc:5861
+#: Merge.rc:5911
 msgid "Deleting files..."
 msgstr ""
 
 #. IDS_LOG_RECYCLEBIN
-#: Merge.rc:5862
+#: Merge.rc:5912
 msgid "Recycle Bin"
 msgstr ""
 
 #. IDS_LOG_PERMANENTLY_DELETED
-#: Merge.rc:5863
+#: Merge.rc:5913
 msgid "Permanently deleted"
 msgstr ""
 
 #. IDS_LOG_FILEOPERATION_COMPLETED
-#: Merge.rc:5864
+#: Merge.rc:5914
 msgid "File operation completed successfully"
 msgstr ""
 
 #. IDS_LOG_FILEOPERATION_CANCELED
-#: Merge.rc:5865
+#: Merge.rc:5915
 msgid "File operation canceled"
 msgstr ""
 
 #. IDS_FILTER_ERROR_NO_ERROR
-#: Merge.rc:5870
+#: Merge.rc:5920
 msgid "No error"
 msgstr ""
 
 #. IDS_FILTER_ERROR_EMPTY_EXPRESSION
-#: Merge.rc:5871
+#: Merge.rc:5921
 msgid "Filter expression is empty"
 msgstr ""
 
 #. IDS_FILTER_ERROR_UNKNOWN_CHAR
-#: Merge.rc:5872
+#: Merge.rc:5922
 msgid "Unknown character in filter expression"
 msgstr ""
 
 #. IDS_FILTER_ERROR_UNTERMINATED_STRING
-#: Merge.rc:5873
+#: Merge.rc:5923
 msgid "Unterminated string literal"
 msgstr ""
 
 #. IDS_FILTER_ERROR_SYNTAX_ERROR
-#: Merge.rc:5874
+#: Merge.rc:5924
 msgid "Syntax error in filter expression"
 msgstr ""
 
 #. IDS_FILTER_ERROR_PARSE_FAILURE
-#: Merge.rc:5875
+#: Merge.rc:5925
 msgid "Failed to parse filter expression"
 msgstr ""
 
 #. IDS_FILTER_ERROR_INVALID_LITERAL
-#: Merge.rc:5876
+#: Merge.rc:5926
 msgid "Invalid literal value"
 msgstr ""
 
 #. IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION
-#: Merge.rc:5877
+#: Merge.rc:5927
 msgid "Invalid regular expression"
 msgstr ""
 
 #. IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER
-#: Merge.rc:5878
+#: Merge.rc:5928
 msgid "Undefined identifier"
 msgstr ""
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT
-#: Merge.rc:5879
+#: Merge.rc:5929
 msgid "Invalid number of arguments"
 msgstr ""
 
 #. IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND
-#: Merge.rc:5880
+#: Merge.rc:5930
 msgid "Filter name not found"
 msgstr ""
 
 #. IDS_FILTER_ERROR_DIVIDE_BY_ZERO
-#: Merge.rc:5881
+#: Merge.rc:5931
 msgid "Division by zero in filter expression"
 msgstr ""
 
 #. IDS_FILTER_ERROR_UNKNOWN_ERROR
-#: Merge.rc:5882
+#: Merge.rc:5932
 msgid "Unknown error"
 msgstr ""
 
 #. IDS_FILTER_ERROR_INVALID_PROPERTY_NAME
-#: Merge.rc:5883
+#: Merge.rc:5933
 msgid "Invalid property name"
 msgstr ""
 
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
-#: Merge.rc:5884
+#: Merge.rc:5934
 msgid "Invalid directive"
 msgstr ""
 
 #. IDS_FILTER_ERROR_INVALID_ARGUMENT
-#: Merge.rc:5885
+#: Merge.rc:5935
 msgid "Invalid argument"
 msgstr ""
 
 #. IDS_FILTER_OP_EQUALS
-#: Merge.rc:5890
+#: Merge.rc:5940
 msgid "Equals"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_EQUALS
-#: Merge.rc:5891
+#: Merge.rc:5941
 msgid "Does not equal"
 msgstr ""
 
 #. IDS_FILTER_OP_LESS_THAN
-#: Merge.rc:5892
+#: Merge.rc:5942
 msgid "Less than"
 msgstr ""
 
 #. IDS_FILTER_OP_LESS_EQUAL
-#: Merge.rc:5893
+#: Merge.rc:5943
 msgid "Less than or equal to"
 msgstr ""
 
 #. IDS_FILTER_OP_GREATER_EQUAL
-#: Merge.rc:5894
+#: Merge.rc:5944
 msgid "Greater than or equal to"
 msgstr ""
 
 #. IDS_FILTER_OP_GREATER_THAN
-#: Merge.rc:5895
+#: Merge.rc:5945
 msgid "Greater than"
 msgstr ""
 
 #. IDS_FILTER_OP_BETWEEN
-#: Merge.rc:5896
+#: Merge.rc:5946
 msgid "Between"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_BETWEEN
-#: Merge.rc:5897
+#: Merge.rc:5947
 msgid "Not Between"
 msgstr ""
 
 #. IDS_FILTER_OP_CONTAINS
-#: Merge.rc:5898
+#: Merge.rc:5948
 msgid "Contains"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_CONTAINS
-#: Merge.rc:5899
+#: Merge.rc:5949
 msgid "Not Contains"
 msgstr ""
 
 #. IDS_FILTER_OP_RECONTAINS
-#: Merge.rc:5900
+#: Merge.rc:5950
 msgid "Contains (regex)"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_RECONTAINS
-#: Merge.rc:5901
+#: Merge.rc:5951
 msgid "Not Contains (regex)"
 msgstr ""
 
 #. IDS_FILTER_OP_LIKE
-#: Merge.rc:5902
+#: Merge.rc:5952
 msgid "Match (wildcard)"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_LIKE
-#: Merge.rc:5903
+#: Merge.rc:5953
 msgid "Not match (wildcard)"
 msgstr ""
 
 #. IDS_FILTER_OP_MATCHES
-#: Merge.rc:5904
+#: Merge.rc:5954
 msgid "Match (regex)"
 msgstr ""
 
 #. IDS_FILTER_OP_NOT_MATCHES
-#: Merge.rc:5905
+#: Merge.rc:5955
 msgid "Not match (regex)"
 msgstr ""
 
 #. IDS_COLORMODE_LIGHT
-#: Merge.rc:5910
+#: Merge.rc:5960
 msgid "Light"
 msgstr ""
 
 #. IDS_COLORMODE_DARK
-#: Merge.rc:5911
+#: Merge.rc:5961
 msgid "Dark"
 msgstr ""
 
 #. IDS_COLORMODE_FOLLOWSYSTEM
-#: Merge.rc:5912
+#: Merge.rc:5962
 msgid "Follow system"
 msgstr ""
 
 #. IDS_EXAMPLE
-#: Merge.rc:5917
+#: Merge.rc:5967
 #, c-format
 msgid "e.g. %1"
 msgstr ""
 
 #. IDS_DETECTED_PREVIOUS_CRASH
-#: Merge.rc:5922
+#: Merge.rc:5972
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr ""
 
 #. IDS_REGEX_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5927
+#: Merge.rc:5977
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 msgstr ""
 
 #. IDS_STRING_REPLACE_LIST_TEMPLATE
-#: Merge.rc:5928
+#: Merge.rc:5978
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_ONLY
-#: Merge.rc:5933
+#: Merge.rc:5983
 msgid "Built-in only"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_BUILT_IN_FIRST
-#: Merge.rc:5934
+#: Merge.rc:5984
 msgid "Built-in first"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_FIRST
-#: Merge.rc:5935
+#: Merge.rc:5985
 msgid "Tree-sitter first"
 msgstr ""
 
 #. IDS_HILITE_SYNTAX_MODE_TREE_SITTER_ONLY
-#: Merge.rc:5936
+#: Merge.rc:5986
 msgid "Tree-sitter only"
 msgstr ""
 
 #. IDS_MDIBUTTONS_AUTOHIDE
-#: Merge.rc:5941
+#: Merge.rc:5991
 msgid "&Auto-hide MDI buttons"
 msgstr ""
 
 #. IDS_MDIBUTTONS_ALWAYSSHOW
-#: Merge.rc:5942
+#: Merge.rc:5992
 msgid "Always &show MDI buttons"
 msgstr ""
 
 #. IDS_MDIBUTTONS_ALWAYSHIDE
-#: Merge.rc:5943
+#: Merge.rc:5993
 msgid "Always &hide MDI buttons"
+msgstr ""
+
+#. IDS_LOG_COPY_DIFF
+#: Merge.rc:5998
+#, c-format
+msgid "Copy diff: pane %d to %d (hunk %d)"
+msgstr ""
+
+#. IDS_LOG_COPY_LINES
+#: Merge.rc:5999
+#, c-format
+msgid "Copy lines: pane %d to %d (vline %d-%d)"
+msgstr ""
+
+#. IDS_LOG_COPY_INLINE_DIFFS
+#: Merge.rc:6000
+#, c-format
+msgid "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
+msgstr ""
+
+#. IDS_LOG_COPY_CHARS
+#: Merge.rc:6001
+#, c-format
+msgid "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
 msgstr ""
 
 #. IDS_PLUGIN_PROCESS_TYPE1

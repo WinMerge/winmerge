@@ -24,7 +24,7 @@ Da riga di comando, esegui il file  WinMerge con /? per avviare la Guida.
 
 Supporto WinMerge
 ================
-Hai domande o suggerimenti su WinMerge? Un buon punto di partenza è la bacheca della community di WinMerge disponibile alla pagina https://forums.winmerge.org/. 
+Hai domande o suggerimenti su WinMerge? Un buon punto di partenza è la bacheca della community di WinMerge disponibile alla pagina https://github.com/WinMerge/winmerge/discussions. 
 Gli sviluppatori frequentemente leggono e rispondono alle domande in entrambi i forum. 
 Usa il forum di discussione aperto per i problemi generali di WinMerge, come domande sull'uso. 
 Usa il forum degli sviluppatori per i problemi sullo sviluppo di WinMerge.
@@ -33,7 +33,7 @@ Bug e richieste di funzionalità
 =========================
 Se hai un problema che non è stato risolto nel forum WinMerge, controlla il tracker. 
 Controlla il tracker del progetto. 
-Vai su https://project.winmerge.org/ e fai clic su un collegamento nel menu tracker, come 'Bug' e 'Feature Requests', in cui è possibile consultare o inviare richieste.
+Vai su https://github.com/WinMerge/winmerge/issues e fai clic su un collegamento nel menu tracker, come 'Bug' e 'Feature Requests', in cui è possibile consultare o inviare richieste.
 
 Se segnali un bug, includi nel rapporto il numero della versione di WinMerge. 
 È possibile generare un registro di configurazione facendo clic su Guida -> Configurazione.

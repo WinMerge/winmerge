@@ -765,7 +765,7 @@ public :
     //END SW
 
     bool GetEnableHideLines () const { return m_bHideLines; }
-    void SetEnableHideLines (bool bHideLines) { m_bHideLines = bHideLines; }
+    void SetEnableHideLines (bool bHideLines);
     bool GetLineVisible (int nLineIndex) const;
 
     //  Default handle to resources

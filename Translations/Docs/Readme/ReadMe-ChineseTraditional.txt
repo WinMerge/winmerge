@@ -18,11 +18,11 @@ WinMerge 說明
 
 WinMerge 支援
 ================
-有關於 WinMerge 的問題或建議嗎？請到 https://forums.winmerge.org/ 的 WinMerge 社群討論區。研發者常會閱讀與回應兩個討論區中的問題。一般性的議題，像使用上的問題，請到公開討論區 (Open Discussion forum)。研發上的議題，請到研發討論區 (Developers forum)。
+有關於 WinMerge 的問題或建議嗎？請到 https://github.com/WinMerge/winmerge/discussions 的 WinMerge 社群討論區。研發者常會閱讀與回應兩個討論區中的問題。一般性的議題，像使用上的問題，請到公開討論區 (Open Discussion forum)。研發上的議題，請到研發討論區 (Developers forum)。
 
 程式錯誤與功能增益
 =========================
-若一個議題在討論區中未獲解決，可到計畫 ( https://project.winmerge.org/) 中的追蹤器 (Tracker) 查看，並按其選單的連結 (譬如，Bugs 或 Feature Requests)，到那裡就可以瀏覽或提出您的想法。
+若一個議題在討論區中未獲解決，可到計畫 ( https://github.com/WinMerge/winmerge/issues) 中的追蹤器 (Tracker) 查看，並按其選單的連結 (譬如，Bugs 或 Feature Requests)，到那裡就可以瀏覽或提出您的想法。
 
 提報錯誤時請附上所用的 WinMerge 版本編號。按 說明 > 組態，可產生組態紀錄檔。將此檔附於您的錯誤提報；該檔有許多有用的資訊給研發者。
 

@@ -40,7 +40,7 @@ void FolderCmp::LogError(const DIFFITEM& di)
 			strutils::format_string2(_("Failed to compare %1 with %2: "), paths[0], paths[1]) : 
 			strutils::format_string3(_("Failed to compare %1 with %2 and %3: "), paths[0], paths[1], paths[2]))
 			+ strutils::format(
-			_("(errno=%d: %s)"), errno, ucr::toTStringFromACP(std::error_code(errno, std::generic_category()).message()));
+			_T("(errno=%d: %s)"), errno, ucr::toTStringFromACP(std::error_code(errno, std::generic_category()).message()));
 	RootLogger::Error(s);
 }
 

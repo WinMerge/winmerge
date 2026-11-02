@@ -32,7 +32,7 @@ https://manual.winmerge.org/.
 WinMerge Support (WinMerge-support)
 ================
 Frågor eller synpunkter om WinMerge? Ett bra ställe att börja på är WinMerges
-samhällsbulletinboard hos https://forums.winmerge.org/. Utvecklare läser ofta
+samhällsbulletinboard hos https://github.com/WinMerge/winmerge/discussions. Utvecklare läser ofta
 och svarar på frågor i båda forumen. Använd "Open Discussion forum"
 ("Öppet Diskussionsforum") för allmäna WinMerge-ämnen, som frågor om 
 användning. Använd "Developers forum" ("Utvecklarforum")
@@ -41,7 +41,7 @@ för WinMerge utvecklingsämnen.
 Bugs and feature requests (Fel och funktionsäskanden)
 =========================
 Om ett ämne inte löses i WinMerges forum, kontrollera i "Project trackers" 
-("Projektspårarna"): gå till https://project.winmerge.org/, och klicka på en länk
+("Projektspårarna"): gå till https://github.com/WinMerge/winmerge/issues, och klicka på en länk
 i "Tracker menu" ("Spårmenyn"), som "Bugs and Feature Requests" 
 ("Fel och funktionsäskanden"), där Ni kan bläddra i eller skicka ämnen.
 

@@ -76,25 +76,25 @@ void MergeLogger::LogFileSaved(const String& path)
 
 void MergeLogger::LogCopyDiff(int srcPane, int dstPane, int nDiff)
 {
-	RootLogger::Info(strutils::format(_T("Copy diff: pane %d to %d (hunk %d)"),
+	RootLogger::Info(strutils::format(_("Copy diff: pane %d to %d (hunk %d)"),
 		srcPane, dstPane, nDiff));
 }
 
 void MergeLogger::LogCopyLines(int srcPane, int dstPane, int firstLine, int lastLine)
 {
-	RootLogger::Info(strutils::format(_T("Copy lines: pane %d to %d (vline %d-%d)"),
+	RootLogger::Info(strutils::format(_("Copy lines: pane %d to %d (vline %d-%d)"),
 		srcPane, dstPane, firstLine, lastLine));
 }
 
 void MergeLogger::LogCopyInlineDiffs(int srcPane, int dstPane, int nDiff, int firstWordDiff, int lastWordDiff)
 {
-	RootLogger::Info(strutils::format(_T("Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"),
+	RootLogger::Info(strutils::format(_("Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"),
 		srcPane, dstPane, nDiff, firstWordDiff, lastWordDiff));
 }
 
 void MergeLogger::LogCopyCharacters(int srcPane, int dstPane,  int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd)
 {
-	RootLogger::Info(strutils::format(_T("Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"),
+	RootLogger::Info(strutils::format(_("Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"),
 		srcPane, dstPane, nDiff, ptStart.y, ptStart.x, ptEnd.y, ptEnd.x));
 }
 

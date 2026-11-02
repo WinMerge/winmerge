@@ -18,7 +18,7 @@ class PathContext;
 namespace MergeTextFormatter
 {
 	String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
-	String GetDiffStatusString(int curDiff, int diffCount);
+	String GetDiffStatusString(int curDiff, int diffCount, int ignoredDiffCount = 0);
 	String GetTitleStringFlags(const IMergeDoc& mergeDoc);
 	String GetTitleString(const IMergeDoc& mergeDoc);
 	String GetReportTitleString(const IMergeDoc& mergeDoc, int pane);

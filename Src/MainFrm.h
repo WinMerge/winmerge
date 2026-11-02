@@ -180,6 +180,7 @@ public:
 	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr,
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
 		const OpenParams* pOpenParams = nullptr);
+	void OpenRecentCompare(const String& params);
 	bool ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,

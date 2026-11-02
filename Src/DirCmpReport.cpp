@@ -24,6 +24,7 @@
 #include "TempFile.h"
 #include "I18n.h"
 #include "Clipboard.h"
+#include "MergeApp.h"
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
 
@@ -178,7 +179,8 @@ bool DirCmpReport::GenerateReportToFile(String &errStr)
 	UniStdioFile file;
 	if (!file.OpenCreateUtf8(m_sReportFile))
 	{
-		errStr = _("Failed to create report file.");
+		String errMsg = GetSysError(GetLastError());
+		errStr = strutils::format_string1(_("Error creating the report:\n%1"), errMsg);
 		return false;
 	}
 
