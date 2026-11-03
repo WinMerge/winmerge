@@ -16,6 +16,8 @@
 #include "resource.h"
 #include "I18nGUI.h"
 #include "BCMenu.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -266,8 +268,13 @@ void CMergeResultStatusBar::UpdateSyntaxText()
 {
 	if (IsWindow(m_hWnd))
 	{
-		const String syntaxName = m_nSyntaxType == 0 ? _("Plain Text") :
-			I18n::LoadString(ID_COLORSCHEME_FIRST + m_nSyntaxType);
+		String syntaxName;
+		if (m_nSyntaxType >= 0)
+		{
+			syntaxName = (m_nSyntaxType == 0 && GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT)) ?
+				I18n::LoadString(IDS_SYNTAX_PLAIN_TEXT) :
+				I18n::LoadString(ID_COLORSCHEME_FIRST + m_nSyntaxType);
+		}
 		SetPaneText(PANE_SYNTAX, syntaxName.c_str());
 	}
 }

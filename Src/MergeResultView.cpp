@@ -664,6 +664,7 @@ void CMergeResultView::OnUpdateCaret()
 		CMergeResultTextBuffer* pBuf = pDoc->GetMergeResultBuffer();
 		if (pBuf != nullptr && pBuf->IsInitialized())
 		{
+			pStatusBar->SetSyntaxType(static_cast<int>(m_CurSourceDef->type));
 			pStatusBar->SetEncodingAndEol(pBuf->getCodepage(), pBuf->getHasBom(), pBuf->GetDefaultEol());
 			pStatusBar->SetReadOnly(pBuf->GetReadOnly());
 		}

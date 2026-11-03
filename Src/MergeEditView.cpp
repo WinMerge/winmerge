@@ -2614,7 +2614,7 @@ bool CMergeEditView::DoSetTextType(LangServices::TextDefinition* def)
 /** @brief Name of the syntax type "Auto Syntax": the types the file extensions give */
 static String AutoSyntaxName()
 {
-	return _("Auto Syntax");
+	return I18n::LoadString(IDS_AUTO_SYNTAX);
 }
 
 /**
@@ -4655,7 +4655,7 @@ void CMergeEditView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
 	}
 
 	const auto selection = PopupList::Show(this, pFont, names, nSel, bEnabled,
-		_("Apply to this pane only"), false, ptScreen);
+		I18n::LoadString(IDS_APPLY_TO_THIS_PANE_ONLY), false, ptScreen);
 	if (selection.index >= 0)
 		ChangeSyntaxType(types[selection.index], selection.checkBoxChecked);
 }
