@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-10-22 20:49+0200\n"
+"PO-Revision-Date: 2026-11-03 20:48+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -9056,17 +9056,17 @@ msgstr "Shell"
 #. IDS_AUTO_SYNTAX
 #: Merge.rc:5646
 msgid "Auto Syntax"
-msgstr ""
+msgstr "Automatische Syntaxerkennung"
 
 #. IDS_APPLY_TO_THIS_PANE_ONLY
 #: Merge.rc:5647
 msgid "Apply to this pane only"
-msgstr ""
+msgstr "Nur auf diesen Fensterbereich anwenden"
 
 #. IDS_SYNTAX_PLAIN_TEXT
 #: Merge.rc:5648
 msgid "Plain Text"
-msgstr ""
+msgstr "Nur Text"
 
 #. IDS_CLOSE_LEFT_TABS
 #: Merge.rc:5653
