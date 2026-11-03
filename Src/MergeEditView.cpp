@@ -3431,7 +3431,7 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(LangServices::LanguageId::SRC_PLAIN);
-	else if (!GetDocument()->GetChangedSchemeManually())
+	else if (!GetDocument()->GetChangedSchemeManually(m_nThisPane))
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
 		String fileName = GetDocument()->m_ptBuf[m_nThisPane]->GetTempFileName();

@@ -175,7 +175,6 @@ CMergeDoc::CMergeDoc()
 , m_nGroups(0)
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
-, m_bChangedSchemeManually(false)
 , m_editorScriptInfo(_T(""))
 , m_nBuffers(m_nBuffersTemp)
 , m_documentType(m_documentTypeTemp)
@@ -2516,7 +2515,9 @@ void CMergeDoc::SetTableProperties()
 void CMergeDoc::SetTextType(int textType, int pane)
 {
 	// Set before the views change, which show it in the status bar (CMergeEditView::UpdateSyntaxStatus)
-	m_bChangedSchemeManually = true;
+	for (int i = 0; i < m_nBuffers; ++i)
+		if (pane < 0 || pane == i)
+			m_bChangedSchemeManually[i] = true;
 	auto setTextType = [textType](auto& pView) {
 		pView->SetTextType(LangServices::LanguageId(textType));
 		pView->SetDisableBSAtSOL(false);
@@ -2536,7 +2537,8 @@ void CMergeDoc::SetTextType(const String& ext)
 {
 	String ext2 = ext;
 	strutils::replace(ext2, _T("."), _T(""));
-	m_bChangedSchemeManually = true;
+	for (int i = 0; i < m_nBuffers; ++i)
+		m_bChangedSchemeManually[i] = true;
 	ForEachView([&ext2](auto& pView) {
 		pView->SetTextType(ext2.c_str());
 		pView->SetDisableBSAtSOL(false);
@@ -2605,8 +2607,9 @@ void CMergeDoc::SetTextTypesByFileType(int pane)
  */
 void CMergeDoc::SetTextTypeAuto(int pane)
 {
-	if (pane < 0)
-		m_bChangedSchemeManually = false;
+	for (int i = 0; i < m_nBuffers; ++i)
+		if (pane < 0 || pane == i)
+			m_bChangedSchemeManually[i] = false;
 	SetTextTypesByFileType(pane);
 }
 

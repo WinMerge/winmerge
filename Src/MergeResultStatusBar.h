@@ -49,7 +49,7 @@ public:
 	// Caret / line info from CMergeResultView
 	void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
 		int nChar, int nChars, int nSelectedLines, int nSelectedChars);
-	void SetSyntaxType(int nTextType);
+	void SetSyntaxType(int nTextType, bool bHighlight);
 
 	// Encoding and EOL info
 	void SetEncodingAndEol(int nCodepage, bool bHasBom, const tchar_t* szEol);
@@ -90,6 +90,7 @@ private:
 	int m_nSelectedLines;
 	int m_nSelectedChars;
 	int m_nSyntaxType;
+	bool m_bSyntaxHighlight;
 
 	// Encoding & EOL info
 	int m_nCodepage;

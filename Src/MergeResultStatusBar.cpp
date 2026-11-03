@@ -16,8 +16,6 @@
 #include "resource.h"
 #include "I18nGUI.h"
 #include "BCMenu.h"
-#include "OptionsMgr.h"
-#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -74,6 +72,7 @@ CMergeResultStatusBar::CMergeResultStatusBar()
 	, m_nSelectedLines(0)
 	, m_nSelectedChars(0)
 	, m_nSyntaxType(-1)
+	, m_bSyntaxHighlight(true)
 	, m_nCodepage(-1)
 	, m_bHasBom(false)
 	, m_bReadOnly(false)
@@ -165,11 +164,12 @@ void CMergeResultStatusBar::SetLineInfo(const tchar_t* szLine, int nColumn, int 
 	}
 }
 
-void CMergeResultStatusBar::SetSyntaxType(int nTextType)
+void CMergeResultStatusBar::SetSyntaxType(int nTextType, bool bHighlight)
 {
-	if (m_nSyntaxType != nTextType)
+	if (m_nSyntaxType != nTextType || m_bSyntaxHighlight != bHighlight)
 	{
 		m_nSyntaxType = nTextType;
+		m_bSyntaxHighlight = bHighlight;
 		UpdateSyntaxText();
 	}
 }
@@ -271,7 +271,7 @@ void CMergeResultStatusBar::UpdateSyntaxText()
 		String syntaxName;
 		if (m_nSyntaxType >= 0)
 		{
-			syntaxName = (m_nSyntaxType == 0 && GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT)) ?
+			syntaxName = (m_nSyntaxType == 0 && m_bSyntaxHighlight) ?
 				I18n::LoadString(IDS_SYNTAX_PLAIN_TEXT) :
 				I18n::LoadString(ID_COLORSCHEME_FIRST + m_nSyntaxType);
 		}

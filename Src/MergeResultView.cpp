@@ -117,6 +117,7 @@ CMergeDoc* CMergeResultView::GetDocument() const
 bool CMergeResultView::DoSetTextType(LangServices::TextDefinition* def)
 {
 	const bool result = __super::DoSetTextType(def);
+	SetDisableBSAtSOL(false);
 	UpdateSyntaxStatus();
 	return result;
 }
@@ -126,7 +127,8 @@ void CMergeResultView::UpdateSyntaxStatus()
 	if (m_pDocument == nullptr || m_CurSourceDef == nullptr)
 		return;
 	if (auto* pContainer = dynamic_cast<CMergeResultContainer*>(GetParent()))
-		pContainer->GetStatusBar()->SetSyntaxType(static_cast<int>(m_CurSourceDef->type));
+		pContainer->GetStatusBar()->SetSyntaxType(static_cast<int>(m_CurSourceDef->type),
+			GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT));
 }
 
 void CMergeResultView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
@@ -664,7 +666,8 @@ void CMergeResultView::OnUpdateCaret()
 		CMergeResultTextBuffer* pBuf = pDoc->GetMergeResultBuffer();
 		if (pBuf != nullptr && pBuf->IsInitialized())
 		{
-			pStatusBar->SetSyntaxType(static_cast<int>(m_CurSourceDef->type));
+			pStatusBar->SetSyntaxType(static_cast<int>(m_CurSourceDef->type),
+				GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT));
 			pStatusBar->SetEncodingAndEol(pBuf->getCodepage(), pBuf->getHasBom(), pBuf->GetDefaultEol());
 			pStatusBar->SetReadOnly(pBuf->GetReadOnly());
 		}
