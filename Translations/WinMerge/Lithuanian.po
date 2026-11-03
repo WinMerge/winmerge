@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-10-22 06:46+0000\n"
-"PO-Revision-Date: 2026-10-22 07:00+0200\n"
+"POT-Creation-Date: 22026-11-03 11:36+0000\n"
+"PO-Revision-Date: 2026-11-03 09:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -7882,17 +7882,17 @@ msgstr "Shell"
 #. IDS_AUTO_SYNTAX
 #: Merge.rc:5646
 msgid "Auto Syntax"
-msgstr ""
+msgstr "Auto sintaksė"
 
 #. IDS_APPLY_TO_THIS_PANE_ONLY
 #: Merge.rc:5647
 msgid "Apply to this pane only"
-msgstr ""
+msgstr "Taikyti tik šiam polangiui"
 
 #. IDS_SYNTAX_PLAIN_TEXT
 #: Merge.rc:5648
 msgid "Plain Text"
-msgstr ""
+msgstr "Paprastasis tekstas"
 
 #. IDS_CLOSE_LEFT_TABS
 #: Merge.rc:5653
