@@ -8687,66 +8687,66 @@ msgstr ""
 #. IDS_MERGE_RESULT_UNSAVED_CONFIRM_SAVE
 #: Merge.rc:5517
 msgid "The merge result has not been saved.\n\nSave the merge result?"
-msgstr ""
+msgstr "Az egyesítés nem fejeződött be: %1 különbség nem került feloldásra.\n\nMegszakítja az egyesítést és bezárja az eredmény mentése nélkül?"
 
 #. IDS_MERGE_RESULT_SAVE_FAILED
 #: Merge.rc:5518
 #, c-format
 msgid "Saving the merge result to\n%1\nfailed.\n%2"
-msgstr ""
+msgstr "Az egyesítés eredményének mentése ide:\n%1\nsikertelen.\n%2"
 
 #. IDS_MERGE_RESULT_SAVE_MERGE_RESULT
 #: Merge.rc:5519
 #, c-format
 msgid "There are still %1 unresolved difference(s) in the merge result.\n\nUnresolved conflicts are saved as conflict sections (<<<<<<<), which preserve all versions and can be resolved later in any editor; other unresolved differences are saved with their automatic merge content.\n\nSave the result anyway?"
-msgstr ""
+msgstr "Még mindig %1 feloldatlan különbség van az egyesítés eredményében.\n\nA feloldatlan ütközéseket ütköző szakaszokként (<<<<<<<<) menti a rendszer, amelyek megőrzik az összes verziót, és később bármely szerkesztőben feloldhatók; az egyéb feloldatlan különbségek az automatikus egyesítéssel, tartalmukkal együtt kerülnek mentésre.\n\nMégis menti az eredményt?"
 
 #. IDS_MERGE_RESULT_OPTIONS_CHANGED
 #: Merge.rc:5520
 msgid "Comparison settings changed. They will take effect after the merge session ends."
-msgstr ""
+msgstr "Az összehasonlítási beállítások megváltoztak. Ezek az egyesítési munkamenet befejezése után lépnek életbe."
 
 #. IDS_MERGE_RESULT_CONFLICT_WHITESPACE
 #: Merge.rc:5521
 msgid "<Merge Conflict (Whitespace only)>"
-msgstr ""
+msgstr "<Egyesítési ütközés (csak szóközök)>"
 
 #. IDS_MERGE_RESULT_CONFLICT
 #: Merge.rc:5522
 msgid "<Merge Conflict>"
-msgstr ""
+msgstr "<Egyesítési ütközés>"
 
 #. IDS_MERGE_RESULT_UNRESOLVED
 #: Merge.rc:5523
 msgid "<Unresolved Difference>"
-msgstr ""
+msgstr "<Feloldatlan különbség>"
 
 #. IDS_MERGE_RESULT_NOLINES
 #: Merge.rc:5524
 msgid "<No Lines>"
-msgstr ""
+msgstr "<Nincsenek sorok>"
 
 #. IDS_MERGE_RESULT_UNTITLED
 #: Merge.rc:5525
 msgid "<Untitled>"
-msgstr ""
+msgstr "<Cím nélkül>"
 
 #. IDS_MERGE_RESULT_SAVE_AS
 #: Merge.rc:5526
 msgid "Save Merge Result As"
-msgstr ""
+msgstr "Egyesítés eredményének mentése mint"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS2
 #: Merge.rc:5527
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2"
-msgstr ""
+msgstr "Ütközés: %1, Feloldatlan: %2"
 
 #. IDS_MERGE_RESULT_STATUS_CONFLICTS3
 #: Merge.rc:5528
 #, c-format
 msgid "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
-msgstr ""
+msgstr "Ütközés: %1, Feloldatlan: %2 (%3 csak szóközök)"
 
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5534
