@@ -144,7 +144,7 @@ void CMergeStatusBar::OnPaint()
 	CFont* pFont = GetFont();
 	CFont* pOldFont = pFont ? memDC.SelectObject(pFont) : nullptr;
 	const int radius = MulDiv (3, memDC.GetDeviceCaps (LOGPIXELSY), 72);
-	const int textPadding = MulDiv(10, memDC.GetDeviceCaps(LOGPIXELSX), 72);
+	const int textPadding = MulDiv(9, memDC.GetDeviceCaps(LOGPIXELSX), 72);
 	const int leftTextPadding = textPadding / 2;
 	const int rightTextPadding = textPadding - leftTextPadding;
 	for (int i = 0; i < nParts; i++)

@@ -10,7 +10,7 @@
 #include "BasicFlatStatusBar.h"
 #include "RoundedRectWithShadow.h"
 
-static const int STATUSBAR_TEXT_PADDING_PT = 10;
+static const int STATUSBAR_TEXT_PADDING_PT = 9;
 
 IMPLEMENT_DYNAMIC(CBasicFlatStatusBar, CStatusBar)
 
@@ -475,8 +475,9 @@ void CBasicFlatStatusBar::OnPaint()
 
 		// Draw one icon per pane.
 		CRect rcText = rcPart;
-		rcText.left += (std::max)(radius, leftTextPadding);
-		rcText.right -= (std::max)(radius, rightTextPadding);
+		int leftInset = (std::max)(radius, leftTextPadding);
+		int rightInset = (std::max)(radius, rightTextPadding);
+		rcText.left += leftInset;
 		DrawPaneIcon(memDC, i, rcPart, rcText);
 
 		if (bShowSubButtons)
@@ -497,6 +498,14 @@ void CBasicFlatStatusBar::OnPaint()
 				text.Trim();
 				text.Replace(_T("\t"), _T("  "));
 			}
+			const int textWidth = static_cast<int>(memDC.GetTextExtent(text, text.GetLength()).cx);
+			if (rcPart.Width() - leftInset - rightInset < textWidth)
+			{
+				rightInset = radius;
+				if (rcPart.Width() - leftInset - rightInset < textWidth)
+					leftInset = radius;
+			}
+			rcText.right -= rightInset;
 			memDC.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
