@@ -407,6 +407,7 @@ void CMergeEditFrame::UpdateHeaderSizes()
 		return;
 	
 	int w[3];
+	int wStatus[3]{};
 	int pane;
 	CMergeDoc * pDoc = GetMergeDoc();
 	auto& wndSplitter = GetMergeEditSplitterWnd(0);
@@ -417,6 +418,7 @@ void CMergeEditFrame::UpdateHeaderSizes()
 			int wmin;
 			wndSplitter.GetColumnInfo(pane, w[pane], wmin);
 			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+			wStatus[pane] = w[pane] + (pane == 0 ? 5 : 7);
 		}
 	}
 	else
@@ -424,7 +426,10 @@ void CMergeEditFrame::UpdateHeaderSizes()
 		int w2, wmin;
 		wndSplitter.GetColumnInfo(0, w2, wmin);
 		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+		{
 			w[pane] = (w2 - 4 * pDoc->m_nBuffers) / pDoc->m_nBuffers;
+			wStatus[pane] = w[pane];
+		}
 	}
 
 	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers, w))
@@ -434,7 +439,7 @@ void CMergeEditFrame::UpdateHeaderSizes()
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
 
-		m_wndStatusBar.Resize(w);
+		m_wndStatusBar.Resize(wStatus);
 	}
 }
 
