@@ -1170,6 +1170,9 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	if (pOpenParams && !pOpenParams->m_fileExt.empty())
 		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
+	if (pOpenParams && !pOpenParams->m_sDisplayFilter.empty())
+		pMergeDoc->ApplyDisplayLineFilter(pOpenParams->m_sDisplayFilter);
+
 	bool bShowMergeResultPane = false;
 	bool bAutoMerge = false;
 	int nMergeBasePane = 1;
@@ -1451,6 +1454,12 @@ bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fi
 
 	// Start the comparison
 	pDirDoc2->Rescan();
+
+	if (pOpenParams && !pOpenParams->m_sDisplayFilter.empty())
+	{
+		if (CDirView* pDirView = pDirDoc2->GetMainView())
+			pDirView->ApplyDisplayFileFilter(pOpenParams->m_sDisplayFilter);
+	}
 
 	return true;
 }

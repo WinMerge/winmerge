@@ -166,6 +166,7 @@ public:
 	void UpdateHeaderActivity(int pane, bool bActivate);
 	void RefreshOptions();
 	void UpdateResources();
+	void ApplyDisplayLineFilter(const String& filter);
 	bool OpenDocs(int nFiles, const FileLocation fileloc[],
 		const bool bRO[], const String strDesc[]);
 	int LoadFile(const String& sFileName, int nBuffer, bool& readOnly, const FileTextEncoding& encoding);

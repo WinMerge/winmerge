@@ -110,6 +110,7 @@ public:
 	void RestoreUIState(const DirViewUIState* pUIState);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
+	void ApplyDisplayFileFilter(const String& filter);
 	DIFFITEM *GetItemKey(int idx) const;
 	int GetItemIndex(DIFFITEM *key);
 	bool IsDiffItemSpecial(const DIFFITEM* diffpos) const { return diffpos == reinterpret_cast<DIFFITEM*>(SPECIAL_ITEM_POS); };
