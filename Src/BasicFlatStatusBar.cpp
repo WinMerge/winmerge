@@ -10,6 +10,8 @@
 #include "BasicFlatStatusBar.h"
 #include "RoundedRectWithShadow.h"
 
+static const int STATUSBAR_TEXT_PADDING_PT = 10;
+
 IMPLEMENT_DYNAMIC(CBasicFlatStatusBar, CStatusBar)
 
 BEGIN_MESSAGE_MAP(CBasicFlatStatusBar, CStatusBar)
@@ -335,7 +337,7 @@ void CBasicFlatStatusBar::UpdateAutoPaneWidths()
 	CClientDC measureDC(this);
 	CFont* font = GetFont();
 	CFont* oldFont = font ? measureDC.SelectObject(font) : nullptr;
-	const int textPadding = MulDiv(12, measureDC.GetDeviceCaps(LOGPIXELSX), 72);
+	const int textPadding = MulDiv(STATUSBAR_TEXT_PADDING_PT, measureDC.GetDeviceCaps(LOGPIXELSX), 72);
 	std::vector<int> edges = BuildPaneEdges(measureDC, ctrl, count, client.Width(), textPadding);
 	if (oldFont)
 		measureDC.SelectObject(oldFont);
@@ -432,6 +434,9 @@ void CBasicFlatStatusBar::OnPaint()
 	CFont* pFont = GetFont();
 	CFont* pOldFont = pFont ? memDC.SelectObject(pFont) : nullptr;
 	const int radius = MulDiv(3, memDC.GetDeviceCaps(LOGPIXELSY), 72);
+	const int textPadding = MulDiv(STATUSBAR_TEXT_PADDING_PT, memDC.GetDeviceCaps(LOGPIXELSX), 72);
+	const int leftTextPadding = textPadding / 2;
+	const int rightTextPadding = textPadding - leftTextPadding;
 
 	for (int i = 0; i < nParts; i++)
 	{
@@ -470,7 +475,8 @@ void CBasicFlatStatusBar::OnPaint()
 
 		// Draw one icon per pane.
 		CRect rcText = rcPart;
-		rcText.left += radius;
+		rcText.left += (std::max)(radius, leftTextPadding);
+		rcText.right -= (std::max)(radius, rightTextPadding);
 		DrawPaneIcon(memDC, i, rcPart, rcText);
 
 		if (bShowSubButtons)

@@ -24,7 +24,7 @@
 #endif
 
 /** @brief RO status panel width (point) */
-static const UINT RO_PANEL_WIDTH = 20;
+static const UINT RO_PANEL_WIDTH = 25;
 /** @brief Encoding status panel width (point) */
 static const UINT ENCODING_PANEL_WIDTH = 40;
 /** @brief EOL type status panel width (point) */
@@ -144,6 +144,9 @@ void CMergeStatusBar::OnPaint()
 	CFont* pFont = GetFont();
 	CFont* pOldFont = pFont ? memDC.SelectObject(pFont) : nullptr;
 	const int radius = MulDiv (3, memDC.GetDeviceCaps (LOGPIXELSY), 72);
+	const int textPadding = MulDiv(10, memDC.GetDeviceCaps(LOGPIXELSX), 72);
+	const int leftTextPadding = textPadding / 2;
+	const int rightTextPadding = textPadding - leftTextPadding;
 	for (int i = 0; i < nParts; i++)
 	{
 		const unsigned style = GetPaneStyle(i);
@@ -165,9 +168,26 @@ void CMergeStatusBar::OnPaint()
 			{
 				memDC.SetTextColor(clrBtnText);
 			}
+			CString text = ctrl.GetText(i);
+			if (text.Find(_T('\t')) >= 0)
+			{
+				text.Trim();
+				text.Replace(_T("\t"), _T("  "));
+			}
+
+			int leftInset = (std::max)(radius, leftTextPadding);
+			int rightInset = (std::max)(radius, rightTextPadding);
+			const int textWidth = static_cast<int>(memDC.GetTextExtent(text, text.GetLength()).cx);
+			if (rcPart.Width() - leftInset - rightInset < textWidth)
+			{
+				rightInset = radius;
+				if (rcPart.Width() - leftInset - rightInset < textWidth)
+					leftInset = radius;
+			}
 			CRect rcText = rcPart;
-			rcText.left += radius;
-			memDC.DrawText(ctrl.GetText(i), &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+			rcText.left += leftInset;
+			rcText.right -= rightInset;
+			memDC.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
 	if (pOldFont)
