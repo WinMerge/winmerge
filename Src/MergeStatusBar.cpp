@@ -30,7 +30,7 @@ static const UINT ENCODING_PANEL_WIDTH = 40;
 /** @brief EOL type status panel width (point) */
 static const UINT EOL_PANEL_WIDTH = 30;
 /** @brief Syntax type status panel width (point) */
-static const UINT SYNTAX_PANEL_WIDTH = 90;
+static const UINT SYNTAX_PANEL_WIDTH = 40;
 
 /**
  * @brief Statusbar pane index of a column of a file pane
@@ -80,8 +80,8 @@ BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 	SetPaneGroupCount(3);
 	for (int pane = 0; pane < 3; ++pane)
 	{
-		for (int column = 0; column < nColumnsPerPane; ++column)
-			SetPaneGroup(pane * nColumnsPerPane + column, pane);
+		for (int column = 0; column < COLUMN_COUNT; ++column)
+			SetPaneGroup(pane * COLUMN_COUNT + column, pane);
 		SetPaneGroupWidth(pane, 0);
 	}
 	EndPaneLayoutUpdate();
@@ -193,7 +193,7 @@ void CMergeStatusBar::Resize(int widths[])
 	for (int pane = 0; pane < 3; ++pane)
 		SetPaneGroupWidth(pane, groupWidths[pane]);
 
-	// Set bottom statusbar panel widths.
+	// Set bottom statusbar panel widths
 	const int borderWidth = 4;
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
