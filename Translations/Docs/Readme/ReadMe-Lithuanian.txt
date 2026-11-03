@@ -31,10 +31,8 @@ https://manual.winmerge.org/.
 „WinMerge“ palaikymas
 =====================
 Turite klausimų apie „WinMerge“ ar pasiūlymų? Geriausia pradėti nuo „WinMerge“
-bendruomenės forumų https://github.com/WinMerge/winmerge/discussions. Bendriesiems „WinMerge“
-klausimams, pvz., klausimams apie naudojimą yra skirtas „Open Discussion“ forumas.
-„WinMerge“ kūrimo klausimams yra skirtas „Developers“ forumas. Kūrėjai dažnai
-skaito ir atsako į klausimus abiejuose forumuose.
+bendruomenės forumo https://github.com/WinMerge/winmerge/discussions.
+Kūrėjai dažnai skaito forume pateiktus klausimus ir į juos atsako.
 
 Klaidos ir naujų funkcijų prašymai
 ==================================
