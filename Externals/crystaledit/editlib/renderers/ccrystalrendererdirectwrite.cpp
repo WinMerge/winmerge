@@ -468,6 +468,37 @@ void CCrystalRendererDirectWrite::DrawMarginIcon(int x, int y, int iconIndex, in
 		1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &rcSrc);
 }
 
+void CCrystalRendererDirectWrite::DrawImageStripFrame(UINT nIDResource, int nFrameCount, int nFrame, const CRect &rcDest)
+{
+	if (nFrame < 0 || nFrame >= nFrameCount || rcDest.Width() <= 0 || rcDest.Height() <= 0)
+		return;
+	auto it = m_mapImageStrips.find(nIDResource);
+	if (it == m_mapImageStrips.end())
+	{
+		auto pBitmap = std::make_unique<CD2DBitmap>(nullptr, nIDResource, _T("IMAGE"));
+		if (FAILED(pBitmap->Create(&m_renderTarget)))
+			pBitmap.reset(); // kept as nullptr, so a missing resource is not loaded again for every line
+		it = m_mapImageStrips.emplace(nIDResource, std::move(pBitmap)).first;
+	}
+	if (!it->second || !it->second->IsValid())
+		return;
+	const CD2DSizeU size = it->second->GetPixelSize();
+	const float fFrameWidth = static_cast<float>(size.width) / nFrameCount;
+	const D2D1_RECT_F rcSrc{ fFrameWidth * nFrame, 0.0f, fFrameWidth * (nFrame + 1), static_cast<float>(size.height) };
+	const D2D1_RECT_F rcDst{ static_cast<float>(rcDest.left), static_cast<float>(rcDest.top),
+		static_cast<float>(rcDest.right), static_cast<float>(rcDest.bottom) };
+	// A large source shrunk to a line height needs a filter that averages the source pixels: high quality cubic
+	// (Direct2D 1.1 device context); the render target alone offers linear interpolation only
+	CComQIPtr<ID2D1DeviceContext> pDeviceContext(m_renderTarget);
+	if (pDeviceContext)
+		pDeviceContext->DrawBitmap(it->second->Get(), rcDst, 1.0f, D2D1_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC, &rcSrc);
+	else
+	{
+		const CD2DRectF rcSrcF(rcSrc);
+		m_renderTarget.DrawBitmap(it->second.get(), CD2DRectF(rcDst), 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &rcSrcF);
+	}
+}
+
 void CCrystalRendererDirectWrite::DrawMarginLineNumber(int x, int y, int number)
 {
 	tchar_t szNumbers[32];

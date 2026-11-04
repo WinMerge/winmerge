@@ -9,6 +9,7 @@
 #include <memory>
 #include <array>
 #include <map>
+#include <tuple>
 
 #pragma once
 
@@ -43,6 +44,7 @@ public:
 	virtual void PushAxisAlignedClip(const CRect &rc) override;
 	virtual void PopAxisAlignedClip() override;
 	virtual void DrawMarginIcon(int x, int y, int iconIndex,int iconsize) override;
+	virtual void DrawImageStripFrame(UINT nIDResource, int nFrameCount, int nFrame, const CRect &rcDest) override;
 	virtual void DrawMarginLineNumber(int x, int y, int number) override;
 	virtual void DrawBoundaryLine(int left, int right, int y) override;
 	virtual void DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha) override;
@@ -55,4 +57,6 @@ private:
 	CPen m_linePen;
 	std::array<std::unique_ptr<CFont>, 4> m_apFonts;
 	static std::map<int, std::unique_ptr<CImageList>> s_mapIcons;
+	/** Image strips scaled to one size, by (resource id, width, height); nullptr when the resource could not be loaded */
+	static std::map<std::tuple<UINT, int, int>, std::unique_ptr<CImageList>> s_mapImageStrips;
 };
