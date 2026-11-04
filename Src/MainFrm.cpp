@@ -1141,6 +1141,8 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	}
 
 	pMergeDoc->SetEnableTableEditing(table);
+	if (pOpenParams && !pOpenParams->m_sDisplayFilter.empty())
+		pMergeDoc->SetDisplayLineFilter(pOpenParams->m_sDisplayFilter);
 	if (pOpenParams && table.value_or(false))
 	{
 		TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
@@ -1171,7 +1173,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
 	if (pOpenParams && !pOpenParams->m_sDisplayFilter.empty())
-		pMergeDoc->ApplyDisplayLineFilter(pOpenParams->m_sDisplayFilter);
+		pMergeDoc->SyncDisplayLineFilterUI();
 
 	bool bShowMergeResultPane = false;
 	bool bAutoMerge = false;
@@ -1452,13 +1454,19 @@ bool CMainFrame::ShowDirDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fi
 	for (int i = 0; i < nFiles; ++i)
 		pDirDoc2->SetReadOnly(i, bRO[i]);
 
+	if (pOpenParams && !pOpenParams->m_sDisplayFilter.empty())
+	{
+		if (CDirView* pDirView = pDirDoc2->GetMainView())
+			pDirView->SetDisplayFileFilter(pOpenParams->m_sDisplayFilter);
+	}
+
 	// Start the comparison
 	pDirDoc2->Rescan();
 
 	if (pOpenParams && !pOpenParams->m_sDisplayFilter.empty())
 	{
 		if (CDirView* pDirView = pDirDoc2->GetMainView())
-			pDirView->ApplyDisplayFileFilter(pOpenParams->m_sDisplayFilter);
+			pDirView->SyncDisplayFileFilterUI();
 	}
 
 	return true;

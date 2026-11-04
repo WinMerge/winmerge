@@ -1967,22 +1967,26 @@ std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CMergeDoc::C
 	return result;
 }
 
-void CMergeDoc::ApplyDisplayLineFilter(const String& filter)
+void CMergeDoc::SetDisplayLineFilter(const String& filter)
 {
 	m_displayFilterHelper.SetStringOrExpression(filter);
+}
+
+void CMergeDoc::SyncDisplayLineFilterUI()
+{
 	if (CMergeEditFrame* pFrame = GetParentFrame())
 	{
 		pFrame->ShowFilterBar();
 		if (auto* pFilterBar = pFrame->GetFilterBar())
 		{
-			pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_displayFilterHelper.GetStringOrExpression());
+			const String& filter = m_displayFilterHelper.GetStringOrExpression();
+			pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, filter);
 			if (CWnd* pFilterCtrl = pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK))
 				pFilterBar->SendMessage(WM_COMMAND, MAKEWPARAM(IDC_FILTERFILE_MASK, CBN_EDITCHANGE), reinterpret_cast<LPARAM>(pFilterCtrl->GetSafeHwnd()));
-			if (!m_displayFilterHelper.GetStringOrExpression().empty() && m_displayFilterHelper.GetFilterExpression().errorCode == 0)
+			if (!filter.empty() && m_displayFilterHelper.GetFilterExpression().errorCode == 0)
 				pFilterBar->SetFilterApplied(true);
 		}
 	}
-	FlushAndRescan(true);
 }
 
 void CMergeDoc::HideLines()

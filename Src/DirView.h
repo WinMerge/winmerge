@@ -110,6 +110,8 @@ public:
 	void RestoreUIState(const DirViewUIState* pUIState);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
+	void SetDisplayFileFilter(const String& filter);
+	void SyncDisplayFileFilterUI();
 	void ApplyDisplayFileFilter(const String& filter);
 	DIFFITEM *GetItemKey(int idx) const;
 	int GetItemIndex(DIFFITEM *key);

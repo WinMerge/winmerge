@@ -5027,6 +5027,12 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 void CDirView::ApplyDisplayFileFilter(const String& filter)
 {
 	m_dirfilter.displayFilterHelper.SetMaskOrExpression(filter);
+	SyncDisplayFileFilterUI();
+	Redisplay();
+}
+
+void CDirView::SyncDisplayFileFilterUI()
+{
 	if (CDirFrame* pFrame = GetParentFrame())
 	{
 		pFrame->ShowFilterBar();
@@ -5039,7 +5045,11 @@ void CDirView::ApplyDisplayFileFilter(const String& filter)
 				pFilterBar->SetFilterApplied(true);
 		}
 	}
-	Redisplay();
+}
+
+void CDirView::SetDisplayFileFilter(const String& filter)
+{
+	m_dirfilter.displayFilterHelper.SetMaskOrExpression(filter);
 }
 
 void CDirView::OnViewDisplayFilterBarApply()
