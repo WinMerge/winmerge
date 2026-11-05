@@ -10,13 +10,13 @@ WinMerge에는 비교, 동기화 및 병합을 가능한 한 쉽고 유용하게
 구문으로 강조 표시됩니다.
 
 최신 WinMerge 버전 및 WinMerge 정보는
-https://winmerge.org/에서 확인할 수 있습니다.
+<https://winmerge.org/>에서 확인할 수 있습니다.
 
 빠른 시작
 ===========
 WinMerge를 설치한 후 기본 작업을 수행하는 방법에 대해 알아보려면
 도움말>WinMerge 도움말을 클릭하고 빠른 시작 항목으로 이동하십시오.
-또는 https://manual.winmerge.org/Quick_start.html의 웹 버전으로 이동하십시오.
+또는 <https://manual.winmerge.org/Quick_start.html>의 웹 버전으로 이동하십시오.
 
 WinMerge 도움말
 ============= 
@@ -25,13 +25,13 @@ WinMerge.chm으로 로컬로 설치됩니다. 도움말을 열려면 도움말>W
 도움말을 클릭하거나 WinMerge 창에서 F1을 누릅니다. 명령줄에서 /? 도움말
 스위치를 사용하여 WinMerge 실행 파일을 실행합니다.
 
-https://manual.winmerge.org/에서 WinMerge 도움말의
+<https://manual.winmerge.org/>에서 WinMerge 도움말의
 HTML 버전을 찾아볼 수도 있습니다.
 
 WinMerge 지원
 ================
 WinMerge에 대한 질문이나 제안이 있습니까? 시작하기 좋은 곳은
-https://forums.winmerge.org/의 WinMerge 커뮤니티 게시판입니다.
+<https://github.com/WinMerge/winmerge/discussions>의 WinMerge 커뮤니티 게시판입니다.
 개발자는 두 포럼의 질문을 자주 읽고 답변합니다. 사용법에 대한
 질문과 같은 일반적인 WinMerge 문제에 대해서는 열린 토론 포럼을
 사용하십시오. WinMerge 개발 문제에 대한 개발자 포럼을 사용하십시오.
@@ -39,7 +39,7 @@ https://forums.winmerge.org/의 WinMerge 커뮤니티 게시판입니다.
 버그 및 기능 요청
 =========================
 WinMerge 포럼에서 문제가 해결되지 않으면 프로젝트 추적기를 확인하십시오.
-https://project.winmerge.org/,으로 이동하여 추적기 메뉴에서 항목을 찾거나
+<https://github.com/WinMerge/winmerge/issues>,으로 이동하여 추적기 메뉴에서 항목을 찾거나
 제출할 수 있는 버그 및 기능 요청과 같은 링크를 클릭하십시오.
 
 버그를 제출하는 경우 보고서에 WinMerge 버전 번호를 포함하십시오.

@@ -176,7 +176,6 @@ CMergeDoc::CMergeDoc()
 , m_nGroups(0)
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
-, m_bChangedSchemeManually(false)
 , m_editorScriptInfo(_T(""))
 , m_nBuffers(m_nBuffersTemp)
 , m_documentType(m_documentTypeTemp)
@@ -696,9 +695,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// this operation does not change the modified flag
 		PrimeTextBuffers();
 
-		// Hide identical lines if diff-context is not 'All'
-		HideLines();
-
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
@@ -708,6 +704,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
 		if (m_diffWrapper.GetDetectMovedBlocks())
 			FlagMovedLines();
+
+		// Hide identical lines if diff-context is not 'All'
+		HideLines();
 		
 		// After PrimeTextBuffers() we know amount of real diffs
 		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
@@ -1631,13 +1630,15 @@ void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
  * @brief Update diff-number pane text in file compare.
  * The diff number pane shows selected difference/amount of differences when
  * there is difference selected. If there is no difference selected, then
- * the panel shows amount of differences. If there are ignored differences,
- * those are not count into numbers.
+ * the panel shows amount of differences. 
+ * Ignored differences are excluded from the navigable difference count and
+ * displayed separately.
  * @param [in] pCmdUI UI component to update.
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	const String s = MergeTextFormatter::GetDiffStatusString(GetCurrentDiff(), m_diffList.GetSignificantDiffs());
+	const DiffList::DiffCounts counts = m_diffList.GetDiffCounts(GetCurrentDiff());
+	const String s = MergeTextFormatter::GetDiffStatusString(counts.currentSignificantIndex, counts.significant, counts.ignored);
 	pCmdUI->SetText(s.c_str());
 }
 
@@ -2107,6 +2108,32 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
+	// An unattended run has nobody to answer a prompt and must end on its
+	// own: it writes what it merged to the output path it was given
+	if (theApp.GetNonInteractive())
+	{
+		if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() && m_bResultBuilt &&
+			IsMergeResultUnsaved() && !m_strMergeResultSavePath.empty())
+			SaveMergeResult(false);
+		if (!m_strSaveAsPath.empty())
+		{
+			// the output path can take the changes of one file only
+			int nModified = -1, nModifiedCount = 0;
+			for (int i = 0; i < m_nBuffers; ++i)
+			{
+				if (m_ptBuf[i]->IsModified())
+				{
+					nModified = i;
+					++nModifiedCount;
+				}
+			}
+			// (saving an unnamed file would ask for a name)
+			if (nModifiedCount == 1 && m_nBufferType[nModified] != BUFFERTYPE::UNNAMED)
+				DoSave(m_filePaths[nModified].c_str(), bSaveSuccess[nModified], nModified);
+		}
+		return true;
+	}
+
 	// Merge result pane: deal with the merge before the source files.
 	// A hidden result pane still holds the user's merge work: hiding the
 	// bar must not turn closing the window into silent data loss, so the
@@ -2486,15 +2513,21 @@ void CMergeDoc::SetTableProperties()
 	m_documentType = m_ptBuf[0]->GetTableEditing() ? IMergeDoc::DocumentType::Table : IMergeDoc::DocumentType::Text;
 }
 
-void CMergeDoc::SetTextType(int textType)
+void CMergeDoc::SetTextType(int textType, int pane)
 {
 	// Set before the views change, which show it in the status bar (CMergeEditView::UpdateSyntaxStatus)
-	m_bChangedSchemeManually = true;
-	ForEachView([textType](auto& pView) {
+	for (int i = 0; i < m_nBuffers; ++i)
+		if (pane < 0 || pane == i)
+			m_bChangedSchemeManually[i] = true;
+	auto setTextType = [textType](auto& pView) {
 		pView->SetTextType(LangServices::LanguageId(textType));
 		pView->SetDisableBSAtSOL(false);
-	});
-	if (m_pMergeResultView)
+	};
+	if (pane < 0)
+		ForEachView(setTextType);
+	else
+		ForEachView(pane, setTextType);
+	if (pane < 0 && m_pMergeResultView)
 	{
 		m_pMergeResultView->SetTextType(LangServices::LanguageId(textType));
 		m_pMergeResultView->SetDisableBSAtSOL(false);
@@ -2505,7 +2538,8 @@ void CMergeDoc::SetTextType(const String& ext)
 {
 	String ext2 = ext;
 	strutils::replace(ext2, _T("."), _T(""));
-	m_bChangedSchemeManually = true;
+	for (int i = 0; i < m_nBuffers; ++i)
+		m_bChangedSchemeManually[i] = true;
 	ForEachView([&ext2](auto& pView) {
 		pView->SetTextType(ext2.c_str());
 		pView->SetDisableBSAtSOL(false);
@@ -2531,7 +2565,7 @@ int CMergeDoc::GetFileBaseTextType(int nBuffer)
  * @brief Set the text types the file extensions give, or the first line when no extension is known.
  * Used when the files are loaded and for the syntax type "Auto Syntax" (SetTextTypeAuto).
  */
-void CMergeDoc::SetTextTypesByFileType()
+void CMergeDoc::SetTextTypesByFileType(int pane)
 {
 	// Note: If option enabled, and another side type is not recognized,
 	// we use recognized type for unrecognized side too.
@@ -2542,7 +2576,9 @@ void CMergeDoc::SetTextTypesByFileType()
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-		bTyped[nBuffer] = m_pView[0][nBuffer]->SetTextType(sext[nBuffer].c_str());
+		bTyped[nBuffer] = LangServices::GetTextType(sext[nBuffer].c_str()) != nullptr;
+		if (pane < 0 || pane == nBuffer)
+			m_pView[0][nBuffer]->SetTextType(sext[nBuffer].c_str());
 		if (bTyped[nBuffer])
 			paneTyped = nBuffer;
 	}
@@ -2550,37 +2586,30 @@ void CMergeDoc::SetTextTypesByFileType()
 	if (paneTyped == -1)
 	{
 		String sFirstLine;
-		m_ptBuf[0]->GetLine(0, sFirstLine);
-		ForEachGroupView(0, [&bTyped, &sFirstLine](auto& pView) {
-			bTyped[pView->m_nThisPane] = pView->SetTextTypeByContent(sFirstLine.c_str());
+		m_ptBuf[pane < 0 ? 0 : pane]->GetLine(0, sFirstLine);
+		ForEachGroupView(0, [pane, &bTyped, &sFirstLine](auto& pView) {
+			if (pane < 0 || pane == pView->m_nThisPane)
+				bTyped[pView->m_nThisPane] = pView->SetTextTypeByContent(sFirstLine.c_str());
 		});
 	}
 	else
 	{
 		LangServices::TextDefinition *enuType = LangServices::GetTextType(sext[paneTyped].c_str());
-		ForEachGroupView(0, [&bTyped, enuType](auto& pView) {
-			if (!bTyped[pView->m_nThisPane])
+		ForEachGroupView(0, [pane, &bTyped, enuType](auto& pView) {
+			if ((pane < 0 || pane == pView->m_nThisPane) && !bTyped[pView->m_nThisPane])
 				pView->SetTextType(enuType);
 		});
 	}
 
-	ForEachView([&](auto& pView) {
+	auto shareSyntaxParser = [&](auto& pView) {
 		auto* pMaster = m_pView[0][pView->m_nThisPane];
 		if (pView != pMaster)
 			pView->ShareSyntaxParser(pMaster);
-	});
-}
-
-/**
- * @brief Syntax type "Auto Syntax": undo a manual syntax type choice, forget the variations chosen for the
- * extensions of these files and set the types the extensions give, as when the files were loaded.
- */
-void CMergeDoc::SetTextTypeAuto()
-{
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		Options::EditorSyntax::ResetTextTypeVariation(GetOptionsMgr(), GetFileBaseTextType(nBuffer));
-	m_bChangedSchemeManually = false;
-	SetTextTypesByFileType();
+	};
+	if (pane < 0)
+		ForEachView(shareSyntaxParser);
+	else
+		ForEachView(pane, shareSyntaxParser);
 }
 
 /**
@@ -2600,6 +2629,18 @@ void CMergeDoc::SaveTextTypeVariation(int textType)
 			return;
 		}
 	}
+}
+
+/**
+ * @brief Syntax type "Auto Syntax": undo a manual syntax type choice and set the types the extensions give,
+ * as when the files were loaded.
+ */
+void CMergeDoc::SetTextTypeAuto(int pane)
+{
+	for (int i = 0; i < m_nBuffers; ++i)
+		if (pane < 0 || pane == i)
+			m_bChangedSchemeManually[i] = false;
+	SetTextTypesByFileType(pane);
 }
 
 /**

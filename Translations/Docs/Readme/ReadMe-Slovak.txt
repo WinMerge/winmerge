@@ -16,11 +16,11 @@ Pomocník WinMerge sa inštaluje lokálne ako súbor pomoci HTML spoločnosti Mi
 
 Podpora WinMerge
 ================
-Máte otázky alebo návrhy týkajúce sa WinMerge? Pre začiatok je dobrým miestom nástenka komunity WinMerge na https://forums.winmerge.org/. Vývojári často čítajú a odpovedajú na otázky na oboch fórach. Použite otvorenú diskusiu fóra pre všeobecné problémy WinMerge, napríklad otázky týkajúce sa používania. Používajte fórum vývojárov pri problémoch s vývojom WinMerge.
+Máte otázky alebo návrhy týkajúce sa WinMerge? Pre začiatok je dobrým miestom nástenka komunity WinMerge na https://github.com/WinMerge/winmerge/discussions. Vývojári často čítajú a odpovedajú na otázky na oboch fórach. Použite otvorenú diskusiu fóra pre všeobecné problémy WinMerge, napríklad otázky týkajúce sa používania. Používajte fórum vývojárov pri problémoch s vývojom WinMerge.
 
 Chyby a požiadavky na funkčnosť
 ==============================
-Ak sa problém nevyrieši na fóre WinMerge, skontrolujte sledovač projektu: prejdite na https://project.winmerge.org/ a kliknite na odkaz sledovača na ponuku, ako sú napríklad chyby a požiadavky na funkčnosť, kde môžete prezerať alebo odosielať položky. 
+Ak sa problém nevyrieši na fóre WinMerge, skontrolujte sledovač projektu: prejdite na https://github.com/WinMerge/winmerge/issues a kliknite na odkaz sledovača na ponuku, ako sú napríklad chyby a požiadavky na funkčnosť, kde môžete prezerať alebo odosielať položky. 
 
 Pri odosielaní chyby, uveďte vo svojej správe číslo verzie WinMerge. Protokol konfigurácie môžete vygenerovať kliknutím na položku Pomocník>Konfigurácia. Pripojte protokol konfigurácie k hláseniu o chybe; obsahuje veľa užitočných informácií pre vývojárov.
 

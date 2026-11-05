@@ -14,12 +14,40 @@
 #include <propvarutil.h>
 #include <propkey.h>
 #include "unicoder.h"
+#include "Win_VersionHelper.h"
 
 namespace
 {
 
 std::wstring g_appid;
 wchar_t g_exe_path[260];
+volatile LONG g_exe_path_initialized = 0;
+
+void EnsureExePathInitialized()
+{
+	if (InterlockedCompareExchange(&g_exe_path_initialized, 1, 0) == 0)
+	{
+		GetModuleFileNameW(nullptr, g_exe_path, ARRAYSIZE(g_exe_path));
+		InterlockedExchange(&g_exe_path_initialized, 2);
+	}
+	else
+	{
+		while (InterlockedCompareExchange(&g_exe_path_initialized, 2, 2) != 2)
+			Sleep(0);
+	}
+}
+
+bool ReadRegistryDword(HKEY hRootKey, const wchar_t* subKey, const wchar_t* valueName, DWORD& value)
+{
+	HKEY hKey = nullptr;
+	if (RegOpenKeyExW(hRootKey, subKey, 0, KEY_QUERY_VALUE | KEY_WOW64_64KEY, &hKey) != ERROR_SUCCESS)
+		return false;
+	DWORD type = 0;
+	DWORD size = sizeof(value);
+	const LONG result = RegQueryValueExW(hKey, valueName, nullptr, &type, reinterpret_cast<BYTE*>(&value), &size);
+	RegCloseKey(hKey);
+	return result == ERROR_SUCCESS && type == REG_DWORD;
+}
 
 IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& params, const std::wstring& title, const std::wstring& desc, const std::wstring& icon_path, int icon_index)
 {
@@ -31,15 +59,13 @@ IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& p
 	std::wstring app_path2(app_path);
 	if (app_path.empty())
 	{
-		if (g_exe_path[0] == '\0')
-			GetModuleFileNameW(nullptr, g_exe_path, sizeof(g_exe_path)/sizeof(g_exe_path[0]));
+		EnsureExePathInitialized();
 		app_path2 = g_exe_path;
 	}
 	std::wstring icon_path2(icon_path);
 	if (icon_path.empty())
 	{
-		if (g_exe_path[0] == '\0')
-			GetModuleFileNameW(nullptr, g_exe_path, sizeof(g_exe_path)/sizeof(g_exe_path[0]));
+		EnsureExePathInitialized();
 		icon_path2 = g_exe_path;
 	}
 	pShellLink->SetPath(app_path2.c_str());
@@ -214,6 +240,26 @@ bool RemoveRecentDocs()
 	HRESULT hr = pDestinations->RemoveAllDestinations();
 	pDestinations->Release();
 	return SUCCEEDED(hr);
+}
+
+/**
+ * @brief Whether Windows keeps the recent documents history of the jump list (AddToRecentDocs, GetRecentDocs).
+ * It does not before Windows 7, when the user has turned off "Show recently opened items" (Start_TrackDocs=0),
+ * or when the NoRecentDocsHistory policy is set. Read each time, so a changed setting applies at once.
+ */
+bool IsRecentDocsTrackingEnabled()
+{
+	if (!IsWin7_OrGreater())
+		return false;
+	DWORD value = 0;
+	if (ReadRegistryDword(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced", L"Start_TrackDocs", value) && value == 0)
+		return false;
+	for (HKEY hRootKey : { HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE })
+	{
+		if (ReadRegistryDword(hRootKey, L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer", L"NoRecentDocsHistory", value) && value != 0)
+			return false;
+	}
+	return true;
 }
 
 bool AddUserTasks(const std::vector<Item>& tasks)

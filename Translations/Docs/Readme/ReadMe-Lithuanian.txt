@@ -31,15 +31,13 @@ https://manual.winmerge.org/.
 „WinMerge“ palaikymas
 =====================
 Turite klausimų apie „WinMerge“ ar pasiūlymų? Geriausia pradėti nuo „WinMerge“
-bendruomenės forumų https://forums.winmerge.org/. Bendriesiems „WinMerge“
-klausimams, pvz., klausimams apie naudojimą yra skirtas „Open Discussion“ forumas.
-„WinMerge“ kūrimo klausimams yra skirtas „Developers“ forumas. Kūrėjai dažnai
-skaito ir atsako į klausimus abiejuose forumuose.
+bendruomenės forumo https://github.com/WinMerge/winmerge/discussions.
+Kūrėjai dažnai skaito forume pateiktus klausimus ir į juos atsako.
 
 Klaidos ir naujų funkcijų prašymai
 ==================================
 Jei problemos sprendimo nepavyko rasti „WinMerge“ forumuose, pasitikrinkite
-problemų sekimo tinklapyje adresu https://project.winmerge.org/, kur galėsite
+problemų sekimo tinklapyje adresu https://github.com/WinMerge/winmerge/issues, kur galėsite
 peržiūrėti ar pateikti pranešimą apie klaidą.
 
 Jeigu teikiate pranešimą apie klaidą, nurodykite naudojamos „WinMerge“ versijos

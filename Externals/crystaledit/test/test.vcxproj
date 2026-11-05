@@ -386,6 +386,7 @@
     <ClCompile Include="..\editlib\parsers\python.cpp" />
     <ClCompile Include="..\editlib\parsers\rexx.cpp" />
     <ClCompile Include="..\editlib\parsers\rsrc.cpp" />
+    <ClCompile Include="..\editlib\parsers\rtf.cpp" />
     <ClCompile Include="..\editlib\parsers\ruby.cpp" />
     <ClCompile Include="..\editlib\parsers\rust.cpp" />
     <ClCompile Include="..\editlib\parsers\sgml.cpp" />
@@ -416,6 +417,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="luaTests.cpp" />
+    <ClCompile Include="rtfTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -24,13 +24,13 @@
 #endif
 
 /** @brief RO status panel width (point) */
-static const UINT RO_PANEL_WIDTH = 20;
+static const UINT RO_PANEL_WIDTH = 25;
 /** @brief Encoding status panel width (point) */
-static const UINT ENCODING_PANEL_WIDTH = 90;
+static const UINT ENCODING_PANEL_WIDTH = 40;
 /** @brief EOL type status panel width (point) */
 static const UINT EOL_PANEL_WIDTH = 30;
 /** @brief Syntax type status panel width (point) */
-static const UINT SYNTAX_PANEL_WIDTH = 90;
+static const UINT SYNTAX_PANEL_WIDTH = 40;
 
 /**
  * @brief Statusbar pane index of a column of a file pane
@@ -76,6 +76,15 @@ BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 		return FALSE;
 
 	SetIndicators(indicatorsBottom, sizeof(indicatorsBottom) / sizeof(UINT));
+	BeginPaneLayoutUpdate();
+	SetPaneGroupCount(3);
+	for (int pane = 0; pane < 3; ++pane)
+	{
+		for (int column = 0; column < COLUMN_COUNT; ++column)
+			SetPaneGroup(pane * COLUMN_COUNT + column, pane);
+		SetPaneGroupWidth(pane, 0);
+	}
+	EndPaneLayoutUpdate();
 
 	// Set text to read-only info panes
 	// Text is hidden if file is writable
@@ -135,6 +144,9 @@ void CMergeStatusBar::OnPaint()
 	CFont* pFont = GetFont();
 	CFont* pOldFont = pFont ? memDC.SelectObject(pFont) : nullptr;
 	const int radius = MulDiv (3, memDC.GetDeviceCaps (LOGPIXELSY), 72);
+	const int textPadding = MulDiv(9, memDC.GetDeviceCaps(LOGPIXELSX), 72);
+	const int leftTextPadding = textPadding / 2;
+	const int rightTextPadding = textPadding - leftTextPadding;
 	for (int i = 0; i < nParts; i++)
 	{
 		const unsigned style = GetPaneStyle(i);
@@ -156,9 +168,26 @@ void CMergeStatusBar::OnPaint()
 			{
 				memDC.SetTextColor(clrBtnText);
 			}
+			CString text = ctrl.GetText(i);
+			if (text.Find(_T('\t')) >= 0)
+			{
+				text.Trim();
+				text.Replace(_T("\t"), _T("  "));
+			}
+
+			int leftInset = (std::max)(radius, leftTextPadding);
+			int rightInset = (std::max)(radius, rightTextPadding);
+			const int textWidth = static_cast<int>(memDC.GetTextExtent(text, text.GetLength()).cx);
+			if (rcPart.Width() - leftInset - rightInset < textWidth)
+			{
+				rightInset = radius;
+				if (rcPart.Width() - leftInset - rightInset < textWidth)
+					leftInset = radius;
+			}
 			CRect rcText = rcPart;
-			rcText.left += radius;
-			memDC.DrawText(ctrl.GetText(i), &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+			rcText.left += leftInset;
+			rcText.right -= rightInset;
+			memDC.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
 	if (pOldFont)
@@ -169,48 +198,43 @@ void CMergeStatusBar::OnPaint()
 
 void CMergeStatusBar::Resize(int widths[])
 {
+	BeginPaneLayoutUpdate();
+	std::vector<int> groupWidths(3, 0);
+	int totalGroupWidth = 0;
+	for (int pane = 0; pane < m_nPanes; ++pane)
+	{
+		groupWidths[pane] = (std::max)(0, widths[pane]);
+		totalGroupWidth += groupWidths[pane];
+	}
+	CRect clientRect;
+	GetClientRect(&clientRect);
+	if (m_nPanes > 0 && totalGroupWidth < clientRect.Width())
+		groupWidths[m_nPanes - 1] += clientRect.Width() - totalGroupWidth;
+	for (int pane = 0; pane < 3; ++pane)
+		SetPaneGroupWidth(pane, groupWidths[pane]);
+
 	// Set bottom statusbar panel widths
-	// Kimmo - I don't know why 4 seems to be right for me
-	int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
+	const int borderWidth = 4;
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-
-	for (int pane = 0; pane < m_nPanes; pane++)
+	for (int pane = 0; pane < m_nPanes; ++pane)
 	{
-		int fixedPaneWidth = pointToPixel(RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH + SYNTAX_PANEL_WIDTH) +
-			(4 * borderWidth);
-		int paneWidth = widths[pane] - fixedPaneWidth;
-		int encodingWidth = pointToPixel(ENCODING_PANEL_WIDTH) - borderWidth;
-		int roWidth = pointToPixel(RO_PANEL_WIDTH) - borderWidth;
-		int eolWidth = pointToPixel(EOL_PANEL_WIDTH) - borderWidth;
-		int syntaxWidth = pointToPixel(SYNTAX_PANEL_WIDTH) - borderWidth;
-		if (paneWidth < 0)
-		{
-			paneWidth = 0;
-			int restWidth = widths[pane] - paneWidth - borderWidth;
-			if (restWidth < 0) restWidth = 0;
-			roWidth = (roWidth + borderWidth) * restWidth / fixedPaneWidth - borderWidth;
-			if (roWidth < 0) roWidth = 0;
-			eolWidth = (eolWidth + borderWidth) * restWidth / fixedPaneWidth - borderWidth;
-			if (eolWidth < 0) eolWidth = 0;
-			syntaxWidth = (syntaxWidth + borderWidth) * restWidth / fixedPaneWidth - borderWidth;
-			if (syntaxWidth < 0) syntaxWidth = 0;
-			// Encoding takes the rest: total of the widths = widths[pane] - 8 * borderWidth (2 per fixed pane)
-			encodingWidth = widths[pane] - (paneWidth + roWidth + eolWidth + syntaxWidth + 8 * borderWidth);
-			if (encodingWidth < 0) encodingWidth = 0;
-		}
-
-		SetPaneInfo(PaneIndex(pane, COLUMN_INFO), ID_STATUS_PANE0FILE_INFO + pane,
-			SBPS_CLICKABLE, paneWidth);
-		SetPaneInfo(PaneIndex(pane, COLUMN_SYNTAX), ID_STATUS_PANE0FILE_SYNTAX + pane,
-			SBPS_CLICKABLE, syntaxWidth);
-		SetPaneInfo(PaneIndex(pane, COLUMN_ENCODING), ID_STATUS_PANE0FILE_ENCODING + pane,
-			SBPS_CLICKABLE, encodingWidth);
-		SetPaneInfo(PaneIndex(pane, COLUMN_RO), ID_STATUS_PANE0FILE_RO + pane,
-			SBPS_CLICKABLE, roWidth);
-		SetPaneInfo(PaneIndex(pane, COLUMN_EOL), ID_STATUS_PANE0FILE_EOL + pane,
-			SBPS_CLICKABLE, eolWidth);
+		const int encodingWidth = pointToPixel(ENCODING_PANEL_WIDTH) - borderWidth;
+		const int eolWidth = pointToPixel(EOL_PANEL_WIDTH) - borderWidth;
+		const int roWidth = pointToPixel(RO_PANEL_WIDTH) - borderWidth;
+		const int syntaxWidth = pointToPixel(SYNTAX_PANEL_WIDTH) - borderWidth;
+		SetPaneInfo(PaneIndex(pane, 0), ID_STATUS_PANE0FILE_INFO + pane,
+			SBPS_CLICKABLE, 0);
+		SetPaneInfo(PaneIndex(pane, 1), ID_STATUS_PANE0FILE_SYNTAX + pane,
+			SBPS_CLICKABLE | SBPS_AUTOWIDTH, syntaxWidth);
+		SetPaneInfo(PaneIndex(pane, 2), ID_STATUS_PANE0FILE_ENCODING + pane,
+			SBPS_CLICKABLE | SBPS_AUTOWIDTH, encodingWidth);
+		SetPaneInfo(PaneIndex(pane, 3), ID_STATUS_PANE0FILE_EOL + pane,
+			SBPS_CLICKABLE | SBPS_AUTOWIDTH, eolWidth);
+		SetPaneInfo(PaneIndex(pane, 4), ID_STATUS_PANE0FILE_RO + pane,
+			SBPS_CLICKABLE | SBPS_AUTOWIDTH, roWidth);
 	}
+	EndPaneLayoutUpdate();
 }
 
 /**

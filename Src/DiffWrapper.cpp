@@ -1476,6 +1476,133 @@ struct Comp02Functor
 };
 
 /**
+ * @brief An inserted block of one of the two comparisons of a 3-way compare,
+ * and how far it can be moved.
+ *
+ * An inserted block whose first line equals the line after it is just as
+ * well the block that starts one line further down, and likewise upwards.
+ */
+struct SlidingInsertion
+{
+	SlidingInsertion(std::vector<DiffRangeInfo>& diffs, const file_data& inf,
+		const MovedLines* pMovedLines, MovedLines::SIDE side)
+		: m_diffs(diffs)
+		, m_pMovedLines(pMovedLines)
+		, m_side(side)
+		, m_linbuf(inf.linbuf + inf.linbuf_base)
+		, m_nLines(inf.valid_lines - inf.linbuf_base)
+	{
+	}
+
+	/** @brief Go to the next inserted block from the current index on. */
+	bool Find()
+	{
+		for (; m_index < m_diffs.size(); ++m_index)
+		{
+			const DiffRangeInfo& dr = m_diffs[m_index];
+			if (dr.op != OP_TRIVIAL && dr.end[0] == dr.begin[0] - 1 && dr.end[1] >= dr.begin[1])
+				break;
+		}
+		if (m_index >= m_diffs.size())
+			return false;
+		if (m_index == m_rangeIndex)
+			return true; // still the same block
+		m_rangeIndex = m_index;
+
+		// The lines between two differences are common to both files, so
+		// the block can move over them as long as the lines repeat
+		const DiffRangeInfo& dr = m_diffs[m_index];
+		const int nFirstFree = (m_index > 0) ? (std::max)(m_diffs[m_index - 1].end[1] + 1, 0) : 0;
+		const int nLimit = (m_index + 1 < m_diffs.size()) ? (std::min)(m_diffs[m_index + 1].begin[1], m_nLines) : m_nLines;
+		int nUp = 0, nDown = 0;
+		// a block with lines of a moved block stays: those lines are recorded by position
+		bool bMoved = false;
+		for (int line = dr.begin[1]; m_pMovedLines != nullptr && line <= dr.end[1] && !bMoved; ++line)
+			bMoved = m_pMovedLines->LineInBlock(line, m_side) != -1;
+		if (bMoved)
+		{
+			m_lowest = m_highest = dr.begin[0];
+			return true;
+		}
+		while (dr.begin[1] - nUp - 1 >= nFirstFree && LinesEqual(dr.begin[1] - nUp - 1, dr.end[1] - nUp))
+			++nUp;
+		while (dr.end[1] + nDown + 1 < nLimit && LinesEqual(dr.begin[1] + nDown, dr.end[1] + nDown + 1))
+			++nDown;
+		m_lowest = dr.begin[0] - nUp;
+		m_highest = dr.begin[0] + nDown;
+		return true;
+	}
+
+	/** @brief Move the block to the given position in the middle file. */
+	void MoveTo(int position)
+	{
+		DiffRangeInfo& dr = m_diffs[m_index];
+		const int nDelta = position - dr.begin[0];
+		for (int file = 0; file < 2; ++file)
+		{
+			dr.begin[file] += nDelta;
+			dr.end[file] += nDelta;
+		}
+	}
+
+	int Position() const { return m_diffs[m_index].begin[0]; }
+
+	bool LinesEqual(int line1, int line2) const
+	{
+		return line_cmp(m_linbuf[line1], m_linbuf[line1 + 1] - m_linbuf[line1],
+			m_linbuf[line2], m_linbuf[line2 + 1] - m_linbuf[line2]) == 0;
+	}
+
+	std::vector<DiffRangeInfo>& m_diffs; /**< differences of the middle file (index 0) and another file (index 1) */
+	const char **m_linbuf;               /**< lines of the other file */
+	const MovedLines* m_pMovedLines;     /**< moved lines of the other file, or nullptr */
+	MovedLines::SIDE m_side;
+	int m_nLines;
+	size_t m_index = 0;
+	size_t m_rangeIndex = static_cast<size_t>(-1); /**< block the range below is of */
+	int m_lowest = 0;  /**< first position in the middle file the block can be at */
+	int m_highest = 0; /**< last position in the middle file the block can be at */
+};
+
+/**
+ * @brief Bring blocks that the left and the right file insert in the same
+ * place of the middle file to the same position.
+ *
+ * The comparisons of the middle file with the left and with the right file
+ * do not always settle on the same of the positions an inserted block can
+ * be at. Blocks that both files insert in the same place then look like two
+ * unrelated insertions next to each other, instead of one difference in
+ * which the two files agree or conflict.
+ *
+ * Only blocks that can meet are moved, and only to where they meet: no
+ * difference that the two comparisons agreed on is pulled apart.
+ */
+static void AlignInsertions(std::vector<DiffRangeInfo>& diff10, const file_data& inf0, const MovedLines* pMovedLines0,
+	std::vector<DiffRangeInfo>& diff12, const file_data& inf2, const MovedLines* pMovedLines2)
+{
+	SlidingInsertion left(diff10, inf0, pMovedLines0, MovedLines::SIDE::RIGHT);
+	SlidingInsertion right(diff12, inf2, pMovedLines2, MovedLines::SIDE::LEFT);
+	while (left.Find() && right.Find())
+	{
+		if (left.m_highest < right.m_lowest)
+			++left.m_index;
+		else if (right.m_highest < left.m_lowest)
+			++right.m_index;
+		else
+		{
+			if (left.Position() != right.Position())
+			{
+				const int position = (std::min)(left.m_highest, right.m_highest);
+				left.MoveTo(position);
+				right.MoveTo(position);
+			}
+			++left.m_index;
+			++right.m_index;
+		}
+	}
+}
+
+/**
  * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
  */
 void
@@ -1619,6 +1746,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 			}
 		}
 	}
+
+	const bool bMovedBlocks = GetDetectMovedBlocks();
+	AlignInsertions(diff10.GetDiffRangeInfoVector(), inf10[1], bMovedBlocks ? GetMovedLines(0) : nullptr,
+		diff12.GetDiffRangeInfoVector(), inf12[1], bMovedBlocks ? GetMovedLines(2) : nullptr);
 
 	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
 		Comp02Functor(inf10, inf12), 

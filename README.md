@@ -165,3 +165,5 @@ BuildAll.vs2022.cmd [x86|x64|ARM64]
 # or
 BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
 ```
+
+The manual is maintained in the `Docs/Manual` submodule. Its generated CHM files are downloaded by `DownloadDeps.cmd`; to rebuild them locally, run `BuildManual.cmd`. Before the first manual release is published, run `BuildManual.cmd` before `BuildAll.cmd` to create the CHM files locally.

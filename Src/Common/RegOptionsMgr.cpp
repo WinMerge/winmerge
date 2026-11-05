@@ -252,6 +252,52 @@ public:
 		return retVal;
 	}
 
+	/**
+	 * @brief Read the REG_SZ values of a key as they are in the registry, after the queued writes.
+	 */
+	std::map<String, String> ReadStringValues(const String& strPath)
+	{
+		WaitForQueueFlush();
+
+		std::map<String, String> values;
+		EnterCriticalSection(&m_cs);
+		HKEY hKey = OpenKey(strPath, false);
+		if (hKey)
+		{
+			std::vector<tchar_t> name(256);
+			std::vector<BYTE> data(1024);
+			for (DWORD dwIndex = 0;;)
+			{
+				DWORD cchName = static_cast<DWORD>(name.size());
+				DWORD cbData = static_cast<DWORD>(data.size());
+				DWORD dwType = 0;
+				LSTATUS result = RegEnumValue(hKey, dwIndex, name.data(), &cchName, nullptr, &dwType, data.data(), &cbData);
+				if (result == ERROR_MORE_DATA)
+				{
+					// Value names are at most 16383 characters; cbData is the size the data needs
+					name.resize(16384);
+					if (data.size() < cbData + sizeof(tchar_t))
+						data.resize(cbData + sizeof(tchar_t));
+					continue;
+				}
+				if (result != ERROR_SUCCESS)
+					break;
+				if (dwType == REG_SZ)
+				{
+					const tchar_t* pText = reinterpret_cast<const tchar_t*>(data.data());
+					size_t nLength = cbData / sizeof(tchar_t);
+					while (nLength > 0 && pText[nLength - 1] == 0)
+						nLength--;
+					values.insert_or_assign(String(name.data(), cchName), String(pText, nLength));
+				}
+				dwIndex++;
+			}
+			CloseKey(hKey, strPath);
+		}
+		LeaveCriticalSection(&m_cs);
+		return values;
+	}
+
 	int ExportAllUnloadedValues(const String& filename, const OptionsMap& optionsMap) const
 	{
 		HKEY hKey = nullptr;
@@ -697,6 +743,11 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 int CRegOptionsMgr::FlushOptions()
 {
 	return m_pIOHandler->WaitForQueueFlush();
+}
+
+std::map<String, String> CRegOptionsMgr::ReadStoredSection(const String& section)
+{
+	return m_pIOHandler->ReadStringValues(section);
 }
 
 int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const

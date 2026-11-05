@@ -1,51 +1,51 @@
 ﻿WINMERGE
 
-WinMerge is an Open Source comparing and merging tool for Windows. WinMerge can
-compare both folders and files, presenting differences in a visual text format
-that is easy to understand and handle. WinMerge can be used as an external
-differencing/merging tool or as a standalone application.
+WinMerge to program o otwartym kodzie źródłowym służący do porównywania
+i scalania plików w systemie Windows. Pozwala porównywać foldery i pliki,
+przedstawiając różnice w przejrzystej postaci tekstowej. Można go używać
+jako zewnętrznego narzędzia do porównywania i scalania albo jako
+samodzielnej aplikacji.
 
-WinMerge has many helpful supporting features to make comparing, synchronising,
-and merging as easy and useful as possible. Several programming languages and
-other file formats are syntax-highlighted.
+WinMerge oferuje wiele przydatnych funkcji ułatwiających porównywanie,
+synchronizowanie i scalanie. Obsługuje kolorowanie składni wielu języków
+programowania oraz innych formatów plików.
 
-The latest WinMerge version and WinMerge information is available at
+Najnowszą wersję programu i informacje o WinMerge znajdziesz na stronie
 https://winmerge.org/.
 
-Quick start
-===========
-To learn how to perform basic operations after installing WinMerge, click
-Help>WinMerge Help and navigate to the Quick start topic.  Or, go to the Web
-version at https://manual.winmerge.org/Quick_start.html.
+Szybki start
+============
+Aby dowiedzieć się, jak wykonać podstawowe czynności po zainstalowaniu
+WinMerge, wybierz Pomoc > Pomoc WinMerge i przejdź do tematu „Szybki start”.
+Możesz też otworzyć wersję internetową pod adresem
+https://manual.winmerge.org/Quick_start.html.
 
-WinMerge Help
-============= 
-WinMerge Help is installed locally as a Microsoft HTML Help file, WinMerge.chm,
-when you install WinMerge. To open Help, click Help>WinMerge Help or press F1 in
-the WinMerge window. On the command line, run the WinMerge executable with the 
-/? help switch.
+Pomoc WinMerge
+==============
+Podczas instalacji WinMerge zapisywany jest lokalny plik pomocy Microsoft
+HTML Help o nazwie WinMerge.chm. Aby otworzyć pomoc, wybierz Pomoc > Pomoc
+WinMerge lub naciśnij F1 w oknie programu. Z wiersza poleceń można ją
+otworzyć, uruchamiając WinMerge z przełącznikiem /?.
 
-You can also browse the HTML version of WinMerge Help at 
+Internetowa wersja pomocy jest dostępna pod adresem
 https://manual.winmerge.org/.
 
-WinMerge Support
-================
-Questions or suggestions about WinMerge? A good place to start is the WinMerge
-community bulletin board at https://forums.winmerge.org/. Developers frequently
-read and respond to questions in both forums. Use the Open Discussion forum for
-general WinMerge issues, such as questions about usage. Use the Developers forum
-for WinMerge development issues.
+Wsparcie WinMerge
+=================
+Masz pytania lub sugestie dotyczące WinMerge? Zacznij od forum społeczności
+pod adresem https://github.com/WinMerge/winmerge/discussions.
+Programiści WinMerge regularnie czytają pytania na forum i na nie
+odpowiadają.
 
-Bugs and feature requests
-=========================
-If an issue is not resolved in the the WinMerge forums, check the project
-trackers: go to https://project.winmerge.org/, and click a link in the Trackers
-menu, like Bugs and Feature Requests, where you can browse or submit items.
+Błędy i propozycje nowych funkcji
+=================================
+Jeżeli problem nie został rozwiązany na forum WinMerge, sprawdź zgłoszenia
+projektu pod adresem https://github.com/WinMerge/winmerge/issues.
+Możesz tam przeglądać istniejące zgłoszenia i dodawać nowe.
 
-If you submit a bug, please include the WinMerge version number in your
-report. You can generate a configuration log by clicking Help>Configuration.
-Please attach the configuration log to the bug report; it has lots of useful
-information for developers.
+Zgłaszając błąd, podaj numer wersji WinMerge. Dziennik konfiguracji możesz
+utworzyć, wybierając Pomoc > Konfiguracja. Dołącz go do zgłoszenia — zawiera
+wiele informacji przydatnych programistom.
 
 
-- The WinMerge Developers
+- Twórcy WinMerge

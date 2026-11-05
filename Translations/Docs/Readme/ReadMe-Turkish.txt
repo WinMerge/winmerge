@@ -30,7 +30,7 @@ https://manual.winmerge.org/ adresinden de ulaşabilirsiniz.
 
 WinMerge Desteği
 ================
-WinMerge hakkında sorularınız ve önerileriniz mi var? Bunun için https://forums.winmerge.org/
+WinMerge hakkında sorularınız ve önerileriniz mi var? Bunun için https://github.com/WinMerge/winmerge/discussions
 adresinden ulaşabileceğiniz WinMerge topluluğu forumunu kullanabilirsiniz. Yazılım geliştiriciler
 forumlardaki soruları sıklıkla okuyup yanıtlıyorlar. Kullanım gibi genel WinMerge
 konuları için Açık Tartışma (Open Discussion) forumunu, yazılım geliştirme ile ilgili konular
@@ -38,7 +38,7 @@ için de Geliştirici (Developers) forumunu kullanabilirsiniz.
 
 Hatalar ve özellik istekleri
 ===============================
-WinMerge forumlarında çözümü olmayan bir hata ile karşılaşırsanız, https://project.winmerge.org/
+WinMerge forumlarında çözümü olmayan bir hata ile karşılaşırsanız, https://github.com/WinMerge/winmerge/issues
 adresine giderek proje izleyicilere bakın. İzleyiciler menüsünden hatalar (bugs) veya özellik
 istekleri (feature requests) gibi bir bağlantıya tıklayarak başlıklara göz atıp yeni bir başlık açabilirsiniz.
 

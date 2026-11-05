@@ -335,8 +335,8 @@ bool CFileCmpReport::CopyToClipboard(const String& sFileName, String& errStr)
 	if (!file.OpenReadOnly(sFileName))
 	{
 		String errMsg = GetSysError(GetLastError());
-		errStr = strutils::format_string1(
-			_("Error opening the report for clipboard copy:\n%1"), errMsg);
+		errStr = strutils::format_string2(
+			_("Cannot open file\n%1\n\n%2"), sFileName, errMsg);
 		return false;
 	}
 	file.SetUnicoding(ucr::UTF8);

@@ -24,7 +24,7 @@ ShellExtension32bit=32-bitowe rozszerzenie powłoki WinMerge
 ;Localization Components
 Languages=Języki
 ArabicLanguage=Arabski
-AzerbaijaniLanguage=Azerbaidżański
+AzerbaijaniLanguage=Azerbejdżański
 BasqueLanguage=Baskijski
 BulgarianLanguage=Bułgarski
 CatalanLanguage=Kataloński
@@ -37,20 +37,20 @@ DanishLanguage=Duński
 DutchLanguage=Holenderski
 FinnishLanguage=Fiński
 FrenchLanguage=Francuski
-GalicianLanguage=Galisyjski
+GalicianLanguage=Galicyjski
 GermanLanguage=Niemiecki
 GreekLanguage=Grecki
 HebrewLanguage=Hebrajski
 HungarianLanguage=Węgierski
 ItalianLanguage=Włoski
-IndonesianLanguage=Indonesian menus and dialogs
+IndonesianLanguage=Indonezyjski
 JapaneseLanguage=Japoński
 KoreanLanguage=Koreański
 LithuanianLanguage=Litewski
 NorwegianLanguage=Norweski
 PersianLanguage=Perski
 PolishLanguage=Polski
-PortugueseBrazilLanguage=Portugalski (Brazylijski)
+PortugueseBrazilLanguage=Portugalski (brazylijski)
 PortugueseLanguage=Portugalski
 RomanianLanguage=Rumuński
 RussianLanguage=Rosyjski
@@ -63,7 +63,7 @@ SwedishLanguage=Szwedzki
 TamilLanguage=Tamilski
 TurkishLanguage=Turecki
 UkrainianLanguage=Ukraiński
-VietnameseLanguage=Vietnamese menus and dialogs
+VietnameseLanguage=Wietnamski
 
 ;Tasks
 ExplorerContextMenu=&Włącz integrację z menu kontekstowym Eksploratora
@@ -74,7 +74,7 @@ AddToPath=&Dodaj folder WinMerge do ścieżki systemowej
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=Scalanie trójstronne
-ThreeWayMergeWizardPageDescription=Czy używasz WinMerge jako narzędzia do scalania trójstronnego dla TortoiseSVN/Git?
+ThreeWayMergeWizardPageDescription=Wybierz panel, do którego chcesz scalić zmiany:
 RegisterWinMergeAs3WayMergeTool=Zarejestruj WinMerge jako narzędzie do scalania trójstronnego
 MergeAtRightPane=Scal w prawym panelu
 MergeAtCenterPane=Scal w środkowym panelu
@@ -88,7 +88,7 @@ ViewStartMenuFolder=&Wyświetl folder menu Start WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalator wykrył, że zmieniłeś lokalizację menu startowego z "%s" na "%s". Czy usunąć poprzedni folder menu startowego?
-ExplorerNeedsRestart=Aby dokonać aktualizacji rozszerzenia powłoki WinMerge wymagane jest ponownego uruchomienia Eksploratora. Czy uruchomić ponownie Eksploratora?
+ExplorerNeedsRestart=Rozszerzenie powłoki WinMerge wymaga ponownego uruchomienia Eksploratora, aby zastosować aktualizację. Czy uruchomić ponownie Eksploratora?
 
 ; Project file description
 ProjectFileDesc=Plik projektu WinMerge

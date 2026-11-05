@@ -49,7 +49,6 @@ ErrorTitle=Xəta
 SetupLdrStartupMessage=%1 tətbiqi yüklənəcək. Davam etmək istəyirsinizmi?
 LdrCannotCreateTemp=Müvəqqəti fayllar yaradıla bilmədiyi üçün yükləmə ləğv edildi
 LdrCannotExecTemp=Müvəqqəti qovluqdakı fayl başlıdılmadığı üçün, yükləmə ləğv edildi
-HelpTextNote=
 
 ; *** Başlanğıc xəta məlumatları
 LastErrorMessage=%1.%n%nXəta %2: %3
@@ -71,14 +70,6 @@ SetupAppRunningError=Tərtibat köməkçisi %1 proqramının işlədiyini müəy
 UninstallAppRunningError=Tərtibat köməkçisi, %1 proqramının işlədiyini müəyyən etdi.%n%nZəhmət olmasa bu proqramın işləyən bütün hissələrini bağlayın, davam etmək üçün Təsdiq et düyməsinə və ya çıxmaq üçün Ləğv et düyməsinə basın.
 
 ; *** Başlanğıc sualları
-PrivilegesRequiredOverrideTitle=Yükləmə Rejimi Seçin
-PrivilegesRequiredOverrideInstruction=Yükləmə rejimi seçin
-PrivilegesRequiredOverrideText1=%1 bütün istifadçilər üçün (inzibatçı icazəsi tələb olunur) və ya sadəcə sizin hesabınıza yüklənə bilər.
-PrivilegesRequiredOverrideText2=%1 sadəcə sizin hesabınız üçün və ya bütün istifadəçilər üçün (inzibatçı icazəsi tələb olunur) yüklənə bilər.
-PrivilegesRequiredOverrideAllUsers=&Bütün istifadəçilər üçün yüklənsin
-PrivilegesRequiredOverrideAllUsersRecommended=&Bütün istifadəçilər üçün yüklənsin (tövsiyə olunur)
-PrivilegesRequiredOverrideCurrentUser=&Sadəcə cari istifadəçi üçün yüklənsin
-PrivilegesRequiredOverrideCurrentUserRecommended=&Sadəcə cari istifadəçi üçün yüklənsin (tövsiyə olunur)
 
 ; *** Müxtəlif xəta mətinləri
 ErrorCreatingDir=Tərtibat köməkçisi "%1" qovluğunu yarada bilmədi.
@@ -158,7 +149,6 @@ WizardSelectDir=Yükləmə qovluğunu seçin
 SelectDirDesc=[name] hara yüklənsin?
 SelectDirLabel3=[name] seçilən qovluğa qurulacaq.
 SelectDirBrowseLabel=Davam etmək üçün İrəli düyməsinə basın. Təyin edilən qovluğun xaricində qovluq təyin etmək üçün Bax düyməsinə basın.
-DiskSpaceGBLabel=Ən az [gb] GB boş sahə lazımdır.
 DiskSpaceMBLabel=Ən az [mb] MB boş sahə lazımdır.
 CannotInstallToNetworkDrive=Tətbiq bir şəbəkə diskinə quraşdırıla bilməz.
 CannotInstallToUNCPath=Tərtibat UNC mövqe mövqeyinə (\\mövqey kimi) quraşdırıla bilməz. Əgər bu quraşdırmanı şəbəkə üzərindən edirsinizsə zəhmət olmasa şəbəkə hesabınızı daxil edin.
@@ -186,7 +176,6 @@ NoUninstallWarningTitle=Komponentlər mövcuddur
 NoUninstallWarning=Tərtibat bu komponentlərin kompüterinizdə yüklənmiş olduğunu müəyyən etdi:%n%n%1%n%n Bu komponentlərin işarələrinin passiv edilməsi mövcud olan komponentləri silməz.%n%nYenə də de davam etmək istəyirsiniz mi?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
-ComponentsDiskSpaceGBLabel=Seçdiyiniz komponentlər üçün diskdə ən az [gb] GB boş sahə lazımdır.
 ComponentsDiskSpaceMBLabel=Seçdiyiniz komponentlər üçün diskdə ən az [mb] MB boş sahə lazımdır.
 
 ; *** "Əlavə tapşırıqları seçin" tərtibat səhifəsi
@@ -218,23 +207,8 @@ ReadyMemoGroup=Başlat menyusu qovluğu:
 ReadyMemoTasks=Əlavə tapşırıqlar:
 
 ; *** "Əlavə fayıllar" tərtibat səhifəsi
-DownloadingLabel=Əlavə fayıllar yüklənir...
-ButtonStopDownload=Yükləməni &dayandır
-StopDownload=Yükləməni dayandırmaq istədiyinizə əminsiniz?
-ErrorDownloadAborted=Yükləmə dayandırıldı
-ErrorDownloadFailed=Yüklənmədi: %1 %2
-ErrorDownloadSizeFailed=Ölçü ala bilmədi: %1 %2
-ErrorFileHash1=Fayl heşinin yoxlanılması uğursuz oldu: %1
-ErrorFileHash2=Fayl heşi etibarsızdır: %1 olmalıdı %2
-ErrorProgress=Etibarsızdır: %1 / %2
-ErrorFileSize=Fayl ölçüsü etibarsızdır: %1 olmalıdı %2
 
 ; *** "7Zip arxiv faylların çıxarılması" tərtibat səhifəsi
-ExtractionLabel=7Zip arxiv faylların çıxarılması...
-ButtonStopExtraction=Çıxarmağı &dayandır
-StopExtraction=Çıxarmağı dayandır istədiyinizə əminsiniz?
-ErrorExtractionAborted=Çıxarma dayandırıldı
-ErrorExtractionFailed=Çıxarılmadı: %1
 
 ; *** "Quraşdırılma hazırlanır" tərtibat səhifəsi
 WizardPreparing=Quraşdırılma hazırlanır
@@ -246,7 +220,6 @@ ApplicationsFound2=Yükləmə köməkçisi tərəfindən yenilənməsi lazım ol
 CloseApplications=&Tətbiqlər bağlansın
 DontCloseApplications=Tətbiqlər &bağlanmasın
 ErrorCloseApplications=Tərtibat köməkçisi tətbiqləri bağlaya bilmədi. Tərtibat köməkçisi tərəfindən yenilənməli olan fayılları istifadə edən tətbiləri əl ilə bağlamağınız məsləhətdir.
-PrepareToInstallNeedsRestart=Yükləmə üçün kompüter təzədən başladılmalıdır. Kompüteri təzədən başlatdıqdan sonra [name] Yükləməni başa çatdırmaq üçün yükləmə köməkçisini təzədən başladın..%n%nİndi kompüteri təzədən başlatmaq istəyirsiniz mi?
 
 ; *** "Quraşdırılır" tərtibat səhifəsi
 WizardInstalling=Quraşdırılır
@@ -276,10 +249,6 @@ SelectDirectoryLabel=Zəhmət olmasa sonrakı diskin mövqeyini təyin edin.
 
 ; *** Yükləmə mərhələsi məlumatları
 SetupAborted=Yükləmə başa çatdırılmadı.%n%nZəhmət olmasa problemi həll edərək yükləmə köməkçisini təkrar yoxlayın.
-AbortRetryIgnoreSelectAction=Edəcəyiniz əməliyyatı seçin
-AbortRetryIgnoreRetry=&Təkrar yoxla
-AbortRetryIgnoreIgnore=&Problemə məhəl qoymayın və davam edin.
-AbortRetryIgnoreCancel=Yükləməni ləğv edin
 
 ; *** Yükləmə vəziyyəti məlumatları
 StatusClosingApplications=Tətbiqlər bağlanır...
@@ -310,24 +279,9 @@ ErrorRegWriteKey=Qeydiyyat dəftəri açarları yazılanda bu xəta yarandı:%n%
 ErrorIniEntry="%1" fayılına INI məlumatları yüklənəndə xəta yarandı.
 
 ; *** Fayl köçürmə xətaları
-FileAbortRetryIgnoreSkipNotRecommended=&Bu dosya atlansın (tövsiyə edilmir)
-FileAbortRetryIgnoreIgnoreNotRecommended=&Problem olmadığını bildirib davam et (tövsiyə edilmir)
 SourceIsCorrupted=Mənbəə faylı xarabdır
 SourceDoesntExist="%1" Mənbəə faylı tapılmadı
-ExistingFileReadOnly2=Mövcud faylın üstünə yazıla bilmədi, çünki sadəcə oxunan kimi qeyd olunub.
-ExistingFileReadOnlyRetry=&Sadəcə oxunan xüsusiyyətini ləğv edib təzədən yoxlansın
-ExistingFileReadOnlyKeepExisting=&Mövcud fayl qorunsun
 ErrorReadingExistingDest=Mövcud faylı oxuyanda bir problem yarandı.
-FileExistsSelectAction=Görüləcək prosesi seçin
-FileExists2=Fayl onsuz da mövcuddur.
-FileExistsOverwriteExisting=&Mövcud faylın üstünə yazın
-FileExistsKeepExisting=Mövcud &faylın qorunsun
-FileExistsOverwriteOrKeepAll=&Sonrakı münaqişələrdə bu proses aparılsın.
-ExistingFileNewerSelectAction=Görüləcək prosesi seçin
-ExistingFileNewer2=Mövcud fayl yükləmə köməkçisinin yazmağa çalışdığı fayldan daha təzədir.
-ExistingFileNewerOverwriteExisting=&Var olan faylın üstünə yazılsın
-ExistingFileNewerKeepExisting=Mövcud &fayl qorunsun (tövsiyə edilir)
-ExistingFileNewerOverwriteOrKeepAll=&Sonrakı münaqişələrdə bu proses aparılsın.
 ErrorChangingAttr=Mövcud faylın atributlarını dəyişdirərkən problem baş verdi:
 ErrorCreatingTemp=Hədəf mövqeydə fayl yaradılanda bir xəta yarandı:
 ErrorReadingSource=Mənbəə fayl oxunanda bir xəta yarandı:
@@ -341,13 +295,7 @@ ErrorRegisterTypeLib=Reyestrə tip kitabxanası əlavə etmək mümkün deyil: %
 
 ; *** Silmə mərhələsində göstəriləcək ad işarələri
 ; used for example as 'My Program (32-bit)'
-UninstallDisplayNameMark=%1 (%2)
 ; used for example as 'My Program (32-bit, All users)'
-UninstallDisplayNameMarks=%1 (%2, %3)
-UninstallDisplayNameMark32Bit=32 bit
-UninstallDisplayNameMark64Bit=64 bit
-UninstallDisplayNameMarkAllUsers=Bütün istifadəçilər
-UninstallDisplayNameMarkCurrentUser=Cari istifadəçilər
 
 ; *** Yükləmə sonrası xətalar
 ErrorOpeningReadme="Oxu məni" faylını açanda problem yarandı.

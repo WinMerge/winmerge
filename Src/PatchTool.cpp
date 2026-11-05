@@ -225,26 +225,26 @@ bool CPatchTool::CreatePatchFile(const String& outputFile)
 	m_diffWrapper.SetPrediffer(nullptr);
 	m_diffWrapper.SetPatchOptions(&patchOptions);
 	m_diffWrapper.SetOptions(&diffOptions);
-	std::vector<PATCHFILES> files;
+	std::vector<PATCHFILES> patchFiles;
 	for (const auto& item : m_fileList)
 	{
 		if (item.checked)
-			files.push_back(item);
+			patchFiles.push_back(item);
 	}
 	const PatchWriteResult writeResult = WritePatchFile(
-		files, patchOptions.outputStyle, false);
+		patchFiles, patchOptions.outputStyle, false);
 	return !writeResult.diffFailed && writeResult.writeFileCount > 0;
 }
 
 CPatchTool::PatchWriteResult CPatchTool::WritePatchFile(
-	const std::vector<PATCHFILES>& files, enum output_style outputStyle,
+	const std::vector<PATCHFILES>& patchFiles, enum output_style outputStyle,
 	bool appendHeader)
 {
 	PatchWriteResult result;
 	m_diffWrapper.WritePatchFileHeader(outputStyle, appendHeader);
 	m_diffWrapper.SetAppendFiles(true);
 
-	for (const PATCHFILES& item : files)
+	for (const PATCHFILES& item : patchFiles)
 	{
 		const String filename1 = item.lfile.empty() ? paths::NATIVE_NULL_DEVICE_NAME : item.lfile;
 		const String filename2 = item.rfile.empty() ? paths::NATIVE_NULL_DEVICE_NAME : item.rfile;

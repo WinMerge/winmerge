@@ -2,6 +2,7 @@
 //
 #include "stdafx.h"
 #include "OpenFrm.h"
+#include "OpenView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "MergeFrameCommon.h"
@@ -72,15 +73,33 @@ LRESULT COpenFrame::OnNcHitTest(CPoint point)
 	}
 }
 
+void COpenFrame::ResizeToView()
+{
+	if (!IsZoomed())
+	{
+		if (COpenView* const pView = static_cast<COpenView*>(GetActiveView()))
+		{
+			CRect rc;
+			GetClientRect(&rc);
+			rc.bottom = rc.top + pView->GetFormHeight();
+			CalcWindowRect(&rc, CWnd::adjustOutside);
+
+			SetWindowPos(nullptr, 0, 0, rc.Width(), rc.Height(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+		}
+	}
+	RecalcLayout();
+}
+
 void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 {
 	// Retain frame sizes during tile operations (tolerate overlapping)
 	if ((lpwndpos->flags & (SWP_NOSIZE | SWP_NOOWNERZORDER)) == 0 && !IsZoomed())
 	{
-		if (CScrollView *const pView = static_cast<CScrollView*>(GetActiveView()))
+		if (COpenView* const pView = static_cast<COpenView*>(GetActiveView()))
 		{
 			CRect rc;
 			pView->GetWindowRect(&rc);
+			rc.bottom = rc.top + pView->GetFormHeight();
 			CalcWindowRect(&rc, CWnd::adjustOutside);
 			lpwndpos->cx = rc.Width();
 			lpwndpos->cy = rc.Height();
@@ -91,7 +110,7 @@ void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 void COpenFrame::ActivateFrame(int nCmdShow) 
 {
 	__super::ActivateFrame(nCmdShow);
-	if (CView *const pView = GetActiveView())
+	if (COpenView *const pView = static_cast<COpenView*>(GetActiveView()))
 	{
 		if (!IsZoomed())
 		{
@@ -99,6 +118,7 @@ void COpenFrame::ActivateFrame(int nCmdShow)
 			GetWindowPlacement(&wp);
 			CRect rc;
 			pView->GetWindowRect(&rc);
+			rc.bottom = rc.top + pView->GetFormHeight();
 			CalcWindowRect(&rc, CWnd::adjustOutside);
 			wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
 			wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();

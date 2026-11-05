@@ -452,13 +452,17 @@ public:
 	void SetPreparedTableProperties(const TableProps& props) { m_pTablePropsPrepared.reset(new TableProps(props)); }
 	TableProps GetCurrentTableProperties(int pane) const;
 
-	void SetTextType(int textType);
+	void SetTextType(int textType, int pane = -1);
 	void SetTextType(const String& ext);
-	void SetTextTypesByFileType();
-	void SetTextTypeAuto();
+	void SetTextTypesByFileType(int pane = -1);
+	void SetTextTypeAuto(int pane = -1);
+	bool GetChangedSchemeManually(int pane) const
+	{
+		ASSERT(pane >= 0 && pane < 3);
+		return (pane >= 0 && pane < 3) ? m_bChangedSchemeManually[pane] : false;
+	}
 	void SaveTextTypeVariation(int textType);
 	int GetFileBaseTextType(int nBuffer);
-	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
 
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	const String& GetSaveAsPath() const { return m_strSaveAsPath; }
@@ -511,7 +515,7 @@ protected:
 	 */
 	bool m_bAutomaticRescan;
 	/// active prediffer ID : helper to check the radio button
-	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
+	bool m_bChangedSchemeManually[3]{};	/**< `true` if the syntax highlighting scheme is changed manually (per pane) */
 	String m_sCurrentHeaderTitle[3];
 	EditorScriptInfo m_editorScriptInfo;
 	LineFilterHelper m_displayFilterHelper;

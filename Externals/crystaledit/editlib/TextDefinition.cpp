@@ -46,6 +46,7 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_PYTHON, _T("Python"), _T("py"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_REXX, _T("REXX"), _T("rex;rexx"), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_RSRC, _T("Resources"), _T("rc;dlg;r16;r32;rc2"), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_RTF, _T("RTF"), _T("rtf"), false, SRCOPT_AUTOINDENT, /*2,*/ _T(""), _T(""), _T(""), (unsigned)-1,
 	SRC_RUBY, _T("Ruby"), _T("rb;rbw;rake;gemspec"), false, SRCOPT_AUTOINDENT | SRCOPT_EOLNUNIX, /*4,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
 	SRC_RUST, _T("Rust"), _T("rs"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_SGML, _T("Sgml"), _T("sgml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("<!--"), _T("-->"), _T(""), (unsigned)-1,

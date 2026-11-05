@@ -59,14 +59,14 @@ msgstr "Porównaj&..."
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
-msgstr "Zaznacz &lewy"
+msgstr "Wybierz &lewy"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
-msgstr "Zaznacz &środkowy"
+msgstr "Wybierz &środkowy"
 
 #: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr "Zaznacz ponownie &lewy"
+msgstr "Wybierz ponownie &lewy"
