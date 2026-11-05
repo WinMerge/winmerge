@@ -262,6 +262,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 			// -f "mask" - file filter mask ("*.h *.cpp")
 			q = EatParam(q, m_sFileFilter);
 		}
+		else if (param == _T("displayfilter") || param == _T("fd"))
+		{
+			// -displayfilter "expr" or -fd "expr" - display filter expression
+			q = EatParam(q, m_sDisplayFilter);
+		}
 		else if (param == _T("t"))
 		{
 			// -t "type" - window type
