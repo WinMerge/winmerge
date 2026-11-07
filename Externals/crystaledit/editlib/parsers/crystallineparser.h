@@ -35,6 +35,10 @@
 #define COOKIE_RAWSTRING        0x1000
 #define COOKIE_EXT_DEFINITION   0x2000
 #define COOKIE_EXT_VALUE        0x4000
+#define COOKIE_EXT_EXECUTABLE_COMMENT 0x8000 // SQL: inside a MySQL/MariaDB executable comment /*! ... */
+#define COOKIE_SQL_QUOTED_IDENTIFIER 0x00010000 // SQL: inside a quoted identifier
+#define COOKIE_SQL_BRACKET_IDENTIFIER 0x00020000 // SQL: quoted identifier is delimited by ']'
+#define COOKIE_SQL_POSTGRES_ESCAPE_STRING 0x00040000 // SQL: inside a PostgreSQL E'...' string
 
 #define COOKIE_GET_EXT_COMMENT_DEPTH(cookie) (((cookie) & 0x0F000000) >> 24)
 #define COOKIE_SET_EXT_COMMENT_DEPTH(cookie, depth) (cookie) = (((cookie) & 0xF0FFFFFF) | ((depth) << 24))
@@ -116,6 +120,8 @@ unsigned ParseLineSiod(unsigned dwCookie, const tchar_t *pszChars, int nLength, 
 unsigned ParseLineSmarty(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineSmartyLanguage(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineSql(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSqlPostgreSql(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineSqlMySql(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineTcl(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineTex(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineVerilog(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);

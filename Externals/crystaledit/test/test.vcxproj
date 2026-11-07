@@ -406,6 +406,7 @@
     <ClCompile Include="LineInfoTests.cpp" />
     <ClCompile Include="UndoRecordTests.cpp" />
     <ClCompile Include="htmlTests.cpp" />
+    <ClCompile Include="SqlTests.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>

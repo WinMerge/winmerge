@@ -54,6 +54,8 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_SIOD, _T("SIOD"), _T("scm"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU, /*2,*/ _T(";|"), _T("|;"), _T(";"), (unsigned)-1,
 	SRC_SMARTY, _T("Smarty"), _T("tpl"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU, /*2,*/ _T("{*"), _T("*}"), _T(""), (unsigned)-1,
 	SRC_SQL, _T("SQL"), _T("sql"), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_SQL_POSTGRESQL, _T("PostgreSQL"), _T(""), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_SQL_MYSQL, _T("MySQL"), _T(""), false, SRCOPT_AUTOINDENT, /*4,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_TCL, _T("TCL"), _T("tcl"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU | SRCOPT_EOLNUNIX, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,
 	SRC_TEX, _T("TEX"), _T("tex;sty;clo;ltx;fd;dtx"), false, SRCOPT_AUTOINDENT, /*4,*/ _T(""), _T(""), _T("%"), (unsigned)-1,
 	SRC_TOML, _T("TOML"), _T("toml"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T(""), _T(""), _T("#"), (unsigned)-1,

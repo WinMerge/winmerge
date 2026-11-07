@@ -54,6 +54,9 @@ SGML
 SIOD
 Smarty
 SQL
+SQL (T-SQL)
+SQL (PostgreSQL)
+SQL (MySQL/MariaDB)
 TCL
 TEX
 TOML

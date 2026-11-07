@@ -70,6 +70,8 @@ enum LanguageId
 	SRC_SIOD,
 	SRC_SMARTY,
 	SRC_SQL,
+	SRC_SQL_POSTGRESQL,
+	SRC_SQL_MYSQL,
 	SRC_TCL,
 	SRC_TEX,
 	SRC_TOML,
@@ -102,6 +104,12 @@ struct TextDefinition
 TextDefinition* GetTextType(const tchar_t* pszExt);
 TextDefinition* GetTextType(int index);
 TextDefinition* GetTextType(LanguageId type);
+TextDefinition* GetBaseTextType(const tchar_t* pszExt);
+bool IsTextTypeAvailable(int index);
+int GetTextTypeVariationBase(int index);
+void SetTextTypeVariation(int index);
+void ResetTextTypeVariation(int base);
+bool IsChosenTextTypeVariation(int index);
 void SetExtension(int index, const tchar_t* pszExts);
 
 }
