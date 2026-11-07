@@ -169,6 +169,17 @@ void CBasicFlatStatusBar::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHnd
 		UpdateAutoPaneWidths();
 }
 
+CSize CBasicFlatStatusBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
+{
+	CSize size = CStatusBar::CalcFixedLayout(bStretch, bHorz);
+
+	const int dpi = CClientDC(this).GetDeviceCaps(LOGPIXELSY);
+	if (dpi > USER_DEFAULT_SCREEN_DPI)
+		size.cy += MulDiv(3, dpi, 96);
+
+	return size;
+}
+
 void CBasicFlatStatusBar::OnSize(UINT nType, int cx, int cy)
 {
 	CStatusBar::OnSize(nType, cx, cy);
