@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-10-22 06:46+0000\n"
-"PO-Revision-Date: 2026-10-25 20:45+0800\n"
+"PO-Revision-Date: 2026-11-07 14:06+0800\n"
 "Last-Translator: 昇 <love80312@gmail.com>\n"
 "Language-Team: ChineseTraditional <winmerge-"
 "translate@lists.sourceforge.net>\n"
@@ -163,52 +163,52 @@ msgstr "從左側複製(&F)\tAlt+Shift+Right"
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_MIDDLE_R
 #: Merge.rc:170 Merge.rc:178
 msgid "Copy Selected Lines to Middle"
-msgstr "複製所選行到中間"
+msgstr "複製已選取行至中間"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_RIGHT_M
 #: Merge.rc:171 Merge.rc:175
 msgid "Copy Selected Lines to Right"
-msgstr "將所選行複製到右側"
+msgstr "複製已選取行至右側"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_MIDDLE_R
 #: Merge.rc:172 Merge.rc:180
 msgid "Copy Selected Lines from Middle"
-msgstr "複製（中間）已選取行"
+msgstr "從（中間）複製已選取行"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_RIGHT_M
 #: Merge.rc:173 Merge.rc:177
 msgid "Copy Selected Lines from Right"
-msgstr "複製（右側）已選取行"
+msgstr "從（右側）複製已選取行"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_LEFT_R
 #: Merge.rc:174 Merge.rc:179
 msgid "Copy Selected Lines to Left"
-msgstr "將所選行複製到左側"
+msgstr "複製已選取行至左側"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_LEFT_R
 #: Merge.rc:176 Merge.rc:181
 msgid "Copy Selected Lines from Left"
-msgstr "複製（左側）已選取行"
+msgstr "從（左側）複製已選取行"
 
 #. IDR_POPUP_MERGEVIEW, ID_SEL_DIFF_COPY_1ST
 #: Merge.rc:183
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr "複製（左側）已選取差異 到剪貼簿\tCtrl+&1"
+msgstr "複製已選取差異（左側）至剪貼簿\tCtrl+&1"
 
 #. IDR_POPUP_MERGEVIEW, ID_SEL_DIFF_COPY_2ND
 #: Merge.rc:184
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr "複製（右側）已選取差異 到剪貼簿\tCtrl+&2"
+msgstr "複製已選取差異（右側）至剪貼簿\tCtrl+&2"
 
 #. IDR_POPUP_MERGEVIEW, ID_SEL_DIFF_COPY_2ND_3WAY
 #: Merge.rc:185
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr "複製（中間）已選取差異 到剪貼簿\tCtrl+&2"
+msgstr "複製已選取差異（中間）至剪貼簿\tCtrl+&2"
 
 #. IDR_POPUP_MERGEVIEW, ID_SEL_DIFF_COPY_3RD
 #: Merge.rc:186
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr "複製（右側）已選取差異 到剪貼簿\tCtrl+&3"
+msgstr "複製已選取差異（右側）至剪貼簿\tCtrl+&3"
 
 #. IDR_MERGEDOCTYPE, ID_SELECTLINEDIFF
 #: Merge.rc:188 Merge.rc:780
@@ -233,7 +233,7 @@ msgstr "新增至行篩選器(&L)"
 #. IDR_POPUP_MERGEVIEW, ID_ADD_TO_SUBSTITUTION_FILTERS
 #: Merge.rc:193
 msgid "Add to Substitution &Filters"
-msgstr "新增至替換篩選器(&F)"
+msgstr "新增至置換篩選器(&F)"
 
 #. IDR_POPUP_MERGEVIEW, ID_EDIT_UNDO
 #: Merge.rc:196
@@ -365,7 +365,7 @@ msgstr "依此欄篩選(&F)"
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_TEXT
 #: Merge.rc:241 Merge.rc:1975
 msgid "&Text..."
-msgstr "文字(&T)..."
+msgstr "文字...(&T)"
 
 #. IDR_POPUP_LINEFILTERMENU, ID_FILTERMENU_COLUMN_NUMBER
 #: Merge.rc:242 Merge.rc:1976
@@ -769,22 +769,22 @@ msgstr "工具列(&T)"
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_SMALL
 #: Merge.rc:459 Merge.rc:610 Merge.rc:860
 msgid "&Small"
-msgstr "小圖示(&S)"
+msgstr "小型(&S)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_MEDIUM
 #: Merge.rc:460 Merge.rc:611 Merge.rc:861
 msgid "&Medium"
-msgstr "中圖示(&M)"
+msgstr "中型(&M)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_BIG
 #: Merge.rc:461 Merge.rc:612 Merge.rc:862
 msgid "&Big"
-msgstr "大圖示(&B)"
+msgstr "大型(&B)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_HUGE
 #: Merge.rc:462 Merge.rc:613 Merge.rc:863
 msgid "&Huge"
-msgstr "巨大(&H)"
+msgstr "巨型(&H)"
 
 #. IDS_VIEW_MENU_BAR
 #: Merge.rc:464 Merge.rc:615 Merge.rc:865 Merge.rc:5905
@@ -814,7 +814,7 @@ msgstr "篩選器...(&F)"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEPATCH
 #: Merge.rc:471 Merge.rc:645 Merge.rc:961
 msgid "&Generate Patch..."
-msgstr "產生修補檔(&G)..."
+msgstr "產生修補檔...(&G)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:473 Merge.rc:648 Merge.rc:965
@@ -839,13 +839,13 @@ msgstr "自動預差異器(&U)"
 #. IDR_MERGEDOCTYPE, ID_UNPACK_MANUAL
 #: Merge.rc:480 Merge.rc:655 Merge.rc:972
 msgid "&Manual Unpacking"
-msgstr "手動化解包裝(&M)"
+msgstr "手動化進行解包(&M)"
 
 # "自動解壓縮 (&A)"
 #. IDR_MERGEDOCTYPE, ID_UNPACK_AUTO
 #: Merge.rc:481 Merge.rc:656 Merge.rc:973
 msgid "&Automatic Unpacking"
-msgstr "自動解包(&A)"
+msgstr "自動進行解包(&A)"
 
 #. IDR_MERGEDOCTYPE, ID_RELOAD_PLUGINS
 #: Merge.rc:483 Merge.rc:660 Merge.rc:1001
@@ -945,7 +945,7 @@ msgstr "右側唯讀(&G)"
 #. IDD_ENCODINGERROR, IDC_FILEENCODING
 #: Merge.rc:545 Merge.rc:752 Merge.rc:1153 Merge.rc:3498
 msgid "&File Encoding..."
-msgstr "檔案編碼(&F)..."
+msgstr "檔案編碼...(&F)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWIDENTICAL
 #: Merge.rc:562
@@ -960,17 +960,17 @@ msgstr "顯示不同的項目(&D)"
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWUNIQUELEFT
 #: Merge.rc:564
 msgid "Show L&eft Unique Items"
-msgstr "顯示左側獨有項目(&E)"
+msgstr "顯示（左側）獨有的項目(&E)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWUNIQUEMIDDLE
 #: Merge.rc:565
 msgid "Show Midd&le Unique Items"
-msgstr "顯示中間獨有項目(&L)"
+msgstr "顯示（中間）獨有的項目(&L)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWUNIQUERIGHT
 #: Merge.rc:566
 msgid "Show Ri&ght Unique Items"
-msgstr "顯示右側獨有項目(&G)"
+msgstr "顯示（右側）獨有的項目(&G)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWSKIPPED
 #: Merge.rc:567
@@ -990,32 +990,32 @@ msgstr "&3 方向比對"
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTLEFTONLY
 #: Merge.rc:571
 msgid "Show &Left Only Different Items"
-msgstr "顯示左側僅僅不同的項目(&L)"
+msgstr "顯示（左側）僅不同的項目(&L)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY
 #: Merge.rc:572
 msgid "Show &Middle Only Different Items"
-msgstr "顯示中間僅僅不同的項目(&M)"
+msgstr "顯示（中間）僅不同的項目(&M)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWDIFFERENTRIGHTONLY
 #: Merge.rc:573
 msgid "Show &Right Only Different Items"
-msgstr "顯示右側僅不同的項目(&R)"
+msgstr "顯示（右側）僅不同的項目(&R)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGLEFTONLY
 #: Merge.rc:575
 msgid "Show L&eft Only Missing Items"
-msgstr "顯示左側僅僅遺失的項目(&L)"
+msgstr "顯示（左側）僅遺失的項目(&E)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGMIDDLEONLY
 #: Merge.rc:576
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "顯示中間僅僅遺失的項目(&M)"
+msgstr "顯示（中間）僅遺失的項目(&D)"
 
 #. IDR_DIRDOCTYPE, ID_OPTIONS_SHOWMISSINGRIGHTONLY
 #: Merge.rc:577
 msgid "Show Rig&ht Only Missing Items"
-msgstr "顯示右側僅僅遺失的項目(&H)"
+msgstr "顯示（右側）僅遺失的項目(&H)"
 
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOWHIDDENITEMS
 #: Merge.rc:580
@@ -1165,12 +1165,12 @@ msgstr "自訂欄位...(&C)"
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEREPORT
 #: Merge.rc:646 Merge.rc:962
 msgid "Generate &Report..."
-msgstr "產生報告(&R)..."
+msgstr "產生報告...(&R)"
 
 #. IDD_ENCODINGERROR, IDC_PLUGIN
 #: Merge.rc:658 Merge.rc:979 Merge.rc:3499
 msgid "&Edit with Unpacker..."
-msgstr "以解包器編輯(&E)..."
+msgstr "以解包器編輯...(&E)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_SAVE
 #: Merge.rc:715
@@ -1225,7 +1225,7 @@ msgstr "儲存右側為...(&R)"
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MERGE_RESULT
 #: Merge.rc:728 Merge.rc:1337
 msgid "Save Merge Result &As..."
-msgstr "合併結果另存新檔(&A)..."
+msgstr "合併結果另存新檔...(&A)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_PRINT
 #: Merge.rc:731
@@ -1405,7 +1405,7 @@ msgstr "檢視頁邊(&M)"
 #. IDR_MERGEDOCTYPE, ID_VIEW_TOPMARGIN
 #: Merge.rc:841
 msgid "View To&p Margins"
-msgstr "檢視上邊界(&p)"
+msgstr "檢視上邊界(&P)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_WORDWRAP
 #: Merge.rc:842
@@ -1551,17 +1551,17 @@ msgstr "從右側複製至(&R)"
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:923
 msgid "Copy Selected Lines from Le&ft to"
-msgstr "將左側所選行複製至(&F)"
+msgstr "從（左側）複製已選取行至(&F)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:928
 msgid "Copy Selected Lines from Mi&ddle to"
-msgstr "將中間所選行複製至(&D)"
+msgstr "從（中間）複製已選取行至(&D)"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:933
 msgid "Copy Selected Lines from Ri&ght to"
-msgstr "將右側所選行複製至(&G)"
+msgstr "從（右側）複製已選取行至(&G)"
 
 #. IDR_MERGEDOCTYPE, ID_COPY_FROM_LEFT
 #: Merge.rc:943
@@ -1725,37 +1725,37 @@ msgstr "左側至...(%1／%2)"
 #: Merge.rc:1063 Merge.rc:1075 Merge.rc:4986
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr "中間到左側(%1／%2)"
+msgstr "中間至左側(%1／%2)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT2
 #: Merge.rc:1064 Merge.rc:1076 Merge.rc:4987
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr "中間到右側(%1／%2)"
+msgstr "中間至右側(%1／%2)"
 
 #. IDS_MOVE_MIDDLE_TO2
 #: Merge.rc:1065 Merge.rc:1077 Merge.rc:1138 Merge.rc:5001 Merge.rc:5030
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr "中間到...(%1／%2)"
+msgstr "中間至...(%1／%2)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE2
 #: Merge.rc:1066 Merge.rc:1078 Merge.rc:4985
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr "右側到中間(%1／%2)"
+msgstr "右側至中間(%1／%2)"
 
 #. IDS_COPY_RIGHT_TO_LEFT2
 #: Merge.rc:1067 Merge.rc:1079 Merge.rc:4984
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "右側到左側(%1／%2)"
+msgstr "右側至左側(%1／%2)"
 
 #. IDS_MOVE_RIGHT_TO2
 #: Merge.rc:1068 Merge.rc:1080 Merge.rc:1139 Merge.rc:5002 Merge.rc:5031
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "右側到...(%1／%2)"
+msgstr "右側至...(%1／%2)"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_MARKER_DELETE
 #: Merge.rc:1082 Merge.rc:2397
@@ -1811,19 +1811,19 @@ msgstr "複製路徑(&Y)"
 #: Merge.rc:1118 Merge.rc:1127 Merge.rc:5017
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "左側(%1／%2)"
+msgstr "左＜＝（%1／%2）"
 
 #. IDS_DEL_MIDDLE_FMT2
 #: Merge.rc:1119 Merge.rc:1128 Merge.rc:5018
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr "中間(%1／%2)"
+msgstr "中間（%1／%2）"
 
 #. IDS_DEL_RIGHT_FMT2
 #: Merge.rc:1120 Merge.rc:1129 Merge.rc:5019
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "右側(%1／%2)"
+msgstr "右＝＞（%1／%2）"
 
 #. IDS_DEL_BOTH_FMT2
 #: Merge.rc:1121 Merge.rc:1130 Merge.rc:5020
@@ -1835,7 +1835,7 @@ msgstr "雙邊（%1／%2）"
 #: Merge.rc:1122 Merge.rc:1131 Merge.rc:5025
 #, c-format
 msgid "All (%1 of %2)"
-msgstr "全部(%1／%2)"
+msgstr "全部（%1／%2）"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_COPY_FILENAMES
 #: Merge.rc:1124
@@ -2214,7 +2214,7 @@ msgstr "新增預差異器擴充功能...(&P)"
 #. IDR_POPUP_PLUGIN_ADD_MENU, ID_PLUGIN_DUPLICATE
 #: Merge.rc:1450
 msgid "&Duplicate Plugin..."
-msgstr "複製擴充功能(&D)..."
+msgstr "複製擴充功能...(&D)"
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_CLEAR_ALL
 #: Merge.rc:1474
@@ -2254,7 +2254,7 @@ msgstr "編輯器備份檔案(&E)"
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_BIN
 #: Merge.rc:1489
 msgid "&Compiled Binary Files"
-msgstr "已編譯二進位檔(&C)"
+msgstr "已編譯二進位檔案(&C)"
 
 #. IDR_POPUP_FILTERMENU, ID_FILTERMENU_FILE_LOG
 #: Merge.rc:1490
@@ -2401,7 +2401,7 @@ msgstr "日(&D)"
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
 #: Merge.rc:1529 Merge.rc:1610 Merge.rc:1800
 msgid "Before today"
-msgstr "今天之前"
+msgstr "今日之前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_TODAY
 #: Merge.rc:1530 Merge.rc:1611 Merge.rc:1801
@@ -2411,7 +2411,7 @@ msgstr "本日"
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
 #: Merge.rc:1531 Merge.rc:1612 Merge.rc:1802
 msgid "Before yesterday"
-msgstr "昨天之前"
+msgstr "昨日之前"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_YESTERDAY
 #: Merge.rc:1532 Merge.rc:1613 Merge.rc:1803
@@ -3469,7 +3469,7 @@ msgstr "正規表達式(&E)"
 #. IDD_EDIT_FIND, IDC_FINDDLG_DONTWRAP
 #: Merge.rc:2358
 msgid "D&on't wrap end of file"
-msgstr "不要在檔案末尾自動換行(&O)"
+msgstr "到檔案末尾不循環(&O)"
 
 #. IDD_EDIT_FIND, IDC_FINDDLG_DONTCLOSE
 #: Merge.rc:2359
@@ -3499,7 +3499,7 @@ msgstr "取代為(&P)："
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_DONT_WRAP
 #: Merge.rc:2377
 msgid "&Don't wrap at end of file"
-msgstr "不要在檔案末尾自動換行(&D)"
+msgstr "到檔案末尾不循環(&D)"
 
 #. IDD_EDIT_REPLACE, IDC_STATIC
 #: Merge.rc:2379
@@ -3780,12 +3780,12 @@ msgstr "已選取移位區塊："
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
 #: Merge.rc:2543
 msgid "Same As Next (3 panes):"
-msgstr "與下一個同樣（ 3 窗格）："
+msgstr "與旁邊同樣（ 3 窗格）："
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
 #: Merge.rc:2548
 msgid "Same As Next (Selected):"
-msgstr "與下一個同樣（已選取）："
+msgstr "與旁邊同樣（已選取）："
 
 #. IDD_PROPPAGE_COLORS_WINMERGE, IDC_STATIC
 #: Merge.rc:2553
@@ -4174,12 +4174,12 @@ msgstr "要包含的對照："
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2788
 msgid "File&1:"
-msgstr "檔案1(&1)："
+msgstr "檔案 &1："
 
 #. IDD_GENERATE_PATCH, IDC_STATIC
 #: Merge.rc:2791
 msgid "File&2:"
-msgstr "檔案2(&2)："
+msgstr "檔案 &2："
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_SWAPFILES
 #: Merge.rc:2794
@@ -4294,7 +4294,7 @@ msgstr "顯示全部擴充功能（忽略副檔名）"
 #. IDD_PLUGINS_SELECTPLUGIN, IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE
 #: Merge.rc:2867
 msgid "&Open files in same window type after unpacking"
-msgstr "解包裝後在同類型視窗開啟檔案(&O)"
+msgstr "進行解包後在同視窗類型開啟檔案(&O)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
 #: Merge.rc:2869 Merge.rc:3564
@@ -4384,7 +4384,7 @@ msgstr "遮罩/篩選表達式(&M)"
 #. IDD_FILTERS_FILEFILTERS, IDC_STATIC
 #: Merge.rc:2939
 msgid "Preset &Filters"
-msgstr "預設篩選器(&F)"
+msgstr "篩選器預設置(&F)"
 
 #. IDD_FILTERS_FILEFILTERS, IDC_FILTERFILE_TEST_BTN
 #: Merge.rc:2941
@@ -4439,7 +4439,7 @@ msgstr "表達式："
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2971
 msgid "Filter by Comparison Result"
-msgstr "依比對結果篩選"
+msgstr "依對照結果篩選"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2974
@@ -4459,12 +4459,12 @@ msgstr "對照結果"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2979
 msgid "Left only"
-msgstr "僅左側"
+msgstr "唯左"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2980
 msgid "Right only"
-msgstr "僅右側"
+msgstr "唯右"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2981
@@ -4479,37 +4479,37 @@ msgstr "僅中間"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2983
 msgid "Left only (different)"
-msgstr "僅左側(不同的)"
+msgstr "唯左（不同的）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2985
 msgid "Middle only (different)"
-msgstr "僅中間(不同的)"
+msgstr "僅中間（不同的）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2987
 msgid "Right only (different)"
-msgstr "僅右側(不同的)"
+msgstr "唯右（不同的）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2989
 msgid "Left only (missing)"
-msgstr "僅左側(遺失的)"
+msgstr "唯左（遺失的）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2990
 msgid "Middle only (missing)"
-msgstr "僅中間(遺失的)"
+msgstr "僅中間（遺失的）"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2992
 msgid "Right only (missing)"
-msgstr "僅右側(遺失的)"
+msgstr "唯右（遺失的）"
 
 #. IDD_FILTERS_MATCHINSIDE
 #: Merge.rc:3000
 msgid "Match Inside/Outside Filter Expressions"
-msgstr "符合內部／外部篩選條件的表達式"
+msgstr "符合內部/外部篩選條件的表達式"
 
 #. IDD_FILTERS_MATCHINSIDE, IDC_STATIC
 #: Merge.rc:3003
@@ -4732,7 +4732,7 @@ msgstr "共用篩選器（適用全部使用者）"
 #. IDD_FILTERS_FILEFILTERS_SHARED, IDC_PRIVATE
 #: Merge.rc:3136
 msgid "Private Filter (current user only)"
-msgstr "個人篩選器(僅適用現在使用者)"
+msgstr "個人篩選器（僅限目前使用者）"
 
 #. IDD_COMPARE_STATISTICS3
 #: Merge.rc:3143 Merge.rc:3184
@@ -4757,7 +4757,7 @@ msgstr "二進位："
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
 #: Merge.rc:3156 Merge.rc:3197
 msgid "Unique"
-msgstr "獨有"
+msgstr "獨有的"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
 #: Merge.rc:3157 Merge.rc:3198
@@ -4807,7 +4807,7 @@ msgstr "影響"
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_RIGHT_FILES_LABEL
 #: Merge.rc:3250 Merge.rc:3252 Merge.rc:3254
 msgid "(Affects)"
-msgstr "(影響)"
+msgstr "（影響）"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_LOADING_GROUP
 #: Merge.rc:3255
@@ -4977,7 +4977,7 @@ msgstr "到右側"
 #. IDS_MESSAGEBOX_DONT_ASK_AGAIN
 #: Merge.rc:3335 Merge.rc:4656
 msgid "Don't ask this &question again."
-msgstr "不要再詢問此問題(&Q)"
+msgstr "不要再次詢問此問題(&Q)"
 
 #. IDD_CONFIRM_COPY, IDYES
 #: Merge.rc:3337
@@ -5017,7 +5017,7 @@ msgstr "擴充功能引數(&P)："
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
 #: Merge.rc:3354 Merge.rc:3569
 msgid "Enable &automatic unpacking/prediffing"
-msgstr "啟用 自動的解包裝/預差異化(&A)"
+msgstr "啟用 自動進行解包/預差異化(&A)"
 
 #. IDS_OPTIONSPG_SHELL
 #: Merge.rc:3368 Merge.rc:4682
@@ -5113,7 +5113,7 @@ msgstr "比對後展開子資料夾："
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_COMPARE_WALKSUBDIRS
 #: Merge.rc:3400
 msgid "Include &unique subfolders contents"
-msgstr "包括獨有子資料夾內容(&U)"
+msgstr "包括獨有的子資料夾內容(&U)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_IGNORE_REPARSEPOINTS
 #: Merge.rc:3402
@@ -5407,7 +5407,7 @@ msgid ""
 "Open (Ctrl+O)"
 msgstr ""
 "\n"
-"開啟(Ctrl+O)"
+"開啟（Ctrl+O）"
 
 #. ID_FILE_SAVE
 #: Merge.rc:4595
@@ -5416,7 +5416,7 @@ msgid ""
 "Save (Ctrl+S)"
 msgstr ""
 "\n"
-"儲存(Ctrl+S)"
+"儲存（Ctrl+S）"
 
 #. IDS_UNK_ERROR_READING_PROJECT
 #: Merge.rc:4601
@@ -5463,7 +5463,7 @@ msgid ""
 "Undo (Ctrl+Z)"
 msgstr ""
 "\n"
-"復原(Ctrl+Z)"
+"復原（Ctrl+Z）"
 
 #. ID_EDIT_REDO
 #: Merge.rc:4616
@@ -5472,7 +5472,7 @@ msgid ""
 "Redo (Ctrl+Y)"
 msgstr ""
 "\n"
-"取消復原(Ctrl+Y)"
+"取消復原（Ctrl+Y）"
 
 #. IDR_MERGEDOCTYPE
 #: Merge.rc:4623
@@ -5580,7 +5580,7 @@ msgstr "全部略過(&A)"
 #. IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN
 #: Merge.rc:4655
 msgid "Don't display this &message again."
-msgstr "不要再顯示此訊息(&M)"
+msgstr "不要再次顯示此訊息(&M)"
 
 #: Merge.rc:4658
 msgid ""
@@ -5668,7 +5668,7 @@ msgstr "版本 %1"
 #: Merge.rc:4718
 #, c-format
 msgid "Options (%1)"
-msgstr "選項(%1)"
+msgstr "選項（%1）"
 
 #. IDS_MESSAGE_BOX_ARE_RESET
 #: Merge.rc:4719
@@ -5937,7 +5937,7 @@ msgstr "資料夾對照結果"
 #. IDS_FILE_COMPARISON_TITLE
 #: Merge.rc:4834
 msgid "File Comparison"
-msgstr "檔案對比"
+msgstr "檔案對照"
 
 #. IDS_EMPTY_LEFT_FILE
 #: Merge.rc:4835
@@ -6008,7 +6008,7 @@ msgstr "第 %1 段分歧（共 %2 段）"
 #: Merge.rc:4852
 #, c-format
 msgid "Diff. %1 of %2 (%3 ign.)"
-msgstr "差異 %1 / %2（%3 項已忽略）"
+msgstr "差異 %1／%2（已忽略 %3）"
 
 #. IDS_NO_DIFF_SEL_FMT
 #: Merge.rc:4853
@@ -6025,7 +6025,7 @@ msgstr "找到 1 段分歧"
 #: Merge.rc:4855
 #, c-format
 msgid "%1 Differences (%2 ign.)"
-msgstr "%1 段分歧(%2 段已忽略)"
+msgstr "%1 段分歧（%2 段已忽略）"
 
 #. IDS_1_DIFF_FOUND_IGNORED_FMT
 #: Merge.rc:4856
@@ -6053,7 +6053,7 @@ msgstr "唯讀"
 #: Merge.rc:4865
 #, c-format
 msgid "Item %1 of %2"
-msgstr "%2 個項目之 第 %1"
+msgstr "第 %1／%2 個項目"
 
 #. IDS_DIRVIEW_STATUS_FMT_NOFOCUS
 #: Merge.rc:4866
@@ -6482,31 +6482,31 @@ msgstr "複製全部至中間"
 #: Merge.rc:4978
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "右側到左側(%1)"
+msgstr "右側至左側（%1）"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE
 #: Merge.rc:4979
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr "右側到中間(%1)"
+msgstr "右側至中間（%1）"
 
 #. IDS_COPY_MIDDLE_TO_LEFT
 #: Merge.rc:4980
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr "中間到左側(%1)"
+msgstr "中間至左側（%1）"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT
 #: Merge.rc:4981
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr "中間到右側(%1)"
+msgstr "中間至右側（%1）"
 
 #. IDS_COPY_LEFT_TO_RIGHT
 #: Merge.rc:4982
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "左側至右側(%1)"
+msgstr "左側至右側（%1）"
 
 #. IDS_COPY_LEFT_TO_MIDDLE
 #: Merge.rc:4983
@@ -6518,19 +6518,19 @@ msgstr "左側至中間（%1）"
 #: Merge.rc:4994 Merge.rc:5026
 #, c-format
 msgid "Left to... (%1)"
-msgstr "左側至(%1)..."
+msgstr "左側至...(%1)"
 
 #. IDS_MOVE_MIDDLE_TO
 #: Merge.rc:4995 Merge.rc:5027
 #, c-format
 msgid "Middle to... (%1)"
-msgstr "中間到...(%1)"
+msgstr "中間至...(%1)"
 
 #. IDS_MOVE_RIGHT_TO
 #: Merge.rc:4996 Merge.rc:5028
 #, c-format
 msgid "Right to... (%1)"
-msgstr "右側到...(%1)"
+msgstr "右側至...(%1)"
 
 #. IDS_COPY_BOTH_TO
 #: Merge.rc:4997
@@ -6563,19 +6563,19 @@ msgstr ""
 #: Merge.rc:5012
 #, c-format
 msgid "Left (%1)"
-msgstr "左側(%1)"
+msgstr "左＜＝（%1）"
 
 #. IDS_DEL_MIDDLE_FMT
 #: Merge.rc:5013
 #, c-format
 msgid "Middle (%1)"
-msgstr "中間(%1)"
+msgstr "中間（%1）"
 
 #. IDS_DEL_RIGHT_FMT
 #: Merge.rc:5014
 #, c-format
 msgid "Right (%1)"
-msgstr "右側(%1)"
+msgstr "右＝＞（%1）"
 
 #. IDS_DEL_BOTH_FMT
 #: Merge.rc:5015
@@ -6587,7 +6587,7 @@ msgstr "雙邊（%1）"
 #: Merge.rc:5016
 #, c-format
 msgid "All (%1)"
-msgstr "全部(%1)"
+msgstr "全部（%1）"
 
 #. IDS_SELECT_DEST_LEFT
 #: Merge.rc:5032
@@ -6608,13 +6608,13 @@ msgstr "右側 - 選取目標資料夾："
 #: Merge.rc:5035
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(%1 受影響檔案)"
+msgstr "(%1 個受影響檔案)"
 
 #. IDS_FILES_AFFECTED_FMT2
 #: Merge.rc:5036
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%2 受影響檔案之 %1)"
+msgstr "(%1／%2 個受影響檔案)"
 
 #. IDS_CONFIRM_DELETE_SINGLE
 #: Merge.rc:5042
@@ -7085,7 +7085,7 @@ msgstr "已略過的資料夾"
 #: Merge.rc:5185
 #, c-format
 msgid "Left only: %1"
-msgstr "僅左側：%1"
+msgstr "唯左：%1"
 
 #. IDS_MIDDLE_ONLY_IN_FMT
 #: Merge.rc:5186
@@ -7097,7 +7097,7 @@ msgstr "僅中間：%1"
 #: Merge.rc:5187
 #, c-format
 msgid "Right only: %1"
-msgstr "僅右側：%1"
+msgstr "唯右：%1"
 
 #. IDS_DOES_NOT_EXIST_IN_FMT
 #: Merge.rc:5188
@@ -7128,12 +7128,12 @@ msgstr "資料夾是不同的"
 #. IDS_LEFTONLY
 #: Merge.rc:5198
 msgid "Left Only"
-msgstr "僅左側"
+msgstr "唯左＜＝"
 
 #. IDS_RIGHTONLY
 #: Merge.rc:5199
 msgid "Right Only"
-msgstr "僅右側"
+msgstr "唯右＝＞"
 
 #. IDS_MIDDLEONLY
 #: Merge.rc:5200
@@ -7252,13 +7252,13 @@ msgstr "已重新命名/已移動"
 #: Merge.rc:5224
 #, c-format
 msgid "(%1 items)"
-msgstr "(%1 個項目)"
+msgstr "（%1 個項目）"
 
 #. IDS_RENAMED_MOVED_RESULT
 #: Merge.rc:5225
 #, c-format
 msgid "%1 (set %2): "
-msgstr "%1(組合 %2):"
+msgstr "%1（第 %2 組）："
 
 #. IDS_SWITCH_FLAT_MODE
 #: Merge.rc:5226
@@ -7498,7 +7498,7 @@ msgstr "檔案內分歧數（排除已忽略）。"
 #. IDS_COLDESC_BINARY
 #: Merge.rc:5299
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "是二進位檔，就顯示星號(*)"
+msgstr "若該檔案是二進位，就顯示星號(*)"
 
 #. IDS_COLDESC_UNPACKER
 #: Merge.rc:5300
@@ -8007,7 +8007,7 @@ msgid ""
 "Refresh (F5)"
 msgstr ""
 "\n"
-"重新整理(F5)"
+"重新整理（F5）"
 
 #. ID_PREVDIFF
 #: Merge.rc:5490
@@ -8034,7 +8034,7 @@ msgid ""
 "Previous Conflict (Alt+Shift+Up)"
 msgstr ""
 "\n"
-"上一個衝突(Alt+Shift+Up)"
+"上一個衝突（Alt+Shift+Up）"
 
 #. ID_NEXTCONFLICT
 #: Merge.rc:5493
@@ -8043,7 +8043,7 @@ msgid ""
 "Next Conflict (Alt+Shift+Down)"
 msgstr ""
 "\n"
-"下一個衝突(Alt+Shift+Down)"
+"下一個衝突（Alt+Shift+Down）"
 
 #. ID_FIRSTDIFF
 #: Merge.rc:5498
@@ -8052,7 +8052,7 @@ msgid ""
 "First Difference (Alt+Home)"
 msgstr ""
 "\n"
-"首個分歧(Alt+Home)"
+"首個分歧（Alt+Home）"
 
 #. ID_CURDIFF
 #: Merge.rc:5499
@@ -8079,7 +8079,7 @@ msgid ""
 "Copy to Right (Alt+Right)"
 msgstr ""
 "\n"
-"複製到右側(Alt+Right)"
+"複製到右側（Alt+Right）"
 
 #. ID_R2L
 #: Merge.rc:5502
@@ -8088,7 +8088,7 @@ msgid ""
 "Copy to Left (Alt+Left)"
 msgstr ""
 "\n"
-"複製到左側(Alt+Left)"
+"複製到左側（Alt+Left）"
 
 #. ID_L2RNEXT
 #: Merge.rc:5503
@@ -8097,7 +8097,7 @@ msgid ""
 "Copy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
-"複製到右側後到下一個(Ctrl+Alt+Right)"
+"複製到右側後到下一個（Ctrl+Alt+Right）"
 
 #. ID_R2LNEXT
 #: Merge.rc:5504
@@ -8106,7 +8106,7 @@ msgid ""
 "Copy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
-"複製到左側後到下一個(Ctrl+Alt+Left)"
+"複製到左側後到下一個（Ctrl+Alt+Left）"
 
 #. ID_ALL_RIGHT
 #: Merge.rc:5505
@@ -8133,7 +8133,7 @@ msgid ""
 "Auto Merge (Ctrl+Alt+M)"
 msgstr ""
 "\n"
-"自動合併(Ctrl+Alt+M)"
+"自動合併（Ctrl+Alt+M）"
 
 #. ID_FIRSTFILE
 #: Merge.rc:5508
@@ -8151,7 +8151,7 @@ msgid ""
 "Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"下個檔案(Ctrl+F8)"
+"下個檔案（Ctrl+F8）"
 
 #. ID_LASTFILE
 #: Merge.rc:5510
@@ -8169,7 +8169,7 @@ msgid ""
 "Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"上個檔案(Ctrl+F7)"
+"上個檔案（Ctrl+F7）"
 
 #. IDS_MERGE_RESULT_UNRESOLVED_CONFIRM_CLOSE
 #: Merge.rc:5516
@@ -8279,7 +8279,7 @@ msgstr "衝突：%1，未解決：%2（%3 僅含空白字元）"
 #. IDS_UNPACK_AUTO
 #: Merge.rc:5534
 msgid "Adapted unpacker applied to both files (one needs extension)."
-msgstr "適用的解包器已應用至兩個檔案(其中一個需要副檔名)。"
+msgstr "適用的解包器已應用至兩個檔案（其中一個需要副檔名）。"
 
 #. IDS_NO_PREDIFFER
 #: Merge.rc:5535
@@ -8372,17 +8372,17 @@ msgstr "命令殼層(Shell)"
 #. IDS_AUTO_SYNTAX
 #: Merge.rc:5646
 msgid "Auto Syntax"
-msgstr ""
+msgstr "自動語法"
 
 #. IDS_APPLY_TO_THIS_PANE_ONLY
 #: Merge.rc:5647
 msgid "Apply to this pane only"
-msgstr ""
+msgstr "僅應用於此窗格"
 
 #. IDS_SYNTAX_PLAIN_TEXT
 #: Merge.rc:5648
 msgid "Plain Text"
-msgstr ""
+msgstr "純文字"
 
 #. IDS_CLOSE_LEFT_TABS
 #: Merge.rc:5653
@@ -8685,15 +8685,12 @@ msgstr "<在此編輯>"
 #. IDS_IGNSUB_STR2
 #: Merge.rc:5756
 msgid "No differences found to select"
-msgstr "沒找到可選取的分歧"
+msgstr "找不到可選取的分歧"
 
 #. IDS_IGNSUB_STR3
 #: Merge.rc:5757
 msgid "No differences found to add as substitution filter"
-msgstr ""
-"沒找到可增加為置換篩選器的分歧\n"
-"\n"
-"未找到可添加為取代篩選器的差異<|end_header_id|>"
+msgstr "找不到可新增為置換篩選器的分歧"
 
 #. IDS_IGNSUB_STR4
 #: Merge.rc:5758
@@ -8765,7 +8762,7 @@ msgstr "已停用"
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR1
 #: Merge.rc:5787
 msgid "Only on window activated"
-msgstr "僅在視窗啟用時"
+msgstr "僅在視窗被操作時"
 
 #. IDS_AUTO_RELOAD_MODIFIED_FILES_STR2
 #: Merge.rc:5788
@@ -8999,7 +8996,7 @@ msgstr "剪貼簿比對"
 #. IDS_PREVIEWBAR_PRINT
 #: Merge.rc:5869
 msgid "&Print..."
-msgstr "列印(&P)..."
+msgstr "列印...(&P)"
 
 #. IDS_PREVIEWBAR_PREVPAGE
 #: Merge.rc:5871
@@ -9064,9 +9061,9 @@ msgid ""
 "(Alt+Wheel Up)"
 msgstr ""
 "\n"
-"上一段分歧(Alt+Up)\n"
-"(滑鼠右鍵+滾輪上滾)\n"
-"(Alt+滾輪上滾)"
+"上一段分歧（Alt+Up）\n"
+"（滑鼠右鍵+滾輪上滾）\n"
+"（Alt+滾輪上滾）"
 
 #. ID_MICE_NEXTDIFF
 #: Merge.rc:5896
@@ -9077,9 +9074,9 @@ msgid ""
 "(Alt+Wheel Down)"
 msgstr ""
 "\n"
-"下一段分歧(Alt+Down)\n"
-"(滑鼠右鍵+滾輪下滾)\n"
-"(Alt+滾輪下滾)"
+"下一段分歧（Alt+Down）\n"
+"（滑鼠右鍵+滾輪下滾）\n"
+"（Alt+滾輪下滾）"
 
 #. ID_MICE_L2R
 #: Merge.rc:5897
@@ -9091,10 +9088,10 @@ msgid ""
 "(Alt+Shift+Wheel Down)"
 msgstr ""
 "\n"
-"複製到右側(Alt+Right)\n"
-"(滑鼠右鍵+滾輪右滾)\n"
-"(Alt+滾輪右滾)\n"
-"(Alt+Shift+滾輪下滾)"
+"複製到右側（Alt+Right）\n"
+"（滑鼠右鍵+滾輪右滾）\n"
+"（Alt+滾輪右滾）\n"
+"（Alt+Shift+滾輪下滾）"
 
 #. ID_MICE_R2L
 #: Merge.rc:5898
@@ -9106,10 +9103,10 @@ msgid ""
 "(Alt+Shift+Wheel Up)"
 msgstr ""
 "\n"
-"複製到左側(Alt+Left)\n"
-"(滑鼠右鍵+滾輪左滾)\n"
-"(Alt+滾輪左滾)\n"
-"(Alt+Shift+滾輪上滾)"
+"複製到左側（Alt+Left）\n"
+"（滑鼠右鍵+滾輪左滾）\n"
+"（Alt+滾輪左滾）\n"
+"（Alt+Shift+滾輪上滾）"
 
 #. ID_MICE_L2RNEXT
 #: Merge.rc:5899
@@ -9120,9 +9117,9 @@ msgid ""
 "(Ctrl+Alt+Shift+Wheel Down)"
 msgstr ""
 "\n"
-"複製到右側後到下一個(Ctrl+Alt+Right)\n"
-"(Ctrl+Alt+滾輪右滾)\n"
-"(Ctrl+Alt+Shift+滾輪下滾)"
+"複製到右側後到下一個（Ctrl+Alt+Right）\n"
+"（Ctrl+Alt+滾輪右滾）\n"
+"（Ctrl+Alt+Shift+滾輪下滾）"
 
 #. ID_MICE_R2LNEXT
 #: Merge.rc:5900
@@ -9133,9 +9130,9 @@ msgid ""
 "(Ctrl+Alt+Shift+Wheel Up)"
 msgstr ""
 "\n"
-"複製到左側後到下一個(Ctrl+Alt+Left)\n"
-"(Ctrl+Alt+滾輪左滾)\n"
-"(Ctrl+Alt+Shift+滾輪上滾)"
+"複製到左側後到下一個（Ctrl+Alt+Left）\n"
+"（Ctrl+Alt+滾輪左滾）\n"
+"（Ctrl+Alt+Shift+滾輪上滾）"
 
 #. IDS_LOG_COMPARING_2
 #: Merge.rc:5910
@@ -9626,7 +9623,7 @@ msgstr "忽略 CSV 欄格"
 #. IDS_PLUGIN_MENU_CAPTION21
 #: Strings.rc:80
 msgid "Ignore TSV Fields"
-msgstr "忽略 TSV 欄位"
+msgstr "忽略 TSV 欄格"
 
 #. IDS_PLUGIN_MENU_CAPTION22
 #: Strings.rc:81
@@ -9636,7 +9633,7 @@ msgstr "忽略開頭的行號"
 #. IDS_PLUGIN_MENU_CAPTION23
 #: Strings.rc:82
 msgid "Apply Prediff Substitution Filters"
-msgstr "應用預差異化替換篩選器"
+msgstr "應用預差異化置換篩選器"
 
 #. IDS_PLUGIN_MENU_CAPTION24
 #: Strings.rc:83
@@ -10058,7 +10055,7 @@ msgstr "該擴充功能忽略 C、C++、PHP和JavaScript 的註解(//... 和 /* 
 
 #: Strings.rc:187
 msgid "Ignore fields - list from plugin name/argument"
-msgstr "忽略槽格 - 來自擴充功能名稱/引數的清單"
+msgstr "忽略欄格 - 來自擴充功能名稱/引數的清單"
 
 #: Strings.rc:189
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
@@ -10398,4 +10395,4 @@ msgstr "基本 URL"
 
 #: Strings.rc:344
 msgid "(pick a preset to fill in the field above)"
-msgstr "（挑選一個預設值填入上方欄位）"
+msgstr "（挑選一個預設置來填入上方欄格）"
