@@ -580,16 +580,18 @@ IsStringStart(const tchar_t *pszChars, int I)
 static unsigned
 ParseLineSqlDialect (SqlDialect dialect, unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf)
 {
+  bool bQuotedIdent = (dwCookie & COOKIE_SQL_QUOTED_IDENTIFIER) != 0;
+  tchar_t chQuotedIdentEnd = (dwCookie & COOKIE_SQL_BRACKET_IDENTIFIER) ? ']' : '`';
+  bool bPostgreSqlEscapeString = (dwCookie & COOKIE_SQL_POSTGRES_ESCAPE_STRING) != 0;
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT | COOKIE_STRING | COOKIE_CHAR);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT | COOKIE_STRING | COOKIE_CHAR |
+                       COOKIE_SQL_QUOTED_IDENTIFIER | COOKIE_SQL_BRACKET_IDENTIFIER | COOKIE_SQL_POSTGRES_ESCAPE_STRING);
 
   const tchar_t *pszCommentBegin = nullptr;
   const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   bool bEscapedQuote = false;
-  bool bQuotedIdent = false;
-  tchar_t chQuotedIdentEnd = 0;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
@@ -610,6 +612,10 @@ ParseLineSqlDialect (SqlDialect dialect, unsigned dwCookie, const tchar_t *pszCh
           if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
+            }
+          else if (bQuotedIdent)
+            {
+              DEFINE_BLOCK (nPos, COLORINDEX_NORMALTEXT);
             }
           else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
             {
@@ -642,7 +648,7 @@ out:
       if (dwCookie & COOKIE_COMMENT)
         {
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_COMMENT;
+          dwCookie &= ~COOKIE_COMMENT;
           break;
         }
 
@@ -665,6 +671,8 @@ out:
           if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
+              dwCookie &= ~COOKIE_SQL_POSTGRES_ESCAPE_STRING;
+              bPostgreSqlEscapeString = false;
               bRedefineBlock = true;
             }
           else if (pszChars[I] == '\'')
@@ -684,6 +692,7 @@ out:
                   continue;
                 }
               bQuotedIdent = false;
+              dwCookie &= ~(COOKIE_SQL_QUOTED_IDENTIFIER | COOKIE_SQL_BRACKET_IDENTIFIER);
               bRedefineBlock = true;
             }
           continue;
@@ -717,7 +726,7 @@ out:
           (pszChars[I] == '-' && pszChars[nPrevI] == '-')))
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_COMMENT;
+          dwCookie &= ~COOKIE_COMMENT;
           break;
         }
 
@@ -726,7 +735,7 @@ out:
         {
           FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_COMMENT;
+          dwCookie &= ~COOKIE_COMMENT;
           break;
         }
 
@@ -746,17 +755,27 @@ out:
               FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               dwCookie |= COOKIE_CHAR;
+              if (dialect == SqlDialect::PostgreSql && I > 0 &&
+                  (pszChars[nPrevI] == 'E' || pszChars[nPrevI] == 'e'))
+                {
+                  dwCookie |= COOKIE_SQL_POSTGRES_ESCAPE_STRING;
+                  bPostgreSqlEscapeString = true;
+                }
               continue;
             }
         }
       //  `name` (MySQL/MariaDB) or [name] (T-SQL); '[' directly after a name, ')' or ']' is a subscript (PostgreSQL arr[1], ARRAY[1])
-      if (pszChars[I] == '`' ||
-          pszChars[I] == '[' && (!I || !(xisalnum (pszChars[nPrevI]) || pszChars[nPrevI] == ')' || pszChars[nPrevI] == ']')))
+      if (dialect == SqlDialect::MySql && pszChars[I] == '`' ||
+          dialect == SqlDialect::Default && pszChars[I] == '[' &&
+          (!I || !(xisalnum (pszChars[nPrevI]) || pszChars[nPrevI] == ')' || pszChars[nPrevI] == ']')))
         {
           FlushIdentifierBlock (pszChars, nLength, pBuf, nIdentBegin, I);
           DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
           chQuotedIdentEnd = pszChars[I] == '`' ? '`' : ']';
           bQuotedIdent = true;
+          dwCookie |= COOKIE_SQL_QUOTED_IDENTIFIER;
+          if (chQuotedIdentEnd == ']')
+            dwCookie |= COOKIE_SQL_BRACKET_IDENTIFIER;
           bRedefineBlock = false;
           bDecIndex = false;
           continue;
@@ -766,7 +785,7 @@ out:
           //  Executable comment /*!....*/: only the markers are highlighted, the content is parsed as SQL.
           //  A nested marker keeps the state, so the first "*/" ends it (flat, like the server lexer).
           const int nMarkerEnd = GetExecutableCommentMarkerEnd (pszChars, nLength, I);
-          if (nMarkerEnd >= 0)
+          if (dialect == SqlDialect::MySql && nMarkerEnd >= 0)
             {
               DEFINE_BLOCK (nPrevI, COLORINDEX_PREPROCESSOR);
               dwCookie |= COOKIE_EXT_EXECUTABLE_COMMENT;
@@ -811,8 +830,10 @@ out:
   //  unless a quote on this line was taken as escaped by a backslash: T-SQL has no backslash escapes, so
   //  there 'C:\' is a complete string, and carrying the state would turn the following lines into a string.
   //  MySQL/MariaDB escape quotes with a backslash, so there the state is always carried.
-  unsigned dwCarried = COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT;
-  if (!bEscapedQuote || dialect == SqlDialect::MySql)
+  unsigned dwCarried = COOKIE_EXT_COMMENT | COOKIE_EXT_EXECUTABLE_COMMENT |
+                       COOKIE_SQL_QUOTED_IDENTIFIER | COOKIE_SQL_BRACKET_IDENTIFIER |
+                       COOKIE_SQL_POSTGRES_ESCAPE_STRING;
+  if (!bEscapedQuote || dialect == SqlDialect::MySql || bPostgreSqlEscapeString)
     dwCarried |= COOKIE_STRING | COOKIE_CHAR;
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
     dwCookie &= dwCarried;
