@@ -1119,7 +1119,7 @@
 #define IDS_COLORSCHEME_VHDL            33204
 #define IDS_COLORSCHEME_XML             33205
 #define IDS_COLORSCHEME_YAML            33206
-#define ID_COLORSCHEME_LAST             33207
+#define ID_COLORSCHEME_LAST             33206
 #define IDS_AUTO_SYNTAX                 33208
 #define IDS_APPLY_TO_THIS_PANE_ONLY     33209
 #define IDS_SYNTAX_PLAIN_TEXT           33210
