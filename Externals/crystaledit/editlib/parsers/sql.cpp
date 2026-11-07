@@ -523,7 +523,6 @@ GetExecutableCommentMarkerEnd(const tchar_t *pszChars, int nLength, int I)
 //  servers where they differ, see IsHashComment and the string state carried at the line end.
 enum class SqlDialect { Default, PostgreSql, MySql };
 
-#ifdef USE_SQL_HASH_LINE_COMMENT
 //  MySQL/MariaDB comment "#...", recognized only where it cannot be code of the other dialects that share
 //  this parser: '#' (or a run of them) is the first non-blank character of the line and is followed by a
 //  blank or the line end ("# comment", "## section", "#####"). Elsewhere '#' starts T-SQL temporary names
@@ -542,7 +541,6 @@ IsHashLineComment(const tchar_t *pszChars, int nLength, int I)
     nEnd++;
   return nEnd >= nLength || xisspace (pszChars[nEnd]);
 }
-#endif // USE_SQL_HASH_LINE_COMMENT
 
 //  Whether the '#' at I, outside strings, quoted names and other comments, starts a comment up to the line end.
 //  MySQL/MariaDB: always, as in the server lexer. PostgreSQL: never, '#' belongs to operators there.
@@ -550,7 +548,6 @@ IsHashLineComment(const tchar_t *pszChars, int nLength, int I)
 static bool
 IsHashComment(SqlDialect dialect, const tchar_t *pszChars, int nLength, int I)
 {
-#ifdef USE_SQL_HASH_LINE_COMMENT
   switch (dialect)
     {
     case SqlDialect::MySql:
@@ -560,9 +557,7 @@ IsHashComment(SqlDialect dialect, const tchar_t *pszChars, int nLength, int I)
     default:
       return IsHashLineComment (pszChars, nLength, I);
     }
-#else
   return false;
-#endif // USE_SQL_HASH_LINE_COMMENT
 }
 
 //  Whether the quote at I starts a string. Directly after a name it does only after a string prefix:

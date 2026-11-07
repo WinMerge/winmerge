@@ -577,6 +577,7 @@
 #define IDC_THIRD                       1390
 #define IDC_COLOR_SCHEMES               1391
 #define IDC_SYNTAX_LIST                 1393
+#define IDC_SQL_DIALECT                 1394
 #define IDC_COMPAREIMAGE_PATTERNS       1394
 #define IDC_COMPAREIMAGE_OCR_RESULT_TYPE 1396
 #define IDC_COMPAREIMAGE_PREFER_WIC_DECODER 1397

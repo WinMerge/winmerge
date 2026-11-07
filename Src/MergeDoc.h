@@ -461,8 +461,6 @@ public:
 		ASSERT(pane >= 0 && pane < 3);
 		return (pane >= 0 && pane < 3) ? m_bChangedSchemeManually[pane] : false;
 	}
-	void SaveTextTypeVariation(int textType);
-	int GetFileBaseTextType(int nBuffer);
 
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	const String& GetSaveAsPath() const { return m_strSaveAsPath; }

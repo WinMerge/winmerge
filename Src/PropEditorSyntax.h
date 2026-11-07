@@ -30,6 +30,7 @@ public:
 	//{{AFX_DATA(PropEditor)
 	enum { IDD = IDD_PROPPAGE_EDITOR_SYNTAX };
 	CSubeditList m_listSyntax;
+	CComboBox m_comboSqlDialect;
 	//}}AFX_DATA
 
 private:
@@ -38,6 +39,9 @@ private:
 
 // Implementation methods
 	void InitList();
+	void MoveSqlExtension(int dialect);
+	static bool HasSqlExtension(const String& extensions);
+	static String RemoveSqlExtension(const String& extensions);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -53,6 +57,7 @@ protected:
 	//{{AFX_MSG(PropEditor)
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnDefaults();
+	afx_msg void OnSqlDialectChanged();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

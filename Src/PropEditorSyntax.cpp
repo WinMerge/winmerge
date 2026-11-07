@@ -32,6 +32,7 @@ void PropEditorSyntax::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 
 	//{{AFX_DATA_MAP(PropEditor)
+	DDX_Control(pDX, IDC_SQL_DIALECT, m_comboSqlDialect);
 	DDX_Control(pDX, IDC_SYNTAX_LIST, m_listSyntax);
 	//}}AFX_DATA_MAP
 }
@@ -40,6 +41,7 @@ void PropEditorSyntax::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropEditorSyntax, OptionsPanel)
 	//{{AFX_MSG_MAP(PropEditor)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_CBN_SELCHANGE(IDC_SQL_DIALECT, OnSqlDialectChanged)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -57,11 +59,9 @@ void PropEditorSyntax::ReadOptions()
 void PropEditorSyntax::WriteOptions()
 {
 	if (m_init)
-		for (int row = 0; row < m_listSyntax.GetItemCount(); ++row)
+		for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
 		{
-			// Rows hold only the available text types; the item data is the text type index
-			const int i = static_cast<int>(m_listSyntax.GetItemData(row));
-			m_Extension[i-1] = m_listSyntax.GetItemText(row, 1);
+			m_Extension[i-1] = m_listSyntax.GetItemText(i-1, 1);
 			WildcardRemoveDuplicatePatterns(m_Extension[i-1]);
 		}
 
@@ -75,11 +75,107 @@ BOOL PropEditorSyntax::OnInitDialog()
 {
 	OptionsPanel::OnInitDialog();
 
+	const int dialects[] = {
+		LangServices::LanguageId::SRC_SQL,
+		LangServices::LanguageId::SRC_SQL_POSTGRESQL,
+		LangServices::LanguageId::SRC_SQL_MYSQL,
+	};
+	int selected = 0;
+	for (int i = 0; i < _countof(dialects); ++i)
+	{
+		const int item = m_comboSqlDialect.AddString(LangServices::GetTextType(dialects[i])->name);
+		m_comboSqlDialect.SetItemData(item, dialects[i]);
+		if (HasSqlExtension(m_Extension[dialects[i] - 1]))
+			selected = i;
+	}
+	m_comboSqlDialect.SetCurSel(selected);
+
 	InitList();
 	m_init = true;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+/**
+ * @brief Returns whether an extension list contains the sql extension.
+ */
+bool PropEditorSyntax::HasSqlExtension(const String& extensions)
+{
+	size_t begin = 0;
+	while (begin < extensions.length())
+	{
+		const size_t end = extensions.find_first_of(L"; ", begin);
+		const String extension = strutils::trim_ws(extensions.substr(begin, end - begin));
+		if (strutils::compare_nocase(extension, _T("sql")) == 0)
+			return true;
+		if (end == String::npos)
+			break;
+		begin = end + 1;
+	}
+	return false;
+}
+
+/**
+ * @brief Removes the sql extension from an extension list.
+ */
+String PropEditorSyntax::RemoveSqlExtension(const String& extensions)
+{
+	String result;
+	size_t begin = 0;
+	while (begin < extensions.length())
+	{
+		const size_t end = extensions.find_first_of(L"; ", begin);
+		const String extension = strutils::trim_ws(extensions.substr(begin, end - begin));
+		if (!extension.empty() && strutils::compare_nocase(extension, _T("sql")) != 0)
+		{
+			if (!result.empty())
+				result += _T(';');
+			result += extension;
+		}
+		if (end == String::npos)
+			break;
+		begin = end + 1;
+	}
+	return result;
+}
+
+/**
+ * @brief Moves the sql extension to the selected SQL dialect.
+ */
+void PropEditorSyntax::MoveSqlExtension(int dialect)
+{
+	const int dialects[] = {
+		LangServices::LanguageId::SRC_SQL,
+		LangServices::LanguageId::SRC_SQL_POSTGRESQL,
+		LangServices::LanguageId::SRC_SQL_MYSQL,
+	};
+
+	for (const int currentDialect : dialects)
+	{
+		const int index = currentDialect - 1;
+		m_Extension[index] = m_listSyntax.GetItemText(index, 1);
+		m_Extension[index] = RemoveSqlExtension(m_Extension[index]);
+	}
+
+	const int targetIndex = dialect - 1;
+	if (!m_Extension[targetIndex].empty())
+		m_Extension[targetIndex] += _T(';');
+	m_Extension[targetIndex] += _T("sql");
+	WildcardRemoveDuplicatePatterns(m_Extension[targetIndex]);
+
+	for (const int currentDialect : dialects)
+		m_listSyntax.SetItemText(currentDialect - 1, 1, m_Extension[currentDialect - 1].c_str());
+}
+
+void PropEditorSyntax::OnSqlDialectChanged()
+{
+	if (!m_init)
+		return;
+
+	const int item = m_comboSqlDialect.GetCurSel();
+	if (item != CB_ERR)
+		MoveSqlExtension(static_cast<int>(m_comboSqlDialect.GetItemData(item)));
 }
 
 /**
@@ -109,14 +205,13 @@ void PropEditorSyntax::InitList()
 	for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
 	{
 		LangServices::TextDefinition* def = LangServices::GetTextType(i);
-
+		
 		ASSERT(def != nullptr);
-		if (def != nullptr && LangServices::IsTextTypeAvailable(i))
+		if (def != nullptr)
 		{
-			const int row = m_listSyntax.InsertItem(m_listSyntax.GetItemCount(), def->name);
-			m_listSyntax.SetItemData(row, static_cast<DWORD_PTR>(i));
-			m_listSyntax.SetItemText(row, 1, m_Extension[i-1].c_str());
-			m_listSyntax.SetDropListFixedPattern(row, 1, fixedPattern[i-1]);
+			m_listSyntax.InsertItem(i-1, def->name);
+			m_listSyntax.SetItemText(i-1, 1, m_Extension[i-1].c_str());
+			m_listSyntax.SetDropListFixedPattern(i-1, 1, fixedPattern[i-1]);
 		}
 	}
 }
@@ -127,9 +222,6 @@ void PropEditorSyntax::InitList()
 void PropEditorSyntax::OnDefaults()
 {
 	Options::EditorSyntax::GetDefaults(GetOptionsMgr(), m_Extension);
-	for (int row = 0; row < m_listSyntax.GetItemCount(); ++row)
-	{
-		const int i = static_cast<int>(m_listSyntax.GetItemData(row));
-		m_listSyntax.SetItemText(row, 1, m_Extension[i-1].c_str());
-	}
+	for (int i = LangServices::LanguageId::SRC_ABAP; i < LangServices::LanguageId::SRC_MAX_ENTRY; ++i)
+		m_listSyntax.SetItemText(i-1, 1, m_Extension[i-1].c_str());
 }

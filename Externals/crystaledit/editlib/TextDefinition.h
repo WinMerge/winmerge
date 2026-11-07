@@ -17,10 +17,6 @@
 #define SRCOPT_WORDWRAP 2048
 #define SRCOPT_TOPMARGIN 4096
 
-//  SQL '#' comments: the '#' line comment rule of the generic SQL parser and the SQL (Postgre) and
-//  SQL (mysql/mariadb) syntax types. Remove this define to build without all of them.
-#define USE_SQL_HASH_LINE_COMMENT
-
 namespace LangServices
 {
 

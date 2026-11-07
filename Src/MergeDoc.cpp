@@ -40,7 +40,6 @@
 #include "paths.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffOptions.h"
-#include "OptionsEditorSyntax.h"
 #include "MergeLineFlags.h"
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
@@ -2552,16 +2551,6 @@ void CMergeDoc::SetTextType(const String& ext)
 }
 
 /**
- * @brief The text type the extension of a pane's file matches, before a variation is chosen, or -1 for none.
- */
-int CMergeDoc::GetFileBaseTextType(int nBuffer)
-{
-	const String sExt = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-	const LangServices::TextDefinition* def = LangServices::GetBaseTextType(sExt.c_str());
-	return def ? static_cast<int>(def->type) : -1;
-}
-
-/**
  * @brief Set the text types the file extensions give, or the first line when no extension is known.
  * Used when the files are loaded and for the syntax type "Auto Syntax" (SetTextTypeAuto).
  */
@@ -2610,25 +2599,6 @@ void CMergeDoc::SetTextTypesByFileType(int pane)
 		ForEachView(shareSyntaxParser);
 	else
 		ForEachView(pane, shareSyntaxParser);
-}
-
-/**
- * @brief Keep a text type variation chosen for these files (e.g. SQL (Postgre)) when the extension of one of them
- * matches its base type (e.g. .sql), see Options::EditorSyntax::SaveTextTypeVariation.
- */
-void CMergeDoc::SaveTextTypeVariation(int textType)
-{
-	const int nBase = LangServices::GetTextTypeVariationBase(textType);
-	if (nBase < 0)
-		return;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		if (GetFileBaseTextType(nBuffer) == nBase)
-		{
-			Options::EditorSyntax::SaveTextTypeVariation(GetOptionsMgr(), textType);
-			return;
-		}
-	}
 }
 
 /**
