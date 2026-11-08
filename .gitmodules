@@ -37,3 +37,6 @@
 [submodule "Docs/Manual"]
 	url = ../winmerge-manual
 	path = Docs/Manual
+[submodule "ArchiveSupport/Merge7z"]
+	path = ArchiveSupport/Merge7z
+	url = https://github.com/WinMerge/merge7z.git

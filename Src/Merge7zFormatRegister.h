@@ -3,7 +3,7 @@
 #include <vector>
 #include "UnicodeString.h"
 #include "dllpstub.h"
-#include "../ArchiveSupport/Merge7z/Merge7z.h"
+#include "Merge7z.h"
 
 struct Merge7zFormatRegister
 {
