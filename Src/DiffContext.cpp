@@ -21,6 +21,7 @@
 #include "FilterEngine/FilterExpression.h"
 #include "RenameMoveDetection.h"
 #include "DebugNew.h"
+#include <Poco/String.h>
 
 using Poco::FastMutex;
 
@@ -71,6 +72,29 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
  * @brief Destructor.
  */
 CDiffContext::~CDiffContext() = default;
+
+bool CDiffContext::SearchExpressionNeedsDiff() const
+{
+	if (!m_pSearchLineFilterExpression)
+		return false;
+	const auto names = m_pSearchLineFilterExpression->GetPropertyNames();
+	for (const auto& name : names)
+	{
+		std::string lowerName = Poco::toLower(name);
+		if (lowerName == "different" ||
+			lowerName == "identical" ||
+			lowerName == "trivial" ||
+			lowerName == "diffcode" ||
+			lowerName == "differences" ||
+			lowerName == "ignoreddiffs" ||
+			lowerName.find("different") != std::string::npos ||
+			lowerName.find("identical") != std::string::npos)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 /**
  * @brief Update info in item in result list from disk.

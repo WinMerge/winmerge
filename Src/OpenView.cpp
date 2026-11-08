@@ -30,6 +30,7 @@
 #include "Constants.h"
 #include "Bitmap.h"
 #include "DropHandler.h"
+#include "LineFilterHelper.h"
 #include "FileFilterHelper.h"
 #include "FileFilterHelperMenu.h"
 #include "FilterErrorMessages.h"
@@ -187,6 +188,7 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 {
 	__super::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(COpenView)
+	DDX_Control(pDX, IDC_SEARCH_EXPR_COMBO, m_ctlSearchExpr);
 	DDX_Control(pDX, IDC_EXT_COMBO, m_ctlExt);
 	DDX_Control(pDX, IDC_PATH0_COMBO, m_ctlPath[0]);
 	DDX_Control(pDX, IDC_PATH1_COMBO, m_ctlPath[1]);
@@ -462,13 +464,17 @@ void COpenView::OnPaint()
 	CRect rc;
 	GetClientRect(&rc);
 
-	// Draw the logo image
-	CSize size{ m_image.GetWidth(), m_image.GetHeight() };
-	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
-	m_image.Draw(dc.m_hDC, rcImage, Gdiplus::InterpolationModeBicubic);
+	COpenDoc* pDoc = GetDocument();
+	if (!pDoc || !pDoc->m_bFindMode)
+	{
+		// Draw the logo image
+		CSize size{ m_image.GetWidth(), m_image.GetHeight() };
+		CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
+		m_image.Draw(dc.m_hDC, rcImage, Gdiplus::InterpolationModeBicubic);
 	// And extend it to the Right boundary
 	if (!DarkMode::isExperimentalActive())
 		dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
+	}
 
 	// Draw the resize gripper in the Lower Right corner.
 	CRect rcGrip = rc;
@@ -1679,6 +1685,10 @@ void COpenView::SetStatus(UINT msgID)
 {
 	String msg = I18n::LoadString(msgID);
 	SetDlgItemText(IDC_OPEN_STATUS, msg);
+}
+
+void COpenView::OnSearchFileFilterChange()
+{
 }
 
 void COpenView::OnExtEditChange()

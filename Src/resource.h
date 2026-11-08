@@ -765,6 +765,8 @@
 #define IDC_MATCHINSIDE_EXPR1_BUTTON    1716
 #define IDC_MATCHINSIDE_EXPR2_BUTTON    1717
 #define IDC_MERGE_RESULT_PANE_ENABLED   1718
+#define IDC_SEARCH_EXPR_STATIC          1721
+#define IDC_SEARCH_EXPR_COMBO           1722
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -933,6 +935,7 @@
 #define ID_AUTO_MERGE                   32858
 #define ID_MERGE_DELETE                 32859
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32860
+#define ID_TOOLS_FIND_IN_FILES          38931
 #define ID_TOOLS_GENERATEPATCH          32861
 #define ID_TOOLS_FILTERS                32862
 #define ID_TOOLS_GENERATEREPORT         32863
@@ -2435,6 +2438,8 @@
 #define IDS_LOG_COPY_LINES               44765
 #define IDS_LOG_COPY_INLINE_DIFFS        44766
 #define IDS_LOG_COPY_CHARS               44767
+#define IDS_FIND_IN_FILES                44768
+#define IDS_SEARCH_BUTTON                44769
 
 // Next default values for new objects
 // 
@@ -2442,8 +2447,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        290
-#define _APS_NEXT_COMMAND_VALUE         38931
-#define _APS_NEXT_CONTROL_VALUE         1700
+#define _APS_NEXT_COMMAND_VALUE         38932
+#define _APS_NEXT_CONTROL_VALUE         1725
 #define _APS_NEXT_SYMED_VALUE           134
 #endif
 #endif

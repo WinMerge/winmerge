@@ -13,6 +13,7 @@ class CompareOptions;
 struct FileTextStats;
 class CDiffWrapper;
 struct DiffFileData;
+class DiffList;
 
 namespace CompareEngines
 {
@@ -38,7 +39,7 @@ public:
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> plist);
 	void ClearSubstitutionList();
 
-	int CompareFiles(DiffFileData* diffData);
+	int CompareFiles(DiffFileData* diffData, DiffList* diffList = nullptr);
 	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
 			int * bin_status, int * bin_file) const;
 
