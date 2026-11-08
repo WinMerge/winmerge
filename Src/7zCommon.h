@@ -9,7 +9,7 @@
 #include <vector>
 #include <PropIdl.h>
 #include "dllpstub.h"
-#include "../ArchiveSupport/Merge7z/Merge7z.h"
+#include "Merge7z.h"
 #include "paths.h"
 
 class CDirView;
