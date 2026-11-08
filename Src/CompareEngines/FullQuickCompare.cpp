@@ -17,9 +17,108 @@
 #include "codepage_detect.h"
 #include "Logger.h"
 #include "TFile.h"
+#include "DiffList.h"
+#include "FilterEngine/FilterExpression.h"
+#include "FilterEngine/ILineDataProvider.h"
+#include "Common/UniFile.h"
+#include <algorithm>
 
 namespace CompareEngines
 {
+
+namespace
+{
+class SearchLineProvider final : public ILineDataProvider
+{
+public:
+	std::vector<std::vector<std::string>> lines;
+	std::vector<std::vector<unsigned>> flags;
+	int GetLineCount() const override { return static_cast<int>(flags.empty() ? 0 : flags.front().size()); }
+	std::string GetLine(int pane, int lineIndex) const override
+	{
+		return pane >= 0 && pane < static_cast<int>(lines.size()) && lineIndex >= 0 && lineIndex < static_cast<int>(lines[pane].size()) ? lines[pane][lineIndex] : std::string();
+	}
+	int GetColumnCount(int, int) const override { return 0; }
+	int GetRealLineNumber(int, int lineIndex) const override { return lineIndex + 1; }
+	unsigned GetLineFlags(int pane, int lineIndex) const override
+	{
+		return pane >= 0 && pane < static_cast<int>(flags.size()) && lineIndex >= 0 && lineIndex < static_cast<int>(flags[pane].size()) ? flags[pane][lineIndex] : 0;
+	}
+	unsigned GetLineEol(int, int) const override { return EOL_NONE; }
+	std::string GetColumn(int, int, int) const override { return {}; }
+	std::string GetColumns(int, int, const std::vector<int>&) const override { return {}; }
+};
+
+static bool EvaluateDiffSearch(CDiffContext& ctxt, const DIFFITEM& di, const PathContext& paths, const DiffList& diffs)
+{
+	SearchLineProvider provider;
+	const int sides = paths.GetSize();
+	provider.lines.resize(sides);
+	provider.flags.resize(sides);
+	for (int side = 0; side < sides; ++side)
+	{
+		if (!di.diffcode.exists(side)) continue;
+		UniMemFile file;
+		if (!file.OpenReadOnly(paths[side])) return true; // Let the normal compare report read errors.
+		String line;
+		bool lossy = false;
+		while (file.ReadString(line, &lossy)) provider.lines[side].push_back(ucr::toUTF8(line));
+	}
+	std::vector<std::vector<std::string>> aligned(sides);
+	std::vector<std::vector<unsigned>> alignedFlags(sides);
+	int cursor[3]{};
+	for (int n = 0; n < diffs.GetSize(); ++n)
+	{
+		DIFFRANGE range;
+		if (!diffs.GetDiff(n, range)) continue;
+		int before = 0;
+		for (int side = 0; side < sides; ++side)
+			before = std::max(before, range.begin[side] - cursor[side]);
+		for (int row = 0; row < before; ++row)
+			for (int side = 0; side < sides; ++side)
+			{
+				const int index = cursor[side] + row;
+				aligned[side].push_back(index < static_cast<int>(provider.lines[side].size()) ? provider.lines[side][index] : std::string());
+				alignedFlags[side].push_back(0);
+			}
+		for (int side = 0; side < sides; ++side) cursor[side] += before;
+		int counts[3]{};
+		int rows = 0;
+		for (int side = 0; side < sides; ++side)
+		{
+			counts[side] = std::max(0, range.end[side] - range.begin[side] + 1);
+			rows = std::max(rows, counts[side]);
+		}
+		for (int row = 0; row < rows; ++row)
+			for (int side = 0; side < sides; ++side)
+			{
+				const bool ghost = row >= counts[side];
+				const int index = range.begin[side] + row;
+				aligned[side].push_back(!ghost && index >= 0 && index < static_cast<int>(provider.lines[side].size()) ? provider.lines[side][index] : std::string());
+				alignedFlags[side].push_back((ghost ? ILineDataProvider::LF_GHOST : 0) | (range.op == OP_TRIVIAL ? ILineDataProvider::LF_TRIVIAL : ILineDataProvider::LF_DIFF));
+			}
+		for (int side = 0; side < sides; ++side) cursor[side] = std::max(cursor[side], range.end[side] + 1);
+	}
+	int tail = 0;
+	for (int side = 0; side < sides; ++side) tail = std::max(tail, static_cast<int>(provider.lines[side].size()) - cursor[side]);
+	for (int row = 0; row < tail; ++row)
+		for (int side = 0; side < sides; ++side)
+		{
+			const int index = cursor[side] + row;
+			aligned[side].push_back(index < static_cast<int>(provider.lines[side].size()) ? provider.lines[side][index] : std::string());
+			alignedFlags[side].push_back(0);
+		}
+	provider.lines = std::move(aligned);
+	provider.flags = std::move(alignedFlags);
+	FilterEvalContext eval{ ctxt.m_pSearchLineFilterExpression.get(), &di, &provider };
+	for (int row = 0; row < provider.GetLineCount(); ++row)
+	{
+		eval.lineIndex = row;
+		if (ctxt.m_pSearchLineFilterExpression->Evaluate(eval)) return true;
+	}
+	return false;
+}
+}
 
 FullQuickCompare::FullQuickCompare(CDiffContext& ctxt, int nCompMethod)
 	: m_pCtxt(&ctxt), m_nCompMethod(nCompMethod)
@@ -49,6 +148,7 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 	}
 	int m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
 	int m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
+	bool diffSearchNoMatch = false;
 
 	PathContext tFiles;
 	m_pCtxt->GetComparePaths(di, tFiles);
@@ -162,7 +262,17 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 		}
 		if (tFiles.GetSize() == 2)
 		{
-			code = m_pDiffUtilsEngine->CompareFiles(&m_diffFileData);
+			DiffList searchDiffs;
+			DiffList* pSearchDiffs = m_pCtxt->m_pSearchLineFilterExpression && m_pCtxt->SearchExpressionNeedsDiff() ? &searchDiffs : nullptr;
+			code = m_pDiffUtilsEngine->CompareFiles(&m_diffFileData, pSearchDiffs);
+			if (pSearchDiffs)
+			{
+				PathContext comparedPaths;
+				comparedPaths.SetSize(nDirs);
+				for (int side = 0; side < nDirs; ++side)
+					comparedPaths.SetPath(side, filepathTransformed[side]);
+				diffSearchNoMatch = !EvaluateDiffSearch(*m_pCtxt, di, comparedPaths, searchDiffs);
+			}
 				m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
 
 			// If unique item, it was being compared to itself to determine encoding
@@ -206,6 +316,14 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 			dw.LoadWinMergeDiffsFromDiffUtilsScript3(
 				script10, script12, script02,
 				diffdata10.m_inf, diffdata12.m_inf, diffdata02.m_inf);
+			if (m_pCtxt->m_pSearchLineFilterExpression && m_pCtxt->SearchExpressionNeedsDiff())
+			{
+				PathContext comparedPaths;
+				comparedPaths.SetSize(nDirs);
+				for (int side = 0; side < nDirs; ++side)
+					comparedPaths.SetPath(side, filepathTransformed[side]);
+				diffSearchNoMatch = !EvaluateDiffSearch(*m_pCtxt, di, comparedPaths, diffList);
+			}
 			m_ndiffs = diffList.GetSignificantDiffs(); 
 			m_ntrivialdiffs = diffList.GetSize() - m_ndiffs;
 
@@ -362,6 +480,8 @@ exitPrepAndCompare:
 
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
 	di.diffcode.diffcode |= code;
+	if (diffSearchNoMatch)
+		di.diffcode.diffcode |= DIFFCODE::SKIPPED;
 	di.nsdiffs = m_ndiffs;
 	di.nidiffs = m_ntrivialdiffs;
 

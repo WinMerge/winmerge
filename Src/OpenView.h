@@ -27,6 +27,7 @@
 class ProjectFile;
 class COpenDoc;
 class DropHandler;
+class LineFilterHelper;
 
 /**
  * @brief The Open-View class.
@@ -47,6 +48,9 @@ public:
 // Dialog Data
 	//{{AFX_DATA(COpenView)
 	enum { IDD = IDD_OPEN };
+	CSuperComboBox	m_ctlSearchExpr;
+	CValidatingEdit	m_ctlSearchExprEdit;
+	std::unique_ptr<LineFilterHelper> m_pSearchFilterHelper;
 	CSuperComboBox	m_ctlExt;
 	CValidatingEdit	m_ctlExtEdit;
 	CSuperComboBox	m_ctlPath[3];
@@ -147,6 +151,7 @@ protected:
 	afx_msg void OnSaveProject();
 	template<UINT id, UINT popupid>
 	afx_msg void OnDropDown(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnSearchFileFilterChange();
 	afx_msg void OnExtEditChange();
 	afx_msg void OnSelectFilterDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSelchangePathCombo(UINT nID);

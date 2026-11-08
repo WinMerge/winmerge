@@ -467,6 +467,8 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
+        MENUITEM "&Find in Files...\tCtrl+Shift+F", ID_TOOLS_FIND_IN_FILES
+        MENUITEM SEPARATOR
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
     END
@@ -640,6 +642,8 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
+        MENUITEM "&Find in Files...\tCtrl+Shift+F", ID_TOOLS_FIND_IN_FILES
+        MENUITEM SEPARATOR
         MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
@@ -957,6 +961,8 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
+        MENUITEM "&Find in Files...\tCtrl+Shift+F", ID_TOOLS_FIND_IN_FILES
+        MENUITEM SEPARATOR
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
@@ -2208,6 +2214,7 @@ BEGIN
     "E",            ID_FILE_OPEN_WITHEDITOR, VIRTKEY, CONTROL, ALT, NOINVERT
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_TOOLS_FIND_IN_FILES, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "G",            ID_GOTO_MOVED_LINE_LM,  VIRTKEY, SHIFT, CONTROL, NOINVERT
     "G",            ID_GOTO_MOVED_LINE_MR,  VIRTKEY, CONTROL, ALT, NOINVERT
@@ -2304,6 +2311,8 @@ STYLE DS_SETFONT | DS_CENTER | WS_CHILD | WS_BORDER
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
 //	LOGO			res\\logo.jpg :: Height = 80px, Width=336px (extended fully to Right)
+    LTEXT           "Search &expression:",IDC_SEARCH_EXPR_STATIC,6,10,74,10,NOT WS_VISIBLE
+    COMBOBOX        IDC_SEARCH_EXPR_COMBO,82,8,290,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP | NOT WS_VISIBLE
     GROUPBOX        "&1st File or Folder",IDC_FILES_DIRS_GROUP0,6,54,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,66,446,95
     CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,84,100,10
@@ -3891,6 +3900,10 @@ END
 IDD_OPEN AFX_DIALOG_LAYOUT
 BEGIN
     0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 0, 0,
@@ -6006,6 +6019,9 @@ BEGIN
     IDS_LOG_COPY_LINES          "Copy lines: pane %d to %d (vline %d-%d)"
     IDS_LOG_COPY_INLINE_DIFFS   "Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"
     IDS_LOG_COPY_CHARS          "Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"
+    IDS_FIND_IN_FILES           "Find in Files"
+    IDS_SEARCH_BUTTON           "&Search"
+    ID_TOOLS_FIND_IN_FILES      "Find in files and folders\nFind in Files"
 END
 
 #endif    // English (United States) resources

@@ -199,6 +199,7 @@ int main()
 	filter.SetMaskOrExpression(_T("*.*"));
 	std::unique_ptr<CDiffContext> pCtx; // Store context for comparison results
 	std::unique_ptr<CompareStats> pCmpStats;
+	std::unique_ptr<FilterExpression> searchLineFilterExpression;
 
 	std::wcout << L"WinMerge folder comparison test tool\n";
 	std::wcout << L"Type 'h' for help.\n";
@@ -222,6 +223,7 @@ int main()
 			std::wcout << L"  f <filter-mask>              : Set file mask filter (e.g., *.c;*.h)\n";
 			std::wcout << L"  m <compare-method>           : Set compare method (FullContents, Date, etc.)\n";
 			std::wcout << L"  r <key-expression>           : Set rename/move detection key (e.g., {{content}})\n";
+			std::wcout << L"  g <text-or-le:expression>    : Set line search filter (plain text or line expression)\n";
 			std::wcout << L"  c                            : Start folder comparison\n";
 			std::wcout << L"  d [detail]                   : Display comparison results (add 'detail' for Date, Size, Diff count)\n";
 			std::wcout << L"  s                            : Show comparison statistics\n";
@@ -295,6 +297,33 @@ int main()
 			pCtx->m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 			std::wcout << L"Rename/move detection key set: " << keyExpr << L"\n";
 		}
+		else if (cmd[0] == L'g' && cmd.length() > 1 && iswspace(cmd[1])) // Set search line filter
+		{
+			std::wstring search = cmd.substr(2);
+			while (!search.empty() && iswspace(search.front()))
+				search.erase(search.begin());
+			if (search.rfind(L"le:", 0) != 0)
+			{
+				std::wstring quoted = L"\"";
+				for (wchar_t ch : search)
+				{
+					quoted += ch;
+					if (ch == L'\"')
+						quoted += L'\"';
+				}
+				quoted += L"\"";
+				search = L"le:Line contains " + quoted;
+			}
+			auto expression = std::make_unique<FilterExpression>(ucr::toUTF8(search.substr(3)));
+			expression->diritem = false;
+			if (expression->errorCode != FILTER_ERROR_NO_ERROR)
+			{
+				std::wcout << L"Error parsing search expression: " << FormatFilterErrorSummary(*expression) << L"\n";
+				continue;
+			}
+			searchLineFilterExpression = std::move(expression);
+			std::wcout << L"Search line filter set: " << search << L"\n";
+		}
 		else if (cmd[0] == L'c') // Compare
 		{
 			// Preserve RenameMoveDetection if already set
@@ -310,6 +339,12 @@ int main()
 			{
 				pCtx->m_pRenameMoveDetection = std::move(preservedRenameMoveDetection);
 				pCtx->m_pRenameMoveDetection->GetRenameMoveKeyExpression()->SetDiffContext(pCtx.get());
+			}
+
+			if (searchLineFilterExpression)
+			{
+				pCtx->m_pSearchLineFilterExpression = std::make_unique<FilterExpression>(*searchLineFilterExpression);
+				pCtx->m_pSearchLineFilterExpression->SetDiffContext(pCtx.get());
 			}
 
 			DIFFOPTIONS options = {0};

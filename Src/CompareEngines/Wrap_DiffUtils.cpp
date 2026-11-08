@@ -91,8 +91,10 @@ void DiffUtils::SetCodepage(int codepage)
  * @brief Compare two files (as earlier specified).
  * @return DIFFCODE as a result of compare.
  */
-int DiffUtils::CompareFiles(DiffFileData* diffData)
+int DiffUtils::CompareFiles(DiffFileData* diffData, DiffList* diffList)
 {
+	if (diffList)
+		diffList->Clear();
 	int bin_flag = 0;
 	int bin_file = 0; // bitmap for binary files
 
@@ -158,6 +160,16 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 					if (op != OP_TRIVIAL && usefilters)
 					{
 						m_pDiffWrapper->PostFilter(ctxt, thisob, diffData->m_inf);
+					}
+					if (diffList && (deletes != 0 || inserts != 0 || thisob->trivial != 0))
+					{
+						DIFFRANGE range;
+						range.begin[0] = first0;
+						range.end[0] = last0;
+						range.begin[1] = first1;
+						range.end[1] = last1;
+						range.op = thisob->trivial ? OP_TRIVIAL : OP_DIFF;
+						diffList->AddDiff(range);
 					}
 				}
 			}

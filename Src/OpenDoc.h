@@ -31,6 +31,8 @@ public:
 	tchar_t	m_cTableQuote;
 	bool	m_bTableAllowNewLinesInQuotes;
 	std::vector<String> m_hiddenItems;
+	bool	m_bFindMode;
+	String	m_strSearchExpr;
 
 protected:
 	virtual BOOL OnNewDocument();
