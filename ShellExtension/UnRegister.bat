@@ -1,1 +1,0 @@
-%0\..\Register.bat /u
