@@ -10,6 +10,7 @@
 #include "resource.h"
 
 std::map<int, std::unique_ptr<CImageList>> CCrystalRendererGDI::s_mapIcons;
+std::map<std::tuple<UINT, int, int>, std::unique_ptr<CImageList>> CCrystalRendererGDI::s_mapImageStrips;
 
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalRendererGDI construction/destruction
@@ -176,6 +177,25 @@ void CCrystalRendererGDI::DrawMarginIcon(int x, int y, int iconIndex, int iconsi
 		CPoint pt(x, y);
 		VERIFY(s_mapIcons[iconsize]->Draw(m_pDC, iconIndex, pt, ILD_TRANSPARENT));
 	}
+}
+
+void CCrystalRendererGDI::DrawImageStripFrame(UINT nIDResource, int nFrameCount, int nFrame, const CRect &rcDest)
+{
+	if (nFrame < 0 || nFrame >= nFrameCount || rcDest.Width() <= 0 || rcDest.Height() <= 0)
+		return;
+	// The strip is scaled once per destination size (high quality bicubic in LoadPngResourceToImageList)
+	const auto key = std::make_tuple(nIDResource, rcDest.Width(), rcDest.Height());
+	auto it = s_mapImageStrips.find(key);
+	if (it == s_mapImageStrips.end())
+	{
+		auto pImages = std::make_unique<CImageList>();
+		if (!LoadPngResourceToImageList(AfxGetInstanceHandle(), static_cast<int>(nIDResource),
+			nFrameCount, rcDest.Width(), rcDest.Height(), *pImages, nullptr))
+			pImages.reset(); // kept as nullptr, so a missing resource is not loaded again for every line
+		it = s_mapImageStrips.emplace(key, std::move(pImages)).first;
+	}
+	if (it->second)
+		it->second->Draw(m_pDC, nFrame, rcDest.TopLeft(), ILD_TRANSPARENT);
 }
 
 void CCrystalRendererGDI::DrawMarginLineNumber(int x, int y, int number)

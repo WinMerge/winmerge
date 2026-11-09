@@ -42,6 +42,12 @@ struct CCrystalRenderer
 	virtual void PushAxisAlignedClip(const CRect &rc) = 0;
 	virtual void PopAxisAlignedClip() = 0;
 	virtual void DrawMarginIcon(int x, int y, int iconIndex, int iconsize) = 0;
+	/**
+	 * @brief Draw one frame of a PNG image strip resource (resource type "IMAGE"), scaled to fill rcDest.
+	 * The strip holds nFrameCount frames of equal width side by side. The frame is scaled with high quality
+	 * filtering, so a large source image stays smooth at any destination size.
+	 */
+	virtual void DrawImageStripFrame(UINT nIDResource, int nFrameCount, int nFrame, const CRect &rcDest) = 0;
 	virtual void DrawMarginLineNumber(int x, int y, int number) = 0;
 	virtual void DrawBoundaryLine(int left, int right, int y) = 0;
 	virtual void DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha) = 0;

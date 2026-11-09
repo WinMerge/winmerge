@@ -116,6 +116,7 @@
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_MARGIN_ICONS_PNG            310
+#define IDR_MARGIN_COPY_ARROWS_PNG      311
 #define IDR_TOOLBAR_ENABLED32_PNG       312
 #define IDB_EDIT_COPY                   316
 #define IDB_EDIT_CUT                    317
