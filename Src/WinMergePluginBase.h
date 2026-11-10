@@ -20,6 +20,7 @@ public:
 		DISPID_PluginVariables,
 		DISPID_PluginPipeline,
 		DISPID_PrediffFile,
+		DISPID_PrediffBufferW,
 		DISPID_UnpackFile,
 		DISPID_PackFile,
 		DISPID_IsFolder,
@@ -45,6 +46,8 @@ public:
 	{
 		static PARAMDATA paramData_Prediff[] =
 		{ {L"fileSrc", VT_BSTR}, {L"fileDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, };
+		static PARAMDATA paramData_PrediffBuffer[] =
+		{ {L"text", VT_BSTR | VT_BYREF}, {L"size", VT_I4 | VT_BYREF}, {L"pbChanged", VT_BOOL | VT_BYREF}, };
 		static PARAMDATA paramData_UnpackFile[] =
 		{ {L"fileSrc", VT_BSTR}, {L"fileDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, {L"pSubcode", VT_I4 | VT_BYREF}, };
 		static PARAMDATA paramData_PackFile[] =
@@ -72,6 +75,21 @@ public:
 			{ L"PluginVariables",             paramData_Variables,    DISPID_PluginVariables,             6, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
 			{ L"PrediffFile",                 paramData_Prediff,      DISPID_PrediffFile,                 7, CC_STDCALL, 3, DISPATCH_METHOD,      VT_BOOL },
 			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          8, CC_STDCALL, 0, DISPATCH_METHOD,      VT_VOID },
+		};
+		static METHODDATA methodData_BUFFER_PREDIFF[] =
+		{
+			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL },
+			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginArguments",             nullptr,                DISPID_PluginArguments,             5, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginArguments",             paramData_Arguments,    DISPID_PluginArguments,             5, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
+			{ L"PluginVariables",             nullptr,                DISPID_PluginVariables,             6, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginVariables",             paramData_Variables,    DISPID_PluginVariables,             6, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
+			{ L"PrediffFile",                 paramData_Prediff,      DISPID_PrediffFile,                 7, CC_STDCALL, 3, DISPATCH_METHOD,      VT_BOOL },
+			{ L"PrediffBufferW",              paramData_PrediffBuffer, DISPID_PrediffBufferW,             8, CC_STDCALL, 3, DISPATCH_METHOD,      VT_BOOL },
+			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          9, CC_STDCALL, 0, DISPATCH_METHOD,      VT_VOID },
 		};
 		static METHODDATA methodData_FILE_PACK_UNPACK[] =
 		{
@@ -134,10 +152,15 @@ public:
 		};
 		const METHODDATA* pMethodData;
 		size_t methodDataCount = 0;
-		if (sEvent == L"FILE_PREDIFF")
+		if (sEvent == L"FILE_PREDIFF" || sEvent == L"FILE_ALIGN")
 		{
 			methodDataCount = sizeof(methodData_FILE_PREDIFF) / sizeof(methodData_FILE_PREDIFF[0]);
 			pMethodData = methodData_FILE_PREDIFF;
+		}
+		else if (sEvent == L"BUFFER_PREDIFF" || sEvent == L"BUFFER_ALIGN")
+		{
+			methodDataCount = sizeof(methodData_BUFFER_PREDIFF) / sizeof(methodData_BUFFER_PREDIFF[0]);
+			pMethodData = methodData_BUFFER_PREDIFF;
 		}
 		else if (sEvent == L"FILE_PACK_UNPACK")
 		{
@@ -231,6 +254,16 @@ public:
 				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[0].pboolVal;
 				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
 				hr = PrediffFile(fileSrc, fileDst, pbChanged, pbSuccess);
+				break;
+			}
+			case DISPID_PrediffBufferW:
+			{
+				BSTR& text = *pDispParams->rgvarg[2].pbstrVal;
+				INT& size = *pDispParams->rgvarg[1].pintVal;
+				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[0].pboolVal;
+				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
+				hr = PrediffBufferW(text, size, pbChanged, pbSuccess);
+				hr = S_OK;
 				break;
 			}
 			case DISPID_UnpackFile:
@@ -496,6 +529,12 @@ public:
 	}
 	
 	virtual HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess)
+	{
+		*pbSuccess = VARIANT_FALSE;
+		return E_NOTIMPL;
+	}
+
+	virtual HRESULT STDMETHODCALLTYPE PrediffBufferW(BSTR&, int&, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess)
 	{
 		*pbSuccess = VARIANT_FALSE;
 		return E_NOTIMPL;

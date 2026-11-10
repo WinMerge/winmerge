@@ -532,6 +532,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Externals\crystaledit\editlib\utils\icu.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\Src\Common\charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -788,6 +791,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\Src\stringdiffs.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="..\..\Src\SubstitutionList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -804,6 +812,11 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\Src\TableProps.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\TempFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -890,9 +903,11 @@
     <ClInclude Include="..\..\Src\Common\UniFile.h" />
     <ClInclude Include="..\..\Src\HashCalc.h" />
     <ClInclude Include="..\..\Src\PropertySystem.h" />
+    <ClInclude Include="..\..\Src\stringdiffs.h" />
     <ClInclude Include="..\..\Src\SubstitutionList.h" />
     <ClInclude Include="..\..\Src\SyntaxParserHelper.h" />
     <ClInclude Include="..\..\Src\TableProps.h" />
+    <ClInclude Include="..\..\Src\TempFile.h" />
     <ClInclude Include="..\..\Src\UniMarkdownFile.h" />
     <ClInclude Include="..\..\Src\Common\varprop.h" />
     <ClInclude Include="..\..\Src\xdiff_gnudiff_compat.h" />

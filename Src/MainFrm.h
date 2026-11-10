@@ -94,6 +94,7 @@ public:
 		virtual ~OpenFolderParams() {}
 		std::optional<bool> m_bRecurse;
 		std::vector<String> m_hiddenItems;
+		String m_strAlignerPipeline;
 	};
 
 	struct OpenTextFileParams : virtual public OpenParams
@@ -103,6 +104,7 @@ public:
 		int m_char = -1;
 		String m_fileExt;
 		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
+		String m_strAlignerPipeline;
 	};
 
 	struct OpenTableFileParams : public OpenTextFileParams

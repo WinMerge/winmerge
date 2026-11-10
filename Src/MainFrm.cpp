@@ -329,6 +329,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnUpdatePluginPrediffMode)
 	ON_UPDATE_COMMAND_UI(ID_OPEN_WITH_UNPACKER, OnUpdatePluginRelatedMenu)
 	ON_UPDATE_COMMAND_UI(ID_APPLY_PREDIFFER, OnUpdatePluginRelatedMenu)
+	ON_UPDATE_COMMAND_UI(ID_APPLY_ALIGNER, OnUpdatePluginRelatedMenu)
 	ON_UPDATE_COMMAND_UI(ID_TRANSFORM_WITH_SCRIPT, OnUpdatePluginRelatedMenu)
 	ON_UPDATE_COMMAND_UI(ID_RELOAD_PLUGINS, OnUpdatePluginRelatedMenu)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
@@ -1127,6 +1128,11 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pD
 	// (through menu : "Plugins"->"Open with unpacker")
 	pMergeDoc->SetUnpacker(infoUnpacker);
 	pMergeDoc->SetPrediffer(infoPrediffer);
+	AligningInfo infoAligner;
+	if (pOpenParams)
+		infoAligner.SetPluginPipeline(dynamic_cast<const OpenTextFileParams*>(pOpenParams) ?
+			dynamic_cast<const OpenTextFileParams*>(pOpenParams)->m_strAlignerPipeline : _T(""));
+	pMergeDoc->SetAligner(&infoAligner);
 
 	// detect codepage
 	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -1567,6 +1573,12 @@ static void AppendComparisonCommandLineParams(
 				params += strutils::format(_T("/l %d "), pOpenTextFileParams->m_line + 1);
 			if (!pOpenTextFileParams->m_fileExt.empty())
 				params += _T("/fileext ") + pOpenTextFileParams->m_fileExt + _T(" ");
+			if (!pOpenTextFileParams->m_strAlignerPipeline.empty())
+			{
+				String pipeline = pOpenTextFileParams->m_strAlignerPipeline;
+				strutils::replace(pipeline, _T("\""), _T("\"\""));
+				params += _T("/aligner \"") + pipeline + _T("\" ");
+			}
 		}
 		if (const auto* pOpenTableFileParams = dynamic_cast<const CMainFrame::OpenTableFileParams*>(pOpenParams))
 		{
@@ -1768,6 +1780,11 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		pOpenDoc->m_bRecurse = bRecurse2;
 		if (infoUnpacker)
 			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
+		if (pOpenParams)
+		{
+			if (const auto* pOpenTextFileParams = dynamic_cast<const OpenTextFileParams*>(pOpenParams))
+				pOpenDoc->m_strAlignerPipeline = pOpenTextFileParams->m_strAlignerPipeline;
+		}
 		CFrameWnd *pFrame = pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
 		if (!pFrame)
 		{
@@ -2461,7 +2478,7 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
 void CMainFrame::OnUpdatePluginRelatedMenu(CCmdUI* pCmdUI)
 {
 	bool enabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
-	if (enabled && (pCmdUI->m_nID == ID_APPLY_PREDIFFER || pCmdUI->m_nID == ID_TRANSFORM_WITH_SCRIPT))
+	if (enabled && (pCmdUI->m_nID == ID_APPLY_PREDIFFER || pCmdUI->m_nID == ID_APPLY_ALIGNER || pCmdUI->m_nID == ID_TRANSFORM_WITH_SCRIPT))
 		enabled = GetFrameType(GetActiveFrame()) == FRAME_FILE;
 	pCmdUI->Enable(enabled);
 }

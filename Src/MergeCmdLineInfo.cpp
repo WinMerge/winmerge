@@ -427,6 +427,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
 			q = EatParam(q, m_sPreDiffer);
 		}
+		else if (param == _T("aligner"))
+		{
+			// Get aligner if specified (otherwise aligner will be blank, which is default)
+			q = EatParam(q, m_sAligner);
+		}
 		else if (param == _T("wl"))
 		{
 			// -wl to open left path as read-only

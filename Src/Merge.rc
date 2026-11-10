@@ -984,6 +984,12 @@ BEGIN
         END
         MENUITEM "Apply Pre&differ...",         ID_APPLY_PREDIFFER
         MENUITEM SEPARATOR
+        POPUP "&Aligner"
+        BEGIN
+            MENUITEM "<PlaceHolder>",               ID_NO_ALIGNER
+        END
+        MENUITEM "Apply &Aligner...",           ID_APPLY_ALIGNER
+        MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS

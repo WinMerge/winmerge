@@ -25,6 +25,7 @@ public:
 	String	m_strExt;
 	String	m_strUnpackerPipeline;
 	String	m_strPredifferPipeline;
+	String	m_strAlignerPipeline;
 	String	m_strDesc[3];
 	int		m_nWindowType;
 	tchar_t	m_cTableDelimiter;

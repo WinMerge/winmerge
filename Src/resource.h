@@ -965,6 +965,8 @@
 #define ID_WINDOW_NEXT                  32890
 #define ID_WINDOW_PREV                  32891
 #define ID_WINDOW_PRESERVE_SPLITTER_RATIOS 32892
+#define ID_NO_ALIGNER                   32893
+#define ID_APPLY_ALIGNER                32894
 #define ID_HELP_CONTENTS                32912
 #define ID_HELP_GETCONFIG               32913
 #define ID_HELP_GNULICENSE              32914
@@ -1326,6 +1328,8 @@
 #define ID_UNPACKERS_LAST               35200
 #define ID_PREDIFFERS_FIRST             35201
 #define ID_PREDIFFERS_LAST              35300
+#define ID_ALIGNERS_FIRST               36601
+#define ID_ALIGNERS_LAST                36700
 #define ID_SCRIPT_FIRST                 35301
 #define ID_SCRIPT_LAST                  35400
 #define ID_FILE_PROJECT_MRU_FIRST       35401

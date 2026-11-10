@@ -52,6 +52,8 @@ const wchar_t *TransformationCategories[] =
 {
 	L"BUFFER_PREDIFF",
 	L"FILE_PREDIFF",
+	L"BUFFER_ALIGN",
+	L"FILE_ALIGN",
 	L"EDITOR_SCRIPT",
 	L"BUFFER_PACK_UNPACK",
 	L"FILE_PACK_UNPACK",

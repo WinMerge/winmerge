@@ -27,7 +27,7 @@ class PluginInfo;
 class CSelectPluginDlg : public CTrDialog
 {
 public:
-	enum class PluginType { Unpacker, Prediffer, EditorScript };
+	enum class PluginType { Unpacker, Prediffer, Aligner, EditorScript };
 private:
 // Construction
 	void Initialize(PluginType pluginType);

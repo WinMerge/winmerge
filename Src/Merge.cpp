@@ -979,19 +979,11 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 {
 	bool bCompared = false;
 	String strDesc[3];
-	std::unique_ptr<PackingInfo> infoUnpacker;
-	std::unique_ptr<PrediffingInfo> infoPrediffer;
 	unsigned nID = cmdInfo.m_nWindowType == MergeCmdLineInfo::AUTOMATIC ?
 		0 : static_cast<unsigned>(cmdInfo.m_nWindowType) + ID_MERGE_COMPARE_TEXT - 1;
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 	m_bEnableExitCode = cmdInfo.m_bEnableExitCode;
-
-	if (!cmdInfo.m_sUnpacker.empty())
-		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
-
-	if (!cmdInfo.m_sPreDiffer.empty())
-		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
 
 	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
 	{
@@ -1039,6 +1031,12 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	else
 	{
 		// Set the required information we need from the command line:
+		std::unique_ptr<PackingInfo> infoUnpacker;
+		std::unique_ptr<PrediffingInfo> infoPrediffer;
+		if (!cmdInfo.m_sUnpacker.empty())
+			infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
+		if (!cmdInfo.m_sPreDiffer.empty())
+			infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
 
 		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
 		m_bEscShutdown = cmdInfo.m_bEscShutdown;

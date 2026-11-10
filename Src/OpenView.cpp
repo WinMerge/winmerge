@@ -288,6 +288,7 @@ void COpenView::OnInitialUpdate()
 	m_strExt = pDoc->m_strExt;
 	m_strUnpackerPipeline = pDoc->m_strUnpackerPipeline;
 	m_strPredifferPipeline = pDoc->m_strPredifferPipeline;
+	m_strAlignerPipeline = pDoc->m_strAlignerPipeline;
 	m_dwFlags[0] = pDoc->m_dwFlags[0];
 	m_dwFlags[1] = pDoc->m_dwFlags[1];
 	m_dwFlags[2] = pDoc->m_dwFlags[2];
@@ -883,6 +884,7 @@ void COpenView::OnCompare(UINT nID)
 	pDoc->m_strExt = m_strExt;
 	pDoc->m_strUnpackerPipeline = m_strUnpackerPipeline;
 	pDoc->m_strPredifferPipeline = m_strPredifferPipeline;
+	pDoc->m_strAlignerPipeline = m_strAlignerPipeline;
 	pDoc->m_dwFlags[0] = m_dwFlags[0];
 	pDoc->m_dwFlags[1] = m_dwFlags[1];
 	pDoc->m_dwFlags[2] = m_dwFlags[2];

@@ -63,6 +63,7 @@ public:
 	String	m_strExt;
 	String	m_strUnpackerPipeline;
 	String	m_strPredifferPipeline;
+	String	m_strAlignerPipeline;
 	//}}AFX_DATA
 
 // other public data
