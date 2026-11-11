@@ -45,6 +45,7 @@ const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
 const char Unpacker_element_name[] = "unpacker";
 const char Prediffer_element_name[] = "prediffer";
+const char Aligner_element_name[] = "aligner";
 const char Window_type_element_name[] = "window-type";
 const char Table_delimiter_element_name[] = "table-delimiter";
 const char Table_quote_element_name[] = "table-quote";
@@ -187,6 +188,10 @@ public:
 		{
 			currentItem.m_prediffer = currentItem.GetPrediffer() + xmlch2tstr(ch + start, length);
 		}
+		else if (nodename == Aligner_element_name)
+		{
+			currentItem.m_aligner = currentItem.GetAligner() + xmlch2tstr(ch + start, length);
+		}
 		else if (nodename == Window_type_element_name)
 		{
 			currentItem.m_nWindowType = atoi(token.c_str());
@@ -277,6 +282,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bSaveSubfolders(true)
 , m_bSaveUnpacker(true)
 , m_bSavePrediffer(true)
+, m_bSaveAligner(true)
 , m_bSaveIgnoreWhite(true)
 , m_bSaveIgnoreBlankLines(true)
 , m_bSaveIgnoreCase(true)
@@ -434,6 +440,8 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Unpacker_element_name, toUTF8(item.GetUnpacker()));
 				if (item.m_bSavePrediffer && !item.GetPrediffer().empty())
 					writeElement(writer, Prediffer_element_name, toUTF8(item.GetPrediffer()));
+				if (item.m_bSaveAligner && !item.GetAligner().empty())
+					writeElement(writer, Aligner_element_name, toUTF8(item.GetAligner()));
 				if (item.GetWindowType() != -1)
 					writeElement(writer, Window_type_element_name, std::to_string(item.GetWindowType()));
 				if (item.GetWindowType() == 2 /* table */)

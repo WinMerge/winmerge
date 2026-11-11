@@ -244,7 +244,7 @@ public:
 	 */
 	AlignerGeneratedFromPrediffer(const PluginInfo& plugin, bool buffer)
 		: WinMergePluginBase(buffer ? L"BUFFER_ALIGN" : L"FILE_ALIGN", plugin.m_description,
-			plugin.m_filtersText, L"", plugin.m_extendedProperties, plugin.m_arguments, L"", false)
+			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments, L"", false)
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_buffer(buffer)
 	{

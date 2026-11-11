@@ -26,7 +26,7 @@
 static const std::vector<String> *EventNamesArray[] = {
 		&FileTransform::UnpackerEventNames,
 		&FileTransform::PredifferEventNames,
-	&FileTransform::AlignerEventNames,
+		&FileTransform::AlignerEventNames,
 		&FileTransform::EditorScriptEventNames };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -168,7 +168,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 		m_ctlPluginPipelineEdit.Validate();
 		String cueBanner = strutils::format_string1(_("e.g. %1"),
 			(m_pluginType == PluginType::Prediffer) ? _T("le:toUpper(Line)|IgnoreLeadingLineNumbers") :
-			(m_pluginType == PluginType::Aligner) ? _T("IgnoreLeadingLineNumbers") : _T("le:toUpper(Line)|SortAscending"));
+			(m_pluginType == PluginType::Aligner) ? _T("le:toUpper(Line)|IgnoreLeadingLineNumbers") : _T("le:toUpper(Line)|SortAscending"));
 		m_ctlPluginPipelineEdit.SetCueBanner(cueBanner.c_str());
 	}
 
@@ -344,7 +344,7 @@ void CSelectPluginDlg::OnClickedAlias()
 		plugin = reinterpret_cast<PluginInfo*>(item.lParam);
 	}
 
-	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_EDITOR_SCRIPT") };
+	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_ALIGN"), _T("ALIAS_EDITOR_SCRIPT") };
 	internal_plugin::Info info = internal_plugin::CreateAliasPluginExample(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
 
 	for (;;)

@@ -25,6 +25,7 @@ namespace FileTransform
 {
 extern bool AutoUnpacking;
 extern bool AutoPrediffing;
+extern bool AutoAligning;
 }
 
 /**

@@ -172,7 +172,7 @@ public:
 			methodDataCount = sizeof(methodData_FILE_FOLDER_PACK_UNPACK) / sizeof(methodData_FILE_FOLDER_PACK_UNPACK[0]);
 			pMethodData = methodData_FILE_FOLDER_PACK_UNPACK;
 		}
-		else if (sEvent == L"ALIAS_PACK_UNPACK" || sEvent == L"ALIAS_PREDIFF" || sEvent == L"ALIAS_EDITOR_SCRIPT")
+		else if (sEvent == L"ALIAS_PACK_UNPACK" || sEvent == L"ALIAS_PREDIFF" || sEvent == L"ALIAS_ALIGN" || sEvent == L"ALIAS_EDITOR_SCRIPT")
 		{
 			methodDataCount = sizeof(methodData_ALIAS) / sizeof(methodData_ALIAS[0]);
 			pMethodData = methodData_ALIAS;

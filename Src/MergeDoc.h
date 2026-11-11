@@ -207,7 +207,7 @@ public:
 	const PrediffingInfo* GetPrediffer() const override;
 	void SetAligner(const AligningInfo* infoAligner);
 	void GetAligner(AligningInfo* infoAligner) const;
-	const AligningInfo* GetAligner() const;
+	const AligningInfo* GetAligner() const override;
 	void OnApplyAligner();
 	void IgnoreColumnInComparison(int column, const String& panePrefix, bool add);
 	void ResetIgnoredColumnsInComparison();

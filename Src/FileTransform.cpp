@@ -518,6 +518,7 @@ struct AlignPluginTraits
 	{
 		static const std::vector<std::pair<const wchar_t*, bool>> chain = {
 			{ L"FILE_ALIGN", false },
+			{ L"ALIAS_ALIGN", false },
 			{ L"BUFFER_ALIGN", true },
 		};
 		return chain;
@@ -1626,6 +1627,7 @@ namespace FileTransform
 
 bool AutoUnpacking = false;
 bool AutoPrediffing = false;
+bool AutoAligning = false;
 
 ////////////////////////////////////////////////////////////////////////////////
 

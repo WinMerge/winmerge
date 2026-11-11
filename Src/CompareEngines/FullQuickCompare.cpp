@@ -70,11 +70,12 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 
 	PackingInfo * infoUnpacker = nullptr;
 	PrediffingInfo * infoPrediffer = nullptr;
+	AligningInfo * infoAligner = nullptr;
 
 	// Get existing or new plugin infos
 	if (m_pCtxt->m_piPluginInfos != nullptr)
 		m_pCtxt->FetchPluginInfos(filteredFilenames, &infoUnpacker,
-				&infoPrediffer);
+				&infoPrediffer, &infoAligner);
 
 	FileTextEncoding encoding[3];
 	bool bForceUTF8 = m_pCtxt->GetCompareOptions(nCompMethod)->m_bIgnoreCase;

@@ -62,6 +62,7 @@ typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocList;
 
 class PackingInfo;
 class PrediffingInfo;
+class AligningInfo;
 class CLanguageSelect;
 struct IMergeDoc;
 
@@ -164,62 +165,89 @@ public:
 	bool DoFileOrFolderOpen(const PathContext *pFiles = nullptr,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), IDirDoc *pDirDoc = nullptr,
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		UINT nID = 0, const OpenParams *pOpenParams = nullptr);
 	bool DoFileOpen(UINT nID, const PathContext* pFiles,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""),
-		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo* infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenParams *pOpenParams = nullptr);
 	bool DoFileNew(UINT nID, int nPanes,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenParams *pOpenParams = nullptr);
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	bool DoOpenClipboard(UINT nID = 0, int nBuffers = 2, const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
-		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo* infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenParams* pOpenParams = nullptr);
 	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr,
-		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo* infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenParams* pOpenParams = nullptr);
 	void OpenRecentCompare(const String& params);
 	bool ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenParams *pOpenParams = nullptr);
 	bool ShowMergeDoc(UINT nID, IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenParams *pOpenParams = nullptr);
 	bool ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowTextMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowTextMergeDoc(IDirDoc* pDirDoc, int nBuffers, const String text[],
 		const String strDesc[], const String& strFileExt, const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowTableMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowHexMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenBinaryFileParams *pOpenParams = nullptr);
 	bool ShowImgMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenImageFileParams *pOpenParams = nullptr);
 	bool ShowWebDiffDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const PackingInfo * infoUnpacker = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		const AligningInfo * infoAligner = nullptr,
 		const OpenWebPageParams *pOpenParams = nullptr);
 	bool ShowDirDoc(IDirDoc* pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo* infoPrediffer = nullptr,
+		const PackingInfo* infoUnpacker = nullptr,
+		const PrediffingInfo* infoPrediffer = nullptr,
+		const AligningInfo* infoAligner = nullptr,
 		const OpenFolderParams* pOpenParams = nullptr, CTempPathContext* pTempPathContext = nullptr);
 
 	void UpdateToolbar();
@@ -434,6 +462,8 @@ protected:
 	afx_msg void OnPluginUnpackMode(UINT nID);
 	afx_msg void OnUpdatePluginPrediffMode(CCmdUI* pCmdUI);
 	afx_msg void OnPluginPrediffMode(UINT nID);
+	afx_msg void OnUpdatePluginAlignMode(CCmdUI* pCmdUI);
+	afx_msg void OnPluginAlignMode(UINT nID);
 	afx_msg void OnUpdatePluginRelatedMenu(CCmdUI* pCmdUI);
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();

@@ -5,6 +5,7 @@
 struct IDirDoc;
 class PackingInfo;
 class PrediffingInfo;
+class AligningInfo;
 class EditorScriptInfo;
 class UniStdioFile;
 
@@ -49,6 +50,7 @@ struct IMergeDoc
 	virtual const PackingInfo *GetUnpacker() const = 0;
 	virtual void SetUnpacker(const PackingInfo *infoUnpacker) = 0;
 	virtual const PrediffingInfo *GetPrediffer() const = 0;
+	virtual const AligningInfo *GetAligner() const = 0;
 	virtual const EditorScriptInfo *GetEditorScript() const = 0;
 	virtual int GetFileCount() const = 0;
 	virtual String GetPath(int pane) const = 0;

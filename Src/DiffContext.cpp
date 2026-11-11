@@ -225,11 +225,11 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */
 void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
-		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
+		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer, AligningInfo ** infoAligner)
 {
 	if (!m_piPluginInfos)
 		return;
-	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
+	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer, infoAligner);
 }
 
 /**

@@ -820,7 +820,7 @@ void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator&
  * @brief Apply specified setting for prediffing to all selected items
  */
 template<class InputIterator>
-void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, bool unpacker, const String& pluginPipeline)
+void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, int pluginType, const String& pluginPipeline)
 {
 	// Unlike other group actions, here we don't build an action list
 	// to execute; we just apply this change directly
@@ -833,12 +833,15 @@ void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, c
 		{
 			PackingInfo * infoUnpacker = nullptr;
 			PrediffingInfo * infoPrediffer = nullptr;
+			AligningInfo * infoAligner = nullptr;
 			String filteredFilenames = ctxt.GetFilteredFilenames(di);
-			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-			if (unpacker)
+			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
+			if (pluginType == 0)
 				infoUnpacker->SetPluginPipeline(pluginPipeline);
-			else
+			else if (pluginType == 1)
 				infoPrediffer->SetPluginPipeline(pluginPipeline);
+			else if (pluginType == 2)
+				infoAligner->SetPluginPipeline(pluginPipeline);
 		}
 	}
 }
@@ -865,10 +868,11 @@ std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, 
 		if (!di.diffcode.isDirectory() && !di.diffcode.isBin() && IsItemExistAll(ctxt, di)
 			&& !di.diffcode.isResultFiltered())
 		{
-			PackingInfo * infoUnpacker;
-			PrediffingInfo * infoPrediffer;
+			PackingInfo * infoUnpacker = nullptr;
+			PrediffingInfo * infoPrediffer = nullptr;
+			AligningInfo * infoAligner = nullptr;
 			String filteredFilenames = ctxt.GetFilteredFilenames(di);
-			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
 			String pluginPipeline = unpacker ? infoUnpacker->GetPluginPipeline() : infoPrediffer->GetPluginPipeline();
 			if (pluginPipeline.empty())
 				nNone++;
