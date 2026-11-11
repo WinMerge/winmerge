@@ -1657,7 +1657,7 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 		GetDiffContext().FetchPluginInfos(filteredFilenames, !infoUnpacker ? &infoUnpacker : &tmpInfoUnpacker, &infoPrediffer, &infoAligner);
 
 		GetMainFrame()->ShowAutoMergeDoc(0, GetDocument(), paths.GetSize(), fileloc,
-			dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer);
+			dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer, infoAligner);
 	}
 }
 

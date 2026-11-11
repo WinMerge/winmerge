@@ -934,7 +934,16 @@ bool CDiffWrapper::RunFileDiff()
 		for (file = 0; file < aFiles.GetSize(); file++)
 		{
 			strFileAlign[file] = alignTemp[file].Create(_T("WinMergeAlign"));
-			if (strFileAlign[file].empty() || !CopyFile(strFileTemp[file].c_str(), strFileAlign[file].c_str(), TRUE))
+			if (strFileAlign[file].empty())
+			{
+				bAlignerActive = false;
+				break;
+			}
+			try
+			{
+				TFile(strFileTemp[file].c_str()).copyTo(strFileAlign[file]);
+			}
+			catch (const std::exception&)
 			{
 				bAlignerActive = false;
 				break;

@@ -1038,7 +1038,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
 		if (!cmdInfo.m_sPreDiffer.empty())
 			infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
-		if (!cmdInfo.m_sPreDiffer.empty())
+		if (!cmdInfo.m_sAligner.empty())
 			infoAligner.reset(new AligningInfo(cmdInfo.m_sAligner));
 
 		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;

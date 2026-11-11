@@ -1700,11 +1700,13 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	{
 		UpdatePluginTabControls();
 
+		/*
 		for (auto nID : { IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER, IDC_ALIGNER_COMBO, IDC_SELECT_ALIGNER })
 		{
 			ShowDlgItem(nID, (bIsaFileCompare && !bIsaFolderCompare));
 			EnableDlgItem(nID, bIsaFileCompare);
 		}
+		*/
 
 		for (auto nID : { IDC_FILES_DIRS_GROUP3, IDC_EXT_COMBO, IDC_SELECT_FILTER, IDC_RECURS_CHECK })
 		{
