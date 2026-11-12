@@ -244,7 +244,8 @@ public:
 	 */
 	AlignerGeneratedFromPrediffer(const PluginInfo& plugin, bool buffer)
 		: WinMergePluginBase(buffer ? L"BUFFER_ALIGN" : L"FILE_ALIGN", plugin.m_description,
-			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments, L"", false)
+			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments, L"",
+			plugin.m_bAutomaticDefault)
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_buffer(buffer)
 	{
@@ -258,7 +259,10 @@ public:
 	HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
 	{
 		if (m_buffer)
+		{
+			*pbSuccess = VARIANT_FALSE;
 			return E_NOTIMPL;
+		}
 		int changed = 0;
 		const bool handled = plugin::InvokePrediffFile(ucr::toTString(fileSrc), ucr::toTString(fileDst), changed, m_pDispatch);
 		*pbChanged = changed ? VARIANT_TRUE : VARIANT_FALSE;
@@ -269,7 +273,10 @@ public:
 	HRESULT STDMETHODCALLTYPE PrediffBufferW(BSTR& text, int& size, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
 	{
 		if (!m_buffer)
-			return false;
+		{
+			*pbSuccess = VARIANT_FALSE;
+			return E_NOTIMPL;
+		}
 		int changed = 0;
 		const bool handled = plugin::InvokePrediffBuffer(text, changed, m_pDispatch);
 		size = SysStringLen(text);

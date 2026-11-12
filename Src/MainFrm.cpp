@@ -1810,11 +1810,10 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		pOpenDoc->m_bRecurse = bRecurse2;
 		if (infoUnpacker)
 			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
-		if (pOpenParams)
-		{
-			if (const auto* pOpenTextFileParams = dynamic_cast<const OpenTextFileParams*>(pOpenParams))
-				pOpenDoc->m_strAlignerPipeline = pOpenTextFileParams->m_strAlignerPipeline;
-		}
+		if (infoPrediffer)
+			pOpenDoc->m_strPredifferPipeline = infoPrediffer->GetPluginPipeline();
+		if (infoAligner)
+			pOpenDoc->m_strAlignerPipeline = infoAligner->GetPluginPipeline();
 		CFrameWnd *pFrame = pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
 		if (!pFrame)
 		{

@@ -416,6 +416,7 @@ BOOL CMergeApp::InitInstance()
 
 	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
 	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
+	FileTransform::AutoAligning = GetOptionsMgr()->GetBool(OPT_PLUGINS_ALIGNER_MODE);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
@@ -1105,7 +1106,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
 				bCompared = pMainFrame->DoSelfCompare(nID, sFilepath, strDesc,
-					infoUnpacker.get(), infoPrediffer.get(), infoAligner.get());
+					infoUnpacker.get(), infoPrediffer.get(), infoAligner.get(), pOpenParams.get());
 			}
 			else if (IsProjectFile(sFilepath))
 			{

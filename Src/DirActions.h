@@ -850,7 +850,7 @@ void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, c
  * @brief Updates just before displaying plugin context view in list
  */
 template<class InputIterator>
-std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, bool unpacker)
+std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, int pluginType)
 {
 	int nNone = 0;
 	int nAuto = 0;
@@ -873,7 +873,11 @@ std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, 
 			AligningInfo * infoAligner = nullptr;
 			String filteredFilenames = ctxt.GetFilteredFilenames(di);
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
-			String pluginPipeline = unpacker ? infoUnpacker->GetPluginPipeline() : infoPrediffer->GetPluginPipeline();
+			String pluginPipeline = infoUnpacker->GetPluginPipeline();
+			if (pluginType == 1)
+				pluginPipeline = infoPrediffer->GetPluginPipeline();
+			else if (pluginType == 2)
+				pluginPipeline = infoAligner->GetPluginPipeline();
 			if (pluginPipeline.empty())
 				nNone++;
 			else if (pluginPipeline == _T("<Automatic>"))

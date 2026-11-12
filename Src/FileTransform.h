@@ -209,8 +209,15 @@ public:
 class AligningInfo : public PluginForFile
 {
 public:
-	explicit AligningInfo(bool automatic = false) : PluginForFile(automatic) {}
-	explicit AligningInfo(const String& pluginPipeline) : PluginForFile(pluginPipeline) {}
+	explicit AligningInfo(bool automatic = FileTransform::AutoAligning)
+	: PluginForFile(automatic)
+	{
+	}
+
+	explicit AligningInfo(const String& pluginPipeline)
+	: PluginForFile(pluginPipeline)
+	{
+	}
 
 	bool GetAlignPlugin(const String& filteredFilenames, bool bReverse,
 		std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,

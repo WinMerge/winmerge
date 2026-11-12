@@ -1670,14 +1670,24 @@ void COpenView::OnSelectPlugin(UINT nID)
 	CSelectPluginDlg dlg(pluginPipeline, m_files[0], pluginType, false, this);
 	if (dlg.DoModal() == IDOK)
 	{
+		int nID2 = 0;
 		if (nID == IDC_SELECT_UNPACKER)
+		{
 			m_strUnpackerPipeline = dlg.GetPluginPipeline();
+			nID2 = IDC_UNPACKER_COMBO;
+		}
 		else if (nID == IDC_SELECT_PREDIFFER)
+		{
 			m_strPredifferPipeline = dlg.GetPluginPipeline();
+			nID2 = IDC_PREDIFFER_COMBO;
+		}
 		else
+		{
 			m_strAlignerPipeline = dlg.GetPluginPipeline();
+			nID2 = IDC_ALIGNER_COMBO;
+		}
 		UpdateData(FALSE);
-		OnSelchangePlugin(nID == IDC_SELECT_UNPACKER ? IDC_UNPACKER_COMBO : IDC_PREDIFFER_COMBO);
+		OnSelchangePlugin(nID2);
 	}
 }
 

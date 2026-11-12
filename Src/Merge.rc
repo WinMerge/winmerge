@@ -474,6 +474,9 @@ BEGIN
     BEGIN
         MENUITEM "P&lugin Settings...",         ID_PLUGINS_LIST
         MENUITEM SEPARATOR
+        MENUITEM "Ma&nual Aligner",             ID_ALIGNER_MANUAL
+        MENUITEM "A&utomatic Aligner",          ID_ALIGNER_AUTO
+        MENUITEM SEPARATOR
         MENUITEM "Ma&nual Prediffer",           ID_PREDIFFER_MANUAL
         MENUITEM "A&utomatic Prediffer",        ID_PREDIFFER_AUTO
         MENUITEM SEPARATOR
@@ -3144,7 +3147,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,254,10
     CONTROL         "&Include all image pages",IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,168,150,10
-    LTEXT           "\\u24D8 The report uses the current comparison settings.",IDC_REPORT_INFO,7,180,254,10
+    LTEXT           L"\\u24D8 The report uses the current comparison settings.",IDC_REPORT_INFO,7,180,254,10
     DEFPUSHBUTTON   "OK",IDOK,157,194,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,211,194,50,14
 END
@@ -3630,27 +3633,51 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMEN
 CAPTION "Font"
 FONT 9, "Segoe UI"
 BEGIN
-    LTEXT           "&Font:",1088,7,7,98,9
-    COMBOBOX        1136,7,16,98,76,CBS_SIMPLE | CBS_OWNERDRAWFIXED | CBS_AUTOHSCROLL | CBS_SORT | CBS_HASSTRINGS | CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Font st&yle:",1089,114,7,74,9
-    COMBOBOX        1137,114,16,74,76,CBS_SIMPLE | CBS_OWNERDRAWFIXED | CBS_AUTOHSCROLL | CBS_HASSTRINGS | CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "&Size:",1090,198,7,36,9
-    COMBOBOX        1138,198,16,36,76,CBS_SIMPLE | CBS_AUTOHSCROLL | CBS_SORT | CBS_HASSTRINGS | CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Effects",1072,7,97,98,76,WS_GROUP
-    CONTROL         "Stri&keout",1040,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,111,90,10
-    CONTROL         "&Underline",1041,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,127,90,10
-    LTEXT           "&Color:",1091,13,144,89,9
-    COMBOBOX        1139,13,155,85,100,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_AUTOHSCROLL | CBS_HASSTRINGS | WS_BORDER | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Sample",1073,114,97,120,43,WS_GROUP
-    CTEXT           "AaBbYyZz",1092,116,106,117,33,SS_NOPREFIX | NOT WS_VISIBLE
-    LTEXT           "",1093,7,178,227,20,SS_NOPREFIX | NOT WS_GROUP
-    LTEXT           "Sc&ript:",1094,114,145,118,9
-    COMBOBOX        1140,114,155,120,30,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | CBS_HASSTRINGS | WS_BORDER | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "<A>Show more fonts</A>",1592,"SysLink",WS_TABSTOP,7,199,227,9
-    DEFPUSHBUTTON   "OK",IDOK,141,215,45,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,190,215,45,14,WS_GROUP
-    PUSHBUTTON      "&Apply",1026,92,215,45,14,WS_GROUP
-    PUSHBUTTON      "&Help",1038,43,215,45,14,WS_GROUP
+    LTEXT           "&Font:", stc1, 7, 7, 98, 9
+    COMBOBOX        cmb1, 7, 16, 98, 76,
+                    CBS_SIMPLE | CBS_AUTOHSCROLL | CBS_DISABLENOSCROLL |
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP | CBS_HASSTRINGS |
+                    CBS_OWNERDRAWFIXED
+
+    LTEXT           "Font st&yle:", stc2, 114, 7, 74, 9
+    COMBOBOX        cmb2, 114, 16, 74, 76,
+                    CBS_SIMPLE | CBS_AUTOHSCROLL | CBS_DISABLENOSCROLL |
+                    WS_VSCROLL | WS_TABSTOP | CBS_HASSTRINGS |
+                    CBS_OWNERDRAWFIXED
+
+    LTEXT           "&Size:", stc3, 198, 7, 36, 9
+    COMBOBOX        cmb3, 198, 16, 36, 76,
+                    CBS_SIMPLE | CBS_AUTOHSCROLL | CBS_DISABLENOSCROLL |
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP | CBS_HASSTRINGS/* |
+                    CBS_OWNERDRAWFIXED*/
+
+    GROUPBOX        "Effects", grp1, 7, 97, 98, 76, WS_GROUP
+    AUTOCHECKBOX    "Stri&keout", chx1, 13, 111, 90, 10, WS_TABSTOP
+    AUTOCHECKBOX    "&Underline", chx2, 13, 127, 90, 10
+
+    LTEXT           "&Color:", stc4, 13, 144, 89, 9
+    COMBOBOX        cmb4, 13, 155, 85, 100,
+                    CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_AUTOHSCROLL |
+                    CBS_HASSTRINGS | WS_BORDER | WS_VSCROLL | WS_TABSTOP
+
+    GROUPBOX        "Sample", grp2, 114, 97, 120, 43, WS_GROUP
+    CTEXT           "AaBbYyZz", stc5, 116, 106, 117, 33,
+                    SS_NOPREFIX | NOT WS_VISIBLE
+    LTEXT           "", stc6, 7, 178, 227, 20, SS_NOPREFIX | NOT WS_GROUP
+
+    LTEXT           "Sc&ript:", stc7, 114, 145, 118, 9
+    COMBOBOX        cmb5, 114, 155, 120, 30, CBS_DROPDOWNLIST |
+                    /*CBS_OWNERDRAWFIXED | */CBS_AUTOHSCROLL | CBS_HASSTRINGS |
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    
+    CONTROL         "<A>Show more fonts</A>", IDC_MANAGE_LINK, "SysLink", 
+                    WS_TABSTOP, 7, 199, 227, 9 
+
+    DEFPUSHBUTTON   "OK", IDOK, 141, 215, 45, 14, WS_GROUP
+    PUSHBUTTON      "Cancel", IDCANCEL, 190, 215, 45, 14, WS_GROUP
+    PUSHBUTTON      "&Apply", psh3, 92, 215, 45, 14, WS_GROUP
+    PUSHBUTTON      "&Help", pshHelp, 43, 215, 45, 14, WS_GROUP
+
 END
 
 
