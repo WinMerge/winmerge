@@ -84,6 +84,7 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin);
 bool FindPluginNameConflict(const Info& info);
 Info CreateUnpackerPluginExample();
 Info CreatePredifferPluginExample();
+Info CreateAlignerPluginExample();
 Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const String& pipeline);
 bool AddPlugin(const Info& info, String& errmsg);
 bool UpdatePlugin(const Info& info, String& errmsg);

@@ -219,7 +219,10 @@ void PluginsListDlg::AddPlugin(unsigned id)
 {
 	auto info = std::make_unique<internal_plugin::Info>(
 		(id == ID_PLUGIN_ADD_UNPACKER) ?
-		internal_plugin::CreateUnpackerPluginExample() : internal_plugin::CreatePredifferPluginExample());
+		internal_plugin::CreateUnpackerPluginExample() : 
+		((id == ID_PLUGIN_ADD_PREDIFFER) ?
+		internal_plugin::CreatePredifferPluginExample() :
+		internal_plugin::CreateAlignerPluginExample()));
 	for (;;)
 	{
 		CEditPluginDlg dlg(*info);
@@ -351,6 +354,7 @@ void PluginsListDlg::OnDropDownAdd(NMHDR *pNMHDR, LRESULT *pResult)
 	{
 	case ID_PLUGIN_ADD_UNPACKER:
 	case ID_PLUGIN_ADD_PREDIFFER:
+	case ID_PLUGIN_ADD_ALIGNER:
 		AddPlugin(command);
 		break;
 	case ID_PLUGIN_DUPLICATE:

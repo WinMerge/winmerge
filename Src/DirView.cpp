@@ -1895,7 +1895,7 @@ void CDirView::OpenSelectionAs(int sel1, int sel2, int sel3, UINT id)
 	}
 	else
 	{
-		GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer);
+		GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer, infoAligner);
 	}
 }
 
@@ -3622,7 +3622,6 @@ void CDirView::OnPluginSettings(UINT nID)
 		CDiffContext& ctxt = GetDiffContext();
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
 		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
-		GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
 		CSelectPluginDlg::PluginType pluginType2 = CSelectPluginDlg::PluginType::Unpacker;
 		if (pluginType == 0)
 		{
@@ -3667,19 +3666,18 @@ void CDirView::OnUpdatePluginMode(CCmdUI* pCmdUI)
 	if (pPopup == nullptr)
 		return;
 
-	bool unpacker = (ID_UNPACKER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_UNPACKER_SETTINGS_SELECT);
-	bool prediffer = (ID_PREDIFFER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_PREDIFFER_SETTINGS_SELECT);
-	auto counts = CountPluginNoneAutoOthers(SelBegin(), SelEnd(), GetDiffContext(), unpacker);
+	int pluginType = 0;
+	if (ID_UNPACKER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_UNPACKER_SETTINGS_SELECT)
+		pluginType = 0;
+	else if (ID_PREDIFFER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_PREDIFFER_SETTINGS_SELECT)
+		pluginType = 1;
+	else if (ID_ALIGNER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_ALIGNER_SETTINGS_SELECT)
+		pluginType = 2;
+	auto counts = CountPluginNoneAutoOthers(SelBegin(), SelEnd(), GetDiffContext(), pluginType);
 
-	CheckContextMenu(pPopup,
-		unpacker ? ID_UNPACKER_SETTINGS_NONE   : (prediffer ? ID_PREDIFFER_SETTINGS_NONE : ID_ALIGNER_SETTINGS_NONE),
-		(std::get<0>(counts) > 0));
-	CheckContextMenu(pPopup,
-		unpacker ? ID_UNPACKER_SETTINGS_AUTO   : (prediffer ? ID_PREDIFFER_SETTINGS_AUTO : ID_ALIGNER_SETTINGS_AUTO),
-		(std::get<1>(counts) > 0));
-	CheckContextMenu(pPopup,
-		unpacker ? ID_UNPACKER_SETTINGS_SELECT : (prediffer ? ID_PREDIFFER_SETTINGS_SELECT : ID_ALIGNER_SETTINGS_SELECT),
-		(std::get<2>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_NONE + pluginType * 3, (std::get<0>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_AUTO + pluginType * 3, (std::get<1>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_SELECT + pluginType * 3, (std::get<2>(counts) > 0));
 }
 
 /**

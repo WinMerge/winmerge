@@ -1468,6 +1468,7 @@ BEGIN
     BEGIN
         MENUITEM "Add &Unpacker Plugin...",     ID_PLUGIN_ADD_UNPACKER
         MENUITEM "Add &Prediffer Plugin...",    ID_PLUGIN_ADD_PREDIFFER
+        MENUITEM "Add &Aligner Plugin...",      ID_PLUGIN_ADD_ALIGNER
         MENUITEM "&Duplicate Plugin...",        ID_PLUGIN_DUPLICATE
     END
 END
@@ -5852,6 +5853,7 @@ BEGIN
                             "Plugin not found or invalid: %1"
     IDS_PLUGIN_NOT_UNPACK   "'%1' is not an unpacker plugin"
     IDS_PLUGIN_NOT_PREDIFF  "'%1' is not a prediffer plugin"
+    IDS_PLUGIN_NOT_ALIGN    "'%1' is not a aligner plugin"
     IDS_PLUGIN_PREDIFF_ERROR 
                             "Error prediffing '%1' with '%2'. Prediffing disabled."
     IDS_PLUGIN_CIRCULAR_REFERENCE "Circular reference in plugin pipeline: %1"

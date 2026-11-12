@@ -186,12 +186,12 @@ void CEditPluginDlg::UpdateControls()
 		m_ctlTab.InsertItem(3, _T("PackFolder"));
 		m_ctlTab.InsertItem(4, _T("IsFolder"));
 	}
-	else if (cursel == FILE_PREDIFF)
+	else if (cursel == FILE_PREDIFF || cursel == FILE_ALIGN)
 	{
 		m_ctlTab.InsertItem(0, _T("PrediffFile"));
 	}
-	const bool unpacker = (cursel < 3);
-	const bool alias = (cursel > 3);
+	const bool unpacker = (cursel < FILE_PREDIFF);
+	const bool alias = (cursel > FILE_ALIGN);
 	const bool urlhandler = (cursel == 0);
 	const bool hasScript = alias ? false : HasScript();
 	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler && m_info.m_locationType != internal_plugin::LocationType::InstallationPath);

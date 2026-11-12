@@ -530,7 +530,7 @@ struct AlignPluginTraits
 	}
 	static String NotThisKindMessage(const String& pluginName)
 	{
-		return strutils::format_string1(_T("'%1' is not an aligner plugin"), pluginName);
+		return strutils::format_string1(_("'%1' is not an aligner plugin"), pluginName);
 	}
 };
 
