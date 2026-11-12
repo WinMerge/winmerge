@@ -76,10 +76,10 @@ IDR_POPUP_MERGERESULTVIEW_2WAY MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Choose Left\tCtrl+Shift+&1/Alt+&1",          ID_MERGE_RESULT_CHOOSE_1ST
-        MENUITEM "Choose Right\tCtrl+Shift+&2/Alt+&2",         ID_MERGE_RESULT_CHOOSE_2ND
-        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
-        MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_2ND
+        MENUITEM "Choose Left\tCtrl+Shift+&1/Alt+&1", ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Right\tCtrl+Shift+&2/Alt+&2", ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Left for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Right for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
@@ -98,12 +98,12 @@ IDR_POPUP_MERGERESULTVIEW_3WAY MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Choose Left\tCtrl+Shift+&1/Alt+&1",          ID_MERGE_RESULT_CHOOSE_1ST
-        MENUITEM "Choose Middle\tCtrl+Shift+&2/Alt+&2",        ID_MERGE_RESULT_CHOOSE_2ND
-        MENUITEM "Choose Right\tCtrl+Shift+&3/Alt+&3",         ID_MERGE_RESULT_CHOOSE_3RD
-        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Left\tCtrl+Shift+&1/Alt+&1", ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Middle\tCtrl+Shift+&2/Alt+&2", ID_MERGE_RESULT_CHOOSE_2ND
+        MENUITEM "Choose Right\tCtrl+Shift+&3/Alt+&3", ID_MERGE_RESULT_CHOOSE_3RD
+        MENUITEM "Choose Left for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_1ST
         MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
-        MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD
+        MENUITEM "Choose Right for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_3RD
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
@@ -122,9 +122,9 @@ IDR_POPUP_MERGERESULT_2WAY MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Choose Left\tCtrl+Shift+&1", ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Left\tCtrl+Shift+&1",  ID_MERGE_RESULT_CHOOSE_1ST
         MENUITEM "Choose Right\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
-        MENUITEM "Choose Left for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Left for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_1ST
         MENUITEM "Choose Right for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
@@ -136,12 +136,12 @@ IDR_POPUP_MERGERESULT_3WAY MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Choose Left\tCtrl+Shift+&1",   ID_MERGE_RESULT_CHOOSE_1ST
+        MENUITEM "Choose Left\tCtrl+Shift+&1",  ID_MERGE_RESULT_CHOOSE_1ST
         MENUITEM "Choose Middle\tCtrl+Shift+&2", ID_MERGE_RESULT_CHOOSE_2ND
-        MENUITEM "Choose Right\tCtrl+Shift+&3",  ID_MERGE_RESULT_CHOOSE_3RD
-        MENUITEM "Choose Left for All Unresolved Conflicts",   ID_MERGE_RESULT_CHOOSE_ALL_1ST
+        MENUITEM "Choose Right\tCtrl+Shift+&3", ID_MERGE_RESULT_CHOOSE_3RD
+        MENUITEM "Choose Left for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_1ST
         MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
-        MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD
+        MENUITEM "Choose Right for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_3RD
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
@@ -474,6 +474,9 @@ BEGIN
     BEGIN
         MENUITEM "P&lugin Settings...",         ID_PLUGINS_LIST
         MENUITEM SEPARATOR
+        MENUITEM "Ma&nual Aligner",             ID_ALIGNER_MANUAL
+        MENUITEM "A&utomatic Aligner",          ID_ALIGNER_AUTO
+        MENUITEM SEPARATOR
         MENUITEM "Ma&nual Prediffer",           ID_PREDIFFER_MANUAL
         MENUITEM "A&utomatic Prediffer",        ID_PREDIFFER_AUTO
         MENUITEM SEPARATOR
@@ -648,6 +651,9 @@ BEGIN
     POPUP "&Plugins"
     BEGIN
         MENUITEM "P&lugin Settings...",         ID_PLUGINS_LIST
+        MENUITEM SEPARATOR
+        MENUITEM "Ma&nual Aligner",             ID_ALIGNER_MANUAL
+        MENUITEM "A&utomatic Aligner",          ID_ALIGNER_AUTO
         MENUITEM SEPARATOR
         MENUITEM "Ma&nual Prediffer",           ID_PREDIFFER_MANUAL
         MENUITEM "A&utomatic Prediffer",        ID_PREDIFFER_AUTO
@@ -966,6 +972,9 @@ BEGIN
     BEGIN
         MENUITEM "P&lugin Settings...",         ID_PLUGINS_LIST
         MENUITEM SEPARATOR
+        MENUITEM "Ma&nual Aligner",             ID_ALIGNER_MANUAL
+        MENUITEM "A&utomatic Aligner",          ID_ALIGNER_AUTO
+        MENUITEM SEPARATOR
         MENUITEM "Ma&nual Prediffer",           ID_PREDIFFER_MANUAL
         MENUITEM "A&utomatic Prediffer",        ID_PREDIFFER_AUTO
         MENUITEM SEPARATOR
@@ -983,6 +992,12 @@ BEGIN
             MENUITEM "<PlaceHolder>",               ID_NO_PREDIFFER
         END
         MENUITEM "Apply Pre&differ...",         ID_APPLY_PREDIFFER
+        MENUITEM SEPARATOR
+        POPUP "&Aligner"
+        BEGIN
+            MENUITEM "<PlaceHolder>",               ID_NO_ALIGNER
+        END
+        MENUITEM "Apply &Aligner...",           ID_APPLY_ALIGNER
         MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
@@ -1187,6 +1202,12 @@ BEGIN
         MENUITEM "<None>",                      ID_PREDIFFER_SETTINGS_NONE
         MENUITEM "<Automatic>",                 ID_PREDIFFER_SETTINGS_AUTO
         MENUITEM "&Select...",                  ID_PREDIFFER_SETTINGS_SELECT
+    END
+    POPUP "Aligner Settings"
+    BEGIN
+        MENUITEM "<None>",                      ID_ALIGNER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_ALIGNER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_ALIGNER_SETTINGS_SELECT
     END
 END
 
@@ -1447,6 +1468,7 @@ BEGIN
     BEGIN
         MENUITEM "Add &Unpacker Plugin...",     ID_PLUGIN_ADD_UNPACKER
         MENUITEM "Add &Prediffer Plugin...",    ID_PLUGIN_ADD_PREDIFFER
+        MENUITEM "Add &Aligner Plugin...",      ID_PLUGIN_ADD_ALIGNER
         MENUITEM "&Duplicate Plugin...",        ID_PLUGIN_DUPLICATE
     END
 END
@@ -2303,37 +2325,56 @@ IDD_OPEN DIALOGEX 0, 0, 466, 288
 STYLE DS_SETFONT | DS_CENTER | WS_CHILD | WS_BORDER
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-//	LOGO			res\\logo.jpg :: Height = 80px, Width=336px (extended fully to Right)
+// 1st File or Folder
     GROUPBOX        "&1st File or Folder",IDC_FILES_DIRS_GROUP0,6,54,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,66,446,95
     CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,84,100,10
     PUSHBUTTON      "",IDC_SWAP01_BUTTON,120,82,15,14
     LTEXT           "Swap 1st | 2nd",IDC_SWAP01_STATIC,138,84,100,12
     CONTROL         "&Browse...",IDC_PATH0_BUTTON,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,82,73,14
+
+// 2nd File or Folder
     GROUPBOX        "&2nd File or Folder",IDC_FILES_DIRS_GROUP1,6,102,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,114,446,95
     CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,132,100,10
     PUSHBUTTON      "",IDC_SWAP12_BUTTON,120,130,15,14
     LTEXT           "Swap 2nd | 3rd",IDC_SWAP12_STATIC,138,132,100,12
     CONTROL         "B&rowse...",IDC_PATH1_BUTTON,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,130,73,14
+
+// 3rd File or Folder
     GROUPBOX        "&3rd File or Folder (Optional)",IDC_FILES_DIRS_GROUP2,6,150,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,162,446,95
     CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,180,100,10
     PUSHBUTTON      "",IDC_SWAP02_BUTTON,120,178,15,14
     LTEXT           "Swap 1st | 3rd",IDC_SWAP02_STATIC,138,180,100,12
     CONTROL         "Browse...",IDC_PATH2_BUTTON,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,178,73,14
+
+// Folder Filter
     GROUPBOX        "",IDC_FILES_DIRS_GROUP3X,6,197,224,42
     LTEXT           " Folder: Filter",IDC_FILES_DIRS_GROUP3,10,198,86,11
     COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Select...",IDC_SELECT_FILTER,"Button",BS_SPLITBUTTON | WS_TABSTOP,153,209,73,14
     CONTROL         "&Include subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
-    LTEXT           " File: Prediffer Plugin",IDC_FILES_DIRS_GROUP5,10,198,120,11,NOT WS_VISIBLE
-    CONTROL         "",IDC_PREDIFFER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,10,209,140,95
-    PUSHBUTTON      "&Select...",IDC_SELECT_PREDIFFER,153,209,73,14,NOT WS_VISIBLE
-    GROUPBOX        "",IDC_FILES_DIRS_GROUP4X,236,197,224,42
-    LTEXT           " File: Unpacker Plugin",IDC_FILES_DIRS_GROUP4,240,198,120,11
-    CONTROL         "",IDC_UNPACKER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,240,209,140,140
-    PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
+
+// File Plugins
+    CONTROL         "",IDC_FILE_PLUGINS_TAB,"SysTabControl32",WS_TABSTOP,236,197,224,42
+
+// Unpacker
+    LTEXT           " File: Unpacker Plugin",IDC_FILES_DIRS_GROUP4,240,210,120,11
+    CONTROL         "",IDC_UNPACKER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,240,221,140,140
+    PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,221,73,14
+
+// Prediffer
+    LTEXT           " File: Prediffer Plugin",IDC_FILES_DIRS_GROUP5,240,210,120,11,NOT WS_VISIBLE
+    CONTROL         "",IDC_PREDIFFER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,240,221,140,95
+    PUSHBUTTON      "&Select...",IDC_SELECT_PREDIFFER,383,221,73,14,NOT WS_VISIBLE
+
+// Aligner
+    LTEXT           " File: Aligner Plugin",IDC_FILES_DIRS_GROUP6,240,210,120,11,NOT WS_VISIBLE
+    CONTROL         "",IDC_ALIGNER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,240,221,140,95
+    PUSHBUTTON      "&Select...",IDC_SELECT_ALIGNER,383,221,73,14,NOT WS_VISIBLE
+
+// Bottom controls
     CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,100,14
     CONTROL         "Show recent &comparisons",IDC_RECENT_COMPARES_SHOW,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,116,247,150,10
@@ -2757,7 +2798,8 @@ BEGIN
     COMBOBOX        IDC_BREAK_TYPE,36,94,274,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
     LTEXT           "W&ord break characters:",IDC_STATIC,24,112,286,10
     EDITTEXT        IDC_BREAK_CHARS,24,124,286,14,ES_AUTOHSCROLL
-    CONTROL         "&Use Merge Result Pane for 2/3-way merge",IDC_MERGE_RESULT_PANE_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,309,10
+    CONTROL         "&Use Merge Result Pane for 2/3-way merge",IDC_MERGE_RESULT_PANE_ENABLED,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,309,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -2784,7 +2826,7 @@ CAPTION "Patch Generator"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     LTEXT           "Comparisons to include:",IDC_STATIC,7,7,254,10
-    CONTROL         "",IDC_DIFF_WINDOW_LIST,"SysListView32",LVS_REPORT | LVS_NOCOLUMNHEADER | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,18,327,90
+    CONTROL         "",IDC_DIFF_WINDOW_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,18,327,90
     LTEXT           "File&1:",IDC_STATIC,7,114,36,10
     COMBOBOX        IDC_DIFF_FILE1,48,111,230,93,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Browse...",IDC_DIFF_BROWSE_FILE1,283,111,52,14
@@ -3085,7 +3127,8 @@ BEGIN
     CONTROL         "&Include file compare report",IDC_REPORT_INCLUDEFILECMPREPORT,
                     "Button",BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,53,133,10
     CONTROL         "&Copy to clipboard",IDC_REPORT_COPYCLIPBOARD,"Button",BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,65,133,10
-    CONTROL         "Open report after &generating",IDC_REPORT_OPENREPORTFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,77,254,10
+    CONTROL         "Open report after &generating",IDC_REPORT_OPENREPORTFILE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,77,254,10
     DEFPUSHBUTTON   "OK",IDOK,157,89,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,211,89,50,14
 END
@@ -3096,13 +3139,15 @@ CAPTION "File Compare Report"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     LTEXT           "Comparisons to include:",IDC_STATIC,7,7,254,10
-    CONTROL         "",IDC_REPORT_WINDOW_LIST,"SysListView32",LVS_REPORT | LVS_NOCOLUMNHEADER | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,18,254,90
+    CONTROL         "",IDC_REPORT_WINDOW_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,18,254,90
     LTEXT           "Report &file:",IDC_STATIC,7,114,254,10
     CONTROL         "",IDC_REPORT_FILE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,7,126,198,80
     PUSHBUTTON      "&Browse...",IDC_REPORT_BROWSEFILE,210,126,51,14
     CONTROL         "&Copy to clipboard",IDC_REPORT_COPYCLIPBOARD,"Button",BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,144,254,10
-    CONTROL         "Open report after &generating",IDC_REPORT_OPENREPORTFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,254,10
-    CONTROL         "&Include all image pages",IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,168,150,10
+    CONTROL         "Open report after &generating",IDC_REPORT_OPENREPORTFILE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,254,10
+    CONTROL         "&Include all image pages",IDC_REPORT_INCLUDE_ALL_IMAGE_PAGES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,168,150,10
     LTEXT           L"\\u24D8 The report uses the current comparison settings.",IDC_REPORT_INFO,7,180,254,10
     DEFPUSHBUTTON   "OK",IDOK,157,194,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,211,194,50,14
@@ -3114,7 +3159,7 @@ CAPTION "Archive Generator"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     LTEXT           "Comparisons to include:",IDC_STATIC,7,7,254,10
-    CONTROL         "",IDC_ARCHIVE_LIST,"SysListView32",LVS_REPORT | LVS_NOCOLUMNHEADER | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,18,254,90
+    CONTROL         "",IDC_ARCHIVE_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,18,254,90
     LTEXT           "Archive &file:",IDC_STATIC,7,114,254,10
     CONTROL         "",IDC_ARCHIVE_FILE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,7,126,198,80
     PUSHBUTTON      "&Browse...",IDC_ARCHIVE_BROWSE,210,126,51,14
@@ -3467,7 +3512,8 @@ BEGIN
     COMBOBOX        IDC_COMPAREIMAGE_PATTERNS,7,18,310,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Enable image compare in folder compare",IDC_ENABLE_IMGCMP_IN_DIRCMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,309,10
-    CONTROL         "&Prefer WIC Decoder",IDC_COMPAREIMAGE_PREFER_WIC_DECODER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,309,10
+    CONTROL         "&Prefer WIC Decoder",IDC_COMPAREIMAGE_PREFER_WIC_DECODER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,309,10
     LTEXT           "OCR result:",IDC_STATIC,7,58,309,10
     COMBOBOX        IDC_COMPAREIMAGE_OCR_RESULT_TYPE,7,70,309,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
@@ -3584,8 +3630,7 @@ BEGIN
 END
 
 IDD_DARK_FONT_DIALOG DIALOG 13, 54, 243, 234
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU |
-      DS_3DLOOK
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Font"
 FONT 9, "Segoe UI"
 BEGIN
@@ -3910,14 +3955,17 @@ BEGIN
     0, 0, 0, 0,
     100, 0, 0, 0,
     0, 0, 50, 0,
-    0, 0, 0, 0,
     0, 0, 50, 0,
-    50, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
     0, 0, 50, 0,
+    0, 0, 50, 0,
+    0, 0, 0, 0,
+    100, 0, 50, 0,
     50, 0, 0, 0,
     50, 0, 50, 0,
+    100, 0, 0, 0,
+    0, 0, 50, 0,
+    50, 0, 50, 0,
+    100, 0, 0, 0,
     50, 0, 0, 0,
     50, 0, 50, 0,
     100, 0, 0, 0,
@@ -4606,7 +4654,8 @@ STRINGTABLE
 BEGIN
     IDS_PROJFILE_LOAD_SUCCESS "Project file loaded."
     IDS_PROJFILE_SAVE_SUCCESS "Project file saved."
-    IDS_PROJFILE_CONTAIN_PLUGIN_ARGS "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
+    IDS_PROJFILE_CONTAIN_PLUGIN_ARGS 
+                            "This project file contains plugins with custom arguments:\n\n%1\nThese arguments may affect plugin behavior or execute external programs.\n\nDo you want to open this project file?"
 END
 
 // Generic Edit commands
@@ -5804,6 +5853,7 @@ BEGIN
                             "Plugin not found or invalid: %1"
     IDS_PLUGIN_NOT_UNPACK   "'%1' is not an unpacker plugin"
     IDS_PLUGIN_NOT_PREDIFF  "'%1' is not a prediffer plugin"
+    IDS_PLUGIN_NOT_ALIGN    "'%1' is not a aligner plugin"
     IDS_PLUGIN_PREDIFF_ERROR 
                             "Error prediffing '%1' with '%2'. Prediffing disabled."
     IDS_PLUGIN_CIRCULAR_REFERENCE "Circular reference in plugin pipeline: %1"
@@ -5811,9 +5861,11 @@ BEGIN
     IDS_PLUGIN_TYPE2        "File Unpacker"
     IDS_PLUGIN_TYPE3        "File or Folder Unpacker"
     IDS_PLUGIN_TYPE4        "Prediffer"
-    IDS_PLUGIN_TYPE5        "Alias for Unpacker"
-    IDS_PLUGIN_TYPE6        "Alias for Prediffer"
-    IDS_PLUGIN_TYPE7        "Alias for Editor script"
+    IDS_PLUGIN_TYPE5        "Aligner"
+    IDS_PLUGIN_TYPE6        "Alias for Unpacker"
+    IDS_PLUGIN_TYPE7        "Alias for Prediffer"
+    IDS_PLUGIN_TYPE8        "Alias for Aligner"
+    IDS_PLUGIN_TYPE9        "Alias for Editor script"
     IDS_PLUGIN_ALIAS_DESC   "Alias for plugin pipeline '%1'"
     IDS_PLUGIN_NEW_DESC     "New plugin description"
     IDS_PLUGIN_TARGETS_ALL  "All"

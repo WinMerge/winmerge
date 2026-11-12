@@ -16,6 +16,7 @@
 
 class PackingInfo;
 class PrediffingInfo;
+class AligningInfo;
 class IDiffFilter;
 class CompareStats;
 class IAbortable;
@@ -31,7 +32,8 @@ class IPluginInfos
 public:
 	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
-                                      PrediffingInfo ** infoPrediffer) = 0;
+                                      PrediffingInfo ** infoPrediffer,
+                                      AligningInfo ** infoAligner) = 0;
 };
 
 /** Information on the number of duplicate hash values */
@@ -124,7 +126,7 @@ public:
 
 	// retrieve or manufacture plugin info for specified file comparison
 	void FetchPluginInfos(const String& filteredFilenames,
-		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
+		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer, AligningInfo ** infoAligner);
 
 	//@{
 	/**

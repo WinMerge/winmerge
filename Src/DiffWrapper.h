@@ -24,6 +24,7 @@
 
 class CDiffContext;
 class PrediffingInfo;
+class AligningInfo;
 struct DiffFileData;
 class PathContext;
 struct file_data;
@@ -178,6 +179,8 @@ public:
 	void SetTextForAutomaticPrediff(const String &text);
 	void SetPrediffer(const PrediffingInfo * prediffer = nullptr);
 	void GetPrediffer(PrediffingInfo * prediffer) const;
+	void SetAligner(const AligningInfo * aligner = nullptr);
+	void GetAligner(AligningInfo * aligner) const;
 	void SetTableProps(int pane, const TableProps& tableProps) { m_tableProps[pane] = tableProps; };
 	void SetPatchOptions(const PATCHOPTIONS *options);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
@@ -209,6 +212,7 @@ public:
 protected:
 	String FormatSwitchString() const;
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
+	void LoadWinMergeDiffsFromAlignedScript(struct change * script, const file_data * inf);
 	std::vector<DiffRangeInfo> InsertMovedBlocks3Way();
 	void WritePatchFile(struct change * script, file_data * inf);
 public:
@@ -234,6 +238,7 @@ private:
 	bool m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
 	std::unique_ptr<PrediffingInfo> m_infoPrediffer;
+	std::unique_ptr<AligningInfo> m_infoAligner;
 	std::optional<TableProps> m_tableProps[3]; /**< Table properties for table compare */
 	/// prediffer info are stored only for MergeDoc
 	String m_sToFindPrediffer;

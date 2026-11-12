@@ -416,6 +416,7 @@ BOOL CMergeApp::InitInstance()
 
 	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
 	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
+	FileTransform::AutoAligning = GetOptionsMgr()->GetBool(OPT_PLUGINS_ALIGNER_MODE);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
@@ -979,19 +980,11 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 {
 	bool bCompared = false;
 	String strDesc[3];
-	std::unique_ptr<PackingInfo> infoUnpacker;
-	std::unique_ptr<PrediffingInfo> infoPrediffer;
 	unsigned nID = cmdInfo.m_nWindowType == MergeCmdLineInfo::AUTOMATIC ?
 		0 : static_cast<unsigned>(cmdInfo.m_nWindowType) + ID_MERGE_COMPARE_TEXT - 1;
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 	m_bEnableExitCode = cmdInfo.m_bEnableExitCode;
-
-	if (!cmdInfo.m_sUnpacker.empty())
-		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
-
-	if (!cmdInfo.m_sPreDiffer.empty())
-		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
 
 	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
 	{
@@ -1039,6 +1032,15 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	else
 	{
 		// Set the required information we need from the command line:
+		std::unique_ptr<PackingInfo> infoUnpacker;
+		std::unique_ptr<PrediffingInfo> infoPrediffer;
+		std::unique_ptr<AligningInfo> infoAligner;
+		if (!cmdInfo.m_sUnpacker.empty())
+			infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
+		if (!cmdInfo.m_sPreDiffer.empty())
+			infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
+		if (!cmdInfo.m_sAligner.empty())
+			infoAligner.reset(new AligningInfo(cmdInfo.m_sAligner));
 
 		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
 		m_bEscShutdown = cmdInfo.m_bEscShutdown;
@@ -1086,7 +1088,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&paths,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
-				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
+				infoUnpacker.get(), infoPrediffer.get(), infoAligner.get(), nID, pOpenParams.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
@@ -1094,7 +1096,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&paths,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
-				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
+				infoUnpacker.get(), infoPrediffer.get(), infoAligner.get(), nID, pOpenParams.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -1104,7 +1106,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
 				bCompared = pMainFrame->DoSelfCompare(nID, sFilepath, strDesc,
-					infoUnpacker.get(), infoPrediffer.get(), pOpenParams.get());
+					infoUnpacker.get(), infoPrediffer.get(), infoAligner.get(), pOpenParams.get());
 			}
 			else if (IsProjectFile(sFilepath))
 			{
@@ -1123,7 +1125,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, nullptr,
-					infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
+					infoUnpacker.get(), infoPrediffer.get(), infoAligner.get(), nID, pOpenParams.get());
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
@@ -1131,12 +1133,12 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			if (cmdInfo.m_bNewCompare)
 			{
 				fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
-				bCompared = pMainFrame->DoFileNew(nID, 2, dwFlags, strDesc, infoPrediffer.get(), pOpenParams.get());
+				bCompared = pMainFrame->DoFileNew(nID, 2, dwFlags, strDesc, infoPrediffer.get(), infoAligner.get(), pOpenParams.get());
 			}
 			else if (cmdInfo.m_bClipboardCompare)
 			{
 				fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
-				bCompared = pMainFrame->DoOpenClipboard(nID, 2, dwFlags, strDesc, infoUnpacker.get(), infoPrediffer.get(), pOpenParams.get());
+				bCompared = pMainFrame->DoOpenClipboard(nID, 2, dwFlags, strDesc, infoUnpacker.get(), infoPrediffer.get(), infoAligner.get(), pOpenParams.get());
 			}
 			else
 			{
@@ -1543,8 +1545,9 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	bool rtn = true;
 	for (auto& projItem : project.Items())
 	{
-		std::unique_ptr<PrediffingInfo> pInfoPrediffer;
 		std::unique_ptr<PackingInfo> pInfoUnpacker;
+		std::unique_ptr<PrediffingInfo> pInfoPrediffer;
+		std::unique_ptr<AligningInfo> pInfoAligner;
 		PathContext tFiles;
 		bool bDummy = false;
 		projItem.GetPaths(tFiles, bDummy);
@@ -1581,6 +1584,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 				pInfoUnpacker.reset(new PackingInfo(projItem.GetUnpacker()));
 			if (projItem.HasPrediffer())
 				pInfoPrediffer.reset(new PrediffingInfo(projItem.GetPrediffer()));
+			if (projItem.HasAligner())
+				pInfoAligner.reset(new AligningInfo(projItem.GetAligner()));
 		}
 		int nID = 0;
 		if (projItem.HasWindowType())
@@ -1652,7 +1657,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 			pOpenFolderParams = std::make_unique<CMainFrame::OpenFolderParams>(bRecursive);
 
 		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, strDesc, sReportFile,
-			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), nID,
+			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), pInfoAligner.get(), nID,
 			nID == ID_MERGE_COMPARE_TABLE ?
 				static_cast<CMainFrame::OpenParams*>(pOpenTableFileParams.get()) :
 				static_cast<CMainFrame::OpenParams*>(pOpenFolderParams.get()));

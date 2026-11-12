@@ -72,6 +72,7 @@ const char *COLHDR_NSDIFFS      = N_("Differences");
 const char *COLHDR_BINARY       = NC_("DirView|ColumnHeader", "Binary");
 const char *COLHDR_UNPACKER     = N_("Unpacker");
 const char *COLHDR_PREDIFFER    = N_("Prediffer");
+const char *COLHDR_ALIGNER      = N_("Aligner");
 #ifdef SHOW_DIFFITEM_DEBUG_INFO
 const char *COLHDR_DEBUG_DIFFCODE    = N_("[Debug]diffcode");
 const char *COLHDR_DEBUG_CUSTOMFLAGS = N_("[Debug]customFlags");
@@ -126,6 +127,7 @@ const char *COLDESC_NSDIFFS     = N_("Number of differences in file (excluding i
 const char *COLDESC_BINARY      = N_("Shows an asterisk (*) if the file is binary.");
 const char *COLDESC_UNPACKER    = N_("Unpacker plugin name or pipeline.");
 const char *COLDESC_PREDIFFER   = N_("Prediffer plugin name or pipeline.");
+const char *COLDESC_ALIGNER     = N_("Aligner plugin name or pipeline.");
 #ifdef SHOW_DIFFITEM_DEBUG_INFO
 const char *COLDESC_DEBUG_DIFFCODE    = N_("Compare result");
 const char *COLDESC_DEBUG_CUSTOMFLAGS = N_("ViewCustomFlags flags");
@@ -841,12 +843,15 @@ static String ColPluginPipelineGet(const CDiffContext* pCtxt, const void *p, int
 		return _T("");
 	PackingInfo* pInfoUnpacker = nullptr;
 	PrediffingInfo * pInfoPrediffer = nullptr;
+	AligningInfo * pInfoAligner = nullptr;
 	String filteredFilenames = pCtxt->GetFilteredFilenames(di);
-	const_cast<CDiffContext *>(pCtxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
-	if (opt != 0)
+	const_cast<CDiffContext *>(pCtxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer, &pInfoAligner);
+	if (opt == 0)
 		return pInfoUnpacker ? pInfoUnpacker->GetPluginPipeline() : _T("");
-	else
+	else if (opt == 1)
 		return pInfoPrediffer ? pInfoPrediffer->GetPluginPipeline() : _T("");
+	else
+		return pInfoAligner ? pInfoAligner->GetPluginPipeline() : _T("");
 }
 
 #ifdef SHOW_DIFFITEM_DEBUG_INFO
@@ -1541,8 +1546,9 @@ static DirColInfo f_cols[] =
 	{ _T("Snidiffs"), nullptr, COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, DirColInfo::ALIGN_RIGHT },
 	{ _T("Leoltype"), nullptr, COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
 	{ _T("Reoltype"), nullptr, COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
-	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
-	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
+	{ _T("Aligner"), nullptr, COLHDR_ALIGNER, COLDESC_ALIGNER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 2 },
 	{ _T("Lname"), nullptr, COLHDR_LFILENAME, COLDESC_LFILENAME, &ColSideFileNameGet, &ColSideFileNameSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
 	{ _T("Rname"), nullptr, COLHDR_RFILENAME, COLDESC_RFILENAME, &ColSideFileNameGet, &ColSideFileNameSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Lpath"), nullptr, COLHDR_LDIR, COLDESC_LDIR, &ColSidePathGet, &ColSidePathSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
@@ -1594,8 +1600,9 @@ static DirColInfo f_cols3[] =
 	{ _T("Leoltype"), nullptr, COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
 	{ _T("Meoltype"), nullptr, COLHDR_MEOL_TYPE, COLDESC_MEOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Reoltype"), nullptr, COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 2 },
-	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
-	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
+	{ _T("Aligner"), nullptr, COLHDR_ALIGNER, COLDESC_ALIGNER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 2 },
 	{ _T("Lname"), nullptr, COLHDR_LFILENAME, COLDESC_LFILENAME, &ColSideFileNameGet, &ColSideFileNameSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
 	{ _T("Mname"), nullptr, COLHDR_MFILENAME, COLDESC_MFILENAME, &ColSideFileNameGet, &ColSideFileNameSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Rname"), nullptr, COLHDR_RFILENAME, COLDESC_RFILENAME, &ColSideFileNameGet, &ColSideFileNameSort, 0, -1, true, DirColInfo::ALIGN_LEFT, 2 },

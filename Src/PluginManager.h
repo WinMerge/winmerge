@@ -16,6 +16,7 @@ struct PluginFileInfo
 {
 	PackingInfo m_infoUnpacker;
 	PrediffingInfo m_infoPrediffer;
+	AligningInfo m_infoAligner;
 };
 
 typedef std::shared_ptr<PluginFileInfo> PluginFileInfoPtr;
@@ -33,10 +34,13 @@ public:
 	void SetUnpackerSettingAll(bool automatic);
 	void SetPrediffSettingAll(bool automatic);
 	void SetPrediffer(const String& filteredFilenames, const String& predifferPipeline);
+	void SetAlignSettingAll(bool automatic);
+	void SetAligner(const String& filteredFilenames, const String& predifferPipeline);
 	// Implement IPluginInfos
 	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
-                                      PrediffingInfo ** infoPrediffer) override;
+                                      PrediffingInfo ** infoPrediffer,
+                                      AligningInfo ** infoAligner) override;
 private:
 	// Data
 	PluginFileInfoMap m_pluginSettings;

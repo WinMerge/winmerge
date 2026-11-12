@@ -14,7 +14,7 @@
 #define new DEBUG_NEW
 #endif
 
-enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, FILE_PREDIFF, ALIAS_PACK_UNPACK, ALIAS_PREDIFF, ALIAS_EDITOR_SCRIPT };
+enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, FILE_PREDIFF, FILE_ALIGN, ALIAS_PACK_UNPACK, ALIAS_PREDIFF, ALIAS_ALIGN, ALIAS_EDITOR_SCRIPT };
 enum { UnpackFile = 0, PackFile = 1, UnpackFolder = 2, PackFolder = 3, IsFolder = 4, PrediffFile = 0 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -186,12 +186,12 @@ void CEditPluginDlg::UpdateControls()
 		m_ctlTab.InsertItem(3, _T("PackFolder"));
 		m_ctlTab.InsertItem(4, _T("IsFolder"));
 	}
-	else if (cursel == FILE_PREDIFF)
+	else if (cursel == FILE_PREDIFF || cursel == FILE_ALIGN)
 	{
 		m_ctlTab.InsertItem(0, _T("PrediffFile"));
 	}
-	const bool unpacker = (cursel < 3);
-	const bool alias = (cursel > 3);
+	const bool unpacker = (cursel < FILE_PREDIFF);
+	const bool alias = (cursel > FILE_ALIGN);
 	const bool urlhandler = (cursel == 0);
 	const bool hasScript = alias ? false : HasScript();
 	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler && m_info.m_locationType != internal_plugin::LocationType::InstallationPath);
@@ -541,8 +541,10 @@ BOOL CEditPluginDlg::OnInitDialog()
 			{ _("File Unpacker"), L"FILE_PACK_UNPACK" },
 			{ _("File or Folder Unpacker"), L"FILE_FOLDER_PACK_UNPACK" },
 			{ _("Prediffer"), L"FILE_PREDIFF" },
+			{ _("Aligner"), L"FILE_ALIGN" },
 			{ _("Alias for Unpacker"), L"ALIAS_PACK_UNPACK" },
 			{ _("Alias for Prediffer"), L"ALIAS_PREDIFF" },
+			{ _("Alias for Aligner"), L"ALIAS_ALIGN" },
 			{ _("Alias for Editor script"), L"ALIAS_EDITOR_SCRIPT" }
 		}, m_strEvent);
 

@@ -25,6 +25,7 @@ namespace FileTransform
 {
 extern bool AutoUnpacking;
 extern bool AutoPrediffing;
+extern bool AutoAligning;
 }
 
 /**
@@ -200,6 +201,34 @@ public:
 };
 
 /**
+ * @brief Alignment-key transformation information for a given file.
+ *
+ * The transformation is applied only to determine line correspondence. The
+ * prediffed file remains the source for display and final comparison.
+ */
+class AligningInfo : public PluginForFile
+{
+public:
+	explicit AligningInfo(bool automatic = FileTransform::AutoAligning)
+	: PluginForFile(automatic)
+	{
+	}
+
+	explicit AligningInfo(const String& pluginPipeline)
+	: PluginForFile(pluginPipeline)
+	{
+	}
+
+	bool GetAlignPlugin(const String& filteredFilenames, bool bReverse,
+		std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
+		String* pPluginPipelineResolved, String& errorMessage, int stack = 0) const;
+
+	bool Aligning(int target, String& filepath, bool bMayOverwrite, const PluginPipelineContext& context);
+
+	bool Validate(String& errorMessage) const override;
+};
+
+/**
  * @brief Editor script information
  *
  * @note Can be be passed/copied between threads
@@ -244,6 +273,7 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 inline const std::vector<std::wstring> ProtocolHanlderEventNames = { L"URL_PACK_UNPACK" };
 inline const std::vector<std::wstring> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"ALIAS_PACK_UNPACK" };
 inline const std::vector<std::wstring> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF", L"ALIAS_PREDIFF" };
+inline const std::vector<std::wstring> AlignerEventNames = { L"BUFFER_ALIGN", L"FILE_ALIGN", L"ALIAS_ALIGN" };
 inline const std::vector<std::wstring> EditorScriptEventNames = { L"EDITOR_SCRIPT", L"ALIAS_EDITOR_SCRIPT" };
 
 }

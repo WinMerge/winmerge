@@ -41,6 +41,8 @@
 #include "SyntaxParserRegistry.h"
 #include "SyntaxParserHelper.h"
 #include "TableProps.h"
+#include "stringdiffs.h"
+#include "TempFile.h"
 
 using Poco::Exception;
 
@@ -65,6 +67,7 @@ CDiffWrapper::CDiffWrapper()
 , m_bAppendFiles(false)
 , m_nDiffs(0)
 , m_infoPrediffer(nullptr)
+, m_infoAligner(nullptr)
 , m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
 , m_pFilterList(nullptr)
@@ -76,6 +79,121 @@ CDiffWrapper::CDiffWrapper()
 {
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
+}
+
+namespace
+{
+String GetDiffutilsLine(const file_data& info, int line)
+{
+	if (line < 0 || line >= info.valid_lines || info.linbuf == nullptr)
+		return {};
+	const char* begin = info.linbuf[line];
+	const char* end = (line + 1 < info.valid_lines) ? info.linbuf[line + 1] : begin + std::strlen(begin);
+	return ucr::toTString(std::string(begin, end));
+}
+}
+
+void CDiffWrapper::LoadWinMergeDiffsFromAlignedScript(struct change* script, const file_data* inf)
+{
+	int cursor0 = 0;
+	int cursor1 = 0;
+	for (struct change* next = script; next != nullptr; )
+	{
+		struct change* thisob = next;
+		struct change* end = find_change(next);
+		next = end->link;
+		end->link = nullptr;
+
+		int first0 = 0, last0 = 0, first1 = 0, last1 = 0, deletes = 0, inserts = 0;
+		analyze_hunk(thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, inf);
+		end->link = next;
+
+		const int equal0 = first0 - cursor0;
+		const int equal1 = first1 - cursor1;
+		if (equal0 == equal1 && equal0 > 0)
+		{
+			int runBegin = -1;
+			for (int i = 0; i < equal0; ++i)
+			{
+				const int line0 = cursor0 + i;
+				const int line1 = cursor1 + i;
+				DIFFOPTIONS options{};
+				m_options.GetAsDiffOptions(options);
+				const strdiff::EolCompareMode eolMode = options.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
+					(options.bIgnoreEol ? strdiff::EOL_IGNORE : strdiff::EOL_STRICT);
+				const bool different = strdiff::Compare(
+					GetDiffutilsLine(inf[0], line0), GetDiffutilsLine(inf[1], line1),
+					!options.bIgnoreCase, eolMode, options.nIgnoreWhitespace, options.bIgnoreNumbers) != 0;
+				if (different && runBegin < 0)
+					runBegin = i;
+				if ((!different || i + 1 == equal0) && runBegin >= 0)
+				{
+					const int runEnd = different && i + 1 == equal0 ? i : i - 1;
+					AddDiffRange(m_pDiffList,
+						line0 - (i - runBegin) + inf[0].prefix_lines, runEnd + cursor0 + inf[0].prefix_lines,
+						line1 - (i - runBegin) + inf[1].prefix_lines, runEnd + cursor1 + inf[1].prefix_lines, OP_DIFF);
+					runBegin = -1;
+				}
+			}
+		}
+
+		if (deletes || inserts)
+		{
+			int transA0 = 0, transB0 = 0, transA1 = 0, transB1 = 0;
+			translate_range(&inf[0], first0, last0, &transA0, &transB0);
+			translate_range(&inf[1], first1, last1, &transA1, &transB1);
+			AddDiffRange(m_pDiffList, transA0 - 1, transB0 - 1, transA1 - 1, transB1 - 1, OP_DIFF);
+		}
+		cursor0 = last0 + 1;
+		cursor1 = last1 + 1;
+	}
+
+	const int equalLines = inf[0].valid_lines - cursor0;
+	if (equalLines > 0 && equalLines == inf[1].valid_lines - cursor1)
+	{
+		int runBegin = -1;
+		for (int i = 0; i < equalLines; ++i)
+		{
+			const int line0 = cursor0 + i;
+			const int line1 = cursor1 + i;
+			DIFFOPTIONS options{};
+			m_options.GetAsDiffOptions(options);
+			const bool different = strdiff::Compare(
+				GetDiffutilsLine(inf[0], line0), GetDiffutilsLine(inf[1], line1),
+				!options.bIgnoreCase, options.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
+				(options.bIgnoreEol ? strdiff::EOL_IGNORE : strdiff::EOL_STRICT),
+				options.nIgnoreWhitespace, options.bIgnoreNumbers) != 0;
+			if (different && runBegin < 0)
+				runBegin = i;
+			if ((!different || i + 1 == equalLines) && runBegin >= 0)
+			{
+				const int runEnd = different && i + 1 == equalLines ? i : i - 1;
+				AddDiffRange(m_pDiffList, cursor0 + runBegin + inf[0].prefix_lines,
+					cursor0 + runEnd + inf[0].prefix_lines,
+					cursor1 + runBegin + inf[1].prefix_lines,
+					cursor1 + runEnd + inf[1].prefix_lines, OP_DIFF);
+				runBegin = -1;
+			}
+		}
+	}
+}
+
+void CDiffWrapper::SetAligner(const AligningInfo * aligner /*= nullptr*/)
+{
+	m_infoAligner.reset(new AligningInfo);
+	if (aligner != nullptr)
+		*m_infoAligner = *aligner;
+}
+
+void CDiffWrapper::GetAligner(AligningInfo * aligner) const
+{
+	if (aligner != nullptr)
+	{
+		if (m_infoAligner)
+			*aligner = *m_infoAligner;
+		else
+			aligner->ClearPluginPipeline();
+	}
 }
 
 /**
@@ -805,11 +923,52 @@ bool CDiffWrapper::RunFileDiff()
 		}
 	}
 
+	// Keep the prediffed files (P) intact. Aligner plugins operate on private
+	// copies (A), which are used only for deriving line correspondence.
+	TempFile alignTemp[3];
+	String strFileAlign[3];
+	bool bAlignerActive = m_bPluginsEnabled && m_infoAligner &&
+		!m_infoAligner->GetPluginPipeline().empty();
+	if (bAlignerActive)
+	{
+		for (file = 0; file < aFiles.GetSize(); file++)
+		{
+			strFileAlign[file] = alignTemp[file].Create(_T("WinMergeAlign"));
+			if (strFileAlign[file].empty())
+			{
+				bAlignerActive = false;
+				break;
+			}
+			try
+			{
+				TFile(strFileTemp[file].c_str()).copyTo(strFileAlign[file]);
+			}
+			catch (const std::exception&)
+			{
+				bAlignerActive = false;
+				break;
+			}
+			pipelineContext.variables = { strFileAlign[file] };
+			pipelineContext.tableProps = m_tableProps[file];
+			if (!m_infoAligner->Aligning(file, strFileAlign[file], true, pipelineContext))
+			{
+				String sError = strutils::format_string2(
+					_("Error aligning '%1' with '%2'. Aligner disabled."),
+					strFileTemp[file].c_str(), m_infoAligner->GetPluginPipeline().c_str());
+				AppErrorMessageBox(sError);
+				bAlignerActive = false;
+				break;
+			}
+		}
+	}
+
 	struct change *script = nullptr;
 	struct change *script10 = nullptr;
 	struct change *script12 = nullptr;
 	struct change *script02 = nullptr;
+	struct change *alignScript = nullptr;
 	DiffFileData diffdata, diffdata10, diffdata12, diffdata02;
+	DiffFileData alignData;
 	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
 
 	if (aFiles.GetSize() == 2)
@@ -825,6 +984,31 @@ bool CDiffWrapper::RunFileDiff()
 		// Last param (bin_file) is `nullptr` since we don't
 		// (yet) need info about binary sides.
 		bRet = Diff2Files(&script, &diffdata, &bin_flag, nullptr);
+
+		if (bAlignerActive)
+		{
+			alignData.SetDisplayFilepaths(aFiles[0], aFiles[1]);
+			if (!alignData.OpenFiles(strFileAlign[0], strFileAlign[1]))
+				bAlignerActive = false;
+			else
+			{
+				const bool filterComments = m_options.m_filterCommentsLines;
+				m_options.m_filterCommentsLines = false;
+				m_options.SetToDiffUtils();
+				int alignBinFlag = 0;
+				if (!Diff2Files(&alignScript, &alignData, &alignBinFlag, nullptr) || alignBinFlag != 0 ||
+					alignData.m_inf[0].valid_lines != diffdata.m_inf[0].valid_lines ||
+					alignData.m_inf[1].valid_lines != diffdata.m_inf[1].valid_lines ||
+					alignData.m_inf[0].missing_newline != diffdata.m_inf[0].missing_newline ||
+					alignData.m_inf[1].missing_newline != diffdata.m_inf[1].missing_newline)
+				{
+					bAlignerActive = false;
+					FreeDiffUtilsScript(alignScript);
+				}
+				m_options.m_filterCommentsLines = filterComments;
+				m_options.SetToDiffUtils();
+			}
+		}
 
 		// We don't anymore create diff-files for every rescan.
 		// User can create patch-file whenever one wants to.
@@ -905,7 +1089,12 @@ bool CDiffWrapper::RunFileDiff()
 	if (!m_status.bBinaries && m_bUseDiffList)
 	{
 		if (aFiles.GetSize() == 2)
-			LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
+		{
+			if (bAlignerActive)
+				LoadWinMergeDiffsFromAlignedScript(alignScript, diffdata.m_inf);
+			else
+				LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
+		}
 		else
 			LoadWinMergeDiffsFromDiffUtilsScript3(
 				script10, script12, script02,
@@ -967,11 +1156,13 @@ bool CDiffWrapper::RunFileDiff()
 		FreeDiffUtilsScript(script12);
 		FreeDiffUtilsScript(script02);
 	}
+	FreeDiffUtilsScript(alignScript);
 
 	// Done with diffutils filedata
 	if (aFiles.GetSize() == 2)
 	{
 		diffdata.Close();
+		alignData.Close();
 	}
 	else
 	{

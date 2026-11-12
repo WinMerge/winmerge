@@ -50,6 +50,7 @@ struct Info
 		, m_isAutomatic(info.m_isAutomatic)
 		, m_locationType(info.m_locationType)
 		, m_prediffFile(info.m_prediffFile ? new Method(*info.m_prediffFile) : nullptr)
+		, m_alignFile(info.m_alignFile ? new Method(*info.m_alignFile) : nullptr)
 		, m_unpackFile(info.m_unpackFile ? new Method(*info.m_unpackFile) : nullptr)
 		, m_packFile(info.m_packFile ? new Method(*info.m_packFile) : nullptr)
 		, m_isFolder(info.m_isFolder ? new Method(*info.m_isFolder) : nullptr)
@@ -68,6 +69,7 @@ struct Info
 	bool m_isAutomatic = false;
 	LocationType m_locationType = LocationType::InstallationPath;
 	std::unique_ptr<Method> m_prediffFile;
+	std::unique_ptr<Method> m_alignFile;
 	std::unique_ptr<Method> m_unpackFile;
 	std::unique_ptr<Method> m_packFile;
 	std::unique_ptr<Method> m_isFolder;
@@ -82,6 +84,7 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin);
 bool FindPluginNameConflict(const Info& info);
 Info CreateUnpackerPluginExample();
 Info CreatePredifferPluginExample();
+Info CreateAlignerPluginExample();
 Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const String& pipeline);
 bool AddPlugin(const Info& info, String& errmsg);
 bool UpdatePlugin(const Info& info, String& errmsg);

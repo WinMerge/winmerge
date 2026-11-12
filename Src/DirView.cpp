@@ -366,10 +366,12 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	// Context menu -> Left/Middle/Right Shell Menu
 	ON_COMMAND_RANGE(ID_DIR_SHELL_CONTEXT_MENU_LEFT, ID_DIR_SHELL_CONTEXT_MENU_ALL, OnCtxtDirShellContextMenu)
 	// Context menu -> Plugin settings
-	ON_COMMAND_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnPluginSettings)
 	ON_COMMAND_RANGE(ID_UNPACKER_SETTINGS_NONE, ID_UNPACKER_SETTINGS_SELECT, OnPluginSettings)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnUpdatePluginMode)
+	ON_COMMAND_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnPluginSettings)
+	ON_COMMAND_RANGE(ID_ALIGNER_SETTINGS_NONE, ID_ALIGNER_SETTINGS_SELECT, OnPluginSettings)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACKER_SETTINGS_NONE, ID_UNPACKER_SETTINGS_SELECT, OnUpdatePluginMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnUpdatePluginMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_ALIGNER_SETTINGS_NONE, ID_ALIGNER_SETTINGS_SELECT, OnUpdatePluginMode)
 	// Context menu -> Copy Filenames
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILENAMES, OnUpdateCopyFilenames)
@@ -1515,7 +1517,7 @@ void CDirView::OpenParentDirectory(CDirDoc *pDocOpen)
 			for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
 			CMainFrame::OpenFolderParams openFolderParams(GetDiffContext().m_bRecursive);
-			GetMainFrame()->DoFileOrFolderOpen(&pathsParent, dwFlags, nullptr, _T(""), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDocOpen, nullptr, nullptr, 0, &openFolderParams);
+			GetMainFrame()->DoFileOrFolderOpen(&pathsParent, dwFlags, nullptr, _T(""), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDocOpen, nullptr, nullptr, nullptr, 0, &openFolderParams);
 		}
 		[[fallthrough]];
 	case AllowUpwardDirectory::No:
@@ -1611,13 +1613,13 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 		// Don't add folders to MRU
 		CMainFrame::OpenFolderParams openFolderParams(GetDiffContext().m_bRecursive);
 		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, nullptr, _T(""),
-			((GetAsyncKeyState(VK_CONTROL) & 0x8000) || GetDiffContext().m_bRecursive) ? nullptr : pDoc, nullptr, nullptr, 0, &openFolderParams);
+			((GetAsyncKeyState(VK_CONTROL) & 0x8000) || GetDiffContext().m_bRecursive) ? nullptr : pDoc, nullptr, nullptr, nullptr, 0, &openFolderParams);
 	}
 	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
 		CMainFrame::OpenFolderParams openFolderParams(GetDiffContext().m_bRecursive);
-		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, nullptr, _T(""), nullptr, infoUnpacker, nullptr, 0, &openFolderParams);
+		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, nullptr, _T(""), nullptr, infoUnpacker, nullptr, nullptr, 0, &openFolderParams);
 	}
 	else
 	{
@@ -1650,11 +1652,12 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 
 		PackingInfo* tmpInfoUnpacker = nullptr;
 		PrediffingInfo* infoPrediffer = nullptr;
+		AligningInfo* infoAligner = nullptr;
 		String filteredFilenames = CDiffContext::GetFilteredFilenames(filteredPaths);
-		GetDiffContext().FetchPluginInfos(filteredFilenames, !infoUnpacker ? &infoUnpacker : &tmpInfoUnpacker, &infoPrediffer);
+		GetDiffContext().FetchPluginInfos(filteredFilenames, !infoUnpacker ? &infoUnpacker : &tmpInfoUnpacker, &infoPrediffer, &infoAligner);
 
 		GetMainFrame()->ShowAutoMergeDoc(0, GetDocument(), paths.GetSize(), fileloc,
-			dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer);
+			dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer, infoAligner);
 	}
 }
 
@@ -1880,18 +1883,19 @@ void CDirView::OpenSelectionAs(int sel1, int sel2, int sel3, UINT id)
 	}
 	PackingInfo* infoUnpacker = nullptr;
 	PrediffingInfo* infoPrediffer = nullptr;
-	GetDiffContext().FetchPluginInfos(CDiffContext::GetFilteredFilenames(filteredPaths), &infoUnpacker, &infoPrediffer);
+	AligningInfo* infoAligner = nullptr;
+	GetDiffContext().FetchPluginInfos(CDiffContext::GetFilteredFilenames(filteredPaths), &infoUnpacker, &infoPrediffer, &infoAligner);
 	if (ID_UNPACKERS_FIRST <= id && id <= ID_UNPACKERS_LAST)
 	{
 		PackingInfo infoUnpackerAlt(
 				PluginMenu::GetPluginPipelineByMenuId(nullptr, id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		CMainFrame::OpenFolderParams openFolderParams(ctxt.m_bRecursive);
 		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-			nullptr, &infoUnpackerAlt, infoPrediffer, 0, &openFolderParams);
+			nullptr, &infoUnpackerAlt, infoPrediffer, infoAligner, 0, &openFolderParams);
 	}
 	else
 	{
-		GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer);
+		GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer, infoAligner);
 	}
 }
 
@@ -3213,9 +3217,10 @@ void CDirView::OnOpenWithUnpacker()
 	{
 		PackingInfo* infoUnpacker = nullptr;
 		PrediffingInfo* infoPrediffer = nullptr;
+		AligningInfo* infoAligner = nullptr;
 		CDiffContext& ctxt = GetDiffContext();
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
-		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
 		// let the user choose a handler
 		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames,
 			CSelectPluginDlg::PluginType::Unpacker, false, this);
@@ -3589,35 +3594,57 @@ void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
  */
 void CDirView::OnPluginSettings(UINT nID)
 {
-	bool unpacker = (ID_UNPACKER_SETTINGS_NONE <= nID && nID <= ID_UNPACKER_SETTINGS_SELECT);
+	int pluginType = 0;
+	if (ID_PREDIFFER_SETTINGS_NONE <= nID && nID <= ID_PREDIFFER_SETTINGS_SELECT)
+		pluginType = 1;
+	else if (ID_ALIGNER_SETTINGS_NONE <= nID && nID <= ID_ALIGNER_SETTINGS_SELECT)
+		pluginType = 2;
 	String pluginPipeline;
 	switch (nID)
 	{
-	case ID_PREDIFFER_SETTINGS_NONE:
 	case ID_UNPACKER_SETTINGS_NONE:
+	case ID_PREDIFFER_SETTINGS_NONE:
+	case ID_ALIGNER_SETTINGS_NONE:
 		pluginPipeline.clear();
 		break;
-	case ID_PREDIFFER_SETTINGS_AUTO:
 	case ID_UNPACKER_SETTINGS_AUTO:
+	case ID_PREDIFFER_SETTINGS_AUTO:
+	case ID_ALIGNER_SETTINGS_AUTO:
 		pluginPipeline = _T("<Automatic>");
 		break;
-	case ID_PREDIFFER_SETTINGS_SELECT:
 	case ID_UNPACKER_SETTINGS_SELECT:
+	case ID_PREDIFFER_SETTINGS_SELECT:
+	case ID_ALIGNER_SETTINGS_SELECT:
 		int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
 		PackingInfo* infoUnpacker = nullptr;
 		PrediffingInfo* infoPrediffer = nullptr;
+		AligningInfo* infoAligner = nullptr;
 		CDiffContext& ctxt = GetDiffContext();
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
-		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-		GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-		CSelectPluginDlg dlg(unpacker ? infoUnpacker->GetPluginPipeline() : infoPrediffer->GetPluginPipeline(), filteredFilenames,
-			unpacker ? CSelectPluginDlg::PluginType::Unpacker : CSelectPluginDlg::PluginType::Prediffer, false, this);
+		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
+		CSelectPluginDlg::PluginType pluginType2 = CSelectPluginDlg::PluginType::Unpacker;
+		if (pluginType == 0)
+		{
+			pluginPipeline = infoUnpacker->GetPluginPipeline();
+			pluginType2 = CSelectPluginDlg::PluginType::Unpacker;
+		}
+		else if (pluginType == 1)
+		{
+			pluginPipeline = infoPrediffer->GetPluginPipeline();
+			pluginType2 = CSelectPluginDlg::PluginType::Prediffer;
+		}
+		else
+		{
+			pluginPipeline = infoAligner->GetPluginPipeline();
+			pluginType2 = CSelectPluginDlg::PluginType::Aligner;
+		}
+		CSelectPluginDlg dlg(pluginPipeline, filteredFilenames, pluginType2, false, this);
 		if (dlg.DoModal() != IDOK)
 			return;
 		pluginPipeline = dlg.GetPluginPipeline();
 		break;
 	}
-	ApplyPluginPipeline(SelBegin(), SelEnd(), GetDiffContext(), unpacker, pluginPipeline);
+	ApplyPluginPipeline(SelBegin(), SelEnd(), GetDiffContext(), pluginType, pluginPipeline);
 	Invalidate();
 }
 
@@ -3639,12 +3666,18 @@ void CDirView::OnUpdatePluginMode(CCmdUI* pCmdUI)
 	if (pPopup == nullptr)
 		return;
 
-	bool unpacker = (ID_UNPACKER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_UNPACKER_SETTINGS_SELECT);
-	auto counts = CountPluginNoneAutoOthers(SelBegin(), SelEnd(), GetDiffContext(), unpacker);
+	int pluginType = 0;
+	if (ID_UNPACKER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_UNPACKER_SETTINGS_SELECT)
+		pluginType = 0;
+	else if (ID_PREDIFFER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_PREDIFFER_SETTINGS_SELECT)
+		pluginType = 1;
+	else if (ID_ALIGNER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_ALIGNER_SETTINGS_SELECT)
+		pluginType = 2;
+	auto counts = CountPluginNoneAutoOthers(SelBegin(), SelEnd(), GetDiffContext(), pluginType);
 
-	CheckContextMenu(pPopup, unpacker ? ID_UNPACKER_SETTINGS_NONE   : ID_PREDIFFER_SETTINGS_NONE,   (std::get<0>(counts) > 0));
-	CheckContextMenu(pPopup, unpacker ? ID_UNPACKER_SETTINGS_AUTO   : ID_PREDIFFER_SETTINGS_AUTO,   (std::get<1>(counts) > 0));
-	CheckContextMenu(pPopup, unpacker ? ID_UNPACKER_SETTINGS_SELECT : ID_PREDIFFER_SETTINGS_SELECT, (std::get<2>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_NONE + pluginType * 3, (std::get<0>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_AUTO + pluginType * 3, (std::get<1>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_SELECT + pluginType * 3, (std::get<2>(counts) > 0));
 }
 
 /**
