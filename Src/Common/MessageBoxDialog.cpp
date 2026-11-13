@@ -158,6 +158,14 @@ CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, UINT nMessageID,
  */
 CMessageBoxDialog::~CMessageBoxDialog ( )
 {
+	if (m_pAsyncTaskThread)
+	{
+		m_bAsyncTaskCancelFlag = true;
+		WaitForSingleObject(m_pAsyncTaskThread->m_hThread, INFINITE);
+
+		delete m_pAsyncTaskThread;
+		m_pAsyncTaskThread = nullptr;
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -518,6 +526,7 @@ void CMessageBoxDialog::EndDialog ( int nResult )
 		{
 			WaitForSingleObject(m_pAsyncTaskThread->m_hThread, INFINITE);
 			// clear the thread pointer after join
+			delete m_pAsyncTaskThread;
 			m_pAsyncTaskThread = nullptr;
 		}
 	}
@@ -546,7 +555,12 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	{
 		// Start the asynchronous task.
 		m_bAsyncTaskCancelFlag = false;
-		m_pAsyncTaskThread = AfxBeginThread(AsyncTaskThread, this);
+		m_pAsyncTaskThread = AfxBeginThread(AsyncTaskThread, this, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
+		if (m_pAsyncTaskThread)
+		{
+			m_pAsyncTaskThread->m_bAutoDelete = FALSE;
+			m_pAsyncTaskThread->ResumeThread();
+		}
 	}
 
 	// Set the title of the dialog.
