@@ -185,6 +185,19 @@ bool CMergeDoc::StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMess
 
 	if (bAutoMerge)
 		ApplyAutoMergeToResult();
+
+	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+	{
+		for (int nDiff = 0; nDiff < m_diffList.GetSize(); ++nDiff)
+		{
+			if (IsResultDiffPending(nDiff))
+			{
+				GetActiveMergeView()->SelectDiff(nDiff);
+				break;
+			}
+		}
+	}
+
 	const String msg = _("Merge session started.") + (m_nBuffers == 2 ? _T("") : (_T("\n\n") + GetMergePaneRoles()));
 	if (bWithMessage)
 		ShowMessageBox(msg.c_str(), MB_OK | MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_SESSION_STARTED);
