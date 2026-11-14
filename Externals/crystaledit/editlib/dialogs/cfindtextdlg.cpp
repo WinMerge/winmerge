@@ -126,6 +126,9 @@ ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
 ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeSelected)
 ON_BN_CLICKED (IDC_EDIT_REGEXP, OnRegExp)
 ON_BN_CLICKED (IDC_EDIT_FINDPREV, OnFindPrev)
+ON_NOTIFY(BCN_DROPDOWN, IDC_EDIT_MARK_ALL, OnMarkDropdown)
+ON_BN_CLICKED(IDC_EDIT_MARK_ALL, OnMarkAll)
+ON_BN_CLICKED(IDC_EDIT_CLEAR_MARKS, OnClearMarks)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
 
@@ -170,6 +173,9 @@ OnInitDialog ()
   LangTranslateDialog(m_hWnd);
   CDialog::OnInitDialog ();
 
+  GetDlgItem(IDC_EDIT_MARK_ALL)->ShowWindow(m_pBuddy->CanMarkAll() ? SW_SHOW : SW_HIDE);
+  GetDlgItem(IDC_EDIT_CLEAR_MARKS)->ShowWindow(SW_HIDE);
+
   CMemComboBox::LoadSettings();
 
   LOGFONT lf{}, lfOld{};
@@ -210,6 +216,38 @@ OnRegExp ()
   UpdateData (false);
 }
 
+void CFindTextDlg::OnMarkDropdown(NMHDR*, LRESULT* pResult)
+{
+  CString clearText;
+  GetDlgItem(IDC_EDIT_CLEAR_MARKS)->GetWindowText(clearText);
+  CMenu menu;
+  menu.CreatePopupMenu();
+  menu.AppendMenu(MF_STRING, IDC_EDIT_CLEAR_MARKS, clearText);
+  CRect buttonRect;
+  GetDlgItem(IDC_EDIT_MARK_ALL)->GetWindowRect(&buttonRect);
+  const int command = menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD,
+    buttonRect.left, buttonRect.bottom, this);
+  if (command == IDC_EDIT_CLEAR_MARKS)
+    OnClearMarks();
+  *pResult = 0;
+}
+
+void CFindTextDlg::OnMarkAll()
+{
+  if (!UpdateData() || m_sText.IsEmpty())
+    return;
+  m_ctlFindText.FillCurrent();
+  const findtext_flags_t flags = (m_bMatchCase ? FIND_MATCH_CASE : 0) |
+    (m_bWholeWord ? FIND_WHOLE_WORD : 0) | (m_bRegExp ? FIND_REGEXP : 0);
+  m_pBuddy->MarkAll(m_sText, flags);
+  CMemComboBox::SaveSettings();
+}
+
+void CFindTextDlg::OnClearMarks()
+{
+  m_pBuddy->ClearAllMarks();
+}
+
 
 //
 // Update controls, enabling/disabling according to what's appropriate
@@ -219,6 +257,7 @@ UpdateControls()
 {
   GetDlgItem(IDOK)->EnableWindow( !m_sText.IsEmpty() );
   GetDlgItem(IDC_EDIT_FINDPREV)->EnableWindow( !m_sText.IsEmpty() );
+  // Keep the drop-down available to clear marks even when the search text is empty.
   
   UpdateRegExp();
 }

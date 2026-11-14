@@ -32,6 +32,8 @@
 #define IDC_FINDDLG_DONTWRAP            8620
 #define IDC_EDIT_FINDPREV               8621
 #define IDC_FINDDLG_DONTCLOSE           8622
+#define IDC_EDIT_MARK_ALL               8624
+#define IDC_EDIT_CLEAR_MARKS            8625
 #define IDC_EDIT_MARKER_NEW             12322
 #define IDC_EDIT_MARKER_DELETE          12323
 #define IDS_NUM_REPLACED                18032

@@ -621,6 +621,7 @@ protected:
     std::vector<LangServices::TEXTBLOCK> MergeTextBlocks(const std::vector<LangServices::TEXTBLOCK>& blocks1, const std::vector<LangServices::TEXTBLOCK>& blocks2) const;
     virtual std::vector<LangServices::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
     virtual std::vector<LangServices::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
+    std::vector<LangServices::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex, const CCrystalTextMarkers* pMarkers) const;
     virtual std::vector<LangServices::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
@@ -819,6 +820,9 @@ public :
     bool FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPos, const CEPoint & ptBlockBegin, const CEPoint & ptBlockEnd,
                           findtext_flags_t dwFlags, bool bWrapSearch, CEPoint * pptFoundPos);
     bool FindText (const LastSearchInfos * lastSearch);
+    virtual bool CanMarkAll() const { return false; }
+    virtual void MarkAll(const CString&, findtext_flags_t) {}
+    virtual void ClearAllMarks() {}
     bool HighlightText (const CEPoint & ptStartPos, int nLength,
       bool bCursorToLeft = false, bool bUpdateView = true);
 
