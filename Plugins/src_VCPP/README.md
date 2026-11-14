@@ -63,3 +63,11 @@ last lines.
  * *WatchEndOfLog* truncates the files to the first 1/10th.
  * Event: `FILE_PACK_UNPACK`
  * File filter: `*.log`
+
+## IgnoreAccents
+
+Ignore Unicode diacritics when comparing text while preserving case sensitivity.
+
+ * Event: `FILE_PREDIFF`
+ * File filter: common text formats (`*.txt`, `*.csv`, `*.log`, `*.xml`, `*.json`, `*.ini`, `*.cfg`, `*.md`, `*.html`, `*.htm`, `*.css`, `*.js`, `*.ts`, `*.cpp`, `*.h`, `*.cs`, `*.sql`)
+ * Supports UTF-8 (with or without BOM) and UTF-16 LE/BE.
