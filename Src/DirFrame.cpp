@@ -31,13 +31,13 @@ enum
 };
 
 /**
- * @brief Width of compare method name pane in statusbar
+ * @brief Minimum width of compare method name pane in statusbar
  */
-const int COMPMETHOD_PANEL_WIDTH = 100;
+const int COMPMETHOD_PANEL_MIN_WIDTH = 50;
 /**
- * @brief Width of filter name pane in statusbar
+ * @brief Minimum width of filter name pane in statusbar
  */
-const int FILTER_PANEL_WIDTH = 200;
+const int FILTER_PANEL_MIN_WIDTH = 50;
 
 /**
  * @brief Bottom statusbar panels and indicators
@@ -116,8 +116,10 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
-	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, SBPS_CLICKABLE, pointToPixel(FILTER_PANEL_WIDTH));
-	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, SBPS_CLICKABLE, pointToPixel(COMPMETHOD_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER,
+		SBPS_CLICKABLE | SBPS_AUTOWIDTH, pointToPixel(FILTER_PANEL_MIN_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER,
+		SBPS_CLICKABLE | SBPS_AUTOWIDTH, pointToPixel(COMPMETHOD_PANEL_MIN_WIDTH));
 	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, SBPS_CLICKABLE, pointToPixel(RO_PANEL_WIDTH));
 	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, SBPS_CLICKABLE, pointToPixel(RO_PANEL_WIDTH));
 	m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTDIR_RO, SBPS_CLICKABLE, pointToPixel(RO_PANEL_WIDTH));
@@ -131,6 +133,16 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetDockState(dockState);
 
 	return 0;
+}
+
+void CDirFrame::SetCompareDirs(int nDirs)
+{
+	if (m_nCompareDirs == nDirs)
+		return;
+	m_nCompareDirs = nDirs;
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	const int width = nDirs < 3 ? 0 : MulDiv(RO_PANEL_WIDTH, lpx, 72);
+	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, SBPS_CLICKABLE, width);
 }
 
 /**

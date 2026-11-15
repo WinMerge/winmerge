@@ -999,6 +999,9 @@
 #define ID_STATUS_PANE2FILE_ENCODING    32981
 #define ID_STATUS_FILTER                32982
 #define ID_STATUS_PLUGIN                32983
+#define ID_STATUS_PANE0FILE_SYNTAX      32984
+#define ID_STATUS_PANE1FILE_SYNTAX      32985
+#define ID_STATUS_PANE2FILE_SYNTAX      32986
 #define ID_DIR_ZIP_LEFT                 32991
 #define ID_DIR_ZIP_MIDDLE               32992
 #define ID_DIR_ZIP_RIGHT                32993
@@ -1114,6 +1117,9 @@
 #define IDS_COLORSCHEME_XML             33203
 #define IDS_COLORSCHEME_YAML            33204
 #define ID_COLORSCHEME_LAST             33204
+#define IDS_AUTO_SYNTAX                 33205
+#define IDS_APPLY_TO_THIS_PANE_ONLY     33206
+#define IDS_SYNTAX_PLAIN_TEXT           33207
 #define ID_TOOLBAR_NONE                 33300
 #define ID_TOOLBAR_SMALL                33301
 #define ID_TOOLBAR_MEDIUM               33302

@@ -40,6 +40,7 @@ public:
 	void SetStatus(const tchar_t* szStatus);
 	void SetCompareMethodStatusDisplay(int nCompMethod);
 	void SetFilterStatusDisplay(const tchar_t* szFilter);
+	void SetCompareDirs(int nDirs);
 	CBasicFlatStatusBar m_wndStatusBar;
 	IHeaderBar * GetHeaderInterface() override;
 	void UpdateResources();
@@ -62,6 +63,7 @@ protected:
 	CEditorFilePathBar m_wndFilePathBar;
 	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 	std::unique_ptr<CDirFilterBar> m_pFilterBar;
+	int m_nCompareDirs = 3;
 	virtual ~CDirFrame();
 
 	// Generated message map functions

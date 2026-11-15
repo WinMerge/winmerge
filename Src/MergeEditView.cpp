@@ -41,6 +41,7 @@
 #include "MergeResultTextBuffer.h"
 #include "MergeDiffNavigation.h"
 #include "MergeConflictNavigation.h"
+#include "Common/PopupList.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2608,6 +2609,55 @@ void CMergeEditView::UpdateStatusbar()
 }
 
 /**
+ * @brief Set the text type, then show it in the status bar (see UpdateSyntaxStatus).
+ * Every SetTextType variant comes here when the text type changes.
+ */
+bool CMergeEditView::DoSetTextType(LangServices::TextDefinition* def)
+{
+	const bool bResult = __super::DoSetTextType(def);
+	UpdateSyntaxStatus();
+	return bResult;
+}
+
+/** @brief Name of the syntax type "Auto Syntax": the types the file extensions give */
+static String AutoSyntaxName()
+{
+	return I18n::LoadString(IDS_AUTO_SYNTAX);
+}
+
+/**
+ * @brief Show the syntax type in the syntax column of the status bar. A click on the column shows all types
+ * (ShowSyntaxTypeMenu).
+ */
+void CMergeEditView::UpdateSyntaxStatus()
+{
+	if (m_piMergeEditStatus == nullptr || m_pDocument == nullptr)
+		return;
+	const int nTextType = m_CurSourceDef ? static_cast<int>(m_CurSourceDef->type) : 0;
+	const String syntaxName = (nTextType == 0 && GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT)) ? I18n::LoadString(IDS_SYNTAX_PLAIN_TEXT) : 
+		I18n::LoadString(ID_COLORSCHEME_FIRST + nTextType);
+	m_piMergeEditStatus->SetSyntaxName(syntaxName.c_str());
+}
+
+/**
+ * @brief Change the syntax type of the files (nTextType, or SYNTAX_TYPE_AUTO for "Auto Syntax") under the wait
+ * cursor, which stays until the files are rescanned and repainted with the new syntax. If paneOnly, change only
+ * this view's file pane.
+ */
+void CMergeEditView::ChangeSyntaxType(int nTextType, bool paneOnly)
+{
+	CWaitCursor waitstatus;
+	CMergeDoc *pDoc = GetDocument();
+	const int pane = paneOnly ? m_nThisPane : -1;
+	if (nTextType == SYNTAX_TYPE_AUTO)
+		pDoc->SetTextTypeAuto(pane);
+	else
+		pDoc->SetTextType(nTextType, pane);
+	pDoc->FlushAndRescan(true);
+	GetParentFrame()->RedrawWindow(nullptr, nullptr, RDW_UPDATENOW | RDW_ALLCHILDREN);
+}
+
+/**
  * @brief Update statusbar info, Override from CCrystalTextView
  * @note we tab-expand column, but we don't tab-expand char count,
  * since we want to show how many chars there are and tab is just one
@@ -2658,6 +2708,7 @@ void CMergeEditView::OnUpdateCaret()
 		else
 			sEol = _T("hidden");
 	}
+	UpdateSyntaxStatus();
 	m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
 		curChar, chars, selectedLines, selectedChars,
 		sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage(), GetDocument()->m_ptBuf[m_nThisPane]->getHasBom());
@@ -3146,7 +3197,7 @@ void CMergeEditView::OnWMGoto()
 	dlg.m_nLastLine[0] = nLastLine[0] + 1;
 	dlg.m_nLastLine[1] = (pDoc->m_nBuffers < 3) ? -1 : nLastLine[1] + 1;
 	dlg.m_nLastLine[2] = (pDoc->m_nBuffers < 3) ? nLastLine[1] + 1: nLastLine[2] + 1;
-	dlg.m_nLastDiff = pDoc->m_diffList.GetSize();
+	dlg.m_nLastDiff = pDoc->m_diffList.GetSignificantDiffs();
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -3174,11 +3225,7 @@ void CMergeEditView::OnWMGoto()
 		}
 		else
 		{
-			int diff = num;
-			if (diff < 0)
-				diff = 0;
-			if (diff >= pDoc1->m_diffList.GetSize())
-				diff = pDoc1->m_diffList.GetSize() - 1;
+			int diff = pDoc1->m_diffList.GetDiffFromSignificantIndex(num);
 
 			if (pCurrentView && diff >= 0)
 				pCurrentView->SelectDiff(diff, true, false);
@@ -3392,7 +3439,7 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(LangServices::LanguageId::SRC_PLAIN);
-	else if (!GetDocument()->GetChangedSchemeManually())
+	else if (!GetDocument()->GetChangedSchemeManually(m_nThisPane))
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
 		String fileName = GetDocument()->m_ptBuf[m_nThisPane]->GetTempFileName();
@@ -4278,10 +4325,8 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 */
 void CMergeEditView::OnChangeScheme(UINT nID)
 {
-	CMergeDoc *pDoc = GetDocument();
-	ASSERT(pDoc != nullptr);
-	pDoc->SetTextType(nID - ID_COLORSCHEME_FIRST);
-	pDoc->FlushAndRescan(true);
+	ASSERT(GetDocument() != nullptr);
+	ChangeSyntaxType(nID - ID_COLORSCHEME_FIRST, false);
 }
 
 /**
@@ -4572,29 +4617,89 @@ void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(GetDocument()->m_nGroups > 2);
 }
 
+namespace
+{
+
+/**
+ * @brief Collects the state an ON_UPDATE_COMMAND_UI handler sets, for a command shown outside a menu
+ */
+class CStateCmdUI : public CCmdUI
+{
+public:
+	bool m_bEnabled = true;
+	bool m_bChecked = false;
+	void Enable(BOOL bOn = TRUE) override { m_bEnabled = !!bOn; m_bEnableChanged = TRUE; }
+	void SetCheck(int nCheck = 1) override { m_bChecked = (nCheck != 0); }
+	void SetRadio(BOOL bOn = TRUE) override { m_bChecked = !!bOn; }
+	void SetText(LPCTSTR) override {}
+};
+
+
+}
+
+/**
+ * @brief Show "Auto Syntax" and all syntax types of this build as a scrollable popup list at ptScreen
+ * (status bar syntax column), in the status bar font, with a checkbox to limit the choice to this pane.
+ * The selection starts at the syntax type the column shows.
+ * The types get their enabled and current state from OnUpdateChangeScheme, the same as View > Syntax highlight;
+ * the choice runs ChangeSyntaxType.
+ */
+void CMergeEditView::ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont)
+{
+	std::vector<int> types{ SYNTAX_TYPE_AUTO };
+	std::vector<String> names{ AutoSyntaxName() };
+	int nSel = 1;
+	bool bEnabled = true;
+	for (UINT nID = ID_COLORSCHEME_FIRST; nID <= ID_COLORSCHEME_LAST; ++nID)
+	{
+		CStateCmdUI state;
+		state.m_nID = nID;
+		state.DoUpdate(this, FALSE);
+		bEnabled = state.m_bEnabled;
+		if (state.m_bChecked)
+			nSel = static_cast<int>(types.size());
+		types.push_back(static_cast<int>(nID - ID_COLORSCHEME_FIRST));
+		names.push_back(I18n::LoadString(nID));
+	}
+
+	const auto selection = PopupList::Show(this, pFont, names, nSel, bEnabled,
+		I18n::LoadString(IDS_APPLY_TO_THIS_PANE_ONLY), false, ptScreen);
+	if (selection.index >= 0)
+		ChangeSyntaxType(types[selection.index], selection.checkBoxChecked);
+}
+
 void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = 0;
 	LPNMMOUSE pNMMouse = reinterpret_cast<LPNMMOUSE>(pNMHDR);
-	const int pane = static_cast<int>(pNMMouse->dwItemSpec) / 4;
+	const DWORD_PTR nPart = pNMMouse->dwItemSpec;
 	CMergeDoc* pDoc = GetDocument();
-	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMMouse->hdr.hwndFrom)))
+	if (nPart >= static_cast<DWORD_PTR>(pDoc->m_nBuffers) * CMergeStatusBar::COLUMN_COUNT ||
+		!GetParentFrame()->IsChild(CWnd::FromHandle(pNMMouse->hdr.hwndFrom)))
+		return;
+	const int pane = static_cast<int>(nPart / CMergeStatusBar::COLUMN_COUNT);
+
+	const int nColumn = static_cast<int>(nPart % CMergeStatusBar::COLUMN_COUNT);
+
+	if (nColumn != CMergeStatusBar::COLUMN_INFO && pDoc->GetMergeResultBuildState())
 		return;
 
-	const int statusBarPane = pNMMouse->dwItemSpec % 4;
-
-	if (statusBarPane != 0 && pDoc->GetMergeResultBuildState())
-		return;
-
-	switch (statusBarPane)
+	switch (nColumn)
 	{
-	case 0:
+	case CMergeStatusBar::COLUMN_INFO:
 		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
 		break;
-	case 1:
+	case CMergeStatusBar::COLUMN_SYNTAX:
+	{
+		CPoint point = pNMMouse->pt; // status bar client coordinates of the click
+		::ClientToScreen(pNMMouse->hdr.hwndFrom, &point);
+		pDoc->GetView(0, pane)->ShowSyntaxTypeMenu(point, CWnd::FromHandle(pNMMouse->hdr.hwndFrom)->GetFont());
+		break;
+	}
+	case CMergeStatusBar::COLUMN_ENCODING:
 		pDoc->DoFileEncodingDialog(pane);
 		break;
-	case 2:
+	case CMergeStatusBar::COLUMN_EOL:
 	{
 		CPoint point;
 		::GetCursorPos(&point);
@@ -4605,7 +4710,7 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));
 		break;
 	}
-	case 3:
+	case CMergeStatusBar::COLUMN_RO:
 		pDoc->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
 		break;
 	default:

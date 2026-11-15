@@ -200,6 +200,11 @@ protected:
 	virtual ~CMergeEditView();
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz) override;
 	virtual void OnUpdateCaret() override;
+	virtual bool DoSetTextType(LangServices::TextDefinition* def) override;
+	static constexpr int SYNTAX_TYPE_AUTO = -1; /**< ChangeSyntaxType argument for "Auto Syntax" */
+	void UpdateSyntaxStatus();
+	void ChangeSyntaxType(int nTextType, bool paneOnly);
+	void ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont);
 	bool MergeModeKeyDown(MSG* pMsg);
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
 	bool IsDiffFiltered(const DIFFRANGE& diff);

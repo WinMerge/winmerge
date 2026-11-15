@@ -123,6 +123,7 @@ public:
 	void AddDiff(const DIFFRANGE & di);
 	bool IsDiffSignificant(int nDiff) const;
 	int GetSignificantIndex(int nDiff) const;
+	int GetDiffFromSignificantIndex(int nSignificantIndex) const;
 	bool GetDiff(int nDiff, DIFFRANGE & di) const;
 	bool SetDiff(int nDiff, const DIFFRANGE & di);
 	int LineRelDiff(int nLine, int nDiff) const;

@@ -43,6 +43,7 @@ public:
 	virtual void DrawMargin(const CRect & rect, int nLineIndex, int nLineNumber) override;
 	virtual void OnUpdateCaret() override;
 	void UpdateStatusbar();
+	void ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont);
 
 	void RefreshOptions();
 	/** @brief Scroll view so that the segment of the given diff is visible. */
@@ -65,6 +66,8 @@ private:
 	bool IsDiffFiltered(int nDiff);
 
 protected:
+	virtual bool DoSetTextType(LangServices::TextDefinition* def) override;
+	void UpdateSyntaxStatus();
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bSyncingCurrentDiff; /**< true while this view drives diff selection */
 	CCrystalParser m_xParser; /**< Syntax parser used for syntax highlighting. */

@@ -180,6 +180,29 @@ int DiffList::GetSignificantIndex(int nDiff) const
 }
 
 /**
+ * @brief Get the full diff-list index for a significant diff index.
+ * @param [in] nSignificantIndex Zero-based index counting only significant diffs.
+ * @return Full diff-list index, or -1 if the index is out of range.
+ */
+int DiffList::GetDiffFromSignificantIndex(int nSignificantIndex) const
+{
+	if (nSignificantIndex < 0)
+		return -1;
+
+	int significantIndex = 0;
+	for (int i = 0; i < GetSize(); ++i)
+	{
+		if (IsDiffSignificant(i))
+		{
+			if (significantIndex == nSignificantIndex)
+				return i;
+			++significantIndex;
+		}
+	}
+	return -1;
+}
+
+/**
  * @brief Returns copy of DIFFRANGE from diff-list.
  * @param [in] nDiff Index of DIFFRANGE to return.
  * @param [out] di DIFFRANGE returned (empty if error)
