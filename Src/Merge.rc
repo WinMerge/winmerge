@@ -3617,6 +3617,8 @@ BEGIN
     CONTROL         "&Require arguments",IDC_PLUGIN_ARGUMENTSREQUIRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,182,304,10
     CONTROL         "&Generate editor script",IDC_PLUGIN_GENERATESCRIPT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,194,304,10
+    CONTROL         "&Generate aligner",IDC_PLUGIN_GENERATEALIGNER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,194,304,10
     CONTROL         "",IDC_PLUGIN_TAB,"SysTabControl32",WS_TABSTOP,4,206,328,76
     LTEXT           "Command &line:",IDC_PLUGIN_COMMAND_LINE_STATIC,8,226,98,10
     EDITTEXT        IDC_PLUGIN_COMMAND_LINE,108,226,208,12,ES_AUTOHSCROLL
@@ -4535,6 +4537,7 @@ BEGIN
     0, 0, 100, 0,
     100, 0, 0, 0,
     0, 0, 0, 0,
+    0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,

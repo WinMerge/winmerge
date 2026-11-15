@@ -118,9 +118,9 @@ public:
 	String m_sRightDesc; /**< Right side file's description. */
 
 	String m_sFileFilter; /**< File filter mask. */
-	String m_sPreDiffer; /**< Pre-differ name. */
-	String m_sAligner; /**< Aligner name. */
 	String m_sUnpacker; /**< Unpacker name. */
+	String m_sPrediffer; /**< Prediffer name. */
+	String m_sAligner; /**< Aligner name. */
 	String m_sFileExt; /**< File extension for determining syntax highliting */
 
 	String m_sOutputpath;

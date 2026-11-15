@@ -242,12 +242,12 @@ public:
 	 * changes only the reported event; the transformation itself is delegated
 	 * to the original plugin object.
 	 */
-	AlignerGeneratedFromPrediffer(const PluginInfo& plugin, bool buffer)
-		: WinMergePluginBase(buffer ? L"BUFFER_ALIGN" : L"FILE_ALIGN", plugin.m_description,
-			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments, L"",
-			plugin.m_bAutomaticDefault)
+	AlignerGeneratedFromPrediffer(const PluginInfo& plugin, const String& event)
+		: WinMergePluginBase(event, plugin.m_description,
+			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments,
+			plugin.m_pipeline, plugin.m_bAutomaticDefault)
 		, m_pDispatch(plugin.m_lpDispatch)
-		, m_buffer(buffer)
+		, m_buffer(event == _T("BUFFER_ALIGN"))
 	{
 		m_pDispatch->AddRef();
 	}
@@ -729,7 +729,7 @@ public:
 			L"EDITOR_SCRIPT",
 			plugin.m_description,
 			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties,
-			plugin.m_argumentsDefault)
+			plugin.m_argumentsDefault, plugin.m_pipeline)
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_hasArgumentsProperty(hasArgumentProperty)
 	{
@@ -858,7 +858,7 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin)
 
 bool FindPluginNameConflict(const Info& info)
 {
-	for (auto& eventNames : { plugin::ProtocolHanlderEventNames, plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
+	for (auto& eventNames : { plugin::ProtocolHanlderEventNames, plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::AlignerEventNames, plugin::EditorScriptEventNames })
 	{
 		if (std::find(eventNames.begin(), eventNames.end(), info.m_event) != eventNames.end())
 		{
@@ -1095,7 +1095,27 @@ struct Loader
 
 	static bool Load(std::map<String, PluginArrayPtr>& plugins, String& errmsg)
 	{
-		for (const auto* sourceEvent : { L"BUFFER_PREDIFF", L"FILE_PREDIFF" })
+		std::list<Info> internalPlugins;
+		for (auto locationType : {LocationType::InstallationPath, LocationType::AppDataPath, LocationType::DocumentsPath})
+		{
+			if (!LoadFromXML(locationType, internalPlugins, errmsg))
+				return false;
+		}
+
+		for (auto& info : internalPlugins)
+		{
+			String event = info.m_event;
+			String name = info.m_name;
+			if (plugins.find(event) == plugins.end())
+				plugins[event].reset(new PluginArray);
+			PluginInfoPtr pluginNew(new PluginInfo());
+			IDispatch* pDispatch = new InternalPlugin(std::move(info));
+			pDispatch->AddRef();
+			if (pluginNew->MakeInfo(GetPluginXMLPath(info.m_locationType), name, pDispatch) > 0)
+				plugins[event]->push_back(pluginNew);
+		}
+
+		for (const auto* sourceEvent : { L"BUFFER_PREDIFF", L"FILE_PREDIFF", L"ALIAS_PREDIFF"})
 		{
 			if (plugins.find(sourceEvent) == plugins.end())
 				continue;
@@ -1104,14 +1124,23 @@ struct Loader
 				if (plugin->m_disabled || !plugin->GetExtendedPropertyValue(_T("GenerateAligner")).has_value())
 					continue;
 				const bool buffer = wcscmp(sourceEvent, L"BUFFER_PREDIFF") == 0;
-				const String event = buffer ? _T("BUFFER_ALIGN") : _T("FILE_ALIGN");
+				const bool alias = wcscmp(sourceEvent, L"ALIAS_PREDIFF") == 0;
+				String event;
+				if (alias)
+					event = _T("ALIAS_ALIGN");
+				else if (buffer)
+					event = _T("BUFFER_ALIGN");
+				else
+					event = _T("FILE_ALIGN");
 				if (plugins.find(event) == plugins.end())
 					plugins[event].reset(new PluginArray);
 				PluginInfoPtr pluginNew(new PluginInfo());
-				IDispatch* pDispatch = new AlignerGeneratedFromPrediffer(*plugin, buffer);
+				IDispatch* pDispatch = new AlignerGeneratedFromPrediffer(*plugin, event);
 				pDispatch->AddRef();
 				if (pluginNew->MakeInfo(plugin->m_filepath, plugin->m_name, pDispatch) > 0)
+				{
 					plugins[event]->push_back(pluginNew);
+				}
 			}
 		}
 
@@ -1138,26 +1167,6 @@ struct Loader
 					}
 				}
 			}
-		}
-
-		std::list<Info> internalPlugins;
-		for (auto locationType : {LocationType::InstallationPath, LocationType::AppDataPath, LocationType::DocumentsPath})
-		{
-			if (!LoadFromXML(locationType, internalPlugins, errmsg))
-				return false;
-		}
-
-		for (auto& info : internalPlugins)
-		{
-			String event = info.m_event;
-			String name = info.m_name;
-			if (plugins.find(event) == plugins.end())
-				plugins[event].reset(new PluginArray);
-			PluginInfoPtr pluginNew(new PluginInfo());
-			IDispatch* pDispatch = new InternalPlugin(std::move(info));
-			pDispatch->AddRef();
-			if (pluginNew->MakeInfo(GetPluginXMLPath(info.m_locationType), name, pDispatch) > 0)
-				plugins[event]->push_back(pluginNew);
 		}
 
 		if (plugins.find(L"FILE_PACK_UNPACK") != plugins.end())

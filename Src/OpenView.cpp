@@ -2134,7 +2134,7 @@ void COpenView::OnClickRecentCompares(NMHDR *pNMHDR, LRESULT *pResult)
 			}
 			m_strExt = cmdInfo.m_sFileFilter;
 			m_strUnpackerPipeline = cmdInfo.m_sUnpacker;
-			m_strPredifferPipeline = cmdInfo.m_sPreDiffer;
+			m_strPredifferPipeline = cmdInfo.m_sPrediffer;
 			m_strAlignerPipeline = cmdInfo.m_sAligner;
 			if (cmdInfo.m_bRecurse.has_value())
 				m_bRecurse = *cmdInfo.m_bRecurse;

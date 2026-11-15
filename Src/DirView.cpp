@@ -3594,11 +3594,11 @@ void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
  */
 void CDirView::OnPluginSettings(UINT nID)
 {
-	int pluginType = 0;
+	FileTransform::PluginKind pluginType = FileTransform::PluginKind::Unpacker;
 	if (ID_PREDIFFER_SETTINGS_NONE <= nID && nID <= ID_PREDIFFER_SETTINGS_SELECT)
-		pluginType = 1;
+		pluginType = FileTransform::PluginKind::Prediffer;
 	else if (ID_ALIGNER_SETTINGS_NONE <= nID && nID <= ID_ALIGNER_SETTINGS_SELECT)
-		pluginType = 2;
+		pluginType = FileTransform::PluginKind::Aligner;
 	String pluginPipeline;
 	switch (nID)
 	{
@@ -3622,23 +3622,13 @@ void CDirView::OnPluginSettings(UINT nID)
 		CDiffContext& ctxt = GetDiffContext();
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
 		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
-		CSelectPluginDlg::PluginType pluginType2 = CSelectPluginDlg::PluginType::Unpacker;
-		if (pluginType == 0)
-		{
+		if (pluginType == FileTransform::PluginKind::Unpacker)
 			pluginPipeline = infoUnpacker->GetPluginPipeline();
-			pluginType2 = CSelectPluginDlg::PluginType::Unpacker;
-		}
-		else if (pluginType == 1)
-		{
+		else if (pluginType == FileTransform::PluginKind::Prediffer)
 			pluginPipeline = infoPrediffer->GetPluginPipeline();
-			pluginType2 = CSelectPluginDlg::PluginType::Prediffer;
-		}
 		else
-		{
 			pluginPipeline = infoAligner->GetPluginPipeline();
-			pluginType2 = CSelectPluginDlg::PluginType::Aligner;
-		}
-		CSelectPluginDlg dlg(pluginPipeline, filteredFilenames, pluginType2, false, this);
+		CSelectPluginDlg dlg(pluginPipeline, filteredFilenames, pluginType, false, this);
 		if (dlg.DoModal() != IDOK)
 			return;
 		pluginPipeline = dlg.GetPluginPipeline();
@@ -3666,18 +3656,18 @@ void CDirView::OnUpdatePluginMode(CCmdUI* pCmdUI)
 	if (pPopup == nullptr)
 		return;
 
-	int pluginType = 0;
+	FileTransform::PluginKind pluginType = FileTransform::PluginKind::Unpacker;
 	if (ID_UNPACKER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_UNPACKER_SETTINGS_SELECT)
-		pluginType = 0;
+		pluginType = FileTransform::PluginKind::Unpacker;
 	else if (ID_PREDIFFER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_PREDIFFER_SETTINGS_SELECT)
-		pluginType = 1;
+		pluginType = FileTransform::PluginKind::Prediffer;
 	else if (ID_ALIGNER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_ALIGNER_SETTINGS_SELECT)
-		pluginType = 2;
+		pluginType = FileTransform::PluginKind::Aligner;
 	auto counts = CountPluginNoneAutoOthers(SelBegin(), SelEnd(), GetDiffContext(), pluginType);
 
-	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_NONE + pluginType * 3, (std::get<0>(counts) > 0));
-	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_AUTO + pluginType * 3, (std::get<1>(counts) > 0));
-	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_SELECT + pluginType * 3, (std::get<2>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_NONE + static_cast<int>(pluginType) * 3, (std::get<0>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_AUTO + static_cast<int>(pluginType) * 3, (std::get<1>(counts) > 0));
+	CheckContextMenu(pPopup, ID_UNPACKER_SETTINGS_SELECT + static_cast<int>(pluginType) * 3, (std::get<2>(counts) > 0));
 }
 
 /**

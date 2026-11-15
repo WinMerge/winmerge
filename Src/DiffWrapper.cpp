@@ -95,6 +95,10 @@ String GetDiffutilsLine(const file_data& info, int line)
 
 void CDiffWrapper::LoadWinMergeDiffsFromAlignedScript(struct change* script, const file_data* inf)
 {
+	DIFFOPTIONS options{};
+	m_options.GetAsDiffOptions(options);
+	const strdiff::EolCompareMode eolMode = options.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
+		(options.bIgnoreEol ? strdiff::EOL_IGNORE : strdiff::EOL_STRICT);
 	int cursor0 = 0;
 	int cursor1 = 0;
 	for (struct change* next = script; next != nullptr; )
@@ -117,10 +121,6 @@ void CDiffWrapper::LoadWinMergeDiffsFromAlignedScript(struct change* script, con
 			{
 				const int line0 = cursor0 + i;
 				const int line1 = cursor1 + i;
-				DIFFOPTIONS options{};
-				m_options.GetAsDiffOptions(options);
-				const strdiff::EolCompareMode eolMode = options.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
-					(options.bIgnoreEol ? strdiff::EOL_IGNORE : strdiff::EOL_STRICT);
 				const bool different = strdiff::Compare(
 					GetDiffutilsLine(inf[0], line0), GetDiffutilsLine(inf[1], line1),
 					!options.bIgnoreCase, eolMode, options.nIgnoreWhitespace, options.bIgnoreNumbers) != 0;
@@ -156,8 +156,6 @@ void CDiffWrapper::LoadWinMergeDiffsFromAlignedScript(struct change* script, con
 		{
 			const int line0 = cursor0 + i;
 			const int line1 = cursor1 + i;
-			DIFFOPTIONS options{};
-			m_options.GetAsDiffOptions(options);
 			const bool different = strdiff::Compare(
 				GetDiffutilsLine(inf[0], line0), GetDiffutilsLine(inf[1], line1),
 				!options.bIgnoreCase, options.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
@@ -175,24 +173,6 @@ void CDiffWrapper::LoadWinMergeDiffsFromAlignedScript(struct change* script, con
 				runBegin = -1;
 			}
 		}
-	}
-}
-
-void CDiffWrapper::SetAligner(const AligningInfo * aligner /*= nullptr*/)
-{
-	m_infoAligner.reset(new AligningInfo);
-	if (aligner != nullptr)
-		*m_infoAligner = *aligner;
-}
-
-void CDiffWrapper::GetAligner(AligningInfo * aligner) const
-{
-	if (aligner != nullptr)
-	{
-		if (m_infoAligner)
-			*aligner = *m_infoAligner;
-		else
-			aligner->ClearPluginPipeline();
 	}
 }
 
@@ -279,6 +259,24 @@ void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
 
 	if (prediffer != nullptr)
 		*m_infoPrediffer = *prediffer;
+}
+
+void CDiffWrapper::SetAligner(const AligningInfo * aligner /*= nullptr*/)
+{
+	m_infoAligner.reset(new AligningInfo);
+	if (aligner != nullptr)
+		*m_infoAligner = *aligner;
+}
+
+void CDiffWrapper::GetAligner(AligningInfo * aligner) const
+{
+	if (aligner != nullptr)
+	{
+		if (m_infoAligner)
+			*aligner = *m_infoAligner;
+		else
+			aligner->ClearPluginPipeline();
+	}
 }
 
 /**

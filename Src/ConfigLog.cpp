@@ -454,6 +454,8 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T("\r\n Prediffers: "));
 	for (auto& event : plugin::PredifferEventNames)
 		WritePluginsInLogFile(event.c_str());
+	for (auto& event : plugin::AlignerEventNames)
+		WritePluginsInLogFile(event.c_str());
 	FileWriteString(_T("\r\n Editor scripts: "));
 	for (auto& event : plugin::EditorScriptEventNames)
 		WritePluginsInLogFile(event.c_str());

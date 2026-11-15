@@ -510,7 +510,7 @@ int PluginInfo::MakeInfo(const String& scriptletFilepath, const String& name, ID
 		bFound &= SearchScriptForMethodName(L"UnpackFolder");
 		bFound &= SearchScriptForMethodName(L"PackFolder");
 	}
-	else if (m_event == _T("ALIAS_PACK_UNPACK") || m_event == _T("ALIAS_PREDIFF") || m_event == _T("ALIAS_EDITOR_SCRIPT"))
+	else if (m_event == _T("ALIAS_PACK_UNPACK") || m_event == _T("ALIAS_PREDIFF") || m_event == _T("ALIAS_ALIGN") || m_event == _T("ALIAS_EDITOR_SCRIPT"))
 	{
 		bHasPluginPipeline = SearchScriptForDefinedProperties(L"PluginPipeline");
 		bFound &= bHasPluginPipeline;
@@ -843,7 +843,7 @@ static void RemoveScriptletCandidate(const String &scriptletFilepath)
 
 static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 {
-	for (const auto& events: { plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
+	for (const auto& events: { plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::AlignerEventNames, plugin::EditorScriptEventNames })
 	{
 		std::set<String> pluginNames;
 		for (const auto& event : events)

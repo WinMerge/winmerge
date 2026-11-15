@@ -18,6 +18,7 @@
 #include "SuperComboBox.h"
 #include "ValidatingEdit.h"
 #include "UnicodeString.h"
+#include "FileTransform.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectPluginDlgDlg dialog
@@ -27,7 +28,7 @@ class PluginInfo;
 class CSelectPluginDlg : public CTrDialog
 {
 public:
-	enum class PluginType { Unpacker, Prediffer, Aligner, EditorScript };
+	using PluginType = FileTransform::PluginKind;
 private:
 // Construction
 	void Initialize(PluginType pluginType);

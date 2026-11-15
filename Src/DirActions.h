@@ -820,7 +820,7 @@ void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator&
  * @brief Apply specified setting for prediffing to all selected items
  */
 template<class InputIterator>
-void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, int pluginType, const String& pluginPipeline)
+void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, FileTransform::PluginKind pluginKind, const String& pluginPipeline)
 {
 	// Unlike other group actions, here we don't build an action list
 	// to execute; we just apply this change directly
@@ -836,11 +836,11 @@ void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, c
 			AligningInfo * infoAligner = nullptr;
 			String filteredFilenames = ctxt.GetFilteredFilenames(di);
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
-			if (pluginType == 0)
+			if (pluginKind == FileTransform::PluginKind::Unpacker)
 				infoUnpacker->SetPluginPipeline(pluginPipeline);
-			else if (pluginType == 1)
+			else if (pluginKind == FileTransform::PluginKind::Prediffer)
 				infoPrediffer->SetPluginPipeline(pluginPipeline);
-			else if (pluginType == 2)
+			else if (pluginKind == FileTransform::PluginKind::Aligner)
 				infoAligner->SetPluginPipeline(pluginPipeline);
 		}
 	}
@@ -850,7 +850,7 @@ void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, c
  * @brief Updates just before displaying plugin context view in list
  */
 template<class InputIterator>
-std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, int pluginType)
+std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, FileTransform::PluginKind pluginKind)
 {
 	int nNone = 0;
 	int nAuto = 0;
@@ -874,9 +874,9 @@ std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, 
 			String filteredFilenames = ctxt.GetFilteredFilenames(di);
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
 			String pluginPipeline = infoUnpacker->GetPluginPipeline();
-			if (pluginType == 1)
+			if (pluginKind == FileTransform::PluginKind::Prediffer)
 				pluginPipeline = infoPrediffer->GetPluginPipeline();
-			else if (pluginType == 2)
+			else if (pluginKind == FileTransform::PluginKind::Aligner)
 				pluginPipeline = infoAligner->GetPluginPipeline();
 			if (pluginPipeline.empty())
 				nNone++;

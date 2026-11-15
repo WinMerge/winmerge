@@ -1037,8 +1037,8 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		std::unique_ptr<AligningInfo> infoAligner;
 		if (!cmdInfo.m_sUnpacker.empty())
 			infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
-		if (!cmdInfo.m_sPreDiffer.empty())
-			infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
+		if (!cmdInfo.m_sPrediffer.empty())
+			infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPrediffer));
 		if (!cmdInfo.m_sAligner.empty())
 			infoAligner.reset(new AligningInfo(cmdInfo.m_sAligner));
 

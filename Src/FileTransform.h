@@ -270,6 +270,7 @@ std::pair<
 >
 CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::wstring>& events, unsigned baseId);
 
+enum class PluginKind { Unpacker, Prediffer, Aligner, EditorScript };
 inline const std::vector<std::wstring> ProtocolHanlderEventNames = { L"URL_PACK_UNPACK" };
 inline const std::vector<std::wstring> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"ALIAS_PACK_UNPACK" };
 inline const std::vector<std::wstring> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF", L"ALIAS_PREDIFF" };

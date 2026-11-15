@@ -425,7 +425,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 		else if (param == _T("prediffer"))
 		{
 			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
-			q = EatParam(q, m_sPreDiffer);
+			q = EatParam(q, m_sPrediffer);
 		}
 		else if (param == _T("aligner"))
 		{
