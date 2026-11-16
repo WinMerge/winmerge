@@ -1228,8 +1228,9 @@ static auto UnpackerField(int, const FilterEvalContext& ectxt) -> ValueType
 		return std::monostate{};
 	PackingInfo* pInfoUnpacker = nullptr;
 	PrediffingInfo* pInfoPrediffer = nullptr;
+	AligningInfo* pInfoAligner = nullptr;
 	String filteredFilenames = ectxt.expr->ctxt->GetFilteredFilenames(*ectxt.di);
-	const_cast<CDiffContext*>(ectxt.expr->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
+	const_cast<CDiffContext*>(ectxt.expr->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer, &pInfoAligner);
 	return pInfoUnpacker ? ucr::toUTF8(pInfoUnpacker->GetPluginPipeline()) : std::string("");
 }
 
@@ -1239,9 +1240,22 @@ static auto PredifferField(int, const FilterEvalContext& ectxt) -> ValueType
 		return std::monostate{};
 	PackingInfo* pInfoUnpacker = nullptr;
 	PrediffingInfo* pInfoPrediffer = nullptr;
+	AligningInfo* pInfoAligner = nullptr;
 	String filteredFilenames = ectxt.expr->ctxt->GetFilteredFilenames(*ectxt.di);
-	const_cast<CDiffContext*>(ectxt.expr->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
+	const_cast<CDiffContext*>(ectxt.expr->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer, &pInfoAligner);
 	return pInfoPrediffer ? ucr::toUTF8(pInfoPrediffer->GetPluginPipeline()) : std::string("");
+}
+
+static auto AlignerField(int, const FilterEvalContext& ectxt) -> ValueType
+{
+	if (ectxt.di->diffcode.isDirectory())
+		return std::monostate{};
+	PackingInfo* pInfoUnpacker = nullptr;
+	PrediffingInfo* pInfoPrediffer = nullptr;
+	AligningInfo* pInfoAligner = nullptr;
+	String filteredFilenames = ectxt.expr->ctxt->GetFilteredFilenames(*ectxt.di);
+	const_cast<CDiffContext*>(ectxt.expr->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer, &pInfoAligner);
+	return pInfoAligner ? ucr::toUTF8(pInfoAligner->GetPluginPipeline()) : std::string("");
 }
 
 static auto LineField(int index, const FilterEvalContext& ectxt) -> ValueType
@@ -1575,6 +1589,7 @@ static constexpr FieldInfo fieldTable[] = {
 	{"moved", FileMovedField, LineMovedField, true, false},
 	{"name", NameField, nullptr, true, false},
 	{"prediffer", PredifferField, nullptr, false, true},
+	{"aligner", AlignerField, nullptr, false, true},
 	{"recursivefiles", RecursiveFilesField, nullptr, true, false},
 	{"recursiveitems", RecursiveItemsField, nullptr, true, false},
 	{"recursivetotalsize", RecursiveTotalSizeField, nullptr, true, false},

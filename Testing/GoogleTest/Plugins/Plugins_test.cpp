@@ -56,10 +56,11 @@ namespace
 		CAssureScriptsForThread asft(nullptr);
 		PackingInfo *iu = nullptr;
 		PrediffingInfo *ip = nullptr;
+		AligningInfo *ia = nullptr;
 		PluginManager pm;
 		IPluginInfos *ppi = &pm;
 		std::vector<int> subcodes;
-		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip);
+		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip, &ia);
 		String file = paths::ConcatPath(oldModulePath, _T("..\\..\\Data\\Office\\excel.xls"));
 		PluginPipelineContext context;
 		context.filteredFilenames = _T(".*\\.xls");

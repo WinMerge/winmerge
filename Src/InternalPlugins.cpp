@@ -87,6 +87,7 @@ inline static const std::string ExtendedPropertiesElement = "extended-properties
 inline static const std::string ArgumentsElement = "arguments";
 inline static const std::string PipelineElement = "pipeline";
 inline static const std::string PrediffFileElement = "prediff-file";
+inline static const std::string AlignFileElement = "align-file";
 inline static const std::string UnpackFileElement = "unpack-file";
 inline static const std::string PackFileElement = "pack-file";
 inline static const std::string IsFolderElement = "is-folder";
@@ -154,6 +155,11 @@ public:
 				{
 					plugin.m_prediffFile.reset(new Method());
 					m_pMethod = plugin.m_prediffFile.get();
+				}
+				else if (localName == AlignFileElement)
+				{
+					plugin.m_alignFile.reset(new Method());
+					m_pMethod = plugin.m_alignFile.get();
 				}
 				else if (localName == UnpackFileElement)
 				{
@@ -226,6 +232,62 @@ private:
 	std::list<Info>* m_pPlugins = nullptr;
 	std::stack<std::string> m_stack;
 	Method* m_pMethod = nullptr;
+};
+
+class AlignerGeneratedFromPrediffer : public WinMergePluginBase
+{
+public:
+	/**
+	 * Creates an explicit Aligner facade over a Prediffer plugin. The facade
+	 * changes only the reported event; the transformation itself is delegated
+	 * to the original plugin object.
+	 */
+	AlignerGeneratedFromPrediffer(const PluginInfo& plugin, const String& event)
+		: WinMergePluginBase(event, plugin.m_description,
+			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments,
+			plugin.m_pipeline, plugin.m_bAutomaticDefault)
+		, m_pDispatch(plugin.m_lpDispatch)
+		, m_buffer(event == _T("BUFFER_ALIGN"))
+	{
+		m_pDispatch->AddRef();
+	}
+	~AlignerGeneratedFromPrediffer() override
+	{
+		m_pDispatch->Release();
+	}
+
+	HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
+	{
+		if (m_buffer)
+		{
+			*pbSuccess = VARIANT_FALSE;
+			return E_NOTIMPL;
+		}
+		int changed = 0;
+		const bool handled = plugin::InvokePrediffFile(ucr::toTString(fileSrc), ucr::toTString(fileDst), changed, m_pDispatch);
+		*pbChanged = changed ? VARIANT_TRUE : VARIANT_FALSE;
+		*pbSuccess = handled ? VARIANT_TRUE : VARIANT_FALSE;
+		return handled ? S_OK : E_FAIL;
+	}
+
+	HRESULT STDMETHODCALLTYPE PrediffBufferW(BSTR& text, int& size, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_buffer)
+		{
+			*pbSuccess = VARIANT_FALSE;
+			return E_NOTIMPL;
+		}
+		int changed = 0;
+		const bool handled = plugin::InvokePrediffBuffer(text, changed, m_pDispatch);
+		size = SysStringLen(text);
+		*pbChanged = changed ? VARIANT_TRUE : VARIANT_FALSE;
+		*pbSuccess = handled ? VARIANT_TRUE : VARIANT_FALSE;
+		return handled ? S_OK : E_FAIL;
+	}
+
+private:
+	IDispatch* m_pDispatch;
+	bool m_buffer;
 };
 
 class UnpackerGeneratedFromEditorScript : public WinMergePluginBase
@@ -315,17 +377,18 @@ public:
 
 	HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
 	{
-		if (!m_info.m_prediffFile)
+		const auto& method = m_info.m_event == _T("FILE_ALIGN") ? m_info.m_alignFile : m_info.m_prediffFile;
+		if (!method)
 		{
 			*pbChanged = VARIANT_FALSE;
 			*pbSuccess = VARIANT_FALSE;
 			return S_OK;
 		}
 		TempFile scriptFile;
-		String command = replaceMacros(m_info.m_prediffFile->m_command, fileSrc, fileDst);
-		if (m_info.m_prediffFile->m_script)
+		String command = replaceMacros(method->m_command, fileSrc, fileDst);
+		if (method->m_script)
 		{
-			createScript(*m_info.m_prediffFile->m_script, scriptFile);
+			createScript(*method->m_script, scriptFile);
 			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
 		}
 		DWORD dwExitCode;
@@ -666,7 +729,7 @@ public:
 			L"EDITOR_SCRIPT",
 			plugin.m_description,
 			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties,
-			plugin.m_argumentsDefault)
+			plugin.m_argumentsDefault, plugin.m_pipeline)
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_hasArgumentsProperty(hasArgumentProperty)
 	{
@@ -795,7 +858,7 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin)
 
 bool FindPluginNameConflict(const Info& info)
 {
-	for (auto& eventNames : { plugin::ProtocolHanlderEventNames, plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
+	for (auto& eventNames : { plugin::ProtocolHanlderEventNames, plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::AlignerEventNames, plugin::EditorScriptEventNames })
 	{
 		if (std::find(eventNames.begin(), eventNames.end(), info.m_event) != eventNames.end())
 		{
@@ -827,6 +890,19 @@ Info CreatePredifferPluginExample()
 {
 	internal_plugin::Info info(_T("NewPluginName"));
 	info.m_event = _T("FILE_PREDIFF");
+	info.m_description = _T("New plugin description");
+	info.m_fileFilters = _T("\\.*$");
+	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
+	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
+	info.m_unpackFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
+	info.m_locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? LocationType::AppDataPath : LocationType::DocumentsPath;
+	return info;
+}
+
+Info CreateAlignerPluginExample()
+{
+	internal_plugin::Info info(_T("NewPluginName"));
+	info.m_event = _T("FILE_ALIGN");
 	info.m_description = _T("New plugin description");
 	info.m_fileFilters = _T("\\.*$");
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
@@ -993,6 +1069,8 @@ bool SaveToXML(LocationType locationType, const std::list<Info>& internalPlugins
 						writeMethodElement(writer, PackFolderElement, *item.m_packFolder.get());
 					if (item.m_prediffFile)
 						writeMethodElement(writer, PrediffFileElement, *item.m_prediffFile.get());
+					if (item.m_alignFile)
+						writeMethodElement(writer, AlignFileElement, *item.m_alignFile.get());
 				}
 				writer.endElement("", "", PluginElement);
 			}
@@ -1017,6 +1095,55 @@ struct Loader
 
 	static bool Load(std::map<String, PluginArrayPtr>& plugins, String& errmsg)
 	{
+		std::list<Info> internalPlugins;
+		for (auto locationType : {LocationType::InstallationPath, LocationType::AppDataPath, LocationType::DocumentsPath})
+		{
+			if (!LoadFromXML(locationType, internalPlugins, errmsg))
+				return false;
+		}
+
+		for (auto& info : internalPlugins)
+		{
+			String event = info.m_event;
+			String name = info.m_name;
+			if (plugins.find(event) == plugins.end())
+				plugins[event].reset(new PluginArray);
+			PluginInfoPtr pluginNew(new PluginInfo());
+			IDispatch* pDispatch = new InternalPlugin(std::move(info));
+			pDispatch->AddRef();
+			if (pluginNew->MakeInfo(GetPluginXMLPath(info.m_locationType), name, pDispatch) > 0)
+				plugins[event]->push_back(pluginNew);
+		}
+
+		for (const auto* sourceEvent : { L"BUFFER_PREDIFF", L"FILE_PREDIFF", L"ALIAS_PREDIFF"})
+		{
+			if (plugins.find(sourceEvent) == plugins.end())
+				continue;
+			for (auto plugin : *plugins[sourceEvent])
+			{
+				if (plugin->m_disabled || !plugin->GetExtendedPropertyValue(_T("GenerateAligner")).has_value())
+					continue;
+				const bool buffer = wcscmp(sourceEvent, L"BUFFER_PREDIFF") == 0;
+				const bool alias = wcscmp(sourceEvent, L"ALIAS_PREDIFF") == 0;
+				String event;
+				if (alias)
+					event = _T("ALIAS_ALIGN");
+				else if (buffer)
+					event = _T("BUFFER_ALIGN");
+				else
+					event = _T("FILE_ALIGN");
+				if (plugins.find(event) == plugins.end())
+					plugins[event].reset(new PluginArray);
+				PluginInfoPtr pluginNew(new PluginInfo());
+				IDispatch* pDispatch = new AlignerGeneratedFromPrediffer(*plugin, event);
+				pDispatch->AddRef();
+				if (pluginNew->MakeInfo(plugin->m_filepath, plugin->m_name, pDispatch) > 0)
+				{
+					plugins[event]->push_back(pluginNew);
+				}
+			}
+		}
+
 		if (plugins.find(L"EDITOR_SCRIPT") != plugins.end())
 		{
 			for (auto plugin : *plugins[L"EDITOR_SCRIPT"])
@@ -1040,26 +1167,6 @@ struct Loader
 					}
 				}
 			}
-		}
-
-		std::list<Info> internalPlugins;
-		for (auto locationType : {LocationType::InstallationPath, LocationType::AppDataPath, LocationType::DocumentsPath})
-		{
-			if (!LoadFromXML(locationType, internalPlugins, errmsg))
-				return false;
-		}
-
-		for (auto& info : internalPlugins)
-		{
-			String event = info.m_event;
-			String name = info.m_name;
-			if (plugins.find(event) == plugins.end())
-				plugins[event].reset(new PluginArray);
-			PluginInfoPtr pluginNew(new PluginInfo());
-			IDispatch* pDispatch = new InternalPlugin(std::move(info));
-			pDispatch->AddRef();
-			if (pluginNew->MakeInfo(GetPluginXMLPath(info.m_locationType), name, pDispatch) > 0)
-				plugins[event]->push_back(pluginNew);
 		}
 
 		if (plugins.find(L"FILE_PACK_UNPACK") != plugins.end())

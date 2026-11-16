@@ -80,7 +80,7 @@ BOOL PluginsListDlg::OnInitDialog()
 
 	
 	InitList();
-	SetDlgItemComboBoxList(IDC_PLUGIN_TYPE, { _("Unpacker"), _("Prediffer"), _("Editor script") });
+	SetDlgItemComboBoxList(IDC_PLUGIN_TYPE, { _("Unpacker"), _("Prediffer"), _("Aligner"), _("Editor script") });
 	m_comboType.SetCurSel(0);
 	SetPlugins(0);
 	m_list.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
@@ -139,6 +139,11 @@ void PluginsListDlg::SetPlugins(int sel)
 			AddPluginsToList(event.c_str());
 	}
 	else if (sel == 2)
+	{
+		for (const auto& event : plugin::AlignerEventNames)
+			AddPluginsToList(event.c_str());
+	}
+	else if (sel == 3)
 	{
 		for (const auto& event : plugin::EditorScriptEventNames)
 			AddPluginsToList(event.c_str() );
@@ -214,7 +219,10 @@ void PluginsListDlg::AddPlugin(unsigned id)
 {
 	auto info = std::make_unique<internal_plugin::Info>(
 		(id == ID_PLUGIN_ADD_UNPACKER) ?
-		internal_plugin::CreateUnpackerPluginExample() : internal_plugin::CreatePredifferPluginExample());
+		internal_plugin::CreateUnpackerPluginExample() : 
+		((id == ID_PLUGIN_ADD_PREDIFFER) ?
+		internal_plugin::CreatePredifferPluginExample() :
+		internal_plugin::CreateAlignerPluginExample()));
 	for (;;)
 	{
 		CEditPluginDlg dlg(*info);
@@ -346,6 +354,7 @@ void PluginsListDlg::OnDropDownAdd(NMHDR *pNMHDR, LRESULT *pResult)
 	{
 	case ID_PLUGIN_ADD_UNPACKER:
 	case ID_PLUGIN_ADD_PREDIFFER:
+	case ID_PLUGIN_ADD_ALIGNER:
 		AddPlugin(command);
 		break;
 	case ID_PLUGIN_DUPLICATE:

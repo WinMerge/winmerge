@@ -26,6 +26,7 @@
 static const std::vector<String> *EventNamesArray[] = {
 		&FileTransform::UnpackerEventNames,
 		&FileTransform::PredifferEventNames,
+		&FileTransform::AlignerEventNames,
 		&FileTransform::EditorScriptEventNames };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,7 +114,7 @@ void CSelectPluginDlg::OnOK()
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, m_bOpenInSameFrameType);
 	m_ctlPluginPipeline.SaveState(
-		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
+	std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\Aligner"), _T("Files\\EditorScript") }
 			[static_cast<int>(m_pluginType)]);
 
 	CTrDialog::OnOK();
@@ -134,7 +135,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
-		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
+	std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\Aligner"), _T("Files\\EditorScript") }
 			[static_cast<int>(m_pluginType)]);
 
 	EnableDlgItem(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_pluginType == PluginType::Unpacker);
@@ -155,6 +156,8 @@ BOOL CSelectPluginDlg::OnInitDialog()
 					pPluginPipeline = std::make_unique<PackingInfo>(pipeline);
 				else if (m_pluginType == PluginType::Prediffer)
 					pPluginPipeline = std::make_unique<PrediffingInfo>(pipeline);
+				else if (m_pluginType == PluginType::Aligner)
+					pPluginPipeline = std::make_unique<AligningInfo>(pipeline);
 				else
 					pPluginPipeline = std::make_unique<EditorScriptInfo>(pipeline);
 				String errorMessage;
@@ -164,11 +167,12 @@ BOOL CSelectPluginDlg::OnInitDialog()
 			};
 		m_ctlPluginPipelineEdit.Validate();
 		String cueBanner = strutils::format_string1(_("e.g. %1"),
-			(m_pluginType == PluginType::Prediffer) ? _T("le:toUpper(Line)|IgnoreLeadingLineNumbers") : _T("le:toUpper(Line)|SortAscending"));
+			(m_pluginType == PluginType::Prediffer) ? _T("le:toUpper(Line)|IgnoreLeadingLineNumbers") :
+			(m_pluginType == PluginType::Aligner) ? _T("le:toUpper(Line)|IgnoreLeadingLineNumbers") : _T("le:toUpper(Line)|SortAscending"));
 		m_ctlPluginPipelineEdit.SetCueBanner(cueBanner.c_str());
 	}
 
-	const std::array<String, 3> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
+	const std::array<String, 4> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Aligner"), _("Editor script") };
 	String pluginTypeStr = pluginTypes[static_cast<int>(m_pluginType)];
 
 	if (m_bArgumentsRequired)
@@ -340,7 +344,7 @@ void CSelectPluginDlg::OnClickedAlias()
 		plugin = reinterpret_cast<PluginInfo*>(item.lParam);
 	}
 
-	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_EDITOR_SCRIPT") };
+	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_ALIGN"), _T("ALIAS_EDITOR_SCRIPT") };
 	internal_plugin::Info info = internal_plugin::CreateAliasPluginExample(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
 
 	for (;;)

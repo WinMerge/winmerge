@@ -26,6 +26,7 @@ public:
 	bool HasSubfolders() const;
 	bool HasUnpacker() const;
 	bool HasPrediffer() const;
+	bool HasAligner() const;
 	bool HasWindowType() const;
 	bool HasTableDelimiter() const;
 	bool HasTableQuote() const;
@@ -55,6 +56,7 @@ public:
 	int GetSubfolders() const;
 	String GetUnpacker() const;
 	String GetPrediffer() const;
+	String GetAligner() const;
 	int GetWindowType() const;
 	tchar_t GetTableDelimiter() const;
 	tchar_t GetTableQuote() const;
@@ -81,6 +83,7 @@ public:
 	void SetSubfolders(bool bSubfolder);
 	void SetUnpacker(const String& sUnpacker);
 	void SetPrediffer(const String& sPrediffer);
+	void SetAligner(const String& sAligner);
 	void SetWindowType(int nWindowType);
 	void SetTableDelimiter(tchar_t cTableDelimiter);
 	void SetTableQuote(tchar_t cTableQuote);
@@ -104,6 +107,7 @@ public:
 	void SetSaveSubfolders(bool bSaveSubfolders);
 	void SetSaveUnpacker(bool bSaveUnpacker);
 	void SetSavePrediffer(bool bSavePrediffer);
+	void SetSaveAligner(bool bSaveAligner);
 	void SetSaveIgnoreWhite(bool bSaveIgnoreWhite);
 	void SetSaveIgnoreBlankLines(bool bSaveIgnoreBlankLines);
 	void SetSaveIgnoreCase(bool bSaveIgnoreCase);
@@ -131,6 +135,7 @@ private:
 	bool m_bRightReadOnly; /**< Is right path opened as read-only */
 	std::optional<String> m_unpacker; /**< Unpacker name or pipeline */
 	std::optional<String> m_prediffer; /**< Prediffer name or pipeline */
+	std::optional<String> m_aligner; /**< Aligner name or pipeline */
 	std::optional<int> m_nWindowType; /**< The value of the window type */
 	std::optional<tchar_t> m_cTableDelimiter;
 	std::optional<tchar_t> m_cTableQuote;
@@ -150,6 +155,7 @@ private:
 	bool m_bSaveSubfolders; /**< Save subfolders? */
 	bool m_bSaveUnpacker; /**< Save unpacker? */
 	bool m_bSavePrediffer; /**< Save prediffer? */
+	bool m_bSaveAligner; /**< Save aligner? */
 	bool m_bSaveIgnoreWhite; /**< Save "Whitespaces" setting? */
 	bool m_bSaveIgnoreBlankLines; /**< Save "Ignore blank lines" setting? */
 	bool m_bSaveIgnoreCase; /**< Save "Ignore case" setting? */
@@ -322,6 +328,15 @@ inline bool ProjectFileItem::HasUnpacker() const
 inline bool ProjectFileItem::HasPrediffer() const
 {
 	return m_prediffer.has_value();
+}
+
+/** 
+ * @brief Returns if aligner is defined in projectfile.
+ * @return true if project file has aligner definition.
+ */
+inline bool ProjectFileItem::HasAligner() const
+{
+	return m_aligner.has_value();
 }
 
 /** 
@@ -555,6 +570,24 @@ inline String ProjectFileItem::GetPrediffer() const
 inline void ProjectFileItem::SetPrediffer(const String& sPrediffer)
 {
 	m_prediffer = sPrediffer;
+}
+
+/** 
+ * @brief Returns aligner name or pipeline
+ * @return Aligner name or pipeline
+ */
+inline String ProjectFileItem::GetAligner() const
+{
+	return m_aligner.value_or(_T(""));
+}
+
+/** 
+ * @brief Set aligner name or pipeline.
+ * @param [in] sAligner New aligner name or pipeline to set.
+ */
+inline void ProjectFileItem::SetAligner(const String& sAligner)
+{
+	m_aligner = sAligner;
 }
 
 /** 
@@ -867,12 +900,21 @@ inline void ProjectFileItem::SetSaveUnpacker(bool bSaveUnpacker)
 }
 
 /** 
- * @brief Set whether to save unpacker.
- * @param [in] bSavePrediffer Whether to save unpacker.
+ * @brief Set whether to save prediffer.
+ * @param [in] bSavePrediffer Whether to save prediffer.
  */
 inline void ProjectFileItem::SetSavePrediffer(bool bSavePrediffer)
 {
 	m_bSavePrediffer = bSavePrediffer;
+}
+
+/** 
+ * @brief Set whether to save aligner.
+ * @param [in] bSaveAligner Whether to save aligner.
+ */
+inline void ProjectFileItem::SetSaveAligner(bool bSaveAligner)
+{
+	m_bSaveAligner = bSaveAligner;
 }
 
 /** 

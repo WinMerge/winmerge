@@ -139,10 +139,13 @@ void SetProjectFileItem(ProjectFileItem& projItem, const PathContext& paths, con
 	}
 	String m_strUnpackerPipeline;
 	String m_strPredifferPipeline;
+	String m_strAlignerPipeline;
 	if (pDoc->GetUnpacker())
 		m_strUnpackerPipeline = pDoc->GetUnpacker()->GetPluginPipeline();
 	if (pDoc->GetPrediffer())
 		m_strPredifferPipeline = pDoc->GetPrediffer()->GetPluginPipeline();
+	if (pDoc->GetAligner())
+		m_strAlignerPipeline = pDoc->GetAligner()->GetPluginPipeline();
 	int m_nWindowType = pDoc->GetDocumentType();
 	CMergeDoc* pMergeDoc = dynamic_cast<CMergeDoc*>(const_cast<IMergeDoc*>(pDoc));
 	tchar_t m_cTableDelimiter = pMergeDoc ? pMergeDoc->m_ptBuf[0]->GetFieldDelimiter() : 0;
@@ -217,6 +220,8 @@ void SetProjectFileItem(ProjectFileItem& projItem, const PathContext& paths, con
 			projItem.SetUnpacker(m_strUnpackerPipeline);
 		if (!m_strPredifferPipeline.empty())
 			projItem.SetPrediffer(m_strPredifferPipeline);
+		if (!m_strAlignerPipeline.empty())
+			projItem.SetAligner(m_strAlignerPipeline);
 	}
 	if (m_nWindowType != -1)
 		projItem.SetWindowType(m_nWindowType);

@@ -21,8 +21,10 @@ COpenDoc::COpenDoc()
 {
 	PackingInfo infoUnpacker;
 	PrediffingInfo infoPrediffer;
+	AligningInfo infoAligner;
 	m_strUnpackerPipeline = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? infoUnpacker.GetPluginPipeline() : _T("");
 	m_strPredifferPipeline = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? infoPrediffer.GetPluginPipeline() : _T("");
+	m_strAlignerPipeline = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? infoAligner.GetPluginPipeline() : _T("");
 }
 
 BOOL COpenDoc::OnNewDocument()

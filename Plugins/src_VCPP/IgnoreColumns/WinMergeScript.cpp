@@ -154,7 +154,7 @@ STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"\\.txt$");
+	*pVal = SysAllocString(L"\\.nomatch$");
 	return S_OK;
 }
 
@@ -178,7 +178,7 @@ STDMETHODIMP CWinMergeScript::put_PluginArguments(BSTR val)
 
 STDMETHODIMP CWinMergeScript::get_PluginExtendedProperties(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"MenuCaption=Ignore Columns");
+	*pVal = SysAllocString(L"MenuCaption=Ignore Columns;GenerateAligner");
 	return S_OK;
 }
 

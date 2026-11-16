@@ -262,6 +262,30 @@
       <command>"${WINMERGE_HOME}\Commands\dumpbin\dumpbin.bat" ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
+  <plugin name="IgnoreAccents">
+    <event value="ALIAS_PREDIFF"/>
+    <description value="Ignore Accents"/>
+    <file-filters value="\.nomatch$"/>
+    <is-automatic value="false"/>
+    <extended-properties value="MenuCaption=Ignore Accents;GenerateAligner"/>
+    <pipeline value="le:normalizeUnicode(regexReplace(normalizeUnicode(Line, &quot;NFD&quot;), &quot;[\x{0300}-\x{036F}]&quot;, &quot;&quot;), &quot;NFC&quot;)"/>
+  </plugin>
+  <plugin name="IgnoreAllWhitespace">
+    <event value="ALIAS_PREDIFF"/>
+    <description value="Ignore all whitespace"/>
+    <file-filters value="\.nomatch$"/>
+    <is-automatic value="false"/>
+    <extended-properties value="MenuCaption=Ignore All Whitespace;GenerateAligner"/>
+    <pipeline value="le:regexReplace(Line, &quot;\s+&quot;, &quot;&quot;)"/>
+  </plugin>
+  <plugin name="PreventBlankLineMatch">
+    <event value="ALIAS_ALIGN"/>
+    <description value="Do not align blank lines with each other"/>
+    <file-filters value="\.nomatch$"/>
+    <is-automatic value="false"/>
+    <extended-properties value="MenuCaption=Do Not Align Blank Lines"/>
+    <pipeline value="le:if(strlen(trim(Line))==0, &quot;&lt;blank&gt;&quot; + fullpath + &quot;:&quot; + linenumber, Line)"/>
+  </plugin>
   <!--
   <plugin name="JScript-test">
     <event value="FILE_PACK_UNPACK" />
