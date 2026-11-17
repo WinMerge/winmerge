@@ -359,6 +359,7 @@
     <ClCompile Include="..\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\editlib\parsers\cplusplus.cpp" />
+    <ClCompile Include="..\editlib\parsers\cobol.cpp" />
     <ClCompile Include="..\editlib\parsers\csharp.cpp" />
     <ClCompile Include="..\editlib\parsers\css.cpp" />
     <ClCompile Include="..\editlib\parsers\dcl.cpp" />
@@ -416,6 +417,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="cobolTests.cpp" />
     <ClCompile Include="luaTests.cpp" />
     <ClCompile Include="rtfTests.cpp" />
   </ItemGroup>
