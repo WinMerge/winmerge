@@ -360,6 +360,7 @@
     <ClCompile Include="..\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\editlib\parsers\cplusplus.cpp" />
     <ClCompile Include="..\editlib\parsers\csharp.cpp" />
+    <ClCompile Include="..\editlib\parsers\cobol.cpp" />
     <ClCompile Include="..\editlib\parsers\css.cpp" />
     <ClCompile Include="..\editlib\parsers\dcl.cpp" />
     <ClCompile Include="..\editlib\parsers\dlang.cpp" />
@@ -403,6 +404,7 @@
     <ClCompile Include="..\editlib\utils\string_util.cpp" />
     <ClCompile Include="..\editlib\SyntaxColors.cpp" />
     <ClCompile Include="batchTests.cpp" />
+    <ClCompile Include="cobolTests.cpp" />
     <ClCompile Include="LineInfoTests.cpp" />
     <ClCompile Include="UndoRecordTests.cpp" />
     <ClCompile Include="htmlTests.cpp" />

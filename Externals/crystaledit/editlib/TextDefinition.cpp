@@ -18,6 +18,7 @@ std::array<TextDefinition, static_cast<size_t>(SRC_MAX_ENTRY)> m_SourceDefs =
 	SRC_BATCH, _T("Batch"), _T("bat;btm;cmd"), false, SRCOPT_INSERTTABS | SRCOPT_AUTOINDENT, /*4,*/ _T(""), _T(""), _T("rem "), (unsigned)-1,
 	SRC_C, _T("C"), _T("c;cc;cpp;cppm;ixx;cxx;h;hpp;hxx;hm;inl;rh;tlh;tli;xs"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_CSHARP, _T("C#"), _T("cs"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
+	SRC_COBOL, _T("COBOL"), _T("cbl;cob;cpy;cobol"), false, SRCOPT_AUTOINDENT, /*4,*/ _T(""), _T(""), _T("*>"), (unsigned)-1,
 	SRC_CSS, _T("CSS"), _T("css"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T(""), (unsigned)-1,
 	SRC_DCL, _T("DCL"), _T("dcl;dcc"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,
 	SRC_DLANG, _T("D"), _T("d;di"), false, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T("/*"), _T("*/"), _T("//"), (unsigned)-1,

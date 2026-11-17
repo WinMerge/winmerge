@@ -39,6 +39,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\csharp.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\cobol.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\css.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
