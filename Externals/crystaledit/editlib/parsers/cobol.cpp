@@ -1,17 +1,24 @@
 ///////////////////////////////////////////////////////////////////////////
 //  File:    cobol.cpp
-//  Version: 1.0.0.0
-//  Updated: 16-Nov-2026
+//  Version: 1.1.0.0
+//  Updated: 17-Nov-2026
 //
 //  COBOL (free format) syntax highlighing definition
 //
-//  - Line comments: "*>" anywhere, and "*" or "/" in column 1
-//  - Compiler directives: lines starting with ">>" or "$"
-//  - String literals: "..." and '...' (doubled quote as escape),
-//    including prefixed literals such as X"..", N"..", Z"..", B"..", NX"..", BX"..
-//  - Picture strings after PIC / PICTURE [IS]
-//  - Name following FUNCTION is shown as function name
-//  - Paragraph and section names are shown as function names
+//  Color usage:
+//  - COLORINDEX_KEYWORD:      verbs, clauses and other reserved words
+//  - COLORINDEX_USER1:        data description and types: PIC and its picture string,
+//                             USAGE, COMP-3, OCCURS, REDEFINES..., and the type after AS
+//  - COLORINDEX_USER2:        any other word, that is data names (variables)
+//  - COLORINDEX_FUNCNAME:     paragraph and section names, both declared and referenced
+//                             by PERFORM / GO TO / THRU; function names (FUNCTION LENGTH,
+//                             $LENGTH) and method names after ":>" or "::"
+//  - COLORINDEX_NUMBER:       numeric literals, hexadecimal literals (X"0D0A"),
+//                             figurative constants and special registers
+//  - COLORINDEX_OPERATOR:     symbols and AND, OR, NOT, EQUAL, GREATER, LESS
+//  - COLORINDEX_STRING:       "..." and '...' (doubled quote as escape), Z"..", N"..", G".."
+//  - COLORINDEX_COMMENT:      "*>" anywhere, and "*" or "/" in column 1
+//  - COLORINDEX_PREPROCESSOR: ">>" directives and "$" directives ($SET, $IF...)
 ////////////////////////////////////////////////////////////////////////////
 
 #include "pch.h"
@@ -23,7 +30,9 @@
 #define new DEBUG_NEW
 #endif
 
-//  COBOL reserved words (sorted, case-insensitive)
+//  The lists below are searched with a binary search: keep them sorted (case-insensitive).
+
+//  COBOL reserved words
 static const tchar_t * s_apszCobolKeywordList[] =
   {
     _T ("ACCEPT"),
@@ -42,11 +51,11 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("ALSO"),
     _T ("ALTER"),
     _T ("ALTERNATE"),
-    _T ("AND"),
     _T ("ANY"),
     _T ("ARE"),
     _T ("AREA"),
     _T ("AREAS"),
+    _T ("AS"),
     _T ("ASCENDING"),
     _T ("ASSIGN"),
     _T ("AT"),
@@ -57,12 +66,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("BEEP"),
     _T ("BEFORE"),
     _T ("BELL"),
-    _T ("BINARY"),
-    _T ("BINARY-CHAR"),
-    _T ("BINARY-DOUBLE"),
-    _T ("BINARY-LONG"),
-    _T ("BINARY-SHORT"),
-    _T ("BIT"),
     _T ("BLANK"),
     _T ("BLINK"),
     _T ("BLOCK"),
@@ -89,20 +92,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("COMMIT"),
     _T ("COMMON"),
     _T ("COMMUNICATION"),
-    _T ("COMP"),
-    _T ("COMP-1"),
-    _T ("COMP-2"),
-    _T ("COMP-3"),
-    _T ("COMP-4"),
-    _T ("COMP-5"),
-    _T ("COMP-X"),
-    _T ("COMPUTATIONAL"),
-    _T ("COMPUTATIONAL-1"),
-    _T ("COMPUTATIONAL-2"),
-    _T ("COMPUTATIONAL-3"),
-    _T ("COMPUTATIONAL-4"),
-    _T ("COMPUTATIONAL-5"),
-    _T ("COMPUTATIONAL-X"),
     _T ("COMPUTE"),
     _T ("CONFIGURATION"),
     _T ("CONSTANT"),
@@ -130,6 +119,7 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("DEBUGGING"),
     _T ("DECIMAL-POINT"),
     _T ("DECLARATIVES"),
+    _T ("DECLARE"),
     _T ("DEFAULT"),
     _T ("DELETE"),
     _T ("DELIMITED"),
@@ -176,7 +166,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("ENTRY"),
     _T ("ENVIRONMENT"),
     _T ("EOP"),
-    _T ("EQUAL"),
     _T ("ERASE"),
     _T ("ERROR"),
     _T ("ESI"),
@@ -189,7 +178,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("EXTEND"),
     _T ("EXTERNAL"),
     _T ("FACTORY"),
-    _T ("FALSE"),
     _T ("FD"),
     _T ("FILE"),
     _T ("FILE-CONTROL"),
@@ -210,7 +198,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("GLOBAL"),
     _T ("GO"),
     _T ("GOBACK"),
-    _T ("GREATER"),
     _T ("GROUP"),
     _T ("HEADING"),
     _T ("HIGHLIGHT"),
@@ -219,7 +206,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("IDENTIFICATION"),
     _T ("IF"),
     _T ("IN"),
-    _T ("INDEX"),
     _T ("INDEXED"),
     _T ("INDICATE"),
     _T ("INHERITS"),
@@ -236,21 +222,16 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("INVALID"),
     _T ("INVOKE"),
     _T ("IS"),
-    _T ("JUST"),
-    _T ("JUSTIFIED"),
     _T ("KEY"),
     _T ("LABEL"),
     _T ("LAST"),
     _T ("LEADING"),
     _T ("LEFT"),
     _T ("LENGTH"),
-    _T ("LESS"),
     _T ("LIMIT"),
     _T ("LIMITS"),
     _T ("LINAGE"),
-    _T ("LINAGE-COUNTER"),
     _T ("LINE"),
-    _T ("LINE-COUNTER"),
     _T ("LINES"),
     _T ("LINKAGE"),
     _T ("LOCAL-STORAGE"),
@@ -272,13 +253,11 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("NEGATIVE"),
     _T ("NEXT"),
     _T ("NO"),
-    _T ("NOT"),
     _T ("NUMBER"),
     _T ("NUMERIC"),
     _T ("NUMERIC-EDITED"),
     _T ("OBJECT"),
     _T ("OBJECT-COMPUTER"),
-    _T ("OCCURS"),
     _T ("OF"),
     _T ("OFF"),
     _T ("OMITTED"),
@@ -286,24 +265,19 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("OPEN"),
     _T ("OPTIONAL"),
     _T ("OPTIONS"),
-    _T ("OR"),
     _T ("ORDER"),
     _T ("ORGANIZATION"),
     _T ("OTHER"),
     _T ("OUTPUT"),
     _T ("OVERFLOW"),
     _T ("OVERRIDE"),
-    _T ("PACKED-DECIMAL"),
     _T ("PADDING"),
     _T ("PAGE"),
-    _T ("PAGE-COUNTER"),
+    _T ("PARAGRAPH"),
     _T ("PERFORM"),
     _T ("PF"),
     _T ("PH"),
-    _T ("PIC"),
-    _T ("PICTURE"),
     _T ("PLUS"),
-    _T ("POINTER"),
     _T ("POSITION"),
     _T ("POSITIVE"),
     _T ("PRINTING"),
@@ -326,7 +300,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("RECORD"),
     _T ("RECORDING"),
     _T ("RECORDS"),
-    _T ("REDEFINES"),
     _T ("REEL"),
     _T ("REFERENCE"),
     _T ("REFERENCES"),
@@ -334,7 +307,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("RELEASE"),
     _T ("REMAINDER"),
     _T ("REMOVAL"),
-    _T ("RENAMES"),
     _T ("REPLACE"),
     _T ("REPLACING"),
     _T ("REPORT"),
@@ -371,12 +343,10 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("SELF"),
     _T ("SEND"),
     _T ("SENTENCE"),
-    _T ("SEPARATE"),
     _T ("SEQUENCE"),
     _T ("SEQUENTIAL"),
     _T ("SET"),
     _T ("SHARING"),
-    _T ("SIGN"),
     _T ("SIZE"),
     _T ("SORT"),
     _T ("SORT-MERGE"),
@@ -398,8 +368,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("SUPER"),
     _T ("SUPPRESS"),
     _T ("SYMBOLIC"),
-    _T ("SYNC"),
-    _T ("SYNCHRONIZED"),
     _T ("TALLYING"),
     _T ("TAPE"),
     _T ("TERMINAL"),
@@ -415,9 +383,7 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("TO"),
     _T ("TOP"),
     _T ("TRAILING"),
-    _T ("TRUE"),
     _T ("TYPE"),
-    _T ("TYPEDEF"),
     _T ("UNDERLINE"),
     _T ("UNIT"),
     _T ("UNLOCK"),
@@ -425,7 +391,6 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("UNTIL"),
     _T ("UP"),
     _T ("UPON"),
-    _T ("USAGE"),
     _T ("USE"),
     _T ("USING"),
     _T ("VALIDATE"),
@@ -440,15 +405,72 @@ static const tchar_t * s_apszCobolKeywordList[] =
     _T ("WRITE"),
   };
 
-//  Figurative constants and special registers (sorted, case-insensitive)
-static const tchar_t * s_apszCobolUser1KeywordList[] =
+//  Data description and type words
+static const tchar_t * s_apszCobolStorageKeywordList[] =
   {
+    _T ("BINARY"),
+    _T ("BINARY-CHAR"),
+    _T ("BINARY-DOUBLE"),
+    _T ("BINARY-LONG"),
+    _T ("BINARY-SHORT"),
+    _T ("BIT"),
+    _T ("COMP"),
+    _T ("COMP-1"),
+    _T ("COMP-2"),
+    _T ("COMP-3"),
+    _T ("COMP-4"),
+    _T ("COMP-5"),
+    _T ("COMP-6"),
+    _T ("COMP-N"),
+    _T ("COMP-X"),
+    _T ("COMPUTATIONAL"),
+    _T ("COMPUTATIONAL-1"),
+    _T ("COMPUTATIONAL-2"),
+    _T ("COMPUTATIONAL-3"),
+    _T ("COMPUTATIONAL-4"),
+    _T ("COMPUTATIONAL-5"),
+    _T ("COMPUTATIONAL-6"),
+    _T ("COMPUTATIONAL-N"),
+    _T ("COMPUTATIONAL-X"),
+    _T ("FLOAT-EXTENDED"),
+    _T ("FLOAT-LONG"),
+    _T ("FLOAT-SHORT"),
+    _T ("INDEX"),
+    _T ("JUST"),
+    _T ("JUSTIFIED"),
+    _T ("OBJECT-REFERENCE"),
+    _T ("OCCURS"),
+    _T ("PACKED-DECIMAL"),
+    _T ("PIC"),
+    _T ("PICTURE"),
+    _T ("POINTER"),
+    _T ("PROCEDURE-POINTER"),
+    _T ("PROGRAM-POINTER"),
+    _T ("REDEFINES"),
+    _T ("RENAMES"),
+    _T ("SEPARATE"),
+    _T ("SIGN"),
+    _T ("SIGNED"),
+    _T ("SYNC"),
+    _T ("SYNCHRONIZED"),
+    _T ("TYPEDEF"),
+    _T ("UNSIGNED"),
+    _T ("USAGE"),
+  };
+
+//  Figurative constants and special registers
+static const tchar_t * s_apszCobolConstantList[] =
+  {
+    _T ("FALSE"),
     _T ("HIGH-VALUE"),
     _T ("HIGH-VALUES"),
+    _T ("LINAGE-COUNTER"),
+    _T ("LINE-COUNTER"),
     _T ("LOW-VALUE"),
     _T ("LOW-VALUES"),
     _T ("NULL"),
     _T ("NULLS"),
+    _T ("PAGE-COUNTER"),
     _T ("QUOTE"),
     _T ("QUOTES"),
     _T ("RETURN-CODE"),
@@ -456,10 +478,37 @@ static const tchar_t * s_apszCobolUser1KeywordList[] =
     _T ("SPACE"),
     _T ("SPACES"),
     _T ("TALLY"),
+    _T ("TRUE"),
     _T ("WHEN-COMPILED"),
     _T ("ZERO"),
     _T ("ZEROES"),
     _T ("ZEROS"),
+  };
+
+//  Logical and relational operators written as words
+static const tchar_t * s_apszCobolOperatorList[] =
+  {
+    _T ("AND"),
+    _T ("EQUAL"),
+    _T ("EQUALS"),
+    _T ("GREATER"),
+    _T ("LESS"),
+    _T ("NOT"),
+    _T ("OR"),
+  };
+
+//  "$" compiler directives
+static const tchar_t * s_apszCobolDirectiveList[] =
+  {
+    _T ("DEFINE"),
+    _T ("DISPLAY"),
+    _T ("ELIF"),
+    _T ("ELSE"),
+    _T ("END"),
+    _T ("END-IF"),
+    _T ("IF"),
+    _T ("SET"),
+    _T ("XFD"),
   };
 
 static bool
@@ -469,9 +518,27 @@ IsCobolKeyword (const tchar_t *pszChars, int nLength)
 }
 
 static bool
-IsCobolUser1Keyword (const tchar_t *pszChars, int nLength)
+IsCobolStorageKeyword (const tchar_t *pszChars, int nLength)
 {
-  return ISXKEYWORDI (s_apszCobolUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszCobolStorageKeywordList, pszChars, nLength);
+}
+
+static bool
+IsCobolConstant (const tchar_t *pszChars, int nLength)
+{
+  return ISXKEYWORDI (s_apszCobolConstantList, pszChars, nLength);
+}
+
+static bool
+IsCobolOperator (const tchar_t *pszChars, int nLength)
+{
+  return ISXKEYWORDI (s_apszCobolOperatorList, pszChars, nLength);
+}
+
+static bool
+IsCobolDirective (const tchar_t *pszChars, int nLength)
+{
+  return ISXKEYWORDI (s_apszCobolDirectiveList, pszChars, nLength);
 }
 
 static inline bool
@@ -493,15 +560,24 @@ IsWord (const tchar_t *pszChars, int nLength, const tchar_t *pszWord)
 }
 
 /**
- * @brief Prefixes of alphanumeric literals: X"..", Z"..", N"..", B"..", H"..", G"..", NX"..", BX"..
+ * @brief Prefixes of hexadecimal and boolean literals: X"..", H"..", B"..", NX"..", BX".."
  */
 static bool
-IsCobolLiteralPrefix (const tchar_t *pszChars, int nLength)
+IsCobolNumericLiteralPrefix (const tchar_t *pszChars, int nLength)
 {
-  return IsWord (pszChars, nLength, _T ("X")) || IsWord (pszChars, nLength, _T ("Z")) ||
-         IsWord (pszChars, nLength, _T ("N")) || IsWord (pszChars, nLength, _T ("B")) ||
-         IsWord (pszChars, nLength, _T ("H")) || IsWord (pszChars, nLength, _T ("G")) ||
-         IsWord (pszChars, nLength, _T ("NX")) || IsWord (pszChars, nLength, _T ("BX"));
+  return IsWord (pszChars, nLength, _T ("X")) || IsWord (pszChars, nLength, _T ("H")) ||
+         IsWord (pszChars, nLength, _T ("B")) || IsWord (pszChars, nLength, _T ("NX")) ||
+         IsWord (pszChars, nLength, _T ("BX"));
+}
+
+/**
+ * @brief Prefixes of alphanumeric literals: Z"..", N"..", G".."
+ */
+static bool
+IsCobolStringLiteralPrefix (const tchar_t *pszChars, int nLength)
+{
+  return IsWord (pszChars, nLength, _T ("Z")) || IsWord (pszChars, nLength, _T ("N")) ||
+         IsWord (pszChars, nLength, _T ("G"));
 }
 
 /**
@@ -553,15 +629,33 @@ SkipCobolString (const tchar_t *pszChars, int nLength, int I)
   return nLength;
 }
 
+static int
+SkipBlanks (const tchar_t *pszChars, int nLength, int I)
+{
+  while (I < nLength && xisspace (pszChars[I]))
+    I++;
+  return I;
+}
+
 static bool
 IsCobolNumber (const tchar_t *pszChars, int nLength)
 {
   for (int i = 0; i < nLength; i++)
     {
-      if (!tc::istdigit (pszChars[i]) && pszChars[i] != '.' && pszChars[i] != ',')
+      if (!tc::istdigit (pszChars[i]))
         return false;
     }
   return nLength > 0;
+}
+
+/**
+ * @brief Return true if the word starting at I (after blanks) is pszWord.
+ */
+static bool
+IsNextWord (const tchar_t *pszChars, int nLength, int I, const tchar_t *pszWord)
+{
+  I = SkipBlanks (pszChars, nLength, I);
+  return IsWord (pszChars + I, SkipCobolWord (pszChars, nLength, I) - I, pszWord);
 }
 
 /**
@@ -570,8 +664,7 @@ IsCobolNumber (const tchar_t *pszChars, int nLength)
 static bool
 IsRestOfLineEmpty (const tchar_t *pszChars, int nLength, int I)
 {
-  while (I < nLength && xisspace (pszChars[I]))
-    I++;
+  I = SkipBlanks (pszChars, nLength, I);
   return I >= nLength || pszChars[I] == 0 || (pszChars[I] == '*' && I + 1 < nLength && pszChars[I + 1] == '>');
 }
 
@@ -592,12 +685,19 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
       return 0;
     }
 
-  int I = 0;
-  while (I < nLength && xisspace (pszChars[I]))
-    I++;
+  int I = SkipBlanks (pszChars, nLength, 0);
 
-  //  Compiler directive: >>SOURCE FORMAT FREE, >>IF ..., $SET ...
-  if (I < nLength && (pszChars[I] == '$' || (pszChars[I] == '>' && I + 1 < nLength && pszChars[I + 1] == '>')))
+  //  Compiler directive: >>SOURCE FORMAT FREE, $SET ..., $IF ...
+  //  A "$" followed by any other word is a function call such as $LENGTH(X).
+  bool bDirective = false;
+  if (I + 1 < nLength && pszChars[I] == '>' && pszChars[I + 1] == '>')
+    bDirective = true;
+  else if (I < nLength && pszChars[I] == '$')
+    {
+      const int nWord = SkipBlanks (pszChars, nLength, I + 1);
+      bDirective = IsCobolDirective (pszChars + nWord, SkipCobolWord (pszChars, nLength, nWord) - nWord);
+    }
+  if (bDirective)
     {
       DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);
       for (; I + 1 < nLength; I++)
@@ -613,7 +713,10 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
 
   bool bFirstWord = true;   // next word is the first one of the line
   bool bPicture = false;    // next token is a picture string (after PIC / PICTURE)
-  bool bFunction = false;   // next word is a function name (after FUNCTION)
+  bool bFunction = false;   // next word is a function or method name (after FUNCTION, ":>", "::")
+  bool bParagraph = false;  // next word is a paragraph name (after PERFORM, GO [TO], THRU)
+  bool bType = false;       // next word is a type name (after AS)
+  bool bAfterGo = false;    // previous word was GO
 
   while (I < nLength)
     {
@@ -627,8 +730,7 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
       if (xisspace (c))
         {
           DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
-          while (I < nLength && xisspace (pszChars[I]))
-            I++;
+          I = SkipBlanks (pszChars, nLength, I);
           continue;
         }
 
@@ -655,7 +757,7 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
           //  A trailing period ends the sentence
           if (J - I > 1 && pszChars[J - 1] == '.')
             J--;
-          DEFINE_BLOCK (I, COLORINDEX_USER2);
+          DEFINE_BLOCK (I, COLORINDEX_USER1);
           bPicture = false;
           bFirstWord = false;
           I = J;
@@ -667,7 +769,16 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
         {
           DEFINE_BLOCK (I, COLORINDEX_STRING);
           I = SkipCobolString (pszChars, nLength, I);
-          bFirstWord = false;
+          bFirstWord = bFunction = bParagraph = bType = bAfterGo = false;
+          continue;
+        }
+
+      //  Function call written as $LENGTH(X)
+      if (c == '$' && I + 1 < nLength && IsCobolWordChar (pszChars[I + 1]))
+        {
+          DEFINE_BLOCK (I, COLORINDEX_FUNCNAME);
+          I = SkipCobolWord (pszChars, nLength, I + 1);
+          bFirstWord = bFunction = bParagraph = bType = bAfterGo = false;
           continue;
         }
 
@@ -675,9 +786,14 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
       if (IsCobolWordChar (c))
         {
           int J = SkipCobolWord (pszChars, nLength, I);
+          const tchar_t *pszWord = pszChars + I;
+          const int nWordLength = J - I;
+          const bool bWasParagraph = bParagraph;
+          const bool bWasAfterGo = bAfterGo;
+          bParagraph = bAfterGo = false;
 
-          //  Decimal number: 3.14 or 3,14 (DECIMAL-POINT IS COMMA)
-          if (IsCobolNumber (pszChars + I, J - I))
+          //  Number: 3, 3.14 or 3,14 (DECIMAL-POINT IS COMMA)
+          if (IsCobolNumber (pszWord, nWordLength))
             {
               while (J + 1 < nLength && (pszChars[J] == '.' || pszChars[J] == ',') && tc::istdigit (pszChars[J + 1]))
                 {
@@ -686,49 +802,73 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
                     J++;
                 }
               DEFINE_BLOCK (I, COLORINDEX_NUMBER);
+              bFunction = bType = false;
             }
-          //  Prefixed literal: X"0D0A", N"...", Z"..."
-          else if (J < nLength && IsCobolQuote (pszChars[J]) && IsCobolLiteralPrefix (pszChars + I, J - I))
+          //  Prefixed literal: X"0D0A", NX"...", B"1" / N"...", Z"..."
+          else if (J < nLength && IsCobolQuote (pszChars[J]) && IsCobolNumericLiteralPrefix (pszWord, nWordLength))
+            {
+              DEFINE_BLOCK (I, COLORINDEX_NUMBER);
+              J = SkipCobolString (pszChars, nLength, J);
+            }
+          else if (J < nLength && IsCobolQuote (pszChars[J]) && IsCobolStringLiteralPrefix (pszWord, nWordLength))
             {
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               J = SkipCobolString (pszChars, nLength, J);
             }
+          //  FUNCTION LENGTH(X), obj:>method, Class::method
           else if (bFunction)
             {
               DEFINE_BLOCK (I, COLORINDEX_FUNCNAME);
               bFunction = false;
             }
-          else if (IsCobolKeyword (pszChars + I, J - I))
-            {
-              DEFINE_BLOCK (I, COLORINDEX_KEYWORD);
-              if (IsWord (pszChars + I, J - I, _T ("PIC")) || IsWord (pszChars + I, J - I, _T ("PICTURE")))
-                bPicture = true;
-              else if (IsWord (pszChars + I, J - I, _T ("FUNCTION")))
-                bFunction = true;
-            }
-          else if (IsCobolUser1Keyword (pszChars + I, J - I))
+          //  DECLARE NAME AS TYPE, method parameters "NAME AS TYPE"
+          else if (bType)
             {
               DEFINE_BLOCK (I, COLORINDEX_USER1);
+              bType = false;
+            }
+          else if (IsCobolOperator (pszWord, nWordLength))
+            {
+              DEFINE_BLOCK (I, COLORINDEX_OPERATOR);
+            }
+          else if (IsCobolConstant (pszWord, nWordLength))
+            {
+              DEFINE_BLOCK (I, COLORINDEX_NUMBER);
+            }
+          else if (IsCobolStorageKeyword (pszWord, nWordLength))
+            {
+              DEFINE_BLOCK (I, COLORINDEX_USER1);
+              if (IsWord (pszWord, nWordLength, _T ("PIC")) || IsWord (pszWord, nWordLength, _T ("PICTURE")))
+                bPicture = true;
+            }
+          else if (IsCobolKeyword (pszWord, nWordLength))
+            {
+              DEFINE_BLOCK (I, COLORINDEX_KEYWORD);
+              if (IsWord (pszWord, nWordLength, _T ("FUNCTION")))
+                bFunction = true;
+              else if (IsWord (pszWord, nWordLength, _T ("AS")))
+                bType = true;
+              else if (IsWord (pszWord, nWordLength, _T ("PERFORM")) || IsWord (pszWord, nWordLength, _T ("THRU")) ||
+                       IsWord (pszWord, nWordLength, _T ("THROUGH")))
+                bParagraph = true;
+              else if (IsWord (pszWord, nWordLength, _T ("GO")))
+                bParagraph = bAfterGo = true;
+              else if (bWasAfterGo && IsWord (pszWord, nWordLength, _T ("TO")))
+                bParagraph = true;
             }
           else
             {
-              //  Paragraph name ("NAME." alone on the line) or section name ("NAME SECTION.")
-              bool bLabel = false;
+              //  Paragraph name: "PERFORM NAME", "GO TO NAME", "THRU NAME", but not "PERFORM WS-COUNT TIMES"
+              bool bLabel = bWasParagraph && !IsNextWord (pszChars, nLength, J, _T ("TIMES"));
+              //  Paragraph declaration ("NAME." alone on the line) or section declaration ("NAME SECTION.")
               if (bFirstWord)
                 {
                   if (J < nLength && pszChars[J] == '.' && IsRestOfLineEmpty (pszChars, nLength, J + 1))
                     bLabel = true;
-                  else
-                    {
-                      int K = J;
-                      while (K < nLength && xisspace (pszChars[K]))
-                        K++;
-                      int L = SkipCobolWord (pszChars, nLength, K);
-                      if (IsWord (pszChars + K, L - K, _T ("SECTION")))
-                        bLabel = true;
-                    }
+                  else if (IsNextWord (pszChars, nLength, J, _T ("SECTION")))
+                    bLabel = true;
                 }
-              DEFINE_BLOCK (I, bLabel ? COLORINDEX_FUNCNAME : COLORINDEX_NORMALTEXT);
+              DEFINE_BLOCK (I, bLabel ? COLORINDEX_FUNCNAME : COLORINDEX_USER2);
             }
 
           bFirstWord = false;
@@ -736,10 +876,20 @@ CrystalLineParser::ParseLineCobol (unsigned dwCookie, const tchar_t *pszChars, i
           continue;
         }
 
+      //  Method invocation: obj:>method, Class::method
+      if (c == ':' && I + 1 < nLength && (pszChars[I + 1] == '>' || pszChars[I + 1] == ':'))
+        {
+          DEFINE_BLOCK (I, COLORINDEX_OPERATOR);
+          I += 2;
+          bFunction = true;
+          bFirstWord = bParagraph = bType = bAfterGo = false;
+          continue;
+        }
+
       //  Operators and separators: . , ; ( ) + - * / ** = < > : &
       DEFINE_BLOCK (I, COLORINDEX_OPERATOR);
       I++;
-      bFirstWord = false;
+      bFirstWord = bFunction = bParagraph = bType = bAfterGo = false;
     }
 
   return 0;
