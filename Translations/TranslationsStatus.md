@@ -149,50 +149,52 @@ Counts show populated keys in the WinMerge-specific `.islu` files compared with 
 
 ## Docs/Readme
 
+Each ReadMe counts as one document. Identical English copies are untranslated; any content difference is considered translated. UTF-8 BOM and line endings are ignored. This does not measure translation completeness or quality.
+
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
-| Arabic               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Azerbaijani          |     - |          - |     - |            - |        - |  2026-10-24 |
-| Basque               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Brazilian            |     - |          - |     - |            - |        - |  2026-10-24 |
-| Bulgarian            |     - |          - |     - |            - |        - |  2026-10-24 |
-| Catalan              |     - |          - |     - |            - |        - |  2026-10-24 |
-| ChineseSimplified    |     - |          - |     - |            - |        - |  2023-12-29 |
-| ChineseTraditional   |     - |          - |     - |            - |        - |  2026-10-24 |
-| Corsican             |     - |          - |     - |            - |        - |  2024-01-16 |
-| Croatian             |     - |          - |     - |            - |        - |  2026-10-24 |
-| Czech                |     - |          - |     - |            - |        - |  2026-10-24 |
-| Danish               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Dutch                |     - |          - |     - |            - |        - |  2026-10-24 |
-| English              |     - |          - |     - |            - |        - |  2023-02-18 |
-| Finnish              |     - |          - |     - |            - |        - |  2026-10-24 |
-| French               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Galician             |     - |          - |     - |            - |        - |  2026-10-24 |
-| German               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Greek                |     - |          - |     - |            - |        - |  2026-10-24 |
-| Hebrew               |     - |          - |     - |            - |        - |  2025-03-13 |
-| Hungarian            |     - |          - |     - |            - |        - |  2026-10-24 |
-| Indonesian           |     - |          - |     - |            - |        - |  2026-10-24 |
-| Italian              |     - |          - |     - |            - |        - |  2026-10-24 |
-| Japanese             |     - |          - |     - |            - |        - |  2023-12-29 |
-| Korean               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Lithuanian           |     - |          - |     - |            - |        - |  2026-10-24 |
-| Norwegian            |     - |          - |     - |            - |        - |  2026-10-24 |
-| Persian              |     - |          - |     - |            - |        - |  2026-10-24 |
-| Polish               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Portuguese           |     - |          - |     - |            - |        - |  2026-10-24 |
-| Romanian             |     - |          - |     - |            - |        - |  2026-10-24 |
-| Russian              |     - |          - |     - |            - |        - |  2026-10-24 |
-| Serbian              |     - |          - |     - |            - |        - |  2026-10-24 |
-| Sinhala              |     - |          - |     - |            - |        - |  2023-12-29 |
-| Slovak               |     - |          - |     - |            - |        - |  2026-10-24 |
-| Slovenian            |     - |          - |     - |            - |        - |  2026-10-24 |
-| Spanish              |     - |          - |     - |            - |        - |  2026-10-24 |
-| Swedish              |     - |          - |     - |            - |        - |  2026-10-24 |
-| Tamil                |     - |          - |     - |            - |        - |  2023-12-29 |
-| Turkish              |     - |          - |     - |            - |        - |  2026-10-24 |
-| Ukrainian            |     - |          - |     - |            - |        - |  2026-10-24 |
-| Vietnamese           |     - |          - |     - |            - |        - |  2026-01-22 |
+| Arabic               |     1 |          0 |     0 |            1 |      0 % |  2026-10-24 |
+| Azerbaijani          |     1 |          0 |     0 |            1 |      0 % |  2026-10-24 |
+| Basque               |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Brazilian            |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Bulgarian            |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Catalan              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| ChineseSimplified    |     1 |          1 |     0 |            0 |    100 % |  2023-12-29 |
+| ChineseTraditional   |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Corsican             |     1 |          1 |     0 |            0 |    100 % |  2024-01-16 |
+| Croatian             |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Czech                |     1 |          0 |     0 |            1 |      0 % |  2026-10-24 |
+| Danish               |     1 |          0 |     0 |            1 |      0 % |  2026-10-24 |
+| Dutch                |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| English              |     1 |          1 |     0 |            0 |    100 % |  2023-02-18 |
+| Finnish              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| French               |     1 |          1 |     0 |            0 |    100 % |  2026-11-05 |
+| Galician             |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| German               |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Greek                |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Hebrew               |     1 |          1 |     0 |            0 |    100 % |  2025-03-13 |
+| Hungarian            |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Indonesian           |     1 |          0 |     0 |            1 |      0 % |  2026-10-24 |
+| Italian              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Japanese             |     1 |          1 |     0 |            0 |    100 % |  2023-12-29 |
+| Korean               |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Lithuanian           |     1 |          1 |     0 |            0 |    100 % |  2026-11-03 |
+| Norwegian            |     1 |          0 |     0 |            1 |      0 % |  2026-10-24 |
+| Persian              |     1 |          0 |     0 |            1 |      0 % |  2026-10-24 |
+| Polish               |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Portuguese           |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Romanian             |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Russian              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Serbian              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Sinhala              |     1 |          0 |     0 |            1 |      0 % |  2023-12-29 |
+| Slovak               |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Slovenian            |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Spanish              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Swedish              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Tamil                |     1 |          0 |     0 |            1 |      0 % |  2023-12-29 |
+| Turkish              |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Ukrainian            |     1 |          1 |     0 |            0 |    100 % |  2026-10-24 |
+| Vietnamese           |     1 |          0 |     0 |            1 |      0 % |  2026-01-22 |
 
 ## Translators
 
