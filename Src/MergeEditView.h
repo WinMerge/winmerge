@@ -144,6 +144,7 @@ public:
 	void WMGoto() { OnWMGoto(); };
 	CTreeSitterParser* GetTreeSitterParser();
 	void GotoTreeSitterDefinition();
+	void UpdateTreeSitterStatus(const CEPoint& cursorPos, bool bGhostLine);
 	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true, int nChar = -1);
 	int GetTopLine() const { return m_nTopLine; }
 	using CCrystalTextView::GetScreenLines;
@@ -214,6 +215,8 @@ protected:
 	void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int type);
 	void OnDropFiles(const std::vector<String>& files);
 	void SelDiffCopy(int actPane);
+	void ResolveSemantically(bool bAll);
+	int GetSemanticMergeDiff() const;
 
 	// Generated message map functions
 protected:
@@ -278,6 +281,14 @@ protected:
 	String GetPaneNameForMergeMenu() const;
 	afx_msg void OnMergeChooseThis();
 	afx_msg void OnUpdateMergeChooseThis(CCmdUI* pCmdUI);
+	afx_msg void OnSemanticMerge();
+	afx_msg void OnUpdateSemanticMerge(CCmdUI* pCmdUI);
+	afx_msg void OnSemanticMergeAll();
+	afx_msg void OnUpdateSemanticMergeAll(CCmdUI* pCmdUI);
+	afx_msg void OnSemanticMergeOption();
+	afx_msg void OnUpdateSemanticMergeOption(CCmdUI* pCmdUI);
+	afx_msg void OnSemanticResolutionNavigation(UINT nID);
+	afx_msg void OnUpdateSemanticResolutionNavigation(CCmdUI* pCmdUI);
 	afx_msg void OnCopyX2Y(UINT nID);
 	afx_msg void OnCopyLinesX2Y(UINT nID);
 	afx_msg void OnX2Y(int srcPane, int dstPane, bool selectedLineOnly = false);

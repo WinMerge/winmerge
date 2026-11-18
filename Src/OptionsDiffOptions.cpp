@@ -27,6 +27,7 @@ void Init(COptionsMgr *pOptionsMgr)
 	pOptionsMgr->InitOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, false);
 	pOptionsMgr->InitOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, false);
 	pOptionsMgr->InitOption(OPT_CMP_IGNORE_LINE_BREAKS, false);
+	pOptionsMgr->InitOption(OPT_CMP_IGNORE_TRAILING_PUNCTUATION, false);
 }
 
 void Load(const COptionsMgr *pOptionsMgr, DIFFOPTIONS& options)
@@ -40,6 +41,7 @@ void Load(const COptionsMgr *pOptionsMgr, DIFFOPTIONS& options)
 	options.bIgnoreEol = pOptionsMgr->GetBool(OPT_CMP_IGNORE_EOL);
 	options.bIgnoreMissingTrailingEol = pOptionsMgr->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
 	options.bIgnoreLineBreaks = pOptionsMgr->GetBool(OPT_CMP_IGNORE_LINE_BREAKS);
+	options.bIgnoreTrailingPunctuation = pOptionsMgr->GetBool(OPT_CMP_IGNORE_TRAILING_PUNCTUATION);
 	options.bIndentHeuristic = pOptionsMgr->GetBool(OPT_CMP_INDENT_HEURISTIC);
 	options.bCompletelyBlankOutIgnoredChanges = pOptionsMgr->GetBool(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
 }
@@ -55,6 +57,7 @@ void Save(COptionsMgr *pOptionsMgr, const DIFFOPTIONS& options)
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_EOL, options.bIgnoreEol);
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, options.bIgnoreMissingTrailingEol);
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_LINE_BREAKS, options.bIgnoreLineBreaks);
+	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_TRAILING_PUNCTUATION, options.bIgnoreTrailingPunctuation);
 	pOptionsMgr->SaveOption(OPT_CMP_INDENT_HEURISTIC, options.bIndentHeuristic);
 	pOptionsMgr->SaveOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, options.bCompletelyBlankOutIgnoredChanges);
 }

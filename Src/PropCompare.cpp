@@ -31,6 +31,7 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
  , m_bMovedBlocks(false)
  , m_bAlignSimilarLines(false)
  , m_bFilterCommentsLines(false)
+ , m_bIgnoreTrailingPunctuation(false)
  , m_nDiffAlgorithm(0)
  , m_bIndentHeuristic(true)
  , m_bCompleteBlankOutIgnoredChanges(false)
@@ -38,6 +39,7 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite, IDC_WHITESPACE, DDX_Radio);
 	BindOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines, IDC_IGNBLANKS_CHECK, DDX_Check);
 	BindOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines, IDC_FILTERCOMMENTS_CHECK, DDX_Check);
+	BindOption(OPT_CMP_IGNORE_TRAILING_PUNCTUATION, m_bIgnoreTrailingPunctuation, IDC_IGNORETRAILINGPUNCT_CHECK, DDX_Check);
 	BindOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase, IDC_IGNCASE_CHECK, DDX_Check);
 	BindOption(OPT_CMP_IGNORE_NUMBERS, m_bIgnoreNumbers, IDC_IGNORE_NUMBERS, DDX_Check);
 	BindOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol, IDC_EOL_SENSITIVE, DDX_Check);

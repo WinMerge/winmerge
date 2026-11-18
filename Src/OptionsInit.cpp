@@ -71,6 +71,9 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT_MODE, 1);
+	pOptions->InitOption(OPT_TREE_SITTER_OCCURRENCE_HIGHLIGHT, true);
+	pOptions->InitOption(OPT_TREE_SITTER_BREADCRUMB, true);
+	pOptions->InitOption(OPT_SEMANTIC_MERGE, false);
 	pOptions->InitOption(OPT_WORDWRAP, false);
 	pOptions->InitOption(OPT_WORDWRAP_TABLE, false);
 	pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);

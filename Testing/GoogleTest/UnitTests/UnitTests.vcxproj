@@ -574,6 +574,12 @@
     <ClCompile Include="..\..\..\Src\PropertySystem.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\SemanticMergeAnalyzer.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\StructuralDiff.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\..\Src\SubstitutionFiltersList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -621,6 +627,8 @@
     <ClCompile Include="..\FullQuickCompare\FullQuickCompare_test.cpp" />
     <ClCompile Include="..\ImageCompare\ImageCompare_test.cpp" />
     <ClCompile Include="..\MoveDetection\RenameMoveDetection_test.cpp" />
+    <ClCompile Include="..\SemanticMerge\SemanticMergeAnalyzer_test.cpp" />
+    <ClCompile Include="..\StructuralDiff\StructuralDiff_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>

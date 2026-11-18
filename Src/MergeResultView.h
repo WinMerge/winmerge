@@ -41,6 +41,7 @@ public:
 	virtual void OnInitialUpdate() override;
 	virtual BOOL PreTranslateMessage(MSG* pMsg) override;
 	virtual void DrawMargin(const CRect & rect, int nLineIndex, int nLineNumber) override;
+	virtual INT_PTR OnToolHitTest(CPoint point, TOOLINFO* pTI) const override;
 	virtual void OnUpdateCaret() override;
 	void UpdateStatusbar();
 	void ShowSyntaxTypeMenu(CPoint ptScreen, CFont* pFont);
@@ -52,6 +53,8 @@ public:
 	/** @brief Make this view the frame's active, focused view. */
 	void TakeFocus();
 	void GetSelectedDiffs(int& firstDiff, int& lastDiff);
+	void GoToSemanticResolution(bool bForward);
+	bool CanGoToSemanticResolution(bool bForward);
 
 private:
 	int LineToDiff(int nLine) const;
@@ -71,6 +74,7 @@ protected:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bSyncingCurrentDiff; /**< true while this view drives diff selection */
 	CCrystalParser m_xParser; /**< Syntax parser used for syntax highlighting. */
+	String m_sToolTip; /**< Text of the margin tooltip being shown */
 
 	//{{AFX_MSG(CMergeResultView)
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
@@ -106,6 +110,11 @@ protected:
 	afx_msg void OnPrev3wayDiff(int nDiffType);
 	afx_msg void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType);
 	afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
+	afx_msg BOOL OnToolTipText(UINT nID, NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnNextSemanticResolution();
+	afx_msg void OnPrevSemanticResolution();
+	afx_msg void OnUpdateNextSemanticResolution(CCmdUI* pCmdUI);
+	afx_msg void OnUpdatePrevSemanticResolution(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

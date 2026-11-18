@@ -80,6 +80,8 @@ public:
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 	int GetLastCompareResult() const { return m_nLastCompareResult; }
 	bool GetNonInteractive() const { return m_bNonInteractive; }
+	/** @brief Semantic merge turned on for this run with -semantic, without changing the saved option */
+	bool GetSemanticMergeForRun() const { return m_bSemanticMergeForRun; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
@@ -182,6 +184,7 @@ private:
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
+	bool m_bSemanticMergeForRun;
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	bool m_bEnableExitCode;

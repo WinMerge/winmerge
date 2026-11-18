@@ -98,6 +98,7 @@ private:
 	bool m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
 	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
+	bool m_bIgnoreTrailingPunctuation; /**< The value of the "Ignore trailing punctuation" setting */
 	bool m_bIgnoreMissingTrailingEol; /**< The value of the "Ignore missing trailing EOL" setting */
 	bool m_bIgnoreLineBreaks; /**< The value of the "Ignore line breaks (treat as spaces)" setting */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
@@ -175,6 +176,8 @@ protected:
 	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreComments();
 	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreTrailingPunctuation();
+	afx_msg void OnUpdateDiffIgnoreTrailingPunctuation(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreMissingTrailingEol();
 	afx_msg void OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreLineBreaks();

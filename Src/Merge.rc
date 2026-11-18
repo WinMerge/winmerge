@@ -105,6 +105,10 @@ BEGIN
         MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
+        MENUITEM "Resolve Conflict Semanticall&y\tCtrl+Alt+Shift+M", ID_SEMANTIC_MERGE
+        MENUITEM "Resolve A&ll Conflicts Semantically\tCtrl+Alt+Shift+A", ID_SEMANTIC_MERGE_ALL
+        MENUITEM "&Next Semantic Resolution",   ID_NEXT_SEMANTIC_RESOLUTION
+        MENUITEM "&Previous Semantic Resolution", ID_PREV_SEMANTIC_RESOLUTION
         MENUITEM SEPARATOR
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
@@ -143,6 +147,10 @@ BEGIN
         MENUITEM "Choose Middle for All Unresolved Conflicts", ID_MERGE_RESULT_CHOOSE_ALL_2ND
         MENUITEM "Choose Right for All Unresolved Conflicts",  ID_MERGE_RESULT_CHOOSE_ALL_3RD
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
+        MENUITEM "Resolve Conflict Semanticall&y\tCtrl+Alt+Shift+M", ID_SEMANTIC_MERGE
+        MENUITEM "Resolve A&ll Conflicts Semantically\tCtrl+Alt+Shift+A", ID_SEMANTIC_MERGE_ALL
+        MENUITEM "&Next Semantic Resolution",   ID_NEXT_SEMANTIC_RESOLUTION
+        MENUITEM "&Previous Semantic Resolution", ID_PREV_SEMANTIC_RESOLUTION
         MENUITEM SEPARATOR
         MENUITEM "&End Merge Session",          ID_MERGE_END_SESSION
     END
@@ -186,6 +194,13 @@ BEGIN
         MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+&3", ID_SEL_DIFF_COPY_3RD
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        POPUP "Semantic Merge"
+        BEGIN
+            MENUITEM "Resolve Conflict Semantically\tCtrl+Alt+Shift+M", ID_SEMANTIC_MERGE
+            MENUITEM "Resolve All Conflicts Semantically\tCtrl+Alt+Shift+A", ID_SEMANTIC_MERGE_ALL
+            MENUITEM SEPARATOR
+            MENUITEM "Resolve Conflicts Semantically (Experimental)", ID_SEMANTIC_MERGE_OPTION
+        END
         POPUP "Add to &Filters"
         BEGIN
             MENUITEM "Add to &Display Filter",      ID_ADD_TO_DISPLAY_FILTERS
@@ -951,6 +966,13 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Start Merge Sess&ion",        ID_MERGE_START_SESSION
         MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
+        POPUP "Semantic Merge"
+        BEGIN
+            MENUITEM "Resolve Conflict Semantically\tCtrl+Alt+Shift+M", ID_SEMANTIC_MERGE
+            MENUITEM "Resolve All Conflicts Semantically\tCtrl+Alt+Shift+A", ID_SEMANTIC_MERGE_ALL
+            MENUITEM SEPARATOR
+            MENUITEM "Resolve Conflicts Semantically (Experimental)", ID_SEMANTIC_MERGE_OPTION
+        END
         MENUITEM SEPARATOR
         MENUITEM "Add &Synchronization Point\tAlt+S", ID_ADD_SYNCPOINT
         MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
@@ -1221,6 +1243,7 @@ BEGIN
         MENUITEM "Ignore Codepage &Differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
         MENUITEM "Ignore Num&bers",             IDC_DIFF_IGNORENUMBERS
         MENUITEM "Ignore C&omment Differences", ID_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM "Ignore Trailing &Punctuation", ID_DIFF_OPTIONS_IGNORE_TRAILING_PUNCTUATION
         MENUITEM "Ignore &Missing Trailing EOL", ID_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
         MENUITEM "Ignore Line &Breaks (Treat as Spaces)", ID_DIFF_OPTIONS_IGNORE_LINE_BREAKS
         MENUITEM SEPARATOR
@@ -1254,6 +1277,7 @@ BEGIN
         MENUITEM "Ignore Codepage &Differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
         MENUITEM "Ignore Num&bers",             ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
         MENUITEM "Ignore C&omment Differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM "Ignore Trailing &Punctuation", ID_PROJECT_DIFF_OPTIONS_IGNORE_TRAILING_PUNCTUATION
         MENUITEM "Ignore &Missing Trailing EOL", ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
         MENUITEM "Ignore Line &Breaks (Treat as Spaces)", ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS
         MENUITEM SEPARATOR
@@ -2202,6 +2226,7 @@ END
 IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_SEMANTIC_MERGE_ALL,  VIRTKEY, SHIFT, CONTROL, ALT, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "D",            ID_VIEW_DIFFCONTEXT_TOGGLE, VIRTKEY, CONTROL, NOINVERT
     "D",            ID_EDITOR_EDIT_PATH,    VIRTKEY, ALT, NOINVERT
@@ -2217,6 +2242,7 @@ BEGIN
     "L",            ID_VIEW_DISPLAY_FILTER_BAR, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "M",            ID_EDIT_MARK,           VIRTKEY, SHIFT, CONTROL, NOINVERT
     "M",            ID_AUTO_MERGE,          VIRTKEY, CONTROL, ALT, NOINVERT
+    "M",            ID_SEMANTIC_MERGE,      VIRTKEY, SHIFT, CONTROL, ALT, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -2710,17 +2736,19 @@ BEGIN
     CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,309,10
     CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
-    CONTROL         "Ignore &missing trailing EOL",IDC_IGNEOFEOL_CHECK,
+    CONTROL         "Ignore trailing &punctuation (, ;)",IDC_IGNORETRAILINGPUNCT_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,239,10
-    CONTROL         "Ignore line &breaks (treat as spaces)",IDC_IGNLBRKS_CHECK,
+    CONTROL         "Ignore &missing trailing EOL",IDC_IGNEOFEOL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,239,10
-    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,309,10
-    CONTROL         "Align &similar lines",IDC_ALIGN_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,168,309,10
-    LTEXT           "Diff &algorithm:",IDC_STATIC,7,180,309,10
-    COMBOBOX        IDC_DIFF_ALGORITHM,6,192,310,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,210,309,10
+    CONTROL         "Ignore line &breaks (treat as spaces)",IDC_IGNLBRKS_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,239,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,168,309,10
+    CONTROL         "Align &similar lines",IDC_ALIGN_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,180,309,10
+    LTEXT           "Diff &algorithm:",IDC_STATIC,7,192,309,10
+    COMBOBOX        IDC_DIFF_ALGORITHM,6,204,310,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,222,309,10
     CONTROL         "Completely unhighlight the ignored differences",IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,222,309,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,234,309,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -2732,14 +2760,16 @@ BEGIN
     CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,309,10
     LTEXT           "Highlight &mode:",IDC_STATIC,7,18,256,10
     COMBOBOX        IDC_HILITE_SYNTAX_MODE,7,30,310,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
-    CONTROL         "&Preserve original EOL",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,309,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,58,311,72,WS_GROUP
-    LTEXT           "&Tab size:",IDC_STATIC,14,70,256,10
-    EDITTEXT        IDC_TAB_EDIT,24,82,18,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    CONTROL         "&Insert tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,100,256,10
-    CONTROL         "Insert &spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,112,256,10
-    LTEXT           "&Rendering mode:",IDC_STATIC,7,134,310,10
-    COMBOBOX        IDC_RENDERING_MODE,7,146,310,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Highlight symbol occ&urrences at caret (tree-sitter)",IDC_TREE_SITTER_OCCURRENCE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,309,10
+    CONTROL         "Show enclosing-symbol path in status &bar (tree-sitter)",IDC_TREE_SITTER_BREADCRUMB_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,58,309,10
+    CONTROL         "&Preserve original EOL",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,309,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,96,311,72,WS_GROUP
+    LTEXT           "&Tab size:",IDC_STATIC,14,108,256,10
+    EDITTEXT        IDC_TAB_EDIT,24,120,18,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    CONTROL         "&Insert tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,138,256,10
+    CONTROL         "Insert &spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,150,256,10
+    LTEXT           "&Rendering mode:",IDC_STATIC,7,172,310,10
+    COMBOBOX        IDC_RENDERING_MODE,7,184,310,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -2758,6 +2788,7 @@ BEGIN
     LTEXT           "W&ord break characters:",IDC_STATIC,24,112,286,10
     EDITTEXT        IDC_BREAK_CHARS,24,124,286,14,ES_AUTOHSCROLL
     CONTROL         "&Use Merge Result Pane for 2/3-way merge",IDC_MERGE_RESULT_PANE_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,309,10
+    CONTROL         "Resolve conflicts &semantically in the Merge Result Pane (experimental, tree-sitter)",IDC_SEMANTIC_MERGE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,158,309,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -5505,6 +5536,11 @@ BEGIN
     ID_ALL_RIGHT            "\nCopy All to Right"
     ID_ALL_LEFT             "\nCopy All to Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
+    ID_SEMANTIC_MERGE       "Resolve the conflict at the cursor with the semantic merge rules\nResolve Conflict Semantically (Ctrl+Alt+Shift+M)"
+    ID_SEMANTIC_MERGE_ALL   "Resolve every pending conflict with the semantic merge rules\nResolve All Conflicts Semantically (Ctrl+Alt+Shift+A)"
+    ID_SEMANTIC_MERGE_OPTION "Use the semantic merge rules in Auto Merge and the semantic commands\nResolve Conflicts Semantically (Experimental)"
+    ID_NEXT_SEMANTIC_RESOLUTION "\nNext Semantic Resolution"
+    ID_PREV_SEMANTIC_RESOLUTION "\nPrevious Semantic Resolution"
     ID_FIRSTFILE            "\nFirst File"
     ID_NEXTFILE             "\nNext File (Ctrl+F8)"
     ID_LASTFILE             "\nLast File"
@@ -5526,6 +5562,77 @@ BEGIN
     IDS_MERGE_RESULT_SAVE_AS "Save Merge Result As"
     IDS_MERGE_RESULT_STATUS_CONFLICTS2 "Conflicts: %1, Unresolved: %2"
     IDS_MERGE_RESULT_STATUS_CONFLICTS3 "Conflicts: %1, Unresolved: %2 (%3 whitespace-only)"
+END
+
+// Semantic merge messages (written as _("...") in the code)
+STRINGTABLE
+BEGIN
+    IDS_SEMANTIC_MERGE_STRING_01 "  Semantic: %1"
+    IDS_SEMANTIC_MERGE_STRING_02 ", Semantic: %1"
+    IDS_SEMANTIC_MERGE_STRING_03 "%1: commented out by %2, with the edit of %3"
+    IDS_SEMANTIC_MERGE_STRING_04 "%1: the identifier rename of %2 replayed onto the version of %3"
+    IDS_SEMANTIC_MERGE_STRING_05 "%1: the parameter rename of %2 replayed onto the version of %3"
+    IDS_SEMANTIC_MERGE_STRING_06 "%1: the string literal change of %2 replayed onto the version of %3"
+    IDS_SEMANTIC_MERGE_STRING_07 "a difference of the definition is already resolved."
+    IDS_SEMANTIC_MERGE_STRING_08 "both sides added different lines at the same place; which goes first is yours to decide."
+    IDS_SEMANTIC_MERGE_STRING_09 "Both sides changed the definition the same way."
+    IDS_SEMANTIC_MERGE_STRING_10 "Both sides changed this definition, and neither change is one small change (a string literal, a parameter rename or an identifier rename)."
+    IDS_SEMANTIC_MERGE_STRING_11 "Commented-out definition update"
+    IDS_SEMANTIC_MERGE_STRING_12 "Definition rules"
+    IDS_SEMANTIC_MERGE_STRING_13 "Duplicate addition"
+    IDS_SEMANTIC_MERGE_STRING_14 "Duplicate addition of %1: %2 and %3 both added it; kept once"
+    IDS_SEMANTIC_MERGE_STRING_15 "Duplicate addition: %1 added the same lines as %2, and more; took %1"
+    IDS_SEMANTIC_MERGE_STRING_16 "Failed to extract the definition text for semantic merge."
+    IDS_SEMANTIC_MERGE_STRING_17 "Moved definition"
+    IDS_SEMANTIC_MERGE_STRING_18 "Moved definition %1: %2 moved it, %3 edited it"
+    IDS_SEMANTIC_MERGE_STRING_19 "neither side moved the definition while the other kept it in place."
+    IDS_SEMANTIC_MERGE_STRING_20 "No conflict could be resolved semantically."
+    IDS_SEMANTIC_MERGE_STRING_21 "No matching definition was found for the difference in base and the editing side."
+    IDS_SEMANTIC_MERGE_STRING_22 "No semantic merge rule resolves this conflict."
+    IDS_SEMANTIC_MERGE_STRING_23 "One-sided change of %1: only %2 changed it"
+    IDS_SEMANTIC_MERGE_STRING_24 "One-sided definition change"
+    IDS_SEMANTIC_MERGE_STRING_25 "Place the cursor in an unresolved conflict first."
+    IDS_SEMANTIC_MERGE_STRING_26 "Resolved semantically at result line %1: %2"
+    IDS_SEMANTIC_MERGE_STRING_27 "Resolved semantically: %1"
+    IDS_SEMANTIC_MERGE_STRING_28 "Semantic merge is turned off (Merge > Resolve Conflicts Semantically)."
+    IDS_SEMANTIC_MERGE_STRING_29 "Semantic merge needs three compared files."
+    IDS_SEMANTIC_MERGE_STRING_30 "Semantic merge supports only 3-way comparisons."
+    IDS_SEMANTIC_MERGE_STRING_31 "Semantic merge works in the Merge Result pane, which is turned off."
+    IDS_SEMANTIC_MERGE_STRING_32 "Small change onto refactored definition"
+    IDS_SEMANTIC_MERGE_STRING_33 "The base and the two sides of the merge are not set."
+    IDS_SEMANTIC_MERGE_STRING_34 "The block is not a line-commented definition."
+    IDS_SEMANTIC_MERGE_STRING_35 "The commented-out block does not match the base version of the definition."
+    IDS_SEMANTIC_MERGE_STRING_36 "the conflict is not at the definition's old place."
+    IDS_SEMANTIC_MERGE_STRING_37 "the conflict is not inside a definition."
+    IDS_SEMANTIC_MERGE_STRING_38 "the conflict is not pending."
+    IDS_SEMANTIC_MERGE_STRING_39 "the definition is not there exactly once in every pane."
+    IDS_SEMANTIC_MERGE_STRING_40 "The definition is the same in all panes."
+    IDS_SEMANTIC_MERGE_STRING_41 "the definition shares lines with another definition."
+    IDS_SEMANTIC_MERGE_STRING_42 "the difference is not a conflict."
+    IDS_SEMANTIC_MERGE_STRING_43 "The difference is not available."
+    IDS_SEMANTIC_MERGE_STRING_44 "The difference maps to different definitions across panes."
+    IDS_SEMANTIC_MERGE_STRING_45 "The differences of this definition also contain other changes; resolve them in the merge result first."
+    IDS_SEMANTIC_MERGE_STRING_46 "The differences of this definition are already resolved in the merge result."
+    IDS_SEMANTIC_MERGE_STRING_47 "the editing side also changed other code around the definition."
+    IDS_SEMANTIC_MERGE_STRING_48 "the editing side only re-laid the definition out, or both sides changed the same words of it."
+    IDS_SEMANTIC_MERGE_STRING_49 "The merge result already reads this way."
+    IDS_SEMANTIC_MERGE_STRING_50 "the merge result could not be changed."
+    IDS_SEMANTIC_MERGE_STRING_51 "The merge result no longer matches the compared files."
+    IDS_SEMANTIC_MERGE_STRING_52 "the merge result was edited by hand around the definition."
+    IDS_SEMANTIC_MERGE_STRING_53 "The merge result was edited by hand around this definition."
+    IDS_SEMANTIC_MERGE_STRING_54 "the merged definition would add syntax errors."
+    IDS_SEMANTIC_MERGE_STRING_55 "the merged lines would add syntax errors."
+    IDS_SEMANTIC_MERGE_STRING_56 "The other side did not change the commented-out definition."
+    IDS_SEMANTIC_MERGE_STRING_57 "The resolution cannot be applied to the merge result."
+    IDS_SEMANTIC_MERGE_STRING_58 "The resolution would add syntax errors."
+    IDS_SEMANTIC_MERGE_STRING_59 "The small change could not be mapped uniquely onto the other side's version of the definition."
+    IDS_SEMANTIC_MERGE_STRING_60 "the two sides changed the same words, or one side changed too much to line the changes up."
+    IDS_SEMANTIC_MERGE_STRING_61 "there is no tree-sitter grammar for this file type."
+    IDS_SEMANTIC_MERGE_STRING_62 "Token merge"
+    IDS_SEMANTIC_MERGE_STRING_63 "Token merge: %1 and %2 changed different parts of these lines"
+    IDS_SEMANTIC_MERGE_STRING_64 "Tree-sitter data is not available for all panes."
+    IDS_SEMANTIC_MERGE_STRING_65 "The changing side also changed the lines of this definition outside the definition itself."
+    IDS_SEMANTIC_MERGE_STRING_66 "The other side's version of the definition already uses the new name."
 END
 
 // PLUGINS MENU

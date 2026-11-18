@@ -480,6 +480,8 @@ protected:
 	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreComments();
 	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreTrailingPunctuation();
+	afx_msg void OnUpdateDiffIgnoreTrailingPunctuation(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreMissingTrailingEol();
 	afx_msg void OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreLineBreaks();

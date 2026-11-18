@@ -31,6 +31,7 @@
 class CLineFilterHelperMenu;
 class CMainFrame;
 class CMergeResultTextBuffer;
+namespace SemanticMerge { struct Suggestion; struct MergeRoles; }
 typedef CTypedPtrList<CPtrList, CMergeDoc*> MergeDocList;
 
 /**
@@ -120,6 +121,7 @@ struct CurrentWordDiff
 struct IDirDoc;
 struct DiffFileInfo;
 class CMergeEditView;
+class CTreeSitterParser;
 class PackingInfo;
 class PrediffingInfo;
 class CMergeEditFrame;
@@ -182,6 +184,8 @@ public:
 	void CopyMultiplePartialList(int srcPane, int dstPane, int activePane,
 		int firstDiff, int lastDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bCharacter);
 	void DoAutoMerge(int dstPane);
+	/** @brief The semantic pipeline (R2-R6) on one conflict of the merge result */
+	bool ResolveConflictSemantically(int nDiff, String& message, int anchorPane = -1, int anchorLine = -1);
 	bool SanityCheckDiff(const DIFFRANGE& dr) const;
 	bool HasInvisibleLines(int firstDiff, int lastDiff) const;
 	bool InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int nFirstWordDiff, int nLastWordDiff, const std::vector<int>* pWordDiffIndice, bool bGroupWithPrevious = false, bool bUpdateView = true);
@@ -208,6 +212,10 @@ public:
 	void IgnoreColumnInComparison(int column, const String& panePrefix, bool add);
 	void ResetIgnoredColumnsInComparison();
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
+	CTreeSitterParser* GetTreeSitterParser(int nBuffer);
+	bool IsTreeSitterEnabled() const;
+	bool IsSemanticMergeEnabled() const;
+	String GetSemanticMergeUnavailableReason();
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView* pLocationView) { m_pLocationView = pLocationView; }
@@ -341,6 +349,9 @@ public:
 	CMergeResultTextBuffer* GetMergeResultBuffer() const { return m_ptResultBuf.get(); }
 	bool IsMergeResultPaneVisible() const;
 	int GetMergeBasePane() const { return m_nMergeBasePane; }
+	int GetMergeDestPane() const;
+	/** @brief The semantic pipeline (R1, then R2-R6 per conflict) over the merge result */
+	int DoSemanticMergeConflictsToResult();
 	bool StartMergeSession(int nBasePane, bool bAutoMerge, bool bWithMessage);
 	bool EndMergeSession();
 	bool GetMergeResultBuildState() const { return m_bResultBuilt; }
@@ -362,8 +373,17 @@ public:
 	/** @brief Would deleting the given range destroy a placeholder line? */
 	bool IsResultDeleteTouchingPlaceholder(int nStartLine, int nStartPos,
 		int nEndLine, int nEndPos) const;
-	/** @brief Margin provenance marker for a result line ('1'..'3', 'm', '?'), 0 for none */
+	/** @brief Margin provenance marker for a result line ('1'..'3', 'm', '?', 's'), 0 for none */
 	tchar_t GetResultLineMarker(int nLine) const;
+	/** @brief Number of semantic resolutions in the result (one can cover several differences) */
+	int GetResultSemanticCount() const;
+	/** @brief Next (or previous) semantically resolved difference from a result line, -1 for none */
+	int FindResultSemanticDiff(int nFromLine, bool bForward) const;
+	/** @brief Semantic resolutions made since the counts were last reset, per rule */
+	const SemanticResolutionCounts& GetSemanticResolutionCounts() const { return m_semanticCounts; }
+	void ResetSemanticResolutionCounts() { m_semanticCounts = SemanticResolutionCounts(); }
+	/** @brief Auto Merge report lines for the semantic resolutions counted, empty for none */
+	String FormatSemanticResolutionReport() const;
 	const MergeResultSegment* GetResultSegmentByLine(int nLine) const;
 	const MergeResultSegment* GetResultSegmentByDiff(int nDiff) const;
 
@@ -393,6 +413,32 @@ private:
 	String BuildExpandedResultText() const;
 	bool AdjustResultSegmentsAfterLineDeletion(int nRemovedBegin, int nCount);
 	void EnsureNoLinesPlaceholder(int nSegment);
+	void GetPaneRealLines(int nPane, int nApparentBegin, int nApparentEnd, std::vector<String>& lines, std::vector<int>* pApparent) const;
+	bool MapPaneLineToResult(int nPane, int nApparentLine, int& nResultLine) const;
+	bool IsResultCommonTextIntact(int nApparentBegin, int nApparentEnd) const;
+	int RewritePaneLinesInResult(int nPane, int nBeginLine, int nEndLine, const std::vector<String>& newLines,
+		const std::vector<int>& diffs, bool& bGroupWithPrevious);
+	bool ResultResolveWithText(int nDiff, const String& resolvedText, bool bGroupWithPrevious);
+	bool TryContainedAdditionToResult(int nDiff, bool& bGroupWithPrevious);
+	bool TryTokenMergeConflictToResult(int nDiff, bool& bGroupWithPrevious, String& why);
+	bool TryMovedDefinitionMergeToResult(int nDiff, bool& bGroupWithPrevious, String& why);
+	int ResolveDuplicateAdditionsInResult(bool& bGroupWithPrevious);
+	bool GetDefinitionLines(int nPane, int nStartLine, int nEndLine,
+		std::vector<String>& lines, std::vector<int>& apparent) const;
+	bool TryBuildSemanticSuggestion(int nDiff, SemanticMerge::Suggestion& suggestion, String& message,
+		int anchorPane, int anchorLine);
+	bool TryResolveConflictSemantically(int nDiff, bool& bGroupWithPrevious, String* pWhy,
+		int anchorPane = -1, int anchorLine = -1);
+	bool ApplySemanticSuggestionToResult(const SemanticMerge::Suggestion& suggestion,
+		bool& bGroupWithPrevious, String& message);
+	SemanticMerge::MergeRoles GetSemanticMergeRoles() const;
+	/** @brief G4: does the file with the new text in place parse no worse than both sides' files? */
+	bool IsSemanticResultSyntaxOk(int nPane, int nBeginLine, int nEndLine, const String& newText);
+	SemanticResolutionSnapshot BeginSemanticResolution() const;
+	int EndSemanticResolution(const SemanticResolutionSnapshot& before, SemanticRule rule, const String& reason);
+	SemanticResolutionCounts m_semanticCounts; /**< Semantic resolutions since the last reset */
+	int m_nLastSemanticId = 0; /**< Id of the latest semantic resolution */
+	int m_nSemanticSidesErrors = -1; /**< G4: worse of the two sides' syntax error counts; -1 until counted for this result */
 	std::unique_ptr<CMergeResultTextBuffer> m_ptResultBuf; /**< Merge result buffer (not part of the diff) */
 	CMergeResultView* m_pMergeResultView; /**< Merge result view, or nullptr */
 	std::vector<MergeResultSegment> m_resultSegments; /**< Segments covering the result buffer */

@@ -157,6 +157,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const tchar_t* q)
 	, m_bSelfCompare(false)
 	, m_bClipboardCompare(false)
 	, m_bNewCompare(false)
+	, m_bSemanticMerge(false)
 	, m_dwLeftFlags(FFILEOPEN_NONE)
 	, m_dwMiddleFlags(FFILEOPEN_NONE)
 	, m_dwRightFlags(FFILEOPEN_NONE)
@@ -407,6 +408,16 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 		{
 			m_bEnableExitCode = true;
 		}
+		else if (param == _T("checkonly"))
+		{
+			// -checkonly compares the files and exits with the comparison result
+			// as the process exit code, without leaving a window open or showing
+			// any dialogs (convenience preset for scripting/CI). Combine with
+			// -ignorecomments / -ignoreeol / -ignorews for a semantic-equivalence
+			// check that ignores formatting and comment differences.
+			m_bNonInteractive = true;
+			m_bEnableExitCode = true;
+		}
 		else if (param == _T("minimize"))
 		{
 			// -minimize means minimize the main window.
@@ -545,6 +556,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 			// -ar to auto-merge at the right pane
 			m_dwRightFlags |= FFILEOPEN_AUTOMERGE;
 		}
+		else if (param == _T("semantic"))
+		{
+			// -semantic turns semantic conflict resolution on for this run (with -al/-am/-ar)
+			m_bSemanticMerge = true;
+		}
 		else if (param == _T("x"))
 		{
 			// -x to close application if files are identical.
@@ -591,6 +607,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 		else if (param == _T("ignorecomments"))
 		{
 			q = SetOption(q, OPT_CMP_FILTER_COMMENTLINES);
+		}
+		else if (param == _T("ignoretrailingpunctuation"))
+		{
+			q = SetOption(q, OPT_CMP_IGNORE_TRAILING_PUNCTUATION);
 		}
 		else if (param == _T("cfg") || param == _T("config"))
 		{

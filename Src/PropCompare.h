@@ -37,6 +37,7 @@ public:
 	bool    m_bMovedBlocks;
 	bool    m_bAlignSimilarLines;
 	bool    m_bFilterCommentsLines;
+	bool    m_bIgnoreTrailingPunctuation;
 	int     m_nDiffAlgorithm;
 	bool    m_bIndentHeuristic;
 	bool    m_bCompleteBlankOutIgnoredChanges;

@@ -1077,6 +1077,16 @@
     <ClCompile Include="PropMessageBoxes.cpp" />
     <ClCompile Include="PropSysColors.cpp" />
     <ClCompile Include="ReplaceListHelper.cpp" />
+    <ClCompile Include="SemanticMergeAnalyzer.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="StructuralDiff.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1622,6 +1632,8 @@
     <ClInclude Include="PropSysColors.h" />
     <ClInclude Include="ReplaceListHelper.h" />
     <ClInclude Include="SplitterPositions.h" />
+    <ClInclude Include="SemanticMergeAnalyzer.h" />
+    <ClInclude Include="StructuralDiff.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
