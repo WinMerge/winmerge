@@ -33,6 +33,7 @@ enum LanguageId
 	SRC_BASIC,
 	SRC_BATCH,
 	SRC_C,
+	SRC_COBOL,
 	SRC_CSHARP,
 	SRC_CSS,
 	SRC_DCL,
