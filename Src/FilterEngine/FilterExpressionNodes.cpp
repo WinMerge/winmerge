@@ -1029,7 +1029,20 @@ static std::optional<Poco::Timestamp> ParseDateTime(const std::string& str)
 		{
 			int tz = 0;
 			Poco::DateTimeParser::parse(fmt, str, dt, tz);
-			dt.makeUTC((str.find_first_of("zZ+") != std::string::npos) ? tz : Poco::Timezone::tzd());
+			if (str.find_first_of("zZ+") != std::string::npos)
+			{
+				dt.makeUTC(tz);
+			}
+			else
+			{
+				// Use the UTC offset in effect at the parsed date rather than
+				// at evaluation time, so literals in a different DST period
+				// than today (e.g. a January date evaluated in July) convert
+				// consistently with Poco::LocalDateTime arithmetic.
+				Poco::LocalDateTime ldt(dt.year(), dt.month(), dt.day(),
+					dt.hour(), dt.minute(), dt.second(), dt.millisecond(), dt.microsecond());
+				dt.makeUTC(ldt.tzd());
+			}
 			return dt.timestamp();
 		}
 		catch (Poco::SyntaxException&)

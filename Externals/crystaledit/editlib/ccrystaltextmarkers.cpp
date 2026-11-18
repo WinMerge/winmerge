@@ -74,6 +74,19 @@ void CCrystalTextMarkers::UpdateViews()
 		pView->UpdateView(nullptr, nullptr, 0, -1);
 }
 
+/**
+ * @brief Repaint all attached views without resetting their caches.
+ *
+ * Markers only affect colors, not parse state, line lengths or wrapping,
+ * so a plain repaint is enough to show a marker change. Use this instead
+ * of UpdateViews() for frequent changes (e.g. caret-following markers).
+ */
+void CCrystalTextMarkers::InvalidateViews()
+{
+	for (auto& pView : m_views)
+		pView->Invalidate(false);
+}
+
 CString CCrystalTextMarkers::Serialize() const
 {
 	CString text;

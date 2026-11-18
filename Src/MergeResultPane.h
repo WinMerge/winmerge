@@ -22,7 +22,25 @@ enum class ResultSegmentState
 	Unresolved, /**< Difference not resolved yet, but the sides do not conflict */
 	Conflict,   /**< Unresolved conflict between compared sides */
 	Edited,     /**< Segment has been edited by hand in the result pane */
+	Semantic,   /**< Conflict resolved by a semantic merge rule (see MergeResultSegment::semanticRule) */
 };
+
+/**
+ * @brief Semantic merge rule that resolved a segment (Docs/Developers/SemanticMerge.md, section 4).
+ */
+enum class SemanticRule
+{
+	None,
+	DuplicateAddition,   /**< R1: both sides added the same definition; kept once */
+	TokenMerge,          /**< R2: both sides changed different tokens of the same lines */
+	MovedDefinition,     /**< R3: one side moved a definition, the other edited it */
+	DefinitionChange,    /**< R4: only one side changed the definition */
+	LocalizedChange,     /**< R5: one small change replayed onto a refactored definition */
+	CommentedOut,        /**< R6: commented-out definition updated with the other side's edit */
+};
+
+/** @brief Short display name of a rule, e.g. "Moved definition". */
+String SemanticRuleName(SemanticRule rule);
 
 /**
  * @brief One contiguous run of lines in the merge result buffer.
@@ -70,5 +88,38 @@ struct MergeResultSegment
 	 */
 	String blockText;
 	int nBlockLines = 0; /**< Line count of blockText */
+	SemanticRule semanticRule = SemanticRule::None; /**< Rule that resolved a Semantic segment */
+	String semanticReason; /**< One-line explanation of a Semantic resolution */
+	int semanticId = 0; /**< Resolution the segment belongs to; one resolution can cover several segments */
+};
+
+/**
+ * @brief Linked segments as they were before a semantic rule ran;
+ * the segments that differ afterwards are the ones the rule resolved.
+ */
+struct SemanticResolutionSnapshot
+{
+	struct Entry
+	{
+		int diffIdx = -1;
+		ResultSegmentState state = ResultSegmentState::Common;
+		std::vector<int> srcPanes;
+		int nLines = 0;
+	};
+	uint32_t nRevision = 0; /**< Result buffer revision before the rule */
+	std::vector<Entry> entries;
+};
+
+/** @brief Semantic resolutions per rule, for the Auto Merge report. */
+struct SemanticResolutionCounts
+{
+	int counts[static_cast<int>(SemanticRule::CommentedOut) + 1] = {};
+	int Total() const
+	{
+		int nTotal = 0;
+		for (int n : counts)
+			nTotal += n;
+		return nTotal;
+	}
 };
 

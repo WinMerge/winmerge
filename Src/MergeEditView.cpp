@@ -19,6 +19,7 @@
 #include "MergeDoc.h"
 #include "MainFrm.h"
 #include "MergeLogger.h"
+#include "Logger.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
 #include "WMGotoDlg.h"
@@ -41,6 +42,8 @@
 #include "MergeResultTextBuffer.h"
 #include "MergeDiffNavigation.h"
 #include "MergeConflictNavigation.h"
+#include "ccrystaltextmarkers.h"
+#include "FindTextHelper.h"
 #include "Common/PopupList.h"
 
 #ifdef _DEBUG
@@ -192,6 +195,14 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI(ID_AUTO_MERGE, OnUpdateAutoMerge)
 	ON_COMMAND(ID_MERGE_CHOOSE_THIS, OnMergeChooseThis)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_CHOOSE_THIS, OnUpdateMergeChooseThis)
+	ON_COMMAND(ID_SEMANTIC_MERGE, OnSemanticMerge)
+	ON_UPDATE_COMMAND_UI(ID_SEMANTIC_MERGE, OnUpdateSemanticMerge)
+	ON_COMMAND(ID_SEMANTIC_MERGE_ALL, OnSemanticMergeAll)
+	ON_UPDATE_COMMAND_UI(ID_SEMANTIC_MERGE_ALL, OnUpdateSemanticMergeAll)
+	ON_COMMAND(ID_SEMANTIC_MERGE_OPTION, OnSemanticMergeOption)
+	ON_UPDATE_COMMAND_UI(ID_SEMANTIC_MERGE_OPTION, OnUpdateSemanticMergeOption)
+	ON_COMMAND_RANGE(ID_NEXT_SEMANTIC_RESOLUTION, ID_PREV_SEMANTIC_RESOLUTION, OnSemanticResolutionNavigation)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_NEXT_SEMANTIC_RESOLUTION, ID_PREV_SEMANTIC_RESOLUTION, OnUpdateSemanticResolutionNavigation)
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_LINES_L2R, OnLinesL2r)
@@ -2109,7 +2120,9 @@ void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 
 		int nUnresolved = 0, nConflicts = 0, nWhiteSpaceOnly = 0;
 		pDoc->GetResultUnresolvedCounts(nUnresolved, nConflicts, nWhiteSpaceOnly);
-		pCmdUI->Enable(nUnresolved - nConflicts > 0);
+		// conflicts are worth a try only with semantic merge on
+		const bool bSemanticFallback = pDoc->IsSemanticMergeEnabled();
+		pCmdUI->Enable(nUnresolved - (bSemanticFallback ? 0 : nConflicts) > 0);
 		return;
 	}
 	pCmdUI->Enable(pDoc->m_nBuffers == 3 && 
@@ -2117,6 +2130,127 @@ void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 		!pDoc->GetAutoMerged() && 
 		QueryEditable());
 }
+
+void CMergeEditView::OnSemanticMerge()
+{
+	ResolveSemantically(false);
+}
+
+void CMergeEditView::OnUpdateSemanticMerge(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->IsSemanticMergeEnabled());
+}
+
+void CMergeEditView::OnSemanticMergeAll()
+{
+	ResolveSemantically(true);
+}
+
+void CMergeEditView::OnUpdateSemanticMergeAll(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->IsSemanticMergeEnabled());
+}
+
+/**
+ * @brief The semantic pipeline from a command, on the conflict at the
+ * cursor or on every pending conflict (Docs/Developers/SemanticMerge.md,
+ * section 5). Without a merge session it starts one the way Auto Merge does.
+ */
+void CMergeEditView::ResolveSemantically(bool bAll)
+{
+	CMergeDoc* pDoc = GetDocument();
+	const String unavailable = pDoc->GetSemanticMergeUnavailableReason();
+	if (!unavailable.empty())
+	{
+		AfxMessageBox(unavailable.c_str(), MB_ICONINFORMATION);
+		return;
+	}
+
+	// From the result pane the current difference is meant, from a
+	// compared pane the one at the cursor
+	int nDiff = -1, anchorPane = -1, anchorLine = -1;
+	if (!bAll)
+	{
+		const bool bFromResult = pDoc->GetMergeResultBuildState() &&
+			CWnd::GetFocus() == static_cast<CWnd*>(pDoc->GetMergeResultView());
+		if (bFromResult)
+			nDiff = pDoc->GetCurrentDiff();
+		else
+		{
+			nDiff = GetSemanticMergeDiff();
+			// the definition under the cursor is meant when the conflict spans several
+			anchorPane = m_nThisPane;
+			anchorLine = GetCursorPos().y;
+		}
+	}
+
+	CWaitCursor waitstatus;
+	if (!pDoc->GetMergeResultBuildState() && !pDoc->StartMergeSession(2 - m_nThisPane, false, true))
+		return;
+
+	pDoc->ResetSemanticResolutionCounts();
+	if (bAll)
+	{
+		pDoc->DoSemanticMergeConflictsToResult();
+		const String report = pDoc->FormatSemanticResolutionReport();
+		AfxMessageBox((report.empty() ? _("No conflict could be resolved semantically.") : report).c_str(),
+			MB_ICONINFORMATION);
+		return;
+	}
+
+	String message;
+	if (pDoc->ResolveConflictSemantically(nDiff, message, anchorPane, anchorLine))
+		pDoc->OnResultPaneCurrentDiffChanged(nDiff); // the resolution is logged with its reason
+	else
+		AfxMessageBox(message.c_str(), MB_ICONINFORMATION);
+}
+
+/**
+ * @brief The significant difference at the cursor, or the only one selected; -1 for none.
+ */
+int CMergeEditView::GetSemanticMergeDiff() const
+{
+	const CMergeDoc* pDoc = GetDocument();
+	const CEPoint pt = GetCursorPos();
+	const int diffAtCursor = pDoc->m_diffList.LineToDiff(pt.y);
+	if (diffAtCursor != -1 && pDoc->m_diffList.IsDiffSignificant(diffAtCursor))
+		return diffAtCursor;
+
+	int firstDiff = -1;
+	int lastDiff = -1;
+	const_cast<CMergeEditView*>(this)->GetSelectedDiffs(firstDiff, lastDiff);
+	if (firstDiff != -1 && firstDiff == lastDiff && pDoc->m_diffList.IsDiffSignificant(firstDiff))
+		return firstDiff;
+
+	return -1;
+}
+
+void CMergeEditView::OnSemanticMergeOption()
+{
+	GetOptionsMgr()->SaveOption(OPT_SEMANTIC_MERGE, !GetOptionsMgr()->GetBool(OPT_SEMANTIC_MERGE));
+}
+
+void CMergeEditView::OnUpdateSemanticMergeOption(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_nBuffers == 3);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SEMANTIC_MERGE) || theApp.GetSemanticMergeForRun());
+}
+
+/** @brief Next/Previous Semantic Resolution while a compared pane is active: the result pane's */
+void CMergeEditView::OnSemanticResolutionNavigation(UINT nID)
+{
+	CMergeDoc* pDoc = GetDocument();
+	if (pDoc->GetMergeResultBuildState() && pDoc->GetMergeResultView() != nullptr)
+		pDoc->GetMergeResultView()->GoToSemanticResolution(nID == ID_NEXT_SEMANTIC_RESOLUTION);
+}
+
+void CMergeEditView::OnUpdateSemanticResolutionNavigation(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pDoc = GetDocument();
+	pCmdUI->Enable(pDoc->GetMergeResultBuildState() && pDoc->GetMergeResultView() != nullptr &&
+		pDoc->GetMergeResultView()->CanGoToSemanticResolution(pCmdUI->m_nID == ID_NEXT_SEMANTIC_RESOLUTION));
+}
+
 
 /**
  * @brief Difference the merge commands in this pane's context menu act on.
@@ -2705,6 +2839,8 @@ void CMergeEditView::OnUpdateCaret()
 		curChar, chars, selectedLines, selectedChars,
 		sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage(), GetDocument()->m_ptBuf[m_nThisPane]->getHasBom());
 
+	UpdateTreeSitterStatus(cursorPos, (dwLineFlags & LF_GHOST) != 0);
+
 	// Is cursor inside difference?
 	if (dwLineFlags & LF_NONTRIVIAL_DIFF)
 		m_bCurrentLineIsDiff = true;
@@ -3231,16 +3367,90 @@ CTreeSitterParser* CMergeEditView::GetTreeSitterParser()
 	if (pSyntaxParser)
 		return pSyntaxParser;
 
-	if (!m_CurSourceDef)
+	// Normally m_CurSourceDef carries the language, but when syntax highlighting is
+	// disabled the view is left on SRC_PLAIN. Resolve the language from the file
+	// extension so semantic features work regardless of the highlighting option.
+	LangServices::TextDefinition* pDef = m_CurSourceDef;
+	if (pDef == nullptr || pDef->type == LangServices::LanguageId::SRC_PLAIN)
+	{
+		String fileName = GetDocument()->m_ptBuf[m_nThisPane]->GetTempFileName();
+		String sExt;
+		paths::SplitFilename(fileName, nullptr, nullptr, &sExt);
+		if (LangServices::TextDefinition* pExtDef = LangServices::GetTextType(sExt.c_str()))
+			pDef = pExtDef;
+	}
+	if (pDef == nullptr || pDef->type == LangServices::LanguageId::SRC_PLAIN)
 		return nullptr;
 
-	m_pTreeSitterParser = TreeSitterSyntaxParserFactory::GetInstance().Create(m_CurSourceDef->type);
+	m_pTreeSitterParser = TreeSitterSyntaxParserFactory::GetInstance().Create(pDef->type);
 	if (!m_pTreeSitterParser)
 		return nullptr;
 
 	m_pTreeSitterParser->SetTextBuffer(GetDocument()->m_ptBuf[m_nThisPane].get());
 
 	return dynamic_cast<CTreeSitterParser *>(m_pTreeSitterParser.get());
+}
+
+/**
+ * @brief Update the caret-following tree-sitter UI: the status-bar
+ *        enclosing-symbol breadcrumb and the symbol-occurrence highlight.
+ *
+ * Both run on every caret move, so each is individually gated by an option
+ * (OPT_TREE_SITTER_BREADCRUMB / OPT_TREE_SITTER_OCCURRENCE_HIGHLIGHT) and the
+ * AST work is skipped entirely when the corresponding feature is disabled.
+ */
+void CMergeEditView::UpdateTreeSitterStatus(const CEPoint& cursorPos, bool bGhostLine)
+{
+	CMergeDoc* pDoc = GetDocument();
+	const bool bBreadcrumb = GetOptionsMgr()->GetBool(OPT_TREE_SITTER_BREADCRUMB);
+	const bool bOccurrences = GetOptionsMgr()->GetBool(OPT_TREE_SITTER_OCCURRENCE_HIGHLIGHT);
+
+	CTreeSitterParser* pParser = (pDoc->IsTreeSitterEnabled() && (bBreadcrumb || bOccurrences)) ?
+		pDoc->GetTreeSitterParser(m_nThisPane) : nullptr;
+
+	String sParser, sSymbol, sIdentifier;
+	if (pParser != nullptr && pParser->HasLanguage())
+	{
+		pParser->EnsureParsed();
+		if (const CTreeSitterLanguage* pLang = pParser->GetLanguage())
+			sParser = pLang->GetName();
+		if (!bGhostLine)
+		{
+			if (bBreadcrumb)
+				sSymbol = pParser->GetEnclosingSymbols(cursorPos.y, cursorPos.x);
+			if (bOccurrences)
+				sIdentifier = pParser->GetIdentifierAt(cursorPos.y, cursorPos.x);
+		}
+	}
+
+	// Status-bar breadcrumb: show "[TS:lang > symbol]" only when enabled.
+	if (m_piMergeEditStatus != nullptr)
+		m_piMergeEditStatus->SetSyntaxParser(bBreadcrumb ? sParser.c_str() : _T(""), sSymbol.c_str());
+
+	// Highlight all occurrences of the identifier under the cursor using a
+	// transient (non-user-defined, not persisted) marker shared by all panes.
+	// Compare against the live marker table (not a cached copy) so external
+	// marker-table changes cannot leave this logic out of sync. When the
+	// feature is disabled sIdentifier stays empty, which clears any stale marker.
+	if (CCrystalTextMarkers* pMarkers = theApp.GetMainMarkers())
+	{
+		static const tchar_t MARKER_KEY[] = _T("TREESITTER_SYMBOL");
+		const auto& markers = static_cast<const CCrystalTextMarkers*>(pMarkers)->GetMarkers();
+		const auto it = markers.find(MARKER_KEY);
+		const bool bUnchanged = (it != markers.end()) ?
+			(it->second.sFindWhat == sIdentifier.c_str()) : sIdentifier.empty();
+		if (!bUnchanged)
+		{
+			if (sIdentifier.empty())
+				pMarkers->DeleteMarker(MARKER_KEY);
+			else
+				pMarkers->SetMarker(MARKER_KEY, sIdentifier.c_str(),
+					FIND_MATCH_CASE | FIND_WHOLE_WORD, COLORINDEX_MARKERBKGND0, false);
+			// Markers only change colors; a repaint of the attached views is
+			// enough -- UpdateViews() would reset every view's parse cookies.
+			pMarkers->InvalidateViews();
+		}
+	}
 }
 
 void CMergeEditView::GotoTreeSitterDefinition()

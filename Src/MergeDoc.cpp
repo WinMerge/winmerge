@@ -61,6 +61,9 @@
 #include "SyntaxParserRegistry.h"
 #include "PluginMenu.h"
 #include "TableProps.h"
+#include "SemanticMergeAnalyzer.h"
+#include "TreeSitterParser.h"
+#include <algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -71,6 +74,202 @@ using std::swap;
 int CMergeDoc::m_nBuffersTemp = 2;
 
 static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
+
+namespace
+{
+
+/** @brief Adapts CDiffTextBuffer to the analyzer's read-only text interface. */
+class DiffTextBufferSource : public SemanticMerge::ITextSource
+{
+public:
+	explicit DiffTextBufferSource(const CDiffTextBuffer& buf) : m_buf(buf) {}
+	int GetLineCount() const override { return m_buf.GetLineCount(); }
+	int GetLineLength(int nLine) const override { return m_buf.GetLineLength(nLine); }
+	void GetTextRange(int nStartLine, int nStartChar, int nEndLine, int nEndChar, String& text) const override
+	{
+		m_buf.GetTextWithoutEmptys(nStartLine, nStartChar, nEndLine, nEndChar, text, CRLFSTYLE::AUTOMATIC, false);
+	}
+	String GetLineEol(int nLine) const override { return m_buf.GetLineEol(nLine); }
+
+private:
+	const CDiffTextBuffer& m_buf;
+};
+
+struct SemanticMergeInputs
+{
+	std::unique_ptr<DiffTextBufferSource> sources[3];
+	SemanticMerge::PaneData panes[3];
+	SemanticMerge::LanguageTraits traits;
+};
+
+void BuildSemanticMergeInputs(CMergeDoc& doc, SemanticMergeInputs& inputs)
+{
+	for (int pane = 0; pane < doc.m_nBuffers; ++pane)
+	{
+		CTreeSitterParser* pParser = doc.GetTreeSitterParser(pane);
+		inputs.sources[pane] = std::make_unique<DiffTextBufferSource>(*doc.m_ptBuf[pane]);
+		inputs.panes[pane].pText = inputs.sources[pane].get();
+		inputs.panes[pane].hasLanguage = pParser != nullptr && pParser->HasLanguage();
+		if (inputs.panes[pane].hasLanguage)
+		{
+			inputs.panes[pane].tags = pParser->GetTagRanges();
+			if (const CTreeSitterLanguage* pLang = pParser->GetLanguage())
+				inputs.traits = SemanticMerge::TraitsForLanguage(pLang->GetName());
+		}
+	}
+}
+
+}
+
+bool CMergeDoc::IsTreeSitterEnabled() const
+{
+	return GetOptionsMgr()->GetInt(OPT_SYNTAX_HIGHLIGHT_MODE) != 0;
+}
+
+CTreeSitterParser* CMergeDoc::GetTreeSitterParser(int nBuffer)
+{
+	// The parser is owned by the view: the highlighting parser when that is
+	// tree-sitter, otherwise one the view creates for the file type, so the
+	// semantic features do not depend on the highlighting options
+	CMergeEditView* pView = GetView(0, nBuffer);
+	return pView ? pView->GetTreeSitterParser() : nullptr;
+}
+
+/**
+ * @brief Is semantic conflict resolution on for this comparison?
+ * (Docs/Developers/SemanticMerge.md, section 2)
+ */
+bool CMergeDoc::IsSemanticMergeEnabled() const
+{
+	return m_nBuffers == 3 && (GetOptionsMgr()->GetBool(OPT_SEMANTIC_MERGE) || theApp.GetSemanticMergeForRun()) &&
+		GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED);
+}
+
+/**
+ * @brief Why semantic conflict resolution cannot run, empty when it can.
+ */
+String CMergeDoc::GetSemanticMergeUnavailableReason()
+{
+	if (m_nBuffers != 3)
+		return _("Semantic merge needs three compared files.");
+	if (!GetOptionsMgr()->GetBool(OPT_MERGE_RESULT_PANE_ENABLED))
+		return _("Semantic merge works in the Merge Result pane, which is turned off.");
+	if (!GetOptionsMgr()->GetBool(OPT_SEMANTIC_MERGE) && !theApp.GetSemanticMergeForRun())
+		return _("Semantic merge is turned off (Merge > Resolve Conflicts Semantically).");
+	for (int nPane = 0; nPane < m_nBuffers; ++nPane)
+	{
+		CTreeSitterParser* pParser = GetTreeSitterParser(nPane);
+		if (pParser == nullptr || !pParser->HasLanguage())
+			return _("There is no tree-sitter grammar for this file type.");
+	}
+	return String();
+}
+
+/**
+ * @brief Rules R4-R6: a definition-level resolution of a conflict.
+ */
+bool CMergeDoc::TryBuildSemanticSuggestion(int nDiff, SemanticMerge::Suggestion& suggestion, String& message,
+	int anchorPane, int anchorLine)
+{
+	message.clear();
+	const DIFFRANGE* pDiff = (nDiff >= 0 && nDiff < m_diffList.GetSize()) ? m_diffList.DiffRangeAt(nDiff) : nullptr;
+	if (pDiff == nullptr)
+	{
+		message = _("The difference is not available.");
+		return false;
+	}
+	SemanticMergeInputs inputs;
+	BuildSemanticMergeInputs(*this, inputs);
+	SemanticMerge::Analyzer analyzer(inputs.panes, m_nBuffers, inputs.traits, GetSemanticMergeRoles());
+	SemanticMerge::DiffInfo diff;
+	diff.dbegin = pDiff->dbegin;
+	diff.dend = pDiff->dend;
+	diff.op = pDiff->op;
+	diff.anchorPane = anchorPane;
+	diff.anchorLine = anchorLine;
+	return analyzer.TryBuildSuggestion(diff, suggestion, message);
+}
+
+/**
+ * @brief R1 within the conflict, then R2-R6, in this order, on one pending conflict of the merge result.
+ * @param [out] pWhy When no rule applies: why each one declined.
+ */
+bool CMergeDoc::TryResolveConflictSemantically(int nDiff, bool& bGroupWithPrevious, String* pWhy,
+	int anchorPane, int anchorLine)
+{
+	String tokenWhy, movedWhy, definitionWhy;
+	if (TryContainedAdditionToResult(nDiff, bGroupWithPrevious))
+		return true;
+	if (TryTokenMergeConflictToResult(nDiff, bGroupWithPrevious, tokenWhy))
+		return true;
+	if (TryMovedDefinitionMergeToResult(nDiff, bGroupWithPrevious, movedWhy))
+		return true;
+	SemanticMerge::Suggestion suggestion;
+	if (TryBuildSemanticSuggestion(nDiff, suggestion, definitionWhy, anchorPane, anchorLine) &&
+		ApplySemanticSuggestionToResult(suggestion, bGroupWithPrevious, definitionWhy))
+		return true;
+	if (pWhy != nullptr)
+	{
+		*pWhy = _("No semantic merge rule resolves this conflict.") + _T("\n\n") +
+			SemanticRuleName(SemanticRule::TokenMerge) + _T(": ") + tokenWhy + _T("\n") +
+			SemanticRuleName(SemanticRule::MovedDefinition) + _T(": ") + movedWhy + _T("\n") +
+			_("Definition rules") + _T(": ") + definitionWhy;
+	}
+	return false;
+}
+
+/**
+ * @brief The semantic pipeline over the whole merge result: R1 once, then
+ * R2-R6 on every conflict still pending.
+ * @return Number of resolutions.
+ */
+int CMergeDoc::DoSemanticMergeConflictsToResult()
+{
+	// the same requirements as the commands, grammar included (section 4)
+	if (!m_bResultBuilt || !GetSemanticMergeUnavailableReason().empty())
+		return 0;
+
+	int nApplied = 0;
+	bool bGroupWithPrevious = false;
+	// not a conflict to the line merge, but wrong once it has taken both
+	nApplied += ResolveDuplicateAdditionsInResult(bGroupWithPrevious);
+	for (int nDiff = 0; nDiff < m_diffList.GetSize(); ++nDiff)
+	{
+		const DIFFRANGE* pdi = m_diffList.DiffRangeAt(nDiff);
+		if (pdi == nullptr || pdi->op != OP_DIFF || !m_diffList.IsDiffSignificant(nDiff) ||
+			!IsResultDiffPending(nDiff))
+			continue;
+		if (TryResolveConflictSemantically(nDiff, bGroupWithPrevious, nullptr))
+			++nApplied;
+	}
+	return nApplied;
+}
+
+/**
+ * @brief The semantic pipeline on one conflict of the merge result (R2-R6).
+ * @param [out] message The resolution's reason, or why no rule applies.
+ */
+bool CMergeDoc::ResolveConflictSemantically(int nDiff, String& message, int anchorPane, int anchorLine)
+{
+	message.clear();
+	if (!m_bResultBuilt || !IsSemanticMergeEnabled())
+	{
+		message = GetSemanticMergeUnavailableReason();
+		return false;
+	}
+	const DIFFRANGE* pdi = (nDiff >= 0 && nDiff < m_diffList.GetSize()) ? m_diffList.DiffRangeAt(nDiff) : nullptr;
+	if (pdi == nullptr || pdi->op != OP_DIFF || !IsResultDiffPending(nDiff))
+	{
+		message = _("Place the cursor in an unresolved conflict first.");
+		return false;
+	}
+	bool bGroupWithPrevious = false;
+	if (!TryResolveConflictSemantically(nDiff, bGroupWithPrevious, &message, anchorPane, anchorLine))
+		return false;
+	if (const MergeResultSegment* pSegment = GetResultSegmentByDiff(nDiff))
+		message = pSegment->semanticReason;
+	return true;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -2139,6 +2338,14 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	// prompt is also shown when the pane is hidden but the result was
 	// modified by the user.
 	if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
+		(m_bResultBuilt || IsMergeResultModified()) && theApp.GetNonInteractive())
+	{
+		// An unattended run has nobody to ask: write what it merged to
+		// the output path it was given
+		if (!m_strMergeResultSavePath.empty() && IsMergeResultModified() && !SaveMergeResult(false))
+			return false;
+	}
+	else if (m_ptResultBuf != nullptr && m_ptResultBuf->IsInitialized() &&
 		(m_bResultBuilt || IsMergeResultModified()))
 	{
 		const int nUnresolved = GetResultUnresolvedCount();
@@ -2174,6 +2381,27 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	}
 	if (!bModified[0] && !bModified[1] && !bModified[2])
 		 return true;
+
+	if (theApp.GetNonInteractive() && !m_strSaveAsPath.empty())
+	{
+		int modifiedPane = -1;
+		for (int i = 0; i < m_nBuffers; ++i)
+		{
+			if (!bModified[i])
+				continue;
+			if (modifiedPane != -1)
+				return false;
+			modifiedPane = i;
+		}
+
+		if (modifiedPane == -1)
+			return true;
+
+		if (!DoSave(m_filePaths[modifiedPane].c_str(), bSaveSuccess[modifiedPane], modifiedPane) || !bSaveSuccess[modifiedPane])
+			return false;
+
+		return true;
+	}
 
 	bool result = SaveClosingDlg::ShowAndSave(
 		m_nBuffers,

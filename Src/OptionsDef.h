@@ -43,6 +43,9 @@ inline const String OPT_MDI_BUTTON_VISIBILITY {_T("Settings/MDIButtonVisibility"
 
 inline const String OPT_SYNTAX_HIGHLIGHT {_T("Settings/HiliteSyntax"s)};
 inline const String OPT_SYNTAX_HIGHLIGHT_MODE {_T("Settings/HiliteSyntaxMode"s)};
+inline const String OPT_TREE_SITTER_OCCURRENCE_HIGHLIGHT {_T("Settings/TreeSitterOccurrenceHighlight"s)};
+inline const String OPT_TREE_SITTER_BREADCRUMB {_T("Settings/TreeSitterBreadcrumb"s)};
+inline const String OPT_SEMANTIC_MERGE {_T("Settings/SemanticMerge"s)};
 inline const String OPT_VIEW_WHITESPACE {_T("Settings/ViewWhitespace"s)};
 inline const String OPT_VIEW_EOL {_T("Settings/ViewEOL"s)};
 inline const String OPT_SCROLL_TO_FIRST {_T("Settings/ScrollToFirst"s)};
@@ -233,6 +236,7 @@ inline const String OPT_CMP_IGNORE_EOL {_T("Settings/IgnoreEol"s)};
 inline const String OPT_CMP_IGNORE_CODEPAGE {_T("Settings/IgnoreCodepage"s)};
 inline const String OPT_CMP_IGNORE_MISSING_TRAILING_EOL {_T("Settings/IgnoreMissingTrailingEol"s)};
 inline const String OPT_CMP_IGNORE_LINE_BREAKS {_T("Settings/IgnoreLineBreaks"s)};
+inline const String OPT_CMP_IGNORE_TRAILING_PUNCTUATION {_T("Settings/IgnoreTrailingPunctuation"s)};
 inline const String OPT_CMP_METHOD {_T("Settings/CompMethod2"s)};
 inline const String OPT_CMP_MOVED_BLOCKS {_T("Settings/MovedBlocks"s)};
 inline const String OPT_CMP_ALIGN_SIMILAR_LINES {_T("Settings/MatchSimilarLines"s)};

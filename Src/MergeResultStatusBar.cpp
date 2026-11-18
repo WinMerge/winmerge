@@ -65,6 +65,7 @@ CMergeResultStatusBar::CMergeResultStatusBar()
 	: m_nConflicts(0)
 	, m_nUnresolved(0)
 	, m_nWhiteSpaceOnly(0)
+	, m_nSemantic(0)
 	, m_nColumn(0)
 	, m_nColumns(0)
 	, m_nChar(0)
@@ -120,12 +121,25 @@ BOOL CMergeResultStatusBar::Create(CWnd* pParentWnd)
 
 void CMergeResultStatusBar::SetConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly)
 {
-	if (m_nConflicts != nConflicts || m_nUnresolved != nUnresolved || m_nWhiteSpaceOnly != nWhiteSpaceOnly)
+	const CMergeDoc* pDoc = GetDocument();
+	const int nSemantic = pDoc != nullptr ? pDoc->GetResultSemanticCount() : 0;
+	if (m_nConflicts != nConflicts || m_nUnresolved != nUnresolved || m_nWhiteSpaceOnly != nWhiteSpaceOnly ||
+		m_nSemantic != nSemantic)
 	{
 		m_nConflicts = nConflicts;
 		m_nUnresolved = nUnresolved;
 		m_nWhiteSpaceOnly = nWhiteSpaceOnly;
+		m_nSemantic = nSemantic;
 		UpdateConflictText();
+	}
+}
+
+void CMergeResultStatusBar::SetSemanticRule(const String& sRule)
+{
+	if (m_sSemanticRule != sRule)
+	{
+		m_sSemanticRule = sRule;
+		UpdateLineText();
 	}
 }
 
@@ -224,6 +238,8 @@ void CMergeResultStatusBar::UpdateConflictText()
 			strutils::to_str(m_nConflicts), strutils::to_str(m_nUnresolved),
 			strutils::to_str(m_nWhiteSpaceOnly));
 	}
+	if (m_nSemantic > 0)
+		strInfo += strutils::format_string1(_(", Semantic: %1"), strutils::to_str(m_nSemantic));
 	SetPaneText(PANE_CONFLICT, strInfo.c_str());
 }
 
@@ -260,6 +276,8 @@ void CMergeResultStatusBar::UpdateLineText()
 			strSelected.Format(_("  Sel: %d | %d").c_str(), m_nSelectedLines, m_nSelectedChars);
 			strInfo += strSelected;
 		}
+		if (!m_sSemanticRule.empty())
+			strInfo += strutils::format_string1(_("  Semantic: %1"), m_sSemanticRule).c_str();
 	}
 	SetPaneText(PANE_LINEINFO, strInfo);
 }
