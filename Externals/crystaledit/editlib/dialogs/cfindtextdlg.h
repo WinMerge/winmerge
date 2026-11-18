@@ -94,6 +94,9 @@ protected :
     virtual void OnCancel ();
     afx_msg void OnRegExp ();
     afx_msg void OnFindPrev ();
+    afx_msg void OnMarkDropdown(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnMarkAll();
+    afx_msg void OnClearMarks();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP ()
   };
