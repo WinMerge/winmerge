@@ -1,0 +1,10 @@
+; SPDX-License-Identifier: GPL-2.0-or-later
+; IgnoreAccents.def : Declares the module parameters.
+
+LIBRARY      "IgnoreAccents.DLL"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer	PRIVATE
