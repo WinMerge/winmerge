@@ -152,6 +152,9 @@
     <ClCompile Include="..\editlib\parsers\rsrc.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\parsers\eml.cpp">
+      <Filter>Source Files\editlib\parsers</Filter>
+    </ClCompile>
     <ClCompile Include="..\editlib\parsers\rtf.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>

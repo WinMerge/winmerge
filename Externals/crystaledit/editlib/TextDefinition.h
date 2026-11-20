@@ -79,6 +79,7 @@ enum LanguageId
 	SRC_VHDL,
 	SRC_XML,
 	SRC_YAML,
+	SRC_EML,
 	SRC_MAX_ENTRY, /* always last entry, used for bound checking */
 };
 
