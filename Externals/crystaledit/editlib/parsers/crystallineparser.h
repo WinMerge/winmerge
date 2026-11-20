@@ -83,6 +83,7 @@ unsigned ParseLineCJava(unsigned dwCookie, const tchar_t *pszChars, int nLength,
 unsigned ParseLineCSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineCss(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineDcl(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
+unsigned ParseLineEml(unsigned dwCookie, const tchar_t* pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineDlang(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineFortran(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
 unsigned ParseLineFSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf);
