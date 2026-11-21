@@ -1,0 +1,58 @@
+>>SOURCE FORMAT FREE
+*> COBOL Syntax Highlight Testfile (free format)
+IDENTIFICATION DIVISION.
+PROGRAM-ID. SAMPLE.
+
+ENVIRONMENT DIVISION.
+CONFIGURATION SECTION.
+SPECIAL-NAMES.
+    DECIMAL-POINT IS COMMA.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 WS-RECORD.
+   05 WS-NAME       PIC X(30)       VALUE SPACES.
+   05 WS-AMOUNT     PIC S9(7)V99    COMP-3 VALUE ZEROS.
+   05 WS-EDITED     PIC ZZZ.ZZ9,99.
+   05 WS-CRLF       PIC X(2)        VALUE X"0D0A".
+   05 WS-TEXT       PIC IS X(20)    VALUE 'It''s ok'.
+   05 WS-TABLE      PIC 9(3) OCCURS 10 TIMES INDEXED BY WS-IDX.
+   05 WS-COUNT      PIC 9(3) USAGE BINARY.
+   05 WS-END-FLAG   PIC X           VALUE "N".
+      88 WS-FINISHED                VALUE "Y".
+      88 WS-LETTER                  VALUE "A" THRU "Z".
+
+PROCEDURE DIVISION.
+0000-MAIN SECTION.
+0000-START.
+    MOVE "John" TO WS-NAME              *> inline comment
+    COMPUTE WS-AMOUNT = FUNCTION NUMVAL(WS-TEXT) * 1,5
+    COMPUTE WS-COUNT = $LENGTH(WS-NAME)
+    IF WS-AMOUNT > 0 AND WS-NAME NOT = SPACES
+        DISPLAY "Amount: " WS-AMOUNT UPON CONSOLE
+    ELSE
+        PERFORM 1000-ERROR THRU 1000-ERROR-EXIT
+    END-IF
+    PERFORM WS-COUNT TIMES
+        ADD 1 TO WS-AMOUNT
+    END-PERFORM
+    IF WS-AMOUNT IS GREATER THAN 100
+        GO TO 9999-END
+    END-IF
+    SET WS-FINISHED TO TRUE
+    MOVE RETURN-CODE TO WS-COUNT.
+
+2000-OBJECTS.
+    declare jsonData as SJson = SJson:>new:>parse(WS-TEXT).
+    if jsonData:>isEmpty
+        exit paragraph
+    end-if.
+
+1000-ERROR.
+    display "error" upon console
+    move high-values to ws-name.
+1000-ERROR-EXIT.
+    EXIT.
+
+9999-END.
+    GOBACK.
