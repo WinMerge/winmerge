@@ -111,9 +111,9 @@ CreateVirtualLineToRealLineMap(
 	}
 	while (line1 < nlines1)
 		vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, line1++ });
-	ValidateVirtualLineToRealLineMap(vlines, std::array<int, 2>{ nlines0, nlines1 });
+	ValidateVirtualLineToRealLineMap<2>(vlines, std::array<int, 2>{ nlines0, nlines1 });
 #ifdef _DEBUG
-	PrintVirtualLineToRealLineMap(_T("vline"), vlines);
+	PrintVirtualLineToRealLineMap<2>(_T("vline"), vlines);
 #endif
 	return vlines;
 }
@@ -230,12 +230,12 @@ CreateVirtualLineToRealLineMap3way(
 			}
 		}
 	}
-	ValidateVirtualLineToRealLineMap(vlines, std::array<int, 3>{ nlines0, nlines1, nlines2 });
+	ValidateVirtualLineToRealLineMap<3>(vlines, std::array<int, 3>{ nlines0, nlines1, nlines2 });
 #ifdef _DEBUG
-	PrintVirtualLineToRealLineMap(_T("vline01"), vlines01);
-	PrintVirtualLineToRealLineMap(_T("vline12"), vlines12);
-	PrintVirtualLineToRealLineMap(_T("vline20"), vlines20);
-	PrintVirtualLineToRealLineMap(_T("vline3way"), vlines);
+	PrintVirtualLineToRealLineMap<2>(_T("vline01"), vlines01);
+	PrintVirtualLineToRealLineMap<2>(_T("vline12"), vlines12);
+	PrintVirtualLineToRealLineMap<2>(_T("vline20"), vlines20);
+	PrintVirtualLineToRealLineMap<3>(_T("vline3way"), vlines);
 #endif
 	return vlines;
 }
