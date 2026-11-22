@@ -484,11 +484,11 @@ int PluginInfo::MakeInfo(const String& scriptletFilepath, const String& name, ID
 	// set the mode for the events which uses it
 	bool bFound = true;
 	bool bHasPluginPipeline = false;
-	if (m_event == _T("BUFFER_PREDIFF"))
+	if (m_event == _T("BUFFER_PREDIFF") || m_event == _T("BUFFER_ALIGN"))
 	{
 		bFound &= SearchScriptForMethodName(L"PrediffBufferW");
 	}
-	else if (m_event == _T("FILE_PREDIFF"))
+	else if (m_event == _T("FILE_PREDIFF") || m_event == _T("FILE_ALIGN"))
 	{
 		bFound &= SearchScriptForMethodName(L"PrediffFile");
 	}

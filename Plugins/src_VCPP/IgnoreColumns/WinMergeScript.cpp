@@ -154,7 +154,7 @@ STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"\\.nomatch$");
+	*pVal = SysAllocString(L"\\.txt$");
 	return S_OK;
 }
 

@@ -232,9 +232,17 @@ BEGIN
         BEGIN
             MENUITEM "In &All Panes",               ID_IGNORE_COLUMN_IN_COMPARISON
             MENUITEM "In &This Pane Only (Column Not in Other Files)", ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY
-            MENUITEM "(Ctrl+Click to add another column)", ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT
+            MENUITEM "(Ctrl+Click to add another column)", ID_DISABLED
             MENUITEM SEPARATOR
             MENUITEM "&Reset All",                  ID_IGNORE_COLUMN_IN_COMPARISON_RESET
+        END
+        POPUP "E&xclude This Column from Alignment"
+        BEGIN
+            MENUITEM "In &All Panes",               ID_EXCLUDE_COLUMN_FROM_ALIGNMENT
+            MENUITEM "In &This Pane Only (Column Not in Other Files)", ID_EXCLUDE_COLUMN_FROM_ALIGNMENT_THIS_PANE_ONLY
+            MENUITEM "(Ctrl+Click to add another column)", ID_DISABLED
+            MENUITEM SEPARATOR
+            MENUITEM "&Reset All",                  ID_EXCLUDE_COLUMN_FROM_ALIGNMENT_RESET
         END
         POPUP "&Filter by This Column"
         BEGIN

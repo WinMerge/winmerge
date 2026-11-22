@@ -64,6 +64,8 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 		LoadMethod(*info.m_isFolder, 4);
 	if (info.m_prediffFile)
 		LoadMethod(*info.m_prediffFile, 0);
+	if (info.m_alignFile)
+		LoadMethod(*info.m_alignFile, 0);
 	m_strCommandline = m_strCommandlineAry[0];
 	m_strScriptFileExtension = m_strScriptFileExtensionAry[0];
 	m_strScriptBody = m_strScriptBodyAry[0];
@@ -528,6 +530,10 @@ void CEditPluginDlg::OnOK()
 	else if (cursel == FILE_PREDIFF)
 	{
 		SaveMethod(m_info.m_prediffFile, 0);
+	}
+	else if (cursel == FILE_ALIGN)
+	{
+		SaveMethod(m_info.m_alignFile, 0);
 	}
 
 	CTrDialog::OnOK();

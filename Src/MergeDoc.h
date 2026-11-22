@@ -211,6 +211,8 @@ public:
 	void OnApplyAligner();
 	void IgnoreColumnInComparison(int column, const String& panePrefix, bool add);
 	void ResetIgnoredColumnsInComparison();
+	void ExcludeColumnFromAlignment(int column, const String& panePrefix, bool add);
+	void ResetExcludedColumnsFromAlignment();
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);

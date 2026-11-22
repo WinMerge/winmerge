@@ -893,8 +893,8 @@ Info CreatePredifferPluginExample()
 	info.m_description = _T("New plugin description");
 	info.m_fileFilters = _T("\\.*$");
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
-	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
-	info.m_unpackFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
+	info.m_prediffFile = std::make_unique <internal_plugin::Method>();
+	info.m_prediffFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
 	info.m_locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? LocationType::AppDataPath : LocationType::DocumentsPath;
 	return info;
 }
@@ -906,8 +906,8 @@ Info CreateAlignerPluginExample()
 	info.m_description = _T("New plugin description");
 	info.m_fileFilters = _T("\\.*$");
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
-	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
-	info.m_unpackFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
+	info.m_alignFile = std::make_unique <internal_plugin::Method>();
+	info.m_alignFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
 	info.m_locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? LocationType::AppDataPath : LocationType::DocumentsPath;
 	return info;
 }

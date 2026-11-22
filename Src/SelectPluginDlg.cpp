@@ -114,7 +114,7 @@ void CSelectPluginDlg::OnOK()
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, m_bOpenInSameFrameType);
 	m_ctlPluginPipeline.SaveState(
-	std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\Aligner"), _T("Files\\EditorScript") }
+		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\Aligner"), _T("Files\\EditorScript") }
 			[static_cast<int>(m_pluginType)]);
 
 	CTrDialog::OnOK();
@@ -135,7 +135,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
-	std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\Aligner"), _T("Files\\EditorScript") }
+		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\Aligner"), _T("Files\\EditorScript") }
 			[static_cast<int>(m_pluginType)]);
 
 	EnableDlgItem(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_pluginType == PluginType::Unpacker);

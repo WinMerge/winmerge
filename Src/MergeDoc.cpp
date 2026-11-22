@@ -307,17 +307,14 @@ void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer) const
 	m_diffWrapper.GetPrediffer(infoPrediffer);
 }
 
-void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, bool add)
+static bool ToggleColumnExpressionInPipeline(String& pipeline, int column, const String& panePrefix, bool add)
 {
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
-
 	String errorMessage;
-	auto expressions = PluginForFile::ParsePluginPipeline(prediffer.GetPluginPipeline(), errorMessage);
+	auto expressions = PluginForFile::ParsePluginPipeline(pipeline, errorMessage);
 	if (!errorMessage.empty())
 	{
 		RootLogger::Error(errorMessage);
-		return;
+		return false;
 	}
 
 	uint8_t targetFlags = 0xff;
@@ -375,21 +372,18 @@ void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, b
 			targetFlags, expressionPrefix + _T("!") + columnNumber + columnSuffix });
 	}
 
-	prediffer.SetPluginPipeline(PluginForFile::MakePluginPipeline(expressions));
-	SetPrediffer(&prediffer);
-	FlushAndRescan(true);
+	pipeline = PluginForFile::MakePluginPipeline(expressions);
+	return true;
 }
 
-void CMergeDoc::ResetIgnoredColumnsInComparison()
+static bool RemoveColumnExpressionsFromPipeline(String& pipeline)
 {
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
 	String errorMessage;
-	const auto expressions = PluginForFile::ParsePluginPipeline(prediffer.GetPluginPipeline(), errorMessage);
+	const auto expressions = PluginForFile::ParsePluginPipeline(pipeline, errorMessage);
 	if (!errorMessage.empty())
 	{
 		RootLogger::Error(errorMessage);
-		return;
+		return false;
 	}
 	std::vector<PluginForFile::PipelineItem> updatedExpressions;
 	for (const auto& pipelineItem : expressions)
@@ -403,8 +397,55 @@ void CMergeDoc::ResetIgnoredColumnsInComparison()
 			continue;
 		updatedExpressions.push_back(pipelineItem);
 	}
-	prediffer.SetPluginPipeline(PluginForFile::MakePluginPipeline(updatedExpressions));
+	pipeline = PluginForFile::MakePluginPipeline(updatedExpressions);
+	return true;
+}
+
+void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, bool add)
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	String pipeline = prediffer.GetPluginPipeline();
+	if (!ToggleColumnExpressionInPipeline(pipeline, column, panePrefix, add))
+		return;
+	prediffer.SetPluginPipeline(pipeline);
 	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::ResetIgnoredColumnsInComparison()
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	String pipeline = prediffer.GetPluginPipeline();
+	if (!RemoveColumnExpressionsFromPipeline(pipeline))
+		return;
+	prediffer.SetPluginPipeline(pipeline);
+	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::ExcludeColumnFromAlignment(int column, const String& panePrefix, bool add)
+{
+	AligningInfo aligner;
+	GetAligner(&aligner);
+	String pipeline = aligner.GetPluginPipeline();
+	if (!ToggleColumnExpressionInPipeline(pipeline, column, panePrefix, add))
+		return;
+	aligner.SetPluginPipeline(pipeline);
+	SetAligner(&aligner);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::ResetExcludedColumnsFromAlignment()
+{
+	AligningInfo aligner;
+	GetAligner(&aligner);
+	String pipeline = aligner.GetPluginPipeline();
+	if (!RemoveColumnExpressionsFromPipeline(pipeline))
+		return;
+	aligner.SetPluginPipeline(pipeline);
+	SetAligner(&aligner);
 	FlushAndRescan(true);
 }
 

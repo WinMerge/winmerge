@@ -280,10 +280,10 @@
   </plugin>
   <plugin name="PreventBlankLineMatch">
     <event value="ALIAS_ALIGN"/>
-    <description value="Do not align blank lines with each other"/>
+    <description value="Avoid matching blank lines at different positions"/>
     <file-filters value="\.nomatch$"/>
     <is-automatic value="false"/>
-    <extended-properties value="MenuCaption=Do Not Align Blank Lines"/>
+    <extended-properties value="MenuCaption=Avoid Matching Blank Lines"/>
     <pipeline value="le:if(strlen(trim(Line))==0, &quot;&lt;blank&gt;&quot; + fullpath + &quot;:&quot; + linenumber, Line)"/>
   </plugin>
   <!--

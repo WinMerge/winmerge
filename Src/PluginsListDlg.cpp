@@ -231,7 +231,7 @@ void PluginsListDlg::AddPlugin(unsigned id)
 		String errmsg;
 		if (internal_plugin::AddPlugin(*info, errmsg))
 		{
-			m_comboType.SetCurSel(id == ID_PLUGIN_ADD_UNPACKER ? 0 : 1);
+			m_comboType.SetCurSel(id - ID_PLUGIN_ADD_UNPACKER);
 			break;
 		}
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
