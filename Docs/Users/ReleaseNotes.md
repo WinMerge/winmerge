@@ -1,18 +1,52 @@
-# WinMerge 2.16.60 Release Notes
+# WinMerge 2.16.60.2 Release Notes
 
 * [About This Release](#about-this-release)
+* [What Is New in 2.16.60.2?](#what-is-new-in-216602)
 * [What Is New in 2.16.60?](#what-is-new-in-21660)
 * [What Is New in 2.16.59 Beta?](#what-is-new-in-21659-beta)
 * [Known issues](#known-issues)
 
-October 2026
+November 2026
 
 ## About This Release
 
-This is a WinMerge 2.16.60 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge 2.16.60.2 stable release.
+
+This release includes bug fixes and updated translations since WinMerge 2.16.60.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.60.2?
+
+### File compare
+
+* BugFix: Fix Go To navigation when ignored differences are present. The Go To dialog now counts only significant differences, consistent with the difference number displayed in the status bar. (#3754)
+
+* BugFix: Fix an issue where Ctrl+F7 and Ctrl+F8 stopped working after selecting "No" and "Don't ask again" in the next-file dialog. (#3745)
+
+* BugFix: Fix an issue where the current view was not refreshed in the Location pane when using Find Next/Previous. (#3744)
+
+* BugFix: Make the text box resizable. (#3747)
+
+* BugFix: Fix a crash caused by an invalid thread object reference in the message box dialog. (#3780, PR #3781)
+
+### Open dialog
+
+* BugFix: Fix a crash in path auto-completion when the Open view's path combo box received focus again while auto-completion was being initialized. (#3749)
+
+### Options dialog
+
+* BugFix: Fix an issue where the "Defaults" button was not displayed in the Editor > Syntax page.
+
+### Archive suppport
+
+* Update 7-Zip to 26.06.
+
+### Translations
+
+* Translation updates:
+  * Brazilian
+  * Hungarian (merge result messages)
 
 ## What Is New in 2.16.60?
 

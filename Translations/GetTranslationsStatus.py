@@ -205,6 +205,8 @@ class TranslationsStatus(object):
         htmlfile.write('<p>Status from <strong>%s</strong>:</p>\n' % (time.strftime('%Y-%m-%d')))
         for project in self._projects: #For all projects...
             htmlfile.write('<h2>%s</h2>\n' % (project.name))
+            if project.name == 'Docs/Readme':
+                htmlfile.write('<p>Each ReadMe counts as one document. Identical English copies are untranslated; any content difference is considered translated. UTF-8 BOM and line endings are ignored. This does not measure translation completeness or quality.</p>\n')
             htmlfile.write('<table class="status">\n')
             htmlfile.write('  <tr>\n')
             htmlfile.write('    <th class="left">Language</th>\n')
@@ -297,6 +299,8 @@ class TranslationsStatus(object):
             mdfile.write('## %s\n\n' % (project.name))
             if project.name == 'InnoSetup':
                 mdfile.write('Counts show populated keys in the WinMerge-specific `.islu` files compared with `English.islu`; they do not measure the bundled Inno Setup translations or translation quality.\n\n')
+            if project.name == 'Docs/Readme':
+                mdfile.write('Each ReadMe counts as one document. Identical English copies are untranslated; any content difference is considered translated. UTF-8 BOM and line endings are ignored. This does not measure translation completeness or quality.\n\n')
             mdfile.write('| Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |\n')
             mdfile.write('|:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|\n')
             for language in project.languages: #For all (sorted) languages...
@@ -650,6 +654,8 @@ class ReadmeProject(Project):
     def __init__(self, name, templatefile, translationsdir):
         self._name = name
         self._status = []
+        with open(templatefile, 'r', encoding='utf-8-sig') as sourcefile:
+            source = sourcefile.read()
         
         #Translations files...
         for itemname in os.listdir(translationsdir): #For all dir items...
@@ -657,21 +663,25 @@ class ReadmeProject(Project):
             if os.path.isfile(fullitempath): #If a file...
                 filename = os.path.splitext(itemname)
                 if str.lower(filename[1]) == '.txt': #If a TXT file...
-                    self._status.append(ReadmeStatus(fullitempath, False))
+                    self._status.append(ReadmeStatus(fullitempath, False, source))
         
         #Template file...
-        self._status.append(ReadmeStatus(os.path.abspath(templatefile), True))
+        self._status.append(ReadmeStatus(os.path.abspath(templatefile), True, source))
 
 class ReadmeStatus(Status):
-    def __init__(self, filepath, template):
+    def __init__(self, filepath, template, source):
         self._filepath = filepath
         self._template = template
-        self._count = 0
-        self._translated = 0
-        self._untranslated = 0
+        self._count = 1
+        # Text mode normalizes CRLF/CR/LF; utf-8-sig removes an optional BOM.
+        with open(filepath, 'r', encoding='utf-8-sig') as readmefile:
+            content = readmefile.read()
+        self._translated = int(template or content != source)
+        self._untranslated = self._count - self._translated
         self._fuzzy = 0
         self._updatedate = ''
         self._translators = []
+        self.calculateCompleteness()
     
     @property
     def language(self):

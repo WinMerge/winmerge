@@ -471,6 +471,15 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		Copy();
 		return;
 	case ID_EDITOR_COPY_FILENAME:
+		if (!m_sFilepath.empty())
+		{
+			// the displayed text may be a custom caption: use the real path
+			size_t lastSlash = m_sFilepath.rfind('\\');
+			if (lastSlash == String::npos)
+				lastSlash = m_sFilepath.rfind('/');
+			ClipboardUtils::Put(lastSlash != String::npos ? m_sFilepath.substr(lastSlash + 1) : m_sFilepath, m_hWnd);
+			return;
+		}
 		{
 		size_t lastSlash = m_sOriginalText.rfind('\\');
 		if (lastSlash == String::npos)
@@ -482,8 +491,14 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		}
 		break;
 	case ID_EDITOR_COPY_PATH:
+		if (!m_sFilepath.empty())
+		{
+			// the displayed text may be a custom caption: use the real path
+			ClipboardUtils::Put(m_sFilepath, m_hWnd);
+			return;
+		}
 		// pass the heading "*" for modified files
-		if (m_sOriginalText.at(0) == '*')
+		if (!m_sOriginalText.empty() && m_sOriginalText.at(0) == '*')
 			iBegin = 2;
 		else
 			iBegin = 0;
