@@ -104,6 +104,10 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION41 "Convert Text with AI..."
     IDS_PLUGIN_MENU_CAPTION42 "Unescape Java properties files"
     IDS_PLUGIN_MENU_CAPTION43 "Decompile Java (CFR)"
+    IDS_PLUGIN_MENU_CAPTION44 "Ignore Accents"
+    IDS_PLUGIN_MENU_CAPTION45 "Ignore All Whitespace"
+    IDS_PLUGIN_MENU_CAPTION46 "Ignore Case"
+    IDS_PLUGIN_MENU_CAPTION47 "Avoid Matching Blank Lines"
 END
 
 STRINGTABLE
@@ -204,6 +208,10 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION58 "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
     IDS_PLUGIN_DESCRIPTION59 
                             "Clipboard URL Scheme Handler (cliphcat).\r\nArguments: cliphcat command line options."
+    IDS_PLUGIN_DESCRIPTION60 "Ignore accents and diacritical marks"
+    IDS_PLUGIN_DESCRIPTION61 "Ignore all whitespace characters including spaces and tabs"
+    IDS_PLUGIN_DESCRIPTION62 "Ignore differences between uppercase and lowercase letters"
+    IDS_PLUGIN_DESCRIPTION63 "Avoid matching blank lines at different positions"
 END
 
 STRINGTABLE

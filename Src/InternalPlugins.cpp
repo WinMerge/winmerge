@@ -248,6 +248,8 @@ public:
 			plugin.m_pipeline, plugin.m_bAutomaticDefault)
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_buffer(event == _T("BUFFER_ALIGN"))
+		, m_hasArgumentsProperty(plugin.m_hasArgumentsProperty)
+		, m_hasVariablesProperty(plugin.m_hasVariablesProperty)
 	{
 		m_pDispatch->AddRef();
 	}
@@ -263,6 +265,10 @@ public:
 			*pbSuccess = VARIANT_FALSE;
 			return E_NOTIMPL;
 		}
+		if (m_hasVariablesProperty && !plugin::InvokePutPluginVariables(ucr::toTString(fileSrc), m_pDispatch))
+			return E_FAIL;
+		if (m_hasArgumentsProperty && !plugin::InvokePutPluginArguments(m_sArguments, m_pDispatch))
+			return E_FAIL;
 		int changed = 0;
 		const bool handled = plugin::InvokePrediffFile(ucr::toTString(fileSrc), ucr::toTString(fileDst), changed, m_pDispatch);
 		*pbChanged = changed ? VARIANT_TRUE : VARIANT_FALSE;
@@ -277,6 +283,8 @@ public:
 			*pbSuccess = VARIANT_FALSE;
 			return E_NOTIMPL;
 		}
+		if (m_hasArgumentsProperty && !plugin::InvokePutPluginArguments(m_sArguments, m_pDispatch))
+			return E_FAIL;
 		int changed = 0;
 		const bool handled = plugin::InvokePrediffBuffer(text, changed, m_pDispatch);
 		size = SysStringLen(text);
@@ -288,6 +296,8 @@ public:
 private:
 	IDispatch* m_pDispatch;
 	bool m_buffer;
+	bool m_hasArgumentsProperty;
+	bool m_hasVariablesProperty;
 };
 
 class UnpackerGeneratedFromEditorScript : public WinMergePluginBase

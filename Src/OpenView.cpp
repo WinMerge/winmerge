@@ -207,6 +207,9 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_CBStringExact(pDX, IDC_UNPACKER_COMBO, m_strUnpackerPipeline);
 	DDX_CBStringExact(pDX, IDC_PREDIFFER_COMBO, m_strPredifferPipeline);
 	DDX_CBStringExact(pDX, IDC_ALIGNER_COMBO, m_strAlignerPipeline);
+	DDX_Control(pDX, IDC_FILES_DIRS_GROUP4, m_ctlTransLabel[0]);
+	DDX_Control(pDX, IDC_FILES_DIRS_GROUP5, m_ctlTransLabel[1]);
+	DDX_Control(pDX, IDC_FILES_DIRS_GROUP6, m_ctlTransLabel[2]);
 	//}}AFX_DATA_MAP
 }
 
@@ -1701,26 +1704,20 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	EnableDlgItem(IDOK, bIsaFolderCompare || bIsaFileCompare || bProject);
 	EnableDlgItem(IDC_FILE_PLUGINS_TAB, bIsaFileCompare);
 
-	for (auto nID : { IDC_FILES_DIRS_GROUP4, IDC_UNPACKER_COMBO, IDC_SELECT_UNPACKER })
-	{
-		EnableDlgItem(nID, bIsaFileCompare);
-	}
-
 	if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
 		UpdatePluginTabControls();
 
-		/*
-		for (auto nID : { IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER, IDC_ALIGNER_COMBO, IDC_SELECT_ALIGNER })
+		for (auto nID : {
+			IDC_FILES_DIRS_GROUP4, IDC_UNPACKER_COMBO, IDC_SELECT_UNPACKER,
+			IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER,
+			IDC_FILES_DIRS_GROUP6, IDC_ALIGNER_COMBO, IDC_SELECT_ALIGNER })
 		{
-			ShowDlgItem(nID, (bIsaFileCompare && !bIsaFolderCompare));
 			EnableDlgItem(nID, bIsaFileCompare);
 		}
-		*/
 
 		for (auto nID : { IDC_FILES_DIRS_GROUP3, IDC_EXT_COMBO, IDC_SELECT_FILTER, IDC_RECURS_CHECK })
 		{
-			//ShowDlgItem(nID, (bIsaFolderCompare || !bIsaFileCompare));
 			EnableDlgItem(nID, bIsaFolderCompare);
 		}
 	}

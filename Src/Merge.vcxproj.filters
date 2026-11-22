@@ -912,6 +912,9 @@
     <ClCompile Include="MergeResultStatusBar.cpp">
       <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\TransStatic.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\charsets.h">

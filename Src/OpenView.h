@@ -22,6 +22,7 @@
 #include "FileFilterHelperMenu.h"
 #include "ClipboardHistory.h"
 #include "MruHelper.h"
+#include "TransStatic.h"
 #include <array>
 
 class ProjectFile;
@@ -57,6 +58,7 @@ public:
 	CSuperComboBox	m_ctlAlignerPipeline;
 	CValidatingEdit	m_ctlAlignerPipelineEdit;
 	CListCtrl	m_ctlRecentCompares; /**< Recent comparisons (MruHelper::GetRecentCompares), newest first */
+	CTransStatic m_ctlTransLabel[3];
 	CFileFilterHelperMenu m_menu;
 	String m_strPath[3];
 	bool m_bReadOnly[3];

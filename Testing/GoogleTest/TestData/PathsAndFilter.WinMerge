@@ -4,8 +4,9 @@
 		<left>C:\Temp\Left</left>
 		<right>C:\Temp\Right</right>
 		<filter>Filter Name</filter>
-		<prediffer>IgnoreColumns.dll</prediffer>
 		<unpacker>CompareMSExcelFiles.sct</unpacker>
+		<prediffer>IgnoreColumns.dll</prediffer>
+		<aligner>PreventBlankLineMatch</aligner>
 		<left-desc>left description</left-desc>
 		<right-desc>right description</right-desc>
 		<window-type>2</window-type>

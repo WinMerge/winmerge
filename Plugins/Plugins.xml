@@ -264,7 +264,7 @@
   </plugin>
   <plugin name="IgnoreAccents">
     <event value="ALIAS_PREDIFF"/>
-    <description value="Ignore Accents"/>
+    <description value="Ignore accents and diacritical marks"/>
     <file-filters value="\.nomatch$"/>
     <is-automatic value="false"/>
     <extended-properties value="MenuCaption=Ignore Accents;GenerateAligner"/>
@@ -272,11 +272,19 @@
   </plugin>
   <plugin name="IgnoreAllWhitespace">
     <event value="ALIAS_PREDIFF"/>
-    <description value="Ignore all whitespace"/>
+    <description value="Ignore all whitespace characters including spaces and tabs"/>
     <file-filters value="\.nomatch$"/>
     <is-automatic value="false"/>
     <extended-properties value="MenuCaption=Ignore All Whitespace;GenerateAligner"/>
     <pipeline value="le:regexReplace(Line, &quot;\s+&quot;, &quot;&quot;)"/>
+  </plugin>
+  <plugin name="IgnoreCase">
+    <event value="ALIAS_PREDIFF"/>
+    <description value="Ignore differences between uppercase and lowercase letters"/>
+    <file-filters value="\.nomatch$"/>
+    <is-automatic value="false"/>
+    <extended-properties value="MenuCaption=Ignore Case;GenerateAligner"/>
+    <pipeline value="le:toLower(Line)"/>
   </plugin>
   <plugin name="PreventBlankLineMatch">
     <event value="ALIAS_ALIGN"/>

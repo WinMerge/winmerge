@@ -118,6 +118,109 @@ CDiffWrapper::CDiffWrapper()
 }
 
 /**
+ * @brief Destructor.
+ */
+CDiffWrapper::~CDiffWrapper() = default;
+
+/**
+ * @brief Enables/disables patch-file creation and sets filename.
+ * This function enables or disables patch file creation. When
+ * @p filename is empty, patch files are disabled.
+ * @param [in] filename Filename for patch file, or empty string.
+ */
+void CDiffWrapper::SetCreatePatchFile(const String &filename)
+{
+	if (filename.empty())
+	{
+		m_bCreatePatchFile = false;
+		m_sPatchFile.clear();
+	}
+	else
+	{
+		m_bCreatePatchFile = true;
+		m_sPatchFile = filename;
+		strutils::replace(m_sPatchFile, _T("/"), _T("\\"));
+	}
+}
+
+/**
+ * @brief Enables/disabled DiffList creation ands sets DiffList.
+ * This function enables or disables DiffList creation. When
+ * @p diffList is `nullptr`, a difflist was not created. When valid 
+ * DiffList pointer is given, compare results are stored into it.
+ * @param [in] diffList Pointer to DiffList getting compare results.
+ */
+void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
+{
+	if (diffList == nullptr)
+	{
+		m_bUseDiffList = false;
+		m_pDiffList = nullptr;
+	}
+	else
+	{
+		m_bUseDiffList = true;
+		m_pDiffList = diffList;
+	}
+}
+
+/**
+ * @brief Returns current set of options used by diff-engine.
+ * This function converts internally used diff-options to
+ * format used outside CDiffWrapper and returns them.
+ * @param [in,out] options Pointer to structure getting used options.
+ */
+void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
+{
+	assert(options != nullptr);
+	DIFFOPTIONS tmpOptions = {0};
+	m_options.GetAsDiffOptions(tmpOptions);
+	*options = tmpOptions;
+}
+
+/**
+ * @brief Set options for Diff-engine.
+ * This function converts given options to format CDiffWrapper uses
+ * internally and stores them.
+ * @param [in] options Pointer to structure having new options.
+ */
+void CDiffWrapper::SetOptions(const DIFFOPTIONS *options, bool setToDiffutils)
+{
+	assert(options != nullptr);
+	m_options.SetFromDiffOptions(*options);
+	m_xdlFlags = make_xdl_flags(m_options);
+	if (setToDiffutils)
+		m_options.SetToDiffUtils();
+}
+
+void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
+{
+	// all flags are set correctly during the construction
+	m_infoPrediffer.reset(new PrediffingInfo);
+
+	if (prediffer != nullptr)
+		*m_infoPrediffer = *prediffer;
+}
+
+void CDiffWrapper::SetAligner(const AligningInfo * aligner /*= nullptr*/)
+{
+	m_infoAligner.reset(new AligningInfo);
+	if (aligner != nullptr)
+		*m_infoAligner = *aligner;
+}
+
+void CDiffWrapper::GetAligner(AligningInfo * aligner) const
+{
+	if (aligner != nullptr)
+	{
+		if (m_infoAligner)
+			*aligner = *m_infoAligner;
+		else
+			aligner->ClearPluginPipeline();
+	}
+}
+
+/**
  * @brief Convert an aligned script to a prediffed-coordinate script.
  *
  * The Aligner plugin transforms copies of the files (A) to establish line
@@ -382,109 +485,6 @@ struct change* CDiffWrapper::BuildScriptFromAlignedScript(
 	process(true, cursor0, end0 - cursor0, cursor1, end1 - cursor1);
 
 	return resultScript;
-}
-
-/**
- * @brief Destructor.
- */
-CDiffWrapper::~CDiffWrapper() = default;
-
-/**
- * @brief Enables/disables patch-file creation and sets filename.
- * This function enables or disables patch file creation. When
- * @p filename is empty, patch files are disabled.
- * @param [in] filename Filename for patch file, or empty string.
- */
-void CDiffWrapper::SetCreatePatchFile(const String &filename)
-{
-	if (filename.empty())
-	{
-		m_bCreatePatchFile = false;
-		m_sPatchFile.clear();
-	}
-	else
-	{
-		m_bCreatePatchFile = true;
-		m_sPatchFile = filename;
-		strutils::replace(m_sPatchFile, _T("/"), _T("\\"));
-	}
-}
-
-/**
- * @brief Enables/disabled DiffList creation ands sets DiffList.
- * This function enables or disables DiffList creation. When
- * @p diffList is `nullptr`, a difflist was not created. When valid 
- * DiffList pointer is given, compare results are stored into it.
- * @param [in] diffList Pointer to DiffList getting compare results.
- */
-void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
-{
-	if (diffList == nullptr)
-	{
-		m_bUseDiffList = false;
-		m_pDiffList = nullptr;
-	}
-	else
-	{
-		m_bUseDiffList = true;
-		m_pDiffList = diffList;
-	}
-}
-
-/**
- * @brief Returns current set of options used by diff-engine.
- * This function converts internally used diff-options to
- * format used outside CDiffWrapper and returns them.
- * @param [in,out] options Pointer to structure getting used options.
- */
-void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
-{
-	assert(options != nullptr);
-	DIFFOPTIONS tmpOptions = {0};
-	m_options.GetAsDiffOptions(tmpOptions);
-	*options = tmpOptions;
-}
-
-/**
- * @brief Set options for Diff-engine.
- * This function converts given options to format CDiffWrapper uses
- * internally and stores them.
- * @param [in] options Pointer to structure having new options.
- */
-void CDiffWrapper::SetOptions(const DIFFOPTIONS *options, bool setToDiffutils)
-{
-	assert(options != nullptr);
-	m_options.SetFromDiffOptions(*options);
-	m_xdlFlags = make_xdl_flags(m_options);
-	if (setToDiffutils)
-		m_options.SetToDiffUtils();
-}
-
-void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
-{
-	// all flags are set correctly during the construction
-	m_infoPrediffer.reset(new PrediffingInfo);
-
-	if (prediffer != nullptr)
-		*m_infoPrediffer = *prediffer;
-}
-
-void CDiffWrapper::SetAligner(const AligningInfo * aligner /*= nullptr*/)
-{
-	m_infoAligner.reset(new AligningInfo);
-	if (aligner != nullptr)
-		*m_infoAligner = *aligner;
-}
-
-void CDiffWrapper::GetAligner(AligningInfo * aligner) const
-{
-	if (aligner != nullptr)
-	{
-		if (m_infoAligner)
-			*aligner = *m_infoAligner;
-		else
-			aligner->ClearPluginPipeline();
-	}
 }
 
 /**
@@ -1246,11 +1246,6 @@ bool CDiffWrapper::RunFileDiff()
 	struct change *script10 = nullptr;
 	struct change *script12 = nullptr;
 	struct change *script02 = nullptr;
-	// Scripts converted to P's coordinate system (valid if bAlignerActive)
-	struct change *convScript = nullptr;
-	struct change *convScript10 = nullptr;
-	struct change *convScript12 = nullptr;
-	struct change *convScript02 = nullptr;
 	DiffFileData diffdata, diffdata10, diffdata12, diffdata02;
 	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
 
@@ -1289,9 +1284,15 @@ bool CDiffWrapper::RunFileDiff()
 		// Run diff on the aligned files.
 		if (bAlignerActive && m_bUseDiffList && bin_flag == 0)
 		{
+			struct change* convScript = nullptr;
 			bAlignerActive = buildAlignedScript(
 				strFileAlign[0], strFileAlign[1], aFiles[0], aFiles[1],
 				diffdata, script, convScript);
+			if (bAlignerActive)
+			{
+				FreeDiffUtilsScript(script);
+				script = convScript;
+			}
 		}
 		else
 			bAlignerActive = false;
@@ -1327,6 +1328,7 @@ bool CDiffWrapper::RunFileDiff()
 		// strFileAlign[0..2] already contain the Aligner-transformed files.
 		if (bAlignerActive && m_bUseDiffList && bin_flag10 == 0 && bin_flag12 == 0)
 		{
+			struct change* convScript10 = nullptr, *convScript12 = nullptr, *convScript02 = nullptr;
 			bAlignerActive =
 				buildAlignedScript(strFileAlign[1], strFileAlign[0], aFiles[1], aFiles[0],
 					diffdata10, script10, convScript10) &&
@@ -1334,6 +1336,21 @@ bool CDiffWrapper::RunFileDiff()
 					diffdata12, script12, convScript12) &&
 				buildAlignedScript(strFileAlign[0], strFileAlign[2], aFiles[0], aFiles[2],
 					diffdata02, script02, convScript02);
+			if (bAlignerActive)
+			{
+				FreeDiffUtilsScript(script10);
+				FreeDiffUtilsScript(script12);
+				FreeDiffUtilsScript(script02);
+				script10 = convScript10;
+				script12 = convScript12;
+				script02 = convScript02;
+			}
+			else
+			{
+				FreeDiffUtilsScript(convScript10);
+				FreeDiffUtilsScript(convScript12);
+				FreeDiffUtilsScript(convScript02);
+			}
 		}
 		else
 			bAlignerActive = false;
@@ -1352,9 +1369,13 @@ bool CDiffWrapper::RunFileDiff()
 	file_data * inf02 = diffdata02.m_inf;
 
 	if (aFiles.GetSize() == 2)
+	{
 		m_status.bBinaries = (bin_flag != 0);
+	}
 	else
+	{
 		m_status.bBinaries = (bin_flag10 != 0 || bin_flag12 != 0);
+	}
 
 	// Create patch file
 	if (!m_status.bBinaries && m_bCreatePatchFile && aFiles.GetSize() == 2)
@@ -1367,23 +1388,11 @@ bool CDiffWrapper::RunFileDiff()
 	if (!m_status.bBinaries && m_bUseDiffList)
 	{
 		if (aFiles.GetSize() == 2)
-		{
-			if (bAlignerActive)
-				LoadWinMergeDiffsFromDiffUtilsScript(convScript, diffdata.m_inf);
-			else
-				LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
-		}
+			LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
 		else
-		{
-			if (bAlignerActive)
-				LoadWinMergeDiffsFromDiffUtilsScript3(
-					convScript10, convScript12, convScript02,
-					diffdata10.m_inf, diffdata12.m_inf, diffdata02.m_inf);
-			else
-				LoadWinMergeDiffsFromDiffUtilsScript3(
-					script10, script12, script02,
-					diffdata10.m_inf, diffdata12.m_inf, diffdata02.m_inf);
-		}
+			LoadWinMergeDiffsFromDiffUtilsScript3(
+				script10, script12, script02,
+				diffdata10.m_inf, diffdata12.m_inf, diffdata02.m_inf);
 	}			
 
 	if (aFiles.GetSize() == 2)
@@ -1441,10 +1450,6 @@ bool CDiffWrapper::RunFileDiff()
 		FreeDiffUtilsScript(script12);
 		FreeDiffUtilsScript(script02);
 	}
-	FreeDiffUtilsScript(convScript);
-	FreeDiffUtilsScript(convScript10);
-	FreeDiffUtilsScript(convScript12);
-	FreeDiffUtilsScript(convScript02);
 
 	// Done with diffutils filedata
 	if (aFiles.GetSize() == 2)

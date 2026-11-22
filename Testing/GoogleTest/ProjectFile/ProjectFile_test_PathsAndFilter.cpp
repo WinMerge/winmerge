@@ -17,10 +17,12 @@ static const tchar_t LeftPath[] = _T("C:\\Temp\\Left");
 static const tchar_t RightPath[] = _T("C:\\Temp\\Right");
 /** @brief Filter we should get from file. */
 static const tchar_t Filter[] = _T("Filter Name");
-/** @brief Prediffer we should get from file. */
-static const tchar_t Prediffer[] = _T("IgnoreColumns.dll");
 /** @brief Unpacker we should get from file. */
 static const tchar_t Unpacker[] = _T("CompareMSExcelFiles.sct");
+/** @brief Prediffer we should get from file. */
+static const tchar_t Prediffer[] = _T("IgnoreColumns.dll");
+/** @brief Aligner we should get from file. */
+static const tchar_t Aligner[] = _T("PreventBlankLineMatch");
 /** @brief Left desc we should get from file. */
 static const tchar_t LeftDesc[] = _T("left description");
 /** @brief Right desc we should get from file. */
@@ -154,6 +156,19 @@ TEST_F(PathAndFilterTest, GetFilter)
 }
 
 /**
+ * @brief Read unpacker.
+ */
+TEST_F(PathAndFilterTest, GetUnpacker)
+{
+	// Now we have a unpacker
+	bool bHasUnpacker = m_pProjectFileItem->HasUnpacker();
+	ASSERT_TRUE(bHasUnpacker == true);
+
+	String unpacker = m_pProjectFileItem->GetUnpacker();
+	ASSERT_TRUE(unpacker.compare(Unpacker) == 0);
+}
+
+/**
  * @brief Read prediffer.
  */
 TEST_F(PathAndFilterTest, GetPrediffer)
@@ -167,16 +182,16 @@ TEST_F(PathAndFilterTest, GetPrediffer)
 }
 
 /**
- * @brief Read unpacker.
+ * @brief Read aligner.
  */
-TEST_F(PathAndFilterTest, GetUnpacker)
+TEST_F(PathAndFilterTest, GetAligner)
 {
-	// Now we have a unpacker
-	bool bHasUnpacker = m_pProjectFileItem->HasUnpacker();
-	ASSERT_TRUE(bHasUnpacker == true);
+	// Now we have a aligner
+	bool bHasAligner = m_pProjectFileItem->HasAligner();
+	ASSERT_TRUE(bHasAligner == true);
 
-	String unpacker = m_pProjectFileItem->GetUnpacker();
-	ASSERT_TRUE(unpacker.compare(Unpacker) == 0);
+	String aligner = m_pProjectFileItem->GetAligner();
+	ASSERT_TRUE(aligner.compare(Aligner) == 0);
 }
 
 /**

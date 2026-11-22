@@ -920,6 +920,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Common\TransStatic.cpp" />
     <ClCompile Include="FileCmpReport.cpp" />
     <ClCompile Include="FileCmpReportDlg.cpp" />
     <ClCompile Include="MergeLogger.cpp">
