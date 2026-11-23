@@ -1,4 +1,4 @@
-int funcA()
+int funcC()
 {
 	if (a)
 	{
@@ -8,3 +8,5 @@ int funcA()
 		}
 	}
 }
+
+int funcA()

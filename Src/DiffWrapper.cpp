@@ -61,29 +61,6 @@ namespace
 		ScopeExit& operator=(const ScopeExit&) = delete;
 		F m_f;
 	};
-
-	/**
-	 * @brief Count the number of lines in the whole file.
-	 * The lines of the common prefix are buffered too (linbuf_base is negative), so
-	 * valid_lines - linbuf_base is the number of lines up to the common suffix.
-	 * The common suffix is not buffered, so its lines are counted in the buffer.
-	 * (prefix_lines must not be added: it is already included.)
-	 */
-	int CountTotalLines(const file_data& fd)
-	{
-		int lines = fd.valid_lines - fd.linbuf_base;
-		if (fd.linbuf == nullptr || fd.buffer == nullptr)
-			return lines;
-		const char* p = fd.linbuf[fd.valid_lines];
-		const char* bufEnd = reinterpret_cast<const char*>(fd.buffer) + fd.buffered_chars;
-		if (p == nullptr || p >= bufEnd)
-			return lines;
-		for (; (p = static_cast<const char*>(memchr(p, '\n', bufEnd - p))) != nullptr; ++p)
-			++lines;
-		if (bufEnd[-1] != '\n')
-			++lines;
-		return lines;
-	}
 }
 
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
@@ -485,6 +462,78 @@ struct change* CDiffWrapper::BuildScriptFromAlignedScript(
 	process(true, cursor0, end0 - cursor0, cursor1, end1 - cursor1);
 
 	return resultScript;
+}
+
+// Common helper function (2-way and 3-way): run Diff2Files for an aligned pair,
+// validate the result and convert the script to P's coordinate system.
+// The aligned file data is released before returning.
+// On failure, the aligner is not used (the result of P is used).
+bool CDiffWrapper::BuildAlignedScript(const String& file1, const String& file2,
+	const String& displayFile1, const String& displayFile2,
+	const DiffFileData& diffData, const struct change* pScript,
+	struct change*& converted)
+{
+	// P has no differences: the result has no differences whatever the
+	// aligner does, so there is nothing to do.
+	if (pScript == nullptr)
+	{
+		converted = nullptr;
+		return true;
+	}
+
+	DiffFileData alignData;
+	struct change* alignScript = nullptr;
+	int binFlag = 0;
+	ScopeExit cleanup([&]
+		{
+			FreeDiffUtilsScript(alignScript);
+			alignData.Close();
+		});
+
+	{
+		file_data savedFiles[2] = { files[0], files[1] };
+		ScopeExit restore([&]
+			{
+				files[0] = savedFiles[0];
+				files[1] = savedFiles[1];
+			});
+
+		alignData.SetDisplayFilepaths(displayFile1, displayFile2);
+		if (!alignData.OpenFiles(file1, file2))
+			return false;
+		if (!Diff2Files(&alignScript, &alignData, &binFlag, nullptr, false))
+			return false;
+	}
+
+	/**
+	 * @brief Count the number of lines in the whole file.
+	 * Assumes no_diff_means_no_output is false, so all lines are stored in linbuf.
+	 */
+	auto CountTotalLines = [](const file_data& fd) { return fd.valid_lines - fd.linbuf_base;
+		};
+
+	// The aligner must not change the number of lines.
+	for (int i = 0; i < 2; ++i)
+	{
+		const int counta = CountTotalLines(alignData.m_inf[i]);
+		const int countd = CountTotalLines(diffData.m_inf[i]);
+		if (binFlag != 0 ||
+			alignData.m_inf[i].missing_newline != diffData.m_inf[i].missing_newline ||
+			counta != countd)
+		{
+			RootLogger::Error(
+				strutils::format(_T("Aligner changed the number of lines. Aligner disabled. i=%d %d!=%d"),
+					i, counta, countd));
+			return false;
+		}
+	}
+
+	converted = BuildScriptFromAlignedScript(alignScript, alignData.m_inf, diffData.m_inf);
+
+	if (m_pMovedLines[0] != nullptr)
+		moved_block_analysis(&converted, diffData.m_inf);
+
+	return true;
 }
 
 /**
@@ -1170,78 +1219,6 @@ bool CDiffWrapper::RunFileDiff()
 		}
 	}
 
-	// Common helper lambda (2-way and 3-way): run Diff2Files for an aligned pair,
-	// validate the result and convert the script to P's coordinate system.
-	// The aligned file data is released before returning.
-	// On failure, the aligner is not used (the result of P is used).
-	auto buildAlignedScript = [&](const String& file1, const String& file2,
-		const String& displayFile1, const String& displayFile2,
-		const DiffFileData& diffData, const struct change* pScript,
-		struct change*& converted) -> bool
-		{
-			// P has no differences: the result has no differences whatever the
-			// aligner does, so there is nothing to do.
-			if (pScript == nullptr)
-			{
-				converted = nullptr;
-				return true;
-			}
-
-			DiffFileData alignData;
-			struct change* alignScript = nullptr;
-			int binFlag = 0;
-			ScopeExit cleanup([&]
-				{
-					FreeDiffUtilsScript(alignScript);
-					alignData.Close();
-				});
-
-			{
-				// Comment filtering is for P only. Moved-block detection is not
-				// available for aligned scripts, so don't waste time on it.
-				const bool filterComments = m_options.m_filterCommentsLines;
-				file_data savedFiles[2] = { files[0], files[1] };
-				std::unique_ptr<MovedLines> savedMoved[3] =
-					{ std::move(m_pMovedLines[0]), std::move(m_pMovedLines[1]), std::move(m_pMovedLines[2]) };
-				m_options.m_filterCommentsLines = false;
-				m_options.SetToDiffUtils();
-				ScopeExit restore([&]
-					{
-						m_options.m_filterCommentsLines = filterComments;
-						m_options.SetToDiffUtils();
-						files[0] = savedFiles[0];
-						files[1] = savedFiles[1];
-						for (int i = 0; i < 3; ++i)
-							m_pMovedLines[i] = std::move(savedMoved[i]);
-					});
-
-				alignData.SetDisplayFilepaths(displayFile1, displayFile2);
-				if (!alignData.OpenFiles(file1, file2))
-					return false;
-				if (!Diff2Files(&alignScript, &alignData, &binFlag, nullptr))
-					return false;
-			}
-
-			// The aligner must not change the number of lines.
-			for (int i = 0; i < 2; ++i)
-			{
-				const int counta = CountTotalLines(alignData.m_inf[i]);
-				const int countd = CountTotalLines(diffData.m_inf[i]);
-				if (binFlag != 0 ||
-					alignData.m_inf[i].missing_newline != diffData.m_inf[i].missing_newline ||
-					counta != countd)
-				{
-					RootLogger::Error(
-						strutils::format(_T("Aligner changed the number of lines. Aligner disabled. i=%d %d!=%d"),
-							i, counta, countd));
-					return false;
-				}
-			}
-
-			converted = BuildScriptFromAlignedScript(alignScript, alignData.m_inf, diffData.m_inf);
-			return true;
-		};
-
 	struct change *script = nullptr;
 	struct change *script10 = nullptr;
 	struct change *script12 = nullptr;
@@ -1261,7 +1238,7 @@ bool CDiffWrapper::RunFileDiff()
 		// Compare the files, if no error was found.
 		// Last param (bin_file) is `nullptr` since we don't
 		// (yet) need info about binary sides.
-		bRet = Diff2Files(&script, &diffdata, &bin_flag, nullptr);
+		bRet = Diff2Files(&script, &diffdata, &bin_flag, nullptr, m_pMovedLines[0] != nullptr);
 
 		// We don't anymore create diff-files for every rescan.
 		// User can create patch-file whenever one wants to.
@@ -1285,9 +1262,7 @@ bool CDiffWrapper::RunFileDiff()
 		if (bAlignerActive && m_bUseDiffList && bin_flag == 0)
 		{
 			struct change* convScript = nullptr;
-			bAlignerActive = buildAlignedScript(
-				strFileAlign[0], strFileAlign[1], aFiles[0], aFiles[1],
-				diffdata, script, convScript);
+			bAlignerActive = BuildAlignedScript(strFileAlign[0], strFileAlign[1], aFiles[0], aFiles[1], diffdata, script, convScript);
 			if (bAlignerActive)
 			{
 				FreeDiffUtilsScript(script);
@@ -1308,21 +1283,21 @@ bool CDiffWrapper::RunFileDiff()
 			return false;
 		}
 
-		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, nullptr);
+		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, nullptr, m_pMovedLines[0] != nullptr);
 
 		if (!diffdata12.OpenFiles(strFileTemp[1], strFileTemp[2]))
 		{
 			return false;
 		}
 
-		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr) && bRet;
+		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr, m_pMovedLines[0] != nullptr) && bRet;
 
 		if (!diffdata02.OpenFiles(strFileTemp[0], strFileTemp[2]))
 		{
 			return false;
 		}
 
-		bRet = Diff2Files(&script02, &diffdata02, &bin_flag02, nullptr) && bRet;
+		bRet = Diff2Files(&script02, &diffdata02, &bin_flag02, nullptr, m_pMovedLines[0] != nullptr) && bRet;
 
 		// 3-way comparison: run diff on the aligned files for each pair.
 		// strFileAlign[0..2] already contain the Aligner-transformed files.
@@ -1330,12 +1305,9 @@ bool CDiffWrapper::RunFileDiff()
 		{
 			struct change* convScript10 = nullptr, *convScript12 = nullptr, *convScript02 = nullptr;
 			bAlignerActive =
-				buildAlignedScript(strFileAlign[1], strFileAlign[0], aFiles[1], aFiles[0],
-					diffdata10, script10, convScript10) &&
-				buildAlignedScript(strFileAlign[1], strFileAlign[2], aFiles[1], aFiles[2],
-					diffdata12, script12, convScript12) &&
-				buildAlignedScript(strFileAlign[0], strFileAlign[2], aFiles[0], aFiles[2],
-					diffdata02, script02, convScript02);
+				BuildAlignedScript(strFileAlign[1], strFileAlign[0], aFiles[1], aFiles[0], diffdata10, script10, convScript10) &&
+				BuildAlignedScript(strFileAlign[1], strFileAlign[2], aFiles[1], aFiles[2], diffdata12, script12, convScript12) &&
+				BuildAlignedScript(strFileAlign[0], strFileAlign[2], aFiles[0], aFiles[2], diffdata02, script02, convScript02);
 			if (bAlignerActive)
 			{
 				FreeDiffUtilsScript(script10);
@@ -1652,12 +1624,13 @@ void CDiffWrapper::SetAppendFiles(bool bAppendFiles)
     So if first file is binary, first bit is set etc. Can be `nullptr` if binary file
     info is not needed (faster compare since diffutils don't bother checking
     second file if first is binary).
+ * @param [in] detect_moved_block If true, moved-block detection is enabled.
  * @return true when compare succeeds, false if error happened during compare.
  * @note This function is used in file compare, not folder compare. Similar
  * folder compare function is in DiffFileData.cpp.
  */
 bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
-	int * bin_status, int * bin_file) const
+	int * bin_status, int * bin_file, bool detect_moved_block) const
 {
 	bool bRet = true;
 	SE_Handler seh;
@@ -1667,7 +1640,7 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		{
 			const unsigned xdl_flags = make_xdl_flags(m_options);
 			*diffs = diff_2_files_xdiff(diffData->m_inf, bin_status,
-				(m_pMovedLines[0] != nullptr), bin_file, xdl_flags);
+				detect_moved_block, bin_file, xdl_flags);
 			files[0] = diffData->m_inf[0];
 			files[1] = diffData->m_inf[1];
 		}
@@ -1675,7 +1648,7 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		{
 			// Diff files. depth is zero because we are not comparing dirs
 			*diffs = diff_2_files(diffData->m_inf, 0, bin_status,
-				(m_pMovedLines[0] != nullptr), bin_file);
+				detect_moved_block, bin_file);
 		}
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}

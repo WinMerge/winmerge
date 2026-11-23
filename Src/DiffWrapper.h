@@ -207,26 +207,14 @@ public:
 	void EnablePlugins(bool enable);
 	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
 	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
-		int * bin_status, int * bin_file) const;
+		int * bin_status, int * bin_file, bool detect_moved_block) const;
 
 protected:
 	String FormatSwitchString() const;
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
-	/**
-	 * @brief Convert an aligned script to a prediffed-coordinate script.
-	 *
-	 * The Aligner plugin transforms copies of the files (A) to establish line
-	 * correspondence (the number of lines must not change). The script computed on A
-	 * is converted to P's (prediffed) coordinates so that it can be passed to
-	 * LoadWinMergeDiffsFromDiffUtilsScript. Lines identical in A are compared again
-	 * in P. Moved-block information is not carried over.
-	 *
-	 * @param alignScript Script from comparing Aligner-transformed files (A)
-	 * @param alignInf file_data for the Aligner-transformed files (A)
-	 * @param prediffInf file_data for the prediffed files (P)
-	 * @return New script in P's coordinate system (nullptr if no differences).
-	 */
 	struct change* BuildScriptFromAlignedScript(struct change* alignScript, const file_data* alignInf, const file_data* prediffInf);
+	bool BuildAlignedScript(const String& file1, const String& file2, const String& displayFile1, const String& displayFile2,
+		const DiffFileData& diffData, const struct change* pScript, struct change*& converted);
 	std::vector<DiffRangeInfo> InsertMovedBlocks3Way();
 	void WritePatchFile(struct change * script, file_data * inf);
 public:

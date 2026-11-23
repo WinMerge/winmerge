@@ -5,3 +5,5 @@ int funcA()
 		funcB();
 	}
 }
+
+int funcC()
