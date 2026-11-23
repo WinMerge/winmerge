@@ -949,9 +949,9 @@ static std::unique_ptr<VectorLineDataProvider> CreateFileLineDataProvider(int ta
 		bool lossy;
 		String line, eol;
 		linesToRead = file.ReadString(line, eol, &lossy);
-		if (!linesToRead)
-			break;
-		lines.push_back(ucr::toUTF8(line + eol));
+		const auto lineeol = ucr::toUTF8(line + eol);
+		if (!lineeol.empty())
+			lines.push_back(lineeol);
 	} while (linesToRead);
 	const auto filenames = strutils::split(context.filteredFilenames, '|');
 	const String tablePropertiesPath = target >= 0 && static_cast<size_t>(target) < filenames.size()
