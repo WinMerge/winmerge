@@ -14,6 +14,10 @@
 
 * BugFix: Fix a crash caused by an invalid thread object reference in the message box dialog. (#3780, PR #3781)
 
+* BugFix: Fix an issue where differences could be incorrectly ignored when
+    a plugin pipeline with a filter expression was applied to files whose
+    last line had no EOL. (PR #3794)
+
 ### Open dialog
 
 * BugFix: Fix a crash in path auto-completion when the Open view's path combo box received focus again while auto-completion was being initialized. (#3749)
