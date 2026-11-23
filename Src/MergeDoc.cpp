@@ -2689,7 +2689,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 {
 	PrediffingInfo prediffer;
 	m_diffWrapper.GetPrediffer(&prediffer);
-	MergeLogger::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer);
+	AligningInfo aligner;
+	m_diffWrapper.GetAligner(&aligner);
+	MergeLogger::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer, &aligner);
 
 	CWaitCursor waitstatus;
 	IDENTLEVEL identical = IDENTLEVEL::NONE;

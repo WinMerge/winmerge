@@ -191,7 +191,7 @@ CWebPageDiffFrame::~CWebPageDiffFrame()
 
 bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback)
 {
-	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr, nullptr);
 
 	m_callbackOnOpenCompleted = callback;
 	m_bCompareCompleted = false;

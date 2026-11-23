@@ -263,7 +263,6 @@ public:
 				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[0].pboolVal;
 				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
 				hr = PrediffBufferW(text, size, pbChanged, pbSuccess);
-				hr = S_OK;
 				break;
 			}
 			case DISPID_UnpackFile:

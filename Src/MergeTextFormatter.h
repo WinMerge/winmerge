@@ -6,8 +6,9 @@
 
 #include "UnicodeString.h"
 
-class PrediffingInfo;
 class PackingInfo;
+class PrediffingInfo;
+class AligningInfo;
 class CompareStats;
 class IHeaderBar;
 struct FileLocation;
@@ -17,11 +18,15 @@ class PathContext;
 
 namespace MergeTextFormatter
 {
-	String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
+	String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer, const AligningInfo* infoAligner);
 	String GetDiffStatusString(int curDiff, int diffCount, int ignoredDiffCount = 0);
 	String GetTitleStringFlags(const IMergeDoc& mergeDoc);
 	String GetTitleString(const IMergeDoc& mergeDoc);
 	String GetReportTitleString(const IMergeDoc& mergeDoc, int pane);
 	String GetTooltipString(const IMergeDoc& mergeDoc);
-	String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo* pInfoUnpacker, const PrediffingInfo* pInfoPrediffer, bool hasTrivialDiffs = false);
+	String GetTooltipString(const PathContext& paths, const String desc[],
+		const PackingInfo* pInfoUnpacker,
+		const PrediffingInfo* pInfoPrediffer,
+		const AligningInfo* pInfoAligner,
+		bool hasTrivialDiffs = false);
 }

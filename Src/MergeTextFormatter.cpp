@@ -41,12 +41,15 @@ String MergeTextFormatter::GetTitleStringFlags(const IMergeDoc& mergeDoc)
 {
 	const PackingInfo* pInfoUnpacker = mergeDoc.GetUnpacker();
 	const PrediffingInfo* pInfoPrediffer = mergeDoc.GetPrediffer();
+	const AligningInfo* pInfoAligner = mergeDoc.GetAligner();
 	const bool hasTrivialDiffs = mergeDoc.GetTrivialCount();
 	String flags;
 	if (pInfoUnpacker && !pInfoUnpacker->GetPluginPipeline().empty())
 		flags += _T("U");
 	if (pInfoPrediffer && !pInfoPrediffer->GetPluginPipeline().empty())
 		flags += _T("P");
+	if (pInfoAligner && !pInfoAligner->GetPluginPipeline().empty())
+		flags += _T("A");
 	if (hasTrivialDiffs)
 		flags += _T("F");
 	return (flags.empty() ? _T("") : (_T("(") + flags + _T(") ")));
@@ -92,11 +95,11 @@ String MergeTextFormatter::GetTooltipString(const IMergeDoc& mergeDoc)
 		desc[i] = mergeDoc.GetDescription(i);
 		paths.SetPath(i, mergeDoc.GetPath(i), false);
 	}
-	return GetTooltipString(paths, desc, mergeDoc.GetUnpacker(), mergeDoc.GetPrediffer(), mergeDoc.GetTrivialCount() > 0);
+	return GetTooltipString(paths, desc, mergeDoc.GetUnpacker(), mergeDoc.GetPrediffer(), mergeDoc.GetAligner(), mergeDoc.GetTrivialCount() > 0);
 }
 
 String MergeTextFormatter::GetTooltipString(const PathContext& paths, const String desc[],
-	const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
+	const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, const AligningInfo *pInfoAligner, bool hasTrivialDiffs)
 {
 	String sTitle;
 	for (int nBuffer = 0; nBuffer < paths.GetSize(); nBuffer++)
@@ -125,12 +128,14 @@ String MergeTextFormatter::GetTooltipString(const PathContext& paths, const Stri
 		sTitle += strutils::format(_T("%s: %s\n"), _("Unpacker"), pInfoUnpacker->GetPluginPipeline());
 	if (pInfoPrediffer && !pInfoPrediffer->GetPluginPipeline().empty())
 		sTitle += strutils::format(_T("%s: %s\n"), _("Prediffer"), pInfoPrediffer->GetPluginPipeline());
+	if (pInfoAligner && !pInfoAligner->GetPluginPipeline().empty())
+		sTitle += strutils::format(_T("%s: %s\n"), _("Aligner"), pInfoAligner->GetPluginPipeline());
 	if (hasTrivialDiffs)
 		sTitle += _("Filter applied") + _T("\n");
 	return sTitle;
 }
 
-String MergeTextFormatter::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+String MergeTextFormatter::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer, const AligningInfo* infoAligner)
 {
 	String p;
 	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
@@ -140,6 +145,12 @@ String MergeTextFormatter::GetPluginInfoString(const PackingInfo* infoUnpacker, 
 		if (!p.empty())
 			p += _T(", ");
 		p += _("Prediffer") + _T(": ") + infoPrediffer->GetPluginPipeline();
+	}
+	if (infoAligner && !infoAligner->GetPluginPipeline().empty())
+	{
+		if (!p.empty())
+			p += _T(", ");
+		p += _("Aligner") + _T(": ") + infoAligner->GetPluginPipeline();
 	}
 	if (p.empty())
 		return _T("");

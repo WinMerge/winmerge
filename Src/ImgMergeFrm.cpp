@@ -235,7 +235,7 @@ CImgMergeFrame::~CImgMergeFrame()
 
 bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent)
 {
-	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr, nullptr);
 
 	CWaitCursor waitstatus;
 	int nNormalBuffer = 0;

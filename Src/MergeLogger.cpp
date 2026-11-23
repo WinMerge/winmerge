@@ -13,7 +13,7 @@
 #include "cepoint.h"
 #include "I18n.h"
 
-void MergeLogger::LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+void MergeLogger::LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer, const AligningInfo* infoAligner)
 {
 	String str[3];
 	for (int i = 0; i < nFiles; ++i)
@@ -26,10 +26,10 @@ void MergeLogger::LogComparisonStart(int nFiles, const FileLocation ifileloc[], 
 		strutils::format_string2(_("Comparing %1 with %2"), str[0], str[1]) :
 		strutils::format_string3(_("Comparing %1 with %2 and %3"), str[0], str[1], str[2])
 		);
-	RootLogger::Info(s + MergeTextFormatter::GetPluginInfoString(infoUnpacker, infoPrediffer));
+	RootLogger::Info(s + MergeTextFormatter::GetPluginInfoString(infoUnpacker, infoPrediffer, infoAligner));
 }
 
-void MergeLogger::LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+void MergeLogger::LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer, const AligningInfo* infoAligner)
 {
 	String str[3];
 	for (int i = 0; i < paths.GetSize(); ++i)
@@ -41,7 +41,7 @@ void MergeLogger::LogComparisonStart(const PathContext& paths, const String desc
 	String s = (paths.GetSize() < 3) ?
 			strutils::format_string2(_("Comparing %1 with %2"), str[0], str[1]) : 
 			strutils::format_string3(_("Comparing %1 with %2 and %3"), str[0], str[1], str[2]);
-	RootLogger::Info(s + MergeTextFormatter::GetPluginInfoString(infoUnpacker, infoPrediffer));
+	RootLogger::Info(s + MergeTextFormatter::GetPluginInfoString(infoUnpacker, infoPrediffer, infoAligner));
 }
 
 void MergeLogger::LogComparisonCompleted(const IMergeDoc& mergeDoc)

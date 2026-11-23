@@ -333,9 +333,9 @@ void COpenView::OnInitialUpdate()
 	CTabCtrl* pTab = static_cast<CTabCtrl*>(GetDlgItem(IDC_FILE_PLUGINS_TAB));
 	if (pTab && pTab->GetItemCount() == 0)
 	{
-		pTab->InsertItem(0, _T("Unpacker"));
-		pTab->InsertItem(1, _T("Prediffer"));
-		pTab->InsertItem(2, _T("Aligner"));
+		pTab->InsertItem(0, _("Unpacker").c_str());
+		pTab->InsertItem(1, _("Prediffer").c_str());
+		pTab->InsertItem(2, _("Aligner").c_str());
 		pTab->SetCurSel(0);
 	}
 

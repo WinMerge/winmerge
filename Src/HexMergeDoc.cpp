@@ -455,7 +455,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readO
  */
 bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[])
 {
-	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr, nullptr);
 
 	CWaitCursor waitstatus;
 	CHexMergeFrame *pf = GetParentFrame();

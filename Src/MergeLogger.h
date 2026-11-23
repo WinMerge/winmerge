@@ -7,8 +7,9 @@
 #include "UnicodeString.h"
 
 class PathContext;
-class PrediffingInfo;
 class PackingInfo;
+class PrediffingInfo;
+class AligningInfo;
 class CompareStats;
 struct FileLocation;
 struct IMergeDoc;
@@ -16,8 +17,8 @@ struct CEPoint;
 
 namespace MergeLogger
 {
-	void LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
-	void LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
+	void LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer, const AligningInfo* infoAligner);
+	void LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer, const AligningInfo* infoAligner);
 	void LogComparisonCompleted(const IMergeDoc& mergeDoc);
 	void LogComparisonCompleted(const CompareStats& stats);
 	void LogFileSaved(const String& path);
