@@ -3836,7 +3836,11 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 	{
 		CMergeEditView *pView = GetGroupView(nPane);
 		if (pView != nullptr)
+		{
 			pView->InvalidateScreenRect(false);
+			if (m_bWordWrap)
+				pView->Invalidate(FALSE);
+		}
 	}
 	// recalculate m_nTopSubLine
 	m_nTopSubLine = GetSubLineIndex(m_nTopLine);
