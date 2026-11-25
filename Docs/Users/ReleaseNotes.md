@@ -17,6 +17,10 @@ Please submit bug reports to our bug-tracker.
 
 ## What Is New in 2.16.60.2?
 
+### General
+
+* BugFix: Fix stale text when resizing wrapped comparison panes (#3798)
+
 ### File compare
 
 * BugFix: Fix Go To navigation when ignored differences are present. The Go To dialog now counts only significant differences, consistent with the difference number displayed in the status bar. (#3754)
