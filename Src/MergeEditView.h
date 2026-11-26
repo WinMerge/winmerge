@@ -135,6 +135,9 @@ public:
 	using CGhostTextView::GetSelection;
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
 	virtual std::vector<LangServices::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
+	bool CanMarkAll() const override { return true; }
+	void MarkAll(const CString& text, findtext_flags_t flags) override;
+	void ClearAllMarks() override;
 	virtual std::vector<LangServices::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
 	virtual CEColor GetColor(int nColorIndex) const override;
 	virtual void GetLineColors (int nLineIndex, CEColor & crBkgnd,

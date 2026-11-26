@@ -34,7 +34,7 @@ private:
 
 	//{{AFX_DATA(PropMarkerColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_MARKER };
-	CColorButton    m_btnMarkerColors[4];
+	CColorButton    m_btnMarkerColors[6];
 	//}}AFX_DATA
 
 	// Overrides

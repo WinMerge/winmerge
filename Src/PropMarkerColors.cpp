@@ -34,6 +34,8 @@ void PropMarkerColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_MARKER1_BKGD_COLOR, m_btnMarkerColors[1]);
 	DDX_Control(pDX, IDC_MARKER2_BKGD_COLOR, m_btnMarkerColors[2]);
 	DDX_Control(pDX, IDC_MARKER3_BKGD_COLOR, m_btnMarkerColors[3]);
+	DDX_Control(pDX, IDC_MARKER4_BKGD_COLOR, m_btnMarkerColors[4]);
+	DDX_Control(pDX, IDC_MARKER5_BKGD_COLOR, m_btnMarkerColors[5]);
 	//}}AFX_DATA_MAP
 }
 
@@ -41,6 +43,7 @@ void PropMarkerColors::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropMarkerColors, OptionsPanel)
 	//{{AFX_MSG_MAP(PropMarkerColors)
 	ON_COMMAND_RANGE(IDC_MARKER0_BKGD_COLOR, IDC_MARKER3_BKGD_COLOR, OnMarkerColors)
+	ON_COMMAND_RANGE(IDC_MARKER4_BKGD_COLOR, IDC_MARKER5_BKGD_COLOR, OnMarkerColors)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -94,7 +97,9 @@ void PropMarkerColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
  */
 void PropMarkerColors::OnMarkerColors(UINT nID) 
 {
-	BrowseColorAndSave(m_btnMarkerColors[nID - IDC_MARKER0_BKGD_COLOR], COLORINDEX_MARKERBKGND0 + nID - IDC_MARKER0_BKGD_COLOR);
+	const int colorOffset = nID >= IDC_MARKER4_BKGD_COLOR ?
+		4 + nID - IDC_MARKER4_BKGD_COLOR : nID - IDC_MARKER0_BKGD_COLOR;
+	BrowseColorAndSave(m_btnMarkerColors[colorOffset], COLORINDEX_MARKERBKGND0 + colorOffset);
 }
 
 /**
@@ -109,7 +114,7 @@ void PropMarkerColors::SerializeColorsToFromScreen(OPERATION op)
 	if (op == SET_DEFAULTS)
 		m_pTempColors->SetDefaults();
 
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 6; ++i)
 		SerializeColorToFromScreen(op, m_btnMarkerColors[i], COLORINDEX_MARKERBKGND0 + i);
 }
 
