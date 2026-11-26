@@ -1,0 +1,75 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+// IgnoreAccents.idl
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+    object,
+    uuid(221ACB26-BF4C-42DF-B4CA-2C2574FD0AD3),
+    dual,
+    helpstring("IWinMergeScript Interface"),
+    pointer_default(unique)
+]
+interface IWinMergeScript : IDispatch
+{
+    [propget, id(1)]
+    HRESULT PluginEvent([out, retval] BSTR *pVal);
+
+    [propget, id(2)]
+    HRESULT PluginDescription([out, retval] BSTR *pVal);
+
+    [propget, id(3)]
+    HRESULT PluginFileFilters([out, retval] BSTR *pVal);
+
+    [propget, id(4)]
+    HRESULT PluginIsAutomatic([out, retval] VARIANT_BOOL *pVal);
+
+    [propget, id(5)]
+    HRESULT PluginArguments([out, retval] BSTR *pVal);
+
+    [propput, id(5)]
+    HRESULT PluginArguments([in] BSTR val);
+
+    [propget, id(6)]
+    HRESULT PluginExtendedProperties([out, retval] BSTR *pVal);
+
+    [id(7)]
+    HRESULT PrediffFile(
+        [in] BSTR fileSrc,
+        [in] BSTR fileDst,
+        [in, out] VARIANT_BOOL *pbChanged,
+        [out, retval] VARIANT_BOOL *pbSuccess
+    );
+
+    [id(8)]
+    HRESULT ShowSettingsDialog(
+        [out, retval] VARIANT_BOOL *pbHandled
+    );
+
+    [id(9)]
+    HRESULT PluginOnEvent(
+        [in] int iEventType,
+        [in] IDispatch* pDispatch
+    );
+};
+
+[
+    uuid(8D6C55E3-172B-4A75-A907-D8D68C100004),
+    version(1.0),
+    helpstring("IgnoreAccents 1.0 Type Library")
+]
+library IgnoreAccentsLib
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+
+    [
+        uuid(A84C1E59-0788-4E1B-BEB7-278201CAAB2F),
+        helpstring("WinMergeScript Class")
+    ]
+    coclass WinMergeScript
+    {
+        [default] interface IWinMergeScript;
+    };
+};

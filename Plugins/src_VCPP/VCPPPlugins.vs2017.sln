@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreCommentsC", "IgnoreCo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreFieldsTab", "IgnoreFieldsTab\IgnoreFieldsTab.vcxproj", "{AA88B46E-B2E2-4B03-8CD5-1E9D60DB6AB2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreAccents", "IgnoreAccents\IgnoreAccents.vcxproj", "{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "DisplayXMLFiles\DisplayXMLFiles.vcxproj", "{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideFirstLetter", "HideFirstLetter\HideFirstLetter.vcxproj", "{78ABD31C-70A2-4608-8A3D-506E1E2C0AFE}"
@@ -32,6 +34,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "..\..\Externals\poco
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Common\Common.vcxitems*{c6a3f05d-7c1a-4f82-93e2-7f9a6e0c4b21}*SharedItemsImports = 4
 		Common\Common.vcxitems*{098b241d-63af-4683-baf8-6da57fd8fe75}*SharedItemsImports = 4
 		Common\Common.vcxitems*{0ee652ff-27b0-4f91-bad6-2931bc072762}*SharedItemsImports = 4
 		Common\Common.vcxitems*{7354ba4f-8dab-46ee-a5a2-a148d6ef2443}*SharedItemsImports = 9
@@ -54,6 +57,22 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|ARM.Build.0 = Debug|ARM
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|ARM64.Build.0 = Debug|ARM64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|x64.ActiveCfg = Debug|x64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|x64.Build.0 = Debug|x64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|x86.ActiveCfg = Debug|Win32
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Debug|x86.Build.0 = Debug|Win32
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|ARM.ActiveCfg = Release|ARM
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|ARM.Build.0 = Release|ARM
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|ARM64.ActiveCfg = Release|ARM64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|ARM64.Build.0 = Release|ARM64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|x64.ActiveCfg = Release|x64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|x64.Build.0 = Release|x64
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|x86.ActiveCfg = Release|Win32
+		{C6A3F05D-7C1A-4F82-93E2-7F9A6E0C4B21}.Release|x86.Build.0 = Release|Win32
 		{A644FBA4-D76E-4500-B4B7-04D7A245359A}.Debug|ARM.ActiveCfg = Debug|ARM
 		{A644FBA4-D76E-4500-B4B7-04D7A245359A}.Debug|ARM.Build.0 = Debug|ARM
 		{A644FBA4-D76E-4500-B4B7-04D7A245359A}.Debug|ARM64.ActiveCfg = Debug|ARM64
