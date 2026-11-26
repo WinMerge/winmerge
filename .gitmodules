@@ -37,3 +37,6 @@
 [submodule "Docs/Manual"]
 	url = ../winmerge-manual
 	path = Docs/Manual
+[submodule "ShellExtension"]
+	path = ShellExtension
+	url = https://github.com/WinMerge/shellextension
