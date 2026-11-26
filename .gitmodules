@@ -31,9 +31,9 @@
 [submodule "Externals/tree-sitter-grammars"]
 	path = Externals/tree-sitter-grammars
 	url = https://github.com/WinMerge/tree-sitter-grammars
-[submodule "Externals/7zip"]
-	path = Externals/7zip
-	url = https://github.com/WinMerge/7zip
 [submodule "Docs/Manual"]
 	url = ../winmerge-manual
 	path = Docs/Manual
+[submodule "ArchiveSupport/Merge7z"]
+	path = ArchiveSupport/Merge7z
+	url = https://github.com/WinMerge/merge7z.git
