@@ -387,6 +387,7 @@
     <ClCompile Include="..\editlib\parsers\python.cpp" />
     <ClCompile Include="..\editlib\parsers\rexx.cpp" />
     <ClCompile Include="..\editlib\parsers\rsrc.cpp" />
+    <ClCompile Include="..\editlib\parsers\eml.cpp" />
     <ClCompile Include="..\editlib\parsers\rtf.cpp" />
     <ClCompile Include="..\editlib\parsers\ruby.cpp" />
     <ClCompile Include="..\editlib\parsers\rust.cpp" />
