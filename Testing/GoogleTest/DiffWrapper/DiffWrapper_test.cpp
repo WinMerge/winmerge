@@ -718,6 +718,18 @@ TEST(DiffWrapper, RunFileDiff_3way_BothSidesAddInTheSamePlace)
 	}
 }
 
+static void initOptions()
+{
+	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+	GetOptionsMgr()->InitOption(OPT_CMP_TBL_QUOTE_CHAR, _T("\""));
+	GetOptionsMgr()->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);
+	GetOptionsMgr()->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
+	GetOptionsMgr()->InitOption(OPT_CMP_CSV_DELIM_CHAR, _T(","));
+	GetOptionsMgr()->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T("*.tsv"));
+	GetOptionsMgr()->InitOption(OPT_CMP_DSV_FILEPATTERNS, _T(""));
+	GetOptionsMgr()->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(""));
+}
+
 TEST(DiffWrapper, RunFileDiff_Prediffer)
 {
 	String leftText = LR"(int funcA()
@@ -735,6 +747,8 @@ TEST(DiffWrapper, RunFileDiff_Prediffer)
 			funcB();
 		}
 }b)";
+
+	initOptions();
 
 	CDiffWrapper dw;
 	DIFFOPTIONS options{};
@@ -761,15 +775,6 @@ TEST(DiffWrapper, RunFileDiff_Prediffer)
 		EXPECT_EQ(6, dr.end[1]);
 	}
 
-	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
-	GetOptionsMgr()->InitOption(OPT_CMP_TBL_QUOTE_CHAR, _T("\""));
-	GetOptionsMgr()->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);
-	GetOptionsMgr()->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
-	GetOptionsMgr()->InitOption(OPT_CMP_CSV_DELIM_CHAR, _T(","));
-	GetOptionsMgr()->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T("*.tsv"));
-	GetOptionsMgr()->InitOption(OPT_CMP_DSV_FILEPATTERNS, _T(""));
-	GetOptionsMgr()->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(""));
-
 	{
 		DiffList diffList;
 		prediffer.SetPluginPipeline(_T("le:trim(Line)"));
@@ -787,5 +792,196 @@ TEST(DiffWrapper, RunFileDiff_Prediffer)
 		EXPECT_EQ(6, dr.begin[1]);
 		EXPECT_EQ(6, dr.end[0]);
 		EXPECT_EQ(6, dr.end[1]);
+	}
+}
+
+TEST(DiffWrapper, RunFileDiff_Aligner)
+{
+	String leftText = LR"(int funcA()
+{
+	if (b)
+	{
+		funcB();
+	}
+}
+)";
+
+	String rightText = LR"(int funcA()
+{
+	if (a)
+	{
+		if (b)
+		{
+			funcB();
+		}
+	}
+}
+)";
+
+	initOptions();
+
+	CDiffWrapper dw;
+	DIFFOPTIONS options{};
+	DIFFRANGE dr;
+	AligningInfo aligner;
+
+	TempFile left = WriteToTempFile(leftText);
+	TempFile right = WriteToTempFile(rightText);
+
+	{
+		DiffList diffList;
+		dw.EnablePlugins(false);
+		dw.SetCreateDiffList(&diffList);
+		dw.SetOptions(&options);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.RunFileDiff();
+
+		ASSERT_EQ(2, diffList.GetSize());
+
+		diffList.GetDiff(0, dr);
+		EXPECT_EQ(2, dr.begin[0]);
+		EXPECT_EQ(2, dr.begin[1]);
+		EXPECT_EQ(2, dr.end[0]);
+		EXPECT_EQ(2, dr.end[1]);
+
+		diffList.GetDiff(1, dr);
+		EXPECT_EQ(4, dr.begin[0]);
+		EXPECT_EQ(4, dr.begin[1]);
+		EXPECT_EQ(4, dr.end[0]);
+		EXPECT_EQ(7, dr.end[1]);
+	}
+
+	initOptions();
+
+	{
+		DiffList diffList;
+		aligner.SetPluginPipeline(_T("le:trim(Line)"));
+		dw.EnablePlugins(true);
+		dw.SetCreateDiffList(&diffList);
+		dw.SetAligner(&aligner);
+		dw.SetOptions(&options);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.RunFileDiff();
+
+		ASSERT_EQ(3, diffList.GetSize());
+
+		diffList.GetDiff(0, dr);
+		EXPECT_EQ(2, dr.begin[0]);
+		EXPECT_EQ(2, dr.begin[1]);
+		EXPECT_EQ(1, dr.end[0]);
+		EXPECT_EQ(3, dr.end[1]);
+
+		diffList.GetDiff(1, dr);
+		EXPECT_EQ(2, dr.begin[0]);
+		EXPECT_EQ(4, dr.begin[1]);
+		EXPECT_EQ(4, dr.end[0]);
+		EXPECT_EQ(6, dr.end[1]);
+
+		diffList.GetDiff(2, dr);
+		EXPECT_EQ(5, dr.begin[0]);
+		EXPECT_EQ(7, dr.begin[1]);
+		EXPECT_EQ(4, dr.end[0]);
+		EXPECT_EQ(7, dr.end[1]);
+	}
+}
+
+TEST(DiffWrapper, RunFileDiff_Aligner_NoDiff)
+{
+	{
+		String leftText = LR"(int funcA()
+{
+    funcB();
+}
+)";
+
+		String rightText = LR"(int funcA()
+{
+        funcB();
+}
+)";
+
+		CDiffWrapper dw;
+		DIFFOPTIONS options{};
+		DIFFRANGE dr;
+		AligningInfo aligner;
+		DiffList diffList;
+
+		TempFile left = WriteToTempFile(leftText);
+		TempFile right = WriteToTempFile(rightText);
+
+		aligner.SetPluginPipeline(_T("le:trim(Line)"));
+
+		// Set up the required plugin options here.
+		dw.EnablePlugins(true);
+		dw.SetCreateDiffList(&diffList);
+		dw.SetAligner(&aligner);
+		dw.SetOptions(&options);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.RunFileDiff();
+
+		ASSERT_EQ(1, diffList.GetSize());
+
+		diffList.GetDiff(0, dr);
+		EXPECT_EQ(2, dr.begin[0]);
+		EXPECT_EQ(2, dr.begin[1]);
+		EXPECT_EQ(2, dr.end[0]);
+		EXPECT_EQ(2, dr.end[1]);
+	}
+
+	{
+		String baseText = LR"(int funcA()
+{
+    funcB();
+    funcC();
+}
+)";
+
+		String leftText = LR"(int funcA()
+{
+        funcB();
+    funcC();
+}
+)";
+
+		String rightText = LR"(int funcA()
+{
+    funcB();
+    funcC2();
+}
+)";
+
+		CDiffWrapper dw;
+		DIFFOPTIONS options{};
+		DIFFRANGE dr;
+		AligningInfo aligner;
+		DiffList diffList;
+
+		TempFile base = WriteToTempFile(baseText);
+		TempFile left = WriteToTempFile(leftText);
+		TempFile right = WriteToTempFile(rightText);
+
+		aligner.SetPluginPipeline(_T("le:trim(Line)"));
+
+		// Set up the required plugin options here.
+		dw.EnablePlugins(true);
+		dw.SetCreateDiffList(&diffList);
+		dw.SetAligner(&aligner);
+		dw.SetOptions(&options);
+		dw.SetPaths({ base.GetPath(), left.GetPath(), right.GetPath() }, false);
+		dw.RunFileDiff();
+
+		ASSERT_EQ(2, diffList.GetSize());
+
+		diffList.GetDiff(0, dr);
+		EXPECT_EQ(2, dr.begin[0]);
+		EXPECT_EQ(2, dr.begin[1]);
+		EXPECT_EQ(2, dr.end[0]);
+		EXPECT_EQ(2, dr.end[1]);
+
+		diffList.GetDiff(1, dr);
+		EXPECT_EQ(3, dr.begin[0]);
+		EXPECT_EQ(3, dr.begin[1]);
+		EXPECT_EQ(3, dr.end[0]);
+		EXPECT_EQ(3, dr.end[1]);
 	}
 }

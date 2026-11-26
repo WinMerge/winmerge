@@ -98,7 +98,7 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 
 	// Do the actual comparison (generating a change script)
 	struct change *script = nullptr;
-	bool success = m_pDiffWrapper->Diff2Files(&script, diffData, & bin_flag, & bin_file);
+	bool success = Diff2Files(&script, diffData, & bin_flag, & bin_file);
 	if (!success)
 	{
 		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
@@ -226,9 +226,7 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
  * inside SEH so we can trap possible error and exceptions. If error or
  * execption is trapped, return compare failure.
  * @param [out] diffs Pointer to list of change structs where diffdata is stored.
- * @param [in] depth Depth in folder compare (we use 0).
  * @param [out] bin_status used to return binary status from compare.
- * @param [in] bMovedBlocks If `true` moved blocks are analyzed.
  * @param [out] bin_file Returns which file was binary file as bitmap.
     So if first file is binary, first bit is set etc. Can be `nullptr` if binary file
     info is not needed (faster compare since diffutils don't bother checking
@@ -238,7 +236,7 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 bool DiffUtils::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file) const
 {
-	return m_pDiffWrapper->Diff2Files(diffs, diffData, bin_status, bin_file);
+	return m_pDiffWrapper->Diff2Files(diffs, diffData, bin_status, bin_file, m_pDiffWrapper->GetDetectMovedBlocks());
 }
 
 /**

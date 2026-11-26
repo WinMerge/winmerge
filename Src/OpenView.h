@@ -22,6 +22,7 @@
 #include "FileFilterHelperMenu.h"
 #include "ClipboardHistory.h"
 #include "MruHelper.h"
+#include "TransStatic.h"
 #include <array>
 
 class ProjectFile;
@@ -51,10 +52,13 @@ public:
 	CValidatingEdit	m_ctlExtEdit;
 	CSuperComboBox	m_ctlPath[3];
 	CSuperComboBox	m_ctlUnpackerPipeline;
-	CSuperComboBox	m_ctlPredifferPipeline;
 	CValidatingEdit	m_ctlUnpackerPipelineEdit;
+	CSuperComboBox	m_ctlPredifferPipeline;
 	CValidatingEdit	m_ctlPredifferPipelineEdit;
+	CSuperComboBox	m_ctlAlignerPipeline;
+	CValidatingEdit	m_ctlAlignerPipelineEdit;
 	CListCtrl	m_ctlRecentCompares; /**< Recent comparisons (MruHelper::GetRecentCompares), newest first */
+	CTransStatic m_ctlTransLabel[3];
 	CFileFilterHelperMenu m_menu;
 	String m_strPath[3];
 	bool m_bReadOnly[3];
@@ -63,6 +67,7 @@ public:
 	String	m_strExt;
 	String	m_strUnpackerPipeline;
 	String	m_strPredifferPipeline;
+	String	m_strAlignerPipeline;
 	//}}AFX_DATA
 
 // other public data
@@ -133,11 +138,13 @@ protected:
 	void UpdateRecentCompares();
 	void ResizeRecentComparesColumns();
 	void OpenRecentCompare(int nItem);
+	void UpdatePluginTabControls();
 
 // Generated message map functions
 protected:
 	//{{AFX_MSG(COpenView)
 	afx_msg void OnPathButton(UINT nID);
+	afx_msg void OnTabSelchange(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSelectClipboardItem(UINT nID);
 	afx_msg void OnOK();
 	afx_msg void OnCancel();

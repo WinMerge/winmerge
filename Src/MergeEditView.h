@@ -373,7 +373,11 @@ protected:
 	afx_msg void OnUpdateIgnoreColumnInComparison(CCmdUI* pCmdUI);
 	afx_msg void OnResetIgnoredColumnsInComparison();
 	afx_msg void OnUpdateResetIgnoredColumnsInComparison(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateIgnoreColumnInComparisonCtrlClick(CCmdUI* pCmdUI);
+	afx_msg void OnExcludeColumnFromAlignment(UINT nID);
+	afx_msg void OnUpdateExcludeColumnFromAlignment(CCmdUI* pCmdUI);
+	afx_msg void OnResetExcludedColumnsFromAlignment();
+	afx_msg void OnUpdateResetExcludedColumnsFromAlignment(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateDisabled(CCmdUI* pCmdUI);
 	afx_msg void OnFilterMenuColumn(UINT nID);
 	afx_msg void OnUpdateViewChangeScheme(CCmdUI *pCmdUI);
 	afx_msg void OnChangeScheme(UINT nID);

@@ -204,7 +204,7 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 			m_pTempPathContext->m_strRoot[nIndex] = m_pCtxt->GetNormalizedPath(nIndex);
 	}
 
-	MergeLogger::LogComparisonStart(paths, m_strDesc, nullptr, nullptr);
+	MergeLogger::LogComparisonStart(paths, m_strDesc, nullptr, nullptr, nullptr);
 }
 
 
@@ -917,7 +917,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
  */
 CString CDirDoc::GetTooltipString() const
 {
-	return MergeTextFormatter::GetTooltipString(m_pCtxt->GetNormalizedPaths(), m_strDesc, nullptr, nullptr).c_str();
+	return MergeTextFormatter::GetTooltipString(m_pCtxt->GetNormalizedPaths(), m_strDesc, nullptr, nullptr, nullptr).c_str();
 }
 
 /**

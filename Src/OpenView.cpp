@@ -75,9 +75,10 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_BN_CLICKED(IDC_SWAP02_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH2_COMBO>))
 	ON_CONTROL_RANGE(CBN_SELCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSelchangePathCombo)
 	ON_CONTROL_RANGE(CBN_EDITCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnEditEvent)
-	ON_CONTROL_RANGE(BN_CLICKED, IDC_SELECT_UNPACKER, IDC_SELECT_PREDIFFER, OnSelectPlugin)
-	ON_CONTROL_RANGE(CBN_SELCHANGE, IDC_UNPACKER_COMBO, IDC_PREDIFFER_COMBO, OnSelchangePlugin)
-	ON_CONTROL_RANGE(CBN_EDITCHANGE, IDC_UNPACKER_COMBO, IDC_PREDIFFER_COMBO, OnSelchangePlugin)
+	ON_NOTIFY(TCN_SELCHANGE, IDC_FILE_PLUGINS_TAB, OnTabSelchange)
+	ON_CONTROL_RANGE(BN_CLICKED, IDC_SELECT_UNPACKER, IDC_SELECT_ALIGNER, OnSelectPlugin)
+	ON_CONTROL_RANGE(CBN_SELCHANGE, IDC_UNPACKER_COMBO, IDC_ALIGNER_COMBO, OnSelchangePlugin)
+	ON_CONTROL_RANGE(CBN_EDITCHANGE, IDC_UNPACKER_COMBO, IDC_ALIGNER_COMBO, OnSelchangePlugin)
 	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH2_COMBO, UpdateButtonStates)
@@ -193,6 +194,7 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PATH2_COMBO, m_ctlPath[2]);
 	DDX_Control(pDX, IDC_UNPACKER_COMBO, m_ctlUnpackerPipeline);
 	DDX_Control(pDX, IDC_PREDIFFER_COMBO, m_ctlPredifferPipeline);
+	DDX_Control(pDX, IDC_ALIGNER_COMBO, m_ctlAlignerPipeline);
 	DDX_Control(pDX, IDC_RECENT_COMPARES_LIST, m_ctlRecentCompares);
 	DDX_CBStringExact(pDX, IDC_PATH0_COMBO, m_strPath[0]);
 	DDX_CBStringExact(pDX, IDC_PATH1_COMBO, m_strPath[1]);
@@ -204,6 +206,10 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_CBStringExact(pDX, IDC_EXT_COMBO, m_strExt);
 	DDX_CBStringExact(pDX, IDC_UNPACKER_COMBO, m_strUnpackerPipeline);
 	DDX_CBStringExact(pDX, IDC_PREDIFFER_COMBO, m_strPredifferPipeline);
+	DDX_CBStringExact(pDX, IDC_ALIGNER_COMBO, m_strAlignerPipeline);
+	DDX_Control(pDX, IDC_FILES_DIRS_GROUP4, m_ctlTransLabel[0]);
+	DDX_Control(pDX, IDC_FILES_DIRS_GROUP5, m_ctlTransLabel[1]);
+	DDX_Control(pDX, IDC_FILES_DIRS_GROUP6, m_ctlTransLabel[2]);
 	//}}AFX_DATA_MAP
 }
 
@@ -288,6 +294,7 @@ void COpenView::OnInitialUpdate()
 	m_strExt = pDoc->m_strExt;
 	m_strUnpackerPipeline = pDoc->m_strUnpackerPipeline;
 	m_strPredifferPipeline = pDoc->m_strPredifferPipeline;
+	m_strAlignerPipeline = pDoc->m_strAlignerPipeline;
 	m_dwFlags[0] = pDoc->m_dwFlags[0];
 	m_dwFlags[1] = pDoc->m_dwFlags[1];
 	m_dwFlags[2] = pDoc->m_dwFlags[2];
@@ -297,6 +304,7 @@ void COpenView::OnInitialUpdate()
 	m_ctlPath[2].SetFileControlStates(true);
 	m_ctlUnpackerPipeline.SetFileControlStates(true);
 	m_ctlPredifferPipeline.SetFileControlStates(true);
+	m_ctlAlignerPipeline.SetFileControlStates(true);
 
 	for (int file = 0; file < m_files.GetSize(); file++)
 	{
@@ -312,6 +320,7 @@ void COpenView::OnInitialUpdate()
 
 	m_ctlUnpackerPipeline.SetWindowText(m_strUnpackerPipeline.c_str());
 	m_ctlPredifferPipeline.SetWindowText(m_strPredifferPipeline.c_str());
+	m_ctlAlignerPipeline.SetWindowText(m_strAlignerPipeline.c_str());
 
 	bool bDoUpdateData = true;
 	for (auto& strPath : m_strPath)
@@ -320,6 +329,15 @@ void COpenView::OnInitialUpdate()
 			bDoUpdateData = false;
 	}
 	UpdateData(bDoUpdateData);
+
+	CTabCtrl* pTab = static_cast<CTabCtrl*>(GetDlgItem(IDC_FILE_PLUGINS_TAB));
+	if (pTab && pTab->GetItemCount() == 0)
+	{
+		pTab->InsertItem(0, _("Unpacker").c_str());
+		pTab->InsertItem(1, _("Prediffer").c_str());
+		pTab->InsertItem(2, _("Aligner").c_str());
+		pTab->SetCurSel(0);
+	}
 
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	String filterNameOrMask = pGlobalFileFilter->GetMaskOrExpression();
@@ -388,6 +406,24 @@ void COpenView::OnInitialUpdate()
 			};
 		m_ctlPredifferPipelineEdit.Validate();
 		m_ctlPredifferPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|IgnoreLeadingLineNumbers")).c_str());
+	}
+
+	if (m_ctlAlignerPipeline.GetEditCtrl()->GetSafeHwnd())
+	{
+		m_ctlAlignerPipelineEdit.SubclassWindow(m_ctlAlignerPipeline.GetEditCtrl()->m_hWnd);
+		m_ctlAlignerPipelineEdit.m_validator = [this](const CString& text, CString& error) -> bool
+			{
+				if (text.IsEmpty())
+					return true;
+				String pipeline = text;
+				auto pPluginPipeline = std::make_unique<AligningInfo>(pipeline);
+				String errorMessage;
+				bool result = pPluginPipeline->Validate(errorMessage);
+				error = errorMessage.c_str();
+				return result;
+			};
+		m_ctlAlignerPipelineEdit.Validate();
+		m_ctlAlignerPipelineEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("le:toUpper(Line)|IgnoreLeadingLineNumbers")).c_str());
 	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
@@ -804,13 +840,15 @@ void COpenView::OnCompare(UINT nID)
 				nID = 0;
 			}
 			PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
-			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr, &tmpPackingInfo, &tmpPrediffingInfo);
+			AligningInfo tmpAligningInfo(m_strAlignerPipeline);
+			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr, &tmpPackingInfo, &tmpPrediffingInfo, &tmpAligningInfo);
 		}
 		return;
 	}
 
 	PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
 	PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
+	AligningInfo tmpAligningInfo(m_strAlignerPipeline);
 	{
 		Merge7zFormatMergePluginScope scope(&tmpPackingInfo);
 
@@ -883,6 +921,7 @@ void COpenView::OnCompare(UINT nID)
 	pDoc->m_strExt = m_strExt;
 	pDoc->m_strUnpackerPipeline = m_strUnpackerPipeline;
 	pDoc->m_strPredifferPipeline = m_strPredifferPipeline;
+	pDoc->m_strAlignerPipeline = m_strAlignerPipeline;
 	pDoc->m_dwFlags[0] = m_dwFlags[0];
 	pDoc->m_dwFlags[1] = m_dwFlags[1];
 	pDoc->m_dwFlags[2] = m_dwFlags[2];
@@ -903,14 +942,14 @@ void COpenView::OnCompare(UINT nID)
 	{
 		GetMainFrame()->DoFileOrFolderOpen(
 			&tmpPathContext, dwFlags.data(),
-			nullptr, _T(""), nullptr, &tmpPackingInfo, &tmpPrediffingInfo, 0, pOpenFolderParams.get());
+			nullptr, _T(""), nullptr, &tmpPackingInfo, &tmpPrediffingInfo, &tmpAligningInfo, 0, pOpenFolderParams.get());
 	}
 	else if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
 		tmpPackingInfo.SetPluginPipeline(PluginMenu::GetPluginPipelineByMenuId(&tmpPackingInfo, nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		GetMainFrame()->DoFileOrFolderOpen(
 			&tmpPathContext, dwFlags.data(),
-			nullptr, _T(""), nullptr, &tmpPackingInfo, &tmpPrediffingInfo, 0, pOpenFolderParams.get());
+			nullptr, _T(""), nullptr, &tmpPackingInfo, &tmpPrediffingInfo, &tmpAligningInfo, 0, pOpenFolderParams.get());
 	}
 	else if (nID == ID_OPEN_WITH_UNPACKER)
 	{
@@ -921,12 +960,12 @@ void COpenView::OnCompare(UINT nID)
 			tmpPackingInfo.SetPluginPipeline(dlg.GetPluginPipeline());
 			GetMainFrame()->DoFileOrFolderOpen(
 				&tmpPathContext, dwFlags.data(),
-				nullptr, _T(""), nullptr, &tmpPackingInfo, &tmpPrediffingInfo, 0, pOpenFolderParams.get());
+				nullptr, _T(""), nullptr, &tmpPackingInfo, &tmpPrediffingInfo, &tmpAligningInfo, 0, pOpenFolderParams.get());
 		}
 	}
 	else
 	{
-		GetMainFrame()->DoFileOpen(nID, &tmpPathContext, dwFlags.data(), nullptr, _T(""), &tmpPackingInfo, &tmpPrediffingInfo, pOpenFolderParams.get());
+		GetMainFrame()->DoFileOpen(nID, &tmpPathContext, dwFlags.data(), nullptr, _T(""), &tmpPackingInfo, &tmpPrediffingInfo, &tmpAligningInfo, pOpenFolderParams.get());
 	}
 }
 
@@ -1024,6 +1063,8 @@ void COpenView::OnLoadProject()
 			m_strUnpackerPipeline = projItem.GetUnpacker();
 		if (projItem.HasPrediffer())
 			m_strPredifferPipeline = projItem.GetPrediffer();
+		if (projItem.HasAligner())
+			m_strAlignerPipeline = projItem.GetAligner();
 	}
 
 	if (projItem.HasWindowType())
@@ -1092,6 +1133,7 @@ void COpenView::OnSaveProject()
 	projItem.SetSaveSubfolders(bSaveIncludeSubfolders);
 	projItem.SetSaveUnpacker(bSavePlugin);
 	projItem.SetSavePrediffer(bSavePlugin);
+	projItem.SetSaveAligner(bSavePlugin);
 	projItem.SetSaveIgnoreWhite(bSaveCompareOptions);
 	projItem.SetSaveIgnoreBlankLines(bSaveCompareOptions);
 	projItem.SetSaveIgnoreCase(bSaveCompareOptions);
@@ -1147,6 +1189,8 @@ void COpenView::OnSaveProject()
 			projItem.SetUnpacker(m_strUnpackerPipeline);
 		if (!m_strPredifferPipeline.empty())
 			projItem.SetPrediffer(m_strPredifferPipeline);
+		if (!m_strAlignerPipeline.empty())
+			projItem.SetAligner(m_strAlignerPipeline);
 	}
 	if (GetDocument()->m_nWindowType != -1)
 		projItem.SetWindowType(GetDocument()->m_nWindowType);
@@ -1275,6 +1319,7 @@ void COpenView::LoadComboboxStates()
 	m_ctlExt.LoadState(_T("Files\\Ext"));
 	m_ctlUnpackerPipeline.LoadState(_T("Files\\Unpacker"));
 	m_ctlPredifferPipeline.LoadState(_T("Files\\Prediffer"));
+	m_ctlAlignerPipeline.LoadState(_T("Files\\Aligner"));
 }
 
 /** 
@@ -1288,6 +1333,7 @@ void COpenView::SaveComboboxStates()
 	m_ctlExt.SaveState(_T("Files\\Ext"));
 	m_ctlUnpackerPipeline.SaveState(_T("Files\\Unpacker"));
 	m_ctlPredifferPipeline.SaveState(_T("Files\\Prediffer"));
+	m_ctlAlignerPipeline.SaveState(_T("Files\\Aligner"));
 }
 
 struct UpdateButtonStatesThreadParams
@@ -1566,6 +1612,7 @@ void COpenView::OnSelchangePlugin(UINT nID)
 	{
 	case IDC_UNPACKER_COMBO: edit = &m_ctlUnpackerPipelineEdit; break;
 	case IDC_PREDIFFER_COMBO: edit = &m_ctlPredifferPipelineEdit; break;
+	case IDC_ALIGNER_COMBO: edit = &m_ctlAlignerPipelineEdit; break;
 	default: return;
 	}
 	edit->OnEnChange();
@@ -1611,16 +1658,39 @@ void COpenView::OnSelectPlugin(UINT nID)
 		return;
 
 	// let the user select a handler
-	CSelectPluginDlg dlg(nID == IDC_SELECT_UNPACKER ? m_strUnpackerPipeline : m_strPredifferPipeline, m_files[0], 
-		nID == IDC_SELECT_UNPACKER ? CSelectPluginDlg::PluginType::Unpacker : CSelectPluginDlg::PluginType::Prediffer, false, this);
+	CSelectPluginDlg::PluginType pluginType = CSelectPluginDlg::PluginType::Unpacker;
+	String pluginPipeline = m_strUnpackerPipeline;
+	if (nID == IDC_SELECT_PREDIFFER)
+	{
+		pluginType = CSelectPluginDlg::PluginType::Prediffer;
+		pluginPipeline = m_strPredifferPipeline;
+	}
+	else if (nID == IDC_SELECT_ALIGNER)
+	{
+		pluginType = CSelectPluginDlg::PluginType::Aligner;
+		pluginPipeline = m_strAlignerPipeline;
+	}
+	CSelectPluginDlg dlg(pluginPipeline, m_files[0], pluginType, false, this);
 	if (dlg.DoModal() == IDOK)
 	{
+		int nID2 = 0;
 		if (nID == IDC_SELECT_UNPACKER)
+		{
 			m_strUnpackerPipeline = dlg.GetPluginPipeline();
-		else
+			nID2 = IDC_UNPACKER_COMBO;
+		}
+		else if (nID == IDC_SELECT_PREDIFFER)
+		{
 			m_strPredifferPipeline = dlg.GetPluginPipeline();
+			nID2 = IDC_PREDIFFER_COMBO;
+		}
+		else
+		{
+			m_strAlignerPipeline = dlg.GetPluginPipeline();
+			nID2 = IDC_ALIGNER_COMBO;
+		}
 		UpdateData(FALSE);
-		OnSelchangePlugin(nID == IDC_SELECT_UNPACKER ? IDC_UNPACKER_COMBO : IDC_PREDIFFER_COMBO);
+		OnSelchangePlugin(nID2);
 	}
 }
 
@@ -1632,23 +1702,22 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	const int iStatusMsgId = LOWORD(lParam);
 
 	EnableDlgItem(IDOK, bIsaFolderCompare || bIsaFileCompare || bProject);
-
-	for (auto nID : { IDC_FILES_DIRS_GROUP4, IDC_UNPACKER_COMBO, IDC_SELECT_UNPACKER })
-	{
-		EnableDlgItem(nID, bIsaFileCompare);
-	}
+	EnableDlgItem(IDC_FILE_PLUGINS_TAB, bIsaFileCompare);
 
 	if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
-		for (auto nID : { IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER })
+		UpdatePluginTabControls();
+
+		for (auto nID : {
+			IDC_FILES_DIRS_GROUP4, IDC_UNPACKER_COMBO, IDC_SELECT_UNPACKER,
+			IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER,
+			IDC_FILES_DIRS_GROUP6, IDC_ALIGNER_COMBO, IDC_SELECT_ALIGNER })
 		{
-			ShowDlgItem(nID, (bIsaFileCompare && !bIsaFolderCompare));
 			EnableDlgItem(nID, bIsaFileCompare);
 		}
 
 		for (auto nID : { IDC_FILES_DIRS_GROUP3, IDC_EXT_COMBO, IDC_SELECT_FILTER, IDC_RECURS_CHECK })
 		{
-			ShowDlgItem(nID, (bIsaFolderCompare || !bIsaFileCompare));
 			EnableDlgItem(nID, bIsaFolderCompare);
 		}
 	}
@@ -2062,7 +2131,8 @@ void COpenView::OnClickRecentCompares(NMHDR *pNMHDR, LRESULT *pResult)
 			}
 			m_strExt = cmdInfo.m_sFileFilter;
 			m_strUnpackerPipeline = cmdInfo.m_sUnpacker;
-			m_strPredifferPipeline = cmdInfo.m_sPreDiffer;
+			m_strPredifferPipeline = cmdInfo.m_sPrediffer;
+			m_strAlignerPipeline = cmdInfo.m_sAligner;
 			if (cmdInfo.m_bRecurse.has_value())
 				m_bRecurse = *cmdInfo.m_bRecurse;
 			UpdateData(FALSE);
@@ -2160,4 +2230,32 @@ void COpenView::OnDropFiles(const std::vector<String>& files)
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
+}
+
+void COpenView::OnTabSelchange(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	UpdatePluginTabControls();
+	if (pResult)
+		*pResult = 0;
+}
+
+void COpenView::UpdatePluginTabControls()
+{
+	CTabCtrl* pTab = static_cast<CTabCtrl*>(GetDlgItem(IDC_FILE_PLUGINS_TAB));
+	if (!pTab)
+		return;
+
+	int curSel = pTab->GetCurSel();
+
+	ShowDlgItem(IDC_FILES_DIRS_GROUP4, curSel == 0);
+	ShowDlgItem(IDC_UNPACKER_COMBO, curSel == 0);
+	ShowDlgItem(IDC_SELECT_UNPACKER, curSel == 0);
+
+	ShowDlgItem(IDC_FILES_DIRS_GROUP5, curSel == 1);
+	ShowDlgItem(IDC_PREDIFFER_COMBO, curSel == 1);
+	ShowDlgItem(IDC_SELECT_PREDIFFER, curSel == 1);
+
+	ShowDlgItem(IDC_FILES_DIRS_GROUP6, curSel == 2);
+	ShowDlgItem(IDC_ALIGNER_COMBO, curSel == 2);
+	ShowDlgItem(IDC_SELECT_ALIGNER, curSel == 2);
 }

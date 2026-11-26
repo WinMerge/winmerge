@@ -60,7 +60,7 @@ function get_PluginIsAutomatic() {
 }
 
 function get_PluginExtendedProperties() {
-  return "MenuCaption=Ignore Leading Line Numbers";
+  return "MenuCaption=Ignore Leading Line Numbers;GenerateAligner";
 }
 
 function PrediffBufferW(text, size, bChanged) {

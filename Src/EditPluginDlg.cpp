@@ -14,7 +14,7 @@
 #define new DEBUG_NEW
 #endif
 
-enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, FILE_PREDIFF, ALIAS_PACK_UNPACK, ALIAS_PREDIFF, ALIAS_EDITOR_SCRIPT };
+enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, FILE_PREDIFF, FILE_ALIGN, ALIAS_PACK_UNPACK, ALIAS_PREDIFF, ALIAS_ALIGN, ALIAS_EDITOR_SCRIPT };
 enum { UnpackFile = 0, PackFile = 1, UnpackFolder = 2, PackFolder = 3, IsFolder = 4, PrediffFile = 0 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -50,6 +50,8 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 	m_bArgumentsRequired = argumentsRequired.has_value();
 	auto generateEditorScript = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("GenerateEditorScript"));
 	m_bGenerateEditorScript = generateEditorScript.has_value();
+	auto generateAligner = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("GenerateAligner"));
+	m_bGenerateAligner = generateAligner.has_value();
 	if (info.m_unpackFile)
 		LoadMethod(*info.m_unpackFile, 0);
 	if (info.m_packFile)
@@ -62,6 +64,8 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 		LoadMethod(*info.m_isFolder, 4);
 	if (info.m_prediffFile)
 		LoadMethod(*info.m_prediffFile, 0);
+	if (info.m_alignFile)
+		LoadMethod(*info.m_alignFile, 0);
 	m_strCommandline = m_strCommandlineAry[0];
 	m_strScriptFileExtension = m_strScriptFileExtensionAry[0];
 	m_strScriptBody = m_strScriptBodyAry[0];
@@ -167,6 +171,7 @@ void CEditPluginDlg::UpdateControls()
 				IDC_PLUGIN_AUTOMATIC,
 				IDC_PLUGIN_ARGUMENTSREQUIRED,
 				IDC_PLUGIN_GENERATESCRIPT,
+				IDC_PLUGIN_GENERATEALIGNER,
 				IDC_PLUGIN_COMMAND_LINE_MENU,
 			})
 			EnableDlgItem(id, false);
@@ -186,12 +191,13 @@ void CEditPluginDlg::UpdateControls()
 		m_ctlTab.InsertItem(3, _T("PackFolder"));
 		m_ctlTab.InsertItem(4, _T("IsFolder"));
 	}
-	else if (cursel == FILE_PREDIFF)
+	else if (cursel == FILE_PREDIFF || cursel == FILE_ALIGN)
 	{
 		m_ctlTab.InsertItem(0, _T("PrediffFile"));
 	}
-	const bool unpacker = (cursel < 3);
-	const bool alias = (cursel > 3);
+	const bool unpacker = (cursel < FILE_PREDIFF);
+	const bool prediffer = (cursel == FILE_PREDIFF || cursel == ALIAS_PREDIFF);
+	const bool alias = (cursel > FILE_ALIGN);
 	const bool urlhandler = (cursel == 0);
 	const bool hasScript = alias ? false : HasScript();
 	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler && m_info.m_locationType != internal_plugin::LocationType::InstallationPath);
@@ -209,6 +215,7 @@ void CEditPluginDlg::UpdateControls()
 	ShowDlgItem(IDC_PLUGIN_WINDOWTYPE_STATIC, unpacker);
 	ShowDlgItem(IDC_PLUGIN_WINDOWTYPE, unpacker);
 	ShowDlgItem(IDC_PLUGIN_GENERATESCRIPT, unpacker);
+	ShowDlgItem(IDC_PLUGIN_GENERATEALIGNER, prediffer);
 	ShowDlgItem(IDC_PLUGIN_MENUCAPTION_STATIC, !urlhandler);
 	ShowDlgItem(IDC_PLUGIN_MENUCAPTION, !urlhandler);
 	ShowDlgItem(IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC, unpacker);
@@ -384,6 +391,7 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_PLUGIN_AUTOMATIC, m_bIsAutomatic);
 	DDX_Check(pDX, IDC_PLUGIN_ARGUMENTSREQUIRED, m_bArgumentsRequired);
 	DDX_Check(pDX, IDC_PLUGIN_GENERATESCRIPT, m_bGenerateEditorScript);
+	DDX_Check(pDX, IDC_PLUGIN_GENERATEALIGNER, m_bGenerateAligner);
 	DDX_Text(pDX, IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
 	DDX_Control(pDX, IDC_PLUGIN_TAB, m_ctlTab);
 	DDX_Text(pDX, IDC_PLUGIN_COMMAND_LINE, m_strCommandline);
@@ -497,6 +505,8 @@ void CEditPluginDlg::OnOK()
 		extendedProperties += _T("ArgumentsRequired;");
 	if (m_bGenerateEditorScript)
 		extendedProperties += _T("GenerateEditorScript;");
+	if (m_bGenerateAligner)
+		extendedProperties += _T("GenerateAligner;");
 	if (!m_info.m_extendedProperties.empty() && extendedProperties.back() == ';')
 		extendedProperties.pop_back();
 
@@ -521,6 +531,10 @@ void CEditPluginDlg::OnOK()
 	{
 		SaveMethod(m_info.m_prediffFile, 0);
 	}
+	else if (cursel == FILE_ALIGN)
+	{
+		SaveMethod(m_info.m_alignFile, 0);
+	}
 
 	CTrDialog::OnOK();
 }
@@ -541,8 +555,10 @@ BOOL CEditPluginDlg::OnInitDialog()
 			{ _("File Unpacker"), L"FILE_PACK_UNPACK" },
 			{ _("File or Folder Unpacker"), L"FILE_FOLDER_PACK_UNPACK" },
 			{ _("Prediffer"), L"FILE_PREDIFF" },
+			{ _("Aligner"), L"FILE_ALIGN" },
 			{ _("Alias for Unpacker"), L"ALIAS_PACK_UNPACK" },
 			{ _("Alias for Prediffer"), L"ALIAS_PREDIFF" },
+			{ _("Alias for Aligner"), L"ALIAS_ALIGN" },
 			{ _("Alias for Editor script"), L"ALIAS_EDITOR_SCRIPT" }
 		}, m_strEvent);
 

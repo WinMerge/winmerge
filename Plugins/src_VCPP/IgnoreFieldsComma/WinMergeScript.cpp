@@ -178,7 +178,7 @@ STDMETHODIMP CWinMergeScript::put_PluginArguments(BSTR val)
 
 STDMETHODIMP CWinMergeScript::get_PluginExtendedProperties(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"MenuCaption=Ignore CSV Fields");
+	*pVal = SysAllocString(L"MenuCaption=Ignore CSV Fields;GenerateAligner");
 	return S_OK;
 }
 

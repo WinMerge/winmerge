@@ -512,6 +512,28 @@ struct PrediffPluginTraits
 	}
 };
 
+struct AlignPluginTraits
+{
+	static const std::vector<std::pair<const wchar_t*, bool>>& LookupChain()
+	{
+		static const std::vector<std::pair<const wchar_t*, bool>> chain = {
+			{ L"FILE_ALIGN", false },
+			{ L"ALIAS_ALIGN", false },
+			{ L"BUFFER_ALIGN", true },
+		};
+		return chain;
+	}
+	static const String& AliasEvent()
+	{
+		static const String event = _T("ALIAS_ALIGN");
+		return event;
+	}
+	static String NotThisKindMessage(const String& pluginName)
+	{
+		return strutils::format_string1(_("'%1' is not an aligner plugin"), pluginName);
+	}
+};
+
 /**
  * @brief Resolve an already-parsed plugin pipeline (<None>/<Automatic>/named entries and
  *        line-expression items) into the concrete plugin list. Shared by PackingInfo and
@@ -1386,6 +1408,91 @@ bool PrediffingInfo::Validate(String& errorMessage) const
 	return errorMessage.empty();
 }
 
+bool AligningInfo::GetAlignPlugin(const String& filteredFilenames, bool bReverse,
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>>& plugins,
+	String* pPluginPipelineResolved, String& errorMessage, int stack) const
+{
+	auto result = PluginForFile::ParsePluginPipeline(m_PluginPipeline, errorMessage);
+	if (!errorMessage.empty())
+		return false;
+
+	return ResolvePluginPipeline<AlignPluginTraits>(result, filteredFilenames, bReverse,
+		plugins, pPluginPipelineResolved, errorMessage, stack,
+		[&](const String& pipeline, auto& newPlugins, String& error, int nextStack)
+		{
+			return AligningInfo(pipeline).GetAlignPlugin(filteredFilenames, bReverse, newPlugins, nullptr, error, nextStack);
+		});
+}
+
+bool AligningInfo::Aligning(int target, String& filepath, bool bMayOverwrite, const PluginPipelineContext& context)
+{
+	if (m_PluginPipeline.empty())
+		return true;
+
+	String errorMessage;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins;
+	if (!GetAlignPlugin(context.filteredFilenames, false, plugins, &m_PluginPipeline, errorMessage))
+	{
+		AppErrorMessageBox(errorMessage);
+		return false;
+	}
+	for (const auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
+	{
+		if (!isTargetInFlags(target, targetFlags))
+			continue;
+		if (!expressions.empty())
+		{
+			filepath = ApplyFilterExpressionsToFile(target, filepath, context, bMayOverwrite, expressions, errorMessage);
+			if (!errorMessage.empty())
+			{
+				AppErrorMessageBox(errorMessage);
+				return false;
+			}
+			continue;
+		}
+		storageForPlugins bufferData;
+		bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
+		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
+		if (!SetPluginVariablesAndArguments(plugin, piScript, args, context.variables))
+			return false;
+		bool handled = false;
+		if (bWithFile)
+		{
+			String srcFileName = bufferData.GetDataFile();
+			String dstFileName = bufferData.GetDestFileName();
+			handled = plugin::InvokePrediffFile(srcFileName, dstFileName, bufferData.GetNChanged(), piScript);
+			if (handled)
+				bufferData.ValidateNewFile();
+		}
+		else
+		{
+			handled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(), bufferData.GetNChanged(), piScript);
+			if (handled)
+				bufferData.ValidateNewBuffer();
+		}
+		if (!handled)
+			return false;
+		if (bufferData.GetNChangedValid() > 0 && !bufferData.SaveAsFile(filepath))
+			return false;
+	}
+	return true;
+}
+
+bool AligningInfo::Validate(String& errorMessage) const
+{
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, uint8_t, std::vector<String>, bool>> plugins;
+	if (!GetAlignPlugin(_T(""), false, plugins, nullptr, errorMessage))
+		return false;
+	for (auto& [plugin, expressions, targetFlags, args, bWithFile] : plugins)
+	{
+		String errorMessage2;
+		if (!ValidateExpressions(expressions, errorMessage2))
+			errorMessage += (errorMessage.empty() ? _T("") : _T("\n")) + errorMessage2;
+	}
+	return errorMessage.empty();
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // transformation text
 
@@ -1520,6 +1627,7 @@ namespace FileTransform
 
 bool AutoUnpacking = false;
 bool AutoPrediffing = false;
+bool AutoAligning = false;
 
 ////////////////////////////////////////////////////////////////////////////////
 

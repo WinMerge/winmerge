@@ -138,6 +138,8 @@ void PluginMenu::AppendPluginMenus(CMenu *pMenu, const PluginForFile* pluginInfo
 			pMenu2->AppendMenu(MF_STRING, ID_OPEN_WITH_UNPACKER, _("&Select...").c_str());
 		else if (baseId == ID_PREDIFFERS_FIRST)
 			pMenu2->AppendMenu(MF_STRING, ID_APPLY_PREDIFFER, _("&Select...").c_str());
+		else if (baseId == ID_ALIGNERS_FIRST)
+			pMenu2->AppendMenu(MF_STRING, ID_APPLY_ALIGNER, _("&Select...").c_str());
 	}
 	if (pluginInfo)
 		pMenu->AppendMenu(MF_STRING | MF_GRAYED, 0, _("(Ctrl+Click to add to pipeline)").c_str());
@@ -177,8 +179,9 @@ String PluginMenu::GetPluginPipelineByMenuId(const PluginForFile* pluginInfo, un
 			return pipeline;
 		CSelectPluginDlg dlg(pipeline, _T(""), 
 			(baseId == ID_UNPACKERS_FIRST)  ? CSelectPluginDlg::PluginType::Unpacker    : (
-			(baseId == ID_PREDIFFERS_FIRST) ? CSelectPluginDlg::PluginType::Prediffer   : 
-			                                  CSelectPluginDlg::PluginType::EditorScript), true);
+			(baseId == ID_PREDIFFERS_FIRST) ? CSelectPluginDlg::PluginType::Prediffer   : (
+			(baseId == ID_ALIGNERS_FIRST)   ? CSelectPluginDlg::PluginType::Aligner    :
+											  CSelectPluginDlg::PluginType::EditorScript)), true);
 		if (dlg.DoModal() != IDOK)
 			return {};
 		return dlg.GetPluginPipeline();

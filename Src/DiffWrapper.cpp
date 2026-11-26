@@ -41,12 +41,27 @@
 #include "SyntaxParserRegistry.h"
 #include "SyntaxParserHelper.h"
 #include "TableProps.h"
+#include "TempFile.h"
 
 using Poco::Exception;
 
 extern int recursive;
 
 extern "C" int is_blank_line(char const* pch, char const* limit);
+
+namespace
+{
+	/** @brief Run a function when leaving the scope. */
+	template<class F>
+	struct ScopeExit
+	{
+		explicit ScopeExit(F f) : m_f(std::move(f)) {}
+		~ScopeExit() { m_f(); }
+		ScopeExit(const ScopeExit&) = delete;
+		ScopeExit& operator=(const ScopeExit&) = delete;
+		F m_f;
+	};
+}
 
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
@@ -65,6 +80,7 @@ CDiffWrapper::CDiffWrapper()
 , m_bAppendFiles(false)
 , m_nDiffs(0)
 , m_infoPrediffer(nullptr)
+, m_infoAligner(nullptr)
 , m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
 , m_pFilterList(nullptr)
@@ -161,6 +177,363 @@ void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
 
 	if (prediffer != nullptr)
 		*m_infoPrediffer = *prediffer;
+}
+
+void CDiffWrapper::SetAligner(const AligningInfo * aligner /*= nullptr*/)
+{
+	m_infoAligner.reset(new AligningInfo);
+	if (aligner != nullptr)
+		*m_infoAligner = *aligner;
+}
+
+void CDiffWrapper::GetAligner(AligningInfo * aligner) const
+{
+	if (aligner != nullptr)
+	{
+		if (m_infoAligner)
+			*aligner = *m_infoAligner;
+		else
+			aligner->ClearPluginPipeline();
+	}
+}
+
+/**
+ * @brief Convert an aligned script to a prediffed-coordinate script.
+ *
+ * The Aligner plugin transforms copies of the files (A) to establish line
+ * correspondence. A and the prediffed files (P) must have the same number of
+ * lines. This function converts the aligned script (computed on A) into a
+ * script in P's coordinate system:
+ *  - Lines that A considers identical are compared again in P, line by line.
+ *    The 1:1 pairing established by A is kept.
+ *  - Lines that A considers different are diffed again in P, because some of
+ *    them may be identical in P (e.g. empty lines replaced by unique strings).
+ *  - The common prefix and suffix of A are compared again in P too.
+ *
+ * The resulting script can be passed to LoadWinMergeDiffsFromDiffUtilsScript
+ * for normal processing. Moved-block information (match0/match1) is not
+ * carried over.
+ *
+ * @param alignScript Script from comparing Aligner-transformed files (A)
+ * @param alignInf file_data for the Aligner-transformed files (A)
+ * @param prediffInf file_data for the prediffed files (P)
+ * @return New script in P's coordinate system (nullptr if no differences).
+ *   Free it with FreeDiffUtilsScript().
+ */
+struct change* CDiffWrapper::BuildScriptFromAlignedScript(
+	struct change* alignScript, const file_data* alignInf, const file_data* prediffInf)
+{
+	struct change* resultScript = nullptr;
+	struct change** resultTail = &resultScript;
+	struct change* lastChange = nullptr;
+	bool lastMergeable = false;
+
+	// Line numbers used here are absolute (0-based line numbers in the file).
+	// The line "abs" is linbuf[abs + linbuf_base]: the lines of the common prefix
+	// are buffered too (linbuf_base is negative), so the absolute end of the buffered
+	// lines is valid_lines - linbuf_base. The common suffix is not buffered.
+	// The script lines are relative to the common prefix (abs = rel + prefix_lines).
+	const int pPrefix[2] = { prediffInf[0].prefix_lines, prediffInf[1].prefix_lines };
+	const int pEnd[2] = {
+		prediffInf[0].valid_lines - prediffInf[0].linbuf_base,
+		prediffInf[1].valid_lines - prediffInf[1].linbuf_base
+	};
+
+	// Add a change in P's compressed coordinate system.
+	// Adjacent changes are merged only if both are "mergeable" (single-line
+	// changes found in the same region identical in A). Changes must not be merged
+	// across the boundary of a hunk of A, otherwise the lines paired by A are no
+	// longer shown on the same row.
+	auto addChange = [&](int line0, int deleted, int line1, int inserted, bool mergeable = false)
+		{
+			if (deleted <= 0 && inserted <= 0)
+				return;
+
+			if (mergeable && lastMergeable && lastChange != nullptr &&
+				line0 <= lastChange->line0 + lastChange->deleted &&
+				line1 <= lastChange->line1 + lastChange->inserted)
+			{
+				lastChange->deleted = line0 + deleted - lastChange->line0;
+				lastChange->inserted = line1 + inserted - lastChange->line1;
+				return;
+			}
+
+			struct change* newob = (struct change*)xmalloc(sizeof(struct change));
+			newob->link = nullptr;
+			newob->inserted = inserted;
+			newob->deleted = deleted;
+			newob->line0 = line0;
+			newob->line1 = line1;
+			newob->ignore = 0;
+			newob->trivial = 0;
+			newob->match0 = -1;
+			newob->match1 = -1;
+
+			*resultTail = newob;
+			resultTail = &newob->link;
+			lastChange = newob;
+			lastMergeable = mergeable;
+		};
+
+	// Get the buffer for the range [first, first+count) (absolute line numbers) in P.
+	auto getPBuffer = [](const file_data& fd, int first, int count,
+		const char*& buf, size_t& size) -> bool
+		{
+			buf = "";
+			size = 0;
+
+			if (count <= 0)
+				return true;
+
+			const int end = fd.linbuf_base + first + count;
+
+			if (fd.linbuf == nullptr ||
+				first < 0 ||
+				end > fd.valid_lines)
+				return false;
+
+			const char* begin = fd.linbuf[fd.linbuf_base + first];
+			const char* endPtr = fd.linbuf[end];
+
+			if (endPtr < begin)
+				return false;
+
+			buf = begin;
+			size = static_cast<size_t>(endPtr - begin);
+			return true;
+		};
+
+	// Compare the ranges using the contents of P.
+	// The ranges are specified using absolute line numbers.
+	// If sameInAligned is true, the lines of both ranges were paired 1:1 by A
+	// (A considers them identical), so they are compared pair by pair.
+	// Otherwise the ranges are diffed again.
+	// Returns false on failure.
+	auto diffRange = [&](bool sameInAligned, int abs0, int n0, int abs1, int n1) -> bool
+		{
+			if (n0 <= 0 && n1 <= 0)
+				return true;
+
+			int c0 = abs0;
+			int c1 = abs1;
+			int e0 = abs0 + n0;
+			int e1 = abs1 + n1;
+
+			// Clip from the beginning.
+			// Lines of P's common prefix are identical, and the script can't
+			// have negative (prefix relative) line numbers.
+			const int headCut = (std::min)(
+				(std::max)((std::max)(pPrefix[0] - c0, pPrefix[1] - c1), 0), (std::min)(n0, n1));
+			c0 += headCut;
+			c1 += headCut;
+
+			// Clip from the end.
+			// Lines after P's valid range belong to P's common suffix (identical).
+			const int tailCut = (std::min)(
+				(std::max)((std::max)(e0 - pEnd[0], e1 - pEnd[1]), 0),
+				(std::min)(e0 - c0, e1 - c1));
+			e0 -= tailCut;
+			e1 -= tailCut;
+
+			const int m0 = e0 - c0;
+			const int m1 = e1 - c1;
+
+			if (m0 <= 0 && m1 <= 0)
+				return true;
+
+			if (c0 < pPrefix[0] || c1 < pPrefix[1] || e0 > pEnd[0] || e1 > pEnd[1])
+				return false;
+
+			if (sameInAligned && m0 == m1)
+			{
+				// Compare line by line with the same comparison function as
+				// diffutils. No allocation and the pairing made by A is kept.
+				if (prediffInf[0].linbuf == nullptr || prediffInf[1].linbuf == nullptr)
+					return false;
+				const char** lb0 = prediffInf[0].linbuf + prediffInf[0].linbuf_base;
+				const char** lb1 = prediffInf[1].linbuf + prediffInf[1].linbuf_base;
+				for (int i = 0; i < m0; ++i)
+				{
+					const size_t len0 = lb0[c0 + i + 1] - lb0[c0 + i];
+					const size_t len1 = lb1[c1 + i + 1] - lb1[c1 + i];
+					if (line_cmp(lb0[c0 + i], len0, lb1[c1 + i], len1) != 0)
+						addChange(c0 + i - pPrefix[0], 1, c1 + i - pPrefix[1], 1, true);
+				}
+				return true;
+			}
+
+			const char* buf0 = nullptr;
+			const char* buf1 = nullptr;
+			size_t size0 = 0, size1 = 0;
+
+			if (!getPBuffer(prediffInf[0], c0, m0, buf0, size0) ||
+				!getPBuffer(prediffInf[1], c1, m1, buf1, size1))
+				return false;
+
+			// No differences if the buffers are byte-identical.
+			if (m0 == m1 && size0 == size1 &&
+				(size0 == 0 || memcmp(buf0, buf1, size0) == 0))
+				return true;
+
+			struct change* sub =
+				diff_2_buffers_xdiff(buf0, size0, buf1, size1, m_xdlFlags);
+
+			for (struct change* s = sub; s != nullptr; s = s->link)
+			{
+				if (s->deleted || s->inserted)
+					addChange(c0 - pPrefix[0] + s->line0, s->deleted,
+						c1 - pPrefix[1] + s->line1, s->inserted);
+			}
+
+			FreeDiffUtilsScript(sub);
+			return true;
+		};
+
+	// On failure, treat the entire range as different
+	// (using P's compressed coordinates).
+	auto addWholeAsDiff = [&](int abs0, int n0, int abs1, int n1)
+		{
+			const int c0 = (std::max)(abs0 - pPrefix[0], 0);
+			const int c1 = (std::max)(abs1 - pPrefix[1], 0);
+			const int e0 = (std::min)(abs0 + n0, pEnd[0]) - pPrefix[0];
+			const int e1 = (std::min)(abs1 + n1, pEnd[1]) - pPrefix[1];
+
+			addChange(c0, (std::max)(e0 - c0, 0),
+				c1, (std::max)(e1 - c1, 0));
+		};
+
+	auto process = [&](bool sameInAligned, int abs0, int n0, int abs1, int n1)
+		{
+			if (!diffRange(sameInAligned, abs0, n0, abs1, n1))
+				addWholeAsDiff(abs0, n0, abs1, n1);
+		};
+
+	// Iterate over the hunks in A.
+	// Convert their coordinates to absolute line numbers.
+	const int pre0 = alignInf[0].prefix_lines;
+	const int pre1 = alignInf[1].prefix_lines;
+
+	int cursor0 = pre0;
+	int cursor1 = pre1;
+
+	// The common prefix of A is identical in A.
+	// Compare it again in P.
+	if (pre0 > 0 || pre1 > 0)
+		process(true, 0, pre0, 0, pre1);
+
+	for (struct change* next = alignScript; next != nullptr;)
+	{
+		struct change* thisob = next;
+		struct change* end = find_change(next);
+		next = end->link;
+		end->link = nullptr;
+
+		int first0 = 0, last0 = 0, first1 = 0, last1 = 0;
+		int deletes = 0, inserts = 0;
+
+		analyze_hunk(thisob, &first0, &last0, &first1, &last1,
+			&deletes, &inserts, alignInf);
+
+		end->link = next;
+
+		// The hunk covers [first, last]. deletes/inserts exclude ignorable
+		// lines (e.g. blank lines), so they must not be used as the length.
+		const int h0 = first0 + pre0;
+		const int h1 = first1 + pre1;
+		const int n0 = (std::max)(last0 - first0 + 1, 0);
+		const int n1 = (std::max)(last1 - first1 + 1, 0);
+
+		// 1. Region before the hunk that is identical in A.
+		process(true, cursor0, h0 - cursor0, cursor1, h1 - cursor1);
+
+		// 2. Hunk body.
+		process(false, h0, n0, h1, n1);
+
+		cursor0 = (std::max)(cursor0, h0 + n0);
+		cursor1 = (std::max)(cursor1, h1 + n1);
+	}
+
+	// 3. Remaining region, including the common suffix of A.
+	// A's common suffix is at least as long as P's, so the end of P's valid
+	// range must be used as well, otherwise differences in P are missed.
+	const int end0 = (std::max)(alignInf[0].valid_lines - alignInf[0].linbuf_base, pEnd[0]);
+	const int end1 = (std::max)(alignInf[1].valid_lines - alignInf[1].linbuf_base, pEnd[1]);
+
+	process(true, cursor0, end0 - cursor0, cursor1, end1 - cursor1);
+
+	return resultScript;
+}
+
+// Common helper function (2-way and 3-way): run Diff2Files for an aligned pair,
+// validate the result and convert the script to P's coordinate system.
+// The aligned file data is released before returning.
+// On failure, the aligner is not used (the result of P is used).
+bool CDiffWrapper::BuildAlignedScript(const String& file1, const String& file2,
+	const String& displayFile1, const String& displayFile2,
+	const DiffFileData& diffData, const struct change* pScript,
+	struct change*& converted)
+{
+	// P has no differences: the result has no differences whatever the
+	// aligner does, so there is nothing to do.
+	if (pScript == nullptr)
+	{
+		converted = nullptr;
+		return true;
+	}
+
+	DiffFileData alignData;
+	struct change* alignScript = nullptr;
+	int binFlag = 0;
+	ScopeExit cleanup([&]
+		{
+			FreeDiffUtilsScript(alignScript);
+			alignData.Close();
+		});
+
+	{
+		file_data savedFiles[2] = { files[0], files[1] };
+		ScopeExit restore([&]
+			{
+				files[0] = savedFiles[0];
+				files[1] = savedFiles[1];
+			});
+
+		alignData.SetDisplayFilepaths(displayFile1, displayFile2);
+		if (!alignData.OpenFiles(file1, file2))
+			return false;
+		if (!Diff2Files(&alignScript, &alignData, &binFlag, nullptr, false))
+			return false;
+	}
+
+	/**
+	 * @brief Count the number of lines in the whole file.
+	 * Assumes no_diff_means_no_output is false, so all lines are stored in linbuf.
+	 */
+	auto CountTotalLines = [](const file_data& fd) { return fd.valid_lines - fd.linbuf_base;
+		};
+
+	// The aligner must not change the number of lines.
+	for (int i = 0; i < 2; ++i)
+	{
+		const int counta = CountTotalLines(alignData.m_inf[i]);
+		const int countd = CountTotalLines(diffData.m_inf[i]);
+		if (binFlag != 0 ||
+			alignData.m_inf[i].missing_newline != diffData.m_inf[i].missing_newline ||
+			counta != countd)
+		{
+			RootLogger::Error(
+				strutils::format(_T("Aligner changed the number of lines. Aligner disabled. i=%d %d!=%d"),
+					i, counta, countd));
+			return false;
+		}
+	}
+
+	converted = BuildScriptFromAlignedScript(alignScript, alignData.m_inf, diffData.m_inf);
+
+	if (m_pMovedLines[0] != nullptr)
+		moved_block_analysis(&converted, diffData.m_inf);
+
+	return true;
 }
 
 /**
@@ -805,6 +1178,47 @@ bool CDiffWrapper::RunFileDiff()
 		}
 	}
 
+	// Keep the prediffed files (P) intact. Aligner plugins operate on private
+	// copies (A), which are used only for deriving line correspondence.
+	TempFile alignTemp[3];
+	String strFileAlign[3];
+	bool bAlignerActive = m_bPluginsEnabled && m_bUseDiffList && m_infoAligner &&
+		!m_infoAligner->GetPluginPipeline().empty();
+	if (bAlignerActive)
+	{
+		for (file = 0; file < aFiles.GetSize(); file++)
+		{
+			strFileAlign[file] = alignTemp[file].Create(_T("WinMergeAlign"));
+			if (strFileAlign[file].empty())
+			{
+				bAlignerActive = false;
+				break;
+			}
+			try
+			{
+				TFile(strFileTemp[file].c_str()).copyTo(strFileAlign[file]);
+			}
+			catch (const std::exception&)
+			{
+				bAlignerActive = false;
+				break;
+			}
+			pipelineContext.variables = { strFileAlign[file] };
+			pipelineContext.tableProps = m_tableProps[file];
+			if (!m_infoAligner->Aligning(file, strFileAlign[file], true, pipelineContext))
+			{
+				String sError = strutils::format_string2(
+					_("Error aligning '%1' with '%2'. Aligner disabled."),
+					strFileTemp[file].c_str(), m_infoAligner->GetPluginPipeline().c_str());
+				AppErrorMessageBox(sError);
+				// don't use any more this aligner
+				m_infoAligner->ClearPluginPipeline();
+				bAlignerActive = false;
+				break;
+			}
+		}
+	}
+
 	struct change *script = nullptr;
 	struct change *script10 = nullptr;
 	struct change *script12 = nullptr;
@@ -824,7 +1238,7 @@ bool CDiffWrapper::RunFileDiff()
 		// Compare the files, if no error was found.
 		// Last param (bin_file) is `nullptr` since we don't
 		// (yet) need info about binary sides.
-		bRet = Diff2Files(&script, &diffdata, &bin_flag, nullptr);
+		bRet = Diff2Files(&script, &diffdata, &bin_flag, nullptr, m_pMovedLines[0] != nullptr);
 
 		// We don't anymore create diff-files for every rescan.
 		// User can create patch-file whenever one wants to.
@@ -843,6 +1257,20 @@ bool CDiffWrapper::RunFileDiff()
 			outfile = nullptr;
 		}
 #endif
+
+		// Run diff on the aligned files.
+		if (bAlignerActive && m_bUseDiffList && bin_flag == 0)
+		{
+			struct change* convScript = nullptr;
+			bAlignerActive = BuildAlignedScript(strFileAlign[0], strFileAlign[1], aFiles[0], aFiles[1], diffdata, script, convScript);
+			if (bAlignerActive)
+			{
+				FreeDiffUtilsScript(script);
+				script = convScript;
+			}
+		}
+		else
+			bAlignerActive = false;
 	}
 	else
 	{
@@ -855,21 +1283,49 @@ bool CDiffWrapper::RunFileDiff()
 			return false;
 		}
 
-		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, nullptr);
+		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, nullptr, m_pMovedLines[0] != nullptr);
 
 		if (!diffdata12.OpenFiles(strFileTemp[1], strFileTemp[2]))
 		{
 			return false;
 		}
 
-		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr);
+		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr, m_pMovedLines[0] != nullptr) && bRet;
 
 		if (!diffdata02.OpenFiles(strFileTemp[0], strFileTemp[2]))
 		{
 			return false;
 		}
 
-		bRet = Diff2Files(&script02, &diffdata02, &bin_flag02, nullptr);
+		bRet = Diff2Files(&script02, &diffdata02, &bin_flag02, nullptr, m_pMovedLines[0] != nullptr) && bRet;
+
+		// 3-way comparison: run diff on the aligned files for each pair.
+		// strFileAlign[0..2] already contain the Aligner-transformed files.
+		if (bAlignerActive && m_bUseDiffList && bin_flag10 == 0 && bin_flag12 == 0)
+		{
+			struct change* convScript10 = nullptr, *convScript12 = nullptr, *convScript02 = nullptr;
+			bAlignerActive =
+				BuildAlignedScript(strFileAlign[1], strFileAlign[0], aFiles[1], aFiles[0], diffdata10, script10, convScript10) &&
+				BuildAlignedScript(strFileAlign[1], strFileAlign[2], aFiles[1], aFiles[2], diffdata12, script12, convScript12) &&
+				BuildAlignedScript(strFileAlign[0], strFileAlign[2], aFiles[0], aFiles[2], diffdata02, script02, convScript02);
+			if (bAlignerActive)
+			{
+				FreeDiffUtilsScript(script10);
+				FreeDiffUtilsScript(script12);
+				FreeDiffUtilsScript(script02);
+				script10 = convScript10;
+				script12 = convScript12;
+				script02 = convScript02;
+			}
+			else
+			{
+				FreeDiffUtilsScript(convScript10);
+				FreeDiffUtilsScript(convScript12);
+				FreeDiffUtilsScript(convScript02);
+			}
+		}
+		else
+			bAlignerActive = false;
 	}
 
 	// First determine what happened during comparison
@@ -886,8 +1342,7 @@ bool CDiffWrapper::RunFileDiff()
 
 	if (aFiles.GetSize() == 2)
 	{
-		if (bin_flag != 0)
-			m_status.bBinaries = true;
+		m_status.bBinaries = (bin_flag != 0);
 	}
 	else
 	{
@@ -1169,12 +1624,13 @@ void CDiffWrapper::SetAppendFiles(bool bAppendFiles)
     So if first file is binary, first bit is set etc. Can be `nullptr` if binary file
     info is not needed (faster compare since diffutils don't bother checking
     second file if first is binary).
+ * @param [in] detect_moved_block If true, moved-block detection is enabled.
  * @return true when compare succeeds, false if error happened during compare.
  * @note This function is used in file compare, not folder compare. Similar
  * folder compare function is in DiffFileData.cpp.
  */
 bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
-	int * bin_status, int * bin_file) const
+	int * bin_status, int * bin_file, bool detect_moved_block) const
 {
 	bool bRet = true;
 	SE_Handler seh;
@@ -1184,7 +1640,7 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		{
 			const unsigned xdl_flags = make_xdl_flags(m_options);
 			*diffs = diff_2_files_xdiff(diffData->m_inf, bin_status,
-				(m_pMovedLines[0] != nullptr), bin_file, xdl_flags);
+				detect_moved_block, bin_file, xdl_flags);
 			files[0] = diffData->m_inf[0];
 			files[1] = diffData->m_inf[1];
 		}
@@ -1192,7 +1648,7 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		{
 			// Diff files. depth is zero because we are not comparing dirs
 			*diffs = diff_2_files(diffData->m_inf, 0, bin_status,
-				(m_pMovedLines[0] != nullptr), bin_file);
+				detect_moved_block, bin_file);
 		}
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}

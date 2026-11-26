@@ -72,7 +72,7 @@ function get_PluginIsAutomatic() {
 }
 
 function get_PluginExtendedProperties() {
-  return "MenuCaption=Apply Prediff Substitution Filters";
+  return "MenuCaption=Apply Prediff Substitution Filters;GenerateAligner";
 }
 
 function PluginOnEvent(eventType, obj) {

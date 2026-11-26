@@ -17,7 +17,8 @@ PluginManager::~PluginManager() = default;
  */
 void PluginManager::FetchPluginInfos(const String& filteredFilenames, 
                                      PackingInfo ** infoUnpacker, 
-                                     PrediffingInfo ** infoPrediffer)
+                                     PrediffingInfo ** infoPrediffer,
+                                     AligningInfo ** infoAligner)
 {
 	FastMutex::ScopedLock lock(m_mutex);
 	PluginFileInfoPtr fi;
@@ -34,6 +35,7 @@ void PluginManager::FetchPluginInfos(const String& filteredFilenames,
 	}
 	*infoUnpacker = &fi->m_infoUnpacker;
 	*infoPrediffer = &fi->m_infoPrediffer;
+	*infoAligner = &fi->m_infoAligner;
 }
 
 void PluginManager::SetUnpackerSettingAll(bool automatic)
@@ -50,10 +52,27 @@ void PluginManager::SetPrediffSettingAll(bool automatic)
 		it->second->m_infoPrediffer.Initialize(automatic);
 }
 
+void PluginManager::SetAlignSettingAll(bool automatic)
+{
+	FastMutex::ScopedLock lock(m_mutex);
+	for (PluginFileInfoMap::iterator it = m_pluginSettings.begin(); it != m_pluginSettings.end(); ++it)
+		it->second->m_infoAligner.Initialize(automatic);
+}
+
 void PluginManager::SetPrediffer(const String& filteredFilenames, const String& predifferPipeline)
 {
 	PackingInfo * infoUnpacker = nullptr;
 	PrediffingInfo * infoPrediffer = nullptr;
-	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+	AligningInfo * infoAligner = nullptr;
+	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
 	infoPrediffer->SetPluginPipeline(predifferPipeline);
+}
+
+void PluginManager::SetAligner(const String& filteredFilenames, const String& predifferPipeline)
+{
+	PackingInfo * infoUnpacker = nullptr;
+	PrediffingInfo * infoPrediffer = nullptr;
+	AligningInfo * infoAligner = nullptr;
+	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer, &infoAligner);
+	infoAligner->SetPluginPipeline(predifferPipeline);
 }

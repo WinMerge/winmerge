@@ -263,7 +263,12 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI(ID_IGNORE_COLUMN_IN_COMPARISON_THIS_PANE_ONLY, OnUpdateIgnoreColumnInComparison)
 	ON_COMMAND(ID_IGNORE_COLUMN_IN_COMPARISON_RESET, OnResetIgnoredColumnsInComparison)
 	ON_UPDATE_COMMAND_UI(ID_IGNORE_COLUMN_IN_COMPARISON_RESET, OnUpdateResetIgnoredColumnsInComparison)
-	ON_UPDATE_COMMAND_UI(ID_IGNORE_COLUMN_IN_COMPARISON_CTRL_CLICK_TO_ADD_HINT, OnUpdateIgnoreColumnInComparisonCtrlClick)
+	ON_COMMAND_RANGE(ID_EXCLUDE_COLUMN_FROM_ALIGNMENT, ID_EXCLUDE_COLUMN_FROM_ALIGNMENT_THIS_PANE_ONLY, OnExcludeColumnFromAlignment)
+	ON_UPDATE_COMMAND_UI(ID_EXCLUDE_COLUMN_FROM_ALIGNMENT, OnUpdateExcludeColumnFromAlignment)
+	ON_UPDATE_COMMAND_UI(ID_EXCLUDE_COLUMN_FROM_ALIGNMENT_THIS_PANE_ONLY, OnUpdateExcludeColumnFromAlignment)
+	ON_COMMAND(ID_EXCLUDE_COLUMN_FROM_ALIGNMENT_RESET, OnResetExcludedColumnsFromAlignment)
+	ON_UPDATE_COMMAND_UI(ID_EXCLUDE_COLUMN_FROM_ALIGNMENT_RESET, OnUpdateResetExcludedColumnsFromAlignment)
+	ON_UPDATE_COMMAND_UI(ID_DISABLED, OnUpdateDisabled)
 	ON_COMMAND_RANGE(ID_FILTERMENU_COLUMN_TEXT, ID_FILTERMENU_COLUMN_DATETIME, OnFilterMenuColumn)
 	// Status bar
 	ON_NOTIFY(NM_CLICK, AFX_IDW_CONTROLBAR_FIRST+28, OnStatusBarClick)
@@ -4269,7 +4274,35 @@ void CMergeEditView::OnUpdateResetIgnoredColumnsInComparison(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
 }
 
-void CMergeEditView::OnUpdateIgnoreColumnInComparisonCtrlClick(CCmdUI* pCmdUI)
+void CMergeEditView::OnExcludeColumnFromAlignment(UINT nID)
+{
+	if (m_nClickedColumn < 0)
+		return;
+	String panePrefix;
+	if (nID == ID_EXCLUDE_COLUMN_FROM_ALIGNMENT_THIS_PANE_ONLY)
+		panePrefix = strutils::format(_T("%d"), m_nThisPane + 1);
+	GetDocument()->ExcludeColumnFromAlignment(m_nClickedColumn, panePrefix,
+		(GetKeyState(VK_CONTROL) & 0x8000) != 0);
+}
+
+void CMergeEditView::OnUpdateExcludeColumnFromAlignment(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) &&
+		m_nClickedColumn >= 0 &&
+		GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
+}
+
+void CMergeEditView::OnResetExcludedColumnsFromAlignment()
+{
+	GetDocument()->ResetExcludedColumnsFromAlignment();
+}
+
+void CMergeEditView::OnUpdateResetExcludedColumnsFromAlignment(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
+}
+
+void CMergeEditView::OnUpdateDisabled(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(false);
 }

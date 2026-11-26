@@ -191,7 +191,7 @@ CWebPageDiffFrame::~CWebPageDiffFrame()
 
 bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback)
 {
-	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+	MergeLogger::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr, nullptr);
 
 	m_callbackOnOpenCompleted = callback;
 	m_bCompareCompleted = false;
@@ -776,7 +776,7 @@ void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 
 	CloseNow();
 	GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-		nullptr, &infoUnpacker, nullptr, nID);
+		nullptr, &infoUnpacker, nullptr, nullptr, nID);
 }
 
 void CWebPageDiffFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
@@ -1522,7 +1522,7 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 				for (int pane = 0; pane < paths.GetSize(); ++pane)
 					dwFlags[pane] = FFILEOPEN_NOMRU;
 				CMainFrame::OpenFolderParams openFolderParams(true);
-				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), nullptr, nullptr, nullptr, 0, &openFolderParams);
+				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), nullptr, nullptr, nullptr, nullptr, 0, &openFolderParams);
 				return S_OK;
 			}));
 }

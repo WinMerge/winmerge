@@ -178,6 +178,7 @@ namespace plugin
 inline const std::vector<std::wstring> ProtocolHanlderEventNames = { L"URL_PACK_UNPACK" };
 inline const std::vector<std::wstring> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"ALIAS_PACK_UNPACK" };
 inline const std::vector<std::wstring> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF", L"ALIAS_PREDIFF" };
+inline const std::vector<std::wstring> AlignerEventNames = { L"BUFFER_ALIGN", L"FILE_ALIGN", L"ALIAS_ALIGN" };
 inline const std::vector<std::wstring> EditorScriptEventNames = { L"EDITOR_SCRIPT", L"ALIAS_EDITOR_SCRIPT" };
 
 /**
@@ -206,7 +207,7 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex);
 // Wrappers to call plugins methods
 
 /**
- * @brief Call the plugin "PrediffBufferW" method, events PREDIFFING
+ * @brief Call the plugin "PrediffBufferW" method, events BUFFER_PREDIFF or BUFFER_ALIGN
  *
  * @param bstrBuf Overwrite/realloc this buffer
  */
@@ -252,7 +253,7 @@ bool InvokeUnpackFolder(const String& fileSource, const String& folderDest, int 
  */
 bool InvokePackFolder(const String& folderSource, const String& fileDest, int & nChanged, IDispatch *piScript, int subCode);
 /**
- * @brief Call the plugin "PrediffFile" method, event FILE_PREDIFF
+ * @brief Call the plugin "PrediffFile" method, event FILE_PREDIFF or FILE_ALIGN
  */
 bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript);
 /**

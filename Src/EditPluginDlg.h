@@ -63,6 +63,7 @@ public:
 	bool m_bIsAutomatic;
 	bool m_bArgumentsRequired;
 	bool m_bGenerateEditorScript;
+	bool m_bGenerateAligner;
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
 	
 	//}}AFX_DATA

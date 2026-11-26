@@ -339,6 +339,7 @@ inline const String OPT_PLUGINS_ENABLED {_T("Settings/PluginsEnabled"s)};
 inline const String OPT_PLUGINS_CUSTOM_SETTINGS_LIST {_T("Settings/PluginsCustomSettingsList"s)};
 inline const String OPT_PLUGINS_UNPACKER_MODE {_T("Settings/UnpackerMode"s)};
 inline const String OPT_PLUGINS_PREDIFFER_MODE {_T("Settings/PredifferMode"s)};
+inline const String OPT_PLUGINS_ALIGNER_MODE {_T("Settings/AlignerMode"s)};
 inline const String OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION {_T("Plugins/UnpackDontCheckExtension"s)};
 inline const String OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE {_T("Plugins/OpenInSameFrameType"s)};
 

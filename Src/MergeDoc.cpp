@@ -123,11 +123,16 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	// [Plugins] menu
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
+	ON_COMMAND(ID_APPLY_ALIGNER, OnApplyAligner)
 	ON_UPDATE_COMMAND_UI(ID_APPLY_PREDIFFER, OnUpdateApplyPrediffer)
 	ON_COMMAND_RANGE(ID_NO_PREDIFFER, ID_NO_PREDIFFER, OnPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
+	ON_COMMAND_RANGE(ID_NO_ALIGNER, ID_NO_ALIGNER, OnAligner)
+	ON_COMMAND_RANGE(ID_ALIGNERS_FIRST, ID_ALIGNERS_LAST, OnAligner)
+	ON_UPDATE_COMMAND_UI(ID_NO_ALIGNER, OnUpdateAligner)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_ALIGNERS_FIRST, ID_ALIGNERS_LAST, OnUpdateAligner)
 	ON_COMMAND_RANGE(ID_SCRIPT_FOR_COPYING_FIRST, ID_SCRIPT_FOR_COPYING_LAST, OnScriptsForCopying)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SCRIPT_FOR_COPYING_FIRST, ID_SCRIPT_FOR_COPYING_LAST, OnUpdateScriptsForCopying)
 	ON_COMMAND(ID_SELECT_EDITOR_SCRIPT_FOR_COPYING, OnSelectEditorScriptForCopying)
@@ -302,17 +307,14 @@ void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer) const
 	m_diffWrapper.GetPrediffer(infoPrediffer);
 }
 
-void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, bool add)
+static bool ToggleColumnExpressionInPipeline(String& pipeline, int column, const String& panePrefix, bool add)
 {
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
-
 	String errorMessage;
-	auto expressions = PluginForFile::ParsePluginPipeline(prediffer.GetPluginPipeline(), errorMessage);
+	auto expressions = PluginForFile::ParsePluginPipeline(pipeline, errorMessage);
 	if (!errorMessage.empty())
 	{
 		RootLogger::Error(errorMessage);
-		return;
+		return false;
 	}
 
 	uint8_t targetFlags = 0xff;
@@ -370,21 +372,18 @@ void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, b
 			targetFlags, expressionPrefix + _T("!") + columnNumber + columnSuffix });
 	}
 
-	prediffer.SetPluginPipeline(PluginForFile::MakePluginPipeline(expressions));
-	SetPrediffer(&prediffer);
-	FlushAndRescan(true);
+	pipeline = PluginForFile::MakePluginPipeline(expressions);
+	return true;
 }
 
-void CMergeDoc::ResetIgnoredColumnsInComparison()
+static bool RemoveColumnExpressionsFromPipeline(String& pipeline)
 {
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
 	String errorMessage;
-	const auto expressions = PluginForFile::ParsePluginPipeline(prediffer.GetPluginPipeline(), errorMessage);
+	const auto expressions = PluginForFile::ParsePluginPipeline(pipeline, errorMessage);
 	if (!errorMessage.empty())
 	{
 		RootLogger::Error(errorMessage);
-		return;
+		return false;
 	}
 	std::vector<PluginForFile::PipelineItem> updatedExpressions;
 	for (const auto& pipelineItem : expressions)
@@ -398,8 +397,55 @@ void CMergeDoc::ResetIgnoredColumnsInComparison()
 			continue;
 		updatedExpressions.push_back(pipelineItem);
 	}
-	prediffer.SetPluginPipeline(PluginForFile::MakePluginPipeline(updatedExpressions));
+	pipeline = PluginForFile::MakePluginPipeline(updatedExpressions);
+	return true;
+}
+
+void CMergeDoc::IgnoreColumnInComparison(int column, const String& panePrefix, bool add)
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	String pipeline = prediffer.GetPluginPipeline();
+	if (!ToggleColumnExpressionInPipeline(pipeline, column, panePrefix, add))
+		return;
+	prediffer.SetPluginPipeline(pipeline);
 	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::ResetIgnoredColumnsInComparison()
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	String pipeline = prediffer.GetPluginPipeline();
+	if (!RemoveColumnExpressionsFromPipeline(pipeline))
+		return;
+	prediffer.SetPluginPipeline(pipeline);
+	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::ExcludeColumnFromAlignment(int column, const String& panePrefix, bool add)
+{
+	AligningInfo aligner;
+	GetAligner(&aligner);
+	String pipeline = aligner.GetPluginPipeline();
+	if (!ToggleColumnExpressionInPipeline(pipeline, column, panePrefix, add))
+		return;
+	aligner.SetPluginPipeline(pipeline);
+	SetAligner(&aligner);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::ResetExcludedColumnsFromAlignment()
+{
+	AligningInfo aligner;
+	GetAligner(&aligner);
+	String pipeline = aligner.GetPluginPipeline();
+	if (!RemoveColumnExpressionsFromPipeline(pipeline))
+		return;
+	aligner.SetPluginPipeline(pipeline);
+	SetAligner(&aligner);
 	FlushAndRescan(true);
 }
 
@@ -408,6 +454,23 @@ const PrediffingInfo* CMergeDoc::GetPrediffer() const
 	static PrediffingInfo infoPrediffer;
 	m_diffWrapper.GetPrediffer(&infoPrediffer);
 	return &infoPrediffer;
+}
+
+void CMergeDoc::SetAligner(const AligningInfo* infoAligner)
+{
+	m_diffWrapper.SetAligner(infoAligner);
+}
+
+void CMergeDoc::GetAligner(AligningInfo* infoAligner) const
+{
+	m_diffWrapper.GetAligner(infoAligner);
+}
+
+const AligningInfo* CMergeDoc::GetAligner() const
+{
+	static AligningInfo infoAligner;
+	m_diffWrapper.GetAligner(&infoAligner);
+	return &infoAligner;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2626,7 +2689,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 {
 	PrediffingInfo prediffer;
 	m_diffWrapper.GetPrediffer(&prediffer);
-	MergeLogger::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer);
+	AligningInfo aligner;
+	m_diffWrapper.GetAligner(&aligner);
+	MergeLogger::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer, &aligner);
 
 	CWaitCursor waitstatus;
 	IDENTLEVEL identical = IDENTLEVEL::NONE;
@@ -3219,7 +3284,7 @@ void CMergeDoc::OnOpenWithUnpacker()
 	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -nID;
 
 	if (GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-		nullptr, &infoUnpacker, nullptr, nID))
+		nullptr, &infoUnpacker, nullptr, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 
@@ -3235,6 +3300,20 @@ void CMergeDoc::OnApplyPrediffer()
 		return;
 	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());
 	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::OnApplyAligner()
+{
+	AligningInfo aligner;
+	GetAligner(&aligner);
+	CSelectPluginDlg dlg(aligner.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::Aligner, false);
+	if (dlg.DoModal() != IDOK)
+		return;
+	aligner.SetPluginPipeline(dlg.GetPluginPipeline());
+	SetAligner(&aligner);
 	FlushAndRescan(true);
 }
 
@@ -3266,6 +3345,30 @@ void CMergeDoc::OnPrediffer(UINT nID )
 	
 	// update the prediffer and rescan
 	SetPrediffer(&infoPrediffer);
+
+	FlushAndRescan(true);
+}
+
+void CMergeDoc::OnUpdateAligner(CCmdUI* pCmdUI)
+{
+	PluginMenu::UpdateMenu(pCmdUI);
+	pCmdUI->Enable(!m_bResultBuilt);
+}
+
+/**
+ * @brief Handler for all aligner choices, including ID_ALIGN_MANUAL, ID_ALIGN_AUTO, ID_NO_ALIGNER, & specific prediffers
+ */
+void CMergeDoc::OnAligner(UINT nID )
+{
+	AligningInfo infoAligner;
+	GetAligner(&infoAligner);
+
+	// build a AligningInfo structure fom the ID
+	infoAligner.SetPluginPipeline(
+		PluginMenu::GetPluginPipelineByMenuId(&infoAligner, nID, FileTransform::AlignerEventNames, ID_ALIGNERS_FIRST));
+	
+	// update the aligner and rescan
+	SetAligner(&infoAligner);
 
 	FlushAndRescan(true);
 }
@@ -3373,7 +3476,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 
 	if (GetMainFrame()->DoFileOrFolderOpen(&m_filePaths, dwFlags, strDesc, _T(""),
-		nullptr, &infoUnpacker, nullptr, nID))
+		nullptr, &infoUnpacker, nullptr, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 

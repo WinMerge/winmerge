@@ -205,8 +205,14 @@ public:
 	void SetPrediffer(const PrediffingInfo* infoPrediffer);
 	void GetPrediffer(PrediffingInfo* infoPrediffer) const;
 	const PrediffingInfo* GetPrediffer() const override;
+	void SetAligner(const AligningInfo* infoAligner);
+	void GetAligner(AligningInfo* infoAligner) const;
+	const AligningInfo* GetAligner() const override;
+	void OnApplyAligner();
 	void IgnoreColumnInComparison(int column, const String& panePrefix, bool add);
 	void ResetIgnoredColumnsInComparison();
+	void ExcludeColumnFromAlignment(int column, const String& panePrefix, bool add);
+	void ResetExcludedColumnsFromAlignment();
 	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
@@ -580,6 +586,8 @@ protected:
 	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnPrediffer(UINT nID);
+	afx_msg void OnUpdateAligner(CCmdUI* pCmdUI);
+	afx_msg void OnAligner(UINT nID);
 	afx_msg void OnScriptsForCopying(UINT nID);
 	afx_msg void OnUpdateScriptsForCopying(CCmdUI* pCmdUI);
 	afx_msg void OnSelectEditorScriptForCopying();
