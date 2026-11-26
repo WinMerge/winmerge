@@ -25,6 +25,7 @@ class CBasicFlatStatusBar : public CStatusBar
 	DECLARE_DYNAMIC(CBasicFlatStatusBar)
 public:
 	CBasicFlatStatusBar();
+	CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz) override;
 	void SetSubPaneButtons(int nIndex, std::vector<SubPaneButton> buttons);
 	void GetSubPaneButtonRects(int nIndex, std::vector<CRect>& rects) const;
 	int  HitTestSubPaneButton(int nIndex, const CPoint& pt) const;
