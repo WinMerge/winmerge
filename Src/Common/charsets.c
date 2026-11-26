@@ -1013,10 +1013,22 @@ static struct _charsetInfo const *FindById(unsigned id)
 	return index2 && id < numIndex ? index2[id] : NULL;
 }
 
+/* Names returned for their codepage instead of the name of the first table entry with that codepage:
+   UTF-16LE for 1200 (the first entry with 1200 is ISO-10646-UCS-2, the name of the 16-bit subset of Unicode;
+   1201 already gets UTF-16BE from the table order) */
+static const char *const preferredCodePageNames[] = { "UTF-16LE" };
+
 static struct _charsetInfo const *FindByCodePage(unsigned codepage)
 {
 	struct _charsetInfo const *info = NULL;
 	size_t numIndex = charsetInfo[numCharsetInfo - 1].id + 1;
+	size_t i;
+	for (i = 0; i < sizeof preferredCodePageNames / sizeof *preferredCodePageNames; ++i)
+	{
+		struct _charsetInfo const *preferred = FindByName(preferredCodePageNames[i]);
+		if (preferred != NULL && preferred->codepage == codepage)
+			return preferred;
+	}
 	if (index3 && codepage)
 	{
 		struct _charsetInfo const key = {0, 0, codepage, no};
