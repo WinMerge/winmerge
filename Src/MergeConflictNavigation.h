@@ -22,16 +22,28 @@ public:
 		const int nDiffCount = pDoc->m_diffList.GetSize();
 		const int nCurDiff = pDoc->GetCurrentDiff();
 		int nBegin;
+		int blockFirst = nCurDiff, blockLast = nCurDiff;
 		if (nCurDiff != -1)
-			nBegin = bNext ? nCurDiff + 1 : nCurDiff - 1;
+		{
+			// The search starts outside the block of joined diffs the selected difference
+			// belongs to (CMergeDiffNavigation::GetDiffBlockRange), so one change divided into
+			// joined diffs is one move; copying resolves such a block in one action.
+			CMergeDiffNavigation::GetDiffBlockRange(pView, nCurDiff, blockFirst, blockLast);
+			nBegin = bNext ? blockLast + 1 : blockFirst - 1;
+		}
 		else
 		{
-			// With no selected difference, include the cursor's difference.
+			// With no selected difference, include the cursor's difference, that is its whole block.
 			const int nLine = pView->GetCursorPos().y;
-			nBegin = bNext ? pView->NextSignificantDiffFromLine(nLine) :
+			const int nFound = bNext ? pView->NextSignificantDiffFromLine(nLine) :
 				pView->PrevSignificantDiffFromLine(nLine);
-			if (nBegin == -1)
+			if (nFound == -1)
 				nBegin = bNext ? nDiffCount : -1;
+			else
+			{
+				CMergeDiffNavigation::GetDiffBlockRange(pView, nFound, blockFirst, blockLast);
+				nBegin = bNext ? blockFirst : blockLast;
+			}
 		}
 
 		const int nStep = bNext ? 1 : -1;
