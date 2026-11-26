@@ -39,6 +39,29 @@ bool HasCapturePrefix(const std::string& captureName, const char* prefix)
 		 captureName[prefixLen] == '.');
 }
 
+/**
+ * @brief Heuristic: does this AST node type represent a named definition?
+ *
+ * Matches the node type names used across tree-sitter grammars for functions,
+ * methods, types and modules (e.g. "function_definition", "class_specifier",
+ * "impl_item", "namespace_definition"). Excludes calls/invocations.
+ */
+bool IsDefinitionLikeNodeType(const char* type)
+{
+	if (!type || strstr(type, "call") != nullptr)
+		return false;
+	static const char* const keywords[] = {
+		"function", "method", "class", "struct", "interface",
+		"namespace", "module", "impl", "trait", "enum", "constructor",
+	};
+	for (const char* kw : keywords)
+	{
+		if (strstr(type, kw) != nullptr)
+			return true;
+	}
+	return false;
+}
+
 int CountCaptureSegments(const std::string& captureName)
 {
 	return static_cast<int>(std::count(captureName.begin(), captureName.end(), '.')) + 1;
@@ -221,6 +244,44 @@ CTreeSitterLanguage::CTreeSitterLanguage()
 {
 }
 
+int CTreeSitterLanguage::CountSyntaxErrors(const std::wstring& text) const
+{
+	if (!m_pLanguage)
+		return -1;
+	TSParser* pParser = ts_parser_new();
+	if (!pParser || !ts_parser_set_language(pParser, m_pLanguage))
+	{
+		if (pParser)
+			ts_parser_delete(pParser);
+		return -1;
+	}
+	TSTree* pTree = ts_parser_parse_string_encoding(pParser, nullptr,
+		reinterpret_cast<const char*>(text.data()),
+		static_cast<uint32_t>(text.size() * sizeof(wchar_t)), TSInputEncodingUTF16LE);
+	int nErrors = -1;
+	if (pTree)
+	{
+		nErrors = 0;
+		// only subtrees flagged as containing an error need a visit
+		std::vector<TSNode> pending{ ts_tree_root_node(pTree) };
+		while (!pending.empty())
+		{
+			const TSNode node = pending.back();
+			pending.pop_back();
+			if (ts_node_is_error(node) || ts_node_is_missing(node))
+				++nErrors;
+			if (!ts_node_has_error(node))
+				continue;
+			const uint32_t nChildren = ts_node_child_count(node);
+			for (uint32_t i = 0; i < nChildren; ++i)
+				pending.push_back(ts_node_child(node, i));
+		}
+		ts_tree_delete(pTree);
+	}
+	ts_parser_delete(pParser);
+	return nErrors;
+}
+
 CTreeSitterLanguage::~CTreeSitterLanguage()
 {
 	if (m_pHighlightQuery)
@@ -232,7 +293,7 @@ CTreeSitterLanguage::~CTreeSitterLanguage()
 	if (m_pInjectionQuery)
 		ts_query_delete(m_pInjectionQuery);
 	if (m_hDll)
-		FreeLibrary(m_hDll);
+		FreeLibrary(static_cast<HMODULE>(m_hDll));
 }
 
 TSQuery* CTreeSitterLanguage::LoadQuery(const std::wstring& sPath)
@@ -288,10 +349,10 @@ bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstri
 
 	typedef const TSLanguage* (*TSLanguageFunc)();
 	TSLanguageFunc pfnLanguage = reinterpret_cast<TSLanguageFunc>(
-		GetProcAddress(m_hDll, sFuncName.c_str()));
+		GetProcAddress(static_cast<HMODULE>(m_hDll), sFuncName.c_str()));
 	if (!pfnLanguage)
 	{
-		FreeLibrary(m_hDll);
+		FreeLibrary(static_cast<HMODULE>(m_hDll));
 		m_hDll = nullptr;
 		return false;
 	}
@@ -299,7 +360,7 @@ bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstri
 	m_pLanguage = pfnLanguage();
 	if (!m_pLanguage)
 	{
-		FreeLibrary(m_hDll);
+		FreeLibrary(static_cast<HMODULE>(m_hDll));
 		m_hDll = nullptr;
 		return false;
 	}
@@ -769,6 +830,35 @@ void CTreeSitterParser::RunTagsQuery()
 
 	uint32_t totalBytes = GetTotalBytes();
 
+	// Expand a captured @definition.* node to the full definition body so that
+	// higher layers (e.g. semantic merge) get the whole declaration, not just
+	// the name/declarator token.
+	auto expandDefinitionNode = [](TSNode node, const std::string& captureName) -> TSNode
+	{
+		if (HasCapturePrefix(captureName, "definition.function") ||
+			HasCapturePrefix(captureName, "definition.method"))
+		{
+			for (TSNode current = node; !ts_node_is_null(current); current = ts_node_parent(current))
+			{
+				const char* nodeType = ts_node_type(current);
+				if (nodeType && strcmp(nodeType, "function_definition") == 0)
+					return current;
+			}
+		}
+
+		TSNode expanded = node;
+		for (;;)
+		{
+			TSNode parent = ts_node_parent(expanded);
+			if (ts_node_is_null(parent) || !ts_node_is_named(parent))
+				break;
+			if (ts_node_start_byte(parent) != ts_node_start_byte(expanded))
+				break;
+			expanded = parent;
+		}
+		return expanded;
+	};
+
 	TSQueryMatch match;
 	while (ts_query_cursor_next_match(pCursor.get(), &match))
 	{
@@ -781,6 +871,8 @@ void CTreeSitterParser::RunTagsQuery()
 		{
 			uint32_t startByte;
 			uint32_t endByte;
+			uint32_t fullStartByte;  // full definition body range (defs only)
+			uint32_t fullEndByte;
 		};
 		std::vector<Range> defs;
 		std::vector<Range> refs;
@@ -810,7 +902,9 @@ void CTreeSitterParser::RunTagsQuery()
 			}
 			else if (HasCapturePrefix(sCapture, "definition"))
 			{
-				defs.push_back({ nodeStart, nodeEnd });
+				TSNode expandedNode = expandDefinitionNode(node, sCapture);
+				defs.push_back({ nodeStart, nodeEnd,
+					ts_node_start_byte(expandedNode), ts_node_end_byte(expandedNode) });
 			}
 			else if (HasCapturePrefix(sCapture, "reference"))
 			{
@@ -843,11 +937,139 @@ void CTreeSitterParser::RunTagsQuery()
 				name,
 				useNameRange ? nameStart : def.startByte,
 				useNameRange ? nameEnd : def.endByte,
+				def.fullStartByte,
+				def.fullEndByte,
 			});
 		}
 	}
 
 	m_bTagsQueried = true;
+}
+
+bool CTreeSitterParser::TryBuildTagRange(const TagDef& def, TagRange& tagRange) const
+{
+	int startLine = 0;
+	int startChar = 0;
+	int endLine = 0;
+	int endChar = 0;
+	if (!ByteOffsetToLineChar(def.defStartByte, startLine, startChar) ||
+		!ByteOffsetToLineChar(def.defEndByte, endLine, endChar))
+	{
+		return false;
+	}
+
+	tagRange.name = ucr::toUTF8(def.name);
+	tagRange.startByte = def.defStartByte;
+	tagRange.endByte = def.defEndByte;
+	tagRange.nameStartByte = def.startByte;
+	tagRange.nameEndByte = def.endByte;
+	tagRange.startLine = startLine;
+	tagRange.startChar = startChar;
+	tagRange.endLine = endLine;
+	tagRange.endChar = endChar;
+	return true;
+}
+
+std::vector<CTreeSitterParser::TagRange> CTreeSitterParser::GetTagRanges()
+{
+	EnsureParsed();
+	EnsureTagsQueried();
+
+	std::vector<TagRange> ranges;
+	ranges.reserve(m_tagDefs.size());
+	for (const auto& def : m_tagDefs)
+	{
+		TagRange range;
+		if (TryBuildTagRange(def, range))
+			ranges.push_back(range);
+	}
+	return ranges;
+}
+
+std::wstring CTreeSitterParser::GetEnclosingSymbols(int nLineIndex, int nCharPos) const
+{
+	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
+		return std::wstring();
+
+	const uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
+	const uint32_t totalBytes = GetTotalBytes();
+	TSNode node = ts_node_descendant_for_byte_range(
+		ts_tree_root_node(m_pTree), byteOffset, byteOffset);
+
+	// Collect the names of enclosing definition-like nodes, innermost first.
+	// Requiring a "body" field filters out references and invocations that
+	// match the type-name heuristic (e.g. "method_invocation", a bodyless
+	// "struct_specifier" in a variable declaration, forward declarations).
+	std::vector<std::wstring> names;
+	while (!ts_node_is_null(node))
+	{
+		if (IsDefinitionLikeNodeType(ts_node_type(node)) &&
+			!ts_node_is_null(ts_node_child_by_field_name(node, "body", 4)))
+		{
+			// Most grammars expose the symbol as a "name" field; C/C++ use a
+			// (possibly nested) "declarator" field instead.
+			TSNode nameNode = ts_node_child_by_field_name(node, "name", 4);
+			if (ts_node_is_null(nameNode))
+			{
+				TSNode declNode = ts_node_child_by_field_name(node, "declarator", 10);
+				while (!ts_node_is_null(declNode))
+				{
+					TSNode inner = ts_node_child_by_field_name(declNode, "declarator", 10);
+					if (ts_node_is_null(inner))
+						break;
+					declNode = inner;
+				}
+				nameNode = declNode;
+			}
+			if (!ts_node_is_null(nameNode))
+			{
+				const uint32_t s = ts_node_start_byte(nameNode);
+				const uint32_t e = ts_node_end_byte(nameNode);
+				if (s < e && e <= totalBytes && e - s <= 256)
+					names.push_back(GetUtf16Text(s, e));
+			}
+		}
+		node = ts_node_parent(node);
+	}
+
+	if (names.empty())
+		return std::wstring();
+
+	// Join outermost -> innermost, keeping at most the 3 innermost names.
+	const size_t nCount = names.size() < 3 ? names.size() : 3;
+	std::wstring joined;
+	for (size_t i = nCount; i-- > 0; )
+	{
+		if (!joined.empty())
+			joined += L'.';
+		joined += names[i];
+	}
+	return joined;
+}
+
+std::wstring CTreeSitterParser::GetIdentifierAt(int nLineIndex, int nCharPos) const
+{
+	if (!m_pTree || nLineIndex < 0 || nLineIndex >= m_nLineCount)
+		return std::wstring();
+
+	const uint32_t byteOffset = CharPosToByteOffset(nLineIndex, nCharPos);
+	TSNode node = ts_node_descendant_for_byte_range(
+		ts_tree_root_node(m_pTree), byteOffset, byteOffset);
+	if (ts_node_is_null(node) || !ts_node_is_named(node))
+		return std::wstring();
+
+	// Accept identifier-like leaf nodes only ("identifier", "type_identifier",
+	// "field_identifier", "word", ...), not comments/strings/keywords.
+	const char* type = ts_node_type(node);
+	if (!type || (strstr(type, "identifier") == nullptr && strcmp(type, "word") != 0))
+		return std::wstring();
+
+	const uint32_t s = ts_node_start_byte(node);
+	const uint32_t e = ts_node_end_byte(node);
+	if (s >= e || e > GetTotalBytes() || e - s > 256)
+		return std::wstring();
+
+	return GetUtf16Text(s, e);
 }
 
 /**
@@ -1529,7 +1751,7 @@ void TreeSitterRegistry::Initialize(const std::wstring& sGrammarDir)
 	}
 
 	// Fix #3: Only discover available grammar DLLs, don't load them yet.
-	// Grammars are loaded lazily on first request in GetLanguageForExt().
+	// Grammars are loaded lazily on first request in GetLanguageForName().
 	WIN32_FIND_DATAW findData;
 	std::wstring searchPattern = m_sGrammarDir + L"\\tree-sitter-*.dll";
 	HANDLE hFind = FindFirstFileW(searchPattern.c_str(), &findData);

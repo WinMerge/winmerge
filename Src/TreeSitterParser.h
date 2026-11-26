@@ -87,11 +87,17 @@ public:
 	/** @brief Get the language name. */
 	const std::wstring& GetName() const { return m_sName; }
 
+	/**
+	 * @brief Parse a text on its own and count its syntax errors.
+	 * @return Number of error and missing nodes, or -1 if it cannot be parsed.
+	 */
+	int CountSyntaxErrors(const std::wstring& text) const;
+
 private:
 	/** @brief Helper to load and compile a .scm query file. */
 	TSQuery* LoadQuery(const std::wstring& sPath);
 
-	HMODULE           m_hDll;
+	void*             m_hDll; /**< Grammar DLL handle (HMODULE; void* keeps this header windows.h-free) */
 	const TSLanguage* m_pLanguage;
 	TSQuery*          m_pHighlightQuery;
 	TSQuery*          m_pLocalsQuery;
@@ -159,6 +165,25 @@ struct TreeSitterLineBlock
 class CTreeSitterParser : public LangServices::ISyntaxParser
 {
 public:
+	/**
+	 * @brief A top-level definition discovered by the tags query.
+	 *
+	 * The byte/line/char ranges cover the full definition body (e.g. an entire
+	 * function), while nameStartByte/nameEndByte locate just the name token.
+	 */
+	struct TagRange
+	{
+		std::string name;
+		uint32_t startByte;
+		uint32_t endByte;
+		uint32_t nameStartByte;
+		uint32_t nameEndByte;
+		int startLine;
+		int startChar;
+		int endLine;
+		int endChar;
+	};
+
 	CTreeSitterParser() = delete;
 	virtual ~CTreeSitterParser();
 
@@ -184,6 +209,9 @@ public:
 	/** @brief Check if a language is set. */
 	bool HasLanguage() const { return m_pLang != nullptr; }
 
+	/** @brief Get the loaded grammar, or nullptr if none is set. */
+	const CTreeSitterLanguage* GetLanguage() const { return m_pLang; }
+
 	/**
 	 * @brief Get the node type name at a specific position.
 	 * @param nLineIndex  Zero-based line index.
@@ -196,6 +224,33 @@ public:
 	String GetNodeTypeAt(int nLineIndex, int nCharPos);
 
 	bool FindDefinition(int nLineIndex, int nCharPos, int& nDefLine, int& nDefChar);
+
+	/**
+	 * @brief Get all top-level definitions found by the tags query.
+	 * @return Definitions with full-body byte and (line, char) ranges, in document order.
+	 *
+	 * Ensures the document is parsed and the tags query has run. The returned
+	 * ranges span the entire definition (suitable for extracting or replacing a
+	 * whole definition), unlike the name-only ranges used for go-to-definition.
+	 */
+	std::vector<TagRange> GetTagRanges();
+
+	/**
+	 * @brief Get a breadcrumb of the enclosing named definitions at a position.
+	 * @return Outermost-to-innermost symbol names joined by '.', at most 3 deep,
+	 *         or empty if the caret is not inside any named definition with a body.
+	 */
+	std::wstring GetEnclosingSymbols(int nLineIndex, int nCharPos) const;
+
+	/**
+	 * @brief Get the AST-confirmed identifier token under a position.
+	 * @return The identifier text, or empty if the position is not on an
+	 *         identifier (e.g. a comment, string or keyword).
+	 */
+	std::wstring GetIdentifierAt(int nLineIndex, int nCharPos) const;
+
+	/** @brief Parse the buffer if it has not been parsed yet. */
+	void EnsureParsed(int nLineIndex = 0);
 
 private:
 	static constexpr int kMaxLinesForHighlight = 65536;
@@ -267,7 +322,6 @@ private:
 		std::vector<LocalDef> defs;
 	};
 
-	void EnsureParsed(int nLineIndex = 0);
 	void EnsureTagsQueried();
 	void EnsureParser();
 	void ParseDocument();
@@ -291,6 +345,8 @@ private:
 	bool TryGetDefinitionByteRangeAt(uint32_t byteOffset, uint32_t& defStartByte, uint32_t& defEndByte) const;
 	bool ByteOffsetToLineChar(uint32_t byteOffset, int& nLineIndex, int& nCharPos) const;
 	bool TryGetTagDefinitionByNameAt(int nLineIndex, int nCharPos, uint32_t& defStartByte, uint32_t& defEndByte) const;
+	struct TagDef;
+	bool TryBuildTagRange(const TagDef& def, TagRange& tagRange) const;
 	uint32_t NextBlockOrder() { return m_nextBlockOrder++; }
 
 	/**
@@ -341,8 +397,10 @@ private:
 	struct TagDef
 	{
 		std::wstring name;
-		uint32_t    startByte;
+		uint32_t    startByte;     // name token range (used for go-to-definition)
 		uint32_t    endByte;
+		uint32_t    defStartByte;  // full definition body range (used for semantic merge)
+		uint32_t    defEndByte;
 	};
 
 	struct TagRef
@@ -377,7 +435,7 @@ public:
 	 *                     If empty, uses "<exe_dir>/TreeSitterGrammars/".
 	 *
 	 * This only discovers available DLL filenames. Grammars are loaded
-	 * lazily on first request via GetLanguageForExt().
+	 * lazily on first request via GetLanguageForName().
 	 */
 	void Initialize(const std::wstring& sGrammarDir = L"");
 

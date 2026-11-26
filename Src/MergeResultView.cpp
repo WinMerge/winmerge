@@ -106,6 +106,13 @@ BEGIN_MESSAGE_MAP(CMergeResultView, CGhostTextView)
 	ON_UPDATE_COMMAND_UI(ID_PREVCONFLICT, OnUpdatePrevConflict)
 	ON_COMMAND_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnForwardToMergeView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_AUTO_MERGE, ID_AUTO_MERGE, OnUpdateForwardToMergeView)
+	ON_COMMAND_RANGE(ID_SEMANTIC_MERGE, ID_SEMANTIC_MERGE_OPTION, OnForwardToMergeView)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_SEMANTIC_MERGE, ID_SEMANTIC_MERGE_OPTION, OnUpdateForwardToMergeView)
+	ON_COMMAND(ID_NEXT_SEMANTIC_RESOLUTION, OnNextSemanticResolution)
+	ON_UPDATE_COMMAND_UI(ID_NEXT_SEMANTIC_RESOLUTION, OnUpdateNextSemanticResolution)
+	ON_COMMAND(ID_PREV_SEMANTIC_RESOLUTION, OnPrevSemanticResolution)
+	ON_UPDATE_COMMAND_UI(ID_PREV_SEMANTIC_RESOLUTION, OnUpdatePrevSemanticResolution)
+	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0x7FFFFFFF, OnToolTipText)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -255,6 +262,8 @@ void CMergeResultView::OnInitialUpdate()
 	// All documents & views share one set of syntax colors and markers
 	SetColorContext(theApp.GetMainSyntaxColors());
 	SetMarkersContext(theApp.GetMainMarkers());
+	// margin tooltip with the rule and reason of a semantic resolution
+	EnableToolTips(TRUE);
 
 	if (HWND hSelf = GetSafeHwnd())
 		DarkMode::setDarkScrollBar(hSelf);
@@ -372,6 +381,11 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 			pSegment->state == ResultSegmentState::Unresolved)
 			crText = GetColor(COLORINDEX_NORMALTEXT);
 		break;
+	case ResultSegmentState::Semantic:
+		// the moved-block colors: a semantic resolution is neither one pane's text nor a hand edit
+		crBkgnd = bCurrent ? m_cachedColors.clrSelMoved : m_cachedColors.clrMoved;
+		crText = bCurrent ? m_cachedColors.clrSelMovedText : m_cachedColors.clrMovedText;
+		break;
 	default:
 		break;
 	}
@@ -380,7 +394,8 @@ void CMergeResultView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
 /**
  * @brief Draw the provenance marker into the margin, kdiff3 style:
  * '1'/'2'/'3' = line taken from that pane (the toolbar button numbers),
- * '?' = unresolved placeholder, 'm' = segment modified by hand.
+ * '?' = unresolved placeholder, 'm' = segment modified by hand,
+ * 's' = resolved by a semantic merge rule.
  */
 void CMergeResultView::DrawMargin(const CRect & rect, int nLineIndex, int nLineNumber)
 {
@@ -397,6 +412,85 @@ void CMergeResultView::DrawMargin(const CRect & rect, int nLineIndex, int nLineN
 	int nWidth = GetCharWidth();
 	m_pCrystalRenderer->SwitchFont(false, false);
 	m_pCrystalRenderer->DrawText(rect.left + 2, rect.top, rect, &marker, 1, &nWidth);
+}
+
+/**
+ * @brief The margin of a semantically resolved segment is a tool whose tip
+ * shows the rule and the reason; the tool id is the difference index + 1.
+ */
+INT_PTR CMergeResultView::OnToolHitTest(CPoint point, TOOLINFO* pTI) const
+{
+	CMergeResultView* pThis = const_cast<CMergeResultView*>(this);
+	const CMergeDoc* pDoc = GetDocument();
+	if (pDoc == nullptr || m_pTextBuffer == nullptr || point.x < 0 || point.x >= pThis->GetMarginWidth())
+		return -1;
+	const CEPoint pt = pThis->ClientToText(point);
+	const MergeResultSegment* pSegment = pDoc->GetResultSegmentByLine(pt.y);
+	if (pSegment == nullptr || pSegment->state != ResultSegmentState::Semantic || pSegment->diffIdx < 0)
+		return -1;
+	CRect rcClient;
+	GetClientRect(&rcClient);
+	pTI->hwnd = m_hWnd;
+	pTI->uId = static_cast<UINT_PTR>(pSegment->diffIdx) + 1;
+	pTI->lpszText = LPSTR_TEXTCALLBACK;
+	pTI->rect = CRect(0, rcClient.top, pThis->GetMarginWidth(), rcClient.bottom);
+	return static_cast<INT_PTR>(pTI->uId);
+}
+
+BOOL CMergeResultView::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
+{
+	const CMergeDoc* pDoc = GetDocument();
+	const int nDiff = static_cast<int>(pNMHDR->idFrom) - 1;
+	const MergeResultSegment* pSegment = (pDoc != nullptr && nDiff >= 0) ? pDoc->GetResultSegmentByDiff(nDiff) : nullptr;
+	if (pSegment == nullptr || pSegment->state != ResultSegmentState::Semantic)
+		return FALSE;
+	m_sToolTip = SemanticRuleName(pSegment->semanticRule) + _T("\n") + pSegment->semanticReason;
+	TOOLTIPTEXTW* pTTT = reinterpret_cast<TOOLTIPTEXTW*>(pNMHDR);
+	pTTT->lpszText = const_cast<wchar_t*>(m_sToolTip.c_str());
+	// a width enables the line break
+	::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 600);
+	*pResult = 0;
+	return TRUE;
+}
+
+/**
+ * @brief Move to the next (or previous) semantic resolution from the caret
+ * of this view; the compared panes call this too.
+ */
+void CMergeResultView::GoToSemanticResolution(bool bForward)
+{
+	if (m_pTextBuffer == nullptr)
+		return;
+	const int nDiff = GetDocument()->FindResultSemanticDiff(GetCursorPos().y, bForward);
+	if (nDiff < 0)
+		return;
+	SelectDiff(nDiff);
+	ScrollToDiff(nDiff);
+}
+
+bool CMergeResultView::CanGoToSemanticResolution(bool bForward)
+{
+	return m_pTextBuffer != nullptr && GetDocument()->FindResultSemanticDiff(GetCursorPos().y, bForward) >= 0;
+}
+
+void CMergeResultView::OnNextSemanticResolution()
+{
+	GoToSemanticResolution(true);
+}
+
+void CMergeResultView::OnPrevSemanticResolution()
+{
+	GoToSemanticResolution(false);
+}
+
+void CMergeResultView::OnUpdateNextSemanticResolution(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(CanGoToSemanticResolution(true));
+}
+
+void CMergeResultView::OnUpdatePrevSemanticResolution(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(CanGoToSemanticResolution(false));
 }
 
 /**
@@ -663,6 +757,9 @@ void CMergeResultView::OnUpdateCaret()
 	CMergeDoc* pDoc = GetDocument();
 	if (pDoc != nullptr)
 	{
+		const MergeResultSegment* pSegment = pDoc->GetResultSegmentByLine(nScreenLine);
+		pStatusBar->SetSemanticRule(pSegment != nullptr && pSegment->state == ResultSegmentState::Semantic ?
+			SemanticRuleName(pSegment->semanticRule) : String());
 		CMergeResultTextBuffer* pBuf = pDoc->GetMergeResultBuffer();
 		if (pBuf != nullptr && pBuf->IsInitialized())
 		{

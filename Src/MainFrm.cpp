@@ -376,6 +376,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_CODEPAGE, OnUpdateDiffIgnoreCP)
 	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_COMMENTS, OnDiffIgnoreComments)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_COMMENTS, OnUpdateDiffIgnoreComments)
+	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_TRAILING_PUNCTUATION, OnDiffIgnoreTrailingPunctuation)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_TRAILING_PUNCTUATION, OnUpdateDiffIgnoreTrailingPunctuation)
 	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnDiffIgnoreMissingTrailingEol)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnUpdateDiffIgnoreMissingTrailingEol)
 	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_LINE_BREAKS, OnDiffIgnoreLineBreaks)
@@ -3819,6 +3821,18 @@ void CMainFrame::OnDiffIgnoreComments()
 void CMainFrame::OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreTrailingPunctuation()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_TRAILING_PUNCTUATION, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_TRAILING_PUNCTUATION));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreTrailingPunctuation(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_TRAILING_PUNCTUATION));
 	pCmdUI->Enable();
 }
 

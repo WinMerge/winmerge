@@ -352,6 +352,62 @@ static std::unique_ptr<LangServices::ITextBuffer> CreateTextBuffer(const file_da
 }
 
 /**
+ * @brief Remove a single trailing separator (',' or ';') from the end of every
+ *        line's content in @p str, ignoring trailing whitespace.
+ *
+ * This makes the comparison insensitive to trailing-comma / trailing-semicolon
+ * reformatting - for example adding a trailing comma to the last element of a
+ * multi-line list or array literal - which a line-based diff would otherwise
+ * report as a change. It mirrors the trailing-punctuation behavior of
+ * structural diff tools such as difftastic. The EOL characters and any trailing
+ * whitespace are preserved so the other ignore-whitespace/EOL options keep
+ * behaving consistently.
+ */
+static void StripTrailingPunctuation(std::string& str)
+{
+	std::string result;
+	result.reserve(str.size());
+	const size_t n = str.size();
+	size_t i = 0;
+	while (i < n)
+	{
+		// Find the end of this line's content (up to the first CR/LF).
+		size_t eol = i;
+		while (eol < n && str[eol] != '\r' && str[eol] != '\n')
+			++eol;
+		// Trailing whitespace within the content is [contentEnd, eol).
+		size_t contentEnd = eol;
+		while (contentEnd > i && (str[contentEnd - 1] == ' ' || str[contentEnd - 1] == '\t'))
+			--contentEnd;
+		if (contentEnd > i && (str[contentEnd - 1] == ',' || str[contentEnd - 1] == ';'))
+		{
+			result.append(str, i, contentEnd - 1 - i);         // content before the separator
+			result.append(str, contentEnd, eol - contentEnd);  // any whitespace after it
+		}
+		else
+		{
+			result.append(str, i, eol - i);
+		}
+		// Copy exactly one EOL sequence (CRLF, CR, or LF) verbatim.
+		if (eol < n)
+		{
+			if (str[eol] == '\r' && eol + 1 < n && str[eol + 1] == '\n')
+			{
+				result.append("\r\n");
+				eol += 2;
+			}
+			else
+			{
+				result.push_back(str[eol]);
+				++eol;
+			}
+		}
+		i = eol;
+	}
+	str.swap(result);
+}
+
+/**
  * @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
  * @param [in, out]  thisob	Current change
  * @return Number of trivial diffs inserted
@@ -475,6 +531,11 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 			lineDataLeft += GetEOL(lineDataRight);
 		else if (!file_data_ary[0].missing_newline && file_data_ary[1].missing_newline)
 			lineDataRight += GetEOL(lineDataLeft);
+	}
+	if (m_options.m_bIgnoreTrailingPunctuation)
+	{
+		StripTrailingPunctuation(lineDataLeft);
+		StripTrailingPunctuation(lineDataRight);
 	}
 	if (m_options.m_bIgnoreLineBreaks)
 	{
@@ -1296,6 +1357,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	const bool usefilters = m_options.m_filterCommentsLines ||
 		m_options.m_bIgnoreMissingTrailingEol ||
 		m_options.m_bIgnoreLineBreaks ||
+		m_options.m_bIgnoreTrailingPunctuation ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
@@ -1622,6 +1684,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	const bool usefilters = m_options.m_filterCommentsLines ||
 		m_options.m_bIgnoreMissingTrailingEol ||
 		m_options.m_bIgnoreLineBreaks ||
+		m_options.m_bIgnoreTrailingPunctuation ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	

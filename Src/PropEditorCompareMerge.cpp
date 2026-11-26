@@ -26,6 +26,7 @@ PropEditorCompareMerge::PropEditorCompareMerge(COptionsMgr *optionsMgr)
 , m_bBreakOnWords(false)
 , m_nBreakType(0)
 , m_bMergeResultPaneEnabled(false)
+, m_bSemanticMerge(false)
 {
 	BindOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan, IDC_AUTOMRESCAN_CHECK, DDX_Check);
 	BindOption(OPT_COPY_GRANULARITY, m_nCopyGranularity, IDC_COPY_GRANULARITY, DDX_CBIndex);
@@ -34,6 +35,7 @@ PropEditorCompareMerge::PropEditorCompareMerge(COptionsMgr *optionsMgr)
 	BindOption(OPT_BREAK_TYPE, m_nBreakType, IDC_BREAK_TYPE, DDX_CBIndex);
 	BindOption(OPT_BREAK_SEPARATORS, m_breakChars, IDC_BREAK_CHARS, DDX_Text);
 	BindOption(OPT_MERGE_RESULT_PANE_ENABLED, m_bMergeResultPaneEnabled, IDC_MERGE_RESULT_PANE_ENABLED, DDX_Check);
+	BindOption(OPT_SEMANTIC_MERGE, m_bSemanticMerge, IDC_SEMANTIC_MERGE_CHECK, DDX_Check);
 }
 
 BEGIN_MESSAGE_MAP(PropEditorCompareMerge, OptionsPanel)

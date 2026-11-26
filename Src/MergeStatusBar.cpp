@@ -298,8 +298,33 @@ void CMergeStatusBar::MergeStatus::Update()
 
 		if (m_nCodepage > 0)
 			strEncoding.Format(_("%s").c_str(), m_sCodepageName.c_str());
+		if (!m_sSyntaxParser.empty())
+		{
+			if (!strEncoding.IsEmpty())
+				strEncoding += _T("  ");
+			strEncoding += _T("[TS:");
+			strEncoding += m_sSyntaxParser.c_str();
+			if (!m_sSyntaxSymbol.empty())
+			{
+				strEncoding += _T(" \u25B8 "); // black right-pointing small triangle
+				strEncoding += m_sSyntaxSymbol.c_str();
+			}
+			strEncoding += _T("]");
+		}
 		m_pWndStatusBar->SetPaneText(m_base + COLUMN_INFO, strInfo);
 		m_pWndStatusBar->SetPaneText(m_base + COLUMN_ENCODING, strEncoding);
+	}
+}
+
+void CMergeStatusBar::MergeStatus::SetSyntaxParser(const tchar_t* szParser, const tchar_t* szSymbol)
+{
+	String sParser = szParser ? szParser : _T("");
+	String sSymbol = szSymbol ? szSymbol : _T("");
+	if (m_sSyntaxParser != sParser || m_sSyntaxSymbol != sSymbol)
+	{
+		m_sSyntaxParser = sParser;
+		m_sSyntaxSymbol = sSymbol;
+		Update();
 	}
 }
 

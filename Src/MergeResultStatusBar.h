@@ -43,6 +43,8 @@ public:
 
 	// Conflict statistics
 	void SetConflictInfo(int nConflicts, int nUnresolved, int nWhiteSpaceOnly);
+	/** @brief Semantic merge rule of the segment at the caret, empty for none */
+	void SetSemanticRule(const String& sRule);
 
 	void SetPath(const String& sOutputPath, bool bModified);
 
@@ -78,6 +80,8 @@ private:
 	int m_nConflicts;
 	int m_nUnresolved;
 	int m_nWhiteSpaceOnly;
+	int m_nSemantic; /**< Differences resolved by a semantic merge rule */
+	String m_sSemanticRule; /**< Rule of the semantic resolution at the caret */
 	String m_sOutputPath;
 	bool m_bModified;
 

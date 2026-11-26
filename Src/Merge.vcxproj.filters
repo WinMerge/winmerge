@@ -555,6 +555,12 @@
     <ClCompile Include="SubstitutionList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SemanticMergeAnalyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StructuralDiff.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1359,6 +1365,12 @@
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SubstitutionList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticMergeAnalyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StructuralDiff.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SubstitutionFiltersList.h">

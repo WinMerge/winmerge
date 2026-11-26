@@ -32,6 +32,7 @@ public:
 	bool    m_bBreakOnWords;
 	int     m_nBreakType;
 	bool    m_bMergeResultPaneEnabled;
+	bool    m_bSemanticMerge;
 	String m_breakChars;
 	//}}AFX_DATA
 

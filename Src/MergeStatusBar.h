@@ -60,6 +60,7 @@ protected:
 		bool HasLineInfo() const override { return m_nCodepage != -1; } // -1 means not initialized
 		void SetLineInfo(const tchar_t* szLine, int nColumn, int nColumns,
 			int nChar, int nChars, int nSelectedLines, int nSelectedChars, const tchar_t* szEol, int nCodepage, bool bHasBom) override;
+		void SetSyntaxParser(const tchar_t* szParser, const tchar_t* szSymbol) override;
 		void SetSyntaxName(const tchar_t* szName) override;
 		void UpdateResources();
 	protected:
@@ -80,6 +81,8 @@ protected:
 		String m_sEol;
 		String m_sEolDisplay;
 		String m_sCodepageName;
+		String m_sSyntaxParser; /**< Tree-sitter language name, empty if not active */
+		String m_sSyntaxSymbol; /**< Enclosing symbol breadcrumb at the cursor (e.g. "MyClass.MyMethod") */
 	};
 	friend class MergeStatus; // MergeStatus accesses status bar
 	MergeStatus m_status[3];
