@@ -72,6 +72,27 @@ FindEncodingIdFromNameOrAlias(const char *encodingName)
 }
 
 /**
+ * @brief Codepage of an encoding name taken from a declaration inside the file (XML encoding attribute, HTML charset).
+ * @param [in] encodingName Encoding name as written in the declaration.
+ * @param [in] bReadFromWideCodeUnits true when the declaration was read after removing the NUL bytes of code units
+ *  wider than 8 bits, false when it was read byte by byte.
+ * @param [in] defcodepage Codepage detected from the file contents.
+ * @return Codepage of the declared encoding; defcodepage when the name is unknown, when it has no Windows codepage
+ *  (for example UTF-32), or when it names UTF-16 / UCS-2 while the declaration was read byte by byte
+ *  (a declaration readable byte by byte proves that the file is not stored in 16-bit code units).
+ */
+static unsigned GetDeclaredCodepage(const char *encodingName, bool bReadFromWideCodeUnits, int defcodepage)
+{
+	int encodingId = FindEncodingIdFromNameOrAlias(encodingName);
+	unsigned codepage = encodingId ? GetEncodingCodePageFromId(encodingId) : 0;
+	if (codepage == 0)
+		return defcodepage;
+	if (!bReadFromWideCodeUnits && (codepage == ucr::CP_UCS2LE || codepage == ucr::CP_UCS2BE))
+		return defcodepage;
+	return codepage;
+}
+
+/**
  * @brief Parser for HTML files to find encoding information
  */
 static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodepage)
@@ -109,10 +130,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 		if (!charset.empty())
 		{
 			// Is it an encoding name known to charsets module ?
-			int encodingId = FindEncodingIdFromNameOrAlias(charset.c_str());
-			if (encodingId)
-				return GetEncodingCodePageFromId(encodingId);
-			return defcodepage;
+			return GetDeclaredCodepage(charset.c_str(), false, defcodepage);
 		}
 	}
 	return defcodepage;
@@ -123,9 +141,16 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
  */
 static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepage)
 {
+	// "<?" at the start in 16-bit code units without BOM (XML 1.0 Appendix F.1): the bytes give the byte order,
+	// the encoding declaration cannot change it (it may name UTF-16 without byte order, or a wrong encoding)
+	if (len >= 4 && memcmp(src, "<\0?\0", 4) == 0)
+		return ucr::CP_UCS2LE;
+	if (len >= 4 && memcmp(src, "\0<\0?", 4) == 0)
+		return ucr::CP_UCS2BE;
 	const char *psrc = src;
 	std::unique_ptr<char[]> buf;
-	if (len >= 2 && (src[0] == 0 || src[1] == 0))
+	const bool bReadFromWideCodeUnits = (len >= 2 && (src[0] == 0 || src[1] == 0));
+	if (bReadFromWideCodeUnits)
 	{
 		buf.reset(new char[len]);
 		int i, j;
@@ -144,11 +169,7 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepa
 		if (!encoding.empty())
 		{
 			// Is it an encoding name we can find in charsets module ?
-			unsigned encodingId = FindEncodingIdFromNameOrAlias(encoding.c_str());
-			if (encodingId)
-			{
-				return GetEncodingCodePageFromId(encodingId);
-			}
+			return GetDeclaredCodepage(encoding.c_str(), bReadFromWideCodeUnits, defcodepage);
 		}
 	}
 	return defcodepage;
