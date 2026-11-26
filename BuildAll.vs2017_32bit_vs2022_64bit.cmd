@@ -1,5 +1,4 @@
 pushd "%~dp0"
-call BuildManual.cmd || goto :eof
 setlocal
 call BuildBin.vs2017.cmd x86 || goto :eof
 endlocal
