@@ -63,6 +63,8 @@ IDI_PLUGINS             ICON                    "res\\plugins.ico"
 
 IDR_LOGO                IMAGE                   "res\\logo.jpg"
 IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
+// Margin copy arrow, frame 0 points right, frame 1 points left: Tabler Icons "arrow-big-right-lines" (filled), MIT License, see res/mg_copy_arrows.LICENSE.txt
+IDR_MARGIN_COPY_ARROWS_PNG IMAGE                 "res\\mg_copy_arrows.png"
 IDR_TOOLBAR_ENABLED32_PNG IMAGE                 "res\\ToolbarEnabled32.png"
 
 
