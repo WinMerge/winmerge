@@ -18,6 +18,7 @@ COpenDoc::COpenDoc()
 	, m_cTableDelimiter(',')
 	, m_cTableQuote('\"')
 	, m_bTableAllowNewLinesInQuotes(false)
+	, m_bFindMode(false)
 {
 	PackingInfo infoUnpacker;
 	PrediffingInfo infoPrediffer;
@@ -47,7 +48,7 @@ void COpenDoc::RefreshOptions()
  */
 void COpenDoc::UpdateResources()
 {
-	SetTitle(_("Select Files or Folders").c_str());
+	SetTitle(m_bFindMode ? _("Find in Files").c_str() : _("Select Files or Folders").c_str());
 	POSITION pos = GetFirstViewPosition();
 	COpenView *pView = static_cast<COpenView *>(GetNextView(pos));
 	pView->UpdateResources();

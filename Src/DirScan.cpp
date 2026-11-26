@@ -33,6 +33,9 @@
 #include "MergeAppCOMClass.h"
 #include "PathContext.h"
 #include "DebugNew.h"
+#include "FilterEngine/FilterExpression.h"
+#include "FilterEngine/ILineDataProvider.h"
+#include "Common/UniFile.h"
 
 using Poco::NotificationQueue;
 using Poco::Notification;
@@ -863,6 +866,61 @@ static void CompareDiffItem(FolderCmp &fc, DIFFITEM &di)
 	}
 	else
 	{
+		// Search the file contents before the regular file comparison. The
+		// expression is evaluated once for each line on each side; a match on
+		// any side keeps the item in the comparison.
+		if (!di.diffcode.isResultFiltered() && pCtxt->m_pSearchLineFilterExpression &&
+			!pCtxt->SearchExpressionNeedsDiff())
+		{
+			class SearchLineProvider final : public ILineDataProvider
+			{
+			public:
+				std::vector<std::vector<std::string>> lines;
+				int GetLineCount() const override
+				{
+					size_t count = 0;
+					for (const auto& side : lines) count = std::max(count, side.size());
+					return static_cast<int>(count);
+				}
+				std::string GetLine(int pane, int lineIndex) const override
+				{
+					return pane >= 0 && pane < static_cast<int>(lines.size()) && lineIndex >= 0 && lineIndex < static_cast<int>(lines[pane].size()) ? lines[pane][lineIndex] : std::string();
+				}
+				int GetColumnCount(int, int) const override { return 0; }
+				int GetRealLineNumber(int, int lineIndex) const override { return lineIndex + 1; }
+				unsigned GetLineFlags(int, int) const override { return 0; }
+				unsigned GetLineEol(int, int) const override { return EOL_NONE; }
+				std::string GetColumn(int, int, int) const override { return {}; }
+				std::string GetColumns(int, int, const std::vector<int>&) const override { return {}; }
+			} provider;
+			PathContext filePaths;
+			pCtxt->GetComparePaths(di, filePaths);
+			provider.lines.resize(filePaths.GetSize());
+			bool searchReadable = true;
+			for (int side = 0; side < filePaths.GetSize(); ++side)
+			{
+				if (!di.diffcode.exists(side)) continue;
+				UniMemFile file;
+				if (!file.OpenReadOnly(filePaths[side]))
+				{
+					searchReadable = false;
+					continue;
+				}
+				String line;
+				bool lossy = false;
+				while (file.ReadString(line, &lossy))
+					provider.lines[side].push_back(ucr::toUTF8(line));
+			}
+			bool matched = false;
+			FilterEvalContext eval{ pCtxt->m_pSearchLineFilterExpression.get(), &di, &provider };
+			for (int line = 0; line < provider.GetLineCount() && !matched; ++line)
+			{
+				eval.lineIndex = line;
+				matched = pCtxt->m_pSearchLineFilterExpression->Evaluate(eval);
+			}
+			if (!matched && searchReadable)
+				di.diffcode.diffcode |= DIFFCODE::SKIPPED;
+		}
 		// 1. Test against filters
 		if (!di.diffcode.isResultFiltered())
 			fc.prepAndCompareFiles(di);

@@ -334,6 +334,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
+	ON_COMMAND(ID_TOOLS_FIND_IN_FILES, OnToolsFindInFiles)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_TOOLS_GENERATEARCHIVE, OnToolsGenerateArchive)
@@ -420,6 +421,23 @@ static CPtrList &GetDocList(CMultiDocTemplate *pTemplate)
 		using CMultiDocTemplate::m_docList;
 	};
 	return static_cast<struct Template *>(pTemplate)->m_docList;
+}
+
+void CMainFrame::OnToolsFindInFiles()
+{
+	CMultiDocTemplate* pOpenTemplate = theApp.GetOpenTemplate();
+	if (m_pMenus[MENU_OPENVIEW] == nullptr)
+		pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
+	COpenDoc* pOpenDoc = static_cast<COpenDoc*>(pOpenTemplate->CreateNewDocument());
+	pOpenDoc->m_bFindMode = true;
+
+	CFrameWnd* pOpenFrame = pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
+	if (!pOpenFrame)
+	{
+		delete pOpenDoc;
+		return;
+	}
+	pOpenTemplate->InitialUpdateFrame(pOpenFrame, pOpenDoc);
 }
 
 /////////////////////////////////////////////////////////////////////////////
