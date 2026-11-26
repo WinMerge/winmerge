@@ -5024,6 +5024,34 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 }
 
+void CDirView::ApplyDisplayFileFilter(const String& filter)
+{
+	m_dirfilter.displayFilterHelper.SetMaskOrExpression(filter);
+	SyncDisplayFileFilterUI();
+	Redisplay();
+}
+
+void CDirView::SyncDisplayFileFilterUI()
+{
+	if (CDirFrame* pFrame = GetParentFrame())
+	{
+		pFrame->ShowFilterBar();
+		if (auto* pFilterBar = pFrame->GetFilterBar())
+		{
+			pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_dirfilter.displayFilterHelper.GetMaskOrExpression());
+			if (CWnd* pFilterCtrl = pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK))
+				pFilterBar->SendMessage(WM_COMMAND, MAKEWPARAM(IDC_FILTERFILE_MASK, CBN_EDITCHANGE), reinterpret_cast<LPARAM>(pFilterCtrl->GetSafeHwnd()));
+			if (!m_dirfilter.displayFilterHelper.GetMaskOrExpression().empty() && m_dirfilter.displayFilterHelper.GetErrorList().empty())
+				pFilterBar->SetFilterApplied(true);
+		}
+	}
+}
+
+void CDirView::SetDisplayFileFilter(const String& filter)
+{
+	m_dirfilter.displayFilterHelper.SetMaskOrExpression(filter);
+}
+
 void CDirView::OnViewDisplayFilterBarApply()
 {
 	CWaitCursor waitstatus;

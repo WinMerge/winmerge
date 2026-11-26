@@ -1055,6 +1055,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		}
 
 		std::unique_ptr<CMainFrame::OpenParams> pOpenParams(new CMainFrame::OpenAutoParams());
+		pOpenParams->m_sDisplayFilter = cmdInfo.m_sDisplayFilter;
 		if (auto* pOpenTextFileParams = dynamic_cast<CMainFrame::OpenTextFileParams*>(pOpenParams.get()))
 		{
 			pOpenTextFileParams->m_line = cmdInfo.m_nLineIndex;

@@ -1967,6 +1967,28 @@ std::pair<std::unique_ptr<CDiffContext>, std::unique_ptr<DIFFITEM>> CMergeDoc::C
 	return result;
 }
 
+void CMergeDoc::SetDisplayLineFilter(const String& filter)
+{
+	m_displayFilterHelper.SetStringOrExpression(filter);
+}
+
+void CMergeDoc::SyncDisplayLineFilterUI()
+{
+	if (CMergeEditFrame* pFrame = GetParentFrame())
+	{
+		pFrame->ShowFilterBar();
+		if (auto* pFilterBar = pFrame->GetFilterBar())
+		{
+			const String& filter = m_displayFilterHelper.GetStringOrExpression();
+			pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, filter);
+			if (CWnd* pFilterCtrl = pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK))
+				pFilterBar->SendMessage(WM_COMMAND, MAKEWPARAM(IDC_FILTERFILE_MASK, CBN_EDITCHANGE), reinterpret_cast<LPARAM>(pFilterCtrl->GetSafeHwnd()));
+			if (!filter.empty() && m_displayFilterHelper.GetFilterExpression().errorCode == 0)
+				pFilterBar->SetFilterApplied(true);
+		}
+	}
+}
+
 void CMergeDoc::HideLines()
 {
 	int nLine;

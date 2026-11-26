@@ -83,6 +83,7 @@ public:
 	struct OpenParams
 	{
 		virtual ~OpenParams() {}
+		String m_sDisplayFilter;
 	};
 
 	struct OpenFolderParams : virtual public OpenParams

@@ -118,6 +118,7 @@ public:
 	String m_sRightDesc; /**< Right side file's description. */
 
 	String m_sFileFilter; /**< File filter mask. */
+	String m_sDisplayFilter; /**< Display filter expression. */
 	String m_sPreDiffer; /**< Pre-differ name. */
 	String m_sUnpacker; /**< Unpacker name. */
 	String m_sFileExt; /**< File extension for determining syntax highliting */
