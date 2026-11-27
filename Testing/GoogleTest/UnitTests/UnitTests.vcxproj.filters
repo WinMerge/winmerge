@@ -153,6 +153,9 @@
     <ClCompile Include="..\markdown\markdown_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\Parsers\fsharp_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
     <ClCompile Include="..\CmdLine\MergeCmdLine_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
