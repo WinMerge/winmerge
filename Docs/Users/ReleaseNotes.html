@@ -48,27 +48,30 @@ WinMerge 2.16.60.</p>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
+<li><p>BugFix: Fix an issue where the current view was not refreshed in
+the Location pane when using Find Next/Previous. (#3744)</p></li>
+<li><p>BugFix: Fix an issue where Ctrl+F7 and Ctrl+F8 stopped working
+after selecting &quot;No&quot; and &quot;Don&#39;t ask again&quot; in the next-file dialog.
+(#3745)</p></li>
+<li><p>BugFix: Make the text box resizable. (#3747)</p></li>
 <li><p>BugFix: Fix Go To navigation when ignored differences are
 present. The Go To dialog now counts only significant differences,
 consistent with the difference number displayed in the status bar.
 (#3754)</p></li>
-<li><p>BugFix: Fix an issue where Ctrl+F7 and Ctrl+F8 stopped working
-after selecting &quot;No&quot; and &quot;Don&#39;t ask again&quot; in the next-file dialog.
-(#3745)</p></li>
-<li><p>BugFix: Fix an issue where the current view was not refreshed in
-the Location pane when using Find Next/Previous. (#3744)</p></li>
-<li><p>BugFix: Make the text box resizable. (#3747)</p></li>
+<li><p>BugFix: Fix an issue where the &quot;Defaults&quot; button in the &quot;Options
+(Editor &gt; Syntax)&quot; dialog is not displayed. (PR #3756)</p></li>
 <li><p>BugFix: Fix a crash caused by an invalid thread object reference
 in the message box dialog. (#3780, PR #3781)</p></li>
 <li><p>BugFix: Fix an issue where differences could be incorrectly
 ignored when a plugin pipeline with a filter expression was applied to
 files whose last line had no EOL. (PR #3794)</p></li>
 </ul>
-<h3 id="open-dialog">Open dialog</h3>
+<h3 id="select-files-or-folders-dialog">Select files or folders
+dialog</h3>
 <ul>
 <li>BugFix: Fix a crash in path auto-completion when the Open view&#39;s
 path combo box received focus again while auto-completion was being
-initialized. (#3749)</li>
+initialized. (PR #3749)</li>
 </ul>
 <h3 id="options-dialog">Options dialog</h3>
 <ul>
@@ -84,8 +87,19 @@ in the Editor &gt; Syntax page.</li>
 <li>Translation updates:
 <ul>
 <li>Brazilian</li>
-<li>Hungarian (merge result messages)</li>
+<li>Hungarian (PR #3760)</li>
+<li>Polish (PR #3732)</li>
 </ul></li>
+</ul>
+<h3 id="manual">Manual</h3>
+<ul>
+<li><p>Add untranslated manual catalogs for supported languages (PR
+#3740)</p></li>
+<li><p>Move the manual to a separate submodule (PR #3746)</p></li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>BugFix: [BUG] Error C2672 in MergeDocDiffSync.cpp (#3793)</li>
 </ul>
 <h2 id="what-is-new-in-21660">What Is New in 2.16.60?</h2>
 <h3 id="general-1">General</h3>
@@ -126,7 +140,7 @@ comments (PR #3685)</p></li>
 <li><p>Fix status bar flickering by suppressing background
 erasure</p></li>
 </ul>
-<h3 id="select-files-or-folders-dialog">Select files or folders
+<h3 id="select-files-or-folders-dialog-1">Select files or folders
 dialog</h3>
 <ul>
 <li><p>Open view: collapsible recent comparison list (PR #3673)</p></li>
@@ -174,7 +188,7 @@ PR #3731, PR #3735)</li>
 <li>Turkish (PR #3719)</li>
 </ul></li>
 </ul>
-<h3 id="manual">Manual</h3>
+<h3 id="manual-1">Manual</h3>
 <ul>
 <li><p>Refresh untranslated ReadMe files and update support links (PR
 #3723, PR #3725)</p></li>
@@ -306,7 +320,7 @@ PR #3612)</li>
 #3627)</li>
 </ul></li>
 </ul>
-<h3 id="manual-1">Manual</h3>
+<h3 id="manual-2">Manual</h3>
 <ul>
 <li><p>BugFix: [BUG] Spanish help is in French (#3658)</p></li>
 <li><p>Set localization parameters for French, Italian, and Spanish

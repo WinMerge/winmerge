@@ -8,23 +8,23 @@
 
 ### File compare
 
-* BugFix: Fix Go To navigation when ignored differences are present. The Go To dialog now counts only significant differences, consistent with the difference number displayed in the status bar. (#3754)
+* BugFix: Fix an issue where the current view was not refreshed in the Location pane when using Find Next/Previous. (#3744)
 
 * BugFix: Fix an issue where Ctrl+F7 and Ctrl+F8 stopped working after selecting "No" and "Don't ask again" in the next-file dialog. (#3745)
 
-* BugFix: Fix an issue where the current view was not refreshed in the Location pane when using Find Next/Previous. (#3744)
-
 * BugFix: Make the text box resizable. (#3747)
+
+* BugFix: Fix Go To navigation when ignored differences are present. The Go To dialog now counts only significant differences, consistent with the difference number displayed in the status bar. (#3754)
+
+* BugFix: Fix an issue where the "Defaults" button in the "Options (Editor > Syntax)" dialog is not displayed. (PR #3756)
 
 * BugFix: Fix a crash caused by an invalid thread object reference in the message box dialog. (#3780, PR #3781)
 
-* BugFix: Fix an issue where differences could be incorrectly ignored when
-    a plugin pipeline with a filter expression was applied to files whose
-    last line had no EOL. (PR #3794)
+* BugFix: Fix an issue where differences could be incorrectly ignored when a plugin pipeline with a filter expression was applied to files whose     last line had no EOL. (PR #3794)
 
-### Open dialog
+### Select files or folders dialog
 
-* BugFix: Fix a crash in path auto-completion when the Open view's path combo box received focus again while auto-completion was being initialized. (#3749)
+* BugFix: Fix a crash in path auto-completion when the Open view's path combo box received focus again while auto-completion was being initialized. (PR #3749)
 
 ### Options dialog
 
@@ -38,7 +38,18 @@
 
 * Translation updates:
   * Brazilian
-  * Hungarian (merge result messages)
+  * Hungarian (PR #3760)
+  * Polish (PR #3732)
+
+### Manual
+
+* Add untranslated manual catalogs for supported languages (PR #3740)
+
+* Move the manual to a separate submodule (PR #3746)
+
+### Internals
+
+* BugFix: [BUG] Error C2672 in MergeDocDiffSync.cpp (#3793)
 
 ## WinMerge 2.16.60 - 2026-10-27
 
