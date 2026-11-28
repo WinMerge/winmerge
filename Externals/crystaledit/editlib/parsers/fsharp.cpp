@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////
 //  File:       fsharp.cpp
-//  Version:    1.0.0
+//  Version:    1.1.0
 //  Created:    27-Apr-2024
 //
 //  Copyright:  Stcherbatchenko Andrei
@@ -24,9 +24,11 @@
 #define new DEBUG_NEW
 #endif
 
-//  F# keywords 
+// The keyword lists are searched with a binary search: keep them sorted by
+// character code (upper case < '_' < lower case).
+
+//  F# keywords and reserved words
 // https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/keyword-reference
-// and https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/basic-types
 static const tchar_t * s_apszFsKeywordList[] =
   {
     _T ("abstract"),
@@ -37,23 +39,17 @@ static const tchar_t * s_apszFsKeywordList[] =
     _T ("async"),
     _T ("base"),
     _T ("begin"),
-    _T ("bool"),
     _T ("break"),
-    _T ("byte"),
-    _T ("char"),
     _T ("checked"),
     _T ("class"),
     _T ("component"),
     _T ("const"),
-    _T ("const"),
     _T ("constraint"),
     _T ("continue"),
-    _T ("decimal"),
     _T ("default"),
     _T ("delegate"),
     _T ("do"),
     _T ("done"),
-    _T ("double"),
     _T ("downcast"),
     _T ("downto"),
     _T ("elif"),
@@ -66,8 +62,6 @@ static const tchar_t * s_apszFsKeywordList[] =
     _T ("false"),
     _T ("finally"),
     _T ("fixed"),
-    _T ("float"),
-    _T ("float32"),
     _T ("for"),
     _T ("fun"),
     _T ("function"),
@@ -76,27 +70,23 @@ static const tchar_t * s_apszFsKeywordList[] =
     _T ("in"),
     _T ("include"),
     _T ("inherit"),
-    _T ("int"),
-    _T ("int16"),
-    _T ("int64"),
+    _T ("inline"),
     _T ("interface"),
     _T ("internal"),
     _T ("land"),
     _T ("lazy"),
     _T ("let"),
-    _T ("let!"),
     _T ("lor"),
     _T ("lsl"),
     _T ("lsr"),
+    _T ("lxor"),
     _T ("match"),
-    _T ("match!"),
     _T ("member"),
     _T ("mixin"),
     _T ("mod"),
     _T ("module"),
     _T ("mutable"),
     _T ("namespace"),
-    _T ("nativeint"),
     _T ("new"),
     _T ("not"),
     _T ("null"),
@@ -113,15 +103,11 @@ static const tchar_t * s_apszFsKeywordList[] =
     _T ("query"),
     _T ("rec"),
     _T ("return"),
-    _T ("return!"),
-    _T ("sbyte"),
     _T ("sealed"),
     _T ("select"),
     _T ("seq"),
     _T ("sig"),
-    _T ("single"),
     _T ("static"),
-    _T ("string"),
     _T ("struct"),
     _T ("tailcall"),
     _T ("task"),
@@ -131,14 +117,8 @@ static const tchar_t * s_apszFsKeywordList[] =
     _T ("true"),
     _T ("try"),
     _T ("type"),
-    _T ("uint"),
-    _T ("uint16"),
-    _T ("uint64"),
-    _T ("unativeint"),
-    _T ("unit"),
     _T ("upcast"),
     _T ("use"),
-    _T ("use!"),
     _T ("val"),
     _T ("virtual"),
     _T ("void"),
@@ -147,39 +127,90 @@ static const tchar_t * s_apszFsKeywordList[] =
     _T ("while"),
     _T ("with"),
     _T ("yield"),
-    _T ("yield!"),
   };
 
-  static const tchar_t* s_apszUser1KeywordList[] =
+//  Keywords that also have a "!" form in computation expressions (let!, match!, ...)
+static const tchar_t * s_apszFsBangKeywordList[] =
   {
-    _T("__SOURCE_DIRECTORY__"),
-    _T("Array"),
-    _T("Async"),
-    _T("Char"),
-    _T("DateTime"),
-    _T("Decimal"),
-    _T("Guid"),
-    _T("Int16"),
-    _T("Int32"),
-    _T("Int64"),
-    _T("IntPtr"),
-    _T("List"),
-    _T("Map"),
-    _T("None"),
-    _T("Option"),
-    _T("Seq"),
-    _T("Some"),
-    _T("String"),
-    _T("Task"),
-    _T("Type"),
-    _T("UInt16"),
-    _T("UInt32"),
-    _T("UInt64"),
-    _T("UIntPtr"),
-    _T("Unit"),
-    _T("ValueNone"),
-    _T("ValueOption"),
-    _T("ValueSome"),
+    _T ("and"),
+    _T ("do"),
+    _T ("let"),
+    _T ("match"),
+    _T ("return"),
+    _T ("use"),
+    _T ("while"),
+    _T ("yield"),
+  };
+
+//  Built-in types, FSharp.Core types and cases, source constants
+// https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/basic-types
+static const tchar_t * s_apszUser1KeywordList[] =
+  {
+    _T ("Array"),
+    _T ("Async"),
+    _T ("Char"),
+    _T ("DateTime"),
+    _T ("Decimal"),
+    _T ("Error"),
+    _T ("Guid"),
+    _T ("Int16"),
+    _T ("Int32"),
+    _T ("Int64"),
+    _T ("IntPtr"),
+    _T ("List"),
+    _T ("Map"),
+    _T ("None"),
+    _T ("Ok"),
+    _T ("Option"),
+    _T ("Result"),
+    _T ("Seq"),
+    _T ("Set"),
+    _T ("Some"),
+    _T ("String"),
+    _T ("Task"),
+    _T ("Type"),
+    _T ("UInt16"),
+    _T ("UInt32"),
+    _T ("UInt64"),
+    _T ("UIntPtr"),
+    _T ("Unit"),
+    _T ("ValueNone"),
+    _T ("ValueOption"),
+    _T ("ValueSome"),
+    _T ("__LINE__"),
+    _T ("__SOURCE_DIRECTORY__"),
+    _T ("__SOURCE_FILE__"),
+    _T ("bigint"),
+    _T ("bool"),
+    _T ("byref"),
+    _T ("byte"),
+    _T ("char"),
+    _T ("decimal"),
+    _T ("double"),
+    _T ("exn"),
+    _T ("float"),
+    _T ("float32"),
+    _T ("int"),
+    _T ("int16"),
+    _T ("int32"),
+    _T ("int64"),
+    _T ("int8"),
+    _T ("list"),
+    _T ("nativeint"),
+    _T ("nativeptr"),
+    _T ("obj"),
+    _T ("option"),
+    _T ("sbyte"),
+    _T ("single"),
+    _T ("string"),
+    _T ("uint"),
+    _T ("uint16"),
+    _T ("uint32"),
+    _T ("uint64"),
+    _T ("uint8"),
+    _T ("unativeint"),
+    _T ("unit"),
+    _T ("voption"),
   };
 
 static bool
@@ -189,273 +220,674 @@ IsFsKeyword (const tchar_t *pszChars, int nLength)
 }
 
 static bool
-IsUserKeyword(const tchar_t* pszChars, int nLength)
+IsFsBangKeyword (const tchar_t *pszChars, int nLength)
 {
-    return ISXKEYWORD(s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszFsBangKeywordList, pszChars, nLength);
 }
 
-static inline void
-DefineIdentiferBlock(const tchar_t *pszChars, int nLength, std::vector<CrystalLineParser::TEXTBLOCK>* pBuf, int nIdentBegin, int I)
+static bool
+IsUserKeyword (const tchar_t *pszChars, int nLength)
 {
-    if (IsFsKeyword(pszChars + nIdentBegin, I - nIdentBegin))
-    {
-        DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
-    }
-    else if (IsUserKeyword(pszChars + nIdentBegin, I - nIdentBegin))
-    {
-        DEFINE_BLOCK(nIdentBegin, COLORINDEX_USER1);
-    }
-    else if (CrystalLineParser::IsXNumber(pszChars + nIdentBegin, I - nIdentBegin))
-    {
-        DEFINE_BLOCK(nIdentBegin, COLORINDEX_NUMBER);
-    }
-    else
-    {
-        // Todo: F# parenthesis are often optional, so functions are not usually this easy to detect!
-        bool bFunction = false;
+  return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
+}
 
-        for (int j = I; j < nLength; j++)
-        {
-            if (!xisspace(pszChars[j]))
-            {
-                if (pszChars[j] == '(')
-                {
-                    bFunction = true;
-                }
-                break;
-            }
-        }
-        if (bFunction)
-        {
-            DEFINE_BLOCK(nIdentBegin, COLORINDEX_FUNCNAME);
-        }
-    }
+//  Verbatim string @"...": "" is the only escape
+#define COOKIE_VERBATIM COOKIE_EXT_USER1
+//  Nesting depth of (* *) comments is kept in COOKIE_SET_EXT_COMMENT_DEPTH bits
+static constexpr unsigned COOKIE_FS_DEPTH_MASK = 0x0F000000;
+static constexpr unsigned COOKIE_FS_MAX_DEPTH = 15;
+static constexpr unsigned COOKIE_FS_MULTILINE = COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_VERBATIM | COOKIE_RAWSTRING | COOKIE_FS_DEPTH_MASK;
+
+namespace
+{
+  // What the next identifier on the line is, from the tokens before it
+  enum class FsContext
+  {
+    None,           // expression: a name followed by "(" is a call
+    LetName,        // after let/use: a name followed by parameters is a function
+    AndName,        // after and: an upper-case name is a type, otherwise as LetName
+    MemberName,     // after member/override/abstract/default: [self.]Name
+    TypeName,       // after type/exception
+    TypePath,       // after open/module/namespace/inherit/new/interface: A.B.C
+    TypeAnnotation, // after : :> :? :?> of, until = , ; ) ] } | or a keyword
+    TypeArguments,  // inside <...> after a type name
+    Attribute,      // after [< or ; in an attribute: the attribute name
+    AttributeArgs,  // the rest of an attribute, until ; or >]
+    ActivePattern,  // (|A|B|_|) after let/and/member
+  };
+
+  inline bool IsIdentStart (tchar_t c)
+  {
+    return xisalpha (c) != 0;
+  }
+
+  inline bool IsIdentChar (tchar_t c)
+  {
+    return xisalnum (c) != 0 || c == '\'';
+  }
+
+  inline bool IsDigit (tchar_t c)
+  {
+    return c >= '0' && c <= '9';
+  }
+
+  inline bool IsOperatorChar (tchar_t c)
+  {
+    switch (c)
+      {
+      case '!': case '%': case '&': case '*': case '+': case '-': case '.': case '/':
+      case '<': case '=': case '>': case '?': case '@': case '^': case '|': case '~':
+        return true;
+      default:
+        return false;
+      }
+  }
+
+  inline bool IsWord (const tchar_t *pszChars, int nLength, const tchar_t *pszWord)
+  {
+    return tc::tcsncmp (pszChars, pszWord, nLength) == 0 && pszWord[nLength] == 0;
+  }
+
+  inline int SkipSpaces (const tchar_t *pszChars, int nLength, int I)
+  {
+    while (I < nLength && xisspace (pszChars[I]))
+      I++;
+    return I;
+  }
+
+  // "(*" that starts a comment: "(*)" is the multiplication operator
+  inline bool IsCommentStart (const tchar_t *pszChars, int nLength, int I)
+  {
+    return I + 1 < nLength && pszChars[I] == '(' && pszChars[I + 1] == '*'
+      && !(I + 2 < nLength && pszChars[I + 2] == ')');
+  }
+
+  // The context after a keyword
+  FsContext ContextAfterKeyword (FsContext ctx, const tchar_t *pszChars, int nLength)
+  {
+    if (IsWord (pszChars, nLength, _T ("let")) || IsWord (pszChars, nLength, _T ("use")))
+      return FsContext::LetName;
+    if (IsWord (pszChars, nLength, _T ("and")))
+      return FsContext::AndName;
+    if (IsWord (pszChars, nLength, _T ("member")) || IsWord (pszChars, nLength, _T ("override"))
+        || IsWord (pszChars, nLength, _T ("abstract")) || IsWord (pszChars, nLength, _T ("default")))
+      return FsContext::MemberName;
+    if (IsWord (pszChars, nLength, _T ("type")))
+      return ctx == FsContext::TypePath ? FsContext::TypePath : FsContext::TypeName;   // open type X
+    if (IsWord (pszChars, nLength, _T ("exception")))
+      return FsContext::TypeName;
+    if (IsWord (pszChars, nLength, _T ("open")) || IsWord (pszChars, nLength, _T ("module"))
+        || IsWord (pszChars, nLength, _T ("namespace")) || IsWord (pszChars, nLength, _T ("inherit"))
+        || IsWord (pszChars, nLength, _T ("new")) || IsWord (pszChars, nLength, _T ("interface")))
+      return FsContext::TypePath;
+    if (IsWord (pszChars, nLength, _T ("of")))
+      return FsContext::TypeAnnotation;
+    // modifiers between the keyword and the name
+    if (ctx == FsContext::LetName || ctx == FsContext::AndName || ctx == FsContext::MemberName
+        || ctx == FsContext::TypeName || ctx == FsContext::TypePath)
+      {
+        if (IsWord (pszChars, nLength, _T ("rec")) || IsWord (pszChars, nLength, _T ("inline"))
+            || IsWord (pszChars, nLength, _T ("mutable")) || IsWord (pszChars, nLength, _T ("private"))
+            || IsWord (pszChars, nLength, _T ("internal")) || IsWord (pszChars, nLength, _T ("public")))
+          return ctx;
+        if (ctx == FsContext::MemberName && IsWord (pszChars, nLength, _T ("val")))
+          return ctx;   // member val X = ...
+      }
+    // keywords that are types or appear inside types
+    if (ctx == FsContext::TypeArguments)
+      return ctx;
+    if (ctx == FsContext::TypeAnnotation
+        && (IsWord (pszChars, nLength, _T ("seq")) || IsWord (pszChars, nLength, _T ("async"))
+            || IsWord (pszChars, nLength, _T ("task")) || IsWord (pszChars, nLength, _T ("null"))))
+      return ctx;
+    return FsContext::None;
+  }
 }
 
 unsigned
 CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, int nLength, std::vector<TEXTBLOCK>* pBuf)
 {
-    if (nLength == 0)
-        return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
+  dwCookie &= COOKIE_FS_MULTILINE;
+  if (nLength == 0)
+    return dwCookie;
 
-    bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT & ~COOKIE_RAWSTRING) == 0;
-    const tchar_t* pszCommentBegin = nullptr;
-    const tchar_t* pszCommentEnd = nullptr;
-    const tchar_t* pszTextBegin = nullptr;
-    const tchar_t* pszTextEnd = nullptr;
-    bool bRedefineBlock = true;
-    bool bDecIndex = false;
-    int nIdentBegin = -1;
-    int nPrevI = -1;
-    int nPrevII = -2;
-    int I = 0;
-    for (I = 0;; nPrevII=nPrevI, nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars + I) - pszChars))
+  FsContext ctx = FsContext::None;
+  FsContext ctxAfterAttribute = FsContext::None;
+  FsContext ctxAfterTypeArgs = FsContext::None;
+  int nTypeArgsDepth = 0;
+  bool bLineStart = true;
+
+  // Enter <...> when a type name is directly followed by "<"
+  auto enterTypeArguments = [&] (int nNext)
     {
-        if (I == nPrevI)
+      if (nNext < nLength && pszChars[nNext] == '<'
+          && (ctx == FsContext::TypeAnnotation || ctx == FsContext::TypePath))
         {
-            // CharNext did not advance, so we're at the end of the string
-            // and we already handled this character, so stop
-            break;
+          ctxAfterTypeArgs = ctx == FsContext::TypeAnnotation ? FsContext::TypeAnnotation : FsContext::None;
+          ctx = FsContext::TypeArguments;
+          nTypeArgsDepth = 0;
+          return true;
         }
+      return false;
+    };
 
-        if (bRedefineBlock)
+  // Color an identifier that is neither a keyword nor a built-in name (or is
+  // in a name position), and update the context
+  auto defineName = [&] (int nBegin, int nEnd)
+    {
+      const int nNext = SkipSpaces (pszChars, nLength, nEnd);
+      switch (ctx)
         {
-            int nPos = I;
-            if (bDecIndex)
-                nPos = nPrevI;
-            if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
+        case FsContext::AndName:
+          if (pszChars[nBegin] >= 'A' && pszChars[nBegin] <= 'Z')
             {
-                DEFINE_BLOCK(nPos, COLORINDEX_COMMENT);
+              DEFINE_BLOCK (nBegin, COLORINDEX_USER1);
+              ctx = FsContext::None;
+              break;
             }
-            else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING | COOKIE_RAWSTRING))
+          [[fallthrough]];
+        case FsContext::LetName:
+          {
+            bool bFunction = false;
+            if (nNext < nLength)
+              {
+                const tchar_t c = pszChars[nNext];
+                bFunction = IsIdentStart (c) || c == '<' || c == '`'
+                  || (c == '(' && !IsCommentStart (pszChars, nLength, nNext));
+              }
+            DEFINE_BLOCK (nBegin, bFunction ? COLORINDEX_FUNCNAME : COLORINDEX_NORMALTEXT);
+            ctx = FsContext::None;
+          }
+          break;
+        case FsContext::MemberName:
+          if (nEnd < nLength && pszChars[nEnd] == '.')
+            DEFINE_BLOCK (nBegin, COLORINDEX_NORMALTEXT);   // self identifier: this.Name
+          else
             {
-                DEFINE_BLOCK(nPos, COLORINDEX_STRING);
+              DEFINE_BLOCK (nBegin, COLORINDEX_FUNCNAME);
+              ctx = FsContext::None;
             }
-            else if (dwCookie & COOKIE_PREPROCESSOR)
+          break;
+        case FsContext::TypeName:
+          DEFINE_BLOCK (nBegin, COLORINDEX_USER1);
+          ctx = FsContext::None;
+          break;
+        case FsContext::TypePath:
+          DEFINE_BLOCK (nBegin, COLORINDEX_USER1);
+          if (!enterTypeArguments (nEnd) && !(nEnd < nLength && pszChars[nEnd] == '.'))
+            ctx = FsContext::None;
+          break;
+        case FsContext::TypeAnnotation:
+          DEFINE_BLOCK (nBegin, COLORINDEX_USER1);
+          enterTypeArguments (nEnd);
+          break;
+        case FsContext::TypeArguments:
+          DEFINE_BLOCK (nBegin, COLORINDEX_USER1);
+          break;
+        case FsContext::Attribute:
+          DEFINE_BLOCK (nBegin, COLORINDEX_PREPROCESSOR);
+          if (!(nEnd < nLength && pszChars[nEnd] == '.'))
+            ctx = FsContext::AttributeArgs;
+          break;
+        case FsContext::AttributeArgs:
+          DEFINE_BLOCK (nBegin, COLORINDEX_NORMALTEXT);
+          break;
+        case FsContext::ActivePattern:
+          DEFINE_BLOCK (nBegin, COLORINDEX_FUNCNAME);
+          break;
+        default:
+          // a call: name (...) or name(...)
+          DEFINE_BLOCK (nBegin, nNext < nLength && pszChars[nNext] == '(' && !IsCommentStart (pszChars, nLength, nNext)
+            ? COLORINDEX_FUNCNAME : COLORINDEX_NORMALTEXT);
+          break;
+        }
+    };
+
+  // the view draws from the first block: it must start at column 0
+  DEFINE_BLOCK (0, COLORINDEX_NORMALTEXT);
+
+  int I = 0;
+  while (I < nLength && pszChars[I] != 0)
+    {
+      //  Block comment (* ... *), may be nested
+      if (dwCookie & COOKIE_EXT_COMMENT)
+        {
+          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
+          unsigned depth = COOKIE_GET_EXT_COMMENT_DEPTH (dwCookie);
+          while (I < nLength)
             {
-                DEFINE_BLOCK(nPos, COLORINDEX_PREPROCESSOR);
-            }
-            else
-            {
-                if (xisalnum(pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha(*tc::tcharprev(pszChars, pszChars + nPos)) && !xisalpha(*tc::tcharnext(pszChars + nPos))))
+              const tchar_t c = pszChars[I];
+              if (c == '(' && I + 1 < nLength && pszChars[I + 1] == '*')
                 {
-                    DEFINE_BLOCK(nPos, COLORINDEX_NORMALTEXT);
+                  if (IsCommentStart (pszChars, nLength, I))
+                    {
+                      if (depth < COOKIE_FS_MAX_DEPTH)
+                        depth++;
+                      I += 2;
+                    }
+                  else
+                    I += 3;   // (*)
+                  continue;
                 }
-                else
+              if (c == '*' && I + 1 < nLength && pszChars[I + 1] == ')')
                 {
-                    DEFINE_BLOCK(nPos, COLORINDEX_OPERATOR);
-                    bRedefineBlock = true;
-                    bDecIndex = true;
-                    goto out;
+                  I += 2;
+                  if (depth == 0)
+                    {
+                      dwCookie &= ~COOKIE_EXT_COMMENT;
+                      break;
+                    }
+                  depth--;
+                  continue;
+                }
+              if (c == '"')
+                {
+                  // a string inside a comment hides "*)"
+                  int J = I + 1;
+                  while (J < nLength && pszChars[J] != '"')
+                    J += pszChars[J] == '\\' ? 2 : 1;
+                  I = J < nLength ? J + 1 : I + 1;
+                  continue;
+                }
+              I++;
+            }
+          COOKIE_SET_EXT_COMMENT_DEPTH (dwCookie, depth);
+          continue;
+        }
+
+      //  Strings: "...", @"...", """..."""; $ prefixes do not change where they end
+      if (dwCookie & (COOKIE_STRING | COOKIE_RAWSTRING))
+        {
+          DEFINE_BLOCK (I, COLORINDEX_STRING);
+          bool bClosed = false;
+          if (dwCookie & COOKIE_RAWSTRING)
+            {
+              for (; I < nLength; I++)
+                if (pszChars[I] == '"' && I + 2 < nLength && pszChars[I + 1] == '"' && pszChars[I + 2] == '"')
+                  {
+                    I += 3;
+                    bClosed = true;
+                    break;
+                  }
+            }
+          else
+            {
+              const bool bVerbatim = (dwCookie & COOKIE_VERBATIM) != 0;
+              while (I < nLength)
+                {
+                  if (!bVerbatim && pszChars[I] == '\\')
+                    I += 2;
+                  else if (pszChars[I] == '"')
+                    {
+                      if (bVerbatim && I + 1 < nLength && pszChars[I + 1] == '"')
+                        I += 2;
+                      else
+                        {
+                          I++;
+                          bClosed = true;
+                          break;
+                        }
+                    }
+                  else
+                    I++;
                 }
             }
-            bRedefineBlock = false;
-            bDecIndex = false;
-        }
-    out:
-
-        // Can be bigger than length if there is binary data
-        // See bug #1474782 Crash when comparing SQL with with binary data
-        if (I >= nLength || pszChars[I] == 0)
+          if (!bClosed)
             break;
-
-        if (dwCookie & COOKIE_COMMENT)
-        {
-            DEFINE_BLOCK(I, COLORINDEX_COMMENT);
-            dwCookie |= COOKIE_COMMENT;
-            break;
+          dwCookie &= ~(COOKIE_STRING | COOKIE_VERBATIM | COOKIE_RAWSTRING);
+          // byte array "abc"B
+          if (I < nLength && pszChars[I] == 'B' && !(I + 1 < nLength && IsIdentChar (pszChars[I + 1])))
+            I++;
+          if (ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          continue;
         }
 
-        //  String constant "...."
-        if (dwCookie & COOKIE_STRING)
+      const tchar_t c = pszChars[I];
+      if (xisspace (c))
         {
-            if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
+          I++;
+          continue;
+        }
+      const bool bFirstOnLine = bLineStart;
+      bLineStart = false;
+
+      //  Line comment
+      if (c == '/' && I + 1 < nLength && pszChars[I + 1] == '/')
+        {
+          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
+          break;
+        }
+
+      //  Block comment
+      if (IsCommentStart (pszChars, nLength, I))
+        {
+          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
+          dwCookie |= COOKIE_EXT_COMMENT;
+          COOKIE_SET_EXT_COMMENT_DEPTH (dwCookie, 0);
+          I += 2;
+          continue;
+        }
+
+      //  Directives: #if/#else/#endif color the whole line, other directives
+      //  (#r, #load, #nowarn, ...) only the name
+      if (c == '#' && bFirstOnLine)
+        {
+          if (I + 1 < nLength && pszChars[I + 1] == '!')
             {
-                dwCookie &= ~COOKIE_STRING;
-                bRedefineBlock = true;
+              DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);   // #!/usr/bin/env dotnet fsi
+              break;
             }
-            continue;
-        }
-
-        //  Char constant '..'
-        if (dwCookie & COOKIE_CHAR)
-        {
-            if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
+          int J = I + 1;
+          while (J < nLength && xisalpha (pszChars[J]))
+            J++;
+          if (J > I + 1)
             {
-                dwCookie &= ~COOKIE_CHAR;
-                bRedefineBlock = true;
+              DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);
+              const tchar_t *pszName = pszChars + I + 1;
+              const int nName = J - I - 1;
+              if (IsWord (pszName, nName, _T ("if")) || IsWord (pszName, nName, _T ("elif"))
+                  || IsWord (pszName, nName, _T ("else")) || IsWord (pszName, nName, _T ("endif")))
+                {
+                  while (J < nLength && !(pszChars[J] == '/' && J + 1 < nLength && pszChars[J + 1] == '/'))
+                    J++;
+                  if (J < nLength)
+                    DEFINE_BLOCK (J, COLORINDEX_COMMENT);
+                  break;
+                }
+              I = J;
+              continue;
             }
-            continue;
         }
 
-        //  Extended comment /*....*/
-        if (dwCookie & COOKIE_EXT_COMMENT)
+      //  String start
+      if (c == '"' || c == '$' || c == '@')
         {
-            if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == ')' && pszChars[nPrevI] == '*'))
+          int J = I;
+          int nAt = 0;
+          while (J < nLength && (pszChars[J] == '$' || pszChars[J] == '@'))
             {
-                dwCookie &= ~COOKIE_EXT_COMMENT;
-                bRedefineBlock = true;
-                pszCommentEnd = pszChars + I + 1;
+              if (pszChars[J] == '@')
+                nAt++;
+              J++;
             }
-            continue;
-        }
-
-        if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/'))
-        {
-            DEFINE_BLOCK(nPrevI, COLORINDEX_COMMENT);
-            dwCookie |= COOKIE_COMMENT;
-            break;
-        }
-
-        //  Multi-line string constant """...."""
-        if (dwCookie & COOKIE_RAWSTRING)
-        {
-            if ((pszTextBegin < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
+          if (J < nLength && pszChars[J] == '"' && nAt <= 1)
             {
-                dwCookie &= ~COOKIE_RAWSTRING;
-                bRedefineBlock = true;
-                pszTextEnd = pszChars + I + 2;
+              DEFINE_BLOCK (I, COLORINDEX_STRING);
+              if (J + 2 < nLength && pszChars[J + 1] == '"' && pszChars[J + 2] == '"')
+                {
+                  dwCookie |= COOKIE_RAWSTRING;
+                  I = J + 3;
+                }
+              else
+                {
+                  dwCookie |= COOKIE_STRING | (nAt ? COOKIE_VERBATIM : 0);
+                  I = J + 1;
+                }
+              continue;
             }
-            continue;
         }
 
-        if ((pszTextEnd < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
+      //  Character literal 'a', '\n', 'A', or type variable 'T
+      if (c == '\'')
         {
-            DEFINE_BLOCK(nPrevII, COLORINDEX_STRING);
-            DEFINE_BLOCK(I, COLORINDEX_STRING);
-            dwCookie |= COOKIE_RAWSTRING;
-            continue;
-        }
-
-        //  Preprocessor directive #....
-        if (dwCookie & COOKIE_PREPROCESSOR)
-        {
-            if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == ')'))
+          int nEnd = -1;
+          if (I + 1 < nLength && pszChars[I + 1] == '\\')
             {
-                DEFINE_BLOCK(nPrevI, COLORINDEX_COMMENT);
-                dwCookie |= COOKIE_EXT_COMMENT;
+              for (int J = I + 3; J < nLength && J <= I + 11; J++)
+                if (pszChars[J] == '\'')
+                  {
+                    nEnd = J;
+                    break;
+                  }
             }
-            if ((pszTextEnd < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
+          else if (I + 2 < nLength && pszChars[I + 2] == '\'' && pszChars[I + 1] != '\'')
+            nEnd = I + 2;
+          if (nEnd >= 0)
             {
-                DEFINE_BLOCK(nPrevII, COLORINDEX_STRING);
-                dwCookie |= COOKIE_RAWSTRING;
+              DEFINE_BLOCK (I, COLORINDEX_STRING);
+              I = nEnd + 1;
+              if (I < nLength && pszChars[I] == 'B' && !(I + 1 < nLength && IsIdentChar (pszChars[I + 1])))
+                I++;
+              continue;
+            }
+          if (I + 1 < nLength && IsIdentStart (pszChars[I + 1]))
+            {
+              int J = I + 1;
+              while (J < nLength && IsIdentChar (pszChars[J]))
+                J++;
+              DEFINE_BLOCK (I, COLORINDEX_USER1);
+              I = J;
+              continue;
+            }
+          DEFINE_BLOCK (I, COLORINDEX_OPERATOR);
+          I++;
+          continue;
+        }
+
+      //  Number: 42, 0x2A, 0b101, 1_000L, 1.5e-3f, 3.14M, 2uy
+      if (IsDigit (c))
+        {
+          const bool bHex = c == '0' && I + 1 < nLength && (pszChars[I + 1] == 'x' || pszChars[I + 1] == 'X');
+          int J = I + 1;
+          while (J < nLength)
+            {
+              const tchar_t d = pszChars[J];
+              if (xisalnum (d))
+                {
+                  if (!bHex && (d == 'e' || d == 'E') && J + 1 < nLength && (pszChars[J + 1] == '+' || pszChars[J + 1] == '-'))
+                    J += 2;
+                  else
+                    J++;
+                }
+              else if (d == '.' && J + 1 < nLength && IsDigit (pszChars[J + 1]))
+                J++;
+              else
                 break;
             }
-            continue;
+          DEFINE_BLOCK (I, COLORINDEX_NUMBER);
+          I = J;
+          continue;
         }
 
-        //  Normal text
-        if (pszChars[I] == '"' && (I < 2 || pszChars[nPrevI] != '"' || pszChars[nPrevII] != '"'))
+      //  ``name with spaces``
+      if (c == '`' && I + 1 < nLength && pszChars[I + 1] == '`')
         {
-            DEFINE_BLOCK(I, COLORINDEX_STRING);
-            dwCookie |= COOKIE_STRING;
-            continue;
+          int J = I + 2;
+          while (J + 1 < nLength && !(pszChars[J] == '`' && pszChars[J + 1] == '`'))
+            J++;
+          const int nEnd = J + 1 < nLength ? J + 2 : nLength;
+          defineName (I, nEnd);
+          I = nEnd;
+          continue;
         }
-        if (pszChars[I] == '\'')
+
+      //  Identifier
+      if (IsIdentStart (c))
         {
-            // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
-            if (!I || !xisalnum(pszChars[nPrevI]))
+          int J = I + 1;
+          while (J < nLength && IsIdentChar (pszChars[J]))
+            J++;
+          const tchar_t *pszWord = pszChars + I;
+          const int nWord = J - I;
+          const bool bNamePosition = ctx == FsContext::LetName || ctx == FsContext::AndName
+            || ctx == FsContext::MemberName || ctx == FsContext::TypeName
+            || ctx == FsContext::Attribute || ctx == FsContext::ActivePattern;
+          if (IsFsKeyword (pszWord, nWord))
             {
-                DEFINE_BLOCK(I, COLORINDEX_STRING);
-                dwCookie |= COOKIE_CHAR;
-                continue;
+              DEFINE_BLOCK (I, COLORINDEX_KEYWORD);
+              if (J < nLength && pszChars[J] == '!' && IsFsBangKeyword (pszWord, nWord))
+                J++;   // let!, match!, ...
+              ctx = ContextAfterKeyword (ctx, pszWord, nWord);
+              if (ctx == FsContext::TypeAnnotation)
+                enterTypeArguments (J);   // seq<Foo>
             }
-        }
-        if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '('))
-        {
-            DEFINE_BLOCK(nPrevI, COLORINDEX_COMMENT);
-            dwCookie |= COOKIE_EXT_COMMENT;
-            pszCommentBegin = pszChars + I + 1;
-            continue;
-        }
-        if ((pszTextEnd < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
-        {
-            DEFINE_BLOCK(nPrevII, COLORINDEX_STRING);
-            dwCookie |= COOKIE_RAWSTRING;
-            pszTextBegin = pszChars + I + 1;
-            continue;
-        }
-
-        if (bFirstChar)
-        {
-            if (pszChars[I] == '#')
+          else if (!bNamePosition && IsUserKeyword (pszWord, nWord))
             {
-                DEFINE_BLOCK(I, COLORINDEX_PREPROCESSOR);
-                dwCookie |= COOKIE_PREPROCESSOR;
-                continue;
+              DEFINE_BLOCK (I, COLORINDEX_USER1);
+              if (ctx == FsContext::TypePath)
+                {
+                  if (!enterTypeArguments (J) && !(J < nLength && pszChars[J] == '.'))
+                    ctx = FsContext::None;
+                }
+              else if (ctx == FsContext::TypeAnnotation)
+                enterTypeArguments (J);
+              else if (ctx != FsContext::TypeArguments && ctx != FsContext::AttributeArgs)
+                ctx = FsContext::None;
             }
-            if (!xisspace(pszChars[I]))
-                bFirstChar = false;
+          else
+            defineName (I, J);
+          I = J;
+          continue;
         }
 
-        if (pBuf == nullptr)
-            continue;               //  We don't need to extract keywords,
-        //  for faster parsing skip the rest of loop
-
-        if (xisalnum(pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha(pszChars[nPrevI]) && !xisalpha(pszChars[I + 1])))
+      //  Operators and punctuation
+      DEFINE_BLOCK (I, COLORINDEX_OPERATOR);
+      const tchar_t next = I + 1 < nLength ? pszChars[I + 1] : 0;
+      // attribute arguments run until ; or >] (":" starts a target: [<assembly: Name>])
+      if (ctx == FsContext::AttributeArgs && c != ';' && c != ':' && !(c == '>' && next == ']'))
         {
-            if (nIdentBegin == -1)
-                nIdentBegin = I;
+          I++;
+          continue;
         }
-        else
+      int nStep = 1;
+      switch (c)
         {
-            if (nIdentBegin >= 0)
+        case '.':
+          if (ctx != FsContext::MemberName && ctx != FsContext::TypePath && ctx != FsContext::TypeAnnotation
+              && ctx != FsContext::TypeArguments && ctx != FsContext::Attribute)
+            ctx = FsContext::None;
+          break;
+        case ':':
+          if (next == ':' || next == '=')
             {
-                DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
-                bRedefineBlock = true;
-                bDecIndex = true;
-                nIdentBegin = -1;
+              nStep = 2;   // :: and :=
+              ctx = FsContext::None;
             }
+          else if (next == '>')
+            {
+              nStep = 2;   // :>
+              ctx = FsContext::TypeAnnotation;
+            }
+          else if (next == '?')
+            {
+              nStep = I + 2 < nLength && pszChars[I + 2] == '>' ? 3 : 2;   // :? and :?>
+              ctx = FsContext::TypeAnnotation;
+            }
+          else if (ctx == FsContext::Attribute || ctx == FsContext::AttributeArgs)
+            ctx = FsContext::Attribute;   // [<assembly: Name>]
+          else if (ctx != FsContext::TypeArguments)
+            ctx = FsContext::TypeAnnotation;
+          break;
+        case '[':
+          if (next == '<')
+            {
+              nStep = 2;
+              ctxAfterAttribute = (ctx == FsContext::LetName || ctx == FsContext::AndName
+                || ctx == FsContext::MemberName || ctx == FsContext::TypeName) ? ctx : FsContext::None;
+              ctx = FsContext::Attribute;
+            }
+          else if (ctx != FsContext::TypeAnnotation && ctx != FsContext::TypeArguments && ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;   // int[] stays a type
+          break;
+        case ']':
+          if (ctx != FsContext::TypeAnnotation && ctx != FsContext::TypeArguments && ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case '>':
+          if ((ctx == FsContext::Attribute || ctx == FsContext::AttributeArgs) && next == ']')
+            {
+              nStep = 2;
+              ctx = ctxAfterAttribute;
+            }
+          else if (ctx == FsContext::TypeArguments)
+            {
+              if (--nTypeArgsDepth <= 0)
+                ctx = ctxAfterTypeArgs;
+            }
+          else if (ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case '<':
+          if (ctx == FsContext::TypeArguments)
+            nTypeArgsDepth++;
+          else if (ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case '-':
+          if (next == '>')
+            {
+              nStep = 2;   // -> inside a type
+              if (ctx != FsContext::TypeAnnotation && ctx != FsContext::TypeArguments)
+                ctx = FsContext::None;
+            }
+          else if (ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case '*': case '#': case '^':
+          // tuple types, flexible types #seq, statically resolved ^T
+          if (ctx != FsContext::TypeAnnotation && ctx != FsContext::TypeArguments && ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case ',':
+          if (ctx != FsContext::TypeArguments && ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case ';':
+          if (ctx == FsContext::Attribute || ctx == FsContext::AttributeArgs)
+            ctx = FsContext::Attribute;
+          else
+            ctx = FsContext::None;
+          break;
+        case '(':
+          if (ctx == FsContext::LetName || ctx == FsContext::AndName || ctx == FsContext::MemberName)
+            {
+              if (next == '|' && I + 2 < nLength && IsIdentStart (pszChars[I + 2]))
+                {
+                  nStep = 2;   // (|Even|Odd|), but not (|>)
+                  ctx = FsContext::ActivePattern;
+                  break;
+                }
+              // operator definition: let (>>=) a b
+              const int nOpBegin = SkipSpaces (pszChars, nLength, I + 1);
+              int nOpEnd = nOpBegin;
+              while (nOpEnd < nLength && IsOperatorChar (pszChars[nOpEnd]))
+                nOpEnd++;
+              const int nClose = SkipSpaces (pszChars, nLength, nOpEnd);
+              if (nOpEnd > nOpBegin && nClose < nLength && pszChars[nClose] == ')')
+                {
+                  DEFINE_BLOCK (nOpBegin, COLORINDEX_FUNCNAME);
+                  DEFINE_BLOCK (nOpEnd, COLORINDEX_OPERATOR);
+                  nStep = nClose + 1 - I;
+                }
+              ctx = FsContext::None;
+            }
+          else if (ctx != FsContext::TypeAnnotation && ctx != FsContext::TypeArguments && ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case ')':
+          if (ctx != FsContext::TypeArguments && ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
+        case '|':
+          if (ctx == FsContext::ActivePattern)
+            {
+              if (next == ')')
+                {
+                  nStep = 2;
+                  ctx = FsContext::None;
+                }
+            }
+          else
+            ctx = FsContext::None;
+          break;
+        default:
+          if (ctx != FsContext::AttributeArgs)
+            ctx = FsContext::None;
+          break;
         }
+      I += nStep;
     }
 
-    if (nIdentBegin >= 0)
-    {
-        DefineIdentiferBlock(pszChars, nLength, pBuf, nIdentBegin, I);
-    }
-
-    if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-        dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
-
-    return dwCookie;
+  return dwCookie & COOKIE_FS_MULTILINE;
 }
