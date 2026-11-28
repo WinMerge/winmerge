@@ -41,11 +41,6 @@ Beta?</a></li>
 WinMerge 2.16.60.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
 <h2 id="what-is-new-in-216602">What Is New in 2.16.60.2?</h2>
-<h3 id="general">General</h3>
-<ul>
-<li>BugFix: Fix stale text when resizing wrapped comparison panes
-(#3798)</li>
-</ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
 <li><p>BugFix: Fix an issue where the current view was not refreshed in
@@ -58,13 +53,13 @@ after selecting &quot;No&quot; and &quot;Don&#39;t ask again&quot; in the next-f
 present. The Go To dialog now counts only significant differences,
 consistent with the difference number displayed in the status bar.
 (#3754)</p></li>
-<li><p>BugFix: Fix an issue where the &quot;Defaults&quot; button in the &quot;Options
-(Editor &gt; Syntax)&quot; dialog is not displayed. (PR #3756)</p></li>
 <li><p>BugFix: Fix a crash caused by an invalid thread object reference
 in the message box dialog. (#3780, PR #3781)</p></li>
 <li><p>BugFix: Fix an issue where differences could be incorrectly
 ignored when a plugin pipeline with a filter expression was applied to
 files whose last line had no EOL. (PR #3794)</p></li>
+<li><p>BugFix: Fix stale text when resizing wrapped comparison panes (PR
+#3798)</p></li>
 </ul>
 <h3 id="select-files-or-folders-dialog">Select files or folders
 dialog</h3>
@@ -75,8 +70,8 @@ initialized. (PR #3749)</li>
 </ul>
 <h3 id="options-dialog">Options dialog</h3>
 <ul>
-<li>BugFix: Fix an issue where the &quot;Defaults&quot; button was not displayed
-in the Editor &gt; Syntax page.</li>
+<li>BugFix: Fix an issue where the &quot;Defaults&quot; button in the &quot;Options
+(Editor &gt; Syntax)&quot; dialog is not displayed. (PR #3756)</li>
 </ul>
 <h3 id="archive-suppport">Archive suppport</h3>
 <ul>
@@ -102,7 +97,7 @@ in the Editor &gt; Syntax page.</li>
 <li>BugFix: [BUG] Error C2672 in MergeDocDiffSync.cpp (#3793)</li>
 </ul>
 <h2 id="what-is-new-in-21660">What Is New in 2.16.60?</h2>
-<h3 id="general-1">General</h3>
+<h3 id="general">General</h3>
 <ul>
 <li><p>Keep an internal recent-comparison list when the Windows jump
 list has no history. (PR #3663)</p></li>
@@ -198,7 +193,7 @@ PR #3731, PR #3735)</li>
 #3739)</p></li>
 </ul>
 <h2 id="what-is-new-in-21659-beta">What Is New in 2.16.59 Beta?</h2>
-<h3 id="general-2">General</h3>
+<h3 id="general-1">General</h3>
 <ul>
 <li><p>[BUG] MDI window controls (Minimize/Maximize/Close) are
 completely hidden unless hoveredbug (#3511)(PR #3552)</p></li>
