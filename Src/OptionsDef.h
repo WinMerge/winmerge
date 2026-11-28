@@ -333,6 +333,7 @@ inline const String OPT_PATCHCREATOR_CONTEXT_LINES {_T("PatchCreator/ContextLine
 inline const String OPT_PATCHCREATOR_OPEN_TO_EDITOR {_T("PatchCreator/OpenToEditor"s)};
 inline const String OPT_PATCHCREATOR_INCLUDE_CMD_LINE {_T("PatchCreator/IncludeCmdLine"s)};
 inline const String OPT_PATCHCREATOR_COPY_TO_CLIPBOARD {_T("PatchCreator/CopyToClipboard"s)};
+inline const String OPT_PATCHCREATOR_APPEND_FILE {_T("PatchCreator/AppendFile"s)};
 
 // Plugins
 inline const String OPT_PLUGINS_ENABLED {_T("Settings/PluginsEnabled"s)};

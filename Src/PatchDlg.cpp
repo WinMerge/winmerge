@@ -447,6 +447,7 @@ void CPatchDlg::LoadSettings()
 	m_openToEditor = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_OPEN_TO_EDITOR);
 	m_includeCmdLine = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_INCLUDE_CMD_LINE);
 	m_copyToClipboard = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_COPY_TO_CLIPBOARD);
+	m_appendFile = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_APPEND_FILE);
 
 	UpdateSettings();
 }
@@ -462,6 +463,7 @@ void CPatchDlg::SaveSettings()
 	pOptions->SaveOption(OPT_PATCHCREATOR_OPEN_TO_EDITOR, m_openToEditor);
 	pOptions->SaveOption(OPT_PATCHCREATOR_INCLUDE_CMD_LINE, m_includeCmdLine);
 	pOptions->SaveOption(OPT_PATCHCREATOR_COPY_TO_CLIPBOARD, m_copyToClipboard);
+	pOptions->SaveOption(OPT_PATCHCREATOR_APPEND_FILE, m_appendFile);
 }
 
 /** 
@@ -474,6 +476,7 @@ void CPatchDlg::OnDefaultSettings()
 	m_openToEditor = false;
 	m_includeCmdLine = false;
 	m_copyToClipboard = false;
+	m_appendFile = false;
 
 	UpdateSettings();
 }

@@ -274,6 +274,7 @@ namespace
 		{ OPT_PATCHCREATOR_OPEN_TO_EDITOR, varprop::VT_BOOL, {}, {}},
 		{ OPT_PATCHCREATOR_INCLUDE_CMD_LINE, varprop::VT_BOOL, {}, {}},
 		{ OPT_PATCHCREATOR_COPY_TO_CLIPBOARD, varprop::VT_BOOL, {}, {}},
+		{ OPT_PATCHCREATOR_APPEND_FILE, varprop::VT_BOOL,{},{} },
 		// Plugins
 		{ OPT_PLUGINS_ENABLED, varprop::VT_BOOL, {}, {}},
 		{ OPT_PLUGINS_CUSTOM_SETTINGS_LIST, varprop::VT_STRING, {}, {L"EDITOR_SCRIPT.PrettifyHTML=arguments:-indent --tab-size 1 --indent-spaces 1 -wrap 0 --sort-attributes alpha \tFILE_PACK_UNPACK.PrettifyHTML=arguments:-indent --indent-attributes yes --tab-size 2 --indent-spaces 2 -wrap 0 --sort-attributes alpha 	FILE_PACK_UNPACK.PrettifyXML=arguments:-xml -indent --indent-attributes yes --tab-size 2 --indent-spaces 2 -wrap 0 --sort-attributes alpha|automatic:true	FILE_PACK_UNPACK.PrettifyJSON=automatic:true"}},
