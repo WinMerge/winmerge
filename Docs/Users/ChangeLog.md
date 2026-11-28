@@ -2,10 +2,6 @@
 
 ## WinMerge 2.16.60.2 - 2026-11-27
 
-### General
-
-* BugFix: Fix stale text when resizing wrapped comparison panes (#3798)
-
 ### File compare
 
 * BugFix: Fix an issue where the current view was not refreshed in the Location pane when using Find Next/Previous. (#3744)
@@ -16,11 +12,11 @@
 
 * BugFix: Fix Go To navigation when ignored differences are present. The Go To dialog now counts only significant differences, consistent with the difference number displayed in the status bar. (#3754)
 
-* BugFix: Fix an issue where the "Defaults" button in the "Options (Editor > Syntax)" dialog is not displayed. (PR #3756)
-
 * BugFix: Fix a crash caused by an invalid thread object reference in the message box dialog. (#3780, PR #3781)
 
 * BugFix: Fix an issue where differences could be incorrectly ignored when a plugin pipeline with a filter expression was applied to files whose     last line had no EOL. (PR #3794)
+
+* BugFix: Fix stale text when resizing wrapped comparison panes (PR #3798)
 
 ### Select files or folders dialog
 
@@ -28,7 +24,7 @@
 
 ### Options dialog
 
-* BugFix: Fix an issue where the "Defaults" button was not displayed in the Editor > Syntax page.
+* BugFix: Fix an issue where the "Defaults" button in the "Options (Editor > Syntax)" dialog is not displayed. (PR #3756)
 
 ### Archive suppport
 
